@@ -14,28 +14,14 @@
 import UIKit
 
 
-public class GetUserByScreenNameOperation: GetUserBaseOperation {
+public class Liferay70GetUserByUserIdOperation: GetUserByUserIdOperation {
 
-	public var companyId: Int64
-	public var screenName: String
+	override public func sendGetUserRequest(session: LRSession)
+			throws -> NSDictionary {
 
-	public init(companyId: Int64, screenName: String) {
-		self.companyId = companyId
-		self.screenName = screenName
+		let service = LRUserService_v70(session: session)
 
-		super.init()
-	}
-
-	override public func validateData() -> ValidationError? {
-		let error = super.validateData()
-
-		if error == nil {
-			if screenName == "" {
-				return ValidationError("login-screenlet", "validation-screenname")
-			}
-		}
-
-		return error
+		return try service.getUserByIdWithUserId(userId) ?? [:]
 	}
 
 }

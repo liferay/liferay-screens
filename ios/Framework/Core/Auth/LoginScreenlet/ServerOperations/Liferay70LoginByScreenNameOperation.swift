@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayLoginByScreenNameOperation: GetUserByScreenNameOperation {
+public class Liferay70LoginByScreenNameOperation: Liferay70GetUserByScreenNameOperation {
 
 	override public func validateData() -> ValidationError? {
 		if super.validateData() == nil {

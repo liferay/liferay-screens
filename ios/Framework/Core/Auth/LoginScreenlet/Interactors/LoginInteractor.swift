@@ -28,16 +28,16 @@ class LoginInteractor: ServerOperationInteractor {
 
 		switch BasicAuthMethod.create(screenlet.basicAuthMethod) {
 			case .ScreenName:
-				operation = LiferayLoginByScreenNameOperation(
+				operation = LiferayServerContext.operationFactory.createLoginByScreenNameOperation(
 						companyId: companyId,
 						screenName: screenlet.viewModel.userName ?? "")
 			case .UserId:
-				operation = LiferayLoginByUserIdOperation(
-						userId: Int64(Int(screenlet.viewModel.userName!) ?? 0))
+				operation = LiferayServerContext.operationFactory.createLoginByUserIdOperation(
+						userId: screenlet.viewModel.userName?.asNumber()?.longLongValue ?? 0)
 			default:
-				operation = LiferayLoginByEmailOperation(
-						companyId: companyId,
-						emailAddress: screenlet.viewModel.userName ?? "")
+				operation = LiferayServerContext.operationFactory.createLoginByEmailOperation(
+					companyId: companyId,
+					emailAddress: screenlet.viewModel.userName ?? "")
 		}
 
 		operation?.userName = screenlet.viewModel.userName

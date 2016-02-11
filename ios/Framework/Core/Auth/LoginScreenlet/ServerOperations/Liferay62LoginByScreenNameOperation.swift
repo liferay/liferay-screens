@@ -14,28 +14,20 @@
 import UIKit
 
 
-public class GetUserByScreenNameOperation: GetUserBaseOperation {
-
-	public var companyId: Int64
-	public var screenName: String
-
-	public init(companyId: Int64, screenName: String) {
-		self.companyId = companyId
-		self.screenName = screenName
-
-		super.init()
-	}
+public class Liferay62LoginByScreenNameOperation: Liferay62GetUserByScreenNameOperation {
 
 	override public func validateData() -> ValidationError? {
-		let error = super.validateData()
-
-		if error == nil {
-			if screenName == "" {
-				return ValidationError("login-screenlet", "validation-screenname")
-			}
+		if super.validateData() == nil {
+			return nil
 		}
 
-		return error
+		return ValidationError("login-screenlet", "validation")
+	}
+
+	override public func postRun() {
+		if lastError == nil {
+			loginWithResult()
+		}
 	}
 
 }

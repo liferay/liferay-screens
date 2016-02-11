@@ -13,29 +13,19 @@
 */
 import UIKit
 
+#if LIFERAY_SCREENS_FRAMEWORK
+	import LRMobileSDK
+#endif
 
-public class GetUserByScreenNameOperation: GetUserBaseOperation {
 
-	public var companyId: Int64
-	public var screenName: String
+public class Liferay62GetUserByUserIdOperation: GetUserByUserIdOperation {
 
-	public init(companyId: Int64, screenName: String) {
-		self.companyId = companyId
-		self.screenName = screenName
+	override public func sendGetUserRequest(session: LRSession)
+			throws -> NSDictionary {
 
-		super.init()
-	}
+		let service = LRUserService_v62(session: session)
 
-	override public func validateData() -> ValidationError? {
-		let error = super.validateData()
-
-		if error == nil {
-			if screenName == "" {
-				return ValidationError("login-screenlet", "validation-screenname")
-			}
-		}
-
-		return error
+		return try service.getUserByIdWithUserId(userId) ?? [:]
 	}
 
 }

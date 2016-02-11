@@ -19,6 +19,18 @@ public protocol LiferayOperationFactory {
 
 	func createDDLFormLoadOperation(structureId: Int64) -> LiferayDDLFormLoadOperation
 
+	func createGetUserByEmailOperation(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailOperation
+
+	func createGetUserByScreenNameOperation(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameOperation
+
+	func createGetUserByUserIdOperation(userId userId: Int64) -> GetUserByUserIdOperation
+
+	func createLoginByEmailOperation(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailOperation
+
+	func createLoginByScreenNameOperation(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameOperation
+
+	func createLoginByUserIdOperation(userId userId: Int64) -> GetUserByUserIdOperation
+
 }
 
 
@@ -30,6 +42,38 @@ public class Liferay62OperationFactory: NSObject, LiferayOperationFactory {
 			structureId: NSNumber(longLong: structureId))
 	}
 
+	public func createGetUserByEmailOperation(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailOperation {
+		return Liferay62GetUserByEmailOperation(
+			companyId: companyId,
+			emailAddress: emailAddress)
+	}
+
+	public func createGetUserByScreenNameOperation(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameOperation {
+		return Liferay62GetUserByScreenNameOperation(
+			companyId: companyId,
+			screenName: screenName)
+	}
+
+	public func createGetUserByUserIdOperation(userId userId: Int64) -> GetUserByUserIdOperation {
+		return Liferay62GetUserByUserIdOperation(userId: userId)
+	}
+
+	public func createLoginByEmailOperation(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailOperation {
+		return Liferay62LoginByEmailOperation(
+			companyId: companyId,
+			emailAddress: emailAddress)
+	}
+
+	public func createLoginByScreenNameOperation(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameOperation {
+		return Liferay62LoginByScreenNameOperation(
+			companyId: companyId,
+			screenName: screenName)
+	}
+
+	public func createLoginByUserIdOperation(userId userId: Int64) -> GetUserByUserIdOperation {
+		return Liferay62LoginByUserIdOperation(userId: userId)
+	}
+
 }
 
 
@@ -39,6 +83,38 @@ public class Liferay70OperationFactory: NSObject, LiferayOperationFactory {
 	public func createDDLFormLoadOperation(structureId: Int64) -> LiferayDDLFormLoadOperation {
 		return Liferay70DDLFormLoadOperation(
 			structureId: NSNumber(longLong: structureId))
+	}
+
+	public func createGetUserByEmailOperation(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailOperation {
+		return Liferay70GetUserByEmailOperation(
+			companyId: companyId,
+			emailAddress: emailAddress)
+	}
+
+	public func createGetUserByScreenNameOperation(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameOperation {
+		return Liferay70GetUserByScreenNameOperation(
+			companyId: companyId,
+			screenName: screenName)
+	}
+
+	public func createGetUserByUserIdOperation(userId userId: Int64) -> GetUserByUserIdOperation {
+		return Liferay70GetUserByUserIdOperation(userId: userId)
+	}
+
+	public func createLoginByEmailOperation(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailOperation {
+		return Liferay70LoginByEmailOperation(
+			companyId: companyId,
+			emailAddress: emailAddress)
+	}
+
+	public func createLoginByScreenNameOperation(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameOperation {
+		return Liferay70LoginByScreenNameOperation(
+			companyId: companyId,
+			screenName: screenName)
+	}
+
+	public func createLoginByUserIdOperation(userId userId: Int64) -> GetUserByUserIdOperation {
+		return Liferay70LoginByUserIdOperation(userId: userId)
 	}
 
 }
