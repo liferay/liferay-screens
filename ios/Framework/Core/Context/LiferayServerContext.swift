@@ -14,6 +14,14 @@
 import Foundation
 
 
+@objc public enum LiferayServerVersion: Int {
+
+	case v62 = 62
+	case v70 = 70
+
+}
+
+
 @objc public class LiferayServerContext: NSObject {
 
 	//MARK: Singleton type
@@ -33,6 +41,20 @@ import Foundation
 		set {
 			loadContextFile()
 			StaticInstance.serverProperties!["server"] = newValue
+		}
+	}
+
+	public class var serverVersion: LiferayServerVersion {
+		get {
+			loadContextFile()
+			let value = StaticInstance.serverProperties?["version"] as? Int
+			return LiferayServerVersion(
+				rawValue: value ?? LiferayServerVersion.v70.rawValue)
+					?? .v70
+		}
+		set {
+			loadContextFile()
+			StaticInstance.serverProperties!["version"] = newValue.rawValue
 		}
 	}
 
@@ -112,16 +134,16 @@ import Foundation
 		}
 
 		func createOperationFactory() {
-			guard let className = StaticInstance.serverProperties?["operationFactory"] as? String else {
-				StaticInstance.serverProperties!["operationFactory"] = Liferay70OperationFactory()
-				return
-			}
-			guard let factoryInstance = dynamicInit(className) as? LiferayOperationFactory else {
-				StaticInstance.serverProperties!["operationFactory"] = Liferay70OperationFactory()
-				return
+			let factory: LiferayOperationFactory
+
+			switch self.serverVersion {
+			case .v62:
+				factory = Liferay62OperationFactory()
+			case .v70:
+				factory = Liferay70OperationFactory()
 			}
 
-			StaticInstance.serverProperties!["operationFactory"] = factoryInstance
+			StaticInstance.serverProperties!["operationFactory"] = factory
 		}
 
 		guard StaticInstance.serverProperties == nil else {
@@ -154,9 +176,11 @@ import Foundation
 				}
 				else {
 					StaticInstance.serverProperties = [
-							"companyId": 10157,
-							"groupId": 10184,
-							"server": "http://localhost:8080"]
+						"companyId": 10157,
+						"groupId": 10184,
+						"server": "http://localhost:8080",
+						"version": LiferayServerVersion.v70.rawValue
+					]
 					createFactory()
 					createOperationFactory()
 				}
