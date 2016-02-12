@@ -21,7 +21,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 
 	//MARK: parse
 
-	func test_Parse_ShouldExtractValues_WhenFieldIsInteger() {
+	func test_XSDParse_ShouldExtractValues_WhenFieldIsInteger() {
 		let fields = DDLXSDParser().parse(integerXSD, locale: spanishLocale)
 
 		XCTAssertTrue(fields![0] is DDLFieldNumber)
@@ -33,7 +33,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 		XCTAssertEqual(NSInteger(16), numberField.predefinedValue as? NSInteger)
 	}
 
-	func test_Parse_ShouldExtractValues_WhenFieldIsNumber() {
+	func test_XSDParse_ShouldExtractValues_WhenFieldIsNumber() {
 		let fields = DDLXSDParser().parse(numberXSD, locale: spanishLocale)
 
 		XCTAssertTrue(fields![0] is DDLFieldNumber)
@@ -45,7 +45,7 @@ class DDLFieldNumber_Tests: XCTestCase {
 		XCTAssertEqual(NSInteger(16), numberField.predefinedValue as? NSInteger)
 	}
 
-	func test_Parse_ShouldExtractValues_WhenFieldIsDouble() {
+	func test_XSDParse_ShouldExtractValues_WhenFieldIsDouble() {
 		let fields = DDLXSDParser().parse(decimalXSD, locale: spanishLocale)
 
 		XCTAssertTrue(fields![0] is DDLFieldNumber)
@@ -59,13 +59,60 @@ class DDLFieldNumber_Tests: XCTestCase {
 	}
 
 
-	func test_Parse_ShouldExtractPredefinedValueValues_WhenFieldIsInteger() {
+	func test_XSDParse_ShouldExtractPredefinedValueValues_WhenFieldIsInteger() {
 		let fields = DDLXSDParser().parse(integerXSD, locale: spanishLocale)
 		let numberField = fields![0] as! DDLFieldNumber
 
 		XCTAssertTrue(numberField.predefinedValue is NSInteger)
 		XCTAssertEqual(NSInteger(16), numberField.predefinedValue as? NSInteger)
 	}
+
+	func test_JSONParse_ShouldExtractValues_WhenFieldIsInteger() {
+		let fields = DDLJSONParser().parse(integerJSON, locale: spanishLocale)
+
+		XCTAssertTrue(fields![0] is DDLFieldNumber)
+		let numberField = fields![0] as! DDLFieldNumber
+
+		XCTAssertEqual(DDLField.DataType.DDLInteger, numberField.dataType)
+		XCTAssertEqual(DDLField.Editor.Number, numberField.editorType)
+		XCTAssertTrue(numberField.predefinedValue is NSInteger)
+		XCTAssertEqual(NSInteger(16), numberField.predefinedValue as? NSInteger)
+	}
+
+	func test_JSONParse_ShouldExtractValues_WhenFieldIsNumber() {
+		let fields = DDLJSONParser().parse(numberJSON, locale: spanishLocale)
+
+		XCTAssertTrue(fields![0] is DDLFieldNumber)
+		let numberField = fields![0] as! DDLFieldNumber
+
+		XCTAssertEqual(DDLField.DataType.DDLNumber, numberField.dataType)
+		XCTAssertEqual(DDLField.Editor.Number, numberField.editorType)
+		XCTAssertTrue(numberField.predefinedValue is NSInteger)
+		XCTAssertEqual(NSInteger(16), numberField.predefinedValue as? NSInteger)
+	}
+
+	func test_JSONParse_ShouldExtractValues_WhenFieldIsDouble() {
+		let fields = DDLJSONParser().parse(decimalJSON, locale: spanishLocale)
+
+		XCTAssertTrue(fields![0] is DDLFieldNumber)
+		let numberField = fields![0] as! DDLFieldNumber
+
+		XCTAssertEqual(DDLField.DataType.DDLDouble, numberField.dataType)
+		XCTAssertEqual(DDLField.Editor.Number, numberField.editorType)
+		XCTAssertTrue(numberField.predefinedValue is NSDecimalNumber)
+		XCTAssertEqualWithAccuracy(Float(16.05),
+			(numberField.predefinedValue as! NSDecimalNumber).floatValue, accuracy: 0.001)
+	}
+
+
+	func test_JSONParse_ShouldExtractPredefinedValueValues_WhenFieldIsInteger() {
+		let fields = DDLJSONParser().parse(integerJSON, locale: spanishLocale)
+		let numberField = fields![0] as! DDLFieldNumber
+
+		XCTAssertTrue(numberField.predefinedValue is NSInteger)
+		XCTAssertEqual(NSInteger(16), numberField.predefinedValue as? NSInteger)
+	}
+
 
 
 	//MARK: currentValue
@@ -272,5 +319,53 @@ class DDLFieldNumber_Tests: XCTestCase {
 						"</entry> " +
 					"</meta-data> " +
 			"</dynamic-element> </root>"
+
+	private let decimalJSON = "{\"availableLanguageIds\": [\"en_US\"]," +
+		"\"defaultLanguageId\": \"en_US\"," +
+		"\"fields\": [{" +
+		"\"label\": {\"en_US\": \"A Number\"}," +
+		"\"predefinedValue\": {\"en_US\": \"16.05\"}," +
+		"\"dataType\": \"double\"," +
+		"\"indexType\": \"keyword\"," +
+		"\"localizable\": true," +
+		"\"name\": \"A_Number\"," +
+		"\"readOnly\": false," +
+		"\"repeatable\": true," +
+		"\"required\": true," +
+		"\"showLabel\": true," +
+		"\"fieldNamespace\": \"ddm\"," +
+		"\"type\": \"ddm-decimal\"}]}"
+
+	private let integerJSON = "{\"availableLanguageIds\": [\"en_US\"]," +
+		"\"defaultLanguageId\": \"en_US\"," +
+		"\"fields\": [{" +
+		"\"label\": {\"en_US\": \"A Number\"}," +
+		"\"predefinedValue\": {\"en_US\": \"16\"}," +
+		"\"dataType\": \"integer\"," +
+		"\"indexType\": \"keyword\"," +
+		"\"localizable\": true," +
+		"\"name\": \"A_Number\"," +
+		"\"readOnly\": false," +
+		"\"repeatable\": true," +
+		"\"required\": false," +
+		"\"showLabel\": true," +
+		"\"fieldNamespace\": \"ddm\"," +
+		"\"type\": \"ddm-integer\"}]}"
+
+	private let numberJSON = "{\"availableLanguageIds\": [\"en_US\"]," +
+		"\"defaultLanguageId\": \"en_US\"," +
+		"\"fields\": [{" +
+		"\"label\": {\"en_US\": \"A Number\"}," +
+		"\"predefinedValue\": {\"en_US\": \"16\"}," +
+		"\"dataType\": \"number\"," +
+		"\"indexType\": \"keyword\"," +
+		"\"localizable\": true," +
+		"\"name\": \"A_Number\"," +
+		"\"readOnly\": false," +
+		"\"repeatable\": true," +
+		"\"required\": false," +
+		"\"showLabel\": true," +
+		"\"fieldNamespace\": \"ddm\"," +
+		"\"type\": \"ddm-number\"}]}"
 
 }

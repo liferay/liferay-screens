@@ -14,7 +14,7 @@
 import XCTest
 
 
-class DDLFieldDate_Tests: XCTestCase {
+class DDLFieldDate_v62_Tests: XCTestCase {
 
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 

@@ -14,7 +14,7 @@
 import XCTest
 
 
-class DDLField_Validation_Tests: XCTestCase {
+class DDLField_Validation_XSD_Tests: XCTestCase {
 
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 

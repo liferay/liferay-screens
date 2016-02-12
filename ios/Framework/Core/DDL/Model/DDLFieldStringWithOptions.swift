@@ -44,6 +44,10 @@ public class DDLFieldStringWithOptions : DDLField {
 			aCoder.encodeObject(value, forKey: "value")
 		}
 
+		override public var description: String {
+			return self.value
+		}
+
 	}
 
 
@@ -88,9 +92,9 @@ public class DDLFieldStringWithOptions : DDLField {
 	//MARK: DDLField
 
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
-		var result:String = "["
+		var result = "["
 
-		if let currentOptions = value as? [Option] {
+		if let currentOptions = value as? [NSObject] {
 			var first = true
 			for option in currentOptions {
 				if first {
@@ -100,7 +104,7 @@ public class DDLFieldStringWithOptions : DDLField {
 					result += ", "
 				}
 
-				result += "\"\(option.value)\""
+				result += "\"\(option.description)\""
 			}
 		}
 
