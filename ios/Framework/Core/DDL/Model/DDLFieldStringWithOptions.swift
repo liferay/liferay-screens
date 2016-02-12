@@ -19,10 +19,10 @@ public class DDLFieldStringWithOptions : DDLField {
 	public class Option: NSObject, NSCoding {
 
 		public var label: String
-		public var name: String
+		public var name: String?
 		public var value: String
 
-		public init(label: String, name: String, value: String) {
+		public init(label: String, name: String?, value: String) {
 			self.label = label
 			self.name = name
 			self.value = value
@@ -30,7 +30,7 @@ public class DDLFieldStringWithOptions : DDLField {
 
 		public required convenience init?(coder aDecoder: NSCoder) {
 			let label = aDecoder.decodeObjectForKey("label") as! String
-			let name = aDecoder.decodeObjectForKey("name") as! String
+			let name = aDecoder.decodeObjectForKey("name") as? String
 			let value = aDecoder.decodeObjectForKey("value") as! String
 
 			self.init(label: label, name: name, value: value)
@@ -38,7 +38,9 @@ public class DDLFieldStringWithOptions : DDLField {
 
 		public func encodeWithCoder(aCoder: NSCoder) {
 			aCoder.encodeObject(label, forKey: "label")
-			aCoder.encodeObject(name, forKey: "name")
+			if let name = name {
+				aCoder.encodeObject(name, forKey: "name")
+			}
 			aCoder.encodeObject(value, forKey: "value")
 		}
 
@@ -56,7 +58,7 @@ public class DDLFieldStringWithOptions : DDLField {
 		if let optionsArray = (attributes["options"] ?? nil) as? [[String:AnyObject]] {
 			for optionDict in optionsArray {
 				let label = (optionDict["label"] ?? "") as! String
-				let name = (optionDict["name"] ?? "") as! String
+				let name = optionDict["name"] as? String
 				let value = (optionDict["value"] ?? "") as! String
 
 				let option = Option(label: label, name: name, value: value)
@@ -195,11 +197,15 @@ public class DDLFieldStringWithOptions : DDLField {
 	}
 
 	private func findOptionByValue(value: String) -> Option? {
-		return options.filter { $0.value == value }.first
+		return options.filter {
+				$0.value == value
+			}.first
 	}
 
 	private func findOptionByLabel(label: String) -> Option? {
-		return options.filter { $0.label == label }.first
+		return options.filter {
+				$0.label == label
+			}.first
 	}
 
 }
