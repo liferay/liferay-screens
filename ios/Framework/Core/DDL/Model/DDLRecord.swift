@@ -159,8 +159,7 @@ import Foundation
 		fields.forEach {
 			if let fieldValue = values[$0.name] {
 				if let fieldStringValue = fieldValue as? String {
-					$0.currentValueAsLabel = fieldStringValue
-//					$0.currentValueAsString = fieldStringValue
+					$0.currentValueAsString = fieldStringValue
 				}
 				else {
 					$0.currentValue = fieldValue
