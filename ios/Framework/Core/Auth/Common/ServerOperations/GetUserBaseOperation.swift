@@ -51,15 +51,21 @@ public class GetUserBaseOperation: ServerOperation {
 	}
 
 	override public func doRun(session session: LRSession) {
-		let result = try? sendGetUserRequest(session)
+		do {
+			let result = try sendGetUserRequest(session)
 
-		if result?["userId"] == nil {
-			lastError = NSError.errorWithCause(.InvalidServerResponse)
-			resultUserAttributes = nil
+			if result["userId"] == nil {
+				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				resultUserAttributes = nil
+			}
+			else {
+				lastError = nil
+				resultUserAttributes = extractUserAttributes(result)
+			}
 		}
-		else {
-			lastError = nil
-			resultUserAttributes = extractUserAttributes(result)
+		catch (let error as NSError) {
+			lastError = error
+			resultUserAttributes = nil
 		}
 	}
 

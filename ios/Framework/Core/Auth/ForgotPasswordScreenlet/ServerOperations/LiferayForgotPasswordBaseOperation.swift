@@ -50,14 +50,11 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 	}
 
 	override public func doRun(session session: LRSession) {
-		let result = try? sendForgotPasswordRequest(session)
-
-		if result != nil {
+		do {
+			resultPasswordSent = try sendForgotPasswordRequest(session)
 			lastError = nil
-			resultPasswordSent = result
-		}
-		else {
-			lastError = NSError.errorWithCause(.InvalidServerResponse)
+		} catch (let error as NSError) {
+			lastError = error
 			resultPasswordSent = nil
 		}
 	}
