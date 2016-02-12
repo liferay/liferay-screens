@@ -41,7 +41,8 @@ extension DDLField {
 
 		public func createField(
 				attributes attributes:[String:AnyObject],
-				locale: NSLocale)
+				locale: NSLocale,
+				version: LiferayServerVersion)
 				-> DDLField? {
 
 			switch self {
@@ -63,9 +64,16 @@ extension DDLField {
 					}
 
 				case .DDLDate:
-					return DDLFieldDate(
+					switch version {
+					case .v62:
+						return DDLFieldDate_v62(
 							attributes:attributes,
 							locale: locale)
+					case .v70:
+						return DDLFieldDate_v70(
+							attributes:attributes,
+							locale: locale)
+					}
 
 				case .DDLInteger, .DDLNumber, .DDLDouble:
 					return DDLFieldNumber(

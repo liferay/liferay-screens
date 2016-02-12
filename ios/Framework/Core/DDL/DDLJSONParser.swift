@@ -79,7 +79,10 @@ public class DDLJSONParser {
 				dict1: jsonField,
 				dict2: localizedMetadata)
 
-		return dataType.createField(attributes: mergedAttributes, locale: locale)
+		return dataType.createField(
+			attributes: mergedAttributes,
+			locale: locale,
+			version: LiferayServerVersion.v70)
 	}
 
 	private func mergeDictionaries(
