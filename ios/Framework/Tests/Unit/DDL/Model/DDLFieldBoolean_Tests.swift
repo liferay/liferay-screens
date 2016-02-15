@@ -169,7 +169,7 @@ class DDLFieldBoolean_Tests: XCTestCase {
 
 	//MARK: Parse
 
-	func test_Parse_ShouldExtractValues() {
+	func test_XSDParse_ShouldExtractValues() {
 		let xsd =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"boolean\" " +
@@ -209,6 +209,46 @@ class DDLFieldBoolean_Tests: XCTestCase {
 		XCTAssertFalse(booleanField.required)
 		XCTAssertTrue(booleanField.showLabel)
 	}
+
+	func test_JSONParse_ShouldExtractValues() {
+		let json = "{\"availableLanguageIds\": [\"en_US\"]," +
+			"\"defaultLanguageId\": \"en_US\"," +
+			"\"fields\": [{" +
+			"\"label\": {\"en_US\": \"A Boolean\"}," +
+			"\"tip\": {\"en_US\": \"The tip\"}," +
+			"\"predefinedValue\": {\"en_US\": true}," +
+			"\"dataType\": \"boolean\"," +
+			"\"indexType\": \"keyword\"," +
+			"\"localizable\": true," +
+			"\"name\": \"A_Boolean\"," +
+			"\"readOnly\": false," +
+			"\"repeatable\": true," +
+			"\"required\": false," +
+			"\"showLabel\": true," +
+		"\"type\": \"checkbox\"}]}"
+
+		let fields = DDLJSONParser().parse(json, locale: spanishLocale)
+
+		XCTAssertTrue(fields != nil)
+		XCTAssertEqual(1, fields!.count)
+		XCTAssertTrue(fields![0] is DDLFieldBoolean)
+
+		let booleanField = fields![0] as! DDLFieldBoolean
+
+		XCTAssertEqual(DDLField.DataType.DDLBoolean, booleanField.dataType)
+		XCTAssertEqual(DDLField.Editor.Checkbox, booleanField.editorType)
+		XCTAssertEqual("A_Boolean", booleanField.name)
+		XCTAssertEqual("A Boolean", booleanField.label)
+		XCTAssertEqual("The tip", booleanField.tip)
+		XCTAssertNotNil(booleanField.predefinedValue)
+		XCTAssertTrue(booleanField.predefinedValue is Bool)
+		XCTAssertTrue(booleanField.predefinedValue as! Bool)
+		XCTAssertFalse(booleanField.readOnly)
+		XCTAssertTrue(booleanField.repeatable)
+		XCTAssertFalse(booleanField.required)
+		XCTAssertTrue(booleanField.showLabel)
+	}
+
 
 
 	//MARK: Validate

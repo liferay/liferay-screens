@@ -18,7 +18,7 @@ class DDLFieldString_Tests: XCTestCase {
 
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
-	func test_Parse_ShouldExtractValues() {
+	func test_XSDParse_ShouldExtractValues() {
 		let xsd =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 				"<dynamic-element dataType=\"string\" " +
@@ -44,6 +44,46 @@ class DDLFieldString_Tests: XCTestCase {
 				"</dynamic-element> </root>"
 
 		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
+
+		XCTAssertTrue(fields != nil)
+		XCTAssertEqual(1, fields!.count)
+		XCTAssertTrue(fields![0] is DDLFieldString)
+
+		let stringField = fields![0] as! DDLFieldString
+
+		XCTAssertEqual(DDLField.DataType.DDLString, stringField.dataType)
+		XCTAssertEqual(DDLField.Editor.Text, stringField.editorType)
+		XCTAssertEqual("A_Text", stringField.name)
+		XCTAssertEqual("A Text", stringField.label)
+		XCTAssertEqual("The tip", stringField.tip)
+		XCTAssertTrue(stringField.predefinedValue is String)
+		XCTAssertEqual("predefined text", stringField.predefinedValue as? String)
+		XCTAssertFalse(stringField.readOnly)
+		XCTAssertTrue(stringField.repeatable)
+		XCTAssertFalse(stringField.required)
+		XCTAssertTrue(stringField.showLabel)
+	}
+
+	func test_JSONParse_ShouldExtractValues() {
+		let json =
+		"{\"availableLanguageIds\": [\"en_US\"]," +
+			"\"defaultLanguageId\": \"en_US\"," +
+			"\"fields\": [{" +
+			"\"label\": {\"en_US\": \"A Text\"}," +
+			"\"predefinedValue\": {\"en_US\": \"predefined text\"}," +
+			"\"tip\": {\"en_US\": \"The tip\"}," +
+			"\"dataType\": \"string\"," +
+			"\"indexType\": \"keyword\"," +
+			"\"localizable\": true," +
+			"\"name\": \"A_Text\"," +
+			"\"readOnly\": false," +
+			"\"repeatable\": true," +
+			"\"required\": false," +
+			"\"showLabel\": true," +
+			"\"width\": \"small\"," +
+		"\"type\": \"text\"}]}"
+
+		let fields = DDLJSONParser().parse(json, locale: spanishLocale)
 
 		XCTAssertTrue(fields != nil)
 		XCTAssertEqual(1, fields!.count)

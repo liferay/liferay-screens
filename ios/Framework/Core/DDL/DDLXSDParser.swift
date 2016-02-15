@@ -80,7 +80,10 @@ public class DDLXSDParser {
 				dict1: xmlElement.attributes as! [String:AnyObject],
 				dict2: localizedMetadata)
 
-		return dataType.createField(attributes: mergedAttributes, locale: locale)
+		return dataType.createField(
+			attributes: mergedAttributes,
+			locale: locale,
+			version: LiferayServerVersion.v62)
 	}
 
 	private func mergeDictionaries(

@@ -29,7 +29,7 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 	}
 
 	override func createOperation() -> LiferayUploadUserPortraitOperation {
-		return LiferayUploadUserPortraitOperation(
+		return LiferayServerContext.operationFactory.createUploadUserPortraitOperation(
 				userId: self.userId,
 				image: self.image)
 	}
@@ -50,7 +50,7 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 			collection: ScreenletName(UserPortraitScreenlet),
 			key: "userId-\(userId)",
 			value: image,
-			attributes: ["userId": NSNumber(longLong: userId)])
+			attributes: ["userId": userId.description])
 	}
 
 	override func callOnSuccess() {
@@ -60,7 +60,7 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 				collection: ScreenletName(UserPortraitScreenlet),
 				key: "userId-\(userId)",
 				attributes: [
-					"userId": NSNumber(longLong: userId)])
+					"userId": userId.description])
 		}
 
 		super.callOnSuccess()
