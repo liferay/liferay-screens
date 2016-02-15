@@ -120,7 +120,7 @@ public class DDLFieldDate_v70: DDLFieldDate {
 	}
 
 	override public var serverDateFormat: String {
-		return "yyyy-MM-dd"
+		return "yyyy'-'MM'-'dd"
 	}
 
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
