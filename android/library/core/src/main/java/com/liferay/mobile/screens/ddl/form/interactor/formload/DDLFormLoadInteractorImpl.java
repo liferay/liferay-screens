@@ -14,6 +14,8 @@
 
 package com.liferay.mobile.screens.ddl.form.interactor.formload;
 
+import android.support.annotation.NonNull;
+
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.util.ServiceVersionFactory;
 import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
@@ -59,16 +61,7 @@ public class DDLFormLoadInteractorImpl
 		if (!event.isFailed()) {
 
 			try {
-				String xsd = event.getJSONObject().getString("xsd");
-				long userId = event.getJSONObject().getLong("userId");
-
-				Record formRecord = event.getRecord();
-
-				formRecord.parseXsd(xsd);
-
-				if (formRecord.getCreatorUserId() == 0) {
-					formRecord.setCreatorUserId(userId);
-				}
+				Record formRecord = parseRecord(event);
 
 				getListener().onDDLFormLoaded(formRecord);
 			}
@@ -76,6 +69,24 @@ public class DDLFormLoadInteractorImpl
 				getListener().onDDLFormLoadFailed(e);
 			}
 		}
+	}
+
+	@NonNull
+	private Record parseRecord(DDLFormLoadEvent event) throws JSONException {
+
+		Record formRecord = event.getRecord();
+
+		long userId = event.getJSONObject().getLong("userId");
+		if (event.getJSONObject().has("xsd")) {
+			formRecord.parseXsd(event.getJSONObject().getString("xsd"));
+		} else {
+			formRecord.parseJson(event.getJSONObject().getString("definition"));
+		}
+
+		if (formRecord.getCreatorUserId() == 0) {
+			formRecord.setCreatorUserId(userId);
+		}
+		return formRecord;
 	}
 
 	@Override
