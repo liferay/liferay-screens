@@ -123,6 +123,27 @@ public class DDLFieldDate_v70: DDLFieldDate {
 		return "yyyy'-'MM'-'dd"
 	}
 
+
+	override internal func convert(fromString value: String?) -> AnyObject? {
+		guard let stringValue = value else {
+			return nil
+		}
+
+		func convertWithFormat(format: String) -> AnyObject? {
+			let formatter = NSDateFormatter()
+			formatter.timeZone = DDLFieldDate.GMTTimeZone
+			formatter.dateFormat = format
+
+			return formatter.dateFromString(stringValue)
+		}
+
+		// Liferay 7 is not consistent in date format.
+		// It uses MM/dd/YYYY in predefinedValue field.
+
+		return super.convert(fromString: value) ?? convertWithFormat("M'/'d'/'yyyy")
+	}
+
+
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
 		guard let date = value as? NSDate else {
 			return nil
