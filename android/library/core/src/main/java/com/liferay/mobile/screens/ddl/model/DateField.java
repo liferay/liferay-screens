@@ -20,6 +20,7 @@ import android.os.Parcelable;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -66,19 +67,19 @@ public class DateField extends Field<Date> {
 			int lastSeparator = stringValue.lastIndexOf('/');
 
 			if (stringValue.contains("-")) {
-				_SERVER_70_YYYY_FORMAT.format(stringValue);
+				return _SERVER_70_YYYY_FORMAT.parse(stringValue);
 			}
 			else if (lastSeparator == -1) {
 				return new Date(Long.valueOf(stringValue));
 			}
 			else if (stringValue.length() - lastSeparator - 1 == 2) {
-				_SERVER_YY_FORMAT.format(stringValue);
+				return _SERVER_YY_FORMAT.parse(stringValue);
 			}
 			else {
-				_SERVER_YYYY_FORMAT.format(stringValue);
+				return _SERVER_YYYY_FORMAT.parse(stringValue);
 			}
 		}
-		catch (Exception e) {
+		catch (ParseException e) {
 			LiferayLogger.e("Error parsing date " + stringValue);
 		}
 		return null;
