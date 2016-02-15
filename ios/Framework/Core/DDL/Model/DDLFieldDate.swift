@@ -16,6 +16,8 @@ import Foundation
 
 public class DDLFieldDate: DDLField {
 
+	static let GMTTimeZone = NSTimeZone(abbreviation: "GMT")
+
 	public var clientDateFormatter: NSDateFormatter {
 		let result = NSDateFormatter()
 		result.dateStyle = .LongStyle
@@ -30,7 +32,7 @@ public class DDLFieldDate: DDLField {
 
 	public var serverDateFormatter: NSDateFormatter {
 		let result = NSDateFormatter()
-		result.timeZone = NSTimeZone(abbreviation: "GMT")
+		result.timeZone = DDLFieldDate.GMTTimeZone
 		result.dateFormat = serverDateFormat
 		return result
 	}
