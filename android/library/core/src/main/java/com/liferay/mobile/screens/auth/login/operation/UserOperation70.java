@@ -2,8 +2,8 @@ package com.liferay.mobile.screens.auth.login.operation;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
+import com.liferay.mobile.android.v70.user.UserService;
 import com.liferay.mobile.screens.auth.forgotpassword.operation.ForgotPasswordOperation;
-import com.liferay.mobile.screens.service.v70.UserService;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
