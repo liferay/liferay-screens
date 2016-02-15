@@ -13,6 +13,7 @@ import com.liferay.mobile.screens.auth.login.operation.ScreensUserOperation62;
 import com.liferay.mobile.screens.auth.login.operation.UserOperation;
 import com.liferay.mobile.screens.auth.login.operation.UserOperation62;
 import com.liferay.mobile.screens.auth.login.operation.UserOperation70;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.ddl.form.operation.DDLRecordOperation;
 import com.liferay.mobile.screens.ddl.form.operation.DDLRecordOperation62;
 import com.liferay.mobile.screens.ddl.form.operation.DDLRecordOperation70;
@@ -92,5 +93,9 @@ public class ServiceVersionFactory {
 		return liferay7 ? new AssetEntryOperation70(session) : new AssetEntryOperation62(session);
 	}
 
-	private static boolean liferay7;
+	private ServiceVersionFactory() {
+		super();
+	}
+
+	private static boolean liferay7 = LiferayServerContext.isLiferay7();
 }
