@@ -17,8 +17,9 @@ package com.liferay.mobile.screens.ddl.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.liferay.mobile.screens.util.LiferayLogger;
+
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -57,37 +58,30 @@ public class DateField extends Field<Date> {
 
 	@Override
 	protected Date convertFromString(String stringValue) {
-		if (stringValue == null || stringValue.isEmpty()) {
+		if (stringValue == null || stringValue.isEmpty() || stringValue.length() < 6) {
 			return null;
 		}
-		if (stringValue.length() < 6) {
-			return null;
-		}
-
-		DateFormat formatter;
-
-		int lastSeparator = stringValue.lastIndexOf('/');
-
-		if (lastSeparator == -1) {
-			return new Date(Long.valueOf(stringValue));
-		}
-		else if (stringValue.length() - lastSeparator - 1 == 2) {
-			formatter = _SERVER_YY_FORMAT;
-		}
-		else {
-			formatter = _SERVER_YYYY_FORMAT;
-		}
-
-		Date result;
 
 		try {
-			result = formatter.parse(stringValue);
-		}
-		catch (ParseException e) {
-			result = null;
-		}
+			int lastSeparator = stringValue.lastIndexOf('/');
 
-		return result;
+			if (stringValue.contains("-")) {
+				_SERVER_70_YYYY_FORMAT.format(stringValue);
+			}
+			else if (lastSeparator == -1) {
+				return new Date(Long.valueOf(stringValue));
+			}
+			else if (stringValue.length() - lastSeparator - 1 == 2) {
+				_SERVER_YY_FORMAT.format(stringValue);
+			}
+			else {
+				_SERVER_YYYY_FORMAT.format(stringValue);
+			}
+		}
+		catch (Exception e) {
+			LiferayLogger.e("Error parsing date " + stringValue);
+		}
+		return null;
 	}
 
 	@Override
@@ -105,8 +99,9 @@ public class DateField extends Field<Date> {
 		_clientFormat.setTimeZone(_GMT_TIMEZONE);
 	}
 
-	private static final DateFormat _SERVER_YYYY_FORMAT = new SimpleDateFormat("MM/dd/yyyy");
-	private static final DateFormat _SERVER_YY_FORMAT = new SimpleDateFormat("MM/dd/yy");
+	private static final DateFormat _SERVER_YYYY_FORMAT = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+	private static final DateFormat _SERVER_YY_FORMAT = new SimpleDateFormat("MM/dd/yy", Locale.US);
+	private static final DateFormat _SERVER_70_YYYY_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
 	private static final TimeZone _GMT_TIMEZONE = TimeZone.getTimeZone("GMT");
 	private DateFormat _clientFormat;
@@ -114,6 +109,7 @@ public class DateField extends Field<Date> {
 	static {
 		_SERVER_YYYY_FORMAT.setTimeZone(_GMT_TIMEZONE);
 		_SERVER_YY_FORMAT.setTimeZone(_GMT_TIMEZONE);
+		_SERVER_70_YYYY_FORMAT.setTimeZone(_GMT_TIMEZONE);
 	}
 
 }
