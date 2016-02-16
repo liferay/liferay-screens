@@ -197,8 +197,11 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 			_screenletId = state.getInt(_STATE_SCREENLET_ID);
 		}
 
-		for (String actionName : state.getStringArray(_STATE_INTERACTORS)) {
-			prepareInteractor(actionName);
+		String[] stateInteractors = state.getStringArray(_STATE_INTERACTORS);
+		if (stateInteractors != null) {
+			for (String actionName : stateInteractors) {
+				prepareInteractor(actionName);
+			}
 		}
 	}
 

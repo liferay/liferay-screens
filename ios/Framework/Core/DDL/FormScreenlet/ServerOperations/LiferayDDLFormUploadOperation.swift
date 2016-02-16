@@ -30,6 +30,7 @@ public class LiferayDDLFormUploadOperation: ServerOperation, LRCallback, LRFileP
 	var uploadResult: [String:AnyObject]?
 
 	private var requestSemaphore: dispatch_semaphore_t?
+	private var bytesToSend: Int64 = 0
 
 	public init(
 			document: DDLFieldDocument,
@@ -99,11 +100,10 @@ public class Liferay62DDLFormUploadOperation: LiferayDDLFormUploadOperation {
 		session.callback = self
 
 		let fileName = "\(filePrefix)\(NSUUID().UUIDString)"
-		var size:Int64 = 0
-		let stream = document.getStream(&size)
+		let stream = document.getStream(&bytesToSend)
 		let uploadData = LRUploadData(
 			inputStream: stream,
-			length: size,
+			length: bytesToSend,
 			fileName: fileName,
 			mimeType: document.mimeType,
 			progressDelegate: self)

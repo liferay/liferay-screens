@@ -24,7 +24,7 @@ public class LiferayPaginationOperation: ServerOperation {
 	public var resultRowCount: Int?
 
 
-	internal init(startRow: Int, endRow: Int, computeRowCount: Bool) {
+	public init(startRow: Int, endRow: Int, computeRowCount: Bool) {
 		self.startRow = startRow
 		self.endRow = endRow
 		self.computeRowCount = computeRowCount
@@ -78,11 +78,11 @@ public class LiferayPaginationOperation: ServerOperation {
 		}
 	}
 
-	internal func doGetPageRowsOperation(session session: LRBatchSession, startRow: Int, endRow: Int) {
+	public func doGetPageRowsOperation(session session: LRBatchSession, startRow: Int, endRow: Int) {
 		fatalError("doGetPageRowsOperation must be overriden")
 	}
 
-	internal func doGetRowCountOperation(session session: LRBatchSession) {
+	public func doGetRowCountOperation(session session: LRBatchSession) {
 		fatalError("doGetRowCountOperation must be overriden")
 	}
 

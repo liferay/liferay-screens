@@ -13,6 +13,8 @@
 */
 import Foundation
 import YapDatabase
+import YapDatabase.YapDatabaseView
+import YapDatabase.YapDatabaseFilteredView
 
 
 public enum CacheStrategyType: String {
@@ -262,7 +264,7 @@ public enum CacheStrategyType: String {
 
 	public func pendingToSync(result: (String, String, [String:AnyObject]) -> Bool) {
 		pendingToSyncTransaction { transaction in
-			let groups = (transaction?.allGroups() as? [String]) ?? [String]()
+			let groups = transaction?.allGroups() ?? [String]()
 			for group in groups {
 				transaction?.enumerateKeysAndMetadataInGroup(group) {
 						(collection, key, metadata, index, stop) in
@@ -297,16 +299,17 @@ public enum CacheStrategyType: String {
 	}
 
 	public func registerPendingToSyncView(result: (Bool -> ())?) {
-		let grouping = YapDatabaseViewGrouping.withKeyBlock { (collection, key) in
+		let grouping = YapDatabaseViewGrouping.withKeyBlock { (_, collection, key) in
 			return collection
 		}
 
-		let sorting = YapDatabaseViewSorting.withKeyBlock { (_, _, key1, _, key2) in
+		let sorting = YapDatabaseViewSorting.withKeyBlock { (_, _, _, key1, _, key2) in
 			//TODO sort by added date
 			return key1.compare(key2)
 		}
 
-		let filtering = YapDatabaseViewFiltering.withMetadataBlock({ (_,_,_, metadata: AnyObject!) in
+
+		let filtering = YapDatabaseViewFiltering.withMetadataBlock({ (_, _, _, _, metadata) in
 			let cacheMetadata = metadata as? CacheMetadata
 			return cacheMetadata?.synchronized == nil
 		})
@@ -318,7 +321,9 @@ public enum CacheStrategyType: String {
 			connection: writeConnection,
 			completionQueue: nil) { success in
 				if success {
-					let filterView = YapDatabaseFilteredView(parentViewName: "allEntries", filtering: filtering)
+					let filterView = YapDatabaseFilteredView(
+						parentViewName: "allEntries",
+						filtering: filtering)
 
 					self.database.asyncRegisterExtension(filterView,
 						withName: "pendingToSync",
@@ -368,7 +373,7 @@ public enum CacheStrategyType: String {
 			}
 			catch {
 			}
-		}
+			}
 	}
 
 }

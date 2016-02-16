@@ -50,7 +50,7 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 
 public class Liferay62DDLListPageOperation: LiferayDDLListPageOperation {
 
-	override internal func doGetPageRowsOperation(session session: LRBatchSession, startRow: Int, endRow: Int) {
+	override public func doGetPageRowsOperation(session session: LRBatchSession, startRow: Int, endRow: Int) {
 		let service = LRScreensddlrecordService_v62(session: session)
 
 		do {
@@ -72,7 +72,7 @@ public class Liferay62DDLListPageOperation: LiferayDDLListPageOperation {
 		}
 	}
 
-	override internal func doGetRowCountOperation(session session: LRBatchSession) {
+	override public func doGetRowCountOperation(session session: LRBatchSession) {
 		let service = LRScreensddlrecordService_v62(session: session)
 
 		do {
@@ -93,7 +93,7 @@ public class Liferay62DDLListPageOperation: LiferayDDLListPageOperation {
 
 public class Liferay70DDLListPageOperation: LiferayDDLListPageOperation {
 
-	override internal func doGetPageRowsOperation(session session: LRBatchSession, startRow: Int, endRow: Int) {
+	override public func doGetPageRowsOperation(session session: LRBatchSession, startRow: Int, endRow: Int) {
 		let service = LRScreensddlrecordService_v70(session: session)
 
 		do {
@@ -115,7 +115,7 @@ public class Liferay70DDLListPageOperation: LiferayDDLListPageOperation {
 		}
 	}
 
-	override internal func doGetRowCountOperation(session session: LRBatchSession) {
+	override public func doGetRowCountOperation(session session: LRBatchSession) {
 		let service = LRScreensddlrecordService_v70(session: session)
 
 		do {

@@ -39,7 +39,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		]
 	}
 
-	private let cellId = "listCell"
+	public let cellId = "listCell"
 
 
 	// MARK: BaseListView
