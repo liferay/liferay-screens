@@ -72,7 +72,7 @@ public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> Signal ->
 		self.cacheManager = cacheManager
 
 		self.syncQueue = NSOperationQueue()
-		self.syncQueue.maxConcurrentConnectorCount = 1
+		self.syncQueue.maxConcurrentOperationCount = 1
 
 		super.init()
 
@@ -147,7 +147,7 @@ public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> Signal ->
 
 		if let syncBuilder = synchronizers[screenletName] {
 			let synchronizer = syncBuilder(key, attributes)
-			syncQueue.addConnectorWithBlock(to_sync(synchronizer))
+			syncQueue.addOperationWithBlock(to_sync(synchronizer))
 		}
 	}
 

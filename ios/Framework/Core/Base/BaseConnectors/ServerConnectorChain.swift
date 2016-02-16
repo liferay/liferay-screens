@@ -23,10 +23,10 @@ import UIKit
 		static func addConnector(connector: NSOperation) {
 			if queue == nil {
 				queue = NSOperationQueue()
-				queue!.maxConcurrentConnectorCount = 1
+				queue!.maxConcurrentOperationCount = 1
 			}
 
-			queue!.addConnector(connector)
+			queue!.addOperation(connector)
 		}
 
 	}
