@@ -11,7 +11,7 @@ public class FactoryProvider {
 
 	public static AbstractFactory getInstance() {
 		if (_abstractFactory == null) {
-			synchronized ("factory") {
+			synchronized (AbstractFactory.class) {
 				_abstractFactory = createFactory();
 			}
 		}
