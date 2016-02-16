@@ -23,7 +23,7 @@ class DDLFieldDate_v70_Tests: XCTestCase {
 			"\"defaultLanguageId\": \"en_US\"," +
 			"\"fields\": [{" +
 			"\"label\": {\"en_US\": \"A Date\"}," +
-			"\"predefinedValue\": {\"en_US\": \"2001-12-31\"}," +
+			"\"predefinedValue\": {\"en_US\": \"02/29/2016\"}," +
 			"\"tip\": {\"en_US\": \"The tip\"}," +
 			"\"dataType\": \"date\"," +
 			"\"fieldNamespace\": \"ddm\"," +
@@ -57,11 +57,12 @@ class DDLFieldDate_v70_Tests: XCTestCase {
 		XCTAssertTrue(dateField.predefinedValue is NSDate)
 
 		let dateFormatter = NSDateFormatter()
-		dateFormatter.dateFormat = "dd/MM/yyyy"
+		dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
+		dateFormatter.dateFormat = "dd'/'MM'/'yyyy"
 
 		let dateValue = dateField.predefinedValue as! NSDate
 		XCTAssertEqual(
-				"31/12/2001",
+				"29/02/2016",
 				dateFormatter.stringFromDate(dateValue))
 		XCTAssertEqual(
 				dateField.currentValue as? NSDate,
