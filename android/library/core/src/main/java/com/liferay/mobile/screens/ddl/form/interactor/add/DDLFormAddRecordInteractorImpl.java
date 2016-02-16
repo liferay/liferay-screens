@@ -27,7 +27,7 @@ import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.operation.DDLRecordOperation;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.util.ServiceVersionFactory;
+import com.liferay.mobile.screens.util.ServiceProvider;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -116,7 +116,7 @@ public class DDLFormAddRecordInteractorImpl
 	protected DDLRecordOperation getDDLRecordService(Record record, long groupId) {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(new DDLFormAddRecordCallback(getTargetScreenletId(), record, groupId));
-		return ServiceVersionFactory.getDDLRecordOperation(session);
+		return ServiceProvider.getInstance().getDDLRecordOperation(session);
 	}
 
 	protected void validate(long groupId, Record record) {

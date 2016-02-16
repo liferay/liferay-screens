@@ -20,7 +20,6 @@ import android.net.Uri;
 import android.util.Base64;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.util.ServiceVersionFactory;
 import com.liferay.mobile.screens.auth.login.operation.UserOperation;
 import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
 import com.liferay.mobile.screens.cache.Cache;
@@ -33,6 +32,7 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 import com.liferay.mobile.screens.util.LiferayLogger;
+import com.liferay.mobile.screens.util.ServiceProvider;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -189,7 +189,7 @@ public class UserPortraitLoadInteractorImpl
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(new UserPortraitLoadCallback(getTargetScreenletId(), userId));
 
-		return ServiceVersionFactory.getUserOperations(session);
+		return ServiceProvider.getInstance().getUserOperations(session);
 	}
 
 	private void validate(String uuid) {

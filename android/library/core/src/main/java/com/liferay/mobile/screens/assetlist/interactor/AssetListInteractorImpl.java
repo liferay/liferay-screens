@@ -22,7 +22,6 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.assetlist.operation.AssetEntryOperation;
 import com.liferay.mobile.screens.assetlist.operation.ScreensAssetEntryOperation;
-import com.liferay.mobile.screens.util.ServiceVersionFactory;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
@@ -30,6 +29,7 @@ import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.util.JSONUtil;
+import com.liferay.mobile.screens.util.ServiceProvider;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -104,7 +104,7 @@ public class AssetListInteractorImpl
 		if (_portletItemName == null) {
 
 
-			ScreensAssetEntryOperation service = ServiceVersionFactory.getScreensAssetEntryOperation(session);
+			ScreensAssetEntryOperation service = ServiceProvider.getInstance().getScreensAssetEntryOperation(session);
 			JSONObject entryQueryAttributes = configureEntryQuery(_groupId, _classNameId);
 			entryQueryAttributes.put("start", startRow);
 			entryQueryAttributes.put("end", endRow);
@@ -115,7 +115,7 @@ public class AssetListInteractorImpl
 		}
 		else {
 			session.setCallback(new FilteredAssetListCallback(getTargetScreenletId()));
-			ScreensAssetEntryOperation service = ServiceVersionFactory.getScreensAssetEntryOperation(session);
+			ScreensAssetEntryOperation service = ServiceProvider.getInstance().getScreensAssetEntryOperation(session);
 			service.getAssetEntries(LiferayServerContext.getCompanyId(), _groupId, _portletItemName, locale.toString(), endRow);
 		}
 	}
@@ -124,7 +124,7 @@ public class AssetListInteractorImpl
 	protected void getPageRowCountRequest(Session session) throws Exception {
 		JSONObject entryQueryParams = configureEntryQuery(_groupId, _classNameId);
 		JSONObjectWrapper entryQuery = new JSONObjectWrapper(entryQueryParams);
-		AssetEntryOperation service = ServiceVersionFactory.getAssetEntryOperation(session);
+		AssetEntryOperation service = ServiceProvider.getInstance().getAssetEntryOperation(session);
 		service.getEntriesCount(entryQuery);
 	}
 

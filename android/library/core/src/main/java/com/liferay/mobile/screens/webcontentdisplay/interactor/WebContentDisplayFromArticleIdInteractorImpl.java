@@ -15,12 +15,12 @@
 package com.liferay.mobile.screens.webcontentdisplay.interactor;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.util.ServiceVersionFactory;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.util.ServiceProvider;
 import com.liferay.mobile.screens.webcontentdisplay.operation.JournalContentOperation;
 import com.liferay.mobile.screens.webcontentdisplay.operation.ScreensJournalContentOperation;
 
@@ -105,7 +105,7 @@ public class WebContentDisplayFromArticleIdInteractorImpl
 	protected JournalContentOperation getJournalArticleService(long groupId, String articleId, Locale locale) {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(new WebContentDisplayFromArticleIdCallback(getTargetScreenletId(), groupId, articleId, locale));
-		return ServiceVersionFactory.getJournalContentOperation(session);
+		return ServiceProvider.getInstance().getJournalContentOperation(session);
 	}
 
 	protected ScreensJournalContentOperation getScreensJournalArticleService(long groupId, String articleId, Locale locale, Long templateId) {
@@ -113,7 +113,7 @@ public class WebContentDisplayFromArticleIdInteractorImpl
 		WebContentDisplayFromArticleIdCallback callback =
 			new WebContentDisplayFromArticleIdCallback(getTargetScreenletId(), groupId, articleId, locale, templateId);
 		session.setCallback(callback);
-		return ServiceVersionFactory.getScreensJournalContentOperation(session);
+		return ServiceProvider.getInstance().getScreensJournalContentOperation(session);
 	}
 
 	protected void validate(long groupId, String articleId, Locale locale) {

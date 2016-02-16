@@ -18,11 +18,11 @@ import android.text.TextUtils;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
-import com.liferay.mobile.screens.util.ServiceVersionFactory;
 import com.liferay.mobile.screens.auth.login.operation.UserOperation;
 import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.util.ServiceProvider;
 
 
 public class LoginBasicInteractor extends BaseLoginInteractor {
@@ -67,7 +67,7 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 	protected UserOperation getUserService(String login, String password) {
 		Session session = SessionContext.createBasicSession(login, password);
 		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
-		return ServiceVersionFactory.getUserOperations(session);
+		return ServiceProvider.getInstance().getUserOperations(session);
 	}
 
 	protected void validate(String login, String password, BasicAuthMethod basicAuthMethod) {

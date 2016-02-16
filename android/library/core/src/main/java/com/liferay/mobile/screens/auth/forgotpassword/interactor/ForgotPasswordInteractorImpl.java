@@ -23,7 +23,7 @@ import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
 import com.liferay.mobile.screens.auth.forgotpassword.operation.ForgotPasswordOperation;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.util.ServiceVersionFactory;
+import com.liferay.mobile.screens.util.ServiceProvider;
 
 /**
  * @author Jose Manuel Navarro
@@ -84,7 +84,7 @@ public class ForgotPasswordInteractorImpl
 
 		anonymousSession.setCallback(new ForgotPasswordCallback(getTargetScreenletId()));
 
-		return ServiceVersionFactory.getForgotPasswordOperations(anonymousSession);
+		return ServiceProvider.getInstance().getForgotPasswordOperations(anonymousSession);
 	}
 
 	protected void validate(

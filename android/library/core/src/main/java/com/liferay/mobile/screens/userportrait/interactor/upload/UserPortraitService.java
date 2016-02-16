@@ -22,10 +22,10 @@ import android.graphics.Matrix;
 import android.media.ExifInterface;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.util.ServiceVersionFactory;
 import com.liferay.mobile.screens.auth.login.operation.UserOperation;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
+import com.liferay.mobile.screens.util.ServiceProvider;
 
 import org.json.JSONObject;
 
@@ -90,7 +90,7 @@ public class UserPortraitService extends IntentService {
 	public JSONObject uploadUserPortrait(long userId, String picturePath) throws Exception {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setConnectionTimeout(CONNECTION_TIMEOUT);
-		UserOperation userService = ServiceVersionFactory.getUserOperations(session);
+		UserOperation userService = ServiceProvider.getInstance().getUserOperations(session);
 		byte[] decodeSampledBitmapFromResource = decodeSampledBitmapFromResource(picturePath, PORTRAIT_SIZE, PORTRAIT_SIZE);
 		return userService.updatePortrait(userId,
 			decodeSampledBitmapFromResource);

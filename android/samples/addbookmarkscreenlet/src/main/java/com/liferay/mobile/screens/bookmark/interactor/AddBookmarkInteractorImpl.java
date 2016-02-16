@@ -4,7 +4,6 @@ import android.webkit.URLUtil;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v70.bookmarksentry.BookmarksEntryService;
-import com.liferay.mobile.screens.util.ServiceVersionFactory;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
@@ -33,7 +32,7 @@ public class AddBookmarkInteractorImpl
 
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
-		if (ServiceVersionFactory.isLiferay7()) {
+		if (LiferayServerContext.isLiferay7()) {
 			new BookmarksEntryService(session)
 				.addEntry(LiferayServerContext.getGroupId(), folderId, title, url, "", null);
 		}

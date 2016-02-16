@@ -20,7 +20,7 @@ import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitService;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.util.ServiceVersionFactory;
+import com.liferay.mobile.screens.util.ServiceProvider;
 
 import org.json.JSONObject;
 
@@ -127,7 +127,7 @@ public class CacheSyncService extends IntentService {
 		Long groupId = LiferayServerContext.getGroupId();
 		List<DDLRecordCache> records = getLatestRecordsToSync(cache);
 
-		DDLRecordOperation recordService = ServiceVersionFactory.getDDLRecordOperation(SessionContext.createSessionFromCurrentSession());
+		DDLRecordOperation recordService = ServiceProvider.getInstance().getDDLRecordOperation(SessionContext.createSessionFromCurrentSession());
 
 		for (DDLRecordCache cachedRecord : records) {
 			try {
