@@ -30,7 +30,8 @@ public class LiferayServerContext {
 		_companyId = getValueFromIntegerOrString(resources, R.string.liferay_company_id, companyIdentifier);
 		_groupId = getValueFromIntegerOrString(resources, R.string.liferay_group_id, groupIdentifier);
 		_server = resources.getString(R.string.liferay_server);
-		_liferay7 = resources.getBoolean(R.bool.liferay_liferay7_version);
+		_liferayPortalVersion = LiferayPortalVersion.fromInt(resources.getInteger(R.integer.liferay_portal_version));
+		_customServiceVersionFactory = resources.getString(R.string.liferay_custom_service_version_factory);
 	}
 
 	public static long getCompanyId() {
@@ -58,7 +59,15 @@ public class LiferayServerContext {
 	}
 
 	public static boolean isLiferay7() {
-		return _liferay7;
+		return LiferayPortalVersion.VERSION_70.equals(_liferayPortalVersion);
+	}
+
+	public static boolean isLiferay62() {
+		return LiferayPortalVersion.VERSION_70.equals(_liferayPortalVersion);
+	}
+
+	public static String getCustomServiceVersionFactory() {
+		return _customServiceVersionFactory;
 	}
 
 	private static long getValueFromIntegerOrString(final Resources resources, final int stringId, int integerId) {
@@ -68,5 +77,6 @@ public class LiferayServerContext {
 	private static long _companyId;
 	private static long _groupId;
 	private static String _server;
-	private static boolean _liferay7;
+	private static LiferayPortalVersion _liferayPortalVersion;
+	private static String _customServiceVersionFactory;
 }
