@@ -18,7 +18,7 @@ public class JournalArticleWithTemplateActivity extends ThemeActivity implements
 		super.onResume();
 
 		WebContentDisplayScreenlet journalArticleWithTemplate =
-			(WebContentDisplayScreenlet) findViewById(R.id.journal_article_with_template);
+			(WebContentDisplayScreenlet) findViewById(R.id.journal_article_with_template_screenlet);
 		journalArticleWithTemplate.load();
 
 		WebContentDisplayScreenlet journalArticleWithTemplateAlternative =

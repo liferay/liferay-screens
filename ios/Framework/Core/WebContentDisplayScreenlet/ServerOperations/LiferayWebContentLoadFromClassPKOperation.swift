@@ -16,7 +16,13 @@ import UIKit
 
 public class LiferayWebContentLoadFromClassPKOperation: LiferayWebContentLoadBaseOperation {
 
-	public var classPK: Int64?
+	public let classPK: Int64?
+
+	public init(classPK: Int64) {
+		self.classPK = classPK
+
+		super.init()
+	}
 
 
 	//MARK: ServerOperation
@@ -33,23 +39,28 @@ public class LiferayWebContentLoadFromClassPKOperation: LiferayWebContentLoadBas
 		return error
 	}
 
+}
+
+
+public class Liferay62WebContentLoadFromClassPKOperation: LiferayWebContentLoadFromClassPKOperation {
+
 	override internal func doGetJournalArticleWithTemplate(
-			templateId: Int64,
-			session: LRSession) -> String? {
-		let result: String?
-		let service = LRScreensjournalarticleService_v62(session: session)
+		templateId: Int64,
+		session: LRSession) -> String? {
+			let result: String?
+			let service = LRScreensjournalarticleService_v62(session: session)
 
-		do {
-			result = try service.getJournalArticleContentWithClassPK(classPK!,
-				ddmTemplateId: templateId,
-				locale: NSLocale.currentLocaleString)
-		}
-		catch let error as NSError {
-			lastError = error
-			result = nil
-		}
+			do {
+				result = try service.getJournalArticleContentWithClassPK(classPK!,
+					ddmTemplateId: templateId,
+					locale: NSLocale.currentLocaleString)
+			}
+			catch let error as NSError {
+				lastError = error
+				result = nil
+			}
 
-		return result
+			return result
 	}
 
 	override internal func doGetJournalArticle(session: LRSession) -> String? {
@@ -65,6 +76,47 @@ public class LiferayWebContentLoadFromClassPKOperation: LiferayWebContentLoadBas
 			result = nil
 		}
 
+		return result
+	}
+	
+}
+
+
+public class Liferay70WebContentLoadFromClassPKOperation: LiferayWebContentLoadFromClassPKOperation {
+
+
+	override internal func doGetJournalArticleWithTemplate(
+		templateId: Int64,
+		session: LRSession) -> String? {
+			let result: String?
+			let service = LRScreensjournalarticleService_v70(session: session)
+
+			do {
+				result = try service.getJournalArticleContentWithClassPK(classPK!,
+					ddmTemplateId: templateId,
+					locale: NSLocale.currentLocaleString)
+			}
+			catch let error as NSError {
+				lastError = error
+				result = nil
+			}
+
+			return result
+	}
+
+	override internal func doGetJournalArticle(session: LRSession) -> String? {
+		let result: String?
+		let service = LRScreensjournalarticleService_v70(session: session)
+
+		do {
+			result = try service.getJournalArticleContentWithClassPK(classPK!,
+				locale: NSLocale.currentLocaleString)
+		}
+		catch let error as NSError {
+			lastError = error
+			result = nil
+		}
+		
 		return result
 	}
 	

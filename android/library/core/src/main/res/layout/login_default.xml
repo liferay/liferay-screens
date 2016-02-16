@@ -2,8 +2,7 @@
 <com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginView
 	style="@style/default_screenlet"
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:liferay="http://schemas.android.com/apk/res-auto"
-	android:theme="@style/default_theme">
+	xmlns:liferay="http://schemas.android.com/apk/res-auto">
 
 	<LinearLayout
 		android:id="@+id/basic_authentication_login"

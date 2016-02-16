@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.testapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
@@ -36,15 +35,10 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 
 		setContentView(R.layout.ddl_form);
 
-		_screenlet = (DDLFormScreenlet) getActiveScreenlet(
-			R.id.ddl_form_default, R.id.ddl_form_material);
-
-		_screenlet.setVisibility(View.VISIBLE);
+		_screenlet = (DDLFormScreenlet) findViewById(R.id.ddl_form_screenlet);
 		_screenlet.setListener(this);
 
 		initScreenletFromIntent(getIntent());
-
-		hideInactiveScreenlet(R.id.ddl_form_default, R.id.ddl_form_material);
 	}
 
 	@Override

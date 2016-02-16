@@ -27,19 +27,14 @@ public enum CacheStrategyType: String {
 
 @objc public class CacheManager: NSObject {
 
-	private let tableSchemaDatabase = "lr_cache_"
+	private static let tableSchemaDatabase = "lr_cache_"
 
-	private var database: YapDatabase
-	private var readConnection: YapDatabaseConnection
-	private var writeConnection: YapDatabaseConnection
+	public let database: YapDatabase
+	public let readConnection: YapDatabaseConnection
+	public let writeConnection: YapDatabaseConnection
 
-
-	public init(name: String) {
-		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] 
-		let path = (cacheFolderPath as NSString).stringByAppendingPathComponent(tableSchemaDatabase)
-		let dbPath = "\(path)_\(name.toSafeFilename()))"
-
-		database = YapDatabase(path: dbPath)
+	public init(database: YapDatabase) {
+		self.database = database
 		readConnection = database.newConnection()
 		writeConnection = database.newConnection()
 
@@ -48,10 +43,15 @@ public enum CacheStrategyType: String {
 		registerPendingToSyncView(nil)
 	}
 
-	public convenience init(session: LRSession) {
-		self.init(name: session.serverName!)
+	public convenience init(name: String) {
+		let dbPath = CacheManager.databasePath(name)
+
+		self.init(database: YapDatabase(path: dbPath))
 	}
 
+	public convenience init(session: LRSession, userId: Int64) {
+		self.init(name: "\(session.serverName!)-\(userId)")
+	}
 
 	public func getString(collection collection: String, key: String, result: String? -> ()) {
 		readConnection.readWithBlock { transaction in
@@ -284,29 +284,21 @@ public enum CacheStrategyType: String {
 	}
 
 
-	//MARK: Private methods
+	//MARK "protected" methods
 
-	private func pendingToSyncTransaction(result: YapDatabaseViewTransaction? -> ()) {
-		if database.registeredExtension("pendingToSync") != nil {
-			readConnection.readWithBlock { transaction in
-				result(transaction.ext("pendingToSync") as? YapDatabaseViewTransaction)
-			}
-		}
-		else {
-			registerPendingToSyncView { success in
-				if success {
-					self.readConnection.readWithBlock { transaction in
-						result(transaction.ext("pendingToSync") as? YapDatabaseViewTransaction)
-					}
-				}
-				else {
-					result(nil)
-				}
-			}
-		}
+	public class func databasePath(name: String) -> String {
+		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0]
+		let path = (cacheFolderPath as NSString).stringByAppendingPathComponent(tableSchemaDatabase)
+
+		let filename = name.toSafeFilename()
+		let dbPath = "\(path)_\(filename)"
+
+		CacheManager.fixWrongDatabaseFilename(filename, path: path)
+
+		return dbPath
 	}
 
-	private func registerPendingToSyncView(result: (Bool -> ())?) {
+	public func registerPendingToSyncView(result: (Bool -> ())?) {
 		let grouping = YapDatabaseViewGrouping.withKeyBlock { (_, collection, key) in
 			return collection
 		}
@@ -338,11 +330,49 @@ public enum CacheStrategyType: String {
 						connection: self.writeConnection,
 						completionQueue: nil) { success in
 							result?(success)
-						}
+					}
 				}
 				else {
 					result?(false)
 				}
+		}
+	}
+
+
+	//MARK: Private methods
+
+	private func pendingToSyncTransaction(result: YapDatabaseViewTransaction? -> ()) {
+		if database.registeredExtension("pendingToSync") != nil {
+			readConnection.readWithBlock { transaction in
+				result(transaction.ext("pendingToSync") as? YapDatabaseViewTransaction)
+			}
+		}
+		else {
+			registerPendingToSyncView { success in
+				if success {
+					self.readConnection.readWithBlock { transaction in
+						result(transaction.ext("pendingToSync") as? YapDatabaseViewTransaction)
+					}
+				}
+				else {
+					result(nil)
+				}
+			}
+		}
+	}
+
+	private class func fixWrongDatabaseFilename(filename: String, path: String) {
+		// Typo in file name in Screens 1.2
+		let rightDbPath = "\(path)_\(filename)"
+		let wrongDbPath = "\(path)_\(filename))"
+
+		// Use the right filename but rename wrong name first
+		if NSFileManager.defaultManager().fileExistsAtPath(wrongDbPath) {
+			do {
+				try NSFileManager.defaultManager().moveItemAtPath(wrongDbPath, toPath: rightDbPath)
+			}
+			catch {
+			}
 			}
 	}
 

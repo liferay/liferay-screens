@@ -11,7 +11,6 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.push.Push;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
 import org.json.JSONObject;
 
@@ -46,7 +45,6 @@ public abstract class PushScreensActivity extends AppCompatActivity
 		catch (Exception e) {
 			String message = "Error registering with Liferay Push";
 			LiferayLogger.e(message, e);
-			LiferayCrouton.error(this, message, e);
 		}
 		_push.onPushNotification(this);
 	}

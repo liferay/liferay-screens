@@ -30,7 +30,6 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.list.view.BaseListViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
-import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
 
 import java.util.ArrayList;
@@ -106,7 +105,6 @@ public abstract class BaseListScreenletView<
 		_progressBar.setVisibility(View.GONE);
 		_recyclerView.setVisibility(View.VISIBLE);
 		LiferayLogger.e(getContext().getString(R.string.loading_list_error), e);
-		LiferayCrouton.error(getContext(), getContext().getString(R.string.loading_list_error), e);
 	}
 
 	public A getAdapter() {

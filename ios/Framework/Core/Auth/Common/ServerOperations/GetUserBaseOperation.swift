@@ -40,7 +40,7 @@ public class GetUserBaseOperation: ServerOperation {
 
 	override public func createSession() -> LRSession? {
 		if SessionContext.isLoggedIn {
-			return SessionContext.createSessionFromCurrentSession()
+			return SessionContext.currentContext?.requestSession()
 		}
 
 		return LRSession(
@@ -52,46 +52,67 @@ public class GetUserBaseOperation: ServerOperation {
 
 	override public func doRun(session session: LRSession) {
 		do {
-			let result = try sendGetUserRequest(
-				service: LRUserService_v62(session: session))
+			let result = try sendGetUserRequest(session)
 
-			if result?["userId"] == nil {
+			if result["userId"] == nil {
 				lastError = NSError.errorWithCause(.InvalidServerResponse)
 				resultUserAttributes = nil
 			}
 			else {
 				lastError = nil
-				resultUserAttributes = result as? [String:AnyObject]
+				resultUserAttributes = extractUserAttributes(result)
 			}
 		}
-		catch let error as NSError {
+		catch (let error as NSError) {
 			lastError = error
 			resultUserAttributes = nil
 		}
 	}
 
-	internal func setResultAsSessionContext() -> Bool {
-		if let userAttributesValue = resultUserAttributes {
-			SessionContext.createBasicSession(
-					username: self.userName!,
-					password: self.password!,
-					userAttributes: userAttributesValue)
-
-			return true
+	internal func loginWithResult() -> Bool {
+		guard let userAttributes = resultUserAttributes else {
+			return false
+		}
+		guard let userName = self.userName else {
+			return false
+		}
+		guard let password = self.password else {
+			return false
 		}
 
-		return false
+		SessionContext.loginWithBasic(
+			username: userName,
+			password: password,
+			userAttributes: userAttributes)
+
+		return true
+	}
+
+	internal func extractUserAttributes(result: NSDictionary?) -> [String: AnyObject]? {
+		guard var userAttributes = result as? [String: AnyObject] else {
+			return nil
+		}
+
+		// LSR-745: Liferay 7 sends all fields as string.
+		// Some were numbers in Liferay 6.2
+
+		let stringFields = ["userId", "companyId", "portraitId", "contactId"]
+
+		stringFields.forEach {
+			if let userId = userAttributes[$0] as? String {
+				userAttributes[$0] = userId.asNumber!
+			}
+		}
+
+		return userAttributes
 	}
 
 
 	// MARK: Template methods
 
-	public func sendGetUserRequest(
-			service service: LRUserService_v62)
-			throws -> NSDictionary? {
-
+	public func sendGetUserRequest(session: LRSession)
+			throws -> NSDictionary {
 		fatalError("sendGetUserRequest must be overriden")
 	}
 
-   
 }

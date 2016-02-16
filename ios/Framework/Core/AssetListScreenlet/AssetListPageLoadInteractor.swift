@@ -39,7 +39,7 @@ public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 	override public func createOperation() -> LiferayAssetListPageOperation {
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
 
-		let operation = LiferayAssetListPageOperation(
+		let operation = LiferayServerContext.operationFactory.createAssetListPageOperation(
 				startRow: pager(self.page),
 				endRow: pager(self.page + 1),
 				computeRowCount: self.computeRowCount)

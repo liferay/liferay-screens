@@ -32,12 +32,8 @@ public class SignUpActivity extends ThemeActivity implements SignUpListener {
 
 		setContentView(R.layout.signup);
 
-		SignUpScreenlet screenlet = (SignUpScreenlet) getActiveScreenlet(R.id.signup_default, R.id.signup_material);
-
-		screenlet.setVisibility(View.VISIBLE);
+		SignUpScreenlet screenlet = (SignUpScreenlet) findViewById(R.id.signup_screenlet);
 		screenlet.setListener(this);
-
-		hideInactiveScreenlet(R.id.signup_default, R.id.signup_material);
 	}
 
 	@Override

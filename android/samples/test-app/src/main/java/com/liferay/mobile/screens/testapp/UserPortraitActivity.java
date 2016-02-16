@@ -14,6 +14,8 @@
 
 package com.liferay.mobile.screens.testapp;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -33,13 +35,8 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 
 		setContentView(R.layout.user_portrait);
 
-		_screenlet = (UserPortraitScreenlet) getActiveScreenlet(
-			R.id.user_portrait_default, R.id.user_portrait_material);
-
-		_screenlet.setVisibility(View.VISIBLE);
+		_screenlet = (UserPortraitScreenlet) findViewById(R.id.user_portrait_screenlet);
 		_screenlet.setListener(this);
-
-		hideInactiveScreenlet(R.id.user_portrait_default, R.id.user_portrait_material);
 	}
 
 	@Override
@@ -86,6 +83,15 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 	public void storingToCache(Object object) {
 		View content = findViewById(android.R.id.content);
 		Snackbar.make(content, "Storing to cache...", Snackbar.LENGTH_SHORT).show();
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if (resultCode == Activity.RESULT_OK) {
+			_screenlet.upload(requestCode, data);
+		}
 	}
 
 	private UserPortraitScreenlet _screenlet;

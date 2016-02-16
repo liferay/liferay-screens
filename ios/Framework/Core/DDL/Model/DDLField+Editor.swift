@@ -32,10 +32,6 @@ extension DDLField {
 		case Document = "ddm-documentlibrary"
 		case Unsupported = ""
 
-		public static func from(xmlElement xmlElement:SMXMLElement) -> Editor {
-			return from(attributeValue:(xmlElement.attributeNamed("type") ?? ""))
-		}
-
 		public static func from(attributes attributes:[String:AnyObject]) -> Editor {
 			return from(attributeValue:((attributes["type"] ?? "") as! String))
 		}

@@ -28,8 +28,6 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.ModalProgressBar;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
-import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
 /**
  * @author Silvio Santos
@@ -39,20 +37,14 @@ public class SignUpView extends LinearLayout
 
 	public SignUpView(Context context) {
 		super(context);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public SignUpView(Context context, AttributeSet attributes) {
 		super(context, attributes);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public SignUpView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	@Override
@@ -112,7 +104,6 @@ public class SignUpView extends LinearLayout
 		_progressBar.finishProgress();
 
 		LiferayLogger.e("Could not sign up", e);
-		LiferayCrouton.error(getContext(), getContext().getString(R.string.sign_up_error), e);
 	}
 
 	@Override
@@ -127,7 +118,8 @@ public class SignUpView extends LinearLayout
 
 	@Override
 	public void onClick(View view) {
-		SignUpScreenlet signUpScreenlet = (SignUpScreenlet) getParent();
+
+		SignUpScreenlet signUpScreenlet = (SignUpScreenlet) getScreenlet();
 
 		signUpScreenlet.performUserAction();
 	}

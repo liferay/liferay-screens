@@ -12,6 +12,6 @@
 		style="@style/westeros_checkbox"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:theme="@style/WesterosTheme"/>
+		android:theme="@style/westeros_theme"/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldCheckboxView>

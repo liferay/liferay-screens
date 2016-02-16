@@ -16,11 +16,11 @@ package com.liferay.mobile.screens.testapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
 
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.User;
 
 /**
@@ -35,12 +35,8 @@ public class LoginActivity extends ThemeActivity implements LoginListener {
 
 		setContentView(R.layout.login);
 
-		_loginScreenlet = (LoginScreenlet) getActiveScreenlet(R.id.login_default, R.id.login_material);
-
-		_loginScreenlet.setVisibility(View.VISIBLE);
+		_loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
 		_loginScreenlet.setListener(this);
-
-		hideInactiveScreenlet(R.id.login_default, R.id.login_material);
 
 		setDefaultValues();
 	}

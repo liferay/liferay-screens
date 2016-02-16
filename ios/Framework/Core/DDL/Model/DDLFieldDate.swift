@@ -14,95 +14,143 @@
 import Foundation
 
 
-public class DDLFieldDate : DDLField {
+public class DDLFieldDate: DDLField {
 
-	override public var currentLocale: NSLocale {
-		didSet {
-			clientDateFormatter.locale = self.currentLocale
-		}
+	static let GMTTimeZone = NSTimeZone(abbreviation: "GMT")
+
+	public var clientDateFormatter: NSDateFormatter {
+		let result = NSDateFormatter()
+		result.dateStyle = .LongStyle
+		result.timeStyle = .NoStyle
+		result.locale = currentLocale
+		return result
 	}
 
-	private let serverYYYYDateFormat = "MM/dd/yyyy"
-	private let serverYYDateFormat = "MM/dd/yy"
-
-	private let serverYYYYDateFormatter = NSDateFormatter()
-	private let serverYYDateFormatter = NSDateFormatter()
-	private let clientDateFormatter = NSDateFormatter()
-
-	private let gmtTimeZone = NSTimeZone(abbreviation: "GMT")
-
-
-	override public init(attributes: [String:AnyObject], locale: NSLocale) {
-		super.init(attributes: attributes, locale: locale)
-
-		initFormatters(locale)
+	public var serverDateFormat: String {
+		return "MM/dd/yyyy"
 	}
 
-	public required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-
-		initFormatters(self.currentLocale)
+	public var serverDateFormatter: NSDateFormatter {
+		let result = NSDateFormatter()
+		result.timeZone = DDLFieldDate.GMTTimeZone
+		result.dateFormat = serverDateFormat
+		return result
 	}
-
-	private func initFormatters(locale: NSLocale) {
-		serverYYYYDateFormatter.dateFormat = serverYYYYDateFormat
-		serverYYDateFormatter.dateFormat = serverYYDateFormat
-
-		clientDateFormatter.dateStyle = .LongStyle
-		clientDateFormatter.timeStyle = .NoStyle
-		clientDateFormatter.locale = locale
-
-		serverYYYYDateFormatter.timeZone = gmtTimeZone
-		serverYYDateFormatter.timeZone = gmtTimeZone
-	}
-
 
 	//MARK: DDLField
 
-	override internal func convert(fromString value:String?) -> AnyObject? {
-		if let stringValue = value {
-			// minimum date length in mm/dd/yy is 6 characters
-			if stringValue.characters.count >= 6 {
-				let formatter = stringValue[stringValue.endIndex.predecessor().predecessor()] == "/"
-					? serverYYDateFormatter : serverYYYYDateFormatter
-				return formatter.dateFromString(stringValue)
-			}
+	override private init(attributes: [String:AnyObject], locale: NSLocale) {
+		super.init(attributes: attributes, locale: locale)
+	}
+
+	public required init?(coder aDecoder: NSCoder) {
+	    fatalError("init(coder:) has not been implemented")
+	}
+
+	override internal func convert(fromString value: String?) -> AnyObject? {
+		guard let stringValue = value else {
+			return nil
+		}
+		guard !stringValue.isEmpty else {
+			return nil
 		}
 
-		return nil
+		return serverDateFormatter.dateFromString(stringValue)
 	}
 
 	override func convert(fromLabel label: String?) -> AnyObject? {
-		var result: AnyObject?
-
-		if label != nil {
-			result = clientDateFormatter.dateFromString(label!)
+		guard let label = label else {
+			return nil
+		}
+		guard !label.isEmpty else {
+			return nil
 		}
 
-		return result
-	}
-
-	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
-		var result: String?
-
-		if let date = value as? NSDate {
-			// Java uses milliseconds instead of seconds
-			let epoch = UInt64(date.timeIntervalSince1970 * 1000)
-
-			result = "\(epoch)"
-		}
-
-		return result
+		return clientDateFormatter.dateFromString(label)
 	}
 
 	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
-		var result: String?
-
-		if let date = currentValue as? NSDate {
-			result = clientDateFormatter.stringFromDate(date)
+		guard let date = currentValue as? NSDate else {
+			return nil
 		}
 
-		return result
+		return clientDateFormatter.stringFromDate(date)
 	}
+
+}
+
+
+
+public class DDLFieldDate_v62: DDLFieldDate {
+
+	override public init(attributes: [String:AnyObject], locale: NSLocale) {
+		super.init(attributes: attributes, locale: locale)
+	}
+
+	public required init?(coder aDecoder: NSCoder) {
+	    fatalError("init(coder:) has not been implemented")
+	}
+
+	override public var serverDateFormat: String {
+		return "MM/dd/yyyy"
+	}
+
+	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
+		guard let date = value as? NSDate else {
+			return nil
+		}
+
+		// Java uses milliseconds instead of seconds
+		let epoch = UInt64(date.timeIntervalSince1970 * 1000)
+
+		return "\(epoch)"
+	}
+
+}
+
+
+public class DDLFieldDate_v70: DDLFieldDate {
+
+	override public init(attributes: [String:AnyObject], locale: NSLocale) {
+		super.init(attributes: attributes, locale: locale)
+	}
+
+	public required init?(coder aDecoder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+
+	override public var serverDateFormat: String {
+		return "yyyy'-'MM'-'dd"
+	}
+
+
+	override internal func convert(fromString value: String?) -> AnyObject? {
+		guard let stringValue = value else {
+			return nil
+		}
+
+		func convertWithFormat(format: String) -> AnyObject? {
+			let formatter = NSDateFormatter()
+			formatter.timeZone = DDLFieldDate.GMTTimeZone
+			formatter.dateFormat = format
+
+			return formatter.dateFromString(stringValue)
+		}
+
+		// Liferay 7 is not consistent in date format.
+		// It uses MM/dd/YYYY in predefinedValue field.
+
+		return super.convert(fromString: value) ?? convertWithFormat("M'/'d'/'yyyy")
+	}
+
+
+	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
+		guard let date = value as? NSDate else {
+			return nil
+		}
+
+		return serverDateFormatter.stringFromDate(date)
+	}
+
 
 }

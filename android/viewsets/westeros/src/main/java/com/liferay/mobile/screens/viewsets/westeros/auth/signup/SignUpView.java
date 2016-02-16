@@ -27,8 +27,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.viewsets.westeros.R;
+import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
 
 /**
  * @author Silvio Santos
@@ -50,7 +51,7 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 	@Override
 	public void onClick(View view) {
 		if (validFields()) {
-			SignUpScreenlet signUpScreenlet = (SignUpScreenlet) getParent();
+			SignUpScreenlet signUpScreenlet = getSignUpScreenlet();
 			signUpScreenlet.performUserAction();
 		}
 	}
@@ -70,12 +71,17 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 		_passwordValidation.setText("Password can not be empty");
 	}
 
+	private SignUpScreenlet getSignUpScreenlet() {
+		return (SignUpScreenlet) getScreenlet();
+	}
+
 	private boolean validFields() {
 		//TODO move to view model and interactor
 
 		CheckBox acceptTerms = (CheckBox) findViewById(R.id.sign_up_checkbox);
 		if (!acceptTerms.isChecked()) {
-			LiferayCrouton.error(getContext(), "You must accept the terms & conditions", null);
+			WesterosSnackbar.showSnackbar(LiferayScreensContext.getActivityFromContext(getContext()),
+				"You must accept the terms & conditions", R.color.colorAccent_westeros);
 			return false;
 		}
 
@@ -119,7 +125,7 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 		ssb.setSpan(new ClickableSpan() {
 			@Override
 			public void onClick(View widget) {
-				SignUpScreenlet signUpScreenlet = (SignUpScreenlet) getParent();
+				SignUpScreenlet signUpScreenlet = getSignUpScreenlet();
 				signUpScreenlet.performUserAction(SignUpScreenlet.TERMS_AND_CONDITIONS);
 			}
 		}, 13, ssb.length(), 0);

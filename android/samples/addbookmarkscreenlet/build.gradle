@@ -25,9 +25,11 @@ android {
 
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
+
 	compile project(':liferay-screens')
 }
 
 repositories {
 	jcenter()
+	maven { url "http://dl.bintray.com/tbruyelle/tbruyelle" }
 }

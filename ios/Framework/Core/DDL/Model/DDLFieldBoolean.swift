@@ -17,7 +17,9 @@ import Foundation
 public class DDLFieldBoolean : DDLField {
 
 	override internal func convert(fromString value:String?) -> AnyObject? {
-		return value != nil ? Bool.from(string: value!) : nil
+		return value.map {
+				Bool.from(string: $0)
+			}
 	}
 
 	override func convert(fromLabel label: String?) -> AnyObject? {
@@ -35,23 +37,19 @@ public class DDLFieldBoolean : DDLField {
 	}
 
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
-		var result: String?
-
-		if let boolValue = value as? Bool {
-			result = boolValue ? "true" : "false"
+		guard let boolValue = value as? Bool else {
+			return nil
 		}
 
-		return result
+		return boolValue ? "true" : "false"
 	}
 
 	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
-		var result: String?
-
-		if let boolValue = value as? Bool {
-			result = LocalizedString("core", key: boolValue ? "yes" : "no", obj: self)
+		guard let boolValue = value as? Bool else {
+			return nil
 		}
 
-		return result
+		return LocalizedString("core", key: boolValue ? "yes" : "no", obj: self)
 	}
 
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<color name="colorPrimary_default">#FF00B8E0</color>
+	<color name="colorPrimaryLight_default">#DD00B8E0</color>
+	<color name="colorAccent_default">#FFF0FFFF</color>
+	<color name="textColorPrimary_default">#FF919394</color>
+	<color name="textColorSecondary_default">#FFD5D5D7</color>
+
+	<color name="colorPrimary_material">#FF8BC34A</color>
+	<color name="colorPrimaryDark_material">#FF689F38</color>
+	<color name="colorPrimaryLight_material">#FFDCEDC8</color>
+	<color name="colorAccent_material">#FFCDDC39</color>
+	<color name="textColorPrimary_material">#FF212121</color>
+	<color name="textColorSecondary_material">#FF727272</color>
+
+	<color name="colorPrimary_westeros">#E44740</color>
+	<color name="colorPrimaryDark_westeros">#BE211A</color>
+	<color name="colorAccent_westeros">#FBB351</color>
+	<color name="textColorPrimary_westeros">#303030</color>
+	<color name="textColorSecondary_westeros">#878787</color>
+
+	<!--<color name="colorPrimary">#009688</color>-->
+	<!--<color name="colorPrimaryDark">#00796B</color>-->
+	<!--<color name="colorPrimaryLight">#FFC107</color>-->
+	<!--<color name="colorAccent">#FFC107</color>-->
+	<!--<color name="textColorPrimary">#FF212121</color>-->
+
+
+</resources>

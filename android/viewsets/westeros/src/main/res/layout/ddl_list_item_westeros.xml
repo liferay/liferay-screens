@@ -13,7 +13,7 @@
 			android:id="@+id/liferay_bottom_wrapper"
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
-			android:background="@color/westeros_dark_gray"
+			android:background="@color/textColorSecondary_westeros"
 			android:orientation="horizontal"
 			android:weightSum="1">
 
@@ -63,7 +63,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:textAllCaps="true"
-					android:textColor="@color/westeros_black"
+					android:textColor="@color/textColorPrimary_westeros"
 					android:textStyle="bold"/>
 
 				<TextView
@@ -71,7 +71,7 @@
 					style="@style/westeros_list_item_subtitle"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:textColor="@color/westeros_dark_gray"
+					android:textColor="@color/textColorSecondary_westeros"
 					android:textSize="14sp"/>
 			</LinearLayout>
 
@@ -92,5 +92,5 @@
 	<View
 		android:layout_width="match_parent"
 		android:layout_height="1dp"
-		android:background="@color/westeros_background_gray"/>
+		android:background="@color/background_gray_westeros"/>
 </LinearLayout>

@@ -44,7 +44,7 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 		}
 	}
 
-	public var authType: String? = AuthType.Basic.rawValue {
+	public var authType: String? = StringFromAuthType(AuthType.Basic) {
 		didSet {
 			configureAuthType()
 		}
@@ -121,7 +121,7 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 	}
 
 	public func configureAuthType() {
-		let auth = AuthType(rawValue: authType!) ?? .Basic
+		let auth = AuthTypeFromString(authType ?? "") ?? .Basic
 
 		authorizeButton?.hidden = (auth != .OAuth)
 		loginButton?.superview?.hidden = (auth != .Basic)

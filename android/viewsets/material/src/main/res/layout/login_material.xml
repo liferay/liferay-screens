@@ -4,8 +4,7 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:liferay="http://schemas.android.com/apk/res-auto"
 	android:paddingLeft="40dp"
-	android:paddingRight="40dp"
-	android:theme="@style/material_theme">
+	android:paddingRight="40dp">
 
 	<LinearLayout
 		android:id="@+id/basic_authentication_login"

@@ -8,6 +8,6 @@
 		  android:background="@drawable/westeros_warning_text_view_drawable"
 		  android:gravity="center_vertical"
 		  android:text="@string/all_fields_required"
-		  android:textColor="@color/westeros_red"
+		  android:textColor="@color/colorPrimary_westeros"
 		  android:textSize="16sp"
 		  android:visibility="gone"/>
