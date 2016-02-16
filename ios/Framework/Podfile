@@ -10,7 +10,7 @@ pod 'Liferay-OAuth', '0.1.1'
 pod 'MBProgressHUD', '0.9.1'
 pod 'SMXMLDocument', '1.1'
 pod 'ODRefreshControl', '1.2'
-pod 'YapDatabase', '2.6.5'
+pod 'YapDatabase/SQLCipher', '2.8.2'
 
 # Login & signup: save credentials
 pod 'KeychainAccess', '2.3.1'
