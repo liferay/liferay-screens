@@ -36,7 +36,7 @@ public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 		super.init(screenlet: screenlet, page: page, computeRowCount: computeRowCount)
 	}
 
-	override public func createConnector() -> LiferayAssetListPageConnector {
+	override public func createConnector() -> AssetListPageLiferayConnector {
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
 
 		let connector = LiferayServerContext.connectorFactory.createAssetListPageConnector(
@@ -58,7 +58,7 @@ public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 		return AssetListScreenletEntry(attributes: serverResult)
 	}
 
-	override public func cacheKey(op: LiferayPaginationConnector) -> String {
+	override public func cacheKey(op: PaginationLiferayConnector) -> String {
 		return "\((groupId != 0) ? groupId : LiferayServerContext.groupId)-\(classNameId)"
 	}
 

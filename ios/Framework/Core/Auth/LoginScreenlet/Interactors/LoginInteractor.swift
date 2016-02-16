@@ -18,13 +18,13 @@ class LoginInteractor: ServerConnectorInteractor {
 
 	var resultUserAttributes: [String:AnyObject]?
 
-	override func createConnector() -> GetUserBaseConnector {
+	override func createConnector() -> GetUserBaseLiferayConnector {
 		let screenlet = self.screenlet as! LoginScreenlet
 
 		let companyId = (screenlet.companyId != 0)
 				? screenlet.companyId : LiferayServerContext.companyId
 
-		var connector: GetUserBaseConnector?
+		var connector: GetUserBaseLiferayConnector?
 
 		switch BasicAuthMethod.create(screenlet.basicAuthMethod) {
 			case .ScreenName:
@@ -47,7 +47,7 @@ class LoginInteractor: ServerConnectorInteractor {
 	}
 
 	override func completedConnector(op: ServerConnector) {
-		self.resultUserAttributes = (op as! GetUserBaseConnector).resultUserAttributes
+		self.resultUserAttributes = (op as! GetUserBaseLiferayConnector).resultUserAttributes
 	}
 
 }

@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class Liferay70LoginByEmailConnector: Liferay70GetUserByEmailConnector {
+public class LoginByEmailLiferay70Connector: GetUserByEmailLiferay70Connector {
 
 	override public func validateData() -> ValidationError? {
 		if super.validateData() == nil {

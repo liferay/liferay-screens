@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayDDLFormLoadConnector: ServerConnector {
+public class DDLFormLoadLiferayConnector: ServerConnector {
 
 	public let structureId: Int64
 
@@ -31,7 +31,7 @@ public class LiferayDDLFormLoadConnector: ServerConnector {
 }
 
 
-public class Liferay62DDLFormLoadConnector: LiferayDDLFormLoadConnector {
+public class Liferay62DDLFormLoadConnector: DDLFormLoadLiferayConnector {
 
 	override public func doRun(session session: LRSession) {
 		let service = LRDDMStructureService_v62(session: session)
@@ -65,7 +65,7 @@ public class Liferay62DDLFormLoadConnector: LiferayDDLFormLoadConnector {
 }
 
 
-public class Liferay70DDLFormLoadConnector: LiferayDDLFormLoadConnector {
+public class Liferay70DDLFormLoadConnector: DDLFormLoadLiferayConnector {
 
 	override public func doRun(session session: LRSession) {
 		let service = LRDDMStructureService_v70(session: session)

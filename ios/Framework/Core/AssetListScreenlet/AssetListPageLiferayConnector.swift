@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayAssetListPageConnector: LiferayPaginationConnector {
+public class AssetListPageLiferayConnector: PaginationLiferayConnector {
 
 	public var groupId: Int64?
 	public var classNameId: Int64?
@@ -74,7 +74,7 @@ public class LiferayAssetListPageConnector: LiferayPaginationConnector {
 		}
 	}
 
-	//MARK: LiferayPaginationConnector
+	//MARK: PaginationLiferayConnector
 
 	override public func doGetPageRowsConnector(session session: LRBatchSession, startRow: Int, endRow: Int) {
 
@@ -129,7 +129,7 @@ public class LiferayAssetListPageConnector: LiferayPaginationConnector {
 
 }
 
-public class Liferay62AssetListPageConnector: LiferayAssetListPageConnector {
+public class Liferay62AssetListPageConnector: AssetListPageLiferayConnector {
 
 	override public func doGetEntries(session: LRSession, rowCount: Int32) throws -> [[String:AnyObject]]? {
 		let service = LRScreensassetentryService_v62(session: session)
@@ -163,7 +163,7 @@ public class Liferay62AssetListPageConnector: LiferayAssetListPageConnector {
 }
 
 
-public class Liferay70AssetListPageConnector: LiferayAssetListPageConnector {
+public class Liferay70AssetListPageConnector: AssetListPageLiferayConnector {
 
 	override public func doGetEntries(session: LRSession, rowCount: Int32) throws -> [[String:AnyObject]]? {
 		let service = LRScreensassetentryService_v70(session: session)

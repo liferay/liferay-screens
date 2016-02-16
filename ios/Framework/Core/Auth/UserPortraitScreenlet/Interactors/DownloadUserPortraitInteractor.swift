@@ -102,7 +102,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 				return createConnectorForLogged()
 			}
 			else {
-				return createConnectorFor(GetUserByUserIdConnector(userId: userId))
+				return createConnectorFor(GetUserByUserIdLiferayConnector(userId: userId))
 			}
 
 		case .EmailAddress(let companyId, let emailAddress):
@@ -115,7 +115,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 			}
 			else {
 				return createConnectorFor(
-					GetUserByEmailConnector(
+					GetUserByEmailLiferayConnector(
 						companyId: companyId,
 						emailAddress: emailAddress))
 			}
@@ -130,7 +130,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 			}
 			else {
 				return createConnectorFor(
-					GetUserByScreenNameConnector(
+					GetUserByScreenNameLiferayConnector(
 						companyId: companyId,
 						screenName: screenName))
 			}
@@ -219,11 +219,11 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		return nil
 	}
 
-	private func createConnectorFor(loadUserOp: GetUserBaseConnector) -> ServerConnector? {
+	private func createConnectorFor(loadUserOp: GetUserBaseLiferayConnector) -> ServerConnector? {
 		let chain = ServerConnectorChain(head: loadUserOp)
 
 		chain.onNextStep = { (op, seq) -> ServerConnector? in
-			if let loadUserOp = op as? GetUserBaseConnector {
+			if let loadUserOp = op as? GetUserBaseLiferayConnector {
 				return self.createConnectorFor(attributes: loadUserOp.resultUserAttributes)
 			}
 

@@ -28,14 +28,14 @@ class UploadUserPortraitInteractor: ServerWriteConnectorInteractor {
 		super.init(screenlet: screenlet)
 	}
 
-	override func createConnector() -> LiferayUploadUserPortraitConnector {
+	override func createConnector() -> UploadUserPortraitLiferayConnector {
 		return LiferayServerContext.connectorFactory.createUploadUserPortraitConnector(
 				userId: self.userId,
 				image: self.image)
 	}
 
 	override func completedConnector(op: ServerConnector) {
-		self.uploadResult = (op as! LiferayUploadUserPortraitConnector).uploadResult
+		self.uploadResult = (op as! UploadUserPortraitLiferayConnector).uploadResult
 	}
 
 

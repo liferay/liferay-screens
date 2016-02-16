@@ -45,7 +45,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 			let connectorChain = ServerConnectorChain(head: loadFormOp)
 
 			connectorChain.onNextStep = { (op, seq) -> ServerConnector? in
-				if let loadFormOp = op as? LiferayDDLFormLoadConnector {
+				if let loadFormOp = op as? DDLFormLoadLiferayConnector {
 					self.resultFormRecord = loadFormOp.resultRecord
 					self.resultFormUserId = loadFormOp.resultUserId
 
@@ -70,8 +70,8 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 		let recordId: Int64?
 
 		if let chain = op as? ServerConnectorChain,
-				loadFormOp = chain.headConnector as? LiferayDDLFormLoadConnector,
-				loadRecordOp = chain.currentConnector as? LiferayDDLFormRecordLoadConnector,
+				loadFormOp = chain.headConnector as? DDLFormLoadLiferayConnector,
+				loadRecordOp = chain.currentConnector as? DDLFormRecordLoadLiferayConnector,
 				recordForm = loadFormOp.resultRecord,
 				formUserId = loadFormOp.resultUserId {
 
@@ -82,7 +82,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 			self.resultFormRecord = recordForm
 			self.resultFormUserId = formUserId
 		}
-		else if let loadRecordOp = op as? LiferayDDLFormRecordLoadConnector {
+		else if let loadRecordOp = op as? DDLFormRecordLoadLiferayConnector {
 			recordData = loadRecordOp.resultRecordData
 			recordAttributes = loadRecordOp.resultRecordAttributes
 			recordId = loadRecordOp.resultRecordId
@@ -109,10 +109,10 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 
 	override func writeToCache(op: ServerConnector) {
 		if let chain = op as? ServerConnectorChain,
-				loadFormOp = chain.headConnector as? LiferayDDLFormLoadConnector,
+				loadFormOp = chain.headConnector as? DDLFormLoadLiferayConnector,
 				recordForm = loadFormOp.resultRecord,
 				formUserId = loadFormOp.resultUserId,
-				loadRecordOp = chain.currentConnector as? LiferayDDLFormRecordLoadConnector,
+				loadRecordOp = chain.currentConnector as? DDLFormRecordLoadLiferayConnector,
 				recordData = loadRecordOp.resultRecordData,
 				recordAttributes = loadRecordOp.resultRecordAttributes {
 
@@ -133,7 +133,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 				value: recordData,
 				attributes: ["record": record])
 		}
-		else if let loadRecordOp = op as? LiferayDDLFormRecordLoadConnector,
+		else if let loadRecordOp = op as? DDLFormRecordLoadLiferayConnector,
 					recordData = loadRecordOp.resultRecordData,
 					recordAttributes = loadRecordOp.resultRecordAttributes {
 
@@ -152,7 +152,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 
 	override func readFromCache(op: ServerConnector, result: AnyObject? -> Void) {
 		if let chain = op as? ServerConnectorChain,
-				loadFormOp = chain.headConnector as? LiferayDDLFormLoadConnector
+				loadFormOp = chain.headConnector as? DDLFormLoadLiferayConnector
 				where structureId != nil {
 
 			// load form and record
@@ -188,7 +188,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 				}
 			}
 		}
-		else if let loadRecordOp = op as? LiferayDDLFormRecordLoadConnector {
+		else if let loadRecordOp = op as? DDLFormRecordLoadLiferayConnector {
 			// load just record
 			SessionContext.currentContext!.cacheManager.getAnyWithAttributes(
 					collection: ScreenletName(DDLFormScreenlet),

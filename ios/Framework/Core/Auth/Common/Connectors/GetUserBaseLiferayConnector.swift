@@ -13,7 +13,7 @@
 */
 import UIKit
 
-public class GetUserBaseConnector: ServerConnector {
+public class GetUserBaseLiferayConnector: ServerConnector {
 
 	public var resultUserAttributes: [String:AnyObject]?
 

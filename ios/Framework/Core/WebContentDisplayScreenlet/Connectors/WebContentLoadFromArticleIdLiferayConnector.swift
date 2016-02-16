@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayWebContentLoadFromArticleIdConnector: LiferayWebContentLoadBaseConnector {
+public class WebContentLoadFromArticleIdLiferayConnector: WebContentLoadBaseLiferayConnector {
 
 	public let articleId: String?
 
@@ -42,7 +42,7 @@ public class LiferayWebContentLoadFromArticleIdConnector: LiferayWebContentLoadB
 }
 
 
-public class Liferay62WebContentLoadFromArticleIdConnector: LiferayWebContentLoadFromArticleIdConnector {
+public class Liferay62WebContentLoadFromArticleIdConnector: WebContentLoadFromArticleIdLiferayConnector {
 
 	override internal func doGetJournalArticleWithTemplate(
 		templateId: Int64,
@@ -93,7 +93,7 @@ public class Liferay62WebContentLoadFromArticleIdConnector: LiferayWebContentLoa
 }
 
 
-public class Liferay70WebContentLoadFromArticleIdConnector: LiferayWebContentLoadFromArticleIdConnector {
+public class Liferay70WebContentLoadFromArticleIdConnector: WebContentLoadFromArticleIdLiferayConnector {
 
 	override internal func doGetJournalArticleWithTemplate(
 		templateId: Int64,

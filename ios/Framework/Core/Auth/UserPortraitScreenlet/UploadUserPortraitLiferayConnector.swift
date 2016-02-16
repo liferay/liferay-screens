@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayUploadUserPortraitConnector: ServerConnector {
+public class UploadUserPortraitLiferayConnector: ServerConnector {
 
 	private let userId: Int64
 	private var image: UIImage?
@@ -82,7 +82,7 @@ public class LiferayUploadUserPortraitConnector: ServerConnector {
 }
 
 
-public class Liferay62UploadUserPortraitConnector: LiferayUploadUserPortraitConnector {
+public class Liferay62UploadUserPortraitConnector: UploadUserPortraitLiferayConnector {
 
 	override public func uploadBytes(imageBytes: NSData, withSession session: LRSession) {
 		let service = LRUserService_v62(session: session)
@@ -106,7 +106,7 @@ public class Liferay62UploadUserPortraitConnector: LiferayUploadUserPortraitConn
 	
 }
 
-public class Liferay70UploadUserPortraitConnector: LiferayUploadUserPortraitConnector {
+public class Liferay70UploadUserPortraitConnector: UploadUserPortraitLiferayConnector {
 
 	override public func uploadBytes(imageBytes: NSData, withSession session: LRSession) {
 		let service = LRUserService_v70(session: session)

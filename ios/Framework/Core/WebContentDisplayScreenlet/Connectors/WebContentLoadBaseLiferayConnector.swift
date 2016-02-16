@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayWebContentLoadBaseConnector: ServerConnector {
+public class WebContentLoadBaseLiferayConnector: ServerConnector {
 
 	public var groupId: Int64?
 	public var templateId: Int64?

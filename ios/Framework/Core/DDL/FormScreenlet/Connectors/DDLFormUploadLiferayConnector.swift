@@ -15,7 +15,7 @@ import UIKit
 
 
 
-public class LiferayDDLFormUploadConnector: ServerConnector, LRCallback, LRFileProgressDelegate {
+public class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFileProgressDelegate {
 
 	public typealias OnProgress = (DDLFieldDocument, UInt64, UInt64) -> Void
 
@@ -94,7 +94,7 @@ public class LiferayDDLFormUploadConnector: ServerConnector, LRCallback, LRFileP
 }
 
 
-public class Liferay62DDLFormUploadConnector: LiferayDDLFormUploadConnector {
+public class Liferay62DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 
 	override public func doRun(session session: LRSession) {
 		session.callback = self
@@ -134,7 +134,7 @@ public class Liferay62DDLFormUploadConnector: LiferayDDLFormUploadConnector {
 }
 
 
-public class Liferay70DDLFormUploadConnector: LiferayDDLFormUploadConnector {
+public class Liferay70DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 
 	override public func doRun(session session: LRSession) {
 		session.callback = self

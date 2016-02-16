@@ -160,7 +160,7 @@ extension SyncManager {
 		let op = LiferayServerContext.connectorFactory.createDDLFormRecordLoadConnector(recordId)
 
 		op.validateAndEnqueue {
-			if let op = $0 as? LiferayDDLFormRecordLoadConnector,
+			if let op = $0 as? DDLFormRecordLoadLiferayConnector,
 					recordData = op.resultRecordData,
 					recordAttributes = op.resultRecordAttributes {
 

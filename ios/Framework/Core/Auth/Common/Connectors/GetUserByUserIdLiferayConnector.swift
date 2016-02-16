@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class GetUserByUserIdConnector: GetUserBaseConnector {
+public class GetUserByUserIdLiferayConnector: GetUserBaseLiferayConnector {
 
 	public let userId: Int64
 

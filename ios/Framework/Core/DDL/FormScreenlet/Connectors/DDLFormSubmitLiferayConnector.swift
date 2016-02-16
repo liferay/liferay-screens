@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayDDLFormSubmitConnector: ServerConnector {
+public class DDLFormSubmitLiferayConnector: ServerConnector {
 
 	public var groupId: Int64?
 	public var userId: Int64?
@@ -65,7 +65,7 @@ public class LiferayDDLFormSubmitConnector: ServerConnector {
 }
 
 
-public class Liferay62DDLFormSubmitConnector: LiferayDDLFormSubmitConnector {
+public class Liferay62DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
 
 	override public func doRun(session session: LRSession) {
 		let service = LRDDLRecordService_v62(session: session)
@@ -113,7 +113,7 @@ public class Liferay62DDLFormSubmitConnector: LiferayDDLFormSubmitConnector {
 }
 
 
-public class Liferay70DDLFormSubmitConnector: LiferayDDLFormSubmitConnector {
+public class Liferay70DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
 
 	override public func doRun(session session: LRSession) {
 		let service = LRDDLRecordService_v70(session: session)

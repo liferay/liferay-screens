@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class GetUserByEmailConnector: GetUserBaseConnector {
+public class GetUserByEmailLiferayConnector: GetUserBaseLiferayConnector {
 
 	public var companyId: Int64
 	public var emailAddress: String

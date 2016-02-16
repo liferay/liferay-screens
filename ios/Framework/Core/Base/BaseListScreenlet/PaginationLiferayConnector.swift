@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayPaginationConnector: ServerConnector {
+public class PaginationLiferayConnector: ServerConnector {
 
 	public let startRow: Int
 	public let endRow: Int

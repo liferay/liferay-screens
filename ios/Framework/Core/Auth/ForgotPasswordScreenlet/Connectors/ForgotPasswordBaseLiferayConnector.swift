@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayForgotPasswordBaseConnector: ServerConnector {
+public class ForgotPasswordBaseLiferayConnector: ServerConnector {
 
 	public var companyId: Int64 = 0
 

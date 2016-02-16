@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayUpdateCurrentUserConnector: ServerConnector {
+public class UpdateCurrentUserLiferayConnector: ServerConnector {
 
 	public var resultUserAttributes: [String:AnyObject]?
 
@@ -57,7 +57,7 @@ public class LiferayUpdateCurrentUserConnector: ServerConnector {
 }
 
 
-public class Liferay62UpdateCurrentUserConnector: LiferayUpdateCurrentUserConnector {
+public class Liferay62UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnector {
 
 	override public func doRun(session session: LRSession) {
 		let service = LRUserService_v62(session: session)
@@ -126,7 +126,7 @@ public class Liferay62UpdateCurrentUserConnector: LiferayUpdateCurrentUserConnec
 }
 
 
-public class Liferay70UpdateCurrentUserConnector: LiferayUpdateCurrentUserConnector {
+public class Liferay70UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnector {
 
 	override public func doRun(session session: LRSession) {
 		let service = LRUserService_v70(session: session)

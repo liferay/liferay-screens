@@ -18,7 +18,7 @@ import UIKit
 #endif
 
 
-public class Liferay62GetUserByUserIdConnector: GetUserByUserIdConnector {
+public class GetUserByUserIdLiferay62Connector: GetUserByUserIdLiferayConnector {
 
 	override public func sendGetUserRequest(session: LRSession)
 			throws -> NSDictionary {

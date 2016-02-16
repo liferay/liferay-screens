@@ -73,9 +73,9 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 		super.init(screenlet: nil)
 	}
 
-	override func createConnector() -> LiferayDDLFormSubmitConnector {
+	override func createConnector() -> DDLFormSubmitLiferayConnector {
 
-		let connector: LiferayDDLFormSubmitConnector
+		let connector: DDLFormSubmitLiferayConnector
 
 		if let screenlet = self.screenlet as? DDLFormScreenlet {
 			connector = LiferayServerContext.connectorFactory.createDDLFormSubmitConnector(
@@ -99,7 +99,7 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 	}
 
 	override func completedConnector(op: ServerConnector) {
-		if let loadOp = op as? LiferayDDLFormSubmitConnector {
+		if let loadOp = op as? DDLFormSubmitLiferayConnector {
 				self.resultRecordId = loadOp.resultRecordId
 				self.resultAttributes = loadOp.resultAttributes
 
@@ -113,7 +113,7 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 	//MARK: Cache methods
 
 	override func writeToCache(op: ServerConnector) {
-		let submitOp = op as! LiferayDDLFormSubmitConnector
+		let submitOp = op as! DDLFormSubmitLiferayConnector
 
 		let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
 			? SessionContext.currentContext?.cacheManager.setDirty

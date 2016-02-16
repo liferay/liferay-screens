@@ -26,7 +26,7 @@ class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 	}
 
 	override func completedConnector(op: ServerConnector) {
-		if let loadOp = op as? LiferayDDLFormLoadConnector {
+		if let loadOp = op as? DDLFormLoadLiferayConnector {
 			self.resultRecord = loadOp.resultRecord
 			self.resultUserId = loadOp.resultUserId
 		}
@@ -36,7 +36,7 @@ class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 	//MARK: Cache methods
 
 	override func writeToCache(op: ServerConnector) {
-		if let loadOp = op as? LiferayDDLFormLoadConnector,
+		if let loadOp = op as? DDLFormLoadLiferayConnector,
 				record = loadOp.resultRecord,
 				userId = loadOp.resultUserId {
 
@@ -50,7 +50,7 @@ class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 	}
 
 	override func readFromCache(op: ServerConnector, result: AnyObject? -> Void) {
-		if let loadOp = op as? LiferayDDLFormLoadConnector {
+		if let loadOp = op as? DDLFormLoadLiferayConnector {
 			SessionContext.currentContext!.cacheManager.getAnyWithAttributes(
 					collection: ScreenletName(DDLFormScreenlet),
 					key: "structureId-\(loadOp.structureId)") {

@@ -18,7 +18,7 @@ public class SaveUserInteractor: ServerConnectorInteractor {
 
 	public var resultUserAttributes: [String:AnyObject]?
 
-	override public func createConnector() -> LiferayUpdateCurrentUserConnector {
+	override public func createConnector() -> UpdateCurrentUserLiferayConnector {
 		let screenlet = self.screenlet as! SignUpScreenlet
 
 		return LiferayServerContext.connectorFactory.createUpdateCurrentUserConnector(
@@ -26,7 +26,7 @@ public class SaveUserInteractor: ServerConnectorInteractor {
 	}
 
 	override public func completedConnector(op: ServerConnector) {
-		self.resultUserAttributes = (op as! LiferayUpdateCurrentUserConnector).resultUserAttributes
+		self.resultUserAttributes = (op as! UpdateCurrentUserLiferayConnector).resultUserAttributes
 	}
 
 }

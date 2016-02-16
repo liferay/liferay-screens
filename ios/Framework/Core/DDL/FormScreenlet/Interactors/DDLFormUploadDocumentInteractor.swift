@@ -16,7 +16,7 @@ import UIKit
 
 class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 
-	typealias OnProgress = LiferayDDLFormUploadConnector.OnProgress
+	typealias OnProgress = DDLFormUploadLiferayConnector.OnProgress
 
 	let filePrefix: String
 	let repositoryId: Int64
@@ -76,7 +76,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 		super.init(screenlet: nil)
 	}
 
-	override func createConnector() -> LiferayDDLFormUploadConnector {
+	override func createConnector() -> DDLFormUploadLiferayConnector {
 		return LiferayServerContext.connectorFactory.createDDLFormUploadConnector(
 			document: document,
 			filePrefix: filePrefix,
@@ -95,7 +95,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 				document.uploadStatus = .Failed(lastErrorValue)
 			}
 		}
-		else if let uploadOp = op as? LiferayDDLFormUploadConnector {
+		else if let uploadOp = op as? DDLFormUploadLiferayConnector {
 			self.resultResponse = uploadOp.uploadResult
 			document.uploadStatus = .Uploaded(uploadOp.uploadResult!)
 		}

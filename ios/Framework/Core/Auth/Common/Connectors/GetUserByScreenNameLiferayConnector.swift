@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class GetUserByScreenNameConnector: GetUserBaseConnector {
+public class GetUserByScreenNameLiferayConnector: GetUserBaseLiferayConnector {
 
 	public var companyId: Int64
 	public var screenName: String

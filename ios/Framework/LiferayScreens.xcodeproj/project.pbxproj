@@ -477,8 +477,8 @@
 		88B273131B7109C300477E5E /* DefaultProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B273111B7109C300477E5E /* DefaultProgressPresenter.swift */; };
 		88B273151B7109E200477E5E /* MBProgressHUDPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B273141B7109E200477E5E /* MBProgressHUDPresenter.swift */; };
 		88B273161B7109E200477E5E /* MBProgressHUDPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B273141B7109E200477E5E /* MBProgressHUDPresenter.swift */; };
-		88B8442F1C73D215007A447D /* LiferayPaginationConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8442E1C73D215007A447D /* LiferayPaginationConnector.swift */; };
-		88B844301C73D215007A447D /* LiferayPaginationConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8442E1C73D215007A447D /* LiferayPaginationConnector.swift */; };
+		88B8442F1C73D215007A447D /* PaginationLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8442E1C73D215007A447D /* PaginationLiferayConnector.swift */; };
+		88B844301C73D215007A447D /* PaginationLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8442E1C73D215007A447D /* PaginationLiferayConnector.swift */; };
 		88B844381C73D6C0007A447D /* HttpConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844321C73D6C0007A447D /* HttpConnector.swift */; };
 		88B844391C73D6C0007A447D /* HttpConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844321C73D6C0007A447D /* HttpConnector.swift */; };
 		88B8443A1C73D6C0007A447D /* ServerConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844331C73D6C0007A447D /* ServerConnector.swift */; };
@@ -605,8 +605,8 @@
 		88DE2AA21AD3ED6800714701 /* LiferayScreensFrameworkConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 88DE2AA11AD3ED3B00714701 /* LiferayScreensFrameworkConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		88E7909A1C6CA21500C90453 /* DDLJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887E05421C6A4A5000CA3807 /* DDLJSONParser.swift */; };
 		88E7909B1C6CA22A00C90453 /* ScreensFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AA42CA1C624A6E00AA97FB /* ScreensFactory.swift */; };
-		88E7909D1C6CA3A700C90453 /* LiferayOperationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E7909C1C6CA3A700C90453 /* LiferayOperationFactory.swift */; };
-		88E7909E1C6CA3A700C90453 /* LiferayOperationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E7909C1C6CA3A700C90453 /* LiferayOperationFactory.swift */; };
+		88E7909D1C6CA3A700C90453 /* LiferayConnectorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E7909C1C6CA3A700C90453 /* LiferayConnectorFactory.swift */; };
+		88E7909E1C6CA3A700C90453 /* LiferayConnectorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E7909C1C6CA3A700C90453 /* LiferayConnectorFactory.swift */; };
 		88F888551B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */; };
 		88F888561B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */; };
 /* End PBXBuildFile section */
@@ -1036,7 +1036,7 @@
 		88B2730E1B7107F200477E5E /* ProgressPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressPresenter.swift; sourceTree = "<group>"; };
 		88B273111B7109C300477E5E /* DefaultProgressPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultProgressPresenter.swift; sourceTree = "<group>"; };
 		88B273141B7109E200477E5E /* MBProgressHUDPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MBProgressHUDPresenter.swift; sourceTree = "<group>"; };
-		88B8442E1C73D215007A447D /* LiferayPaginationConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayPaginationConnector.swift; sourceTree = "<group>"; };
+		88B8442E1C73D215007A447D /* PaginationLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationLiferayConnector.swift; sourceTree = "<group>"; };
 		88B844321C73D6C0007A447D /* HttpConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpConnector.swift; sourceTree = "<group>"; };
 		88B844331C73D6C0007A447D /* ServerConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerConnector.swift; sourceTree = "<group>"; };
 		88B844341C73D6C0007A447D /* ServerConnectorChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerConnectorChain.swift; sourceTree = "<group>"; };
@@ -1108,7 +1108,7 @@
 		88DE250B1AD2AB0A00714701 /* DDLXSDParser_i18n_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLXSDParser_i18n_Tests.swift; sourceTree = "<group>"; };
 		88DE250C1AD2AB0A00714701 /* DDLRecord_FieldValues_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLRecord_FieldValues_Tests.swift; sourceTree = "<group>"; };
 		88DE2AA11AD3ED3B00714701 /* LiferayScreensFrameworkConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiferayScreensFrameworkConfig.h; sourceTree = "<group>"; };
-		88E7909C1C6CA3A700C90453 /* LiferayOperationFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayOperationFactory.swift; sourceTree = "<group>"; };
+		88E7909C1C6CA3A700C90453 /* LiferayConnectorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayConnectorFactory.swift; sourceTree = "<group>"; };
 		88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCredentialsStoreKeyChain.swift; sourceTree = "<group>"; };
 		9136B139BF9449FC75DBECA6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC17F525218297794482A65 /* Pods-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -1196,7 +1196,7 @@
 				881E60C61ACBE56700862B9E /* BaseListPageLoadInteractor.swift */,
 				881E60C71ACBE56700862B9E /* BaseListScreenlet.swift */,
 				881E60C81ACBE56700862B9E /* BaseListView.swift */,
-				88B8442E1C73D215007A447D /* LiferayPaginationConnector.swift */,
+				88B8442E1C73D215007A447D /* PaginationLiferayConnector.swift */,
 				881E60CB1ACBE56700862B9E /* TableView */,
 			);
 			path = BaseListScreenlet;
@@ -2807,7 +2807,7 @@
 			children = (
 				88DC31E11ACC18F10078C961 /* CredentialsStorage.swift */,
 				8892C6B21ACBD95400192232 /* LiferayServerContext.swift */,
-				88E7909C1C6CA3A700C90453 /* LiferayOperationFactory.swift */,
+				88E7909C1C6CA3A700C90453 /* LiferayConnectorFactory.swift */,
 				88AA42CA1C624A6E00AA97FB /* ScreensFactory.swift */,
 				8892C6B31ACBD95400192232 /* SessionContext.swift */,
 				88CA806C1B25EDE4004C1D59 /* Storage */,
@@ -3455,7 +3455,7 @@
 				887E07081C6A4DF800CA3807 /* LRLayoutPrototypeService_v70.m in Sources */,
 				8892C6AC1ACBD89400192232 /* Global.swift in Sources */,
 				880ACA5B1B01FBF0007AD007 /* UploadUserPortraitInteractor.swift in Sources */,
-				88E7909D1C6CA3A700C90453 /* LiferayOperationFactory.swift in Sources */,
+				88E7909D1C6CA3A700C90453 /* LiferayConnectorFactory.swift in Sources */,
 				887E06A21C6A4DF800CA3807 /* LRAnnouncementsDeliveryService_v70.m in Sources */,
 				887E07641C6A4DF800CA3807 /* LRUserGroupService_v70.m in Sources */,
 				887E07601C6A4DF800CA3807 /* LRTrashEntryService_v70.m in Sources */,
@@ -3488,7 +3488,7 @@
 				88B844381C73D6C0007A447D /* HttpConnector.swift in Sources */,
 				887E06AA1C6A4DF800CA3807 /* LRAssetCategoryService_v70.m in Sources */,
 				881E61271ACBE5F000862B9E /* UserPortraitScreenlet.swift in Sources */,
-				88B8442F1C73D215007A447D /* LiferayPaginationConnector.swift in Sources */,
+				88B8442F1C73D215007A447D /* PaginationLiferayConnector.swift in Sources */,
 				881E60B91ACBE3FF00862B9E /* BaseScreenlet.swift in Sources */,
 				887E06DE1C6A4DF800CA3807 /* LRDLAppService_v70.m in Sources */,
 				887E06AC1C6A4DF800CA3807 /* LRAssetCategoryPropertyService_v70.m in Sources */,
@@ -3705,7 +3705,7 @@
 				88B8449D1C73D856007A447D /* ForgotPasswordUserIdLiferay62Connector.swift in Sources */,
 				881E62F81ACC050200862B9E /* DDLListViewModel.swift in Sources */,
 				88DE25191AD2AB0A00714701 /* DDLListScreenlet_ParseFields_Tests.swift in Sources */,
-				88B844301C73D215007A447D /* LiferayPaginationConnector.swift in Sources */,
+				88B844301C73D215007A447D /* PaginationLiferayConnector.swift in Sources */,
 				88B8447D1C73D81D007A447D /* GetUserByEmailLiferayConnector.swift in Sources */,
 				88CA80601B25AF48004C1D59 /* OAuthWebViewController.swift in Sources */,
 				881E63051ACC06B900862B9E /* BaseLoginScreenletTestCase.swift in Sources */,
@@ -3779,7 +3779,7 @@
 				881E62961ACBFEFC00862B9E /* BaseListView.swift in Sources */,
 				881E63061ACC06B900862B9E /* LoginScreenlet_ByEmail_Tests.swift in Sources */,
 				881E62B51ACBFFD900862B9E /* DefaultThemeConstants.swift in Sources */,
-				88E7909E1C6CA3A700C90453 /* LiferayOperationFactory.swift in Sources */,
+				88E7909E1C6CA3A700C90453 /* LiferayConnectorFactory.swift in Sources */,
 				88B8443D1C73D6C0007A447D /* ServerConnectorChain.swift in Sources */,
 				88B844411C73D6C0007A447D /* ServerReadConnectorInteractor.swift in Sources */,
 				881E63071ACC06B900862B9E /* LoginScreenlet_ByScreenName_Tests.swift in Sources */,

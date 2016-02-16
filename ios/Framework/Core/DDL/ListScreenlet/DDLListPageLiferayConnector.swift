@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayDDLListPageConnector: LiferayPaginationConnector {
+public class DDLListPageLiferayConnector: PaginationLiferayConnector {
 
 	public var userId: Int64?
 	public var recordSetId: Int64?
@@ -48,7 +48,7 @@ public class LiferayDDLListPageConnector: LiferayPaginationConnector {
 }
 
 
-public class Liferay62DDLListPageConnector: LiferayDDLListPageConnector {
+public class Liferay62DDLListPageConnector: DDLListPageLiferayConnector {
 
 	override public func doGetPageRowsConnector(session session: LRBatchSession, startRow: Int, endRow: Int) {
 		let service = LRScreensddlrecordService_v62(session: session)
@@ -91,7 +91,7 @@ public class Liferay62DDLListPageConnector: LiferayDDLListPageConnector {
 }
 
 
-public class Liferay70DDLListPageConnector: LiferayDDLListPageConnector {
+public class Liferay70DDLListPageConnector: DDLListPageLiferayConnector {
 
 	override public func doGetPageRowsConnector(session session: LRBatchSession, startRow: Int, endRow: Int) {
 		let service = LRScreensddlrecordService_v70(session: session)

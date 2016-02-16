@@ -19,10 +19,10 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 	var resultHTML: String?
 
 
-	override func createConnector() -> LiferayWebContentLoadBaseConnector? {
+	override func createConnector() -> WebContentLoadBaseLiferayConnector? {
 		let screenlet = self.screenlet as! WebContentDisplayScreenlet
 
-		let connector: LiferayWebContentLoadBaseConnector?
+		let connector: WebContentLoadBaseLiferayConnector?
 
 		if screenlet.articleId != "" {
 			connector = LiferayServerContext.connectorFactory.createWebContentLoadFromArticleId(articleId: screenlet.articleId)
@@ -44,11 +44,11 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 	}
 
 	override func completedConnector(op: ServerConnector) {
-		self.resultHTML = (op as? LiferayWebContentLoadBaseConnector)?.resultHTML
+		self.resultHTML = (op as? WebContentLoadBaseLiferayConnector)?.resultHTML
 	}
 
 	override func readFromCache(op: ServerConnector, result: AnyObject? -> Void) {
-		if let loadOp = op as? LiferayWebContentLoadFromArticleIdConnector,
+		if let loadOp = op as? WebContentLoadFromArticleIdLiferayConnector,
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {
 
@@ -62,7 +62,7 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 	}
 
 	override func writeToCache(op: ServerConnector) {
-		if let loadOp = op as? LiferayWebContentLoadFromArticleIdConnector,
+		if let loadOp = op as? WebContentLoadFromArticleIdLiferayConnector,
 				html = loadOp.resultHTML,
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {

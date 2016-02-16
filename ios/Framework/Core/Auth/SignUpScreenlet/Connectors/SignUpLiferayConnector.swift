@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferaySignUpConnector: ServerConnector {
+public class SignUpLiferayConnector: ServerConnector {
 
 	public var companyId: Int64 = 0
 
@@ -54,7 +54,7 @@ public class LiferaySignUpConnector: ServerConnector {
 
 }
 
-public class Liferay62SignUpConnector: LiferaySignUpConnector {
+public class Liferay62SignUpConnector: SignUpLiferayConnector {
 
 	override public func doRun(session session: LRSession) {
 		let result: [NSObject:AnyObject]?
@@ -118,7 +118,7 @@ public class Liferay62SignUpConnector: LiferaySignUpConnector {
 }
 
 
-public class Liferay70SignUpConnector: LiferaySignUpConnector {
+public class Liferay70SignUpConnector: SignUpLiferayConnector {
 
 	override public func doRun(session session: LRSession) {
 		let result: [NSObject:AnyObject]?

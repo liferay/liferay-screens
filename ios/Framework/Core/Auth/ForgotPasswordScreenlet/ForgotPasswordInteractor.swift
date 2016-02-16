@@ -18,7 +18,7 @@ class ForgotPasswordInteractor: ServerConnectorInteractor {
 
 	var resultPasswordSent: Bool?
 
-	override func createConnector() -> LiferayForgotPasswordBaseConnector? {
+	override func createConnector() -> ForgotPasswordBaseLiferayConnector? {
 		let screenlet = self.screenlet as! ForgotPasswordScreenlet
 
 		if screenlet.anonymousApiUserName == nil || screenlet.anonymousApiPassword == nil {
@@ -26,7 +26,7 @@ class ForgotPasswordInteractor: ServerConnectorInteractor {
 			return nil
 		}
 
-		let connector: LiferayForgotPasswordBaseConnector?
+		let connector: ForgotPasswordBaseLiferayConnector?
 
 		switch BasicAuthMethod.create(screenlet.basicAuthMethod) {
 			case .ScreenName:
@@ -52,7 +52,7 @@ class ForgotPasswordInteractor: ServerConnectorInteractor {
 	}
 
 	override func completedConnector(op: ServerConnector) {
-		self.resultPasswordSent = (op as! LiferayForgotPasswordBaseConnector).resultPasswordSent
+		self.resultPasswordSent = (op as! ForgotPasswordBaseLiferayConnector).resultPasswordSent
 	}
 
 	override func interactionResult() -> AnyObject? {

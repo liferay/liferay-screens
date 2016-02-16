@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class Liferay70ForgotPasswordUserIdConnector: LiferayForgotPasswordBaseConnector {
+public class ForgotPasswordUserIdLiferay70Connector: ForgotPasswordBaseLiferayConnector {
 
 	override public func sendForgotPasswordRequest(session: LRSession) throws -> Bool {
 
