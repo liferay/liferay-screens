@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class GetUserByScreenNameOperation: GetUserBaseOperation {
+public class GetUserByScreenNameConnector: GetUserBaseConnector {
 
 	public var companyId: Int64
 	public var screenName: String

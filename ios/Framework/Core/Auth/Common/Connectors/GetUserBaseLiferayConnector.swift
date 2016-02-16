@@ -13,14 +13,14 @@
 */
 import UIKit
 
-public class GetUserBaseOperation: ServerOperation {
+public class GetUserBaseConnector: ServerConnector {
 
 	public var resultUserAttributes: [String:AnyObject]?
 
 	public var userName: String?
 	public var password: String?
 
-	//MARK: ServerOperation
+	//MARK: ServerConnector
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()

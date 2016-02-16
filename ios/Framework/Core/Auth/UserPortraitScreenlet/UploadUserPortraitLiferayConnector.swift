@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayUploadUserPortraitOperation: ServerOperation {
+public class LiferayUploadUserPortraitConnector: ServerConnector {
 
 	private let userId: Int64
 	private var image: UIImage?
@@ -33,7 +33,7 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 	}
 
 
-	//MARK: ServerOperation
+	//MARK: ServerConnector
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -82,7 +82,7 @@ public class LiferayUploadUserPortraitOperation: ServerOperation {
 }
 
 
-public class Liferay62UploadUserPortraitOperation: LiferayUploadUserPortraitOperation {
+public class Liferay62UploadUserPortraitConnector: LiferayUploadUserPortraitConnector {
 
 	override public func uploadBytes(imageBytes: NSData, withSession session: LRSession) {
 		let service = LRUserService_v62(session: session)
@@ -106,7 +106,7 @@ public class Liferay62UploadUserPortraitOperation: LiferayUploadUserPortraitOper
 	
 }
 
-public class Liferay70UploadUserPortraitOperation: LiferayUploadUserPortraitOperation {
+public class Liferay70UploadUserPortraitConnector: LiferayUploadUserPortraitConnector {
 
 	override public func uploadBytes(imageBytes: NSData, withSession session: LRSession) {
 		let service = LRUserService_v70(session: session)

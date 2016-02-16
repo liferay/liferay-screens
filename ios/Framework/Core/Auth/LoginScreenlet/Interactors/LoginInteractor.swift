@@ -14,40 +14,40 @@
 import UIKit
 
 
-class LoginInteractor: ServerOperationInteractor {
+class LoginInteractor: ServerConnectorInteractor {
 
 	var resultUserAttributes: [String:AnyObject]?
 
-	override func createOperation() -> GetUserBaseOperation {
+	override func createConnector() -> GetUserBaseConnector {
 		let screenlet = self.screenlet as! LoginScreenlet
 
 		let companyId = (screenlet.companyId != 0)
 				? screenlet.companyId : LiferayServerContext.companyId
 
-		var operation: GetUserBaseOperation?
+		var connector: GetUserBaseConnector?
 
 		switch BasicAuthMethod.create(screenlet.basicAuthMethod) {
 			case .ScreenName:
-				operation = LiferayServerContext.operationFactory.createLoginByScreenNameOperation(
+				connector = LiferayServerContext.connectorFactory.createLoginByScreenNameConnector(
 						companyId: companyId,
 						screenName: screenlet.viewModel.userName ?? "")
 			case .UserId:
-				operation = LiferayServerContext.operationFactory.createLoginByUserIdOperation(
+				connector = LiferayServerContext.connectorFactory.createLoginByUserIdConnector(
 						userId: screenlet.viewModel.userName?.asNumber?.longLongValue ?? 0)
 			default:
-				operation = LiferayServerContext.operationFactory.createLoginByEmailOperation(
+				connector = LiferayServerContext.connectorFactory.createLoginByEmailConnector(
 					companyId: companyId,
 					emailAddress: screenlet.viewModel.userName ?? "")
 		}
 
-		operation?.userName = screenlet.viewModel.userName
-		operation?.password = screenlet.viewModel.password
+		connector?.userName = screenlet.viewModel.userName
+		connector?.password = screenlet.viewModel.password
 
-		return operation!
+		return connector!
 	}
 
-	override func completedOperation(op: ServerOperation) {
-		self.resultUserAttributes = (op as! GetUserBaseOperation).resultUserAttributes
+	override func completedConnector(op: ServerConnector) {
+		self.resultUserAttributes = (op as! GetUserBaseConnector).resultUserAttributes
 	}
 
 }

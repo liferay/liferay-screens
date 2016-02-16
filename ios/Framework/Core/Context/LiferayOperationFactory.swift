@@ -14,220 +14,220 @@
 import Foundation
 
 
-@objc(LiferayOperationFactory)
-public protocol LiferayOperationFactory {
+@objc(LiferayConnectorFactory)
+public protocol LiferayConnectorFactory {
 
-	func createGetUserByEmailOperation(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailOperation
+	func createGetUserByEmailConnector(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailConnector
 
-	func createGetUserByScreenNameOperation(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameOperation
+	func createGetUserByScreenNameConnector(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameConnector
 
-	func createGetUserByUserIdOperation(userId userId: Int64) -> GetUserByUserIdOperation
+	func createGetUserByUserIdConnector(userId userId: Int64) -> GetUserByUserIdConnector
 
-	func createLoginByEmailOperation(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailOperation
+	func createLoginByEmailConnector(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailConnector
 
-	func createLoginByScreenNameOperation(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameOperation
+	func createLoginByScreenNameConnector(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameConnector
 
-	func createLoginByUserIdOperation(userId userId: Int64) -> GetUserByUserIdOperation
+	func createLoginByUserIdConnector(userId userId: Int64) -> GetUserByUserIdConnector
 
-	func createForgotPasswordByEmailOperation(
+	func createForgotPasswordByEmailConnector(
 		viewModel viewModel: ForgotPasswordViewModel,
 		anonymousUsername: String,
-		anonymousPassword: String) -> LiferayForgotPasswordBaseOperation
+		anonymousPassword: String) -> LiferayForgotPasswordBaseConnector
 
-	func createForgotPasswordByScreenNameOperation(
+	func createForgotPasswordByScreenNameConnector(
 		viewModel viewModel: ForgotPasswordViewModel,
 		anonymousUsername: String,
-		anonymousPassword: String) -> LiferayForgotPasswordBaseOperation
+		anonymousPassword: String) -> LiferayForgotPasswordBaseConnector
 
-	func createForgotPasswordByUserIdOperation(
+	func createForgotPasswordByUserIdConnector(
 		viewModel viewModel: ForgotPasswordViewModel,
 		anonymousUsername: String,
-		anonymousPassword: String) -> LiferayForgotPasswordBaseOperation
+		anonymousPassword: String) -> LiferayForgotPasswordBaseConnector
 
-	func createSignUpOperation(
+	func createSignUpConnector(
 		viewModel viewModel: SignUpViewModel,
 		anonymousUsername: String,
-		anonymousPassword: String) -> LiferaySignUpOperation
+		anonymousPassword: String) -> LiferaySignUpConnector
 
-	func createUpdateCurrentUserOperation(
-		viewModel viewModel: SignUpViewModel) -> LiferayUpdateCurrentUserOperation
+	func createUpdateCurrentUserConnector(
+		viewModel viewModel: SignUpViewModel) -> LiferayUpdateCurrentUserConnector
 
-	func createUploadUserPortraitOperation(
+	func createUploadUserPortraitConnector(
 		userId userId: Int64,
-		image: UIImage) -> LiferayUploadUserPortraitOperation
+		image: UIImage) -> LiferayUploadUserPortraitConnector
 
-	func createAssetListPageOperation(
+	func createAssetListPageConnector(
 		startRow startRow: Int,
 		endRow: Int,
-		computeRowCount: Bool) -> LiferayAssetListPageOperation
+		computeRowCount: Bool) -> LiferayAssetListPageConnector
 
-	func createDDLListPageOperation(
+	func createDDLListPageConnector(
 		viewModel viewModel: DDLListViewModel,
 		startRow: Int,
 		endRow: Int,
-		computeRowCount: Bool) -> LiferayDDLListPageOperation
+		computeRowCount: Bool) -> LiferayDDLListPageConnector
 
-	func createWebContentLoadFromArticleId(articleId articleId: String) -> LiferayWebContentLoadFromArticleIdOperation
+	func createWebContentLoadFromArticleId(articleId articleId: String) -> LiferayWebContentLoadFromArticleIdConnector
 
-	func createWebContentLoadFromClassPK(classPK classPK: Int64) -> LiferayWebContentLoadFromClassPKOperation
+	func createWebContentLoadFromClassPK(classPK classPK: Int64) -> LiferayWebContentLoadFromClassPKConnector
 
-	func createDDLFormLoadOperation(structureId: Int64) -> LiferayDDLFormLoadOperation
+	func createDDLFormLoadConnector(structureId: Int64) -> LiferayDDLFormLoadConnector
 
-	func createDDLFormRecordLoadOperation(recordId: Int64) -> LiferayDDLFormRecordLoadOperation
+	func createDDLFormRecordLoadConnector(recordId: Int64) -> LiferayDDLFormRecordLoadConnector
 
-	func createDDLFormSubmitOperation(
+	func createDDLFormSubmitConnector(
 		values values: [String:AnyObject],
-		viewModel: DDLFormViewModel?) -> LiferayDDLFormSubmitOperation
+		viewModel: DDLFormViewModel?) -> LiferayDDLFormSubmitConnector
 
-	func createDDLFormUploadOperation(
+	func createDDLFormUploadConnector(
 		document document: DDLFieldDocument,
 		filePrefix: String,
 		repositoryId: Int64,
-		folderId: Int64) -> LiferayDDLFormUploadOperation
+		folderId: Int64) -> LiferayDDLFormUploadConnector
 
 }
 
 
-@objc(Liferay62OperationFactory)
-public class Liferay62OperationFactory: NSObject, LiferayOperationFactory {
+@objc(Liferay62ConnectorFactory)
+public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 
-	public func createGetUserByEmailOperation(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailOperation {
-		return Liferay62GetUserByEmailOperation(
+	public func createGetUserByEmailConnector(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailConnector {
+		return Liferay62GetUserByEmailConnector(
 			companyId: companyId,
 			emailAddress: emailAddress)
 	}
 
-	public func createGetUserByScreenNameOperation(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameOperation {
-		return Liferay62GetUserByScreenNameOperation(
+	public func createGetUserByScreenNameConnector(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameConnector {
+		return Liferay62GetUserByScreenNameConnector(
 			companyId: companyId,
 			screenName: screenName)
 	}
 
-	public func createGetUserByUserIdOperation(userId userId: Int64) -> GetUserByUserIdOperation {
-		return Liferay62GetUserByUserIdOperation(userId: userId)
+	public func createGetUserByUserIdConnector(userId userId: Int64) -> GetUserByUserIdConnector {
+		return Liferay62GetUserByUserIdConnector(userId: userId)
 	}
 
-	public func createLoginByEmailOperation(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailOperation {
-		return Liferay62LoginByEmailOperation(
+	public func createLoginByEmailConnector(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailConnector {
+		return Liferay62LoginByEmailConnector(
 			companyId: companyId,
 			emailAddress: emailAddress)
 	}
 
-	public func createLoginByScreenNameOperation(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameOperation {
-		return Liferay62LoginByScreenNameOperation(
+	public func createLoginByScreenNameConnector(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameConnector {
+		return Liferay62LoginByScreenNameConnector(
 			companyId: companyId,
 			screenName: screenName)
 	}
 
-	public func createLoginByUserIdOperation(userId userId: Int64) -> GetUserByUserIdOperation {
-		return Liferay62LoginByUserIdOperation(userId: userId)
+	public func createLoginByUserIdConnector(userId userId: Int64) -> GetUserByUserIdConnector {
+		return Liferay62LoginByUserIdConnector(userId: userId)
 	}
 
-	public func createForgotPasswordByEmailOperation(
+	public func createForgotPasswordByEmailConnector(
 			viewModel viewModel: ForgotPasswordViewModel,
 			anonymousUsername: String,
-			anonymousPassword: String) -> LiferayForgotPasswordBaseOperation {
-		return Liferay62ForgotPasswordEmailOperation(
+			anonymousPassword: String) -> LiferayForgotPasswordBaseConnector {
+		return Liferay62ForgotPasswordEmailConnector(
 			viewModel: viewModel,
 			anonymousUsername: anonymousUsername,
 			anonymousPassword: anonymousPassword)
 	}
 
-	public func createForgotPasswordByScreenNameOperation(
+	public func createForgotPasswordByScreenNameConnector(
 			viewModel viewModel: ForgotPasswordViewModel,
 			anonymousUsername: String,
-			anonymousPassword: String) -> LiferayForgotPasswordBaseOperation {
-		return Liferay62ForgotPasswordScreenNameOperation(
+			anonymousPassword: String) -> LiferayForgotPasswordBaseConnector {
+		return Liferay62ForgotPasswordScreenNameConnector(
 			viewModel: viewModel,
 			anonymousUsername: anonymousUsername,
 			anonymousPassword: anonymousPassword)
 	}
 
-	public func createForgotPasswordByUserIdOperation(
+	public func createForgotPasswordByUserIdConnector(
 			viewModel viewModel: ForgotPasswordViewModel,
 			anonymousUsername: String,
-			anonymousPassword: String) -> LiferayForgotPasswordBaseOperation {
-		return Liferay62ForgotPasswordUserIdOperation(
+			anonymousPassword: String) -> LiferayForgotPasswordBaseConnector {
+		return Liferay62ForgotPasswordUserIdConnector(
 			viewModel: viewModel,
 			anonymousUsername: anonymousUsername,
 			anonymousPassword: anonymousPassword)
 	}
 
-	public func createSignUpOperation(
+	public func createSignUpConnector(
 			viewModel viewModel: SignUpViewModel,
 			anonymousUsername: String,
-			anonymousPassword: String) -> LiferaySignUpOperation {
-		return Liferay62SignUpOperation(
+			anonymousPassword: String) -> LiferaySignUpConnector {
+		return Liferay62SignUpConnector(
 			viewModel: viewModel,
 			anonymousUsername: anonymousUsername,
 			anonymousPassword: anonymousPassword)
 	}
 
-	public func createUpdateCurrentUserOperation(
-		viewModel viewModel: SignUpViewModel) -> LiferayUpdateCurrentUserOperation {
-		return Liferay62UpdateCurrentUserOperation(viewModel: viewModel)
+	public func createUpdateCurrentUserConnector(
+		viewModel viewModel: SignUpViewModel) -> LiferayUpdateCurrentUserConnector {
+		return Liferay62UpdateCurrentUserConnector(viewModel: viewModel)
 	}
 
-	public func createUploadUserPortraitOperation(
+	public func createUploadUserPortraitConnector(
 			userId userId: Int64,
-			image: UIImage) -> LiferayUploadUserPortraitOperation {
-		return Liferay62UploadUserPortraitOperation(
+			image: UIImage) -> LiferayUploadUserPortraitConnector {
+		return Liferay62UploadUserPortraitConnector(
 			userId: userId,
 			image: image)
 	}
 
-	public func createAssetListPageOperation(
+	public func createAssetListPageConnector(
 			startRow startRow: Int,
 			endRow: Int,
-			computeRowCount: Bool) -> LiferayAssetListPageOperation {
-		return Liferay62AssetListPageOperation(
+			computeRowCount: Bool) -> LiferayAssetListPageConnector {
+		return Liferay62AssetListPageConnector(
 			startRow: startRow,
 			endRow: endRow,
 			computeRowCount: computeRowCount)
 	}
 
-	public func createDDLListPageOperation(
+	public func createDDLListPageConnector(
 			viewModel viewModel: DDLListViewModel,
 			startRow: Int,
 			endRow: Int,
-			computeRowCount: Bool) -> LiferayDDLListPageOperation {
-		return Liferay62DDLListPageOperation(
+			computeRowCount: Bool) -> LiferayDDLListPageConnector {
+		return Liferay62DDLListPageConnector(
 			viewModel: viewModel,
 			startRow: startRow,
 			endRow: endRow,
 			computeRowCount: computeRowCount)
 	}
 
-	public func createWebContentLoadFromArticleId(articleId articleId: String) -> LiferayWebContentLoadFromArticleIdOperation {
-		return Liferay62WebContentLoadFromArticleIdOperation(articleId: articleId)
+	public func createWebContentLoadFromArticleId(articleId articleId: String) -> LiferayWebContentLoadFromArticleIdConnector {
+		return Liferay62WebContentLoadFromArticleIdConnector(articleId: articleId)
 	}
 
-	public func createWebContentLoadFromClassPK(classPK classPK: Int64) -> LiferayWebContentLoadFromClassPKOperation {
-		return Liferay62WebContentLoadFromClassPKOperation(classPK: classPK)
+	public func createWebContentLoadFromClassPK(classPK classPK: Int64) -> LiferayWebContentLoadFromClassPKConnector {
+		return Liferay62WebContentLoadFromClassPKConnector(classPK: classPK)
 	}
 
-	public func createDDLFormLoadOperation(structureId: Int64) -> LiferayDDLFormLoadOperation {
-		return Liferay62DDLFormLoadOperation(structureId: structureId)
+	public func createDDLFormLoadConnector(structureId: Int64) -> LiferayDDLFormLoadConnector {
+		return Liferay62DDLFormLoadConnector(structureId: structureId)
 	}
 
-	public func createDDLFormRecordLoadOperation(recordId: Int64) -> LiferayDDLFormRecordLoadOperation {
-		return Liferay62DDLFormRecordLoadOperation(recordId: recordId)
+	public func createDDLFormRecordLoadConnector(recordId: Int64) -> LiferayDDLFormRecordLoadConnector {
+		return Liferay62DDLFormRecordLoadConnector(recordId: recordId)
 	}
 
-	public func createDDLFormSubmitOperation(
+	public func createDDLFormSubmitConnector(
 			values values: [String:AnyObject],
-			viewModel: DDLFormViewModel?) -> LiferayDDLFormSubmitOperation {
-		return Liferay62DDLFormSubmitOperation(
+			viewModel: DDLFormViewModel?) -> LiferayDDLFormSubmitConnector {
+		return Liferay62DDLFormSubmitConnector(
 			values: values,
 			viewModel: viewModel)
 	}
 
-	public func createDDLFormUploadOperation(
+	public func createDDLFormUploadConnector(
 			document document: DDLFieldDocument,
 			filePrefix: String,
 			repositoryId: Int64,
-			folderId: Int64) -> LiferayDDLFormUploadOperation {
-		return Liferay62DDLFormUploadOperation(
+			folderId: Int64) -> LiferayDDLFormUploadConnector {
+		return Liferay62DDLFormUploadConnector(
 			document: document,
 			filePrefix: filePrefix,
 			repositoryId: repositoryId,
@@ -237,146 +237,146 @@ public class Liferay62OperationFactory: NSObject, LiferayOperationFactory {
 }
 
 
-@objc(Liferay70OperationFactory)
-public class Liferay70OperationFactory: NSObject, LiferayOperationFactory {
+@objc(Liferay70ConnectorFactory)
+public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 
-	public func createGetUserByEmailOperation(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailOperation {
-		return Liferay70GetUserByEmailOperation(
+	public func createGetUserByEmailConnector(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailConnector {
+		return Liferay70GetUserByEmailConnector(
 			companyId: companyId,
 			emailAddress: emailAddress)
 	}
 
-	public func createGetUserByScreenNameOperation(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameOperation {
-		return Liferay70GetUserByScreenNameOperation(
+	public func createGetUserByScreenNameConnector(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameConnector {
+		return Liferay70GetUserByScreenNameConnector(
 			companyId: companyId,
 			screenName: screenName)
 	}
 
-	public func createGetUserByUserIdOperation(userId userId: Int64) -> GetUserByUserIdOperation {
-		return Liferay70GetUserByUserIdOperation(userId: userId)
+	public func createGetUserByUserIdConnector(userId userId: Int64) -> GetUserByUserIdConnector {
+		return Liferay70GetUserByUserIdConnector(userId: userId)
 	}
 
-	public func createLoginByEmailOperation(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailOperation {
-		return Liferay70LoginByEmailOperation(
+	public func createLoginByEmailConnector(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailConnector {
+		return Liferay70LoginByEmailConnector(
 			companyId: companyId,
 			emailAddress: emailAddress)
 	}
 
-	public func createLoginByScreenNameOperation(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameOperation {
-		return Liferay70LoginByScreenNameOperation(
+	public func createLoginByScreenNameConnector(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameConnector {
+		return Liferay70LoginByScreenNameConnector(
 			companyId: companyId,
 			screenName: screenName)
 	}
 
-	public func createLoginByUserIdOperation(userId userId: Int64) -> GetUserByUserIdOperation {
-		return Liferay70LoginByUserIdOperation(userId: userId)
+	public func createLoginByUserIdConnector(userId userId: Int64) -> GetUserByUserIdConnector {
+		return Liferay70LoginByUserIdConnector(userId: userId)
 	}
 
-	public func createForgotPasswordByEmailOperation(
+	public func createForgotPasswordByEmailConnector(
 			viewModel viewModel: ForgotPasswordViewModel,
 			anonymousUsername: String,
-			anonymousPassword: String) -> LiferayForgotPasswordBaseOperation {
-		return Liferay70ForgotPasswordEmailOperation(
+			anonymousPassword: String) -> LiferayForgotPasswordBaseConnector {
+		return Liferay70ForgotPasswordEmailConnector(
 			viewModel: viewModel,
 			anonymousUsername: anonymousUsername,
 			anonymousPassword: anonymousPassword)
 	}
 
-	public func createForgotPasswordByScreenNameOperation(
+	public func createForgotPasswordByScreenNameConnector(
 			viewModel viewModel: ForgotPasswordViewModel,
 			anonymousUsername: String,
-			anonymousPassword: String) -> LiferayForgotPasswordBaseOperation {
-		return Liferay70ForgotPasswordScreenNameOperation(
+			anonymousPassword: String) -> LiferayForgotPasswordBaseConnector {
+		return Liferay70ForgotPasswordScreenNameConnector(
 			viewModel: viewModel,
 			anonymousUsername: anonymousUsername,
 			anonymousPassword: anonymousPassword)
 	}
 
-	public func createForgotPasswordByUserIdOperation(
+	public func createForgotPasswordByUserIdConnector(
 			viewModel viewModel: ForgotPasswordViewModel,
 			anonymousUsername: String,
-			anonymousPassword: String) -> LiferayForgotPasswordBaseOperation {
-		return Liferay70ForgotPasswordUserIdOperation(
+			anonymousPassword: String) -> LiferayForgotPasswordBaseConnector {
+		return Liferay70ForgotPasswordUserIdConnector(
 			viewModel: viewModel,
 			anonymousUsername: anonymousUsername,
 			anonymousPassword: anonymousPassword)
 	}
 
-	public func createSignUpOperation(
+	public func createSignUpConnector(
 			viewModel viewModel: SignUpViewModel,
 			anonymousUsername: String,
-			anonymousPassword: String) -> LiferaySignUpOperation {
-		return Liferay70SignUpOperation(
+			anonymousPassword: String) -> LiferaySignUpConnector {
+		return Liferay70SignUpConnector(
 			viewModel: viewModel,
 			anonymousUsername: anonymousUsername,
 			anonymousPassword: anonymousPassword)
 	}
 
-	public func createUpdateCurrentUserOperation(
-			viewModel viewModel: SignUpViewModel) -> LiferayUpdateCurrentUserOperation {
-		return Liferay70UpdateCurrentUserOperation(viewModel: viewModel)
+	public func createUpdateCurrentUserConnector(
+			viewModel viewModel: SignUpViewModel) -> LiferayUpdateCurrentUserConnector {
+		return Liferay70UpdateCurrentUserConnector(viewModel: viewModel)
 	}
 
-	public func createUploadUserPortraitOperation(
+	public func createUploadUserPortraitConnector(
 			userId userId: Int64,
-			image: UIImage) -> LiferayUploadUserPortraitOperation {
-		return Liferay70UploadUserPortraitOperation(
+			image: UIImage) -> LiferayUploadUserPortraitConnector {
+		return Liferay70UploadUserPortraitConnector(
 			userId: userId,
 			image: image)
 	}
 
-	public func createAssetListPageOperation(
+	public func createAssetListPageConnector(
 			startRow startRow: Int,
 			endRow: Int,
-			computeRowCount: Bool) -> LiferayAssetListPageOperation {
-		return Liferay70AssetListPageOperation(
+			computeRowCount: Bool) -> LiferayAssetListPageConnector {
+		return Liferay70AssetListPageConnector(
 			startRow: startRow,
 			endRow: endRow,
 			computeRowCount: computeRowCount)
 	}
 
-	public func createDDLListPageOperation(
+	public func createDDLListPageConnector(
 			viewModel viewModel: DDLListViewModel,
 			startRow: Int,
 			endRow: Int,
-			computeRowCount: Bool) -> LiferayDDLListPageOperation {
-		return Liferay70DDLListPageOperation(
+			computeRowCount: Bool) -> LiferayDDLListPageConnector {
+		return Liferay70DDLListPageConnector(
 			viewModel: viewModel,
 			startRow: startRow,
 			endRow: endRow,
 			computeRowCount: computeRowCount)
 	}
 
-	public func createWebContentLoadFromArticleId(articleId articleId: String) -> LiferayWebContentLoadFromArticleIdOperation {
-		return Liferay70WebContentLoadFromArticleIdOperation(articleId: articleId)
+	public func createWebContentLoadFromArticleId(articleId articleId: String) -> LiferayWebContentLoadFromArticleIdConnector {
+		return Liferay70WebContentLoadFromArticleIdConnector(articleId: articleId)
 	}
 
-	public func createWebContentLoadFromClassPK(classPK classPK: Int64) -> LiferayWebContentLoadFromClassPKOperation {
-		return Liferay70WebContentLoadFromClassPKOperation(classPK: classPK)
+	public func createWebContentLoadFromClassPK(classPK classPK: Int64) -> LiferayWebContentLoadFromClassPKConnector {
+		return Liferay70WebContentLoadFromClassPKConnector(classPK: classPK)
 	}
 
-	public func createDDLFormLoadOperation(structureId: Int64) -> LiferayDDLFormLoadOperation {
-		return Liferay70DDLFormLoadOperation(structureId: structureId)
+	public func createDDLFormLoadConnector(structureId: Int64) -> LiferayDDLFormLoadConnector {
+		return Liferay70DDLFormLoadConnector(structureId: structureId)
 	}
 
-	public func createDDLFormRecordLoadOperation(recordId: Int64) -> LiferayDDLFormRecordLoadOperation {
-		return Liferay70DDLFormRecordLoadOperation(recordId: recordId)
+	public func createDDLFormRecordLoadConnector(recordId: Int64) -> LiferayDDLFormRecordLoadConnector {
+		return Liferay70DDLFormRecordLoadConnector(recordId: recordId)
 	}
 
-	public func createDDLFormSubmitOperation(
+	public func createDDLFormSubmitConnector(
 			values values: [String:AnyObject],
-			viewModel: DDLFormViewModel?) -> LiferayDDLFormSubmitOperation {
-		return Liferay70DDLFormSubmitOperation(
+			viewModel: DDLFormViewModel?) -> LiferayDDLFormSubmitConnector {
+		return Liferay70DDLFormSubmitConnector(
 			values: values,
 			viewModel: viewModel)
 	}
 
-	public func createDDLFormUploadOperation(
+	public func createDDLFormUploadConnector(
 			document document: DDLFieldDocument,
 			filePrefix: String,
 			repositoryId: Int64,
-			folderId: Int64) -> LiferayDDLFormUploadOperation {
-		return Liferay70DDLFormUploadOperation(
+			folderId: Int64) -> LiferayDDLFormUploadConnector {
+		return Liferay70DDLFormUploadConnector(
 			document: document,
 			filePrefix: filePrefix,
 			repositoryId: repositoryId,

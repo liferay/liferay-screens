@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayWebContentLoadBaseOperation: ServerOperation {
+public class LiferayWebContentLoadBaseConnector: ServerConnector {
 
 	public var groupId: Int64?
 	public var templateId: Int64?
@@ -22,7 +22,7 @@ public class LiferayWebContentLoadBaseOperation: ServerOperation {
 	public var resultHTML: String?
 
 
-	//MARK: ServerOperation
+	//MARK: ServerConnector
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()

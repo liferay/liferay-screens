@@ -72,7 +72,7 @@ public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> Signal ->
 		self.cacheManager = cacheManager
 
 		self.syncQueue = NSOperationQueue()
-		self.syncQueue.maxConcurrentOperationCount = 1
+		self.syncQueue.maxConcurrentConnectorCount = 1
 
 		super.init()
 
@@ -110,13 +110,13 @@ public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> Signal ->
 	}
 
 	public func prepareInteractorForSync(
-			interactor: ServerOperationInteractor,
+			interactor: ServerConnectorInteractor,
 			key: String,
 			attributes: [String:AnyObject],
 			signal: Signal,
 			screenletClassName: String) {
 
-		// this strategy saves the send date after the operation
+		// this strategy saves the send date after the connector
 		interactor.cacheStrategy = .CacheFirst
 
 		interactor.onSuccess = {
@@ -147,7 +147,7 @@ public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> Signal ->
 
 		if let syncBuilder = synchronizers[screenletName] {
 			let synchronizer = syncBuilder(key, attributes)
-			syncQueue.addOperationWithBlock(to_sync(synchronizer))
+			syncQueue.addConnectorWithBlock(to_sync(synchronizer))
 		}
 	}
 

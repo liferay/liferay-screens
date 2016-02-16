@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class GetUserByUserIdOperation: GetUserBaseOperation {
+public class GetUserByUserIdConnector: GetUserBaseConnector {
 
 	public let userId: Int64
 

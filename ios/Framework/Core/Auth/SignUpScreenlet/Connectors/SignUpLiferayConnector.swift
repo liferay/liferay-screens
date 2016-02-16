@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferaySignUpOperation: ServerOperation {
+public class LiferaySignUpConnector: ServerConnector {
 
 	public var companyId: Int64 = 0
 
@@ -34,7 +34,7 @@ public class LiferaySignUpOperation: ServerOperation {
 	}
 
 
-	//MARK: ServerOperation
+	//MARK: ServerConnector
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -54,7 +54,7 @@ public class LiferaySignUpOperation: ServerOperation {
 
 }
 
-public class Liferay62SignUpOperation: LiferaySignUpOperation {
+public class Liferay62SignUpConnector: LiferaySignUpConnector {
 
 	override public func doRun(session session: LRSession) {
 		let result: [NSObject:AnyObject]?
@@ -118,7 +118,7 @@ public class Liferay62SignUpOperation: LiferaySignUpOperation {
 }
 
 
-public class Liferay70SignUpOperation: LiferaySignUpOperation {
+public class Liferay70SignUpConnector: LiferaySignUpConnector {
 
 	override public func doRun(session session: LRSession) {
 		let result: [NSObject:AnyObject]?

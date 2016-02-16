@@ -36,29 +36,29 @@ public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 		super.init(screenlet: screenlet, page: page, computeRowCount: computeRowCount)
 	}
 
-	override public func createOperation() -> LiferayAssetListPageOperation {
+	override public func createConnector() -> LiferayAssetListPageConnector {
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
 
-		let operation = LiferayServerContext.operationFactory.createAssetListPageOperation(
+		let connector = LiferayServerContext.connectorFactory.createAssetListPageConnector(
 				startRow: pager(self.page),
 				endRow: pager(self.page + 1),
 				computeRowCount: self.computeRowCount)
 
-		operation.groupId = (self.groupId != 0)
+		connector.groupId = (self.groupId != 0)
 				? self.groupId : LiferayServerContext.groupId
-		operation.classNameId = self.classNameId
+		connector.classNameId = self.classNameId
 
-		operation.portletItemName = self.portletItemName
-		operation.customEntryQuery = self.customEntryQuery
+		connector.portletItemName = self.portletItemName
+		connector.customEntryQuery = self.customEntryQuery
 
-		return operation;
+		return connector;
 	}
 
 	override public func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
 		return AssetListScreenletEntry(attributes: serverResult)
 	}
 
-	override public func cacheKey(op: LiferayPaginationOperation) -> String {
+	override public func cacheKey(op: LiferayPaginationConnector) -> String {
 		return "\((groupId != 0) ? groupId : LiferayServerContext.groupId)-\(classNameId)"
 	}
 

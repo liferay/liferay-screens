@@ -15,31 +15,31 @@ import UIKit
 
 
 public typealias CacheStrategy = (
-	ServerOperation,
+	ServerConnector,
 	whenSuccess: () -> (),
 	whenFailure: NSError -> ()) -> ()
 
 
-public class ServerOperationInteractor: Interactor {
+public class ServerConnectorInteractor: Interactor {
 
 	public var cacheStrategy = CacheStrategyType.RemoteFirst
 
-	public var currentOperation: ServerOperation?
+	public var currentConnector: ServerConnector?
 
 
 	override public func start() -> Bool {
-		self.currentOperation = createOperation()
+		self.currentConnector = createConnector()
 
-		if let currentOperation = self.currentOperation {
+		if let currentConnector = self.currentConnector {
 			getCacheStrategyImpl(cacheStrategy)(
-				currentOperation,
+				currentConnector,
 				whenSuccess: {
-					self.completedOperation(currentOperation)
+					self.completedConnector(currentConnector)
 					self.callOnSuccess()
 				},
 				whenFailure: { err in
-					currentOperation.lastError = err
-					self.completedOperation(currentOperation)
+					currentConnector.lastError = err
+					self.completedConnector(currentConnector)
 					self.callOnFailure(err)
 				})
 
@@ -52,33 +52,33 @@ public class ServerOperationInteractor: Interactor {
 	}
 
 	override public func cancel() {
-		currentOperation?.cancel()
+		currentConnector?.cancel()
 		cancelled = true
 	}
 
 
-	public func createOperation() -> ServerOperation? {
+	public func createConnector() -> ServerConnector? {
 		return nil
 	}
 
-	public func completedOperation(op: ServerOperation) {
+	public func completedConnector(op: ServerConnector) {
 	}
 
 	override public func callOnSuccess() {
 		super.callOnSuccess()
-		currentOperation = nil
+		currentConnector = nil
 	}
 
 	override public func callOnFailure(error: NSError) {
 		super.callOnFailure(error)
-		currentOperation = nil
+		currentConnector = nil
 	}
 
-	public func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
+	public func readFromCache(op: ServerConnector, result: AnyObject? -> Void) {
 		result(nil)
 	}
 
-	public func writeToCache(op: ServerOperation) {
+	public func writeToCache(op: ServerConnector) {
 	}
 
 	public func getCacheStrategyImpl(strategyType: CacheStrategyType) -> CacheStrategy {
@@ -89,11 +89,11 @@ public class ServerOperationInteractor: Interactor {
 	//MARK: Default strategy implementations
 
 	public func defaultStrategyRemote(
-			operation: ServerOperation,
+			connector: ServerConnector,
 			whenSuccess: () -> (),
 			whenFailure: NSError -> ()) {
 
-		let validationError = operation.validateAndEnqueue() {
+		let validationError = connector.validateAndEnqueue() {
 			if let error = $0.lastError {
 				if error.domain == "NSURLErrorDomain" {
 					$0.lastError = NSError.errorWithCause(.NotAvailable)
@@ -111,10 +111,10 @@ public class ServerOperationInteractor: Interactor {
 	}
 
 	public func defaultStrategyReadFromCache(
-			operation: ServerOperation,
+			connector: ServerConnector,
 			whenSuccess: () -> (),
 			whenFailure: NSError -> ()) {
-		self.readFromCache(operation) {
+		self.readFromCache(connector) {
 			if $0 != nil {
 				whenSuccess()
 			}
@@ -125,15 +125,15 @@ public class ServerOperationInteractor: Interactor {
 	}
 
 	public func defaultStrategyWriteToCache(
-			operation: ServerOperation,
+			connector: ServerConnector,
 			whenSuccess: () -> (),
 			whenFailure: NSError -> ()) {
 
 		// the closure is called before because it fires the 
-		// "completedOperation" method and it should be run
+		// "completedConnector" method and it should be run
 		// before the write
 		whenSuccess()
-		self.writeToCache(operation)
+		self.writeToCache(connector)
 	}
 
 
@@ -143,14 +143,14 @@ public class ServerOperationInteractor: Interactor {
 			whenFails mainStrategy: CacheStrategy,
 			then onFailStrategy: CacheStrategy) -> CacheStrategy {
 
-		return { (operation: ServerOperation,
+		return { (connector: ServerConnector,
 				whenSuccess: () -> (),
 				whenFailure: NSError -> ()) -> () in
-			mainStrategy(operation,
+			mainStrategy(connector,
 				whenSuccess: whenSuccess,
 				whenFailure: { err -> () in
 					if err.code == ScreensErrorCause.NotAvailable.rawValue {
-						onFailStrategy(operation,
+						onFailStrategy(connector,
 							whenSuccess: whenSuccess,
 							whenFailure: whenFailure)
 					}
@@ -165,12 +165,12 @@ public class ServerOperationInteractor: Interactor {
 			whenSucceeds mainStrategy: CacheStrategy,
 			then onSuccessStrategy: CacheStrategy) -> CacheStrategy {
 
-		return { (operation: ServerOperation,
+		return { (connector: ServerConnector,
 				whenSuccess: () -> (),
 				whenFailure: NSError -> ()) -> () in
-			mainStrategy(operation,
+			mainStrategy(connector,
 				whenSuccess: {
-					onSuccessStrategy(operation,
+					onSuccessStrategy(connector,
 						whenSuccess: whenSuccess,
 						whenFailure: whenFailure)
 				},
@@ -182,18 +182,18 @@ public class ServerOperationInteractor: Interactor {
 			firstStrategy: CacheStrategy,
 			andThen secondStrategy: CacheStrategy) -> CacheStrategy {
 
-		return { (operation: ServerOperation,
+		return { (connector: ServerConnector,
 				whenSuccess: () -> (),
 				whenFailure: NSError -> ()) -> () in
-			firstStrategy(operation,
+			firstStrategy(connector,
 				whenSuccess: {
-					secondStrategy(operation,
+					secondStrategy(connector,
 						whenSuccess: whenSuccess,
 						whenFailure: whenFailure)
 				},
 				whenFailure: { err -> () in
 					if err.code == ScreensErrorCause.NotAvailable.rawValue {
-						secondStrategy(operation,
+						secondStrategy(connector,
 							whenSuccess: whenSuccess,
 							whenFailure: whenFailure)
 					}

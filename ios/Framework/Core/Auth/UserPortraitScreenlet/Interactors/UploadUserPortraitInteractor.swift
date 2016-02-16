@@ -14,7 +14,7 @@
 import UIKit
 
 
-class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
+class UploadUserPortraitInteractor: ServerWriteConnectorInteractor {
 
 	var uploadResult: [String:AnyObject]?
 
@@ -28,20 +28,20 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 		super.init(screenlet: screenlet)
 	}
 
-	override func createOperation() -> LiferayUploadUserPortraitOperation {
-		return LiferayServerContext.operationFactory.createUploadUserPortraitOperation(
+	override func createConnector() -> LiferayUploadUserPortraitConnector {
+		return LiferayServerContext.connectorFactory.createUploadUserPortraitConnector(
 				userId: self.userId,
 				image: self.image)
 	}
 
-	override func completedOperation(op: ServerOperation) {
-		self.uploadResult = (op as! LiferayUploadUserPortraitOperation).uploadResult
+	override func completedConnector(op: ServerConnector) {
+		self.uploadResult = (op as! LiferayUploadUserPortraitConnector).uploadResult
 	}
 
 
 	//MARK: Cache methods
 
-	override func writeToCache(op: ServerOperation) {
+	override func writeToCache(op: ServerConnector) {
 		let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
 			? SessionContext.currentContext?.cacheManager.setDirty
 			: SessionContext.currentContext?.cacheManager.setClean

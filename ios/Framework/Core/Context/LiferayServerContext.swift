@@ -91,14 +91,14 @@ import Foundation
 		}
 	}
 
-	public class var operationFactory: LiferayOperationFactory {
+	public class var connectorFactory: LiferayConnectorFactory {
 		get {
 		loadContextFile()
-		return StaticInstance.serverProperties!["operationFactory"] as! LiferayOperationFactory
+		return StaticInstance.serverProperties!["connectorFactory"] as! LiferayConnectorFactory
 		}
 		set {
 			loadContextFile()
-			StaticInstance.serverProperties!["operationFactory"] = newValue
+			StaticInstance.serverProperties!["connectorFactory"] = newValue
 		}
 	}
 
@@ -133,17 +133,17 @@ import Foundation
 			StaticInstance.serverProperties!["factory"] = factoryInstance
 		}
 
-		func createOperationFactory() {
-			let factory: LiferayOperationFactory
+		func createConnectorFactory() {
+			let factory: LiferayConnectorFactory
 
 			switch self.serverVersion {
 			case .v62:
-				factory = Liferay62OperationFactory()
+				factory = Liferay62ConnectorFactory()
 			case .v70:
-				factory = Liferay70OperationFactory()
+				factory = Liferay70ConnectorFactory()
 			}
 
-			StaticInstance.serverProperties!["operationFactory"] = factory
+			StaticInstance.serverProperties!["connectorFactory"] = factory
 		}
 
 		guard StaticInstance.serverProperties == nil else {
@@ -164,14 +164,14 @@ import Foundation
 			if let path = bundle.pathForResource(PlistFile, ofType:"plist") {
 				StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: path)
 				createFactory()
-				createOperationFactory()
+				createConnectorFactory()
 				found = true
 			}
 			else {
 				if let path = bundle.pathForResource(PlistFileSample, ofType:"plist") {
 					StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: path)
 					createFactory()
-					createOperationFactory()
+					createConnectorFactory()
 					foundFallback = true
 				}
 				else {
@@ -182,7 +182,7 @@ import Foundation
 						"version": LiferayServerVersion.v70.rawValue
 					]
 					createFactory()
-					createOperationFactory()
+					createConnectorFactory()
 				}
 			}
 		}

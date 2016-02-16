@@ -14,26 +14,26 @@
 import UIKit
 
 
-@objc public class ServerOperation: NSOperation {
+@objc public class ServerConnector: NSOperation {
 
-	private struct OperationsQueue {
+	private struct ConnectorsQueue {
 
 		static private var queue: NSOperationQueue?
 
-		static func addOperation(operation: ServerOperation) {
+		static func addConnector(connector: ServerConnector) {
 			if queue == nil {
 				queue = NSOperationQueue()
-				queue!.maxConcurrentOperationCount = 1
+				queue!.maxConcurrentConnectorCount = 1
 			}
 
-			queue!.addOperation(operation)
+			queue!.addConnector(connector)
 		}
 
 	}
 
 	public var lastError: NSError?
 
-	internal var onComplete: (ServerOperation -> Void)?
+	internal var onComplete: (ServerConnector -> Void)?
 
 
 	//MARK: NSOperation
@@ -60,7 +60,7 @@ import UIKit
 
 	//MARK: Public methods
 
-	public func validateAndEnqueue(onComplete: (ServerOperation -> Void)? = nil) -> ValidationError? {
+	public func validateAndEnqueue(onComplete: (ServerConnector -> Void)? = nil) -> ValidationError? {
 		let error = validateData()
 
 		if error == nil {
@@ -70,12 +70,12 @@ import UIKit
 		return error
 	}
 
-	public func enqueue(onComplete: (ServerOperation -> Void)? = nil) {
+	public func enqueue(onComplete: (ServerConnector -> Void)? = nil) {
 		if onComplete != nil {
 			self.onComplete = onComplete
 		}
 
-		OperationsQueue.addOperation(self)
+		ConnectorsQueue.addConnector(self)
 	}
 
 
@@ -102,7 +102,7 @@ import UIKit
 	public func createSession() -> LRSession? {
 		if !SessionContext.isLoggedIn {
 			lastError = NSError.errorWithCause(.AbortedDueToPreconditions,
-					message: "Login required to use this operation")
+					message: "Login required to use this connector")
 
 			return nil
 		}

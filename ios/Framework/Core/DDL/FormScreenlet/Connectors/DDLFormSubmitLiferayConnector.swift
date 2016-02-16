@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayDDLFormSubmitOperation: ServerOperation {
+public class LiferayDDLFormSubmitConnector: ServerConnector {
 
 	public var groupId: Int64?
 	public var userId: Int64?
@@ -38,7 +38,7 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 	}
 
 
-	//MARK: ServerOperation
+	//MARK: ServerConnector
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -65,7 +65,7 @@ public class LiferayDDLFormSubmitOperation: ServerOperation {
 }
 
 
-public class Liferay62DDLFormSubmitOperation: LiferayDDLFormSubmitOperation {
+public class Liferay62DDLFormSubmitConnector: LiferayDDLFormSubmitConnector {
 
 	override public func doRun(session session: LRSession) {
 		let service = LRDDLRecordService_v62(session: session)
@@ -113,7 +113,7 @@ public class Liferay62DDLFormSubmitOperation: LiferayDDLFormSubmitOperation {
 }
 
 
-public class Liferay70DDLFormSubmitOperation: LiferayDDLFormSubmitOperation {
+public class Liferay70DDLFormSubmitConnector: LiferayDDLFormSubmitConnector {
 
 	override public func doRun(session session: LRSession) {
 		let service = LRDDLRecordService_v70(session: session)

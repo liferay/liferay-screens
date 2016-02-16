@@ -14,7 +14,7 @@
 import UIKit
 
 
-class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
+class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 
 	let groupId: Int64
 	let recordSetId: Int64
@@ -73,33 +73,33 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 		super.init(screenlet: nil)
 	}
 
-	override func createOperation() -> LiferayDDLFormSubmitOperation {
+	override func createConnector() -> LiferayDDLFormSubmitConnector {
 
-		let operation: LiferayDDLFormSubmitOperation
+		let connector: LiferayDDLFormSubmitConnector
 
 		if let screenlet = self.screenlet as? DDLFormScreenlet {
-			operation = LiferayServerContext.operationFactory.createDDLFormSubmitOperation(
+			connector = LiferayServerContext.connectorFactory.createDDLFormSubmitConnector(
 					values: record.values,
 					viewModel: screenlet.viewModel)
 
-			operation.autoscrollOnValidation = screenlet.autoscrollOnValidation
+			connector.autoscrollOnValidation = screenlet.autoscrollOnValidation
 		}
 		else {
-			operation = LiferayServerContext.operationFactory.createDDLFormSubmitOperation(
+			connector = LiferayServerContext.connectorFactory.createDDLFormSubmitConnector(
 				values: record.values,
 				viewModel: nil)
 		}
 
-		operation.groupId = groupId
-		operation.userId = userId
-		operation.recordId = record.recordId
-		operation.recordSetId = recordSetId
+		connector.groupId = groupId
+		connector.userId = userId
+		connector.recordId = record.recordId
+		connector.recordSetId = recordSetId
 
-		return operation
+		return connector
 	}
 
-	override func completedOperation(op: ServerOperation) {
-		if let loadOp = op as? LiferayDDLFormSubmitOperation {
+	override func completedConnector(op: ServerConnector) {
+		if let loadOp = op as? LiferayDDLFormSubmitConnector {
 				self.resultRecordId = loadOp.resultRecordId
 				self.resultAttributes = loadOp.resultAttributes
 
@@ -112,8 +112,8 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 
 	//MARK: Cache methods
 
-	override func writeToCache(op: ServerOperation) {
-		let submitOp = op as! LiferayDDLFormSubmitOperation
+	override func writeToCache(op: ServerConnector) {
+		let submitOp = op as! LiferayDDLFormSubmitConnector
 
 		let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
 			? SessionContext.currentContext?.cacheManager.setDirty

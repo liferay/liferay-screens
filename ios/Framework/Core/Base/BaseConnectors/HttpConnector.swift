@@ -15,7 +15,7 @@ import UIKit
 
 
 
-public class HttpOperation: ServerOperation {
+public class HttpConnector: ServerConnector {
 
 	public var url: NSURL
 	public var resultData: NSData?
@@ -27,7 +27,7 @@ public class HttpOperation: ServerOperation {
 	}
 
 
-	//MARK: ServerOperation
+	//MARK: ServerConnector
 
 	override public func doRun(session session: LRSession) {
 		let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())

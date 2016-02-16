@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class GetUserByEmailOperation: GetUserBaseOperation {
+public class GetUserByEmailConnector: GetUserBaseConnector {
 
 	public var companyId: Int64
 	public var emailAddress: String

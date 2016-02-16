@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayPaginationOperation: ServerOperation {
+public class LiferayPaginationConnector: ServerConnector {
 
 	public let startRow: Int
 	public let endRow: Int
@@ -33,7 +33,7 @@ public class LiferayPaginationOperation: ServerOperation {
 	}
 
 
-	//MARK: ServerOperation
+	//MARK: ServerConnector
 
 	override public func doRun(session session: LRSession) {
 		let batchSession = LRBatchSession(session: session)
@@ -42,7 +42,7 @@ public class LiferayPaginationOperation: ServerOperation {
 		resultRowCount = nil
 		lastError = nil
 
-		doGetPageRowsOperation(session: batchSession, startRow: startRow, endRow: endRow)
+		doGetPageRowsConnector(session: batchSession, startRow: startRow, endRow: endRow)
 
 		if batchSession.commands.count < 1 {
 			lastError = NSError.errorWithCause(.AbortedDueToPreconditions, userInfo: nil)
@@ -50,7 +50,7 @@ public class LiferayPaginationOperation: ServerOperation {
 		}
 
 		if computeRowCount {
-			doGetRowCountOperation(session: batchSession)
+			doGetRowCountConnector(session: batchSession)
 		}
 
 		do {
@@ -78,12 +78,12 @@ public class LiferayPaginationOperation: ServerOperation {
 		}
 	}
 
-	public func doGetPageRowsOperation(session session: LRBatchSession, startRow: Int, endRow: Int) {
-		fatalError("doGetPageRowsOperation must be overriden")
+	public func doGetPageRowsConnector(session session: LRBatchSession, startRow: Int, endRow: Int) {
+		fatalError("doGetPageRowsConnector must be overriden")
 	}
 
-	public func doGetRowCountOperation(session session: LRBatchSession) {
-		fatalError("doGetRowCountOperation must be overriden")
+	public func doGetRowCountConnector(session session: LRBatchSession) {
+		fatalError("doGetRowCountConnector must be overriden")
 	}
 
 }

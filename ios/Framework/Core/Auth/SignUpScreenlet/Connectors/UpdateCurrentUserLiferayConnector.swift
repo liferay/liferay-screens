@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayUpdateCurrentUserOperation: ServerOperation {
+public class LiferayUpdateCurrentUserConnector: ServerConnector {
 
 	public var resultUserAttributes: [String:AnyObject]?
 
@@ -28,7 +28,7 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 	}
 
 
-	//MARK: ServerOperation
+	//MARK: ServerConnector
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -57,7 +57,7 @@ public class LiferayUpdateCurrentUserOperation: ServerOperation {
 }
 
 
-public class Liferay62UpdateCurrentUserOperation: LiferayUpdateCurrentUserOperation {
+public class Liferay62UpdateCurrentUserConnector: LiferayUpdateCurrentUserConnector {
 
 	override public func doRun(session session: LRSession) {
 		let service = LRUserService_v62(session: session)
@@ -126,7 +126,7 @@ public class Liferay62UpdateCurrentUserOperation: LiferayUpdateCurrentUserOperat
 }
 
 
-public class Liferay70UpdateCurrentUserOperation: LiferayUpdateCurrentUserOperation {
+public class Liferay70UpdateCurrentUserConnector: LiferayUpdateCurrentUserConnector {
 
 	override public func doRun(session session: LRSession) {
 		let service = LRUserService_v70(session: session)

@@ -14,64 +14,64 @@
 import UIKit
 
 
-@objc public class ServerOperationChain: ServerOperation {
+@objc public class ServerConnectorChain: ServerConnector {
 
-	private struct StreamOperationsQueue {
+	private struct StreamConnectorsQueue {
 
 		static private var queue: NSOperationQueue?
 
-		static func addOperation(operation: NSOperation) {
+		static func addConnector(connector: NSOperation) {
 			if queue == nil {
 				queue = NSOperationQueue()
-				queue!.maxConcurrentOperationCount = 1
+				queue!.maxConcurrentConnectorCount = 1
 			}
 
-			queue!.addOperation(operation)
+			queue!.addConnector(connector)
 		}
 
 	}
 
-	public var onNextStep: ((ServerOperation, Int) -> ServerOperation?)?
+	public var onNextStep: ((ServerConnector, Int) -> ServerConnector?)?
 
-	public let headOperation: ServerOperation
-	public var currentOperation: ServerOperation
+	public let headConnector: ServerConnector
+	public var currentConnector: ServerConnector
 
 
-	public init(head: ServerOperation) {
-		headOperation = head
-		currentOperation = head
+	public init(head: ServerConnector) {
+		headConnector = head
+		currentConnector = head
 
 		super.init()
 	}
 
 
-	//MARK: ServerOperation methods
+	//MARK: ServerConnector methods
 
 	override public func createSession() -> LRSession? {
-		return headOperation.createSession()
+		return headConnector.createSession()
 	}
 
-	override public func enqueue(onComplete: (ServerOperation -> Void)?) {
+	override public func enqueue(onComplete: (ServerConnector -> Void)?) {
 		if onComplete != nil {
 			self.onComplete = onComplete
 		}
 
-		StreamOperationsQueue.addOperation(self)
+		StreamConnectorsQueue.addConnector(self)
 	}
 
 	private func doStep(
 			number: Int,
-			_ op: ServerOperation,
+			_ op: ServerConnector,
 			_ waitGroup: dispatch_group_t) -> ValidationError? {
 
 		let originalCallback = op.onComplete
 
-		return op.validateAndEnqueue { operation in
-			self.lastError = operation.lastError ?? self.lastError
+		return op.validateAndEnqueue { connector in
+			self.lastError = connector.lastError ?? self.lastError
 
-			originalCallback?(operation)
+			originalCallback?(connector)
 
-			if let nextOp = self.onNextStep?(operation, number) {
+			if let nextOp = self.onNextStep?(connector, number) {
 				let validationError = self.doStep(number + 1, nextOp, waitGroup)
 
 				if let validationError = validationError {
@@ -79,7 +79,7 @@ import UIKit
 					dispatch_group_leave(waitGroup)
 				}
 				else {
-					self.currentOperation = nextOp
+					self.currentConnector = nextOp
 				}
 			}
 			else {
@@ -93,7 +93,7 @@ import UIKit
 
 		dispatch_group_enter(waitGroup)
 
-		if let validationError = doStep(0, headOperation, waitGroup) {
+		if let validationError = doStep(0, headConnector, waitGroup) {
 			self.lastError = validationError
 		}
 

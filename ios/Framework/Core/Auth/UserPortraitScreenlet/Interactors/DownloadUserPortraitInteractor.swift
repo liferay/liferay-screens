@@ -18,7 +18,7 @@ import UIKit
 #endif
 
 
-class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
+class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 	private enum DownloadMode {
 		case Attributes(portraitId: Int64, uuid: String, male: Bool)
@@ -87,10 +87,10 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 		super.init(screenlet: screenlet)
 	}
 
-	override func createOperation() -> ServerOperation? {
+	override func createConnector() -> ServerConnector? {
 		switch mode {
 		case .Attributes(let portraitId, let uuid, let male):
-			return createOperationFor(
+			return createConnectorFor(
 				portraitId: portraitId,
 				uuid: uuid,
 				male: male)
@@ -99,10 +99,10 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 			let currentUserId = SessionContext.currentContext?.userId
 
 			if userId == currentUserId {
-				return createOperationForLogged()
+				return createConnectorForLogged()
 			}
 			else {
-				return createOperationFor(GetUserByUserIdOperation(userId: userId))
+				return createConnectorFor(GetUserByUserIdConnector(userId: userId))
 			}
 
 		case .EmailAddress(let companyId, let emailAddress):
@@ -111,11 +111,11 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 
 			if companyId == currentCompanyId?.longLongValue
 					&& emailAddress == currentEmailAddress {
-				return createOperationForLogged()
+				return createConnectorForLogged()
 			}
 			else {
-				return createOperationFor(
-					GetUserByEmailOperation(
+				return createConnectorFor(
+					GetUserByEmailConnector(
 						companyId: companyId,
 						emailAddress: emailAddress))
 			}
@@ -126,19 +126,19 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 
 			if companyId == currentCompanyId?.longLongValue
 					&& screenName == currentScreenName {
-				return createOperationForLogged()
+				return createConnectorForLogged()
 			}
 			else {
-				return createOperationFor(
-					GetUserByScreenNameOperation(
+				return createConnectorFor(
+					GetUserByScreenNameConnector(
 						companyId: companyId,
 						screenName: screenName))
 			}
 		}
 	}
 
-	override func completedOperation(op: ServerOperation) {
-		if let httpOp = toHttpOperation(op),
+	override func completedConnector(op: ServerConnector) {
+		if let httpOp = toHttpConnector(op),
 				resultData = httpOp.resultData
 				where httpOp.lastError == nil {
 			resultImage = UIImage(data: resultData)
@@ -148,8 +148,8 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 
 	//MARK: Cache methods
 
-	override func writeToCache(op: ServerOperation) {
-		if let httpOp = toHttpOperation(op),
+	override func writeToCache(op: ServerConnector) {
+		if let httpOp = toHttpConnector(op),
 				resultData = httpOp.resultData {
 
 			SessionContext.currentContext?.cacheManager.setClean(
@@ -160,8 +160,8 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 		}
 	}
 
-	override func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
-		if let httpOp = toHttpOperation(op) {
+	override func readFromCache(op: ServerConnector, result: AnyObject? -> Void) {
+		if let httpOp = toHttpConnector(op) {
 			let cacheManager = SessionContext.currentContext!.cacheManager
 
 			cacheManager.getAny(
@@ -200,17 +200,17 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 
 	//MARK: Private methods
 
-	private func toHttpOperation(op: ServerOperation) -> HttpOperation? {
-		return ((op as? ServerOperationChain)?.currentOperation as? HttpOperation)
-			?? (op as? HttpOperation)
+	private func toHttpConnector(op: ServerConnector) -> HttpConnector? {
+		return ((op as? ServerConnectorChain)?.currentConnector as? HttpConnector)
+			?? (op as? HttpConnector)
 	}
 
-	private func createOperationForLogged() -> ServerOperation? {
+	private func createConnectorForLogged() -> ServerConnector? {
 		if let portraitId = SessionContext.currentContext?.userAttribute("portraitId") as? NSNumber,
 				uuid = SessionContext.currentContext?.userAttribute("uuid") as? String {
 				resultUserId = SessionContext.currentContext?.userId
 
-			return createOperationFor(
+			return createConnectorFor(
 				portraitId: portraitId.longLongValue,
 				uuid: uuid,
 				male: true)
@@ -219,12 +219,12 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 		return nil
 	}
 
-	private func createOperationFor(loadUserOp: GetUserBaseOperation) -> ServerOperation? {
-		let chain = ServerOperationChain(head: loadUserOp)
+	private func createConnectorFor(loadUserOp: GetUserBaseConnector) -> ServerConnector? {
+		let chain = ServerConnectorChain(head: loadUserOp)
 
-		chain.onNextStep = { (op, seq) -> ServerOperation? in
-			if let loadUserOp = op as? GetUserBaseOperation {
-				return self.createOperationFor(attributes: loadUserOp.resultUserAttributes)
+		chain.onNextStep = { (op, seq) -> ServerConnector? in
+			if let loadUserOp = op as? GetUserBaseConnector {
+				return self.createConnectorFor(attributes: loadUserOp.resultUserAttributes)
 			}
 
 			return nil
@@ -233,7 +233,7 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 		return chain
 	}
 
-	private func createOperationFor(attributes attributes: [String:AnyObject]?) -> ServerOperation? {
+	private func createConnectorFor(attributes attributes: [String:AnyObject]?) -> ServerConnector? {
 		if let attributes = attributes,
 				portraitId = attributes["portraitId"]?.description.asLong,
 				uuid = attributes["uuid"] as? String,
@@ -241,7 +241,7 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 
 			resultUserId = userId
 
-			return createOperationFor(
+			return createConnectorFor(
 				portraitId: portraitId,
 				uuid: uuid,
 				male: true)
@@ -250,12 +250,12 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 		return nil
 	}
 
-	private func createOperationFor(portraitId portraitId: Int64, uuid: String, male: Bool) -> ServerOperation? {
+	private func createConnectorFor(portraitId portraitId: Int64, uuid: String, male: Bool) -> ServerConnector? {
 		if let url = URLForAttributes(
 				portraitId: portraitId,
 				uuid: uuid,
 				male: male) {
-			return HttpOperation(url: url)
+			return HttpConnector(url: url)
 		}
 
 		return nil

@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class ServerWriteOperationInteractor: ServerOperationInteractor {
+public class ServerWriteConnectorInteractor: ServerConnectorInteractor {
 
 	override public func getCacheStrategyImpl(strategyType: CacheStrategyType) -> CacheStrategy {
 		switch strategyType {

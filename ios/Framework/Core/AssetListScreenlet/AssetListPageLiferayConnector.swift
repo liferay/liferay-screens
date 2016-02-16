@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayAssetListPageOperation: LiferayPaginationOperation {
+public class LiferayAssetListPageConnector: LiferayPaginationConnector {
 
 	public var groupId: Int64?
 	public var classNameId: Int64?
@@ -22,7 +22,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 	public var customEntryQuery: [String:AnyObject]?
 
 
-	//MARK: ServerOperation
+	//MARK: ServerConnector
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -74,9 +74,9 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 		}
 	}
 
-	//MARK: LiferayPaginationOperation
+	//MARK: LiferayPaginationConnector
 
-	override public func doGetPageRowsOperation(session session: LRBatchSession, startRow: Int, endRow: Int) {
+	override public func doGetPageRowsConnector(session session: LRBatchSession, startRow: Int, endRow: Int) {
 
 		var entryQuery = configureEntryQuery()
 
@@ -88,7 +88,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 		doGetPageRows(session: session, entryQuery: entryQueryWrapper)
 	}
 
-	override public func doGetRowCountOperation(session session: LRBatchSession) {
+	override public func doGetRowCountConnector(session session: LRBatchSession) {
 		let entryQuery = configureEntryQuery()
 		let entryQueryWrapper = LRJSONObjectWrapper(JSONObject: entryQuery)
 
@@ -129,7 +129,7 @@ public class LiferayAssetListPageOperation: LiferayPaginationOperation {
 
 }
 
-public class Liferay62AssetListPageOperation: LiferayAssetListPageOperation {
+public class Liferay62AssetListPageConnector: LiferayAssetListPageConnector {
 
 	override public func doGetEntries(session: LRSession, rowCount: Int32) throws -> [[String:AnyObject]]? {
 		let service = LRScreensassetentryService_v62(session: session)
@@ -163,7 +163,7 @@ public class Liferay62AssetListPageOperation: LiferayAssetListPageOperation {
 }
 
 
-public class Liferay70AssetListPageOperation: LiferayAssetListPageOperation {
+public class Liferay70AssetListPageConnector: LiferayAssetListPageConnector {
 
 	override public func doGetEntries(session: LRSession, rowCount: Int32) throws -> [[String:AnyObject]]? {
 		let service = LRScreensassetentryService_v70(session: session)

@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayDDLFormRecordLoadOperation: ServerOperation {
+public class LiferayDDLFormRecordLoadConnector: ServerConnector {
 
 	public let recordId: Int64
 
@@ -30,7 +30,7 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 	}
 
 
-	//MARK: ServerOperation
+	//MARK: ServerConnector
 
 	override public func doRun(session session: LRSession) {
 		do {
@@ -72,7 +72,7 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 }
 
 
-public class Liferay62DDLFormRecordLoadOperation: LiferayDDLFormRecordLoadOperation {
+public class Liferay62DDLFormRecordLoadConnector: LiferayDDLFormRecordLoadConnector {
 
 	override public func getRecord(session: LRSession, recordId: Int64, locale: String) throws -> [NSObject:AnyObject] {
 		let service = LRScreensddlrecordService_v62(session: session)
@@ -84,7 +84,7 @@ public class Liferay62DDLFormRecordLoadOperation: LiferayDDLFormRecordLoadOperat
 }
 
 
-public class Liferay70DDLFormRecordLoadOperation: LiferayDDLFormRecordLoadOperation {
+public class Liferay70DDLFormRecordLoadConnector: LiferayDDLFormRecordLoadConnector {
 
 	override public func getRecord(session: LRSession, recordId: Int64, locale: String) throws -> [NSObject:AnyObject] {
 		let service = LRScreensddlrecordService_v70(session: session)

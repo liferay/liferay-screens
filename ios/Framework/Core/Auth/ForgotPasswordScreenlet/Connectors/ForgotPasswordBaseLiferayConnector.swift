@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LiferayForgotPasswordBaseOperation: ServerOperation {
+public class LiferayForgotPasswordBaseConnector: ServerConnector {
 
 	public var companyId: Int64 = 0
 
@@ -35,7 +35,7 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 	}
 
 
-	//MARK ServerOperation
+	//MARK ServerConnector
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()

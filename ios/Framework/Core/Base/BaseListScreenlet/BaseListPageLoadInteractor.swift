@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class BaseListPageLoadInteractor: ServerReadOperationInteractor {
+public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 
 	public let page: Int
 	public let computeRowCount: Bool
@@ -31,16 +31,16 @@ public class BaseListPageLoadInteractor: ServerReadOperationInteractor {
 		super.init(screenlet: screenlet)
 	}
 
-	override public func createOperation() -> LiferayPaginationOperation {
-		fatalError("createOperation must be overriden")
+	override public func createConnector() -> LiferayPaginationConnector {
+		fatalError("createConnector must be overriden")
 	}
 
-	override public func completedOperation(op: ServerOperation) {
+	override public func completedConnector(op: ServerConnector) {
 		if op.lastError != nil {
 			return
 		}
 
-		if let pageOp = op as? LiferayPaginationOperation {
+		if let pageOp = op as? LiferayPaginationConnector {
 			processLoadPageResult(pageOp.resultPageContent ?? [], rowCount: pageOp.resultRowCount)
 		}
 	}
@@ -82,8 +82,8 @@ public class BaseListPageLoadInteractor: ServerReadOperationInteractor {
 
 	//MARK: Cache
 
-	override public func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
-		if let loadOp = op as? LiferayPaginationOperation {
+	override public func readFromCache(op: ServerConnector, result: AnyObject? -> Void) {
+		if let loadOp = op as? LiferayPaginationConnector {
 			let key = cacheKey(loadOp)
 			SessionContext.currentContext?.cacheManager.getSome(
 					collection: ScreenletName(screenlet!.dynamicType),
@@ -99,8 +99,8 @@ public class BaseListPageLoadInteractor: ServerReadOperationInteractor {
 		}
 	}
 
-	override public func writeToCache(op: ServerOperation) {
-		if let loadOp = op as? LiferayPaginationOperation,
+	override public func writeToCache(op: ServerConnector) {
+		if let loadOp = op as? LiferayPaginationConnector,
 				pageContent = loadOp.resultPageContent
 				where !pageContent.isEmpty {
 
@@ -122,7 +122,7 @@ public class BaseListPageLoadInteractor: ServerReadOperationInteractor {
 		}
 	}
 
-	public func cacheKey(op: LiferayPaginationOperation) -> String {
+	public func cacheKey(op: LiferayPaginationConnector) -> String {
 		fatalError("cacheKey must be overriden")
 	}
 
