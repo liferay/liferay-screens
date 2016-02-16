@@ -3,7 +3,7 @@ package com.liferay.mobile.screens.testapp.utils;
 /**
  * @author Javier Gamarra
  */
-public enum AssetConstantIdsForEE70 {
+public enum AssetClassnameIds70 {
 
 	// Users and sites
 	GROUP(20001),
@@ -55,7 +55,7 @@ public enum AssetConstantIdsForEE70 {
 		return _value;
 	}
 
-	AssetConstantIdsForEE70(long value) {
+	AssetClassnameIds70(long value) {
 		_value = value;
 	}
 	private long _value;

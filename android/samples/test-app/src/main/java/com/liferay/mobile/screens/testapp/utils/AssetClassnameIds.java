@@ -17,7 +17,7 @@ package com.liferay.mobile.screens.testapp.utils;
 /**
  * @author Silvio Santos
  */
-public enum AssetConstantIdsForEE {
+public enum AssetClassnameIds {
 
 	// Users and sites
 	GROUP(20001),
@@ -64,7 +64,7 @@ public enum AssetConstantIdsForEE {
 	WIKI_PAGE_RESOURCE(20153),
 	WIKI_NODE(20152);
 
-	AssetConstantIdsForEE(long value) {
+	AssetClassnameIds(long value) {
 		_value = value;
 	}
 
