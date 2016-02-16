@@ -39,3 +39,35 @@ public class GetUserByEmailLiferayConnector: GetUserBaseLiferayConnector {
 	}
 
 }
+
+
+public class GetUserByEmailLiferay62Connector: GetUserByEmailLiferayConnector {
+
+	override public func sendGetUserRequest(session: LRSession)
+		throws -> NSDictionary {
+
+			let companyId = (self.companyId != 0) ? self.companyId : LiferayServerContext.companyId
+
+			let service = LRUserService_v62(session: session)
+
+			return try service.getUserByEmailAddressWithCompanyId(companyId,
+				emailAddress: emailAddress) ?? [:]
+	}
+	
+}
+
+
+public class GetUserByEmailLiferay70Connector: GetUserByEmailLiferayConnector {
+
+	override public func sendGetUserRequest(session: LRSession)
+		throws -> NSDictionary {
+
+			let companyId = (self.companyId != 0) ? self.companyId : LiferayServerContext.companyId
+
+			let service = LRUserService_v70(session: session)
+
+			return try service.getUserByEmailAddressWithCompanyId(companyId,
+				emailAddress: emailAddress) ?? [:]
+	}
+	
+}

@@ -37,3 +37,29 @@ public class GetUserByUserIdLiferayConnector: GetUserBaseLiferayConnector {
 	}
 
 }
+
+
+public class GetUserByUserIdLiferay62Connector: GetUserByUserIdLiferayConnector {
+
+	override public func sendGetUserRequest(session: LRSession)
+		throws -> NSDictionary {
+
+			let service = LRUserService_v62(session: session)
+
+			return try service.getUserByIdWithUserId(userId) ?? [:]
+	}
+	
+}
+
+
+public class GetUserByUserIdLiferay70Connector: GetUserByUserIdLiferayConnector {
+
+	override public func sendGetUserRequest(session: LRSession)
+		throws -> NSDictionary {
+
+			let service = LRUserService_v70(session: session)
+
+			return try service.getUserByIdWithUserId(userId) ?? [:]
+	}
+	
+}

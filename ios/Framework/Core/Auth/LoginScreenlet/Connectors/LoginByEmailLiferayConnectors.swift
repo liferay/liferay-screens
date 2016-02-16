@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LoginByScreenNameLiferay62Connector: GetUserByScreenNameLiferay62Connector {
+public class LoginByEmailLiferay62Connector: GetUserByEmailLiferay62Connector {
 
 	override public func validateData() -> ValidationError? {
 		if super.validateData() == nil {
@@ -30,4 +30,23 @@ public class LoginByScreenNameLiferay62Connector: GetUserByScreenNameLiferay62Co
 		}
 	}
 
+}
+
+
+public class LoginByEmailLiferay70Connector: GetUserByEmailLiferay70Connector {
+
+	override public func validateData() -> ValidationError? {
+		if super.validateData() == nil {
+			return nil
+		}
+
+		return ValidationError("login-screenlet", "validation")
+	}
+
+	override public func postRun() {
+		if lastError == nil {
+			loginWithResult()
+		}
+	}
+	
 }

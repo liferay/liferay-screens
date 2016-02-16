@@ -27,3 +27,18 @@ public class ForgotPasswordScreenNameLiferay62Connector: ForgotPasswordBaseLifer
 	}
 
 }
+
+
+public class ForgotPasswordScreenNameLiferay70Connector: ForgotPasswordBaseLiferayConnector {
+
+	override public func sendForgotPasswordRequest(session: LRSession) throws -> Bool {
+
+		let service = LRUserService_v70(session: session)
+
+		try service.sendPasswordByScreenNameWithCompanyId(companyId,
+			screenName: viewModel.userName!)
+
+		return true
+	}
+	
+}
