@@ -18,7 +18,7 @@ import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.RobolectricManifestTestRunner;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginListener;
-import com.liferay.mobile.screens.auth.login.operation.UserOperation;
+import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.User;
@@ -60,7 +60,7 @@ public class LoginInteractorTest {
 			LoginBasicInteractor interactorSpy =
 				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
-			UserOperation serviceMock = MockFactory.mockUserOperation();
+			UserConnector serviceMock = MockFactory.mockUserConnector();
 
 			doReturn(
 				serviceMock
@@ -93,7 +93,7 @@ public class LoginInteractorTest {
 			LoginBasicInteractor interactorSpy =
 				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
-			UserOperation serviceMock = MockFactory.mockUserOperation();
+			UserConnector serviceMock = MockFactory.mockUserConnector();
 
 			String userId = String.valueOf(_LOGIN_USER_ID);
 
@@ -128,7 +128,7 @@ public class LoginInteractorTest {
 			LoginBasicInteractor interactorSpy =
 				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
-			UserOperation serviceMock = MockFactory.mockUserOperation();
+			UserConnector serviceMock = MockFactory.mockUserConnector();
 
 			doReturn(
 				serviceMock
@@ -162,7 +162,7 @@ public class LoginInteractorTest {
 				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
 			doReturn(
-				MockFactory.mockUserOperation()
+				MockFactory.mockUserConnector()
 			).when(
 				interactorSpy
 			).getUserService(_LOGIN_EMAIL, _LOGIN_PASSWORD);
@@ -216,7 +216,7 @@ public class LoginInteractorTest {
 			final LoginBasicInteractor interactorSpy =
 				MockFactory.spyLoginInteractor(_TARGET_SCREENLET_ID);
 
-			UserOperation serviceMock = MockFactory.mockUserOperation();
+			UserConnector serviceMock = MockFactory.mockUserConnector();
 
 			doReturn(
 				serviceMock

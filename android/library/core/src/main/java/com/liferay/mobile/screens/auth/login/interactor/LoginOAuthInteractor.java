@@ -45,7 +45,7 @@ public class LoginOAuthInteractor extends BaseLoginInteractor {
 		Session session = SessionContext.createOAuthSession(_OAuthConfig);
 		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
 
-		ServiceProvider.getInstance().getCurrentUserOperation(session).getCurrentUser();
+		ServiceProvider.getInstance().getCurrentUserConnector(session).getCurrentUser();
 	}
 
 	// NOTE: this interactor can store state because this attribute

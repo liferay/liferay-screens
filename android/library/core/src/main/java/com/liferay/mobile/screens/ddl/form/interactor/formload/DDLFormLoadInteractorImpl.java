@@ -26,7 +26,7 @@ import com.liferay.mobile.screens.cache.ddl.form.RecordCache;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
-import com.liferay.mobile.screens.ddl.form.operation.DDMStructureOperation;
+import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.ServiceProvider;
 
@@ -123,10 +123,10 @@ public class DDLFormLoadInteractorImpl
 		CacheSQL.getInstance().set(new DDLFormCache(event.getRecord(), event.getJSONObject()));
 	}
 
-	protected DDMStructureOperation getDDMStructureService(Record record) {
+	protected DDMStructureConnector getDDMStructureService(Record record) {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(new DDLFormLoadCallback(getTargetScreenletId(), record));
-		return ServiceProvider.getInstance().getDDMStructureOperation(session);
+		return ServiceProvider.getInstance().getDDMStructureConnector(session);
 	}
 
 	protected void validate(Record record) {

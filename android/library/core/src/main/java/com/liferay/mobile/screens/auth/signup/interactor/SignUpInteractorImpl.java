@@ -18,7 +18,7 @@ import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
-import com.liferay.mobile.screens.auth.login.operation.UserOperation;
+import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.auth.signup.SignUpListener;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
@@ -65,15 +65,15 @@ public class SignUpInteractorImpl extends BaseRemoteInteractor<SignUpListener>
 			companyId, firstName, emailAddress, locale, anonymousApiUserName,
 			anonymousApiPassword);
 
-		UserOperation userOperation = getUserOperation(
+		UserConnector userConnector = getUserConnector(
 			anonymousApiUserName, anonymousApiPassword);
 
 		sendSignUpRequest(
-			userOperation, companyId, firstName, middleName, lastName, emailAddress,
+			userConnector, companyId, firstName, middleName, lastName, emailAddress,
 			screenName, password, jobTitle, locale);
 	}
 
-	protected UserOperation getUserOperation(
+	protected UserConnector getUserConnector(
 		String anonymousApiUserName, String anonymousApiPassword) {
 
 		Authentication authentication = new BasicAuthentication(
@@ -85,11 +85,11 @@ public class SignUpInteractorImpl extends BaseRemoteInteractor<SignUpListener>
 		anonymousSession.setCallback(
 			new JSONObjectCallback(getTargetScreenletId()));
 
-		return ServiceProvider.getInstance().getUserOperations(anonymousSession);
+		return ServiceProvider.getInstance().getUserConnector(anonymousSession);
 	}
 
 	protected void sendSignUpRequest(
-		UserOperation service, long companyId, String firstName,
+		UserConnector service, long companyId, String firstName,
 		String middleName, String lastName, String emailAddress,
 		String screenName, String password, String jobTitle, Locale locale)
 		throws Exception {
