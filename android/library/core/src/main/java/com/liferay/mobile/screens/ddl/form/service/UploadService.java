@@ -20,7 +20,7 @@ import android.webkit.MimeTypeMap;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.ddl.form.operation.DLAppOperation;
+import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadEvent;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
@@ -85,13 +85,13 @@ public class UploadService extends IntentService {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setConnectionTimeout(CONNECTION_TIMEOUT);
 
-		DLAppOperation dlAppOperation = ServiceProvider.getInstance().getDLAppOperation(session);
+		DLAppConnector dlAppConnector = ServiceProvider.getInstance().getDLAppConnector(session);
 
 		JSONObjectWrapper serviceContextWrapper = getJsonObjectWrapper(userId, groupId);
 
 		String fileName = (filePrefix == null ? "" : filePrefix) + date + "_" + name;
 
-		return dlAppOperation.addFileEntry(repositoryId, folderId, name,
+		return dlAppConnector.addFileEntry(repositoryId, folderId, name,
 			getMimeType(path), fileName, "", "", getBytes(new File(path)), serviceContextWrapper);
 	}
 

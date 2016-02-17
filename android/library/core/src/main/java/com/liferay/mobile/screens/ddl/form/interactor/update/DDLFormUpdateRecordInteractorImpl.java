@@ -24,7 +24,7 @@ import com.liferay.mobile.screens.cache.ddl.form.DDLRecordCache;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
-import com.liferay.mobile.screens.ddl.form.operation.DDLRecordOperation;
+import com.liferay.mobile.screens.ddl.form.connector.DDLRecordConnector;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.util.ServiceProvider;
@@ -102,10 +102,10 @@ public class DDLFormUpdateRecordInteractorImpl
 		onEvent(event);
 	}
 
-	protected DDLRecordOperation getDDLRecordService(Record record, long groupId) {
+	protected DDLRecordConnector getDDLRecordService(Record record, long groupId) {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(new DDLFormUpdateRecordCallback(getTargetScreenletId(), record, groupId));
-		return ServiceProvider.getInstance().getDDLRecordOperation(session);
+		return ServiceProvider.getInstance().getDDLRecordConnector(session);
 	}
 
 	protected void validate(long groupId, Record record) {

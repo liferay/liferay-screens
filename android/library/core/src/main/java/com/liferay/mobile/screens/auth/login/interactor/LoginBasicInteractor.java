@@ -18,7 +18,7 @@ import android.text.TextUtils;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
-import com.liferay.mobile.screens.auth.login.operation.UserOperation;
+import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -35,19 +35,19 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 	public void login() throws Exception {
 		validate(_login, _password, _basicAuthMethod);
 
-		UserOperation userOperation = getUserService(_login, _password);
+		UserConnector userConnector = getUserService(_login, _password);
 
 		switch (_basicAuthMethod) {
 			case EMAIL:
-				userOperation.getUserByEmailAddress(LiferayServerContext.getCompanyId(), _login);
+				userConnector.getUserByEmailAddress(LiferayServerContext.getCompanyId(), _login);
 				break;
 
 			case USER_ID:
-				userOperation.getUserById(Long.parseLong(_login));
+				userConnector.getUserById(Long.parseLong(_login));
 				break;
 
 			case SCREEN_NAME:
-				userOperation.getUserByScreenName(LiferayServerContext.getCompanyId(), _login);
+				userConnector.getUserByScreenName(LiferayServerContext.getCompanyId(), _login);
 				break;
 		}
 	}
@@ -64,10 +64,10 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 		_basicAuthMethod = basicAuthMethod;
 	}
 
-	protected UserOperation getUserService(String login, String password) {
+	protected UserConnector getUserService(String login, String password) {
 		Session session = SessionContext.createBasicSession(login, password);
 		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
-		return ServiceProvider.getInstance().getUserOperations(session);
+		return ServiceProvider.getInstance().getUserConnector(session);
 	}
 
 	protected void validate(String login, String password, BasicAuthMethod basicAuthMethod) {

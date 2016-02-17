@@ -20,7 +20,7 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
-import com.liferay.mobile.screens.auth.forgotpassword.operation.ForgotPasswordOperation;
+import com.liferay.mobile.screens.auth.forgotpassword.connector.ForgotPasswordConnector;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.util.ServiceProvider;
@@ -59,23 +59,23 @@ public class ForgotPasswordInteractorImpl
 			companyId, login, basicAuthMethod, anonymousApiUserName,
 			anonymousApiPassword);
 
-		ForgotPasswordOperation forgotPasswordOperation = getScreensUserService(
+		ForgotPasswordConnector forgotPasswordConnector = getScreensUserService(
 			anonymousApiUserName, anonymousApiPassword);
 
 		switch (basicAuthMethod) {
 			case EMAIL:
-				forgotPasswordOperation.sendPasswordByEmailAddress(companyId, login);
+				forgotPasswordConnector.sendPasswordByEmailAddress(companyId, login);
 				break;
 			case USER_ID:
-				forgotPasswordOperation.sendPasswordByUserId(Long.parseLong(login));
+				forgotPasswordConnector.sendPasswordByUserId(Long.parseLong(login));
 				break;
 			case SCREEN_NAME:
-				forgotPasswordOperation.sendPasswordByScreenName(companyId, login);
+				forgotPasswordConnector.sendPasswordByScreenName(companyId, login);
 				break;
 		}
 	}
 
-	protected ForgotPasswordOperation getScreensUserService(
+	protected ForgotPasswordConnector getScreensUserService(
 		String anonymousApiUserName, String anonymousApiPassword) {
 
 		Authentication authentication = new BasicAuthentication(anonymousApiUserName, anonymousApiPassword);
@@ -84,7 +84,7 @@ public class ForgotPasswordInteractorImpl
 
 		anonymousSession.setCallback(new ForgotPasswordCallback(getTargetScreenletId()));
 
-		return ServiceProvider.getInstance().getForgotPasswordOperations(anonymousSession);
+		return ServiceProvider.getInstance().getForgotPasswordConnector(anonymousSession);
 	}
 
 	protected void validate(

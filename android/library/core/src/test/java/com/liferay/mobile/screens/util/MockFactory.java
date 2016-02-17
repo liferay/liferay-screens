@@ -14,10 +14,9 @@
 
 package com.liferay.mobile.screens.util;
 
-import com.liferay.mobile.android.v62.user.UserService;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.interactor.LoginBasicInteractor;
-import com.liferay.mobile.screens.auth.login.operation.UserOperation;
+import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 
 import static org.mockito.Mockito.mock;
@@ -36,8 +35,8 @@ public class MockFactory {
 		return mock(LoginListener.class);
 	}
 
-	public static UserOperation mockUserOperation() {
-		return mock(UserOperation.class);
+	public static UserConnector mockUserConnector() {
+		return mock(UserConnector.class);
 	}
 
 	public static LoginBasicInteractor spyLoginInteractor(

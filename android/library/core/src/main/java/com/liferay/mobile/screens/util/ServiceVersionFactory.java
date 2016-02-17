@@ -1,46 +1,46 @@
 package com.liferay.mobile.screens.util;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.assetlist.operation.AssetEntryOperation;
-import com.liferay.mobile.screens.assetlist.operation.ScreensAssetEntryOperation;
-import com.liferay.mobile.screens.auth.forgotpassword.operation.ForgotPasswordOperation;
-import com.liferay.mobile.screens.auth.login.operation.CurrentUserOperation;
-import com.liferay.mobile.screens.auth.login.operation.UserOperation;
-import com.liferay.mobile.screens.ddl.form.operation.DDLRecordOperation;
-import com.liferay.mobile.screens.ddl.form.operation.DDLRecordSetOperation;
-import com.liferay.mobile.screens.ddl.form.operation.DDMStructureOperation;
-import com.liferay.mobile.screens.ddl.form.operation.DLAppOperation;
-import com.liferay.mobile.screens.ddl.form.operation.ScreensDDLRecordOperation;
-import com.liferay.mobile.screens.webcontentdisplay.operation.JournalContentOperation;
-import com.liferay.mobile.screens.webcontentdisplay.operation.ScreensJournalContentOperation;
+import com.liferay.mobile.screens.assetlist.connector.AssetEntryConnector;
+import com.liferay.mobile.screens.assetlist.connector.ScreensAssetEntryConnector;
+import com.liferay.mobile.screens.auth.forgotpassword.connector.ForgotPasswordConnector;
+import com.liferay.mobile.screens.auth.login.connector.CurrentUserConnector;
+import com.liferay.mobile.screens.auth.login.connector.UserConnector;
+import com.liferay.mobile.screens.ddl.form.connector.DDLRecordConnector;
+import com.liferay.mobile.screens.ddl.form.connector.DDLRecordSetConnector;
+import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
+import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
+import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector;
+import com.liferay.mobile.screens.webcontentdisplay.connector.JournalContentConnector;
+import com.liferay.mobile.screens.webcontentdisplay.connector.ScreensJournalContentConnector;
 
 /**
  * @author Javier Gamarra
  */
 public interface ServiceVersionFactory {
 
-	ForgotPasswordOperation getForgotPasswordOperations(Session session);
+	ForgotPasswordConnector getForgotPasswordConnector(Session session);
 
-	UserOperation getUserOperations(Session session);
+	UserConnector getUserConnector(Session session);
 
-	CurrentUserOperation getCurrentUserOperation(Session session);
+	CurrentUserConnector getCurrentUserConnector(Session session);
 
-	ScreensJournalContentOperation getScreensJournalContentOperation(Session session);
+	ScreensJournalContentConnector getScreensJournalContentConnector(Session session);
 
-	DDLRecordOperation getDDLRecordOperation(Session session);
+	DDLRecordConnector getDDLRecordConnector(Session session);
 
-	JournalContentOperation getJournalContentOperation(Session session);
+	JournalContentConnector getJournalContentConnector(Session session);
 
-	DDMStructureOperation getDDMStructureOperation(Session session);
+	DDMStructureConnector getDDMStructureConnector(Session session);
 
-	ScreensDDLRecordOperation getScreensDDLRecordOperation(Session session);
+	ScreensDDLRecordConnector getScreensDDLRecordConnector(Session session);
 
-	ScreensAssetEntryOperation getScreensAssetEntryOperation(Session session);
+	ScreensAssetEntryConnector getScreensAssetEntryConnector(Session session);
 
-	DLAppOperation getDLAppOperation(Session session);
+	DLAppConnector getDLAppConnector(Session session);
 
-	DDLRecordSetOperation getDDLRecordSetOperation(Session session);
+	DDLRecordSetConnector getDDLRecordSetConnector(Session session);
 
-	AssetEntryOperation getAssetEntryOperation(Session session);
+	AssetEntryConnector getAssetEntryConnector(Session session);
 
 }

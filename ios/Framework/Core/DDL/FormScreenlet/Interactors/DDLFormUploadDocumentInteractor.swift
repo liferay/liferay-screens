@@ -14,9 +14,9 @@
 import UIKit
 
 
-class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
+class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 
-	typealias OnProgress = LiferayDDLFormUploadOperation.OnProgress
+	typealias OnProgress = DDLFormUploadLiferayConnector.OnProgress
 
 	let filePrefix: String
 	let repositoryId: Int64
@@ -76,15 +76,15 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 		super.init(screenlet: nil)
 	}
 
-	override func createOperation() -> LiferayDDLFormUploadOperation {
-		return LiferayServerContext.operationFactory.createDDLFormUploadOperation(
+	override func createConnector() -> DDLFormUploadLiferayConnector {
+		return LiferayServerContext.connectorFactory.createDDLFormUploadConnector(
 			document: document,
 			filePrefix: filePrefix,
 			repositoryId: repositoryId,
 			folderId: folderId)
 	}
 
-	override func completedOperation(op: ServerOperation) {
+	override func completedConnector(op: ServerConnector) {
 		if let lastErrorValue = op.lastError {
 			if lastErrorValue.code == ScreensErrorCause.NotAvailable.rawValue {
 				let cacheResult = DDLFieldDocument.UploadStatus.CachedStatusData(cacheKey())
@@ -95,7 +95,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 				document.uploadStatus = .Failed(lastErrorValue)
 			}
 		}
-		else if let uploadOp = op as? LiferayDDLFormUploadOperation {
+		else if let uploadOp = op as? DDLFormUploadLiferayConnector {
 			self.resultResponse = uploadOp.uploadResult
 			document.uploadStatus = .Uploaded(uploadOp.uploadResult!)
 		}
@@ -104,7 +104,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 
 	//MARK: Cache methods
 
-	override func writeToCache(op: ServerOperation) {
+	override func writeToCache(op: ServerConnector) {
 		// cache only supports images (right now)
 		if let image = document.currentValue as? UIImage {
 			let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)

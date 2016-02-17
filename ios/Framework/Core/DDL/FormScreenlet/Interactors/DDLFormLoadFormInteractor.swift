@@ -14,19 +14,19 @@
 import UIKit
 
 
-class DDLFormLoadFormInteractor: ServerReadOperationInteractor {
+class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 
 	var resultRecord: DDLRecord?
 	var resultUserId: Int64?
 
-	override func createOperation() -> ServerOperation {
+	override func createConnector() -> ServerConnector {
 		let screenlet = self.screenlet as! DDLFormScreenlet
 
-		return LiferayServerContext.operationFactory.createDDLFormLoadOperation(screenlet.structureId)
+		return LiferayServerContext.connectorFactory.createDDLFormLoadConnector(screenlet.structureId)
 	}
 
-	override func completedOperation(op: ServerOperation) {
-		if let loadOp = op as? LiferayDDLFormLoadOperation {
+	override func completedConnector(op: ServerConnector) {
+		if let loadOp = op as? DDLFormLoadLiferayConnector {
 			self.resultRecord = loadOp.resultRecord
 			self.resultUserId = loadOp.resultUserId
 		}
@@ -35,8 +35,8 @@ class DDLFormLoadFormInteractor: ServerReadOperationInteractor {
 
 	//MARK: Cache methods
 
-	override func writeToCache(op: ServerOperation) {
-		if let loadOp = op as? LiferayDDLFormLoadOperation,
+	override func writeToCache(op: ServerConnector) {
+		if let loadOp = op as? DDLFormLoadLiferayConnector,
 				record = loadOp.resultRecord,
 				userId = loadOp.resultUserId {
 
@@ -49,8 +49,8 @@ class DDLFormLoadFormInteractor: ServerReadOperationInteractor {
 		}
 	}
 
-	override func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
-		if let loadOp = op as? LiferayDDLFormLoadOperation {
+	override func readFromCache(op: ServerConnector, result: AnyObject? -> Void) {
+		if let loadOp = op as? DDLFormLoadLiferayConnector {
 			SessionContext.currentContext!.cacheManager.getAnyWithAttributes(
 					collection: ScreenletName(DDLFormScreenlet),
 					key: "structureId-\(loadOp.structureId)") {

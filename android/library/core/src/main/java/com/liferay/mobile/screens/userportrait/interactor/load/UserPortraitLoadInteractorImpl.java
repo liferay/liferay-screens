@@ -20,7 +20,7 @@ import android.net.Uri;
 import android.util.Base64;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.auth.login.operation.UserOperation;
+import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
@@ -185,11 +185,11 @@ public class UserPortraitLoadInteractorImpl
 		CacheSQL.getInstance().set(new UserPortraitCache(userId, true, portraitId, uuid));
 	}
 
-	protected UserOperation getUserService(long userId) {
+	protected UserConnector getUserService(long userId) {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(new UserPortraitLoadCallback(getTargetScreenletId(), userId));
 
-		return ServiceProvider.getInstance().getUserOperations(session);
+		return ServiceProvider.getInstance().getUserConnector(session);
 	}
 
 	private void validate(String uuid) {

@@ -20,8 +20,8 @@ import android.util.Pair;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.assetlist.AssetEntry;
-import com.liferay.mobile.screens.assetlist.operation.AssetEntryOperation;
-import com.liferay.mobile.screens.assetlist.operation.ScreensAssetEntryOperation;
+import com.liferay.mobile.screens.assetlist.connector.AssetEntryConnector;
+import com.liferay.mobile.screens.assetlist.connector.ScreensAssetEntryConnector;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
@@ -104,7 +104,7 @@ public class AssetListInteractorImpl
 		if (_portletItemName == null) {
 
 
-			ScreensAssetEntryOperation service = ServiceProvider.getInstance().getScreensAssetEntryOperation(session);
+			ScreensAssetEntryConnector service = ServiceProvider.getInstance().getScreensAssetEntryConnector(session);
 			JSONObject entryQueryAttributes = configureEntryQuery(_groupId, _classNameId);
 			entryQueryAttributes.put("start", startRow);
 			entryQueryAttributes.put("end", endRow);
@@ -115,7 +115,7 @@ public class AssetListInteractorImpl
 		}
 		else {
 			session.setCallback(new FilteredAssetListCallback(getTargetScreenletId()));
-			ScreensAssetEntryOperation service = ServiceProvider.getInstance().getScreensAssetEntryOperation(session);
+			ScreensAssetEntryConnector service = ServiceProvider.getInstance().getScreensAssetEntryConnector(session);
 			service.getAssetEntries(LiferayServerContext.getCompanyId(), _groupId, _portletItemName, locale.toString(), endRow);
 		}
 	}
@@ -124,7 +124,7 @@ public class AssetListInteractorImpl
 	protected void getPageRowCountRequest(Session session) throws Exception {
 		JSONObject entryQueryParams = configureEntryQuery(_groupId, _classNameId);
 		JSONObjectWrapper entryQuery = new JSONObjectWrapper(entryQueryParams);
-		AssetEntryOperation service = ServiceProvider.getInstance().getAssetEntryOperation(session);
+		AssetEntryConnector service = ServiceProvider.getInstance().getAssetEntryConnector(session);
 		service.getEntriesCount(entryQuery);
 	}
 

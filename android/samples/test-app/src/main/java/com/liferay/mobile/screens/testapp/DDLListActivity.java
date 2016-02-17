@@ -94,7 +94,7 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 			Session session = SessionContext.createSessionFromCurrentSession();
 			session.setCallback(getCallback(recordId, recordSetId));
 
-			ServiceProvider.getInstance().getDDLRecordSetOperation(session).getRecordSet(recordSetId);
+			ServiceProvider.getInstance().getDDLRecordSetConnector(session).getRecordSet(recordSetId);
 		}
 		catch (Exception e) {
 			error("error loading structure id", e);

@@ -14,41 +14,41 @@
 import UIKit
 
 
-class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
+class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 
 	var resultHTML: String?
 
 
-	override func createOperation() -> LiferayWebContentLoadBaseOperation? {
+	override func createConnector() -> WebContentLoadBaseLiferayConnector? {
 		let screenlet = self.screenlet as! WebContentDisplayScreenlet
 
-		let operation: LiferayWebContentLoadBaseOperation?
+		let connector: WebContentLoadBaseLiferayConnector?
 
 		if screenlet.articleId != "" {
-			operation = LiferayServerContext.operationFactory.createWebContentLoadFromArticleId(articleId: screenlet.articleId)
+			connector = LiferayServerContext.connectorFactory.createWebContentLoadFromArticleIdConnector(articleId: screenlet.articleId)
 		}
 		else if screenlet.classPK != 0 {
-			operation = LiferayServerContext.operationFactory.createWebContentLoadFromClassPK(classPK: screenlet.classPK)
+			connector = LiferayServerContext.connectorFactory.createWebContentLoadFromClassPKConnector(classPK: screenlet.classPK)
 		}
 		else {
-			operation = nil
+			connector = nil
 		}
 
-		if let operation = operation {
-			operation.groupId = (screenlet.groupId != 0)
+		if let connector = connector {
+			connector.groupId = (screenlet.groupId != 0)
 				? screenlet.groupId : LiferayServerContext.groupId
-			operation.templateId = screenlet.templateId
+			connector.templateId = screenlet.templateId
 		}
 
-		return operation
+		return connector
 	}
 
-	override func completedOperation(op: ServerOperation) {
-		self.resultHTML = (op as? LiferayWebContentLoadBaseOperation)?.resultHTML
+	override func completedConnector(op: ServerConnector) {
+		self.resultHTML = (op as? WebContentLoadBaseLiferayConnector)?.resultHTML
 	}
 
-	override func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
-		if let loadOp = op as? LiferayWebContentLoadFromArticleIdOperation,
+	override func readFromCache(op: ServerConnector, result: AnyObject? -> Void) {
+		if let loadOp = op as? WebContentLoadFromArticleIdLiferayConnector,
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {
 
@@ -61,8 +61,8 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 		}
 	}
 
-	override func writeToCache(op: ServerOperation) {
-		if let loadOp = op as? LiferayWebContentLoadFromArticleIdOperation,
+	override func writeToCache(op: ServerConnector) {
+		if let loadOp = op as? WebContentLoadFromArticleIdLiferayConnector,
 				html = loadOp.resultHTML,
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {
