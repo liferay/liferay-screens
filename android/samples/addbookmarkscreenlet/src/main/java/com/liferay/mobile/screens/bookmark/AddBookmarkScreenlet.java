@@ -10,7 +10,6 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.bookmark.interactor.AddBookmarkInteractor;
 import com.liferay.mobile.screens.bookmark.interactor.AddBookmarkInteractorImpl;
 import com.liferay.mobile.screens.bookmark.interactor.AddBookmarkListener;
-import com.liferay.mobile.screens.bookmark.interactor.AddDeliciousInteractorImpl;
 import com.liferay.mobile.screens.bookmark.view.AddBookmarkViewModel;
 
 /**

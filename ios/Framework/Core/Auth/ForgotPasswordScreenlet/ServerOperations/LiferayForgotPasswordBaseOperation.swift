@@ -51,34 +51,21 @@ public class LiferayForgotPasswordBaseOperation: ServerOperation {
 
 	override public func doRun(session session: LRSession) {
 		do {
-			let result = try sendForgotPasswordRequest(
-				service: LRScreensuserService_v62(session: session))
-
-			if result != nil {
-				lastError = nil
-				resultPasswordSent = result
-			}
-			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse)
-				resultPasswordSent = nil
-			}
-		}
-		catch let error as NSError {
+			resultPasswordSent = try sendForgotPasswordRequest(session)
+			lastError = nil
+		} catch (let error as NSError) {
 			lastError = error
 			resultPasswordSent = nil
 		}
 	}
 
 	override public func createSession() -> LRSession? {
-		return SessionContext.createAnonymousBasicSession(anonymousUsername, anonymousPassword)
+		return SessionContext.createEphemeralBasicSession(anonymousUsername, anonymousPassword)
 	}
 
 	//MARK: Template Methods
 	
-	internal func sendForgotPasswordRequest(
-			service service: LRScreensuserService_v62)
-			throws -> Bool? {
-
+	public func sendForgotPasswordRequest(session: LRSession) throws -> Bool {
 		fatalError("sendForgotPasswordRequest must be overriden")
 	}
 

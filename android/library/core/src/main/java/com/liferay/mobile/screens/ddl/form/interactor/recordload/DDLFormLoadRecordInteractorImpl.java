@@ -26,10 +26,11 @@ import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
+import com.liferay.mobile.screens.ddl.form.operation.ScreensDDLRecordOperation;
 import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.service.v62.ScreensddlrecordService;
 import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
+import com.liferay.mobile.screens.util.ServiceProvider;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -123,12 +124,12 @@ public class DDLFormLoadRecordInteractorImpl
 		}
 	}
 
-	protected ScreensddlrecordService getDDLRecordService(Record record) {
+	protected ScreensDDLRecordOperation getDDLRecordService(Record record) {
 		Session session = SessionContext.createSessionFromCurrentSession();
 
 		session.setCallback(new DDLFormLoadRecordCallback(getTargetScreenletId(), record));
 
-		return new ScreensddlrecordService(session);
+		return ServiceProvider.getInstance().getScreensDDLRecordOperation(session);
 	}
 
 	protected void validate(Record record) {

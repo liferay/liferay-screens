@@ -11,7 +11,7 @@ public class FactoryProvider {
 
 	public static AbstractFactory getInstance() {
 		if (_abstractFactory == null) {
-			synchronized ("factory") {
+			synchronized (AbstractFactory.class) {
 				_abstractFactory = createFactory();
 			}
 		}
@@ -23,7 +23,9 @@ public class FactoryProvider {
 			return (AbstractFactory) Class.forName(LiferayServerContext.getFactoryClass()).newInstance();
 		}
 		catch (Exception e) {
-			Log.e("LiferayScreens", "Error creating the instance class");
+			Log.e("LiferayScreens", "Error creating the instance class, " +
+				"there isn't an attribute called *factory_class* that can be instantiated. " +
+				"Are you sure that your class and package exists and it has a public empty constructor?");
 			return new FactoryCE();
 		}
 	}

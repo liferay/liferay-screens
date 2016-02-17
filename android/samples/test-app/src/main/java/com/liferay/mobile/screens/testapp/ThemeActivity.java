@@ -16,66 +16,66 @@ package com.liferay.mobile.screens.testapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
-import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
-
-import de.keyboardsurfer.android.widget.crouton.Crouton;
+import android.view.ViewGroup;
 
 /**
  * @author Javier Gamarra
  */
-public abstract class ThemeActivity extends ActionBarActivity {
+public abstract class ThemeActivity extends AppCompatActivity {
 
 	@Override
-	protected void onCreate(Bundle state) {
-		super.onCreate(state);
-		currentTheme = getIntent().getIntExtra("theme", DefaultTheme.getDefaultTheme());
+	protected void onCreate(@Nullable Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-		int color = isDefaultTheme() ? R.color.default_primary_blue : R.color.material_primary;
+		_currentThemePosition = getIntent().getIntExtra("currentThemePosition", 0);
+		setTheme(getCurrentTheme());
+	}
 
-		new LiferayCrouton.Builder().withInfoColor(color).build();
-
-		setTheme(currentTheme);
+	@Override
+	protected void onResume() {
+		super.onResume();
 
 		_content = findViewById(android.R.id.content);
 	}
 
+	protected void changeToNextTheme() {
+		_currentThemePosition = (_currentThemePosition + 1) % themes.length;
+	}
+
 	protected void error(String message, Exception e) {
-		LiferayCrouton.error(this, message, e);
+		showSnackbarWithColor(message, ContextCompat.getColor(this, R.color.red_default));
 	}
 
 	protected void info(String message) {
-		LiferayCrouton.info(this, message);
+		int color = colors[_currentThemePosition];
+		showSnackbarWithColor(message, ContextCompat.getColor(this, color));
 	}
 
 	protected Intent getIntentWithTheme(Class destinationClass) {
 		Intent intent = new Intent(this, destinationClass);
-		intent.putExtra("theme", currentTheme);
+		intent.putExtra("currentThemePosition", _currentThemePosition);
 		return intent;
 	}
 
-	protected View getActiveScreenlet(int defaultId, int materialId) {
-		return isDefaultTheme() ? findViewById(defaultId) : findViewById(materialId);
+	private int getCurrentTheme() {
+		return themes[_currentThemePosition];
 	}
 
-	protected void hideInactiveScreenlet(int defaultId, int materialId) {
-		View view = isDefaultTheme() ? findViewById(materialId) : findViewById(defaultId);
-		view.setVisibility(View.GONE);
+	private void showSnackbarWithColor(String message, int color) {
+		Snackbar snackbar = Snackbar.make(_content, message, Snackbar.LENGTH_SHORT);
+		ViewGroup group = (ViewGroup) snackbar.getView();
+		group.setBackgroundColor(color);
+		snackbar.show();
 	}
 
-	protected boolean isDefaultTheme() {
-		return currentTheme == R.style.default_theme;
-	}
+	int[] themes = {R.style.default_theme, R.style.material_theme, R.style.westeros_theme};
+	int[] colors = {R.color.colorPrimary_default, R.color.colorPrimary_material, R.color.colorPrimary_westeros};
+	private Integer _currentThemePosition;
+	private View _content;
 
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		Crouton.clearCroutonsForActivity(this);
-	}
-
-	protected Integer currentTheme;
-	protected View _content;
 }

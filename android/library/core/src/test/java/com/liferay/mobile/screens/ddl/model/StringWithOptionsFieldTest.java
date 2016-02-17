@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.ddl.model;
 
 import com.liferay.mobile.screens.BuildConfig;
+import com.liferay.mobile.screens.ddl.JsonParser;
 import com.liferay.mobile.screens.ddl.XSDParser;
 
 import org.junit.Test;
@@ -546,6 +547,111 @@ public class StringWithOptionsFieldTest {
 			assertTrue(field.isValid());
 		}
 
+	}
+
+	@Config(constants = BuildConfig.class)
+	@RunWith(RobolectricTestRunner.class)
+	public static class WhenParsingJson {
+		@Test
+		public void shouldReturnStringWithOptionsFieldObject() throws Exception {
+
+			String json = "{\"availableLanguageIds\": [ \"en_US\"], " +
+				"\"defaultLanguageId\": \"en_US\", " +
+				"\"fields\": [ " +
+				"{\n" +
+				"            \"label\": {" +
+				"                \"en_US\": \"Select\"" +
+				"            }," +
+				"            \"options\": [" +
+				"                {" +
+				"                    \"value\": \"value 1\"," +
+				"                    \"label\": {" +
+				"                        \"en_US\": \"Option 1\"" +
+				"                    }" +
+				"                }," +
+				"                {" +
+				"                    \"value\": \"value 2\"," +
+				"                    \"label\": {" +
+				"                        \"en_US\": \"Option 2\"" +
+				"                    }" +
+				"                }," +
+				"                {" +
+				"                    \"value\": \"value 3\"," +
+				"                    \"label\": {" +
+				"                        \"en_US\": \"Option 3\"" +
+				"                    }" +
+				"                }" +
+				"            ]," +
+				"            \"predefinedValue\": {" +
+				"                \"en_US\": [" +
+				"                    \"value 2\"" +
+				"                ]" +
+				"            }," +
+				"            \"style\": {" +
+				"                \"en_US\": \"\"" +
+				"            }," +
+				"            \"tip\": {" +
+				"                \"en_US\": \"\"" +
+				"            }," +
+				"            \"dataType\": \"string\"," +
+				"            \"indexType\": \"keyword\"," +
+				"            \"localizable\": true," +
+				"            \"multiple\": false," +
+				"            \"name\": \"Select54e6\"," +
+				"            \"readOnly\": false," +
+				"            \"repeatable\": false," +
+				"            \"required\": false," +
+				"            \"showLabel\": true," +
+				"            \"type\": \"select\"" +
+				"        }" +
+				"]}";
+
+			List<Field> resultList = new JsonParser().parse(json, new Locale("en", "US"));
+
+			assertNotNull(resultList);
+			assertEquals(1, resultList.size());
+
+			Field resultField = resultList.get(0);
+			assertTrue(resultField instanceof StringWithOptionsField);
+			StringWithOptionsField optionsField = (StringWithOptionsField) resultField;
+
+			assertEquals(Field.DataType.STRING.getValue(), optionsField.getDataType().getValue());
+			assertEquals(Field.EditorType.SELECT.getValue(), optionsField.getEditorType().getValue());
+
+			List<StringWithOptionsField.Option> predefinedOptions = optionsField.getPredefinedValue();
+			assertNotNull(predefinedOptions);
+			assertEquals(1, predefinedOptions.size());
+
+			List<StringWithOptionsField.Option> selectedOptions = optionsField.getCurrentValue();
+			assertNotNull(selectedOptions);
+			assertEquals(1, selectedOptions.size());
+
+			StringWithOptionsField.Option selectedOption = selectedOptions.get(0);
+
+			assertEquals("Option 2", selectedOption.label);
+			assertEquals("value 2", selectedOption.value);
+
+			assertEquals(optionsField.getCurrentValue(), optionsField.getPredefinedValue());
+
+			List<StringWithOptionsField.Option> availableOptions = optionsField.getAvailableOptions();
+			assertNotNull(availableOptions);
+			assertEquals(3, availableOptions.size());
+
+			StringWithOptionsField.Option option = availableOptions.get(0);
+			assertEquals("Option 1", option.label);
+			assertEquals("value 1", option.value);
+
+			option = availableOptions.get(1);
+			assertEquals("Option 2", option.label);
+			assertEquals("value 2", option.value);
+
+			option = availableOptions.get(2);
+			assertEquals("Option 3", option.label);
+			assertEquals("value 3", option.value);
+
+			// Multiple is not supported yet
+			assertFalse(optionsField.isMultiple());
+		}
 	}
 
 }

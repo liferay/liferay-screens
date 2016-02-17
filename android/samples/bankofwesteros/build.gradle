@@ -2,12 +2,13 @@ apply plugin: 'com.android.application'
 
 buildscript {
 	dependencies {
-		classpath 'com.android.tools.build:gradle:2.0.0-alpha9'
+		classpath 'com.android.tools.build:gradle:2.0.0-beta4'
 	}
 }
 
 repositories {
 	jcenter()
+	maven { url "http://dl.bintray.com/tbruyelle/tbruyelle" }
 }
 
 android {
@@ -22,7 +23,7 @@ android {
 	defaultConfig {
 		applicationId "com.liferay.mobile.screens.bankofwesteros"
 		minSdkVersion 15
-		targetSdkVersion 22
+		targetSdkVersion 23
 		versionCode 4
 		versionName "1.0"
 	}

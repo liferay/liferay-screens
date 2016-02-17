@@ -23,7 +23,6 @@ import android.widget.ImageView;
 
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.viewsets.R;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
 
 /**
  * @author Silvio Santos
@@ -34,20 +33,14 @@ public class LoginView
 
 	public LoginView(Context context) {
 		super(context);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public LoginView(Context context, AttributeSet attributes) {
 		super(context, attributes);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public LoginView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	@Override
@@ -101,8 +94,8 @@ public class LoginView
 
 		Resources res = getResources();
 
-		viewToPrimaryColor.setColorFilter(res.getColor(R.color.material_primary));
-		viewToSecondaryText.setColorFilter(res.getColor(R.color.material_secondary_text));
+		viewToPrimaryColor.setColorFilter(res.getColor(R.color.colorPrimary_material));
+		viewToSecondaryText.setColorFilter(res.getColor(R.color.textColorSecondary_material));
 	}
 
 	protected ImageView _drawableLogin;

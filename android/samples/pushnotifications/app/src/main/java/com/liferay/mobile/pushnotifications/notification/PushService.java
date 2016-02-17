@@ -32,7 +32,7 @@ public class PushService extends AbstractPushService {
 	public static final int NOTIFICATION_ID = 2;
 
 	@Override
-	protected void processJSONNotification(final JSONObject json) throws Exception {
+	protected void processJSONNotification(final JSONObject json) throws JSONException {
 		boolean creation = json.has("newNotification") && json.getBoolean("newNotification");
 		String titleHeader = (creation ? "New" : "Updated") + " notification: ";
 		String title = titleHeader + getString(json, "title");
@@ -84,8 +84,7 @@ public class PushService extends AbstractPushService {
 				String password = getString(R.string.anonymous_password);
 				Session session = SessionContext.createBasicSession(username, password);
 
-				DLFileEntryService entryService = new DLFileEntryService(session);
-				JSONObject result = entryService.getFileEntryByUuidAndGroupId(uuid, groupId);
+				JSONObject result = getFileEntry(uuid, groupId, session);
 
 				return new DownloadPicture().createRequest(this, result,
 					LiferayServerContext.getServer(), 100).get();
@@ -95,6 +94,18 @@ public class PushService extends AbstractPushService {
 			}
 		}
 		return null;
+	}
+
+	private JSONObject getFileEntry(String uuid, Long groupId, Session session) throws Exception {
+		if (LiferayServerContext.isLiferay7()) {
+			DLFileEntryService entryService = new DLFileEntryService(session);
+			return entryService.getFileEntryByUuidAndGroupId(uuid, groupId);
+		}
+		else {
+			com.liferay.mobile.android.v70.dlfileentry.DLFileEntryService entryService
+				= new com.liferay.mobile.android.v70.dlfileentry.DLFileEntryService(session);
+			return entryService.getFileEntryByUuidAndGroupId(uuid, groupId);
+		}
 	}
 
 	private String getString(final JSONObject json, final String element) throws JSONException {

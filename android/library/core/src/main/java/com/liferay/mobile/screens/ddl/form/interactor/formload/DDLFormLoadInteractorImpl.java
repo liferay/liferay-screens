@@ -14,8 +14,9 @@
 
 package com.liferay.mobile.screens.ddl.form.interactor.formload;
 
+import android.support.annotation.NonNull;
+
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.ddmstructure.DDMStructureService;
 import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
@@ -25,7 +26,9 @@ import com.liferay.mobile.screens.cache.ddl.form.RecordCache;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
+import com.liferay.mobile.screens.ddl.form.operation.DDMStructureOperation;
 import com.liferay.mobile.screens.ddl.model.Record;
+import com.liferay.mobile.screens.util.ServiceProvider;
 
 import org.json.JSONException;
 
@@ -58,16 +61,7 @@ public class DDLFormLoadInteractorImpl
 		if (!event.isFailed()) {
 
 			try {
-				String xsd = event.getJSONObject().getString("xsd");
-				long userId = event.getJSONObject().getLong("userId");
-
-				Record formRecord = event.getRecord();
-
-				formRecord.parseXsd(xsd);
-
-				if (formRecord.getCreatorUserId() == 0) {
-					formRecord.setCreatorUserId(userId);
-				}
+				Record formRecord = parseRecord(event);
 
 				getListener().onDDLFormLoaded(formRecord);
 			}
@@ -75,6 +69,24 @@ public class DDLFormLoadInteractorImpl
 				getListener().onDDLFormLoadFailed(e);
 			}
 		}
+	}
+
+	@NonNull
+	private Record parseRecord(DDLFormLoadEvent event) throws JSONException {
+
+		Record formRecord = event.getRecord();
+
+		long userId = event.getJSONObject().getLong("userId");
+		if (event.getJSONObject().has("xsd")) {
+			formRecord.parseXsd(event.getJSONObject().getString("xsd"));
+		} else {
+			formRecord.parseJson(event.getJSONObject().getString("definition"));
+		}
+
+		if (formRecord.getCreatorUserId() == 0) {
+			formRecord.setCreatorUserId(userId);
+		}
+		return formRecord;
 	}
 
 	@Override
@@ -111,10 +123,10 @@ public class DDLFormLoadInteractorImpl
 		CacheSQL.getInstance().set(new DDLFormCache(event.getRecord(), event.getJSONObject()));
 	}
 
-	protected DDMStructureService getDDMStructureService(Record record) {
+	protected DDMStructureOperation getDDMStructureService(Record record) {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(new DDLFormLoadCallback(getTargetScreenletId(), record));
-		return new DDMStructureService(session);
+		return ServiceProvider.getInstance().getDDMStructureOperation(session);
 	}
 
 	protected void validate(Record record) {

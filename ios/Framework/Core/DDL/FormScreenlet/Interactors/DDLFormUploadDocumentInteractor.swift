@@ -77,15 +77,11 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 	}
 
 	override func createOperation() -> LiferayDDLFormUploadOperation {
-		let operation = LiferayDDLFormUploadOperation()
-
-		operation.document = self.document
-		operation.filePrefix = self.filePrefix
-		operation.folderId = self.folderId
-		operation.repositoryId = self.repositoryId
-		operation.onUploadedBytes = self.onProgressClosure
-
-		return operation
+		return LiferayServerContext.operationFactory.createDDLFormUploadOperation(
+			document: document,
+			filePrefix: filePrefix,
+			repositoryId: repositoryId,
+			folderId: folderId)
 	}
 
 	override func completedOperation(op: ServerOperation) {
@@ -112,8 +108,8 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 		// cache only supports images (right now)
 		if let image = document.currentValue as? UIImage {
 			let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
-				? SessionContext.currentCacheManager?.setDirty
-				: SessionContext.currentCacheManager?.setClean
+				? SessionContext.currentContext?.cacheManager.setDirty
+				: SessionContext.currentContext?.cacheManager.setClean
 
 			cacheFunction?(
 				collection: ScreenletName(DDLFormScreenlet),
@@ -125,7 +121,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 
 	override func callOnSuccess() {
 		if cacheStrategy == .CacheFirst {
-			SessionContext.currentCacheManager?.setClean(
+			SessionContext.currentContext?.cacheManager.setClean(
 				collection: ScreenletName(DDLFormScreenlet),
 				key: cacheKey(),
 				attributes: cacheAttributes())
@@ -146,9 +142,9 @@ class DDLFormUploadDocumentInteractor: ServerWriteOperationInteractor {
 		return [
 			"document": self.document,
 			"filePrefix": self.filePrefix,
-			"folderId": NSNumber(longLong: self.folderId),
-			"groupId": NSNumber(longLong: self.groupId),
-			"repositoryId": NSNumber(longLong: self.repositoryId)
+			"folderId": self.folderId.description,
+			"groupId": self.groupId.description,
+			"repositoryId": self.repositoryId.description
 		]
 	}
 

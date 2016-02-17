@@ -20,11 +20,14 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - CocoaLumberjack (1.9.2):
-    - CocoaLumberjack/Extensions (= 1.9.2)
-  - CocoaLumberjack/Core (1.9.2)
-  - CocoaLumberjack/Extensions (1.9.2):
+  - CocoaLumberjack (2.2.0):
+    - CocoaLumberjack/Default (= 2.2.0)
+    - CocoaLumberjack/Extensions (= 2.2.0)
+  - CocoaLumberjack/Core (2.2.0)
+  - CocoaLumberjack/Default (2.2.0):
     - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.2.0):
+    - CocoaLumberjack/Default
   - CryptoSwift (0.1.1)
   - DTPickerPresenter (0.2.0)
   - KeychainAccess (2.3.1)
@@ -37,12 +40,53 @@ PODS:
   - Nocilla (0.10.0)
   - ODRefreshControl (1.2)
   - SMXMLDocument (1.1)
+  - SQLCipher/common (3.3.1)
+  - SQLCipher/fts (3.3.1):
+    - SQLCipher/common
   - SwiftTryCatch (0.0.1)
   - TNRadioButtonGroup (0.4)
-  - YapDatabase (2.6.5):
-    - YapDatabase/standard (= 2.6.5)
-  - YapDatabase/standard (2.6.5):
-    - CocoaLumberjack (~> 1)
+  - YapDatabase/SQLCipher (2.8.2):
+    - YapDatabase/SQLCipher/Core (= 2.8.2)
+    - YapDatabase/SQLCipher/Extensions (= 2.8.2)
+  - YapDatabase/SQLCipher/Core (2.8.2):
+    - CocoaLumberjack (~> 2)
+    - SQLCipher/fts
+  - YapDatabase/SQLCipher/Extensions (2.8.2):
+    - YapDatabase/SQLCipher/Core
+    - YapDatabase/SQLCipher/Extensions/CloudKit (= 2.8.2)
+    - YapDatabase/SQLCipher/Extensions/ConnectionProxy (= 2.8.2)
+    - YapDatabase/SQLCipher/Extensions/FilteredViews (= 2.8.2)
+    - YapDatabase/SQLCipher/Extensions/FullTextSearch (= 2.8.2)
+    - YapDatabase/SQLCipher/Extensions/Hooks (= 2.8.2)
+    - YapDatabase/SQLCipher/Extensions/Relationships (= 2.8.2)
+    - YapDatabase/SQLCipher/Extensions/RTreeIndex (= 2.8.2)
+    - YapDatabase/SQLCipher/Extensions/SearchResults (= 2.8.2)
+    - YapDatabase/SQLCipher/Extensions/SecondaryIndex (= 2.8.2)
+    - YapDatabase/SQLCipher/Extensions/SecondaryIndex (= 2.8.2)
+    - YapDatabase/SQLCipher/Extensions/Views (= 2.8.2)
+  - YapDatabase/SQLCipher/Extensions/CloudKit (2.8.2):
+    - YapDatabase/SQLCipher/Core
+  - YapDatabase/SQLCipher/Extensions/ConnectionProxy (2.8.2):
+    - YapDatabase/SQLCipher/Core
+  - YapDatabase/SQLCipher/Extensions/FilteredViews (2.8.2):
+    - YapDatabase/SQLCipher/Core
+    - YapDatabase/SQLCipher/Extensions/Views
+  - YapDatabase/SQLCipher/Extensions/FullTextSearch (2.8.2):
+    - YapDatabase/SQLCipher/Core
+  - YapDatabase/SQLCipher/Extensions/Hooks (2.8.2):
+    - YapDatabase/SQLCipher/Core
+  - YapDatabase/SQLCipher/Extensions/Relationships (2.8.2):
+    - YapDatabase/SQLCipher/Core
+  - YapDatabase/SQLCipher/Extensions/RTreeIndex (2.8.2):
+    - YapDatabase/SQLCipher/Core
+  - YapDatabase/SQLCipher/Extensions/SearchResults (2.8.2):
+    - YapDatabase/SQLCipher/Core
+    - YapDatabase/SQLCipher/Extensions/FullTextSearch
+    - YapDatabase/SQLCipher/Extensions/Views
+  - YapDatabase/SQLCipher/Extensions/SecondaryIndex (2.8.2):
+    - YapDatabase/SQLCipher/Core
+  - YapDatabase/SQLCipher/Extensions/Views (2.8.2):
+    - YapDatabase/SQLCipher/Core
 
 DEPENDENCIES:
   - CryptoSwift (= 0.1.1)
@@ -57,11 +101,11 @@ DEPENDENCIES:
   - SMXMLDocument (= 1.1)
   - SwiftTryCatch
   - TNRadioButtonGroup (= 0.4)
-  - YapDatabase (= 2.6.5)
+  - YapDatabase/SQLCipher (= 2.8.2)
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  CocoaLumberjack: 628fca2e88ef06f7cf6817309aa405f325d9a6fa
+  CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   CryptoSwift: c11640d3d66107efc8333e4131a5173f072b1d61
   DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
   KeychainAccess: d54b31c75745cfa595b3654590e8cb491a75d411
@@ -72,8 +116,9 @@ SPEC CHECKSUMS:
   Nocilla: ae0a2b05f3087b473624ac2b25903695df51246a
   ODRefreshControl: 907e6149d72dde488d5917ccfabee5bd8d711a20
   SMXMLDocument: e0d9fbf726a2a0921871b492966458acb3ad9689
+  SQLCipher: d490d2effe735895d2204d25a154b1e722278421
   SwiftTryCatch: fb6d2b34abe48efd69578dac919293a44f95b481
   TNRadioButtonGroup: f5fb9b545d8913bbabe6a72ea1fa6fba4d833bb6
-  YapDatabase: 814f9ff862a95c1e581d93335a4020482b69155b
+  YapDatabase: d97b1a0bfd6856745a7a398045f3ca32cf248fda
 
 COCOAPODS: 0.39.0

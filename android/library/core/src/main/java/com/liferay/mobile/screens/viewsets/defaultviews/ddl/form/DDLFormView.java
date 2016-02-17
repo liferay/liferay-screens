@@ -33,9 +33,6 @@ import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
-import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,20 +44,14 @@ public class DDLFormView
 
 	public DDLFormView(Context context) {
 		super(context);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public DDLFormView(Context context, AttributeSet attributes) {
 		super(context, attributes);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public DDLFormView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	@Override
@@ -181,13 +172,11 @@ public class DDLFormView
 		hideProgressBar(actionName);
 		if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
 			LiferayLogger.e("error loading DDLForm", e);
-			LiferayCrouton.error(getContext(), getContext().getString(R.string.loading_form_error), e);
 
 			clearFormFields();
 		}
 		else if (actionName.equals(DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION)) {
 			LiferayLogger.e("error uploading", e);
-			LiferayCrouton.error(getContext(), getContext().getString(R.string.uploading_document_error), e);
 
 			DocumentField documentField = (DocumentField) argument;
 
@@ -257,7 +246,7 @@ public class DDLFormView
 	}
 
 	protected DDLFormScreenlet getDDLFormScreenlet() {
-		return (DDLFormScreenlet) getParent();
+		return (DDLFormScreenlet) getScreenlet();
 	}
 
 	protected void addFieldView(Field field, int position) {
@@ -302,6 +291,7 @@ public class DDLFormView
 		}
 		return null;
 	}
+
 	protected ProgressBar _progressBar;
 	protected ProgressBar _loadingFormProgressBar;
 	protected ViewGroup _fieldsContainerView;

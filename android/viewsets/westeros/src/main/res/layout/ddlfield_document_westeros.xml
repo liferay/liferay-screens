@@ -23,7 +23,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:clickable="true"
-			android:drawableRight="@drawable/westeros_tinted_perm_media"
+			android:drawableRight="@drawable/westeros_perm_media_tinted"
 			android:editable="false"
 			android:focusable="false"
 			android:inputType="none"/>

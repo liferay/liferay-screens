@@ -4,7 +4,7 @@
 	xmlns:liferay="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/westeros_background_gray">
+	android:background="@color/background_gray_westeros">
 
 	<LinearLayout
 		android:id="@+id/background"
@@ -20,7 +20,7 @@
 		<TextView
 			android:id="@+id/call_menu_entry"
 			style="@style/westeros_menu_entry"
-			android:background="@color/westeros_light_gray"/>
+			android:background="@color/light_gray_westeros"/>
 
 		<TextView
 			android:id="@+id/send_message_menu_entry"
@@ -30,7 +30,7 @@
 		<TextView
 			android:id="@+id/sign_out_menu_entry"
 			style="@style/westeros_menu_entry"
-			android:background="@color/westeros_light_gray"
+			android:background="@color/light_gray_westeros"
 			android:text="@string/sign_out"/>
 
 	</LinearLayout>
@@ -73,7 +73,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="1dp"
 				android:layout_below="@id/title_issues"
-				android:background="@color/westeros_background_gray"/>
+				android:background="@color/background_gray_westeros"/>
 
 			<com.liferay.mobile.screens.ddl.list.DDLListScreenlet
 				android:id="@+id/ddllist"
@@ -112,7 +112,7 @@
 				android:layout_below="@id/title_detail_issue"
 				android:paddingBottom="10dp"
 				android:textAllCaps="true"
-				android:textColor="@color/westeros_black"
+				android:textColor="@color/textColorPrimary_westeros"
 				android:textSize="18sp"
 				android:textStyle="bold"/>
 
@@ -129,14 +129,14 @@
 				android:layout_below="@id/createdAt"
 				android:paddingBottom="30dp"
 				android:paddingTop="30dp"
-				android:textColor="@color/westeros_black"/>
+				android:textColor="@color/textColorPrimary_westeros"/>
 
 			<TextView
 				android:id="@+id/severity"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_below="@id/description"
-				android:textColor="@color/westeros_red"/>
+				android:textColor="@color/colorPrimary_westeros"/>
 
 		</RelativeLayout>
 	</FrameLayout>

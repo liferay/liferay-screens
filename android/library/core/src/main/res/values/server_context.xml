@@ -7,5 +7,7 @@
 	<string name="liferay_server">http://192.168.56.1:8080</string>
 
 	<string name="factory_class">com.liferay.mobile.screens.base.FactoryCE</string>
+	<integer name="liferay_portal_version">62</integer>
+	<string name="liferay_custom_service_version_factory"></string>
 
 </resources>

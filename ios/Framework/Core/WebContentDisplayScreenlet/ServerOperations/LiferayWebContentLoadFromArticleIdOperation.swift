@@ -16,7 +16,13 @@ import UIKit
 
 public class LiferayWebContentLoadFromArticleIdOperation: LiferayWebContentLoadBaseOperation {
 
-	public var articleId: String?
+	public let articleId: String?
+
+	public init(articleId: String) {
+		self.articleId = articleId
+
+		super.init()
+	}
 
 
 	//MARK: ServerOperation
@@ -33,28 +39,33 @@ public class LiferayWebContentLoadFromArticleIdOperation: LiferayWebContentLoadB
 		return error
 	}
 
+}
+
+
+public class Liferay62WebContentLoadFromArticleIdOperation: LiferayWebContentLoadFromArticleIdOperation {
+
 	override internal func doGetJournalArticleWithTemplate(
-			templateId: Int64,
-			session: LRSession) -> String? {
-		let service = LRScreensjournalarticleService_v62(session: session)
+		templateId: Int64,
+		session: LRSession) -> String? {
+			let service = LRScreensjournalarticleService_v62(session: session)
 
-		do {
-			let result: String?
+			do {
+				let result: String?
 
-			result = try service.getJournalArticleContentWithGroupId(groupId!,
-				articleId: articleId!,
-				ddmTemplateId: templateId,
-				locale: NSLocale.currentLocaleString)
+				result = try service.getJournalArticleContentWithGroupId(groupId!,
+					articleId: articleId!,
+					ddmTemplateId: templateId,
+					locale: NSLocale.currentLocaleString)
 
-			lastError = nil
+				lastError = nil
 
-			return result
-		}
-		catch let error as NSError {
-			lastError = error
-		}
+				return result
+			}
+			catch let error as NSError {
+				lastError = error
+			}
 
-		return nil
+			return nil
 	}
 
 	override internal func doGetJournalArticle(session: LRSession) -> String? {
@@ -75,8 +86,61 @@ public class LiferayWebContentLoadFromArticleIdOperation: LiferayWebContentLoadB
 		catch let error as NSError {
 			lastError = error
 		}
-
+		
 		return nil
 	}
-
+	
 }
+
+
+public class Liferay70WebContentLoadFromArticleIdOperation: LiferayWebContentLoadFromArticleIdOperation {
+
+	override internal func doGetJournalArticleWithTemplate(
+		templateId: Int64,
+		session: LRSession) -> String? {
+			let service = LRScreensjournalarticleService_v70(session: session)
+
+			do {
+				let result: String?
+
+				result = try service.getJournalArticleContentWithGroupId(groupId!,
+					articleId: articleId!,
+					ddmTemplateId: templateId,
+					locale: NSLocale.currentLocaleString)
+
+				lastError = nil
+
+				return result
+			}
+			catch let error as NSError {
+				lastError = error
+			}
+
+			return nil
+	}
+
+	override internal func doGetJournalArticle(session: LRSession) -> String? {
+		let service = LRJournalArticleService_v70(session: session)
+
+		do {
+			let result: String?
+
+			result = try service.getArticleContentWithGroupId(groupId!,
+				articleId: articleId!,
+				languageId: NSLocale.currentLocaleString,
+				themeDisplay: nil)
+
+			lastError = nil
+
+			return result
+		}
+		catch let error as NSError {
+			lastError = error
+		}
+		
+		return nil
+	}
+	
+}
+
+

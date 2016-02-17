@@ -22,7 +22,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 	//MARK: Parse
 
-	func test_Parse_ShouldExtractValues() {
+	func test_XSDParse_ShouldExtractValues() {
 		let xsd =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"document-library\" " +
@@ -51,6 +51,36 @@ class DDLFieldDocument_Tests: XCTestCase {
 		XCTAssertEqual("A_Document", docField.name)
 		XCTAssertEqual("A Document", docField.label)
 	}
+
+	func test_JSONParse_ShouldExtractValues() {
+		let json = "{\"availableLanguageIds\": [\"en_US\"]," +
+			"\"defaultLanguageId\": \"en_US\"," +
+			"\"fields\": [{" +
+			"\"label\": {\"en_US\": \"A Document\"}," +
+			"\"predefinedValue\": {\"en_US\": \"\"}," +
+			"\"dataType\": \"document-library\"," +
+			"\"indexType\": \"keyword\"," +
+			"\"localizable\": true," +
+			"\"name\": \"A_Document\"," +
+			"\"readOnly\": false," +
+			"\"repeatable\": true," +
+			"\"required\": false," +
+			"\"showLabel\": true," +
+			"\"fieldNamespace\": \"ddm\"," +
+		"\"type\": \"ddm-documentlibrary\"}]}"
+
+		let fields = DDLJSONParser().parse(json, locale: spanishLocale)
+
+		XCTAssertTrue(fields![0] is DDLFieldDocument)
+		let docField = fields![0] as! DDLFieldDocument
+
+		XCTAssertEqual(DDLField.DataType.DDLDocument, docField.dataType)
+		XCTAssertEqual(DDLField.Editor.Document, docField.editorType)
+		XCTAssertNil(docField.predefinedValue)
+		XCTAssertEqual("A_Document", docField.name)
+		XCTAssertEqual("A Document", docField.label)
+	}
+
 
 
 	//MARK: Validate

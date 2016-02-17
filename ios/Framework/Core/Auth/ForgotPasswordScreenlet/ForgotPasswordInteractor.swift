@@ -30,17 +30,17 @@ class ForgotPasswordInteractor: ServerOperationInteractor {
 
 		switch BasicAuthMethod.create(screenlet.basicAuthMethod) {
 			case .ScreenName:
-				operation = LiferayForgotPasswordScreenNameOperation(
+				operation = LiferayServerContext.operationFactory.createForgotPasswordByScreenNameOperation(
 					viewModel: screenlet.viewModel,
 					anonymousUsername: screenlet.anonymousApiUserName!,
 					anonymousPassword: screenlet.anonymousApiPassword!)
 			case .UserId:
-				operation = LiferayForgotPasswordUserIdOperation(
+				operation = LiferayServerContext.operationFactory.createForgotPasswordByUserIdOperation(
 					viewModel: screenlet.viewModel,
 					anonymousUsername: screenlet.anonymousApiUserName!,
 					anonymousPassword: screenlet.anonymousApiPassword!)
 			case .Email:
-				operation = LiferayForgotPasswordEmailOperation(
+				operation = LiferayServerContext.operationFactory.createForgotPasswordByEmailOperation(
 					viewModel: screenlet.viewModel,
 					anonymousUsername: screenlet.anonymousApiUserName!,
 					anonymousPassword: screenlet.anonymousApiPassword!)

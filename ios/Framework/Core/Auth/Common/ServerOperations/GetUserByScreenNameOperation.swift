@@ -38,16 +38,4 @@ public class GetUserByScreenNameOperation: GetUserBaseOperation {
 		return error
 	}
 
-	//MARK: LiferayLoginBaseOperation
-
-	override internal func sendGetUserRequest(
-			service service: LRUserService_v62)
-			throws -> NSDictionary? {
-
-		let companyId = (self.companyId != 0) ? self.companyId : LiferayServerContext.companyId
-
-		return try service.getUserByScreenNameWithCompanyId(companyId,
-				screenName: screenName)
-	}
-
 }

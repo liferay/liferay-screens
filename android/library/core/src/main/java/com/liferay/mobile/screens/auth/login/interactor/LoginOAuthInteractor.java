@@ -18,7 +18,7 @@ import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.service.v62.ScreensuserService;
+import com.liferay.mobile.screens.util.ServiceProvider;
 
 /**
  * @author Jose Manuel Navarro
@@ -45,7 +45,7 @@ public class LoginOAuthInteractor extends BaseLoginInteractor {
 		Session session = SessionContext.createOAuthSession(_OAuthConfig);
 		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
 
-		new ScreensuserService(session).getCurrentUser();
+		ServiceProvider.getInstance().getCurrentUserOperation(session).getCurrentUser();
 	}
 
 	// NOTE: this interactor can store state because this attribute

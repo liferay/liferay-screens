@@ -28,11 +28,11 @@ public class DDLDocumentFieldView
 	public void refresh() {
 		getTextEditText().setText(getField().toFormattedString());
 		if (getField().isUploaded()) {
-			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.westeros_tinted_done, 0);
+			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.westeros_done_tinted, 0);
 			getProgressBar().setVisibility(View.GONE);
 		}
 		else if (getField().isUploadFailed()) {
-			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.westeros_tinted_remove, 0);
+			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.westeros_highlight_remove_tinted, 0);
 			getProgressBar().setVisibility(View.GONE);
 		}
 		else if (getField().isUploading()) {
@@ -40,7 +40,7 @@ public class DDLDocumentFieldView
 			getProgressBar().setVisibility(View.VISIBLE);
 		}
 		else {
-			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.westeros_tinted_perm_media, 0);
+			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.westeros_perm_media_tinted, 0);
 			getProgressBar().setVisibility(View.GONE);
 		}
 	}

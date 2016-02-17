@@ -3,7 +3,7 @@
 	style="@style/westeros_screenlet"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:fillViewport="true"
-	android:theme="@style/WesterosTheme">
+	android:theme="@style/westeros_theme">
 
 	<RelativeLayout
 		android:layout_width="match_parent"

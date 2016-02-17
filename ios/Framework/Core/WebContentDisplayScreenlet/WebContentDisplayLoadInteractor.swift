@@ -25,18 +25,10 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 		let operation: LiferayWebContentLoadBaseOperation?
 
 		if screenlet.articleId != "" {
-			let articleIdOp = LiferayWebContentLoadFromArticleIdOperation()
-
-			articleIdOp.articleId = screenlet.articleId
-
-			operation = articleIdOp
+			operation = LiferayServerContext.operationFactory.createWebContentLoadFromArticleId(articleId: screenlet.articleId)
 		}
 		else if screenlet.classPK != 0 {
-			let classPKOp = LiferayWebContentLoadFromClassPKOperation()
-
-			classPKOp.classPK = screenlet.classPK
-
-			operation = classPKOp
+			operation = LiferayServerContext.operationFactory.createWebContentLoadFromClassPK(classPK: screenlet.classPK)
 		}
 		else {
 			operation = nil
@@ -60,7 +52,7 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {
 
-			SessionContext.currentCacheManager!.getString(
+			SessionContext.currentContext?.cacheManager.getString(
 					collection: ScreenletName(WebContentDisplayScreenlet),
 					key: articleCacheKey(groupId, articleId)) {
 				loadOp.resultHTML = $0
@@ -75,7 +67,7 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {
 
-			SessionContext.currentCacheManager?.setClean(
+			SessionContext.currentContext?.cacheManager.setClean(
 				collection: ScreenletName(WebContentDisplayScreenlet),
 				key: articleCacheKey(groupId, articleId),
 				value: html,

@@ -137,9 +137,7 @@ import UIKit
 	}
 
 
-	//MARK: Internal methods
-
-	internal func createPageLoadInteractor(
+	public func createPageLoadInteractor(
 			page page: Int,
 			computeRowCount: Bool)
 			-> BaseListPageLoadInteractor {
@@ -147,14 +145,14 @@ import UIKit
 		fatalError("createPageLoadInteractor must be overriden")
 	}
 
-	internal func onLoadPageError(page page: Int, error: NSError) {
+	public func onLoadPageError(page page: Int, error: NSError) {
 		print("ERROR: Load page error \(page) -> \(error)\n")
 	}
 
-	internal func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
+	public func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
 	}
 
-	internal func onSelectedRow(row:AnyObject) {
+	public func onSelectedRow(row:AnyObject) {
 	}
 
 }

@@ -271,7 +271,12 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			if (obj instanceof Option) {
 				Option opt = (Option) obj;
 
-				return label.equals(opt.label) && name.equals(opt.name) && value.equals(opt.value);
+				if (name != null) {
+					return label.equals(opt.label) && value.equals(opt.value) && name.equals(opt.name);
+				}
+				else {
+					return label.equals(opt.label) && value.equals(opt.value);
+				}
 			}
 
 			return super.equals(obj);

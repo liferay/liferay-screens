@@ -7,19 +7,20 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
-import com.liferay.mobile.android.v62.ddlrecord.DDLRecordService;
 import com.liferay.mobile.screens.cache.ddl.documentupload.DocumentUploadCache;
 import com.liferay.mobile.screens.cache.ddl.form.DDLRecordCache;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.ddl.form.operation.DDLRecordOperation;
 import com.liferay.mobile.screens.ddl.form.service.UploadService;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitService;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;
+import com.liferay.mobile.screens.util.ServiceProvider;
 
 import org.json.JSONObject;
 
@@ -126,7 +127,7 @@ public class CacheSyncService extends IntentService {
 		Long groupId = LiferayServerContext.getGroupId();
 		List<DDLRecordCache> records = getLatestRecordsToSync(cache);
 
-		DDLRecordService recordService = new DDLRecordService(SessionContext.createSessionFromCurrentSession());
+		DDLRecordOperation recordService = ServiceProvider.getInstance().getDDLRecordOperation(SessionContext.createSessionFromCurrentSession());
 
 		for (DDLRecordCache cachedRecord : records) {
 			try {
@@ -160,7 +161,7 @@ public class CacheSyncService extends IntentService {
 		return cache.get(DDL_RECORD, DDLRecordCache.DIRTY + " = 1 AND " + TableCache.GROUP_ID + " = ? ", groupId);
 	}
 
-	private JSONObject saveOrUpdate(DDLRecordService recordService, Record record, long groupId, JSONObjectWrapper serviceContextWrapper, JSONObject jsonContent) throws Exception {
+	private JSONObject saveOrUpdate(DDLRecordOperation recordService, Record record, long groupId, JSONObjectWrapper serviceContextWrapper, JSONObject jsonContent) throws Exception {
 		if (record.getRecordId() == 0) {
 			return recordService.addRecord(groupId, record.getRecordSetId(), 0, jsonContent, serviceContextWrapper);
 		}

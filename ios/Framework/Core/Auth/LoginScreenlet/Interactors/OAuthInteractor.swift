@@ -112,13 +112,18 @@ class OAuthInteractor: Interactor, LRCallback {
 				authentication: LROAuth(config: config))
 		OAuthSession!.callback = self
 
-		let srv = LRScreensuserService_v62(session: OAuthSession!)
+		switch LiferayServerContext.serverVersion {
+		case .v62:
+			let srv = LRScreensuserService_v62(session: OAuthSession!)
 
-		do {
-			try srv.getCurrentUser()
+			_ = try? srv.getCurrentUser()
+
+		case .v70:
+			let srv = LRUserService_v70(session: OAuthSession!)
+
+			_ = try? srv.getCurrentUser()
 		}
-		catch {
-		}
+
 	}
 
 	func onFailure(error: NSError!) {
@@ -129,7 +134,7 @@ class OAuthInteractor: Interactor, LRCallback {
 		if let resultValue = result as? [String:AnyObject] {
 			resultUserAttributes = resultValue
 
-			SessionContext.createOAuthSession(
+			SessionContext.loginWithOAuth(
 					authentication: OAuthSession!.authentication as! LROAuth,
 					userAttributes: resultValue)
 

@@ -24,6 +24,6 @@
 		style="@style/westeros_tour_text"
 		android:layout_alignParentBottom="true"
 		android:text="@string/we_are_here_to_help"
-		android:textColor="@color/westeros_dark_gray"/>
+		android:textColor="@color/textColorSecondary_westeros"/>
 
 </RelativeLayout>

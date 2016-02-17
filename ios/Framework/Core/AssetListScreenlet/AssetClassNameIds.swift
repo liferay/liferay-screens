@@ -27,9 +27,6 @@ public let AssetClassNameIdBlogsEntry = "BlogsEntry"
 public let AssetClassNameIdBookmarksEntry = "BookmarksEntry"
 public let AssetClassNameIdBookmarksFolder = "BookmarksFolder"
 
-// Calendar
-public let AssetClassNameIdCalendarEvent = "CalendarEvent"
-
 // Document Library
 public let AssetClassNameIdDLFileEntry = "DLFileEntry"
 public let AssetClassNameIdDLFolder = "DLFolder"
@@ -86,9 +83,6 @@ public let AssetClassNameIdWikiNode = "WikiNode"
 			// Bookmarks
 			AssetClassNameIdBookmarksEntry : 10008,
 			AssetClassNameIdBookmarksFolder : 10009,
-
-			// Calendar
-			AssetClassNameIdCalendarEvent : 10010,
 
 			// Document Library
 			AssetClassNameIdDLFileEntry : 10011,

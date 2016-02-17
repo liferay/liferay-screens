@@ -82,11 +82,12 @@ import UIKit
 			if self.autoLogin {
 				self.doAutoLogin(interactor.resultUserAttributes!)
 
-				if self.saveCredentials {
-					SessionContext.removeStoredCredentials()
+				if let ctx = SessionContext.currentContext where self.saveCredentials {
+					ctx.removeStoredCredentials()
 
-					if SessionContext.storeCredentials() {
-						self.autoLoginDelegate?.onScreenletCredentialsSaved?(self)
+					if ctx.storeCredentials() {
+						self.autoLoginDelegate?.screenlet?(self,
+							onCredentialsSavedUserAttributes: interactor.resultUserAttributes!)
 					}
 				}
 			}
@@ -132,7 +133,7 @@ import UIKit
 		if let currentKey = userNameKeys[currentAuth],
 				userName = userAttributes[currentKey] as? String {
 
-			SessionContext.createBasicSession(
+			SessionContext.loginWithBasic(
 				username: userName,
 				password: self.viewModel.password!,
 				userAttributes: userAttributes)
