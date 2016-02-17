@@ -34,6 +34,7 @@ before_install:
 
 script:
     - cd android/library/
+    - echo "sdk.dir=$ANDROID_HOME" > local.properties
     - ./gradlew clean
     - ./gradlew assembleDebug
     - ./gradlew assembleDebugAndroidTest
