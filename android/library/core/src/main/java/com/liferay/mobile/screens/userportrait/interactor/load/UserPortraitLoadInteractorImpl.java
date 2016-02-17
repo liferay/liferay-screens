@@ -20,7 +20,7 @@ import android.net.Uri;
 import android.util.Base64;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.user.UserService;
+import com.liferay.mobile.screens.auth.login.operation.UserOperation;
 import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
@@ -32,6 +32,7 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 import com.liferay.mobile.screens.util.LiferayLogger;
+import com.liferay.mobile.screens.util.ServiceProvider;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -184,11 +185,11 @@ public class UserPortraitLoadInteractorImpl
 		CacheSQL.getInstance().set(new UserPortraitCache(userId, true, portraitId, uuid));
 	}
 
-	protected UserService getUserService(long userId) {
+	protected UserOperation getUserService(long userId) {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(new UserPortraitLoadCallback(getTargetScreenletId(), userId));
 
-		return new UserService(session);
+		return ServiceProvider.getInstance().getUserOperations(session);
 	}
 
 	private void validate(String uuid) {
@@ -209,7 +210,7 @@ public class UserPortraitLoadInteractorImpl
 	private Uri getUserPortraitURL(boolean male, long portraitId, String uuid) {
 		String maleString = male ? "male" : "female";
 		String url = LiferayServerContext.getServer() + "/image/user_" + maleString +
-			"/_portrait?img_id=" + portraitId + "&img_id_token=" + getSHA1String(uuid);
+			"_portrait?img_id=" + portraitId + "&img_id_token=" + getSHA1String(uuid);
 		return Uri.parse(url);
 	}
 

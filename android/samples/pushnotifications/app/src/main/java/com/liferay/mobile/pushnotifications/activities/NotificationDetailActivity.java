@@ -21,7 +21,7 @@ public class NotificationDetailActivity extends AppCompatActivity implements DDL
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_notification_detail);
 
-		if (!SessionContext.hasSession()) {
+		if (!SessionContext.isLoggedIn()) {
 			startActivity(new Intent(this, LoginActivity.class));
 		}
 

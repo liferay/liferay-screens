@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.ddl.model;
 
 import com.liferay.mobile.screens.BuildConfig;
+import com.liferay.mobile.screens.ddl.JsonParser;
 import com.liferay.mobile.screens.ddl.XSDParser;
 
 import org.junit.Test;
@@ -251,6 +252,169 @@ public class NumberFieldTest {
 					"</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
+
+			assertNotNull(resultList);
+			assertEquals(1, resultList.size());
+
+			Field resultField = resultList.get(0);
+			assertTrue(resultField instanceof NumberField);
+			NumberField numberField = (NumberField) resultField;
+
+			assertEquals(Field.DataType.NUMBER.getValue(), numberField.getDataType().getValue());
+			assertEquals(Field.EditorType.DECIMAL.getValue(), numberField.getEditorType().getValue());
+			assertEquals("A_Decimal", numberField.getName());
+
+			Number result = numberField.getCurrentValue();
+			assertTrue(result instanceof Double);
+			assertEquals(123.4, result);
+
+			assertSame(numberField.getCurrentValue(), numberField.getPredefinedValue());
+		}
+
+	}
+
+	@Config(constants = BuildConfig.class)
+	@RunWith(RobolectricTestRunner.class)
+	public static class WhenParsingJson {
+
+		@Test
+		public void shouldReturnFieldObjectWhenFieldIsNumber() throws Exception {
+
+			String JSON_NUMBER = "{\"availableLanguageIds\": [ \"en_US\"], " +
+				"\"defaultLanguageId\": \"en_US\", " +
+				"\"fields\": [ " +
+				"{ " +
+				"            \"label\": {" +
+				"                \"en_US\": \"Number\"" +
+				"            }," +
+				"            \"predefinedValue\": {" +
+				"                \"en_US\": \"123\"" +
+				"            }," +
+				"            \"style\": {" +
+				"                \"en_US\": \"\"" +
+				"            }," +
+				"            \"tip\": {" +
+				"                \"en_US\": \"\"" +
+				"            }," +
+				"            \"dataType\": \"number\"," +
+				"            \"fieldNamespace\": \"ddm\"," +
+				"            \"indexType\": \"keyword\"," +
+				"            \"localizable\": true," +
+				"            \"name\": \"A_Number\"," +
+				"            \"readOnly\": false," +
+				"            \"repeatable\": false," +
+				"            \"required\": false," +
+				"            \"showLabel\": true," +
+				"            \"type\": \"ddm-number\"" +
+				"        }" +
+				"]}";
+
+			List<Field> resultList = new JsonParser().parse(JSON_NUMBER, _usLocale);
+
+			assertNotNull(resultList);
+			assertEquals(1, resultList.size());
+
+			Field resultField = resultList.get(0);
+			assertTrue(resultField instanceof NumberField);
+			NumberField numberField = (NumberField) resultField;
+
+			assertEquals(Field.DataType.NUMBER.getValue(), numberField.getDataType().getValue());
+			assertEquals(Field.EditorType.NUMBER.getValue(), numberField.getEditorType().getValue());
+			assertEquals("A_Number", numberField.getName());
+
+			Number result = numberField.getCurrentValue();
+			assertTrue(result instanceof Long);
+			assertEquals(123L, result);
+
+			assertSame(numberField.getCurrentValue(), numberField.getPredefinedValue());
+		}
+
+		@Test
+		public void shouldReturnFieldObjectWhenFieldIsInteger() throws Exception {
+
+			String JSON_NUMBER = "{\"availableLanguageIds\": [ \"en_US\"], " +
+				"\"defaultLanguageId\": \"en_US\", " +
+				"\"fields\": [ " +
+				"{ " +
+				"            \"label\": {" +
+				"                \"en_US\": \"Number\"" +
+				"            }," +
+				"            \"predefinedValue\": {" +
+				"                \"en_US\": \"123\"" +
+				"            }," +
+				"            \"style\": {" +
+				"                \"en_US\": \"\"" +
+				"            }," +
+				"            \"tip\": {" +
+				"                \"en_US\": \"\"" +
+				"            }," +
+				"            \"dataType\": \"number\"," +
+				"            \"fieldNamespace\": \"ddm\"," +
+				"            \"indexType\": \"keyword\"," +
+				"            \"localizable\": true," +
+				"            \"name\": \"An_Integer\"," +
+				"            \"readOnly\": false," +
+				"            \"repeatable\": false," +
+				"            \"required\": false," +
+				"            \"showLabel\": true," +
+				"            \"type\": \"ddm-integer\"" +
+				"        }" +
+				"]}";
+
+			List<Field> resultList = new JsonParser().parse(JSON_NUMBER, _usLocale);
+
+			assertNotNull(resultList);
+			assertEquals(1, resultList.size());
+
+			Field resultField = resultList.get(0);
+			assertTrue(resultField instanceof NumberField);
+			NumberField numberField = (NumberField) resultField;
+
+			assertEquals(Field.DataType.NUMBER.getValue(), numberField.getDataType().getValue());
+			assertEquals(Field.EditorType.INTEGER.getValue(), numberField.getEditorType().getValue());
+			assertEquals("An_Integer", numberField.getName());
+
+			Number result = numberField.getCurrentValue();
+			assertTrue(result instanceof Long);
+			assertEquals(123L, result);
+
+			assertSame(numberField.getCurrentValue(), numberField.getPredefinedValue());
+		}
+
+		@Test
+		public void shouldReturnFieldObjectWhenFieldIsDecimal() throws Exception {
+
+			String JSON_NUMBER = "{\"availableLanguageIds\": [ \"en_US\"], " +
+				"\"defaultLanguageId\": \"en_US\", " +
+				"\"fields\": [ " +
+				"{ " +
+				"\"label\": {\n" +
+				"                \"en_US\": \"Decimal\"\n" +
+				"            },\n" +
+				"            \"predefinedValue\": {\n" +
+				"                \"en_US\": \"123.4\"\n" +
+				"            },\n" +
+				"            \"style\": {\n" +
+				"                \"en_US\": \"\"\n" +
+				"            },\n" +
+				"            \"tip\": {\n" +
+				"                \"en_US\": \"\"\n" +
+				"            },\n" +
+				"            \"dataType\": \"double\",\n" +
+				"            \"fieldNamespace\": \"ddm\",\n" +
+				"            \"indexType\": \"keyword\",\n" +
+				"            \"localizable\": true,\n" +
+				"            \"name\": \"A_Decimal\",\n" +
+				"            \"readOnly\": false,\n" +
+				"            \"repeatable\": false,\n" +
+				"            \"required\": false,\n" +
+				"            \"showLabel\": true,\n" +
+				"            \"type\": \"ddm-decimal\"" +
+				"        }" +
+				"]}";
+
+
+			List<Field> resultList = new JsonParser().parse(JSON_NUMBER, _usLocale);
 
 			assertNotNull(resultList);
 			assertEquals(1, resultList.size());

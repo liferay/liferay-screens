@@ -45,4 +45,3 @@ script:
     - pod install
     - ./run-tests.sh
     - cd ../..
-

@@ -18,13 +18,14 @@ import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
-import com.liferay.mobile.android.v62.user.UserService;
+import com.liferay.mobile.screens.auth.login.operation.UserOperation;
 import com.liferay.mobile.screens.auth.signup.SignUpListener;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.util.ServiceProvider;
 
 import org.json.JSONArray;
 
@@ -64,15 +65,15 @@ public class SignUpInteractorImpl extends BaseRemoteInteractor<SignUpListener>
 			companyId, firstName, emailAddress, locale, anonymousApiUserName,
 			anonymousApiPassword);
 
-		UserService service = getUserService(
+		UserOperation userOperation = getUserOperation(
 			anonymousApiUserName, anonymousApiPassword);
 
 		sendSignUpRequest(
-			service, companyId, firstName, middleName, lastName, emailAddress,
+			userOperation, companyId, firstName, middleName, lastName, emailAddress,
 			screenName, password, jobTitle, locale);
 	}
 
-	protected UserService getUserService(
+	protected UserOperation getUserOperation(
 		String anonymousApiUserName, String anonymousApiPassword) {
 
 		Authentication authentication = new BasicAuthentication(
@@ -84,11 +85,11 @@ public class SignUpInteractorImpl extends BaseRemoteInteractor<SignUpListener>
 		anonymousSession.setCallback(
 			new JSONObjectCallback(getTargetScreenletId()));
 
-		return new UserService(anonymousSession);
+		return ServiceProvider.getInstance().getUserOperations(anonymousSession);
 	}
 
 	protected void sendSignUpRequest(
-		UserService service, long companyId, String firstName,
+		UserOperation service, long companyId, String firstName,
 		String middleName, String lastName, String emailAddress,
 		String screenName, String password, String jobTitle, Locale locale)
 		throws Exception {
