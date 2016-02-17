@@ -18,7 +18,7 @@ class SignUpInteractor: ServerOperationInteractor {
 
 	var resultUserAttributes: [String:AnyObject]?
 
-	override func createOperation() -> LiferaySignUpOperation? {
+	override func createOperation() -> ServerOperation? {
 		let screenlet = self.screenlet as! SignUpScreenlet
 
 		if screenlet.anonymousApiUserName == nil || screenlet.anonymousApiPassword == nil {
@@ -26,7 +26,7 @@ class SignUpInteractor: ServerOperationInteractor {
 			return nil
 		}
 
-		let operation = LiferaySignUpOperation(
+		let operation = LiferayServerContext.operationFactory.createSignUpOperation(
 			viewModel: screenlet.viewModel,
 			anonymousUsername: screenlet.anonymousApiUserName!,
 			anonymousPassword: screenlet.anonymousApiPassword!)

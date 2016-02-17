@@ -3,6 +3,5 @@
 	android:id="@+id/liferay_list_title"
 	style="@style/default_list_item"
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:drawableEnd="@drawable/default_hourglass"
-	android:drawableRight="@drawable/default_hourglass"
+	android:drawableRight="@drawable/default_hourglass_tinted"
 	android:text="@string/default_empty_value"/>

@@ -51,14 +51,6 @@
                BlueprintName = "LiferayScreensTests"
                ReferencedContainer = "container:LiferayScreens.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "LoginScreenlet_ByScreenName_Tests">
-               </Test>
-               <Test
-                  Identifier = "LoginScreenlet_ByUserId_Tests">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

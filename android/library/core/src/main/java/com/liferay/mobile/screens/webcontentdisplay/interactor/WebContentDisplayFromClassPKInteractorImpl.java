@@ -21,7 +21,8 @@ import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.service.v62.ScreensjournalarticleService;
+import com.liferay.mobile.screens.util.ServiceProvider;
+import com.liferay.mobile.screens.webcontentdisplay.operation.ScreensJournalContentOperation;
 
 import java.util.Locale;
 
@@ -63,7 +64,7 @@ public class WebContentDisplayFromClassPKInteractorImpl
 		long templateId = (long) args[1];
 		Locale locale = (Locale) args[2];
 
-		ScreensjournalarticleService screensjournalarticleService = getScreensJournalArticleService(classPK, locale, templateId);
+		ScreensJournalContentOperation screensjournalarticleService = getScreensJournalArticleService(classPK, locale, templateId);
 
 		if (templateId == 0) {
 			screensjournalarticleService.getJournalArticleContent(classPK, locale.toString());
@@ -99,10 +100,10 @@ public class WebContentDisplayFromClassPKInteractorImpl
 			event.getHtml(), event.getGroupId(), null, event.getLocale()));
 	}
 
-	protected ScreensjournalarticleService getScreensJournalArticleService(long classPK, Locale locale, Long templateId) {
+	protected ScreensJournalContentOperation getScreensJournalArticleService(long classPK, Locale locale, Long templateId) {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(new WebContentDisplayFromClassPKCallback(getTargetScreenletId(), classPK, locale, templateId));
-		return new ScreensjournalarticleService(session);
+		return ServiceProvider.getInstance().getScreensJournalContentOperation(session);
 	}
 
 	private void validate(long classPK, Locale locale) {

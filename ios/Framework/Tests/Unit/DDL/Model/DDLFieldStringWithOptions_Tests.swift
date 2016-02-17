@@ -21,7 +21,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 
 	//MARK: Parse
 
-	func test_Parse_ShouldExtractValues() {
+	func test_XSDParse_ShouldExtractValues() {
 		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 
 		XCTAssertTrue(fields != nil)
@@ -41,7 +41,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 		XCTAssertTrue(stringField.showLabel)
 	}
 
-	func test_Parse_ShouldExtractOptions() {
+	func test_XSDParse_ShouldExtractOptions() {
 		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 
 		let stringField = fields![0] as! DDLFieldStringWithOptions
@@ -67,7 +67,7 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 		XCTAssertEqual("Option 3", option.label)
 	}
 
-	func test_Parse_ShouldExtractPredefinedOptions() {
+	func test_XSDParse_ShouldExtractPredefinedOptions() {
 		let fields = DDLXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
 
 		let stringField = fields![0] as! DDLFieldStringWithOptions
@@ -85,6 +85,65 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 		XCTAssertEqual("Option 1", predefinedOption.label)
 	}
 
+	func test_JSONParse_ShouldExtractValues() {
+		let fields = DDLJSONParser().parse(selectWithPredefinedValuesJSON, locale: spanishLocale)
+
+		XCTAssertTrue(fields != nil)
+		XCTAssertEqual(1, fields!.count)
+		XCTAssertTrue(fields![0] is DDLFieldStringWithOptions)
+
+		let stringField = fields![0] as! DDLFieldStringWithOptions
+
+		XCTAssertEqual(DDLField.DataType.DDLString, stringField.dataType)
+		XCTAssertEqual(DDLField.Editor.Select, stringField.editorType)
+		XCTAssertEqual("A_Select", stringField.name)
+		XCTAssertEqual("A Select", stringField.label)
+		XCTAssertTrue(stringField.multiple)
+		XCTAssertFalse(stringField.readOnly)
+		XCTAssertTrue(stringField.repeatable)
+		XCTAssertTrue(stringField.required)
+		XCTAssertTrue(stringField.showLabel)
+	}
+
+	func test_JSONParse_ShouldExtractOptions() {
+		let fields = DDLJSONParser().parse(selectWithPredefinedValuesJSON, locale: spanishLocale)
+
+		let stringField = fields![0] as! DDLFieldStringWithOptions
+
+		XCTAssertEqual(3, stringField.options.count)
+
+		var option = stringField.options[0]
+
+		XCTAssertEqual("value 1", option.value)
+		XCTAssertEqual("Option 1", option.label)
+
+		option = stringField.options[1]
+
+		XCTAssertEqual("value 2", option.value)
+		XCTAssertEqual("Option 2", option.label)
+
+		option = stringField.options[2]
+
+		XCTAssertEqual("value 3", option.value)
+		XCTAssertEqual("Option 3", option.label)
+	}
+
+	func test_JSONParse_ShouldExtractPredefinedOptions() {
+		let fields = DDLJSONParser().parse(selectWithPredefinedValuesJSON, locale: spanishLocale)
+
+		let stringField = fields![0] as! DDLFieldStringWithOptions
+
+		XCTAssertTrue(stringField.predefinedValue is [DDLFieldStringWithOptions.Option])
+		let predefinedOptions = stringField.predefinedValue as! [DDLFieldStringWithOptions.Option]
+
+		//FIXME only support one predefined value
+		XCTAssertEqual(1, predefinedOptions.count)
+
+		let predefinedOption = predefinedOptions[0]
+
+		XCTAssertEqual("value 1", predefinedOption.value)
+		XCTAssertEqual("Option 1", predefinedOption.label)
+	}
 
 	//MARK: CurrentValue
 
@@ -305,5 +364,30 @@ class DDLFieldStringWithOptions_Tests: XCTestCase {
 					"</meta-data>" +
 				"</dynamic-element> " +
 			"</dynamic-element> </root>"
+
+	private let selectWithPredefinedValuesJSON =
+	"{\"availableLanguageIds\": [\"en_US\"]," +
+		"\"defaultLanguageId\": \"en_US\"," +
+		"\"fields\": [{" +
+		"\"label\": {\"en_US\": \"A Select\"}," +
+		"\"predefinedValue\": {\"en_US\": [\"value 1\", \"value 2\"]}," +
+		"\"dataType\": \"string\"," +
+		"\"indexType\": \"keyword\"," +
+		"\"localizable\": true," +
+		"\"name\": \"A_Select\"," +
+		"\"readOnly\": false," +
+		"\"repeatable\": true," +
+		"\"required\": true," +
+		"\"showLabel\": true," +
+		"\"multiple\": true," +
+		"\"options\": [" +
+			"{\"label\": {\"en_US\": \"Option 1\"}," +
+				"\"value\": \"value 1\"}," +
+			"{\"label\": {\"en_US\": \"Option 2\"}," +
+				"\"value\": \"value 2\"}," +
+			"{\"label\": {\"en_US\": \"Option 3\"}," +
+				"\"value\": \"value 3\"}" +
+		"]," +
+		"\"type\": \"select\"}]}"
 
 }

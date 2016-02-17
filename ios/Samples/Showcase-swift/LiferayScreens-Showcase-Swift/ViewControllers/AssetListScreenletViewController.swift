@@ -67,30 +67,29 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 		AssetClassNameIds.set(AssetClassNameIdUser, newId: 20005)
 		AssetClassNameIds.set(AssetClassNameIdUserGroup, newId: 20006)
 		AssetClassNameIds.set(AssetClassNameIdBlogsEntry, newId: 20007)
-		AssetClassNameIds.set(AssetClassNameIdBookmarksEntry, newId: 20008)
-		AssetClassNameIds.set(AssetClassNameIdBookmarksFolder, newId: 20009)
-		AssetClassNameIds.set(AssetClassNameIdCalendarEvent, newId: 20010)
-		AssetClassNameIds.set(AssetClassNameIdDLFileEntry, newId: 20011)
-		AssetClassNameIds.set(AssetClassNameIdDLFolder, newId: 20012)
-		AssetClassNameIds.set(AssetClassNameIdDLFileEntryMetadata, newId: 20091)
-		AssetClassNameIds.set(AssetClassNameIdDLFileEntryType, newId: 20092)
-		AssetClassNameIds.set(AssetClassNameIdDLFileRank, newId: 20093)
-		AssetClassNameIds.set(AssetClassNameIdDLFileShortcut, newId: 20094)
-		AssetClassNameIds.set(AssetClassNameIdDLFileVersion, newId: 20095)
-		AssetClassNameIds.set(AssetClassNameIdDDLRecord, newId: 20097)
-		AssetClassNameIds.set(AssetClassNameIdDDLRecordSet, newId: 20098)
-		AssetClassNameIds.set(AssetClassNameIdDDLRecordVersion, newId: 20099)
-		AssetClassNameIds.set(AssetClassNameIdJournalArticle, newId: 20109)
-		AssetClassNameIds.set(AssetClassNameIdJournalArticleImage, newId: 20110)
-		AssetClassNameIds.set(AssetClassNameIdJournalFolder, newId: 20013)
-		AssetClassNameIds.set(AssetClassNameIdMBMessage, newId: 20014)
-		AssetClassNameIds.set(AssetClassNameIdMBThread, newId: 20015)
-		AssetClassNameIds.set(AssetClassNameIdMBCategory, newId: 20115)
-		AssetClassNameIds.set(AssetClassNameIdMBDiscussion, newId: 20116)
-		AssetClassNameIds.set(AssetClassNameIdMBMailingList, newId: 20117)
-		AssetClassNameIds.set(AssetClassNameIdWikiPage, newId: 20016)
-		AssetClassNameIds.set(AssetClassNameIdWikiPageResource, newId: 20153)
-		AssetClassNameIds.set(AssetClassNameIdWikiNode, newId: 20152)
+		AssetClassNameIds.set(AssetClassNameIdBookmarksEntry, newId: 20392)
+		AssetClassNameIds.set(AssetClassNameIdBookmarksFolder, newId: 20393)
+		AssetClassNameIds.set(AssetClassNameIdDLFileEntry, newId: 20008)
+		AssetClassNameIds.set(AssetClassNameIdDLFolder, newId: 20009)
+		AssetClassNameIds.set(AssetClassNameIdDLFileEntryMetadata, newId: 20086)
+		AssetClassNameIds.set(AssetClassNameIdDLFileEntryType, newId: 20087)
+		AssetClassNameIds.set(AssetClassNameIdDLFileRank, newId: 20088)
+		AssetClassNameIds.set(AssetClassNameIdDLFileShortcut, newId: 20089)
+		AssetClassNameIds.set(AssetClassNameIdDLFileVersion, newId: 20090)
+		AssetClassNameIds.set(AssetClassNameIdDDLRecord, newId: 20422)
+		AssetClassNameIds.set(AssetClassNameIdDDLRecordSet, newId: 20423)
+		AssetClassNameIds.set(AssetClassNameIdDDLRecordVersion, newId: 20424)
+		AssetClassNameIds.set(AssetClassNameIdJournalArticle, newId: 20480)
+		AssetClassNameIds.set(AssetClassNameIdJournalArticleImage, newId: 20481)
+		AssetClassNameIds.set(AssetClassNameIdJournalFolder, newId: 20485)
+		AssetClassNameIds.set(AssetClassNameIdMBMessage, newId: 20010)
+		AssetClassNameIds.set(AssetClassNameIdMBThread, newId: 20011)
+		AssetClassNameIds.set(AssetClassNameIdMBCategory, newId: 20098)
+		AssetClassNameIds.set(AssetClassNameIdMBDiscussion, newId: 20099)
+		AssetClassNameIds.set(AssetClassNameIdMBMailingList, newId: 20100)
+		AssetClassNameIds.set(AssetClassNameIdWikiPage, newId: 20374)
+		AssetClassNameIds.set(AssetClassNameIdWikiPageResource, newId: 20375)
+		AssetClassNameIds.set(AssetClassNameIdWikiNode, newId: 20373)
 
 		let assets = [
 			AssetClassNameIdGroup,
@@ -101,7 +100,6 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 			AssetClassNameIdBlogsEntry,
 			AssetClassNameIdBookmarksEntry,
 			AssetClassNameIdBookmarksFolder,
-			AssetClassNameIdCalendarEvent,
 			AssetClassNameIdDLFileEntry,
 			AssetClassNameIdDLFileEntryMetadata,
 			AssetClassNameIdDLFileEntryType,

@@ -16,83 +16,60 @@ import XCTest
 
 class SessionContext_Storage_Tests: XCTestCase {
 
-	var credentialStoreMock = CredentialStoreMock()
-
-	override func setUp() {
-		super.setUp()
-
-		continueAfterFailure = false
-		credentialStoreMock = CredentialStoreMock()
-
-		SessionContext.credentialsStorage = CredentialsStorage(
-				credentialStore: credentialStoreMock)
-
-		SessionContext.logout()
-	}
-
-	override func tearDown() {
-		SessionContext.logout()
-		SessionContext.credentialsStorage = CredentialsStorage(
-			credentialStore: BasicCredentialsStoreKeyChain())
-
-		super.tearDown()
-	}
-
-	func test_StoreSession_ShouldReturnFalse_WhenSessionIsNotCreated() {
-		XCTAssertFalse(SessionContext.storeCredentials())
-
-		XCTAssertFalse(credentialStoreMock.calledStoreCredential)
-	}
-
 	func test_StoreSession_ShouldReturnFalse_WhenUserAttributesAreEmpty() {
-		SessionContext.createBasicSession(
+		SessionContext.loginWithBasic(
 				username: "username",
 				password: "password",
 				userAttributes: [:])
 
-		XCTAssertFalse(SessionContext.storeCredentials())
-
-		XCTAssertFalse(credentialStoreMock.calledStoreCredential)
+		withCredentialsStoreMockedSession { mock in
+			XCTAssertFalse(SessionContext.currentContext!.storeCredentials())
+			XCTAssertFalse(mock.calledStoreCredential)
+		}
 	}
 
 	func test_StoreSession_ShouldReturnTrue_WhenSessionIsCreated() {
-		SessionContext.createBasicSession(
+		SessionContext.loginWithBasic(
 				username: "username",
 				password: "password",
 				userAttributes: ["k":"v"])
 
-		SessionContext.credentialsStorage = CredentialsStorage(
-				credentialStore: credentialStoreMock)
-
-		XCTAssertTrue(SessionContext.storeCredentials())
-
-		XCTAssertTrue(credentialStoreMock.calledStoreCredential)
+		withCredentialsStoreMockedSession { mock in
+			XCTAssertTrue(SessionContext.currentContext!.storeCredentials())
+			XCTAssertTrue(mock.calledStoreCredential)
+		}
 	}
 
 	func test_LoadSessionFromStore_ShouldReturnFalse_WhenSessionIsNotStored() {
-		SessionContext.createBasicSession(
+		SessionContext.loginWithBasic(
 				username: "username123",
 				password: "password456",
 				userAttributes: ["k":"v"])
 
-		SessionContext.credentialsStorage = CredentialsStorage(
-				credentialStore: credentialStoreMock)
+		withCredentialsStoreMockedSession { mock in
+			let storage = CredentialsStorage(store: mock)
 
-		credentialStoreMock.hasData = false
+			mock.hasData = false
 
-		XCTAssertFalse(SessionContext.loadStoredCredentials())
+			XCTAssertFalse(SessionContext.loadStoredCredentials(storage))
+			XCTAssertTrue(mock.calledLoadCredential)
 
-		XCTAssertTrue(credentialStoreMock.calledLoadCredential)
-
-		// current session is not cleared
-		XCTAssertTrue(SessionContext.currentBasicUserName == "username123")
-		XCTAssertTrue(SessionContext.currentBasicPassword == "password456")
+			// current session is not cleared
+			XCTAssertTrue(SessionContext.currentContext!.basicAuthUsername == "username123")
+			XCTAssertTrue(SessionContext.currentContext!.basicAuthPassword == "password456")
+		}
 	}
 
 	func test_RemoveStoredSession_ShouldEmptyTheStoredSession() {
-		SessionContext.removeStoredCredentials()
+		SessionContext.loginWithBasic(
+			username: "username",
+			password: "password",
+			userAttributes: ["k":"v"])
 
-		XCTAssertTrue(credentialStoreMock.calledRemoveCredential)
+		withCredentialsStoreMockedSession { mock in
+			SessionContext.currentContext!.removeStoredCredentials()
+			XCTAssertTrue(mock.calledRemoveCredential)
+		}
 	}
 
 }

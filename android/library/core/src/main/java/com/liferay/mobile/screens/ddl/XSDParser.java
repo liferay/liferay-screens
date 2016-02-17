@@ -42,7 +42,7 @@ import javax.xml.parsers.ParserConfigurationException;
 /**
  * @author Jose Manuel Navarro
  */
-public class XSDParser {
+public class XSDParser implements Parser {
 
 	public List<Field> parse(String xml, Locale locale) throws SAXException {
 		if (xml == null || xml.isEmpty()) {

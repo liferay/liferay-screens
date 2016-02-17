@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<color name="westeros_red">#E44740</color>
-	<color name="westeros_dark_red">#BE211A</color>
-	<color name="westeros_yellow">#FBB351</color>
-	<color name="westeros_black">#303030</color>
-	<color name="westeros_light_gray">#E5E5E5</color>
-	<color name="westeros_dark_gray">#878787</color>
-	<color name="westeros_background_gray">#D6D6D6</color>
-	<color name="westeros_green">#88B275</color>
+	<color name="colorPrimary_westeros">@color/colorPrimary</color>
+	<color name="colorPrimaryDark_westeros">@color/colorPrimaryDark</color>
+	<color name="colorAccent_westeros">@color/colorAccent</color>
+	<color name="textColorPrimary_westeros">@color/textColorPrimary</color>
+	<color name="textColorSecondary_westeros">@color/textColorSecondary</color>
+
+	<color name="light_gray_westeros">#E5E5E5</color>
+	<color name="background_gray_westeros">#D6D6D6</color>
+
+	<color name="green_westeros">#88B275</color>
+
+	<color name="colorPrimary">#E44740</color>
+	<color name="colorPrimaryDark">#BE211A</color>
+	<color name="colorAccent">#FBB351</color>
+	<color name="textColorPrimary">#303030</color>
+	<color name="textColorSecondary">#878787</color>
 
 </resources>

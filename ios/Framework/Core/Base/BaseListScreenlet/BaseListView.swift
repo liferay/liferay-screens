@@ -24,8 +24,8 @@ public class BaseListView: BaseScreenletView {
 		return _rows
 	}
 
-	internal var onSelectedRowClosure: (AnyObject -> Void)?
-	internal var fetchPageForRow: (Int -> Void)?
+	public var onSelectedRowClosure: (AnyObject -> Void)?
+	public var fetchPageForRow: (Int -> Void)?
 
 	private var _rows = [AnyObject?]()
 	private var _rowCount = 0

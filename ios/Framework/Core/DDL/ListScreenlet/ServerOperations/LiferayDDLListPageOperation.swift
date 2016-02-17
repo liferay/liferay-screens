@@ -45,7 +45,12 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 		return error
 	}
 
-	override internal func doGetPageRowsOperation(session session: LRBatchSession, startRow: Int, endRow: Int) {
+}
+
+
+public class Liferay62DDLListPageOperation: LiferayDDLListPageOperation {
+
+	override public func doGetPageRowsOperation(session session: LRBatchSession, startRow: Int, endRow: Int) {
 		let service = LRScreensddlrecordService_v62(session: session)
 
 		do {
@@ -67,7 +72,7 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 		}
 	}
 
-	override internal func doGetRowCountOperation(session session: LRBatchSession) {
+	override public func doGetRowCountOperation(session session: LRBatchSession) {
 		let service = LRScreensddlrecordService_v62(session: session)
 
 		do {
@@ -76,11 +81,54 @@ public class LiferayDDLListPageOperation: LiferayPaginationOperation {
 			}
 			else {
 				try service.getDdlRecordsCountWithDdlRecordSetId(recordSetId!,
-						userId: userId!)
+					userId: userId!)
+			}
+		}
+		catch _ as NSError {
+		}
+	}
+	
+}
+
+
+public class Liferay70DDLListPageOperation: LiferayDDLListPageOperation {
+
+	override public func doGetPageRowsOperation(session session: LRBatchSession, startRow: Int, endRow: Int) {
+		let service = LRScreensddlrecordService_v70(session: session)
+
+		do {
+			if userId == nil {
+				try service.getDdlRecordsWithDdlRecordSetId(recordSetId!,
+					locale: NSLocale.currentLocaleString,
+					start: Int32(startRow),
+					end: Int32(endRow))
+			}
+			else {
+				try service.getDdlRecordsWithDdlRecordSetId(recordSetId!,
+					userId: userId!,
+					locale: NSLocale.currentLocaleString,
+					start: Int32(startRow),
+					end: Int32(endRow))
 			}
 		}
 		catch _ as NSError {
 		}
 	}
 
+	override public func doGetRowCountOperation(session session: LRBatchSession) {
+		let service = LRScreensddlrecordService_v70(session: session)
+
+		do {
+			if userId == nil {
+				try service.getDdlRecordsCountWithDdlRecordSetId(recordSetId!)
+			}
+			else {
+				try service.getDdlRecordsCountWithDdlRecordSetId(recordSetId!,
+					userId: userId!)
+			}
+		}
+		catch _ as NSError {
+		}
+	}
+	
 }

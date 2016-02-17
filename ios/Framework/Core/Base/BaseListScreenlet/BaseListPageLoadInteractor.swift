@@ -45,7 +45,7 @@ public class BaseListPageLoadInteractor: ServerReadOperationInteractor {
 		}
 	}
 
-	private func processLoadPageResult(serverRows: [[String:AnyObject]], rowCount: Int?) {
+	public func processLoadPageResult(serverRows: [[String:AnyObject]], rowCount: Int?) {
 		let screenlet = self.screenlet as! BaseListScreenlet
 		let baseListView = screenlet.screenletView as! BaseListView
 
@@ -85,7 +85,7 @@ public class BaseListPageLoadInteractor: ServerReadOperationInteractor {
 	override public func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
 		if let loadOp = op as? LiferayPaginationOperation {
 			let key = cacheKey(loadOp)
-			SessionContext.currentCacheManager!.getSome(
+			SessionContext.currentContext?.cacheManager.getSome(
 					collection: ScreenletName(screenlet!.dynamicType),
 					keys: ["\(key)-\(page)", "\(key)-\(page)-count"]) {
 
@@ -106,14 +106,14 @@ public class BaseListPageLoadInteractor: ServerReadOperationInteractor {
 
 			let key = cacheKey(loadOp)
 
-			SessionContext.currentCacheManager?.setClean(
+			SessionContext.currentContext?.cacheManager.setClean(
 				collection: ScreenletName(screenlet!.dynamicType),
 				key: "\(key)-\(page)",
 				value: pageContent,
 				attributes: [:])
 
 			if let rowCount = loadOp.resultRowCount {
-				SessionContext.currentCacheManager?.setClean(
+				SessionContext.currentContext?.cacheManager.setClean(
 					collection: ScreenletName(screenlet!.dynamicType),
 					key: "\(key)-\(page)-count",
 					value: rowCount,

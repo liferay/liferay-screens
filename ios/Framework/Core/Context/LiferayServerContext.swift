@@ -14,6 +14,14 @@
 import Foundation
 
 
+@objc public enum LiferayServerVersion: Int {
+
+	case v62 = 62
+	case v70 = 70
+
+}
+
+
 @objc public class LiferayServerContext: NSObject {
 
 	//MARK: Singleton type
@@ -31,8 +39,22 @@ import Foundation
 			return StaticInstance.serverProperties!["server"] as! String
 		}
 		set {
-			loadContextFile ()
+			loadContextFile()
 			StaticInstance.serverProperties!["server"] = newValue
+		}
+	}
+
+	public class var serverVersion: LiferayServerVersion {
+		get {
+			loadContextFile()
+			let value = StaticInstance.serverProperties?["version"] as? Int
+			return LiferayServerVersion(
+				rawValue: value ?? LiferayServerVersion.v70.rawValue)
+					?? .v70
+		}
+		set {
+			loadContextFile()
+			StaticInstance.serverProperties!["version"] = newValue.rawValue
 		}
 	}
 
@@ -42,7 +64,7 @@ import Foundation
 			return (StaticInstance.serverProperties!["companyId"] as! NSNumber).longLongValue
 		}
 		set {
-			loadContextFile ()
+			loadContextFile()
 			StaticInstance.serverProperties!["companyId"] = NSNumber(longLong: newValue)
 		}
 	}
@@ -53,8 +75,30 @@ import Foundation
 			return (StaticInstance.serverProperties!["groupId"] as! NSNumber).longLongValue
 		}
 		set {
-			loadContextFile ()
+			loadContextFile()
 			StaticInstance.serverProperties!["groupId"] = NSNumber(longLong: newValue)
+		}
+	}
+
+	public class var factory: ScreensFactory {
+		get {
+			loadContextFile()
+			return StaticInstance.serverProperties!["factory"] as! ScreensFactory
+		}
+		set {
+			loadContextFile()
+			StaticInstance.serverProperties!["factory"] = newValue
+		}
+	}
+
+	public class var operationFactory: LiferayOperationFactory {
+		get {
+		loadContextFile()
+		return StaticInstance.serverProperties!["operationFactory"] as! LiferayOperationFactory
+		}
+		set {
+			loadContextFile()
+			StaticInstance.serverProperties!["operationFactory"] = newValue
 		}
 	}
 
@@ -75,7 +119,34 @@ import Foundation
 	//MARK: Private methods
 
 	private class func loadContextFile() {
-		if StaticInstance.serverProperties != nil {
+
+		func createFactory() {
+			guard let className = StaticInstance.serverProperties?["factory"] as? String else {
+				StaticInstance.serverProperties!["factory"] = ScreensFactoryImpl()
+				return
+			}
+			guard let factoryInstance = dynamicInit(className) as? ScreensFactory else {
+				StaticInstance.serverProperties!["factory"] = ScreensFactoryImpl()
+				return
+			}
+
+			StaticInstance.serverProperties!["factory"] = factoryInstance
+		}
+
+		func createOperationFactory() {
+			let factory: LiferayOperationFactory
+
+			switch self.serverVersion {
+			case .v62:
+				factory = Liferay62OperationFactory()
+			case .v70:
+				factory = Liferay70OperationFactory()
+			}
+
+			StaticInstance.serverProperties!["operationFactory"] = factory
+		}
+
+		guard StaticInstance.serverProperties == nil else {
 			return
 		}
 
@@ -92,19 +163,26 @@ import Foundation
 
 			if let path = bundle.pathForResource(PlistFile, ofType:"plist") {
 				StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: path)
+				createFactory()
+				createOperationFactory()
 				found = true
 			}
 			else {
 				if let path = bundle.pathForResource(PlistFileSample, ofType:"plist") {
 					StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: path)
+					createFactory()
+					createOperationFactory()
 					foundFallback = true
 				}
 				else {
 					StaticInstance.serverProperties = [
-							"companyId": 10157,
-							"groupId": 10184,
-							"server": "http://localhost:8080"]
-
+						"companyId": 10157,
+						"groupId": 10184,
+						"server": "http://localhost:8080",
+						"version": LiferayServerVersion.v70.rawValue
+					]
+					createFactory()
+					createOperationFactory()
 				}
 			}
 		}

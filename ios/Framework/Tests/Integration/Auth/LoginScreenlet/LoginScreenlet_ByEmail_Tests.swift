@@ -16,15 +16,6 @@ import XCTest
 
 class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 
-	var credentialsStoreMock = CredentialStoreMock()
-
-	override func setUp() {
-		SessionContext.credentialsStorage = CredentialsStorage(
-				credentialStore: credentialsStoreMock)
-
-		super.setUp()
-	}
-
 	func test_Successful() {
 		scenario ("LoginScreenlet by email should work") {
 			given ("a configured login screenlet") {
@@ -64,14 +55,15 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 				}
 				assertThat("the session should be established") {
 					XCTAssertTrue(SessionContext.isLoggedIn)
+					XCTAssertNotNil(SessionContext.currentContext)
 				}
 				assertThat("the current user name should be the email address") {
-					XCTAssertNotNil(SessionContext.currentBasicUserName)
-					XCTAssertEqual("test@liferay.com", SessionContext.currentBasicUserName!)
+					XCTAssertNotNil(SessionContext.currentContext?.basicAuthUsername)
+					XCTAssertEqual("test@liferay.com", SessionContext.currentContext!.basicAuthUsername!)
 				}
 				assertThat("the current password should be available") {
-					XCTAssertNotNil(SessionContext.currentBasicPassword)
-					XCTAssertEqual("test", SessionContext.currentBasicPassword!)
+					XCTAssertNotNil(SessionContext.currentContext?.basicAuthPassword)
+					XCTAssertEqual("test", SessionContext.currentContext!.basicAuthPassword!)
 				}
 			},
 			.TestAndWaitFor("login response received", self))
@@ -80,6 +72,8 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 
 	func test_StoreCredentials() {
 		let loginDelegate = TestLoginScreenletDelegate()
+		let credentialsStoreMock = CredentialStoreMock()
+		credentialsStoreMock.hasData = false
 
 		scenario ("LoginScreenlet by email store credentials") {
 			given ("a configured login screenlet") {
@@ -104,13 +98,11 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 			when ("the request is sent") {
 				and ("the response is received") {
 					// the mock should be set here again because when the
-					// session in created in SessionContext a real CredentialsStore
+					// session is created in SessionContext, actual CredentialsStore
 					// is created and set
 					loginDelegate.onCompleted = { _ in
-						self.credentialsStoreMock.hasData = false
-
-						SessionContext.credentialsStorage = CredentialsStorage(
-							credentialStore: self.credentialsStoreMock)
+						SessionContext.currentContext!.credentialsStorage = CredentialsStorage(
+							store: credentialsStoreMock)
 					}
 
 					// we need to complete the test when the credentials are saved.
@@ -125,11 +117,12 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 			}
 			eventually ("the credentials should be stored", { result in
 				assertThat ("the session mock is signaled") {
-					XCTAssertTrue(self.credentialsStoreMock.calledStoreCredential)
-					XCTAssertTrue(self.credentialsStoreMock.hasData)
+					XCTAssertTrue(credentialsStoreMock.calledStoreCredential)
+					XCTAssertTrue(credentialsStoreMock.hasData)
 				}
 				assertThat ("the session context can load the credentials") {
-					XCTAssertTrue(SessionContext.loadStoredCredentials())
+					let storage = CredentialsStorage(store: credentialsStoreMock)
+					XCTAssertTrue(SessionContext.loadStoredCredentials(storage))
 				}
 				assertThat("onCredentialsSaved delegate is called") {
 					XCTAssertTrue((self.screenlet!.delegate as! TestLoginScreenletDelegate).credentialsSavedCalled)
@@ -174,12 +167,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 				}
 				assertThat ("the session should not be established") {
 					XCTAssertFalse(SessionContext.isLoggedIn)
-				}
-				assertThat ("the current user name should be empty") {
-					XCTAssertNil(SessionContext.currentBasicUserName)
-				}
-				assertThat ("the current password should be empty") {
-					XCTAssertNil(SessionContext.currentBasicPassword)
+					XCTAssertNil(SessionContext.currentContext)
 				}
 			},
 			.TestAndWaitFor("login response received", self))

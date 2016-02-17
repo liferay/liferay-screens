@@ -20,20 +20,18 @@ import android.view.View;
 
 import com.liferay.mobile.android.callback.typed.JSONObjectCallback;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.ddlrecordset.DDLRecordSetService;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.model.Record;
+import com.liferay.mobile.screens.util.ServiceProvider;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
-
-import de.keyboardsurfer.android.widget.crouton.Crouton;
 
 /**
  * @author Javier Gamarra
@@ -46,12 +44,8 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 
 		setContentView(R.layout.ddl_list);
 
-		_screenlet = (DDLListScreenlet) getActiveScreenlet(R.id.ddl_list_default, R.id.ddl_list_material);
-
-		_screenlet.setVisibility(View.VISIBLE);
+		_screenlet = (DDLListScreenlet) findViewById(R.id.ddl_list_screenlet);
 		_screenlet.setListener(this);
-
-		hideInactiveScreenlet(R.id.ddl_list_default, R.id.ddl_list_material);
 	}
 
 	@Override
@@ -100,7 +94,7 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 			Session session = SessionContext.createSessionFromCurrentSession();
 			session.setCallback(getCallback(recordId, recordSetId));
 
-			new DDLRecordSetService(session).getRecordSet(recordSetId);
+			ServiceProvider.getInstance().getDDLRecordSetOperation(session).getRecordSet(recordSetId);
 		}
 		catch (Exception e) {
 			error("error loading structure id", e);
@@ -117,8 +111,6 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 					intent.putExtra("recordId", recordId);
 					intent.putExtra("recordSetId", recordSetId);
 					intent.putExtra("structureId", result.getLong("DDMStructureId"));
-
-					Crouton.clearCroutonsForActivity(DDLListActivity.this);
 
 					DefaultAnimation.startActivityWithAnimation(DDLListActivity.this, intent);
 				}

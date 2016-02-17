@@ -37,11 +37,10 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 	override func createOperation() -> ServerOperation {
 		let operation: ServerOperation
 
-		let loadRecordOp = LiferayDDLFormRecordLoadOperation(recordId: recordId)
+		let loadRecordOp = LiferayServerContext.operationFactory.createDDLFormRecordLoadOperation(recordId)
 
 		if let structureId = structureId {
-			let loadFormOp = LiferayDDLFormLoadOperation()
-			loadFormOp.structureId = structureId
+			let loadFormOp = LiferayServerContext.operationFactory.createDDLFormLoadOperation(structureId)
 
 			let operationChain = ServerOperationChain(head: loadFormOp)
 
@@ -117,18 +116,18 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 				recordData = loadRecordOp.resultRecordData,
 				recordAttributes = loadRecordOp.resultRecordAttributes {
 
-			SessionContext.currentCacheManager?.setClean(
+			SessionContext.currentContext?.cacheManager.setClean(
 				collection: ScreenletName(DDLFormScreenlet),
 				key: "structureId-\(self.structureId)",
 				value: recordForm,
 				attributes: [
-					"userId": NSNumber(longLong: formUserId)])
+					"userId": formUserId.description])
 
 			let record = DDLRecord(
 				data: recordData,
 				attributes: recordAttributes)
 
-			SessionContext.currentCacheManager?.setClean(
+			SessionContext.currentContext?.cacheManager.setClean(
 				collection: ScreenletName(DDLFormScreenlet),
 				key: "recordId-\(loadRecordOp.recordId)",
 				value: recordData,
@@ -143,7 +142,7 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 				attributes: recordAttributes)
 
 			// save just record data
-			SessionContext.currentCacheManager?.setClean(
+			SessionContext.currentContext?.cacheManager.setClean(
 				collection: ScreenletName(DDLFormScreenlet),
 				key: "recordId-\(loadRecordOp.recordId)",
 				value: recordData,
@@ -152,21 +151,19 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 	}
 
 	override func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
-		let cacheMgr = SessionContext.currentCacheManager!
-
 		if let chain = op as? ServerOperationChain,
 				loadFormOp = chain.headOperation as? LiferayDDLFormLoadOperation
 				where structureId != nil {
 
 			// load form and record
 
-			cacheMgr.getSomeWithAttributes(
+			SessionContext.currentContext!.cacheManager.getSomeWithAttributes(
 					collection: ScreenletName(DDLFormScreenlet),
 					keys: ["structureId-\(structureId)", "recordId-\(recordId)"]) {
 				objects, attributes in
 
 				if let recordForm = objects[0] as? DDLRecord,
-						recordUserId = attributes[0]?["userId"] as? NSNumber,
+						recordUserId = attributes[0]?["userId"]?.description.asLong,
 						recordData = objects[1] as? [String:AnyObject],
 						recordAttributes = attributes[1] {
 
@@ -175,9 +172,9 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 					precondition(self.recordId == record.recordId, "RecordId is not consistent")
 
 					loadFormOp.resultRecord = recordForm
-					loadFormOp.resultUserId = recordUserId.longLongValue
+					loadFormOp.resultUserId = recordUserId
 
-					let loadRecordOp = LiferayDDLFormRecordLoadOperation(recordId: self.recordId)
+					let loadRecordOp = LiferayServerContext.operationFactory.createDDLFormRecordLoadOperation(self.recordId)
 
 					loadRecordOp.resultRecordData = recordData
 					loadRecordOp.resultRecordAttributes = record.attributes
@@ -192,9 +189,8 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 			}
 		}
 		else if let loadRecordOp = op as? LiferayDDLFormRecordLoadOperation {
-
 			// load just record
-			cacheMgr.getAnyWithAttributes(
+			SessionContext.currentContext!.cacheManager.getAnyWithAttributes(
 					collection: ScreenletName(DDLFormScreenlet),
 					key: "recordId-\(loadRecordOp.recordId)") {
 				object, attributes in

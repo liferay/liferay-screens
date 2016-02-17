@@ -5,7 +5,7 @@
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">@dimen/westeros_card_title_height</item>
 		<item name="android:gravity">center</item>
-		<item name="android:textColor">@color/westeros_red</item>
+		<item name="android:textColor">@color/textColorPrimary_westeros</item>
 		<item name="android:textSize">22sp</item>
 		<item name="android:textAllCaps">true</item>
 	</style>
@@ -15,7 +15,7 @@
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:gravity">center</item>
 		<item name="android:padding">10dp</item>
-		<item name="android:textColor">@color/westeros_black</item>
+		<item name="android:textColor">@color/textColorPrimary_westeros</item>
 		<item name="android:textSize">16sp</item>
 	</style>
 
@@ -25,7 +25,7 @@
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:height">@dimen/westeros_block_height</item>
-		<item name="android:textColor">@color/westeros_black</item>
+		<item name="android:textColor">@color/textColorPrimary_westeros</item>
 	</style>
 
 

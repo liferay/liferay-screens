@@ -44,7 +44,7 @@ public class ForgotPasswordView
 		super.onFinishInflate();
 
 		_drawableLogin = (ImageView) findViewById(R.id.drawable_login);
-		_drawableLogin.setColorFilter(getResources().getColor(R.color.material_primary));
+		_drawableLogin.setColorFilter(getResources().getColor(R.color.colorPrimary_material));
 	}
 
 	@Override

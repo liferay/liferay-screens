@@ -239,13 +239,21 @@ import UIKit
 			}
 
 			// then set data
-			if let recordValue = self.formView.record {
-				recordValue.updateCurrentValues(interactor.resultRecordData!)
-				recordValue.recordId = interactor.resultRecordId!
+			if let recordValue = self.formView.record,
+					data = interactor.resultRecordData,
+					recordId = interactor.resultRecordId
+				where interactor.lastError == nil {
+
+				recordValue.updateCurrentValues(data)
+				recordValue.recordId = recordId
 
 				self.formView.refresh()
 
 				self.ddlFormDelegate?.screenlet?(self, onRecordLoaded: recordValue)
+			}
+			else {
+				self.ddlFormDelegate?.screenlet?(self,
+						onRecordLoadError: interactor.lastError ?? NSError.errorWithCause(.InvalidServerResponse))
 			}
 		}
 

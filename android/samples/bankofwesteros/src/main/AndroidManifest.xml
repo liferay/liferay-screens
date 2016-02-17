@@ -14,7 +14,7 @@
 		android:allowBackup="true"
 		android:icon="@drawable/icon_westeros"
 		android:label="@string/title"
-		android:theme="@style/WesterosTheme">
+		android:theme="@style/westeros_theme">
 
 		<activity
 			android:name=".activities.MainActivity"

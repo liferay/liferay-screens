@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<attr name="themeName" format="string"/>
 	<attr name="anonymousApiUserName" format="string"/>
 	<attr name="anonymousApiPassword" format="string"/>
 	<attr name="autoLoad" format="boolean"/>

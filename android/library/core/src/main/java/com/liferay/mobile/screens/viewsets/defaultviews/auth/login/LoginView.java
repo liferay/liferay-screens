@@ -30,8 +30,6 @@ import com.liferay.mobile.screens.base.ModalProgressBar;
 import com.liferay.mobile.screens.context.AuthenticationType;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
-import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
 /**
  * @author Silvio Santos
@@ -41,20 +39,14 @@ public class LoginView extends LinearLayout
 
 	public LoginView(Context context) {
 		super(context);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public LoginView(Context context, AttributeSet attributes) {
 		super(context, attributes);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	public LoginView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
 	@Override
@@ -116,7 +108,6 @@ public class LoginView extends LinearLayout
 
 		LiferayLogger.e("Could not login", e);
 
-		LiferayCrouton.error(getContext(), getContext().getString(R.string.login_error), e);
 	}
 
 	@Override
@@ -131,7 +122,8 @@ public class LoginView extends LinearLayout
 
 	@Override
 	public void onClick(View view) {
-		LoginScreenlet loginScreenlet = (LoginScreenlet) getParent();
+
+		LoginScreenlet loginScreenlet = (LoginScreenlet) getScreenlet();
 		if (view.getId() == R.id.liferay_login_button) {
 			loginScreenlet.performUserAction(LoginScreenlet.BASIC_AUTH);
 		}
@@ -163,15 +155,17 @@ public class LoginView extends LinearLayout
 	protected void onAttachedToWindow() {
 		super.onAttachedToWindow();
 
-		if (_basicAuthenticationLayout != null) {
-			_basicAuthenticationLayout.setVisibility(AuthenticationType.BASIC.equals(_authenticationType) ? VISIBLE : GONE);
-		}
-
 		if (_oAuthButton != null) {
 			_oAuthButton.setVisibility(AuthenticationType.OAUTH.equals(_authenticationType) ? VISIBLE : GONE);
 		}
 
-		_loginEditText.setHint(getResources().getString(getLabelResourceForAuthMode()));
+		if (_basicAuthenticationLayout != null) {
+			_basicAuthenticationLayout.setVisibility(AuthenticationType.BASIC.equals(_authenticationType) ? VISIBLE : GONE);
+		}
+
+		if (AuthenticationType.BASIC.equals(_authenticationType)) {
+			_loginEditText.setHint(getResources().getString(getLabelResourceForAuthMode()));
+		}
 
 		refreshLoginEditTextStyle();
 	}

@@ -16,7 +16,7 @@ import UIKit
 
 public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 
-	public var recordId: Int64
+	public let recordId: Int64
 
 	public var resultRecordData: [String:AnyObject]?
 	public var resultRecordAttributes: [String:AnyObject]?
@@ -33,10 +33,9 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 	//MARK: ServerOperation
 
 	override public func doRun(session session: LRSession) {
-		let service = LRScreensddlrecordService_v62(session: session)
-
 		do {
-			let recordDic = try service.getDdlRecordWithDdlRecordId(recordId,
+			let recordDic = try getRecord(session,
+					recordId: recordId,
 					locale: NSLocale.currentLocaleString)
 
 			if let resultData = recordDic["modelValues"] as? [String:AnyObject],
@@ -66,4 +65,32 @@ public class LiferayDDLFormRecordLoadOperation: ServerOperation {
 		}
 	}
 
+	public func getRecord(session: LRSession, recordId: Int64, locale: String) throws -> [NSObject:AnyObject] {
+		return [:]
+	}
+
+}
+
+
+public class Liferay62DDLFormRecordLoadOperation: LiferayDDLFormRecordLoadOperation {
+
+	override public func getRecord(session: LRSession, recordId: Int64, locale: String) throws -> [NSObject:AnyObject] {
+		let service = LRScreensddlrecordService_v62(session: session)
+
+		return try service.getDdlRecordWithDdlRecordId(recordId,
+			locale: NSLocale.currentLocaleString)
+	}
+
+}
+
+
+public class Liferay70DDLFormRecordLoadOperation: LiferayDDLFormRecordLoadOperation {
+
+	override public func getRecord(session: LRSession, recordId: Int64, locale: String) throws -> [NSObject:AnyObject] {
+		let service = LRScreensddlrecordService_v70(session: session)
+
+		return try service.getDdlRecordWithDdlRecordId(recordId,
+			locale: NSLocale.currentLocaleString)
+	}
+	
 }

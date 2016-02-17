@@ -28,8 +28,6 @@ import com.liferay.mobile.screens.auth.forgotpassword.view.ForgotPasswordViewMod
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.ModalProgressBar;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultTheme;
-import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
 /**
  * @author Jose Manuel Navarro
@@ -39,20 +37,14 @@ public class ForgotPasswordView extends LinearLayout
 
 	public ForgotPasswordView(Context context) {
 		super(context);
-
-		DefaultTheme.initIfThemeNotPresent(context);
 	}
 
-	public ForgotPasswordView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-
-		DefaultTheme.initIfThemeNotPresent(context);
+	public ForgotPasswordView(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public ForgotPasswordView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-
-		DefaultTheme.initIfThemeNotPresent(context);
+	public ForgotPasswordView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
 	}
 
 	@Override
@@ -97,7 +89,6 @@ public class ForgotPasswordView extends LinearLayout
 	public void showFailedOperation(String actionName, Exception e) {
 		_progressBar.finishProgress();
 
-		LiferayCrouton.error(getContext(), getContext().getString(R.string.password_request_error), e);
 		LiferayLogger.e("Could not send password", e);
 	}
 
@@ -113,7 +104,7 @@ public class ForgotPasswordView extends LinearLayout
 
 	@Override
 	public void onClick(View view) {
-		ForgotPasswordScreenlet screenlet = (ForgotPasswordScreenlet) getParent();
+		ForgotPasswordScreenlet screenlet = (ForgotPasswordScreenlet) getScreenlet();
 
 		screenlet.performUserAction();
 	}
@@ -156,6 +147,7 @@ public class ForgotPasswordView extends LinearLayout
 	protected EditText getLoginEditText() {
 		return _loginEditText;
 	}
+
 	protected EditText _loginEditText;
 	protected ModalProgressBar _progressBar;
 

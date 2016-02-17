@@ -13,8 +13,8 @@ android {
 		applicationId "com.liferay.mobile.screens.testapp"
 		minSdkVersion 15
 		targetSdkVersion 23
-		versionCode 3
-		versionName "1.2"
+		versionCode 4
+		versionName "2.0"
 		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 	}
 
@@ -39,17 +39,27 @@ dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
 	compile project(':liferay-screens')
 	compile project(':liferay-material-viewset')
+	compile project(':liferay-westeros-viewset')
 	compile project(':addbookmarkscreenlet')
 
-	compile 'com.android.support:design:23.0.1'
+	compile 'com.android.support:design:23.1.1'
 
+	androidTestCompile('com.android.support.test:runner:0.4.1') {
+		exclude group: 'com.android.support', module: 'support-annotations'
+	}
+	androidTestCompile('com.android.support.test:rules:0.4.1') {
+		exclude group: 'com.android.support', module: 'support-annotations'
+	}
 
-	androidTestCompile 'com.android.support.test:runner:0.4.1'
-	androidTestCompile 'com.android.support.test:rules:0.4.1'
-
-	androidTestCompile 'com.android.support.test.espresso:espresso-core:+'
-	androidTestCompile 'com.android.support.test.espresso:espresso-contrib:+'
-	androidTestCompile 'com.android.support.test.espresso:espresso-idling-resource:+'
+	androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.1') {
+		exclude group: 'com.android.support', module: 'support-annotations'
+	}
+	androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2.1') {
+		exclude group: 'com.android.support', module: 'support-annotations'
+		exclude group: 'com.android.support', module: 'support-v4'
+		exclude group: 'com.android.support', module: 'recyclerview-v7'
+	}
+	androidTestCompile('com.android.support.test.espresso:espresso-idling-resource:2.2.1')
 }
 
 buildscript {
@@ -58,10 +68,11 @@ buildscript {
 	}
 
 	dependencies {
-		classpath 'com.android.tools.build:gradle:2.0.0-alpha9'
+		classpath 'com.android.tools.build:gradle:2.0.0-beta4'
 	}
 }
 
 repositories {
 	jcenter()
+	maven { url "http://dl.bintray.com/tbruyelle/tbruyelle" }
 }
