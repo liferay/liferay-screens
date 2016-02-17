@@ -20,6 +20,7 @@ public class ApplicationCache extends Application {
 
 		LiferayScreensContext.init(this);
 
+		// SQLiteDatabase.loadLibs(this);
 		RxPermissions.getInstance(this).request(Manifest.permission.ACCESS_NETWORK_STATE, Manifest.permission.WAKE_LOCK)
 			.subscribe(new Action1<Boolean>() {
 				@Override
@@ -30,7 +31,7 @@ public class ApplicationCache extends Application {
 				}
 			});
 
-		//class and type mapping and strategies
-//		CacheSQL.getInstance(StorIOSQLite.getInstance(), new CacheStrategyFactory());
+		// class and type mapping and strategies
+		// CacheSQL.getInstance(StorIOSQLite.getInstance(), new CacheStrategyFactory());
 	}
 }
