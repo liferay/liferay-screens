@@ -29,7 +29,7 @@ public class NotificationsActivity extends PushScreensActivity implements BaseLi
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_notifications);
 
-		if (!SessionContext.hasSession()) {
+		if (!SessionContext.isLoggedIn()) {
 			startActivity(new Intent(this, LoginActivity.class));
 		}
 

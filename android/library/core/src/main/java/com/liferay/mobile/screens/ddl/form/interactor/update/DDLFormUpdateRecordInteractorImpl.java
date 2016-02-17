@@ -18,15 +18,16 @@ import android.support.annotation.NonNull;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.ddlrecord.DDLRecordService;
 import com.liferay.mobile.screens.base.interactor.BaseCachedWriteRemoteInteractor;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.ddl.form.DDLRecordCache;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
+import com.liferay.mobile.screens.ddl.form.operation.DDLRecordOperation;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.LiferayLogger;
+import com.liferay.mobile.screens.util.ServiceProvider;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -101,10 +102,10 @@ public class DDLFormUpdateRecordInteractorImpl
 		onEvent(event);
 	}
 
-	protected DDLRecordService getDDLRecordService(Record record, long groupId) {
+	protected DDLRecordOperation getDDLRecordService(Record record, long groupId) {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(new DDLFormUpdateRecordCallback(getTargetScreenletId(), record, groupId));
-		return new DDLRecordService(session);
+		return ServiceProvider.getInstance().getDDLRecordOperation(session);
 	}
 
 	protected void validate(long groupId, Record record) {

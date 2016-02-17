@@ -29,5 +29,4 @@ public class HelloWorldEspressoTest {
 		onView(withText("Login")).check(matches(isDisplayed()));
 	}
 
-
 }

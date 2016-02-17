@@ -20,12 +20,12 @@ import android.view.View;
 
 import com.liferay.mobile.android.callback.typed.JSONObjectCallback;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.ddlrecordset.DDLRecordSetService;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.model.Record;
+import com.liferay.mobile.screens.util.ServiceProvider;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 
 import org.json.JSONException;
@@ -94,7 +94,7 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 			Session session = SessionContext.createSessionFromCurrentSession();
 			session.setCallback(getCallback(recordId, recordSetId));
 
-			new DDLRecordSetService(session).getRecordSet(recordSetId);
+			ServiceProvider.getInstance().getDDLRecordSetOperation(session).getRecordSet(recordSetId);
 		}
 		catch (Exception e) {
 			error("error loading structure id", e);

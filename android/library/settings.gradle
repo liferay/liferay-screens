@@ -12,5 +12,3 @@ project(':liferay-westeros-viewset').name = 'liferay-westeros-viewset'
 
 include ':addbookmarkscreenlet'
 project(':addbookmarkscreenlet').projectDir = new File(settingsDir, '../samples/addbookmarkscreenlet')
-
-rootProject.name = 'liferay-screens-library'
