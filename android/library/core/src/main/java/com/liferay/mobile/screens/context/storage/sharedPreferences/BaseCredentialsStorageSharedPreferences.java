@@ -156,7 +156,8 @@ public abstract class BaseCredentialsStorageSharedPreferences implements Credent
 		if (context == null) {
 			throw new IllegalStateException("Context cannot be null");
 		}
-		_sharedPref = context.getSharedPreferences(getStoreName(), Context.MODE_PRIVATE);
+		_sharedPref = context.getApplicationContext().getSharedPreferences(
+			getStoreName(), Context.MODE_PRIVATE);
 	}
 
 	protected SharedPreferences getSharedPref() {
