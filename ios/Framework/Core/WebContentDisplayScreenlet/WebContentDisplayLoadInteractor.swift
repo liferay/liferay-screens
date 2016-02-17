@@ -25,10 +25,10 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 		let connector: WebContentLoadBaseLiferayConnector?
 
 		if screenlet.articleId != "" {
-			connector = LiferayServerContext.connectorFactory.createWebContentLoadFromArticleId(articleId: screenlet.articleId)
+			connector = LiferayServerContext.connectorFactory.createWebContentLoadFromArticleIdConnector(articleId: screenlet.articleId)
 		}
 		else if screenlet.classPK != 0 {
-			connector = LiferayServerContext.connectorFactory.createWebContentLoadFromClassPK(classPK: screenlet.classPK)
+			connector = LiferayServerContext.connectorFactory.createWebContentLoadFromClassPKConnector(classPK: screenlet.classPK)
 		}
 		else {
 			connector = nil

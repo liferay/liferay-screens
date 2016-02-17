@@ -64,7 +64,7 @@ import UIKit
 
 		switch name {
 		case "signup-action":
-			return createSignUpInteractor()
+			return createSignUpConnectorInteractor()
 		case "save-action":
 			return createSaveInteractor()
 		default:
@@ -72,7 +72,7 @@ import UIKit
 		}
 	}
 
-	private func createSignUpInteractor() -> SignUpInteractor {
+	private func createSignUpConnectorInteractor() -> SignUpInteractor {
 		let interactor = SignUpInteractor(screenlet: self)
 
 		interactor.onSuccess = {

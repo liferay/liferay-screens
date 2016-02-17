@@ -17,11 +17,11 @@ import Foundation
 @objc(LiferayConnectorFactory)
 public protocol LiferayConnectorFactory {
 
-	func createGetUserByEmailLiferayConnector(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailLiferayConnector
+	func createGetUserByEmailConnector(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailLiferayConnector
 
-	func createGetUserByScreenNameLiferayConnector(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameLiferayConnector
+	func createGetUserByScreenNameConnector(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameLiferayConnector
 
-	func createGetUserByUserIdLiferayConnector(userId userId: Int64) -> GetUserByUserIdLiferayConnector
+	func createGetUserByUserIdConnector(userId userId: Int64) -> GetUserByUserIdLiferayConnector
 
 	func createLoginByEmailConnector(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailLiferayConnector
 
@@ -67,9 +67,9 @@ public protocol LiferayConnectorFactory {
 		endRow: Int,
 		computeRowCount: Bool) -> DDLListPageLiferayConnector
 
-	func createWebContentLoadFromArticleId(articleId articleId: String) -> WebContentLoadFromArticleIdLiferayConnector
+	func createWebContentLoadFromArticleIdConnector(articleId articleId: String) -> WebContentLoadFromArticleIdLiferayConnector
 
-	func createWebContentLoadFromClassPK(classPK classPK: Int64) -> WebContentLoadFromClassPKLiferayConnector
+	func createWebContentLoadFromClassPKConnector(classPK classPK: Int64) -> WebContentLoadFromClassPKLiferayConnector
 
 	func createDDLFormLoadConnector(structureId: Int64) -> DDLFormLoadLiferayConnector
 
@@ -91,19 +91,19 @@ public protocol LiferayConnectorFactory {
 @objc(Liferay62ConnectorFactory)
 public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 
-	public func createGetUserByEmailLiferayConnector(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailLiferayConnector {
+	public func createGetUserByEmailConnector(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailLiferayConnector {
 		return GetUserByEmailLiferay62Connector(
 			companyId: companyId,
 			emailAddress: emailAddress)
 	}
 
-	public func createGetUserByScreenNameLiferayConnector(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameLiferayConnector {
+	public func createGetUserByScreenNameConnector(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameLiferayConnector {
 		return GetUserByScreenNameLiferay62Connector(
 			companyId: companyId,
 			screenName: screenName)
 	}
 
-	public func createGetUserByUserIdLiferayConnector(userId userId: Int64) -> GetUserByUserIdLiferayConnector {
+	public func createGetUserByUserIdConnector(userId userId: Int64) -> GetUserByUserIdLiferayConnector {
 		return GetUserByUserIdLiferay62Connector(userId: userId)
 	}
 
@@ -198,11 +198,11 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			computeRowCount: computeRowCount)
 	}
 
-	public func createWebContentLoadFromArticleId(articleId articleId: String) -> WebContentLoadFromArticleIdLiferayConnector {
+	public func createWebContentLoadFromArticleIdConnector(articleId articleId: String) -> WebContentLoadFromArticleIdLiferayConnector {
 		return Liferay62WebContentLoadFromArticleIdConnector(articleId: articleId)
 	}
 
-	public func createWebContentLoadFromClassPK(classPK classPK: Int64) -> WebContentLoadFromClassPKLiferayConnector {
+	public func createWebContentLoadFromClassPKConnector(classPK classPK: Int64) -> WebContentLoadFromClassPKLiferayConnector {
 		return Liferay62WebContentLoadFromClassPKConnector(classPK: classPK)
 	}
 
@@ -240,19 +240,19 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 @objc(Liferay70ConnectorFactory)
 public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 
-	public func createGetUserByEmailLiferayConnector(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailLiferayConnector {
+	public func createGetUserByEmailConnector(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailLiferayConnector {
 		return GetUserByEmailLiferay70Connector(
 			companyId: companyId,
 			emailAddress: emailAddress)
 	}
 
-	public func createGetUserByScreenNameLiferayConnector(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameLiferayConnector {
+	public func createGetUserByScreenNameConnector(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameLiferayConnector {
 		return GetUserByScreenNameLiferay70Connector(
 			companyId: companyId,
 			screenName: screenName)
 	}
 
-	public func createGetUserByUserIdLiferayConnector(userId userId: Int64) -> GetUserByUserIdLiferayConnector {
+	public func createGetUserByUserIdConnector(userId userId: Int64) -> GetUserByUserIdLiferayConnector {
 		return GetUserByUserIdLiferay70Connector(userId: userId)
 	}
 
@@ -347,11 +347,11 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			computeRowCount: computeRowCount)
 	}
 
-	public func createWebContentLoadFromArticleId(articleId articleId: String) -> WebContentLoadFromArticleIdLiferayConnector {
+	public func createWebContentLoadFromArticleIdConnector(articleId articleId: String) -> WebContentLoadFromArticleIdLiferayConnector {
 		return Liferay70WebContentLoadFromArticleIdConnector(articleId: articleId)
 	}
 
-	public func createWebContentLoadFromClassPK(classPK classPK: Int64) -> WebContentLoadFromClassPKLiferayConnector {
+	public func createWebContentLoadFromClassPKConnector(classPK classPK: Int64) -> WebContentLoadFromClassPKLiferayConnector {
 		return Liferay70WebContentLoadFromClassPKConnector(classPK: classPK)
 	}
 
