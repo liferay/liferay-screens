@@ -1,3 +1,20 @@
+buildscript {
+	repositories {
+		jcenter()
+	}
+
+	dependencies {
+		classpath 'com.android.tools.build:gradle:2.0.0-beta5'
+	}
+}
+
+allprojects {
+	repositories {
+		jcenter()
+		maven { url "http://dl.bintray.com/tbruyelle/tbruyelle" }
+	}
+}
+
 apply plugin: 'com.android.application'
 
 android {
@@ -60,19 +77,4 @@ dependencies {
 		exclude group: 'com.android.support', module: 'recyclerview-v7'
 	}
 	androidTestCompile('com.android.support.test.espresso:espresso-idling-resource:2.2.1')
-}
-
-buildscript {
-	repositories {
-		jcenter()
-	}
-
-	dependencies {
-		classpath 'com.android.tools.build:gradle:2.0.0-beta4'
-	}
-}
-
-repositories {
-	jcenter()
-	maven { url "http://dl.bintray.com/tbruyelle/tbruyelle" }
 }

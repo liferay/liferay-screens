@@ -1,4 +1,20 @@
+buildscript {
+	repositories {
+		jcenter()
+	}
+
+	dependencies {
+		classpath 'com.neenbedankt.gradle.plugins:android-apt:1.6'
+	}
+}
+
+repositories {
+	jcenter()
+	maven { url "http://dl.bintray.com/tbruyelle/tbruyelle" }
+}
+
 apply plugin: 'com.android.library'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
 	compileSdkVersion 23
@@ -28,8 +44,6 @@ android {
 	}
 
 }
-
-apply plugin: 'com.neenbedankt.android-apt'
 
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -62,19 +76,4 @@ dependencies {
 	testCompile "junit:junit:4.12"
 	testCompile "org.robolectric:robolectric:3.0"
 	testCompile 'org.mockito:mockito-core:1.10.19'
-}
-
-buildscript {
-	repositories {
-		jcenter()
-	}
-
-	dependencies {
-		classpath 'com.neenbedankt.gradle.plugins:android-apt:1.6'
-	}
-}
-
-repositories {
-	jcenter()
-	maven { url "http://dl.bintray.com/tbruyelle/tbruyelle" }
 }

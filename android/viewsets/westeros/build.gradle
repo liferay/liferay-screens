@@ -23,17 +23,16 @@ android {
 	}
 }
 
+repositories {
+	maven { url "http://dl.bintray.com/tbruyelle/tbruyelle" }
+}
+
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
 
+	compile project(':liferay-screens')
 	compile 'com.android.support:appcompat-v7:23.1.1'
 	compile 'com.android.support:recyclerview-v7:23.1.1'
-	compile "com.daimajia.swipelayout:library:1.1.9@aar"
-	compile project(':liferay-screens')
 	compile 'com.android.support:design:23.1.1'
-}
-
-repositories {
-	jcenter()
-	maven { url "http://dl.bintray.com/tbruyelle/tbruyelle" }
+	compile "com.daimajia.swipelayout:library:1.1.9@aar"
 }
