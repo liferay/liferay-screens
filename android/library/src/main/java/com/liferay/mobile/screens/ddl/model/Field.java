@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p/>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p/>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -36,6 +36,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		STRING("string"),
 		DATE("date"),
 		NUMBER("number"),
+		IMAGE("image"),
 		DOCUMENT("document-library"),
 		UNSUPPORTED(null);
 
@@ -92,6 +93,9 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 			else if (DOCUMENT.equals(this)) {
 				return new DocumentField(attributes, locale, defaultLocale);
 			}
+			else if (IMAGE.equals(this)) {
+				return new ImageField(attributes, locale, defaultLocale);
+			}
 			return null;
 		}
 
@@ -106,7 +110,6 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		private String _value;
 
 	}
-
 
 	public enum EditorType {
 		CHECKBOX("checkbox"),
@@ -160,7 +163,6 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		private String _value;
 
 	}
-
 
 	public Field(Map<String, Object> attributes, Locale currentLocale, Locale defaultLocale) {
 		_currentLocale = currentLocale;
