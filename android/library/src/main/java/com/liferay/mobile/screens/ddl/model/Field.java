@@ -183,7 +183,8 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		_currentValue = _predefinedValue;
 	}
 
-	protected Field(Parcel in) {
+	protected Field(Parcel in, ClassLoader loader) {
+
 		_dataType = DataType.valueOfString(in.readString());
 		_editorType = EditorType.valueOfString(in.readString());
 

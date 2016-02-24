@@ -29,11 +29,16 @@ import java.util.Map;
  */
 public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsField.Option>> {
 
-	public static final Parcelable.Creator<StringWithOptionsField> CREATOR =
-		new Parcelable.Creator<StringWithOptionsField>() {
+	public static final Parcelable.ClassLoaderCreator<StringWithOptionsField> CREATOR =
+		new Parcelable.ClassLoaderCreator<StringWithOptionsField>() {
+
+			@Override
+			public StringWithOptionsField createFromParcel(Parcel source, ClassLoader loader) {
+				return new StringWithOptionsField(source, loader);
+			}
 
 			public StringWithOptionsField createFromParcel(Parcel in) {
-				return new StringWithOptionsField(in);
+				throw new AssertionError();
 			}
 
 			public StringWithOptionsField[] newArray(int size) {
@@ -68,8 +73,8 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 		setCurrentValue(predefinedOptions);
 	}
 
-	protected StringWithOptionsField(Parcel in) {
-		super(in);
+	protected StringWithOptionsField(Parcel in, ClassLoader loader) {
+		super(in, loader);
 
 		_availableOptions = (ArrayList<Option>) in.readSerializable();
 		_multiple = (in.readInt() == 1);
