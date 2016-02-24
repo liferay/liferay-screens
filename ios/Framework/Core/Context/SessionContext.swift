@@ -128,12 +128,8 @@ import Foundation
 		return userAttributes[key]
 	}
 
-	public func requestSession() -> LRSession {
+	public func createRequestSession() -> LRSession {
 		return LRSession(session: session)
-	}
-
-	public func requestBatchSession() -> LRBatchSession {
-		return LRBatchSession(session: session)
 	}
 
 	public class func logout() {
@@ -175,5 +171,10 @@ import Foundation
 		return true
 	}
 
+
+	// Deprecated. Will be removed in next version
+	public class func createSessionFromCurrentSession() -> LRSession? {
+		return SessionContext.currentContext?.createRequestSession()
+	}
 
 }

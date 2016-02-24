@@ -100,14 +100,14 @@ import UIKit
 	}
 
 	public func createSession() -> LRSession? {
-		if !SessionContext.isLoggedIn {
+		guard SessionContext.isLoggedIn else {
 			lastError = NSError.errorWithCause(.AbortedDueToPreconditions,
 					message: "Login required to use this connector")
 
 			return nil
 		}
 
-		return SessionContext.currentContext?.requestSession()
+		return SessionContext.currentContext?.createRequestSession()
 	}
 
 	public func callOnComplete() {

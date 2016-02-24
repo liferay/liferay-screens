@@ -40,7 +40,7 @@ public class GetUserBaseLiferayConnector: ServerConnector {
 
 	override public func createSession() -> LRSession? {
 		if SessionContext.isLoggedIn {
-			return SessionContext.currentContext?.requestSession()
+			return SessionContext.currentContext?.createRequestSession()
 		}
 
 		return LRSession(

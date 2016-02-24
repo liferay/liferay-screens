@@ -85,19 +85,7 @@ class SessionContext_Basic_Tests: XCTestCase {
 				password: "password",
 				userAttributes: [:])
 
-		let createdSession = SessionContext.currentContext!.requestSession()
-
-		XCTAssertNotNil(createdSession)
-		XCTAssertFalse(session === createdSession)
-	}
-
-	func test_RequestBatchSession_ShouldReturnNewSession_WhenSessionIsCreated() {
-		let session = SessionContext.loginWithBasic(
-				username: "username",
-				password: "password",
-				userAttributes: [:])
-
-		let createdSession = SessionContext.currentContext!.requestBatchSession()
+		let createdSession = SessionContext.currentContext!.createRequestSession()
 
 		XCTAssertNotNil(createdSession)
 		XCTAssertFalse(session === createdSession)
