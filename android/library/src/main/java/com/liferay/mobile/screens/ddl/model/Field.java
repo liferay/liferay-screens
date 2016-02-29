@@ -186,6 +186,8 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	}
 
 	protected Field(Parcel in, ClassLoader loader) {
+		Parcelable[] array = in.readParcelableArray(getClass().getClassLoader());
+		_fields = new ArrayList(Arrays.asList(array));
 
 		_dataType = DataType.valueOfString(in.readString());
 		_editorType = EditorType.valueOfString(in.readString());
@@ -328,6 +330,8 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel destination, int flags) {
+		destination.writeParcelableArray(_fields.toArray(new Field[_fields.size()]), flags);
+
 		destination.writeString(_dataType.getValue());
 		destination.writeString(_editorType.getValue());
 
@@ -349,6 +353,13 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		destination.writeInt(_lastValidationResult ? 1 : 0);
 	}
 
+	public List<Field> getFields() {
+		return _fields;
+	}
+
+	public void setFields(List<Field> fields) {
+		_fields = fields;
+	}
 
 	protected String getAttributeStringValue(Map<String, Object> attributes, String key) {
 		Object value = attributes.get(key);
@@ -367,22 +378,19 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 	private DataType _dataType;
 	private EditorType _editorType;
-
 	private String _name;
 	private String _label;
 	private String _tip;
-
 	private boolean _readOnly;
 	private boolean _repeatable;
 	private boolean _required;
 	private boolean _showLabel;
-
 	private T _predefinedValue;
 	private T _currentValue;
-
 	private boolean _lastValidationResult = true;
-
 	private Locale _currentLocale;
 	private Locale _defaultLocale;
+
+	private List<Field> _fields = new ArrayList<>();
 
 }

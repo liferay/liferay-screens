@@ -14,6 +14,8 @@
 
 package com.liferay.mobile.screens.ddl;
 
+import android.os.Parcel;
+
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -65,6 +67,30 @@ public class XSDParser implements Parser {
 		return result;
 	}
 
+	public List<Field> createForm(List<Field> fields, String content) {
+		try {
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			Document document = builder.parse(new InputSource(new StringReader(content)));
+
+			Element root = document.getDocumentElement();
+			return createDocument(root, fields, Locale.ENGLISH);
+		}
+		catch (ParserConfigurationException | IOException | SAXException e) {
+			LiferayLogger.e("Error parsing form", e);
+		}
+		return null;
+	}
+
+	public Field clone(Field field) {
+		Parcel p = Parcel.obtain();
+		p.writeValue(field);
+		p.setDataPosition(0);
+		Field otherField = (Field) p.readValue(Field.class.getClassLoader());
+		p.recycle();
+		return otherField;
+	}
+
 	protected List<Field> processDocument(Document document, Locale locale) {
 		List<Field> result = new ArrayList<>();
 
@@ -88,16 +114,24 @@ public class XSDParser implements Parser {
 
 		NodeList dynamicElementList = root.getElementsByTagName("dynamic-element");
 
+		Field parentField = null;
+
 		int len = dynamicElementList.getLength();
 		for (int i = 0; i < len; ++i) {
 			Element dynamicElement = (Element) dynamicElementList.item(i);
+			Field childField = createFormField(dynamicElement, locale, defaultLocale);
 			if (dynamicElement.getParentNode() == root) {
-				Field formField = createFormField(dynamicElement, locale, defaultLocale);
-
-				if (formField != null) {
-					result.add(formField);
+				if (childField != null) {
+					result.add(childField);
+				}
+				parentField = childField;
+			}
+			else {
+				if (childField != null) {
+					parentField.getFields().add(childField);
 				}
 			}
+
 		}
 
 		return result;
@@ -279,6 +313,40 @@ public class XSDParser implements Parser {
 		}
 
 		return result;
+	}
+
+	private List<Field> createDocument(Element root, List<Field> formFields, Locale locale) {
+		//FIXME use locale
+		List<Field> fields = new ArrayList<>();
+
+
+		NodeList dynamicElementList = root.getElementsByTagName("dynamic-element");
+
+		for (int i = 0; i < dynamicElementList.getLength(); i++) {
+			Element dynamicElement = (Element) dynamicElementList.item(i);
+
+			Field field = getFieldByName(formFields, dynamicElement.getAttribute("name"));
+			if (field != null) {
+				NodeList elementsByTagName = dynamicElement.getElementsByTagName("dynamic-content");
+				Field otherField = field.isRepeatable() ? clone(field) : field;
+				otherField.setCurrentValue(elementsByTagName.item(elementsByTagName.getLength() - 1).getTextContent());
+				if (dynamicElement.getElementsByTagName("dynamic-element").getLength() > 0) {
+					otherField.setFields(createDocument(dynamicElement, field.getFields(), locale));
+				}
+				fields.add(otherField);
+			}
+		}
+
+		return fields;
+	}
+
+	private Field getFieldByName(List<Field> fields, String name) {
+		for (Field field : fields) {
+			if (field.getName().equals(name)) {
+				return field;
+			}
+		}
+		return null;
 	}
 
 }
