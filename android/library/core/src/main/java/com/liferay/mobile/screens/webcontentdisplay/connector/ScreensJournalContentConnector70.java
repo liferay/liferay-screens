@@ -7,6 +7,7 @@ import com.liferay.mobile.android.v70.screensjournalarticle.Screensjournalarticl
  * @author Javier Gamarra
  */
 public class ScreensJournalContentConnector70 implements ScreensJournalContentConnector {
+
 	public ScreensJournalContentConnector70(Session session) {
 		_screensjournalarticleService = new ScreensjournalarticleService(session);
 	}
@@ -23,7 +24,7 @@ public class ScreensJournalContentConnector70 implements ScreensJournalContentCo
 
 	@Override
 	public void getJournalArticleContent(long groupId, String articleId, Long templateId, String locale) throws Exception {
-
+		_screensjournalarticleService.getJournalArticleContent(groupId, articleId, templateId, locale);
 	}
 
 	private final ScreensjournalarticleService _screensjournalarticleService;
