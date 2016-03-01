@@ -30,9 +30,9 @@ public class LiferayServerContext {
 		_companyId = getValueFromIntegerOrString(resources, R.string.liferay_company_id, companyIdentifier);
 		_groupId = getValueFromIntegerOrString(resources, R.string.liferay_group_id, groupIdentifier);
 		_server = resources.getString(R.string.liferay_server);
-		_factoryClass = resources.getString(R.string.factory_class);
+		_factoryClass = resources.getString(R.string.liferay_class_factory);
 		_liferayPortalVersion = LiferayPortalVersion.fromInt(resources.getInteger(R.integer.liferay_portal_version));
-		_customServiceVersionFactory = resources.getString(R.string.liferay_custom_service_version_factory);
+		_customServiceVersionFactory = resources.getString(R.string.liferay_version_factory);
 	}
 
 	public static long getCompanyId() {
