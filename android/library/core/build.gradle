@@ -51,7 +51,7 @@ dependencies {
 	compile 'com.android.support:appcompat-v7:23.1.1'
 	compile 'com.android.support:recyclerview-v7:23.1.1'
 
-	compile 'com.liferay.mobile:liferay-android-sdk:2.0.3'
+	compile 'com.liferay.mobile:liferay-android-sdk:7.0.0'
 	compile 'com.liferay.mobile:liferay-push:1.0.7'
 
 	compile 'de.greenrobot:eventbus:2.4.0'
