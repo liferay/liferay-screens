@@ -134,16 +134,26 @@ import Foundation
 		}
 
 		func createConnectorFactory() {
-			let factory: LiferayConnectorFactory
 
-			switch self.serverVersion {
-			case .v62:
-				factory = Liferay62ConnectorFactory()
-			case .v70:
-				factory = Liferay70ConnectorFactory()
+			func createDynamicConnectorFactory() -> LiferayConnectorFactory? {
+				guard let className = StaticInstance.serverProperties?["connectorFactoryClassName"] as? String else {
+					return nil
+				}
+
+				return dynamicInit(className) as? LiferayConnectorFactory
 			}
 
-			StaticInstance.serverProperties!["connectorFactory"] = factory
+			func createVersionConnectorFactory() -> LiferayConnectorFactory {
+				switch self.serverVersion {
+				case .v62:
+					return Liferay62ConnectorFactory()
+				case .v70:
+					return Liferay70ConnectorFactory()
+				}
+			}
+
+			StaticInstance.serverProperties!["connectorFactory"] =
+				createDynamicConnectorFactory() ?? createVersionConnectorFactory()
 		}
 
 		guard StaticInstance.serverProperties == nil else {
