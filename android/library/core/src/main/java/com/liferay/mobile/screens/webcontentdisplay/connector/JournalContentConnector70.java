@@ -2,7 +2,7 @@ package com.liferay.mobile.screens.webcontentdisplay.connector;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v70.journalarticle.JournalArticleService;
+import com.liferay.mobile.android.v7.journalarticle.JournalArticleService;
 
 /**
  * @author Javier Gamarra
