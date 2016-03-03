@@ -77,7 +77,7 @@ public class SignUpScreenlet
 			String password = viewModel.getPassword();
 
 			SessionContext.createBasicSession(authUsername, password);
-			SessionContext.setLoggedUser(user);
+			SessionContext.setCurrentUser(user);
 
 			if (_autoLoginListener != null) {
 				_autoLoginListener.onLoginSuccess(user);

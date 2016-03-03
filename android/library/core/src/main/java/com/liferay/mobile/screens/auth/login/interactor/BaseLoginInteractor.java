@@ -44,7 +44,7 @@ public abstract class BaseLoginInteractor
 		}
 		else {
 			User user = new User(event.getJSONObject());
-			SessionContext.setLoggedUser(user);
+			SessionContext.setCurrentUser(user);
 			getListener().onLoginSuccess(user);
 		}
 	}

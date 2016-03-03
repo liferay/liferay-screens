@@ -130,7 +130,7 @@ public class SessionContextTest {
 		@Before
 		public void setUp() throws JSONException {
 			SessionContext.createBasicSession("username", "password");
-			SessionContext.setLoggedUser(new User(new JSONObject().put("userId", 123)));
+			SessionContext.setCurrentUser(new User(new JSONObject().put("userId", 123)));
 		}
 
 		@Test
@@ -160,7 +160,7 @@ public class SessionContextTest {
 			LiferayScreensContext.deinit();
 
 			SessionContext.createBasicSession("user123", "pass123");
-			SessionContext.setLoggedUser(new User(new JSONObject().put("userId", 123)));
+			SessionContext.setCurrentUser(new User(new JSONObject().put("userId", 123)));
 
 			SessionContext.storeCredentials(SHARED_PREFERENCES);
 		}
@@ -171,7 +171,7 @@ public class SessionContextTest {
 			LiferayScreensContext.init(ctx);
 
 			SessionContext.logout();
-			SessionContext.setLoggedUser(new User(new JSONObject().put("userId", 123)));
+			SessionContext.setCurrentUser(new User(new JSONObject().put("userId", 123)));
 
 			SessionContext.storeCredentials(SHARED_PREFERENCES);
 		}
@@ -195,7 +195,7 @@ public class SessionContextTest {
 			LiferayScreensContext.init(ctx);
 
 			JSONObject userAttributes = new JSONObject().put("userId", 123);
-			SessionContext.setLoggedUser(new User(userAttributes));
+			SessionContext.setCurrentUser(new User(userAttributes));
 
 			SessionContext.storeCredentials(SHARED_PREFERENCES);
 
@@ -223,7 +223,7 @@ public class SessionContextTest {
 			LiferayScreensContext.init(ctx);
 
 			JSONObject userAttributes = new JSONObject().put("userId", 123);
-			SessionContext.setLoggedUser(new User(userAttributes));
+			SessionContext.setCurrentUser(new User(userAttributes));
 
 			SessionContext.storeCredentials(SHARED_PREFERENCES);
 
@@ -251,7 +251,7 @@ public class SessionContextTest {
 			LiferayScreensContext.init(ctx);
 
 			JSONObject userAttributes = new JSONObject().put("userId", 123);
-			SessionContext.setLoggedUser(new User(userAttributes));
+			SessionContext.setCurrentUser(new User(userAttributes));
 
 			SessionContext.storeCredentials(SHARED_PREFERENCES);
 			SessionContext.logout();
@@ -284,7 +284,7 @@ public class SessionContextTest {
 			LiferayScreensContext.init(ctx);
 
 			JSONObject userAttributes = new JSONObject().put("userId", 123);
-			SessionContext.setLoggedUser(new User(userAttributes));
+			SessionContext.setCurrentUser(new User(userAttributes));
 
 			SessionContext.storeCredentials(SHARED_PREFERENCES);
 			SessionContext.logout();
