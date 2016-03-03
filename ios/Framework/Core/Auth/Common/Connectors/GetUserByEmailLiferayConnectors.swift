@@ -19,7 +19,7 @@ public class GetUserByEmailLiferayConnector: GetUserBaseLiferayConnector {
 	public var companyId: Int64
 	public var emailAddress: String
 
-	public init(companyId: Int64, emailAddress: String) {
+	private init(companyId: Int64, emailAddress: String) {
 		self.companyId = companyId
 		self.emailAddress = emailAddress
 
