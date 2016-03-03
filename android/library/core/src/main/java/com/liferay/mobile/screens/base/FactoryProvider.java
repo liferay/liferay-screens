@@ -20,7 +20,7 @@ public class FactoryProvider {
 
 	private static AbstractFactory createFactory() {
 		try {
-			return (AbstractFactory) Class.forName(LiferayServerContext.getFactoryClass()).newInstance();
+			return (AbstractFactory) Class.forName(LiferayServerContext.getClassFactory()).newInstance();
 		}
 		catch (Exception e) {
 			Log.e("LiferayScreens", "Error creating the instance class, " +

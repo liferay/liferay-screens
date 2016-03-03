@@ -20,9 +20,9 @@ public class ServiceProvider {
 
 	private static ServiceVersionFactory createFactory() {
 		try {
-			if (!LiferayServerContext.getCustomServiceVersionFactory().isEmpty()) {
+			if (!LiferayServerContext.getVersionFactory().isEmpty()) {
 				return (ServiceVersionFactory)
-					Class.forName(LiferayServerContext.getCustomServiceVersionFactory()).newInstance();
+					Class.forName(LiferayServerContext.getVersionFactory()).newInstance();
 			}
 			if (LiferayServerContext.isLiferay7()) {
 				return new ServiceVersionFactory70();

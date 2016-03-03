@@ -30,9 +30,9 @@ public class LiferayServerContext {
 		_companyId = getValueFromIntegerOrString(resources, R.string.liferay_company_id, companyIdentifier);
 		_groupId = getValueFromIntegerOrString(resources, R.string.liferay_group_id, groupIdentifier);
 		_server = resources.getString(R.string.liferay_server);
-		_factoryClass = resources.getString(R.string.liferay_class_factory);
-		_liferayPortalVersion = LiferayPortalVersion.fromInt(resources.getInteger(R.integer.liferay_portal_version));
-		_customServiceVersionFactory = resources.getString(R.string.liferay_version_factory);
+		_classFactory = resources.getString(R.string.liferay_class_factory);
+		_portalVersion = LiferayPortalVersion.fromInt(resources.getInteger(R.integer.liferay_portal_version));
+		_versionFactory = resources.getString(R.string.liferay_version_factory);
 	}
 
 	public static long getCompanyId() {
@@ -59,34 +59,34 @@ public class LiferayServerContext {
 		_server = server;
 	}
 
-	public static String getFactoryClass() {
-		return _factoryClass;
+	public static String getClassFactory() {
+		return _classFactory;
 	}
 
 	public static void setFactoryClass(String factoryClass) {
-		_factoryClass = factoryClass;
+		_classFactory = factoryClass;
 	}
 
 	public static boolean isLiferay7() {
-		return LiferayPortalVersion.VERSION_70.equals(_liferayPortalVersion);
+		return LiferayPortalVersion.VERSION_70.equals(_portalVersion);
 	}
 
 	public static boolean isLiferay62() {
-		return LiferayPortalVersion.VERSION_70.equals(_liferayPortalVersion);
+		return LiferayPortalVersion.VERSION_70.equals(_portalVersion);
 	}
 
-	public static String getCustomServiceVersionFactory() {
-		return _customServiceVersionFactory;
+	public static String getVersionFactory() {
+		return _versionFactory;
 	}
 
 	private static long getValueFromIntegerOrString(final Resources resources, final int stringId, int integerId) {
 		return integerId == 0 ? Long.valueOf(resources.getString(stringId)) : resources.getInteger(integerId);
 	}
 
-	private static String _factoryClass;
+	private static String _server;
 	private static long _companyId;
 	private static long _groupId;
-	private static String _server;
-	private static LiferayPortalVersion _liferayPortalVersion;
-	private static String _customServiceVersionFactory;
+	private static String _classFactory;
+	private static LiferayPortalVersion _portalVersion;
+	private static String _versionFactory;
 }
