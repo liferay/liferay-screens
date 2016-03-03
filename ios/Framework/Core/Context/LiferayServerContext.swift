@@ -93,8 +93,8 @@ import Foundation
 
 	public class var connectorFactory: LiferayConnectorFactory {
 		get {
-		loadContextFile()
-		return StaticInstance.serverProperties!["connectorFactory"] as! LiferayConnectorFactory
+			loadContextFile()
+			return StaticInstance.serverProperties!["connectorFactory"] as! LiferayConnectorFactory
 		}
 		set {
 			loadContextFile()
