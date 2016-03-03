@@ -18,7 +18,7 @@ public class GetUserByUserIdLiferayConnector: GetUserBaseLiferayConnector {
 
 	public let userId: Int64
 
-	public init(userId: Int64) {
+	private init(userId: Int64) {
 		self.userId = userId
 
 		super.init()
@@ -41,6 +41,10 @@ public class GetUserByUserIdLiferayConnector: GetUserBaseLiferayConnector {
 
 public class GetUserByUserIdLiferay62Connector: GetUserByUserIdLiferayConnector {
 
+	override public init(userId: Int64) {
+		super.init(userId: userId)
+	}
+
 	override public func sendGetUserRequest(session: LRSession)
 		throws -> NSDictionary {
 
@@ -53,6 +57,10 @@ public class GetUserByUserIdLiferay62Connector: GetUserByUserIdLiferayConnector 
 
 
 public class GetUserByUserIdLiferay70Connector: GetUserByUserIdLiferayConnector {
+
+	override public init(userId: Int64) {
+		super.init(userId: userId)
+	}
 
 	override public func sendGetUserRequest(session: LRSession)
 		throws -> NSDictionary {

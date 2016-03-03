@@ -19,7 +19,7 @@ public class GetUserByEmailLiferayConnector: GetUserBaseLiferayConnector {
 	public var companyId: Int64
 	public var emailAddress: String
 
-	public init(companyId: Int64, emailAddress: String) {
+	private init(companyId: Int64, emailAddress: String) {
 		self.companyId = companyId
 		self.emailAddress = emailAddress
 
@@ -43,6 +43,10 @@ public class GetUserByEmailLiferayConnector: GetUserBaseLiferayConnector {
 
 public class GetUserByEmailLiferay62Connector: GetUserByEmailLiferayConnector {
 
+	override public init(companyId: Int64, emailAddress: String) {
+		super.init(companyId: companyId, emailAddress: emailAddress)
+	}
+
 	override public func sendGetUserRequest(session: LRSession)
 		throws -> NSDictionary {
 
@@ -58,6 +62,10 @@ public class GetUserByEmailLiferay62Connector: GetUserByEmailLiferayConnector {
 
 
 public class GetUserByEmailLiferay70Connector: GetUserByEmailLiferayConnector {
+
+	override public init(companyId: Int64, emailAddress: String) {
+		super.init(companyId: companyId, emailAddress: emailAddress)
+	}
 
 	override public func sendGetUserRequest(session: LRSession)
 		throws -> NSDictionary {

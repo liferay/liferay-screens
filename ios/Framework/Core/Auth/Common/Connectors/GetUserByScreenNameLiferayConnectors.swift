@@ -19,7 +19,7 @@ public class GetUserByScreenNameLiferayConnector: GetUserBaseLiferayConnector {
 	public var companyId: Int64
 	public var screenName: String
 
-	public init(companyId: Int64, screenName: String) {
+	private init(companyId: Int64, screenName: String) {
 		self.companyId = companyId
 		self.screenName = screenName
 
@@ -43,6 +43,10 @@ public class GetUserByScreenNameLiferayConnector: GetUserBaseLiferayConnector {
 
 public class GetUserByScreenNameLiferay62Connector: GetUserByScreenNameLiferayConnector {
 
+	override public init(companyId: Int64, screenName: String) {
+		super.init(companyId: companyId, screenName: screenName)
+	}
+
 	override public func sendGetUserRequest(session: LRSession)
 		throws -> NSDictionary {
 
@@ -58,6 +62,10 @@ public class GetUserByScreenNameLiferay62Connector: GetUserByScreenNameLiferayCo
 
 
 public class GetUserByScreenNameLiferay70Connector: GetUserByScreenNameLiferayConnector {
+
+	override public init(companyId: Int64, screenName: String) {
+		super.init(companyId: companyId, screenName: screenName)
+	}
 
 	override public func sendGetUserRequest(session: LRSession)
 		throws -> NSDictionary {
