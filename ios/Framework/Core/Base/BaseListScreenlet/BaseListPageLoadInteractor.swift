@@ -36,10 +36,6 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 	}
 
 	override public func completedConnector(op: ServerConnector) {
-		if op.lastError != nil {
-			return
-		}
-
 		if let pageOp = op as? PaginationLiferayConnector {
 			processLoadPageResult(pageOp.resultPageContent ?? [], rowCount: pageOp.resultRowCount)
 		}
