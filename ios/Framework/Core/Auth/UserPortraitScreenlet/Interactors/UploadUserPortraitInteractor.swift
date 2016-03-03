@@ -42,11 +42,15 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 	//MARK: Cache methods
 
 	override func writeToCache(op: ServerOperation) {
-		let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
-			? SessionContext.currentCacheManager?.setDirty
-			: SessionContext.currentCacheManager?.setClean
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
 
-		cacheFunction?(
+		let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
+			? cacheManager.setDirty
+			: cacheManager.setClean
+
+		cacheFunction(
 			collection: ScreenletName(UserPortraitScreenlet),
 			key: "userId-\(userId)",
 			value: image,

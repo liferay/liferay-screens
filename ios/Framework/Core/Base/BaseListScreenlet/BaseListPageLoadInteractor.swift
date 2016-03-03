@@ -78,10 +78,15 @@ public class BaseListPageLoadInteractor: ServerReadOperationInteractor {
 
 	//MARK: Cache
 
-	override public func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
-		if let loadOp = op as? LiferayPaginationOperation {
+	override public func readFromCache(op: ServerOperation, result: AnyObject? -> ()) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			result(nil)
+			return
+		}
+
+		if let loadOp = op as? PaginationLiferayOperation {
 			let key = cacheKey(loadOp)
-			SessionContext.currentCacheManager!.getSome(
+			cacheManager.getSome(
 					collection: ScreenletName(screenlet!.dynamicType),
 					keys: ["\(key)-\(page)", "\(key)-\(page)-count"]) {
 
@@ -93,23 +98,30 @@ public class BaseListPageLoadInteractor: ServerReadOperationInteractor {
 				result(loadOp.resultPageContent)
 			}
 		}
+		else {
+			result(nil)
+		}
 	}
 
 	override public func writeToCache(op: ServerOperation) {
-		if let loadOp = op as? LiferayPaginationOperation,
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+
+		if let loadOp = op as? PaginationLiferayOperation,
 				pageContent = loadOp.resultPageContent
 				where !pageContent.isEmpty {
 
 			let key = cacheKey(loadOp)
 
-			SessionContext.currentCacheManager?.setClean(
+			cacheManager.setClean(
 				collection: ScreenletName(screenlet!.dynamicType),
 				key: "\(key)-\(page)",
 				value: pageContent,
 				attributes: [:])
 
 			if let rowCount = loadOp.resultRowCount {
-				SessionContext.currentCacheManager?.setClean(
+				cacheManager.setClean(
 					collection: ScreenletName(screenlet!.dynamicType),
 					key: "\(key)-\(page)-count",
 					value: rowCount,

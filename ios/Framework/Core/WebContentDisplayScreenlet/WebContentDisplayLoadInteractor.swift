@@ -55,27 +55,39 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 		self.resultHTML = (op as? LiferayWebContentLoadBaseOperation)?.resultHTML
 	}
 
-	override func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
-		if let loadOp = op as? LiferayWebContentLoadFromArticleIdOperation,
+	override func readFromCache(op: ServerOperation, result: AnyObject? -> ()) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			result(nil)
+			return
+		}
+
+		if let loadOp = op as? WebContentLoadFromArticleIdLiferayOperation,
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {
 
-			SessionContext.currentCacheManager!.getString(
+			cacheManager.getString(
 					collection: ScreenletName(WebContentDisplayScreenlet),
 					key: articleCacheKey(groupId, articleId)) {
 				loadOp.resultHTML = $0
 				result($0)
 			}
 		}
+		else {
+			result(nil)
+		}
 	}
 
 	override func writeToCache(op: ServerOperation) {
-		if let loadOp = op as? LiferayWebContentLoadFromArticleIdOperation,
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+
+		if let loadOp = op as? WebContentLoadFromArticleIdLiferayOperation,
 				html = loadOp.resultHTML,
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {
 
-			SessionContext.currentCacheManager?.setClean(
+			cacheManager.setClean(
 				collection: ScreenletName(WebContentDisplayScreenlet),
 				key: articleCacheKey(groupId, articleId),
 				value: html,

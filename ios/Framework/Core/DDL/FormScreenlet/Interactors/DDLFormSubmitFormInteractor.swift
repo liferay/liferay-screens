@@ -112,16 +112,20 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 	//MARK: Cache methods
 
 	override func writeToCache(op: ServerOperation) {
-		let submitOp = op as! LiferayDDLFormSubmitOperation
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+
+		let submitOp = op as! DDLFormSubmitLiferayOperation
 
 		let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
-			? SessionContext.currentCacheManager?.setDirty
-			: SessionContext.currentCacheManager?.setClean
+			? cacheManager.setDirty
+			: cacheManager.setClean
 
 		lastCacheKeyUsed = lastCacheKeyUsed
 			?? DDLFormSubmitFormInteractor.cacheKey(submitOp.recordId)
 
-		cacheFunction?(
+		cacheFunction(
 			collection: ScreenletName(DDLFormScreenlet),
 			key: lastCacheKeyUsed!,
 			value: record.values,
@@ -129,6 +133,10 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 	}
 
 	override func callOnSuccess() {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+
 		if cacheStrategy == .CacheFirst {
 			precondition(
 				lastCacheKeyUsed != nil,
@@ -138,19 +146,19 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 				// create new cache entry and delete the draft one
 				if lastCacheKeyUsed!.hasPrefix("draft-")
 						&& record.recordId == nil {
-					SessionContext.currentCacheManager?.remove(
+					cacheManager.remove(
 						collection: ScreenletName(DDLFormScreenlet),
 						key: lastCacheKeyUsed!)
 				}
 
-				SessionContext.currentCacheManager?.setClean(
+				cacheManager.setClean(
 					collection: ScreenletName(DDLFormScreenlet),
 					key: DDLFormSubmitFormInteractor.cacheKey(resultRecordId),
 					attributes: cacheAttributes())
 			}
 			else {
 				// update current cache entry with date sent
-				SessionContext.currentCacheManager?.setClean(
+				cacheManager.setClean(
 					collection: ScreenletName(DDLFormScreenlet),
 					key: lastCacheKeyUsed
 						?? DDLFormSubmitFormInteractor.cacheKey(record.recordId),

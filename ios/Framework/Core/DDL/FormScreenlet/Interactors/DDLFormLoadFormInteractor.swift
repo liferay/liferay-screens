@@ -40,11 +40,15 @@ class DDLFormLoadFormInteractor: ServerReadOperationInteractor {
 	//MARK: Cache methods
 
 	override func writeToCache(op: ServerOperation) {
-		if let loadOp = op as? LiferayDDLFormLoadOperation,
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+
+		if let loadOp = op as? DDLFormLoadLiferayOperation,
 				record = loadOp.resultRecord,
 				userId = loadOp.resultUserId {
 
-			SessionContext.currentCacheManager?.setClean(
+			cacheManager.setClean(
 				collection: ScreenletName(DDLFormScreenlet),
 				key: "structureId-\(loadOp.structureId)",
 				value: record,
@@ -53,11 +57,14 @@ class DDLFormLoadFormInteractor: ServerReadOperationInteractor {
 		}
 	}
 
-	override func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
-		if let loadOp = op as? LiferayDDLFormLoadOperation {
-			let cacheMgr = SessionContext.currentCacheManager!
+	override func readFromCache(op: ServerOperation, result: AnyObject? -> ()) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			result(nil)
+			return
+		}
 
-			cacheMgr.getAnyWithAttributes(
+		if let loadOp = op as? DDLFormLoadLiferayOperation {
+			cacheManager.getAnyWithAttributes(
 					collection: ScreenletName(DDLFormScreenlet),
 					key: "structureId-\(loadOp.structureId)") {
 				record, attributes in
@@ -67,6 +74,9 @@ class DDLFormLoadFormInteractor: ServerReadOperationInteractor {
 
 				result(loadOp.resultRecord)
 			}
+		}
+		else {
+			result(nil)
 		}
 
 	}
