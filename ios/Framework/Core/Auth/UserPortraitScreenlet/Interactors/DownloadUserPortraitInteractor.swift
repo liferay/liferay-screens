@@ -141,8 +141,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 	override func completedConnector(op: ServerConnector) {
 		if let httpOp = toHttpConnector(op),
-				resultData = httpOp.resultData
-				where httpOp.lastError == nil {
+				resultData = httpOp.resultData {
 			resultImage = UIImage(data: resultData)
 		}
 	}
