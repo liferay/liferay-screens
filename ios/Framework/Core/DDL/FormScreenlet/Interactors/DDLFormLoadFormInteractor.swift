@@ -36,11 +36,15 @@ class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 	//MARK: Cache methods
 
 	override func writeToCache(op: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+
 		if let loadOp = op as? DDLFormLoadLiferayConnector,
 				record = loadOp.resultRecord,
 				userId = loadOp.resultUserId {
 
-			SessionContext.currentContext?.cacheManager.setClean(
+			cacheManager.setClean(
 				collection: ScreenletName(DDLFormScreenlet),
 				key: "structureId-\(loadOp.structureId)",
 				value: record,
@@ -49,9 +53,14 @@ class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-	override func readFromCache(op: ServerConnector, result: AnyObject? -> Void) {
+	override func readFromCache(op: ServerConnector, result: AnyObject? -> ()) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			result(nil)
+			return
+		}
+
 		if let loadOp = op as? DDLFormLoadLiferayConnector {
-			SessionContext.currentContext!.cacheManager.getAnyWithAttributes(
+			cacheManager.getAnyWithAttributes(
 					collection: ScreenletName(DDLFormScreenlet),
 					key: "structureId-\(loadOp.structureId)") {
 				record, attributes in
@@ -61,6 +70,9 @@ class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 
 				result(loadOp.resultRecord)
 			}
+		}
+		else {
+			result(nil)
 		}
 	}
 

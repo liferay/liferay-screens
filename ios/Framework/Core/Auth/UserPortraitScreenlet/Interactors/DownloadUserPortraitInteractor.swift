@@ -150,10 +150,14 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 	//MARK: Cache methods
 
 	override func writeToCache(op: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+
 		if let httpOp = toHttpConnector(op),
 				resultData = httpOp.resultData {
 
-			SessionContext.currentContext?.cacheManager.setClean(
+			cacheManager.setClean(
 				collection: ScreenletName(UserPortraitScreenlet),
 				key: mode.cacheKey,
 				value: resultData,
@@ -162,8 +166,10 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 	}
 
 	override func readFromCache(op: ServerConnector, result: AnyObject? -> ()) {
-
-		let cacheManager = SessionContext.currentContext!.cacheManager
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			result(nil)
+			return
+		}
 
 		func loadImageFromCache(output outputConnector: HttpConnector) {
 			cacheManager.getImage(

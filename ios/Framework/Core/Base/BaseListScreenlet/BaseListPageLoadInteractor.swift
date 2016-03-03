@@ -78,10 +78,15 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 
 	//MARK: Cache
 
-	override public func readFromCache(op: ServerConnector, result: AnyObject? -> Void) {
+	override public func readFromCache(op: ServerConnector, result: AnyObject? -> ()) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			result(nil)
+			return
+		}
+
 		if let loadOp = op as? PaginationLiferayConnector {
 			let key = cacheKey(loadOp)
-			SessionContext.currentContext?.cacheManager.getSome(
+			cacheManager.getSome(
 					collection: ScreenletName(screenlet!.dynamicType),
 					keys: ["\(key)-\(page)", "\(key)-\(page)-count"]) {
 
@@ -93,23 +98,30 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 				result(loadOp.resultPageContent)
 			}
 		}
+		else {
+			result(nil)
+		}
 	}
 
 	override public func writeToCache(op: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+
 		if let loadOp = op as? PaginationLiferayConnector,
 				pageContent = loadOp.resultPageContent
 				where !pageContent.isEmpty {
 
 			let key = cacheKey(loadOp)
 
-			SessionContext.currentContext?.cacheManager.setClean(
+			cacheManager.setClean(
 				collection: ScreenletName(screenlet!.dynamicType),
 				key: "\(key)-\(page)",
 				value: pageContent,
 				attributes: [:])
 
 			if let rowCount = loadOp.resultRowCount {
-				SessionContext.currentContext?.cacheManager.setClean(
+				cacheManager.setClean(
 					collection: ScreenletName(screenlet!.dynamicType),
 					key: "\(key)-\(page)-count",
 					value: rowCount,
