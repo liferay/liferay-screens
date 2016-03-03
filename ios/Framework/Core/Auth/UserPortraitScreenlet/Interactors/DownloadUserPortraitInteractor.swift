@@ -102,7 +102,9 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 				return createConnectorForLogged()
 			}
 			else {
-				return createConnectorFor(GetUserByUserIdLiferayConnector(userId: userId))
+				return createConnectorFor(
+					LiferayServerContext.connectorFactory.createGetUserByUserIdConnector(
+						userId: userId))
 			}
 
 		case .EmailAddress(let companyId, let emailAddress):
@@ -115,7 +117,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 			}
 			else {
 				return createConnectorFor(
-					GetUserByEmailLiferayConnector(
+					LiferayServerContext.connectorFactory.createGetUserByEmailConnector(
 						companyId: companyId,
 						emailAddress: emailAddress))
 			}
@@ -130,7 +132,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 			}
 			else {
 				return createConnectorFor(
-					GetUserByScreenNameLiferayConnector(
+					LiferayServerContext.connectorFactory.createGetUserByScreenNameConnector(
 						companyId: companyId,
 						screenName: screenName))
 			}
