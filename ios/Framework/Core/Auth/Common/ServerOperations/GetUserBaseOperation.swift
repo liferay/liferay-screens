@@ -42,12 +42,15 @@ public class GetUserBaseOperation: ServerOperation {
 		if SessionContext.isLoggedIn {
 			return SessionContext.createSessionFromCurrentSession()
 		}
+		guard let userName = userName, password = password else {
+			return nil
+		}
 
 		return LRSession(
 				server: LiferayServerContext.server,
 				authentication: LRBasicAuthentication(
-						username: userName!,
-						password: password!))
+						username: userName,
+						password: password))
 	}
 
 	override public func doRun(session session: LRSession) {
