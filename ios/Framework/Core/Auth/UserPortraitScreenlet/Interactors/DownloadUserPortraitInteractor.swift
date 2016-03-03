@@ -139,8 +139,7 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 
 	override func completedOperation(op: ServerOperation) {
 		if let httpOp = toHttpOperation(op),
-				resultData = httpOp.resultData
-				where httpOp.lastError == nil {
+				resultData = httpOp.resultData {
 			resultImage = UIImage(data: resultData)
 		}
 	}
