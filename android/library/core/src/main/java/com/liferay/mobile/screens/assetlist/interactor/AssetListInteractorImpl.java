@@ -104,19 +104,19 @@ public class AssetListInteractorImpl
 		if (_portletItemName == null) {
 
 
-			ScreensAssetEntryConnector service = ServiceProvider.getInstance().getScreensAssetEntryConnector(session);
+			ScreensAssetEntryConnector connector = ServiceProvider.getInstance().getScreensAssetEntryConnector(session);
 			JSONObject entryQueryAttributes = configureEntryQuery(_groupId, _classNameId);
 			entryQueryAttributes.put("start", startRow);
 			entryQueryAttributes.put("end", endRow);
 
 			JSONObjectWrapper entryQuery = new JSONObjectWrapper(entryQueryAttributes);
 
-			service.getAssetEntries(entryQuery, locale.toString());
+			connector.getAssetEntries(entryQuery, locale.toString());
 		}
 		else {
 			session.setCallback(new FilteredAssetListCallback(getTargetScreenletId()));
-			ScreensAssetEntryConnector service = ServiceProvider.getInstance().getScreensAssetEntryConnector(session);
-			service.getAssetEntries(LiferayServerContext.getCompanyId(), _groupId, _portletItemName, locale.toString(), endRow);
+			ScreensAssetEntryConnector connector = ServiceProvider.getInstance().getScreensAssetEntryConnector(session);
+			connector.getAssetEntries(LiferayServerContext.getCompanyId(), _groupId, _portletItemName, locale.toString(), endRow);
 		}
 	}
 
@@ -124,8 +124,8 @@ public class AssetListInteractorImpl
 	protected void getPageRowCountRequest(Session session) throws Exception {
 		JSONObject entryQueryParams = configureEntryQuery(_groupId, _classNameId);
 		JSONObjectWrapper entryQuery = new JSONObjectWrapper(entryQueryParams);
-		AssetEntryConnector service = ServiceProvider.getInstance().getAssetEntryConnector(session);
-		service.getEntriesCount(entryQuery);
+		AssetEntryConnector connector = ServiceProvider.getInstance().getAssetEntryConnector(session);
+		connector.getEntriesCount(entryQuery);
 	}
 
 	protected JSONObject configureEntryQuery(long groupId, long classNameId) throws JSONException {

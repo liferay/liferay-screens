@@ -64,13 +64,13 @@ public class WebContentDisplayFromClassPKInteractorImpl
 		long templateId = (long) args[1];
 		Locale locale = (Locale) args[2];
 
-		ScreensJournalContentConnector screensjournalarticleService = getScreensJournalArticleService(classPK, locale, templateId);
+		ScreensJournalContentConnector connector = getScreensJournalArticleService(classPK, locale, templateId);
 
 		if (templateId == 0) {
-			screensjournalarticleService.getJournalArticleContent(classPK, locale.toString());
+			connector.getJournalArticleContent(classPK, locale.toString());
 		}
 		else {
-			screensjournalarticleService.getJournalArticleContent(classPK, templateId, locale.toString());
+			connector.getJournalArticleContent(classPK, templateId, locale.toString());
 		}
 	}
 
