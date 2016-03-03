@@ -1,12 +1,13 @@
 package com.liferay.mobile.screens.ddl.form.connector;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v70.screensddlrecord.ScreensddlrecordService;
+import com.liferay.mobile.screens.service.v70.ScreensddlrecordService;
 
 /**
  * @author Javier Gamarra
  */
 public class ScreensDDLRecordConnector70 implements ScreensDDLRecordConnector {
+
 	public ScreensDDLRecordConnector70(Session session) {
 		_ddlRecordService = new ScreensddlrecordService(session);
 	}
