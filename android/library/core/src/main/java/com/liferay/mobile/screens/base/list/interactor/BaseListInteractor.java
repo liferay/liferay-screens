@@ -136,7 +136,7 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 	protected abstract E getElement(TableCache tableCache) throws JSONException;
 
 	protected String createId(String recordSetId, Integer row) {
-		return String.format("%s_%05d", recordSetId, row);
+		return String.format("%s_%05d", recordSetId, row, Locale.US);
 	}
 
 	protected void storeRows(String id, CachedType cachedType, CachedType cachedTypeCount, Long groupId, Long userId, BaseListEvent event) {

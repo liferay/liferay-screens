@@ -20,8 +20,8 @@ import android.webkit.MimeTypeMap;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadEvent;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.util.EventBusUtil;
@@ -37,6 +37,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * @author Javier Gamarra
@@ -80,7 +81,7 @@ public class UploadService extends IntentService {
 								 Long folderId, String filePrefix) throws Exception {
 		String path = file.getCurrentValue().toString();
 		String name = path.substring(path.lastIndexOf("/") + 1);
-		String date = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+		String date = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
 
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setConnectionTimeout(CONNECTION_TIMEOUT);
