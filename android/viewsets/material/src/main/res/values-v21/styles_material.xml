@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="material_theme" parent="android:Theme.Material.Light">
+	<style name="material_theme" parent="android:Theme.Material.Light.NoActionBar">
 		<item name="android:colorAccent">@color/colorAccent_material</item>
 		<item name="colorAccent">@color/colorAccent_material</item>
 
