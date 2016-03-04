@@ -82,7 +82,7 @@
 
 	<style name="default_list_item">
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
 		<item name="android:paddingBottom">@dimen/default_list_padding</item>
 		<item name="android:paddingLeft">@dimen/default_list_padding</item>
 		<item name="android:paddingRight">@dimen/default_list_padding</item>
