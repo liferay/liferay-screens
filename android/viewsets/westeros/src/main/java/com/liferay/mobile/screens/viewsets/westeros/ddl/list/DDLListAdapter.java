@@ -129,7 +129,7 @@ public class DDLListAdapter
 				(v.getId() == R.id.liferay_list_edit
 					|| v.getId() == R.id.liferay_list_view)) {
 
-				_listener.onItemClick(getPosition(), v);
+				_listener.onItemClick(getAdapterPosition(), v);
 			}
 			else if (!opened) {
 				_swipeLayout.open(true);
