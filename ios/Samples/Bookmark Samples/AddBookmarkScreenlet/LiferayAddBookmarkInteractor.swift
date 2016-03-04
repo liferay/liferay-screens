@@ -15,65 +15,65 @@ import UIKit
 import LiferayScreens
 
 
-public class LiferayAddBookmarkInteractor: ServerWriteOperationInteractor {
+public class LiferayAddBookmarkInteractor: ServerWriteConnectorInteractor {
 
 	public var resultBookmarkInfo: [NSObject:AnyObject]?
 
 	private let title: String
 	private let url: String
+	private let folderId: Int64
 
 
-	init(screenlet: BaseScreenlet?, title: String, url: String) {
+	init(screenlet: BaseScreenlet?, folderId: Int64, title: String, url: String) {
+		self.folderId = folderId
 		self.title = title
 		self.url = url
 
 		super.init(screenlet: screenlet)
 	}
 
-	public override func createOperation() -> ServerOperation? {
-		let op = LiferayAddBookmarkOperation(
+	public override func createConnector() -> ServerConnector? {
+		return LiferayAddBookmarkConnector(
 			groupId: LiferayServerContext.groupId,
+			folderId: self.folderId,
 			title: self.title,
 			url: self.url)
-
-		op.folderId = 20622 // this bookmark folder is writable by test user
-
-		return op
 	}
 
-	override public func completedOperation(op: ServerOperation) {
-		self.resultBookmarkInfo = (op as! LiferayAddBookmarkOperation).resultBookmarkInfo
+	override public func completedConnector(op: ServerConnector) {
+		self.resultBookmarkInfo = (op as! LiferayAddBookmarkConnector).resultBookmarkInfo
 	}
 
 	//MARK: Cache methods
 
-	override public func writeToCache(op: ServerOperation) {
+	override public func writeToCache(op: ServerConnector) {
 		let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
-			? SessionContext.currentCacheManager?.setDirty
-			: SessionContext.currentCacheManager?.setClean
+			? SessionContext.currentContext?.cacheManager.setDirty
+			: SessionContext.currentContext?.cacheManager.setClean
 
 		cacheFunction?(
 			collection: ScreenletName(AddBookmarkScreenlet),
 			key: "url-\(self.url)",
 			value: self.title,
 			attributes: [
-					"url": self.url
+					"url": self.url,
+					"folderId": NSNumber(longLong: self.folderId)
 				])
 	}
 
 	override public func callOnSuccess() {
 		if cacheStrategy == .CacheFirst {
 			// update cache with date sent
-			SessionContext.currentCacheManager?.setClean(
+			SessionContext.currentContext?.cacheManager.setClean(
 				collection: ScreenletName(AddBookmarkScreenlet),
 				key: "url-\(self.url)",
 				attributes: [
-						"url": self.url
+						"url": self.url,
+						"folderId": NSNumber(longLong: self.folderId)
 					])
 		}
 
 		super.callOnSuccess()
 	}
-
 
 }
