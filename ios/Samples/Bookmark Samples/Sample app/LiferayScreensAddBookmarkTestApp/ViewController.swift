@@ -21,7 +21,10 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		SessionContext.createBasicSession(username: "test@liferay.com", password: "test", userAttributes: [:])
+		SessionContext.loginWithBasic(
+			username: "test@liferay.com",
+			password: "test",
+			userAttributes: [:])
 	}
 
 }
