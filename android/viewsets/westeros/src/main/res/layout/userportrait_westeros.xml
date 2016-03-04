@@ -21,6 +21,7 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="bottom|right"
 		android:background="@android:color/transparent"
+		android:contentDescription="@string/replace_image"
 		android:src="@drawable/westeros_circle_add"
 		android:visibility="invisible"/>
 

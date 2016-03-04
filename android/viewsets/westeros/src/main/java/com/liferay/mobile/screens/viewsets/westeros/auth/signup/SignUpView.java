@@ -64,11 +64,11 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 
 		_firstNameValidation = (TextView) findViewById(R.id.first_name_validation);
 		_lastNameValidation = (TextView) findViewById(R.id.last_name_validation);
-		_lastNameValidation.setText("Last name can not be empty");
+		_lastNameValidation.setText(R.string.last_name_cant_be_empty);
 		_emailAddressValidation = (TextView) findViewById(R.id.email_address_validation);
-		_emailAddressValidation.setText("Email address can not be empty");
+		_emailAddressValidation.setText(R.string.email_address_cant_be_empty);
 		_passwordValidation = (TextView) findViewById(R.id.password_validation);
-		_passwordValidation.setText("Password can not be empty");
+		_passwordValidation.setText(R.string.password_cant_be_empty);
 	}
 
 	private SignUpScreenlet getSignUpScreenlet() {

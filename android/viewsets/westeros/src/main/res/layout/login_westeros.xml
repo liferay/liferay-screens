@@ -26,6 +26,7 @@
 			android:layout_height="60dp"
 			android:layout_gravity="end"
 			android:layout_marginTop="5dp"
+			android:contentDescription="@string/see_password"
 			android:paddingEnd="37dp"
 			android:paddingRight="37dp"
 			android:paddingTop="12dp"
