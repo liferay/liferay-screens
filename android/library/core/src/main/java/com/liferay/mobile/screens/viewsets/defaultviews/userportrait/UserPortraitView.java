@@ -24,6 +24,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -226,7 +227,7 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 	protected Paint getBorderPaint(float borderWidth, int color) {
 		Paint borderPaint = new Paint();
 		borderPaint.setAntiAlias(true);
-		borderPaint.setColor(getResources().getColor(color));
+		borderPaint.setColor(ContextCompat.getColor(getContext(), color));
 		borderPaint.setStyle(Paint.Style.STROKE);
 		borderPaint.setStrokeWidth(borderWidth);
 		return borderPaint;

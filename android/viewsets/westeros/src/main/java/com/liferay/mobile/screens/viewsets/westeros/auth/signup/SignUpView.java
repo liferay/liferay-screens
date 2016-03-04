@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.viewsets.westeros.auth.signup;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
@@ -131,7 +132,8 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 		}, 13, ssb.length(), 0);
 
 		ssb.setSpan(new StyleSpan(Typeface.BOLD), 13, ssb.length(), 0);
-		ssb.setSpan(new ForegroundColorSpan(getResources().getColor(android.R.color.white)), 13, ssb.length(), 0);
+		ssb.setSpan(new ForegroundColorSpan(
+			ContextCompat.getColor(getContext(), android.R.color.white)), 13, ssb.length(), 0);
 
 		textView.setText(ssb, TextView.BufferType.SPANNABLE);
 	}

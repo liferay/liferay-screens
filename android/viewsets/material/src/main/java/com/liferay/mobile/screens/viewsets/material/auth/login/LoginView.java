@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.viewsets.material.auth.login;
 
 import android.content.Context;
-import android.content.res.Resources;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -92,10 +92,8 @@ public class LoginView
 	private void changeColorOfImageView(
 		ImageView viewToPrimaryColor, ImageView viewToSecondaryText) {
 
-		Resources res = getResources();
-
-		viewToPrimaryColor.setColorFilter(res.getColor(R.color.colorPrimary_material));
-		viewToSecondaryText.setColorFilter(res.getColor(R.color.textColorSecondary_material));
+		viewToPrimaryColor.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorPrimary_material));
+		viewToSecondaryText.setColorFilter(ContextCompat.getColor(getContext(), R.color.textColorSecondary_material));
 	}
 
 	protected ImageView _drawableLogin;

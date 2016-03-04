@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.viewsets.material.auth.forgotpassword;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
@@ -44,7 +45,7 @@ public class ForgotPasswordView
 		super.onFinishInflate();
 
 		_drawableLogin = (ImageView) findViewById(R.id.drawable_login);
-		_drawableLogin.setColorFilter(getResources().getColor(R.color.colorPrimary_material));
+		_drawableLogin.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorPrimary_material));
 	}
 
 	@Override
