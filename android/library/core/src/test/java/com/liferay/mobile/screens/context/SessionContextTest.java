@@ -290,7 +290,7 @@ public class SessionContextTest {
 			SessionContext.logout();
 			SessionContext.loadStoredCredentials(SHARED_PREFERENCES);
 
-			String sharedPreferencesName = new BasicCredentialsStorageSharedPreferences().getStoreName();
+			String sharedPreferencesName = BaseCredentialsStorageSharedPreferences.getStoreName();
 			SharedPreferences sharedPref =
 				ctx.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
 
