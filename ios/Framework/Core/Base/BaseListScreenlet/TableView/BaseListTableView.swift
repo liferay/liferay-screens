@@ -47,6 +47,8 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	public override func onCreated() {
 		super.onCreated()
 
+		tableView?.dataSource = self
+
 		doRegisterCellNib(id: cellId)
 	}
 
