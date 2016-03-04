@@ -109,12 +109,12 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 	//MARK: Cache methods
 
 	override func writeToCache(op: ServerOperation) {
-		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+		guard let cacheManager = SessionContext.currentCacheManager else {
 			return
 		}
 
 		if let chain = op as? ServerOperationChain,
-				loadFormOp = chain.headOperation as? DDLFormLoadLiferayOperation,
+				loadFormOp = chain.headOperation as? LiferayDDLFormLoadOperation,
 				recordForm = loadFormOp.resultRecord,
 				formUserId = loadFormOp.resultUserId,
 				loadRecordOp = chain.currentOperation as? LiferayDDLFormRecordLoadOperation,
@@ -156,13 +156,13 @@ class DDLFormLoadRecordInteractor: ServerReadOperationInteractor {
 	}
 
 	override func readFromCache(op: ServerOperation, result: AnyObject? -> ()) {
-		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+		guard let cacheManager = SessionContext.currentCacheManager else {
 			result(nil)
 			return
 		}
 
 		if let chain = op as? ServerOperationChain,
-				loadFormOp = chain.headOperation as? DDLFormLoadLiferayOperation
+				loadFormOp = chain.headOperation as? LiferayDDLFormLoadOperation
 				where structureId != nil {
 
 			// load form and record

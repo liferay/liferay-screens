@@ -56,12 +56,12 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 	}
 
 	override func readFromCache(op: ServerOperation, result: AnyObject? -> ()) {
-		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+		guard let cacheManager = SessionContext.currentCacheManager else {
 			result(nil)
 			return
 		}
 
-		if let loadOp = op as? WebContentLoadFromArticleIdLiferayOperation,
+		if let loadOp = op as? LiferayWebContentLoadFromArticleIdOperation,
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {
 
@@ -78,11 +78,11 @@ class WebContentDisplayLoadInteractor: ServerReadOperationInteractor {
 	}
 
 	override func writeToCache(op: ServerOperation) {
-		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+		guard let cacheManager = SessionContext.currentCacheManager else {
 			return
 		}
 
-		if let loadOp = op as? WebContentLoadFromArticleIdLiferayOperation,
+		if let loadOp = op as? LiferayWebContentLoadFromArticleIdOperation,
 				html = loadOp.resultHTML,
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {

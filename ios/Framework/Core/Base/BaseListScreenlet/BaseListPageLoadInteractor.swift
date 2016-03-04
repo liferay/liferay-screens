@@ -79,12 +79,12 @@ public class BaseListPageLoadInteractor: ServerReadOperationInteractor {
 	//MARK: Cache
 
 	override public func readFromCache(op: ServerOperation, result: AnyObject? -> ()) {
-		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+		guard let cacheManager = SessionContext.currentCacheManager else {
 			result(nil)
 			return
 		}
 
-		if let loadOp = op as? PaginationLiferayOperation {
+		if let loadOp = op as? LiferayPaginationOperation {
 			let key = cacheKey(loadOp)
 			cacheManager.getSome(
 					collection: ScreenletName(screenlet!.dynamicType),
@@ -104,11 +104,11 @@ public class BaseListPageLoadInteractor: ServerReadOperationInteractor {
 	}
 
 	override public func writeToCache(op: ServerOperation) {
-		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+		guard let cacheManager = SessionContext.currentCacheManager else {
 			return
 		}
 
-		if let loadOp = op as? PaginationLiferayOperation,
+		if let loadOp = op as? LiferayPaginationOperation,
 				pageContent = loadOp.resultPageContent
 				where !pageContent.isEmpty {
 

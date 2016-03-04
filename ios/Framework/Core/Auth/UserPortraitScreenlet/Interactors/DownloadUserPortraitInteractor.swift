@@ -148,10 +148,11 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 	//MARK: Cache methods
 
 	override func writeToCache(op: ServerOperation) {
-		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+		guard let cacheManager = SessionContext.currentCacheManager else {
 			return
 		}
 
+		if let httpOp = toHttpOperation(op),
 				resultData = httpOp.resultData {
 
 			cacheManager.setClean(
@@ -163,7 +164,7 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 	}
 
 	override func readFromCache(op: ServerOperation, result: AnyObject? -> ()) {
-		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+		guard let cacheManager = SessionContext.currentCacheManager else {
 			result(nil)
 			return
 		}
@@ -186,7 +187,7 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 		}
 
 
-		if (op as? ServerOperationChain)?.currentOperation is GetUserBaseLiferayOperation {
+		if (op as? ServerOperationChain)?.currentOperation is GetUserBaseOperation {
 			// asking for user attributes. if the image is cached, we'd need to skip this step
 
 			cacheManager.getAny(
@@ -200,10 +201,10 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 					// cached. Skip!
 
 					// create a dummy HttpConnector to store the result
-					let dummyConnector = HttpConnector(url: NSURL(string: "http://dummy")!)
+					let dummyConnector = HttpOperation(url: NSURL(string: "http://dummy")!)
 
 					// set this dummy connector to allow "completedConnector" method retrieve the result
-					(op as? ServerConnectorChain)?.currentConnector = dummyConnector
+					(op as? ServerOperationChain)?.currentOperation = dummyConnector
 
 					dispatch_async {
 						loadImageFromCache(output: dummyConnector)

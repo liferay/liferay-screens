@@ -112,11 +112,11 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 	//MARK: Cache methods
 
 	override func writeToCache(op: ServerOperation) {
-		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+		guard let cacheManager = SessionContext.currentCacheManager else {
 			return
 		}
 
-		let submitOp = op as! DDLFormSubmitLiferayOperation
+		let submitOp = op as! LiferayDDLFormSubmitOperation
 
 		let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
 			? cacheManager.setDirty
@@ -133,7 +133,7 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 	}
 
 	override func callOnSuccess() {
-		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+		guard let cacheManager = SessionContext.currentCacheManager else {
 			return
 		}
 
