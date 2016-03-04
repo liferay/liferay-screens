@@ -98,11 +98,8 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 			return false;
 		}
 
-		if (!checkField(_password, _passwordValidation)) {
-			return false;
-		}
+		return checkField(_password, _passwordValidation);
 
-		return true;
 	}
 
 	private boolean checkField(EditText field, View validationView) {
