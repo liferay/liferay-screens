@@ -26,6 +26,7 @@ import com.liferay.mobile.screens.viewsets.westeros.R;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author Javier Gamarra
@@ -81,7 +82,8 @@ public class DDLListAdapter
 				}
 			}
 			if (builder.length() == 0) {
-				String date = new SimpleDateFormat("dd/MM/yyyy").format(entry.getServerAttribute("createDate"));
+				String date = new SimpleDateFormat("dd/MM/yyyy", Locale.US)
+					.format(entry.getServerAttribute("createDate"));
 				builder.append("Created ");
 				builder.append(date);
 			}
@@ -127,7 +129,7 @@ public class DDLListAdapter
 				(v.getId() == R.id.liferay_list_edit
 					|| v.getId() == R.id.liferay_list_view)) {
 
-				_listener.onItemClick(getPosition(), v);
+				_listener.onItemClick(getAdapterPosition(), v);
 			}
 			else if (!opened) {
 				_swipeLayout.open(true);

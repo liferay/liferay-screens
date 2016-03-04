@@ -66,7 +66,7 @@ public class LoginInteractorTest {
 				serviceMock
 			).when(
 				interactorSpy
-			).getUserService(_LOGIN_EMAIL, _LOGIN_PASSWORD);
+			).getUserConnector(_LOGIN_EMAIL, _LOGIN_PASSWORD);
 
 			interactorSpy.setLogin(_LOGIN_EMAIL);
 			interactorSpy.setPassword(_LOGIN_PASSWORD);
@@ -101,7 +101,7 @@ public class LoginInteractorTest {
 				serviceMock
 			).when(
 				interactorSpy
-			).getUserService(userId, _LOGIN_PASSWORD);
+			).getUserConnector(userId, _LOGIN_PASSWORD);
 
 			interactorSpy.setLogin(userId);
 			interactorSpy.setPassword(_LOGIN_PASSWORD);
@@ -134,7 +134,7 @@ public class LoginInteractorTest {
 				serviceMock
 			).when(
 				interactorSpy
-			).getUserService(_LOGIN_SCREEN_NAME, _LOGIN_PASSWORD);
+			).getUserConnector(_LOGIN_SCREEN_NAME, _LOGIN_PASSWORD);
 
 			interactorSpy.setLogin(_LOGIN_SCREEN_NAME);
 			interactorSpy.setPassword(_LOGIN_PASSWORD);
@@ -165,7 +165,7 @@ public class LoginInteractorTest {
 				MockFactory.mockUserConnector()
 			).when(
 				interactorSpy
-			).getUserService(_LOGIN_EMAIL, _LOGIN_PASSWORD);
+			).getUserConnector(_LOGIN_EMAIL, _LOGIN_PASSWORD);
 
 			interactorSpy.setLogin(_LOGIN_EMAIL);
 			interactorSpy.setPassword(_LOGIN_PASSWORD);
@@ -222,7 +222,7 @@ public class LoginInteractorTest {
 				serviceMock
 			).when(
 				interactorSpy
-			).getUserService(_LOGIN_EMAIL, _LOGIN_PASSWORD);
+			).getUserConnector(_LOGIN_EMAIL, _LOGIN_PASSWORD);
 
 			interactorSpy.onScreenletAttached(listener);
 

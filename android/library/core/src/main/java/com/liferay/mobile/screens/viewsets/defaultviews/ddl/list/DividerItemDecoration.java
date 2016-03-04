@@ -46,7 +46,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 		if (mDivider == null) {
 			return;
 		}
-		if (parent.getChildPosition(view) < 1) {
+		if (parent.getChildLayoutPosition(view) < 1) {
 			return;
 		}
 

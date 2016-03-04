@@ -11,7 +11,7 @@ buildscript {
 allprojects {
 	repositories {
 		jcenter()
-		maven { url "http://dl.bintray.com/tbruyelle/tbruyelle" }
+		maven { url 'http://dl.bintray.com/tbruyelle/tbruyelle' }
 	}
 }
 
@@ -27,12 +27,12 @@ android {
 	}
 
 	defaultConfig {
-		applicationId "com.liferay.mobile.screens.testapp"
+		applicationId 'com.liferay.mobile.screens.testapp'
 		minSdkVersion 15
 		targetSdkVersion 23
 		versionCode 4
-		versionName "2.0"
-		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+		versionName '2.0'
+		testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
 	}
 
 	lintOptions {
@@ -59,7 +59,7 @@ dependencies {
 	compile project(':liferay-westeros-viewset')
 	compile project(':addbookmarkscreenlet')
 
-	compile 'com.android.support:design:23.1.1'
+	compile 'com.android.support:design:23.2.0'
 
 	androidTestCompile('com.android.support.test:runner:0.4.1') {
 		exclude group: 'com.android.support', module: 'support-annotations'

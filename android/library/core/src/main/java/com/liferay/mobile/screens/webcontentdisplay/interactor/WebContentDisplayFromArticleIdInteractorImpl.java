@@ -66,12 +66,12 @@ public class WebContentDisplayFromArticleIdInteractorImpl
 		Long templateId = (Long) args[3];
 
 		if (templateId == null || templateId == 0) {
-			JournalContentConnector service = getJournalArticleService(groupId, articleId, locale);
-			service.getArticleContent(groupId, articleId, locale.toString(), null);
+			JournalContentConnector connector = getJournalArticleService(groupId, articleId, locale);
+			connector.getArticleContent(groupId, articleId, locale.toString(), null);
 		}
 		else {
-			ScreensJournalContentConnector screensjournalarticleService = getScreensJournalArticleService(groupId, articleId, locale, templateId);
-			screensjournalarticleService.getJournalArticleContent(groupId, articleId, templateId, locale.toString());
+			ScreensJournalContentConnector connector = getScreensJournalArticleService(groupId, articleId, locale, templateId);
+			connector.getJournalArticleContent(groupId, articleId, templateId, locale.toString());
 		}
 	}
 

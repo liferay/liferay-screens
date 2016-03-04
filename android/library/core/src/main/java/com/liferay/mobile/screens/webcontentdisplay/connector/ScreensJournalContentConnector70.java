@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.webcontentdisplay.connector;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v70.screensjournalarticle.ScreensjournalarticleService;
+import com.liferay.mobile.screens.service.v70.ScreensjournalarticleService;
 
 /**
  * @author Javier Gamarra

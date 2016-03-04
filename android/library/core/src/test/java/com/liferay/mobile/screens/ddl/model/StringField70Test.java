@@ -38,7 +38,7 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class StringField70Test {
 
-	private static StringField _createStringField(Boolean required) throws SAXException {
+	private static StringField _createStringField(Boolean required) {
 
 		String json = "{\"availableLanguageIds\": [ \"en_US\"], " +
 			"\"defaultLanguageId\": \"en_US\", " +

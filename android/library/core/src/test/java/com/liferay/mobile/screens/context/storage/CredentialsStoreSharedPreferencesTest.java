@@ -48,15 +48,11 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class CredentialsStoreSharedPreferencesTest {
 
-	private static void setBasicTestDataInStore(CredentialsStorage store) {
+	private static void setBasicTestDataInStore(CredentialsStorage store) throws JSONException {
 		store.setContext(RuntimeEnvironment.application.getApplicationContext());
 
-		JSONObject userAttributes = null;
-		try {
-			userAttributes = new JSONObject().put("userId", 123);
-		}
-		catch (JSONException e) {
-		}
+		JSONObject userAttributes = new JSONObject();
+		userAttributes.put("userId", 123);
 		store.setUser(new User(userAttributes));
 
 		SessionContext.createBasicSession("user123", "pass123");

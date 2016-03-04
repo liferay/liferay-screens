@@ -67,7 +67,7 @@ public class CacheSyncService extends IntentService {
 	}
 
 	private void sendPortrait(Cache cache) {
-		long userId = SessionContext.getUserId();
+		Long userId = SessionContext.getUserId();
 
 		List<TableCache> userPortraits = cache.get(USER_PORTRAIT_UPLOAD,
 			" AND " + TableCache.DIRTY + " = 1 " +
@@ -91,7 +91,7 @@ public class CacheSyncService extends IntentService {
 	}
 
 	private void sendDocuments(Cache cache) {
-		long userId = SessionContext.getUserId();
+		Long userId = SessionContext.getUserId();
 		long groupId = LiferayServerContext.getGroupId();
 
 		List<DocumentUploadCache> documentsToUpload = cache.get(DOCUMENT_UPLOAD,

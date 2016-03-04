@@ -10,9 +10,10 @@ import com.pushtorefresh.storio.sqlite.queries.DeleteQuery;
  * @author Javier Gamarra
  */
 public class DDLFormDeleteResolver extends DefaultDeleteResolver<DDLFormCache> {
+
 	@NonNull
 	@Override
-	protected DeleteQuery mapToDeleteQuery(DDLFormCache object) {
+	protected DeleteQuery mapToDeleteQuery(@NonNull DDLFormCache object) {
 		return DeleteQuery.builder()
 			.table(DDLFormCache.TABLE_NAME)
 			.where(DDLFormCache.RECORD_SET_ID + " = ?")

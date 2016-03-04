@@ -105,7 +105,7 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 		String endId = createId(id, endRow);
 
 		Long defaultGroupId = groupId == null ? LiferayServerContext.getGroupId() : groupId;
-		Long defaultUserId = userId == null ? (long) SessionContext.getUserId() : userId;
+		Long defaultUserId = userId == null ? SessionContext.getUserId() : userId;
 		String defaultLocale = locale == null ? LiferayLocale.getDefaultSupportedLocale() :
 			LiferayLocale.getSupportedLocale(locale.getDisplayLanguage());
 
@@ -136,7 +136,7 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 	protected abstract E getElement(TableCache tableCache) throws JSONException;
 
 	protected String createId(String recordSetId, Integer row) {
-		return String.format("%s_%05d", recordSetId, row);
+		return String.format(Locale.US, "%s_%05d", recordSetId, row);
 	}
 
 	protected void storeRows(String id, CachedType cachedType, CachedType cachedTypeCount, Long groupId, Long userId, BaseListEvent event) {

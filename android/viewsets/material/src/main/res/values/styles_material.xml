@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="material_theme" parent="Theme.AppCompat.Light">
+	<style name="material_theme" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="colorAccent">@color/colorAccent_material</item>
 		<item name="colorPrimary">@color/colorPrimary_material</item>
 		<item name="colorPrimaryDark">@color/colorPrimaryDark_material</item>

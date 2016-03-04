@@ -18,6 +18,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
@@ -184,7 +185,7 @@ public abstract class BaseListScreenletView<
 	}
 
 	protected DividerItemDecoration getDividerDecoration() {
-		return new DividerItemDecoration(getResources().getDrawable(R.drawable.pixel_grey));
+		return new DividerItemDecoration(ContextCompat.getDrawable(getContext(), R.drawable.pixel_grey));
 	}
 
 	protected int getItemLayoutId() {

@@ -63,7 +63,7 @@ public class CustomInteractorActivity extends ThemeActivity
 
 				User fakeUser = new User(jsonObject);
 
-				SessionContext.setLoggedUser(fakeUser);
+				SessionContext.setCurrentUser(fakeUser);
 				SessionContext.createBasicSession(username, username);
 
 				getListener().onLoginSuccess(fakeUser);

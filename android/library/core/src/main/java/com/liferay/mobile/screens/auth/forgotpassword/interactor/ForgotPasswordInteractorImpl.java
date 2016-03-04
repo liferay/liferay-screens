@@ -59,18 +59,18 @@ public class ForgotPasswordInteractorImpl
 			companyId, login, basicAuthMethod, anonymousApiUserName,
 			anonymousApiPassword);
 
-		ForgotPasswordConnector forgotPasswordConnector = getScreensUserService(
+		ForgotPasswordConnector connector = getScreensUserService(
 			anonymousApiUserName, anonymousApiPassword);
 
 		switch (basicAuthMethod) {
 			case EMAIL:
-				forgotPasswordConnector.sendPasswordByEmailAddress(companyId, login);
+				connector.sendPasswordByEmailAddress(companyId, login);
 				break;
 			case USER_ID:
-				forgotPasswordConnector.sendPasswordByUserId(Long.parseLong(login));
+				connector.sendPasswordByUserId(Long.parseLong(login));
 				break;
 			case SCREEN_NAME:
-				forgotPasswordConnector.sendPasswordByScreenName(companyId, login);
+				connector.sendPasswordByScreenName(companyId, login);
 				break;
 		}
 	}

@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.auth.login;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
@@ -174,7 +175,7 @@ public class LoginView extends LinearLayout
 		if (_basicAuthMethod != null) {
 			_loginEditText.setInputType(_basicAuthMethod.getInputType());
 			_loginEditText.setCompoundDrawablesWithIntrinsicBounds(
-				getResources().getDrawable(getLoginEditTextDrawableId()), null, null, null);
+				ContextCompat.getDrawable(getContext(), getLoginEditTextDrawableId()), null, null, null);
 		}
 	}
 

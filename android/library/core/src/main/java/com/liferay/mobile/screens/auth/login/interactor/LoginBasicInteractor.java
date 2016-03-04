@@ -35,7 +35,7 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 	public void login() throws Exception {
 		validate(_login, _password, _basicAuthMethod);
 
-		UserConnector userConnector = getUserService(_login, _password);
+		UserConnector userConnector = getUserConnector(_login, _password);
 
 		switch (_basicAuthMethod) {
 			case EMAIL:
@@ -64,7 +64,7 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 		_basicAuthMethod = basicAuthMethod;
 	}
 
-	protected UserConnector getUserService(String login, String password) {
+	protected UserConnector getUserConnector(String login, String password) {
 		Session session = SessionContext.createBasicSession(login, password);
 		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
 		return ServiceProvider.getInstance().getUserConnector(session);

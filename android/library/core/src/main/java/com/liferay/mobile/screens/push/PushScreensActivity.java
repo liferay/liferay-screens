@@ -95,10 +95,10 @@ public abstract class PushScreensActivity extends AppCompatActivity
 	protected abstract Session getDefaultSession();
 
 	protected void unsubscribeFromBuses() {
-		if (_push != null) {
-			//FIXME !
+//		if (_push != null) {
+//			FIXME !
 //			_push.unsubscribe();
-		}
+//		}
 	}
 
 	protected abstract void onPushNotificationReceived(JSONObject jsonObject);

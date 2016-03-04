@@ -23,8 +23,6 @@ import com.liferay.mobile.screens.base.AbstractFactory;
 import com.liferay.mobile.screens.base.FactoryProvider;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.BaseCredentialsStorageSharedPreferences;
-import com.liferay.mobile.screens.context.storage.sharedPreferences.BasicCredentialsStorageSharedPreferences;
-import com.liferay.mobile.screens.context.storage.sharedPreferences.OAuthCredentialsStorageSharedPreferences;
 
 /**
  * @author Jose Manuel Navarro

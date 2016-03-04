@@ -12,9 +12,10 @@ import java.util.Date;
  * @author Javier Gamarra
  */
 public class DDLRecordGetResolver extends DefaultGetResolver<DDLRecordCache> {
+
 	@NonNull
 	@Override
-	public DDLRecordCache mapFromCursor(Cursor cursor) {
+	public DDLRecordCache mapFromCursor(@NonNull Cursor cursor) {
 
 		DDLRecordCache object = new DDLRecordCache();
 

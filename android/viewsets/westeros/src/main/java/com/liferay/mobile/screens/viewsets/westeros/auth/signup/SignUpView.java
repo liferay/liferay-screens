@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.viewsets.westeros.auth.signup;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
@@ -64,11 +65,11 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 
 		_firstNameValidation = (TextView) findViewById(R.id.first_name_validation);
 		_lastNameValidation = (TextView) findViewById(R.id.last_name_validation);
-		_lastNameValidation.setText("Last name can not be empty");
+		_lastNameValidation.setText(R.string.last_name_cant_be_empty);
 		_emailAddressValidation = (TextView) findViewById(R.id.email_address_validation);
-		_emailAddressValidation.setText("Email address can not be empty");
+		_emailAddressValidation.setText(R.string.email_address_cant_be_empty);
 		_passwordValidation = (TextView) findViewById(R.id.password_validation);
-		_passwordValidation.setText("Password can not be empty");
+		_passwordValidation.setText(R.string.password_cant_be_empty);
 	}
 
 	private SignUpScreenlet getSignUpScreenlet() {
@@ -97,11 +98,8 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 			return false;
 		}
 
-		if (!checkField(_password, _passwordValidation)) {
-			return false;
-		}
+		return checkField(_password, _passwordValidation);
 
-		return true;
 	}
 
 	private boolean checkField(EditText field, View validationView) {
@@ -131,7 +129,8 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 		}, 13, ssb.length(), 0);
 
 		ssb.setSpan(new StyleSpan(Typeface.BOLD), 13, ssb.length(), 0);
-		ssb.setSpan(new ForegroundColorSpan(getResources().getColor(android.R.color.white)), 13, ssb.length(), 0);
+		ssb.setSpan(new ForegroundColorSpan(
+			ContextCompat.getColor(getContext(), android.R.color.white)), 13, ssb.length(), 0);
 
 		textView.setText(ssb, TextView.BufferType.SPANNABLE);
 	}

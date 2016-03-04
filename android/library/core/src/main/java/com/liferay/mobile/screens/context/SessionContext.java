@@ -77,7 +77,7 @@ public class SessionContext {
 		return _currentUser == null ? null : _currentUser.getId();
 	}
 
-	public static void setLoggedUser(User value) {
+	public static void setCurrentUser(User value) {
 		_currentUser = value;
 	}
 

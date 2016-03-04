@@ -15,6 +15,6 @@
 	<android.support.v7.widget.RecyclerView
 		android:id="@+id/liferay_recycler_list"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
+		android:layout_height="wrap_content"
 		android:visibility="gone"/>
 </com.liferay.mobile.screens.viewsets.material.assetlist.AssetListView>

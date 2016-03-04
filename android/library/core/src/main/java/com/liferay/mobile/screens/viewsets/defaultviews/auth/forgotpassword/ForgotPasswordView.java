@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.auth.forgotpassword;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
@@ -130,7 +131,7 @@ public class ForgotPasswordView extends LinearLayout
 	protected void refreshLoginEditTextStyle() {
 		_loginEditText.setInputType(_basicAuthMethod.getInputType());
 		_loginEditText.setCompoundDrawablesWithIntrinsicBounds(
-			getResources().getDrawable(getLoginEditTextDrawableId()), null, null, null);
+			ContextCompat.getDrawable(getContext(), getLoginEditTextDrawableId()), null, null, null);
 	}
 
 	protected int getLoginEditTextDrawableId() {
