@@ -20,7 +20,7 @@ android {
 }
 
 repositories {
-	maven { url "http://dl.bintray.com/tbruyelle/tbruyelle" }
+	maven { url 'http://dl.bintray.com/tbruyelle/tbruyelle' }
 }
 
 dependencies {
