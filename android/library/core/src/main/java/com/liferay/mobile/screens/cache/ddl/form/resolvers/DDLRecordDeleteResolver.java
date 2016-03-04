@@ -10,9 +10,10 @@ import com.pushtorefresh.storio.sqlite.queries.DeleteQuery;
  * @author Javier Gamarra
  */
 public class DDLRecordDeleteResolver extends DefaultDeleteResolver<DDLRecordCache> {
+
 	@NonNull
 	@Override
-	protected DeleteQuery mapToDeleteQuery(DDLRecordCache object) {
+	protected DeleteQuery mapToDeleteQuery(@NonNull DDLRecordCache object) {
 		return DeleteQuery.builder()
 			.table(DDLRecordCache.TABLE_NAME)
 			.where(DDLRecordCache.RECORD_ID + " = ?")

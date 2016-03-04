@@ -10,9 +10,10 @@ import com.pushtorefresh.storio.sqlite.operations.get.DefaultGetResolver;
  * @author Javier Gamarra
  */
 public class DDLFormGetResolver extends DefaultGetResolver<DDLFormCache> {
+
 	@NonNull
 	@Override
-	public DDLFormCache mapFromCursor(Cursor cursor) {
+	public DDLFormCache mapFromCursor(@NonNull Cursor cursor) {
 
 		DDLFormCache object = new DDLFormCache();
 
