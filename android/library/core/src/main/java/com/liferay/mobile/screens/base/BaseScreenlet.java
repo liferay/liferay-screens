@@ -139,6 +139,11 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 			int layoutNameKeyId = ctx.getResources().getIdentifier(
 				layoutNameKeyName, "string", packageName);
 
+			if (layoutNameKeyId == 0) {
+				layoutNameKeyId = ctx.getResources().getIdentifier(
+					getClass().getSimpleName() + "_default", "string", packageName);
+			}
+
 			// second, get the identifier of the layout specified in key layoutNameKeyId
 
 			String layoutName = ctx.getString(layoutNameKeyId);
