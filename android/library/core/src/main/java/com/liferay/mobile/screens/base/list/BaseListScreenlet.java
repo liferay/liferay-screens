@@ -25,7 +25,9 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
 import com.liferay.mobile.screens.base.list.view.BaseListViewModel;
+import com.liferay.mobile.screens.util.LiferayLogger;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -140,6 +142,14 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 		_pageSize = pageSize;
 	}
 
+	public List<String> getLabelFields() {
+		return _labelFields;
+	}
+
+	public void setLabelFields(List<String> labelFields) {
+		_labelFields = labelFields;
+	}
+
 	protected abstract void loadRows(N interactor, int startRow, int endRow, Locale locale)
 		throws Exception;
 
@@ -160,6 +170,8 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 
 		_autoLoad = typedArray.getBoolean(R.styleable.AssetListScreenlet_autoLoad, true);
 
+		_labelFields = parse(typedArray.getString(R.styleable.AssetListScreenlet_labelFields));
+
 		typedArray.recycle();
 
 		return LayoutInflater.from(context).inflate(layoutId, null);
@@ -179,6 +191,19 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 	protected void onUserAction(String userActionName, N interactor, Object... args) {
 	}
 
+	private List<String> parse(String labelFields) {
+		if (labelFields == null) {
+			LiferayLogger.e("No labelFields configured");
+			labelFields = "";
+		}
+
+		List<String> parsedFields = new ArrayList<>();
+		for (String text : labelFields.split(",")) {
+			parsedFields.add(text.trim());
+		}
+		return parsedFields;
+	}
+
 	protected static final int _FIRST_PAGE_SIZE = 50;
 	protected static final int _PAGE_SIZE = 25;
 
@@ -186,5 +211,5 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 	protected int _firstPageSize;
 	protected BaseListListener<E> _listener;
 	protected int _pageSize;
-
+	private List<String> _labelFields;
 }

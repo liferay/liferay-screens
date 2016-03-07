@@ -58,7 +58,7 @@ public abstract class BaseListScreenletView<
 
 	@Override
 	public void onItemClick(int position, View view) {
-		BaseListScreenlet screenlet = ((BaseListScreenlet) getParent());
+		BaseListScreenlet screenlet = (BaseListScreenlet) getScreenlet();
 		List<E> entries = getAdapter().getEntries();
 
 		// we do not want to crash if the user manages to do a phantom click
@@ -93,6 +93,9 @@ public abstract class BaseListScreenletView<
 		adapter.setRowCount(entries.size());
 
 		adapter.notifyDataSetChanged();
+
+		BaseListScreenlet screenlet = (BaseListScreenlet) getScreenlet();
+		adapter.setLabelFields(screenlet.getLabelFields());
 	}
 
 	@Override
@@ -123,7 +126,7 @@ public abstract class BaseListScreenletView<
 
 	@Override
 	public void onPageNotFound(int row) {
-		BaseListScreenlet screenlet = (BaseListScreenlet) getParent();
+		BaseListScreenlet screenlet = (BaseListScreenlet) getScreenlet();
 
 		screenlet.loadPageForRow(row + _firstRow);
 	}
@@ -181,8 +184,8 @@ public abstract class BaseListScreenletView<
 			_recyclerView.addItemDecoration(
 				getDividerDecoration());
 		}
-
 	}
+
 
 	protected DividerItemDecoration getDividerDecoration() {
 		return new DividerItemDecoration(ContextCompat.getDrawable(getContext(), R.drawable.pixel_grey));
@@ -218,7 +221,7 @@ public abstract class BaseListScreenletView<
 	private List<E> addNewServerEntries(List<E> serverEntries, int page, int rowCount) {
 		List<E> entries = getAdapter().getEntries();
 
-		BaseListScreenlet screenlet = ((BaseListScreenlet) getParent());
+		BaseListScreenlet screenlet = (BaseListScreenlet) getScreenlet();
 		int row = screenlet.getFirstRowForPage(page) - _firstRow;
 
 		if (entries.isEmpty()) {
@@ -245,6 +248,5 @@ public abstract class BaseListScreenletView<
 	private static final String _STATE_SUPER = "super";
 	private static final String _STATE_FIRST_ROW = "firstRow";
 	private BaseScreenlet _screenlet;
-
 
 }
