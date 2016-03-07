@@ -46,15 +46,6 @@ public class DDLListView
 	}
 
 	@Override
-	public void showFinishOperation(int page, List<Record> entries, int rowCount) {
-		DDLListScreenlet screenlet = (DDLListScreenlet) getScreenlet();
-
-		getAdapter().setLabelFields(screenlet.getLabelFields());
-
-		super.showFinishOperation(page, entries, rowCount);
-	}
-
-	@Override
 	protected DDLListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
 		return new DDLListAdapter(itemLayoutId, itemProgressLayoutId, this);
 	}
