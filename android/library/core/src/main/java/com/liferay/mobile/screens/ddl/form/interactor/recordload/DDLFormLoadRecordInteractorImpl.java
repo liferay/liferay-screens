@@ -117,7 +117,9 @@ public class DDLFormLoadRecordInteractorImpl
 			long groupId = LiferayServerContext.getGroupId();
 			JSONObject valuesAndAttributes = new JSONObject();
 			valuesAndAttributes.put("modelValues", event.getJSONObject());
-			CacheSQL.getInstance().set(new DDLRecordCache(groupId, event.getRecord(), valuesAndAttributes));
+			DDLRecordCache ddlRecordCache = new DDLRecordCache(groupId, event.getRecord(), valuesAndAttributes);
+			ddlRecordCache.setDirty(false);
+			CacheSQL.getInstance().set(ddlRecordCache);
 		}
 		catch (JSONException e) {
 			LiferayLogger.e("Couldn't parse JSON values", e);
