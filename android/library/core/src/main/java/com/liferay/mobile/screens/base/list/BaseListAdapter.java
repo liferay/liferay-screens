@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.base.list;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +44,14 @@ public abstract class BaseListAdapter<E, H extends BaseListAdapter.ViewHolder>
 
 	public List<E> getEntries() {
 		return _entries;
+	}
+
+	public List<String> getLabelFields() {
+		return _labelFields;
+	}
+
+	public void setLabelFields(List<String> labelFields) {
+		_labelFields = labelFields;
 	}
 
 	@Override
@@ -85,11 +94,13 @@ public abstract class BaseListAdapter<E, H extends BaseListAdapter.ViewHolder>
 	public H onCreateViewHolder(ViewGroup parent, int viewType) {
 
 		LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-
 		View view = inflater.inflate(
 			viewType == LAYOUT_TYPE_DEFAULT ? _layoutId : _progressLayoutId, parent, false);
-		return (H) new ViewHolder(view, _listener);
+		return createViewHolder(view, _listener);
 	}
+
+	@NonNull
+	public abstract H createViewHolder(View view, BaseListAdapterListener listener);
 
 	public void setRowCount(int rowCount) {
 		_rowCount = rowCount;
@@ -104,6 +115,7 @@ public abstract class BaseListAdapter<E, H extends BaseListAdapter.ViewHolder>
 	private BaseListAdapterListener _listener;
 	private int _progressLayoutId;
 	private int _rowCount;
+	private List<String> _labelFields;
 
 	public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
