@@ -29,6 +29,7 @@ import android.widget.ProgressBar;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.list.view.BaseListViewModel;
+import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
 
@@ -145,6 +146,10 @@ public abstract class BaseListScreenletView<
 		adapter.getEntries().addAll(entries == null ? new ArrayList<E>() : entries);
 		adapter.notifyDataSetChanged();
 
+		List labelFields = state.getStringArrayList(_STATE_LABEL_FIELDS);
+
+		getAdapter().setLabelFields(labelFields);
+
 		_firstRow = state.getInt(_STATE_FIRST_ROW);
 	}
 
@@ -159,6 +164,7 @@ public abstract class BaseListScreenletView<
 		state.putParcelableArrayList(_STATE_ENTRIES, entries);
 		state.putSerializable(_STATE_ROW_COUNT, adapter.getItemCount());
 		state.putParcelable(_STATE_SUPER, superState);
+		state.putStringArrayList(_STATE_LABEL_FIELDS, (ArrayList<String>) ((BaseListScreenlet) getScreenlet()).getLabelFields());
 		state.putInt(_STATE_FIRST_ROW, _firstRow);
 
 		return state;
@@ -247,6 +253,7 @@ public abstract class BaseListScreenletView<
 	private static final String _STATE_ROW_COUNT = "rowCount";
 	private static final String _STATE_SUPER = "super";
 	private static final String _STATE_FIRST_ROW = "firstRow";
+	private static final String _STATE_LABEL_FIELDS = "label_fields";
 	private BaseScreenlet _screenlet;
 
 }
