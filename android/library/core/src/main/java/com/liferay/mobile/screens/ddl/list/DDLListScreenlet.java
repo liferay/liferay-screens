@@ -67,14 +67,6 @@ public class DDLListScreenlet
 		_userId = userId;
 	}
 
-	public List<String> getLabelFields() {
-		return _labelFields;
-	}
-
-	public void setLabelFields(List<String> labelFields) {
-		_labelFields = labelFields;
-	}
-
 	public OfflinePolicy getOfflinePolicy() {
 		return _offlinePolicy;
 	}
@@ -122,8 +114,6 @@ public class DDLListScreenlet
 			R.styleable.DDLListScreenlet_recordSetId));
 		_userId = castToLong(typedArray.getString(
 			R.styleable.DDLListScreenlet_userId));
-		_labelFields = parse(typedArray.getString(
-			R.styleable.DDLListScreenlet_labelFields));
 		typedArray.recycle();
 
 		return super.createScreenletView(context, attributes);
@@ -134,21 +124,7 @@ public class DDLListScreenlet
 		return new DDLListInteractorImpl(getScreenletId(), _offlinePolicy);
 	}
 
-	private List<String> parse(String labelFields) {
-		if (labelFields == null) {
-
-			throw new IllegalArgumentException("DDLListScreenlet must define 'labelFields' parameter");
-		}
-
-		List<String> parsedFields = new ArrayList<>();
-		for (String text : labelFields.split(",")) {
-			parsedFields.add(text.trim());
-		}
-		return parsedFields;
-	}
-
 	private long _recordSetId;
 	private long _userId;
-	private List<String> _labelFields;
 	private OfflinePolicy _offlinePolicy;
 }

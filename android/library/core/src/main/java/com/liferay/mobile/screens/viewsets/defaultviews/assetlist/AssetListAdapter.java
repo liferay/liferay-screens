@@ -14,6 +14,9 @@
 
 package com.liferay.mobile.screens.viewsets.defaultviews.assetlist;
 
+import android.support.annotation.NonNull;
+import android.view.View;
+
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
@@ -25,6 +28,12 @@ public class AssetListAdapter extends BaseListAdapter<AssetEntry, BaseListAdapte
 
 	public AssetListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 		super(layoutId, progressLayoutId, listener);
+	}
+
+	@NonNull
+	@Override
+	public ViewHolder createViewHolder(View view, BaseListAdapterListener listener) {
+		return new ViewHolder(view, listener);
 	}
 
 	@Override
