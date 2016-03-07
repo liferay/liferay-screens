@@ -333,7 +333,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		if let hashedUUID = encodedSHA1(uuid) {
 			let maleString = male ? "male" : "female"
 
-			let url = "\(LiferayServerContext.server)/image/user_\(maleString)/_portrait" +
+			let url = "\(LiferayServerContext.server)/image/user_\(maleString)_portrait" +
 				"?img_id=\(portraitId)" +
 				"&img_id_token=\(hashedUUID)" +
 			"&t=\(NSDate.timeIntervalSinceReferenceDate())"
