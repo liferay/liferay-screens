@@ -14,11 +14,12 @@
 
 package com.liferay.mobile.screens.viewsets.defaultviews.ddl.list;
 
+import android.support.annotation.NonNull;
+import android.view.View;
+
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
 import com.liferay.mobile.screens.ddl.model.Record;
-
-import java.util.List;
 
 /**
  * @author Javier Gamarra
@@ -30,15 +31,18 @@ public class DDLListAdapter extends BaseListAdapter<Record, BaseListAdapter.View
 		super(layoutId, progressLayoutId, listener);
 	}
 
-	public void setLabelFields(List<String> labelFields) {
-		_labelFields = labelFields;
+	@NonNull
+	@Override
+	public ViewHolder createViewHolder(View view, BaseListAdapterListener listener) {
+		return new ViewHolder(view, listener);
 	}
 
 	@Override
 	protected void fillHolder(Record entry, ViewHolder holder) {
+
 		StringBuilder builder = new StringBuilder();
 
-		for (String field : _labelFields) {
+		for (String field : getLabelFields()) {
 			Object value = entry.getServerValue(field);
 			if (value != null) {
 				builder.append(value.toString());
@@ -48,7 +52,5 @@ public class DDLListAdapter extends BaseListAdapter<Record, BaseListAdapter.View
 
 		holder.textView.setText(builder.toString());
 	}
-
-	private List<String> _labelFields;
 
 }

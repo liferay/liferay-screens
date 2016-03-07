@@ -27,6 +27,7 @@
 	<attr name="userId" format="string"/>
 	<attr name="firstPageSize" format="integer"/>
 	<attr name="pageSize" format="integer"/>
+	<attr name="labelFields" format="string"/>
 
 	<declare-styleable name="AssetListScreenlet">
 		<attr name="layoutId"/>
@@ -37,6 +38,7 @@
 		<attr name="classNameId" format="string"/>
 		<attr name="firstPageSize"/>
 		<attr name="pageSize"/>
+		<attr name="labelFields"/>
 	</declare-styleable>
 
 	<declare-styleable name="DDLFormScreenlet">
@@ -69,9 +71,9 @@
 		<attr name="recordSetId"/>
 		<attr name="userId"/>
 		<attr name="offlinePolicy"/>
-		<attr name="labelFields" format="string"/>
 		<attr name="firstPageSize"/>
 		<attr name="pageSize"/>
+		<attr name="labelFields"/>
 	</declare-styleable>
 
 	<declare-styleable name="ForgotPasswordScreenlet">
