@@ -14,6 +14,8 @@
 	<com.liferay.mobile.screens.listbookmark.BookmarkListScreenlet
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		app:groupId="20525"
+		app:folderId="20622"
 		app:layoutId="@layout/list_bookmarks"/>
 
 </RelativeLayout>
