@@ -17,6 +17,7 @@
 		android:layout_height="match_parent"
 		app:folderId="20622"
 		app:groupId="20525"
-		app:layoutId="@layout/list_bookmarks"/>
+		app:layoutId="@layout/list_bookmarks"
+		app:offlinePolicy="REMOTE_FIRST"/>
 
 </RelativeLayout>
