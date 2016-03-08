@@ -113,16 +113,20 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 	//MARK: Cache methods
 
 	override func writeToCache(op: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+
 		let submitOp = op as! DDLFormSubmitLiferayConnector
 
 		let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
-			? SessionContext.currentContext?.cacheManager.setDirty
-			: SessionContext.currentContext?.cacheManager.setClean
+			? cacheManager.setDirty
+			: cacheManager.setClean
 
 		lastCacheKeyUsed = lastCacheKeyUsed
 			?? DDLFormSubmitFormInteractor.cacheKey(submitOp.recordId)
 
-		cacheFunction?(
+		cacheFunction(
 			collection: ScreenletName(DDLFormScreenlet),
 			key: lastCacheKeyUsed!,
 			value: record.values,
@@ -130,6 +134,10 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 	}
 
 	override func callOnSuccess() {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+
 		if cacheStrategy == .CacheFirst {
 			precondition(
 				lastCacheKeyUsed != nil,
@@ -139,19 +147,19 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 				// create new cache entry and delete the draft one
 				if lastCacheKeyUsed!.hasPrefix("draft-")
 						&& record.recordId == nil {
-					SessionContext.currentContext?.cacheManager.remove(
+					cacheManager.remove(
 						collection: ScreenletName(DDLFormScreenlet),
 						key: lastCacheKeyUsed!)
 				}
 
-				SessionContext.currentContext?.cacheManager.setClean(
+				cacheManager.setClean(
 					collection: ScreenletName(DDLFormScreenlet),
 					key: DDLFormSubmitFormInteractor.cacheKey(resultRecordId),
 					attributes: cacheAttributes())
 			}
 			else {
 				// update current cache entry with date sent
-				SessionContext.currentContext?.cacheManager.setClean(
+				cacheManager.setClean(
 					collection: ScreenletName(DDLFormScreenlet),
 					key: lastCacheKeyUsed
 						?? DDLFormSubmitFormInteractor.cacheKey(record.recordId),

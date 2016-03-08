@@ -48,6 +48,9 @@ import UIKit
 					doRun(session: session)
 					postRun()
 				}
+				else {
+					lastError = NSError.errorWithCause(.NotAvailable)
+				}
 			}
 			else {
 				lastError = NSError.errorWithCause(.AbortedDueToPreconditions)

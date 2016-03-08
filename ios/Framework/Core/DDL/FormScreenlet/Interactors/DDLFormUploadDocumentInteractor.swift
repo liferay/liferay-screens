@@ -105,13 +105,17 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 	//MARK: Cache methods
 
 	override func writeToCache(op: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+
 		// cache only supports images (right now)
 		if let image = document.currentValue as? UIImage {
 			let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
-				? SessionContext.currentContext?.cacheManager.setDirty
-				: SessionContext.currentContext?.cacheManager.setClean
+				? cacheManager.setDirty
+				: cacheManager.setClean
 
-			cacheFunction?(
+			cacheFunction(
 				collection: ScreenletName(DDLFormScreenlet),
 				key: cacheKey(),
 				value: image,

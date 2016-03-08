@@ -108,6 +108,10 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 	//MARK: Cache methods
 
 	override func writeToCache(op: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+
 		if let chain = op as? ServerConnectorChain,
 				loadFormOp = chain.headConnector as? DDLFormLoadLiferayConnector,
 				recordForm = loadFormOp.resultRecord,
@@ -116,7 +120,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 				recordData = loadRecordOp.resultRecordData,
 				recordAttributes = loadRecordOp.resultRecordAttributes {
 
-			SessionContext.currentContext?.cacheManager.setClean(
+			cacheManager.setClean(
 				collection: ScreenletName(DDLFormScreenlet),
 				key: "structureId-\(self.structureId)",
 				value: recordForm,
@@ -127,7 +131,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 				data: recordData,
 				attributes: recordAttributes)
 
-			SessionContext.currentContext?.cacheManager.setClean(
+			cacheManager.setClean(
 				collection: ScreenletName(DDLFormScreenlet),
 				key: "recordId-\(loadRecordOp.recordId)",
 				value: recordData,
@@ -142,7 +146,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 				attributes: recordAttributes)
 
 			// save just record data
-			SessionContext.currentContext?.cacheManager.setClean(
+			cacheManager.setClean(
 				collection: ScreenletName(DDLFormScreenlet),
 				key: "recordId-\(loadRecordOp.recordId)",
 				value: recordData,
@@ -150,14 +154,19 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-	override func readFromCache(op: ServerConnector, result: AnyObject? -> Void) {
+	override func readFromCache(op: ServerConnector, result: AnyObject? -> ()) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			result(nil)
+			return
+		}
+
 		if let chain = op as? ServerConnectorChain,
 				loadFormOp = chain.headConnector as? DDLFormLoadLiferayConnector
 				where structureId != nil {
 
 			// load form and record
 
-			SessionContext.currentContext!.cacheManager.getSomeWithAttributes(
+			cacheManager.getSomeWithAttributes(
 					collection: ScreenletName(DDLFormScreenlet),
 					keys: ["structureId-\(structureId)", "recordId-\(recordId)"]) {
 				objects, attributes in
@@ -190,7 +199,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 		}
 		else if let loadRecordOp = op as? DDLFormRecordLoadLiferayConnector {
 			// load just record
-			SessionContext.currentContext!.cacheManager.getAnyWithAttributes(
+			cacheManager.getAnyWithAttributes(
 					collection: ScreenletName(DDLFormScreenlet),
 					key: "recordId-\(loadRecordOp.recordId)") {
 				object, attributes in
@@ -205,6 +214,9 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 
 				result(loadRecordOp.resultRecordData)
 			}
+		}
+		else {
+			result(nil)
 		}
 	}
 
