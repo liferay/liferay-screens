@@ -29,7 +29,7 @@ public class BookmarkListInteractorImpl
 
 	public void loadRows(int startRow, int endRow, Locale locale, long groupId, long folderId) throws Exception {
 
-		_groupdId = groupId;
+		_groupId = groupId;
 		_folderId = folderId;
 
 		super.loadRows(startRow, endRow, locale);
@@ -47,12 +47,12 @@ public class BookmarkListInteractorImpl
 
 	@Override
 	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception {
-		new BookmarksEntryService(session).getEntries(_groupdId, _folderId, startRow, endRow);
+		new BookmarksEntryService(session).getEntries(_groupId, _folderId, startRow, endRow);
 	}
 
 	@Override
 	protected void getPageRowCountRequest(Session session) throws Exception {
-		new BookmarksEntryService(session).getEntriesCount(_groupdId, _folderId);
+		new BookmarksEntryService(session).getEntriesCount(_groupId, _folderId);
 	}
 
 	@NonNull
@@ -76,6 +76,6 @@ public class BookmarkListInteractorImpl
 
 	}
 
-	private long _groupdId;
+	private long _groupId;
 	private long _folderId;
 }

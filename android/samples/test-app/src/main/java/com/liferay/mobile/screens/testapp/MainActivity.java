@@ -104,7 +104,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(CustomInteractorActivity.class));
 				break;
 			case R.id.list_bookmarks:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(ListBookmarks.class));
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(ListBookmarksActivity.class));
 				break;
 			default:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(LoginActivity.class));
