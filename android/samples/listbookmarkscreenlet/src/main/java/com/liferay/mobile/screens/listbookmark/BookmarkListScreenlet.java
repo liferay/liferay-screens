@@ -57,6 +57,9 @@ public class BookmarkListScreenlet extends BaseListScreenlet<Bookmark, BookmarkL
 
 	@Override
 	protected void loadRows(BookmarkListInteractorImpl interactor, int startRow, int endRow, Locale locale) throws Exception {
+
+		((BookmarkListListener) getListener()).interactorCalled();
+
 		interactor.loadRows(startRow, endRow, locale, _groupId, _folderId);
 	}
 
