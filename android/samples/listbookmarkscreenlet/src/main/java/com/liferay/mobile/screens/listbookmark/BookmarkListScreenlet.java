@@ -1,10 +1,13 @@
 package com.liferay.mobile.screens.listbookmark;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.View;
 
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 
 import java.util.Locale;
 
@@ -41,8 +44,20 @@ public class BookmarkListScreenlet extends BaseListScreenlet<Bookmark, BookmarkL
 	}
 
 	@Override
+	protected View createScreenletView(Context context, AttributeSet attributes) {
+		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
+			attributes, R.styleable.BookmarkListScreenlet, 0, 0);
+		_groupId = typedArray.getInt(R.styleable.BookmarkListScreenlet_groupId,
+			(int) LiferayServerContext.getGroupId());
+		_folderId = typedArray.getInt(R.styleable.BookmarkListScreenlet_folderId, 0);
+		typedArray.recycle();
+
+		return super.createScreenletView(context, attributes);
+	}
+
+	@Override
 	protected void loadRows(BookmarkListInteractorImpl interactor, int startRow, int endRow, Locale locale) throws Exception {
-		interactor.loadRows(startRow, endRow, locale, groupId, folderId);
+		interactor.loadRows(startRow, endRow, locale, _groupId, _folderId);
 	}
 
 	@Override
@@ -50,6 +65,6 @@ public class BookmarkListScreenlet extends BaseListScreenlet<Bookmark, BookmarkL
 		return new BookmarkListInteractorImpl(getScreenletId(), OfflinePolicy.REMOTE_ONLY);
 	}
 
-	private long groupId = 20525;
-	private long folderId = 20622;
+	private long _groupId;
+	private long _folderId;
 }
