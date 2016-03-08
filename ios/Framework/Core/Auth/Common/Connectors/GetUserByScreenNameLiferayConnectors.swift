@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import LRMobileSDK
 
 
 public class GetUserByScreenNameLiferayConnector: GetUserBaseLiferayConnector {
@@ -64,7 +65,7 @@ public class GetUserByScreenNameLiferay70Connector: GetUserByScreenNameLiferayCo
 
 			let companyId = (self.companyId != 0) ? self.companyId : LiferayServerContext.companyId
 
-			let service = LRUserService_v70(session: session)
+			let service = LRUserService_v7(session: session)
 
 			return try service.getUserByScreenNameWithCompanyId(companyId,
 				screenName: screenName) ?? [:]

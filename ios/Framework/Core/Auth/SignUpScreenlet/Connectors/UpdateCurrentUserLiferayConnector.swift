@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import LRMobileSDK
 
 
 public class UpdateCurrentUserLiferayConnector: ServerConnector {
@@ -129,7 +130,7 @@ public class Liferay62UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnec
 public class Liferay70UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnector {
 
 	override public func doRun(session session: LRSession) {
-		let service = LRUserService_v70(session: session)
+		let service = LRUserService_v7(session: session)
 
 		do {
 			//FIXME

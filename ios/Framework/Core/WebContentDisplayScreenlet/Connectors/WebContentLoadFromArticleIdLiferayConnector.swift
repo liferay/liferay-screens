@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import LRMobileSDK
 
 
 public class WebContentLoadFromArticleIdLiferayConnector: WebContentLoadBaseLiferayConnector {
@@ -120,7 +121,7 @@ public class Liferay70WebContentLoadFromArticleIdConnector: WebContentLoadFromAr
 	}
 
 	override internal func doGetJournalArticle(session: LRSession) -> String? {
-		let service = LRJournalArticleService_v70(session: session)
+		let service = LRJournalArticleService_v7(session: session)
 
 		do {
 			let result: String?

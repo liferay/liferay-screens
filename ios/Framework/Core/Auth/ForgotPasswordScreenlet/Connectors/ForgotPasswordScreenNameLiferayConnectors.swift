@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import LRMobileSDK
 
 
 public class ForgotPasswordScreenNameLiferay62Connector: ForgotPasswordBaseLiferayConnector {
@@ -33,7 +34,7 @@ public class ForgotPasswordScreenNameLiferay70Connector: ForgotPasswordBaseLifer
 
 	override public func sendForgotPasswordRequest(session: LRSession) throws -> Bool {
 
-		let service = LRUserService_v70(session: session)
+		let service = LRUserService_v7(session: session)
 
 		try service.sendPasswordByScreenNameWithCompanyId(companyId,
 			screenName: viewModel.userName!)
