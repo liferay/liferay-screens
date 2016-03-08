@@ -30,4 +30,5 @@
 	<string name="sign_in">Sign In</string>
 
 	<string name="custom_interactor">Login with custom interactor</string>
+	<string name="list_bookmarks">List Bookmarks</string>
 </resources>
