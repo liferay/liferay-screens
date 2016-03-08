@@ -9,10 +9,13 @@ import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
+import com.liferay.mobile.screens.cache.CachedType;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
+import com.liferay.mobile.screens.util.JSONUtil;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Locale;
 import java.util.Map;
@@ -23,6 +26,10 @@ import java.util.Map;
 public class BookmarkListInteractorImpl
 	extends BaseListInteractor<Bookmark, BaseListInteractorListener<Bookmark>> {
 
+	private enum BOOKMARK_LIST implements CachedType {
+		BOOKMARK, BOOKMARK_COUNT
+	}
+
 	public BookmarkListInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
 		super(targetScreenletId, offlinePolicy);
 	}
@@ -32,7 +39,7 @@ public class BookmarkListInteractorImpl
 		_groupId = groupId;
 		_folderId = folderId;
 
-		super.loadRows(startRow, endRow, locale);
+		processWithCache(startRow, endRow, locale);
 	}
 
 	@Override
@@ -58,22 +65,28 @@ public class BookmarkListInteractorImpl
 	@NonNull
 	@Override
 	protected Bookmark getElement(TableCache tableCache) throws JSONException {
-		return null;
+		return new Bookmark(JSONUtil.toMap(new JSONObject(tableCache.getContent())));
 	}
 
 	@Override
 	protected String getContent(Bookmark object) {
-		return null;
+		return new JSONObject(object.getValues()).toString();
 	}
 
 	@Override
 	protected boolean cached(Object... args) throws Exception {
-		return false;
+		final int startRow = (int) args[0];
+		final int endRow = (int) args[1];
+		final Locale locale = (Locale) args[2];
+
+		return recoverRows(String.valueOf(_folderId), BOOKMARK_LIST.BOOKMARK,
+			BOOKMARK_LIST.BOOKMARK_COUNT, _groupId, null, locale, startRow, endRow);
 	}
 
 	@Override
 	protected void storeToCache(BaseListEvent event, Object... args) {
-
+		storeRows(String.valueOf(_folderId), BOOKMARK_LIST.BOOKMARK,
+			BOOKMARK_LIST.BOOKMARK_COUNT, _groupId, null, event);
 	}
 
 	private long _groupId;

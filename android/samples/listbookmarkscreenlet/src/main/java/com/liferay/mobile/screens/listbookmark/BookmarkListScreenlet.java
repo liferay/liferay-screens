@@ -65,7 +65,7 @@ public class BookmarkListScreenlet extends BaseListScreenlet<Bookmark, BookmarkL
 
 	@Override
 	protected BookmarkListInteractorImpl createInteractor(String actionName) {
-		return new BookmarkListInteractorImpl(getScreenletId(), OfflinePolicy.REMOTE_ONLY);
+		return new BookmarkListInteractorImpl(getScreenletId(), OfflinePolicy.REMOTE_FIRST);
 	}
 
 	private long _groupId;
