@@ -28,6 +28,7 @@ public class Bookmark implements Parcelable {
 
 	public Bookmark(Map<String, Object> stringObjectMap) {
 		_url = (String) stringObjectMap.get("url");
+		_values = stringObjectMap;
 	}
 
 	@Override
@@ -44,5 +45,14 @@ public class Bookmark implements Parcelable {
 		return _url;
 	}
 
+	public Map getValues() {
+		return _values;
+	}
+
+	public void setValues(Map values) {
+		_values = values;
+	}
+
 	private String _url;
+	private Map _values;
 }
