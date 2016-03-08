@@ -22,6 +22,7 @@ extension SyncManager {
 			-> Signal -> () {
 
 		let url = attributes["url"] as! String
+		let folderId = attributes["url"] as! NSNumber
 
 		return { signal in
 			self.cacheManager.getString(
@@ -31,6 +32,7 @@ extension SyncManager {
 				if let title = $0 {
 					let interactor = LiferayAddBookmarkInteractor(
 						screenlet: nil,
+						folderId: folderId.longLongValue,
 						title: title,
 						url: url)
 

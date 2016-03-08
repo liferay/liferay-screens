@@ -47,9 +47,10 @@ import Foundation
 	public class var serverVersion: LiferayServerVersion {
 		get {
 			loadContextFile()
-			let value = StaticInstance.serverProperties?["version"] as? Int
+			let value = StaticInstance.serverProperties?["version"]
+			let version =  (value as? Int) ?? Int((value as? String) ?? "")
 			return LiferayServerVersion(
-				rawValue: value ?? LiferayServerVersion.v70.rawValue)
+				rawValue: version ?? LiferayServerVersion.v70.rawValue)
 					?? .v70
 		}
 		set {
@@ -93,8 +94,8 @@ import Foundation
 
 	public class var connectorFactory: LiferayConnectorFactory {
 		get {
-		loadContextFile()
-		return StaticInstance.serverProperties!["connectorFactory"] as! LiferayConnectorFactory
+			loadContextFile()
+			return StaticInstance.serverProperties!["connectorFactory"] as! LiferayConnectorFactory
 		}
 		set {
 			loadContextFile()

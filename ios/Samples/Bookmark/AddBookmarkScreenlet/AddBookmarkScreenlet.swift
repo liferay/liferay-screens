@@ -17,6 +17,7 @@ import LiferayScreens
 
 public class AddBookmarkScreenlet: BaseScreenlet {
 
+	@IBInspectable var folderId: Int64 = 0
 	@IBInspectable var allowsBrokenURL: Bool = false
 
 
@@ -62,6 +63,7 @@ public class AddBookmarkScreenlet: BaseScreenlet {
 
 		let interactor = LiferayAddBookmarkInteractor(
 			screenlet: self,
+			folderId:  self.folderId,
 			title: viewModel.title!,
 			url: viewModel.URL!)
 

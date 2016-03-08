@@ -16,19 +16,20 @@ import LiferayScreens
 import LRMobileSDK
 
 
-public class LiferayAddBookmarkOperation: ServerOperation {
+public class LiferayAddBookmarkConnector: ServerConnector {
 
-	private var groupId: Int64
-	private var title: String
-	private var url: String
+	private let groupId: Int64
+	private let title: String
+	private let url: String
+	public let folderId: Int64
 
-	public var folderId: Int64 = 0
 	public var bookmarkDescription = "Added from Liferay Screens"
 
 	public var resultBookmarkInfo: [NSObject:AnyObject]?
 
-	public init(groupId: Int64, title: String, url: String) {
+	public init(groupId: Int64, folderId: Int64, title: String, url: String) {
 		self.groupId = groupId
+		self.folderId = folderId
 		self.title = title
 		self.url = url
 

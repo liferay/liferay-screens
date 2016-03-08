@@ -77,8 +77,7 @@ public class AssetListPageLiferayConnector: PaginationLiferayConnector {
 
 	//MARK: PaginationLiferayConnector
 
-	override public func doGetPageRowsConnector(session session: LRBatchSession, startRow: Int, endRow: Int) {
-
+	override public func doAddPageRowsServiceCall(session session: LRBatchSession, startRow: Int, endRow: Int) {
 		var entryQuery = configureEntryQuery()
 
 		entryQuery["start"] = startRow
@@ -89,7 +88,7 @@ public class AssetListPageLiferayConnector: PaginationLiferayConnector {
 		doGetPageRows(session: session, entryQuery: entryQueryWrapper)
 	}
 
-	override public func doGetRowCountConnector(session session: LRBatchSession) {
+	override public func doAddRowCountServiceCall(session session: LRBatchSession) {
 		let entryQuery = configureEntryQuery()
 		let entryQueryWrapper = LRJSONObjectWrapper(JSONObject: entryQuery)
 
