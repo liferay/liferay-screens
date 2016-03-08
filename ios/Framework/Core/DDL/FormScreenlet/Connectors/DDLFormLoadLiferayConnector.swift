@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import LRMobileSDK
 
 
 public class DDLFormLoadLiferayConnector: ServerConnector {
@@ -68,7 +69,7 @@ public class Liferay62DDLFormLoadConnector: DDLFormLoadLiferayConnector {
 public class Liferay70DDLFormLoadConnector: DDLFormLoadLiferayConnector {
 
 	override public func doRun(session session: LRSession) {
-		let service = LRDDMStructureService_v70(session: session)
+		let service = LRDDMStructureService_v7(session: session)
 
 		do {
 			let structureDataDictionary = try service.getStructureWithStructureId(structureId)

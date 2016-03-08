@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import LRMobileSDK
 
 
 public class SignUpLiferayConnector: ServerConnector {
@@ -122,7 +123,7 @@ public class Liferay70SignUpConnector: SignUpLiferayConnector {
 
 	override public func doRun(session session: LRSession) {
 		let result: [NSObject:AnyObject]?
-		let service = LRUserService_v70(session: session)
+		let service = LRUserService_v7(session: session)
 		let emptyDict = [AnyObject]()
 		let password = viewModel.password ?? ""
 		let companyId = (self.companyId != 0)

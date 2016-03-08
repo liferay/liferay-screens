@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import LRMobileSDK
 
 
 public class GetUserByUserIdLiferayConnector: GetUserBaseLiferayConnector {
@@ -65,7 +66,7 @@ public class GetUserByUserIdLiferay70Connector: GetUserByUserIdLiferayConnector 
 	override public func sendGetUserRequest(session: LRSession)
 		throws -> NSDictionary {
 
-			let service = LRUserService_v70(session: session)
+			let service = LRUserService_v7(session: session)
 
 			return try service.getUserByIdWithUserId(userId) ?? [:]
 	}

@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import LRMobileSDK
 
 
 public class ForgotPasswordEmailLiferay62Connector: ForgotPasswordBaseLiferayConnector {
@@ -40,7 +41,7 @@ public class ForgotPasswordEmailLiferay70Connector: ForgotPasswordBaseLiferayCon
 
 		let companyId = (self.companyId != 0) ? self.companyId : LiferayServerContext.companyId
 
-		let service = LRUserService_v70(session: session)
+		let service = LRUserService_v7(session: session)
 
 		// TODO change plugin service to return integer code instead of boolean.
 		// Xcode transpiler is messing it up.

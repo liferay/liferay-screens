@@ -58,13 +58,14 @@ public class ScreensjournalarticleService extends BaseService {
 		return _result.getString(0);
 	}
 
-	public String getJournalArticleContent(long classPK, String locale) throws Exception {
+	public String getJournalArticleContent(long classPK, long ddmTemplateId, String locale) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
 			_params.put("classPK", classPK);
+			_params.put("ddmTemplateId", ddmTemplateId);
 			_params.put("locale", checkNull(locale));
 
 			_command.put("/screens.screensjournalarticle/get-journal-article-content", _params);
@@ -82,14 +83,13 @@ public class ScreensjournalarticleService extends BaseService {
 		return _result.getString(0);
 	}
 
-	public String getJournalArticleContent(long classPK, long ddmTemplateId, String locale) throws Exception {
+	public String getJournalArticleContent(long classPK, String locale) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
 			JSONObject _params = new JSONObject();
 
 			_params.put("classPK", classPK);
-			_params.put("ddmTemplateId", ddmTemplateId);
 			_params.put("locale", checkNull(locale));
 
 			_command.put("/screens.screensjournalarticle/get-journal-article-content", _params);
