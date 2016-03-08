@@ -30,23 +30,33 @@ public class BookmarkListScreenlet extends BaseListScreenlet<Bookmark, BookmarkL
 
 	@Override
 	public void loadingFromCache(boolean success) {
-
+		if (getListener() != null) {
+			getListener().loadingFromCache(success);
+		}
 	}
 
 	@Override
 	public void retrievingOnline(boolean triedInCache, Exception e) {
-
+		if (getListener() != null) {
+			getListener().retrievingOnline(triedInCache, e);
+		}
 	}
 
 	@Override
 	public void storingToCache(Object object) {
-
+		if (getListener() != null) {
+			getListener().storingToCache(object);
+		}
 	}
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.BookmarkListScreenlet, 0, 0);
+		Integer offlinePolicy = typedArray.getInteger(
+			R.styleable.BookmarkListScreenlet_offlinePolicy,
+			OfflinePolicy.REMOTE_ONLY.ordinal());
+		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 		_groupId = typedArray.getInt(R.styleable.BookmarkListScreenlet_groupId,
 			(int) LiferayServerContext.getGroupId());
 		_folderId = typedArray.getInt(R.styleable.BookmarkListScreenlet_folderId, 0);
@@ -65,9 +75,10 @@ public class BookmarkListScreenlet extends BaseListScreenlet<Bookmark, BookmarkL
 
 	@Override
 	protected BookmarkListInteractorImpl createInteractor(String actionName) {
-		return new BookmarkListInteractorImpl(getScreenletId(), OfflinePolicy.REMOTE_FIRST);
+		return new BookmarkListInteractorImpl(getScreenletId(), _offlinePolicy);
 	}
 
 	private long _groupId;
 	private long _folderId;
+	private OfflinePolicy _offlinePolicy;
 }
