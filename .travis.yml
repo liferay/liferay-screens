@@ -5,11 +5,10 @@ env:
   global:
     - ADB_INSTALL_TIMEOUT=10 # minutes (2 minutes by default)
 
-addons:
+#addons:
 #  artifacts:
 #    paths: /Users/travis/build/nhpatt/liferay-screens/android/samples/test-app/build/reports/androidTests/connected/
-
-  s3_region: "eu-west-1"
+#  s3_region: "eu-west-1"
 
 cache:
   directories:
@@ -20,28 +19,33 @@ podfile: ios/Framework
 before_install:
 
     #Android installation (sdk, emulator, wait & unlock)
-    - export COMPONENTS=build-tools-23.0.2,android-19,android-23,extra-android-m2repository,extra-google-m2repository,sys-img-armeabi-v7a-android-19
-    - curl -L https://raw.github.com/embarkmobile/android-sdk-installer/version-2/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS && source ~/.android-sdk-installer/env
+    - export LICENSES="android-sdk-license-5be876d5|mips-android-sysimage-license-15de68cc|intel-android-sysimage-license-1ea702d1|android-sdk-license-ed0d0a5b"
+    - export COMPONENTS=build-tools-23.0.2,android-23,extra-android-m2repository,extra-google-m2repository
+    - curl -L https://raw.github.com/embarkmobile/android-sdk-installer/version-2/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS --accept=$LICENSES && source ~/.android-sdk-installer/env
 
     #iOS installation (gem, brew & pods)
-    - export LANG=en_US.UTF-8
-    - gem install cocoapods
-    - brew update > /dev/null
-    - brew outdated xctool || brew upgrade xctool
-    - env
-    - locale
-    - pod --version
+#    - export LANG=en_US.UTF-8
+#    - gem install cocoapods
+#    - brew update > /dev/null
+#    - brew outdated xctool || brew upgrade xctool
+#    - env
+#    - locale
+#    - pod --version
+
+#android list sdk -a
 
 script:
     - cd android/
-    - echo "sdk.dir=$ANDROID_HOME" > local.properties
+    - ls $ANDROID_HOME
+    - ls $HOME/.android-sdk-installer
+#    - echo "sdk.dir=$HOME/.android-sdk-installer" > local.properties
     - ./gradlew clean
     - ./gradlew assembleDebug
     - ./gradlew assembleDebugAndroidTest
     - ./gradlew test
 
 ##    - iOS tests
-    - cd ../../ios/Framework
-    - pod install
-    - ./run-tests.sh
-    - cd ../..
+#    - cd ../ios/Framework
+#    - pod install
+#    - ./run-tests.sh
+#    - cd ../..
