@@ -4,15 +4,14 @@ ext {
 	targetSdkVersion = compileSdkVersion
 	buildToolsVersion = '23.0.2'
 	versionCode = 4
-	versionName = '1.4.0.beta4'
+	versionName = '1.4.0.beta7'
 	publishedGroupId = 'com.liferay.mobile'
-	artifact = 'liferay-screens'
-	libraryName = 'liferay-screens'
-	libraryVersion = '1.4.0.beta4'
-	libraryDescription = 'A wrapper for Android 6.0 permissions'
+	libraryName = 'Liferay Screens for Android'
+	libraryDescription = 'Liferay Screens for Android includes the component (screenlets) library and a sample project'
+	bintrayOrg = ''
+	//	bintrayOrg = 'liferay'
 
-	bintrayRepo = 'liferay-screens'
-	bintrayName = 'liferay-screens'
+	bintrayRepo = 'liferay-mobile'
 
 	siteUrl = 'https://github.com/liferay/liferay-screens'
 	gitUrl = 'https://github.com/liferay/liferay-screens.git'
@@ -21,9 +20,9 @@ ext {
 	developerName = 'Javier Gamarra'
 	developerEmail = 'nhpatt@gmail.com'
 
-	licenseName = 'The Apache Software License, Version 2.0'
-	licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-	allLicenses = ["Apache-2.0"]
+	licenseName = 'GNU Lesser General Public License, version 2.1'
+	licenseUrl = 'http://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html'
+	allLicenses = ["LGPL-2.1"]
 }
 
 def supportLibsVersion = '23.2.0'
@@ -66,15 +65,6 @@ allprojects {
 		jcenter()
 		maven { url 'http://dl.bintray.com/tbruyelle/tbruyelle' }
 	}
-}
-
-//apply from: 'upload.gradle'
-
-subprojects {
-	apply plugin: 'com.android.library'
-	apply plugin: 'com.github.dcendents.android-maven'
-	apply from: '../../install.gradle'
-	apply from: '../../bintray.gradle'
 }
 
 apply plugin: 'com.android.application'
