@@ -3,15 +3,17 @@ ext {
 	compileSdkVersion = 23
 	targetSdkVersion = compileSdkVersion
 	buildToolsVersion = '23.0.2'
+
 	versionCode = 4
 	versionName = '1.4.0.beta7'
+
 	publishedGroupId = 'com.liferay.mobile'
 	libraryName = 'Liferay Screens for Android'
 	libraryDescription = 'Liferay Screens for Android includes the component (screenlets) library and a sample project'
-	bintrayOrg = ''
-	//	bintrayOrg = 'liferay'
 
 	bintrayRepo = 'liferay-mobile'
+	bintrayOrg = ''
+	//	bintrayOrg = 'liferay'
 
 	siteUrl = 'https://github.com/liferay/liferay-screens'
 	gitUrl = 'https://github.com/liferay/liferay-screens.git'
@@ -102,10 +104,8 @@ android {
 
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
-	compile project(':liferay-screens')
 	compile project(':liferay-material-viewset')
 	compile project(':liferay-westeros-viewset')
-	compile project(':addbookmarkscreenlet')
 	compile project(':listbookmarkscreenlet')
 
 	compile libraries.design
