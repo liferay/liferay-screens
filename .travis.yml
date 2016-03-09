@@ -24,20 +24,16 @@ before_install:
     - curl -L https://raw.github.com/embarkmobile/android-sdk-installer/version-2/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS --accept=$LICENSES && source ~/.android-sdk-installer/env
 
     #iOS installation (gem, brew & pods)
-#    - export LANG=en_US.UTF-8
-#    - gem install cocoapods
-#    - brew update > /dev/null
-#    - brew outdated xctool || brew upgrade xctool
-#    - env
-#    - locale
-#    - pod --version
-
-#android list sdk -a
+    - export LANG=en_US.UTF-8
+    - gem install cocoapods
+    - brew update > /dev/null
+    - brew outdated xctool || brew upgrade xctool
+    - env
+    - locale
+    - pod --version
 
 script:
     - cd android/
-    - ls $ANDROID_HOME
-    - ls $HOME/.android-sdk-installer
 #    - echo "sdk.dir=$HOME/.android-sdk-installer" > local.properties
     - ./gradlew clean
     - ./gradlew assembleDebug
@@ -45,7 +41,7 @@ script:
     - ./gradlew test
 
 ##    - iOS tests
-#    - cd ../ios/Framework
-#    - pod install
-#    - ./run-tests.sh
-#    - cd ../..
+    - cd ../ios/Framework
+    - pod install
+    - ./run-tests.sh
+    - cd ../..
