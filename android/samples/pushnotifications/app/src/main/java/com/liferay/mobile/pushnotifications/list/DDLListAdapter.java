@@ -1,4 +1,4 @@
-package com.liferay.mobile.pushnotifications.list; /**
+/**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  * <p/>
  * This library is free software; you can redistribute it and/or modify it under
@@ -12,10 +12,11 @@ package com.liferay.mobile.pushnotifications.list; /**
  * details.
  */
 
+package com.liferay.mobile.pushnotifications.list;
+
 import android.content.Context;
-import android.view.LayoutInflater;
+import android.support.annotation.NonNull;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,39 +35,11 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 
 import org.json.JSONObject;
 
-import java.util.List;
-
 /**
  * @author Javier Gamarra
  */
 public class DDLListAdapter
 	extends BaseListAdapter<Record, DDLListAdapter.ImageViewHolder> {
-
-	public static class ImageViewHolder
-		extends BaseListAdapter.ViewHolder implements View.OnClickListener {
-
-		public ImageViewHolder(View view, BaseListAdapterListener listener) {
-			super(view, listener);
-
-			this.textView = (TextView) view.findViewById(R.id.notification_title);
-			this._subtitleTextView = (TextView) view.findViewById(R.id.notification_subtitle);
-			this._imageView = (ImageView) view.findViewById(R.id.notification_image);
-
-			_listener = listener;
-
-			view.setOnClickListener(this);
-		}
-
-		@Override
-		public void onClick(View v) {
-			_listener.onItemClick(getPosition(), v);
-		}
-
-		private final BaseListAdapterListener _listener;
-		private final TextView _subtitleTextView;
-		private final ImageView _imageView;
-
-	}
 
 	public DDLListAdapter(
 		int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
@@ -74,18 +47,10 @@ public class DDLListAdapter
 		super(layoutId, progressLayoutId, listener);
 	}
 
-	public void setLabelFields(List<String> labelFields) {
-		_labelFields = labelFields;
-	}
-
+	@NonNull
 	@Override
-	public ImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-		LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-
-		int layoutId = viewType == LAYOUT_TYPE_DEFAULT ? getLayoutId() : getProgressLayoutId();
-		View view = inflater.inflate(layoutId, parent, false);
-
-		return new ImageViewHolder(view, getListener());
+	public ImageViewHolder createViewHolder(View view, BaseListAdapterListener listener) {
+		return new ImageViewHolder(view, listener);
 	}
 
 	@Override
@@ -93,12 +58,12 @@ public class DDLListAdapter
 
 		StringBuilder builder = new StringBuilder();
 
-		if (entry != null && _labelFields != null && !_labelFields.isEmpty()) {
+		if (entry != null && getLabelFields() != null && !getLabelFields().isEmpty()) {
 
-			String titleField = (String) entry.getServerValue(_labelFields.get(0));
+			String titleField = (String) entry.getServerValue(getLabelFields().get(0));
 
-			for (int i = 1; i < _labelFields.size(); ++i) {
-				String field = _labelFields.get(i);
+			for (int i = 1; i < getLabelFields().size(); ++i) {
+				String field = getLabelFields().get(i);
 				String value = (String) entry.getServerValue(field);
 				if (value != null && !value.isEmpty()) {
 					builder.append(value);
@@ -161,6 +126,30 @@ public class DDLListAdapter
 		entryService.getFileEntryByUuidAndGroupId(uuid, groupId);
 	}
 
-	private List<String> _labelFields;
+	public static class ImageViewHolder
+		extends BaseListAdapter.ViewHolder implements View.OnClickListener {
+
+		public ImageViewHolder(View view, BaseListAdapterListener listener) {
+			super(view, listener);
+
+			this.textView = (TextView) view.findViewById(R.id.notification_title);
+			this._subtitleTextView = (TextView) view.findViewById(R.id.notification_subtitle);
+			this._imageView = (ImageView) view.findViewById(R.id.notification_image);
+
+			_listener = listener;
+
+			view.setOnClickListener(this);
+		}
+
+		@Override
+		public void onClick(View v) {
+			_listener.onItemClick(getAdapterPosition(), v);
+		}
+
+		private final BaseListAdapterListener _listener;
+		private final TextView _subtitleTextView;
+		private final ImageView _imageView;
+
+	}
 
 }
