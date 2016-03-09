@@ -1,37 +1,27 @@
 apply plugin: 'com.android.application'
 
-buildscript {
-	dependencies {
-		classpath 'com.android.tools.build:gradle:2.0.0-beta6'
-	}
-}
-
-repositories {
-	jcenter()
-	maven { url "http://dl.bintray.com/tbruyelle/tbruyelle" }
-}
-
 android {
 	compileSdkVersion rootProject.ext.compileSdkVersion
 	buildToolsVersion rootProject.ext.buildToolsVersion
 
-	packagingOptions {
-		exclude 'META-INF/LICENSE'
-		exclude 'META-INF/NOTICE'
-	}
-
 	defaultConfig {
-		applicationId "com.liferay.mobile.screens.bankofwesteros"
 		minSdkVersion rootProject.ext.minSdkVersion
 		targetSdkVersion rootProject.ext.targetSdkVersion
 		versionCode rootProject.ext.versionCode
 		versionName rootProject.ext.versionName
+		applicationId "com.liferay.mobile.screens.bankofwesteros"
 	}
+
 	buildTypes {
 		release {
 			minifyEnabled false
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 		}
+	}
+
+	packagingOptions {
+		exclude 'META-INF/LICENSE'
+		exclude 'META-INF/NOTICE'
 	}
 }
 
