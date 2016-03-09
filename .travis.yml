@@ -33,7 +33,7 @@ before_install:
     - pod --version
 
 script:
-    - cd android/library/
+    - cd android/
     - echo "sdk.dir=$ANDROID_HOME" > local.properties
     - ./gradlew clean
     - ./gradlew assembleDebug
