@@ -1,6 +1,8 @@
 language: objective-c
 osx_image: xcode7.1
 
+sudo: false
+
 env:
   global:
     - ADB_INSTALL_TIMEOUT=10 # minutes (2 minutes by default)
