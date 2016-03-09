@@ -1,3 +1,4 @@
+apply plugin: 'com.android.library'
 apply plugin: 'com.neenbedankt.android-apt'
 
 android {
@@ -50,3 +51,5 @@ dependencies {
 	testCompile libraries.mockito
 }
 
+apply from: '../../bintray.gradle'
+apply from: '../../install.gradle'

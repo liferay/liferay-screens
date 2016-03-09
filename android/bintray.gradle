@@ -34,7 +34,8 @@ bintray {
 	configurations = ['archives']
 	pkg {
 		repo = bintrayRepo
-		name = bintrayName
+		name = project.archivesBaseName
+		userOrg = bintrayOrg
 		desc = libraryDescription
 		websiteUrl = siteUrl
 		vcsUrl = gitUrl
