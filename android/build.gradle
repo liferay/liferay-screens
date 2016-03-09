@@ -5,7 +5,7 @@ ext {
 	buildToolsVersion = '23.0.2'
 
 	versionCode = 4
-	versionName = '1.4.0.beta7'
+	versionName = '1.4.0.beta8'
 
 	publishedGroupId = 'com.liferay.mobile'
 	libraryName = 'Liferay Screens for Android'
@@ -63,6 +63,11 @@ buildscript {
 }
 
 allprojects {
+	buildscript {
+		repositories {
+			jcenter()
+		}
+	}
 	repositories {
 		jcenter()
 		maven { url 'http://dl.bintray.com/tbruyelle/tbruyelle' }
