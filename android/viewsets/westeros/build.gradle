@@ -21,6 +21,6 @@ dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
 
 	compile project(':liferay-screens')
-	compile 'com.android.support:design:23.2.0'
+	compile libraries.design
 	compile 'com.daimajia.swipelayout:library:1.2.0'
 }
