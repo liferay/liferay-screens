@@ -1,3 +1,5 @@
+apply plugin: 'com.android.library'
+
 android {
 	compileSdkVersion rootProject.ext.compileSdkVersion
 	buildToolsVersion rootProject.ext.buildToolsVersion
@@ -24,3 +26,6 @@ dependencies {
 	compile libraries.design
 	compile 'com.daimajia.swipelayout:library:1.2.0'
 }
+
+apply from: '../../bintray.gradle'
+apply from: '../../install.gradle'

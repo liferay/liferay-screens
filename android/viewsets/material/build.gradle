@@ -1,3 +1,5 @@
+apply plugin: 'com.android.library'
+
 android {
 	compileSdkVersion rootProject.ext.compileSdkVersion
 	buildToolsVersion rootProject.ext.buildToolsVersion
@@ -22,3 +24,6 @@ dependencies {
 
 	compile project(':liferay-screens')
 }
+
+apply from: '../../bintray.gradle'
+apply from: '../../install.gradle'
