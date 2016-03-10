@@ -146,6 +146,7 @@ public class AssetListScreenlet
 	protected AssetListInteractor createInteractor(String actionName) {
 		return new AssetListInteractorImpl(getScreenletId(), _offlinePolicy);
 	}
+
 	private OfflinePolicy _offlinePolicy;
 	private long _classNameId;
 	private long _groupId;

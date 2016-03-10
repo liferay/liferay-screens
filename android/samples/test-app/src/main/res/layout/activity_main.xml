@@ -98,6 +98,11 @@
 				android:text="@string/custom_interactor"/>
 
 			<Button
+				android:id="@+id/list_bookmarks"
+				style="@style/test_app_button"
+				android:text="@string/list_bookmarks"/>
+
+			<Button
 				android:id="@+id/change_theme"
 				style="@style/test_app_button"
 				android:text="@string/change_theme"/>
