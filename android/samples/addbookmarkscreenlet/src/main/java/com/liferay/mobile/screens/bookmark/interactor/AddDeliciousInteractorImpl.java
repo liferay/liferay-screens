@@ -6,6 +6,7 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 import com.squareup.okhttp.Headers;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
@@ -43,7 +44,9 @@ public class AddDeliciousInteractorImpl
 						.headers(headers)
 						.build();
 
-					client.newCall(add).execute();
+					Response response = client.newCall(add).execute();
+
+					LiferayLogger.e(response.body().string());
 
 					//delicious API doesn't return valid information if the bookmark has been added,
 					// so we query again to check if everything went well
@@ -52,7 +55,7 @@ public class AddDeliciousInteractorImpl
 						.headers(headers)
 						.build();
 
-					com.squareup.okhttp.Response response = client.newCall(get).execute();
+					response = client.newCall(get).execute();
 
 					String text = response.body().string();
 
