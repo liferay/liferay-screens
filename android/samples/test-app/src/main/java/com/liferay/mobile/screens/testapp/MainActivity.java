@@ -35,6 +35,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.clear_cache_forms).setOnClickListener(this);
 		findViewById(R.id.sync_cache).setOnClickListener(this);
 		findViewById(R.id.custom_interactor).setOnClickListener(this);
+		findViewById(R.id.list_bookmarks).setOnClickListener(this);
 	}
 
 	@Override
@@ -101,6 +102,9 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				break;
 			case R.id.custom_interactor:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(CustomInteractorActivity.class));
+				break;
+			case R.id.list_bookmarks:
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(ListBookmarksActivity.class));
 				break;
 			default:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(LoginActivity.class));

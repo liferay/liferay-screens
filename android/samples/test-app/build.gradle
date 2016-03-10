@@ -58,6 +58,7 @@ dependencies {
 	compile project(':liferay-material-viewset')
 	compile project(':liferay-westeros-viewset')
 	compile project(':addbookmarkscreenlet')
+	compile project(':listbookmarkscreenlet')
 
 	compile 'com.android.support:design:23.2.0'
 

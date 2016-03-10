@@ -11,10 +11,6 @@ android {
 		versionName '1.0'
 	}
 
-	lintOptions {
-		abortOnError false
-	}
-
 	buildTypes {
 		release {
 			minifyEnabled false
@@ -27,4 +23,5 @@ dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
 
 	compile project(':liferay-screens')
+	compile project(':addbookmarkscreenlet')
 }
