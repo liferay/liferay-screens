@@ -39,7 +39,7 @@ script:
 #    - echo "sdk.dir=$HOME/.android-sdk-installer" > local.properties
     - ./gradlew clean
     - ./gradlew assembleDebug
-    - ./gradlew assembleDebugAndroidTest
+#    - ./gradlew assembleDebugAndroidTest
     - ./gradlew test
 
 ##    - iOS tests
