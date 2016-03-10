@@ -422,7 +422,7 @@ public class DDLFormScreenlet
 			R.styleable.DDLFormScreenlet_showSubmitButton, true);
 
 		_groupId = castToLongOrUseDefault(typedArray.getString(
-				R.styleable.DDLFormScreenlet_groupId),
+			R.styleable.DDLFormScreenlet_groupId),
 			LiferayServerContext.getGroupId());
 
 		_structureId = castToLong(typedArray.getString(R.styleable.DDLFormScreenlet_structureId));

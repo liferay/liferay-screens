@@ -33,14 +33,13 @@ public class CustomInteractorActivity extends ThemeActivity
 
 	@Override
 	public void onLoginFailure(Exception e) {
-		info("Error logging in, try with test/test");
+		error("Error logging in, try with test/test", null);
 	}
 
 	@Override
 	public LoginInteractor createInteractor(String actionName) {
 		return new CustomLoginInteractor(_loginScreenlet.getScreenletId());
 	}
-
 	private LoginScreenlet _loginScreenlet;
 
 	private class CustomLoginInteractor extends LoginBasicInteractor {

@@ -19,11 +19,8 @@ import android.util.AttributeSet;
 
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
-import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.list.view.DDLListViewModel;
 import com.liferay.mobile.screens.ddl.model.Record;
-
-import java.util.List;
 
 /**
  * @author Javier Gamarra

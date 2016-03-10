@@ -24,9 +24,9 @@
 		android:focusable="false"
 		android:orientation="vertical"
 		android:padding="15dp"
-		android:paddingStart="50dp"
 		android:paddingLeft="50dp"
-		android:paddingRight="50dp">
+		android:paddingRight="50dp"
+		android:paddingStart="50dp">
 
 		<TextView
 			android:id="@+id/notification_title"

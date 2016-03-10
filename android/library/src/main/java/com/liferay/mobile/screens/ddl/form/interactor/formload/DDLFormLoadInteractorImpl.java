@@ -71,24 +71,6 @@ public class DDLFormLoadInteractorImpl
 		}
 	}
 
-	@NonNull
-	private Record parseRecord(DDLFormLoadEvent event) throws JSONException {
-
-		Record formRecord = event.getRecord();
-
-		long userId = event.getJSONObject().getLong("userId");
-		if (event.getJSONObject().has("xsd")) {
-			formRecord.parseXsd(event.getJSONObject().getString("xsd"));
-		} else {
-			formRecord.parseJson(event.getJSONObject().getString("definition"));
-		}
-
-		if (formRecord.getCreatorUserId() == 0) {
-			formRecord.setCreatorUserId(userId);
-		}
-		return formRecord;
-	}
-
 	@Override
 	protected void online(Object[] args) throws Exception {
 
@@ -141,6 +123,25 @@ public class DDLFormLoadInteractorImpl
 		if (record.getLocale() == null) {
 			throw new IllegalArgumentException("Record's Locale cannot be empty");
 		}
+	}
+
+	@NonNull
+	private Record parseRecord(DDLFormLoadEvent event) throws JSONException {
+
+		Record formRecord = event.getRecord();
+
+		long userId = event.getJSONObject().getLong("userId");
+		if (event.getJSONObject().has("xsd")) {
+			formRecord.parseXsd(event.getJSONObject().getString("xsd"));
+		}
+		else {
+			formRecord.parseJson(event.getJSONObject().getString("definition"));
+		}
+
+		if (formRecord.getCreatorUserId() == 0) {
+			formRecord.setCreatorUserId(userId);
+		}
+		return formRecord;
 	}
 
 }

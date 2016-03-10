@@ -64,14 +64,13 @@ public enum AssetClassnameIds {
 	WIKI_PAGE_RESOURCE(20153),
 	WIKI_NODE(20152);
 
-	AssetClassnameIds(long value) {
-		_value = value;
-	}
-
 	public long getValue() {
 		return _value;
 	}
 
+	AssetClassnameIds(long value) {
+		_value = value;
+	}
 	private long _value;
 
 }

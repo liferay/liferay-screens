@@ -7,7 +7,6 @@ import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.bookmark.AddBookmarkScreenlet;
 import com.liferay.mobile.screens.bookmark.interactor.AddBookmarkInteractorImpl;
 import com.liferay.mobile.screens.bookmark.interactor.AddBookmarkListener;
-import com.liferay.mobile.screens.bookmark.interactor.AddDeliciousInteractorImpl;
 
 /**
  * @author Javier Gamarra

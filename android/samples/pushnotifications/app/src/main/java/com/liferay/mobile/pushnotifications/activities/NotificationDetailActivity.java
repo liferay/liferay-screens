@@ -108,5 +108,6 @@ public class NotificationDetailActivity extends AppCompatActivity implements DDL
 			ddlFormScreenlet.startUploadByPosition(requestCode);
 		}
 	}
+
 	private DDLFormScreenlet ddlFormScreenlet;
 }

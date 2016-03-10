@@ -73,12 +73,12 @@ public class SessionContext {
 		return _currentUser;
 	}
 
-	public static Long getUserId() {
-		return _currentUser == null ? null : _currentUser.getId();
-	}
-
 	public static void setCurrentUser(User value) {
 		_currentUser = value;
+	}
+
+	public static Long getUserId() {
+		return _currentUser == null ? null : _currentUser.getId();
 	}
 
 	public static void storeCredentials(CredentialsStorageBuilder.StorageType storageType) {
