@@ -1,5 +1,6 @@
 package com.liferay.mobile.pushnotifications.notification;
 
+import android.annotation.TargetApi;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -9,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
 import com.liferay.mobile.android.service.Session;
@@ -65,6 +67,7 @@ public class PushService extends AbstractPushService {
 		notificationManager.notify(NOTIFICATION_ID, notification);
 	}
 
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	private PendingIntent createPendingIntentForNotifications() {
 		Intent resultIntent = new Intent(this, NotificationsActivity.class);
 
@@ -102,8 +105,8 @@ public class PushService extends AbstractPushService {
 			return entryService.getFileEntryByUuidAndGroupId(uuid, groupId);
 		}
 		else {
-			com.liferay.mobile.android.v70.dlfileentry.DLFileEntryService entryService
-				= new com.liferay.mobile.android.v70.dlfileentry.DLFileEntryService(session);
+			com.liferay.mobile.android.v7.dlfileentry.DLFileEntryService entryService
+				= new com.liferay.mobile.android.v7.dlfileentry.DLFileEntryService(session);
 			return entryService.getFileEntryByUuidAndGroupId(uuid, groupId);
 		}
 	}
