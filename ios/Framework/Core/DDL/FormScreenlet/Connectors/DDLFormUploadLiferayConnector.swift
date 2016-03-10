@@ -12,7 +12,7 @@
 * details.
 */
 import UIKit
-
+import LRMobileSDK
 
 
 public class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFileProgressDelegate {
@@ -150,7 +150,7 @@ public class Liferay70DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 			progressDelegate: self)
 		uploadData.progressDelegate = self
 
-		let service = LRDLAppService_v70(session: session)
+		let service = LRDLAppService_v7(session: session)
 
 		requestSemaphore = dispatch_semaphore_create(0)
 

@@ -47,27 +47,39 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 		self.resultHTML = (op as? WebContentLoadBaseLiferayConnector)?.resultHTML
 	}
 
-	override func readFromCache(op: ServerConnector, result: AnyObject? -> Void) {
+	override func readFromCache(op: ServerConnector, result: AnyObject? -> ()) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			result(nil)
+			return
+		}
+
 		if let loadOp = op as? WebContentLoadFromArticleIdLiferayConnector,
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {
 
-			SessionContext.currentContext?.cacheManager.getString(
+			cacheManager.getString(
 					collection: ScreenletName(WebContentDisplayScreenlet),
 					key: articleCacheKey(groupId, articleId)) {
 				loadOp.resultHTML = $0
 				result($0)
 			}
 		}
+		else {
+			result(nil)
+		}
 	}
 
 	override func writeToCache(op: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+
 		if let loadOp = op as? WebContentLoadFromArticleIdLiferayConnector,
 				html = loadOp.resultHTML,
 				groupId = loadOp.groupId,
 				articleId = loadOp.articleId {
 
-			SessionContext.currentContext?.cacheManager.setClean(
+			cacheManager.setClean(
 				collection: ScreenletName(WebContentDisplayScreenlet),
 				key: articleCacheKey(groupId, articleId),
 				value: html,

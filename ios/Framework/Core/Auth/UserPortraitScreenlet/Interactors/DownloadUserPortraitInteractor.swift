@@ -141,8 +141,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 	override func completedConnector(op: ServerConnector) {
 		if let httpOp = toHttpConnector(op),
-				resultData = httpOp.resultData
-				where httpOp.lastError == nil {
+				resultData = httpOp.resultData {
 			resultImage = UIImage(data: resultData)
 		}
 	}
@@ -151,10 +150,14 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 	//MARK: Cache methods
 
 	override func writeToCache(op: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+
 		if let httpOp = toHttpConnector(op),
 				resultData = httpOp.resultData {
 
-			SessionContext.currentContext?.cacheManager.setClean(
+			cacheManager.setClean(
 				collection: ScreenletName(UserPortraitScreenlet),
 				key: mode.cacheKey,
 				value: resultData,
@@ -162,34 +165,74 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-	override func readFromCache(op: ServerConnector, result: AnyObject? -> Void) {
-		if let httpOp = toHttpConnector(op) {
-			let cacheManager = SessionContext.currentContext!.cacheManager
+	override func readFromCache(op: ServerConnector, result: AnyObject? -> ()) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			result(nil)
+			return
+		}
+
+		func loadImageFromCache(output outputConnector: HttpConnector) {
+			cacheManager.getImage(
+					collection: ScreenletName(UserPortraitScreenlet),
+					key: self.mode.cacheKey) {
+				if let image = $0 {
+					outputConnector.resultData = UIImagePNGRepresentation(image)
+					outputConnector.lastError = nil
+					result($0)
+				}
+				else {
+					outputConnector.resultData = nil
+					outputConnector.lastError = NSError.errorWithCause(.NotAvailable)
+					result(nil)
+				}
+			}
+		}
+
+
+		if (op as? ServerConnectorChain)?.currentConnector is GetUserBaseLiferayConnector {
+			// asking for user attributes. if the image is cached, we'd need to skip this step
 
 			cacheManager.getAny(
 					collection: ScreenletName(UserPortraitScreenlet),
 					key: mode.cacheKey) {
-				if let data = $0 as? NSData {
+				if $0 == nil {
+					// not cached: continue
+					result(nil)
+				}
+				else {
+					// cached. Skip!
+
+					// create a dummy HttpConnector to store the result
+					let dummyConnector = HttpConnector(url: NSURL(string: "http://dummy")!)
+
+					// set this dummy connector to allow "completedConnector" method retrieve the result
+					(op as? ServerConnectorChain)?.currentConnector = dummyConnector
+
+					dispatch_async {
+						loadImageFromCache(output: dummyConnector)
+					}
+				}
+			}
+		}
+		else if let httpOp = toHttpConnector(op) {
+			cacheManager.getAny(
+					collection: ScreenletName(UserPortraitScreenlet),
+					key: mode.cacheKey) {
+				guard let cachedObject = $0 else {
+					httpOp.resultData = nil
+					httpOp.lastError = NSError.errorWithCause(.NotAvailable)
+					result(nil)
+					return
+				}
+
+				if let data = cachedObject as? NSData {
 					httpOp.resultData = data
 					httpOp.lastError = nil
-					result($0)
+					result(httpOp)
 				}
 				else {
 					dispatch_async {
-						cacheManager.getImage(
-								collection: ScreenletName(UserPortraitScreenlet),
-								key: self.mode.cacheKey) {
-							if let image = $0 {
-								httpOp.resultData = UIImagePNGRepresentation(image)
-								httpOp.lastError = nil
-								result($0)
-							}
-							else {
-								httpOp.resultData = nil
-								httpOp.lastError = NSError.errorWithCause(.NotAvailable)
-								result(nil)
-							}
-						}
+						loadImageFromCache(output: httpOp)
 					}
 				}
 			}

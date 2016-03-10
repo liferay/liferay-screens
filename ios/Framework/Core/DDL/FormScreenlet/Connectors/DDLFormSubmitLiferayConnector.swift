@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import LRMobileSDK
 
 
 public class DDLFormSubmitLiferayConnector: ServerConnector {
@@ -116,7 +117,7 @@ public class Liferay62DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
 public class Liferay70DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
 
 	override public func doRun(session session: LRSession) {
-		let service = LRDDLRecordService_v70(session: session)
+		let service = LRDDLRecordService_v7(session: session)
 
 		let serviceContextAttributes = [
 			"userId": NSNumber(longLong: userId!),

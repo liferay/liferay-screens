@@ -42,7 +42,7 @@ public class PaginationLiferayConnector: ServerConnector {
 		resultRowCount = nil
 		lastError = nil
 
-		doGetPageRowsConnector(session: batchSession, startRow: startRow, endRow: endRow)
+		doAddPageRowsServiceCall(session: batchSession, startRow: startRow, endRow: endRow)
 
 		if batchSession.commands.count < 1 {
 			lastError = NSError.errorWithCause(.AbortedDueToPreconditions, userInfo: nil)
@@ -50,7 +50,7 @@ public class PaginationLiferayConnector: ServerConnector {
 		}
 
 		if computeRowCount {
-			doGetRowCountConnector(session: batchSession)
+			doAddRowCountServiceCall(session: batchSession)
 		}
 
 		do {
@@ -78,11 +78,11 @@ public class PaginationLiferayConnector: ServerConnector {
 		}
 	}
 
-	public func doGetPageRowsConnector(session session: LRBatchSession, startRow: Int, endRow: Int) {
+	public func doAddPageRowsServiceCall(session session: LRBatchSession, startRow: Int, endRow: Int) {
 		fatalError("doGetPageRowsConnector must be overriden")
 	}
 
-	public func doGetRowCountConnector(session session: LRBatchSession) {
+	public func doAddRowCountServiceCall(session session: LRBatchSession) {
 		fatalError("doGetRowCountConnector must be overriden")
 	}
 

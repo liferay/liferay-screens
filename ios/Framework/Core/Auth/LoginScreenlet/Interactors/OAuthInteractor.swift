@@ -13,6 +13,7 @@
 */
 import UIKit
 import LROAuth
+import LRMobileSDK
 
 
 class OAuthInteractor: Interactor, LRCallback {
@@ -119,7 +120,7 @@ class OAuthInteractor: Interactor, LRCallback {
 			_ = try? srv.getCurrentUser()
 
 		case .v70:
-			let srv = LRUserService_v70(session: OAuthSession!)
+			let srv = LRUserService_v7(session: OAuthSession!)
 
 			_ = try? srv.getCurrentUser()
 		}
