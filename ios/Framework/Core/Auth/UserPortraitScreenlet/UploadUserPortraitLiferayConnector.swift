@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import LRMobileSDK
 
 
 public class UploadUserPortraitLiferayConnector: ServerConnector {
@@ -109,7 +110,7 @@ public class Liferay62UploadUserPortraitConnector: UploadUserPortraitLiferayConn
 public class Liferay70UploadUserPortraitConnector: UploadUserPortraitLiferayConnector {
 
 	override public func uploadBytes(imageBytes: NSData, withSession session: LRSession) {
-		let service = LRUserService_v70(session: session)
+		let service = LRUserService_v7(session: session)
 
 		do {
 			let result = try service.updatePortraitWithUserId(self.userId,

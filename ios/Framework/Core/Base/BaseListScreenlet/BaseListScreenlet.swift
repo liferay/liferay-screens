@@ -92,7 +92,8 @@ import UIKit
 		let result = super.onAction(name: name, interactor: interactor, sender: sender)
 
 		if result && name == BaseListScreenlet.LoadInitialPageAction {
-			self.baseListView.setRows([], rowCount:0)
+			// clear list while it's loading
+			self.baseListView.setRows([], rowCount: 0)
 		}
 
 		return result

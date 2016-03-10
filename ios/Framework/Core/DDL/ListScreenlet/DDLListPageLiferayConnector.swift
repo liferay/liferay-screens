@@ -50,7 +50,7 @@ public class DDLListPageLiferayConnector: PaginationLiferayConnector {
 
 public class Liferay62DDLListPageConnector: DDLListPageLiferayConnector {
 
-	override public func doGetPageRowsConnector(session session: LRBatchSession, startRow: Int, endRow: Int) {
+	override public func doAddPageRowsServiceCall(session session: LRBatchSession, startRow: Int, endRow: Int) {
 		let service = LRScreensddlrecordService_v62(session: session)
 
 		do {
@@ -72,7 +72,7 @@ public class Liferay62DDLListPageConnector: DDLListPageLiferayConnector {
 		}
 	}
 
-	override public func doGetRowCountConnector(session session: LRBatchSession) {
+	override public func doAddRowCountServiceCall(session session: LRBatchSession) {
 		let service = LRScreensddlrecordService_v62(session: session)
 
 		do {
@@ -93,7 +93,7 @@ public class Liferay62DDLListPageConnector: DDLListPageLiferayConnector {
 
 public class Liferay70DDLListPageConnector: DDLListPageLiferayConnector {
 
-	override public func doGetPageRowsConnector(session session: LRBatchSession, startRow: Int, endRow: Int) {
+	override public func doAddPageRowsServiceCall(session session: LRBatchSession, startRow: Int, endRow: Int) {
 		let service = LRScreensddlrecordService_v70(session: session)
 
 		do {
@@ -115,7 +115,7 @@ public class Liferay70DDLListPageConnector: DDLListPageLiferayConnector {
 		}
 	}
 
-	override public func doGetRowCountConnector(session session: LRBatchSession) {
+	override public func doAddRowCountServiceCall(session session: LRBatchSession) {
 		let service = LRScreensddlrecordService_v70(session: session)
 
 		do {

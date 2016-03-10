@@ -47,17 +47,20 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	public override func onCreated() {
 		super.onCreated()
 
+		tableView?.delegate = self
+		tableView?.dataSource = self
+
 		doRegisterCellNib(id: cellId)
 	}
 
 	override public func onChangedRows(oldRows: [AnyObject?]) {
 		super.onChangedRows(oldRows)
 
-		if oldRows.isEmpty {
-			insertFreshRows()
-		}
-		else if self.rows.isEmpty {
+		if self.rows.isEmpty {
 			clearAllRows(oldRows)
+		}
+		else if oldRows.isEmpty {
+			insertFreshRows()
 		}
 		else if let visibleRows = tableView!.indexPathsForVisibleRows {
 			updateVisibleRows(visibleRows)

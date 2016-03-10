@@ -31,16 +31,16 @@ PODS:
   - CryptoSwift (0.1.1)
   - DTPickerPresenter (0.2.0)
   - KeychainAccess (2.3.1)
-  - Liferay-iOS-SDK (6.2.0.22):
+  - Liferay-iOS-SDK (7.0.3):
     - AFNetworking (= 2.6.3)
-  - Liferay-OAuth (0.1.1):
-    - Liferay-iOS-SDK (= 6.2.0.22)
+  - Liferay-OAuth (1.2.0):
+    - Liferay-iOS-SDK (= 7.0.3)
   - LiferayScreens (1.3.0):
     - CryptoSwift (= 0.1.1)
     - DTPickerPresenter (= 0.2.0)
     - KeychainAccess (= 2.3.1)
-    - Liferay-iOS-SDK (= 6.2.0.22)
-    - Liferay-OAuth (= 0.1.1)
+    - Liferay-iOS-SDK (~> 7.0.3)
+    - Liferay-OAuth (~> 1.2.0)
     - MBProgressHUD (= 0.9.1)
     - MDRadialProgress (= 1.3.2)
     - ODRefreshControl (= 1.2)
@@ -111,9 +111,9 @@ SPEC CHECKSUMS:
   CryptoSwift: c11640d3d66107efc8333e4131a5173f072b1d61
   DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
   KeychainAccess: d54b31c75745cfa595b3654590e8cb491a75d411
-  Liferay-iOS-SDK: 41a69cdeaefd6716923ce3a6bd08a5156a9b90ed
-  Liferay-OAuth: d86e49fad35177caffb08f7df006589182a02895
-  LiferayScreens: 57285550e95cce3681a0c4e4ab563f66d99c111e
+  Liferay-iOS-SDK: bd5b57db78c3497278f79a97191eb07d78e73a60
+  Liferay-OAuth: 8aa97d6966207abdbdbda771fd2fd3f1ad27bbe7
+  LiferayScreens: 42bc5f0ad8bdc323b550c69a82e9ba4df29d3b88
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MDRadialProgress: 1068574b9b4b870f64b605b07f734385bde5104d
   ODRefreshControl: 907e6149d72dde488d5917ccfabee5bd8d711a20

@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import LRMobileSDK
 
 
 public class AssetListPageLiferayConnector: PaginationLiferayConnector {
@@ -76,8 +77,7 @@ public class AssetListPageLiferayConnector: PaginationLiferayConnector {
 
 	//MARK: PaginationLiferayConnector
 
-	override public func doGetPageRowsConnector(session session: LRBatchSession, startRow: Int, endRow: Int) {
-
+	override public func doAddPageRowsServiceCall(session session: LRBatchSession, startRow: Int, endRow: Int) {
 		var entryQuery = configureEntryQuery()
 
 		entryQuery["start"] = startRow
@@ -88,7 +88,7 @@ public class AssetListPageLiferayConnector: PaginationLiferayConnector {
 		doGetPageRows(session: session, entryQuery: entryQueryWrapper)
 	}
 
-	override public func doGetRowCountConnector(session session: LRBatchSession) {
+	override public func doAddRowCountServiceCall(session session: LRBatchSession) {
 		let entryQuery = configureEntryQuery()
 		let entryQueryWrapper = LRJSONObjectWrapper(JSONObject: entryQuery)
 
@@ -187,7 +187,7 @@ public class Liferay70AssetListPageConnector: AssetListPageLiferayConnector {
 
 	override public func doGetRowCount(session session: LRBatchSession, entryQuery: LRJSONObjectWrapper) {
 		do {
-			let service = LRAssetEntryService_v70(session: session)
+			let service = LRAssetEntryService_v7(session: session)
 			try service.getEntriesCountWithEntryQuery(entryQuery)
 		}
 		catch _ as NSError {
