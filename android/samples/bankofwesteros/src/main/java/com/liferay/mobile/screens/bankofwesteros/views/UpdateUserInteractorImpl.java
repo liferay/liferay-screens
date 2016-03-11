@@ -28,8 +28,8 @@ public class UpdateUserInteractorImpl {
 
 
 			if (LiferayServerContext.isLiferay7()) {
-				com.liferay.mobile.android.v70.user.UserService userService =
-					new com.liferay.mobile.android.v70.user.UserService(sessionFromCurrentSession);
+				com.liferay.mobile.android.v7.user.UserService userService =
+					new com.liferay.mobile.android.v7.user.UserService(sessionFromCurrentSession);
 				userService.updateUser(user.getInt("userId"), "test2", newPassword, newPassword, false,
 					user.getString("reminderQueryQuestion"), user.getString("reminderQueryAnswer"),
 					user.getString("screenName"), emailAddress, user.getInt("facebookId"),
