@@ -16,6 +16,6 @@
 		android:layout_height="100dp"
 		liferay:autoLoad="false"
 		liferay:editable="true"
-		liferay:offlinePolicy="CACHE_FIRST"/>
+		liferay:offlinePolicy="REMOTE_FIRST"/>
 
 </LinearLayout>
