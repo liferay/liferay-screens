@@ -31,7 +31,7 @@ public class DownloadPicture {
 		return server + "documents/" + groupId + "/" + folderId + "/" + name + "/" + uuid;
 	}
 
-	private RequestCreator createPicassoRequest(Context context, int targetWidth, String url) {
-		return Picasso.with(context).load(url).resize(targetWidth, targetWidth);
+	private RequestCreator createPicassoRequest(Context context, int size, String url) {
+		return Picasso.with(context).load(url).resize(size, size);
 	}
 }
