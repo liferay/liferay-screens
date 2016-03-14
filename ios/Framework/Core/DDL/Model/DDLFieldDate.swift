@@ -55,7 +55,22 @@ public class DDLFieldDate: DDLField {
 			return nil
 		}
 
-		return serverDateFormatter.dateFromString(stringValue)
+		func formatter() -> NSDateFormatter {
+			let separator = stringValue[stringValue.endIndex.advancedBy(-3)]
+
+			if separator == "/" {
+				let formatter = NSDateFormatter()
+				formatter.timeZone = DDLFieldDate.GMTTimeZone
+				formatter.dateFormat = "MM/dd/yy"
+				formatter.dateFromString(stringValue)
+
+				return formatter
+			}
+
+			return serverDateFormatter
+		}
+
+		return formatter().dateFromString(stringValue)
 	}
 
 	override func convert(fromLabel label: String?) -> AnyObject? {
@@ -89,10 +104,6 @@ public class DDLFieldDate_v62: DDLFieldDate {
 
 	public required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
-	}
-
-	override public var serverDateFormat: String {
-		return "MM/dd/yyyy"
 	}
 
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
