@@ -96,12 +96,12 @@ public class TableCache implements CachedContent {
 		return _dirty;
 	}
 
-	public void setDirty(boolean dirty) {
-		_dirty = dirty ? 0 : 1;
-	}
-
 	public void setDirty(int dirty) {
 		_dirty = dirty;
+	}
+
+	public void setDirty(boolean dirty) {
+		_dirty = dirty ? 0 : 1;
 	}
 
 	public Long getGroupId() {

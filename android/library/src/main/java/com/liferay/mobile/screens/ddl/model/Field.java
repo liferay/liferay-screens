@@ -102,6 +102,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		DataType(String value) {
 			_value = value;
 		}
+
 		private String _value;
 
 	}
@@ -155,6 +156,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		EditorType(String value) {
 			_value = value;
 		}
+
 		private String _value;
 
 	}

@@ -59,7 +59,6 @@ public class DDLFormLoadInteractorImpl
 		onEventWithCache(event, event.getRecord());
 
 		if (!event.isFailed()) {
-
 			try {
 				Record formRecord = parseRecord(event);
 
@@ -77,11 +76,6 @@ public class DDLFormLoadInteractorImpl
 		Record record = (Record) args[0];
 
 		getDDMStructureService(record).getStructure(record.getStructureId());
-	}
-
-	@Override
-	protected void notifyError(DDLFormLoadEvent event) {
-		getListener().onDDLFormLoadFailed(event.getException());
 	}
 
 	@Override
@@ -103,6 +97,11 @@ public class DDLFormLoadInteractorImpl
 	@Override
 	protected void storeToCache(DDLFormLoadEvent event, Object... args) {
 		CacheSQL.getInstance().set(new DDLFormCache(event.getRecord(), event.getJSONObject()));
+	}
+
+	@Override
+	protected void notifyError(DDLFormLoadEvent event) {
+		getListener().onDDLFormLoadFailed(event.getException());
 	}
 
 	protected DDMStructureConnector getDDMStructureService(Record record) {

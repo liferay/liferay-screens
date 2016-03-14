@@ -108,11 +108,11 @@ public abstract class BaseCachedRemoteInteractor<L extends CacheListener, E exte
 
 	protected abstract void online(Object... args) throws Exception;
 
-	protected abstract void notifyError(E event);
-
 	protected abstract boolean cached(Object... args) throws Exception;
 
 	protected abstract void storeToCache(E event, Object... args);
+
+	protected abstract void notifyError(E event);
 
 	protected OfflinePolicy getOfflinePolicy() {
 		return _offlinePolicy;
