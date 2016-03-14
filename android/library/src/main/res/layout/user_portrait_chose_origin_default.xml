@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent">
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
 
 	<TextView
 		android:id="@+id/liferay_dialog_title"
@@ -11,7 +11,7 @@
 		android:padding="10dp"
 		android:text="@string/origin_of_file"
 		android:textColor="@android:color/white"
-		android:textSize="18sp"/>
+		android:textSize="18sp" />
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -26,14 +26,14 @@
 			style="@style/default_dialog_button"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/select_a_file"/>
+			android:text="@string/select_a_file" />
 
 		<TextView
 			android:id="@+id/liferay_dialog_take_photo"
 			style="@style/default_dialog_button"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/take_a_photo"/>
+			android:text="@string/take_a_photo" />
 
 	</LinearLayout>
 

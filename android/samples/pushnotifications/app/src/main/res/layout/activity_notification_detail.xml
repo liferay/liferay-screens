@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-				xmlns:liferay="http://schemas.android.com/apk/res-auto"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent">
+	xmlns:liferay="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
 
 	<com.liferay.mobile.screens.ddl.form.DDLFormScreenlet
 		android:id="@+id/ddl_form_screenlet"
@@ -12,6 +12,6 @@
 		liferay:layoutId="@layout/ddl_form_material"
 		liferay:recordSetId="@integer/ddl_recordset_id"
 		liferay:repositoryId="@integer/repository_id"
-		liferay:structureId="@integer/ddl_structure_id"/>
+		liferay:structureId="@integer/ddl_structure_id" />
 
 </RelativeLayout>
