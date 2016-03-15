@@ -67,6 +67,36 @@ public class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFileP
 		return error
 	}
 
+	override public func doRun(session session: LRSession) {
+		session.callback = self
+
+		let fileName = "\(filePrefix)\(NSUUID().UUIDString)"
+		let stream = document.getStream(&bytesToSend)
+		let uploadData = LRUploadData(
+			inputStream: stream,
+			length: bytesToSend,
+			fileName: fileName,
+			mimeType: document.mimeType,
+			progressDelegate: self)
+		uploadData.progressDelegate = self
+
+		requestSemaphore = dispatch_semaphore_create(0)
+
+		do {
+			try doSendFile(session, name: fileName, data: uploadData)
+		}
+		catch {
+			// ignore the error because this is an async call
+			// (the ObjC-Swift bridge is not working well in this scenario)
+		}
+
+		dispatch_semaphore_wait(requestSemaphore!, DISPATCH_TIME_FOREVER)
+	}
+
+	public func doSendFile(session: LRSession, name: String, data: LRUploadData) throws {
+		fatalError("Override doSendFile method")
+	}
+
 
 	//MARK: LRFileProgressDelegate
 
@@ -100,40 +130,18 @@ public class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFileP
 
 public class Liferay62DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 
-	override public func doRun(session session: LRSession) {
-		session.callback = self
-
-		let fileName = "\(filePrefix)\(NSUUID().UUIDString)"
-		let stream = document.getStream(&bytesToSend)
-		let uploadData = LRUploadData(
-			inputStream: stream,
-			length: bytesToSend,
-			fileName: fileName,
-			mimeType: document.mimeType,
-			progressDelegate: self)
-		uploadData.progressDelegate = self
-
-		requestSemaphore = dispatch_semaphore_create(0)
-
+	override public func doSendFile(session: LRSession, name: String, data: LRUploadData) throws {
 		let service = LRDLAppService_v62(session: session)
 
-		do {
-			try service.addFileEntryWithRepositoryId(repositoryId,
-				folderId: folderId,
-				sourceFileName: fileName,
-				mimeType: document.mimeType,
-				title: fileName,
-				description: LocalizedString("ddlform-screenlet", key: "upload-metadata-description", obj: self),
-				changeLog: LocalizedString("ddlform-screenlet", key: "upload-metadata-changelog", obj: self),
-				file: uploadData,
-				serviceContext: nil)
-		}
-		catch {
-			// ignore the error because this is an async call
-			// (the ObjC-Swift bridge is not working well in this scenario)
-		}
-
-		dispatch_semaphore_wait(requestSemaphore!, DISPATCH_TIME_FOREVER)
+		try service.addFileEntryWithRepositoryId(repositoryId,
+			folderId: folderId,
+			sourceFileName: name,
+			mimeType: document.mimeType,
+			title: name,
+			description: LocalizedString("ddlform-screenlet", key: "upload-metadata-description", obj: self),
+			changeLog: LocalizedString("ddlform-screenlet", key: "upload-metadata-changelog", obj: self),
+			file: data,
+			serviceContext: nil)
 	}
 
 }
@@ -141,40 +149,18 @@ public class Liferay62DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 
 public class Liferay70DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 
-	override public func doRun(session session: LRSession) {
-		session.callback = self
-
-		let fileName = "\(filePrefix)\(NSUUID().UUIDString)"
-		let stream = document.getStream(&bytesToSend)
-		let uploadData = LRUploadData(
-			inputStream: stream,
-			length: bytesToSend,
-			fileName: fileName,
-			mimeType: document.mimeType,
-			progressDelegate: self)
-		uploadData.progressDelegate = self
-
-		requestSemaphore = dispatch_semaphore_create(0)
-
+	override public func doSendFile(session: LRSession, name: String, data: LRUploadData) throws {
 		let service = LRDLAppService_v7(session: session)
 
-		do {
-			try service.addFileEntryWithRepositoryId(repositoryId,
-				folderId: folderId,
-				sourceFileName: fileName,
-				mimeType: document.mimeType,
-				title: fileName,
-				description: LocalizedString("ddlform-screenlet", key: "upload-metadata-description", obj: self),
-				changeLog: LocalizedString("ddlform-screenlet", key: "upload-metadata-changelog", obj: self),
-				file: uploadData,
-				serviceContext: nil)
-		}
-		catch let error as NSError {
-			// ignore the error because this is an async call
-			// (the ObjC-Swift bridge is not working well in this scenario)
-		}
-
-		dispatch_semaphore_wait(requestSemaphore!, DISPATCH_TIME_FOREVER)
+		try service.addFileEntryWithRepositoryId(repositoryId,
+			folderId: folderId,
+			sourceFileName: name,
+			mimeType: document.mimeType,
+			title: name,
+			description: LocalizedString("ddlform-screenlet", key: "upload-metadata-description", obj: self),
+			changeLog: LocalizedString("ddlform-screenlet", key: "upload-metadata-changelog", obj: self),
+			file: data,
+			serviceContext: nil)
 	}
-	
+
 }
