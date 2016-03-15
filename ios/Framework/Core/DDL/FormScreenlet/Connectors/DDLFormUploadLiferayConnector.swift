@@ -124,8 +124,9 @@ public class Liferay62DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 				file: uploadData,
 				serviceContext: nil)
 		}
-		catch let error as NSError {
-			lastError = error
+		catch {
+			// ignore the error because this is an async call
+			// (the ObjC-Swift bridge is not working well in this scenario)
 		}
 
 		dispatch_semaphore_wait(requestSemaphore!, DISPATCH_TIME_FOREVER)
