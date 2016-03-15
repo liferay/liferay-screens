@@ -25,22 +25,25 @@ public class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFileP
 	let repositoryId: Int64
 	let folderId: Int64
 
-	var onUploadedBytes: OnProgress?
+	let onUploadedBytes: OnProgress?
 
 	var uploadResult: [String:AnyObject]?
 
 	private var requestSemaphore: dispatch_semaphore_t?
+
 	private var bytesToSend: Int64 = 0
 
 	public init(
 			document: DDLFieldDocument,
 			filePrefix: String,
 			repositoryId: Int64,
-			folderId: Int64) {
+			folderId: Int64,
+			onProgress: OnProgress?) {
 		self.document = document
 		self.filePrefix = filePrefix
 		self.repositoryId = repositoryId
 		self.folderId = folderId
+		self.onUploadedBytes = onProgress
 
 		super.init()
 	}
@@ -65,13 +68,14 @@ public class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFileP
 	}
 
 
-	//MARK: LRProgressDelegate
+	//MARK: LRFileProgressDelegate
 
 	public func onProgress(data: NSData!, totalBytes: Int64) {
-		let sent = UInt64(data.length)
-		let total = UInt64(totalBytes)
-		document.uploadStatus = .Uploading(sent, total)
-		onUploadedBytes?(document, sent, total)
+		let totalBytesSent = UInt64(totalBytes)
+		let totalBytesToSend = UInt64(self.bytesToSend)
+
+		document.uploadStatus = .Uploading(totalBytesSent, totalBytesToSend)
+		onUploadedBytes?(document, totalBytesSent, totalBytesToSend)
 	}
 
 

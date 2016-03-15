@@ -118,6 +118,13 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 				changeProgressVisilibity(show: false, delay: 2.0)
 
 			case .Uploaded(_):
+				progress!.progressTotal = 1
+				progress!.progressCounter = 1
+
+				if progress!.alpha == 0 {
+					changeProgressVisilibity(show: true)
+				}
+
 				if field.lastValidationResult != nil {
 					field.validate()
 				}
