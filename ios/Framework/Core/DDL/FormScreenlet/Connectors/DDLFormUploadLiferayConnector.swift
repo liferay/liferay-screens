@@ -113,9 +113,9 @@ public class Liferay62DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 			progressDelegate: self)
 		uploadData.progressDelegate = self
 
-		let service = LRDLAppService_v62(session: session)
-
 		requestSemaphore = dispatch_semaphore_create(0)
+
+		let service = LRDLAppService_v62(session: session)
 
 		do {
 			try service.addFileEntryWithRepositoryId(repositoryId,
@@ -145,19 +145,18 @@ public class Liferay70DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 		session.callback = self
 
 		let fileName = "\(filePrefix)\(NSUUID().UUIDString)"
-		var size:Int64 = 0
-		let stream = document.getStream(&size)
+		let stream = document.getStream(&bytesToSend)
 		let uploadData = LRUploadData(
 			inputStream: stream,
-			length: size,
+			length: bytesToSend,
 			fileName: fileName,
 			mimeType: document.mimeType,
 			progressDelegate: self)
 		uploadData.progressDelegate = self
 
-		let service = LRDLAppService_v7(session: session)
-
 		requestSemaphore = dispatch_semaphore_create(0)
+
+		let service = LRDLAppService_v7(session: session)
 
 		do {
 			try service.addFileEntryWithRepositoryId(repositoryId,
@@ -171,7 +170,8 @@ public class Liferay70DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 				serviceContext: nil)
 		}
 		catch let error as NSError {
-			lastError = error
+			// ignore the error because this is an async call
+			// (the ObjC-Swift bridge is not working well in this scenario)
 		}
 
 		dispatch_semaphore_wait(requestSemaphore!, DISPATCH_TIME_FOREVER)
