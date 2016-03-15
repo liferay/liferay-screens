@@ -30,11 +30,13 @@ public class DDLFieldDate: DDLField {
 		return "MM/dd/yyyy"
 	}
 
-	public var serverDateFormatter: NSDateFormatter {
-		let result = NSDateFormatter()
-		result.timeZone = DDLFieldDate.GMTTimeZone
-		result.dateFormat = serverDateFormat
-		return result
+	public func formatterWithFormat(format: String) -> NSDateFormatter {
+		let formatter = NSDateFormatter()
+
+		formatter.timeZone = DDLFieldDate.GMTTimeZone
+		formatter.dateFormat = format
+
+		return formatter
 	}
 
 	//MARK: DDLField
@@ -55,22 +57,10 @@ public class DDLFieldDate: DDLField {
 			return nil
 		}
 
-		func formatter() -> NSDateFormatter {
-			let separator = stringValue[stringValue.endIndex.advancedBy(-3)]
+		let separator = stringValue[stringValue.endIndex.advancedBy(-3)]
+		let format = separator == "/" ? "MM/dd/yy" : serverDateFormat
 
-			if separator == "/" {
-				let formatter = NSDateFormatter()
-				formatter.timeZone = DDLFieldDate.GMTTimeZone
-				formatter.dateFormat = "MM/dd/yy"
-				formatter.dateFromString(stringValue)
-
-				return formatter
-			}
-
-			return serverDateFormatter
-		}
-
-		return formatter().dateFromString(stringValue)
+		return formatterWithFormat(format).dateFromString(stringValue)
 	}
 
 	override func convert(fromLabel label: String?) -> AnyObject? {
@@ -140,18 +130,11 @@ public class DDLFieldDate_v70: DDLFieldDate {
 			return nil
 		}
 
-		func convertWithFormat(format: String) -> AnyObject? {
-			let formatter = NSDateFormatter()
-			formatter.timeZone = DDLFieldDate.GMTTimeZone
-			formatter.dateFormat = format
-
-			return formatter.dateFromString(stringValue)
-		}
-
 		// Liferay 7 is not consistent in date format.
 		// It uses MM/dd/YYYY in predefinedValue field.
 
-		return super.convert(fromString: value) ?? convertWithFormat("M'/'d'/'yyyy")
+		return super.convert(fromString: value)
+			?? formatterWithFormat("M'/'d'/'yyyy").dateFromString(stringValue)
 	}
 
 
@@ -160,7 +143,7 @@ public class DDLFieldDate_v70: DDLFieldDate {
 			return nil
 		}
 
-		return serverDateFormatter.stringFromDate(date)
+		return formatterWithFormat(serverDateFormat).stringFromDate(date)
 	}
 
 
