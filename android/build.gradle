@@ -65,6 +65,5 @@ ext.libraries = [
 allprojects {
 	repositories {
 		jcenter()
-		maven { url 'http://dl.bintray.com/tbruyelle/tbruyelle' }
 	}
 }
