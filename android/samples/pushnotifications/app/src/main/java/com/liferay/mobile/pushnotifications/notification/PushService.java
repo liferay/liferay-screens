@@ -102,8 +102,8 @@ public class PushService extends AbstractPushService {
 			return entryService.getFileEntryByUuidAndGroupId(uuid, groupId);
 		}
 		else {
-			com.liferay.mobile.android.v70.dlfileentry.DLFileEntryService entryService
-				= new com.liferay.mobile.android.v70.dlfileentry.DLFileEntryService(session);
+			com.liferay.mobile.android.v7.dlfileentry.DLFileEntryService entryService
+				= new com.liferay.mobile.android.v7.dlfileentry.DLFileEntryService(session);
 			return entryService.getFileEntryByUuidAndGroupId(uuid, groupId);
 		}
 	}
