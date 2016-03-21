@@ -14,6 +14,8 @@
 
 package com.liferay.mobile.screens.webcontentdisplay;
 
+import android.view.MotionEvent;
+
 import com.liferay.mobile.screens.cache.CacheListener;
 
 /**
@@ -24,5 +26,7 @@ public interface WebContentDisplayListener extends CacheListener {
 	String onWebContentReceived(WebContentDisplayScreenlet source, String html);
 
 	void onWebContentFailure(WebContentDisplayScreenlet source, Exception e);
+
+	void onWebContentClicked(MotionEvent event);
 
 }
