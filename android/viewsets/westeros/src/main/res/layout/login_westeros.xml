@@ -16,7 +16,6 @@
 		<EditText
 			android:id="@+id/liferay_password"
 			style="@style/westeros_edit_text"
-			android:hint="@string/password"
 			android:inputType="textPassword" />
 
 		<ImageView
