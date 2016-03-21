@@ -38,7 +38,7 @@ script:
     - cd android/
 #    - echo "sdk.dir=$HOME/.android-sdk-installer" > local.properties
     - ./gradlew clean
-    - ./gradlew assembleDebug
+    - ./gradlew assembleTravisci
 #    - ./gradlew assembleDebugAndroidTest
     - ./gradlew test
 
