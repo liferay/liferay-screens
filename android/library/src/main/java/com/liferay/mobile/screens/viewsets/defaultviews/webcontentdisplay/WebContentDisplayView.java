@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.webcontentdisplay;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -33,7 +34,7 @@ import com.liferay.mobile.screens.webcontentdisplay.view.WebContentDisplayViewMo
  * @author Silvio Santos
  */
 public class WebContentDisplayView extends FrameLayout
-	implements WebContentDisplayViewModel {
+	implements WebContentDisplayViewModel, View.OnTouchListener {
 
 	public WebContentDisplayView(Context context) {
 		super(context);
@@ -87,6 +88,12 @@ public class WebContentDisplayView extends FrameLayout
 	}
 
 	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+		((WebContentDisplayScreenlet) getScreenlet()).onWebContentClicked(event);
+		return false;
+	}
+
+	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
@@ -103,6 +110,7 @@ public class WebContentDisplayView extends FrameLayout
 			_webView.getSettings().setJavaScriptEnabled(true);
 			_webView.setWebChromeClient(new WebChromeClient());
 		}
+		_webView.setOnTouchListener(this);
 	}
 
 	protected WebView _webView;
