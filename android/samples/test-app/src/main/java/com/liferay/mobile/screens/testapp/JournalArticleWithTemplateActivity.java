@@ -1,6 +1,7 @@
 package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
 
 import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
 import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet;
@@ -35,6 +36,11 @@ public class JournalArticleWithTemplateActivity extends ThemeActivity implements
 
 	@Override
 	public void onWebContentFailure(WebContentDisplayScreenlet source, Exception e) {
+	}
+
+	@Override
+	public void onWebContentClicked(MotionEvent event) {
+
 	}
 
 	@Override
