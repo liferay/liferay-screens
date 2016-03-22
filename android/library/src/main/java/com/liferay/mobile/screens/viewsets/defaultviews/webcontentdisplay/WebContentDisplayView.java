@@ -89,7 +89,8 @@ public class WebContentDisplayView extends FrameLayout
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		((WebContentDisplayScreenlet) getScreenlet()).onWebContentClicked(event);
+		WebView.HitTestResult result = _webView.getHitTestResult();
+		((WebContentDisplayScreenlet) getScreenlet()).onWebContentClicked(result, event);
 		return false;
 	}
 

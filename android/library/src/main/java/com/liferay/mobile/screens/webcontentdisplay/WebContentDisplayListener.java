@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.webcontentdisplay;
 
 import android.view.MotionEvent;
+import android.webkit.WebView;
 
 import com.liferay.mobile.screens.cache.CacheListener;
 
@@ -27,6 +28,6 @@ public interface WebContentDisplayListener extends CacheListener {
 
 	void onWebContentFailure(WebContentDisplayScreenlet source, Exception e);
 
-	void onWebContentClicked(MotionEvent event);
+	void onWebContentClicked(WebView.HitTestResult result, MotionEvent event);
 
 }

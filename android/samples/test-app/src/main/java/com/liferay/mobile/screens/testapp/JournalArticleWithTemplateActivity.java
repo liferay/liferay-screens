@@ -2,6 +2,7 @@ package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.webkit.WebView;
 
 import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
 import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet;
@@ -39,7 +40,7 @@ public class JournalArticleWithTemplateActivity extends ThemeActivity implements
 	}
 
 	@Override
-	public void onWebContentClicked(MotionEvent event) {
+	public void onWebContentClicked(WebView.HitTestResult result, MotionEvent event) {
 
 	}
 
