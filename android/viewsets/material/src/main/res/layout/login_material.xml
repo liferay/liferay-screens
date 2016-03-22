@@ -23,8 +23,7 @@
 				android:id="@+id/liferay_login"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:layout_marginTop="8dp"
-				android:hint="@string/email_address" />
+				android:layout_marginTop="8dp" />
 
 		</LinearLayout>
 

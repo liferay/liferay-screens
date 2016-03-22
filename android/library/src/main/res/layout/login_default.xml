@@ -17,7 +17,6 @@
 			android:drawableLeft="@drawable/default_mail_icon"
 			android:drawablePadding="17dp"
 			android:drawableStart="@drawable/default_mail_icon"
-			android:hint="@string/email_address"
 			android:inputType="text"
 			android:paddingLeft="15dp" />
 
