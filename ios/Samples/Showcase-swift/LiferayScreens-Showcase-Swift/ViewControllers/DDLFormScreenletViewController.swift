@@ -74,10 +74,9 @@ class DDLFormScreenletViewController: UIViewController, DDLFormScreenletDelegate
 
 	func screenlet(screenlet: DDLFormScreenlet,
 			onDocumentField field: DDLFieldDocument,
-			uploadedBytes bytes: UInt,
-			sentBytes sent: Int64,
-			totalBytes total: Int64) {
-		print("DELEGATE: onDocumentUploadedBytes called. field -> \(field.debugDescription) \(bytes),\(sent),\(total)\n")
+			uploadedBytes bytes: UInt64,
+			totalBytes total: UInt64) {
+		print("DELEGATE: onDocumentUploadedBytes called. field -> \(field.debugDescription) \(bytes)/\(total)\n")
 	}
 
 	func screenlet(screenlet: DDLFormScreenlet,

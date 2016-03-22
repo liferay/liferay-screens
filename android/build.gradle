@@ -40,14 +40,14 @@ ext {
 	allLicenses = ["LGPL-2.1"]
 }
 
-def supportLibsVersion = '23.2.0'
+def supportLibsVersion = '23.2.1'
 
 ext.libraries = [
 		appCompat        : 'com.android.support:appcompat-v7:' + supportLibsVersion,
 		recyclerView     : 'com.android.support:recyclerview-v7:' + supportLibsVersion,
 		design           : 'com.android.support:design:' + supportLibsVersion,
 		junit            : 'junit:junit:4.12',
-		sdk              : 'com.liferay.mobile:liferay-android-sdk:7.0.1',
+		sdk              : 'com.liferay.mobile:liferay-android-sdk:7.0.2',
 		push             : 'com.liferay.mobile:liferay-push:1.0.7',
 		oauth            : 'com.liferay.mobile:liferay-android-oauth:1.3.0',
 		eventbus         : 'de.greenrobot:eventbus:2.4.0',
@@ -62,9 +62,8 @@ ext.libraries = [
 		mockito          : 'org.mockito:mockito-core:2.0.43-beta',
 ]
 
-allprojects {
+subprojects {
 	repositories {
 		jcenter()
-		maven { url 'http://dl.bintray.com/tbruyelle/tbruyelle' }
 	}
 }

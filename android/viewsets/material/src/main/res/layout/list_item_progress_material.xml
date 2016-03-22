@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
 	android:id="@+id/liferay_list_title"
 	style="@style/material_list_item"
-	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:drawableEnd="@drawable/material_query_builder"
 	android:drawableRight="@drawable/material_query_builder"
 	android:gravity="center_vertical"
-	android:text="@string/default_empty_value"/>
+	android:text="@string/default_empty_value" />

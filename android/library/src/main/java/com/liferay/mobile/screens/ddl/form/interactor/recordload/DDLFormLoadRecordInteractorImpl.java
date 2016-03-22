@@ -89,11 +89,6 @@ public class DDLFormLoadRecordInteractorImpl
 	}
 
 	@Override
-	protected void notifyError(DDLFormLoadRecordEvent event) {
-		getListener().onDDLFormRecordLoadFailed(event.getException());
-	}
-
-	@Override
 	protected boolean cached(Object[] args) throws Exception {
 
 		Record record = (Record) args[0];
@@ -124,6 +119,11 @@ public class DDLFormLoadRecordInteractorImpl
 		catch (JSONException e) {
 			LiferayLogger.e("Couldn't parse JSON values", e);
 		}
+	}
+
+	@Override
+	protected void notifyError(DDLFormLoadRecordEvent event) {
+		getListener().onDDLFormRecordLoadFailed(event.getException());
 	}
 
 	protected ScreensDDLRecordConnector getDDLRecordService(Record record) {

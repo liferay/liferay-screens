@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginView
-	style="@style/default_screenlet"
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:liferay="http://schemas.android.com/apk/res-auto">
+<com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:liferay="http://schemas.android.com/apk/res-auto"
+	style="@style/default_screenlet">
 
 	<LinearLayout
 		android:id="@+id/basic_authentication_login"
@@ -20,7 +19,7 @@
 			android:drawableStart="@drawable/default_mail_icon"
 			android:hint="@string/email_address"
 			android:inputType="text"
-			android:paddingLeft="15dp"/>
+			android:paddingLeft="15dp" />
 
 		<EditText
 			android:id="@+id/liferay_password"
@@ -32,7 +31,7 @@
 			android:drawableStart="@drawable/default_lock_icon"
 			android:hint="@string/password"
 			android:inputType="textPassword"
-			android:paddingLeft="18dp"/>
+			android:paddingLeft="18dp" />
 
 		<FrameLayout
 			android:layout_width="match_parent"
@@ -43,7 +42,7 @@
 				android:id="@+id/liferay_login_button"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:text="@string/sign_in"/>
+				android:text="@string/sign_in" />
 
 			<com.liferay.mobile.screens.base.ModalProgressBar
 				android:id="@+id/liferay_progress"
@@ -52,7 +51,7 @@
 				android:layout_gravity="center_vertical|start"
 				android:theme="@style/white_theme"
 				android:visibility="invisible"
-				liferay:actionViewId="@id/liferay_login_button"/>
+				liferay:actionViewId="@id/liferay_login_button" />
 		</FrameLayout>
 	</LinearLayout>
 
@@ -61,5 +60,5 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:text="@string/authorize_application"
-		android:visibility="gone"/>
+		android:visibility="gone" />
 </com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginView>

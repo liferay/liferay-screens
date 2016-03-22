@@ -83,7 +83,8 @@ public protocol LiferayConnectorFactory {
 		document document: DDLFieldDocument,
 		filePrefix: String,
 		repositoryId: Int64,
-		folderId: Int64) -> DDLFormUploadLiferayConnector
+		folderId: Int64,
+		onProgress: DDLFormUploadLiferayConnector.OnProgress?) -> DDLFormUploadLiferayConnector
 
 }
 
@@ -226,12 +227,14 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			document document: DDLFieldDocument,
 			filePrefix: String,
 			repositoryId: Int64,
-			folderId: Int64) -> DDLFormUploadLiferayConnector {
+			folderId: Int64,
+			onProgress: DDLFormUploadLiferayConnector.OnProgress?) -> DDLFormUploadLiferayConnector {
 		return Liferay62DDLFormUploadConnector(
 			document: document,
 			filePrefix: filePrefix,
 			repositoryId: repositoryId,
-			folderId: folderId)
+			folderId: folderId,
+			onProgress: onProgress)
 	}
 
 }
@@ -375,12 +378,14 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			document document: DDLFieldDocument,
 			filePrefix: String,
 			repositoryId: Int64,
-			folderId: Int64) -> DDLFormUploadLiferayConnector {
+			folderId: Int64,
+			onProgress: DDLFormUploadLiferayConnector.OnProgress?) -> DDLFormUploadLiferayConnector {
 		return Liferay70DDLFormUploadConnector(
 			document: document,
 			filePrefix: filePrefix,
 			repositoryId: repositoryId,
-			folderId: folderId)
+			folderId: folderId,
+			onProgress: onProgress)
 	}
 
 }

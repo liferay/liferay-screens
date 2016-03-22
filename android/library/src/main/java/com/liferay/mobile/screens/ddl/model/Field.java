@@ -39,10 +39,6 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		DOCUMENT("document-library"),
 		UNSUPPORTED(null);
 
-		DataType(String value) {
-			_value = value;
-		}
-
 		public static DataType valueOf(Map<String, Object> attributes) {
 			Object mapValue = attributes.get("dataType");
 			return (mapValue == null) ?
@@ -103,6 +99,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 			return _value;
 		}
 
+		DataType(String value) {
+			_value = value;
+		}
+
 		private String _value;
 
 	}
@@ -120,10 +120,6 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		RADIO("radio"),
 		DOCUMENT("ddm-documentlibrary"),
 		UNSUPPORTED(null);
-
-		EditorType(String value) {
-			_value = value;
-		}
 
 		public static List<EditorType> all() {
 			List<EditorType> editorTypes = new ArrayList<>(Arrays.asList(EditorType.values()));
@@ -155,6 +151,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 		public String getValue() {
 			return _value;
+		}
+
+		EditorType(String value) {
+			_value = value;
 		}
 
 		private String _value;

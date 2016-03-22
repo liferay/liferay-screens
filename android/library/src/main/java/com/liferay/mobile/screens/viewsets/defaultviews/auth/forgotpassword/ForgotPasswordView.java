@@ -110,6 +110,7 @@ public class ForgotPasswordView extends LinearLayout
 		screenlet.performUserAction();
 	}
 
+
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
@@ -132,6 +133,17 @@ public class ForgotPasswordView extends LinearLayout
 		_loginEditText.setInputType(_basicAuthMethod.getInputType());
 		_loginEditText.setCompoundDrawablesWithIntrinsicBounds(
 			ContextCompat.getDrawable(getContext(), getLoginEditTextDrawableId()), null, null, null);
+		_loginEditText.setText(getLoginEditTextLabel());
+	}
+
+	protected int getLoginEditTextLabel() {
+		if (BasicAuthMethod.SCREEN_NAME.equals(_basicAuthMethod)) {
+			return R.string.screen_name;
+		}
+		else if (BasicAuthMethod.USER_ID.equals(_basicAuthMethod)) {
+			return R.string.user_id;
+		}
+		return R.string.email_address;
 	}
 
 	protected int getLoginEditTextDrawableId() {

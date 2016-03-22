@@ -38,8 +38,10 @@ class HomeLoginViewController: UIViewController, LoginScreenletDelegate {
 		self.loginScreenlet?.presentingViewController = self
 		self.loginScreenlet?.delegate = self
 
-		self.loginScreenlet?.viewModel.userName = "test@liferay.com"
-		self.loginScreenlet?.viewModel.password = "test"
+		if !SessionContext.loadStoredCredentials() {
+			self.loginScreenlet?.viewModel.userName = "test@liferay.com"
+			self.loginScreenlet?.viewModel.password = "test"
+		}
 
 		showLogged(animated: false);
 	}

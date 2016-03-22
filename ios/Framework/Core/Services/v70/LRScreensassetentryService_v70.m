@@ -19,17 +19,6 @@
  */
 @implementation LRScreensassetentryService_v70
 
-- (NSArray *)getAssetEntriesWithAssetEntryQuery:(LRJSONObjectWrapper *)assetEntryQuery locale:(NSString *)locale error:(NSError **)error {
-	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
-		@"locale": [self checkNull: locale]
-	}];
-
-	[self mangleWrapperWithParams:_params name:@"assetEntryQuery" className:@"com.liferay.portlet.asset.service.persistence.AssetEntryQuery" wrapper:assetEntryQuery];
-	NSDictionary *_command = @{@"/screens.screensassetentry/get-asset-entries": _params};
-
-	return (NSArray *)[self.session invoke:_command error:error];
-}
-
 - (NSArray *)getAssetEntriesWithCompanyId:(long long)companyId groupId:(long long)groupId portletItemName:(NSString *)portletItemName locale:(NSString *)locale max:(int)max error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"companyId": @(companyId),
@@ -39,6 +28,17 @@
 		@"max": @(max)
 	}];
 
+	NSDictionary *_command = @{@"/screens.screensassetentry/get-asset-entries": _params};
+
+	return (NSArray *)[self.session invoke:_command error:error];
+}
+
+- (NSArray *)getAssetEntriesWithAssetEntryQuery:(LRJSONObjectWrapper *)assetEntryQuery locale:(NSString *)locale error:(NSError **)error {
+	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
+		@"locale": [self checkNull: locale]
+	}];
+
+	[self mangleWrapperWithParams:_params name:@"assetEntryQuery" className:@"com.liferay.asset.kernel.service.persistence.AssetEntryQuery" wrapper:assetEntryQuery];
 	NSDictionary *_command = @{@"/screens.screensassetentry/get-asset-entries": _params};
 
 	return (NSArray *)[self.session invoke:_command error:error];

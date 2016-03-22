@@ -59,7 +59,6 @@ public class DDLFormLoadInteractorImpl
 		onEventWithCache(event, event.getRecord());
 
 		if (!event.isFailed()) {
-
 			try {
 				Record formRecord = parseRecord(event);
 
@@ -71,35 +70,12 @@ public class DDLFormLoadInteractorImpl
 		}
 	}
 
-	@NonNull
-	private Record parseRecord(DDLFormLoadEvent event) throws JSONException {
-
-		Record formRecord = event.getRecord();
-
-		long userId = event.getJSONObject().getLong("userId");
-		if (event.getJSONObject().has("xsd")) {
-			formRecord.parseXsd(event.getJSONObject().getString("xsd"));
-		} else {
-			formRecord.parseJson(event.getJSONObject().getString("definition"));
-		}
-
-		if (formRecord.getCreatorUserId() == 0) {
-			formRecord.setCreatorUserId(userId);
-		}
-		return formRecord;
-	}
-
 	@Override
 	protected void online(Object[] args) throws Exception {
 
 		Record record = (Record) args[0];
 
 		getDDMStructureService(record).getStructure(record.getStructureId());
-	}
-
-	@Override
-	protected void notifyError(DDLFormLoadEvent event) {
-		getListener().onDDLFormLoadFailed(event.getException());
 	}
 
 	@Override
@@ -123,6 +99,11 @@ public class DDLFormLoadInteractorImpl
 		CacheSQL.getInstance().set(new DDLFormCache(event.getRecord(), event.getJSONObject()));
 	}
 
+	@Override
+	protected void notifyError(DDLFormLoadEvent event) {
+		getListener().onDDLFormLoadFailed(event.getException());
+	}
+
 	protected DDMStructureConnector getDDMStructureService(Record record) {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(new DDLFormLoadCallback(getTargetScreenletId(), record));
@@ -141,6 +122,25 @@ public class DDLFormLoadInteractorImpl
 		if (record.getLocale() == null) {
 			throw new IllegalArgumentException("Record's Locale cannot be empty");
 		}
+	}
+
+	@NonNull
+	private Record parseRecord(DDLFormLoadEvent event) throws JSONException {
+
+		Record formRecord = event.getRecord();
+
+		long userId = event.getJSONObject().getLong("userId");
+		if (event.getJSONObject().has("xsd")) {
+			formRecord.parseXsd(event.getJSONObject().getString("xsd"));
+		}
+		else {
+			formRecord.parseJson(event.getJSONObject().getString("definition"));
+		}
+
+		if (formRecord.getCreatorUserId() == 0) {
+			formRecord.setCreatorUserId(userId);
+		}
+		return formRecord;
 	}
 
 }

@@ -81,7 +81,8 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 			document: document,
 			filePrefix: filePrefix,
 			repositoryId: repositoryId,
-			folderId: folderId)
+			folderId: folderId,
+			onProgress: self.onProgressClosure)
 	}
 
 	override func completedConnector(op: ServerConnector) {

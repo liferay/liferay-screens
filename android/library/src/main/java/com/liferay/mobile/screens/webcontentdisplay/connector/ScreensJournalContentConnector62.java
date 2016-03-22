@@ -23,7 +23,7 @@ public class ScreensJournalContentConnector62 implements ScreensJournalContentCo
 
 	@Override
 	public void getJournalArticleContent(long groupId, String articleId, Long templateId, String locale) throws Exception {
-
+		_screensJournalContent.getJournalArticleContent(groupId, articleId, templateId, locale);
 	}
 
 	private final ScreensjournalarticleService _screensJournalContent;

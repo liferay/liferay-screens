@@ -24,7 +24,6 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.RobolectricManifestTestRunner;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.BaseCredentialsStorageSharedPreferences;
-import com.liferay.mobile.screens.context.storage.sharedPreferences.BasicCredentialsStorageSharedPreferences;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -103,7 +102,7 @@ public class SessionContextTest {
 
 	@Config(constants = BuildConfig.class, sdk = 18)
 	@RunWith(RobolectricManifestTestRunner.class)
-	public static class Whenlogout {
+	public static class WhenLogout {
 
 		@Before
 		public void setUp() {

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormView
+<com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormView xmlns:android="http://schemas.android.com/apk/res/android"
 	style="@style/default_screenlet"
-	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:layout_margin="0dp"
@@ -21,14 +20,14 @@
 			android:divider="@drawable/default_divider"
 			android:dividerPadding="10dp"
 			android:orientation="vertical"
-			android:showDividers="middle|end"/>
+			android:showDividers="middle|end" />
 
 		<ProgressBar
 			android:id="@+id/ddlform_loading_screen_progress_bar"
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:layout_gravity="center"
-			android:visibility="invisible"/>
+			android:visibility="invisible" />
 
 		<FrameLayout
 			android:layout_width="match_parent"
@@ -43,7 +42,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:text="@string/submit"
-				android:visibility="gone"/>
+				android:visibility="gone" />
 
 			<ProgressBar
 				android:id="@+id/ddlform_progress_bar"
@@ -51,7 +50,7 @@
 				android:layout_height="match_parent"
 				android:layout_gravity="center_vertical|start"
 				android:theme="@style/white_theme"
-				android:visibility="invisible"/>
+				android:visibility="invisible" />
 		</FrameLayout>
 	</LinearLayout>
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormView>
