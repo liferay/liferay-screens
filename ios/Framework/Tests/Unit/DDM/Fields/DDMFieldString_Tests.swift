@@ -14,7 +14,7 @@
 import XCTest
 
 
-class DDLFieldString_Tests: XCTestCase {
+class DDMFieldString_Tests: XCTestCase {
 
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
@@ -47,12 +47,12 @@ class DDLFieldString_Tests: XCTestCase {
 
 		XCTAssertTrue(fields != nil)
 		XCTAssertEqual(1, fields!.count)
-		XCTAssertTrue(fields![0] is DDLFieldString)
+		XCTAssertTrue(fields![0] is DDMFieldString)
 
-		let stringField = fields![0] as! DDLFieldString
+		let stringField = fields![0] as! DDMFieldString
 
-		XCTAssertEqual(DDLField.DataType.DDLString, stringField.dataType)
-		XCTAssertEqual(DDLField.Editor.Text, stringField.editorType)
+		XCTAssertEqual(DDMField.DataType.DDMString, stringField.dataType)
+		XCTAssertEqual(DDMField.Editor.Text, stringField.editorType)
 		XCTAssertEqual("A_Text", stringField.name)
 		XCTAssertEqual("A Text", stringField.label)
 		XCTAssertEqual("The tip", stringField.tip)
@@ -87,12 +87,12 @@ class DDLFieldString_Tests: XCTestCase {
 
 		XCTAssertTrue(fields != nil)
 		XCTAssertEqual(1, fields!.count)
-		XCTAssertTrue(fields![0] is DDLFieldString)
+		XCTAssertTrue(fields![0] is DDMFieldString)
 
-		let stringField = fields![0] as! DDLFieldString
+		let stringField = fields![0] as! DDMFieldString
 
-		XCTAssertEqual(DDLField.DataType.DDLString, stringField.dataType)
-		XCTAssertEqual(DDLField.Editor.Text, stringField.editorType)
+		XCTAssertEqual(DDMField.DataType.DDMString, stringField.dataType)
+		XCTAssertEqual(DDMField.Editor.Text, stringField.editorType)
 		XCTAssertEqual("A_Text", stringField.name)
 		XCTAssertEqual("A Text", stringField.label)
 		XCTAssertEqual("The tip", stringField.tip)
@@ -107,7 +107,7 @@ class DDLFieldString_Tests: XCTestCase {
 	func test_Validate_ShouldFail_WhenRequiredValueIsEmptyString() {
 		let fields = DDMXSDParser().parse(requiredTextXSD, locale: spanishLocale)
 
-		let stringField = fields![0] as! DDLFieldString
+		let stringField = fields![0] as! DDMFieldString
 
 		stringField.currentValue = ""
 
@@ -117,7 +117,7 @@ class DDLFieldString_Tests: XCTestCase {
 	func test_Validate_ShouldFail_WhenRequiredValueIsEmptyStringWithSpaces() {
 		let fields = DDMXSDParser().parse(requiredTextXSD, locale: spanishLocale)
 
-		let stringField = fields![0] as! DDLFieldString
+		let stringField = fields![0] as! DDMFieldString
 
 		stringField.currentValue = "  "
 

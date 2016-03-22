@@ -14,7 +14,7 @@
 import XCTest
 
 
-class DDLFieldDate_v70_Tests: XCTestCase {
+class DDMFieldDate_v70_Tests: XCTestCase {
 
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
@@ -40,12 +40,12 @@ class DDLFieldDate_v70_Tests: XCTestCase {
 
 		XCTAssertTrue(fields != nil)
 		XCTAssertEqual(1, fields!.count)
-		XCTAssertTrue(fields![0] is DDLFieldDate)
+		XCTAssertTrue(fields![0] is DDMFieldDate)
 
-		let dateField = fields![0] as! DDLFieldDate
+		let dateField = fields![0] as! DDMFieldDate
 
-		XCTAssertEqual(DDLField.DataType.DDLDate, dateField.dataType)
-		XCTAssertEqual(DDLField.Editor.Date, dateField.editorType)
+		XCTAssertEqual(DDMField.DataType.DDMDate, dateField.dataType)
+		XCTAssertEqual(DDMField.Editor.Date, dateField.editorType)
 		XCTAssertEqual("A_Date", dateField.name)
 		XCTAssertEqual("A Date", dateField.label)
 		XCTAssertEqual("The tip", dateField.tip)
@@ -71,7 +71,7 @@ class DDLFieldDate_v70_Tests: XCTestCase {
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
 		let fields = DDMJSONParser().parse(requiredDateFieldJSON, locale: spanishLocale)
-		let dateField = fields![0] as! DDLFieldDate
+		let dateField = fields![0] as! DDMFieldDate
 
 		XCTAssertTrue(dateField.currentValue == nil)
 
@@ -80,7 +80,7 @@ class DDLFieldDate_v70_Tests: XCTestCase {
 
 	func test_currentValueAsString_ShouldReturnServerSideFormattedDate() {
 		let fields = DDMJSONParser().parse(requiredDateFieldJSON, locale: spanishLocale)
-		let dateField = fields![0] as! DDLFieldDate
+		let dateField = fields![0] as! DDMFieldDate
 
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -93,7 +93,7 @@ class DDLFieldDate_v70_Tests: XCTestCase {
 
 	func test_currentValueAsString_ShouldSupportOneDigitMonth_WhenSettingTheStringValue() {
 		let fields = DDMJSONParser().parse(requiredDateFieldJSON, locale: spanishLocale)
-		let dateField = fields![0] as! DDLFieldDate
+		let dateField = fields![0] as! DDMFieldDate
 
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -109,7 +109,7 @@ class DDLFieldDate_v70_Tests: XCTestCase {
 
 	func test_currentValueAsLabel_ShouldReturnLocalizedValue_WhenEnglishLocaleIsUsed() {
 		let fields = DDMJSONParser().parse(requiredDateFieldJSON, locale: spanishLocale)
-		let dateField = fields![0] as! DDLFieldDate
+		let dateField = fields![0] as! DDMFieldDate
 
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -122,7 +122,7 @@ class DDLFieldDate_v70_Tests: XCTestCase {
 
 	func test_currentValueAsLabel_ShouldReturnLocalizedValue_WhenSpanishLocaleIsUsed() {
 		let fields = DDMJSONParser().parse(requiredDateFieldJSON, locale: spanishLocale)
-		let dateField = fields![0] as! DDLFieldDate
+		let dateField = fields![0] as! DDMFieldDate
 
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -134,7 +134,7 @@ class DDLFieldDate_v70_Tests: XCTestCase {
 
 	func test_currentValueAsLabel_ShouldBeTheValidDate_WhenSetTheLabelDate() {
 		let fields = DDMJSONParser().parse(requiredDateFieldJSON, locale: spanishLocale)
-		let dateField = fields![0] as! DDLFieldDate
+		let dateField = fields![0] as! DDMFieldDate
 
 		dateField.currentValueAsLabel = "19 de junio de 2004"
 

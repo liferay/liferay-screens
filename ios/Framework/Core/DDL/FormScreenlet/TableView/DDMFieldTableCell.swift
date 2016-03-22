@@ -14,14 +14,14 @@
 import UIKit
 
 
-public class DDLFieldTableCell: UITableViewCell {
+public class DDMFieldTableCell: UITableViewCell {
 
-	public class func viewAsFieldCell(view: UIView?) -> DDLFieldTableCell? {
+	public class func viewAsFieldCell(view: UIView?) -> DDMFieldTableCell? {
 		if view == nil {
 			return nil
 		}
-		else if view is DDLFieldTableCell {
-			return (view as! DDLFieldTableCell)
+		else if view is DDMFieldTableCell {
+			return (view as! DDMFieldTableCell)
 		}
 
 		return viewAsFieldCell(view!.superview)
@@ -31,7 +31,7 @@ public class DDLFieldTableCell: UITableViewCell {
 	public var indexPath: NSIndexPath?
 	public var formView: DDLFormTableView?
 
-	public var field: DDLField? {
+	public var field: DDMField? {
 		didSet {
 			field?.onPostValidation = onPostValidation
 			onChangedField()
@@ -145,7 +145,7 @@ public class DDLFieldTableCell: UITableViewCell {
 		return result
 	}
 
-	internal func changeDocumentUploadStatus(field: DDLFieldDocument) {
+	internal func changeDocumentUploadStatus(field: DDMFieldDocument) {
 	}
 
 	internal func simpleTapDetected() {

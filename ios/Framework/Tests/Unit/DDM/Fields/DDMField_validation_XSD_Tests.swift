@@ -14,14 +14,14 @@
 import XCTest
 
 
-class DDLField_Validation_XSD_Tests: XCTestCase {
+class DDMField_Validation_XSD_Tests: XCTestCase {
 
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
 	func test_Validate_ShoulTriggerOnPostValidation_WhenValidationFails() {
 		let fields = DDMXSDParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
 
-		let booleanField = fields![0] as! DDLFieldBoolean
+		let booleanField = fields![0] as! DDMFieldBoolean
 
 		let expectation = expectationWithDescription("OnPostValidation must be called")
 
@@ -37,7 +37,7 @@ class DDLField_Validation_XSD_Tests: XCTestCase {
 	func test_Validate_ShoulTriggerOnPostValidation_WhenValidationSucceeds() {
 		let fields = DDMXSDParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
 
-		let booleanField = fields![0] as! DDLFieldBoolean
+		let booleanField = fields![0] as! DDMFieldBoolean
 
 		booleanField.currentValue = true
 
@@ -55,7 +55,7 @@ class DDLField_Validation_XSD_Tests: XCTestCase {
 	func test_ValidateOnBooleanField_ShouldFail_WhenRequiredValueIsNil() {
 		let fields = DDMXSDParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
 
-		let booleanField = fields![0] as! DDLFieldBoolean
+		let booleanField = fields![0] as! DDMFieldBoolean
 
 		XCTAssertTrue(booleanField.currentValue == nil)
 
@@ -73,7 +73,7 @@ class DDLField_Validation_XSD_Tests: XCTestCase {
 	private func validateOnStringField_ShouldFail_WhenRequiredValueIs(value: String) {
 		let fields = DDMXSDParser().parse(requiredTextFormDefinitionXSD, locale: spanishLocale)
 
-		let stringField = fields![0] as! DDLFieldString
+		let stringField = fields![0] as! DDMFieldString
 
 		stringField.currentValue = value
 

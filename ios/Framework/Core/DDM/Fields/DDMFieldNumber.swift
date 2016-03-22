@@ -14,17 +14,17 @@
 import Foundation
 
 
-public class DDLFieldNumber : DDLField {
+public class DDMFieldNumber : DDMField {
 
 	public var maximumDecimalDigits = 2
 	public var minimumDecimalDigits = 2
 
 	public var isDecimal: Bool {
-		return dataType != DataType.DDLInteger
+		return dataType != DataType.DDMInteger
 	}
 
 
-	//MARK: DDLField
+	//MARK: DDMField
 
 	override internal func convert(fromString value: String?) -> AnyObject? {
 		if let value = value {

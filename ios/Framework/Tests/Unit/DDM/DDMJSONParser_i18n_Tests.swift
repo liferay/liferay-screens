@@ -30,7 +30,7 @@ class DDMJSONParser_i18n_Tests: XCTestCase {
 	func test_ParseOption_ShouldFindFullMatch_WhenExistingCompleteLocaleIsProvided() {
 		let fields = DDMJSONParser().parse(selectWithTranslatedOptionsJSON, locale: spanishLocale)
 
-		let stringField = fields![0] as! DDLFieldStringWithOptions
+		let stringField = fields![0] as! DDMFieldStringWithOptions
 
 		XCTAssertEqual("Primera etiqueta en 'es_ES'", stringField.options[0].label)
 	}
@@ -54,7 +54,7 @@ class DDMJSONParser_i18n_Tests: XCTestCase {
 	func test_ParseOption_ShouldFindNeutralLanguageMatch_WhenNoExistingCompleteLocaleIsProvided() {
 		let fields = DDMJSONParser().parse(selectWithTranslatedOptionsJSON, locale: NSLocale(localeIdentifier: "es_MX"))
 
-		let stringField = fields![0] as! DDLFieldStringWithOptions
+		let stringField = fields![0] as! DDMFieldStringWithOptions
 
 		XCTAssertEqual("Primera etiqueta en 'es'", stringField.options[0].label)
 	}
@@ -68,7 +68,7 @@ class DDMJSONParser_i18n_Tests: XCTestCase {
 	func test_ParseOption_ShouldFindDefault_WhenNoExistingCompleteLocaleIsProvided() {
 		let fields = DDMJSONParser().parse(selectWithTranslatedOptionsJSON, locale: NSLocale(localeIdentifier: "fr_FR"))
 
-		let stringField = fields![0] as! DDLFieldStringWithOptions
+		let stringField = fields![0] as! DDMFieldStringWithOptions
 
 		XCTAssertEqual("Primera etiqueta en 'es_ES'", stringField.options[0].label)
 	}
@@ -85,7 +85,7 @@ class DDMJSONParser_i18n_Tests: XCTestCase {
 	func test_ParseOption_ShouldFindNeutralLanguageMatch_WhenExistingNeutralLanguageIsProvided() {
 		let fields = DDMJSONParser().parse(selectWithTranslatedOptionsJSON, locale: NSLocale(localeIdentifier: "es"))
 
-		let stringField = fields![0] as! DDLFieldStringWithOptions
+		let stringField = fields![0] as! DDMFieldStringWithOptions
 
 		XCTAssertEqual("Primera etiqueta en 'es'", stringField.options[0].label)
 	}
@@ -99,7 +99,7 @@ class DDMJSONParser_i18n_Tests: XCTestCase {
 	func test_ParseOption_ShouldFindDefault_WhenNoExistingNeutralLanguageIsProvided() {
 		let fields = DDMJSONParser().parse(selectWithTranslatedOptionsJSON, locale: NSLocale(localeIdentifier: "fr"))
 
-		let stringField = fields![0] as! DDLFieldStringWithOptions
+		let stringField = fields![0] as! DDMFieldStringWithOptions
 
 		XCTAssertEqual("Primera etiqueta en 'es_ES'", stringField.options[0].label)
 	}
@@ -117,7 +117,7 @@ class DDMJSONParser_i18n_Tests: XCTestCase {
 	func test_ParseOption_ShouldFindAnyLanguageMatch_WhenNoExistingNeutralLanguageIsProvided() {
 		let fields = DDMJSONParser().parse(selectWithTranslatedOptionsJSON, locale: NSLocale(localeIdentifier: "en"))
 
-		let stringField = fields![0] as! DDLFieldStringWithOptions
+		let stringField = fields![0] as! DDMFieldStringWithOptions
 
 		XCTAssertTrue(
 			(stringField.options[0].label == "First label in 'en_US'") ||

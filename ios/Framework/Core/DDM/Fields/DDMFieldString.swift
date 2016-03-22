@@ -14,7 +14,7 @@
 import Foundation
 
 
-public class DDLFieldString : DDLField {
+public class DDMFieldString : DDMField {
 
 	override internal func doValidate() -> Bool {
 		var result = super.doValidate()

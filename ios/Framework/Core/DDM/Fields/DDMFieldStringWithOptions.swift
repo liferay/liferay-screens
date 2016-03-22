@@ -14,7 +14,7 @@
 import Foundation
 
 
-public class DDLFieldStringWithOptions : DDLField {
+public class DDMFieldStringWithOptions : DDMField {
 
 	public class Option: NSObject, NSCoding {
 
@@ -89,7 +89,7 @@ public class DDLFieldStringWithOptions : DDLField {
 	}
 
 
-	//MARK: DDLField
+	//MARK: DDMField
 
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
 		var result = "["

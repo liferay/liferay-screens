@@ -14,7 +14,7 @@
 import Foundation
 
 
-public class DDLFieldUntyped: DDLField {
+public class DDMFieldUntyped: DDMField {
 
 	public init(name: String, value: AnyObject, locale: NSLocale) {
 		let attributes = ["name": name, "predefinedValue": value]

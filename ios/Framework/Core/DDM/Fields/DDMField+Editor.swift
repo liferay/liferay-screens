@@ -18,7 +18,7 @@ import Foundation
 #endif
 
 
-extension DDLField {
+extension DDMField {
 
 	public enum Editor: String {
 

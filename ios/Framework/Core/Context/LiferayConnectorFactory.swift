@@ -80,7 +80,7 @@ public protocol LiferayConnectorFactory {
 		viewModel: DDLFormViewModel?) -> DDLFormSubmitLiferayConnector
 
 	func createDDLFormUploadConnector(
-		document document: DDLFieldDocument,
+		document document: DDMFieldDocument,
 		filePrefix: String,
 		repositoryId: Int64,
 		folderId: Int64) -> DDLFormUploadLiferayConnector
@@ -223,7 +223,7 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	public func createDDLFormUploadConnector(
-			document document: DDLFieldDocument,
+			document document: DDMFieldDocument,
 			filePrefix: String,
 			repositoryId: Int64,
 			folderId: Int64) -> DDLFormUploadLiferayConnector {
@@ -372,7 +372,7 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	public func createDDLFormUploadConnector(
-			document document: DDLFieldDocument,
+			document document: DDMFieldDocument,
 			filePrefix: String,
 			repositoryId: Int64,
 			folderId: Int64) -> DDLFormUploadLiferayConnector {

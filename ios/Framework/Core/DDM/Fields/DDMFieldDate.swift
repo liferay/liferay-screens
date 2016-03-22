@@ -14,7 +14,7 @@
 import Foundation
 
 
-public class DDLFieldDate: DDLField {
+public class DDMFieldDate: DDMField {
 
 	static let GMTTimeZone = NSTimeZone(abbreviation: "GMT")
 
@@ -32,12 +32,12 @@ public class DDLFieldDate: DDLField {
 
 	public var serverDateFormatter: NSDateFormatter {
 		let result = NSDateFormatter()
-		result.timeZone = DDLFieldDate.GMTTimeZone
+		result.timeZone = DDMFieldDate.GMTTimeZone
 		result.dateFormat = serverDateFormat
 		return result
 	}
 
-	//MARK: DDLField
+	//MARK: DDMField
 
 	override private init(attributes: [String:AnyObject], locale: NSLocale) {
 		super.init(attributes: attributes, locale: locale)
@@ -81,7 +81,7 @@ public class DDLFieldDate: DDLField {
 
 
 
-public class DDLFieldDate_v62: DDLFieldDate {
+public class DDMFieldDate_v62: DDMFieldDate {
 
 	override public init(attributes: [String:AnyObject], locale: NSLocale) {
 		super.init(attributes: attributes, locale: locale)
@@ -109,7 +109,7 @@ public class DDLFieldDate_v62: DDLFieldDate {
 }
 
 
-public class DDLFieldDate_v70: DDLFieldDate {
+public class DDMFieldDate_v70: DDMFieldDate {
 
 	override public init(attributes: [String:AnyObject], locale: NSLocale) {
 		super.init(attributes: attributes, locale: locale)
@@ -131,7 +131,7 @@ public class DDLFieldDate_v70: DDLFieldDate {
 
 		func convertWithFormat(format: String) -> AnyObject? {
 			let formatter = NSDateFormatter()
-			formatter.timeZone = DDLFieldDate.GMTTimeZone
+			formatter.timeZone = DDMFieldDate.GMTTimeZone
 			formatter.dateFormat = format
 
 			return formatter.dateFromString(stringValue)

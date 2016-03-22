@@ -22,7 +22,7 @@ public class DDMJSONParser {
 
 	//MARK: Public methods
 
-	public func parse(json: String, locale: NSLocale) -> [DDLField]? {
+	public func parse(json: String, locale: NSLocale) -> [DDMField]? {
 		guard let data = json.dataUsingEncoding(NSUTF8StringEncoding) else {
 			return nil
 		}
@@ -41,7 +41,7 @@ public class DDMJSONParser {
 
 	//MARK: Private methods
 
-	private func processDocument(json: JSONObject, locale: NSLocale) -> [DDLField]? {
+	private func processDocument(json: JSONObject, locale: NSLocale) -> [DDMField]? {
 		guard let fields = json["fields"] as? [JSONObject] else {
 			return []
 		}
@@ -49,7 +49,7 @@ public class DDMJSONParser {
 		let defaultLocaleId = (json["defaultLanguageId"] as? String) ?? "en_US"
 		let defaultLocale = NSLocale(localeIdentifier: defaultLocaleId)
 
-		var result = [DDLField]()
+		var result = [DDMField]()
 
 		fields.forEach {
 			let formField = createFormField($0,
@@ -67,9 +67,9 @@ public class DDMJSONParser {
 	private func createFormField(jsonField: JSONObject,
 			locale: NSLocale,
 			defaultLocale: NSLocale)
-			-> DDLField? {
+			-> DDMField? {
 
-		let dataType = DDLField.DataType.from(json: jsonField)
+		let dataType = DDMField.DataType.from(json: jsonField)
 
 		let localizedMetadata = processLocalized(jsonField,
 				locale: locale,

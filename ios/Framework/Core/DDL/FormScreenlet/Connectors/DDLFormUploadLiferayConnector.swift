@@ -17,9 +17,9 @@ import LRMobileSDK
 
 public class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFileProgressDelegate {
 
-	public typealias OnProgress = (DDLFieldDocument, UInt64, UInt64) -> Void
+	public typealias OnProgress = (DDMFieldDocument, UInt64, UInt64) -> Void
 
-	let document: DDLFieldDocument
+	let document: DDMFieldDocument
 	let filePrefix: String
 
 	let repositoryId: Int64
@@ -33,7 +33,7 @@ public class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFileP
 	private var bytesToSend: Int64 = 0
 
 	public init(
-			document: DDLFieldDocument,
+			document: DDMFieldDocument,
 			filePrefix: String,
 			repositoryId: Int64,
 			folderId: Int64) {

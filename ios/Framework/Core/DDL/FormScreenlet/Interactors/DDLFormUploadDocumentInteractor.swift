@@ -22,7 +22,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 	let repositoryId: Int64
 	let groupId: Int64
 	let folderId: Int64
-	let document: DDLFieldDocument
+	let document: DDMFieldDocument
 
 	let onProgressClosure: OnProgress?
 
@@ -32,7 +32,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 
 
 	init(screenlet: BaseScreenlet?,
-			document: DDLFieldDocument,
+			document: DDMFieldDocument,
 			onProgressClosure: OnProgress) {
 
 		let formScreenlet = screenlet as! DDLFormScreenlet
@@ -57,7 +57,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 			repositoryId: Int64,
 			groupId: Int64,
 			folderId: Int64,
-			document: DDLFieldDocument) {
+			document: DDMFieldDocument) {
 
 		self.groupId = (groupId != 0)
 			? groupId
@@ -87,7 +87,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 	override func completedConnector(op: ServerConnector) {
 		if let lastErrorValue = op.lastError {
 			if lastErrorValue.code == ScreensErrorCause.NotAvailable.rawValue {
-				let cacheResult = DDLFieldDocument.UploadStatus.CachedStatusData(cacheKey())
+				let cacheResult = DDMFieldDocument.UploadStatus.CachedStatusData(cacheKey())
 				self.resultResponse = cacheResult
 				document.uploadStatus = .Uploaded(cacheResult)
 			}

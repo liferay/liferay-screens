@@ -15,7 +15,7 @@ import XCTest
 import UIKit
 
 
-class DDLFieldDocument_Tests: XCTestCase {
+class DDMFieldDocument_Tests: XCTestCase {
 
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
@@ -42,11 +42,11 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 		let fields = DDMXSDParser().parse(xsd, locale: spanishLocale)
 
-		XCTAssertTrue(fields![0] is DDLFieldDocument)
-		let docField = fields![0] as! DDLFieldDocument
+		XCTAssertTrue(fields![0] is DDMFieldDocument)
+		let docField = fields![0] as! DDMFieldDocument
 
-		XCTAssertEqual(DDLField.DataType.DDLDocument, docField.dataType)
-		XCTAssertEqual(DDLField.Editor.Document, docField.editorType)
+		XCTAssertEqual(DDMField.DataType.DDMDocument, docField.dataType)
+		XCTAssertEqual(DDMField.Editor.Document, docField.editorType)
 		XCTAssertNil(docField.predefinedValue)
 		XCTAssertEqual("A_Document", docField.name)
 		XCTAssertEqual("A Document", docField.label)
@@ -71,11 +71,11 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 		let fields = DDMJSONParser().parse(json, locale: spanishLocale)
 
-		XCTAssertTrue(fields![0] is DDLFieldDocument)
-		let docField = fields![0] as! DDLFieldDocument
+		XCTAssertTrue(fields![0] is DDMFieldDocument)
+		let docField = fields![0] as! DDMFieldDocument
 
-		XCTAssertEqual(DDLField.DataType.DDLDocument, docField.dataType)
-		XCTAssertEqual(DDLField.Editor.Document, docField.editorType)
+		XCTAssertEqual(DDMField.DataType.DDMDocument, docField.dataType)
+		XCTAssertEqual(DDMField.Editor.Document, docField.editorType)
 		XCTAssertNil(docField.predefinedValue)
 		XCTAssertEqual("A_Document", docField.name)
 		XCTAssertEqual("A Document", docField.label)
@@ -87,7 +87,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
-		let docField = fields![0] as! DDLFieldDocument
+		let docField = fields![0] as! DDMFieldDocument
 
 		XCTAssertTrue(docField.currentValue == nil)
 		XCTAssertFalse(docField.validate())
@@ -95,7 +95,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 	func test_Validate_ShouldFail_WhenUploadFailed() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
-		let docField = fields![0] as! DDLFieldDocument
+		let docField = fields![0] as! DDMFieldDocument
 
 		docField.currentValue = UIImage(contentsOfFile: testResourcePath("default-field", ext: "png"))
 		docField.uploadStatus = .Failed(NSError(domain: "", code: 0, userInfo:nil))
@@ -108,14 +108,14 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 	func test_MimeType_ShouldReturnNil_WhenCurrentValueIsEmpty() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
-		let docField = fields![0] as! DDLFieldDocument
+		let docField = fields![0] as! DDMFieldDocument
 
 		XCTAssertNil(docField.mimeType)
 	}
 
 	func test_MimeType_ShouldReturnPNGImageType_WhenCurrentValueIsImage() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
-		let docField = fields![0] as! DDLFieldDocument
+		let docField = fields![0] as! DDMFieldDocument
 
 		docField.currentValue = UIImage(contentsOfFile: testResourcePath("default-field", ext: "png"))
 
@@ -124,7 +124,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 	func test_MimeType_ShouldReturnMPEGVideoType_WhenCurrentValueIsURL() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
-		let docField = fields![0] as! DDLFieldDocument
+		let docField = fields![0] as! DDMFieldDocument
 
 		docField.currentValue =
 				NSURL(fileURLWithPath: "/this/is/a/path/to/video.mpg", isDirectory: false)
@@ -137,7 +137,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 	func test_Stream_ShouldReturnNil_WhenCurrentValueIsEmpty() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
-		let docField = fields![0] as! DDLFieldDocument
+		let docField = fields![0] as! DDMFieldDocument
 
 		var size:Int64 = 0
 		XCTAssertNil(docField.getStream(&size))
@@ -146,7 +146,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 	func test_Stream_ShouldReturnStream_WhenCurrentValueIsImage() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
-		let docField = fields![0] as! DDLFieldDocument
+		let docField = fields![0] as! DDMFieldDocument
 
 		let image = UIImage(contentsOfFile: testResourcePath("default-field", ext: "png"))
 		let imageBytes = UIImagePNGRepresentation(image!)
@@ -162,7 +162,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 	func test_Stream_ShouldReturnStream_WhenCurrentValueIsURL() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
-		let docField = fields![0] as! DDLFieldDocument
+		let docField = fields![0] as! DDMFieldDocument
 
 		let url = NSBundle(forClass: self.dynamicType).URLForResource("default-field",
 				withExtension: "png")
@@ -183,14 +183,14 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 	func test_CurrentValueAsLabel_ShouldReturnNil_WhenCurrentValueIsNil() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
-		let docField = fields![0] as! DDLFieldDocument
+		let docField = fields![0] as! DDMFieldDocument
 
 		XCTAssertNil(docField.currentValueAsLabel)
 	}
 
 	func test_CurrentValueAsLabel_ShouldReturnImage_WhenCurrentValueIsImage() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
-		let docField = fields![0] as! DDLFieldDocument
+		let docField = fields![0] as! DDMFieldDocument
 
 		docField.currentValue = UIImage(contentsOfFile: testResourcePath("default-field", ext: "png"))
 
@@ -199,7 +199,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 	func test_CurrentValueAsLabel_ShouldReturnVideo_WhenCurrentValueIsURL() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
-		let docField = fields![0] as! DDLFieldDocument
+		let docField = fields![0] as! DDMFieldDocument
 
 		docField.currentValue =
 				NSURL(fileURLWithPath: "/this/is/a/path/to/video.mpg", isDirectory: false)
@@ -212,7 +212,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 	func test_CurrentValueAsString_ShouldReturnNil_WhenUploadStatusIsPending() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
-		let docField = fields![0] as! DDLFieldDocument
+		let docField = fields![0] as! DDMFieldDocument
 
 		docField.uploadStatus = .Pending
 
@@ -221,7 +221,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 	func test_CurrentValueAsString_ShouldReturnNil_WhenUploadStatusIsUploading() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
-		let docField = fields![0] as! DDLFieldDocument
+		let docField = fields![0] as! DDMFieldDocument
 
 		docField.uploadStatus = .Uploading(1,10)
 
@@ -230,7 +230,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 	func test_CurrentValueAsString_ShouldReturnNil_WhenUploadStatusIsFailed() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
-		let docField = fields![0] as! DDLFieldDocument
+		let docField = fields![0] as! DDMFieldDocument
 
 		docField.uploadStatus = .Failed(nil)
 
@@ -239,7 +239,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 	func test_CurrentValueAsString_ShouldReturnDDLJSON_WhenUploadStatusIsUploaded() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
-		let docField = fields![0] as! DDLFieldDocument
+		let docField = fields![0] as! DDMFieldDocument
 
 		let json:[String:AnyObject] = [
 			"groupId": 1234,
@@ -258,7 +258,7 @@ class DDLFieldDocument_Tests: XCTestCase {
 
 	func test_UploadStatus_ShouldBeUploaded_WhenSetJSONTocurrentValueAsString() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
-		let docField = fields![0] as! DDLFieldDocument
+		let docField = fields![0] as! DDMFieldDocument
 
 		let json = "{\"groupId\":1234,\"uuid\":\"abcd\",\"version\":\"1.0\"}"
 

@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class DDLFieldDocument : DDLField {
+public class DDMFieldDocument : DDMField {
 
 	public enum UploadStatus: Hashable, Equatable {
 		case Uploaded([String:AnyObject])
@@ -82,7 +82,7 @@ public class DDLFieldDocument : DDLField {
 	}
 
 
-	//MARK: DDLField
+	//MARK: DDMField
 
 	public override init(attributes: [String:AnyObject], locale: NSLocale) {
 		super.init(attributes: attributes, locale: locale)
@@ -245,8 +245,8 @@ public class DDLFieldDocument : DDLField {
 //MARK: Equatable
 
 public func ==(
-		left: DDLFieldDocument.UploadStatus,
-		right: DDLFieldDocument.UploadStatus)
+		left: DDMFieldDocument.UploadStatus,
+		right: DDMFieldDocument.UploadStatus)
 		-> Bool {
 	return left.hashValue == right.hashValue
 }

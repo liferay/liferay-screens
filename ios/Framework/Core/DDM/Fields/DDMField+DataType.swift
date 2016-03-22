@@ -18,17 +18,17 @@ import Foundation
 #endif
 
 
-extension DDLField {
+extension DDMField {
 
 	public enum DataType: String {
 
-		case DDLBoolean = "boolean"
-		case DDLString = "string"
-		case DDLDate = "date"
-		case DDLInteger = "integer"
-		case DDLNumber = "number"
-		case DDLDouble = "double"
-		case DDLDocument = "document-library"
+		case DDMBoolean = "boolean"
+		case DDMString = "string"
+		case DDMDate = "date"
+		case DDMInteger = "integer"
+		case DDMNumber = "number"
+		case DDMDouble = "double"
+		case DDMDocument = "document-library"
 		case Unsupported = ""
 
 		public static func from(xmlElement xmlElement:SMXMLElement) -> DataType {
@@ -43,45 +43,45 @@ extension DDLField {
 				attributes attributes:[String:AnyObject],
 				locale: NSLocale,
 				version: LiferayServerVersion)
-				-> DDLField? {
+				-> DDMField? {
 
 			switch self {
-				case .DDLBoolean:
-					return DDLFieldBoolean(
+				case .DDMBoolean:
+					return DDMFieldBoolean(
 							attributes:attributes,
 							locale: locale)
 
-				case .DDLString:
-					switch DDLField.Editor.from(attributes: attributes) {
+				case .DDMString:
+					switch DDMField.Editor.from(attributes: attributes) {
 						case .Select, .Radio:
-							return DDLFieldStringWithOptions(
+							return DDMFieldStringWithOptions(
 									attributes: attributes,
 									locale: locale)
 						default:
-							return DDLFieldString(
+							return DDMFieldString(
 									attributes:attributes,
 									locale: locale)
 					}
 
-				case .DDLDate:
+				case .DDMDate:
 					switch version {
 					case .v62:
-						return DDLFieldDate_v62(
+						return DDMFieldDate_v62(
 							attributes:attributes,
 							locale: locale)
 					case .v70:
-						return DDLFieldDate_v70(
+						return DDMFieldDate_v70(
 							attributes:attributes,
 							locale: locale)
 					}
 
-				case .DDLInteger, .DDLNumber, .DDLDouble:
-					return DDLFieldNumber(
+				case .DDMInteger, .DDMNumber, .DDMDouble:
+					return DDMFieldNumber(
 							attributes:attributes,
 							locale: locale)
 
-				case .DDLDocument:
-					return DDLFieldDocument(
+				case .DDMDocument:
+					return DDMFieldDocument(
 							attributes:attributes,
 							locale: locale)
 

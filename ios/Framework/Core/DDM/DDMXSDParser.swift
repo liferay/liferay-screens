@@ -22,8 +22,8 @@ public class DDMXSDParser {
 
 	//MARK: Public methods
 	
-	public func parse(xsd: String, locale: NSLocale) -> [DDLField]? {
-		let result: [DDLField]?
+	public func parse(xsd: String, locale: NSLocale) -> [DDMField]? {
+		let result: [DDMField]?
 
 		let xmlValue = xsd as NSString
 
@@ -43,8 +43,8 @@ public class DDMXSDParser {
 
 	//MARK: Private methods
 
-	private func processDocument(document:SMXMLDocument, locale: NSLocale) -> [DDLField]? {
-		var result:[DDLField]?
+	private func processDocument(document:SMXMLDocument, locale: NSLocale) -> [DDMField]? {
+		var result:[DDMField]?
 
 		if let elements = document.childrenNamed("dynamic-element") {
 			let defaultLocale = NSLocale(
@@ -68,9 +68,9 @@ public class DDMXSDParser {
 	private func createFormField(xmlElement:SMXMLElement,
 			locale: NSLocale,
 			defaultLocale: NSLocale)
-			-> DDLField? {
+			-> DDMField? {
 
-		let dataType = DDLField.DataType.from(xmlElement:xmlElement)
+		let dataType = DDMField.DataType.from(xmlElement:xmlElement)
 
 		let localizedMetadata = processLocalizedMetadata(xmlElement,
 				locale: locale,

@@ -14,7 +14,7 @@
 import Foundation
 
 
-public class DDLFieldBoolean : DDLField {
+public class DDMFieldBoolean : DDMField {
 
 	override internal func convert(fromString value:String?) -> AnyObject? {
 		return value.map {

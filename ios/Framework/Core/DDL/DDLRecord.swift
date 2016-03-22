@@ -19,7 +19,7 @@ import Foundation
 
 @objc public class DDLRecord: NSObject, NSCoding, CustomDebugStringConvertible {
 
-	public var fields: [DDLField] = []
+	public var fields: [DDMField] = []
 
 	public var attributes: [String:AnyObject] = [:]
 
@@ -37,7 +37,7 @@ import Foundation
 		}
 	}
 
-	public subscript(fieldName: String) -> DDLField? {
+	public subscript(fieldName: String) -> DDMField? {
 		return fieldBy(name: fieldName)
 	}
 
@@ -117,7 +117,7 @@ import Foundation
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
-		fields = aDecoder.decodeObjectForKey("fields") as! [DDLField]
+		fields = aDecoder.decodeObjectForKey("fields") as! [DDMField]
 		attributes = aDecoder.decodeObjectForKey("attributes") as! [String:AnyObject]
 
 		super.init()
@@ -132,7 +132,7 @@ import Foundation
 
 	//MARK: Public methods
 
-	public func fieldBy(name name: String) -> DDLField? {
+	public func fieldBy(name name: String) -> DDMField? {
 		for field in fields {
 			if field.name.lowercaseString == name.lowercaseString {
 				return field
@@ -142,8 +142,8 @@ import Foundation
 		return nil
 	}
 
-	public func fieldsBy(type type: AnyClass) -> [DDLField] {
-		var result = [DDLField]()
+	public func fieldsBy(type type: AnyClass) -> [DDMField] {
+		var result = [DDMField]()
 		let typeName = NSStringFromClass(type)
 
 		for field in fields {

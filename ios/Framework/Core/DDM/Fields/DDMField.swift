@@ -14,7 +14,7 @@
 import Foundation
 
 
-@objc public class DDLField: NSObject, NSCoding, CustomDebugStringConvertible {
+@objc public class DDMField: NSObject, NSCoding, CustomDebugStringConvertible {
 
 	public var onPostValidation: (Bool -> Void)?
 	public var lastValidationResult: Bool?
@@ -45,7 +45,7 @@ import Foundation
 
 	public override var debugDescription: String {
 		let currentValue = self.currentValueAsString
-		var str = "DDLField[" +
+		var str = "DDMField[" +
 			" name=\( self.name )" +
 			" type=\( self.dataType.rawValue )" +
 		" editor=\( self.editorType.rawValue )"
@@ -201,7 +201,7 @@ import Foundation
 
 //MARK: Equatable
 
-public func ==(left: DDLField, right: DDLField) -> Bool {
+public func ==(left: DDMField, right: DDMField) -> Bool {
 	return left.name == right.name
 }
 
