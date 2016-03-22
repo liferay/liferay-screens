@@ -72,7 +72,7 @@ import Foundation
 	public init(xsd: String, locale: NSLocale) {
 		super.init()
 
-		if let parsedFields = DDLXSDParser().parse(xsd, locale: locale) {
+		if let parsedFields = DDMXSDParser().parse(xsd, locale: locale) {
 		 	if !parsedFields.isEmpty {
 				fields = parsedFields
 			}
@@ -82,7 +82,7 @@ import Foundation
 	public init(json: String, locale: NSLocale) {
 		super.init()
 
-		if let parsedFields = DDLJSONParser().parse(json, locale: locale) {
+		if let parsedFields = DDMJSONParser().parse(json, locale: locale) {
 			if !parsedFields.isEmpty {
 				fields = parsedFields
 			}
