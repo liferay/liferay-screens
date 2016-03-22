@@ -92,7 +92,7 @@ import Foundation
 	public init(data: [String:AnyObject], attributes: [String:AnyObject]) {
 		structure = nil
 
-		let parsedFields = DDLValuesParser().parse(data)
+		let parsedFields = DDLUntypedValuesParser().parse(data)
 		if parsedFields.isEmpty {
 			untypedValues = nil
 		}
@@ -109,7 +109,7 @@ import Foundation
 		structure = nil
 
 		if let recordFields = (dataAndAttributes["modelValues"] ?? nil) as? [String:AnyObject] {
-			let parsedFields = DDLValuesParser().parse(recordFields)
+			let parsedFields = DDLUntypedValuesParser().parse(recordFields)
 		 	if parsedFields.isEmpty {
 				untypedValues = nil
 			}

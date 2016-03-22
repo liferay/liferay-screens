@@ -25,10 +25,10 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 		let connector: WebContentLoadBaseLiferayConnector?
 
 		if screenlet.articleId != "" {
-			connector = LiferayServerContext.connectorFactory.createWebContentLoadFromArticleIdConnector(articleId: screenlet.articleId)
+			connector = LiferayServerContext.connectorFactory.createWebContentLoadHtmlByArticleIdConnector(articleId: screenlet.articleId)
 		}
 		else if screenlet.classPK != 0 {
-			connector = LiferayServerContext.connectorFactory.createWebContentLoadFromClassPKConnector(classPK: screenlet.classPK)
+			connector = LiferayServerContext.connectorFactory.createWebContentLoadHtmlByClassPKConnector(classPK: screenlet.classPK)
 		}
 		else {
 			connector = nil
@@ -53,13 +53,12 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 			return
 		}
 
-		if let loadOp = op as? WebContentLoadFromArticleIdLiferayConnector,
-				groupId = loadOp.groupId,
-				articleId = loadOp.articleId {
+		if let loadOp = op as? WebContentLoadHtmlByArticleIdLiferayConnector,
+				groupId = loadOp.groupId {
 
 			cacheManager.getString(
 					collection: ScreenletName(WebContentDisplayScreenlet),
-					key: articleCacheKey(groupId, articleId)) {
+					key: articleCacheKey(groupId, loadOp.articleId)) {
 				loadOp.resultHTML = $0
 				result($0)
 			}
@@ -74,18 +73,17 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 			return
 		}
 
-		if let loadOp = op as? WebContentLoadFromArticleIdLiferayConnector,
+		if let loadOp = op as? WebContentLoadHtmlByArticleIdLiferayConnector,
 				html = loadOp.resultHTML,
-				groupId = loadOp.groupId,
-				articleId = loadOp.articleId {
+				groupId = loadOp.groupId {
 
 			cacheManager.setClean(
 				collection: ScreenletName(WebContentDisplayScreenlet),
-				key: articleCacheKey(groupId, articleId),
+				key: articleCacheKey(groupId, loadOp.articleId),
 				value: html,
 				attributes: [
 					"groupId": NSNumber(longLong: groupId),
-					"articleId": articleId])
+					"articleId": loadOp.articleId])
 		}
 	}
 

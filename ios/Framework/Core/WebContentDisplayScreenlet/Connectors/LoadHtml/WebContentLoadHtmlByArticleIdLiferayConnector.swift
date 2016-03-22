@@ -12,14 +12,15 @@
 * details.
 */
 import UIKit
+import LRMobileSDK
 
 
-public class WebContentLoadFromClassPKLiferayConnector: WebContentLoadBaseLiferayConnector {
+public class WebContentLoadHtmlByArticleIdLiferayConnector: WebContentLoadHtmlBaseLiferayConnector {
 
-	public let classPK: Int64?
+	public let articleId: String
 
-	public init(classPK: Int64) {
-		self.classPK = classPK
+	public init(articleId: String) {
+		self.articleId = articleId
 
 		super.init()
 	}
@@ -31,8 +32,8 @@ public class WebContentLoadFromClassPKLiferayConnector: WebContentLoadBaseLifera
 		let error = super.validateData()
 
 		if error == nil {
-			if classPK ?? 0 == 0 {
-				return ValidationError("webcontentdisplay-screenlet", "undefined-classpk")
+			if articleId == "" {
+				return ValidationError("webcontentdisplay-screenlet", "undefined-article")
 			}
 		}
 
@@ -42,82 +43,105 @@ public class WebContentLoadFromClassPKLiferayConnector: WebContentLoadBaseLifera
 }
 
 
-public class Liferay62WebContentLoadFromClassPKConnector: WebContentLoadFromClassPKLiferayConnector {
+public class Liferay62WebContentLoadHtmlByArticleIdConnector: WebContentLoadHtmlByArticleIdLiferayConnector {
 
 	override internal func doGetJournalArticleWithTemplate(
 		templateId: Int64,
 		session: LRSession) -> String? {
-			let result: String?
 			let service = LRScreensjournalarticleService_v62(session: session)
 
 			do {
-				result = try service.getJournalArticleContentWithClassPK(classPK!,
+				let result: String?
+
+				result = try service.getJournalArticleContentWithGroupId(groupId!,
+					articleId: articleId,
 					ddmTemplateId: templateId,
 					locale: NSLocale.currentLocaleString)
+
+				lastError = nil
+
+				return result
 			}
 			catch let error as NSError {
 				lastError = error
-				result = nil
 			}
 
-			return result
+			return nil
 	}
 
 	override internal func doGetJournalArticle(session: LRSession) -> String? {
-		let result: String?
-		let service = LRScreensjournalarticleService_v62(session: session)
+		let service = LRJournalArticleService_v62(session: session)
 
 		do {
-			result = try service.getJournalArticleContentWithClassPK(classPK!,
-				locale: NSLocale.currentLocaleString)
+			let result: String?
+
+			result = try service.getArticleContentWithGroupId(groupId!,
+				articleId: articleId,
+				languageId: NSLocale.currentLocaleString,
+				themeDisplay: nil)
+
+			lastError = nil
+
+			return result
 		}
 		catch let error as NSError {
 			lastError = error
-			result = nil
 		}
-
-		return result
+		
+		return nil
 	}
 	
 }
 
 
-public class Liferay70WebContentLoadFromClassPKConnector: WebContentLoadFromClassPKLiferayConnector {
-
+public class Liferay70WebContentLoadHtmlByArticleIdConnector: WebContentLoadHtmlByArticleIdLiferayConnector {
 
 	override internal func doGetJournalArticleWithTemplate(
 		templateId: Int64,
 		session: LRSession) -> String? {
-			let result: String?
 			let service = LRScreensjournalarticleService_v70(session: session)
 
 			do {
-				result = try service.getJournalArticleContentWithClassPK(classPK!,
+				let result: String?
+
+				result = try service.getJournalArticleContentWithGroupId(groupId!,
+					articleId: articleId,
 					ddmTemplateId: templateId,
 					locale: NSLocale.currentLocaleString)
+
+				lastError = nil
+
+				return result
 			}
 			catch let error as NSError {
 				lastError = error
-				result = nil
 			}
 
-			return result
+			return nil
 	}
 
 	override internal func doGetJournalArticle(session: LRSession) -> String? {
-		let result: String?
-		let service = LRScreensjournalarticleService_v70(session: session)
+		let service = LRJournalArticleService_v7(session: session)
 
 		do {
-			result = try service.getJournalArticleContentWithClassPK(classPK!,
-				locale: NSLocale.currentLocaleString)
+			let result: String?
+
+			result = try service.getArticleContentWithGroupId(groupId!,
+				articleId: articleId,
+				languageId: NSLocale.currentLocaleString,
+				themeDisplay: nil)
+
+			lastError = nil
+
+			return result
 		}
 		catch let error as NSError {
 			lastError = error
-			result = nil
 		}
 		
-		return result
+		return nil
 	}
 	
 }
+
+

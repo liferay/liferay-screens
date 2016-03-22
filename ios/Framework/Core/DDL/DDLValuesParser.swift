@@ -16,7 +16,7 @@ import Foundation
 
 //TODO unit tests
 
-public class DDLValuesParser {
+public class DDLUntypedValuesParser {
 
 	public init() {
 	}
