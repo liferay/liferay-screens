@@ -44,7 +44,7 @@ public class DDMXSDParser {
 	//MARK: Private methods
 
 	private func processDocument(document:SMXMLDocument, locale: NSLocale) -> [DDMField]? {
-		var result:[DDMField]?
+		var result: [DDMField]?
 
 		if let elements = document.childrenNamed("dynamic-element") {
 			let defaultLocale = NSLocale(

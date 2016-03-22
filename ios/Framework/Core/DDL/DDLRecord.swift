@@ -19,7 +19,8 @@ import Foundation
 
 @objc public class DDLRecord: NSObject, NSCoding, CustomDebugStringConvertible {
 
-	public var fields: [DDMField] = []
+	public let structure: DDMStructure?
+	public let untypedValues: [DDMField]?
 
 	public var attributes: [String:AnyObject] = [:]
 
@@ -37,6 +38,10 @@ import Foundation
 		}
 	}
 
+	public var fields: [DDMField] {
+		return structure?.fields ?? untypedValues ?? []
+	}
+
 	public subscript(fieldName: String) -> DDMField? {
 		return fieldBy(name: fieldName)
 	}
@@ -44,7 +49,7 @@ import Foundation
 	public var values: [String:AnyObject] {
 		var result = [String:AnyObject]()
 
-		for field in fields {
+		for field in self.fields {
 			if let value = field.currentValueAsString {
 				//FIXME - LPS-49460
 				// Server rejects the request if the value is empty string.
@@ -63,100 +68,109 @@ import Foundation
 		return "DDLRecord[" +
 			" id=\( recordId?.description ?? "" )" +
 			" attributes=\( attributes )" +
-			" fields=\(fields)"
+			" structure=\( structure?.debugDescription )" +
+			" untypedValues=\( untypedValues )]"
 	}
 
 
 	//MARK: Init
 	
 	public init(xsd: String, locale: NSLocale) {
-		super.init()
+		structure = DDMStructure(xsd: xsd, locale: locale)
+		untypedValues = nil
 
-		if let parsedFields = DDMXSDParser().parse(xsd, locale: locale) {
-		 	if !parsedFields.isEmpty {
-				fields = parsedFields
-			}
-		}
+		super.init()
 	}
 
 	public init(json: String, locale: NSLocale) {
-		super.init()
+		structure = DDMStructure(json: json, locale: locale)
+		untypedValues = nil
 
-		if let parsedFields = DDMJSONParser().parse(json, locale: locale) {
-			if !parsedFields.isEmpty {
-				fields = parsedFields
-			}
-		}
+		super.init()
 	}
 
 	public init(data: [String:AnyObject], attributes: [String:AnyObject]) {
-		super.init()
+		structure = nil
 
 		let parsedFields = DDLValuesParser().parse(data)
-		if !parsedFields.isEmpty {
-			fields = parsedFields
+		if parsedFields.isEmpty {
+			untypedValues = nil
+		}
+		else {
+			untypedValues = parsedFields
 		}
 
 		self.attributes = attributes
+
+		super.init()
 	}
 
-
 	public init(dataAndAttributes: [String:AnyObject]) {
-		super.init()
+		structure = nil
 
 		if let recordFields = (dataAndAttributes["modelValues"] ?? nil) as? [String:AnyObject] {
 			let parsedFields = DDLValuesParser().parse(recordFields)
-		 	if !parsedFields.isEmpty {
-				fields = parsedFields
+		 	if parsedFields.isEmpty {
+				untypedValues = nil
 			}
+			else {
+				untypedValues = parsedFields
+			}
+		}
+		else {
+			untypedValues = nil
 		}
 
 		if let recordAttributes = (dataAndAttributes["modelAttributes"] ?? nil) as? [String:AnyObject] {
 			attributes = recordAttributes
 		}
+
+		super.init()
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
-		fields = aDecoder.decodeObjectForKey("fields") as! [DDMField]
+		structure = aDecoder.decodeObjectForKey("structure") as? DDMStructure
+		untypedValues = aDecoder.decodeObjectForKey("untypedValues") as? [DDMField]
 		attributes = aDecoder.decodeObjectForKey("attributes") as! [String:AnyObject]
 
 		super.init()
 	}
 
 	public func encodeWithCoder(aCoder: NSCoder) {
-		aCoder.encodeObject(fields, forKey:"fields")
+		if let structure = structure {
+			aCoder.encodeObject(structure, forKey: "structure")
+		}
+		if let untypedValues = untypedValues {
+			aCoder.encodeObject(untypedValues, forKey: "untypedValues")
+		}
 		aCoder.encodeObject(attributes, forKey:"attributes")
 	}
-
 
 
 	//MARK: Public methods
 
 	public func fieldBy(name name: String) -> DDMField? {
-		for field in fields {
-			if field.name.lowercaseString == name.lowercaseString {
-				return field
-			}
-		}
-
-		return nil
+		return structure?.fieldBy(name: name)
+					??
+				untypedValues?.filter {
+					$0.name.lowercaseString == name.lowercaseString
+				}.first
 	}
 
 	public func fieldsBy(type type: AnyClass) -> [DDMField] {
-		var result = [DDMField]()
 		let typeName = NSStringFromClass(type)
 
-		for field in fields {
-			if NSStringFromClass(field.dynamicType) == typeName {
-				result.append(field)
-			}
-		}
-
-		return result
+		return structure?.fieldsBy(type: type)
+					??
+				untypedValues?.filter {
+					NSStringFromClass($0.dynamicType) == typeName
+				}
+					??
+				[]
 	}
 
 	public func updateCurrentValues(values: [String:AnyObject]) {
-		fields.forEach {
+		self.fields.forEach {
 			if let fieldValue = values[$0.name] {
 				if let fieldStringValue = fieldValue as? String {
 					$0.currentValueAsString = fieldStringValue
@@ -169,7 +183,7 @@ import Foundation
 	}
 
 	public func clearValues() {
-		fields.forEach {
+		self.fields.forEach {
 			$0.currentValue = $0.predefinedValue
 		}
 	}
