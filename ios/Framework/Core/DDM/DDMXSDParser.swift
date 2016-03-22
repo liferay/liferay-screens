@@ -18,7 +18,7 @@ import Foundation
 #endif
 
 
-public class DDLXSDParser {
+public class DDMXSDParser {
 
 	//MARK: Public methods
 	

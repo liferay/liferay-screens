@@ -18,7 +18,7 @@ public typealias JSONObject = [String:AnyObject]
 public typealias JSONArray = [AnyObject]
 
 
-public class DDLJSONParser {
+public class DDMJSONParser {
 
 	//MARK: Public methods
 

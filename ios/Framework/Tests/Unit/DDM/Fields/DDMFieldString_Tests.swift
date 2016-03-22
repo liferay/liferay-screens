@@ -43,7 +43,7 @@ class DDLFieldString_Tests: XCTestCase {
 					"</meta-data> " +
 				"</dynamic-element> </root>"
 
-		let fields = DDLXSDParser().parse(xsd, locale: spanishLocale)
+		let fields = DDMXSDParser().parse(xsd, locale: spanishLocale)
 
 		XCTAssertTrue(fields != nil)
 		XCTAssertEqual(1, fields!.count)
@@ -83,7 +83,7 @@ class DDLFieldString_Tests: XCTestCase {
 			"\"width\": \"small\"," +
 		"\"type\": \"text\"}]}"
 
-		let fields = DDLJSONParser().parse(json, locale: spanishLocale)
+		let fields = DDMJSONParser().parse(json, locale: spanishLocale)
 
 		XCTAssertTrue(fields != nil)
 		XCTAssertEqual(1, fields!.count)
@@ -105,7 +105,7 @@ class DDLFieldString_Tests: XCTestCase {
 	}
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsEmptyString() {
-		let fields = DDLXSDParser().parse(requiredTextXSD, locale: spanishLocale)
+		let fields = DDMXSDParser().parse(requiredTextXSD, locale: spanishLocale)
 
 		let stringField = fields![0] as! DDLFieldString
 
@@ -115,7 +115,7 @@ class DDLFieldString_Tests: XCTestCase {
 	}
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsEmptyStringWithSpaces() {
-		let fields = DDLXSDParser().parse(requiredTextXSD, locale: spanishLocale)
+		let fields = DDMXSDParser().parse(requiredTextXSD, locale: spanishLocale)
 
 		let stringField = fields![0] as! DDLFieldString
 

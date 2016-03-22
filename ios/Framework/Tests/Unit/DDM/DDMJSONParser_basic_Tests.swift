@@ -14,20 +14,20 @@
 import XCTest
 
 
-class DDLJSONParser_Basic_Tests: XCTestCase {
+class DDMJSONParser_Basic_Tests: XCTestCase {
 
 	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
 
 	func test_Parse_ShouldReturnNil_WhenMalformedXML() {
 		let xsd = "#root available-locales=\"en_US\" default-locale=\"en_US\"> "
 
-		let fields = DDLJSONParser().parse(xsd, locale: spanishLocale)
+		let fields = DDMJSONParser().parse(xsd, locale: spanishLocale)
 
 		XCTAssertNil(fields)
 	}
 
 	func test_Parse_ShouldReturnEmpty_WhenEmptyString() {
-		let fields = DDLJSONParser().parse("", locale: spanishLocale)
+		let fields = DDMJSONParser().parse("", locale: spanishLocale)
 
 		XCTAssertNil(fields)
 	}
@@ -35,7 +35,7 @@ class DDLJSONParser_Basic_Tests: XCTestCase {
 	func test_Parse_ShouldReturnEmpty_WhenEmptyXML() {
 		let xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"></root>"
 
-		let fields = DDLJSONParser().parse(xsd, locale: spanishLocale)
+		let fields = DDMJSONParser().parse(xsd, locale: spanishLocale)
 
 		XCTAssertNil(fields)
 	}
