@@ -15,6 +15,8 @@
 package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.webkit.WebView;
 
 import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
 import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet;
@@ -46,6 +48,11 @@ public class WebContentDisplayActivity extends ThemeActivity implements WebConte
 	@Override
 	public void onWebContentFailure(WebContentDisplayScreenlet source, Exception e) {
 		error("Could not receive web content information", e);
+	}
+
+	@Override
+	public void onWebContentClicked(WebView.HitTestResult result, MotionEvent event) {
+		info("Web Content clicked!");
 	}
 
 	@Override
