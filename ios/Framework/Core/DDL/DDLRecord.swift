@@ -189,6 +189,14 @@ import Foundation
 		}
 	}
 
+	public func updateCurrentValues(xmlValues xmlValues: String) -> Int {
+		guard self.structure != nil else {
+			return -1
+		}
+
+		return DDMTypedValuesXMLParser().parse(xmlValues, structure: self.structure!)
+	}
+
 	public func clearValues() {
 		self.fields.forEach {
 			$0.currentValue = $0.predefinedValue
