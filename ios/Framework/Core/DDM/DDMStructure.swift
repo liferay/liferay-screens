@@ -79,26 +79,17 @@ import Foundation
 	//MARK: Public methods
 
 	public func fieldBy(name name: String) -> DDMField? {
-		for field in fields {
-			if field.name.lowercaseString == name.lowercaseString {
-				return field
-			}
-		}
-
-		return nil
+		return fields.filter {
+			$0.name.lowercaseString == name.lowercaseString
+		}.first
 	}
 
 	public func fieldsBy(type type: AnyClass) -> [DDMField] {
-		var result = [DDMField]()
 		let typeName = NSStringFromClass(type)
 
-		for field in fields {
-			if NSStringFromClass(field.dynamicType) == typeName {
-				result.append(field)
-			}
+		return fields.filter {
+			NSStringFromClass($0.dynamicType) == typeName
 		}
-
-		return result
 	}
 
 }
