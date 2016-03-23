@@ -67,7 +67,9 @@ public protocol LiferayConnectorFactory {
 		endRow: Int,
 		computeRowCount: Bool) -> DDLListPageLiferayConnector
 
-	func createWebContentLoadHtmlByArticleIdConnector(articleId articleId: String) -> WebContentLoadHtmlByArticleIdLiferayConnector
+	func createWebContentLoadHtmlByArticleIdConnector(
+			groupId groupId: Int64,
+			articleId: String) -> WebContentLoadHtmlByArticleIdLiferayConnector
 
 	func createWebContentLoadHtmlByClassPKConnector(classPK classPK: Int64) -> WebContentLoadHtmlByClassPKLiferayConnector
 
@@ -198,8 +200,12 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			computeRowCount: computeRowCount)
 	}
 
-	public func createWebContentLoadHtmlByArticleIdConnector(articleId articleId: String) -> WebContentLoadHtmlByArticleIdLiferayConnector {
-		return Liferay62WebContentLoadHtmlByArticleIdConnector(articleId: articleId)
+	public func createWebContentLoadHtmlByArticleIdConnector(
+			groupId groupId: Int64,
+			articleId: String) -> WebContentLoadHtmlByArticleIdLiferayConnector {
+		return Liferay62WebContentLoadHtmlByArticleIdConnector(
+			groupId: groupId,
+			articleId: articleId)
 	}
 
 	public func createWebContentLoadHtmlByClassPKConnector(classPK classPK: Int64) -> WebContentLoadHtmlByClassPKLiferayConnector {
@@ -347,8 +353,12 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			computeRowCount: computeRowCount)
 	}
 
-	public func createWebContentLoadHtmlByArticleIdConnector(articleId articleId: String) -> WebContentLoadHtmlByArticleIdLiferayConnector {
-		return Liferay70WebContentLoadHtmlByArticleIdConnector(articleId: articleId)
+	public func createWebContentLoadHtmlByArticleIdConnector(
+			groupId groupId: Int64,
+			articleId: String) -> WebContentLoadHtmlByArticleIdLiferayConnector {
+		return Liferay70WebContentLoadHtmlByArticleIdConnector(
+			groupId: groupId,
+			articleId: articleId)
 	}
 
 	public func createWebContentLoadHtmlByClassPKConnector(classPK classPK: Int64) -> WebContentLoadHtmlByClassPKLiferayConnector {

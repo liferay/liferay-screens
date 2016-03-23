@@ -19,10 +19,10 @@ public class WebContentLoadHtmlByArticleIdLiferayConnector: WebContentLoadHtmlBa
 
 	public let articleId: String
 
-	public init(articleId: String) {
+	public init(groupId: Int64, articleId: String) {
 		self.articleId = articleId
-
 		super.init()
+		self.groupId = groupId
 	}
 
 
