@@ -17,7 +17,10 @@ import UIKit
 @objc public protocol WebContentDisplayScreenletDelegate : BaseScreenletDelegate {
 
 	optional func screenlet(screenlet: WebContentDisplayScreenlet,
-			onWebContentResponse html: String ) -> String?
+			onWebContentResponse html: String) -> String?
+
+	optional func screenlet(screenlet: WebContentDisplayScreenlet,
+		onRecordContentResponse record: DDLRecord)
 
 	optional func screenlet(screenlet: WebContentDisplayScreenlet,
 			onWebContentError error: NSError)
@@ -33,8 +36,14 @@ import UIKit
 	@IBInspectable public var articleId: String = ""
 	@IBInspectable public var classPK: Int64 = 0
 
-	@IBInspectable public var autoLoad: Bool = true
+	// only for html web contents
 	@IBInspectable public var templateId: Int64 = 0
+
+	// only for structured web contents
+	@IBInspectable public var structureId: Int64 = 0
+
+
+	@IBInspectable public var autoLoad: Bool = true
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
 
@@ -57,11 +66,19 @@ import UIKit
 		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
 		interactor.onSuccess = {
-			let modifiedHtml = self.webContentDisplayDelegate?.screenlet?(self,
-					onWebContentResponse: interactor.resultHTML!)
+			if let resultHtml = interactor.resultHTML {
+				let modifiedHtml = self.webContentDisplayDelegate?.screenlet?(self,
+					onWebContentResponse: resultHtml)
 
-			(self.screenletView as! WebContentDisplayViewModel).htmlContent =
-					modifiedHtml ?? interactor.resultHTML!
+				(self.screenletView as! WebContentDisplayViewModel).htmlContent =
+					modifiedHtml ?? resultHtml
+			}
+			else if let resultRecord = interactor.resultRecord {
+				self.webContentDisplayDelegate?.screenlet?(self,
+					onRecordContentResponse: resultRecord)
+
+				(self.screenletView as! WebContentDisplayViewModel).recordContent = resultRecord
+			}
 		}
 
 		interactor.onFailure = {
