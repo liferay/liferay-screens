@@ -74,9 +74,16 @@ import Foundation
 
 
 	//MARK: Init
-	
+
+	public init(structure: DDMStructure) {
+		self.structure = structure
+		untypedValues = nil
+
+		super.init()
+	}
+
 	public init(xsd: String, locale: NSLocale) {
-		structure = DDMStructure(xsd: xsd, locale: locale)
+		structure = DDMStructure(xsd: xsd, locale: locale, attributes: [:])
 		untypedValues = nil
 
 		super.init()
