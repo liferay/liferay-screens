@@ -244,7 +244,7 @@ import UIKit
 					recordId = interactor.resultRecordId
 				where interactor.lastError == nil {
 
-				recordValue.updateCurrentValues(data)
+				recordValue.updateCurrentValues(values: data)
 				recordValue.recordId = recordId
 
 				self.formView.refresh()

@@ -39,7 +39,7 @@ class DDLRecord_FieldValues_Tests: XCTestCase {
 
 		let record = DDLRecord(dataAndAttributes: ["modelValues":values])
 
-		record.updateCurrentValues([
+		record.updateCurrentValues(values: [
 			"field1":"new_value1",  // update this field
 			"new_field3":"value3"])	// ignore this field
 

@@ -169,7 +169,7 @@ import Foundation
 				[]
 	}
 
-	public func updateCurrentValues(values: [String:AnyObject]) {
+	public func updateCurrentValues(values values: [String:AnyObject]) {
 		self.fields.forEach {
 			if let fieldValue = values[$0.name] {
 				if let fieldStringValue = fieldValue as? String {
