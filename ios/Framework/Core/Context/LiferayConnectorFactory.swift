@@ -73,6 +73,11 @@ public protocol LiferayConnectorFactory {
 
 	func createWebContentLoadHtmlByClassPKConnector(classPK classPK: Int64) -> WebContentLoadHtmlByClassPKLiferayConnector
 
+	func createWebContentLoadStructuredByArticleIdConnector(
+		structureId structureId: Int64,
+		groupId: Int64,
+		articleId: String) -> WebContentLoadStructuredByArticleIdLiferayConnector
+
 	func createDDLFormLoadConnector(structureId: Int64) -> DDLFormLoadLiferayConnector
 
 	func createDDLFormRecordLoadConnector(recordId: Int64) -> DDLFormRecordLoadLiferayConnector
@@ -204,6 +209,16 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			groupId groupId: Int64,
 			articleId: String) -> WebContentLoadHtmlByArticleIdLiferayConnector {
 		return Liferay62WebContentLoadHtmlByArticleIdConnector(
+			groupId: groupId,
+			articleId: articleId)
+	}
+
+	public func createWebContentLoadStructuredByArticleIdConnector(
+			structureId structureId: Int64,
+			groupId: Int64,
+			articleId: String) -> WebContentLoadStructuredByArticleIdLiferayConnector {
+		return Liferay62WebContentLoadStructuredByArticleIdConnector(
+			structureId: structureId,
 			groupId: groupId,
 			articleId: articleId)
 	}
@@ -363,6 +378,16 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 
 	public func createWebContentLoadHtmlByClassPKConnector(classPK classPK: Int64) -> WebContentLoadHtmlByClassPKLiferayConnector {
 		return Liferay70WebContentLoadHtmlByClassPKConnector(classPK: classPK)
+	}
+
+	public func createWebContentLoadStructuredByArticleIdConnector(
+			structureId structureId: Int64,
+			groupId: Int64,
+			articleId: String) -> WebContentLoadStructuredByArticleIdLiferayConnector {
+		return Liferay70WebContentLoadStructuredByArticleIdConnector(
+			structureId: structureId,
+			groupId: groupId,
+			articleId: articleId)
 	}
 
 	public func createDDLFormLoadConnector(structureId: Int64) -> DDLFormLoadLiferayConnector {

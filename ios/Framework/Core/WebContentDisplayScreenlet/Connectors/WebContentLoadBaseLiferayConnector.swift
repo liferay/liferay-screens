@@ -17,9 +17,6 @@ import UIKit
 public class WebContentLoadBaseLiferayConnector: ServerConnector {
 
 	public var groupId: Int64?
-	public var templateId: Int64?
-
-	public var resultHTML: String?
 
 
 	//MARK: ServerConnector
@@ -34,38 +31,6 @@ public class WebContentLoadBaseLiferayConnector: ServerConnector {
 		}
 
 		return error
-	}
-
-	override public func doRun(session session: LRSession) {
-		resultHTML = nil
-
-		var result: String?
-
-		if templateId ?? 0 != 0 {
-			result = doGetJournalArticleWithTemplate(templateId!, session: session)
-		}
-		else {
-			result = doGetJournalArticle(session)
-		}
-
-		if lastError == nil {
-			if let result = result {
-				resultHTML = result
-			}
-			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse)
-			}
-		}
-	}
-
-	internal func doGetJournalArticleWithTemplate(
-			templateId: Int64,
-			session: LRSession) -> String? {
-		fatalError("doGetJournalArticleWithTemplate method must be overwritten")
-	}
-
-	internal func doGetJournalArticle(session: LRSession) -> String? {
-		fatalError("doGetJournalArticle method must be overwritten")
 	}
 
 }

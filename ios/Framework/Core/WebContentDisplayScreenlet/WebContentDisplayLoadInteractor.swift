@@ -17,34 +17,52 @@ import UIKit
 class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 
 	var resultHTML: String?
-
+	var resultRecord: DDLRecord?
 
 	override func createConnector() -> WebContentLoadBaseLiferayConnector? {
 		let screenlet = self.screenlet as! WebContentDisplayScreenlet
+		let groupId = (screenlet.groupId != 0)
+			? screenlet.groupId
+			: LiferayServerContext.groupId
 
 		let connector: WebContentLoadBaseLiferayConnector?
 
 		if screenlet.articleId != "" {
-			connector = LiferayServerContext.connectorFactory.createWebContentLoadHtmlByArticleIdConnector(articleId: screenlet.articleId)
+			if screenlet.structureId != 0 {
+				connector = LiferayServerContext.connectorFactory.createWebContentLoadStructuredByArticleIdConnector(
+					structureId: screenlet.structureId,
+					groupId: groupId,
+					articleId: screenlet.articleId)
+				(connector as! WebContentLoadHtmlBaseLiferayConnector).templateId = screenlet.templateId
+			}
+			else {
+				connector = LiferayServerContext.connectorFactory.createWebContentLoadHtmlByArticleIdConnector(
+					groupId: groupId,
+					articleId: screenlet.articleId)
+			}
 		}
 		else if screenlet.classPK != 0 {
 			connector = LiferayServerContext.connectorFactory.createWebContentLoadHtmlByClassPKConnector(classPK: screenlet.classPK)
+			(connector as! WebContentLoadHtmlBaseLiferayConnector).templateId = screenlet.templateId
 		}
 		else {
 			connector = nil
-		}
-
-		if let connector = connector {
-			connector.groupId = (screenlet.groupId != 0)
-				? screenlet.groupId : LiferayServerContext.groupId
-			connector.templateId = screenlet.templateId
 		}
 
 		return connector
 	}
 
 	override func completedConnector(op: ServerConnector) {
-		self.resultHTML = (op as? WebContentLoadBaseLiferayConnector)?.resultHTML
+		if let html = (op as? WebContentLoadHtmlBaseLiferayConnector)?.resultHTML {
+			self.resultHTML = html
+		}
+		else if let record = (op as? WebContentLoadStructuredBaseLiferayConnector)?.resultRecord {
+			self.resultRecord = record
+		}
+		else {
+			self.resultHTML = nil
+			self.resultRecord = nil
+		}
 	}
 
 	override func readFromCache(op: ServerConnector, result: AnyObject? -> ()) {
