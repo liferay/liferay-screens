@@ -26,8 +26,8 @@
 	<!--WebContentDisplayScreenlet values-->
 	<string name="liferay_article_id">20602</string>
 	<string name="liferay_article_id_with_template">20602</string>
-	<string name="liferay_template_id1">20649</string>
-	<string name="liferay_template_id2">20652</string>
+	<string name="liferay_template_id1">56432</string>
+	<string name="liferay_template_id2">56435</string>
 
 	<string name="portlet_item_name1">manual</string>
 	<string name="portlet_item_name2">dynamic</string>

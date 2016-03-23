@@ -112,7 +112,7 @@ public class ForgotPasswordScreenlet
 			attributes, R.styleable.ForgotPasswordScreenlet, 0, 0);
 
 		_companyId = castToLongOrUseDefault(typedArray.getString(
-				R.styleable.ForgotPasswordScreenlet_companyId),
+			R.styleable.ForgotPasswordScreenlet_companyId),
 			LiferayServerContext.getCompanyId());
 
 		_anonymousApiUserName = typedArray.getString(

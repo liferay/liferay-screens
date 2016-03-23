@@ -107,18 +107,6 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 			_choseOriginDialog = createOriginDialog();
 			_choseOriginDialog.show();
 		}
-		else {
-			View takePhotoButton = _choseOriginDialog.findViewById(R.id.liferay_dialog_take_photo);
-			RxPermissions.getInstance(getContext())
-				.request(RxView.clicks(takePhotoButton),
-					Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-				.subscribe(openCamera());
-
-			View selectFileButton = _choseOriginDialog.findViewById(R.id.liferay_dialog_select_file);
-			RxPermissions.getInstance(getContext())
-				.request(RxView.clicks(selectFileButton), Manifest.permission.WRITE_EXTERNAL_STORAGE)
-				.subscribe(openGallery());
-		}
 	}
 
 	public Action1 openCamera() {
@@ -151,11 +139,18 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 		LayoutInflater factory = LayoutInflater.from(getContext());
 		final View customDialogView = factory.inflate(
 			R.layout.user_portrait_chose_origin_default, null);
-
-		customDialogView.findViewById(R.id.liferay_dialog_select_file).setOnClickListener(this);
-		customDialogView.findViewById(R.id.liferay_dialog_take_photo).setOnClickListener(this);
-
 		builder.setView(customDialogView);
+
+		View takePhoto = customDialogView.findViewById(R.id.liferay_dialog_take_photo);
+		RxPermissions.getInstance(getContext())
+			.request(RxView.clicks(takePhoto),
+				Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+			.subscribe(openCamera());
+
+		View selectFile = customDialogView.findViewById(R.id.liferay_dialog_select_file);
+		RxPermissions.getInstance(getContext())
+			.request(RxView.clicks(selectFile), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+			.subscribe(openGallery());
 
 		return builder.create();
 	}

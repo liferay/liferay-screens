@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-			  xmlns:liferay="http://schemas.android.com/apk/res-auto"
-			  android:layout_width="match_parent"
-			  android:layout_height="match_parent"
-			  android:orientation="vertical">
+	xmlns:liferay="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
 
 	<TextView
 		style="@style/label"
-		android:text="@string/ddl_form_label"/>
+		android:text="@string/ddl_form_label" />
 
 	<com.liferay.mobile.screens.ddl.form.DDLFormScreenlet
 		android:id="@+id/ddl_form_screenlet"
@@ -21,6 +21,6 @@
 		liferay:offlinePolicy="REMOTE_FIRST"
 		liferay:recordSetId="@string/liferay_recordset_id"
 		liferay:repositoryId="@string/repository_id"
-		liferay:structureId="@string/liferay_structure_id"/>
+		liferay:structureId="@string/liferay_structure_id" />
 
 </LinearLayout>

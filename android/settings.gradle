@@ -23,5 +23,5 @@ include ':bankofwesteros'
 project(':bankofwesteros').projectDir = new File(settingsDir, '/samples/bankofwesteros')
 
 include ':pushnotifications'
-project(':pushnotifications').projectDir = new File(settingsDir, '/samples/pushnotifications/app')
+project(':pushnotifications').projectDir = new File(settingsDir, '/samples/pushnotifications')
 

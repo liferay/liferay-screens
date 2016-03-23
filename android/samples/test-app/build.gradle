@@ -24,6 +24,15 @@ android {
 		exclude 'META-INF/LICENSE'
 		exclude 'META-INF/NOTICE'
 	}
+
+	productFlavors {
+		travisci {
+			minSdkVersion 21
+		}
+		vanilla {
+			minSdkVersion rootProject.ext.targetSdkVersion
+		}
+	}
 }
 
 dependencies {

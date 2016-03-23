@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.westeros.ddl.form.DDLDocumentFieldView
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<com.liferay.mobile.screens.viewsets.westeros.ddl.form.DDLDocumentFieldView xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:orientation="vertical">
@@ -11,7 +10,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:textColor="@android:color/white"
-		android:visibility="gone"/>
+		android:visibility="gone" />
 
 	<FrameLayout
 		android:layout_width="match_parent"
@@ -26,14 +25,14 @@
 			android:drawableRight="@drawable/westeros_perm_media_tinted"
 			android:editable="false"
 			android:focusable="false"
-			android:inputType="none"/>
+			android:inputType="none" />
 
 		<ProgressBar
 			android:id="@+id/liferay_document_progress"
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:layout_gravity="end|center_vertical"
-			android:visibility="invisible"/>
+			android:visibility="invisible" />
 	</FrameLayout>
 
 </com.liferay.mobile.screens.viewsets.westeros.ddl.form.DDLDocumentFieldView>

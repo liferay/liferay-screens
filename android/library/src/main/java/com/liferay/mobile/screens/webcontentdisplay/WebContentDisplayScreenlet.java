@@ -18,7 +18,9 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.webkit.WebView;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
@@ -71,6 +73,13 @@ public class WebContentDisplayScreenlet
 
 		if (_listener != null) {
 			_listener.onWebContentFailure(this, e);
+		}
+	}
+
+	@Override
+	public void onWebContentClicked(WebView.HitTestResult result, MotionEvent event) {
+		if (_listener != null) {
+			_listener.onWebContentClicked(result, event);
 		}
 	}
 

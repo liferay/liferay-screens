@@ -33,7 +33,7 @@ public class AssetListPageLiferayConnector: PaginationLiferayConnector {
 				return ValidationError("assetlist-screenlet", "undefined-group")
 			}
 
-			if classNameId == nil && portletItemName == nil {
+			if classNameId ?? 0 == 0 && portletItemName ?? "" == "" {
 				return ValidationError("assetlist-screenlet", "undefined-classname")
 			}
 		}

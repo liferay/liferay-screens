@@ -155,11 +155,6 @@ public class UserPortraitLoadInteractorImpl
 	}
 
 	@Override
-	protected void notifyError(UserPortraitLoadEvent event) {
-		getListener().onUserPortraitLoadFailure(event.getException());
-	}
-
-	@Override
 	protected boolean cached(Object[] args) {
 
 		long userId = (long) args[0];
@@ -183,6 +178,11 @@ public class UserPortraitLoadInteractorImpl
 		String uuid = (String) args[2];
 
 		CacheSQL.getInstance().set(new UserPortraitCache(userId, true, portraitId, uuid));
+	}
+
+	@Override
+	protected void notifyError(UserPortraitLoadEvent event) {
+		getListener().onUserPortraitLoadFailure(event.getException());
 	}
 
 	protected UserConnector getUserService(long userId) {

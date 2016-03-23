@@ -27,8 +27,6 @@ import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorImpl;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorListener;
 import com.liferay.mobile.screens.ddl.model.Record;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 /**
