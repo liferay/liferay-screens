@@ -30,10 +30,13 @@ public class WebContentLoadStructuredBaseLiferayConnector: WebContentLoadBaseLif
 	//MARK: ServerConnector
 
 	override public func doRun(session session: LRSession) {
-		let resultRecord = doGetJournalArticleStructure(session)
-
-		if resultRecord == nil {
+		if let resultRecord = doGetJournalArticleStructure(session) {
+			self.resultRecord = resultRecord
+			lastError = nil
+		}
+		else {
 			lastError = NSError.errorWithCause(.InvalidServerResponse)
+			self.resultRecord = nil
 		}
 	}
 

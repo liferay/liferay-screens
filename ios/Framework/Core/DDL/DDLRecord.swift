@@ -190,11 +190,11 @@ import Foundation
 	}
 
 	public func updateCurrentValues(xmlValues xmlValues: String) -> Int {
-		guard self.structure != nil else {
+		guard let structure = self.structure else {
 			return -1
 		}
 
-		return DDMTypedValuesXMLParser().parse(xmlValues, structure: self.structure!)
+		return DDMTypedValuesXMLParser().parse(xmlValues, structure: structure)
 	}
 
 	public func clearValues() {

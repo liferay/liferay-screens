@@ -33,12 +33,12 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 					structureId: screenlet.structureId,
 					groupId: groupId,
 					articleId: screenlet.articleId)
-				(connector as! WebContentLoadHtmlBaseLiferayConnector).templateId = screenlet.templateId
 			}
 			else {
 				connector = LiferayServerContext.connectorFactory.createWebContentLoadHtmlByArticleIdConnector(
 					groupId: groupId,
 					articleId: screenlet.articleId)
+				(connector as! WebContentLoadHtmlBaseLiferayConnector).templateId = screenlet.templateId
 			}
 		}
 		else if screenlet.classPK != 0 {
