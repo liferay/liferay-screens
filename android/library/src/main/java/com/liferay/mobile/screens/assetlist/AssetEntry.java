@@ -17,12 +17,7 @@ package com.liferay.mobile.screens.assetlist;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.liferay.mobile.screens.ddl.model.Field;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,8 +25,8 @@ import java.util.Map;
  */
 public class AssetEntry implements Parcelable {
 
-	public static final Parcelable.ClassLoaderCreator<AssetEntry> CREATOR =
-		new Parcelable.ClassLoaderCreator<AssetEntry>() {
+	public static final ClassLoaderCreator<AssetEntry> CREATOR =
+		new ClassLoaderCreator<AssetEntry>() {
 
 			@Override
 			public AssetEntry createFromParcel(Parcel source, ClassLoader loader) {
@@ -51,9 +46,10 @@ public class AssetEntry implements Parcelable {
 		_values = values;
 	}
 
-	@Override
-	public int describeContents() {
-		return 0;
+	protected AssetEntry(Parcel in, ClassLoader loader) {
+		_values = new HashMap<>();
+
+		in.readMap(_values, loader);
 	}
 
 	public String getTitle() {
@@ -63,42 +59,16 @@ public class AssetEntry implements Parcelable {
 	@Override
 	public void writeToParcel(Parcel destination, int flags) {
 		destination.writeMap(_values);
-		destination.writeParcelableArray(_fields.toArray(new Field[_fields.size()]), flags);
 	}
 
 	public Map<String, Object> getValues() {
 		return _values;
 	}
 
-	public List<Field> getFields() {
-		return _fields;
+	@Override
+	public int describeContents() {
+		return 0;
 	}
 
-	//FIXME !!!!
-
-	public void setFields(List<Field> fields) {
-		_fields = fields;
-	}
-
-	public Field getFieldByName(String name) {
-		for (Field field : _fields) {
-			if (field.getName().equals(name)) {
-				return field;
-			}
-		}
-		return null;
-	}
-
-	private AssetEntry(Parcel in, ClassLoader loader) {
-		_values = new HashMap<>();
-
-		in.readMap(_values, ClassLoader.getSystemClassLoader());
-
-		Parcelable[] array = in.readParcelableArray(getClass().getClassLoader());
-		_fields = new ArrayList(Arrays.asList(array));
-	}
-
-	private Map<String, Object> _values;
-
-	private List<Field> _fields;
+	protected Map<String, Object> _values;
 }
