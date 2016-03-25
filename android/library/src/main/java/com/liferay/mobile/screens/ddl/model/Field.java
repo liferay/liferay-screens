@@ -111,14 +111,14 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	public enum EditorType {
 		CHECKBOX("checkbox"),
 		TEXT("text"),
-		TEXT_AREA("textarea"),
-		DATE("ddm-date"),
-		NUMBER("ddm-number"),
-		INTEGER("ddm-integer"),
-		DECIMAL("ddm-decimal"),
+		TEXT_AREA("textarea", "paragraph"),
+		DATE("ddm-date", "date"),
+		NUMBER("ddm-number", "number"),
+		INTEGER("ddm-integer", "integer"),
+		DECIMAL("ddm-decimal", "decimal"),
 		SELECT("select"),
 		RADIO("radio"),
-		DOCUMENT("ddm-documentlibrary"),
+		DOCUMENT("ddm-documentlibrary", "documentlibrary"),
 		UNSUPPORTED(null);
 
 		public static List<EditorType> all() {
@@ -131,6 +131,9 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 		public static EditorType valueOf(Map<String, Object> attributes) {
 			Object mapValue = attributes.get("type");
+			if ("text".equals(mapValue) && "integer".equals(attributes.get("dataType"))) {
+				return DECIMAL;
+			}
 			return (mapValue == null) ?
 				UNSUPPORTED : valueOfString(mapValue.toString());
 		}
@@ -140,8 +143,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 			if (name != null) {
 				for (EditorType editorType : values()) {
-					if (name.equals(editorType._value)) {
-						return editorType;
+					for (String value : editorType._values) {
+						if (name.equals(value)) {
+							return editorType;
+						}
 					}
 				}
 			}
@@ -149,15 +154,19 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 			return result;
 		}
 
+		public String[] getValues() {
+			return _values;
+		}
+
 		public String getValue() {
-			return _value;
+			return _values[0];
 		}
 
-		EditorType(String value) {
-			_value = value;
+		EditorType(String... values) {
+			_values = values;
 		}
 
-		private String _value;
+		private String[] _values;
 
 	}
 
