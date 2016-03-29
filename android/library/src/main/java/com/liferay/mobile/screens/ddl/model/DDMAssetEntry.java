@@ -17,31 +17,31 @@ import java.util.Map;
 /**
  * @author Javier Gamarra
  */
-public class TemplatedAsset extends AssetEntry implements Parcelable {
+public class DDMAssetEntry extends AssetEntry implements Parcelable {
 
-	public static final ClassLoaderCreator<TemplatedAsset> CREATOR =
-		new ClassLoaderCreator<TemplatedAsset>() {
+	public static final ClassLoaderCreator<DDMAssetEntry> CREATOR =
+		new ClassLoaderCreator<DDMAssetEntry>() {
 
 			@Override
-			public TemplatedAsset createFromParcel(Parcel source, ClassLoader loader) {
-				return new TemplatedAsset(source, loader);
+			public DDMAssetEntry createFromParcel(Parcel source, ClassLoader loader) {
+				return new DDMAssetEntry(source, loader);
 			}
 
-			public TemplatedAsset createFromParcel(Parcel in) {
+			public DDMAssetEntry createFromParcel(Parcel in) {
 				throw new AssertionError();
 			}
 
-			public TemplatedAsset[] newArray(int size) {
-				return new TemplatedAsset[size];
+			public DDMAssetEntry[] newArray(int size) {
+				return new DDMAssetEntry[size];
 			}
 		};
 
-	public TemplatedAsset(Map<String, Object> values, Locale locale) {
+	public DDMAssetEntry(Map<String, Object> values, Locale locale) {
 		super(values);
 		_locale = locale;
 	}
 
-	protected TemplatedAsset(Parcel in, ClassLoader loader) {
+	protected DDMAssetEntry(Parcel in, ClassLoader loader) {
 		super(in, loader);
 
 		_locale = (Locale) in.readSerializable();
