@@ -50,8 +50,6 @@ public class JsonParser implements Parser {
 
 		Locale formLocale = parseLocale(defaultLocaleValue);
 
-//		JSONArray availableLanguageIds = jsonObject.getJSONArray("availableLanguageIds");
-
 		JSONArray fields = jsonObject.getJSONArray("fields");
 
 		for (int i = 0; i < fields.length(); i++) {
@@ -81,7 +79,16 @@ public class JsonParser implements Parser {
 		mergedMap.putAll(attributes);
 		mergedMap.putAll(localizedMetadata);
 
-		return dataType.createField(mergedMap, locale, formLocale);
+		Field newField = dataType.createField(mergedMap, locale, formLocale);
+
+		if (attributes.containsKey("nestedFields")) {
+			JSONArray jsonArray = (JSONArray) attributes.get("nestedFields");
+			for (int i = 0; i < jsonArray.length(); i++) {
+				newField.getFields().add(createFormField(jsonArray.getJSONObject(i), formLocale, locale));
+			}
+		}
+
+		return newField;
 	}
 
 	protected Map<String, Object> processLocalizedMetadata(
