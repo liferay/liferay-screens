@@ -3,7 +3,6 @@ package com.liferay.mobile.screens.ddl.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.ddl.JsonParser;
 import com.liferay.mobile.screens.ddl.Parser;
 import com.liferay.mobile.screens.ddl.XSDParser;
@@ -11,6 +10,7 @@ import com.liferay.mobile.screens.util.LiferayLocale;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -18,36 +18,38 @@ import java.util.Map;
 /**
  * @author Javier Gamarra
  */
-public class DDMAssetEntry extends AssetEntry implements Parcelable {
+public class DDMStructure implements Parcelable {
 
-	public static final ClassLoaderCreator<DDMAssetEntry> CREATOR =
-		new ClassLoaderCreator<DDMAssetEntry>() {
+	public static final Creator<DDMStructure> CREATOR = new Creator<DDMStructure>() {
+		@Override
+		public DDMStructure createFromParcel(Parcel in) {
+			return new DDMStructure(in);
+		}
 
-			@Override
-			public DDMAssetEntry createFromParcel(Parcel source, ClassLoader loader) {
-				return new DDMAssetEntry(source, loader);
-			}
+		@Override
+		public DDMStructure[] newArray(int size) {
+			return new DDMStructure[size];
+		}
+	};
 
-			public DDMAssetEntry createFromParcel(Parcel in) {
-				throw new AssertionError();
-			}
-
-			public DDMAssetEntry[] newArray(int size) {
-				return new DDMAssetEntry[size];
-			}
-		};
-
-	public DDMAssetEntry(Map<String, Object> values, Locale locale) {
-		super(values);
+	public DDMStructure(Map<String, Object> values, Locale locale) {
+		_values = values;
 		_locale = locale;
 	}
 
-	protected DDMAssetEntry(Parcel in, ClassLoader loader) {
-		super(in, loader);
-
-		_locale = (Locale) in.readSerializable();
+	protected DDMStructure(Parcel in) {
 		Parcelable[] array = in.readParcelableArray(getClass().getClassLoader());
-		_fields = new ArrayList(Arrays.asList(array));
+		_fields = new ArrayList<>(Arrays.asList(array));
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeTypedList(_fields);
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
 	}
 
 	public void parseXsd(String xsd) {
@@ -96,19 +98,6 @@ public class DDMAssetEntry extends AssetEntry implements Parcelable {
 		_locale = locale;
 	}
 
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		super.writeToParcel(dest, flags);
-
-		dest.writeSerializable(_locale);
-		dest.writeParcelableArray(_fields.toArray(new Field[_fields.size()]), flags);
-	}
-
-	@Override
-	public int describeContents() {
-		return 0;
-	}
-
 	private void parse(String content, Parser parser) {
 		try {
 			Locale locale = _locale == null ? LiferayLocale.getDefaultLocale() : _locale;
@@ -120,5 +109,6 @@ public class DDMAssetEntry extends AssetEntry implements Parcelable {
 	}
 
 	protected List<Field> _fields = new ArrayList<>();
-	private Locale _locale;
+	protected Locale _locale = Locale.US;
+	protected Map<String, Object> _values = new HashMap<>();
 }

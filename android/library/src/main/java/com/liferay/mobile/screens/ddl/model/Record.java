@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * @author Jose Manuel Navarro
  */
-public class Record extends DDMAssetEntry implements Parcelable {
+public class Record extends DDMStructure implements Parcelable {
 
 	public static final Parcelable.ClassLoaderCreator<Record> CREATOR =
 		new ClassLoaderCreator<Record>() {
