@@ -7,6 +7,7 @@ import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.ddl.JsonParser;
 import com.liferay.mobile.screens.ddl.Parser;
 import com.liferay.mobile.screens.ddl.XSDParser;
+import com.liferay.mobile.screens.util.LiferayLocale;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -108,9 +109,10 @@ public class DDMAssetEntry extends AssetEntry implements Parcelable {
 		return 0;
 	}
 
-	private void parse(String xsd, Parser parser) {
+	private void parse(String content, Parser parser) {
 		try {
-			_fields = parser.parse(xsd, _locale);
+			Locale locale = _locale == null ? LiferayLocale.getDefaultLocale() : _locale;
+			_fields = parser.parse(content, locale);
 		}
 		catch (Exception e) {
 			_fields = new ArrayList<>();
