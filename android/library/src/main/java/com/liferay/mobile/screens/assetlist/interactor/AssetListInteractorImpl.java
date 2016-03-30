@@ -78,7 +78,7 @@ public class AssetListInteractorImpl
 	@NonNull
 	@Override
 	protected AssetEntry getElement(TableCache tableCache) throws JSONException {
-		return new AssetEntry(JSONUtil.toMap(new JSONObject(tableCache.getContent())));
+		return AssetFactory.createInstance(JSONUtil.toMap(new JSONObject(tableCache.getContent())));
 	}
 
 	@Override
@@ -102,7 +102,6 @@ public class AssetListInteractorImpl
 	@Override
 	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception {
 		if (_portletItemName == null) {
-
 
 			ScreensAssetEntryConnector connector = ServiceProvider.getInstance().getScreensAssetEntryConnector(session);
 			JSONObject entryQueryAttributes = configureEntryQuery(_groupId, _classNameId);
