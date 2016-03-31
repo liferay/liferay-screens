@@ -38,7 +38,7 @@ public class DDMStructure implements Parcelable {
 	}
 
 	protected DDMStructure(Parcel in) {
-		Parcelable[] array = in.readParcelableArray(getClass().getClassLoader());
+		Field[] array = (Field[]) in.readParcelableArray(getClass().getClassLoader());
 		_fields = new ArrayList<>(Arrays.asList(array));
 	}
 

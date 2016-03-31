@@ -30,8 +30,8 @@ import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.ddl.JsonParser;
 import com.liferay.mobile.screens.ddl.XSDParser;
-import com.liferay.mobile.screens.ddl.model.DDMStructure;
 import com.liferay.mobile.screens.ddl.model.Field;
+import com.liferay.mobile.screens.ddl.model.WithDDM;
 import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.ServiceProvider;
 
@@ -70,16 +70,17 @@ public class AssetListInteractorImpl
 
 			for (AssetEntry entry : entries) {
 
-				if (entry instanceof DDMStructure) {
+				if (entry instanceof WithDDM) {
 
-					DDMStructure assetEntry = (DDMStructure) entry;
+					WithDDM assetEntry = (WithDDM) entry;
 					Map<String, Object> structure = (Map<String, Object>) assetEntry.getValues().get("DDMStructure");
 					List<Field> formFields = new JsonParser().parse((String) structure.get("definition"), Locale.US);
 
 					Map<String, Object> journalArticle = (Map<String, Object>) assetEntry.getValues().get("journalArticle");
 					List<Field> fields = new XSDParser().createForm(formFields, (String) journalArticle.get("content"));
 
-					assetEntry.setFields(fields);
+					//FIXME
+//					assetEntry.setFields(fields);
 				}
 			}
 

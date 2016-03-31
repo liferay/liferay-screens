@@ -17,9 +17,11 @@ package com.liferay.mobile.screens.ddl.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.util.JSONUtil;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -27,7 +29,7 @@ import java.util.Map;
 /**
  * @author Jose Manuel Navarro
  */
-public class Record extends DDMStructure implements Parcelable {
+public class Record extends AssetEntry implements WithDDM, Parcelable {
 
 	public static final Parcelable.ClassLoaderCreator<Record> CREATOR =
 		new ClassLoaderCreator<Record>() {
@@ -50,21 +52,24 @@ public class Record extends DDMStructure implements Parcelable {
 	public static final String MODEL_ATTRIBUTES = "modelAttributes";
 
 	public Record(Map<String, Object> valuesAndAttributes, Locale locale) {
-		super(valuesAndAttributes, locale);
+		super(valuesAndAttributes);
+
 		parseServerValues();
 	}
 
 	public Record(Locale locale) {
-		super(new HashMap<String, Object>(), locale);
+		super(new HashMap<String, Object>());
+		_ddmStructure = new DDMStructure(getValues(), locale);
 	}
 
 	public Record(Map<String, Object> stringObjectMap) {
-		super(stringObjectMap, Locale.US);
+		super(stringObjectMap);
+		_ddmStructure = new DDMStructure(stringObjectMap, Locale.US);
 		parseServerValues();
 	}
 
 	public void refresh() {
-		for (Field f : _fields) {
+		for (Field f : getDDMStructure().getFields()) {
 			Object fieldValue = getServerValue(f.getName());
 			if (fieldValue != null) {
 				f.setCurrentValue(f.convertFromString(fieldValue.toString()));
@@ -119,9 +124,9 @@ public class Record extends DDMStructure implements Parcelable {
 	}
 
 	public Map<String, String> getData() {
-		Map<String, String> values = new HashMap<>(_fields.size());
+		Map<String, String> values = new HashMap<>(getFields().size());
 
-		for (Field f : _fields) {
+		for (Field f : getFields()) {
 			String fieldValue = f.toData();
 
 			//FIXME - LPS-49460
@@ -137,7 +142,7 @@ public class Record extends DDMStructure implements Parcelable {
 	}
 
 	public void setValues(Map<String, Object> values) {
-		for (Field f : _fields) {
+		for (Field f : getFields()) {
 			Object fieldValue = values.get(f.getName());
 			if (fieldValue != null) {
 				f.setCurrentValue(f.convertFromString(fieldValue.toString()));
@@ -146,7 +151,7 @@ public class Record extends DDMStructure implements Parcelable {
 	}
 
 	public boolean isRecordStructurePresent() {
-		return (_fields.size() > 0);
+		return (getFields().size() > 0);
 	}
 
 	/**
@@ -186,6 +191,44 @@ public class Record extends DDMStructure implements Parcelable {
 		return (HashMap<String, Object>) _values.get(MODEL_ATTRIBUTES);
 	}
 
+	@Override
+	public DDMStructure getDDMStructure() {
+		return _ddmStructure;
+	}
+
+	public void setDDMStructure(DDMStructure ddmStructure) {
+		_ddmStructure = ddmStructure;
+	}
+
+	public List<Field> getFields() {
+		return getDDMStructure().getFields();
+	}
+
+	public int getFieldCount() {
+		return _ddmStructure.getFieldCount();
+	}
+
+	public Field getField(int i) {
+		return _ddmStructure.getField(i);
+	}
+
+	public Field getFieldByName(String name) {
+		return _ddmStructure.getFieldByName(name);
+	}
+
+	public Locale getLocale() {
+		return _ddmStructure.getLocale();
+	}
+
+	public void parseXsd(String xsd) {
+		_ddmStructure.parseXsd(xsd);
+	}
+
+	public void parseJson(String definition) {
+		//FIXME
+		_ddmStructure.parseJson(definition);
+	}
+
 	private Record(Parcel in, ClassLoader loader) {
 		super(in, loader);
 		_creatorUserId = (Long) in.readValue(Long.class.getClassLoader());
@@ -210,6 +253,7 @@ public class Record extends DDMStructure implements Parcelable {
 		}
 	}
 
+	private DDMStructure _ddmStructure;
 	private Long _creatorUserId;
 	private Long _structureId;
 	private Long _recordSetId;
