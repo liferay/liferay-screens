@@ -17,7 +17,7 @@ import Foundation
 //TODO: Unit test
 
 
-@objc public class DDMStructure: NSObject, NSCoding, CustomDebugStringConvertible {
+@objc public class DDMStructure: NSObject, NSCoding {
 
 	public var fields = [DDMField]()
 	public let attributes: [String:AnyObject]

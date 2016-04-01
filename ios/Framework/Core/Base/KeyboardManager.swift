@@ -62,12 +62,12 @@ public class KeyboardManager {
 		self.layoutable = layoutable
 
 		NSNotificationCenter.defaultCenter().addObserver(self,
-				selector: "keyboardShown:",
+				selector: #selector(KeyboardManager.keyboardShown(_:)),
 				name: UIKeyboardWillShowNotification,
 				object: nil)
 
 		NSNotificationCenter.defaultCenter().addObserver(self,
-				selector: "keyboardHidden:",
+				selector: #selector(KeyboardManager.keyboardHidden(_:)),
 				name: UIKeyboardWillHideNotification,
 				object: nil)
 	}

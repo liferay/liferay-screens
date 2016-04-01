@@ -17,7 +17,7 @@ import Foundation
 //TODO: Unit test
 
 
-@objc public class DDLRecord: NSObject, NSCoding, CustomDebugStringConvertible {
+@objc public class DDLRecord: NSObject, NSCoding {
 
 	public let structure: DDMStructure?
 	public let untypedValues: [DDMField]?

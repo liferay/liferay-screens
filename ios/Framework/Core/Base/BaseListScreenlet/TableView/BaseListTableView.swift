@@ -140,7 +140,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 				refreshControlView = ODRefreshControl(
 						inScrollView: self.tableView)
 				refreshControlView!.addTarget(self,
-						action: "refreshControlBeginRefresh:",
+						action: #selector(BaseListTableView.refreshControlBeginRefresh(_:)),
 						forControlEvents: .ValueChanged)
 			}
 		}

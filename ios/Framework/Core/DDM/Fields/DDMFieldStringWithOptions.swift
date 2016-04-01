@@ -180,9 +180,7 @@ public class DDMFieldStringWithOptions : DDMField {
 
 		func removeFirstAndLastChars(value: String) -> String {
 			if value.characters.count >= 2 {
-				let range = Range<String.Index>(
-						start: value.startIndex.successor(),
-						end: value.endIndex.predecessor())
+				let range = value.startIndex.successor()..<value.endIndex.predecessor()
 				return value.substringWithRange(range)
 			}
 

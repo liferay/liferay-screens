@@ -64,7 +64,7 @@ public class DDMFieldTableCell: UITableViewCell {
 	//MARK: UITableViewCell
 
 	override public func awakeFromNib() {
-		let simpleTapRecognizer = UITapGestureRecognizer(target: self, action: "simpleTapDetected")
+		let simpleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(DDMFieldTableCell.simpleTapDetected))
 		addGestureRecognizer(simpleTapRecognizer)
 	}
 
@@ -102,7 +102,8 @@ public class DDMFieldTableCell: UITableViewCell {
 		let section = indexPath.section
 		let rowCount = tableView?.numberOfRowsInSection(section)
 
-		while ++row < rowCount {
+		while row < rowCount {
+			row += 1
 			let currentPath = NSIndexPath(forRow: row, inSection: section)
 			if let rowCell = tableView?.cellForRowAtIndexPath(currentPath) {
 				if rowCell.canBecomeFirstResponder() {
@@ -119,7 +120,6 @@ public class DDMFieldTableCell: UITableViewCell {
 		var result = false
 
 		if let currentTextInput = currentView as? UITextInput {
-
 			switch currentTextInput.returnKeyType! {
 
 				case .Next:

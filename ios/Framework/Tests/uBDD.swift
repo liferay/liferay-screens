@@ -143,9 +143,9 @@ public func done(notificationName: String, withResult result: AnyObject?) {
 public func scenario(scenario: String, code:Void->Void) {
 	doPrint("\(currentIndentation())\(currentIcons().scenario) \(scenario)")
 
-	currentIndentationLevel++
+	currentIndentationLevel += 1
 	code()
-	currentIndentationLevel--
+	currentIndentationLevel -= 1
 }
 
 public func with(text: String, code: Void -> Void) {

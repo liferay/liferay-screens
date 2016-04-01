@@ -14,7 +14,7 @@
 import Foundation
 
 
-@objc public class DDMField: NSObject, NSCoding, CustomDebugStringConvertible {
+@objc public class DDMField: NSObject, NSCoding {
 
 	public var onPostValidation: (Bool -> Void)?
 	public var lastValidationResult: Bool?

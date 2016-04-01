@@ -59,9 +59,7 @@ extension DDMField {
 
 			// hack for names prefixed with ddm
 			if typeName.hasPrefix("ddm-") {
-				let wholeRange = Range<String.Index>(
-						start: typeName.startIndex,
-						end: typeName.endIndex)
+				let wholeRange = typeName.startIndex..<typeName.endIndex
 
 				typeName = typeName.stringByReplacingOccurrencesOfString("ddm-",
 						withString: "",

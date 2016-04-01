@@ -121,7 +121,7 @@ public class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 		addSubview(radioGroup!)
 
 		NSNotificationCenter.defaultCenter().addObserver(self,
-				selector: "radioButtonSelected:",
+				selector: #selector(DDLFieldRadioTableCell_default.radioButtonSelected(_:)),
 				name: SELECTED_RADIO_BUTTON_CHANGED,
 				object: radioGroup)
 	}

@@ -52,7 +52,7 @@ public class DDMTypedValuesXMLParser {
 
 					field.currentValueAsString = value
 
-					count++
+					count += 1
 				}
 				else {
 					// this field isn't present in the structure. Skip

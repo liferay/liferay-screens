@@ -236,7 +236,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 		if hasIdentifier && !hasUserDefinedActions
 				&& onSetUserActionForControl(control) {
 			control.addTarget(self,
-					action: "userActionWithSender:",
+					action: #selector(BaseScreenletView.userActionWithSender(_:)),
 					forControlEvents: .TouchUpInside)
 		}
 	}

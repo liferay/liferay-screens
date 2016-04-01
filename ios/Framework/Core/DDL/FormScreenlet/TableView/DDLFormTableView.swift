@@ -117,10 +117,11 @@ public class DDLFormTableView: DDLFormView,
 
 	//MARK: KeyboardLayoutable
 
-	public func layoutWhenKeyboardShown(var keyboardHeight: CGFloat,
+	public func layoutWhenKeyboardShown(keyboardHeight: CGFloat,
 			animation:(time: NSNumber, curve: NSNumber)) {
 
 		let cell = DDMFieldTableCell.viewAsFieldCell(firstCellResponder as? UIView)
+		var actualKeyboardHeight = keyboardHeight
 
 		var scrollDone = false
 		let scrollClosure = { (completedAnimation: Bool) -> Void in
@@ -145,21 +146,21 @@ public class DDLFormTableView: DDLFormView,
 			if shouldWorkaroundUIPickerViewBug {
 				//FIXME
 				// Height used by UIPickerView is 216, when the standard keyboard have 253
-				keyboardHeight = 253
+				actualKeyboardHeight = 253
 			}
 			else if textInput.autocorrectionType == UITextAutocorrectionType.Default ||
 				textInput.autocorrectionType == UITextAutocorrectionType.Yes {
 
-				keyboardHeight += KeyboardManager.defaultAutocorrectionBarHeight
+				actualKeyboardHeight += KeyboardManager.defaultAutocorrectionBarHeight
 			}
 
 			let absoluteFrame = adjustRectForCurrentOrientation(convertRect(frame, toView: window!))
 			let screenHeight = adjustRectForCurrentOrientation(UIScreen.mainScreen().bounds).height
 
 			if (absoluteFrame.origin.y + absoluteFrame.size.height >
-					screenHeight - keyboardHeight) || originalFrame != nil {
+					screenHeight - actualKeyboardHeight) || originalFrame != nil {
 
-				let newHeight = screenHeight - keyboardHeight + absoluteFrame.origin.y
+				let newHeight = screenHeight - actualKeyboardHeight + absoluteFrame.origin.y
 
 				if Int(newHeight) != Int(self.frame.size.height) {
 					if originalFrame == nil {
