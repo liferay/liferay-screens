@@ -27,6 +27,5 @@ pod 'MDRadialProgress', '1.3.2'
 
 target :LiferayScreensTests do
 	pod 'Nocilla'
-	pod 'SwiftTryCatch'
 end
 

@@ -12,6 +12,17 @@
  * details.
  */
 
-@import LiferayScreens;
+#import <Foundation/Foundation.h>
 
-#import "ObjCTryCatch.h"
+@interface ObjCTryCatch : NSObject
+
++(BOOL)catchBlock:(void (^)(void))block error:(NSError **)error;
+
++ (void)throwException:(NSException *)exception;
+
+@end
+
+
+
+
+

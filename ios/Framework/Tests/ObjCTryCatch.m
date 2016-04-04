@@ -12,6 +12,29 @@
  * details.
  */
 
-@import LiferayScreens;
-
 #import "ObjCTryCatch.h"
+
+@implementation ObjCTryCatch
+
++(BOOL)catchBlock:(void (^)(void))block error:(NSError **)error {
+	BOOL result;
+	@try {
+		block();
+		result = YES;
+	}
+	@catch (NSException *exception) {
+		result = NO;
+		if (error) {
+			*error = [[NSError alloc] initWithDomain:exception.name code:1 userInfo:exception.userInfo];
+		}
+	}
+	@finally {
+		return result;
+	}
+}
+
++ (void)throwException:(NSException *)exception {
+	@throw exception;
+}
+
+@end

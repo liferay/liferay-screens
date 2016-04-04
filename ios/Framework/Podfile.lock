@@ -43,7 +43,6 @@ PODS:
   - SQLCipher/common (3.3.1)
   - SQLCipher/fts (3.3.1):
     - SQLCipher/common
-  - SwiftTryCatch (0.0.1)
   - TNRadioButtonGroup (0.4)
   - YapDatabase/SQLCipher (2.8.2):
     - YapDatabase/SQLCipher/Core (= 2.8.2)
@@ -99,7 +98,6 @@ DEPENDENCIES:
   - Nocilla
   - ODRefreshControl (= 1.2)
   - SMXMLDocument (= 1.1)
-  - SwiftTryCatch
   - TNRadioButtonGroup (= 0.4)
   - YapDatabase/SQLCipher (= 2.8.2)
 
@@ -117,7 +115,6 @@ SPEC CHECKSUMS:
   ODRefreshControl: 907e6149d72dde488d5917ccfabee5bd8d711a20
   SMXMLDocument: e0d9fbf726a2a0921871b492966458acb3ad9689
   SQLCipher: d490d2effe735895d2204d25a154b1e722278421
-  SwiftTryCatch: fb6d2b34abe48efd69578dac919293a44f95b481
   TNRadioButtonGroup: f5fb9b545d8913bbabe6a72ea1fa6fba4d833bb6
   YapDatabase: d97b1a0bfd6856745a7a398045f3ca32cf248fda
 

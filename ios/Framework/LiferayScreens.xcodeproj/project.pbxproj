@@ -289,6 +289,7 @@
 		88A482391BFFC3300033DEBA /* UserPortraitScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E610A1ACBE5F000862B9E /* UserPortraitScreenlet.swift */; };
 		88A4823A1BFFEB7B0033DEBA /* UserPortraitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E610B1ACBE5F000862B9E /* UserPortraitViewModel.swift */; };
 		88AA42CC1C624A6E00AA97FB /* ScreensFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AA42CA1C624A6E00AA97FB /* ScreensFactory.swift */; };
+		88AF67E31CAF035400097014 /* ObjCTryCatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 88AF67E21CAF035400097014 /* ObjCTryCatch.m */; };
 		88B2730F1B7107F200477E5E /* ProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B2730E1B7107F200477E5E /* ProgressPresenter.swift */; };
 		88B273101B7107F200477E5E /* ProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B2730E1B7107F200477E5E /* ProgressPresenter.swift */; };
 		88B273121B7109C300477E5E /* DefaultProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B273111B7109C300477E5E /* DefaultProgressPresenter.swift */; };
@@ -620,6 +621,8 @@
 		88A2B7161ACDEC29000C2065 /* DDLListView_test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListView_test.swift; sourceTree = "<group>"; };
 		88A2B7171ACDEC29000C2065 /* DDLListView_test.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLListView_test.xib; sourceTree = "<group>"; };
 		88AA42CA1C624A6E00AA97FB /* ScreensFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreensFactory.swift; sourceTree = "<group>"; };
+		88AF67E11CAF035400097014 /* ObjCTryCatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjCTryCatch.h; sourceTree = "<group>"; };
+		88AF67E21CAF035400097014 /* ObjCTryCatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjCTryCatch.m; sourceTree = "<group>"; };
 		88B2730E1B7107F200477E5E /* ProgressPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressPresenter.swift; sourceTree = "<group>"; };
 		88B273111B7109C300477E5E /* DefaultProgressPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultProgressPresenter.swift; sourceTree = "<group>"; };
 		88B273141B7109E200477E5E /* MBProgressHUDPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MBProgressHUDPresenter.swift; sourceTree = "<group>"; };
@@ -1349,6 +1352,8 @@
 				881E61A61ACBF97000862B9E /* LiferayScreensTests-Bridging-Header.h */,
 				88DE24F61AD2AA6400714701 /* liferay-server-context.plist */,
 				8892C6891ACB2E3300192232 /* Info.plist */,
+				88AF67E11CAF035400097014 /* ObjCTryCatch.h */,
+				88AF67E21CAF035400097014 /* ObjCTryCatch.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2081,6 +2086,7 @@
 				881E62901ACBFE8D00862B9E /* BaseScreenletView.swift in Sources */,
 				88B844951C73D856007A447D /* ForgotPasswordEmailLiferayConnectors.swift in Sources */,
 				881E49C71B95CE66007DBEC9 /* DownloadUserPortraitInteractor.swift in Sources */,
+				88AF67E31CAF035400097014 /* ObjCTryCatch.m in Sources */,
 				88DC31E31ACC18F10078C961 /* CredentialsStorage.swift in Sources */,
 				8837FA731CAEF6AE00DCB1B4 /* WebContentLoadStructuredBaseLiferayConnector.swift in Sources */,
 				881E62B71ACBFFFA00862B9E /* SessionContext.swift in Sources */,
