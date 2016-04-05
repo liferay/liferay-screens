@@ -70,17 +70,16 @@ public class AssetListInteractorImpl
 
 			for (AssetEntry entry : entries) {
 
-				if (entry instanceof WithDDM) {
+				if (entry instanceof WithDDM && entry.getValues().containsKey("DDMStructure")) {
 
 					WithDDM assetEntry = (WithDDM) entry;
-					Map<String, Object> structure = (Map<String, Object>) assetEntry.getValues().get("DDMStructure");
+					Map<String, Object> values = assetEntry.getValues();
+					Map<String, Object> structure = (Map<String, Object>) values.get("DDMStructure");
 					List<Field> formFields = new JsonParser().parse((String) structure.get("definition"), Locale.US);
 
-					Map<String, Object> journalArticle = (Map<String, Object>) assetEntry.getValues().get("journalArticle");
-					List<Field> fields = new XSDParser().createForm(formFields, (String) journalArticle.get("content"));
+					List<Field> fields = new XSDParser().createForm(formFields, (String) values.get("modelValues"));
 
-					//FIXME
-//					assetEntry.setFields(fields);
+					assetEntry.getDDMStructure().setFields(fields);
 				}
 			}
 
