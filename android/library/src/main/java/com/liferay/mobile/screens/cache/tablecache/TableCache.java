@@ -46,7 +46,7 @@ public class TableCache implements CachedContent {
 		_userId = userId == null ? SessionContext.getUserId() : userId;
 		_groupId = groupId == null ? LiferayServerContext.getGroupId() : groupId;
 		_locale = locale == null ? LiferayLocale.getDefaultSupportedLocale() :
-			LiferayLocale.getSupportedLocale(locale.getDisplayLanguage());
+			LiferayLocale.getSupportedLocale(locale.getLanguage());
 		_dirty = 1;
 	}
 
