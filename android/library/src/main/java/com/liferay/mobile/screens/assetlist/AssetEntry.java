@@ -42,14 +42,14 @@ public class AssetEntry implements Parcelable {
 			}
 		};
 
-	public AssetEntry(Map<String, Object> values) {
-		_values = values;
-	}
-
 	protected AssetEntry(Parcel in, ClassLoader loader) {
 		_values = new HashMap<>();
 
 		in.readMap(_values, loader);
+	}
+
+	public AssetEntry(Map<String, Object> values) {
+		_values = values;
 	}
 
 	public String getTitle() {

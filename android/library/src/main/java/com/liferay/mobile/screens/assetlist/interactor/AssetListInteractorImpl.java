@@ -28,10 +28,6 @@ import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.ddl.JsonParser;
-import com.liferay.mobile.screens.ddl.XSDParser;
-import com.liferay.mobile.screens.ddl.model.Field;
-import com.liferay.mobile.screens.ddl.model.WithDDM;
 import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.ServiceProvider;
 
@@ -39,9 +35,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import static com.liferay.mobile.screens.cache.DefaultCachedType.ASSET_LIST;
 import static com.liferay.mobile.screens.cache.DefaultCachedType.ASSET_LIST_COUNT;
@@ -55,38 +49,6 @@ public class AssetListInteractorImpl
 
 	public AssetListInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
 		super(targetScreenletId, offlinePolicy);
-	}
-
-	public void onEventMainThread(BaseListEvent event) {
-		if (!isValidEvent(event)) {
-			return;
-		}
-
-		onEventWithCache(event, event.getStartRow(), event.getEndRow(), event.getLocale());
-
-		if (!event.isFailed()) {
-			List<AssetEntry> entries = event.getEntries();
-			int rowCount = event.getRowCount();
-
-			for (AssetEntry entry : entries) {
-
-				if (entry instanceof WithDDM && entry.getValues().containsKey("DDMStructure")) {
-
-					WithDDM assetEntry = (WithDDM) entry;
-					Map<String, Object> values = assetEntry.getValues();
-					Map<String, Object> structure = (Map<String, Object>) values.get("DDMStructure");
-					List<Field> formFields = new JsonParser().parse((String) structure.get("definition"), Locale.US);
-
-					List<Field> fields = new XSDParser().createForm(formFields, (String) values.get("modelValues"));
-
-					assetEntry.getDDMStructure().setFields(fields);
-				}
-			}
-
-
-			getListener().onListRowsReceived(
-				event.getStartRow(), event.getEndRow(), entries, rowCount);
-		}
 	}
 
 	public void loadRows(
