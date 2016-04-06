@@ -1,6 +1,7 @@
 package com.liferay.mobile.screens.ddl.model;
 
-import java.util.Map;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
@@ -9,5 +10,5 @@ public interface WithDDM {
 
 	DDMStructure getDDMStructure();
 
-	Map<String, Object> getValues();
+	void parseDDMStructure(JSONObject jsonObject) throws JSONException;
 }
