@@ -35,7 +35,7 @@ public class DDLListCallback
 
 	@Override
 	public Record createEntity(Map<String, Object> stringObjectMap) {
-		return new Record(stringObjectMap);
+		return new Record(stringObjectMap, _locale);
 	}
 
 }

@@ -5,6 +5,9 @@ import android.os.Parcelable;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Locale;
 import java.util.Map;
 
@@ -35,9 +38,9 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 		super(in, classLoader);
 	}
 
-	public WebContent(Map<String, Object> map) {
+	public WebContent(Map<String, Object> map, Locale locale) {
 		super(map);
-		_ddmStructure = new DDMStructure(map, Locale.US);
+		_ddmStructure = new DDMStructure(map, locale);
 	}
 
 	@Override
@@ -52,6 +55,11 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 
 	public DDMStructure getDDMStructure() {
 		return _ddmStructure;
+	}
+
+	@Override
+	public void parseDDMStructure(JSONObject jsonObject) throws JSONException {
+		_ddmStructure.parse(jsonObject);
 	}
 
 	private DDMStructure _ddmStructure;

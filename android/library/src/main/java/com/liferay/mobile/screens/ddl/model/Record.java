@@ -20,6 +20,9 @@ import android.os.Parcelable;
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.util.JSONUtil;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -54,18 +57,12 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 	public Record(Map<String, Object> valuesAndAttributes, Locale locale) {
 		super(valuesAndAttributes);
 
+		_ddmStructure = new DDMStructure(getValues(), locale);
 		parseServerValues();
 	}
 
 	public Record(Locale locale) {
-		super(new HashMap<String, Object>());
-		_ddmStructure = new DDMStructure(getValues(), locale);
-	}
-
-	public Record(Map<String, Object> stringObjectMap) {
-		super(stringObjectMap);
-		_ddmStructure = new DDMStructure(stringObjectMap, Locale.US);
-		parseServerValues();
+		this(new HashMap<String, Object>(), locale);
 	}
 
 	public void refresh() {
@@ -196,12 +193,8 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		return _ddmStructure;
 	}
 
-	public void setDDMStructure(DDMStructure ddmStructure) {
-		_ddmStructure = ddmStructure;
-	}
-
 	public List<Field> getFields() {
-		return getDDMStructure().getFields();
+		return _ddmStructure.getFields();
 	}
 
 	public int getFieldCount() {
@@ -212,21 +205,16 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		return _ddmStructure.getField(i);
 	}
 
-	public Field getFieldByName(String name) {
-		return _ddmStructure.getFieldByName(name);
-	}
-
 	public Locale getLocale() {
 		return _ddmStructure.getLocale();
 	}
 
-	public void parseXsd(String xsd) {
-		_ddmStructure.parseXsd(xsd);
+	public Field getFieldByName(String name) {
+		return _ddmStructure.getFieldByName(name);
 	}
 
-	public void parseJson(String definition) {
-		//FIXME
-		_ddmStructure.parseJson(definition);
+	public void parseDDMStructure(JSONObject jsonObject) throws JSONException {
+		_ddmStructure.parse(jsonObject);
 	}
 
 	private Record(Parcel in, ClassLoader loader) {
