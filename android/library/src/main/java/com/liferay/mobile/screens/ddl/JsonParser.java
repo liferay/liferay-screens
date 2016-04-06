@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * @author Javier Gamarra
  */
-public class JsonParser implements Parser {
+public class JsonParser implements FieldParser {
 
 	public List<Field> parse(String json, Locale locale) {
 		if (json == null || json.isEmpty()) {
