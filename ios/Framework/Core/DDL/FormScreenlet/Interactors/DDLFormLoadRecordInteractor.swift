@@ -99,7 +99,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 
 		if let recordDataValue = recordData,
 				recordAttributesValue = recordAttributes {
-			self.resultFormRecord?.updateCurrentValues(recordDataValue)
+				self.resultFormRecord?.updateCurrentValues(values: recordDataValue)
 			self.resultFormRecord?.attributes = recordAttributesValue
 		}
 	}

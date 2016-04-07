@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDelegate {
+public class DDLFieldTextareaTableCell_default: DDMFieldTableCell, UITextViewDelegate {
 
 	@IBOutlet public var textView: UITextView?
 	@IBOutlet public var placeholder: UILabel?
@@ -28,7 +28,7 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 	private var originalSeparatorDistance: CGFloat?
 
 
-	//MARK: DDLFieldTableCell
+	//MARK: DDMFieldTableCell
 
 	override public func canBecomeFirstResponder() -> Bool {
 		return textView!.canBecomeFirstResponder()
@@ -39,7 +39,7 @@ public class DDLFieldTextareaTableCell_default: DDLFieldTableCell, UITextViewDel
 	}
 
 	override public func onChangedField() {
-		if let stringField = field as? DDLFieldString {
+		if let stringField = field as? DDMFieldString {
 
 			if stringField.currentValue != nil {
 				textView?.text = stringField.currentValueAsString

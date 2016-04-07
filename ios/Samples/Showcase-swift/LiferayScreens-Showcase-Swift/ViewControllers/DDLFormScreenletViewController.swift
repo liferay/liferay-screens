@@ -68,25 +68,25 @@ class DDLFormScreenletViewController: UIViewController, DDLFormScreenletDelegate
 	}
 
 	func screenlet(screenlet: DDLFormScreenlet,
-			onDocumentFieldUploadStarted field: DDLFieldDocument) {
+			onDocumentFieldUploadStarted field: DDMFieldDocument) {
 		print("DELEGATE: onDocumentFieldUploadStarted called. field -> \(field.debugDescription)\n")
 	}
 
 	func screenlet(screenlet: DDLFormScreenlet,
-			onDocumentField field: DDLFieldDocument,
+			onDocumentField field: DDMFieldDocument,
 			uploadedBytes bytes: UInt64,
 			totalBytes total: UInt64) {
 		print("DELEGATE: onDocumentUploadedBytes called. field -> \(field.debugDescription) \(bytes)/\(total)\n")
 	}
 
 	func screenlet(screenlet: DDLFormScreenlet,
-			onDocumentField field: DDLFieldDocument,
+			onDocumentField field: DDMFieldDocument,
 			uploadResult result: [String:AnyObject]) {
 		print("DELEGATE: onDocumentUploadCompleted called. field -> \(field.debugDescription) result -> \(result)\n")
 	}
 
 	func screenlet(screenlet: DDLFormScreenlet,
-			onDocumentField field: DDLFieldDocument,
+			onDocumentField field: DDMFieldDocument,
 			uploadError error: NSError) {
 		print("DELEGATE: onDocumentUploadError called. field -> \(field.debugDescription) error -> \(error)\n")
 	}

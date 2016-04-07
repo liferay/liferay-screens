@@ -170,7 +170,8 @@ import Foundation
 		let length = bundles.count
 
 		while !found && i < length {
-			let bundle = bundles[i++]
+			let bundle = bundles[i]
+			i += 1
 
 			if let path = bundle.pathForResource(PlistFile, ofType:"plist") {
 				StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: path)

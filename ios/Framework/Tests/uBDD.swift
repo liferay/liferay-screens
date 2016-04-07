@@ -22,7 +22,6 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 import UIKit
 import XCTest
-import SwiftTryCatch
 
 
 private var currentIndentationLevel = 1
@@ -67,12 +66,15 @@ public func then(str: String, code: Void -> Void, action: Action) {
 		case .Pending:
 			doPrint("\(indentation)\(icons.pending) PENDING")
 		case .TestNow:
-			SwiftTryCatch.`try`({
-				code()
+			do {
+				try ObjCTryCatch.catchBlock {
+					code()
+				}
 				doPrint("\(indentation)\(icons.passed) PASSED")
-			}, `catch`: { error in
+			}
+			catch {
 				doPrint("\(indentation)\(icons.failed) FAILED")
-			}, finally: nil)
+			}
 	}
 }
 
@@ -84,12 +86,15 @@ public func eventually(str: String, _ code: AnyObject? -> Void, _ action: Action
 		case .TestAndWaitFor(let notificationName, let testCase):
 			if lastDoneEvent?.name == notificationName {
 				// already called "done"
-				SwiftTryCatch.`try`({
-					code(lastDoneEvent?.result)
+				do {
+					try ObjCTryCatch.catchBlock {
+						code(lastDoneEvent?.result)
+					}
 					doPrint("\(indentation)\(icons.passed) PASSED")
-				}, `catch`: { error in
+				}
+				catch {
 					doPrint("\(indentation)\(icons.failed) FAILED")
-				}, finally: nil)
+				}
 			}
 			else {
 				let expectation = testCase.expectationWithDescription("\(str)-\(NSDate().timeIntervalSince1970)")
@@ -102,29 +107,38 @@ public func eventually(str: String, _ code: AnyObject? -> Void, _ action: Action
 						queue: NSOperationQueue.mainQueue(),
 						usingBlock: { notif in
 
-					SwiftTryCatch.`try`({
-						code(notif.object)
-						doPrint("\(indentation)\(icons.passed) PASSED")
-					}, `catch`: { error in
+					do {
+						try ObjCTryCatch.catchBlock {
+							code(notif.object)
+						}
+					}
+					catch {
 						doPrint("\(indentation)\(icons.failed) FAILED")
-					}, finally: nil)
+					}
 
 					signaled = true
 					expectation.fulfill()
 				})
 
-				SwiftTryCatch.`try`({
+				do {
 					doPrint("\(indentation)\(icons.eventually) Eventually \(str)")
 
-					testCase.waitForExpectationsWithTimeout(5, handler: nil)
+					try ObjCTryCatch.catchBlock {
+						testCase.waitForExpectationsWithTimeout(5, handler: nil)
+					}
 
-					if !signaled {
+					if signaled {
+						doPrint("\(indentation)\(icons.passed) PASSED")
+					}
+					else {
 						doPrint("\(indentation)\(icons.failed) FAILED (timeout)")
 					}
-				}, `catch`: { error in
-				}, finally: {
-					NSNotificationCenter.defaultCenter().removeObserver(observer)
-				})
+				}
+				catch {
+					doPrint("\(indentation)\(icons.failed) FAILED")
+				}
+
+				NSNotificationCenter.defaultCenter().removeObserver(observer)
 			}
 
 			lastDoneEvent = nil
@@ -143,9 +157,9 @@ public func done(notificationName: String, withResult result: AnyObject?) {
 public func scenario(scenario: String, code:Void->Void) {
 	doPrint("\(currentIndentation())\(currentIcons().scenario) \(scenario)")
 
-	currentIndentationLevel++
+	currentIndentationLevel += 1
 	code()
-	currentIndentationLevel--
+	currentIndentationLevel -= 1
 }
 
 public func with(text: String, code: Void -> Void) {
@@ -184,14 +198,25 @@ private func doPrint(str: String) {
 	print(str)
 }
 
-public func assertThat(text: String, code: Void -> Void) {
-	SwiftTryCatch.`try`({
-		code()
+public func assertThat(text: String, code: () -> ()) {
+	do {
+		try ObjCTryCatch.catchBlock {
+			code()
+		}
+
+		// Since Xcode 7.3 (7D175), failed XCTAsserts inside assertThat don't raise any exception.
+		// Because of that, the test fails, but the assetThat line appears as success
+
 		doPrint("\(indentation(currentIndentationLevel + 1))\(currentIcons().assertPassed) assert that \(text)")
-	}, `catch`: { error in
+	}
+	catch let error as NSError {
 		doPrint("\(indentation(currentIndentationLevel + 1))\(currentIcons().assertFailed) assert that \(text)")
-		SwiftTryCatch.throwException(error)
-	}, finally: nil)
+		let exception = NSException(
+			name: String(error.code),
+			reason: error.description,
+			userInfo: error.userInfo)
+		ObjCTryCatch.throwException(exception)
+	}
 }
 
 private func currentIndentation() -> String {

@@ -182,9 +182,9 @@ extension SyncManager {
 			attributes: [String:AnyObject],
 			signal: Signal) {
 
-		let cachedDocument = localRecord.fieldsBy(type: DDLFieldDocument.self)
+		let cachedDocument = localRecord.fieldsBy(type: DDMFieldDocument.self)
 			.map {
-				$0 as! DDLFieldDocument
+				$0 as! DDMFieldDocument
 			}.filter {
 				return $0.cachedKey != nil
 			}.first
@@ -224,7 +224,7 @@ extension SyncManager {
 	}
 
 	private func sendLocalDocument(
-			document: DDLFieldDocument,
+			document: DDMFieldDocument,
 			record: DDLRecord,
 			recordKey: String,
 			recordAttributes: [String:AnyObject],

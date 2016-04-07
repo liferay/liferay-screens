@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class DDLFieldCheckboxTableCell_default: DDLFieldTableCell {
+public class DDLFieldCheckboxTableCell_default: DDMFieldTableCell {
 
 	@IBOutlet public var switchView: UISwitch?
 	@IBOutlet public var label: UILabel?
@@ -32,14 +32,14 @@ public class DDLFieldCheckboxTableCell_default: DDLFieldTableCell {
 	}
 
 
-	//MARK: DDLFieldTableCell
+	//MARK: DDMFieldTableCell
 
 	override public func canBecomeFirstResponder() -> Bool {
 		return false
 	}
 
 	override public func onChangedField() {
-		if let boolField = field as? DDLFieldBoolean {
+		if let boolField = field as? DDMFieldBoolean {
 			switchView?.on = boolField.currentValue as! Bool
 			label?.text = boolField.label
 
