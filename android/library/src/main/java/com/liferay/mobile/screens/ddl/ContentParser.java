@@ -58,10 +58,11 @@ public class ContentParser extends XMLParser {
 	}
 
 	private List<Field> createDocument(Element root, List<Field> currentFields, Locale locale) {
-		List<Field> fields = new ArrayList<>();
 
+		String tag = "dynamic-element";
+		List<Field> fields = new ArrayList<>();
 		Locale defaultLocale = LiferayLocale.getDefaultLocale();
-		NodeList dynamicElementList = root.getElementsByTagName("dynamic-element");
+		NodeList dynamicElementList = root.getElementsByTagName(tag);
 
 		for (int i = 0; i < dynamicElementList.getLength(); i++) {
 			Element dynamicElement = (Element) dynamicElementList.item(i);
@@ -71,7 +72,7 @@ public class ContentParser extends XMLParser {
 				Element element = getLocaleFallback(dynamicElement, locale, defaultLocale, "dynamic-content", "language-id");
 				Field otherField = field.isRepeatable() ? clone(field) : field;
 				otherField.setCurrentValue(element.getTextContent());
-				if (dynamicElement.getElementsByTagName("dynamic-element").getLength() > 0) {
+				if (dynamicElement.getElementsByTagName(tag).getLength() > 0) {
 					otherField.setFields(createDocument(dynamicElement, field.getFields(), locale));
 				}
 				fields.add(otherField);
