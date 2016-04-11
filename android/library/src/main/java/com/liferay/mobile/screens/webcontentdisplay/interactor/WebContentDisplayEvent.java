@@ -35,7 +35,7 @@ public class WebContentDisplayEvent extends BasicEvent {
 
 	public WebContentDisplayEvent(int targetScreenletId, long groupId, String articleId, Locale locale, Long templateId, String html) {
 		super(targetScreenletId);
-		_html = html;
+		_webContent = new WebContent(html);
 
 		_articleId = articleId;
 		_groupId = groupId;
@@ -53,7 +53,7 @@ public class WebContentDisplayEvent extends BasicEvent {
 
 	public WebContentDisplayEvent(int targetScreenletId, long classPK, Locale locale, Long templateId, String html) {
 		super(targetScreenletId);
-		_html = html;
+		_webContent = new WebContent(html);
 
 		_classPK = classPK;
 		_locale = locale;
@@ -70,8 +70,7 @@ public class WebContentDisplayEvent extends BasicEvent {
 
 	public WebContentDisplayEvent(int targetScreenletId, Long structureId, String articleId, Locale locale, WebContent webContent) {
 		super(targetScreenletId);
-		_html = (String) webContent.getValues().get("content");
-		_webcontent = webContent;
+		_webContent = webContent;
 
 		_structureId = structureId;
 		_articleId = articleId;
@@ -94,10 +93,6 @@ public class WebContentDisplayEvent extends BasicEvent {
 		_classPK = classPK;
 	}
 
-	public String getHtml() {
-		return _html;
-	}
-
 	public String getArticleId() {
 		return _articleId;
 	}
@@ -114,16 +109,15 @@ public class WebContentDisplayEvent extends BasicEvent {
 		_structureId = structureId;
 	}
 
-	public WebContent getWebcontent() {
-		return _webcontent;
+	public WebContent getWebContent() {
+		return _webContent;
 	}
 
-	private String _html;
 	private String _articleId;
 	private long _classPK;
 	private long _groupId;
 	private Locale _locale;
 	private Long _templateId;
 	private Long _structureId;
-	private WebContent _webcontent;
+	private WebContent _webContent;
 }

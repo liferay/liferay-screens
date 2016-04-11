@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.webkit.WebView;
 
+import com.liferay.mobile.screens.ddl.model.WebContent;
 import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
 import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet;
 
@@ -40,7 +41,7 @@ public class WebContentDisplayActivity extends ThemeActivity implements WebConte
 	}
 
 	@Override
-	public String onWebContentReceived(WebContentDisplayScreenlet source, String html) {
+	public WebContent onWebContentReceived(WebContentDisplayScreenlet source, WebContent html) {
 		info("Web Content received!");
 		return null;
 	}

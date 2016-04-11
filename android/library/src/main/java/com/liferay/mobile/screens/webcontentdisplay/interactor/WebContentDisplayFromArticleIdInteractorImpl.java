@@ -53,7 +53,7 @@ public class WebContentDisplayFromArticleIdInteractorImpl
 		onEventWithCache(event, event.getGroupId(), event.getArticleId(), event.getLocale(), event.getTemplateId());
 
 		if (!event.isFailed()) {
-			getListener().onWebContentReceived(null, event.getHtml());
+			getListener().onWebContentReceived(null, event.getWebContent());
 		}
 	}
 
@@ -99,7 +99,7 @@ public class WebContentDisplayFromArticleIdInteractorImpl
 			? "" : event.getTemplateId().toString();
 		String webContentId = event.getArticleId() + templateString;
 		CacheSQL.getInstance().set(new TableCache(webContentId, DefaultCachedType.WEB_CONTENT,
-			event.getHtml(), event.getGroupId(), null, event.getLocale()));
+			event.getWebContent().getHtml(), event.getGroupId(), null, event.getLocale()));
 	}
 
 	protected JournalContentConnector getJournalArticleService(long groupId, String articleId, Locale locale) {

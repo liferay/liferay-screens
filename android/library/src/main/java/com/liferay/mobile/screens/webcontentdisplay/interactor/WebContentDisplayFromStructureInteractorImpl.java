@@ -43,7 +43,7 @@ public class WebContentDisplayFromStructureInteractorImpl
 		onEventWithCache(event, event.getStructureId(), event.getArticleId(), event.getLocale());
 
 		if (!event.isFailed()) {
-			getListener().onWebContentReceived(null, event.getHtml());
+			getListener().onWebContentReceived(null, event.getWebContent());
 		}
 	}
 
@@ -90,7 +90,7 @@ public class WebContentDisplayFromStructureInteractorImpl
 	@Override
 	protected void storeToCache(WebContentDisplayEvent event, Object... args) {
 		String webContentId = event.getStructureId() + event.getArticleId();
-		String values = new JSONObject(event.getWebcontent().getValues()).toString();
+		String values = new JSONObject(event.getWebContent().getValues()).toString();
 		CacheSQL.getInstance().set(new TableCache(webContentId, DefaultCachedType.WEB_CONTENT,
 			values, event.getGroupId(), null, event.getLocale()));
 	}

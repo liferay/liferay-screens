@@ -27,6 +27,7 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.ddl.model.WebContent;
 import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayBaseInteractor;
 import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayFromArticleIdInteractor;
 import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayFromArticleIdInteractorImpl;
@@ -90,11 +91,11 @@ public class WebContentDisplayScreenlet
 	}
 
 	@Override
-	public String onWebContentReceived(WebContentDisplayScreenlet source, String html) {
-		String modifiedHtml = html;
+	public WebContent onWebContentReceived(WebContentDisplayScreenlet source, WebContent webContent) {
+		WebContent modifiedHtml = webContent;
 
 		if (_listener != null) {
-			String listenerHtml = _listener.onWebContentReceived(this, html);
+			WebContent listenerHtml = _listener.onWebContentReceived(this, webContent);
 
 			if (listenerHtml != null) {
 				modifiedHtml = listenerHtml;

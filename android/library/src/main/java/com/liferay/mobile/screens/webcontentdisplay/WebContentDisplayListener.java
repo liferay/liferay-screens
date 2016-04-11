@@ -18,13 +18,14 @@ import android.view.MotionEvent;
 import android.webkit.WebView;
 
 import com.liferay.mobile.screens.cache.CacheListener;
+import com.liferay.mobile.screens.ddl.model.WebContent;
 
 /**
  * @author Jose Manuel Navarro
  */
 public interface WebContentDisplayListener extends CacheListener {
 
-	String onWebContentReceived(WebContentDisplayScreenlet source, String html);
+	WebContent onWebContentReceived(WebContentDisplayScreenlet source, WebContent html);
 
 	void onWebContentFailure(WebContentDisplayScreenlet source, Exception e);
 
