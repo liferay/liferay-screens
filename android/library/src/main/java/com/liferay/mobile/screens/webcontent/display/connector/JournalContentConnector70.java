@@ -23,5 +23,15 @@ public class JournalContentConnector70 implements JournalContentConnector {
 		_journalArticleService.getArticle(groupId, articleId);
 	}
 
+	@Override
+	public void getJournalArticles(long groupId, long folderId, int start, int end, JSONObjectWrapper obc) throws Exception {
+		_journalArticleService.getArticles(groupId, folderId, start, end, obc);
+	}
+
+	@Override
+	public void getJournalArticlesCount(long groupId, long folderId) throws Exception {
+		_journalArticleService.getArticlesCount(groupId, folderId);
+	}
+
 	private final JournalArticleService _journalArticleService;
 }
