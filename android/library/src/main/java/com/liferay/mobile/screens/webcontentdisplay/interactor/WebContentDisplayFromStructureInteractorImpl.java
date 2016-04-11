@@ -8,8 +8,12 @@ import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
+import com.liferay.mobile.screens.ddl.model.WebContent;
+import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import com.liferay.mobile.screens.webcontentdisplay.connector.JournalContentConnector;
+
+import org.json.JSONObject;
 
 import java.util.Locale;
 
@@ -74,10 +78,10 @@ public class WebContentDisplayFromStructureInteractorImpl
 
 		String id = structureId + articleId;
 		Long userId = SessionContext.getUserId();
-		TableCache webContent = (TableCache) CacheSQL.getInstance().getById(DefaultCachedType.WEB_CONTENT, id, groupId, userId, locale);
-		if (webContent != null) {
-			//FIXME !
-//			onEvent(new WebContentDisplayEvent(getTargetScreenletId(), structureId, articleId, locale, webContent.getContent()));
+		TableCache tableCache = (TableCache) CacheSQL.getInstance().getById(DefaultCachedType.WEB_CONTENT, id, groupId, userId, locale);
+		if (tableCache != null) {
+			WebContent webContent = new WebContent(JSONUtil.toMap(new JSONObject(tableCache.getContent())), locale);
+			onEvent(new WebContentDisplayEvent(getTargetScreenletId(), structureId, articleId, locale, webContent));
 			return true;
 		}
 		return false;
@@ -86,8 +90,9 @@ public class WebContentDisplayFromStructureInteractorImpl
 	@Override
 	protected void storeToCache(WebContentDisplayEvent event, Object... args) {
 		String webContentId = event.getStructureId() + event.getArticleId();
+		String values = new JSONObject(event.getWebcontent().getValues()).toString();
 		CacheSQL.getInstance().set(new TableCache(webContentId, DefaultCachedType.WEB_CONTENT,
-			event.getHtml(), event.getGroupId(), null, event.getLocale()));
+			values, event.getGroupId(), null, event.getLocale()));
 	}
 
 	private void validate(Long structureId, long groupId, String articleId, Locale locale) {
