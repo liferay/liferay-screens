@@ -46,6 +46,7 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		super.writeToParcel(dest, flags);
+		dest.writeParcelable(_ddmStructure, flags);
 	}
 
 	@Override
@@ -60,11 +61,6 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 	@Override
 	public void parseDDMStructure(JSONObject jsonObject) throws JSONException {
 		_ddmStructure.parse(jsonObject);
-	}
-
-	public String getContent() {
-		//FIXME
-		return (String) _values.get("content");
 	}
 
 	private DDMStructure _ddmStructure;

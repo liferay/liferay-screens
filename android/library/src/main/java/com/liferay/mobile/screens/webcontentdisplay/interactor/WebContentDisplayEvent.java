@@ -70,7 +70,8 @@ public class WebContentDisplayEvent extends BasicEvent {
 
 	public WebContentDisplayEvent(int targetScreenletId, Long structureId, String articleId, Locale locale, WebContent webContent) {
 		super(targetScreenletId);
-		_html = webContent.getContent();
+		_html = (String) webContent.getValues().get("content");
+		_webcontent = webContent;
 
 		_structureId = structureId;
 		_articleId = articleId;
@@ -113,6 +114,10 @@ public class WebContentDisplayEvent extends BasicEvent {
 		_structureId = structureId;
 	}
 
+	public WebContent getWebcontent() {
+		return _webcontent;
+	}
+
 	private String _html;
 	private String _articleId;
 	private long _classPK;
@@ -120,4 +125,5 @@ public class WebContentDisplayEvent extends BasicEvent {
 	private Locale _locale;
 	private Long _templateId;
 	private Long _structureId;
+	private WebContent _webcontent;
 }
