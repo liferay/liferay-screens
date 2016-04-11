@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.webcontentdisplay.interactor;
 
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
+import com.liferay.mobile.screens.ddl.model.WebContent;
 
 import java.util.Locale;
 
@@ -59,6 +60,23 @@ public class WebContentDisplayEvent extends BasicEvent {
 		_templateId = templateId;
 	}
 
+	public WebContentDisplayEvent(int targetScreenletId, Long structureId, String articleId, Locale locale, Exception e) {
+		super(targetScreenletId, e);
+
+		_structureId = structureId;
+		_articleId = articleId;
+		_locale = locale;
+	}
+
+	public WebContentDisplayEvent(int targetScreenletId, Long structureId, String articleId, Locale locale, WebContent webContent) {
+		super(targetScreenletId);
+		_html = webContent.getContent();
+
+		_structureId = structureId;
+		_articleId = articleId;
+		_locale = locale;
+	}
+
 	public Long getGroupId() {
 		return _groupId;
 	}
@@ -87,10 +105,19 @@ public class WebContentDisplayEvent extends BasicEvent {
 		return _templateId;
 	}
 
+	public Long getStructureId() {
+		return _structureId;
+	}
+
+	public void setStructureId(Long structureId) {
+		_structureId = structureId;
+	}
+
 	private String _html;
 	private String _articleId;
 	private long _classPK;
 	private long _groupId;
 	private Locale _locale;
 	private Long _templateId;
+	private Long _structureId;
 }
