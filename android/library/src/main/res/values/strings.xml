@@ -8,4 +8,5 @@
 	<string name="DDLListScreenlet_default">ddl_list_default</string>
 	<string name="UserPortraitScreenlet_default">userportrait_default</string>
 	<string name="WebContentDisplayScreenlet_default">webcontentdisplay_default</string>
+	<string name="WebContentListScreenlet_default">webcontentlist_default</string>
 </resources>
