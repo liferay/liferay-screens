@@ -19,28 +19,28 @@ import com.liferay.mobile.screens.webcontent.display.connector.ScreensJournalCon
  */
 public interface ServiceVersionFactory {
 
-	ForgotPasswordConnector getForgotPasswordConnector(Session session);
-
 	UserConnector getUserConnector(Session session);
 
 	CurrentUserConnector getCurrentUserConnector(Session session);
 
-	ScreensJournalContentConnector getScreensJournalContentConnector(Session session);
-
-	DDLRecordConnector getDDLRecordConnector(Session session);
-
-	JournalContentConnector getJournalContentConnector(Session session);
-
-	DDMStructureConnector getDDMStructureConnector(Session session);
-
-	ScreensDDLRecordConnector getScreensDDLRecordConnector(Session session);
-
-	ScreensAssetEntryConnector getScreensAssetEntryConnector(Session session);
+	ForgotPasswordConnector getForgotPasswordConnector(Session session);
 
 	DLAppConnector getDLAppConnector(Session session);
 
+	DDLRecordConnector getDDLRecordConnector(Session session);
+
+	ScreensDDLRecordConnector getScreensDDLRecordConnector(Session session);
+
 	DDLRecordSetConnector getDDLRecordSetConnector(Session session);
 
+	DDMStructureConnector getDDMStructureConnector(Session session);
+
 	AssetEntryConnector getAssetEntryConnector(Session session);
+
+	ScreensAssetEntryConnector getScreensAssetEntryConnector(Session session);
+
+	JournalContentConnector getJournalContentConnector(Session session);
+
+	ScreensJournalContentConnector getScreensJournalContentConnector(Session session);
 
 }
