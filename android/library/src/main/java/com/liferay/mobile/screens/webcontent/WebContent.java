@@ -1,9 +1,11 @@
-package com.liferay.mobile.screens.ddl.model;
+package com.liferay.mobile.screens.webcontent;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
+import com.liferay.mobile.screens.ddl.model.DDMStructure;
+import com.liferay.mobile.screens.ddl.model.WithDDM;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -76,4 +78,5 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 
 	private DDMStructure _ddmStructure;
 	private String _html;
+
 }

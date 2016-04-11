@@ -4,13 +4,13 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-import com.liferay.mobile.screens.ddl.model.WebContent;
+import com.liferay.mobile.screens.webcontent.WebContent;
 import com.liferay.mobile.screens.testapp.R;
 
 /**
  * @author Javier Gamarra
  */
-public class WebContentDisplayView extends com.liferay.mobile.screens.viewsets.defaultviews.webcontentdisplay.WebContentDisplayView {
+public class WebContentDisplayView extends com.liferay.mobile.screens.viewsets.defaultviews.webcontent.display.WebContentDisplayView {
 
 	public WebContentDisplayView(Context context) {
 		super(context);

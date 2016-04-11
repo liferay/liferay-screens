@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.viewsets.defaultviews.webcontentdisplay;
+package com.liferay.mobile.screens.viewsets.defaultviews.webcontent.display;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -26,7 +26,7 @@ import android.widget.ProgressBar;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.ddl.model.WebContent;
+import com.liferay.mobile.screens.webcontent.WebContent;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
 import com.liferay.mobile.screens.webcontent.display.view.WebContentDisplayViewModel;

@@ -18,7 +18,7 @@ import android.view.MotionEvent;
 import android.webkit.WebView;
 
 import com.liferay.mobile.screens.cache.CacheListener;
-import com.liferay.mobile.screens.ddl.model.WebContent;
+import com.liferay.mobile.screens.webcontent.WebContent;
 
 /**
  * @author Jose Manuel Navarro

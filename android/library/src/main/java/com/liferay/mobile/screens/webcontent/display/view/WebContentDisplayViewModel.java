@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.webcontent.display.view;
 
 import com.liferay.mobile.screens.base.view.BaseViewModel;
-import com.liferay.mobile.screens.ddl.model.WebContent;
+import com.liferay.mobile.screens.webcontent.WebContent;
 
 /**
  * @author Jose Manuel Navarro

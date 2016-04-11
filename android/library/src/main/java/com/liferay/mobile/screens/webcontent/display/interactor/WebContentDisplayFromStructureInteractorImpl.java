@@ -8,7 +8,7 @@ import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
-import com.liferay.mobile.screens.ddl.model.WebContent;
+import com.liferay.mobile.screens.webcontent.WebContent;
 import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import com.liferay.mobile.screens.webcontent.display.connector.JournalContentConnector;

@@ -27,7 +27,7 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.ddl.model.WebContent;
+import com.liferay.mobile.screens.webcontent.WebContent;
 import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayBaseInteractor;
 import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayFromArticleIdInteractor;
 import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayFromArticleIdInteractorImpl;

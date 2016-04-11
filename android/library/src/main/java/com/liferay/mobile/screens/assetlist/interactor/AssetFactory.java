@@ -6,7 +6,7 @@ import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.ddl.ContentParser;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.ddl.model.WebContent;
+import com.liferay.mobile.screens.webcontent.WebContent;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;
 

@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.webcontent.display.interactor;
 
 import com.liferay.mobile.screens.base.list.interactor.GenericBatchAsyncTaskCallback;
-import com.liferay.mobile.screens.ddl.model.WebContent;
+import com.liferay.mobile.screens.webcontent.WebContent;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.JSONUtil;
 
