@@ -40,6 +40,7 @@ public class CustomInteractorActivity extends ThemeActivity
 	public LoginInteractor createInteractor(String actionName) {
 		return new CustomLoginInteractor(_loginScreenlet.getScreenletId());
 	}
+
 	private LoginScreenlet _loginScreenlet;
 
 	private class CustomLoginInteractor extends LoginBasicInteractor {
