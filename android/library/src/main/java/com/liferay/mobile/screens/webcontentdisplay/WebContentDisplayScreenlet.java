@@ -32,6 +32,8 @@ import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplay
 import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayFromArticleIdInteractorImpl;
 import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayFromClassPKInteractor;
 import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayFromClassPKInteractorImpl;
+import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayFromStructureInteractor;
+import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayFromStructureInteractorImpl;
 import com.liferay.mobile.screens.webcontentdisplay.view.WebContentDisplayViewModel;
 
 import java.util.Locale;
@@ -45,6 +47,7 @@ public class WebContentDisplayScreenlet
 
 	public static final String WEB_CONTENT_BY_CLASS_PK = "WEB_CONTENT_BY_CLASS_PK";
 	public static final String WEB_CONTENT_BY_ARTICLE_ID = "WEB_CONTENT_BY_ARTICLE_ID";
+	public static final String WEB_CONTENT_WITH_STRUCTURE = "WEB_CONTENT_WITH_STRUCTURE";
 
 	public WebContentDisplayScreenlet(Context context) {
 		super(context);
@@ -59,7 +62,10 @@ public class WebContentDisplayScreenlet
 	}
 
 	public void load() {
-		if (_classPK != 0) {
+		if (_structureId != null) {
+			performUserAction(WEB_CONTENT_WITH_STRUCTURE);
+		}
+		else if (_classPK != 0) {
 			performUserAction(WEB_CONTENT_BY_CLASS_PK);
 		}
 		else {
@@ -211,6 +217,8 @@ public class WebContentDisplayScreenlet
 
 		_templateId = castToLong(typedArray.getString(R.styleable.WebContentDisplayScreenlet_templateId));
 
+		_structureId = castToLong(typedArray.getString(R.styleable.WebContentDisplayScreenlet_structureId));
+
 		_javascriptEnabled = typedArray.getBoolean(
 			R.styleable.WebContentDisplayScreenlet_javascriptEnabled, false);
 
@@ -231,8 +239,11 @@ public class WebContentDisplayScreenlet
 		if (WEB_CONTENT_BY_ARTICLE_ID.equals(actionName)) {
 			return new WebContentDisplayFromArticleIdInteractorImpl(getScreenletId(), _offlinePolicy);
 		}
-		else {
+		else if (WEB_CONTENT_BY_CLASS_PK.equals(actionName)) {
 			return new WebContentDisplayFromClassPKInteractorImpl(getScreenletId(), _offlinePolicy);
+		}
+		else {
+			return new WebContentDisplayFromStructureInteractorImpl(getScreenletId(), _offlinePolicy);
 		}
 	}
 
@@ -250,11 +261,17 @@ public class WebContentDisplayScreenlet
 
 				interactorFromArticleId.load(_groupId, _articleId, _templateId, locale);
 			}
-			else {
-				WebContentDisplayFromClassPKInteractor interactorFromArticleId =
+			else if (WEB_CONTENT_BY_CLASS_PK.equals(userActionName)) {
+				WebContentDisplayFromClassPKInteractor interactorFromClassPK =
 					(WebContentDisplayFromClassPKInteractor) getInteractor(userActionName);
 
-				interactorFromArticleId.load(_classPK, _templateId, locale);
+				interactorFromClassPK.load(_classPK, _templateId, locale);
+			}
+			else {
+				WebContentDisplayFromStructureInteractor interactorFromStructure =
+					(WebContentDisplayFromStructureInteractor) getInteractor(userActionName);
+
+				interactorFromStructure.load(_structureId, _groupId, _articleId, locale);
 			}
 		}
 		catch (Exception e) {
@@ -271,6 +288,7 @@ public class WebContentDisplayScreenlet
 
 	private Long _templateId;
 	private String _articleId;
+	private Long _structureId;
 	private boolean _autoLoad;
 	private long _classPK;
 	private long _groupId;
