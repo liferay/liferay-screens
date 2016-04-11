@@ -6,6 +6,7 @@
 	<string name="user_portrait">User Portrait</string>
 	<string name="webview">Web View</string>
 	<string name="webview_structured">Web View with DDMStructure</string>
+	<string name="webview_list">Web View List</string>
 	<string name="asset_list">Asset List</string>
 	<string name="ddl_form">DDL Form</string>
 	<string name="ddl_list">DDL List</string>
@@ -22,6 +23,7 @@
 	<string name="ddl_list_label">DDL List Screenlet: Shows a list of DDL records of a specific recordSetId</string>
 	<string name="ddl_form_label">DDL Form Screenlet: Shows a DDLRecord form. Allows file uploading and all DDL fields.</string>
 	<string name="asset_list_label">Asset List Screenlet: Shows a list of assets of a specific className</string>
+	<string name="web_content_list_label">WebContent List Screenlet: Shows a list of web content of a specific folderId</string>
 	<string name="main_activity_label">List of all the screenlets supported on version 1.0.0 of Liferay Screens</string>
 	<string name="customizing_a_screenlet">Customizing an screenlet</string>
 	<string name="add_a_bookmark">Add a Bookmark</string>
@@ -32,4 +34,5 @@
 
 	<string name="custom_interactor">Login with custom interactor</string>
 	<string name="list_bookmarks">List Bookmarks</string>
+
 </resources>

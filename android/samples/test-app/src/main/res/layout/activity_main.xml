@@ -53,6 +53,11 @@
 				android:text="@string/asset_list" />
 
 			<Button
+				android:id="@+id/web_content_list"
+				style="@style/test_app_button"
+				android:text="@string/webview_list" />
+
+			<Button
 				android:id="@+id/ddl_form"
 				style="@style/test_app_button"
 				android:text="@string/ddl_form" />
