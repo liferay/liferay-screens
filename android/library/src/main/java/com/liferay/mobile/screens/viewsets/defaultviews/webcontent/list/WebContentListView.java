@@ -24,7 +24,7 @@ public class WebContentListView extends BaseListScreenletView<WebContent, WebCon
 
 	@Override
 	protected WebContentListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
-		return null;
+		return new WebContentListAdapter(itemLayoutId, itemProgressLayoutId, this);
 	}
 
 }

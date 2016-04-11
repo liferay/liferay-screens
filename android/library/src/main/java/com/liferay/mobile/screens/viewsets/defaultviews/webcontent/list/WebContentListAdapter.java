@@ -19,12 +19,12 @@ public class WebContentListAdapter extends BaseListAdapter<WebContent, WebConten
 	@NonNull
 	@Override
 	public ViewHolder createViewHolder(View view, BaseListAdapterListener listener) {
-		return null;
+		return new ViewHolder(view, listener);
 	}
 
 	@Override
 	protected void fillHolder(WebContent entry, ViewHolder holder) {
-
+		holder.textView.setText(entry.getTitle());
 	}
 
 	public class ViewHolder extends BaseListAdapter.ViewHolder {
