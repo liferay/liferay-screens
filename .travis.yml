@@ -21,7 +21,7 @@ podfile: ios/Framework
 before_install:
 
     #Android installation (sdk, emulator, wait & unlock)
-    - export LICENSES="android-sdk-license-5be876d5|mips-android-sysimage-license-15de68cc|intel-android-sysimage-license-1ea702d1|android-sdk-license-ed0d0a5b"
+    - export LICENSES="android-sdk-license-5be876d5|mips-android-sysimage-license-15de68cc|intel-android-sysimage-license-1ea702d1|android-sdk-license-ed0d0a5b|android-sdk-license-c81a61d9"
     - export COMPONENTS=build-tools-23.0.2,android-23,extra-android-m2repository,extra-google-m2repository
     - curl -L https://raw.github.com/embarkmobile/android-sdk-installer/version-2/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS --accept=$LICENSES && source ~/.android-sdk-installer/env
 
