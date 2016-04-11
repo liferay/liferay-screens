@@ -10,17 +10,13 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 /**
@@ -30,17 +26,13 @@ public class ContentParser extends XMLParser {
 
 	public List<Field> parseContent(DDMStructure structure, String content) {
 		try {
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder builder = factory.newDocumentBuilder();
-			Document document = builder.parse(new InputSource(new StringReader(content)));
-
-			Element root = document.getDocumentElement();
-			return createDocument(root, structure.getFields(), structure.getLocale());
+			Document document = getDocument(content);
+			return createDocument(document.getDocumentElement(), structure.getFields(), structure.getLocale());
 		}
 		catch (ParserConfigurationException | IOException | SAXException e) {
 			LiferayLogger.e("Error parsing content", e);
+			return null;
 		}
-		return null;
 	}
 
 	public Field getFieldByName(List<Field> fields, String fieldName) {

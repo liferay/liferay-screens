@@ -5,20 +5,41 @@ import android.support.annotation.Nullable;
 import com.liferay.mobile.screens.util.LiferayLocale;
 
 import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 /**
  * @author Javier Gamarra
  */
 public abstract class XMLParser {
+
+	protected Document getDocument(String content) throws ParserConfigurationException, SAXException, IOException {
+
+		if (content == null || content.isEmpty()) {
+			throw new IllegalArgumentException("Xml cannot be empty");
+		}
+
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder = factory.newDocumentBuilder();
+
+		return builder.parse(new InputSource(new StringReader(content)));
+	}
 
 	protected Map<String, Object> getAttributes(Element element) {
 		NamedNodeMap nodeMap = element.getAttributes();
