@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.webcontentdisplay.connector;
+package com.liferay.mobile.screens.webcontent.display.connector;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 

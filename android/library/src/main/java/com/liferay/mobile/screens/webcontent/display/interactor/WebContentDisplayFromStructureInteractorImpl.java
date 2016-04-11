@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.webcontentdisplay.interactor;
+package com.liferay.mobile.screens.webcontent.display.interactor;
 
 import com.liferay.mobile.android.service.BatchSessionImpl;
 import com.liferay.mobile.android.service.Session;
@@ -11,7 +11,7 @@ import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
 import com.liferay.mobile.screens.ddl.model.WebContent;
 import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.ServiceProvider;
-import com.liferay.mobile.screens.webcontentdisplay.connector.JournalContentConnector;
+import com.liferay.mobile.screens.webcontent.display.connector.JournalContentConnector;
 
 import org.json.JSONObject;
 

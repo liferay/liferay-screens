@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.webcontentdisplay.interactor;
+package com.liferay.mobile.screens.webcontent.display.interactor;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
@@ -22,7 +22,7 @@ import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.ServiceProvider;
-import com.liferay.mobile.screens.webcontentdisplay.connector.ScreensJournalContentConnector;
+import com.liferay.mobile.screens.webcontent.display.connector.ScreensJournalContentConnector;
 
 import java.util.Locale;
 

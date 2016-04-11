@@ -28,8 +28,8 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.ddl.model.WebContent;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet;
-import com.liferay.mobile.screens.webcontentdisplay.view.WebContentDisplayViewModel;
+import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
+import com.liferay.mobile.screens.webcontent.display.view.WebContentDisplayViewModel;
 
 /**
  * @author Silvio Santos

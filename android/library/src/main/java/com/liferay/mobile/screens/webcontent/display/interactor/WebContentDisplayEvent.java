@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.webcontentdisplay.interactor;
+package com.liferay.mobile.screens.webcontent.display.interactor;
 
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 import com.liferay.mobile.screens.ddl.model.WebContent;

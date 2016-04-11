@@ -12,15 +12,15 @@
  * details.
  */
 
-package com.liferay.mobile.screens.webcontentdisplay.interactor;
+package com.liferay.mobile.screens.webcontent.display.interactor;
 
 import java.util.Locale;
 
 /**
  * @author Jose Manuel Navarro
  */
-public interface WebContentDisplayFromArticleIdInteractor extends WebContentDisplayBaseInteractor {
+public interface WebContentDisplayFromClassPKInteractor extends WebContentDisplayBaseInteractor {
 
-	void load(long groupId, String articleId, Long templateId, Locale locale) throws Exception;
+	void load(long classPK, Long templateId, Locale locale) throws Exception;
 
 }

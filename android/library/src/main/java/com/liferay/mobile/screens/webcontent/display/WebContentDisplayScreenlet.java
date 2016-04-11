@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.webcontentdisplay;
+package com.liferay.mobile.screens.webcontent.display;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -28,14 +28,14 @@ import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.model.WebContent;
-import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayBaseInteractor;
-import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayFromArticleIdInteractor;
-import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayFromArticleIdInteractorImpl;
-import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayFromClassPKInteractor;
-import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayFromClassPKInteractorImpl;
-import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayFromStructureInteractor;
-import com.liferay.mobile.screens.webcontentdisplay.interactor.WebContentDisplayFromStructureInteractorImpl;
-import com.liferay.mobile.screens.webcontentdisplay.view.WebContentDisplayViewModel;
+import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayBaseInteractor;
+import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayFromArticleIdInteractor;
+import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayFromArticleIdInteractorImpl;
+import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayFromClassPKInteractor;
+import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayFromClassPKInteractorImpl;
+import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayFromStructureInteractor;
+import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayFromStructureInteractorImpl;
+import com.liferay.mobile.screens.webcontent.display.view.WebContentDisplayViewModel;
 
 import java.util.Locale;
 

@@ -5,7 +5,7 @@
 	android:layout_height="match_parent"
 	tools:context="com.liferay.mobile.screens.testapp.JournalArticleWithTemplateActivity">
 
-	<com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet
+	<com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
 		android:id="@+id/journal_article_with_template_screenlet"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
@@ -14,7 +14,7 @@
 		app:offlinePolicy="REMOTE_FIRST"
 		app:templateId="@string/liferay_template_id1" />
 
-	<com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet
+	<com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
 		android:id="@+id/journal_article_with_template_alternative"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"

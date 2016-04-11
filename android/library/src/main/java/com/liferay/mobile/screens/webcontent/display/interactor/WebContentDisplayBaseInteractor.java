@@ -12,16 +12,14 @@
  * details.
  */
 
-package com.liferay.mobile.screens.webcontentdisplay.view;
+package com.liferay.mobile.screens.webcontent.display.interactor;
 
-import com.liferay.mobile.screens.base.view.BaseViewModel;
-import com.liferay.mobile.screens.ddl.model.WebContent;
+import com.liferay.mobile.screens.base.interactor.Interactor;
+import com.liferay.mobile.screens.webcontent.display.WebContentDisplayListener;
 
 /**
  * @author Jose Manuel Navarro
  */
-public interface WebContentDisplayViewModel extends BaseViewModel {
-
-	void showFinishOperation(WebContent html);
+public interface WebContentDisplayBaseInteractor extends Interactor<WebContentDisplayListener> {
 
 }

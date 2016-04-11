@@ -1,15 +1,15 @@
-package com.liferay.mobile.screens.webcontentdisplay.connector;
+package com.liferay.mobile.screens.webcontent.display.connector;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v7.journalarticle.JournalArticleService;
+import com.liferay.mobile.android.v62.journalarticle.JournalArticleService;
 
 /**
  * @author Javier Gamarra
  */
-public class JournalContentConnector70 implements JournalContentConnector {
+public class JournalContentConnector62 implements JournalContentConnector {
 
-	public JournalContentConnector70(Session session) {
+	public JournalContentConnector62(Session session) {
 		_journalArticleService = new JournalArticleService(session);
 	}
 

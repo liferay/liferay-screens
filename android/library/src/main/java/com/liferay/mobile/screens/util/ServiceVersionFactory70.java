@@ -19,10 +19,10 @@ import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector70;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector70;
-import com.liferay.mobile.screens.webcontentdisplay.connector.JournalContentConnector;
-import com.liferay.mobile.screens.webcontentdisplay.connector.JournalContentConnector70;
-import com.liferay.mobile.screens.webcontentdisplay.connector.ScreensJournalContentConnector;
-import com.liferay.mobile.screens.webcontentdisplay.connector.ScreensJournalContentConnector70;
+import com.liferay.mobile.screens.webcontent.display.connector.JournalContentConnector;
+import com.liferay.mobile.screens.webcontent.display.connector.JournalContentConnector70;
+import com.liferay.mobile.screens.webcontent.display.connector.ScreensJournalContentConnector;
+import com.liferay.mobile.screens.webcontent.display.connector.ScreensJournalContentConnector70;
 
 /**
  * @author Javier Gamarra

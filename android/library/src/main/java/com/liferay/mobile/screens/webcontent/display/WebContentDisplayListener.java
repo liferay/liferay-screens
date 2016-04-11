@@ -12,15 +12,23 @@
  * details.
  */
 
-package com.liferay.mobile.screens.webcontentdisplay.interactor;
+package com.liferay.mobile.screens.webcontent.display;
 
-import java.util.Locale;
+import android.view.MotionEvent;
+import android.webkit.WebView;
+
+import com.liferay.mobile.screens.cache.CacheListener;
+import com.liferay.mobile.screens.ddl.model.WebContent;
 
 /**
  * @author Jose Manuel Navarro
  */
-public interface WebContentDisplayFromClassPKInteractor extends WebContentDisplayBaseInteractor {
+public interface WebContentDisplayListener extends CacheListener {
 
-	void load(long classPK, Long templateId, Locale locale) throws Exception;
+	WebContent onWebContentReceived(WebContentDisplayScreenlet source, WebContent html);
+
+	void onWebContentFailure(WebContentDisplayScreenlet source, Exception e);
+
+	void onWebContentClicked(WebView.HitTestResult result, MotionEvent event);
 
 }

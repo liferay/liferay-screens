@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.webcontentdisplay.interactor;
+package com.liferay.mobile.screens.webcontent.display.interactor;
 
 import java.util.Locale;
 

@@ -11,8 +11,8 @@ import com.liferay.mobile.screens.ddl.form.connector.DDLRecordSetConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector;
-import com.liferay.mobile.screens.webcontentdisplay.connector.JournalContentConnector;
-import com.liferay.mobile.screens.webcontentdisplay.connector.ScreensJournalContentConnector;
+import com.liferay.mobile.screens.webcontent.display.connector.JournalContentConnector;
+import com.liferay.mobile.screens.webcontent.display.connector.ScreensJournalContentConnector;
 
 /**
  * @author Javier Gamarra

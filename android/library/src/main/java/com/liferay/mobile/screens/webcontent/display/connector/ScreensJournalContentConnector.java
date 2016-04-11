@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.webcontentdisplay.connector;
+package com.liferay.mobile.screens.webcontent.display.connector;
 
 /**
  * @author Javier Gamarra

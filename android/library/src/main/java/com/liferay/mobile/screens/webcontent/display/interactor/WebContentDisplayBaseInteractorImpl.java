@@ -1,8 +1,8 @@
-package com.liferay.mobile.screens.webcontentdisplay.interactor;
+package com.liferay.mobile.screens.webcontent.display.interactor;
 
 import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
-import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
+import com.liferay.mobile.screens.webcontent.display.WebContentDisplayListener;
 
 import java.util.Locale;
 
