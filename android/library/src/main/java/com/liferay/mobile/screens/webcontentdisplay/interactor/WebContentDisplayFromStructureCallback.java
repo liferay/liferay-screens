@@ -17,12 +17,12 @@ package com.liferay.mobile.screens.webcontentdisplay.interactor;
 import com.liferay.mobile.screens.base.list.interactor.GenericBatchAsyncTaskCallback;
 import com.liferay.mobile.screens.ddl.model.WebContent;
 import com.liferay.mobile.screens.util.EventBusUtil;
+import com.liferay.mobile.screens.util.JSONUtil;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 
 /**
@@ -40,11 +40,10 @@ public class WebContentDisplayFromStructureCallback
 
 	@Override
 	public WebContent transform(Object obj) throws Exception {
-
-		WebContent result = new WebContent(new HashMap<String, Object>(), _locale);
-		JSONArray jsonArray = ((JSONArray) obj).getJSONArray(0);
-		List<WebContent> entries = new ArrayList<>();
-
+		JSONArray array = (JSONArray) obj;
+		JSONObject values = array.getJSONObject(0);
+		WebContent result = new WebContent(JSONUtil.toMap(values), _locale);
+		result.parseDDMStructure(array.getJSONObject(1));
 		return result;
 	}
 
