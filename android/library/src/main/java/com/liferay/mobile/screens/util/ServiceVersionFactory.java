@@ -11,6 +11,7 @@ import com.liferay.mobile.screens.ddl.form.connector.DDLRecordSetConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector;
+import com.liferay.mobile.screens.sites.SiteConnector;
 import com.liferay.mobile.screens.webcontentdisplay.connector.JournalContentConnector;
 import com.liferay.mobile.screens.webcontentdisplay.connector.ScreensJournalContentConnector;
 
@@ -43,4 +44,5 @@ public interface ServiceVersionFactory {
 
 	AssetEntryConnector getAssetEntryConnector(Session session);
 
+	SiteConnector getSiteConnector(Session session);
 }

@@ -20,6 +20,7 @@ import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector62;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector62;
+import com.liferay.mobile.screens.sites.SiteConnector;
 import com.liferay.mobile.screens.webcontentdisplay.connector.JournalContentConnector;
 import com.liferay.mobile.screens.webcontentdisplay.connector.JournalContentConnector62;
 import com.liferay.mobile.screens.webcontentdisplay.connector.ScreensJournalContentConnector;
@@ -76,6 +77,11 @@ public class ServiceVersionFactory62 implements ServiceVersionFactory {
 
 	public AssetEntryConnector getAssetEntryConnector(Session session) {
 		return new AssetEntryConnector62(session);
+	}
+
+	@Override
+	public SiteConnector getSiteConnector(Session session) {
+		return new SiteConnector62(session);
 	}
 
 }
