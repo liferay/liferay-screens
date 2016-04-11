@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
+import com.liferay.mobile.screens.ddl.StaticParser;
 import com.liferay.mobile.screens.ddl.model.DDMStructure;
 import com.liferay.mobile.screens.ddl.model.WithDDM;
 
@@ -44,7 +45,8 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 	public WebContent(Map<String, Object> map, Locale locale) {
 		super(map);
 		_ddmStructure = new DDMStructure(map, locale);
-		_html = (String) map.get("content");
+		_locale = locale;
+		_html = new StaticParser().parse((String) map.get("content"), "static-content", locale);
 	}
 
 	public WebContent(String html) {
@@ -76,7 +78,16 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 		return _html;
 	}
 
+	@Override
+	public String getTitle() {
+		return getField("Title", super.getTitle());
+	}
+
+	public String getField(String name, String content) {
+		return new StaticParser().parse(content, name, _locale);
+	}
+
 	private DDMStructure _ddmStructure;
 	private String _html;
-
+	private Locale _locale;
 }
