@@ -47,27 +47,30 @@ public class Liferay62WebContentLoadStructuredByArticleIdConnector: WebContentLo
 			guard results.count == 2 else {
 				return nil
 			}
-			guard let structureResult = results[0] as? [String:AnyObject] else {
+			guard var structureResult = results[0] as? [String:AnyObject] else {
 				return nil
 			}
 			guard let xsd = structureResult["xsd"] as? String else {
 				return nil
 			}
-			guard let articleResult = results[1] as? [String:AnyObject] else {
+			guard var articleResult = results[1] as? [String:AnyObject] else {
 				return nil
 			}
 			guard let xmlContent = articleResult["content"] as? String else {
 				return nil
 			}
 
+			structureResult.removeValueForKey("xsd")
+			articleResult.removeValueForKey("content")
+
 			let structure = DDMStructure(
 				xsd: xsd,
 				locale: NSLocale(localeIdentifier: NSLocale.currentLocaleString),
-				attributes: structureResult) // <- TODO remove xsd
+				attributes: structureResult)
 
 			let record = DDLRecord(structure: structure)
 			record.updateCurrentValues(xmlValues: xmlContent)
-			record.attributes = articleResult // <- TODO Remove content
+			record.attributes = articleResult
 
 			return record
 		}
