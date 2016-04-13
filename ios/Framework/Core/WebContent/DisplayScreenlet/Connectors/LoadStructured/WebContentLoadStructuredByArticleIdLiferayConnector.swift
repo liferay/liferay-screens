@@ -63,10 +63,12 @@ public class Liferay62WebContentLoadStructuredByArticleIdConnector: WebContentLo
 			structureResult.removeValueForKey("xsd")
 			articleResult.removeValueForKey("content")
 
-			let structure = DDMStructure(
-				xsd: xsd,
-				locale: NSLocale(localeIdentifier: NSLocale.currentLocaleString),
-				attributes: structureResult)
+			guard let structure = DDMStructure(
+					xsd: xsd,
+					locale: NSLocale(localeIdentifier: NSLocale.currentLocaleString),
+					attributes: structureResult) else {
+				return nil
+			}
 
 			let record = DDLRecord(structure: structure)
 			record.updateCurrentValues(xmlValues: xmlContent)

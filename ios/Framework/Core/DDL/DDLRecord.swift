@@ -83,7 +83,7 @@ import Foundation
 	}
 
 	public init(xsd: String, locale: NSLocale) {
-		structure = DDMStructure(xsd: xsd, locale: locale, attributes: [:])
+		structure = DDMStructure(xsd: xsd, locale: locale)
 		untypedValues = nil
 
 		super.init()

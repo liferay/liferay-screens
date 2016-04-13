@@ -33,31 +33,35 @@ import Foundation
 
 
 	//MARK: Init
-	
-	public init(xsd: String, locale: NSLocale, attributes: [String:AnyObject]) {
-		if let parsedFields = DDMXSDParser().parse(xsd, locale: locale) {
-		 	if !parsedFields.isEmpty {
-				fields = parsedFields
-			}
-		}
 
+	public init(fields: [DDMField], locale: NSLocale, attributes: [String:AnyObject]) {
+		self.fields = fields
 		self.locale = locale
 		self.attributes = attributes
 
 		super.init()
 	}
-
-	public init(json: String, locale: NSLocale) {
-		if let parsedFields = DDMJSONParser().parse(json, locale: locale) {
-			if !parsedFields.isEmpty {
-				fields = parsedFields
-			}
+	
+	public convenience init?(xsd: String, locale: NSLocale, attributes: [String:AnyObject] = [:]) {
+		guard let parsedFields = DDMXSDParser().parse(xsd, locale: locale) else {
+			return nil
+		}
+		guard !parsedFields.isEmpty else {
+			return nil
 		}
 
-		self.locale = locale
-		self.attributes = [:]
+		self.init(fields: parsedFields, locale: locale, attributes: attributes)
+	}
 
-		super.init()
+	public convenience init?(json: String, locale: NSLocale, attributes: [String:AnyObject] = [:]) {
+		guard let parsedFields = DDMJSONParser().parse(json, locale: locale) else {
+			return nil
+		}
+		guard !parsedFields.isEmpty else {
+			return nil
+		}
+
+		self.init(fields: parsedFields, locale: locale, attributes: attributes)
 	}
 
 	public required init?(coder aDecoder: NSCoder) {

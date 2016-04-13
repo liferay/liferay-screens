@@ -19,14 +19,20 @@ class DDMTypedValuesXMLParser_Basic_Tests: XCTestCase {
 	private let defaultLocale = NSLocale(localeIdentifier: "en_US")
 
 
-	func test_Parse_ShouldSetValues_WhenStructureHasThoseFields() {
-		let structure = DDMStructure(xsd: textXSD, locale: defaultLocale, attributes: [:])
+	func test_Parse_ShouldReturnNil_WhenStructureIsInvalid() {
+		let structure = DDMStructure(xsd: "this-is-an-invalid-xml", locale: defaultLocale)
+		XCTAssertNil(structure)
+	}
 
-		let field = structure.fieldBy(name: "A_Text")
+	func test_Parse_ShouldSetValues_WhenStructureHasThoseFields() {
+		let structure = DDMStructure(xsd: textXSD, locale: defaultLocale)
+		XCTAssertNotNil(structure)
+
+		let field = structure!.fieldBy(name: "A_Text")
 		XCTAssertNotNil(field)
 		XCTAssertNil(field?.currentValue)
 
-		let result = DDMTypedValuesXMLParser().parse(textValues, structure: structure)
+		let result = DDMTypedValuesXMLParser().parse(textValues, structure: structure!)
 
 		XCTAssertEqual(1, result)
 		XCTAssertEqual("A Text", field?.currentValueAsString)
