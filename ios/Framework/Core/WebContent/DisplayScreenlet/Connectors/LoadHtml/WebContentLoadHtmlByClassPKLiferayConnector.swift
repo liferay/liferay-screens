@@ -30,22 +30,22 @@ public class WebContentLoadHtmlByClassPKLiferayConnector: WebContentLoadHtmlBase
 public class Liferay62WebContentLoadHtmlByClassPKConnector: WebContentLoadHtmlByClassPKLiferayConnector {
 
 	override internal func doGetJournalArticleWithTemplate(
-		templateId: Int64,
-		session: LRSession) -> String? {
-			let result: String?
-			let service = LRScreensjournalarticleService_v62(session: session)
+			templateId: Int64,
+			session: LRSession) -> String? {
+		let result: String?
+		let service = LRScreensjournalarticleService_v62(session: session)
 
-			do {
-				result = try service.getJournalArticleContentWithClassPK(classPK,
-					ddmTemplateId: templateId,
-					locale: NSLocale.currentLocaleString)
-			}
-			catch let error as NSError {
-				lastError = error
-				result = nil
-			}
+		do {
+			result = try service.getJournalArticleContentWithClassPK(classPK,
+				ddmTemplateId: templateId,
+				locale: NSLocale.currentLocaleString)
+		}
+		catch let error as NSError {
+			lastError = error
+			result = nil
+		}
 
-			return result
+		return result
 	}
 
 	override internal func doGetJournalArticle(session: LRSession) -> String? {
@@ -71,22 +71,22 @@ public class Liferay70WebContentLoadHtmlByClassPKConnector: WebContentLoadHtmlBy
 
 
 	override internal func doGetJournalArticleWithTemplate(
-		templateId: Int64,
-		session: LRSession) -> String? {
-			let result: String?
-			let service = LRScreensjournalarticleService_v70(session: session)
+			templateId: Int64,
+			session: LRSession) -> String? {
+		let result: String?
+		let service = LRScreensjournalarticleService_v70(session: session)
 
-			do {
-				result = try service.getJournalArticleContentWithClassPK(classPK,
-					ddmTemplateId: templateId,
-					locale: NSLocale.currentLocaleString)
-			}
-			catch let error as NSError {
-				lastError = error
-				result = nil
-			}
+		do {
+			result = try service.getJournalArticleContentWithClassPK(classPK,
+				ddmTemplateId: templateId,
+				locale: NSLocale.currentLocaleString)
+		}
+		catch let error as NSError {
+			lastError = error
+			result = nil
+		}
 
-			return result
+		return result
 	}
 
 	override internal func doGetJournalArticle(session: LRSession) -> String? {
