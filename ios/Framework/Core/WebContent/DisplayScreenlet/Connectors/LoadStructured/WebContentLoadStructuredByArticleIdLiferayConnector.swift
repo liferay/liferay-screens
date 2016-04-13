@@ -76,7 +76,8 @@ public class Liferay62WebContentLoadStructuredByArticleIdConnector: WebContentLo
 
 			return record
 		}
-		catch {
+		catch let error as NSError {
+			lastError = error
 		}
 
 		return nil
@@ -134,10 +135,10 @@ public class Liferay70WebContentLoadStructuredByArticleIdConnector: WebContentLo
 
 			return record
 		}
-		catch {
-			print("err->\(error)")
+		catch let error as NSError {
+			lastError = error
 		}
-		
+
 		return nil
 	}
 

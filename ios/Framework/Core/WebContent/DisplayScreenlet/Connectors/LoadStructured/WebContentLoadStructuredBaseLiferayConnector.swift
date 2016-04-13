@@ -35,7 +35,9 @@ public class WebContentLoadStructuredBaseLiferayConnector: WebContentLoadBaseLif
 			lastError = nil
 		}
 		else {
-			lastError = NSError.errorWithCause(.InvalidServerResponse)
+			if lastError == nil {
+				lastError = NSError.errorWithCause(.InvalidServerResponse)
+			}
 			self.resultRecord = nil
 		}
 	}
