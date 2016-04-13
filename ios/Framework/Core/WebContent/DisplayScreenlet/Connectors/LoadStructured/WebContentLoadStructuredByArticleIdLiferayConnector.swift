@@ -88,7 +88,57 @@ public class Liferay62WebContentLoadStructuredByArticleIdConnector: WebContentLo
 public class Liferay70WebContentLoadStructuredByArticleIdConnector: WebContentLoadStructuredByArticleIdLiferayConnector {
 
 	override internal func doGetJournalArticleStructure(session: LRSession) -> DDLRecord? {
-		fatalError("TODO")
+		let batchSession = LRBatchSession(session: session)
+
+		let structureSrv = LRDDMStructureService_v7(session: batchSession)
+		_ = try? structureSrv.getStructureWithStructureId(self.structureId)
+
+		let journalArticleSrv = LRJournalArticleService_v7(session: batchSession)
+		_ = try? journalArticleSrv.getArticleWithGroupId(self.groupId!, articleId: self.articleId)
+
+		guard batchSession.commands.count == 2 else {
+			return nil
+		}
+
+		do {
+			let results = try batchSession.invoke()
+			guard results.count == 2 else {
+				return nil
+			}
+			guard var structureResult = results[0] as? [String:AnyObject] else {
+				return nil
+			}
+			guard let json = structureResult["definition"] as? String else {
+				return nil
+			}
+			guard var articleResult = results[1] as? [String:AnyObject] else {
+				return nil
+			}
+			guard let xmlContent = articleResult["content"] as? String else {
+				return nil
+			}
+
+			structureResult.removeValueForKey("definition")
+			articleResult.removeValueForKey("content")
+
+			guard let structure = DDMStructure(
+					json: json,
+					locale: NSLocale(localeIdentifier: NSLocale.currentLocaleString),
+					attributes: structureResult) else {
+				return nil
+			}
+
+			let record = DDLRecord(structure: structure)
+			record.updateCurrentValues(xmlValues: xmlContent)
+			record.attributes = articleResult
+
+			return record
+		}
+		catch {
+			print("err->\(error)")
+		}
+		
+		return nil
 	}
 
 }
