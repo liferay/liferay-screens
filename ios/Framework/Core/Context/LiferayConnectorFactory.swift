@@ -67,9 +67,9 @@ public protocol LiferayConnectorFactory {
 		endRow: Int,
 		computeRowCount: Bool) -> DDLListPageLiferayConnector
 
-	func createWebContentLoadHtmlByArticleIdConnector(
+	func createWebContentLoadHtmlConnector(
 			groupId groupId: Int64,
-			articleId: String) -> WebContentLoadHtmlByArticleIdLiferayConnector
+			articleId: String) -> WebContentLoadHtmlLiferayConnector
 
 	func createWebContentLoadStructuredByArticleIdConnector(
 		structureId structureId: Int64,
@@ -204,10 +204,10 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			computeRowCount: computeRowCount)
 	}
 
-	public func createWebContentLoadHtmlByArticleIdConnector(
+	public func createWebContentLoadHtmlConnector(
 			groupId groupId: Int64,
-			articleId: String) -> WebContentLoadHtmlByArticleIdLiferayConnector {
-		return Liferay62WebContentLoadHtmlByArticleIdConnector(
+			articleId: String) -> WebContentLoadHtmlLiferayConnector {
+		return Liferay62WebContentLoadHtmlConnector(
 			groupId: groupId,
 			articleId: articleId)
 	}
@@ -365,10 +365,10 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			computeRowCount: computeRowCount)
 	}
 
-	public func createWebContentLoadHtmlByArticleIdConnector(
+	public func createWebContentLoadHtmlConnector(
 			groupId groupId: Int64,
-			articleId: String) -> WebContentLoadHtmlByArticleIdLiferayConnector {
-		return Liferay70WebContentLoadHtmlByArticleIdConnector(
+			articleId: String) -> WebContentLoadHtmlLiferayConnector {
+		return Liferay70WebContentLoadHtmlConnector(
 			groupId: groupId,
 			articleId: articleId)
 	}
