@@ -19,7 +19,7 @@ ext {
 	buildToolsVersion = '23.0.2'
 
 	versionCode = 4
-	versionName = '1.4.0.beta8'
+	versionName = '1.4.0.rc1'
 
 	publishedGroupId = 'com.liferay.mobile'
 	libraryName = 'Liferay Screens for Android'
