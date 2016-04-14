@@ -68,13 +68,13 @@ public protocol LiferayConnectorFactory {
 		computeRowCount: Bool) -> DDLListPageLiferayConnector
 
 	func createWebContentLoadHtmlConnector(
-			groupId groupId: Int64,
-			articleId: String) -> WebContentLoadHtmlLiferayConnector
+		groupId groupId: Int64,
+		articleId: String) -> WebContentLoadHtmlLiferayConnector
 
-	func createWebContentLoadStructuredByArticleIdConnector(
-		structureId structureId: Int64,
-		groupId: Int64,
-		articleId: String) -> WebContentLoadStructuredByArticleIdLiferayConnector
+	func createWebContentLoadStructuredConnector(
+		groupId groupId: Int64,
+		articleId: String,
+		structureId: Int64) -> WebContentLoadStructuredLiferayConnector
 
 	func createDDLFormLoadConnector(structureId: Int64) -> DDLFormLoadLiferayConnector
 
@@ -212,14 +212,14 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			articleId: articleId)
 	}
 
-	public func createWebContentLoadStructuredByArticleIdConnector(
-			structureId structureId: Int64,
-			groupId: Int64,
-			articleId: String) -> WebContentLoadStructuredByArticleIdLiferayConnector {
-		return Liferay62WebContentLoadStructuredByArticleIdConnector(
-			structureId: structureId,
+	public func createWebContentLoadStructuredConnector(
+			groupId groupId: Int64,
+			articleId: String,
+			structureId: Int64) -> WebContentLoadStructuredLiferayConnector {
+		return Liferay62WebContentLoadStructuredConnector(
 			groupId: groupId,
-			articleId: articleId)
+			articleId: articleId,
+			structureId: structureId)
 	}
 
 	public func createDDLFormLoadConnector(structureId: Int64) -> DDLFormLoadLiferayConnector {
@@ -373,14 +373,14 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			articleId: articleId)
 	}
 
-	public func createWebContentLoadStructuredByArticleIdConnector(
-			structureId structureId: Int64,
-			groupId: Int64,
-			articleId: String) -> WebContentLoadStructuredByArticleIdLiferayConnector {
-		return Liferay70WebContentLoadStructuredByArticleIdConnector(
-			structureId: structureId,
+	public func createWebContentLoadStructuredConnector(
+			groupId groupId: Int64,
+			articleId: String,
+			structureId: Int64) -> WebContentLoadStructuredLiferayConnector {
+		return Liferay70WebContentLoadStructuredConnector(
 			groupId: groupId,
-			articleId: articleId)
+			articleId: articleId,
+			structureId: structureId)
 	}
 
 	public func createDDLFormLoadConnector(structureId: Int64) -> DDLFormLoadLiferayConnector {

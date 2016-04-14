@@ -14,20 +14,46 @@
 import UIKit
 
 
-public class WebContentLoadStructuredByArticleIdLiferayConnector: WebContentLoadStructuredBaseLiferayConnector {
+public class WebContentLoadStructuredLiferayConnector: WebContentLoadBaseLiferayConnector {
 
+	public let structureId: Int64
 	public let articleId: String
 
-	public init(structureId: Int64, groupId: Int64, articleId: String) {
-		self.articleId = articleId
+	public var resultRecord: DDLRecord?
 
-		super.init(groupId: groupId, structureId: structureId)
+	public init(groupId: Int64, articleId: String, structureId: Int64) {
+		self.articleId = articleId
+		self.structureId = structureId
+
+		super.init()
+
+		self.groupId = groupId
+	}
+
+
+	//MARK: ServerConnector
+
+	override public func doRun(session session: LRSession) {
+		if let resultRecord = doGetJournalArticleStructure(session) {
+			self.resultRecord = resultRecord
+			lastError = nil
+		}
+		else {
+			if lastError == nil {
+				lastError = NSError.errorWithCause(.InvalidServerResponse)
+			}
+			self.resultRecord = nil
+		}
+	}
+
+	internal func doGetJournalArticleStructure(session: LRSession) -> DDLRecord? {
+		fatalError("doGetJournalArticle method must be overwritten")
 	}
 
 }
 
 
-public class Liferay62WebContentLoadStructuredByArticleIdConnector: WebContentLoadStructuredByArticleIdLiferayConnector {
+public class Liferay62WebContentLoadStructuredConnector: WebContentLoadStructuredLiferayConnector {
 
 	override internal func doGetJournalArticleStructure(session: LRSession) -> DDLRecord? {
 		let batchSession = LRBatchSession(session: session)
@@ -86,7 +112,7 @@ public class Liferay62WebContentLoadStructuredByArticleIdConnector: WebContentLo
 }
 
 
-public class Liferay70WebContentLoadStructuredByArticleIdConnector: WebContentLoadStructuredByArticleIdLiferayConnector {
+public class Liferay70WebContentLoadStructuredConnector: WebContentLoadStructuredLiferayConnector {
 
 	override internal func doGetJournalArticleStructure(session: LRSession) -> DDLRecord? {
 		let batchSession = LRBatchSession(session: session)
