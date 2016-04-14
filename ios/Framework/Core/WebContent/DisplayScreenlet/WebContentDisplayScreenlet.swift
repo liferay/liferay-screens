@@ -60,6 +60,7 @@ import UIKit
 
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		let interactor = WebContentDisplayLoadInteractor(
+			screenlet: self,
 			groupId: self.groupId,
 			articleId: self.articleId,
 			structureId: self.structureId,

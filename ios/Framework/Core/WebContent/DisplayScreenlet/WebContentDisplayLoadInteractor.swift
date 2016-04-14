@@ -24,13 +24,13 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 	var resultHTML: String?
 	var resultRecord: DDLRecord?
 
-	init(groupId: Int64, articleId: String, structureId: Int64?, templateId: Int64?) {
+	init(screenlet: BaseScreenlet, groupId: Int64, articleId: String, structureId: Int64?, templateId: Int64?) {
 		self.groupId = (groupId != 0) ? groupId : LiferayServerContext.groupId
 		self.articleId = articleId
 		self.structureId = (structureId ?? 0 == 0) ? nil : structureId
 		self.templateId = (templateId ?? 0 == 0) ? nil : templateId
 
-		super.init(screenlet: nil)
+		super.init(screenlet: screenlet)
 	}
 
 	override func createConnector() -> WebContentLoadBaseLiferayConnector? {
