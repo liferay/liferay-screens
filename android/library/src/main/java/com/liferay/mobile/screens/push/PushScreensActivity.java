@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.push.Push;
+import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
@@ -78,7 +79,7 @@ public abstract class PushScreensActivity extends AppCompatActivity
 			boolean alreadyRegistered = preferences.contains(TOKEN);
 			boolean appUpdated = getVersionCode() != preferences.getInt(VERSION_CODE, 0);
 
-			if (!alreadyRegistered || appUpdated) {
+			if (!alreadyRegistered || appUpdated || BuildConfig.DEBUG) {
 				_push.onSuccess(this).onFailure(this).register(this, getSenderId());
 			}
 			else {
