@@ -8,8 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		881B74411B9EEDED00EA64ED /* OfflineSyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B74401B9EEDED00EA64ED /* OfflineSyncViewController.swift */; };
-		88946C861C7F052600DA0144 /* WebContentDisplayView_book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88946C841C7F052600DA0144 /* WebContentDisplayView_book.swift */; };
-		88946C871C7F052600DA0144 /* WebContentDisplayView_book.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88946C851C7F052600DA0144 /* WebContentDisplayView_book.xib */; };
+		88CC3AFC1CC153D900E0AEB7 /* WebContentDisplayView_book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC3AF81CC153D900E0AEB7 /* WebContentDisplayView_book.swift */; };
+		88CC3AFD1CC153D900E0AEB7 /* WebContentDisplayView_book.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CC3AF91CC153D900E0AEB7 /* WebContentDisplayView_book.xib */; };
+		88CC3AFE1CC153D900E0AEB7 /* WebContentListView_book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC3AFA1CC153D900E0AEB7 /* WebContentListView_book.swift */; };
+		88CC3AFF1CC153D900E0AEB7 /* WebContentListView_book.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CC3AFB1CC153D900E0AEB7 /* WebContentListView_book.xib */; };
+		88CC3B021CC158C800E0AEB7 /* HtmlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC3B001CC158C800E0AEB7 /* HtmlTableViewCell.swift */; };
+		88CC3B031CC158C800E0AEB7 /* HtmlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CC3B011CC158C800E0AEB7 /* HtmlTableViewCell.xib */; };
+		88CC3B061CC158E300E0AEB7 /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC3B041CC158E300E0AEB7 /* BookTableViewCell.swift */; };
+		88CC3B071CC158E300E0AEB7 /* BookTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CC3B051CC158E300E0AEB7 /* BookTableViewCell.xib */; };
 		88DE2A721AD3DDE600714701 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE2A711AD3DDE600714701 /* AppDelegate.swift */; };
 		88DE2A771AD3DDE600714701 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88DE2A751AD3DDE600714701 /* Main.storyboard */; };
 		88DE2A791AD3DDE600714701 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88DE2A781AD3DDE600714701 /* Images.xcassets */; };
@@ -34,8 +40,14 @@
 		1F7AD30F6279ED703F034F12 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		869461C649CEAF0B480B4E18 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		881B74401B9EEDED00EA64ED /* OfflineSyncViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfflineSyncViewController.swift; sourceTree = "<group>"; };
-		88946C841C7F052600DA0144 /* WebContentDisplayView_book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayView_book.swift; sourceTree = "<group>"; };
-		88946C851C7F052600DA0144 /* WebContentDisplayView_book.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebContentDisplayView_book.xib; sourceTree = "<group>"; };
+		88CC3AF81CC153D900E0AEB7 /* WebContentDisplayView_book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayView_book.swift; sourceTree = "<group>"; };
+		88CC3AF91CC153D900E0AEB7 /* WebContentDisplayView_book.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebContentDisplayView_book.xib; sourceTree = "<group>"; };
+		88CC3AFA1CC153D900E0AEB7 /* WebContentListView_book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentListView_book.swift; sourceTree = "<group>"; };
+		88CC3AFB1CC153D900E0AEB7 /* WebContentListView_book.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebContentListView_book.xib; sourceTree = "<group>"; };
+		88CC3B001CC158C800E0AEB7 /* HtmlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HtmlTableViewCell.swift; sourceTree = "<group>"; };
+		88CC3B011CC158C800E0AEB7 /* HtmlTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HtmlTableViewCell.xib; sourceTree = "<group>"; };
+		88CC3B041CC158E300E0AEB7 /* BookTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
+		88CC3B051CC158E300E0AEB7 /* BookTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookTableViewCell.xib; sourceTree = "<group>"; };
 		88DE2A6C1AD3DDE600714701 /* LiferayScreens-Showcase-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LiferayScreens-Showcase-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88DE2A701AD3DDE600714701 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88DE2A711AD3DDE600714701 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +101,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		88CC3AF71CC153D900E0AEB7 /* BookTheme */ = {
+			isa = PBXGroup;
+			children = (
+				88CC3AF81CC153D900E0AEB7 /* WebContentDisplayView_book.swift */,
+				88CC3AF91CC153D900E0AEB7 /* WebContentDisplayView_book.xib */,
+				88CC3AFA1CC153D900E0AEB7 /* WebContentListView_book.swift */,
+				88CC3AFB1CC153D900E0AEB7 /* WebContentListView_book.xib */,
+				88CC3B001CC158C800E0AEB7 /* HtmlTableViewCell.swift */,
+				88CC3B011CC158C800E0AEB7 /* HtmlTableViewCell.xib */,
+				88CC3B041CC158E300E0AEB7 /* BookTableViewCell.swift */,
+				88CC3B051CC158E300E0AEB7 /* BookTableViewCell.xib */,
+			);
+			path = BookTheme;
+			sourceTree = "<group>";
+		};
 		88DE2A631AD3DDE600714701 = {
 			isa = PBXGroup;
 			children = (
@@ -110,8 +137,7 @@
 		88DE2A6E1AD3DDE600714701 /* Showcase-Swift */ = {
 			isa = PBXGroup;
 			children = (
-				88946C841C7F052600DA0144 /* WebContentDisplayView_book.swift */,
-				88946C851C7F052600DA0144 /* WebContentDisplayView_book.xib */,
+				88CC3AF71CC153D900E0AEB7 /* BookTheme */,
 				88DE2A711AD3DDE600714701 /* AppDelegate.swift */,
 				88DE2A781AD3DDE600714701 /* Images.xcassets */,
 				88DE2A911AD3DF2200714701 /* liferay-server-context.plist */,
@@ -215,11 +241,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				88DE2A921AD3DF2200714701 /* liferay-server-context.plist in Resources */,
-				88946C871C7F052600DA0144 /* WebContentDisplayView_book.xib in Resources */,
+				88CC3AFD1CC153D900E0AEB7 /* WebContentDisplayView_book.xib in Resources */,
 				88DE2A991AD3DF7600714701 /* Localizable.strings in Resources */,
 				88DE2A771AD3DDE600714701 /* Main.storyboard in Resources */,
+				88CC3B071CC158E300E0AEB7 /* BookTableViewCell.xib in Resources */,
 				88DE2A7C1AD3DDE600714701 /* LaunchScreen.xib in Resources */,
 				88DE2A941AD3DF2800714701 /* Default-568h@2x.png in Resources */,
+				88CC3B031CC158C800E0AEB7 /* HtmlTableViewCell.xib in Resources */,
+				88CC3AFF1CC153D900E0AEB7 /* WebContentListView_book.xib in Resources */,
 				88DE2A791AD3DDE600714701 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,11 +308,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88CC3B061CC158E300E0AEB7 /* BookTableViewCell.swift in Sources */,
 				88DE2AB11AD3EFEF00714701 /* UserPortraitScreenletViewController.swift in Sources */,
 				881B74411B9EEDED00EA64ED /* OfflineSyncViewController.swift in Sources */,
-				88946C861C7F052600DA0144 /* WebContentDisplayView_book.swift in Sources */,
+				88CC3AFE1CC153D900E0AEB7 /* WebContentListView_book.swift in Sources */,
+				88CC3AFC1CC153D900E0AEB7 /* WebContentDisplayView_book.swift in Sources */,
 				88DE2AB21AD3EFEF00714701 /* WebContentDisplayScreenletViewController.swift in Sources */,
 				88DE2AAF1AD3EFEF00714701 /* HomeScreenletsViewController.swift in Sources */,
+				88CC3B021CC158C800E0AEB7 /* HtmlTableViewCell.swift in Sources */,
 				88DE2AAE1AD3EFEF00714701 /* ForgotPasswordScreenletViewController.swift in Sources */,
 				88DE2AAD1AD3EFEF00714701 /* DDLListScreenletViewController.swift in Sources */,
 				88DE2AAB1AD3EFEF00714701 /* AssetListScreenletViewController.swift in Sources */,
