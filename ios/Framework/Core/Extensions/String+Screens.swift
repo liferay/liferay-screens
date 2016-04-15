@@ -13,6 +13,11 @@
 */
 import Foundation
 
+#if LIFERAY_SCREENS_FRAMEWORK
+	import SMXMLDocument
+#endif
+
+
 extension String {
 
 	public func toSafeFilename() -> String {
@@ -36,6 +41,29 @@ extension String {
 
 	public var asLong: Int64? {
 		return Int64(self)
+	}
+
+	public func asLocalized(locale: NSLocale) -> String {
+		guard self.hasPrefix("<?xml") else {
+			return self
+		}
+
+		let data = self.dataUsingEncoding(NSUTF8StringEncoding)
+
+		guard let document = try? SMXMLDocument(data: data) else {
+			return self
+		}
+
+		let defaultLocale = document.attributeNamed("default-locale") ?? "en_US"
+
+		let found =
+			document.childWithAttribute("language-id", value: locale.localeIdentifier)
+			??
+			document.childWithAttribute("language-id", value: defaultLocale)
+			??
+			document.firstChild!
+
+		return found.value ?? self
 	}
 
 }

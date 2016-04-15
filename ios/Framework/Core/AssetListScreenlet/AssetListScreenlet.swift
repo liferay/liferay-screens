@@ -32,9 +32,7 @@ import UIKit
 
 	public let attributes:[String:AnyObject]
 
-	public var title: String {
-		return attributes["title"] as! String
-	}
+	public let title: String
 
 	override public var description: String {
 		return attributes["description"] as! String
@@ -62,8 +60,12 @@ import UIKit
 
 	//MARK: Init
 
-	public init(attributes:[String:AnyObject]) {
+	public init(attributes: [String:AnyObject]) {
 		self.attributes = attributes
+
+		let xmlTitle = attributes["title"] as! String
+
+		title = xmlTitle.asLocalized(NSLocale(localeIdentifier: NSLocale.currentLocaleString))
 	}
 
 }

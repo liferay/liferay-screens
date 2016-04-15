@@ -39,21 +39,21 @@ extension NSLocale {
 			case "ca", "es":
 				return language + "_ES"
 			case "zh":
-				return language + "_CN"
+				return "zh_CN"
 			case "fi":
-				return language + "_FI"
+				return "fi_FI"
 			case "fr":
-				return language + "_FR"
+				return "fr_FR"
 			case "de":
-				return language + "_DE"
+				return "de_DE"
 			case "iw", "he":
 				return "iw_IL"
 			case "hu":
-				return language + "_HU"
+				return "hu_HU"
 			case "ja":
-				return language + "_JP"
+				return "ja_JP"
 			case "pt":
-				return language + "_BR"
+				return "pr_BR"
 			default: ()
 		}
 
