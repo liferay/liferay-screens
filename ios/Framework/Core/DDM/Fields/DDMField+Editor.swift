@@ -32,6 +32,23 @@ extension DDMField {
 		case Document = "ddm-documentlibrary"
 		case Unsupported = ""
 
+		public var defaultDataType: DataType {
+			switch self {
+			case .Checkbox:
+				return DataType.DDMBoolean
+			case .Text, .Textarea, .Select, .Radio:
+				return DataType.DDMString
+			case .Date:
+				return DataType.DDMDate
+			case .Number:
+				return DataType.DDMNumber
+			case .Document:
+				return DataType.DDMDocument
+			case .Unsupported:
+				return DataType.Unsupported
+			}
+		}
+
 		public static func from(attributes attributes:[String:AnyObject]) -> Editor {
 			return from(attributeValue:((attributes["type"] ?? "") as! String))
 		}
