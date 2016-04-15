@@ -30,6 +30,37 @@ import UIKit
 
 @objc public class WebContentEntry : AssetListScreenletEntry {
 
+	public let structuredRecord: DDLRecord?
+	public let html: String?
+
+	override public init(attributes: [String:AnyObject]) {
+		func loadStructuredRecord(content: String, _ attributes: [String:AnyObject]) -> DDLRecord? {
+			let record = DDLRecord(data: [:], attributes: attributes)
+			record.updateCurrentValues(xmlValues: content)
+
+			return record
+		}
+
+		func loadHtml(content: String) -> String? {
+			return content.asLocalized(NSLocale(localeIdentifier: NSLocale.currentLocaleString))
+		}
+
+		if let content = attributes["content"] as? String {
+			var newAttributes = attributes
+			newAttributes.removeValueForKey("content")
+
+			structuredRecord = loadStructuredRecord(content, newAttributes)
+			html = (structuredRecord == nil) ? loadHtml(content) : nil
+		}
+		else {
+			structuredRecord = nil
+			html = nil
+		}
+
+		super.init(attributes: attributes)
+
+	}
+
 }
 
 
