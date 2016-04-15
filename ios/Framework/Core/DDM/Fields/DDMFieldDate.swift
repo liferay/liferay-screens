@@ -50,6 +50,21 @@ public class DDMFieldDate: DDMField {
 	}
 
 	override internal func convert(fromString value: String?) -> AnyObject? {
+		func convertFromDateStr(str: String) -> NSDate? {
+			let separator = str[str.endIndex.advancedBy(-3)]
+			let format = separator == "/" ? "MM/dd/yy" : serverDateFormat
+
+			return formatterWithFormat(format).dateFromString(str)
+		}
+
+		func convertFromJavaEpoch(str: String) -> NSDate? {
+			guard let epoch = Double(str) else {
+				return nil
+			}
+
+			return NSDate(timeIntervalSince1970: epoch/1000)
+		}
+
 		guard let stringValue = value else {
 			return nil
 		}
@@ -57,10 +72,7 @@ public class DDMFieldDate: DDMField {
 			return nil
 		}
 
-		let separator = stringValue[stringValue.endIndex.advancedBy(-3)]
-		let format = separator == "/" ? "MM/dd/yy" : serverDateFormat
-
-		return formatterWithFormat(format).dateFromString(stringValue)
+		return convertFromDateStr(stringValue) ?? convertFromJavaEpoch(stringValue)
 	}
 
 	override func convert(fromLabel label: String?) -> AnyObject? {
