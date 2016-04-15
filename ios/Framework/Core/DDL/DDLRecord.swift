@@ -19,7 +19,7 @@ import Foundation
 
 @objc public class DDLRecord: NSObject, NSCoding {
 
-	public let structure: DDMStructure?
+	public var structure: DDMStructure?
 	public let untypedValues: [DDMField]?
 
 	public var attributes: [String:AnyObject] = [:]
@@ -190,11 +190,16 @@ import Foundation
 	}
 
 	public func updateCurrentValues(xmlValues xmlValues: String) -> Int {
-		guard let structure = self.structure else {
-			return -1
+		let parser = DDMTypedValuesXMLParser()
+
+		let count = parser.parse(xmlValues, structure: self.structure)
+
+		if let createdStructure = parser.createdStructure
+				where self.structure == nil {
+			self.structure = createdStructure
 		}
 
-		return DDMTypedValuesXMLParser().parse(xmlValues, structure: structure)
+		return count
 	}
 
 	public func clearValues() {
