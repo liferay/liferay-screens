@@ -38,7 +38,7 @@ import UIKit
 			let record = DDLRecord(data: [:], attributes: attributes)
 			record.updateCurrentValues(xmlValues: content)
 
-			return record
+			return record.structure == nil ? nil : record
 		}
 
 		func loadHtml(content: String) -> String? {
