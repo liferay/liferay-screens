@@ -33,6 +33,17 @@ import UIKit
 	public let structuredRecord: DDLRecord?
 	public let html: String?
 
+	override public var debugDescription: String {
+		if let structuredRecord = structuredRecord {
+			return "structuredRecord(\(structuredRecord.debugDescription))"
+		}
+		else if let html = html {
+			return "html(\(html))"
+		}
+
+		return super.debugDescription
+	}
+
 	override public init(attributes: [String:AnyObject]) {
 		func loadStructuredRecord(content: String, _ attributes: [String:AnyObject]) -> DDLRecord? {
 			let record = DDLRecord(data: [:], attributes: attributes)
@@ -58,7 +69,6 @@ import UIKit
 		}
 
 		super.init(attributes: attributes)
-
 	}
 
 }

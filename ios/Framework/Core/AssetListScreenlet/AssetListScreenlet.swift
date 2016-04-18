@@ -58,6 +58,10 @@ import UIKit
 		return attributes["entryId"]!.description.asLong!
 	}
 
+	override public var debugDescription: String {
+		return attributes.debugDescription
+	}
+
 	//MARK: Init
 
 	public init(attributes: [String:AnyObject]) {
