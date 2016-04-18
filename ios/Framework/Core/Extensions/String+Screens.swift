@@ -57,13 +57,11 @@ extension String {
 		let defaultLocale = document.attributeNamed("default-locale") ?? "en_US"
 
 		let found =
-			document.childWithAttribute("language-id", value: locale.localeIdentifier)
+			document.deepChildWithAttribute("language-id", value: locale.localeIdentifier)
 			??
-			document.childWithAttribute("language-id", value: defaultLocale)
-			??
-			document.firstChild!
+			document.deepChildWithAttribute("language-id", value: defaultLocale)
 
-		return found.value ?? self
+		return found?.value ?? self
 	}
 
 }
