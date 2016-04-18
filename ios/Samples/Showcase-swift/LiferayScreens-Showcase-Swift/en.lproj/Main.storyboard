@@ -370,7 +370,7 @@
         <!--WebContentListScreenlet-->
         <scene sceneID="MCN-aR-IyW">
             <objects>
-                <viewController title="WebContentListScreenlet" id="mIJ-mJ-AmA" sceneMemberID="viewController">
+                <viewController title="WebContentListScreenlet" id="mIJ-mJ-AmA" customClass="WebContentListScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YHs-MM-I4k"/>
                         <viewControllerLayoutGuide type="bottom" id="SCZ-oN-0s2"/>
@@ -396,6 +396,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kuN-5L-PDx"/>
+                    <connections>
+                        <outlet property="screenlet" destination="8S0-OV-XFI" id="jcO-Zz-e6o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Br9-uc-FlJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

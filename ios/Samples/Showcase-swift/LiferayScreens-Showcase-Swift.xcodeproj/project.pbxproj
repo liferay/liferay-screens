@@ -16,6 +16,7 @@
 		88CC3B031CC158C800E0AEB7 /* HtmlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CC3B011CC158C800E0AEB7 /* HtmlTableViewCell.xib */; };
 		88CC3B061CC158E300E0AEB7 /* BookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC3B041CC158E300E0AEB7 /* BookTableViewCell.swift */; };
 		88CC3B071CC158E300E0AEB7 /* BookTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CC3B051CC158E300E0AEB7 /* BookTableViewCell.xib */; };
+		88CC3B091CC5289D00E0AEB7 /* WebContentListScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC3B081CC5289D00E0AEB7 /* WebContentListScreenletViewController.swift */; };
 		88DE2A721AD3DDE600714701 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE2A711AD3DDE600714701 /* AppDelegate.swift */; };
 		88DE2A771AD3DDE600714701 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88DE2A751AD3DDE600714701 /* Main.storyboard */; };
 		88DE2A791AD3DDE600714701 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88DE2A781AD3DDE600714701 /* Images.xcassets */; };
@@ -48,6 +49,7 @@
 		88CC3B011CC158C800E0AEB7 /* HtmlTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HtmlTableViewCell.xib; sourceTree = "<group>"; };
 		88CC3B041CC158E300E0AEB7 /* BookTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookTableViewCell.swift; sourceTree = "<group>"; };
 		88CC3B051CC158E300E0AEB7 /* BookTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookTableViewCell.xib; sourceTree = "<group>"; };
+		88CC3B081CC5289D00E0AEB7 /* WebContentListScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentListScreenletViewController.swift; sourceTree = "<group>"; };
 		88DE2A6C1AD3DDE600714701 /* LiferayScreens-Showcase-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LiferayScreens-Showcase-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88DE2A701AD3DDE600714701 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88DE2A711AD3DDE600714701 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -170,10 +172,11 @@
 				88DE2AA61AD3EFEF00714701 /* ForgotPasswordScreenletViewController.swift */,
 				88DE2A9F1AD3E01400714701 /* HomeLoginViewController.swift */,
 				88DE2AA71AD3EFEF00714701 /* HomeScreenletsViewController.swift */,
+				881B74401B9EEDED00EA64ED /* OfflineSyncViewController.swift */,
 				88DE2AA81AD3EFEF00714701 /* SignUpScreenletViewController.swift */,
 				88DE2AA91AD3EFEF00714701 /* UserPortraitScreenletViewController.swift */,
 				88DE2AAA1AD3EFEF00714701 /* WebContentDisplayScreenletViewController.swift */,
-				881B74401B9EEDED00EA64ED /* OfflineSyncViewController.swift */,
+				88CC3B081CC5289D00E0AEB7 /* WebContentListScreenletViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				88CC3AFC1CC153D900E0AEB7 /* WebContentDisplayView_book.swift in Sources */,
 				88DE2AB21AD3EFEF00714701 /* WebContentDisplayScreenletViewController.swift in Sources */,
 				88DE2AAF1AD3EFEF00714701 /* HomeScreenletsViewController.swift in Sources */,
+				88CC3B091CC5289D00E0AEB7 /* WebContentListScreenletViewController.swift in Sources */,
 				88CC3B021CC158C800E0AEB7 /* HtmlTableViewCell.swift in Sources */,
 				88DE2AAE1AD3EFEF00714701 /* ForgotPasswordScreenletViewController.swift in Sources */,
 				88DE2AAD1AD3EFEF00714701 /* DDLListScreenletViewController.swift in Sources */,
