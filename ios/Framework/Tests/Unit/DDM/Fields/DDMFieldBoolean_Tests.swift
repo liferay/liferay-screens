@@ -145,7 +145,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 		boolField.currentValueAsLabel = "Yes"
 
 		XCTAssertNotNil(boolField.currentValue)
-		XCTAssertTrue(boolField.currentValue as! Bool)
+		XCTAssertTrue((boolField.currentValue as? Bool) ?? false)
 	}
 
 	func test_CurrentValueAsLabel_ShouldBeFalse_WhenSetNoLabel() {
@@ -163,7 +163,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 		boolField.currentValueAsLabel = "yEs"
 
 		XCTAssertNotNil(boolField.currentValue)
-		XCTAssertTrue(boolField.currentValue as! Bool)
+		XCTAssertTrue((boolField.currentValue as? Bool) ?? false)
 	}
 
 

@@ -114,7 +114,7 @@ public class DDMFieldDate_v62: DDMFieldDate {
 		}
 
 		// Java uses milliseconds instead of seconds
-		let epoch = Double(date.timeIntervalSince1970 * 1000)
+		let epoch = Int64(date.timeIntervalSince1970 * 1000)
 
 		return "\(epoch)"
 	}
