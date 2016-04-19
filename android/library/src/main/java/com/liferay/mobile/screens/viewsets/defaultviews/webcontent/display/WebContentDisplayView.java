@@ -78,7 +78,7 @@ public class WebContentDisplayView extends FrameLayout
 
 			//TODO check encoding
 			_webView.loadDataWithBaseURL(
-				LiferayServerContext.getServer(), styledHtml, "text/webContent", "utf-8",
+				LiferayServerContext.getServer(), styledHtml, "text/html", "utf-8",
 				null);
 		}
 	}
