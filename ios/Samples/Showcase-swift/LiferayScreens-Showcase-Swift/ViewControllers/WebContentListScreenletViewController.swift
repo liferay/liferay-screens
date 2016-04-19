@@ -25,8 +25,8 @@ class WebContentListScreenletViewController: UIViewController, WebContentListScr
     }
 
 	func screenlet(screenlet: WebContentListScreenlet,
-			onWebContentListResponseEntries entries: [WebContentEntry]) {
-		print("onWebContentListResponseEntries (\(entries.count)):")
+			onWebContentListResponse entries: [WebContent]) {
+		print("onWebContentListResponse (\(entries.count)):")
 		for e in entries {
 			print("    -> \(e.debugDescription)")
 		}
@@ -38,8 +38,8 @@ class WebContentListScreenletViewController: UIViewController, WebContentListScr
 	}
 
 	func screenlet(screenlet: WebContentListScreenlet,
-		   onWebContentSelectedEntry entry: WebContentEntry) {
-		print("onWebContentSelectedEntry \(entry.debugDescription)")
+		   onWebContentSelected entry: WebContent) {
+		print("onWebContentSelected \(entry.debugDescription)")
 	}
 
 }

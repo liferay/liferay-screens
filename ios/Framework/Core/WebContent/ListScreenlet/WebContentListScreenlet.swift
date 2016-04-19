@@ -17,18 +17,18 @@ import UIKit
 @objc public protocol WebContentListScreenletDelegate : BaseScreenletDelegate {
 
 	optional func screenlet(screenlet: WebContentListScreenlet,
-			onWebContentListResponseEntries entries: [WebContentEntry])
+			onWebContentListResponse contents: [WebContent])
 
 	optional func screenlet(screenlet: WebContentListScreenlet,
 			onWebContentListError error: NSError)
 
 	optional func screenlet(screenlet: WebContentListScreenlet,
-			onWebContentSelectedEntry entry: WebContentEntry)
+			onWebContentSelected content: WebContent)
 
 }
 
 
-@objc public class WebContentEntry : AssetListScreenletEntry {
+@objc public class WebContent : Asset {
 
 	public let structure: DDMStructure?
 	public let structuredRecord: DDLRecord?
@@ -68,7 +68,7 @@ import UIKit
 				object = attributes["object"] as? [String:AnyObject],
 				modelAttributes = object["modelAttributes"] as? [String:AnyObject],
 				modelValues = object["modelValues"] as? String
-				where WebContentEntry.isWebContentClassName(className) {
+				where WebContent.isWebContentClassName(className) {
 			newAttributes = attributes.copyAndMerge(modelAttributes).copyAndRemove("object")
 
 			if let structureData = object["DDMStructure"] as? [String:AnyObject] {
@@ -168,13 +168,13 @@ import UIKit
 	override public func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
 		super.onLoadPageResult(page: page, rows: rows, rowCount: rowCount)
 
-		let webContentEntries = rows as! [WebContentEntry]
+		let webContentEntries = rows as! [WebContent]
 
-		webContentListDelegate?.screenlet?(self, onWebContentListResponseEntries: webContentEntries)
+		webContentListDelegate?.screenlet?(self, onWebContentListResponse: webContentEntries)
 	}
 
 	override public func onSelectedRow(row: AnyObject) {
-		webContentListDelegate?.screenlet?(self, onWebContentSelectedEntry: row as! WebContentEntry)
+		webContentListDelegate?.screenlet?(self, onWebContentSelected: row as! WebContent)
 	}
 
 }

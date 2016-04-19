@@ -43,7 +43,7 @@ public class WebContentListPageLoadInteractor : BaseListPageLoadInteractor {
 	}
 
 	override public func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
-		return WebContentEntry(attributes: serverResult)
+		return WebContent(attributes: serverResult)
 	}
 
 	override public func cacheKey(op: PaginationLiferayConnector) -> String {

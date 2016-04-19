@@ -56,14 +56,14 @@ public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 
 	override public func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
 		guard let className = serverResult["className"] as? String else {
-			return AssetListScreenletEntry(attributes: serverResult)
+			return Asset(attributes: serverResult)
 		}
 
-		if WebContentEntry.isWebContentClassName(className) {
-			return WebContentEntry(attributes: serverResult)
+		if WebContent.isWebContentClassName(className) {
+			return WebContent(attributes: serverResult)
 		}
 		else {
-			return AssetListScreenletEntry(attributes: serverResult)
+			return Asset(attributes: serverResult)
 		}
 	}
 

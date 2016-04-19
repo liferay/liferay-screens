@@ -23,7 +23,7 @@ public class WebContentListView_default: WebContentListTableView {
 	}
 
 	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
-		if let entry = object as? WebContentEntry {
+		if let entry = object as? WebContent {
 			cell.textLabel?.text = entry.title
 			cell.accessoryType = .DisclosureIndicator
 			cell.accessoryView = nil

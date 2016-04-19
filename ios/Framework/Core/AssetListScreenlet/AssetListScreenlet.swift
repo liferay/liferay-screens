@@ -17,18 +17,18 @@ import UIKit
 @objc public protocol AssetListScreenletDelegate : BaseScreenletDelegate {
 
 	optional func screenlet(screenlet: AssetListScreenlet,
-			onAssetListResponseEntries entries: [AssetListScreenletEntry])
+			onAssetListResponse assets: [Asset])
 
 	optional func screenlet(screenlet: AssetListScreenlet,
 			onAssetListError error: NSError)
 
 	optional func screenlet(screenlet: AssetListScreenlet,
-			onAssetSelectedEntry entry: AssetListScreenletEntry)
+			onAssetSelected asset: Asset)
 
 }
 
 
-@objc public class AssetListScreenletEntry : NSObject {
+@objc public class Asset : NSObject {
 
 	public let attributes:[String:AnyObject]
 
@@ -120,13 +120,13 @@ import UIKit
 	override public func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
 		super.onLoadPageResult(page: page, rows: rows, rowCount: rowCount)
 
-		let assetEntries = rows as! [AssetListScreenletEntry]
+		let assets = rows as! [Asset]
 
-		assetListDelegate?.screenlet?(self, onAssetListResponseEntries: assetEntries)
+		assetListDelegate?.screenlet?(self, onAssetListResponse: assets)
 	}
 
 	override public func onSelectedRow(row: AnyObject) {
-		assetListDelegate?.screenlet?(self, onAssetSelectedEntry: row as! AssetListScreenletEntry)
+		assetListDelegate?.screenlet?(self, onAssetSelected: row as! Asset)
 	}
 
 }

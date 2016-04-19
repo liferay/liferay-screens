@@ -132,7 +132,7 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 	}
 
 	func screenlet(screenlet: AssetListScreenlet,
-			onAssetListResponseEntries entries: [AssetListScreenletEntry]) {
+			onAssetListResponseEntries entries: [Asset]) {
 		print("DELEGATE: onAssetListResponse called -> \(entries.count)\n");
 		for e in entries {
 			print("     -> \(e.debugDescription)\n");
@@ -145,7 +145,7 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 	}
 
 	func screenlet(screenlet: AssetListScreenlet,
-			onAssetSelectedEntry entry: AssetListScreenletEntry) {
+			onAssetSelectedEntry entry: Asset) {
 		print("DELEGATE: onAssetSelected called -> \(entry.debugDescription)\n");
 	}
 

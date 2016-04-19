@@ -41,7 +41,7 @@ public class WebContentListView_book: WebContentListView_default {
 	}
 
 	override public func doGetCellId(row row: Int, object: AnyObject?) -> String {
-		if let entry = object as? WebContentEntry {
+		if let entry = object as? WebContent {
 			return (entry.structuredRecord == nil) ? "htmlCell" : "bookCell"
 		}
 
@@ -49,7 +49,7 @@ public class WebContentListView_book: WebContentListView_default {
 	}
 
 	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
-		if let entry = object as? WebContentEntry {
+		if let entry = object as? WebContent {
 			if let record = entry.structuredRecord,
 					bookCell = cell as? BookTableViewCell {
 				let title = entry.title
@@ -67,7 +67,7 @@ public class WebContentListView_book: WebContentListView_default {
 
 	public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 
-		if let entry = rows[indexPath.row] as? WebContentEntry {
+		if let entry = rows[indexPath.row] as? WebContent {
 			return (entry.structuredRecord == nil) ? 50 : 75
 		}
 
