@@ -55,7 +55,16 @@ public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 	}
 
 	override public func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
-		return AssetListScreenletEntry(attributes: serverResult)
+		guard let className = serverResult["className"] as? String else {
+			return AssetListScreenletEntry(attributes: serverResult)
+		}
+
+		if WebContentEntry.isWebContentClassName(className) {
+			return WebContentEntry(attributes: serverResult)
+		}
+		else {
+			return AssetListScreenletEntry(attributes: serverResult)
+		}
 	}
 
 	override public func cacheKey(op: PaginationLiferayConnector) -> String {
