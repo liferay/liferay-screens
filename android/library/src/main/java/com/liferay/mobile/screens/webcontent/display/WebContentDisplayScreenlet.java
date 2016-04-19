@@ -63,7 +63,7 @@ public class WebContentDisplayScreenlet
 	}
 
 	public void load() {
-		if (_structureId != null) {
+		if (_structureId != 0) {
 			performUserAction(WEB_CONTENT_WITH_STRUCTURE);
 		}
 		else if (_classPK != 0) {
