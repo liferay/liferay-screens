@@ -30,6 +30,7 @@ import UIKit
 
 @objc public class WebContentEntry : AssetListScreenletEntry {
 
+	public let structure: DDMStructure?
 	public let structuredRecord: DDLRecord?
 	public let html: String?
 
@@ -56,19 +57,61 @@ import UIKit
 			return content.asLocalized(NSLocale(localeIdentifier: NSLocale.currentLocaleString))
 		}
 
-		if let content = attributes["content"] as? String {
-			var newAttributes = attributes
-			newAttributes.removeValueForKey("content")
+		let newAttributes: [String:AnyObject]
+
+		if let className = attributes["className"] as? String,
+				object = attributes["object"] as? [String:AnyObject],
+				modelAttributes = object["modelAttributes"] as? [String:AnyObject],
+				modelValues = object["modelValues"] as? String
+				where className.hasPrefix("com.liferay") && className.hasSuffix("JournalArticle") {
+			newAttributes = attributes.copyAndMerge(modelAttributes).copyAndRemove("object")
+
+			if let structureData = object["DDMStructure"] as? [String:AnyObject] {
+				// structured web content
+				html = nil
+
+				self.structure = DDMStructure(
+					structureData: structureData,
+					locale: NSLocale(localeIdentifier: NSLocale.currentLocaleString))
+
+				if let structure = self.structure {
+					structuredRecord = DDLRecord(structure: structure)
+					if let structuredRecord = self.structuredRecord {
+						if modelValues.isXml {
+							structuredRecord.updateCurrentValues(xmlValues: modelValues)
+						}
+						structuredRecord.attributes = modelAttributes
+					}
+				}
+				else {
+					structuredRecord = nil
+				}
+			}
+			else {
+				// basic web content
+				html = loadHtml(modelValues)
+
+				structuredRecord = nil
+				structure = nil
+			}
+		}
+		else if let content = attributes["content"] as? String {
+			newAttributes = attributes.copyAndRemove("content")
 
 			structuredRecord = loadStructuredRecord(content, newAttributes)
+			structure = structuredRecord?.structure
+
 			html = (structuredRecord == nil) ? loadHtml(content) : nil
 		}
 		else {
+			newAttributes = attributes
+
 			structuredRecord = nil
+			structure = nil
 			html = nil
 		}
 
-		super.init(attributes: attributes)
+		super.init(attributes: newAttributes)
 	}
 
 }
