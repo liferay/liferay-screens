@@ -45,6 +45,11 @@ import UIKit
 		return super.debugDescription
 	}
 
+	public class func isWebContentClassName(className: String) -> Bool {
+		return className.hasPrefix("com.liferay.") && className.hasSuffix(".JournalArticle")
+	}
+
+
 	override public init(attributes: [String:AnyObject]) {
 		func loadStructuredRecord(content: String, _ attributes: [String:AnyObject]) -> DDLRecord? {
 			let record = DDLRecord(data: [:], attributes: attributes)
@@ -63,7 +68,7 @@ import UIKit
 				object = attributes["object"] as? [String:AnyObject],
 				modelAttributes = object["modelAttributes"] as? [String:AnyObject],
 				modelValues = object["modelValues"] as? String
-				where className.hasPrefix("com.liferay") && className.hasSuffix("JournalArticle") {
+				where WebContentEntry.isWebContentClassName(className) {
 			newAttributes = attributes.copyAndMerge(modelAttributes).copyAndRemove("object")
 
 			if let structureData = object["DDMStructure"] as? [String:AnyObject] {
