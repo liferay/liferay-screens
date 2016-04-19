@@ -17,12 +17,13 @@ import javax.xml.parsers.ParserConfigurationException;
  */
 public class StaticParser extends XMLParser {
 
-	public String parse(String content, String tagName, Locale locale) {
+	public String parse(String content, Locale locale) {
 		try {
-			Document document = getDocument(content);
 
 			String attrName = "language-id";
+			String tagName = "static-content";
 
+			Document document = getDocument(content);
 			Element localeFallback = getLocaleFallback(document.getDocumentElement(), locale, LiferayLocale.getDefaultLocale(), tagName, attrName);
 			return localeFallback == null ? "" : localeFallback.getTextContent();
 
