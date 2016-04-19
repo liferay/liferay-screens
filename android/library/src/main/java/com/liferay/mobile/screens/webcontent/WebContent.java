@@ -42,6 +42,8 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 			}
 		};
 
+	public static final String DDM_STRUCTURE = "DDMStructure";
+
 	public WebContent(Parcel in, ClassLoader classLoader) {
 		super(in, classLoader);
 	}
@@ -51,18 +53,14 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 		_ddmStructure = new DDMStructure(locale);
 
 		try {
-			if (map.containsKey("DDMStructure")) {
-				HashMap ddmStructure = (HashMap) map.get("DDMStructure");
+			if (map.containsKey(DDM_STRUCTURE)) {
+				HashMap ddmStructure = (HashMap) map.get(DDM_STRUCTURE);
 				parseDDMStructure(new JSONObject(ddmStructure));
+			}
 
-				String content = "";
-				if (map.containsKey("content")) {
-					content = (String) map.get("content");
-				}
-				else {
-					content = (String) map.get("modelValues");
-				}
+			String content = getContent(map);
 
+			if (content.contains("dynamic-element")) {
 				ContentParser contentParser = new ContentParser();
 
 				List<Field> fields = contentParser.parseContent(_ddmStructure,
@@ -75,7 +73,7 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 			}
 			else {
 				StaticParser staticParser = new StaticParser();
-				_html = staticParser.parse((String) map.get("content"), locale);
+				_html = staticParser.parse(content, locale);
 			}
 		}
 		catch (JSONException e) {
@@ -114,6 +112,10 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 
 	public void setHtml(String html) {
 		_html = html;
+	}
+
+	private String getContent(Map<String, Object> map) {
+		return (String) (map.containsKey("content") ? map.get("content") : map.get("modelValues"));
 	}
 
 	private DDMStructure _ddmStructure;
