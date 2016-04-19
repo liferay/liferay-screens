@@ -4,14 +4,18 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
+import com.liferay.mobile.screens.ddl.ContentParser;
 import com.liferay.mobile.screens.ddl.StaticParser;
 import com.liferay.mobile.screens.ddl.model.DDMStructure;
+import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.WithDDM;
+import com.liferay.mobile.screens.util.LiferayLogger;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -44,9 +48,39 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 
 	public WebContent(Map<String, Object> map, Locale locale) {
 		super(map);
-		_ddmStructure = new DDMStructure(map, locale);
-		_locale = locale;
-		_html = new StaticParser().parse((String) map.get("content"), "static-content", locale);
+		_ddmStructure = new DDMStructure(locale);
+
+		try {
+			if (map.containsKey("DDMStructure")) {
+				HashMap ddmStructure = (HashMap) map.get("DDMStructure");
+				parseDDMStructure(new JSONObject(ddmStructure));
+
+				String content = "";
+				if (map.containsKey("content")) {
+					content = (String) map.get("content");
+				}
+				else {
+					content = (String) map.get("modelValues");
+				}
+
+				ContentParser contentParser = new ContentParser();
+
+				List<Field> fields = contentParser.parseContent(_ddmStructure,
+					content);
+
+				_ddmStructure.setFields(fields);
+				if (_ddmStructure.getFieldCount() > 0) {
+					_html = (String) _ddmStructure.getField(0).getCurrentValue();
+				}
+			}
+			else {
+				StaticParser staticParser = new StaticParser();
+				_html = staticParser.parse((String) map.get("content"), locale);
+			}
+		}
+		catch (JSONException e) {
+			LiferayLogger.e("Error parsing structure");
+		}
 	}
 
 	public WebContent(String html) {
@@ -78,16 +112,10 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 		return _html;
 	}
 
-	@Override
-	public String getTitle() {
-		return getField("Title", super.getTitle());
-	}
-
-	public String getField(String name, String content) {
-		return new StaticParser().parse(content, name, _locale);
+	public void setHtml(String html) {
+		_html = html;
 	}
 
 	private DDMStructure _ddmStructure;
 	private String _html;
-	private Locale _locale;
 }
