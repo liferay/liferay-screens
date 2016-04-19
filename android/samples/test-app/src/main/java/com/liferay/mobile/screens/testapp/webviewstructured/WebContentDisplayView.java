@@ -4,8 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-import com.liferay.mobile.screens.webcontent.WebContent;
 import com.liferay.mobile.screens.testapp.R;
+import com.liferay.mobile.screens.webcontent.WebContent;
 
 /**
  * @author Javier Gamarra
