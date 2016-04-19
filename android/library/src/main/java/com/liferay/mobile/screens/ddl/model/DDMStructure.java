@@ -13,10 +13,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 /**
  * @author Javier Gamarra
@@ -35,9 +33,9 @@ public class DDMStructure implements Parcelable {
 		}
 	};
 
-	public DDMStructure(Map<String, Object> values, Locale locale) {
-		_values = values;
+	public DDMStructure(Locale locale) {
 		_locale = locale;
+		_parsed = false;
 	}
 
 	protected DDMStructure(Parcel in) {
@@ -55,20 +53,16 @@ public class DDMStructure implements Parcelable {
 		return 0;
 	}
 
-	public void parseXsd(String xsd) {
-		parse(xsd, new XSDParser());
-	}
-
-	public void parseJson(String json) {
-		parse(json, new JsonParser());
-	}
-
 	public Field getField(int index) {
 		return _fields.get(index);
 	}
 
 	public int getFieldCount() {
 		return _fields.size();
+	}
+
+	public boolean isParsed() {
+		return _parsed;
 	}
 
 	public Field getFieldByName(String fieldName) {
@@ -103,14 +97,15 @@ public class DDMStructure implements Parcelable {
 
 	public void parse(JSONObject jsonObject) throws JSONException {
 		if (jsonObject.has("xsd")) {
-			parseXsd(jsonObject.getString("xsd"));
+			parse(jsonObject.getString("xsd"), new XSDParser());
 		}
 		else {
-			parseJson(jsonObject.getString("definition"));
+			parse(jsonObject.getString("definition"), new JsonParser());
 		}
+		_parsed = true;
 	}
 
-	private void parse(String content, FieldParser parser) {
+	protected void parse(String content, FieldParser parser) {
 		try {
 			Locale locale = _locale == null ? LiferayLocale.getDefaultLocale() : _locale;
 			_fields = parser.parse(content, locale);
@@ -122,5 +117,5 @@ public class DDMStructure implements Parcelable {
 
 	protected List<Field> _fields = new ArrayList<>();
 	protected Locale _locale = Locale.US;
-	protected Map<String, Object> _values = new HashMap<>();
+	protected boolean _parsed;
 }

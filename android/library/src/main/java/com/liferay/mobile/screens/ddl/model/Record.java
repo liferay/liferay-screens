@@ -57,7 +57,7 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 	public Record(Map<String, Object> valuesAndAttributes, Locale locale) {
 		super(valuesAndAttributes);
 
-		_ddmStructure = new DDMStructure(getValues(), locale);
+		_ddmStructure = new DDMStructure(locale);
 		parseServerValues();
 	}
 

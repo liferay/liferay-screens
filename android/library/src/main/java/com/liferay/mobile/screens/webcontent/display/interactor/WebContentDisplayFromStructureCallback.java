@@ -42,9 +42,8 @@ public class WebContentDisplayFromStructureCallback
 	public WebContent transform(Object obj) throws Exception {
 		JSONArray array = (JSONArray) obj;
 		JSONObject values = array.getJSONObject(0);
-		WebContent result = new WebContent(JSONUtil.toMap(values), _locale);
-		result.parseDDMStructure(array.getJSONObject(1));
-		return result;
+		values.put("DDMStructure", array.getJSONObject(1));
+		return new WebContent(JSONUtil.toMap(values), _locale);
 	}
 
 	@Override
