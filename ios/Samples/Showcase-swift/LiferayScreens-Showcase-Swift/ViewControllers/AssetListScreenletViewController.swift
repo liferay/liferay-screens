@@ -79,7 +79,7 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 		AssetClassNameIds.set(AssetClassNameIdDDLRecord, newId: 20422)
 		AssetClassNameIds.set(AssetClassNameIdDDLRecordSet, newId: 20423)
 		AssetClassNameIds.set(AssetClassNameIdDDLRecordVersion, newId: 20424)
-		AssetClassNameIds.set(AssetClassNameIdJournalArticle, newId: 20480)
+		AssetClassNameIds.set(AssetClassNameIdJournalArticle, newId: 20109)
 		AssetClassNameIds.set(AssetClassNameIdJournalArticleImage, newId: 20481)
 		AssetClassNameIds.set(AssetClassNameIdJournalFolder, newId: 20485)
 		AssetClassNameIds.set(AssetClassNameIdMBMessage, newId: 20010)
@@ -133,7 +133,10 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 
 	func screenlet(screenlet: AssetListScreenlet,
 			onAssetListResponseEntries entries: [AssetListScreenletEntry]) {
-		print("DELEGATE: onAssetListResponse called -> \(entries)\n");
+		print("DELEGATE: onAssetListResponse called -> \(entries.count)\n");
+		for e in entries {
+			print("     -> \(e.debugDescription)\n");
+		}
 	}
 
 	func screenlet(screenlet: AssetListScreenlet,
@@ -143,7 +146,7 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 
 	func screenlet(screenlet: AssetListScreenlet,
 			onAssetSelectedEntry entry: AssetListScreenletEntry) {
-		print("DELEGATE: onAssetSelected called -> \(entry)\n");
+		print("DELEGATE: onAssetSelected called -> \(entry.debugDescription)\n");
 	}
 
 	func showPicker(show:Bool, animated:Bool) {

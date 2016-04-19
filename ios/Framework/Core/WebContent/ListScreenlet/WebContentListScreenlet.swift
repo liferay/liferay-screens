@@ -85,6 +85,10 @@ import UIKit
 						if modelValues.isXml {
 							structuredRecord.updateCurrentValues(xmlValues: modelValues)
 						}
+						else {
+							print("ERROR: Structured web content's values should always be returned in xml")
+							structuredRecord.clearValues()
+						}
 						structuredRecord.attributes = modelAttributes
 					}
 				}
