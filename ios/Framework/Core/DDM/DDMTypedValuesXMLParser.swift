@@ -20,26 +20,29 @@ import Foundation
 
 public class DDMTypedValuesXMLParser {
 
+	public var createdStructure: DDMStructure?
+
 	//MARK: Public methods
 	
-	public func parse(xml: String, structure: DDMStructure) -> Int {
+	public func parse(xml: String, structure: DDMStructure?) -> Int {
 		let data = xml.dataUsingEncoding(NSUTF8StringEncoding)
 
-		do {
-			let document = try SMXMLDocument(data: data)
-			return processDocument(document, locale: structure.locale, structure: structure)
-		}
-		catch {
+		guard let document = try? SMXMLDocument(data: data) else {
+			return -1
 		}
 
-		return -1
+		return processDocument(document,
+		   locale: structure?.locale
+				?? NSLocale(localeIdentifier: NSLocale.currentLocaleString),
+		   structure: structure)
 	}
 
 
 	//MARK: Private methods
 
-	private func processDocument(document: SMXMLDocument, locale: NSLocale, structure: DDMStructure) -> Int {
+	private func processDocument(document: SMXMLDocument, locale: NSLocale, structure: DDMStructure?) -> Int {
 		var count = 0
+		var createdFields = [DDMField]()
 
 		if let elements = document.childrenNamed("dynamic-element") {
 			let defaultLocale = NSLocale(
@@ -47,21 +50,49 @@ public class DDMTypedValuesXMLParser {
 
 			for element in (elements as! [SMXMLElement]) {
 				if let fieldName = element.attributeNamed("name"),
-						field = structure.fieldBy(name: fieldName),
 						value = getFieldValue(element, locale: locale, defaultLocale: defaultLocale) {
 
-					field.currentValueAsString = value
+					if let field = structure?.fieldBy(name: fieldName) {
+						field.currentValueAsString = value
+					}
+					else {
+						// this field isn't present in the structure: create it
+						if let field = createFormField(element,
+								locale: locale,
+								defaultLocale: defaultLocale) {
+							field.currentValueAsString = value
+							createdFields.append(field)
+						}
+					}
 
 					count += 1
-				}
-				else {
-					// this field isn't present in the structure. Skip
 				}
 			}
 		}
 
+		if createdFields.count > 0 {
+			createdStructure = DDMStructure(
+				fields: createdFields,
+				locale: locale,
+				attributes: [:])
+		}
+
 		return count
 	}
+
+	private func createFormField(xmlElement: SMXMLElement,
+			locale: NSLocale,
+	        defaultLocale: NSLocale) -> DDMField? {
+
+		let editor = DDMField.Editor.from(
+			attributes: xmlElement.attributes as! [String:AnyObject])
+
+		return editor.defaultDataType.createField(
+			attributes: xmlElement.attributes as! [String:AnyObject],
+			locale: locale,
+			version: LiferayServerContext.serverVersion)
+	}
+
 
 	private func getFieldValue(xmlElement: SMXMLElement,
 			locale: NSLocale,

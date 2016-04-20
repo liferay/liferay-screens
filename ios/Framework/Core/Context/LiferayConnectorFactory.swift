@@ -61,6 +61,13 @@ public protocol LiferayConnectorFactory {
 		endRow: Int,
 		computeRowCount: Bool) -> AssetListPageLiferayConnector
 
+	func createWebContentListPageConnector(
+		groupId groupId: Int64,
+		folderId: Int64,
+		startRow: Int,
+		endRow: Int,
+		computeRowCount: Bool) -> WebContentListPageLiferayConnector
+
 	func createDDLListPageConnector(
 		viewModel viewModel: DDLListViewModel,
 		startRow: Int,
@@ -190,6 +197,20 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			startRow: startRow,
 			endRow: endRow,
 			computeRowCount: computeRowCount)
+	}
+
+	public func createWebContentListPageConnector(
+			groupId groupId: Int64,
+			folderId: Int64,
+			startRow: Int,
+			endRow: Int,
+			computeRowCount: Bool) -> WebContentListPageLiferayConnector {
+		return Liferay62WebContentListPageConnector(
+			startRow: startRow,
+			endRow: endRow,
+			computeRowCount: computeRowCount,
+			groupId: groupId,
+			folderId: folderId)
 	}
 
 	public func createDDLListPageConnector(
@@ -351,6 +372,20 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			startRow: startRow,
 			endRow: endRow,
 			computeRowCount: computeRowCount)
+	}
+
+	public func createWebContentListPageConnector(
+			groupId groupId: Int64,
+			folderId: Int64,
+			startRow: Int,
+			endRow: Int,
+			computeRowCount: Bool) -> WebContentListPageLiferayConnector {
+		return Liferay70WebContentListPageConnector(
+			startRow: startRow,
+			endRow: endRow,
+			computeRowCount: computeRowCount,
+			groupId: groupId,
+			folderId: folderId)
 	}
 
 	public func createDDLListPageConnector(

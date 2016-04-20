@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -118,10 +118,10 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="articleId" value="20678"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="articleId" value="31209"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="book"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="structureId">
-                                        <integer key="value" value="20674"/>
+                                        <integer key="value" value="31202"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -167,6 +167,7 @@
                         <segue destination="oOo-3A-Uui" kind="push" identifier="DDLFormScreenlet" id="WbH-nt-XHO"/>
                         <segue destination="kiQ-mD-UG4" kind="push" identifier="WebContentDisplayScreenlet" id="yAA-vv-JOl"/>
                         <segue destination="TY4-Ql-4pF" kind="push" identifier="UserPortraitScreenlet" id="jtf-rk-w86"/>
+                        <segue destination="mIJ-mJ-AmA" kind="push" identifier="WebContentListScreenlet" id="NhJ-zR-6pA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsJ-Fx-gOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -365,6 +366,43 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A6g-L6-eDf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="536" y="1793"/>
+        </scene>
+        <!--WebContentListScreenlet-->
+        <scene sceneID="MCN-aR-IyW">
+            <objects>
+                <viewController title="WebContentListScreenlet" id="mIJ-mJ-AmA" customClass="WebContentListScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YHs-MM-I4k"/>
+                        <viewControllerLayoutGuide type="bottom" id="SCZ-oN-0s2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UcB-oQ-PmW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8S0-OV-XFI" customClass="WebContentListScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="book"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8S0-OV-XFI" firstAttribute="leading" secondItem="UcB-oQ-PmW" secondAttribute="leading" id="TjW-xe-OIK"/>
+                            <constraint firstAttribute="trailing" secondItem="8S0-OV-XFI" secondAttribute="trailing" id="Zqs-B6-KdX"/>
+                            <constraint firstItem="SCZ-oN-0s2" firstAttribute="top" secondItem="8S0-OV-XFI" secondAttribute="bottom" id="csf-ah-sKl"/>
+                            <constraint firstItem="8S0-OV-XFI" firstAttribute="top" secondItem="YHs-MM-I4k" secondAttribute="bottom" id="rHd-zO-G36"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="kuN-5L-PDx"/>
+                    <connections>
+                        <outlet property="screenlet" destination="8S0-OV-XFI" id="jcO-Zz-e6o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Br9-uc-FlJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="362" y="2445"/>
         </scene>
         <!--AssetListScreenlet-->
         <scene sceneID="Gof-EM-hXa">
