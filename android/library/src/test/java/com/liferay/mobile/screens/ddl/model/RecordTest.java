@@ -43,7 +43,7 @@ public class RecordTest {
 
 	private static void parse(Record record, String content) throws JSONException {
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("xsd", new JSONObject(content));
+		jsonObject.put("xsd", content);
 		record.parseDDMStructure(jsonObject);
 	}
 
