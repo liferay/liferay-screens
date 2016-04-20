@@ -21,10 +21,12 @@ public class AssetFactory {
 			String stringLocale = (String) map.get("locale");
 			Locale locale = LiferayLocale.getLocaleWithoutDefault(stringLocale);
 
-			if (map.containsKey("DDMStructure")) {
+			String className = (String) map.get("className");
+
+			if (className.contains("JournalArticle")) {
 				return new WebContent(map, locale);
 			}
-			else if (map.containsKey("modelValues")) {
+			else if (className.contains("DDLRecord")) {
 				return new Record(map, locale);
 			}
 		}
