@@ -35,7 +35,7 @@ import javax.xml.parsers.ParserConfigurationException;
 /**
  * @author Jose Manuel Navarro
  */
-public class XSDParser extends XMLParser implements FieldParser {
+public class XSDParser extends AbstractXMLParser implements DDMStructureParser {
 
 	public List<Field> parse(String xml, Locale locale) throws SAXException {
 		try {
@@ -175,11 +175,7 @@ public class XSDParser extends XMLParser implements FieldParser {
 	protected Element findMetadataElement(
 		Element dynamicElement, Locale locale, Locale defaultLocale) {
 
-		String tagName = "meta-data";
-
-		String attrName = "locale";
-
-		return getLocaleFallback(dynamicElement, locale, defaultLocale, tagName, attrName);
+		return getLocaleFallback(dynamicElement, locale, defaultLocale, "meta-data", "locale");
 	}
 
 }

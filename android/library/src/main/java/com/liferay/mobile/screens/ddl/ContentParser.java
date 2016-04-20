@@ -22,16 +22,12 @@ import javax.xml.parsers.ParserConfigurationException;
 /**
  * @author Javier Gamarra
  */
-public class ContentParser extends XMLParser {
+public class ContentParser extends AbstractXMLParser {
 
 	public List<Field> parseContent(DDMStructure structure, String content) {
 		try {
-
-			String attrName = "language-id";
-			String tagName = "dynamic-element";
-
 			Document document = getDocument(content);
-			return createDocument(document.getDocumentElement(), structure.getFields(), tagName, attrName, structure.getLocale());
+			return createDocument(document.getDocumentElement(), structure.getFields(), structure.getLocale());
 		}
 		catch (ParserConfigurationException | IOException | SAXException e) {
 			LiferayLogger.e("Error parsing content", e);
@@ -53,23 +49,22 @@ public class ContentParser extends XMLParser {
 		return null;
 	}
 
-	private List<Field> createDocument(Element root, List<Field> currentFields, String tagName, String attrName, Locale locale) {
-
+	private List<Field> createDocument(Element root, List<Field> currentFields, Locale locale) {
 
 		List<Field> fields = new ArrayList<>();
 		Locale defaultLocale = LiferayLocale.getDefaultLocale();
-		NodeList dynamicElementList = root.getElementsByTagName(tagName);
+		NodeList dynamicElementList = root.getElementsByTagName("dynamic-element");
 
 		for (int i = 0; i < dynamicElementList.getLength(); i++) {
 			Element dynamicElement = (Element) dynamicElementList.item(i);
 
 			Field field = getFieldByName(currentFields, dynamicElement.getAttribute("name"));
 			if (field != null) {
-				Element element = getLocaleFallback(dynamicElement, locale, defaultLocale, "dynamic-content", attrName);
+				Element element = getLocaleFallback(dynamicElement, locale, defaultLocale, "dynamic-content", "language-id");
 				Field otherField = field.isRepeatable() ? clone(field) : field;
 				otherField.setCurrentValue(element.getTextContent());
-				if (dynamicElement.getElementsByTagName(tagName).getLength() > 0) {
-					otherField.setFields(createDocument(dynamicElement, field.getFields(), tagName, attrName, locale));
+				if (dynamicElement.getElementsByTagName("dynamic-element").getLength() > 0) {
+					otherField.setFields(createDocument(dynamicElement, field.getFields(), locale));
 				}
 				fields.add(otherField);
 			}

@@ -3,7 +3,7 @@ package com.liferay.mobile.screens.ddl.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.liferay.mobile.screens.ddl.FieldParser;
+import com.liferay.mobile.screens.ddl.DDMStructureParser;
 import com.liferay.mobile.screens.ddl.JsonParser;
 import com.liferay.mobile.screens.ddl.XSDParser;
 import com.liferay.mobile.screens.util.LiferayLocale;
@@ -112,7 +112,7 @@ public class DDMStructure implements Parcelable {
 		_parsed = true;
 	}
 
-	protected void parse(String content, FieldParser parser) {
+	protected void parse(String content, DDMStructureParser parser) {
 		try {
 			Locale locale = _locale == null ? LiferayLocale.getDefaultLocale() : _locale;
 			_fields = parser.parse(content, locale);
