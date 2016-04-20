@@ -15,6 +15,7 @@
 	<string name="sync_cache">Sync cache</string>
 	<string name="change_theme">Change Theme</string>
 	<string name="webview_label">Web Content Display Screenlet: Shows the HTML of a web content given its articleId.</string>
+	<string name="webview_structured_label">Web Content Display Screenlet with Structure: Shows the content of same fields based on a DDMStructure.</string>
 	<string name="user_portrait_label">User Portrait Screenlet: Shows the user\'s portrait picture. Can fetch the user portrait from the userId or the portraitId.</string>
 	<string name="signup_label">Signup Screenlet: Signup form to register a new user in Liferay Portal</string>
 	<string name="select_asset_label">Asset List Screenlet: Shows a list of assets. Please choose an asset type to show all its entries</string>
@@ -34,5 +35,7 @@
 
 	<string name="custom_interactor">Login with custom interactor</string>
 	<string name="list_bookmarks">List Bookmarks</string>
+	<string name="webview_structured_label_first_field">Showing only one field</string>
+	<string name="webview_structured_label_example">Example customizing the view</string>
 
 </resources>

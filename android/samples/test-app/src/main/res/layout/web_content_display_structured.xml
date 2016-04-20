@@ -7,14 +7,42 @@
 
 	<TextView
 		style="@style/label"
-		android:text="@string/webview_label" />
+		android:text="@string/webview_structured_label" />
 
 	<com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		liferay:articleId="@string/article_id_structured"
+		android:layout_height="wrap_content"
+		liferay:articleId="@string/liferay_article_structured_article_id"
+		liferay:labelFields="@string/liferay_article_structured_label_fields"
+		liferay:layoutId="@layout/webcontentdisplay_structured_default"
+		liferay:offlinePolicy="REMOTE_FIRST"
+		liferay:structureId="@string/liferay_article_structured_structure_id" />
+
+	<TextView
+		style="@style/label"
+		android:text="@string/webview_structured_label_first_field" />
+
+	<com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		liferay:articleId="@string/liferay_article_structured_article_id"
+		liferay:labelFields="@string/liferay_article_structured_label_fields_first_field"
+		liferay:layoutId="@layout/webcontentdisplay_structured_default"
+		liferay:offlinePolicy="REMOTE_FIRST"
+		liferay:structureId="@string/liferay_article_structured_structure_id" />
+
+	<TextView
+		style="@style/label"
+		android:text="@string/webview_structured_label_example" />
+
+	<com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		liferay:articleId="@string/liferay_article_structured_article_id"
+		liferay:labelFields="@string/liferay_article_structured_label_fields_first_field"
 		liferay:layoutId="@layout/webcontentdisplaystructured_example"
 		liferay:offlinePolicy="REMOTE_FIRST"
-		liferay:structureId="@string/structure_id_structured" />
+		liferay:structureId="@string/liferay_article_structured_structure_id" />
+
 
 </LinearLayout>
