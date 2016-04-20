@@ -83,7 +83,7 @@ import Foundation
 			hud.addGestureRecognizer(
 				UITapGestureRecognizer(
 					target: self,
-					action: "simpleTapDetected:"))
+					action: #selector(MBProgressHUDPresenter.simpleTapDetected(_:))))
 		}
 
 		let components = message?.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())

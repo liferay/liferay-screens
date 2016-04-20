@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class DDLSubmitButtonTableCell_default: DDLFieldTableCell {
+public class DDLSubmitButtonTableCell_default: DDMFieldTableCell {
 
 	@IBOutlet public var submitButton: UIButton?
 
@@ -25,7 +25,7 @@ public class DDLSubmitButtonTableCell_default: DDLFieldTableCell {
 	}
 
 
-	//MARK: DDLFieldTableCell
+	//MARK: DDMFieldTableCell
 
 	override public func awakeFromNib() {
 		super.awakeFromNib()

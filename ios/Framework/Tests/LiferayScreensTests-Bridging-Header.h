@@ -13,3 +13,5 @@
  */
 
 @import LiferayScreens;
+
+#import "ObjCTryCatch.h"

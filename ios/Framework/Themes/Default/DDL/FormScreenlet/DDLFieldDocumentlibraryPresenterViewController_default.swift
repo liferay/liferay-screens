@@ -15,10 +15,10 @@ import UIKit
 import MobileCoreServices
 
 
-private let xibName = "DDLFieldDocumentlibraryPresenterViewController_default"
+private let xibName = "DDMFieldDocumentlibraryPresenterViewController_default"
 
 
-public class DDLFieldDocumentlibraryPresenterViewController_default:
+public class DDMFieldDocumentlibraryPresenterViewController_default:
 		UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
 	@IBOutlet public var takeNewButton: UIButton?
@@ -38,7 +38,7 @@ public class DDLFieldDocumentlibraryPresenterViewController_default:
 	public convenience init() {
 		func bundleForXib() -> NSBundle? {
 			let bundles = NSBundle.allBundles(
-					DDLFieldDocumentlibraryPresenterViewController_default.self);
+					DDMFieldDocumentlibraryPresenterViewController_default.self);
 
 			return bundles.filter {
 					$0.pathForResource(xibName, ofType:"nib") != nil

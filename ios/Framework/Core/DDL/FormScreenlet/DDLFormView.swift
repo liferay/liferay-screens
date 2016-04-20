@@ -31,7 +31,7 @@ public class DDLFormView: BaseScreenletView, DDLFormViewModel {
 
 	public func validateForm(autoscroll autoscroll: Bool) -> ValidationError? {
 		var firstError: ValidationError?
-		var firstFailedField: DDLField?
+		var firstFailedField: DDMField?
 
 		forEachField() {
 			if !$0.validate() {
@@ -56,21 +56,21 @@ public class DDLFormView: BaseScreenletView, DDLFormViewModel {
 
 	//MARK: Public methods
 
-	public func getField(index: Int) -> DDLField? {
+	public func getField(index: Int) -> DDMField? {
 		return (record == nil) ? nil : record!.fields[index]
 	}
 
-	public func getFieldIndex(field: DDLField) -> Int? {
+	public func getFieldIndex(field: DDMField) -> Int? {
 		return (record == nil) ? nil : record!.fields.indexOf(field)
 	}
 
 
 	//MARK: Internal methods
 
-	internal func changeDocumentUploadStatus(field:DDLFieldDocument) {
+	internal func changeDocumentUploadStatus(field:DDMFieldDocument) {
 	}
 
-	internal func forEachField(body:DDLField -> Void) {
+	internal func forEachField(body:DDMField -> Void) {
 		if let recordValue = record {
 			for field in recordValue.fields {
 				body(field)
@@ -78,7 +78,7 @@ public class DDLFormView: BaseScreenletView, DDLFormViewModel {
 		}
 	}
 
-	internal func showField(field:DDLField) {
+	internal func showField(field:DDMField) {
 	}
 
 }

@@ -40,15 +40,17 @@ public class WebContentDisplayView_default: BaseScreenletView, WebContentDisplay
 
 	//MARK: WebContentDisplayViewModel
 
-	public var htmlContent: String {
+	public var htmlContent: String? {
 		get {
 			return ""
 		}
 		set {
-			let styledHtml = "<style>\(styles)</style><div class=\"MobileCSS\">\(newValue)</div>"
+			let styledHtml = "<style>\(styles)</style><div class=\"MobileCSS\">\(newValue ?? "")</div>"
 
 			webView!.loadHTMLString(styledHtml, baseURL: NSURL(string:LiferayServerContext.server))
 		}
 	}
+
+	public var recordContent: DDLRecord?
 
 }
