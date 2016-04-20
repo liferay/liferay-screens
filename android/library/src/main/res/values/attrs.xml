@@ -114,6 +114,7 @@
 		<attr name="structureId" />
 		<attr name="javascriptEnabled" format="boolean" />
 		<attr name="articleId" format="string" />
+		<attr name="labelFields" />
 	</declare-styleable>
 
 	<declare-styleable name="WebContentListScreenlet">
@@ -124,6 +125,7 @@
 		<attr name="offlinePolicy" />
 		<attr name="firstPageSize" />
 		<attr name="pageSize" />
+		<attr name="labelFields" />
 	</declare-styleable>
 
 	<declare-styleable name="UserPortraitScreenlet">

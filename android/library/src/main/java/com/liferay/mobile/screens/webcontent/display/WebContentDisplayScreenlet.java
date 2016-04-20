@@ -44,7 +44,6 @@ public class WebContentDisplayScreenlet
 	extends BaseScreenlet<WebContentDisplayViewModel, WebContentDisplayBaseInteractor>
 	implements WebContentDisplayListener {
 
-	public static final String WEB_CONTENT_BY_CLASS_PK = "WEB_CONTENT_BY_CLASS_PK";
 	public static final String WEB_CONTENT_BY_ARTICLE_ID = "WEB_CONTENT_BY_ARTICLE_ID";
 	public static final String WEB_CONTENT_WITH_STRUCTURE = "WEB_CONTENT_WITH_STRUCTURE";
 
@@ -175,6 +174,22 @@ public class WebContentDisplayScreenlet
 		_groupId = groupId;
 	}
 
+	public String getLabelFields() {
+		return _labelFields;
+	}
+
+	public void setLabelFields(String labelFields) {
+		_labelFields = labelFields;
+	}
+
+	public Long getStructureId() {
+		return _structureId;
+	}
+
+	public void setStructureId(Long structureId) {
+		_structureId = structureId;
+	}
+
 	protected void autoLoad() {
 		if ((_articleId != null || _classPK != 0) && SessionContext.isLoggedIn()) {
 			try {
@@ -203,6 +218,8 @@ public class WebContentDisplayScreenlet
 		_templateId = castToLong(typedArray.getString(R.styleable.WebContentDisplayScreenlet_templateId));
 
 		_structureId = castToLong(typedArray.getString(R.styleable.WebContentDisplayScreenlet_structureId));
+
+		_labelFields = typedArray.getString(R.styleable.WebContentDisplayScreenlet_labelFields);
 
 		_javascriptEnabled = typedArray.getBoolean(
 			R.styleable.WebContentDisplayScreenlet_javascriptEnabled, false);
@@ -268,6 +285,7 @@ public class WebContentDisplayScreenlet
 	private boolean _autoLoad;
 	private long _groupId;
 	private boolean _javascriptEnabled;
+	private String _labelFields;
 	private WebContentDisplayListener _listener;
 	private OfflinePolicy _offlinePolicy;
 
