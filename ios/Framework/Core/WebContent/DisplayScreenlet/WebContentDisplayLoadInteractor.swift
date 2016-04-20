@@ -68,14 +68,25 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 			result(nil)
 			return
 		}
+		guard let loadOp = op as? WebContentLoadBaseLiferayConnector else {
+			result(nil)
+			return
+		}
 
-		if let loadOp = op as? WebContentLoadHtmlLiferayConnector {
-
+		if let loadHtml = loadOp as? WebContentLoadHtmlLiferayConnector {
 			cacheManager.getString(
 					collection: ScreenletName(WebContentDisplayScreenlet),
 					key: articleCacheKey(loadOp.groupId, loadOp.articleId)) {
-				loadOp.resultHTML = $0
+				loadHtml.resultHTML = $0
 				result($0)
+			}
+		}
+		else if let loadStructured = loadOp as? WebContentLoadStructuredLiferayConnector {
+			cacheManager.getAny(
+					collection: ScreenletName(WebContentDisplayScreenlet),
+					key: articleCacheKey(loadOp.groupId, loadOp.articleId)) {
+				loadStructured.resultRecord = $0 as? DDLRecord
+				result(loadStructured.resultRecord)
 			}
 		}
 		else {
@@ -87,19 +98,23 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
-
-		if let loadOp = op as? WebContentLoadHtmlLiferayConnector,
-				html = loadOp.resultHTML,
-				groupId = loadOp.groupId {
-
-			cacheManager.setClean(
-				collection: ScreenletName(WebContentDisplayScreenlet),
-				key: articleCacheKey(groupId, loadOp.articleId),
-				value: html,
-				attributes: [
-					"groupId": NSNumber(longLong: groupId),
-					"articleId": loadOp.articleId])
+		guard let loadOp = op as? WebContentLoadBaseLiferayConnector else {
+			return
 		}
+		guard let value: NSCoding =
+				(loadOp as? WebContentLoadHtmlLiferayConnector)?.resultHTML
+				??
+				(loadOp as? WebContentLoadStructuredLiferayConnector)?.resultRecord else {
+			return
+		}
+
+		cacheManager.setClean(
+			collection: ScreenletName(WebContentDisplayScreenlet),
+			key: articleCacheKey(loadOp.groupId, loadOp.articleId),
+			value: value,
+			attributes: [
+				"groupId": NSNumber(longLong: groupId),
+				"articleId": loadOp.articleId])
 	}
 
 	private func articleCacheKey(groupId: Int64, _ articleId: String) -> String {
