@@ -24,7 +24,25 @@ public class WebContentListAdapter extends BaseListAdapter<WebContent, WebConten
 
 	@Override
 	protected void fillHolder(WebContent entry, ViewHolder holder) {
-		holder.textView.setText(entry.getTitle());
+		holder.textView.setText(calculateValue(entry, holder));
+	}
+
+	protected String calculateValue(WebContent entry, ViewHolder holder) {
+		if (getLabelFields().isEmpty()) {
+			return entry.getTitle();
+		}
+		else {
+			String value = "";
+
+			for (String label : getLabelFields()) {
+				String localized = entry.getLocalized(label);
+				if (localized == null) {
+					localized = entry.getTitle();
+				}
+				value += localized + "\r\n";
+			}
+			return value;
+		}
 	}
 
 	public class ViewHolder extends BaseListAdapter.ViewHolder {
