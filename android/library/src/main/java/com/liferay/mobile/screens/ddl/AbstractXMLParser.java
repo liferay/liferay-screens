@@ -3,6 +3,7 @@ package com.liferay.mobile.screens.ddl;
 import android.support.annotation.Nullable;
 
 import com.liferay.mobile.screens.util.LiferayLocale;
+import com.liferay.mobile.screens.util.LiferayLogger;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
@@ -27,7 +28,7 @@ import javax.xml.parsers.ParserConfigurationException;
 /**
  * @author Javier Gamarra
  */
-public abstract class XMLParser {
+public abstract class AbstractXMLParser {
 
 	protected Document getDocument(String content) throws ParserConfigurationException, SAXException, IOException {
 
@@ -139,4 +140,41 @@ public abstract class XMLParser {
 
 		return resultElement;
 	}
+
+	protected String getLocaleFallbackFromString(String content, Locale locale, String tagName, String attrName) {
+		try {
+			Document document = getDocument(content);
+			Element localeFallback = getLocaleFallback(document.getDocumentElement(), locale, LiferayLocale.getDefaultLocale(), tagName, attrName);
+			return localeFallback == null ? "" : localeFallback.getTextContent();
+		}
+		catch (ParserConfigurationException | SAXException | IOException e) {
+			LiferayLogger.e("Error parsing value");
+			return null;
+		}
+	}
+
+	protected String getChildElementAndFallbackToLocale(String content, Locale locale, String elementValue) {
+		try {
+			Document document = getDocument(content);
+			Element element = getChildElementAndFallbackToLocale(document.getDocumentElement(), locale, elementValue);
+			return element == null ? null : element.getTextContent();
+		}
+		catch (ParserConfigurationException | IOException | SAXException e) {
+			LiferayLogger.e("Error parsing content", e);
+		}
+		return null;
+	}
+
+	private Element getChildElementAndFallbackToLocale(Element root, Locale locale, String elementValue) {
+		Locale defaultLocale = LiferayLocale.getDefaultLocale();
+		List<Element> elements = getChildren(root, "dynamic-element", "name", elementValue);
+
+		for (Element dynamicElement : elements) {
+			Element element = getLocaleFallback(dynamicElement, locale, defaultLocale, "dynamic-content", "language-id");
+			// We shouldn't have several elements with the same name
+			return element;
+		}
+		return null;
+	}
+
 }
