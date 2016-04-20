@@ -82,6 +82,7 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 	@Override
 	public void writeToParcel(Parcel destination, int flags) {
 		super.writeToParcel(destination, flags);
+		destination.writeParcelable(_ddmStructure, flags);
 		destination.writeValue(_creatorUserId);
 		destination.writeValue(_structureId);
 		destination.writeValue(_recordSetId);
@@ -219,6 +220,7 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 
 	private Record(Parcel in, ClassLoader loader) {
 		super(in, loader);
+		_ddmStructure = in.readParcelable(DDMStructure.class.getClassLoader());
 		_creatorUserId = (Long) in.readValue(Long.class.getClassLoader());
 		_structureId = (Long) in.readValue(Long.class.getClassLoader());
 		_recordSetId = (Long) in.readValue(Long.class.getClassLoader());

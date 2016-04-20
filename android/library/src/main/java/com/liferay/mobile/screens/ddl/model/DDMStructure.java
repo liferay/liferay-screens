@@ -21,10 +21,15 @@ import java.util.Locale;
  */
 public class DDMStructure implements Parcelable {
 
-	public static final Creator<DDMStructure> CREATOR = new Creator<DDMStructure>() {
+	public static final Parcelable.ClassLoaderCreator<DDMStructure> CREATOR = new ClassLoaderCreator<DDMStructure>() {
+		@Override
+		public DDMStructure createFromParcel(Parcel source, ClassLoader classLoader) {
+			return new DDMStructure(source, classLoader);
+		}
+
 		@Override
 		public DDMStructure createFromParcel(Parcel in) {
-			return new DDMStructure(in);
+			throw new AssertionError();
 		}
 
 		@Override
@@ -38,14 +43,16 @@ public class DDMStructure implements Parcelable {
 		_parsed = false;
 	}
 
-	protected DDMStructure(Parcel in) {
-		Field[] array = (Field[]) in.readParcelableArray(getClass().getClassLoader());
-		_fields = new ArrayList<>(Arrays.asList(array));
+	protected DDMStructure(Parcel in, ClassLoader classLoader) {
+		Parcelable[] array = in.readParcelableArray(Field.class.getClassLoader());
+		_fields = new ArrayList(Arrays.asList(array));
+		_locale = (Locale) in.readSerializable();
 	}
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeTypedList(_fields);
+		dest.writeParcelableArray(_fields.toArray(new Field[_fields.size()]), flags);
+		dest.writeSerializable(_locale);
 	}
 
 	@Override
