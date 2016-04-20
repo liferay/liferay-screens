@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.ddl.ContentParser;
-import com.liferay.mobile.screens.ddl.StaticParser;
+import com.liferay.mobile.screens.ddl.FieldParser;
 import com.liferay.mobile.screens.ddl.model.DDMStructure;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.WithDDM;
@@ -72,8 +72,8 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 				}
 			}
 			else {
-				StaticParser staticParser = new StaticParser();
-				_html = staticParser.parse(content, locale);
+				FieldParser fieldParser = new FieldParser();
+				_html = fieldParser.parseStaticContent(content, locale);
 			}
 		}
 		catch (JSONException e) {
@@ -112,6 +112,26 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 
 	public void setHtml(String html) {
 		_html = html;
+	}
+
+	public String getLocalized(String name) {
+		Field field = getDDMStructure().getFieldByName(name);
+		if (field != null) {
+			return (String) field.getCurrentValue();
+		}
+
+		String content = getContent(getValues());
+
+		return new FieldParser().parseField(content, _ddmStructure.getLocale(), name);
+	}
+
+	public String getTitle() {
+		String assetTitle = super.getTitle();
+		if (!assetTitle.contains("?xml")) {
+			return assetTitle;
+		}
+
+		return new FieldParser().parseTitle(assetTitle, _ddmStructure.getLocale());
 	}
 
 	private String getContent(Map<String, Object> map) {
