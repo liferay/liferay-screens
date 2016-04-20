@@ -75,32 +75,12 @@ public class DDMJSONParser {
 				locale: locale,
 				defaultLocale: defaultLocale)
 
-		let mergedAttributes = mergeDictionaries(
-				dict1: jsonField,
-				dict2: localizedMetadata)
+		let mergedAttributes = jsonField.copyAndMerge(localizedMetadata)
 
 		return dataType.createField(
 			attributes: mergedAttributes,
 			locale: locale,
 			version: LiferayServerVersion.v70)
-	}
-
-	private func mergeDictionaries(
-			dict1 dict1:[String:AnyObject],
-			dict2:[String:AnyObject])
-			-> [String:AnyObject] {
-
-		var result:[String:AnyObject] = [:]
-
-		for (key1,value1) in dict1 {
-			result.updateValue(value1, forKey: key1)
-		}
-
-		for (key2,value2) in dict2 {
-			result.updateValue(value2, forKey: key2)
-		}
-
-		return result
 	}
 
 	private func processLocalized(jsonField: JSONObject,

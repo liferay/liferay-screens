@@ -31,5 +31,32 @@ public extension Dictionary {
 		return result
 	}
 
+	public func copyAndRemove(keys: [Key]) -> Dictionary<Key,Value> {
+		var result = self
+
+		result.removeValueForKeys(keys)
+
+		return result
+	}
+
+	public func copyAndMerge(otherDict: Dictionary<Key,Value>) -> Dictionary<Key,Value> {
+		var result = self
+
+		result.merge(otherDict)
+
+		return result
+	}
+
+	public mutating func merge(otherDict: Dictionary<Key,Value>) {
+		for (k,v) in otherDict {
+			self.updateValue(v, forKey: k)
+		}
+	}
+
+	public mutating func removeValueForKeys(keys: [Key]) {
+		for (k,_) in self {
+			self.removeValueForKey(k)
+		}
+	}
 
 }

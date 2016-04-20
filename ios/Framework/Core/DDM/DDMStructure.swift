@@ -64,6 +64,24 @@ import Foundation
 		self.init(fields: parsedFields, locale: locale, attributes: attributes)
 	}
 
+	public convenience init?(structureData: [String:AnyObject], locale: NSLocale) {
+		var newData = structureData
+
+		if let xsd = structureData["xsd"] as? String {
+			// v6.2: xml based structure
+			newData.removeValueForKey("xsd")
+			self.init(xsd: xsd, locale: locale, attributes: newData)
+		}
+		else if let json = structureData["definition"] as? String {
+			// v7.0+: json based structure
+			newData.removeValueForKey("definition")
+			self.init(json: json, locale: locale, attributes: newData)
+		}
+		else {
+			return nil
+		}
+	}
+
 	public required init?(coder aDecoder: NSCoder) {
 		fields = aDecoder.decodeObjectForKey("fields") as! [DDMField]
 		attributes = aDecoder.decodeObjectForKey("attributes") as! [String:AnyObject]

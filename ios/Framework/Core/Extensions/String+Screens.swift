@@ -43,8 +43,12 @@ extension String {
 		return Int64(self)
 	}
 
+	public var isXml: Bool {
+		return self.hasPrefix("<?xml")
+	}
+
 	public func asLocalized(locale: NSLocale) -> String {
-		guard self.hasPrefix("<?xml") else {
+		guard self.isXml else {
 			return self
 		}
 
