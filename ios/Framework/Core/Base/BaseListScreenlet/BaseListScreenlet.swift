@@ -89,14 +89,12 @@ import UIKit
 
 	override public func onAction(name name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
 
-		let result = super.onAction(name: name, interactor: interactor, sender: sender)
-
-		if result && name == BaseListScreenlet.LoadInitialPageAction {
+		if name == BaseListScreenlet.LoadInitialPageAction {
 			// clear list while it's loading
 			self.baseListView.setRows([], rowCount: 0)
 		}
 
-		return result
+		return super.onAction(name: name, interactor: interactor, sender: sender)
 	}
 
 
