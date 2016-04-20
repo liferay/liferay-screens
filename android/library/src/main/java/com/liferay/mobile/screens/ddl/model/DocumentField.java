@@ -14,18 +14,22 @@ import java.util.Map;
  */
 public class DocumentField extends Field<DocumentFile> {
 
-	public static final Parcelable.Creator<DocumentField> CREATOR =
-		new Parcelable.Creator<DocumentField>() {
+	public static final Parcelable.ClassLoaderCreator<DocumentField> CREATOR =
+		new Parcelable.ClassLoaderCreator<DocumentField>() {
+
+			@Override
+			public DocumentField createFromParcel(Parcel parcel, ClassLoader classLoader) {
+				return new DocumentField(parcel, classLoader);
+			}
 
 			public DocumentField createFromParcel(Parcel in) {
-				return new DocumentField(in);
+				throw new AssertionError();
 			}
 
 			public DocumentField[] newArray(int size) {
 				return new DocumentField[size];
 			}
 		};
-
 
 	private enum State {
 		IDLE,
@@ -38,8 +42,8 @@ public class DocumentField extends Field<DocumentFile> {
 		super(attributes, locale, defaultLocale);
 	}
 
-	protected DocumentField(Parcel in) {
-		super(in);
+	protected DocumentField(Parcel in, ClassLoader classLoader) {
+		super(in, classLoader);
 	}
 
 	public boolean moveToUploadInProgressState() {

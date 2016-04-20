@@ -25,11 +25,16 @@ import java.util.Map;
  */
 public class StringField extends Field<String> {
 
-	public static final Parcelable.Creator<StringField> CREATOR =
-		new Parcelable.Creator<StringField>() {
+	public static final Parcelable.ClassLoaderCreator<StringField> CREATOR =
+		new Parcelable.ClassLoaderCreator<StringField>() {
+
+			@Override
+			public StringField createFromParcel(Parcel source, ClassLoader loader) {
+				return new StringField(source, loader);
+			}
 
 			public StringField createFromParcel(Parcel in) {
-				return new StringField(in);
+				throw new AssertionError();
 			}
 
 			public StringField[] newArray(int size) {
@@ -42,8 +47,8 @@ public class StringField extends Field<String> {
 		super(attributes, locale, defaultLocale);
 	}
 
-	protected StringField(Parcel in) {
-		super(in);
+	protected StringField(Parcel source, ClassLoader loader) {
+		super(source, loader);
 	}
 
 	@Override

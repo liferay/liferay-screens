@@ -25,7 +25,7 @@ public class LiferayLocale {
 	}
 
 	public static String getDefaultSupportedLocale() {
-		return getSupportedLocale(getDefaultLocale().getDisplayLanguage());
+		return getSupportedLocale(getDefaultLocale().getLanguage());
 	}
 
 	/**
@@ -51,30 +51,35 @@ public class LiferayLocale {
 
 	@Nullable
 	public static String getSupportedLocaleWithNoDefault(String locale) {
+		return getLocaleWithoutDefault(locale).toString();
+	}
+
+	@Nullable
+	public static Locale getLocaleWithoutDefault(String locale) {
+		locale = locale.substring(0, 2).toLowerCase();
 		switch (locale) {
 			case "ca":
 			case "es":
-				return locale + "_ES";
+				return new Locale("es", "ES");
 			case "zh":
-				return locale + "_CN";
+				return Locale.CHINA;
 			case "fi":
-				return locale + "_FI";
+				return new Locale("fi", "FI");
 			case "fr":
-				return locale + "_FR";
+				return Locale.FRANCE;
 			case "de":
-				return locale + "_DE";
+				return Locale.GERMANY;
 			case "iw":
 			case "he":
-				return "iw_IL";
+				return new Locale("iw", "IL");
 			case "hu":
-				return locale + "_HU";
+				return new Locale("hu", "HU");
 			case "ja":
-				return locale + "_JP";
+				return Locale.JAPAN;
 			case "pt":
-				return locale + "_BR";
-			case "en": {
-				return locale + "_US";
-			}
+				return new Locale("pt", "BR");
+			case "en":
+				return Locale.US;
 			default:
 				return null;
 		}

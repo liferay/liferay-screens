@@ -31,7 +31,7 @@ public class TableCacheStrategy extends BaseCacheStrategy<TableCache> implements
 		Long defaultGroupId = groupId == null ? LiferayServerContext.getGroupId() : groupId;
 		Long defaultUserId = userId == null ? SessionContext.getUserId() : userId;
 		String defaultLocale = locale == null ? LiferayLocale.getDefaultSupportedLocale() :
-			LiferayLocale.getSupportedLocale(locale.getDisplayLanguage());
+			LiferayLocale.getSupportedLocale(locale.getLanguage());
 
 		List elements = queryGet(TableCache.class,
 			TableCache.TABLE_NAME,

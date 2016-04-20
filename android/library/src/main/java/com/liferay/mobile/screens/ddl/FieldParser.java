@@ -8,7 +8,7 @@ import java.util.Locale;
 /**
  * @author Javier Gamarra
  */
-public interface Parser {
+public interface FieldParser {
 
 	List<Field> parse(String content, Locale locale) throws Exception;
 }

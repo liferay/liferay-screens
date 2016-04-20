@@ -223,7 +223,7 @@ public abstract class BaseListScreenletView<
 	protected abstract A createListAdapter(int itemLayoutId, int itemProgressLayoutId);
 
 	@NonNull
-	private List<E> addNewServerEntries(List<E> serverEntries, int page, int rowCount) {
+	protected List<E> addNewServerEntries(List<E> serverEntries, int page, int rowCount) {
 		List<E> entries = getAdapter().getEntries();
 
 		BaseListScreenlet screenlet = (BaseListScreenlet) getScreenlet();

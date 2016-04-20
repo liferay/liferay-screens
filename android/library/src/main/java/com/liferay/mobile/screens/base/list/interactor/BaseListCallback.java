@@ -93,7 +93,7 @@ public abstract class BaseListCallback<E>
 		RequestState.getInstance().remove(getTargetScreenletId(), _rowsRange);
 	}
 
-	private final Pair<Integer, Integer> _rowsRange;
+	protected final Pair<Integer, Integer> _rowsRange;
 
-	private final Locale _locale;
+	protected final Locale _locale;
 }

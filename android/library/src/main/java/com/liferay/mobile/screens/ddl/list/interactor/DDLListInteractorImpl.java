@@ -72,7 +72,7 @@ public class DDLListInteractorImpl
 	@NonNull
 	@Override
 	protected Record getElement(TableCache tableCache) throws JSONException {
-		return new Record(JSONUtil.toMap(new JSONObject(tableCache.getContent())));
+		return new Record(JSONUtil.toMap(new JSONObject(tableCache.getContent())), new Locale(tableCache.getLocale()));
 	}
 
 	@Override
