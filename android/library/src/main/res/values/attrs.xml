@@ -4,6 +4,7 @@
 	<attr name="anonymousApiUserName" format="string" />
 	<attr name="anonymousApiPassword" format="string" />
 	<attr name="autoLoad" format="boolean" />
+	<attr name="folderId" format="string" />
 	<attr name="basicAuthMethod" format="enum">
 		<enum name="email" value="0" />
 		<enum name="screen_name" value="1" />
@@ -54,7 +55,7 @@
 		<attr name="offlinePolicy" />
 		<attr name="filePrefix" format="string" />
 		<attr name="repositoryId" format="string" />
-		<attr name="folderId" format="string" />
+		<attr name="folderId" />
 		<attr name="showSubmitButton" format="boolean" />
 		<attr name="checkboxFieldLayoutId" format="reference" />
 		<attr name="dateFieldLayoutId" format="reference" />
@@ -107,13 +108,24 @@
 	<declare-styleable name="WebContentDisplayScreenlet">
 		<attr name="layoutId" />
 		<attr name="autoLoad" />
-		<attr name="classPK" format="string" />
 		<attr name="groupId" />
 		<attr name="offlinePolicy" />
 		<attr name="templateId" format="string" />
 		<attr name="structureId" />
 		<attr name="javascriptEnabled" format="boolean" />
 		<attr name="articleId" format="string" />
+		<attr name="labelFields" />
+	</declare-styleable>
+
+	<declare-styleable name="WebContentListScreenlet">
+		<attr name="layoutId" />
+		<attr name="autoLoad" />
+		<attr name="folderId" />
+		<attr name="groupId" />
+		<attr name="offlinePolicy" />
+		<attr name="firstPageSize" />
+		<attr name="pageSize" />
+		<attr name="labelFields" />
 	</declare-styleable>
 
 	<declare-styleable name="UserPortraitScreenlet">

@@ -24,10 +24,18 @@
 	<string name="bookmark_folder">20622</string>
 
 	<!--WebContentDisplayScreenlet values-->
-	<string name="liferay_article_id">20602</string>
+	<string name="liferay_article_id">63864</string>
+
+	<string name="liferay_article_structured_structure_id">63875</string>
+	<string name="liferay_article_structured_article_id">63879</string>
+	<string name="liferay_article_structured_label_fields_first_field">Text</string>
+	<string name="liferay_article_structured_label_fields">Text,TextBox</string>
+
 	<string name="liferay_article_id_with_template">20602</string>
 	<string name="liferay_template_id1">56432</string>
 	<string name="liferay_template_id2">56435</string>
+
+	<string name="web_content_folderId">20600</string>
 
 	<string name="portlet_item_name1">manual</string>
 	<string name="portlet_item_name2">dynamic</string>
@@ -36,10 +44,16 @@
 	<string name="liferay_oauth_consumer_key">f4adeb99-9ddf-4c9c-a408-347ce8be340a</string>
 	<string name="liferay_oauth_consumer_secret">0176690f0fd46a4a3a839ca9bf4edd0c</string>
 
+
+
+
 	<!-- local values -->
-	<!--<string name="liferay_server">http://192.168.40.252:8080</string>-->
+	<!--<string name="liferay_server">http://192.168.40.143:8080</string>-->
 	<!--<string name="liferay_company_id">20155</string>-->
-	<!--<string name="liferay_group_id">20182</string>-->
+	<!--<string name="liferay_group_id">20202</string>-->
+
+	<!--<string name="default_user_name">test1@liferay.com</string>&ndash;&gt;-->
+	<!--<string name="default_password">test1</string>-->
 
 	<!-- SignupScreenlet values -->
 	<!--<string name="liferay_anonymousApiUserName">test@liferay.com</string>-->
@@ -52,43 +66,23 @@
 	<!--<string name="folder_id">20617</string>-->
 	<!--<string name="repository_id">20525</string>-->
 
-	<!--<string name="liferay_article_id">22326</string>-->
+	<!--<string name="liferay_article_id">85721</string>-->
 	<!--<string name="liferay_template_id1">47245</string>-->
 	<!--<string name="liferay_template_id2">47239</string>-->
 
-	<!-- EE Server -->
-
-	<!--<string name="liferay_server">http://192.168.50.62:8080</string>-->
-	<!--<string name="liferay_company_id">20155</string>-->
-	<!--<string name="liferay_group_id">20182</string>-->
-
-	<!--<string name="default_user_name">test@liferay.com</string>-->
-	<!--<string name="default_password">test</string>-->
-	<!--<string name="liferay_anonymousApiUserName">test@liferay.com</string>-->
-	<!--<string name="liferay_anonymousApiPassword">test</string>-->
-
-	<!--<string name="liferay_article_id">20634</string>-->
-	<!--<string name="liferay_article_id_with_template">20654</string>-->
-	<!--<string name="liferay_template_id1">20649</string>-->
-	<!--<string name="liferay_template_id2">20652</string>-->
-
-	<!--<string name="liferay_recordset_id">20688</string>-->
-	<!--<string name="liferay_structure_id">20686</string>-->
-	<!--<string name="liferay_recordset_fields">Title</string>-->
-	<!--<string name="folder_id">20675</string>-->
-	<!--<string name="repository_id">20182</string>-->
-
-	<!--<string name="bookmark_folder">20693</string>-->
-	<!--<string name="portlet_item_name1">manual</string>-->
-	<!--<string name="portlet_item_name2">dynamic</string>-->
+	<!--<string name="portlet_item_name1">example</string>-->
+	<!--<string name="folderId">0</string>-->
+	<!--<string name="article_id_structured">85736</string>-->
+	<!--<string name="structure_id_structured">85732</string>-->
 
 	<!--liferay 7-->
 
-	<!--<string name="liferay_server">http://192.168.40.253:8080</string>-->
+	<!--<integer name="liferay_portal_version">70</integer>-->
+	<!--<string name="liferay_server">http://192.168.40.143:8080</string>-->
 	<!--<string name="liferay_company_id">20202</string>-->
-	<!--<string name="liferay_group_id">20232</string>-->
+	<!--<string name="liferay_group_id">20233</string>-->
 
-	<!--<string name="liferay_article_id">21919</string>-->
+	<!--<string name="liferay_article_id">31201</string>-->
 	<!--<string name="liferay_template_id1">21912</string>-->
 	<!--<string name="liferay_template_id2">21916</string>-->
 
@@ -100,8 +94,11 @@
 
 	<!--<string name="bookmark_folder">21934</string>-->
 
-	<!--<string name="portlet_item_name1">manual</string>-->
+	<!--<string name="portlet_item_name1">example</string>-->
 	<!--<string name="portlet_item_name2">dynamic</string>-->
 
+	<!--<string name="folderId">31237</string>-->
+	<!--<string name="article_id_structured">31221</string>-->
+	<!--<string name="structure_id_structured">31214</string>-->
 
 </resources>

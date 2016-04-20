@@ -21,6 +21,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.ddl_form).setOnClickListener(this);
 		findViewById(R.id.ddl_list).setOnClickListener(this);
 		findViewById(R.id.asset_list).setOnClickListener(this);
+		findViewById(R.id.web_content_list).setOnClickListener(this);
 		findViewById(R.id.sign_up).setOnClickListener(this);
 		findViewById(R.id.forgot_password).setOnClickListener(this);
 		findViewById(R.id.user_portrait).setOnClickListener(this);
@@ -50,6 +51,9 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				break;
 			case R.id.asset_list:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(SelectAssetActivity.class));
+				break;
+			case R.id.web_content_list:
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(WebViewListActivity.class));
 				break;
 			case R.id.sign_up:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(SignUpActivity.class));

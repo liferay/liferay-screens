@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.webkit.WebView;
 
-import com.liferay.mobile.screens.ddl.model.WebContent;
-import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
-import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet;
+import com.liferay.mobile.screens.webcontent.WebContent;
+import com.liferay.mobile.screens.webcontent.display.WebContentDisplayListener;
+import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
 
 public class JournalArticleWithTemplateActivity extends ThemeActivity implements WebContentDisplayListener {
 

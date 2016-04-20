@@ -3,7 +3,7 @@ package com.liferay.mobile.screens.ddl.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.liferay.mobile.screens.ddl.FieldParser;
+import com.liferay.mobile.screens.ddl.DDMStructureParser;
 import com.liferay.mobile.screens.ddl.JsonParser;
 import com.liferay.mobile.screens.ddl.XSDParser;
 import com.liferay.mobile.screens.util.LiferayLocale;
@@ -13,20 +13,23 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 /**
  * @author Javier Gamarra
  */
 public class DDMStructure implements Parcelable {
 
-	public static final Creator<DDMStructure> CREATOR = new Creator<DDMStructure>() {
+	public static final Parcelable.ClassLoaderCreator<DDMStructure> CREATOR = new ClassLoaderCreator<DDMStructure>() {
+		@Override
+		public DDMStructure createFromParcel(Parcel source, ClassLoader classLoader) {
+			return new DDMStructure(source, classLoader);
+		}
+
 		@Override
 		public DDMStructure createFromParcel(Parcel in) {
-			return new DDMStructure(in);
+			throw new AssertionError();
 		}
 
 		@Override
@@ -35,32 +38,26 @@ public class DDMStructure implements Parcelable {
 		}
 	};
 
-	public DDMStructure(Map<String, Object> values, Locale locale) {
-		_values = values;
+	public DDMStructure(Locale locale) {
 		_locale = locale;
+		_parsed = false;
 	}
 
-	protected DDMStructure(Parcel in) {
-		Field[] array = (Field[]) in.readParcelableArray(getClass().getClassLoader());
-		_fields = new ArrayList<>(Arrays.asList(array));
+	protected DDMStructure(Parcel in, ClassLoader classLoader) {
+		Parcelable[] array = in.readParcelableArray(Field.class.getClassLoader());
+		_fields = new ArrayList(Arrays.asList(array));
+		_locale = (Locale) in.readSerializable();
 	}
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeTypedList(_fields);
+		dest.writeParcelableArray(_fields.toArray(new Field[_fields.size()]), flags);
+		dest.writeSerializable(_locale);
 	}
 
 	@Override
 	public int describeContents() {
 		return 0;
-	}
-
-	public void parseXsd(String xsd) {
-		parse(xsd, new XSDParser());
-	}
-
-	public void parseJson(String json) {
-		parse(json, new JsonParser());
 	}
 
 	public Field getField(int index) {
@@ -69,6 +66,10 @@ public class DDMStructure implements Parcelable {
 
 	public int getFieldCount() {
 		return _fields.size();
+	}
+
+	public boolean isParsed() {
+		return _parsed;
 	}
 
 	public Field getFieldByName(String fieldName) {
@@ -103,14 +104,15 @@ public class DDMStructure implements Parcelable {
 
 	public void parse(JSONObject jsonObject) throws JSONException {
 		if (jsonObject.has("xsd")) {
-			parseXsd(jsonObject.getString("xsd"));
+			parse(jsonObject.getString("xsd"), new XSDParser());
 		}
 		else {
-			parseJson(jsonObject.getString("definition"));
+			parse(jsonObject.getString("definition"), new JsonParser());
 		}
+		_parsed = true;
 	}
 
-	private void parse(String content, FieldParser parser) {
+	protected void parse(String content, DDMStructureParser parser) {
 		try {
 			Locale locale = _locale == null ? LiferayLocale.getDefaultLocale() : _locale;
 			_fields = parser.parse(content, locale);
@@ -122,5 +124,5 @@ public class DDMStructure implements Parcelable {
 
 	protected List<Field> _fields = new ArrayList<>();
 	protected Locale _locale = Locale.US;
-	protected Map<String, Object> _values = new HashMap<>();
+	protected boolean _parsed;
 }

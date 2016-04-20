@@ -148,8 +148,9 @@ public class Record70Test {
 				"        }" +
 				"]}";
 
+
 			Record record = new Record(new Locale("en", "US"));
-			record.parseDDMStructure(new JSONObject(json));
+			parse(record, json);
 
 			assertTrue(record.getField(1) instanceof StringField);
 			StringField field = (StringField) record.getField(1);
@@ -565,6 +566,25 @@ public class Record70Test {
 				assertEquals(field.getClass(), deserializedField.getClass());
 				assertEquals(field.getCurrentValue(), deserializedField.getCurrentValue());
 			}
+			parcel.recycle();
+		}
+
+		@Test
+		public void shouldSerializeAndDeserializeAStructure() throws Exception {
+
+			DDMStructure structure = new DDMStructure(Locale.US);
+
+			Parcel parcel = Parcel.obtain();
+
+			parcel.writeParcelable(structure, 0);
+
+			assertTrue(parcel.dataCapacity() > 0);
+			assertTrue(parcel.dataSize() > 0);
+
+			parcel.setDataPosition(0);
+
+			DDMStructure deserializedStructure = parcel.readParcelable(structure.getClass().getClassLoader());
+			assertEquals(structure.getLocale(), deserializedStructure.getLocale());
 			parcel.recycle();
 		}
 

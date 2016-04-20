@@ -34,6 +34,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	public enum DataType {
 		BOOLEAN("boolean"),
 		STRING("string"),
+		HTML("html"),
 		DATE("date"),
 		NUMBER("number"),
 		IMAGE("image"),
@@ -80,6 +81,9 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 				else {
 					return new StringField(attributes, locale, defaultLocale);
 				}
+			}
+			else if (HTML.equals(this)) {
+				return new StringField(attributes, locale, defaultLocale);
 			}
 			else if (BOOLEAN.equals(this)) {
 				return new BooleanField(attributes, locale, defaultLocale);

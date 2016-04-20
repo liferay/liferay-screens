@@ -11,36 +11,36 @@ import com.liferay.mobile.screens.ddl.form.connector.DDLRecordSetConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector;
-import com.liferay.mobile.screens.webcontentdisplay.connector.JournalContentConnector;
-import com.liferay.mobile.screens.webcontentdisplay.connector.ScreensJournalContentConnector;
+import com.liferay.mobile.screens.webcontent.display.connector.JournalContentConnector;
+import com.liferay.mobile.screens.webcontent.display.connector.ScreensJournalContentConnector;
 
 /**
  * @author Javier Gamarra
  */
 public interface ServiceVersionFactory {
 
-	ForgotPasswordConnector getForgotPasswordConnector(Session session);
-
 	UserConnector getUserConnector(Session session);
 
 	CurrentUserConnector getCurrentUserConnector(Session session);
 
-	ScreensJournalContentConnector getScreensJournalContentConnector(Session session);
-
-	DDLRecordConnector getDDLRecordConnector(Session session);
-
-	JournalContentConnector getJournalContentConnector(Session session);
-
-	DDMStructureConnector getDDMStructureConnector(Session session);
-
-	ScreensDDLRecordConnector getScreensDDLRecordConnector(Session session);
-
-	ScreensAssetEntryConnector getScreensAssetEntryConnector(Session session);
+	ForgotPasswordConnector getForgotPasswordConnector(Session session);
 
 	DLAppConnector getDLAppConnector(Session session);
 
+	DDLRecordConnector getDDLRecordConnector(Session session);
+
+	ScreensDDLRecordConnector getScreensDDLRecordConnector(Session session);
+
 	DDLRecordSetConnector getDDLRecordSetConnector(Session session);
 
+	DDMStructureConnector getDDMStructureConnector(Session session);
+
 	AssetEntryConnector getAssetEntryConnector(Session session);
+
+	ScreensAssetEntryConnector getScreensAssetEntryConnector(Session session);
+
+	JournalContentConnector getJournalContentConnector(Session session);
+
+	ScreensJournalContentConnector getScreensJournalContentConnector(Session session);
 
 }

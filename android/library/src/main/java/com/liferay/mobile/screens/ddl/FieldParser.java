@@ -1,14 +1,21 @@
 package com.liferay.mobile.screens.ddl;
 
-import com.liferay.mobile.screens.ddl.model.Field;
-
-import java.util.List;
 import java.util.Locale;
 
 /**
  * @author Javier Gamarra
  */
-public interface FieldParser {
+public class FieldParser extends AbstractXMLParser {
 
-	List<Field> parse(String content, Locale locale) throws Exception;
+	public String parseStaticContent(String content, Locale locale) {
+		return getLocaleFallbackFromString(content, locale, "static-content", "language-id");
+	}
+
+	public String parseTitle(String content, Locale locale) {
+		return getLocaleFallbackFromString(content, locale, "Title", "language-id");
+	}
+
+	public String parseField(String content, Locale locale, String name) {
+		return getChildElementAndFallbackToLocale(content, locale, name);
+	}
 }

@@ -18,9 +18,9 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.webkit.WebView;
 
-import com.liferay.mobile.screens.ddl.model.WebContent;
-import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
-import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet;
+import com.liferay.mobile.screens.webcontent.WebContent;
+import com.liferay.mobile.screens.webcontent.display.WebContentDisplayListener;
+import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
 
 /**
  * @author Javier Gamarra
@@ -36,8 +36,6 @@ public class WebContentDisplayActivity extends ThemeActivity implements WebConte
 		WebContentDisplayScreenlet screenlet =
 			(WebContentDisplayScreenlet) findViewById(R.id.web_content_display_screenlet);
 		screenlet.setListener(this);
-
-		screenlet.load();
 	}
 
 	@Override

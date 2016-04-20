@@ -4,13 +4,15 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-import com.liferay.mobile.screens.ddl.model.WebContent;
+import com.liferay.mobile.screens.ddl.model.DDMStructure;
 import com.liferay.mobile.screens.testapp.R;
+import com.liferay.mobile.screens.viewsets.defaultviews.webcontent.display.WebContentStructuredDisplayView;
+import com.liferay.mobile.screens.webcontent.WebContent;
 
 /**
  * @author Javier Gamarra
  */
-public class WebContentDisplayView extends com.liferay.mobile.screens.viewsets.defaultviews.webcontentdisplay.WebContentDisplayView {
+public class WebContentDisplayView extends WebContentStructuredDisplayView {
 
 	public WebContentDisplayView(Context context) {
 		super(context);
@@ -28,7 +30,12 @@ public class WebContentDisplayView extends com.liferay.mobile.screens.viewsets.d
 	public void showFinishOperation(WebContent webContent) {
 		super.showFinishOperation(webContent);
 
-		TextView contentField = (TextView) findViewById(R.id.web_content_field);
-		contentField.setText(webContent.getDDMStructure().getField(0).getCurrentValue().toString());
+		DDMStructure ddmStructure = webContent.getDDMStructure();
+
+		TextView firstField = (TextView) findViewById(R.id.web_content_first_field);
+		firstField.setText(String.valueOf(ddmStructure.getField(0).getCurrentValue()));
+
+		TextView secondField = (TextView) findViewById(R.id.web_content_second_field);
+		secondField.setText(String.valueOf(ddmStructure.getField(1).getCurrentValue()));
 	}
 }

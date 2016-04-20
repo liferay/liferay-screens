@@ -21,45 +21,31 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 /**
  * @author Jose Manuel Navarro
  */
-public class XSDParser extends XMLParser implements FieldParser {
+public class XSDParser extends AbstractXMLParser implements DDMStructureParser {
 
 	public List<Field> parse(String xml, Locale locale) throws SAXException {
-		if (xml == null || xml.isEmpty()) {
-			throw new IllegalArgumentException("Xml cannot be empty");
-		}
-
-		List<Field> result = null;
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
-			DocumentBuilder builder = factory.newDocumentBuilder();
-
-			Document document = builder.parse(new InputSource(new StringReader(xml)));
-
-			result = processDocument(document, locale);
+			Document document = getDocument(xml);
+			return processDocument(document, locale);
 		}
 		catch (ParserConfigurationException | IOException e) {
 			LiferayLogger.e("Error parsing form", e);
+			return null;
 		}
-
-		return result;
 	}
 
 	protected List<Field> processDocument(Document document, Locale locale) {
@@ -189,11 +175,7 @@ public class XSDParser extends XMLParser implements FieldParser {
 	protected Element findMetadataElement(
 		Element dynamicElement, Locale locale, Locale defaultLocale) {
 
-		String tagName = "meta-data";
-
-		String attrName = "locale";
-
-		return getLocaleFallback(dynamicElement, locale, defaultLocale, tagName, attrName);
+		return getLocaleFallback(dynamicElement, locale, defaultLocale, "meta-data", "locale");
 	}
 
 }

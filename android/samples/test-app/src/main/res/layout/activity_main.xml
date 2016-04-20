@@ -48,9 +48,19 @@
 				android:text="@string/webview_structured" />
 
 			<Button
+				android:id="@+id/journal_article_with_template"
+				style="@style/test_app_button"
+				android:text="@string/journal_article_with_template" />
+
+			<Button
 				android:id="@+id/asset_list"
 				style="@style/test_app_button"
 				android:text="@string/asset_list" />
+
+			<Button
+				android:id="@+id/web_content_list"
+				style="@style/test_app_button"
+				android:text="@string/webview_list" />
 
 			<Button
 				android:id="@+id/ddl_form"
@@ -66,11 +76,6 @@
 				android:id="@+id/add_bookmark"
 				style="@style/test_app_button"
 				android:text="@string/add_a_bookmark" />
-
-			<Button
-				android:id="@+id/journal_article_with_template"
-				style="@style/test_app_button"
-				android:text="@string/journal_article_with_template" />
 
 			<Button
 				android:id="@+id/filtered_asset"
