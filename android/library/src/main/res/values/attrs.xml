@@ -108,7 +108,6 @@
 	<declare-styleable name="WebContentDisplayScreenlet">
 		<attr name="layoutId" />
 		<attr name="autoLoad" />
-		<attr name="classPK" format="string" />
 		<attr name="groupId" />
 		<attr name="offlinePolicy" />
 		<attr name="templateId" format="string" />
