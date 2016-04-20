@@ -182,7 +182,7 @@ public class WebContentDisplayScreenlet
 	}
 
 	protected void autoLoad() {
-		if ((_articleId != null || _classPK != null) && SessionContext.isLoggedIn()) {
+		if ((_articleId != null || _classPK != 0) && SessionContext.isLoggedIn()) {
 			try {
 				load();
 			}
