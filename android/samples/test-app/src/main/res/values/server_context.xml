@@ -35,6 +35,8 @@
 	<string name="liferay_template_id1">56432</string>
 	<string name="liferay_template_id2">56435</string>
 
+	<string name="web_content_folderId">20600</string>
+
 	<string name="portlet_item_name1">manual</string>
 	<string name="portlet_item_name2">dynamic</string>
 
@@ -42,7 +44,7 @@
 	<string name="liferay_oauth_consumer_key">f4adeb99-9ddf-4c9c-a408-347ce8be340a</string>
 	<string name="liferay_oauth_consumer_secret">0176690f0fd46a4a3a839ca9bf4edd0c</string>
 
-	<string name="web_content_folderId">21931</string>
+
 
 
 	<!-- local values -->
