@@ -33,6 +33,11 @@ class WebContentDisplayScreenletViewController: UIViewController, WebContentDisp
 	}
 
 	func screenlet(screenlet: WebContentDisplayScreenlet,
+		   onRecordContentResponse record: DDLRecord) {
+		print("DELEGATE: onRecordContentResponse -> \(record.debugDescription)\n");
+	}
+
+	func screenlet(screenlet: WebContentDisplayScreenlet,
 			onWebContentError error: NSError) {
 		print("DELEGATE: onWebContentError -> \(error)\n");
 	}

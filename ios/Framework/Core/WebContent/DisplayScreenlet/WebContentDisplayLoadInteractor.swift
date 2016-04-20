@@ -16,47 +16,45 @@ import UIKit
 
 class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 
+	let groupId: Int64
+	let articleId: String
+	let structureId: Int64?
+	let templateId: Int64?
+
 	var resultHTML: String?
 	var resultRecord: DDLRecord?
 
+	init(screenlet: BaseScreenlet, groupId: Int64, articleId: String, structureId: Int64?, templateId: Int64?) {
+		self.groupId = (groupId != 0) ? groupId : LiferayServerContext.groupId
+		self.articleId = articleId
+		self.structureId = (structureId ?? 0 == 0) ? nil : structureId
+		self.templateId = (templateId ?? 0 == 0) ? nil : templateId
+
+		super.init(screenlet: screenlet)
+	}
+
 	override func createConnector() -> WebContentLoadBaseLiferayConnector? {
-		let screenlet = self.screenlet as! WebContentDisplayScreenlet
-		let groupId = (screenlet.groupId != 0)
-			? screenlet.groupId
-			: LiferayServerContext.groupId
-
-		let connector: WebContentLoadBaseLiferayConnector?
-
-		if screenlet.articleId != "" {
-			if screenlet.structureId != 0 {
-				connector = LiferayServerContext.connectorFactory.createWebContentLoadStructuredByArticleIdConnector(
-					structureId: screenlet.structureId,
-					groupId: groupId,
-					articleId: screenlet.articleId)
-			}
-			else {
-				connector = LiferayServerContext.connectorFactory.createWebContentLoadHtmlByArticleIdConnector(
-					groupId: groupId,
-					articleId: screenlet.articleId)
-				(connector as! WebContentLoadHtmlBaseLiferayConnector).templateId = screenlet.templateId
-			}
-		}
-		else if screenlet.classPK != 0 {
-			connector = LiferayServerContext.connectorFactory.createWebContentLoadHtmlByClassPKConnector(classPK: screenlet.classPK)
-			(connector as! WebContentLoadHtmlBaseLiferayConnector).templateId = screenlet.templateId
+		if let structureId = self.structureId where structureId != 0 {
+			return LiferayServerContext.connectorFactory.createWebContentLoadStructuredConnector(
+				groupId: groupId,
+				articleId: articleId,
+				structureId: structureId)
 		}
 		else {
-			connector = nil
+			let htmlConnector = LiferayServerContext.connectorFactory.createWebContentLoadHtmlConnector(
+				groupId: groupId,
+				articleId: articleId)
+			htmlConnector.templateId = templateId
+			return htmlConnector
 		}
-
-		return connector
 	}
 
 	override func completedConnector(op: ServerConnector) {
-		if let html = (op as? WebContentLoadHtmlBaseLiferayConnector)?.resultHTML {
+		if let htmlConnector = (op as? WebContentLoadHtmlLiferayConnector),
+				html = htmlConnector.resultHTML {
 			self.resultHTML = html
 		}
-		else if let record = (op as? WebContentLoadStructuredBaseLiferayConnector)?.resultRecord {
+		else if let record = (op as? WebContentLoadStructuredLiferayConnector)?.resultRecord {
 			self.resultRecord = record
 		}
 		else {
@@ -71,7 +69,7 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 			return
 		}
 
-		if let loadOp = op as? WebContentLoadHtmlByArticleIdLiferayConnector,
+		if let loadOp = op as? WebContentLoadHtmlLiferayConnector,
 				groupId = loadOp.groupId {
 
 			cacheManager.getString(
@@ -91,7 +89,7 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 			return
 		}
 
-		if let loadOp = op as? WebContentLoadHtmlByArticleIdLiferayConnector,
+		if let loadOp = op as? WebContentLoadHtmlLiferayConnector,
 				html = loadOp.resultHTML,
 				groupId = loadOp.groupId {
 

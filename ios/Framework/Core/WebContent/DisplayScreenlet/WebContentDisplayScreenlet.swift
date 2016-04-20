@@ -32,9 +32,7 @@ import UIKit
 
 	@IBInspectable public var groupId: Int64 = 0
 
-	// use either articleId or classPK
 	@IBInspectable public var articleId: String = ""
-	@IBInspectable public var classPK: Int64 = 0
 
 	// only for html web contents
 	@IBInspectable public var templateId: Int64 = 0
@@ -55,13 +53,18 @@ import UIKit
 	//MARK: Public methods
 
 	override public func onShow() {
-		if autoLoad && (articleId != "" || classPK != 0) {
+		if autoLoad && articleId != "" {
 			loadWebContent()
 		}
 	}
 
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
-		let interactor = WebContentDisplayLoadInteractor(screenlet: self)
+		let interactor = WebContentDisplayLoadInteractor(
+			screenlet: self,
+			groupId: self.groupId,
+			articleId: self.articleId,
+			structureId: self.structureId,
+			templateId: self.templateId)
 
 		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
