@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:liferay="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<TextView
+		style="@style/label"
+		android:text="@string/webview_label" />
+
+	<com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet
+		android:id="@+id/web_content_display_screenlet"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		liferay:articleId="21515"
+		liferay:layoutId="@layout/webcontentdisplaystructured_example"
+		liferay:offlinePolicy="REMOTE_FIRST"
+		liferay:structureId="21511"
+		liferay:templateId="21513" />
+
+</LinearLayout>

@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.webcontentdisplay.interactor;
 
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
+import com.liferay.mobile.screens.ddl.model.WebContent;
 
 import java.util.Locale;
 
@@ -34,7 +35,7 @@ public class WebContentDisplayEvent extends BasicEvent {
 
 	public WebContentDisplayEvent(int targetScreenletId, long groupId, String articleId, Locale locale, Long templateId, String html) {
 		super(targetScreenletId);
-		_html = html;
+		_webContent = new WebContent(html);
 
 		_articleId = articleId;
 		_groupId = groupId;
@@ -52,11 +53,28 @@ public class WebContentDisplayEvent extends BasicEvent {
 
 	public WebContentDisplayEvent(int targetScreenletId, long classPK, Locale locale, Long templateId, String html) {
 		super(targetScreenletId);
-		_html = html;
+		_webContent = new WebContent(html);
 
 		_classPK = classPK;
 		_locale = locale;
 		_templateId = templateId;
+	}
+
+	public WebContentDisplayEvent(int targetScreenletId, Long structureId, String articleId, Locale locale, Exception e) {
+		super(targetScreenletId, e);
+
+		_structureId = structureId;
+		_articleId = articleId;
+		_locale = locale;
+	}
+
+	public WebContentDisplayEvent(int targetScreenletId, Long structureId, String articleId, Locale locale, WebContent webContent) {
+		super(targetScreenletId);
+		_webContent = webContent;
+
+		_structureId = structureId;
+		_articleId = articleId;
+		_locale = locale;
 	}
 
 	public Long getGroupId() {
@@ -75,10 +93,6 @@ public class WebContentDisplayEvent extends BasicEvent {
 		_classPK = classPK;
 	}
 
-	public String getHtml() {
-		return _html;
-	}
-
 	public String getArticleId() {
 		return _articleId;
 	}
@@ -87,10 +101,23 @@ public class WebContentDisplayEvent extends BasicEvent {
 		return _templateId;
 	}
 
-	private String _html;
+	public Long getStructureId() {
+		return _structureId;
+	}
+
+	public void setStructureId(Long structureId) {
+		_structureId = structureId;
+	}
+
+	public WebContent getWebContent() {
+		return _webContent;
+	}
+
 	private String _articleId;
 	private long _classPK;
 	private long _groupId;
 	private Locale _locale;
 	private Long _templateId;
+	private Long _structureId;
+	private WebContent _webContent;
 }

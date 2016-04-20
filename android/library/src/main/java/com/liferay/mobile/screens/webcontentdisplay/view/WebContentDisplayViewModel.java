@@ -15,12 +15,13 @@
 package com.liferay.mobile.screens.webcontentdisplay.view;
 
 import com.liferay.mobile.screens.base.view.BaseViewModel;
+import com.liferay.mobile.screens.ddl.model.WebContent;
 
 /**
  * @author Jose Manuel Navarro
  */
 public interface WebContentDisplayViewModel extends BaseViewModel {
 
-	void showFinishOperation(String html);
+	void showFinishOperation(WebContent html);
 
 }

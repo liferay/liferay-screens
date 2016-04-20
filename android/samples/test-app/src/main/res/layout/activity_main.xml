@@ -43,6 +43,11 @@
 				android:text="@string/webview" />
 
 			<Button
+				android:id="@+id/web_content_display_screenlet_structured"
+				style="@style/test_app_button"
+				android:text="@string/webview_structured" />
+
+			<Button
 				android:id="@+id/asset_list"
 				style="@style/test_app_button"
 				android:text="@string/asset_list" />

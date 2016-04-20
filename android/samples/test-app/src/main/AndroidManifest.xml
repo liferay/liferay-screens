@@ -49,8 +49,8 @@
 		<activity android:name=".JournalArticleWithTemplateActivity"/>
 		<activity android:name=".FilteredAssetActivity"/>
 		<activity android:name=".CustomInteractorActivity"/>
-		<activity android:name=".ListBookmarksActivity">
-		</activity>
+		<activity android:name=".ListBookmarksActivity"/>
+		<activity android:name=".WebContentDisplayStructuredActivity"/>
 	</application>
 
 </manifest>

@@ -8,6 +8,7 @@ import com.liferay.mobile.screens.assetlist.AssetEntry;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -41,11 +42,18 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 	public WebContent(Map<String, Object> map, Locale locale) {
 		super(map);
 		_ddmStructure = new DDMStructure(map, locale);
+		_html = (String) map.get("content");
+	}
+
+	public WebContent(String html) {
+		super(new HashMap<String, Object>());
+		_html = html;
 	}
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		super.writeToParcel(dest, flags);
+		dest.writeParcelable(_ddmStructure, flags);
 	}
 
 	@Override
@@ -62,5 +70,10 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 		_ddmStructure.parse(jsonObject);
 	}
 
+	public String getHtml() {
+		return _html;
+	}
+
 	private DDMStructure _ddmStructure;
+	private String _html;
 }

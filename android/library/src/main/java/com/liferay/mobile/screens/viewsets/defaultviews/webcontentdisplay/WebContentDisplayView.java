@@ -26,6 +26,7 @@ import android.widget.ProgressBar;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
+import com.liferay.mobile.screens.ddl.model.WebContent;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet;
 import com.liferay.mobile.screens.webcontentdisplay.view.WebContentDisplayViewModel;
@@ -50,29 +51,46 @@ public class WebContentDisplayView extends FrameLayout
 
 	@Override
 	public void showStartOperation(String actionName) {
-		_progressBar.setVisibility(View.VISIBLE);
-		_webView.setVisibility(View.GONE);
+		if (_progressBar != null) {
+			_progressBar.setVisibility(View.VISIBLE);
+		}
+		if (_webView != null) {
+			_webView.setVisibility(View.GONE);
+		}
 	}
 
 	@Override
-	public void showFinishOperation(String html) {
-		_progressBar.setVisibility(View.GONE);
-		_webView.setVisibility(View.VISIBLE);
+	public void showFinishOperation(String actionName) {
+		throw new AssertionError();
+	}
 
-		LiferayLogger.i("article loaded: " + html);
+	@Override
+	public void showFinishOperation(WebContent webContent) {
+		if (_progressBar != null) {
+			_progressBar.setVisibility(View.GONE);
+		}
+		if (_webView != null) {
+			_webView.setVisibility(View.VISIBLE);
 
-		String styledHtml = STYLES + "<div class=\"MobileCSS\">" + html + "</div>";
+			LiferayLogger.i("article loaded: " + webContent);
 
-		//TODO check encoding
-		_webView.loadDataWithBaseURL(
-			LiferayServerContext.getServer(), styledHtml, "text/html", "utf-8",
-			null);
+			String styledHtml = STYLES + "<div class=\"MobileCSS\">" + webContent.getHtml() + "</div>";
+
+			//TODO check encoding
+			_webView.loadDataWithBaseURL(
+				LiferayServerContext.getServer(), styledHtml, "text/webContent", "utf-8",
+				null);
+		}
 	}
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-		_progressBar.setVisibility(View.GONE);
-		_webView.setVisibility(View.VISIBLE);
+		if (_progressBar != null) {
+			_progressBar.setVisibility(View.GONE);
+		}
+		if (_webView != null) {
+			_webView.setVisibility(View.VISIBLE);
+		}
 
 		LiferayLogger.e(getContext().getString(R.string.loading_article_error), e);
 	}
@@ -107,11 +125,13 @@ public class WebContentDisplayView extends FrameLayout
 		super.onAttachedToWindow();
 
 		WebContentDisplayScreenlet screenlet = (WebContentDisplayScreenlet) getScreenlet();
-		if (screenlet.isJavascriptEnabled()) {
-			_webView.getSettings().setJavaScriptEnabled(true);
-			_webView.setWebChromeClient(new WebChromeClient());
+		if (_webView != null) {
+			if (screenlet.isJavascriptEnabled()) {
+				_webView.getSettings().setJavaScriptEnabled(true);
+				_webView.setWebChromeClient(new WebChromeClient());
+			}
+			_webView.setOnTouchListener(this);
 		}
-		_webView.setOnTouchListener(this);
 	}
 
 	protected WebView _webView;

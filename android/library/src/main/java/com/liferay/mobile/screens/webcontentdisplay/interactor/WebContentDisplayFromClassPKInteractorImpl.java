@@ -53,7 +53,7 @@ public class WebContentDisplayFromClassPKInteractorImpl
 		onEventWithCache(event, event.getClassPK(), event.getLocale(), event.getTemplateId());
 
 		if (!event.isFailed()) {
-			getListener().onWebContentReceived(null, event.getHtml());
+			getListener().onWebContentReceived(null, event.getWebContent());
 		}
 	}
 
@@ -97,7 +97,7 @@ public class WebContentDisplayFromClassPKInteractorImpl
 		String templateString = event.getTemplateId() == 0 ? "" : event.getTemplateId().toString();
 		String webContentId = event.getClassPK() + templateString;
 		CacheSQL.getInstance().set(new TableCache(webContentId, DefaultCachedType.WEB_CONTENT,
-			event.getHtml(), event.getGroupId(), null, event.getLocale()));
+			event.getWebContent().getHtml(), event.getGroupId(), null, event.getLocale()));
 	}
 
 	protected ScreensJournalContentConnector getScreensJournalArticleService(long classPK, Locale locale, Long templateId) {
