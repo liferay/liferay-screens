@@ -17,17 +17,13 @@ import UIKit
 public class WebContentLoadStructuredLiferayConnector: WebContentLoadBaseLiferayConnector {
 
 	public let structureId: Int64
-	public let articleId: String
 
 	public var resultRecord: DDLRecord?
 
 	public init(groupId: Int64, articleId: String, structureId: Int64) {
-		self.articleId = articleId
 		self.structureId = structureId
 
-		super.init()
-
-		self.groupId = groupId
+		super.init(groupId: groupId, articleId: articleId)
 	}
 
 
@@ -62,7 +58,7 @@ public class Liferay62WebContentLoadStructuredConnector: WebContentLoadStructure
 		_ = try? structureSrv.getStructureWithStructureId(self.structureId)
 
 		let journalArticleSrv = LRJournalArticleService_v62(session: batchSession)
-		_ = try? journalArticleSrv.getArticleWithGroupId(self.groupId!, articleId: self.articleId)
+		_ = try? journalArticleSrv.getArticleWithGroupId(self.groupId, articleId: self.articleId)
 
 		guard batchSession.commands.count == 2 else {
 			return nil
@@ -121,7 +117,7 @@ public class Liferay70WebContentLoadStructuredConnector: WebContentLoadStructure
 		_ = try? structureSrv.getStructureWithStructureId(self.structureId)
 
 		let journalArticleSrv = LRJournalArticleService_v7(session: batchSession)
-		_ = try? journalArticleSrv.getArticleWithGroupId(self.groupId!, articleId: self.articleId)
+		_ = try? journalArticleSrv.getArticleWithGroupId(self.groupId, articleId: self.articleId)
 
 		guard batchSession.commands.count == 2 else {
 			return nil

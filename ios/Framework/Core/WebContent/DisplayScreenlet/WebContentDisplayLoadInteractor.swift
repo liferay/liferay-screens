@@ -69,12 +69,11 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 			return
 		}
 
-		if let loadOp = op as? WebContentLoadHtmlLiferayConnector,
-				groupId = loadOp.groupId {
+		if let loadOp = op as? WebContentLoadHtmlLiferayConnector {
 
 			cacheManager.getString(
 					collection: ScreenletName(WebContentDisplayScreenlet),
-					key: articleCacheKey(groupId, loadOp.articleId)) {
+					key: articleCacheKey(loadOp.groupId, loadOp.articleId)) {
 				loadOp.resultHTML = $0
 				result($0)
 			}
