@@ -138,11 +138,24 @@ import Foundation
 	}
 
 	public func relogin(completed: ([String:AnyObject]? -> ())?) -> Bool {
+		let storeAndComplete = { (attributes: [String:AnyObject]?) -> () in
+			if attributes != nil {
+				// session context may be recreated. Update and use the new one:
+				if let newContext = SessionContext.currentContext {
+					newContext.loadedFromStore = self.loadedFromStore
+					if self.loadedFromStore {
+						newContext.storeCredentials()
+					}
+				}
+			}
+			completed?(attributes)
+		}
+
 		if session.authentication is LRBasicAuthentication {
-			return reloginBasic(completed)
+			return reloginBasic(storeAndComplete)
 		}
 		else if session.authentication is LROAuth {
-			return reloginOAuth(completed)
+			return reloginOAuth(storeAndComplete)
 		}
 
 		return false
@@ -151,46 +164,23 @@ import Foundation
 	public func reloginBasic(completed: ([String:AnyObject]? -> ())?) -> Bool {
 		guard let userName = self.basicAuthUsername,
 				password = self.basicAuthPassword else {
-				completed?(nil)
-			return false
-		}
-		guard let companyId = self.userAttribute("companyId")?.description.asLong else {
 			completed?(nil)
 			return false
 		}
 
-		let interactor: LoginBasicInteractor
+		return refreshUserAttributes { attributes in
+			if let attributes = attributes {
+				SessionContext.loginWithBasic(
+					username: userName,
+					password: password,
+					userAttributes: attributes)
+			}
+			else {
+				SessionContext.logout()
+			}
 
-		switch BasicAuthMethod.fromUserName(userName) {
-		case .Email:
-			interactor = LoginBasicInteractor(
-				companyId: companyId,
-				emailAddress: userName,
-				password: password)
-		case .ScreenName:
-			interactor = LoginBasicInteractor(
-				companyId: companyId,
-				screenName: userName,
-				password: password)
-		case .UserId:
-			interactor = LoginBasicInteractor(
-				userId: userName.asLong!,
-				password: password)
+			completed?(attributes)
 		}
-
-		interactor.onSuccess = { [weak interactor] in
-			completed?(interactor?.resultUserAttributes)
-		}
-		interactor.onFailure = { err in
-			SessionContext.logout()
-			completed?(nil)
-		}
-
-		if !interactor.start() {
-			completed?(nil)
-		}
-
-		return true
 	}
 
 	public func reloginOAuth(completed: ([String:AnyObject]? -> ())?) -> Bool {
@@ -199,11 +189,22 @@ import Foundation
 			return false
 		}
 
-		let OAuthSession = LRSession(
-			server: LiferayServerContext.server,
-			authentication: auth)
+		return refreshUserAttributes { attributes in
+			if let attributes = attributes {
+				SessionContext.loginWithOAuth(authentication: auth, userAttributes: attributes)
+			}
+			else {
+				SessionContext.logout()
+			}
 
-		OAuthSession!.callback = LRBlockCallback(
+			completed?(attributes)
+		}
+	}
+
+	public func refreshUserAttributes(completed: ([String:AnyObject]? -> ())?) -> Bool {
+		let session = self.createRequestSession()
+
+		session.callback = LRBlockCallback(
 			success: { obj in
 				guard let attributes = obj as? [String:AnyObject] else {
 					SessionContext.logout()
@@ -211,35 +212,24 @@ import Foundation
 					return
 				}
 
-				SessionContext.loginWithOAuth(authentication: auth, userAttributes: attributes)
-
-				// session context has been recreated. Update and use the new one:
-				if let newContext = SessionContext.currentContext {
-					newContext.loadedFromStore = self.loadedFromStore
-					if self.loadedFromStore {
-						newContext.storeCredentials()
-					}
-				}
-
 				completed?(attributes)
 			},
 			failure: { err in
-				SessionContext.logout()
 				completed?(nil)
-			})
+		})
 
 		switch LiferayServerContext.serverVersion {
 		case .v62:
-			let srv = LRScreensuserService_v62(session: OAuthSession!)
+			let srv = LRScreensuserService_v62(session: session)
 
 			_ = try? srv.getCurrentUser()
 
 		case .v70:
-			let srv = LRUserService_v7(session: OAuthSession!)
+			let srv = LRUserService_v7(session: session)
 
 			_ = try? srv.getCurrentUser()
 		}
-
+		
 		return true
 	}
 
