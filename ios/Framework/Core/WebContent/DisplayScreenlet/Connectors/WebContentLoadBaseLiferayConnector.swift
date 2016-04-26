@@ -16,7 +16,15 @@ import UIKit
 
 public class WebContentLoadBaseLiferayConnector: ServerConnector {
 
-	public var groupId: Int64?
+	public let groupId: Int64
+	public let articleId: String
+
+	public init(groupId: Int64, articleId: String) {
+		self.groupId = groupId
+		self.articleId = articleId
+
+		super.init()
+	}
 
 
 	//MARK: ServerConnector
@@ -25,7 +33,7 @@ public class WebContentLoadBaseLiferayConnector: ServerConnector {
 		let error = super.validateData()
 
 		if error == nil {
-			if groupId ?? 0 == 0 {
+			if groupId == 0 {
 				return ValidationError("webcontentdisplay-screenlet", "undefined-group")
 			}
 		}

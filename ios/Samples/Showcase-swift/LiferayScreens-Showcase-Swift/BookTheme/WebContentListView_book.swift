@@ -60,7 +60,7 @@ public class WebContentListView_book: WebContentListView_default {
 						html = entry.html {
 				htmlCell.loadData(html)
 			}
-			cell.accessoryType = .DisclosureIndicator
+			cell.accessoryType = .None
 			cell.accessoryView = nil
 		}
 	}

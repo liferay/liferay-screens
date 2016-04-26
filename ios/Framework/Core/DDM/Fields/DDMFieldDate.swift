@@ -46,7 +46,7 @@ public class DDMFieldDate: DDMField {
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
-	    fatalError("init(coder:) has not been implemented")
+		super.init(coder: aDecoder)
 	}
 
 	override internal func convert(fromString value: String?) -> AnyObject? {
@@ -105,7 +105,7 @@ public class DDMFieldDate_v62: DDMFieldDate {
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
-	    fatalError("init(coder:) has not been implemented")
+		super.init(coder: aDecoder)
 	}
 
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
@@ -129,7 +129,7 @@ public class DDMFieldDate_v70: DDMFieldDate {
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
+		super.init(coder: aDecoder)
 	}
 
 	override public var serverDateFormat: String {

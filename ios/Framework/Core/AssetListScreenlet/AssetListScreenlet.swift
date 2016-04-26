@@ -28,9 +28,9 @@ import UIKit
 }
 
 
-@objc public class Asset : NSObject {
+@objc public class Asset : NSObject, NSCoding {
 
-	public let attributes:[String:AnyObject]
+	public let attributes :[String:AnyObject]
 
 	public let title: String
 
@@ -68,8 +68,38 @@ import UIKit
 		self.attributes = attributes
 
 		let xmlTitle = attributes["title"] as! String
-
 		title = xmlTitle.asLocalized(NSLocale(localeIdentifier: NSLocale.currentLocaleString))
+	}
+
+	public required init?(coder aDecoder: NSCoder) {
+		let keys = (aDecoder.decodeObjectForKey("asset-attr-keys") as? [String]) ?? [String]()
+
+		var attrs = [String:AnyObject]()
+
+		for k in keys {
+			if let v = aDecoder.decodeObjectForKey("asset-attr-\(k)") {
+				attrs[k] = v
+			}
+		}
+
+		self.attributes = attrs
+
+		let xmlTitle = (attributes["title"] as? String) ?? ""
+		title = xmlTitle.asLocalized(NSLocale(localeIdentifier: NSLocale.currentLocaleString))
+
+		super.init()
+	}
+
+	public func encodeWithCoder(aCoder: NSCoder) {
+		let keys = Array(self.attributes.keys)
+
+		aCoder.encodeObject(keys, forKey:"asset-attr-keys")
+
+		for (k,v) in self.attributes {
+			if let coderValue = v as? NSCoder {
+				aCoder.encodeObject(coderValue, forKey:"asset-attr-\(k)")
+			}
+		}
 	}
 
 }
