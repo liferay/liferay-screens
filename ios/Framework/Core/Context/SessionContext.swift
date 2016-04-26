@@ -134,6 +134,17 @@ import Foundation
 		return LRSession(session: session)
 	}
 
+	public func relogin(completed: ([String:AnyObject]? -> ())?) -> Bool {
+		if session.authentication is LRBasicAuthentication {
+			return reloginBasic(completed)
+		}
+		else if session.authentication is LROAuth {
+			return reloginOAuth(completed)
+		}
+
+		return false
+	}
+
 	public func reloginBasic(completed: ([String:AnyObject]? -> ())?) -> Bool {
 		guard let userName = self.basicAuthUsername,
 				password = self.basicAuthPassword else {
