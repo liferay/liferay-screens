@@ -29,6 +29,8 @@ import Foundation
 	public let cacheManager: CacheManager
 	public var credentialsStorage: CredentialsStorage
 
+	private var loadedFromStore: Bool
+
 
 	public init(session: LRSession, attributes: [String: AnyObject], store: CredentialsStore) {
 		self.session = session
@@ -39,6 +41,7 @@ import Foundation
 			userId: userAttributes["userId"]?.description?.asLong ?? 0)
 
 		credentialsStorage = CredentialsStorage(store: store)
+		loadedFromStore = false
 
 		super.init()
 	}
@@ -266,6 +269,8 @@ import Foundation
 				session: result.session,
 				attributes: result.userAttributes,
 				store: storage.credentialsStore)
+
+		SessionContext.currentContext?.loadedFromStore = true
 
 		return true
 	}
