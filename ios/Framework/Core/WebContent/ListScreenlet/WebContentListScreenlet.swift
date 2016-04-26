@@ -157,8 +157,6 @@ import UIKit
 		return delegate as? WebContentListScreenletDelegate
 	}
 
-	public var customEntryQuery: [String:AnyObject]?
-
 
 	//MARK: BaseListScreenlet
 
