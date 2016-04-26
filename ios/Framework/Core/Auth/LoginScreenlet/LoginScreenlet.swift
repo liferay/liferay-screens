@@ -112,7 +112,7 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 	}
 
 	private func createLoginBasicInteractor() -> LoginBasicInteractor {
-		let interactor = LoginBasicInteractor(screenlet: self)
+		let interactor = LoginBasicInteractor(loginScreenlet: self)
 
 		interactor.onSuccess = {
 			self.loginDelegate?.screenlet?(self,

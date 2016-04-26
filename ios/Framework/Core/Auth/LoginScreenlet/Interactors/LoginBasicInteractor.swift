@@ -16,34 +16,68 @@ import UIKit
 
 class LoginBasicInteractor: ServerConnectorInteractor {
 
+	let companyId: Int64
+	let screenName: String?
+	let emailAddress: String?
+	let userId: Int64?
+	let password: String
+
+	let authMethod: BasicAuthMethod
+
 	var resultUserAttributes: [String:AnyObject]?
 
-	override func createConnector() -> GetUserBaseLiferayConnector {
-		let screenlet = self.screenlet as! LoginScreenlet
 
-		let companyId = (screenlet.companyId != 0)
-				? screenlet.companyId : LiferayServerContext.companyId
+	init(loginScreenlet: LoginScreenlet) {
+		companyId = (loginScreenlet.companyId ?? 0) != 0
+			? loginScreenlet.companyId : LiferayServerContext.companyId
 
-		var connector: GetUserBaseLiferayConnector?
+		authMethod = BasicAuthMethod.create(loginScreenlet.basicAuthMethod)
 
-		switch BasicAuthMethod.create(screenlet.basicAuthMethod) {
-			case .ScreenName:
-				connector = LiferayServerContext.connectorFactory.createLoginByScreenNameConnector(
-						companyId: companyId,
-						screenName: screenlet.viewModel.userName ?? "")
-			case .UserId:
-				connector = LiferayServerContext.connectorFactory.createLoginByUserIdConnector(
-						userId: screenlet.viewModel.userName?.asNumber?.longLongValue ?? 0)
-			default:
-				connector = LiferayServerContext.connectorFactory.createLoginByEmailConnector(
-					companyId: companyId,
-					emailAddress: screenlet.viewModel.userName ?? "")
+		switch authMethod {
+		case .ScreenName:
+			screenName = loginScreenlet.viewModel.userName ?? ""
+			emailAddress = nil
+			userId = nil
+		case .UserId:
+			userId = loginScreenlet.viewModel.userName?.asNumber?.longLongValue ?? 0
+			emailAddress = nil
+			screenName = nil
+		default:
+			emailAddress = loginScreenlet.viewModel.userName ?? ""
+			userId = nil
+			screenName = nil
 		}
 
-		connector?.userName = screenlet.viewModel.userName
-		connector?.password = screenlet.viewModel.password
+		password = loginScreenlet.viewModel.password ?? ""
 
-		return connector!
+		super.init(screenlet: loginScreenlet)
+	}
+
+	override func createConnector() -> GetUserBaseLiferayConnector? {
+		let connector: GetUserBaseLiferayConnector?
+
+		if let screenName = self.screenName {
+			connector = LiferayServerContext.connectorFactory.createLoginByScreenNameConnector(
+				companyId: companyId,
+				screenName: screenName,
+				password: password)
+		}
+		else if let userId = self.userId {
+			connector = LiferayServerContext.connectorFactory.createLoginByUserIdConnector(
+				userId: userId,
+				password: password)
+		}
+		else if let emailAddress = self.emailAddress {
+			connector = LiferayServerContext.connectorFactory.createLoginByEmailConnector(
+				companyId: companyId,
+				emailAddress: emailAddress,
+				password: password)
+		}
+		else {
+			connector = nil
+		}
+
+		return connector
 	}
 
 	override func completedConnector(op: ServerConnector) {
