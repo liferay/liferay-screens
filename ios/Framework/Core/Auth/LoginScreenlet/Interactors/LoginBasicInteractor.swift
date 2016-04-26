@@ -14,7 +14,7 @@
 import UIKit
 
 
-class LoginInteractor: ServerConnectorInteractor {
+class LoginBasicInteractor: ServerConnectorInteractor {
 
 	var resultUserAttributes: [String:AnyObject]?
 

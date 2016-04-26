@@ -103,16 +103,16 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 		switch name {
 		case "login-action", BaseScreenlet.DefaultAction:
-			return createLoginInteractor()
+			return createLoginBasicInteractor()
 		case "oauth-action":
-			return createOAuthInteractor()
+			return createLoginOAuthInteractor()
 		default:
 			return nil
 		}
 	}
 
-	private func createLoginInteractor() -> LoginInteractor {
-		let interactor = LoginInteractor(screenlet: self)
+	private func createLoginBasicInteractor() -> LoginBasicInteractor {
+		let interactor = LoginBasicInteractor(screenlet: self)
 
 		interactor.onSuccess = {
 			self.loginDelegate?.screenlet?(self,
@@ -133,8 +133,8 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 		return interactor
 	}
 
-	private func createOAuthInteractor() -> OAuthInteractor {
-		let interactor = OAuthInteractor(
+	private func createLoginOAuthInteractor() -> LoginOAuthInteractor {
+		let interactor = LoginOAuthInteractor(
 				screenlet: self,
 				consumerKey: OAuthConsumerKey,
 				consumerSecret: OAuthConsumerSecret)
