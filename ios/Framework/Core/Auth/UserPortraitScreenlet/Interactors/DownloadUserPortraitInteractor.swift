@@ -229,11 +229,11 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		let chain = ServerConnectorChain(head: loadUserOp)
 
 		chain.onNextStep = { (op, seq) -> ServerConnector? in
-			if let loadUserOp = op as? GetUserBaseLiferayConnector {
-				return self.createConnectorFor(attributes: loadUserOp.resultUserAttributes)
+			guard let loadUserOp = op as? GetUserBaseLiferayConnector else {
+				return nil
 			}
 
-			return nil
+			return self.createConnectorFor(attributes: loadUserOp.resultUserAttributes)
 		}
 
 		return chain
@@ -297,7 +297,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 			let url = "\(LiferayServerContext.server)/image/user_\(maleString)_portrait" +
 				"?img_id=\(portraitId)" +
 				"&img_id_token=\(hashedUUID)" +
-			"&t=\(NSDate.timeIntervalSinceReferenceDate())"
+				"&t=\(NSDate.timeIntervalSinceReferenceDate())"
 
 			return NSURL(string: url)
 		}
