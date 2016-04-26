@@ -96,46 +96,21 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 				male: male)
 
 		case .UserId(let userId):
-			let currentUserId = SessionContext.currentContext?.userId
-
-			if userId == currentUserId {
-				return createConnectorForLogged()
-			}
-			else {
-				return createConnectorFor(
-					LiferayServerContext.connectorFactory.createGetUserByUserIdConnector(
-						userId: userId))
-			}
+			return createConnectorFor(
+				LiferayServerContext.connectorFactory.createGetUserByUserIdConnector(
+					userId: userId))
 
 		case .EmailAddress(let companyId, let emailAddress):
-			let currentCompanyId = SessionContext.currentContext?.userAttribute("companyId") as? NSNumber
-			let currentEmailAddress = SessionContext.currentContext?.userAttribute("emailAddress") as? NSString
-
-			if companyId == currentCompanyId?.longLongValue
-					&& emailAddress == currentEmailAddress {
-				return createConnectorForLogged()
-			}
-			else {
-				return createConnectorFor(
-					LiferayServerContext.connectorFactory.createGetUserByEmailConnector(
-						companyId: companyId,
-						emailAddress: emailAddress))
-			}
+			return createConnectorFor(
+				LiferayServerContext.connectorFactory.createGetUserByEmailConnector(
+					companyId: companyId,
+					emailAddress: emailAddress))
 
 		case .ScreenName(let companyId, let screenName):
-			let currentCompanyId = SessionContext.currentContext?.userAttribute("companyId") as? NSNumber
-			let currentScreenName = SessionContext.currentContext?.userAttribute("screenName") as? NSString
-
-			if companyId == currentCompanyId?.longLongValue
-					&& screenName == currentScreenName {
-				return createConnectorForLogged()
-			}
-			else {
-				return createConnectorFor(
-					LiferayServerContext.connectorFactory.createGetUserByScreenNameConnector(
-						companyId: companyId,
-						screenName: screenName))
-			}
+			return createConnectorFor(
+				LiferayServerContext.connectorFactory.createGetUserByScreenNameConnector(
+					companyId: companyId,
+					screenName: screenName))
 		}
 	}
 
@@ -250,29 +225,15 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 			?? (op as? HttpConnector)
 	}
 
-	private func createConnectorForLogged() -> ServerConnector? {
-		if let portraitId = SessionContext.currentContext?.userAttribute("portraitId") as? NSNumber,
-				uuid = SessionContext.currentContext?.userAttribute("uuid") as? String {
-				resultUserId = SessionContext.currentContext?.userId
-
-			return createConnectorFor(
-				portraitId: portraitId.longLongValue,
-				uuid: uuid,
-				male: true)
-		}
-
-		return nil
-	}
-
 	private func createConnectorFor(loadUserOp: GetUserBaseLiferayConnector) -> ServerConnector? {
 		let chain = ServerConnectorChain(head: loadUserOp)
 
 		chain.onNextStep = { (op, seq) -> ServerConnector? in
-			if let loadUserOp = op as? GetUserBaseLiferayConnector {
-				return self.createConnectorFor(attributes: loadUserOp.resultUserAttributes)
+			guard let loadUserOp = op as? GetUserBaseLiferayConnector else {
+				return nil
 			}
 
-			return nil
+			return self.createConnectorFor(attributes: loadUserOp.resultUserAttributes)
 		}
 
 		return chain
@@ -336,7 +297,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 			let url = "\(LiferayServerContext.server)/image/user_\(maleString)_portrait" +
 				"?img_id=\(portraitId)" +
 				"&img_id_token=\(hashedUUID)" +
-			"&t=\(NSDate.timeIntervalSinceReferenceDate())"
+				"&t=\(NSDate.timeIntervalSinceReferenceDate())"
 
 			return NSURL(string: url)
 		}
