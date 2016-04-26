@@ -132,6 +132,50 @@ import Foundation
 		return LRSession(session: session)
 	}
 
+	public func reloginBasic(completed: ([String:AnyObject]? -> ())?) -> Bool {
+		guard let userName = self.basicAuthUsername,
+				password = self.basicAuthPassword else {
+				completed?(nil)
+			return false
+		}
+		guard let companyId = self.userAttribute("companyId")?.description.asLong else {
+			completed?(nil)
+			return false
+		}
+
+		let interactor: LoginBasicInteractor
+
+		switch BasicAuthMethod.fromUserName(userName) {
+		case .Email:
+			interactor = LoginBasicInteractor(
+				companyId: companyId,
+				emailAddress: userName,
+				password: password)
+		case .ScreenName:
+			interactor = LoginBasicInteractor(
+				companyId: companyId,
+				screenName: userName,
+				password: password)
+		case .UserId:
+			interactor = LoginBasicInteractor(
+				userId: userName.asLong!,
+				password: password)
+		}
+
+		interactor.onSuccess = { [weak interactor] in
+			completed?(interactor?.resultUserAttributes)
+		}
+		interactor.onFailure = { err in
+			completed?(nil)
+		}
+
+		if !interactor.start() {
+			completed?(nil)
+		}
+
+		return true
+	}
+
 	public class func logout() {
 		SessionContext.currentContext = nil
 	}
