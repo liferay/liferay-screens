@@ -53,6 +53,39 @@ public class LoginBasicInteractor: ServerConnectorInteractor {
 		super.init(screenlet: loginScreenlet)
 	}
 
+	public init(companyId: Int64, screenName: String, password: String) {
+		self.authMethod = BasicAuthMethod.ScreenName
+		self.companyId = (companyId != 0) ? companyId : LiferayServerContext.companyId
+		self.screenName = screenName
+		self.password = password
+		self.emailAddress = nil
+		self.userId = nil
+
+		super.init(screenlet: nil)
+	}
+
+	public init(companyId: Int64, emailAddress: String, password: String) {
+		self.authMethod = BasicAuthMethod.Email
+		self.companyId = (companyId != 0) ? companyId : LiferayServerContext.companyId
+		self.emailAddress = emailAddress
+		self.password = password
+		self.screenName = nil
+		self.userId = nil
+
+		super.init(screenlet: nil)
+	}
+
+	public init(userId: Int64, password: String) {
+		self.authMethod = BasicAuthMethod.UserId
+		self.companyId = 0
+		self.userId = userId
+		self.password = password
+		self.emailAddress = nil
+		self.screenName = nil
+
+		super.init(screenlet: nil)
+	}
+
 	override public func createConnector() -> GetUserBaseLiferayConnector? {
 		let connector: GetUserBaseLiferayConnector?
 
