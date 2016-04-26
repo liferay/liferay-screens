@@ -51,17 +51,19 @@ import Foundation
 	}
 
 	public var basicAuthUsername: String? {
-		let authentication = session.authentication
-			as? LRBasicAuthentication
+		guard let auth = session.authentication as? LRBasicAuthentication else {
+			return nil
+		}
 
-		return authentication?.username
+		return auth.username
 	}
 
 	public var basicAuthPassword: String? {
-		let authentication = session.authentication
-			as? LRBasicAuthentication
+		guard let auth = session.authentication as? LRBasicAuthentication else {
+			return nil
+		}
 
-		return authentication?.password
+		return auth.password
 	}
 
 	public var userId: Int64? {
