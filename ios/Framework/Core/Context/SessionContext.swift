@@ -212,6 +212,15 @@ import Foundation
 				}
 
 				SessionContext.loginWithOAuth(authentication: auth, userAttributes: attributes)
+
+				// session context has been recreated. Update and use the new one:
+				if let newContext = SessionContext.currentContext {
+					newContext.loadedFromStore = self.loadedFromStore
+					if self.loadedFromStore {
+						newContext.storeCredentials()
+					}
+				}
+
 				completed?(attributes)
 			},
 			failure: { err in
