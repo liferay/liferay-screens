@@ -14,20 +14,20 @@
 import UIKit
 
 
-class LoginBasicInteractor: ServerConnectorInteractor {
+public class LoginBasicInteractor: ServerConnectorInteractor {
 
-	let companyId: Int64
-	let screenName: String?
-	let emailAddress: String?
-	let userId: Int64?
-	let password: String
+	public let companyId: Int64
+	public let screenName: String?
+	public let emailAddress: String?
+	public let userId: Int64?
+	public let password: String
 
-	let authMethod: BasicAuthMethod
+	public let authMethod: BasicAuthMethod
 
-	var resultUserAttributes: [String:AnyObject]?
+	public var resultUserAttributes: [String:AnyObject]?
 
 
-	init(loginScreenlet: LoginScreenlet) {
+	public init(loginScreenlet: LoginScreenlet) {
 		companyId = (loginScreenlet.companyId ?? 0) != 0
 			? loginScreenlet.companyId : LiferayServerContext.companyId
 
@@ -53,7 +53,7 @@ class LoginBasicInteractor: ServerConnectorInteractor {
 		super.init(screenlet: loginScreenlet)
 	}
 
-	override func createConnector() -> GetUserBaseLiferayConnector? {
+	override public func createConnector() -> GetUserBaseLiferayConnector? {
 		let connector: GetUserBaseLiferayConnector?
 
 		if let screenName = self.screenName {
@@ -80,7 +80,7 @@ class LoginBasicInteractor: ServerConnectorInteractor {
 		return connector
 	}
 
-	override func completedConnector(op: ServerConnector) {
+	override public func completedConnector(op: ServerConnector) {
 		self.resultUserAttributes = (op as! GetUserBaseLiferayConnector).resultUserAttributes
 	}
 
