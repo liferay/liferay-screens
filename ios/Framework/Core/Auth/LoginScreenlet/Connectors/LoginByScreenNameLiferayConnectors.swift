@@ -23,14 +23,6 @@ public class LoginByScreenNameLiferay62Connector: GetUserByScreenNameLiferay62Co
 		self.password = password
 	}
 
-	override public func validateData() -> ValidationError? {
-		if super.validateData() == nil {
-			return nil
-		}
-
-		return ValidationError("login-screenlet", "validation")
-	}
-
 	override public func postRun() {
 		if lastError == nil {
 			loginWithResult()
@@ -47,14 +39,6 @@ public class LoginByScreenNameLiferay70Connector: GetUserByScreenNameLiferay70Co
 
 		self.userName = screenName
 		self.password = password
-	}
-
-	override public func validateData() -> ValidationError? {
-		if super.validateData() == nil {
-			return nil
-		}
-
-		return ValidationError("login-screenlet", "validation")
 	}
 
 	override public func postRun() {
