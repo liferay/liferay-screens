@@ -62,15 +62,39 @@
                                             <action selector="signOutAction" destination="9pv-A4-QxB" eventType="touchUpInside" id="9mR-U0-f8b"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="24N-En-7ZQ">
+                                        <rect key="frame" x="56" y="180" width="134" height="31"/>
+                                        <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="YfO-Ko-rYq"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="RELOGIN">
+                                                    <attributes>
+                                                        <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                        <connections>
+                                            <action selector="reloginAction:" destination="9pv-A4-QxB" eventType="touchUpInside" id="ucG-sc-1gd"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="247" id="06C-iE-GRC"/>
                                     <constraint firstItem="Gpq-Db-Zcu" firstAttribute="top" secondItem="SD8-wp-12w" secondAttribute="bottom" constant="33" id="34l-oO-Ctu"/>
                                     <constraint firstAttribute="trailing" secondItem="Gpq-Db-Zcu" secondAttribute="trailing" constant="57" id="Adv-WS-pko"/>
+                                    <constraint firstItem="24N-En-7ZQ" firstAttribute="top" secondItem="Gpq-Db-Zcu" secondAttribute="bottom" constant="19" id="Cac-Ft-CCY"/>
                                     <constraint firstItem="Bqb-Wh-9Fp" firstAttribute="top" secondItem="Ifh-gR-hEQ" secondAttribute="top" constant="31" id="IOg-Zd-0vs"/>
                                     <constraint firstItem="Gpq-Db-Zcu" firstAttribute="leading" secondItem="Ifh-gR-hEQ" secondAttribute="leading" constant="56" id="IkA-x9-q4e"/>
                                     <constraint firstItem="Bqb-Wh-9Fp" firstAttribute="leading" secondItem="Ifh-gR-hEQ" secondAttribute="leading" constant="48" id="JCE-zB-VOM"/>
+                                    <constraint firstAttribute="trailing" secondItem="24N-En-7ZQ" secondAttribute="trailing" constant="57" id="Pze-GU-Rgk"/>
+                                    <constraint firstItem="24N-En-7ZQ" firstAttribute="leading" secondItem="Ifh-gR-hEQ" secondAttribute="leading" constant="56" id="Ub7-PD-U6g"/>
                                     <constraint firstAttribute="trailing" secondItem="Bqb-Wh-9Fp" secondAttribute="trailing" constant="48" id="Ywx-s0-5I2"/>
                                     <constraint firstItem="SD8-wp-12w" firstAttribute="top" secondItem="Bqb-Wh-9Fp" secondAttribute="bottom" constant="25" id="cAx-BX-vIr"/>
                                     <constraint firstItem="SD8-wp-12w" firstAttribute="leading" secondItem="Ifh-gR-hEQ" secondAttribute="leading" constant="8" id="cVV-Q3-kH5"/>
@@ -814,6 +838,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="offlinePolicy" value="remote-first"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="ELj-YS-lCR" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
@@ -853,6 +878,7 @@
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="offlinePolicy" value="cache-first"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="OfG-dw-9hx" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
@@ -866,6 +892,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="offlinePolicy" value="cache-only"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wf5-FK-eyq">
