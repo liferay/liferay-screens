@@ -179,6 +179,47 @@ import Foundation
 		return true
 	}
 
+	public func reloginOAuth(completed: ([String:AnyObject]? -> ())?) -> Bool {
+		guard let auth = self.session.authentication as? LROAuth else {
+			completed?(nil)
+			return false
+		}
+
+		let OAuthSession = LRSession(
+			server: LiferayServerContext.server,
+			authentication: auth)
+
+		OAuthSession!.callback = LRBlockCallback(
+			success: { obj in
+				guard let attributes = obj as? [String:AnyObject] else {
+					SessionContext.logout()
+					completed?(nil)
+					return
+				}
+
+				SessionContext.loginWithOAuth(authentication: auth, userAttributes: attributes)
+				completed?(attributes)
+			},
+			failure: { err in
+				SessionContext.logout()
+				completed?(nil)
+			})
+
+		switch LiferayServerContext.serverVersion {
+		case .v62:
+			let srv = LRScreensuserService_v62(session: OAuthSession!)
+
+			_ = try? srv.getCurrentUser()
+
+		case .v70:
+			let srv = LRUserService_v7(session: OAuthSession!)
+
+			_ = try? srv.getCurrentUser()
+		}
+
+		return true
+	}
+
 	public class func logout() {
 		SessionContext.currentContext = nil
 	}
