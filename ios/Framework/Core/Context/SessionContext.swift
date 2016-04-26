@@ -168,6 +168,7 @@ import Foundation
 			completed?(interactor?.resultUserAttributes)
 		}
 		interactor.onFailure = { err in
+			SessionContext.logout()
 			completed?(nil)
 		}
 
