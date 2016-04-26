@@ -16,6 +16,13 @@ import UIKit
 
 public class LoginByEmailLiferay62Connector: GetUserByEmailLiferay62Connector {
 
+	public init(companyId: Int64, emailAddress: String, password: String) {
+		super.init(companyId: companyId, emailAddress: emailAddress)
+
+		self.userName = emailAddress
+		self.password = password
+	}
+
 	override public func validateData() -> ValidationError? {
 		if super.validateData() == nil {
 			return nil
@@ -34,6 +41,13 @@ public class LoginByEmailLiferay62Connector: GetUserByEmailLiferay62Connector {
 
 
 public class LoginByEmailLiferay70Connector: GetUserByEmailLiferay70Connector {
+
+	public init(companyId: Int64, emailAddress: String, password: String) {
+		super.init(companyId: companyId, emailAddress: emailAddress)
+
+		self.userName = emailAddress
+		self.password = password
+	}
 
 	override public func validateData() -> ValidationError? {
 		if super.validateData() == nil {
