@@ -35,7 +35,7 @@ dependencies {
 	compile (libraries.push) {
 		exclude group: 'com.google.android.gms', module: 'play-services'
 	}
-	compile group: 'com.google.android.gms', name: 'play-services-gcm', version: '7.0.0'
+	compile libraries.gms
 	compile libraries.oauth
 
 	compile libraries.eventbus
