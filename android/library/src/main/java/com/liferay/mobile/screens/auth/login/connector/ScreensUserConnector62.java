@@ -14,17 +14,17 @@ public class ScreensUserConnector62 implements ForgotPasswordConnector, CurrentU
 	}
 
 	@Override
-	public void sendPasswordByEmailAddress(long companyId, String emailAddress) throws Exception {
-		_screensuserService.sendPasswordByEmailAddress(companyId, emailAddress);
+	public Boolean sendPasswordByEmailAddress(long companyId, String emailAddress) throws Exception {
+		return _screensuserService.sendPasswordByEmailAddress(companyId, emailAddress);
 	}
 
-	public void sendPasswordByScreenName(long companyId, String screenName) throws Exception {
-		_screensuserService.sendPasswordByScreenName(companyId, screenName);
+	public Boolean sendPasswordByScreenName(long companyId, String screenName) throws Exception {
+		return _screensuserService.sendPasswordByScreenName(companyId, screenName);
 	}
 
 	@Override
-	public void sendPasswordByUserId(long userId) throws Exception {
-		_screensuserService.sendPasswordByUserId(userId);
+	public Boolean sendPasswordByUserId(long userId) throws Exception {
+		return _screensuserService.sendPasswordByUserId(userId);
 	}
 
 	@Override

@@ -23,8 +23,8 @@ public class UserConnector70 implements UserConnector, ForgotPasswordConnector, 
 	}
 
 	@Override
-	public void getUserById(long userId) throws Exception {
-		_userService.getUserById(userId);
+	public JSONObject getUserById(long userId) throws Exception {
+		return _userService.getUserById(userId);
 	}
 
 	@Override
@@ -43,17 +43,17 @@ public class UserConnector70 implements UserConnector, ForgotPasswordConnector, 
 	}
 
 	@Override
-	public void sendPasswordByEmailAddress(long companyId, String emailAddress) throws Exception {
-		_userService.sendPasswordByEmailAddress(companyId, emailAddress);
+	public Boolean sendPasswordByEmailAddress(long companyId, String emailAddress) throws Exception {
+		return _userService.sendPasswordByEmailAddress(companyId, emailAddress);
 	}
 
-	public void sendPasswordByScreenName(long companyId, String screenName) throws Exception {
-		_userService.sendPasswordByScreenName(companyId, screenName);
+	public Boolean sendPasswordByScreenName(long companyId, String screenName) throws Exception {
+		return _userService.sendPasswordByScreenName(companyId, screenName);
 	}
 
 	@Override
-	public void sendPasswordByUserId(long userId) throws Exception {
-		_userService.sendPasswordByUserId(userId);
+	public Boolean sendPasswordByUserId(long userId) throws Exception {
+		return _userService.sendPasswordByUserId(userId);
 	}
 
 	@Override
