@@ -19,6 +19,10 @@ package com.liferay.mobile.screens.base.interactor;
  */
 public abstract class BasicEvent {
 
+	public BasicEvent() {
+		super();
+	}
+
 	public BasicEvent(int targetScreenletId) {
 		this(targetScreenletId, null);
 	}
