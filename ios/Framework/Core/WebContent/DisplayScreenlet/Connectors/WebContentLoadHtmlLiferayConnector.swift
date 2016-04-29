@@ -16,19 +16,9 @@ import UIKit
 
 public class WebContentLoadHtmlLiferayConnector: WebContentLoadBaseLiferayConnector {
 
-	public let articleId: String
 	public var templateId: Int64?
 
 	public var resultHTML: String?
-
-
-	//MARK: Init
-	public init(groupId: Int64, articleId: String) {
-		self.articleId = articleId
-		super.init()
-		self.groupId = groupId
-	}
-
 
 	//MARK: ServerConnector
 
@@ -88,7 +78,7 @@ public class Liferay62WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConn
 		let service = LRScreensjournalarticleService_v62(session: session)
 
 		do {
-			let result = try service.getJournalArticleContentWithGroupId(groupId!,
+			let result = try service.getJournalArticleContentWithGroupId(groupId,
 				articleId: articleId,
 			    ddmTemplateId: templateId,
 			    locale: NSLocale.currentLocaleString)
@@ -108,7 +98,7 @@ public class Liferay62WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConn
 		let service = LRJournalArticleService_v62(session: session)
 
 		do {
-			let result = try service.getArticleContentWithGroupId(groupId!,
+			let result = try service.getArticleContentWithGroupId(groupId,
 				articleId: articleId,
 			    languageId: NSLocale.currentLocaleString,
 			    themeDisplay: nil)
@@ -135,7 +125,7 @@ public class Liferay70WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConn
 		let service = LRScreensjournalarticleService_v70(session: session)
 
 		do {
-			let result = try service.getJournalArticleContentWithGroupId(groupId!,
+			let result = try service.getJournalArticleContentWithGroupId(groupId,
 				articleId: articleId,
 				ddmTemplateId: templateId,
 				locale: NSLocale.currentLocaleString)
@@ -155,7 +145,7 @@ public class Liferay70WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConn
 		let service = LRJournalArticleService_v7(session: session)
 		
 		do {
-			let result = try service.getArticleContentWithGroupId(groupId!,
+			let result = try service.getArticleContentWithGroupId(groupId,
 				articleId: articleId,
 			    languageId: NSLocale.currentLocaleString,
 				themeDisplay: nil)

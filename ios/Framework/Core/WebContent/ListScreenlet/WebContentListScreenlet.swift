@@ -123,6 +123,26 @@ import UIKit
 		super.init(attributes: newAttributes)
 	}
 
+	public required init?(coder aDecoder: NSCoder) {
+		self.structure = aDecoder.decodeObjectForKey("webcontent-structure") as? DDMStructure
+		self.structuredRecord = aDecoder.decodeObjectForKey("webcontent-structuredRecord") as? DDLRecord
+		self.html = aDecoder.decodeObjectForKey("webcontent-html") as? String
+
+		super.init(coder: aDecoder)
+	}
+
+	public override func encodeWithCoder(aCoder: NSCoder) {
+		if let structure = self.structure {
+			aCoder.encodeObject(structure, forKey:"webcontent-structure")
+		}
+		if let structuredRecord = self.structuredRecord {
+			aCoder.encodeObject(structuredRecord, forKey:"webcontent-structuredRecord")
+		}
+		if let html = self.html {
+			aCoder.encodeObject(html, forKey:"webcontent-html")
+		}
+	}
+
 }
 
 
@@ -136,8 +156,6 @@ import UIKit
 	public var webContentListDelegate: WebContentListScreenletDelegate? {
 		return delegate as? WebContentListScreenletDelegate
 	}
-
-	public var customEntryQuery: [String:AnyObject]?
 
 
 	//MARK: BaseListScreenlet
