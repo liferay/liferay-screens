@@ -14,4 +14,9 @@ public class UserEvent extends JSONThreadObjectEvent {
 	public UserEvent(JSONObject jsonObject) {
 		super(jsonObject);
 	}
+
+	@Override
+	public String getId() {
+		return null;
+	}
 }

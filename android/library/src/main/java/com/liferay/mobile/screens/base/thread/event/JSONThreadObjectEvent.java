@@ -72,9 +72,19 @@ public abstract class JSONThreadObjectEvent extends BasicThreadEvent implements 
 	public void setLocale(Locale locale) {
 		_locale = locale;
 	}
+
+	public boolean isCachedRequest() {
+		return cachedRequest;
+	}
+
+	public void setCachedRequest(boolean cachedRequest) {
+		this.cachedRequest = cachedRequest;
+	}
+
 	private JSONObject _jsonObject;
 	private Locale _locale;
 	private long _groupId;
 	private String _userId;
+	private boolean cachedRequest;
 
 }

@@ -14,4 +14,5 @@ public interface IdCache {
 	long getGroupId();
 
 	Locale getLocale();
+
 }
