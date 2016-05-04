@@ -7,6 +7,7 @@ import com.liferay.mobile.android.v62.ddlrecordset.DDLRecordSetService;
  * @author Javier Gamarra
  */
 public class DDLRecordSetConnector62 implements DDLRecordSetConnector {
+
 	public DDLRecordSetConnector62(Session session) {
 		_ddlRecordSetService = new DDLRecordSetService(session);
 	}

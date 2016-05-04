@@ -9,6 +9,7 @@ import org.json.JSONObject;
  * @author Javier Gamarra
  */
 public class DDMStructureConnector70 implements DDMStructureConnector {
+
 	public DDMStructureConnector70(Session session) {
 		_ddmStructureService = new DDMStructureService(session);
 	}
