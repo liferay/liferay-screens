@@ -14,12 +14,16 @@
 
 package com.liferay.mobile.screens.base.thread.event;
 
+import com.liferay.mobile.screens.base.thread.IdCache;
+
 import org.json.JSONObject;
+
+import java.util.Locale;
 
 /**
  * @author Silvio Santos
  */
-public class JSONThreadObjectEvent extends BasicThreadEvent {
+public abstract class JSONThreadObjectEvent extends BasicThreadEvent implements IdCache {
 
 	public JSONThreadObjectEvent(Exception e) {
 		super(e);
@@ -34,6 +38,43 @@ public class JSONThreadObjectEvent extends BasicThreadEvent {
 		return _jsonObject;
 	}
 
+	@Override
+	public String getUserId() {
+		return _userId;
+	}
+
+	public void setUserId(String userId) {
+		_userId = userId;
+	}
+
+	@Override
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
+	public JSONObject getJsonObject() {
+		return _jsonObject;
+	}
+
+	public void setJsonObject(JSONObject jsonObject) {
+		_jsonObject = jsonObject;
+	}
+
+	@Override
+	public Locale getLocale() {
+		return _locale;
+	}
+
+	public void setLocale(Locale locale) {
+		_locale = locale;
+	}
 	private JSONObject _jsonObject;
+	private Locale _locale;
+	private long _groupId;
+	private String _userId;
 
 }

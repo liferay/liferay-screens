@@ -17,7 +17,7 @@ package com.liferay.mobile.screens.base.thread.event;
 /**
  * @author Silvio Santos
  */
-public abstract class BasicThreadEvent {
+public class BasicThreadEvent {
 
 	public BasicThreadEvent() {
 		super();
@@ -41,6 +41,10 @@ public abstract class BasicThreadEvent {
 
 	public boolean isFailed() {
 		return _exception != null;
+	}
+
+	public void setException(Exception exception) {
+		_exception = exception;
 	}
 
 	private Exception _exception;
