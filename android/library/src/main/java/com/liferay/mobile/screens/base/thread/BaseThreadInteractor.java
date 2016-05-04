@@ -41,22 +41,21 @@ public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent>
 		}
 
 		if (event.isFailed()) {
-			onFailure(event);
+			onFailure(event.getException());
 		}
 		else {
 			try {
 				onSuccess(event);
 			}
 			catch (Exception e) {
-				event.setException(e);
-				onFailure(event);
+				onFailure(e);
 			}
 		}
 	}
 
 	public abstract E execute(Object[] args) throws Exception;
 
-	public abstract void onFailure(BasicThreadEvent event);
+	public abstract void onFailure(Exception e);
 
 	public abstract void onSuccess(E event) throws Exception;
 

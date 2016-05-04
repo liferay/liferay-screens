@@ -3,7 +3,6 @@ package com.liferay.mobile.screens.base.thread.interactors;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
 import com.liferay.mobile.screens.base.thread.IdCache;
-import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
@@ -42,8 +41,8 @@ public class DDLFormThreadInteractorImpl extends BaseCachedThreadRemoteInteracto
 	}
 
 	@Override
-	public void onFailure(BasicThreadEvent event) {
-		getListener().onDDLFormLoadFailed(event.getException());
+	public void onFailure(Exception e) {
+		getListener().onDDLFormLoadFailed(e);
 	}
 
 	@Override

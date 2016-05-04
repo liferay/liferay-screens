@@ -19,7 +19,6 @@ import android.support.annotation.NonNull;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
 import com.liferay.mobile.screens.base.thread.IdCache;
-import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
@@ -59,8 +58,8 @@ public class DDLFormLoadRecordThreadInteractorImpl
 	}
 
 	@Override
-	public void onFailure(BasicThreadEvent event) {
-		getListener().onDDLFormRecordLoadFailed(event.getException());
+	public void onFailure(Exception e) {
+		getListener().onDDLFormRecordLoadFailed(e);
 	}
 
 	@Override

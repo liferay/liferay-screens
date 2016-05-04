@@ -5,7 +5,6 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.base.thread.BaseThreadInteractor;
-import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.base.thread.event.UserEvent;
 import com.liferay.mobile.screens.base.thread.listener.LoginThreadListener;
 import com.liferay.mobile.screens.context.LiferayServerContext;
@@ -34,10 +33,10 @@ public class ReloginInteractor extends BaseThreadInteractor<LoginThreadListener,
 	}
 
 	@Override
-	public void onFailure(BasicThreadEvent event) {
+	public void onFailure(Exception e) {
 		SessionContext.logout();
 
-		getListener().onFailure(event.getException());
+		getListener().onFailure(e);
 	}
 
 	@Override

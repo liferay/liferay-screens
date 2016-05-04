@@ -22,7 +22,6 @@ import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
 import com.liferay.mobile.screens.auth.forgotpassword.connector.ForgotPasswordConnector;
 import com.liferay.mobile.screens.base.thread.BaseThreadInteractor;
-import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.base.thread.event.ForgotPasswordThreadEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.util.ServiceProvider;
@@ -59,8 +58,8 @@ public class ForgotPasswordThreadInteractorImpl
 	}
 
 	@Override
-	public void onFailure(BasicThreadEvent event) {
-		getListener().onForgotPasswordRequestFailure(event.getException());
+	public void onFailure(Exception e) {
+		getListener().onForgotPasswordRequestFailure(e);
 	}
 
 	@Override
