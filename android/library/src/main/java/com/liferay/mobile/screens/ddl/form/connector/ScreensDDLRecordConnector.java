@@ -1,5 +1,7 @@
 package com.liferay.mobile.screens.ddl.form.connector;
 
+import org.json.JSONObject;
+
 /**
  * @author Javier Gamarra
  */
@@ -12,5 +14,5 @@ public interface ScreensDDLRecordConnector {
 
 	void getDdlRecordsCount(long recordSetId) throws Exception;
 
-	void getDdlRecord(long recordId, String s) throws Exception;
+	JSONObject getDdlRecord(long recordId, String s) throws Exception;
 }

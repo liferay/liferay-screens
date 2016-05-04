@@ -3,6 +3,8 @@ package com.liferay.mobile.screens.ddl.form.connector;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.service.v70.ScreensddlrecordService;
 
+import org.json.JSONObject;
+
 /**
  * @author Javier Gamarra
  */
@@ -33,8 +35,8 @@ public class ScreensDDLRecordConnector70 implements ScreensDDLRecordConnector {
 	}
 
 	@Override
-	public void getDdlRecord(long recordId, String s) throws Exception {
-		_ddlRecordService.getDdlRecord(recordId, s);
+	public JSONObject getDdlRecord(long recordId, String s) throws Exception {
+		return _ddlRecordService.getDdlRecord(recordId, s);
 	}
 
 	private final ScreensddlrecordService _ddlRecordService;
