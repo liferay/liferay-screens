@@ -23,7 +23,6 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends CacheListener, 
 	public BaseCachedThreadRemoteInteractor(int targetScreenletId, OfflinePolicy offlinePolicy) {
 		super(targetScreenletId);
 
-		_retrievedFromCache = false;
 		_offlinePolicy = offlinePolicy;
 	}
 
@@ -34,30 +33,20 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends CacheListener, 
 				try {
 					if (_offlinePolicy == OfflinePolicy.CACHE_FIRST) {
 						try {
-							_retrievedFromCache = cached(args);
-
-							getListener().loadingFromCache(_retrievedFromCache);
+							boolean _retrievedFromCache = cached(args);
 
 							if (!_retrievedFromCache) {
-								LiferayLogger.i("Retrieve from cache first failed, trying online");
-
-								getListener().retrievingOnline(true, null);
-								online(args);
+								online(true, null, args);
 							}
 						}
 						catch (Exception e) {
-							LiferayLogger.e("Retrieve from cache first failed, trying online", e);
-
-							getListener().retrievingOnline(true, e);
-							online(args);
+							online(true, e, args);
 						}
 					}
 					else if (_offlinePolicy == OfflinePolicy.CACHE_ONLY) {
 						LiferayLogger.i("Trying to retrieve object from cache");
 
-						_retrievedFromCache = cached(args);
-
-						getListener().loadingFromCache(_retrievedFromCache);
+						boolean _retrievedFromCache = cached(args);
 
 						if (!_retrievedFromCache) {
 							throw new NoSuchElementException();
@@ -65,17 +54,12 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends CacheListener, 
 					}
 					else if (_offlinePolicy == OfflinePolicy.REMOTE_FIRST) {
 						try {
-
-							getListener().retrievingOnline(false, null);
-
-							online(args);
+							online(false, null, args);
 						}
 						catch (Exception e) {
 							LiferayLogger.e("Retrieve online first failed, trying cached version", e);
 
-							_retrievedFromCache = cached(args);
-
-							getListener().loadingFromCache(_retrievedFromCache);
+							boolean _retrievedFromCache = cached(args);
 
 							if (!_retrievedFromCache) {
 								throw new NoSuchElementException();
@@ -83,16 +67,13 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends CacheListener, 
 						}
 					}
 					else {
-
-						getListener().retrievingOnline(false, null);
-
-						online(args);
+						online(false, null, args);
 					}
 				}
 				catch (Exception e) {
-					BasicThreadEvent basicThreadEvent = new ErrorThreadEvent(e);
-					basicThreadEvent.setTargetScreenletId(getTargetScreenletId());
-					EventBusUtil.post(basicThreadEvent);
+					BasicThreadEvent event = new ErrorThreadEvent(e);
+					event.setTargetScreenletId(getTargetScreenletId());
+					EventBusUtil.post(event);
 				}
 			}
 		}).start();
@@ -100,85 +81,91 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends CacheListener, 
 
 	public void onEventMainThread(E event) {
 		LiferayLogger.i("event = [" + event + "]");
+
 		if (!isValidEvent(event)) {
 			return;
 		}
 
 		if (event.isFailed()) {
-			if (OfflinePolicy.REMOTE_FIRST.equals(_offlinePolicy)) {
-				try {
-					_retrievedFromCache = cached(event);
+			try {
+				if (OfflinePolicy.REMOTE_FIRST.equals(_offlinePolicy)) {
+					boolean _retrievedFromCache = cached(event);
 
-					getListener().loadingFromCache(_retrievedFromCache);
-
-					if (!_retrievedFromCache) {
-						onFailure(event);
+					if (_retrievedFromCache) {
+						return;
 					}
 				}
-				catch (Exception e) {
-					onFailure(event);
-				}
+				onFailure(event.getException());
 			}
-			else {
-				onFailure(event);
+			catch (Exception e) {
+				onFailure(event.getException());
 			}
 		}
 		else {
-			if (hasToStoreToCache()) {
-				getListener().storingToCache(event);
-				storeToCache(event);
-			}
 			try {
+				if (!event.isCachedRequest()) {
+					storeToCache(event);
+				}
+
 				onSuccess(event);
 			}
 			catch (Exception e) {
-				event.setException(e);
-				onFailure(event);
+				onFailure(e);
 			}
 		}
 	}
 
-	protected void online(Object... args) throws Exception {
+	protected void online(boolean triedOffline, Exception e, Object... args) throws Exception {
+
+		if (triedOffline) {
+			LiferayLogger.i("Retrieve from cache first failed, trying online");
+		}
+
+		getListener().retrievingOnline(triedOffline, e);
+
 		E event = execute(args);
 		event.setTargetScreenletId(getTargetScreenletId());
+		event.setCachedRequest(false);
 		EventBusUtil.post(event);
 	}
 
-	protected void storeToCache(E event) {
-		try {
-			DB snappydb = DBFactory.open(LiferayScreensContext.getContext());
-			snappydb.put(getFullId(event), event);
-			snappydb.close();
+	protected boolean cachedById(String fullId) throws SnappydbException {
+		DB snappyDB = DBFactory.open(LiferayScreensContext.getContext());
+		E offlineEvent = snappyDB.getObject(fullId, getEventClass());
+		if (offlineEvent != null) {
+			offlineEvent.setCachedRequest(true);
+			offlineEvent.setTargetScreenletId(getTargetScreenletId());
+			EventBusUtil.post(offlineEvent);
+			getListener().loadingFromCache(true);
+			return true;
 		}
-		catch (SnappydbException e) {
-			e.printStackTrace();
-		}
+		getListener().loadingFromCache(false);
+		return false;
+	}
+
+	protected void storeToCache(E event) throws SnappydbException {
+
+		getListener().storingToCache(event);
+
+		DB snappydb = DBFactory.open(LiferayScreensContext.getContext());
+		snappydb.put(getFullId(event), event);
+		snappydb.close();
 	}
 
 	protected boolean cached(E event) throws Exception {
-		try {
-			DB snappyDB = DBFactory.open(LiferayScreensContext.getContext());
-			E myObject = snappyDB.getObject(getFullId(event), getEventClass());
-			onEventMainThread(myObject);
-			return true;
-		}
-		catch (SnappydbException e) {
-			e.printStackTrace();
-		}
-		return false;
+
+		String fullId = getFullId(event);
+		return cachedById(fullId);
 	}
 
 	protected boolean cached(Object... args) throws Exception {
-		try {
-			DB snappyDB = DBFactory.open(LiferayScreensContext.getContext());
-			E myObject = snappyDB.getObject(getFullId(getCachedContent(args)), getEventClass());
-			onEventMainThread(myObject);
-			return true;
-		}
-		catch (SnappydbException e) {
-			e.printStackTrace();
-		}
-		return false;
+
+		String fullId = getFullId(getCachedContent(args));
+		return cachedById(fullId);
+	}
+
+	protected String getFullId(IdCache event) {
+		return getEventClass().getName() + "_" + event.getGroupId() + "_" + event.getUserId() + "_" + event.getLocale() + "_" + event.getId();
 	}
 
 	protected abstract IdCache getCachedContent(Object[] args);
@@ -189,15 +176,6 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends CacheListener, 
 		return _offlinePolicy;
 	}
 
-	protected boolean hasToStoreToCache() {
-		return !_retrievedFromCache;
-	}
-
-	private String getFullId(IdCache event) {
-		return getEventClass().getName() + "_" + event.getGroupId() + "_" + event.getUserId() + "_" + event.getLocale() + "_" + event.getId();
-	}
-
-	private boolean _retrievedFromCache;
 	private final OfflinePolicy _offlinePolicy;
 
 }
