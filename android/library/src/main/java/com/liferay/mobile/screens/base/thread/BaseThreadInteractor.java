@@ -44,7 +44,13 @@ public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent>
 			onFailure(event);
 		}
 		else {
-			onSuccess(event);
+			try {
+				onSuccess(event);
+			}
+			catch (Exception e) {
+				event.setException(e);
+				onFailure(event);
+			}
 		}
 	}
 
@@ -52,7 +58,7 @@ public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent>
 
 	public abstract void onFailure(BasicThreadEvent event);
 
-	public abstract void onSuccess(E event);
+	public abstract void onSuccess(E event) throws Exception;
 
 	protected boolean isValidEvent(BasicThreadEvent event) {
 		return getListener() != null && event.getTargetScreenletId() == getTargetScreenletId();
