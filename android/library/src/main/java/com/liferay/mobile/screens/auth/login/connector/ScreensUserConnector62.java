@@ -4,6 +4,8 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.auth.forgotpassword.connector.ForgotPasswordConnector;
 import com.liferay.mobile.screens.service.v62.ScreensuserService;
 
+import org.json.JSONObject;
+
 /**
  * @author Javier Gamarra
  */
@@ -28,8 +30,8 @@ public class ScreensUserConnector62 implements ForgotPasswordConnector, CurrentU
 	}
 
 	@Override
-	public void getCurrentUser() throws Exception {
-		_screensuserService.getCurrentUser();
+	public JSONObject getCurrentUser() throws Exception {
+		return _screensuserService.getCurrentUser();
 	}
 
 	private ScreensuserService _screensuserService;
