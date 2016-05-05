@@ -33,6 +33,7 @@
 		<activity android:name=".WebContentDisplayActivity" />
 		<activity android:name=".AddBookmarkActivity" />
 		<activity android:name=".fullview.LoginFullActivity" />
+		<activity android:name=".ReloginActivity" />
 
 		<receiver android:name="com.liferay.mobile.screens.cache.CacheReceiver">
 			<intent-filter>
