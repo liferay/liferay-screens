@@ -17,8 +17,8 @@ public class UserConnector62 implements UserConnector {
 	}
 
 	@Override
-	public void getUserByEmailAddress(long companyId, String login) throws Exception {
-		_userService.getUserByEmailAddress(companyId, login);
+	public JSONObject getUserByEmailAddress(long companyId, String login) throws Exception {
+		return _userService.getUserByEmailAddress(companyId, login);
 	}
 
 	@Override
@@ -27,13 +27,13 @@ public class UserConnector62 implements UserConnector {
 	}
 
 	@Override
-	public void getUserByScreenName(long companyId, String login) throws Exception {
-		_userService.getUserByScreenName(companyId, login);
+	public JSONObject getUserByScreenName(long companyId, String login) throws Exception {
+		return _userService.getUserByScreenName(companyId, login);
 	}
 
 	@Override
-	public void addUser(long companyId, boolean autoPassword, String password, String password1, boolean autoScreenName, String screenName, String emailAddress, long facebookId, String openId, String s, String firstName, String middleName, String lastName, int prefixId, int suffixId, boolean male, int birthdayMonth, int birthdayDay, int birthdayYear, String jobTitle, JSONArray groupIds, JSONArray organizationIds, JSONArray roleIds, JSONArray userGroupIds, boolean sendEmail, JSONObjectWrapper serviceContext) throws Exception {
-		_userService.addUser(companyId, autoPassword, password, password1, autoScreenName, screenName, emailAddress, facebookId, openId, s, firstName, middleName, lastName, prefixId, suffixId, male, birthdayMonth, birthdayDay, birthdayYear, jobTitle, groupIds, organizationIds, roleIds, userGroupIds, sendEmail, serviceContext);
+	public JSONObject addUser(long companyId, boolean autoPassword, String password, String password1, boolean autoScreenName, String screenName, String emailAddress, long facebookId, String openId, String s, String firstName, String middleName, String lastName, int prefixId, int suffixId, boolean male, int birthdayMonth, int birthdayDay, int birthdayYear, String jobTitle, JSONArray groupIds, JSONArray organizationIds, JSONArray roleIds, JSONArray userGroupIds, boolean sendEmail, JSONObjectWrapper serviceContext) throws Exception {
+		return _userService.addUser(companyId, autoPassword, password, password1, autoScreenName, screenName, emailAddress, facebookId, openId, s, firstName, middleName, lastName, prefixId, suffixId, male, birthdayMonth, birthdayDay, birthdayYear, jobTitle, groupIds, organizationIds, roleIds, userGroupIds, sendEmail, serviceContext);
 	}
 
 	@Override

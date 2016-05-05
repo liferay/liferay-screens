@@ -3,6 +3,7 @@ package com.liferay.mobile.screens.ddl.form.connector;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.service.v70.ScreensddlrecordService;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -15,23 +16,23 @@ public class ScreensDDLRecordConnector70 implements ScreensDDLRecordConnector {
 	}
 
 	@Override
-	public void getDdlRecords(long recordSetId, long userId, String s, int startRow, int endRow) throws Exception {
-		_ddlRecordService.getDdlRecords(recordSetId, userId, s, startRow, endRow);
+	public JSONArray getDdlRecords(long recordSetId, long userId, String s, int startRow, int endRow) throws Exception {
+		return _ddlRecordService.getDdlRecords(recordSetId, userId, s, startRow, endRow);
 	}
 
 	@Override
-	public void getDdlRecords(long recordSetId, String s, int startRow, int endRow) throws Exception {
-		_ddlRecordService.getDdlRecords(recordSetId, s, startRow, endRow);
+	public JSONArray getDdlRecords(long recordSetId, String s, int startRow, int endRow) throws Exception {
+		return _ddlRecordService.getDdlRecords(recordSetId, s, startRow, endRow);
 	}
 
 	@Override
-	public void getDdlRecordsCount(long recordSetId, long userId) throws Exception {
-		_ddlRecordService.getDdlRecordsCount(recordSetId, userId);
+	public Integer getDdlRecordsCount(long recordSetId, long userId) throws Exception {
+		return _ddlRecordService.getDdlRecordsCount(recordSetId, userId);
 	}
 
 	@Override
-	public void getDdlRecordsCount(long recordSetId) throws Exception {
-		_ddlRecordService.getDdlRecordsCount(recordSetId);
+	public Integer getDdlRecordsCount(long recordSetId) throws Exception {
+		return _ddlRecordService.getDdlRecordsCount(recordSetId);
 	}
 
 	@Override
