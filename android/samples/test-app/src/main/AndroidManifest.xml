@@ -22,17 +22,18 @@
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
-		<activity android:name=".SelectAssetActivity"/>
-		<activity android:name=".AssetListActivity"/>
-		<activity android:name=".DDLFormActivity"/>
-		<activity android:name=".DDLListActivity"/>
-		<activity android:name=".ForgotPasswordActivity"/>
-		<activity android:name=".LoginActivity"/>
-		<activity android:name=".SignUpActivity"/>
-		<activity android:name=".UserPortraitActivity"/>
-		<activity android:name=".WebContentDisplayActivity"/>
-		<activity android:name=".AddBookmarkActivity"/>
-		<activity android:name=".fullview.LoginFullActivity"/>
+		<activity android:name=".SelectAssetActivity" />
+		<activity android:name=".AssetListActivity" />
+		<activity android:name=".DDLFormActivity" />
+		<activity android:name=".DDLListActivity" />
+		<activity android:name=".ForgotPasswordActivity" />
+		<activity android:name=".LoginActivity" />
+		<activity android:name=".SignUpActivity" />
+		<activity android:name=".UserPortraitActivity" />
+		<activity android:name=".WebContentDisplayActivity" />
+		<activity android:name=".AddBookmarkActivity" />
+		<activity android:name=".fullview.LoginFullActivity" />
+		<activity android:name=".ReloginActivity" />
 
 		<receiver android:name="com.liferay.mobile.screens.cache.CacheReceiver">
 			<intent-filter>

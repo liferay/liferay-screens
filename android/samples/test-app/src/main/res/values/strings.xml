@@ -31,4 +31,7 @@
 
 	<string name="custom_interactor">Login with custom interactor</string>
 	<string name="list_bookmarks">List Bookmarks</string>
+	<string name="relogin">Relogin</string>
+	<string name="change_surname">Change Surname</string>
+	<string name="surname">Surname</string>
 </resources>
