@@ -20,8 +20,16 @@ import com.liferay.mobile.android.oauth.OAuth;
 import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
+import com.liferay.mobile.screens.auth.login.LoginListener;
+import com.liferay.mobile.screens.auth.login.connector.CurrentUserConnector;
+import com.liferay.mobile.screens.cache.executor.Executor;
 import com.liferay.mobile.screens.context.storage.CredentialsStorage;
 import com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder;
+import com.liferay.mobile.screens.util.ServiceProvider;
+
+import org.json.JSONObject;
+
+import java.security.AccessControlException;
 
 /**
  * @author Silvio Santos
@@ -123,6 +131,40 @@ public class SessionContext {
 			_currentUserSession = new SessionImpl(LiferayServerContext.getServer(), storage.getAuthentication());
 			_currentUser = storage.getUser();
 		}
+	}
+
+	public static void relogin(LoginListener loginListener) {
+		if (_currentUserSession == null || _currentUserSession.getAuthentication() == null) {
+			loginListener.onLoginFailure(new AccessControlException("Missing user attributes"));
+		}
+
+		refreshUserAttributes(loginListener, new SessionImpl(LiferayServerContext.getServer(),
+			_currentUserSession.getAuthentication()));
+	}
+
+	private static void refreshUserAttributes(final LoginListener loginListener, final Session session) {
+		Executor.execute(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					CurrentUserConnector currentUserConnector = ServiceProvider.getInstance().getCurrentUserConnector(session);
+					JSONObject jsonObject = currentUserConnector.getCurrentUser();
+					if (jsonObject != null) {
+
+						User user = new User(jsonObject);
+						_currentUser = user;
+						loginListener.onLoginSuccess(user);
+					}
+					else {
+						SessionContext.logout();
+						loginListener.onLoginFailure(new AccessControlException("User invalid"));
+					}
+				}
+				catch (Exception e) {
+					loginListener.onLoginFailure(e);
+				}
+			}
+		});
 	}
 
 	private static void checkIfStorageTypeIsSupported(CredentialsStorageBuilder.StorageType storageType, CredentialsStorage storage) {
