@@ -57,8 +57,8 @@ public class UserConnector70 implements UserConnector, ForgotPasswordConnector, 
 	}
 
 	@Override
-	public void getCurrentUser() throws Exception {
-		_userService.getCurrentUser();
+	public JSONObject getCurrentUser() throws Exception {
+		return _userService.getCurrentUser();
 	}
 
 	private final UserService _userService;
