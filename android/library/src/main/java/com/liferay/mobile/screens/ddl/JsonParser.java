@@ -134,24 +134,20 @@ public class JsonParser implements DDMStructureParser {
 		//  b3. Matches elements for default locale
 
 
-		String result = field.getString(locale.toString());
-		if (result != null) {
-//			 cases 'a1' and 'b1'
-			return result;
+		if (field.has(locale.toString())) {
+			//			 cases 'a1' and 'b1'
+			return field.getString(locale.toString());
 		}
 
 		String supportedLocale = LiferayLocale.getSupportedLocaleWithNoDefault(locale.getLanguage());
 		// Pre-final fallback (a2, a3, b2): find any metadata with the portal supported languages
 
 		if (supportedLocale != null) {
-			result = field.getString(supportedLocale);
+			return field.getString(supportedLocale);
 		}
 
-		if (result == null) {
-			// Final fallback (a4, b3): find default metadata
-			result = field.getString(formLocale.toString());
-		}
-		return result;
+		// Final fallback (a4, b3): find default metadata
+		return field.getString(formLocale.toString());
 	}
 
 	protected List<Map<String, String>> findOptions(
