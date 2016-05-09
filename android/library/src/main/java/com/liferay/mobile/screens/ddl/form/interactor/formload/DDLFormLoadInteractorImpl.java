@@ -129,15 +129,10 @@ public class DDLFormLoadInteractorImpl
 
 		Record formRecord = event.getRecord();
 
-		long userId = event.getJSONObject().getLong("userId");
-		if (event.getJSONObject().has("xsd")) {
-			formRecord.parseXsd(event.getJSONObject().getString("xsd"));
-		}
-		else {
-			formRecord.parseJson(event.getJSONObject().getString("definition"));
-		}
+		formRecord.parseDDMStructure(event.getJSONObject());
 
 		if (formRecord.getCreatorUserId() == 0) {
+			long userId = event.getJSONObject().getLong("userId");
 			formRecord.setCreatorUserId(userId);
 		}
 		return formRecord;

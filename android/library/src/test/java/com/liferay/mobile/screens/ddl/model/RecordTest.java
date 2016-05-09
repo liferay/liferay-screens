@@ -18,6 +18,8 @@ import android.os.Parcel;
 
 import com.liferay.mobile.screens.BuildConfig;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
@@ -39,6 +41,12 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class RecordTest {
 
+	private static void parse(Record record, String content) throws JSONException {
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("xsd", content);
+		record.parseDDMStructure(jsonObject);
+	}
+
 	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class AfterCreatingFromXSD {
@@ -58,7 +66,7 @@ public class RecordTest {
 					"</root>";
 
 			Record record = new Record(new Locale("en", "US"));
-			record.parseXsd(xsd);
+			parse(record, xsd);
 
 			assertEquals(1, record.getFieldCount());
 
@@ -88,7 +96,7 @@ public class RecordTest {
 					"</root>";
 
 			Record record = new Record(new Locale("en", "US"));
-			record.parseXsd(xsd);
+			parse(record, xsd);
 
 			BooleanField field = (BooleanField) record.getField(0);
 
@@ -125,7 +133,7 @@ public class RecordTest {
 					"</root>";
 
 			Record record = new Record(new Locale("en", "US"));
-			record.parseXsd(xsd);
+			parse(record, xsd);
 
 			assertTrue(record.getField(1) instanceof StringField);
 			StringField field = (StringField) record.getField(1);
@@ -161,7 +169,7 @@ public class RecordTest {
 					"</root>";
 
 			Record record = new Record(new Locale("en", "US"));
-			record.parseXsd(xsd);
+			parse(record, xsd);
 
 			StringField field = (StringField) record.getField(0);
 
@@ -250,7 +258,7 @@ public class RecordTest {
 					"</root>";
 
 			Record record = new Record(new Locale("en", "US"));
-			record.parseXsd(xsd);
+			parse(record, xsd);
 			record.setCreatorUserId(12);
 			record.setRecordId(34);
 			record.setRecordSetId(56);

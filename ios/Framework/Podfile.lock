@@ -20,13 +20,13 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - CocoaLumberjack (2.2.0):
-    - CocoaLumberjack/Default (= 2.2.0)
-    - CocoaLumberjack/Extensions (= 2.2.0)
-  - CocoaLumberjack/Core (2.2.0)
-  - CocoaLumberjack/Default (2.2.0):
+  - CocoaLumberjack (2.3.0):
+    - CocoaLumberjack/Default (= 2.3.0)
+    - CocoaLumberjack/Extensions (= 2.3.0)
+  - CocoaLumberjack/Core (2.3.0)
+  - CocoaLumberjack/Default (2.3.0):
     - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.2.0):
+  - CocoaLumberjack/Extensions (2.3.0):
     - CocoaLumberjack/Default
   - CryptoSwift (0.1.1)
   - DTPickerPresenter (0.2.0)
@@ -103,7 +103,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
+  CocoaLumberjack: 97fab7ee5f507fe54445cca7ea80f926729cfd15
   CryptoSwift: c11640d3d66107efc8333e4131a5173f072b1d61
   DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
   KeychainAccess: d54b31c75745cfa595b3654590e8cb491a75d411

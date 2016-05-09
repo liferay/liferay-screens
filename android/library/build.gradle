@@ -32,7 +32,10 @@ dependencies {
 	compile libraries.appCompat
 	compile libraries.recyclerView
 	compile libraries.sdk
-	compile libraries.push
+	compile (libraries.push) {
+		exclude group: 'com.google.android.gms', module: 'play-services'
+	}
+	compile libraries.gms
 	compile libraries.oauth
 
 	compile libraries.eventbus

@@ -25,11 +25,16 @@ import java.util.Map;
  */
 public class AssetEntry implements Parcelable {
 
-	public static final Parcelable.Creator<AssetEntry> CREATOR =
-		new Parcelable.Creator<AssetEntry>() {
+	public static final ClassLoaderCreator<AssetEntry> CREATOR =
+		new ClassLoaderCreator<AssetEntry>() {
+
+			@Override
+			public AssetEntry createFromParcel(Parcel source, ClassLoader loader) {
+				return new AssetEntry(source, loader);
+			}
 
 			public AssetEntry createFromParcel(Parcel in) {
-				return new AssetEntry(in);
+				throw new AssertionError();
 			}
 
 			public AssetEntry[] newArray(int size) {
@@ -37,13 +42,14 @@ public class AssetEntry implements Parcelable {
 			}
 		};
 
-	public AssetEntry(Map<String, Object> values) {
-		_values = values;
+	protected AssetEntry(Parcel in, ClassLoader loader) {
+		_values = new HashMap<>();
+
+		in.readMap(_values, loader);
 	}
 
-	@Override
-	public int describeContents() {
-		return 0;
+	public AssetEntry(Map<String, Object> values) {
+		_values = values;
 	}
 
 	public String getTitle() {
@@ -59,12 +65,10 @@ public class AssetEntry implements Parcelable {
 		return _values;
 	}
 
-	private AssetEntry(Parcel in) {
-		_values = new HashMap<>();
-
-		in.readMap(_values, ClassLoader.getSystemClassLoader());
+	@Override
+	public int describeContents() {
+		return 0;
 	}
 
-	private Map<String, Object> _values;
-
+	protected Map<String, Object> _values;
 }

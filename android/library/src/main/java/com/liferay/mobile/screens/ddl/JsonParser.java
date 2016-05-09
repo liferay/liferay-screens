@@ -20,7 +20,7 @@ import java.util.Map;
 /**
  * @author Javier Gamarra
  */
-public class JsonParser implements Parser {
+public class JsonParser implements DDMStructureParser {
 
 	public List<Field> parse(String json, Locale locale) {
 		if (json == null || json.isEmpty()) {
@@ -49,8 +49,6 @@ public class JsonParser implements Parser {
 		}
 
 		Locale formLocale = parseLocale(defaultLocaleValue);
-
-//		JSONArray availableLanguageIds = jsonObject.getJSONArray("availableLanguageIds");
 
 		JSONArray fields = jsonObject.getJSONArray("fields");
 
@@ -81,7 +79,16 @@ public class JsonParser implements Parser {
 		mergedMap.putAll(attributes);
 		mergedMap.putAll(localizedMetadata);
 
-		return dataType.createField(mergedMap, locale, formLocale);
+		Field newField = dataType.createField(mergedMap, locale, formLocale);
+
+		if (attributes.containsKey("nestedFields")) {
+			JSONArray jsonArray = (JSONArray) attributes.get("nestedFields");
+			for (int i = 0; i < jsonArray.length(); i++) {
+				newField.getFields().add(createFormField(jsonArray.getJSONObject(i), formLocale, locale));
+			}
+		}
+
+		return newField;
 	}
 
 	protected Map<String, Object> processLocalizedMetadata(
@@ -89,14 +96,22 @@ public class JsonParser implements Parser {
 		throws JSONException {
 
 		Map<String, Object> result = new HashMap<>();
-		result.put("label", addLocalizedElement(field.getJSONObject("label"), formLocale, locale));
-		result.put("predefinedValue", addLocalizedElement(field.getJSONObject("predefinedValue"), formLocale, locale));
-		result.put("tip", addLocalizedElement(field.getJSONObject("tip"), formLocale, locale));
+		result.put("label", addLocalizedElement(field, "label", formLocale, locale));
+		result.put("predefinedValue", addLocalizedElement(field, "predefinedValue", formLocale, locale));
+		result.put("tip", addLocalizedElement(field, "tip", formLocale, locale));
 
 		if (field.has("options")) {
 			result.put("options", findOptions(field, locale, formLocale));
 		}
 		return result;
+	}
+
+	protected String addLocalizedElement(
+		JSONObject jsonObject, String key, Locale formLocale, Locale locale) throws JSONException {
+		if (jsonObject.has(key)) {
+			return addLocalizedElement(jsonObject.getJSONObject(key), formLocale, locale);
+		}
+		return "";
 	}
 
 	protected String addLocalizedElement(

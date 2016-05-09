@@ -18,6 +18,8 @@ import android.os.Parcel;
 
 import com.liferay.mobile.screens.BuildConfig;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
@@ -56,6 +58,12 @@ public class Record70Test {
 		"\"showLabel\": true, " +
 		"\"type\": \"checkbox\"}]}";
 
+	private static void parse(Record record, String content) throws JSONException {
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("definition", new JSONObject(content));
+		record.parseDDMStructure(jsonObject);
+	}
+
 	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class AfterCreatingFromXSD {
@@ -64,7 +72,7 @@ public class Record70Test {
 		public void shouldReturnTheFiedsByIndex() throws Exception {
 
 			Record record = new Record(new Locale("en", "US"));
-			record.parseJson(JSON_BOOLEAN);
+			parse(record, JSON_BOOLEAN);
 
 			assertEquals(1, record.getFieldCount());
 
@@ -83,7 +91,7 @@ public class Record70Test {
 		public void shouldReturnTheValueAsString() throws Exception {
 
 			Record record = new Record(new Locale("en", "US"));
-			record.parseJson(JSON_BOOLEAN);
+			parse(record, JSON_BOOLEAN);
 
 			BooleanField field = (BooleanField) record.getField(0);
 
@@ -140,8 +148,9 @@ public class Record70Test {
 				"        }" +
 				"]}";
 
+
 			Record record = new Record(new Locale("en", "US"));
-			record.parseJson(json);
+			parse(record, json);
 
 			assertTrue(record.getField(1) instanceof StringField);
 			StringField field = (StringField) record.getField(1);
@@ -194,7 +203,7 @@ public class Record70Test {
 				"]}";
 
 			Record record = new Record(new Locale("en", "US"));
-			record.parseJson(json);
+			parse(record, json);
 
 			StringField field = (StringField) record.getField(0);
 
@@ -509,7 +518,7 @@ public class Record70Test {
 				"}";
 
 			Record record = new Record(new Locale("en", "US"));
-			record.parseJson(json);
+			parse(record, json);
 
 			record.setCreatorUserId(12);
 			record.setRecordId(34);
@@ -557,6 +566,25 @@ public class Record70Test {
 				assertEquals(field.getClass(), deserializedField.getClass());
 				assertEquals(field.getCurrentValue(), deserializedField.getCurrentValue());
 			}
+			parcel.recycle();
+		}
+
+		@Test
+		public void shouldSerializeAndDeserializeAStructure() throws Exception {
+
+			DDMStructure structure = new DDMStructure(Locale.US);
+
+			Parcel parcel = Parcel.obtain();
+
+			parcel.writeParcelable(structure, 0);
+
+			assertTrue(parcel.dataCapacity() > 0);
+			assertTrue(parcel.dataSize() > 0);
+
+			parcel.setDataPosition(0);
+
+			DDMStructure deserializedStructure = parcel.readParcelable(structure.getClass().getClassLoader());
+			assertEquals(structure.getLocale(), deserializedStructure.getLocale());
 			parcel.recycle();
 		}
 

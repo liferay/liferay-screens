@@ -25,11 +25,16 @@ import java.util.Map;
  */
 public class BooleanField extends Field<Boolean> {
 
-	public static final Parcelable.Creator<BooleanField> CREATOR =
-		new Parcelable.Creator<BooleanField>() {
+	public static final Parcelable.ClassLoaderCreator<BooleanField> CREATOR =
+		new Parcelable.ClassLoaderCreator<BooleanField>() {
+
+			@Override
+			public BooleanField createFromParcel(Parcel source, ClassLoader loader) {
+				return new BooleanField(source, loader);
+			}
 
 			public BooleanField createFromParcel(Parcel in) {
-				return new BooleanField(in);
+				throw new AssertionError("");
 			}
 
 			public BooleanField[] newArray(int size) {
@@ -42,8 +47,8 @@ public class BooleanField extends Field<Boolean> {
 		super(attributes, locale, defaultLocale);
 	}
 
-	protected BooleanField(Parcel in) {
-		super(in);
+	protected BooleanField(Parcel in, ClassLoader classLoader) {
+		super(in, classLoader);
 	}
 
 	@Override

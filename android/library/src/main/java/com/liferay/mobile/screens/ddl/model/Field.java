@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p/>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p/>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -34,8 +34,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	public enum DataType {
 		BOOLEAN("boolean"),
 		STRING("string"),
+		HTML("html"),
 		DATE("date"),
 		NUMBER("number"),
+		IMAGE("image"),
 		DOCUMENT("document-library"),
 		UNSUPPORTED(null);
 
@@ -80,6 +82,9 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 					return new StringField(attributes, locale, defaultLocale);
 				}
 			}
+			else if (HTML.equals(this)) {
+				return new StringField(attributes, locale, defaultLocale);
+			}
 			else if (BOOLEAN.equals(this)) {
 				return new BooleanField(attributes, locale, defaultLocale);
 			}
@@ -91,6 +96,9 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 			}
 			else if (DOCUMENT.equals(this)) {
 				return new DocumentField(attributes, locale, defaultLocale);
+			}
+			else if (IMAGE.equals(this)) {
+				return new ImageField(attributes, locale, defaultLocale);
 			}
 			return null;
 		}
@@ -106,7 +114,6 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		private String _value;
 
 	}
-
 
 	public enum EditorType {
 		CHECKBOX("checkbox"),
@@ -170,7 +177,6 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 	}
 
-
 	public Field(Map<String, Object> attributes, Locale currentLocale, Locale defaultLocale) {
 		_currentLocale = currentLocale;
 		_defaultLocale = defaultLocale;
@@ -192,7 +198,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		_currentValue = _predefinedValue;
 	}
 
-	protected Field(Parcel in) {
+	protected Field(Parcel in, ClassLoader loader) {
+		Parcelable[] array = in.readParcelableArray(getClass().getClassLoader());
+		_fields = new ArrayList(Arrays.asList(array));
+
 		_dataType = DataType.valueOfString(in.readString());
 		_editorType = EditorType.valueOfString(in.readString());
 
@@ -334,6 +343,8 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel destination, int flags) {
+		destination.writeParcelableArray(_fields.toArray(new Field[_fields.size()]), flags);
+
 		destination.writeString(_dataType.getValue());
 		destination.writeString(_editorType.getValue());
 
@@ -355,6 +366,13 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		destination.writeInt(_lastValidationResult ? 1 : 0);
 	}
 
+	public List<Field> getFields() {
+		return _fields;
+	}
+
+	public void setFields(List<Field> fields) {
+		_fields = fields;
+	}
 
 	protected String getAttributeStringValue(Map<String, Object> attributes, String key) {
 		Object value = attributes.get(key);
@@ -373,22 +391,19 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 	private DataType _dataType;
 	private EditorType _editorType;
-
 	private String _name;
 	private String _label;
 	private String _tip;
-
 	private boolean _readOnly;
 	private boolean _repeatable;
 	private boolean _required;
 	private boolean _showLabel;
-
 	private T _predefinedValue;
 	private T _currentValue;
-
 	private boolean _lastValidationResult = true;
-
 	private Locale _currentLocale;
 	private Locale _defaultLocale;
+
+	private List<Field> _fields = new ArrayList<>();
 
 }

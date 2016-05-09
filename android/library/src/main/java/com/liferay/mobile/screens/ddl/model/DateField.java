@@ -32,11 +32,16 @@ import java.util.TimeZone;
  */
 public class DateField extends Field<Date> {
 
-	public static final Parcelable.Creator<DateField> CREATOR =
-		new Parcelable.Creator<DateField>() {
+	public static final Parcelable.ClassLoaderCreator<DateField> CREATOR =
+		new Parcelable.ClassLoaderCreator<DateField>() {
+
+			@Override
+			public DateField createFromParcel(Parcel source, ClassLoader loader) {
+				return new DateField(source, loader);
+			}
 
 			public DateField createFromParcel(Parcel in) {
-				return new DateField(in);
+				throw new AssertionError();
 			}
 
 			public DateField[] newArray(int size) {
@@ -51,8 +56,8 @@ public class DateField extends Field<Date> {
 		init(locale);
 	}
 
-	protected DateField(Parcel in) {
-		super(in);
+	protected DateField(Parcel source, ClassLoader loader) {
+		super(source, loader);
 
 		init(getCurrentLocale());
 	}

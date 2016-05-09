@@ -17,13 +17,12 @@ package com.liferay.mobile.screens.ddl.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.liferay.mobile.screens.ddl.JsonParser;
-import com.liferay.mobile.screens.ddl.Parser;
-import com.liferay.mobile.screens.ddl.XSDParser;
+import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.util.JSONUtil;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -33,7 +32,7 @@ import java.util.Map;
 /**
  * @author Jose Manuel Navarro
  */
-public class Record implements Parcelable {
+public class Record extends AssetEntry implements WithDDM, Parcelable {
 
 	public static final Parcelable.ClassLoaderCreator<Record> CREATOR =
 		new ClassLoaderCreator<Record>() {
@@ -55,52 +54,24 @@ public class Record implements Parcelable {
 	public static final String MODEL_VALUES = "modelValues";
 	public static final String MODEL_ATTRIBUTES = "modelAttributes";
 
-	public Record(Locale locale) {
-		_locale = locale;
-	}
+	public Record(Map<String, Object> valuesAndAttributes, Locale locale) {
+		super(valuesAndAttributes);
 
-	public Record(Map<String, Object> valuesAndAttributes) {
-		_valuesAndAttributes = valuesAndAttributes;
+		_ddmStructure = new DDMStructure(locale);
 		parseServerValues();
 	}
 
+	public Record(Locale locale) {
+		this(new HashMap<String, Object>(), locale);
+	}
+
 	public void refresh() {
-		for (Field f : _fields) {
+		for (Field f : getDDMStructure().getFields()) {
 			Object fieldValue = getServerValue(f.getName());
 			if (fieldValue != null) {
 				f.setCurrentValue(f.convertFromString(fieldValue.toString()));
 			}
 		}
-	}
-
-	public void parseXsd(String xsd) {
-		parse(xsd, new XSDParser());
-	}
-
-	public void parseJson(String json) {
-		parse(json, new JsonParser());
-	}
-
-	public Field getField(int index) {
-		return _fields.get(index);
-	}
-
-	public Field getFieldByName(String fieldName) {
-		if (fieldName == null) {
-			return null;
-		}
-
-		for (Field f : _fields) {
-			if (fieldName.equals(f.getName())) {
-				return f;
-			}
-		}
-
-		return null;
-	}
-
-	public int getFieldCount() {
-		return _fields.size();
 	}
 
 	@Override
@@ -110,13 +81,12 @@ public class Record implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel destination, int flags) {
-		destination.writeParcelableArray(_fields.toArray(new Field[_fields.size()]), flags);
-		destination.writeSerializable(_locale);
+		super.writeToParcel(destination, flags);
+		destination.writeParcelable(_ddmStructure, flags);
 		destination.writeValue(_creatorUserId);
 		destination.writeValue(_structureId);
 		destination.writeValue(_recordSetId);
 		destination.writeValue(_recordId);
-		destination.writeMap(getValuesAndAttributes());
 	}
 
 	public long getRecordSetId() {
@@ -152,9 +122,9 @@ public class Record implements Parcelable {
 	}
 
 	public Map<String, String> getData() {
-		Map<String, String> values = new HashMap<>(_fields.size());
+		Map<String, String> values = new HashMap<>(getFields().size());
 
-		for (Field f : _fields) {
+		for (Field f : getFields()) {
 			String fieldValue = f.toData();
 
 			//FIXME - LPS-49460
@@ -169,16 +139,8 @@ public class Record implements Parcelable {
 		return values;
 	}
 
-	public Locale getLocale() {
-		return _locale;
-	}
-
-	public void setLocale(Locale locale) {
-		_locale = locale;
-	}
-
 	public void setValues(Map<String, Object> values) {
-		for (Field f : _fields) {
+		for (Field f : getFields()) {
 			Object fieldValue = values.get(f.getName());
 			if (fieldValue != null) {
 				f.setCurrentValue(f.convertFromString(fieldValue.toString()));
@@ -187,7 +149,7 @@ public class Record implements Parcelable {
 	}
 
 	public boolean isRecordStructurePresent() {
-		return (_fields.size() > 0);
+		return (getFields().size() > 0);
 	}
 
 	/**
@@ -211,46 +173,62 @@ public class Record implements Parcelable {
 	}
 
 	public Map<String, Object> getValuesAndAttributes() {
-		return _valuesAndAttributes;
+		return _values;
 	}
 
 	public void setValuesAndAttributes(Map<String, Object> valuesAndAttributes) {
-		_valuesAndAttributes = valuesAndAttributes;
+		_values = valuesAndAttributes;
 		parseServerValues();
 	}
 
 	public HashMap<String, Object> getModelValues() {
-		return (HashMap<String, Object>) _valuesAndAttributes.get(MODEL_VALUES);
+		return (HashMap<String, Object>) _values.get(MODEL_VALUES);
 	}
 
 	public HashMap<String, Object> getModelAttributes() {
-		return (HashMap<String, Object>) _valuesAndAttributes.get(MODEL_ATTRIBUTES);
+		return (HashMap<String, Object>) _values.get(MODEL_ATTRIBUTES);
+	}
+
+	@Override
+	public DDMStructure getDDMStructure() {
+		return _ddmStructure;
+	}
+
+	public List<Field> getFields() {
+		return _ddmStructure.getFields();
+	}
+
+	public int getFieldCount() {
+		return _ddmStructure.getFieldCount();
+	}
+
+	public Field getField(int i) {
+		return _ddmStructure.getField(i);
+	}
+
+	public Locale getLocale() {
+		return _ddmStructure.getLocale();
+	}
+
+	public Field getFieldByName(String name) {
+		return _ddmStructure.getFieldByName(name);
+	}
+
+	public void parseDDMStructure(JSONObject jsonObject) throws JSONException {
+		_ddmStructure.parse(jsonObject);
 	}
 
 	private Record(Parcel in, ClassLoader loader) {
-		Parcelable[] array = in.readParcelableArray(getClass().getClassLoader());
-		_fields = new ArrayList(Arrays.asList(array));
-		_locale = (Locale) in.readSerializable();
+		super(in, loader);
+		_ddmStructure = in.readParcelable(DDMStructure.class.getClassLoader());
 		_creatorUserId = (Long) in.readValue(Long.class.getClassLoader());
 		_structureId = (Long) in.readValue(Long.class.getClassLoader());
 		_recordSetId = (Long) in.readValue(Long.class.getClassLoader());
 		_recordId = (Long) in.readValue(Long.class.getClassLoader());
-
-		_valuesAndAttributes = new HashMap<>();
-		in.readMap(_valuesAndAttributes, loader);
-	}
-
-	private void parse(String xsd, Parser parser) {
-		try {
-			_fields = parser.parse(xsd, _locale);
-		}
-		catch (Exception e) {
-			_fields = new ArrayList<>();
-		}
 	}
 
 	private void parseServerValues() {
-		//FIXME
+		//TODO refactor
 		Long recordId = JSONUtil.castToLong(getServerAttribute("recordId"));
 		if (recordId != null) {
 			_recordId = recordId;
@@ -265,11 +243,9 @@ public class Record implements Parcelable {
 		}
 	}
 
-	private List<Field> _fields = new ArrayList<>();
+	private DDMStructure _ddmStructure;
 	private Long _creatorUserId;
 	private Long _structureId;
 	private Long _recordSetId;
 	private Long _recordId;
-	private Locale _locale;
-	private Map<String, Object> _valuesAndAttributes;
 }

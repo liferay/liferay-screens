@@ -107,7 +107,7 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 		Long defaultGroupId = groupId == null ? LiferayServerContext.getGroupId() : groupId;
 		Long defaultUserId = userId == null ? SessionContext.getUserId() : userId;
 		String defaultLocale = locale == null ? LiferayLocale.getDefaultSupportedLocale() :
-			LiferayLocale.getSupportedLocale(locale.getDisplayLanguage());
+			LiferayLocale.getSupportedLocale(locale.getLanguage());
 
 		Cache cache = CacheSQL.getInstance();
 		List<TableCache> elements = (List<TableCache>) cache.get(type, query, startId, endId, defaultUserId, defaultGroupId, defaultLocale);

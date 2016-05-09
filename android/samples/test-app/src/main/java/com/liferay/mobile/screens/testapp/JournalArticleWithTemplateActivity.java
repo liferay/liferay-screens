@@ -4,8 +4,9 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.webkit.WebView;
 
-import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
-import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet;
+import com.liferay.mobile.screens.webcontent.WebContent;
+import com.liferay.mobile.screens.webcontent.display.WebContentDisplayListener;
+import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
 
 public class JournalArticleWithTemplateActivity extends ThemeActivity implements WebContentDisplayListener {
 
@@ -31,7 +32,7 @@ public class JournalArticleWithTemplateActivity extends ThemeActivity implements
 	}
 
 	@Override
-	public String onWebContentReceived(WebContentDisplayScreenlet source, String html) {
+	public WebContent onWebContentReceived(WebContentDisplayScreenlet source, WebContent html) {
 		return html;
 	}
 

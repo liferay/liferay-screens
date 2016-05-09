@@ -71,6 +71,7 @@ public enum AssetClassnameIds {
 	AssetClassnameIds(long value) {
 		_value = value;
 	}
+
 	private long _value;
 
 }

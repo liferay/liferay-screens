@@ -33,7 +33,7 @@ public class AssetListCallback extends BaseListCallback<AssetEntry> {
 
 	@Override
 	public AssetEntry createEntity(Map<String, Object> stringObjectMap) {
-		return new AssetEntry(stringObjectMap);
+		return AssetFactory.createInstance(stringObjectMap);
 	}
 
 }

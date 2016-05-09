@@ -43,7 +43,7 @@ public class FilteredAssetListCallback extends InteractorAsyncTaskCallback<BaseL
 		JSONArray jsonArray = (JSONArray) obj;
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonObject = jsonArray.getJSONObject(i);
-			entries.add(new AssetEntry(JSONUtil.toMap(jsonObject)));
+			entries.add(AssetFactory.createInstance(JSONUtil.toMap(jsonObject)));
 		}
 
 		result.setEntries(entries);

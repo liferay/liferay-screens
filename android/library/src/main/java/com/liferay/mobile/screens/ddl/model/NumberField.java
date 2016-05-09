@@ -27,11 +27,16 @@ import java.util.Map;
  */
 public class NumberField extends Field<Number> {
 
-	public static final Parcelable.Creator<NumberField> CREATOR =
-		new Parcelable.Creator<NumberField>() {
+	public static final Parcelable.ClassLoaderCreator<NumberField> CREATOR =
+		new Parcelable.ClassLoaderCreator<NumberField>() {
+
+			@Override
+			public NumberField createFromParcel(Parcel source, ClassLoader loader) {
+				return new NumberField(source, loader);
+			}
 
 			public NumberField createFromParcel(Parcel in) {
-				return new NumberField(in);
+				throw new AssertionError();
 			}
 
 			public NumberField[] newArray(int size) {
@@ -43,8 +48,8 @@ public class NumberField extends Field<Number> {
 		super(attributes, locale, defaultLocale);
 	}
 
-	protected NumberField(Parcel in) {
-		super(in);
+	protected NumberField(Parcel in, ClassLoader loader) {
+		super(in, loader);
 	}
 
 	@Override
