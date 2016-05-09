@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.ddl.form.interactor.add;
 
 import android.support.annotation.NonNull;
 
+import com.liferay.mobile.android.exception.ServerException;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.interactor.BaseCachedWriteRemoteInteractor;
@@ -57,7 +58,12 @@ public class DDLFormAddRecordInteractorImpl
 
 		if (event.isFailed()) {
 			try {
-				storeToCacheAndLaunchEvent(event.getGroupId(), event.getRecord());
+				if (event.getException() instanceof ServerException) {
+					notifyError(event);
+				}
+				else {
+					storeToCacheAndLaunchEvent(event.getGroupId(), event.getRecord());
+				}
 			}
 			catch (Exception e) {
 				notifyError(event);
