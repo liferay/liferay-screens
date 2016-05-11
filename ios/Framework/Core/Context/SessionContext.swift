@@ -29,8 +29,6 @@ import Foundation
 	public let cacheManager: CacheManager
 	public var credentialsStorage: CredentialsStorage
 
-	private var loadedFromStore: Bool
-
 
 	public init(session: LRSession, attributes: [String: AnyObject], store: CredentialsStore) {
 		self.session = session
@@ -41,7 +39,6 @@ import Foundation
 			userId: userAttributes["userId"]?.description?.asLong ?? 0)
 
 		credentialsStorage = CredentialsStorage(store: store)
-		loadedFromStore = false
 
 		super.init()
 	}
@@ -138,24 +135,11 @@ import Foundation
 	}
 
 	public func relogin(completed: ([String:AnyObject]? -> ())?) -> Bool {
-		let storeAndComplete = { (attributes: [String:AnyObject]?) -> () in
-			if attributes != nil {
-				// session context may be recreated. Update and use the new one:
-				if let newContext = SessionContext.currentContext {
-					newContext.loadedFromStore = self.loadedFromStore
-					if self.loadedFromStore {
-						newContext.storeCredentials()
-					}
-				}
-			}
-			completed?(attributes)
-		}
-
 		if session.authentication is LRBasicAuthentication {
-			return reloginBasic(storeAndComplete)
+			return reloginBasic(completed)
 		}
 		else if session.authentication is LROAuth {
-			return reloginOAuth(storeAndComplete)
+			return reloginOAuth(completed)
 		}
 
 		return false
@@ -268,8 +252,6 @@ import Foundation
 				session: result.session,
 				attributes: result.userAttributes,
 				store: storage.credentialsStore)
-
-		SessionContext.currentContext?.loadedFromStore = true
 
 		return true
 	}
