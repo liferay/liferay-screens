@@ -17,10 +17,10 @@ import LRMobileSDK
 
 public class GetUserByScreenNameLiferayConnector: GetUserBaseLiferayConnector {
 
-	public var companyId: Int64
-	public var screenName: String
+	public let companyId: Int64
+	public let screenName: String
 
-	private init(companyId: Int64, screenName: String) {
+	public init(companyId: Int64, screenName: String) {
 		self.companyId = companyId
 		self.screenName = screenName
 

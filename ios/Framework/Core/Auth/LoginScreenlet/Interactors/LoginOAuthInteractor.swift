@@ -16,7 +16,7 @@ import LROAuth
 import LRMobileSDK
 
 
-class OAuthInteractor: Interactor, LRCallback {
+class LoginOAuthInteractor: Interactor, LRCallback {
 
 	var resultUserAttributes: [String:AnyObject]?
 

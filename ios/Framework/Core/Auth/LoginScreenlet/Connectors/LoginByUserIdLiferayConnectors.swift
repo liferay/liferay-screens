@@ -16,12 +16,11 @@ import UIKit
 
 public class LoginByUserIdLiferay62Connector: GetUserByUserIdLiferay62Connector {
 
-	override public func validateData() -> ValidationError? {
-		if super.validateData() == nil {
-			return nil
-		}
+	public init(userId: Int64, password: String) {
+		super.init(userId: userId)
 
-		return ValidationError("login-screenlet", "validation")
+		self.userName = userId.description
+		self.password = password
 	}
 
 	override public func postRun() {
@@ -35,12 +34,11 @@ public class LoginByUserIdLiferay62Connector: GetUserByUserIdLiferay62Connector 
 
 public class LoginByUserIdLiferay70Connector: GetUserByUserIdLiferay70Connector {
 
-	override public func validateData() -> ValidationError? {
-		if super.validateData() == nil {
-			return nil
-		}
+	public init(userId: Int64, password: String) {
+		super.init(userId: userId)
 
-		return ValidationError("login-screenlet", "validation")
+		self.userName = userId.description
+		self.password = password
 	}
 
 	override public func postRun() {

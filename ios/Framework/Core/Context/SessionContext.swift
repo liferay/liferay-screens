@@ -36,7 +36,7 @@ import Foundation
 
 		cacheManager = LiferayServerContext.factory.createCacheManager(
 			session: session,
-			userId: userAttributes["userId"]?.longLongValue ?? 0)
+			userId: userAttributes["userId"]?.description?.asLong ?? 0)
 
 		credentialsStorage = CredentialsStorage(store: store)
 
@@ -51,21 +51,23 @@ import Foundation
 	}
 
 	public var basicAuthUsername: String? {
-		let authentication = session.authentication
-			as? LRBasicAuthentication
+		guard let auth = session.authentication as? LRBasicAuthentication else {
+			return nil
+		}
 
-		return authentication?.username
+		return auth.username
 	}
 
 	public var basicAuthPassword: String? {
-		let authentication = session.authentication
-			as? LRBasicAuthentication
+		guard let auth = session.authentication as? LRBasicAuthentication else {
+			return nil
+		}
 
-		return authentication?.password
+		return auth.password
 	}
 
 	public var userId: Int64? {
-		return userAttributes["userId"]?.longLongValue
+		return userAttributes["userId"]?.description?.asLong
 	}
 
 
@@ -130,6 +132,89 @@ import Foundation
 
 	public func createRequestSession() -> LRSession {
 		return LRSession(session: session)
+	}
+
+	public func relogin(completed: ([String:AnyObject]? -> ())?) -> Bool {
+		if session.authentication is LRBasicAuthentication {
+			return reloginBasic(completed)
+		}
+		else if session.authentication is LROAuth {
+			return reloginOAuth(completed)
+		}
+
+		return false
+	}
+
+	public func reloginBasic(completed: ([String:AnyObject]? -> ())?) -> Bool {
+		guard let userName = self.basicAuthUsername,
+				password = self.basicAuthPassword else {
+			completed?(nil)
+			return false
+		}
+
+		return refreshUserAttributes { attributes in
+			if let attributes = attributes {
+				SessionContext.loginWithBasic(
+					username: userName,
+					password: password,
+					userAttributes: attributes)
+			}
+			else {
+				SessionContext.logout()
+			}
+
+			completed?(attributes)
+		}
+	}
+
+	public func reloginOAuth(completed: ([String:AnyObject]? -> ())?) -> Bool {
+		guard let auth = self.session.authentication as? LROAuth else {
+			completed?(nil)
+			return false
+		}
+
+		return refreshUserAttributes { attributes in
+			if let attributes = attributes {
+				SessionContext.loginWithOAuth(authentication: auth, userAttributes: attributes)
+			}
+			else {
+				SessionContext.logout()
+			}
+
+			completed?(attributes)
+		}
+	}
+
+	public func refreshUserAttributes(completed: ([String:AnyObject]? -> ())?) -> Bool {
+		let session = self.createRequestSession()
+
+		session.callback = LRBlockCallback(
+			success: { obj in
+				guard let attributes = obj as? [String:AnyObject] else {
+					SessionContext.logout()
+					completed?(nil)
+					return
+				}
+
+				completed?(attributes)
+			},
+			failure: { err in
+				completed?(nil)
+		})
+
+		switch LiferayServerContext.serverVersion {
+		case .v62:
+			let srv = LRScreensuserService_v62(session: session)
+
+			_ = try? srv.getCurrentUser()
+
+		case .v70:
+			let srv = LRUserService_v7(session: session)
+
+			_ = try? srv.getCurrentUser()
+		}
+		
+		return true
 	}
 
 	public class func logout() {

@@ -17,10 +17,10 @@ import LRMobileSDK
 
 public class GetUserByEmailLiferayConnector: GetUserBaseLiferayConnector {
 
-	public var companyId: Int64
-	public var emailAddress: String
+	public let companyId: Int64
+	public let emailAddress: String
 
-	private init(companyId: Int64, emailAddress: String) {
+	public init(companyId: Int64, emailAddress: String) {
 		self.companyId = companyId
 		self.emailAddress = emailAddress
 

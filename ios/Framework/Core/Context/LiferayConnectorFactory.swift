@@ -23,11 +23,19 @@ public protocol LiferayConnectorFactory {
 
 	func createGetUserByUserIdConnector(userId userId: Int64) -> GetUserByUserIdLiferayConnector
 
-	func createLoginByEmailConnector(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailLiferayConnector
+	func createLoginByEmailConnector(
+		companyId companyId: Int64,
+		emailAddress: String,
+		password: String) -> GetUserByEmailLiferayConnector
 
-	func createLoginByScreenNameConnector(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameLiferayConnector
+	func createLoginByScreenNameConnector(
+		companyId companyId: Int64,
+		screenName: String,
+		password: String) -> GetUserByScreenNameLiferayConnector
 
-	func createLoginByUserIdConnector(userId userId: Int64) -> GetUserByUserIdLiferayConnector
+	func createLoginByUserIdConnector(
+		userId userId: Int64,
+		password: String) -> GetUserByUserIdLiferayConnector
 
 	func createForgotPasswordByEmailConnector(
 		viewModel viewModel: ForgotPasswordViewModel,
@@ -120,20 +128,22 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 		return GetUserByUserIdLiferay62Connector(userId: userId)
 	}
 
-	public func createLoginByEmailConnector(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailLiferayConnector {
+	public func createLoginByEmailConnector(companyId companyId: Int64, emailAddress: String, password: String) -> GetUserByEmailLiferayConnector {
 		return LoginByEmailLiferay62Connector(
 			companyId: companyId,
-			emailAddress: emailAddress)
+			emailAddress: emailAddress,
+			password: password)
 	}
 
-	public func createLoginByScreenNameConnector(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameLiferayConnector {
+	public func createLoginByScreenNameConnector(companyId companyId: Int64, screenName: String, password: String) -> GetUserByScreenNameLiferayConnector {
 		return LoginByScreenNameLiferay62Connector(
 			companyId: companyId,
-			screenName: screenName)
+			screenName: screenName,
+			password: password)
 	}
 
-	public func createLoginByUserIdConnector(userId userId: Int64) -> GetUserByUserIdLiferayConnector {
-		return LoginByUserIdLiferay62Connector(userId: userId)
+	public func createLoginByUserIdConnector(userId userId: Int64, password: String) -> GetUserByUserIdLiferayConnector {
+		return LoginByUserIdLiferay62Connector(userId: userId, password: password)
 	}
 
 	public func createForgotPasswordByEmailConnector(
@@ -295,20 +305,22 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 		return GetUserByUserIdLiferay70Connector(userId: userId)
 	}
 
-	public func createLoginByEmailConnector(companyId companyId: Int64, emailAddress: String) -> GetUserByEmailLiferayConnector {
+	public func createLoginByEmailConnector(companyId companyId: Int64, emailAddress: String, password: String) -> GetUserByEmailLiferayConnector {
 		return LoginByEmailLiferay70Connector(
 			companyId: companyId,
-			emailAddress: emailAddress)
+			emailAddress: emailAddress,
+			password: password)
 	}
 
-	public func createLoginByScreenNameConnector(companyId companyId: Int64, screenName: String) -> GetUserByScreenNameLiferayConnector {
+	public func createLoginByScreenNameConnector(companyId companyId: Int64, screenName: String, password: String) -> GetUserByScreenNameLiferayConnector {
 		return LoginByScreenNameLiferay70Connector(
 			companyId: companyId,
-			screenName: screenName)
+			screenName: screenName,
+			password: password)
 	}
 
-	public func createLoginByUserIdConnector(userId userId: Int64) -> GetUserByUserIdLiferayConnector {
-		return LoginByUserIdLiferay70Connector(userId: userId)
+	public func createLoginByUserIdConnector(userId userId: Int64, password: String) -> GetUserByUserIdLiferayConnector {
+		return LoginByUserIdLiferay70Connector(userId: userId, password: password)
 	}
 
 	public func createForgotPasswordByEmailConnector(

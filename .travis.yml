@@ -27,7 +27,7 @@ before_install:
 
     #iOS installation (gem, brew & pods)
     - export LANG=en_US.UTF-8
-    - gem install cocoapods
+    - gem install cocoapods --version 0.39.0
     - brew update > /dev/null
     - brew outdated xctool || brew upgrade xctool
     - env

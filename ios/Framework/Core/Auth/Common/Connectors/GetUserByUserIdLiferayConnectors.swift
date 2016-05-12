@@ -19,7 +19,7 @@ public class GetUserByUserIdLiferayConnector: GetUserBaseLiferayConnector {
 
 	public let userId: Int64
 
-	private init(userId: Int64) {
+	public init(userId: Int64) {
 		self.userId = userId
 
 		super.init()
