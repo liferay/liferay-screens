@@ -14,8 +14,8 @@ public class AssetEntryConnector62 implements AssetEntryConnector {
 	}
 
 	@Override
-	public void getEntriesCount(JSONObjectWrapper entryQuery) throws Exception {
-		_assetEntryService.getEntriesCount(entryQuery);
+	public Integer getEntriesCount(JSONObjectWrapper entryQuery) throws Exception {
+		return _assetEntryService.getEntriesCount(entryQuery);
 	}
 
 	private final AssetEntryService _assetEntryService;
