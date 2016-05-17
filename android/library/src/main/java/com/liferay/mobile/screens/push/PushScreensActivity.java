@@ -52,6 +52,7 @@ public abstract class PushScreensActivity extends AppCompatActivity
 
 	@Override
 	public void onFailure(final Exception e) {
+		LiferayLogger.e("Error registering push", e);
 		onErrorRegisteringPush("", e);
 	}
 
@@ -116,7 +117,6 @@ public abstract class PushScreensActivity extends AppCompatActivity
 	private SharedPreferences getSharedPreferences() {
 		return getSharedPreferences(PUSH_PREFERENCES, Context.MODE_PRIVATE);
 	}
-
 	private Push _push;
 
 }
