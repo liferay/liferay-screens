@@ -5,4 +5,6 @@
 	<string name="notifications_activity">List of Notifications</string>
 	<string name="notification_detail">Detail of a notification</string>
 	<string name="app">Liferay Push Example</string>
+
+	<integer name="google_play_services_version">@integer/google_play_services_version</integer>
 </resources>
