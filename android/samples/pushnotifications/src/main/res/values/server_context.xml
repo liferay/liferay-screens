@@ -14,8 +14,8 @@
 	<string name="anonymous_user">anonymous1@liferay.com</string>
 	<string name="anonymous_password">anonymous1</string>
 
-	<string name="default_user">test@liferay.com</string>
-	<string name="default_password">test</string>
+	<string name="default_user">push@liferay.com</string>
+	<string name="default_password">push</string>
 
 	<string name="sender_id">868241662267</string>
 
