@@ -49,7 +49,7 @@ ext.libraries = [
 		junit            : 'junit:junit:4.12',
 		gms              : 'com.google.android.gms:play-services-gcm:7.0.0',
 		sdk              : 'com.liferay.mobile:liferay-android-sdk:7.0.2',
-		push             : 'com.liferay.mobile:liferay-push:1.0.7',
+		push             : 'com.liferay.mobile:liferay-push:1.0.8',
 		oauth            : 'com.liferay.mobile:liferay-android-oauth:1.3.0',
 		eventbus         : 'de.greenrobot:eventbus:2.4.0',
 		picasso          : 'com.squareup.picasso:picasso:2.5.2',
