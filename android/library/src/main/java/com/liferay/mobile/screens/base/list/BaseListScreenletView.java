@@ -180,9 +180,9 @@ public abstract class BaseListScreenletView<
 		_progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
 
 		A adapter = createListAdapter(itemLayoutId, itemProgressLayoutId);
-		_recyclerView.setAdapter(adapter);
 		_recyclerView.setHasFixedSize(true);
 		_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+		_recyclerView.setAdapter(adapter);
 
 		DividerItemDecoration dividerItemDecoration = getDividerDecoration();
 		if (dividerItemDecoration != null) {
