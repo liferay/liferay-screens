@@ -7,10 +7,16 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.dlapp.DLAppService;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.base.interactor.JSONArrayEvent;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Javier Gamarra
@@ -38,7 +44,19 @@ public class GalleryInteractor extends BaseRemoteInteractor<GalleryListener> {
 			getListener().onErrorLoadingGallery(jsonArrayEvent.getException());
 		}
 		else {
-			getListener().onGalleryLoaded(jsonArrayEvent.getJsonArray());
+			try {
+				JSONArray jsonArray = jsonArrayEvent.getJsonArray();
+				List<JSONObject> jsonObjects = new ArrayList<>();
+				for (int i = 0; i < jsonArrayEvent.getJsonArray().length(); i++) {
+					JSONObject jsonObject = jsonArray.getJSONObject(i);
+					jsonObject.put("url", createUrl(jsonObject));
+					jsonObjects.add(jsonObject);
+				}
+				getListener().onGalleryLoaded(jsonObjects);
+			}
+			catch (JSONException e) {
+				getListener().onErrorLoadingGallery(e);
+			}
 		}
 	}
 
@@ -55,5 +73,11 @@ public class GalleryInteractor extends BaseRemoteInteractor<GalleryListener> {
 				EventBusUtil.post(new JSONArrayEvent(getTargetScreenletId(), result));
 			}
 		};
+	}
+
+	@NonNull
+	private String createUrl(JSONObject jsonObject) throws JSONException {
+		return LiferayServerContext.getServer() + "/documents/" + jsonObject.getLong("groupId") + "/"
+			+ jsonObject.getLong("folderId") + "/" + jsonObject.getString("title") + "/" + jsonObject.getString("uuid");
 	}
 }

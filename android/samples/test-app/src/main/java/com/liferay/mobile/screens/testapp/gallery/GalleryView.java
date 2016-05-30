@@ -9,19 +9,16 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.testapp.R;
-import com.liferay.mobile.screens.util.LiferayLogger;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 /**
  * @author Javier Gamarra
  */
 public class GalleryView extends RelativeLayout implements GalleryViewModel {
-
 
 	public GalleryView(Context context) {
 		super(context);
@@ -37,7 +34,6 @@ public class GalleryView extends RelativeLayout implements GalleryViewModel {
 
 	@Override
 	public void showStartOperation(String actionName) {
-
 	}
 
 	@Override
@@ -46,7 +42,6 @@ public class GalleryView extends RelativeLayout implements GalleryViewModel {
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-
 	}
 
 	@Override
@@ -60,19 +55,24 @@ public class GalleryView extends RelativeLayout implements GalleryViewModel {
 	}
 
 	@Override
-	public void showImages(JSONArray images) {
-		try {
-			for (int i = 0; i < images.length(); i++) {
-				JSONObject image = images.getJSONObject(i);
-				TextSliderView textSliderView = createImageInGallery(image);
-				_sliderShow.addSlider(textSliderView);
-			}
+	public void showImages(List<JSONObject> images) {
+		for (JSONObject image : images) {
+			TextSliderView textSliderView = createImageInGallery(image);
+			_sliderShow.addSlider(textSliderView);
 		}
-		catch (JSONException e) {
-			LiferayLogger.e("Error showing image");
-			showFailedOperation(null, e);
-		}
+	}
 
+	@NonNull
+	protected TextSliderView createImageInGallery(JSONObject image) {
+		TextSliderView textSliderView = new TextSliderView(getContext());
+
+		String title = image.optString("title");
+		String url = image.optString("url");
+
+		textSliderView.description(title).image(url)
+			.setScaleType(BaseSliderView.ScaleType.FitCenterCrop);
+
+		return textSliderView;
 	}
 
 	@Override
@@ -81,25 +81,6 @@ public class GalleryView extends RelativeLayout implements GalleryViewModel {
 
 		_sliderShow = (SliderLayout) findViewById(R.id.slider);
 		_sliderShow.stopAutoCycle();
-	}
-
-	@NonNull
-	private TextSliderView createImageInGallery(JSONObject image) throws JSONException {
-		TextSliderView textSliderView = new TextSliderView(getContext());
-
-		String title = image.getString("title");
-		String url = LiferayServerContext.getServer()
-			+ "/documents/"
-			+ image.getLong("groupId") + "/"
-			+ image.getLong("folderId") + "/"
-			+ title + "/"
-			+ image.getString("uuid");
-
-		textSliderView
-			.description(title)
-			.image(url)
-			.setScaleType(BaseSliderView.ScaleType.FitCenterCrop);
-		return textSliderView;
 	}
 
 	private BaseScreenlet screenlet;

@@ -10,7 +10,9 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.testapp.R;
 
-import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.List;
 
 /**
  * @author Javier Gamarra
@@ -30,11 +32,11 @@ public class GalleryScreenlet extends BaseScreenlet<GalleryViewModel, GalleryInt
 	}
 
 	@Override
-	public void onGalleryLoaded(JSONArray jsonArray) {
-		getViewModel().showImages(jsonArray);
+	public void onGalleryLoaded(List<JSONObject> images) {
+		getViewModel().showImages(images);
 
 		if (_galleryListener != null) {
-			_galleryListener.onGalleryLoaded(jsonArray);
+			_galleryListener.onGalleryLoaded(images);
 		}
 	}
 
@@ -73,7 +75,6 @@ public class GalleryScreenlet extends BaseScreenlet<GalleryViewModel, GalleryInt
 			loadGallery();
 		}
 	}
-
 
 	@Override
 	protected void onUserAction(String userActionName, GalleryInteractor interactor, Object... args) {
