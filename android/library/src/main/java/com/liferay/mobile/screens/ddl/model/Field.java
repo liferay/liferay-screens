@@ -128,7 +128,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		DECIMAL("ddm-decimal", "decimal"),
 		SELECT("select"),
 		RADIO("radio"),
-		DOCUMENT("ddm-documentlibrary", "documentlibrary"),
+		DOCUMENT("ddm-documentlibrary", "documentlibrary", "wcm-image"),
 		UNSUPPORTED(null);
 
 		public static List<EditorType> all() {
