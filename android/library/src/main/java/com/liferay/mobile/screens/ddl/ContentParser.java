@@ -4,7 +4,6 @@ import android.os.Parcel;
 
 import com.liferay.mobile.screens.ddl.model.DDMStructure;
 import com.liferay.mobile.screens.ddl.model.Field;
-import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
 import org.w3c.dom.Document;
@@ -27,7 +26,7 @@ public class ContentParser extends AbstractXMLParser {
 	public List<Field> parseContent(DDMStructure structure, String content) {
 		try {
 			Document document = getDocument(content);
-			return createDocument(document.getDocumentElement(), structure.getFields(), structure.getLocale());
+			return createDocument(document.getDocumentElement(), structure.getFields(), structure.getLocale(), getDefaultDocumentLocale(document.getDocumentElement()));
 		}
 		catch (ParserConfigurationException | IOException | SAXException e) {
 			LiferayLogger.e("Error parsing content", e);
@@ -49,10 +48,9 @@ public class ContentParser extends AbstractXMLParser {
 		return null;
 	}
 
-	private List<Field> createDocument(Element root, List<Field> currentFields, Locale locale) {
+	private List<Field> createDocument(Element root, List<Field> currentFields, Locale locale, Locale defaultLocale) {
 
 		List<Field> fields = new ArrayList<>();
-		Locale defaultLocale = LiferayLocale.getDefaultLocale();
 		NodeList dynamicElementList = root.getElementsByTagName("dynamic-element");
 
 		for (int i = 0; i < dynamicElementList.getLength(); i++) {
@@ -64,7 +62,7 @@ public class ContentParser extends AbstractXMLParser {
 				Field otherField = field.isRepeatable() ? clone(field) : field;
 				otherField.setCurrentValue(element.getTextContent());
 				if (dynamicElement.getElementsByTagName("dynamic-element").getLength() > 0) {
-					otherField.setFields(createDocument(dynamicElement, field.getFields(), locale));
+					otherField.setFields(createDocument(dynamicElement, field.getFields(), locale, defaultLocale));
 				}
 				fields.add(otherField);
 			}

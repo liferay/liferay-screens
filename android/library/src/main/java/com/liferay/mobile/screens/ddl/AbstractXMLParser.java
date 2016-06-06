@@ -165,6 +165,26 @@ public abstract class AbstractXMLParser {
 		return null;
 	}
 
+	@Nullable
+	protected Locale getDefaultDocumentLocale(Element root) {
+		String defaultLocaleValue = root.getAttribute("default-locale");
+		if (defaultLocaleValue == null) {
+			return null;
+		}
+
+		Locale defaultLocale;
+		int separator = defaultLocaleValue.indexOf('_');
+		if (separator == -1) {
+			defaultLocale = new Locale(defaultLocaleValue);
+		}
+		else {
+			String language = defaultLocaleValue.substring(0, separator);
+			String country = defaultLocaleValue.substring(separator + 1);
+			defaultLocale = new Locale(language, country);
+		}
+		return defaultLocale;
+	}
+
 	private Element getChildElementAndFallbackToLocale(Element root, Locale locale, String elementValue) {
 		Locale defaultLocale = LiferayLocale.getDefaultLocale();
 		List<Element> elements = getChildren(root, "dynamic-element", "name", elementValue);
