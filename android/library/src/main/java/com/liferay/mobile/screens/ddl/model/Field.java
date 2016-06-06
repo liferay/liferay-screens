@@ -127,7 +127,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	public enum EditorType {
 		CHECKBOX("checkbox"),
 		TEXT("text"),
-		TEXT_AREA("textarea", "paragraph"),
+		TEXT_AREA("textarea", "paragraph", "ddm-text-html"),
 		DATE("ddm-date", "date"),
 		NUMBER("ddm-number", "number"),
 		INTEGER("ddm-integer", "integer"),
