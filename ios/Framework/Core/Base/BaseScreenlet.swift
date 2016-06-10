@@ -30,6 +30,10 @@ import QuartzCore
  */
 @IBDesignable public class BaseScreenlet: UIView {
 
+	//MARK: Global notifications
+	public static let OnScreenletShownNotification = "show-screenlet"
+	public static let OnScreenletInteractionStartedNotification = "interaction-screenlet"
+
 	public static let DefaultAction = "defaultAction"
 
 	@IBOutlet public weak var delegate: BaseScreenletDelegate?
@@ -94,6 +98,15 @@ import QuartzCore
 	override public func didMoveToWindow() {
 		if (window != nil) {
 			onShow()
+
+			let info: [NSObject:AnyObject] = [
+				"screenlet": self
+			]
+
+			NSNotificationCenter.defaultCenter().postNotificationName(
+					BaseScreenlet.OnScreenletShownNotification,
+					object: self,
+					userInfo: info)
 		}
 		else {
 			onHide()
@@ -242,7 +255,21 @@ import QuartzCore
 		onStartInteraction()
 		screenletView?.onStartInteraction()
 
-		return interactor.start()
+		let started = interactor.start()
+
+		let info: [NSObject:AnyObject] = [
+			"screenlet": self,
+			"actionName": name,
+			"interactor": interactor,
+			"started": started,
+		]
+
+		NSNotificationCenter.defaultCenter().postNotificationName(
+			BaseScreenlet.OnScreenletInteractionStartedNotification,
+			object: self,
+			userInfo: info)
+
+		return started
 	}
 
 	public func isActionRunning(name: String) -> Bool {
