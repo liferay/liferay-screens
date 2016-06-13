@@ -30,6 +30,7 @@ extension DDMField {
 		case Date = "ddm-date"
 		case Number = "number"
 		case Document = "ddm-documentlibrary"
+		case Image = "image"
 		case Unsupported = ""
 
 		public var defaultDataType: DataType {
@@ -44,6 +45,8 @@ extension DDMField {
 				return DataType.DDMNumber
 			case .Document:
 				return DataType.DDMDocument
+			case .Image:
+				return DataType.DDMImage
 			case .Unsupported:
 				return DataType.Unsupported
 			}
@@ -59,8 +62,6 @@ extension DDMField {
 				return .Number
 			case "boolean":
 				return .Checkbox
-			case "image":
-				return .Document
 			default:
 				return Editor(rawValue: attributeValue) ?? .Unsupported
 			}

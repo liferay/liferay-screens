@@ -29,6 +29,7 @@ extension DDMField {
 		case DDMNumber = "number"
 		case DDMDouble = "double"
 		case DDMDocument = "document-library"
+		case DDMImage = "image"
 		case Unsupported = ""
 
 		public static func from(xmlElement xmlElement:SMXMLElement) -> DataType {
@@ -46,46 +47,51 @@ extension DDMField {
 				-> DDMField? {
 
 			switch self {
-				case .DDMBoolean:
-					return DDMFieldBoolean(
-							attributes:attributes,
-							locale: locale)
+			case .DDMBoolean:
+				return DDMFieldBoolean(
+						attributes:attributes,
+						locale: locale)
 
-				case .DDMString:
-					switch DDMField.Editor.from(attributes: attributes) {
-						case .Select, .Radio:
-							return DDMFieldStringWithOptions(
-									attributes: attributes,
-									locale: locale)
-						default:
-							return DDMFieldString(
-									attributes:attributes,
-									locale: locale)
-					}
+			case .DDMString:
+				switch DDMField.Editor.from(attributes: attributes) {
+					case .Select, .Radio:
+						return DDMFieldStringWithOptions(
+								attributes: attributes,
+								locale: locale)
+					default:
+						return DDMFieldString(
+								attributes:attributes,
+								locale: locale)
+				}
 
-				case .DDMDate:
-					switch version {
-					case .v62:
-						return DDMFieldDate_v62(
-							attributes:attributes,
-							locale: locale)
-					case .v70:
-						return DDMFieldDate_v70(
-							attributes:attributes,
-							locale: locale)
-					}
+			case .DDMDate:
+				switch version {
+				case .v62:
+					return DDMFieldDate_v62(
+						attributes:attributes,
+						locale: locale)
+				case .v70:
+					return DDMFieldDate_v70(
+						attributes:attributes,
+						locale: locale)
+				}
 
-				case .DDMInteger, .DDMNumber, .DDMDouble:
-					return DDMFieldNumber(
-							attributes:attributes,
-							locale: locale)
+			case .DDMInteger, .DDMNumber, .DDMDouble:
+				return DDMFieldNumber(
+						attributes:attributes,
+						locale: locale)
 
-				case .DDMDocument:
-					return DDMFieldDocument(
-							attributes:attributes,
-							locale: locale)
+			case .DDMDocument:
+				return DDMFieldDocument(
+						attributes:attributes,
+						locale: locale)
 
-				default: ()
+			case .DDMImage:
+				return DDMFieldImage(
+					attributes:attributes,
+					locale: locale)
+
+			default: ()
 			}
 
 			return nil
