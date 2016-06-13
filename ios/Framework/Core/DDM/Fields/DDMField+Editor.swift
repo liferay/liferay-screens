@@ -27,9 +27,9 @@ extension DDMField {
 		case Textarea = "textarea"
 		case Select = "select"
 		case Radio = "radio"
-		case Date = "ddm-date"
+		case Date = "date"
 		case Number = "number"
-		case Document = "ddm-documentlibrary"
+		case Document = "documentlibrary"
 		case Image = "image"
 		case Unsupported = ""
 
@@ -52,18 +52,20 @@ extension DDMField {
 			}
 		}
 
-		public static func from(attributes attributes:[String:AnyObject]) -> Editor {
+		public static func from(attributes attributes: [String:AnyObject]) -> Editor {
 			return from(attributeValue:((attributes["type"] ?? "") as! String))
 		}
 
-		public static func from(attributeValue attributeValue:String) -> Editor {
-			switch attributeValue {
-			case "ddm-integer", "ddm-number", "ddm-decimal":
+		public static func from(attributeValue attributeValue: String) -> Editor {
+			let value = attributeValue.stringByReplacingOccurrencesOfString("ddm-", withString: "")
+
+			switch value {
+			case "integer", "decimal":
 				return .Number
 			case "boolean":
 				return .Checkbox
 			default:
-				return Editor(rawValue: attributeValue) ?? .Unsupported
+				return Editor(rawValue: value) ?? .Unsupported
 			}
 		}
 
