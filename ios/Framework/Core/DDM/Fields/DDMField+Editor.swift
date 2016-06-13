@@ -54,17 +54,16 @@ extension DDMField {
 		}
 
 		public static func from(attributeValue attributeValue:String) -> Editor {
-			var result = Editor.Unsupported
-
-			// hack to convert ddm-integer, ddm-number and ddm-decimal to just number
 			switch attributeValue {
-				case "ddm-integer", "ddm-number", "ddm-decimal":
-					result = .Number
-				default:
-					result = Editor(rawValue: attributeValue) ?? .Unsupported
+			case "ddm-integer", "ddm-number", "ddm-decimal":
+				return .Number
+			case "boolean":
+				return .Checkbox
+			case "image":
+				return .Document
+			default:
+				return Editor(rawValue: attributeValue) ?? .Unsupported
 			}
-
-			return result
 		}
 
 		public static func all() -> [Editor] {
