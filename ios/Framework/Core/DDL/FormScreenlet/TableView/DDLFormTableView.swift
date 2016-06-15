@@ -263,7 +263,7 @@ public class DDLFormTableView: DDLFormView,
 				let cellId = fieldEditor.toCapitalizedName()
 
 				if let cellView = registerEditorCellInBundle(bundle,
-						nibName: "DDMField\(cellId)TableCell",
+						nibName: "DDLField\(cellId)TableCell",
 						cellId: cellId) {
 					cellHeights[cellId] = (cellView.bounds.size.height, cellView.bounds.size.height)
 
