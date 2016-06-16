@@ -32,7 +32,7 @@ import UIKit
 	@IBInspectable public var firstPageSize: Int = 50
 	@IBInspectable public var pageSize: Int = 25
 
-	internal var baseListView: BaseListView {
+	public var baseListView: BaseListView {
 		return screenletView as! BaseListView
 	}
 

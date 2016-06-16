@@ -27,9 +27,10 @@ extension DDMField {
 		case Textarea = "textarea"
 		case Select = "select"
 		case Radio = "radio"
-		case Date = "ddm-date"
+		case Date = "date"
 		case Number = "number"
-		case Document = "ddm-documentlibrary"
+		case Document = "documentlibrary"
+		case Image = "image"
 		case Unsupported = ""
 
 		public var defaultDataType: DataType {
@@ -44,27 +45,28 @@ extension DDMField {
 				return DataType.DDMNumber
 			case .Document:
 				return DataType.DDMDocument
+			case .Image:
+				return DataType.DDMImage
 			case .Unsupported:
 				return DataType.Unsupported
 			}
 		}
 
-		public static func from(attributes attributes:[String:AnyObject]) -> Editor {
+		public static func from(attributes attributes: [String:AnyObject]) -> Editor {
 			return from(attributeValue:((attributes["type"] ?? "") as! String))
 		}
 
-		public static func from(attributeValue attributeValue:String) -> Editor {
-			var result = Editor.Unsupported
+		public static func from(attributeValue attributeValue: String) -> Editor {
+			let value = attributeValue.stringByReplacingOccurrencesOfString("ddm-", withString: "")
 
-			// hack to convert ddm-integer, ddm-number and ddm-decimal to just number
-			switch attributeValue {
-				case "ddm-integer", "ddm-number", "ddm-decimal":
-					result = .Number
-				default:
-					result = Editor(rawValue: attributeValue) ?? .Unsupported
+			switch value {
+			case "integer", "decimal":
+				return .Number
+			case "boolean":
+				return .Checkbox
+			default:
+				return Editor(rawValue: value) ?? .Unsupported
 			}
-
-			return result
 		}
 
 		public static func all() -> [Editor] {

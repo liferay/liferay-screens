@@ -131,7 +131,7 @@ public class DDMFieldDocument : DDMField {
 	}
 
 
-	override internal func convert(fromString value:String?) -> AnyObject? {
+	override internal func convert(fromString value: String?) -> AnyObject? {
 		var result:AnyObject?
 
 		if let valueString = value {
@@ -173,7 +173,7 @@ public class DDMFieldDocument : DDMField {
 					options: [])
 
 				if let data = data {
-					return NSString(data: data, encoding: NSUTF8StringEncoding) as? String
+					return String(data: data, encoding: NSUTF8StringEncoding)
 				}
 			}
 

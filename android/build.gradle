@@ -1,70 +1,70 @@
 buildscript {
-	repositories {
-		jcenter()
-	}
+    repositories {
+        jcenter()
+    }
 
-	dependencies {
-		classpath 'com.android.tools.build:gradle:2.1.0'
-		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
-		classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
-		classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-	}
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.0'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+    }
 }
 
 ext {
-	minSdkVersion = 15
-	compileSdkVersion = 23
-	targetSdkVersion = compileSdkVersion
-	buildToolsVersion = '23.0.3'
+    minSdkVersion = 15
+    compileSdkVersion = 23
+    targetSdkVersion = compileSdkVersion
+    buildToolsVersion = '23.0.3'
 
-	versionCode = 5
-	versionName = '1.4.0.rc8'
+    versionCode = 5
+    versionName = '1.4.0'
 
-	publishedGroupId = 'com.liferay.mobile'
-	libraryName = 'Liferay Screens for Android'
-	libraryDescription = 'Liferay Screens for Android includes the component (screenlets) library and a sample project'
+    publishedGroupId = 'com.liferay.mobile'
+    libraryName = 'Liferay Screens for Android'
+    libraryDescription = 'Liferay Screens for Android includes the component (screenlets) library and a sample project'
 
-	bintrayRepo = 'liferay-mobile'
-	bintrayOrg = ''
-	//	bintrayOrg = 'liferay'
+    bintrayRepo = 'liferay-mobile'
+    bintrayOrg = ''
+    bintrayOrg = 'liferay'
 
-	siteUrl = 'https://github.com/liferay/liferay-screens'
-	gitUrl = 'https://github.com/liferay/liferay-screens.git'
+    siteUrl = 'https://github.com/liferay/liferay-screens'
+    gitUrl = 'https://github.com/liferay/liferay-screens.git'
 
-	developerId = 'nhpatt'
-	developerName = 'Javier Gamarra'
-	developerEmail = 'nhpatt@gmail.com'
+    developerId = 'nhpatt'
+    developerName = 'Javier Gamarra'
+    developerEmail = 'nhpatt@gmail.com'
 
-	licenseName = 'GNU Lesser General Public License, version 2.1'
-	licenseUrl = 'http://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html'
-	allLicenses = ["LGPL-2.1"]
+    licenseName = 'GNU Lesser General Public License, version 2.1'
+    licenseUrl = 'http://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html'
+    allLicenses = ["LGPL-2.1"]
 }
 
 def supportLibsVersion = '23.3.0'
 
 ext.libraries = [
-		appCompat        : 'com.android.support:appcompat-v7:' + supportLibsVersion,
-		recyclerView     : 'com.android.support:recyclerview-v7:' + supportLibsVersion,
-		design           : 'com.android.support:design:' + supportLibsVersion,
-		junit            : 'junit:junit:4.12',
-		gms              : 'com.google.android.gms:play-services-gcm:7.0.0',
-		sdk              : 'com.liferay.mobile:liferay-android-sdk:7.0.2',
-		push             : 'com.liferay.mobile:liferay-push:1.0.8',
-		oauth            : 'com.liferay.mobile:liferay-android-oauth:1.3.0',
-		eventbus         : 'de.greenrobot:eventbus:2.4.0',
-		picasso          : 'com.squareup.picasso:picasso:2.5.2',
-		storio           : 'com.pushtorefresh.storio:sqlite:1.8.0',
-		storioannotations: 'com.pushtorefresh.storio:sqlite-annotations:1.8.0',
-		storioapt        : 'com.pushtorefresh.storio:sqlite-annotations-processor:1.8.0',
-		rxjava           : 'io.reactivex:rxjava:1.1.3',
-		rxpermissions    : 'com.tbruyelle.rxpermissions:rxpermissions:0.5.2@aar',
-		rxbinding        : 'com.jakewharton.rxbinding:rxbinding:0.4.0',
-		robolectric      : 'org.robolectric:robolectric:3.0',
-		mockito          : 'org.mockito:mockito-core:2.0.43-beta',
+        appCompat        : 'com.android.support:appcompat-v7:' + supportLibsVersion,
+        recyclerView     : 'com.android.support:recyclerview-v7:' + supportLibsVersion,
+        design           : 'com.android.support:design:' + supportLibsVersion,
+        junit            : 'junit:junit:4.12',
+        gms              : 'com.google.android.gms:play-services-gcm:7.0.0',
+        sdk              : 'com.liferay.mobile:liferay-android-sdk:7.0.2',
+        push             : 'com.liferay.mobile:liferay-push:1.0.8',
+        oauth            : 'com.liferay.mobile:liferay-android-oauth:1.3.0',
+        eventbus         : 'de.greenrobot:eventbus:2.4.0',
+        picasso          : 'com.squareup.picasso:picasso:2.5.2',
+        storio           : 'com.pushtorefresh.storio:sqlite:1.8.0',
+        storioannotations: 'com.pushtorefresh.storio:sqlite-annotations:1.8.0',
+        storioapt        : 'com.pushtorefresh.storio:sqlite-annotations-processor:1.8.0',
+        rxjava           : 'io.reactivex:rxjava:1.1.3',
+        rxpermissions    : 'com.tbruyelle.rxpermissions:rxpermissions:0.5.2@aar',
+        rxbinding        : 'com.jakewharton.rxbinding:rxbinding:0.4.0',
+        robolectric      : 'org.robolectric:robolectric:3.0',
+        mockito          : 'org.mockito:mockito-core:2.0.43-beta',
 ]
 
 subprojects {
-	repositories {
-		jcenter()
-	}
+    repositories {
+        jcenter()
+    }
 }

@@ -103,6 +103,10 @@ import Foundation
 
 		super.init()
 
+		if dataType == .Unsupported && editorType != .Unsupported {
+			dataType = editorType.defaultDataType
+		}
+
 		predefinedValue = attributes["predefinedValue"] ?? nil
 		if let predefinedValueStr = predefinedValue as? String {
 			predefinedValue = convert(fromString: predefinedValueStr)

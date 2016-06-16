@@ -36,7 +36,7 @@ public class WebContentLoadHtmlLiferayConnector: WebContentLoadBaseLiferayConnec
 
 		if lastError == nil {
 			if let result = result {
-				resultHTML = result
+				resultHTML = replaceHTMLPlaceholders(result)
 			}
 			else {
 				lastError = NSError.errorWithCause(.InvalidServerResponse)
@@ -56,6 +56,13 @@ public class WebContentLoadHtmlLiferayConnector: WebContentLoadBaseLiferayConnec
 		return error
 	}
 
+	internal func replaceHTMLPlaceholders(html: String) -> String {
+		return html
+			.stringByReplacingOccurrencesOfString(
+				"@cdn_host@", withString: "")
+			.stringByReplacingOccurrencesOfString(
+				"@root_path@", withString: LiferayServerContext.server)
+	}
 
 	internal func doGetJournalArticleWithTemplate(
 			templateId: Int64,
