@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 	s.name         = 'LiferayScreens'
 	s.module_name  = 'LiferayScreens'
-	s.version      = '1.3.0'
+	s.version      = '1.4.0'
 	s.summary      = 'A family of visual components called screenlets that are connected to the Liferay Platform used as a backend'
 	s.homepage     = 'https://www.liferay.com/liferay-screens'
 	s.license = { 
@@ -51,12 +51,12 @@ Pod::Spec.new do |s|
 	}
 
 	# Core
-	s.dependency 'Liferay-iOS-SDK', '6.2.0.22'
-	s.dependency 'Liferay-OAuth', '0.1.1'
+	s.dependency 'Liferay-iOS-SDK', '~> 7.0.3'
+	s.dependency 'Liferay-OAuth', '~> 1.2.0'
 	s.dependency 'MBProgressHUD', '0.9.1'
 	s.dependency 'SMXMLDocument', '1.1'
 	s.dependency 'ODRefreshControl', '1.2'
-	s.dependency 'YapDatabase', '2.6.5'
+	s.dependency 'YapDatabase/SQLCipher', '2.8.2'
 
 	# Login & signup: save credentials
 	s.dependency 'KeychainAccess', '2.3.1'

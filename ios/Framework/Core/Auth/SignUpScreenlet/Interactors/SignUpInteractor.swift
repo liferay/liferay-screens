@@ -14,11 +14,11 @@
 import UIKit
 
 
-class SignUpInteractor: ServerOperationInteractor {
+class SignUpInteractor: ServerConnectorInteractor {
 
 	var resultUserAttributes: [String:AnyObject]?
 
-	override func createOperation() -> LiferaySignUpOperation? {
+	override func createConnector() -> ServerConnector? {
 		let screenlet = self.screenlet as! SignUpScreenlet
 
 		if screenlet.anonymousApiUserName == nil || screenlet.anonymousApiPassword == nil {
@@ -26,18 +26,18 @@ class SignUpInteractor: ServerOperationInteractor {
 			return nil
 		}
 
-		let operation = LiferaySignUpOperation(
+		let connector = LiferayServerContext.connectorFactory.createSignUpConnector(
 			viewModel: screenlet.viewModel,
 			anonymousUsername: screenlet.anonymousApiUserName!,
 			anonymousPassword: screenlet.anonymousApiPassword!)
 
-		operation.companyId = screenlet.companyId
+		connector.companyId = screenlet.companyId
 
-		return operation
+		return connector
 	}
 
-	override func completedOperation(op: ServerOperation) {
-		self.resultUserAttributes = (op as! LiferaySignUpOperation).resultUserAttributes
+	override func completedConnector(op: ServerConnector) {
+		self.resultUserAttributes = (op as! SignUpLiferayConnector).resultUserAttributes
 	}
 
 }

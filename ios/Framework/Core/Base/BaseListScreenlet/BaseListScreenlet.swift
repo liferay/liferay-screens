@@ -25,14 +25,14 @@ import UIKit
 	@IBInspectable public var refreshControl: Bool = true {
 		didSet {
 			(screenletView as? BaseListTableView)?.refreshClosure =
-					refreshControl ? self.refreshList : nil
+					refreshControl ? self.loadList : nil
 		}
 	}
 
 	@IBInspectable public var firstPageSize: Int = 50
 	@IBInspectable public var pageSize: Int = 25
 
-	internal var baseListView: BaseListView {
+	public var baseListView: BaseListView {
 		return screenletView as! BaseListView
 	}
 
@@ -46,7 +46,7 @@ import UIKit
 		baseListView.fetchPageForRow = loadPageForRow
 
 		(screenletView as? BaseListTableView)?.refreshClosure =
-				refreshControl ? self.refreshList : nil
+				refreshControl ? self.loadList : nil
 	}
 
 	override public func onShow() {
@@ -89,13 +89,12 @@ import UIKit
 
 	override public func onAction(name name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
 
-		let result = super.onAction(name: name, interactor: interactor, sender: sender)
-
-		if result && name == BaseListScreenlet.LoadInitialPageAction {
-			self.baseListView.setRows([], rowCount:0)
+		if name == BaseListScreenlet.LoadInitialPageAction {
+			// clear list while it's loading
+			self.baseListView.setRows([], rowCount: 0)
 		}
 
-		return result
+		return super.onAction(name: name, interactor: interactor, sender: sender)
 	}
 
 
@@ -103,10 +102,6 @@ import UIKit
 
 	public func loadList() -> Bool {
 		return performAction(name: BaseListScreenlet.LoadInitialPageAction, sender: nil)
-	}
-
-	public func refreshList() -> Bool {
-		return performAction(name: BaseListScreenlet.LoadPageAction, sender: 0)
 	}
 
 	public func loadPageForRow(row: Int) {
@@ -137,9 +132,7 @@ import UIKit
 	}
 
 
-	//MARK: Internal methods
-
-	internal func createPageLoadInteractor(
+	public func createPageLoadInteractor(
 			page page: Int,
 			computeRowCount: Bool)
 			-> BaseListPageLoadInteractor {
@@ -147,14 +140,14 @@ import UIKit
 		fatalError("createPageLoadInteractor must be overriden")
 	}
 
-	internal func onLoadPageError(page page: Int, error: NSError) {
+	public func onLoadPageError(page page: Int, error: NSError) {
 		print("ERROR: Load page error \(page) -> \(error)\n")
 	}
 
-	internal func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
+	public func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
 	}
 
-	internal func onSelectedRow(row:AnyObject) {
+	public func onSelectedRow(row:AnyObject) {
 	}
 
 }

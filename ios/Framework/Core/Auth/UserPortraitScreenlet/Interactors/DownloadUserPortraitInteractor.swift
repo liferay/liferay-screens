@@ -18,7 +18,7 @@ import UIKit
 #endif
 
 
-class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
+class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 	private enum DownloadMode {
 		case Attributes(portraitId: Int64, uuid: String, male: Bool)
@@ -87,60 +87,36 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 		super.init(screenlet: screenlet)
 	}
 
-	override func createOperation() -> ServerOperation? {
+	override func createConnector() -> ServerConnector? {
 		switch mode {
 		case .Attributes(let portraitId, let uuid, let male):
-			return createOperationFor(
+			return createConnectorFor(
 				portraitId: portraitId,
 				uuid: uuid,
 				male: male)
 
 		case .UserId(let userId):
-			let currentUserId = SessionContext.userAttribute("userId") as? NSNumber
-
-			if userId == currentUserId?.longLongValue {
-				return createOperationForLogged()
-			}
-			else {
-				return createOperationFor(GetUserByUserIdOperation(userId: userId))
-			}
+			return createConnectorFor(
+				LiferayServerContext.connectorFactory.createGetUserByUserIdConnector(
+					userId: userId))
 
 		case .EmailAddress(let companyId, let emailAddress):
-			let currentCompanyId = SessionContext.userAttribute("companyId") as? NSNumber
-			let currentEmailAddress = SessionContext.userAttribute("emailAddress") as? NSString
-
-			if companyId == currentCompanyId?.longLongValue
-					&& emailAddress == currentEmailAddress {
-				return createOperationForLogged()
-			}
-			else {
-				return createOperationFor(
-					GetUserByEmailOperation(
-						companyId: companyId,
-						emailAddress: emailAddress))
-			}
+			return createConnectorFor(
+				LiferayServerContext.connectorFactory.createGetUserByEmailConnector(
+					companyId: companyId,
+					emailAddress: emailAddress))
 
 		case .ScreenName(let companyId, let screenName):
-			let currentCompanyId = SessionContext.userAttribute("companyId") as? NSNumber
-			let currentScreenName = SessionContext.userAttribute("screenName") as? NSString
-
-			if companyId == currentCompanyId?.longLongValue
-					&& screenName == currentScreenName {
-				return createOperationForLogged()
-			}
-			else {
-				return createOperationFor(
-					GetUserByScreenNameOperation(
-						companyId: companyId,
-						screenName: screenName))
-			}
+			return createConnectorFor(
+				LiferayServerContext.connectorFactory.createGetUserByScreenNameConnector(
+					companyId: companyId,
+					screenName: screenName))
 		}
 	}
 
-	override func completedOperation(op: ServerOperation) {
-		if let httpOp = toHttpOperation(op),
-				resultData = httpOp.resultData
-				where httpOp.lastError == nil {
+	override func completedConnector(op: ServerConnector) {
+		if let httpOp = toHttpConnector(op),
+				resultData = httpOp.resultData {
 			resultImage = UIImage(data: resultData)
 		}
 	}
@@ -148,11 +124,15 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 
 	//MARK: Cache methods
 
-	override func writeToCache(op: ServerOperation) {
-		if let httpOp = toHttpOperation(op),
+	override func writeToCache(op: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+
+		if let httpOp = toHttpConnector(op),
 				resultData = httpOp.resultData {
 
-			SessionContext.currentCacheManager?.setClean(
+			cacheManager.setClean(
 				collection: ScreenletName(UserPortraitScreenlet),
 				key: mode.cacheKey,
 				value: resultData,
@@ -160,34 +140,74 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 		}
 	}
 
-	override func readFromCache(op: ServerOperation, result: AnyObject? -> Void) {
-		if let httpOp = toHttpOperation(op) {
-			let cacheManager = SessionContext.currentCacheManager!
+	override func readFromCache(op: ServerConnector, result: AnyObject? -> ()) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			result(nil)
+			return
+		}
+
+		func loadImageFromCache(output outputConnector: HttpConnector) {
+			cacheManager.getImage(
+					collection: ScreenletName(UserPortraitScreenlet),
+					key: self.mode.cacheKey) {
+				if let image = $0 {
+					outputConnector.resultData = UIImagePNGRepresentation(image)
+					outputConnector.lastError = nil
+					result($0)
+				}
+				else {
+					outputConnector.resultData = nil
+					outputConnector.lastError = NSError.errorWithCause(.NotAvailable)
+					result(nil)
+				}
+			}
+		}
+
+
+		if (op as? ServerConnectorChain)?.currentConnector is GetUserBaseLiferayConnector {
+			// asking for user attributes. if the image is cached, we'd need to skip this step
 
 			cacheManager.getAny(
 					collection: ScreenletName(UserPortraitScreenlet),
 					key: mode.cacheKey) {
-				if let data = $0 as? NSData {
+				if $0 == nil {
+					// not cached: continue
+					result(nil)
+				}
+				else {
+					// cached. Skip!
+
+					// create a dummy HttpConnector to store the result
+					let dummyConnector = HttpConnector(url: NSURL(string: "http://dummy")!)
+
+					// set this dummy connector to allow "completedConnector" method retrieve the result
+					(op as? ServerConnectorChain)?.currentConnector = dummyConnector
+
+					dispatch_async {
+						loadImageFromCache(output: dummyConnector)
+					}
+				}
+			}
+		}
+		else if let httpOp = toHttpConnector(op) {
+			cacheManager.getAny(
+					collection: ScreenletName(UserPortraitScreenlet),
+					key: mode.cacheKey) {
+				guard let cachedObject = $0 else {
+					httpOp.resultData = nil
+					httpOp.lastError = NSError.errorWithCause(.NotAvailable)
+					result(nil)
+					return
+				}
+
+				if let data = cachedObject as? NSData {
 					httpOp.resultData = data
 					httpOp.lastError = nil
-					result($0)
+					result(httpOp)
 				}
 				else {
 					dispatch_async {
-						cacheManager.getImage(
-								collection: ScreenletName(UserPortraitScreenlet),
-								key: self.mode.cacheKey) {
-							if let image = $0 {
-								httpOp.resultData = UIImagePNGRepresentation(image)
-								httpOp.lastError = nil
-								result($0)
-							}
-							else {
-								httpOp.resultData = nil
-								httpOp.lastError = NSError.errorWithCause(.NotAvailable)
-								result(nil)
-							}
-						}
+						loadImageFromCache(output: httpOp)
 					}
 				}
 			}
@@ -200,49 +220,35 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 
 	//MARK: Private methods
 
-	private func toHttpOperation(op: ServerOperation) -> HttpOperation? {
-		return ((op as? ServerOperationChain)?.currentOperation as? HttpOperation)
-			?? (op as? HttpOperation)
+	private func toHttpConnector(op: ServerConnector) -> HttpConnector? {
+		return ((op as? ServerConnectorChain)?.currentConnector as? HttpConnector)
+			?? (op as? HttpConnector)
 	}
 
-	private func createOperationForLogged() -> ServerOperation? {
-		if let portraitId = SessionContext.userAttribute("portraitId") as? NSNumber,
-				uuid = SessionContext.userAttribute("uuid") as? String {
-				resultUserId = SessionContext.currentUserId
+	private func createConnectorFor(loadUserOp: GetUserBaseLiferayConnector) -> ServerConnector? {
+		let chain = ServerConnectorChain(head: loadUserOp)
 
-			return createOperationFor(
-				portraitId: portraitId.longLongValue,
-				uuid: uuid,
-				male: true)
-		}
-
-		return nil
-	}
-
-	private func createOperationFor(loadUserOp: GetUserBaseOperation) -> ServerOperation? {
-		let chain = ServerOperationChain(head: loadUserOp)
-
-		chain.onNextStep = { (op, seq) -> ServerOperation? in
-			if let loadUserOp = op as? GetUserBaseOperation {
-				return self.createOperationFor(attributes: loadUserOp.resultUserAttributes)
+		chain.onNextStep = { (op, seq) -> ServerConnector? in
+			guard let loadUserOp = op as? GetUserBaseLiferayConnector else {
+				return nil
 			}
 
-			return nil
+			return self.createConnectorFor(attributes: loadUserOp.resultUserAttributes)
 		}
 
 		return chain
 	}
 
-	private func createOperationFor(attributes attributes: [String:AnyObject]?) -> ServerOperation? {
+	private func createConnectorFor(attributes attributes: [String:AnyObject]?) -> ServerConnector? {
 		if let attributes = attributes,
-				portraitId = attributes["portraitId"] as? NSNumber,
+				portraitId = attributes["portraitId"]?.description.asLong,
 				uuid = attributes["uuid"] as? String,
-				userId = attributes["userId"] as? NSNumber {
+				userId = attributes["userId"]?.description.asLong {
 
-			resultUserId = userId.longLongValue
+			resultUserId = userId
 
-			return createOperationFor(
-				portraitId: portraitId.longLongValue,
+			return createConnectorFor(
+				portraitId: portraitId,
 				uuid: uuid,
 				male: true)
 		}
@@ -250,12 +256,12 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 		return nil
 	}
 
-	private func createOperationFor(portraitId portraitId: Int64, uuid: String, male: Bool) -> ServerOperation? {
+	private func createConnectorFor(portraitId portraitId: Int64, uuid: String, male: Bool) -> ServerConnector? {
 		if let url = URLForAttributes(
 				portraitId: portraitId,
 				uuid: uuid,
 				male: male) {
-			return HttpOperation(url: url)
+			return HttpConnector(url: url)
 		}
 
 		return nil
@@ -288,10 +294,10 @@ class DownloadUserPortraitInteractor: ServerReadOperationInteractor {
 		if let hashedUUID = encodedSHA1(uuid) {
 			let maleString = male ? "male" : "female"
 
-			let url = "\(LiferayServerContext.server)/image/user_\(maleString)/_portrait" +
+			let url = "\(LiferayServerContext.server)/image/user_\(maleString)_portrait" +
 				"?img_id=\(portraitId)" +
 				"&img_id_token=\(hashedUUID)" +
-			"&t=\(NSDate.timeIntervalSinceReferenceDate())"
+				"&t=\(NSDate.timeIntervalSinceReferenceDate())"
 
 			return NSURL(string: url)
 		}

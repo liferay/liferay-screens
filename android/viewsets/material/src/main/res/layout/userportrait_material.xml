@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.material.userportrait.UserPortraitView
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<com.liferay.mobile.screens.viewsets.material.userportrait.UserPortraitView xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:padding="10dp"
-	android:theme="@style/material_theme">
+	android:padding="10dp">
 
 	<ImageView
 		android:id="@+id/liferay_portrait"
@@ -13,23 +11,24 @@
 		android:contentDescription="@string/user_portrait"
 		android:gravity="center_vertical|center_horizontal"
 		android:scaleType="fitXY"
-		android:src="@drawable/default_portrait_placeholder"/>
+		android:src="@drawable/default_portrait_placeholder" />
 
 	<ImageButton
 		android:id="@+id/liferay_replace_image"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="bottom|end"
+		android:background="@android:color/transparent"
 		android:contentDescription="@string/add_user_portrait_content_description"
 		android:src="@drawable/material_tinted_add"
-		android:visibility="invisible"/>
+		android:visibility="invisible" />
 
 	<ProgressBar
 		android:id="@+id/liferay_portrait_progress"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:layout_gravity="center"
-		android:visibility="invisible"/>
+		android:visibility="invisible" />
 
 
 </com.liferay.mobile.screens.viewsets.material.userportrait.UserPortraitView>

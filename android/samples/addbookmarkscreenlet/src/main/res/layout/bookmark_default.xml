@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.bookmark.view.AddBookmarkView
-	style="@style/default_screenlet"
-	xmlns:android="http://schemas.android.com/apk/res/android">
+<com.liferay.mobile.screens.bookmark.view.AddBookmarkView xmlns:android="http://schemas.android.com/apk/res/android"
+	style="@style/default_screenlet">
 
 	<EditText
 		android:id="@+id/url"
@@ -9,19 +8,19 @@
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="15dp"
 		android:hint="@string/url_address"
-		android:inputType="textUri"/>
+		android:inputType="textUri" />
 
 	<EditText
 		android:id="@+id/title_bookmark"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="15dp"
-		android:hint="@string/title"/>
+		android:hint="@string/title" />
 
 	<Button
 		android:id="@+id/add_button"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text="@string/add_bookmark"/>
+		android:text="@string/add_bookmark" />
 
 </com.liferay.mobile.screens.bookmark.view.AddBookmarkView>

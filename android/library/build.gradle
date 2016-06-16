@@ -1,133 +1,58 @@
-buildscript {
-	repositories {
-		jcenter()
-	}
-	dependencies {
-		classpath 'com.android.tools.build:gradle:1.3.0'
-		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
-		classpath 'com.github.dcendents:android-maven-plugin:1.2'
-	}
-}
+apply plugin: 'com.android.library'
+apply plugin: 'com.neenbedankt.android-apt'
 
-subprojects {
-	repositories {
+android {
+	compileSdkVersion rootProject.ext.compileSdkVersion
+	buildToolsVersion rootProject.ext.buildToolsVersion
 
-		maven {
-			url 'https://repository.liferay.com/nexus/content/groups/liferay-ce'
+	defaultConfig {
+		minSdkVersion rootProject.ext.minSdkVersion
+		targetSdkVersion rootProject.ext.targetSdkVersion
+		versionCode rootProject.ext.versionCode
+		versionName rootProject.ext.versionName
+	}
+
+	buildTypes {
+		release {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 		}
-
-		jcenter()
 	}
 
-	configurations {
-		formatter
-	}
-
-	dependencies {
-		formatter group: 'com.liferay.portal', name: 'portal-impl', version: '6.2.0-ga1'
-		formatter group: 'com.liferay.portal', name: 'portal-service', version: '6.2.0-ga1'
-		formatter group: 'com.liferay.portal', name: 'util-java', version: '6.2.0-ga1'
-		formatter group: 'dom4j', name: 'dom4j', version: '1.6.1'
-		formatter group: 'org.apache.ant', name: 'ant', version: '1.8.2'
+	packagingOptions {
+		exclude 'META-INF/LICENSE'
+		exclude 'META-INF/NOTICE'
 	}
 
 }
 
-subprojects {
+dependencies {
+	compile fileTree(dir: 'libs', include: ['*.jar'])
 
-	version = '1.3.0'
-	group = 'com.liferay.mobile'
-
-	buildscript {
-		repositories {
-			jcenter()
-		}
-		dependencies {
-			classpath 'com.github.dcendents:android-maven-plugin:1.2'
-			classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
-		}
+	compile libraries.appCompat
+	compile libraries.recyclerView
+	compile libraries.sdk
+	compile (libraries.push) {
+		exclude group: 'com.google.android.gms', module: 'play-services'
 	}
+	compile libraries.gms
+	compile libraries.oauth
 
-	apply plugin: 'com.android.library'
-	apply plugin: 'maven'
-	apply plugin: 'com.jfrog.bintray'
-	apply plugin: 'com.github.dcendents.android-maven'
+	compile libraries.eventbus
+	compile libraries.picasso
+	compile libraries.storio
+	compile libraries.storioannotations
+	compile libraries.rxjava
 
-	def siteUrl = 'https://github.com/liferay/liferay-screens'
-	def gitUrl = 'https://github.com/liferay/liferay-screens.git'
+	apt libraries.storioapt
 
-	task sourcesJar(type: Jar) {
-		from android.sourceSets.main.java.srcDirs
-		classifier = 'sources'
-	}
+	compile libraries.rxpermissions
+	compile libraries.rxbinding
 
-	task javadoc(type: Javadoc) {
-		source = android.sourceSets.main.java.srcDirs
-//	classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-	}
-
-	task javadocJar(type: Jar, dependsOn: javadoc) {
-		classifier = 'javadoc'
-		from javadoc.destinationDir
-	}
-
-	artifacts {
-		archives javadocJar
-		archives sourcesJar
-	}
-
-	install {
-		repositories.mavenInstaller {
-			// This generates POM.xml with proper parameters
-			pom {
-				project {
-					packaging 'aar'
-
-					// Add your description here
-					name 'Liferay Screens for Android includes the component (screenlets) library and a sample project.'
-					url siteUrl
-
-					// Set your license
-					licenses {
-						license {
-							name 'The Apache Software License, Version 2.0'
-							url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-						}
-					}
-					developers {
-						developer {
-							id '1'
-							name 'Javier Gamarra'
-							email 'nhpatt@gmail.com'
-						}
-					}
-					scm {
-						connection gitUrl
-						developerConnection gitUrl
-						url siteUrl
-
-					}
-				}
-			}
-		}
-	}
-
-	Properties properties = new Properties()
-	properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
-	bintray {
-		user = properties.getProperty("bintray.user")
-		key = properties.getProperty("bintray.apikey")
-
-		configurations = ['archives']
-		pkg {
-//		userOrg = 'liferay'
-			repo = "liferay-mobile"
-			name = project.archivesBaseName
-			websiteUrl = siteUrl
-			vcsUrl = gitUrl
-			licenses = ["LGPL-2.1"]
-			publish = true
-		}
-	}
+	testCompile libraries.junit
+	testCompile libraries.robolectric
+	testCompile libraries.mockito
 }
+
+apply from: '../bintray.gradle'
+apply from: '../install.gradle'

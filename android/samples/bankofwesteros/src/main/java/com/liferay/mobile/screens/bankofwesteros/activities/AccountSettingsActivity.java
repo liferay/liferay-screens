@@ -16,7 +16,7 @@ import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.userportrait.UserPortraitListener;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
+import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
 
 import org.json.JSONObject;
 
@@ -72,12 +72,12 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 
 	@Override
 	public void onUserPortraitUploaded(UserPortraitScreenlet source) {
-		LiferayCrouton.info(AccountSettingsActivity.this, "Portrait updated");
+		WesterosSnackbar.showSnackbar(this, "Portrait updated", R.color.green_westeros);
 	}
 
 	@Override
 	public void onUserPortraitUploadFailure(UserPortraitScreenlet source, Exception e) {
-		LiferayCrouton.error(AccountSettingsActivity.this, "Error updating portrait", e);
+		WesterosSnackbar.showSnackbar(this, "Error updating portrait", R.color.colorAccent_westeros);
 	}
 
 	@Override
@@ -118,7 +118,7 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 		BasicAuthentication basicAuth = (BasicAuthentication) SessionContext.getAuthentication();
 		if (basicAuth.getPassword().equals(_password.getText().toString())) {
 			setError(_password);
-			LiferayCrouton.error(this, "Password should be different", null);
+			WesterosSnackbar.showSnackbar(this, "Password should be different", R.color.colorAccent_westeros);
 			return;
 		}
 
@@ -130,13 +130,13 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 				SessionContext.createBasicSession(emailAddress, newPassword);
 
 				clearError(_password);
-				LiferayCrouton.info(AccountSettingsActivity.this, "User updated");
+				WesterosSnackbar.showSnackbar(AccountSettingsActivity.this, "User updated", R.color.green_westeros);
 			}
 
 			@Override
 			public void onFailure(Exception exception) {
 				LiferayLogger.e("error", exception);
-				LiferayCrouton.error(AccountSettingsActivity.this, "Error updating user", exception);
+				WesterosSnackbar.showSnackbar(AccountSettingsActivity.this, "Error updating user", R.color.colorAccent_westeros);
 			}
 		});
 	}

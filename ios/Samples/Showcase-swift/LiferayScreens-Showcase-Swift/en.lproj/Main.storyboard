@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -23,21 +24,30 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ifh-gR-hEQ">
                                 <rect key="frame" x="37" y="154" width="247" height="260"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SD8-wp-12w">
-                                        <rect key="frame" x="-37" y="-154" width="39" height="21"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You are logged as..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bqb-Wh-9Fp">
-                                        <rect key="frame" x="-37" y="-154" width="151" height="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are logged as..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bqb-Wh-9Fp">
+                                        <rect key="frame" x="48" y="31" width="151" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="sh2-xP-jm3"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gpq-Db-Zcu">
-                                        <rect key="frame" x="-37" y="-154" width="76" height="31"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SD8-wp-12w">
+                                        <rect key="frame" x="8" y="76" width="231" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="QpT-w3-WjY"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gpq-Db-Zcu">
+                                        <rect key="frame" x="56" y="130" width="134" height="31"/>
                                         <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="EO0-fN-63d"/>
+                                        </constraints>
                                         <state key="normal">
                                             <attributedString key="attributedTitle">
                                                 <fragment content="SIGN OUT">
@@ -52,10 +62,43 @@
                                             <action selector="signOutAction" destination="9pv-A4-QxB" eventType="touchUpInside" id="9mR-U0-f8b"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="24N-En-7ZQ">
+                                        <rect key="frame" x="56" y="180" width="134" height="31"/>
+                                        <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="YfO-Ko-rYq"/>
+                                        </constraints>
+                                        <state key="normal">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="RELOGIN">
+                                                    <attributes>
+                                                        <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                        <connections>
+                                            <action selector="reloginAction:" destination="9pv-A4-QxB" eventType="touchUpInside" id="ucG-sc-1gd"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="247" id="06C-iE-GRC"/>
+                                    <constraint firstItem="Gpq-Db-Zcu" firstAttribute="top" secondItem="SD8-wp-12w" secondAttribute="bottom" constant="33" id="34l-oO-Ctu"/>
+                                    <constraint firstAttribute="trailing" secondItem="Gpq-Db-Zcu" secondAttribute="trailing" constant="57" id="Adv-WS-pko"/>
+                                    <constraint firstItem="24N-En-7ZQ" firstAttribute="top" secondItem="Gpq-Db-Zcu" secondAttribute="bottom" constant="19" id="Cac-Ft-CCY"/>
+                                    <constraint firstItem="Bqb-Wh-9Fp" firstAttribute="top" secondItem="Ifh-gR-hEQ" secondAttribute="top" constant="31" id="IOg-Zd-0vs"/>
+                                    <constraint firstItem="Gpq-Db-Zcu" firstAttribute="leading" secondItem="Ifh-gR-hEQ" secondAttribute="leading" constant="56" id="IkA-x9-q4e"/>
+                                    <constraint firstItem="Bqb-Wh-9Fp" firstAttribute="leading" secondItem="Ifh-gR-hEQ" secondAttribute="leading" constant="48" id="JCE-zB-VOM"/>
+                                    <constraint firstAttribute="trailing" secondItem="24N-En-7ZQ" secondAttribute="trailing" constant="57" id="Pze-GU-Rgk"/>
+                                    <constraint firstItem="24N-En-7ZQ" firstAttribute="leading" secondItem="Ifh-gR-hEQ" secondAttribute="leading" constant="56" id="Ub7-PD-U6g"/>
+                                    <constraint firstAttribute="trailing" secondItem="Bqb-Wh-9Fp" secondAttribute="trailing" constant="48" id="Ywx-s0-5I2"/>
+                                    <constraint firstItem="SD8-wp-12w" firstAttribute="top" secondItem="Bqb-Wh-9Fp" secondAttribute="bottom" constant="25" id="cAx-BX-vIr"/>
+                                    <constraint firstItem="SD8-wp-12w" firstAttribute="leading" secondItem="Ifh-gR-hEQ" secondAttribute="leading" constant="8" id="cVV-Q3-kH5"/>
+                                    <constraint firstAttribute="trailing" secondItem="SD8-wp-12w" secondAttribute="trailing" constant="8" id="lUf-KW-tRr"/>
                                     <constraint firstAttribute="height" constant="260" id="zLD-CF-PqK"/>
                                 </constraints>
                             </view>
@@ -99,8 +142,11 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="articleId" value="WELCOME"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="offlinePolicy" value="cache-first"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="articleId" value="31209"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="book"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="structureId">
+                                        <integer key="value" value="31202"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
@@ -145,6 +191,7 @@
                         <segue destination="oOo-3A-Uui" kind="push" identifier="DDLFormScreenlet" id="WbH-nt-XHO"/>
                         <segue destination="kiQ-mD-UG4" kind="push" identifier="WebContentDisplayScreenlet" id="yAA-vv-JOl"/>
                         <segue destination="TY4-Ql-4pF" kind="push" identifier="UserPortraitScreenlet" id="jtf-rk-w86"/>
+                        <segue destination="mIJ-mJ-AmA" kind="push" identifier="WebContentListScreenlet" id="NhJ-zR-6pA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsJ-Fx-gOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -343,6 +390,43 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A6g-L6-eDf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="536" y="1793"/>
+        </scene>
+        <!--WebContentListScreenlet-->
+        <scene sceneID="MCN-aR-IyW">
+            <objects>
+                <viewController title="WebContentListScreenlet" id="mIJ-mJ-AmA" customClass="WebContentListScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YHs-MM-I4k"/>
+                        <viewControllerLayoutGuide type="bottom" id="SCZ-oN-0s2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UcB-oQ-PmW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8S0-OV-XFI" customClass="WebContentListScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="book"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8S0-OV-XFI" firstAttribute="leading" secondItem="UcB-oQ-PmW" secondAttribute="leading" id="TjW-xe-OIK"/>
+                            <constraint firstAttribute="trailing" secondItem="8S0-OV-XFI" secondAttribute="trailing" id="Zqs-B6-KdX"/>
+                            <constraint firstItem="SCZ-oN-0s2" firstAttribute="top" secondItem="8S0-OV-XFI" secondAttribute="bottom" id="csf-ah-sKl"/>
+                            <constraint firstItem="8S0-OV-XFI" firstAttribute="top" secondItem="YHs-MM-I4k" secondAttribute="bottom" id="rHd-zO-G36"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="kuN-5L-PDx"/>
+                    <connections>
+                        <outlet property="screenlet" destination="8S0-OV-XFI" id="jcO-Zz-e6o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Br9-uc-FlJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="362" y="2445"/>
         </scene>
         <!--AssetListScreenlet-->
         <scene sceneID="Gof-EM-hXa">
@@ -732,19 +816,19 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User's portrait" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2EO-gK-6EG">
-                                <rect key="frame" x="16" y="169" width="98" height="20.5"/>
+                                <rect key="frame" x="16" y="169" width="98" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Default portrait" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BxD-R4-XEe">
-                                <rect key="frame" x="186" y="169" width="107" height="20.5"/>
+                                <rect key="frame" x="186" y="169" width="107" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="dUK-mV-I2G" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="16" y="204" width="60" height="60"/>
+                                <rect key="frame" x="16" y="205" width="60" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="Mvx-Ec-JnR"/>
@@ -754,11 +838,11 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="offlineLoadPolicy" value="remote-first"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="offlinePolicy" value="remote-first"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="ELj-YS-lCR" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="186" y="204" width="60" height="60"/>
+                                <rect key="frame" x="186" y="205" width="60" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="YrF-FX-dTL"/>
@@ -771,19 +855,19 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Modified portrait" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAy-4I-6tH">
-                                <rect key="frame" x="16" y="317" width="113.5" height="20.5"/>
+                                <rect key="frame" x="16" y="318" width="114" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Editable portrait" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dNP-XS-QZT">
-                                <rect key="frame" x="185" y="317" width="119" height="20.5"/>
+                                <rect key="frame" x="186" y="318" width="118" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="6Q4-t8-cpv" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="186" y="356" width="60" height="60"/>
+                                <rect key="frame" x="186" y="357" width="60" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="AJP-YN-JbN"/>
@@ -794,12 +878,11 @@
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="offlineEditPolicy" value="cache-only"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="offlineLoadPolicy" value="remote-only"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="offlinePolicy" value="cache-first"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="OfG-dw-9hx" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="16" y="355" width="60" height="60"/>
+                                <rect key="frame" x="16" y="357" width="60" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="SFn-bl-PtN"/>
@@ -809,10 +892,11 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="offlinePolicy" value="cache-only"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wf5-FK-eyq">
-                                <rect key="frame" x="16" y="99" width="33.5" height="20.5"/>
+                                <rect key="frame" x="16" y="99" width="34" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -973,9 +1057,4 @@
         <image name="screens-ico" width="16" height="16"/>
         <image name="user-icon" width="16" height="16"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

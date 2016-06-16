@@ -14,11 +14,11 @@
 import UIKit
 
 
-class ForgotPasswordInteractor: ServerOperationInteractor {
+class ForgotPasswordInteractor: ServerConnectorInteractor {
 
 	var resultPasswordSent: Bool?
 
-	override func createOperation() -> LiferayForgotPasswordBaseOperation? {
+	override func createConnector() -> ForgotPasswordBaseLiferayConnector? {
 		let screenlet = self.screenlet as! ForgotPasswordScreenlet
 
 		if screenlet.anonymousApiUserName == nil || screenlet.anonymousApiPassword == nil {
@@ -26,33 +26,33 @@ class ForgotPasswordInteractor: ServerOperationInteractor {
 			return nil
 		}
 
-		let operation: LiferayForgotPasswordBaseOperation?
+		let connector: ForgotPasswordBaseLiferayConnector?
 
 		switch BasicAuthMethod.create(screenlet.basicAuthMethod) {
 			case .ScreenName:
-				operation = LiferayForgotPasswordScreenNameOperation(
+				connector = LiferayServerContext.connectorFactory.createForgotPasswordByScreenNameConnector(
 					viewModel: screenlet.viewModel,
 					anonymousUsername: screenlet.anonymousApiUserName!,
 					anonymousPassword: screenlet.anonymousApiPassword!)
 			case .UserId:
-				operation = LiferayForgotPasswordUserIdOperation(
+				connector = LiferayServerContext.connectorFactory.createForgotPasswordByUserIdConnector(
 					viewModel: screenlet.viewModel,
 					anonymousUsername: screenlet.anonymousApiUserName!,
 					anonymousPassword: screenlet.anonymousApiPassword!)
 			case .Email:
-				operation = LiferayForgotPasswordEmailOperation(
+				connector = LiferayServerContext.connectorFactory.createForgotPasswordByEmailConnector(
 					viewModel: screenlet.viewModel,
 					anonymousUsername: screenlet.anonymousApiUserName!,
 					anonymousPassword: screenlet.anonymousApiPassword!)
 		}
 
-		operation!.companyId = screenlet.companyId
+		connector!.companyId = screenlet.companyId
 
-		return operation!
+		return connector!
 	}
 
-	override func completedOperation(op: ServerOperation) {
-		self.resultPasswordSent = (op as! LiferayForgotPasswordBaseOperation).resultPasswordSent
+	override func completedConnector(op: ServerConnector) {
+		self.resultPasswordSent = (op as! ForgotPasswordBaseLiferayConnector).resultPasswordSent
 	}
 
 	override func interactionResult() -> AnyObject? {

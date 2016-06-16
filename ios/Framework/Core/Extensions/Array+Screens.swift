@@ -16,11 +16,15 @@ import Foundation
 extension Array {
 
 	func toDictionary<K, V>(transformer: (element: Element) -> (key: K, value: V)?) -> [K : V] {
-		return self.reduce([:]) { (var dict, e) in
+		return self.reduce([:]) { (dict, e) in
 			if let (key, value) = transformer(element: e) {
-				dict[key] = value
+				var newDict = dict
+				newDict[key] = value
+				return newDict
 			}
-			return dict
+			else {
+				return dict
+			}
 		}
 	}
 

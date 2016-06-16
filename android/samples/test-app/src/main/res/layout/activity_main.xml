@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-			  android:layout_width="match_parent"
-			  android:layout_height="match_parent"
-			  android:orientation="vertical">
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
 
 	<TextView
 		style="@style/label"
-		android:text="@string/main_activity_label"/>
+		android:text="@string/main_activity_label" />
 
 	<ScrollView
 		android:layout_width="match_parent"
@@ -20,87 +20,107 @@
 			<Button
 				android:id="@+id/login"
 				style="@style/test_app_button"
-				android:text="@string/login"/>
+				android:text="@string/login" />
 
 			<Button
 				android:id="@+id/sign_up"
 				style="@style/test_app_button"
-				android:text="@string/signup"/>
+				android:text="@string/signup" />
 
 			<Button
 				android:id="@+id/forgot_password"
 				style="@style/test_app_button"
-				android:text="@string/forgot_password"/>
+				android:text="@string/forgot_password" />
 
 			<Button
 				android:id="@+id/user_portrait"
 				style="@style/test_app_button"
-				android:text="@string/user_portrait"/>
+				android:text="@string/user_portrait" />
 
 			<Button
-				android:id="@+id/web_content_display"
+				android:id="@+id/web_content_display_screenlet"
 				style="@style/test_app_button"
-				android:text="@string/webview"/>
+				android:text="@string/webview" />
 
 			<Button
-				android:id="@+id/asset_list"
+				android:id="@+id/web_content_display_screenlet_structured"
 				style="@style/test_app_button"
-				android:text="@string/asset_list"/>
-
-			<Button
-				android:id="@+id/ddl_form"
-				style="@style/test_app_button"
-				android:text="@string/ddl_form"/>
-
-			<Button
-				android:id="@+id/ddl_list"
-				style="@style/test_app_button"
-				android:text="@string/ddl_list"/>
-
-			<Button
-				android:id="@+id/add_bookmark"
-				style="@style/test_app_button"
-				android:text="@string/add_a_bookmark"/>
+				android:text="@string/webview_structured" />
 
 			<Button
 				android:id="@+id/journal_article_with_template"
 				style="@style/test_app_button"
-				android:text="@string/journal_article_with_template"/>
+				android:text="@string/journal_article_with_template" />
+
+			<Button
+				android:id="@+id/asset_list"
+				style="@style/test_app_button"
+				android:text="@string/asset_list" />
+
+			<Button
+				android:id="@+id/web_content_list"
+				style="@style/test_app_button"
+				android:text="@string/webview_list" />
+
+			<Button
+				android:id="@+id/ddl_form"
+				style="@style/test_app_button"
+				android:text="@string/ddl_form" />
+
+			<Button
+				android:id="@+id/ddl_list"
+				style="@style/test_app_button"
+				android:text="@string/ddl_list" />
+
+			<Button
+				android:id="@+id/add_bookmark"
+				style="@style/test_app_button"
+				android:text="@string/add_a_bookmark" />
 
 			<Button
 				android:id="@+id/filtered_asset"
 				style="@style/test_app_button"
-				android:text="@string/filtered_asset"/>
+				android:text="@string/filtered_asset" />
 
 			<Button
 				android:id="@+id/login_full_screenlet"
 				style="@style/test_app_button"
-				android:text="@string/customizing_a_screenlet"/>
+				android:text="@string/customizing_a_screenlet" />
 
 			<Button
 				android:id="@+id/clear_cache_forms"
 				style="@style/test_app_button"
-				android:text="@string/clear_cache_forms"/>
+				android:text="@string/clear_cache_forms" />
 
 			<Button
 				android:id="@+id/clear_cache"
 				style="@style/test_app_button"
-				android:text="@string/clear_cache"/>
+				android:text="@string/clear_cache" />
 
 			<Button
 				android:id="@+id/sync_cache"
 				style="@style/test_app_button"
-				android:text="@string/sync_cache"/>
+				android:text="@string/sync_cache" />
 
 			<Button
 				android:id="@+id/custom_interactor"
 				style="@style/test_app_button"
-				android:text="@string/custom_interactor"/>
+				android:text="@string/custom_interactor" />
+
+			<Button
+				android:id="@+id/list_bookmarks"
+				style="@style/test_app_button"
+				android:text="@string/list_bookmarks" />
+
+			<Button
+				android:id="@+id/relogin"
+				style="@style/test_app_button"
+				android:text="@string/relogin" />
 
 			<Button
 				android:id="@+id/change_theme"
 				style="@style/test_app_button"
-				android:text="@string/change_theme"/>
+				android:text="@string/change_theme" />
 
 		</LinearLayout>
 	</ScrollView>

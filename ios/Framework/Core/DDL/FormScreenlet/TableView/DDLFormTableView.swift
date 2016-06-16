@@ -97,7 +97,7 @@ public class DDLFormTableView: DDLFormView,
 		keyboardManager.unregisterObserver()
 	}
 
-	override internal func showField(field: DDLField) {
+	override internal func showField(field: DDMField) {
 		if let row = getFieldIndex(field) {
 			tableView!.scrollToRowAtIndexPath(
 				NSIndexPath(forRow: row, inSection: 0),
@@ -105,10 +105,10 @@ public class DDLFormTableView: DDLFormView,
 		}
 	}
 
-	override internal func changeDocumentUploadStatus(field: DDLFieldDocument) {
+	override internal func changeDocumentUploadStatus(field: DDMFieldDocument) {
 		if let row = getFieldIndex(field) {
 			if let cell = tableView!.cellForRowAtIndexPath(
-					NSIndexPath(forRow: row, inSection: 0)) as? DDLFieldTableCell {
+					NSIndexPath(forRow: row, inSection: 0)) as? DDMFieldTableCell {
 				cell.changeDocumentUploadStatus(field)
 			}
 		}
@@ -117,10 +117,11 @@ public class DDLFormTableView: DDLFormView,
 
 	//MARK: KeyboardLayoutable
 
-	public func layoutWhenKeyboardShown(var keyboardHeight: CGFloat,
+	public func layoutWhenKeyboardShown(keyboardHeight: CGFloat,
 			animation:(time: NSNumber, curve: NSNumber)) {
 
-		let cell = DDLFieldTableCell.viewAsFieldCell(firstCellResponder as? UIView)
+		let cell = DDMFieldTableCell.viewAsFieldCell(firstCellResponder as? UIView)
+		var actualKeyboardHeight = keyboardHeight
 
 		var scrollDone = false
 		let scrollClosure = { (completedAnimation: Bool) -> Void in
@@ -138,28 +139,28 @@ public class DDLFormTableView: DDLFormView,
 			var shouldWorkaroundUIPickerViewBug = false
 			if let cellValue = cell {
 				shouldWorkaroundUIPickerViewBug =
-						cellValue.field!.editorType == DDLField.Editor.Document ||
-						cellValue.field!.editorType == DDLField.Editor.Select
+						cellValue.field!.editorType == DDMField.Editor.Document ||
+						cellValue.field!.editorType == DDMField.Editor.Select
 			}
 
 			if shouldWorkaroundUIPickerViewBug {
 				//FIXME
 				// Height used by UIPickerView is 216, when the standard keyboard have 253
-				keyboardHeight = 253
+				actualKeyboardHeight = 253
 			}
 			else if textInput.autocorrectionType == UITextAutocorrectionType.Default ||
 				textInput.autocorrectionType == UITextAutocorrectionType.Yes {
 
-				keyboardHeight += KeyboardManager.defaultAutocorrectionBarHeight
+				actualKeyboardHeight += KeyboardManager.defaultAutocorrectionBarHeight
 			}
 
 			let absoluteFrame = adjustRectForCurrentOrientation(convertRect(frame, toView: window!))
 			let screenHeight = adjustRectForCurrentOrientation(UIScreen.mainScreen().bounds).height
 
 			if (absoluteFrame.origin.y + absoluteFrame.size.height >
-					screenHeight - keyboardHeight) || originalFrame != nil {
+					screenHeight - actualKeyboardHeight) || originalFrame != nil {
 
-				let newHeight = screenHeight - keyboardHeight + absoluteFrame.origin.y
+				let newHeight = screenHeight - actualKeyboardHeight + absoluteFrame.origin.y
 
 				if Int(newHeight) != Int(self.frame.size.height) {
 					if originalFrame == nil {
@@ -210,22 +211,22 @@ public class DDLFormTableView: DDLFormView,
 			cellForRowAtIndexPath indexPath: NSIndexPath)
 			-> UITableViewCell {
 
-		var cell:DDLFieldTableCell?
+		var cell:DDMFieldTableCell?
 		let row = indexPath.row
 
 		if row == record!.fields.count {
 			cell = tableView.dequeueReusableCellWithIdentifier("SubmitButton")
-					as? DDLFieldTableCell
+					as? DDMFieldTableCell
 
 			cell!.formView = self
 		}
 		else if let field = getField(row) {
 			cell = tableView.dequeueReusableCellWithIdentifier(field.name)
-					as? DDLFieldTableCell
+					as? DDMFieldTableCell
 
 			if cell == nil {
 				cell = tableView.dequeueReusableCellWithIdentifier(
-						field.editorType.toCapitalizedName()) as? DDLFieldTableCell
+						field.editorType.toCapitalizedName()) as? DDMFieldTableCell
 			}
 
 			if let cellValue = cell {
@@ -257,7 +258,7 @@ public class DDLFormTableView: DDLFormView,
 	internal func registerFieldCells() {
 		let bundles = NSBundle.allBundles(self.dynamicType);
 
-		for fieldEditor in DDLField.Editor.all() {
+		for fieldEditor in DDMField.Editor.all() {
 			for bundle in bundles {
 				let cellId = fieldEditor.toCapitalizedName()
 
@@ -284,7 +285,7 @@ public class DDLFormTableView: DDLFormView,
 		}
 	}
 
-	internal func registerCustomEditor(field: DDLField) -> Bool {
+	internal func registerCustomEditor(field: DDMField) -> Bool {
 		let bundles = NSBundle.allBundles(self.dynamicType);
 
 		for bundle in bundles {
@@ -335,7 +336,7 @@ public class DDLFormTableView: DDLFormView,
 		return nil
 	}
 
-	internal func cellHeightForField(field: DDLField) -> CGFloat {
+	internal func cellHeightForField(field: DDMField) -> CGFloat {
 		var result: CGFloat = 0.0
 
 		if let cellHeight = cellHeights[field.name] {
@@ -351,7 +352,7 @@ public class DDLFormTableView: DDLFormView,
 		return result
 	}
 
-	internal func setCellHeight(height: CGFloat, forField field: DDLField) {
+	internal func setCellHeight(height: CGFloat, forField field: DDMField) {
 		if let cellHeight = cellHeights[field.name] {
 			cellHeights[field.name] = (cellHeight.registered, height)
 		}
@@ -360,7 +361,7 @@ public class DDLFormTableView: DDLFormView,
 		}
 	}
 
-	internal func resetCellHeightForField(field: DDLField) -> CGFloat {
+	internal func resetCellHeightForField(field: DDMField) -> CGFloat {
 		var result: CGFloat = 0.0
 
 		if let cellHeight = cellHeights[field.name] {

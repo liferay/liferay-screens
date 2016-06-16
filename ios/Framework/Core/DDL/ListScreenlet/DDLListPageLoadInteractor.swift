@@ -32,27 +32,27 @@ public class DDLListPageLoadInteractor : BaseListPageLoadInteractor {
 		super.init(screenlet: screenlet, page: page, computeRowCount: computeRowCount)
 	}
 
-	override public func createOperation() -> LiferayDDLListPageOperation {
+	override public func createConnector() -> DDLListPageLiferayConnector {
 		let viewModel = (self.screenlet as! DDLListScreenlet).screenletView as! DDLListViewModel
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
 
-		let operation = LiferayDDLListPageOperation(
-				viewModel: viewModel,
-				startRow: pager(self.page),
-				endRow: pager(self.page + 1),
-				computeRowCount: self.computeRowCount)
+		let connector = LiferayServerContext.connectorFactory.createDDLListPageConnector(
+			viewModel: viewModel,
+			startRow: pager(self.page),
+			endRow: pager(self.page + 1),
+			computeRowCount: self.computeRowCount)
 
-		operation.userId = (self.userId != 0) ? self.userId : nil
-		operation.recordSetId = self.recordSetId
+		connector.userId = (self.userId != 0) ? self.userId : nil
+		connector.recordSetId = self.recordSetId
 
-		return operation;
+		return connector;
 	}
 
 	override public func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
 		return DDLRecord(dataAndAttributes: serverResult)
 	}
 
-	override public func cacheKey(op: LiferayPaginationOperation) -> String {
+	override public func cacheKey(op: PaginationLiferayConnector) -> String {
 		return "\(recordSetId)"
 	}
 

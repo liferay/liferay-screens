@@ -14,7 +14,7 @@
 import UIKit
 
 
-class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
+class UploadUserPortraitInteractor: ServerWriteConnectorInteractor {
 
 	var uploadResult: [String:AnyObject]?
 
@@ -28,39 +28,43 @@ class UploadUserPortraitInteractor: ServerWriteOperationInteractor {
 		super.init(screenlet: screenlet)
 	}
 
-	override func createOperation() -> LiferayUploadUserPortraitOperation {
-		return LiferayUploadUserPortraitOperation(
+	override func createConnector() -> UploadUserPortraitLiferayConnector {
+		return LiferayServerContext.connectorFactory.createUploadUserPortraitConnector(
 				userId: self.userId,
 				image: self.image)
 	}
 
-	override func completedOperation(op: ServerOperation) {
-		self.uploadResult = (op as! LiferayUploadUserPortraitOperation).uploadResult
+	override func completedConnector(op: ServerConnector) {
+		self.uploadResult = (op as! UploadUserPortraitLiferayConnector).uploadResult
 	}
 
 
 	//MARK: Cache methods
 
-	override func writeToCache(op: ServerOperation) {
-		let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
-			? SessionContext.currentCacheManager?.setDirty
-			: SessionContext.currentCacheManager?.setClean
+	override func writeToCache(op: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
 
-		cacheFunction?(
+		let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
+			? cacheManager.setDirty
+			: cacheManager.setClean
+
+		cacheFunction(
 			collection: ScreenletName(UserPortraitScreenlet),
 			key: "userId-\(userId)",
 			value: image,
-			attributes: ["userId": NSNumber(longLong: userId)])
+			attributes: ["userId": userId.description])
 	}
 
 	override func callOnSuccess() {
 		if cacheStrategy == .CacheFirst {
 			// update cache with date sent
-			SessionContext.currentCacheManager?.setClean(
+			SessionContext.currentContext?.cacheManager.setClean(
 				collection: ScreenletName(UserPortraitScreenlet),
 				key: "userId-\(userId)",
 				attributes: [
-					"userId": NSNumber(longLong: userId)])
+					"userId": userId.description])
 		}
 
 		super.callOnSuccess()

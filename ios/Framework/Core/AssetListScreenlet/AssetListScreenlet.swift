@@ -17,53 +17,89 @@ import UIKit
 @objc public protocol AssetListScreenletDelegate : BaseScreenletDelegate {
 
 	optional func screenlet(screenlet: AssetListScreenlet,
-			onAssetListResponseEntries entries: [AssetListScreenletEntry])
+			onAssetListResponse assets: [Asset])
 
 	optional func screenlet(screenlet: AssetListScreenlet,
 			onAssetListError error: NSError)
 
 	optional func screenlet(screenlet: AssetListScreenlet,
-			onAssetSelectedEntry entry: AssetListScreenletEntry)
+			onAssetSelected asset: Asset)
 
 }
 
 
-@objc public class AssetListScreenletEntry : NSObject {
+@objc public class Asset : NSObject, NSCoding {
 
-	public let attributes:[String:AnyObject]
+	public let attributes :[String:AnyObject]
 
-	public var title: String {
-		return attributes["title"] as! String
-	}
+	public let title: String
 
 	override public var description: String {
 		return attributes["description"] as! String
 	}
 
 	public var classNameId: Int64 {
-		return (attributes["classNameId"] as! NSNumber).longLongValue
+		return attributes["classNameId"]!.description.asLong!
 	}
 
 	public var classPK: Int64 {
-		return (attributes["classPK"] as! NSNumber).longLongValue
+		return attributes["classPK"]!.description.asLong!
 	}
 
 	public var groupId: Int64 {
-		return (attributes["groupId"] as! NSNumber).longLongValue
+		return attributes["groupId"]!.description.asLong!
 	}
 
 	public var companyId: Int64 {
-		return (attributes["companyId"] as! NSNumber).longLongValue
+		return attributes["companyId"]!.description.asLong!
 	}
 
 	public var entryId: Int64 {
-		return (attributes["entryId"] as! NSNumber).longLongValue
+		return attributes["entryId"]!.description.asLong!
+	}
+
+	override public var debugDescription: String {
+		return attributes.debugDescription
 	}
 
 	//MARK: Init
 
-	public init(attributes:[String:AnyObject]) {
+	public init(attributes: [String:AnyObject]) {
 		self.attributes = attributes
+
+		let xmlTitle = attributes["title"] as! String
+		title = xmlTitle.asLocalized(NSLocale(localeIdentifier: NSLocale.currentLocaleString))
+	}
+
+	public required init?(coder aDecoder: NSCoder) {
+		let keys = (aDecoder.decodeObjectForKey("asset-attr-keys") as? [String]) ?? [String]()
+
+		var attrs = [String:AnyObject]()
+
+		for k in keys {
+			if let v = aDecoder.decodeObjectForKey("asset-attr-\(k)") {
+				attrs[k] = v
+			}
+		}
+
+		self.attributes = attrs
+
+		let xmlTitle = (attributes["title"] as? String) ?? ""
+		title = xmlTitle.asLocalized(NSLocale(localeIdentifier: NSLocale.currentLocaleString))
+
+		super.init()
+	}
+
+	public func encodeWithCoder(aCoder: NSCoder) {
+		let keys = Array(self.attributes.keys)
+
+		aCoder.encodeObject(keys, forKey:"asset-attr-keys")
+
+		for (k,v) in self.attributes {
+			if let coderValue = v as? NSCoder {
+				aCoder.encodeObject(coderValue, forKey:"asset-attr-\(k)")
+			}
+		}
 	}
 
 }
@@ -86,7 +122,7 @@ import UIKit
 
 	//MARK: BaseListScreenlet
 
-	override internal func createPageLoadInteractor(
+	override public func createPageLoadInteractor(
 			page page: Int,
 			computeRowCount: Bool)
 			-> BaseListPageLoadInteractor {
@@ -105,22 +141,22 @@ import UIKit
 		return interactor
 	}
 
-	override internal func onLoadPageError(page page: Int, error: NSError) {
+	override public func onLoadPageError(page page: Int, error: NSError) {
 		super.onLoadPageError(page: page, error: error)
 
 		assetListDelegate?.screenlet?(self, onAssetListError: error)
 	}
 
-	override internal func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
+	override public func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
 		super.onLoadPageResult(page: page, rows: rows, rowCount: rowCount)
 
-		let assetEntries = rows as! [AssetListScreenletEntry]
+		let assets = rows as! [Asset]
 
-		assetListDelegate?.screenlet?(self, onAssetListResponseEntries: assetEntries)
+		assetListDelegate?.screenlet?(self, onAssetListResponse: assets)
 	}
 
-	override internal func onSelectedRow(row: AnyObject) {
-		assetListDelegate?.screenlet?(self, onAssetSelectedEntry: row as! AssetListScreenletEntry)
+	override public func onSelectedRow(row: AnyObject) {
+		assetListDelegate?.screenlet?(self, onAssetSelected: row as! Asset)
 	}
 
 }

@@ -19,7 +19,7 @@ extension Bool {
 		let boolValue = value.lowercaseString.stringByTrimmingCharactersInSet(
 				NSCharacterSet.whitespaceCharacterSet())
 
-		return !(boolValue == "false" || boolValue == "0")
+		return (boolValue == "true" || boolValue == "1")
 	}
 
 	public static func from(any value:AnyObject) -> Bool {

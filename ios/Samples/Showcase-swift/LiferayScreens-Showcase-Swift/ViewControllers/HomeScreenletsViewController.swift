@@ -18,7 +18,9 @@ class HomeScreenletsViewController: UITableViewController {
 	private let data: [Int:[String]] = [
 			0 : ["Auth Module", "LoginScreenlet", "SignUpScreenlet", "ForgotPasswordScreenlet"],
 			1 : ["DDL Module", "DDLListScreenlet", "DDLFormScreenlet"],
-			2 : ["Others", "AssetListScreenlet", "UserPortraitScreenlet", "WebContentDisplayScreenlet"]]
+			2 : ["Web Content Module", "WebContentDisplayScreenlet", "WebContentListScreenlet"],
+			3 : ["Others", "AssetListScreenlet", "UserPortraitScreenlet"]
+		]
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return data.count

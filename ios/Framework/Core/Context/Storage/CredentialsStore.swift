@@ -18,7 +18,7 @@ import UIKit
 #endif
 
 
-public protocol CredentialsStore {
+@objc public protocol CredentialsStore {
 
 	var authentication: LRAuthentication? { get }
 	var userAttributes: [String:AnyObject]? { get }

@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.ViewPager;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -104,7 +105,7 @@ public class TourActivity extends FragmentActivity implements View.OnClickListen
 		public CharSequence getPageTitle(int position) {
 
 			int drawableId = _viewPager.getCurrentItem() == position ? R.drawable.pagination_on : R.drawable.pagination_off;
-			Drawable drawable = getResources().getDrawable(drawableId);
+			Drawable drawable = ResourcesCompat.getDrawable(getResources(), drawableId, getTheme());
 			drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 			ImageSpan imageSpan = new ImageSpan(drawable, ImageSpan.ALIGN_BOTTOM);
 

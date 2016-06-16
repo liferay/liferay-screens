@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.defaultviews.auth.signup.SignUpView
-	style="@style/default_screenlet"
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<com.liferay.mobile.screens.viewsets.defaultviews.auth.signup.SignUpView xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:liferay="http://schemas.android.com/apk/res-auto"
+	style="@style/default_screenlet"
 	android:paddingLeft="40dp"
-	android:paddingRight="40dp"
-	android:theme="@style/material_theme">
+	android:paddingRight="40dp">
 
 	<EditText
 		android:id="@+id/liferay_first_name"
@@ -14,7 +12,7 @@
 		android:layout_marginBottom="8dp"
 		android:layout_marginLeft="10dp"
 		android:layout_marginRight="10dp"
-		android:hint="@string/first_name"/>
+		android:hint="@string/first_name" />
 
 	<EditText
 		android:id="@+id/liferay_last_name"
@@ -23,7 +21,7 @@
 		android:layout_marginBottom="8dp"
 		android:layout_marginLeft="10dp"
 		android:layout_marginRight="10dp"
-		android:hint="@string/last_name"/>
+		android:hint="@string/last_name" />
 
 	<EditText
 		android:id="@+id/liferay_email_address"
@@ -33,7 +31,7 @@
 		android:layout_marginLeft="10dp"
 		android:layout_marginRight="10dp"
 		android:hint="@string/email_address"
-		android:inputType="textEmailAddress"/>
+		android:inputType="textEmailAddress" />
 
 	<EditText
 		android:id="@+id/liferay_password"
@@ -43,7 +41,7 @@
 		android:layout_marginLeft="10dp"
 		android:layout_marginRight="10dp"
 		android:hint="@string/password"
-		android:inputType="textPassword"/>
+		android:inputType="textPassword" />
 
 	<FrameLayout
 		android:layout_width="match_parent"
@@ -55,7 +53,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_margin="10dp"
-			android:text="@string/sign_up"/>
+			android:text="@string/sign_up" />
 
 		<com.liferay.mobile.screens.base.ModalProgressBar
 			android:id="@+id/liferay_progress"
@@ -65,6 +63,6 @@
 			android:layout_margin="10dp"
 			android:theme="@style/white_theme"
 			android:visibility="invisible"
-			liferay:actionViewId="@id/liferay_sign_up_button"/>
+			liferay:actionViewId="@id/liferay_sign_up_button" />
 	</FrameLayout>
 </com.liferay.mobile.screens.viewsets.defaultviews.auth.signup.SignUpView>

@@ -39,7 +39,7 @@ public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_defau
 	override public func onChangedField() {
 		super.onChangedField()
 
-		if let stringField = field as? DDLFieldStringWithOptions {
+		if let stringField = field as? DDMFieldStringWithOptions {
 			textField?.text = stringField.currentValueAsLabel
 
 			setFieldPresenter(stringField)
@@ -49,7 +49,7 @@ public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_defau
 
 	//MARK: Private methods
 
-	private func setFieldPresenter(field:DDLFieldStringWithOptions) {
+	private func setFieldPresenter(field:DDMFieldStringWithOptions) {
 
 		func dataSource() -> DTPickerDataSource {
 			var rows:[String] = [""]

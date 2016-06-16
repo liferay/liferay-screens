@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.material.ddl.form.fields.DDLDocumentFieldView
-	xmlns:android="http://schemas.android.com/apk/res/android"
+<com.liferay.mobile.screens.viewsets.material.ddl.form.fields.DDLDocumentFieldView xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:orientation="vertical"
@@ -10,7 +9,7 @@
 		android:id="@+id/liferay_ddl_label"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:visibility="gone"/>
+		android:visibility="gone" />
 
 	<FrameLayout
 		android:layout_width="match_parent"
@@ -26,14 +25,14 @@
 			android:editable="false"
 			android:focusable="false"
 			android:inputType="none"
-			android:padding="5dp"/>
+			android:padding="5dp" />
 
 		<ProgressBar
 			android:id="@+id/liferay_document_progress"
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:layout_gravity="right|center_vertical"
-			android:visibility="invisible"/>
+			android:visibility="invisible" />
 	</FrameLayout>
 
 </com.liferay.mobile.screens.viewsets.material.ddl.form.fields.DDLDocumentFieldView>

@@ -1,5 +1,5 @@
 include 'core'
-project(':core').projectDir = new File(settingsDir, '../../library/core')
+project(':core').projectDir = new File(settingsDir, '../../library')
 project(':core').name = 'liferay-screens'
 
 include 'liferay-westeros-viewset'
