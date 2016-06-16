@@ -23,73 +23,78 @@ import com.liferay.mobile.screens.R;
  */
 public class LiferayServerContext {
 
-	public static void loadFromResources(Resources resources, final String packageName) {
+    public static void reloadFromResources(Resources resources, final String packageName) {
 
-		if (_companyId == 0 || _groupId == 0 || _server == null) {
-			int companyIdentifier = resources.getIdentifier("liferay_company_id", "integer", packageName);
-			int groupIdentifier = resources.getIdentifier("liferay_group_id", "integer", packageName);
+        int companyIdentifier = resources.getIdentifier("liferay_company_id", "integer", packageName);
+        int groupIdentifier = resources.getIdentifier("liferay_group_id", "integer", packageName);
 
-			_companyId = getValueFromIntegerOrString(resources, R.string.liferay_company_id, companyIdentifier);
-			_groupId = getValueFromIntegerOrString(resources, R.string.liferay_group_id, groupIdentifier);
-			_server = resources.getString(R.string.liferay_server);
-			_classFactory = resources.getString(R.string.liferay_class_factory);
-			_portalVersion = LiferayPortalVersion.fromInt(resources.getInteger(R.integer.liferay_portal_version));
-			_versionFactory = resources.getString(R.string.liferay_version_factory);
-		}
-	}
+        _companyId = getValueFromIntegerOrString(resources, R.string.liferay_company_id, companyIdentifier);
+        _groupId = getValueFromIntegerOrString(resources, R.string.liferay_group_id, groupIdentifier);
+        _server = resources.getString(R.string.liferay_server);
+        _classFactory = resources.getString(R.string.liferay_class_factory);
+        _portalVersion = LiferayPortalVersion.fromInt(resources.getInteger(R.integer.liferay_portal_version));
+        _versionFactory = resources.getString(R.string.liferay_version_factory);
+    }
 
-	public static long getCompanyId() {
-		return _companyId;
-	}
+    public static void loadFromResources(Resources resources, final String packageName) {
 
-	public static void setCompanyId(long companyId) {
-		_companyId = companyId;
-	}
+        if (_companyId == 0 || _groupId == 0 || _server == null) {
+            reloadFromResources(resources, packageName);
+        }
+    }
 
-	public static long getGroupId() {
-		return _groupId;
-	}
+    public static long getCompanyId() {
+        return _companyId;
+    }
 
-	public static void setGroupId(long groupId) {
-		_groupId = groupId;
-	}
+    public static void setCompanyId(long companyId) {
+        _companyId = companyId;
+    }
 
-	public static String getServer() {
-		return _server;
-	}
+    public static long getGroupId() {
+        return _groupId;
+    }
 
-	public static void setServer(String server) {
-		_server = server;
-	}
+    public static void setGroupId(long groupId) {
+        _groupId = groupId;
+    }
 
-	public static String getClassFactory() {
-		return _classFactory;
-	}
+    public static String getServer() {
+        return _server;
+    }
 
-	public static void setFactoryClass(String factoryClass) {
-		_classFactory = factoryClass;
-	}
+    public static void setServer(String server) {
+        _server = server;
+    }
 
-	public static boolean isLiferay7() {
-		return LiferayPortalVersion.VERSION_70.equals(_portalVersion);
-	}
+    public static String getClassFactory() {
+        return _classFactory;
+    }
 
-	public static boolean isLiferay62() {
-		return LiferayPortalVersion.VERSION_70.equals(_portalVersion);
-	}
+    public static void setFactoryClass(String factoryClass) {
+        _classFactory = factoryClass;
+    }
 
-	public static String getVersionFactory() {
-		return _versionFactory;
-	}
+    public static boolean isLiferay7() {
+        return LiferayPortalVersion.VERSION_70.equals(_portalVersion);
+    }
 
-	private static long getValueFromIntegerOrString(final Resources resources, final int stringId, int integerId) {
-		return integerId == 0 ? Long.valueOf(resources.getString(stringId)) : resources.getInteger(integerId);
-	}
+    public static boolean isLiferay62() {
+        return LiferayPortalVersion.VERSION_70.equals(_portalVersion);
+    }
 
-	private static String _server;
-	private static long _companyId;
-	private static long _groupId;
-	private static String _classFactory;
-	private static LiferayPortalVersion _portalVersion;
-	private static String _versionFactory;
+    public static String getVersionFactory() {
+        return _versionFactory;
+    }
+
+    private static long getValueFromIntegerOrString(final Resources resources, final int stringId, int integerId) {
+        return integerId == 0 ? Long.valueOf(resources.getString(stringId)) : resources.getInteger(integerId);
+    }
+
+    private static String _server;
+    private static long _companyId;
+    private static long _groupId;
+    private static String _classFactory;
+    private static LiferayPortalVersion _portalVersion;
+    private static String _versionFactory;
 }

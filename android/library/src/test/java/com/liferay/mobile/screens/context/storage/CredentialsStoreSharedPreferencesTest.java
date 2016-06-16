@@ -65,7 +65,7 @@ public class CredentialsStoreSharedPreferencesTest {
 
 		@Before
 		public void setUp() {
-			LiferayScreensContext.init(RuntimeEnvironment.application);
+			LiferayScreensContext.reinit(RuntimeEnvironment.application);
 		}
 
 		@Test(expected = IllegalStateException.class)
@@ -124,7 +124,7 @@ public class CredentialsStoreSharedPreferencesTest {
 
 		@Before
 		public void setUp() {
-			LiferayScreensContext.init(RuntimeEnvironment.application);
+			LiferayScreensContext.reinit(RuntimeEnvironment.application);
 		}
 
 		@Test
@@ -150,7 +150,7 @@ public class CredentialsStoreSharedPreferencesTest {
 
 		@Before
 		public void setUp() {
-			LiferayScreensContext.init(RuntimeEnvironment.application);
+			LiferayScreensContext.reinit(RuntimeEnvironment.application);
 		}
 
 		@Test
