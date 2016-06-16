@@ -159,9 +159,6 @@ import Foundation
 					password: password,
 					userAttributes: attributes)
 			}
-			else {
-				SessionContext.logout()
-			}
 
 			completed?(attributes)
 		}
