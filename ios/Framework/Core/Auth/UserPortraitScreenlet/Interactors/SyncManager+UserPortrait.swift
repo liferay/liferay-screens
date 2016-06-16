@@ -21,7 +21,7 @@ extension SyncManager {
 			-> Signal -> () {
 
 		return { signal in
-			let userId = attributes["userId"] as! NSNumber
+			let userId = attributes["userId"]!.description.asLong!
 
 			self.cacheManager.getImage(
 					collection: ScreenletName(UserPortraitScreenlet),
@@ -30,7 +30,7 @@ extension SyncManager {
 				if let image = $0 {
 					let interactor = UploadUserPortraitInteractor(
 						screenlet: nil,
-						userId: userId.longLongValue,
+						userId: userId,
 						image: image)
 					
 					self.prepareInteractorForSync(interactor,

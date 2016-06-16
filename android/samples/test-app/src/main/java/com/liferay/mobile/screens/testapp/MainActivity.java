@@ -1,7 +1,6 @@
 package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 
 import com.liferay.mobile.screens.cache.DefaultCachedType;
@@ -22,10 +21,12 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.ddl_form).setOnClickListener(this);
 		findViewById(R.id.ddl_list).setOnClickListener(this);
 		findViewById(R.id.asset_list).setOnClickListener(this);
+		findViewById(R.id.web_content_list).setOnClickListener(this);
 		findViewById(R.id.sign_up).setOnClickListener(this);
 		findViewById(R.id.forgot_password).setOnClickListener(this);
 		findViewById(R.id.user_portrait).setOnClickListener(this);
-		findViewById(R.id.web_content_display).setOnClickListener(this);
+		findViewById(R.id.web_content_display_screenlet).setOnClickListener(this);
+		findViewById(R.id.web_content_display_screenlet_structured).setOnClickListener(this);
 		findViewById(R.id.add_bookmark).setOnClickListener(this);
 		findViewById(R.id.journal_article_with_template).setOnClickListener(this);
 		findViewById(R.id.filtered_asset).setOnClickListener(this);
@@ -36,6 +37,8 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.clear_cache_forms).setOnClickListener(this);
 		findViewById(R.id.sync_cache).setOnClickListener(this);
 		findViewById(R.id.custom_interactor).setOnClickListener(this);
+		findViewById(R.id.list_bookmarks).setOnClickListener(this);
+		findViewById(R.id.relogin).setOnClickListener(this);
 	}
 
 	@Override
@@ -50,6 +53,9 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 			case R.id.asset_list:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(SelectAssetActivity.class));
 				break;
+			case R.id.web_content_list:
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(WebViewListActivity.class));
+				break;
 			case R.id.sign_up:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(SignUpActivity.class));
 				break;
@@ -60,8 +66,11 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 			case R.id.user_portrait:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(UserPortraitActivity.class));
 				break;
-			case R.id.web_content_display:
+			case R.id.web_content_display_screenlet:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(WebContentDisplayActivity.class));
+				break;
+			case R.id.web_content_display_screenlet_structured:
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(WebContentDisplayStructuredActivity.class));
 				break;
 			case R.id.add_bookmark:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(AddBookmarkActivity.class));
@@ -77,7 +86,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				break;
 			case R.id.change_theme:
 				finish();
-				currentTheme = isDefaultTheme() ? R.style.material_theme : R.style.default_theme;
+				changeToNextTheme();
 				startActivity(getIntentWithTheme(MainActivity.class));
 				break;
 			case R.id.clear_cache_forms:
@@ -89,22 +98,30 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				String cacheFormsMessage = "Deleted " + formRows + " forms, " + recordRows + " records, " +
 					listRows + " list rows and " + countRows + " count rows.";
 
-				Snackbar.make(_content, cacheFormsMessage, Snackbar.LENGTH_SHORT).show();
+				info(cacheFormsMessage);
 				break;
 			case R.id.clear_cache:
 				boolean success = CacheSQL.getInstance().clear(this);
 				String clearCacheMessage = "Cache cleared: " + (success ? "sucessfully" : "failed");
-				Snackbar.make(_content, clearCacheMessage, Snackbar.LENGTH_SHORT).show();
+				info(clearCacheMessage);
 				break;
 			case R.id.sync_cache:
 				CacheSQL.getInstance().resync();
-				Snackbar.make(_content, "Launched resync process", Snackbar.LENGTH_SHORT).show();
+				info("Launched resync process");
 				break;
 			case R.id.custom_interactor:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(CustomInteractorActivity.class));
+				break;
+			case R.id.list_bookmarks:
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(ListBookmarksActivity.class));
+				break;
+			case R.id.relogin:
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(ReloginActivity.class));
 				break;
 			default:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(LoginActivity.class));
 		}
 	}
+
+
 }

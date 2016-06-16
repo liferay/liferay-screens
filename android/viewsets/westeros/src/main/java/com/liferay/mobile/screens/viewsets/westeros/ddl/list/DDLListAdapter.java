@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.viewsets.westeros.ddl.list; /**
+/**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  * <p/>
  * This library is free software; you can redistribute it and/or modify it under
@@ -12,10 +12,12 @@ package com.liferay.mobile.screens.viewsets.westeros.ddl.list; /**
  * details.
  */
 
+package com.liferay.mobile.screens.viewsets.westeros.ddl.list;
+
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.daimajia.swipe.SwipeLayout;
@@ -25,23 +27,18 @@ import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.viewsets.westeros.R;
 
 import java.text.SimpleDateFormat;
-import java.util.List;
+import java.util.Locale;
 
 /**
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListAdapter
-	extends BaseListAdapter<Record, DDLListAdapter.SwipeActionsViewHolder> {
+public class DDLListAdapter extends BaseListAdapter<Record, DDLListAdapter.SwipeActionsViewHolder> {
 
 	public DDLListAdapter(
 		int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 
 		super(layoutId, progressLayoutId, listener);
-	}
-
-	public void setLabelFields(List<String> labelFields) {
-		_labelFields = labelFields;
 	}
 
 	@Override
@@ -63,17 +60,23 @@ public class DDLListAdapter
 		return new SwipeActionsViewHolder(view, getListener());
 	}
 
+	@NonNull
+	@Override
+	public SwipeActionsViewHolder createViewHolder(View view, BaseListAdapterListener listener) {
+		return new SwipeActionsViewHolder(view, listener);
+	}
+
 	@Override
 	protected void fillHolder(Record entry, SwipeActionsViewHolder holder) {
 
 		StringBuilder builder = new StringBuilder();
 
-		if (entry != null && _labelFields != null && !_labelFields.isEmpty()) {
+		if (entry != null && getLabelFields() != null && !getLabelFields().isEmpty()) {
 
-			String titleField = (String) entry.getServerValue(_labelFields.get(0));
+			String titleField = (String) entry.getServerValue(getLabelFields().get(0));
 
-			for (int i = 1; i < _labelFields.size(); ++i) {
-				String field = _labelFields.get(i);
+			for (int i = 1; i < getLabelFields().size(); ++i) {
+				String field = getLabelFields().get(i);
 				String value = (String) entry.getServerValue(field);
 				if (value != null && !value.isEmpty()) {
 					builder.append(value);
@@ -81,26 +84,16 @@ public class DDLListAdapter
 				}
 			}
 			if (builder.length() == 0) {
-				String date = new SimpleDateFormat("dd/MM/yyyy").format(entry.getServerAttribute("createDate"));
+				String date = new SimpleDateFormat("dd/MM/yyyy", Locale.US)
+					.format(entry.getServerAttribute("createDate"));
 				builder.append("Created ");
 				builder.append(date);
 			}
 
 			holder.textView.setText(titleField);
 			holder._subtitleTextView.setText(builder.toString());
-
-			int drawableId = getDrawable(getEntries().indexOf(entry));
-			if (holder._stateIconView != null) {
-				holder._stateIconView.setImageResource(drawableId);
-			}
 		}
 	}
-
-	protected int getDrawable(int position) {
-		return 0;
-	}
-
-	private List<String> _labelFields;
 
 	public static class SwipeActionsViewHolder
 		extends BaseListAdapter.ViewHolder implements View.OnClickListener {
@@ -109,7 +102,6 @@ public class DDLListAdapter
 			super(view, listener);
 
 			this._subtitleTextView = (TextView) view.findViewById(R.id.liferay_list_subtitle);
-			this._stateIconView = (ImageView) view.findViewById(R.id.liferay_state_list_icon);
 
 			_listener = listener;
 
@@ -127,7 +119,7 @@ public class DDLListAdapter
 				(v.getId() == R.id.liferay_list_edit
 					|| v.getId() == R.id.liferay_list_view)) {
 
-				_listener.onItemClick(getPosition(), v);
+				_listener.onItemClick(getAdapterPosition(), v);
 			}
 			else if (!opened) {
 				_swipeLayout.open(true);
@@ -139,7 +131,6 @@ public class DDLListAdapter
 
 		private final BaseListAdapterListener _listener;
 		private final TextView _subtitleTextView;
-		private final ImageView _stateIconView;
 		private final SwipeLayout _swipeLayout;
 
 	}

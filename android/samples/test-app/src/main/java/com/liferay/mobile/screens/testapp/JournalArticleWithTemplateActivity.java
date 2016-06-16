@@ -1,9 +1,12 @@
 package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.webkit.WebView;
 
-import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayListener;
-import com.liferay.mobile.screens.webcontentdisplay.WebContentDisplayScreenlet;
+import com.liferay.mobile.screens.webcontent.WebContent;
+import com.liferay.mobile.screens.webcontent.display.WebContentDisplayListener;
+import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
 
 public class JournalArticleWithTemplateActivity extends ThemeActivity implements WebContentDisplayListener {
 
@@ -18,7 +21,7 @@ public class JournalArticleWithTemplateActivity extends ThemeActivity implements
 		super.onResume();
 
 		WebContentDisplayScreenlet journalArticleWithTemplate =
-			(WebContentDisplayScreenlet) findViewById(R.id.journal_article_with_template);
+			(WebContentDisplayScreenlet) findViewById(R.id.journal_article_with_template_screenlet);
 		journalArticleWithTemplate.load();
 
 		WebContentDisplayScreenlet journalArticleWithTemplateAlternative =
@@ -29,12 +32,17 @@ public class JournalArticleWithTemplateActivity extends ThemeActivity implements
 	}
 
 	@Override
-	public String onWebContentReceived(WebContentDisplayScreenlet source, String html) {
+	public WebContent onWebContentReceived(WebContentDisplayScreenlet source, WebContent html) {
 		return html;
 	}
 
 	@Override
 	public void onWebContentFailure(WebContentDisplayScreenlet source, Exception e) {
+	}
+
+	@Override
+	public void onWebContentClicked(WebView.HitTestResult result, MotionEvent event) {
+
 	}
 
 	@Override

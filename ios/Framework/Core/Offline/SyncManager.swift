@@ -110,13 +110,13 @@ public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> Signal ->
 	}
 
 	public func prepareInteractorForSync(
-			interactor: ServerOperationInteractor,
+			interactor: ServerConnectorInteractor,
 			key: String,
 			attributes: [String:AnyObject],
 			signal: Signal,
 			screenletClassName: String) {
 
-		// this strategy saves the send date after the operation
+		// this strategy saves the send date after the connector
 		interactor.cacheStrategy = .CacheFirst
 
 		interactor.onSuccess = {

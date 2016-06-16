@@ -22,7 +22,7 @@ class OfflineSyncViewController: UIViewController, SyncManagerDelegate {
 	private var syncManager: SyncManager?
 
 	override func viewDidAppear(animated: Bool) {
-		if let cacheManager = SessionContext.currentCacheManager {
+		if let cacheManager = SessionContext.currentContext?.cacheManager {
 			syncManager = SyncManager(cacheManager: cacheManager)
 			syncManager?.delegate = self
 			button.enabled = true

@@ -14,17 +14,14 @@
 
 package com.liferay.mobile.screens.viewsets.material.ddl.list;
 
-import android.view.LayoutInflater;
+import android.support.annotation.NonNull;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.viewsets.R;
-
-import java.util.List;
 
 /**
  * @author Javier Gamarra
@@ -33,40 +30,24 @@ import java.util.List;
 public class DDLListAdapter
 	extends BaseListAdapter<Record, DDLListAdapter.TwoTextsViewHolder> {
 
-	public DDLListAdapter(
-		int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
-
+	public DDLListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 		super(layoutId, progressLayoutId, listener);
 	}
 
-	public void setLabelFields(List<String> labelFields) {
-		_labelFields = labelFields;
-	}
-
+	@NonNull
 	@Override
-	public TwoTextsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-		LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-
-		View view;
-
-		if (viewType == LAYOUT_TYPE_DEFAULT) {
-			view = inflater.inflate(getLayoutId(), parent, false);
-		}
-		else {
-			view = inflater.inflate(getProgressLayoutId(), parent, false);
-		}
-
-		return new TwoTextsViewHolder(view, getListener());
+	public TwoTextsViewHolder createViewHolder(View view, BaseListAdapterListener listener) {
+		return new TwoTextsViewHolder(view, listener);
 	}
 
 	@Override
 	protected void fillHolder(Record entry, TwoTextsViewHolder holder) {
 		StringBuilder builder = new StringBuilder();
 
-		String titleField = (String) entry.getServerValue(_labelFields.get(0));
+		String titleField = (String) entry.getServerValue(getLabelFields().get(0));
 
-		for (int i = 1; i < _labelFields.size(); ++i) {
-			String field = _labelFields.get(i);
+		for (int i = 1; i < getLabelFields().size(); ++i) {
+			String field = getLabelFields().get(i);
 			Object value = entry.getServerValue(field);
 			if (value != null) {
 				builder.append(value.toString());
@@ -77,8 +58,6 @@ public class DDLListAdapter
 		holder.textView.setText(titleField);
 		holder.subtitleTextView.setText(builder.toString());
 	}
-
-	private List<String> _labelFields;
 
 	public static class TwoTextsViewHolder extends BaseListAdapter.ViewHolder {
 

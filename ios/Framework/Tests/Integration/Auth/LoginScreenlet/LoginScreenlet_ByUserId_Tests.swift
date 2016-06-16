@@ -37,7 +37,7 @@ class LoginScreenlet_ByUserId_Tests: BaseLoginScreenletTestCase {
 				}
 				self.screenlet!.performDefaultAction()
 			}
-			eventually("the state of the screenlet should be consistent", code: {result in
+			eventually("the state of the screenlet should be consistent", { result in
 				assertThat("the error should be nil") {
 					XCTAssertFalse(result is NSError)
 				}
@@ -55,15 +55,15 @@ class LoginScreenlet_ByUserId_Tests: BaseLoginScreenletTestCase {
 					XCTAssertTrue(SessionContext.isLoggedIn)
 				}
 				assertThat("the current user name should be the userId") {
-					XCTAssertNotNil(SessionContext.currentBasicUserName)
-					XCTAssertEqual("123456", SessionContext.currentBasicUserName!)
+					XCTAssertNotNil(SessionContext.currentContext?.basicAuthUsername)
+					XCTAssertEqual("123456", SessionContext.currentContext?.basicAuthUsername!)
 				}
 				assertThat("the current password should be available") {
-					XCTAssertNotNil(SessionContext.currentBasicPassword)
-					XCTAssertEqual("test", SessionContext.currentBasicPassword!)
+					XCTAssertNotNil(SessionContext.currentContext?.basicAuthPassword)
+					XCTAssertEqual("test", SessionContext.currentContext?.basicAuthPassword!)
 				}
 			},
-			action: .TestAndWaitFor("login response received", self))
+			.TestAndWaitFor("login response received", self))
 		}
 	}
 

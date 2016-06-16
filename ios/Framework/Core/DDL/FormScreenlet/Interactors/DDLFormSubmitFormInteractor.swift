@@ -14,7 +14,7 @@
 import UIKit
 
 
-class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
+class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 
 	let groupId: Int64
 	let recordSetId: Int64
@@ -51,7 +51,7 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 
 		self.userId = (formScreenlet.userId != 0)
 			? formScreenlet.userId
-			: SessionContext.currentUserId
+			: SessionContext.currentContext?.userId
 
 		self.recordSetId = formScreenlet.recordSetId
 		self.record = record
@@ -64,7 +64,7 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 			?? LiferayServerContext.groupId
 
 		self.userId = record.attributes["userId"]?.longLongValue
-			?? SessionContext.currentUserId
+			?? SessionContext.currentContext?.userId
 
 		self.recordSetId = record.attributes["recordSetId"]!.longLongValue
 		self.record = record
@@ -73,32 +73,33 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 		super.init(screenlet: nil)
 	}
 
-	override func createOperation() -> LiferayDDLFormSubmitOperation {
+	override func createConnector() -> DDLFormSubmitLiferayConnector {
 
-		let operation: LiferayDDLFormSubmitOperation
+		let connector: DDLFormSubmitLiferayConnector
 
 		if let screenlet = self.screenlet as? DDLFormScreenlet {
-			operation = LiferayDDLFormSubmitOperation(
+			connector = LiferayServerContext.connectorFactory.createDDLFormSubmitConnector(
 					values: record.values,
 					viewModel: screenlet.viewModel)
 
-			operation.autoscrollOnValidation = screenlet.autoscrollOnValidation
+			connector.autoscrollOnValidation = screenlet.autoscrollOnValidation
 		}
 		else {
-			operation = LiferayDDLFormSubmitOperation(
-				values: record.values)
+			connector = LiferayServerContext.connectorFactory.createDDLFormSubmitConnector(
+				values: record.values,
+				viewModel: nil)
 		}
 
-		operation.groupId = groupId
-		operation.userId = userId
-		operation.recordId = record.recordId
-		operation.recordSetId = recordSetId
+		connector.groupId = groupId
+		connector.userId = userId
+		connector.recordId = record.recordId
+		connector.recordSetId = recordSetId
 
-		return operation
+		return connector
 	}
 
-	override func completedOperation(op: ServerOperation) {
-		if let loadOp = op as? LiferayDDLFormSubmitOperation {
+	override func completedConnector(op: ServerConnector) {
+		if let loadOp = op as? DDLFormSubmitLiferayConnector {
 				self.resultRecordId = loadOp.resultRecordId
 				self.resultAttributes = loadOp.resultAttributes
 
@@ -111,17 +112,21 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 
 	//MARK: Cache methods
 
-	override func writeToCache(op: ServerOperation) {
-		let submitOp = op as! LiferayDDLFormSubmitOperation
+	override func writeToCache(op: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+
+		let submitOp = op as! DDLFormSubmitLiferayConnector
 
 		let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
-			? SessionContext.currentCacheManager?.setDirty
-			: SessionContext.currentCacheManager?.setClean
+			? cacheManager.setDirty
+			: cacheManager.setClean
 
 		lastCacheKeyUsed = lastCacheKeyUsed
 			?? DDLFormSubmitFormInteractor.cacheKey(submitOp.recordId)
 
-		cacheFunction?(
+		cacheFunction(
 			collection: ScreenletName(DDLFormScreenlet),
 			key: lastCacheKeyUsed!,
 			value: record.values,
@@ -129,6 +134,10 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 	}
 
 	override func callOnSuccess() {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+
 		if cacheStrategy == .CacheFirst {
 			precondition(
 				lastCacheKeyUsed != nil,
@@ -138,19 +147,19 @@ class DDLFormSubmitFormInteractor: ServerWriteOperationInteractor {
 				// create new cache entry and delete the draft one
 				if lastCacheKeyUsed!.hasPrefix("draft-")
 						&& record.recordId == nil {
-					SessionContext.currentCacheManager?.remove(
+					cacheManager.remove(
 						collection: ScreenletName(DDLFormScreenlet),
 						key: lastCacheKeyUsed!)
 				}
 
-				SessionContext.currentCacheManager?.setClean(
+				cacheManager.setClean(
 					collection: ScreenletName(DDLFormScreenlet),
 					key: DDLFormSubmitFormInteractor.cacheKey(resultRecordId),
 					attributes: cacheAttributes())
 			}
 			else {
 				// update current cache entry with date sent
-				SessionContext.currentCacheManager?.setClean(
+				cacheManager.setClean(
 					collection: ScreenletName(DDLFormScreenlet),
 					key: lastCacheKeyUsed
 						?? DDLFormSubmitFormInteractor.cacheKey(record.recordId),

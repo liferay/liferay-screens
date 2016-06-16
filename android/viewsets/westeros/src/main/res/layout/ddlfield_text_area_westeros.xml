@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldTextView xmlns:android="http://schemas.android.com/apk/res/android"
-																				   android:layout_width="match_parent"
-																				   android:layout_height="wrap_content"
-																				   android:orientation="vertical">
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical">
 
 	<TextView
 		android:id="@+id/liferay_ddl_label"
@@ -10,7 +10,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:textColor="@android:color/white"
-		android:visibility="gone"/>
+		android:visibility="gone" />
 
 	<EditText
 		android:id="@+id/liferay_ddl_edit_text"
@@ -19,5 +19,5 @@
 		android:gravity="start"
 		android:inputType="textMultiLine"
 		android:minLines="3"
-		android:singleLine="false"/>
+		android:singleLine="false" />
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldTextView>

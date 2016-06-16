@@ -67,7 +67,7 @@ class Liferay62MockServer : MockServer, StubResponses {
 }
 
 
-class CredentialStoreMock : CredentialsStore {
+@objc class CredentialStoreMock : NSObject, CredentialsStore {
 
 	var calledLoadCredential = false
 	var calledRemoveCredential = false
@@ -76,10 +76,15 @@ class CredentialStoreMock : CredentialsStore {
 	var authentication: LRAuthentication?
 	var userAttributes: [String:AnyObject]?
 
-	var hasData: Bool = true
+	var hasData = true
 
 	func storeCredentials(session: LRSession?, userAttributes: [String:AnyObject]?) -> Bool {
 		calledStoreCredential = true
+
+		// after the credentials are saved, the data is present
+		hasData = true
+		self.authentication = session?.authentication
+		self.userAttributes = userAttributes
 
 		return hasData
 	}
@@ -96,4 +101,12 @@ class CredentialStoreMock : CredentialsStore {
 		return hasData
 	}
 
+}
+
+
+// Syntactic sugar
+func withCredentialsStoreMockedSession(block: (CredentialStoreMock) -> ()) {
+	let mock = CredentialStoreMock()
+	SessionContext.currentContext?.credentialsStorage = CredentialsStorage(store: mock)
+	block(mock)
 }

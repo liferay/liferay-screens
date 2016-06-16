@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
 	android:id="@+id/liferay_list_title"
 	style="@style/material_list_item"
-	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
+	android:layout_height="wrap_content"
 	android:background="?android:attr/selectableItemBackground"
 	android:clickable="true"
 	android:drawableLeft="@drawable/material_tinted_list_icon"
 	android:drawablePadding="16dp"
 	android:drawableStart="@drawable/material_tinted_list_icon"
 	android:focusable="true"
-	android:gravity="center_vertical"/>
+	android:gravity="center_vertical" />

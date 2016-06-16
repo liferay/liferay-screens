@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent">
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
 
 	<ImageView
 		android:id="@+id/tour_image"
@@ -10,20 +10,20 @@
 		android:layout_centerHorizontal="true"
 		android:layout_gravity="center"
 		android:layout_marginTop="50dp"
-		android:src="@drawable/tour_girl"/>
+		android:src="@drawable/tour_girl" />
 
 	<TextView
 		style="@style/westeros_tour_text"
 		android:layout_above="@+id/tour_description"
 		android:text="@string/problem_solvers"
 		android:textAllCaps="true"
-		android:textStyle="bold"/>
+		android:textStyle="bold" />
 
 	<TextView
 		android:id="@+id/tour_description"
 		style="@style/westeros_tour_text"
 		android:layout_alignParentBottom="true"
-		android:text="@string/a_team_of_proffessionals"
-		android:textColor="@color/westeros_dark_gray"/>
+		android:text="@string/a_team_of_professionals"
+		android:textColor="@color/textColorSecondary_westeros" />
 
 </RelativeLayout>

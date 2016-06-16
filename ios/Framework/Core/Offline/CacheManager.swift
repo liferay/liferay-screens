@@ -13,6 +13,8 @@
 */
 import Foundation
 import YapDatabase
+import YapDatabase.YapDatabaseView
+import YapDatabase.YapDatabaseFilteredView
 
 
 public enum CacheStrategyType: String {
@@ -25,19 +27,14 @@ public enum CacheStrategyType: String {
 
 @objc public class CacheManager: NSObject {
 
-	private let tableSchemaDatabase = "lr_cache_"
+	private static let tableSchemaDatabase = "lr_cache_"
 
-	private var database: YapDatabase
-	private var readConnection: YapDatabaseConnection
-	private var writeConnection: YapDatabaseConnection
+	public let database: YapDatabase
+	public let readConnection: YapDatabaseConnection
+	public let writeConnection: YapDatabaseConnection
 
-
-	public init(name: String) {
-		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0] 
-		let path = (cacheFolderPath as NSString).stringByAppendingPathComponent(tableSchemaDatabase)
-		let dbPath = "\(path)_\(name.toSafeFilename()))"
-
-		database = YapDatabase(path: dbPath)
+	public init(database: YapDatabase) {
+		self.database = database
 		readConnection = database.newConnection()
 		writeConnection = database.newConnection()
 
@@ -46,10 +43,15 @@ public enum CacheStrategyType: String {
 		registerPendingToSyncView(nil)
 	}
 
-	public convenience init(session: LRSession) {
-		self.init(name: session.serverName!)
+	public convenience init(name: String) {
+		let dbPath = CacheManager.databasePath(name)
+
+		self.init(database: YapDatabase(path: dbPath))
 	}
 
+	public convenience init(session: LRSession, userId: Int64) {
+		self.init(name: "\(session.serverName!)-\(userId)")
+	}
 
 	public func getString(collection collection: String, key: String, result: String? -> ()) {
 		readConnection.readWithBlock { transaction in
@@ -262,7 +264,7 @@ public enum CacheStrategyType: String {
 
 	public func pendingToSync(result: (String, String, [String:AnyObject]) -> Bool) {
 		pendingToSyncTransaction { transaction in
-			let groups = (transaction?.allGroups() as? [String]) ?? [String]()
+			let groups = transaction?.allGroups() ?? [String]()
 			for group in groups {
 				transaction?.enumerateKeysAndMetadataInGroup(group) {
 						(collection, key, metadata, index, stop) in
@@ -278,6 +280,61 @@ public enum CacheStrategyType: String {
 					}
 				}
 			}
+		}
+	}
+
+
+	//MARK "protected" methods
+
+	public class func databasePath(name: String) -> String {
+		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0]
+		let path = (cacheFolderPath as NSString).stringByAppendingPathComponent(tableSchemaDatabase)
+
+		let filename = name.toSafeFilename()
+		let dbPath = "\(path)_\(filename)"
+
+		CacheManager.fixWrongDatabaseFilename(filename, path: path)
+
+		return dbPath
+	}
+
+	public func registerPendingToSyncView(result: (Bool -> ())?) {
+		let grouping = YapDatabaseViewGrouping.withKeyBlock { (_, collection, key) in
+			return collection
+		}
+
+		let sorting = YapDatabaseViewSorting.withKeyBlock { (_, _, _, key1, _, key2) in
+			//TODO sort by added date
+			return key1.compare(key2)
+		}
+
+
+		let filtering = YapDatabaseViewFiltering.withMetadataBlock({ (_, _, _, _, metadata) in
+			let cacheMetadata = metadata as? CacheMetadata
+			return cacheMetadata?.synchronized == nil
+		})
+
+		let parentView = YapDatabaseView(grouping: grouping, sorting: sorting)
+
+		database.asyncRegisterExtension(parentView,
+			withName: "allEntries",
+			connection: writeConnection,
+			completionQueue: nil) { success in
+				if success {
+					let filterView = YapDatabaseFilteredView(
+						parentViewName: "allEntries",
+						filtering: filtering)
+
+					self.database.asyncRegisterExtension(filterView,
+						withName: "pendingToSync",
+						connection: self.writeConnection,
+						completionQueue: nil) { success in
+							result?(success)
+					}
+				}
+				else {
+					result?(false)
+				}
 		}
 	}
 
@@ -304,41 +361,19 @@ public enum CacheStrategyType: String {
 		}
 	}
 
-	private func registerPendingToSyncView(result: (Bool -> ())?) {
-		let grouping = YapDatabaseViewGrouping.withKeyBlock { (collection, key) in
-			return collection
-		}
+	private class func fixWrongDatabaseFilename(filename: String, path: String) {
+		// Typo in file name in Screens 1.2
+		let rightDbPath = "\(path)_\(filename)"
+		let wrongDbPath = "\(path)_\(filename))"
 
-		let sorting = YapDatabaseViewSorting.withKeyBlock { (_, _, key1, _, key2) in
-			//TODO sort by added date
-			return key1.compare(key2)
-		}
-
-		let filtering = YapDatabaseViewFiltering.withMetadataBlock({ (_,_,_, metadata: AnyObject!) in
-			let cacheMetadata = metadata as? CacheMetadata
-			return cacheMetadata?.synchronized == nil
-		})
-
-		let parentView = YapDatabaseView(grouping: grouping, sorting: sorting)
-
-		database.asyncRegisterExtension(parentView,
-			withName: "allEntries",
-			connection: writeConnection,
-			completionQueue: nil) { success in
-				if success {
-					let filterView = YapDatabaseFilteredView(parentViewName: "allEntries", filtering: filtering)
-
-					self.database.asyncRegisterExtension(filterView,
-						withName: "pendingToSync",
-						connection: self.writeConnection,
-						completionQueue: nil) { success in
-							result?(success)
-						}
-				}
-				else {
-					result?(false)
-				}
-		}
+		// Use the right filename but rename wrong name first
+		if NSFileManager.defaultManager().fileExistsAtPath(wrongDbPath) {
+			do {
+				try NSFileManager.defaultManager().moveItemAtPath(wrongDbPath, toPath: rightDbPath)
+			}
+			catch {
+			}
+			}
 	}
 
 }

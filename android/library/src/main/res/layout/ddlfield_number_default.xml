@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldNumberView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:padding="10dp">
+
+	<TextView
+		android:id="@+id/liferay_ddl_label"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:visibility="gone" />
+
+	<EditText
+		android:id="@+id/liferay_ddl_edit_text"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:inputType="number" />
+
+</com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldNumberView>

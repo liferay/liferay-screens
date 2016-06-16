@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-			  xmlns:liferay="http://schemas.android.com/apk/res-auto"
-			  android:layout_width="match_parent"
-			  android:layout_height="match_parent"
-			  android:orientation="vertical">
+	xmlns:liferay="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
 
 	<TextView
 		style="@style/label"
-		android:text="@string/signup_label"/>
+		android:text="@string/signup_label" />
 
 	<com.liferay.mobile.screens.auth.signup.SignUpScreenlet
-		android:id="@+id/signup_default"
+		android:id="@+id/signup_screenlet"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		liferay:anonymousApiPassword="@string/liferay_anonymousApiPassword"
-		liferay:anonymousApiUserName="@string/liferay_anonymousApiUserName"
-		liferay:layoutId="@layout/sign_up_default"/>
-
-	<com.liferay.mobile.screens.auth.signup.SignUpScreenlet
-		android:id="@+id/signup_material"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		liferay:anonymousApiPassword="@string/liferay_anonymousApiPassword"
-		liferay:anonymousApiUserName="@string/liferay_anonymousApiUserName"
-		liferay:layoutId="@layout/sign_up_material"/>
+		liferay:anonymousApiUserName="@string/liferay_anonymousApiUserName" />
 
 </LinearLayout>

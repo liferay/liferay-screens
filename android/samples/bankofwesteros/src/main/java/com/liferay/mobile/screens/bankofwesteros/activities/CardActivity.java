@@ -243,7 +243,7 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 	private void setStatusBar() {
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-		getWindow().setStatusBarColor(getResources().getColor(R.color.westeros_background_gray));
+		getWindow().setStatusBarColor(getResources().getColor(R.color.background_gray_westeros));
 	}
 
 	@TargetApi(Build.VERSION_CODES.KITKAT)

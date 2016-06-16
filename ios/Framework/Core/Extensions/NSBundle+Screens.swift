@@ -20,12 +20,10 @@ extension NSBundle {
 		let bundles =
 			[
 				discoverBundles(),
-				[
-					bundleForDefaultTheme(),
-					bundleForCore(),
-					NSBundle(forClass: currentClass)
-				],
-				bundlesForApp()
+				bundlesForDefaultTheme(),
+				bundlesForCore(),
+				bundlesForApp(),
+				[NSBundle(forClass: currentClass)]
 			]
 			.flatMap { $0 }
 
@@ -46,22 +44,22 @@ extension NSBundle {
 		}
 	}
 
-	public class func bundleForDefaultTheme() -> NSBundle {
-		let frameworkBundle = NSBundle(forClass: BaseScreenlet.self)
-
-		let defaultBundlePath = frameworkBundle.pathForResource("LiferayScreens-default",
-				ofType: "bundle")!
-
-		return NSBundle(path: defaultBundlePath)!
+	public class func bundlesForDefaultTheme() -> [NSBundle] {
+		return [bundleForName("LiferayScreens-default"), bundleForName("LiferayScreens-ee-default")]
 	}
 
-	public class func bundleForCore() -> NSBundle {
+	public class func bundlesForCore() -> [NSBundle] {
+		return [bundleForName("LiferayScreens-core"), bundleForName("LiferayScreens-ee-core")]
+	}
+
+	public class func bundleForName(name: String) -> NSBundle {
 		let frameworkBundle = NSBundle(forClass: BaseScreenlet.self)
 
-		let coreBundlePath = frameworkBundle.pathForResource("LiferayScreens-core",
-				ofType: "bundle")!
+		let bundlePath = frameworkBundle.pathForResource(name, ofType: "bundle")
 
-		return NSBundle(path: coreBundlePath)!
+		// In test environment, separated bundles don't exist.
+		// In such case, the frameworkBundle is used
+		return (bundlePath != nil) ? NSBundle(path: bundlePath!)! : frameworkBundle
 	}
 
 	public class func bundlesForApp() -> [NSBundle] {
@@ -78,7 +76,7 @@ extension NSBundle {
 
 		if components.last == "Overlays" {
 			// running into IB
-			let coreBundle = bundleForCore()
+			let coreBundle = bundlesForCore()[0]
 
 			if let range = coreBundle.resourcePath?.rangeOfString("Debug-iphonesimulator"),
 					path = coreBundle.resourcePath?.substringToIndex(range.endIndex),

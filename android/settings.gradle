@@ -1,0 +1,27 @@
+include 'liferay-screens'
+project(':liferay-screens').projectDir = new File(settingsDir, '/library')
+project(':liferay-screens').name = 'liferay-screens'
+
+include 'liferay-material-viewset'
+project(':liferay-material-viewset').projectDir = new File(settingsDir, '/viewsets/material')
+project(':liferay-material-viewset').name = 'liferay-material-viewset'
+
+include 'liferay-westeros-viewset'
+project(':liferay-westeros-viewset').projectDir = new File(settingsDir, '/viewsets/westeros')
+project(':liferay-westeros-viewset').name = 'liferay-westeros-viewset'
+
+include ':addbookmarkscreenlet'
+project(':addbookmarkscreenlet').projectDir = new File(settingsDir, '/samples/addbookmarkscreenlet')
+
+include ':listbookmarkscreenlet'
+project(':listbookmarkscreenlet').projectDir = new File(settingsDir, '/samples/listbookmarkscreenlet')
+
+include ':test-app'
+project(':test-app').projectDir = new File(settingsDir, '/samples/test-app')
+
+include ':bankofwesteros'
+project(':bankofwesteros').projectDir = new File(settingsDir, '/samples/bankofwesteros')
+
+include ':pushnotifications'
+project(':pushnotifications').projectDir = new File(settingsDir, '/samples/pushnotifications')
+

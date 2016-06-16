@@ -19,7 +19,7 @@ import UIKit
 #endif
 
 
-public class BaseCredentialsStoreKeyChain : CredentialsStore {
+@objc public class BaseCredentialsStoreKeyChain : NSObject, CredentialsStore {
 
 	public var authentication: LRAuthentication?
 	public var userAttributes: [String:AnyObject]?
@@ -28,10 +28,12 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 			session: LRSession?,
 			userAttributes: [String:AnyObject]?) -> Bool {
 
-		if session == nil { return false }
-		if session?.authentication == nil { return false }
-		if userAttributes == nil { return false }
-		if userAttributes!.isEmpty { return false }
+		guard let auth = session?.authentication else {
+			return false
+		}
+		guard !(userAttributes?.isEmpty ?? true) else {
+			return false
+		}
 
 		let keychain = BaseCredentialsStoreKeyChain.keychain()
 
@@ -46,7 +48,7 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 			if let userData = userData {
 				try keychain.set(userData, key: "user_attributes")
 
-				storeAuth(keychain: keychain, auth: session!.authentication!)
+				storeAuth(keychain: keychain, auth: auth)
 
 				return true
 			}
@@ -118,12 +120,14 @@ public class BaseCredentialsStoreKeyChain : CredentialsStore {
 	}
 
 	public class func storedAuthType() -> AuthType? {
-		guard let value = try? keychain().get("auth_type")
-		else {
+		guard let authType = try? keychain().get("auth_type") else {
+			return nil
+		}
+		guard let authTypeValue = authType else {
 			return nil
 		}
 
-		return AuthType(rawValue: value ?? "")
+		return AuthTypeFromString(authTypeValue)
 	}
 
 	public class func keychain() -> Keychain {

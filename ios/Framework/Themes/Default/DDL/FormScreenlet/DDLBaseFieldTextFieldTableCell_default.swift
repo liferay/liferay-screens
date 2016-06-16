@@ -14,14 +14,14 @@
 import UIKit
 
 
-public class DDLBaseFieldTextboxTableCell_default: DDLFieldTableCell, UITextFieldDelegate {
+public class DDLBaseFieldTextboxTableCell_default: DDMFieldTableCell, UITextFieldDelegate {
 
 	@IBOutlet public var textField: UITextField?
 	@IBOutlet public var textFieldBackground: UIImageView?
 	@IBOutlet public var label: UILabel?
 
 
-	//MARK: DDLFieldTableCell
+	//MARK: DDMFieldTableCell
 
 	override public func onChangedField() {
 		if field!.showLabel {

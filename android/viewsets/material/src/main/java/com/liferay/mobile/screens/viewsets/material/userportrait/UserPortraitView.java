@@ -56,7 +56,7 @@ public class UserPortraitView
 
 		Canvas canvas = new Canvas(finalBitmap);
 		canvas.drawOval(rect, getPaint(bitmap));
-		canvas.drawOval(rect, getBorderPaint(borderWidth, R.color.material_primary));
+		canvas.drawOval(rect, getBorderPaint(borderWidth, R.color.colorPrimary_material));
 
 		return finalBitmap;
 	}

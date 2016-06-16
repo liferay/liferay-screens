@@ -124,13 +124,13 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 				key = "save-button"
 				actionName = "save-action"
 
-				self.firstName = SessionContext.userAttribute("firstName") as? String
-				self.middleName = SessionContext.userAttribute("middleName") as? String
-				self.lastName = SessionContext.userAttribute("lastName") as? String
-				self.emailAddress = SessionContext.userAttribute("emailAddress") as? String
-				self.password = SessionContext.currentBasicPassword
-				self.screenName = SessionContext.userAttribute("screenName") as? String
-				self.jobTitle = SessionContext.userAttribute("jobTitle") as? String
+				self.firstName = SessionContext.currentContext?.userAttribute("firstName") as? String
+				self.middleName = SessionContext.currentContext?.userAttribute("middleName") as? String
+				self.lastName = SessionContext.currentContext?.userAttribute("lastName") as? String
+				self.emailAddress = SessionContext.currentContext?.userAttribute("emailAddress") as? String
+				self.password = SessionContext.currentContext?.basicAuthPassword
+				self.screenName = SessionContext.currentContext?.userAttribute("screenName") as? String
+				self.jobTitle = SessionContext.currentContext?.userAttribute("jobTitle") as? String
 			}
 			else {
 				key = "signup-button"

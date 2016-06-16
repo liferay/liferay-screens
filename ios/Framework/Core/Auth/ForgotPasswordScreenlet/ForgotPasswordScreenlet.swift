@@ -64,7 +64,7 @@ import UIKit
 
 		(screenletView as? BasicAuthBasedType)?.basicAuthMethod = basicAuthMethod
 
-		if let userName = SessionContext.currentBasicUserName {
+		if let userName = SessionContext.currentContext?.basicAuthUsername {
 			viewModel.userName = userName
 		}
 	}

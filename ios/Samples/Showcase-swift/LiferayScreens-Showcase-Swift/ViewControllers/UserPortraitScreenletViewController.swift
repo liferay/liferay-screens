@@ -24,31 +24,40 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 
 	@IBAction func loadPortrait(sender: AnyObject) {
 		if let userId = Int(userIdField.text!) {
+			print("[PORTRAIT] Loading by id '\(userId)'")
 			screenlet.load(userId: Int64(userId))
 			screenletWithDelegate.load(userId: Int64(userId))
 			editableScreenlet.load(userId: Int64(userId))
 		}
-		else {
+		else if let text = userIdField.text where text != "" {
 			let company = LiferayServerContext.companyId
 
-			if userIdField.text!.characters.indexOf("@") != nil {
-				screenlet.load(companyId: company, emailAddress: userIdField.text!)
-				screenletWithDelegate.load(companyId: company, emailAddress: userIdField.text!)
-				editableScreenlet.load(companyId: company, emailAddress: userIdField.text!)
+			if text.characters.indexOf("@") != nil {
+				print("[PORTRAIT] Loading by email '\(text)'")
+				screenlet.load(companyId: company, emailAddress: text)
+				screenletWithDelegate.load(companyId: company, emailAddress: text)
+				editableScreenlet.load(companyId: company, emailAddress: text)
 			}
-			else {
-				screenlet.load(companyId: company, screenName: userIdField.text!)
-				screenletWithDelegate.load(companyId: company, screenName: userIdField.text!)
-				editableScreenlet.load(companyId: company, screenName: userIdField.text!)
+			else  {
+				print("[PORTRAIT] Loading by screenName '\(text)'")
+				screenlet.load(companyId: company, screenName: text)
+				screenletWithDelegate.load(companyId: company, screenName: text)
+				editableScreenlet.load(companyId: company, screenName: text)
 			}
+		}
+		else {
+			print("[PORTRAIT] Loading by logged user")
+			screenlet.loadLoggedUserPortrait()
+			screenletWithDelegate.loadLoggedUserPortrait()
+			editableScreenlet.loadLoggedUserPortrait()
 		}
 	}
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		if SessionContext.isLoggedIn {
-			userIdField.text = SessionContext.userAttribute("userId")?.description
+		if let userId = SessionContext.currentContext?.userAttribute("userId")?.description {
+			userIdField.text = userId
 		}
 
 		screenletWithDelegate?.delegate = self

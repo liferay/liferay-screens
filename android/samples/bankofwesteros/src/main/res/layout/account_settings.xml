@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-				xmlns:liferay="http://schemas.android.com/apk/res-auto"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:background="@android:color/white">
+	xmlns:liferay="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@android:color/white">
 
 	<ImageView
 		android:id="@+id/arrow_back_to_issues"
 		style="@style/westeros_arrow"
 		android:layout_alignParentLeft="true"
 		android:layout_alignParentStart="true"
-		android:src="@drawable/icon_left"/>
+		android:src="@drawable/icon_left" />
 
 	<TextView
 		android:id="@+id/title_account_settings"
 		style="@style/westeros_card_title"
-		android:text="@string/account_settings"/>
+		android:text="@string/account_settings" />
 
 	<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
 		android:id="@+id/userportrait"
@@ -24,21 +24,21 @@
 		android:layout_below="@id/title_account_settings"
 		android:layout_centerHorizontal="true"
 		liferay:editable="true"
-		liferay:layoutId="@layout/userportrait_westeros"/>
+		liferay:layoutId="@layout/userportrait_westeros" />
 
 	<EditText
 		android:id="@+id/first_name"
 		style="@style/westeros_edit_text"
 		android:layout_height="@dimen/westeros_alternative_block_height"
 		android:layout_below="@id/userportrait"
-		android:hint="@string/first_name"/>
+		android:hint="@string/first_name" />
 
 	<EditText
 		android:id="@+id/last_name"
 		style="@style/westeros_edit_text"
 		android:layout_height="@dimen/westeros_alternative_block_height"
 		android:layout_below="@id/first_name"
-		android:hint="@string/last_name"/>
+		android:hint="@string/last_name" />
 
 	<EditText
 		android:id="@+id/email_address"
@@ -46,7 +46,7 @@
 		android:layout_height="@dimen/westeros_alternative_block_height"
 		android:layout_below="@id/last_name"
 		android:hint="@string/email_address"
-		android:inputType="textEmailAddress"/>
+		android:inputType="textEmailAddress" />
 
 	<EditText
 		android:id="@+id/password"
@@ -54,14 +54,14 @@
 		android:layout_height="@dimen/westeros_alternative_block_height"
 		android:layout_below="@id/email_address"
 		android:hint="@string/password"
-		android:inputType="textPassword"/>
+		android:inputType="textPassword" />
 
 	<Button
 		android:id="@+id/account_settings_save"
 		style="@style/westeros_button"
 		android:layout_height="@dimen/westeros_alternative_block_height"
 		android:layout_alignParentBottom="true"
-		android:text="@string/save"/>
+		android:text="@string/save" />
 
 	<FrameLayout
 		android:id="@+id/crouton_view_anchor"
@@ -70,6 +70,6 @@
 		android:layout_alignParentBottom="true"
 		android:elevation="24dp"
 		android:orientation="vertical"
-		android:visibility="visible"/>
+		android:visibility="visible" />
 
 </RelativeLayout>

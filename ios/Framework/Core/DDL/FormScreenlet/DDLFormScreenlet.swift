@@ -35,19 +35,19 @@ import UIKit
 			onFormSubmitError error: NSError)
 
 	optional func screenlet(screenlet: DDLFormScreenlet,
-			onDocumentFieldUploadStarted field: DDLFieldDocument)
+			onDocumentFieldUploadStarted field: DDMFieldDocument)
 
 	optional func screenlet(screenlet: DDLFormScreenlet,
-			onDocumentField field: DDLFieldDocument,
+			onDocumentField field: DDMFieldDocument,
 			uploadedBytes bytes: UInt64,
 			totalBytes total: UInt64)
 
 	optional func screenlet(screenlet: DDLFormScreenlet,
-			onDocumentField field: DDLFieldDocument,
+			onDocumentField field: DDMFieldDocument,
 			uploadResult result: [String:AnyObject])
 
 	optional func screenlet(screenlet: DDLFormScreenlet,
-			onDocumentField field: DDLFieldDocument,
+			onDocumentField field: DDMFieldDocument,
 			uploadError error: NSError)
 
 }
@@ -138,8 +138,8 @@ import UIKit
 			case DDLFormScreenlet.SubmitFormAction:
 				return createSubmitFormInteractor()
 			case DDLFormScreenlet.UploadDocumentAction:
-				if sender is DDLFieldDocument {
-					return createUploadDocumentInteractor(sender as! DDLFieldDocument)
+				if sender is DDMFieldDocument {
+					return createUploadDocumentInteractor(sender as! DDMFieldDocument)
 				}
 			default: ()
 		}
@@ -239,13 +239,21 @@ import UIKit
 			}
 
 			// then set data
-			if let recordValue = self.formView.record {
-				recordValue.updateCurrentValues(interactor.resultRecordData!)
-				recordValue.recordId = interactor.resultRecordId!
+			if let recordValue = self.formView.record,
+					data = interactor.resultRecordData,
+					recordId = interactor.resultRecordId
+				where interactor.lastError == nil {
+
+				recordValue.updateCurrentValues(values: data)
+				recordValue.recordId = recordId
 
 				self.formView.refresh()
 
 				self.ddlFormDelegate?.screenlet?(self, onRecordLoaded: recordValue)
+			}
+			else {
+				self.ddlFormDelegate?.screenlet?(self,
+						onRecordLoadError: interactor.lastError ?? NSError.errorWithCause(.InvalidServerResponse))
 			}
 		}
 
@@ -257,10 +265,10 @@ import UIKit
 	}
 
 	internal func createUploadDocumentInteractor(
-			document: DDLFieldDocument)
+			document: DDMFieldDocument)
 			-> DDLFormUploadDocumentInteractor {
 
-		func onUploadedBytes(document: DDLFieldDocument, sent: UInt64, total: UInt64) {
+		func onUploadedBytes(document: DDMFieldDocument, sent: UInt64, total: UInt64) {
 			switch uploadStatus {
 				case .Uploading(_, _):
 					formView.changeDocumentUploadStatus(document)
@@ -380,7 +388,7 @@ import UIKit
 
 	private func retryUploads() {
 		let failedDocumentFields = formView.record?.fields.filter() {
-			if let fieldUploadStatus = ($0 as? DDLFieldDocument)?.uploadStatus {
+			if let fieldUploadStatus = ($0 as? DDMFieldDocument)?.uploadStatus {
 				switch fieldUploadStatus {
 					case .Failed(_): return true
 					default: ()

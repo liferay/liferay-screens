@@ -14,18 +14,19 @@
 import UIKit
 
 
-public class SaveUserInteractor: ServerOperationInteractor {
+public class SaveUserInteractor: ServerConnectorInteractor {
 
 	public var resultUserAttributes: [String:AnyObject]?
 
-	override public func createOperation() -> LiferayUpdateCurrentUserOperation {
+	override public func createConnector() -> UpdateCurrentUserLiferayConnector {
 		let screenlet = self.screenlet as! SignUpScreenlet
 
-		return LiferayUpdateCurrentUserOperation(viewModel: screenlet.viewModel)
+		return LiferayServerContext.connectorFactory.createUpdateCurrentUserConnector(
+			viewModel: screenlet.viewModel)
 	}
 
-	override public func completedOperation(op: ServerOperation) {
-		self.resultUserAttributes = (op as! LiferayUpdateCurrentUserOperation).resultUserAttributes
+	override public func completedConnector(op: ServerConnector) {
+		self.resultUserAttributes = (op as! UpdateCurrentUserLiferayConnector).resultUserAttributes
 	}
 
 }

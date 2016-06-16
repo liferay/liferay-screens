@@ -5,9 +5,8 @@ import android.os.Bundle;
 import com.liferay.mobile.screens.base.interactor.CustomInteractorListener;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.bookmark.AddBookmarkScreenlet;
+import com.liferay.mobile.screens.bookmark.interactor.AddBookmarkInteractorImpl;
 import com.liferay.mobile.screens.bookmark.interactor.AddBookmarkListener;
-import com.liferay.mobile.screens.bookmark.interactor.AddDeliciousInteractorImpl;
-import com.liferay.mobile.screens.viewsets.defaultviews.LiferayCrouton;
 
 /**
  * @author Javier Gamarra
@@ -27,17 +26,17 @@ public class AddBookmarkActivity extends ThemeActivity implements AddBookmarkLis
 
 	@Override
 	public void onAddBookmarkFailure(Exception exception) {
-
+		error("Error adding bookmark", exception);
 	}
 
 	@Override
 	public void onAddBookmarkSuccess() {
-		LiferayCrouton.info(this, "Bookmark added!");
+		info("Bookmark added!");
 	}
 
 	@Override
 	public Interactor createInteractor(String actionName) {
-		return new AddDeliciousInteractorImpl(_screenlet.getScreenletId());
+		return new AddBookmarkInteractorImpl(_screenlet.getScreenletId());
 	}
 
 	private AddBookmarkScreenlet _screenlet;

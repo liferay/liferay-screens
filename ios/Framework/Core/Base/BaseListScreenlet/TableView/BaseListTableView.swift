@@ -39,25 +39,26 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		]
 	}
 
-	private let cellId = "listCell"
-
 
 	// MARK: BaseListView
 
 	public override func onCreated() {
 		super.onCreated()
 
-		doRegisterCellNib(id: cellId)
+		tableView?.delegate = self
+		tableView?.dataSource = self
+
+		doRegisterCellNibs()
 	}
 
 	override public func onChangedRows(oldRows: [AnyObject?]) {
 		super.onChangedRows(oldRows)
 
-		if oldRows.isEmpty {
-			insertFreshRows()
-		}
-		else if self.rows.isEmpty {
+		if self.rows.isEmpty {
 			clearAllRows(oldRows)
+		}
+		else if oldRows.isEmpty {
+			insertFreshRows()
 		}
 		else if let visibleRows = tableView!.indexPathsForVisibleRows {
 			updateVisibleRows(visibleRows)
@@ -87,10 +88,12 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 			indexPath: NSIndexPath)
 			-> UITableViewCell {
 
-		let cell = doDequeueReusableCell(row: indexPath.row)
+		let object: AnyObject? = rows[indexPath.row]
 
-		if let row: AnyObject = rows[indexPath.row] {
-			doFillLoadedCell(row: indexPath.row, cell: cell, object: row)
+		let cell = doDequeueReusableCell(row: indexPath.row, object: object)
+
+		if let object = object {
+			doFillLoadedCell(row: indexPath.row, cell: cell, object: object)
 		}
 		else {
 			doFillInProgressCell(row: indexPath.row, cell: cell)
@@ -109,14 +112,14 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		}
 	}
 
-	public func doDequeueReusableCell(row row: Int) -> UITableViewCell {
-		let result = tableView!.dequeueReusableCellWithIdentifier("listCell")
+	public func doDequeueReusableCell(row row: Int, object: AnyObject?) -> UITableViewCell {
+		let cellId = doGetCellId(row: row, object: object)
 
-		if result == nil {
-			return UITableViewCell(style: .Default, reuseIdentifier: "listCell")
+		guard let result = tableView!.dequeueReusableCellWithIdentifier(cellId) else {
+			return doCreateCell(cellId)
 		}
 
-		return result!
+		return result
 	}
 
 	public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
@@ -125,7 +128,15 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	public func doFillInProgressCell(row row: Int, cell: UITableViewCell) {
 	}
 
-	public func doRegisterCellNib(id id: String) {
+	public func doRegisterCellNibs() {
+	}
+
+	public func doGetCellId(row row: Int, object: AnyObject?) -> String {
+		return "defaultCellId"
+	}
+
+	public func doCreateCell(cellId: String) -> UITableViewCell {
+		return UITableViewCell(style: .Default, reuseIdentifier: cellId)
 	}
 
 
@@ -137,7 +148,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 				refreshControlView = ODRefreshControl(
 						inScrollView: self.tableView)
 				refreshControlView!.addTarget(self,
-						action: "refreshControlBeginRefresh:",
+						action: #selector(BaseListTableView.refreshControlBeginRefresh(_:)),
 						forControlEvents: .ValueChanged)
 			}
 		}

@@ -18,7 +18,7 @@ import UIKit
 #endif
 
 
-public class DDLFieldRadioTableCell_default: DDLFieldTableCell {
+public class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 
 	@IBOutlet public var label: UILabel?
 	@IBOutlet public var radioReferenceLabel: UILabel?
@@ -54,14 +54,14 @@ public class DDLFieldRadioTableCell_default: DDLFieldTableCell {
 	}
 
 
-	//MARK: DDLFieldTableCell
+	//MARK: DDMFieldTableCell
 
 	override public func canBecomeFirstResponder() -> Bool {
 		return false
 	}
 
 	override public func onChangedField() {
-		if let stringField = field as? DDLFieldStringWithOptions {
+		if let stringField = field as? DDMFieldStringWithOptions {
 			label!.text = stringField.label
 
 			let height =
@@ -97,7 +97,7 @@ public class DDLFieldRadioTableCell_default: DDLFieldTableCell {
 	}
 
 
-	public func createRadioButtons(field: DDLFieldStringWithOptions) {
+	public func createRadioButtons(field: DDMFieldStringWithOptions) {
 		var radioButtons:[AnyObject] = []
 
 		for option in field.options {
@@ -121,12 +121,12 @@ public class DDLFieldRadioTableCell_default: DDLFieldTableCell {
 		addSubview(radioGroup!)
 
 		NSNotificationCenter.defaultCenter().addObserver(self,
-				selector: "radioButtonSelected:",
+				selector: #selector(DDLFieldRadioTableCell_default.radioButtonSelected(_:)),
 				name: SELECTED_RADIO_BUTTON_CHANGED,
 				object: radioGroup)
 	}
 
-	public func createRadioButtonData(field: DDLFieldStringWithOptions, option: DDLFieldStringWithOptions.Option)
+	public func createRadioButtonData(field: DDMFieldStringWithOptions, option: DDMFieldStringWithOptions.Option)
 			-> TNRectangularRadioButtonData {
 
 		let data = TNRectangularRadioButtonData()
@@ -138,15 +138,21 @@ public class DDLFieldRadioTableCell_default: DDLFieldTableCell {
 		data.rectangleColor = radioColor
 		data.rectangleHeight = radioButtonWidth
 		data.rectangleWidth = radioButtonWidth
-		data.selected = (field.currentValue as! [DDLFieldStringWithOptions.Option]).filter {
-			$0.name == option.name
-		}.count > 0
+		data.selected = (field.currentValue as! [DDMFieldStringWithOptions.Option]).filter {
+				if $0.name != nil {
+					return $0.name == option.name
+				}
+				else {
+					return $0.label == option.label
+				}
+			}
+			.count > 0
 
 		return data
 	}
 
 	public dynamic func radioButtonSelected(notification:NSNotification) {
-		if let stringField = field as? DDLFieldStringWithOptions {
+		if let stringField = field as? DDMFieldStringWithOptions {
 			stringField.currentValue = radioGroup!.selectedRadioButton!.data.labelText
 
 			if stringField.lastValidationResult != nil && !stringField.lastValidationResult! {

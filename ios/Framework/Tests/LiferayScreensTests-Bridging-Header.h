@@ -12,6 +12,6 @@
  * details.
  */
 
-#import "LRScreensassetentryService_v62.h"
-#import "LRScreensddlrecordService_v62.h"
-#import "LRScreensuserService_v62.h"
+@import LiferayScreens;
+
+#import "ObjCTryCatch.h"

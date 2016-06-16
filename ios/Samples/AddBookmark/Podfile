@@ -1,4 +1,0 @@
-platform :ios, '8.0'
-use_frameworks!
-
-pod 'LiferayScreens', :git => 'https://github.com/liferay/liferay-screens', :branch => 'feature/LSR-719'

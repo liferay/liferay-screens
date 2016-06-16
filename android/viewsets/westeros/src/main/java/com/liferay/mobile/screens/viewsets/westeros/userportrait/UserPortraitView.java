@@ -39,7 +39,7 @@ public class UserPortraitView extends com.liferay.mobile.screens.viewsets.defaul
 
 	@Override
 	protected int getDefaultBorderColor() {
-		return R.color.westeros_red;
+		return R.color.colorPrimary_westeros;
 	}
 
 	@Override

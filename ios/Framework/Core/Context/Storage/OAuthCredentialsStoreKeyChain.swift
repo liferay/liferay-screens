@@ -26,7 +26,7 @@ public class OAuthCredentialsStoreKeyChain : BaseCredentialsStoreKeyChain {
 		let oauth = auth as! LROAuth
 
 		do {
-			try keychain.set(AuthType.OAuth.rawValue, key: "auth_type")
+			try keychain.set(StringFromAuthType(AuthType.OAuth), key: "auth_type")
 			try keychain.set(oauth.config.consumerKey, key: "oauth_consumer_key")
 			try keychain.set(oauth.config.consumerSecret, key: "oauth_consumer_secret")
 			try keychain.set(oauth.config.token, key: "oauth_token")

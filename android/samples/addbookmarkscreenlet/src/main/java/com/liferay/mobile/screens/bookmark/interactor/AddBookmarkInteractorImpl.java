@@ -3,7 +3,7 @@ package com.liferay.mobile.screens.bookmark.interactor;
 import android.webkit.URLUtil;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.bookmarksentry.BookmarksEntryService;
+import com.liferay.mobile.android.v7.bookmarksentry.BookmarksEntryService;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
@@ -30,8 +30,16 @@ public class AddBookmarkInteractorImpl
 			throw new IllegalArgumentException("folderId not set");
 		}
 
-		BookmarksEntryService bookmarksEntryService = getBookmarksEntryService();
-		bookmarksEntryService.addEntry(LiferayServerContext.getGroupId(), folderId, title, url, "", null);
+		Session session = SessionContext.createSessionFromCurrentSession();
+		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
+		if (LiferayServerContext.isLiferay7()) {
+			new BookmarksEntryService(session)
+				.addEntry(LiferayServerContext.getGroupId(), folderId, title, url, "", null);
+		}
+		else {
+			new com.liferay.mobile.android.v62.bookmarksentry.BookmarksEntryService(session)
+				.addEntry(LiferayServerContext.getGroupId(), folderId, title, url, "", null);
+		}
 	}
 
 	public void onEvent(JSONObjectEvent event) {
@@ -46,12 +54,5 @@ public class AddBookmarkInteractorImpl
 			getListener().onAddBookmarkSuccess();
 		}
 	}
-
-	private BookmarksEntryService getBookmarksEntryService() {
-		Session sessionFromCurrentSession = SessionContext.createSessionFromCurrentSession();
-		sessionFromCurrentSession.setCallback(new JSONObjectCallback(getTargetScreenletId()));
-		return new BookmarksEntryService(sessionFromCurrentSession);
-	}
-
 }
 

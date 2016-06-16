@@ -23,7 +23,7 @@ public class AssetListView_default: AssetListTableView {
 	}
 
 	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
-		if let entry = object as? AssetListScreenletEntry {
+		if let entry = object as? Asset {
 			cell.textLabel?.text = entry.title
 			cell.accessoryType = .DisclosureIndicator
 			cell.accessoryView = nil

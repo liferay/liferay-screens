@@ -51,7 +51,7 @@ public class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default
 
 	//MARK: Private methods
 
-	private func setFieldPresenter(field:DDLField) {
+	private func setFieldPresenter(field: DDMField) {
 
 		func onChange(selectedDate:NSDate!) {
 			field.currentValue = selectedDate

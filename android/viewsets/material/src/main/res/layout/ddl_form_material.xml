@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.material.ddl.form.DDLFormView
+<com.liferay.mobile.screens.viewsets.material.ddl.form.DDLFormView xmlns:android="http://schemas.android.com/apk/res/android"
 	style="@style/default_screenlet"
-	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:padding="0dp"
-	android:theme="@style/material_theme">
+	android:padding="0dp">
 
 	<LinearLayout
 		android:layout_width="match_parent"
@@ -17,14 +15,14 @@
 			android:id="@+id/ddlfields_container"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:orientation="vertical"/>
+			android:orientation="vertical" />
 
 		<ProgressBar
 			android:id="@+id/ddlform_loading_screen_progress_bar"
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:layout_gravity="center"
-			android:visibility="invisible"/>
+			android:visibility="invisible" />
 
 		<FrameLayout
 			android:layout_width="match_parent"
@@ -38,7 +36,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_margin="10dp"
-				android:text="@string/submit"/>
+				android:text="@string/submit" />
 
 			<ProgressBar
 				android:id="@+id/ddlform_progress_bar"
@@ -48,7 +46,7 @@
 				android:layout_margin="10dp"
 				android:elevation="10dp"
 				android:theme="@style/white_theme"
-				android:visibility="invisible"/>
+				android:visibility="invisible" />
 		</FrameLayout>
 
 	</LinearLayout>
