@@ -75,7 +75,7 @@
 
 	<style name="base_default_checkbox">
 		<item name="android:padding">@dimen/default_edit_text_padding</item>
-		<item name="android:textColor">?android:attr/textColorPrimary</item>
+		<item name="android:textColor">@color/textColorPrimary</item>
 		<item name="android:theme">?attr/theme</item>
 		<item name="android:textSize">14sp</item>
 	</style>
