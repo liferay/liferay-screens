@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.rating.RatingView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp"
     style="@style/default_screenlet">
 
+    <Button
+        android:id="@+id/positiveRatingButton"
+        android:text="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/negativeRatingButton"
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </com.liferay.mobile.screens.viewsets.defaultviews.rating.RatingView>

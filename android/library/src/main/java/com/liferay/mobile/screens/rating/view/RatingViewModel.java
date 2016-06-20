@@ -9,4 +9,6 @@ public interface RatingViewModel extends BaseViewModel {
     double getScore();
 
     void setScore(double score);
+
+    void showFinishOperation(double score);
 }
