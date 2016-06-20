@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.viewsets.defaultviews.rating.RatingView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/default_screenlet">
+
+
+</com.liferay.mobile.screens.viewsets.defaultviews.rating.RatingView>
