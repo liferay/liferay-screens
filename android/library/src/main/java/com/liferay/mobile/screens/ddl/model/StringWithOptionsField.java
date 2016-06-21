@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-
 /**
  * @author Jose Manuel Navarro
  */
@@ -46,7 +45,8 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			}
 		};
 
-	public StringWithOptionsField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+	public StringWithOptionsField(Map<String, Object> attributes, Locale locale,
+	                              Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
 
 		List<Map<String, String>> availableOptions =
@@ -77,7 +77,7 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 		super(in, loader);
 
 		_availableOptions = (ArrayList<Option>) in.readSerializable();
-		_multiple = (in.readInt() == 1);
+		_multiple = in.readInt() == 1;
 	}
 
 	public List<Option> getAvailableOptions() {
@@ -235,9 +235,9 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			return null;
 		}
 
-		for (Option o : _availableOptions) {
-			if (o.value.equals(value)) {
-				return o;
+		for (Option option : _availableOptions) {
+			if (option.value.equals(value)) {
+				return option;
 			}
 		}
 
@@ -249,9 +249,9 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			return null;
 		}
 
-		for (Option o : _availableOptions) {
-			if (o.label.equals(label)) {
-				return o;
+		for (Option option : _availableOptions) {
+			if (option.label.equals(label)) {
+				return option;
 			}
 		}
 
@@ -287,7 +287,8 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 				Option opt = (Option) obj;
 
 				if (name != null) {
-					return label.equals(opt.label) && value.equals(opt.value) && name.equals(opt.name);
+					return label.equals(opt.label) && value.equals(opt.value) && name.equals(
+						opt.name);
 				}
 				else {
 					return label.equals(opt.label) && value.equals(opt.value);
@@ -297,5 +298,4 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			return super.equals(obj);
 		}
 	}
-
 }
