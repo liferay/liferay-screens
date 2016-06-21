@@ -142,4 +142,9 @@
 	<declare-styleable name="ModalProgressBar">
 		<attr name="actionViewId" format="reference" />
 	</declare-styleable>
+
+	<declare-styleable name="RatingScreenlet">
+		<attr name="layoutId"/>
+		<attr name="entryId" format="string"/>
+	</declare-styleable>
 </resources>

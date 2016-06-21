@@ -37,7 +37,7 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, RatingIntera
 
     View view = LayoutInflater.from(context).inflate(layoutId, null);
 
-    _entryId = typedArray.getInteger(R.styleable.RatingScreenlet_entryId, 0);
+    _entryId = castToLong(typedArray.getString(R.styleable.RatingScreenlet_entryId));
 
     typedArray.recycle();
 
@@ -48,8 +48,8 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, RatingIntera
     return new RatingInteractorImpl(getScreenletId());
   }
 
-  @Override protected void onFinishInflate() {
-    super.onFinishInflate();
+  @Override protected void onScreenletAttached() {
+    super.onScreenletAttached();
 
     try {
       getInteractor().load(_entryId);

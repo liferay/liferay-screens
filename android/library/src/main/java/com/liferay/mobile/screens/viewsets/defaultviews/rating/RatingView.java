@@ -4,9 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
@@ -55,8 +53,8 @@ public class RatingView extends LinearLayout implements RatingViewModel, View.On
         }
       }
 
-      _possitiveCount.setText(possitiveCount);
-      _negativeCount.setText(negativeCount);
+      _possitiveCount.setText(Integer.toString(possitiveCount));
+      _negativeCount.setText(Integer.toString(negativeCount));
     }
 
     @Override public void onClick(View v) {
