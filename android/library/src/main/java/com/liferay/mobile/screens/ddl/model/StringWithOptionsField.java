@@ -105,6 +105,11 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 		options.remove(option);
 	}
 
+	public boolean isSelected(Option availableOption) {
+		List<Option> options = getCurrentValue();
+		return options.contains(availableOption);
+	}
+
 	public void selectOption(Option option) {
 		if (!isMultiple()) {
 			ArrayList<Option> options = new ArrayList<>();
