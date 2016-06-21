@@ -28,17 +28,7 @@ public class RatingView extends LinearLayout implements RatingViewModel, View.On
     }
 
     @Override
-    public double getScore() {
-        return 0;
-    }
-
-    @Override
     public void setScore(double score) {
-
-    }
-
-    @Override
-    public void showFinishOperation(double score) {
 
     }
 
