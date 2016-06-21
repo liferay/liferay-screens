@@ -459,8 +459,7 @@ public class StringWithOptionsFieldTest {
 			assertEquals("option_3", option.name);
 			assertEquals("value 3", option.value);
 
-			// Multiple is not supported yet
-			assertFalse(optionsField.isMultiple());
+			assertTrue(optionsField.isMultiple());
 		}
 	}
 
