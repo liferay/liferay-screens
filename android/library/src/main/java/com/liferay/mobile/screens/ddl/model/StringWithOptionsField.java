@@ -212,12 +212,17 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 	}
 
 	@Override
-	protected String convertToFormattedString(ArrayList<Option> value) {
-		if (value == null || value.isEmpty()) {
+	protected String convertToFormattedString(ArrayList<Option> values) {
+		if (values == null || values.isEmpty()) {
 			return "";
 		}
 
-		return value.get(0).label;
+		String label = values.get(0).label;
+		for (int i = 1; i < values.size(); i++) {
+			label += " - " + values.get(i).label;
+		}
+
+		return label;
 	}
 
 	protected Option findOptionByValue(String value) {
