@@ -13,7 +13,7 @@ import com.liferay.mobile.screens.rating.view.RatingViewModel;
 import java.util.List;
 
 /**
- * Created by liferay on 21/06/16.
+ * @author Alejandro Hernández
  */
 
 public class RatingScreenlet extends BaseScreenlet<RatingViewModel, RatingInteractor> implements RatingListener {
