@@ -135,12 +135,13 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 	}
 
 	public boolean isMultiple() {
-		// Multiple selection is not supported yet
-		return false;
+		// Multiple selection is supported on select fields
+		return _multiple;
 	}
 
 	@Override
 	protected boolean doValidate() {
+
 		List<Option> options = getCurrentValue();
 
 		return (options != null && !options.isEmpty());
@@ -159,26 +160,25 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			stringValue = stringValue.substring(1, stringValue.length() - 1);
 		}
 
-		//TODO only works with one option
+		ArrayList<Option> results = new ArrayList<>();
+
 		String[] values = stringValue.split(",");
-		String fistOptionString = values[0];
+		for (String value : values) {
 
-		if (fistOptionString.startsWith("\"")) {
-			fistOptionString = fistOptionString.substring(1, fistOptionString.length() - 1);
+			if (value.startsWith("\"")) {
+				value = value.substring(1, value.length() - 1);
+			}
+
+			Option foundOption = findOptionByLabel(value);
+			if (foundOption == null) {
+				foundOption = findOptionByValue(value);
+			}
+
+			if (foundOption != null) {
+				results.add(foundOption);
+			}
 		}
-
-		Option foundOption = findOptionByLabel(fistOptionString);
-		if (foundOption == null) {
-			foundOption = findOptionByValue(fistOptionString);
-		}
-
-		ArrayList<Option> result = new ArrayList<>(1);
-
-		if (foundOption != null) {
-			result.add(foundOption);
-		}
-
-		return result;
+		return results;
 	}
 
 	@Override
