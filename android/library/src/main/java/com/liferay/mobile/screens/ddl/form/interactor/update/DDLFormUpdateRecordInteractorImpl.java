@@ -93,7 +93,7 @@ public class DDLFormUpdateRecordInteractorImpl
 		JSONObjectWrapper serviceContextWrapper = new JSONObjectWrapper(serviceContextAttributes);
 
 		getDDLRecordService(record, groupId).updateRecord(record.getRecordId(),
-			0, fieldsValues, true, serviceContextWrapper);
+			0, fieldsValues, false, serviceContextWrapper);
 	}
 
 	@Override
