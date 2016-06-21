@@ -8,5 +8,5 @@ import java.util.List;
  * @author Alejandro Hernández
  */
 public interface RatingViewModel extends BaseViewModel {
-    void showFinishOperation(List<RatingEntry> ratings);
+    void showFinishOperation(String actionName, Object argument);
 }

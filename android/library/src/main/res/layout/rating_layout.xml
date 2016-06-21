@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.defaultviews.rating.RatingView
+<com.liferay.mobile.screens.viewsets.defaultviews.rating.ThumbsRatingView
   xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="wrap_content"
+  android:layout_width="match_parent"
   android:layout_height="wrap_content"
+  android:weightSum="2"
   android:padding="10dp"
   android:orientation="horizontal"
   style="@style/default_screenlet">
 
   <LinearLayout
     android:orientation="vertical"
+    android:layout_weight="1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" >
 
@@ -20,14 +22,15 @@
 
     <TextView
       android:id="@+id/positiveRatingCount"
+      android:gravity="center"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="COUNT"
-    />
+      android:text="COUNT" />
   </LinearLayout>
 
   <LinearLayout
     android:orientation="vertical"
+    android:layout_weight="1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" >
 
@@ -39,9 +42,10 @@
 
     <TextView
       android:id="@+id/negativeRatingCount"
-      android:text="COUNT"
+      android:gravity="center"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content" />
+      android:layout_height="wrap_content"
+      android:text="COUNT" />
 
   </LinearLayout>
-</com.liferay.mobile.screens.viewsets.defaultviews.rating.RatingView>
+</com.liferay.mobile.screens.viewsets.defaultviews.rating.ThumbsRatingView>

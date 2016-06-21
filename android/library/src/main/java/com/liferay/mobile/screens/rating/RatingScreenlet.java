@@ -18,6 +18,8 @@ import java.util.List;
 
 public class RatingScreenlet extends BaseScreenlet<RatingViewModel, RatingInteractor> implements RatingListener {
 
+  public static final String LOAD_RATINGS_ACTION = "loadRatings";
+
   public RatingScreenlet(Context context) {
     super(context);
   }
@@ -72,7 +74,7 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, RatingIntera
   }
 
   @Override public void onRetrieveRatingEntriesSuccess(List<RatingEntry> ratings) {
-    getViewModel().showFinishOperation(ratings);
+    getViewModel().showFinishOperation(LOAD_RATINGS_ACTION, ratings);
 
     if (_listener != null) {
       _listener.onRetrieveRatingEntriesSuccess(ratings);

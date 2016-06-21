@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.rating;
 
+import com.liferay.mobile.screens.util.JSONUtil;
 import java.util.Map;
 
 /**
@@ -24,5 +25,9 @@ public class RatingEntry {
 
   public void setScore(double score) {
     this._score = score;
+  }
+
+  public long getUserId() {
+    return JSONUtil.castToLong(_values.get("userId"));
   }
 }
