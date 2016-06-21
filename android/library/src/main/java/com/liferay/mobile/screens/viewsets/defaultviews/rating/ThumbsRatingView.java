@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -51,10 +52,6 @@ public class ThumbsRatingView extends LinearLayout implements RatingViewModel, V
         _userRatingEntry = null;
 
         for (RatingEntry entry : (List<RatingEntry>) argument) {
-          if (_userRatingEntry == null) {
-            checkUserEntry(entry);
-          }
-
           if (entry.getScore() == 0) {
             _negativeCount++;
           } else {
@@ -64,26 +61,37 @@ public class ThumbsRatingView extends LinearLayout implements RatingViewModel, V
 
         updateCountLabels();
         break;
+      case RatingScreenlet.LOAD_USER_RATING_ACTION:
+        RatingEntry userEntry = (RatingEntry) argument;
+        _possitiveButton.setEnabled(userEntry.getScore() == 0);
+        _negativeButton.setEnabled(userEntry.getScore() > 0);
+        break;
       default:
         break;
     }
   }
 
-  private void checkUserEntry(RatingEntry entry) {
-    if (entry.getUserId() == SessionContext.getCurrentUser().getId()) {
-      _userRatingEntry = entry;
-      _negativeButton.setEnabled(entry.getScore() > 0);
-      _possitiveButton.setEnabled(entry.getScore() == 0);
-    }
-  }
-
   private void updateCountLabels() {
-    _possitiveCountLabel.setText(Integer.toString(_possitiveCount));
-    _negativeCountLabel.setText(Integer.toString(_negativeCount));
+    _possitiveCountLabel.setText(getContext().getString(R.string.rating_total) + Integer.toString(_possitiveCount));
+    _negativeCountLabel.setText(getContext().getString(R.string.rating_total) + Integer.toString(_negativeCount));
   }
 
   @Override public void onClick(View v) {
     Log.d("ThumbsRatingView", "User click button with id: " + v.getId());
+    final int id = v.getId();
+    if (id == R.id.positiveRatingButton && userCanClickPossitiveButton()) {
+      getScreenlet().performUserAction(RatingScreenlet.ADD_RATING_ACTION, 1.0);
+    } else if (id == R.id.negativeRatingButton && userCanClickNegativeButton()) {
+      getScreenlet().performUserAction(RatingScreenlet.ADD_RATING_ACTION, 0.0);
+    }
+  }
+
+  private boolean userCanClickPossitiveButton() {
+    return _userRatingEntry == null || _userRatingEntry.getScore() == 0;
+  }
+
+  private boolean userCanClickNegativeButton() {
+    return _userRatingEntry == null || _userRatingEntry.getScore() > 0;
   }
 
   @Override public BaseScreenlet getScreenlet() {

@@ -3,10 +3,12 @@ package com.liferay.mobile.screens.rating;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.rating.interactor.RatingInteractor;
 import com.liferay.mobile.screens.rating.interactor.RatingInteractorImpl;
 import com.liferay.mobile.screens.rating.view.RatingViewModel;
@@ -19,11 +21,12 @@ import java.util.List;
 public class RatingScreenlet extends BaseScreenlet<RatingViewModel, RatingInteractor> implements RatingListener {
 
   public static final String LOAD_RATINGS_ACTION = "loadRatings";
+  public static final String ADD_RATING_ACTION = "addRating";
+  public static final String LOAD_USER_RATING_ACTION = "loadUserRating";
 
   public RatingScreenlet(Context context) {
     super(context);
   }
-
   public RatingScreenlet(Context context, AttributeSet attributes) {
     super(context, attributes);
   }
@@ -62,7 +65,14 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, RatingIntera
 
   @Override
   protected void onUserAction(String userActionName, RatingInteractor interactor, Object... args) {
-
+    switch (userActionName) {
+      case ADD_RATING_ACTION:
+        double score = (double) args[0];
+        Log.d("RatingScreenlet", "Add rating with score: " + score);
+        break;
+      default:
+        break;
+    }
   }
 
   @Override public void onRetrieveRatingEntriesFailure(Exception exception) {
@@ -76,9 +86,23 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, RatingIntera
   @Override public void onRetrieveRatingEntriesSuccess(List<RatingEntry> ratings) {
     getViewModel().showFinishOperation(LOAD_RATINGS_ACTION, ratings);
 
+    if (checkUserEntry(ratings)) {
+      getViewModel().showFinishOperation(LOAD_USER_RATING_ACTION, _userRatingEntry);
+    }
+
     if (_listener != null) {
       _listener.onRetrieveRatingEntriesSuccess(ratings);
     }
+  }
+
+  private boolean checkUserEntry(List<RatingEntry> ratings) {
+    for (RatingEntry entry : ratings) {
+      if (entry.getUserId() == SessionContext.getCurrentUser().getId()) {
+        _userRatingEntry = entry;
+        return true;
+      }
+    }
+    return false;
   }
 
   public RatingListener getListener() {
@@ -90,6 +114,8 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, RatingIntera
   }
 
   private long _entryId;
+
+  private RatingEntry _userRatingEntry;
 
   private RatingListener _listener;
 }

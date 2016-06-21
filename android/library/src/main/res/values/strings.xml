@@ -9,4 +9,5 @@
 	<string name="UserPortraitScreenlet_default">userportrait_default</string>
 	<string name="WebContentDisplayScreenlet_default">webcontentdisplay_default</string>
 	<string name="WebContentListScreenlet_default">webcontentlist_default</string>
+	<string name="rating_total">"Total: "</string>
 </resources>
