@@ -14,6 +14,7 @@ import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.rating.RatingEntry;
 import com.liferay.mobile.screens.rating.RatingScreenlet;
 import com.liferay.mobile.screens.rating.view.RatingViewModel;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import java.util.List;
 
 /**
@@ -37,12 +38,28 @@ public class ThumbsRatingView extends LinearLayout implements RatingViewModel, V
 
   }
 
-  @Override public void showFinishOperation(String actionName) {
-
+  @Override public void showFailedOperation(String actionName, Exception e) {
+    switch (actionName) {
+      case RatingScreenlet.LOAD_RATINGS_ACTION:
+        LiferayLogger.e(getContext().getString(R.string.loading_ratings_error), e);
+        break;
+      case RatingScreenlet.LOAD_USER_RATING_ACTION:
+        LiferayLogger.e(getContext().getString(R.string.loading_user_rating_error), e);
+        break;
+      case RatingScreenlet.ADD_RATING_ACTION:
+        LiferayLogger.e(getContext().getString(R.string.adding_error_rating), e);
+        break;
+      case RatingScreenlet.UPDATE_RATING_ACTION:
+        LiferayLogger.e(getContext().getString(R.string.updating_rating_error), e);
+        break;
+      default:
+        LiferayLogger.e(getContext().getString(R.string.ratings_error), e);
+        break;
+    }
   }
 
-  @Override public void showFailedOperation(String actionName, Exception e) {
-
+  @Override public void showFinishOperation(String actionName) {
+    throw new AssertionError("Use showFinishOperation(actionName, argument) instead");
   }
 
   @Override public void showFinishOperation(String action, Object argument) {
@@ -52,23 +69,42 @@ public class ThumbsRatingView extends LinearLayout implements RatingViewModel, V
         _userRatingEntry = null;
 
         for (RatingEntry entry : (List<RatingEntry>) argument) {
-          if (entry.getScore() == 0) {
-            _negativeCount++;
-          } else {
-            _possitiveCount++;
-          }
+          updateGlobalScore(entry);
         }
 
-        updateCountLabels();
         break;
       case RatingScreenlet.LOAD_USER_RATING_ACTION:
-        RatingEntry userEntry = (RatingEntry) argument;
-        _possitiveButton.setEnabled(userEntry.getScore() == 0);
-        _negativeButton.setEnabled(userEntry.getScore() > 0);
+        updateRatingButtons((RatingEntry) argument);
+        break;
+      case RatingScreenlet.ADD_RATING_ACTION:
+        RatingEntry newUserEntry = (RatingEntry) argument;
+        updateGlobalScore(newUserEntry);
+        updateRatingButtons(newUserEntry);
+        break;
+      case RatingScreenlet.UPDATE_RATING_ACTION:
+        RatingEntry updatedUserEntry = (RatingEntry) argument;
+        double change = (updatedUserEntry.getScore() == 0) ? 1 : -1;
+        _negativeCount += change;
+        _possitiveCount += -change;
+        updateRatingButtons(updatedUserEntry);
         break;
       default:
         break;
     }
+    updateCountLabels();
+  }
+
+  private void updateGlobalScore(RatingEntry entry) {
+    if (entry.getScore() == 0) {
+      _negativeCount++;
+    } else {
+      _possitiveCount++;
+    }
+  }
+
+  private void updateRatingButtons(RatingEntry userEntry) {
+    _possitiveButton.setEnabled(userEntry.getScore() == 0);
+    _negativeButton.setEnabled(userEntry.getScore() > 0);
   }
 
   private void updateCountLabels() {
@@ -77,7 +113,6 @@ public class ThumbsRatingView extends LinearLayout implements RatingViewModel, V
   }
 
   @Override public void onClick(View v) {
-    Log.d("ThumbsRatingView", "User click button with id: " + v.getId());
     final int id = v.getId();
     if (id == R.id.positiveRatingButton && userCanClickPossitiveButton()) {
       getScreenlet().performUserAction(RatingScreenlet.ADD_RATING_ACTION, 1.0);

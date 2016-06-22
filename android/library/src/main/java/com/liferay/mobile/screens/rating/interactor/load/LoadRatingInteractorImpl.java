@@ -1,36 +1,42 @@
-package com.liferay.mobile.screens.rating.interactor;
+package com.liferay.mobile.screens.rating.interactor.load;
 
 import android.support.annotation.NonNull;
+import android.support.v4.util.Pair;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.base.interactor.JSONArrayEvent;
+import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
+import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.rating.RatingListener;
+import com.liferay.mobile.screens.rating.interactor.RatingEntryFactory;
 import com.liferay.mobile.screens.service.v70.ScreensratingsentryService;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * @author Alejandro Hernández
  */
-public class RatingInteractorImpl extends BaseRemoteInteractor<RatingListener> implements RatingInteractor {
+public class LoadRatingInteractorImpl extends BaseRemoteInteractor<RatingListener> implements
+    LoadRatingInteractor {
 
-  public RatingInteractorImpl(int targetScreenletId) {
+  public LoadRatingInteractorImpl(int targetScreenletId) {
     super(targetScreenletId);
     _screensratingsentryService = getScreensratingsentryService();
   }
 
-  @Override public void load(long assetId) throws Exception {
+  @Override public void loadRatings(long assetId) throws Exception {
     _screensratingsentryService.getRatingsEntries(assetId);
   }
 
   @NonNull private ScreensratingsentryService getScreensratingsentryService() {
     Session session = SessionContext.createSessionFromCurrentSession();
-    session.setCallback(new RatingEntryCallback(getTargetScreenletId()));
+    session.setCallback(new LoadRatingCallback(getTargetScreenletId()));
     return new ScreensratingsentryService(session);
   }
 
-  public void onEvent(JSONArrayEvent event) {
+  public void onEvent(LoadRatingEvent event) {
     if (!isValidEvent(event)) {
       return;
     }
@@ -39,7 +45,9 @@ public class RatingInteractorImpl extends BaseRemoteInteractor<RatingListener> i
       getListener().onRetrieveRatingEntriesFailure(event.getException());
     } else {
       try {
-        getListener().onRetrieveRatingEntriesSuccess(RatingEntryFactory.createEntryList(event.getJsonArray()));
+        JSONObject result = event.getJSONObject();
+        getListener().onRetrieveRatingEntriesSuccess(result.getLong("classPK"),
+            result.getString("className"), RatingEntryFactory.createEntryList(result.getJSONArray("entries")));
       } catch (JSONException e) {
         LiferayLogger.e(e.getMessage());
       }

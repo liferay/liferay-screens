@@ -6,7 +6,5 @@ import com.liferay.mobile.screens.rating.RatingListener;
 /**
  * @author Alejandro Hernández
  */
-public interface RatingInteractor extends Interactor<RatingListener> {
-    void load(long assetId)
-        throws Exception;
+public interface BaseRatingInteractor extends Interactor<RatingListener> {
 }

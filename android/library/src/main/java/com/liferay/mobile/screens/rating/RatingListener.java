@@ -7,5 +7,7 @@ import java.util.List;
  */
 public interface RatingListener {
   void onRetrieveRatingEntriesFailure(Exception exception);
-  void onRetrieveRatingEntriesSuccess(List<RatingEntry> ratings);
+  void onRetrieveRatingEntriesSuccess(long classPK, String className, List<RatingEntry> ratings);
+  void onAddRatingEntryFailure(Exception exception);
+  void onAddRatingEntrySuccess(RatingEntry entry);
 }

@@ -26,7 +26,15 @@ public class RatingsActivity extends ThemeActivity implements RatingListener {
     error("Couldn't fetch ratings", exception);
   }
 
-  @Override public void onRetrieveRatingEntriesSuccess(List<RatingEntry> ratings) {
+  @Override public void onAddRatingEntryFailure(Exception exception) {
+    error("Couldn't update/add rating", exception);
+  }
+
+  @Override public void onRetrieveRatingEntriesSuccess(long classPK, String className, List<RatingEntry> ratings) {
     info("Ratings fetched succesfully!");
+  }
+
+  @Override public void onAddRatingEntrySuccess(RatingEntry entry) {
+    info("Rating added/updated succesfully!");
   }
 }

@@ -9,20 +9,25 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.rating.interactor.RatingInteractor;
-import com.liferay.mobile.screens.rating.interactor.RatingInteractorImpl;
+import com.liferay.mobile.screens.rating.interactor.BaseRatingInteractor;
+import com.liferay.mobile.screens.rating.interactor.add.AddRatingInteractor;
+import com.liferay.mobile.screens.rating.interactor.add.AddRatingInteractorImpl;
+import com.liferay.mobile.screens.rating.interactor.load.LoadRatingInteractor;
+import com.liferay.mobile.screens.rating.interactor.load.LoadRatingInteractorImpl;
 import com.liferay.mobile.screens.rating.view.RatingViewModel;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import java.util.List;
 
 /**
  * @author Alejandro Hernández
  */
 
-public class RatingScreenlet extends BaseScreenlet<RatingViewModel, RatingInteractor> implements RatingListener {
+public class RatingScreenlet extends BaseScreenlet<RatingViewModel, BaseRatingInteractor> implements RatingListener {
 
-  public static final String LOAD_RATINGS_ACTION = "loadRatings";
-  public static final String ADD_RATING_ACTION = "addRating";
+  public static final String LOAD_RATINGS_ACTION     = "loadRatings";
   public static final String LOAD_USER_RATING_ACTION = "loadUserRating";
+  public static final String ADD_RATING_ACTION       = "addRating";
+  public static final String UPDATE_RATING_ACTION    = "updateRating";
 
   public RatingScreenlet(Context context) {
     super(context);
@@ -49,26 +54,38 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, RatingIntera
     return view;
   }
 
-  @Override protected RatingInteractor createInteractor(String actionName) {
-    return new RatingInteractorImpl(getScreenletId());
+  @Override protected BaseRatingInteractor createInteractor(String actionName) {
+    switch (actionName) {
+      case LOAD_RATINGS_ACTION:
+        return new LoadRatingInteractorImpl(getScreenletId());
+      case ADD_RATING_ACTION:
+        return new AddRatingInteractorImpl(getScreenletId());
+      default:
+        return null;
+    }
   }
 
   @Override protected void onScreenletAttached() {
     super.onScreenletAttached();
 
     try {
-      getInteractor().load(_entryId);
+      ((LoadRatingInteractor) getInteractor(LOAD_RATINGS_ACTION)).loadRatings(_entryId);
     } catch (Exception e) {
       this.onRetrieveRatingEntriesFailure(e);
     }
   }
 
   @Override
-  protected void onUserAction(String userActionName, RatingInteractor interactor, Object... args) {
+  protected void onUserAction(String userActionName, BaseRatingInteractor interactor, Object... args) {
     switch (userActionName) {
       case ADD_RATING_ACTION:
         double score = (double) args[0];
-        Log.d("RatingScreenlet", "Add rating with score: " + score);
+        try {
+          ((AddRatingInteractor) interactor).addRating(_className, _classPK, score);
+        } catch (Exception e) {
+          LiferayLogger.e(e.getMessage());
+          onAddRatingEntryFailure(e);
+        }
         break;
       default:
         break;
@@ -76,22 +93,47 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, RatingIntera
   }
 
   @Override public void onRetrieveRatingEntriesFailure(Exception exception) {
-    getViewModel().showFailedOperation(null, exception);
+    getViewModel().showFailedOperation(LOAD_RATINGS_ACTION, exception);
 
     if (_listener != null) {
       _listener.onRetrieveRatingEntriesFailure(exception);
     }
   }
 
-  @Override public void onRetrieveRatingEntriesSuccess(List<RatingEntry> ratings) {
+  @Override public void onAddRatingEntryFailure(Exception exception) {
+    getViewModel().showFailedOperation(ADD_RATING_ACTION, exception);
+
+    if (_listener != null) {
+      _listener.onAddRatingEntryFailure(exception);
+    }
+  }
+
+  @Override public void onRetrieveRatingEntriesSuccess(long classPK, String className, List<RatingEntry> ratings) {
     getViewModel().showFinishOperation(LOAD_RATINGS_ACTION, ratings);
+
+    _classPK = classPK;
+    _className = className;
 
     if (checkUserEntry(ratings)) {
       getViewModel().showFinishOperation(LOAD_USER_RATING_ACTION, _userRatingEntry);
     }
 
     if (_listener != null) {
-      _listener.onRetrieveRatingEntriesSuccess(ratings);
+      _listener.onRetrieveRatingEntriesSuccess(classPK, className, ratings);
+    }
+  }
+
+  @Override public void onAddRatingEntrySuccess(RatingEntry entry) {
+    if (_userRatingEntry == null) {
+      getViewModel().showFinishOperation(ADD_RATING_ACTION, entry);
+    } else {
+      getViewModel().showFinishOperation(UPDATE_RATING_ACTION, entry);
+    }
+
+    _userRatingEntry = entry;
+
+    if (_listener != null) {
+      _listener.onAddRatingEntrySuccess(entry);
     }
   }
 
@@ -113,9 +155,9 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, RatingIntera
     this._listener = listener;
   }
 
-  private long _entryId;
-
   private RatingEntry _userRatingEntry;
-
   private RatingListener _listener;
+  private long _entryId;
+  private long _classPK;
+  private String _className;
 }

@@ -32,7 +32,7 @@ public class ScreensratingsentryService extends BaseService {
 		super(session);
 	}
 
-	public JSONArray getRatingsEntries(long entryId) throws Exception {
+	public JSONObject getRatingsEntries(long entryId) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -52,7 +52,7 @@ public class ScreensratingsentryService extends BaseService {
 			return null;
 		}
 
-		return _result.getJSONArray(0);
+		return _result.getJSONObject(0);
 	}
 
 }
