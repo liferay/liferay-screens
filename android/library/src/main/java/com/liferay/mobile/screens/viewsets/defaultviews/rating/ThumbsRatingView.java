@@ -2,15 +2,12 @@ package com.liferay.mobile.screens.viewsets.defaultviews.rating;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewParent;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.rating.RatingEntry;
 import com.liferay.mobile.screens.rating.RatingScreenlet;
 import com.liferay.mobile.screens.rating.view.RatingViewModel;
@@ -59,34 +56,40 @@ public class ThumbsRatingView extends LinearLayout implements RatingViewModel, V
   }
 
   @Override public void showFinishOperation(String actionName) {
-    throw new AssertionError("Use showFinishOperation(actionName, argument) instead");
+    showFinishOperation(actionName, null);
   }
 
   @Override public void showFinishOperation(String action, Object argument) {
     switch (action) {
       case RatingScreenlet.LOAD_RATINGS_ACTION:
         _negativeCount = _possitiveCount = 0;
-        _userRatingEntry = null;
+        _userScore = -1;
 
         for (RatingEntry entry : (List<RatingEntry>) argument) {
-          updateGlobalScore(entry);
+          updateGlobalScore(entry.getScore());
         }
 
         break;
       case RatingScreenlet.LOAD_USER_RATING_ACTION:
-        updateRatingButtons((RatingEntry) argument);
+        _userScore = ((RatingEntry) argument).getScore();
         break;
       case RatingScreenlet.ADD_RATING_ACTION:
-        RatingEntry newUserEntry = (RatingEntry) argument;
-        updateGlobalScore(newUserEntry);
-        updateRatingButtons(newUserEntry);
+        _userScore = ((RatingEntry) argument).getScore();
+        updateGlobalScore(_userScore);
         break;
       case RatingScreenlet.UPDATE_RATING_ACTION:
-        RatingEntry updatedUserEntry = (RatingEntry) argument;
-        double change = (updatedUserEntry.getScore() == 0) ? 1 : -1;
+        _userScore = ((RatingEntry) argument).getScore();
+        double change = (_userScore == 0) ? 1 : -1;
         _negativeCount += change;
         _possitiveCount += -change;
-        updateRatingButtons(updatedUserEntry);
+        break;
+      case RatingScreenlet.DELETE_RATING_ACTION:
+        if (_userScore == 0) {
+          _negativeCount--;
+        } else if (_userScore == 1) {
+          _possitiveCount--;
+        }
+        _userScore = -1;
         break;
       default:
         break;
@@ -94,17 +97,12 @@ public class ThumbsRatingView extends LinearLayout implements RatingViewModel, V
     updateCountLabels();
   }
 
-  private void updateGlobalScore(RatingEntry entry) {
-    if (entry.getScore() == 0) {
+  private void updateGlobalScore(double score) {
+    if (score == 0) {
       _negativeCount++;
     } else {
       _possitiveCount++;
     }
-  }
-
-  private void updateRatingButtons(RatingEntry userEntry) {
-    _possitiveButton.setEnabled(userEntry.getScore() == 0);
-    _negativeButton.setEnabled(userEntry.getScore() > 0);
   }
 
   private void updateCountLabels() {
@@ -114,19 +112,20 @@ public class ThumbsRatingView extends LinearLayout implements RatingViewModel, V
 
   @Override public void onClick(View v) {
     final int id = v.getId();
-    if (id == R.id.positiveRatingButton && userCanClickPossitiveButton()) {
-      getScreenlet().performUserAction(RatingScreenlet.ADD_RATING_ACTION, 1.0);
-    } else if (id == R.id.negativeRatingButton && userCanClickNegativeButton()) {
-      getScreenlet().performUserAction(RatingScreenlet.ADD_RATING_ACTION, 0.0);
+
+    double score = -1;
+
+    if (id == R.id.positiveRatingButton) {
+      score = 1.0;
+    } else if (id == R.id.negativeRatingButton) {
+      score = 0.0;
     }
-  }
 
-  private boolean userCanClickPossitiveButton() {
-    return _userRatingEntry == null || _userRatingEntry.getScore() == 0;
-  }
-
-  private boolean userCanClickNegativeButton() {
-    return _userRatingEntry == null || _userRatingEntry.getScore() > 0;
+    if (score != -1) {
+      String action = score == _userScore ?
+          RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.ADD_RATING_ACTION;
+      getScreenlet().performUserAction(action, score);
+    }
   }
 
   @Override public BaseScreenlet getScreenlet() {
@@ -158,7 +157,7 @@ public class ThumbsRatingView extends LinearLayout implements RatingViewModel, V
   private int _negativeCount;
   private int _possitiveCount;
 
-  private RatingEntry _userRatingEntry;
+  private double _userScore;
 
   private BaseScreenlet _screenlet;
 }

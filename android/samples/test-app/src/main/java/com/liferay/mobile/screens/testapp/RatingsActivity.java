@@ -30,11 +30,19 @@ public class RatingsActivity extends ThemeActivity implements RatingListener {
     error("Couldn't update/add rating", exception);
   }
 
+  @Override public void onDeleteRatingEntryFailure(Exception exception) {
+    error("Couldn't delete rating", exception);
+  }
+
   @Override public void onRetrieveRatingEntriesSuccess(long classPK, String className, List<RatingEntry> ratings) {
     info("Ratings fetched succesfully!");
   }
 
   @Override public void onAddRatingEntrySuccess(RatingEntry entry) {
     info("Rating added/updated succesfully!");
+  }
+
+  @Override public void onDeleteRatingEntrySuccess() {
+    info("Rating deleted succesfully!");
   }
 }

@@ -3,15 +3,16 @@ package com.liferay.mobile.screens.rating;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.rating.interactor.BaseRatingInteractor;
-import com.liferay.mobile.screens.rating.interactor.add.AddRatingInteractor;
-import com.liferay.mobile.screens.rating.interactor.add.AddRatingInteractorImpl;
+import com.liferay.mobile.screens.rating.interactor.update.UpdateRatingInteractor;
+import com.liferay.mobile.screens.rating.interactor.update.UpdateRatingInteractorImpl;
+import com.liferay.mobile.screens.rating.interactor.delete.DeleteRatingInteractor;
+import com.liferay.mobile.screens.rating.interactor.delete.DeleteRatingInteractorImpl;
 import com.liferay.mobile.screens.rating.interactor.load.LoadRatingInteractor;
 import com.liferay.mobile.screens.rating.interactor.load.LoadRatingInteractorImpl;
 import com.liferay.mobile.screens.rating.view.RatingViewModel;
@@ -28,6 +29,7 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, BaseRatingIn
   public static final String LOAD_USER_RATING_ACTION = "loadUserRating";
   public static final String ADD_RATING_ACTION       = "addRating";
   public static final String UPDATE_RATING_ACTION    = "updateRating";
+  public static final String DELETE_RATING_ACTION    = "deleteRating";
 
   public RatingScreenlet(Context context) {
     super(context);
@@ -35,7 +37,6 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, BaseRatingIn
   public RatingScreenlet(Context context, AttributeSet attributes) {
     super(context, attributes);
   }
-
   public RatingScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
     super(context, attributes, defaultStyle);
   }
@@ -59,7 +60,9 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, BaseRatingIn
       case LOAD_RATINGS_ACTION:
         return new LoadRatingInteractorImpl(getScreenletId());
       case ADD_RATING_ACTION:
-        return new AddRatingInteractorImpl(getScreenletId());
+        return new UpdateRatingInteractorImpl(getScreenletId());
+      case DELETE_RATING_ACTION:
+        return new DeleteRatingInteractorImpl(getScreenletId());
       default:
         return null;
     }
@@ -81,12 +84,19 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, BaseRatingIn
       case ADD_RATING_ACTION:
         double score = (double) args[0];
         try {
-          ((AddRatingInteractor) interactor).addRating(_className, _classPK, score);
+          ((UpdateRatingInteractor) interactor).addRating(_className, _classPK, score);
         } catch (Exception e) {
           LiferayLogger.e(e.getMessage());
           onAddRatingEntryFailure(e);
         }
         break;
+      case DELETE_RATING_ACTION:
+        try {
+          ((DeleteRatingInteractor) interactor).deleteRating(_className, _classPK);
+        } catch (Exception e) {
+          LiferayLogger.e(e.getMessage());
+          onDeleteRatingEntryFailure(e);
+        }
       default:
         break;
     }
@@ -105,6 +115,14 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, BaseRatingIn
 
     if (_listener != null) {
       _listener.onAddRatingEntryFailure(exception);
+    }
+  }
+
+  @Override public void onDeleteRatingEntryFailure(Exception exception) {
+    getViewModel().showFailedOperation(DELETE_RATING_ACTION, exception);
+
+    if (_listener != null) {
+      _listener.onDeleteRatingEntryFailure(exception);
     }
   }
 
@@ -134,6 +152,18 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, BaseRatingIn
 
     if (_listener != null) {
       _listener.onAddRatingEntrySuccess(entry);
+    }
+  }
+
+  @Override public void onDeleteRatingEntrySuccess() {
+    if (_userRatingEntry != null) {
+      getViewModel().showFinishOperation(DELETE_RATING_ACTION);
+    }
+
+    _userRatingEntry = null;
+
+    if (_listener != null) {
+      _listener.onDeleteRatingEntrySuccess();
     }
   }
 

@@ -10,4 +10,6 @@ public interface RatingListener {
   void onRetrieveRatingEntriesSuccess(long classPK, String className, List<RatingEntry> ratings);
   void onAddRatingEntryFailure(Exception exception);
   void onAddRatingEntrySuccess(RatingEntry entry);
+  void onDeleteRatingEntryFailure(Exception exception);
+  void onDeleteRatingEntrySuccess();
 }

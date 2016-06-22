@@ -1,11 +1,9 @@
-package com.liferay.mobile.screens.rating.interactor.add;
+package com.liferay.mobile.screens.rating.interactor.update;
 
 import android.support.annotation.NonNull;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v7.ratingsentry.RatingsEntryService;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
-import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
-import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.rating.RatingListener;
 import com.liferay.mobile.screens.rating.interactor.RatingEntryFactory;
@@ -16,9 +14,9 @@ import org.json.JSONException;
 /**
  * @author Alejandro Hernández
  */
-public class AddRatingInteractorImpl extends BaseRemoteInteractor<RatingListener> implements
-    AddRatingInteractor {
-  public AddRatingInteractorImpl(int targetScreenletId) {
+public class UpdateRatingInteractorImpl extends BaseRemoteInteractor<RatingListener> implements
+    UpdateRatingInteractor {
+  public UpdateRatingInteractorImpl(int targetScreenletId) {
     super(targetScreenletId);
     _ratingsEntryService = getRatingsEntryService();
   }
@@ -31,11 +29,11 @@ public class AddRatingInteractorImpl extends BaseRemoteInteractor<RatingListener
 
   @NonNull private RatingsEntryService getRatingsEntryService() {
     Session session = SessionContext.createSessionFromCurrentSession();
-    session.setCallback(new AddRatingCallback(getTargetScreenletId()));
+    session.setCallback(new UpdateRatingCallback(getTargetScreenletId()));
     return new RatingsEntryService(session);
   }
 
-  public void onEvent(AddRatingEvent event) {
+  public void onEvent(UpdateRatingEvent event) {
     if (!isValidEvent(event)) {
       return;
     }
