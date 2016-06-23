@@ -18,46 +18,36 @@ import java.util.List;
 /**
  * @author Alejandro Hernández
  */
-public class ThumbsRatingView extends LinearLayout implements RatingViewModel, View.OnClickListener {
+public class ThumbsRatingView extends BaseRatingView implements View.OnClickListener {
 
   public ThumbsRatingView(Context context) {
-      super(context);
+    super(context);
   }
 
   public ThumbsRatingView(Context context, AttributeSet attrs) {
-      super(context, attrs);
+    super(context, attrs);
   }
 
   public ThumbsRatingView(Context context, AttributeSet attrs, int defStyleAttr) {
-      super(context, attrs, defStyleAttr);
+    super(context, attrs, defStyleAttr);
   }
 
-  @Override public void showStartOperation(String actionName) {
+  @Override public void onClick(View v) {
+    final int id = v.getId();
 
-  }
+    double score = -1;
 
-  @Override public void showFailedOperation(String actionName, Exception e) {
-    switch (actionName) {
-      case RatingScreenlet.LOAD_RATINGS_ACTION:
-        LiferayLogger.e(getContext().getString(R.string.loading_ratings_error), e);
-        break;
-      case RatingScreenlet.LOAD_USER_RATING_ACTION:
-        LiferayLogger.e(getContext().getString(R.string.loading_user_rating_error), e);
-        break;
-      case RatingScreenlet.ADD_RATING_ACTION:
-        LiferayLogger.e(getContext().getString(R.string.adding_error_rating), e);
-        break;
-      case RatingScreenlet.UPDATE_RATING_ACTION:
-        LiferayLogger.e(getContext().getString(R.string.updating_rating_error), e);
-        break;
-      default:
-        LiferayLogger.e(getContext().getString(R.string.ratings_error), e);
-        break;
+    if (id == R.id.positiveRatingButton) {
+      score = 1.0;
+    } else if (id == R.id.negativeRatingButton) {
+      score = 0.0;
     }
-  }
 
-  @Override public void showFinishOperation(String actionName) {
-    showFinishOperation(actionName, null);
+    if (score != -1) {
+      String action = score == _userScore ?
+          RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.ADD_RATING_ACTION;
+      getScreenlet().performUserAction(action, score);
+    }
   }
 
   @Override public void showFinishOperation(String action, Object argument) {
@@ -99,6 +89,20 @@ public class ThumbsRatingView extends LinearLayout implements RatingViewModel, V
     updateButtons();
   }
 
+  @Override
+  protected void onFinishInflate() {
+    super.onFinishInflate();
+
+    _negativeButton = (ImageButton) findViewById(R.id.negativeRatingButton);
+    _possitiveButton = (ImageButton) findViewById(R.id.positiveRatingButton);
+
+    _negativeCountLabel = (TextView) findViewById(R.id.negativeRatingCount);
+    _possitiveCountLabel = (TextView) findViewById(R.id.positiveRatingCount);
+
+    _negativeButton.setOnClickListener(this);
+    _possitiveButton.setOnClickListener(this);
+  }
+
   private void updateButtons() {
     if (_userScore == 1) {
       _negativeButton.setImageResource(R.drawable.default_thumb_down_outline);
@@ -125,46 +129,6 @@ public class ThumbsRatingView extends LinearLayout implements RatingViewModel, V
     _negativeCountLabel.setText(getContext().getString(R.string.rating_total) + Integer.toString(_negativeCount));
   }
 
-  @Override public void onClick(View v) {
-    final int id = v.getId();
-
-    double score = -1;
-
-    if (id == R.id.positiveRatingButton) {
-      score = 1.0;
-    } else if (id == R.id.negativeRatingButton) {
-      score = 0.0;
-    }
-
-    if (score != -1) {
-      String action = score == _userScore ?
-          RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.ADD_RATING_ACTION;
-      getScreenlet().performUserAction(action, score);
-    }
-  }
-
-  @Override public BaseScreenlet getScreenlet() {
-      return _screenlet;
-  }
-
-  @Override public void setScreenlet(BaseScreenlet screenlet) {
-      _screenlet = screenlet;
-  }
-
-  @Override
-  protected void onFinishInflate() {
-    super.onFinishInflate();
-
-    _negativeButton = (ImageButton) findViewById(R.id.negativeRatingButton);
-    _possitiveButton = (ImageButton) findViewById(R.id.positiveRatingButton);
-
-    _negativeCountLabel = (TextView) findViewById(R.id.negativeRatingCount);
-    _possitiveCountLabel = (TextView) findViewById(R.id.positiveRatingCount);
-
-    _negativeButton.setOnClickListener(this);
-    _possitiveButton.setOnClickListener(this);
-  }
-
   private ImageButton _negativeButton;
   private ImageButton _possitiveButton;
   private TextView _negativeCountLabel;
@@ -173,6 +137,4 @@ public class ThumbsRatingView extends LinearLayout implements RatingViewModel, V
   private int _possitiveCount;
 
   private double _userScore;
-
-  private BaseScreenlet _screenlet;
 }

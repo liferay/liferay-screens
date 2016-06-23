@@ -17,9 +17,8 @@ public class RatingsActivity extends ThemeActivity implements RatingListener {
 
     setContentView(R.layout.ratings);
 
-    RatingScreenlet screenlet =
-        (RatingScreenlet) findViewById(R.id.rating_screenlet);
-    screenlet.setListener(this);
+    ((RatingScreenlet) findViewById(R.id.rating_thumb_screenlet)).setListener(this);
+    ((RatingScreenlet) findViewById(R.id.rating_star_screenlet)).setListener(this);
   }
 
   @Override public void onRetrieveRatingEntriesFailure(Exception exception) {

@@ -10,11 +10,19 @@
       android:text="@string/ratings_label" />
 
   <com.liferay.mobile.screens.rating.RatingScreenlet
-      android:id="@+id/rating_screenlet"
+      android:id="@+id/rating_thumb_screenlet"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       liferay:layoutId="@layout/rating_thumb_default"
-      liferay:entryId="@string/liferay_asset_id"
+      liferay:entryId="@string/liferay_rating_thumb_asset_id"
+      liferay:offlinePolicy="REMOTE_FIRST" />
+
+  <com.liferay.mobile.screens.rating.RatingScreenlet
+      android:id="@+id/rating_star_screenlet"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      liferay:layoutId="@layout/rating_star_bar_default"
+      liferay:entryId="@string/liferay_rating_star_asset_id"
       liferay:offlinePolicy="REMOTE_FIRST" />
 
 </LinearLayout>
