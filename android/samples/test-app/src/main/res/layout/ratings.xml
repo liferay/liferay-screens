@@ -11,9 +11,9 @@
 
   <com.liferay.mobile.screens.rating.RatingScreenlet
       android:id="@+id/rating_screenlet"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      liferay:layoutId="@layout/rating_layout"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      liferay:layoutId="@layout/rating_thumb_default"
       liferay:entryId="@string/liferay_asset_id"
       liferay:offlinePolicy="REMOTE_FIRST" />
 

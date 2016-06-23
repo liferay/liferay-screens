@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
@@ -95,6 +96,20 @@ public class ThumbsRatingView extends LinearLayout implements RatingViewModel, V
         break;
     }
     updateCountLabels();
+    updateButtons();
+  }
+
+  private void updateButtons() {
+    if (_userScore == 1) {
+      _negativeButton.setImageResource(R.drawable.default_thumb_down_outline);
+      _possitiveButton.setImageResource(R.drawable.default_thumb_up);
+    } else if (_userScore == 0) {
+      _negativeButton.setImageResource(R.drawable.default_thumb_down);
+      _possitiveButton.setImageResource(R.drawable.default_thumb_up_outline);
+    } else {
+      _negativeButton.setImageResource(R.drawable.default_thumb_down_outline);
+      _possitiveButton.setImageResource(R.drawable.default_thumb_up_outline);
+    }
   }
 
   private void updateGlobalScore(double score) {
@@ -140,8 +155,8 @@ public class ThumbsRatingView extends LinearLayout implements RatingViewModel, V
   protected void onFinishInflate() {
     super.onFinishInflate();
 
-    _negativeButton = (Button) findViewById(R.id.negativeRatingButton);
-    _possitiveButton = (Button) findViewById(R.id.positiveRatingButton);
+    _negativeButton = (ImageButton) findViewById(R.id.negativeRatingButton);
+    _possitiveButton = (ImageButton) findViewById(R.id.positiveRatingButton);
 
     _negativeCountLabel = (TextView) findViewById(R.id.negativeRatingCount);
     _possitiveCountLabel = (TextView) findViewById(R.id.positiveRatingCount);
@@ -150,8 +165,8 @@ public class ThumbsRatingView extends LinearLayout implements RatingViewModel, V
     _possitiveButton.setOnClickListener(this);
   }
 
-  private Button _negativeButton;
-  private Button _possitiveButton;
+  private ImageButton _negativeButton;
+  private ImageButton _possitiveButton;
   private TextView _negativeCountLabel;
   private TextView _possitiveCountLabel;
   private int _negativeCount;
