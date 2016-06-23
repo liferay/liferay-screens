@@ -1,8 +1,6 @@
 package com.liferay.mobile.screens.rating.interactor.delete;
 
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
-import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
-import org.json.JSONObject;
 
 /**
  * @author Alejandro Hernández

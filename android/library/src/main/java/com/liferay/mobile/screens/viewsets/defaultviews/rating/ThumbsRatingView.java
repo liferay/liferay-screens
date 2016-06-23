@@ -3,16 +3,11 @@ package com.liferay.mobile.screens.viewsets.defaultviews.rating;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.rating.RatingEntry;
 import com.liferay.mobile.screens.rating.RatingScreenlet;
-import com.liferay.mobile.screens.rating.view.RatingViewModel;
-import com.liferay.mobile.screens.util.LiferayLogger;
 import java.util.List;
 
 /**

@@ -1,10 +1,7 @@
 package com.liferay.mobile.screens.rating.interactor.delete;
 
-import com.liferay.mobile.android.callback.typed.GenericCallback;
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 import com.liferay.mobile.screens.base.interactor.InteractorAsyncTaskCallback;
-import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
-import org.json.JSONObject;
 
 /**
  * @author Alejandro Hernández

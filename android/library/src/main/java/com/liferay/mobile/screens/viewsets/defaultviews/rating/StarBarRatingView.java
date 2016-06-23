@@ -2,15 +2,12 @@ package com.liferay.mobile.screens.viewsets.defaultviews.rating;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.rating.RatingEntry;
 import com.liferay.mobile.screens.rating.RatingScreenlet;
 import java.util.List;
-import org.w3c.dom.Text;
 
 /**
  * @author Alejandro Hernández

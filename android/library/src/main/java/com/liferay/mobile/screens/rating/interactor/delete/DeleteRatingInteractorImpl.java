@@ -6,10 +6,6 @@ import com.liferay.mobile.android.v7.ratingsentry.RatingsEntryService;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.rating.RatingListener;
-import com.liferay.mobile.screens.rating.interactor.RatingEntryFactory;
-import com.liferay.mobile.screens.util.LiferayLogger;
-import java.security.InvalidParameterException;
-import org.json.JSONException;
 
 /**
  * @author Alejandro Hernández

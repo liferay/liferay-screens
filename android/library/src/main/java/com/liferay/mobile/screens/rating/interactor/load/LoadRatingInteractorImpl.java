@@ -1,12 +1,8 @@
 package com.liferay.mobile.screens.rating.interactor.load;
 
 import android.support.annotation.NonNull;
-import android.support.v4.util.Pair;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
-import com.liferay.mobile.screens.base.interactor.JSONArrayEvent;
-import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
-import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.rating.RatingListener;
 import com.liferay.mobile.screens.rating.interactor.RatingEntryFactory;
