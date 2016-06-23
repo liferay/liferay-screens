@@ -25,4 +25,12 @@
       liferay:entryId="@string/liferay_rating_star_asset_id"
       liferay:offlinePolicy="REMOTE_FIRST" />
 
+  <com.liferay.mobile.screens.rating.RatingScreenlet
+      android:id="@+id/rating_like_screenlet"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      liferay:layoutId="@layout/rating_like_default"
+      liferay:entryId="@string/liferay_rating_like_asset_id"
+      liferay:offlinePolicy="REMOTE_FIRST" />
+
 </LinearLayout>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="rating_total">"Total: "</string>
+  <string name="rating_total">Total: %d</string>
   <string name="rating_count">%d Ratings</string>
   <string name="loading_ratings_error">Error loading ratings</string>
   <string name="loading_user_rating_error">Error loading user rating</string>

@@ -125,8 +125,8 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
   }
 
   private void updateCountLabels() {
-    _possitiveCountLabel.setText(getContext().getString(R.string.rating_total) + Integer.toString(_possitiveCount));
-    _negativeCountLabel.setText(getContext().getString(R.string.rating_total) + Integer.toString(_negativeCount));
+    _possitiveCountLabel.setText(getContext().getString(R.string.rating_total, _possitiveCount));
+    _negativeCountLabel.setText(getContext().getString(R.string.rating_total, _negativeCount));
   }
 
   private ImageButton _negativeButton;

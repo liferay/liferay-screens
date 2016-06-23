@@ -35,7 +35,7 @@ public class StarBarRatingView extends BaseRatingView implements RatingBar.OnRat
         _totalScore = _totalCount = 0;
         final List<RatingEntry> ratings = (List<RatingEntry>) argument;
         for (RatingEntry rating : ratings) {
-          _totalScore += rating.getScore();
+          addToTotalScore(rating.getScore());
           _totalCount++;
         }
         break;
@@ -48,12 +48,12 @@ public class StarBarRatingView extends BaseRatingView implements RatingBar.OnRat
         _userScore = ((RatingEntry) argument).getScore();
         setUserRating();
         _totalCount++;
-        _totalScore += _userScore;
+        addToTotalScore(_userScore);
         break;
       case RatingScreenlet.UPDATE_RATING_ACTION:
-        _totalScore -= _userScore;
+        addToTotalScore(-_userScore);
         _userScore = ((RatingEntry) argument).getScore();
-        _totalScore += _userScore;
+        addToTotalScore(_userScore);
         break;
       default:
         break;
@@ -61,6 +61,10 @@ public class StarBarRatingView extends BaseRatingView implements RatingBar.OnRat
 
     setRatingBarRate(_averageRatingBar, getRating());
     _totalCountTextView.setText(getContext().getString(R.string.rating_count, _totalCount));
+  }
+
+  private void addToTotalScore(double score) {
+    _totalScore += score;
   }
 
   @Override public void onRatingChanged(RatingBar ratingBar, float score, boolean fromUser) {

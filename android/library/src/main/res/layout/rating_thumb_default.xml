@@ -31,7 +31,7 @@
       android:gravity="center"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="COUNT" />
+      tools:text="Total: 7" />
 
   </LinearLayout>
 
@@ -45,6 +45,7 @@
     <ImageButton
       android:id="@+id/negativeRatingButton"
       android:src="@drawable/default_thumb_down_outline"
+      tools:src="@drawable/default_thumb_down"
       android:background="?attr/selectableItemBackgroundBorderless"
       tools:background=""
       android:scaleType="fitXY"
@@ -56,7 +57,7 @@
       android:gravity="center"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="COUNT" />
+      tools:text="Total: 9" />
 
   </LinearLayout>
 </com.liferay.mobile.screens.viewsets.defaultviews.rating.ThumbsRatingView>

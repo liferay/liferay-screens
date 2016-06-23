@@ -29,6 +29,7 @@
 	<!--RatingScreenlet-->
 	<string name="liferay_rating_thumb_asset_id">31869</string>
 	<string name="liferay_rating_star_asset_id">32049</string>
+	<string name="liferay_rating_like_asset_id">31904</string>
 
 	<string name="liferay_article_structured_structure_id">63875</string>
 	<string name="liferay_article_structured_article_id">63879</string>

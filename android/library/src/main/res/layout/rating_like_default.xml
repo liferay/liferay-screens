@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.viewsets.defaultviews.rating.LikeRatingView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:padding="10dp"
+  style="@style/default_screenlet"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  >
+
+  <ImageButton
+    android:id="@+id/likeRatingButton"
+    android:src="@drawable/default_thumb_up_outline"
+    android:background="?attr/selectableItemBackgroundBorderless"
+    tools:background=""
+    android:scaleType="fitXY"
+    android:layout_width="80dp"
+    android:layout_height="80dp" />
+
+  <TextView
+    android:id="@+id/likeCountLabel"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:text="Total: 8" />
+
+</com.liferay.mobile.screens.viewsets.defaultviews.rating.LikeRatingView>
