@@ -6,9 +6,9 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.assetdisplay.interactor.AssetDisplayInteractor;
 import com.liferay.mobile.screens.assetdisplay.interactor.AssetDisplayInteractorImpl;
 import com.liferay.mobile.screens.assetdisplay.view.AssetDisplayViewModel;
+import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
@@ -31,11 +31,11 @@ public class AssetDisplayScreenlet
     super(context, attributes, defaultStyle);
   }
 
-  @Override public void onRetrieveAssetSuccess() {
-    getViewModel().showFinishOperation(null);
+  @Override public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
+    getViewModel().showFinishOperation(assetEntry);
 
     if (_listener != null) {
-      _listener.onRetrieveAssetSuccess();
+      _listener.onRetrieveAssetSuccess(assetEntry);
     }
   }
 
@@ -55,9 +55,11 @@ public class AssetDisplayScreenlet
 
     _entryId = typedArray.getInt(R.styleable.AssetDisplayScreenlet_entryId, 0);
 
+    View view = LayoutInflater.from(context).inflate(layoutId, null);
+
     typedArray.recycle();
 
-    return LayoutInflater.from(context).inflate(layoutId, null);
+    return view;
   }
 
   @Override protected AssetDisplayInteractorImpl createInteractor(String actionName) {
@@ -67,11 +69,6 @@ public class AssetDisplayScreenlet
   @Override
   protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor,
       Object... args) {
-    try {
-      loadAsset();
-    } catch (Exception e) {
-      LiferayLogger.e("Could not load asset: " + e.toString());
-    }
   }
 
   @Override protected void onScreenletAttached() {
@@ -85,10 +82,21 @@ public class AssetDisplayScreenlet
   }
 
   protected void loadAsset() throws Exception {
-    AssetDisplayInteractor assetDisplayInteractor = getInteractor();
-    assetDisplayInteractor.getAssetEntryExtended(_entryId);
+    getInteractor().getAssetEntryExtended(_entryId);
   }
 
-  private AssetDisplayListener _listener;
+  public long getEntryId() {
+    return _entryId;
+  }
+
+  public void setEntryId(long entryId) {
+    this._entryId = entryId;
+  }
+
+  public void setListener(AssetDisplayListener listener) {
+    _listener = listener;
+  }
+
   private long _entryId;
+  private AssetDisplayListener _listener;
 }
