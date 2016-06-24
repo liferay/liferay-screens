@@ -11,38 +11,38 @@ import java.util.List;
  */
 public class RatingsActivity extends ThemeActivity implements RatingListener {
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
+	@Override protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-    setContentView(R.layout.ratings);
+		setContentView(R.layout.ratings);
 
-    ((RatingScreenlet) findViewById(R.id.rating_thumb_screenlet)).setListener(this);
-    ((RatingScreenlet) findViewById(R.id.rating_star_screenlet)).setListener(this);
-    ((RatingScreenlet) findViewById(R.id.rating_like_screenlet)).setListener(this);
-  }
+		((RatingScreenlet) findViewById(R.id.rating_thumb_screenlet)).setListener(this);
+		((RatingScreenlet) findViewById(R.id.rating_star_screenlet)).setListener(this);
+		((RatingScreenlet) findViewById(R.id.rating_like_screenlet)).setListener(this);
+	}
 
-  @Override public void onRetrieveRatingEntriesFailure(Exception exception) {
-    error("Couldn't fetch ratings", exception);
-  }
+	@Override public void onRetrieveRatingEntriesFailure(Exception exception) {
+		error("Couldn't fetch ratings", exception);
+	}
 
-  @Override public void onAddRatingEntryFailure(Exception exception) {
-    error("Couldn't update/add rating", exception);
-  }
+	@Override public void onAddRatingEntryFailure(Exception exception) {
+		error("Couldn't update/add rating", exception);
+	}
 
-  @Override public void onDeleteRatingEntryFailure(Exception exception) {
-    error("Couldn't delete rating", exception);
-  }
+	@Override public void onDeleteRatingEntryFailure(Exception exception) {
+		error("Couldn't delete rating", exception);
+	}
 
-  @Override public void onRetrieveRatingEntriesSuccess(long classPK, String className, List<RatingEntry> ratings) {
-    info("Ratings fetched succesfully!");
-  }
+	@Override public void onRetrieveRatingEntriesSuccess(long classPK, String className,
+		List<RatingEntry> ratings) {
+		info("Ratings fetched succesfully!");
+	}
 
-  @Override public void onAddRatingEntrySuccess(RatingEntry entry) {
-    info("Rating added/updated succesfully!");
-  }
+	@Override public void onAddRatingEntrySuccess(RatingEntry entry) {
+		info("Rating added/updated succesfully!");
+	}
 
-  @Override public void onDeleteRatingEntrySuccess() {
-    info("Rating deleted succesfully!");
-  }
+	@Override public void onDeleteRatingEntrySuccess() {
+		info("Rating deleted succesfully!");
+	}
 }
