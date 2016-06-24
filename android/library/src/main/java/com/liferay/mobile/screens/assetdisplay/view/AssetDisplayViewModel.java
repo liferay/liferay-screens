@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.assetdisplay.view;
 
-import android.widget.TextView;
+import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 
 /**
@@ -8,4 +8,5 @@ import com.liferay.mobile.screens.base.view.BaseViewModel;
  */
 public interface AssetDisplayViewModel extends BaseViewModel {
 
+  void showFinishOperation(AssetEntry assetEntry);
 }

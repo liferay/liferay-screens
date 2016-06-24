@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import com.liferay.mobile.screens.assetdisplay.view.AssetDisplayViewModel;
+import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
@@ -24,15 +25,16 @@ public class AssetDisplayView extends LinearLayout implements AssetDisplayViewMo
     super(context, attributes, defaultStyle);
   }
 
-  @Override protected void onFinishInflate() {
-    super.onFinishInflate();
-  }
-
   @Override public void showStartOperation(String actionName) {
   }
 
   @Override public void showFinishOperation(String actionName) {
-    LiferayLogger.i("Asset display successful");
+    throw new UnsupportedOperationException("showFinishOperation(String) is not supported."
+      + " Use showFinishOperation(String, AssetEntry) instead.");
+  }
+
+  @Override public void showFinishOperation(AssetEntry assetEntry) {
+    LiferayLogger.d(assetEntry.getTitle());
   }
 
   @Override public void showFailedOperation(String actionName, Exception e) {
