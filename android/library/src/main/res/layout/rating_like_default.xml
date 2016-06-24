@@ -11,6 +11,7 @@
   <ImageButton
     android:id="@+id/likeRatingButton"
     android:src="@drawable/default_thumb_up_outline"
+    android:tint="?attr/colorPrimary"
     android:background="?attr/selectableItemBackgroundBorderless"
     tools:background=""
     android:scaleType="fitXY"
