@@ -1,65 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.rating.ThumbsRatingView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:weightSum="2"
-    android:padding="10dp"
-    android:orientation="horizontal"
-    style="@style/default_screenlet"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:weightSum="2"
+  android:padding="10dp"
+  android:orientation="horizontal"
+  style="@style/default_screenlet"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+  >
+
+  <ProgressBar
+    android:layout_gravity="center"
+    android:id="@+id/liferay_rating_progress"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:visibility="gone" />
+
+  <LinearLayout
+    android:id="@+id/liferay_rating_content"
+    tools:visibility="visible"
+    android:visibility="gone"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     >
 
-  <LinearLayout
-    android:orientation="vertical"
-    android:layout_weight="1"
-    android:paddingRight="10dp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
+    <LinearLayout
+      android:orientation="vertical"
+      android:layout_weight="1"
+      android:paddingRight="10dp"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" >
 
-    <ImageButton
-      android:id="@+id/positiveRatingButton"
-      android:src="@drawable/default_thumb_up_outline"
-      android:background="?attr/selectableItemBackgroundBorderless"
-      android:tint="?attr/colorPrimary"
-      tools:background=""
-      android:scaleType="fitXY"
-      android:layout_width="80dp"
-      android:layout_height="80dp" />
+      <ImageButton
+        android:id="@+id/positiveRatingButton"
+        android:src="@drawable/default_thumb_up_outline"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:tint="?attr/colorPrimary"
+        tools:background=""
+        android:scaleType="fitXY"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
 
-    <TextView
-      android:id="@+id/positiveRatingCount"
-      android:gravity="center"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      tools:text="Total: 7" />
+      <TextView
+        android:id="@+id/positiveRatingCount"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Total: 7" />
 
+    </LinearLayout>
+
+    <LinearLayout
+      android:orientation="vertical"
+      android:layout_weight="1"
+      android:paddingLeft="10dp"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" >
+
+      <ImageButton
+        android:id="@+id/negativeRatingButton"
+        android:src="@drawable/default_thumb_down_outline"
+        tools:src="@drawable/default_thumb_down"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:tint="?attr/colorPrimary"
+        tools:background=""
+        android:scaleType="fitXY"
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
+
+      <TextView
+        android:id="@+id/negativeRatingCount"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Total: 9" />
+
+    </LinearLayout>
   </LinearLayout>
 
-  <LinearLayout
-    android:orientation="vertical"
-    android:layout_weight="1"
-    android:paddingLeft="10dp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
-
-    <ImageButton
-      android:id="@+id/negativeRatingButton"
-      android:src="@drawable/default_thumb_down_outline"
-      tools:src="@drawable/default_thumb_down"
-      android:background="?attr/selectableItemBackgroundBorderless"
-      android:tint="?attr/colorPrimary"
-      tools:background=""
-      android:scaleType="fitXY"
-      android:layout_width="80dp"
-      android:layout_height="80dp" />
-
-    <TextView
-      android:id="@+id/negativeRatingCount"
-      android:gravity="center"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      tools:text="Total: 9" />
-
-  </LinearLayout>
 </com.liferay.mobile.screens.viewsets.defaultviews.rating.ThumbsRatingView>

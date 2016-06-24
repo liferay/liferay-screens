@@ -2,7 +2,9 @@ package com.liferay.mobile.screens.viewsets.defaultviews.rating;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.rating.RatingScreenlet;
@@ -27,10 +29,22 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
   }
 
   @Override public void showStartOperation(String actionName) {
-    throw new UnsupportedOperationException();
+    if (_progressBar != null) {
+      _progressBar.setVisibility(View.VISIBLE);
+    }
+    if (_content != null) {
+      _content.setVisibility(View.GONE);
+    }
   }
 
   @Override public void showFailedOperation(String actionName, Exception e) {
+    if (_progressBar != null) {
+      _progressBar.setVisibility(View.GONE);
+    }
+    if (_content != null) {
+      _content.setVisibility(View.VISIBLE);
+    }
+
     switch (actionName) {
       case RatingScreenlet.LOAD_RATINGS_ACTION:
         LiferayLogger.e(getContext().getString(R.string.loading_ratings_error), e);
@@ -57,6 +71,13 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
     showFinishOperation(actionName, null);
   }
 
+  @Override protected void onFinishInflate() {
+    super.onFinishInflate();
+
+    _progressBar = (ProgressBar) findViewById(R.id.liferay_rating_progress);
+    _content = (LinearLayout) findViewById(R.id.liferay_rating_content);
+  }
+
   @Override public BaseScreenlet getScreenlet() {
     return _screenlet;
   }
@@ -66,4 +87,7 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
   }
 
   private BaseScreenlet _screenlet;
+
+  protected ProgressBar _progressBar;
+  protected LinearLayout _content;
 }

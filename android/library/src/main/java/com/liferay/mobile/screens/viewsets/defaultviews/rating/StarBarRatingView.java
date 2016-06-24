@@ -2,6 +2,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.rating;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
@@ -25,39 +26,46 @@ public class StarBarRatingView extends BaseRatingView implements RatingBar.OnRat
     super(context, attrs, defStyleAttr);
   }
 
-  @Override public void showFinishOperation(String actionName, Object argument) {
-    switch (actionName) {
-      case RatingScreenlet.LOAD_RATINGS_ACTION:
-        _userScore = -1;
-        _totalScore = _totalCount = 0;
-        final List<RatingEntry> ratings = (List<RatingEntry>) argument;
-        for (RatingEntry rating : ratings) {
-          addToTotalScore(rating.getScore());
-          _totalCount++;
-        }
-        break;
-      case RatingScreenlet.LOAD_USER_RATING_ACTION:
-        final RatingEntry rating = (RatingEntry) argument;
-        _userScore = rating.getScore();
-        setUserRating();
-        break;
-      case RatingScreenlet.ADD_RATING_ACTION:
-        _userScore = ((RatingEntry) argument).getScore();
-        setUserRating();
-        _totalCount++;
-        addToTotalScore(_userScore);
-        break;
-      case RatingScreenlet.UPDATE_RATING_ACTION:
-        addToTotalScore(-_userScore);
-        _userScore = ((RatingEntry) argument).getScore();
-        addToTotalScore(_userScore);
-        break;
-      default:
-        break;
+  @Override public void showFinishOperation(String action, Object argument) {
+    if (_progressBar != null) {
+      _progressBar.setVisibility(View.GONE);
     }
+    if (_content != null) {
+      _content.setVisibility(View.VISIBLE);
 
-    setRatingBarRate(_averageRatingBar, getRating());
-    _totalCountTextView.setText(getContext().getString(R.string.rating_count, _totalCount));
+      switch (action) {
+        case RatingScreenlet.LOAD_RATINGS_ACTION:
+          _userScore = -1;
+          _totalScore = _totalCount = 0;
+          final List<RatingEntry> ratings = (List<RatingEntry>) argument;
+          for (RatingEntry rating : ratings) {
+            addToTotalScore(rating.getScore());
+            _totalCount++;
+          }
+          break;
+        case RatingScreenlet.LOAD_USER_RATING_ACTION:
+          final RatingEntry rating = (RatingEntry) argument;
+          _userScore = rating.getScore();
+          setUserRating();
+          break;
+        case RatingScreenlet.ADD_RATING_ACTION:
+          _userScore = ((RatingEntry) argument).getScore();
+          setUserRating();
+          _totalCount++;
+          addToTotalScore(_userScore);
+          break;
+        case RatingScreenlet.UPDATE_RATING_ACTION:
+          addToTotalScore(-_userScore);
+          _userScore = ((RatingEntry) argument).getScore();
+          addToTotalScore(_userScore);
+          break;
+        default:
+          break;
+      }
+
+      setRatingBarRate(_averageRatingBar, getRating());
+      _totalCountTextView.setText(getContext().getString(R.string.rating_count, _totalCount));
+    }
   }
 
   private void addToTotalScore(double score) {

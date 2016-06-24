@@ -42,7 +42,7 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, BaseRatingIn
   }
 
   public void load() throws Exception {
-    ((LoadRatingInteractor) getInteractor(LOAD_RATINGS_ACTION)).loadRatings(castToLong(_entryId));
+    performUserAction(LOAD_RATINGS_ACTION);
   }
 
   @Override protected View createScreenletView(Context context, AttributeSet attributes) {
@@ -75,6 +75,7 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, BaseRatingIn
   }
 
   @Override protected void onScreenletAttached() {
+    super.onScreenletAttached();
     if (_autoLoad) {
       autoLoad();
     }
@@ -83,6 +84,14 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, BaseRatingIn
   @Override
   protected void onUserAction(String userActionName, BaseRatingInteractor interactor, Object... args) {
     switch (userActionName) {
+      case LOAD_RATINGS_ACTION:
+        try {
+          ((LoadRatingInteractor) getInteractor(LOAD_RATINGS_ACTION)).loadRatings(castToLong(_entryId));
+        } catch (Exception e) {
+          LiferayLogger.e(e.getMessage());
+          onRetrieveRatingEntriesFailure(e);
+        }
+        break;
       case ADD_RATING_ACTION:
         double score = (double) args[0];
         try {

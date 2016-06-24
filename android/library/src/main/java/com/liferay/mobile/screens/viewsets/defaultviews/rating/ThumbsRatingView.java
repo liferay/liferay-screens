@@ -46,42 +46,60 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
   }
 
   @Override public void showFinishOperation(String action, Object argument) {
-    switch (action) {
-      case RatingScreenlet.LOAD_RATINGS_ACTION:
-        _negativeCount = _possitiveCount = 0;
-        _userScore = -1;
-
-        for (RatingEntry entry : (List<RatingEntry>) argument) {
-          updateGlobalScore(entry.getScore());
-        }
-
-        break;
-      case RatingScreenlet.LOAD_USER_RATING_ACTION:
-        _userScore = ((RatingEntry) argument).getScore();
-        break;
-      case RatingScreenlet.ADD_RATING_ACTION:
-        _userScore = ((RatingEntry) argument).getScore();
-        updateGlobalScore(_userScore);
-        break;
-      case RatingScreenlet.UPDATE_RATING_ACTION:
-        _userScore = ((RatingEntry) argument).getScore();
-        double change = (_userScore == 0) ? 1 : -1;
-        _negativeCount += change;
-        _possitiveCount += -change;
-        break;
-      case RatingScreenlet.DELETE_RATING_ACTION:
-        if (_userScore == 0) {
-          _negativeCount--;
-        } else if (_userScore == 1) {
-          _possitiveCount--;
-        }
-        _userScore = -1;
-        break;
-      default:
-        break;
+    if (_progressBar != null) {
+      _progressBar.setVisibility(View.GONE);
     }
-    updateCountLabels();
-    updateButtons();
+    if (_content != null) {
+      _content.setVisibility(View.VISIBLE);
+
+      switch (action) {
+        case RatingScreenlet.LOAD_RATINGS_ACTION:
+          _negativeCount = _possitiveCount = 0;
+          _userScore = -1;
+
+          for (RatingEntry entry : (List<RatingEntry>) argument) {
+            updateGlobalScore(entry.getScore());
+          }
+
+          updateCountLabels();
+
+          break;
+        case RatingScreenlet.LOAD_USER_RATING_ACTION:
+          _userScore = ((RatingEntry) argument).getScore();
+          updateGlobalScore(_userScore, true);
+          break;
+        case RatingScreenlet.ADD_RATING_ACTION:
+          if (_userScore == -1) {
+            setUserScore(((RatingEntry) argument).getScore());
+          }
+          break;
+        case RatingScreenlet.UPDATE_RATING_ACTION:
+          if (_userScore != -1) {
+            setUserScore(((RatingEntry) argument).getScore());
+          }
+          break;
+        case RatingScreenlet.DELETE_RATING_ACTION:
+          if (_userScore != -1) {
+            setUserScore(-1);
+          }
+          break;
+        default:
+          break;
+      }
+      updateButtons();
+    }
+  }
+
+  private void setUserScore(double score) {
+    if (score == 0) {
+      updateCountLabels(_possitiveCount, _negativeCount + 1);
+    } else if (score == 1) {
+      updateCountLabels(_possitiveCount + 1, _negativeCount);
+    } else {
+      updateCountLabels();
+    }
+
+    _userScore = score;
   }
 
   @Override
@@ -112,24 +130,32 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
   }
 
   private void updateGlobalScore(double score) {
+    updateGlobalScore(score, false);
+  }
+
+  private void updateGlobalScore(double score, boolean backwards) {
     if (score == 0) {
-      _negativeCount++;
+      _negativeCount += backwards ? -1 : 1;
     } else {
-      _possitiveCount++;
+      _possitiveCount += backwards ? -1 : 1;
     }
   }
 
   private void updateCountLabels() {
-    _possitiveCountLabel.setText(getContext().getString(R.string.rating_total, _possitiveCount));
-    _negativeCountLabel.setText(getContext().getString(R.string.rating_total, _negativeCount));
+    updateCountLabels(_possitiveCount, _negativeCount);
+  }
+
+  private void updateCountLabels(int possitiveCount, int negativeCount) {
+    _possitiveCountLabel.setText(getContext().getString(R.string.rating_total, possitiveCount));
+    _negativeCountLabel.setText(getContext().getString(R.string.rating_total, negativeCount));
   }
 
   private ImageButton _negativeButton;
   private ImageButton _possitiveButton;
   private TextView _negativeCountLabel;
   private TextView _possitiveCountLabel;
+
   private int _negativeCount;
   private int _possitiveCount;
-
   private double _userScore;
 }

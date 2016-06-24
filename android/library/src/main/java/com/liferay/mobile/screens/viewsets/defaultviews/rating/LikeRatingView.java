@@ -27,29 +27,36 @@ public class LikeRatingView extends BaseRatingView implements View.OnClickListen
   }
 
   @Override public void showFinishOperation(String action, Object argument) {
-    switch (action) {
-      case RatingScreenlet.LOAD_RATINGS_ACTION:
-        _likeCount = 0;
-        _hasUserRate = false;
-        _likeCount = ((List<RatingEntry>) argument).size();
-        break;
-      case RatingScreenlet.LOAD_USER_RATING_ACTION:
-        _hasUserRate = true;
-        break;
-      case RatingScreenlet.ADD_RATING_ACTION:
-        _hasUserRate = true;
-        _likeCount++;
-        break;
-      case RatingScreenlet.DELETE_RATING_ACTION:
-        _hasUserRate = false;
-        _likeCount--;
-        break;
-      default:
-        break;
+    if (_progressBar != null) {
+      _progressBar.setVisibility(View.GONE);
     }
+    if (_content != null) {
+      _content.setVisibility(View.VISIBLE);
 
-    updateCountLabel();
-    updateButton();
+      switch (action) {
+        case RatingScreenlet.LOAD_RATINGS_ACTION:
+          _likeCount = 0;
+          _hasUserRate = false;
+          _likeCount = ((List<RatingEntry>) argument).size();
+          break;
+        case RatingScreenlet.LOAD_USER_RATING_ACTION:
+          _hasUserRate = true;
+          break;
+        case RatingScreenlet.ADD_RATING_ACTION:
+          _hasUserRate = true;
+          _likeCount++;
+          break;
+        case RatingScreenlet.DELETE_RATING_ACTION:
+          _hasUserRate = false;
+          _likeCount--;
+          break;
+        default:
+          break;
+      }
+
+      updateCountLabel();
+      updateButton();
+    }
   }
 
   private void updateButton() {
