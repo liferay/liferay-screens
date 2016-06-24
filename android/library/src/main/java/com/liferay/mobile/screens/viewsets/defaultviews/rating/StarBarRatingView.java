@@ -13,100 +13,100 @@ import java.util.List;
 /**
  * @author Alejandro Hernández
  */
-public class StarBarRatingView extends BaseRatingView implements RatingBar.OnRatingBarChangeListener {
-  public StarBarRatingView(Context context) {
-    super(context);
-  }
+public class StarBarRatingView extends BaseRatingView
+	implements RatingBar.OnRatingBarChangeListener {
+	private TextView _totalCountTextView;
+	private RatingBar _averageRatingBar;
+	private RatingBar _userRatingBar;
+	private int _totalCount;
+	private double _totalScore;
+	private double _userScore;
 
-  public StarBarRatingView(Context context, AttributeSet attrs) {
-    super(context, attrs);
-  }
+	public StarBarRatingView(Context context) {
+		super(context);
+	}
 
-  public StarBarRatingView(Context context, AttributeSet attrs, int defStyleAttr) {
-    super(context, attrs, defStyleAttr);
-  }
+	public StarBarRatingView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+	}
 
-  @Override public void showFinishOperation(String action, Object argument) {
-    if (_progressBar != null) {
-      _progressBar.setVisibility(View.GONE);
-    }
-    if (_content != null) {
-      _content.setVisibility(View.VISIBLE);
+	public StarBarRatingView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
 
-      switch (action) {
-        case RatingScreenlet.LOAD_RATINGS_ACTION:
-          _userScore = -1;
-          _totalScore = _totalCount = 0;
-          final List<RatingEntry> ratings = (List<RatingEntry>) argument;
-          for (RatingEntry rating : ratings) {
-            addToTotalScore(rating.getScore());
-            _totalCount++;
-          }
-          break;
-        case RatingScreenlet.LOAD_USER_RATING_ACTION:
-          final RatingEntry rating = (RatingEntry) argument;
-          _userScore = rating.getScore();
-          setUserRating();
-          break;
-        case RatingScreenlet.ADD_RATING_ACTION:
-          _userScore = ((RatingEntry) argument).getScore();
-          setUserRating();
-          _totalCount++;
-          addToTotalScore(_userScore);
-          break;
-        case RatingScreenlet.UPDATE_RATING_ACTION:
-          addToTotalScore(-_userScore);
-          _userScore = ((RatingEntry) argument).getScore();
-          addToTotalScore(_userScore);
-          break;
-        default:
-          break;
-      }
+	@Override public void showFinishOperation(String action, Object argument) {
+		if (_progressBar != null) {
+			_progressBar.setVisibility(View.GONE);
+		}
+		if (_content != null) {
+			_content.setVisibility(View.VISIBLE);
 
-      setRatingBarRate(_averageRatingBar, getRating());
-      _totalCountTextView.setText(getContext().getString(R.string.rating_count, _totalCount));
-    }
-  }
+			switch (action) {
+				case RatingScreenlet.LOAD_RATINGS_ACTION:
+					_userScore = -1;
+					_totalScore = _totalCount = 0;
+					final List<RatingEntry> ratings = (List<RatingEntry>) argument;
+					for (RatingEntry rating : ratings) {
+						addToTotalScore(rating.getScore());
+						_totalCount++;
+					}
+					break;
+				case RatingScreenlet.LOAD_USER_RATING_ACTION:
+					final RatingEntry rating = (RatingEntry) argument;
+					_userScore = rating.getScore();
+					setUserRating();
+					break;
+				case RatingScreenlet.ADD_RATING_ACTION:
+					_userScore = ((RatingEntry) argument).getScore();
+					setUserRating();
+					_totalCount++;
+					addToTotalScore(_userScore);
+					break;
+				case RatingScreenlet.UPDATE_RATING_ACTION:
+					addToTotalScore(-_userScore);
+					_userScore = ((RatingEntry) argument).getScore();
+					addToTotalScore(_userScore);
+					break;
+				default:
+					break;
+			}
 
-  private void addToTotalScore(double score) {
-    _totalScore += score;
-  }
+			setRatingBarRate(_averageRatingBar, getRating());
+			_totalCountTextView.setText(getContext().getString(R.string.rating_count, _totalCount));
+		}
+	}
 
-  @Override public void onRatingChanged(RatingBar ratingBar, float score, boolean fromUser) {
-    if (fromUser) {
-      double normalizedScore = score / ratingBar.getNumStars();
-      getScreenlet().performUserAction(RatingScreenlet.ADD_RATING_ACTION, (double) normalizedScore);
-    }
-  }
+	private void addToTotalScore(double score) {
+		_totalScore += score;
+	}
 
-  @Override
-  protected void onFinishInflate() {
-    super.onFinishInflate();
+	@Override public void onRatingChanged(RatingBar ratingBar, float score, boolean fromUser) {
+		if (fromUser) {
+			double normalizedScore = score / ratingBar.getNumStars();
+			getScreenlet().performUserAction(RatingScreenlet.ADD_RATING_ACTION,
+				(double) normalizedScore);
+		}
+	}
 
-    _userRatingBar = (RatingBar) findViewById(R.id.userRatingBar);
-    _averageRatingBar = (RatingBar) findViewById(R.id.averageRatingBar);
-    _totalCountTextView = (TextView) findViewById(R.id.totalCountTextView);
+	@Override protected void onFinishInflate() {
+		super.onFinishInflate();
 
-    _userRatingBar.setOnRatingBarChangeListener(this);
-  }
+		_userRatingBar = (RatingBar) findViewById(R.id.userRatingBar);
+		_averageRatingBar = (RatingBar) findViewById(R.id.averageRatingBar);
+		_totalCountTextView = (TextView) findViewById(R.id.totalCountTextView);
 
-  private float getRating() {
-    return (float) _totalScore / _totalCount;
-  }
+		_userRatingBar.setOnRatingBarChangeListener(this);
+	}
 
-  private void setUserRating() {
-    setRatingBarRate(_userRatingBar, (float) _userScore);
-  }
+	private float getRating() {
+		return (float) _totalScore / _totalCount;
+	}
 
-  private void setRatingBarRate(RatingBar ratingBar, float rating) {
-    ratingBar.setRating(rating * ratingBar.getNumStars());
-  }
+	private void setUserRating() {
+		setRatingBarRate(_userRatingBar, (float) _userScore);
+	}
 
-  private TextView _totalCountTextView;
-  private RatingBar _averageRatingBar;
-  private RatingBar _userRatingBar;
-
-  private int _totalCount;
-  private double _totalScore;
-  private double _userScore;
+	private void setRatingBarRate(RatingBar ratingBar, float rating) {
+		ratingBar.setRating(rating * ratingBar.getNumStars());
+	}
 }

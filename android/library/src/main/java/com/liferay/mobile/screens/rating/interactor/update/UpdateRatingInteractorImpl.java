@@ -14,47 +14,47 @@ import org.json.JSONException;
 /**
  * @author Alejandro Hernández
  */
-public class UpdateRatingInteractorImpl extends BaseRemoteInteractor<RatingListener> implements
-    UpdateRatingInteractor {
-  public UpdateRatingInteractorImpl(int targetScreenletId) {
-    super(targetScreenletId);
-    _ratingsEntryService = getRatingsEntryService();
-  }
+public class UpdateRatingInteractorImpl extends BaseRemoteInteractor<RatingListener>
+	implements UpdateRatingInteractor {
+	private final RatingsEntryService _ratingsEntryService;
 
-  @Override public void addRating(String className, long classPK, double score)
-      throws Exception {
-    validate(score);
-    _ratingsEntryService.updateEntry(className, classPK, score);
-  }
+	public UpdateRatingInteractorImpl(int targetScreenletId) {
+		super(targetScreenletId);
+		_ratingsEntryService = getRatingsEntryService();
+	}
 
-  @NonNull private RatingsEntryService getRatingsEntryService() {
-    Session session = SessionContext.createSessionFromCurrentSession();
-    session.setCallback(new UpdateRatingCallback(getTargetScreenletId()));
-    return new RatingsEntryService(session);
-  }
+	@Override public void addRating(String className, long classPK, double score) throws Exception {
+		validate(score);
+		_ratingsEntryService.updateEntry(className, classPK, score);
+	}
 
-  public void onEvent(UpdateRatingEvent event) {
-    if (!isValidEvent(event)) {
-      return;
-    }
+	@NonNull private RatingsEntryService getRatingsEntryService() {
+		Session session = SessionContext.createSessionFromCurrentSession();
+		session.setCallback(new UpdateRatingCallback(getTargetScreenletId()));
+		return new RatingsEntryService(session);
+	}
 
-    if (event.isFailed()) {
-      getListener().onAddRatingEntryFailure(event.getException());
-    } else {
-      try {
-        getListener().onAddRatingEntrySuccess(RatingEntryFactory.createEntry(event.getJSONObject()));
-      } catch (JSONException e) {
-        LiferayLogger.e(e.getMessage());
-      }
-    }
-  }
+	public void onEvent(UpdateRatingEvent event) {
+		if (!isValidEvent(event)) {
+			return;
+		}
 
-  protected void validate(double score) throws InvalidParameterException {
-    if ((score > 1) || (score < 0)) {
-      throw new InvalidParameterException(
-          "Score " + score + " is not a double value between 0 and 1");
-    }
-  }
+		if (event.isFailed()) {
+			getListener().onAddRatingEntryFailure(event.getException());
+		} else {
+			try {
+				getListener().onAddRatingEntrySuccess(
+					RatingEntryFactory.createEntry(event.getJSONObject()));
+			} catch (JSONException e) {
+				LiferayLogger.e(e.getMessage());
+			}
+		}
+	}
 
-  private final RatingsEntryService _ratingsEntryService;
+	protected void validate(double score) throws InvalidParameterException {
+		if ((score > 1) || (score < 0)) {
+			throw new InvalidParameterException(
+				"Score " + score + " is not a double value between 0 and 1");
+		}
+	}
 }

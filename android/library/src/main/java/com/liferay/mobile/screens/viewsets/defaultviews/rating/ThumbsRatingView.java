@@ -15,147 +15,145 @@ import java.util.List;
  */
 public class ThumbsRatingView extends BaseRatingView implements View.OnClickListener {
 
-  public ThumbsRatingView(Context context) {
-    super(context);
-  }
+	private ImageButton _negativeButton;
+	private ImageButton _possitiveButton;
+	private TextView _negativeCountLabel;
+	private TextView _possitiveCountLabel;
+	private int _negativeCount;
+	private int _possitiveCount;
+	private double _userScore;
 
-  public ThumbsRatingView(Context context, AttributeSet attrs) {
-    super(context, attrs);
-  }
+	public ThumbsRatingView(Context context) {
+		super(context);
+	}
 
-  public ThumbsRatingView(Context context, AttributeSet attrs, int defStyleAttr) {
-    super(context, attrs, defStyleAttr);
-  }
+	public ThumbsRatingView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+	}
 
-  @Override public void onClick(View v) {
-    final int id = v.getId();
+	public ThumbsRatingView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
 
-    double score = -1;
+	@Override public void onClick(View v) {
+		final int id = v.getId();
 
-    if (id == R.id.positiveRatingButton) {
-      score = 1.0;
-    } else if (id == R.id.negativeRatingButton) {
-      score = 0.0;
-    }
+		double score = -1;
 
-    if (score != -1) {
-      String action = score == _userScore ?
-          RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.ADD_RATING_ACTION;
-      getScreenlet().performUserAction(action, score);
-    }
-  }
+		if (id == R.id.positiveRatingButton) {
+			score = 1.0;
+		} else if (id == R.id.negativeRatingButton) {
+			score = 0.0;
+		}
 
-  @Override public void showFinishOperation(String action, Object argument) {
-    if (_progressBar != null) {
-      _progressBar.setVisibility(View.GONE);
-    }
-    if (_content != null) {
-      _content.setVisibility(View.VISIBLE);
+		if (score != -1) {
+			String action = score == _userScore ? RatingScreenlet.DELETE_RATING_ACTION
+				: RatingScreenlet.ADD_RATING_ACTION;
+			getScreenlet().performUserAction(action, score);
+		}
+	}
 
-      switch (action) {
-        case RatingScreenlet.LOAD_RATINGS_ACTION:
-          _negativeCount = _possitiveCount = 0;
-          _userScore = -1;
+	@Override public void showFinishOperation(String action, Object argument) {
+		if (_progressBar != null) {
+			_progressBar.setVisibility(View.GONE);
+		}
+		if (_content != null) {
+			_content.setVisibility(View.VISIBLE);
 
-          for (RatingEntry entry : (List<RatingEntry>) argument) {
-            updateGlobalScore(entry.getScore());
-          }
+			switch (action) {
+				case RatingScreenlet.LOAD_RATINGS_ACTION:
+					_negativeCount = _possitiveCount = 0;
+					_userScore = -1;
 
-          updateCountLabels();
+					for (RatingEntry entry : (List<RatingEntry>) argument) {
+						updateGlobalScore(entry.getScore());
+					}
 
-          break;
-        case RatingScreenlet.LOAD_USER_RATING_ACTION:
-          _userScore = ((RatingEntry) argument).getScore();
-          updateGlobalScore(_userScore, true);
-          break;
-        case RatingScreenlet.ADD_RATING_ACTION:
-          if (_userScore == -1) {
-            setUserScore(((RatingEntry) argument).getScore());
-          }
-          break;
-        case RatingScreenlet.UPDATE_RATING_ACTION:
-          if (_userScore != -1) {
-            setUserScore(((RatingEntry) argument).getScore());
-          }
-          break;
-        case RatingScreenlet.DELETE_RATING_ACTION:
-          if (_userScore != -1) {
-            setUserScore(-1);
-          }
-          break;
-        default:
-          break;
-      }
-      updateButtons();
-    }
-  }
+					updateCountLabels();
 
-  private void setUserScore(double score) {
-    if (score == 0) {
-      updateCountLabels(_possitiveCount, _negativeCount + 1);
-    } else if (score == 1) {
-      updateCountLabels(_possitiveCount + 1, _negativeCount);
-    } else {
-      updateCountLabels();
-    }
+					break;
+				case RatingScreenlet.LOAD_USER_RATING_ACTION:
+					_userScore = ((RatingEntry) argument).getScore();
+					updateGlobalScore(_userScore, true);
+					break;
+				case RatingScreenlet.ADD_RATING_ACTION:
+					if (_userScore == -1) {
+						setUserScore(((RatingEntry) argument).getScore());
+					}
+					break;
+				case RatingScreenlet.UPDATE_RATING_ACTION:
+					if (_userScore != -1) {
+						setUserScore(((RatingEntry) argument).getScore());
+					}
+					break;
+				case RatingScreenlet.DELETE_RATING_ACTION:
+					if (_userScore != -1) {
+						setUserScore(-1);
+					}
+					break;
+				default:
+					break;
+			}
+			updateButtons();
+		}
+	}
 
-    _userScore = score;
-  }
+	private void setUserScore(double score) {
+		if (score == 0) {
+			updateCountLabels(_possitiveCount, _negativeCount + 1);
+		} else if (score == 1) {
+			updateCountLabels(_possitiveCount + 1, _negativeCount);
+		} else {
+			updateCountLabels();
+		}
 
-  @Override
-  protected void onFinishInflate() {
-    super.onFinishInflate();
+		_userScore = score;
+	}
 
-    _negativeButton = (ImageButton) findViewById(R.id.negativeRatingButton);
-    _possitiveButton = (ImageButton) findViewById(R.id.positiveRatingButton);
+	@Override protected void onFinishInflate() {
+		super.onFinishInflate();
 
-    _negativeCountLabel = (TextView) findViewById(R.id.negativeRatingCount);
-    _possitiveCountLabel = (TextView) findViewById(R.id.positiveRatingCount);
+		_negativeButton = (ImageButton) findViewById(R.id.negativeRatingButton);
+		_possitiveButton = (ImageButton) findViewById(R.id.positiveRatingButton);
 
-    _negativeButton.setOnClickListener(this);
-    _possitiveButton.setOnClickListener(this);
-  }
+		_negativeCountLabel = (TextView) findViewById(R.id.negativeRatingCount);
+		_possitiveCountLabel = (TextView) findViewById(R.id.positiveRatingCount);
 
-  private void updateButtons() {
-    if (_userScore == 1) {
-      _negativeButton.setImageResource(R.drawable.default_thumb_down_outline);
-      _possitiveButton.setImageResource(R.drawable.default_thumb_up);
-    } else if (_userScore == 0) {
-      _negativeButton.setImageResource(R.drawable.default_thumb_down);
-      _possitiveButton.setImageResource(R.drawable.default_thumb_up_outline);
-    } else {
-      _negativeButton.setImageResource(R.drawable.default_thumb_down_outline);
-      _possitiveButton.setImageResource(R.drawable.default_thumb_up_outline);
-    }
-  }
+		_negativeButton.setOnClickListener(this);
+		_possitiveButton.setOnClickListener(this);
+	}
 
-  private void updateGlobalScore(double score) {
-    updateGlobalScore(score, false);
-  }
+	private void updateButtons() {
+		if (_userScore == 1) {
+			_negativeButton.setImageResource(R.drawable.default_thumb_down_outline);
+			_possitiveButton.setImageResource(R.drawable.default_thumb_up);
+		} else if (_userScore == 0) {
+			_negativeButton.setImageResource(R.drawable.default_thumb_down);
+			_possitiveButton.setImageResource(R.drawable.default_thumb_up_outline);
+		} else {
+			_negativeButton.setImageResource(R.drawable.default_thumb_down_outline);
+			_possitiveButton.setImageResource(R.drawable.default_thumb_up_outline);
+		}
+	}
 
-  private void updateGlobalScore(double score, boolean backwards) {
-    if (score == 0) {
-      _negativeCount += backwards ? -1 : 1;
-    } else {
-      _possitiveCount += backwards ? -1 : 1;
-    }
-  }
+	private void updateGlobalScore(double score) {
+		updateGlobalScore(score, false);
+	}
 
-  private void updateCountLabels() {
-    updateCountLabels(_possitiveCount, _negativeCount);
-  }
+	private void updateGlobalScore(double score, boolean backwards) {
+		if (score == 0) {
+			_negativeCount += backwards ? -1 : 1;
+		} else {
+			_possitiveCount += backwards ? -1 : 1;
+		}
+	}
 
-  private void updateCountLabels(int possitiveCount, int negativeCount) {
-    _possitiveCountLabel.setText(getContext().getString(R.string.rating_total, possitiveCount));
-    _negativeCountLabel.setText(getContext().getString(R.string.rating_total, negativeCount));
-  }
+	private void updateCountLabels() {
+		updateCountLabels(_possitiveCount, _negativeCount);
+	}
 
-  private ImageButton _negativeButton;
-  private ImageButton _possitiveButton;
-  private TextView _negativeCountLabel;
-  private TextView _possitiveCountLabel;
-
-  private int _negativeCount;
-  private int _possitiveCount;
-  private double _userScore;
+	private void updateCountLabels(int possitiveCount, int negativeCount) {
+		_possitiveCountLabel.setText(getContext().getString(R.string.rating_total, possitiveCount));
+		_negativeCountLabel.setText(getContext().getString(R.string.rating_total, negativeCount));
+	}
 }

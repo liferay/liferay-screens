@@ -16,80 +16,79 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  */
 public abstract class BaseRatingView extends LinearLayout implements RatingViewModel {
 
-  public BaseRatingView(Context context) {
-    super(context);
-  }
+	protected ProgressBar _progressBar;
+	protected LinearLayout _content;
+	private BaseScreenlet _screenlet;
 
-  public BaseRatingView(Context context, AttributeSet attrs) {
-    super(context, attrs);
-  }
+	public BaseRatingView(Context context) {
+		super(context);
+	}
 
-  public BaseRatingView(Context context, AttributeSet attrs, int defStyleAttr) {
-    super(context, attrs, defStyleAttr);
-  }
+	public BaseRatingView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+	}
 
-  @Override public void showStartOperation(String actionName) {
-    if (actionName == RatingScreenlet.LOAD_RATINGS_ACTION) {
-      if (_progressBar != null) {
-        _progressBar.setVisibility(View.VISIBLE);
-      }
-      if (_content != null) {
-        _content.setVisibility(View.GONE);
-      }
-    }
-  }
+	public BaseRatingView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
 
-  @Override public void showFailedOperation(String actionName, Exception e) {
-    if (_progressBar != null) {
-      _progressBar.setVisibility(View.GONE);
-    }
-    if (_content != null) {
-      _content.setVisibility(View.VISIBLE);
-    }
+	@Override public void showStartOperation(String actionName) {
+		if (actionName == RatingScreenlet.LOAD_RATINGS_ACTION) {
+			if (_progressBar != null) {
+				_progressBar.setVisibility(View.VISIBLE);
+			}
+			if (_content != null) {
+				_content.setVisibility(View.GONE);
+			}
+		}
+	}
 
-    switch (actionName) {
-      case RatingScreenlet.LOAD_RATINGS_ACTION:
-        LiferayLogger.e(getContext().getString(R.string.loading_ratings_error), e);
-        break;
-      case RatingScreenlet.LOAD_USER_RATING_ACTION:
-        LiferayLogger.e(getContext().getString(R.string.loading_user_rating_error), e);
-        break;
-      case RatingScreenlet.ADD_RATING_ACTION:
-        LiferayLogger.e(getContext().getString(R.string.adding_error_rating), e);
-        break;
-      case RatingScreenlet.UPDATE_RATING_ACTION:
-        LiferayLogger.e(getContext().getString(R.string.updating_rating_error), e);
-        break;
-      case RatingScreenlet.DELETE_RATING_ACTION:
-        LiferayLogger.e(getContext().getString(R.string.deleting_rating_error), e);
-        break;
-      default:
-        LiferayLogger.e(getContext().getString(R.string.ratings_error), e);
-        break;
-    }
-  }
+	@Override public void showFailedOperation(String actionName, Exception e) {
+		if (_progressBar != null) {
+			_progressBar.setVisibility(View.GONE);
+		}
+		if (_content != null) {
+			_content.setVisibility(View.VISIBLE);
+		}
 
-  @Override public void showFinishOperation(String actionName) {
-    showFinishOperation(actionName, null);
-  }
+		switch (actionName) {
+			case RatingScreenlet.LOAD_RATINGS_ACTION:
+				LiferayLogger.e(getContext().getString(R.string.loading_ratings_error), e);
+				break;
+			case RatingScreenlet.LOAD_USER_RATING_ACTION:
+				LiferayLogger.e(getContext().getString(R.string.loading_user_rating_error), e);
+				break;
+			case RatingScreenlet.ADD_RATING_ACTION:
+				LiferayLogger.e(getContext().getString(R.string.adding_error_rating), e);
+				break;
+			case RatingScreenlet.UPDATE_RATING_ACTION:
+				LiferayLogger.e(getContext().getString(R.string.updating_rating_error), e);
+				break;
+			case RatingScreenlet.DELETE_RATING_ACTION:
+				LiferayLogger.e(getContext().getString(R.string.deleting_rating_error), e);
+				break;
+			default:
+				LiferayLogger.e(getContext().getString(R.string.ratings_error), e);
+				break;
+		}
+	}
 
-  @Override protected void onFinishInflate() {
-    super.onFinishInflate();
+	@Override public void showFinishOperation(String actionName) {
+		showFinishOperation(actionName, null);
+	}
 
-    _progressBar = (ProgressBar) findViewById(R.id.liferay_rating_progress);
-    _content = (LinearLayout) findViewById(R.id.liferay_rating_content);
-  }
+	@Override protected void onFinishInflate() {
+		super.onFinishInflate();
 
-  @Override public BaseScreenlet getScreenlet() {
-    return _screenlet;
-  }
+		_progressBar = (ProgressBar) findViewById(R.id.liferay_rating_progress);
+		_content = (LinearLayout) findViewById(R.id.liferay_rating_content);
+	}
 
-  @Override public void setScreenlet(BaseScreenlet screenlet) {
-    _screenlet = screenlet;
-  }
+	@Override public BaseScreenlet getScreenlet() {
+		return _screenlet;
+	}
 
-  private BaseScreenlet _screenlet;
-
-  protected ProgressBar _progressBar;
-  protected LinearLayout _content;
+	@Override public void setScreenlet(BaseScreenlet screenlet) {
+		_screenlet = screenlet;
+	}
 }

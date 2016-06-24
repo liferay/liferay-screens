@@ -7,11 +7,11 @@ import com.liferay.mobile.screens.base.interactor.BasicEvent;
  */
 public class DeleteRatingEvent extends BasicEvent {
 
-  public DeleteRatingEvent(int targetScreenletId) {
-    super(targetScreenletId);
-  }
+	public DeleteRatingEvent(int targetScreenletId) {
+		super(targetScreenletId);
+	}
 
-  public DeleteRatingEvent(int targetScreenletId, Exception exception) {
-    super(targetScreenletId, exception);
-  }
+	public DeleteRatingEvent(int targetScreenletId, Exception exception) {
+		super(targetScreenletId, exception);
+	}
 }

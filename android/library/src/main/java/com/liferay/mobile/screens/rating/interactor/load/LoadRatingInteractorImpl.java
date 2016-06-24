@@ -14,41 +14,42 @@ import org.json.JSONObject;
 /**
  * @author Alejandro Hernández
  */
-public class LoadRatingInteractorImpl extends BaseRemoteInteractor<RatingListener> implements
-    LoadRatingInteractor {
+public class LoadRatingInteractorImpl extends BaseRemoteInteractor<RatingListener>
+	implements LoadRatingInteractor {
 
-  public LoadRatingInteractorImpl(int targetScreenletId) {
-    super(targetScreenletId);
-    _screensratingsentryService = getScreensratingsentryService();
-  }
+	private final ScreensratingsentryService _screensratingsentryService;
 
-  @Override public void loadRatings(long assetId) throws Exception {
-    _screensratingsentryService.getRatingsEntries(assetId);
-  }
+	public LoadRatingInteractorImpl(int targetScreenletId) {
+		super(targetScreenletId);
+		_screensratingsentryService = getScreensratingsentryService();
+	}
 
-  @NonNull private ScreensratingsentryService getScreensratingsentryService() {
-    Session session = SessionContext.createSessionFromCurrentSession();
-    session.setCallback(new LoadRatingCallback(getTargetScreenletId()));
-    return new ScreensratingsentryService(session);
-  }
+	@Override public void loadRatings(long assetId) throws Exception {
+		_screensratingsentryService.getRatingsEntries(assetId);
+	}
 
-  public void onEvent(LoadRatingEvent event) {
-    if (!isValidEvent(event)) {
-      return;
-    }
+	@NonNull private ScreensratingsentryService getScreensratingsentryService() {
+		Session session = SessionContext.createSessionFromCurrentSession();
+		session.setCallback(new LoadRatingCallback(getTargetScreenletId()));
+		return new ScreensratingsentryService(session);
+	}
 
-    if (event.isFailed()) {
-      getListener().onRetrieveRatingEntriesFailure(event.getException());
-    } else {
-      try {
-        JSONObject result = event.getJSONObject();
-        getListener().onRetrieveRatingEntriesSuccess(result.getLong("classPK"),
-            result.getString("className"), RatingEntryFactory.createEntryList(result.getJSONArray("entries")));
-      } catch (JSONException e) {
-        LiferayLogger.e(e.getMessage());
-      }
-    }
-  }
+	public void onEvent(LoadRatingEvent event) {
+		if (!isValidEvent(event)) {
+			return;
+		}
 
-  private final ScreensratingsentryService _screensratingsentryService;
+		if (event.isFailed()) {
+			getListener().onRetrieveRatingEntriesFailure(event.getException());
+		} else {
+			try {
+				JSONObject result = event.getJSONObject();
+				getListener().onRetrieveRatingEntriesSuccess(result.getLong("classPK"),
+					result.getString("className"),
+					RatingEntryFactory.createEntryList(result.getJSONArray("entries")));
+			} catch (JSONException e) {
+				LiferayLogger.e(e.getMessage());
+			}
+		}
+	}
 }

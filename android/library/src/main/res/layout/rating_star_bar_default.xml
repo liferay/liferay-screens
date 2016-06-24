@@ -1,61 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.rating.StarBarRatingView
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:padding="10dp"
-  style="@style/default_screenlet"
-  android:orientation="vertical"
-  android:layout_width="wrap_content"
-  android:layout_height="wrap_content"
-  >
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:padding="10dp"
+	style="@style/default_screenlet"
+	>
 
-  <ProgressBar
-    android:layout_gravity="center"
-    android:id="@+id/liferay_rating_progress"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:visibility="gone" />
+	<ProgressBar
+		android:id="@+id/liferay_rating_progress"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:visibility="gone"
+		/>
 
-  <LinearLayout
-    android:id="@+id/liferay_rating_content"
-    tools:visibility="visible"
-    android:visibility="gone"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+	<LinearLayout
+		android:id="@+id/liferay_rating_content"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:visibility="gone"
+		tools:visibility="visible"
+		>
 
-    <RatingBar
-      android:id="@+id/userRatingBar"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      tools:rating="4"
-      android:stepSize="1"
-      />
+		<RatingBar
+			android:id="@+id/userRatingBar"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:stepSize="1"
+			tools:rating="4"
+			/>
 
-    <LinearLayout
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      >
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			>
 
-      <RatingBar
-        android:id="@+id/averageRatingBar"
-        style="?android:attr/ratingBarStyleSmall"
-        android:isIndicator="true"
-        android:stepSize="1"
-        tools:rating="4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        />
+			<RatingBar
+				android:id="@+id/averageRatingBar"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:isIndicator="true"
+				android:stepSize="1"
+				tools:rating="4"
+				style="?android:attr/ratingBarStyleSmall"
+				/>
 
-      <TextView
-        android:id="@+id/totalCountTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        tools:text="8 Ratings"
-        />
-    </LinearLayout>
-  </LinearLayout>
+			<TextView
+				android:id="@+id/totalCountTextView"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:paddingLeft="10dp"
+				tools:text="8 Ratings"
+				/>
+		</LinearLayout>
+	</LinearLayout>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.rating.StarBarRatingView>

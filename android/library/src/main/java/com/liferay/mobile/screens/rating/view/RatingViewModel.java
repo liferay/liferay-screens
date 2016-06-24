@@ -6,5 +6,5 @@ import com.liferay.mobile.screens.base.view.BaseViewModel;
  * @author Alejandro Hernández
  */
 public interface RatingViewModel extends BaseViewModel {
-    void showFinishOperation(String actionName, Object argument);
+	void showFinishOperation(String actionName, Object argument);
 }

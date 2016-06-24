@@ -10,35 +10,34 @@ import com.liferay.mobile.screens.rating.RatingListener;
 /**
  * @author Alejandro Hernández
  */
-public class DeleteRatingInteractorImpl extends BaseRemoteInteractor<RatingListener> implements
-    DeleteRatingInteractor {
-  public DeleteRatingInteractorImpl(int targetScreenletId) {
-    super(targetScreenletId);
-    _ratingsEntryService = getRatingsEntryService();
-  }
+public class DeleteRatingInteractorImpl extends BaseRemoteInteractor<RatingListener>
+	implements DeleteRatingInteractor {
+	private final RatingsEntryService _ratingsEntryService;
 
-  @Override public void deleteRating(String className, long classPK)
-      throws Exception {
-    _ratingsEntryService.deleteEntry(className, classPK);
-  }
+	public DeleteRatingInteractorImpl(int targetScreenletId) {
+		super(targetScreenletId);
+		_ratingsEntryService = getRatingsEntryService();
+	}
 
-  @NonNull private RatingsEntryService getRatingsEntryService() {
-    Session session = SessionContext.createSessionFromCurrentSession();
-    session.setCallback(new DeleteRatingCallback(getTargetScreenletId()));
-    return new RatingsEntryService(session);
-  }
+	@Override public void deleteRating(String className, long classPK) throws Exception {
+		_ratingsEntryService.deleteEntry(className, classPK);
+	}
 
-  public void onEvent(DeleteRatingEvent event) {
-    if (!isValidEvent(event)) {
-      return;
-    }
+	@NonNull private RatingsEntryService getRatingsEntryService() {
+		Session session = SessionContext.createSessionFromCurrentSession();
+		session.setCallback(new DeleteRatingCallback(getTargetScreenletId()));
+		return new RatingsEntryService(session);
+	}
 
-    if (event.isFailed()) {
-      getListener().onDeleteRatingEntryFailure(event.getException());
-    } else {
-     getListener().onDeleteRatingEntrySuccess();
-    }
-  }
+	public void onEvent(DeleteRatingEvent event) {
+		if (!isValidEvent(event)) {
+			return;
+		}
 
-  private final RatingsEntryService _ratingsEntryService;
+		if (event.isFailed()) {
+			getListener().onDeleteRatingEntryFailure(event.getException());
+		} else {
+			getListener().onDeleteRatingEntrySuccess();
+		}
+	}
 }
