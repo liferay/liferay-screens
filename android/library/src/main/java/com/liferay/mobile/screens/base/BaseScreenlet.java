@@ -72,7 +72,6 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		I interactor = getInteractor();
 
 		if (interactor != null) {
-			getViewModel().showStartOperation(null);
 			onUserAction(null, interactor);
 		}
 	}
@@ -81,7 +80,6 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		I interactor = getInteractor(userActionName);
 
 		if (interactor != null) {
-			getViewModel().showStartOperation(userActionName);
 			onUserAction(userActionName, interactor, args);
 		}
 	}
