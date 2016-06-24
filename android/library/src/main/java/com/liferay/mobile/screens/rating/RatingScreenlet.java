@@ -41,14 +41,20 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, BaseRatingIn
     super(context, attributes, defaultStyle);
   }
 
+  public void load() throws Exception {
+    ((LoadRatingInteractor) getInteractor(LOAD_RATINGS_ACTION)).loadRatings(castToLong(_entryId));
+  }
+
   @Override protected View createScreenletView(Context context, AttributeSet attributes) {
     TypedArray typedArray = context.getTheme().obtainStyledAttributes(attributes, R.styleable.RatingScreenlet, 0, 0);
 
     int layoutId = typedArray.getResourceId(R.styleable.RatingScreenlet_layoutId, 0);
 
+    _autoLoad = typedArray.getBoolean(R.styleable.RatingScreenlet_autoLoad, true);
+
     View view = LayoutInflater.from(context).inflate(layoutId, null);
 
-    _entryId = castToLong(typedArray.getString(R.styleable.RatingScreenlet_entryId));
+    _entryId = typedArray.getString(R.styleable.RatingScreenlet_entryId);
 
     typedArray.recycle();
 
@@ -69,12 +75,8 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, BaseRatingIn
   }
 
   @Override protected void onScreenletAttached() {
-    super.onScreenletAttached();
-
-    try {
-      ((LoadRatingInteractor) getInteractor(LOAD_RATINGS_ACTION)).loadRatings(_entryId);
-    } catch (Exception e) {
-      this.onRetrieveRatingEntriesFailure(e);
+    if (_autoLoad) {
+      autoLoad();
     }
   }
 
@@ -185,9 +187,39 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, BaseRatingIn
     this._listener = listener;
   }
 
+  public boolean isAutoLoad() {
+    return _autoLoad;
+  }
+
+  public void setAutoLoad(boolean autoLoad) {
+    _autoLoad = autoLoad;
+  }
+
+  public String getEntryId() {
+    return _entryId;
+  }
+
+  public void setEntryId(String entryId) {
+    _entryId = entryId;
+  }
+
+  protected void autoLoad() {
+    if (_entryId != null && SessionContext.isLoggedIn()) {
+      try {
+        load();
+      } catch (Exception e) {
+        onRetrieveRatingEntriesFailure(e);
+      }
+    }
+  }
+
   private RatingEntry _userRatingEntry;
+
   private RatingListener _listener;
-  private long _entryId;
+
+  private String _entryId;
   private long _classPK;
   private String _className;
+
+  private boolean _autoLoad;
 }
