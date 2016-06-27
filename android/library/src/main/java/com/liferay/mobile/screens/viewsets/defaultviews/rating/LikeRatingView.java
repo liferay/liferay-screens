@@ -64,18 +64,6 @@ public class LikeRatingView extends BaseRatingView implements View.OnClickListen
 		}
 	}
 
-	private void updateButton() {
-		if (_hasUserRate) {
-			_likeButton.setImageResource(R.drawable.default_thumb_up);
-		} else {
-			_likeButton.setImageResource(R.drawable.default_thumb_up_outline);
-		}
-	}
-
-	private void updateCountLabel() {
-		_likeCountLabel.setText(getContext().getString(R.string.rating_total, _likeCount));
-	}
-
 	@Override public void onClick(View v) {
 		String action =
 			_hasUserRate ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.ADD_RATING_ACTION;
@@ -87,6 +75,22 @@ public class LikeRatingView extends BaseRatingView implements View.OnClickListen
 
 		_likeButton = (ImageButton) findViewById(R.id.likeRatingButton);
 		_likeCountLabel = (TextView) findViewById(R.id.likeCountLabel);
-		_likeButton.setOnClickListener(this);
+	}
+
+	@Override public void setReadOnly(boolean readOnly) {
+		_likeButton.setOnClickListener(readOnly ? null : this);
+		_likeButton.setEnabled(!readOnly);
+	}
+
+	private void updateButton() {
+		if (_hasUserRate) {
+			_likeButton.setImageResource(R.drawable.default_thumb_up);
+		} else {
+			_likeButton.setImageResource(R.drawable.default_thumb_up_outline);
+		}
+	}
+
+	private void updateCountLabel() {
+		_likeCountLabel.setText(getContext().getString(R.string.rating_total, _likeCount));
 	}
 }

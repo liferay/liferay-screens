@@ -3,6 +3,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.rating;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
@@ -21,6 +22,7 @@ public class StarBarRatingView extends BaseRatingView
 	private int _totalCount;
 	private double _totalScore;
 	private double _userScore;
+	private LinearLayout _averageContainer;
 
 	public StarBarRatingView(Context context) {
 		super(context);
@@ -76,8 +78,15 @@ public class StarBarRatingView extends BaseRatingView
 		}
 	}
 
-	private void addToTotalScore(double score) {
-		_totalScore += score;
+	@Override protected void onFinishInflate() {
+		super.onFinishInflate();
+
+		_userRatingBar = (RatingBar) findViewById(R.id.userRatingBar);
+		_averageRatingBar = (RatingBar) findViewById(R.id.averageRatingBar);
+		_totalCountTextView = (TextView) findViewById(R.id.totalCountTextView);
+		_averageContainer = (LinearLayout) findViewById(R.id.average_container);
+
+		_userRatingBar.setOnRatingBarChangeListener(this);
 	}
 
 	@Override public void onRatingChanged(RatingBar ratingBar, float score, boolean fromUser) {
@@ -88,14 +97,22 @@ public class StarBarRatingView extends BaseRatingView
 		}
 	}
 
-	@Override protected void onFinishInflate() {
-		super.onFinishInflate();
+	@Override public void setReadOnly(boolean readOnly) {
+		_userRatingBar.setEnabled(!readOnly);
 
-		_userRatingBar = (RatingBar) findViewById(R.id.userRatingBar);
-		_averageRatingBar = (RatingBar) findViewById(R.id.averageRatingBar);
-		_totalCountTextView = (TextView) findViewById(R.id.totalCountTextView);
+		if (readOnly) {
+			_userRatingBar.setVisibility(View.GONE);
+			_averageContainer.setOrientation(VERTICAL);
+			_totalCountTextView.setPadding(0, 0, 0, 0);
+		} else {
+			_userRatingBar.setVisibility(View.VISIBLE);
+			_averageContainer.setOrientation(HORIZONTAL);
+			_totalCountTextView.setPadding(10, 0, 0, 0);
+		}
+	}
 
-		_userRatingBar.setOnRatingBarChangeListener(this);
+	private void addToTotalScore(double score) {
+		_totalScore += score;
 	}
 
 	private float getRating() {

@@ -146,6 +146,7 @@
 	<declare-styleable name="RatingScreenlet">
 		<attr name="layoutId"/>
 		<attr name="autoLoad" />
+		<attr name="readOnly" format="boolean"/>
 		<attr name="entryId" format="string"/>
 	</declare-styleable>
 </resources>

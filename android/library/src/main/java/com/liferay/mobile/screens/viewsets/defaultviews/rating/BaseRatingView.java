@@ -19,6 +19,7 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 	protected ProgressBar _progressBar;
 	protected LinearLayout _content;
 	private BaseScreenlet _screenlet;
+	private boolean _readOnly;
 
 	public BaseRatingView(Context context) {
 		super(context);
@@ -32,21 +33,11 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 		super(context, attrs, defStyleAttr);
 	}
 
-	@Override public void showStartOperation(String actionName) {
-		if (actionName == RatingScreenlet.LOAD_RATINGS_ACTION) {
-			if (_progressBar != null) {
-				_progressBar.setVisibility(View.VISIBLE);
-			}
-			if (_content != null) {
-				_content.setVisibility(View.GONE);
-			}
-		}
-	}
-
 	@Override public void showFailedOperation(String actionName, Exception e) {
 		if (_progressBar != null) {
 			_progressBar.setVisibility(View.GONE);
 		}
+
 		if (_content != null) {
 			_content.setVisibility(View.VISIBLE);
 		}
@@ -75,6 +66,17 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 
 	@Override public void showFinishOperation(String actionName) {
 		showFinishOperation(actionName, null);
+	}
+
+	@Override public void showStartOperation(String actionName) {
+		if (actionName == RatingScreenlet.LOAD_RATINGS_ACTION) {
+			if (_progressBar != null) {
+				_progressBar.setVisibility(View.VISIBLE);
+			}
+			if (_content != null) {
+				_content.setVisibility(View.GONE);
+			}
+		}
 	}
 
 	@Override protected void onFinishInflate() {

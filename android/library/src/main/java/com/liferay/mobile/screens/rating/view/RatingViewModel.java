@@ -7,4 +7,6 @@ import com.liferay.mobile.screens.base.view.BaseViewModel;
  */
 public interface RatingViewModel extends BaseViewModel {
 	void showFinishOperation(String actionName, Object argument);
+
+	void setReadOnly(boolean readOnly);
 }

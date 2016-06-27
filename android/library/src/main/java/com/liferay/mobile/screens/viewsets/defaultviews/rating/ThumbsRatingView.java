@@ -53,6 +53,14 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 		}
 	}
 
+	@Override public void setReadOnly(boolean readOnly) {
+		_negativeButton.setOnClickListener(readOnly ? null : this);
+		_negativeButton.setEnabled(!readOnly);
+
+		_possitiveButton.setOnClickListener(readOnly ? null : this);
+		_possitiveButton.setEnabled(!readOnly);
+	}
+
 	@Override public void showFinishOperation(String action, Object argument) {
 		if (_progressBar != null) {
 			_progressBar.setVisibility(View.GONE);
@@ -98,18 +106,6 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 		}
 	}
 
-	private void setUserScore(double score) {
-		if (score == 0) {
-			updateCountLabels(_possitiveCount, _negativeCount + 1);
-		} else if (score == 1) {
-			updateCountLabels(_possitiveCount + 1, _negativeCount);
-		} else {
-			updateCountLabels();
-		}
-
-		_userScore = score;
-	}
-
 	@Override protected void onFinishInflate() {
 		super.onFinishInflate();
 
@@ -121,6 +117,18 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 
 		_negativeButton.setOnClickListener(this);
 		_possitiveButton.setOnClickListener(this);
+	}
+
+	private void setUserScore(double score) {
+		if (score == 0) {
+			updateCountLabels(_possitiveCount, _negativeCount + 1);
+		} else if (score == 1) {
+			updateCountLabels(_possitiveCount + 1, _negativeCount);
+		} else {
+			updateCountLabels();
+		}
+
+		_userScore = score;
 	}
 
 	private void updateButtons() {
@@ -136,6 +144,15 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 		}
 	}
 
+	private void updateCountLabels() {
+		updateCountLabels(_possitiveCount, _negativeCount);
+	}
+
+	private void updateCountLabels(int possitiveCount, int negativeCount) {
+		_possitiveCountLabel.setText(getContext().getString(R.string.rating_total, possitiveCount));
+		_negativeCountLabel.setText(getContext().getString(R.string.rating_total, negativeCount));
+	}
+
 	private void updateGlobalScore(double score) {
 		updateGlobalScore(score, false);
 	}
@@ -146,14 +163,5 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 		} else {
 			_possitiveCount += backwards ? -1 : 1;
 		}
-	}
-
-	private void updateCountLabels() {
-		updateCountLabels(_possitiveCount, _negativeCount);
-	}
-
-	private void updateCountLabels(int possitiveCount, int negativeCount) {
-		_possitiveCountLabel.setText(getContext().getString(R.string.rating_total, possitiveCount));
-		_negativeCountLabel.setText(getContext().getString(R.string.rating_total, negativeCount));
 	}
 }
