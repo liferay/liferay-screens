@@ -15,22 +15,12 @@ import java.util.List;
  */
 public class ThumbsRatingView extends BaseRatingView implements View.OnClickListener {
 
-	private ImageButton _negativeButton;
-	private ImageButton _possitiveButton;
-	private TextView _negativeCountLabel;
-	private TextView _possitiveCountLabel;
-	private int _negativeCount;
-	private int _possitiveCount;
-	private double _userScore;
-
 	public ThumbsRatingView(Context context) {
 		super(context);
 	}
-
 	public ThumbsRatingView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
-
 	public ThumbsRatingView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 	}
@@ -51,14 +41,6 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 				: RatingScreenlet.ADD_RATING_ACTION;
 			getScreenlet().performUserAction(action, score);
 		}
-	}
-
-	@Override public void setReadOnly(boolean readOnly) {
-		_negativeButton.setOnClickListener(readOnly ? null : this);
-		_negativeButton.setEnabled(!readOnly);
-
-		_possitiveButton.setOnClickListener(readOnly ? null : this);
-		_possitiveButton.setEnabled(!readOnly);
 	}
 
 	@Override public void showFinishOperation(String action, Object argument) {
@@ -104,6 +86,14 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 			}
 			updateButtons();
 		}
+	}
+
+	@Override public void setReadOnly(boolean readOnly) {
+		_negativeButton.setOnClickListener(readOnly ? null : this);
+		_negativeButton.setEnabled(!readOnly);
+
+		_possitiveButton.setOnClickListener(readOnly ? null : this);
+		_possitiveButton.setEnabled(!readOnly);
 	}
 
 	@Override protected void onFinishInflate() {
@@ -164,4 +154,11 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 			_possitiveCount += backwards ? -1 : 1;
 		}
 	}
+	private ImageButton _negativeButton;
+	private ImageButton _possitiveButton;
+	private TextView _negativeCountLabel;
+	private TextView _possitiveCountLabel;
+	private int _negativeCount;
+	private int _possitiveCount;
+	private double _userScore;
 }

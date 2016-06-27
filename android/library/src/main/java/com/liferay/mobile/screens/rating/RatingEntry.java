@@ -7,9 +7,6 @@ import java.util.Map;
  * @author Alejandro Hernández
  */
 public class RatingEntry {
-	private final Map<String, Object> _values;
-	private double _score;
-
 	public RatingEntry(Map<String, Object> values) {
 		_values = values;
 	}
@@ -29,4 +26,7 @@ public class RatingEntry {
 	public long getUserId() {
 		return JSONUtil.castToLong(_values.get("userId"));
 	}
+
+	private final Map<String, Object> _values;
+	private double _score;
 }

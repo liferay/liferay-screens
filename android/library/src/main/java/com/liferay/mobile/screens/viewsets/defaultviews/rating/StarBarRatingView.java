@@ -16,22 +16,12 @@ import java.util.List;
  */
 public class StarBarRatingView extends BaseRatingView
 	implements RatingBar.OnRatingBarChangeListener {
-	private TextView _totalCountTextView;
-	private RatingBar _averageRatingBar;
-	private RatingBar _userRatingBar;
-	private int _totalCount;
-	private double _totalScore;
-	private double _userScore;
-	private LinearLayout _averageContainer;
-
 	public StarBarRatingView(Context context) {
 		super(context);
 	}
-
 	public StarBarRatingView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
-
 	public StarBarRatingView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 	}
@@ -78,6 +68,20 @@ public class StarBarRatingView extends BaseRatingView
 		}
 	}
 
+	@Override public void setReadOnly(boolean readOnly) {
+		_userRatingBar.setEnabled(!readOnly);
+
+		if (readOnly) {
+			_userRatingBar.setVisibility(View.GONE);
+			_averageContainer.setOrientation(VERTICAL);
+			_totalCountTextView.setPadding(0, 0, 0, 0);
+		} else {
+			_userRatingBar.setVisibility(View.VISIBLE);
+			_averageContainer.setOrientation(HORIZONTAL);
+			_totalCountTextView.setPadding(10, 0, 0, 0);
+		}
+	}
+
 	@Override protected void onFinishInflate() {
 		super.onFinishInflate();
 
@@ -97,20 +101,6 @@ public class StarBarRatingView extends BaseRatingView
 		}
 	}
 
-	@Override public void setReadOnly(boolean readOnly) {
-		_userRatingBar.setEnabled(!readOnly);
-
-		if (readOnly) {
-			_userRatingBar.setVisibility(View.GONE);
-			_averageContainer.setOrientation(VERTICAL);
-			_totalCountTextView.setPadding(0, 0, 0, 0);
-		} else {
-			_userRatingBar.setVisibility(View.VISIBLE);
-			_averageContainer.setOrientation(HORIZONTAL);
-			_totalCountTextView.setPadding(10, 0, 0, 0);
-		}
-	}
-
 	private void addToTotalScore(double score) {
 		_totalScore += score;
 	}
@@ -126,4 +116,11 @@ public class StarBarRatingView extends BaseRatingView
 	private void setRatingBarRate(RatingBar ratingBar, float rating) {
 		ratingBar.setRating(rating * ratingBar.getNumStars());
 	}
+	private TextView _totalCountTextView;
+	private RatingBar _averageRatingBar;
+	private RatingBar _userRatingBar;
+	private int _totalCount;
+	private double _totalScore;
+	private double _userScore;
+	private LinearLayout _averageContainer;
 }

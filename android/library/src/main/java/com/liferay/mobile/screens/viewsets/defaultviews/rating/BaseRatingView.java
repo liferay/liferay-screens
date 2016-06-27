@@ -16,21 +16,29 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  */
 public abstract class BaseRatingView extends LinearLayout implements RatingViewModel {
 
-	protected ProgressBar _progressBar;
-	protected LinearLayout _content;
-	private BaseScreenlet _screenlet;
-	private boolean _readOnly;
-
 	public BaseRatingView(Context context) {
 		super(context);
 	}
-
 	public BaseRatingView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
-
 	public BaseRatingView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
+	}
+
+	@Override public void showStartOperation(String actionName) {
+		if (actionName == RatingScreenlet.LOAD_RATINGS_ACTION) {
+			if (_progressBar != null) {
+				_progressBar.setVisibility(View.VISIBLE);
+			}
+			if (_content != null) {
+				_content.setVisibility(View.GONE);
+			}
+		}
+	}
+
+	@Override public void showFinishOperation(String actionName) {
+		showFinishOperation(actionName, null);
 	}
 
 	@Override public void showFailedOperation(String actionName, Exception e) {
@@ -64,19 +72,12 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 		}
 	}
 
-	@Override public void showFinishOperation(String actionName) {
-		showFinishOperation(actionName, null);
+	@Override public BaseScreenlet getScreenlet() {
+		return _screenlet;
 	}
 
-	@Override public void showStartOperation(String actionName) {
-		if (actionName == RatingScreenlet.LOAD_RATINGS_ACTION) {
-			if (_progressBar != null) {
-				_progressBar.setVisibility(View.VISIBLE);
-			}
-			if (_content != null) {
-				_content.setVisibility(View.GONE);
-			}
-		}
+	@Override public void setScreenlet(BaseScreenlet screenlet) {
+		_screenlet = screenlet;
 	}
 
 	@Override protected void onFinishInflate() {
@@ -85,12 +86,8 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 		_progressBar = (ProgressBar) findViewById(R.id.liferay_rating_progress);
 		_content = (LinearLayout) findViewById(R.id.liferay_rating_content);
 	}
-
-	@Override public BaseScreenlet getScreenlet() {
-		return _screenlet;
-	}
-
-	@Override public void setScreenlet(BaseScreenlet screenlet) {
-		_screenlet = screenlet;
-	}
+	protected ProgressBar _progressBar;
+	protected LinearLayout _content;
+	private BaseScreenlet _screenlet;
+	private boolean _readOnly;
 }

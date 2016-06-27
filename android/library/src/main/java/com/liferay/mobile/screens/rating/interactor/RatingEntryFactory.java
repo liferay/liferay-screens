@@ -13,18 +13,18 @@ import org.json.JSONObject;
  */
 public class RatingEntryFactory {
 
-	public static RatingEntry createEntry(JSONObject object) throws JSONException {
-		double score = object.getDouble("score");
-		RatingEntry entry = new RatingEntry(JSONUtil.toMap(object));
-		entry.setScore(score);
-		return entry;
-	}
-
 	public static List<RatingEntry> createEntryList(JSONArray jsonArray) throws JSONException {
 		List<RatingEntry> ratings = new ArrayList<>();
 		for (int i = 0; i < jsonArray.length(); i++) {
 			ratings.add(createEntry(jsonArray.getJSONObject(i)));
 		}
 		return ratings;
+	}
+
+	public static RatingEntry createEntry(JSONObject object) throws JSONException {
+		double score = object.getDouble("score");
+		RatingEntry entry = new RatingEntry(JSONUtil.toMap(object));
+		entry.setScore(score);
+		return entry;
 	}
 }

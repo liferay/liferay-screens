@@ -12,21 +12,19 @@ import com.liferay.mobile.screens.rating.RatingListener;
  */
 public class DeleteRatingInteractorImpl extends BaseRemoteInteractor<RatingListener>
 	implements DeleteRatingInteractor {
-	private final RatingsEntryService _ratingsEntryService;
-
 	public DeleteRatingInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
 		_ratingsEntryService = getRatingsEntryService();
-	}
-
-	@Override public void deleteRating(String className, long classPK) throws Exception {
-		_ratingsEntryService.deleteEntry(className, classPK);
 	}
 
 	@NonNull private RatingsEntryService getRatingsEntryService() {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(new DeleteRatingCallback(getTargetScreenletId()));
 		return new RatingsEntryService(session);
+	}
+
+	@Override public void deleteRating(String className, long classPK) throws Exception {
+		_ratingsEntryService.deleteEntry(className, classPK);
 	}
 
 	public void onEvent(DeleteRatingEvent event) {
@@ -40,4 +38,6 @@ public class DeleteRatingInteractorImpl extends BaseRemoteInteractor<RatingListe
 			getListener().onDeleteRatingEntrySuccess();
 		}
 	}
+
+	private final RatingsEntryService _ratingsEntryService;
 }

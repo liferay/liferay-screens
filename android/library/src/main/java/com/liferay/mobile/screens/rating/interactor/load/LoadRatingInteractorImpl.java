@@ -17,21 +17,19 @@ import org.json.JSONObject;
 public class LoadRatingInteractorImpl extends BaseRemoteInteractor<RatingListener>
 	implements LoadRatingInteractor {
 
-	private final ScreensratingsentryService _screensratingsentryService;
-
 	public LoadRatingInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
 		_screensratingsentryService = getScreensratingsentryService();
-	}
-
-	@Override public void loadRatings(long assetId) throws Exception {
-		_screensratingsentryService.getRatingsEntries(assetId);
 	}
 
 	@NonNull private ScreensratingsentryService getScreensratingsentryService() {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(new LoadRatingCallback(getTargetScreenletId()));
 		return new ScreensratingsentryService(session);
+	}
+
+	@Override public void loadRatings(long assetId) throws Exception {
+		_screensratingsentryService.getRatingsEntries(assetId);
 	}
 
 	public void onEvent(LoadRatingEvent event) {
@@ -52,4 +50,6 @@ public class LoadRatingInteractorImpl extends BaseRemoteInteractor<RatingListene
 			}
 		}
 	}
+
+	private final ScreensratingsentryService _screensratingsentryService;
 }

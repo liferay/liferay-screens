@@ -16,11 +16,15 @@ import org.json.JSONException;
  */
 public class UpdateRatingInteractorImpl extends BaseRemoteInteractor<RatingListener>
 	implements UpdateRatingInteractor {
-	private final RatingsEntryService _ratingsEntryService;
-
 	public UpdateRatingInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
 		_ratingsEntryService = getRatingsEntryService();
+	}
+
+	@NonNull private RatingsEntryService getRatingsEntryService() {
+		Session session = SessionContext.createSessionFromCurrentSession();
+		session.setCallback(new UpdateRatingCallback(getTargetScreenletId()));
+		return new RatingsEntryService(session);
 	}
 
 	@Override public void addRating(String className, long classPK, double score) throws Exception {
@@ -28,10 +32,11 @@ public class UpdateRatingInteractorImpl extends BaseRemoteInteractor<RatingListe
 		_ratingsEntryService.updateEntry(className, classPK, score);
 	}
 
-	@NonNull private RatingsEntryService getRatingsEntryService() {
-		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new UpdateRatingCallback(getTargetScreenletId()));
-		return new RatingsEntryService(session);
+	protected void validate(double score) throws InvalidParameterException {
+		if ((score > 1) || (score < 0)) {
+			throw new InvalidParameterException(
+				"Score " + score + " is not a double value between 0 and 1");
+		}
 	}
 
 	public void onEvent(UpdateRatingEvent event) {
@@ -51,10 +56,5 @@ public class UpdateRatingInteractorImpl extends BaseRemoteInteractor<RatingListe
 		}
 	}
 
-	protected void validate(double score) throws InvalidParameterException {
-		if ((score > 1) || (score < 0)) {
-			throw new InvalidParameterException(
-				"Score " + score + " is not a double value between 0 and 1");
-		}
-	}
+	private final RatingsEntryService _ratingsEntryService;
 }

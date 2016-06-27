@@ -14,19 +14,12 @@ import java.util.List;
  * @author Alejandro Hernández
  */
 public class LikeRatingView extends BaseRatingView implements View.OnClickListener {
-	private ImageButton _likeButton;
-	private TextView _likeCountLabel;
-	private int _likeCount;
-	private boolean _hasUserRate = false;
-
 	public LikeRatingView(Context context) {
 		super(context);
 	}
-
 	public LikeRatingView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
-
 	public LikeRatingView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 	}
@@ -64,6 +57,11 @@ public class LikeRatingView extends BaseRatingView implements View.OnClickListen
 		}
 	}
 
+	@Override public void setReadOnly(boolean readOnly) {
+		_likeButton.setOnClickListener(readOnly ? null : this);
+		_likeButton.setEnabled(!readOnly);
+	}
+
 	@Override public void onClick(View v) {
 		String action =
 			_hasUserRate ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.ADD_RATING_ACTION;
@@ -77,11 +75,6 @@ public class LikeRatingView extends BaseRatingView implements View.OnClickListen
 		_likeCountLabel = (TextView) findViewById(R.id.likeCountLabel);
 	}
 
-	@Override public void setReadOnly(boolean readOnly) {
-		_likeButton.setOnClickListener(readOnly ? null : this);
-		_likeButton.setEnabled(!readOnly);
-	}
-
 	private void updateButton() {
 		if (_hasUserRate) {
 			_likeButton.setImageResource(R.drawable.default_thumb_up);
@@ -93,4 +86,8 @@ public class LikeRatingView extends BaseRatingView implements View.OnClickListen
 	private void updateCountLabel() {
 		_likeCountLabel.setText(getContext().getString(R.string.rating_total, _likeCount));
 	}
+	private ImageButton _likeButton;
+	private TextView _likeCountLabel;
+	private int _likeCount;
+	private boolean _hasUserRate = false;
 }

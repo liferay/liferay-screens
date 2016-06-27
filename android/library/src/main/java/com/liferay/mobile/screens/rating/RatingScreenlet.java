@@ -31,13 +31,6 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, BaseRatingIn
 	public static final String ADD_RATING_ACTION = "addRating";
 	public static final String UPDATE_RATING_ACTION = "updateRating";
 	public static final String DELETE_RATING_ACTION = "deleteRating";
-	private RatingEntry _userRatingEntry;
-	private RatingListener _listener;
-	private long _classPK;
-	private String _className;
-	private String _entryId;
-	private boolean _autoLoad;
-	private boolean _readOnly;
 
 	public RatingScreenlet(Context context) {
 		super(context);
@@ -51,16 +44,13 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, BaseRatingIn
 		super(context, attributes, defaultStyle);
 	}
 
-	@Override protected BaseRatingInteractor createInteractor(String actionName) {
-		switch (actionName) {
-			case LOAD_RATINGS_ACTION:
-				return new LoadRatingInteractorImpl(getScreenletId());
-			case ADD_RATING_ACTION:
-				return new UpdateRatingInteractorImpl(getScreenletId());
-			case DELETE_RATING_ACTION:
-				return new DeleteRatingInteractorImpl(getScreenletId());
-			default:
-				return null;
+	@Override protected void onScreenletAttached() {
+		super.onScreenletAttached();
+
+		getViewModel().setReadOnly(_readOnly);
+
+		if (_autoLoad) {
+			autoLoad();
 		}
 	}
 
@@ -83,8 +73,88 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, BaseRatingIn
 		return view;
 	}
 
+	@Override protected BaseRatingInteractor createInteractor(String actionName) {
+		switch (actionName) {
+			case LOAD_RATINGS_ACTION:
+				return new LoadRatingInteractorImpl(getScreenletId());
+			case ADD_RATING_ACTION:
+				return new UpdateRatingInteractorImpl(getScreenletId());
+			case DELETE_RATING_ACTION:
+				return new DeleteRatingInteractorImpl(getScreenletId());
+			default:
+				return null;
+		}
+	}
+
+	@Override protected void onUserAction(String userActionName, BaseRatingInteractor interactor,
+		Object... args) {
+		switch (userActionName) {
+			case LOAD_RATINGS_ACTION:
+				try {
+					((LoadRatingInteractor) getInteractor(LOAD_RATINGS_ACTION)).loadRatings(
+						castToLong(_entryId));
+				} catch (Exception e) {
+					LiferayLogger.e(e.getMessage());
+					onRetrieveRatingEntriesFailure(e);
+				}
+				break;
+			case ADD_RATING_ACTION:
+				double score = (double) args[0];
+				try {
+					((UpdateRatingInteractor) interactor).addRating(_className, _classPK, score);
+				} catch (Exception e) {
+					LiferayLogger.e(e.getMessage());
+					onAddRatingEntryFailure(e);
+				}
+				break;
+			case DELETE_RATING_ACTION:
+				try {
+					((DeleteRatingInteractor) interactor).deleteRating(_className, _classPK);
+				} catch (Exception e) {
+					LiferayLogger.e(e.getMessage());
+					onDeleteRatingEntryFailure(e);
+				}
+			default:
+				break;
+		}
+	}
+
+	protected void autoLoad() {
+		if (_entryId != null && SessionContext.isLoggedIn()) {
+			try {
+				load();
+			} catch (Exception e) {
+				onRetrieveRatingEntriesFailure(e);
+			}
+		}
+	}
+
 	public void load() throws Exception {
 		performUserAction(LOAD_RATINGS_ACTION);
+	}
+
+	@Override public void onRetrieveRatingEntriesFailure(Exception exception) {
+		getViewModel().showFailedOperation(LOAD_RATINGS_ACTION, exception);
+
+		if (_listener != null) {
+			_listener.onRetrieveRatingEntriesFailure(exception);
+		}
+	}
+
+	@Override public void onRetrieveRatingEntriesSuccess(long classPK, String className,
+		List<RatingEntry> ratings) {
+		getViewModel().showFinishOperation(LOAD_RATINGS_ACTION, ratings);
+
+		_classPK = classPK;
+		_className = className;
+
+		if (hasUserEntry(ratings)) {
+			getViewModel().showFinishOperation(LOAD_USER_RATING_ACTION, _userRatingEntry);
+		}
+
+		if (_listener != null) {
+			_listener.onRetrieveRatingEntriesSuccess(classPK, className, ratings);
+		}
 	}
 
 	@Override public void onAddRatingEntryFailure(Exception exception) {
@@ -129,71 +199,14 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, BaseRatingIn
 		}
 	}
 
-	@Override public void onRetrieveRatingEntriesFailure(Exception exception) {
-		getViewModel().showFailedOperation(LOAD_RATINGS_ACTION, exception);
-
-		if (_listener != null) {
-			_listener.onRetrieveRatingEntriesFailure(exception);
+	private boolean hasUserEntry(List<RatingEntry> ratings) {
+		for (RatingEntry entry : ratings) {
+			if (entry.getUserId() == SessionContext.getCurrentUser().getId()) {
+				_userRatingEntry = entry;
+				return true;
+			}
 		}
-	}
-
-	@Override public void onRetrieveRatingEntriesSuccess(long classPK, String className,
-		List<RatingEntry> ratings) {
-		getViewModel().showFinishOperation(LOAD_RATINGS_ACTION, ratings);
-
-		_classPK = classPK;
-		_className = className;
-
-		if (hasUserEntry(ratings)) {
-			getViewModel().showFinishOperation(LOAD_USER_RATING_ACTION, _userRatingEntry);
-		}
-
-		if (_listener != null) {
-			_listener.onRetrieveRatingEntriesSuccess(classPK, className, ratings);
-		}
-	}
-
-	@Override protected void onScreenletAttached() {
-		super.onScreenletAttached();
-
-		getViewModel().setReadOnly(_readOnly);
-
-		if (_autoLoad) {
-			autoLoad();
-		}
-	}
-
-	@Override protected void onUserAction(String userActionName, BaseRatingInteractor interactor,
-		Object... args) {
-		switch (userActionName) {
-			case LOAD_RATINGS_ACTION:
-				try {
-					((LoadRatingInteractor) getInteractor(LOAD_RATINGS_ACTION)).loadRatings(
-						castToLong(_entryId));
-				} catch (Exception e) {
-					LiferayLogger.e(e.getMessage());
-					onRetrieveRatingEntriesFailure(e);
-				}
-				break;
-			case ADD_RATING_ACTION:
-				double score = (double) args[0];
-				try {
-					((UpdateRatingInteractor) interactor).addRating(_className, _classPK, score);
-				} catch (Exception e) {
-					LiferayLogger.e(e.getMessage());
-					onAddRatingEntryFailure(e);
-				}
-				break;
-			case DELETE_RATING_ACTION:
-				try {
-					((DeleteRatingInteractor) interactor).deleteRating(_className, _classPK);
-				} catch (Exception e) {
-					LiferayLogger.e(e.getMessage());
-					onDeleteRatingEntryFailure(e);
-				}
-			default:
-				break;
-		}
+		return false;
 	}
 
 	public RatingListener getListener() {
@@ -225,23 +238,11 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, BaseRatingIn
 		getViewModel().setReadOnly(_readOnly);
 	}
 
-	protected void autoLoad() {
-		if (_entryId != null && SessionContext.isLoggedIn()) {
-			try {
-				load();
-			} catch (Exception e) {
-				onRetrieveRatingEntriesFailure(e);
-			}
-		}
-	}
-
-	private boolean hasUserEntry(List<RatingEntry> ratings) {
-		for (RatingEntry entry : ratings) {
-			if (entry.getUserId() == SessionContext.getCurrentUser().getId()) {
-				_userRatingEntry = entry;
-				return true;
-			}
-		}
-		return false;
-	}
+	private RatingEntry _userRatingEntry;
+	private RatingListener _listener;
+	private long _classPK;
+	private String _className;
+	private String _entryId;
+	private boolean _autoLoad;
+	private boolean _readOnly;
 }
