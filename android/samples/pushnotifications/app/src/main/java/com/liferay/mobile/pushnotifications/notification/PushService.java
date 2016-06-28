@@ -32,7 +32,7 @@ public class PushService extends AbstractPushService {
 	public static final int NOTIFICATION_ID = 2;
 
 	@Override
-	protected void processJSONNotification(final JSONObject json) throws Exception {
+	protected void processJSONNotification(final JSONObject json) throws JSONException {
 		boolean creation = json.has("newNotification") && json.getBoolean("newNotification");
 		String titleHeader = (creation ? "New" : "Updated") + " notification: ";
 		String title = titleHeader + getString(json, "title");
