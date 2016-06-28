@@ -122,6 +122,11 @@
 				style="@style/test_app_button"
 				android:text="@string/change_theme" />
 
+			<Button
+				android:id="@+id/gallery"
+				style="@style/test_app_button"
+				android:text="@string/image_gallery"/>
+			
 		</LinearLayout>
 	</ScrollView>
 </LinearLayout>

@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
 import android.view.View;
-
 import com.liferay.mobile.screens.cache.DefaultCachedType;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.testapp.fullview.LoginFullActivity;
@@ -39,6 +38,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.custom_interactor).setOnClickListener(this);
 		findViewById(R.id.list_bookmarks).setOnClickListener(this);
 		findViewById(R.id.relogin).setOnClickListener(this);
+		findViewById(R.id.gallery).setOnClickListener(this);
 	}
 
 	@Override
@@ -60,8 +60,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(SignUpActivity.class));
 				break;
 			case R.id.forgot_password:
-				DefaultAnimation.startActivityWithAnimation(this,
-					getIntentWithTheme(ForgotPasswordActivity.class));
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(ForgotPasswordActivity.class));
 				break;
 			case R.id.user_portrait:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(UserPortraitActivity.class));
@@ -118,10 +117,11 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 			case R.id.relogin:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(ReloginActivity.class));
 				break;
+			case R.id.gallery:
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(GalleryActivity.class));
+				break;
 			default:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(LoginActivity.class));
 		}
 	}
-
-
 }

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:liferay="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	>
+
+	<TextView
+		android:text="@string/image_gallery_label"
+		style="@style/label"
+		/>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		>
+		<Button
+			android:id="@+id/image_gallery_button_plus"
+			android:layout_width="60dp"
+			android:layout_height="wrap_content"
+			android:layout_alignParentStart="true"
+			android:layout_margin="2dp"
+			android:text="+"
+			android:textSize="20sp"
+			/>
+
+		<Button
+			android:id="@+id/image_gallery_button_minus"
+			android:layout_width="60dp"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@id/image_gallery_button_plus"
+			android:layout_margin="2dp"
+			android:text="-"
+			android:textSize="20sp"
+			/>
+		<Button
+			android:id="@+id/change_gallery_view"
+			android:layout_margin="2dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:layout_centerVertical="true"
+			android:text="Slideshow"
+			/>
+
+	</RelativeLayout>
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		>
+
+		<com.liferay.mobile.screens.gallery.GalleryScreenlet
+			android:id="@+id/gallery_screenlet_grid"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			liferay:columnsSize="5"
+			liferay:folderId="34810"
+			liferay:groupId="20147"
+			liferay:layoutId="@layout/gallery_default"
+			liferay:offlinePolicy="CACHE_FIRST"
+			/>
+
+		<com.liferay.mobile.screens.gallery.GalleryScreenlet
+			android:id="@+id/gallery_screenlet_slideshow"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:visibility="gone"
+			liferay:folderId="34810"
+			liferay:groupId="20147"
+			liferay:layoutId="@layout/gallery_default_slideshow"
+			liferay:offlinePolicy="CACHE_FIRST"
+			/>
+
+	</FrameLayout>
+</LinearLayout>
