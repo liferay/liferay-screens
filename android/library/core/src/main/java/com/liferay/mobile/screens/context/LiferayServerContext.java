@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p/>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p/>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -23,18 +23,25 @@ import com.liferay.mobile.screens.R;
  */
 public class LiferayServerContext {
 
+	private static long _companyId;
+	private static long _groupId;
+	private static String _server;
+
 	public static void loadFromResources(Resources resources, final String packageName) {
-		int companyIdentifier = resources.getIdentifier("liferay_company_id", "integer", packageName);
-		int groupIdentifier = resources.getIdentifier("liferay_group_id", "integer", packageName);
 
-		long companyId = getValueFromIntegerOrString(resources, R.string.liferay_company_id, companyIdentifier);
-		long groupId = getValueFromIntegerOrString(resources, R.string.liferay_group_id, groupIdentifier);
+		if (_companyId == 0 || _groupId == 0 || _server == null) {
+			int companyIdentifier = resources.getIdentifier("liferay_company_id", "integer", packageName);
+			int groupIdentifier = resources.getIdentifier("liferay_group_id", "integer", packageName);
 
-		String server = resources.getString(R.string.liferay_server);
+			long companyId = getValueFromIntegerOrString(resources, R.string.liferay_company_id, companyIdentifier);
+			long groupId = getValueFromIntegerOrString(resources, R.string.liferay_group_id, groupIdentifier);
 
-		LiferayServerContext.setCompanyId(companyId);
-		LiferayServerContext.setGroupId(groupId);
-		LiferayServerContext.setServer(server);
+			String server = resources.getString(R.string.liferay_server);
+
+			LiferayServerContext.setCompanyId(companyId);
+			LiferayServerContext.setGroupId(groupId);
+			LiferayServerContext.setServer(server);
+		}
 	}
 
 	public static long getCompanyId() {
@@ -64,9 +71,5 @@ public class LiferayServerContext {
 	private static long getValueFromIntegerOrString(final Resources resources, final int stringId, int integerId) {
 		return integerId == 0 ? Long.valueOf(resources.getString(stringId)) : resources.getInteger(integerId);
 	}
-
-	private static long _companyId;
-	private static long _groupId;
-	private static String _server;
 
 }
