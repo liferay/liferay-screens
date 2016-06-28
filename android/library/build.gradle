@@ -44,6 +44,8 @@ dependencies {
 	compile libraries.storioannotations
 	compile libraries.rxjava
 
+	compile 'com.lsjwzh:recyclerviewpager:1.0.8'
+
 	apt libraries.storioapt
 
 	compile libraries.rxpermissions
