@@ -146,6 +146,7 @@
 		<attr name="offlinePolicy"/>
 		<attr name="pageSize" />
 		<attr name="firstPageSize" />
+		<attr name="columnsSize" format="integer"/>
 	</declare-styleable>
 
 	<declare-styleable name="ModalProgressBar">
