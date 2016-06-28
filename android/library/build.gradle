@@ -35,7 +35,7 @@ subprojects {
 
 subprojects {
 
-	version = '1.3.1'
+	version = '1.3.2'
 	group = 'com.liferay.mobile'
 
 	buildscript {
