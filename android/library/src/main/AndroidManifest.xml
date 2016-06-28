@@ -1,12 +1,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.liferay.mobile.screens">
+    package="com.liferay.mobile.screens">
 
-	<uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.INTERNET"/>
 
-	<application>
-		<service android:name=".ddl.form.service.UploadService" />
+  <application>
+    <service android:name=".ddl.form.service.UploadService"/>
 
-		<service android:name=".userportrait.interactor.upload.UserPortraitService" />
+    <service android:name=".userportrait.interactor.upload.UserPortraitService"/>
 		<activity android:name=".base.MediaStoreRequestShadowActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
-	</application>
+    <activity
+        android:name=".viewsets.defaultviews.gallery.DetailImageActivity"
+        android:theme="@style/Theme.AppCompat.NoActionBar"/>
+  </application>
 </manifest>
