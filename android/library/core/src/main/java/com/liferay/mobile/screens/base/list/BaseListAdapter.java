@@ -45,6 +45,10 @@ public abstract class BaseListAdapter<E, H extends BaseListAdapter.ViewHolder>
 		return _entries;
 	}
 
+	public void setEntries(List<E> entries) {
+		_entries = entries;
+	}
+
 	@Override
 	public int getItemCount() {
 		return _rowCount;
@@ -83,11 +87,17 @@ public abstract class BaseListAdapter<E, H extends BaseListAdapter.ViewHolder>
 
 	@Override
 	public H onCreateViewHolder(ViewGroup parent, int viewType) {
-
 		LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
-		View view = inflater.inflate(
-			viewType == LAYOUT_TYPE_DEFAULT ? _layoutId : _progressLayoutId, parent, false);
+		View view;
+
+		if (viewType == LAYOUT_TYPE_DEFAULT) {
+			view = inflater.inflate(_layoutId, parent, false);
+		}
+		else {
+			view = inflater.inflate(_progressLayoutId, parent, false);
+		}
+
 		return (H) new ViewHolder(view, _listener);
 	}
 
