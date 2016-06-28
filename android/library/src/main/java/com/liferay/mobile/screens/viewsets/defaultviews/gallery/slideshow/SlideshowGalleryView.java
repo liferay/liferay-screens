@@ -32,6 +32,16 @@ public class SlideshowGalleryView extends
 	}
 
 	@Override
+	public void showDetailImage(ImageEntry image) {
+
+	}
+
+	@Override
+	public void setColumns(int numCols) {
+
+	}
+
+	@Override
 	protected SlideshowGalleryAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
 		return new SlideshowGalleryAdapter(itemLayoutId, itemProgressLayoutId, this);
 	}
@@ -126,15 +136,5 @@ public class SlideshowGalleryView extends
 	@Override
 	protected DividerItemDecoration getDividerDecoration() {
 		return null;
-	}
-
-	@Override
-	public void showDetailImage(ImageEntry image) {
-
-	}
-
-	@Override
-	public void setColumns(int numCols) {
-
 	}
 }

@@ -36,39 +36,6 @@ public class GridGalleryView
 		initialize();
 	}
 
-	protected void initialize() {
-		setFocusableInTouchMode(true);
-		requestFocus();
-		setOnKeyListener(this);
-	}
-
-	@Override
-	protected GridGalleryAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
-		return new GridGalleryAdapter(itemLayoutId, itemProgressLayoutId, this);
-	}
-
-	@Override
-	protected int getItemLayoutId() {
-		return R.layout.gallery_item_grid;
-	}
-
-	@Override
-	protected int getItemProgressLayoutId() {
-		return R.layout.list_item_progress_empty;
-	}
-
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
-		_detailedImage = (ImageView) findViewById(R.id.gallery_detailed_image);
-		_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), _columnsSize));
-	}
-
-	@Override
-	protected DividerItemDecoration getDividerDecoration() {
-		return new GridDividerItemDecoration(_imagesSpacing);
-	}
-
 	@Override
 	public void onItemClick(int position, View view) {
 		List<ImageEntry> entries = getAdapter().getEntries();
@@ -104,6 +71,39 @@ public class GridGalleryView
 			return true;
 		}
 		return false;
+	}
+
+	protected void initialize() {
+		setFocusableInTouchMode(true);
+		requestFocus();
+		setOnKeyListener(this);
+	}
+
+	@Override
+	protected GridGalleryAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
+		return new GridGalleryAdapter(itemLayoutId, itemProgressLayoutId, this);
+	}
+
+	@Override
+	protected int getItemLayoutId() {
+		return R.layout.gallery_item_grid;
+	}
+
+	@Override
+	protected int getItemProgressLayoutId() {
+		return R.layout.list_item_progress_empty;
+	}
+
+	@Override
+	protected void onFinishInflate() {
+		super.onFinishInflate();
+		_detailedImage = (ImageView) findViewById(R.id.gallery_detailed_image);
+		_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), _columnsSize));
+	}
+
+	@Override
+	protected DividerItemDecoration getDividerDecoration() {
+		return new GridDividerItemDecoration(_imagesSpacing);
 	}
 
 	private static final int DEFAULT_COLS = 3;

@@ -11,8 +11,7 @@ import java.util.Map;
  */
 public class ImageEntry extends AssetEntry implements Parcelable {
 
-	public static final ClassLoaderCreator<AssetEntry> CREATOR =
-		new ClassLoaderCreator<AssetEntry>() {
+	public static final ClassLoaderCreator<AssetEntry> CREATOR = new ClassLoaderCreator<AssetEntry>() {
 
 			@Override
 			public ImageEntry createFromParcel(Parcel source, ClassLoader loader) {
@@ -31,16 +30,6 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 	public ImageEntry(Map<String, Object> values) {
 		super(values);
 		parseServerValues();
-	}
-
-	private ImageEntry(Parcel in, ClassLoader loader) {
-		super(in, loader);
-		_imageUrl = in.readString();
-		_thumbnailUrl = in.readString();
-		_mimeType = in.readString();
-		_description = in.readString();
-		_createDate = (Long) in.readValue(Long.class.getClassLoader());
-		_creatorUserId = (Long) in.readValue(Long.class.getClassLoader());
 	}
 
 	@Override
@@ -85,6 +74,16 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 
 	public long getCreatorUserId() {
 		return _creatorUserId;
+	}
+
+	private ImageEntry(Parcel in, ClassLoader loader) {
+		super(in, loader);
+		_imageUrl = in.readString();
+		_thumbnailUrl = in.readString();
+		_mimeType = in.readString();
+		_description = in.readString();
+		_createDate = (Long) in.readValue(Long.class.getClassLoader());
+		_creatorUserId = (Long) in.readValue(Long.class.getClassLoader());
 	}
 
 	private void parseServerValues() {

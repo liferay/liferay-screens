@@ -88,8 +88,8 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryInter
 	}
 
 	public void onImageClicked(ImageEntry image, View view) {
-		if (_listener != null) {
-			_listener.onListItemSelected(image, view);
+		if (getListener() != null) {
+			getListener().onListItemSelected(image, view);
 		}
 
 		GalleryViewModel viewModel = (GalleryViewModel) getViewModel();
@@ -111,6 +111,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryInter
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
+
 		TypedArray typedArray = context.getTheme()
 			.obtainStyledAttributes(attributes, R.styleable.GalleryScreenlet, 0, 0);
 
@@ -120,9 +121,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryInter
 
 		long groupId = LiferayServerContext.getGroupId();
 
-		_groupId =
-			castToLongOrUseDefault(typedArray.getString(R.styleable.GalleryScreenlet_groupId),
-				groupId);
+		_groupId = castToLongOrUseDefault(typedArray.getString(R.styleable.GalleryScreenlet_groupId), groupId);
 
 		_folderId = castToLong(typedArray.getString(R.styleable.GalleryScreenlet_folderId));
 
