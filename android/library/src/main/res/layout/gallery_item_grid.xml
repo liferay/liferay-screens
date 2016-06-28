@@ -2,12 +2,12 @@
 <com.liferay.mobile.screens.util.SquareRelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	>
+	android:layout_height="match_parent">
+
 	<ImageView
 		android:id="@+id/gallery_item_image"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:scaleType="centerCrop"
-		/>
+		android:scaleType="centerCrop"/>
+
 </com.liferay.mobile.screens.util.SquareRelativeLayout>

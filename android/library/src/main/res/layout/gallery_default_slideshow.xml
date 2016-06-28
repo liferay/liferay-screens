@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.defaultviews.gallery.slideshow.SlideshowGalleryView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.liferay.mobile.screens.viewsets.defaultviews.gallery.slideshow.SlideshowGalleryView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
   <FrameLayout
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      >
+      android:layout_height="match_parent">
+
     <ProgressBar
         android:id="@+id/liferay_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="gone"
-        />
+        android:visibility="gone"/>
 
     <com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager
         android:id="@+id/liferay_recycler_list"
@@ -25,8 +23,8 @@
         android:visibility="gone"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
-        android:clipToPadding="false"
-        />
+        android:clipToPadding="false"/>
+
   </FrameLayout>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.gallery.slideshow.SlideshowGalleryView>

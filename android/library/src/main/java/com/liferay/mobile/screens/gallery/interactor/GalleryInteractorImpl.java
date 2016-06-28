@@ -30,8 +30,7 @@ public class GalleryInteractorImpl extends BaseListInteractor<ImageEntry, Galler
 	}
 
 	@Override
-	public void loadRows(long groupId, long folderId, int startRow, int endRow, Locale locale)
-		throws Exception {
+	public void loadRows(long groupId, long folderId, int startRow, int endRow, Locale locale) throws Exception {
 		_groupId = groupId;
 		_folderId = folderId;
 
@@ -50,16 +49,13 @@ public class GalleryInteractorImpl extends BaseListInteractor<ImageEntry, Galler
 	}
 
 	@Override
-	protected BaseListCallback<ImageEntry> getCallback(Pair<Integer, Integer> rowsRange,
-		Locale locale) {
+	protected BaseListCallback<ImageEntry> getCallback(Pair<Integer, Integer> rowsRange, Locale locale) {
 		return new GalleryCallback(getTargetScreenletId(), rowsRange, locale);
 	}
 
 	@Override
-	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale)
-		throws Exception {
-		new DLAppService(session).getFileEntries(_groupId, _folderId, getMimeTypes(), startRow,
-			endRow, null);
+	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception {
+		new DLAppService(session).getFileEntries(_groupId, _folderId, getMimeTypes(), startRow, endRow, null);
 	}
 
 	@Override
@@ -76,8 +72,7 @@ public class GalleryInteractorImpl extends BaseListInteractor<ImageEntry, Galler
 
 		String id = String.valueOf(_folderId);
 
-		return recoverRows(id, IMAGE_LIST, IMAGE_LIST_COUNT, _groupId, null, locale, startRow,
-			endRow);
+		return recoverRows(id, IMAGE_LIST, IMAGE_LIST_COUNT, _groupId, null, locale, startRow, endRow);
 	}
 
 	@Override

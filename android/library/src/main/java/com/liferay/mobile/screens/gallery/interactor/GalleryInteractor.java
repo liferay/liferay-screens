@@ -9,4 +9,5 @@ import java.util.Locale;
 public interface GalleryInteractor extends Interactor<GalleryInteractorListener> {
 
 	void loadRows(long groupId, long folderId, int startRow, int endRow, Locale locale) throws Exception;
+
 }
