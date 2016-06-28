@@ -10,65 +10,91 @@ import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
+import com.liferay.mobile.screens.util.JSONUtil;
 import java.util.Locale;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
+
+import static com.liferay.mobile.screens.cache.DefaultCachedType.IMAGE_LIST;
+import static com.liferay.mobile.screens.cache.DefaultCachedType.IMAGE_LIST_COUNT;
 
 /**
  * @author Víctor Galán Grande
  */
-public class GalleryInteractorImpl extends BaseListInteractor<ImageEntry, GalleryInteractorListener> implements GalleryInteractor {
+public class GalleryInteractorImpl extends BaseListInteractor<ImageEntry, GalleryInteractorListener>
+	implements GalleryInteractor {
 
-  private long _groupId;
-  private long _folderId;
+	public GalleryInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
+		super(targetScreenletId, offlinePolicy);
+	}
 
-  public GalleryInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
-    super(targetScreenletId, offlinePolicy);
-  }
+	@Override
+	public void loadRows(long groupId, long folderId, int startRow, int endRow, Locale locale)
+		throws Exception {
+		_groupId = groupId;
+		_folderId = folderId;
 
-  @Override public void loadRows(int startRow, int endRow, long groupId, long folderId)
-      throws Exception {
+		processWithCache(startRow, endRow, locale);
+	}
 
-    _groupId = groupId;
-    _folderId = folderId;
+	@NonNull
+	@Override
+	protected ImageEntry getElement(TableCache tableCache) throws JSONException {
+		return new ImageEntry(JSONUtil.toMap(new JSONObject(tableCache.getContent())));
+	}
 
-    super.loadRows(startRow, endRow, Locale.getDefault());
-  }
+	@Override
+	protected String getContent(ImageEntry imageEntry) {
+		return new JSONObject(imageEntry.getValues()).toString();
+	}
 
-  @NonNull @Override protected ImageEntry getElement(TableCache tableCache) throws JSONException {
-    return null;
-  }
+	@Override
+	protected BaseListCallback<ImageEntry> getCallback(Pair<Integer, Integer> rowsRange,
+		Locale locale) {
+		return new GalleryCallback(getTargetScreenletId(), rowsRange, locale);
+	}
 
-  @Override protected String getContent(ImageEntry object) {
-    return null;
-  }
+	@Override
+	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale)
+		throws Exception {
+		new DLAppService(session).getFileEntries(_groupId, _folderId, getMimeTypes(), startRow,
+			endRow, null);
+	}
 
-  @Override protected BaseListCallback<ImageEntry> getCallback(Pair<Integer, Integer> rowsRange,
-      Locale locale) {
-    return new GalleryCallback(getTargetScreenletId(), rowsRange, locale);
-  }
+	@Override
+	protected void getPageRowCountRequest(Session session) throws Exception {
+		new DLAppService(session).getFileEntriesCount(_groupId, _folderId, getMimeTypes());
+	}
 
-  @Override
-  protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale)
-      throws Exception {
-    new DLAppService(session).getFileEntries(_groupId, _folderId, getMimeTypes(), startRow, endRow, null);
-    //new DLAppService(session).getGroupFileEntries(20147, 0, 0, new JSONArray().put("image/png"), 0, startRow, endRow, null);
-  }
+	@Override
+	protected boolean cached(Object... args) throws Exception {
 
-  @Override protected void getPageRowCountRequest(Session session) throws Exception {
-    new DLAppService(session).getFileEntriesCount(_groupId, _folderId, getMimeTypes());
-    //new DLAppService(session).getGroupFileEntriesCount(20147, 0, 0, new JSONArray().put("image/png"), 0);
-  }
+		int startRow = (int) args[0];
+		int endRow = (int) args[1];
+		Locale locale = (Locale) args[2];
 
-  @Override protected boolean cached(Object... args) throws Exception {
-    return false;
-  }
+		String id = String.valueOf(_folderId);
 
-  @Override protected void storeToCache(BaseListEvent event, Object... args) {
+		return recoverRows(id, IMAGE_LIST, IMAGE_LIST_COUNT, _groupId, null, locale, startRow,
+			endRow);
+	}
 
-  }
+	@Override
+	protected void storeToCache(BaseListEvent event, Object... args) {
 
-  private JSONArray getMimeTypes() {
-    return new JSONArray().put("image/png");
-  }
+		String id = String.valueOf(_folderId);
+
+		storeRows(id, IMAGE_LIST, IMAGE_LIST_COUNT, _groupId, null, event);
+	}
+
+	private JSONArray getMimeTypes() {
+		return new JSONArray()
+			.put("image/png")
+			.put("image/jpeg")
+			.put("image/gif");
+	}
+
+	private long _groupId;
+	private long _folderId;
 }
