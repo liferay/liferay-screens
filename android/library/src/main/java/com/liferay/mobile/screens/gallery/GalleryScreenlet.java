@@ -21,100 +21,125 @@ import java.util.Locale;
  */
 public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryInteractor> {
 
-  private long _groupId;
-  private long _folderId;
-  private OfflinePolicy _offlinePolicy;
+	public GalleryScreenlet(Context context) {
+		super(context);
+	}
 
-  public GalleryScreenlet(Context context) {
-    super(context);
-  }
+	public GalleryScreenlet(Context context, AttributeSet attributes) {
+		super(context, attributes);
+	}
 
-  public GalleryScreenlet(Context context, AttributeSet attributes) {
-    super(context, attributes);
-  }
+	public GalleryScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
+		super(context, attributes, defaultStyle);
+	}
 
-  public GalleryScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
-    super(context, attributes, defaultStyle);
-  }
+	public long getGroupId() {
+		return _groupId;
+	}
 
-  public long getGroupId() {
-    return _groupId;
-  }
+	public void setGroupId(long _groupId) {
+		this._groupId = _groupId;
+	}
 
-  public void setGroupId(long _groupId) {
-    this._groupId = _groupId;
-  }
+	public long getFolderId() {
+		return _folderId;
+	}
 
-  public long getFolderId() {
-    return _folderId;
-  }
+	public void setFolderId(long _folderId) {
+		this._folderId = _folderId;
+	}
 
-  public void setFolderId(long _folderId) {
-    this._folderId = _folderId;
-  }
+	public OfflinePolicy getOfflinePolicy() {
+		return _offlinePolicy;
+	}
 
-  public OfflinePolicy getOfflinePolicy() {
-    return _offlinePolicy;
-  }
+	public void setOfflinePolicy(OfflinePolicy _offlinePolicy) {
+		this._offlinePolicy = _offlinePolicy;
+	}
 
-  public void setOfflinePolicy(OfflinePolicy _offlinePolicy) {
-    this._offlinePolicy = _offlinePolicy;
-  }
+	public int getColumnsSize() {
+		return _columnsSize;
+	}
 
-  @Override
-  protected void loadRows(GalleryInteractor interactor, int startRow, int endRow, Locale locale)
-      throws Exception {
-    interactor.loadRows(startRow, endRow, _groupId, _folderId);
-  }
+	public void setColumnsSize(int columnsSize) {
+		_columnsSize = columnsSize;
+		((GalleryViewModel) getViewModel()).setColumns(columnsSize);
+	}
 
-  @Override protected GalleryInteractor createInteractor(String actionName) {
-    return new GalleryInteractorImpl(getScreenletId(), _offlinePolicy);
-  }
+	@Override
+	public void loadingFromCache(boolean success) {
+		if (getListener() != null) {
+			getListener().loadingFromCache(success);
+		}
+	}
 
-  @Override protected View createScreenletView(Context context, AttributeSet attributes) {
-    TypedArray typedArray =
-        context.getTheme().obtainStyledAttributes(attributes, R.styleable.GalleryScreenlet, 0, 0);
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+		if (getListener() != null) {
+			getListener().retrievingOnline(triedInCache, e);
+		}
+	}
 
-    Integer offlinePolicy = typedArray.getInteger(R.styleable.AssetListScreenlet_offlinePolicy,
-        OfflinePolicy.REMOTE_ONLY.ordinal());
-    _offlinePolicy = OfflinePolicy.values()[offlinePolicy];
+	@Override
+	public void storingToCache(Object object) {
+		if (getListener() != null) {
+			getListener().storingToCache(object);
+		}
+	}
 
-    long groupId = LiferayServerContext.getGroupId();
+	public void onImageClicked(ImageEntry image, View view) {
+		if (_listener != null) {
+			_listener.onListItemSelected(image, view);
+		}
 
-    _groupId = castToLongOrUseDefault(typedArray.getString(R.styleable.GalleryScreenlet_groupId), groupId);
+		GalleryViewModel viewModel = (GalleryViewModel) getViewModel();
+		viewModel.showDetailImage(image);
+	}
 
-    _folderId = castToLong(typedArray.getString(R.styleable.GalleryScreenlet_folderId));
+	@Override
+	protected void loadRows(GalleryInteractor interactor, int startRow, int endRow, Locale locale)
+		throws Exception {
+		interactor.loadRows(_groupId, _folderId, startRow, endRow, locale);
+	}
 
-    typedArray.recycle();
+	@Override
+	protected View createScreenletView(Context context, AttributeSet attributes) {
+		TypedArray typedArray = context.getTheme()
+			.obtainStyledAttributes(attributes, R.styleable.GalleryScreenlet, 0, 0);
 
-    return super.createScreenletView(context, attributes);
-  }
+		Integer offlinePolicy = typedArray.getInteger(R.styleable.GalleryScreenlet_offlinePolicy,
+			OfflinePolicy.REMOTE_ONLY.ordinal());
+		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 
-  @Override public void loadingFromCache(boolean success) {
+		long groupId = LiferayServerContext.getGroupId();
 
-  }
+		_groupId =
+			castToLongOrUseDefault(typedArray.getString(R.styleable.GalleryScreenlet_groupId),
+				groupId);
 
-  @Override public void retrievingOnline(boolean triedInCache, Exception e) {
+		_folderId = castToLong(typedArray.getString(R.styleable.GalleryScreenlet_folderId));
 
-  }
+		_columnsSize = typedArray.getInt(R.styleable.GalleryScreenlet_columnsSize, 0);
 
-  @Override public void storingToCache(Object object) {
+		typedArray.recycle();
 
-  }
+		View view = super.createScreenletView(context, attributes);
 
-  public void onImageClicked(ImageEntry image, View view) {
-    if(_listener != null) {
-      _listener.onListItemSelected(image, view);
-    }
+		if (_columnsSize >= 0) {
+			GalleryViewModel viewModel = (GalleryViewModel) view;
+			viewModel.setColumns(_columnsSize);
+		}
 
-    GalleryViewModel viewModel = (GalleryViewModel) getViewModel();
-    viewModel.showDetailImage(image);
-  }
+		return view;
+	}
 
-  public void showImageInFullScreenActivity(ImageEntry image) {
-    Intent intent = new Intent(getContext(), DetailImageActivity.class);
-    intent.putExtra(DetailImageActivity.GALLERY_SCREENLET_IMAGE_DETAILED, image);
+	@Override
+	protected GalleryInteractor createInteractor(String actionName) {
+		return new GalleryInteractorImpl(getScreenletId(), _offlinePolicy);
+	}
 
-    getContext().startActivity(intent);
-  }
+	private long _groupId;
+	private long _folderId;
+	private OfflinePolicy _offlinePolicy;
+	private int _columnsSize;
 }
