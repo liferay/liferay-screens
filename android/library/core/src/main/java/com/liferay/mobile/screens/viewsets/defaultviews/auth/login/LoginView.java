@@ -163,17 +163,15 @@ public class LoginView extends LinearLayout
 	protected void onAttachedToWindow() {
 		super.onAttachedToWindow();
 
-		if (_oAuthButton != null) {
-			_oAuthButton.setVisibility(AuthenticationType.OAUTH.equals(_authenticationType) ? VISIBLE : GONE);
-		}
-
 		if (_basicAuthenticationLayout != null) {
 			_basicAuthenticationLayout.setVisibility(AuthenticationType.BASIC.equals(_authenticationType) ? VISIBLE : GONE);
 		}
 
-		if (AuthenticationType.BASIC.equals(_authenticationType)) {
-			_loginEditText.setHint(getResources().getString(getLabelResourceForAuthMode()));
+		if (_oAuthButton != null) {
+			_oAuthButton.setVisibility(AuthenticationType.OAUTH.equals(_authenticationType) ? VISIBLE : GONE);
 		}
+
+		_loginEditText.setHint(getResources().getString(getLabelResourceForAuthMode()));
 
 		refreshLoginEditTextStyle();
 	}
