@@ -96,6 +96,13 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryInter
 		viewModel.showDetailImage(image);
 	}
 
+	public void showImageInFullScreenActivity(ImageEntry image) {
+		Intent intent = new Intent(getContext(), DetailImageActivity.class);
+		intent.putExtra(DetailImageActivity.GALLERY_SCREENLET_IMAGE_DETAILED, image);
+
+		getContext().startActivity(intent);
+	}
+
 	@Override
 	protected void loadRows(GalleryInteractor interactor, int startRow, int endRow, Locale locale)
 		throws Exception {
