@@ -85,14 +85,5 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 		Snackbar.make(content, "Storing to cache...", Snackbar.LENGTH_SHORT).show();
 	}
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-
-		if (resultCode == Activity.RESULT_OK) {
-			_screenlet.upload(requestCode, data);
-		}
-	}
-
 	private UserPortraitScreenlet _screenlet;
 }
