@@ -2,6 +2,7 @@ package com.liferay.mobile.screens.userportrait.interactor.upload;
 
 import android.content.Intent;
 
+import com.liferay.mobile.screens.base.MediaStoreEvent;
 import com.liferay.mobile.screens.base.interactor.BaseCachedWriteRemoteInteractor;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
@@ -65,6 +66,10 @@ public class UserPortraitUploadInteractorImpl
 				getListener().onUserPortraitUploadFailure(e);
 			}
 		}
+	}
+
+	public void onEvent(MediaStoreEvent event) {
+		getListener().onPicturePathReceived(event.getFilePath());
 	}
 
 	@Override

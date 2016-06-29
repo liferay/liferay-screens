@@ -34,4 +34,6 @@ public interface UserPortraitInteractorListener extends CacheListener {
 
 	void onUserPortraitUploadFailure(Exception e);
 
+	void onPicturePathReceived(String picturePath);
+
 }
