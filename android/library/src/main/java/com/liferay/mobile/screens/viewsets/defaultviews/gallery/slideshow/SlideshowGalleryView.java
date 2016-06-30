@@ -42,6 +42,11 @@ public class SlideshowGalleryView extends
 	}
 
 	@Override
+	public void updateView() {
+		
+	}
+
+	@Override
 	protected SlideshowGalleryAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
 		return new SlideshowGalleryAdapter(itemLayoutId, itemProgressLayoutId, this);
 	}
