@@ -30,9 +30,11 @@ public class GalleryInteractorImpl extends BaseListInteractor<ImageEntry, Galler
 	}
 
 	@Override
-	public void loadRows(long groupId, long folderId, int startRow, int endRow, Locale locale) throws Exception {
+	public void loadRows(long groupId, long folderId, String[] mymeTypes, int startRow, int endRow, Locale locale)
+		throws Exception {
 		_groupId = groupId;
 		_folderId = folderId;
+		_mimeTypes = getMimeTypes(mymeTypes);
 
 		processWithCache(startRow, endRow, locale);
 	}
@@ -55,12 +57,12 @@ public class GalleryInteractorImpl extends BaseListInteractor<ImageEntry, Galler
 
 	@Override
 	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception {
-		new DLAppService(session).getFileEntries(_groupId, _folderId, getMimeTypes(), startRow, endRow, null);
+		new DLAppService(session).getFileEntries(_groupId, _folderId, _mimeTypes, startRow, endRow, null);
 	}
 
 	@Override
 	protected void getPageRowCountRequest(Session session) throws Exception {
-		new DLAppService(session).getFileEntriesCount(_groupId, _folderId, getMimeTypes());
+		new DLAppService(session).getFileEntriesCount(_groupId, _folderId, _mimeTypes);
 	}
 
 	@Override
@@ -83,13 +85,25 @@ public class GalleryInteractorImpl extends BaseListInteractor<ImageEntry, Galler
 		storeRows(id, IMAGE_LIST, IMAGE_LIST_COUNT, _groupId, null, event);
 	}
 
-	private JSONArray getMimeTypes() {
-		return new JSONArray()
-			.put("image/png")
-			.put("image/jpeg")
-			.put("image/gif");
+	private JSONArray getMimeTypes(String[] mimeTypes) {
+		if(mimeTypes == null) {
+			return DEFAULT_MIME_TYPES;
+		}
+		JSONArray jsonMimeTypes = new JSONArray();
+
+		for(String mimeType : mimeTypes) {
+			jsonMimeTypes.put(mimeType);
+		}
+
+		return jsonMimeTypes;
 	}
+
+	private static final JSONArray DEFAULT_MIME_TYPES = new JSONArray()
+		.put("image/png")
+		.put("image/jpeg")
+		.put("image/gif");
 
 	private long _groupId;
 	private long _folderId;
+	private JSONArray _mimeTypes;
 }
