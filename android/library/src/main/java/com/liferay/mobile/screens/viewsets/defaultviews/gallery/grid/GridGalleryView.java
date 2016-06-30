@@ -58,6 +58,10 @@ public class GridGalleryView
 	@Override
 	public void setColumns(int numCols) {
 		_columnsSize = numCols;
+	}
+
+	@Override
+	public void updateView() {
 		_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), _columnsSize));
 	}
 
