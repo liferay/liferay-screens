@@ -8,8 +8,6 @@ import com.liferay.mobile.screens.gallery.model.ImageEntry;
  */
 public interface GalleryViewModel extends BaseListViewModel<ImageEntry> {
 
-	void showDetailImage(ImageEntry image);
-
 	void setColumns(int numCols);
 
 	void updateView();

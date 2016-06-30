@@ -19,21 +19,18 @@ import java.util.List;
  */
 public class GridGalleryView
 	extends BaseListScreenletView<ImageEntry, GridGalleryAdapter.GridGalleryViewHolder, GridGalleryAdapter>
-	implements GalleryViewModel, View.OnKeyListener {
+	implements GalleryViewModel {
 
 	public GridGalleryView(Context context) {
 		super(context);
-		initialize();
 	}
 
 	public GridGalleryView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		initialize();
 	}
 
 	public GridGalleryView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		initialize();
 	}
 
 	@Override
@@ -49,13 +46,6 @@ public class GridGalleryView
 	}
 
 	@Override
-	public void showDetailImage(ImageEntry image) {
-		//_recyclerView.setVisibility(GONE);
-		//_detailedImage.setVisibility(VISIBLE);
-		//Picasso.with(getContext()).load(image.getImageUrl()).into(_detailedImage);
-	}
-
-	@Override
 	public void setColumns(int numCols) {
 		_columnsSize = numCols;
 	}
@@ -63,24 +53,6 @@ public class GridGalleryView
 	@Override
 	public void updateView() {
 		_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), _columnsSize));
-	}
-
-	@Override
-	public boolean onKey(View v, int keyCode, KeyEvent event) {
-
-		if (_recyclerView.getVisibility() == GONE && keyCode == KeyEvent.KEYCODE_BACK) {
-
-			_detailedImage.setVisibility(GONE);
-			_recyclerView.setVisibility(VISIBLE);
-			return true;
-		}
-		return false;
-	}
-
-	protected void initialize() {
-		setFocusableInTouchMode(true);
-		requestFocus();
-		setOnKeyListener(this);
 	}
 
 	@Override
@@ -101,7 +73,6 @@ public class GridGalleryView
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-		_detailedImage = (ImageView) findViewById(R.id.gallery_detailed_image);
 		_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), _columnsSize));
 	}
 
@@ -114,6 +85,4 @@ public class GridGalleryView
 
 	private int _columnsSize = DEFAULT_COLS;
 	private int _imagesSpacing = 3;
-
-	private ImageView _detailedImage;
 }
