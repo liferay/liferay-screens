@@ -11,4 +11,6 @@ public interface GalleryViewModel extends BaseListViewModel<ImageEntry> {
 	void showDetailImage(ImageEntry image);
 
 	void setColumns(int numCols);
+
+	void updateView();
 }
