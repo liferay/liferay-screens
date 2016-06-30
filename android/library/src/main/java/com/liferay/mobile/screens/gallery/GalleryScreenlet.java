@@ -106,7 +106,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryInter
 	@Override
 	protected void loadRows(GalleryInteractor interactor, int startRow, int endRow, Locale locale)
 		throws Exception {
-		interactor.loadRows(_groupId, _folderId, startRow, endRow, locale);
+		interactor.loadRows(_groupId, _folderId, _mimeTypes, startRow, endRow, locale);
 	}
 
 	@Override
@@ -127,6 +127,8 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryInter
 
 		_columnsSize = typedArray.getInt(R.styleable.GalleryScreenlet_columnsSize, 0);
 
+		_mimeTypes = parseMimeTypes(typedArray.getString(R.styleable.GalleryScreenlet_mimeTypes));
+
 		typedArray.recycle();
 
 		View view = super.createScreenletView(context, attributes);
@@ -144,8 +146,18 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryInter
 		return new GalleryInteractorImpl(getScreenletId(), _offlinePolicy);
 	}
 
+	private String[] parseMimeTypes(String mimeTypesRaw) {
+		if (mimeTypesRaw == null) {
+			return null;
+		}
+		String[] mimeTypes = mimeTypesRaw.split(",");
+
+		return mimeTypes;
+	}
+
 	private long _groupId;
 	private long _folderId;
 	private OfflinePolicy _offlinePolicy;
 	private int _columnsSize;
+	private String[] _mimeTypes;
 }
