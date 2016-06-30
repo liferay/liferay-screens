@@ -32,11 +32,6 @@ public class SlideshowGalleryView extends
 	}
 
 	@Override
-	public void showDetailImage(ImageEntry image) {
-
-	}
-
-	@Override
 	public void setColumns(int numCols) {
 
 	}
