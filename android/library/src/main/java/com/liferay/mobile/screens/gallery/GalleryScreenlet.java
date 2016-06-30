@@ -91,9 +91,6 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryInter
 		if (getListener() != null) {
 			getListener().onListItemSelected(image, view);
 		}
-
-		GalleryViewModel viewModel = (GalleryViewModel) getViewModel();
-		viewModel.showDetailImage(image);
 	}
 
 	public void updateView() {
