@@ -147,6 +147,7 @@
 		<attr name="pageSize" />
 		<attr name="firstPageSize" />
 		<attr name="columnsSize" format="integer"/>
+		<attr name="mimeTypes" format="string" />
 	</declare-styleable>
 
 	<declare-styleable name="ModalProgressBar">
