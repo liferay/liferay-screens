@@ -76,6 +76,7 @@
 		android:visibility="gone"
 		liferay:autoLoad="false"
 		liferay:entryId="@string/liferay_rating_star_asset_id"
+		liferay:stepCount="5"
 		liferay:layoutId="@layout/rating_star_bar_default"
 		liferay:offlinePolicy="REMOTE_FIRST"
 		/>
@@ -87,6 +88,7 @@
 		android:visibility="gone"
 		liferay:autoLoad="false"
 		liferay:entryId="@string/liferay_rating_like_asset_id"
+		liferay:stepCount="1"
 		liferay:layoutId="@layout/rating_like_default"
 		liferay:offlinePolicy="REMOTE_FIRST"
 		/>

@@ -2,10 +2,5 @@
 <resources>
 	<string name="rating_total">Total: %d</string>
 	<string name="rating_count">%d Ratings</string>
-	<string name="loading_ratings_error">Error loading ratings</string>
-	<string name="loading_user_rating_error">Error loading user rating</string>
-	<string name="adding_error_rating">Error adding rating</string>
-	<string name="updating_rating_error">Error updating rating</string>
-	<string name="deleting_rating_error">Error deleting rating</string>
-	<string name="ratings_error">Error in ratings screenlet</string>
+	<string name="ratings_error">An error ocurred during the requested operation</string>
 </resources>

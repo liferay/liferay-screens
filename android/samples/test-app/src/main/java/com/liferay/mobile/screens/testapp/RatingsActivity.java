@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.Switch;
-import com.liferay.mobile.screens.rating.RatingEntry;
+import com.liferay.mobile.screens.rating.AssetRating;
 import com.liferay.mobile.screens.rating.RatingListener;
 import com.liferay.mobile.screens.rating.RatingScreenlet;
 import java.util.List;
@@ -13,6 +13,14 @@ import java.util.List;
  * @author Alejandro Hernández
  */
 public class RatingsActivity extends ThemeActivity implements RatingListener, View.OnClickListener {
+
+	@Override public void onRatingOperationFailure(Exception exception) {
+		error("There was an error loading screenlet", exception);
+	}
+
+	@Override public void onRatingOperationSuccess(AssetRating assetRating) {
+		info("Screenlet loaded succesfully");
+	}
 
 	private RatingScreenlet _thumbScreenlet;
 	private RatingScreenlet _starScreenlet;
@@ -49,31 +57,6 @@ public class RatingsActivity extends ThemeActivity implements RatingListener, Vi
 		displayScreenlet(_thumbScreenlet);
 	}
 
-	@Override public void onRetrieveRatingEntriesFailure(Exception exception) {
-		error("Couldn't fetch ratings", exception);
-	}
-
-	@Override public void onAddRatingEntryFailure(Exception exception) {
-		error("Couldn't update/add rating", exception);
-	}
-
-	@Override public void onDeleteRatingEntryFailure(Exception exception) {
-		error("Couldn't delete rating", exception);
-	}
-
-	@Override public void onRetrieveRatingEntriesSuccess(long classPK, String className,
-		List<RatingEntry> ratings) {
-		info("Ratings fetched succesfully!");
-	}
-
-	@Override public void onAddRatingEntrySuccess(RatingEntry entry) {
-		info("Rating added/updated succesfully!");
-	}
-
-	@Override public void onDeleteRatingEntrySuccess() {
-		info("Rating deleted succesfully!");
-	}
-
 	@Override public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.button_rating_thumb:
@@ -102,7 +85,7 @@ public class RatingsActivity extends ThemeActivity implements RatingListener, Vi
 		try {
 			_screenlet.load();
 		} catch (Exception e) {
-			onRetrieveRatingEntriesFailure(e);
+			onRatingOperationFailure(e);
 		}
 	}
 
