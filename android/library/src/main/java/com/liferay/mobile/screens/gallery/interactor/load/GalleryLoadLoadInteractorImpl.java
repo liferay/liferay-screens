@@ -37,6 +37,8 @@ public class GalleryLoadLoadInteractorImpl extends BaseListInteractor<ImageEntry
 		_folderId = folderId;
 		_mimeTypes = getMimeTypes(mymeTypes);
 
+		validate(groupId, folderId);
+
 		processWithCache(startRow, endRow, locale);
 	}
 
@@ -86,10 +88,24 @@ public class GalleryLoadLoadInteractorImpl extends BaseListInteractor<ImageEntry
 		storeRows(id, IMAGE_LIST, IMAGE_LIST_COUNT, _groupId, null, event);
 	}
 
+	protected void validate(long groupId, long folderId) {
+		if(groupId <= 0) {
+			throw new IllegalArgumentException("groupId cannot be 0 or negative");
+		}
+
+		if(folderId < 0) {
+			throw new IllegalArgumentException("groupId cannot be negative");
+		}
+	}
+
 	private JSONArray getMimeTypes(String[] mimeTypes) {
 		if(mimeTypes == null) {
 			return DEFAULT_MIME_TYPES;
 		}
+		if(mimeTypes.length == 0 && mimeTypes[0].isEmpty()){
+			return DEFAULT_MIME_TYPES;
+		}
+
 		JSONArray jsonMimeTypes = new JSONArray();
 
 		for(String mimeType : mimeTypes) {
