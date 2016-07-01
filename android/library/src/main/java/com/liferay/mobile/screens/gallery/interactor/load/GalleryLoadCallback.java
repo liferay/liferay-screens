@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.gallery.interactor;
+package com.liferay.mobile.screens.gallery.interactor.load;
 
 import android.util.Pair;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
@@ -13,9 +13,9 @@ import java.util.Map;
 /**
  * @author Víctor Galán Grande
  */
-public class GalleryCallback extends BaseListCallback<ImageEntry> {
+public class GalleryLoadCallback extends BaseListCallback<ImageEntry> {
 
-	public GalleryCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange, Locale locale) {
+	public GalleryLoadCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange, Locale locale) {
 		super(targetScreenletId, rowsRange, locale);
 	}
 
