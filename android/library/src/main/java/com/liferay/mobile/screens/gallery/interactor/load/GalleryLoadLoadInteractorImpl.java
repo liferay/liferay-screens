@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.gallery.interactor;
+package com.liferay.mobile.screens.gallery.interactor.load;
 
 import android.support.annotation.NonNull;
 import android.util.Pair;
@@ -9,6 +9,7 @@ import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
+import com.liferay.mobile.screens.gallery.interactor.GalleryInteractorListener;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.util.JSONUtil;
 import java.util.Locale;
@@ -22,10 +23,10 @@ import static com.liferay.mobile.screens.cache.DefaultCachedType.IMAGE_LIST_COUN
 /**
  * @author Víctor Galán Grande
  */
-public class GalleryInteractorImpl extends BaseListInteractor<ImageEntry, GalleryInteractorListener>
-	implements GalleryInteractor {
+public class GalleryLoadLoadInteractorImpl extends BaseListInteractor<ImageEntry, GalleryInteractorListener>
+	implements GalleryLoadInteractor {
 
-	public GalleryInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
+	public GalleryLoadLoadInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
 		super(targetScreenletId, offlinePolicy);
 	}
 
@@ -52,7 +53,7 @@ public class GalleryInteractorImpl extends BaseListInteractor<ImageEntry, Galler
 
 	@Override
 	protected BaseListCallback<ImageEntry> getCallback(Pair<Integer, Integer> rowsRange, Locale locale) {
-		return new GalleryCallback(getTargetScreenletId(), rowsRange, locale);
+		return new GalleryLoadCallback(getTargetScreenletId(), rowsRange, locale);
 	}
 
 	@Override
