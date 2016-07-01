@@ -36,10 +36,14 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, RatingIntera
 		super(context, attributes, defaultStyle);
 	}
 
+	public void updateView() {
+		getViewModel().updateView();
+	}
+
 	@Override protected void onScreenletAttached() {
 		super.onScreenletAttached();
 
-		getViewModel().setReadOnly(_readOnly);
+		updateView();
 
 		if (_autoLoad) {
 			autoLoad();
@@ -53,9 +57,10 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, RatingIntera
 		int layoutId = typedArray.getResourceId(R.styleable.RatingScreenlet_layoutId, 0);
 
 		_autoLoad = typedArray.getBoolean(R.styleable.RatingScreenlet_autoLoad, true);
-		_readOnly = typedArray.getBoolean(R.styleable.RatingScreenlet_readOnly, false);
+		_editable = typedArray.getBoolean(R.styleable.RatingScreenlet_editable, false);
 
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
+		((RatingViewModel) view).setEditable(_editable);
 
 		_entryId = castToLong(typedArray.getString(R.styleable.RatingScreenlet_entryId));
 		_className = typedArray.getString(R.styleable.RatingScreenlet_className);
@@ -168,9 +173,13 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, RatingIntera
 		_classPK = classPK;
 	}
 
-	public void setReadOnly(boolean readOnly) {
-		_readOnly = readOnly;
-		getViewModel().setReadOnly(_readOnly);
+	public boolean isEditable() {
+		return _editable;
+	}
+
+	public void setEditable(boolean editable) {
+		_editable = editable;
+		getViewModel().setEditable(_editable);
 	}
 
 	public int getStepCount() {
@@ -185,7 +194,7 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, RatingIntera
 
 	private long _entryId;
 	private boolean _autoLoad;
-	private boolean _readOnly;
+	private boolean _editable;
 	private long _classPK;
 	private int _stepCount;
 	private String _className;

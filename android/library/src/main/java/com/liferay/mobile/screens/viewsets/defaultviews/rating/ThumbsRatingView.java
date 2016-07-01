@@ -73,12 +73,12 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 		}
 	}
 
-	@Override public void setReadOnly(boolean readOnly) {
-		_negativeButton.setOnClickListener(readOnly ? null : this);
-		_negativeButton.setEnabled(!readOnly);
+	@Override public void updateView() {
+		_negativeButton.setOnClickListener(!isEditable() ? null : this);
+		_negativeButton.setEnabled(isEditable());
 
-		_possitiveButton.setOnClickListener(readOnly ? null : this);
-		_possitiveButton.setEnabled(!readOnly);
+		_possitiveButton.setOnClickListener(!isEditable() ? null : this);
+		_possitiveButton.setEnabled(isEditable());
 	}
 
 	@Override protected void onFinishInflate() {

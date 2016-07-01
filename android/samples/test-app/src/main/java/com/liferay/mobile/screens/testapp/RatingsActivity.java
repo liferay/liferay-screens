@@ -7,7 +7,6 @@ import android.widget.Switch;
 import com.liferay.mobile.screens.rating.AssetRating;
 import com.liferay.mobile.screens.rating.RatingListener;
 import com.liferay.mobile.screens.rating.RatingScreenlet;
-import java.util.List;
 
 /**
  * @author Alejandro Hernández
@@ -46,7 +45,8 @@ public class RatingsActivity extends ThemeActivity implements RatingListener, Vi
 
 		_readOnlySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				_screenlet.setReadOnly(isChecked);
+				_screenlet.setEditable(!isChecked);
+				_screenlet.updateView();
 			}
 		});
 
@@ -77,7 +77,9 @@ public class RatingsActivity extends ThemeActivity implements RatingListener, Vi
 		hideScreenlets();
 		_screenlet = screenlet;
 		_screenlet.setVisibility(View.VISIBLE);
-		_screenlet.setReadOnly(_readOnlySwitch.isChecked());
+		_screenlet.setEditable(!_readOnlySwitch.isChecked());
+		_screenlet.updateView();
+
 		loadScreenlet();
 	}
 

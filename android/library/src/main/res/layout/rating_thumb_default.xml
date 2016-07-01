@@ -15,6 +15,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
+		android:progressTint="@color/colorPrimary_default"
 		android:visibility="gone"
 		/>
 
@@ -39,11 +40,10 @@
 				android:id="@+id/positiveRatingButton"
 				android:layout_width="80dp"
 				android:layout_height="80dp"
-				android:background="?attr/selectableItemBackgroundBorderless"
 				android:scaleType="fitXY"
+				android:background="@android:color/transparent"
 				android:src="@drawable/default_thumb_up_outline"
-				android:tint="?attr/colorPrimary"
-				tools:background=""
+				android:tint="@color/colorPrimary_default"
 				/>
 
 			<TextView
@@ -68,11 +68,10 @@
 				android:id="@+id/negativeRatingButton"
 				android:layout_width="80dp"
 				android:layout_height="80dp"
-				android:background="?attr/selectableItemBackgroundBorderless"
 				android:scaleType="fitXY"
+				android:background="@android:color/transparent"
+				android:tint="@color/colorPrimary_default"
 				android:src="@drawable/default_thumb_down_outline"
-				android:tint="?attr/colorPrimary"
-				tools:background=""
 				tools:src="@drawable/default_thumb_down"
 				/>
 

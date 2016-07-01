@@ -30,6 +30,7 @@
 	<attr name="pageSize" format="integer" />
 	<attr name="labelFields" format="string" />
 	<attr name="structureId" format="string" />
+	<attr name="editable" format="boolean" />
 
 	<declare-styleable name="AssetListScreenlet">
 		<attr name="layoutId" />
@@ -136,7 +137,7 @@
 		<attr name="portraitId" format="string" />
 		<attr name="uuid" format="string" />
 		<attr name="userId" />
-		<attr name="editable" format="boolean" />
+		<attr name="editable"/>
 	</declare-styleable>
 
 	<declare-styleable name="ModalProgressBar">
@@ -144,12 +145,12 @@
 	</declare-styleable>
 
 	<declare-styleable name="RatingScreenlet">
-		<attr name="layoutId"/>
+		<attr name="layoutId" />
 		<attr name="autoLoad" />
-		<attr name="readOnly" format="boolean"/>
-		<attr name="entryId" format="string"/>
-		<attr name="className" format="string"/>
-		<attr name="classPK" format="string"/>
-		<attr name="stepCount" format="integer"/>
+		<attr name="editable" />
+		<attr name="entryId" format="string" />
+		<attr name="className" format="string" />
+		<attr name="classPK" format="string" />
+		<attr name="stepCount" format="integer" />
 	</declare-styleable>
 </resources>

@@ -60,6 +60,14 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 		_screenlet = screenlet;
 	}
 
+	@Override public void setEditable(boolean editable) {
+		_editable = editable;
+	}
+
+	@Override public boolean isEditable() {
+		return _editable;
+	}
+
 	@Override protected void onFinishInflate() {
 		super.onFinishInflate();
 
@@ -70,5 +78,5 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 	protected ProgressBar _progressBar;
 	protected LinearLayout _content;
 	private BaseScreenlet _screenlet;
-	private boolean _readOnly;
+	private boolean _editable;
 }

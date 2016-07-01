@@ -46,9 +46,9 @@ public class LikeRatingView extends BaseRatingView implements View.OnClickListen
 		}
 	}
 
-	@Override public void setReadOnly(boolean readOnly) {
-		_likeButton.setOnClickListener(readOnly ? null : this);
-		_likeButton.setEnabled(!readOnly);
+	@Override public void updateView() {
+		_likeButton.setOnClickListener(!isEditable() ? null : this);
+		_likeButton.setEnabled(isEditable());
 	}
 
 	@Override public void onClick(View v) {
