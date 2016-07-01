@@ -21,13 +21,13 @@ public class GalleryActivity extends ThemeActivity
 	implements GalleryListener, View.OnClickListener {
 
 	private GalleryScreenlet galleryScreenletGrid;
-	private GalleryScreenlet galleryScreenletSlideShow;
 
+	private GalleryScreenlet galleryScreenletSlideShow;
 	private Button changeGalleryView;
 
 	private Button buttonMinus;
-	private Button buttonPlus;
 
+	private Button buttonPlus;
 	int columnsSize = 5;
 
 	@Override
@@ -88,6 +88,16 @@ public class GalleryActivity extends ThemeActivity
 	}
 
 	@Override
+	public void onImageEntryDeleteFailure(GalleryScreenlet screenlet, Exception e) {
+		error("Error deleting image", e);
+	}
+
+	@Override
+	public void onImageEntryDeleted(GalleryScreenlet screenlet) {
+		info("Image deleted");
+	}
+
+	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.change_gallery_view) {
 			if (changeGalleryView.getText().toString().equals("Slideshow")) {
@@ -108,13 +118,16 @@ public class GalleryActivity extends ThemeActivity
 		}
 
 		if (v.getId() == R.id.image_gallery_button_minus) {
+			galleryScreenletGrid.deleteEntry(36796);
 			if (columnsSize > 1) {
 				galleryScreenletGrid.setColumnsSize(--columnsSize);
+				galleryScreenletGrid.updateView();
 			}
 		}
 
 		if (v.getId() == R.id.image_gallery_button_plus) {
 			galleryScreenletGrid.setColumnsSize(++columnsSize);
+			galleryScreenletGrid.updateView();
 		}
 	}
 }
