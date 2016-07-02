@@ -102,7 +102,7 @@ public class GalleryLoadLoadInteractorImpl extends BaseListInteractor<ImageEntry
 		if(mimeTypes == null) {
 			return DEFAULT_MIME_TYPES;
 		}
-		if(mimeTypes.length == 0 && mimeTypes[0].isEmpty()){
+		if(mimeTypes.length == 1 && mimeTypes[0].isEmpty()){
 			return DEFAULT_MIME_TYPES;
 		}
 
