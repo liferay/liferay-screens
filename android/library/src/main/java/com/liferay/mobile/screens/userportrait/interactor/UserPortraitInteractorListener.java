@@ -24,8 +24,6 @@ import com.liferay.mobile.screens.cache.CacheListener;
  */
 public interface UserPortraitInteractorListener extends CacheListener {
 
-	void onStartUserPortraitLoadRequest();
-
 	Bitmap onEndUserPortraitLoadRequest(Bitmap bitmap);
 
 	void onUserPortraitLoadFailure(Exception e);

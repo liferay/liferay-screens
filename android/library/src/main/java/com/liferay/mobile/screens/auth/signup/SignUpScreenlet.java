@@ -207,8 +207,6 @@ public class SignUpScreenlet
 	protected void onUserAction(String userActionName, SignUpInteractor interactor, Object... args) {
 		SignUpViewModel viewModel = getViewModel();
 
-		viewModel.showStartOperation(userActionName);
-
 		String firstName = viewModel.getFirstName();
 		String middleName = viewModel.getMiddleName();
 		String lastName = viewModel.getLastName();
