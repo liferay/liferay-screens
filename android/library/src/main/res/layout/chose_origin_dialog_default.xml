@@ -26,14 +26,24 @@
 			style="@style/default_dialog_button"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/select_a_file" />
+			android:text="@string/select_a_file"
+			android:visibility="gone"/>
 
 		<TextView
 			android:id="@+id/liferay_dialog_take_photo"
 			style="@style/default_dialog_button"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="@string/take_a_photo" />
+			android:text="@string/take_a_photo"
+			android:visibility="gone"/>
+
+		<TextView
+			android:id="@+id/liferay_dialog_take_video"
+			style="@style/default_dialog_button"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/record_a_video"
+			android:visibility="gone"/>
 
 	</LinearLayout>
 
