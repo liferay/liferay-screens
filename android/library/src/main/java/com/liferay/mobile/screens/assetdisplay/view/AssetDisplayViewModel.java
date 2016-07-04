@@ -8,5 +8,5 @@ import com.liferay.mobile.screens.base.view.BaseViewModel;
  */
 public interface AssetDisplayViewModel extends BaseViewModel {
 
-  void showFinishOperation(AssetEntry assetEntry);
+	void showFinishOperation(AssetEntry assetEntry);
 }

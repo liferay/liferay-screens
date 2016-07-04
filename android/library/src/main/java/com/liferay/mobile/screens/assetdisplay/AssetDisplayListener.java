@@ -7,8 +7,7 @@ import com.liferay.mobile.screens.assetlist.AssetEntry;
  */
 public interface AssetDisplayListener {
 
-  void onRetrieveAssetFailure(Exception exception);
+	void onRetrieveAssetFailure(Exception exception);
 
-  void onRetrieveAssetSuccess(AssetEntry assetEntry);
-
+	void onRetrieveAssetSuccess(AssetEntry assetEntry);
 }

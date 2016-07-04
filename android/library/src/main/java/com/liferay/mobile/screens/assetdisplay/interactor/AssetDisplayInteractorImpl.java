@@ -17,38 +17,42 @@ import org.json.JSONException;
 /**
  * @author Sarai Díaz García
  */
-public class AssetDisplayInteractorImpl extends BaseRemoteInteractor<AssetDisplayListener> implements AssetDisplayInteractor {
+public class AssetDisplayInteractorImpl extends BaseRemoteInteractor<AssetDisplayListener>
+	implements AssetDisplayInteractor {
 
-  public AssetDisplayInteractorImpl(int targetScreenletId) {
-    super(targetScreenletId);
-    _service = getScreensAssetEntryService();
-  }
+	public AssetDisplayInteractorImpl(int targetScreenletId) {
+		super(targetScreenletId);
+		_service = getScreensAssetEntryService();
+	}
 
-  @Override public void getAssetEntryExtended(long entryId) throws Exception {
-    _service.getAssetEntryExtended(entryId, Locale.getDefault().getLanguage());
-  }
+	@Override
+	public void getAssetEntryExtended(long entryId) throws Exception {
+		_service.getAssetEntryExtended(entryId, Locale.getDefault().getLanguage());
+	}
 
-  public void onEvent(JSONObjectEvent event) {
-    if (!isValidEvent(event)) {
-      return;
-    }
+	public void onEvent(JSONObjectEvent event) {
+		if (!isValidEvent(event)) {
+			return;
+		}
 
-    if (event.isFailed()) {
-      getListener().onRetrieveAssetFailure(event.getException());
-    } else {
-      try {
-        getListener().onRetrieveAssetSuccess(AssetFactory.createInstance(JSONUtil.toMap(event.getJSONObject())));
-      } catch (JSONException e) {
-        LiferayLogger.e(e.getMessage());
-      }
-    }
-  }
+		if (event.isFailed()) {
+			getListener().onRetrieveAssetFailure(event.getException());
+		} else {
+			try {
+				getListener().onRetrieveAssetSuccess(
+					AssetFactory.createInstance(JSONUtil.toMap(event.getJSONObject())));
+			} catch (JSONException e) {
+				LiferayLogger.e(e.getMessage());
+			}
+		}
+	}
 
-  @NonNull private ScreensassetentryService getScreensAssetEntryService() {
-    Session session = SessionContext.createSessionFromCurrentSession();
-    session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
-    return new ScreensassetentryService(session);
-  }
+	@NonNull
+	private ScreensassetentryService getScreensAssetEntryService() {
+		Session session = SessionContext.createSessionFromCurrentSession();
+		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
+		return new ScreensassetentryService(session);
+	}
 
-  private final ScreensassetentryService _service;
+	private final ScreensassetentryService _service;
 }

@@ -15,88 +15,92 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 /**
  * @author Sarai Díaz García
  */
-public class AssetDisplayScreenlet
-    extends BaseScreenlet<AssetDisplayViewModel, AssetDisplayInteractorImpl>
-    implements AssetDisplayListener {
+public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, AssetDisplayInteractorImpl>
+	implements AssetDisplayListener {
 
-  public AssetDisplayScreenlet(Context context) {
-    super(context);
-  }
+	public AssetDisplayScreenlet(Context context) {
+		super(context);
+	}
 
-  public AssetDisplayScreenlet(Context context, AttributeSet attributes) {
-    super(context, attributes);
-  }
+	public AssetDisplayScreenlet(Context context, AttributeSet attributes) {
+		super(context, attributes);
+	}
 
-  public AssetDisplayScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
-    super(context, attributes, defaultStyle);
-  }
+	public AssetDisplayScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
+		super(context, attributes, defaultStyle);
+	}
 
-  @Override public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
-    getViewModel().showFinishOperation(assetEntry);
+	@Override
+	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
+		getViewModel().showFinishOperation(assetEntry);
 
-    if (_listener != null) {
-      _listener.onRetrieveAssetSuccess(assetEntry);
-    }
-  }
+		if (_listener != null) {
+			_listener.onRetrieveAssetSuccess(assetEntry);
+		}
+	}
 
-  @Override public void onRetrieveAssetFailure(Exception e) {
-    getViewModel().showFailedOperation(null, e);
+	@Override
+	public void onRetrieveAssetFailure(Exception e) {
+		getViewModel().showFailedOperation(null, e);
 
-    if (_listener != null) {
-      _listener.onRetrieveAssetFailure(e);
-    }
-  }
+		if (_listener != null) {
+			_listener.onRetrieveAssetFailure(e);
+		}
+	}
 
-  @Override protected View createScreenletView(Context context, AttributeSet attributes) {
-    TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-        attributes, R.styleable.AssetDisplayScreenlet, 0, 0);
+	@Override
+	protected View createScreenletView(Context context, AttributeSet attributes) {
+		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
+			attributes, R.styleable.AssetDisplayScreenlet, 0, 0);
 
-    int layoutId = typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_layoutId, getDefaultLayoutId());
+		int layoutId = typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_layoutId, getDefaultLayoutId());
 
-    _entryId = typedArray.getInt(R.styleable.AssetDisplayScreenlet_entryId, 0);
+		_entryId = typedArray.getInt(R.styleable.AssetDisplayScreenlet_entryId, 0);
 
-    View view = LayoutInflater.from(context).inflate(layoutId, null);
+		View view = LayoutInflater.from(context).inflate(layoutId, null);
 
-    typedArray.recycle();
+		typedArray.recycle();
 
-    return view;
-  }
+		return view;
+	}
 
-  @Override protected AssetDisplayInteractorImpl createInteractor(String actionName) {
-    return new AssetDisplayInteractorImpl(getScreenletId());
-  }
+	@Override
+	protected AssetDisplayInteractorImpl createInteractor(String actionName) {
+		return new AssetDisplayInteractorImpl(getScreenletId());
+	}
 
-  @Override
-  protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor,
-      Object... args) {
-  }
+	@Override
+	protected void onScreenletAttached() {
+		super.onScreenletAttached();
 
-  @Override protected void onScreenletAttached() {
-    super.onScreenletAttached();
+		try {
+			loadAsset();
+		} catch (Exception e) {
+			LiferayLogger.e("Could not load asset: " + e.toString());
+		}
+	}
 
-    try {
-      loadAsset();
-    } catch (Exception e) {
-      LiferayLogger.e("Could not load asset: " + e.toString());
-    }
-  }
+	protected void loadAsset() throws Exception {
+		getInteractor().getAssetEntryExtended(_entryId);
+	}
 
-  protected void loadAsset() throws Exception {
-    getInteractor().getAssetEntryExtended(_entryId);
-  }
+	@Override
+	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor,
+		Object... args) {
+	}
 
-  public long getEntryId() {
-    return _entryId;
-  }
+	public long getEntryId() {
+		return _entryId;
+	}
 
-  public void setEntryId(long entryId) {
-    this._entryId = entryId;
-  }
+	public void setEntryId(long entryId) {
+		this._entryId = entryId;
+	}
 
-  public void setListener(AssetDisplayListener listener) {
-    _listener = listener;
-  }
+	public void setListener(AssetDisplayListener listener) {
+		_listener = listener;
+	}
 
-  private long _entryId;
-  private AssetDisplayListener _listener;
+	private long _entryId;
+	private AssetDisplayListener _listener;
 }
