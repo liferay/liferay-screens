@@ -154,7 +154,7 @@ public class UserPortraitScreenlet
 	@Override
 	public void onUserPortraitUploadFailure(Exception e) {
 		if (_listener != null) {
-			_listener.onUserPortraitLoadFailure(this, e);
+			_listener.onUserPortraitUploadFailure(this, e);
 		}
 
 		getViewModel().showFailedOperation(UPLOAD_PORTRAIT, e);
