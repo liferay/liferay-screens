@@ -227,8 +227,6 @@ public class LoginScreenlet
 			LoginViewModel viewModel = getViewModel();
 			LoginBasicInteractor loginBasicInteractor = (LoginBasicInteractor) interactor;
 
-			viewModel.showStartOperation(userActionName);
-
 			loginBasicInteractor.setLogin(viewModel.getLogin());
 			loginBasicInteractor.setPassword(viewModel.getPassword());
 			loginBasicInteractor.setBasicAuthMethod(viewModel.getBasicAuthMethod());

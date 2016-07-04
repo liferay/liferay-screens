@@ -252,7 +252,6 @@ public class WebContentDisplayScreenlet
 
 		try {
 			Locale locale = getResources().getConfiguration().locale;
-			getViewModel().showStartOperation(userActionName);
 
 			if (WEB_CONTENT_BY_ARTICLE_ID.equals(userActionName)) {
 				WebContentDisplayFromArticleIdInteractor interactorFromArticleId =
