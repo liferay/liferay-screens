@@ -7,7 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		431250828CDCA06E95D11B8A /* Pods_LiferayScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F2FC46C9BDDDADEE705508 /* Pods_LiferayScreensTests.framework */; };
+		0B6CEEC31D2A559600BB1BDB /* RatingView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEEC21D2A559600BB1BDB /* RatingView_default.swift */; };
+		0B6CEEC51D2A55EC00BB1BDB /* RatingView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6CEEC41D2A55EC00BB1BDB /* RatingView_default.xib */; };
+		0B6CEEC81D2A58F500BB1BDB /* RatingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEEC71D2A58F500BB1BDB /* RatingViewModel.swift */; };
+		0B6CEECB1D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B6CEEC91D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B6CEECC1D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEECA1D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.m */; };
+		0B6CEECF1D2A5DAC00BB1BDB /* LoadRatingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEECE1D2A5DAC00BB1BDB /* LoadRatingsInteractor.swift */; };
+		0B6CEED11D2A689200BB1BDB /* RatingScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEED01D2A689200BB1BDB /* RatingScreenlet.swift */; };
+		0B6CEED71D2AABE700BB1BDB /* RatingEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEED61D2AABE700BB1BDB /* RatingEntry.swift */; };
+		0B6CEEDD1D2AB63A00BB1BDB /* DeleteRatingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEEDC1D2AB63A00BB1BDB /* DeleteRatingInteractor.swift */; };
+		0B6CEEDF1D2AB69400BB1BDB /* AddRatingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEEDE1D2AB69400BB1BDB /* AddRatingInteractor.swift */; };
+		19CF10ED6279A863F55B46BF /* Pods_LiferayScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 156AA7EED06E7C83A7EFEC44 /* Pods_LiferayScreensTests.framework */; };
+		671BA4AA41FEEF30FC8C520F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9136B139BF9449FC75DBECA6 /* Pods.framework */; };
 		88019FA21B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */; };
 		88019FA31B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */; };
 		880459ED1CA15FA400449D55 /* DDMFieldTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880459EC1CA15FA400449D55 /* DDMFieldTableCell.swift */; };
@@ -396,7 +407,6 @@
 		88E7909E1C6CA3A700C90453 /* LiferayConnectorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E7909C1C6CA3A700C90453 /* LiferayConnectorFactory.swift */; };
 		88F888551B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */; };
 		88F888561B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */; };
-		A78C4BCA83B4105684860043 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9136B139BF9449FC75DBECA6 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -413,7 +423,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7C0B882BE724FFD745F72E9B /* Pods-LiferayScreensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.debug.xcconfig"; sourceTree = "<group>"; };
+		0B6CEEC21D2A559600BB1BDB /* RatingView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingView_default.swift; sourceTree = "<group>"; };
+		0B6CEEC41D2A55EC00BB1BDB /* RatingView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingView_default.xib; sourceTree = "<group>"; };
+		0B6CEEC71D2A58F500BB1BDB /* RatingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewModel.swift; sourceTree = "<group>"; };
+		0B6CEEC91D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensratingsentryService_v70.h; sourceTree = "<group>"; };
+		0B6CEECA1D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensratingsentryService_v70.m; sourceTree = "<group>"; };
+		0B6CEECE1D2A5DAC00BB1BDB /* LoadRatingsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadRatingsInteractor.swift; sourceTree = "<group>"; };
+		0B6CEED01D2A689200BB1BDB /* RatingScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingScreenlet.swift; sourceTree = "<group>"; };
+		0B6CEED61D2AABE700BB1BDB /* RatingEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingEntry.swift; sourceTree = "<group>"; };
+		0B6CEEDC1D2AB63A00BB1BDB /* DeleteRatingInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteRatingInteractor.swift; sourceTree = "<group>"; };
+		0B6CEEDE1D2AB69400BB1BDB /* AddRatingInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRatingInteractor.swift; sourceTree = "<group>"; };
+		156AA7EED06E7C83A7EFEC44 /* Pods_LiferayScreensTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiferayScreensTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B699765C9066F3057F01D26 /* Pods-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
+		58AEE494AC9CFA84595ECCCA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		88019FA11B8F22EE00674B00 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/webcontentdisplay-screenlet.strings"; sourceTree = "<group>"; };
 		880459EC1CA15FA400449D55 /* DDMFieldTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDMFieldTableCell.swift; sourceTree = "<group>"; };
 		880459F01CA161C900449D55 /* DDMStructure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDMStructure.swift; sourceTree = "<group>"; };
@@ -688,10 +710,8 @@
 		88E7909C1C6CA3A700C90453 /* LiferayConnectorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayConnectorFactory.swift; sourceTree = "<group>"; };
 		88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCredentialsStoreKeyChain.swift; sourceTree = "<group>"; };
 		9136B139BF9449FC75DBECA6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AC17F525218297794482A65 /* Pods-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
-		CA6215A5862CA6DCC27EE0ED /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		D0F2FC46C9BDDDADEE705508 /* Pods_LiferayScreensTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiferayScreensTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE2BFCE1243B0BCB673A02C3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		C5B450091BA31401BA698CD5 /* Pods-LiferayScreensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C8A2A94B7EA913D957C398D9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -699,7 +719,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A78C4BCA83B4105684860043 /* Pods.framework in Frameworks */,
+				671BA4AA41FEEF30FC8C520F /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,31 +728,50 @@
 			buildActionMask = 2147483647;
 			files = (
 				8892C6841ACB2E3300192232 /* LiferayScreens.framework in Frameworks */,
-				431250828CDCA06E95D11B8A /* Pods_LiferayScreensTests.framework in Frameworks */,
+				19CF10ED6279A863F55B46BF /* Pods_LiferayScreensTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B6CEEC11D2A54A100BB1BDB /* Rating */ = {
+			isa = PBXGroup;
+			children = (
+				0B6CEEC21D2A559600BB1BDB /* RatingView_default.swift */,
+				0B6CEEC41D2A55EC00BB1BDB /* RatingView_default.xib */,
+			);
+			path = Rating;
+			sourceTree = "<group>";
+		};
+		0B6CEEC61D2A58D700BB1BDB /* Rating */ = {
+			isa = PBXGroup;
+			children = (
+				0B6CEECD1D2A5D5D00BB1BDB /* Interactors */,
+				0B6CEEC71D2A58F500BB1BDB /* RatingViewModel.swift */,
+				0B6CEED61D2AABE700BB1BDB /* RatingEntry.swift */,
+				0B6CEED01D2A689200BB1BDB /* RatingScreenlet.swift */,
+			);
+			path = Rating;
+			sourceTree = "<group>";
+		};
+		0B6CEECD1D2A5D5D00BB1BDB /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				0B6CEECE1D2A5DAC00BB1BDB /* LoadRatingsInteractor.swift */,
+				0B6CEEDC1D2AB63A00BB1BDB /* DeleteRatingInteractor.swift */,
+				0B6CEEDE1D2AB69400BB1BDB /* AddRatingInteractor.swift */,
+			);
+			path = Interactors;
+			sourceTree = "<group>";
+		};
 		64425867C18F568E2864B9C1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				9136B139BF9449FC75DBECA6 /* Pods.framework */,
-				D0F2FC46C9BDDDADEE705508 /* Pods_LiferayScreensTests.framework */,
+				156AA7EED06E7C83A7EFEC44 /* Pods_LiferayScreensTests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		84F01EEBCAE7724B2045717A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				7C0B882BE724FFD745F72E9B /* Pods-LiferayScreensTests.debug.xcconfig */,
-				9AC17F525218297794482A65 /* Pods-LiferayScreensTests.release.xcconfig */,
-				FE2BFCE1243B0BCB673A02C3 /* Pods.debug.xcconfig */,
-				CA6215A5862CA6DCC27EE0ED /* Pods.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		880ACA641B0224A0007AD007 /* Resources */ = {
@@ -952,6 +991,7 @@
 		881E61BA1ACBFC3400862B9E /* Default */ = {
 			isa = PBXGroup;
 			children = (
+				0B6CEEC11D2A54A100BB1BDB /* Rating */,
 				881E61BB1ACBFC3400862B9E /* AssetListScreenlet */,
 				881E61BE1ACBFC3400862B9E /* Auth */,
 				881E61CB1ACBFC3400862B9E /* DDL */,
@@ -1258,6 +1298,8 @@
 		887E05551C6A4DF700CA3807 /* v70 */ = {
 			isa = PBXGroup;
 			children = (
+				0B6CEEC91D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.h */,
+				0B6CEECA1D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.m */,
 				887E05561C6A4DF700CA3807 /* LRScreensassetentryService_v70.h */,
 				887E05571C6A4DF700CA3807 /* LRScreensassetentryService_v70.m */,
 				887E05581C6A4DF700CA3807 /* LRScreensddlrecordService_v70.h */,
@@ -1284,8 +1326,8 @@
 				8892C67A1ACB2E3300192232 /* LiferayScreens */,
 				8892C6871ACB2E3300192232 /* Tests */,
 				8892C6791ACB2E3300192232 /* Products */,
-				84F01EEBCAE7724B2045717A /* Pods */,
 				64425867C18F568E2864B9C1 /* Frameworks */,
+				FB2E53FA7C1D4BC651608B8C /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1352,6 +1394,7 @@
 				881E60B41ACBE3FF00862B9E /* Base */,
 				8892C6B11ACBD95400192232 /* Context */,
 				881E614C1ACBEE0B00862B9E /* DDL */,
+				0B6CEEC61D2A58D700BB1BDB /* Rating */,
 				886F4EA21CA155830018229E /* DDM */,
 				8892C6A41ACBD89400192232 /* Extensions */,
 				887F0D071B999CD90007AECE /* Offline */,
@@ -1534,8 +1577,8 @@
 		88CC3AED1CC12C2600E0AEB7 /* DisplayScreenlet */ = {
 			isa = PBXGroup;
 			children = (
-				88CC3AEE1CC12C2600E0AEB7 /* WebContentDisplayView_default.swift */,
 				88CC3AEF1CC12C2600E0AEB7 /* WebContentDisplayView_default.xib */,
+				88CC3AEE1CC12C2600E0AEB7 /* WebContentDisplayView_default.swift */,
 			);
 			path = DisplayScreenlet;
 			sourceTree = "<group>";
@@ -1579,6 +1622,17 @@
 			path = Context;
 			sourceTree = "<group>";
 		};
+		FB2E53FA7C1D4BC651608B8C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C5B450091BA31401BA698CD5 /* Pods-LiferayScreensTests.debug.xcconfig */,
+				4B699765C9066F3057F01D26 /* Pods-LiferayScreensTests.release.xcconfig */,
+				58AEE494AC9CFA84595ECCCA /* Pods.debug.xcconfig */,
+				C8A2A94B7EA913D957C398D9 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1593,6 +1647,7 @@
 				887E06971C6A4DF800CA3807 /* LRScreensassetentryService_v70.h in Headers */,
 				88DE2AA21AD3ED6800714701 /* LiferayScreensFrameworkConfig.h in Headers */,
 				887E054F1C6A4DB000CA3807 /* LRScreensddlrecordService_v62.h in Headers */,
+				0B6CEECB1D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.h in Headers */,
 				887E06991C6A4DF800CA3807 /* LRScreensddlrecordService_v70.h in Headers */,
 				887E05511C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h in Headers */,
 			);
@@ -1605,12 +1660,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8892C68E1ACB2E3300192232 /* Build configuration list for PBXNativeTarget "LiferayScreens" */;
 			buildPhases = (
-				AC9AA9C091B272B75604A204 /* Check Pods Manifest.lock */,
+				B2A8DDCE6AD2FB7612A2C446 /* Check Pods Manifest.lock */,
 				8892C6731ACB2E3300192232 /* Sources */,
 				8892C6741ACB2E3300192232 /* Frameworks */,
 				8892C6751ACB2E3300192232 /* Headers */,
 				8892C6761ACB2E3300192232 /* Resources */,
-				8A19040985F5993BE8479D01 /* Copy Pods Resources */,
+				367009C6D97A2E3A2AD907C5 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1625,14 +1680,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8892C6911ACB2E3300192232 /* Build configuration list for PBXNativeTarget "LiferayScreensTests" */;
 			buildPhases = (
-				7CD76F22996804293E997E20 /* 📦 Check Pods Manifest.lock */,
+				BDA46CAC701E7F776205F2B9 /* [CP] Check Pods Manifest.lock */,
 				8892C67F1ACB2E3300192232 /* Sources */,
 				8892C6801ACB2E3300192232 /* Frameworks */,
 				8892C6811ACB2E3300192232 /* Resources */,
-				6F839962AB398D94F8E904EF /* 📦 Embed Pods Frameworks */,
-				F432F4437844A929431DC153 /* 📦 Copy Pods Resources */,
 				881E63091ACC0CD400862B9E /* CopyFiles */,
-				0D53E8ECAE16273E6777CE9C /* Embed Pods Frameworks */,
+				EA4B24CB92F8A6C454C944A3 /* [CP] Embed Pods Frameworks */,
+				A4D67D5602E48D7D1D687C23 /* [CP] Copy Pods Resources */,
+				1201D36F11369DF987389564 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1714,6 +1769,7 @@
 				881E624F1ACBFC3400862B9E /* default-calendar.png in Resources */,
 				881E62531ACBFC3400862B9E /* default-field-focused.png in Resources */,
 				881E62411ACBFC3400862B9E /* DDLFieldSelectTableCell_default.xib in Resources */,
+				0B6CEEC51D2A55EC00BB1BDB /* RatingView_default.xib in Resources */,
 				880ACA831B0224A0007AD007 /* forgotpassword-screenlet.strings in Resources */,
 				88BCB5651B8CAD93004349F1 /* ddllist-screenlet.strings in Resources */,
 				881E62581ACBFC3400862B9E /* default-form-gradient-bottom@2x.png in Resources */,
@@ -1786,7 +1842,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0D53E8ECAE16273E6777CE9C /* Embed Pods Frameworks */ = {
+		1201D36F11369DF987389564 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1801,37 +1857,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6F839962AB398D94F8E904EF /* 📦 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7CD76F22996804293E997E20 /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		8A19040985F5993BE8479D01 /* Copy Pods Resources */ = {
+		367009C6D97A2E3A2AD907C5 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1846,7 +1872,22 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AC9AA9C091B272B75604A204 /* Check Pods Manifest.lock */ = {
+		A4D67D5602E48D7D1D687C23 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B2A8DDCE6AD2FB7612A2C446 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1861,19 +1902,34 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		F432F4437844A929431DC153 /* 📦 Copy Pods Resources */ = {
+		BDA46CAC701E7F776205F2B9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EA4B24CB92F8A6C454C944A3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1888,12 +1944,15 @@
 				886F4EB11CA155830018229E /* DDMJSONParser.swift in Sources */,
 				881E611E1ACBE5F000862B9E /* SignUpScreenlet.swift in Sources */,
 				881B743E1B9EE28D00EA64ED /* SyncManager.swift in Sources */,
+				0B6CEEC81D2A58F500BB1BDB /* RatingViewModel.swift in Sources */,
 				88CA806E1B25EE04004C1D59 /* CredentialsStore.swift in Sources */,
 				881E62341ACBFC3400862B9E /* DDLFieldCheckboxTableCell_default.swift in Sources */,
 				881E61281ACBE5F000862B9E /* UserPortraitViewModel.swift in Sources */,
 				887E069A1C6A4DF800CA3807 /* LRScreensddlrecordService_v70.m in Sources */,
+				0B6CEEC31D2A559600BB1BDB /* RatingView_default.swift in Sources */,
 				88B844421C73D6C0007A447D /* ServerWriteConnectorInteractor.swift in Sources */,
 				881E61871ACBEE0B00862B9E /* DDLListScreenlet.swift in Sources */,
+				0B6CEECC1D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.m in Sources */,
 				881E611F1ACBE5F000862B9E /* SignUpViewModel.swift in Sources */,
 				881E617E1ACBEE0B00862B9E /* DDLFormSubmitFormInteractor.swift in Sources */,
 				881E622E1ACBFC3400862B9E /* SignUpView_default.swift in Sources */,
@@ -1911,9 +1970,11 @@
 				887F0D121B99A79A0007AECE /* LRSession+Screens.swift in Sources */,
 				881E49C61B95CE66007DBEC9 /* DownloadUserPortraitInteractor.swift in Sources */,
 				887DAAA91CC670330011FEBF /* Dictionary+Screens.swift in Sources */,
+				0B6CEED11D2A689200BB1BDB /* RatingScreenlet.swift in Sources */,
 				88B844401C73D6C0007A447D /* ServerReadConnectorInteractor.swift in Sources */,
 				8839B87B1B0CD539006C18F1 /* SaveUserInteractor.swift in Sources */,
 				88A482371BFF7CBE0033DEBA /* NSError+Screens.swift in Sources */,
+				0B6CEED71D2AABE700BB1BDB /* RatingEntry.swift in Sources */,
 				888DF5B41ACC9FF100EB7DA1 /* LoginView_default.swift in Sources */,
 				88B8443E1C73D6C0007A447D /* ServerConnectorInteractor.swift in Sources */,
 				88CA91B81B8DE3AD000B92F2 /* UserPortraitDefaultProgressPresenter.swift in Sources */,
@@ -1977,6 +2038,8 @@
 				8837FA761CAEF6AE00DCB1B4 /* WebContentLoadBaseLiferayConnector.swift in Sources */,
 				886F4EED1CA1581E0018229E /* DDLRecord.swift in Sources */,
 				88AF683A1CBFF58700097014 /* WebContentListScreenlet.swift in Sources */,
+				0B6CEEDF1D2AB69400BB1BDB /* AddRatingInteractor.swift in Sources */,
+				0B6CEECF1D2A5DAC00BB1BDB /* LoadRatingsInteractor.swift in Sources */,
 				88CA805D1B25AF48004C1D59 /* LoginOAuthInteractor.swift in Sources */,
 				88B844941C73D856007A447D /* ForgotPasswordEmailLiferayConnectors.swift in Sources */,
 				881E60CE1ACBE56700862B9E /* BaseListScreenlet.swift in Sources */,
@@ -1991,6 +2054,7 @@
 				886F4EC71CA155830018229E /* DDMFieldStringWithOptions.swift in Sources */,
 				881E623A1ACBFC3400862B9E /* DDLFieldDocumentlibraryTableCell_default.swift in Sources */,
 				881E60BA1ACBE3FF00862B9E /* BaseScreenletView.swift in Sources */,
+				0B6CEEDD1D2AB63A00BB1BDB /* DeleteRatingInteractor.swift in Sources */,
 				887E054E1C6A4DB000CA3807 /* LRScreensassetentryService_v62.m in Sources */,
 				8892C6AE1ACBD89400192232 /* NSLocale+Screens.swift in Sources */,
 				88B2730F1B7107F200477E5E /* ProgressPresenter.swift in Sources */,
@@ -2373,7 +2437,7 @@
 		};
 		8892C68F1ACB2E3300192232 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE2BFCE1243B0BCB673A02C3 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 58AEE494AC9CFA84595ECCCA /* Pods.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -2393,7 +2457,7 @@
 		};
 		8892C6901ACB2E3300192232 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA6215A5862CA6DCC27EE0ED /* Pods.release.xcconfig */;
+			baseConfigurationReference = C8A2A94B7EA913D957C398D9 /* Pods.release.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -2412,7 +2476,7 @@
 		};
 		8892C6921ACB2E3300192232 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7C0B882BE724FFD745F72E9B /* Pods-LiferayScreensTests.debug.xcconfig */;
+			baseConfigurationReference = C5B450091BA31401BA698CD5 /* Pods-LiferayScreensTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2430,7 +2494,7 @@
 		};
 		8892C6931ACB2E3300192232 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9AC17F525218297794482A65 /* Pods-LiferayScreensTests.release.xcconfig */;
+			baseConfigurationReference = 4B699765C9066F3057F01D26 /* Pods-LiferayScreensTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Tests/Info.plist;

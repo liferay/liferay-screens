@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -129,7 +129,7 @@
         <!--WebContentDisplayScreenlet-->
         <scene sceneID="Vwd-Qg-h5f">
             <objects>
-                <viewController title="WebContentDisplayScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="kiQ-mD-UG4" customClass="WebContentDisplayScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="WebContentDisplayScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="kiQ-mD-UG4" customClass="RatingScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KM5-sa-NhK"/>
                         <viewControllerLayoutGuide type="bottom" id="Rya-e6-Pha"/>
@@ -192,6 +192,7 @@
                         <segue destination="kiQ-mD-UG4" kind="push" identifier="WebContentDisplayScreenlet" id="yAA-vv-JOl"/>
                         <segue destination="TY4-Ql-4pF" kind="push" identifier="UserPortraitScreenlet" id="jtf-rk-w86"/>
                         <segue destination="mIJ-mJ-AmA" kind="push" identifier="WebContentListScreenlet" id="NhJ-zR-6pA"/>
+                        <segue destination="N0K-Ji-ryL" kind="push" identifier="RatingScreenlet" id="mGa-c2-uxu"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsJ-Fx-gOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1051,6 +1052,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--RatingDisplayScreenlet-->
+        <scene sceneID="U3d-fZ-IXQ">
+            <objects>
+                <viewController title="RatingDisplayScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="N0K-Ji-ryL" customClass="RatingScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="s8Q-dv-O3o"/>
+                        <viewControllerLayoutGuide type="bottom" id="7f1-30-j8U"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2Pz-YR-ijr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jn0-kt-nK5" customClass="RatingScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="entryId">
+                                        <integer key="value" value="31869"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="stepCount">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jn0-kt-nK5" firstAttribute="top" secondItem="s8Q-dv-O3o" secondAttribute="bottom" id="In8-Pe-T0y"/>
+                            <constraint firstItem="7f1-30-j8U" firstAttribute="top" secondItem="jn0-kt-nK5" secondAttribute="bottom" id="LIF-S4-8JI"/>
+                            <constraint firstItem="jn0-kt-nK5" firstAttribute="leading" secondItem="2Pz-YR-ijr" secondAttribute="leadingMargin" constant="-16" id="lUH-ez-lX6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jn0-kt-nK5" secondAttribute="trailing" constant="-16" id="txz-sG-E81"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="IZ1-dH-too"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dse-CN-iuq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-373" y="360"/>
         </scene>
     </scenes>
     <resources>
