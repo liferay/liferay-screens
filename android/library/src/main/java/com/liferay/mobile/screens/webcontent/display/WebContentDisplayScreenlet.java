@@ -51,12 +51,16 @@ public class WebContentDisplayScreenlet
 		super(context);
 	}
 
-	public WebContentDisplayScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public WebContentDisplayScreenlet(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public WebContentDisplayScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public WebContentDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public WebContentDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	public void load() {

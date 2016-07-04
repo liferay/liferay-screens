@@ -23,12 +23,16 @@ public class AddBookmarkScreenlet
 		super(context);
 	}
 
-	public AddBookmarkScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public AddBookmarkScreenlet(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public AddBookmarkScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public AddBookmarkScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public AddBookmarkScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	public void onAddBookmarkSuccess() {

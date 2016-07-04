@@ -65,12 +65,16 @@ public class DDLFormScreenlet
 		super(context);
 	}
 
-	public DDLFormScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public DDLFormScreenlet(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public DDLFormScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public DDLFormScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public DDLFormScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	public void load() {

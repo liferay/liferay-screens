@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -14,9 +14,11 @@
 
 package com.liferay.mobile.screens.base;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -48,16 +50,23 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		init(context, null);
 	}
 
-	public BaseScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public BaseScreenlet(Context context, AttributeSet attrs) {
+		super(context, attrs);
 
-		init(context, attributes);
+		init(context, attrs);
 	}
 
-	public BaseScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public BaseScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
 
-		init(context, attributes);
+		init(context, attrs);
+	}
+
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
+	public BaseScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
+
+		init(context, attrs);
 	}
 
 	public int getScreenletId() {

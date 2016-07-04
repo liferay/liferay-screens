@@ -11,16 +11,21 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  * @author Javier Gamarra
  */
 public class LoginFullScreenlet extends LoginScreenlet {
+
 	public LoginFullScreenlet(Context context) {
 		super(context);
 	}
 
-	public LoginFullScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public LoginFullScreenlet(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public LoginFullScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public LoginFullScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public LoginFullScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override
