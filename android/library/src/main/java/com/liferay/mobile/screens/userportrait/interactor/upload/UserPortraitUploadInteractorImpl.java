@@ -69,7 +69,9 @@ public class UserPortraitUploadInteractorImpl
 	}
 
 	public void onEvent(MediaStoreEvent event) {
-		getListener().onPicturePathReceived(event.getFilePath());
+		if(isValidEvent(event)) {
+			getListener().onPicturePathReceived(event.getFilePath());
+		}
 	}
 
 	@Override
