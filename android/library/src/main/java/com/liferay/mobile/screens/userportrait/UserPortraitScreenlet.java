@@ -39,12 +39,14 @@ import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUpl
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
+import static com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity.SELECT_IMAGE_FROM_GALLERY;
+import static com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity.TAKE_PICTURE_WITH_CAMERA;
+
 /**
  * @author Javier Gamarra
  * @author Jose Manuel Navarro
  */
-public class UserPortraitScreenlet
-	extends BaseScreenlet<UserPortraitViewModel, BaseUserPortraitInteractor>
+public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, BaseUserPortraitInteractor>
 	implements UserPortraitInteractorListener {
 
 	public static final String UPLOAD_PORTRAIT = "UPLOAD_PORTRAIT";
@@ -71,11 +73,11 @@ public class UserPortraitScreenlet
 	}
 
 	public void openCamera() {
-		startShadowActivityForMediaStore(MediaStoreRequestShadowActivity.TAKE_PICTURE_WITH_CAMERA);
+		startShadowActivityForMediaStore(TAKE_PICTURE_WITH_CAMERA);
 	}
 
 	public void openGallery() {
-		startShadowActivityForMediaStore(MediaStoreRequestShadowActivity.SELECT_IMAGE_FROM_GALLERY);
+		startShadowActivityForMediaStore(SELECT_IMAGE_FROM_GALLERY);
 	}
 
 	@Override
@@ -238,8 +240,8 @@ public class UserPortraitScreenlet
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-			attributes, R.styleable.UserPortraitScreenlet, 0, 0);
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.UserPortraitScreenlet, 0, 0);
 
 		_autoLoad = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_autoLoad, true);
 		_male = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_male, true);
@@ -247,8 +249,8 @@ public class UserPortraitScreenlet
 		_uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
 		_editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
 
-		int offlinePolicy = typedArray.getInt(R.styleable.UserPortraitScreenlet_offlinePolicy,
-			OfflinePolicy.REMOTE_ONLY.ordinal());
+		int offlinePolicy =
+			typedArray.getInt(R.styleable.UserPortraitScreenlet_offlinePolicy, OfflinePolicy.REMOTE_ONLY.ordinal());
 		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 
 		_userId = castToLongOrUseDefault(typedArray.getString(R.styleable.UserPortraitScreenlet_userId), 0L);
@@ -257,8 +259,7 @@ public class UserPortraitScreenlet
 			_userId = SessionContext.getCurrentUser().getId();
 		}
 
-		int layoutId = typedArray.getResourceId(
-			R.styleable.UserPortraitScreenlet_layoutId, getDefaultLayoutId());
+		int layoutId = typedArray.getResourceId(R.styleable.UserPortraitScreenlet_layoutId, getDefaultLayoutId());
 
 		typedArray.recycle();
 
@@ -275,8 +276,7 @@ public class UserPortraitScreenlet
 	}
 
 	@Override
-	protected void onUserAction(
-		String userActionName, BaseUserPortraitInteractor interactor, Object... args) {
+	protected void onUserAction(String userActionName, BaseUserPortraitInteractor interactor, Object... args) {
 
 		try {
 			if (UPLOAD_PORTRAIT.equals(userActionName)) {
