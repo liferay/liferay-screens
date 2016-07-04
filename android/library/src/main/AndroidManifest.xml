@@ -7,5 +7,7 @@
 		<service android:name=".ddl.form.service.UploadService" />
 
 		<service android:name=".userportrait.interactor.upload.UserPortraitService" />
+
+    <activity android:name=".viewsets.defaultviews.assetdisplay.ImageDisplayActivity" />
 	</application>
 </manifest>
