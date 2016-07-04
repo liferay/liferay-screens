@@ -20,11 +20,12 @@ public class GalleryDeleteInteractorImpl extends BaseRemoteInteractor<GalleryInt
 	}
 
 	@Override
-	public void deleteImageEntry(long imageEntryId) throws Exception{
+	public void deleteImageEntry(long imageEntryId) throws Exception {
+		_imageEntryId = imageEntryId;
 		getDLAppService().deleteFileEntry(imageEntryId);
 	}
 
-	public void onEvent(JSONObjectEvent event) {
+	public void onEvent(GalleryDeleteEvent event) {
 		if(!isValidEvent(event)){
 			return;
 		}
@@ -33,14 +34,16 @@ public class GalleryDeleteInteractorImpl extends BaseRemoteInteractor<GalleryInt
 			getListener().onImageEntryDeleteFailure(event.getException());
 		}
 		else {
-			getListener().onImageEntryDeleted();
+			getListener().onImageEntryDeleted(event.getImageEntryId());
 		}
 	}
 
 	private DLAppService getDLAppService() {
 		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new GalleryDeleteCallback(getTargetScreenletId()));
+		session.setCallback(new GalleryDeleteCallback(getTargetScreenletId(), _imageEntryId));
 
 		return new DLAppService(session);
 	}
+
+	private long _imageEntryId;
 }

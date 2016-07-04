@@ -9,5 +9,6 @@ import com.liferay.mobile.screens.gallery.model.ImageEntry;
 public interface GalleryInteractorListener extends BaseListInteractorListener<ImageEntry> {
 
 	void onImageEntryDeleteFailure(Exception e);
-	void onImageEntryDeleted();
+
+	void onImageEntryDeleted(long imageEntryId);
 }

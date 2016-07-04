@@ -123,8 +123,8 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 	}
 
 	@Override
-	public void onImageEntryDeleted() {
-		((GalleryListener) getListener()).onImageEntryDeleted(this);
+	public void onImageEntryDeleted(long imageEntryId) {
+		((GalleryListener) getListener()).onImageEntryDeleted(this, imageEntryId);
 	}
 
 	public void updateView() {
