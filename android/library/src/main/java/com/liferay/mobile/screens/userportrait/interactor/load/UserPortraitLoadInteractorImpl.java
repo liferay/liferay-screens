@@ -65,10 +65,6 @@ public class UserPortraitLoadInteractorImpl
 
 		Uri uri = getUserPortraitURL(male, portraitId, uuid);
 
-		if (getListener() != null) {
-			getListener().onStartUserPortraitLoadRequest();
-		}
-
 		RequestCreator requestCreator = Picasso.with(LiferayScreensContext.getContext())
 			.load(uri);
 
@@ -138,10 +134,6 @@ public class UserPortraitLoadInteractorImpl
 	protected void online(Object[] args) throws Exception {
 
 		long userId = (long) args[0];
-
-		if (getListener() != null) {
-			getListener().onStartUserPortraitLoadRequest();
-		}
 
 		getUserService(userId).getUserById(userId);
 	}

@@ -110,11 +110,6 @@ public class UserPortraitScreenlet
 	}
 
 	@Override
-	public void onStartUserPortraitLoadRequest() {
-		getViewModel().showStartOperation(null);
-	}
-
-	@Override
 	public Bitmap onEndUserPortraitLoadRequest(Bitmap bitmap) {
 		Bitmap finalImage = bitmap;
 
