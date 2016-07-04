@@ -93,8 +93,8 @@ public class GalleryActivity extends ThemeActivity
 	}
 
 	@Override
-	public void onImageEntryDeleted(GalleryScreenlet screenlet) {
-		info("Image deleted");
+	public void onImageEntryDeleted(GalleryScreenlet screenlet, long imageEntryId) {
+		info("Image deleted: " + imageEntryId);
 	}
 
 	@Override

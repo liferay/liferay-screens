@@ -9,6 +9,6 @@ import com.liferay.mobile.screens.gallery.model.ImageEntry;
 public interface GalleryListener extends BaseListListener<ImageEntry> {
 
 	void onImageEntryDeleteFailure(GalleryScreenlet screenlet, Exception e);
-	void onImageEntryDeleted(GalleryScreenlet screenlet);
+	void onImageEntryDeleted(GalleryScreenlet screenlet, long imageEntryId);
 
 }
