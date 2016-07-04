@@ -73,11 +73,11 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 	}
 
 	public void openCamera() {
-		startShadowActivityForMediaStore(TAKE_PICTURE_WITH_CAMERA);
+		startShadowActivityForMediaStore(MediaStoreRequestShadowActivity.TAKE_PICTURE_WITH_CAMERA);
 	}
 
 	public void openGallery() {
-		startShadowActivityForMediaStore(SELECT_IMAGE_FROM_GALLERY);
+		startShadowActivityForMediaStore(MediaStoreRequestShadowActivity.SELECT_IMAGE_FROM_GALLERY);
 	}
 
 	@Override
