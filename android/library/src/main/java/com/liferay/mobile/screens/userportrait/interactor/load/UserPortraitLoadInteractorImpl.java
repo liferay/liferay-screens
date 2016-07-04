@@ -191,29 +191,4 @@ public class UserPortraitLoadInteractorImpl
 		}
 	}
 
-	private Uri getUserPortraitURL(boolean male, long portraitId, String uuid) {
-		String maleString = male ? "male" : "female";
-		String url = LiferayServerContext.getServer() + "/image/user_" + maleString +
-			"_portrait?img_id=" + portraitId + "&img_id_token=" + getSHA1String(uuid);
-		return Uri.parse(url);
-	}
-
-	private String getSHA1String(String uuid) {
-		try {
-			MessageDigest digest = MessageDigest.getInstance("SHA-1");
-
-			digest.update(uuid.getBytes());
-
-			byte[] bytes = digest.digest();
-			String token = Base64.encodeToString(bytes, Base64.NO_WRAP);
-
-			return URLEncoder.encode(token, "UTF8");
-
-		}
-		catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-			LiferayLogger.e("Algorithm not found!", e);
-		}
-
-		return null;
-	}
 }
