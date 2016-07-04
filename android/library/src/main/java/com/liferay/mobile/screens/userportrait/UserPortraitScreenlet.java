@@ -50,8 +50,6 @@ public class UserPortraitScreenlet
 
 	public static final String UPLOAD_PORTRAIT = "UPLOAD_PORTRAIT";
 	public static final String LOAD_PORTRAIT = "LOAD_PORTRAIT";
-	public static final int SELECT_IMAGE_FROM_GALLERY = 0;
-	public static final int TAKE_PICTURE_WITH_CAMERA = 1;
 
 	public UserPortraitScreenlet(Context context) {
 		super(context);
@@ -70,11 +68,11 @@ public class UserPortraitScreenlet
 	}
 
 	public void openCamera() {
-		startShadowActivityForMediaStore(TAKE_PICTURE_WITH_CAMERA);
+		startShadowActivityForMediaStore(MediaStoreRequestShadowActivity.TAKE_PICTURE_WITH_CAMERA);
 	}
 
 	public void openGallery() {
-		startShadowActivityForMediaStore(SELECT_IMAGE_FROM_GALLERY);
+		startShadowActivityForMediaStore(MediaStoreRequestShadowActivity.SELECT_IMAGE_FROM_GALLERY);
 	}
 
 	@Override
