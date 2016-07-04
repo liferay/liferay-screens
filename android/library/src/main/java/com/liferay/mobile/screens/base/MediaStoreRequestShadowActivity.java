@@ -15,6 +15,9 @@ import java.io.File;
  */
 public class MediaStoreRequestShadowActivity extends Activity {
 
+	public static final int SELECT_IMAGE_FROM_GALLERY = 0;
+	public static final int TAKE_PICTURE_WITH_CAMERA = 1;
+
 	public static final String MEDIA_STORE_TYPE = "MEDIA_STORE_TYPE";
 	public static final String SCREENLET_ID = "SCREENLET_ID";
 
@@ -43,9 +46,9 @@ public class MediaStoreRequestShadowActivity extends Activity {
 
 		String path = "";
 
-		if (_mediaStoreType == UserPortraitScreenlet.SELECT_IMAGE_FROM_GALLERY) {
+		if (_mediaStoreType == SELECT_IMAGE_FROM_GALLERY) {
 			path = FileUtil.getPath(this, intentData.getData());
-		} else if (_mediaStoreType == UserPortraitScreenlet.TAKE_PICTURE_WITH_CAMERA) {
+		} else if (_mediaStoreType == TAKE_PICTURE_WITH_CAMERA) {
 			path = _filePath;
 		}
 
@@ -55,9 +58,9 @@ public class MediaStoreRequestShadowActivity extends Activity {
 	}
 
 	private void sendIntent() {
-		if (_mediaStoreType == UserPortraitScreenlet.SELECT_IMAGE_FROM_GALLERY) {
+		if (_mediaStoreType == SELECT_IMAGE_FROM_GALLERY) {
 			openGallery();
-		} else if (_mediaStoreType == UserPortraitScreenlet.TAKE_PICTURE_WITH_CAMERA) {
+		} else if (_mediaStoreType == TAKE_PICTURE_WITH_CAMERA) {
 			openCamera();
 		}
 	}
