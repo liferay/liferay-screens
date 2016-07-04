@@ -151,4 +151,8 @@
 	<declare-styleable name="ImageDisplayScreenlet">
 		<attr name="layoutId" />
 	</declare-styleable>
+
+	<declare-styleable name="VideoDisplayScreenlet">
+		<attr name="layoutId" />
+	</declare-styleable>
 </resources>

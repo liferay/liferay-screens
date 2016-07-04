@@ -22,11 +22,11 @@ public class AssetDisplayFactory {
 					ImageDisplayScreenlet screenlet = new ImageDisplayScreenlet(context);
 					screenlet.setFileEntry((FileEntry) assetEntry);
 					return screenlet;
+				} else if (isVideo(mimeType)) {
+					VideoDisplayScreenlet screenlet = new VideoDisplayScreenlet(context);
+					screenlet.setFileEntry((FileEntry) assetEntry);
+					return screenlet;
 				}
-				//} else if (isVideo(mimeType)){
-				//	VideoDisplayScreenlet screenlet = new VideoDisplayScreenlet(context);
-				//	screenlet.setFileEntry((FileEntry) assetEntry);
-				//	return screenlet;
 				//} else if (isAudio(mimeType)) {
 				//	AudioDisplayScreenlet screenlet = new AudioDisplayScreenlet();
 				//	screenlet.setFileEntry((FileEntry) assetEntry);

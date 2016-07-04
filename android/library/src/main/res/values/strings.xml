@@ -10,4 +10,5 @@
 	<string name="WebContentDisplayScreenlet_default">webcontentdisplay_default</string>
 	<string name="WebContentListScreenlet_default">webcontentlist_default</string>
 	<string name="ImageDisplayScreenlet_default">image_display_default</string>
+	<string name="VideoDisplayScreenlet_default">video_display_default</string>
 </resources>
