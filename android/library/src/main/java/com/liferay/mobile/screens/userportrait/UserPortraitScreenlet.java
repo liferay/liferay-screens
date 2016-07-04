@@ -19,16 +19,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.provider.MediaStore;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -41,8 +39,6 @@ import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUpl
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
 import com.liferay.mobile.screens.util.FileUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
-
-import java.io.File;
 
 /**
  * @author Javier Gamarra
@@ -73,40 +69,12 @@ public class UserPortraitScreenlet
 		performUserAction(LOAD_PORTRAIT);
 	}
 
-	public void upload(int requestCode, Intent onActivityResultData) {
-		try {
-			String picturePath = "";
-			if (requestCode == SELECT_IMAGE_FROM_GALLERY) {
-				picturePath = FileUtil.getPath(getContext(), onActivityResultData.getData());
-			}
-			else if (requestCode == TAKE_PICTURE_WITH_CAMERA) {
-				picturePath = _filePath;
-			}
-			performUserAction(UPLOAD_PORTRAIT, picturePath);
-		}
-		catch (IllegalArgumentException e) {
-			onUserPortraitUploadFailure(e);
-		}
-	}
-
 	public void openCamera() {
-		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		File imageFile = FileUtil.createImageFile();
-		setFilePath(imageFile.getPath());
-		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
-
-		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
-		activity.startActivityForResult(
-			cameraIntent, UserPortraitScreenlet.TAKE_PICTURE_WITH_CAMERA);
+		startShadowActivityForMediaStore(TAKE_PICTURE_WITH_CAMERA);
 	}
 
 	public void openGallery() {
-		Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-			MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
-		activity.startActivityForResult(
-			galleryIntent, UserPortraitScreenlet.SELECT_IMAGE_FROM_GALLERY);
+		startShadowActivityForMediaStore(SELECT_IMAGE_FROM_GALLERY);
 	}
 
 	@Override
@@ -150,8 +118,7 @@ public class UserPortraitScreenlet
 
 		try {
 			((UserPortraitLoadInteractor) getInteractor(LOAD_PORTRAIT)).load(uuid);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			LiferayLogger.e("Error reloading user portrait", e);
 		}
 	}
@@ -163,6 +130,11 @@ public class UserPortraitScreenlet
 		}
 
 		getViewModel().showFailedOperation(UPLOAD_PORTRAIT, e);
+	}
+
+	@Override
+	public void onPicturePathReceived(String picturePath) {
+		performUserAction(UPLOAD_PORTRAIT, picturePath);
 	}
 
 	@Override
@@ -262,8 +234,7 @@ public class UserPortraitScreenlet
 		if (((_portraitId != 0) && (_uuid != null)) || (_userId != 0)) {
 			try {
 				load();
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				LiferayLogger.e("Error loading portrait", e);
 			}
 		}
@@ -302,8 +273,7 @@ public class UserPortraitScreenlet
 	protected BaseUserPortraitInteractor createInteractor(String actionName) {
 		if (UPLOAD_PORTRAIT.equals(actionName)) {
 			return new UserPortraitUploadInteractorImpl(getScreenletId(), _offlinePolicy);
-		}
-		else {
+		} else {
 			return new UserPortraitLoadInteractorImpl(getScreenletId(), _offlinePolicy);
 		}
 	}
@@ -314,28 +284,26 @@ public class UserPortraitScreenlet
 
 		try {
 			if (UPLOAD_PORTRAIT.equals(userActionName)) {
-				UserPortraitUploadInteractor userPortraitInteractor = (UserPortraitUploadInteractor) getInteractor(userActionName);
+				UserPortraitUploadInteractor userPortraitInteractor =
+					(UserPortraitUploadInteractor) getInteractor(userActionName);
 				String path = (String) args[0];
 				if (_userId != 0) {
 					userPortraitInteractor.upload(_userId, path);
 				}
-			}
-			else {
-				UserPortraitLoadInteractor userPortraitLoadInteractor = (UserPortraitLoadInteractor) getInteractor(userActionName);
+			} else {
+				UserPortraitLoadInteractor userPortraitLoadInteractor =
+					(UserPortraitLoadInteractor) getInteractor(userActionName);
 				if (_portraitId != 0 && _uuid != null) {
 					userPortraitLoadInteractor.load(_male, _portraitId, _uuid);
-				}
-				else {
+				} else {
 					if (SessionContext.hasUserInfo() && _userId == 0) {
 						userPortraitLoadInteractor.load(SessionContext.getCurrentUser().getId());
-					}
-					else {
+					} else {
 						userPortraitLoadInteractor.load(_userId);
 					}
 				}
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			onUserPortraitLoadFailure(e);
 		}
 	}
@@ -360,6 +328,19 @@ public class UserPortraitScreenlet
 		bundle.putParcelable(_STATE_SUPER, super.onSaveInstanceState());
 		bundle.putString(_STATE_FILE_PATH, _filePath);
 		return bundle;
+	}
+
+	private void startShadowActivityForMediaStore(int mediaStore) {
+		//We need to force the creation of the interactor to get the event from the shadow activity
+		getInteractor(UPLOAD_PORTRAIT);
+
+		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
+
+		Intent intent = new Intent(activity, MediaStoreRequestShadowActivity.class);
+		intent.putExtra(MediaStoreRequestShadowActivity.MEDIA_STORE_TYPE, mediaStore);
+		intent.putExtra(MediaStoreRequestShadowActivity.SCREENLET_ID, getScreenletId());
+
+		activity.startActivity(intent);
 	}
 
 	private static final String _STATE_SUPER = "userportrait-super";
