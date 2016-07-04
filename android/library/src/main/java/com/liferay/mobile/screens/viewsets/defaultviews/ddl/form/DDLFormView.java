@@ -109,7 +109,6 @@ public class DDLFormView
 
 	@Override
 	public void showStartOperation(String actionName) {
-		throw new AssertionError("Use showStartOperation(actionName, argument) instead");
 	}
 
 	@Override
