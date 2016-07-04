@@ -24,6 +24,7 @@ import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -47,7 +48,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	public BaseScreenlet(Context context) {
 		super(context);
 
-		init(context, null);
+//		init(context, null);
 	}
 
 	public BaseScreenlet(Context context, AttributeSet attrs) {
@@ -129,7 +130,17 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	protected void init(Context context, AttributeSet attributes) {
 		LiferayScreensContext.init(context);
 
-		_screenletView = createScreenletView(context, attributes);
+		assignView(createScreenletView(context, attributes));
+	}
+
+	public void render(int layoutId) {
+		LiferayScreensContext.init(getContext());
+
+		assignView(LayoutInflater.from(getContext()).inflate(layoutId, null));
+	}
+
+	protected void assignView(View view) {
+		_screenletView = view;
 
 		getViewModel().setScreenlet(this);
 
