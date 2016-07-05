@@ -1,13 +1,17 @@
 package com.liferay.mobile.screens.gallery;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.media.ThumbnailUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.gallery.interactor.BaseGalleryInteractor;
@@ -16,8 +20,11 @@ import com.liferay.mobile.screens.gallery.interactor.delete.GalleryDeleteInterac
 import com.liferay.mobile.screens.gallery.interactor.delete.GalleryDeleteInteractorImpl;
 import com.liferay.mobile.screens.gallery.interactor.load.GalleryLoadInteractor;
 import com.liferay.mobile.screens.gallery.interactor.load.GalleryLoadLoadInteractorImpl;
+import com.liferay.mobile.screens.gallery.interactor.upload.GalleryUploadInteractor;
+import com.liferay.mobile.screens.gallery.interactor.upload.GalleryUploadInteractorImpl;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.gallery.view.GalleryViewModel;
+import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DetailImageActivity;
 import java.util.Locale;
@@ -30,6 +37,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	public static final String LOAD_GALLERY = "LOAD_GALLERY";
 	public static final String DELETE_IMAGE = "DELETE_IMAGE";
+	public static final String UPLOAD_IMAGE = "UPLOAD_IMAGE";
 
 	public GalleryScreenlet(Context context) {
 		super(context);
@@ -88,6 +96,14 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		performUserAction(DELETE_IMAGE, fileEntryId);
 	}
 
+	public void openCamera() {
+		startShadowActivityForMediaStore(MediaStoreRequestShadowActivity.TAKE_PICTURE_WITH_CAMERA);
+	}
+
+	public void openGallery() {
+		startShadowActivityForMediaStore(MediaStoreRequestShadowActivity.SELECT_IMAGE_FROM_GALLERY);
+	}
+
 	@Override
 	public void loadingFromCache(boolean success) {
 		if (getListener() != null) {
@@ -126,6 +142,27 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 	public void onImageEntryDeleted(long imageEntryId) {
 		((GalleryListener) getListener()).onImageEntryDeleted(this, imageEntryId);
 		((GalleryViewModel) getViewModel()).deleteImage(imageEntryId);
+	}
+
+	@Override
+	public void onPicturePathReceived(String picturePath) {
+		LiferayLogger.i("Picture Path received: " + picturePath);
+		performUserAction(UPLOAD_IMAGE, picturePath);
+	}
+
+	@Override
+	public void onPictureUploaded(ImageEntry entry) {
+		((GalleryViewModel) getViewModel()).addImage(entry);
+	}
+
+	@Override
+	public void onPictureUploadProgress(int totalBytes, int totalBytesSended) {
+		LiferayLogger.d("total bytes: " + totalBytes + " bytes sended: " + totalBytesSended);
+	}
+
+	@Override
+	public void onPictureUploadFailure(Exception e) {
+		LiferayLogger.d("Picture failed: " + e.getMessage());
 	}
 
 	public void updateView() {
@@ -188,6 +225,10 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 			return new GalleryDeleteInteractorImpl(getScreenletId());
 		}
 
+		if(actionName.equals(UPLOAD_IMAGE)) {
+			return new GalleryUploadInteractorImpl(getScreenletId());
+		}
+
 		return null;
 	}
 
@@ -205,6 +246,11 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 			} catch (Exception e) {
 				onImageEntryDeleteFailure(e);
 			}
+		} else if (userActionName.equals(UPLOAD_IMAGE)) {
+			String picturePath = (String) args[0];
+			GalleryUploadInteractor galleryUploadInteractor = (GalleryUploadInteractor) interactor;
+			galleryUploadInteractor.uploadImageEntry(_groupId, _folderId, "", "", "", picturePath);
+
 		}
 	}
 
@@ -232,6 +278,17 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		}
 
 		return mimeTypesRaw.split(",");
+	}
+
+	private void startShadowActivityForMediaStore(int mediaStore) {
+		getInteractor(UPLOAD_IMAGE);
+		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
+
+		Intent intent = new Intent(activity, MediaStoreRequestShadowActivity.class);
+		intent.putExtra(MediaStoreRequestShadowActivity.MEDIA_STORE_TYPE, mediaStore);
+		intent.putExtra(MediaStoreRequestShadowActivity.SCREENLET_ID, getScreenletId());
+
+		activity.startActivity(intent);
 	}
 
 	private long _groupId;
