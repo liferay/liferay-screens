@@ -55,6 +55,9 @@
 	<string name="configuration">Configuration</string>
 	<string name="editable">Editable</string>
 	<string name="comment_id">Comment ID</string>
+	<string name="minus">-</string>
+	<string name="plus">+</string>
+	<string name="slideshow">Slideshow</string>
 	<string name="load">Load</string>
 	<string name="comment_list">Comment List</string>
 	<string name="comment_display">Comment Display</string>
