@@ -51,6 +51,21 @@ public class GridGalleryView
 	}
 
 	@Override
+	public void deleteImage(long imageEntryId) {
+		List<ImageEntry> entries = getAdapter().getEntries();
+
+		for(int i = 0, size = entries.size(); i < size; i++) {
+			if(entries.get(i).getFileEntryId() == imageEntryId) {
+				entries.remove(i);
+				int newRowCount = getAdapter().getItemCount() - 1;
+				getAdapter().setRowCount(newRowCount);
+				_recyclerView.getAdapter().notifyItemRemoved(i);
+				break;
+			}
+		}
+	}
+
+	@Override
 	public void updateView() {
 		_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), _columnsSize));
 	}
