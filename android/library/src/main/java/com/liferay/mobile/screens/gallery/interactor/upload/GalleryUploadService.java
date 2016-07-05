@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.gallery.interactor.upload;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.webkit.MimeTypeMap;
 import com.liferay.mobile.android.callback.file.FileProgressCallback;
 import com.liferay.mobile.android.http.file.UploadData;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
@@ -60,7 +59,7 @@ public class GalleryUploadService extends IntentService {
 		String changeLog, String picturePath) throws Exception {
 
 		String sourceName = picturePath.substring(picturePath.lastIndexOf("/") + 1);
-		if(title.isEmpty()){
+		if (title.isEmpty()) {
 			title = sourceName;
 		}
 		UploadData uploadData = createUploadData(picturePath, sourceName);

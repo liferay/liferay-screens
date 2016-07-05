@@ -19,6 +19,7 @@ import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 public class SlideshowGalleryView extends
 	BaseListScreenletView<ImageEntry, SlideshowGalleryAdapter.SlideshowGalleryViewHolder, SlideshowGalleryAdapter>
 	implements GalleryViewModel {
+
 	public SlideshowGalleryView(Context context) {
 		super(context);
 	}
@@ -48,7 +49,7 @@ public class SlideshowGalleryView extends
 
 	@Override
 	public void updateView() {
-		
+
 	}
 
 	@Override
@@ -60,6 +61,7 @@ public class SlideshowGalleryView extends
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
+		//Code from https://github.com/lsjwzh/RecyclerViewPager
 		LinearLayoutManager layout =
 			new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
 		_recyclerView.setLayoutManager(layout);
