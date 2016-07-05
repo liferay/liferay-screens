@@ -7,5 +7,6 @@
 		<service android:name=".ddl.form.service.UploadService" />
 
 		<service android:name=".userportrait.interactor.upload.UserPortraitService" />
+		<activity android:name=".base.MediaStoreRequestShadowActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 	</application>
 </manifest>
