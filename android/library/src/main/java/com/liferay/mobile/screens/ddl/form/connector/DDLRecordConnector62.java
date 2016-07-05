@@ -11,18 +11,18 @@ import org.json.JSONObject;
  */
 public class DDLRecordConnector62 implements DDLRecordConnector {
 	public DDLRecordConnector62(Session session) {
-		ddlRecordService = new DDLRecordService(session);
+		_ddlRecordService = new DDLRecordService(session);
 	}
 
 	@Override
 	public JSONObject addRecord(long groupId, long recordSetId, int i, JSONObject jsonContent, JSONObjectWrapper serviceContextWrapper) throws Exception {
-		return ddlRecordService.addRecord(groupId, recordSetId, i, jsonContent, serviceContextWrapper);
+		return _ddlRecordService.addRecord(groupId, recordSetId, i, jsonContent, serviceContextWrapper);
 	}
 
 	@Override
 	public JSONObject updateRecord(long recordId, int i, JSONObject jsonContent, boolean b, JSONObjectWrapper serviceContextWrapper) throws Exception {
-		return ddlRecordService.updateRecord(recordId, i, jsonContent, b, serviceContextWrapper);
+		return _ddlRecordService.updateRecord(recordId, i, jsonContent, b, serviceContextWrapper);
 	}
 
-	private final DDLRecordService ddlRecordService;
+	private final DDLRecordService _ddlRecordService;
 }

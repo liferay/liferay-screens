@@ -12,39 +12,25 @@
  * details.
  */
 
-package com.liferay.mobile.screens.base.interactor;
+package com.liferay.mobile.screens.base.thread.event;
 
 /**
- * @author Silvio Santos
+ * @author Jose Manuel Navarro
  */
-public abstract class BasicEvent {
+public class ForgotPasswordThreadEvent extends BasicThreadEvent {
 
-	public BasicEvent() {
-		super();
+	public ForgotPasswordThreadEvent(Boolean passwordSent) {
+		_passwordSent = passwordSent;
 	}
 
-	public BasicEvent(int targetScreenletId) {
-		this(targetScreenletId, null);
+	public ForgotPasswordThreadEvent(Exception e) {
+		super(e);
 	}
 
-	public BasicEvent(int targetScreenletId, Exception exception) {
-		_targetScreenletId = targetScreenletId;
-		_exception = exception;
+	public Boolean isPasswordSent() {
+		return _passwordSent;
 	}
 
-	public Exception getException() {
-		return _exception;
-	}
-
-	public int getTargetScreenletId() {
-		return _targetScreenletId;
-	}
-
-	public boolean isFailed() {
-		return _exception != null;
-	}
-
-	private Exception _exception;
-	private int _targetScreenletId;
+	private Boolean _passwordSent;
 
 }

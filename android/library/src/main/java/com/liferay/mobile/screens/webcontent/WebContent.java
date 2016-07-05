@@ -24,6 +24,10 @@ import java.util.Map;
  */
 public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 
+	public WebContent() {
+		super();
+	}
+
 	public static final ClassLoaderCreator<WebContent> CREATOR =
 		new ClassLoaderCreator<WebContent>() {
 			@Override

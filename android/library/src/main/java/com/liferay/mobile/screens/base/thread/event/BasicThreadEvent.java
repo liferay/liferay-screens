@@ -12,23 +12,18 @@
  * details.
  */
 
-package com.liferay.mobile.screens.base.interactor;
+package com.liferay.mobile.screens.base.thread.event;
 
 /**
  * @author Silvio Santos
  */
-public abstract class BasicEvent {
+public class BasicThreadEvent {
 
-	public BasicEvent() {
+	public BasicThreadEvent() {
 		super();
 	}
 
-	public BasicEvent(int targetScreenletId) {
-		this(targetScreenletId, null);
-	}
-
-	public BasicEvent(int targetScreenletId, Exception exception) {
-		_targetScreenletId = targetScreenletId;
+	public BasicThreadEvent(Exception exception) {
 		_exception = exception;
 	}
 
@@ -40,8 +35,16 @@ public abstract class BasicEvent {
 		return _targetScreenletId;
 	}
 
+	public void setTargetScreenletId(int targetScreenletId) {
+		_targetScreenletId = targetScreenletId;
+	}
+
 	public boolean isFailed() {
 		return _exception != null;
+	}
+
+	public void setException(Exception exception) {
+		_exception = exception;
 	}
 
 	private Exception _exception;

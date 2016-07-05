@@ -24,6 +24,10 @@ import java.util.Locale;
  */
 public class WebContentDisplayEvent extends BasicEvent {
 
+	public WebContentDisplayEvent() {
+		super();
+	}
+
 	public WebContentDisplayEvent(int targetScreenletId, long groupId, String articleId, Locale locale, Long templateId, Exception e) {
 		super(targetScreenletId, e);
 

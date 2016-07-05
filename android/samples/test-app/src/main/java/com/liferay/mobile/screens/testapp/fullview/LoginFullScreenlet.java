@@ -23,7 +23,6 @@ public class LoginFullScreenlet extends LoginScreenlet {
 		super(context, attributes, defaultStyle);
 	}
 
-	@Override
 	protected void onUserAction(String userActionName, LoginInteractor interactor, Object... args) {
 		LiferayLogger.e("logging call to interactor: " + userActionName);
 		super.onUserAction(userActionName, interactor, args);

@@ -32,7 +32,7 @@ dependencies {
 	compile libraries.appCompat
 	compile libraries.recyclerView
 	compile libraries.sdk
-	compile (libraries.push) {
+	compile(libraries.push) {
 		exclude group: 'com.google.android.gms', module: 'play-services'
 	}
 	compile libraries.gms
@@ -52,6 +52,9 @@ dependencies {
 	testCompile libraries.junit
 	testCompile libraries.robolectric
 	testCompile libraries.mockito
+
+	compile 'com.snappydb:snappydb-lib:0.5.2'
+	compile 'com.esotericsoftware.kryo:kryo:2.24.0'
 }
 
 apply from: '../bintray.gradle'

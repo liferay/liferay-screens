@@ -22,8 +22,8 @@ public class UserConnector62 implements UserConnector {
 	}
 
 	@Override
-	public void getUserById(long userId) throws Exception {
-		_userService.getUserById(userId);
+	public JSONObject getUserById(long userId) throws Exception {
+		return _userService.getUserById(userId);
 	}
 
 	@Override

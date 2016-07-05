@@ -12,7 +12,7 @@ public interface UserConnector {
 
 	JSONObject getUserByEmailAddress(long companyId, String login) throws Exception;
 
-	void getUserById(long userId) throws Exception;
+	JSONObject getUserById(long userId) throws Exception;
 
 	JSONObject getUserByScreenName(long companyId, String login) throws Exception;
 

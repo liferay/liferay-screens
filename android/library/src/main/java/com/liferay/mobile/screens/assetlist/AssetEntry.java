@@ -25,6 +25,10 @@ import java.util.Map;
  */
 public class AssetEntry implements Parcelable {
 
+	public AssetEntry() {
+
+	}
+
 	public static final ClassLoaderCreator<AssetEntry> CREATOR =
 		new ClassLoaderCreator<AssetEntry>() {
 
