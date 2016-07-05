@@ -76,6 +76,10 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 		return _creatorUserId;
 	}
 
+	public long getFileEntryId() {
+		return _fileEntryId;
+	}
+
 	private ImageEntry(Parcel in, ClassLoader loader) {
 		super(in, loader);
 		_imageUrl = in.readString();
@@ -93,6 +97,7 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 		_description = (String) _values.get("description");
 		_createDate = JSONUtil.castToLong(_values.get("createDate"));
 		_creatorUserId = JSONUtil.castToLong(_values.get("userId"));
+		_fileEntryId = JSONUtil.castToLong(_values.get("fileEntryId"));
 	}
 
 	private String _imageUrl;
@@ -101,4 +106,5 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 	private String _description;
 	private Long _createDate;
 	private Long _creatorUserId;
+	private Long _fileEntryId;
 }
