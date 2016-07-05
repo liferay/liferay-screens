@@ -18,12 +18,6 @@ public class RatingLikeView_default: BaseScreenletView, RatingViewModel {
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var countLabel: UILabel!
     
-    override public var editable: Bool {
-        didSet {
-            self.likeButton.enabled = editable
-        }
-    }
-    
     public var selectedUserScore: NSNumber?
     
     public var ratingEntry: RatingEntry? {

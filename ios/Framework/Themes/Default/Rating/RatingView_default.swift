@@ -20,13 +20,6 @@ public class RatingThumbsView_default: BaseScreenletView, RatingViewModel {
     @IBOutlet weak var negativeCountLabel: UILabel!
     @IBOutlet weak var possitiveCountLabel: UILabel!
     
-    override public var editable: Bool {
-        didSet {
-            self.negativeButton.enabled = editable
-            self.possitiveButton.enabled = editable
-        }
-    }
-    
     public var selectedUserScore: NSNumber?
     
     public var ratingEntry: RatingEntry? {

@@ -30,12 +30,6 @@ public class RatingStarView_default: BaseScreenletView, RatingViewModel {
     }
     
     @IBOutlet weak var averageRatingBar: CosmosView!
-        
-    override public var editable: Bool {
-        didSet {
-            
-        }
-    }
     
     public var selectedUserScore: NSNumber?
     
