@@ -20,12 +20,16 @@ public class BookmarkListScreenlet extends BaseListScreenlet<Bookmark, BookmarkL
 		super(context);
 	}
 
-	public BookmarkListScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public BookmarkListScreenlet(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public BookmarkListScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public BookmarkListScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public BookmarkListScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override

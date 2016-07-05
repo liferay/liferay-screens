@@ -42,12 +42,16 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 		super(context);
 	}
 
-	public BaseListScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public BaseListScreenlet(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public BaseListScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public BaseListScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public BaseListScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	public void loadPageForRow(int row) {

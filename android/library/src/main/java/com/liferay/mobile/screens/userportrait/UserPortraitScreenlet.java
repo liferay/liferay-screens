@@ -61,12 +61,16 @@ public class UserPortraitScreenlet
 		super(context);
 	}
 
-	public UserPortraitScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public UserPortraitScreenlet(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public UserPortraitScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public UserPortraitScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public UserPortraitScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	public void load() {

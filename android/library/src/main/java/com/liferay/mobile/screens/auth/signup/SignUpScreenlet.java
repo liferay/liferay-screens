@@ -45,12 +45,16 @@ public class SignUpScreenlet
 		super(context);
 	}
 
-	public SignUpScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public SignUpScreenlet(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public SignUpScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public SignUpScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public SignUpScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override

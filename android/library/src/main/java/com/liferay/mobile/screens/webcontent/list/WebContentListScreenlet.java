@@ -26,12 +26,16 @@ public class WebContentListScreenlet extends BaseListScreenlet<WebContent, WebCo
 		super(context);
 	}
 
-	public WebContentListScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public WebContentListScreenlet(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public WebContentListScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public WebContentListScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public WebContentListScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override
