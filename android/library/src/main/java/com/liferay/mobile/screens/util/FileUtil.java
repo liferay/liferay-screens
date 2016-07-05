@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
+import android.webkit.MimeTypeMap;
 import java.io.File;
 import java.io.IOException;
 
@@ -58,6 +59,14 @@ public class FileUtil {
 		return "com.google.android.apps.photos.content".equals(uri.getAuthority());
 	}
 
+	public static String getMimeType(String path) {
+		String extension = MimeTypeMap.getFileExtensionFromUrl(path);
+		if (extension != null) {
+			return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+		}
+		return null;
+	}
+
 	@TargetApi(Build.VERSION_CODES.KITKAT)
 	private static boolean isDocumentUri(Context context, Uri uri) {
 		return DocumentsContract.isDocumentUri(context, uri);
@@ -96,5 +105,4 @@ public class FileUtil {
 		}
 		return null;
 	}
-
 }
