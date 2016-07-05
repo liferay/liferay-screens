@@ -146,23 +146,24 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	@Override
 	public void onPicturePathReceived(String picturePath) {
-		LiferayLogger.i("Picture Path received: " + picturePath);
 		performUserAction(UPLOAD_IMAGE, picturePath);
+		getListener().onImageUploadStarted();
 	}
 
 	@Override
 	public void onPictureUploaded(ImageEntry entry) {
 		getViewModel().addImage(entry);
+		getListener().onImageUploadEnd(entry);
 	}
 
 	@Override
 	public void onPictureUploadProgress(int totalBytes, int totalBytesSended) {
-		LiferayLogger.d("total bytes: " + totalBytes + " bytes sended: " + totalBytesSended);
+		getListener().onImageUploadProgress(totalBytes, totalBytesSended);
 	}
 
 	@Override
 	public void onPictureUploadFailure(Exception e) {
-		LiferayLogger.d("Picture failed: " + e.getMessage());
+		getListener().onImageUploadFailure(e);
 	}
 
 	public void updateView() {
