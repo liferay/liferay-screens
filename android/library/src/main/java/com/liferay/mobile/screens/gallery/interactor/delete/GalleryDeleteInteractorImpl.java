@@ -3,11 +3,8 @@ package com.liferay.mobile.screens.gallery.interactor.delete;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v7.dlapp.DLAppService;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
-import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
-import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.gallery.interactor.GalleryInteractorListener;
-import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadCallback;
 
 /**
  * @author Víctor Galán Grande
@@ -27,14 +24,13 @@ public class GalleryDeleteInteractorImpl extends BaseRemoteInteractor<GalleryInt
 	}
 
 	public void onEvent(GalleryDeleteEvent event) {
-		if(!isValidEvent(event)){
+		if (!isValidEvent(event)) {
 			return;
 		}
 
-		if(event.isFailed()) {
+		if (event.isFailed()) {
 			getListener().onImageEntryDeleteFailure(event.getException());
-		}
-		else {
+		} else {
 			getListener().onImageEntryDeleted(event.getImageEntryId());
 		}
 	}

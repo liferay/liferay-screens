@@ -40,7 +40,7 @@ public class GridGalleryAdapter extends BaseListAdapter<ImageEntry, GridGalleryA
 		}
 
 		public void bind(ImageEntry entry) {
-			if(entry.thumbnailNotAlreadyGenerated()) {
+			if (entry.thumbnailNotAlreadyGenerated()) {
 				Picasso.with(_context).load(entry.getImageUrl()).fit().centerCrop().into(_imageView);
 			} else {
 				Picasso.with(_context).load(entry.getThumbnailUrl()).into(_imageView);

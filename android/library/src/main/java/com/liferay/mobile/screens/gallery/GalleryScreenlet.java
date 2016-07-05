@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
-import android.media.ThumbnailUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import com.liferay.mobile.screens.R;
@@ -24,8 +23,6 @@ import com.liferay.mobile.screens.gallery.interactor.upload.GalleryUploadInterac
 import com.liferay.mobile.screens.gallery.interactor.upload.GalleryUploadInteractorImpl;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.gallery.view.GalleryViewModel;
-import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
-import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DetailImageActivity;
 import java.util.Locale;
 
@@ -133,7 +130,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	@Override
 	public void onImageEntryDeleteFailure(Exception e) {
-		if(getListener() != null) {
+		if (getListener() != null) {
 			getListener().onImageEntryDeleteFailure(this, e);
 		}
 	}
@@ -222,11 +219,11 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 			return new GalleryLoadLoadInteractorImpl(getScreenletId(), _offlinePolicy);
 		}
 
-		if(actionName.equals(DELETE_IMAGE)) {
+		if (actionName.equals(DELETE_IMAGE)) {
 			return new GalleryDeleteInteractorImpl(getScreenletId());
 		}
 
-		if(actionName.equals(UPLOAD_IMAGE)) {
+		if (actionName.equals(UPLOAD_IMAGE)) {
 			return new GalleryUploadInteractorImpl(getScreenletId());
 		}
 
@@ -235,10 +232,9 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	@Override
 	protected void onUserAction(String userActionName, BaseGalleryInteractor interactor, Object... args) {
-		if(userActionName.equals(LOAD_GALLERY)) {
+		if (userActionName.equals(LOAD_GALLERY)) {
 			loadPage(0);
-		}
-		else if(userActionName.equals(DELETE_IMAGE)) {
+		} else if (userActionName.equals(DELETE_IMAGE)) {
 			long fileEntryId = (long) args[0];
 			GalleryDeleteInteractor galleryDeleteInteractor = (GalleryDeleteInteractor) interactor;
 
@@ -260,7 +256,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	@Override
 	protected void onScreenletAttached() {
-		if(_autoLoad) {
+		if (_autoLoad) {
 			autoLoad();
 		}
 	}
@@ -270,14 +266,12 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		return super.getInteractor(LOAD_GALLERY);
 	}
 
-
 	public GalleryListener getListener() {
-		return  ((GalleryListener) super.getListener());
+		return ((GalleryListener) super.getListener());
 	}
 
-
 	public GalleryViewModel getViewModel() {
-		return  ((GalleryViewModel) super.getViewModel());
+		return ((GalleryViewModel) super.getViewModel());
 	}
 
 	protected void autoLoad() {
