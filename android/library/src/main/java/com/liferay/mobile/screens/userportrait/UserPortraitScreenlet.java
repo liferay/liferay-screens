@@ -37,7 +37,6 @@ import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadI
 import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadInteractor;
 import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadInteractorImpl;
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
-import com.liferay.mobile.screens.util.FileUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
 /**
