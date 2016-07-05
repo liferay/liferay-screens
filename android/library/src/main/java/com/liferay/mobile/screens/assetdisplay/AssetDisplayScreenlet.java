@@ -80,7 +80,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		}
 	}
 
-	protected void loadAsset() throws Exception {
+	public void loadAsset() throws Exception {
 		getInteractor().getAssetEntryExtended(_entryId);
 	}
 
