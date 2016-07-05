@@ -11,6 +11,9 @@ import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.gallery.interactor.BaseGalleryInteractor;
+import com.liferay.mobile.screens.gallery.interactor.GalleryInteractorListener;
+import com.liferay.mobile.screens.gallery.interactor.delete.GalleryDeleteInteractor;
+import com.liferay.mobile.screens.gallery.interactor.delete.GalleryDeleteInteractorImpl;
 import com.liferay.mobile.screens.gallery.interactor.load.GalleryLoadInteractor;
 import com.liferay.mobile.screens.gallery.interactor.load.GalleryLoadLoadInteractorImpl;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
@@ -22,9 +25,11 @@ import java.util.Locale;
 /**
  * @author Víctor Galán Grande
  */
-public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryInteractor> {
+public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryInteractor> implements
+	GalleryInteractorListener {
 
 	public static final String LOAD_GALLERY = "LOAD_GALLERY";
+	public static final String DELETE_IMAGE = "DELETE_IMAGE";
 
 	public GalleryScreenlet(Context context) {
 		super(context);
@@ -66,13 +71,21 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		return _columnsSize;
 	}
 
+	public void setColumnsSize(int columnsSize) {
+		_columnsSize = columnsSize;
+		((GalleryViewModel) getViewModel()).setColumns(columnsSize);
+	}
+
 	public void load() {
 		performUserAction(LOAD_GALLERY);
 	}
 
-	public void setColumnsSize(int columnsSize) {
-		_columnsSize = columnsSize;
-		((GalleryViewModel) getViewModel()).setColumns(columnsSize);
+	public void deleteEntry(ImageEntry entry) {
+		deleteEntry(entry.getFileEntryId());
+	}
+
+	public void deleteEntry(long fileEntryId) {
+		performUserAction(DELETE_IMAGE, fileEntryId);
 	}
 
 	@Override
@@ -100,6 +113,18 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		if (getListener() != null) {
 			getListener().onListItemSelected(image, view);
 		}
+	}
+
+	@Override
+	public void onImageEntryDeleteFailure(Exception e) {
+		if(getListener() != null) {
+			((GalleryListener) getListener()).onImageEntryDeleteFailure(this, e);
+		}
+	}
+
+	@Override
+	public void onImageEntryDeleted() {
+		((GalleryListener) getListener()).onImageEntryDeleted(this);
 	}
 
 	public void updateView() {
@@ -158,6 +183,10 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 			return new GalleryLoadLoadInteractorImpl(getScreenletId(), _offlinePolicy);
 		}
 
+		if(actionName.equals(DELETE_IMAGE)) {
+			return new GalleryDeleteInteractorImpl(getScreenletId());
+		}
+
 		return null;
 	}
 
@@ -165,6 +194,16 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 	protected void onUserAction(String userActionName, BaseGalleryInteractor interactor, Object... args) {
 		if(userActionName.equals(LOAD_GALLERY)) {
 			loadPage(0);
+		}
+		else if(userActionName.equals(DELETE_IMAGE)) {
+			long fileEntryId = (long) args[0];
+			GalleryDeleteInteractor galleryDeleteInteractor = (GalleryDeleteInteractor) interactor;
+
+			try {
+				galleryDeleteInteractor.deleteImageEntry(fileEntryId);
+			} catch (Exception e) {
+				onImageEntryDeleteFailure(e);
+			}
 		}
 	}
 
@@ -182,7 +221,6 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	protected void autoLoad() {
 		if (SessionContext.isLoggedIn() && _groupId > 0) {
-			_groupId = -1;
 			load();
 		}
 	}
