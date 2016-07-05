@@ -9,6 +9,7 @@ import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v7.dlapp.DLAppService;
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.util.EventBusUtil;
@@ -67,7 +68,7 @@ public class GalleryUploadService extends IntentService {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		return new DLAppService(session).addFileEntry(repositoryId, folderId, sourceName,
 			FileUtil.getMimeType(picturePath), title, description, changeLog, uploadData,
-			getJsonObjectWrapper(SessionContext.getUserId(), repositoryId));
+			getJsonObjectWrapper(SessionContext.getUserId(), LiferayServerContext.getGroupId()));
 	}
 
 	private UploadData createUploadData(String picturePath, String pictureName) throws IOException {
