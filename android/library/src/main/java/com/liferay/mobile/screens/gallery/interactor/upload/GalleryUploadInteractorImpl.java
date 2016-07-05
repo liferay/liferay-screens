@@ -25,8 +25,9 @@ public class GalleryUploadInteractorImpl extends BaseRemoteInteractor<GalleryInt
 
 	@Override
 	public void uploadImageEntry(long repositoryId, long folderId, String title,
-		String description, String changeLog, String picturePath) {
+		String description, String changeLog, String picturePath) throws Exception {
 
+		validate(repositoryId, folderId, title, description, changeLog, picturePath);
 		Intent service = new Intent(LiferayScreensContext.getContext(), GalleryUploadService.class);
 		service.putExtra("screenletId", getTargetScreenletId());
 		service.putExtra("repositoryId", repositoryId);
@@ -54,5 +55,33 @@ public class GalleryUploadInteractorImpl extends BaseRemoteInteractor<GalleryInt
 			getListener().onPictureUploadProgress(event.getTotalBytes(), event.getTotalBytesSended());
 		}
 
+	}
+
+	private void validate(long repositoryId, long folderId, String title, String description, String changeLog,
+		String picturePath) {
+
+		if (repositoryId <= 0) {
+			throw new IllegalArgumentException("Repository Id has to be greater than 0");
+		}
+
+		if (folderId < 0) {
+			throw new IllegalArgumentException("Folder Id has to be greater than 0");
+		}
+
+		if (title == null) {
+			throw new IllegalArgumentException("Title can not be null");
+		}
+
+		if (description == null) {
+			throw new IllegalArgumentException("Description can not be null");
+		}
+
+		if (changeLog == null) {
+			throw new IllegalArgumentException("Changelog can not be null");
+		}
+
+		if (picturePath == null) {
+			throw new IllegalArgumentException("Picture path can not be null");
+		}
 	}
 }
