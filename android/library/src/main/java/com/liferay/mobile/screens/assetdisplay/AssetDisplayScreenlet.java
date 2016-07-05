@@ -10,7 +10,7 @@ import com.liferay.mobile.screens.assetdisplay.interactor.AssetDisplayInteractor
 import com.liferay.mobile.screens.assetdisplay.view.AssetDisplayViewModel;
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.util.LiferayLogger;
+import com.liferay.mobile.screens.context.SessionContext;
 
 /**
  * @author Sarai Díaz García
@@ -55,6 +55,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 
 		int layoutId = typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_layoutId, getDefaultLayoutId());
 
+		_autoLoad = typedArray.getBoolean(R.styleable.AssetDisplayScreenlet_autoLoad, true);
 		_entryId = typedArray.getInt(R.styleable.AssetDisplayScreenlet_entryId, 0);
 
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
@@ -73,20 +74,18 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	protected void onScreenletAttached() {
 		super.onScreenletAttached();
 
-		try {
-			loadAsset();
-		} catch (Exception e) {
-			LiferayLogger.e("Could not load asset: " + e.toString());
+		if (_autoLoad) {
+			autoLoad();
 		}
-	}
-
-	public void loadAsset() throws Exception {
-		getInteractor().getAssetEntryExtended(_entryId);
 	}
 
 	@Override
 	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor,
 		Object... args) {
+	}
+
+	public void loadAsset() throws Exception {
+		getInteractor().getAssetEntryExtended(_entryId);
 	}
 
 	public long getEntryId() {
@@ -101,6 +100,17 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		_listener = listener;
 	}
 
+	protected void autoLoad() {
+		if (_entryId != 0 && SessionContext.isLoggedIn()) {
+			try {
+				loadAsset();
+			} catch (Exception e) {
+				onRetrieveAssetFailure(e);
+			}
+		}
+	}
+
+	private boolean _autoLoad;
 	private long _entryId;
 	private AssetDisplayListener _listener;
 }

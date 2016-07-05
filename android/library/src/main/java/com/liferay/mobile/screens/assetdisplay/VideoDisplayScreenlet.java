@@ -11,6 +11,7 @@ import com.liferay.mobile.screens.assetdisplay.model.FileEntry;
 import com.liferay.mobile.screens.assetdisplay.view.VideoDisplayViewModel;
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
 /**
@@ -61,6 +62,8 @@ public class VideoDisplayScreenlet extends BaseScreenlet<VideoDisplayViewModel, 
 
 		int layoutId = typedArray.getResourceId(R.styleable.VideoDisplayScreenlet_layoutId, getDefaultLayoutId());
 
+		_autoLoad = typedArray.getBoolean(R.styleable.AssetDisplayScreenlet_autoLoad, true);
+
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
 
 		typedArray.recycle();
@@ -71,6 +74,15 @@ public class VideoDisplayScreenlet extends BaseScreenlet<VideoDisplayViewModel, 
 	@Override
 	protected AssetDisplayInteractorImpl createInteractor(String actionName) {
 		return new AssetDisplayInteractorImpl(getScreenletId());
+	}
+
+	@Override
+	protected void onScreenletAttached() {
+		super.onScreenletAttached();
+
+		if (_autoLoad) {
+			autoLoad();
+		}
 	}
 
 	@Override
@@ -86,6 +98,17 @@ public class VideoDisplayScreenlet extends BaseScreenlet<VideoDisplayViewModel, 
 		onRetrieveAssetSuccess(fileEntry);
 	}
 
-	private FileEntry _fileEntry;
+	protected void autoLoad() {
+		if (SessionContext.isLoggedIn()) {
+			try {
+				onRetrieveAssetSuccess(_fileEntry);
+			} catch (Exception e) {
+				onRetrieveAssetFailure(e);
+			}
+		}
+	}
+
+	private boolean _autoLoad;
 	private AssetDisplayListener _listener;
+	private FileEntry _fileEntry;
 }

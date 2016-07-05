@@ -145,22 +145,27 @@
 
 	<declare-styleable name="AssetDisplayScreenlet">
 		<attr name="layoutId" />
+		<attr name="autoLoad" />
 		<attr name="entryId" format="string" />
 	</declare-styleable>
 
 	<declare-styleable name="ImageDisplayScreenlet">
 		<attr name="layoutId" />
+		<attr name="autoLoad" />
 	</declare-styleable>
 
 	<declare-styleable name="VideoDisplayScreenlet">
 		<attr name="layoutId" />
+		<attr name="autoLoad" />
 	</declare-styleable>
 
 	<declare-styleable name="AudioDisplayScreenlet">
 		<attr name="layoutId" />
+		<attr name="autoLoad" />
 	</declare-styleable>
 
 	<declare-styleable name="PdfDisplayScreenlet">
 		<attr name="layoutId" />
+		<attr name="autoLoad" />
 	</declare-styleable>
 </resources>
