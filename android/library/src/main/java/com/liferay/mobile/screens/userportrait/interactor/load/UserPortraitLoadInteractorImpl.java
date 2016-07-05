@@ -14,10 +14,10 @@
 
 package com.liferay.mobile.screens.userportrait.interactor.load;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.util.Base64;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
@@ -31,10 +31,12 @@ import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
-import com.liferay.mobile.screens.util.LiferayLogger;
+import com.liferay.mobile.screens.userportrait.interactor.UserPortraitUriBuilder;
 import com.liferay.mobile.screens.util.ServiceProvider;
+import com.squareup.picasso.Downloader;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.OkHttpDownloader;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 import com.squareup.picasso.Target;
@@ -42,10 +44,6 @@ import com.squareup.picasso.Target;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * @author Javier Gamarra
@@ -63,10 +61,14 @@ public class UserPortraitLoadInteractorImpl
 	public void load(boolean male, long portraitId, String uuid) {
 		validate(uuid);
 
-		Uri uri = getUserPortraitURL(male, portraitId, uuid);
+		UserPortraitUriBuilder userPortraitUriBuilder = new UserPortraitUriBuilder();
+		Uri uri = userPortraitUriBuilder.getUserPortraitUri(LiferayServerContext.getServer(),
+			male, portraitId, uuid);
 
-		RequestCreator requestCreator = Picasso.with(LiferayScreensContext.getContext())
-			.load(uri);
+		Context context = LiferayScreensContext.getContext();
+		Downloader downloader = new OkHttpDownloader(userPortraitUriBuilder.getUserPortraitClient(context));
+		Picasso picasso = new Picasso.Builder(context).downloader(downloader).build();
+		RequestCreator requestCreator = picasso.load(uri);
 
 		if (OfflinePolicy.REMOTE_ONLY.equals(getOfflinePolicy())) {
 			requestCreator = requestCreator
@@ -191,29 +193,4 @@ public class UserPortraitLoadInteractorImpl
 		}
 	}
 
-	private Uri getUserPortraitURL(boolean male, long portraitId, String uuid) {
-		String maleString = male ? "male" : "female";
-		String url = LiferayServerContext.getServer() + "/image/user_" + maleString +
-			"_portrait?img_id=" + portraitId + "&img_id_token=" + getSHA1String(uuid);
-		return Uri.parse(url);
-	}
-
-	private String getSHA1String(String uuid) {
-		try {
-			MessageDigest digest = MessageDigest.getInstance("SHA-1");
-
-			digest.update(uuid.getBytes());
-
-			byte[] bytes = digest.digest();
-			String token = Base64.encodeToString(bytes, Base64.NO_WRAP);
-
-			return URLEncoder.encode(token, "UTF8");
-
-		}
-		catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-			LiferayLogger.e("Algorithm not found!", e);
-		}
-
-		return null;
-	}
 }
