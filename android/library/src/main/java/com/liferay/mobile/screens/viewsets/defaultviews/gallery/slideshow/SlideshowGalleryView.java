@@ -37,6 +37,11 @@ public class SlideshowGalleryView extends
 	}
 
 	@Override
+	public void deleteImage(long imageEntryId) {
+
+	}
+
+	@Override
 	public void updateView() {
 		
 	}
