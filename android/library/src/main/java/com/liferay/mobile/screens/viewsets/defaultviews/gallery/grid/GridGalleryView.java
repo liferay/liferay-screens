@@ -1,25 +1,28 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.gallery.grid;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.util.AttributeSet;
-import android.view.KeyEvent;
 import android.view.View;
-import android.widget.ImageView;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.base.MediaStoreSelectorDialog;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 import com.liferay.mobile.screens.gallery.GalleryScreenlet;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.gallery.view.GalleryViewModel;
+import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
 import java.util.List;
+import rx.functions.Action1;
 
 /**
  * @author Víctor Galán Grande
  */
 public class GridGalleryView
 	extends BaseListScreenletView<ImageEntry, GridGalleryAdapter.GridGalleryViewHolder, GridGalleryAdapter>
-	implements GalleryViewModel {
+	implements GalleryViewModel, View.OnClickListener {
 
 	public GridGalleryView(Context context) {
 		super(context);
@@ -66,8 +69,25 @@ public class GridGalleryView
 	}
 
 	@Override
+	public void addImage(ImageEntry imageEntry) {
+		int newRowCount = getAdapter().getItemCount() + 1;
+		getAdapter().setRowCount(newRowCount);
+
+		getAdapter().getEntries().add(imageEntry);
+
+		getAdapter().notifyItemInserted(newRowCount - 1);
+	}
+
+	@Override
 	public void updateView() {
 		_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), _columnsSize));
+	}
+
+	@Override
+	public void onClick(View v) {
+		_choseOriginDialog = new MediaStoreSelectorDialog().createOriginDialog(getContext(), openCamera(),
+			openGallery(), null);
+		_choseOriginDialog.show();
 	}
 
 	@Override
@@ -89,6 +109,8 @@ public class GridGalleryView
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 		_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), _columnsSize));
+		_uploadFAB = (FloatingActionButton) findViewById(R.id.liferay_upload_fab);
+		_uploadFAB.setOnClickListener(this);
 	}
 
 	@Override
@@ -96,7 +118,34 @@ public class GridGalleryView
 		return new GridDividerItemDecoration(_imagesSpacing);
 	}
 
+	private Action1 openCamera() {
+		return new Action1<Boolean>() {
+			@Override
+			public void call(Boolean result) {
+				if (result) {
+					((GalleryScreenlet) getScreenlet()).openCamera();
+				}
+				_choseOriginDialog.dismiss();
+			}
+		};
+	}
+
+	private Action1 openGallery() {
+		return new Action1<Boolean>() {
+			@Override
+			public void call(Boolean result) {
+				if (result) {
+					((GalleryScreenlet) getScreenlet()).openGallery();
+				}
+				_choseOriginDialog.dismiss();
+			}
+		};
+	}
+
 	private static final int DEFAULT_COLS = 3;
+
+	private AlertDialog _choseOriginDialog;
+	private FloatingActionButton _uploadFAB;
 
 	private int _columnsSize = DEFAULT_COLS;
 	private int _imagesSpacing = 3;

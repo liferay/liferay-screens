@@ -3,7 +3,9 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:orientation="vertical">
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:orientation="vertical"
+	>
 
 	<FrameLayout
 		android:layout_width="match_parent"
@@ -21,6 +23,15 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:visibility="gone"/>
+
+		<android.support.design.widget.FloatingActionButton
+			android:id="@+id/liferay_upload_fab"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="end|bottom"
+			android:layout_margin="10dp"
+			app:backgroundTint="@color/colorPrimary_default"
+			android:src="@drawable/default_upload_icon"/>
 
 	</FrameLayout>
 
