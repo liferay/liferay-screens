@@ -12,7 +12,6 @@ import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 import com.liferay.mobile.screens.gallery.GalleryScreenlet;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.gallery.view.GalleryViewModel;
-import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
 import java.util.List;
 import rx.functions.Action1;
@@ -57,8 +56,8 @@ public class GridGalleryView
 	public void deleteImage(long imageEntryId) {
 		List<ImageEntry> entries = getAdapter().getEntries();
 
-		for(int i = 0, size = entries.size(); i < size; i++) {
-			if(entries.get(i).getFileEntryId() == imageEntryId) {
+		for (int i = 0, size = entries.size(); i < size; i++) {
+			if (entries.get(i).getFileEntryId() == imageEntryId) {
 				entries.remove(i);
 				int newRowCount = getAdapter().getItemCount() - 1;
 				getAdapter().setRowCount(newRowCount);

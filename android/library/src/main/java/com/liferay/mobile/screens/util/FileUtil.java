@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-
 import android.webkit.MimeTypeMap;
 import java.io.File;
 import java.io.IOException;
@@ -30,8 +29,7 @@ public class FileUtil {
 		try {
 			File storageDir = Environment.getExternalStoragePublicDirectory(directory);
 			return File.createTempFile(name, extension, storageDir);
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			LiferayLogger.e("error creating temporal file", e);
 		}
 		return null;
@@ -43,12 +41,10 @@ public class FileUtil {
 
 		if (isKitKat && isDocumentUri(context, uri)) {
 			return getDataForKitKat(context, uri);
-		}
-		else if ("content".equalsIgnoreCase(uri.getScheme())) {
+		} else if ("content".equalsIgnoreCase(uri.getScheme())) {
 			if (isGooglePhotosUri(uri)) {
 				throw new IllegalArgumentException("Google photos not located in the phone are not supported");
-			}
-			else {
+			} else {
 				return getDataColumn(context, uri, null, null);
 			}
 		}
@@ -79,16 +75,16 @@ public class FileUtil {
 
 		Uri contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
 		String selection = "_id=?";
-		String[] selectionArgs = new String[]{split[1]};
+		String[] selectionArgs = new String[] { split[1] };
 
 		return getDataColumn(context, contentUri, selection, selectionArgs);
 	}
 
 	private static String getDataColumn(Context context, Uri uri, String selection,
-										String[] selectionArgs) {
+		String[] selectionArgs) {
 		Cursor cursor = null;
 		final String column = "_data";
-		final String[] projection = {column};
+		final String[] projection = { column };
 
 		try {
 			cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs,
@@ -97,8 +93,7 @@ public class FileUtil {
 				final int column_index = cursor.getColumnIndexOrThrow(column);
 				return cursor.getString(column_index);
 			}
-		}
-		finally {
+		} finally {
 			if (cursor != null) {
 				cursor.close();
 			}

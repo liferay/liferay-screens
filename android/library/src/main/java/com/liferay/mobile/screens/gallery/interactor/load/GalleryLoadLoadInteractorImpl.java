@@ -89,26 +89,26 @@ public class GalleryLoadLoadInteractorImpl extends BaseListInteractor<ImageEntry
 	}
 
 	protected void validate(long groupId, long folderId) {
-		if(groupId <= 0) {
+		if (groupId <= 0) {
 			throw new IllegalArgumentException("groupId cannot be 0 or negative");
 		}
 
-		if(folderId < 0) {
+		if (folderId < 0) {
 			throw new IllegalArgumentException("groupId cannot be negative");
 		}
 	}
 
 	private JSONArray getMimeTypes(String[] mimeTypes) {
-		if(mimeTypes == null) {
+		if (mimeTypes == null) {
 			return DEFAULT_MIME_TYPES;
 		}
-		if(mimeTypes.length == 1 && mimeTypes[0].isEmpty()){
+		if (mimeTypes.length == 1 && mimeTypes[0].isEmpty()) {
 			return DEFAULT_MIME_TYPES;
 		}
 
 		JSONArray jsonMimeTypes = new JSONArray();
 
-		for(String mimeType : mimeTypes) {
+		for (String mimeType : mimeTypes) {
 			jsonMimeTypes.put(mimeType);
 		}
 

@@ -1,17 +1,16 @@
 package com.liferay.mobile.screens.gallery.interactor.upload;
 
-import android.app.Activity;
 import android.content.Intent;
 import com.liferay.mobile.screens.base.MediaStoreEvent;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.gallery.interactor.GalleryInteractorListener;
-import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitService;
 
 /**
  * @author Víctor Galán Grande
  */
-public class GalleryUploadInteractorImpl extends BaseRemoteInteractor<GalleryInteractorListener> implements GalleryUploadInteractor {
+public class GalleryUploadInteractorImpl extends BaseRemoteInteractor<GalleryInteractorListener>
+	implements GalleryUploadInteractor {
 
 	public GalleryUploadInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
@@ -45,16 +44,13 @@ public class GalleryUploadInteractorImpl extends BaseRemoteInteractor<GalleryInt
 			return;
 		}
 
-		if(event.isFailed()) {
+		if (event.isFailed()) {
 			getListener().onPictureUploadFailure(event.getException());
-		}
-		else if(event.isCompleted()) {
+		} else if (event.isCompleted()) {
 			getListener().onPictureUploaded(event.getImageEntry());
-		}
-		else {
+		} else {
 			getListener().onPictureUploadProgress(event.getTotalBytes(), event.getTotalBytesSended());
 		}
-
 	}
 
 	private void validate(long repositoryId, long folderId, String title, String description, String changeLog,

@@ -1,6 +1,5 @@
 package com.liferay.mobile.screens.gallery.interactor.upload;
 
-import android.provider.ContactsContract;
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 
@@ -9,7 +8,8 @@ import com.liferay.mobile.screens.gallery.model.ImageEntry;
  */
 public class GalleryUploadEvent extends BasicEvent {
 
-	public GalleryUploadEvent(int targetScreenletId, int totalBytes, int totalBytesSended, boolean isCompleted, ImageEntry entry) {
+	public GalleryUploadEvent(int targetScreenletId, int totalBytes, int totalBytesSended, boolean isCompleted,
+		ImageEntry entry) {
 		super(targetScreenletId);
 		_totalBytes = totalBytes;
 		_totalBytesSended = totalBytesSended;
