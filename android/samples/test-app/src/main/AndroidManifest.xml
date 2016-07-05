@@ -42,7 +42,7 @@
 		<activity android:name=".WebViewListActivity" />
 		<activity android:name=".RatingsActivity"/>
 		<activity android:name=".GalleryActivity"/>
-		
+
 		<receiver android:name="com.liferay.mobile.screens.cache.CacheReceiver">
 			<intent-filter>
 				<action android:name="com.liferay.mobile.screens.auth.login.success" />
