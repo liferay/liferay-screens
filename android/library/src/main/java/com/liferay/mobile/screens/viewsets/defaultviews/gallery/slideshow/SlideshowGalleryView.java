@@ -42,6 +42,11 @@ public class SlideshowGalleryView extends
 	}
 
 	@Override
+	public void addImage(ImageEntry imageEntry) {
+
+	}
+
+	@Override
 	public void updateView() {
 		
 	}
