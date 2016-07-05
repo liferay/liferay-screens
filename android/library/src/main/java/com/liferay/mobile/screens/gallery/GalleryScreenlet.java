@@ -81,7 +81,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	public void setColumnsSize(int columnsSize) {
 		_columnsSize = columnsSize;
-		((GalleryViewModel) getViewModel()).setColumns(columnsSize);
+		getViewModel().setColumns(columnsSize);
 	}
 
 	public void load() {
@@ -134,14 +134,14 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 	@Override
 	public void onImageEntryDeleteFailure(Exception e) {
 		if(getListener() != null) {
-			((GalleryListener) getListener()).onImageEntryDeleteFailure(this, e);
+			getListener().onImageEntryDeleteFailure(this, e);
 		}
 	}
 
 	@Override
 	public void onImageEntryDeleted(long imageEntryId) {
-		((GalleryListener) getListener()).onImageEntryDeleted(this, imageEntryId);
-		((GalleryViewModel) getViewModel()).deleteImage(imageEntryId);
+		getListener().onImageEntryDeleted(this, imageEntryId);
+		getViewModel().deleteImage(imageEntryId);
 	}
 
 	@Override
@@ -152,7 +152,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	@Override
 	public void onPictureUploaded(ImageEntry entry) {
-		((GalleryViewModel) getViewModel()).addImage(entry);
+		getViewModel().addImage(entry);
 	}
 
 	@Override
@@ -166,7 +166,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 	}
 
 	public void updateView() {
-		((GalleryViewModel) getViewModel()).updateView();
+		getViewModel().updateView();
 	}
 
 	public void showImageInFullScreenActivity(ImageEntry image) {
@@ -264,6 +264,16 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 	@Override
 	public BaseGalleryInteractor getInteractor() {
 		return super.getInteractor(LOAD_GALLERY);
+	}
+
+
+	public GalleryListener getListener() {
+		return  ((GalleryListener) super.getListener());
+	}
+
+
+	public GalleryViewModel getViewModel() {
+		return  ((GalleryViewModel) super.getViewModel());
 	}
 
 	protected void autoLoad() {
