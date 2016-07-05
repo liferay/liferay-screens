@@ -9,17 +9,22 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.gallery.interactor.GalleryInteractor;
-import com.liferay.mobile.screens.gallery.interactor.GalleryInteractorImpl;
+import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.gallery.interactor.BaseGalleryInteractor;
+import com.liferay.mobile.screens.gallery.interactor.load.GalleryLoadInteractor;
+import com.liferay.mobile.screens.gallery.interactor.load.GalleryLoadLoadInteractorImpl;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.gallery.view.GalleryViewModel;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DetailImageActivity;
 import java.util.Locale;
 
 /**
  * @author Víctor Galán Grande
  */
-public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryInteractor> {
+public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryInteractor> {
+
+	public static final String LOAD_GALLERY = "LOAD_GALLERY";
 
 	public GalleryScreenlet(Context context) {
 		super(context);
@@ -59,6 +64,10 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryInter
 
 	public int getColumnsSize() {
 		return _columnsSize;
+	}
+
+	public void load() {
+		performUserAction(LOAD_GALLERY);
 	}
 
 	public void setColumnsSize(int columnsSize) {
@@ -105,9 +114,10 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryInter
 	}
 
 	@Override
-	protected void loadRows(GalleryInteractor interactor, int startRow, int endRow, Locale locale)
+	protected void loadRows(BaseGalleryInteractor interactor, int startRow, int endRow, Locale locale)
 		throws Exception {
-		interactor.loadRows(_groupId, _folderId, _mimeTypes, startRow, endRow, locale);
+		GalleryLoadInteractor galleryLoadInteractor = (GalleryLoadInteractor) interactor;
+		galleryLoadInteractor.loadRows(_groupId, _folderId, _mimeTypes, startRow, endRow, locale);
 	}
 
 	@Override
@@ -143,17 +153,46 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryInter
 	}
 
 	@Override
-	protected GalleryInteractor createInteractor(String actionName) {
-		return new GalleryInteractorImpl(getScreenletId(), _offlinePolicy);
+	protected BaseGalleryInteractor createInteractor(String actionName) {
+		if (actionName.equals(LOAD_GALLERY)) {
+			return new GalleryLoadLoadInteractorImpl(getScreenletId(), _offlinePolicy);
+		}
+
+		return null;
+	}
+
+	@Override
+	protected void onUserAction(String userActionName, BaseGalleryInteractor interactor, Object... args) {
+		if(userActionName.equals(LOAD_GALLERY)) {
+			loadPage(0);
+		}
+	}
+
+	@Override
+	protected void onScreenletAttached() {
+		if(_autoLoad) {
+			autoLoad();
+		}
+	}
+
+	@Override
+	public BaseGalleryInteractor getInteractor() {
+		return super.getInteractor(LOAD_GALLERY);
+	}
+
+	protected void autoLoad() {
+		if (SessionContext.isLoggedIn() && _groupId > 0) {
+			_groupId = -1;
+			load();
+		}
 	}
 
 	private String[] parseMimeTypes(String mimeTypesRaw) {
 		if (mimeTypesRaw == null) {
 			return null;
 		}
-		String[] mimeTypes = mimeTypesRaw.split(",");
 
-		return mimeTypes;
+		return mimeTypesRaw.split(",");
 	}
 
 	private long _groupId;
