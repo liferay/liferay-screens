@@ -250,8 +250,11 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		} else if (userActionName.equals(UPLOAD_IMAGE)) {
 			String picturePath = (String) args[0];
 			GalleryUploadInteractor galleryUploadInteractor = (GalleryUploadInteractor) interactor;
-			galleryUploadInteractor.uploadImageEntry(_groupId, _folderId, "", "", "", picturePath);
-
+			try {
+				galleryUploadInteractor.uploadImageEntry(_groupId, _folderId, "", "", "", picturePath);
+			} catch (Exception e) {
+				onPictureUploadFailure(e);
+			}
 		}
 	}
 

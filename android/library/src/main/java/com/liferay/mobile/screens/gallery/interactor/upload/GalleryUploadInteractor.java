@@ -8,5 +8,5 @@ import com.liferay.mobile.screens.gallery.interactor.BaseGalleryInteractor;
 public interface GalleryUploadInteractor extends BaseGalleryInteractor {
 
 	void uploadImageEntry(long repositoryId, long folderId, String title, String description, String changeLog,
-		String picturePath);
+		String picturePath) throws Exception;
 }
