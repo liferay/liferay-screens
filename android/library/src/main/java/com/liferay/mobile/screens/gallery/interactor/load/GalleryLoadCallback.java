@@ -21,38 +21,6 @@ public class GalleryLoadCallback extends BaseListCallback<ImageEntry> {
 
 	@Override
 	public ImageEntry createEntity(Map<String, Object> stringObjectMap) {
-
-		stringObjectMap.put("imageUrl", createImageUrl(stringObjectMap));
-		stringObjectMap.put("thumbnailUrl", createThumbnailUrl(stringObjectMap));
-
 		return new ImageEntry(stringObjectMap);
-	}
-
-	private String createThumbnailUrl(Map<String, Object> stringObjectMap) {
-		return createImageUrl(stringObjectMap)
-			+ "?version="
-			+ stringObjectMap.get("version")
-			+ "&imageThumbnail=1";
-	}
-
-	private String createImageUrl(Map<String, Object> stringObjectMap) {
-		return LiferayServerContext.getServer()
-			+ "/documents/"
-			+ stringObjectMap.get("groupId")
-			+ "/"
-			+ stringObjectMap.get("folderId")
-			+ "/"
-			+ encodeUrlString((String) stringObjectMap.get("title"))
-			+ "/"
-			+ stringObjectMap.get("uuid");
-	}
-
-	private String encodeUrlString(String urlToEncode) {
-		try {
-			return URLEncoder.encode(urlToEncode, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			LiferayLogger.e("Error encoding string: " + e.getMessage());
-			return "";
-		}
 	}
 }
