@@ -1,7 +1,6 @@
 package com.liferay.mobile.screens.userportrait.interactor.upload;
 
 import android.content.Intent;
-
 import com.liferay.mobile.screens.base.MediaStoreEvent;
 import com.liferay.mobile.screens.base.interactor.BaseCachedWriteRemoteInteractor;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
@@ -12,7 +11,6 @@ import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
-
 import org.json.JSONObject;
 
 /**
@@ -38,12 +36,10 @@ public class UserPortraitUploadInteractorImpl
 		if (event.isFailed()) {
 			try {
 				storeToCacheAndLaunchEvent(event, event.getUserId(), event.getPicturePath());
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				getListener().onUserPortraitUploadFailure(event.getException());
 			}
-		}
-		else {
+		} else {
 			if (!event.isCacheRequest()) {
 				store(true, event.getUserId(), event.getPicturePath());
 			}
@@ -61,15 +57,14 @@ public class UserPortraitUploadInteractorImpl
 				if (oldLoggedUser != null) {
 					getListener().onUserPortraitUploaded(oldLoggedUser.getId());
 				}
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				getListener().onUserPortraitUploadFailure(e);
 			}
 		}
 	}
 
 	public void onEvent(MediaStoreEvent event) {
-		if(isValidEvent(event)) {
+		if (isValidEvent(event)) {
 			getListener().onPicturePathReceived(event.getFilePath());
 		}
 	}
@@ -100,7 +95,8 @@ public class UserPortraitUploadInteractorImpl
 
 		store(false, userId, picturePath);
 
-		UserPortraitUploadEvent event = new UserPortraitUploadEvent(getTargetScreenletId(), picturePath, userId, new JSONObject());
+		UserPortraitUploadEvent event =
+			new UserPortraitUploadEvent(getTargetScreenletId(), picturePath, userId, new JSONObject());
 		event.setCacheRequest(true);
 		onEventMainThread(event);
 	}
@@ -110,5 +106,4 @@ public class UserPortraitUploadInteractorImpl
 		file.setDirty(!synced);
 		CacheSQL.getInstance().set(file);
 	}
-
 }
