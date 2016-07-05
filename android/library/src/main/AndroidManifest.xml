@@ -8,6 +8,6 @@
 
 		<service android:name=".userportrait.interactor.upload.UserPortraitService" />
 
-    <activity android:name=".viewsets.defaultviews.assetdisplay.ImageDisplayActivity" />
+		<activity android:name=".assetdisplay.ImageDisplayActivity" />
 	</application>
 </manifest>

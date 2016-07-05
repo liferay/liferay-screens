@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.viewsets.defaultviews.assetdisplay;
+package com.liferay.mobile.screens.assetdisplay;
 
 import android.content.Intent;
 import android.os.Bundle;

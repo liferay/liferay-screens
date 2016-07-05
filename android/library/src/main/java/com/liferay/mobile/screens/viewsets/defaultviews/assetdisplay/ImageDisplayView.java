@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.assetdisplay.ImageDisplayActivity;
 import com.liferay.mobile.screens.assetdisplay.model.FileEntry;
 import com.liferay.mobile.screens.assetdisplay.view.ImageDisplayViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
