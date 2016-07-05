@@ -9,6 +9,7 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Víctor Galán Grande
@@ -84,6 +85,10 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 		return _fileEntryId;
 	}
 
+	public boolean thumbnailNotAlreadyGenerated() {
+		return isLessThan60secondsOld();
+	}
+
 	private ImageEntry(Parcel in, ClassLoader loader) {
 		super(in, loader);
 		_imageUrl = in.readString();
@@ -130,6 +135,13 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 			LiferayLogger.e("Error encoding string: " + e.getMessage());
 			return "";
 		}
+	}
+
+	private boolean isLessThan60secondsOld() {
+		long creationMinutes = TimeUnit.MILLISECONDS.toSeconds(_createDate);
+		long actualMinutes = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
+
+		return actualMinutes - creationMinutes <= 10;
 	}
 
 	private String _imageUrl;
