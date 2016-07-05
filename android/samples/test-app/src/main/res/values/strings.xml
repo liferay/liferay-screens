@@ -42,4 +42,7 @@
 	<string name="surname">Surname</string>
 	<string name="webview_structured_label_first_field">Showing only one field</string>
 	<string name="webview_structured_label_example">Example customizing the view</string>
+	<string name="minus">-</string>
+	<string name="plus">+</string>
+	<string name="slideshow">Slideshow</string>
 </resources>

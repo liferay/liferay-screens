@@ -1,11 +1,11 @@
 package com.liferay.mobile.screens.testapp;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.gallery.GalleryListener;
@@ -21,14 +21,16 @@ public class GalleryActivity extends ThemeActivity
 	implements GalleryListener, View.OnClickListener {
 
 	private GalleryScreenlet galleryScreenletGrid;
-
 	private GalleryScreenlet galleryScreenletSlideShow;
+
 	private Button changeGalleryView;
-
 	private Button buttonMinus;
-
 	private Button buttonPlus;
-	int columnsSize = 5;
+	private ProgressDialog progressDialog;
+
+	private int columnsSize = 5;
+
+	private boolean isGridMode = true;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,24 +53,24 @@ public class GalleryActivity extends ThemeActivity
 		changeGalleryView = (Button) findViewById(R.id.change_gallery_view);
 		changeGalleryView.setOnClickListener(this);
 
-		SessionContext.createBasicSession("test@liferay.com", "test1234");
+		createProgressDialog();
+
+		SessionContext.createBasicSession("test@liferay.com", "test");
 	}
 
 	@Override
 	public void onListPageFailed(BaseListScreenlet source, int page, Exception e) {
-
+		error("Error loading page", e);
 	}
 
 	@Override
-	public void onListPageReceived(BaseListScreenlet source, int page, List<ImageEntry> entries,
-		int rowCount) {
-		Log.d(GalleryScreenlet.class.getName(),
-			"page: " + page + "received with " + entries.size() + "entries");
+	public void onListPageReceived(BaseListScreenlet source, int page, List<ImageEntry> entries, int rowCount) {
+		Log.i(GalleryScreenlet.class.getName(), "page: " + page + "received with " + entries.size() + "entries");
 	}
 
 	@Override
 	public void onListItemSelected(ImageEntry image, View view) {
-		LiferayLogger.d("Image selected: " + image.getImageUrl());
+		LiferayLogger.i("Image selected: " + image.getImageUrl());
 		galleryScreenletGrid.showImageInFullScreenActivity(image);
 	}
 
@@ -98,27 +100,40 @@ public class GalleryActivity extends ThemeActivity
 	}
 
 	@Override
+	public void onImageUploadStarted() {
+		progressDialog.setProgress(0);
+		progressDialog.show();
+	}
+
+	@Override
+	public void onImageUploadProgress(int totalBytes, int totalBytesSended) {
+		float percentage = (totalBytesSended / (float) totalBytes) * 100;
+		progressDialog.setProgress((int) percentage);
+	}
+
+	@Override
+	public void onImageUploadEnd(ImageEntry entry) {
+		progressDialog.dismiss();
+		info("Image uploaded");
+	}
+
+	@Override
+	public void onImageUploadFailure(Exception e) {
+		error("Error uploading image", e);
+		progressDialog.dismiss();
+	}
+
+	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.change_gallery_view) {
-			if (changeGalleryView.getText().toString().equals("Slideshow")) {
-				galleryScreenletSlideShow.setVisibility(View.VISIBLE);
-				galleryScreenletGrid.setVisibility(View.GONE);
-				buttonMinus.setVisibility(View.GONE);
-				buttonPlus.setVisibility(View.GONE);
-
-				changeGalleryView.setText("Grid");
+			if (isGridMode) {
+				setSlideshowMode();
 			} else {
-				galleryScreenletSlideShow.setVisibility(View.GONE);
-				galleryScreenletGrid.setVisibility(View.VISIBLE);
-				buttonMinus.setVisibility(View.VISIBLE);
-				buttonPlus.setVisibility(View.VISIBLE);
-
-				changeGalleryView.setText("Slideshow");
+				setGridMode();
 			}
 		}
 
 		if (v.getId() == R.id.image_gallery_button_minus) {
-			galleryScreenletGrid.deleteEntry(36796);
 			if (columnsSize > 1) {
 				galleryScreenletGrid.setColumnsSize(--columnsSize);
 				galleryScreenletGrid.updateView();
@@ -129,5 +144,34 @@ public class GalleryActivity extends ThemeActivity
 			galleryScreenletGrid.setColumnsSize(++columnsSize);
 			galleryScreenletGrid.updateView();
 		}
+	}
+
+	private void setGridMode() {
+		isGridMode = true;
+		galleryScreenletSlideShow.setVisibility(View.VISIBLE);
+		galleryScreenletGrid.setVisibility(View.GONE);
+		buttonMinus.setVisibility(View.GONE);
+		buttonPlus.setVisibility(View.GONE);
+
+		changeGalleryView.setText("Grid");
+	}
+
+	private void setSlideshowMode() {
+		isGridMode = false;
+		galleryScreenletSlideShow.setVisibility(View.GONE);
+		galleryScreenletGrid.setVisibility(View.VISIBLE);
+		buttonMinus.setVisibility(View.VISIBLE);
+		buttonPlus.setVisibility(View.VISIBLE);
+
+		changeGalleryView.setText("Slideshow");
+	}
+
+	private void createProgressDialog() {
+		progressDialog = new ProgressDialog(this);
+		progressDialog.setTitle("Uploading image");
+		progressDialog.setMessage("Upload in progress");
+		progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		progressDialog.setProgress(0);
+		progressDialog.setCanceledOnTouchOutside(false);
 	}
 }

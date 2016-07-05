@@ -45,7 +45,7 @@
 	<string name="liferay_oauth_consumer_secret">0176690f0fd46a4a3a839ca9bf4edd0c</string>
 
 
-
+	<string name="liferay_images_folder">65757</string>
 
 	<!-- local values -->
 	<!--<string name="liferay_server">http://192.168.40.143:8080</string>-->
