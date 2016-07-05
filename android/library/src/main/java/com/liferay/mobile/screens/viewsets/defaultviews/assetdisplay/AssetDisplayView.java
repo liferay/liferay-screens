@@ -42,8 +42,9 @@ public class AssetDisplayView extends LinearLayout implements AssetDisplayViewMo
 		BaseScreenlet screenlet = factory.getScreenlet(getContext(), assetEntry);
 		if (screenlet != null) {
 			addView(screenlet, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+		} else {
+			LiferayLogger.e("Error loading screenlet");
 		}
-		LiferayLogger.e("Error loading screenlet");
 	}
 
 	@Override
