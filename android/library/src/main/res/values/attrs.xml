@@ -159,4 +159,8 @@
 	<declare-styleable name="AudioDisplayScreenlet">
 		<attr name="layoutId" />
 	</declare-styleable>
+
+	<declare-styleable name="PdfDisplayScreenlet">
+		<attr name="layoutId" />
+	</declare-styleable>
 </resources>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.viewsets.defaultviews.assetdisplay.PdfDisplayView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+  <Button
+      android:id="@+id/liferay_pdf"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:text="Abrir PDF"
+      android:textSize="20dp"/>
+
+  <ProgressBar
+      android:id="@+id/liferay_asset_progress_bar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:visibility="gone"
+      tools:visibility="visible"
+      style="@android:style/Widget.ProgressBar.Large"/>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/liferay_btn_previous"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Previous"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <Button
+        android:id="@+id/liferay_btn_next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Next"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+  </LinearLayout>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+
+    <EditText
+        android:id="@+id/liferay_edit_pdf_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:inputType="number"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <Button
+        android:id="@+id/liferay_btn_go_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Go"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+  </LinearLayout>
+
+
+  <ImageView
+      android:id="@+id/liferay_pdf_renderer"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"/>
+
+</com.liferay.mobile.screens.viewsets.defaultviews.assetdisplay.PdfDisplayView>

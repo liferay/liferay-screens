@@ -30,13 +30,11 @@ public class AssetDisplayFactory {
 					AudioDisplayScreenlet screenlet = new AudioDisplayScreenlet(context);
 					screenlet.setFileEntry((FileEntry) assetEntry);
 					return screenlet;
+				} else if (mimeType.equals("application/pdf")) {
+					PdfDisplayScreenlet screenlet = new PdfDisplayScreenlet(context);
+					screenlet.setFileEntry((FileEntry) assetEntry);
+					return screenlet;
 				}
-				//} else if (mimeType.equals("application/pdf")) {
-				//	PdfDisplayScreenlet screenlet = new PdfDisplayScreenlet(context);
-				//	screenlet.setFileEntry((FileEntry) assetEntry);
-				//	return screenlet;
-				//}
-
 			default:
 				return null;
 		}
