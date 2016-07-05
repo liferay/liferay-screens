@@ -3,7 +3,11 @@ package com.liferay.mobile.screens.gallery.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.liferay.mobile.screens.assetlist.AssetEntry;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.util.JSONUtil;
+import com.liferay.mobile.screens.util.LiferayLogger;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Map;
 
 /**
@@ -91,13 +95,41 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 	}
 
 	private void parseServerValues() {
-		_imageUrl = (String) _values.get("imageUrl");
-		_thumbnailUrl = (String) _values.get("thumbnailUrl");
+		_imageUrl = createImageUrl();
+		_thumbnailUrl = createThumbnailUrl();
 		_mimeType = (String) _values.get("mimeType");
 		_description = (String) _values.get("description");
 		_createDate = JSONUtil.castToLong(_values.get("createDate"));
 		_creatorUserId = JSONUtil.castToLong(_values.get("userId"));
 		_fileEntryId = JSONUtil.castToLong(_values.get("fileEntryId"));
+	}
+
+	private String createThumbnailUrl() {
+		return createImageUrl()
+			+ "?version="
+			+ _values.get("version")
+			+ "&imageThumbnail=1";
+	}
+
+	private String createImageUrl() {
+		return LiferayServerContext.getServer()
+			+ "/documents/"
+			+ _values.get("groupId")
+			+ "/"
+			+ _values.get("folderId")
+			+ "/"
+			+ encodeUrlString((String) _values.get("title"))
+			+ "/"
+			+ _values.get("uuid");
+	}
+
+	private String encodeUrlString(String urlToEncode) {
+		try {
+			return URLEncoder.encode(urlToEncode, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			LiferayLogger.e("Error encoding string: " + e.getMessage());
+			return "";
+		}
 	}
 
 	private String _imageUrl;
