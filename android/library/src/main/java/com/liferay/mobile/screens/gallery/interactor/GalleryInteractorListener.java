@@ -11,4 +11,12 @@ public interface GalleryInteractorListener extends BaseListInteractorListener<Im
 	void onImageEntryDeleteFailure(Exception e);
 
 	void onImageEntryDeleted(long imageEntryId);
+
+	void onPicturePathReceived(String picturePath);
+
+	void onPictureUploaded(ImageEntry entry);
+
+	void onPictureUploadProgress(int totalBytes, int totalBytesSended);
+
+	void onPictureUploadFailure(Exception e);
 }
