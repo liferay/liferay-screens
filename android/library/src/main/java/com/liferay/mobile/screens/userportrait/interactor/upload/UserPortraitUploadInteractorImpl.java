@@ -2,7 +2,10 @@ package com.liferay.mobile.screens.userportrait.interactor.upload;
 
 import android.content.Context;
 import android.content.Intent;
+<<<<<<< 718f5ed577bbee14c450c64cee0843964b9b2f2e
 import android.net.Uri;
+=======
+>>>>>>> LSR-854 sf
 import com.liferay.mobile.screens.base.MediaStoreEvent;
 import com.liferay.mobile.screens.base.interactor.BaseCachedWriteRemoteInteractor;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
@@ -101,7 +104,7 @@ public class UserPortraitUploadInteractorImpl
 	}
 
 	public void onEvent(MediaStoreEvent event) {
-		if(isValidEvent(event)) {
+		if (isValidEvent(event)) {
 			getListener().onPicturePathReceived(event.getFilePath());
 		}
 	}
