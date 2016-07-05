@@ -22,6 +22,7 @@ public class GalleryDeleteInteractorImpl extends BaseRemoteInteractor<GalleryInt
 	@Override
 	public void deleteImageEntry(long imageEntryId) throws Exception {
 		_imageEntryId = imageEntryId;
+		validate(imageEntryId);
 		getDLAppService().deleteFileEntry(imageEntryId);
 	}
 
@@ -43,6 +44,12 @@ public class GalleryDeleteInteractorImpl extends BaseRemoteInteractor<GalleryInt
 		session.setCallback(new GalleryDeleteCallback(getTargetScreenletId(), _imageEntryId));
 
 		return new DLAppService(session);
+	}
+
+	private void validate(long imageEntryId) {
+		if (imageEntryId <= 0) {
+			throw new IllegalArgumentException("Image entry Id must be greater than 0");
+		}
 	}
 
 	private long _imageEntryId;
