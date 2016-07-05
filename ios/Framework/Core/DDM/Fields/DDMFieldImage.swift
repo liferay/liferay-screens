@@ -11,26 +11,23 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
-import Foundation
+import UIKit
 
-extension Bool {
 
-	public static func from(string value:String) -> Bool {
-		let boolValue = value.lowercaseString.stringByTrimmingCharactersInSet(
-				NSCharacterSet.whitespaceCharacterSet())
+public class DDMFieldImage : DDMField {
 
-		return (boolValue == "true" || boolValue == "1")
+	//MARK: DDMField
+
+	public override init(attributes: [String:AnyObject], locale: NSLocale) {
+		super.init(attributes: attributes, locale: locale)
 	}
 
-	public static func from(any value:AnyObject) -> Bool {
-		if let stringValue = value as? String {
-			return Bool.from(string: stringValue)
-		}
-		else if let numberValue = value as? NSNumber {
-			return numberValue.boolValue
-		}
+	public required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+	}
 
-		return false
+	public override func encodeWithCoder(aCoder: NSCoder) {
+		super.encodeWithCoder(aCoder)
 	}
 
 }

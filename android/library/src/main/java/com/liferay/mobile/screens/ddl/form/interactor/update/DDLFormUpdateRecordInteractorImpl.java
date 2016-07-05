@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.ddl.form.interactor.update;
 
 import android.support.annotation.NonNull;
 
+import com.liferay.mobile.android.exception.ServerException;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.interactor.BaseCachedWriteRemoteInteractor;
@@ -58,7 +59,12 @@ public class DDLFormUpdateRecordInteractorImpl
 
 		if (event.isFailed()) {
 			try {
-				storeToCacheAndLaunchEvent(event.getGroupId(), event.getRecord());
+				if (event.getException() instanceof ServerException) {
+					getListener().onDDLFormUpdateRecordFailed(event.getException());
+				}
+				else {
+					storeToCacheAndLaunchEvent(event.getGroupId(), event.getRecord());
+				}
 			}
 			catch (Exception e) {
 				getListener().onDDLFormUpdateRecordFailed(event.getException());
@@ -87,7 +93,7 @@ public class DDLFormUpdateRecordInteractorImpl
 		JSONObjectWrapper serviceContextWrapper = new JSONObjectWrapper(serviceContextAttributes);
 
 		getDDLRecordService(record, groupId).updateRecord(record.getRecordId(),
-			0, fieldsValues, true, serviceContextWrapper);
+			0, fieldsValues, false, serviceContextWrapper);
 	}
 
 	@Override

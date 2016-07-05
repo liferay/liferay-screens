@@ -39,23 +39,29 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		NUMBER("number"),
 		IMAGE("image"),
 		DOCUMENT("document-library"),
-		UNSUPPORTED(null);
+		UNSUPPORTED("");
 
 		public static DataType valueOf(Map<String, Object> attributes) {
 			Object mapValue = attributes.get("dataType");
-			return (mapValue == null) ?
-				UNSUPPORTED : valueOfString(mapValue.toString());
+
+			if (mapValue == null) {
+				return UNSUPPORTED;
+			}
+
+			return valueOfString(mapValue.toString());
 		}
 
 		public static DataType valueOf(Element element) {
 			String attributeValue = element.getAttribute("dataType");
-			return (attributeValue == null) ?
-				UNSUPPORTED : valueOfString(attributeValue);
+
+			if (attributeValue == null) {
+				return UNSUPPORTED;
+			}
+
+			return valueOfString(attributeValue);
 		}
 
 		public static DataType valueOfString(String name) {
-			DataType result = UNSUPPORTED;
-
 			if (name != null) {
 				for (DataType dataType : values()) {
 					if (name.equals(dataType._value)) {
@@ -68,7 +74,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 				}
 			}
 
-			return result;
+			return UNSUPPORTED;
 		}
 
 		public Field createField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
@@ -77,6 +83,9 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 				if (editor == EditorType.SELECT || editor == EditorType.RADIO) {
 					return new StringWithOptionsField(attributes, locale, defaultLocale);
+				}
+				else if (editor == EditorType.DATE) {
+					return new DateField(attributes, locale, defaultLocale);
 				}
 				else {
 					return new StringField(attributes, locale, defaultLocale);
@@ -118,15 +127,15 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	public enum EditorType {
 		CHECKBOX("checkbox"),
 		TEXT("text"),
-		TEXT_AREA("textarea", "paragraph"),
+		TEXT_AREA("textarea", "paragraph", "ddm-text-html"),
 		DATE("ddm-date", "date"),
 		NUMBER("ddm-number", "number"),
 		INTEGER("ddm-integer", "integer"),
 		DECIMAL("ddm-decimal", "decimal"),
 		SELECT("select"),
 		RADIO("radio"),
-		DOCUMENT("ddm-documentlibrary", "documentlibrary"),
-		UNSUPPORTED(null);
+		DOCUMENT("ddm-documentlibrary", "documentlibrary", "wcm-image"),
+		UNSUPPORTED("");
 
 		public static List<EditorType> all() {
 			List<EditorType> editorTypes = new ArrayList<>(Arrays.asList(EditorType.values()));
@@ -138,11 +147,15 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 		public static EditorType valueOf(Map<String, Object> attributes) {
 			Object mapValue = attributes.get("type");
+
+			if (mapValue == null) {
+				return UNSUPPORTED;
+			}
+
 			if ("text".equals(mapValue) && "integer".equals(attributes.get("dataType"))) {
 				return DECIMAL;
 			}
-			return (mapValue == null) ?
-				UNSUPPORTED : valueOfString(mapValue.toString());
+			return valueOfString(mapValue.toString());
 		}
 
 		public static EditorType valueOfString(String name) {

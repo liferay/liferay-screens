@@ -28,6 +28,22 @@ class HomeLoginViewController: UIViewController, LoginScreenletDelegate {
 		showLogged(animated: true);
 	}
 
+	@IBAction func reloginAction(sender: AnyObject) {
+		guard let ctx = SessionContext.currentContext else {
+			return print("Session doesn't exist")
+		}
+
+		ctx.relogin {
+			if let attributes = $0 {
+				print("Relogin completed: \(attributes)")
+			}
+			else {
+				print("Relogin failed")
+				self.showLogged(animated: true);
+			}
+		}
+	}
+
 	@IBAction func credentialsValueChangedAction(sender: UISwitch) {
 		loginScreenlet?.saveCredentials = sender.on
 	}

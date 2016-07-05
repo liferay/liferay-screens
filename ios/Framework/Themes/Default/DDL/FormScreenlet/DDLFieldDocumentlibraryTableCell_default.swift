@@ -19,7 +19,7 @@ import UIKit
 #endif
 
 
-public class DDMFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableCell_default {
+public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableCell_default {
 
 	//MARK: Outlets
 

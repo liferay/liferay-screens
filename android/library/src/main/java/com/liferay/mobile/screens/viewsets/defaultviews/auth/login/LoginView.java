@@ -164,9 +164,7 @@ public class LoginView extends LinearLayout
 			_basicAuthenticationLayout.setVisibility(AuthenticationType.BASIC.equals(_authenticationType) ? VISIBLE : GONE);
 		}
 
-		if (AuthenticationType.BASIC.equals(_authenticationType)) {
-			_loginEditText.setHint(getResources().getString(getLabelResourceForAuthMode()));
-		}
+		_loginEditText.setHint(getResources().getString(getLabelResourceForAuthMode()));
 
 		refreshLoginEditTextStyle();
 	}

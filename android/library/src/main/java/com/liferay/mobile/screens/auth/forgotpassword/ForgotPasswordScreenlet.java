@@ -142,9 +142,8 @@ public class ForgotPasswordScreenlet
 
 	@Override
 	protected void onUserAction(String userActionName, ForgotPasswordInteractor interactor, Object... args) {
-		ForgotPasswordViewModel viewModel = getViewModel();
 
-		viewModel.showStartOperation(userActionName);
+		ForgotPasswordViewModel viewModel = getViewModel();
 
 		String login = viewModel.getLogin();
 		BasicAuthMethod method = viewModel.getBasicAuthMethod();

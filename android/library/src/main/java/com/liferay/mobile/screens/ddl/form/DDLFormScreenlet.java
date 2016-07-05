@@ -580,14 +580,8 @@ public class DDLFormScreenlet
 	}
 
 	protected void setFieldLayoutId(Field.EditorType editorType, TypedArray typedArray, int index) {
-		int layoutId = typedArray.getResourceId(index, 0);
-
-		if (layoutId == 0) {
-			getViewModel().resetFieldLayoutId(editorType);
-		}
-		else {
-			getViewModel().setFieldLayoutId(editorType, layoutId);
-		}
+		//TODO check if this is needed...
+		setFieldLayoutId(getViewModel(), typedArray, editorType, index);
 	}
 
 	@Override
