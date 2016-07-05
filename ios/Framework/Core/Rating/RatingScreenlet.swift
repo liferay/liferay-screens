@@ -40,7 +40,7 @@ import UIKit
     }
     
     private func createLoadRatingsInteractor() -> LoadRatingsInteractor {
-        let interactor = LoadRatingsInteractor(screenlet: self, entryId: entryId, stepCount: stepCount)
+        let interactor = LoadRatingsInteractor(screenlet: self, entryId: entryId, classPK: classPK, className: className, stepCount: stepCount)
         
         interactor.onSuccess = {
             if let result = interactor.resultRating {
@@ -80,10 +80,14 @@ import UIKit
         return interactor
     }
     
+    private func validateParameters() -> Bool {
+        return entryId != 0 || (classPK != 0 && className != "")
+    }
+    
     //MARK: Public methods
     
     public override func onShow() {
-        if (autoLoad && SessionContext.isLoggedIn) {
+        if (autoLoad && SessionContext.isLoggedIn && validateParameters()) {
             loadRatings()
         }
     }

@@ -13,14 +13,17 @@
  */
 import UIKit
 
-public class RatingView_default: BaseScreenletView, RatingViewModel {
-
-    @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var countLabel: UILabel!
+public class RatingThumbsView_default: BaseScreenletView, RatingViewModel {
+    
+    @IBOutlet weak var negativeButton: UIButton!
+    @IBOutlet weak var possitiveButton: UIButton!
+    @IBOutlet weak var negativeCountLabel: UILabel!
+    @IBOutlet weak var possitiveCountLabel: UILabel!
     
     override public var editable: Bool {
         didSet {
-            self.likeButton.enabled = editable
+            self.negativeButton.enabled = editable
+            self.possitiveButton.enabled = editable
         }
     }
     
@@ -28,22 +31,44 @@ public class RatingView_default: BaseScreenletView, RatingViewModel {
     
     public var ratingEntry: RatingEntry? {
         didSet {
-            self.countLabel.text = "Total: \(ratingEntry!.totalCount)"
+            self.negativeCountLabel.text = "Total: \(ratingEntry!.ratings[0])"
+            self.possitiveCountLabel.text = "Total: \(ratingEntry!.ratings[1])"
+            
+            let possitiveImage = NSBundle.imageInBundles(
+                name: "default-thumb-up",
+                currentClass: UserPortraitView_default.self)?.imageWithRenderingMode(.AlwaysTemplate)
+            let negativeImage = NSBundle.imageInBundles(
+                name: "default-thumb-down",
+                currentClass: UserPortraitView_default.self)?.imageWithRenderingMode(.AlwaysTemplate)
+            self.possitiveButton.setBackgroundImage(possitiveImage, forState: .Normal)
+            self.negativeButton.setBackgroundImage(negativeImage, forState: .Normal)
             
             if ratingEntry!.userScore == -1 {
-                self.likeButton.setTitle("LIKE", forState: .Normal)
-                self.likeButton.restorationIdentifier = RatingScreenlet.AddRatingAction
+                self.possitiveButton.tintColor = UIColor.grayColor()
+                self.negativeButton.tintColor = UIColor.grayColor()
+                self.possitiveButton.restorationIdentifier = RatingScreenlet.AddRatingAction
+                self.negativeButton.restorationIdentifier = RatingScreenlet.AddRatingAction
+            } else if ratingEntry!.userScore == 0 {
+                self.possitiveButton.tintColor = UIColor.grayColor()
+                self.negativeButton.tintColor = DefaultThemeBasicBlue
+                self.possitiveButton.restorationIdentifier = RatingScreenlet.AddRatingAction
+                self.negativeButton.restorationIdentifier = RatingScreenlet.DeleteRatingAction
             } else {
-                self.likeButton.setTitle("DON'T", forState: .Normal)
-                self.likeButton.restorationIdentifier = RatingScreenlet.DeleteRatingAction
+                self.possitiveButton.tintColor = DefaultThemeBasicBlue
+                self.negativeButton.tintColor = UIColor.grayColor()
+                self.possitiveButton.restorationIdentifier = RatingScreenlet.DeleteRatingAction
+                self.negativeButton.restorationIdentifier = RatingScreenlet.AddRatingAction
             }
             
         }
     }
     
-    @IBAction func likeButtonClicked(sender: AnyObject) {
-        self.selectedUserScore = self.ratingEntry?.userScore == -1 ? 1 : 0
+    @IBAction func possitiveButtonClicked(sender: UIButton) {
+        self.selectedUserScore = 1
         self.userActionWithSender(sender)
     }
-    
+    @IBAction func negativeButtonClicked(sender: UIButton) {
+        self.selectedUserScore = 0
+        self.userActionWithSender(sender)
+    }
 }

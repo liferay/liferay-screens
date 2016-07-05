@@ -16,13 +16,17 @@ import UIKit
 public class LoadRatingsInteractor: Interactor, LRCallback {
     
     let entryId: Int64
+    let classPK: Int64
+    let className: String
     let stepCount: Int32
     
     var resultRating: RatingEntry?
     
-    init(screenlet: BaseScreenlet, entryId: Int64, stepCount: Int32) {
+    init(screenlet: BaseScreenlet, entryId: Int64, classPK: Int64, className: String, stepCount: Int32) {
         self.entryId = entryId
         self.stepCount = stepCount
+        self.className = className
+        self.classPK = classPK
         super.init(screenlet: screenlet)
     }
     
@@ -33,7 +37,12 @@ public class LoadRatingsInteractor: Interactor, LRCallback {
         let service = LRScreensratingsentryService_v70(session: session)
         
         do {
-            try service.getRatingsEntriesWithEntryId(entryId, stepCount: stepCount)
+            if entryId != 0 {
+                try service.getRatingsEntriesWithEntryId(entryId, stepCount: stepCount)
+            } else {
+                try service.getRatingsEntriesWithClassPK(classPK, className: className, stepCount: stepCount)
+            }
+            
             return true
         } catch {
             return false

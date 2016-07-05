@@ -17,7 +17,17 @@ import LiferayScreens
 
 class RatingScreenletViewController: UIViewController {
     
+    @IBOutlet weak var thumbsScreenlet: RatingScreenlet!
+    @IBOutlet weak var likeScreenlet: RatingScreenlet!
+    @IBOutlet weak var starBarScreenlet: RatingScreenlet!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    @IBAction func switchChange(sender: UISwitch) {
+        thumbsScreenlet.editable = sender.on
+        likeScreenlet.editable = sender.on
+        starBarScreenlet.editable = sender.on
     }
 }

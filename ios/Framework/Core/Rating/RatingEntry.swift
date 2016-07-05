@@ -22,6 +22,10 @@ import UIKit
         return attributes["totalCount"]! as! Int
     }
     
+    public var average: Double {
+        return attributes["average"]! as! Double
+    }
+    
     public var userScore: Double {
         return attributes["userScore"]! as! Double
     }
@@ -32,6 +36,10 @@ import UIKit
     
     public var className: String {
         return attributes["className"]! as! String
+    }
+    
+    public var ratings: [Int] {
+        return attributes["ratings"]! as! [Int]
     }
     
     //MARK: Init

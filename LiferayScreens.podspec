@@ -69,4 +69,7 @@ Pod::Spec.new do |s|
 	s.dependency 'TNRadioButtonGroup', '0.4'
 	s.dependency 'MDRadialProgress', '1.3.2'
 
+	# RatingBar
+	s.dependency 'Cosmos', '~> 1.2'
+
 end
