@@ -14,11 +14,18 @@
 import Foundation
 
 @objc public class NetworkActivityIndicatorPresenter: NSObject, ProgressPresenter {
+    static var numberOfVisibilityCalls = 0
+    
     public func showHUDInView(view: UIView, message: String?, closeMode: ProgressCloseMode, spinnerMode: ProgressSpinnerMode) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        setNetworkActivityIndicatorVisible(true)
     }
     
     public func hideHUD() {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        setNetworkActivityIndicatorVisible(false)
+    }
+    
+    private func setNetworkActivityIndicatorVisible(visible: Bool) {
+        NetworkActivityIndicatorPresenter.numberOfVisibilityCalls += visible ? 1 : -1
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = NetworkActivityIndicatorPresenter.numberOfVisibilityCalls > 0
     }
 }

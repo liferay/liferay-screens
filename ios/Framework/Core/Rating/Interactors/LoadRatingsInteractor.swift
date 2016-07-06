@@ -50,12 +50,12 @@ public class LoadRatingsInteractor: Interactor, LRCallback {
     }
     
     public func onFailure(error: NSError!) {
-        self.onFailure?(error)
+        callOnFailure(error)
     }
     
     public func onSuccess(result: AnyObject!) {
         resultRating = RatingEntry(attributes: result as! [String: AnyObject])
-        self.onSuccess?()
+        callOnSuccess()
     }
 
 }

@@ -22,6 +22,22 @@ public class RatingThumbsView_default: BaseScreenletView, RatingViewModel {
     
     public var selectedUserScore: NSNumber?
     
+    //MARK: BaseScreenletView
+    
+    public override func createProgressPresenter() -> ProgressPresenter {
+        return NetworkActivityIndicatorPresenter()
+    }
+    
+    override public var progressMessages: [String:ProgressMessages] {
+        return [
+            RatingScreenlet.LoadRatingsAction : [.Working : ""],
+            RatingScreenlet.AddRatingAction : [.Working : ""],
+            RatingScreenlet.DeleteRatingAction : [.Working : ""],
+        ]
+    }
+    
+    //MARK: RatingViewModel
+    
     public var ratingEntry: RatingEntry? {
         didSet {
             self.negativeCountLabel.text = "Total: \(ratingEntry!.ratings[0])"

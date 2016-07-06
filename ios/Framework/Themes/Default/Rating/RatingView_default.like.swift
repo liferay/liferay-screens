@@ -20,6 +20,20 @@ public class RatingLikeView_default: BaseScreenletView, RatingViewModel {
     
     public var selectedUserScore: NSNumber?
     
+    //MARK: BaseScreenletView
+    
+    public override func createProgressPresenter() -> ProgressPresenter {
+        return NetworkActivityIndicatorPresenter()
+    }
+    
+    override public var progressMessages: [String:ProgressMessages] {
+        return [
+            RatingScreenlet.LoadRatingsAction : [.Working : ""],
+            RatingScreenlet.AddRatingAction : [.Working : ""],
+            RatingScreenlet.DeleteRatingAction : [.Working : ""],
+        ]
+    }
+
     public var ratingEntry: RatingEntry? {
         didSet {
             self.countLabel.text = "Total: \(ratingEntry!.totalCount)"
