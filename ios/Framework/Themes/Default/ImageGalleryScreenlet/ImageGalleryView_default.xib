@@ -27,7 +27,7 @@
                 <constraint firstItem="6Jo-hK-3aW" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="nhy-IS-gwU"/>
             </constraints>
             <connections>
-                <outlet property="tableView" destination="6Jo-hK-3aW" id="mXM-TR-UWu"/>
+                <outlet property="tableView" destination="6Jo-hK-3aW" id="96e-3g-Bdz"/>
             </connections>
         </view>
     </objects>

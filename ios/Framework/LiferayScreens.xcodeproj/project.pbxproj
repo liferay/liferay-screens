@@ -48,6 +48,12 @@
 		0BCB4FB11D37C08B0023E2CA /* LRScreensddlrecordService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BCB4FAF1D37C08B0023E2CA /* LRScreensddlrecordService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0BCB4FB21D37C08B0023E2CA /* LRScreensddlrecordService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB4FB01D37C08B0023E2CA /* LRScreensddlrecordService_v70.m */; };
 		0BE1E0F31D364E96000A2678 /* SequenceType+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1E0F21D364E96000A2678 /* SequenceType+Screens.swift */; };
+		0B13EF961D2C1F420001023A /* ImageGalleryScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B13EF951D2C1F420001023A /* ImageGalleryScreenlet.swift */; };
+		0B13EF981D2C1F4F0001023A /* ImageEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B13EF971D2C1F4F0001023A /* ImageEntry.swift */; };
+		0B13EF9B1D2C25BE0001023A /* ImageGalleryView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B13EF9A1D2C25BE0001023A /* ImageGalleryView_default.swift */; };
+		0B13EF9D1D2C25FA0001023A /* ImageGalleryView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B13EF9C1D2C25FA0001023A /* ImageGalleryView_default.xib */; };
+		0B13EF9F1D2C294D0001023A /* ImageGalleryPageLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B13EF9E1D2C294D0001023A /* ImageGalleryPageLiferayConnector.swift */; };
+		0B13EFA11D2C2DB90001023A /* ImageGalleryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B13EFA01D2C2DB90001023A /* ImageGalleryInteractor.swift */; };
 		431250828CDCA06E95D11B8A /* Pods_LiferayScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F2FC46C9BDDDADEE705508 /* Pods_LiferayScreensTests.framework */; };
 		88019FA21B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */; };
 		88019FA31B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */; };
@@ -466,6 +472,12 @@
 		0BCB4FAF1D37C08B0023E2CA /* LRScreensddlrecordService_v70.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensddlrecordService_v70.h; sourceTree = "<group>"; };
 		0BCB4FB01D37C08B0023E2CA /* LRScreensddlrecordService_v70.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensddlrecordService_v70.m; sourceTree = "<group>"; };
 		0BE1E0F21D364E96000A2678 /* SequenceType+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SequenceType+Screens.swift"; sourceTree = "<group>"; };
+		0B13EF951D2C1F420001023A /* ImageGalleryScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryScreenlet.swift; sourceTree = "<group>"; };
+		0B13EF971D2C1F4F0001023A /* ImageEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEntry.swift; sourceTree = "<group>"; };
+		0B13EF9A1D2C25BE0001023A /* ImageGalleryView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryView_default.swift; sourceTree = "<group>"; };
+		0B13EF9C1D2C25FA0001023A /* ImageGalleryView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageGalleryView_default.xib; sourceTree = "<group>"; };
+		0B13EF9E1D2C294D0001023A /* ImageGalleryPageLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryPageLiferayConnector.swift; sourceTree = "<group>"; };
+		0B13EFA01D2C2DB90001023A /* ImageGalleryInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryInteractor.swift; sourceTree = "<group>"; };
 		7C0B882BE724FFD745F72E9B /* Pods-LiferayScreensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.debug.xcconfig"; sourceTree = "<group>"; };
 		88019FA11B8F22EE00674B00 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/webcontentdisplay-screenlet.strings"; sourceTree = "<group>"; };
 		880459EC1CA15FA400449D55 /* DDMFieldTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDMFieldTableCell.swift; sourceTree = "<group>"; };
@@ -812,6 +824,34 @@
 			path = Fields;
 			sourceTree = "<group>";
 		};
+		0B13EF931D2C1ECE0001023A /* ImageGallery */ = {
+			isa = PBXGroup;
+			children = (
+				0B13EF941D2C1EDE0001023A /* ImageGalleryScreenlet */,
+			);
+			name = ImageGallery;
+			sourceTree = "<group>";
+		};
+		0B13EF941D2C1EDE0001023A /* ImageGalleryScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				0B13EF951D2C1F420001023A /* ImageGalleryScreenlet.swift */,
+				0B13EF971D2C1F4F0001023A /* ImageEntry.swift */,
+				0B13EF9E1D2C294D0001023A /* ImageGalleryPageLiferayConnector.swift */,
+				0B13EFA01D2C2DB90001023A /* ImageGalleryInteractor.swift */,
+			);
+			name = ImageGalleryScreenlet;
+			sourceTree = "<group>";
+		};
+		0B13EF991D2C259E0001023A /* ImageGalleryScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				0B13EF9A1D2C25BE0001023A /* ImageGalleryView_default.swift */,
+				0B13EF9C1D2C25FA0001023A /* ImageGalleryView_default.xib */,
+			);
+			name = ImageGalleryScreenlet;
+			sourceTree = "<group>";
+		};
 		64425867C18F568E2864B9C1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1050,6 +1090,7 @@
 		881E61BA1ACBFC3400862B9E /* Default */ = {
 			isa = PBXGroup;
 			children = (
+				0B13EF991D2C259E0001023A /* ImageGalleryScreenlet */,
 				881E61BB1ACBFC3400862B9E /* AssetListScreenlet */,
 				881E61BE1ACBFC3400862B9E /* Auth */,
 				881E61CB1ACBFC3400862B9E /* DDL */,
@@ -1473,6 +1514,7 @@
 		8892C6941ACB2FDC00192232 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				0B13EF931D2C1ECE0001023A /* ImageGallery */,
 				881E613F1ACBEDC600862B9E /* AssetListScreenlet */,
 				881E60DE1ACBE5F000862B9E /* Auth */,
 				881E60B41ACBE3FF00862B9E /* Base */,
@@ -1825,6 +1867,7 @@
 				881E62651ACBFC3400862B9E /* default-preview-assetlist@2x.png in Resources */,
 				88CA80691B25E505004C1D59 /* OAuthWebViewController_default.xib in Resources */,
 				881E625C1ACBFC3400862B9E /* default-hourglass@2x.png in Resources */,
+				0B13EF9D1D2C25FA0001023A /* ImageGalleryView_default.xib in Resources */,
 				881E625F1ACBFC3400862B9E /* default-mail-icon.png in Resources */,
 				881E62511ACBFC3400862B9E /* default-field-failed.png in Resources */,
 				88BCB5611B8CAC22004349F1 /* assetlist-screenlet.strings in Resources */,
@@ -2058,6 +2101,8 @@
 				888DF5B41ACC9FF100EB7DA1 /* LoginView_default.swift in Sources */,
 				88B8443E1C73D6C0007A447D /* ServerConnectorInteractor.swift in Sources */,
 				88CA91B81B8DE3AD000B92F2 /* UserPortraitDefaultProgressPresenter.swift in Sources */,
+				0B13EFA11D2C2DB90001023A /* ImageGalleryInteractor.swift in Sources */,
+				0B13EF9F1D2C294D0001023A /* ImageGalleryPageLiferayConnector.swift in Sources */,
 				88AF68361CBFF58700097014 /* WebContentListPageLiferayConnector.swift in Sources */,
 				0BB5037F1D38CE3A00ABD6B3 /* DDMFieldDate.swift in Sources */,
 				881E62361ACBFC3400862B9E /* DDLFieldDateTableCell_default.swift in Sources */,
@@ -2081,6 +2126,7 @@
 				881E624B1ACBFC3400862B9E /* DDLListView_default.swift in Sources */,
 				889125AA1D5479E6006AFA08 /* LoadRatingsInteractor.swift in Sources */,
 				88CA80741B25F868004C1D59 /* OAuthCredentialsStoreKeyChain.swift in Sources */,
+				0B13EF981D2C1F4F0001023A /* ImageEntry.swift in Sources */,
 				88B844C21C73D8F7007A447D /* DDLFormLoadLiferayConnector.swift in Sources */,
 				0BB503781D38CE3A00ABD6B3 /* DDMStructure.swift in Sources */,
 				88B273121B7109C300477E5E /* DefaultProgressPresenter.swift in Sources */,
@@ -2114,6 +2160,7 @@
 				8837FA781CAEF6AE00DCB1B4 /* WebContentDisplayLoadInteractor.swift in Sources */,
 				88B8443A1C73D6C0007A447D /* ServerConnector.swift in Sources */,
 				0BB5033D1D37C04A00ABD6B3 /* WebContent.swift in Sources */,
+				0B13EF9B1D2C25BE0001023A /* ImageGalleryView_default.swift in Sources */,
 				881E623C1ACBFC3400862B9E /* DDLFieldNumberTableCell_default.swift in Sources */,
 				887E069C1C6A4DF800CA3807 /* LRScreensjournalarticleService_v70.m in Sources */,
 				88B844521C73D750007A447D /* DDLListPageLiferayConnector.swift in Sources */,
@@ -2189,6 +2236,7 @@
 				881E61781ACBEE0B00862B9E /* DDLFormScreenlet.swift in Sources */,
 				88B8443C1C73D6C0007A447D /* ServerConnectorChain.swift in Sources */,
 				889125A71D5479E6006AFA08 /* RatingLoadByEntryIdLiferayConnector.swift in Sources */,
+				0B13EF961D2C1F420001023A /* ImageGalleryScreenlet.swift in Sources */,
 				881E617C1ACBEE0B00862B9E /* DDLFormLoadFormInteractor.swift in Sources */,
 				889125A61D5479E6006AFA08 /* RatingLoadByClassPKLiferayConnector.swift in Sources */,
 				88CC3B0B1CC52E9A00E0AEB7 /* SMXMLDocument+Screens.swift in Sources */,

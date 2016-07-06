@@ -24,12 +24,12 @@ public class ImageEntry : Asset {
     }
     
     private func createThumbnailUrl() -> String {
-        return "\(createImageUrl())?version=\(attributes["version"])&imageThumbnail=1"
+        return "\(createImageUrl())?version=\(attributes["version"]!)&imageThumbnail=1"
     }
     
     private func createImageUrl() -> String {
-        return "\(LiferayServerContext.server)/documents/\(attributes["groupId"])/)" +
-            "\(attributes["folderId"])/\(encodeUrlString(title))/\(attributes["uuid"]))"
+        return "\(LiferayServerContext.server)/documents/\(attributes["groupId"]!)/" +
+            "\(attributes["folderId"]!)/\(encodeUrlString(title))/\(attributes["uuid"]!)"
     }
     
     private func encodeUrlString(originalString: String) -> String {
