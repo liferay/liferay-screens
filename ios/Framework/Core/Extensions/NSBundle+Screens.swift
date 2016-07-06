@@ -99,5 +99,27 @@ extension NSBundle {
 
 		return nil
 	}
+    
+    public class func nibInBundles(name name: String, currentClass: AnyClass) -> UINib? {
+        
+        return resourceInBundle(
+            name: name,
+            ofType: "nib",
+            currentClass: currentClass) { _, bundle in
+                return UINib(nibName: name, bundle: bundle)
+        }
+    }
+    
+    public class func resourceInBundle<T>(name name: String, ofType type: String, currentClass: AnyClass,
+                                       @noescape resourceInit: (String , NSBundle) -> T?) -> T? {
+        
+        for bundle in allBundles(currentClass) {
+            if let path = bundle.pathForResource(name, ofType: type) {
+                return resourceInit(path, bundle)
+            }
+        }
+        
+        return nil
+    }
 
 }
