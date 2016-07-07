@@ -38,7 +38,7 @@ public class BaseListView: BaseScreenletView {
     public func setRows(newRows: [AnyObject?], rowCount: Int) {
         loadingRows = false
         
-        if _rows.count != 0 && _rows.count == newRows.count {
+        if _rows.count == newRows.count {
             moreRows = false
         }
 		_rowCount = rowCount
@@ -49,8 +49,20 @@ public class BaseListView: BaseScreenletView {
         
 		onChangedRows(oldRows)
 	}
+    
+    public func clearRows() {
+        let oldRows = _rows
+        _rows = [AnyObject]()
+        _rowCount = 0
+        
+        onClearRows(oldRows)
+    }
 
 	public func onChangedRows(oldRows:[AnyObject?]) {
 	}
+    
+    public func onClearRows(oldRows:[AnyObject?]) {
+        
+    }
 
 }

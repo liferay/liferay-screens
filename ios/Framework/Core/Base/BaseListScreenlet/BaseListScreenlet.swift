@@ -96,7 +96,7 @@ import UIKit
 
 		if name == BaseListScreenlet.LoadInitialPageAction {
 			// clear list while it's loading
-			self.baseListView.setRows([], rowCount: 0)
+			self.baseListView.clearRows()
 		}
 
 		return super.onAction(name: name, interactor: interactor, sender: sender)

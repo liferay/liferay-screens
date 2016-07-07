@@ -77,6 +77,10 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 			tableView!.reloadData()
 		}
 	}
+    
+    public override func onClearRows(oldRows: [AnyObject?]) {
+        clearAllRows(oldRows)
+    }
 
 	override public func onFinishInteraction(result: AnyObject?, error: NSError?) {
 		if let currentRefreshControl = refreshControlView {
