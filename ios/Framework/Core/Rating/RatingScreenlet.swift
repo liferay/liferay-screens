@@ -40,7 +40,7 @@ import UIKit
     }
     
     private func createLoadRatingsInteractor() -> LoadRatingsInteractor {
-        let interactor = LoadRatingsInteractor(screenlet: self, entryId: entryId, classPK: classPK, className: className, stepCount: stepCount)
+        let interactor = LoadRatingsInteractor(screenlet: self)
         
         interactor.onSuccess = {
             if let result = interactor.resultRating {
