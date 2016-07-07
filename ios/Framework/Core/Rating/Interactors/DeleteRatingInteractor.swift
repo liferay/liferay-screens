@@ -14,22 +14,22 @@
 import UIKit
 
 public class DeleteRatingInteractor: ServerWriteConnectorInteractor {
-    
-    var resultRating: RatingEntry?
-    
-    override public func createConnector() -> ServerConnector? {
-        let screenlet = self.screenlet as! RatingScreenlet
-        
-        return LiferayServerContext.connectorFactory.createRatingDeleteConnector(
-            classPK: screenlet.classPK,
-            className: screenlet.className,
-            stepCount: screenlet.stepCount)
-    }
-    
-    override public func completedConnector(op: ServerConnector) {
-        if let deleteOp = op as? RatingDeleteLiferayConnector {
-            self.resultRating = deleteOp.resultRating
-        }
-    }
-    
+	
+	var resultRating: RatingEntry?
+	
+	override public func createConnector() -> ServerConnector? {
+		let screenlet = self.screenlet as! RatingScreenlet
+		
+		return LiferayServerContext.connectorFactory.createRatingDeleteConnector(
+			classPK: screenlet.classPK,
+			className: screenlet.className,
+			stepCount: screenlet.stepCount)
+	}
+	
+	override public func completedConnector(op: ServerConnector) {
+		if let deleteOp = op as? RatingDeleteLiferayConnector {
+			self.resultRating = deleteOp.resultRating
+		}
+	}
+	
 }

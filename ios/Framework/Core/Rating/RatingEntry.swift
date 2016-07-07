@@ -15,37 +15,37 @@ import UIKit
 
 
 @objc public class RatingEntry : NSObject {
-    
-    public let attributes :[String:AnyObject]
-    
-    public var totalCount: Int {
-        return attributes["totalCount"]! as! Int
-    }
-    
-    public var average: Double {
-        return attributes["average"]! as! Double
-    }
-    
-    public var userScore: Double {
-        return attributes["userScore"]! as! Double
-    }
-    
-    public var classPK: Int64 {
-        return (attributes["classPK"]! as! String).asLong!
-    }
-    
-    public var className: String {
-        return attributes["className"]! as! String
-    }
-    
-    public var ratings: [Int] {
-        return attributes["ratings"]! as! [Int]
-    }
-    
-    //MARK: Init
-    
-    public init(attributes: [String:AnyObject]) {
-        self.attributes = attributes
-    }
-    
+	
+	public let attributes :[String:AnyObject]
+	
+	public var totalCount: Int {
+		return attributes["totalCount"]! as! Int
+	}
+	
+	public var average: Double {
+		return attributes["average"]! as! Double
+	}
+	
+	public var userScore: Double {
+		return attributes["userScore"]! as! Double
+	}
+	
+	public var classPK: Int64 {
+		return (attributes["classPK"]! as! String).asLong!
+	}
+	
+	public var className: String {
+		return attributes["className"]! as! String
+	}
+	
+	public var ratings: [Int] {
+		return attributes["ratings"]! as! [Int]
+	}
+	
+	//MARK: Init
+	
+	public init(attributes: [String:AnyObject]) {
+		self.attributes = attributes
+	}
+	
 }

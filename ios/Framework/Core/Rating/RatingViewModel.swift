@@ -15,11 +15,11 @@ import UIKit
 
 
 @objc public protocol RatingViewModel {
-    
-    var editable: Bool {get set}
-    
-    var ratingEntry: RatingEntry? {get set}
-    
-    var selectedUserScore: NSNumber? {get set}
-    
+	
+	var editable: Bool {get set}
+	
+	var ratingEntry: RatingEntry? {get set}
+	
+	var selectedUserScore: NSNumber? {get set}
+	
 }

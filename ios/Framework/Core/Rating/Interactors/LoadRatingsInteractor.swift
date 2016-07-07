@@ -14,23 +14,23 @@
 import UIKit
 
 public class LoadRatingsInteractor: ServerReadConnectorInteractor {
-    
-    var resultRating: RatingEntry?
-    
-    override public func createConnector() -> ServerConnector? {
-        let screenlet = self.screenlet as! RatingScreenlet
-        
-        return LiferayServerContext.connectorFactory.createRatingLoadConnector(
-            entryId: screenlet.entryId,
-            classPK: screenlet.classPK,
-            className: screenlet.className,
-            stepCount: screenlet.stepCount)
-    }
-    
-    override public func completedConnector(op: ServerConnector) {
-        if let loadOp = op as? RatingLoadLiferayConnector {
-            self.resultRating = loadOp.resultRating
-        }
-    }
+	
+	var resultRating: RatingEntry?
+	
+	override public func createConnector() -> ServerConnector? {
+		let screenlet = self.screenlet as! RatingScreenlet
+		
+		return LiferayServerContext.connectorFactory.createRatingLoadConnector(
+			entryId: screenlet.entryId,
+			classPK: screenlet.classPK,
+			className: screenlet.className,
+			stepCount: screenlet.stepCount)
+	}
+	
+	override public func completedConnector(op: ServerConnector) {
+		if let loadOp = op as? RatingLoadLiferayConnector {
+			self.resultRating = loadOp.resultRating
+		}
+	}
 
 }

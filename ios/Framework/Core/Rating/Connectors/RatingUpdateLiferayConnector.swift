@@ -15,56 +15,56 @@ import UIKit
 import LRMobileSDK
 
 public class RatingUpdateLiferayConnector: ServerConnector {
-    
-    let classPK: Int64
-    let className: String
-    let score: Double
-    let stepCount: Int32
-    
-    var resultRating: RatingEntry?
-    
-    public init(classPK: Int64, className: String, score: Double, stepCount: Int32) {
-        self.stepCount = stepCount
-        self.score = score
-        self.className = className
-        self.classPK = classPK
-        super.init()
-    }
-    
-    public override func validateData() -> ValidationError? {
-        let error = super.validateData()
-        
-        if error == nil {
-            if classPK == 0 {
-                return ValidationError("rating-screenlet", "undefined-classPK")
-            } else if className == "" {
-                return ValidationError("rating-screenlet", "undefined-className")
-            } else if stepCount < 1 {
-                return ValidationError("rating-screenlet", "wrong-stepCount")
-            } else if score < 0 || score > 1 {
-                return ValidationError("rating-screenlet", "wrong-score")
-            }
-        }
-        
-        return error
-    }
-    
+	
+	let classPK: Int64
+	let className: String
+	let score: Double
+	let stepCount: Int32
+	
+	var resultRating: RatingEntry?
+	
+	public init(classPK: Int64, className: String, score: Double, stepCount: Int32) {
+		self.stepCount = stepCount
+		self.score = score
+		self.className = className
+		self.classPK = classPK
+		super.init()
+	}
+	
+	public override func validateData() -> ValidationError? {
+		let error = super.validateData()
+		
+		if error == nil {
+			if classPK == 0 {
+				return ValidationError("rating-screenlet", "undefined-classPK")
+			} else if className == "" {
+				return ValidationError("rating-screenlet", "undefined-className")
+			} else if stepCount < 1 {
+				return ValidationError("rating-screenlet", "wrong-stepCount")
+			} else if score < 0 || score > 1 {
+				return ValidationError("rating-screenlet", "wrong-score")
+			}
+		}
+		
+		return error
+	}
+	
 }
 
 public class Liferay70RatingUpdateConnector: RatingUpdateLiferayConnector {
-    
-    override public func doRun(session session: LRSession) {
-        let service = LRScreensratingsentryService_v70(session: session)
-        
-        do {
-            let result = try service.updateRatingEntryWithClassPK(classPK, className: className, score: score, stepCount: stepCount)
-            lastError = nil
-            resultRating = RatingEntry(attributes: result as! [String: AnyObject])
-        }
-        catch let error as NSError {
-            lastError = error
-            resultRating = nil
-        }
-    }
-    
+	
+	override public func doRun(session session: LRSession) {
+		let service = LRScreensratingsentryService_v70(session: session)
+		
+		do {
+			let result = try service.updateRatingEntryWithClassPK(classPK, className: className, score: score, stepCount: stepCount)
+			lastError = nil
+			resultRating = RatingEntry(attributes: result as! [String: AnyObject])
+		}
+		catch let error as NSError {
+			lastError = error
+			resultRating = nil
+		}
+	}
+	
 }

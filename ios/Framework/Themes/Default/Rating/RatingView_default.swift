@@ -14,71 +14,71 @@
 import UIKit
 
 public class RatingThumbsView_default: BaseScreenletView, RatingViewModel {
-    
-    @IBOutlet weak var negativeButton: UIButton! {
-        didSet {
-            let image = NSBundle.imageInBundles(
-                name: "default-thumb-down",
-                currentClass: RatingThumbsView_default.self)?.imageWithRenderingMode(.AlwaysTemplate)
-            self.negativeButton.setBackgroundImage(image, forState: .Normal)
-        }
-    }
-    
-    @IBOutlet weak var possitiveButton: UIButton! {
-        didSet {
-            let image = NSBundle.imageInBundles(
-                name: "default-thumb-up",
-                currentClass: RatingThumbsView_default.self)?.imageWithRenderingMode(.AlwaysTemplate)
-            self.possitiveButton.setBackgroundImage(image, forState: .Normal)
-        }
-    }
-    
-    @IBOutlet weak var negativeCountLabel: UILabel!
-    @IBOutlet weak var possitiveCountLabel: UILabel!
-    
-    public var selectedUserScore: NSNumber?
-    
-    //MARK: BaseScreenletView
-    
-    public override func createProgressPresenter() -> ProgressPresenter {
-        return NetworkActivityIndicatorPresenter()
-    }
-    
-    override public var progressMessages: [String:ProgressMessages] {
-        return [
-            RatingScreenlet.LoadRatingsAction : [.Working : ""],
-            RatingScreenlet.UpdateRatingAction : [.Working : ""],
-            RatingScreenlet.DeleteRatingAction : [.Working : ""],
-        ]
-    }
-    
-    //MARK: RatingViewModel
-    
-    public var ratingEntry: RatingEntry? {
-        didSet {
-            if let rating = ratingEntry {
-                self.negativeCountLabel.text = NSString.localizedStringWithFormat(LocalizedString("default", key: "rating-total", obj: self), rating.ratings[0]) as String
-                self.possitiveCountLabel.text = NSString.localizedStringWithFormat(LocalizedString("default", key: "rating-total", obj: self), rating.ratings[1]) as String
-                
-                let score = rating.userScore
-                
-                self.possitiveButton.tintColor = score > 0 ? DefaultThemeBasicBlue : UIColor.grayColor()
-                self.negativeButton.tintColor = score == 0 ? DefaultThemeBasicBlue : UIColor.grayColor()
-                
-                self.possitiveButton.restorationIdentifier = score > 0 ?
-                    RatingScreenlet.DeleteRatingAction : RatingScreenlet.UpdateRatingAction
-                self.negativeButton.restorationIdentifier = score == 0 ?
-                    RatingScreenlet.DeleteRatingAction : RatingScreenlet.UpdateRatingAction
-            }
-        }
-    }
-    
-    @IBAction func possitiveButtonClicked(sender: UIButton) {
-        self.selectedUserScore = 1
-        self.userActionWithSender(sender)
-    }
-    @IBAction func negativeButtonClicked(sender: UIButton) {
-        self.selectedUserScore = 0
-        self.userActionWithSender(sender)
-    }
+	
+	@IBOutlet weak var negativeButton: UIButton! {
+		didSet {
+			let image = NSBundle.imageInBundles(
+				name: "default-thumb-down",
+				currentClass: RatingThumbsView_default.self)?.imageWithRenderingMode(.AlwaysTemplate)
+			self.negativeButton.setBackgroundImage(image, forState: .Normal)
+		}
+	}
+	
+	@IBOutlet weak var possitiveButton: UIButton! {
+		didSet {
+			let image = NSBundle.imageInBundles(
+				name: "default-thumb-up",
+				currentClass: RatingThumbsView_default.self)?.imageWithRenderingMode(.AlwaysTemplate)
+			self.possitiveButton.setBackgroundImage(image, forState: .Normal)
+		}
+	}
+	
+	@IBOutlet weak var negativeCountLabel: UILabel!
+	@IBOutlet weak var possitiveCountLabel: UILabel!
+	
+	public var selectedUserScore: NSNumber?
+	
+	//MARK: BaseScreenletView
+	
+	public override func createProgressPresenter() -> ProgressPresenter {
+		return NetworkActivityIndicatorPresenter()
+	}
+	
+	override public var progressMessages: [String:ProgressMessages] {
+		return [
+			RatingScreenlet.LoadRatingsAction : [.Working : ""],
+			RatingScreenlet.UpdateRatingAction : [.Working : ""],
+			RatingScreenlet.DeleteRatingAction : [.Working : ""],
+		]
+	}
+	
+	//MARK: RatingViewModel
+	
+	public var ratingEntry: RatingEntry? {
+		didSet {
+			if let rating = ratingEntry {
+				self.negativeCountLabel.text = NSString.localizedStringWithFormat(LocalizedString("default", key: "rating-total", obj: self), rating.ratings[0]) as String
+				self.possitiveCountLabel.text = NSString.localizedStringWithFormat(LocalizedString("default", key: "rating-total", obj: self), rating.ratings[1]) as String
+				
+				let score = rating.userScore
+				
+				self.possitiveButton.tintColor = score > 0 ? DefaultThemeBasicBlue : UIColor.grayColor()
+				self.negativeButton.tintColor = score == 0 ? DefaultThemeBasicBlue : UIColor.grayColor()
+				
+				self.possitiveButton.restorationIdentifier = score > 0 ?
+					RatingScreenlet.DeleteRatingAction : RatingScreenlet.UpdateRatingAction
+				self.negativeButton.restorationIdentifier = score == 0 ?
+					RatingScreenlet.DeleteRatingAction : RatingScreenlet.UpdateRatingAction
+			}
+		}
+	}
+	
+	@IBAction func possitiveButtonClicked(sender: UIButton) {
+		self.selectedUserScore = 1
+		self.userActionWithSender(sender)
+	}
+	@IBAction func negativeButtonClicked(sender: UIButton) {
+		self.selectedUserScore = 0
+		self.userActionWithSender(sender)
+	}
 }

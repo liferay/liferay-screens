@@ -13,9 +13,9 @@
  */
 
 #ifdef LIFERAY_SCREENS_FRAMEWORK
-    @import LRMobileSDK;
+	@import LRMobileSDK;
 #else
-    #import "LRBaseService.h"
+	#import "LRBaseService.h"
 #endif
 
 /**
