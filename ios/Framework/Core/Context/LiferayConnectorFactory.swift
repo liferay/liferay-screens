@@ -112,12 +112,16 @@ public protocol LiferayConnectorFactory {
         className: String,
         stepCount: Int32) -> RatingLoadLiferayConnector?
     
-    
     func createRatingUpdateConnector(
         classPK classPK: Int64,
         className: String,
         score: Double,
         stepCount: Int32) -> RatingUpdateLiferayConnector?
+    
+    func createRatingDeleteConnector(
+        classPK classPK: Int64,
+        className: String,
+        stepCount: Int32) -> RatingDeleteLiferayConnector?
 
 }
 
@@ -302,7 +306,12 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
     }
     
     public func createRatingUpdateConnector(classPK classPK: Int64, className: String, score: Double, stepCount: Int32) -> RatingUpdateLiferayConnector? {
-        print("Unsupported connector in Liferay 6.2: RatingLoadLiferayConnector")
+        print("Unsupported connector in Liferay 6.2: RatingUpdateLiferayConnector")
+        return nil
+    }
+    
+    public func createRatingDeleteConnector(classPK classPK: Int64, className: String, stepCount: Int32) -> RatingDeleteLiferayConnector? {
+        print("Unsupported connector in Liferay 6.2: RatingDeleteLiferayConnector")
         return nil
     }
 
@@ -496,6 +505,13 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
             classPK: classPK,
             className: className,
             score: score,
+            stepCount: stepCount)
+    }
+    
+    public func createRatingDeleteConnector(classPK classPK: Int64, className: String, stepCount: Int32) -> RatingDeleteLiferayConnector? {
+        return Liferay70RatingDeleteConnector(
+            classPK: classPK,
+            className: className,
             stepCount: stepCount)
     }
 

@@ -57,7 +57,7 @@ import UIKit
     }
     
     private func createDeleteRatingInteractor() -> DeleteRatingInteractor {
-        let interactor = DeleteRatingInteractor(screenlet: self, classPK: classPK, className: className, stepCount: stepCount)
+        let interactor = DeleteRatingInteractor(screenlet: self)
         
         interactor.onSuccess = {
             self.viewModel.ratingEntry = interactor.resultRating

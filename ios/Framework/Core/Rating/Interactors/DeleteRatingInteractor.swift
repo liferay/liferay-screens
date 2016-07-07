@@ -13,42 +13,23 @@
  */
 import UIKit
 
-public class DeleteRatingInteractor: Interactor, LRCallback {
-    
-    let classPK: Int64
-    let className: String
-    let stepCount: Int32
+public class DeleteRatingInteractor: ServerWriteConnectorInteractor {
     
     var resultRating: RatingEntry?
     
-    init(screenlet: BaseScreenlet, classPK: Int64, className: String, stepCount: Int32) {
-        self.classPK = classPK
-        self.className = className
-        self.stepCount = stepCount
-        super.init(screenlet: screenlet)
+    override public func createConnector() -> ServerConnector? {
+        let screenlet = self.screenlet as! RatingScreenlet
+        
+        return LiferayServerContext.connectorFactory.createRatingDeleteConnector(
+            classPK: screenlet.classPK,
+            className: screenlet.className,
+            stepCount: screenlet.stepCount)
     }
     
-    public override func start() -> Bool {
-        let session = SessionContext.createSessionFromCurrentSession()
-        session?.callback = self
-        
-        let service = LRScreensratingsentryService_v70(session: session)
-        
-        do {
-            try service.deleteRatingEntryWithClassPK(classPK, className: className, stepCount: stepCount)
-            return true
-        } catch {
-            return false
+    override public func completedConnector(op: ServerConnector) {
+        if let deleteOp = op as? RatingDeleteLiferayConnector {
+            self.resultRating = deleteOp.resultRating
         }
-    }
-    
-    public func onFailure(error: NSError!) {
-        self.onFailure?(error)
-    }
-    
-    public func onSuccess(result: AnyObject!) {
-        resultRating = RatingEntry(attributes: result as! [String: AnyObject])
-        self.onSuccess?()
     }
     
 }
