@@ -13,29 +13,16 @@
 */
 import Foundation
 
-
-@objc public enum ProgressCloseMode: Int {
-	case ManualClose
-	case ManualClose_TouchClosable
-	case Autoclose
-	case Autoclose_TouchClosable
-}
-
-
-@objc public enum ProgressSpinnerMode: Int {
-	case IndeterminateSpinner
-	case DeterminateSpinner
-	case NoSpinner
-}
-
 @objc public protocol ProgressPresenter {
 
 	func showHUDInView(view: UIView,
 		message: String?,
-		closeMode: ProgressCloseMode,
-		spinnerMode: ProgressSpinnerMode)
-
-	func hideHUD()
+		forInteractor interactor: Interactor)
+    
+    func hideHUDFromView(view: UIView?,
+        message: String?,
+        forInteractor interactor: Interactor,
+        withError error: NSError?)
 
 }
 
