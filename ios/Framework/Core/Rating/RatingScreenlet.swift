@@ -16,7 +16,7 @@ import UIKit
 @IBDesignable public class RatingScreenlet: BaseScreenlet {
     
     public static let DeleteRatingAction = "deleteRating"
-    public static let AddRatingAction = "addRating"
+    public static let UpdateRatingAction = "updateRating"
     public static let LoadRatingsAction = "loadRatings"
     
     @IBInspectable public var entryId: Int64 = 0
@@ -68,8 +68,8 @@ import UIKit
         return interactor
     }
     
-    private func createAddRatingInteractor() -> AddRatingInteractor {
-        let interactor = AddRatingInteractor(screenlet: self, classPK: classPK, className: className, score: self.viewModel.selectedUserScore!.doubleValue, stepCount: stepCount)
+    private func createUpdateRatingInteractor() -> UpdateRatingInteractor {
+        let interactor = UpdateRatingInteractor(screenlet: self)
         
         interactor.onSuccess = {
             self.viewModel.ratingEntry = interactor.resultRating
@@ -98,8 +98,8 @@ import UIKit
             return createLoadRatingsInteractor()
         case RatingScreenlet.DeleteRatingAction:
             return createDeleteRatingInteractor()
-        case RatingScreenlet.AddRatingAction:
-            return createAddRatingInteractor()
+        case RatingScreenlet.UpdateRatingAction:
+            return createUpdateRatingInteractor()
         default:
             return nil
         }

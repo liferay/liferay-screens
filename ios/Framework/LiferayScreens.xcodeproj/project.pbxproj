@@ -22,6 +22,7 @@
 		0B6CEEE11D2ACD0400BB1BDB /* RatingView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEEE01D2ACD0400BB1BDB /* RatingView_default.swift */; };
 		0B6CEEE31D2ACD5E00BB1BDB /* RatingView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6CEEE21D2ACD5E00BB1BDB /* RatingView_default.xib */; };
 		0B73DA9A1D2E7A020098331C /* RatingLoadLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B73DA991D2E7A020098331C /* RatingLoadLiferayConnector.swift */; };
+		0B73DA9C1D2EAA850098331C /* RatingUpdateLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B73DA9B1D2EAA850098331C /* RatingUpdateLiferayConnector.swift */; };
 		0B8BE70F1D2BFE0B001C3195 /* NetworkActivityIndicatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8BE70E1D2BFE0B001C3195 /* NetworkActivityIndicatorPresenter.swift */; };
 		0BC3AE2B1D2BBE5C006D29E3 /* Cosmos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BC3AE2A1D2BBE5C006D29E3 /* Cosmos.framework */; };
 		0BC3AE2F1D2BD01B006D29E3 /* default-thumb-down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC3AE2C1D2BD01B006D29E3 /* default-thumb-down@3x.png */; };
@@ -451,6 +452,7 @@
 		0B6CEEE01D2ACD0400BB1BDB /* RatingView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingView_default.swift; sourceTree = "<group>"; };
 		0B6CEEE21D2ACD5E00BB1BDB /* RatingView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingView_default.xib; sourceTree = "<group>"; };
 		0B73DA991D2E7A020098331C /* RatingLoadLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingLoadLiferayConnector.swift; sourceTree = "<group>"; };
+		0B73DA9B1D2EAA850098331C /* RatingUpdateLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingUpdateLiferayConnector.swift; sourceTree = "<group>"; };
 		0B8BE70E1D2BFE0B001C3195 /* NetworkActivityIndicatorPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkActivityIndicatorPresenter.swift; sourceTree = "<group>"; };
 		0BC3AE2A1D2BBE5C006D29E3 /* Cosmos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cosmos.framework; path = "../../../../Library/Developer/Xcode/DerivedData/LiferayScreens-eotazwuqkbyiangxvhcjsynaknbf/Build/Products/Debug-iphonesimulator/Cosmos.framework"; sourceTree = "<group>"; };
 		0BC3AE2C1D2BD01B006D29E3 /* default-thumb-down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-thumb-down@3x.png"; sourceTree = "<group>"; };
@@ -801,6 +803,7 @@
 			isa = PBXGroup;
 			children = (
 				0B73DA991D2E7A020098331C /* RatingLoadLiferayConnector.swift */,
+				0B73DA9B1D2EAA850098331C /* RatingUpdateLiferayConnector.swift */,
 			);
 			path = Connectors;
 			sourceTree = "<group>";
@@ -2094,6 +2097,7 @@
 				8892C6B01ACBD89400192232 /* UIView+Screens.swift in Sources */,
 				88B844821C73D81D007A447D /* GetUserByScreenNameLiferayConnectors.swift in Sources */,
 				8837FA761CAEF6AE00DCB1B4 /* WebContentLoadBaseLiferayConnector.swift in Sources */,
+				0B73DA9C1D2EAA850098331C /* RatingUpdateLiferayConnector.swift in Sources */,
 				886F4EED1CA1581E0018229E /* DDLRecord.swift in Sources */,
 				88AF683A1CBFF58700097014 /* WebContentListScreenlet.swift in Sources */,
 				0B6CEEDF1D2AB69400BB1BDB /* AddRatingInteractor.swift in Sources */,

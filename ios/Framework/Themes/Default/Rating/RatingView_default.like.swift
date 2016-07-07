@@ -29,7 +29,7 @@ public class RatingLikeView_default: BaseScreenletView, RatingViewModel {
     override public var progressMessages: [String:ProgressMessages] {
         return [
             RatingScreenlet.LoadRatingsAction : [.Working : ""],
-            RatingScreenlet.AddRatingAction : [.Working : ""],
+            RatingScreenlet.UpdateRatingAction : [.Working : ""],
             RatingScreenlet.DeleteRatingAction : [.Working : ""],
         ]
     }
@@ -46,7 +46,7 @@ public class RatingLikeView_default: BaseScreenletView, RatingViewModel {
             
             if ratingEntry!.userScore == -1 {
                 self.likeButton.tintColor = UIColor.grayColor()
-                self.likeButton.restorationIdentifier = RatingScreenlet.AddRatingAction
+                self.likeButton.restorationIdentifier = RatingScreenlet.UpdateRatingAction
             } else {
                 self.likeButton.tintColor = DefaultThemeBasicBlue
                 self.likeButton.restorationIdentifier = RatingScreenlet.DeleteRatingAction

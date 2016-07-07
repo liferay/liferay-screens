@@ -31,7 +31,7 @@ public class RatingThumbsView_default: BaseScreenletView, RatingViewModel {
     override public var progressMessages: [String:ProgressMessages] {
         return [
             RatingScreenlet.LoadRatingsAction : [.Working : ""],
-            RatingScreenlet.AddRatingAction : [.Working : ""],
+            RatingScreenlet.UpdateRatingAction : [.Working : ""],
             RatingScreenlet.DeleteRatingAction : [.Working : ""],
         ]
     }
@@ -55,18 +55,18 @@ public class RatingThumbsView_default: BaseScreenletView, RatingViewModel {
             if ratingEntry!.userScore == -1 {
                 self.possitiveButton.tintColor = UIColor.grayColor()
                 self.negativeButton.tintColor = UIColor.grayColor()
-                self.possitiveButton.restorationIdentifier = RatingScreenlet.AddRatingAction
-                self.negativeButton.restorationIdentifier = RatingScreenlet.AddRatingAction
+                self.possitiveButton.restorationIdentifier = RatingScreenlet.UpdateRatingAction
+                self.negativeButton.restorationIdentifier = RatingScreenlet.UpdateRatingAction
             } else if ratingEntry!.userScore == 0 {
                 self.possitiveButton.tintColor = UIColor.grayColor()
                 self.negativeButton.tintColor = DefaultThemeBasicBlue
-                self.possitiveButton.restorationIdentifier = RatingScreenlet.AddRatingAction
+                self.possitiveButton.restorationIdentifier = RatingScreenlet.UpdateRatingAction
                 self.negativeButton.restorationIdentifier = RatingScreenlet.DeleteRatingAction
             } else {
                 self.possitiveButton.tintColor = DefaultThemeBasicBlue
                 self.negativeButton.tintColor = UIColor.grayColor()
                 self.possitiveButton.restorationIdentifier = RatingScreenlet.DeleteRatingAction
-                self.negativeButton.restorationIdentifier = RatingScreenlet.AddRatingAction
+                self.negativeButton.restorationIdentifier = RatingScreenlet.UpdateRatingAction
             }
             
         }

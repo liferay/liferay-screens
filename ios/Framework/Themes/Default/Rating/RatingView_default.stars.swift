@@ -23,7 +23,7 @@ public class RatingStarView_default: BaseScreenletView, RatingViewModel {
                 
                 if (self.selectedUserScore != score) {
                     self.selectedUserScore = score
-                    self.userAction(name: RatingScreenlet.AddRatingAction)
+                    self.userAction(name: RatingScreenlet.UpdateRatingAction)
                 }
             }
         }
@@ -42,7 +42,7 @@ public class RatingStarView_default: BaseScreenletView, RatingViewModel {
     override public var progressMessages: [String:ProgressMessages] {
         return [
             RatingScreenlet.LoadRatingsAction : [.Working : ""],
-            RatingScreenlet.AddRatingAction : [.Working : ""],
+            RatingScreenlet.UpdateRatingAction : [.Working : ""],
             RatingScreenlet.DeleteRatingAction : [.Working : ""],
         ]
     }
