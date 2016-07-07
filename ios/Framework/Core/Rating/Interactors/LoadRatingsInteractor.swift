@@ -13,49 +13,24 @@
  */
 import UIKit
 
-public class LoadRatingsInteractor: Interactor, LRCallback {
-    
-    let entryId: Int64
-    let classPK: Int64
-    let className: String
-    let stepCount: Int32
+public class LoadRatingsInteractor: ServerReadConnectorInteractor {
     
     var resultRating: RatingEntry?
     
-    init(screenlet: BaseScreenlet, entryId: Int64, classPK: Int64, className: String, stepCount: Int32) {
-        self.entryId = entryId
-        self.stepCount = stepCount
-        self.className = className
-        self.classPK = classPK
-        super.init(screenlet: screenlet)
+    override public func createConnector() -> ServerConnector? {
+        let screenlet = self.screenlet as! RatingScreenlet
+        
+        return LiferayServerContext.connectorFactory.createRatingLoadConnector(
+            entryId: screenlet.entryId,
+            classPK: screenlet.classPK,
+            className: screenlet.className,
+            stepCount: screenlet.stepCount)
     }
     
-    public override func start() -> Bool {
-        let session = SessionContext.createSessionFromCurrentSession()
-        session?.callback = self
-        
-        let service = LRScreensratingsentryService_v70(session: session)
-        
-        do {
-            if entryId != 0 {
-                try service.getRatingsEntriesWithEntryId(entryId, stepCount: stepCount)
-            } else {
-                try service.getRatingsEntriesWithClassPK(classPK, className: className, stepCount: stepCount)
-            }
-            
-            return true
-        } catch {
-            return false
+    override public func completedConnector(op: ServerConnector) {
+        if let loadOp = op as? RatingLoadLiferayConnector {
+            self.resultRating = loadOp.resultRating
         }
-    }
-    
-    public func onFailure(error: NSError!) {
-        callOnFailure(error)
-    }
-    
-    public func onSuccess(result: AnyObject!) {
-        resultRating = RatingEntry(attributes: result as! [String: AnyObject])
-        callOnSuccess()
     }
 
 }
