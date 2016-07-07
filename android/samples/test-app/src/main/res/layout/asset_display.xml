@@ -9,7 +9,7 @@
   <com.liferay.mobile.screens.assetdisplay.AssetDisplayScreenlet
       android:id="@+id/asset_display_screenlet"
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
+      android:layout_height="wrap_content"
       liferay:layoutId="@layout/asset_display_default"
       liferay:autoLoad="true"
       liferay:entryId="@string/liferay_asset_image_id"

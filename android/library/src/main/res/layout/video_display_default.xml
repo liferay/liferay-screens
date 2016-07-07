@@ -2,28 +2,12 @@
 <com.liferay.mobile.screens.viewsets.defaultviews.filedisplay.VideoDisplayView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
-
-  <Button
-      android:id="@+id/liferay_btn_video"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="Ver vídeo"
-      android:textSize="20dp"/>
-
-  <ProgressBar
-      android:id="@+id/liferay_video_progress"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:visibility="gone"
-      style="@android:style/Widget.ProgressBar.Large"/>
 
   <VideoView
       android:id="@+id/liferay_video_asset"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:visibility="gone"/>
+      android:layout_height="wrap_content"/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.filedisplay.VideoDisplayView>

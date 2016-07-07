@@ -2,11 +2,8 @@ package com.liferay.mobile.screens.viewsets.defaultviews.filedisplay;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
-import android.widget.ProgressBar;
 import android.widget.VideoView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
@@ -60,34 +57,24 @@ public class VideoDisplayView extends LinearLayout implements BaseFileDisplayVie
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_btnViewVideo = (Button) findViewById(R.id.liferay_btn_video);
 		_videoView = (VideoView) findViewById(R.id.liferay_video_asset);
-		_progressVideo = (ProgressBar) findViewById(R.id.liferay_video_progress);
 	}
 
 	@Override
 	public void showFinishOperation(FileEntry fileEntry) {
 		_fileEntry = fileEntry;
-		_btnViewVideo.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				_progressVideo.setVisibility(VISIBLE);
-
-				_videoView.setVideoPath(getResources().getString(R.string.liferay_server) + _fileEntry.getUrl());
-				_videoView.setMediaController(new MediaController(getContext()));
-				_videoView.setZOrderOnTop(true);
-				_videoView.requestFocus();
-				_videoView.start();
-
-				_progressVideo.setVisibility(GONE);
-				_videoView.setVisibility(VISIBLE);
-			}
-		});
+		loadVideo();
 	}
 
-	private Button _btnViewVideo;
+	private void loadVideo() {
+		_videoView.setVideoPath(getResources().getString(R.string.liferay_server) + _fileEntry.getUrl());
+		_videoView.setMediaController(new MediaController(getContext()));
+		_videoView.setZOrderOnTop(true);
+		_videoView.requestFocus();
+		_videoView.start();
+	}
+
 	private BaseScreenlet _screenlet;
 	private FileEntry _fileEntry;
 	private VideoView _videoView;
-	private ProgressBar _progressVideo;
 }
