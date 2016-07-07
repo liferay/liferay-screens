@@ -35,19 +35,22 @@ public class BaseListView: BaseScreenletView {
     public var loadingRows = false
     public var moreRows = true
 
-    public func setRows(newRows: [AnyObject?], rowCount: Int) {
+    public func setRows(allRows: [AnyObject?], newRows: [AnyObject], rowCount: Int) {
         loadingRows = false
         
-        if _rows.count == newRows.count {
+        if newRows.count == 0 {
             moreRows = false
         }
 		_rowCount = rowCount
 
 		let oldRows = _rows
-		_rows = newRows
+		_rows = allRows
         
-        
-		onChangedRows(oldRows)
+        if streamMode {
+            onAddedRows(newRows, lastCount: oldRows.count)
+        } else {
+            onChangedRows(oldRows)
+        }
 	}
     
     public func clearRows() {
@@ -60,6 +63,10 @@ public class BaseListView: BaseScreenletView {
 
 	public func onChangedRows(oldRows:[AnyObject?]) {
 	}
+    
+    public func onAddedRows(newRows: [AnyObject], lastCount: Int) {
+        
+    }
     
     public func onClearRows(oldRows:[AnyObject?]) {
         

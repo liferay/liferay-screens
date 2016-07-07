@@ -53,17 +53,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 
 	override public func onChangedRows(oldRows: [AnyObject?]) {
 		super.onChangedRows(oldRows)
-        
-        if streamMode {
-            tableView!.reloadData()
-            if moreRows {
-                showProgressFooter()
-            } else {
-                hideProgressFooter()
-            }
-            return
-        }
-
+    
 		if self.rows.isEmpty {
 			clearAllRows(oldRows)
 		}
@@ -77,6 +67,22 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 			tableView!.reloadData()
 		}
 	}
+    
+    override public func onAddedRows(newRows: [AnyObject], lastCount: Int) {
+        
+        let indexPaths = (lastCount..<lastCount + newRows.count).map {
+            NSIndexPath(forRow: $0, inSection: 0)
+        }
+        
+        tableView!.insertRowsAtIndexPaths(indexPaths, withRowAnimation: .Top)
+        
+        if moreRows {
+            showProgressFooter()
+        }
+        else {
+            hideProgressFooter()
+        }
+    }
     
     public override func onClearRows(oldRows: [AnyObject?]) {
         clearAllRows(oldRows)
