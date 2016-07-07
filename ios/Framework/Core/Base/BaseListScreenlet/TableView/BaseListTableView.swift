@@ -53,6 +53,16 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 
 	override public func onChangedRows(oldRows: [AnyObject?]) {
 		super.onChangedRows(oldRows)
+        
+        if streamMode {
+            tableView!.reloadData()
+            if moreRows {
+                showProgressFooter()
+            } else {
+                hideProgressFooter()
+            }
+            return
+        }
 
 		if self.rows.isEmpty {
 			clearAllRows(oldRows)
@@ -80,16 +90,14 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	//MARK: UITableViewDataSource
 
 	public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return rowCount
+		return rows.count
 	}
 
 	public func tableView(tableView: UITableView,
 			cellForRowAtIndexPath
 			indexPath: NSIndexPath)
 			-> UITableViewCell {
-
 		let object: AnyObject? = rows[indexPath.row]
-
 		let cell = doDequeueReusableCell(row: indexPath.row, object: object)
 
 		if let object = object {
@@ -97,8 +105,9 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		}
 		else {
 			doFillInProgressCell(row: indexPath.row, cell: cell)
-
-			fetchPageForRow?(indexPath.row)
+            if !streamMode {
+                fetchPageForRow?(indexPath.row)
+            }
 		}
 
 		return cell
@@ -111,6 +120,15 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 			onSelectedRowClosure?(row)
 		}
 	}
+    
+    public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if streamMode && !loadingRows && moreRows {
+            if indexPath.row == rows.count - 1 {
+                loadingRows = true
+                fetchPageForRow?(indexPath.row + 1)
+            }
+        }
+    }
 
 	public func doDequeueReusableCell(row row: Int, object: AnyObject?) -> UITableViewCell {
 		let cellId = doGetCellId(row: row, object: object)
@@ -138,6 +156,18 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	public func doCreateCell(cellId: String) -> UITableViewCell {
 		return UITableViewCell(style: .Default, reuseIdentifier: cellId)
 	}
+    
+    public func createLoadingMoreView() -> UIView? {
+        let progressView = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: 30))
+        
+        let indicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        indicatorView.center = CGPoint(x: frame.width/2, y: indicatorView.center.y)
+        indicatorView.startAnimating()
+        
+        progressView.addSubview(indicatorView)
+        
+        return progressView
+    }
 
 
 	//MARK: Internal methods
@@ -161,17 +191,20 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 
 	internal func refreshControlBeginRefresh(sender:AnyObject?) {
 		dispatch_delayed(0.3) {
+            self.moreRows = true
 			self.refreshClosure?()
 		}
 	}
 
 	internal func insertFreshRows() {
+    
 		let indexPaths = (0..<self.rows.count).map {
 			NSIndexPath(forRow: $0, inSection: 0)
 		}
-
+        tableView!.beginUpdates()
 		tableView!.insertRowsAtIndexPaths(indexPaths, withRowAnimation:.Top)
-	}
+        tableView!.endUpdates()
+    }
 
 	internal func clearAllRows(currentRows: [AnyObject?]) {
 		tableView!.beginUpdates()
@@ -192,5 +225,14 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 			tableView!.reloadData()
 		}
 	}
+    
+    
+    internal func showProgressFooter() {
+        tableView?.tableFooterView = createLoadingMoreView()
+    }
+    
+    internal func hideProgressFooter() {
+        tableView?.tableFooterView = nil
+    }
 
 }

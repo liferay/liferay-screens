@@ -29,8 +29,10 @@ import UIKit
 		}
 	}
 
-	@IBInspectable public var firstPageSize: Int = 50
-	@IBInspectable public var pageSize: Int = 25
+	@IBInspectable public var firstPageSize: Int = 12
+	@IBInspectable public var pageSize: Int = 10
+    
+    @IBInspectable public var streamMode: Bool = true
 
 	public var baseListView: BaseListView {
 		return screenletView as! BaseListView
@@ -47,6 +49,7 @@ import UIKit
 
 		(screenletView as? BaseListTableView)?.refreshClosure =
 				refreshControl ? self.loadList : nil
+        (screenletView as? BaseListTableView)?.streamMode = streamMode
 	}
 
 	override public func onShow() {
@@ -63,6 +66,8 @@ import UIKit
 		let interactor = createPageLoadInteractor(
 			page: page,
 			computeRowCount: (page == 0))
+        
+        interactor.streamMode = streamMode
 
 		paginationInteractors[page] = interactor
 

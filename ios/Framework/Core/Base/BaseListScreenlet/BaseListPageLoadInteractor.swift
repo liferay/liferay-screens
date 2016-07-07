@@ -18,16 +18,17 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 
 	public let page: Int
 	public let computeRowCount: Bool
+    public var streamMode: Bool = false
 
 	public var resultAllPagesContent: [AnyObject?]?
 	public var resultPageContent: [AnyObject]?
 	public var resultRowCount: Int?
 
 
-	public init(screenlet: BaseListScreenlet, page: Int, computeRowCount: Bool) {
+    public init(screenlet: BaseListScreenlet, page: Int, computeRowCount: Bool) {
 		self.page = page
 		self.computeRowCount = computeRowCount
-
+        
 		super.init(screenlet: screenlet)
 	}
 
@@ -37,39 +38,65 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 
 	override public func completedConnector(op: ServerConnector) {
 		if let pageOp = op as? PaginationLiferayConnector {
-			processLoadPageResult(pageOp.resultPageContent ?? [], rowCount: pageOp.resultRowCount)
+            if !streamMode {
+                processLoadPageResult(pageOp.resultPageContent ?? [], rowCount: pageOp.resultRowCount)
+            } else {
+                processLoadPageResultForStream(pageOp.resultPageContent ?? [], rowCount: pageOp.resultRowCount)
+            }
 		}
 	}
 
-	public func processLoadPageResult(serverRows: [[String:AnyObject]], rowCount: Int?) {
-		let screenlet = self.screenlet as! BaseListScreenlet
-		let baseListView = screenlet.screenletView as! BaseListView
-
-		let actualRowCount = rowCount ?? baseListView.rowCount
-
-		let convertedRows = serverRows.map() { self.convertResult($0) }
-
-		var allRows = Array<AnyObject?>(count: actualRowCount, repeatedValue: nil)
-
-		for (index, row) in baseListView.rows.enumerate() {
-			allRows[index] = row
-		}
-
-		var offset = screenlet.firstRowForPage(page)
-
-		// last page could be incomplete
-		if offset >= actualRowCount {
-			offset = actualRowCount - 1
-		}
-
-		for (index, row) in convertedRows.enumerate() {
-			allRows[offset + index] = row
-		}
-
-		self.resultRowCount = actualRowCount
-		self.resultPageContent = convertedRows
-		self.resultAllPagesContent = allRows
+	public func processLoadPageResultForStream(serverRows: [[String:AnyObject]], rowCount: Int?) {
+        let screenlet = self.screenlet as! BaseListScreenlet
+        let baseListView = screenlet.screenletView as! BaseListView
+        
+        let actualRowCount = rowCount ?? baseListView.rowCount
+        
+        let convertedRows = serverRows.map() { self.convertResult($0) }
+        
+        var allRows = [AnyObject?]()
+        
+        allRows.appendContentsOf(baseListView.rows)
+        
+        for row in convertedRows {
+            allRows.append(row)
+        }
+        
+        self.resultRowCount = actualRowCount
+        self.resultPageContent = convertedRows
+        self.resultAllPagesContent = allRows
 	}
+    
+    public func processLoadPageResult(serverRows: [[String:AnyObject]], rowCount: Int?) {
+        let screenlet = self.screenlet as! BaseListScreenlet
+        let baseListView = screenlet.screenletView as! BaseListView
+        
+        let actualRowCount = rowCount ?? baseListView.rowCount
+        
+        let convertedRows = serverRows.map() { self.convertResult($0) }
+        
+        var allRows = Array<AnyObject?>(count: actualRowCount, repeatedValue: nil)
+        
+        for (index, row) in baseListView.rows.enumerate() {
+            allRows[index] = row
+        }
+        
+        var offset = screenlet.firstRowForPage(page)
+        
+        // last page could be incomplete
+        if offset >= actualRowCount {
+            offset = actualRowCount - 1
+        }
+        
+        for (index, row) in convertedRows.enumerate() {
+            allRows[offset + index] = row
+        }
+        
+        self.resultRowCount = actualRowCount
+        self.resultPageContent = convertedRows
+        self.resultAllPagesContent = allRows
+
+    }
 
 	public func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
 		fatalError("convert(serverResult) must be overriden")

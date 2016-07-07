@@ -15,6 +15,8 @@ import UIKit
 
 
 public class BaseListView: BaseScreenletView {
+    
+    public var streamMode: Bool = false
 
 	public var rowCount: Int {
 		return _rowCount
@@ -29,12 +31,22 @@ public class BaseListView: BaseScreenletView {
 
 	private var _rows = [AnyObject?]()
 	private var _rowCount = 0
+    
+    public var loadingRows = false
+    public var moreRows = true
 
-	public func setRows(newRows: [AnyObject?], rowCount: Int) {
+    public func setRows(newRows: [AnyObject?], rowCount: Int) {
+        loadingRows = false
+        
+        if _rows.count != 0 && _rows.count == newRows.count {
+            moreRows = false
+        }
 		_rowCount = rowCount
 
 		let oldRows = _rows
 		_rows = newRows
+        
+        
 		onChangedRows(oldRows)
 	}
 
