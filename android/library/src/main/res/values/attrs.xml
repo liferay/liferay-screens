@@ -30,6 +30,7 @@
 	<attr name="pageSize" format="integer" />
 	<attr name="labelFields" format="string" />
 	<attr name="structureId" format="string" />
+	<attr name="entryId" format="string" />
 
 	<declare-styleable name="AssetListScreenlet">
 		<attr name="layoutId" />
@@ -146,26 +147,34 @@
 	<declare-styleable name="AssetDisplayScreenlet">
 		<attr name="layoutId" />
 		<attr name="autoLoad" />
-		<attr name="entryId" format="string" />
+		<attr name="entryId" />
+		<attr name="imagelayoutId" format="reference"/>
+		<attr name="videolayoutId" format="reference"/>
+		<attr name="audiolayoutId" format="reference"/>
+		<attr name="pdflayoutId" format="reference"/>
 	</declare-styleable>
 
 	<declare-styleable name="ImageDisplayScreenlet">
 		<attr name="layoutId" />
 		<attr name="autoLoad" />
+		<attr name="entryId" />
 	</declare-styleable>
 
 	<declare-styleable name="VideoDisplayScreenlet">
 		<attr name="layoutId" />
 		<attr name="autoLoad" />
+		<attr name="entryId" />
 	</declare-styleable>
 
 	<declare-styleable name="AudioDisplayScreenlet">
 		<attr name="layoutId" />
 		<attr name="autoLoad" />
+		<attr name="entryId" />
 	</declare-styleable>
 
 	<declare-styleable name="PdfDisplayScreenlet">
 		<attr name="layoutId" />
 		<attr name="autoLoad" />
+		<attr name="entryId" />
 	</declare-styleable>
 </resources>

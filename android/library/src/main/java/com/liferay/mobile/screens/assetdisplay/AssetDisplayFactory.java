@@ -1,40 +1,44 @@
 package com.liferay.mobile.screens.assetdisplay;
 
 import android.content.Context;
-import com.liferay.mobile.screens.assetdisplay.model.FileEntry;
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.filedisplay.BaseFileDisplayScreenlet;
+import com.liferay.mobile.screens.filedisplay.FileEntry;
+import com.liferay.mobile.screens.filedisplay.audio.AudioDisplayScreenlet;
+import com.liferay.mobile.screens.filedisplay.image.ImageDisplayScreenlet;
+import com.liferay.mobile.screens.filedisplay.pdf.PdfDisplayScreenlet;
+import com.liferay.mobile.screens.filedisplay.video.VideoDisplayScreenlet;
+import java.util.HashMap;
 
 /**
  * @author Sarai Díaz García
  */
 public class AssetDisplayFactory {
 
-	public BaseScreenlet getScreenlet(Context context, AssetEntry assetEntry) {
+	public BaseScreenlet getScreenlet(Context context, AssetEntry assetEntry, HashMap<String, Integer> layouts,
+		boolean autoLoad) {
 		String className = assetEntry.getClassName();
 		switch (className) {
-			//case "com.liferay.blogs.kernel.model.BlogsEntry":
-			//case "com.liferay.portal.kernel.model.User":
-			//case "com.liferay.portlet.journal.model.JournalArticle":
 			case "com.liferay.document.library.kernel.model.DLFileEntry":
+
 				String mimeType = assetEntry.getMimeType();
+				BaseFileDisplayScreenlet screenlet = null;
+
 				if (isImage(mimeType)) {
-					ImageDisplayScreenlet screenlet = new ImageDisplayScreenlet(context);
-					screenlet.setFileEntry((FileEntry) assetEntry);
-					return screenlet;
+					screenlet = new ImageDisplayScreenlet(context);
 				} else if (isVideo(mimeType)) {
-					VideoDisplayScreenlet screenlet = new VideoDisplayScreenlet(context);
-					screenlet.setFileEntry((FileEntry) assetEntry);
-					return screenlet;
+					screenlet = new VideoDisplayScreenlet(context);
 				} else if (isAudio(mimeType)) {
-					AudioDisplayScreenlet screenlet = new AudioDisplayScreenlet(context);
-					screenlet.setFileEntry((FileEntry) assetEntry);
-					return screenlet;
+					screenlet = new AudioDisplayScreenlet(context);
 				} else if (mimeType.equals("application/pdf")) {
-					PdfDisplayScreenlet screenlet = new PdfDisplayScreenlet(context);
-					screenlet.setFileEntry((FileEntry) assetEntry);
-					return screenlet;
+					screenlet = new PdfDisplayScreenlet(context);
 				}
+
+				screenlet.setFileEntry((FileEntry) assetEntry);
+				screenlet.setAutoLoad(autoLoad);
+				screenlet.render(layouts.get(screenlet.getClass().getName()));
+				return screenlet;
 			default:
 				return null;
 		}

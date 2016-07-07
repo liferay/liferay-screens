@@ -11,6 +11,11 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       liferay:layoutId="@layout/asset_display_default"
-      liferay:entryId="@string/liferay_asset_pdf_id"/>
+      liferay:autoLoad="true"
+      liferay:entryId="@string/liferay_asset_image_id"
+      liferay:imagelayoutId="@layout/image_display_default"
+      liferay:videolayoutId="@layout/video_display_default"
+      liferay:audiolayoutId="@layout/audio_display_default"
+      liferay:pdflayoutId="@layout/pdf_display_default"/>
 
 </LinearLayout>

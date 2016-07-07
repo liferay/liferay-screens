@@ -5,12 +5,18 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.assetdisplay.interactor.AssetDisplayInteractorImpl;
-import com.liferay.mobile.screens.assetdisplay.view.AssetDisplayViewModel;
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.filedisplay.audio.AudioDisplayScreenlet;
+import com.liferay.mobile.screens.filedisplay.image.ImageDisplayScreenlet;
+import com.liferay.mobile.screens.filedisplay.pdf.PdfDisplayScreenlet;
+import com.liferay.mobile.screens.filedisplay.video.VideoDisplayScreenlet;
+import com.liferay.mobile.screens.util.LiferayLogger;
+import java.util.HashMap;
 
 /**
  * @author Sarai Díaz García
@@ -32,7 +38,15 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 
 	@Override
 	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
-		getViewModel().showFinishOperation(assetEntry);
+
+		AssetDisplayFactory factory = new AssetDisplayFactory();
+		BaseScreenlet screenlet = factory.getScreenlet(getContext(), assetEntry, _layouts, _autoLoad);
+		screenlet.render(_layouts.get(screenlet.getClass().getName()));
+		if (screenlet != null) {
+			addView(screenlet, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+		} else {
+			LiferayLogger.e("Error loading screenlet");
+		}
 
 		if (_listener != null) {
 			_listener.onRetrieveAssetSuccess(assetEntry);
@@ -57,6 +71,16 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 
 		_autoLoad = typedArray.getBoolean(R.styleable.AssetDisplayScreenlet_autoLoad, true);
 		_entryId = typedArray.getInt(R.styleable.AssetDisplayScreenlet_entryId, 0);
+
+		_layouts = new HashMap<>();
+		_layouts.put(ImageDisplayScreenlet.class.getName(),
+			typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_imagelayoutId, R.layout.image_display_default));
+		_layouts.put(VideoDisplayScreenlet.class.getName(),
+			typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_videolayoutId, R.layout.video_display_default));
+		_layouts.put(AudioDisplayScreenlet.class.getName(),
+			typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_audiolayoutId, R.layout.audio_display_default));
+		_layouts.put(PdfDisplayScreenlet.class.getName(),
+			typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_pdflayoutId, R.layout.pdf_display_default));
 
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
 
@@ -111,6 +135,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	}
 
 	private boolean _autoLoad;
+	private HashMap<String, Integer> _layouts;
 	private long _entryId;
 	private AssetDisplayListener _listener;
 }
