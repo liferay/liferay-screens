@@ -29,6 +29,22 @@ public class RatingDeleteLiferayConnector: ServerConnector {
         super.init()
     }
     
+    public override func validateData() -> ValidationError? {
+        let error = super.validateData()
+        
+        if error == nil {
+            if classPK == 0 {
+                return ValidationError("rating-screenlet", "undefined-classPK")
+            } else if className == "" {
+                return ValidationError("rating-screenlet", "undefined-className")
+            } else if stepCount < 1 {
+                return ValidationError("rating-screenlet", "wrong-stepCount")
+            }
+        }
+        
+        return error
+    }
+    
 }
 
 public class Liferay70RatingDeleteConnector: RatingDeleteLiferayConnector {

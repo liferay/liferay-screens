@@ -1,0 +1,5 @@
+"rating-screenlet-undefined-classpk"="The classPK is undefined";
+"rating-screenlet-undefined-className"="The className is undefined";
+"rating-screenlet-undefined-asset"="Either the entryId or the classPK and className are undefined";
+"rating-screenlet-wrong-stepCount"="The stepCount is wrong. It must be an integer greater than 0";
+"rating-screenlet-wrong-score"="The score is wrong. It must be a double value between 0 and 1";

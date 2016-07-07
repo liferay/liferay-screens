@@ -31,6 +31,20 @@ public class RatingLoadLiferayConnector: ServerConnector {
         super.init()
     }
     
+    public override func validateData() -> ValidationError? {
+        let error = super.validateData()
+        
+        if error == nil {
+            if entryId == 0 && (classPK == 0 || className == "") {
+                return ValidationError("rating-screenlet", "undefined-asset")
+            } else if stepCount < 1 {
+                return ValidationError("rating-screenlet", "wrong-stepCount")
+            }
+        }
+        
+        return error
+    }
+    
 }
 
 public class Liferay70RatingLoadConnector: RatingLoadLiferayConnector {

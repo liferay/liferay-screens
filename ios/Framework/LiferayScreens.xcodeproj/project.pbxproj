@@ -24,6 +24,7 @@
 		0B73DA9A1D2E7A020098331C /* RatingLoadLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B73DA991D2E7A020098331C /* RatingLoadLiferayConnector.swift */; };
 		0B73DA9C1D2EAA850098331C /* RatingUpdateLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B73DA9B1D2EAA850098331C /* RatingUpdateLiferayConnector.swift */; };
 		0B73DA9E1D2EB13E0098331C /* RatingDeleteLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B73DA9D1D2EB13E0098331C /* RatingDeleteLiferayConnector.swift */; };
+		0B73DAA11D2EB5F40098331C /* rating-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B73DA9F1D2EB5F40098331C /* rating-screenlet.strings */; };
 		0B8BE70F1D2BFE0B001C3195 /* NetworkActivityIndicatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8BE70E1D2BFE0B001C3195 /* NetworkActivityIndicatorPresenter.swift */; };
 		0BC3AE2B1D2BBE5C006D29E3 /* Cosmos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BC3AE2A1D2BBE5C006D29E3 /* Cosmos.framework */; };
 		0BC3AE2F1D2BD01B006D29E3 /* default-thumb-down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC3AE2C1D2BD01B006D29E3 /* default-thumb-down@3x.png */; };
@@ -455,6 +456,7 @@
 		0B73DA991D2E7A020098331C /* RatingLoadLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingLoadLiferayConnector.swift; sourceTree = "<group>"; };
 		0B73DA9B1D2EAA850098331C /* RatingUpdateLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingUpdateLiferayConnector.swift; sourceTree = "<group>"; };
 		0B73DA9D1D2EB13E0098331C /* RatingDeleteLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingDeleteLiferayConnector.swift; sourceTree = "<group>"; };
+		0B73DAA21D2EB63E0098331C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/rating-screenlet.strings"; sourceTree = "<group>"; };
 		0B8BE70E1D2BFE0B001C3195 /* NetworkActivityIndicatorPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkActivityIndicatorPresenter.swift; sourceTree = "<group>"; };
 		0BC3AE2A1D2BBE5C006D29E3 /* Cosmos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cosmos.framework; path = "../../../../Library/Developer/Xcode/DerivedData/LiferayScreens-eotazwuqkbyiangxvhcjsynaknbf/Build/Products/Debug-iphonesimulator/Cosmos.framework"; sourceTree = "<group>"; };
 		0BC3AE2C1D2BD01B006D29E3 /* default-thumb-down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-thumb-down@3x.png"; sourceTree = "<group>"; };
@@ -834,6 +836,7 @@
 				880ACA671B0224A0007AD007 /* signup-screenlet.strings */,
 				880ACA711B0224A0007AD007 /* userportrait-screenlet.strings */,
 				88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */,
+				0B73DA9F1D2EB5F40098331C /* rating-screenlet.strings */,
 			);
 			name = Resources;
 			path = Core/Resources;
@@ -1840,6 +1843,7 @@
 				881E62331ACBFC3400862B9E /* DDLCustomFieldCompanyTableCell_default.xib in Resources */,
 				880ACA7D1B0224A0007AD007 /* ddlform-screenlet.strings in Resources */,
 				881E62671ACBFC3400862B9E /* default-preview-webcontentdisplay@2x.png in Resources */,
+				0B73DAA11D2EB5F40098331C /* rating-screenlet.strings in Resources */,
 				88019FA21B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */,
 				880ACA8B1B0224A0007AD007 /* liferay-server-context-sample.plist in Resources */,
 				881E625A1ACBFC3400862B9E /* default-form-gradient-top@2x.png in Resources */,
@@ -2319,6 +2323,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		0B73DA9F1D2EB5F40098331C /* rating-screenlet.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B73DAA21D2EB63E0098331C /* en */,
+			);
+			name = "rating-screenlet.strings";
+			sourceTree = "<group>";
+		};
 		88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

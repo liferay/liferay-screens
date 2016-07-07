@@ -31,6 +31,24 @@ public class RatingUpdateLiferayConnector: ServerConnector {
         super.init()
     }
     
+    public override func validateData() -> ValidationError? {
+        let error = super.validateData()
+        
+        if error == nil {
+            if classPK == 0 {
+                return ValidationError("rating-screenlet", "undefined-classPK")
+            } else if className == "" {
+                return ValidationError("rating-screenlet", "undefined-className")
+            } else if stepCount < 1 {
+                return ValidationError("rating-screenlet", "wrong-stepCount")
+            } else if score < 0 || score > 1 {
+                return ValidationError("rating-screenlet", "wrong-score")
+            }
+        }
+        
+        return error
+    }
+    
 }
 
 public class Liferay70RatingUpdateConnector: RatingUpdateLiferayConnector {
