@@ -32,3 +32,28 @@ public class RatingLoadLiferayConnector: ServerConnector {
     }
     
 }
+
+public class Liferay70RatingLoadConnector: RatingLoadLiferayConnector {
+    
+    override public func doRun(session session: LRSession) {
+        let service = LRScreensratingsentryService_v70(session: session)
+        
+        do {
+            var result: [NSObject: AnyObject]
+            
+            if entryId != 0 {
+                result = try service.getRatingsEntriesWithEntryId(entryId, stepCount: stepCount)
+            } else {
+                result = try service.getRatingsEntriesWithClassPK(classPK, className: className, stepCount: stepCount)
+            }
+            
+            lastError = nil
+            resultRating = RatingEntry(attributes: result as! [String: AnyObject])
+        }
+        catch let error as NSError {
+            lastError = error
+            resultRating = nil
+        }
+    }
+    
+}
