@@ -15,7 +15,15 @@ import UIKit
 
 public class RatingLikeView_default: BaseScreenletView, RatingViewModel {
 
-    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var likeButton: UIButton! {
+        didSet {
+            let image = NSBundle.imageInBundles(
+                name: "default-thumb-up",
+                currentClass: RatingLikeView_default.self)?.imageWithRenderingMode(.AlwaysTemplate)
+            self.likeButton.setBackgroundImage(image, forState: .Normal)
+        }
+    }
+    
     @IBOutlet weak var countLabel: UILabel!
     
     public var selectedUserScore: NSNumber?
@@ -36,22 +44,17 @@ public class RatingLikeView_default: BaseScreenletView, RatingViewModel {
 
     public var ratingEntry: RatingEntry? {
         didSet {
-            self.countLabel.text = "Total: \(ratingEntry!.totalCount)"
-            
-            let image = NSBundle.imageInBundles(
-                name: "default-thumb-up",
-                currentClass: UserPortraitView_default.self)?.imageWithRenderingMode(.AlwaysTemplate)
-            self.likeButton.setBackgroundImage(image, forState: .Normal)
-            
-            
-            if ratingEntry!.userScore == -1 {
-                self.likeButton.tintColor = UIColor.grayColor()
-                self.likeButton.restorationIdentifier = RatingScreenlet.UpdateRatingAction
-            } else {
-                self.likeButton.tintColor = DefaultThemeBasicBlue
-                self.likeButton.restorationIdentifier = RatingScreenlet.DeleteRatingAction
+            if let rating = ratingEntry {
+				self.countLabel.text = NSString.localizedStringWithFormat(LocalizedString("default", key: "rating-total", obj: self), rating.totalCount) as String
+
+                if rating.userScore == -1 {
+                    self.likeButton.tintColor = UIColor.grayColor()
+                    self.likeButton.restorationIdentifier = RatingScreenlet.UpdateRatingAction
+                } else {
+                    self.likeButton.tintColor = DefaultThemeBasicBlue
+                    self.likeButton.restorationIdentifier = RatingScreenlet.DeleteRatingAction
+                }
             }
-            
         }
     }
     

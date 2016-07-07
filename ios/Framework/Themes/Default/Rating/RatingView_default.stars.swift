@@ -49,10 +49,12 @@ public class RatingStarView_default: BaseScreenletView, RatingViewModel {
     
     public var ratingEntry: RatingEntry? {
         didSet {
-            averageRatingBar.rating = ratingEntry!.average * Double(self.averageRatingBar.settings.totalStars)
-            averageRatingBar.text = "\(ratingEntry!.totalCount) Ratings"
-            userRatingBar.rating = ratingEntry!.userScore * Double(self.userRatingBar.settings.totalStars)
-            selectedUserScore = ratingEntry!.userScore
+            if let rating = ratingEntry {
+                averageRatingBar.rating = rating.average * Double(self.averageRatingBar.settings.totalStars)
+				averageRatingBar.text = NSString.localizedStringWithFormat(LocalizedString("default", key: "rating-ratings", obj: self), rating.totalCount) as String
+                userRatingBar.rating = rating.userScore * Double(self.userRatingBar.settings.totalStars)
+                selectedUserScore = rating.userScore
+            }
         }
     }
 }

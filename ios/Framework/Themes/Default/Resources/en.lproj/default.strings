@@ -45,3 +45,6 @@
 
 "default-webcontentdisplay-loading-message"="Loading...\nWait few seconds...";
 "default-webcontentdisplay-loading-error"="Error loading the content";
+
+"default-rating-total"="Total: %d";
+"default-rating-ratings"="%d Ratings";

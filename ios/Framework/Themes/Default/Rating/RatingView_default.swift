@@ -15,8 +15,24 @@ import UIKit
 
 public class RatingThumbsView_default: BaseScreenletView, RatingViewModel {
     
-    @IBOutlet weak var negativeButton: UIButton!
-    @IBOutlet weak var possitiveButton: UIButton!
+    @IBOutlet weak var negativeButton: UIButton! {
+        didSet {
+            let image = NSBundle.imageInBundles(
+                name: "default-thumb-down",
+                currentClass: RatingThumbsView_default.self)?.imageWithRenderingMode(.AlwaysTemplate)
+            self.negativeButton.setBackgroundImage(image, forState: .Normal)
+        }
+    }
+    
+    @IBOutlet weak var possitiveButton: UIButton! {
+        didSet {
+            let image = NSBundle.imageInBundles(
+                name: "default-thumb-up",
+                currentClass: RatingThumbsView_default.self)?.imageWithRenderingMode(.AlwaysTemplate)
+            self.possitiveButton.setBackgroundImage(image, forState: .Normal)
+        }
+    }
+    
     @IBOutlet weak var negativeCountLabel: UILabel!
     @IBOutlet weak var possitiveCountLabel: UILabel!
     
@@ -40,35 +56,20 @@ public class RatingThumbsView_default: BaseScreenletView, RatingViewModel {
     
     public var ratingEntry: RatingEntry? {
         didSet {
-            self.negativeCountLabel.text = "Total: \(ratingEntry!.ratings[0])"
-            self.possitiveCountLabel.text = "Total: \(ratingEntry!.ratings[1])"
-            
-            let possitiveImage = NSBundle.imageInBundles(
-                name: "default-thumb-up",
-                currentClass: UserPortraitView_default.self)?.imageWithRenderingMode(.AlwaysTemplate)
-            let negativeImage = NSBundle.imageInBundles(
-                name: "default-thumb-down",
-                currentClass: UserPortraitView_default.self)?.imageWithRenderingMode(.AlwaysTemplate)
-            self.possitiveButton.setBackgroundImage(possitiveImage, forState: .Normal)
-            self.negativeButton.setBackgroundImage(negativeImage, forState: .Normal)
-            
-            if ratingEntry!.userScore == -1 {
-                self.possitiveButton.tintColor = UIColor.grayColor()
-                self.negativeButton.tintColor = UIColor.grayColor()
-                self.possitiveButton.restorationIdentifier = RatingScreenlet.UpdateRatingAction
-                self.negativeButton.restorationIdentifier = RatingScreenlet.UpdateRatingAction
-            } else if ratingEntry!.userScore == 0 {
-                self.possitiveButton.tintColor = UIColor.grayColor()
-                self.negativeButton.tintColor = DefaultThemeBasicBlue
-                self.possitiveButton.restorationIdentifier = RatingScreenlet.UpdateRatingAction
-                self.negativeButton.restorationIdentifier = RatingScreenlet.DeleteRatingAction
-            } else {
-                self.possitiveButton.tintColor = DefaultThemeBasicBlue
-                self.negativeButton.tintColor = UIColor.grayColor()
-                self.possitiveButton.restorationIdentifier = RatingScreenlet.DeleteRatingAction
-                self.negativeButton.restorationIdentifier = RatingScreenlet.UpdateRatingAction
+            if let rating = ratingEntry {
+                self.negativeCountLabel.text = NSString.localizedStringWithFormat(LocalizedString("default", key: "rating-total", obj: self), rating.ratings[0]) as String
+                self.possitiveCountLabel.text = NSString.localizedStringWithFormat(LocalizedString("default", key: "rating-total", obj: self), rating.ratings[1]) as String
+                
+                let score = rating.userScore
+                
+                self.possitiveButton.tintColor = score > 0 ? DefaultThemeBasicBlue : UIColor.grayColor()
+                self.negativeButton.tintColor = score == 0 ? DefaultThemeBasicBlue : UIColor.grayColor()
+                
+                self.possitiveButton.restorationIdentifier = score > 0 ?
+                    RatingScreenlet.DeleteRatingAction : RatingScreenlet.UpdateRatingAction
+                self.negativeButton.restorationIdentifier = score == 0 ?
+                    RatingScreenlet.DeleteRatingAction : RatingScreenlet.UpdateRatingAction
             }
-            
         }
     }
     
