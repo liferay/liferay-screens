@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.viewsets.defaultviews.assetdisplay;
+package com.liferay.mobile.screens.viewsets.defaultviews.filedisplay;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,10 +20,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.assetdisplay.model.FileEntry;
-import com.liferay.mobile.screens.assetdisplay.service.DownloadService;
-import com.liferay.mobile.screens.assetdisplay.view.PdfDisplayViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.filedisplay.BaseFileDisplayViewModel;
+import com.liferay.mobile.screens.filedisplay.DownloadService;
+import com.liferay.mobile.screens.filedisplay.FileEntry;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import java.io.File;
 import java.io.IOException;
@@ -31,7 +31,7 @@ import java.io.IOException;
 /**
  * @author Sarai Díaz García
  */
-public class PdfDisplayView extends LinearLayout implements PdfDisplayViewModel {
+public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewModel {
 
 	public PdfDisplayView(Context context) {
 		super(context);

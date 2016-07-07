@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.viewsets.defaultviews.assetdisplay;
+package com.liferay.mobile.screens.viewsets.defaultviews.filedisplay;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -9,15 +9,15 @@ import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.VideoView;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.assetdisplay.model.FileEntry;
-import com.liferay.mobile.screens.assetdisplay.view.VideoDisplayViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.filedisplay.BaseFileDisplayViewModel;
+import com.liferay.mobile.screens.filedisplay.FileEntry;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
 /**
  * @author Sarai Díaz García
  */
-public class VideoDisplayView extends LinearLayout implements VideoDisplayViewModel {
+public class VideoDisplayView extends LinearLayout implements BaseFileDisplayViewModel {
 
 	public VideoDisplayView(Context context) {
 		super(context);

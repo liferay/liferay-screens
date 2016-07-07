@@ -1,14 +1,9 @@
-package com.liferay.mobile.screens.assetdisplay;
+package com.liferay.mobile.screens.filedisplay;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
-import android.view.View;
-import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.assetdisplay.AssetDisplayListener;
 import com.liferay.mobile.screens.assetdisplay.interactor.AssetDisplayInteractorImpl;
-import com.liferay.mobile.screens.assetdisplay.model.FileEntry;
-import com.liferay.mobile.screens.assetdisplay.view.ImageDisplayViewModel;
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -17,19 +12,20 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 /**
  * @author Sarai Díaz García
  */
-public class ImageDisplayScreenlet extends BaseScreenlet<ImageDisplayViewModel, AssetDisplayInteractorImpl>
+public abstract class BaseFileDisplayScreenlet
+	extends BaseScreenlet<BaseFileDisplayViewModel, AssetDisplayInteractorImpl>
 	implements AssetDisplayListener {
 
-	public ImageDisplayScreenlet(Context context) {
+	public BaseFileDisplayScreenlet(Context context) {
 		super(context);
 	}
 
-	public ImageDisplayScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public BaseFileDisplayScreenlet(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public ImageDisplayScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public BaseFileDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
 	}
 
 	@Override
@@ -56,22 +52,6 @@ public class ImageDisplayScreenlet extends BaseScreenlet<ImageDisplayViewModel, 
 	}
 
 	@Override
-	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-			attributes, R.styleable.ImageDisplayScreenlet, 0, 0);
-
-		int layoutId = typedArray.getResourceId(R.styleable.ImageDisplayScreenlet_layoutId, getDefaultLayoutId());
-
-		_autoLoad = typedArray.getBoolean(R.styleable.ImageDisplayScreenlet_autoLoad, true);
-
-		View view = LayoutInflater.from(context).inflate(layoutId, null);
-
-		typedArray.recycle();
-
-		return view;
-	}
-
-	@Override
 	protected AssetDisplayInteractorImpl createInteractor(String actionName) {
 		return new AssetDisplayInteractorImpl(this.getScreenletId());
 	}
@@ -85,9 +65,12 @@ public class ImageDisplayScreenlet extends BaseScreenlet<ImageDisplayViewModel, 
 		}
 	}
 
-	@Override
-	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor,
-		Object... args) {
+	public int getEntryId() {
+		return _entryId;
+	}
+
+	public void setEntryId(int entryId) {
+		this._entryId = entryId;
 	}
 
 	public void setListener(AssetDisplayListener listener) {
@@ -96,6 +79,10 @@ public class ImageDisplayScreenlet extends BaseScreenlet<ImageDisplayViewModel, 
 
 	public void setFileEntry(FileEntry fileEntry) {
 		onRetrieveAssetSuccess(fileEntry);
+	}
+
+	public void setAutoLoad(boolean autoLoad) {
+		this._autoLoad = autoLoad;
 	}
 
 	protected void autoLoad() {
@@ -108,7 +95,8 @@ public class ImageDisplayScreenlet extends BaseScreenlet<ImageDisplayViewModel, 
 		}
 	}
 
-	private boolean _autoLoad;
-	private AssetDisplayListener _listener;
-	private FileEntry _fileEntry;
+	protected boolean _autoLoad;
+	protected int _entryId;
+	protected AssetDisplayListener _listener;
+	protected FileEntry _fileEntry;
 }

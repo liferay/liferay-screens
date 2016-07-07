@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.viewsets.defaultviews.assetdisplay;
+package com.liferay.mobile.screens.viewsets.defaultviews.filedisplay;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,15 +8,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.assetdisplay.model.FileEntry;
-import com.liferay.mobile.screens.assetdisplay.view.AudioDisplayViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.filedisplay.BaseFileDisplayViewModel;
+import com.liferay.mobile.screens.filedisplay.FileEntry;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
 /**
  * @author Sarai Díaz García
  */
-public class AudioDisplayView extends LinearLayout implements AudioDisplayViewModel {
+public class AudioDisplayView extends LinearLayout implements BaseFileDisplayViewModel {
 
 	public AudioDisplayView(Context context) {
 		super(context);

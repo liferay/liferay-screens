@@ -8,8 +8,7 @@
 
 		<service android:name=".userportrait.interactor.upload.UserPortraitService" />
 
-		<service android:name=".assetdisplay.service.DownloadService" />
+		<service android:name=".filedisplay.DownloadService" />
 
-		<activity android:name=".assetdisplay.ImageDisplayActivity" />
 	</application>
 </manifest>

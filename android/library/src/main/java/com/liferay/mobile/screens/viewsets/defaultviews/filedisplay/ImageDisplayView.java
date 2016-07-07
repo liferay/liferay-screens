@@ -1,23 +1,20 @@
-package com.liferay.mobile.screens.viewsets.defaultviews.assetdisplay;
+package com.liferay.mobile.screens.viewsets.defaultviews.filedisplay;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.AttributeSet;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.assetdisplay.ImageDisplayActivity;
-import com.liferay.mobile.screens.assetdisplay.model.FileEntry;
-import com.liferay.mobile.screens.assetdisplay.view.ImageDisplayViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.filedisplay.BaseFileDisplayViewModel;
+import com.liferay.mobile.screens.filedisplay.FileEntry;
 import com.liferay.mobile.screens.util.LiferayLogger;
+import com.squareup.picasso.Picasso;
 
 /**
  * @author Sarai Díaz García
  */
-public class ImageDisplayView extends LinearLayout implements ImageDisplayViewModel, View.OnClickListener {
+public class ImageDisplayView extends LinearLayout implements BaseFileDisplayViewModel {
 
 	public ImageDisplayView(Context context) {
 		super(context);
@@ -60,24 +57,20 @@ public class ImageDisplayView extends LinearLayout implements ImageDisplayViewMo
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_btnViewImage = (Button) findViewById(R.id.liferay_btn_image);
 		_imageView = (ImageView) findViewById(R.id.liferay_image_asset);
 	}
 
 	@Override
 	public void showFinishOperation(FileEntry fileEntry) {
 		_fileEntry = fileEntry;
-		_btnViewImage.setOnClickListener(this);
+		loadImage();
 	}
 
-	@Override
-	public void onClick(View v) {
-		Intent intent = new Intent(getContext(), ImageDisplayActivity.class);
-		intent.putExtra("filepath", getResources().getString(R.string.liferay_server) + _fileEntry.getUrl());
-		getContext().startActivity(intent);
+	private void loadImage() {
+		String path = getResources().getString(R.string.liferay_server) + _fileEntry.getUrl();
+		Picasso.with(getContext()).load(path).into(_imageView);
 	}
 
-	private Button _btnViewImage;
 	private BaseScreenlet _screenlet;
 	private FileEntry _fileEntry;
 	private ImageView _imageView;

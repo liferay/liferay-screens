@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.assetlist.interactor;
 
-import com.liferay.mobile.screens.assetdisplay.model.FileEntry;
+import com.liferay.mobile.screens.filedisplay.FileEntry;
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.LiferayLocale;

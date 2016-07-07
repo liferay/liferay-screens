@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.assetdisplay.model;
+package com.liferay.mobile.screens.filedisplay;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import java.util.Map;

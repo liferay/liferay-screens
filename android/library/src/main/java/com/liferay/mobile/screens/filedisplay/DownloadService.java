@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.assetdisplay.service;
+package com.liferay.mobile.screens.filedisplay;
 
 import android.app.IntentService;
 import android.content.Intent;
