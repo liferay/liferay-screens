@@ -328,24 +328,26 @@ import QuartzCore
 	//MARK: HUD methods
 
 	public func showHUDWithMessage(message: String?,
-			closeMode: ProgressCloseMode,
-			spinnerMode: ProgressSpinnerMode) {
-
-		_progressPresenter?.showHUDInView(rootView(self),
-			message: message,
-			closeMode: closeMode,
-			spinnerMode: spinnerMode)
+			forInteractor interactor: Interactor) {
+        
+        _progressPresenter?.showHUDInView(rootView(self),
+            message: message,
+            forInteractor: interactor)
 	}
 
-	public func showHUDAlert(message message: String) {
-		_progressPresenter?.showHUDInView(rootView(self),
-			message: message,
-			closeMode: .ManualClose_TouchClosable,
-			spinnerMode: .NoSpinner)
-	}
-
-	public func hideHUD() {
-		_progressPresenter?.hideHUD()
+    public func hideHUDWithMessage(message: String?,
+            forInteractor interactor: Interactor,
+            withError error: NSError?) {
+        var view: UIView?
+        
+        if let message = message {
+            view = rootView(self)
+        }
+        
+        _progressPresenter?.hideHUDFromView(view,
+            message: message,
+            forInteractor: interactor,
+            withError: error)
 	}
 
 
