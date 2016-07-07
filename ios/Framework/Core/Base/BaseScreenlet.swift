@@ -216,9 +216,7 @@ import QuartzCore
 			trackInteractor(interactor, withName: name)
 
 			if let message = screenletView?.progressMessageForAction(name, messageType: .Working) {
-				showHUDWithMessage(message,
-					closeMode: .ManualClose,
-					spinnerMode: .IndeterminateSpinner)
+				showHUDWithMessage(message, forInteractor: interactor)
 			}
 
 			result = onAction(name: name, interactor: interactor, sender: sender)
@@ -270,37 +268,21 @@ import QuartzCore
 	public func endInteractor(interactor: Interactor, error: NSError?) {
 
 		func hideInteractorHUD(error: NSError?) {
-			let messageType: ProgressMessageType
-			let closeMode: ProgressCloseMode?
 			var msg: String?
 
 			if let error = error {
-				messageType = .Failure
-				closeMode = .ManualClose_TouchClosable
-
 				if error is ValidationError {
 					msg = error.localizedDescription
 				}
-			}
-			else {
-				messageType = .Success
-				closeMode = .Autoclose_TouchClosable
 			}
 
 			if msg == nil {
 				msg = screenletView?.progressMessageForAction(
 					interactor.actionName ?? BaseScreenlet.DefaultAction,
-					messageType: messageType)
+					messageType: error == nil ? .Success : .Failure)
 			}
 
-			if let msg = msg, closeMode = closeMode {
-				showHUDWithMessage(msg,
-					closeMode: closeMode,
-					spinnerMode: .NoSpinner)
-			}
-			else {
-				hideHUD()
-			}
+			hideHUDWithMessage(msg, forInteractor: interactor, withError: error)
 		}
 
 		untrackInteractor(interactor)
