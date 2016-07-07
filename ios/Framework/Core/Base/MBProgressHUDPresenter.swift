@@ -18,17 +18,17 @@ import Foundation
 #endif
 
 @objc public enum ProgressCloseMode: Int {
-    case ManualClose
-    case ManualClose_TouchClosable
-    case Autoclose
-    case Autoclose_TouchClosable
+	case ManualClose
+	case ManualClose_TouchClosable
+	case Autoclose
+	case Autoclose_TouchClosable
 }
 
 
 @objc public enum ProgressSpinnerMode: Int {
-    case IndeterminateSpinner
-    case DeterminateSpinner
-    case NoSpinner
+	case IndeterminateSpinner
+	case DeterminateSpinner
+	case NoSpinner
 }
 
 
@@ -46,50 +46,50 @@ import Foundation
 			instance = nil
 		}
 	}
-    
-    public func hideHUDFromView(view: UIView?, message: String?, forInteractor interactor: Interactor, withError error: NSError?) {
-        if view != nil {
-            dispatch_main {
-                if self.instance == nil {
-                    self.instance = MBProgressHUD.showHUDAddedTo(view, animated:true)
-                }
-                
-                self.configureAndShowHUD(self.instance!,
-                    message: message,
-                    closeMode: error == nil ? .Autoclose_TouchClosable : .ManualClose_TouchClosable,
-                    spinnerMode: .NoSpinner)
-            }
-        } else {
-            hideHud()
-        }
-    }
-    
-    public func showHUDInView(view: UIView, message: String?, forInteractor interactor: Interactor) {
-        dispatch_main {
-            if self.instance == nil {
-                self.instance = MBProgressHUD.showHUDAddedTo(view, animated:true)
-            }
-            
-            self.configureAndShowHUD(self.instance!,
-                message: message,
-                closeMode: .ManualClose,
-                spinnerMode: .IndeterminateSpinner)
-        }
-    }
+	
+	public func hideHUDFromView(view: UIView?, message: String?, forInteractor interactor: Interactor, withError error: NSError?) {
+		if view != nil {
+			dispatch_main {
+				if self.instance == nil {
+					self.instance = MBProgressHUD.showHUDAddedTo(view, animated:true)
+				}
+				
+				self.configureAndShowHUD(self.instance!,
+					message: message,
+					closeMode: error == nil ? .Autoclose_TouchClosable : .ManualClose_TouchClosable,
+					spinnerMode: .NoSpinner)
+			}
+		} else {
+			hideHud()
+		}
+	}
+	
+	public func showHUDInView(view: UIView, message: String?, forInteractor interactor: Interactor) {
+		dispatch_main {
+			if self.instance == nil {
+				self.instance = MBProgressHUD.showHUDAddedTo(view, animated:true)
+			}
+			
+			self.configureAndShowHUD(self.instance!,
+				message: message,
+				closeMode: .ManualClose,
+				spinnerMode: .IndeterminateSpinner)
+		}
+	}
 
 
 	//MARK: PRIVATE METHODS
-    
-    private func hideHud() {
-        if self.instance == nil {
-            return
-        }
-        
-        dispatch_main {
-            self.instance!.hide(true)
-            self.instance = nil
-        }
-    }
+	
+	private func hideHud() {
+		if self.instance == nil {
+			return
+		}
+		
+		dispatch_main {
+			self.instance!.hide(true)
+			self.instance = nil
+		}
+	}
 
 	private func configureAndShowHUD(hud: MBProgressHUD,
 			message: String?,

@@ -23,25 +23,25 @@ import Foundation
 
 		super.init()
 	}
-    
-    override public func hideHUDFromView(view: UIView?, message: String?, forInteractor interactor: Interactor, withError error: NSError?) {
-        
-        if error != nil {
-            showSpinner(false)
-            super.hideHUDFromView(view, message: message, forInteractor: interactor, withError: error)
-        } else {
-            if (view != nil) {
-                showSpinner(true)
-            } else {
-                super.hideHUDFromView(view, message: message, forInteractor: interactor, withError: error)
-                showSpinner(false)
-            }
-        }
-    }
-    
-    public override func showHUDInView(view: UIView, message: String?, forInteractor interactor: Interactor) {
-        showSpinner(true)
-    }
+	
+	override public func hideHUDFromView(view: UIView?, message: String?, forInteractor interactor: Interactor, withError error: NSError?) {
+		
+		if error != nil {
+			showSpinner(false)
+			super.hideHUDFromView(view, message: message, forInteractor: interactor, withError: error)
+		} else {
+			if (view != nil) {
+				showSpinner(true)
+			} else {
+				super.hideHUDFromView(view, message: message, forInteractor: interactor, withError: error)
+				showSpinner(false)
+			}
+		}
+	}
+	
+	public override func showHUDInView(view: UIView, message: String?, forInteractor interactor: Interactor) {
+		showSpinner(true)
+	}
 
 	private func showSpinner(show: Bool) {
 		if self.spinner != nil && self.spinner!.isAnimating() != show {

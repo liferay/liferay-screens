@@ -18,11 +18,11 @@ import Foundation
 	func showHUDInView(view: UIView,
 		message: String?,
 		forInteractor interactor: Interactor)
-    
-    func hideHUDFromView(view: UIView?,
-        message: String?,
-        forInteractor interactor: Interactor,
-        withError error: NSError?)
+	
+	func hideHUDFromView(view: UIView?,
+		message: String?,
+		forInteractor interactor: Interactor,
+		withError error: NSError?)
 
 }
 

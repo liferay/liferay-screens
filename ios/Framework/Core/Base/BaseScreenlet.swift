@@ -311,25 +311,25 @@ import QuartzCore
 
 	public func showHUDWithMessage(message: String?,
 			forInteractor interactor: Interactor) {
-        
-        _progressPresenter?.showHUDInView(rootView(self),
-            message: message,
-            forInteractor: interactor)
+		
+		_progressPresenter?.showHUDInView(rootView(self),
+			message: message,
+			forInteractor: interactor)
 	}
 
-    public func hideHUDWithMessage(message: String?,
-            forInteractor interactor: Interactor,
-            withError error: NSError?) {
-        var view: UIView?
-        
-        if let message = message {
-            view = rootView(self)
-        }
-        
-        _progressPresenter?.hideHUDFromView(view,
-            message: message,
-            forInteractor: interactor,
-            withError: error)
+	public func hideHUDWithMessage(message: String?,
+			forInteractor interactor: Interactor,
+			withError error: NSError?) {
+		var view: UIView?
+		
+		if let message = message {
+			view = rootView(self)
+		}
+		
+		_progressPresenter?.hideHUDFromView(view,
+			message: message,
+			forInteractor: interactor,
+			withError: error)
 	}
 
 
