@@ -105,6 +105,12 @@ public protocol LiferayConnectorFactory {
 		repositoryId: Int64,
 		folderId: Int64,
 		onProgress: DDLFormUploadLiferayConnector.OnProgress?) -> DDLFormUploadLiferayConnector
+    
+    func createRatingLoadConnector(
+        entryId entryId: Int64,
+        classPK: Int64,
+        className: String,
+        stepCount: Int32) -> RatingLoadLiferayConnector?
 
 }
 
@@ -282,6 +288,11 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			folderId: folderId,
 			onProgress: onProgress)
 	}
+    
+    public func createRatingLoadConnector(entryId entryId: Int64, classPK: Int64, className: String, stepCount: Int32) -> RatingLoadLiferayConnector? {
+        print("Unsupported connector in Liferay 6.2: RatingLoadLiferayConnector")
+        return nil
+    }
 
 }
 
@@ -459,5 +470,13 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			folderId: folderId,
 			onProgress: onProgress)
 	}
+    
+    public func createRatingLoadConnector(entryId entryId: Int64, classPK: Int64, className: String, stepCount: Int32) -> RatingLoadLiferayConnector? {
+        return Liferay70RatingLoadConnector(
+            entryId: entryId,
+            classPK: classPK,
+            className: className,
+            stepCount: stepCount)
+    }
 
 }

@@ -23,7 +23,7 @@ public class RatingLoadLiferayConnector: ServerConnector {
     
     var resultRating: RatingEntry?
     
-    init(entryId: Int64, classPK: Int64, className: String, stepCount: Int32) {
+    public init(entryId: Int64, classPK: Int64, className: String, stepCount: Int32) {
         self.entryId = entryId
         self.stepCount = stepCount
         self.className = className
