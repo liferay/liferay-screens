@@ -41,7 +41,6 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 
 		AssetDisplayFactory factory = new AssetDisplayFactory();
 		BaseScreenlet screenlet = factory.getScreenlet(getContext(), assetEntry, _layouts, _autoLoad);
-		screenlet.render(_layouts.get(screenlet.getClass().getName()));
 		if (screenlet != null) {
 			addView(screenlet, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
 		} else {
