@@ -78,7 +78,7 @@ public abstract class BaseFileDisplayScreenlet
 	}
 
 	public void setFileEntry(FileEntry fileEntry) {
-		onRetrieveAssetSuccess(fileEntry);
+		_fileEntry = fileEntry;
 	}
 
 	public void setAutoLoad(boolean autoLoad) {
