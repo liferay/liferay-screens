@@ -1,12 +1,10 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.filedisplay;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.util.AttributeSet;
-import android.view.View;
-import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
+import android.widget.VideoView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.filedisplay.BaseFileDisplayViewModel;
@@ -59,24 +57,24 @@ public class AudioDisplayView extends LinearLayout implements BaseFileDisplayVie
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_btnPlayAudio = (Button) findViewById(R.id.liferay_btn_audio);
+		_audioView = (VideoView) findViewById(R.id.liferay_audio_asset);
 	}
 
 	@Override
 	public void showFinishOperation(FileEntry fileEntry) {
 		_fileEntry = fileEntry;
-		_btnPlayAudio.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(Intent.ACTION_VIEW);
-				intent.setDataAndType(
-					Uri.parse(getResources().getString(R.string.liferay_server) + _fileEntry.getUrl()), "audio/*");
-				getContext().startActivity(intent);
-			}
-		});
+		loadAudio();
+	}
+
+	private void loadAudio() {
+		_audioView.setVideoPath(getResources().getString(R.string.liferay_server) + _fileEntry.getUrl());
+		_audioView.setMediaController(new MediaController(getContext()));
+		_audioView.setZOrderOnTop(true);
+		_audioView.requestFocus();
+		_audioView.start();
 	}
 
 	private BaseScreenlet _screenlet;
-	private Button _btnPlayAudio;
+	private VideoView _audioView;
 	private FileEntry _fileEntry;
 }

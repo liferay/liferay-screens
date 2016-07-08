@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.defaultviews.assetdisplay.AudioDisplayView
+<com.liferay.mobile.screens.viewsets.defaultviews.filedisplay.AudioDisplayView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
-  <Button
-      android:id="@+id/liferay_btn_audio"
+  <VideoView
+      android:id="@+id/liferay_audio_asset"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:text="Reproducir audio"
-      android:textSize="20dp"/>
+      android:layout_height="wrap_content"/>
 
-</com.liferay.mobile.screens.viewsets.defaultviews.assetdisplay.AudioDisplayView>
+</com.liferay.mobile.screens.viewsets.defaultviews.filedisplay.AudioDisplayView>
