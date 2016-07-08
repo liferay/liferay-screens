@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.filedisplay.BaseFileDisplayViewModel;
@@ -74,52 +75,22 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_btnOpenPdf = (Button) findViewById(R.id.liferay_pdf);
 		_imagePdf = (ImageView) findViewById(R.id.liferay_pdf_renderer);
+
 		_progressBar = (ProgressBar) findViewById(R.id.liferay_asset_progress_bar);
+		_progressText = (TextView) findViewById(R.id.liferay_asset_progress_number);
+
 		_editPage = (EditText) findViewById(R.id.liferay_edit_pdf_page);
 		_btnGo = (Button) findViewById(R.id.liferay_btn_go_page);
+
+		_btnPrevious = (Button) findViewById(R.id.liferay_btn_previous);
+		_btnNext = (Button) findViewById(R.id.liferay_btn_next);
 	}
 
 	@Override
 	public void showFinishOperation(FileEntry fileEntry) {
 		_fileEntry = fileEntry;
-		_btnPrevious = (Button) findViewById(R.id.liferay_btn_previous);
-		_btnNext = (Button) findViewById(R.id.liferay_btn_next);
-
-		_btnOpenPdf.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				render();
-			}
-		});
-
-		_btnPrevious.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				_currentPage--;
-				changePdfPage();
-			}
-		});
-
-		_btnNext.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				_currentPage++;
-				changePdfPage();
-			}
-		});
-
-		_btnGo.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (!_editPage.getText().toString().isEmpty()) {
-					setCurrentPage(Integer.parseInt(_editPage.getText().toString()));
-					_currentPage--;
-					changePdfPage();
-				}
-			}
-		});
+		render();
 	}
 
 	public void setCurrentPage(int currentPage) {
@@ -135,10 +106,11 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 			super.onReceiveResult(resultCode, resultData);
 			if (resultCode == DownloadService.UPDATE_PROGRESS) {
 				_progress = resultData.getInt("progress");
+				_progressText.setText(String.valueOf(_progress).concat("%"));
 				_progressBar.setVisibility(VISIBLE);
+				_progressText.setVisibility(VISIBLE);
 				if (_progress == 100) {
 					renderPdfInImageView(_file);
-					updateView();
 				}
 			}
 		}
@@ -153,18 +125,46 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 
 		Matrix m = _imagePdf.getImageMatrix();
 		PdfRenderer.Page page = _renderer.openPage(_currentPage);
-		Bitmap _bitmap = Bitmap.createBitmap(_imagePdf.getMeasuredWidth(), _imagePdf.getMeasuredHeight(),
+		Bitmap bitmap = Bitmap.createBitmap(page.getWidth(), page.getHeight(),
 			Bitmap.Config.ARGB_8888);
 		Rect rect = new Rect(0, 0, page.getWidth(), page.getHeight());
-		page.render(_bitmap, rect, m, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY);
+		page.render(bitmap, rect, m, PdfRenderer.Page.RENDER_MODE_FOR_PRINT);
 		_imagePdf.setImageMatrix(m);
-		_imagePdf.setImageBitmap(_bitmap);
+		_imagePdf.setImageBitmap(bitmap);
 		page.close();
 		updateView();
 	}
 
 	private void render() {
 		if (Build.VERSION.SDK_INT >= 21) {
+
+			_btnPrevious.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					_currentPage--;
+					changePdfPage();
+				}
+			});
+
+			_btnNext.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					_currentPage++;
+					changePdfPage();
+				}
+			});
+
+			_btnGo.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					if (!_editPage.getText().toString().isEmpty()) {
+						setCurrentPage(Integer.parseInt(_editPage.getText().toString()));
+						_currentPage--;
+						changePdfPage();
+					}
+				}
+			});
+
 			_progressBar.setVisibility(VISIBLE);
 			String filePath = getResources().getString(R.string.liferay_server) + _fileEntry.getUrl();
 			_file = new File(getContext().getExternalCacheDir().getPath() + "/" + _fileEntry.getTitle());
@@ -175,7 +175,9 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 				intent.putExtra("filename", _fileEntry.getTitle());
 				intent.putExtra("receiver", new DownloadReceiver(new Handler()));
 				getContext().startService(intent);
+				renderPdfInImageView(_file);
 			} else {
+				_progressBar.setVisibility(VISIBLE);
 				renderPdfInImageView(_file);
 			}
 		} else {
@@ -188,11 +190,10 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 	private void renderPdfInImageView(File file) {
 		try {
 			_renderer = new PdfRenderer(ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY));
+			changePdfPage();
 		} catch (IOException e) {
 			e.getMessage();
 		}
-
-		changePdfPage();
 	}
 
 	private void updateView() {
@@ -200,14 +201,13 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 		_btnPrevious.setVisibility(VISIBLE);
 		_editPage.setVisibility(VISIBLE);
 		_btnGo.setVisibility(VISIBLE);
-		_btnOpenPdf.setVisibility(GONE);
 		_progressBar.setVisibility(GONE);
+		_progressText.setVisibility(GONE);
 	}
 
 	private int _currentPage = 0;
 	private int _progress;
 	private BaseScreenlet _screenlet;
-	private Button _btnOpenPdf;
 	private Button _btnNext;
 	private Button _btnPrevious;
 	private Button _btnGo;
@@ -218,4 +218,5 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 	private Intent _intent;
 	private PdfRenderer _renderer;
 	private ProgressBar _progressBar;
+	private TextView _progressText;
 }

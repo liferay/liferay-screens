@@ -4,6 +4,7 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.ResultReceiver;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -44,6 +45,7 @@ public class DownloadService extends IntentService {
 
 				Bundle resultData = new Bundle();
 				resultData.putInt("progress", (int) (total * 100 / fileLength));
+				LiferayLogger.i("Progress......." + String.valueOf(total * 100 / fileLength));
 				receiver.send(UPDATE_PROGRESS, resultData);
 				output.write(data, 0, count);
 			}
