@@ -25,7 +25,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	public var progressMessages: [String:ProgressMessages] { return [:] }
 
-	internal let NoMessage = ""
+	public let NoProgressMessage = ""
 
 	public var editable: Bool = true {
 		didSet {
