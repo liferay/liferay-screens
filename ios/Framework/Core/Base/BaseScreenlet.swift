@@ -322,7 +322,7 @@ import QuartzCore
 			withError error: NSError?) {
 		var view: UIView?
 		
-		if let message = message {
+		if message != nil {
 			view = rootView(self)
 		}
 		
