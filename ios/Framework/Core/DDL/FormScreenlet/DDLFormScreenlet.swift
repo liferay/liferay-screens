@@ -192,14 +192,14 @@ import UIKit
 	}
 
 	internal func createSubmitFormInteractor() -> DDLFormSubmitFormInteractor? {
-		if waitForInProgressUpload() {
+		let interactor = DDLFormSubmitFormInteractor(screenlet: self, record: self.formView.record!)
+
+		if waitForInProgressUpload(interactor) {
 			return nil
 		}
 		if self.formView.record == nil {
 			return nil
 		}
-
-		let interactor = DDLFormSubmitFormInteractor(screenlet: self, record: self.formView.record!)
 
 		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
@@ -356,10 +356,10 @@ import UIKit
 
 	//MARK: Private methods
 
-	private func waitForInProgressUpload() -> Bool {
+	private func waitForInProgressUpload(interactor: Interactor) -> Bool {
 		switch uploadStatus {
 			case .Failed(_):
-				retryUploads()
+				retryUploads(interactor)
 
 				return true
 
@@ -375,8 +375,7 @@ import UIKit
 						? "uploading-message-singular" : "uploading-message-plural"
 
 				showHUDWithMessage(LocalizedString("ddlform-screenlet", key: uploadMessage, obj: self),
-					closeMode: .ManualClose,
-					spinnerMode: .IndeterminateSpinner)
+					forInteractor: interactor)
 
 				return true
 
@@ -386,7 +385,7 @@ import UIKit
 		return false
 	}
 
-	private func retryUploads() {
+	private func retryUploads(interactor: Interactor) {
 		let failedDocumentFields = formView.record?.fields.filter() {
 			if let fieldUploadStatus = ($0 as? DDMFieldDocument)?.uploadStatus {
 				switch fieldUploadStatus {
@@ -401,8 +400,7 @@ import UIKit
 		if let failedUploads = failedDocumentFields {
 			if failedUploads.count > 0 {
 				showHUDWithMessage(LocalizedString("ddlform-screenlet", key: "uploading-retry", obj: self),
-					closeMode: .ManualClose,
-					spinnerMode: .IndeterminateSpinner)
+					forInteractor: interactor)
 
 				for failedDocumentField in failedUploads {
 					performAction(
