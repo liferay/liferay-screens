@@ -48,7 +48,7 @@ import Foundation
 	}
 	
 	public func hideHUDFromView(view: UIView?, message: String?, forInteractor interactor: Interactor, withError error: NSError?) {
-		if view != nil {
+		if message != nil {
 			dispatch_main {
 				if self.instance == nil {
 					self.instance = MBProgressHUD.showHUDAddedTo(view, animated:true)

@@ -267,22 +267,16 @@ import QuartzCore
 
 	public func endInteractor(interactor: Interactor, error: NSError?) {
 
-		func hideInteractorHUD(error: NSError?) {
-			var msg: String?
-
+		func getMessage() -> String? {
 			if let error = error {
 				if error is ValidationError {
-					msg = error.localizedDescription
+					return error.localizedDescription
 				}
 			}
 
-			if msg == nil {
-				msg = screenletView?.progressMessageForAction(
+			return screenletView?.progressMessageForAction(
 					interactor.actionName ?? BaseScreenlet.DefaultAction,
 					messageType: error == nil ? .Success : .Failure)
-			}
-
-			hideHUDWithMessage(msg, forInteractor: interactor, withError: error)
 		}
 
 		untrackInteractor(interactor)
@@ -290,8 +284,7 @@ import QuartzCore
 		let result: AnyObject? = interactor.interactionResult()
 		onFinishInteraction(result, error: error)
 		screenletView?.onFinishInteraction(result, error: error)
-
-		hideInteractorHUD(error)
+		hideHUDWithMessage(getMessage(), forInteractor: interactor, withError: error)
 	}
 
 	/**
@@ -320,13 +313,8 @@ import QuartzCore
 	public func hideHUDWithMessage(message: String?,
 			forInteractor interactor: Interactor,
 			withError error: NSError?) {
-		var view: UIView?
 		
-		if message != nil {
-			view = rootView(self)
-		}
-		
-		_progressPresenter?.hideHUDFromView(view,
+		_progressPresenter?.hideHUDFromView(rootView(self),
 			message: message,
 			forInteractor: interactor,
 			withError: error)
