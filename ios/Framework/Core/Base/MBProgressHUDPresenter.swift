@@ -59,7 +59,8 @@ import Foundation
 					closeMode: error == nil ? .Autoclose_TouchClosable : .ManualClose_TouchClosable,
 					spinnerMode: .NoSpinner)
 			}
-		} else {
+		}
+		else {
 			hideHud()
 		}
 	}

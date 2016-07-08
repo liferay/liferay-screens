@@ -29,10 +29,12 @@ import Foundation
 		if error != nil {
 			showSpinner(false)
 			super.hideHUDFromView(view, message: message, forInteractor: interactor, withError: error)
-		} else {
-			if (message != nil) {
+		}
+		else {
+			if message != nil {
 				showSpinner(true)
-			} else {
+			}
+			else {
 				super.hideHUDFromView(view, message: message, forInteractor: interactor, withError: error)
 				showSpinner(false)
 			}

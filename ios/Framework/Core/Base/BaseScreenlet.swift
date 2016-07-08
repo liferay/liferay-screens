@@ -268,10 +268,8 @@ import QuartzCore
 	public func endInteractor(interactor: Interactor, error: NSError?) {
 
 		func getMessage() -> String? {
-			if let error = error {
-				if error is ValidationError {
-					return error.localizedDescription
-				}
+			if let error = error as? ValidationError {
+				return error.localizedDescription
 			}
 
 			return screenletView?.progressMessageForAction(
