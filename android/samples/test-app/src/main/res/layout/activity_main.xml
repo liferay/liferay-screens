@@ -122,11 +122,6 @@
 				style="@style/test_app_button"
 				android:text="@string/change_theme" />
 
-			<Button
-					android:id="@+id/asset_display"
-					style="@style/test_app_button"
-					android:text="Asset Display" />
-
 		</LinearLayout>
 	</ScrollView>
 </LinearLayout>

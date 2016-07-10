@@ -39,7 +39,6 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.custom_interactor).setOnClickListener(this);
 		findViewById(R.id.list_bookmarks).setOnClickListener(this);
 		findViewById(R.id.relogin).setOnClickListener(this);
-    findViewById(R.id.asset_display).setOnClickListener(this);
 	}
 
 	@Override
@@ -119,9 +118,6 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 			case R.id.relogin:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(ReloginActivity.class));
 				break;
-      case R.id.asset_display:
-        DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(AssetDisplayActivity.class));
-        break;
 			default:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(LoginActivity.class));
 		}

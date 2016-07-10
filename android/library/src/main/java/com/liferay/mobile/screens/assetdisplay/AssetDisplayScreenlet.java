@@ -107,8 +107,13 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		Object... args) {
 	}
 
-	public void loadAsset() throws Exception {
-		getInteractor().getAssetEntryExtended(_entryId);
+	public void loadAsset() {
+		try {
+			getInteractor().getAssetEntryExtended(_entryId);
+		} catch (Exception e) {
+			LiferayLogger.e(e.getMessage());
+			onRetrieveAssetFailure(e);
+		}
 	}
 
 	public long getEntryId() {
@@ -125,12 +130,12 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 
 	protected void autoLoad() {
 		if (_entryId != 0 && SessionContext.isLoggedIn()) {
-			try {
-				loadAsset();
-			} catch (Exception e) {
-				onRetrieveAssetFailure(e);
-			}
+			loadAsset();
 		}
+	}
+
+	public void setAutoLoad(boolean autoLoad) {
+		this._autoLoad = autoLoad;
 	}
 
 	private boolean _autoLoad;

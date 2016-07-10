@@ -16,9 +16,19 @@ public class AssetDisplayActivity extends ThemeActivity implements AssetDisplayL
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.asset_display);
 
-		((AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet)).setListener(this);
+		_screenlet = ((AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet));
 
-		SessionContext.createBasicSession("test@liferay.com", "liferay");
+		_screenlet.setEntryId(getIntent().getLongExtra("entryId", 0));
+		_screenlet.setAutoLoad(true);
+		_screenlet.setListener(this);
+
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		_screenlet.loadAsset();
 	}
 
 	@Override
@@ -30,4 +40,6 @@ public class AssetDisplayActivity extends ThemeActivity implements AssetDisplayL
 	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
 		info("Asset entry received! -> " + assetEntry.getTitle());
 	}
+
+	private AssetDisplayScreenlet _screenlet;
 }
