@@ -32,6 +32,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:stepSize="1"
+			android:progressBackgroundTint="@android:color/darker_gray"
 			android:progressTint="@color/colorPrimary_default"
 			tools:rating="4"
 			/>
@@ -48,6 +49,7 @@
 				android:layout_height="wrap_content"
 				android:isIndicator="true"
 				android:stepSize="1"
+				android:progressBackgroundTint="@android:color/darker_gray"
 				android:progressTint="@color/colorPrimary_default"
 				tools:rating="3"
 				style="?android:attr/ratingBarStyleSmall"
