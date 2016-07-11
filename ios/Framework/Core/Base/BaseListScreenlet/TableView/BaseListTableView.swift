@@ -53,21 +53,21 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	
 	override public func onChangedRows(oldRows: [AnyObject?]) {
 		super.onChangedRows(oldRows)
-		
-		if self.rows.isEmpty {
-			clearAllRows(oldRows)
-		}
-		else if oldRows.isEmpty {
+
+		if oldRows.isEmpty {
 			insertFreshRows()
+			return
 		}
-		else if let visibleRows = tableView!.indexPathsForVisibleRows {
-			//We have added rows since row count computation
-			if rows.count != oldRows.count {
-				moreRows = true
-				streamMode = true
-				(screenlet as? BaseListScreenlet)?.streamMode = true
-				onAddedRows(lastCount: oldRows.count)
-			}
+		
+		//We have added or deleted rows since row count computation
+		if rows.count > oldRows.count {
+			turnStreamModeOn()
+			onAddedRows(lastCount: oldRows.count)
+		} else if rows.count < oldRows.count {
+			deleteRows(from: rows.count, to: oldRows.count)
+		}
+
+		if let visibleRows = tableView!.indexPathsForVisibleRows {
 			updateVisibleRows(visibleRows)
 		}
 		else {
@@ -76,14 +76,14 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	}
 	
 	override public func onAddedRows(lastCount lastCount: Int) {
-		insertRows(from: lastCount, to: rows.count)
-		
 		if moreRows {
 			showProgressFooter()
 		}
 		else {
 			hideProgressFooter()
 		}
+		
+		insertRows(from: lastCount, to: rows.count)
 	}
 	
 	public override func onClearRows(oldRows: [AnyObject?]) {
@@ -133,7 +133,8 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		}
 	}
 	
-	public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+	public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
+	                      forRowAtIndexPath indexPath: NSIndexPath) {
 		if streamMode && !loadingRows && moreRows {
 			if indexPath.row == rows.count - 1 {
 				loadingRows = true
@@ -223,13 +224,15 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	}
 	
 	internal func clearAllRows(currentRows: [AnyObject?]) {
-		tableView!.beginUpdates()
-		
-		for (index,_) in currentRows.enumerate() {
-			let indexPath = NSIndexPath(forRow:index, inSection:0)
-			tableView!.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+		deleteRows(from: 0, to: currentRows.count)
+	}
+	
+	internal func deleteRows(from from: Int, to: Int) {
+		let indexPaths = (from..<to).map {
+			NSIndexPath(forRow: $0, inSection: 0)
 		}
-		
+		tableView!.beginUpdates()
+		tableView!.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Fade)
 		tableView!.endUpdates()
 	}
 	
@@ -250,4 +253,9 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		tableView?.tableFooterView = nil
 	}
 	
+	internal func turnStreamModeOn() {
+		moreRows = true
+		streamMode = true
+		(screenlet as? BaseListScreenlet)?.streamMode = true
+	}
 }

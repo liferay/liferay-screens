@@ -68,15 +68,25 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 				allRows[index] = row
 			}
 		}
+		
 		var offset = screenlet.firstRowForPage(page)
+		var lastIndex = 0
 		
 		//Insert new elements
 		for (index, row) in convertedRows.enumerate() {
 			if index + offset < actualRowCount {
 				allRows[index + offset] = row
+				lastIndex = index + offset
 			}
 			else {
 				allRows.append(row)
+			}
+		}
+		
+		//Deleted elements since row computation
+		if lastIndex+1 < actualRowCount && !streamMode && convertedRows.count < screenlet.pageSize && page != 0 {
+			for _ in lastIndex+1..<actualRowCount {
+				allRows.popLast()
 			}
 		}
 		

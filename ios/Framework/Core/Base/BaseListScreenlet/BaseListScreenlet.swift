@@ -61,7 +61,6 @@ import UIKit
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		let page = (sender as? Int) ?? 0
 		
-		print("create interactor for page \(page)")
 		let interactor = createPageLoadInteractor(
 			page: page,
 			computeRowCount: (page == 0))
@@ -71,8 +70,12 @@ import UIKit
 		interactor.streamMode = streamMode
 		
 		interactor.onSuccess = {
-			self.streamMode = interactor.streamMode
-			self.baseListView.streamMode = self.streamMode
+			//StreamMode is only decided by the interactor in the first page load
+			//otherwise this state could be changed for other interactors
+			if (page == 0) {
+				self.streamMode = interactor.streamMode
+				self.baseListView.streamMode = self.streamMode
+			}
 
 			self.baseListView.setRows(interactor.resultAllPagesContent!, newRows: interactor.resultPageContent!,
 			                          rowCount: interactor.resultRowCount ?? self.baseListView.rowCount)
