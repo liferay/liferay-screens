@@ -13,7 +13,7 @@
 		android:layout_width="80dp"
 		android:layout_height="80dp"
 		android:layout_gravity="center"
-		android:progressTint="@color/colorPrimary_default"
+		android:indeterminateTint="@color/colorPrimary_default"
 		android:visibility="gone"
 		/>
 
@@ -40,6 +40,7 @@
 			android:id="@+id/likeCountLabel"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:textColor="@color/textColorPrimary_default"
 			android:gravity="center"
 			tools:text="Total: 8"
 			/>

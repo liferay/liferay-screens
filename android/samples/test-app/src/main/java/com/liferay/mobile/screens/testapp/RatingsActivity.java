@@ -1,7 +1,10 @@
 package com.liferay.mobile.screens.testapp;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
@@ -49,6 +52,7 @@ public class RatingsActivity extends ThemeActivity implements RatingListener, Vi
 		_buttons.add((ImageButton) findViewById(R.id.button_rating_thumb));
 		_buttons.add((ImageButton) findViewById(R.id.button_rating_like));
 		_buttons.add((ImageButton) findViewById(R.id.button_rating_star));
+		_buttons.add((ImageButton) findViewById(R.id.button_rating_reactions));
 
 		for (ImageButton button : _buttons) {
 			button.setOnClickListener(this);
@@ -60,13 +64,8 @@ public class RatingsActivity extends ThemeActivity implements RatingListener, Vi
 
 	private void paintButton(int id) {
 		for (ImageButton button: _buttons) {
-			int colorId = id == button.getId() ?
-				R.color.colorPrimary : android.R.color.darker_gray;
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-				button.setBackgroundColor(getColor(colorId));
-			} else {
-				button.setBackgroundColor(getResources().getColor(colorId));
-			}
+			button.getBackground().setColorFilter(ContextCompat.getColor(getApplicationContext(),
+				id != button.getId() ? android.R.color.darker_gray : R.color.colorPrimary_default), PorterDuff.Mode.SRC);
 		}
 	}
 
@@ -80,6 +79,9 @@ public class RatingsActivity extends ThemeActivity implements RatingListener, Vi
 				break;
 			case R.id.button_rating_star:
 				displayScreenlet(R.layout.rating_star_bar_default, R.string.liferay_rating_star_asset_id, 5);
+				break;
+			case R.id.button_rating_reactions:
+				displayScreenlet(R.layout.rating_reactions_default, R.string.liferay_rating_reactions_asset_id, 5);
 				break;
 		}
 
