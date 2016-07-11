@@ -19,7 +19,7 @@ public class BaseListView: BaseScreenletView {
 	
 	public static let DefaultSection = ""
 	
-	public var streamMode: Bool = false
+	internal var streamMode: Bool = false
 	
 	public var rowCount: Int {
 		return _rowCount

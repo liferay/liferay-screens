@@ -23,7 +23,7 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 	public var resultPageContent: [String : [AnyObject]]?
 	public var resultRowCount: Int?
 	public var sections: [String]?
-	public var streamMode = false
+	internal var streamMode = false
 	
 	
 	

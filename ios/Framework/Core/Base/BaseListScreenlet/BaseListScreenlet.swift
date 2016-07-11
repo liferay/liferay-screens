@@ -36,7 +36,7 @@ import UIKit
 		return screenletView as! BaseListView
 	}
 	
-	public var streamMode = false
+	internal var streamMode = false
 	
 	private var paginationInteractors: [Int:BaseListPageLoadInteractor] = [:]
 	
