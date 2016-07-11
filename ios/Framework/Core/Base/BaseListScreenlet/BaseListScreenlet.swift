@@ -61,7 +61,6 @@ import UIKit
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		let page = (sender as? Int) ?? 0
 		
-		print("create interactor for page \(page) stremMode \(streamMode)")
 		let interactor = createPageLoadInteractor(
 			page: page,
 			computeRowCount: (page == 0))
@@ -74,7 +73,6 @@ import UIKit
 			//StreamMode is only decided by the interactor in the first page load
 			//otherwise this state could be changed for other interactors
 			if (page == 0) {
-				print("interactor result for page \(interactor.page) streamMode: \(interactor.streamMode)")
 				self.streamMode = interactor.streamMode
 				self.baseListView.streamMode = self.streamMode
 			}
@@ -121,7 +119,6 @@ import UIKit
 	public func loadPageForRow(row: Int) {
 		let page = pageFromRow(row)
 		
-		print("load page for row \(row)")
 		// make sure we don't create two interactors for the same page
 		synchronized(paginationInteractors) {
 			if self.paginationInteractors.indexForKey(page) == nil {
