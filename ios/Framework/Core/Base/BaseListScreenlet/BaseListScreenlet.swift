@@ -78,11 +78,12 @@ import UIKit
 			}
 
 			self.baseListView.setRows(interactor.resultAllPagesContent!, newRows: interactor.resultPageContent!,
-			                          rowCount: interactor.resultRowCount ?? self.baseListView.rowCount)
+			                          rowCount: interactor.resultRowCount ?? self.baseListView.rowCount,
+			                          sections: interactor.sections ?? [BaseListView.DefaultSection])
 			
 			self.onLoadPageResult(
 				page: interactor.page,
-				rows: interactor.resultPageContent ?? [],
+				rows: interactor.resultPageContent?.map {$1}.flatMap {$0} ?? [],
 				rowCount: self.baseListView.rowCount)
 			
 			self.paginationInteractors.removeValueForKey(interactor.page)

@@ -14,7 +14,10 @@
 import UIKit
 
 
+
 public class BaseListView: BaseScreenletView {
+	
+	public static let DefaultSection = ""
 	
 	public var streamMode: Bool = false
 	
@@ -22,29 +25,38 @@ public class BaseListView: BaseScreenletView {
 		return _rowCount
 	}
 	
-	public var rows: [AnyObject?] {
+	public var rows: [String : [AnyObject?]] {
 		return _rows
+	}
+	
+	public var sections: [String] {
+		return _sections
 	}
 	
 	public var onSelectedRowClosure: (AnyObject -> Void)?
 	public var fetchPageForRow: (Int -> Void)?
 	
-	private var _rows = [AnyObject?]()
+	private var _rows = [String : [AnyObject?]]()
+	private var _sections = [String]()
 	private var _rowCount = 0
 	
 	public var loadingRows = false
 	public var moreRows = true
 	
-	public func setRows(allRows: [AnyObject?], newRows: [AnyObject], rowCount: Int) {
+	public func setRows(allRows: [String:[AnyObject?]], newRows: [String:[AnyObject]], rowCount: Int,
+	                    sections: [String]) {
+		
 		loadingRows = false
 		
-		if newRows.count == 0 || newRows.count < (screenlet as? BaseListScreenlet)?.pageSize {
+		if newRows.count == 0 {
 			moreRows = false
 		}
 		_rowCount = rowCount
 		
 		let oldRows = _rows
 		_rows = allRows
+		
+		_sections = sections
 		
 		if streamMode {
 			onAddedRows(lastCount: oldRows.count)
@@ -55,21 +67,28 @@ public class BaseListView: BaseScreenletView {
 	
 	public func clearRows() {
 		let oldRows = _rows
-		_rows = [AnyObject?]()
+		_rows = [String : [AnyObject?]]()
+		_rows[BaseListView.DefaultSection] = [AnyObject?]()
 		_rowCount = 0
+		_sections = [String]()
 		
 		onClearRows(oldRows)
 	}
 	
-	public func onChangedRows(oldRows:[AnyObject?]) {
+	public func onChangedRows(oldRows:[String : [AnyObject?]]) {
 	}
 	
 	public func onAddedRows(lastCount lastCount: Int) {
 		
 	}
 	
-	public func onClearRows(oldRows:[AnyObject?]) {
+	public func onClearRows(oldRows:[String : [AnyObject?]]) {
 		
 	}
 	
+	internal func rowsForSectionIndex(index: Int) -> [AnyObject?] {
+		let key = sections[index]
+		
+		return rows[key]!
+	}
 }

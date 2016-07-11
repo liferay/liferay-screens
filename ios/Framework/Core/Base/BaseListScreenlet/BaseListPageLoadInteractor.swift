@@ -19,9 +19,10 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 	public let page: Int
 	public let computeRowCount: Bool
 	
-	public var resultAllPagesContent: [AnyObject?]?
-	public var resultPageContent: [AnyObject]?
+	public var resultAllPagesContent: [String : [AnyObject?]]?
+	public var resultPageContent: [String : [AnyObject]]?
 	public var resultRowCount: Int?
+	public var sections: [String]?
 	public var streamMode = false
 	
 	
@@ -42,63 +43,97 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 		}
 	}
 	
-	public func processLoadPageResult(serverRows: [[String:AnyObject]], rowCount: Int?) {
-		if rowCount == nil && page == 0 {
-			streamMode = true
-		}
-		
+	public func processLoadPageResult(serverRows: [[String : AnyObject]], rowCount: Int?) {
 		let screenlet = self.screenlet as! BaseListScreenlet
 		let baseListView = screenlet.screenletView as! BaseListView
 		
-		let actualRowCount = rowCount ?? baseListView.rows.count
+		let actualRowCount = rowCount ?? baseListView.rows[BaseListView.DefaultSection]!.count
 		
 		let convertedRows = serverRows.map() { self.convertResult($0) }
 		
+		var allRows = baseListView.rows
+		var convertedRowsWithSection = [String : [AnyObject]]()
+		var sections = baseListView.sections
 		
-		var allRows = [AnyObject?]()
-
+		//Fill sections 
+		
+		for obj in convertedRows {
+			let sectionName = sectionForRowObject(obj) ?? BaseListView.DefaultSection
+			
+			if convertedRowsWithSection.indexForKey(sectionName) == nil {
+				convertedRowsWithSection[sectionName] = [AnyObject]()
+				
+				if !sections.contains(sectionName) {
+					sections.append(sectionName)
+				}
+			}
+			
+			convertedRowsWithSection[sectionName]!.append(obj)
+		}
+		
+		if (sections.count > 1 || rowCount == nil) && page == 0 {
+			streamMode = true
+		}
+		
 		if streamMode {
 			allRows = baseListView.rows
+		
+			for section in convertedRowsWithSection.keys {
+				if allRows.indexForKey(section) == nil {
+					allRows[section] = [AnyObject?]()
+				}
+				
+				let rowsInSection = convertedRowsWithSection[section]!
+				
+				for row in rowsInSection {
+					allRows[section]!.append(row)
+				}
+			}
 		}
 		else {
-			allRows = Array<AnyObject?>(count: actualRowCount, repeatedValue: nil)
+			//If we reach this point we will have only one section with key ""
+			allRows[BaseListView.DefaultSection] = Array<AnyObject?>(count: actualRowCount, repeatedValue: nil)
 			
 			//Insert existing elements in the list
-			for (index, row) in baseListView.rows.enumerate() {
-				allRows[index] = row
+			for (index, row) in baseListView.rows[BaseListView.DefaultSection]!.enumerate() {
+				allRows[BaseListView.DefaultSection]![index] = row
 			}
-		}
-		
-		var offset = screenlet.firstRowForPage(page)
-		var lastIndex = 0
-		
-		//Insert new elements
-		for (index, row) in convertedRows.enumerate() {
-			if index + offset < actualRowCount {
-				allRows[index + offset] = row
-				lastIndex = index + offset
+			
+			var offset = screenlet.firstRowForPage(page)
+			var lastIndex = 0
+			
+			//Insert new elements
+			for (index, row) in convertedRows.enumerate() {
+				if index + offset < actualRowCount {
+					allRows[BaseListView.DefaultSection]![index + offset] = row
+					lastIndex = index + offset
+				}
+				else {
+					allRows[BaseListView.DefaultSection]!.append(row)
+				}
 			}
-			else {
-				allRows.append(row)
-			}
-		}
-		
-		//Deleted elements since row computation
-		if lastIndex+1 < actualRowCount && !streamMode && convertedRows.count < screenlet.pageSize && page != 0 {
-			for _ in lastIndex+1..<actualRowCount {
-				allRows.popLast()
+			
+			//Deleted elements since row computation
+			if lastIndex+1 < actualRowCount && !streamMode && convertedRows.count < screenlet.pageSize && page != 0 {
+				for _ in lastIndex+1..<actualRowCount {
+					allRows[BaseListView.DefaultSection]!.popLast()
+				}
 			}
 		}
 		
 		self.resultRowCount = actualRowCount
-		self.resultPageContent = convertedRows
+		self.resultPageContent = convertedRowsWithSection
 		self.resultAllPagesContent = allRows
+		self.sections = sections
 	}
 	
 	public func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
 		fatalError("convert(serverResult) must be overriden")
 	}
 	
+	public func sectionForRowObject(object: AnyObject) -> String? {
+		return nil
+	}
 	
 	//MARK: Cache
 	

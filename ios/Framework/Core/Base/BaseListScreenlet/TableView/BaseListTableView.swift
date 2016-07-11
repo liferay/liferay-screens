@@ -51,20 +51,21 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		doRegisterCellNibs()
 	}
 	
-	override public func onChangedRows(oldRows: [AnyObject?]) {
+	override public func onChangedRows(oldRows: [String : [AnyObject?]]) {
 		super.onChangedRows(oldRows)
 
-		if oldRows.isEmpty {
+		if oldRows[BaseListView.DefaultSection]!.isEmpty {
 			insertFreshRows()
 			return
 		}
 		
 		//We have added or deleted rows since row count computation
-		if rows.count > oldRows.count {
+		if rows[BaseListView.DefaultSection]!.count > oldRows[BaseListView.DefaultSection]!.count {
 			turnStreamModeOn()
 			onAddedRows(lastCount: oldRows.count)
-		} else if rows.count < oldRows.count {
-			deleteRows(from: rows.count, to: oldRows.count)
+		} else if rows[BaseListView.DefaultSection]!.count < oldRows[BaseListView.DefaultSection]!.count {
+			deleteRows(from: rows[BaseListView.DefaultSection]!.count,
+						to: oldRows[BaseListView.DefaultSection]!.count, section: 0)
 		}
 
 		if let visibleRows = tableView!.indexPathsForVisibleRows {
@@ -83,10 +84,10 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 			hideProgressFooter()
 		}
 		
-		insertRows(from: lastCount, to: rows.count)
+		tableView?.reloadData()
 	}
 	
-	public override func onClearRows(oldRows: [AnyObject?]) {
+	public override func onClearRows(oldRows: [String : [AnyObject?]]) {
 		clearAllRows(oldRows)
 	}
 	
@@ -102,14 +103,20 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	//MARK: UITableViewDataSource
 	
 	public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return rows.count
+		return rowsForSectionIndex(section).count
+	}
+	
+	public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+		return sections.count
 	}
 	
 	public func tableView(tableView: UITableView,
 	                      cellForRowAtIndexPath
 		indexPath: NSIndexPath)
 		-> UITableViewCell {
-			let object: AnyObject? = rows[indexPath.row]
+			let rowsForSection = rowsForSectionIndex(indexPath.section)
+			
+			let object: AnyObject? = rowsForSection[indexPath.row]
 			let cell = doDequeueReusableCell(row: indexPath.row, object: object)
 			
 			if let object = object {
@@ -128,7 +135,9 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		tableView.deselectRowAtIndexPath(indexPath, animated: false)
 		
-		if let row:AnyObject = rows[indexPath.row] {
+		let rowsForSection = rowsForSectionIndex(indexPath.section)
+		
+		if let row:AnyObject = rowsForSection[indexPath.row] {
 			onSelectedRowClosure?(row)
 		}
 	}
@@ -136,7 +145,9 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
 	                      forRowAtIndexPath indexPath: NSIndexPath) {
 		if streamMode && !loadingRows && moreRows {
-			if indexPath.row == rows.count - 1 {
+			if indexPath.section == sections.count - 1
+					&& indexPath.row == rowsForSectionIndex(indexPath.section).count - 1 {
+				
 				loadingRows = true
 				fetchPageForRow?(indexPath.row + 1)
 			}
@@ -211,25 +222,25 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	}
 	
 	internal func insertFreshRows() {
-		insertRows(from: 0, to: rows.count)
+		tableView?.reloadData()
 	}
 	
-	internal func insertRows(from from: Int, to: Int) {
+	internal func insertRows(from from: Int, to: Int, section: Int) {
 		let indexPaths = (from..<to).map {
-			NSIndexPath(forRow: $0, inSection: 0)
+			NSIndexPath(forRow: $0, inSection: section)
 		}
 		tableView!.beginUpdates()
 		tableView!.insertRowsAtIndexPaths(indexPaths, withRowAnimation:.Top)
 		tableView!.endUpdates()
 	}
 	
-	internal func clearAllRows(currentRows: [AnyObject?]) {
-		deleteRows(from: 0, to: currentRows.count)
+	internal func clearAllRows(currentRows: [String : [AnyObject?]]) {
+		tableView?.reloadData()
 	}
 	
-	internal func deleteRows(from from: Int, to: Int) {
+	internal func deleteRows(from from: Int, to: Int, section: Int) {
 		let indexPaths = (from..<to).map {
-			NSIndexPath(forRow: $0, inSection: 0)
+			NSIndexPath(forRow: $0, inSection: section)
 		}
 		tableView!.beginUpdates()
 		tableView!.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Fade)
