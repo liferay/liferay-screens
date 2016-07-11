@@ -110,6 +110,10 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		return sections.count
 	}
 	
+	public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return sections[section]
+	}
+	
 	public func tableView(tableView: UITableView,
 	                      cellForRowAtIndexPath
 		indexPath: NSIndexPath)
@@ -141,6 +145,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 			onSelectedRowClosure?(row)
 		}
 	}
+
 	
 	public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
 	                      forRowAtIndexPath indexPath: NSIndexPath) {
@@ -149,7 +154,8 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 					&& indexPath.row == rowsForSectionIndex(indexPath.section).count - 1 {
 				
 				loadingRows = true
-				fetchPageForRow?(indexPath.row + 1)
+				let lastRow = rows.values.reduce(0) {$0 + $1.count}
+				fetchPageForRow?(lastRow + 1)
 			}
 		}
 	}
@@ -261,6 +267,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	}
 	
 	internal func hideProgressFooter() {
+		
 		tableView?.tableFooterView = nil
 	}
 	

@@ -40,17 +40,19 @@ public class BaseListView: BaseScreenletView {
 	private var _sections = [String]()
 	private var _rowCount = 0
 	
+	//True when a request for more rows is being processed
 	public var loadingRows = false
+	
+	//True when there are more rows in the server
 	public var moreRows = true
 	
-	public func setRows(allRows: [String:[AnyObject?]], newRows: [String:[AnyObject]], rowCount: Int,
+	public func setRows(allRows: [String : [AnyObject?]], newRows: [String : [AnyObject]], rowCount: Int,
 	                    sections: [String]) {
 		
 		loadingRows = false
 		
-		if newRows.count == 0 {
-			moreRows = false
-		}
+		moreRows = areThereMoreRows(newRows)
+
 		_rowCount = rowCount
 		
 		let oldRows = _rows
@@ -90,5 +92,24 @@ public class BaseListView: BaseScreenletView {
 		let key = sections[index]
 		
 		return rows[key]!
+	}
+	
+	internal func areThereMoreRows(newRows: [String : [AnyObject]]) -> Bool {
+		if newRows.count == 0 {
+			return false
+		}
+		
+		let newRowsCount = newRows.values.reduce(0) { $0 + $1.count }
+		let isFirstPage = rows.values.reduce(0) { $0 + $1.count } == 0
+		
+		//If we are receiving less elements than the page size there are no more rows in the server
+		if isFirstPage && newRowsCount < (screenlet as? BaseListScreenlet)?.firstPageSize {
+			return false
+		}
+		else if !isFirstPage && newRowsCount < (screenlet as? BaseListScreenlet)?.pageSize {
+			return false
+		}
+		
+		return true
 	}
 }

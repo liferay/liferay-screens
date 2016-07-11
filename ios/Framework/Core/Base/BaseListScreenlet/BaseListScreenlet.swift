@@ -35,6 +35,7 @@ import UIKit
 	public var baseListView: BaseListView {
 		return screenletView as! BaseListView
 	}
+	
 	public var streamMode = false
 	
 	private var paginationInteractors: [Int:BaseListPageLoadInteractor] = [:]
@@ -80,7 +81,7 @@ import UIKit
 			self.baseListView.setRows(interactor.resultAllPagesContent!, newRows: interactor.resultPageContent!,
 			                          rowCount: interactor.resultRowCount ?? self.baseListView.rowCount,
 			                          sections: interactor.sections ?? [BaseListView.DefaultSection])
-			
+
 			self.onLoadPageResult(
 				page: interactor.page,
 				rows: interactor.resultPageContent?.map {$1}.flatMap {$0} ?? [],
