@@ -49,16 +49,6 @@ public class StarBarRatingView extends BaseRatingView
 
 	@Override public void updateView() {
 		_userRatingBar.setEnabled(isEditable());
-
-		if (!isEditable()) {
-			_userRatingBar.setVisibility(View.GONE);
-			_averageContainer.setOrientation(VERTICAL);
-			_totalCountTextView.setPadding(0, 0, 0, 0);
-		} else {
-			_userRatingBar.setVisibility(View.VISIBLE);
-			_averageContainer.setOrientation(HORIZONTAL);
-			_totalCountTextView.setPadding(10, 0, 0, 0);
-		}
 	}
 
 	@Override protected void onFinishInflate() {
