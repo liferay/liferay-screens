@@ -3,12 +3,12 @@
 <plist version="1.0">
 <dict>
 	<key>server</key>
-	<string>https://demo.liferay.com/screens</string>
+	<string>http://192.168.40.244:8080</string>
 	<key>version</key>
-	<integer>62</integer>
+	<integer>70</integer>
 	<key>companyId</key>
-	<real>20155</real>
+	<real>20116</real>
 	<key>groupId</key>
-	<real>20525</real>
+	<real>20147</real>
 </dict>
 </plist>

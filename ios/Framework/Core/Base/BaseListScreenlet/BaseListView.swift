@@ -15,30 +15,61 @@ import UIKit
 
 
 public class BaseListView: BaseScreenletView {
-
+	
+	public var streamMode: Bool = false
+	
 	public var rowCount: Int {
 		return _rowCount
 	}
-
+	
 	public var rows: [AnyObject?] {
 		return _rows
 	}
-
+	
 	public var onSelectedRowClosure: (AnyObject -> Void)?
 	public var fetchPageForRow: (Int -> Void)?
-
+	
 	private var _rows = [AnyObject?]()
 	private var _rowCount = 0
-
-	public func setRows(newRows: [AnyObject?], rowCount: Int) {
+	
+	public var loadingRows = false
+	public var moreRows = true
+	
+	public func setRows(allRows: [AnyObject?], newRows: [AnyObject], rowCount: Int) {
+		loadingRows = false
+		
+		if newRows.count == 0 || newRows.count < (screenlet as? BaseListScreenlet)?.pageSize {
+			moreRows = false
+		}
 		_rowCount = rowCount
-
+		
 		let oldRows = _rows
-		_rows = newRows
-		onChangedRows(oldRows)
+		_rows = allRows
+		
+		if streamMode {
+			onAddedRows(lastCount: oldRows.count)
+		} else {
+			onChangedRows(oldRows)
+		}
 	}
-
+	
+	public func clearRows() {
+		let oldRows = _rows
+		_rows = [AnyObject?]()
+		_rowCount = 0
+		
+		onClearRows(oldRows)
+	}
+	
 	public func onChangedRows(oldRows:[AnyObject?]) {
 	}
-
+	
+	public func onAddedRows(lastCount lastCount: Int) {
+		
+	}
+	
+	public func onClearRows(oldRows:[AnyObject?]) {
+		
+	}
+	
 }
