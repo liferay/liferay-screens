@@ -46,6 +46,10 @@ public class LikeRatingView extends BaseRatingView implements View.OnClickListen
 		}
 	}
 
+	@Override public int getDefaultStepCount() {
+		return 1;
+	}
+
 	@Override public void updateView() {
 		_likeButton.setOnClickListener(!isEditable() ? null : this);
 		_likeButton.setEnabled(isEditable());

@@ -15,7 +15,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
-		android:progressTint="@color/colorPrimary_default"
+		android:indeterminateTint="@color/colorPrimary_default"
 		android:visibility="gone"
 		/>
 
@@ -51,6 +51,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="center"
+				android:textColor="@color/textColorPrimary_default"
 				tools:text="Total: 7"
 				/>
 
@@ -80,6 +81,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="center"
+				android:textColor="@color/textColorPrimary_default"
 				tools:text="Total: 9"
 				/>
 

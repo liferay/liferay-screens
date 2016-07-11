@@ -12,39 +12,37 @@
 		/>
 
 	<LinearLayout
+		android:id="@+id/rating_button_container"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal"
+		android:gravity="center"
 		android:padding="10dp"
-		android:weightSum="3"
 		>
 
-		<Button
+		<ImageButton
 			android:id="@+id/button_rating_thumb"
-			android:layout_width="0dip"
+			android:src="@drawable/thumbs"
+			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:layout_marginRight="5dp"
-			android:layout_weight="1"
-			android:text="Thumb view"
 			/>
 
-		<Button
+		<ImageButton
 			android:id="@+id/button_rating_star"
-			android:layout_width="0dip"
+			android:src="@drawable/stars"
+			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:layout_marginLeft="5dp"
 			android:layout_marginRight="5dp"
-			android:layout_weight="1"
-			android:text="Star bar view"
 			/>
 
-		<Button
+		<ImageButton
 			android:id="@+id/button_rating_like"
-			android:layout_width="0dip"
+			android:src="@drawable/like"
+			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:layout_marginLeft="5dp"
-			android:layout_weight="1"
-			android:text="Like view"
 			/>
 
 	</LinearLayout>
@@ -58,39 +56,11 @@
 		android:text="Read only"
 		/>
 
-	<com.liferay.mobile.screens.rating.RatingScreenlet
-		android:id="@+id/rating_thumb_screenlet"
+	<LinearLayout
+		android:id="@+id/rating_screenlet_container"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:visibility="gone"
-		liferay:autoLoad="false"
-		liferay:entryId="@string/liferay_rating_thumb_asset_id"
-		liferay:layoutId="@layout/rating_thumb_default"
-		liferay:offlinePolicy="REMOTE_FIRST"
-		/>
-
-	<com.liferay.mobile.screens.rating.RatingScreenlet
-		android:id="@+id/rating_star_screenlet"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:visibility="gone"
-		liferay:autoLoad="false"
-		liferay:entryId="@string/liferay_rating_star_asset_id"
-		liferay:stepCount="5"
-		liferay:layoutId="@layout/rating_star_bar_default"
-		liferay:offlinePolicy="REMOTE_FIRST"
-		/>
-
-	<com.liferay.mobile.screens.rating.RatingScreenlet
-		android:id="@+id/rating_like_screenlet"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:visibility="gone"
-		liferay:autoLoad="false"
-		liferay:entryId="@string/liferay_rating_like_asset_id"
-		liferay:stepCount="1"
-		liferay:layoutId="@layout/rating_like_default"
-		liferay:offlinePolicy="REMOTE_FIRST"
+		android:orientation="horizontal"
 		/>
 
 </LinearLayout>

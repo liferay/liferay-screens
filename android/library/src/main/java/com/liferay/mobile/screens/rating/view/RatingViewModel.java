@@ -10,6 +10,8 @@ public interface RatingViewModel extends BaseViewModel {
 
 	void setEditable(boolean readOnly);
 
+	int getDefaultStepCount();
+
 	boolean isEditable();
 
 	void updateView();

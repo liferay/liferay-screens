@@ -14,7 +14,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
-		android:progressTint="@color/colorPrimary_default"
+		android:indeterminateTint="@color/colorPrimary_default"
 		android:visibility="gone"
 		/>
 
@@ -32,7 +32,8 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:stepSize="1"
-			tools:assetRating="4"
+			android:progressTint="@color/colorPrimary_default"
+			tools:rating="4"
 			/>
 
 		<LinearLayout
@@ -47,7 +48,8 @@
 				android:layout_height="wrap_content"
 				android:isIndicator="true"
 				android:stepSize="1"
-				tools:assetRating="4"
+				android:progressTint="@color/colorPrimary_default"
+				tools:rating="3"
 				style="?android:attr/ratingBarStyleSmall"
 				/>
 
@@ -56,6 +58,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:paddingLeft="10dp"
+				android:textColor="@color/textColorPrimary_default"
 				tools:text="8 Ratings"
 				/>
 		</LinearLayout>

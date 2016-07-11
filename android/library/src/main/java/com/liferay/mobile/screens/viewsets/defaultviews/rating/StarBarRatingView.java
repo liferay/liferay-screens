@@ -43,6 +43,10 @@ public class StarBarRatingView extends BaseRatingView
 		}
 	}
 
+	@Override public int getDefaultStepCount() {
+		return _userRatingBar.getNumStars();
+	}
+
 	@Override public void updateView() {
 		_userRatingBar.setEnabled(isEditable());
 

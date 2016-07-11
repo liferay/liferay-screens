@@ -1,12 +1,18 @@
 package com.liferay.mobile.screens.testapp;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import com.liferay.mobile.screens.rating.AssetRating;
 import com.liferay.mobile.screens.rating.RatingListener;
 import com.liferay.mobile.screens.rating.RatingScreenlet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Alejandro Hernández
@@ -21,9 +27,6 @@ public class RatingsActivity extends ThemeActivity implements RatingListener, Vi
 		info("Screenlet loaded succesfully");
 	}
 
-	private RatingScreenlet _thumbScreenlet;
-	private RatingScreenlet _starScreenlet;
-	private RatingScreenlet _likeScreenlet;
 	private Switch _readOnlySwitch;
 
 	private RatingScreenlet _screenlet;
@@ -33,16 +36,9 @@ public class RatingsActivity extends ThemeActivity implements RatingListener, Vi
 
 		setContentView(R.layout.ratings);
 
-		_thumbScreenlet = ((RatingScreenlet) findViewById(R.id.rating_thumb_screenlet));
-		_starScreenlet = ((RatingScreenlet) findViewById(R.id.rating_star_screenlet));
-		_likeScreenlet = ((RatingScreenlet) findViewById(R.id.rating_like_screenlet));
+		_container = (LinearLayout) findViewById(R.id.rating_screenlet_container);
 
 		_readOnlySwitch = (Switch) findViewById(R.id.switch_read_only);
-
-		_starScreenlet.setListener(this);
-		_likeScreenlet.setListener(this);
-		_thumbScreenlet.setListener(this);
-
 		_readOnlySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 			@Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				_screenlet.setEditable(!isChecked);
@@ -50,50 +46,58 @@ public class RatingsActivity extends ThemeActivity implements RatingListener, Vi
 			}
 		});
 
-		findViewById(R.id.button_rating_thumb).setOnClickListener(this);
-		findViewById(R.id.button_rating_like).setOnClickListener(this);
-		findViewById(R.id.button_rating_star).setOnClickListener(this);
+		_buttons.add((ImageButton) findViewById(R.id.button_rating_thumb));
+		_buttons.add((ImageButton) findViewById(R.id.button_rating_like));
+		_buttons.add((ImageButton) findViewById(R.id.button_rating_star));
 
-		displayScreenlet(_thumbScreenlet);
+		for (ImageButton button : _buttons) {
+			button.setOnClickListener(this);
+		}
+
+		displayScreenlet(R.layout.rating_thumb_default, R.string.liferay_rating_thumb_asset_id, 2);
+		paintButton(R.id.button_rating_thumb);
+	}
+
+	private void paintButton(int id) {
+		for (ImageButton button: _buttons) {
+			int colorId = id == button.getId() ?
+				R.color.colorPrimary : android.R.color.darker_gray;
+			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+				button.setBackgroundColor(getColor(colorId));
+			} else {
+				button.setBackgroundColor(getResources().getColor(colorId));
+			}
+		}
 	}
 
 	@Override public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.button_rating_thumb:
-				displayScreenlet(_thumbScreenlet);
+				displayScreenlet(R.layout.rating_thumb_default, R.string.liferay_rating_thumb_asset_id, 2);
 				break;
 			case R.id.button_rating_like:
-				displayScreenlet(_likeScreenlet);
+				displayScreenlet(R.layout.rating_like_default, R.string.liferay_rating_like_asset_id, 1);
 				break;
 			case R.id.button_rating_star:
-				displayScreenlet(_starScreenlet);
-				break;
-			default:
+				displayScreenlet(R.layout.rating_star_bar_default, R.string.liferay_rating_star_asset_id, 5);
 				break;
 		}
+
+		paintButton(v.getId());
 	}
 
-	private void displayScreenlet(RatingScreenlet screenlet) {
-		hideScreenlets();
-		_screenlet = screenlet;
-		_screenlet.setVisibility(View.VISIBLE);
+	private void displayScreenlet(int layoutId, int entryId, int stepCount) {
+		_screenlet = new RatingScreenlet(getApplicationContext());
+		_screenlet.setEntryId(Long.valueOf(getResources().getString(entryId)));
+		_screenlet.setAutoLoad(true);
+		_screenlet.setStepCount(stepCount);
+		_screenlet.render(layoutId);
 		_screenlet.setEditable(!_readOnlySwitch.isChecked());
-		_screenlet.updateView();
 
-		loadScreenlet();
+		_container.removeAllViews();
+		_container.addView(_screenlet);
 	}
 
-	private void loadScreenlet() {
-		try {
-			_screenlet.load();
-		} catch (Exception e) {
-			onRatingOperationFailure(e);
-		}
-	}
-
-	private void hideScreenlets() {
-		_starScreenlet.setVisibility(View.GONE);
-		_thumbScreenlet.setVisibility(View.GONE);
-		_likeScreenlet.setVisibility(View.GONE);
-	}
+	private LinearLayout _container;
+	private List<ImageButton> _buttons = new ArrayList<>();
 }

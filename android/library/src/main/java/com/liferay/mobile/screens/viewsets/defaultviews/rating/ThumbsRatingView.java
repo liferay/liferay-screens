@@ -73,6 +73,10 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 		}
 	}
 
+	@Override public int getDefaultStepCount() {
+		return 2;
+	}
+
 	@Override public void updateView() {
 		_negativeButton.setOnClickListener(!isEditable() ? null : this);
 		_negativeButton.setEnabled(isEditable());
