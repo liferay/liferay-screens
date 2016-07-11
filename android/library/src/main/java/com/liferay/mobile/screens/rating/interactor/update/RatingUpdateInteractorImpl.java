@@ -1,10 +1,8 @@
-package com.liferay.mobile.screens.rating.interactor;
+package com.liferay.mobile.screens.rating.interactor.update;
 
 import android.support.annotation.NonNull;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
-import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
-import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.rating.AssetRating;
 import com.liferay.mobile.screens.rating.RatingListener;
@@ -18,34 +16,18 @@ import org.json.JSONObject;
 /**
  * @author Alejandro Hernández
  */
-public class RatingInteractorImpl extends BaseRemoteInteractor<RatingListener>
-	implements RatingInteractor {
+public class RatingUpdateInteractorImpl extends BaseRemoteInteractor<RatingListener>
+	implements RatingUpdateInteractor {
 
-	public RatingInteractorImpl(int targetScreenletId) {
+	public RatingUpdateInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
 		_screensratingsentryService = getScreensratingsentryService();
 	}
 
 	@NonNull private ScreensratingsentryService getScreensratingsentryService() {
 		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
+		session.setCallback(new RatingUpdateCallback(getTargetScreenletId()));
 		return new ScreensratingsentryService(session);
-	}
-
-	@Override public void loadRatings(long entryId, long classPK, String className, int stepCount)
-		throws Exception {
-		validate(entryId, className, classPK);
-
-		if (entryId != 0) {
-			_screensratingsentryService.getRatingsEntries(entryId, stepCount);
-		} else {
-			_screensratingsentryService.getRatingsEntries(classPK, className, stepCount);
-		}
-	}
-
-	@Override public void deleteRating(long classPK, String className, int stepCount)
-		throws Exception {
-		_screensratingsentryService.deleteRatingEntry(classPK, className, stepCount);
 	}
 
 	@Override public void addRating(long classPK, String className, double score, int stepCount)
@@ -54,7 +36,7 @@ public class RatingInteractorImpl extends BaseRemoteInteractor<RatingListener>
 		_screensratingsentryService.updateRatingEntry(classPK, className, score, stepCount);
 	}
 
-	public void onEvent(JSONObjectEvent event) {
+	public void onEvent(RatingUpdateEvent event) {
 		if (!isValidEvent(event)) {
 			return;
 		}
@@ -82,13 +64,6 @@ public class RatingInteractorImpl extends BaseRemoteInteractor<RatingListener>
 			intArray[i] = array.optInt(i);
 		}
 		return intArray;
-	}
-
-	protected void validate(long entryId, String className, long classPK) {
-		if (entryId == 0 && (className == null || classPK == 0)) {
-			throw new IllegalArgumentException(
-				"Either entryId or className & classPK cannot" + "be empty");
-		}
 	}
 
 	protected void validate(double score) throws InvalidParameterException {

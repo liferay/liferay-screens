@@ -7,9 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.rating.interactor.RatingInteractor;
-import com.liferay.mobile.screens.rating.interactor.RatingInteractorImpl;
+import com.liferay.mobile.screens.rating.interactor.delete.RatingDeleteInteractor;
+import com.liferay.mobile.screens.rating.interactor.delete.RatingDeleteInteractorImpl;
+import com.liferay.mobile.screens.rating.interactor.load.RatingLoadInteractor;
+import com.liferay.mobile.screens.rating.interactor.load.RatingLoadInteractorImpl;
+import com.liferay.mobile.screens.rating.interactor.update.RatingUpdateInteractor;
+import com.liferay.mobile.screens.rating.interactor.update.RatingUpdateInteractorImpl;
 import com.liferay.mobile.screens.rating.view.RatingViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
@@ -17,7 +22,7 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  * @author Alejandro Hernández
  */
 
-public class RatingScreenlet extends BaseScreenlet<RatingViewModel, RatingInteractor>
+public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor>
 	implements RatingListener {
 
 	public static final String LOAD_RATINGS_ACTION = "loadRatings";
@@ -57,7 +62,7 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, RatingIntera
 		int layoutId = typedArray.getResourceId(R.styleable.RatingScreenlet_layoutId, 0);
 
 		_autoLoad = typedArray.getBoolean(R.styleable.RatingScreenlet_autoLoad, true);
-		_editable = typedArray.getBoolean(R.styleable.RatingScreenlet_editable, false);
+		_editable = typedArray.getBoolean(R.styleable.RatingScreenlet_editable, true);
 
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
 		((RatingViewModel) view).setEditable(_editable);
@@ -73,23 +78,32 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, RatingIntera
 		return view;
 	}
 
-	@Override protected RatingInteractor createInteractor(String actionName) {
-		return new RatingInteractorImpl(getScreenletId());
+	@Override protected Interactor createInteractor(String actionName) {
+		switch (actionName) {
+			case LOAD_RATINGS_ACTION:
+				return new RatingLoadInteractorImpl(getScreenletId());
+			case DELETE_RATING_ACTION:
+				return new RatingDeleteInteractorImpl(getScreenletId());
+			case ADD_RATING_ACTION:
+				return new RatingUpdateInteractorImpl(getScreenletId());
+			default:
+				return null;
+		}
 	}
 
-	@Override protected void onUserAction(String userActionName, RatingInteractor interactor,
+	@Override protected void onUserAction(String userActionName, Interactor interactor,
 		Object... args) {
 		try {
 			switch (userActionName) {
 				case LOAD_RATINGS_ACTION:
-					interactor.loadRatings(_entryId, _classPK, _className, _stepCount);
+					((RatingLoadInteractor) interactor).loadRatings(_entryId, _classPK, _className, _stepCount);
 					break;
 				case ADD_RATING_ACTION:
 					double score = (double) args[0];
-					interactor.addRating(_classPK, _className, score, _stepCount);
+					((RatingUpdateInteractor) interactor).addRating(_classPK, _className, score, _stepCount);
 					break;
 				case DELETE_RATING_ACTION:
-					interactor.deleteRating(_classPK, _className, _stepCount);
+					((RatingDeleteInteractor) interactor).deleteRating(_classPK, _className, _stepCount);
 					break;
 				default:
 					break;

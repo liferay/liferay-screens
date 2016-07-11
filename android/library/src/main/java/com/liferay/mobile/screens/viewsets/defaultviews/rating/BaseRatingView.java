@@ -3,6 +3,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.rating;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import com.liferay.mobile.screens.R;
@@ -72,11 +73,11 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 		super.onFinishInflate();
 
 		_progressBar = (ProgressBar) findViewById(R.id.liferay_rating_progress);
-		_content = (LinearLayout) findViewById(R.id.liferay_rating_content);
+		_content = (ViewGroup) findViewById(R.id.liferay_rating_content);
 	}
 
 	protected ProgressBar _progressBar;
-	protected LinearLayout _content;
+	protected ViewGroup _content;
 	private BaseScreenlet _screenlet;
 	private boolean _editable;
 }
