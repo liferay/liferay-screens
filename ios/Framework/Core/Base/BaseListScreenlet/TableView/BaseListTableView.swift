@@ -138,6 +138,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		if streamMode && !loadingRows && moreRows {
 			if indexPath.row == rows.count - 1 {
 				loadingRows = true
+				print("fetch page for row \(indexPath.row + 1)")
 				fetchPageForRow?(indexPath.row + 1)
 			}
 		}
