@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -19,7 +19,6 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
@@ -32,8 +31,7 @@ import java.util.Map;
  */
 public class DDLFormPagerViewAdapter extends PagerAdapter {
 
-	public DDLFormPagerViewAdapter(
-		List<Field> fields, Map<Field.EditorType, Integer> layoutIds) {
+	public DDLFormPagerViewAdapter(List<Field> fields, Map<Field.EditorType, Integer> layoutIds) {
 
 		_fields = fields;
 		_layoutIds = layoutIds;
@@ -41,34 +39,31 @@ public class DDLFormPagerViewAdapter extends PagerAdapter {
 
 	@Override
 	public int getCount() {
-		return 2;
+		return _fields.size();
 	}
 
 	@Override
 	public Object instantiateItem(ViewGroup container, int position) {
 		Context context = container.getContext();
-		LinearLayout layout = new LinearLayout(context);
-		layout.setOrientation(LinearLayout.VERTICAL);
 
-		int nFields = 2;
+		Field field = _fields.get(position);
+		Field.EditorType type = field.getEditorType();
+		int layoutId = _layoutIds.get(type);
 
-		for (int i = 0; i < nFields; i++) {
-			Field field = _fields.get(i);
-			Field.EditorType type = field.getEditorType();
-			int layoutId = _layoutIds.get(type);
+		LayoutInflater inflater = LayoutInflater.from(context);
+		View view = inflater.inflate(layoutId, container, false);
 
-			LayoutInflater inflater = LayoutInflater.from(context);
-			View view = inflater.inflate(layoutId, layout, false);
+		DDLFieldViewModel viewModel = (DDLFieldViewModel) view;
+		viewModel.setField(field);
 
-			DDLFieldViewModel viewModel = (DDLFieldViewModel) view;
-			viewModel.setField(field);
+		container.addView(view);
 
-			layout.addView(view);
-		}
+		return view;
+	}
 
-		container.addView(layout);
-
-		return layout;
+	@Override
+	public void destroyItem(ViewGroup container, int position, Object object) {
+		container.removeView((View) object);
 	}
 
 	@Override

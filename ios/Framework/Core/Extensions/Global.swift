@@ -14,6 +14,27 @@
 import UIKit
 
 
+extension SequenceType {
+	public func stoppableReduce<T>(initial: T, @noescape combine: (T, Self.Generator.Element,
+			inout Bool) -> T) -> T {
+		
+		var hasToStop = false
+		var generator = self.generate()
+		var currentValue = initial
+		
+		while (!hasToStop) {
+			guard let nextElement = generator.next()
+			else {
+				break
+			}
+			currentValue = combine(currentValue, nextElement, &hasToStop)
+		}
+		
+		return currentValue
+	}
+}
+
+
 public func nullIfEmpty(string: String?) -> String? {
 	if string == nil {
 		return nil
