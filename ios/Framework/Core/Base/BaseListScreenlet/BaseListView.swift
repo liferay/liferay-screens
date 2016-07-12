@@ -88,7 +88,7 @@ public class BaseListView: BaseScreenletView {
 		
 	}
 	
-	internal func rowsForSectionIndex(index: Int) -> [AnyObject?] {
+	public func rowsForSectionIndex(index: Int) -> [AnyObject?] {
 		let key = sections[index]
 		
 		return rows[key]!
