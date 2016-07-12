@@ -7,5 +7,5 @@ import com.liferay.mobile.screens.rating.RatingListener;
  * @author Alejandro Hernández
  */
 public interface RatingUpdateInteractor extends Interactor<RatingListener> {
-	void addRating(long classPK, String className, double score, int stepCount) throws Exception;
+	void updateRating(long classPK, String className, double score, int stepCount) throws Exception;
 }

@@ -1,15 +1,11 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.rating;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
-import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.rating.AssetRating;
 import com.liferay.mobile.screens.rating.RatingScreenlet;
 import java.util.ArrayList;
@@ -86,7 +82,7 @@ public class EmojisRatingView extends BaseRatingView implements View.OnClickList
 
 		if (score != -1) {
 			String action = score == _userScore ? RatingScreenlet.DELETE_RATING_ACTION
-				: RatingScreenlet.ADD_RATING_ACTION;
+				: RatingScreenlet.UPDATE_RATING_ACTION;
 			getScreenlet().performUserAction(action, score);
 		}
 	}

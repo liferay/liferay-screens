@@ -26,7 +26,7 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor>
 	implements RatingListener {
 
 	public static final String LOAD_RATINGS_ACTION = "loadRatings";
-	public static final String ADD_RATING_ACTION = "addRating";
+	public static final String UPDATE_RATING_ACTION = "updateRating";
 	public static final String DELETE_RATING_ACTION = "deleteRating";
 
 	public RatingScreenlet(Context context) {
@@ -85,7 +85,7 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor>
 				return new RatingLoadInteractorImpl(getScreenletId());
 			case DELETE_RATING_ACTION:
 				return new RatingDeleteInteractorImpl(getScreenletId());
-			case ADD_RATING_ACTION:
+			case UPDATE_RATING_ACTION:
 				return new RatingUpdateInteractorImpl(getScreenletId());
 			default:
 				return null;
@@ -99,9 +99,9 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor>
 				case LOAD_RATINGS_ACTION:
 					((RatingLoadInteractor) interactor).loadRatings(_entryId, _classPK, _className, _stepCount);
 					break;
-				case ADD_RATING_ACTION:
+				case UPDATE_RATING_ACTION:
 					double score = (double) args[0];
-					((RatingUpdateInteractor) interactor).addRating(_classPK, _className, score, _stepCount);
+					((RatingUpdateInteractor) interactor).updateRating(_classPK, _className, score, _stepCount);
 					break;
 				case DELETE_RATING_ACTION:
 					((RatingDeleteInteractor) interactor).deleteRating(_classPK, _className, _stepCount);

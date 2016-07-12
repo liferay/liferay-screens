@@ -57,7 +57,7 @@ public class LikeRatingView extends BaseRatingView implements View.OnClickListen
 
 	@Override public void onClick(View v) {
 		String action =
-			_hasUserRate ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.ADD_RATING_ACTION;
+			_hasUserRate ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.UPDATE_RATING_ACTION;
 		getScreenlet().performUserAction(action, 1.0);
 	}
 

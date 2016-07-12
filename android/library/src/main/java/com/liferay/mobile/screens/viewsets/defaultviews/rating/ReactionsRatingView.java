@@ -88,7 +88,7 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 
 		if (score != -1) {
 			String action = score == _userScore ? RatingScreenlet.DELETE_RATING_ACTION
-				: RatingScreenlet.ADD_RATING_ACTION;
+				: RatingScreenlet.UPDATE_RATING_ACTION;
 			getScreenlet().performUserAction(action, score);
 		}
 	}

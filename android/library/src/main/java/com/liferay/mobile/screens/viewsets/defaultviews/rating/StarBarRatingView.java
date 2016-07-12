@@ -65,7 +65,7 @@ public class StarBarRatingView extends BaseRatingView
 	@Override public void onRatingChanged(RatingBar ratingBar, float score, boolean fromUser) {
 		if (fromUser) {
 			double normalizedScore = score / ratingBar.getNumStars();
-			getScreenlet().performUserAction(RatingScreenlet.ADD_RATING_ACTION,
+			getScreenlet().performUserAction(RatingScreenlet.UPDATE_RATING_ACTION,
 				(double) normalizedScore);
 		}
 	}
