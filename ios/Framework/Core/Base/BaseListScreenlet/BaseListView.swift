@@ -51,7 +51,7 @@ public class BaseListView: BaseScreenletView {
 		
 		loadingRows = false
 		
-		moreRows = areThereMoreRows(newRows)
+		moreRows = hasMoreRows(newRows)
 
 		_rowCount = rowCount
 		
@@ -94,7 +94,7 @@ public class BaseListView: BaseScreenletView {
 		return rows[key]!
 	}
 	
-	internal func areThereMoreRows(newRows: [String : [AnyObject]]) -> Bool {
+	internal func hasMoreRows(newRows: [String : [AnyObject]]) -> Bool {
 		if newRows.count == 0 {
 			return false
 		}
