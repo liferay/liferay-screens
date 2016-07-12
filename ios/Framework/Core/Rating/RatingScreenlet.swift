@@ -40,7 +40,8 @@ import UIKit
 	}
 	
 	private func createLoadRatingsInteractor() -> LoadRatingsInteractor {
-		let interactor = LoadRatingsInteractor(screenlet: self)
+		let interactor = LoadRatingsInteractor(screenlet: self, entryId: entryId, classPK: classPK,
+			className: className, stepCount: stepCount)
 		
 		interactor.onSuccess = {
 			if let result = interactor.resultRating {
@@ -57,7 +58,8 @@ import UIKit
 	}
 	
 	private func createDeleteRatingInteractor() -> DeleteRatingInteractor {
-		let interactor = DeleteRatingInteractor(screenlet: self)
+		let interactor = DeleteRatingInteractor(screenlet: self, classPK: classPK, className: className,
+			stepCount: stepCount)
 		
 		interactor.onSuccess = {
 			self.viewModel.ratingEntry = interactor.resultRating
@@ -69,7 +71,8 @@ import UIKit
 	}
 	
 	private func createUpdateRatingInteractor() -> UpdateRatingInteractor {
-		let interactor = UpdateRatingInteractor(screenlet: self)
+		let interactor = UpdateRatingInteractor(screenlet: self, classPK: classPK, className: className,
+			score: viewModel.selectedUserScore!.doubleValue, stepCount: stepCount)
 		
 		interactor.onSuccess = {
 			self.viewModel.ratingEntry = interactor.resultRating

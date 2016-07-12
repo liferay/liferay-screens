@@ -16,15 +16,25 @@ import UIKit
 public class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 	
 	var resultRating: RatingEntry?
+	let classPK: Int64
+	let className: String
+	let score: Double
+	let stepCount: Int32
+	
+	init(screenlet: BaseScreenlet?, classPK: Int64, className: String, score: Double, stepCount: Int32) {
+		self.classPK = classPK
+		self.className = className
+		self.stepCount = stepCount
+		self.score = score
+		super.init(screenlet: screenlet)
+	}
 	
 	override public func createConnector() -> ServerConnector? {
-		let screenlet = self.screenlet as! RatingScreenlet
-		
 		return LiferayServerContext.connectorFactory.createRatingUpdateConnector(
-			classPK: screenlet.classPK,
-			className: screenlet.className,
-			score: screenlet.viewModel.selectedUserScore!.doubleValue,
-			stepCount: screenlet.stepCount)
+			classPK: classPK,
+			className: className,
+			score: score,
+			stepCount: stepCount)
 	}
 	
 	override public func completedConnector(op: ServerConnector) {
