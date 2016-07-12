@@ -19,8 +19,6 @@ public class BaseListView: BaseScreenletView {
 	
 	public static let DefaultSection = ""
 	
-	internal var streamMode: Bool = false
-	
 	public var rowCount: Int {
 		return _rowCount
 	}
@@ -48,6 +46,8 @@ public class BaseListView: BaseScreenletView {
 	
 	public func setRows(allRows: [String : [AnyObject?]], newRows: [String : [AnyObject]], rowCount: Int,
 	                    sections: [String]) {
+		
+		let streamMode = (screenlet as! BaseListScreenlet).streamMode
 		
 		loadingRows = false
 		

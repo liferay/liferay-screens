@@ -68,16 +68,8 @@ import UIKit
 		
 		paginationInteractors[page] = interactor
 		
-		interactor.streamMode = streamMode
-		
 		interactor.onSuccess = {
-			//StreamMode is only decided by the interactor in the first page load
-			//otherwise this state could be changed for other interactors
-			if (page == 0) {
-				self.streamMode = interactor.streamMode
-				self.baseListView.streamMode = self.streamMode
-			}
-
+			
 			self.baseListView.setRows(interactor.resultAllPagesContent!, newRows: interactor.resultPageContent!,
 			                          rowCount: interactor.resultRowCount ?? self.baseListView.rowCount,
 			                          sections: interactor.sections ?? [BaseListView.DefaultSection])

@@ -134,6 +134,9 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 			}
 			else {
 				doFillInProgressCell(row: indexPath.row, cell: cell)
+				
+				let streamMode = (screenlet as! BaseListScreenlet).streamMode
+				
 				if !streamMode {
 					fetchPageForRow?(indexPath.row)
 				}
@@ -155,6 +158,9 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	
 	public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
 	                      forRowAtIndexPath indexPath: NSIndexPath) {
+		
+		let streamMode = (screenlet as! BaseListScreenlet).streamMode
+		
 		if streamMode && !loadingRows && moreRows {
 			
 			let isLastSection = (indexPath.section == sections.count - 1)
@@ -281,7 +287,6 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	
 	internal func turnStreamModeOn() {
 		moreRows = true
-		streamMode = true
 		(screenlet as? BaseListScreenlet)?.streamMode = true
 	}
 }

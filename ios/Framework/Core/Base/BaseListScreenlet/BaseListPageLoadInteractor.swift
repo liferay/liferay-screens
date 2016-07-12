@@ -23,7 +23,6 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 	public var resultPageContent: [String : [AnyObject]]?
 	public var resultRowCount: Int?
 	public var sections: [String]?
-	internal var streamMode = false
 	
 	
 	
@@ -75,12 +74,14 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 			convertedRowsWithSection[sectionName]!.append(obj)
 		}
 		
+		//StreamMode is only decided by the interactor in the first page load
+		//otherwise this state could be changed for other interactors
 		if (sections.count > 1 || rowCount == nil) && isFirstPage {
-			streamMode = true
+			screenlet.streamMode = true
 		}
 		
 		//Fill rows
-		if streamMode {
+		if screenlet.streamMode {
 			allRows = baseListView.rows
 		
 			for section in convertedRowsWithSection.keys {
@@ -120,6 +121,8 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 			
 			let lessItemsThanExpected = (lastIndexInserted + 1 < actualRowCount)
 			let incompleteMiddlePage = (!isPageFull && !isFirstPage)
+			
+			let streamMode = (screenlet as! BaseListScreenlet).streamMode
 			
 			//Deleted elements since row count computation
 			if lessItemsThanExpected && !streamMode && incompleteMiddlePage {
