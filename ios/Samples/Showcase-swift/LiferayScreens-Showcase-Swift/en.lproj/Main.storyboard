@@ -1123,23 +1123,6 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JER-c8-R1u" customClass="RatingScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="120" y="306" width="80" height="68"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="FtD-we-2ga"/>
-                                    <constraint firstAttribute="height" constant="68" id="Z5v-w4-Flp"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="entryId">
-                                        <integer key="value" value="31904"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="stepCount">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="Default.Like"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Star bar ratings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeT-fP-oHp">
                                 <rect key="frame" x="16" y="394" width="288" height="32"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
@@ -1157,11 +1140,28 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="stepCount">
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="Default.Stars"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="default-stars"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="classPK">
                                         <integer key="value" value="32047"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="className" value="com.liferay.document.library.kernel.model.DLFileEntry"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JER-c8-R1u" customClass="RatingScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="120" y="306" width="80" height="68"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="FtD-we-2ga"/>
+                                    <constraint firstAttribute="height" constant="68" id="Z5v-w4-Flp"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="entryId">
+                                        <integer key="value" value="31904"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="stepCount">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="default-like"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>

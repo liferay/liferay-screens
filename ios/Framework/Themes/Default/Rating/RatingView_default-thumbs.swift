@@ -13,13 +13,13 @@
  */
 import UIKit
 
-public class RatingThumbsView_default: BaseScreenletView, RatingViewModel {
+public class RatingView_default_thumbs: BaseScreenletView, RatingViewModel {
 	
 	@IBOutlet weak var negativeButton: UIButton! {
 		didSet {
 			let image = NSBundle.imageInBundles(
 				name: "default-thumb-down",
-				currentClass: RatingThumbsView_default.self)?.imageWithRenderingMode(.AlwaysTemplate)
+				currentClass: RatingView_default_thumbs.self)?.imageWithRenderingMode(.AlwaysTemplate)
 			self.negativeButton.setBackgroundImage(image, forState: .Normal)
 		}
 	}
@@ -28,7 +28,7 @@ public class RatingThumbsView_default: BaseScreenletView, RatingViewModel {
 		didSet {
 			let image = NSBundle.imageInBundles(
 				name: "default-thumb-up",
-				currentClass: RatingThumbsView_default.self)?.imageWithRenderingMode(.AlwaysTemplate)
+				currentClass: RatingView_default_thumbs.self)?.imageWithRenderingMode(.AlwaysTemplate)
 			self.possitiveButton.setBackgroundImage(image, forState: .Normal)
 		}
 	}

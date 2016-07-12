@@ -14,7 +14,7 @@
 import UIKit
 import Cosmos
 
-public class RatingStarView_default: BaseScreenletView, RatingViewModel {
+public class RatingView_default_stars: BaseScreenletView, RatingViewModel {
 	
 	@IBOutlet weak var userRatingBar: CosmosView! {
 		didSet {

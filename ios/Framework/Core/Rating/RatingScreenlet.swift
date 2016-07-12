@@ -35,6 +35,21 @@ import UIKit
 		}
 	}
 	
+	override public func prepareForInterfaceBuilder() {
+		setCustomDefaultThemeName()
+		super.prepareForInterfaceBuilder()
+	}
+	
+	public override func onPreCreate() {
+		setCustomDefaultThemeName()
+	}
+	
+	internal func setCustomDefaultThemeName() {
+		if themeName == BaseScreenlet.DefaultThemeName {
+			themeName = "default-thumbs"
+		}
+	}
+	
 	public var viewModel: RatingViewModel {
 		return screenletView as! RatingViewModel
 	}

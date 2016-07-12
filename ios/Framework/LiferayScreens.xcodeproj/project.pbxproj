@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B0E0BF51D2BAB4900820C2F /* RatingView_default.stars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0E0BF41D2BAB4900820C2F /* RatingView_default.stars.swift */; };
-		0B4621E61D2BA6FA008DB96A /* RatingView_default.stars.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B4621E51D2BA6FA008DB96A /* RatingView_default.stars.xib */; };
-		0B6CEEC31D2A559600BB1BDB /* RatingView_default.like.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEEC21D2A559600BB1BDB /* RatingView_default.like.swift */; };
-		0B6CEEC51D2A55EC00BB1BDB /* RatingView_default.like.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6CEEC41D2A55EC00BB1BDB /* RatingView_default.like.xib */; };
+		0B0E0BF51D2BAB4900820C2F /* RatingView_default-stars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0E0BF41D2BAB4900820C2F /* RatingView_default-stars.swift */; };
+		0B4621E61D2BA6FA008DB96A /* RatingView_default-stars.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B4621E51D2BA6FA008DB96A /* RatingView_default-stars.xib */; };
+		0B6CEEC31D2A559600BB1BDB /* RatingView_default-like.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEEC21D2A559600BB1BDB /* RatingView_default-like.swift */; };
+		0B6CEEC51D2A55EC00BB1BDB /* RatingView_default-like.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6CEEC41D2A55EC00BB1BDB /* RatingView_default-like.xib */; };
 		0B6CEEC81D2A58F500BB1BDB /* RatingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEEC71D2A58F500BB1BDB /* RatingViewModel.swift */; };
 		0B6CEECB1D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B6CEEC91D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B6CEECC1D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEECA1D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.m */; };
@@ -19,8 +19,8 @@
 		0B6CEED71D2AABE700BB1BDB /* RatingEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEED61D2AABE700BB1BDB /* RatingEntry.swift */; };
 		0B6CEEDD1D2AB63A00BB1BDB /* DeleteRatingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEEDC1D2AB63A00BB1BDB /* DeleteRatingInteractor.swift */; };
 		0B6CEEDF1D2AB69400BB1BDB /* UpdateRatingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEEDE1D2AB69400BB1BDB /* UpdateRatingInteractor.swift */; };
-		0B6CEEE11D2ACD0400BB1BDB /* RatingView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEEE01D2ACD0400BB1BDB /* RatingView_default.swift */; };
-		0B6CEEE31D2ACD5E00BB1BDB /* RatingView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6CEEE21D2ACD5E00BB1BDB /* RatingView_default.xib */; };
+		0B6CEEE11D2ACD0400BB1BDB /* RatingView_default-thumbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEEE01D2ACD0400BB1BDB /* RatingView_default-thumbs.swift */; };
+		0B6CEEE31D2ACD5E00BB1BDB /* RatingView_default-thumbs.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6CEEE21D2ACD5E00BB1BDB /* RatingView_default-thumbs.xib */; };
 		0B73DA9A1D2E7A020098331C /* RatingLoadByEntryIdLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B73DA991D2E7A020098331C /* RatingLoadByEntryIdLiferayConnector.swift */; };
 		0B73DA9C1D2EAA850098331C /* RatingUpdateLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B73DA9B1D2EAA850098331C /* RatingUpdateLiferayConnector.swift */; };
 		0B73DA9E1D2EB13E0098331C /* RatingDeleteLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B73DA9D1D2EB13E0098331C /* RatingDeleteLiferayConnector.swift */; };
@@ -440,10 +440,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0B0E0BF41D2BAB4900820C2F /* RatingView_default.stars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingView_default.stars.swift; sourceTree = "<group>"; };
-		0B4621E51D2BA6FA008DB96A /* RatingView_default.stars.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingView_default.stars.xib; sourceTree = "<group>"; };
-		0B6CEEC21D2A559600BB1BDB /* RatingView_default.like.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingView_default.like.swift; sourceTree = "<group>"; };
-		0B6CEEC41D2A55EC00BB1BDB /* RatingView_default.like.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingView_default.like.xib; sourceTree = "<group>"; };
+		0B0E0BF41D2BAB4900820C2F /* RatingView_default-stars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RatingView_default-stars.swift"; sourceTree = "<group>"; };
+		0B4621E51D2BA6FA008DB96A /* RatingView_default-stars.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RatingView_default-stars.xib"; sourceTree = "<group>"; };
+		0B6CEEC21D2A559600BB1BDB /* RatingView_default-like.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RatingView_default-like.swift"; sourceTree = "<group>"; };
+		0B6CEEC41D2A55EC00BB1BDB /* RatingView_default-like.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RatingView_default-like.xib"; sourceTree = "<group>"; };
 		0B6CEEC71D2A58F500BB1BDB /* RatingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewModel.swift; sourceTree = "<group>"; };
 		0B6CEEC91D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensratingsentryService_v70.h; sourceTree = "<group>"; };
 		0B6CEECA1D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensratingsentryService_v70.m; sourceTree = "<group>"; };
@@ -452,8 +452,8 @@
 		0B6CEED61D2AABE700BB1BDB /* RatingEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingEntry.swift; sourceTree = "<group>"; };
 		0B6CEEDC1D2AB63A00BB1BDB /* DeleteRatingInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteRatingInteractor.swift; sourceTree = "<group>"; };
 		0B6CEEDE1D2AB69400BB1BDB /* UpdateRatingInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateRatingInteractor.swift; sourceTree = "<group>"; };
-		0B6CEEE01D2ACD0400BB1BDB /* RatingView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingView_default.swift; sourceTree = "<group>"; };
-		0B6CEEE21D2ACD5E00BB1BDB /* RatingView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingView_default.xib; sourceTree = "<group>"; };
+		0B6CEEE01D2ACD0400BB1BDB /* RatingView_default-thumbs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RatingView_default-thumbs.swift"; sourceTree = "<group>"; };
+		0B6CEEE21D2ACD5E00BB1BDB /* RatingView_default-thumbs.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RatingView_default-thumbs.xib"; sourceTree = "<group>"; };
 		0B73DA991D2E7A020098331C /* RatingLoadByEntryIdLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingLoadByEntryIdLiferayConnector.swift; sourceTree = "<group>"; };
 		0B73DA9B1D2EAA850098331C /* RatingUpdateLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingUpdateLiferayConnector.swift; sourceTree = "<group>"; };
 		0B73DA9D1D2EB13E0098331C /* RatingDeleteLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingDeleteLiferayConnector.swift; sourceTree = "<group>"; };
@@ -773,12 +773,12 @@
 		0B6CEEC11D2A54A100BB1BDB /* Rating */ = {
 			isa = PBXGroup;
 			children = (
-				0B6CEEC21D2A559600BB1BDB /* RatingView_default.like.swift */,
-				0B6CEEC41D2A55EC00BB1BDB /* RatingView_default.like.xib */,
-				0B6CEEE01D2ACD0400BB1BDB /* RatingView_default.swift */,
-				0B6CEEE21D2ACD5E00BB1BDB /* RatingView_default.xib */,
-				0B0E0BF41D2BAB4900820C2F /* RatingView_default.stars.swift */,
-				0B4621E51D2BA6FA008DB96A /* RatingView_default.stars.xib */,
+				0B6CEEC21D2A559600BB1BDB /* RatingView_default-like.swift */,
+				0B6CEEC41D2A55EC00BB1BDB /* RatingView_default-like.xib */,
+				0B6CEEE01D2ACD0400BB1BDB /* RatingView_default-thumbs.swift */,
+				0B6CEEE21D2ACD5E00BB1BDB /* RatingView_default-thumbs.xib */,
+				0B0E0BF41D2BAB4900820C2F /* RatingView_default-stars.swift */,
+				0B4621E51D2BA6FA008DB96A /* RatingView_default-stars.xib */,
 			);
 			path = Rating;
 			sourceTree = "<group>";
@@ -1832,7 +1832,7 @@
 				881E624F1ACBFC3400862B9E /* default-calendar.png in Resources */,
 				881E62531ACBFC3400862B9E /* default-field-focused.png in Resources */,
 				881E62411ACBFC3400862B9E /* DDLFieldSelectTableCell_default.xib in Resources */,
-				0B6CEEC51D2A55EC00BB1BDB /* RatingView_default.like.xib in Resources */,
+				0B6CEEC51D2A55EC00BB1BDB /* RatingView_default-like.xib in Resources */,
 				880ACA831B0224A0007AD007 /* forgotpassword-screenlet.strings in Resources */,
 				88BCB5651B8CAD93004349F1 /* ddllist-screenlet.strings in Resources */,
 				881E62581ACBFC3400862B9E /* default-form-gradient-bottom@2x.png in Resources */,
@@ -1863,9 +1863,9 @@
 				881E62371ACBFC3400862B9E /* DDLFieldDateTableCell_default.xib in Resources */,
 				881E62571ACBFC3400862B9E /* default-form-gradient-bottom.png in Resources */,
 				881E62551ACBFC3400862B9E /* default-field.png in Resources */,
-				0B6CEEE31D2ACD5E00BB1BDB /* RatingView_default.xib in Resources */,
+				0B6CEEE31D2ACD5E00BB1BDB /* RatingView_default-thumbs.xib in Resources */,
 				881E623F1ACBFC3400862B9E /* DDLFieldRadioTableCell_default.xib in Resources */,
-				0B4621E61D2BA6FA008DB96A /* RatingView_default.stars.xib in Resources */,
+				0B4621E61D2BA6FA008DB96A /* RatingView_default-stars.xib in Resources */,
 				0BC3AE361D2BD023006D29E3 /* default-thumb-up.png in Resources */,
 				0BC3AE351D2BD023006D29E3 /* default-thumb-up@2x.png in Resources */,
 				881E62501ACBFC3400862B9E /* default-calendar@2x.png in Resources */,
@@ -2018,7 +2018,7 @@
 				881E62341ACBFC3400862B9E /* DDLFieldCheckboxTableCell_default.swift in Sources */,
 				881E61281ACBE5F000862B9E /* UserPortraitViewModel.swift in Sources */,
 				887E069A1C6A4DF800CA3807 /* LRScreensddlrecordService_v70.m in Sources */,
-				0B6CEEC31D2A559600BB1BDB /* RatingView_default.like.swift in Sources */,
+				0B6CEEC31D2A559600BB1BDB /* RatingView_default-like.swift in Sources */,
 				88B844421C73D6C0007A447D /* ServerWriteConnectorInteractor.swift in Sources */,
 				881E61871ACBEE0B00862B9E /* DDLListScreenlet.swift in Sources */,
 				0B6CEECC1D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.m in Sources */,
@@ -2041,7 +2041,7 @@
 				887DAAA91CC670330011FEBF /* Dictionary+Screens.swift in Sources */,
 				0B6CEED11D2A689200BB1BDB /* RatingScreenlet.swift in Sources */,
 				88B844401C73D6C0007A447D /* ServerReadConnectorInteractor.swift in Sources */,
-				0B0E0BF51D2BAB4900820C2F /* RatingView_default.stars.swift in Sources */,
+				0B0E0BF51D2BAB4900820C2F /* RatingView_default-stars.swift in Sources */,
 				8839B87B1B0CD539006C18F1 /* SaveUserInteractor.swift in Sources */,
 				88A482371BFF7CBE0033DEBA /* NSError+Screens.swift in Sources */,
 				0B73DA9E1D2EB13E0098331C /* RatingDeleteLiferayConnector.swift in Sources */,
@@ -2149,7 +2149,7 @@
 				881E622A1ACBFC3400862B9E /* ForgotPasswordView_default.swift in Sources */,
 				880459F11CA161C900449D55 /* DDMStructure.swift in Sources */,
 				887E05541C6A4DB000CA3807 /* LRScreensuserService_v62.m in Sources */,
-				0B6CEEE11D2ACD0400BB1BDB /* RatingView_default.swift in Sources */,
+				0B6CEEE11D2ACD0400BB1BDB /* RatingView_default-thumbs.swift in Sources */,
 				887E06981C6A4DF800CA3807 /* LRScreensassetentryService_v70.m in Sources */,
 				881E61861ACBEE0B00862B9E /* DDLListPageLoadInteractor.swift in Sources */,
 				88B844C61C73D8F7007A447D /* DDLFormSubmitLiferayConnector.swift in Sources */,

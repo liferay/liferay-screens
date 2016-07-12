@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="o2h-u5-MSY" customClass="RatingThumbsView_default" customModule="LiferayScreens">
+        <view contentMode="scaleToFill" id="o2h-u5-MSY" customClass="RatingView_default_thumbs" customModule="LiferayScreens">
             <rect key="frame" x="0.0" y="0.0" width="152" height="70"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>

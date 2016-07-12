@@ -13,13 +13,13 @@
  */
 import UIKit
 
-public class RatingLikeView_default: BaseScreenletView, RatingViewModel {
+public class RatingView_default_like: BaseScreenletView, RatingViewModel {
 
 	@IBOutlet weak var likeButton: UIButton! {
 		didSet {
 			let image = NSBundle.imageInBundles(
 				name: "default-thumb-up",
-				currentClass: RatingLikeView_default.self)?.imageWithRenderingMode(.AlwaysTemplate)
+				currentClass: RatingView_default_like.self)?.imageWithRenderingMode(.AlwaysTemplate)
 			self.likeButton.setBackgroundImage(image, forState: .Normal)
 		}
 	}
