@@ -83,14 +83,10 @@ import UIKit
 		return interactor
 	}
 	
-	private func validateParameters() -> Bool {
-		return entryId != 0 || (classPK != 0 && className != "")
-	}
-	
 	//MARK: Public methods
 	
 	public override func onShow() {
-		if (autoLoad && SessionContext.isLoggedIn && validateParameters()) {
+		if (autoLoad && SessionContext.isLoggedIn) {
 			loadRatings()
 		}
 	}
