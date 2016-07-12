@@ -105,6 +105,8 @@ public protocol LiferayConnectorFactory {
 		repositoryId: Int64,
 		folderId: Int64,
 		onProgress: DDLFormUploadLiferayConnector.OnProgress?) -> DDLFormUploadLiferayConnector
+	
+	func createAssetDisplayConnector(entryId: Int64) -> AssetDisplayLiferayConnector?
 
 }
 
@@ -281,6 +283,10 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			repositoryId: repositoryId,
 			folderId: folderId,
 			onProgress: onProgress)
+	}
+	
+	public func createAssetDisplayConnector(entryId: Int64) -> AssetDisplayLiferayConnector? {
+		return Liferay62AssetDisplayConnector(entryId: entryId)
 	}
 
 }
@@ -459,5 +465,8 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			folderId: folderId,
 			onProgress: onProgress)
 	}
-
+	
+	public func createAssetDisplayConnector(entryId: Int64) -> AssetDisplayLiferayConnector? {
+		return Liferay70AssetDisplayConnector(entryId: entryId)
+	}
 }
