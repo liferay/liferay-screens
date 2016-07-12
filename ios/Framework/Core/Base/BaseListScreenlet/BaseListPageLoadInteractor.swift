@@ -57,26 +57,44 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 		let isFirstPage = (page == 0)
 		let isPageFull = isFirstPage
 				? (convertedRows.count == screenlet.firstPageSize)
-				: convertedRows.count == screenlet.pageSize
+				: (convertedRows.count == screenlet.pageSize)
 		
-		//Fill sections
-		for obj in convertedRows {
-			let sectionName = sectionForRowObject(obj) ?? BaseListView.DefaultSection
+		var hasSections = (sections.count > 1) || (sections.count == 1 && sections.first != BaseListView.DefaultSection)
+		
+		// Fill sections
+		if isFirstPage || hasSections  {
 			
-			if convertedRowsWithSection.indexForKey(sectionName) == nil {
-				convertedRowsWithSection[sectionName] = [AnyObject]()
+			// Group rows loop
+			for obj in convertedRows {
+				let sectionName = sectionForRowObject(obj) ?? BaseListView.DefaultSection
 				
-				if !sections.contains(sectionName) {
-					sections.append(sectionName)
+				if convertedRowsWithSection.indexForKey(sectionName) == nil {
+					convertedRowsWithSection[sectionName] = [AnyObject]()
+					
+					if !sections.contains(sectionName) {
+						sections.append(sectionName)
+						
+						if sectionName != BaseListView.DefaultSection {
+							hasSections = true
+						}
+					}
 				}
+				
+				if hasSections && sectionName == BaseListView.DefaultSection {
+					print("ERROR: you returned mixed empty and non-empty sections in sectionForRowObject()")
+				}
+				
+				convertedRowsWithSection[sectionName]!.append(obj)
 			}
-			
-			convertedRowsWithSection[sectionName]!.append(obj)
+		}
+		else {
+			// Without sections simply assign incoming rows to the default section
+			convertedRowsWithSection[BaseListView.DefaultSection] = convertedRows
 		}
 		
-		//StreamMode is only decided by the interactor in the first page load
-		//otherwise this state could be changed for other interactors
-		if (sections.count > 1 || rowCount == nil) && isFirstPage {
+		// StreamMode is only decided by the interactor in the first page load
+		// otherwise this state could be changed for other interactors
+		if isFirstPage && (hasSections || rowCount == nil) {
 			screenlet.streamMode = true
 		}
 		
