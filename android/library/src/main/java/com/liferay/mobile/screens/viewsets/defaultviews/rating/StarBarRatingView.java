@@ -13,8 +13,7 @@ import com.liferay.mobile.screens.rating.RatingScreenlet;
 /**
  * @author Alejandro Hernández
  */
-public class StarBarRatingView extends BaseRatingView
-	implements RatingBar.OnRatingBarChangeListener {
+public class StarBarRatingView extends BaseRatingView implements RatingBar.OnRatingBarChangeListener {
 	public StarBarRatingView(Context context) {
 		super(context);
 	}
@@ -38,8 +37,7 @@ public class StarBarRatingView extends BaseRatingView
 
 			setRatingBarRate(_userRatingBar, (float) assetRating.getUserScore());
 			setRatingBarRate(_averageRatingBar, (float) assetRating.getAverage());
-			_totalCountTextView.setText(
-				getContext().getString(R.string.rating_count, assetRating.getTotalCount()));
+			_totalCountTextView.setText(getContext().getString(R.string.rating_count, assetRating.getTotalCount()));
 		}
 	}
 
@@ -65,8 +63,7 @@ public class StarBarRatingView extends BaseRatingView
 	@Override public void onRatingChanged(RatingBar ratingBar, float score, boolean fromUser) {
 		if (fromUser) {
 			double normalizedScore = score / ratingBar.getNumStars();
-			getScreenlet().performUserAction(RatingScreenlet.UPDATE_RATING_ACTION,
-				(double) normalizedScore);
+			getScreenlet().performUserAction(RatingScreenlet.UPDATE_RATING_ACTION, (double) normalizedScore);
 		}
 	}
 

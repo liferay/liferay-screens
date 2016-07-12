@@ -61,12 +61,12 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 		_screenlet = screenlet;
 	}
 
-	@Override public void setEditable(boolean editable) {
-		_editable = editable;
-	}
-
 	@Override public boolean isEditable() {
 		return _editable;
+	}
+
+	@Override public void setEditable(boolean editable) {
+		_editable = editable;
 	}
 
 	@Override protected void onFinishInflate() {

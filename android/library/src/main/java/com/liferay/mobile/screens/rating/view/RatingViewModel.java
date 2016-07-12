@@ -8,11 +8,11 @@ import com.liferay.mobile.screens.base.view.BaseViewModel;
 public interface RatingViewModel extends BaseViewModel {
 	void showFinishOperation(String actionName, Object argument);
 
-	void setEditable(boolean readOnly);
-
 	int getDefaultStepCount();
 
 	boolean isEditable();
+
+	void setEditable(boolean readOnly);
 
 	void updateView();
 }

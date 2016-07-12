@@ -30,9 +30,9 @@
 			android:id="@+id/very_dissatisfied_button"
 			android:layout_width="60dp"
 			android:layout_height="60dp"
+			android:layout_alignParentLeft="true"
 			android:background="@android:color/transparent"
 			android:scaleType="fitXY"
-			android:layout_alignParentLeft="true"
 			android:src="@drawable/default_mood_very_dissatisfied"
 			android:tint="@android:color/white"
 			/>
@@ -83,62 +83,62 @@
 
 		<TextView
 			android:id="@+id/very_dissatisfied_label"
-			tools:text="600"
-			android:layout_alignLeft="@id/very_dissatisfied_button"
-			android:layout_alignRight="@id/very_dissatisfied_button"
-			android:textColor="@color/textColorPrimary_default"
-			android:gravity="center"
-			android:layout_below="@+id/very_dissatisfied_button"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_alignLeft="@id/very_dissatisfied_button"
+			android:layout_alignRight="@id/very_dissatisfied_button"
+			android:layout_below="@+id/very_dissatisfied_button"
+			android:gravity="center"
+			android:textColor="@color/textColorPrimary_default"
+			tools:text="600"
 			/>
 
 		<TextView
 			android:id="@+id/dissatisfied_label"
-			tools:text="2000"
-			android:layout_alignLeft="@+id/dissatisfied_button"
-			android:layout_alignRight="@id/dissatisfied_button"
-			android:textColor="@color/textColorPrimary_default"
-			android:gravity="center"
-			android:layout_below="@+id/dissatisfied_button"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_alignLeft="@+id/dissatisfied_button"
+			android:layout_alignRight="@id/dissatisfied_button"
+			android:layout_below="@+id/dissatisfied_button"
+			android:gravity="center"
+			android:textColor="@color/textColorPrimary_default"
+			tools:text="2000"
 			/>
 
 		<TextView
 			android:id="@+id/neutral_label"
-			tools:text="10"
-			android:layout_alignLeft="@+id/neutral_button"
-			android:layout_alignRight="@id/neutral_button"
-			android:textColor="@color/textColorPrimary_default"
-			android:gravity="center"
-			android:layout_below="@+id/neutral_button"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_alignLeft="@+id/neutral_button"
+			android:layout_alignRight="@id/neutral_button"
+			android:layout_below="@+id/neutral_button"
+			android:gravity="center"
+			android:textColor="@color/textColorPrimary_default"
+			tools:text="10"
 			/>
 
 		<TextView
 			android:id="@+id/satisfied_label"
-			tools:text="0"
-			android:layout_alignLeft="@+id/satisfied_button"
-			android:layout_alignRight="@id/satisfied_button"
-			android:textColor="@color/textColorPrimary_default"
-			android:gravity="center"
-			android:layout_below="@+id/satisfied_button"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_alignLeft="@+id/satisfied_button"
+			android:layout_alignRight="@id/satisfied_button"
+			android:layout_below="@+id/satisfied_button"
+			android:gravity="center"
+			android:textColor="@color/textColorPrimary_default"
+			tools:text="0"
 			/>
 
 		<TextView
 			android:id="@+id/very_satisfied_label"
-			tools:text="112"
-			android:layout_alignLeft="@+id/very_satisfied_button"
-			android:layout_alignRight="@id/very_satisfied_button"
-			android:textColor="@color/textColorPrimary_default"
-			android:gravity="center"
-			android:layout_below="@+id/very_satisfied_button"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_alignLeft="@+id/very_satisfied_button"
+			android:layout_alignRight="@id/very_satisfied_button"
+			android:layout_below="@+id/very_satisfied_button"
+			android:gravity="center"
+			android:textColor="@color/textColorPrimary_default"
+			tools:text="112"
 			/>
 
 	</RelativeLayout>

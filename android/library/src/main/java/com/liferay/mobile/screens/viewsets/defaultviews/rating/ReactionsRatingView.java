@@ -38,8 +38,9 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 			_content.setVisibility(View.VISIBLE);
 
 			for (ImageButton button : _reactions) {
-				button.getDrawable().setColorFilter(ContextCompat.getColor(getContext(),
-					android.R.color.darker_gray), PorterDuff.Mode.SRC_ATOP);
+				button.getDrawable()
+					.setColorFilter(ContextCompat.getColor(getContext(), android.R.color.darker_gray),
+						PorterDuff.Mode.SRC_ATOP);
 			}
 
 			final AssetRating assetRating = (AssetRating) argument;
@@ -55,10 +56,10 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 			}
 
 			if ((_userScore = assetRating.getUserScore()) != -1) {
-				_reactions.get(_userScore == 1 ? (_reactions.size() - 1) :
-					(int) (_userScore * _reactions.size())).getDrawable().setColorFilter(
-					ContextCompat.getColor(getContext(), R.color.colorPrimary_default),
-					PorterDuff.Mode.SRC_ATOP);
+				_reactions.get(_userScore == 1 ? (_reactions.size() - 1) : (int) (_userScore * _reactions.size()))
+					.getDrawable()
+					.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorPrimary_default),
+						PorterDuff.Mode.SRC_ATOP);
 			}
 		}
 	}
@@ -87,8 +88,8 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 		}
 
 		if (score != -1) {
-			String action = score == _userScore ? RatingScreenlet.DELETE_RATING_ACTION
-				: RatingScreenlet.UPDATE_RATING_ACTION;
+			String action =
+				score == _userScore ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.UPDATE_RATING_ACTION;
 			getScreenlet().performUserAction(action, score);
 		}
 	}

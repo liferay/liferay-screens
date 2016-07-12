@@ -51,8 +51,7 @@ public class EmojisRatingView extends BaseRatingView implements View.OnClickList
 			}
 
 			if ((_userScore = assetRating.getUserScore()) != -1) {
-				_emojis.get(_userScore == 1 ? (_emojis.size() - 1) :
-					(int) (_userScore * _emojis.size())).setAlpha(1);
+				_emojis.get(_userScore == 1 ? (_emojis.size() - 1) : (int) (_userScore * _emojis.size())).setAlpha(1);
 			}
 		}
 	}
@@ -81,8 +80,8 @@ public class EmojisRatingView extends BaseRatingView implements View.OnClickList
 		}
 
 		if (score != -1) {
-			String action = score == _userScore ? RatingScreenlet.DELETE_RATING_ACTION
-				: RatingScreenlet.UPDATE_RATING_ACTION;
+			String action =
+				score == _userScore ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.UPDATE_RATING_ACTION;
 			getScreenlet().performUserAction(action, score);
 		}
 	}

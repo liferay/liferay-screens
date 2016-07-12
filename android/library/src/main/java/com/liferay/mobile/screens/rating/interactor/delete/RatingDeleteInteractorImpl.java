@@ -15,8 +15,7 @@ import org.json.JSONObject;
 /**
  * @author Alejandro Hernández
  */
-public class RatingDeleteInteractorImpl extends BaseRemoteInteractor<RatingListener>
-	implements RatingDeleteInteractor {
+public class RatingDeleteInteractorImpl extends BaseRemoteInteractor<RatingListener> implements RatingDeleteInteractor {
 
 	public RatingDeleteInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
@@ -29,8 +28,7 @@ public class RatingDeleteInteractorImpl extends BaseRemoteInteractor<RatingListe
 		return new ScreensratingsentryService(session);
 	}
 
-	@Override public void deleteRating(long classPK, String className, int stepCount)
-		throws Exception {
+	@Override public void deleteRating(long classPK, String className, int stepCount) throws Exception {
 		_screensratingsentryService.deleteRatingEntry(classPK, className, stepCount);
 	}
 
@@ -47,8 +45,7 @@ public class RatingDeleteInteractorImpl extends BaseRemoteInteractor<RatingListe
 				getListener().onRatingOperationSuccess(
 					new AssetRating(result.getLong("classPK"), result.getString("className"),
 						toIntArray(result.getJSONArray("ratings")), result.getDouble("average"),
-						result.getDouble("userScore"), result.getDouble("totalScore"),
-						result.getInt("totalCount")));
+						result.getDouble("userScore"), result.getDouble("totalScore"), result.getInt("totalCount")));
 			} catch (JSONException e) {
 				LiferayLogger.e(e.getMessage());
 				getListener().onRatingOperationFailure(e);

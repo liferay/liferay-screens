@@ -15,8 +15,7 @@ import org.json.JSONObject;
 /**
  * @author Alejandro Hernández
  */
-public class RatingLoadInteractorImpl extends BaseRemoteInteractor<RatingListener>
-	implements RatingLoadInteractor {
+public class RatingLoadInteractorImpl extends BaseRemoteInteractor<RatingListener> implements RatingLoadInteractor {
 
 	public RatingLoadInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
@@ -29,8 +28,7 @@ public class RatingLoadInteractorImpl extends BaseRemoteInteractor<RatingListene
 		return new ScreensratingsentryService(session);
 	}
 
-	@Override public void loadRatings(long entryId, long classPK, String className, int stepCount)
-		throws Exception {
+	@Override public void loadRatings(long entryId, long classPK, String className, int stepCount) throws Exception {
 		validate(entryId, className, classPK);
 
 		if (entryId != 0) {
@@ -53,8 +51,7 @@ public class RatingLoadInteractorImpl extends BaseRemoteInteractor<RatingListene
 				getListener().onRatingOperationSuccess(
 					new AssetRating(result.getLong("classPK"), result.getString("className"),
 						toIntArray(result.getJSONArray("ratings")), result.getDouble("average"),
-						result.getDouble("userScore"), result.getDouble("totalScore"),
-						result.getInt("totalCount")));
+						result.getDouble("userScore"), result.getDouble("totalScore"), result.getInt("totalCount")));
 			} catch (JSONException e) {
 				LiferayLogger.e(e.getMessage());
 				getListener().onRatingOperationFailure(e);
@@ -72,8 +69,7 @@ public class RatingLoadInteractorImpl extends BaseRemoteInteractor<RatingListene
 
 	protected void validate(long entryId, String className, long classPK) {
 		if (entryId == 0 && (className == null || classPK == 0)) {
-			throw new IllegalArgumentException(
-				"Either entryId or className & classPK cannot" + "be empty");
+			throw new IllegalArgumentException("Either entryId or className & classPK cannot" + "be empty");
 		}
 	}
 

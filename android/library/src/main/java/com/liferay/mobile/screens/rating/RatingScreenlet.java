@@ -22,8 +22,7 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  * @author Alejandro Hernández
  */
 
-public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor>
-	implements RatingListener {
+public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> implements RatingListener {
 
 	public static final String LOAD_RATINGS_ACTION = "loadRatings";
 	public static final String UPDATE_RATING_ACTION = "updateRating";
@@ -56,8 +55,8 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor>
 	}
 
 	@Override protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray = context.getTheme()
-			.obtainStyledAttributes(attributes, R.styleable.RatingScreenlet, 0, 0);
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.RatingScreenlet, 0, 0);
 
 		int layoutId = typedArray.getResourceId(R.styleable.RatingScreenlet_layoutId, 0);
 
@@ -71,8 +70,8 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor>
 		_className = typedArray.getString(R.styleable.RatingScreenlet_className);
 		_classPK = castToLong(typedArray.getString(R.styleable.RatingScreenlet_classPK));
 
-		_stepCount = typedArray.getInt(R.styleable.RatingScreenlet_stepCount,
-			((RatingViewModel) view).getDefaultStepCount());
+		_stepCount =
+			typedArray.getInt(R.styleable.RatingScreenlet_stepCount, ((RatingViewModel) view).getDefaultStepCount());
 
 		typedArray.recycle();
 
@@ -92,8 +91,7 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor>
 		}
 	}
 
-	@Override protected void onUserAction(String userActionName, Interactor interactor,
-		Object... args) {
+	@Override protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
 		try {
 			switch (userActionName) {
 				case LOAD_RATINGS_ACTION:

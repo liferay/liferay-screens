@@ -16,8 +16,7 @@ import org.json.JSONObject;
 /**
  * @author Alejandro Hernández
  */
-public class RatingUpdateInteractorImpl extends BaseRemoteInteractor<RatingListener>
-	implements RatingUpdateInteractor {
+public class RatingUpdateInteractorImpl extends BaseRemoteInteractor<RatingListener> implements RatingUpdateInteractor {
 
 	public RatingUpdateInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
@@ -30,8 +29,7 @@ public class RatingUpdateInteractorImpl extends BaseRemoteInteractor<RatingListe
 		return new ScreensratingsentryService(session);
 	}
 
-	@Override public void updateRating(long classPK, String className, double score, int stepCount)
-		throws Exception {
+	@Override public void updateRating(long classPK, String className, double score, int stepCount) throws Exception {
 		validate(score);
 		_screensratingsentryService.updateRatingEntry(classPK, className, score, stepCount);
 	}
@@ -49,8 +47,7 @@ public class RatingUpdateInteractorImpl extends BaseRemoteInteractor<RatingListe
 				getListener().onRatingOperationSuccess(
 					new AssetRating(result.getLong("classPK"), result.getString("className"),
 						toIntArray(result.getJSONArray("ratings")), result.getDouble("average"),
-						result.getDouble("userScore"), result.getDouble("totalScore"),
-						result.getInt("totalCount")));
+						result.getDouble("userScore"), result.getDouble("totalScore"), result.getInt("totalCount")));
 			} catch (JSONException e) {
 				LiferayLogger.e(e.getMessage());
 				getListener().onRatingOperationFailure(e);
@@ -68,8 +65,7 @@ public class RatingUpdateInteractorImpl extends BaseRemoteInteractor<RatingListe
 
 	protected void validate(double score) throws InvalidParameterException {
 		if ((score > 1) || (score < 0)) {
-			throw new InvalidParameterException(
-				"Score " + score + " is not a double value between 0 and 1");
+			throw new InvalidParameterException("Score " + score + " is not a double value between 0 and 1");
 		}
 	}
 

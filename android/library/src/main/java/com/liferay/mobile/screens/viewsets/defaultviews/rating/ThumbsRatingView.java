@@ -38,8 +38,8 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 		}
 
 		if (score != -1) {
-			String action = score == _userScore ? RatingScreenlet.DELETE_RATING_ACTION
-				: RatingScreenlet.UPDATE_RATING_ACTION;
+			String action =
+				score == _userScore ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.UPDATE_RATING_ACTION;
 			getScreenlet().performUserAction(action, score);
 		}
 	}
@@ -55,10 +55,8 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 
 			_userScore = assetRating.getUserScore();
 
-			_negativeCountLabel.setText(
-				getContext().getString(R.string.rating_total, assetRating.getRatings()[0]));
-			_possitiveCountLabel.setText(
-				getContext().getString(R.string.rating_total, assetRating.getRatings()[1]));
+			_negativeCountLabel.setText(getContext().getString(R.string.rating_total, assetRating.getRatings()[0]));
+			_possitiveCountLabel.setText(getContext().getString(R.string.rating_total, assetRating.getRatings()[1]));
 
 			if (_userScore == 1) {
 				_negativeButton.setImageResource(R.drawable.default_thumb_down_outline);

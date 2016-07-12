@@ -35,8 +35,7 @@ public class LikeRatingView extends BaseRatingView implements View.OnClickListen
 			final AssetRating assetRating = (AssetRating) argument;
 			_hasUserRate = assetRating.getUserScore() != -1;
 
-			_likeCountLabel.setText(
-				getContext().getString(R.string.rating_total, assetRating.getTotalCount()));
+			_likeCountLabel.setText(getContext().getString(R.string.rating_total, assetRating.getTotalCount()));
 
 			if (_hasUserRate) {
 				_likeButton.setImageResource(R.drawable.default_thumb_up);
@@ -56,8 +55,7 @@ public class LikeRatingView extends BaseRatingView implements View.OnClickListen
 	}
 
 	@Override public void onClick(View v) {
-		String action =
-			_hasUserRate ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.UPDATE_RATING_ACTION;
+		String action = _hasUserRate ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.UPDATE_RATING_ACTION;
 		getScreenlet().performUserAction(action, 1.0);
 	}
 

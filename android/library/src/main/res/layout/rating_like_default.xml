@@ -40,8 +40,8 @@
 			android:id="@+id/likeCountLabel"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:textColor="@color/textColorPrimary_default"
 			android:gravity="center"
+			android:textColor="@color/textColorPrimary_default"
 			tools:text="Total: 8"
 			/>
 
