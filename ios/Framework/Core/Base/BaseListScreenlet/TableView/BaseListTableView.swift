@@ -70,6 +70,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 			onAddedRows(oldRows)
 		}
 		else if lessRowsThanExpected {
+			//Only executed in fluent mode so there is only one section
 			deleteRows(from: rows[BaseListView.DefaultSection]!.count,
 						to: oldRows[BaseListView.DefaultSection]!.count, section: 0)
 		}
