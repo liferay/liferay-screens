@@ -59,6 +59,17 @@
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:layout_marginLeft="5dp"
+			android:layout_marginRight="5dp"
+			/>
+
+		<ImageButton
+			android:background="@drawable/default_button_drawable"
+			android:padding="5dp"
+			android:id="@+id/button_rating_emojis"
+			android:src="@drawable/emojis"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_marginLeft="5dp"
 			/>
 
 	</LinearLayout>

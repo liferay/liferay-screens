@@ -1,12 +1,9 @@
 package com.liferay.mobile.screens.testapp;
 
-import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -53,6 +50,7 @@ public class RatingsActivity extends ThemeActivity implements RatingListener, Vi
 		_buttons.add((ImageButton) findViewById(R.id.button_rating_like));
 		_buttons.add((ImageButton) findViewById(R.id.button_rating_star));
 		_buttons.add((ImageButton) findViewById(R.id.button_rating_reactions));
+		_buttons.add((ImageButton) findViewById(R.id.button_rating_emojis));
 
 		for (ImageButton button : _buttons) {
 			button.setOnClickListener(this);
@@ -81,7 +79,10 @@ public class RatingsActivity extends ThemeActivity implements RatingListener, Vi
 				displayScreenlet(R.layout.rating_star_bar_default, R.string.liferay_rating_star_asset_id, 5);
 				break;
 			case R.id.button_rating_reactions:
-				displayScreenlet(R.layout.rating_reactions_default, R.string.liferay_rating_reactions_asset_id, 5);
+				displayScreenlet(R.layout.rating_reactions_default, R.string.liferay_rating_reactions_emojis_asset_id, 5);
+				break;
+			case R.id.button_rating_emojis:
+				displayScreenlet(R.layout.rating_emojis_default, R.string.liferay_rating_reactions_emojis_asset_id, 5);
 				break;
 		}
 
