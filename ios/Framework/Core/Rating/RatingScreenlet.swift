@@ -13,6 +13,16 @@
  */
 import UIKit
 
+@objc public protocol RatingScreenletDelegate : BaseScreenletDelegate {
+	
+	optional func screenlet(screenlet: RatingScreenlet,
+	                        onRatingRetrieve assetRating: RatingEntry)
+	
+	optional func screenlet(screenlet: RatingScreenlet,
+	                        onRatingError error: NSError)
+	
+}
+
 @IBDesignable public class RatingScreenlet: BaseScreenlet {
 	
 	public static let DeleteRatingAction = "deleteRating"
@@ -31,7 +41,7 @@ import UIKit
 	
 	@IBInspectable public var editable: Bool = false {
 		didSet {
-			(screenletView as? RatingViewModel)?.editable = self.editable
+			viewModel?.editable = self.editable
 		}
 	}
 	
@@ -50,8 +60,12 @@ import UIKit
 		}
 	}
 	
-	public var viewModel: RatingViewModel {
-		return screenletView as! RatingViewModel
+	public var ratingDisplayDelegate: RatingScreenletDelegate? {
+		return delegate as? RatingScreenletDelegate
+	}
+	
+	public var viewModel: RatingViewModel? {
+		return screenletView as? RatingViewModel
 	}
 	
 	private func createLoadRatingsInteractor() -> LoadRatingsInteractor {
@@ -63,11 +77,13 @@ import UIKit
 				self.className = result.className
 				self.classPK = result.classPK
 				
-				self.viewModel.ratingEntry = result
+				self.viewModel?.ratingEntry = result
+				
+				self.ratingDisplayDelegate?.screenlet?(self, onRatingRetrieve: result)
 			}
 		}
 		
-		interactor.onFailure = {print($0)}
+		interactor.onFailure = {self.ratingDisplayDelegate?.screenlet?(self, onRatingError: $0)}
 		
 		return interactor
 	}
@@ -77,23 +93,31 @@ import UIKit
 			stepCount: stepCount)
 		
 		interactor.onSuccess = {
-			self.viewModel.ratingEntry = interactor.resultRating
+			if let result = interactor.resultRating {
+				self.viewModel?.ratingEntry = interactor.resultRating
+				
+				self.ratingDisplayDelegate?.screenlet?(self, onRatingRetrieve: result)
+			}
 		}
 		
-		interactor.onFailure = {print($0)}
+		interactor.onFailure = {self.ratingDisplayDelegate?.screenlet?(self, onRatingError: $0)}
 		
 		return interactor
 	}
 	
 	private func createUpdateRatingInteractor() -> UpdateRatingInteractor {
 		let interactor = UpdateRatingInteractor(screenlet: self, classPK: classPK, className: className,
-			score: viewModel.selectedUserScore!.doubleValue, stepCount: stepCount)
+			score: viewModel?.selectedUserScore?.doubleValue, stepCount: stepCount)
 		
 		interactor.onSuccess = {
-			self.viewModel.ratingEntry = interactor.resultRating
+			if let result = interactor.resultRating {
+				self.viewModel?.ratingEntry = interactor.resultRating
+			
+				self.ratingDisplayDelegate?.screenlet?(self, onRatingRetrieve: result)
+			}
 		}
 		
-		interactor.onFailure = {print($0)}
+		interactor.onFailure = {self.ratingDisplayDelegate?.screenlet?(self, onRatingError: $0)}
 		
 		return interactor
 	}

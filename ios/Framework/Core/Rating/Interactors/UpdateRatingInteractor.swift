@@ -21,11 +21,11 @@ public class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 	let score: Double
 	let stepCount: Int32
 	
-	init(screenlet: BaseScreenlet?, classPK: Int64, className: String, score: Double, stepCount: Int32) {
+	init(screenlet: BaseScreenlet?, classPK: Int64, className: String, score: Double?, stepCount: Int32) {
 		self.classPK = classPK
 		self.className = className
 		self.stepCount = stepCount
-		self.score = score
+		self.score = score ?? -1
 		super.init(screenlet: screenlet)
 	}
 	

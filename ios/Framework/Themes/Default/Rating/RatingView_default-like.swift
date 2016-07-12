@@ -15,16 +15,16 @@ import UIKit
 
 public class RatingView_default_like: BaseScreenletView, RatingViewModel {
 
-	@IBOutlet weak var likeButton: UIButton! {
+	@IBOutlet weak var likeButton: UIButton? {
 		didSet {
 			let image = NSBundle.imageInBundles(
 				name: "default-thumb-up",
 				currentClass: RatingView_default_like.self)?.imageWithRenderingMode(.AlwaysTemplate)
-			self.likeButton.setBackgroundImage(image, forState: .Normal)
+			self.likeButton?.setBackgroundImage(image, forState: .Normal)
 		}
 	}
 	
-	@IBOutlet weak var countLabel: UILabel!
+	@IBOutlet weak var countLabel: UILabel?
 	
 	public var selectedUserScore: NSNumber?
 	
@@ -45,14 +45,14 @@ public class RatingView_default_like: BaseScreenletView, RatingViewModel {
 	public var ratingEntry: RatingEntry? {
 		didSet {
 			if let rating = ratingEntry {
-				self.countLabel.text = NSString.localizedStringWithFormat(LocalizedString("default", key: "rating-total", obj: self), rating.totalCount) as String
+				self.countLabel?.text = NSString.localizedStringWithFormat(LocalizedString("default", key: "rating-total", obj: self), rating.totalCount) as String
 
 				if rating.userScore == -1 {
-					self.likeButton.tintColor = UIColor.grayColor()
-					self.likeButton.restorationIdentifier = RatingScreenlet.UpdateRatingAction
+					self.likeButton?.tintColor = UIColor.grayColor()
+					self.likeButton?.restorationIdentifier = RatingScreenlet.UpdateRatingAction
 				} else {
-					self.likeButton.tintColor = DefaultThemeBasicBlue
-					self.likeButton.restorationIdentifier = RatingScreenlet.DeleteRatingAction
+					self.likeButton?.tintColor = DefaultThemeBasicBlue
+					self.likeButton?.restorationIdentifier = RatingScreenlet.DeleteRatingAction
 				}
 			}
 		}

@@ -15,26 +15,26 @@ import UIKit
 
 public class RatingView_default_thumbs: BaseScreenletView, RatingViewModel {
 	
-	@IBOutlet weak var negativeButton: UIButton! {
+	@IBOutlet weak var negativeButton: UIButton? {
 		didSet {
 			let image = NSBundle.imageInBundles(
 				name: "default-thumb-down",
 				currentClass: RatingView_default_thumbs.self)?.imageWithRenderingMode(.AlwaysTemplate)
-			self.negativeButton.setBackgroundImage(image, forState: .Normal)
+			self.negativeButton?.setBackgroundImage(image, forState: .Normal)
 		}
 	}
 	
-	@IBOutlet weak var possitiveButton: UIButton! {
+	@IBOutlet weak var possitiveButton: UIButton? {
 		didSet {
 			let image = NSBundle.imageInBundles(
 				name: "default-thumb-up",
 				currentClass: RatingView_default_thumbs.self)?.imageWithRenderingMode(.AlwaysTemplate)
-			self.possitiveButton.setBackgroundImage(image, forState: .Normal)
+			self.possitiveButton?.setBackgroundImage(image, forState: .Normal)
 		}
 	}
 	
-	@IBOutlet weak var negativeCountLabel: UILabel!
-	@IBOutlet weak var possitiveCountLabel: UILabel!
+	@IBOutlet weak var negativeCountLabel: UILabel?
+	@IBOutlet weak var possitiveCountLabel: UILabel?
 	
 	public var selectedUserScore: NSNumber?
 	
@@ -57,34 +57,34 @@ public class RatingView_default_thumbs: BaseScreenletView, RatingViewModel {
 	public var ratingEntry: RatingEntry? {
 		didSet {
 			if let rating = ratingEntry {
-				self.negativeCountLabel.text = NSString.localizedStringWithFormat(LocalizedString("default", key: "rating-total", obj: self), rating.ratings[0]) as String
-				self.possitiveCountLabel.text = NSString.localizedStringWithFormat(LocalizedString("default", key: "rating-total", obj: self), rating.ratings[1]) as String
+				self.negativeCountLabel?.text = NSString.localizedStringWithFormat(LocalizedString("default", key: "rating-total", obj: self), rating.ratings[0]) as String
+				self.possitiveCountLabel?.text = NSString.localizedStringWithFormat(LocalizedString("default", key: "rating-total", obj: self), rating.ratings[1]) as String
 				
 				let score = rating.userScore
 				
 				if score == 0 {
 					// thumbs down
-					self.possitiveButton.tintColor = UIColor.grayColor()
-					self.negativeButton.tintColor = DefaultThemeBasicBlue
+					self.possitiveButton?.tintColor = UIColor.grayColor()
+					self.negativeButton?.tintColor = DefaultThemeBasicBlue
 					
-					self.possitiveButton.restorationIdentifier = RatingScreenlet.UpdateRatingAction
-					self.negativeButton.restorationIdentifier = RatingScreenlet.DeleteRatingAction
+					self.possitiveButton?.restorationIdentifier = RatingScreenlet.UpdateRatingAction
+					self.negativeButton?.restorationIdentifier = RatingScreenlet.DeleteRatingAction
 				}
 				else if score > 0 {
 					// thumbs up
-					self.possitiveButton.tintColor = DefaultThemeBasicBlue
-					self.negativeButton.tintColor = UIColor.grayColor()
+					self.possitiveButton?.tintColor = DefaultThemeBasicBlue
+					self.negativeButton?.tintColor = UIColor.grayColor()
 					
-					self.possitiveButton.restorationIdentifier = RatingScreenlet.DeleteRatingAction
-					self.negativeButton.restorationIdentifier = RatingScreenlet.UpdateRatingAction
+					self.possitiveButton?.restorationIdentifier = RatingScreenlet.DeleteRatingAction
+					self.negativeButton?.restorationIdentifier = RatingScreenlet.UpdateRatingAction
 				}
 				else if score == -1 {
 					// no rating yet
-					self.possitiveButton.tintColor = UIColor.grayColor()
-					self.negativeButton.tintColor = UIColor.grayColor()
+					self.possitiveButton?.tintColor = UIColor.grayColor()
+					self.negativeButton?.tintColor = UIColor.grayColor()
 					
-					self.possitiveButton.restorationIdentifier = RatingScreenlet.UpdateRatingAction
-					self.negativeButton.restorationIdentifier = RatingScreenlet.UpdateRatingAction
+					self.possitiveButton?.restorationIdentifier = RatingScreenlet.UpdateRatingAction
+					self.negativeButton?.restorationIdentifier = RatingScreenlet.UpdateRatingAction
 				}
 			}
 		}

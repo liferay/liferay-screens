@@ -16,10 +16,10 @@ import Cosmos
 
 public class RatingView_default_stars: BaseScreenletView, RatingViewModel {
 	
-	@IBOutlet weak var userRatingBar: CosmosView! {
+	@IBOutlet weak var userRatingBar: CosmosView? {
 		didSet {
-			userRatingBar.didFinishTouchingCosmos = {
-				let score = $0 / Double(self.userRatingBar.settings.totalStars)
+			userRatingBar?.didFinishTouchingCosmos = {
+				let score = $0 / Double(self.userRatingBar!.settings.totalStars)
 				
 				if (self.selectedUserScore != score) {
 					self.selectedUserScore = score
@@ -29,7 +29,7 @@ public class RatingView_default_stars: BaseScreenletView, RatingViewModel {
 		}
 	}
 	
-	@IBOutlet weak var averageRatingBar: CosmosView!
+	@IBOutlet weak var averageRatingBar: CosmosView?
 	
 	public var selectedUserScore: NSNumber?
 	
@@ -50,9 +50,9 @@ public class RatingView_default_stars: BaseScreenletView, RatingViewModel {
 	public var ratingEntry: RatingEntry? {
 		didSet {
 			if let rating = ratingEntry {
-				averageRatingBar.rating = rating.average * Double(self.averageRatingBar.settings.totalStars)
-				averageRatingBar.text = NSString.localizedStringWithFormat(LocalizedString("default", key: "rating-ratings", obj: self), rating.totalCount) as String
-				userRatingBar.rating = rating.userScore * Double(self.userRatingBar.settings.totalStars)
+				averageRatingBar?.rating = rating.average * Double(self.averageRatingBar!.settings.totalStars)
+				averageRatingBar?.text = NSString.localizedStringWithFormat(LocalizedString("default", key: "rating-ratings", obj: self), rating.totalCount) as String
+				userRatingBar?.rating = rating.userScore * Double(self.userRatingBar!.settings.totalStars)
 				selectedUserScore = rating.userScore
 			}
 		}
