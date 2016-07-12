@@ -20,15 +20,19 @@ public class LoadRatingsInteractor: ServerReadConnectorInteractor {
 	override public func createConnector() -> ServerConnector? {
 		let screenlet = self.screenlet as! RatingScreenlet
 		
-		return LiferayServerContext.connectorFactory.createRatingLoadConnector(
-			entryId: screenlet.entryId,
-			classPK: screenlet.classPK,
-			className: screenlet.className,
-			stepCount: screenlet.stepCount)
+		if screenlet.entryId != 0 {
+			return LiferayServerContext.connectorFactory.createRatingLoadByEntryIdConnector(
+				entryId: screenlet.entryId, stepCount: screenlet.stepCount)
+		}
+		
+		return LiferayServerContext.connectorFactory.createRatingLoadByClassPKConnector(
+			screenlet.classPK, className: screenlet.className, stepCount: screenlet.stepCount)
 	}
 	
 	override public func completedConnector(op: ServerConnector) {
-		if let loadOp = op as? RatingLoadLiferayConnector {
+		if let loadOp = op as? RatingLoadByEntryIdLiferayConnector {
+			self.resultRating = loadOp.resultRating
+		} else if let loadOp = op as? RatingLoadByClassPKLiferayConnector {
 			self.resultRating = loadOp.resultRating
 		}
 	}
