@@ -196,7 +196,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsJ-Fx-gOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="400" y="1043"/>
+            <point key="canvasLocation" x="356" y="995"/>
         </scene>
         <!--DDLFormScreenlet-->
         <scene sceneID="rsZ-56-Bs1">
@@ -280,7 +280,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sxo-F1-gib" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="204" y="1793"/>
+            <point key="canvasLocation" x="172" y="1805"/>
         </scene>
         <!--DDLListScreenlet-->
         <scene sceneID="N7w-1Z-GsW">
@@ -391,6 +391,53 @@
             </objects>
             <point key="canvasLocation" x="536" y="1793"/>
         </scene>
+        <!--Asset Display View Controller-->
+        <scene sceneID="XVb-7U-yT2">
+            <objects>
+                <viewController id="iUq-9H-0mP" customClass="AssetDisplayViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Aup-eB-DPS"/>
+                        <viewControllerLayoutGuide type="bottom" id="cga-VN-wM8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EwQ-rl-EvY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0f2-xO-0CM" userLabel="Screenlet" customClass="AssetDisplayScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="-4" y="64" width="328" height="455"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AssetDisplayScreenlet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3t-Jm-y1Q">
+                                        <rect key="frame" x="20" y="20" width="288" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="B3t-Jm-y1Q" secondAttribute="trailing" constant="20" id="7Ba-Zd-LX6"/>
+                                    <constraint firstItem="B3t-Jm-y1Q" firstAttribute="leading" secondItem="0f2-xO-0CM" secondAttribute="leading" constant="20" id="AQ5-Ps-2e8"/>
+                                    <constraint firstItem="B3t-Jm-y1Q" firstAttribute="top" secondItem="0f2-xO-0CM" secondAttribute="top" constant="20" id="UrO-ZQ-teq"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0f2-xO-0CM" firstAttribute="top" secondItem="Aup-eB-DPS" secondAttribute="bottom" id="LNc-LF-UxW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0f2-xO-0CM" secondAttribute="trailing" constant="-20" id="dTJ-4N-dIo"/>
+                            <constraint firstItem="cga-VN-wM8" firstAttribute="top" secondItem="0f2-xO-0CM" secondAttribute="bottom" id="gp5-0J-iuH"/>
+                            <constraint firstItem="0f2-xO-0CM" firstAttribute="leading" secondItem="EwQ-rl-EvY" secondAttribute="leadingMargin" constant="-20" id="y9L-pm-eYF"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="BuR-m5-dXM"/>
+                    <connections>
+                        <outlet property="screenlet" destination="0f2-xO-0CM" id="Um1-jm-ID6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uyq-vD-NuM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1301" y="2347"/>
+        </scene>
         <!--WebContentListScreenlet-->
         <scene sceneID="MCN-aR-IyW">
             <objects>
@@ -426,7 +473,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Br9-uc-FlJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="362" y="2445"/>
+            <point key="canvasLocation" x="-584" y="2593"/>
         </scene>
         <!--AssetListScreenlet-->
         <scene sceneID="Gof-EM-hXa">
@@ -444,12 +491,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="324"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="firstPageSize">
-                                        <integer key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="pageSize">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vKJ-1q-GBo">
@@ -559,11 +601,12 @@
                     <connections>
                         <outlet property="picker" destination="4fF-TN-8Rd" id="uGI-tm-7ts"/>
                         <outlet property="screenlet" destination="Miy-jz-jyL" id="cuf-Bv-gQR"/>
+                        <segue destination="iUq-9H-0mP" kind="push" identifier="assetDisplay" id="ZMV-Uy-XZg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ziz-90-phY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-248" y="1763"/>
+            <point key="canvasLocation" x="-792" y="1859"/>
         </scene>
         <!--LoginScreenlet-->
         <scene sceneID="AgL-gw-NGQ">
@@ -941,7 +984,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zEG-lu-IJl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-58" y="2445"/>
+            <point key="canvasLocation" x="-248" y="1907"/>
         </scene>
         <!--Sync-->
         <scene sceneID="h8k-Xm-7Vm">
