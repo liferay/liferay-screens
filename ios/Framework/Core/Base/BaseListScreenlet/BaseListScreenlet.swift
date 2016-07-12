@@ -35,7 +35,8 @@ import UIKit
 	public var baseListView: BaseListView {
 		return screenletView as! BaseListView
 	}
-	public var streamMode = false
+	
+	internal var streamMode = false
 	
 	private var paginationInteractors: [Int:BaseListPageLoadInteractor] = [:]
 	
@@ -61,30 +62,21 @@ import UIKit
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		let page = (sender as? Int) ?? 0
 		
-		print("create interactor for page \(page) stremMode \(streamMode)")
 		let interactor = createPageLoadInteractor(
 			page: page,
 			computeRowCount: (page == 0))
 		
 		paginationInteractors[page] = interactor
 		
-		interactor.streamMode = streamMode
-		
 		interactor.onSuccess = {
-			//StreamMode is only decided by the interactor in the first page load
-			//otherwise this state could be changed for other interactors
-			if (page == 0) {
-				print("interactor result for page \(interactor.page) streamMode: \(interactor.streamMode)")
-				self.streamMode = interactor.streamMode
-				self.baseListView.streamMode = self.streamMode
-			}
-
-			self.baseListView.setRows(interactor.resultAllPagesContent!, newRows: interactor.resultPageContent!,
-			                          rowCount: interactor.resultRowCount ?? self.baseListView.rowCount)
 			
+			self.baseListView.setRows(interactor.resultAllPagesContent!, newRows: interactor.resultPageContent!,
+			                          rowCount: interactor.resultRowCount ?? self.baseListView.rowCount,
+			                          sections: interactor.sections ?? [BaseListView.DefaultSection])
+
 			self.onLoadPageResult(
 				page: interactor.page,
-				rows: interactor.resultPageContent ?? [],
+				rows: interactor.resultPageContent?.map {$1}.flatMap {$0} ?? [],
 				rowCount: self.baseListView.rowCount)
 			
 			self.paginationInteractors.removeValueForKey(interactor.page)
@@ -121,7 +113,6 @@ import UIKit
 	public func loadPageForRow(row: Int) {
 		let page = pageFromRow(row)
 		
-		print("load page for row \(row)")
 		// make sure we don't create two interactors for the same page
 		synchronized(paginationInteractors) {
 			if self.paginationInteractors.indexForKey(page) == nil {

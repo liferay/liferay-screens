@@ -56,7 +56,7 @@ class HomeLoginViewController: UIViewController, LoginScreenletDelegate {
 
 		if !SessionContext.loadStoredCredentials() {
 			self.loginScreenlet?.viewModel.userName = "test@liferay.com"
-			self.loginScreenlet?.viewModel.password = "test1234"
+			self.loginScreenlet?.viewModel.password = "test"
 		}
 
 		showLogged(animated: false);
