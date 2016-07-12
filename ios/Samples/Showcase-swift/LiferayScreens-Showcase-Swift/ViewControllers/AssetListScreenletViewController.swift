@@ -22,6 +22,8 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 	@IBOutlet var picker: UIPickerView?
 
 	var selectedAsset = AssetClassNameIds.get(AssetClassNameIdGroup)
+    
+	var selectAssetEntry: Asset?
 
 	var pickerData:[(name:String, assetId:Int64)] = []
 
@@ -127,15 +129,14 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 					assetId: AssetClassNameIds.get(asset)!
 				))
 		}
-
+		
 		self.screenlet?.delegate = self
 	}
-
-	func screenlet(screenlet: AssetListScreenlet,
-			onAssetListResponseEntries entries: [Asset]) {
-		print("DELEGATE: onAssetListResponse called -> \(entries.count)\n");
-		for e in entries {
-			print("     -> \(e.debugDescription)\n");
+	
+	func screenlet(screenlet: AssetListScreenlet, onAssetListResponse assets: [Asset]) {
+		print("DELEGATE: onAssetListResponse called -> \(assets.count)\n");
+		for e in assets {
+			print("     -> \(e.entryId)\n");
 		}
 	}
 
@@ -143,10 +144,11 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 			onAssetListError error: NSError) {
 		print("DELEGATE: onAssetListError called -> \(error)\n");
 	}
-
-	func screenlet(screenlet: AssetListScreenlet,
-			onAssetSelectedEntry entry: Asset) {
-		print("DELEGATE: onAssetSelected called -> \(entry.debugDescription)\n");
+	
+	func screenlet(screenlet: AssetListScreenlet, onAssetSelected asset: Asset) {
+		print("DELEGATE: onAssetSelected called -> \(asset.entryId)\n");
+		selectAssetEntry = asset
+		performSegueWithIdentifier("assetDisplay", sender: self)
 	}
 
 	func showPicker(show:Bool, animated:Bool) {
@@ -158,5 +160,11 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 				self.picker!.superview!.frame.size.height)
 		}
 	}
-
+	
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if segue.identifier == "assetDisplay" {
+			let viewController = segue.destinationViewController as? AssetDisplayViewController
+			viewController?.entryId = selectAssetEntry!.entryId
+		}
+	}
 }
