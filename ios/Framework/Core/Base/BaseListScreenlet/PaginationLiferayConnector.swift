@@ -54,13 +54,7 @@ public class PaginationLiferayConnector: ServerConnector {
 		}
 
 		do {
-			print("Ask for \(startRow) to \(endRow)")
 			let responses = try batchSession.invoke()
-			
-			sleep(arc4random_uniform(4))
-			
-			print("Received \(startRow) to \(endRow)")
-			
 
 			if let entriesResponse = responses[0] as? [[String:AnyObject]] {
 				let serverPageContent = entriesResponse
