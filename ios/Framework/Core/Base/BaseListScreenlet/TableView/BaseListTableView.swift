@@ -59,11 +59,17 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 			return
 		}
 		
-		//We have added or deleted rows since row count computation
-		if rows[BaseListView.DefaultSection]!.count > oldRows[BaseListView.DefaultSection]!.count {
+		let moreRowsThanExpected = (rows[BaseListView.DefaultSection]!.count >
+					oldRows[BaseListView.DefaultSection]!.count)
+		
+		let lessRowsThanExpected = (rows[BaseListView.DefaultSection]!.count <
+					oldRows[BaseListView.DefaultSection]!.count)
+		
+		if  moreRowsThanExpected {
 			turnStreamModeOn()
-			onAddedRows(lastCount: oldRows.count)
-		} else if rows[BaseListView.DefaultSection]!.count < oldRows[BaseListView.DefaultSection]!.count {
+			onAddedRows(oldRows)
+		}
+		else if lessRowsThanExpected {
 			deleteRows(from: rows[BaseListView.DefaultSection]!.count,
 						to: oldRows[BaseListView.DefaultSection]!.count, section: 0)
 		}
@@ -76,7 +82,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		}
 	}
 	
-	override public func onAddedRows(lastCount lastCount: Int) {
+	override public func onAddedRows(oldRows: [String : [AnyObject?]]) {
 		if moreRows {
 			showProgressFooter()
 		}
@@ -150,9 +156,11 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
 	                      forRowAtIndexPath indexPath: NSIndexPath) {
 		if streamMode && !loadingRows && moreRows {
-			if indexPath.section == sections.count - 1
-					&& indexPath.row == rowsForSectionIndex(indexPath.section).count - 1 {
-				
+			
+			let isLastSection = (indexPath.section == sections.count - 1)
+			let isLastRowForSection = (indexPath.row == rowsForSectionIndex(indexPath.section).count - 1)
+			
+			if isLastSection && isLastRowForSection {
 				loadingRows = true
 				let lastRow = rows.values.reduce(0) {$0 + $1.count}
 				fetchPageForRow?(lastRow + 1)

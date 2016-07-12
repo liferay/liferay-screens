@@ -61,7 +61,7 @@ public class BaseListView: BaseScreenletView {
 		_sections = sections
 		
 		if streamMode {
-			onAddedRows(lastCount: oldRows.count)
+			onAddedRows(oldRows)
 		} else {
 			onChangedRows(oldRows)
 		}
@@ -80,7 +80,7 @@ public class BaseListView: BaseScreenletView {
 	public func onChangedRows(oldRows:[String : [AnyObject?]]) {
 	}
 	
-	public func onAddedRows(lastCount lastCount: Int) {
+	public func onAddedRows(oldRows: [String : [AnyObject?]]) {
 		
 	}
 	

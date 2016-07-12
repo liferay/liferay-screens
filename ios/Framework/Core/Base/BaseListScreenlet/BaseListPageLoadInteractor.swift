@@ -60,8 +60,7 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 				? (convertedRows.count == screenlet.firstPageSize)
 				: convertedRows.count == screenlet.pageSize
 		
-		//Fill sections 
-		
+		//Fill sections
 		for obj in convertedRows {
 			let sectionName = sectionForRowObject(obj) ?? BaseListView.DefaultSection
 			
@@ -80,6 +79,7 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 			streamMode = true
 		}
 		
+		//Fill rows
 		if streamMode {
 			allRows = baseListView.rows
 		
@@ -105,25 +105,25 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 			}
 			
 			var offset = screenlet.firstRowForPage(page)
-			var lastIndex = 0
+			var lastIndexInserted = 0
 			
 			//Insert new elements
 			for (index, row) in convertedRows.enumerate() {
 				if index + offset < actualRowCount {
 					allRows[BaseListView.DefaultSection]![index + offset] = row
-					lastIndex = index + offset
+					lastIndexInserted = index + offset
 				}
 				else {
 					allRows[BaseListView.DefaultSection]!.append(row)
 				}
 			}
 			
-			let lessItemsThanExpected = (lastIndex + 1 < actualRowCount)
+			let lessItemsThanExpected = (lastIndexInserted + 1 < actualRowCount)
 			let incompleteMiddlePage = (!isPageFull && !isFirstPage)
 			
 			//Deleted elements since row count computation
 			if lessItemsThanExpected && !streamMode && incompleteMiddlePage {
-				for _ in lastIndex+1..<actualRowCount {
+				for _ in lastIndexInserted+1..<actualRowCount {
 					allRows[BaseListView.DefaultSection]!.popLast()
 				}
 			}
