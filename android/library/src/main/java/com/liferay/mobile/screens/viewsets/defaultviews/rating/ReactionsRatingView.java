@@ -55,7 +55,8 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 			}
 
 			if ((_userScore = assetRating.getUserScore()) != -1) {
-				_reactions.get((int) (_userScore * _reactions.size())).getDrawable().setColorFilter(
+				_reactions.get(_userScore == 1 ? (_reactions.size() - 1) :
+					(int) (_userScore * _reactions.size())).getDrawable().setColorFilter(
 					ContextCompat.getColor(getContext(), R.color.colorPrimary_default),
 					PorterDuff.Mode.SRC_ATOP);
 			}
