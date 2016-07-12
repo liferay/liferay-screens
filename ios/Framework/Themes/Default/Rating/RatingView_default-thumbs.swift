@@ -62,13 +62,30 @@ public class RatingView_default_thumbs: BaseScreenletView, RatingViewModel {
 				
 				let score = rating.userScore
 				
-				self.possitiveButton.tintColor = score > 0 ? DefaultThemeBasicBlue : UIColor.grayColor()
-				self.negativeButton.tintColor = score == 0 ? DefaultThemeBasicBlue : UIColor.grayColor()
-				
-				self.possitiveButton.restorationIdentifier = score > 0 ?
-					RatingScreenlet.DeleteRatingAction : RatingScreenlet.UpdateRatingAction
-				self.negativeButton.restorationIdentifier = score == 0 ?
-					RatingScreenlet.DeleteRatingAction : RatingScreenlet.UpdateRatingAction
+				if score == 0 {
+					// thumbs down
+					self.possitiveButton.tintColor = UIColor.grayColor()
+					self.negativeButton.tintColor = DefaultThemeBasicBlue
+					
+					self.possitiveButton.restorationIdentifier = RatingScreenlet.UpdateRatingAction
+					self.negativeButton.restorationIdentifier = RatingScreenlet.DeleteRatingAction
+				}
+				else if score > 0 {
+					// thumbs up
+					self.possitiveButton.tintColor = DefaultThemeBasicBlue
+					self.negativeButton.tintColor = UIColor.grayColor()
+					
+					self.possitiveButton.restorationIdentifier = RatingScreenlet.DeleteRatingAction
+					self.negativeButton.restorationIdentifier = RatingScreenlet.UpdateRatingAction
+				}
+				else if score == -1 {
+					// no rating yet
+					self.possitiveButton.tintColor = UIColor.grayColor()
+					self.negativeButton.tintColor = UIColor.grayColor()
+					
+					self.possitiveButton.restorationIdentifier = RatingScreenlet.UpdateRatingAction
+					self.negativeButton.restorationIdentifier = RatingScreenlet.UpdateRatingAction
+				}
 			}
 		}
 	}
