@@ -13,7 +13,6 @@
 */
 import UIKit
 
-
 public func nullIfEmpty(string: String?) -> String? {
 	if string == nil {
 		return nil

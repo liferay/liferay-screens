@@ -13,24 +13,23 @@
 */
 import Foundation
 
-@objc public protocol ProgressPresenter {
 
-	func showHUDInView(view: UIView,
-		message: String?,
-		forInteractor interactor: Interactor)
-	
-	func hideHUDFromView(view: UIView?,
-		message: String?,
-		forInteractor interactor: Interactor,
-		withError error: NSError?)
+extension SequenceType {
+	public func stoppableReduce<T>(initial: T, @noescape combine: (T, Self.Generator.Element,
+		inout Bool) -> T) -> T {
 
+		var hasToStop = false
+		var generator = self.generate()
+		var currentValue = initial
+
+		while (!hasToStop) {
+			guard let nextElement = generator.next()
+				else {
+					break
+			}
+			currentValue = combine(currentValue, nextElement, &hasToStop)
+		}
+
+		return currentValue
+	}
 }
-
-
-@objc public enum ProgressMessageType: Int {
-	case Working
-	case Failure
-	case Success
-}
-
-public typealias ProgressMessages = [ProgressMessageType:String]

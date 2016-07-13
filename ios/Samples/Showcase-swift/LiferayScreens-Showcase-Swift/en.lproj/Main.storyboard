@@ -867,7 +867,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="6Q4-t8-cpv" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="6Q4-t8-cpv">
                                 <rect key="frame" x="186" y="357" width="60" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -934,7 +934,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Xgo-At-ulf"/>
                     <connections>
-                        <outlet property="editableScreenlet" destination="6Q4-t8-cpv" id="Flh-8N-GZt"/>
+                        <outlet property="editableScreenletContainer" destination="6Q4-t8-cpv" id="jM5-h3-8tf"/>
                         <outlet property="screenlet" destination="dUK-mV-I2G" id="DZF-FN-NDC"/>
                         <outlet property="screenletWithDelegate" destination="OfG-dw-9hx" id="OGJ-bb-XTI"/>
                         <outlet property="userIdField" destination="g8B-1u-S4d" id="6Nc-it-meo"/>

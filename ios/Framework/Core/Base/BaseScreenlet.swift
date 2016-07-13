@@ -42,6 +42,9 @@ import QuartzCore
 			if _runningOnInterfaceBuilder {
 				_themeName = updateCurrentPreviewImage()
 			}
+			else {
+				loadScreenletView()
+			}
 
 			screenletView?.themeName = _themeName
 		}
@@ -70,7 +73,38 @@ import QuartzCore
 	private var _runningInteractors = [String:[Interactor]]()
 
 	private var _progressPresenter: ProgressPresenter?
+	
+	
+	//MARK: Initializers
+	
+	/**
+		Initializer for instantiate screenlets from code
 
+		- parameters:
+			- themeName: name of the theme to be used. If nil, default theme will be used
+			- initializer: a function which will be launched after the basic screenlet initialization
+	*/
+	public init(frame: CGRect, themeName: String?, initalizer: ((BaseScreenlet)->())?) {
+		super.init(frame: frame)
+		
+		onPreCreate()
+		
+		clipsToBounds = true
+		
+		self.themeName = themeName
+		
+		initalizer?(self)
+		
+		onCreated()
+	}
+
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+	}
+	
+	required public init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+	}
 
 	//MARK: UIView
 
@@ -81,9 +115,7 @@ import QuartzCore
 
 		clipsToBounds = true
 
-		screenletView = loadScreenletView()
-
-		_progressPresenter = screenletView?.createProgressPresenter()
+		loadScreenletView()
 
 		onCreated()
 	}
@@ -119,7 +151,7 @@ import QuartzCore
 
 	//MARK: Internal methods
 
-	internal func loadScreenletView() -> BaseScreenletView? {
+	internal func loadScreenletView() {
 		let view = createScreenletViewFromNib()
 
 		if let viewValue = view {
@@ -140,14 +172,21 @@ import QuartzCore
 			viewValue.screenlet = self
 			viewValue.presentingViewController = self.presentingViewController
 			viewValue.themeName = _themeName
+			
+			if let oldView = self.screenletView {
+				oldView.removeFromSuperview()
+			}
+
+			self._progressPresenter = viewValue.createProgressPresenter()
+			self.screenletView = viewValue
 
 			addSubview(viewValue)
 			sendSubviewToBack(viewValue)
-
-			return viewValue
 		}
-
-		return nil
+		else {
+			self._progressPresenter = nil
+			self.screenletView = nil
+		}
 	}
 
 	internal func previewImageForTheme(themeName:String) -> UIImage? {
@@ -217,9 +256,7 @@ import QuartzCore
 			trackInteractor(interactor, withName: name)
 
 			if let message = screenletView?.progressMessageForAction(name, messageType: .Working) {
-				showHUDWithMessage(message,
-					closeMode: .ManualClose,
-					spinnerMode: .IndeterminateSpinner)
+				showHUDWithMessage(message, forInteractor: interactor)
 			}
 
 			result = onAction(name: name, interactor: interactor, sender: sender)
@@ -270,38 +307,14 @@ import QuartzCore
 
 	public func endInteractor(interactor: Interactor, error: NSError?) {
 
-		func hideInteractorHUD(error: NSError?) {
-			let messageType: ProgressMessageType
-			let closeMode: ProgressCloseMode?
-			var msg: String?
-
-			if let error = error {
-				messageType = .Failure
-				closeMode = .ManualClose_TouchClosable
-
-				if error is ValidationError {
-					msg = error.localizedDescription
-				}
-			}
-			else {
-				messageType = .Success
-				closeMode = .Autoclose_TouchClosable
+		func getMessage() -> String? {
+			if let error = error as? ValidationError {
+				return error.localizedDescription
 			}
 
-			if msg == nil {
-				msg = screenletView?.progressMessageForAction(
+			return screenletView?.progressMessageForAction(
 					interactor.actionName ?? BaseScreenlet.DefaultAction,
-					messageType: messageType)
-			}
-
-			if let msg = msg, closeMode = closeMode {
-				showHUDWithMessage(msg,
-					closeMode: closeMode,
-					spinnerMode: .NoSpinner)
-			}
-			else {
-				hideHUD()
-			}
+					messageType: error == nil ? .Success : .Failure)
 		}
 
 		untrackInteractor(interactor)
@@ -309,8 +322,7 @@ import QuartzCore
 		let result: AnyObject? = interactor.interactionResult()
 		onFinishInteraction(result, error: error)
 		screenletView?.onFinishInteraction(result, error: error)
-
-		hideInteractorHUD(error)
+		hideHUDWithMessage(getMessage(), forInteractor: interactor, withError: error)
 	}
 
 	/**
@@ -329,24 +341,21 @@ import QuartzCore
 	//MARK: HUD methods
 
 	public func showHUDWithMessage(message: String?,
-			closeMode: ProgressCloseMode,
-			spinnerMode: ProgressSpinnerMode) {
-
+			forInteractor interactor: Interactor) {
+		
 		_progressPresenter?.showHUDInView(rootView(self),
 			message: message,
-			closeMode: closeMode,
-			spinnerMode: spinnerMode)
+			forInteractor: interactor)
 	}
 
-	public func showHUDAlert(message message: String) {
-		_progressPresenter?.showHUDInView(rootView(self),
+	public func hideHUDWithMessage(message: String?,
+			forInteractor interactor: Interactor,
+			withError error: NSError?) {
+		
+		_progressPresenter?.hideHUDFromView(rootView(self),
 			message: message,
-			closeMode: .ManualClose_TouchClosable,
-			spinnerMode: .NoSpinner)
-	}
-
-	public func hideHUD() {
-		_progressPresenter?.hideHUD()
+			forInteractor: interactor,
+			withError: error)
 	}
 
 
@@ -413,7 +422,7 @@ import QuartzCore
 			}
 		}
 		else {
-			screenletView = loadScreenletView()
+			loadScreenletView()
 		}
 
 		setNeedsLayout()
