@@ -123,7 +123,7 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 				allRows[BaseListView.DefaultSection]![index] = row
 			}
 			
-			var offset = screenlet.firstRowForPage(page)
+			let offset = screenlet.firstRowForPage(page)
 			var lastIndexInserted = 0
 			
 			//Insert new elements
@@ -140,7 +140,7 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 			let lessItemsThanExpected = (lastIndexInserted + 1 < actualRowCount)
 			let incompleteMiddlePage = (!isPageFull && !isFirstPage)
 			
-			let streamMode = (screenlet as! BaseListScreenlet).streamMode
+			let streamMode = screenlet.streamMode
 			
 			//Deleted elements since row count computation
 			if lessItemsThanExpected && !streamMode && incompleteMiddlePage {
