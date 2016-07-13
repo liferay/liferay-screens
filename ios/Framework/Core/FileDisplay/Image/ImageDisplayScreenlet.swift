@@ -39,6 +39,10 @@ public class ImageDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
+	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+		return nil
+	}
+
 	public func loadImageAsset() -> Bool {
 		return self.performDefaultAction()
 	}
