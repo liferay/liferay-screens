@@ -73,6 +73,30 @@ import QuartzCore
 	private var _runningInteractors = [String:[Interactor]]()
 
 	private var _progressPresenter: ProgressPresenter?
+	
+	
+	//MARK: Initializers
+	
+	/**
+		Initializer for instantiate screenlets from code
+
+		- parameters:
+			- themeName: name of the theme to be used. If nil, default theme will be used
+			- initializer: a function which will be launched after the basic screenlet initialization
+	*/
+	public init(frame: CGRect, themeName: String?, initalizer: ((BaseScreenlet)->())?) {
+		super.init(frame: frame)
+		
+		onPreCreate()
+		
+		clipsToBounds = true
+		
+		self.themeName = themeName
+		
+		initalizer?(self)
+		
+		onCreated()
+	}
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
