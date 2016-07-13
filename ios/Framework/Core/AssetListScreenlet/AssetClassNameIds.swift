@@ -122,6 +122,10 @@ public let AssetClassNameIdWikiNode = "WikiNode"
 		return classNameIds[className]
 	}
 
+	public class func get(classNameId: Int64) -> String? {
+		return classNameIds.filter({$0.1 == classNameId}).first?.0
+	}
+
 	public class func set(className: String, newId: Int64) {
 		classNameIds[className] = newId
 	}
