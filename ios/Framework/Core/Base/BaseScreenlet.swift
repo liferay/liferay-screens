@@ -81,9 +81,9 @@ import QuartzCore
 
 		clipsToBounds = true
 
-		screenletView = loadScreenletView()
 
 		_progressPresenter = screenletView?.createProgressPresenter()
+		loadScreenletView()
 
 		onCreated()
 	}
@@ -119,7 +119,7 @@ import QuartzCore
 
 	//MARK: Internal methods
 
-	internal func loadScreenletView() -> BaseScreenletView? {
+	internal func loadScreenletView() {
 		let view = createScreenletViewFromNib()
 
 		if let viewValue = view {
@@ -140,14 +140,14 @@ import QuartzCore
 			viewValue.screenlet = self
 			viewValue.presentingViewController = self.presentingViewController
 			viewValue.themeName = _themeName
+			self.screenletView = viewValue
 
 			addSubview(viewValue)
 			sendSubviewToBack(viewValue)
-
-			return viewValue
 		}
-
-		return nil
+		else {
+			self.screenletView = nil
+		}
 	}
 
 	internal func previewImageForTheme(themeName:String) -> UIImage? {
@@ -383,7 +383,7 @@ import QuartzCore
 			}
 		}
 		else {
-			screenletView = loadScreenletView()
+			loadScreenletView()
 		}
 
 		setNeedsLayout()
