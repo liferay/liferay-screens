@@ -44,6 +44,7 @@ public class DDLListPageLoadInteractor : BaseListPageLoadInteractor {
 
 		connector.userId = (self.userId != 0) ? self.userId : nil
 		connector.recordSetId = self.recordSetId
+		connector.obcClassName = self.obcClassName
 
 		return connector;
 	}

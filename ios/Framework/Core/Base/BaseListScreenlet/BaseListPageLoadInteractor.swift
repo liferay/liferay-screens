@@ -18,6 +18,8 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 	
 	public let page: Int
 	public let computeRowCount: Bool
+
+	public var obcClassName: String?
 	
 	public var resultAllPagesContent: [String : [AnyObject?]]?
 	public var resultPageContent: [String : [AnyObject]]?
