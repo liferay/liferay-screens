@@ -74,6 +74,13 @@ import QuartzCore
 
 	private var _progressPresenter: ProgressPresenter?
 
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+	}
+	
+	required public init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+	}
 
 	//MARK: UIView
 
