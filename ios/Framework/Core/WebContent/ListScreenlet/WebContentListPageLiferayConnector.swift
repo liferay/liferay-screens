@@ -22,7 +22,6 @@ public class WebContentListPageLiferayConnector: PaginationLiferayConnector {
 
 
 	init(startRow: Int, endRow: Int, computeRowCount: Bool, groupId: Int64, folderId: Int64) {
-
 		self.groupId = groupId
 		self.folderId = folderId
 
@@ -33,14 +32,20 @@ public class WebContentListPageLiferayConnector: PaginationLiferayConnector {
 
 public class Liferay62WebContentListPageConnector: WebContentListPageLiferayConnector {
 
-	override public func doAddPageRowsServiceCall(session session: LRBatchSession, startRow: Int, endRow: Int) {
+	override public func doAddPageRowsServiceCall(
+			session session: LRBatchSession,
+			startRow: Int,
+			endRow: Int,
+			obc: LRJSONObjectWrapper?) {
+
 		do {
 			let service = LRJournalArticleService_v62(session: session)
+
 			try service.getArticlesWithGroupId(groupId,
 				folderId: folderId,
 				start: Int32(startRow),
 				end: Int32(endRow),
-				obc: nil)
+				obc: obc)
 		}
 		catch _ as NSError {
 		}
@@ -60,14 +65,19 @@ public class Liferay62WebContentListPageConnector: WebContentListPageLiferayConn
 
 public class Liferay70WebContentListPageConnector: WebContentListPageLiferayConnector {
 
-	override public func doAddPageRowsServiceCall(session session: LRBatchSession, startRow: Int, endRow: Int) {
+	override public func doAddPageRowsServiceCall(
+			session session: LRBatchSession,
+			startRow: Int,
+			endRow: Int,
+			obc: LRJSONObjectWrapper?) {
+			
 		do {
 			let service = LRJournalArticleService_v7(session: session)
 			try service.getArticlesWithGroupId(groupId,
 			                                   folderId: folderId,
 			                                   start: Int32(startRow),
 			                                   end: Int32(endRow),
-			                                   obc: nil)
+			                                   obc: obc)
 		}
 		catch _ as NSError {
 		}

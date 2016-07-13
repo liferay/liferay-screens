@@ -77,7 +77,12 @@ public class AssetListPageLiferayConnector: PaginationLiferayConnector {
 
 	//MARK: PaginationLiferayConnector
 
-	override public func doAddPageRowsServiceCall(session session: LRBatchSession, startRow: Int, endRow: Int) {
+	override public func doAddPageRowsServiceCall(
+			session session: LRBatchSession,
+			startRow: Int,
+			endRow: Int,
+			obc: LRJSONObjectWrapper?) {
+
 		var entryQuery = configureEntryQuery()
 
 		entryQuery["start"] = startRow
@@ -85,7 +90,7 @@ public class AssetListPageLiferayConnector: PaginationLiferayConnector {
 
 		let entryQueryWrapper = LRJSONObjectWrapper(JSONObject: entryQuery)
 
-		doGetPageRows(session: session, entryQuery: entryQueryWrapper)
+		doGetPageRows(session: session, entryQuery: entryQueryWrapper, obc: obc)
 	}
 
 	override public func doAddRowCountServiceCall(session session: LRBatchSession) {
@@ -99,7 +104,7 @@ public class AssetListPageLiferayConnector: PaginationLiferayConnector {
 		return nil
 	}
 
-	public func doGetPageRows(session session: LRBatchSession, entryQuery: LRJSONObjectWrapper) {
+	public func doGetPageRows(session session: LRBatchSession, entryQuery: LRJSONObjectWrapper, obc: LRJSONObjectWrapper?) {
 	}
 
 	public func doGetRowCount(session session: LRBatchSession, entryQuery: LRJSONObjectWrapper) {
@@ -141,8 +146,9 @@ public class Liferay62AssetListPageConnector: AssetListPageLiferayConnector {
 			max: rowCount) as? [[String:AnyObject]]
 	}
 
-	override public func doGetPageRows(session session: LRBatchSession, entryQuery: LRJSONObjectWrapper) {
+	override public func doGetPageRows(session session: LRBatchSession, entryQuery: LRJSONObjectWrapper, obc: LRJSONObjectWrapper?) {
 		do {
+			//TODO add obc to screens plugin
 			let service = LRScreensassetentryService_v62(session: session)
 			try service.getAssetEntriesWithAssetEntryQuery(entryQuery,
 				locale: NSLocale.currentLocaleString)
@@ -175,8 +181,13 @@ public class Liferay70AssetListPageConnector: AssetListPageLiferayConnector {
 			max: rowCount) as? [[String:AnyObject]]
 	}
 
-	override public func doGetPageRows(session session: LRBatchSession, entryQuery: LRJSONObjectWrapper) {
+	override public func doGetPageRows(
+			session session: LRBatchSession,
+			entryQuery: LRJSONObjectWrapper,
+			obc: LRJSONObjectWrapper?) {
+
 		do {
+			//TODO add obc to plugin
 			let service = LRScreensassetentryService_v70(session: session)
 			try service.getAssetEntriesWithAssetEntryQuery(entryQuery,
 				locale: NSLocale.currentLocaleString)
