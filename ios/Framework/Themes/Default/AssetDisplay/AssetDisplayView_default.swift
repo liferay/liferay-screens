@@ -15,10 +15,20 @@ import UIKit
 
 
 public class AssetDisplayView_default: BaseScreenletView, AssetDisplayViewModel {
-	
+
 	public var assetEntry: Asset? {
 		didSet {
-			print("Asset display successful")
+			if let asset = assetEntry {
+				let frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+
+				let factory = AssetDisplayScreenletFactory(assetEntry: asset)
+
+				let screenlet = factory.createScreenlet(autoLoad: true, frame: frame)
+				
+				if let view = screenlet {
+					addSubview(view)
+				}
+			}
 		}
 	}
 }
