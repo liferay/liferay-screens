@@ -14,11 +14,22 @@
 import Foundation
 
 
+@objc public protocol ImageDisplayScreenletDelegate : BaseScreenletDelegate {
+
+	optional func screenlet(screenlet: ImageDisplayScreenlet, onImageAssetResponse image: UIImage) -> UIImage?
+
+	optional func screenlet(screenlet: ImageDisplayScreenlet, onImageAssetError error: NSError)
+}
+
 public class ImageDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable public var entryId: Int64 = 0
 
 	@IBInspectable public var autoLoad: Bool = true
+
+	public var imageDisplayDelegate: ImageDisplayScreenletDelegate? {
+		return delegate as? ImageDisplayScreenletDelegate
+	}
 
 	//MARK: Public methods
 
