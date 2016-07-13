@@ -42,6 +42,9 @@ import QuartzCore
 			if _runningOnInterfaceBuilder {
 				_themeName = updateCurrentPreviewImage()
 			}
+			else {
+				loadScreenletView()
+			}
 
 			screenletView?.themeName = _themeName
 		}
@@ -138,6 +141,11 @@ import QuartzCore
 			viewValue.screenlet = self
 			viewValue.presentingViewController = self.presentingViewController
 			viewValue.themeName = _themeName
+			
+			if let oldView = self.screenletView {
+				oldView.removeFromSuperview()
+			}
+
 			self._progressPresenter = viewValue.createProgressPresenter()
 			self.screenletView = viewValue
 
