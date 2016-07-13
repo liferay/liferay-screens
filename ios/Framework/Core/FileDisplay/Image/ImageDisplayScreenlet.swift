@@ -23,9 +23,14 @@ import Foundation
 
 public class ImageDisplayScreenlet: BaseScreenlet {
 
+	public static let DownloadImageAction = "download-image"
+	public static let LoadAssetEntry = "load-asset"
+
 	@IBInspectable public var entryId: Int64 = 0
 
 	@IBInspectable public var autoLoad: Bool = true
+
+	public var assetEntry: Asset?
 
 	public var imageDisplayDelegate: ImageDisplayScreenletDelegate? {
 		return delegate as? ImageDisplayScreenletDelegate
@@ -34,8 +39,8 @@ public class ImageDisplayScreenlet: BaseScreenlet {
 	//MARK: Public methods
 
 	override public func onShow() {
-		if autoLoad && entryId != 0 {
-			loadImageAsset()
+		if autoLoad && !loadImageAssetFromAssetEntry() {
+			loadImageAssetFromEntryId()
 		}
 	}
 
@@ -43,7 +48,19 @@ public class ImageDisplayScreenlet: BaseScreenlet {
 		return nil
 	}
 
-	public func loadImageAsset() -> Bool {
+	public override func performDefaultAction() -> Bool {
+		return performAction(name: ImageDisplayScreenlet.LoadAssetEntry, sender: nil)
+	}
+
+	public func loadImageAssetFromEntryId() -> Bool {
 		return self.performDefaultAction()
+	}
+
+	public func loadImageAssetFromAssetEntry() -> Bool {
+		if assetEntry != nil {
+			return performAction(name: ImageDisplayScreenlet.DownloadImageAction, sender: nil)
+		}
+
+		return false
 	}
 }
