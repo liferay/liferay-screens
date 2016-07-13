@@ -1112,9 +1112,6 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="entryId">
                                         <integer key="value" value="31869"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="stepCount">
-                                        <integer key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Like ratings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQl-7a-XX7">
@@ -1137,9 +1134,6 @@
                                     <constraint firstAttribute="width" constant="240" id="SGm-mC-pep"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="stepCount">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="default-stars"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="classPK">
                                         <integer key="value" value="32047"/>
@@ -1157,9 +1151,6 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="entryId">
                                         <integer key="value" value="31904"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="stepCount">
-                                        <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="default-like"/>
                                 </userDefinedRuntimeAttributes>
