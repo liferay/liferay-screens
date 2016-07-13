@@ -31,12 +31,13 @@ import QuartzCore
 @IBDesignable public class BaseScreenlet: UIView {
 
 	public static let DefaultAction = "defaultAction"
+	public static let DefaultThemeName = "default"
 
 	@IBOutlet public weak var delegate: BaseScreenletDelegate?
 
 	@IBInspectable public var themeName: String? {
 		set {
-			_themeName = (newValue ?? "default").lowercaseString
+			_themeName = (newValue ?? BaseScreenlet.DefaultThemeName).lowercaseString
 
 			if _runningOnInterfaceBuilder {
 				_themeName = updateCurrentPreviewImage()
@@ -61,7 +62,7 @@ import QuartzCore
 		return _runningOnInterfaceBuilder
 	}
 
-	private var _themeName = "default"
+	private var _themeName = BaseScreenlet.DefaultThemeName
 	private var _runningOnInterfaceBuilder = false
 	private var _currentPreviewImage: UIImage?
 	private var _previewLayer: CALayer?
@@ -349,7 +350,7 @@ import QuartzCore
 			return foundView
 		}
 
-		if let foundView = tryLoadForTheme("default", inBundles: bundles) {
+		if let foundView = tryLoadForTheme(BaseScreenlet.DefaultThemeName, inBundles: bundles) {
 			return foundView
 		}
 
@@ -363,9 +364,9 @@ import QuartzCore
 
 		_currentPreviewImage = previewImageForTheme(_themeName)
 		if _currentPreviewImage == nil {
-			if let previewImage = previewImageForTheme("default") {
+			if let previewImage = previewImageForTheme(BaseScreenlet.DefaultThemeName) {
 				_currentPreviewImage = previewImage
-				appliedTheme = "default"
+				appliedTheme = BaseScreenlet.DefaultThemeName
 			}
 		}
 
