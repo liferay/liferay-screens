@@ -35,7 +35,7 @@ import UIKit
 	
 	@IBInspectable public var className: String = ""
 	
-	@IBInspectable public var stepCount: Int32 = 2
+	@IBInspectable public var stepCount: Int32 = -1
 	
 	@IBInspectable public var autoLoad: Bool = true
 	
@@ -53,7 +53,6 @@ import UIKit
 		return screenletView as? RatingViewModel
 	}
 	
-	
 	override public func prepareForInterfaceBuilder() {
 		setCustomDefaultThemeName()
 		super.prepareForInterfaceBuilder()
@@ -63,6 +62,11 @@ import UIKit
 		setCustomDefaultThemeName()
 	}
 	
+	public override func onCreated() {
+		if stepCount == -1 {
+			if let defaultStepCount = viewModel?.defaultStepCount {
+				stepCount = defaultStepCount
+			}
 		}
 	}
 	
