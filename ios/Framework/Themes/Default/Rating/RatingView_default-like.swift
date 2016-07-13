@@ -27,6 +27,8 @@ public class RatingView_default_like: BaseScreenletView, RatingViewModel {
 	@IBOutlet weak var countLabel: UILabel?
 	
 	public var selectedUserScore: NSNumber?
+
+	public var defaultStepCount: Int32 = 1
 	
 	//MARK: BaseScreenletView
 	

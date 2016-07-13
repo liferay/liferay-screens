@@ -32,6 +32,8 @@ public class RatingView_default_stars: BaseScreenletView, RatingViewModel {
 	@IBOutlet weak var averageRatingBar: CosmosView?
 	
 	public var selectedUserScore: NSNumber?
+
+	public var defaultStepCount: Int32 = 1
 	
 	//MARK: BaseScreenletView
 	

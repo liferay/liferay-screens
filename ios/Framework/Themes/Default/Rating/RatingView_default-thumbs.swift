@@ -37,6 +37,8 @@ public class RatingView_default_thumbs: BaseScreenletView, RatingViewModel {
 	@IBOutlet weak var possitiveCountLabel: UILabel?
 	
 	public var selectedUserScore: NSNumber?
+
+	public var defaultStepCount: Int32 = 2
 	
 	//MARK: BaseScreenletView
 	
