@@ -15,12 +15,12 @@ import Foundation
 
 @objc public class NetworkActivityIndicatorPresenter: NSObject, ProgressPresenter {
 	static var numberOfVisibilityCalls = 0
-	
-	public func showHUDInView(view: UIView, message: String?, closeMode: ProgressCloseMode, spinnerMode: ProgressSpinnerMode) {
+
+	public func showHUDInView(view: UIView, message: String?, forInteractor interactor: Interactor) {
 		setNetworkActivityIndicatorVisible(true)
 	}
-	
-	public func hideHUD() {
+
+	public func hideHUDFromView(view: UIView?, message: String?, forInteractor interactor: Interactor, withError error: NSError?) {
 		setNetworkActivityIndicatorVisible(false)
 	}
 	
