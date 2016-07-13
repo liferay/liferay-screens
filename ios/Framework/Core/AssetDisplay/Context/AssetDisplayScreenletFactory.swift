@@ -22,7 +22,37 @@ public class AssetDisplayScreenletFactory {
 		self.assetEntry = assetEntry
 	}
 
-	public func createScreenlet(autoLoad autoLoad: Bool) -> BaseScreenlet? {
+	let imageMimeTypes = ["image/png", "image/jpg", "image/jpeg", "image/gif"]
+
+	public func createScreenlet(autoLoad autoLoad: Bool, frame: CGRect) -> BaseScreenlet? {
+
+		let classAssetName = AssetClassNameIds.get(assetEntry.classNameId)
+
+		if let className = classAssetName {
+			switch className {
+			case "DLFileEntry":
+
+				let mimeType = assetEntry.mimeType
+
+				if isImage(mimeType) {
+					return ImageDisplayScreenlet(frame: frame, themeName: nil) {
+						if let s = $0 as? ImageDisplayScreenlet {
+							s.assetEntry = self.assetEntry
+							s.autoLoad = autoLoad
+						}
+					}
+				}
+
+			default:
+				return nil
+			}
+
+		}
+
 		return nil
+	}
+
+	func isImage(mimeType: String) -> Bool {
+		return imageMimeTypes.contains(mimeType)
 	}
 }
