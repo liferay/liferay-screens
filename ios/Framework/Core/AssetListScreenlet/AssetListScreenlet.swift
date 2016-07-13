@@ -58,6 +58,14 @@ import UIKit
 		return attributes["entryId"]!.description.asLong!
 	}
 
+	public var url: String {
+		return attributes["url"]!.description!
+	}
+
+	public var mimeType: String {
+		return attributes["mimeType"]!.description!
+	}
+
 	override public var debugDescription: String {
 		return attributes.debugDescription
 	}
