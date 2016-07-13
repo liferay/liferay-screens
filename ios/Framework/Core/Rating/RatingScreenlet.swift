@@ -45,6 +45,15 @@ import UIKit
 		}
 	}
 	
+	public var ratingDisplayDelegate: RatingScreenletDelegate? {
+		return delegate as? RatingScreenletDelegate
+	}
+	
+	public var viewModel: RatingViewModel? {
+		return screenletView as? RatingViewModel
+	}
+	
+	
 	override public func prepareForInterfaceBuilder() {
 		setCustomDefaultThemeName()
 		super.prepareForInterfaceBuilder()
@@ -54,18 +63,13 @@ import UIKit
 		setCustomDefaultThemeName()
 	}
 	
-	internal func setCustomDefaultThemeName() {
-		if themeName == BaseScreenlet.DefaultThemeName {
-			themeName = "default-thumbs"
 		}
 	}
 	
-	public var ratingDisplayDelegate: RatingScreenletDelegate? {
-		return delegate as? RatingScreenletDelegate
-	}
-	
-	public var viewModel: RatingViewModel? {
-		return screenletView as? RatingViewModel
+	private func setCustomDefaultThemeName() {
+		if themeName == BaseScreenlet.DefaultThemeName {
+			themeName = "default-thumbs"
+		}
 	}
 	
 	private func createLoadRatingsInteractor() -> LoadRatingsInteractor {
@@ -117,7 +121,9 @@ import UIKit
 			}
 		}
 		
-		interactor.onFailure = {self.ratingDisplayDelegate?.screenlet?(self, onRatingError: $0)}
+		interactor.onFailure = {
+			self.ratingDisplayDelegate?.screenlet?(self, onRatingError: $0)
+		}
 		
 		return interactor
 	}
