@@ -20,14 +20,16 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 	@IBOutlet weak var screenlet: UserPortraitScreenlet!
 	@IBOutlet weak var screenletWithDelegate: UserPortraitScreenlet!
 	@IBOutlet weak var userIdField: UITextField!
-	@IBOutlet weak var editableScreenlet: UserPortraitScreenlet!
+	@IBOutlet weak var editableScreenletContainer: UIView!
+
+	var editableScreenlet: UserPortraitScreenlet?
 
 	@IBAction func loadPortrait(sender: AnyObject) {
 		if let userId = Int(userIdField.text!) {
 			print("[PORTRAIT] Loading by id '\(userId)'")
 			screenlet.load(userId: Int64(userId))
 			screenletWithDelegate.load(userId: Int64(userId))
-			editableScreenlet.load(userId: Int64(userId))
+			editableScreenlet?.load(userId: Int64(userId))
 		}
 		else if let text = userIdField.text where text != "" {
 			let company = LiferayServerContext.companyId
@@ -36,20 +38,20 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 				print("[PORTRAIT] Loading by email '\(text)'")
 				screenlet.load(companyId: company, emailAddress: text)
 				screenletWithDelegate.load(companyId: company, emailAddress: text)
-				editableScreenlet.load(companyId: company, emailAddress: text)
+				editableScreenlet?.load(companyId: company, emailAddress: text)
 			}
 			else  {
 				print("[PORTRAIT] Loading by screenName '\(text)'")
 				screenlet.load(companyId: company, screenName: text)
 				screenletWithDelegate.load(companyId: company, screenName: text)
-				editableScreenlet.load(companyId: company, screenName: text)
+				editableScreenlet?.load(companyId: company, screenName: text)
 			}
 		}
 		else {
 			print("[PORTRAIT] Loading by logged user")
 			screenlet.loadLoggedUserPortrait()
 			screenletWithDelegate.loadLoggedUserPortrait()
-			editableScreenlet.loadLoggedUserPortrait()
+			editableScreenlet?.loadLoggedUserPortrait()
 		}
 	}
 
@@ -62,7 +64,14 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 
 		screenletWithDelegate?.delegate = self
 
-		editableScreenlet.presentingViewController = self
+		editableScreenlet = UserPortraitScreenlet(frame: CGRect(x: 0, y: 0, width: 60, height: 60), themeName: nil) {
+			if let s = $0 as? UserPortraitScreenlet {
+				s.presentingViewController = self
+				s.editable = true
+			}
+		}
+
+		editableScreenletContainer.addSubview(editableScreenlet!)
     }
 
 	func screenlet(screenlet: UserPortraitScreenlet,
