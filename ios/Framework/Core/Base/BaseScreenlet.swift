@@ -31,15 +31,19 @@ import QuartzCore
 @IBDesignable public class BaseScreenlet: UIView {
 
 	public static let DefaultAction = "defaultAction"
+	public static let DefaultThemeName = "default"
 
 	@IBOutlet public weak var delegate: BaseScreenletDelegate?
 
 	@IBInspectable public var themeName: String? {
 		set {
-			_themeName = (newValue ?? "default").lowercaseString
+			_themeName = (newValue ?? BaseScreenlet.DefaultThemeName).lowercaseString
 
 			if _runningOnInterfaceBuilder {
 				_themeName = updateCurrentPreviewImage()
+			}
+			else {
+				loadScreenletView()
 			}
 
 			screenletView?.themeName = _themeName
@@ -61,7 +65,7 @@ import QuartzCore
 		return _runningOnInterfaceBuilder
 	}
 
-	private var _themeName = "default"
+	private var _themeName = BaseScreenlet.DefaultThemeName
 	private var _runningOnInterfaceBuilder = false
 	private var _currentPreviewImage: UIImage?
 	private var _previewLayer: CALayer?
@@ -69,7 +73,38 @@ import QuartzCore
 	private var _runningInteractors = [String:[Interactor]]()
 
 	private var _progressPresenter: ProgressPresenter?
+	
+	
+	//MARK: Initializers
+	
+	/**
+		Initializer for instantiate screenlets from code
 
+		- parameters:
+			- themeName: name of the theme to be used. If nil, default theme will be used
+			- initializer: a function which will be launched after the basic screenlet initialization
+	*/
+	public init(frame: CGRect, themeName: String?, initalizer: ((BaseScreenlet)->())?) {
+		super.init(frame: frame)
+		
+		onPreCreate()
+		
+		clipsToBounds = true
+		
+		self.themeName = themeName
+		
+		initalizer?(self)
+		
+		onCreated()
+	}
+
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+	}
+	
+	required public init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+	}
 
 	//MARK: UIView
 
@@ -80,9 +115,7 @@ import QuartzCore
 
 		clipsToBounds = true
 
-		screenletView = loadScreenletView()
-
-		_progressPresenter = screenletView?.createProgressPresenter()
+		loadScreenletView()
 
 		onCreated()
 	}
@@ -118,7 +151,7 @@ import QuartzCore
 
 	//MARK: Internal methods
 
-	internal func loadScreenletView() -> BaseScreenletView? {
+	internal func loadScreenletView() {
 		let view = createScreenletViewFromNib()
 
 		if let viewValue = view {
@@ -139,14 +172,21 @@ import QuartzCore
 			viewValue.screenlet = self
 			viewValue.presentingViewController = self.presentingViewController
 			viewValue.themeName = _themeName
+			
+			if let oldView = self.screenletView {
+				oldView.removeFromSuperview()
+			}
+
+			self._progressPresenter = viewValue.createProgressPresenter()
+			self.screenletView = viewValue
 
 			addSubview(viewValue)
 			sendSubviewToBack(viewValue)
-
-			return viewValue
 		}
-
-		return nil
+		else {
+			self._progressPresenter = nil
+			self.screenletView = nil
+		}
 	}
 
 	internal func previewImageForTheme(themeName:String) -> UIImage? {
@@ -349,7 +389,7 @@ import QuartzCore
 			return foundView
 		}
 
-		if let foundView = tryLoadForTheme("default", inBundles: bundles) {
+		if let foundView = tryLoadForTheme(BaseScreenlet.DefaultThemeName, inBundles: bundles) {
 			return foundView
 		}
 
@@ -363,9 +403,9 @@ import QuartzCore
 
 		_currentPreviewImage = previewImageForTheme(_themeName)
 		if _currentPreviewImage == nil {
-			if let previewImage = previewImageForTheme("default") {
+			if let previewImage = previewImageForTheme(BaseScreenlet.DefaultThemeName) {
 				_currentPreviewImage = previewImage
-				appliedTheme = "default"
+				appliedTheme = BaseScreenlet.DefaultThemeName
 			}
 		}
 
@@ -382,7 +422,7 @@ import QuartzCore
 			}
 		}
 		else {
-			screenletView = loadScreenletView()
+			loadScreenletView()
 		}
 
 		setNeedsLayout()

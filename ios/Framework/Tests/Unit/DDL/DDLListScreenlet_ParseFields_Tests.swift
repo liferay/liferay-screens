@@ -24,7 +24,7 @@ class DDLListScreenlet_ParseFields_Tests: XCTestCase {
 
 		screenlet = DDLListScreenlet(frame: CGRectZero)
 		screenlet!.themeName = "test"
-		screenlet!.screenletView = screenlet!.loadScreenletView()
+		screenlet!.loadScreenletView()
 	}
 
 	func test_LabelFields_ShouldParse_SingleField() {
