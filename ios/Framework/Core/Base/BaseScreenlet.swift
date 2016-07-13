@@ -81,8 +81,6 @@ import QuartzCore
 
 		clipsToBounds = true
 
-
-		_progressPresenter = screenletView?.createProgressPresenter()
 		loadScreenletView()
 
 		onCreated()
@@ -140,12 +138,14 @@ import QuartzCore
 			viewValue.screenlet = self
 			viewValue.presentingViewController = self.presentingViewController
 			viewValue.themeName = _themeName
+			self._progressPresenter = viewValue.createProgressPresenter()
 			self.screenletView = viewValue
 
 			addSubview(viewValue)
 			sendSubviewToBack(viewValue)
 		}
 		else {
+			self._progressPresenter = nil
 			self.screenletView = nil
 		}
 	}
