@@ -89,11 +89,11 @@ public class RatingsActivity extends ThemeActivity implements RatingListener, Vi
 		paintButton(v.getId());
 	}
 
-	private void displayScreenlet(int layoutId, int entryId, int stepCount) {
+	private void displayScreenlet(int layoutId, int entryId, int ratingsGroupCount) {
 		_screenlet = new RatingScreenlet(getApplicationContext());
 		_screenlet.setEntryId(Long.valueOf(getResources().getString(entryId)));
 		_screenlet.setAutoLoad(true);
-		_screenlet.setStepCount(stepCount);
+		_screenlet.setRatingsGroupCount(ratingsGroupCount);
 		_screenlet.render(layoutId);
 		_screenlet.setEditable(!_readOnlySwitch.isChecked());
 

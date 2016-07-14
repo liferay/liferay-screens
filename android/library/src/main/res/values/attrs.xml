@@ -151,6 +151,6 @@
 		<attr name="entryId" format="string" />
 		<attr name="className" format="string" />
 		<attr name="classPK" format="string" />
-		<attr name="stepCount" format="integer" />
+		<attr name="ratingsGroupCount" format="integer" />
 	</declare-styleable>
 </resources>

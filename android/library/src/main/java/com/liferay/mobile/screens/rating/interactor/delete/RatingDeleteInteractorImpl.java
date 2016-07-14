@@ -28,8 +28,8 @@ public class RatingDeleteInteractorImpl extends BaseRemoteInteractor<RatingListe
 		return new ScreensratingsentryService(session);
 	}
 
-	@Override public void deleteRating(long classPK, String className, int stepCount) throws Exception {
-		_screensratingsentryService.deleteRatingEntry(classPK, className, stepCount);
+	@Override public void deleteRating(long classPK, String className, int ratingGroupCounts) throws Exception {
+		_screensratingsentryService.deleteRatingsEntry(classPK, className, ratingGroupCounts);
 	}
 
 	public void onEvent(RatingDeleteEvent event) {

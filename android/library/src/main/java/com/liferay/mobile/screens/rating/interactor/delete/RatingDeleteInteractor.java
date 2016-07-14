@@ -7,5 +7,5 @@ import com.liferay.mobile.screens.rating.RatingListener;
  * @author Alejandro Hernández
  */
 public interface RatingDeleteInteractor extends Interactor<RatingListener> {
-	void deleteRating(long classPK, String className, int stepCount) throws Exception;
+	void deleteRating(long classPK, String className, int ratingGroupCounts) throws Exception;
 }

@@ -28,13 +28,13 @@ public class RatingLoadInteractorImpl extends BaseRemoteInteractor<RatingListene
 		return new ScreensratingsentryService(session);
 	}
 
-	@Override public void loadRatings(long entryId, long classPK, String className, int stepCount) throws Exception {
+	@Override public void loadRatings(long entryId, long classPK, String className, int ratingsGroupCount) throws Exception {
 		validate(entryId, className, classPK);
 
 		if (entryId != 0) {
-			_screensratingsentryService.getRatingsEntries(entryId, stepCount);
+			_screensratingsentryService.getRatingsEntries(entryId, ratingsGroupCount);
 		} else {
-			_screensratingsentryService.getRatingsEntries(classPK, className, stepCount);
+			_screensratingsentryService.getRatingsEntries(classPK, className, ratingsGroupCount);
 		}
 	}
 

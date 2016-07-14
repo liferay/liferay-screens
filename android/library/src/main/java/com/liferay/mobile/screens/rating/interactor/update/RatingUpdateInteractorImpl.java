@@ -29,9 +29,9 @@ public class RatingUpdateInteractorImpl extends BaseRemoteInteractor<RatingListe
 		return new ScreensratingsentryService(session);
 	}
 
-	@Override public void updateRating(long classPK, String className, double score, int stepCount) throws Exception {
+	@Override public void updateRating(long classPK, String className, double score, int ratingsGroupCount) throws Exception {
 		validate(score);
-		_screensratingsentryService.updateRatingEntry(classPK, className, score, stepCount);
+		_screensratingsentryService.updateRatingsEntry(classPK, className, score, ratingsGroupCount);
 	}
 
 	public void onEvent(RatingUpdateEvent event) {

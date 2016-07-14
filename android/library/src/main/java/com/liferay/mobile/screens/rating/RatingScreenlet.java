@@ -70,8 +70,8 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 		_className = typedArray.getString(R.styleable.RatingScreenlet_className);
 		_classPK = castToLong(typedArray.getString(R.styleable.RatingScreenlet_classPK));
 
-		_stepCount =
-			typedArray.getInt(R.styleable.RatingScreenlet_stepCount, ((RatingViewModel) view).getDefaultStepCount());
+		_ratingsGroupCount =
+			typedArray.getInt(R.styleable.RatingScreenlet_ratingsGroupCount, ((RatingViewModel) view).getDefaultStepCount());
 
 		typedArray.recycle();
 
@@ -95,14 +95,14 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 		try {
 			switch (userActionName) {
 				case LOAD_RATINGS_ACTION:
-					((RatingLoadInteractor) interactor).loadRatings(_entryId, _classPK, _className, _stepCount);
+					((RatingLoadInteractor) interactor).loadRatings(_entryId, _classPK, _className, _ratingsGroupCount);
 					break;
 				case UPDATE_RATING_ACTION:
 					double score = (double) args[0];
-					((RatingUpdateInteractor) interactor).updateRating(_classPK, _className, score, _stepCount);
+					((RatingUpdateInteractor) interactor).updateRating(_classPK, _className, score, _ratingsGroupCount);
 					break;
 				case DELETE_RATING_ACTION:
-					((RatingDeleteInteractor) interactor).deleteRating(_classPK, _className, _stepCount);
+					((RatingDeleteInteractor) interactor).deleteRating(_classPK, _className, _ratingsGroupCount);
 					break;
 				default:
 					break;
@@ -195,12 +195,12 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 		getViewModel().setEditable(_editable);
 	}
 
-	public int getStepCount() {
-		return _stepCount;
+	public int getRatingsGroupCount() {
+		return _ratingsGroupCount;
 	}
 
-	public void setStepCount(int stepCount) {
-		this._stepCount = stepCount;
+	public void setRatingsGroupCount(int ratingsGroupCount) {
+		this._ratingsGroupCount = ratingsGroupCount;
 	}
 
 	private RatingListener _listener;
@@ -209,6 +209,6 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 	private boolean _autoLoad;
 	private boolean _editable;
 	private long _classPK;
-	private int _stepCount;
+	private int _ratingsGroupCount;
 	private String _className;
 }
