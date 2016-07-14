@@ -9,15 +9,16 @@
 import UIKit
 import AFNetworking
 
-class ImageGalleryCell: UITableViewCell {
+public class ImageGalleryCell: UITableViewCell {
+
     
-    @IBOutlet weak private var imagePreview: UIImageView!
-    
-    @IBOutlet weak private var imageTitle: UILabel!
-    
+	@IBOutlet weak var imagePreview: UIImageView!
+	@IBOutlet weak var imageTitle: UILabel!
+
+	
     public var title: String? {
         get {
-            return title
+            return imageTitle.text
         }
         set {
             imageTitle.text = newValue
@@ -26,18 +27,23 @@ class ImageGalleryCell: UITableViewCell {
     
     public var imageUrl: String? {
         get {
-            return title
+            return ""
         }
         set {
-            imagePreview.setImageWithURL(NSURL(string: newValue!)!)
+            imagePreview.setImageWithURL(NSURL(string: newValue ?? "")!)
         }
     }
 
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         
-        imagePreview.backgroundColor = .redColor()
         imagePreview.clipsToBounds = true
+        
+        if let image = NSBundle.imageInBundles(
+            name: "default-hourglass",
+            currentClass: self.dynamicType) {
+            
+            imagePreview.image = image
+        }
     }
-    
 }

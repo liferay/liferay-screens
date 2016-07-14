@@ -11,6 +11,8 @@ import AFNetworking
 
 
 public class ImageGalleryView_default : BaseListTableView {
+    
+    private let imageCellId = "ImageCellId"
  
     public override func onCreated() {
         super.onCreated()
@@ -22,22 +24,12 @@ public class ImageGalleryView_default : BaseListTableView {
     }
     
     override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
-        if let entry = object as? ImageEntry {
-            guard let imageCell = cell as? ImageGalleryCell else {
-                return
-            }
-            
-            imageCell.imageUrl = entry.thumbnailUrl
-            imageCell.title = entry.title
-        }
-    }
-    
-    public override func doCreateCell(cellId: String) -> UITableViewCell {
-        if cellId == "cellId" {
-            ImageGalleryCell(style: .Default, reuseIdentifier: "cellId")
+        guard let imageCell = cell as? ImageGalleryCell, entry = object as? ImageEntry else {
+            return
         }
         
-        return super.doCreateCell(cellId)
+        imageCell.imageUrl = entry.thumbnailUrl
+        imageCell.title = entry.title
     }
     
     override public func doFillInProgressCell(row row: Int, cell: UITableViewCell) {
@@ -55,7 +47,7 @@ public class ImageGalleryView_default : BaseListTableView {
     
     public override func doGetCellId(row row: Int, object: AnyObject?) -> String {
         if let _ = object {
-            return "cellId"
+            return imageCellId
         }
         
         return super.doGetCellId(row: row, object: object)
@@ -66,7 +58,7 @@ public class ImageGalleryView_default : BaseListTableView {
             name: "ImageGalleryCell",
             currentClass: self.dynamicType) {
             
-            tableView?.registerNib(imageGalleryCellNib, forCellReuseIdentifier: "cellId")
+            tableView?.registerNib(imageGalleryCellNib, forCellReuseIdentifier: imageCellId)
         }
     }
 }
