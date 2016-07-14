@@ -1065,8 +1065,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VbC-bI-jPR">
+                                <rect key="frame" x="16" y="84" width="288" height="29"/>
+                                <segments>
+                                    <segment title="Thumbs"/>
+                                    <segment title="Like"/>
+                                    <segment title="Stars"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlChanged:" destination="N0K-Ji-ryL" eventType="valueChanged" id="Ou5-g3-b3h"/>
+                                </connections>
+                            </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAQ-sX-WyU" userLabel="Editable switch view">
-                                <rect key="frame" x="93" y="84" width="135" height="45"/>
+                                <rect key="frame" x="93" y="132" width="135" height="45"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Editable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvB-0o-bfZ">
                                         <rect key="frame" x="65" y="6" width="70" height="31"/>
@@ -1095,95 +1106,37 @@
                                     <constraint firstItem="D7x-W0-d56" firstAttribute="top" secondItem="MAQ-sX-WyU" secondAttribute="top" constant="7" id="qiI-vU-cgr"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thumbs ratings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FpW-0t-ffX">
-                                <rect key="frame" x="16" y="135" width="288" height="33"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dmu-RT-N5m" customClass="RatingScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="84" y="176" width="152" height="70"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PeC-X4-KBr" customClass="RatingScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="16" y="197" width="288" height="334"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="152" id="BUN-CV-1tY"/>
-                                    <constraint firstAttribute="height" constant="70" id="lht-G5-qVM"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="entryId">
                                         <integer key="value" value="31869"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Like ratings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQl-7a-XX7">
-                                <rect key="frame" x="16" y="265" width="288" height="33"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Star bar ratings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IeT-fP-oHp">
-                                <rect key="frame" x="16" y="394" width="288" height="32"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NCb-9t-2aH" customClass="RatingScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="40" y="446" width="240" height="80"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="Coh-8w-84t"/>
-                                    <constraint firstAttribute="width" constant="240" id="SGm-mC-pep"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="default-stars"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="classPK">
-                                        <integer key="value" value="32047"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="className" value="com.liferay.document.library.kernel.model.DLFileEntry"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JER-c8-R1u" customClass="RatingScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="120" y="306" width="80" height="68"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="FtD-we-2ga"/>
-                                    <constraint firstAttribute="height" constant="68" id="Z5v-w4-Flp"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="entryId">
-                                        <integer key="value" value="31904"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="default-like"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="PQl-7a-XX7" firstAttribute="centerX" secondItem="JER-c8-R1u" secondAttribute="centerX" id="7dT-81-Bak"/>
-                            <constraint firstItem="FpW-0t-ffX" firstAttribute="top" secondItem="MAQ-sX-WyU" secondAttribute="bottom" constant="6" id="87N-OY-gQV"/>
-                            <constraint firstItem="IeT-fP-oHp" firstAttribute="centerX" secondItem="NCb-9t-2aH" secondAttribute="centerX" id="Acr-MN-Chz"/>
-                            <constraint firstItem="NCb-9t-2aH" firstAttribute="top" secondItem="IeT-fP-oHp" secondAttribute="bottom" constant="20" id="Bhu-8S-4Zd"/>
-                            <constraint firstItem="FpW-0t-ffX" firstAttribute="centerX" secondItem="flQ-4S-EHo" secondAttribute="centerX" id="J1v-vz-9g5"/>
-                            <constraint firstItem="JER-c8-R1u" firstAttribute="top" secondItem="PQl-7a-XX7" secondAttribute="bottom" constant="8" symbolic="YES" id="NKr-mQ-Em5"/>
-                            <constraint firstItem="FpW-0t-ffX" firstAttribute="leading" secondItem="PQl-7a-XX7" secondAttribute="leading" id="WW9-kI-PGp"/>
-                            <constraint firstItem="IeT-fP-oHp" firstAttribute="top" secondItem="JER-c8-R1u" secondAttribute="bottom" constant="20" id="aXH-PB-nib"/>
-                            <constraint firstItem="dmu-RT-N5m" firstAttribute="top" secondItem="FpW-0t-ffX" secondAttribute="bottom" constant="8" symbolic="YES" id="cgR-8j-9zK"/>
-                            <constraint firstItem="FpW-0t-ffX" firstAttribute="trailing" secondItem="PQl-7a-XX7" secondAttribute="trailing" id="eDX-mK-4pL"/>
-                            <constraint firstItem="MAQ-sX-WyU" firstAttribute="top" secondItem="s8Q-dv-O3o" secondAttribute="bottom" constant="20" id="ggr-n9-NxI"/>
-                            <constraint firstItem="PQl-7a-XX7" firstAttribute="top" secondItem="dmu-RT-N5m" secondAttribute="bottom" constant="19" id="gyi-5i-s5u"/>
-                            <constraint firstItem="PQl-7a-XX7" firstAttribute="trailing" secondItem="IeT-fP-oHp" secondAttribute="trailing" id="hdQ-eD-nrq"/>
-                            <constraint firstItem="MAQ-sX-WyU" firstAttribute="centerX" secondItem="flQ-4S-EHo" secondAttribute="centerX" id="k95-Jj-BAX"/>
-                            <constraint firstItem="FpW-0t-ffX" firstAttribute="centerX" secondItem="dmu-RT-N5m" secondAttribute="centerX" id="kvD-le-jne"/>
-                            <constraint firstItem="PQl-7a-XX7" firstAttribute="leading" secondItem="IeT-fP-oHp" secondAttribute="leading" id="lkI-WI-UTq"/>
-                            <constraint firstItem="FpW-0t-ffX" firstAttribute="leading" secondItem="flQ-4S-EHo" secondAttribute="leadingMargin" id="u1u-7W-mYa"/>
+                            <constraint firstItem="MAQ-sX-WyU" firstAttribute="top" secondItem="VbC-bI-jPR" secondAttribute="bottom" constant="20" id="2qI-Ql-E7P"/>
+                            <constraint firstItem="PeC-X4-KBr" firstAttribute="leading" secondItem="flQ-4S-EHo" secondAttribute="leadingMargin" id="3H7-FB-Ng9"/>
+                            <constraint firstItem="MAQ-sX-WyU" firstAttribute="centerX" secondItem="flQ-4S-EHo" secondAttribute="centerX" id="9Ui-Og-4Tr"/>
+                            <constraint firstItem="VbC-bI-jPR" firstAttribute="centerX" secondItem="flQ-4S-EHo" secondAttribute="centerX" id="Cgs-gk-ojW"/>
+                            <constraint firstItem="MAQ-sX-WyU" firstAttribute="top" secondItem="VbC-bI-jPR" secondAttribute="bottom" constant="20" id="Lcw-Wb-NBX"/>
+                            <constraint firstItem="VbC-bI-jPR" firstAttribute="leading" secondItem="flQ-4S-EHo" secondAttribute="leadingMargin" id="PKz-bW-8LU"/>
+                            <constraint firstItem="VbC-bI-jPR" firstAttribute="top" secondItem="s8Q-dv-O3o" secondAttribute="bottom" constant="20" id="UTZ-wj-qHP"/>
+                            <constraint firstItem="PeC-X4-KBr" firstAttribute="trailing" secondItem="flQ-4S-EHo" secondAttribute="trailingMargin" id="YGc-5S-dcW"/>
+                            <constraint firstItem="PeC-X4-KBr" firstAttribute="top" secondItem="MAQ-sX-WyU" secondAttribute="bottom" constant="20" id="fC3-eN-krf"/>
+                            <constraint firstItem="VbC-bI-jPR" firstAttribute="trailing" secondItem="flQ-4S-EHo" secondAttribute="trailingMargin" id="igz-sG-oz9"/>
+                            <constraint firstItem="7f1-30-j8U" firstAttribute="top" secondItem="PeC-X4-KBr" secondAttribute="bottom" constant="20" id="mdD-GZ-MIS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="IZ1-dH-too"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="600"/>
                     <connections>
-                        <outlet property="likeScreenlet" destination="JER-c8-R1u" id="4fO-PD-Ewk"/>
-                        <outlet property="starBarScreenlet" destination="NCb-9t-2aH" id="muv-UE-MBK"/>
-                        <outlet property="thumbsScreenlet" destination="dmu-RT-N5m" id="qlH-FS-vIM"/>
+                        <outlet property="screenlet" destination="PeC-X4-KBr" id="Bne-CZ-CT2"/>
+                        <outlet property="switchControl" destination="D7x-W0-d56" id="RKs-sj-Mx9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dse-CN-iuq" userLabel="First Responder" sceneMemberID="firstResponder"/>

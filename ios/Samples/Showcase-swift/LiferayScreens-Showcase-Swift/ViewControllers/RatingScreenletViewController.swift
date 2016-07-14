@@ -16,18 +16,32 @@ import LiferayScreens
 
 
 class RatingScreenletViewController: UIViewController {
-    
-    @IBOutlet weak var thumbsScreenlet: RatingScreenlet!
-    @IBOutlet weak var likeScreenlet: RatingScreenlet!
-    @IBOutlet weak var starBarScreenlet: RatingScreenlet!
-    
+
+	@IBOutlet weak var screenlet: RatingScreenlet!
+	@IBOutlet weak var switchControl: UISwitch!
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
+	@IBAction func segmentedControlChanged(sender: UISegmentedControl) {
+		switch sender.selectedSegmentIndex {
+		case 1:
+			screenlet.entryId = 32049
+			screenlet.themeName = "default-like"
+		case 2:
+			screenlet.entryId = 31904
+			screenlet.themeName = "default-stars"
+		default:
+			screenlet.entryId = 31869
+			screenlet.themeName = "default-thumbs"
+		}
+
+		screenlet.loadRatings()
+		screenlet.editable = switchControl.on
+	}
+
     @IBAction func switchChange(sender: UISwitch) {
-        thumbsScreenlet.editable = sender.on
-        likeScreenlet.editable = sender.on
-        starBarScreenlet.editable = sender.on
+		screenlet.editable = sender.on
     }
 }
