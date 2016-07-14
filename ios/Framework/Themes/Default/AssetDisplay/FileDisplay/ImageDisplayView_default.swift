@@ -16,10 +16,11 @@ import UIKit
 
 public class ImageDisplayView_default: BaseScreenletView, ImageDisplayViewModel {
 
+	@IBOutlet weak var imageView: UIImageView!
+
 	public var image: UIImage? {
 		didSet {
-			
+			imageView.image = image
 		}
 	}
-
 }

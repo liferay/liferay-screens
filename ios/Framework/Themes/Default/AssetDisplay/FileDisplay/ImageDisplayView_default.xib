@@ -19,6 +19,9 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="imageView" destination="9pB-Hk-VWN" id="3Me-He-e0o"/>
+            </connections>
             <point key="canvasLocation" x="290" y="102"/>
         </view>
     </objects>
