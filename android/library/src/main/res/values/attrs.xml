@@ -30,6 +30,7 @@
 	<attr name="pageSize" format="integer" />
 	<attr name="labelFields" format="string" />
 	<attr name="structureId" format="string" />
+	<attr name="obcClassName" format="string" />
 
 	<declare-styleable name="AssetListScreenlet">
 		<attr name="layoutId" />
@@ -41,6 +42,7 @@
 		<attr name="firstPageSize" />
 		<attr name="pageSize" />
 		<attr name="labelFields" />
+		<attr name="obcClassName" />
 	</declare-styleable>
 
 	<declare-styleable name="DDLFormScreenlet">
@@ -76,6 +78,7 @@
 		<attr name="firstPageSize" />
 		<attr name="pageSize" />
 		<attr name="labelFields" />
+		<attr name="obcClassName" />
 	</declare-styleable>
 
 	<declare-styleable name="ForgotPasswordScreenlet">
@@ -126,6 +129,7 @@
 		<attr name="firstPageSize" />
 		<attr name="pageSize" />
 		<attr name="labelFields" />
+		<attr name="obcClassName" />
 	</declare-styleable>
 
 	<declare-styleable name="UserPortraitScreenlet">

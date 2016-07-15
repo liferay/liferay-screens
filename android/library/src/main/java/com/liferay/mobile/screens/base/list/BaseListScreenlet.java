@@ -107,7 +107,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 		int endRow = getFirstRowForPage(page + 1);
 
 		try {
-			loadRows(getInteractor(), startRow, endRow, locale);
+			loadRows(getInteractor(), startRow, endRow, locale, _obcClassName);
 		}
 		catch (Exception e) {
 			onListRowsFailure(startRow, endRow, e);
@@ -154,7 +154,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 		_labelFields = labelFields;
 	}
 
-	protected abstract void loadRows(N interactor, int startRow, int endRow, Locale locale)
+	protected abstract void loadRows(N interactor, int startRow, int endRow, Locale locale, String obcClassName)
 		throws Exception;
 
 	@Override
@@ -175,6 +175,8 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 		_autoLoad = typedArray.getBoolean(R.styleable.AssetListScreenlet_autoLoad, true);
 
 		_labelFields = parse(typedArray.getString(R.styleable.AssetListScreenlet_labelFields));
+
+		_obcClassName = typedArray.getString(R.styleable.AssetListScreenlet_obcClassName);
 
 		typedArray.recycle();
 
@@ -215,5 +217,6 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 	protected int _firstPageSize;
 	protected BaseListListener<E> _listener;
 	protected int _pageSize;
+	protected String _obcClassName;
 	private List<String> _labelFields;
 }
