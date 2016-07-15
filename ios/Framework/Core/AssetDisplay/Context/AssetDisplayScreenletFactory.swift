@@ -37,7 +37,8 @@ public class AssetDisplayScreenletFactory {
 				if isImage(mimeType) {
 					return ImageDisplayScreenlet(frame: frame, themeName: nil) {
 						if let s = $0 as? ImageDisplayScreenlet {
-							s.assetEntry = self.assetEntry
+							s.entryId = self.assetEntry.entryId
+							s.assetEntry = FileEntry(attributes: self.assetEntry.attributes)
 							s.autoLoad = autoLoad
 						}
 					}
