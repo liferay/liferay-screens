@@ -18,12 +18,12 @@ public class RatingLoadByClassPKLiferayConnector: ServerConnector {
 	
 	let classPK: Int64
 	let className: String
-	let stepCount: Int32
+	let ratingsGroupCount: Int32
 	
 	var resultRating: RatingEntry?
 	
-	public init(classPK: Int64, className: String, stepCount: Int32) {
-		self.stepCount = stepCount
+	public init(classPK: Int64, className: String, ratingsGroupCount: Int32) {
+		self.ratingsGroupCount = ratingsGroupCount
 		self.className = className
 		self.classPK = classPK
 		super.init()
@@ -37,8 +37,8 @@ public class RatingLoadByClassPKLiferayConnector: ServerConnector {
 				return ValidationError("rating-screenlet", "undefined-classPK")
 			} else if className == "" {
 				return ValidationError("rating-screenlet", "undefined-className")
-			} else if stepCount < 1 {
-				return ValidationError("rating-screenlet", "wrong-stepCount")
+			} else if ratingsGroupCount < 1 {
+				return ValidationError("rating-screenlet", "wrong-ratingsGroupCount")
 			}
 		}
 		
@@ -53,7 +53,7 @@ public class Liferay70RatingLoadByClassPKConnector: RatingLoadByClassPKLiferayCo
 		let service = LRScreensratingsentryService_v70(session: session)
 		
 		do {
-			let result = try service.getRatingsEntriesWithClassPK(classPK, className: className, stepCount: stepCount)
+			let result = try service.getRatingsEntriesWithClassPK(classPK, className: className, ratingsLength: ratingsGroupCount)
 			lastError = nil
 			resultRating = RatingEntry(attributes: result as! [String: AnyObject])
 		}

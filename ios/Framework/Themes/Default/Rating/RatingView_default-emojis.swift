@@ -18,7 +18,7 @@ public class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 
 	public var selectedUserScore: NSNumber?
 
-	public var defaultStepCount: Int32 {
+	public var defaultRatingsGroupCount: Int32 {
 		return Int32(self.emojis.count)
 	}
 
@@ -47,13 +47,15 @@ public class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 	public var ratingEntry: RatingEntry? {
 		didSet {
 			if let rating = ratingEntry {
-				emojis.map({
+				emojis.forEach({
 					$0.alpha = 0.5
 					$0.restorationIdentifier = RatingScreenlet.UpdateRatingAction
 					$0.addTarget(self, action: #selector(emojiClicked), forControlEvents: .TouchUpInside)
 				})
 
-				zip(zip(labels, emojis), rating.ratings).map({$0.0.0.text = "\($0.0.1.titleLabel!.text!) \($0.1)"})
+				for i in 0 ..< emojis.count {
+					labels[i].text = "\(emojis[i].titleLabel!.text!) \(rating.ratings[i])"
+				}
 
 				if rating.userScore != -1 {
 					let index = rating.userScore == 1 ? emojis.count - 1 : Int(rating.userScore * Double(emojis.count))

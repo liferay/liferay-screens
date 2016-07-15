@@ -17,13 +17,13 @@ import LRMobileSDK
 public class RatingLoadByEntryIdLiferayConnector: ServerConnector {
 	
 	let entryId: Int64
-	let stepCount: Int32
+	let ratingsGroupCount: Int32
 	
 	var resultRating: RatingEntry?
 	
-	public init(entryId: Int64, stepCount: Int32) {
+	public init(entryId: Int64, ratingsGroupCount: Int32) {
 		self.entryId = entryId
-		self.stepCount = stepCount
+		self.ratingsGroupCount = ratingsGroupCount
 		super.init()
 	}
 	
@@ -33,8 +33,8 @@ public class RatingLoadByEntryIdLiferayConnector: ServerConnector {
 		if error == nil {
 			if entryId == 0 {
 				return ValidationError("rating-screenlet", "undefined-entryId")
-			} else if stepCount < 1 {
-				return ValidationError("rating-screenlet", "wrong-stepCount")
+			} else if ratingsGroupCount < 1 {
+				return ValidationError("rating-screenlet", "wrong-ratingsGroupCount")
 			}
 		}
 		
@@ -49,7 +49,7 @@ public class Liferay70RatingLoadByEntryIdConnector: RatingLoadByEntryIdLiferayCo
 		let service = LRScreensratingsentryService_v70(session: session)
 		
 		do {
-			let result = try service.getRatingsEntriesWithEntryId(entryId, stepCount: stepCount)
+			let result = try service.getRatingsEntriesWithAssetEntryId(entryId, ratingsLength: ratingsGroupCount)
 			lastError = nil
 			resultRating = RatingEntry(attributes: result as! [String: AnyObject])
 		}

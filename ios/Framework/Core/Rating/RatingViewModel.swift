@@ -18,7 +18,7 @@ import UIKit
 	
 	var editable: Bool {get set}
 
-	var defaultStepCount: Int32 {get}
+	var defaultRatingsGroupCount: Int32 {get}
 	
 	var ratingEntry: RatingEntry? {get set}
 	

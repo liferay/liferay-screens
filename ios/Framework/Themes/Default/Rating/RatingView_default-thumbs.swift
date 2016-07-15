@@ -38,7 +38,7 @@ public class RatingView_default_thumbs: BaseScreenletView, RatingViewModel {
 	
 	public var selectedUserScore: NSNumber?
 
-	public var defaultStepCount: Int32 = 2
+	public var defaultRatingsGroupCount: Int32 = 2
 	
 	//MARK: BaseScreenletView
 	

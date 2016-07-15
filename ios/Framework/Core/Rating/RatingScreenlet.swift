@@ -35,7 +35,7 @@ import UIKit
 	
 	@IBInspectable public var className: String = ""
 	
-	@IBInspectable public var stepCount: Int32 = -1
+	@IBInspectable public var ratingsGroupCount: Int32 = -1
 	
 	@IBInspectable public var autoLoad: Bool = true
 	
@@ -63,9 +63,9 @@ import UIKit
 	}
 	
 	public override func onCreated() {
-		if stepCount == -1 {
-			if let defaultStepCount = viewModel?.defaultStepCount {
-				stepCount = defaultStepCount
+		if ratingsGroupCount == -1 {
+			if let defaultRatingsGroupCount = viewModel?.defaultRatingsGroupCount {
+				ratingsGroupCount = defaultRatingsGroupCount
 			}
 		}
 	}
@@ -78,7 +78,7 @@ import UIKit
 	
 	private func createLoadRatingsInteractor() -> LoadRatingsInteractor {
 		let interactor = LoadRatingsInteractor(screenlet: self, entryId: entryId, classPK: classPK,
-			className: className, stepCount: stepCount)
+			className: className, ratingsGroupCount: ratingsGroupCount)
 		
 		interactor.onSuccess = {
 			if let result = interactor.resultRating {
@@ -98,7 +98,7 @@ import UIKit
 	
 	private func createDeleteRatingInteractor() -> DeleteRatingInteractor {
 		let interactor = DeleteRatingInteractor(screenlet: self, classPK: classPK, className: className,
-			stepCount: stepCount)
+			ratingsGroupCount: ratingsGroupCount)
 		
 		interactor.onSuccess = {
 			if let result = interactor.resultRating {
@@ -115,7 +115,7 @@ import UIKit
 	
 	private func createUpdateRatingInteractor() -> UpdateRatingInteractor {
 		let interactor = UpdateRatingInteractor(screenlet: self, classPK: classPK, className: className,
-			score: viewModel?.selectedUserScore?.doubleValue, stepCount: stepCount)
+			score: viewModel?.selectedUserScore?.doubleValue, ratingsGroupCount: ratingsGroupCount)
 		
 		interactor.onSuccess = {
 			if let result = interactor.resultRating {

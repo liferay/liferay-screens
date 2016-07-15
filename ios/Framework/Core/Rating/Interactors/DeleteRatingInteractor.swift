@@ -18,12 +18,12 @@ public class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 	var resultRating: RatingEntry?
 	let classPK: Int64
 	let className: String
-	let stepCount: Int32
+	let ratingsGroupCount: Int32
 	
-	init(screenlet: BaseScreenlet?, classPK: Int64, className: String, stepCount: Int32) {
+	init(screenlet: BaseScreenlet?, classPK: Int64, className: String, ratingsGroupCount: Int32) {
 		self.classPK = classPK
 		self.className = className
-		self.stepCount = stepCount
+		self.ratingsGroupCount = ratingsGroupCount
 		super.init(screenlet: screenlet)
 	}
 	
@@ -31,7 +31,7 @@ public class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 		return LiferayServerContext.connectorFactory.createRatingDeleteConnector(
 			classPK: classPK,
 			className: className,
-			stepCount: stepCount)
+			ratingsGroupCount: ratingsGroupCount)
 	}
 	
 	override public func completedConnector(op: ServerConnector) {

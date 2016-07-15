@@ -108,23 +108,23 @@ public protocol LiferayConnectorFactory {
 	
 	func createRatingLoadByEntryIdConnector(
 		entryId entryId: Int64,
-		stepCount: Int32) -> RatingLoadByEntryIdLiferayConnector?
+		ratingsGroupCount: Int32) -> RatingLoadByEntryIdLiferayConnector?
 	
 	func createRatingLoadByClassPKConnector(
 		classPK: Int64,
 		className: String,
-		stepCount: Int32) -> RatingLoadByClassPKLiferayConnector?
+		ratingsGroupCount: Int32) -> RatingLoadByClassPKLiferayConnector?
 	
 	func createRatingUpdateConnector(
 		classPK classPK: Int64,
 		className: String,
 		score: Double,
-		stepCount: Int32) -> RatingUpdateLiferayConnector?
+		ratingsGroupCount: Int32) -> RatingUpdateLiferayConnector?
 	
 	func createRatingDeleteConnector(
 		classPK classPK: Int64,
 		className: String,
-		stepCount: Int32) -> RatingDeleteLiferayConnector?
+		ratingsGroupCount: Int32) -> RatingDeleteLiferayConnector?
 
 }
 
@@ -303,22 +303,22 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			onProgress: onProgress)
 	}
 	
-	public func createRatingLoadByEntryIdConnector(entryId entryId: Int64, stepCount: Int32) -> RatingLoadByEntryIdLiferayConnector? {
+	public func createRatingLoadByEntryIdConnector(entryId entryId: Int64, ratingsGroupCount: Int32) -> RatingLoadByEntryIdLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: RatingLoadByEntryIdLiferayConnector")
 		return nil
 	}
 	
-	public func createRatingLoadByClassPKConnector(classPK: Int64, className: String, stepCount: Int32) -> RatingLoadByClassPKLiferayConnector? {
+	public func createRatingLoadByClassPKConnector(classPK: Int64, className: String, ratingsGroupCount: Int32) -> RatingLoadByClassPKLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: RatingLoadByClassPKLiferayConnector")
 		return nil
 	}
 	
-	public func createRatingUpdateConnector(classPK classPK: Int64, className: String, score: Double, stepCount: Int32) -> RatingUpdateLiferayConnector? {
+	public func createRatingUpdateConnector(classPK classPK: Int64, className: String, score: Double, ratingsGroupCount: Int32) -> RatingUpdateLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: RatingUpdateLiferayConnector")
 		return nil
 	}
 	
-	public func createRatingDeleteConnector(classPK classPK: Int64, className: String, stepCount: Int32) -> RatingDeleteLiferayConnector? {
+	public func createRatingDeleteConnector(classPK classPK: Int64, className: String, ratingsGroupCount: Int32) -> RatingDeleteLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: RatingDeleteLiferayConnector")
 		return nil
 	}
@@ -500,32 +500,32 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			onProgress: onProgress)
 	}
 	
-	public func createRatingLoadByEntryIdConnector(entryId entryId: Int64, stepCount: Int32) -> RatingLoadByEntryIdLiferayConnector? {
+	public func createRatingLoadByEntryIdConnector(entryId entryId: Int64, ratingsGroupCount: Int32) -> RatingLoadByEntryIdLiferayConnector? {
 		return Liferay70RatingLoadByEntryIdConnector(
 			entryId: entryId,
-			stepCount: stepCount)
+			ratingsGroupCount: ratingsGroupCount)
 	}
 	
-	public func createRatingLoadByClassPKConnector(classPK: Int64, className: String, stepCount: Int32) -> RatingLoadByClassPKLiferayConnector? {
+	public func createRatingLoadByClassPKConnector(classPK: Int64, className: String, ratingsGroupCount: Int32) -> RatingLoadByClassPKLiferayConnector? {
 		return Liferay70RatingLoadByClassPKConnector(
 			classPK: classPK,
 			className: className,
-			stepCount: stepCount)
+			ratingsGroupCount: ratingsGroupCount)
 	}
 	
-	public func createRatingUpdateConnector(classPK classPK: Int64, className: String, score: Double, stepCount: Int32) -> RatingUpdateLiferayConnector? {
+	public func createRatingUpdateConnector(classPK classPK: Int64, className: String, score: Double, ratingsGroupCount: Int32) -> RatingUpdateLiferayConnector? {
 		return Liferay70RatingUpdateConnector(
 			classPK: classPK,
 			className: className,
 			score: score,
-			stepCount: stepCount)
+			ratingsGroupCount: ratingsGroupCount)
 	}
 	
-	public func createRatingDeleteConnector(classPK classPK: Int64, className: String, stepCount: Int32) -> RatingDeleteLiferayConnector? {
+	public func createRatingDeleteConnector(classPK classPK: Int64, className: String, ratingsGroupCount: Int32) -> RatingDeleteLiferayConnector? {
 		return Liferay70RatingDeleteConnector(
 			classPK: classPK,
 			className: className,
-			stepCount: stepCount)
+			ratingsGroupCount: ratingsGroupCount)
 	}
 
 }

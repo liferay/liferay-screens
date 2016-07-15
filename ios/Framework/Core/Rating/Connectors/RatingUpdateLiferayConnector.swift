@@ -19,12 +19,12 @@ public class RatingUpdateLiferayConnector: ServerConnector {
 	let classPK: Int64
 	let className: String
 	let score: Double
-	let stepCount: Int32
+	let ratingsGroupCount: Int32
 	
 	var resultRating: RatingEntry?
 	
-	public init(classPK: Int64, className: String, score: Double, stepCount: Int32) {
-		self.stepCount = stepCount
+	public init(classPK: Int64, className: String, score: Double, ratingsGroupCount: Int32) {
+		self.ratingsGroupCount = ratingsGroupCount
 		self.score = score
 		self.className = className
 		self.classPK = classPK
@@ -39,8 +39,8 @@ public class RatingUpdateLiferayConnector: ServerConnector {
 				return ValidationError("rating-screenlet", "undefined-classPK")
 			} else if className == "" {
 				return ValidationError("rating-screenlet", "undefined-className")
-			} else if stepCount < 1 {
-				return ValidationError("rating-screenlet", "wrong-stepCount")
+			} else if ratingsGroupCount < 1 {
+				return ValidationError("rating-screenlet", "wrong-ratingsGroupCount")
 			} else if score < 0 || score > 1 {
 				return ValidationError("rating-screenlet", "wrong-score")
 			}
@@ -57,7 +57,7 @@ public class Liferay70RatingUpdateConnector: RatingUpdateLiferayConnector {
 		let service = LRScreensratingsentryService_v70(session: session)
 		
 		do {
-			let result = try service.updateRatingEntryWithClassPK(classPK, className: className, score: score, stepCount: stepCount)
+			let result = try service.updateRatingsEntryWithClassPK(classPK, className: className, score: score, ratingsLength: ratingsGroupCount)
 			lastError = nil
 			resultRating = RatingEntry(attributes: result as! [String: AnyObject])
 		}

@@ -33,7 +33,7 @@ public class RatingView_default_stars: BaseScreenletView, RatingViewModel {
 	
 	public var selectedUserScore: NSNumber?
 
-	public var defaultStepCount: Int32 = 1
+	public var defaultRatingsGroupCount: Int32 = 1
 	
 	//MARK: BaseScreenletView
 	

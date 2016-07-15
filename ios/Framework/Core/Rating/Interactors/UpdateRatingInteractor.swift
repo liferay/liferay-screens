@@ -19,12 +19,12 @@ public class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 	let classPK: Int64
 	let className: String
 	let score: Double
-	let stepCount: Int32
+	let ratingsGroupCount: Int32
 	
-	init(screenlet: BaseScreenlet?, classPK: Int64, className: String, score: Double?, stepCount: Int32) {
+	init(screenlet: BaseScreenlet?, classPK: Int64, className: String, score: Double?, ratingsGroupCount: Int32) {
 		self.classPK = classPK
 		self.className = className
-		self.stepCount = stepCount
+		self.ratingsGroupCount = ratingsGroupCount
 		self.score = score ?? -1
 		super.init(screenlet: screenlet)
 	}
@@ -34,7 +34,7 @@ public class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 			classPK: classPK,
 			className: className,
 			score: score,
-			stepCount: stepCount)
+			ratingsGroupCount: ratingsGroupCount)
 	}
 	
 	override public func completedConnector(op: ServerConnector) {

@@ -19,24 +19,24 @@ public class LoadRatingsInteractor: ServerReadConnectorInteractor {
 	let entryId: Int64
 	let classPK: Int64
 	let className: String
-	let stepCount: Int32
+	let ratingsGroupCount: Int32
 	
-	init(screenlet: BaseScreenlet?, entryId: Int64, classPK: Int64, className: String, stepCount: Int32) {
+	init(screenlet: BaseScreenlet?, entryId: Int64, classPK: Int64, className: String, ratingsGroupCount: Int32) {
 		self.entryId = entryId
 		self.classPK = classPK
 		self.className = className
-		self.stepCount = stepCount
+		self.ratingsGroupCount = ratingsGroupCount
 		super.init(screenlet: screenlet)
 	}
 	
 	override public func createConnector() -> ServerConnector? {
 		if entryId != 0 {
 			return LiferayServerContext.connectorFactory.createRatingLoadByEntryIdConnector(
-				entryId: entryId, stepCount: stepCount)
+				entryId: entryId, ratingsGroupCount: ratingsGroupCount)
 		}
 		
 		return LiferayServerContext.connectorFactory.createRatingLoadByClassPKConnector(
-			classPK, className: className, stepCount: stepCount)
+			classPK, className: className, ratingsGroupCount: ratingsGroupCount)
 	}
 	
 	override public func completedConnector(op: ServerConnector) {

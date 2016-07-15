@@ -12,8 +12,6 @@
 		0B6CEEC31D2A559600BB1BDB /* RatingView_default-like.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEEC21D2A559600BB1BDB /* RatingView_default-like.swift */; };
 		0B6CEEC51D2A55EC00BB1BDB /* RatingView_default-like.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6CEEC41D2A55EC00BB1BDB /* RatingView_default-like.xib */; };
 		0B6CEEC81D2A58F500BB1BDB /* RatingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEEC71D2A58F500BB1BDB /* RatingViewModel.swift */; };
-		0B6CEECB1D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B6CEEC91D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0B6CEECC1D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEECA1D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.m */; };
 		0B6CEECF1D2A5DAC00BB1BDB /* LoadRatingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEECE1D2A5DAC00BB1BDB /* LoadRatingsInteractor.swift */; };
 		0B6CEED11D2A689200BB1BDB /* RatingScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEED01D2A689200BB1BDB /* RatingScreenlet.swift */; };
 		0B6CEED71D2AABE700BB1BDB /* RatingEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6CEED61D2AABE700BB1BDB /* RatingEntry.swift */; };
@@ -25,6 +23,8 @@
 		0B73DA9C1D2EAA850098331C /* RatingUpdateLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B73DA9B1D2EAA850098331C /* RatingUpdateLiferayConnector.swift */; };
 		0B73DA9E1D2EB13E0098331C /* RatingDeleteLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B73DA9D1D2EB13E0098331C /* RatingDeleteLiferayConnector.swift */; };
 		0B73DAA11D2EB5F40098331C /* rating-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B73DA9F1D2EB5F40098331C /* rating-screenlet.strings */; };
+		0B75C67F1D36FD500098CF93 /* RatingView_default-emojis.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B75C67E1D36FD500098CF93 /* RatingView_default-emojis.xib */; };
+		0B75C6811D370DBA0098CF93 /* RatingView_default-emojis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B75C6801D370DBA0098CF93 /* RatingView_default-emojis.swift */; };
 		0B8BE70F1D2BFE0B001C3195 /* NetworkActivityIndicatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8BE70E1D2BFE0B001C3195 /* NetworkActivityIndicatorPresenter.swift */; };
 		0BC3AE2B1D2BBE5C006D29E3 /* Cosmos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BC3AE2A1D2BBE5C006D29E3 /* Cosmos.framework */; };
 		0BC3AE2F1D2BD01B006D29E3 /* default-thumb-down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC3AE2C1D2BD01B006D29E3 /* default-thumb-down@3x.png */; };
@@ -33,10 +33,11 @@
 		0BC3AE351D2BD023006D29E3 /* default-thumb-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC3AE321D2BD023006D29E3 /* default-thumb-up@2x.png */; };
 		0BC3AE361D2BD023006D29E3 /* default-thumb-up.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC3AE331D2BD023006D29E3 /* default-thumb-up.png */; };
 		0BC3AE371D2BD023006D29E3 /* default-thumb-up@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC3AE341D2BD023006D29E3 /* default-thumb-up@3x.png */; };
-		0BF26F651D34FB5600410D58 /* RatingLoadByClassPKLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF26F641D34FB5600410D58 /* RatingLoadByClassPKLiferayConnector.swift */; };
-		19CF10ED6279A863F55B46BF /* Pods_LiferayScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 156AA7EED06E7C83A7EFEC44 /* Pods_LiferayScreensTests.framework */; };
 		0BE1E0F31D364E96000A2678 /* SequenceType+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1E0F21D364E96000A2678 /* SequenceType+Screens.swift */; };
-		431250828CDCA06E95D11B8A /* Pods_LiferayScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F2FC46C9BDDDADEE705508 /* Pods_LiferayScreensTests.framework */; };
+		0BF26F651D34FB5600410D58 /* RatingLoadByClassPKLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF26F641D34FB5600410D58 /* RatingLoadByClassPKLiferayConnector.swift */; };
+		0BF944B81D38CB47005C97CC /* LRScreensratingsentryService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BF944B61D38CB47005C97CC /* LRScreensratingsentryService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0BF944B91D38CB47005C97CC /* LRScreensratingsentryService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF944B71D38CB47005C97CC /* LRScreensratingsentryService_v70.m */; };
+		19CF10ED6279A863F55B46BF /* Pods_LiferayScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 156AA7EED06E7C83A7EFEC44 /* Pods_LiferayScreensTests.framework */; };
 		88019FA21B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */; };
 		88019FA31B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */; };
 		880459ED1CA15FA400449D55 /* DDMFieldTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880459EC1CA15FA400449D55 /* DDMFieldTableCell.swift */; };
@@ -447,8 +448,6 @@
 		0B6CEEC21D2A559600BB1BDB /* RatingView_default-like.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RatingView_default-like.swift"; sourceTree = "<group>"; };
 		0B6CEEC41D2A55EC00BB1BDB /* RatingView_default-like.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RatingView_default-like.xib"; sourceTree = "<group>"; };
 		0B6CEEC71D2A58F500BB1BDB /* RatingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewModel.swift; sourceTree = "<group>"; };
-		0B6CEEC91D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensratingsentryService_v70.h; sourceTree = "<group>"; };
-		0B6CEECA1D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensratingsentryService_v70.m; sourceTree = "<group>"; };
 		0B6CEECE1D2A5DAC00BB1BDB /* LoadRatingsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadRatingsInteractor.swift; sourceTree = "<group>"; };
 		0B6CEED01D2A689200BB1BDB /* RatingScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingScreenlet.swift; sourceTree = "<group>"; };
 		0B6CEED61D2AABE700BB1BDB /* RatingEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingEntry.swift; sourceTree = "<group>"; };
@@ -460,6 +459,8 @@
 		0B73DA9B1D2EAA850098331C /* RatingUpdateLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingUpdateLiferayConnector.swift; sourceTree = "<group>"; };
 		0B73DA9D1D2EB13E0098331C /* RatingDeleteLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingDeleteLiferayConnector.swift; sourceTree = "<group>"; };
 		0B73DAA21D2EB63E0098331C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/rating-screenlet.strings"; sourceTree = "<group>"; };
+		0B75C67E1D36FD500098CF93 /* RatingView_default-emojis.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RatingView_default-emojis.xib"; sourceTree = "<group>"; };
+		0B75C6801D370DBA0098CF93 /* RatingView_default-emojis.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RatingView_default-emojis.swift"; sourceTree = "<group>"; };
 		0B8BE70E1D2BFE0B001C3195 /* NetworkActivityIndicatorPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkActivityIndicatorPresenter.swift; sourceTree = "<group>"; };
 		0BC3AE2A1D2BBE5C006D29E3 /* Cosmos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cosmos.framework; path = "../../../../Library/Developer/Xcode/DerivedData/LiferayScreens-eotazwuqkbyiangxvhcjsynaknbf/Build/Products/Debug-iphonesimulator/Cosmos.framework"; sourceTree = "<group>"; };
 		0BC3AE2C1D2BD01B006D29E3 /* default-thumb-down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-thumb-down@3x.png"; sourceTree = "<group>"; };
@@ -468,12 +469,13 @@
 		0BC3AE321D2BD023006D29E3 /* default-thumb-up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-thumb-up@2x.png"; sourceTree = "<group>"; };
 		0BC3AE331D2BD023006D29E3 /* default-thumb-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-thumb-up.png"; sourceTree = "<group>"; };
 		0BC3AE341D2BD023006D29E3 /* default-thumb-up@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-thumb-up@3x.png"; sourceTree = "<group>"; };
+		0BE1E0F21D364E96000A2678 /* SequenceType+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SequenceType+Screens.swift"; sourceTree = "<group>"; };
 		0BF26F641D34FB5600410D58 /* RatingLoadByClassPKLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingLoadByClassPKLiferayConnector.swift; sourceTree = "<group>"; };
+		0BF944B61D38CB47005C97CC /* LRScreensratingsentryService_v70.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensratingsentryService_v70.h; sourceTree = "<group>"; };
+		0BF944B71D38CB47005C97CC /* LRScreensratingsentryService_v70.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensratingsentryService_v70.m; sourceTree = "<group>"; };
 		156AA7EED06E7C83A7EFEC44 /* Pods_LiferayScreensTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiferayScreensTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B699765C9066F3057F01D26 /* Pods-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
 		58AEE494AC9CFA84595ECCCA /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		0BE1E0F21D364E96000A2678 /* SequenceType+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SequenceType+Screens.swift"; sourceTree = "<group>"; };
-		7C0B882BE724FFD745F72E9B /* Pods-LiferayScreensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.debug.xcconfig"; sourceTree = "<group>"; };
 		88019FA11B8F22EE00674B00 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/webcontentdisplay-screenlet.strings"; sourceTree = "<group>"; };
 		880459EC1CA15FA400449D55 /* DDMFieldTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDMFieldTableCell.swift; sourceTree = "<group>"; };
 		880459F01CA161C900449D55 /* DDMStructure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDMStructure.swift; sourceTree = "<group>"; };
@@ -783,6 +785,8 @@
 				0B6CEEE21D2ACD5E00BB1BDB /* RatingView_default-thumbs.xib */,
 				0B0E0BF41D2BAB4900820C2F /* RatingView_default-stars.swift */,
 				0B4621E51D2BA6FA008DB96A /* RatingView_default-stars.xib */,
+				0B75C6801D370DBA0098CF93 /* RatingView_default-emojis.swift */,
+				0B75C67E1D36FD500098CF93 /* RatingView_default-emojis.xib */,
 			);
 			path = Rating;
 			sourceTree = "<group>";
@@ -1362,8 +1366,8 @@
 		887E05551C6A4DF700CA3807 /* v70 */ = {
 			isa = PBXGroup;
 			children = (
-				0B6CEEC91D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.h */,
-				0B6CEECA1D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.m */,
+				0BF944B61D38CB47005C97CC /* LRScreensratingsentryService_v70.h */,
+				0BF944B71D38CB47005C97CC /* LRScreensratingsentryService_v70.m */,
 				887E05561C6A4DF700CA3807 /* LRScreensassetentryService_v70.h */,
 				887E05571C6A4DF700CA3807 /* LRScreensassetentryService_v70.m */,
 				887E05581C6A4DF700CA3807 /* LRScreensddlrecordService_v70.h */,
@@ -1708,11 +1712,11 @@
 				887E05531C6A4DB000CA3807 /* LRScreensuserService_v62.h in Headers */,
 				8892C67E1ACB2E3300192232 /* LiferayScreens.h in Headers */,
 				887E054D1C6A4DB000CA3807 /* LRScreensassetentryService_v62.h in Headers */,
+				0BF944B81D38CB47005C97CC /* LRScreensratingsentryService_v70.h in Headers */,
 				887E069B1C6A4DF800CA3807 /* LRScreensjournalarticleService_v70.h in Headers */,
 				887E06971C6A4DF800CA3807 /* LRScreensassetentryService_v70.h in Headers */,
 				88DE2AA21AD3ED6800714701 /* LiferayScreensFrameworkConfig.h in Headers */,
 				887E054F1C6A4DB000CA3807 /* LRScreensddlrecordService_v62.h in Headers */,
-				0B6CEECB1D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.h in Headers */,
 				887E06991C6A4DF800CA3807 /* LRScreensddlrecordService_v70.h in Headers */,
 				887E05511C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h in Headers */,
 			);
@@ -1825,6 +1829,7 @@
 				881E62691ACBFC3400862B9E /* default-user-icon@2x.png in Resources */,
 				0BC3AE2F1D2BD01B006D29E3 /* default-thumb-down@3x.png in Resources */,
 				880ACA871B0224A0007AD007 /* userportrait-screenlet.strings in Resources */,
+				0B75C67F1D36FD500098CF93 /* RatingView_default-emojis.xib in Resources */,
 				881E62291ACBFC3400862B9E /* AssetListView_default.xib in Resources */,
 				881E625B1ACBFC3400862B9E /* default-hourglass.png in Resources */,
 				881E62431ACBFC3400862B9E /* DDLFieldTextareaTableCell_default.xib in Resources */,
@@ -2026,7 +2031,6 @@
 				0B6CEEC31D2A559600BB1BDB /* RatingView_default-like.swift in Sources */,
 				88B844421C73D6C0007A447D /* ServerWriteConnectorInteractor.swift in Sources */,
 				881E61871ACBEE0B00862B9E /* DDLListScreenlet.swift in Sources */,
-				0B6CEECC1D2A5CC600BB1BDB /* LRScreensratingsentryService_v70.m in Sources */,
 				881E611F1ACBE5F000862B9E /* SignUpViewModel.swift in Sources */,
 				881E617E1ACBEE0B00862B9E /* DDLFormSubmitFormInteractor.swift in Sources */,
 				881E622E1ACBFC3400862B9E /* SignUpView_default.swift in Sources */,
@@ -2119,6 +2123,7 @@
 				88AF683A1CBFF58700097014 /* WebContentListScreenlet.swift in Sources */,
 				0B6CEEDF1D2AB69400BB1BDB /* UpdateRatingInteractor.swift in Sources */,
 				0B6CEECF1D2A5DAC00BB1BDB /* LoadRatingsInteractor.swift in Sources */,
+				0B75C6811D370DBA0098CF93 /* RatingView_default-emojis.swift in Sources */,
 				88CA805D1B25AF48004C1D59 /* LoginOAuthInteractor.swift in Sources */,
 				88B844941C73D856007A447D /* ForgotPasswordEmailLiferayConnectors.swift in Sources */,
 				881E60CE1ACBE56700862B9E /* BaseListScreenlet.swift in Sources */,
@@ -2180,6 +2185,7 @@
 				881E61781ACBEE0B00862B9E /* DDLFormScreenlet.swift in Sources */,
 				88B8443C1C73D6C0007A447D /* ServerConnectorChain.swift in Sources */,
 				886F4EB51CA155830018229E /* DDMXSDParser.swift in Sources */,
+				0BF944B91D38CB47005C97CC /* LRScreensratingsentryService_v70.m in Sources */,
 				881E617C1ACBEE0B00862B9E /* DDLFormLoadFormInteractor.swift in Sources */,
 				88CC3B0B1CC52E9A00E0AEB7 /* SMXMLDocument+Screens.swift in Sources */,
 				881E617A1ACBEE0B00862B9E /* DDLFormViewModel.swift in Sources */,
