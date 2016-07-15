@@ -103,7 +103,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   LiferayScreens:
-    :path: "../../.."
+    :path: ../../..
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60

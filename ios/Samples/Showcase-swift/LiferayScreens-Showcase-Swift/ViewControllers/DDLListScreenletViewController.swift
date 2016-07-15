@@ -15,17 +15,28 @@ import UIKit
 import LiferayScreens
 
 
-class DDLListScreenletViewController: UIViewController, DDLListScreenletDelegate {
+class DDLListScreenletViewController: UIViewController, DDLListScreenletDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+
+	@IBOutlet weak var pickerView: UIPickerView!
 
 	@IBOutlet weak var screenlet: DDLListScreenlet?
 	@IBOutlet weak var recordSetIdTextField: UITextField?
 	@IBOutlet weak var labelFieldsTextField: UITextField?
 
+	let pickerData : [(name: String, className: String)] = [
+		(name: "No order", className:""),
+		(name: "Id", className: "com.liferay.dynamic.data.lists.util.comparator.DDLRecordIdComparator"),
+		(name: "CreationDate", className: "com.liferay.dynamic.data.lists.util.comparator.DDLRecordCreateDateComparator"),
+		(name: "ModifiedDate", className: "com.liferay.dynamic.data.lists.util.comparator.DDLRecordModifiedDateComparator")
+	]
+
+	var selectedObcClassName = ""
+
 	@IBAction func loadList(sender: AnyObject) {
 		if let recordSetId = Int(recordSetIdTextField!.text!) {
 			screenlet!.recordSetId = Int64(recordSetId)
 			screenlet!.labelFields = labelFieldsTextField!.text
-
+			screenlet?.obcClassName = selectedObcClassName
 			screenlet!.loadList()
 		}
 	}
@@ -34,6 +45,8 @@ class DDLListScreenletViewController: UIViewController, DDLListScreenletDelegate
 		super.viewDidLoad()
 
 		self.screenlet?.delegate = self
+		self.pickerView.dataSource = self
+		self.pickerView.delegate = self
 	}
 
 	func screenlet(screenlet: DDLListScreenlet,
@@ -51,4 +64,23 @@ class DDLListScreenletViewController: UIViewController, DDLListScreenletDelegate
 		print("DELEGATE: onDDLRecordSelected called -> \(record)\n");
 	}
 
+	// MARK: UIPickerViewDataSource
+
+	func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+		return 1
+	}
+
+	func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+		return pickerData.count
+	}
+
+	func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+		selectedObcClassName = pickerData[row].className
+	}
+
+	func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+		let attrs = [NSFontAttributeName : UIFont.systemFontOfSize(3)]
+
+		return NSAttributedString(string: pickerData[row].name, attributes: attrs)
+	}
 }
