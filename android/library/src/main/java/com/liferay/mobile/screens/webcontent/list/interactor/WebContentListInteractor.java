@@ -9,6 +9,7 @@ import java.util.Locale;
  */
 public interface WebContentListInteractor extends Interactor<WebContentListInteractorListener> {
 
-	void load(long groupId, long folderId, int startRow, int endRow, Locale locale) throws Exception;
+	void load(long groupId, long folderId, int startRow, int endRow, Locale locale, String obcClassName)
+		throws Exception;
 
 }

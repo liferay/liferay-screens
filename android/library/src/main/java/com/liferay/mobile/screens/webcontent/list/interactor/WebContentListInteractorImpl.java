@@ -3,6 +3,7 @@ package com.liferay.mobile.screens.webcontent.list.interactor;
 import android.support.annotation.NonNull;
 import android.util.Pair;
 
+import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
@@ -34,18 +35,21 @@ public class WebContentListInteractorImpl extends BaseListInteractor<WebContent,
 	}
 
 	@Override
-	public void load(long groupId, long folderId, int startRow, int endRow, Locale locale) throws Exception {
+	public void load(long groupId, long folderId, int startRow, int endRow, Locale locale, String obcClassName)
+		throws Exception {
+
 		_groupId = groupId;
 		_folderId = folderId;
 
-		processWithCache(startRow, endRow, locale);
+		processWithCache(startRow, endRow, locale, obcClassName);
 	}
 
 	@Override
-	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception {
+	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale, JSONObjectWrapper obc)
+		throws Exception {
 
 		JournalContentConnector journalContentConnector = ServiceProvider.getInstance().getJournalContentConnector(session);
-		journalContentConnector.getJournalArticles(_groupId, _folderId, startRow, endRow, null);
+		journalContentConnector.getJournalArticles(_groupId, _folderId, startRow, endRow, obc);
 	}
 
 	@Override
