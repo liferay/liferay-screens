@@ -44,4 +44,15 @@
 	return (NSArray *)[self.session invoke:_command error:error];
 }
 
+- (NSDictionary *)getAssetEntryExtendedWithEntryId:(long long)entryId locale:(NSString *)locale error:(NSError **)error {
+	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
+		@"entryId": @(entryId),
+		@"locale": [self checkNull: locale]
+	}];
+
+	NSDictionary *_command = @{@"/screens.screensassetentry/get-asset-entry-extended": _params};
+
+	return (NSDictionary *)[self.session invoke:_command error:error];
+}
+
 @end
