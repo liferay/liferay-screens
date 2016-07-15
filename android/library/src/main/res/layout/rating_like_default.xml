@@ -30,7 +30,7 @@
 			android:id="@+id/likeRatingButton"
 			android:layout_width="80dp"
 			android:layout_height="80dp"
-			android:background="@android:color/transparent"
+			android:background="@drawable/ripple"
 			android:scaleType="fitXY"
 			android:src="@drawable/default_thumb_up_outline"
 			android:tint="@color/colorPrimary_default"
