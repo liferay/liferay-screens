@@ -23,44 +23,51 @@ import Foundation
 
 public class ImageDisplayScreenlet: BaseScreenlet {
 
-	public static let DownloadImageAction = "download-image"
-	public static let LoadAssetEntry = "load-asset"
-
 	@IBInspectable public var entryId: Int64 = 0
 
 	@IBInspectable public var autoLoad: Bool = true
 
-	public var assetEntry: Asset?
+	public var assetEntry: FileEntry?
 
 	public var imageDisplayDelegate: ImageDisplayScreenletDelegate? {
 		return delegate as? ImageDisplayScreenletDelegate
 	}
 
+	public var imageDisplayViewModel: ImageDisplayViewModel? {
+		return screenletView as? ImageDisplayViewModel
+	}
+
 	//MARK: Public methods
 
 	override public func onShow() {
-		if autoLoad && !loadImageAssetFromAssetEntry() {
+		if autoLoad && assetEntry?.entryId != 0 {
 			loadImageAssetFromEntryId()
 		}
 	}
 
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
-		return nil
-	}
+		if let assetEntry = assetEntry, url = NSURL(string: LiferayServerContext.server + assetEntry.url) {
+			let interactor = DownloadImageAssetInteractor(screenlet: self, url: url)
 
-	public override func performDefaultAction() -> Bool {
-		return performAction(name: ImageDisplayScreenlet.LoadAssetEntry, sender: nil)
+			interactor.onSuccess = {
+				if let resultImage = interactor.resultImage {
+					let modifiedImage = self.imageDisplayDelegate?.screenlet?(self, onImageAssetResponse: resultImage)
+
+					(self.screenletView as! ImageDisplayViewModel).image = modifiedImage ?? resultImage
+				}
+			}
+
+			interactor.onFailure = {
+				self.imageDisplayDelegate?.screenlet?(self, onImageAssetError: $0)
+			}
+
+			return interactor
+		}
+
+		return nil
 	}
 
 	public func loadImageAssetFromEntryId() -> Bool {
 		return self.performDefaultAction()
-	}
-
-	public func loadImageAssetFromAssetEntry() -> Bool {
-		if assetEntry != nil {
-			return performAction(name: ImageDisplayScreenlet.DownloadImageAction, sender: nil)
-		}
-
-		return false
 	}
 }
