@@ -115,8 +115,8 @@ public class AssetListScreenlet
 	}
 
 	@Override
-	protected void loadRows(AssetListInteractor interactor, int startRow, int endRow, Locale locale)
-		throws Exception {
+	protected void loadRows(AssetListInteractor interactor, int startRow, int endRow, Locale locale,
+		String obcClassName) throws Exception {
 
 		interactor.loadRows(_groupId, _classNameId, _portletItemName, _customEntryQuery, startRow, endRow, locale);
 	}

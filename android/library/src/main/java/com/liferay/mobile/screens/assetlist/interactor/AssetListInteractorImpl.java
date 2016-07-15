@@ -100,7 +100,8 @@ public class AssetListInteractorImpl
 	}
 
 	@Override
-	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception {
+	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale,
+		JSONObjectWrapper obcClassName) throws Exception {
 		if (_portletItemName == null) {
 
 			ScreensAssetEntryConnector connector = ServiceProvider.getInstance().getScreensAssetEntryConnector(session);
