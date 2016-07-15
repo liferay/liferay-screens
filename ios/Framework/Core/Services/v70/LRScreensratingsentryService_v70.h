@@ -23,9 +23,9 @@
  */
 @interface LRScreensratingsentryService_v70 : LRBaseService
 
-- (NSDictionary *)updateRatingEntryWithClassPK:(long long)classPK className:(NSString *)className score:(double)score stepCount:(int)stepCount error:(NSError **)error;
-- (NSDictionary *)getRatingsEntriesWithEntryId:(long long)entryId stepCount:(int)stepCount error:(NSError **)error;
-- (NSDictionary *)getRatingsEntriesWithClassPK:(long long)classPK className:(NSString *)className stepCount:(int)stepCount error:(NSError **)error;
-- (NSDictionary *)deleteRatingEntryWithClassPK:(long long)classPK className:(NSString *)className stepCount:(int)stepCount error:(NSError **)error;
+- (NSDictionary *)getRatingsEntriesWithClassPK:(long long)classPK className:(NSString *)className ratingsLength:(int)ratingsLength error:(NSError **)error;
+- (NSDictionary *)getRatingsEntriesWithAssetEntryId:(long long)assetEntryId ratingsLength:(int)ratingsLength error:(NSError **)error;
+- (NSDictionary *)updateRatingsEntryWithClassPK:(long long)classPK className:(NSString *)className score:(double)score ratingsLength:(int)ratingsLength error:(NSError **)error;
+- (NSDictionary *)deleteRatingsEntryWithClassPK:(long long)classPK className:(NSString *)className ratingsLength:(int)ratingsLength error:(NSError **)error;
 
 @end

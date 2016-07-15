@@ -19,50 +19,50 @@
  */
 @implementation LRScreensratingsentryService_v70
 
-- (NSDictionary *)updateRatingEntryWithClassPK:(long long)classPK className:(NSString *)className score:(double)score stepCount:(int)stepCount error:(NSError **)error {
+- (NSDictionary *)getRatingsEntriesWithClassPK:(long long)classPK className:(NSString *)className ratingsLength:(int)ratingsLength error:(NSError **)error {
+	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
+		@"classPK": @(classPK),
+		@"className": [self checkNull: className],
+		@"ratingsLength": @(ratingsLength)
+	}];
+
+	NSDictionary *_command = @{@"/screens.screensratingsentry/get-ratings-entries": _params};
+
+	return (NSDictionary *)[self.session invoke:_command error:error];
+}
+
+- (NSDictionary *)getRatingsEntriesWithAssetEntryId:(long long)assetEntryId ratingsLength:(int)ratingsLength error:(NSError **)error {
+	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
+		@"assetEntryId": @(assetEntryId),
+		@"ratingsLength": @(ratingsLength)
+	}];
+
+	NSDictionary *_command = @{@"/screens.screensratingsentry/get-ratings-entries": _params};
+
+	return (NSDictionary *)[self.session invoke:_command error:error];
+}
+
+- (NSDictionary *)updateRatingsEntryWithClassPK:(long long)classPK className:(NSString *)className score:(double)score ratingsLength:(int)ratingsLength error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"classPK": @(classPK),
 		@"className": [self checkNull: className],
 		@"score": @(score),
-		@"stepCount": @(stepCount)
+		@"ratingsLength": @(ratingsLength)
 	}];
 
-	NSDictionary *_command = @{@"/screens.screensratingsentry/update-rating-entry": _params};
+	NSDictionary *_command = @{@"/screens.screensratingsentry/update-ratings-entry": _params};
 
 	return (NSDictionary *)[self.session invoke:_command error:error];
 }
 
-- (NSDictionary *)getRatingsEntriesWithEntryId:(long long)entryId stepCount:(int)stepCount error:(NSError **)error {
-	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
-		@"entryId": @(entryId),
-		@"stepCount": @(stepCount)
-	}];
-
-	NSDictionary *_command = @{@"/screens.screensratingsentry/get-ratings-entries": _params};
-
-	return (NSDictionary *)[self.session invoke:_command error:error];
-}
-
-- (NSDictionary *)getRatingsEntriesWithClassPK:(long long)classPK className:(NSString *)className stepCount:(int)stepCount error:(NSError **)error {
+- (NSDictionary *)deleteRatingsEntryWithClassPK:(long long)classPK className:(NSString *)className ratingsLength:(int)ratingsLength error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"classPK": @(classPK),
 		@"className": [self checkNull: className],
-		@"stepCount": @(stepCount)
+		@"ratingsLength": @(ratingsLength)
 	}];
 
-	NSDictionary *_command = @{@"/screens.screensratingsentry/get-ratings-entries": _params};
-
-	return (NSDictionary *)[self.session invoke:_command error:error];
-}
-
-- (NSDictionary *)deleteRatingEntryWithClassPK:(long long)classPK className:(NSString *)className stepCount:(int)stepCount error:(NSError **)error {
-	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
-		@"classPK": @(classPK),
-		@"className": [self checkNull: className],
-		@"stepCount": @(stepCount)
-	}];
-
-	NSDictionary *_command = @{@"/screens.screensratingsentry/delete-rating-entry": _params};
+	NSDictionary *_command = @{@"/screens.screensratingsentry/delete-ratings-entry": _params};
 
 	return (NSDictionary *)[self.session invoke:_command error:error];
 }
