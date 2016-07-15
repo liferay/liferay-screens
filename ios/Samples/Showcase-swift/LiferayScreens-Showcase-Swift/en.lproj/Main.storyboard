@@ -1071,6 +1071,7 @@
                                     <segment title="Thumbs"/>
                                     <segment title="Like"/>
                                     <segment title="Stars"/>
+                                    <segment title="Emojis"/>
                                 </segments>
                                 <connections>
                                     <action selector="segmentedControlChanged:" destination="N0K-Ji-ryL" eventType="valueChanged" id="Ou5-g3-b3h"/>

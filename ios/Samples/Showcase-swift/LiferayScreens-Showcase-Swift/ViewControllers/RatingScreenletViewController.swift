@@ -29,12 +29,19 @@ class RatingScreenletViewController: UIViewController {
 		case 1:
 			screenlet.entryId = 32049
 			screenlet.themeName = "default-like"
+			screenlet.stepCount = 1
 		case 2:
 			screenlet.entryId = 31904
 			screenlet.themeName = "default-stars"
+			screenlet.stepCount = 5
+		case 3:
+			screenlet.entryId = 36849
+			screenlet.themeName = "default-emojis"
+			screenlet.stepCount = 5
 		default:
 			screenlet.entryId = 31869
 			screenlet.themeName = "default-thumbs"
+			screenlet.stepCount = 2
 		}
 
 		screenlet.loadRatings()
