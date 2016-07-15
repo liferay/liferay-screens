@@ -1,6 +1,7 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.rating;
 
 import android.content.Context;
+import android.media.Rating;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.rating.RatingScreenlet;
 import com.liferay.mobile.screens.rating.view.RatingViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
@@ -29,11 +31,13 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 	}
 
 	@Override public void showStartOperation(String actionName) {
-		if (_progressBar != null) {
-			_progressBar.setVisibility(View.VISIBLE);
-		}
-		if (_content != null) {
-			_content.setVisibility(View.GONE);
+		if (actionName == RatingScreenlet.LOAD_RATINGS_ACTION) {
+			if (_progressBar != null) {
+				_progressBar.setVisibility(View.VISIBLE);
+			}
+			if (_content != null) {
+				_content.setVisibility(View.GONE);
+			}
 		}
 	}
 
