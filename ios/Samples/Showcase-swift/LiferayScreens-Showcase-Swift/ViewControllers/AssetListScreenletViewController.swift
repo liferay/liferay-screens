@@ -165,6 +165,7 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 		if segue.identifier == "assetDisplay" {
 			let viewController = segue.destinationViewController as? AssetDisplayViewController
 			viewController?.entryId = selectAssetEntry!.entryId
+			viewController?.title = selectAssetEntry?.title
 		}
 	}
 }
