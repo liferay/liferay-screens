@@ -111,14 +111,16 @@ public class Liferay70DDLListPageConnector: DDLListPageLiferayConnector {
 				try service.getDdlRecordsWithDdlRecordSetId(recordSetId!,
 					locale: NSLocale.currentLocaleString,
 					start: Int32(startRow),
-					end: Int32(endRow))
+					end: Int32(endRow),
+					obc: obc)
 			}
 			else {
 				try service.getDdlRecordsWithDdlRecordSetId(recordSetId!,
 					userId: userId!,
 					locale: NSLocale.currentLocaleString,
 					start: Int32(startRow),
-					end: Int32(endRow))
+					end: Int32(endRow),
+					obc: obc)
 			}
 		}
 		catch _ as NSError {
