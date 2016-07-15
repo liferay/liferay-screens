@@ -2,8 +2,8 @@ package com.liferay.mobile.screens.base.list.interactor;
 
 import android.support.annotation.NonNull;
 import android.util.Pair;
-
 import com.liferay.mobile.android.service.BatchSessionImpl;
+import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.context.RequestState;
 import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
@@ -16,12 +16,11 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLocale;
-
-import org.json.JSONException;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
@@ -34,7 +33,7 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 	}
 
 	public void loadRows(
-		int startRow, int endRow, Locale locale)
+		int startRow, int endRow, Locale locale, String obcClassName)
 		throws Exception {
 
 		validate(startRow, endRow, locale);
@@ -50,7 +49,9 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 
 		BatchSessionImpl session = getSession(rowsRange, locale);
 
-		getPageRowsRequest(session, startRow, endRow, locale);
+		JSONObjectWrapper obc = obcClassName == null ? null : new JSONObjectWrapper(obcClassName, new JSONObject());
+
+		getPageRowsRequest(session, startRow, endRow, locale, obc);
 		getPageRowCountRequest(session);
 
 		session.invoke();
@@ -80,8 +81,12 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 		final int startRow = (int) args[0];
 		final int endRow = (int) args[1];
 		final Locale locale = (Locale) args[2];
+		String obcClassName = null;
+		if (args.length > 3) {
+			obcClassName = (String) args[3];
+		}
 
-		loadRows(startRow, endRow, locale);
+		loadRows(startRow, endRow, locale, obcClassName);
 	}
 
 	@Override
@@ -91,7 +96,7 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 	}
 
 	protected boolean recoverRows(String id, CachedType type, CachedType typeCount, Long groupId, Long userId,
-								  Locale locale, int startRow, int endRow)
+		Locale locale, int startRow, int endRow)
 		throws JSONException {
 
 		String query = " AND "
@@ -110,7 +115,8 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 			LiferayLocale.getSupportedLocale(locale.getLanguage());
 
 		Cache cache = CacheSQL.getInstance();
-		List<TableCache> elements = (List<TableCache>) cache.get(type, query, startId, endId, defaultUserId, defaultGroupId, defaultLocale);
+		List<TableCache> elements =
+			(List<TableCache>) cache.get(type, query, startId, endId, defaultUserId, defaultGroupId, defaultLocale);
 
 		if (elements != null && !elements.isEmpty()) {
 
@@ -124,7 +130,8 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 
 			Integer rowCount = Integer.valueOf(tableCache.getContent());
 
-			BaseListEvent event = new BaseListEvent(getTargetScreenletId(), startRow, endRow, locale, entries, rowCount);
+			BaseListEvent event =
+				new BaseListEvent(getTargetScreenletId(), startRow, endRow, locale, entries, rowCount);
 			EventBusUtil.post(event);
 
 			return true;
@@ -139,7 +146,9 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 		return String.format(Locale.US, "%s_%05d", recordSetId, row);
 	}
 
-	protected void storeRows(String id, CachedType cachedType, CachedType cachedTypeCount, Long groupId, Long userId, BaseListEvent event) {
+	protected void storeRows(String id, CachedType cachedType, CachedType cachedTypeCount, Long groupId, Long userId,
+		BaseListEvent event) {
+
 		Cache cache = CacheSQL.getInstance();
 
 		cache.set(new TableCache(id, cachedTypeCount, String.valueOf(event.getRowCount()),
@@ -189,8 +198,8 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 
 	protected abstract BaseListCallback<E> getCallback(Pair<Integer, Integer> rowsRange, Locale locale);
 
-	protected abstract void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception;
+	protected abstract void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale,
+		JSONObjectWrapper obc) throws Exception;
 
 	protected abstract void getPageRowCountRequest(Session session) throws Exception;
-
 }
