@@ -69,10 +69,10 @@ public class Liferay62AssetDisplayConnector: AssetDisplayLiferayConnector {
 	override internal func doGetAssetEntryWithEntryId(
 		entryId: Int64,
 		session: LRSession) -> Asset? {
-		let service = LRAssetEntryService_v7(session: session)
+		let service = LRScreensassetentryService_v70(session: session)
 		
 		do {
-			let result = try service.getEntryWithEntryId(entryId)
+			let result = try service.getAssetEntryExtendedWithEntryId(entryId, locale: NSLocale.currentLanguageString)
 			
 			let assetEntry = Asset(attributes: result as! [String:AnyObject])
 			
@@ -93,10 +93,10 @@ public class Liferay70AssetDisplayConnector: AssetDisplayLiferayConnector {
 	override internal func doGetAssetEntryWithEntryId(
 		entryId: Int64,
 		session: LRSession) -> Asset? {
-		let service = LRAssetEntryService_v7(session: session)
+		let service = LRScreensassetentryService_v70(session: session)
 		
 		do {
-			let result = try service.getEntryWithEntryId(entryId)
+			let result = try service.getAssetEntryExtendedWithEntryId(entryId, locale: NSLocale.currentLocaleString)
 			
 			let assetEntry = Asset(attributes: result as! [String:AnyObject])
 			
