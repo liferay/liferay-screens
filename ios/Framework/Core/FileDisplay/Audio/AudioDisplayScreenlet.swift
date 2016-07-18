@@ -13,11 +13,23 @@
 */
 import Foundation
 
+
+@objc public protocol AudioDisplayScreenletDelegate : BaseScreenletDelegate {
+
+	optional func screenlet(screenlet: AudioDisplayScreenlet, onAudioAssetResponse fileEntry: FileEntry)
+
+	optional func screenlet(screenlet: AudioDisplayScreenlet, onAudioAssetError error: NSError)
+}
+
 public class AudioDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable public var entryId: Int64 = 0
 
 	@IBInspectable public var autoLoad: Bool = true
+
+	public var audioDisplayDelegate: AudioDisplayScreenletDelegate? {
+		return delegate as? AudioDisplayScreenletDelegate
+	}
 
 	//MARK: Public methods
 
