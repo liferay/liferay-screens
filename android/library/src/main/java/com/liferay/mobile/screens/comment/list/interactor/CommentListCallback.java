@@ -16,6 +16,6 @@ public class CommentListCallback extends BaseListCallback<CommentEntry> {
 	}
 
 	@Override public CommentEntry createEntity(Map<String, Object> stringObjectMap) {
-		return null;
+		return new CommentEntry(stringObjectMap);
 	}
 }
