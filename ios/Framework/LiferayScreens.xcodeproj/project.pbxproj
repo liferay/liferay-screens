@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B2677DE1D3D1E5700FDFC5B /* LRScreensddlrecordService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B2677DC1D3D1E5700FDFC5B /* LRScreensddlrecordService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B2677DF1D3D1E5700FDFC5B /* LRScreensddlrecordService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2677DD1D3D1E5700FDFC5B /* LRScreensddlrecordService_v62.m */; };
 		0BCB4FB11D37C08B0023E2CA /* LRScreensddlrecordService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BCB4FAF1D37C08B0023E2CA /* LRScreensddlrecordService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0BCB4FB21D37C08B0023E2CA /* LRScreensddlrecordService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB4FB01D37C08B0023E2CA /* LRScreensddlrecordService_v70.m */; };
 		0BE1E0F31D364E96000A2678 /* SequenceType+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1E0F21D364E96000A2678 /* SequenceType+Screens.swift */; };
@@ -234,8 +236,6 @@
 		887DAAA91CC670330011FEBF /* Dictionary+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882CDC561C64B2C00043A9FD /* Dictionary+Screens.swift */; };
 		887E054D1C6A4DB000CA3807 /* LRScreensassetentryService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05451C6A4DB000CA3807 /* LRScreensassetentryService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		887E054E1C6A4DB000CA3807 /* LRScreensassetentryService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 887E05461C6A4DB000CA3807 /* LRScreensassetentryService_v62.m */; };
-		887E054F1C6A4DB000CA3807 /* LRScreensddlrecordService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05471C6A4DB000CA3807 /* LRScreensddlrecordService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		887E05501C6A4DB000CA3807 /* LRScreensddlrecordService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 887E05481C6A4DB000CA3807 /* LRScreensddlrecordService_v62.m */; };
 		887E05511C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05491C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		887E05521C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 887E054A1C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.m */; };
 		887E05531C6A4DB000CA3807 /* LRScreensuserService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E054B1C6A4DB000CA3807 /* LRScreensuserService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -414,6 +414,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0B2677DC1D3D1E5700FDFC5B /* LRScreensddlrecordService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensddlrecordService_v62.h; sourceTree = "<group>"; };
+		0B2677DD1D3D1E5700FDFC5B /* LRScreensddlrecordService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensddlrecordService_v62.m; sourceTree = "<group>"; };
 		0BCB4FAF1D37C08B0023E2CA /* LRScreensddlrecordService_v70.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensddlrecordService_v70.h; sourceTree = "<group>"; };
 		0BCB4FB01D37C08B0023E2CA /* LRScreensddlrecordService_v70.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensddlrecordService_v70.m; sourceTree = "<group>"; };
 		0BE1E0F21D364E96000A2678 /* SequenceType+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SequenceType+Screens.swift"; sourceTree = "<group>"; };
@@ -589,8 +591,6 @@
 		886FCCB21BA6D96E00494BB0 /* SyncManager+DDLForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncManager+DDLForm.swift"; sourceTree = "<group>"; };
 		887E05451C6A4DB000CA3807 /* LRScreensassetentryService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensassetentryService_v62.h; sourceTree = "<group>"; };
 		887E05461C6A4DB000CA3807 /* LRScreensassetentryService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensassetentryService_v62.m; sourceTree = "<group>"; };
-		887E05471C6A4DB000CA3807 /* LRScreensddlrecordService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensddlrecordService_v62.h; sourceTree = "<group>"; };
-		887E05481C6A4DB000CA3807 /* LRScreensddlrecordService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensddlrecordService_v62.m; sourceTree = "<group>"; };
 		887E05491C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensjournalarticleService_v62.h; sourceTree = "<group>"; };
 		887E054A1C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensjournalarticleService_v62.m; sourceTree = "<group>"; };
 		887E054B1C6A4DB000CA3807 /* LRScreensuserService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensuserService_v62.h; sourceTree = "<group>"; };
@@ -1247,8 +1247,8 @@
 			children = (
 				887E05451C6A4DB000CA3807 /* LRScreensassetentryService_v62.h */,
 				887E05461C6A4DB000CA3807 /* LRScreensassetentryService_v62.m */,
-				887E05471C6A4DB000CA3807 /* LRScreensddlrecordService_v62.h */,
-				887E05481C6A4DB000CA3807 /* LRScreensddlrecordService_v62.m */,
+				0B2677DC1D3D1E5700FDFC5B /* LRScreensddlrecordService_v62.h */,
+				0B2677DD1D3D1E5700FDFC5B /* LRScreensddlrecordService_v62.m */,
 				887E05491C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h */,
 				887E054A1C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.m */,
 				887E054B1C6A4DB000CA3807 /* LRScreensuserService_v62.h */,
@@ -1596,7 +1596,7 @@
 				887E069B1C6A4DF800CA3807 /* LRScreensjournalarticleService_v70.h in Headers */,
 				887E06971C6A4DF800CA3807 /* LRScreensassetentryService_v70.h in Headers */,
 				88DE2AA21AD3ED6800714701 /* LiferayScreensFrameworkConfig.h in Headers */,
-				887E054F1C6A4DB000CA3807 /* LRScreensddlrecordService_v62.h in Headers */,
+				0B2677DE1D3D1E5700FDFC5B /* LRScreensddlrecordService_v62.h in Headers */,
 				887E05511C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1950,7 +1950,6 @@
 				88B8442F1C73D215007A447D /* PaginationLiferayConnector.swift in Sources */,
 				881E60B91ACBE3FF00862B9E /* BaseScreenlet.swift in Sources */,
 				8892C6B51ACBD95400192232 /* SessionContext.swift in Sources */,
-				887E05501C6A4DB000CA3807 /* LRScreensddlrecordService_v62.m in Sources */,
 				886F4EBB1CA155830018229E /* DDMField.swift in Sources */,
 				886F4EC31CA155830018229E /* DDMFieldNumber.swift in Sources */,
 				881E610F1ACBE5F000862B9E /* ForgotPasswordViewModel.swift in Sources */,
@@ -1998,6 +1997,7 @@
 				8892C6AE1ACBD89400192232 /* NSLocale+Screens.swift in Sources */,
 				88B2730F1B7107F200477E5E /* ProgressPresenter.swift in Sources */,
 				886F4EC91CA155830018229E /* DDMFieldUntyped.swift in Sources */,
+				0B2677DF1D3D1E5700FDFC5B /* LRScreensddlrecordService_v62.m in Sources */,
 				881E62401ACBFC3400862B9E /* DDLFieldSelectTableCell_default.swift in Sources */,
 				881E62381ACBFC3400862B9E /* DDLFieldDocumentlibraryPresenterViewController_default.swift in Sources */,
 				881E610D1ACBE5F000862B9E /* ForgotPasswordInteractor.swift in Sources */,
