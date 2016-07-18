@@ -17,6 +17,7 @@
 		app:folderId="20622"
 		app:groupId="20525"
 		app:layoutId="@layout/list_bookmarks"
-		app:offlinePolicy="REMOTE_FIRST" />
+		app:offlinePolicy="REMOTE_FIRST"
+		app:obcClassName="com.liferay.portlet.bookmarks.util.comparator.EntryURLComparator"/>
 
 </RelativeLayout>
