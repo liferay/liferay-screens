@@ -43,6 +43,18 @@
 		<attr name="labelFields" />
 	</declare-styleable>
 
+	<declare-styleable name="CommentListScreenlet">
+		<attr name="layoutId" />
+		<attr name="autoLoad" />
+		<attr name="groupId" />
+		<attr name="offlinePolicy" />
+		<attr name="classPK" format="string" />
+		<attr name="className" format="string" />
+		<attr name="firstPageSize" />
+		<attr name="pageSize" />
+		<attr name="labelFields" />
+	</declare-styleable>
+
 	<declare-styleable name="DDLFormScreenlet">
 		<attr name="layoutId" />
 		<attr name="groupId" />

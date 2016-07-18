@@ -1,11 +1,15 @@
 package com.liferay.mobile.screens.comment.list;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.View;
+import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractor;
 import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorImpl;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.models.CommentEntry;
 import java.util.Locale;
 
@@ -57,6 +61,31 @@ public class CommentListScreenlet
 		if (getListener() != null) {
 			getListener().storingToCache(object);
 		}
+	}
+
+	@Override protected View createScreenletView(Context context, AttributeSet attributes) {
+		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
+			attributes, R.styleable.CommentListScreenlet, 0, 0);
+
+		_className = typedArray.getString(
+			R.styleable.CommentListScreenlet_className);
+
+		_classPK = castToLong(typedArray.getString(
+			R.styleable.CommentListScreenlet_classPK));
+
+		Integer offlinePolicy = typedArray.getInteger(
+			R.styleable.CommentListScreenlet_offlinePolicy,
+			OfflinePolicy.REMOTE_ONLY.ordinal());
+		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
+
+		long groupId = LiferayServerContext.getGroupId();
+
+		_groupId = castToLongOrUseDefault(typedArray.getString(
+			R.styleable.CommentListScreenlet_groupId), groupId);
+
+		typedArray.recycle();
+
+		return super.createScreenletView(context, attributes);
 	}
 
 	public OfflinePolicy getOfflinePolicy() {
