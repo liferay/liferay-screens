@@ -23,6 +23,7 @@ public class AssetDisplayScreenletFactory {
 	}
 
 	let imageMimeTypes = ["image/png", "image/jpg", "image/jpeg", "image/gif"]
+	let videoMimeTypes = ["video/mp4", "video/x-flv", "video/3gp", "video/quicktime", "video/x-msvideo", "video/x-ms-wmv"]
 
 	public func createScreenlet(autoLoad autoLoad: Bool, frame: CGRect) -> BaseScreenlet? {
 
@@ -44,6 +45,16 @@ public class AssetDisplayScreenletFactory {
 					}
 				}
 
+				if isVideo(mimeType) {
+					return VideoDisplayScreenlet(frame: frame, themeName: nil) {
+						if let s = $0 as? VideoDisplayScreenlet {
+							s.entryId = self.assetEntry.entryId
+							s.fileEntry = FileEntry(attributes: self.assetEntry.attributes)
+							s.autoLoad = autoLoad
+						}
+					}
+				}
+
 			default:
 				return nil
 			}
@@ -55,5 +66,9 @@ public class AssetDisplayScreenletFactory {
 
 	func isImage(mimeType: String) -> Bool {
 		return imageMimeTypes.contains(mimeType)
+	}
+
+	func isVideo(mimeType: String) -> Bool {
+		return videoMimeTypes.contains(mimeType)
 	}
 }
