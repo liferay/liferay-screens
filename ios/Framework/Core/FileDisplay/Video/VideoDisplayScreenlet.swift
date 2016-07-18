@@ -12,12 +12,25 @@
 * details.
 */
 import Foundation
+import AVFoundation
+
+
+@objc public protocol VideoDisplayScreenletDelegate : BaseScreenletDelegate {
+
+	optional func screenlet(screenlet: VideoDisplayScreenlet, onVideoAssetResponse fileEntry: FileEntry)
+
+	optional func screenlet(screenlet: VideoDisplayScreenlet, onVideoAssetError error: NSError)
+}
 
 public class VideoDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable public var entryId: Int64 = 0
 
 	@IBInspectable public var autoLoad: Bool = true
+
+	public var videoDisplayDelegate: VideoDisplayScreenletDelegate? {
+		return delegate as? VideoDisplayScreenletDelegate
+	}
 
 	//MARK: Public methods
 
