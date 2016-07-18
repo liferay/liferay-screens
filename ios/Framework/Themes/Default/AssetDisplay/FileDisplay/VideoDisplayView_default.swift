@@ -13,12 +13,30 @@
 */
 import UIKit
 import AVFoundation
+import AVKit
 
 
 public class VideoDisplayView_default: BaseScreenletView, VideoDisplayViewModel {
 
+	@IBOutlet weak var view: UIView!
+
+	public var playerController: AVPlayerViewController?
+
 	public var fileEntry: FileEntry? {
 		didSet {
+			if let fileEntry = fileEntry {
+				let path = LiferayServerContext.server + fileEntry.url
+				let url = NSURL(string: path)
+				let video = AVPlayer(URL: url!)
+				self.playerController = AVPlayerViewController()
+
+				playerController!.player = video
+				playerController!.view.frame = self.screenlet!.bounds
+
+				self.view.addSubview(playerController!.view)
+
+				video.play()
+			}
 		}
 	}
 }
