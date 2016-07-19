@@ -12,6 +12,7 @@
 * details.
 */
 import Foundation
+import AVFoundation
 
 
 @objc public protocol AudioDisplayScreenletDelegate : BaseScreenletDelegate {
@@ -27,6 +28,8 @@ public class AudioDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable public var autoLoad: Bool = true
 
+	public var fileEntry: FileEntry?
+
 	public var audioDisplayDelegate: AudioDisplayScreenletDelegate? {
 		return delegate as? AudioDisplayScreenletDelegate
 	}
@@ -37,6 +40,28 @@ public class AudioDisplayScreenlet: BaseScreenlet {
 		if autoLoad && entryId != 0 {
 			loadAudioAssetFromEntryId()
 		}
+	}
+
+	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+		let interactor = AssetDisplayInteractor(
+			screenlet: self,
+			entryId: self.entryId)
+
+
+		interactor.onSuccess = {
+			if let resultAsset = interactor.assetEntry {
+				self.fileEntry = FileEntry(attributes: resultAsset.attributes)
+				self.audioDisplayDelegate?.screenlet?(self, onAudioAssetResponse: self.fileEntry!)
+
+				(self.screenletView as! AudioDisplayViewModel).fileEntry = self.fileEntry!
+			}
+		}
+
+		interactor.onFailure = {
+			self.audioDisplayDelegate?.screenlet?(self, onAudioAssetError: $0)
+		}
+
+		return interactor
 	}
 
 	public func loadAudioAssetFromEntryId() -> Bool {
