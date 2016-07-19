@@ -2,7 +2,7 @@ package com.liferay.mobile.screens.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import java.util.Date;
+import android.text.format.DateUtils;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,8 +53,17 @@ public class CommentEntry implements Parcelable {
 		return (String) _values.get("userName");
 	}
 
-	public Date getCreateDate() {
-		return new Date(((long) _values.get("createDate")) * 1000);
+	public long getCreateDate() {
+		return (long) _values.get("createDate");
+	}
+
+	public String getCreateDateAsTimeSpan() {
+		return DateUtils.getRelativeTimeSpanString(
+			this.getCreateDate(), System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS).toString();
+	}
+
+	public long getModifiedDate() {
+		return (long) _values.get("modifiedDate");
 	}
 
 	@Override
