@@ -3,14 +3,28 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	xmlns:tools="http://schemas.android.com/tools"
-	android:padding="10dp"
+	xmlns:liferay="http://schemas.android.com/apk/res-auto"
 	>
+
+	<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
+		android:id="@+id/comment_user_portrait"
+		android:layout_alignParentLeft="true"
+		android:layout_width="70dp"
+		android:layout_height="70dp"
+		liferay:offlinePolicy="REMOTE_FIRST"
+		liferay:autoLoad="false"
+		/>
 
 	<TextView
 		tools:text="Android Phone Jr."
 		android:id="@+id/comment_user_name"
-		android:layout_width="wrap_content"
+		android:layout_alignParentRight="true"
 		android:layout_height="wrap_content"
+		android:layout_marginRight="10dp"
+		android:layout_marginTop="10dp"
+		android:layout_toRightOf="@+id/comment_user_portrait"
+		android:layout_width="wrap_content"
+		android:padding="0dp"
 		android:textStyle="bold"
 		/>
 

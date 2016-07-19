@@ -46,7 +46,7 @@ public class CommentEntry implements Parcelable {
 	}
 
 	public long getUserId() {
-		return (long) _values.get("userId");
+		return Long.valueOf((String) _values.get("userId"));
 	}
 
 	public String getUserName() {

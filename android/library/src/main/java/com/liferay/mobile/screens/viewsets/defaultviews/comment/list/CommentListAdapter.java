@@ -8,6 +8,7 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
 import com.liferay.mobile.screens.models.CommentEntry;
+import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 
 /**
  * @author Alejandro Hernández
@@ -37,9 +38,13 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 
 			_userNameTextView = (TextView) view.findViewById(R.id.comment_user_name);
 			_bodyTextView = (TextView) view.findViewById(R.id.comment_body);
+			_userPortraitScreenlet = (UserPortraitScreenlet) view.findViewById(R.id.comment_user_portrait);
 		}
 
 		public void bind(CommentEntry entry) {
+			_userPortraitScreenlet.setUserId(entry.getUserId());
+			_userPortraitScreenlet.load();
+
 			_userNameTextView.setText(entry.getUserName());
 
 			if (_htmlBody) {
@@ -51,6 +56,7 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 
 		private final TextView _userNameTextView;
 		private final TextView _bodyTextView;
+		private final UserPortraitScreenlet _userPortraitScreenlet;
 	}
 
 	private boolean _htmlBody;
