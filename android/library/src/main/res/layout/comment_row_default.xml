@@ -29,12 +29,51 @@
 		/>
 
 	<TextView
-		tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-		android:id="@+id/comment_body"
+		tools:text="15 minutes ago"
+		android:id="@+id/comment_create_date"
+		android:layout_above="@+id/comment_body"
 		android:layout_below="@+id/comment_user_name"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="10dp"
+		android:layout_marginBottom="10dp"
+		android:layout_marginRight="3dp"
+		android:layout_marginTop="5dp"
+		android:layout_toRightOf="@+id/comment_user_portrait"
 		android:layout_width="wrap_content"
+		android:padding="0dp"
+		android:textSize="10sp"
+		/>
+
+	<TextView
+		android:id="@+id/comment_edited"
+		android:layout_alignParentRight="true"
+		android:layout_above="@+id/comment_body"
+		android:layout_below="@+id/comment_user_name"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="10dp"
+		android:layout_marginTop="5dp"
+		android:layout_marginRight="10dp"
+		android:layout_toRightOf="@+id/comment_create_date"
+		android:layout_width="wrap_content"
+		android:padding="0dp"
+		android:text="- Edited"
+		android:textSize="10sp"
+		android:textStyle="bold|italic"
+		android:visibility="gone"
+		tools:visibility="visible"
+		/>
+
+	<TextView
+		android:id="@+id/comment_body"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentRight="true"
+		android:layout_below="@+id/comment_user_portrait"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="10dp"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
+		android:layout_width="match_parent"
+		android:padding="0dp"
+		tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 		/>
 
 </RelativeLayout>
