@@ -53,6 +53,10 @@ public class CommentEntry implements Parcelable {
 		return (String) _values.get("userName");
 	}
 
+	public int getChildCount() {
+		return (int) _values.get("descendantCommentsCount");
+	}
+
 	public long getCreateDate() {
 		return (long) _values.get("createDate");
 	}

@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.comment.list;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.Html;
 import android.view.View;
@@ -15,8 +16,9 @@ import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
  */
 public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentListAdapter.CommentViewHolder> {
 
-	public CommentListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
+	public CommentListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener, Context context) {
 		super(layoutId, progressLayoutId, listener);
+		_context = context;
 	}
 
 	@NonNull @Override public CommentViewHolder createViewHolder(View view, BaseListAdapterListener listener) {
@@ -41,6 +43,7 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 			_userPortraitScreenlet = (UserPortraitScreenlet) view.findViewById(R.id.comment_user_portrait);
 			_createDateTextView = (TextView) view.findViewById(R.id.comment_create_date);
 			_editedTextView = (TextView) view.findViewById(R.id.comment_edited);
+			_childCountTextView = (TextView) view.findViewById(R.id.comment_child_number);
 		}
 
 		public void bind(CommentEntry entry) {
@@ -62,6 +65,16 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 			} else {
 				_bodyTextView.setText(Html.fromHtml(entry.getBody()).toString().replaceAll("\n", "").trim());
 			}
+
+			int childCount = entry.getChildCount();
+
+			if (childCount > 0) {
+				_childCountTextView.setVisibility(View.VISIBLE);
+				_childCountTextView.setText(_context.getResources().getQuantityString(
+					R.plurals.number_replys, childCount, childCount));
+			} else {
+				_childCountTextView.setVisibility(View.GONE);
+			}
 		}
 
 		private final TextView _userNameTextView;
@@ -69,7 +82,9 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 		private final UserPortraitScreenlet _userPortraitScreenlet;
 		private final TextView _createDateTextView;
 		private final TextView _editedTextView;
+		private final TextView _childCountTextView;
 	}
 
+	private final Context _context;
 	private boolean _htmlBody;
 }

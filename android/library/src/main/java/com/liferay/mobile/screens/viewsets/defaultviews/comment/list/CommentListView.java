@@ -27,7 +27,7 @@ public class CommentListView
 	}
 
 	@Override protected CommentListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
-		return new CommentListAdapter(itemLayoutId, itemProgressLayoutId, this);
+		return new CommentListAdapter(itemLayoutId, itemProgressLayoutId, this, getContext());
 	}
 
 	@Override protected int getItemLayoutId() {
