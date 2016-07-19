@@ -17,4 +17,6 @@ import UIKit
 @objc public protocol AudioDisplayViewModel {
 
 	var fileEntry: FileEntry? {get set}
+
+	var audioTitle: String? {get set}
 }
