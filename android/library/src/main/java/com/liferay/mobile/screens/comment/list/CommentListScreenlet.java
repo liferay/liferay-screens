@@ -9,6 +9,7 @@ import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractor;
 import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorImpl;
+import com.liferay.mobile.screens.comment.list.view.CommentListViewModel;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.models.CommentEntry;
 import java.util.Locale;
@@ -34,6 +35,11 @@ public class CommentListScreenlet
 
 	public CommentListScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
+	}
+
+	@Override protected void onScreenletAttached() {
+		getCommentListViewModel().setHtmlBody(_htmlBody);
+		super.onScreenletAttached();
 	}
 
 	@Override protected void loadRows(CommentListInteractor interactor, int startRow, int endRow, Locale locale)
@@ -83,6 +89,8 @@ public class CommentListScreenlet
 		_groupId = castToLongOrUseDefault(typedArray.getString(
 			R.styleable.CommentListScreenlet_groupId), groupId);
 
+		_htmlBody = typedArray.getBoolean(R.styleable.CommentListScreenlet_htmlBody, false);
+
 		typedArray.recycle();
 
 		return super.createScreenletView(context, attributes);
@@ -120,8 +128,22 @@ public class CommentListScreenlet
 		this._groupId = groupId;
 	}
 
+	public boolean isHtmlBodyEnabled() {
+		return _htmlBody;
+	}
+
+	public void setHtmlBody(boolean htmlBody) {
+		this._htmlBody = htmlBody;
+		this.getCommentListViewModel().setHtmlBody(htmlBody);
+	}
+
+	private CommentListViewModel getCommentListViewModel() {
+		return (CommentListViewModel) getViewModel();
+	}
+
 	private OfflinePolicy _offlinePolicy;
 	private String _className;
 	private long _classPK;
 	private long _groupId;
+	private boolean _htmlBody;
 }

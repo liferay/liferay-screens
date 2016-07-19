@@ -14,6 +14,7 @@
 		android:id="@+id/comment_list_screenlet"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		liferay:htmlBody="false"
 		liferay:className="@string/liferay_comment_asset_className"
 		liferay:classPK="@string/liferay_comment_asset_id"
 		liferay:autoLoad="false"

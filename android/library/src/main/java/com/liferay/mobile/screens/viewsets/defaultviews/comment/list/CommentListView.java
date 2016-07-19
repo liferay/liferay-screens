@@ -3,7 +3,6 @@ package com.liferay.mobile.screens.viewsets.defaultviews.comment.list;
 import android.content.Context;
 import android.util.AttributeSet;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 import com.liferay.mobile.screens.comment.list.view.CommentListViewModel;
 import com.liferay.mobile.screens.models.CommentEntry;
@@ -33,5 +32,9 @@ public class CommentListView
 
 	@Override protected int getItemLayoutId() {
 		return R.layout.comment_row_default;
+	}
+
+	@Override public void setHtmlBody(boolean htmlBody) {
+		getAdapter().setHtmlBody(htmlBody);
 	}
 }

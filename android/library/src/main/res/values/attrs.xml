@@ -50,6 +50,7 @@
 		<attr name="offlinePolicy" />
 		<attr name="classPK" format="string" />
 		<attr name="className" format="string" />
+		<attr name="htmlBody" format="boolean" />
 		<attr name="firstPageSize" />
 		<attr name="pageSize" />
 		<attr name="labelFields" />

@@ -1,6 +1,7 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.comment.list;
 
 import android.support.annotation.NonNull;
+import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
@@ -25,6 +26,10 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 		holder.bind(entry);
 	}
 
+	public void setHtmlBody(boolean htmlBody) {
+		this._htmlBody = htmlBody;
+	}
+
 	public class CommentViewHolder extends BaseListAdapter.ViewHolder {
 
 		public CommentViewHolder(View view, BaseListAdapterListener listener) {
@@ -36,10 +41,17 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 
 		public void bind(CommentEntry entry) {
 			_userNameTextView.setText(entry.getUserName());
-			_bodyTextView.setText(entry.getBody());
+
+			if (_htmlBody) {
+				_bodyTextView.setText(Html.fromHtml(entry.getBody()));
+			} else {
+				_bodyTextView.setText(Html.fromHtml(entry.getBody()).toString().replaceAll("\n", "").trim());
+			}
 		}
 
 		private final TextView _userNameTextView;
 		private final TextView _bodyTextView;
 	}
+
+	private boolean _htmlBody;
 }
