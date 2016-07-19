@@ -39,6 +39,8 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 			_userNameTextView = (TextView) view.findViewById(R.id.comment_user_name);
 			_bodyTextView = (TextView) view.findViewById(R.id.comment_body);
 			_userPortraitScreenlet = (UserPortraitScreenlet) view.findViewById(R.id.comment_user_portrait);
+			_createDateTextView = (TextView) view.findViewById(R.id.comment_create_date);
+			_editedTextView = (TextView) view.findViewById(R.id.comment_edited);
 		}
 
 		public void bind(CommentEntry entry) {
@@ -46,6 +48,14 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 			_userPortraitScreenlet.load();
 
 			_userNameTextView.setText(entry.getUserName());
+
+			_createDateTextView.setText(entry.getCreateDateAsTimeSpan());
+
+			if (entry.getModifiedDate() != entry.getCreateDate()) {
+				_editedTextView.setVisibility(View.VISIBLE);
+			} else {
+				_editedTextView.setVisibility(View.GONE);
+			}
 
 			if (_htmlBody) {
 				_bodyTextView.setText(Html.fromHtml(entry.getBody()));
@@ -57,6 +67,8 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 		private final TextView _userNameTextView;
 		private final TextView _bodyTextView;
 		private final UserPortraitScreenlet _userPortraitScreenlet;
+		private final TextView _createDateTextView;
+		private final TextView _editedTextView;
 	}
 
 	private boolean _htmlBody;
