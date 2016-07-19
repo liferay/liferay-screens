@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0BB5032C1D37C04A00ABD6B3 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB503181D37C04A00ABD6B3 /* Asset.swift */; };
 		0BB5032D1D37C04A00ABD6B3 /* DDLRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB503191D37C04A00ABD6B3 /* DDLRecord.swift */; };
+		0B8D2D1B1D3F6D79001C4D79 /* BaseListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1E0F01D362056000A2678 /* BaseListCollectionView.swift */; };
+		0BE1E0F11D362056000A2678 /* BaseListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1E0F01D362056000A2678 /* BaseListCollectionView.swift */; };
 		0BB5033D1D37C04A00ABD6B3 /* WebContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB5032B1D37C04A00ABD6B3 /* WebContent.swift */; };
 		0BB503771D38CE3A00ABD6B3 /* DDMJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB503671D38CE3A00ABD6B3 /* DDMJSONParser.swift */; };
 		0BB503781D38CE3A00ABD6B3 /* DDMStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB503681D38CE3A00ABD6B3 /* DDMStructure.swift */; };
@@ -438,6 +440,7 @@
 
 /* Begin PBXFileReference section */
 		0BB503181D37C04A00ABD6B3 /* Asset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
+		0BE1E0F01D362056000A2678 /* BaseListCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListCollectionView.swift; sourceTree = "<group>"; };
 		0BB503191D37C04A00ABD6B3 /* DDLRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLRecord.swift; sourceTree = "<group>"; };
 		0BB5032B1D37C04A00ABD6B3 /* WebContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContent.swift; sourceTree = "<group>"; };
 		0BB503671D38CE3A00ABD6B3 /* DDMJSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDMJSONParser.swift; sourceTree = "<group>"; };
@@ -863,6 +866,7 @@
 		881E60C51ACBE56700862B9E /* BaseListScreenlet */ = {
 			isa = PBXGroup;
 			children = (
+				0BE1E0EF1D362056000A2678 /* CollectionView */,
 				881E60C61ACBE56700862B9E /* BaseListPageLoadInteractor.swift */,
 				881E60C71ACBE56700862B9E /* BaseListScreenlet.swift */,
 				881E60C81ACBE56700862B9E /* BaseListView.swift */,
@@ -2114,6 +2118,7 @@
 				8892C6B41ACBD95400192232 /* LiferayServerContext.swift in Sources */,
 				88B844A71C73D888007A447D /* LoginByEmailLiferayConnectors.swift in Sources */,
 				8839B87D1B0CD539006C18F1 /* SignUpInteractor.swift in Sources */,
+				0BE1E0F11D362056000A2678 /* BaseListCollectionView.swift in Sources */,
 				8837FA7A1CAEF6AE00DCB1B4 /* WebContentDisplayScreenlet.swift in Sources */,
 				881E614B1ACBEDC600862B9E /* AssetListTableView.swift in Sources */,
 				889125A91D5479E6006AFA08 /* DeleteRatingInteractor.swift in Sources */,
@@ -2317,6 +2322,7 @@
 				886F4EE91CA156710018229E /* DDMFieldNumber_Tests.swift in Sources */,
 				887F0D161B99AABB0007AECE /* String+Screens.swift in Sources */,
 				880ACA5C1B01FBF0007AD007 /* UploadUserPortraitInteractor.swift in Sources */,
+				0B8D2D1B1D3F6D79001C4D79 /* BaseListCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
