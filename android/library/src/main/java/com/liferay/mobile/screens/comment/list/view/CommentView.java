@@ -1,6 +1,7 @@
 package com.liferay.mobile.screens.comment.list.view;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.util.AttributeSet;
@@ -78,8 +79,7 @@ public class CommentView extends RelativeLayout {
 							getListener().onDeleteButtonClicked(commentEntry.getCommentId());
 						}
 					} else {
-						_deleteImageButton.setBackgroundColor(
-							ContextCompat.getColor(getContext(), R.color.red_default));
+						changeDeleteButtonBackgroundDrawable(R.drawable.default_button_selector_red);
 						_isDeleting = true;
 					}
 				}
@@ -92,8 +92,17 @@ public class CommentView extends RelativeLayout {
 
 	private void resetDeletion() {
 		_isDeleting = false;
-		_deleteImageButton.setBackgroundColor(
-			ContextCompat.getColor(getContext(), R.color.colorPrimary_default));
+		changeDeleteButtonBackgroundDrawable(R.drawable.default_button_selector);
+	}
+
+	private void changeDeleteButtonBackgroundDrawable(int drawable) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+			_deleteImageButton.setBackground(
+				ContextCompat.getDrawable(getContext(), drawable));
+		} else {
+			_deleteImageButton.setBackgroundDrawable(
+				ContextCompat.getDrawable(getContext(), drawable));
+		}
 	}
 
 	@Override protected void onFinishInflate() {
