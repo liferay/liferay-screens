@@ -1,11 +1,9 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.comment.list;
 
 import android.content.Context;
-import android.text.Html;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
@@ -13,8 +11,8 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 import com.liferay.mobile.screens.comment.list.CommentListScreenlet;
 import com.liferay.mobile.screens.comment.list.view.CommentListViewModel;
+import com.liferay.mobile.screens.comment.list.view.CommentView;
 import com.liferay.mobile.screens.models.CommentEntry;
-import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import java.util.List;
 
 /**
@@ -38,22 +36,15 @@ public class CommentListView
 
 	@Override protected void onFinishInflate() {
 		super.onFinishInflate();
-		_discussionCommentLayout = (ViewGroup) findViewById(R.id.discussion_comment);
+		_commentView = (CommentView) findViewById(R.id.discussion_comment);
 		_discussionSeparator = (ImageView) findViewById(R.id.comment_separator);
 		_emptyListTextView = (TextView) findViewById(R.id.comment_empty_list);
-
-		_userNameTextView = (TextView) _discussionCommentLayout.findViewById(R.id.comment_user_name);
-		_bodyTextView = (TextView) _discussionCommentLayout.findViewById(R.id.comment_body);
-		_userPortraitScreenlet = (UserPortraitScreenlet) _discussionCommentLayout.findViewById(R.id.comment_user_portrait);
-		_createDateTextView = (TextView) _discussionCommentLayout.findViewById(R.id.comment_create_date);
-		_editedTextView = (TextView) _discussionCommentLayout.findViewById(R.id.comment_edited);
-
-		_discussionCommentLayout.findViewById(R.id.row_arrow).setVisibility(GONE);
 	}
 
 	@Override public boolean onKeyUp(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK && _discussionComment != null) {
 			clearAdapterEntries();
+			_emptyListTextView.setVisibility(GONE);
 			getScreenlet().performUserAction(BaseScreenlet.DEFAULT_ACTION, CommentListScreenlet.OUT_DISCUSSION_ACTION);
 			return true;
 		}
@@ -80,8 +71,8 @@ public class CommentListView
 	}
 
 	@Override public void setHtmlBody(boolean htmlBody) {
-		_htmlBody = htmlBody;
 		getAdapter().setHtmlBody(htmlBody);
+		_commentView.setHtmlBody(htmlBody);
 	}
 
 	@Override
@@ -89,29 +80,13 @@ public class CommentListView
 		_discussionComment = newRootComment;
 
 		if (newRootComment == null) {
-			_discussionCommentLayout.setVisibility(GONE);
+			_commentView.setVisibility(GONE);
 			_discussionSeparator.setVisibility(GONE);
 		} else {
-			_userPortraitScreenlet.setUserId(newRootComment.getUserId());
-			_userPortraitScreenlet.load();
-
-			_userNameTextView.setText(newRootComment.getUserName());
-
-			_createDateTextView.setText(newRootComment.getCreateDateAsTimeSpan());
-
-			if (newRootComment.getModifiedDate() != newRootComment.getCreateDate()) {
-				_editedTextView.setVisibility(View.VISIBLE);
-			} else {
-				_editedTextView.setVisibility(View.GONE);
-			}
-
-			if (_htmlBody) {
-				_bodyTextView.setText(Html.fromHtml(newRootComment.getBody()));
-			} else {
-				_bodyTextView.setText(Html.fromHtml(newRootComment.getBody()).toString().replaceAll("\n", "").trim());
-			}
-
-			_discussionCommentLayout.setVisibility(VISIBLE);
+			_commentView.setCommentEntry(newRootComment);
+			_commentView.reloadUserPortrait();
+			_commentView.hideRepliesCounter();
+			_commentView.setVisibility(VISIBLE);
 			_discussionSeparator.setVisibility(VISIBLE);
 		}
 	}
@@ -135,14 +110,7 @@ public class CommentListView
 	}
 
 	private CommentEntry _discussionComment;
-	private ViewGroup _discussionCommentLayout;
-	private TextView _userNameTextView;
-	private TextView _bodyTextView;
-	private UserPortraitScreenlet _userPortraitScreenlet;
-	private TextView _createDateTextView;
-	private TextView _editedTextView;
-
-	private boolean _htmlBody;
+	private CommentView _commentView;
 	private ImageView _discussionSeparator;
 	private TextView _emptyListTextView;
 }
