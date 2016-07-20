@@ -26,9 +26,9 @@
 		android:layout_marginRight="10dp"
 		android:layout_marginTop="10dp"
 		android:layout_toEndOf="@+id/comment_user_portrait"
-		android:layout_toLeftOf="@+id/row_arrow"
+		android:layout_toLeftOf="@+id/comment_edit_button"
 		android:layout_toRightOf="@+id/comment_user_portrait"
-		android:layout_toStartOf="@id/row_arrow"
+		android:layout_toStartOf="@id/comment_edit_button"
 		android:layout_width="wrap_content"
 		android:padding="0dp"
 		android:textStyle="bold"
@@ -61,9 +61,9 @@
 		android:layout_marginTop="5dp"
 		android:layout_marginRight="10dp"
 		android:layout_toEndOf="@+id/comment_create_date"
-		android:layout_toLeftOf="@+id/row_arrow"
+		android:layout_toLeftOf="@+id/comment_edit_button"
 		android:layout_toRightOf="@+id/comment_create_date"
-		android:layout_toStartOf="@+id/row_arrow"
+		android:layout_toStartOf="@+id/comment_edit_button"
 		android:layout_width="wrap_content"
 		android:padding="0dp"
 		android:text="@string/edited"
@@ -71,6 +71,18 @@
 		android:textStyle="bold|italic"
 		android:visibility="gone"
 		tools:visibility="visible"
+		/>
+
+	<ImageButton
+		android:id="@+id/comment_edit_button"
+		android:layout_alignEnd="@id/comment_body"
+		android:layout_alignRight="@id/comment_body"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:src="@drawable/default_comment_edit"
+		android:visibility="gone"
+		tools:visibility="visible"
+		style="@style/default_button"
 		/>
 
 	<TextView
@@ -81,7 +93,7 @@
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="10dp"
 		android:layout_marginLeft="10dp"
-		android:layout_marginRight="10dp"
+		android:layout_marginStart="10dp"
 		android:layout_toLeftOf="@+id/row_arrow"
 		android:layout_toStartOf="@+id/row_arrow"
 		android:layout_width="match_parent"
