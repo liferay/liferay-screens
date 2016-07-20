@@ -1,9 +1,11 @@
 package com.liferay.mobile.screens.comment.list.view;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -27,7 +29,9 @@ public class CommentView extends RelativeLayout {
 		inflater.inflate(R.layout.comment_view, this, true);
 	}
 
-	public void setCommentEntry(CommentEntry commentEntry) {
+	public void setCommentEntry(final CommentEntry commentEntry) {
+		resetDeletion();
+
 		_userPortraitScreenlet.setUserId(commentEntry.getUserId());
 
 		_userNameTextView.setText(commentEntry.getUserName());
@@ -59,10 +63,37 @@ public class CommentView extends RelativeLayout {
 		if (commentEntry.getUserId() == SessionContext.getUserId()) {
 			_editImageButton.setVisibility(VISIBLE);
 			_deleteImageButton.setVisibility(VISIBLE);
+
+			_editImageButton.setOnClickListener(new OnClickListener() {
+				@Override public void onClick(View v) {
+					
+				}
+			});
+
+			_deleteImageButton.setOnClickListener(new OnClickListener() {
+				@Override public void onClick(View v) {
+					if (_isDeleting) {
+						resetDeletion();
+						if (getListener() != null) {
+							getListener().onDeleteButtonClicked(commentEntry.getCommentId());
+						}
+					} else {
+						_deleteImageButton.setBackgroundColor(
+							ContextCompat.getColor(getContext(), R.color.red_default));
+						_isDeleting = true;
+					}
+				}
+			});
 		} else {
 			_editImageButton.setVisibility(GONE);
 			_deleteImageButton.setVisibility(GONE);
 		}
+	}
+
+	private void resetDeletion() {
+		_isDeleting = false;
+		_deleteImageButton.setBackgroundColor(
+			ContextCompat.getColor(getContext(), R.color.colorPrimary_default));
 	}
 
 	@Override protected void onFinishInflate() {
@@ -90,6 +121,14 @@ public class CommentView extends RelativeLayout {
 		_childCountTextView.setVisibility(GONE);
 	}
 
+	public CommentViewListener getListener() {
+		return _listener;
+	}
+
+	public void setListener(CommentViewListener listener) {
+		this._listener = listener;
+	}
+
 	private TextView _userNameTextView;
 	private TextView _bodyTextView;
 	private UserPortraitScreenlet _userPortraitScreenlet;
@@ -99,5 +138,8 @@ public class CommentView extends RelativeLayout {
 	private ImageButton _editImageButton;
 	private ImageButton _deleteImageButton;
 
+	private CommentViewListener _listener;
+
 	private boolean _htmlBody;
+	private boolean _isDeleting;
 }
