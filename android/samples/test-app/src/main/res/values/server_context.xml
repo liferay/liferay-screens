@@ -26,6 +26,10 @@
 	<!--WebContentDisplayScreenlet values-->
 	<string name="liferay_article_id">63864</string>
 
+	<!--CommentListScreenlet values-->
+	<string name="liferay_comment_asset_className">com.liferay.blogs.kernel.model.BlogsEntry</string>
+	<string name="liferay_comment_asset_id">38699</string>
+
 	<string name="liferay_article_structured_structure_id">63875</string>
 	<string name="liferay_article_structured_article_id">63879</string>
 	<string name="liferay_article_structured_label_fields_first_field">Text</string>
