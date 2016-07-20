@@ -37,4 +37,11 @@ public class CommentListView
 	@Override public void setHtmlBody(boolean htmlBody) {
 		getAdapter().setHtmlBody(htmlBody);
 	}
+
+	@Override
+	public void changeToCommentDiscussion(CommentEntry newRootComment) {
+		_discussionComment = newRootComment;
+	}
+
+	private CommentEntry _discussionComment;
 }
