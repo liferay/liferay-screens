@@ -45,6 +45,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interactor>
 	extends FrameLayout {
 
+	public static final String DEFAULT_ACTION = "default_action";
+
 	public BaseScreenlet(Context context) {
 		super(context);
 
@@ -97,7 +99,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	}
 
 	public I getInteractor() {
-		return getInteractor("soleInteractor");
+		return getInteractor(DEFAULT_ACTION);
 	}
 
 	public I getInteractor(String actionName) {
