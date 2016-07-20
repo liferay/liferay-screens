@@ -8,9 +8,8 @@ import com.liferay.mobile.screens.comment.list.CommentListListener;
  */
 public interface CommentListInteractor extends Interactor<CommentListListener> {
 
-	void loadRows(
-		long groupId, String className, long classPK,
-		int startRow, int endRow)
+	void loadRows(long groupId, String className, long classPK,
+		long commentId, int startRow, int endRow)
 		throws Exception;
 
 }

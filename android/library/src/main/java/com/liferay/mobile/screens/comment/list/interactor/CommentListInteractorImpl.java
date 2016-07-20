@@ -31,11 +31,16 @@ public class CommentListInteractorImpl
 		super(targetScreenletId, offlinePolicy);
 	}
 
-	@Override public void loadRows(long groupId, String className, long classPK, int startRow, int endRow)
+	@Override public void loadRows(long groupId, String className, long classPK,
+		long commentId, int startRow, int endRow)
 		throws Exception {
+
+		validate(groupId, className, classPK, commentId);
+
 		this._groupId = groupId;
 		this._className = className;
 		this._classPK = classPK;
+		this._commentId = commentId;
 
 		Locale locale = LiferayLocale.getDefaultLocale();
 
@@ -57,12 +62,20 @@ public class CommentListInteractorImpl
 	@Override protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale)
 		throws Exception {
 		CommentmanagerjsonwsService service = getCommentsService(session);
-		service.getComments(_groupId, _className, _classPK, startRow, endRow);
+		if (_commentId != 0) {
+			service.getComments(_commentId, startRow, endRow);
+		} else {
+			service.getComments(_groupId, _className, _classPK, startRow, endRow);
+		}
 	}
 
 	@Override protected void getPageRowCountRequest(Session session) throws Exception {
 		CommentmanagerjsonwsService service = getCommentsService(session);
-		service.getCommentsCount(_groupId, _className, _classPK);
+		if (_commentId != 0) {
+			service.getTopLevelThreadCommentsCount(_commentId);
+		} else {
+			service.getTopLevelThreadCommentsCount(_groupId, _className, _classPK);
+		}
 	}
 
 	@Override protected boolean cached(Object... args) throws Exception {
@@ -81,10 +94,29 @@ public class CommentListInteractorImpl
 	}
 
 	@NonNull private String getId() {
-		return _className + "-" + String.valueOf(_classPK);
+		if (_commentId != 0) {
+			return _commentId + "_DISCUSSION_COMMENT";
+		}
+		return _className + "_" + String.valueOf(_classPK);
+	}
+
+	protected void validate(long groupId, String className, long classPK, long commentId) {
+		if (commentId <= 0) {
+			if (groupId <= 0) {
+				throw new IllegalArgumentException(
+					"groupId must be greater than 0");
+			} else if (className.isEmpty()) {
+				throw new IllegalArgumentException(
+					"className cannot be empty");
+			} else if (classPK <= 0) {
+				throw new IllegalArgumentException(
+					"classPK must be greater than 0");
+			}
+		}
 	}
 
 	private long _groupId;
 	private String _className;
 	private long _classPK;
+	private long _commentId;
 }
