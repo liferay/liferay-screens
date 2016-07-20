@@ -4,6 +4,9 @@
 	android:layout_height="wrap_content"
 	android:paddingEnd="10dp"
 	android:paddingRight="10dp"
+	android:clickable="true"
+	android:focusable="true"
+	android:foreground="?android:selectableItemBackground"
 	xmlns:tools="http://schemas.android.com/tools"
 	xmlns:liferay="http://schemas.android.com/apk/res-auto"
 	>
