@@ -10,13 +10,13 @@
 		android:layout_height="match_parent"
 		>
 
-		<include
-			layout="@layout/comment_row_default"
+		<com.liferay.mobile.screens.comment.list.view.CommentView
 			android:id="@+id/discussion_comment"
 			android:layout_height="wrap_content"
 			android:layout_width="match_parent"
 			android:visibility="gone"
-			tools:visibility="visible"/>
+			tools:visibility="visible"
+			/>
 
 		<ImageView
 			android:id="@+id/comment_separator"

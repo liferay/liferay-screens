@@ -4,121 +4,17 @@
 	android:layout_height="wrap_content"
 	android:paddingEnd="10dp"
 	android:paddingRight="10dp"
+	android:clickable="true"
+	android:focusable="true"
 	android:foreground="?android:selectableItemBackground"
-	xmlns:tools="http://schemas.android.com/tools"
-	xmlns:liferay="http://schemas.android.com/apk/res-auto"
 	>
 
-	<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
-		android:id="@+id/comment_user_portrait"
-		android:layout_alignParentLeft="true"
-		android:layout_alignParentStart="true"
-		android:layout_width="70dp"
-		android:layout_height="70dp"
-		liferay:offlinePolicy="CACHE_FIRST"
-		/>
-
-	<TextView
-		tools:text="Android Phone Jr."
-		android:id="@+id/comment_user_name"
-		android:layout_height="wrap_content"
-		android:layout_marginEnd="10dp"
-		android:layout_marginRight="10dp"
-		android:layout_marginTop="10dp"
-		android:layout_toEndOf="@+id/comment_user_portrait"
-		android:layout_toLeftOf="@+id/comment_edit_button"
-		android:layout_toRightOf="@+id/comment_user_portrait"
-		android:layout_toStartOf="@id/comment_edit_button"
-		android:layout_width="wrap_content"
-		android:padding="0dp"
-		android:textStyle="bold"
-		/>
-
-	<TextView
-		tools:text="15 minutes ago"
-		android:id="@+id/comment_create_date"
-		android:layout_above="@+id/comment_body"
-		android:layout_below="@+id/comment_user_name"
-		android:layout_height="wrap_content"
-		android:layout_marginBottom="10dp"
-		android:layout_marginEnd="3dp"
-		android:layout_marginRight="3dp"
-		android:layout_marginTop="5dp"
-		android:layout_toEndOf="@+id/comment_user_portrait"
-		android:layout_toRightOf="@+id/comment_user_portrait"
-		android:layout_width="wrap_content"
-		android:padding="0dp"
-		android:textSize="12sp"
-		/>
-
-	<TextView
-		android:id="@+id/comment_edited"
-		android:layout_above="@+id/comment_body"
-		android:layout_below="@+id/comment_user_name"
-		android:layout_height="wrap_content"
-		android:layout_marginBottom="10dp"
-		android:layout_marginEnd="10dp"
-		android:layout_marginTop="5dp"
-		android:layout_marginRight="10dp"
-		android:layout_toEndOf="@+id/comment_create_date"
-		android:layout_toLeftOf="@+id/comment_edit_button"
-		android:layout_toRightOf="@+id/comment_create_date"
-		android:layout_toStartOf="@+id/comment_edit_button"
-		android:layout_width="wrap_content"
-		android:padding="0dp"
-		android:text="@string/edited"
-		android:textSize="12sp"
-		android:textStyle="bold|italic"
-		android:visibility="gone"
-		tools:visibility="visible"
-		/>
-
-	<ImageButton
-		android:id="@+id/comment_edit_button"
-		android:layout_alignEnd="@id/comment_body"
-		android:layout_alignRight="@id/comment_body"
+	<com.liferay.mobile.screens.comment.list.view.CommentView
+		android:id="@+id/comment_view"
 		android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
-		android:src="@drawable/default_comment_edit"
-		android:visibility="gone"
-		tools:visibility="visible"
-		style="@style/default_button"
-		/>
-
-	<TextView
-		android:id="@+id/comment_body"
-		android:layout_alignParentLeft="true"
-		android:layout_alignParentStart="true"
-		android:layout_below="@+id/comment_user_portrait"
-		android:layout_height="wrap_content"
-		android:layout_marginBottom="10dp"
-		android:layout_marginLeft="10dp"
-		android:layout_marginStart="10dp"
 		android:layout_toLeftOf="@+id/row_arrow"
 		android:layout_toStartOf="@+id/row_arrow"
-		android:layout_width="match_parent"
-		android:padding="0dp"
-		tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-		/>
-
-	<TextView
-		android:id="@+id/comment_child_number"
-		android:layout_alignParentLeft="true"
-		android:layout_alignParentStart="true"
-		android:layout_below="@+id/comment_body"
-		android:layout_height="wrap_content"
-		android:layout_marginBottom="10dp"
-		android:layout_marginLeft="10dp"
-		android:layout_marginRight="10dp"
-		android:layout_toLeftOf="@+id/row_arrow"
-		android:layout_toStartOf="@+id/row_arrow"
-		android:layout_width="match_parent"
-		android:padding="0dp"
-		android:textSize="15sp"
-		android:textStyle="bold"
-		android:visibility="gone"
-		tools:text="6 replys"
-		tools:visibility="visible"
 		/>
 
 	<ImageView
@@ -129,7 +25,6 @@
 		android:src="@drawable/default_arrow"
 		android:layout_width="20dp"
 		android:layout_height="match_parent"
-		tools:visibility="gone"
 		/>
 
 </RelativeLayout>
