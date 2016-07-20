@@ -11,26 +11,27 @@
 		>
 
 		<include
-			android:visibility="gone"
+			layout="@layout/comment_row_default"
 			android:id="@+id/discussion_comment"
 			android:layout_height="wrap_content"
 			android:layout_width="match_parent"
-			layout="@layout/comment_row_default"
+			android:visibility="gone"
 			tools:visibility="visible"/>
 
 		<ProgressBar
 			android:layout_below="@+id/discussion_comment"
 			android:id="@+id/liferay_progress"
-			android:layout_width="wrap_content"
+			android:layout_centerHorizontal="true"
 			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:visibility="gone" />
+			android:layout_width="wrap_content"
+			android:visibility="gone"
+			tools:visibility="visible"/>
 
 		<android.support.v7.widget.RecyclerView
-			android:layout_below="@+id/discussion_comment"
 			android:id="@+id/liferay_recycler_list"
-			android:layout_width="match_parent"
+			android:layout_below="@+id/comment_separator"
 			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
 			android:visibility="gone"
 			tools:visibility="visible" />
 
