@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.comment.list.CommentListView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
 	android:id="@+id/liferay_list_screenlet"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent">
 
-	<ProgressBar
-		android:id="@+id/liferay_progress"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:visibility="gone" />
-
-	<android.support.v7.widget.RecyclerView
-		android:id="@+id/liferay_recycler_list"
+	<RelativeLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:visibility="gone" />
+		android:layout_height="match_parent"
+		>
+
+		<include
+			android:visibility="gone"
+			android:id="@+id/discussion_comment"
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			layout="@layout/comment_row_default"
+			tools:visibility="visible"/>
+
+		<ProgressBar
+			android:layout_below="@+id/discussion_comment"
+			android:id="@+id/liferay_progress"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:visibility="gone" />
+
+		<android.support.v7.widget.RecyclerView
+			android:layout_below="@+id/discussion_comment"
+			android:id="@+id/liferay_recycler_list"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:visibility="gone"
+			tools:visibility="visible" />
+
+	</RelativeLayout>
+
 </com.liferay.mobile.screens.viewsets.defaultviews.comment.list.CommentListView>
