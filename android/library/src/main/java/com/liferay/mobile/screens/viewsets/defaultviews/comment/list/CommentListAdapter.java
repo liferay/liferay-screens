@@ -7,6 +7,7 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
 import com.liferay.mobile.screens.comment.list.view.CommentView;
+import com.liferay.mobile.screens.comment.list.view.CommentViewListener;
 import com.liferay.mobile.screens.models.CommentEntry;
 
 /**
@@ -37,6 +38,7 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 			super(view, listener);
 			_commentView = (CommentView) view.findViewById(R.id.comment_view);
 			_commentView.setHtmlBody(_htmlBody);
+			_commentView.setListener((CommentViewListener) listener);
 		}
 
 		public void bind(CommentEntry entry) {

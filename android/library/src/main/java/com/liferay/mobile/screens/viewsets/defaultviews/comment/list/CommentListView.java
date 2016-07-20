@@ -12,7 +12,9 @@ import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 import com.liferay.mobile.screens.comment.list.CommentListScreenlet;
 import com.liferay.mobile.screens.comment.list.view.CommentListViewModel;
 import com.liferay.mobile.screens.comment.list.view.CommentView;
+import com.liferay.mobile.screens.comment.list.view.CommentViewListener;
 import com.liferay.mobile.screens.models.CommentEntry;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import java.util.List;
 
 /**
@@ -20,7 +22,7 @@ import java.util.List;
  */
 public class CommentListView
 	extends BaseListScreenletView<CommentEntry, CommentListAdapter.CommentViewHolder, CommentListAdapter>
-	implements CommentListViewModel {
+	implements CommentListViewModel, CommentViewListener {
 
 	public CommentListView(Context context) {
 		super(context);
@@ -39,6 +41,8 @@ public class CommentListView
 		_commentView = (CommentView) findViewById(R.id.discussion_comment);
 		_discussionSeparator = (ImageView) findViewById(R.id.comment_separator);
 		_emptyListTextView = (TextView) findViewById(R.id.comment_empty_list);
+
+		_commentView.setListener(this);
 	}
 
 	@Override public boolean onKeyUp(int keyCode, KeyEvent event) {
@@ -107,6 +111,12 @@ public class CommentListView
 
 	private void clearAdapterEntries() {
 		getAdapter().getEntries().clear();
+	}
+
+	@Override public void onEditButtonClicked(long commentId, String newBody) {
+	}
+
+	@Override public void onDeleteButtonClicked(long commentId) {
 	}
 
 	private CommentEntry _discussionComment;
