@@ -84,6 +84,10 @@ public class CommentEntry implements Parcelable {
 		return 0;
 	}
 
+	public long getCommentId() {
+		return Long.valueOf((String) _values.get("commentId"));
+	}
+
 	protected Map<String, Object> _values;
 
 }
