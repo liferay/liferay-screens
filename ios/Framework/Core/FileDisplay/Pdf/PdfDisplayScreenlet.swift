@@ -27,6 +27,8 @@ public class PdfDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable public var autoLoad: Bool = true
 
+	public var fileEntry: FileEntry?
+	
 	public var pdfDisplayDelegate: PdfDisplayScreenletDelegate? {
 		return delegate as? PdfDisplayScreenletDelegate
 	}
@@ -37,6 +39,27 @@ public class PdfDisplayScreenlet: BaseScreenlet {
 		if autoLoad && entryId != 0 {
 			loadPdfAssetFromEntryId()
 		}
+	}
+
+	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+		let interactor = AssetDisplayInteractor(
+			screenlet: self,
+			entryId: self.entryId)
+
+		interactor.onSuccess = {
+			if let resultAsset = interactor.assetEntry {
+				self.fileEntry = FileEntry(attributes: resultAsset.attributes)
+				self.pdfDisplayDelegate?.screenlet?(self, onPdfAssetResponse: self.fileEntry!)
+
+				(self.screenletView as! PdfDisplayViewModel).fileEntry = self.fileEntry!
+			}
+		}
+
+		interactor.onFailure = {
+			self.pdfDisplayDelegate?.screenlet?(self, onPdfAssetError: $0)
+		}
+
+		return interactor
 	}
 
 	public func loadPdfAssetFromEntryId() -> Bool {
