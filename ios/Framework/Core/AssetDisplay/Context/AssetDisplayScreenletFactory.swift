@@ -60,6 +60,14 @@ public class AssetDisplayScreenletFactory {
 							s.autoLoad = autoLoad
 						}
 					}
+				} else if mimeType == "application/pdf" {
+					return PdfDisplayScreenlet(frame: frame, themeName: nil) {
+						if let s = $0 as? PdfDisplayScreenlet {
+							s.entryId = self.assetEntry.entryId
+							s.fileEntry = FileEntry(attributes: self.assetEntry.attributes)
+							s.autoLoad = autoLoad
+						}
+					}
 				}
 
 			default:
