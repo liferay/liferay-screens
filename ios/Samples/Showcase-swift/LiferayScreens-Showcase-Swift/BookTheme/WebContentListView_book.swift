@@ -15,7 +15,7 @@ import UIKit
 import LiferayScreens
 
 
-public class WebContentListView_book: WebContentListView_default {
+public class WebContentListView_book: BaseListTableView {
 
 	//MARK: BaseScreenletView
 
