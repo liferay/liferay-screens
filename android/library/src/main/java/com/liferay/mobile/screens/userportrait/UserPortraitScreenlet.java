@@ -313,14 +313,14 @@ public class UserPortraitScreenlet
 
 		try {
 			if (UPLOAD_PORTRAIT.equals(userActionName)) {
-				UserPortraitUploadInteractor userPortraitInteractor = (UserPortraitUploadInteractor) getInteractor(userActionName);
+				UserPortraitUploadInteractor userPortraitInteractor = (UserPortraitUploadInteractor) interactor;
 				String path = (String) args[0];
 				if (_userId != 0) {
 					userPortraitInteractor.upload(_userId, path);
 				}
 			}
 			else {
-				UserPortraitLoadInteractor userPortraitLoadInteractor = (UserPortraitLoadInteractor) getInteractor(userActionName);
+				UserPortraitLoadInteractor userPortraitLoadInteractor = (UserPortraitLoadInteractor) interactor;
 				if (_portraitId != 0 && _uuid != null) {
 					userPortraitLoadInteractor.load(_male, _portraitId, _uuid);
 				}
