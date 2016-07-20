@@ -13,6 +13,7 @@ import com.liferay.mobile.screens.comment.list.view.CommentListViewModel;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.models.CommentEntry;
 import java.util.Locale;
+import java.util.Stack;
 
 /**
  * @author Alejandro Hernández
@@ -20,6 +21,9 @@ import java.util.Locale;
 public class CommentListScreenlet
 	extends BaseListScreenlet<CommentEntry, CommentListInteractor>
 	implements CommentListListener {
+
+	public static final String IN_DISCUSSION_ACTION = "in_discussion";
+	public static final String OUT_DISCUSSION_ACTION = "out_discussion";
 
 	public CommentListScreenlet(Context context) {
 		super(context);
@@ -44,12 +48,40 @@ public class CommentListScreenlet
 
 	@Override protected void loadRows(CommentListInteractor interactor, int startRow, int endRow, Locale locale)
 		throws Exception {
-		interactor.loadRows(_groupId, _className, _classPK, startRow, endRow);
+		long commentId = _discussionStack.empty() ? 0 : getLastCommentInStack().getCommentId();
+		interactor.loadRows(_groupId, _className, _classPK, commentId, startRow, endRow);
 	}
 
 	@Override protected CommentListInteractor createInteractor(String actionName) {
 		return new CommentListInteractorImpl(getScreenletId(), _offlinePolicy);
 	}
+
+	@Override protected void onUserAction(String actionName, CommentListInteractor interactor, Object... args) {
+		if (args.length > 0) {
+			switch ((String) args[0]) {
+				case IN_DISCUSSION_ACTION:
+					_discussionStack.push((CommentEntry) args[1]);
+					changeToCommentDiscussion();
+					break;
+				case OUT_DISCUSSION_ACTION:
+					_discussionStack.pop();
+					changeToCommentDiscussion();
+					break;
+				default:
+					break;
+			}
+		}
+	}
+
+	private void changeToCommentDiscussion() {
+		getCommentListViewModel().changeToCommentDiscussion(getLastCommentInStack());
+		loadPage(0);
+	}
+
+	private CommentEntry getLastCommentInStack() {
+		return _discussionStack.empty() ? null : _discussionStack.peek();
+	}
+
 
 	@Override public void loadingFromCache(boolean success) {
 		if (getListener() != null) {
@@ -128,10 +160,6 @@ public class CommentListScreenlet
 		this._groupId = groupId;
 	}
 
-	public boolean isHtmlBodyEnabled() {
-		return _htmlBody;
-	}
-
 	public void setHtmlBody(boolean htmlBody) {
 		this._htmlBody = htmlBody;
 		this.getCommentListViewModel().setHtmlBody(htmlBody);
@@ -146,4 +174,5 @@ public class CommentListScreenlet
 	private long _classPK;
 	private long _groupId;
 	private boolean _htmlBody;
+	private Stack<CommentEntry> _discussionStack = new Stack<>();
 }
