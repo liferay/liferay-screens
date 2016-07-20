@@ -14,11 +14,22 @@
 import Foundation
 
 
+@objc public protocol PdfDisplayScreenletDelegate : BaseScreenletDelegate {
+
+	optional func screenlet(screenlet: PdfDisplayScreenlet, onPdfAssetResponse fileEntry: FileEntry)
+
+	optional func screenlet(screenlet: PdfDisplayScreenlet, onPdfAssetError error: NSError)
+}
+
 public class PdfDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable public var entryId: Int64 = 0
 
 	@IBInspectable public var autoLoad: Bool = true
+
+	public var pdfDisplayDelegate: PdfDisplayScreenletDelegate? {
+		return delegate as? PdfDisplayScreenletDelegate
+	}
 
 	//MARK: Public methods
 
