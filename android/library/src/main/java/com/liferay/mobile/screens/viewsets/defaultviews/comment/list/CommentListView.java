@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
@@ -37,6 +38,7 @@ public class CommentListView
 	@Override protected void onFinishInflate() {
 		super.onFinishInflate();
 		_discussionCommentLayout = (ViewGroup) findViewById(R.id.discussion_comment);
+		_discussionSeparator = (ImageView) findViewById(R.id.comment_separator);
 
 		_userNameTextView = (TextView) _discussionCommentLayout.findViewById(R.id.comment_user_name);
 		_bodyTextView = (TextView) _discussionCommentLayout.findViewById(R.id.comment_body);
@@ -75,6 +77,7 @@ public class CommentListView
 
 		if (newRootComment == null) {
 			_discussionCommentLayout.setVisibility(GONE);
+			_discussionSeparator.setVisibility(GONE);
 		} else {
 			_userPortraitScreenlet.setUserId(newRootComment.getUserId());
 			_userPortraitScreenlet.load();
@@ -96,6 +99,7 @@ public class CommentListView
 			}
 
 			_discussionCommentLayout.setVisibility(VISIBLE);
+			_discussionSeparator.setVisibility(VISIBLE);
 		}
 	}
 
@@ -126,4 +130,5 @@ public class CommentListView
 	private TextView _editedTextView;
 
 	private boolean _htmlBody;
+	private ImageView _discussionSeparator;
 }
