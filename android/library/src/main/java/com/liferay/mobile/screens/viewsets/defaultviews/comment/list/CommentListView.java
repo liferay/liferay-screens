@@ -15,6 +15,7 @@ import com.liferay.mobile.screens.comment.list.CommentListScreenlet;
 import com.liferay.mobile.screens.comment.list.view.CommentListViewModel;
 import com.liferay.mobile.screens.models.CommentEntry;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
+import java.util.List;
 
 /**
  * @author Alejandro Hernández
@@ -39,6 +40,7 @@ public class CommentListView
 		super.onFinishInflate();
 		_discussionCommentLayout = (ViewGroup) findViewById(R.id.discussion_comment);
 		_discussionSeparator = (ImageView) findViewById(R.id.comment_separator);
+		_emptyListTextView = (TextView) findViewById(R.id.comment_empty_list);
 
 		_userNameTextView = (TextView) _discussionCommentLayout.findViewById(R.id.comment_user_name);
 		_bodyTextView = (TextView) _discussionCommentLayout.findViewById(R.id.comment_body);
@@ -60,6 +62,17 @@ public class CommentListView
 
 	@Override protected CommentListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
 		return new CommentListAdapter(itemLayoutId, itemProgressLayoutId, this, getContext());
+	}
+
+	@Override public void showFinishOperation(int page, List<CommentEntry> serverEntries, int rowCount) {
+		super.showFinishOperation(page, serverEntries, rowCount);
+
+		if (getAdapter().getEntries().isEmpty()) {
+			_emptyListTextView.setText(_discussionComment != null ? R.string.empty_replies : R.string.empty_comments);
+			_emptyListTextView.setVisibility(VISIBLE);
+		} else {
+			_emptyListTextView.setVisibility(GONE);
+		}
 	}
 
 	@Override protected int getItemLayoutId() {
@@ -131,4 +144,5 @@ public class CommentListView
 
 	private boolean _htmlBody;
 	private ImageView _discussionSeparator;
+	private TextView _emptyListTextView;
 }

@@ -5,4 +5,6 @@
 		<item quantity="other">%1$d replies</item>
 	</plurals>
 	<string name="edited">- Edited</string>
+	<string name="empty_replies">This comment doesn\'t have replies</string>
+	<string name="empty_comments">There are no comments yet</string>
 </resources>

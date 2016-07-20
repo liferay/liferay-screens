@@ -47,6 +47,19 @@
 			android:visibility="gone"
 			tools:visibility="visible" />
 
+		<TextView
+			android:id="@+id/comment_empty_list"
+			android:layout_below="@id/comment_separator"
+			android:layout_centerHorizontal="true"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:textSize="18sp"
+			android:textStyle="bold"
+			android:visibility="gone"
+			tools:text="Empty list"
+			tools:visibility="visible"
+			/>
+
 	</RelativeLayout>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.comment.list.CommentListView>
