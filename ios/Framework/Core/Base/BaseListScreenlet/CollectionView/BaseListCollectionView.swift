@@ -19,6 +19,14 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 	let defaultCellId = "liferay-screns-loadingMoreCellId"
 
 	@IBOutlet public var collectionView: UICollectionView?
+
+	internal var refreshControlView: UIRefreshControl?
+
+	internal var refreshClosure: (Void -> Bool)? {
+		didSet {
+			updateRefreshControl()
+		}
+	}
 	
 	override public var progressMessages: [String:ProgressMessages] {
 		return [
@@ -81,6 +89,14 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 
 	public override func onClearRows(oldRows: [String : [AnyObject?]]) {
 		clearAllRows(oldRows)
+	}
+
+	override public func onFinishInteraction(result: AnyObject?, error: NSError?) {
+		if let currentRefreshControl = refreshControlView {
+			dispatch_delayed(0.3) {
+				currentRefreshControl.endRefreshing()
+			}
+		}
 	}
 
 	//MARK: UITableViewDataSource
@@ -245,6 +261,35 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 	}
 
 	//MARK: Internal methods
+
+	internal func updateRefreshControl() {
+		if refreshClosure != nil {
+			if refreshControlView == nil {
+				refreshControlView = UIRefreshControl()
+				collectionView?.addSubview(refreshControlView!)
+				refreshControlView!.addTarget(self,
+				                              action: #selector(BaseListTableView.refreshControlBeginRefresh(_:)),
+				                              forControlEvents: .ValueChanged)
+			}
+		}
+		else if let currentControl = refreshControlView {
+			currentControl.endRefreshing()
+			currentControl.removeFromSuperview()
+			refreshControlView = nil
+		}
+	}
+
+	internal func refreshControlBeginRefresh(sender:AnyObject?) {
+		dispatch_delayed(0.3) {
+			if !self.loadingRows {
+				self.moreRows = true
+				self.refreshClosure?()
+			}
+			else {
+				self.refreshControlView?.endRefreshing()
+			}
+		}
+	}
 
 	internal func insertFreshRows() {
 		collectionView?.reloadData()
