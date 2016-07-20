@@ -48,7 +48,6 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 
 		public void bind(CommentEntry entry) {
 			_userPortraitScreenlet.setUserId(entry.getUserId());
-			_userPortraitScreenlet.load();
 
 			_userNameTextView.setText(entry.getUserName());
 
