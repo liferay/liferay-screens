@@ -31,6 +31,7 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 
 	public void setHtmlBody(boolean htmlBody) {
 		this._htmlBody = htmlBody;
+		this.notifyDataSetChanged();
 	}
 
 	public class CommentViewHolder extends BaseListAdapter.ViewHolder {
