@@ -8,7 +8,6 @@ import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
-import com.liferay.mobile.screens.comment.list.CommentListListener;
 import com.liferay.mobile.screens.models.CommentEntry;
 import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
 import com.liferay.mobile.screens.util.LiferayLocale;
@@ -24,7 +23,7 @@ import static com.liferay.mobile.screens.cache.DefaultCachedType.ASSET_LIST_COUN
  * @author Alejandro Hernández
  */
 public class CommentListInteractorImpl
-	extends BaseListInteractor<CommentEntry, CommentListListener>
+	extends BaseListInteractor<CommentEntry, CommentListInteractorListener>
 	implements CommentListInteractor {
 
 	public CommentListInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
