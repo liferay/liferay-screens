@@ -45,6 +45,8 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 			_createDateTextView = (TextView) view.findViewById(R.id.comment_create_date);
 			_editedTextView = (TextView) view.findViewById(R.id.comment_edited);
 			_childCountTextView = (TextView) view.findViewById(R.id.comment_child_number);
+
+			view.setClickable(true);
 		}
 
 		public void bind(CommentEntry entry) {
