@@ -58,8 +58,10 @@ public class CommentView extends RelativeLayout {
 
 		if (commentEntry.getUserId() == SessionContext.getUserId()) {
 			_editImageButton.setVisibility(VISIBLE);
+			_deleteImageButton.setVisibility(VISIBLE);
 		} else {
 			_editImageButton.setVisibility(GONE);
+			_deleteImageButton.setVisibility(GONE);
 		}
 	}
 
@@ -73,6 +75,7 @@ public class CommentView extends RelativeLayout {
 		_editedTextView = (TextView) findViewById(R.id.comment_edited);
 		_childCountTextView = (TextView) findViewById(R.id.comment_child_number);
 		_editImageButton = (ImageButton) findViewById(R.id.comment_edit_button);
+		_deleteImageButton = (ImageButton) findViewById(R.id.comment_delete_button);
 	}
 
 	public void setHtmlBody(boolean htmlBody) {
@@ -94,5 +97,7 @@ public class CommentView extends RelativeLayout {
 	private TextView _editedTextView;
 	private TextView _childCountTextView;
 	private ImageButton _editImageButton;
+	private ImageButton _deleteImageButton;
+
 	private boolean _htmlBody;
 }
