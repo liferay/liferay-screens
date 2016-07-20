@@ -16,8 +16,18 @@ import UIKit
 
 public class PdfDisplayView_default: BaseScreenletView, PdfDisplayViewModel {
 
+	@IBOutlet weak var webView: UIWebView!
+
 	public var fileEntry: FileEntry? {
 		didSet {
+			if let fileEntry = fileEntry {
+				let path = LiferayServerContext.server + fileEntry.url
+				let url = NSURL(string: path)
+				if let url = url {
+					let request = NSURLRequest(URL: url)
+					webView.loadRequest(request)
+				}
+			}
 		}
 	}
 }
