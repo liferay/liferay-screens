@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.comment.list.interactor;
+package com.liferay.mobile.screens.comment.list.interactor.list;
 
 import android.support.annotation.NonNull;
 import android.util.Pair;
@@ -8,6 +8,7 @@ import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
+import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorListener;
 import com.liferay.mobile.screens.models.CommentEntry;
 import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
 import com.liferay.mobile.screens.util.LiferayLocale;

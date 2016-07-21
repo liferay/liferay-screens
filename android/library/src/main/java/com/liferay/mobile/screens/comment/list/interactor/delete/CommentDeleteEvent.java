@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.comment.list.interactor;
+package com.liferay.mobile.screens.comment.list.interactor.delete;
 
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;

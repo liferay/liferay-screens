@@ -1,6 +1,5 @@
-package com.liferay.mobile.screens.comment.list.interactor;
+package com.liferay.mobile.screens.comment.list.interactor.delete;
 
-import com.liferay.mobile.android.callback.Callback;
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
 import org.json.JSONObject;

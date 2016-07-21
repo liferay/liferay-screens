@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.comment.list.interactor;
+package com.liferay.mobile.screens.comment.list.interactor.list;
 
 import android.util.Pair;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
