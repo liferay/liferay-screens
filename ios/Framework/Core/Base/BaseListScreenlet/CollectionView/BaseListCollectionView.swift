@@ -44,7 +44,7 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 		
 		collectionView?.delegate = self
 		collectionView?.dataSource = self
-
+		
 		doConfigureCollectionView(collectionView!)
 		doRegisterCellNibs()
 		doRegisterLoadMoreCell()
@@ -52,6 +52,9 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 
 	public override func onShow() {
 		super.onShow()
+
+		// Force layout
+		layoutIfNeeded()
 		collectionView?.collectionViewLayout = doCreateLayout()
 	}
 	
@@ -205,7 +208,7 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 	}
 
 	public func doConfigureCollectionView(collectionView: UICollectionView) {
-		collectionView.backgroundColor = .greenColor()
+		collectionView.backgroundColor = .whiteColor()
 	}
 
 	public func doCreateLayout() -> UICollectionViewLayout {
