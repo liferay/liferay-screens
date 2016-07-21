@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.assetlist.interactor;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
+import com.liferay.mobile.screens.base.context.RequestState;
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 import com.liferay.mobile.screens.base.interactor.InteractorAsyncTaskCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
@@ -49,6 +50,20 @@ public class FilteredAssetListCallback extends InteractorAsyncTaskCallback<BaseL
 		result.setEntries(entries);
 		result.setRowCount(entries.size());
 		return result;
+	}
+
+	@Override
+	public void onSuccess(BaseListResult<AssetEntry> result) {
+		RequestState.getInstance().clear(getTargetScreenletId());
+
+		super.onSuccess(result);
+	}
+
+	@Override
+	public void onFailure(Exception e) {
+		RequestState.getInstance().clear(getTargetScreenletId());
+
+		super.onFailure(e);
 	}
 
 	@Override
