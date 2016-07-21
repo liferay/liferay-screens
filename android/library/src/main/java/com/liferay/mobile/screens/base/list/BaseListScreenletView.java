@@ -17,7 +17,6 @@ package com.liferay.mobile.screens.base.list;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -80,21 +79,56 @@ public abstract class BaseListScreenletView<
 	}
 
 	@Override
-	public void showFinishOperation(int page, List<E> serverEntries, int rowCount) {
-		LiferayLogger.i("loaded page " + page + " of list with " + serverEntries);
+	public void showFinishOperation(int startRow, int endRow, List<E> serverEntries, int totalRowCount) {
+		LiferayLogger.i("loaded page " + startRow + " of list with " + serverEntries);
 
 		_progressBar.setVisibility(View.GONE);
 		_recyclerView.setVisibility(View.VISIBLE);
 
+		BaseListScreenlet screenlet = (BaseListScreenlet) getScreenlet();
+
 		A adapter = getAdapter();
 
-		List<E> entries = addNewServerEntries(serverEntries, page, rowCount);
+		// current entries in the adapter
+		List<E> entries = adapter.getEntries();
 
-		adapter.setRowCount(entries.size());
+		// we have to take into account that we start requesting the 2 page (and we don't want the first 2 ones)
+		int rowToFill = startRow - _firstRow;
+		int realRowCount = totalRowCount - _firstRow;
 
+		if (entries.isEmpty()) {
+
+			_firstRow = rowToFill;
+			realRowCount = totalRowCount - _firstRow;
+			rowToFill = 0;
+
+			// we fill all entries in the first load
+			for (int i = 0; i < realRowCount; i++) {
+				entries.add(null);
+			}
+		}
+
+
+		if (realRowCount != entries.size()) {
+			if (realRowCount > entries.size()) {
+				for (int i = entries.size(); i < realRowCount; i++) {
+					entries.add(null);
+				}
+			}
+			else {
+				for (int i = realRowCount; i < entries.size(); i++) {
+					entries.remove(i);
+				}
+			}
+		}
+
+		for (int i = 0; i < serverEntries.size() && entries.size() > i + rowToFill; i++) {
+			entries.set(i + rowToFill, serverEntries.get(i));
+		}
+
+
+		adapter.setRowCount(realRowCount);
 		adapter.notifyDataSetChanged();
-
-		BaseListScreenlet screenlet = (BaseListScreenlet) getScreenlet();
 		adapter.setLabelFields(screenlet.getLabelFields());
 	}
 
@@ -104,7 +138,7 @@ public abstract class BaseListScreenletView<
 	}
 
 	@Override
-	public void showFinishOperation(int page, Exception e) {
+	public void showFinishOperation(int startRow, int endRow, Exception e) {
 		_progressBar.setVisibility(View.GONE);
 		_recyclerView.setVisibility(View.VISIBLE);
 		LiferayLogger.e(getContext().getString(R.string.loading_list_error), e);
@@ -221,29 +255,6 @@ public abstract class BaseListScreenletView<
 	}
 
 	protected abstract A createListAdapter(int itemLayoutId, int itemProgressLayoutId);
-
-	@NonNull
-	protected List<E> addNewServerEntries(List<E> serverEntries, int page, int rowCount) {
-		List<E> entries = getAdapter().getEntries();
-
-		BaseListScreenlet screenlet = (BaseListScreenlet) getScreenlet();
-		int row = screenlet.getFirstRowForPage(page) - _firstRow;
-
-		if (entries.isEmpty()) {
-			_firstRow = row;
-			row = 0;
-
-			//TODO better 'real' paginator
-			for (int i = 0; i < rowCount - _firstRow; i++) {
-				entries.add(null);
-			}
-		}
-
-		for (int i = 0; i < serverEntries.size() && entries.size() > i + row; i++) {
-			entries.set(i + row, serverEntries.get(i));
-		}
-		return entries;
-	}
 
 	protected int _firstRow = 0;
 	protected ProgressBar _progressBar;
