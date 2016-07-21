@@ -36,8 +36,12 @@ public class PdfDisplayScreenlet: BaseScreenlet {
 	//MARK: Public methods
 
 	override public func onShow() {
-		if autoLoad && entryId != 0 {
-			loadPdfAssetFromEntryId()
+		if autoLoad {
+			if fileEntry == nil {
+				loadPdfAssetFromEntryId()
+			} else {
+				loadPdfAssetFromFileEntry()
+			}
 		}
 	}
 
@@ -64,5 +68,9 @@ public class PdfDisplayScreenlet: BaseScreenlet {
 
 	public func loadPdfAssetFromEntryId() -> Bool {
 		return self.performDefaultAction()
+	}
+
+	public func loadPdfAssetFromFileEntry() {
+		(self.screenletView as! PdfDisplayViewModel).fileEntry = self.fileEntry
 	}
 }
