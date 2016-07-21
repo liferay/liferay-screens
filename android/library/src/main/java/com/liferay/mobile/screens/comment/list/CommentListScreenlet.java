@@ -139,6 +139,21 @@ public class CommentListScreenlet
 		changeToCommentDiscussion();
 	}
 
+	@Override public void onUpdateCommentSuccess(long commentId) {
+		if (getCommentListListener() != null) {
+			getCommentListListener().onUpdateCommentSuccess(commentId);
+		}
+		loadPage(0);
+	}
+
+	@Override
+	public void onUpdateCommentFailure(long commentId, Exception e) {
+		if (getCommentListListener() != null) {
+			getCommentListListener().onUpdateCommentFailure(commentId, e);
+		}
+		loadPage(0);
+	}
+
 	@Override protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
 			attributes, R.styleable.CommentListScreenlet, 0, 0);
