@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
@@ -40,15 +41,22 @@ public class CommentListView
 		_commentView = (CommentView) findViewById(R.id.discussion_comment);
 		_discussionSeparator = (ImageView) findViewById(R.id.comment_separator);
 		_emptyListTextView = (TextView) findViewById(R.id.comment_empty_list);
+		_goBackButton = (Button) findViewById(R.id.comment_go_back);
+
+		_goBackButton.setOnClickListener(new OnClickListener() {
+			@Override public void onClick(View v) {
+				if (_discussionComment != null) {
+					goBackToList();
+				}
+			}
+		});
 
 		_commentView.setListener(this);
 	}
 
 	@Override public boolean onKeyUp(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK && _discussionComment != null) {
-			clearAdapterEntries();
-			_emptyListTextView.setVisibility(GONE);
-			getScreenlet().performUserAction(BaseScreenlet.DEFAULT_ACTION, CommentListScreenlet.OUT_DISCUSSION_ACTION);
+			goBackToList();
 			return true;
 		}
 		return super.onKeyUp(keyCode, event);
@@ -83,9 +91,11 @@ public class CommentListView
 		_discussionComment = newRootComment;
 
 		if (newRootComment == null) {
+			_goBackButton.setVisibility(GONE);
 			_commentView.setVisibility(GONE);
 			_discussionSeparator.setVisibility(GONE);
 		} else {
+			_goBackButton.setVisibility(VISIBLE);
 			_commentView.setCommentEntry(newRootComment);
 			_commentView.reloadUserPortrait();
 			_commentView.hideRepliesCounter();
@@ -112,6 +122,12 @@ public class CommentListView
 		getAdapter().getEntries().clear();
 	}
 
+	private void goBackToList() {
+		clearAdapterEntries();
+		_emptyListTextView.setVisibility(GONE);
+		getScreenlet().performUserAction(BaseScreenlet.DEFAULT_ACTION, CommentListScreenlet.OUT_DISCUSSION_ACTION);
+	}
+
 	@Override public void onEditButtonClicked(long commentId, String newBody) {
 		clearAdapterEntries();
 		getScreenlet().performUserAction(CommentListScreenlet.UPDATE_COMMENT_ACTION, commentId, newBody);
@@ -123,7 +139,9 @@ public class CommentListView
 	}
 
 	private CommentEntry _discussionComment;
+
 	private CommentView _commentView;
 	private ImageView _discussionSeparator;
 	private TextView _emptyListTextView;
+	private Button _goBackButton;
 }

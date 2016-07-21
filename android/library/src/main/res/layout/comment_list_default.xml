@@ -10,9 +10,25 @@
 		android:layout_height="match_parent"
 		>
 
+		<Button
+			style="@style/default_button"
+			android:drawableLeft="@drawable/default_go_back"
+			android:drawableStart="@drawable/default_go_back"
+			android:id="@+id/comment_go_back"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="10dp"
+			android:layout_marginStart="10dp"
+			android:layout_marginTop="10dp"
+			android:layout_width="wrap_content"
+			android:text="@string/go_back"
+			android:visibility="gone"
+			tools:visibility="visible"
+			/>
+
 		<com.liferay.mobile.screens.comment.view.CommentView
 			android:id="@+id/discussion_comment"
 			android:layout_height="wrap_content"
+			android:layout_below="@+id/comment_go_back"
 			android:layout_width="match_parent"
 			android:visibility="gone"
 			tools:visibility="visible"
