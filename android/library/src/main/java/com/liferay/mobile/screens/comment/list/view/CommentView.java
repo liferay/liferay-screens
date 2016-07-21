@@ -7,9 +7,11 @@ import android.text.Html;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.ViewSwitcher;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.models.CommentEntry;
@@ -54,9 +56,9 @@ public class CommentView extends RelativeLayout {
 		int childCount = commentEntry.getChildCount();
 
 		if (childCount > 0) {
-			_childCountTextView.setVisibility(VISIBLE);
 			_childCountTextView.setText(getContext().getResources().getQuantityString(
 				R.plurals.number_replys, childCount, childCount));
+			_childCountTextView.setVisibility(VISIBLE);
 		} else {
 			_childCountTextView.setVisibility(GONE);
 		}
@@ -64,6 +66,11 @@ public class CommentView extends RelativeLayout {
 		if (commentEntry.getUserId() == SessionContext.getUserId()) {
 			_editImageButton.setVisibility(VISIBLE);
 			_deleteImageButton.setVisibility(VISIBLE);
+
+			_editBodyEditText.setOnClickListener(new OnClickListener() {
+				@Override public void onClick(View v) {
+				}
+			});
 
 			_editImageButton.setOnClickListener(new OnClickListener() {
 				@Override public void onClick(View v) {
@@ -116,6 +123,8 @@ public class CommentView extends RelativeLayout {
 		_childCountTextView = (TextView) findViewById(R.id.comment_child_number);
 		_editImageButton = (ImageButton) findViewById(R.id.comment_edit_button);
 		_deleteImageButton = (ImageButton) findViewById(R.id.comment_delete_button);
+		_editBodyEditText = (EditText) findViewById(R.id.comment_edit_body);
+		_viewSwitcher = (ViewSwitcher) findViewById(R.id.comment_view_switcher);
 	}
 
 	public void setHtmlBody(boolean htmlBody) {
@@ -146,9 +155,12 @@ public class CommentView extends RelativeLayout {
 	private TextView _childCountTextView;
 	private ImageButton _editImageButton;
 	private ImageButton _deleteImageButton;
+	private EditText _editBodyEditText;
+	private ViewSwitcher _viewSwitcher;
 
 	private CommentViewListener _listener;
 
 	private boolean _htmlBody;
 	private boolean _isDeleting;
+	private boolean _isEditing;
 }
