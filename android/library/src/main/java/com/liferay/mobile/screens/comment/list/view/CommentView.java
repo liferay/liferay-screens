@@ -33,7 +33,7 @@ public class CommentView extends RelativeLayout {
 	}
 
 	public void setCommentEntry(final CommentEntry commentEntry) {
-		resetDeletion();
+		deletionMode(false);
 
 		_userPortraitScreenlet.setUserId(commentEntry.getUserId());
 
@@ -80,15 +80,10 @@ public class CommentView extends RelativeLayout {
 
 			_deleteImageButton.setOnClickListener(new OnClickListener() {
 				@Override public void onClick(View v) {
-					if (_isDeleting) {
-						resetDeletion();
-						if (getListener() != null) {
-							getListener().onDeleteButtonClicked(commentEntry.getCommentId());
-						}
-					} else {
-						changeDeleteButtonBackgroundDrawable(R.drawable.default_button_selector_red);
-						_isDeleting = true;
+					if (_isDeleting && getListener() != null) {
+						getListener().onDeleteButtonClicked(commentEntry.getCommentId());
 					}
+					deletionMode(!_isDeleting);
 				}
 			});
 		} else {
@@ -97,9 +92,10 @@ public class CommentView extends RelativeLayout {
 		}
 	}
 
-	private void resetDeletion() {
-		_isDeleting = false;
-		changeDeleteButtonBackgroundDrawable(R.drawable.default_button_selector);
+	private void deletionMode(boolean on) {
+		_isDeleting = on;
+		changeDeleteButtonBackgroundDrawable(_isDeleting ? R.drawable.default_button_selector_red :
+			R.drawable.default_button_selector);
 	}
 
 	private void changeDeleteButtonBackgroundDrawable(int drawable) {
