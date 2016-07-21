@@ -37,7 +37,7 @@
 	<TextView
 		tools:text="15 minutes ago"
 		android:id="@+id/comment_create_date"
-		android:layout_above="@+id/comment_body"
+		android:layout_above="@+id/comment_view_switcher"
 		android:layout_below="@+id/comment_user_name"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="10dp"
@@ -53,7 +53,7 @@
 
 	<TextView
 		android:id="@+id/comment_edited"
-		android:layout_above="@+id/comment_body"
+		android:layout_above="@+id/comment_view_switcher"
 		android:layout_below="@+id/comment_user_name"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="10dp"
@@ -90,8 +90,8 @@
 
 	<ImageButton
 		android:id="@+id/comment_delete_button"
-		android:layout_alignEnd="@+id/comment_body"
-		android:layout_alignRight="@+id/comment_body"
+		android:layout_alignEnd="@+id/comment_view_switcher"
+		android:layout_alignRight="@+id/comment_view_switcher"
 		android:layout_height="wrap_content"
 		android:layout_marginTop="10dp"
 		android:layout_width="wrap_content"
@@ -101,8 +101,8 @@
 		style="@style/default_button"
 		/>
 
-	<TextView
-		android:id="@+id/comment_body"
+	<ViewSwitcher
+		android:id="@+id/comment_view_switcher"
 		android:layout_alignParentEnd="true"
 		android:layout_alignParentLeft="true"
 		android:layout_alignParentRight="true"
@@ -113,9 +113,26 @@
 		android:layout_marginLeft="10dp"
 		android:layout_marginStart="10dp"
 		android:layout_width="match_parent"
-		android:padding="0dp"
-		tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-		/>
+		>
+
+		<TextView
+			android:id="@+id/comment_body"
+			android:layout_height="match_parent"
+			android:layout_width="match_parent"
+			android:padding="0dp"
+			tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+			/>
+
+		<EditText
+			android:id="@+id/comment_edit_body"
+			android:focusable="true"
+			android:layout_height="match_parent"
+			android:layout_width="match_parent"
+			android:lines="3"
+			android:textSize="15sp"
+			/>
+
+	</ViewSwitcher>
 
 	<TextView
 		android:id="@+id/comment_child_number"
@@ -123,7 +140,7 @@
 		android:layout_alignParentLeft="true"
 		android:layout_alignParentRight="true"
 		android:layout_alignParentStart="true"
-		android:layout_below="@+id/comment_body"
+		android:layout_below="@+id/comment_view_switcher"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="10dp"
 		android:layout_marginLeft="10dp"
