@@ -56,8 +56,8 @@ public class DDLListView
 	}
 
 	@Override
-	public void showFinishOperation(int page, List<Record> entries, int rowCount) {
-		super.showFinishOperation(page, entries, rowCount);
+	public void showFinishOperation(int startRow, int endRow, List<Record> entries, int rowCount) {
+		super.showFinishOperation(startRow, endRow, entries, rowCount);
 
 		DDLListScreenlet screenlet = (DDLListScreenlet) getParent();
 

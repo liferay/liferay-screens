@@ -9,8 +9,8 @@ import java.util.List;
  */
 public interface BaseListViewModel<E> extends BaseViewModel {
 
-	void showFinishOperation(int page, List<E> entries, int rowCount);
+	void showFinishOperation(int startRow, int endRow, List<E> entries, int rowCount);
 
-	void showFinishOperation(int page, Exception e);
+	void showFinishOperation(int startRow, int endRow, Exception e);
 
 }

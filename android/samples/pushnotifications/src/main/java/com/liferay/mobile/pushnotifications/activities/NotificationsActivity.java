@@ -38,12 +38,12 @@ public class NotificationsActivity extends PushScreensActivity implements BaseLi
 	}
 
 	@Override
-	public void onListPageFailed(BaseListScreenlet baseListScreenlet, int i, Exception e) {
+	public void onListPageFailed(BaseListScreenlet source, int startRow, int endRow, Exception e) {
 
 	}
 
 	@Override
-	public void onListPageReceived(BaseListScreenlet baseListScreenlet, int i, List<Record> list, int i1) {
+	public void onListPageReceived(BaseListScreenlet source, int startRow, int endRow, List<Record> entries, int rowCount) {
 
 	}
 
