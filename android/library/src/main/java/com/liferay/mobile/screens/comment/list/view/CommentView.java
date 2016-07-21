@@ -34,6 +34,7 @@ public class CommentView extends RelativeLayout {
 
 	public void setCommentEntry(final CommentEntry commentEntry) {
 		deletionMode(false);
+		editionMode(false);
 
 		_userPortraitScreenlet.setUserId(commentEntry.getUserId());
 
@@ -69,12 +70,15 @@ public class CommentView extends RelativeLayout {
 
 			_editBodyEditText.setOnClickListener(new OnClickListener() {
 				@Override public void onClick(View v) {
+					editionMode(false);
+					editCommentBody(commentEntry.getCommentId());
 				}
 			});
 
 			_editImageButton.setOnClickListener(new OnClickListener() {
 				@Override public void onClick(View v) {
-					
+					editionMode(!_isEditing);
+					editCommentBody(commentEntry.getCommentId());
 				}
 			});
 
@@ -89,6 +93,27 @@ public class CommentView extends RelativeLayout {
 		} else {
 			_editImageButton.setVisibility(GONE);
 			_deleteImageButton.setVisibility(GONE);
+		}
+	}
+
+	private void editCommentBody(long commentId) {
+		if (!_isEditing) {
+			String editedText = _editBodyEditText.getText().toString();
+			if (getListener() != null && !editedText.equals(_bodyTextView.getText())) {
+				getListener().onEditButtonClicked(commentId, editedText);
+			}
+		}
+	}
+
+	private void editionMode(boolean on) {
+		_isEditing = on;
+		if (_isEditing) {
+			_editBodyEditText.setText(_bodyTextView.getText());
+			if (_viewSwitcher.getCurrentView() != _editBodyEditText) {
+				_viewSwitcher.showNext();
+			}
+		} else if(!_isEditing && _viewSwitcher.getCurrentView() != _bodyTextView) {
+			_viewSwitcher.showPrevious();
 		}
 	}
 
