@@ -11,4 +11,8 @@ public interface CommentListInteractorListener extends BaseListInteractorListene
 	void onDeleteCommentFailure(long commentId, Exception e);
 
 	void onDeleteCommentSuccess(long commentId);
+
+	void onUpdateCommentSuccess(long commentId);
+
+	void onUpdateCommentFailure(long commentId, Exception e);
 }

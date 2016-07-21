@@ -10,4 +10,8 @@ public interface CommentListListener extends BaseListListener<CommentEntry> {
 	void onDeleteCommentFailure(long commentId, Exception e);
 
 	void onDeleteCommentSuccess(long commentId);
+
+	void onUpdateCommentFailure(long commentId, Exception e);
+
+	void onUpdateCommentSuccess(long commentId);
 }
