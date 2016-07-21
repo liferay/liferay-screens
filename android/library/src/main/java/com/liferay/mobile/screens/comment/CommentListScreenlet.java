@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.comment.list;
+package com.liferay.mobile.screens.comment;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -8,14 +8,14 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
-import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorListener;
-import com.liferay.mobile.screens.comment.list.interactor.delete.CommentDeleteInteractor;
-import com.liferay.mobile.screens.comment.list.interactor.delete.CommentDeleteInteractorImpl;
-import com.liferay.mobile.screens.comment.list.interactor.list.CommentListInteractor;
-import com.liferay.mobile.screens.comment.list.interactor.list.CommentListInteractorImpl;
-import com.liferay.mobile.screens.comment.list.interactor.update.CommentUpdateInteractor;
-import com.liferay.mobile.screens.comment.list.interactor.update.CommentUpdateInteractorImpl;
-import com.liferay.mobile.screens.comment.list.view.CommentListViewModel;
+import com.liferay.mobile.screens.comment.interactor.CommentListInteractorListener;
+import com.liferay.mobile.screens.comment.interactor.delete.CommentDeleteInteractor;
+import com.liferay.mobile.screens.comment.interactor.delete.CommentDeleteInteractorImpl;
+import com.liferay.mobile.screens.comment.interactor.list.CommentListInteractor;
+import com.liferay.mobile.screens.comment.interactor.list.CommentListInteractorImpl;
+import com.liferay.mobile.screens.comment.interactor.update.CommentUpdateInteractor;
+import com.liferay.mobile.screens.comment.interactor.update.CommentUpdateInteractorImpl;
+import com.liferay.mobile.screens.comment.view.CommentListViewModel;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.models.CommentEntry;
 import java.util.Locale;
@@ -73,25 +73,40 @@ public class CommentListScreenlet
 	}
 
 	@Override protected void onUserAction(String actionName, Interactor interactor, Object... args) {
-		if (args.length == 2) {
-			switch ((String) args[0]) {
-				case IN_DISCUSSION_ACTION:
-					_discussionStack.push((CommentEntry) args[1]);
-					changeToCommentDiscussion();
-					break;
-			}
-		} else {
-			if (args[0] instanceof String && args[0] == OUT_DISCUSSION_ACTION) {
-				_discussionStack.pop();
-				changeToCommentDiscussion();
-			} else {
+		switch (actionName) {
+			case DEFAULT_ACTION:
+				switch ((String) args[0]) {
+					case IN_DISCUSSION_ACTION:
+						_discussionStack.push((CommentEntry) args[1]);
+						changeToCommentDiscussion();
+						break;
+					case OUT_DISCUSSION_ACTION:
+						_discussionStack.pop();
+						changeToCommentDiscussion();
+						break;
+					default:
+						break;
+				}
+				break;
+			case DELETE_COMMENT_ACTION:
 				long commentId = (long) args[0];
 				try {
 					((CommentDeleteInteractor) interactor).deleteComment(commentId);
 				} catch (Exception e) {
 					onDeleteCommentFailure(commentId, e);
 				}
-			}
+				break;
+			case UPDATE_COMMENT_ACTION:
+				long oldCommentId = (long) args[0];
+				String newBody = (String) args[1];
+				try {
+					((CommentUpdateInteractor) interactor).updateComment(_className, _classPK, oldCommentId, newBody);
+				} catch (Exception e) {
+					onUpdateCommentFailure(oldCommentId, e);
+				}
+				break;
+			default:
+				break;
 		}
 	}
 

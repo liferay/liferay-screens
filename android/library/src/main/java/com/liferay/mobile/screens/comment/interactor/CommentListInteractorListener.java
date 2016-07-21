@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.comment.list.interactor;
+package com.liferay.mobile.screens.comment.interactor;
 
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
 import com.liferay.mobile.screens.models.CommentEntry;

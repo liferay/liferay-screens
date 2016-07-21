@@ -2,11 +2,9 @@ package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
 import android.view.View;
-import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
-import com.liferay.mobile.screens.comment.list.CommentListListener;
-import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorListener;
-import com.liferay.mobile.screens.comment.list.CommentListScreenlet;
+import com.liferay.mobile.screens.comment.CommentListListener;
+import com.liferay.mobile.screens.comment.CommentListScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.models.CommentEntry;
 import java.util.List;

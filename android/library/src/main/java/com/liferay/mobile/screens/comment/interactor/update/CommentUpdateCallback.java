@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.comment.list.interactor.delete;
+package com.liferay.mobile.screens.comment.interactor.update;
 
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
@@ -7,14 +7,14 @@ import org.json.JSONObject;
 /**
  * @author Alejandro Hernández
  */
-public class CommentDeleteCallback extends JSONObjectCallback {
+public class CommentUpdateCallback extends JSONObjectCallback {
 
-	public CommentDeleteCallback(int targetScreenletId) {
+	public CommentUpdateCallback(int targetScreenletId) {
 		super(targetScreenletId);
 	}
 
 	@Override protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		return new CommentDeleteEvent(targetScreenletId, e);
+		return new CommentUpdateEvent(targetScreenletId, e);
 	}
 
 	@Override public JSONObject transform(Object obj) throws Exception {
@@ -22,6 +22,6 @@ public class CommentDeleteCallback extends JSONObjectCallback {
 	}
 
 	@Override protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {
-		return new CommentDeleteEvent(targetScreenletId, result);
+		return new CommentUpdateEvent(targetScreenletId, result);
 	}
 }

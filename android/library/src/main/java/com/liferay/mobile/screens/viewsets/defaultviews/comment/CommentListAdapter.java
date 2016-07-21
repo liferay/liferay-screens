@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.viewsets.defaultviews.comment.list;
+package com.liferay.mobile.screens.viewsets.defaultviews.comment;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -6,8 +6,8 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
-import com.liferay.mobile.screens.comment.list.view.CommentView;
-import com.liferay.mobile.screens.comment.list.view.CommentViewListener;
+import com.liferay.mobile.screens.comment.view.CommentView;
+import com.liferay.mobile.screens.comment.view.CommentViewListener;
 import com.liferay.mobile.screens.models.CommentEntry;
 
 /**

@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.viewsets.defaultviews.comment.list;
+package com.liferay.mobile.screens.viewsets.defaultviews.comment;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -9,12 +9,11 @@ import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
-import com.liferay.mobile.screens.comment.list.CommentListScreenlet;
-import com.liferay.mobile.screens.comment.list.view.CommentListViewModel;
-import com.liferay.mobile.screens.comment.list.view.CommentView;
-import com.liferay.mobile.screens.comment.list.view.CommentViewListener;
+import com.liferay.mobile.screens.comment.CommentListScreenlet;
+import com.liferay.mobile.screens.comment.view.CommentListViewModel;
+import com.liferay.mobile.screens.comment.view.CommentView;
+import com.liferay.mobile.screens.comment.view.CommentViewListener;
 import com.liferay.mobile.screens.models.CommentEntry;
-import com.liferay.mobile.screens.util.LiferayLogger;
 import java.util.List;
 
 /**
@@ -114,11 +113,13 @@ public class CommentListView
 	}
 
 	@Override public void onEditButtonClicked(long commentId, String newBody) {
+		clearAdapterEntries();
+		getScreenlet().performUserAction(CommentListScreenlet.UPDATE_COMMENT_ACTION, commentId, newBody);
 	}
 
 	@Override public void onDeleteButtonClicked(long commentId) {
 		clearAdapterEntries();
-		getScreenlet().performUserAction(CommentListScreenlet.DELETE_COMMENT, commentId);
+		getScreenlet().performUserAction(CommentListScreenlet.DELETE_COMMENT_ACTION, commentId);
 	}
 
 	private CommentEntry _discussionComment;
