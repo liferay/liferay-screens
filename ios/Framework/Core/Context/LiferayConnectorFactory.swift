@@ -126,6 +126,8 @@ public protocol LiferayConnectorFactory {
 		className: String,
 		ratingsGroupCount: Int32) -> RatingDeleteLiferayConnector?
 
+	func createImageGalleryDeleteConnector(imageEntryId: Int64) -> ImageGalleryDeleteConnector
+
 }
 
 
@@ -321,6 +323,10 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 	public func createRatingDeleteConnector(classPK classPK: Int64, className: String, ratingsGroupCount: Int32) -> RatingDeleteLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: RatingDeleteLiferayConnector")
 		return nil
+	}
+
+	public func createImageGalleryDeleteConnector(imageEntryId: Int64) -> ImageGalleryDeleteConnector {
+		return Liferay70ImageGalleryDeleteConnector(imageEntryId: imageEntryId)
 	}
 
 }
@@ -526,6 +532,10 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			classPK: classPK,
 			className: className,
 			ratingsGroupCount: ratingsGroupCount)
+	}
+
+	public func createImageGalleryDeleteConnector(imageEntryId: Int64) -> ImageGalleryDeleteConnector {
+		return Liferay70ImageGalleryDeleteConnector(imageEntryId: imageEntryId)
 	}
 
 }

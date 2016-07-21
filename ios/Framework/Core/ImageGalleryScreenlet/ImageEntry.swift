@@ -23,6 +23,10 @@ public class ImageEntry : Asset {
 	public var imageUrl: String {
 		return createImageUrl()
 	}
+
+	public var imageEntryId: Int64 {
+		return attributes["fileEntryId"]?.longLongValue ?? 0
+	}
     
     override public init(attributes: [String:AnyObject]) {
         super.init(attributes: attributes)
@@ -45,4 +49,9 @@ public class ImageEntry : Asset {
         return originalString.stringByAddingPercentEncodingWithAllowedCharacters(
             .URLHostAllowedCharacterSet()) ?? ""
     }
+}
+
+
+public func ==(lhs: ImageEntry, rhs: ImageEntry) -> Bool {
+	return lhs.imageEntryId == rhs.imageEntryId
 }

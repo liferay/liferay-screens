@@ -13,8 +13,16 @@
 */
 import Foundation
 
-@objc public protocol ImageGalleryViewModel {
-	var columnNumber: Int { set get }
+public class ImageGalleryDeleteInteractor: ServerWriteConnectorInteractor {
 
-	optional func onImageEntryDeleted(imageEntry: ImageEntry)
+	let imageEntryId: Int64
+
+	init(screenlet: BaseScreenlet?, imageEntryId: Int64) {
+		self.imageEntryId = imageEntryId
+		super.init(screenlet: screenlet)
+	}
+
+	public override func createConnector() -> ServerConnector? {
+		return LiferayServerContext.connectorFactory.createImageGalleryDeleteConnector(imageEntryId)
+	}
 }

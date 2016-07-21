@@ -23,11 +23,19 @@ import Foundation
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
 	                        onImageEntrySelected imageEntry: ImageEntry)
-	
+
+	optional func screenlet(screenlet: ImageGalleryScreenlet,
+	                        onImageEntryDeleted: ImageEntry)
+
+	optional func screenlet(screenlet: ImageGalleryScreenlet,
+	                        onImageEntryDeleteError: NSError)
+
 }
 
 
 @IBDesignable public class ImageGalleryScreenlet : BaseListScreenlet {
+
+	public static let DeleteImageAction = "deleteImage"
 
 	public static let DefaultColumns = 4
     
@@ -49,10 +57,14 @@ import Foundation
 	public var viewModel: ImageGalleryViewModel {
 		return screenletView as! ImageGalleryViewModel
 	}
+
+	public func deleteImageEntry(imageEntry: ImageEntry) {
+		performAction(name: ImageGalleryScreenlet.DeleteImageAction, sender: imageEntry)
+	}
     
     public override func createPageLoadInteractor(page page: Int, computeRowCount: Bool) -> BaseListPageLoadInteractor {
         
-        return ImageGalleryInteractor(screenlet: self,
+        return ImageGalleryLoadInteractor(screenlet: self,
                                       page: page,
                                       computeRowCount: computeRowCount,
                                       repositoryId: repositoryId,
@@ -73,5 +85,32 @@ import Foundation
 		super.onSelectedRow(row)
 		imageGalleryScreenletDelegate?.screenlet?(self, onImageEntrySelected: row as! ImageEntry)
 	}
-    
+
+	public override func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+		switch name {
+		case BaseListScreenlet.LoadInitialPageAction, BaseListScreenlet.LoadPageAction:
+			return super.createInteractor(name: name, sender: sender)
+		case ImageGalleryScreenlet.DeleteImageAction:
+			let imageEntry = sender as! ImageEntry
+			return createImageGalleryDeleteInteractor(imageEntry)
+		default:
+			return nil
+		}
+	}
+
+	internal func createImageGalleryDeleteInteractor(imageEntry: ImageEntry) -> ImageGalleryDeleteInteractor {
+		let interactor = ImageGalleryDeleteInteractor(screenlet: self, imageEntryId: imageEntry.imageEntryId)
+
+		interactor.onSuccess = {
+			self.imageGalleryScreenletDelegate?.screenlet?(self, onImageEntryDeleted: imageEntry)
+			self.viewModel.onImageEntryDeleted?(imageEntry)
+		}
+
+		interactor.onFailure = {
+			self.imageGalleryScreenletDelegate?.screenlet?(self, onImageEntryDeleteError: $0)
+		}
+		
+		return interactor
+	}
+
 }

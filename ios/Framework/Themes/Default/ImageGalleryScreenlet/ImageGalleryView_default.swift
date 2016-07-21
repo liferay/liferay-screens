@@ -28,6 +28,35 @@ public class ImageGalleryView_default: BaseListCollectionView, ImageGalleryViewM
 
 	var spacing: CGFloat = 1.0
 
+	public func onImageEntryDeleted(imageEntry: ImageEntry) {
+
+		var section: Int?
+		var sectionKey: String?
+		var rowIndex: Int?
+
+		for (keyIndex, key) in rows.keys.enumerate() {
+			for (index, row) in rows[key]!.enumerate() {
+				if let row = row as? ImageEntry {
+					if imageEntry == row {
+						section = keyIndex
+						sectionKey = key
+						rowIndex = index
+					}
+				}
+			}
+		}
+
+		guard let finalSection = section, finalRowIndex = rowIndex, finalSectionKey = sectionKey
+		else {
+			return
+		}
+
+		deleteRow(finalSectionKey, row: finalRowIndex)
+
+		let indexPath = NSIndexPath(forRow: finalRowIndex, inSection: finalSection)
+		collectionView?.deleteItemsAtIndexPaths([indexPath])
+	}
+
 	public override func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
 	}
