@@ -1,3 +1,4 @@
+
 /**
 * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
 *
@@ -13,7 +14,15 @@
 */
 import UIKit
 
-public class ImageGalleryView_default: BaseListCollectionView {
+public class ImageGalleryView_default: BaseListCollectionView, ImageGalleryViewModel {
+
+	// ImageGalleryViewModel
+
+	public var columnNumber = ImageGalleryScreenlet.DefaultColumns {
+		didSet {
+			changeLayout()
+		}
+	}
 
 	private let imageCellId = "ImageCellId"
 
@@ -31,14 +40,10 @@ public class ImageGalleryView_default: BaseListCollectionView {
 			collectionView?.registerNib(imageGalleryGridCellNib, forCellWithReuseIdentifier: imageCellId)
 		}
 	}
-
+	
 	public override func doCreateLayout() -> UICollectionViewLayout {
-		let layout = super.doCreateLayout() as! UICollectionViewFlowLayout
 
-		layout.minimumLineSpacing = spacing
-		layout.minimumInteritemSpacing = spacing
-
-		return layout
+		return createCustomLayout()
 	}
 
 	override public func doFillLoadedCell(indexPath indexPath: NSIndexPath, cell: UICollectionViewCell, object:AnyObject) {
@@ -62,12 +67,33 @@ public class ImageGalleryView_default: BaseListCollectionView {
 		return super.doGetCellId(indexPath: indexPath, object: object)
 	}
 
-	public override func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+	internal func cellWidthForNumberOfColumns(numCols: Int) -> CGFloat {
 
-		let screenRect = UIScreen.mainScreen().bounds
+		let horizontalMargins: CGFloat = 40
+		let viewWidth = collectionView!.bounds.width
 
-		let cellWidth = screenRect.width / 4 - spacing
+		let cellWidth =  (viewWidth - horizontalMargins) / CGFloat(numCols) - CGFloat(spacing)
 
-		return CGSize(width: cellWidth, height: cellWidth)
+		return cellWidth
+	}
+
+	internal func changeLayout() {
+		if let collectionView = collectionView {
+			let newLayout = createCustomLayout()
+			collectionView.setCollectionViewLayout(newLayout, animated: true)
+		}
+	}
+
+	internal func createCustomLayout() -> UICollectionViewLayout {
+		let layout = UICollectionViewFlowLayout()
+
+		layout.minimumLineSpacing = spacing
+		layout.minimumInteritemSpacing = spacing
+		layout.sectionInset = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+
+		let cellWidth = cellWidthForNumberOfColumns(columnNumber)
+		layout.itemSize = CGSize(width: cellWidth, height: cellWidth)
+
+		return layout
 	}
 }

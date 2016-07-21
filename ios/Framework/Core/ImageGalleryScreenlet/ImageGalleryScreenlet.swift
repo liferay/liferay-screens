@@ -28,14 +28,26 @@ import Foundation
 
 
 @IBDesignable public class ImageGalleryScreenlet : BaseListScreenlet {
+
+	public static let DefaultColumns = 4
     
     @IBInspectable public var repositoryId: Int64 = 0
     @IBInspectable public var folderId: Int64 = 0
     
     @IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
+	public var columNumber =  ImageGalleryScreenlet.DefaultColumns {
+		didSet {
+			viewModel.columnNumber = columNumber
+		}
+	}
+
 	public var imageGalleryScreenletDelegate: ImageGalleryScreenletDelegate? {
 		return delegate as? ImageGalleryScreenletDelegate
+	}
+
+	public var viewModel: ImageGalleryViewModel {
+		return screenletView as! ImageGalleryViewModel
 	}
     
     public override func createPageLoadInteractor(page page: Int, computeRowCount: Bool) -> BaseListPageLoadInteractor {
