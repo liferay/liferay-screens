@@ -124,6 +124,7 @@
 			/>
 
 		<EditText
+			style="@style/default_edit_text"
 			android:id="@+id/comment_edit_body"
 			android:focusable="true"
 			android:layout_height="match_parent"

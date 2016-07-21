@@ -107,11 +107,18 @@ public class CommentView extends RelativeLayout {
 
 	private void editionMode(boolean on) {
 		_isEditing = on;
+
+		_editImageButton.setImageResource(_isEditing ? R.drawable.default_comment_end_edit :
+			R.drawable.default_comment_edit);
+
 		if (_isEditing) {
+
 			_editBodyEditText.setText(_bodyTextView.getText());
+
 			if (_viewSwitcher.getCurrentView() != _editBodyEditText) {
 				_viewSwitcher.showNext();
 			}
+
 		} else if(!_isEditing && _viewSwitcher.getCurrentView() != _bodyTextView) {
 			_viewSwitcher.showPrevious();
 		}
