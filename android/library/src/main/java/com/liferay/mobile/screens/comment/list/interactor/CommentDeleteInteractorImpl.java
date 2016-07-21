@@ -15,6 +15,19 @@ public class CommentDeleteInteractorImpl extends BaseRemoteInteractor<CommentLis
 		super(targetScreenletId);
 	}
 
+	public void onEvent(CommentDeleteEvent event) {
+		if (!isValidEvent(event)) {
+			return;
+		}
+
+		if (event.isFailed()) {
+			getListener().onDeleteCommentFailure(_commentId, event.getException());
+		}
+		else {
+			getListener().onDeleteCommentSuccess(_commentId);
+		}
+	}
+
 	@Override
 	public void deleteComment(long commentId)
 		throws Exception {
@@ -26,6 +39,15 @@ public class CommentDeleteInteractorImpl extends BaseRemoteInteractor<CommentLis
 		CommentmanagerjsonwsService service = getCommentsService();
 
 		service.deleteComment(commentId);
+	}
+
+	protected CommentmanagerjsonwsService getCommentsService() {
+
+		Session session = SessionContext.createSessionFromCurrentSession();
+
+		session.setCallback(new CommentDeleteCallback(getTargetScreenletId()));
+
+		return new CommentmanagerjsonwsService(session);
 	}
 
 	protected void validate(long commentId) {
