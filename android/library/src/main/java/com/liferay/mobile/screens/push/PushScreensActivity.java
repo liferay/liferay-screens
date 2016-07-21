@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.push.Push;
 import com.liferay.mobile.screens.BuildConfig;
+import com.liferay.mobile.screens.context.LiferayPortalVersion;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
@@ -74,6 +76,8 @@ public abstract class PushScreensActivity extends AppCompatActivity
 			Session session = SessionContext.isLoggedIn() ?
 				SessionContext.createSessionFromCurrentSession() : getDefaultSession();
 			_push = Push.with(session);
+			LiferayPortalVersion portalVersion = LiferayServerContext.getPortalVersion();
+			_push.withPortalVersion(portalVersion.getVersion());
 
 			SharedPreferences preferences = getSharedPreferences();
 
@@ -117,6 +121,7 @@ public abstract class PushScreensActivity extends AppCompatActivity
 	private SharedPreferences getSharedPreferences() {
 		return getSharedPreferences(PUSH_PREFERENCES, Context.MODE_PRIVATE);
 	}
+
 	private Push _push;
 
 }

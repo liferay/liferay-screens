@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.context;
 
 import android.content.res.Resources;
 
+import com.liferay.mobile.android.util.PortalVersion;
 import com.liferay.mobile.screens.R;
 
 /**
@@ -78,6 +79,10 @@ public class LiferayServerContext {
 		return LiferayPortalVersion.VERSION_70.equals(_portalVersion);
 	}
 
+	public static LiferayPortalVersion getPortalVersion() {
+		return _portalVersion;
+	}
+
 	public static String getVersionFactory() {
 		return _versionFactory;
 	}
@@ -92,4 +97,5 @@ public class LiferayServerContext {
 	private static String _classFactory;
 	private static LiferayPortalVersion _portalVersion;
 	private static String _versionFactory;
+
 }
