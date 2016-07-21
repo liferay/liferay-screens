@@ -5,8 +5,11 @@ import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -68,10 +71,14 @@ public class CommentView extends RelativeLayout {
 			_editImageButton.setVisibility(VISIBLE);
 			_deleteImageButton.setVisibility(VISIBLE);
 
-			_editBodyEditText.setOnClickListener(new OnClickListener() {
-				@Override public void onClick(View v) {
-					editionMode(false);
-					editCommentBody(commentEntry.getCommentId());
+			_editBodyEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+				@Override public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+					if (actionId == EditorInfo.IME_ACTION_DONE) {
+						editionMode(false);
+						editCommentBody(commentEntry.getCommentId());
+						return true;
+					}
+					return false;
 				}
 			});
 
@@ -108,19 +115,26 @@ public class CommentView extends RelativeLayout {
 	private void editionMode(boolean on) {
 		_isEditing = on;
 
-		_editImageButton.setImageResource(_isEditing ? R.drawable.default_comment_end_edit :
-			R.drawable.default_comment_edit);
-
-		if (_isEditing) {
-
-			_editBodyEditText.setText(_bodyTextView.getText());
-
-			if (_viewSwitcher.getCurrentView() != _editBodyEditText) {
-				_viewSwitcher.showNext();
-			}
-
+		if (_isEditing && _viewSwitcher.getCurrentView() != _editBodyEditText) {
+			_viewSwitcher.showNext();
 		} else if(!_isEditing && _viewSwitcher.getCurrentView() != _bodyTextView) {
 			_viewSwitcher.showPrevious();
+		}
+
+		InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+		if (_isEditing) {
+			_editImageButton.setImageResource(R.drawable.default_comment_end_edit);
+
+			//Set selection at end of input
+			_editBodyEditText.requestFocus();
+			_editBodyEditText.setText("");
+			_editBodyEditText.append(_bodyTextView.getText());
+
+			imm.showSoftInput(_editBodyEditText, InputMethodManager.SHOW_FORCED);
+		} else {
+			_editImageButton.setImageResource(R.drawable.default_comment_edit);
+			
+			imm.hideSoftInputFromWindow(_editBodyEditText.getWindowToken(), 0);
 		}
 	}
 

@@ -127,6 +127,8 @@
 			style="@style/default_edit_text"
 			android:id="@+id/comment_edit_body"
 			android:focusable="true"
+			android:imeOptions="actionDone"
+			android:inputType="text"
 			android:layout_height="match_parent"
 			android:layout_width="match_parent"
 			android:lines="3"
