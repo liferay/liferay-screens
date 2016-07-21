@@ -42,6 +42,14 @@ public class CommentsActivity extends ThemeActivity implements CommentListListen
 		info(String.format("Comment with id: %d%n succesfully deleted", commentId));
 	}
 
+	@Override public void onUpdateCommentFailure(long commentId, Exception e) {
+		error(String.format("Error updating comment with id: %d%n", commentId), e);
+	}
+
+	@Override public void onUpdateCommentSuccess(long commentId) {
+		info(String.format("Comment with id: %d%n succesfully updated", commentId));
+	}
+
 	@Override public void onListPageFailed(BaseListScreenlet source, int page, Exception e) {
 		error(String.format("Error receiving page: %d", page), e);
 	}
