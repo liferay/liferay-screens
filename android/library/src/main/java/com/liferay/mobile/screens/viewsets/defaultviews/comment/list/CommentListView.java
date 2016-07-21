@@ -117,6 +117,7 @@ public class CommentListView
 	}
 
 	@Override public void onDeleteButtonClicked(long commentId) {
+		clearAdapterEntries();
 		getScreenlet().performUserAction(CommentListScreenlet.DELETE_COMMENT, commentId);
 	}
 
