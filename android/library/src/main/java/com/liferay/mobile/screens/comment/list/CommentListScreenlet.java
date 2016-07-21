@@ -8,11 +8,13 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorListener;
 import com.liferay.mobile.screens.comment.list.interactor.delete.CommentDeleteInteractor;
 import com.liferay.mobile.screens.comment.list.interactor.delete.CommentDeleteInteractorImpl;
 import com.liferay.mobile.screens.comment.list.interactor.list.CommentListInteractor;
 import com.liferay.mobile.screens.comment.list.interactor.list.CommentListInteractorImpl;
-import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorListener;
+import com.liferay.mobile.screens.comment.list.interactor.update.CommentUpdateInteractor;
+import com.liferay.mobile.screens.comment.list.interactor.update.CommentUpdateInteractorImpl;
 import com.liferay.mobile.screens.comment.list.view.CommentListViewModel;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.models.CommentEntry;
@@ -28,7 +30,8 @@ public class CommentListScreenlet
 
 	public static final String IN_DISCUSSION_ACTION = "in_discussion";
 	public static final String OUT_DISCUSSION_ACTION = "out_discussion";
-	public static final String DELETE_COMMENT = "delete_comment";
+	public static final String DELETE_COMMENT_ACTION = "delete_comment";
+	public static final String UPDATE_COMMENT_ACTION = "update_comment";
 
 	public CommentListScreenlet(Context context) {
 		super(context);
@@ -61,8 +64,10 @@ public class CommentListScreenlet
 
 	@Override protected Interactor createInteractor(String actionName) {
 		switch (actionName) {
-			case DELETE_COMMENT:
+			case DELETE_COMMENT_ACTION:
 				return new CommentDeleteInteractorImpl(getScreenletId());
+			case UPDATE_COMMENT_ACTION:
+				return new CommentUpdateInteractorImpl(getScreenletId());
 		}
 		return new CommentListInteractorImpl(getScreenletId(), _offlinePolicy);
 	}
