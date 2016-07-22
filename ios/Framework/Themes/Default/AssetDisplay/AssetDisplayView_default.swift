@@ -16,6 +16,12 @@ import UIKit
 
 public class AssetDisplayView_default: BaseScreenletView, AssetDisplayViewModel {
 
+	public override var progressMessages: [String : ProgressMessages] {
+		return [
+			BaseScreenlet.DefaultAction: [.Working: NoProgressMessage]
+		]
+	}
+
 	public var assetEntry: Asset? {
 		didSet {
 			if let asset = assetEntry {
