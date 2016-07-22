@@ -11,5 +11,9 @@
 		<item quantity="one">1 reply</item>
 		<item quantity="other">%1$d replies</item>
 	</plurals>
+	<string name="reply">Reply</string>
+	<string name="send">Send</string>
 	<string name="separator">separator</string>
+	<string name="type_your_comment">Type your comment</string>
+	<string name="type_your_reply">Type your reply</string>
 </resources>
