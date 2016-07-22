@@ -37,8 +37,12 @@ public class AudioDisplayScreenlet: BaseScreenlet {
 	//MARK: Public methods
 
 	override public func onShow() {
-		if autoLoad && entryId != 0 {
-			loadAudioAssetFromEntryId()
+		if autoLoad {
+			if fileEntry == nil {
+				loadAudioAssetFromEntryId()
+			} else {
+				loadAudioAssetFromFileEntry()
+			}
 		}
 	}
 
@@ -67,5 +71,10 @@ public class AudioDisplayScreenlet: BaseScreenlet {
 
 	public func loadAudioAssetFromEntryId() -> Bool {
 		return self.performDefaultAction()
+	}
+
+	public func loadAudioAssetFromFileEntry() {
+		(self.screenletView as! AudioDisplayViewModel).fileEntry = self.fileEntry!
+		(self.screenletView as! AudioDisplayViewModel).audioTitle = self.fileEntry!.title
 	}
 }
