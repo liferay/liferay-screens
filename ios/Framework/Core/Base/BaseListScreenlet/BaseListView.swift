@@ -88,6 +88,10 @@ public class BaseListView: BaseScreenletView {
 	public func onClearRows(oldRows:[String : [AnyObject?]]) {
 		
 	}
+
+	public func deleteRow(section: String, row: Int) {
+		_rows[section]?.removeAtIndex(row)
+	}
 	
 	public func rowsForSectionIndex(index: Int) -> [AnyObject?] {
 		let key = sections[index]
