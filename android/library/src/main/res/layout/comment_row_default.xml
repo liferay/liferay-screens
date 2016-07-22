@@ -18,6 +18,7 @@
 		/>
 
 	<ImageView
+		android:contentDescription="@string/arrow"
 		android:id="@+id/row_arrow"
 		android:layout_alignParentEnd="true"
 		android:layout_alignParentRight="true"

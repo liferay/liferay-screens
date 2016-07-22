@@ -35,6 +35,7 @@
 			/>
 
 		<ImageView
+			android:contentDescription="@string/separator"
 			android:id="@+id/comment_separator"
 			android:layout_below="@+id/discussion_comment"
 			android:layout_centerHorizontal="true"
