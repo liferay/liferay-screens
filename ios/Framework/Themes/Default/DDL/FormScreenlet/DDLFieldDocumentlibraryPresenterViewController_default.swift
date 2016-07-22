@@ -92,7 +92,6 @@ public class DDMFieldDocumentlibraryPresenterViewController_default:
 	}
 
 	@IBAction private func selectVideosAction(sender: AnyObject) {
-		cancelButtonAction(sender)
 
 		imagePicker.sourceType = .SavedPhotosAlbum
 		imagePicker.mediaTypes = [kUTTypeMovie as NSString as String]
