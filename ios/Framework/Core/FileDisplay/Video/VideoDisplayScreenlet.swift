@@ -37,8 +37,12 @@ public class VideoDisplayScreenlet: BaseScreenlet {
 	//MARK: Public methods
 
 	override public func onShow() {
-		if autoLoad && entryId != 0 {
-			loadVideoAssetFromEntryId()
+		if autoLoad {
+			if fileEntry == nil {
+				loadVideoAssetFromEntryId()
+			} else {
+				loadVideoAssetFromFileEntry()
+			}
 		}
 	}
 
@@ -66,5 +70,9 @@ public class VideoDisplayScreenlet: BaseScreenlet {
 
 	public func loadVideoAssetFromEntryId() -> Bool {
 		return self.performDefaultAction()
+	}
+
+	public func loadVideoAssetFromFileEntry() {
+		(self.screenletView as! VideoDisplayViewModel).fileEntry = self.fileEntry!
 	}
 }
