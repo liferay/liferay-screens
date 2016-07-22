@@ -54,6 +54,7 @@ public class AudioDisplayScreenlet: BaseScreenlet {
 				self.audioDisplayDelegate?.screenlet?(self, onAudioAssetResponse: self.fileEntry!)
 
 				(self.screenletView as! AudioDisplayViewModel).fileEntry = self.fileEntry!
+				(self.screenletView as! AudioDisplayViewModel).audioTitle = self.fileEntry!.title
 			}
 		}
 
