@@ -8,6 +8,10 @@ import com.liferay.mobile.screens.models.CommentEntry;
  */
 public interface CommentListInteractorListener extends BaseListInteractorListener<CommentEntry> {
 
+	void onAddCommentFailure(String body, Exception e);
+
+	void onAddCommentSuccess(CommentEntry commentEntry);
+
 	void onDeleteCommentFailure(long commentId, Exception e);
 
 	void onDeleteCommentSuccess(long commentId);
