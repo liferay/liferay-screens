@@ -137,6 +137,21 @@ public class CommentListScreenlet
 		}
 	}
 
+	@Override public void onAddCommentFailure(String body, Exception e) {
+		if (getCommentListListener() != null) {
+			getCommentListListener().onAddCommentFailure(body, e);
+		}
+		loadPage(0);
+	}
+
+	@Override public void onAddCommentSuccess(CommentEntry commentEntry) {
+		if (getCommentListListener() != null) {
+			getCommentListListener().onAddCommentSuccess(commentEntry);
+		}
+		_discussionStack.push(commentEntry);
+		changeToCommentDiscussion();
+	}
+
 	@Override public void onDeleteCommentFailure(long commentId, Exception e) {
 		if (getCommentListListener() != null) {
 			getCommentListListener().onDeleteCommentFailure(commentId, e);

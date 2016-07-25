@@ -48,13 +48,20 @@ public class CommentsActivity extends ThemeActivity implements CommentListListen
 		info(String.format("Comment with id: %d%n succesfully updated", commentId));
 	}
 
+	@Override public void onAddCommentFailure(String body, Exception e) {
+		error("Error adding comment", e);
+	}
+
+	@Override public void onAddCommentSuccess(CommentEntry commentEntry) {
+		//info(String.format("Comment succesfully added, new id: %d%n", commentEntry.getCommentId()));
+	}
+
 	@Override public void onListPageFailed(BaseListScreenlet source, int page, Exception e) {
 		error(String.format("Error receiving page: %d", page), e);
 	}
 
 	@Override
 	public void onListPageReceived(BaseListScreenlet source, int page, List<CommentEntry> entries, int rowCount) {
-		info(String.format("Page %d succesfully received", page));
 	}
 
 	@Override public void onListItemSelected(CommentEntry element, View view) {
