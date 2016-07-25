@@ -9,6 +9,8 @@ import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.comment.interactor.CommentListInteractorListener;
+import com.liferay.mobile.screens.comment.interactor.add.CommentAddInteractor;
+import com.liferay.mobile.screens.comment.interactor.add.CommentAddInteractorImpl;
 import com.liferay.mobile.screens.comment.interactor.delete.CommentDeleteInteractor;
 import com.liferay.mobile.screens.comment.interactor.delete.CommentDeleteInteractorImpl;
 import com.liferay.mobile.screens.comment.interactor.list.CommentListInteractor;
@@ -32,6 +34,7 @@ public class CommentListScreenlet
 	public static final String OUT_DISCUSSION_ACTION = "out_discussion";
 	public static final String DELETE_COMMENT_ACTION = "delete_comment";
 	public static final String UPDATE_COMMENT_ACTION = "update_comment";
+	public static final String ADD_COMMENT_ACTION = "add_comment";
 
 	public CommentListScreenlet(Context context) {
 		super(context);
@@ -68,6 +71,8 @@ public class CommentListScreenlet
 				return new CommentDeleteInteractorImpl(getScreenletId());
 			case UPDATE_COMMENT_ACTION:
 				return new CommentUpdateInteractorImpl(getScreenletId());
+			case ADD_COMMENT_ACTION:
+				return new CommentAddInteractorImpl(getScreenletId());
 		}
 		return new CommentListInteractorImpl(getScreenletId(), _offlinePolicy);
 	}
@@ -105,6 +110,14 @@ public class CommentListScreenlet
 					onUpdateCommentFailure(oldCommentId, e);
 				}
 				break;
+			case ADD_COMMENT_ACTION:
+				String body = (String) args[0];
+				try {
+					long parentCommentId = _discussionStack.empty() ? 0 : getLastCommentInStack().getCommentId();
+					((CommentAddInteractor) interactor).addComment(_groupId, _className, _classPK, parentCommentId, body);
+				} catch (Exception e) {
+					onAddCommentFailure(body, e);
+				}
 			default:
 				break;
 		}
