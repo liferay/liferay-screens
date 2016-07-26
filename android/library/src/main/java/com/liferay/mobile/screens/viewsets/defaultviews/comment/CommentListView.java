@@ -1,6 +1,8 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.comment;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
@@ -16,7 +18,9 @@ import com.liferay.mobile.screens.comment.view.CommentListViewModel;
 import com.liferay.mobile.screens.comment.view.CommentView;
 import com.liferay.mobile.screens.comment.view.CommentViewListener;
 import com.liferay.mobile.screens.models.CommentEntry;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * @author Alejandro Hernández
@@ -37,6 +41,28 @@ public class CommentListView
 		super(context, attributes, defaultStyle);
 	}
 
+	@Override protected Parcelable onSaveInstanceState() {
+		Bundle bundle = (Bundle) super.onSaveInstanceState();
+		Stack<CommentEntry> stack = getCommentScreenlet().getDiscussionStack();
+		ArrayList<CommentEntry> discussion = new ArrayList<>(stack);
+		bundle.putParcelableArrayList("stack", discussion);
+		return bundle;
+	}
+
+	private CommentListScreenlet getCommentScreenlet() {
+		return (CommentListScreenlet) getScreenlet();
+	}
+
+	@Override protected void onRestoreInstanceState(Parcelable inState) {
+		Bundle state = (Bundle) inState;
+		ArrayList<CommentEntry> discussion = state.getParcelableArrayList("stack");
+		Stack<CommentEntry> stack = new Stack<>();
+		stack.addAll(discussion);
+		getCommentScreenlet().setDiscussionStack(stack);
+		changeToCommentDiscussion(stack.empty() ? null : stack.peek());
+		super.onRestoreInstanceState(inState);
+	}
+
 	@Override protected void onFinishInflate() {
 		super.onFinishInflate();
 		_commentView = (CommentView) findViewById(R.id.discussion_comment);
@@ -50,6 +76,8 @@ public class CommentListView
 		_sendButton.setOnClickListener(this);
 
 		_commentView.setListener(this);
+
+		setFocusableInTouchMode(true);
 	}
 
 	@Override public boolean onKeyUp(int keyCode, KeyEvent event) {
@@ -105,6 +133,8 @@ public class CommentListView
 			_discussionSeparator.setVisibility(VISIBLE);
 			_addCommentEditText.setHint(R.string.type_your_reply);
 			_sendButton.setText(R.string.reply);
+
+			requestFocus();
 		}
 	}
 
@@ -112,7 +142,6 @@ public class CommentListView
 	public void onItemClick(int position, View view) {
 		super.onItemClick(position, view);
 
-		setFocusableInTouchMode(true);
 		requestFocus();
 
 		CommentEntry newRootComment = getAdapter().getEntries().get(position);

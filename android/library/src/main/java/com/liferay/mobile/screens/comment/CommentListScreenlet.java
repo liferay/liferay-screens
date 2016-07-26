@@ -269,6 +269,14 @@ public class CommentListScreenlet
 		return (CommentListViewModel) getViewModel();
 	}
 
+	public void setDiscussionStack(Stack<CommentEntry> discussionStack) {
+		this._discussionStack = discussionStack;
+	}
+
+	public Stack<CommentEntry> getDiscussionStack() {
+		return _discussionStack;
+	}
+
 	private OfflinePolicy _offlinePolicy;
 	private String _className;
 	private long _classPK;
