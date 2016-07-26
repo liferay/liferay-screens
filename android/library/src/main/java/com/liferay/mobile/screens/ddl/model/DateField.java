@@ -32,6 +32,10 @@ import java.util.TimeZone;
  */
 public class DateField extends Field<Date> {
 
+	public DateField() {
+		super();
+	}
+
 	public static final Parcelable.ClassLoaderCreator<DateField> CREATOR =
 		new Parcelable.ClassLoaderCreator<DateField>() {
 

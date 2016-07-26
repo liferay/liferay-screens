@@ -34,6 +34,10 @@ import java.util.Map;
  */
 public class Record extends AssetEntry implements WithDDM, Parcelable {
 
+	public Record() {
+		super();
+	}
+
 	public static final Parcelable.ClassLoaderCreator<Record> CREATOR =
 		new ClassLoaderCreator<Record>() {
 
