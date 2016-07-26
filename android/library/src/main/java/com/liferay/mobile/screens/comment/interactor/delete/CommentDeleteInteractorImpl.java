@@ -23,15 +23,12 @@ public class CommentDeleteInteractorImpl extends BaseRemoteInteractor<CommentLis
 
 		if (event.isFailed()) {
 			getListener().onDeleteCommentFailure(_commentId, event.getException());
-		}
-		else {
+		} else {
 			getListener().onDeleteCommentSuccess(_commentId);
 		}
 	}
 
-	@Override
-	public void deleteComment(long commentId)
-		throws Exception {
+	@Override public void deleteComment(long commentId) throws Exception {
 
 		validate(commentId);
 
@@ -54,8 +51,7 @@ public class CommentDeleteInteractorImpl extends BaseRemoteInteractor<CommentLis
 	protected void validate(long commentId) {
 
 		if (commentId <= 0) {
-			throw new IllegalArgumentException(
-				"commentId cannot be 0 or negative");
+			throw new IllegalArgumentException("commentId cannot be 0 or negative");
 		}
 	}
 

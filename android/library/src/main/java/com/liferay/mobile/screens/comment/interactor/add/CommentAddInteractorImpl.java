@@ -24,14 +24,14 @@ public class CommentAddInteractorImpl extends BaseRemoteInteractor<CommentListIn
 
 		if (event.isFailed()) {
 			getListener().onAddCommentFailure(_body, event.getException());
-		}
-		else {
+		} else {
 			getListener().onAddCommentSuccess(new CommentEntry(event.getCommentId(), _body));
 		}
 	}
 
-	@Override public void addComment(long groupId, String className, long classPK, long parentCommentId, String body)
-		throws Exception {
+	@Override
+	public void addComment(long groupId, String className, long classPK, long parentCommentId,
+		String body) throws Exception {
 
 		validate(groupId, className, classPK, parentCommentId, body);
 
@@ -55,21 +55,18 @@ public class CommentAddInteractorImpl extends BaseRemoteInteractor<CommentListIn
 		return new CommentmanagerjsonwsService(session);
 	}
 
-	protected void validate(long groupId, String className, long classPK, long parentCommentId, String body) {
+	protected void validate(long groupId, String className, long classPK, long parentCommentId,
+		String body) {
 
 		if (body.isEmpty()) {
-			throw new IllegalArgumentException(
-				"comment body cannot be empty");
+			throw new IllegalArgumentException("comment body cannot be empty");
 		} else if (parentCommentId <= 0) {
 			if (groupId <= 0) {
-				throw new IllegalArgumentException(
-					"groupId must be greater than 0");
+				throw new IllegalArgumentException("groupId must be greater than 0");
 			} else if (className.isEmpty()) {
-				throw new IllegalArgumentException(
-					"className cannot be empty");
+				throw new IllegalArgumentException("className cannot be empty");
 			} else if (classPK <= 0) {
-				throw new IllegalArgumentException(
-					"classPK must be greater than 0");
+				throw new IllegalArgumentException("classPK must be greater than 0");
 			}
 		}
 	}

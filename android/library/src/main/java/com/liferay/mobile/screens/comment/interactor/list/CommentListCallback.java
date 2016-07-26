@@ -11,7 +11,8 @@ import java.util.Map;
  */
 public class CommentListCallback extends BaseListCallback<CommentEntry> {
 
-	public CommentListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange, Locale locale) {
+	public CommentListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange,
+		Locale locale) {
 		super(targetScreenletId, rowsRange, locale);
 	}
 

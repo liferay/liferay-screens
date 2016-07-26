@@ -7,6 +7,5 @@ import com.liferay.mobile.screens.comment.interactor.CommentListInteractorListen
  * @author Alejandro Hernández
  */
 public interface CommentDeleteInteractor extends Interactor<CommentListInteractorListener> {
-	void deleteComment(long commentId)
-		throws Exception;
+	void deleteComment(long commentId) throws Exception;
 }

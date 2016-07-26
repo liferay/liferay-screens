@@ -13,13 +13,16 @@ import com.liferay.mobile.screens.models.CommentEntry;
 /**
  * @author Alejandro Hernández
  */
-public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentListAdapter.CommentViewHolder> {
+public class CommentListAdapter
+	extends BaseListAdapter<CommentEntry, CommentListAdapter.CommentViewHolder> {
 
-	public CommentListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener, Context context) {
+	public CommentListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener,
+		Context context) {
 		super(layoutId, progressLayoutId, listener);
 	}
 
-	@NonNull @Override public CommentViewHolder createViewHolder(View view, BaseListAdapterListener listener) {
+	@NonNull @Override
+	public CommentViewHolder createViewHolder(View view, BaseListAdapterListener listener) {
 		return new CommentViewHolder(view, listener);
 	}
 

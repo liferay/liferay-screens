@@ -31,7 +31,8 @@ public class CommentView extends RelativeLayout {
 	public CommentView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
-		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		LayoutInflater inflater =
+			(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		inflater.inflate(R.layout.comment_view, this, true);
 	}
 
@@ -54,14 +55,15 @@ public class CommentView extends RelativeLayout {
 		if (_htmlBody) {
 			_bodyTextView.setText(Html.fromHtml(commentEntry.getBody()));
 		} else {
-			_bodyTextView.setText(Html.fromHtml(commentEntry.getBody()).toString().replaceAll("\n", "").trim());
+			_bodyTextView.setText(
+				Html.fromHtml(commentEntry.getBody()).toString().replaceAll("\n", "").trim());
 		}
 
 		int childCount = commentEntry.getChildCount();
 
 		if (childCount > 0) {
-			_childCountTextView.setText(getContext().getResources().getQuantityString(
-				R.plurals.number_replys, childCount, childCount));
+			_childCountTextView.setText(getContext().getResources()
+				.getQuantityString(R.plurals.number_replys, childCount, childCount));
 			_childCountTextView.setVisibility(VISIBLE);
 		} else {
 			_childCountTextView.setVisibility(GONE);
@@ -117,11 +119,12 @@ public class CommentView extends RelativeLayout {
 
 		if (_isEditing && _viewSwitcher.getCurrentView() != _editBodyEditText) {
 			_viewSwitcher.showNext();
-		} else if(!_isEditing && _viewSwitcher.getCurrentView() != _bodyTextView) {
+		} else if (!_isEditing && _viewSwitcher.getCurrentView() != _bodyTextView) {
 			_viewSwitcher.showPrevious();
 		}
 
-		InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+		InputMethodManager imm =
+			(InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 		if (_isEditing) {
 			_editImageButton.setImageResource(R.drawable.default_comment_end_edit);
 
@@ -133,21 +136,20 @@ public class CommentView extends RelativeLayout {
 			imm.showSoftInput(_editBodyEditText, InputMethodManager.SHOW_FORCED);
 		} else {
 			_editImageButton.setImageResource(R.drawable.default_comment_edit);
-			
+
 			imm.hideSoftInputFromWindow(_editBodyEditText.getWindowToken(), 0);
 		}
 	}
 
 	private void deletionMode(boolean on) {
 		_isDeleting = on;
-		changeDeleteButtonBackgroundDrawable(_isDeleting ? R.drawable.default_button_selector_red :
-			R.drawable.default_button_selector);
+		changeDeleteButtonBackgroundDrawable(_isDeleting ? R.drawable.default_button_selector_red
+			: R.drawable.default_button_selector);
 	}
 
 	private void changeDeleteButtonBackgroundDrawable(int drawable) {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-			_deleteImageButton.setBackground(
-				ContextCompat.getDrawable(getContext(), drawable));
+			_deleteImageButton.setBackground(ContextCompat.getDrawable(getContext(), drawable));
 		} else {
 			_deleteImageButton.setBackgroundDrawable(
 				ContextCompat.getDrawable(getContext(), drawable));

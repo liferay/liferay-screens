@@ -12,19 +12,15 @@ public class CommentAddCallback extends InteractorAsyncTaskCallback<Long> {
 		super(targetScreenletId);
 	}
 
-	@Override
-	public Long transform(Object obj) throws Exception {
+	@Override public Long transform(Object obj) throws Exception {
 		return Long.valueOf((String) obj);
 	}
 
-	@Override
-	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
+	@Override protected BasicEvent createEvent(int targetScreenletId, Exception e) {
 		return new CommentAddEvent(targetScreenletId, e);
 	}
 
-	@Override
-	protected BasicEvent createEvent(int targetScreenletId, Long result) {
+	@Override protected BasicEvent createEvent(int targetScreenletId, Long result) {
 		return new CommentAddEvent(targetScreenletId, result);
 	}
-
 }

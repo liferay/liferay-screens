@@ -53,11 +53,9 @@ public class CommentUpdateInteractorImpl extends BaseRemoteInteractor<CommentLis
 	protected void validate(long commentId, String newBody) {
 
 		if (commentId <= 0) {
-			throw new IllegalArgumentException(
-				"commentId cannot be 0 or negative");
+			throw new IllegalArgumentException("commentId cannot be 0 or negative");
 		} else if (newBody.isEmpty()) {
-			throw new IllegalArgumentException(
-				"new body for comment cannot be empty");
+			throw new IllegalArgumentException("new body for comment cannot be empty");
 		}
 	}
 

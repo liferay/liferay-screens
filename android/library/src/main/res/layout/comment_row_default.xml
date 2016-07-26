@@ -2,30 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:paddingEnd="10dp"
-	android:paddingRight="10dp"
 	android:clickable="true"
 	android:focusable="true"
 	android:foreground="?android:selectableItemBackground"
+	android:paddingEnd="10dp"
+	android:paddingRight="10dp"
 	>
 
 	<com.liferay.mobile.screens.comment.view.CommentView
 		android:id="@+id/comment_view"
-		android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
 		android:layout_toLeftOf="@+id/row_arrow"
 		android:layout_toStartOf="@+id/row_arrow"
 		/>
 
 	<ImageView
-		android:contentDescription="@string/arrow"
 		android:id="@+id/row_arrow"
+		android:layout_width="20dp"
+		android:layout_height="match_parent"
 		android:layout_alignParentEnd="true"
 		android:layout_alignParentRight="true"
 		android:layout_centerInParent="true"
+		android:contentDescription="@string/arrow"
 		android:src="@drawable/default_arrow"
-		android:layout_width="20dp"
-		android:layout_height="match_parent"
 		/>
 
 </RelativeLayout>

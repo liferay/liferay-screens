@@ -11,8 +11,8 @@ import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.comment.interactor.CommentListInteractorListener;
 import com.liferay.mobile.screens.models.CommentEntry;
 import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
-import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.JSONUtil;
+import com.liferay.mobile.screens.util.LiferayLocale;
 import java.util.Locale;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,9 +31,9 @@ public class CommentListInteractorImpl
 		super(targetScreenletId, offlinePolicy);
 	}
 
-	@Override public void loadRows(long groupId, String className, long classPK,
-		long commentId, int startRow, int endRow)
-		throws Exception {
+	@Override
+	public void loadRows(long groupId, String className, long classPK, long commentId, int startRow,
+		int endRow) throws Exception {
 
 		validate(groupId, className, classPK, commentId);
 
@@ -47,7 +47,8 @@ public class CommentListInteractorImpl
 		processWithCache(startRow, endRow, locale);
 	}
 
-	@NonNull @Override protected CommentEntry getElement(TableCache tableCache) throws JSONException {
+	@NonNull @Override protected CommentEntry getElement(TableCache tableCache)
+		throws JSONException {
 		return new CommentEntry(JSONUtil.toMap(new JSONObject(tableCache.getContent())));
 	}
 
@@ -55,11 +56,13 @@ public class CommentListInteractorImpl
 		return new JSONObject(commentEntry.getValues()).toString();
 	}
 
-	@Override protected BaseListCallback<CommentEntry> getCallback(Pair<Integer, Integer> rowsRange, Locale locale) {
+	@Override protected BaseListCallback<CommentEntry> getCallback(Pair<Integer, Integer> rowsRange,
+		Locale locale) {
 		return new CommentListCallback(getTargetScreenletId(), rowsRange, locale);
 	}
 
-	@Override protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale)
+	@Override
+	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale)
 		throws Exception {
 		CommentmanagerjsonwsService service = getCommentsService(session);
 		if (_commentId != 0) {
@@ -82,7 +85,8 @@ public class CommentListInteractorImpl
 		final int startRow = (int) args[0];
 		final int endRow = (int) args[1];
 
-		return recoverRows(getId(), ASSET_LIST, ASSET_LIST_COUNT, _groupId, null, null, startRow, endRow);
+		return recoverRows(getId(), ASSET_LIST, ASSET_LIST_COUNT, _groupId, null, null, startRow,
+			endRow);
 	}
 
 	@Override protected void storeToCache(BaseListEvent event, Object... args) {
@@ -103,14 +107,11 @@ public class CommentListInteractorImpl
 	protected void validate(long groupId, String className, long classPK, long commentId) {
 		if (commentId <= 0) {
 			if (groupId <= 0) {
-				throw new IllegalArgumentException(
-					"groupId must be greater than 0");
+				throw new IllegalArgumentException("groupId must be greater than 0");
 			} else if (className.isEmpty()) {
-				throw new IllegalArgumentException(
-					"className cannot be empty");
+				throw new IllegalArgumentException("className cannot be empty");
 			} else if (classPK <= 0) {
-				throw new IllegalArgumentException(
-					"classPK must be greater than 0");
+				throw new IllegalArgumentException("classPK must be greater than 0");
 			}
 		}
 	}

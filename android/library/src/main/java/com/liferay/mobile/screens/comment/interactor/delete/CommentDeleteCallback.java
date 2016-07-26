@@ -13,12 +13,12 @@ public class CommentDeleteCallback extends JSONObjectCallback {
 		super(targetScreenletId);
 	}
 
-	@Override protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		return new CommentDeleteEvent(targetScreenletId, e);
-	}
-
 	@Override public JSONObject transform(Object obj) throws Exception {
 		return new JSONObject();
+	}
+
+	@Override protected BasicEvent createEvent(int targetScreenletId, Exception e) {
+		return new CommentDeleteEvent(targetScreenletId, e);
 	}
 
 	@Override protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {

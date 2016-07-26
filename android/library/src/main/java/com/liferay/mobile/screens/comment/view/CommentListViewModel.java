@@ -6,10 +6,9 @@ import com.liferay.mobile.screens.models.CommentEntry;
 /**
  * @author Alejandro Hernández
  */
-public interface CommentListViewModel extends BaseListViewModel<CommentEntry>{
+public interface CommentListViewModel extends BaseListViewModel<CommentEntry> {
 
 	void setHtmlBody(boolean htmlBody);
 
 	void changeToCommentDiscussion(CommentEntry commentEntry);
-
 }

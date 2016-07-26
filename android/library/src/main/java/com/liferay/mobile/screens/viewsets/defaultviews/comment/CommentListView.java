@@ -25,8 +25,8 @@ import java.util.Stack;
 /**
  * @author Alejandro Hernández
  */
-public class CommentListView
-	extends BaseListScreenletView<CommentEntry, CommentListAdapter.CommentViewHolder, CommentListAdapter>
+public class CommentListView extends
+	BaseListScreenletView<CommentEntry, CommentListAdapter.CommentViewHolder, CommentListAdapter>
 	implements CommentListViewModel, CommentViewListener, View.OnClickListener {
 
 	public CommentListView(Context context) {
@@ -41,43 +41,8 @@ public class CommentListView
 		super(context, attributes, defaultStyle);
 	}
 
-	@Override protected Parcelable onSaveInstanceState() {
-		Bundle bundle = (Bundle) super.onSaveInstanceState();
-		Stack<CommentEntry> stack = getCommentScreenlet().getDiscussionStack();
-		ArrayList<CommentEntry> discussion = new ArrayList<>(stack);
-		bundle.putParcelableArrayList("stack", discussion);
-		return bundle;
-	}
-
 	private CommentListScreenlet getCommentScreenlet() {
 		return (CommentListScreenlet) getScreenlet();
-	}
-
-	@Override protected void onRestoreInstanceState(Parcelable inState) {
-		Bundle state = (Bundle) inState;
-		ArrayList<CommentEntry> discussion = state.getParcelableArrayList("stack");
-		Stack<CommentEntry> stack = new Stack<>();
-		stack.addAll(discussion);
-		getCommentScreenlet().setDiscussionStack(stack);
-		changeToCommentDiscussion(stack.empty() ? null : stack.peek());
-		super.onRestoreInstanceState(inState);
-	}
-
-	@Override protected void onFinishInflate() {
-		super.onFinishInflate();
-		_commentView = (CommentView) findViewById(R.id.discussion_comment);
-		_discussionSeparator = (ImageView) findViewById(R.id.comment_separator);
-		_emptyListTextView = (TextView) findViewById(R.id.comment_empty_list);
-		_goBackButton = (Button) findViewById(R.id.comment_go_back);
-		_sendButton = (Button) findViewById(R.id.comment_send);
-		_addCommentEditText = (EditText) findViewById(R.id.comment_add);
-
-		_goBackButton.setOnClickListener(this);
-		_sendButton.setOnClickListener(this);
-
-		_commentView.setListener(this);
-
-		setFocusableInTouchMode(true);
 	}
 
 	@Override public boolean onKeyUp(int keyCode, KeyEvent event) {
@@ -88,34 +53,12 @@ public class CommentListView
 		return super.onKeyUp(keyCode, event);
 	}
 
-	@Override protected CommentListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
-		return new CommentListAdapter(itemLayoutId, itemProgressLayoutId, this, getContext());
-	}
-
-	@Override public void showFinishOperation(int page, List<CommentEntry> serverEntries, int rowCount) {
-		super.showFinishOperation(page, serverEntries, rowCount);
-
-		_sendButton.setEnabled(true);
-
-		if (getAdapter().getEntries().isEmpty()) {
-			_emptyListTextView.setText(_discussionComment != null ? R.string.empty_replies : R.string.empty_comments);
-			_emptyListTextView.setVisibility(VISIBLE);
-		} else {
-			_emptyListTextView.setVisibility(GONE);
-		}
-	}
-
-	@Override protected int getItemLayoutId() {
-		return R.layout.comment_row_default;
-	}
-
 	@Override public void setHtmlBody(boolean htmlBody) {
 		getAdapter().setHtmlBody(htmlBody);
 		_commentView.setHtmlBody(htmlBody);
 	}
 
-	@Override
-	public void changeToCommentDiscussion(CommentEntry newRootComment) {
+	@Override public void changeToCommentDiscussion(CommentEntry newRootComment) {
 		_discussionComment = newRootComment;
 
 		if (newRootComment == null) {
@@ -138,8 +81,7 @@ public class CommentListView
 		}
 	}
 
-	@Override
-	public void onItemClick(int position, View view) {
+	@Override public void onItemClick(int position, View view) {
 		super.onItemClick(position, view);
 
 		requestFocus();
@@ -148,7 +90,67 @@ public class CommentListView
 
 		clearAdapterEntries();
 
-		getScreenlet().performUserAction(BaseScreenlet.DEFAULT_ACTION, CommentListScreenlet.IN_DISCUSSION_ACTION, newRootComment);
+		getScreenlet().performUserAction(BaseScreenlet.DEFAULT_ACTION,
+			CommentListScreenlet.IN_DISCUSSION_ACTION, newRootComment);
+	}
+
+	@Override
+	public void showFinishOperation(int page, List<CommentEntry> serverEntries, int rowCount) {
+		super.showFinishOperation(page, serverEntries, rowCount);
+
+		_sendButton.setEnabled(true);
+
+		if (getAdapter().getEntries().isEmpty()) {
+			_emptyListTextView.setText(
+				_discussionComment != null ? R.string.empty_replies : R.string.empty_comments);
+			_emptyListTextView.setVisibility(VISIBLE);
+		} else {
+			_emptyListTextView.setVisibility(GONE);
+		}
+	}
+
+	@Override protected void onRestoreInstanceState(Parcelable inState) {
+		Bundle state = (Bundle) inState;
+		ArrayList<CommentEntry> discussion = state.getParcelableArrayList("stack");
+		Stack<CommentEntry> stack = new Stack<>();
+		stack.addAll(discussion);
+		getCommentScreenlet().setDiscussionStack(stack);
+		changeToCommentDiscussion(stack.empty() ? null : stack.peek());
+		super.onRestoreInstanceState(inState);
+	}
+
+	@Override protected Parcelable onSaveInstanceState() {
+		Bundle bundle = (Bundle) super.onSaveInstanceState();
+		Stack<CommentEntry> stack = getCommentScreenlet().getDiscussionStack();
+		ArrayList<CommentEntry> discussion = new ArrayList<>(stack);
+		bundle.putParcelableArrayList("stack", discussion);
+		return bundle;
+	}
+
+	@Override protected void onFinishInflate() {
+		super.onFinishInflate();
+		_commentView = (CommentView) findViewById(R.id.discussion_comment);
+		_discussionSeparator = (ImageView) findViewById(R.id.comment_separator);
+		_emptyListTextView = (TextView) findViewById(R.id.comment_empty_list);
+		_goBackButton = (Button) findViewById(R.id.comment_go_back);
+		_sendButton = (Button) findViewById(R.id.comment_send);
+		_addCommentEditText = (EditText) findViewById(R.id.comment_add);
+
+		_goBackButton.setOnClickListener(this);
+		_sendButton.setOnClickListener(this);
+
+		_commentView.setListener(this);
+
+		setFocusableInTouchMode(true);
+	}
+
+	@Override protected int getItemLayoutId() {
+		return R.layout.comment_row_default;
+	}
+
+	@Override
+	protected CommentListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
+		return new CommentListAdapter(itemLayoutId, itemProgressLayoutId, this, getContext());
 	}
 
 	private void clearAdapterEntries() {
@@ -158,12 +160,14 @@ public class CommentListView
 	private void goBackToList() {
 		clearAdapterEntries();
 		_emptyListTextView.setVisibility(GONE);
-		getScreenlet().performUserAction(BaseScreenlet.DEFAULT_ACTION, CommentListScreenlet.OUT_DISCUSSION_ACTION);
+		getScreenlet().performUserAction(BaseScreenlet.DEFAULT_ACTION,
+			CommentListScreenlet.OUT_DISCUSSION_ACTION);
 	}
 
 	@Override public void onEditButtonClicked(long commentId, String newBody) {
 		clearAdapterEntries();
-		getScreenlet().performUserAction(CommentListScreenlet.UPDATE_COMMENT_ACTION, commentId, newBody);
+		getScreenlet().performUserAction(CommentListScreenlet.UPDATE_COMMENT_ACTION, commentId,
+			newBody);
 	}
 
 	@Override public void onDeleteButtonClicked(long commentId) {
