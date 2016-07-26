@@ -46,7 +46,9 @@ import Foundation
 
 	public var columNumber =  ImageGalleryScreenlet.DefaultColumns {
 		didSet {
-			viewModel.columnNumber = columNumber
+			if columNumber > 0 {
+				viewModel.columnNumber = columNumber
+			}
 		}
 	}
 

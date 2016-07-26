@@ -26,6 +26,21 @@ public class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
         
         super.init(startRow: startRow, endRow: endRow, computeRowCount: computeRowCount)
     }
+
+	public override func validateData() -> ValidationError? {
+		var error = super.validateData()
+
+		if error == nil {
+			if repositoryId < 0 {
+				error = ValidationError("imagegallery-screenlet","undefined-repositoryid")
+			}
+			else if folderId < 0 {
+				error = ValidationError("imagegallery-screenlet","undefined-folderid")
+			}
+		}
+
+		return error
+	}
     
     override public func doAddPageRowsServiceCall(session session: LRBatchSession, startRow: Int, endRow: Int) {
         let service = LRDLAppService_v7(session: session)
