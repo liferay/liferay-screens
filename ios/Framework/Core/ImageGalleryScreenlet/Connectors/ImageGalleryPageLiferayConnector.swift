@@ -18,11 +18,18 @@ public class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
     
     public let repositoryId: Int64
     public let folderId: Int64
-    public let mimeTypes = ["image/png", "image/jpeg"]
-    
-    public init(startRow: Int, endRow:Int, computeRowCount:Bool, repositoryId: Int64, folderId: Int64) {
+	public let mimeTypes: [String]
+
+	public init(startRow: Int,
+			endRow:Int,
+			computeRowCount:Bool,
+			repositoryId: Int64,
+			folderId: Int64,
+			mimeTypes: [String]) {
+
         self.repositoryId = repositoryId
         self.folderId = folderId
+		self.mimeTypes = mimeTypes
         
         super.init(startRow: startRow, endRow: endRow, computeRowCount: computeRowCount)
     }

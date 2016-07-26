@@ -39,10 +39,13 @@ import Foundation
 
 	public static let DefaultColumns = 4
     
-    @IBInspectable public var repositoryId: Int64 = 0
-    @IBInspectable public var folderId: Int64 = 0
-    
+    @IBInspectable public var repositoryId: Int64 = -1
+    @IBInspectable public var folderId: Int64 = -1
+	@IBInspectable public var mimeTypes: String = ""
+
     @IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+
+	public let DefaultMimeTypes = ["image/png", "image/jpeg", "image/gif"]
 
 	public var columNumber =  ImageGalleryScreenlet.DefaultColumns {
 		didSet {
@@ -65,12 +68,15 @@ import Foundation
 	}
     
     public override func createPageLoadInteractor(page page: Int, computeRowCount: Bool) -> BaseListPageLoadInteractor {
-        
+
+		let finalMimeTypes = mimeTypes.isEmpty ? DefaultMimeTypes : parseMimeTypes(mimeTypes)
+		
         return ImageGalleryLoadInteractor(screenlet: self,
                                       page: page,
                                       computeRowCount: computeRowCount,
                                       repositoryId: repositoryId,
-                                      folderId: folderId)
+                                      folderId: folderId,
+									  mimeTypes: finalMimeTypes)
     }
 
 	public override func onLoadPageError(page page: Int, error: NSError) {
@@ -113,6 +119,10 @@ import Foundation
 		}
 		
 		return interactor
+	}
+
+	internal func parseMimeTypes(mimeTypes: String) -> [String] {
+		return mimeTypes.characters.split(",").map(String.init)
 	}
 
 }

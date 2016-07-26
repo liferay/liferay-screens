@@ -18,11 +18,18 @@ public class ImageGalleryLoadInteractor : BaseListPageLoadInteractor {
     
     public let repositoryId: Int64
     public let folderId: Int64
+	public let mimeTypes: [String]
 
     
-    public init(screenlet: BaseListScreenlet, page: Int, computeRowCount:Bool, repositoryId: Int64, folderId: Int64) {
+    public init(screenlet: BaseListScreenlet,
+			page: Int, computeRowCount:Bool,
+			repositoryId: Int64,
+			folderId: Int64,
+			mimeTypes: [String]) {
+
         self.repositoryId = repositoryId
         self.folderId = folderId
+		self.mimeTypes =  mimeTypes
         
         super.init(screenlet: screenlet, page: page, computeRowCount: computeRowCount)
     }
@@ -34,9 +41,10 @@ public class ImageGalleryLoadInteractor : BaseListPageLoadInteractor {
                                                 endRow: pager(self.page + 1),
                                                 computeRowCount: self.computeRowCount,
                                                 repositoryId: repositoryId,
-                                                folderId: folderId)
+                                                folderId: folderId,
+												mimeTypes: mimeTypes)
     }
-    
+
     public override func convertResult(serverResult: [String : AnyObject]) -> AnyObject {
         return ImageEntry(attributes:serverResult)
     }
