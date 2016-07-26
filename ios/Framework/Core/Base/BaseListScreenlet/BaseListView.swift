@@ -92,6 +92,10 @@ public class BaseListView: BaseScreenletView {
 	public func deleteRow(section: String, row: Int) {
 		_rows[section]?.removeAtIndex(row)
 	}
+
+	public func addRow(section: String, element: AnyObject) {
+		_rows[section]?.append(element)
+	}
 	
 	public func rowsForSectionIndex(index: Int) -> [AnyObject?] {
 		let key = sections[index]
