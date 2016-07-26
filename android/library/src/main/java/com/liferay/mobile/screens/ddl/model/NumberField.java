@@ -27,6 +27,10 @@ import java.util.Map;
  */
 public class NumberField extends Field<Number> {
 
+	public NumberField() {
+		super();
+	}
+
 	public static final Parcelable.ClassLoaderCreator<NumberField> CREATOR =
 		new Parcelable.ClassLoaderCreator<NumberField>() {
 

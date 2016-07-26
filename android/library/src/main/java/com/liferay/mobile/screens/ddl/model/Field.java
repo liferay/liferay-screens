@@ -31,6 +31,10 @@ import java.util.Map;
  */
 public abstract class Field<T extends Serializable> implements Parcelable {
 
+	public Field() {
+		super();
+	}
+
 	public enum DataType {
 		BOOLEAN("boolean"),
 		STRING("string"),

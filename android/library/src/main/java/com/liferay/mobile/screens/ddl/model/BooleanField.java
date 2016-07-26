@@ -25,6 +25,10 @@ import java.util.Map;
  */
 public class BooleanField extends Field<Boolean> {
 
+	public BooleanField() {
+		super();
+	}
+
 	public static final Parcelable.ClassLoaderCreator<BooleanField> CREATOR =
 		new Parcelable.ClassLoaderCreator<BooleanField>() {
 

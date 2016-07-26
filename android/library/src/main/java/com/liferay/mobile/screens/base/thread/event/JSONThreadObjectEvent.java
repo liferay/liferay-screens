@@ -20,10 +20,11 @@ import org.json.JSONObject;
 
 import java.util.Locale;
 
-/**
- * @author Silvio Santos
- */
 public abstract class JSONThreadObjectEvent extends BasicThreadEvent implements IdCache {
+
+	public JSONThreadObjectEvent() {
+		super();
+	}
 
 	public JSONThreadObjectEvent(Exception e) {
 		super(e);
