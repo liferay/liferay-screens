@@ -111,6 +111,8 @@ import QuartzCore
 		if themeName == BaseScreenlet.DefaultThemeName {
 			onPreCreate()
 			loadScreenletView()
+		presentingViewController = UIApplication.sharedApplication().keyWindow?.rootViewController
+
 			onCreated()
 		}
 	}
