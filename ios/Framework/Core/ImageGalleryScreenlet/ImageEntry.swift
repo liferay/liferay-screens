@@ -15,6 +15,8 @@ import Foundation
 
 
 public class ImageEntry : Asset {
+
+	public var image: UIImage?
     
     public var thumbnailUrl: String {
         return createThumbnailUrl()
@@ -37,7 +39,7 @@ public class ImageEntry : Asset {
     }
     
     private func createThumbnailUrl() -> String {
-        return "\(createImageUrl())?version=\(attributes["version"]!)&imageThumbnail=1"
+        return "\(createImageUrl())?version=\(attributes["version"]!)&imageThumbnail=1&t=\(CFAbsoluteTimeGetCurrent())"
     }
     
     private func createImageUrl() -> String {

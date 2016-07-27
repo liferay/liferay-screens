@@ -17,15 +17,27 @@ public class ImageGalleryGridCell: UICollectionViewCell {
 			return ""
 		}
 		set {
-			previewImage.setImageWithURL(NSURL(string: newValue ?? "")!)
+			previewImage.setImageWithURL(NSURL(string: newValue)!)
+		}
+	}
+
+	public var image: UIImage {
+		get {
+			return UIImage()
+		}
+		set {
+			previewImage.image = newValue
 		}
 	}
 
 	public override func awakeFromNib() {
 		previewImage.clipsToBounds = true
+		backgroundColor = .grayColor()
 	}
 
 	public override func prepareForReuse() {
 		previewImage.image = nil
+		previewImage.cancelImageRequestOperation()
+		backgroundColor = .grayColor()
 	}
 }
