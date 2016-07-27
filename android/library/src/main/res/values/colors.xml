@@ -3,6 +3,7 @@
 
 	<color name="colorPrimary_default">@color/colorPrimary</color>
 	<color name="colorPrimaryLight_default">@color/colorPrimaryLight</color>
+	<color name="colorPrimaryDark_default">@color/colorPrimaryDark</color>
 	<color name="colorAccent_default">@color/colorAccent</color>
 	<color name="textColorPrimary_default">@color/textColorPrimary</color>
 	<color name="textColorSecondary_default">@color/textColorSecondary</color>
@@ -14,6 +15,7 @@
 
 	<color name="colorPrimary">#FF00B8E0</color>
 	<color name="colorPrimaryLight">#DD00B8E0</color>
+	<color name="colorPrimaryDark">#dd0d89a4</color>
 	<color name="colorAccent">#FFF0FFFF</color>
 	<color name="textColorPrimary">#FF919394</color>
 	<color name="textColorSecondary">#FFD5D5D7</color>
