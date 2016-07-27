@@ -23,20 +23,6 @@ import UIKit
 	                        onAssetEntryError error: NSError)
 }
 
-@objc public class FileEntry: Asset {
-
-	override public var url: String {
-		if let object = attributes["object"] {
-			return object["url"] as! String
-		}
-		return ""
-	}
-
-	public var fileEntry: [String:AnyObject]? {
-		return attributes["object"]?.firstItem as? [String:AnyObject]
-	}
-}
-
 @IBDesignable public class AssetDisplayScreenlet: BaseScreenlet {
 	
 	@IBInspectable public var entryId: Int64 = 0
