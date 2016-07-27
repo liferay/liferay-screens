@@ -16,6 +16,8 @@ import UIKit
 
 public class ImageGalleryView_default: BaseListCollectionView, ImageGalleryViewModel {
 
+	internal var lastOffset: CGPoint?
+
 	// ImageGalleryViewModel
 
 	public var columnNumber = ImageGalleryScreenlet.DefaultColumns {
@@ -24,7 +26,8 @@ public class ImageGalleryView_default: BaseListCollectionView, ImageGalleryViewM
 		}
 	}
 
-	private let imageCellId = "ImageCellId"
+	internal let imageCellId = "ImageCellId"
+	internal var alert: MediaSelectorDefault?
 
 	var spacing: CGFloat = 1.0
 
@@ -57,9 +60,50 @@ public class ImageGalleryView_default: BaseListCollectionView, ImageGalleryViewM
 		collectionView?.deleteItemsAtIndexPaths([indexPath])
 	}
 
+	public func showImageSelector() {
+		if let viewController = presentingViewController {
+
+			let takeNewPicture = LocalizedString("default", key: "userportrait-take-new-picture", obj: self)
+			let chooseExisting = LocalizedString("default", key: "userportrait-choose-existing-picture", obj: self)
+
+			alert = MediaSelectorDefault(viewController: viewController, types: [.Camera : takeNewPicture, .Image : chooseExisting]) { (image, _) in
+				if let image = image {
+					let imageUpload = ImageEntryUpload(image: image, title: "test\(Int(CFAbsoluteTimeGetCurrent())).png")
+					self.screenlet?.performAction(name: ImageGalleryScreenlet.UploadImageAction, sender: imageUpload)
+				}
+			}
+			alert?.show()
+		}
+	}
+
+	public func onImageUploaded(imageEntry: ImageEntry) {
+		if let lastSection = self.sections.last {
+			self.addRow(lastSection, element: imageEntry)
+
+			let lastRow = self.rows[lastSection]!.count - 1
+			let indexPath = NSIndexPath(forRow: lastRow, inSection: self.sections.count - 1)
+			self.collectionView?.insertItemsAtIndexPaths([indexPath])
+		}
+	}
+
+	// BaseScreenletView
+
 	public override func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
 	}
+
+	public override func onShow() {
+		super.onShow()
+		if let lastOffset = lastOffset {
+			collectionView?.contentOffset = lastOffset
+		}
+	}
+
+	public override func onHide() {
+		lastOffset = collectionView?.contentOffset
+	}
+
+	// BaseListCollectionView
 
 	public override func doRegisterCellNibs() {
 		if let imageGalleryGridCellNib = NSBundle.nibInBundles(
@@ -69,7 +113,7 @@ public class ImageGalleryView_default: BaseListCollectionView, ImageGalleryViewM
 			collectionView?.registerNib(imageGalleryGridCellNib, forCellWithReuseIdentifier: imageCellId)
 		}
 	}
-	
+
 	public override func doCreateLayout() -> UICollectionViewLayout {
 
 		return createCustomLayout()

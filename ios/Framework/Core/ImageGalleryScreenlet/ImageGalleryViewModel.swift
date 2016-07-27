@@ -17,4 +17,8 @@ import Foundation
 	var columnNumber: Int { set get }
 
 	optional func onImageEntryDeleted(imageEntry: ImageEntry)
+
+	optional func showImageSelector()
+
+	optional func onImageUploaded(imageEntry: ImageEntry)
 }

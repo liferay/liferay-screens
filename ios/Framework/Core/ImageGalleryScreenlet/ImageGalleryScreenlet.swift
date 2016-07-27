@@ -30,12 +30,24 @@ import Foundation
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
 	                        onImageEntryDeleteError: NSError)
 
+	optional func screenlet(screenlet: ImageGalleryScreenlet,
+	                        onImageUploadStart image: ImageEntryUpload)
+							
+	optional func screenlet(screenlet: ImageGalleryScreenlet,
+	                        onImageUploadProgress image: ImageEntryUpload, totalBytesSent: UInt64, totalBytesToSend: UInt64)
+
+	optional func screenlet(screenlet: ImageGalleryScreenlet,
+	                        onImageUploadError error: NSError)
+
+	optional func screenlet(screenlet: ImageGalleryScreenlet,
+	                        onImageUploaded image: ImageEntry)
 }
 
 
 @IBDesignable public class ImageGalleryScreenlet : BaseListScreenlet {
 
-	public static let DeleteImageAction = "deleteImage"
+	public static let DeleteImageAction = "delete-image-action"
+	public static let UploadImageAction = "upload-image-action"
 
 	public static let DefaultColumns = 4
     
@@ -55,12 +67,25 @@ import Foundation
 		}
 	}
 
+	internal var loaded = false
+
+	public override func onShow() {
+		if !loaded {
+			loaded = true
+			super.onShow()
+		}
+	}
+
 	public var imageGalleryScreenletDelegate: ImageGalleryScreenletDelegate? {
 		return delegate as? ImageGalleryScreenletDelegate
 	}
 
 	public var viewModel: ImageGalleryViewModel {
 		return screenletView as! ImageGalleryViewModel
+	}
+
+	public func startMediaSelectorAndUpload() {
+		viewModel.showImageSelector?()
 	}
 
 	public func deleteImageEntry(imageEntry: ImageEntry) {
@@ -101,6 +126,9 @@ import Foundation
 		case ImageGalleryScreenlet.DeleteImageAction:
 			let imageEntry = sender as! ImageEntry
 			return createImageGalleryDeleteInteractor(imageEntry)
+		case ImageGalleryScreenlet.UploadImageAction:
+			let imageUpload = sender as! ImageEntryUpload
+			return createImageUploadInteractor(imageUpload)
 		default:
 			return nil
 		}
@@ -118,6 +146,34 @@ import Foundation
 			self.imageGalleryScreenletDelegate?.screenlet?(self, onImageEntryDeleteError: $0)
 		}
 		
+		return interactor
+	}
+
+	internal func createImageUploadInteractor(imageUpload: ImageEntryUpload) -> ImageGalleryUploadInteractor {
+		let interactor = ImageGalleryUploadInteractor(
+				screenlet: self,
+				imageUpload: imageUpload,
+				repositoryId: repositoryId,
+				folderId: folderId) { (title, totalBytesSent, totalBytesToSend) in
+
+			self.imageGalleryScreenletDelegate?.screenlet?(self, onImageUploadProgress: imageUpload, totalBytesSent: totalBytesSent, totalBytesToSend: totalBytesToSend)
+
+		}
+
+		interactor.onSuccess = {
+			if let result = interactor.result {
+				let imageEntry = ImageEntry(attributes: result)
+				self.imageGalleryScreenletDelegate?.screenlet?(self, onImageUploaded: imageEntry)
+				self.viewModel.onImageUploaded?(imageEntry)
+			}
+		}
+
+		interactor.onFailure = {
+			self.imageGalleryScreenletDelegate?.screenlet?(self, onImageUploadError: $0)
+		}
+
+		self.imageGalleryScreenletDelegate?.screenlet?(self, onImageUploadStart: imageUpload)
+
 		return interactor
 	}
 
