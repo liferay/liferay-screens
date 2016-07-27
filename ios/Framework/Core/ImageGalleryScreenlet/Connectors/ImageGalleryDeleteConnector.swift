@@ -34,9 +34,6 @@ public class ImageGalleryDeleteConnector : ServerConnector {
 
 		return error
 	}
-}
-
-public class Liferay70ImageGalleryDeleteConnector : ImageGalleryDeleteConnector {
 
 	public override func doRun(session session: LRSession) {
 		let service = LRDLAppService_v7(session: session)
