@@ -40,6 +40,14 @@ import Foundation
 		return attributes["companyId"]!.description.asLong!
 	}
 
+	public var url: String {
+		return attributes["url"]!.description!
+	}
+
+	public var mimeType: String {
+		return attributes["mimeType"]!.description!
+	}
+
 	public var entryId: Int64 {
 		return attributes["entryId"]!.description.asLong!
 	}
