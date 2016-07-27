@@ -44,7 +44,8 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 		getViewModel().updateView();
 	}
 
-	@Override protected void onScreenletAttached() {
+	@Override
+	protected void onScreenletAttached() {
 		super.onScreenletAttached();
 
 		updateView();
@@ -54,7 +55,8 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 		}
 	}
 
-	@Override protected View createScreenletView(Context context, AttributeSet attributes) {
+	@Override
+	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray =
 			context.getTheme().obtainStyledAttributes(attributes, R.styleable.RatingScreenlet, 0, 0);
 
@@ -78,7 +80,8 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 		return view;
 	}
 
-	@Override protected Interactor createInteractor(String actionName) {
+	@Override
+	protected Interactor createInteractor(String actionName) {
 		switch (actionName) {
 			case LOAD_RATINGS_ACTION:
 				return new RatingLoadInteractorImpl(getScreenletId());
@@ -91,7 +94,8 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 		}
 	}
 
-	@Override protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
+	@Override
+	protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
 		try {
 			switch (userActionName) {
 				case LOAD_RATINGS_ACTION:
@@ -127,7 +131,8 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 		performUserAction(LOAD_RATINGS_ACTION);
 	}
 
-	@Override public void onRatingOperationFailure(Exception exception) {
+	@Override
+	public void onRatingOperationFailure(Exception exception) {
 		getViewModel().showFailedOperation(null, exception);
 
 		if (_listener != null) {
@@ -135,7 +140,8 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 		}
 	}
 
-	@Override public void onRatingOperationSuccess(AssetRating assetRating) {
+	@Override
+	public void onRatingOperationSuccess(AssetRating assetRating) {
 		getViewModel().showFinishOperation(null, assetRating);
 
 		_classPK = assetRating.getClassPK();

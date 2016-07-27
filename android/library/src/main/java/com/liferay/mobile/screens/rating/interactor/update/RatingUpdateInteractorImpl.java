@@ -23,13 +23,15 @@ public class RatingUpdateInteractorImpl extends BaseRemoteInteractor<RatingListe
 		_screensratingsentryService = getScreensratingsentryService();
 	}
 
-	@NonNull private ScreensratingsentryService getScreensratingsentryService() {
+	@NonNull
+	private ScreensratingsentryService getScreensratingsentryService() {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(new RatingUpdateCallback(getTargetScreenletId()));
 		return new ScreensratingsentryService(session);
 	}
 
-	@Override public void updateRating(long classPK, String className, double score, int ratingsGroupCount) throws Exception {
+	@Override
+	public void updateRating(long classPK, String className, double score, int ratingsGroupCount) throws Exception {
 		validate(score);
 		_screensratingsentryService.updateRatingsEntry(classPK, className, score, ratingsGroupCount);
 	}

@@ -22,13 +22,15 @@ public class RatingDeleteInteractorImpl extends BaseRemoteInteractor<RatingListe
 		_screensratingsentryService = getScreensratingsentryService();
 	}
 
-	@NonNull private ScreensratingsentryService getScreensratingsentryService() {
+	@NonNull
+	private ScreensratingsentryService getScreensratingsentryService() {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(new RatingDeleteCallback(getTargetScreenletId()));
 		return new ScreensratingsentryService(session);
 	}
 
-	@Override public void deleteRating(long classPK, String className, int ratingGroupCounts) throws Exception {
+	@Override
+	public void deleteRating(long classPK, String className, int ratingGroupCounts) throws Exception {
 		_screensratingsentryService.deleteRatingsEntry(classPK, className, ratingGroupCounts);
 	}
 

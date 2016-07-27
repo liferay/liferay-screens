@@ -22,13 +22,15 @@ public class RatingLoadInteractorImpl extends BaseRemoteInteractor<RatingListene
 		_screensratingsentryService = getScreensratingsentryService();
 	}
 
-	@NonNull private ScreensratingsentryService getScreensratingsentryService() {
+	@NonNull
+	private ScreensratingsentryService getScreensratingsentryService() {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setCallback(new RatingLoadCallback(getTargetScreenletId()));
 		return new ScreensratingsentryService(session);
 	}
 
-	@Override public void loadRatings(long entryId, long classPK, String className, int ratingsGroupCount) throws Exception {
+	@Override
+	public void loadRatings(long entryId, long classPK, String className, int ratingsGroupCount) throws Exception {
 		validate(entryId, className, classPK);
 
 		if (entryId != 0) {

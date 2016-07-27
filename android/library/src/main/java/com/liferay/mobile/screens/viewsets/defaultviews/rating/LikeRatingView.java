@@ -25,7 +25,8 @@ public class LikeRatingView extends BaseRatingView implements View.OnClickListen
 		super(context, attrs, defStyleAttr);
 	}
 
-	@Override public void showFinishOperation(String action, Object argument) {
+	@Override
+	public void showFinishOperation(String action, Object argument) {
 		if (_progressBar != null) {
 			_progressBar.setVisibility(View.GONE);
 		}
@@ -45,21 +46,25 @@ public class LikeRatingView extends BaseRatingView implements View.OnClickListen
 		}
 	}
 
-	@Override public int getDefaultStepCount() {
+	@Override
+	public int getDefaultStepCount() {
 		return 1;
 	}
 
-	@Override public void updateView() {
+	@Override
+	public void updateView() {
 		_likeButton.setOnClickListener(!isEditable() ? null : this);
 		_likeButton.setEnabled(isEditable());
 	}
 
-	@Override public void onClick(View v) {
+	@Override
+	public void onClick(View v) {
 		String action = _hasUserRate ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.UPDATE_RATING_ACTION;
 		getScreenlet().performUserAction(action, 1.0);
 	}
 
-	@Override protected void onFinishInflate() {
+	@Override
+	protected void onFinishInflate() {
 		super.onFinishInflate();
 
 		_likeButton = (ImageButton) findViewById(R.id.likeRatingButton);

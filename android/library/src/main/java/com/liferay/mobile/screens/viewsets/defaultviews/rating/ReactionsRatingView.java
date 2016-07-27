@@ -30,7 +30,8 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 		super(context, attrs, defStyleAttr);
 	}
 
-	@Override public void showFinishOperation(String actionName, Object argument) {
+	@Override
+	public void showFinishOperation(String actionName, Object argument) {
 		if (_progressBar != null) {
 			_progressBar.setVisibility(View.GONE);
 		}
@@ -64,18 +65,21 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 		}
 	}
 
-	@Override public int getDefaultStepCount() {
+	@Override
+	public int getDefaultStepCount() {
 		return _reactions.size();
 	}
 
-	@Override public void updateView() {
+	@Override
+	public void updateView() {
 		for (ImageButton button : _reactions) {
 			button.setOnClickListener(isEditable() ? this : null);
 			button.setEnabled(isEditable());
 		}
 	}
 
-	@Override public void onClick(View v) {
+	@Override
+	public void onClick(View v) {
 		final int id = v.getId();
 
 		double score = -1;
@@ -94,7 +98,8 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 		}
 	}
 
-	@Override protected void onFinishInflate() {
+	@Override
+	protected void onFinishInflate() {
 		super.onFinishInflate();
 
 		if (_content != null) {

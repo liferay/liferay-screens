@@ -26,7 +26,8 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 		super(context, attrs, defStyleAttr);
 	}
 
-	@Override public void onClick(View v) {
+	@Override
+	public void onClick(View v) {
 		final int id = v.getId();
 
 		double score = -1;
@@ -44,7 +45,8 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 		}
 	}
 
-	@Override public void showFinishOperation(String action, Object argument) {
+	@Override
+	public void showFinishOperation(String action, Object argument) {
 		if (_progressBar != null) {
 			_progressBar.setVisibility(View.GONE);
 		}
@@ -71,11 +73,13 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 		}
 	}
 
-	@Override public int getDefaultStepCount() {
+	@Override
+	public int getDefaultStepCount() {
 		return 2;
 	}
 
-	@Override public void updateView() {
+	@Override
+	public void updateView() {
 		_negativeButton.setOnClickListener(!isEditable() ? null : this);
 		_negativeButton.setEnabled(isEditable());
 
@@ -83,7 +87,8 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 		_possitiveButton.setEnabled(isEditable());
 	}
 
-	@Override protected void onFinishInflate() {
+	@Override
+	protected void onFinishInflate() {
 		super.onFinishInflate();
 
 		_negativeButton = (ImageButton) findViewById(R.id.negativeRatingButton);

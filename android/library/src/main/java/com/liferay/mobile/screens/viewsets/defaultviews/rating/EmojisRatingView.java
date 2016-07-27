@@ -27,7 +27,8 @@ public class EmojisRatingView extends BaseRatingView implements View.OnClickList
 		super(context, attrs, defStyleAttr);
 	}
 
-	@Override public void showFinishOperation(String actionName, Object argument) {
+	@Override
+	public void showFinishOperation(String actionName, Object argument) {
 		if (_progressBar != null) {
 			_progressBar.setVisibility(View.GONE);
 		}
@@ -56,18 +57,21 @@ public class EmojisRatingView extends BaseRatingView implements View.OnClickList
 		}
 	}
 
-	@Override public int getDefaultStepCount() {
+	@Override
+	public int getDefaultStepCount() {
 		return _emojis.size();
 	}
 
-	@Override public void updateView() {
+	@Override
+	public void updateView() {
 		for (Button button : _emojis) {
 			button.setOnClickListener(isEditable() ? this : null);
 			button.setEnabled(isEditable());
 		}
 	}
 
-	@Override public void onClick(View v) {
+	@Override
+	public void onClick(View v) {
 		final int id = v.getId();
 
 		double score = -1;
@@ -86,7 +90,8 @@ public class EmojisRatingView extends BaseRatingView implements View.OnClickList
 		}
 	}
 
-	@Override protected void onFinishInflate() {
+	@Override
+	protected void onFinishInflate() {
 		super.onFinishInflate();
 
 		if (_content != null) {

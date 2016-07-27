@@ -13,15 +13,18 @@ public class RatingDeleteCallback extends InteractorAsyncTaskCallback<JSONObject
 		super(targetScreenletId);
 	}
 
-	@Override protected BasicEvent createEvent(int targetScreenletId, Exception e) {
+	@Override
+	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
 		return new RatingDeleteEvent(targetScreenletId, e);
 	}
 
-	@Override protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {
+	@Override
+	protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {
 		return new RatingDeleteEvent(targetScreenletId, result);
 	}
 
-	@Override public JSONObject transform(Object obj) throws Exception {
+	@Override
+	public JSONObject transform(Object obj) throws Exception {
 		return (JSONObject) obj;
 	}
 }

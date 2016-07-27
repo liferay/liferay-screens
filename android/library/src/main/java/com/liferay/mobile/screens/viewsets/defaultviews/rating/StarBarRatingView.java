@@ -26,7 +26,8 @@ public class StarBarRatingView extends BaseRatingView implements RatingBar.OnRat
 		super(context, attrs, defStyleAttr);
 	}
 
-	@Override public void showFinishOperation(String action, Object argument) {
+	@Override
+	public void showFinishOperation(String action, Object argument) {
 		if (_progressBar != null) {
 			_progressBar.setVisibility(View.GONE);
 		}
@@ -41,15 +42,18 @@ public class StarBarRatingView extends BaseRatingView implements RatingBar.OnRat
 		}
 	}
 
-	@Override public int getDefaultStepCount() {
+	@Override
+	public int getDefaultStepCount() {
 		return _userRatingBar.getNumStars();
 	}
 
-	@Override public void updateView() {
+	@Override
+	public void updateView() {
 		_userRatingBar.setEnabled(isEditable());
 	}
 
-	@Override protected void onFinishInflate() {
+	@Override
+	protected void onFinishInflate() {
 		super.onFinishInflate();
 
 		_userRatingBar = (RatingBar) findViewById(R.id.userRatingBar);
@@ -60,7 +64,8 @@ public class StarBarRatingView extends BaseRatingView implements RatingBar.OnRat
 		_userRatingBar.setOnRatingBarChangeListener(this);
 	}
 
-	@Override public void onRatingChanged(RatingBar ratingBar, float score, boolean fromUser) {
+	@Override
+	public void onRatingChanged(RatingBar ratingBar, float score, boolean fromUser) {
 		if (fromUser) {
 			double normalizedScore = score / ratingBar.getNumStars();
 			getScreenlet().performUserAction(RatingScreenlet.UPDATE_RATING_ACTION, (double) normalizedScore);

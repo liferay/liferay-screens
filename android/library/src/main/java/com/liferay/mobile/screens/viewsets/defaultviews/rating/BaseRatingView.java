@@ -30,7 +30,8 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 		super(context, attrs, defStyleAttr);
 	}
 
-	@Override public void showStartOperation(String actionName) {
+	@Override
+	public void showStartOperation(String actionName) {
 		if (actionName == RatingScreenlet.LOAD_RATINGS_ACTION) {
 			if (_progressBar != null) {
 				_progressBar.setVisibility(View.VISIBLE);
@@ -41,11 +42,13 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 		}
 	}
 
-	@Override public void showFinishOperation(String actionName) {
+	@Override
+	public void showFinishOperation(String actionName) {
 		throw new AssertionError();
 	}
 
-	@Override public void showFailedOperation(String actionName, Exception e) {
+	@Override
+	public void showFailedOperation(String actionName, Exception e) {
 		if (_progressBar != null) {
 			_progressBar.setVisibility(View.GONE);
 		}
@@ -57,23 +60,28 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 		LiferayLogger.e(getContext().getString(R.string.ratings_error), e);
 	}
 
-	@Override public BaseScreenlet getScreenlet() {
+	@Override
+	public BaseScreenlet getScreenlet() {
 		return _screenlet;
 	}
 
-	@Override public void setScreenlet(BaseScreenlet screenlet) {
+	@Override
+	public void setScreenlet(BaseScreenlet screenlet) {
 		_screenlet = screenlet;
 	}
 
-	@Override public boolean isEditable() {
+	@Override
+	public boolean isEditable() {
 		return _editable;
 	}
 
-	@Override public void setEditable(boolean editable) {
+	@Override
+	public void setEditable(boolean editable) {
 		_editable = editable;
 	}
 
-	@Override protected void onFinishInflate() {
+	@Override
+	protected void onFinishInflate() {
 		super.onFinishInflate();
 
 		_progressBar = (ProgressBar) findViewById(R.id.liferay_rating_progress);

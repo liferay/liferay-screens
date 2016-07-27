@@ -13,15 +13,18 @@ public class RatingUpdateCallback extends InteractorAsyncTaskCallback<JSONObject
 		super(targetScreenletId);
 	}
 
-	@Override protected BasicEvent createEvent(int targetScreenletId, Exception e) {
+	@Override
+	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
 		return new RatingUpdateEvent(targetScreenletId, e);
 	}
 
-	@Override protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {
+	@Override
+	protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {
 		return new RatingUpdateEvent(targetScreenletId, result);
 	}
 
-	@Override public JSONObject transform(Object obj) throws Exception {
+	@Override
+	public JSONObject transform(Object obj) throws Exception {
 		return (JSONObject) obj;
 	}
 }
