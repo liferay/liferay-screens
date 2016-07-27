@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	>
+
+	<TextView
+		android:text="@string/ratings_label"
+		style="@style/label"
+		/>
+
+	<LinearLayout
+		android:id="@+id/rating_button_container"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:gravity="center"
+		android:padding="10dp"
+		>
+
+		<ImageButton
+			android:background="@drawable/default_button_drawable"
+			android:padding="5dp"
+			android:id="@+id/button_rating_thumb"
+			android:src="@drawable/thumbs"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_marginRight="5dp"
+			/>
+
+		<ImageButton
+			android:background="@drawable/default_button_drawable"
+			android:padding="5dp"
+			android:id="@+id/button_rating_star"
+			android:src="@drawable/stars"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_marginLeft="5dp"
+			android:layout_marginRight="5dp"
+			/>
+
+		<ImageButton
+			android:background="@drawable/default_button_drawable"
+			android:padding="5dp"
+			android:id="@+id/button_rating_like"
+			android:src="@drawable/like"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_marginLeft="5dp"
+			android:layout_marginRight="5dp"
+			/>
+
+		<ImageButton
+			android:background="@drawable/default_button_drawable"
+			android:padding="5dp"
+			android:id="@+id/button_rating_reactions"
+			android:src="@drawable/reactions"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_marginLeft="5dp"
+			android:layout_marginRight="5dp"
+			/>
+
+		<ImageButton
+			android:background="@drawable/default_button_drawable"
+			android:padding="5dp"
+			android:id="@+id/button_rating_emojis"
+			android:src="@drawable/emojis"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_marginLeft="5dp"
+			/>
+
+	</LinearLayout>
+
+	<Switch
+		android:id="@+id/switch_read_only"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:paddingLeft="15dp"
+		android:switchPadding="5dp"
+		android:text="Read only"
+		android:layout_gravity="center"
+		/>
+
+	<LinearLayout
+		android:id="@+id/rating_screenlet_container"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:layout_gravity="center"
+		/>
+
+</LinearLayout>
