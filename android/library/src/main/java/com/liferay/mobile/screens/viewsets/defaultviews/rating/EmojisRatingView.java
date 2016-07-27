@@ -15,6 +15,7 @@ import java.util.List;
  * @author Alejandro Hernández
  */
 public class EmojisRatingView extends BaseRatingView implements View.OnClickListener {
+
 	public EmojisRatingView(Context context) {
 		super(context);
 	}

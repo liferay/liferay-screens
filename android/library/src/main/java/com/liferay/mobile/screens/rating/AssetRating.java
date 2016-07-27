@@ -4,6 +4,7 @@ package com.liferay.mobile.screens.rating;
  * @author Alejandro Hernández
  */
 public class AssetRating {
+
 	public AssetRating(long classPK, String className, int[] ratings, double average, double userScore,
 		double totalScore, int totalCount) {
 		_classPK = classPK;

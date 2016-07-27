@@ -7,6 +7,7 @@ import org.json.JSONObject;
  * @author Alejandro Hernández
  */
 public class RatingDeleteEvent extends JSONObjectEvent {
+
 	public RatingDeleteEvent(int targetScreenletId, Exception e) {
 		super(targetScreenletId, e);
 	}

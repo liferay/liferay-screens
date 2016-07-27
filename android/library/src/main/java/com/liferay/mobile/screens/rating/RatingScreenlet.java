@@ -72,8 +72,8 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 		_className = typedArray.getString(R.styleable.RatingScreenlet_className);
 		_classPK = castToLong(typedArray.getString(R.styleable.RatingScreenlet_classPK));
 
-		_ratingsGroupCount =
-			typedArray.getInt(R.styleable.RatingScreenlet_ratingsGroupCount, ((RatingViewModel) view).getDefaultStepCount());
+		_ratingsGroupCount = typedArray.getInt(R.styleable.RatingScreenlet_ratingsGroupCount,
+			((RatingViewModel) view).getDefaultStepCount());
 
 		typedArray.recycle();
 
