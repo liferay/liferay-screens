@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -142,11 +142,11 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="articleId" value="63649"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="structureId">
-                                        <integer key="value" value="63643"/>
-                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="articleId" value="31209"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="book"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="structureId">
+                                        <integer key="value" value="31202"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
@@ -421,10 +421,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8S0-OV-XFI" customClass="WebContentListScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="refreshControl" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="book"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="orderBy" value="Id"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="orderByClassName" value="com.liferay.portlet.journal.util.comparator.ArticleIDComparator"/>
                                 </userDefinedRuntimeAttributes>
@@ -432,10 +432,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="8S0-OV-XFI" firstAttribute="bottom" secondItem="UcB-oQ-PmW" secondAttribute="bottomMargin" id="9Lw-Ml-8dS"/>
-                            <constraint firstItem="8S0-OV-XFI" firstAttribute="top" secondItem="UcB-oQ-PmW" secondAttribute="topMargin" id="PVM-e7-fAF"/>
                             <constraint firstItem="8S0-OV-XFI" firstAttribute="leading" secondItem="UcB-oQ-PmW" secondAttribute="leading" id="TjW-xe-OIK"/>
                             <constraint firstAttribute="trailing" secondItem="8S0-OV-XFI" secondAttribute="trailing" id="Zqs-B6-KdX"/>
+                            <constraint firstItem="SCZ-oN-0s2" firstAttribute="top" secondItem="8S0-OV-XFI" secondAttribute="bottom" id="csf-ah-sKl"/>
+                            <constraint firstItem="8S0-OV-XFI" firstAttribute="top" secondItem="YHs-MM-I4k" secondAttribute="bottom" id="rHd-zO-G36"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kuN-5L-PDx"/>
