@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class WebContentListView_default: BaseListCollectionView {
+public class WebContentListView_default: WebContentListTableView {
 
 	//MARK: BaseScreenletView
 
@@ -22,86 +22,25 @@ public class WebContentListView_default: BaseListCollectionView {
 		return DefaultProgressPresenter()
 	}
 
-	public override func doConfigureCollectionView(collectionView: UICollectionView) {
-		collectionView.backgroundColor = .whiteColor()
-	}
-
-	public override func doCreateLayout() -> UICollectionViewLayout {
-		let layout = UICollectionViewFlowLayout()
-		layout.itemSize = CGSize(width: 300, height: 500)
-		layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-		layout.scrollDirection = .Vertical
-		
-
-		return layout
-	}
-
-	public override func doRegisterCellNibs() {
-		collectionView?.registerClass(WebViewCell.self, forCellWithReuseIdentifier: "cell")
-		collectionView?.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "progress")
-	}
-
-	override public func doFillLoadedCell(indexPath indexPath: NSIndexPath, cell: UICollectionViewCell, object:AnyObject) {
-		guard let cell = cell as? WebViewCell, object = object as? WebContent
-		else {
-			return
-		}
-
-		cell.html = object.html ?? "No html available"
-		cell.layer.borderWidth = 1;
-		cell.layer.borderColor = UIColor.blackColor().CGColor
-	}
-
-	override public func doFillInProgressCell(indexPath indexPath: NSIndexPath, cell: UICollectionViewCell) {
-
-		cell.backgroundColor = .blackColor()
-	}
-
-	public override func doGetCellId(indexPath indexPath: NSIndexPath, object: AnyObject?) -> String {
-		if let _ = object {
-			return "cell"
-		}
-
-		return "progress"
-	}
-}
-
-
-public class WebViewCell : UICollectionViewCell {
-
-	private var webView: UIWebView
-
-	private let styles =
-		".MobileCSS {padding: 4%; width: 92%;} " +
-			".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, .MobileCSS h2, .MobileCSS h3 { " +
-			"font-size: 110%; font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-weight: 200; } " +
-			".MobileCSS img { width: 100% !important; } " +
-	".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }"
-
-	public var html: String {
-		get {
-			return ""
-		}
-		set {
-			let styledHtml = "<style>\(styles)</style><div class=\"MobileCSS\">\(newValue ?? "")</div>"
-
-			webView.loadHTMLString(styledHtml, baseURL: NSURL(string:LiferayServerContext.server))
+	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
+		if let entry = object as? WebContent {
+			cell.textLabel?.text = entry.title
+			cell.accessoryType = .DisclosureIndicator
+			cell.accessoryView = nil
 		}
 	}
 
-	override init(frame: CGRect) {
-		webView = UIWebView()
-		super.init(frame: frame)
+	override public func doFillInProgressCell(row row: Int, cell: UITableViewCell) {
+		cell.textLabel?.text = "..."
+		cell.accessoryType = .None
 
-		webView.frame = bounds
-		addSubview(webView)
+		if let image = NSBundle.imageInBundles(
+				name: "default-hourglass",
+				currentClass: self.dynamicType) {
+
+			cell.accessoryView = UIImageView(image: image)
+			cell.accessoryView?.frame = CGRectMake(0, 0, image.size.width, image.size.height)
+		}
 	}
 
-	required public init?(coder aDecoder: NSCoder) {
-		webView = UIWebView()
-		super.init(coder: aDecoder)
-
-		webView.frame = bounds
-		addSubview(webView)
-	}
 }
