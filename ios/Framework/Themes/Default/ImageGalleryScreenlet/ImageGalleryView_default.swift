@@ -17,6 +17,7 @@ import UIKit
 public class ImageGalleryView_default: BaseListCollectionView, ImageGalleryViewModel {
 
 	internal var lastOffset: CGPoint?
+	internal var currentOrientation: UIInterfaceOrientation?
 
 	// ImageGalleryViewModel
 
@@ -94,6 +95,9 @@ public class ImageGalleryView_default: BaseListCollectionView, ImageGalleryViewM
 
 	public override func onShow() {
 		super.onShow()
+
+		currentOrientation = UIApplication.sharedApplication().statusBarOrientation
+
 		if let lastOffset = lastOffset {
 			collectionView?.contentOffset = lastOffset
 		}
@@ -125,6 +129,19 @@ public class ImageGalleryView_default: BaseListCollectionView, ImageGalleryViewM
 		}
 
 		imageCell.imageUrl = entry.thumbnailUrl
+	}
+
+	public override func layoutSubviews() {
+		super.layoutSubviews()
+
+		if let orientation = currentOrientation {
+			let actualOrientation = UIApplication.sharedApplication().statusBarOrientation
+
+			if orientation != actualOrientation {
+				changeLayout()
+				currentOrientation = actualOrientation
+			}
+		}
 	}
 
 	public override func doFillInProgressCell(indexPath indexPath: NSIndexPath, cell: UICollectionViewCell) {
