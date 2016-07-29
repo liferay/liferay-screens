@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.comment.view;
+package com.liferay.mobile.screens.comment.list.view;
 
 import android.content.Context;
 import android.os.Build;

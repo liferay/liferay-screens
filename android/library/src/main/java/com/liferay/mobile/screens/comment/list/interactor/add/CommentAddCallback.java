@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.comment.interactor.add;
+package com.liferay.mobile.screens.comment.list.interactor.add;
 
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 import com.liferay.mobile.screens.base.interactor.InteractorAsyncTaskCallback;

@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.comment.interactor.update;
+package com.liferay.mobile.screens.comment.list.interactor.update;
 
 import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import org.json.JSONObject;

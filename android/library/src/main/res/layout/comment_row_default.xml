@@ -9,7 +9,7 @@
 	android:paddingRight="10dp"
 	>
 
-	<com.liferay.mobile.screens.comment.view.CommentView
+	<com.liferay.mobile.screens.comment.list.view.CommentView
 		android:id="@+id/comment_view"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"

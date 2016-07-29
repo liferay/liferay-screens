@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.comment.view;
+package com.liferay.mobile.screens.comment.list.view;
 
 /**
  * @author Alejandro Hernández
