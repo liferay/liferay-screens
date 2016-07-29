@@ -51,7 +51,6 @@ public class CommentEntry implements Parcelable {
 		User currentUser = SessionContext.getCurrentUser();
 		String userName = currentUser.getFirstName() + " " + currentUser.getLastName();
 		values.put("userName", userName);
-		values.put("descendantCommentsCount", 0);
 		values.put("createDate", System.currentTimeMillis());
 		values.put("modifiedDate", System.currentTimeMillis());
 		_values = values;
@@ -67,10 +66,6 @@ public class CommentEntry implements Parcelable {
 
 	public String getUserName() {
 		return (String) _values.get("userName");
-	}
-
-	public int getChildCount() {
-		return (int) _values.get("descendantCommentsCount");
 	}
 
 	public long getCreateDate() {

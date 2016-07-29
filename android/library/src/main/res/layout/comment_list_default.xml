@@ -11,49 +11,13 @@
 		android:layout_height="match_parent"
 		>
 
-		<Button
-			android:id="@+id/comment_go_back"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_marginLeft="10dp"
-			android:layout_marginStart="10dp"
-			android:layout_marginTop="10dp"
-			android:drawableLeft="@drawable/default_go_back"
-			android:drawableStart="@drawable/default_go_back"
-			android:text="@string/go_back"
-			android:visibility="gone"
-			tools:visibility="visible"
-			style="@style/default_button"
-			/>
-
-		<com.liferay.mobile.screens.comment.view.CommentView
-			android:id="@+id/discussion_comment"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_below="@+id/comment_go_back"
-			android:visibility="gone"
-			tools:visibility="visible"
-			/>
-
-		<ImageView
-			android:id="@+id/comment_separator"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_below="@+id/discussion_comment"
-			android:layout_centerHorizontal="true"
-			android:contentDescription="@string/separator"
-			android:src="@drawable/default_comment_separator"
-			android:visibility="gone"
-			tools:visibility="visible"
-			/>
-
 		<EditText
 			android:id="@+id/comment_add"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_alignParentLeft="true"
 			android:layout_alignParentStart="true"
-			android:layout_below="@+id/comment_separator"
+			android:layout_alignParentTop="true"
 			android:layout_marginEnd="10dp"
 			android:layout_marginLeft="10dp"
 			android:layout_marginRight="10dp"

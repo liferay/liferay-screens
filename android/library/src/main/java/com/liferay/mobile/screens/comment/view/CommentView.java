@@ -59,16 +59,6 @@ public class CommentView extends RelativeLayout {
 				Html.fromHtml(commentEntry.getBody()).toString().replaceAll("\n", "").trim());
 		}
 
-		int childCount = commentEntry.getChildCount();
-
-		if (childCount > 0) {
-			_childCountTextView.setText(getContext().getResources()
-				.getQuantityString(R.plurals.number_replys, childCount, childCount));
-			_childCountTextView.setVisibility(VISIBLE);
-		} else {
-			_childCountTextView.setVisibility(GONE);
-		}
-
 		if (commentEntry.getUserId() == SessionContext.getUserId()) {
 			_editImageButton.setVisibility(VISIBLE);
 			_deleteImageButton.setVisibility(VISIBLE);
@@ -164,7 +154,6 @@ public class CommentView extends RelativeLayout {
 		_userPortraitScreenlet = (UserPortraitScreenlet) findViewById(R.id.comment_user_portrait);
 		_createDateTextView = (TextView) findViewById(R.id.comment_create_date);
 		_editedTextView = (TextView) findViewById(R.id.comment_edited);
-		_childCountTextView = (TextView) findViewById(R.id.comment_child_number);
 		_editImageButton = (ImageButton) findViewById(R.id.comment_edit_button);
 		_deleteImageButton = (ImageButton) findViewById(R.id.comment_delete_button);
 		_editBodyEditText = (EditText) findViewById(R.id.comment_edit_body);
@@ -177,10 +166,6 @@ public class CommentView extends RelativeLayout {
 
 	public void reloadUserPortrait() {
 		_userPortraitScreenlet.load();
-	}
-
-	public void hideRepliesCounter() {
-		_childCountTextView.setVisibility(GONE);
 	}
 
 	public CommentViewListener getListener() {
@@ -196,7 +181,6 @@ public class CommentView extends RelativeLayout {
 	private UserPortraitScreenlet _userPortraitScreenlet;
 	private TextView _createDateTextView;
 	private TextView _editedTextView;
-	private TextView _childCountTextView;
 	private ImageButton _editImageButton;
 	private ImageButton _deleteImageButton;
 	private EditText _editBodyEditText;

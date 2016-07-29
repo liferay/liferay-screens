@@ -21,7 +21,6 @@ import com.liferay.mobile.screens.comment.view.CommentListViewModel;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.models.CommentEntry;
 import java.util.Locale;
-import java.util.Stack;
 
 /**
  * @author Alejandro Hernández
@@ -29,8 +28,6 @@ import java.util.Stack;
 public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Interactor>
 	implements CommentListInteractorListener {
 
-	public static final String IN_DISCUSSION_ACTION = "in_discussion";
-	public static final String OUT_DISCUSSION_ACTION = "out_discussion";
 	public static final String DELETE_COMMENT_ACTION = "delete_comment";
 	public static final String UPDATE_COMMENT_ACTION = "update_comment";
 	public static final String ADD_COMMENT_ACTION = "add_comment";
@@ -55,9 +52,8 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 	@Override
 	protected void loadRows(Interactor interactor, int startRow, int endRow, Locale locale)
 		throws Exception {
-		long commentId = _discussionStack.empty() ? 0 : getLastCommentInStack().getCommentId();
-		((CommentListInteractor) interactor).loadRows(_groupId, _className, _classPK, commentId,
-			startRow, endRow);
+		((CommentListInteractor) interactor).loadRows(
+			_groupId, _className, _classPK, startRow, endRow);
 	}
 
 	@Override protected View createScreenletView(Context context, AttributeSet attributes) {
@@ -96,20 +92,6 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 	@Override
 	protected void onUserAction(String actionName, Interactor interactor, Object... args) {
 		switch (actionName) {
-			case DEFAULT_ACTION:
-				switch ((String) args[0]) {
-					case IN_DISCUSSION_ACTION:
-						_discussionStack.push((CommentEntry) args[1]);
-						changeToCommentDiscussion();
-						break;
-					case OUT_DISCUSSION_ACTION:
-						_discussionStack.pop();
-						changeToCommentDiscussion();
-						break;
-					default:
-						break;
-				}
-				break;
 			case DELETE_COMMENT_ACTION:
 				long commentId = (long) args[0];
 				try {
@@ -131,10 +113,8 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 			case ADD_COMMENT_ACTION:
 				String body = (String) args[0];
 				try {
-					long parentCommentId =
-						_discussionStack.empty() ? 0 : getLastCommentInStack().getCommentId();
-					((CommentAddInteractor) interactor).addComment(_groupId, _className, _classPK,
-						parentCommentId, body);
+					((CommentAddInteractor) interactor).addComment(
+						_groupId, _className, _classPK, body);
 				} catch (Exception e) {
 					onAddCommentFailure(body, e);
 				}
@@ -153,15 +133,6 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 				return new CommentAddInteractorImpl(getScreenletId());
 		}
 		return new CommentListInteractorImpl(getScreenletId(), _offlinePolicy);
-	}
-
-	private void changeToCommentDiscussion() {
-		getCommentListViewModel().changeToCommentDiscussion(getLastCommentInStack());
-		loadPage(0);
-	}
-
-	private CommentEntry getLastCommentInStack() {
-		return _discussionStack.empty() ? null : _discussionStack.peek();
 	}
 
 	@Override public void loadingFromCache(boolean success) {
@@ -193,8 +164,7 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 		if (getCommentListListener() != null) {
 			getCommentListListener().onAddCommentSuccess(commentEntry);
 		}
-		_discussionStack.push(commentEntry);
-		changeToCommentDiscussion();
+		loadPage(0);
 	}
 
 	@Override public void onDeleteCommentFailure(long commentId, Exception e) {
@@ -205,13 +175,10 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 	}
 
 	@Override public void onDeleteCommentSuccess(long commentId) {
-		if (!_discussionStack.isEmpty() && commentId == getLastCommentInStack().getCommentId()) {
-			_discussionStack.pop();
-		}
 		if (getCommentListListener() != null) {
 			getCommentListListener().onDeleteCommentSuccess(commentId);
 		}
-		changeToCommentDiscussion();
+		loadPage(0);
 	}
 
 	@Override public void onUpdateCommentSuccess(long commentId) {
@@ -273,18 +240,9 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 		return (CommentListViewModel) getViewModel();
 	}
 
-	public Stack<CommentEntry> getDiscussionStack() {
-		return _discussionStack;
-	}
-
-	public void setDiscussionStack(Stack<CommentEntry> discussionStack) {
-		this._discussionStack = discussionStack;
-	}
-
 	private OfflinePolicy _offlinePolicy;
 	private String _className;
 	private long _classPK;
 	private long _groupId;
 	private boolean _htmlBody;
-	private Stack<CommentEntry> _discussionStack = new Stack<>();
 }

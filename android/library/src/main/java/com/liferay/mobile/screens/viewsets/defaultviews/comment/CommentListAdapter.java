@@ -16,8 +16,7 @@ import com.liferay.mobile.screens.models.CommentEntry;
 public class CommentListAdapter
 	extends BaseListAdapter<CommentEntry, CommentListAdapter.CommentViewHolder> {
 
-	public CommentListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener,
-		Context context) {
+	public CommentListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 		super(layoutId, progressLayoutId, listener);
 	}
 

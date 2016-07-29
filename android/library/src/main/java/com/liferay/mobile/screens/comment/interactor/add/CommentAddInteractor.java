@@ -7,6 +7,6 @@ import com.liferay.mobile.screens.comment.interactor.CommentListInteractorListen
  * @author Alejandro Hernández
  */
 public interface CommentAddInteractor extends Interactor<CommentListInteractorListener> {
-	void addComment(long groupId, String className, long classPK, long parentCommentId, String body)
+	void addComment(long groupId, String className, long classPK, String body)
 		throws Exception;
 }

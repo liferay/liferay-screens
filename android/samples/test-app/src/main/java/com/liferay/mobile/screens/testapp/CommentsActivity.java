@@ -33,19 +33,19 @@ public class CommentsActivity extends ThemeActivity implements CommentListListen
 	}
 
 	@Override public void onDeleteCommentFailure(long commentId, Exception e) {
-		error(String.format("Error deleting comment with id: %d%n", commentId), e);
+		error(String.format("Error deleting comment with id: %d", commentId), e);
 	}
 
 	@Override public void onDeleteCommentSuccess(long commentId) {
-		info(String.format("Comment with id: %d%n succesfully deleted", commentId));
+		info(String.format("Comment with id: %d succesfully deleted", commentId));
 	}
 
 	@Override public void onUpdateCommentFailure(long commentId, Exception e) {
-		error(String.format("Error updating comment with id: %d%n", commentId), e);
+		error(String.format("Error updating comment with id: %d", commentId), e);
 	}
 
 	@Override public void onUpdateCommentSuccess(long commentId) {
-		info(String.format("Comment with id: %d%n succesfully updated", commentId));
+		info(String.format("Comment with id: %d succesfully updated", commentId));
 	}
 
 	@Override public void onAddCommentFailure(String body, Exception e) {
@@ -53,7 +53,7 @@ public class CommentsActivity extends ThemeActivity implements CommentListListen
 	}
 
 	@Override public void onAddCommentSuccess(CommentEntry commentEntry) {
-		//info(String.format("Comment succesfully added, new id: %d%n", commentEntry.getCommentId()));
+		info(String.format("Comment succesfully added, new id: %d", commentEntry.getCommentId()));
 	}
 
 	@Override public void onListPageFailed(BaseListScreenlet source, int page, Exception e) {
@@ -65,6 +65,7 @@ public class CommentsActivity extends ThemeActivity implements CommentListListen
 	}
 
 	@Override public void onListItemSelected(CommentEntry element, View view) {
+		info(String.format("Selected comment with id: %d", element.getCommentId()));
 	}
 
 	@Override public void loadingFromCache(boolean success) {
