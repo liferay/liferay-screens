@@ -15,10 +15,11 @@ import UIKit
 import MobileCoreServices
 import Photos
 
-public enum LiferayMediaType {
+@objc public enum LiferayMediaType : Int {
 	case Camera
 	case Video
 	case Image
+	case ImageEdited
 }
 
 @objc public class MediaSelectorDefault: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -30,11 +31,21 @@ public enum LiferayMediaType {
 	let viewController: UIViewController?
 	let types: [LiferayMediaType : title]
 	let selectedMediaClosure: SelectedMediaClosure
+	var cancelMessage: String?
+	var alertTitle: String?
 
-	public init(viewController: UIViewController, types: [LiferayMediaType : title], selectedMediaClosure: SelectedMediaClosure) {
+	public init(
+			viewController: UIViewController,
+			types: [LiferayMediaType : title],
+			cancelMessage: String? = nil,
+			alertTitle: String? = nil,
+			selectedMediaClosure: SelectedMediaClosure)  {
+
 		self.viewController = viewController
 		self.types = types
 		self.selectedMediaClosure = selectedMediaClosure
+		self.cancelMessage = cancelMessage
+		self.alertTitle = alertTitle
 	}
 
 	public func show() {
@@ -70,9 +81,23 @@ public enum LiferayMediaType {
 			alert.addAction(action)
 		}
 
-		let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+		if types.keys.contains(.ImageEdited) {
+			let action = UIAlertAction(title: types[.ImageEdited], style: .Default) { (action) in
+				self.pickerController.sourceType = .SavedPhotosAlbum
+				self.pickerController.allowsEditing = true
+				self.viewController?.presentViewController(self.pickerController, animated: true) {}
+			}
+
+			alert.addAction(action)
+		}
+
+		let cancelAction = UIAlertAction(title: cancelMessage ?? "Cancel", style: .Cancel, handler: nil)
 
 		alert.addAction(cancelAction)
+
+		if let title = alertTitle {
+			alert.title = title
+		}
 
 		viewController?.presentViewController(alert, animated: true) {}
 	}
