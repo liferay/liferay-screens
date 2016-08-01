@@ -19,19 +19,8 @@ import java.util.List;
  */
 public class RatingsActivity extends ThemeActivity implements RatingListener, View.OnClickListener {
 
-	@Override public void onRatingOperationFailure(Exception exception) {
-		error("There was an error loading screenlet", exception);
-	}
-
-	@Override public void onRatingOperationSuccess(AssetRating assetRating) {
-		info("Screenlet loaded succesfully");
-	}
-
-	private Switch _readOnlySwitch;
-
-	private RatingScreenlet _screenlet;
-
-	@Override protected void onCreate(Bundle savedInstanceState) {
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.ratings);
@@ -40,7 +29,8 @@ public class RatingsActivity extends ThemeActivity implements RatingListener, Vi
 
 		_readOnlySwitch = (Switch) findViewById(R.id.switch_read_only);
 		_readOnlySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			@Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				_screenlet.setEditable(!isChecked);
 				_screenlet.updateView();
 			}
@@ -60,14 +50,8 @@ public class RatingsActivity extends ThemeActivity implements RatingListener, Vi
 		paintButton(R.id.button_rating_thumb);
 	}
 
-	private void paintButton(int id) {
-		for (ImageButton button: _buttons) {
-			button.getBackground().setColorFilter(ContextCompat.getColor(getApplicationContext(),
-				id != button.getId() ? android.R.color.darker_gray : R.color.colorPrimary_default), PorterDuff.Mode.SRC);
-		}
-	}
-
-	@Override public void onClick(View v) {
+	@Override
+	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.button_rating_thumb:
 				displayScreenlet(R.layout.rating_thumb_default, R.string.liferay_rating_thumb_asset_id, 2);
@@ -79,7 +63,8 @@ public class RatingsActivity extends ThemeActivity implements RatingListener, Vi
 				displayScreenlet(R.layout.rating_star_bar_default, R.string.liferay_rating_star_asset_id, 5);
 				break;
 			case R.id.button_rating_reactions:
-				displayScreenlet(R.layout.rating_reactions_default, R.string.liferay_rating_reactions_emojis_asset_id, 5);
+				displayScreenlet(R.layout.rating_reactions_default, R.string.liferay_rating_reactions_emojis_asset_id,
+					5);
 				break;
 			case R.id.button_rating_emojis:
 				displayScreenlet(R.layout.rating_emojis_default, R.string.liferay_rating_reactions_emojis_asset_id, 5);
@@ -89,8 +74,18 @@ public class RatingsActivity extends ThemeActivity implements RatingListener, Vi
 		paintButton(v.getId());
 	}
 
+	@Override
+	public void onRatingOperationFailure(Exception exception) {
+		error("There was an error loading screenlet", exception);
+	}
+
+	@Override
+	public void onRatingOperationSuccess(AssetRating assetRating) {
+		info("Screenlet loaded succesfully");
+	}
+
 	private void displayScreenlet(int layoutId, int entryId, int ratingsGroupCount) {
-		_screenlet = new RatingScreenlet(getApplicationContext());
+		_screenlet = new RatingScreenlet(this);
 		_screenlet.setEntryId(Long.valueOf(getResources().getString(entryId)));
 		_screenlet.setAutoLoad(true);
 		_screenlet.setRatingsGroupCount(ratingsGroupCount);
@@ -101,6 +96,17 @@ public class RatingsActivity extends ThemeActivity implements RatingListener, Vi
 		_container.addView(_screenlet);
 	}
 
+	private void paintButton(int id) {
+		for (ImageButton button : _buttons) {
+			button.getBackground()
+				.setColorFilter(ContextCompat.getColor(this,
+					id != button.getId() ? android.R.color.darker_gray : R.color.colorPrimary_default),
+					PorterDuff.Mode.SRC);
+		}
+	}
+
+	private Switch _readOnlySwitch;
+	private RatingScreenlet _screenlet;
 	private LinearLayout _container;
 	private List<ImageButton> _buttons = new ArrayList<>();
 }

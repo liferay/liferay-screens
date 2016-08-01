@@ -118,14 +118,14 @@
 				android:text="@string/relogin" />
 
 			<Button
+				android:id="@+id/ratings"
+				style="@style/test_app_button"
+				android:text="@string/ratings" />
+
+			<Button
 				android:id="@+id/change_theme"
 				style="@style/test_app_button"
 				android:text="@string/change_theme" />
-
-			<Button
-					android:id="@+id/ratings"
-					style="@style/test_app_button"
-					android:text="@string/ratings" />
 
 		</LinearLayout>
 	</ScrollView>
