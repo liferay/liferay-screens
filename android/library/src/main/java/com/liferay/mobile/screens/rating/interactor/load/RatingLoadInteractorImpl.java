@@ -19,7 +19,6 @@ public class RatingLoadInteractorImpl extends BaseRemoteInteractor<RatingListene
 
 	public RatingLoadInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
-		_screensratingsentryService = getScreensratingsentryService();
 	}
 
 	@NonNull
@@ -33,10 +32,11 @@ public class RatingLoadInteractorImpl extends BaseRemoteInteractor<RatingListene
 	public void loadRatings(long entryId, long classPK, String className, int ratingsGroupCount) throws Exception {
 		validate(entryId, className, classPK);
 
+		ScreensratingsentryService service = getScreensratingsentryService();
 		if (entryId != 0) {
-			_screensratingsentryService.getRatingsEntries(entryId, ratingsGroupCount);
+			service.getRatingsEntries(entryId, ratingsGroupCount);
 		} else {
-			_screensratingsentryService.getRatingsEntries(classPK, className, ratingsGroupCount);
+			service.getRatingsEntries(classPK, className, ratingsGroupCount);
 		}
 	}
 
@@ -74,6 +74,4 @@ public class RatingLoadInteractorImpl extends BaseRemoteInteractor<RatingListene
 			throw new IllegalArgumentException("Either entryId or className & classPK cannot" + "be empty");
 		}
 	}
-
-	private final ScreensratingsentryService _screensratingsentryService;
 }

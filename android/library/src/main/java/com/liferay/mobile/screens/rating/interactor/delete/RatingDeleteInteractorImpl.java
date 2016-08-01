@@ -19,7 +19,6 @@ public class RatingDeleteInteractorImpl extends BaseRemoteInteractor<RatingListe
 
 	public RatingDeleteInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
-		_screensratingsentryService = getScreensratingsentryService();
 	}
 
 	@NonNull
@@ -31,7 +30,7 @@ public class RatingDeleteInteractorImpl extends BaseRemoteInteractor<RatingListe
 
 	@Override
 	public void deleteRating(long classPK, String className, int ratingGroupCounts) throws Exception {
-		_screensratingsentryService.deleteRatingsEntry(classPK, className, ratingGroupCounts);
+		getScreensratingsentryService().deleteRatingsEntry(classPK, className, ratingGroupCounts);
 	}
 
 	public void onEvent(RatingDeleteEvent event) {
@@ -63,5 +62,4 @@ public class RatingDeleteInteractorImpl extends BaseRemoteInteractor<RatingListe
 		return intArray;
 	}
 
-	private final ScreensratingsentryService _screensratingsentryService;
 }

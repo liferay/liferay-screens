@@ -20,7 +20,6 @@ public class RatingUpdateInteractorImpl extends BaseRemoteInteractor<RatingListe
 
 	public RatingUpdateInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
-		_screensratingsentryService = getScreensratingsentryService();
 	}
 
 	@NonNull
@@ -33,7 +32,7 @@ public class RatingUpdateInteractorImpl extends BaseRemoteInteractor<RatingListe
 	@Override
 	public void updateRating(long classPK, String className, double score, int ratingsGroupCount) throws Exception {
 		validate(score);
-		_screensratingsentryService.updateRatingsEntry(classPK, className, score, ratingsGroupCount);
+		getScreensratingsentryService().updateRatingsEntry(classPK, className, score, ratingsGroupCount);
 	}
 
 	public void onEvent(RatingUpdateEvent event) {
@@ -71,5 +70,4 @@ public class RatingUpdateInteractorImpl extends BaseRemoteInteractor<RatingListe
 		}
 	}
 
-	private final ScreensratingsentryService _screensratingsentryService;
 }
