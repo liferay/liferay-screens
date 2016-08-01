@@ -14,85 +14,13 @@
 */
 import UIKit
 
-public class ImageGalleryView_default: BaseListCollectionView, ImageGalleryViewModel {
-
-	internal var lastOffset: CGPoint?
-	internal var currentOrientation: UIInterfaceOrientation?
-
-	// ImageGalleryViewModel
-
-	public var columnNumber = ImageGalleryScreenlet.DefaultColumns {
-		didSet {
-			changeLayout()
-		}
-	}
-
-	internal let imageCellId = "ImageCellId"
-	internal var alert: MediaSelectorDefault?
+public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 
 	var spacing: CGFloat = 1.0
-
-	public func onImageEntryDeleted(imageEntry: ImageEntry) {
-
-		var section: Int?
-		var sectionKey: String?
-		var rowIndex: Int?
-
-		for (keyIndex, key) in rows.keys.enumerate() {
-			for (index, row) in rows[key]!.enumerate() {
-				if let row = row as? ImageEntry {
-					if imageEntry == row {
-						section = keyIndex
-						sectionKey = key
-						rowIndex = index
-					}
-				}
-			}
-		}
-
-		guard let finalSection = section, finalRowIndex = rowIndex, finalSectionKey = sectionKey
-		else {
-			return
-		}
-
-		deleteRow(finalSectionKey, row: finalRowIndex)
-
-		let indexPath = NSIndexPath(forRow: finalRowIndex, inSection: finalSection)
-		collectionView?.deleteItemsAtIndexPaths([indexPath])
-	}
-
-	public func showImageSelector() {
-		if let viewController = presentingViewController {
-
-			let takeNewPicture = LocalizedString("default", key: "userportrait-take-new-picture", obj: self)
-			let chooseExisting = LocalizedString("default", key: "userportrait-choose-existing-picture", obj: self)
-
-			alert = MediaSelectorDefault(viewController: viewController, types: [.Camera : takeNewPicture, .Image : chooseExisting]) { (image, _) in
-				if let image = image {
-					let imageUpload = ImageEntryUpload(image: image, title: "test\(Int(CFAbsoluteTimeGetCurrent())).png")
-					self.screenlet?.performAction(name: ImageGalleryScreenlet.UploadImageAction, sender: imageUpload)
-				}
-			}
-			alert?.show()
-		}
-	}
-
-	public func onImageUploaded(imageEntry: ImageEntry) {
-		if let lastSection = self.sections.last {
-			self.addRow(lastSection, element: imageEntry)
-
-			let lastRow = self.rows[lastSection]!.count - 1
-			let indexPath = NSIndexPath(forRow: lastRow, inSection: self.sections.count - 1)
-			self.collectionView?.insertItemsAtIndexPaths([indexPath])
-		}
-	}
-
-	// BaseScreenletView
-
-	public override func createProgressPresenter() -> ProgressPresenter {
-		return DefaultProgressPresenter()
-	}
-
+	
+	internal var lastOffset: CGPoint?
+	internal var currentOrientation: UIInterfaceOrientation?
+	
 	public override func onShow() {
 		super.onShow()
 
@@ -108,6 +36,10 @@ public class ImageGalleryView_default: BaseListCollectionView, ImageGalleryViewM
 	}
 
 	// BaseListCollectionView
+
+	public override func doConfigureCollectionView(collectionView: UICollectionView) {
+		collectionView.backgroundColor = .whiteColor()
+	}
 
 	public override func doRegisterCellNibs() {
 		if let imageGalleryGridCellNib = NSBundle.nibInBundles(
@@ -157,17 +89,7 @@ public class ImageGalleryView_default: BaseListCollectionView, ImageGalleryViewM
 		return super.doGetCellId(indexPath: indexPath, object: object)
 	}
 
-	internal func cellWidthForNumberOfColumns(numCols: Int) -> CGFloat {
-
-		let horizontalMargins: CGFloat = 40
-		let viewWidth = collectionView!.bounds.width
-
-		let cellWidth =  (viewWidth - horizontalMargins) / CGFloat(numCols) - CGFloat(spacing)
-
-		return cellWidth
-	}
-
-	internal func changeLayout() {
+	public override func changeLayout() {
 		if let collectionView = collectionView {
 			let newLayout = createCustomLayout()
 			collectionView.setCollectionViewLayout(newLayout, animated: true)
@@ -186,4 +108,15 @@ public class ImageGalleryView_default: BaseListCollectionView, ImageGalleryViewM
 
 		return layout
 	}
+
+	internal func cellWidthForNumberOfColumns(numCols: Int) -> CGFloat {
+
+		let horizontalMargins: CGFloat = 40
+		let viewWidth = collectionView!.bounds.width
+
+		let cellWidth =  (viewWidth - horizontalMargins) / CGFloat(numCols) - CGFloat(spacing)
+
+		return cellWidth
+	}
+
 }
