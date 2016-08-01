@@ -23,6 +23,7 @@
 			android:id="@+id/button_rating_thumb"
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
+			android:layout_marginLeft="5dp"
 			android:layout_marginRight="5dp"
 			android:background="@drawable/default_button_drawable"
 			android:padding="5dp"
@@ -67,6 +68,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:layout_marginLeft="5dp"
+			android:layout_marginRight="5dp"
 			android:background="@drawable/default_button_drawable"
 			android:padding="5dp"
 			android:src="@drawable/emojis"
@@ -81,7 +83,7 @@
 		android:layout_gravity="center"
 		android:paddingLeft="15dp"
 		android:switchPadding="5dp"
-		android:text="Read only"
+		android:text="@string/read_only"
 		/>
 
 	<LinearLayout
