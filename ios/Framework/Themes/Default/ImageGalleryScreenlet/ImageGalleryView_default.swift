@@ -18,6 +18,12 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 
 	var spacing: CGFloat = 1.0
 	
+	public var columnNumber = ImageGalleryScreenlet.DefaultColumns {
+		didSet {
+			changeLayout()
+		}
+	}
+
 	internal var lastOffset: CGPoint?
 	internal var currentOrientation: UIInterfaceOrientation?
 	
@@ -89,7 +95,7 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 		return super.doGetCellId(indexPath: indexPath, object: object)
 	}
 
-	public override func changeLayout() {
+	public func changeLayout() {
 		if let collectionView = collectionView {
 			let newLayout = createCustomLayout()
 			collectionView.setCollectionViewLayout(newLayout, animated: true)

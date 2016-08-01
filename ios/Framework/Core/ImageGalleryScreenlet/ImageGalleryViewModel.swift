@@ -14,7 +14,6 @@
 import Foundation
 
 @objc public protocol ImageGalleryViewModel {
-	var columnNumber: Int { set get }
 
 	optional func onImageEntryDeleted(imageEntry: ImageEntry)
 

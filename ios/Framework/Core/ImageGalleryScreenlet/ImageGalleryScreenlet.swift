@@ -59,14 +59,6 @@ import Foundation
 
 	public let DefaultMimeTypes = ["image/png", "image/jpeg", "image/gif"]
 
-	public var columNumber =  ImageGalleryScreenlet.DefaultColumns {
-		didSet {
-			if columNumber > 0 {
-				viewModel.columnNumber = columNumber
-			}
-		}
-	}
-
 	internal var loaded = false
 
 	public override func onShow() {
@@ -85,7 +77,7 @@ import Foundation
 	}
 
 	public func startMediaSelectorAndUpload() {
-		viewModel.showImageSelector?()
+		//
 	}
 
 	public func deleteImageEntry(imageEntry: ImageEntry) {

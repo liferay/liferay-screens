@@ -17,12 +17,6 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 
 	// ImageGalleryViewModel
 
-	public var columnNumber = ImageGalleryScreenlet.DefaultColumns {
-		didSet {
-			changeLayout()
-		}
-	}
-
 	internal let imageCellId = "ImageCellId"
 
 	public func onImageEntryDeleted(imageEntry: ImageEntry) {
@@ -88,10 +82,6 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 
 	public override func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
-	}
-
-	public func changeLayout() {
-		
 	}
 	
 }
