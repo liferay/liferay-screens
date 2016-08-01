@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import com.liferay.mobile.screens.rating.AssetRating;
@@ -17,7 +16,8 @@ import java.util.List;
 /**
  * @author Alejandro Hernández
  */
-public class RatingsActivity extends ThemeActivity implements RatingListener, View.OnClickListener {
+public class RatingsActivity extends ThemeActivity
+	implements RatingListener, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,21 +28,15 @@ public class RatingsActivity extends ThemeActivity implements RatingListener, Vi
 		_container = (LinearLayout) findViewById(R.id.rating_screenlet_container);
 
 		_readOnlySwitch = (Switch) findViewById(R.id.switch_read_only);
-		_readOnlySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				_screenlet.setEditable(!isChecked);
-				_screenlet.updateView();
-			}
-		});
+		_readOnlySwitch.setOnCheckedChangeListener(this);
 
-		_buttons.add((ImageButton) findViewById(R.id.button_rating_thumb));
-		_buttons.add((ImageButton) findViewById(R.id.button_rating_like));
-		_buttons.add((ImageButton) findViewById(R.id.button_rating_star));
-		_buttons.add((ImageButton) findViewById(R.id.button_rating_reactions));
-		_buttons.add((ImageButton) findViewById(R.id.button_rating_emojis));
+		_buttons.add(findViewById(R.id.button_rating_thumb));
+		_buttons.add(findViewById(R.id.button_rating_like));
+		_buttons.add(findViewById(R.id.button_rating_star));
+		_buttons.add(findViewById(R.id.button_rating_reactions));
+		_buttons.add(findViewById(R.id.button_rating_emojis));
 
-		for (ImageButton button : _buttons) {
+		for (View button : _buttons) {
 			button.setOnClickListener(this);
 		}
 
@@ -75,6 +69,12 @@ public class RatingsActivity extends ThemeActivity implements RatingListener, Vi
 	}
 
 	@Override
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		_screenlet.setEditable(!isChecked);
+		_screenlet.updateView();
+	}
+
+	@Override
 	public void onRatingOperationFailure(Exception exception) {
 		error("There was an error loading screenlet", exception);
 	}
@@ -97,16 +97,15 @@ public class RatingsActivity extends ThemeActivity implements RatingListener, Vi
 	}
 
 	private void paintButton(int id) {
-		for (ImageButton button : _buttons) {
-			button.getBackground()
-				.setColorFilter(ContextCompat.getColor(this,
-					id != button.getId() ? android.R.color.darker_gray : R.color.colorPrimary_default),
-					PorterDuff.Mode.SRC);
+		for (View button : _buttons) {
+			int color = ContextCompat.getColor(this,
+				id != button.getId() ? android.R.color.darker_gray : R.color.colorPrimary);
+			button.getBackground().setColorFilter(color, PorterDuff.Mode.SRC);
 		}
 	}
 
 	private Switch _readOnlySwitch;
 	private RatingScreenlet _screenlet;
 	private LinearLayout _container;
-	private List<ImageButton> _buttons = new ArrayList<>();
+	private List<View> _buttons = new ArrayList<>();
 }
