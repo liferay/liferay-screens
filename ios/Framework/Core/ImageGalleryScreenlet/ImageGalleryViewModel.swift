@@ -17,7 +17,5 @@ import Foundation
 
 	optional func onImageEntryDeleted(imageEntry: ImageEntry)
 
-	optional func showImageSelector()
-
 	optional func onImageUploaded(imageEntry: ImageEntry)
 }

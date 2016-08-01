@@ -48,26 +48,6 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 		collectionView?.deleteItemsAtIndexPaths([indexPath])
 	}
 
-	public func showImageSelector() {
-		if let viewController = presentingViewController {
-
-			let takeNewPicture = LocalizedString("default", key: "userportrait-take-new-picture", obj: self)
-			let chooseExisting = LocalizedString("default", key: "userportrait-choose-existing-picture", obj: self)
-
-			let alert = MediaSelector(
-					viewController: viewController,
-					types: [.Camera : takeNewPicture, .Image : chooseExisting],
-					cancelMessage: "Cancel") { (image, _) in
-					
-				if let image = image {
-					let imageUpload = ImageEntryUpload(image: image, title: "test\(Int(CFAbsoluteTimeGetCurrent())).png")
-					self.screenlet?.performAction(name: ImageGalleryScreenlet.UploadImageAction, sender: imageUpload)
-				}
-			}
-			alert.show()
-		}
-	}
-
 	public func onImageUploaded(imageEntry: ImageEntry) {
 		if let lastSection = self.sections.last {
 			self.addRow(lastSection, element: imageEntry)
