@@ -22,22 +22,22 @@ import Photos
 	case ImageEdited
 }
 
-@objc public class MediaSelectorDefault: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+@objc public class MediaSelector: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
 	public typealias SelectedMediaClosure = ((UIImage?, NSURL?) -> Void)?
-	public typealias title = String
 
 	let pickerController = UIImagePickerController()
 	let viewController: UIViewController?
-	let types: [LiferayMediaType : title]
+	let types: [LiferayMediaType : String]
 	let selectedMediaClosure: SelectedMediaClosure
-	var cancelMessage: String?
+	let cancelMessage: String
 	var alertTitle: String?
+	var selfRetain: MediaSelector?
 
 	public init(
 			viewController: UIViewController,
-			types: [LiferayMediaType : title],
-			cancelMessage: String? = nil,
+			types: [LiferayMediaType : String],
+			cancelMessage: String,
 			alertTitle: String? = nil,
 			selectedMediaClosure: SelectedMediaClosure)  {
 
@@ -49,6 +49,7 @@ import Photos
 	}
 
 	public func show() {
+		selfRetain = self
 		pickerController.delegate = self
 
 		let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
@@ -91,7 +92,7 @@ import Photos
 			alert.addAction(action)
 		}
 
-		let cancelAction = UIAlertAction(title: cancelMessage ?? "Cancel", style: .Cancel, handler: nil)
+		let cancelAction = UIAlertAction(title: cancelMessage, style: .Cancel, handler: nil)
 
 		alert.addAction(cancelAction)
 
@@ -113,10 +114,12 @@ import Photos
 		selectedMediaClosure?(selectedImage, selectedURL)
 
 		pickerController.dismissViewControllerAnimated(true) {}
+		selfRetain = nil
 	}
 
 	public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
 		pickerController.dismissViewControllerAnimated(true) {}
+		selfRetain = nil
 	}
 }
 

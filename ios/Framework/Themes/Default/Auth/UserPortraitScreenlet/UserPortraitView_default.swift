@@ -50,8 +50,6 @@ public class UserPortraitView_default: BaseScreenletView,
 	@IBOutlet weak public var portraitImage: UIImageView?
 	@IBOutlet weak var editButton: UIButton!
 
-	internal var alert: MediaSelectorDefault?
-
 	public var borderWidth: CGFloat = 1.0 {
 		didSet {
 			portraitImage?.layer.borderWidth = borderWidth
@@ -124,7 +122,7 @@ public class UserPortraitView_default: BaseScreenletView,
 			let takeNewPicture = LocalizedString("default", key: "userportrait-take-new-picture", obj: self)
 			let chooseExisting = LocalizedString("default", key: "userportrait-choose-existing-picture", obj: self)
 
-			alert = MediaSelectorDefault(
+			let alert = MediaSelector(
 					viewController: self.presentingViewController!,
 					types: [.ImageEdited : chooseExisting, .Camera : takeNewPicture],
 					cancelMessage: "Cancel",
@@ -133,7 +131,7 @@ public class UserPortraitView_default: BaseScreenletView,
 				self.userAction(name: "upload-portrait", sender: image)
 			}
 
-			alert?.show()
+			alert.show()
 
 			return false
 		}
