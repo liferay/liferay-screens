@@ -3,6 +3,10 @@ package com.liferay.mobile.screens.viewsets.defaultviews.comment.display;
 import android.content.Context;
 import android.text.Html;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
@@ -10,6 +14,7 @@ import android.widget.TextView;
 import android.widget.ViewSwitcher;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.display.view.CommentDisplayViewModel;
 import com.liferay.mobile.screens.models.CommentEntry;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
@@ -28,6 +33,8 @@ public class CommentView extends RelativeLayout implements CommentDisplayViewMod
 	}
 
 	@Override public void showFinishOperation(final CommentEntry commentEntry) {
+		editionMode(false);
+
 		_userPortraitScreenlet.setUserId(commentEntry.getUserId());
 
 		_userNameTextView.setText(commentEntry.getUserName());
@@ -42,6 +49,30 @@ public class CommentView extends RelativeLayout implements CommentDisplayViewMod
 
 		_bodyTextView.setText(
 			Html.fromHtml(commentEntry.getBody()).toString().replaceAll("\n", "").trim());
+
+		if (commentEntry.isEditable()) {
+			_editImageButton.setVisibility(VISIBLE);
+
+			_editBodyEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+				@Override public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+					if (actionId == EditorInfo.IME_ACTION_DONE) {
+						editionMode(false);
+						editCommentBody();
+						return true;
+					}
+					return false;
+				}
+			});
+
+			_editImageButton.setOnClickListener(new OnClickListener() {
+				@Override public void onClick(View v) {
+					editionMode(!_isEditing);
+					editCommentBody();
+				}
+			});
+		} else {
+			_editImageButton.setVisibility(GONE);
+		}
 	}
 
 	@Override public void showStartOperation(String actionName) {
@@ -54,6 +85,43 @@ public class CommentView extends RelativeLayout implements CommentDisplayViewMod
 
 	@Override public void showFailedOperation(String actionName, Exception e) {
 
+	}
+
+	private void editCommentBody() {
+		if (!_isEditing) {
+			String editedText = _editBodyEditText.getText().toString();
+			if (!editedText.equals(_bodyTextView.getText())) {
+				getScreenlet().performUserAction(
+					CommentDisplayScreenlet.UPDATE_COMMENT_ACTION, editedText);
+			}
+		}
+	}
+
+	private void editionMode(boolean on) {
+		_isEditing = on;
+
+		if (_isEditing && _viewSwitcher.getCurrentView() != _editBodyEditText) {
+			_viewSwitcher.showNext();
+		} else if (!_isEditing && _viewSwitcher.getCurrentView() != _bodyTextView) {
+			_viewSwitcher.showPrevious();
+		}
+
+		InputMethodManager imm =
+			(InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+		if (_isEditing) {
+			_editImageButton.setImageResource(R.drawable.default_comment_end_edit);
+
+			//Set selection at end of input
+			_editBodyEditText.requestFocus();
+			_editBodyEditText.setText("");
+			_editBodyEditText.append(_bodyTextView.getText());
+
+			imm.showSoftInput(_editBodyEditText, InputMethodManager.SHOW_FORCED);
+		} else {
+			_editImageButton.setImageResource(R.drawable.default_comment_edit);
+
+			imm.hideSoftInputFromWindow(_editBodyEditText.getWindowToken(), 0);
+		}
 	}
 
 	@Override protected void onFinishInflate() {
@@ -87,6 +155,8 @@ public class CommentView extends RelativeLayout implements CommentDisplayViewMod
 	private ImageButton _deleteImageButton;
 	private EditText _editBodyEditText;
 	private ViewSwitcher _viewSwitcher;
+
+	private boolean _isEditing;
 
 	private BaseScreenlet _screenlet;
 }
