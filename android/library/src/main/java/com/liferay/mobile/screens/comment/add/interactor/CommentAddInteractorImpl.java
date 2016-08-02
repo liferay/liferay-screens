@@ -2,6 +2,7 @@ package com.liferay.mobile.screens.comment.add.interactor;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.comment.add.CommentAddListener;
 import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorListener;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.models.CommentEntry;
@@ -10,7 +11,7 @@ import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
 /**
  * @author Alejandro Hernández
  */
-public class CommentAddInteractorImpl extends BaseRemoteInteractor<CommentListInteractorListener>
+public class CommentAddInteractorImpl extends BaseRemoteInteractor<CommentAddListener>
 	implements CommentAddInteractor {
 
 	public CommentAddInteractorImpl(int targetScreenletId) {
