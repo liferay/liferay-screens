@@ -1,10 +1,10 @@
 package com.liferay.mobile.screens.comment.display.interactor.delete;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v7.commentmanagerjsonws.CommentmanagerjsonwsService;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
 
 /**
  * @author Alejandro Hernández
@@ -22,17 +22,15 @@ public class CommentDeleteInteractorImpl extends BaseRemoteInteractor<CommentDis
 		}
 
 		if (event.isFailed()) {
-			getListener().onDeleteCommentFailure(_commentId, event.getException());
+			getListener().onDeleteCommentFailure(event.getException());
 		} else {
-			getListener().onDeleteCommentSuccess(_commentId);
+			getListener().onDeleteCommentSuccess();
 		}
 	}
 
 	@Override public void deleteComment(long commentId) throws Exception {
 
 		validate(commentId);
-
-		_commentId = commentId;
 
 		CommentmanagerjsonwsService service = getCommentsService();
 
@@ -54,6 +52,4 @@ public class CommentDeleteInteractorImpl extends BaseRemoteInteractor<CommentDis
 			throw new IllegalArgumentException("commentId cannot be 0 or negative");
 		}
 	}
-
-	private long _commentId;
 }
