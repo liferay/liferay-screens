@@ -1,8 +1,14 @@
 package com.liferay.mobile.screens.testapp;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
+import com.liferay.mobile.screens.comment.add.CommentAddListener;
+import com.liferay.mobile.screens.comment.add.CommentAddScreenlet;
 import com.liferay.mobile.screens.comment.list.CommentListListener;
 import com.liferay.mobile.screens.comment.list.CommentListScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
@@ -12,7 +18,8 @@ import java.util.List;
 /**
  * @author Alejandro Hernández
  */
-public class CommentsActivity extends ThemeActivity implements CommentListListener {
+public class CommentsActivity extends ThemeActivity implements CommentListListener,
+	CommentAddListener, View.OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -20,16 +27,20 @@ public class CommentsActivity extends ThemeActivity implements CommentListListen
 
 		setContentView(R.layout.comment_list);
 
-		_screenlet = (CommentListScreenlet) findViewById(R.id.comment_list_screenlet);
-		_screenlet.setGroupId(LiferayServerContext.getGroupId());
-		_screenlet.setListener(this);
+		_addCommentButton =
+			(FloatingActionButton) findViewById(R.id.add_comment_button);
+		_addCommentButton.setOnClickListener(this);
+
+		_listScreenlet = (CommentListScreenlet) findViewById(R.id.comment_list_screenlet);
+		_listScreenlet.setGroupId(LiferayServerContext.getGroupId());
+		_listScreenlet.setListener(this);
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 
-		_screenlet.loadPage(0);
+		_listScreenlet.loadPage(0);
 	}
 
 	@Override public void onDeleteCommentFailure(CommentEntry commentEntry, Exception e) {
@@ -54,6 +65,9 @@ public class CommentsActivity extends ThemeActivity implements CommentListListen
 
 	@Override public void onAddCommentSuccess(CommentEntry commentEntry) {
 		info(String.format("Comment succesfully added, new id: %d", commentEntry.getCommentId()));
+		_dialog.cancel();
+		_listScreenlet.refreshView();
+		_listScreenlet.loadPage(0);
 	}
 
 	@Override public void onListPageFailed(BaseListScreenlet source, int page, Exception e) {
@@ -77,6 +91,27 @@ public class CommentsActivity extends ThemeActivity implements CommentListListen
 	@Override public void storingToCache(Object object) {
 	}
 
-	private CommentListScreenlet _screenlet;
+	@Override public void onClick(View v) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
+		builder.setMessage("Type your comment and press 'Send'")
+			.setTitle("Add new comment");
+
+		LayoutInflater inflater = getLayoutInflater();
+
+		View dialogView = inflater.inflate(R.layout.add_comment_dialog, null);
+
+		builder.setView(dialogView);
+
+		CommentAddScreenlet screenlet =
+			(CommentAddScreenlet) dialogView.findViewById(R.id.comment_add_screenlet);
+		screenlet.setListener(this);
+
+		_dialog = builder.create();
+		_dialog.show();
+	}
+
+	private CommentListScreenlet _listScreenlet;
+	private FloatingActionButton _addCommentButton;
+	private AlertDialog _dialog;
 }
