@@ -6,6 +6,9 @@ import android.view.View;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
+import com.liferay.mobile.screens.comment.display.interactor.delete.CommentDeleteInteractorImpl;
+import com.liferay.mobile.screens.comment.display.interactor.load.CommentLoadInteractorImpl;
+import com.liferay.mobile.screens.comment.display.interactor.update.CommentUpdateInteractorImpl;
 import com.liferay.mobile.screens.comment.display.view.CommentDisplayViewModel;
 import com.liferay.mobile.screens.models.CommentEntry;
 
@@ -14,6 +17,9 @@ import com.liferay.mobile.screens.models.CommentEntry;
  */
 public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewModel, Interactor>
 	implements CommentDisplayInteractorListener {
+
+	public static final String DELETE_COMMENT_ACTION = "delete_comment";
+	public static final String UPDATE_COMMENT_ACTION = "update_comment";
 
 	public CommentDisplayScreenlet(Context context) {
 		super(context);
@@ -28,7 +34,14 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	}
 
 	@Override protected Interactor createInteractor(String actionName) {
-		return null;
+		switch (actionName) {
+			case DELETE_COMMENT_ACTION:
+				return new CommentDeleteInteractorImpl(getScreenletId());
+			case UPDATE_COMMENT_ACTION:
+				return new CommentUpdateInteractorImpl(getScreenletId());
+			default:
+				return new CommentLoadInteractorImpl(getScreenletId());
+		}
 	}
 
 	@Override
