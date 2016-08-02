@@ -31,7 +31,7 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 
 	@Override
 	public void showStartOperation(String actionName) {
-		if (actionName == RatingScreenlet.LOAD_RATINGS_ACTION) {
+		if (actionName.equals(RatingScreenlet.LOAD_RATINGS_ACTION)) {
 			if (_progressBar != null) {
 				_progressBar.setVisibility(View.VISIBLE);
 			}
