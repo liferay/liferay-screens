@@ -7,9 +7,4 @@ import com.liferay.mobile.screens.models.CommentEntry;
  * @author Alejandro Hernández
  */
 public interface CommentListInteractorListener extends BaseListInteractorListener<CommentEntry> {
-
-	void onAddCommentFailure(String body, Exception e);
-
-	void onAddCommentSuccess(CommentEntry commentEntry);
-
 }
