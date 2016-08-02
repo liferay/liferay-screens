@@ -56,6 +56,14 @@ public class CommentEntry implements Parcelable {
 		_values = values;
 	}
 
+	public boolean isEditable() {
+		return (boolean) _values.get("updatePermission");
+	}
+
+	public boolean isDeletable() {
+		return (boolean) _values.get("deletePermission");
+	}
+
 	public String getBody() {
 		return (String) _values.get("body");
 	}
