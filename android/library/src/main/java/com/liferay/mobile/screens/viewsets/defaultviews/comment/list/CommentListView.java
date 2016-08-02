@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class CommentListView extends
 	BaseListScreenletView<CommentEntry, CommentListAdapter.CommentViewHolder, CommentListAdapter>
-	implements CommentListViewModel, View.OnClickListener, CommentDisplayListener {
+	implements CommentListViewModel, CommentDisplayListener {
 
 	public CommentListView(Context context) {
 		super(context);
@@ -41,8 +41,6 @@ public class CommentListView extends
 
 		super.showFinishOperation(page, serverEntries, rowCount);
 
-		_sendButton.setEnabled(true);
-
 		if (getAdapter().getEntries().isEmpty()) {
 			_emptyListTextView.setVisibility(VISIBLE);
 		} else {
@@ -53,9 +51,6 @@ public class CommentListView extends
 	@Override protected void onFinishInflate() {
 		super.onFinishInflate();
 		_emptyListTextView = (TextView) findViewById(R.id.comment_empty_list);
-		_sendButton = (Button) findViewById(R.id.comment_send);
-		_addCommentEditText = (EditText) findViewById(R.id.comment_add);
-		_sendButton.setOnClickListener(this);
 
 		setFocusableInTouchMode(true);
 	}
@@ -75,19 +70,6 @@ public class CommentListView extends
 
 	private void clearAdapterEntries() {
 		getAdapter().getEntries().clear();
-	}
-
-	@Override public void onClick(View v) {
-		int i = v.getId();
-		if (i == R.id.comment_send) {
-			String body = _addCommentEditText.getText().toString();
-			if (!body.isEmpty()) {
-				clearAdapterEntries();
-				_addCommentEditText.setText("");
-				_sendButton.setEnabled(false);
-				getScreenlet().performUserAction(CommentListScreenlet.ADD_COMMENT_ACTION, body);
-			}
-		}
 	}
 
 	@Override public void onDeleteCommentFailure(CommentEntry commentEntry, Exception e) {
@@ -123,6 +105,4 @@ public class CommentListView extends
 	}
 
 	private TextView _emptyListTextView;
-	private Button _sendButton;
-	private EditText _addCommentEditText;
 }
