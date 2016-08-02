@@ -109,7 +109,7 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 				String body = (String) args[0];
 				try {
 					((CommentUpdateInteractor) interactor).updateComment(
-						_className, _classPK, _commentId, body);
+						_groupId, _className, _classPK, _commentId, body);
 				} catch (Exception e) {
 					onUpdateCommentFailure(e);
 				}

@@ -1,10 +1,10 @@
 package com.liferay.mobile.screens.comment.display.interactor.update;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v7.commentmanagerjsonws.CommentmanagerjsonwsService;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
 
 /**
  * @author Alejandro Hernández
@@ -29,16 +29,14 @@ public class CommentUpdateInteractorImpl extends BaseRemoteInteractor<CommentDis
 	}
 
 	@Override
-	public void updateComment(String className, long classPK, long commentId, String newBody)
+	public void updateComment(long groupId, String className, long classPK, long commentId, String newBody)
 		throws Exception {
 
-		validate(commentId, newBody);
-
-		_commentId = commentId;
+		validate(groupId, className, classPK, commentId, newBody);
 
 		CommentmanagerjsonwsService service = getCommentsService();
 
-		service.updateComment(className, classPK, commentId, "", newBody);
+		service.updateComment(groupId, className, classPK, commentId, newBody);
 	}
 
 	protected CommentmanagerjsonwsService getCommentsService() {
@@ -50,14 +48,19 @@ public class CommentUpdateInteractorImpl extends BaseRemoteInteractor<CommentDis
 		return new CommentmanagerjsonwsService(session);
 	}
 
-	protected void validate(long commentId, String newBody) {
+	protected void validate(
+		long groupId, String className, long classPK, long commentId, String newBody) {
 
-		if (commentId <= 0) {
+		if (groupId <= 0) {
+			throw new IllegalArgumentException("groupId must be greater than 0");
+		} else if (className.isEmpty()) {
+			throw new IllegalArgumentException("className cannot be empty");
+		} else if (classPK <= 0) {
+			throw new IllegalArgumentException("classPK must be greater than 0");
+		} else if (commentId <= 0) {
 			throw new IllegalArgumentException("commentId cannot be 0 or negative");
 		} else if (newBody.isEmpty()) {
 			throw new IllegalArgumentException("new body for comment cannot be empty");
 		}
 	}
-
-	private long _commentId;
 }
