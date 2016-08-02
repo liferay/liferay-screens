@@ -22,9 +22,9 @@ public class CommentUpdateInteractorImpl extends BaseRemoteInteractor<CommentDis
 		}
 
 		if (event.isFailed()) {
-			getListener().onUpdateCommentFailure(_commentId, event.getException());
+			getListener().onUpdateCommentFailure(event.getException());
 		} else {
-			getListener().onUpdateCommentSuccess(_commentId);
+			getListener().onUpdateCommentSuccess(event.getCommentEntry());
 		}
 	}
 
