@@ -18,6 +18,7 @@ import com.liferay.mobile.screens.comment.display.interactor.update.CommentUpdat
 import com.liferay.mobile.screens.comment.display.interactor.update.CommentUpdateInteractorImpl;
 import com.liferay.mobile.screens.comment.display.view.CommentDisplayViewModel;
 import com.liferay.mobile.screens.context.LiferayServerContext;
+import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.models.CommentEntry;
 
 /**
@@ -35,6 +36,23 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 
 	public CommentDisplayScreenlet(Context context, AttributeSet attrs) {
 		super(context, attrs);
+	}
+
+	@Override
+	protected void onScreenletAttached() {
+		if (_autoLoad) {
+			autoLoad();
+		}
+	}
+
+	protected void autoLoad() {
+		if (_commentId != 0 && SessionContext.isLoggedIn()) {
+			load();
+		}
+	}
+
+	private void load() {
+		performUserAction(BaseScreenlet.DEFAULT_ACTION);
 	}
 
 	@Override protected View createScreenletView(Context context, AttributeSet attributes) {
