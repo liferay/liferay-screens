@@ -1,11 +1,11 @@
 package com.liferay.mobile.screens.comment.list.interactor.add;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v7.commentmanagerjsonws.CommentmanagerjsonwsService;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorListener;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.models.CommentEntry;
+import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
 
 /**
  * @author Alejandro Hernández
