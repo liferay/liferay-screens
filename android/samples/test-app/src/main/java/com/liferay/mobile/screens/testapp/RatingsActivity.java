@@ -2,6 +2,8 @@ package com.liferay.mobile.screens.testapp;
 
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
 import android.view.View;
@@ -97,14 +99,24 @@ public class RatingsActivity extends ThemeActivity
 		container.addView(ratingScreenlet);
 	}
 
-			TypedValue typedValue = new TypedValue();
-			getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
-			int color =
-				id != button.getId() ? ContextCompat.getColor(this, android.R.color.darker_gray) : typedValue.data;
 	private void tintButtons(int id) {
 		for (View button : buttons) {
+			int color = id != button.getId() ? getDarkerGray() : getPrimaryColor();
 			button.getBackground().setColorFilter(color, PorterDuff.Mode.SRC);
 		}
+	}
+
+	@ColorInt
+	private int getDarkerGray() {
+		return ContextCompat.getColor(this, android.R.color.darker_gray);
+	}
+
+	@NonNull
+	@ColorInt
+	private int getPrimaryColor() {
+		TypedValue typedValue = new TypedValue();
+		getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+		return typedValue.data;
 	}
 
 	private Switch readOnlySwitch;
