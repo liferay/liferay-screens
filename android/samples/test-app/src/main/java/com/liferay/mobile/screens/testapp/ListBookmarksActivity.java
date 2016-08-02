@@ -3,12 +3,10 @@ package com.liferay.mobile.screens.testapp;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.listbookmark.Bookmark;
 import com.liferay.mobile.screens.listbookmark.BookmarkListListener;
 import com.liferay.mobile.screens.listbookmark.BookmarkListScreenlet;
-
 import java.util.List;
 
 public class ListBookmarksActivity extends AppCompatActivity implements BookmarkListListener {
@@ -18,19 +16,18 @@ public class ListBookmarksActivity extends AppCompatActivity implements Bookmark
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_bookmarks);
 
-		BookmarkListScreenlet bookmarkListScreenlet =
-			(BookmarkListScreenlet) findViewById(R.id.bookmarklist_screenlet);
+		BookmarkListScreenlet bookmarkListScreenlet = (BookmarkListScreenlet) findViewById(R.id.bookmarklist_screenlet);
 		bookmarkListScreenlet.setListener(this);
 	}
 
-
 	@Override
-	public void onListPageFailed(BaseListScreenlet source, int page, Exception e) {
+	public void onListPageFailed(BaseListScreenlet source, int startRow, int endRow, Exception e) {
 
 	}
 
 	@Override
-	public void onListPageReceived(BaseListScreenlet source, int page, List<Bookmark> entries, int rowCount) {
+	public void onListPageReceived(BaseListScreenlet source, int startRow, int endRow, List<Bookmark> entries,
+		int rowCount) {
 
 	}
 
