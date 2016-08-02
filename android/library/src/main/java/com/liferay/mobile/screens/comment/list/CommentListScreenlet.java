@@ -11,12 +11,8 @@ import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorListener;
 import com.liferay.mobile.screens.comment.list.interactor.add.CommentAddInteractor;
 import com.liferay.mobile.screens.comment.list.interactor.add.CommentAddInteractorImpl;
-import com.liferay.mobile.screens.comment.list.interactor.delete.CommentDeleteInteractor;
-import com.liferay.mobile.screens.comment.list.interactor.delete.CommentDeleteInteractorImpl;
 import com.liferay.mobile.screens.comment.list.interactor.list.CommentListInteractor;
 import com.liferay.mobile.screens.comment.list.interactor.list.CommentListInteractorImpl;
-import com.liferay.mobile.screens.comment.list.interactor.update.CommentUpdateInteractor;
-import com.liferay.mobile.screens.comment.list.interactor.update.CommentUpdateInteractorImpl;
 import com.liferay.mobile.screens.comment.list.view.CommentListViewModel;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.models.CommentEntry;
@@ -28,8 +24,6 @@ import java.util.Locale;
 public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Interactor>
 	implements CommentListInteractorListener {
 
-	public static final String DELETE_COMMENT_ACTION = "delete_comment";
-	public static final String UPDATE_COMMENT_ACTION = "update_comment";
 	public static final String ADD_COMMENT_ACTION = "add_comment";
 
 	public CommentListScreenlet(Context context) {
@@ -83,24 +77,6 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 	@Override
 	protected void onUserAction(String actionName, Interactor interactor, Object... args) {
 		switch (actionName) {
-			case DELETE_COMMENT_ACTION:
-				long commentId = (long) args[0];
-				try {
-					((CommentDeleteInteractor) interactor).deleteComment(commentId);
-				} catch (Exception e) {
-					onDeleteCommentFailure(commentId, e);
-				}
-				break;
-			case UPDATE_COMMENT_ACTION:
-				long oldCommentId = (long) args[0];
-				String newBody = (String) args[1];
-				try {
-					((CommentUpdateInteractor) interactor).updateComment(_className, _classPK,
-						oldCommentId, newBody);
-				} catch (Exception e) {
-					onUpdateCommentFailure(oldCommentId, e);
-				}
-				break;
 			case ADD_COMMENT_ACTION:
 				String body = (String) args[0];
 				try {
@@ -116,10 +92,6 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 
 	@Override protected Interactor createInteractor(String actionName) {
 		switch (actionName) {
-			case DELETE_COMMENT_ACTION:
-				return new CommentDeleteInteractorImpl(getScreenletId());
-			case UPDATE_COMMENT_ACTION:
-				return new CommentUpdateInteractorImpl(getScreenletId());
 			case ADD_COMMENT_ACTION:
 				return new CommentAddInteractorImpl(getScreenletId());
 		}
