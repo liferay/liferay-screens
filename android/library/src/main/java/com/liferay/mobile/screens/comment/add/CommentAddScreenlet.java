@@ -1,13 +1,17 @@
 package com.liferay.mobile.screens.comment.add;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
+import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.comment.add.interactor.CommentAddInteractor;
 import com.liferay.mobile.screens.comment.add.interactor.CommentAddInteractorImpl;
 import com.liferay.mobile.screens.comment.add.view.CommentAddViewModel;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.models.CommentEntry;
 
 /**
@@ -25,7 +29,22 @@ public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, Inte
 	}
 
 	@Override protected View createScreenletView(Context context, AttributeSet attributes) {
-		return null;
+		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
+			attributes, R.styleable.CommentAddScreenlet, 0, 0);
+
+		_className = typedArray.getString(R.styleable.CommentAddScreenlet_className);
+
+		_classPK = castToLong(typedArray.getString(R.styleable.CommentAddScreenlet_classPK));
+
+		_groupId = castToLongOrUseDefault(typedArray.getString(
+			R.styleable.CommentAddScreenlet_groupId), LiferayServerContext.getGroupId());
+
+		int layoutId = typedArray.getResourceId(
+			R.styleable.CommentAddScreenlet_layoutId, getDefaultLayoutId());
+
+		typedArray.recycle();
+
+		return LayoutInflater.from(context).inflate(layoutId, null);
 	}
 
 	@Override protected Interactor createInteractor(String actionName) {

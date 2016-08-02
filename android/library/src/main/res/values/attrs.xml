@@ -45,6 +45,13 @@
 		<attr name="labelFields" />
 	</declare-styleable>
 
+	<declare-styleable name="CommentAddScreenlet">
+		<attr name="layoutId" />
+		<attr name="groupId" />
+		<attr name="classPK" />
+		<attr name="className" />
+	</declare-styleable>
+
 	<declare-styleable name="CommentDisplayScreenlet">
 		<attr name="layoutId" />
 		<attr name="autoLoad" />
