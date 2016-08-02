@@ -3,8 +3,11 @@ package com.liferay.mobile.screens.viewsets.defaultviews.comment.display;
 import android.content.Context;
 import android.text.Html;
 import android.util.AttributeSet;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.ViewSwitcher;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.comment.display.view.CommentDisplayViewModel;
@@ -61,6 +64,10 @@ public class CommentView extends RelativeLayout implements CommentDisplayViewMod
 		_userPortraitScreenlet = (UserPortraitScreenlet) findViewById(R.id.comment_user_portrait);
 		_createDateTextView = (TextView) findViewById(R.id.comment_create_date);
 		_editedTextView = (TextView) findViewById(R.id.comment_edited);
+		_editImageButton = (ImageButton) findViewById(R.id.comment_edit_button);
+		_deleteImageButton = (ImageButton) findViewById(R.id.comment_delete_button);
+		_editBodyEditText = (EditText) findViewById(R.id.comment_edit_body);
+		_viewSwitcher = (ViewSwitcher) findViewById(R.id.comment_view_switcher);
 	}
 
 	@Override public BaseScreenlet getScreenlet() {
@@ -76,6 +83,10 @@ public class CommentView extends RelativeLayout implements CommentDisplayViewMod
 	private UserPortraitScreenlet _userPortraitScreenlet;
 	private TextView _createDateTextView;
 	private TextView _editedTextView;
+	private ImageButton _editImageButton;
+	private ImageButton _deleteImageButton;
+	private EditText _editBodyEditText;
+	private ViewSwitcher _viewSwitcher;
 
 	private BaseScreenlet _screenlet;
 }
