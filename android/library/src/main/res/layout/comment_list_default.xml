@@ -6,91 +6,34 @@
 	android:layout_height="match_parent"
 	>
 
-	<RelativeLayout
+	<ProgressBar
+		android:id="@+id/liferay_progress"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:visibility="gone"
+		tools:visibility="visible"
+		/>
+
+	<android.support.v7.widget.RecyclerView
+		android:id="@+id/liferay_recycler_list"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		>
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:visibility="gone"
+		tools:visibility="visible"
+		/>
 
-		<EditText
-			android:id="@+id/comment_add"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_alignParentLeft="true"
-			android:layout_alignParentStart="true"
-			android:layout_alignParentTop="true"
-			android:layout_marginEnd="10dp"
-			android:layout_marginLeft="10dp"
-			android:layout_marginRight="10dp"
-			android:layout_marginStart="10dp"
-			android:layout_marginTop="10dp"
-			android:layout_toLeftOf="@+id/comment_send"
-			android:layout_toStartOf="@+id/comment_send"
-			android:hint="@string/type_your_comment"
-			android:inputType="text"
-			/>
-
-		<Button
-			android:id="@+id/comment_send"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_above="@+id/comment_add_separator"
-			android:layout_alignBottom="@+id/comment_add"
-			android:layout_alignParentEnd="true"
-			android:layout_alignParentRight="true"
-			android:layout_alignTop="@+id/comment_add"
-			android:layout_below="@+id/comment_separator"
-			android:layout_marginBottom="0dp"
-			android:layout_marginEnd="10dp"
-			android:layout_marginRight="10dp"
-			android:layout_marginTop="0dp"
-			android:text="@string/send"
-			style="@style/default_button"
-			/>
-
-		<ImageView
-			android:id="@+id/comment_add_separator"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_below="@+id/comment_add"
-			android:layout_centerHorizontal="true"
-			android:layout_marginBottom="10dp"
-			android:layout_marginTop="10dp"
-			android:contentDescription="@string/separator"
-			android:src="@drawable/default_comment_separator"
-			/>
-
-		<ProgressBar
-			android:id="@+id/liferay_progress"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_below="@+id/comment_add_separator"
-			android:layout_centerHorizontal="true"
-			android:visibility="gone"
-			tools:visibility="visible"
-			/>
-
-		<android.support.v7.widget.RecyclerView
-			android:id="@+id/liferay_recycler_list"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_below="@+id/comment_add_separator"
-			android:visibility="gone"
-			tools:visibility="visible"
-			/>
-
-		<TextView
-			android:id="@+id/comment_empty_list"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_below="@id/comment_add_separator"
-			android:layout_centerHorizontal="true"
-			android:textSize="18sp"
-			android:textStyle="bold"
-			android:visibility="gone"
-			tools:text="Empty list"
-			tools:visibility="visible"
-			/>
-
-	</RelativeLayout>
+	<TextView
+		android:id="@+id/comment_empty_list"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:textSize="18sp"
+		android:textStyle="bold"
+		android:visibility="gone"
+		tools:text="Empty list"
+		tools:visibility="visible"
+		/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.comment.list.CommentListView>
