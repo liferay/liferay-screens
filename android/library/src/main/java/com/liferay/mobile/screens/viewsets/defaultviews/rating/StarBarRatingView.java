@@ -59,7 +59,6 @@ public class StarBarRatingView extends BaseRatingView implements RatingBar.OnRat
 		_userRatingBar = (RatingBar) findViewById(R.id.userRatingBar);
 		_averageRatingBar = (RatingBar) findViewById(R.id.averageRatingBar);
 		_totalCountTextView = (TextView) findViewById(R.id.totalCountTextView);
-		_averageContainer = (LinearLayout) findViewById(R.id.average_container);
 
 		_userRatingBar.setOnRatingBarChangeListener(this);
 	}
@@ -79,5 +78,4 @@ public class StarBarRatingView extends BaseRatingView implements RatingBar.OnRat
 	private TextView _totalCountTextView;
 	private RatingBar _averageRatingBar;
 	private RatingBar _userRatingBar;
-	private LinearLayout _averageContainer;
 }
