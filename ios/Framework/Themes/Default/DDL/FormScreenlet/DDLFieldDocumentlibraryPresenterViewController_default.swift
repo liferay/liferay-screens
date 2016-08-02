@@ -15,7 +15,7 @@ import UIKit
 import MobileCoreServices
 
 
-private let xibName = "DDMFieldDocumentlibraryPresenterViewController_default"
+private let xibName = "DDLFieldDocumentlibraryPresenterViewController_default"
 
 
 public class DDMFieldDocumentlibraryPresenterViewController_default:
@@ -92,7 +92,6 @@ public class DDMFieldDocumentlibraryPresenterViewController_default:
 	}
 
 	@IBAction private func selectVideosAction(sender: AnyObject) {
-		cancelButtonAction(sender)
 
 		imagePicker.sourceType = .SavedPhotosAlbum
 		imagePicker.mediaTypes = [kUTTypeMovie as NSString as String]

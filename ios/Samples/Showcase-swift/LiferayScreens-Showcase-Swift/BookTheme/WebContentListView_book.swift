@@ -67,6 +67,8 @@ public class WebContentListView_book: WebContentListView_default {
 
 	public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 
+		let rows = rowsForSectionIndex(indexPath.section)
+		
 		if let entry = rows[indexPath.row] as? WebContent {
 			return (entry.structuredRecord == nil) ? 50 : 75
 		}

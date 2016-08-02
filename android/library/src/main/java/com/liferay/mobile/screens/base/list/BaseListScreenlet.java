@@ -56,23 +56,19 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 
 	@Override
 	public void onListRowsFailure(int startRow, int endRow, Exception e) {
-		int page = getPageFromRow(startRow);
-
-		getViewModel().showFinishOperation(page, e);
+		getViewModel().showFinishOperation(startRow, endRow, e);
 
 		if (_listener != null) {
-			_listener.onListPageFailed(this, page, e);
+			_listener.onListPageFailed(this, startRow, endRow, e);
 		}
 	}
 
 	@Override
 	public void onListRowsReceived(int startRow, int endRow, List<E> entries, int rowCount) {
-		int page = getPageFromRow(startRow);
-
-		getViewModel().showFinishOperation(page, entries, rowCount);
+		getViewModel().showFinishOperation(startRow, endRow, entries, rowCount);
 
 		if (_listener != null) {
-			_listener.onListPageReceived(this, page, entries, rowCount);
+			_listener.onListPageReceived(this, startRow, endRow, entries, rowCount);
 		}
 	}
 
