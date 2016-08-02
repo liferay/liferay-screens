@@ -127,7 +127,7 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 		}
 	}
 
-	public void load() throws Exception {
+	public void load() {
 		performUserAction(LOAD_RATINGS_ACTION);
 	}
 
