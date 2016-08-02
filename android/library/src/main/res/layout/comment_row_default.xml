@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:clickable="true"
 	android:focusable="true"
 	android:foreground="?android:selectableItemBackground"
@@ -9,9 +10,13 @@
 	android:paddingRight="10dp"
 	>
 
-	<com.liferay.mobile.screens.comment.list.view.CommentView
+	<com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet
 		android:id="@+id/comment_view"
+		app:autoLoad="false"
+		app:offlinePolicy="REMOTE_FIRST"
 		android:layout_width="wrap_content"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentStart="true"
 		android:layout_height="wrap_content"
 		android:layout_toLeftOf="@+id/row_arrow"
 		android:layout_toStartOf="@+id/row_arrow"

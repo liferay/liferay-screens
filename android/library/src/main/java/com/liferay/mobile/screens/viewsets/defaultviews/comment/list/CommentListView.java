@@ -8,9 +8,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
+import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
 import com.liferay.mobile.screens.comment.list.CommentListScreenlet;
 import com.liferay.mobile.screens.comment.list.view.CommentListViewModel;
-import com.liferay.mobile.screens.comment.list.view.CommentViewListener;
 import com.liferay.mobile.screens.models.CommentEntry;
 import java.util.List;
 
@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class CommentListView extends
 	BaseListScreenletView<CommentEntry, CommentListAdapter.CommentViewHolder, CommentListAdapter>
-	implements CommentListViewModel, CommentViewListener, View.OnClickListener {
+	implements CommentListViewModel, View.OnClickListener, CommentDisplayListener {
 
 	public CommentListView(Context context) {
 		super(context);
@@ -35,6 +35,10 @@ public class CommentListView extends
 
 	@Override
 	public void showFinishOperation(int page, List<CommentEntry> serverEntries, int rowCount) {
+		getAdapter().setGroupId(getCommentListScreenlet().getGroupId());
+		getAdapter().setClassPK(getCommentListScreenlet().getClassPK());
+		getAdapter().setClassName(getCommentListScreenlet().getClassName());
+
 		super.showFinishOperation(page, serverEntries, rowCount);
 
 		_sendButton.setEnabled(true);
@@ -62,22 +66,15 @@ public class CommentListView extends
 
 	@Override
 	protected CommentListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
-		return new CommentListAdapter(itemLayoutId, itemProgressLayoutId, this);
+		return new CommentListAdapter(itemLayoutId, itemProgressLayoutId, this, this);
+	}
+
+	private CommentListScreenlet getCommentListScreenlet() {
+		return (CommentListScreenlet) getScreenlet();
 	}
 
 	private void clearAdapterEntries() {
 		getAdapter().getEntries().clear();
-	}
-
-	@Override public void onEditButtonClicked(long commentId, String newBody) {
-		clearAdapterEntries();
-		getScreenlet().performUserAction(CommentListScreenlet.UPDATE_COMMENT_ACTION, commentId,
-			newBody);
-	}
-
-	@Override public void onDeleteButtonClicked(long commentId) {
-		clearAdapterEntries();
-		getScreenlet().performUserAction(CommentListScreenlet.DELETE_COMMENT_ACTION, commentId);
 	}
 
 	@Override public void onClick(View v) {
@@ -91,6 +88,38 @@ public class CommentListView extends
 				getScreenlet().performUserAction(CommentListScreenlet.ADD_COMMENT_ACTION, body);
 			}
 		}
+	}
+
+	@Override public void onDeleteCommentFailure(CommentEntry commentEntry, Exception e) {
+		getCommentListScreenlet().onDeleteCommentFailure(commentEntry, e);
+	}
+
+	@Override public void onDeleteCommentSuccess(CommentEntry commentEntry) {
+		clearAdapterEntries();
+		getCommentListScreenlet().onDeleteCommentSuccess(commentEntry);
+	}
+
+	@Override public void onUpdateCommentFailure(CommentEntry commentEntry, Exception e) {
+		getCommentListScreenlet().onUpdateCommentFailure(commentEntry, e);
+	}
+
+	@Override public void onUpdateCommentSuccess(CommentEntry commentEntry) {
+		getCommentListScreenlet().onUpdateCommentSuccess(commentEntry);
+	}
+
+	@Override public void onLoadCommentFailure(long commentId, Exception e) {
+	}
+
+	@Override public void onLoadCommentSuccess(CommentEntry commentEntry) {
+	}
+
+	@Override public void loadingFromCache(boolean success) {
+	}
+
+	@Override public void retrievingOnline(boolean triedInCache, Exception e) {
+	}
+
+	@Override public void storingToCache(Object object) {
 	}
 
 	private TextView _emptyListTextView;
