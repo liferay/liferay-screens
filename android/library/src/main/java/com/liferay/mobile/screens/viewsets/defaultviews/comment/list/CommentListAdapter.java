@@ -5,9 +5,11 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
-import com.liferay.mobile.screens.comment.list.view.CommentView;
-import com.liferay.mobile.screens.comment.list.view.CommentViewListener;
+import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
+import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.models.CommentEntry;
+
+import static com.liferay.mobile.screens.R.attr.classPK;
 
 /**
  * @author Alejandro Hernández
@@ -15,8 +17,11 @@ import com.liferay.mobile.screens.models.CommentEntry;
 public class CommentListAdapter
 	extends BaseListAdapter<CommentEntry, CommentListAdapter.CommentViewHolder> {
 
-	public CommentListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
+	public CommentListAdapter(int layoutId, int progressLayoutId,
+		BaseListAdapterListener listener, CommentDisplayListener commentDisplayListener) {
 		super(layoutId, progressLayoutId, listener);
+
+		_commentDisplayListener = commentDisplayListener;
 	}
 
 	@NonNull @Override
@@ -28,26 +33,40 @@ public class CommentListAdapter
 		holder.bind(entry);
 	}
 
-	public void setHtmlBody(boolean htmlBody) {
-		this._htmlBody = htmlBody;
-		this.notifyDataSetChanged();
+	public void setClassName(String className) {
+		_className = className;
+	}
+
+	public void setClassPK(long classPK) {
+		_classPK = classPK;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
 	}
 
 	public class CommentViewHolder extends BaseListAdapter.ViewHolder {
 
 		public CommentViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
-			_commentView = (CommentView) view.findViewById(R.id.comment_view);
-			_commentView.setHtmlBody(_htmlBody);
-			_commentView.setListener((CommentViewListener) listener);
+			_commentDisplayScreenlet =
+				(CommentDisplayScreenlet) view.findViewById(R.id.comment_view);
+			_commentDisplayScreenlet.setListener(_commentDisplayListener);
+			_commentDisplayScreenlet.setGroupId(_groupId);
+			_commentDisplayScreenlet.setClassName(_className);
+			_commentDisplayScreenlet.setClassPK(_classPK);
 		}
 
 		public void bind(CommentEntry entry) {
-			_commentView.setCommentEntry(entry);
+			_commentDisplayScreenlet.setCommentEntry(entry);
 		}
 
-		private final CommentView _commentView;
+		private final CommentDisplayScreenlet _commentDisplayScreenlet;
 	}
 
-	private boolean _htmlBody;
+	private CommentDisplayListener _commentDisplayListener;
+
+	private String _className;
+	private long _classPK;
+	private long _groupId;
 }
