@@ -26,23 +26,23 @@ public class RatingsActivity extends ThemeActivity
 
 		setContentView(R.layout.ratings);
 
-		_container = (LinearLayout) findViewById(R.id.rating_screenlet_container);
+		container = (LinearLayout) findViewById(R.id.rating_screenlet_container);
 
-		_readOnlySwitch = (Switch) findViewById(R.id.switch_read_only);
-		_readOnlySwitch.setOnCheckedChangeListener(this);
+		readOnlySwitch = (Switch) findViewById(R.id.switch_read_only);
+		readOnlySwitch.setOnCheckedChangeListener(this);
 
-		_buttons.add(findViewById(R.id.button_rating_thumb));
-		_buttons.add(findViewById(R.id.button_rating_like));
-		_buttons.add(findViewById(R.id.button_rating_star));
-		_buttons.add(findViewById(R.id.button_rating_reactions));
-		_buttons.add(findViewById(R.id.button_rating_emojis));
+		buttons.add(findViewById(R.id.button_rating_thumb));
+		buttons.add(findViewById(R.id.button_rating_like));
+		buttons.add(findViewById(R.id.button_rating_star));
+		buttons.add(findViewById(R.id.button_rating_reactions));
+		buttons.add(findViewById(R.id.button_rating_emojis));
 
-		for (View button : _buttons) {
+		for (View button : buttons) {
 			button.setOnClickListener(this);
 		}
 
 		displayScreenlet(R.layout.rating_thumb_default, R.string.liferay_rating_thumb_asset_id, 2);
-		paintButton(R.id.button_rating_thumb);
+		tintButtons(R.id.button_rating_thumb);
 	}
 
 	@Override
@@ -66,13 +66,13 @@ public class RatingsActivity extends ThemeActivity
 				break;
 		}
 
-		paintButton(v.getId());
+		tintButtons(v.getId());
 	}
 
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		_screenlet.setEditable(!isChecked);
-		_screenlet.updateView();
+		ratingScreenlet.setEditable(!isChecked);
+		ratingScreenlet.updateView();
 	}
 
 	@Override
@@ -86,29 +86,29 @@ public class RatingsActivity extends ThemeActivity
 	}
 
 	private void displayScreenlet(int layoutId, int entryId, int ratingsGroupCount) {
-		_screenlet = new RatingScreenlet(this);
-		_screenlet.setEntryId(Long.valueOf(getResources().getString(entryId)));
-		_screenlet.setAutoLoad(true);
-		_screenlet.setRatingsGroupCount(ratingsGroupCount);
-		_screenlet.render(layoutId);
-		_screenlet.setEditable(!_readOnlySwitch.isChecked());
+		ratingScreenlet = new RatingScreenlet(this);
+		ratingScreenlet.setEntryId(Long.valueOf(getResources().getString(entryId)));
+		ratingScreenlet.setAutoLoad(true);
+		ratingScreenlet.setRatingsGroupCount(ratingsGroupCount);
+		ratingScreenlet.render(layoutId);
+		ratingScreenlet.setEditable(!readOnlySwitch.isChecked());
 
-		_container.removeAllViews();
-		_container.addView(_screenlet);
+		container.removeAllViews();
+		container.addView(ratingScreenlet);
 	}
 
-	private void paintButton(int id) {
-		for (View button : _buttons) {
 			TypedValue typedValue = new TypedValue();
 			getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
 			int color =
 				id != button.getId() ? ContextCompat.getColor(this, android.R.color.darker_gray) : typedValue.data;
+	private void tintButtons(int id) {
+		for (View button : buttons) {
 			button.getBackground().setColorFilter(color, PorterDuff.Mode.SRC);
 		}
 	}
 
-	private Switch _readOnlySwitch;
-	private RatingScreenlet _screenlet;
-	private LinearLayout _container;
-	private List<View> _buttons = new ArrayList<>();
+	private Switch readOnlySwitch;
+	private RatingScreenlet ratingScreenlet;
+	private LinearLayout container;
+	private List<View> buttons = new ArrayList<>();
 }
