@@ -25,8 +25,6 @@ import java.util.Locale;
 public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Interactor>
 	implements CommentListInteractorListener, CommentDisplayListener {
 
-	public static final String ADD_COMMENT_ACTION = "add_comment";
-
 	public CommentListScreenlet(Context context) {
 		super(context);
 	}
@@ -77,25 +75,9 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 
 	@Override
 	protected void onUserAction(String actionName, Interactor interactor, Object... args) {
-		switch (actionName) {
-			case ADD_COMMENT_ACTION:
-				String body = (String) args[0];
-				try {
-					((CommentAddInteractor) interactor).addComment(
-						_groupId, _className, _classPK, body);
-				} catch (Exception e) {
-					onAddCommentFailure(body, e);
-				}
-			default:
-				break;
-		}
 	}
 
 	@Override protected Interactor createInteractor(String actionName) {
-		switch (actionName) {
-			case ADD_COMMENT_ACTION:
-				return new CommentAddInteractorImpl(getScreenletId());
-		}
 		return new CommentListInteractorImpl(getScreenletId(), _offlinePolicy);
 	}
 
@@ -115,20 +97,6 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 		if (getListener() != null) {
 			getListener().storingToCache(object);
 		}
-	}
-
-	@Override public void onAddCommentFailure(String body, Exception e) {
-		if (getCommentListListener() != null) {
-			getCommentListListener().onAddCommentFailure(body, e);
-		}
-		loadPage(0);
-	}
-
-	@Override public void onAddCommentSuccess(CommentEntry commentEntry) {
-		if (getCommentListListener() != null) {
-			getCommentListListener().onAddCommentSuccess(commentEntry);
-		}
-		loadPage(0);
 	}
 
 	@Override public void onLoadCommentFailure(long commentId, Exception e) {
@@ -196,10 +164,6 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 
 	private CommentListListener getCommentListListener() {
 		return (CommentListListener) getListener();
-	}
-
-	private CommentListViewModel getCommentListViewModel() {
-		return (CommentListViewModel) getViewModel();
 	}
 
 	private OfflinePolicy _offlinePolicy;
