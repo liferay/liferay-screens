@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.comment.list.interactor.add;
+package com.liferay.mobile.screens.comment.add.interactor;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
