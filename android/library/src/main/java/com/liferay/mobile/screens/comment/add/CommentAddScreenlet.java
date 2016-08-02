@@ -53,12 +53,11 @@ public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, Inte
 
 	@Override
 	protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
-		String body = (String) args[0];
 		try {
 			((CommentAddInteractor) interactor).addComment(
-				_groupId, _className, _classPK, body);
+				_groupId, _className, _classPK, getViewModel().getBody());
 		} catch (Exception e) {
-			onAddCommentFailure(body, e);
+			onAddCommentFailure(getViewModel().getBody(), e);
 		}
 	}
 
