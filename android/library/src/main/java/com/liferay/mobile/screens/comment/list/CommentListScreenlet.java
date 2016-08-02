@@ -42,6 +42,10 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
+	public void refreshView() {
+		((CommentListViewModel) getViewModel()).refreshView();
+	}
+
 	@Override
 	protected void loadRows(Interactor interactor, int startRow, int endRow, Locale locale)
 		throws Exception {

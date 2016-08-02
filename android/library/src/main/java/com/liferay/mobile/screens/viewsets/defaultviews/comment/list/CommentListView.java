@@ -33,6 +33,10 @@ public class CommentListView extends
 		super(context, attributes, defaultStyle);
 	}
 
+	@Override public void refreshView() {
+		getAdapter().getEntries().clear();
+	}
+
 	@Override
 	public void showFinishOperation(int page, List<CommentEntry> serverEntries, int rowCount) {
 		getAdapter().setGroupId(getCommentListScreenlet().getGroupId());
@@ -68,16 +72,12 @@ public class CommentListView extends
 		return (CommentListScreenlet) getScreenlet();
 	}
 
-	private void clearAdapterEntries() {
-		getAdapter().getEntries().clear();
-	}
-
 	@Override public void onDeleteCommentFailure(CommentEntry commentEntry, Exception e) {
 		getCommentListScreenlet().onDeleteCommentFailure(commentEntry, e);
 	}
 
 	@Override public void onDeleteCommentSuccess(CommentEntry commentEntry) {
-		clearAdapterEntries();
+		refreshView();
 		getCommentListScreenlet().onDeleteCommentSuccess(commentEntry);
 	}
 
