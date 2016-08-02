@@ -8,6 +8,7 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
 import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorListener;
 import com.liferay.mobile.screens.comment.list.interactor.add.CommentAddInteractor;
 import com.liferay.mobile.screens.comment.list.interactor.add.CommentAddInteractorImpl;
@@ -22,7 +23,7 @@ import java.util.Locale;
  * @author Alejandro Hernández
  */
 public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Interactor>
-	implements CommentListInteractorListener {
+	implements CommentListInteractorListener, CommentDisplayListener {
 
 	public static final String ADD_COMMENT_ACTION = "add_comment";
 
@@ -130,32 +131,35 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 		loadPage(0);
 	}
 
-	@Override public void onDeleteCommentFailure(long commentId, Exception e) {
+	@Override public void onLoadCommentFailure(long commentId, Exception e) {
+	}
+
+	@Override public void onLoadCommentSuccess(CommentEntry commentEntry) {
+	}
+
+	@Override public void onDeleteCommentFailure(CommentEntry commentEntry, Exception e) {
 		if (getCommentListListener() != null) {
-			getCommentListListener().onDeleteCommentFailure(commentId, e);
+			getCommentListListener().onDeleteCommentFailure(commentEntry, e);
+		}
+	}
+
+	@Override public void onDeleteCommentSuccess(CommentEntry commentEntry) {
+		if (getCommentListListener() != null) {
+			getCommentListListener().onDeleteCommentSuccess(commentEntry);
 		}
 		loadPage(0);
 	}
 
-	@Override public void onDeleteCommentSuccess(long commentId) {
+	@Override public void onUpdateCommentFailure(CommentEntry commentEntry, Exception e) {
 		if (getCommentListListener() != null) {
-			getCommentListListener().onDeleteCommentSuccess(commentId);
+			getCommentListListener().onUpdateCommentFailure(commentEntry, e);
 		}
-		loadPage(0);
 	}
 
-	@Override public void onUpdateCommentSuccess(long commentId) {
+	@Override public void onUpdateCommentSuccess(CommentEntry commentEntry) {
 		if (getCommentListListener() != null) {
-			getCommentListListener().onUpdateCommentSuccess(commentId);
+			getCommentListListener().onUpdateCommentSuccess(commentEntry);
 		}
-		loadPage(0);
-	}
-
-	@Override public void onUpdateCommentFailure(long commentId, Exception e) {
-		if (getCommentListListener() != null) {
-			getCommentListListener().onUpdateCommentFailure(commentId, e);
-		}
-		loadPage(0);
 	}
 
 	public OfflinePolicy getOfflinePolicy() {
