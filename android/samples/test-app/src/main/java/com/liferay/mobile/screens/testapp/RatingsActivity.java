@@ -3,6 +3,7 @@ package com.liferay.mobile.screens.testapp;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
@@ -98,8 +99,10 @@ public class RatingsActivity extends ThemeActivity
 
 	private void paintButton(int id) {
 		for (View button : _buttons) {
-			int color = ContextCompat.getColor(this,
-				id != button.getId() ? android.R.color.darker_gray : R.color.colorPrimary);
+			TypedValue typedValue = new TypedValue();
+			getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+			int color =
+				id != button.getId() ? ContextCompat.getColor(this, android.R.color.darker_gray) : typedValue.data;
 			button.getBackground().setColorFilter(color, PorterDuff.Mode.SRC);
 		}
 	}
