@@ -32,20 +32,20 @@ public class CommentsActivity extends ThemeActivity implements CommentListListen
 		_screenlet.loadPage(0);
 	}
 
-	@Override public void onDeleteCommentFailure(long commentId, Exception e) {
-		error(String.format("Error deleting comment with id: %d", commentId), e);
+	@Override public void onDeleteCommentFailure(CommentEntry commentEntry, Exception e) {
+		error(String.format("Error deleting comment with id: %d", commentEntry.getCommentId()), e);
 	}
 
-	@Override public void onDeleteCommentSuccess(long commentId) {
-		info(String.format("Comment with id: %d succesfully deleted", commentId));
+	@Override public void onDeleteCommentSuccess(CommentEntry commentEntry) {
+		info(String.format("Comment with id: %d succesfully deleted", commentEntry.getCommentId()));
 	}
 
-	@Override public void onUpdateCommentFailure(long commentId, Exception e) {
-		error(String.format("Error updating comment with id: %d", commentId), e);
+	@Override public void onUpdateCommentFailure(CommentEntry commentEntry, Exception e) {
+		error(String.format("Error updating comment with id: %d", commentEntry.getCommentId()), e);
 	}
 
-	@Override public void onUpdateCommentSuccess(long commentId) {
-		info(String.format("Comment with id: %d succesfully updated", commentId));
+	@Override public void onUpdateCommentSuccess(CommentEntry commentEntry) {
+		info(String.format("Comment with id: %d succesfully updated", commentEntry.getCommentId()));
 	}
 
 	@Override public void onAddCommentFailure(String body, Exception e) {
