@@ -26,7 +26,7 @@ ext {
 
     bintrayRepo = 'liferay-mobile'
     bintrayOrg = ''
-    bintrayOrg = 'liferay'
+//    bintrayOrg = 'liferay'
 
     siteUrl = 'https://github.com/liferay/liferay-screens'
     gitUrl = 'https://github.com/liferay/liferay-screens.git'
