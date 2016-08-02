@@ -30,6 +30,8 @@
 	<attr name="pageSize" format="integer" />
 	<attr name="labelFields" format="string" />
 	<attr name="structureId" format="string" />
+	<attr name="classPK" format="string" />
+	<attr name="className" format="string" />
 
 	<declare-styleable name="AssetListScreenlet">
 		<attr name="layoutId" />
@@ -43,13 +45,23 @@
 		<attr name="labelFields" />
 	</declare-styleable>
 
+	<declare-styleable name="CommentDisplayScreenlet">
+		<attr name="layoutId" />
+		<attr name="autoLoad" />
+		<attr name="groupId" />
+		<attr name="offlinePolicy" />
+		<attr name="commentId" format="string" />
+		<attr name="classPK" />
+		<attr name="className" />
+	</declare-styleable>
+
 	<declare-styleable name="CommentListScreenlet">
 		<attr name="layoutId" />
 		<attr name="autoLoad" />
 		<attr name="groupId" />
 		<attr name="offlinePolicy" />
-		<attr name="classPK" format="string" />
-		<attr name="className" format="string" />
+		<attr name="classPK" />
+		<attr name="className" />
 		<attr name="htmlBody" format="boolean" />
 		<attr name="firstPageSize" />
 		<attr name="pageSize" />
