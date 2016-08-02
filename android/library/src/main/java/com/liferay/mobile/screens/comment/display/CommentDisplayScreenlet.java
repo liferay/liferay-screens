@@ -116,7 +116,7 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 				break;
 			default:
 				try {
-					((CommentLoadInteractor) interactor).loadComment(
+					((CommentLoadInteractor) interactor).load(
 						_groupId, _commentId);
 				} catch (Exception e) {
 					onLoadCommentFailure(e);
