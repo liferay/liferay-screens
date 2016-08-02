@@ -37,38 +37,90 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	}
 
 	@Override public void onLoadCommentFailure(Exception e) {
-
+		if (getListener() != null) {
+			getListener().onLoadCommentFailure(_commentId, e);
+		}
 	}
 
 	@Override public void onLoadCommentSuccess(CommentEntry commentEntry) {
+		if (getListener() != null) {
+			getListener().onLoadCommentSuccess(commentEntry);
+		}
 
+		setCommentEntry(commentEntry);
 	}
 
 	@Override public void onDeleteCommentFailure(Exception e) {
-
+		if (getListener() != null) {
+			getListener().onDeleteCommentFailure(_commentEntry, e);
+		}
 	}
 
 	@Override public void onDeleteCommentSuccess() {
-
+		if (getListener() != null) {
+			getListener().onDeleteCommentSuccess(_commentEntry);
+		}
 	}
 
 	@Override public void onUpdateCommentFailure(Exception e) {
-
+		if (getListener() != null) {
+			getListener().onUpdateCommentFailure(_commentEntry, e);
+		}
 	}
 
 	@Override public void onUpdateCommentSuccess(CommentEntry commentEntry) {
+		if (getListener() != null) {
+			getListener().onUpdateCommentSuccess(commentEntry);
+		}
 
+		setCommentEntry(commentEntry);
 	}
 
 	@Override public void loadingFromCache(boolean success) {
-
+		if (getListener() != null) {
+			getListener().loadingFromCache(success);
+		}
 	}
 
 	@Override public void retrievingOnline(boolean triedInCache, Exception e) {
-
+		if (getListener() != null) {
+			getListener().retrievingOnline(triedInCache, e);
+		}
 	}
 
 	@Override public void storingToCache(Object object) {
-
+		if (getListener() != null) {
+			getListener().storingToCache(object);
+		}
 	}
+
+	public CommentDisplayListener getListener() {
+		return _listener;
+	}
+
+	public void setListener(CommentDisplayListener listener) {
+		_listener = listener;
+	}
+
+	public CommentEntry getCommentEntry() {
+		return _commentEntry;
+	}
+
+	public void setCommentEntry(CommentEntry commentEntry) {
+		_commentEntry = commentEntry;
+		getViewModel().showFinishOperation(_commentEntry);
+	}
+
+	public long getCommentId() {
+		return _commentId;
+	}
+
+	public void setCommentId(long commentId) {
+		_commentId = commentId;
+	}
+
+	private CommentDisplayListener _listener;
+
+	private CommentEntry _commentEntry;
+	private long _commentId;
 }
