@@ -33,10 +33,6 @@ public class CommentListView extends
 		super(context, attributes, defaultStyle);
 	}
 
-	@Override public void setHtmlBody(boolean htmlBody) {
-		getAdapter().setHtmlBody(htmlBody);
-	}
-
 	@Override
 	public void showFinishOperation(int page, List<CommentEntry> serverEntries, int rowCount) {
 		super.showFinishOperation(page, serverEntries, rowCount);

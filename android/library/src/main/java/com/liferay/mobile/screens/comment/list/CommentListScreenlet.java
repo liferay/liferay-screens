@@ -75,18 +75,9 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 			castToLongOrUseDefault(typedArray.getString(R.styleable.CommentListScreenlet_groupId),
 				groupId);
 
-		_htmlBody = typedArray.getBoolean(R.styleable.CommentListScreenlet_htmlBody, false);
-
 		typedArray.recycle();
 
 		return super.createScreenletView(context, attributes);
-	}
-
-	@Override protected void onScreenletAttached() {
-		if (!isInEditMode()) {
-			getCommentListViewModel().setHtmlBody(_htmlBody);
-		}
-		super.onScreenletAttached();
 	}
 
 	@Override
@@ -227,11 +218,6 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 		this._groupId = groupId;
 	}
 
-	public void setHtmlBody(boolean htmlBody) {
-		this._htmlBody = htmlBody;
-		this.getCommentListViewModel().setHtmlBody(htmlBody);
-	}
-
 	private CommentListListener getCommentListListener() {
 		return (CommentListListener) getListener();
 	}
@@ -244,5 +230,4 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 	private String _className;
 	private long _classPK;
 	private long _groupId;
-	private boolean _htmlBody;
 }
