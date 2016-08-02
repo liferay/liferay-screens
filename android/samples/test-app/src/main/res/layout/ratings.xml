@@ -26,6 +26,7 @@
 			android:layout_marginLeft="5dp"
 			android:layout_marginRight="5dp"
 			android:background="@drawable/default_button_drawable"
+			android:contentDescription="@string/button_for_thumbs_up_down"
 			android:padding="5dp"
 			android:src="@drawable/thumbs"
 			/>
@@ -37,6 +38,7 @@
 			android:layout_marginLeft="5dp"
 			android:layout_marginRight="5dp"
 			android:background="@drawable/default_button_drawable"
+			android:contentDescription="@string/button_for_stars"
 			android:padding="5dp"
 			android:src="@drawable/stars"
 			/>
@@ -48,6 +50,7 @@
 			android:layout_marginLeft="5dp"
 			android:layout_marginRight="5dp"
 			android:background="@drawable/default_button_drawable"
+			android:contentDescription="@string/button_for_like"
 			android:padding="5dp"
 			android:src="@drawable/like"
 			/>
@@ -59,6 +62,7 @@
 			android:layout_marginLeft="5dp"
 			android:layout_marginRight="5dp"
 			android:background="@drawable/default_button_drawable"
+			android:contentDescription="@string/button_for_reactions"
 			android:padding="5dp"
 			android:src="@drawable/reactions"
 			/>
@@ -70,6 +74,7 @@
 			android:layout_marginLeft="5dp"
 			android:layout_marginRight="5dp"
 			android:background="@drawable/default_button_drawable"
+			android:contentDescription="@string/button_for_emojis"
 			android:padding="5dp"
 			android:src="@drawable/emojis"
 			/>

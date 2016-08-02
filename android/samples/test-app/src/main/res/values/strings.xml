@@ -43,4 +43,9 @@
 	<string name="webview_structured_label_example">Example customizing the view</string>
 	<string name="ratings">Ratings</string>
 	<string name="read_only">Read only</string>
+	<string name="button_for_thumbs_up_down">button for thumbs up/down</string>
+	<string name="button_for_stars">button for stars</string>
+	<string name="button_for_like">button for like</string>
+	<string name="button_for_reactions">button for reactions</string>
+	<string name="button_for_emojis">button for emojis</string>
 </resources>
