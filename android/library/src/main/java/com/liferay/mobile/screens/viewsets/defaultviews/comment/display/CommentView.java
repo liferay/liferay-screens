@@ -1,6 +1,8 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.comment.display;
 
 import android.content.Context;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -33,6 +35,7 @@ public class CommentView extends RelativeLayout implements CommentDisplayViewMod
 	}
 
 	@Override public void showFinishOperation(final CommentEntry commentEntry) {
+		deletionMode(false);
 		editionMode(false);
 
 		_userPortraitScreenlet.setUserId(commentEntry.getUserId());
@@ -72,6 +75,23 @@ public class CommentView extends RelativeLayout implements CommentDisplayViewMod
 			});
 		} else {
 			_editImageButton.setVisibility(GONE);
+		}
+
+		if (commentEntry.isDeletable()) {
+			_deleteImageButton.setVisibility(VISIBLE);
+
+			_deleteImageButton.setOnClickListener(new OnClickListener() {
+				@Override public void onClick(View v) {
+					if (_isDeleting) {
+						getScreenlet().performUserAction(
+							CommentDisplayScreenlet.DELETE_COMMENT_ACTION);
+					}
+					deletionMode(!_isDeleting);
+				}
+			});
+		} else {
+			_editImageButton.setVisibility(GONE);
+			_deleteImageButton.setVisibility(GONE);
 		}
 	}
 
@@ -124,6 +144,21 @@ public class CommentView extends RelativeLayout implements CommentDisplayViewMod
 		}
 	}
 
+	private void deletionMode(boolean on) {
+		_isDeleting = on;
+		changeDeleteButtonBackgroundDrawable(_isDeleting ? R.drawable.default_button_selector_red
+			: R.drawable.default_button_selector);
+	}
+
+	private void changeDeleteButtonBackgroundDrawable(int drawable) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+			_deleteImageButton.setBackground(ContextCompat.getDrawable(getContext(), drawable));
+		} else {
+			_deleteImageButton.setBackgroundDrawable(
+				ContextCompat.getDrawable(getContext(), drawable));
+		}
+	}
+
 	@Override protected void onFinishInflate() {
 		super.onFinishInflate();
 
@@ -156,6 +191,7 @@ public class CommentView extends RelativeLayout implements CommentDisplayViewMod
 	private EditText _editBodyEditText;
 	private ViewSwitcher _viewSwitcher;
 
+	private boolean _isDeleting;
 	private boolean _isEditing;
 
 	private BaseScreenlet _screenlet;
