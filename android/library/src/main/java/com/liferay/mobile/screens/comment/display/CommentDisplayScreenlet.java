@@ -6,8 +6,11 @@ import android.view.View;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
+import com.liferay.mobile.screens.comment.display.interactor.delete.CommentDeleteInteractor;
 import com.liferay.mobile.screens.comment.display.interactor.delete.CommentDeleteInteractorImpl;
+import com.liferay.mobile.screens.comment.display.interactor.load.CommentLoadInteractor;
 import com.liferay.mobile.screens.comment.display.interactor.load.CommentLoadInteractorImpl;
+import com.liferay.mobile.screens.comment.display.interactor.update.CommentUpdateInteractor;
 import com.liferay.mobile.screens.comment.display.interactor.update.CommentUpdateInteractorImpl;
 import com.liferay.mobile.screens.comment.display.view.CommentDisplayViewModel;
 import com.liferay.mobile.screens.models.CommentEntry;
@@ -45,8 +48,33 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
-
+	protected void onUserAction(String actionName, Interactor interactor, Object... args) {
+		switch (actionName) {
+			case DELETE_COMMENT_ACTION:
+				try {
+					((CommentDeleteInteractor) interactor).deleteComment(_commentId);
+				} catch (Exception e) {
+					onDeleteCommentFailure(e);
+				}
+				break;
+			case UPDATE_COMMENT_ACTION:
+				String body = (String) args[0];
+				try {
+					((CommentUpdateInteractor) interactor).updateComment(
+						_className, _classPK, _commentId, body);
+				} catch (Exception e) {
+					onUpdateCommentFailure(e);
+				}
+				break;
+			default:
+				try {
+					((CommentLoadInteractor) interactor).loadComment(
+						_groupId, _commentId);
+				} catch (Exception e) {
+					onLoadCommentFailure(e);
+				}
+				break;
+		}
 	}
 
 	@Override public void onLoadCommentFailure(Exception e) {
@@ -121,6 +149,7 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 
 	public void setCommentEntry(CommentEntry commentEntry) {
 		_commentEntry = commentEntry;
+		_commentId = commentEntry == null ? 0 : commentEntry.getCommentId();
 		getViewModel().showFinishOperation(_commentEntry);
 	}
 
@@ -132,8 +161,35 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 		_commentId = commentId;
 	}
 
+	public String getClassName() {
+		return _className;
+	}
+
+	public void setClassName(String className) {
+		_className = className;
+	}
+
+	public long getClassPK() {
+		return _classPK;
+	}
+
+	public void setClassPK(long classPK) {
+		_classPK = classPK;
+	}
+
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
 	private CommentDisplayListener _listener;
 
 	private CommentEntry _commentEntry;
 	private long _commentId;
+	private String _className;
+	private long _classPK;
+	private long _groupId;
 }
