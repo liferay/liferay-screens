@@ -1,6 +1,7 @@
 package com.liferay.mobile.screens.comment.add.interactor;
 
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
+import com.liferay.mobile.screens.models.CommentEntry;
 
 /**
  * @author Alejandro Hernández
@@ -10,15 +11,15 @@ public class CommentAddEvent extends BasicEvent {
 		super(targetScreenletId, e);
 	}
 
-	public CommentAddEvent(int targetScreenletId, long commentId) {
+	public CommentAddEvent(int targetScreenletId, CommentEntry commentEntry) {
 		super(targetScreenletId);
 
-		_commentId = commentId;
+		_commentEntry = commentEntry;
 	}
 
-	public long getCommentId() {
-		return _commentId;
+	public CommentEntry getCommentEntry() {
+		return _commentEntry;
 	}
 
-	private long _commentId;
+	private CommentEntry _commentEntry;
 }

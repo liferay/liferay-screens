@@ -26,7 +26,7 @@ public class CommentAddInteractorImpl extends BaseRemoteInteractor<CommentAddLis
 		if (event.isFailed()) {
 			getListener().onAddCommentFailure(_body, event.getException());
 		} else {
-			getListener().onAddCommentSuccess(new CommentEntry(event.getCommentId(), _body));
+			getListener().onAddCommentSuccess(event.getCommentEntry());
 		}
 	}
 

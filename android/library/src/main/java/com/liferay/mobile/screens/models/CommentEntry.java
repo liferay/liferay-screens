@@ -43,19 +43,6 @@ public class CommentEntry implements Parcelable {
 		_values = values;
 	}
 
-	public CommentEntry(long commentId, String body) {
-		HashMap<String, Object> values = new HashMap<>();
-		values.put("commentId", String.valueOf(commentId));
-		values.put("body", body);
-		values.put("userId", String.valueOf(SessionContext.getUserId()));
-		User currentUser = SessionContext.getCurrentUser();
-		String userName = currentUser.getFirstName() + " " + currentUser.getLastName();
-		values.put("userName", userName);
-		values.put("createDate", System.currentTimeMillis());
-		values.put("modifiedDate", System.currentTimeMillis());
-		_values = values;
-	}
-
 	public boolean isEditable() {
 		return (boolean) _values.get("updatePermission");
 	}
