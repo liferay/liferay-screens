@@ -129,6 +129,8 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 		if (getListener() != null) {
 			getListener().onLoadCommentFailure(_commentId, e);
 		}
+
+		getViewModel().showFailedOperation(DEFAULT_ACTION, e);
 	}
 
 	@Override public void onLoadCommentSuccess(CommentEntry commentEntry) {
@@ -143,18 +145,24 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 		if (getListener() != null) {
 			getListener().onDeleteCommentFailure(_commentEntry, e);
 		}
+
+		getViewModel().showFailedOperation(DELETE_COMMENT_ACTION, e);
 	}
 
 	@Override public void onDeleteCommentSuccess() {
 		if (getListener() != null) {
 			getListener().onDeleteCommentSuccess(_commentEntry);
 		}
+
+		getViewModel().showFinishOperation(DELETE_COMMENT_ACTION);
 	}
 
 	@Override public void onUpdateCommentFailure(Exception e) {
 		if (getListener() != null) {
 			getListener().onUpdateCommentFailure(_commentEntry, e);
 		}
+
+		getViewModel().showFailedOperation(UPDATE_COMMENT_ACTION, e);
 	}
 
 	@Override public void onUpdateCommentSuccess(CommentEntry commentEntry) {
