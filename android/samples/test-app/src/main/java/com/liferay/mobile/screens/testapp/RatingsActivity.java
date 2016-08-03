@@ -65,7 +65,7 @@ public class RatingsActivity extends ThemeActivity
 					5);
 				break;
 			case R.id.button_rating_emojis:
-				displayScreenlet(R.layout.rating_emojis_default, R.string.liferay_rating_reactions_emojis_asset_id, 5);
+				displayScreenlet(R.layout.rating_emojis_default, R.string.liferay_rating_reactions_emojis_asset_id, 4);
 				break;
 		}
 
