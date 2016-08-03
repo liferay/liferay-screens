@@ -63,6 +63,5 @@ public class LikeRatingView extends BaseRatingView implements View.OnClickListen
 
 	private ImageButton likeButton;
 	private TextView likeCountLabel;
-
-	private boolean hasUserRate = false;
+	private boolean hasUserRate;
 }

@@ -7,7 +7,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.rating.AssetRating;
-import com.liferay.mobile.screens.rating.RatingScreenlet;
+
+import static com.liferay.mobile.screens.rating.RatingScreenlet.DELETE_RATING_ACTION;
+import static com.liferay.mobile.screens.rating.RatingScreenlet.UPDATE_RATING_ACTION;
 
 /**
  * @author Alejandro Hernández
@@ -30,19 +32,16 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 	public void onClick(View v) {
 		final int id = v.getId();
 
-		double score = -1;
-
 		if (id == R.id.positiveRatingButton) {
-			score = 1.0;
+			updateScore(1.0);
 		} else if (id == R.id.negativeRatingButton) {
-			score = 0.0;
+			updateScore(0.0);
 		}
+	}
 
-		if (score != -1) {
-			String action =
-				score == userScore ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.UPDATE_RATING_ACTION;
-			getScreenlet().performUserAction(action, score);
-		}
+	private void updateScore(double score) {
+		String action = score == userScore ? DELETE_RATING_ACTION : UPDATE_RATING_ACTION;
+		getScreenlet().performUserAction(action, score);
 	}
 
 	@Override
@@ -55,8 +54,9 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 
 			userScore = assetRating.getUserScore();
 
-			negativeCountLabel.setText(getContext().getString(R.string.rating_total, assetRating.getRatings()[0]));
-			positiveCountLabel.setText(getContext().getString(R.string.rating_total, assetRating.getRatings()[1]));
+			int[] ratings = assetRating.getRatings();
+			negativeCountLabel.setText(getContext().getString(R.string.rating_total, ratings[0]));
+			positiveCountLabel.setText(getContext().getString(R.string.rating_total, ratings[1]));
 
 			if (userScore == 1) {
 				negativeButton.setImageResource(R.drawable.default_thumb_down_outline);
@@ -98,6 +98,5 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 	private ImageButton positiveButton;
 	private TextView negativeCountLabel;
 	private TextView positiveCountLabel;
-
 	private double userScore;
 }
