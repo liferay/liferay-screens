@@ -5,15 +5,6 @@
 	<string name="edit_comment">Edit comment</string>
 	<string name="edited">- Edited</string>
 	<string name="empty_comments">There are no comments yet</string>
-	<string name="empty_replies">This comment doesn\'t have replies</string>
-	<string name="go_back">Go back</string>
-	<plurals name="number_replys">
-		<item quantity="one">1 reply</item>
-		<item quantity="other">%1$d replies</item>
-	</plurals>
-	<string name="reply">Reply</string>
 	<string name="send">Send</string>
-	<string name="separator">separator</string>
 	<string name="type_your_comment">Type your comment</string>
-	<string name="type_your_reply">Type your reply</string>
 </resources>
