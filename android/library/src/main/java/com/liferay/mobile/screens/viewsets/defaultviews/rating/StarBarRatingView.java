@@ -26,6 +26,10 @@ public class StarBarRatingView extends BaseRatingView implements RatingBar.OnRat
 		super(context, attrs, defStyleAttr);
 	}
 
+	public StarBarRatingView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
+	}
+
 	@Override
 	public void showFinishOperation(String action, AssetRating assetRating) {
 		if (progressBar != null) {

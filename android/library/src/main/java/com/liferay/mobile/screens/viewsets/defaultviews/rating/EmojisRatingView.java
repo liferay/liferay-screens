@@ -32,6 +32,10 @@ public class EmojisRatingView extends BaseRatingView implements View.OnClickList
 		super(context, attrs, defStyleAttr);
 	}
 
+	public EmojisRatingView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
+	}
+
 	@Override
 	public void showFinishOperation(String actionName, AssetRating assetRating) {
 		if (progressBar != null) {

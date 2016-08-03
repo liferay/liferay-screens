@@ -26,6 +26,10 @@ public class LikeRatingView extends BaseRatingView implements View.OnClickListen
 		super(context, attrs, defStyleAttr);
 	}
 
+	public LikeRatingView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
+	}
+
 	@Override
 	public void showFinishOperation(String action, AssetRating assetRating) {
 		if (progressBar != null) {

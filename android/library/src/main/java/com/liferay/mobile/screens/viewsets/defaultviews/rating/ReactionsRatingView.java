@@ -32,6 +32,10 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 		super(context, attrs, defStyleAttr);
 	}
 
+	public ReactionsRatingView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
+	}
+
 	@Override
 	public void showFinishOperation(String actionName, AssetRating assetRating) {
 		if (progressBar != null) {

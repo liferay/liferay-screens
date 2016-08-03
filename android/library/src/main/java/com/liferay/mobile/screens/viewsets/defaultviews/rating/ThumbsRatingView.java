@@ -28,6 +28,10 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 		super(context, attrs, defStyleAttr);
 	}
 
+	public ThumbsRatingView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
+	}
+
 	@Override
 	public void onClick(View v) {
 		final int id = v.getId();

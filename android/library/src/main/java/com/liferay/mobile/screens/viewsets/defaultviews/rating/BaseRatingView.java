@@ -29,6 +29,10 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 		super(context, attrs, defStyleAttr);
 	}
 
+	public BaseRatingView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
+	}
+
 	@Override
 	public void showStartOperation(String actionName) {
 		if (LOAD_RATINGS_ACTION.equals(actionName)) {
