@@ -48,52 +48,53 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 		deletionMode(false);
 		editionMode(false);
 
-		_userPortraitScreenlet.setUserId(_commentEntry.getUserId());
+		if (_commentEntry != null) {
+			_userPortraitScreenlet.setUserId(_commentEntry.getUserId());
 
-		_userNameTextView.setText(_commentEntry.getUserName());
+			_userNameTextView.setText(_commentEntry.getUserName());
 
-		_createDateTextView.setText(_commentEntry.getCreateDateAsTimeSpan());
+			_createDateTextView.setText(_commentEntry.getCreateDateAsTimeSpan());
 
-		if (_commentEntry.getModifiedDate() != _commentEntry.getCreateDate()) {
-			_editedTextView.setVisibility(VISIBLE);
-		} else {
-			_editedTextView.setVisibility(GONE);
-		}
+			if (_commentEntry.getModifiedDate() != _commentEntry.getCreateDate()) {
+				_editedTextView.setVisibility(VISIBLE);
+			} else {
+				_editedTextView.setVisibility(GONE);
+			}
 
-		_bodyTextView.setText(
-			Html.fromHtml(_commentEntry.getBody()).toString().replaceAll("\n", "").trim());
+			_bodyTextView.setText(
+				Html.fromHtml(_commentEntry.getBody()).toString().replaceAll("\n", "").trim());
 
-		if (_commentEntry.isEditable()) {
-			_editBodyEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-				@Override public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-					if (actionId == EditorInfo.IME_ACTION_DONE) {
-						editionMode(false);
-						editCommentBody();
-						return true;
+			if (_commentEntry.isEditable()) {
+				_editBodyEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+					@Override public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+						if (actionId == EditorInfo.IME_ACTION_DONE) {
+							editionMode(false);
+							editCommentBody();
+							return true;
+						}
+						return false;
 					}
-					return false;
-				}
-			});
+				});
 
-			_editImageButton.setOnClickListener(new OnClickListener() {
-				@Override public void onClick(View v) {
-					if (_isDeleting) {
-						getScreenlet().performUserAction(
-							CommentDisplayScreenlet.DELETE_COMMENT_ACTION);
-					} else {
-						editionMode(!_isEditing);
-						editCommentBody();
+				_editImageButton.setOnClickListener(new OnClickListener() {
+					@Override public void onClick(View v) {
+						if (_isDeleting) {
+							getScreenlet().performUserAction(CommentDisplayScreenlet.DELETE_COMMENT_ACTION);
+						} else {
+							editionMode(!_isEditing);
+							editCommentBody();
+						}
 					}
-				}
-			});
-		}
+				});
+			}
 
-		if (_commentEntry.isDeletable()) {
-			_deleteImageButton.setOnClickListener(new OnClickListener() {
-				@Override public void onClick(View v) {
-					deletionMode(!_isDeleting);
-				}
-			});
+			if (_commentEntry.isDeletable()) {
+				_deleteImageButton.setOnClickListener(new OnClickListener() {
+					@Override public void onClick(View v) {
+						deletionMode(!_isDeleting);
+					}
+				});
+			}
 		}
 	}
 
