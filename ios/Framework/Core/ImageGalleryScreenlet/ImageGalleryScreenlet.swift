@@ -186,12 +186,12 @@ import Foundation
 			if let result = interactor.result {
 				let imageEntry = ImageEntry(attributes: result)
 
-				//TODO resize in background thread
-				let thumbnailImage = self.resizeImage(imageUpload.image, toWidth: 300)
-				imageEntry.image = thumbnailImage
-				
-				self.imageGalleryScreenletDelegate?.screenlet?(self, onImageUploaded: imageEntry)
-				self.viewModel.onImageUploaded?(imageEntry)
+				imageUpload.image.resizeImage(toWidth: 300) { [weak self] resizedImage in
+					imageEntry.image = resizedImage
+					self?.imageGalleryScreenletDelegate?.screenlet?(self!, onImageUploaded: imageEntry)
+					self?.viewModel.onImageUploaded?(imageEntry)
+				}
+
 			}
 		}
 
@@ -231,21 +231,6 @@ import Foundation
 
 	internal func parseMimeTypes(mimeTypes: String) -> [String] {
 		return mimeTypes.characters.split(",").map(String.init)
-	}
-
-	internal func resizeImage(image: UIImage, toWidth width: Int) -> UIImage {
-		let oldWidth = image.size.width
-		let scaleFactor = CGFloat(width) / oldWidth
-
-		let newHeight = image.size.height * scaleFactor
-		let newWidth = CGFloat(width)
-
-		UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
-		image.drawInRect(CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
-		let newImage = UIGraphicsGetImageFromCurrentImageContext()
-		UIGraphicsEndImageContext()
-
-		return newImage
 	}
 
 }
