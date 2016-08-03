@@ -16,6 +16,10 @@ import java.util.List;
  */
 public class EmojisRatingView extends BaseRatingView implements View.OnClickListener {
 
+	public static final String[] EMOJIS = new String[] {
+		"\uD83D\uDE1C", "\uD83D\uDE01", "\uD83D\uDE02", "\uD83D\uDE0E"
+	};
+
 	public EmojisRatingView(Context context) {
 		super(context);
 	}
@@ -106,7 +110,9 @@ public class EmojisRatingView extends BaseRatingView implements View.OnClickList
 		for (int i = 0; i < viewGroup.getChildCount(); i++) {
 			View view = viewGroup.getChildAt(i);
 			if (view instanceof Button) {
-				_emojis.add((Button) view);
+				Button button = (Button) view;
+				_emojis.add(button);
+				button.setText(EMOJIS[i]);
 			} else if (view instanceof TextView) {
 				_labels.add((TextView) view);
 			} else if (view instanceof ViewGroup) {

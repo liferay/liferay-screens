@@ -32,7 +32,6 @@
 			android:layout_height="80dp"
 			android:layout_alignParentLeft="true"
 			android:background="@drawable/ripple"
-			android:text="@string/emoji1"
 			android:textSize="55sp"
 			tools:text=":)"
 			/>
@@ -43,7 +42,6 @@
 			android:layout_height="80dp"
 			android:layout_toRightOf="@+id/emoji_1_button"
 			android:background="@drawable/ripple"
-			android:text="@string/emoji2"
 			android:textSize="55sp"
 			tools:text=":/"
 			/>
@@ -54,7 +52,6 @@
 			android:layout_height="80dp"
 			android:layout_toRightOf="@+id/emoji_2_button"
 			android:background="@drawable/ripple"
-			android:text="@string/emoji3"
 			android:textSize="55sp"
 			tools:text=":*"
 			/>
@@ -65,20 +62,8 @@
 			android:layout_height="80dp"
 			android:layout_toRightOf="@+id/emoji_3_button"
 			android:background="@drawable/ripple"
-			android:text="@string/emoji4"
 			android:textSize="55sp"
 			tools:text=":S"
-			/>
-
-		<Button
-			android:id="@+id/emoji_5_button"
-			android:layout_width="80dp"
-			android:layout_height="80dp"
-			android:layout_toRightOf="@+id/emoji_4_button"
-			android:background="@drawable/ripple"
-			android:text="@string/emoji5"
-			android:textSize="55sp"
-			tools:text=":("
 			/>
 
 		<TextView
@@ -123,17 +108,6 @@
 			android:textColor="@color/textColorPrimary_default"
 			android:textSize="30sp"
 			tools:text=":S 469"
-			/>
-
-		<TextView
-			android:id="@+id/emoji_5_label"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_below="@+id/emoji_4_label"
-			android:layout_marginTop="20dp"
-			android:textColor="@color/textColorPrimary_default"
-			android:textSize="30sp"
-			tools:text=":( 206"
 			/>
 
 	</RelativeLayout>
