@@ -111,15 +111,16 @@ import Photos
 		let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
 		let selectedURL = info[UIImagePickerControllerMediaURL] as? NSURL
 
-		selectedMediaClosure?(selectedImage, selectedURL)
-
-		pickerController.dismissViewControllerAnimated(true) {}
-		selfRetain = nil
+		pickerController.dismissViewControllerAnimated(true) {
+			self.selectedMediaClosure?(selectedImage, selectedURL)
+			self.selfRetain = nil
+		}
 	}
 
 	public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-		pickerController.dismissViewControllerAnimated(true) {}
-		selfRetain = nil
+		pickerController.dismissViewControllerAnimated(true) {
+			self.selfRetain = nil
+		}
 	}
 }
 

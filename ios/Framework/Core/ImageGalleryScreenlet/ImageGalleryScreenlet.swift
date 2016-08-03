@@ -89,12 +89,25 @@ import Foundation
 
 					if let image = image {
 						let imageUpload = ImageEntryUpload(image: image, title: "test\(Int(CFAbsoluteTimeGetCurrent())).png")
-						self.performAction(name: ImageGalleryScreenlet.UploadImageAction, sender: imageUpload)
+						self.showDetailUploadView(imageUpload)
 					}
 			}
 			alert.show()
 		}
+	}
 
+	public func showDetailUploadView(imageUpload: ImageEntryUpload) {
+		let viewController = createImageUploadDetailViewControllerFromNib()
+
+		if let viewController = viewController {
+
+			viewController.image = imageUpload.image
+			viewController.tTitle = imageUpload.title
+			viewController.screenlet = self
+
+			let navigationController = UINavigationController(rootViewController: viewController)
+			presentingViewController?.presentViewController(navigationController, animated: true) {}
+		}
 	}
 
 	public func deleteImageEntry(imageEntry: ImageEntry) {
@@ -172,6 +185,8 @@ import Foundation
 		interactor.onSuccess = {
 			if let result = interactor.result {
 				let imageEntry = ImageEntry(attributes: result)
+
+				//TODO resize in background thread
 				let thumbnailImage = self.resizeImage(imageUpload.image, toWidth: 300)
 				imageEntry.image = thumbnailImage
 				
@@ -188,6 +203,31 @@ import Foundation
 
 		return interactor
 	}
+
+	private func createImageUploadDetailViewControllerFromNib() -> ImageUploadDetailViewControllerBase? {
+		let viewControllerName = "ImageUploadDetailViewController"
+
+		if let foundView = NSBundle.viewForTheme(
+				name: viewControllerName,
+				themeName: themeName ?? "default",
+				currentClass: self.dynamicType) as? ImageUploadDetailViewControllerBase {
+
+			return foundView
+		}
+
+		if let foundView = NSBundle.viewForTheme(
+			name: viewControllerName,
+			themeName: "default",
+			currentClass: self.dynamicType) as? ImageUploadDetailViewControllerBase {
+
+			return foundView
+		}
+
+		print("ERROR: Xib file doesn't found for \(viewControllerName) and theme '\(themeName)'\n")
+		
+		return nil
+	}
+
 
 	internal func parseMimeTypes(mimeTypes: String) -> [String] {
 		return mimeTypes.characters.split(",").map(String.init)
