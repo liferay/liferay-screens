@@ -17,9 +17,11 @@ import Foundation
 
 	public let image: UIImage
 	public let title: String
+	public let descript: String
 
-	public init(image: UIImage, title: String) {
+	public init(image: UIImage, title: String, descript: String = "") {
 		self.image = image
 		self.title = title
+		self.descript = descript
 	}
 }

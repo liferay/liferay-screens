@@ -35,7 +35,7 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 	}
 
 	public override func createConnector() -> ServerConnector? {
-		return ImageGalleryUploadConnector(repositoryId: repositoryId, folderId: folderId, sourceFileName: imageUpload.title, mimeType: "image/png", title: imageUpload.title, descrip: "", changeLog: "", image: imageUpload.image, onUploadBytes:  onUploadedBytes)
+		return ImageGalleryUploadConnector(repositoryId: repositoryId, folderId: folderId, sourceFileName: imageUpload.title, mimeType: "image/png", title: imageUpload.title, descrip: imageUpload.descript, changeLog: "", image: imageUpload.image, onUploadBytes:  onUploadedBytes)
 	}
 
 	public override func completedConnector(op: ServerConnector) {
