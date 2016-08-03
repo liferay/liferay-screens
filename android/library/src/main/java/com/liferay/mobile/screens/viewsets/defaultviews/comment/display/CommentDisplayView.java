@@ -150,7 +150,7 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 		InputMethodManager imm =
 			(InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 		if (_isEditing) {
-			_editImageButton.setImageResource(R.drawable.default_comment_end_edit);
+			_editImageButton.setImageResource(R.drawable.default_ok);
 
 			//Set selection at end of input
 			_editBodyEditText.requestFocus();
