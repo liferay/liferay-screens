@@ -98,6 +98,11 @@ import Foundation
 		return super.performAction(name: name, sender: sender)
 	}
 
+	public func cancelUploads() {
+		uploadsQueue.removeAll()
+		cancelInteractorsForAction(ImageGalleryScreenlet.UploadImageAction)
+	}
+
 	public func startMediaSelectorAndUpload() {
 		if let viewController = presentingViewController {
 
