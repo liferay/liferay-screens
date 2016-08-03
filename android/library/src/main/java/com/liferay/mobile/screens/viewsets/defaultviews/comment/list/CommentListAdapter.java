@@ -17,8 +17,8 @@ import static com.liferay.mobile.screens.R.attr.classPK;
 public class CommentListAdapter
 	extends BaseListAdapter<CommentEntry, CommentListAdapter.CommentViewHolder> {
 
-	public CommentListAdapter(int layoutId, int progressLayoutId,
-		BaseListAdapterListener listener, CommentDisplayListener commentDisplayListener) {
+	public CommentListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener,
+		CommentDisplayListener commentDisplayListener) {
 		super(layoutId, progressLayoutId, listener);
 
 		_commentDisplayListener = commentDisplayListener;
@@ -45,6 +45,10 @@ public class CommentListAdapter
 		_groupId = groupId;
 	}
 
+	public void setEditable(boolean editable) {
+		_editable = editable;
+	}
+
 	public class CommentViewHolder extends BaseListAdapter.ViewHolder {
 
 		public CommentViewHolder(View view, BaseListAdapterListener listener) {
@@ -55,6 +59,7 @@ public class CommentListAdapter
 			_commentDisplayScreenlet.setGroupId(_groupId);
 			_commentDisplayScreenlet.setClassName(_className);
 			_commentDisplayScreenlet.setClassPK(_classPK);
+			_commentDisplayScreenlet.setEditable(_editable);
 		}
 
 		public void bind(CommentEntry entry) {
@@ -69,4 +74,5 @@ public class CommentListAdapter
 	private String _className;
 	private long _classPK;
 	private long _groupId;
+	private boolean _editable;
 }

@@ -8,4 +8,5 @@ import com.liferay.mobile.screens.models.CommentEntry;
  */
 public interface CommentListViewModel extends BaseListViewModel<CommentEntry> {
 	void refreshView();
+	void setEditable(boolean editable);
 }

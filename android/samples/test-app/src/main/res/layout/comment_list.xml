@@ -21,6 +21,7 @@
 		liferay:className="@string/liferay_comment_asset_className"
 		liferay:classPK="@string/liferay_comment_asset_id"
 		liferay:autoLoad="false"
+		liferay:editable="false"
 		liferay:offlinePolicy="REMOTE_FIRST" />
 
 	<android.support.design.widget.FloatingActionButton

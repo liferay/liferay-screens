@@ -46,6 +46,11 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 		((CommentListViewModel) getViewModel()).refreshView();
 	}
 
+	@Override protected void onScreenletAttached() {
+		super.onScreenletAttached();
+		((CommentListViewModel) getViewModel()).setEditable(_editable);
+	}
+
 	@Override
 	protected void loadRows(Interactor interactor, int startRow, int endRow, Locale locale)
 		throws Exception {
@@ -60,6 +65,8 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 		_className = typedArray.getString(R.styleable.CommentListScreenlet_className);
 
 		_classPK = castToLong(typedArray.getString(R.styleable.CommentListScreenlet_classPK));
+
+		_editable = typedArray.getBoolean(R.styleable.CommentListScreenlet_editable, true);
 
 		Integer offlinePolicy =
 			typedArray.getInteger(R.styleable.CommentListScreenlet_offlinePolicy,
@@ -170,8 +177,18 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 		return (CommentListListener) getListener();
 	}
 
+	public boolean isEditable() {
+		return _editable;
+	}
+
+	public void setEditable(boolean editable) {
+		_editable = editable;
+		((CommentListViewModel) getViewModel()).setEditable(editable);
+	}
+
 	private OfflinePolicy _offlinePolicy;
 	private String _className;
 	private long _classPK;
 	private long _groupId;
+	private boolean _editable;
 }

@@ -37,11 +37,16 @@ public class CommentListView extends
 		getAdapter().getEntries().clear();
 	}
 
+	@Override public void setEditable(boolean editable) {
+		_editable = editable;
+	}
+
 	@Override
 	public void showFinishOperation(int page, List<CommentEntry> serverEntries, int rowCount) {
 		getAdapter().setGroupId(getCommentListScreenlet().getGroupId());
 		getAdapter().setClassPK(getCommentListScreenlet().getClassPK());
 		getAdapter().setClassName(getCommentListScreenlet().getClassName());
+		getAdapter().setEditable(_editable);
 
 		super.showFinishOperation(page, serverEntries, rowCount);
 
@@ -105,4 +110,5 @@ public class CommentListView extends
 	}
 
 	private TextView _emptyListTextView;
+	private boolean _editable;
 }
