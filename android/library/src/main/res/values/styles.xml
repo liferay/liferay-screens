@@ -7,6 +7,10 @@
 		<item name="android:textColorPrimary">@color/textColorPrimary_default</item>
 		<item name="android:textColorSecondary">@color/textColorSecondary_default</item>
 
+		<item name="colorControlNormal">@color/colorPrimary_default</item>
+		<item name="colorControlHighlight">@color/colorAccent_default</item>
+		<item name="colorControlActivated">@color/colorPrimary_default</item>
+
 		<item name="android:textViewStyle">@style/default_text_view</item>
 		<item name="android:editTextStyle">@style/default_edit_text</item>
 		<item name="android:buttonStyle">@style/default_button</item>
