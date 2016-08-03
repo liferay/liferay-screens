@@ -2,15 +2,15 @@ package com.liferay.mobile.screens.viewsets.defaultviews.rating;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.rating.RatingScreenlet;
 import com.liferay.mobile.screens.rating.view.RatingViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
+
+import static com.liferay.mobile.screens.rating.RatingScreenlet.LOAD_RATINGS_ACTION;
 
 /**
  * @author Alejandro Hernández
@@ -31,12 +31,12 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 
 	@Override
 	public void showStartOperation(String actionName) {
-		if (actionName.equals(RatingScreenlet.LOAD_RATINGS_ACTION)) {
+		if (LOAD_RATINGS_ACTION.equals(actionName)) {
 			if (_progressBar != null) {
-				_progressBar.setVisibility(View.VISIBLE);
+				_progressBar.setVisibility(VISIBLE);
 			}
 			if (_content != null) {
-				_content.setVisibility(View.GONE);
+				_content.setVisibility(GONE);
 			}
 		}
 	}
@@ -49,11 +49,11 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
 		if (_progressBar != null) {
-			_progressBar.setVisibility(View.GONE);
+			_progressBar.setVisibility(GONE);
 		}
 
 		if (_content != null) {
-			_content.setVisibility(View.VISIBLE);
+			_content.setVisibility(VISIBLE);
 		}
 
 		LiferayLogger.e(getContext().getString(R.string.ratings_error), e);
@@ -70,16 +70,6 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 	}
 
 	@Override
-	public boolean isEditable() {
-		return _editable;
-	}
-
-	@Override
-	public void setEditable(boolean editable) {
-		_editable = editable;
-	}
-
-	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
@@ -90,5 +80,4 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 	protected ProgressBar _progressBar;
 	protected ViewGroup _content;
 	private BaseScreenlet _screenlet;
-	private boolean _editable;
 }

@@ -33,7 +33,7 @@ public class EmojisRatingView extends BaseRatingView implements View.OnClickList
 	}
 
 	@Override
-	public void showFinishOperation(String actionName, Object argument) {
+	public void showFinishOperation(String actionName, AssetRating assetRating) {
 		if (_progressBar != null) {
 			_progressBar.setVisibility(View.GONE);
 		}
@@ -43,8 +43,6 @@ public class EmojisRatingView extends BaseRatingView implements View.OnClickList
 			for (Button button : _emojis) {
 				button.setAlpha(0.4f);
 			}
-
-			final AssetRating assetRating = (AssetRating) argument;
 
 			int[] ratings = assetRating.getRatings();
 
@@ -63,15 +61,10 @@ public class EmojisRatingView extends BaseRatingView implements View.OnClickList
 	}
 
 	@Override
-	public int getDefaultStepCount() {
-		return _emojis.size();
-	}
-
-	@Override
-	public void updateView() {
+	public void enableEdition(boolean editable) {
 		for (Button button : _emojis) {
-			button.setOnClickListener(isEditable() ? this : null);
-			button.setEnabled(isEditable());
+			button.setOnClickListener(editable ? this : null);
+			button.setEnabled(editable);
 		}
 	}
 

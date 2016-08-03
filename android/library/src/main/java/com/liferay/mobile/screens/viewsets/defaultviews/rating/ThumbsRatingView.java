@@ -46,45 +46,38 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 	}
 
 	@Override
-	public void showFinishOperation(String action, Object argument) {
+	public void showFinishOperation(String action, AssetRating assetRating) {
 		if (_progressBar != null) {
 			_progressBar.setVisibility(View.GONE);
 		}
 		if (_content != null) {
 			_content.setVisibility(View.VISIBLE);
 
-			final AssetRating assetRating = (AssetRating) argument;
-
 			_userScore = assetRating.getUserScore();
 
 			_negativeCountLabel.setText(getContext().getString(R.string.rating_total, assetRating.getRatings()[0]));
-			_possitiveCountLabel.setText(getContext().getString(R.string.rating_total, assetRating.getRatings()[1]));
+			_positiveCountLabel.setText(getContext().getString(R.string.rating_total, assetRating.getRatings()[1]));
 
 			if (_userScore == 1) {
 				_negativeButton.setImageResource(R.drawable.default_thumb_down_outline);
-				_possitiveButton.setImageResource(R.drawable.default_thumb_up);
+				_positiveButton.setImageResource(R.drawable.default_thumb_up);
 			} else if (_userScore == 0) {
 				_negativeButton.setImageResource(R.drawable.default_thumb_down);
-				_possitiveButton.setImageResource(R.drawable.default_thumb_up_outline);
+				_positiveButton.setImageResource(R.drawable.default_thumb_up_outline);
 			} else {
 				_negativeButton.setImageResource(R.drawable.default_thumb_down_outline);
-				_possitiveButton.setImageResource(R.drawable.default_thumb_up_outline);
+				_positiveButton.setImageResource(R.drawable.default_thumb_up_outline);
 			}
 		}
 	}
 
 	@Override
-	public int getDefaultStepCount() {
-		return 2;
-	}
+	public void enableEdition(boolean editable) {
+		_negativeButton.setOnClickListener(editable ? this : null);
+		_negativeButton.setEnabled(editable);
 
-	@Override
-	public void updateView() {
-		_negativeButton.setOnClickListener(!isEditable() ? null : this);
-		_negativeButton.setEnabled(isEditable());
-
-		_possitiveButton.setOnClickListener(!isEditable() ? null : this);
-		_possitiveButton.setEnabled(isEditable());
+		_positiveButton.setOnClickListener(editable ? this : null);
+		_positiveButton.setEnabled(editable);
 	}
 
 	@Override
@@ -92,19 +85,19 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 		super.onFinishInflate();
 
 		_negativeButton = (ImageButton) findViewById(R.id.negativeRatingButton);
-		_possitiveButton = (ImageButton) findViewById(R.id.positiveRatingButton);
+		_positiveButton = (ImageButton) findViewById(R.id.positiveRatingButton);
 
 		_negativeCountLabel = (TextView) findViewById(R.id.negativeRatingCount);
-		_possitiveCountLabel = (TextView) findViewById(R.id.positiveRatingCount);
+		_positiveCountLabel = (TextView) findViewById(R.id.positiveRatingCount);
 
 		_negativeButton.setOnClickListener(this);
-		_possitiveButton.setOnClickListener(this);
+		_positiveButton.setOnClickListener(this);
 	}
 
 	private ImageButton _negativeButton;
-	private ImageButton _possitiveButton;
+	private ImageButton _positiveButton;
 	private TextView _negativeCountLabel;
-	private TextView _possitiveCountLabel;
+	private TextView _positiveCountLabel;
 
 	private double _userScore;
 }

@@ -13,6 +13,7 @@ import com.liferay.mobile.screens.rating.RatingScreenlet;
  * @author Alejandro Hernández
  */
 public class LikeRatingView extends BaseRatingView implements View.OnClickListener {
+
 	public LikeRatingView(Context context) {
 		super(context);
 	}
@@ -26,35 +27,24 @@ public class LikeRatingView extends BaseRatingView implements View.OnClickListen
 	}
 
 	@Override
-	public void showFinishOperation(String action, Object argument) {
+	public void showFinishOperation(String action, AssetRating assetRating) {
 		if (_progressBar != null) {
 			_progressBar.setVisibility(View.GONE);
 		}
 		if (_content != null) {
 			_content.setVisibility(View.VISIBLE);
 
-			final AssetRating assetRating = (AssetRating) argument;
 			_hasUserRate = assetRating.getUserScore() != -1;
-
 			_likeCountLabel.setText(getContext().getString(R.string.rating_total, assetRating.getTotalCount()));
-
-			if (_hasUserRate) {
-				_likeButton.setImageResource(R.drawable.default_thumb_up);
-			} else {
-				_likeButton.setImageResource(R.drawable.default_thumb_up_outline);
-			}
+			_likeButton.setImageResource(
+				_hasUserRate ? R.drawable.default_thumb_up : R.drawable.default_thumb_up_outline);
 		}
 	}
 
 	@Override
-	public int getDefaultStepCount() {
-		return 1;
-	}
-
-	@Override
-	public void updateView() {
-		_likeButton.setOnClickListener(!isEditable() ? null : this);
-		_likeButton.setEnabled(isEditable());
+	public void enableEdition(boolean editable) {
+		_likeButton.setOnClickListener(editable ? this : null);
+		_likeButton.setEnabled(editable);
 	}
 
 	@Override

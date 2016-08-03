@@ -10,7 +10,6 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import com.liferay.mobile.screens.rating.AssetRating;
 import com.liferay.mobile.screens.rating.RatingListener;
 import com.liferay.mobile.screens.rating.RatingScreenlet;
@@ -74,8 +73,7 @@ public class RatingsActivity extends ThemeActivity
 
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		ratingScreenlet.setEditable(!isChecked);
-		ratingScreenlet.updateView();
+		ratingScreenlet.enableEdition(!isChecked);
 	}
 
 	@Override
@@ -94,7 +92,7 @@ public class RatingsActivity extends ThemeActivity
 		ratingScreenlet.setAutoLoad(true);
 		ratingScreenlet.setRatingsGroupCount(ratingsGroupCount);
 		ratingScreenlet.render(layoutId);
-		ratingScreenlet.setEditable(!readOnlySwitch.isChecked());
+		ratingScreenlet.enableEdition(!readOnlySwitch.isChecked());
 
 		container.removeAllViews();
 		container.addView(ratingScreenlet);

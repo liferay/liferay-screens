@@ -27,14 +27,12 @@ public class StarBarRatingView extends BaseRatingView implements RatingBar.OnRat
 	}
 
 	@Override
-	public void showFinishOperation(String action, Object argument) {
+	public void showFinishOperation(String action, AssetRating assetRating) {
 		if (_progressBar != null) {
 			_progressBar.setVisibility(GONE);
 		}
 		if (_content != null) {
 			_content.setVisibility(VISIBLE);
-
-			final AssetRating assetRating = (AssetRating) argument;
 
 			userRatingBar.setRating(getRating(assetRating.getTotalScore(), userRatingBar.getNumStars()));
 			averageRatingBar.setRating(getRating(assetRating.getAverage(), averageRatingBar.getNumStars()));
@@ -43,13 +41,8 @@ public class StarBarRatingView extends BaseRatingView implements RatingBar.OnRat
 	}
 
 	@Override
-	public int getDefaultStepCount() {
-		return userRatingBar.getNumStars();
-	}
-
-	@Override
-	public void updateView() {
-		userRatingBar.setEnabled(isEditable());
+	public void enableEdition(boolean editable) {
+		userRatingBar.setEnabled(editable);
 	}
 
 	@Override

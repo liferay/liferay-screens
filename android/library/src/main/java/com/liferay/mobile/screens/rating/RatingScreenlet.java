@@ -44,17 +44,15 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
-	public void updateView() {
-		getViewModel().updateView();
+	public void enableEdition(boolean editable) {
+		getViewModel().enableEdition(editable);
 	}
 
 	@Override
 	protected void onScreenletAttached() {
 		super.onScreenletAttached();
 
-		updateView();
-
-		if (_autoLoad) {
+		if (autoLoad) {
 			autoLoad();
 		}
 	}
@@ -66,22 +64,21 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 
 		int layoutId = typedArray.getResourceId(R.styleable.RatingScreenlet_layoutId, 0);
 
-		_autoLoad = typedArray.getBoolean(R.styleable.RatingScreenlet_autoLoad, true);
-		_editable = typedArray.getBoolean(R.styleable.RatingScreenlet_editable, true);
+		autoLoad = typedArray.getBoolean(R.styleable.RatingScreenlet_autoLoad, true);
+		editable = typedArray.getBoolean(R.styleable.RatingScreenlet_editable, true);
 
-		View view = LayoutInflater.from(context).inflate(layoutId, null);
-		((RatingViewModel) view).setEditable(_editable);
+		RatingViewModel view = (RatingViewModel) LayoutInflater.from(context).inflate(layoutId, null);
+		view.enableEdition(editable);
 
-		_entryId = castToLong(typedArray.getString(R.styleable.RatingScreenlet_entryId));
-		_className = typedArray.getString(R.styleable.RatingScreenlet_className);
-		_classPK = castToLong(typedArray.getString(R.styleable.RatingScreenlet_classPK));
+		entryId = castToLong(typedArray.getString(R.styleable.RatingScreenlet_entryId));
+		className = typedArray.getString(R.styleable.RatingScreenlet_className);
+		classPK = castToLong(typedArray.getString(R.styleable.RatingScreenlet_classPK));
 
-		_ratingsGroupCount = typedArray.getInt(R.styleable.RatingScreenlet_ratingsGroupCount,
-			((RatingViewModel) view).getDefaultStepCount());
+		ratingsGroupCount = typedArray.getInt(R.styleable.RatingScreenlet_ratingsGroupCount, 2);
 
 		typedArray.recycle();
 
-		return view;
+		return (View) view;
 	}
 
 	@Override
@@ -103,14 +100,14 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 		try {
 			switch (userActionName) {
 				case LOAD_RATINGS_ACTION:
-					((RatingLoadInteractor) interactor).loadRatings(_entryId, _classPK, _className, _ratingsGroupCount);
+					((RatingLoadInteractor) interactor).loadRatings(entryId, classPK, className, ratingsGroupCount);
 					break;
 				case UPDATE_RATING_ACTION:
 					double score = (double) args[0];
-					((RatingUpdateInteractor) interactor).updateRating(_classPK, _className, score, _ratingsGroupCount);
+					((RatingUpdateInteractor) interactor).updateRating(classPK, className, score, ratingsGroupCount);
 					break;
 				case DELETE_RATING_ACTION:
-					((RatingDeleteInteractor) interactor).deleteRating(_classPK, _className, _ratingsGroupCount);
+					((RatingDeleteInteractor) interactor).deleteRating(classPK, className, ratingsGroupCount);
 					break;
 				default:
 					break;
@@ -139,86 +136,81 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 	public void onRatingOperationFailure(Exception exception) {
 		getViewModel().showFailedOperation(null, exception);
 
-		if (_listener != null) {
-			_listener.onRatingOperationFailure(exception);
+		if (listener != null) {
+			listener.onRatingOperationFailure(exception);
 		}
 	}
 
 	@Override
 	public void onRatingOperationSuccess(AssetRating assetRating) {
+
 		getViewModel().showFinishOperation(null, assetRating);
 
-		_classPK = assetRating.getClassPK();
-		_className = assetRating.getClassName();
+		classPK = assetRating.getClassPK();
+		className = assetRating.getClassName();
 
-		if (_listener != null) {
-			_listener.onRatingOperationSuccess(assetRating);
+		if (listener != null) {
+			listener.onRatingOperationSuccess(assetRating);
 		}
 	}
 
 	public RatingListener getListener() {
-		return _listener;
+		return listener;
 	}
 
 	public void setListener(RatingListener listener) {
-		this._listener = listener;
+		this.listener = listener;
 	}
 
 	public boolean isAutoLoad() {
-		return _autoLoad;
+		return autoLoad;
 	}
 
 	public void setAutoLoad(boolean autoLoad) {
-		_autoLoad = autoLoad;
+		this.autoLoad = autoLoad;
 	}
 
 	public long getEntryId() {
-		return _entryId;
+		return entryId;
 	}
 
 	public void setEntryId(long entryId) {
-		_entryId = entryId;
+		this.entryId = entryId;
 	}
 
 	public String getClassName() {
-		return _className;
+		return className;
 	}
 
 	public void setClassName(String className) {
-		_className = className;
+		this.className = className;
 	}
 
 	public long getClassPK() {
-		return _classPK;
+		return classPK;
 	}
 
 	public void setClassPK(long classPK) {
-		_classPK = classPK;
+		this.classPK = classPK;
 	}
 
 	public boolean isEditable() {
-		return _editable;
-	}
-
-	public void setEditable(boolean editable) {
-		_editable = editable;
-		getViewModel().setEditable(_editable);
+		return editable;
 	}
 
 	public int getRatingsGroupCount() {
-		return _ratingsGroupCount;
+		return ratingsGroupCount;
 	}
 
 	public void setRatingsGroupCount(int ratingsGroupCount) {
-		this._ratingsGroupCount = ratingsGroupCount;
+		this.ratingsGroupCount = ratingsGroupCount;
 	}
 
-	private RatingListener _listener;
-
-	private long _entryId;
-	private boolean _autoLoad;
-	private boolean _editable;
-	private long _classPK;
-	private int _ratingsGroupCount;
-	private String _className;
+	private RatingListener listener;
+	private long entryId;
+	private int ratingsGroupCount;
+	private boolean autoLoad;
+	private boolean editable;
+	private String className;
+	private long classPK;
 }

@@ -33,7 +33,7 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 	}
 
 	@Override
-	public void showFinishOperation(String actionName, Object argument) {
+	public void showFinishOperation(String actionName, AssetRating assetRating) {
 		if (_progressBar != null) {
 			_progressBar.setVisibility(View.GONE);
 		}
@@ -45,8 +45,6 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 					.setColorFilter(ContextCompat.getColor(getContext(), android.R.color.darker_gray),
 						PorterDuff.Mode.SRC_ATOP);
 			}
-
-			final AssetRating assetRating = (AssetRating) argument;
 
 			int[] ratings = assetRating.getRatings();
 
@@ -71,15 +69,10 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 	}
 
 	@Override
-	public int getDefaultStepCount() {
-		return _reactions.size();
-	}
-
-	@Override
-	public void updateView() {
+	public void enableEdition(boolean editable) {
 		for (ImageButton button : _reactions) {
-			button.setOnClickListener(isEditable() ? this : null);
-			button.setEnabled(isEditable());
+			button.setOnClickListener(editable ? this : null);
+			button.setEnabled(editable);
 		}
 	}
 
