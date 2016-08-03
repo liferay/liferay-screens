@@ -89,27 +89,23 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 
 			_editImageButton.setOnClickListener(new OnClickListener() {
 				@Override public void onClick(View v) {
-					editionMode(!_isEditing);
-					editCommentBody();
-				}
-			});
-		} else {
-			_editImageButton.setVisibility(GONE);
-		}
-		
-		if (commentEntry.isDeletable()) {
-			_deleteImageButton.setOnClickListener(new OnClickListener() {
-				@Override public void onClick(View v) {
 					if (_isDeleting) {
 						getScreenlet().performUserAction(
 							CommentDisplayScreenlet.DELETE_COMMENT_ACTION);
+					} else {
+						editionMode(!_isEditing);
+						editCommentBody();
 					}
+				}
+			});
+		}
+
+		if (commentEntry.isDeletable()) {
+			_deleteImageButton.setOnClickListener(new OnClickListener() {
+				@Override public void onClick(View v) {
 					deletionMode(!_isDeleting);
 				}
 			});
-		} else {
-			_editImageButton.setVisibility(GONE);
-			_deleteImageButton.setVisibility(GONE);
 		}
 	}
 
