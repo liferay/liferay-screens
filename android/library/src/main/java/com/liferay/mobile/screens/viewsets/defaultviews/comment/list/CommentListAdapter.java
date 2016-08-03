@@ -62,6 +62,7 @@ public class CommentListAdapter
 		public void bind(CommentEntry entry) {
 			_commentDisplayScreenlet.setEditable(_editable);
 			_commentDisplayScreenlet.setCommentEntry(entry);
+			_commentDisplayScreenlet.refreshView();
 		}
 
 		private final CommentDisplayScreenlet _commentDisplayScreenlet;
