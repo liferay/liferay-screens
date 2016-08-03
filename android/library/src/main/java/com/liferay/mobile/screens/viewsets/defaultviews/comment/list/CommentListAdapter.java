@@ -9,8 +9,6 @@ import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
 import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.models.CommentEntry;
 
-import static com.liferay.mobile.screens.R.attr.classPK;
-
 /**
  * @author Alejandro Hernández
  */

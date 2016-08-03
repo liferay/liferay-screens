@@ -2,9 +2,6 @@ package com.liferay.mobile.screens.viewsets.defaultviews.comment.list;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;

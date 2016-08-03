@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.comment.display.interactor.update;
 
 import com.liferay.mobile.screens.base.interactor.BasicEvent;
 import com.liferay.mobile.screens.models.CommentEntry;
-import org.json.JSONObject;
 
 /**
  * @author Alejandro Hernández

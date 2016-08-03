@@ -1,7 +1,5 @@
 package com.liferay.mobile.screens.comment.display;
 
-import com.liferay.mobile.screens.base.list.BaseListListener;
-import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.CacheListener;
 import com.liferay.mobile.screens.models.CommentEntry;
 

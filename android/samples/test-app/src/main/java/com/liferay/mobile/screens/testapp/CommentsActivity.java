@@ -1,9 +1,7 @@
 package com.liferay.mobile.screens.testapp;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
