@@ -167,15 +167,27 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 
 	private void deletionMode(boolean on) {
 		_isDeleting = on;
-		changeDeleteButtonBackgroundDrawable(_isDeleting ? R.drawable.default_button_selector_red
-			: R.drawable.default_button_selector);
+
+		changeButtonBackgroundDrawable(_deleteImageButton,
+			_isDeleting ? R.drawable.default_button_selector_red
+				: R.drawable.default_button_selector);
+
+		_deleteImageButton.setImageResource(_isDeleting ? R.drawable.default_cancel
+			: R.drawable.default_comment_delete);
+
+		changeButtonBackgroundDrawable(_editImageButton,
+			_isDeleting ? R.drawable.default_button_selector_green
+				: R.drawable.default_button_selector);
+
+		_editImageButton.setImageResource(_isDeleting ? R.drawable.default_ok
+			: R.drawable.default_comment_edit);
 	}
 
-	private void changeDeleteButtonBackgroundDrawable(int drawable) {
+	private void changeButtonBackgroundDrawable(ImageButton button, int drawable) {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-			_deleteImageButton.setBackground(ContextCompat.getDrawable(getContext(), drawable));
+			button.setBackground(ContextCompat.getDrawable(getContext(), drawable));
 		} else {
-			_deleteImageButton.setBackgroundDrawable(
+			button.setBackgroundDrawable(
 				ContextCompat.getDrawable(getContext(), drawable));
 		}
 	}
