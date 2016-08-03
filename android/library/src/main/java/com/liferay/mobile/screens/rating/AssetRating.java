@@ -7,76 +7,77 @@ public class AssetRating {
 
 	public AssetRating(long classPK, String className, int[] ratings, double average, double userScore,
 		double totalScore, int totalCount) {
-		_classPK = classPK;
-		_className = className;
-		_ratings = ratings;
-		_userScore = userScore;
-		_average = average;
-		_totalScore = totalScore;
-		_totalCount = totalCount;
+
+		this.classPK = classPK;
+		this.className = className;
+		this.ratings = ratings;
+		this.userScore = userScore;
+		this.average = average;
+		this.totalScore = totalScore;
+		this.totalCount = totalCount;
 	}
 
 	public int[] getRatings() {
-		return _ratings;
+		return ratings;
 	}
 
 	public void setRatings(int[] ratings) {
-		this._ratings = ratings;
+		this.ratings = ratings;
 	}
 
 	public double getAverage() {
-		return _average;
+		return average;
 	}
 
 	public void setAverage(double average) {
-		this._average = average;
+		this.average = average;
 	}
 
 	public String getClassName() {
-		return _className;
+		return className;
 	}
 
 	public void setClassName(String className) {
-		this._className = className;
+		this.className = className;
 	}
 
 	public double getUserScore() {
-		return _userScore;
+		return userScore;
 	}
 
 	public void setUserScore(double userScore) {
-		this._userScore = userScore;
+		this.userScore = userScore;
 	}
 
 	public double getTotalScore() {
-		return _totalScore;
+		return totalScore;
 	}
 
 	public void setTotalScore(double totalScore) {
-		this._totalScore = totalScore;
+		this.totalScore = totalScore;
 	}
 
 	public long getClassPK() {
-		return _classPK;
+		return classPK;
 	}
 
 	public void setClassPK(long classPK) {
-		this._classPK = classPK;
+		this.classPK = classPK;
 	}
 
 	public int getTotalCount() {
-		return _totalCount;
+		return totalCount;
 	}
 
 	public void setTotalCount(int totalCount) {
-		this._totalCount = totalCount;
+		this.totalCount = totalCount;
 	}
 
-	private int[] _ratings;
-	private double _average;
-	private String _className;
-	private double _userScore;
-	private double _totalScore;
-	private long _classPK;
-	private int _totalCount;
+	private int[] ratings;
+	private double average;
+	private String className;
+	private double userScore;
+	private double totalScore;
+	private long classPK;
+	private int totalCount;
 }
