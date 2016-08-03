@@ -27,9 +27,7 @@ public class CommentsActivity extends ThemeActivity implements CommentListListen
 
 		setContentView(R.layout.comment_list);
 
-		_addCommentButton =
-			(FloatingActionButton) findViewById(R.id.add_comment_button);
-		_addCommentButton.setOnClickListener(this);
+		findViewById(R.id.add_comment_button).setOnClickListener(this);
 
 		_listScreenlet = (CommentListScreenlet) findViewById(R.id.comment_list_screenlet);
 		_listScreenlet.setGroupId(LiferayServerContext.getGroupId());
@@ -112,6 +110,5 @@ public class CommentsActivity extends ThemeActivity implements CommentListListen
 	}
 
 	private CommentListScreenlet _listScreenlet;
-	private FloatingActionButton _addCommentButton;
 	private AlertDialog _dialog;
 }
