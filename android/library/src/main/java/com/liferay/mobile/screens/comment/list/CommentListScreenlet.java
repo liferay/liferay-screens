@@ -42,6 +42,7 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 
 	public void refreshView() {
 		((CommentListViewModel) getViewModel()).refreshView();
+		loadPage(0);
 	}
 
 	@Override protected void onScreenletAttached() {

@@ -57,10 +57,10 @@ public class CommentListAdapter
 			_commentDisplayScreenlet.setGroupId(_groupId);
 			_commentDisplayScreenlet.setClassName(_className);
 			_commentDisplayScreenlet.setClassPK(_classPK);
-			_commentDisplayScreenlet.setEditable(_editable);
 		}
 
 		public void bind(CommentEntry entry) {
+			_commentDisplayScreenlet.setEditable(_editable);
 			_commentDisplayScreenlet.setCommentEntry(entry);
 		}
 
