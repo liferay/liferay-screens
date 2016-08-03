@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.PorterDuff;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -18,6 +19,7 @@ import java.util.List;
  * @author Alejandro Hernández
  */
 public class ReactionsRatingView extends BaseRatingView implements View.OnClickListener {
+
 	public ReactionsRatingView(Context context) {
 		super(context);
 	}
@@ -57,10 +59,13 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 			}
 
 			if ((_userScore = assetRating.getUserScore()) != -1) {
+
+				TypedValue typedValue = new TypedValue();
+				getContext().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+
 				_reactions.get(_userScore == 1 ? (_reactions.size() - 1) : (int) (_userScore * _reactions.size()))
 					.getDrawable()
-					.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorPrimary_default),
-						PorterDuff.Mode.SRC_ATOP);
+					.setColorFilter(typedValue.data, PorterDuff.Mode.SRC_ATOP);
 			}
 		}
 	}
