@@ -40,7 +40,8 @@
 		<activity android:name=".ListBookmarksActivity" />
 		<activity android:name=".WebContentDisplayStructuredActivity" />
 		<activity android:name=".WebViewListActivity" />
-		<activity android:name=".CommentsActivity"/>
+		<activity android:name=".CommentsActivity"
+			android:windowSoftInputMode="adjustPan" />
 
 		<receiver android:name="com.liferay.mobile.screens.cache.CacheReceiver">
 			<intent-filter>
