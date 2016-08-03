@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+	<style name="small_bar"
+		parent="android:style/Widget.Material.RatingBar.Small">
+	</style>
+
 	<style name="default_theme" parent="Theme.AppCompat.Light">
 		<item name="colorPrimary">@color/colorPrimary_default</item>
 		<item name="colorAccent">@color/colorPrimaryLight_default</item>
