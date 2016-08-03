@@ -149,6 +149,8 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 		}
 
 		setCommentEntry(commentEntry);
+		refreshView();
+		getViewModel().showFinishOperation(DEFAULT_ACTION);
 	}
 
 	@Override public void onDeleteCommentFailure(Exception e) {
@@ -181,6 +183,8 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 		}
 
 		setCommentEntry(commentEntry);
+		refreshView();
+		getViewModel().showFinishOperation(UPDATE_COMMENT_ACTION);
 	}
 
 	@Override public void loadingFromCache(boolean success) {
@@ -216,7 +220,7 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	public void setCommentEntry(CommentEntry commentEntry) {
 		_commentEntry = commentEntry;
 		_commentId = commentEntry == null ? 0 : commentEntry.getCommentId();
-		getViewModel().showFinishOperation(_commentEntry);
+		getViewModel().setCommentEntry(commentEntry);
 	}
 
 	public long getCommentId() {

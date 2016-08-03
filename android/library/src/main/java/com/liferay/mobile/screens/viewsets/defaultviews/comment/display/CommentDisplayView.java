@@ -47,34 +47,23 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 
 		deletionMode(false);
 		editionMode(false);
-	}
 
-	@Override public void setEditable(boolean editable) {
-		_editable = editable;
-	}
+		_userPortraitScreenlet.setUserId(_commentEntry.getUserId());
 
-	@Override public void showFinishOperation(final CommentEntry commentEntry) {
-		_progressBar.setVisibility(View.GONE);
-		_contentGroup.setVisibility(View.VISIBLE);
+		_userNameTextView.setText(_commentEntry.getUserName());
 
-		refreshView();
+		_createDateTextView.setText(_commentEntry.getCreateDateAsTimeSpan());
 
-		_userPortraitScreenlet.setUserId(commentEntry.getUserId());
-
-		_userNameTextView.setText(commentEntry.getUserName());
-
-		_createDateTextView.setText(commentEntry.getCreateDateAsTimeSpan());
-
-		if (commentEntry.getModifiedDate() != commentEntry.getCreateDate()) {
+		if (_commentEntry.getModifiedDate() != _commentEntry.getCreateDate()) {
 			_editedTextView.setVisibility(VISIBLE);
 		} else {
 			_editedTextView.setVisibility(GONE);
 		}
 
 		_bodyTextView.setText(
-			Html.fromHtml(commentEntry.getBody()).toString().replaceAll("\n", "").trim());
+			Html.fromHtml(_commentEntry.getBody()).toString().replaceAll("\n", "").trim());
 
-		if (commentEntry.isEditable()) {
+		if (_commentEntry.isEditable()) {
 			_editBodyEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 				@Override public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 					if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -99,13 +88,17 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 			});
 		}
 
-		if (commentEntry.isDeletable()) {
+		if (_commentEntry.isDeletable()) {
 			_deleteImageButton.setOnClickListener(new OnClickListener() {
 				@Override public void onClick(View v) {
 					deletionMode(!_isDeleting);
 				}
 			});
 		}
+	}
+
+	@Override public void setEditable(boolean editable) {
+		_editable = editable;
 	}
 
 	@Override public void showStartOperation(String actionName) {
@@ -212,6 +205,11 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 		_screenlet = screenlet;
 	}
 
+	@Override
+	public void setCommentEntry(CommentEntry commentEntry) {
+		_commentEntry = commentEntry;
+	}
+
 	private TextView _userNameTextView;
 	private TextView _bodyTextView;
 	private UserPortraitScreenlet _userPortraitScreenlet;
@@ -229,4 +227,5 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 	private BaseScreenlet _screenlet;
 	private ViewGroup _contentGroup;
 	private ProgressBar _progressBar;
+	private CommentEntry _commentEntry;
 }
