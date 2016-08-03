@@ -44,7 +44,9 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 
 	@Override
 	protected void onScreenletAttached() {
-		getViewModel().setEditable(_editable);
+		if (!isInEditMode()) {
+			getViewModel().setEditable(_editable);
+		}
 
 		if (_autoLoad) {
 			autoLoad();
