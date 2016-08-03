@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.SwitchCompat;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -30,7 +31,7 @@ public class RatingsActivity extends ThemeActivity
 
 		container = (LinearLayout) findViewById(R.id.rating_screenlet_container);
 
-		readOnlySwitch = (Switch) findViewById(R.id.switch_read_only);
+		readOnlySwitch = (SwitchCompat) findViewById(R.id.switch_read_only);
 		readOnlySwitch.setOnCheckedChangeListener(this);
 
 		buttons.add(findViewById(R.id.button_rating_thumb));
@@ -119,7 +120,7 @@ public class RatingsActivity extends ThemeActivity
 		return typedValue.data;
 	}
 
-	private Switch readOnlySwitch;
+	private SwitchCompat readOnlySwitch;
 	private RatingScreenlet ratingScreenlet;
 	private LinearLayout container;
 	private List<View> buttons = new ArrayList<>();
