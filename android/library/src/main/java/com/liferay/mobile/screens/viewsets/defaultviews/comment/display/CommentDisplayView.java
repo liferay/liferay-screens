@@ -27,13 +27,13 @@ import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 /**
  * @author Alejandro Hernández
  */
-public class CommentView extends FrameLayout implements CommentDisplayViewModel
+public class CommentDisplayView extends FrameLayout implements CommentDisplayViewModel
 {
-	public CommentView(Context context) {
+	public CommentDisplayView(Context context) {
 		super(context);
 	}
 
-	public CommentView(Context context, AttributeSet attrs) {
+	public CommentDisplayView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 
