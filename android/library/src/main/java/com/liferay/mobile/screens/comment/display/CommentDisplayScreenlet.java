@@ -59,7 +59,7 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 		}
 	}
 
-	private void load() {
+	public void load() {
 		performUserAction(BaseScreenlet.DEFAULT_ACTION);
 	}
 
