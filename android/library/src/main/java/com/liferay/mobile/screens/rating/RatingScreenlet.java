@@ -32,12 +32,16 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 		super(context);
 	}
 
-	public RatingScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public RatingScreenlet(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public RatingScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public RatingScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public RatingScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	public void updateView() {
