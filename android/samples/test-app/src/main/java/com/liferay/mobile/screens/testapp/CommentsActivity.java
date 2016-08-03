@@ -84,7 +84,7 @@ public class CommentsActivity extends ThemeActivity implements CommentListListen
 		info(String.format("Comment with id: %d succesfully deleted", commentEntry.getCommentId()));
 		if (commentEntry.getCommentId() == _displayScreenlet.getCommentId()) {
 			displayScreenletVisible(false);
-			_listScreenlet.refreshView();
+			_listScreenlet.removeCommentEntry(commentEntry);
 		}
 	}
 
@@ -107,8 +107,7 @@ public class CommentsActivity extends ThemeActivity implements CommentListListen
 	@Override public void onAddCommentSuccess(CommentEntry commentEntry) {
 		info(String.format("Comment succesfully added, new id: %d", commentEntry.getCommentId()));
 		_dialog.cancel();
-		_listScreenlet.refreshView();
-		_listScreenlet.loadPage(0);
+		_listScreenlet.addNewCommentEntry(commentEntry);
 	}
 
 	@Override public void onListPageFailed(BaseListScreenlet source, int page, Exception e) {
