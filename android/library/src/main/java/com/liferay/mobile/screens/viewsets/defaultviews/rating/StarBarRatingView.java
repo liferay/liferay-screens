@@ -28,11 +28,11 @@ public class StarBarRatingView extends BaseRatingView implements RatingBar.OnRat
 
 	@Override
 	public void showFinishOperation(String action, AssetRating assetRating) {
-		if (_progressBar != null) {
-			_progressBar.setVisibility(GONE);
+		if (progressBar != null) {
+			progressBar.setVisibility(GONE);
 		}
-		if (_content != null) {
-			_content.setVisibility(VISIBLE);
+		if (content != null) {
+			content.setVisibility(VISIBLE);
 
 			userRatingBar.setRating(getRating(assetRating.getTotalScore(), userRatingBar.getNumStars()));
 			averageRatingBar.setRating(getRating(assetRating.getAverage(), averageRatingBar.getNumStars()));

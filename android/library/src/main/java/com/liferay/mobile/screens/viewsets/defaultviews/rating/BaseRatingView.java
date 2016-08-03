@@ -32,11 +32,11 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 	@Override
 	public void showStartOperation(String actionName) {
 		if (LOAD_RATINGS_ACTION.equals(actionName)) {
-			if (_progressBar != null) {
-				_progressBar.setVisibility(VISIBLE);
+			if (progressBar != null) {
+				progressBar.setVisibility(VISIBLE);
 			}
-			if (_content != null) {
-				_content.setVisibility(GONE);
+			if (content != null) {
+				content.setVisibility(GONE);
 			}
 		}
 	}
@@ -48,12 +48,12 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-		if (_progressBar != null) {
-			_progressBar.setVisibility(GONE);
+		if (progressBar != null) {
+			progressBar.setVisibility(GONE);
 		}
 
-		if (_content != null) {
-			_content.setVisibility(VISIBLE);
+		if (content != null) {
+			content.setVisibility(VISIBLE);
 		}
 
 		LiferayLogger.e(getContext().getString(R.string.ratings_error), e);
@@ -61,23 +61,23 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 
 	@Override
 	public BaseScreenlet getScreenlet() {
-		return _screenlet;
+		return screenlet;
 	}
 
 	@Override
 	public void setScreenlet(BaseScreenlet screenlet) {
-		_screenlet = screenlet;
+		this.screenlet = screenlet;
 	}
 
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_progressBar = (ProgressBar) findViewById(R.id.liferay_rating_progress);
-		_content = (ViewGroup) findViewById(R.id.liferay_rating_content);
+		progressBar = (ProgressBar) findViewById(R.id.liferay_rating_progress);
+		content = (ViewGroup) findViewById(R.id.liferay_rating_content);
 	}
 
-	protected ProgressBar _progressBar;
-	protected ViewGroup _content;
-	private BaseScreenlet _screenlet;
+	protected ProgressBar progressBar;
+	protected ViewGroup content;
+	private BaseScreenlet screenlet;
 }

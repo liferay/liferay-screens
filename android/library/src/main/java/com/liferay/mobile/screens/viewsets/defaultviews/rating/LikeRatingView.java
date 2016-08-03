@@ -28,28 +28,28 @@ public class LikeRatingView extends BaseRatingView implements View.OnClickListen
 
 	@Override
 	public void showFinishOperation(String action, AssetRating assetRating) {
-		if (_progressBar != null) {
-			_progressBar.setVisibility(View.GONE);
+		if (progressBar != null) {
+			progressBar.setVisibility(View.GONE);
 		}
-		if (_content != null) {
-			_content.setVisibility(View.VISIBLE);
+		if (content != null) {
+			content.setVisibility(View.VISIBLE);
 
-			_hasUserRate = assetRating.getUserScore() != -1;
-			_likeCountLabel.setText(getContext().getString(R.string.rating_total, assetRating.getTotalCount()));
-			_likeButton.setImageResource(
-				_hasUserRate ? R.drawable.default_thumb_up : R.drawable.default_thumb_up_outline);
+			hasUserRate = assetRating.getUserScore() != -1;
+			likeCountLabel.setText(getContext().getString(R.string.rating_total, assetRating.getTotalCount()));
+			likeButton.setImageResource(
+				hasUserRate ? R.drawable.default_thumb_up : R.drawable.default_thumb_up_outline);
 		}
 	}
 
 	@Override
 	public void enableEdition(boolean editable) {
-		_likeButton.setOnClickListener(editable ? this : null);
-		_likeButton.setEnabled(editable);
+		likeButton.setOnClickListener(editable ? this : null);
+		likeButton.setEnabled(editable);
 	}
 
 	@Override
 	public void onClick(View v) {
-		String action = _hasUserRate ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.UPDATE_RATING_ACTION;
+		String action = hasUserRate ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.UPDATE_RATING_ACTION;
 		getScreenlet().performUserAction(action, 1.0);
 	}
 
@@ -57,12 +57,12 @@ public class LikeRatingView extends BaseRatingView implements View.OnClickListen
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_likeButton = (ImageButton) findViewById(R.id.likeRatingButton);
-		_likeCountLabel = (TextView) findViewById(R.id.likeCountLabel);
+		likeButton = (ImageButton) findViewById(R.id.likeRatingButton);
+		likeCountLabel = (TextView) findViewById(R.id.likeCountLabel);
 	}
 
-	private ImageButton _likeButton;
-	private TextView _likeCountLabel;
+	private ImageButton likeButton;
+	private TextView likeCountLabel;
 
-	private boolean _hasUserRate = false;
+	private boolean hasUserRate = false;
 }

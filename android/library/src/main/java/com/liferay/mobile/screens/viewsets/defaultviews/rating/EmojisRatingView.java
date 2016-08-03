@@ -34,35 +34,35 @@ public class EmojisRatingView extends BaseRatingView implements View.OnClickList
 
 	@Override
 	public void showFinishOperation(String actionName, AssetRating assetRating) {
-		if (_progressBar != null) {
-			_progressBar.setVisibility(View.GONE);
+		if (progressBar != null) {
+			progressBar.setVisibility(View.GONE);
 		}
-		if (_content != null) {
-			_content.setVisibility(View.VISIBLE);
+		if (content != null) {
+			content.setVisibility(View.VISIBLE);
 
-			for (Button button : _emojis) {
+			for (Button button : emojis) {
 				button.setAlpha(0.4f);
 			}
 
 			int[] ratings = assetRating.getRatings();
 
-			if (ratings.length != _emojis.size()) {
+			if (ratings.length != emojis.size()) {
 				throw new AssertionError("The number of buttons is different than the step count");
 			} else {
-				for (int i = 0; i < _emojis.size(); i++) {
-					_labels.get(i).setText(_emojis.get(i).getText() + " " + Integer.toString(ratings[i]));
+				for (int i = 0; i < emojis.size(); i++) {
+					labels.get(i).setText(emojis.get(i).getText() + " " + Integer.toString(ratings[i]));
 				}
 			}
 
-			if ((_userScore = assetRating.getUserScore()) != -1) {
-				_emojis.get(_userScore == 1 ? (_emojis.size() - 1) : (int) (_userScore * _emojis.size())).setAlpha(1);
+			if ((userScore = assetRating.getUserScore()) != -1) {
+				emojis.get(userScore == 1 ? (emojis.size() - 1) : (int) (userScore * emojis.size())).setAlpha(1);
 			}
 		}
 	}
 
 	@Override
 	public void enableEdition(boolean editable) {
-		for (Button button : _emojis) {
+		for (Button button : emojis) {
 			button.setOnClickListener(editable ? this : null);
 			button.setEnabled(editable);
 		}
@@ -74,16 +74,16 @@ public class EmojisRatingView extends BaseRatingView implements View.OnClickList
 
 		double score = -1;
 
-		for (int i = 0; i < _emojis.size(); i++) {
-			if (_emojis.get(i).getId() == id) {
-				score = (double) i / _emojis.size();
+		for (int i = 0; i < emojis.size(); i++) {
+			if (emojis.get(i).getId() == id) {
+				score = (double) i / emojis.size();
 				break;
 			}
 		}
 
 		if (score != -1) {
 			String action =
-				score == _userScore ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.UPDATE_RATING_ACTION;
+				score == userScore ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.UPDATE_RATING_ACTION;
 			getScreenlet().performUserAction(action, score);
 		}
 	}
@@ -92,10 +92,10 @@ public class EmojisRatingView extends BaseRatingView implements View.OnClickList
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		if (_content != null) {
-			_emojis = new ArrayList<>();
-			_labels = new ArrayList<>();
-			findChildViewsIn(_content);
+		if (content != null) {
+			emojis = new ArrayList<>();
+			labels = new ArrayList<>();
+			findChildViewsIn(content);
 		}
 	}
 
@@ -104,17 +104,17 @@ public class EmojisRatingView extends BaseRatingView implements View.OnClickList
 			View view = viewGroup.getChildAt(i);
 			if (view instanceof Button) {
 				Button button = (Button) view;
-				_emojis.add(button);
+				emojis.add(button);
 				button.setText(EMOJIS[i]);
 			} else if (view instanceof TextView) {
-				_labels.add((TextView) view);
+				labels.add((TextView) view);
 			} else if (view instanceof ViewGroup) {
 				findChildViewsIn((ViewGroup) view);
 			}
 		}
 	}
 
-	private List<Button> _emojis;
-	private List<TextView> _labels;
-	private double _userScore;
+	private List<Button> emojis;
+	private List<TextView> labels;
+	private double userScore;
 }

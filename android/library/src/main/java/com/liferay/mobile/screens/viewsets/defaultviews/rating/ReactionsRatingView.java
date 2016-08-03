@@ -34,13 +34,13 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 
 	@Override
 	public void showFinishOperation(String actionName, AssetRating assetRating) {
-		if (_progressBar != null) {
-			_progressBar.setVisibility(View.GONE);
+		if (progressBar != null) {
+			progressBar.setVisibility(View.GONE);
 		}
-		if (_content != null) {
-			_content.setVisibility(View.VISIBLE);
+		if (content != null) {
+			content.setVisibility(View.VISIBLE);
 
-			for (ImageButton button : _reactions) {
+			for (ImageButton button : reactions) {
 				button.getDrawable()
 					.setColorFilter(ContextCompat.getColor(getContext(), android.R.color.darker_gray),
 						PorterDuff.Mode.SRC_ATOP);
@@ -48,20 +48,20 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 
 			int[] ratings = assetRating.getRatings();
 
-			if (ratings.length != _reactions.size()) {
+			if (ratings.length != reactions.size()) {
 				throw new AssertionError("The number of buttons is different than the step count");
 			} else {
-				for (int i = 0; i < _reactions.size(); i++) {
-					_labels.get(i).setText(Integer.toString(ratings[i]));
+				for (int i = 0; i < reactions.size(); i++) {
+					labels.get(i).setText(Integer.toString(ratings[i]));
 				}
 			}
 
-			if ((_userScore = assetRating.getUserScore()) != -1) {
+			if ((userScore = assetRating.getUserScore()) != -1) {
 
 				TypedValue typedValue = new TypedValue();
 				getContext().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
 
-				_reactions.get(_userScore == 1 ? (_reactions.size() - 1) : (int) (_userScore * _reactions.size()))
+				reactions.get(userScore == 1 ? (reactions.size() - 1) : (int) (userScore * reactions.size()))
 					.getDrawable()
 					.setColorFilter(typedValue.data, PorterDuff.Mode.SRC_ATOP);
 			}
@@ -70,7 +70,7 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 
 	@Override
 	public void enableEdition(boolean editable) {
-		for (ImageButton button : _reactions) {
+		for (ImageButton button : reactions) {
 			button.setOnClickListener(editable ? this : null);
 			button.setEnabled(editable);
 		}
@@ -82,16 +82,16 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 
 		double score = -1;
 
-		for (int i = 0; i < _reactions.size(); i++) {
-			if (_reactions.get(i).getId() == id) {
-				score = (double) i / _reactions.size();
+		for (int i = 0; i < reactions.size(); i++) {
+			if (reactions.get(i).getId() == id) {
+				score = (double) i / reactions.size();
 				break;
 			}
 		}
 
 		if (score != -1) {
 			String action =
-				score == _userScore ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.UPDATE_RATING_ACTION;
+				score == userScore ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.UPDATE_RATING_ACTION;
 			getScreenlet().performUserAction(action, score);
 		}
 	}
@@ -100,10 +100,10 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		if (_content != null) {
-			_reactions = new ArrayList<>();
-			_labels = new ArrayList<>();
-			findChildViewsIn(_content);
+		if (content != null) {
+			reactions = new ArrayList<>();
+			labels = new ArrayList<>();
+			findChildViewsIn(content);
 		}
 	}
 
@@ -111,16 +111,16 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 		for (int i = 0; i < viewGroup.getChildCount(); i++) {
 			View view = viewGroup.getChildAt(i);
 			if (view instanceof ImageButton) {
-				_reactions.add((ImageButton) view);
+				reactions.add((ImageButton) view);
 			} else if (view instanceof TextView) {
-				_labels.add((TextView) view);
+				labels.add((TextView) view);
 			} else if (view instanceof ViewGroup) {
 				findChildViewsIn((ViewGroup) view);
 			}
 		}
 	}
 
-	private List<ImageButton> _reactions;
-	private List<TextView> _labels;
-	private double _userScore;
+	private List<ImageButton> reactions;
+	private List<TextView> labels;
+	private double userScore;
 }

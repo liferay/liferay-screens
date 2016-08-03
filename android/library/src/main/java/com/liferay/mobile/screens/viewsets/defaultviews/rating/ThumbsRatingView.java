@@ -40,64 +40,64 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 
 		if (score != -1) {
 			String action =
-				score == _userScore ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.UPDATE_RATING_ACTION;
+				score == userScore ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.UPDATE_RATING_ACTION;
 			getScreenlet().performUserAction(action, score);
 		}
 	}
 
 	@Override
 	public void showFinishOperation(String action, AssetRating assetRating) {
-		if (_progressBar != null) {
-			_progressBar.setVisibility(View.GONE);
+		if (progressBar != null) {
+			progressBar.setVisibility(View.GONE);
 		}
-		if (_content != null) {
-			_content.setVisibility(View.VISIBLE);
+		if (content != null) {
+			content.setVisibility(View.VISIBLE);
 
-			_userScore = assetRating.getUserScore();
+			userScore = assetRating.getUserScore();
 
-			_negativeCountLabel.setText(getContext().getString(R.string.rating_total, assetRating.getRatings()[0]));
-			_positiveCountLabel.setText(getContext().getString(R.string.rating_total, assetRating.getRatings()[1]));
+			negativeCountLabel.setText(getContext().getString(R.string.rating_total, assetRating.getRatings()[0]));
+			positiveCountLabel.setText(getContext().getString(R.string.rating_total, assetRating.getRatings()[1]));
 
-			if (_userScore == 1) {
-				_negativeButton.setImageResource(R.drawable.default_thumb_down_outline);
-				_positiveButton.setImageResource(R.drawable.default_thumb_up);
-			} else if (_userScore == 0) {
-				_negativeButton.setImageResource(R.drawable.default_thumb_down);
-				_positiveButton.setImageResource(R.drawable.default_thumb_up_outline);
+			if (userScore == 1) {
+				negativeButton.setImageResource(R.drawable.default_thumb_down_outline);
+				positiveButton.setImageResource(R.drawable.default_thumb_up);
+			} else if (userScore == 0) {
+				negativeButton.setImageResource(R.drawable.default_thumb_down);
+				positiveButton.setImageResource(R.drawable.default_thumb_up_outline);
 			} else {
-				_negativeButton.setImageResource(R.drawable.default_thumb_down_outline);
-				_positiveButton.setImageResource(R.drawable.default_thumb_up_outline);
+				negativeButton.setImageResource(R.drawable.default_thumb_down_outline);
+				positiveButton.setImageResource(R.drawable.default_thumb_up_outline);
 			}
 		}
 	}
 
 	@Override
 	public void enableEdition(boolean editable) {
-		_negativeButton.setOnClickListener(editable ? this : null);
-		_negativeButton.setEnabled(editable);
+		negativeButton.setOnClickListener(editable ? this : null);
+		negativeButton.setEnabled(editable);
 
-		_positiveButton.setOnClickListener(editable ? this : null);
-		_positiveButton.setEnabled(editable);
+		positiveButton.setOnClickListener(editable ? this : null);
+		positiveButton.setEnabled(editable);
 	}
 
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_negativeButton = (ImageButton) findViewById(R.id.negativeRatingButton);
-		_positiveButton = (ImageButton) findViewById(R.id.positiveRatingButton);
+		negativeButton = (ImageButton) findViewById(R.id.negativeRatingButton);
+		positiveButton = (ImageButton) findViewById(R.id.positiveRatingButton);
 
-		_negativeCountLabel = (TextView) findViewById(R.id.negativeRatingCount);
-		_positiveCountLabel = (TextView) findViewById(R.id.positiveRatingCount);
+		negativeCountLabel = (TextView) findViewById(R.id.negativeRatingCount);
+		positiveCountLabel = (TextView) findViewById(R.id.positiveRatingCount);
 
-		_negativeButton.setOnClickListener(this);
-		_positiveButton.setOnClickListener(this);
+		negativeButton.setOnClickListener(this);
+		positiveButton.setOnClickListener(this);
 	}
 
-	private ImageButton _negativeButton;
-	private ImageButton _positiveButton;
-	private TextView _negativeCountLabel;
-	private TextView _positiveCountLabel;
+	private ImageButton negativeButton;
+	private ImageButton positiveButton;
+	private TextView negativeCountLabel;
+	private TextView positiveCountLabel;
 
-	private double _userScore;
+	private double userScore;
 }
