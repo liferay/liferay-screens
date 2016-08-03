@@ -48,6 +48,7 @@ import Foundation
 
 	public static let DeleteImageAction = "delete-image-action"
 	public static let UploadImageAction = "upload-image-action"
+	public static let EnqueueUploadAction = "enqueue-upload-action"
 
 	public static let DefaultColumns = 4
     
@@ -58,6 +59,8 @@ import Foundation
     @IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
 	public let DefaultMimeTypes = ["image/png", "image/jpeg", "image/gif"]
+
+	internal var uploadsQueue = [ImageEntryUpload]()
 
 	internal var loaded = false
 
@@ -74,6 +77,25 @@ import Foundation
 
 	public var viewModel: ImageGalleryViewModel {
 		return screenletView as! ImageGalleryViewModel
+	}
+
+	public override func performAction(name name: String, sender: AnyObject?) -> Bool {
+		if name == ImageGalleryScreenlet.EnqueueUploadAction {
+			guard let uploadEntry = sender as? ImageEntryUpload
+			else {
+				return false
+			}
+			if uploadsQueue.isEmpty {
+				uploadsQueue.insert(uploadEntry, atIndex: 0)
+				return super.performAction(name: ImageGalleryScreenlet.UploadImageAction, sender: sender)
+			}
+			else {
+				uploadsQueue.insert(uploadEntry, atIndex: 0)
+				return false
+			}
+		}
+
+		return super.performAction(name: name, sender: sender)
 	}
 
 	public func startMediaSelectorAndUpload() {
@@ -192,16 +214,32 @@ import Foundation
 					self?.viewModel.onImageUploaded?(imageEntry)
 				}
 
+				self.startNextUploadIfExist()
 			}
 		}
 
 		interactor.onFailure = {
+			if $0.code == ScreensErrorCause.Cancelled.rawValue {
+				self.uploadsQueue.removeAll()
+			}
+			else {
+				self.startNextUploadIfExist()
+			}
+
 			self.imageGalleryScreenletDelegate?.screenlet?(self, onImageUploadError: $0)
 		}
 
 		self.imageGalleryScreenletDelegate?.screenlet?(self, onImageUploadStart: imageUpload)
 
 		return interactor
+	}
+
+	internal func startNextUploadIfExist() {
+		uploadsQueue.popLast()
+
+		if !uploadsQueue.isEmpty {
+			performAction(name: ImageGalleryScreenlet.UploadImageAction, sender: uploadsQueue.last)
+		}
 	}
 
 	private func createImageUploadDetailViewControllerFromNib() -> ImageUploadDetailViewControllerBase? {
