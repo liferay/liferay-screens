@@ -86,6 +86,10 @@ public class LiferayServerContext {
 		return _versionFactory;
 	}
 
+	public static void setPortalVersion(LiferayPortalVersion portalVersion) {
+		LiferayServerContext._portalVersion = portalVersion;
+	}
+
 	private static long getValueFromIntegerOrString(final Resources resources, final int stringId, int integerId) {
 		return integerId == 0 ? Long.valueOf(resources.getString(stringId)) : resources.getInteger(integerId);
 	}
