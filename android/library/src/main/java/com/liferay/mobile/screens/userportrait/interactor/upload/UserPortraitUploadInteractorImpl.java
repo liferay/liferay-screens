@@ -3,7 +3,7 @@ package com.liferay.mobile.screens.userportrait.interactor.upload;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-
+import com.liferay.mobile.screens.base.MediaStoreEvent;
 import com.liferay.mobile.screens.base.interactor.BaseCachedWriteRemoteInteractor;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
@@ -18,11 +18,9 @@ import com.liferay.mobile.screens.userportrait.interactor.UserPortraitUriBuilder
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.picasso.Picasso;
-
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.Iterator;
+import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
@@ -48,12 +46,10 @@ public class UserPortraitUploadInteractorImpl
 		if (event.isFailed()) {
 			try {
 				storeToCacheAndLaunchEvent(event, event.getUserId(), event.getPicturePath());
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				getListener().onUserPortraitUploadFailure(event.getException());
 			}
-		}
-		else {
+		} else {
 			if (!event.isCacheRequest()) {
 				store(true, event.getUserId(), event.getPicturePath());
 			}
@@ -66,8 +62,9 @@ public class UserPortraitUploadInteractorImpl
 					SessionContext.setCurrentUser(user);
 				}
 
-				Uri userPortraitUri = new UserPortraitUriBuilder().getUserPortraitUri(
-					LiferayServerContext.getServer(), true, user.getPortraitId(), user.getUuid());
+				Uri userPortraitUri =
+					new UserPortraitUriBuilder().getUserPortraitUri(LiferayServerContext.getServer(), true,
+						user.getPortraitId(), user.getUuid());
 				invalidateUrl(userPortraitUri);
 			}
 
@@ -75,8 +72,7 @@ public class UserPortraitUploadInteractorImpl
 				if (oldLoggedUser != null) {
 					getListener().onUserPortraitUploaded(oldLoggedUser.getId());
 				}
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				getListener().onUserPortraitUploadFailure(e);
 			}
 		}
@@ -99,9 +95,14 @@ public class UserPortraitUploadInteractorImpl
 			}
 
 			Picasso.with(context).invalidate(userPortraitURL);
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			LiferayLogger.e("Error invalidating cache", e);
+		}
+	}
+
+	public void onEvent(MediaStoreEvent event) {
+		if (isValidEvent(event)) {
+			getListener().onPicturePathReceived(event.getFilePath());
 		}
 	}
 
@@ -127,7 +128,8 @@ public class UserPortraitUploadInteractorImpl
 
 		store(false, userId, picturePath);
 
-		UserPortraitUploadEvent event = new UserPortraitUploadEvent(getTargetScreenletId(), picturePath, userId, new JSONObject());
+		UserPortraitUploadEvent event =
+			new UserPortraitUploadEvent(getTargetScreenletId(), picturePath, userId, new JSONObject());
 		event.setCacheRequest(true);
 		onEventMainThread(event);
 	}
@@ -137,5 +139,4 @@ public class UserPortraitUploadInteractorImpl
 		file.setDirty(!synced);
 		CacheSQL.getInstance().set(file);
 	}
-
 }
