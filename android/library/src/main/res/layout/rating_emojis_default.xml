@@ -14,7 +14,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
-		android:progressTint="@color/colorPrimary_default"
+		android:progressTint="?colorPrimary"
 		android:visibility="gone"
 		/>
 
@@ -32,6 +32,7 @@
 			android:layout_height="80dp"
 			android:layout_alignParentLeft="true"
 			android:background="@drawable/ripple"
+			android:textColor="?colorPrimary"
 			android:textSize="55sp"
 			tools:text=":)"
 			/>
@@ -42,6 +43,7 @@
 			android:layout_height="80dp"
 			android:layout_toRightOf="@+id/emoji_1_button"
 			android:background="@drawable/ripple"
+			android:textColor="?colorPrimary"
 			android:textSize="55sp"
 			tools:text=":/"
 			/>
@@ -52,6 +54,7 @@
 			android:layout_height="80dp"
 			android:layout_toRightOf="@+id/emoji_2_button"
 			android:background="@drawable/ripple"
+			android:textColor="?colorPrimary"
 			android:textSize="55sp"
 			tools:text=":*"
 			/>
@@ -62,6 +65,7 @@
 			android:layout_height="80dp"
 			android:layout_toRightOf="@+id/emoji_3_button"
 			android:background="@drawable/ripple"
+			android:textColor="?colorPrimary"
 			android:textSize="55sp"
 			tools:text=":S"
 			/>

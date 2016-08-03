@@ -14,7 +14,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
-		android:indeterminateTint="@color/colorPrimary_default"
+		android:indeterminateTint="?colorPrimary"
 		android:visibility="gone"
 		/>
 
@@ -32,7 +32,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:progressBackgroundTint="@android:color/darker_gray"
-			android:progressTint="@color/colorPrimary_default"
+			android:progressTint="?colorPrimary"
 			android:stepSize="1"
 			tools:rating="4"
 			/>

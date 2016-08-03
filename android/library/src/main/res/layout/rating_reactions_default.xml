@@ -14,7 +14,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
-		android:progressTint="@color/colorPrimary_default"
+		android:progressTint="?colorPrimary"
 		android:visibility="gone"
 		/>
 
@@ -34,7 +34,6 @@
 			android:background="@drawable/ripple"
 			android:scaleType="fitXY"
 			android:src="@drawable/default_mood_very_dissatisfied"
-			android:tint="@android:color/white"
 			/>
 
 		<ImageButton
@@ -45,7 +44,6 @@
 			android:background="@drawable/ripple"
 			android:scaleType="fitXY"
 			android:src="@drawable/default_mood_dissatisfied"
-			android:tint="@android:color/white"
 			/>
 
 		<ImageButton
@@ -54,9 +52,8 @@
 			android:layout_height="60dp"
 			android:layout_toRightOf="@id/dissatisfied_button"
 			android:background="@drawable/ripple"
-			android:scaleType="fitXY"
 			android:src="@drawable/default_mood_neutral"
-			android:tint="@android:color/white"
+			android:scaleType="fitXY"
 			/>
 
 		<ImageButton
@@ -67,7 +64,6 @@
 			android:background="@drawable/ripple"
 			android:scaleType="fitXY"
 			android:src="@drawable/default_mood_satisfied"
-			android:tint="@android:color/white"
 			/>
 
 		<ImageButton
@@ -78,7 +74,6 @@
 			android:background="@drawable/ripple"
 			android:scaleType="fitXY"
 			android:src="@drawable/default_mood_very_satisfied"
-			android:tint="@android:color/white"
 			/>
 
 		<TextView

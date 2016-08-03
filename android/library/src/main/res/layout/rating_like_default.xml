@@ -33,7 +33,7 @@
 			android:background="@drawable/ripple"
 			android:scaleType="fitXY"
 			android:src="@drawable/default_thumb_up_outline"
-			android:tint="@color/colorPrimary_default"
+			android:tint="?colorPrimary"
 			/>
 
 		<TextView
