@@ -4,140 +4,155 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:foreground="?android:selectableItemBackground"
 	android:paddingEnd="10dp"
 	android:paddingRight="10dp"
 	>
 
-	<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
-		android:id="@+id/comment_user_portrait"
-		android:layout_width="70dp"
-		android:layout_height="70dp"
-		android:layout_alignParentLeft="true"
-		android:layout_alignParentStart="true"
-		liferay:offlinePolicy="CACHE_FIRST"
-		/>
-
-	<TextView
-		android:id="@+id/comment_user_name"
+	<ProgressBar
+		android:id="@+id/liferay_progress"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginEnd="10dp"
-		android:layout_marginRight="10dp"
-		android:layout_marginTop="10dp"
-		android:layout_toEndOf="@+id/comment_user_portrait"
-		android:layout_toLeftOf="@+id/comment_edit_button"
-		android:layout_toRightOf="@+id/comment_user_portrait"
-		android:layout_toStartOf="@+id/comment_edit_button"
-		android:padding="0dp"
-		android:textStyle="bold"
-		tools:text="Android Phone Jr."
-		/>
-
-	<TextView
-		android:id="@+id/comment_create_date"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_above="@+id/comment_view_switcher"
-		android:layout_below="@+id/comment_user_name"
-		android:layout_marginBottom="10dp"
-		android:layout_marginEnd="3dp"
-		android:layout_marginRight="3dp"
-		android:layout_marginTop="5dp"
-		android:layout_toEndOf="@+id/comment_user_portrait"
-		android:layout_toRightOf="@+id/comment_user_portrait"
-		android:padding="0dp"
-		android:textSize="12sp"
-		tools:text="15 minutes ago"
-		/>
-
-	<TextView
-		android:id="@+id/comment_edited"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_above="@+id/comment_view_switcher"
-		android:layout_below="@+id/comment_user_name"
-		android:layout_marginBottom="10dp"
-		android:layout_marginEnd="10dp"
-		android:layout_marginRight="10dp"
-		android:layout_marginTop="5dp"
-		android:layout_toEndOf="@+id/comment_create_date"
-		android:layout_toLeftOf="@+id/comment_edit_button"
-		android:layout_toRightOf="@+id/comment_create_date"
-		android:layout_toStartOf="@+id/comment_edit_button"
-		android:padding="0dp"
-		android:text="@string/edited"
-		android:textSize="12sp"
-		android:textStyle="bold|italic"
+		android:layout_gravity="center"
+		android:layout_margin="15dp"
 		android:visibility="gone"
 		tools:visibility="visible"
 		/>
 
-	<ImageButton
-		android:id="@+id/comment_edit_button"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginEnd="10dp"
-		android:layout_marginRight="10dp"
-		android:layout_marginTop="10dp"
-		android:layout_toLeftOf="@+id/comment_delete_button"
-		android:layout_toStartOf="@+id/comment_delete_button"
-		android:contentDescription="@string/edit_comment"
-		android:src="@drawable/default_comment_edit"
-		android:visibility="gone"
-		tools:visibility="visible"
-		style="@style/default_button"
-		/>
-
-	<ImageButton
-		android:id="@+id/comment_delete_button"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_alignEnd="@+id/comment_view_switcher"
-		android:layout_alignRight="@+id/comment_view_switcher"
-		android:layout_marginTop="10dp"
-		android:contentDescription="@string/delete_comment"
-		android:src="@drawable/default_comment_delete"
-		android:visibility="gone"
-		tools:visibility="visible"
-		style="@style/default_button"
-		/>
-
-	<ViewSwitcher
-		android:id="@+id/comment_view_switcher"
+	<RelativeLayout
+		android:id="@+id/comment_display_content"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_alignParentEnd="true"
-		android:layout_alignParentLeft="true"
-		android:layout_alignParentRight="true"
-		android:layout_alignParentStart="true"
-		android:layout_below="@+id/comment_user_portrait"
-		android:layout_marginBottom="10dp"
-		android:layout_marginLeft="10dp"
-		android:layout_marginStart="10dp"
-		android:measureAllChildren="false"
 		>
+		<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
+			android:id="@+id/comment_user_portrait"
+			android:layout_width="70dp"
+			android:layout_height="70dp"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentStart="true"
+			liferay:offlinePolicy="CACHE_FIRST"
+			/>
 
 		<TextView
-			android:id="@+id/comment_body"
-			android:layout_width="match_parent"
+			android:id="@+id/comment_user_name"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_marginEnd="10dp"
+			android:layout_marginRight="10dp"
+			android:layout_marginTop="10dp"
+			android:layout_toEndOf="@+id/comment_user_portrait"
+			android:layout_toLeftOf="@+id/comment_edit_button"
+			android:layout_toRightOf="@+id/comment_user_portrait"
+			android:layout_toStartOf="@+id/comment_edit_button"
 			android:padding="0dp"
-			tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+			android:textStyle="bold"
+			tools:text="Android Phone Jr."
 			/>
 
-		<EditText
-			android:id="@+id/comment_edit_body"
+		<TextView
+			android:id="@+id/comment_create_date"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_above="@+id/comment_view_switcher"
+			android:layout_below="@+id/comment_user_name"
+			android:layout_marginBottom="10dp"
+			android:layout_marginEnd="3dp"
+			android:layout_marginRight="3dp"
+			android:layout_marginTop="5dp"
+			android:layout_toEndOf="@+id/comment_user_portrait"
+			android:layout_toRightOf="@+id/comment_user_portrait"
+			android:padding="0dp"
+			android:textSize="12sp"
+			tools:text="15 minutes ago"
+			/>
+
+		<TextView
+			android:id="@+id/comment_edited"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_above="@+id/comment_view_switcher"
+			android:layout_below="@+id/comment_user_name"
+			android:layout_marginBottom="10dp"
+			android:layout_marginEnd="10dp"
+			android:layout_marginRight="10dp"
+			android:layout_marginTop="5dp"
+			android:layout_toEndOf="@+id/comment_create_date"
+			android:layout_toLeftOf="@+id/comment_edit_button"
+			android:layout_toRightOf="@+id/comment_create_date"
+			android:layout_toStartOf="@+id/comment_edit_button"
+			android:padding="0dp"
+			android:text="@string/edited"
+			android:textSize="12sp"
+			android:textStyle="bold|italic"
+			android:visibility="gone"
+			tools:visibility="visible"
+			/>
+
+		<ImageButton
+			android:id="@+id/comment_edit_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="10dp"
+			android:layout_marginRight="10dp"
+			android:layout_marginTop="10dp"
+			android:layout_toLeftOf="@+id/comment_delete_button"
+			android:layout_toStartOf="@+id/comment_delete_button"
+			android:contentDescription="@string/edit_comment"
+			android:src="@drawable/default_comment_edit"
+			android:visibility="gone"
+			tools:visibility="visible"
+			style="@style/default_button"
+			/>
+
+		<ImageButton
+			android:id="@+id/comment_delete_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignEnd="@+id/comment_view_switcher"
+			android:layout_alignRight="@+id/comment_view_switcher"
+			android:layout_marginTop="10dp"
+			android:contentDescription="@string/delete_comment"
+			android:src="@drawable/default_comment_delete"
+			android:visibility="gone"
+			tools:visibility="visible"
+			style="@style/default_button"
+			/>
+
+		<ViewSwitcher
+			android:id="@+id/comment_view_switcher"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:focusable="true"
-			android:imeOptions="actionDone"
-			android:inputType="text"
-			android:lines="3"
-			android:textSize="15sp"
-			style="@style/default_edit_text"
-			/>
+			android:layout_alignParentEnd="true"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentRight="true"
+			android:layout_alignParentStart="true"
+			android:layout_below="@+id/comment_user_portrait"
+			android:layout_marginBottom="10dp"
+			android:layout_marginLeft="10dp"
+			android:layout_marginStart="10dp"
+			android:measureAllChildren="false"
+			>
 
-	</ViewSwitcher>
+			<TextView
+				android:id="@+id/comment_body"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="0dp"
+				tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+				/>
+
+			<EditText
+				android:id="@+id/comment_edit_body"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:focusable="true"
+				android:imeOptions="actionDone"
+				android:inputType="text"
+				android:lines="3"
+				android:textSize="15sp"
+				style="@style/default_edit_text"
+				/>
+
+		</ViewSwitcher>
+	</RelativeLayout>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.comment.display.CommentView>

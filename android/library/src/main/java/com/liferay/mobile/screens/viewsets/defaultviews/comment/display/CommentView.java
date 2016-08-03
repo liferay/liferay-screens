@@ -7,10 +7,13 @@ import android.text.Html;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
@@ -24,7 +27,7 @@ import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 /**
  * @author Alejandro Hernández
  */
-public class CommentView extends RelativeLayout implements CommentDisplayViewModel
+public class CommentView extends FrameLayout implements CommentDisplayViewModel
 {
 	public CommentView(Context context) {
 		super(context);
@@ -35,6 +38,9 @@ public class CommentView extends RelativeLayout implements CommentDisplayViewMod
 	}
 
 	@Override public void showFinishOperation(final CommentEntry commentEntry) {
+		_progressBar.setVisibility(View.GONE);
+		_contentGroup.setVisibility(View.VISIBLE);
+
 		deletionMode(false);
 		editionMode(false);
 
@@ -96,15 +102,18 @@ public class CommentView extends RelativeLayout implements CommentDisplayViewMod
 	}
 
 	@Override public void showStartOperation(String actionName) {
-
+		_progressBar.setVisibility(View.VISIBLE);
+		_contentGroup.setVisibility(View.GONE);
 	}
 
 	@Override public void showFinishOperation(String actionName) {
-
+		_progressBar.setVisibility(View.GONE);
+		_contentGroup.setVisibility(View.VISIBLE);
 	}
 
 	@Override public void showFailedOperation(String actionName, Exception e) {
-
+		_progressBar.setVisibility(View.GONE);
+		_contentGroup.setVisibility(View.VISIBLE);
 	}
 
 	private void editCommentBody() {
@@ -171,6 +180,9 @@ public class CommentView extends RelativeLayout implements CommentDisplayViewMod
 		_deleteImageButton = (ImageButton) findViewById(R.id.comment_delete_button);
 		_editBodyEditText = (EditText) findViewById(R.id.comment_edit_body);
 		_viewSwitcher = (ViewSwitcher) findViewById(R.id.comment_view_switcher);
+
+		_progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
+		_contentGroup = (ViewGroup) findViewById(R.id.comment_display_content);
 	}
 
 	@Override public BaseScreenlet getScreenlet() {
@@ -195,4 +207,7 @@ public class CommentView extends RelativeLayout implements CommentDisplayViewMod
 	private boolean _isEditing;
 
 	private BaseScreenlet _screenlet;
+
+	private ViewGroup _contentGroup;
+	private ProgressBar _progressBar;
 }
