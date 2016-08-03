@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="rating_total">Total: %d</string>
+	<string name="rating_count">%d Ratings</string>
+	<string name="ratings_error">An error occurred during the requested operation</string>
+	<string name="emoji1">😜</string>
+	<string name="emoji2">😬</string>
+	<string name="emoji3">😂</string>
+	<string name="emoji4">😎</string>
+	<string name="emoji5">🙃</string>
+</resources>
