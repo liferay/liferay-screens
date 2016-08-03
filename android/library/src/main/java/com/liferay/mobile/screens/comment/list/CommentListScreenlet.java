@@ -44,6 +44,14 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 		((CommentListViewModel) getViewModel()).refreshView();
 	}
 
+	public void addNewCommentEntry(CommentEntry commentEntry) {
+		((CommentListViewModel) getViewModel()).addNewCommentEntry(commentEntry);
+	}
+
+	public void removeCommentEntry(CommentEntry commentEntry) {
+		((CommentListViewModel) getViewModel()).removeCommentEntry(commentEntry);
+	}
+
 	@Override protected void onScreenletAttached() {
 		super.onScreenletAttached();
 
@@ -127,7 +135,7 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 		if (getCommentListListener() != null) {
 			getCommentListListener().onDeleteCommentSuccess(commentEntry);
 		}
-		loadPage(0);
+		removeCommentEntry(commentEntry);
 	}
 
 	@Override public void onUpdateCommentFailure(CommentEntry commentEntry, Exception e) {

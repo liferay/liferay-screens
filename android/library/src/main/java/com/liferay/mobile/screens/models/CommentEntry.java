@@ -16,6 +16,10 @@ public class CommentEntry implements Parcelable {
 
 	}
 
+	@Override public boolean equals(Object o) {
+		return ((CommentEntry) o).getCommentId() == this.getCommentId();
+	}
+
 	public static final ClassLoaderCreator<CommentEntry> CREATOR =
 		new ClassLoaderCreator<CommentEntry>() {
 

@@ -39,6 +39,34 @@ public class CommentListView extends
 		getAdapter().setEditable(_editable);
 	}
 
+	@Override public void addNewCommentEntry(CommentEntry commentEntry) {
+		getAdapter().getEntries().add(commentEntry);
+		int newRowCount = getAdapter().getEntries().size();
+		getAdapter().setRowCount(newRowCount);
+		getAdapter().notifyItemInserted(newRowCount - 1);
+		_recyclerView.smoothScrollToPosition(newRowCount - 1);
+
+		showDataState();
+	}
+
+	@Override public void removeCommentEntry(CommentEntry commentEntry) {
+		int position = getAdapter().getEntries().indexOf(commentEntry);
+		getAdapter().getEntries().remove(commentEntry);
+		int newRowCount = getAdapter().getItemCount() - 1;
+		getAdapter().setRowCount(newRowCount);
+		getAdapter().notifyItemRemoved(position);
+
+		showDataState();
+	}
+
+	private void showDataState() {
+		if (getAdapter().getEntries().isEmpty()) {
+			_emptyListTextView.setVisibility(VISIBLE);
+		} else {
+			_emptyListTextView.setVisibility(GONE);
+		}
+	}
+
 	@Override
 	public void showFinishOperation(int page, List<CommentEntry> serverEntries, int rowCount) {
 		getAdapter().setGroupId(getCommentListScreenlet().getGroupId());
@@ -47,11 +75,7 @@ public class CommentListView extends
 
 		super.showFinishOperation(page, serverEntries, rowCount);
 
-		if (getAdapter().getEntries().isEmpty()) {
-			_emptyListTextView.setVisibility(VISIBLE);
-		} else {
-			_emptyListTextView.setVisibility(GONE);
-		}
+		showDataState();
 	}
 
 	@Override protected void onFinishInflate() {
