@@ -7,9 +7,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import com.liferay.mobile.screens.rating.AssetRating;
-import com.liferay.mobile.screens.rating.RatingScreenlet;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.liferay.mobile.screens.rating.RatingScreenlet.DELETE_RATING_ACTION;
+import static com.liferay.mobile.screens.rating.RatingScreenlet.UPDATE_RATING_ACTION;
 
 /**
  * @author Alejandro Hernández
@@ -38,9 +40,11 @@ public class EmojisRatingView extends BaseRatingView implements View.OnClickList
 
 	@Override
 	public void showFinishOperation(String actionName, AssetRating assetRating) {
+
 		if (progressBar != null) {
 			progressBar.setVisibility(View.GONE);
 		}
+
 		if (content != null) {
 			content.setVisibility(View.VISIBLE);
 
@@ -52,14 +56,15 @@ public class EmojisRatingView extends BaseRatingView implements View.OnClickList
 
 			if (ratings.length != emojis.size()) {
 				throw new AssertionError("The number of buttons is different than the step count");
-			} else {
-				for (int i = 0; i < emojis.size(); i++) {
-					labels.get(i).setText(emojis.get(i).getText() + " " + Integer.toString(ratings[i]));
-				}
+			}
+
+			for (int i = 0; i < emojis.size(); i++) {
+				labels.get(i).setText(emojis.get(i).getText() + " " + Integer.toString(ratings[i]));
 			}
 
 			if ((userScore = assetRating.getUserScore()) != -1) {
-				emojis.get(userScore == 1 ? (emojis.size() - 1) : (int) (userScore * emojis.size())).setAlpha(1);
+				int position = userScore == 1 ? emojis.size() - 1 : (int) (userScore * emojis.size());
+				emojis.get(position).setAlpha(1);
 			}
 		}
 	}
@@ -76,19 +81,13 @@ public class EmojisRatingView extends BaseRatingView implements View.OnClickList
 	public void onClick(View v) {
 		final int id = v.getId();
 
-		double score = -1;
-
 		for (int i = 0; i < emojis.size(); i++) {
 			if (emojis.get(i).getId() == id) {
-				score = (double) i / emojis.size();
+				double score = (double) i / emojis.size();
+				String action = score == userScore ? DELETE_RATING_ACTION : UPDATE_RATING_ACTION;
+				getScreenlet().performUserAction(action, score);
 				break;
 			}
-		}
-
-		if (score != -1) {
-			String action =
-				score == userScore ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.UPDATE_RATING_ACTION;
-			getScreenlet().performUserAction(action, score);
 		}
 	}
 

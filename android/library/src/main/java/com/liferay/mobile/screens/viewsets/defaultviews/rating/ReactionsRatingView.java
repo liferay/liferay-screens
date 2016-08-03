@@ -2,6 +2,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.rating;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
+import android.support.annotation.ColorInt;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -11,9 +12,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.rating.AssetRating;
-import com.liferay.mobile.screens.rating.RatingScreenlet;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.liferay.mobile.screens.rating.RatingScreenlet.DELETE_RATING_ACTION;
+import static com.liferay.mobile.screens.rating.RatingScreenlet.UPDATE_RATING_ACTION;
 
 /**
  * @author Alejandro Hernández
@@ -44,32 +47,35 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 		if (content != null) {
 			content.setVisibility(View.VISIBLE);
 
-			for (ImageButton button : reactions) {
-				button.getDrawable()
-					.setColorFilter(ContextCompat.getColor(getContext(), android.R.color.darker_gray),
-						PorterDuff.Mode.SRC_ATOP);
-			}
-
 			int[] ratings = assetRating.getRatings();
+
+			userScore = assetRating.getUserScore();
 
 			if (ratings.length != reactions.size()) {
 				throw new AssertionError("The number of buttons is different than the step count");
-			} else {
-				for (int i = 0; i < reactions.size(); i++) {
-					labels.get(i).setText(Integer.toString(ratings[i]));
-				}
 			}
 
-			if ((userScore = assetRating.getUserScore()) != -1) {
+			for (int i = 0; i < reactions.size(); i++) {
+				labels.get(i).setText(String.valueOf(ratings[i]));
+			}
 
-				TypedValue typedValue = new TypedValue();
-				getContext().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+			for (ImageButton button : reactions) {
+				int color = ContextCompat.getColor(getContext(), android.R.color.darker_gray);
+				button.getDrawable().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+			}
 
-				reactions.get(userScore == 1 ? (reactions.size() - 1) : (int) (userScore * reactions.size()))
-					.getDrawable()
-					.setColorFilter(typedValue.data, PorterDuff.Mode.SRC_ATOP);
+			if (userScore != -1) {
+				int position = userScore == 1 ? reactions.size() - 1 : (int) (userScore * reactions.size());
+				reactions.get(position).getDrawable().setColorFilter(getPrimaryColor(), PorterDuff.Mode.SRC_ATOP);
 			}
 		}
+	}
+
+	@ColorInt
+	private int getPrimaryColor() {
+		TypedValue typedValue = new TypedValue();
+		getContext().getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
+		return typedValue.data;
 	}
 
 	@Override
@@ -84,19 +90,13 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 	public void onClick(View v) {
 		final int id = v.getId();
 
-		double score = -1;
-
 		for (int i = 0; i < reactions.size(); i++) {
 			if (reactions.get(i).getId() == id) {
-				score = (double) i / reactions.size();
+				double score = (double) i / reactions.size();
+				String action = score == userScore ? DELETE_RATING_ACTION : UPDATE_RATING_ACTION;
+				getScreenlet().performUserAction(action, score);
 				break;
 			}
-		}
-
-		if (score != -1) {
-			String action =
-				score == userScore ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.UPDATE_RATING_ACTION;
-			getScreenlet().performUserAction(action, score);
 		}
 	}
 
