@@ -360,33 +360,21 @@ import QuartzCore
 
 	private func createScreenletViewFromNib() -> BaseScreenletView? {
 
-		func tryLoadForTheme(themeName: String, inBundles bundles: [NSBundle]) -> BaseScreenletView? {
-			for bundle in bundles {
-				let viewName = "\(ScreenletName(self.dynamicType))View"
-				let nibName = "\(viewName)_\(themeName)"
-				let nibPath = bundle.pathForResource(nibName, ofType:"nib")
+		let viewName = "\(ScreenletName(self.dynamicType))View"
 
-				if nibPath != nil {
-					let views = bundle.loadNibNamed(nibName,
-						owner:self,
-						options:nil)
+		if let foundView = NSBundle.viewForTheme(
+				name: viewName,
+				themeName: _themeName,
+				currentClass: self.dynamicType) as? BaseScreenletView {
 
-					assert(views.count > 0, "Malformed xib \(nibName). Without views")
-
-					return (views[0] as? BaseScreenletView)
-				}
-			}
-
-			return nil;
-		}
-
-		let bundles = NSBundle.allBundles(self.dynamicType);
-
-		if let foundView = tryLoadForTheme(_themeName, inBundles: bundles) {
 			return foundView
 		}
 
-		if let foundView = tryLoadForTheme(BaseScreenlet.DefaultThemeName, inBundles: bundles) {
+		if let foundView = NSBundle.viewForTheme(
+				name: viewName,
+				themeName: "default",
+				currentClass: self.dynamicType) as? BaseScreenletView {
+
 			return foundView
 		}
 
