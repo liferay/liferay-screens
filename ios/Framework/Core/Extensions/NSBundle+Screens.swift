@@ -109,6 +109,20 @@ extension NSBundle {
                 return UINib(nibName: name, bundle: bundle)
         }
     }
+
+	public class func viewForTheme(name name: String, themeName: String, currentClass: AnyClass) -> AnyObject? {
+		let nibName = "\(name)_\(themeName)"
+		return resourceInBundle(
+				name: nibName,
+				ofType: "nib",
+				currentClass: currentClass) {_  , bundle in
+
+				let views = bundle.loadNibNamed(nibName, owner: currentClass, options: nil)
+				assert(views.count > 0, "Malformed xib \(nibName). Without views")
+
+			return views[0]
+		}
+	}
     
     public class func resourceInBundle<T>(name name: String, ofType type: String, currentClass: AnyClass,
                                        @noescape resourceInit: (String , NSBundle) -> T?) -> T? {
