@@ -37,12 +37,28 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 		super(context, attrs);
 	}
 
+	@Override public void refreshView() {
+		if (_editable) {
+			_editImageButton.setVisibility(VISIBLE);
+			_deleteImageButton.setVisibility(VISIBLE);
+		} else {
+			_editImageButton.setVisibility(GONE);
+			_deleteImageButton.setVisibility(GONE);
+		}
+
+		deletionMode(false);
+		editionMode(false);
+	}
+
+	@Override public void setEditable(boolean editable) {
+		_editable = editable;
+	}
+
 	@Override public void showFinishOperation(final CommentEntry commentEntry) {
 		_progressBar.setVisibility(View.GONE);
 		_contentGroup.setVisibility(View.VISIBLE);
 
-		deletionMode(false);
-		editionMode(false);
+		refreshView();
 
 		_userPortraitScreenlet.setUserId(commentEntry.getUserId());
 
@@ -60,8 +76,6 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 			Html.fromHtml(commentEntry.getBody()).toString().replaceAll("\n", "").trim());
 
 		if (commentEntry.isEditable()) {
-			_editImageButton.setVisibility(VISIBLE);
-
 			_editBodyEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 				@Override public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
 					if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -82,10 +96,8 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 		} else {
 			_editImageButton.setVisibility(GONE);
 		}
-
+		
 		if (commentEntry.isDeletable()) {
-			_deleteImageButton.setVisibility(VISIBLE);
-
 			_deleteImageButton.setOnClickListener(new OnClickListener() {
 				@Override public void onClick(View v) {
 					if (_isDeleting) {
@@ -203,11 +215,11 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 	private EditText _editBodyEditText;
 	private ViewSwitcher _viewSwitcher;
 
+	private boolean _editable;
 	private boolean _isDeleting;
 	private boolean _isEditing;
 
 	private BaseScreenlet _screenlet;
-
 	private ViewGroup _contentGroup;
 	private ProgressBar _progressBar;
 }

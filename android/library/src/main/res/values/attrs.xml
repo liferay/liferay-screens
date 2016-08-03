@@ -32,6 +32,7 @@
 	<attr name="structureId" format="string" />
 	<attr name="classPK" format="string" />
 	<attr name="className" format="string" />
+	<attr name="editable" format="boolean" />
 
 	<declare-styleable name="AssetListScreenlet">
 		<attr name="layoutId" />
@@ -60,6 +61,7 @@
 		<attr name="commentId" format="string" />
 		<attr name="classPK" />
 		<attr name="className" />
+		<attr name="editable" />
 	</declare-styleable>
 
 	<declare-styleable name="CommentListScreenlet">
@@ -72,6 +74,7 @@
 		<attr name="firstPageSize" />
 		<attr name="pageSize" />
 		<attr name="labelFields" />
+		<attr name="editable" />
 	</declare-styleable>
 
 	<declare-styleable name="DDLFormScreenlet">
@@ -167,7 +170,7 @@
 		<attr name="portraitId" format="string" />
 		<attr name="uuid" format="string" />
 		<attr name="userId" />
-		<attr name="editable" format="boolean" />
+		<attr name="editable" />
 	</declare-styleable>
 
 	<declare-styleable name="ModalProgressBar">

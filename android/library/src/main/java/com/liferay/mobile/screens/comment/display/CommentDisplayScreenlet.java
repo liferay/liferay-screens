@@ -38,8 +38,14 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 		super(context, attrs);
 	}
 
+	public void refreshView() {
+		getViewModel().refreshView();
+	}
+
 	@Override
 	protected void onScreenletAttached() {
+		getViewModel().setEditable(_editable);
+
 		if (_autoLoad) {
 			autoLoad();
 		}
@@ -68,6 +74,8 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 
 		_commentId = castToLong(typedArray.getString(
 			R.styleable.CommentDisplayScreenlet_commentId));
+
+		_editable = typedArray.getBoolean(R.styleable.CommentDisplayScreenlet_editable, true);
 
 		_groupId = castToLongOrUseDefault(typedArray.getString(
 			R.styleable.CommentDisplayScreenlet_groupId), LiferayServerContext.getGroupId());
@@ -249,6 +257,15 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 		this._offlinePolicy = offlinePolicy;
 	}
 
+	public boolean isEditable() {
+		return _editable;
+	}
+
+	public void setEditable(boolean editable) {
+		_editable = editable;
+		getViewModel().setEditable(_editable);
+	}
+
 	private CommentDisplayListener _listener;
 
 	private CommentEntry _commentEntry;
@@ -258,4 +275,5 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	private long _groupId;
 	private OfflinePolicy _offlinePolicy;
 	private boolean _autoLoad;
+	private boolean _editable;
 }
