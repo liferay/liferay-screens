@@ -12,21 +12,21 @@ import static com.liferay.mobile.screens.rating.RatingScreenlet.UPDATE_RATING_AC
 /**
  * @author Alejandro Hernández
  */
-public class StarBarRatingView extends BaseRatingView implements RatingBar.OnRatingBarChangeListener {
+public class StarsRatingView extends BaseRatingView implements RatingBar.OnRatingBarChangeListener {
 
-	public StarBarRatingView(Context context) {
+	public StarsRatingView(Context context) {
 		super(context);
 	}
 
-	public StarBarRatingView(Context context, AttributeSet attrs) {
+	public StarsRatingView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 
-	public StarBarRatingView(Context context, AttributeSet attrs, int defStyleAttr) {
+	public StarsRatingView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 	}
 
-	public StarBarRatingView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+	public StarsRatingView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
