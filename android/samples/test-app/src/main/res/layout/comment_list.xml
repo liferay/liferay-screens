@@ -1,40 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:liferay="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="@android:color/white"
 	>
 
-	<TextView
-		style="@style/label"
-		android:layout_alignParentTop="true"
-		android:id="@+id/comment_description"
-		android:text="@string/comment_list_label" />
-
-	<com.liferay.mobile.screens.comment.list.CommentListScreenlet
-		android:id="@+id/comment_list_screenlet"
-		android:layout_below="@+id/comment_description"
+	<RelativeLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_alignParentBottom="true"
-		liferay:className="@string/liferay_comment_asset_className"
-		liferay:classPK="@string/liferay_comment_asset_id"
-		liferay:autoLoad="false"
-		liferay:editable="false"
-		liferay:offlinePolicy="REMOTE_FIRST" />
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		>
+
+		<TextView
+			style="@style/label"
+			android:layout_alignParentTop="true"
+			android:id="@+id/comment_description"
+			android:text="@string/comment_list_label" />
+
+		<TextView
+			android:id="@+id/comment_list_title"
+			android:layout_margin="10dp"
+			android:text="Comment List"
+			android:layout_below="@+id/comment_description"
+			style="@style/TextAppearance.AppCompat.Title"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			/>
+
+		<com.liferay.mobile.screens.comment.list.CommentListScreenlet
+			android:id="@+id/comment_list_screenlet"
+			android:layout_below="@+id/comment_list_title"
+			android:layout_above="@+id/comment_configuration_display"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			liferay:className="@string/liferay_comment_asset_className"
+			liferay:classPK="@string/liferay_comment_asset_id"
+			liferay:autoLoad="false"
+			liferay:editable="false"
+			liferay:offlinePolicy="REMOTE_FIRST" />
+
+		<LinearLayout
+			android:id="@+id/comment_configuration_display"
+			android:layout_alignParentBottom="true"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:padding="10dp"
+			android:orientation="vertical"
+			>
+
+			<TextView
+				android:id="@+id/comment_display_title"
+				android:text="Configuration"
+				style="@style/TextAppearance.AppCompat.Title"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				/>
+
+			<android.support.v7.widget.SwitchCompat
+				android:id="@+id/comment_switch_editable"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				liferay:switchPadding="10dp"
+				android:text="Editable"
+				/>
+
+		</LinearLayout>
+
+	</RelativeLayout>
 
 	<android.support.design.widget.FloatingActionButton
 		android:id="@+id/add_comment_button"
 		android:layout_width="wrap_content"
 		android:src="@drawable/ic_add"
 		android:layout_margin="16dp"
-		android:layout_alignParentEnd="true"
-		android:layout_alignParentBottom="true"
+		liferay:layout_anchor="@id/comment_description"
+		liferay:layout_anchorGravity="bottom|right|end"
 		android:elevation="4dp"
 		android:layout_height="wrap_content"
 		liferay:backgroundTint="?attr/colorPrimary"
 		liferay:rippleColor="?attr/colorPrimaryDark"
 		/>
 
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

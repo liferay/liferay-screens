@@ -2,8 +2,10 @@ package com.liferay.mobile.screens.testapp;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CompoundButton;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.comment.add.CommentAddListener;
 import com.liferay.mobile.screens.comment.add.CommentAddScreenlet;
@@ -17,7 +19,7 @@ import java.util.List;
  * @author Alejandro Hernández
  */
 public class CommentsActivity extends ThemeActivity implements CommentListListener,
-	CommentAddListener, View.OnClickListener {
+	CommentAddListener, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,9 @@ public class CommentsActivity extends ThemeActivity implements CommentListListen
 		setContentView(R.layout.comment_list);
 
 		findViewById(R.id.add_comment_button).setOnClickListener(this);
+
+		((SwitchCompat) findViewById(R.id.comment_switch_editable))
+			.setOnCheckedChangeListener(this);
 
 		_listScreenlet = (CommentListScreenlet) findViewById(R.id.comment_list_screenlet);
 		_listScreenlet.setGroupId(LiferayServerContext.getGroupId());
@@ -105,6 +110,11 @@ public class CommentsActivity extends ThemeActivity implements CommentListListen
 
 		_dialog = builder.create();
 		_dialog.show();
+	}
+
+	@Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		_listScreenlet.setEditable(isChecked);
+		_listScreenlet.refreshView();
 	}
 
 	private CommentListScreenlet _listScreenlet;
