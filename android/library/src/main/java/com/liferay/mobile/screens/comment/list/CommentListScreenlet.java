@@ -46,7 +46,10 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 
 	@Override protected void onScreenletAttached() {
 		super.onScreenletAttached();
-		((CommentListViewModel) getViewModel()).setEditable(_editable);
+
+		if (!isInEditMode()) {
+			((CommentListViewModel) getViewModel()).setEditable(_editable);
+		}
 	}
 
 	@Override
