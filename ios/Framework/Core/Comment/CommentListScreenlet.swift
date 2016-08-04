@@ -25,4 +25,24 @@ import UIKit
 		return screenletView as? CommentListViewModel
 	}
 
+	//MARK: BaseListScreenlet
+
+	override public func createPageLoadInteractor(
+			page page: Int,
+			computeRowCount: Bool)
+			-> BaseListPageLoadInteractor {
+
+		let interactor = CommentListPageLoadInteractor(
+			screenlet: self,
+			page: page,
+			computeRowCount: computeRowCount,
+			groupId: groupId,
+			className: className,
+			classPK: classPK)
+
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+
+		return interactor
+	}
+
 }
