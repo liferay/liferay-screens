@@ -12,6 +12,7 @@
 * details.
 */
 import Foundation
+import Kingfisher
 
 @objc public protocol ImageGalleryScreenletDelegate : BaseScreenletDelegate {
 
@@ -56,13 +57,22 @@ import Foundation
     @IBInspectable public var folderId: Int64 = -1
 	@IBInspectable public var mimeTypes: String = ""
 
-    @IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.CacheOnly.rawValue {
+		didSet {
+			ImageCache.screensOfflinePolicy = offlinePolicy ?? CacheStrategyType.RemoteFirst.rawValue
+		}
+	}
 
 	public let DefaultMimeTypes = ["image/png", "image/jpeg", "image/gif"]
 
 	internal var uploadsQueue = [ImageEntryUpload]()
 
 	internal var loaded = false
+
+	public override func onCreated() {
+		super.onCreated()
+		ImageCache.screensOfflinePolicy = offlinePolicy ?? CacheStrategyType.RemoteFirst.rawValue
+	}
 
 	public override func onShow() {
 		if !loaded {
