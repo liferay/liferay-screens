@@ -48,3 +48,33 @@ public class CommentListPageLiferayConnector: PaginationLiferayConnector {
 		return error
 	}
 }
+
+public class Liferay70CommentListPageConnector: CommentListPageLiferayConnector {
+
+	public override func doAddPageRowsServiceCall(
+		session session: LRBatchSession, startRow: Int, endRow: Int, obc: LRJSONObjectWrapper?) {
+		let service = LRCommentmanagerjsonwsService_v70(session: session)
+
+		do {
+			try service.getCommentsWithGroupId(groupId,
+			                                   className: className,
+			                                   classPK: classPK,
+			                                   start: Int32(startRow),
+			                                   end: Int32(endRow))
+		}
+		catch let error as NSError {
+			self.lastError = error
+		}
+	}
+
+	override public func doAddRowCountServiceCall(session session: LRBatchSession) {
+		let service = LRCommentmanagerjsonwsService_v70(session: session)
+		
+		do {
+			try service.getCommentsCountWithGroupId(groupId, className: className, classPK: classPK)
+		}
+		catch let error as NSError {
+			self.lastError = error
+		}
+	}
+}
