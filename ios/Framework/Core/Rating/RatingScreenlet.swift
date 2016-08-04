@@ -142,6 +142,10 @@ import UIKit
 
 				self.ratingDisplayDelegate?.screenlet?(self, onRatingRetrieve: result)
 			}
+			else {
+				self.ratingDisplayDelegate?.screenlet?(self,
+						onRatingError: NSError.errorWithCause(.InvalidServerResponse))
+			}
 		}
 
 		return interactor
@@ -159,6 +163,10 @@ import UIKit
 				self.viewModel?.ratingEntry = result
 
 				self.ratingDisplayDelegate?.screenlet?(self, onRatingDeleted: result)
+			}
+			else {
+				self.ratingDisplayDelegate?.screenlet?(self,
+						onRatingError: NSError.errorWithCause(.InvalidServerResponse))
 			}
 		}
 
@@ -178,6 +186,10 @@ import UIKit
 				self.viewModel?.ratingEntry = result
 
 				self.ratingDisplayDelegate?.screenlet?(self, onRatingUpdated: result)
+			}
+			else {
+				self.ratingDisplayDelegate?.screenlet?(self,
+						onRatingError: NSError.errorWithCause(.InvalidServerResponse))
 			}
 		}
 
