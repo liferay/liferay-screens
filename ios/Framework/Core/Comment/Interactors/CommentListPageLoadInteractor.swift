@@ -44,4 +44,8 @@ public class CommentListPageLoadInteractor: BaseListPageLoadInteractor {
 			endRow: pager(self.page + 1),
 			computeRowCount: self.computeRowCount)!
 	}
+
+	override public func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
+		return Comment(attributes: serverResult)
+	}
 }
