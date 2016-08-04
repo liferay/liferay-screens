@@ -29,8 +29,8 @@ import java.util.Locale;
 /**
  * @author Víctor Galán Grande
  */
-public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryInteractor> implements
-	GalleryInteractorListener {
+public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryInteractor>
+	implements GalleryInteractorListener {
 
 	public static final String LOAD_GALLERY = "LOAD_GALLERY";
 	public static final String DELETE_IMAGE = "DELETE_IMAGE";
@@ -40,12 +40,16 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		super(context);
 	}
 
-	public GalleryScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public GalleryScreenlet(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public GalleryScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public GalleryScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public GalleryScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	public long getGroupId() {
@@ -184,11 +188,11 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 
-		TypedArray typedArray = context.getTheme()
-			.obtainStyledAttributes(attributes, R.styleable.GalleryScreenlet, 0, 0);
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.GalleryScreenlet, 0, 0);
 
-		Integer offlinePolicy = typedArray.getInteger(R.styleable.GalleryScreenlet_offlinePolicy,
-			OfflinePolicy.REMOTE_ONLY.ordinal());
+		Integer offlinePolicy =
+			typedArray.getInteger(R.styleable.GalleryScreenlet_offlinePolicy, OfflinePolicy.REMOTE_ONLY.ordinal());
 		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 
 		long groupId = LiferayServerContext.getGroupId();
