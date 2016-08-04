@@ -31,4 +31,17 @@ public class CommentAddInteractor: ServerWriteConnectorInteractor {
 		super.init(screenlet: screenlet)
 	}
 
+	override public func createConnector() -> CommentAddLiferayConnector? {
+		return LiferayServerContext.connectorFactory.createCommentAddConnector(groupId: groupId,
+		                                                                       className: className,
+		                                                                       classPK: classPK,
+		                                                                       body: body)
+	}
+
+	override public func completedConnector(c: ServerConnector) {
+		if let addCon = (c as? CommentAddLiferayConnector),
+			comment = addCon.resultComment {
+			self.resultComment = comment
+		}
+	}
 }
