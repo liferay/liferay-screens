@@ -29,7 +29,7 @@ public class AssetDisplayView_default: BaseScreenletView, AssetDisplayViewModel 
 
 				let factory = AssetDisplayScreenletFactory(assetEntry: asset)
 
-				let screenlet = factory.createScreenlet(autoLoad: true, frame: frame)
+				let screenlet = factory.createScreenlet(frame)
 				
 				if let view = screenlet {
 					addSubview(view)
