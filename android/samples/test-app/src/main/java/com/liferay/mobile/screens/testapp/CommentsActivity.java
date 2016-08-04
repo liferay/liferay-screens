@@ -110,12 +110,12 @@ public class CommentsActivity extends ThemeActivity implements CommentListListen
 		_listScreenlet.addNewCommentEntry(commentEntry);
 	}
 
-	@Override public void onListPageFailed(BaseListScreenlet source, int page, Exception e) {
-		error(String.format("Error receiving page: %d", page), e);
+	@Override public void onListPageFailed(BaseListScreenlet source, int startRow, int endRow, Exception e) {
+		error(String.format("Error receiving page: %d", startRow), e);
 	}
 
 	@Override
-	public void onListPageReceived(BaseListScreenlet source, int page, List<CommentEntry> entries, int rowCount) {
+	public void onListPageReceived(BaseListScreenlet source, int startRow, int endRow, List<CommentEntry> entries, int rowCount) {
 	}
 
 	@Override public void onListItemSelected(CommentEntry element, View view) {

@@ -68,12 +68,12 @@ public class CommentListView extends
 	}
 
 	@Override
-	public void showFinishOperation(int page, List<CommentEntry> serverEntries, int rowCount) {
+	public void showFinishOperation(int startRow, int endRow, List<CommentEntry> serverEntries, int rowCount) {
 		getAdapter().setGroupId(getCommentListScreenlet().getGroupId());
 		getAdapter().setClassPK(getCommentListScreenlet().getClassPK());
 		getAdapter().setClassName(getCommentListScreenlet().getClassName());
 
-		super.showFinishOperation(page, serverEntries, rowCount);
+		super.showFinishOperation(startRow, endRow, serverEntries, rowCount);
 
 		showDataState();
 	}
