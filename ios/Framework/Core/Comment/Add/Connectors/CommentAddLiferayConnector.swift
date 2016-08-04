@@ -20,6 +20,8 @@ public class CommentAddLiferayConnector: ServerConnector {
 	public let classPK: Int64
 	public let body: String?
 
+	public var resultComment: Comment?
+
 	public init(groupId: Int64, className: String, classPK: Int64, body: String?) {
 		self.groupId = groupId
 		self.className = className
@@ -51,5 +53,31 @@ public class CommentAddLiferayConnector: ServerConnector {
 		}
 
 		return error
+	}
+}
+
+public class Liferay70CommentAddConnector: CommentAddLiferayConnector {
+	override public func doRun(session session: LRSession) {
+		resultComment = nil
+
+		let service = LRCommentmanagerjsonwsService_v70(session: session)
+
+		do {
+			let result = try service.addCommentWithGroupId(groupId,
+			                                               className: className,
+			                                               classPK: classPK,
+			                                               body: body)
+			
+			lastError = nil
+
+			if let result = result as? [String: AnyObject] {
+				resultComment = Comment(attributes: result)
+			}
+
+		}
+		catch let error as NSError {
+			lastError = error
+		}
+		
 	}
 }
