@@ -113,6 +113,13 @@ import Kingfisher
 		cancelInteractorsForAction(ImageGalleryScreenlet.UploadImageAction)
 	}
 
+	public func deleteImageCache() {
+		KingfisherManager.sharedManager.cache.clearMemoryCache()
+		KingfisherManager.sharedManager.cache.clearDiskCache()
+
+		SessionContext.currentContext?.cacheManager.remove(collection: ScreenletName(self.dynamicType))
+	}
+
 	public func startMediaSelectorAndUpload() {
 		if let viewController = presentingViewController {
 
