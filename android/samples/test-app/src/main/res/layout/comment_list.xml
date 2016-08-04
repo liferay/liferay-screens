@@ -49,7 +49,6 @@
 				/>
 
 			<EditText
-				style="@style/default_edit_text"
 				android:id="@+id/comment_id_display"
 				android:layout_below="@id/comment_display_title"
 				android:layout_toEndOf="@+id/comment_switch_editable"
@@ -63,7 +62,6 @@
 
 			<Button
 				android:id="@+id/comment_load_display"
-				style="@style/default_button"
 				android:layout_below="@id/comment_display_title"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
@@ -78,6 +76,7 @@
 			android:id="@+id/comment_list_title"
 			android:text="Comment List"
 			android:paddingStart="10dp"
+			android:layout_marginTop="10dp"
 			android:layout_below="@+id/comment_configuration_display"
 			style="@style/TextAppearance.AppCompat.Title"
 			android:layout_width="wrap_content"
@@ -102,6 +101,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:orientation="vertical"
+			android:paddingTop="10dp"
 			android:paddingStart="10dp"
 			android:paddingEnd="10dp"
 			android:paddingBottom="20dp"
@@ -147,8 +147,8 @@
 		liferay:layout_anchorGravity="bottom|right|end"
 		android:elevation="4dp"
 		android:layout_height="wrap_content"
-		liferay:backgroundTint="?attr/colorPrimary"
-		liferay:rippleColor="?attr/colorPrimaryDark"
+		liferay:backgroundTint="?colorPrimaryDark"
+		liferay:rippleColor="?colorPrimary"
 		/>
 
 </android.support.design.widget.CoordinatorLayout>

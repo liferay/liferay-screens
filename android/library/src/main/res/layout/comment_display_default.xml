@@ -100,7 +100,6 @@
 			android:src="@drawable/default_comment_edit"
 			android:visibility="gone"
 			tools:visibility="visible"
-			style="@style/default_button"
 			/>
 
 		<ImageButton
@@ -114,7 +113,6 @@
 			android:src="@drawable/default_comment_delete"
 			android:visibility="gone"
 			tools:visibility="visible"
-			style="@style/default_button"
 			/>
 
 		<ViewSwitcher
@@ -149,7 +147,6 @@
 				android:inputType="text"
 				android:lines="3"
 				android:textSize="15sp"
-				style="@style/default_edit_text"
 				/>
 
 		</ViewSwitcher>
