@@ -134,6 +134,12 @@ public protocol LiferayConnectorFactory {
 		endRow: Int,
 		computeRowCount: Bool) -> CommentListPageLiferayConnector?
 
+	func createCommentAddConnector(
+		groupId groupId: Int64,
+		className: String,
+		classPK: Int64,
+		body: String?) -> CommentAddLiferayConnector?
+
 }
 
 
@@ -339,6 +345,11 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			endRow: Int,
 			computeRowCount: Bool) -> CommentListPageLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: CommentListPageLiferayConnector")
+		return nil
+	}
+
+	public func createCommentAddConnector(groupId groupId: Int64, className: String, classPK: Int64, body: String?) -> CommentAddLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: CommentAddLiferayConnector")
 		return nil
 	}
 
@@ -561,6 +572,14 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			startRow: startRow,
 			endRow: endRow,
 			computeRowCount: computeRowCount)
+	}
+
+	public func createCommentAddConnector(groupId groupId: Int64, className: String, classPK: Int64, body: String?) -> CommentAddLiferayConnector? {
+		return Liferay70CommentAddConnector(
+			groupId: groupId,
+			className: className,
+			classPK: classPK,
+			body: body)
 	}
 
 }
