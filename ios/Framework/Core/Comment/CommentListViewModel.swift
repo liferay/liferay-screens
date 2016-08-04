@@ -13,16 +13,7 @@
 */
 import UIKit
 
-@IBDesignable public class CommentListScreenlet: BaseListScreenlet {
 
-	@IBInspectable public var groupId: Int64 = 0
-	@IBInspectable public var className: String = ""
-	@IBInspectable public var classPK: Int64 = 0
-
-	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
-
-	public var viewModel: CommentListViewModel? {
-		return screenletView as? CommentListViewModel
-	}
+@objc public protocol CommentListViewModel {
 
 }
