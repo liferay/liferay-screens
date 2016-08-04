@@ -48,4 +48,8 @@ public class CommentListPageLoadInteractor: BaseListPageLoadInteractor {
 	override public func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
 		return Comment(attributes: serverResult)
 	}
+
+	override public func cacheKey(op: PaginationLiferayConnector) -> String {
+		return "COMMENTS_\(groupId)_\(classPK)_\(className)"
+	}
 }
