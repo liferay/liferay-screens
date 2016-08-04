@@ -14,6 +14,17 @@
 import UIKit
 
 
+@objc public protocol CommentAddScreenletDelegate : BaseScreenletDelegate {
+
+	optional func screenlet(screenlet: CommentAddScreenlet,
+	                        onCommentAdded comment: Comment)
+
+	optional func screenlet(screenlet: CommentAddScreenlet,
+	                        onAddCommentError error: NSError)
+
+}
+
+
 @IBDesignable public class CommentAddScreenlet: BaseScreenlet {
 
 	@IBInspectable public var groupId: Int64 = 0
@@ -21,6 +32,10 @@ import UIKit
 	@IBInspectable public var className: String = ""
 
 	@IBInspectable public var classPK: Int64 = 0
+
+	public var commentAddDelegate: CommentAddScreenletDelegate? {
+		return delegate as? CommentAddScreenletDelegate
+	}
 
 	public var viewModel: CommentAddViewModel? {
 		return screenletView as? CommentAddViewModel
