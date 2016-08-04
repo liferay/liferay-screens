@@ -86,6 +86,10 @@ public class LiferayServerContext {
 		return _versionFactory;
 	}
 
+	public static LiferayPortalVersion getPortalVersion() {
+		return _portalVersion;
+	}
+
 	public static void setPortalVersion(LiferayPortalVersion portalVersion) {
 		LiferayServerContext._portalVersion = portalVersion;
 	}
