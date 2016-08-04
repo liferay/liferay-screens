@@ -62,8 +62,7 @@ public class Liferay70CommentListPageConnector: CommentListPageLiferayConnector 
 			                                   start: Int32(startRow),
 			                                   end: Int32(endRow))
 		}
-		catch let error as NSError {
-			self.lastError = error
+		catch _ as NSError {
 		}
 	}
 
@@ -73,8 +72,7 @@ public class Liferay70CommentListPageConnector: CommentListPageLiferayConnector 
 		do {
 			try service.getCommentsCountWithGroupId(groupId, className: className, classPK: classPK)
 		}
-		catch let error as NSError {
-			self.lastError = error
+		catch _ as NSError {
 		}
 	}
 }
