@@ -73,7 +73,7 @@ import UIKit
 	}
 	
 	public override func onShow() {
-		if (autoLoad && SessionContext.isLoggedIn) {
+		if autoLoad {
 			loadRatings()
 		}
 	}
