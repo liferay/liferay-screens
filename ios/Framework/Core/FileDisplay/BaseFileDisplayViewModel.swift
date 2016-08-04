@@ -12,10 +12,11 @@
 * details.
 */
 import UIKit
-import AVFoundation
 
 
-@objc public protocol VideoDisplayViewModel {
+@objc public protocol BaseFileDisplayViewModel {
 
-	var fileEntry: FileEntry? {get set}
+	var url: NSURL? {get set}
+
+	var title: String? {get set}
 }
