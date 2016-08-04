@@ -106,7 +106,9 @@ public protocol LiferayConnectorFactory {
 		folderId: Int64,
 		onProgress: DDLFormUploadLiferayConnector.OnProgress?) -> DDLFormUploadLiferayConnector
 	
-	func createAssetDisplayConnector(entryId: Int64) -> AssetDisplayLiferayConnector?
+	func createAssetDisplayByEntryIdConnector(entryId: Int64) -> AssetDisplayByEntryIdLiferayConnector?
+
+	func createAssetDisplayByClassPKConnector(className: String, classPK: Int64) -> AssetDisplayByClassPKLiferayConnector?
 
 }
 
@@ -285,8 +287,14 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			onProgress: onProgress)
 	}
 	
-	public func createAssetDisplayConnector(entryId: Int64) -> AssetDisplayLiferayConnector? {
-		return Liferay62AssetDisplayConnector(entryId: entryId)
+	public func createAssetDisplayByEntryIdConnector(entryId: Int64) -> AssetDisplayByEntryIdLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: AssetDisplayByEntryIdLiferayConnector")
+		return nil
+	}
+
+	public func createAssetDisplayByClassPKConnector(className: String, classPK: Int64) -> AssetDisplayByClassPKLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: AssetDisplayByClassPKLiferayConnector")
+		return nil
 	}
 
 }
@@ -465,8 +473,12 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			folderId: folderId,
 			onProgress: onProgress)
 	}
-	
-	public func createAssetDisplayConnector(entryId: Int64) -> AssetDisplayLiferayConnector? {
-		return Liferay70AssetDisplayConnector(entryId: entryId)
+
+	public func createAssetDisplayByEntryIdConnector(entryId: Int64) -> AssetDisplayByEntryIdLiferayConnector? {
+		return Liferay70AssetDisplayByEntryIdConnector(entryId: entryId)
+	}
+
+	public func createAssetDisplayByClassPKConnector(className: String, classPK: Int64) -> AssetDisplayByClassPKLiferayConnector? {
+		return Liferay70AssetDisplayByClassPKConnector(className: className, classPK: classPK)
 	}
 }
