@@ -137,7 +137,7 @@ import UIKit
 
 		interactor.onSuccess = {
 			if let result = interactor.resultRating {
-				self.viewModel?.ratingEntry = interactor.resultRating
+				self.viewModel?.ratingEntry = result
 			}
 		}
 
@@ -152,7 +152,7 @@ import UIKit
 
 		interactor.onSuccess = {
 			if let result = interactor.resultRating {
-				self.viewModel?.ratingEntry = interactor.resultRating
+				self.viewModel?.ratingEntry = result
 			}
 		}
 
