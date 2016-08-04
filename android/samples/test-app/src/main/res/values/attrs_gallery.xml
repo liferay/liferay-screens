@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<declare-styleable name="GalleryScreenlet">
+		<attr name="layoutId" />
+		<attr name="folderId" />
+		<attr name="groupId" />
+		<attr name="autoLoad" />
+	</declare-styleable>
+
+</resources>

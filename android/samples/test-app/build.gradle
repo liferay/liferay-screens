@@ -41,6 +41,10 @@ dependencies {
 	compile project(':liferay-westeros-viewset')
 	compile project(':listbookmarkscreenlet')
 
+	compile 'com.squareup.picasso:picasso:2.5.2'
+	compile 'com.nineoldandroids:library:2.4.0'
+	compile 'com.daimajia.slider:library:1.1.5@aar'
+
 	compile libraries.design
 
 	debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3.1'
