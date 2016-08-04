@@ -157,18 +157,6 @@ import Kingfisher
 	public func deleteImageEntry(imageEntry: ImageEntry) {
 		performAction(name: ImageGalleryScreenlet.DeleteImageAction, sender: imageEntry)
 	}
-    
-    public override func createPageLoadInteractor(page page: Int, computeRowCount: Bool) -> BaseListPageLoadInteractor {
-
-		let finalMimeTypes = mimeTypes.isEmpty ? DefaultMimeTypes : parseMimeTypes(mimeTypes)
-		
-        return ImageGalleryLoadInteractor(screenlet: self,
-                                      page: page,
-                                      computeRowCount: computeRowCount,
-                                      repositoryId: repositoryId,
-                                      folderId: folderId,
-									  mimeTypes: finalMimeTypes)
-    }
 
 	public override func onLoadPageError(page page: Int, error: NSError) {
 		super.onLoadPageError(page: page, error: error)
@@ -211,6 +199,24 @@ import Kingfisher
 		interactor.onFailure = {
 			self.imageGalleryScreenletDelegate?.screenlet?(self, onImageEntryDeleteError: $0)
 		}
+
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+		
+		return interactor
+	}
+
+	public override func createPageLoadInteractor(page page: Int, computeRowCount: Bool) -> BaseListPageLoadInteractor {
+
+		let finalMimeTypes = mimeTypes.isEmpty ? DefaultMimeTypes : parseMimeTypes(mimeTypes)
+
+		let interactor = ImageGalleryLoadInteractor(screenlet: self,
+		                                            page: page,
+		                                            computeRowCount: computeRowCount,
+		                                            repositoryId: repositoryId,
+		                                            folderId: folderId,
+		                                            mimeTypes: finalMimeTypes)
+
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 		
 		return interactor
 	}
@@ -250,6 +256,8 @@ import Kingfisher
 
 			self.imageGalleryScreenletDelegate?.screenlet?(self, onImageUploadError: $0)
 		}
+
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
 		self.imageGalleryScreenletDelegate?.screenlet?(self, onImageUploadStart: imageUpload)
 
