@@ -13,27 +13,26 @@
 */
 import UIKit
 
-class DownloadImageAssetInteractor: ServerReadConnectorInteractor {
 
-	var resultImage: UIImage?
+class LoadFileInteractor: ServerReadConnectorInteractor {
 
-	var url: NSURL
+	var resultUrl: NSURL?
 
-	init(screenlet: BaseScreenlet?, url: NSURL) {
+	var url: NSURL?
+
+	init(screenlet: BaseScreenlet?, url: NSURL?) {
 		self.url = url
 
 		super.init(screenlet: screenlet)
 	}
 
 	override func createConnector() -> ServerConnector? {
-		return HttpConnector(url: url)
+		return HttpDownloadConnector(url: url!)
 	}
 
 	override func completedConnector(op: ServerConnector) {
-		if let op = op as? HttpConnector,
-			resultData = op.resultData {
-			resultImage = UIImage(data: resultData)
+		if let op = op as? HttpDownloadConnector {
+			resultUrl = op.resultUrl
 		}
 	}
-
 }
