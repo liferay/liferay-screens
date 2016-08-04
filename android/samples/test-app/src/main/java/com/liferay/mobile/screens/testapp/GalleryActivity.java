@@ -17,8 +17,7 @@ import java.util.List;
 /**
  * * @author Víctor Galán Grande
  */
-public class GalleryActivity extends ThemeActivity
-	implements GalleryListener, View.OnClickListener {
+public class GalleryActivity extends ThemeActivity implements GalleryListener, View.OnClickListener {
 
 	private GalleryScreenlet galleryScreenletGrid;
 	private GalleryScreenlet galleryScreenletSlideShow;
@@ -40,8 +39,7 @@ public class GalleryActivity extends ThemeActivity
 		galleryScreenletGrid = (GalleryScreenlet) findViewById(R.id.gallery_screenlet_grid);
 		galleryScreenletGrid.setListener(this);
 
-		galleryScreenletSlideShow =
-			(GalleryScreenlet) findViewById(R.id.gallery_screenlet_slideshow);
+		galleryScreenletSlideShow = (GalleryScreenlet) findViewById(R.id.gallery_screenlet_slideshow);
 		galleryScreenletSlideShow.setListener(this);
 
 		buttonMinus = (Button) findViewById(R.id.image_gallery_button_plus);
@@ -59,13 +57,14 @@ public class GalleryActivity extends ThemeActivity
 	}
 
 	@Override
-	public void onListPageFailed(BaseListScreenlet source, int page, Exception e) {
+	public void onListPageFailed(BaseListScreenlet source, int startRow, int endRow, Exception e) {
 		error("Error loading page", e);
 	}
 
 	@Override
-	public void onListPageReceived(BaseListScreenlet source, int page, List<ImageEntry> entries, int rowCount) {
-		Log.i(GalleryScreenlet.class.getName(), "page: " + page + "received with " + entries.size() + "entries");
+	public void onListPageReceived(BaseListScreenlet source, int startRow, int endRow, List<ImageEntry> entries,
+		int rowCount) {
+		Log.i(GalleryScreenlet.class.getName(), "row: " + startRow + "received with " + entries.size() + "entries");
 	}
 
 	@Override
