@@ -85,16 +85,24 @@ import UIKit
 	}
 
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+		let interactor: Interactor
+
 		switch name {
 		case RatingScreenlet.LoadRatingsAction:
-			return createLoadRatingsInteractor()
+			interactor = createLoadRatingsInteractor()
 		case RatingScreenlet.DeleteRatingAction:
-			return createDeleteRatingInteractor()
+			interactor = createDeleteRatingInteractor()
 		case RatingScreenlet.UpdateRatingAction:
-			return createUpdateRatingInteractor()
+			interactor = createUpdateRatingInteractor()
 		default:
 			return nil
 		}
+
+		interactor.onFailure = {
+			self.ratingDisplayDelegate?.screenlet?(self, onRatingError: $0)
+		}
+
+		return interactor
 	}
 
 	public override func performDefaultAction() -> Bool {
@@ -132,8 +140,6 @@ import UIKit
 			}
 		}
 
-		interactor.onFailure = {self.ratingDisplayDelegate?.screenlet?(self, onRatingError: $0)}
-
 		return interactor
 	}
 
@@ -148,8 +154,6 @@ import UIKit
 				self.ratingDisplayDelegate?.screenlet?(self, onRatingDeleted: result)
 			}
 		}
-
-		interactor.onFailure = {self.ratingDisplayDelegate?.screenlet?(self, onRatingError: $0)}
 
 		return interactor
 	}
@@ -166,10 +170,6 @@ import UIKit
 			}
 		}
 
-		interactor.onFailure = {
-			self.ratingDisplayDelegate?.screenlet?(self, onRatingError: $0)
-		}
-		
 		return interactor
 	}
 
