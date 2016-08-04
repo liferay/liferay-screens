@@ -138,8 +138,6 @@ import UIKit
 		interactor.onSuccess = {
 			if let result = interactor.resultRating {
 				self.viewModel?.ratingEntry = interactor.resultRating
-
-				self.ratingDisplayDelegate?.screenlet?(self, onRatingRetrieve: result)
 			}
 		}
 
@@ -155,8 +153,6 @@ import UIKit
 		interactor.onSuccess = {
 			if let result = interactor.resultRating {
 				self.viewModel?.ratingEntry = interactor.resultRating
-
-				self.ratingDisplayDelegate?.screenlet?(self, onRatingRetrieve: result)
 			}
 		}
 
