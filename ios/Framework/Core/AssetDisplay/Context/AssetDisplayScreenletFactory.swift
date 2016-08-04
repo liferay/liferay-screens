@@ -26,50 +26,32 @@ public class AssetDisplayScreenletFactory {
 	let videoMimeTypes = ["video/mp4", "video/x-flv", "video/3gp", "video/quicktime", "video/x-msvideo", "video/x-ms-wmv"]
 	let audioMimeTypes = ["audio/mpeg", "audio/mpeg3", "audio/wav"]
 
-	public func createScreenlet(autoLoad autoLoad: Bool, frame: CGRect) -> BaseScreenlet? {
+	public func createScreenlet(frame: CGRect) -> BaseScreenlet? {
 
 		let classAssetName = AssetClassNameIds.get(assetEntry.classNameId)
 
 		if let className = classAssetName {
 			switch className {
 			case "DLFileEntry":
-
 				let mimeType = assetEntry.mimeType
 
-				if isImage(mimeType) {
-					return ImageDisplayScreenlet(frame: frame, themeName: nil) {
-						if let s = $0 as? ImageDisplayScreenlet {
-							s.entryId = self.assetEntry.entryId
-							s.assetEntry = FileEntry(attributes: self.assetEntry.attributes)
-							s.autoLoad = autoLoad
-						}
-					}
-				} else if isVideo(mimeType) {
-					return VideoDisplayScreenlet(frame: frame, themeName: nil) {
-						if let s = $0 as? VideoDisplayScreenlet {
-							s.entryId = self.assetEntry.entryId
-							s.fileEntry = FileEntry(attributes: self.assetEntry.attributes)
-							s.autoLoad = autoLoad
-						}
-					}
-				} else if isAudio(mimeType) {
-					return AudioDisplayScreenlet(frame: frame, themeName: nil) {
-						if let s = $0 as? AudioDisplayScreenlet {
-							s.entryId = self.assetEntry.entryId
-							s.fileEntry = FileEntry(attributes: self.assetEntry.attributes)
-							s.autoLoad = autoLoad
-						}
-					}
-				} else if mimeType == "application/pdf" {
-					return PdfDisplayScreenlet(frame: frame, themeName: nil) {
-						if let s = $0 as? PdfDisplayScreenlet {
-							s.entryId = self.assetEntry.entryId
-							s.fileEntry = FileEntry(attributes: self.assetEntry.attributes)
-							s.autoLoad = autoLoad
-						}
+				let initializer: (BaseScreenlet -> ()) = { screenlet in
+					if let s = screenlet as? BaseFileDisplayScreenlet {
+						s.fileEntry = FileEntry(attributes: self.assetEntry.attributes)
+						s.autoLoad = false
+						s.loadFile()
 					}
 				}
 
+				if isImage(mimeType) {
+					return ImageDisplayScreenlet(frame: frame, themeName: nil, initalizer: initializer)
+				} else if isVideo(mimeType) {
+					return VideoDisplayScreenlet(frame: frame, themeName: nil, initalizer: initializer)
+				} else if isAudio(mimeType) {
+					return AudioDisplayScreenlet(frame: frame, themeName: nil, initalizer: initializer)
+				} else if mimeType == "application/pdf" {
+					return PdfDisplayScreenlet(frame: frame, themeName: nil, initalizer: initializer)
+				}
 			default:
 				return nil
 			}
