@@ -126,6 +126,14 @@ public protocol LiferayConnectorFactory {
 		className: String,
 		ratingsGroupCount: Int32) -> RatingDeleteLiferayConnector?
 
+	func createCommentListPageConnector(
+		groupId groupId: Int64,
+		className: String,
+		classPK: Int64,
+		startRow: Int,
+		endRow: Int,
+		computeRowCount: Bool) -> CommentListPageLiferayConnector?
+
 }
 
 
@@ -320,6 +328,17 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 	
 	public func createRatingDeleteConnector(classPK classPK: Int64, className: String, ratingsGroupCount: Int32) -> RatingDeleteLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: RatingDeleteLiferayConnector")
+		return nil
+	}
+
+	public func createCommentListPageConnector(
+			groupId groupId: Int64,
+			className: String,
+			classPK: Int64,
+			startRow: Int,
+			endRow: Int,
+			computeRowCount: Bool) -> CommentListPageLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: CommentListPageLiferayConnector")
 		return nil
 	}
 
@@ -526,6 +545,22 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			classPK: classPK,
 			className: className,
 			ratingsGroupCount: ratingsGroupCount)
+	}
+
+	public func createCommentListPageConnector(
+		groupId groupId: Int64,
+				className: String,
+				classPK: Int64,
+				startRow: Int,
+		        endRow: Int,
+		        computeRowCount: Bool) -> CommentListPageLiferayConnector? {
+		return Liferay70CommentListPageConnector(
+			groupId: groupId,
+			className: className,
+			classPK: classPK,
+			startRow: startRow,
+			endRow: endRow,
+			computeRowCount: computeRowCount)
 	}
 
 }
