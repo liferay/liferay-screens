@@ -16,8 +16,14 @@ import UIKit
 @objc public protocol RatingScreenletDelegate : BaseScreenletDelegate {
 	
 	optional func screenlet(screenlet: RatingScreenlet,
-	                        onRatingRetrieve assetRating: RatingEntry)
-	
+	                        onRatingRetrieve rating: RatingEntry)
+
+	optional func screenlet(screenlet: RatingScreenlet,
+	                        onRatingDeleted rating: RatingEntry)
+
+	optional func screenlet(screenlet: RatingScreenlet,
+	                        onRatingUpdated rating: RatingEntry)
+
 	optional func screenlet(screenlet: RatingScreenlet,
 	                        onRatingError error: NSError)
 	
@@ -138,6 +144,8 @@ import UIKit
 		interactor.onSuccess = {
 			if let result = interactor.resultRating {
 				self.viewModel?.ratingEntry = result
+
+				self.ratingDisplayDelegate?.screenlet?(self, onRatingDeleted: result)
 			}
 		}
 
@@ -153,6 +161,8 @@ import UIKit
 		interactor.onSuccess = {
 			if let result = interactor.resultRating {
 				self.viewModel?.ratingEntry = result
+
+				self.ratingDisplayDelegate?.screenlet?(self, onRatingUpdated: result)
 			}
 		}
 
