@@ -24,9 +24,9 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 
 public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> implements RatingListener {
 
-	public static final String LOAD_RATINGS_ACTION = "loadRatings";
-	public static final String UPDATE_RATING_ACTION = "updateRating";
-	public static final String DELETE_RATING_ACTION = "deleteRating";
+	public static final String LOAD_RATINGS_ACTION = "LOAD_RATINGS";
+	public static final String UPDATE_RATING_ACTION = "UPDATE_RATING";
+	public static final String DELETE_RATING_ACTION = "DELETE_RATING";
 
 	public RatingScreenlet(Context context) {
 		super(context);
