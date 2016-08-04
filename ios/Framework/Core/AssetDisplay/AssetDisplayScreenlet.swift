@@ -26,11 +26,15 @@ import UIKit
 @IBDesignable public class AssetDisplayScreenlet: BaseScreenlet {
 	
 	@IBInspectable public var entryId: Int64 = 0
+
+	@IBInspectable public var classPK: Int64 = 0
+	@IBInspectable public var className: String = ""
 	
 	@IBInspectable public var autoLoad: Bool = true
-	
-	var assetEntry: Asset?
-	
+
+	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.CacheFirst.rawValue
+
+
 	public var assetDisplayDelegate: AssetDisplayScreenletDelegate? {
 		return delegate as? AssetDisplayScreenletDelegate
 	}
@@ -38,7 +42,7 @@ import UIKit
 	//MARK: Public methods
 	
 	override public func onShow() {
-		if autoLoad && entryId != 0 {
+		if autoLoad {
 			loadAsset()
 		}
 	}
@@ -46,14 +50,16 @@ import UIKit
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		let interactor = AssetDisplayInteractor(
 			screenlet: self,
-			entryId: self.entryId)
+			entryId: self.entryId,
+			classPK: self.classPK,
+			className: self.className)
 		
 		
 		interactor.onSuccess = {
 			if let resultAsset = interactor.assetEntry {
 				self.assetDisplayDelegate?.screenlet?(self, onAssetEntryResponse: resultAsset)
 				
-				(self.screenletView as! AssetDisplayViewModel).assetEntry = resultAsset
+				(self.screenletView as? AssetDisplayViewModel)?.assetEntry = resultAsset
 			}
 		}
 		
