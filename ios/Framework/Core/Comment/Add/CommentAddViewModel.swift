@@ -14,16 +14,6 @@
 import UIKit
 
 
-@IBDesignable public class CommentAddScreenlet: BaseScreenlet {
-
-	@IBInspectable public var groupId: Int64 = 0
-
-	@IBInspectable public var className: String = ""
-
-	@IBInspectable public var classPK: Int64 = 0
-
-	public var viewModel: CommentAddViewModel? {
-		return screenletView as? CommentAddViewModel
-	}
-	
+@objc public protocol CommentAddViewModel {
+	var body: String { get }
 }
