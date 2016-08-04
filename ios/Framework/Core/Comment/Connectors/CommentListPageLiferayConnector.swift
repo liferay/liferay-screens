@@ -15,4 +15,36 @@ import UIKit
 
 public class CommentListPageLiferayConnector: PaginationLiferayConnector {
 
+	public let groupId: Int64
+	public let className: String
+	public let classPK: Int64
+
+	public init(groupId: Int64, className: String, classPK: Int64, startRow: Int, endRow: Int, computeRowCount: Bool) {
+		self.groupId = groupId
+		self.className = className
+		self.classPK = classPK
+
+		super.init(startRow: startRow, endRow: endRow, computeRowCount: true)
+	}
+
+
+	override public func validateData() -> ValidationError? {
+		let error = super.validateData()
+
+		if error == nil {
+			if groupId <= 0 {
+				return ValidationError("comment-list-screenlet", "undefined-groupId")
+			}
+
+			if classPK <= 0 {
+				return ValidationError("comment-list-screenlet", "undefined-classPK")
+			}
+
+			if className.isEmpty {
+				return ValidationError("comment-list-screenlet", "undefined-className")
+			}
+		}
+
+		return error
+	}
 }
