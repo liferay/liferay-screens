@@ -19,6 +19,29 @@
  */
 @implementation LRScreensassetentryService_v70
 
+- (NSDictionary *)getAssetEntryWithClassName:(NSString *)className classPK:(long long)classPK locale:(NSString *)locale error:(NSError **)error {
+	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
+		@"className": [self checkNull: className],
+		@"classPK": @(classPK),
+		@"locale": [self checkNull: locale]
+	}];
+
+	NSDictionary *_command = @{@"/screens.screensassetentry/get-asset-entry": _params};
+
+	return (NSDictionary *)[self.session invoke:_command error:error];
+}
+
+- (NSDictionary *)getAssetEntryWithEntryId:(long long)entryId locale:(NSString *)locale error:(NSError **)error {
+	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
+		@"entryId": @(entryId),
+		@"locale": [self checkNull: locale]
+	}];
+
+	NSDictionary *_command = @{@"/screens.screensassetentry/get-asset-entry": _params};
+
+	return (NSDictionary *)[self.session invoke:_command error:error];
+}
+
 - (NSArray *)getAssetEntriesWithCompanyId:(long long)companyId groupId:(long long)groupId portletItemName:(NSString *)portletItemName locale:(NSString *)locale max:(int)max error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"companyId": @(companyId),
@@ -42,17 +65,6 @@
 	NSDictionary *_command = @{@"/screens.screensassetentry/get-asset-entries": _params};
 
 	return (NSArray *)[self.session invoke:_command error:error];
-}
-
-- (NSDictionary *)getAssetEntryExtendedWithEntryId:(long long)entryId locale:(NSString *)locale error:(NSError **)error {
-	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
-		@"entryId": @(entryId),
-		@"locale": [self checkNull: locale]
-	}];
-
-	NSDictionary *_command = @{@"/screens.screensassetentry/get-asset-entry-extended": _params};
-
-	return (NSDictionary *)[self.session invoke:_command error:error];
 }
 
 @end
