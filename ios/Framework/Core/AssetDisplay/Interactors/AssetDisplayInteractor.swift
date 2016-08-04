@@ -14,6 +14,10 @@
 import UIKit
 
 
+public protocol AssetDisplayConnector {
+	var resultAssetEntry: Asset? { get set }
+}
+
 public class AssetDisplayInteractor: ServerReadConnectorInteractor {
 	
 	public var entryId: Int64?
