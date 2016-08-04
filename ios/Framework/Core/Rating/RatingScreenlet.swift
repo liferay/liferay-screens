@@ -63,10 +63,9 @@ import UIKit
 	}
 	
 	public override func onCreated() {
-		if ratingsGroupCount == -1 {
-			if let defaultRatingsGroupCount = viewModel?.defaultRatingsGroupCount {
-				ratingsGroupCount = defaultRatingsGroupCount
-			}
+		if let defaultRatingsGroupCount = viewModel?.defaultRatingsGroupCount
+				where ratingsGroupCount == -1 {
+			ratingsGroupCount = defaultRatingsGroupCount
 		}
 	}
 	
