@@ -13,6 +13,21 @@
 */
 import UIKit
 
+
+@objc public protocol CommentListScreenletDelegate : BaseScreenletDelegate {
+
+	optional func screenlet(screenlet: CommentListScreenlet,
+			onListResponseComments comments: [Comment])
+
+	optional func screenlet(screenlet: CommentListScreenlet,
+			onCommentListError error: NSError)
+
+	optional func screenlet(screenlet: CommentListScreenlet,
+			onSelectedComment comment: Comment)
+
+}
+
+
 @IBDesignable public class CommentListScreenlet: BaseListScreenlet {
 
 	@IBInspectable public var groupId: Int64 = 0
@@ -23,6 +38,10 @@ import UIKit
 
 	public var viewModel: CommentListViewModel? {
 		return screenletView as? CommentListViewModel
+	}
+
+	public var commentListDelegate: CommentListScreenletDelegate? {
+		return delegate as? CommentListScreenletDelegate
 	}
 
 	//MARK: BaseListScreenlet
@@ -43,6 +62,24 @@ import UIKit
 		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
 		return interactor
+	}
+
+	override public func onLoadPageError(page page: Int, error: NSError) {
+		super.onLoadPageError(page: page, error: error)
+
+		commentListDelegate?.screenlet?(self, onCommentListError: error)
+	}
+
+	override public func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
+		super.onLoadPageResult(page: page, rows: rows, rowCount: rowCount)
+
+		commentListDelegate?.screenlet?(self,
+				onListResponseComments: rows as! [Comment])
+	}
+
+	override public func onSelectedRow(row: AnyObject) {
+		commentListDelegate?.screenlet?(self,
+				onSelectedComment: row as! Comment)
 	}
 
 }
