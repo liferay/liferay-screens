@@ -40,5 +40,33 @@ import UIKit
 	public var viewModel: CommentAddViewModel? {
 		return screenletView as? CommentAddViewModel
 	}
+
+	//MARK: Public methods
+
+	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+		let interactor = CommentAddInteractor(
+			screenlet: self,
+			groupId: self.groupId,
+			className: self.className,
+			classPK: self.classPK,
+			body: self.viewModel?.body)
+
+		interactor.onSuccess = {
+			if let resultComment = interactor.resultComment {
+				self.commentAddDelegate?.screenlet?(self, onCommentAdded: resultComment)
+				self.viewModel?.body = ""
+			}
+			else {
+				self.commentAddDelegate?.screenlet?(self,
+					onAddCommentError: NSError.errorWithCause(.InvalidServerResponse))
+			}
+		}
+
+		interactor.onFailure = {
+			self.commentAddDelegate?.screenlet?(self, onAddCommentError: $0)
+		}
+		
+		return interactor
+	}
 	
 }
