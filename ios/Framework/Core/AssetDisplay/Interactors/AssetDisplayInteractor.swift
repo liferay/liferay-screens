@@ -19,33 +19,36 @@ public protocol AssetDisplayConnector {
 }
 
 public class AssetDisplayInteractor: ServerReadConnectorInteractor {
-	
-	public var entryId: Int64?
-	
+
+	public let entryId: Int64
+
+	public let classPK: Int64
+	public let className: String
+
 	public var assetEntry: Asset?
-	
-	init(screenlet: BaseScreenlet, entryId: Int64) {
+
+	init(screenlet: BaseScreenlet, entryId: Int64, classPK: Int64, className: String) {
 		self.entryId = entryId
-		
+		self.classPK = classPK
+		self.className = className
+
 		super.init(screenlet: screenlet)
 	}
-	
-	override public func createConnector() -> AssetDisplayLiferayConnector? {
-		if let entryId = self.entryId where entryId != 0 {
-			return LiferayServerContext.connectorFactory.createAssetDisplayConnector(entryId)
+
+	override public func createConnector() -> ServerConnector? {
+		if entryId != 0 {
+			return LiferayServerContext.connectorFactory.createAssetDisplayByEntryIdConnector(entryId)
+		} else {
+			return LiferayServerContext.connectorFactory.createAssetDisplayByClassPKConnector(className, classPK: classPK)
 		}
-		
-		return nil
 	}
-	
+
 	override public func completedConnector(op: ServerConnector) {
-		if let assetEntryConnector = (op as? AssetDisplayLiferayConnector) {
-			assetEntry = assetEntryConnector.assetEntry
-			entryId = assetEntryConnector.entryId
+		if let assetEntryConnector = op as? AssetDisplayConnector {
+			assetEntry = assetEntryConnector.resultAssetEntry
 		}
 		else {
 			self.assetEntry = nil
-			self.entryId = nil
 		}
 	}
 }
