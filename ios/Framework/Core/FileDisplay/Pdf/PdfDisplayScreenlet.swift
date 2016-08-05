@@ -31,18 +31,22 @@ public class PdfDisplayScreenlet: BaseFileDisplayScreenlet {
 		return screenletView as? BaseFileDisplayViewModel
 	}
 
+	//MARK: BaseFileDisplayScreenlet
 
-	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+	override public func createLoadAssetInteractor() -> Interactor? {
 		let interactor = AssetDisplayInteractor(
-			screenlet: self,
-			entryId: self.entryId)
+			screenlet: self, entryId: entryId, classPK: classPK, className: className)
+
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
 		interactor.onSuccess = {
 			if let resultAsset = interactor.assetEntry {
 				self.fileEntry = FileEntry(attributes: resultAsset.attributes)
-				self.pdfDisplayDelegate?.screenlet?(self, onPdfAssetResponse: self.fileEntry!)
-
-				(self.screenletView as! PdfDisplayViewModel).fileEntry = self.fileEntry!
+				self.loadFile()
+			}
+			else {
+				self.pdfDisplayDelegate?.screenlet?(self, onPdfAssetError:
+					NSError.errorWithCause(.InvalidServerResponse))
 			}
 		}
 

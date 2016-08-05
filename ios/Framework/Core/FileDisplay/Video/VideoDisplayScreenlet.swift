@@ -32,18 +32,22 @@ public class VideoDisplayScreenlet: BaseFileDisplayScreenlet {
 		return screenletView as? BaseFileDisplayViewModel
 	}
 
-	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
-		let interactor = AssetDisplayInteractor(
-			screenlet: self,
-			entryId: self.entryId)
+	//MARK: BaseFileDisplayScreenlet
 
+	override public func createLoadAssetInteractor() -> Interactor? {
+		let interactor = AssetDisplayInteractor(
+			screenlet: self, entryId: entryId, classPK: classPK, className: className)
+
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
 		interactor.onSuccess = {
 			if let resultAsset = interactor.assetEntry {
 				self.fileEntry = FileEntry(attributes: resultAsset.attributes)
-				self.videoDisplayDelegate?.screenlet?(self, onVideoAssetResponse: self.fileEntry!)
-
-				(self.screenletView as! VideoDisplayViewModel).fileEntry = self.fileEntry!
+				self.loadFile()
+			}
+			else {
+				self.videoDisplayDelegate?.screenlet?(self, onVideoAssetError:
+					NSError.errorWithCause(.InvalidServerResponse))
 			}
 		}
 

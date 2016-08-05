@@ -31,29 +31,29 @@ public class ImageDisplayScreenlet: BaseFileDisplayScreenlet {
 		return screenletView as? BaseFileDisplayViewModel
 	}
 
+	//MARK: BaseFileDisplayScreenlet
 
-		}
-	}
+	override public func createLoadAssetInteractor() -> Interactor? {
+		let interactor = AssetDisplayInteractor(
+			screenlet: self, entryId: entryId, classPK: classPK, className: className)
 
-	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
-		if let assetEntry = assetEntry, url = NSURL(string: LiferayServerContext.server + assetEntry.url) {
-			let interactor = DownloadImageAssetInteractor(screenlet: self, url: url)
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
-			interactor.onSuccess = {
-				if let resultImage = interactor.resultImage {
-					let modifiedImage = self.imageDisplayDelegate?.screenlet?(self, onImageAssetResponse: resultImage)
-
-					(self.screenletView as! ImageDisplayViewModel).image = modifiedImage ?? resultImage
-				}
+		interactor.onSuccess = {
+			if let resultAsset = interactor.assetEntry {
+				self.fileEntry = FileEntry(attributes: resultAsset.attributes)
+				self.loadFile()
 			}
-
-			interactor.onFailure = {
-				self.imageDisplayDelegate?.screenlet?(self, onImageAssetError: $0)
+			else {
+				self.imageDisplayDelegate?.screenlet?(self, onImageAssetError: NSError.errorWithCause(.InvalidServerResponse))
 			}
-
-			return interactor
 		}
 
-		return nil
+		interactor.onFailure = {
+			self.imageDisplayDelegate?.screenlet?(self, onImageAssetError: $0)
+		}
+
+		return interactor
 	}
+
 }
