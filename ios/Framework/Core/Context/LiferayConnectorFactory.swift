@@ -140,6 +140,10 @@ public protocol LiferayConnectorFactory {
 		classPK: Int64,
 		body: String?) -> CommentAddLiferayConnector?
 
+	func createCommentLoadConnector(
+		groupId groupId: Int64,
+		commentId: Int64) -> CommentLoadLiferayConnector?
+
 }
 
 
