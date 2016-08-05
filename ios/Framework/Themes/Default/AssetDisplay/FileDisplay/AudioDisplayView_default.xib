@@ -173,8 +173,10 @@
             <connections>
                 <outlet property="audioDurationLabel" destination="VAt-Ih-Vt2" id="iPS-3Z-jVL"/>
                 <outlet property="audioProgressLabel" destination="Yyq-b5-Jj6" id="3uZ-lI-8jr"/>
+                <outlet property="forwardButton" destination="KEl-p6-o7r" id="j4H-xf-Fcf"/>
                 <outlet property="pauseButton" destination="RwO-0D-saH" id="N2p-sk-TH9"/>
                 <outlet property="playButton" destination="b52-a3-3qb" id="k9k-RI-U4o"/>
+                <outlet property="rewindButton" destination="kb2-3A-sly" id="beP-8W-CHy"/>
                 <outlet property="sliderDuration" destination="3Gl-ma-mJD" id="ofV-Xj-D42"/>
                 <outlet property="sliderVolume" destination="QxD-lb-czY" id="BkP-Am-fqO"/>
                 <outlet property="titleLabel" destination="bAH-H9-JmN" id="9fB-YZ-ICa"/>
