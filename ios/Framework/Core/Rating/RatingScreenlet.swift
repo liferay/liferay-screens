@@ -37,10 +37,9 @@ import UIKit
 	
 	@IBInspectable public var entryId: Int64 = 0
 	
-	@IBInspectable public var classPK: Int64 = 0
-	
 	@IBInspectable public var className: String = ""
-	
+	@IBInspectable public var classPK: Int64 = 0
+
 	@IBInspectable public var ratingsGroupCount: Int32 = -1
 	
 	@IBInspectable public var autoLoad: Bool = true
@@ -137,8 +136,8 @@ import UIKit
 		else if className != "" && classPK != 0 {
 			interactor = LoadRatingsInteractor(
 				screenlet: self,
-				classPK: classPK,
 				className: className,
+				classPK: classPK,
 				ratingsGroupCount: ratingsGroupCount)
 		}
 		else {
@@ -166,8 +165,8 @@ import UIKit
 	private func createDeleteRatingInteractor() -> DeleteRatingInteractor {
 		let interactor = DeleteRatingInteractor(
 				screenlet: self,
-				classPK: classPK,
 				className: className,
+				classPK: classPK,
 				ratingsGroupCount: ratingsGroupCount)
 
 		interactor.onSuccess = {
@@ -188,8 +187,8 @@ import UIKit
 	private func createUpdateRatingInteractor() -> UpdateRatingInteractor {
 		let interactor = UpdateRatingInteractor(
 				screenlet: self,
-				classPK: classPK,
 				className: className,
+				classPK: classPK,
 				score: viewModel?.selectedUserScore?.doubleValue,
 				ratingsGroupCount: ratingsGroupCount)
 

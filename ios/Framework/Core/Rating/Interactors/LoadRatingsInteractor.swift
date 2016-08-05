@@ -16,20 +16,20 @@ import UIKit
 public class LoadRatingsInteractor: ServerReadConnectorInteractor {
 	
 	let entryId: Int64?
-	let classPK: Int64?
 	let className: String?
+	let classPK: Int64?
 	let ratingsGroupCount: Int32
 
 	var resultRating: RatingEntry?
 
 	private init(screenlet: BaseScreenlet?,
 	     	entryId: Int64?,
-	     	classPK: Int64?,
 	     	className: String?,
+	     	classPK: Int64?,
 	     	ratingsGroupCount: Int32) {
 		self.entryId = entryId
-		self.classPK = classPK
 		self.className = className
+		self.classPK = classPK
 		self.ratingsGroupCount = ratingsGroupCount
 
 		super.init(screenlet: screenlet)
@@ -40,19 +40,19 @@ public class LoadRatingsInteractor: ServerReadConnectorInteractor {
 			ratingsGroupCount: Int32) {
 		self.init(screenlet: screenlet,
 			entryId: entryId,
-			classPK: nil,
 			className: nil,
+			classPK: nil,
 			ratingsGroupCount: ratingsGroupCount)
 	}
 
 	convenience init(screenlet: BaseScreenlet?,
-			classPK: Int64?,
 			className: String?,
+			classPK: Int64?,
 			ratingsGroupCount: Int32) {
 		self.init(screenlet: screenlet,
 		          entryId: nil,
-		          classPK: classPK,
 		          className: className,
+		          classPK: classPK,
 		          ratingsGroupCount: ratingsGroupCount)
 	}
 
