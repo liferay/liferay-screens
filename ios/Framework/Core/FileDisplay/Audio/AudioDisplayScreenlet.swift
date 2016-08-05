@@ -22,13 +22,7 @@ import AVFoundation
 	optional func screenlet(screenlet: AudioDisplayScreenlet, onAudioAssetError error: NSError)
 }
 
-public class AudioDisplayScreenlet: BaseScreenlet {
-
-	@IBInspectable public var entryId: Int64 = 0
-
-	@IBInspectable public var autoLoad: Bool = true
-
-	public var fileEntry: FileEntry?
+public class AudioDisplayScreenlet: BaseFileDisplayScreenlet {
 
 	public var audioDisplayDelegate: AudioDisplayScreenletDelegate? {
 		return delegate as? AudioDisplayScreenletDelegate
@@ -38,17 +32,6 @@ public class AudioDisplayScreenlet: BaseScreenlet {
 		return screenletView as? BaseFileDisplayViewModel
 	}
 
-	//MARK: Public methods
-
-	override public func onShow() {
-		if autoLoad {
-			if fileEntry == nil {
-				loadAudioAssetFromEntryId()
-			} else {
-				loadAudioAssetFromFileEntry()
-			}
-		}
-	}
 
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		let interactor = AssetDisplayInteractor(
@@ -73,12 +56,5 @@ public class AudioDisplayScreenlet: BaseScreenlet {
 		return interactor
 	}
 
-	public func loadAudioAssetFromEntryId() -> Bool {
-		return self.performDefaultAction()
-	}
 
-	public func loadAudioAssetFromFileEntry() {
-		(self.screenletView as! AudioDisplayViewModel).fileEntry = self.fileEntry!
-		(self.screenletView as! AudioDisplayViewModel).audioTitle = self.fileEntry!.title
 	}
-}

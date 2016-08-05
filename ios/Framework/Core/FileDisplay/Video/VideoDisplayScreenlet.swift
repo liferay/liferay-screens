@@ -22,13 +22,7 @@ import AVFoundation
 	optional func screenlet(screenlet: VideoDisplayScreenlet, onVideoAssetError error: NSError)
 }
 
-public class VideoDisplayScreenlet: BaseScreenlet {
-
-	@IBInspectable public var entryId: Int64 = 0
-
-	@IBInspectable public var autoLoad: Bool = true
-
-	public var fileEntry: FileEntry?
+public class VideoDisplayScreenlet: BaseFileDisplayScreenlet {
 
 	public var videoDisplayDelegate: VideoDisplayScreenletDelegate? {
 		return delegate as? VideoDisplayScreenletDelegate
@@ -36,17 +30,6 @@ public class VideoDisplayScreenlet: BaseScreenlet {
 
 	public var videoDisplayViewModel: BaseFileDisplayViewModel? {
 		return screenletView as? BaseFileDisplayViewModel
-
-	//MARK: Public methods
-
-	override public func onShow() {
-		if autoLoad {
-			if fileEntry == nil {
-				loadVideoAssetFromEntryId()
-			} else {
-				loadVideoAssetFromFileEntry()
-			}
-		}
 	}
 
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
@@ -71,11 +54,6 @@ public class VideoDisplayScreenlet: BaseScreenlet {
 		return interactor
 	}
 
-	public func loadVideoAssetFromEntryId() -> Bool {
-		return self.performDefaultAction()
-	}
 
-	public func loadVideoAssetFromFileEntry() {
-		(self.screenletView as! VideoDisplayViewModel).fileEntry = self.fileEntry!
 	}
 }

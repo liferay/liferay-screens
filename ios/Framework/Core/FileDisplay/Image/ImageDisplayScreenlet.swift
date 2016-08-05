@@ -21,13 +21,7 @@ import Foundation
 	optional func screenlet(screenlet: ImageDisplayScreenlet, onImageAssetError error: NSError)
 }
 
-public class ImageDisplayScreenlet: BaseScreenlet {
-
-	@IBInspectable public var entryId: Int64 = 0
-
-	@IBInspectable public var autoLoad: Bool = true
-
-	public var assetEntry: FileEntry?
+public class ImageDisplayScreenlet: BaseFileDisplayScreenlet {
 
 	public var imageDisplayDelegate: ImageDisplayScreenletDelegate? {
 		return delegate as? ImageDisplayScreenletDelegate
@@ -37,11 +31,7 @@ public class ImageDisplayScreenlet: BaseScreenlet {
 		return screenletView as? BaseFileDisplayViewModel
 	}
 
-	//MARK: Public methods
 
-	override public func onShow() {
-		if autoLoad && assetEntry?.entryId != 0 {
-			loadImageAssetFromEntryId()
 		}
 	}
 
@@ -65,9 +55,5 @@ public class ImageDisplayScreenlet: BaseScreenlet {
 		}
 
 		return nil
-	}
-
-	public func loadImageAssetFromEntryId() -> Bool {
-		return self.performDefaultAction()
 	}
 }

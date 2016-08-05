@@ -21,14 +21,8 @@ import Foundation
 	optional func screenlet(screenlet: PdfDisplayScreenlet, onPdfAssetError error: NSError)
 }
 
-public class PdfDisplayScreenlet: BaseScreenlet {
+public class PdfDisplayScreenlet: BaseFileDisplayScreenlet {
 
-	@IBInspectable public var entryId: Int64 = 0
-
-	@IBInspectable public var autoLoad: Bool = true
-
-	public var fileEntry: FileEntry?
-	
 	public var pdfDisplayDelegate: PdfDisplayScreenletDelegate? {
 		return delegate as? PdfDisplayScreenletDelegate
 	}
@@ -37,17 +31,6 @@ public class PdfDisplayScreenlet: BaseScreenlet {
 		return screenletView as? BaseFileDisplayViewModel
 	}
 
-	//MARK: Public methods
-
-	override public func onShow() {
-		if autoLoad {
-			if fileEntry == nil {
-				loadPdfAssetFromEntryId()
-			} else {
-				loadPdfAssetFromFileEntry()
-			}
-		}
-	}
 
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		let interactor = AssetDisplayInteractor(
@@ -70,11 +53,6 @@ public class PdfDisplayScreenlet: BaseScreenlet {
 		return interactor
 	}
 
-	public func loadPdfAssetFromEntryId() -> Bool {
-		return self.performDefaultAction()
-	}
 
-	public func loadPdfAssetFromFileEntry() {
-		(self.screenletView as! PdfDisplayViewModel).fileEntry = self.fileEntry
 	}
 }
