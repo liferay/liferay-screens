@@ -15,17 +15,23 @@ import UIKit
 
 public class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 	
-	var resultRating: RatingEntry?
 	let classPK: Int64
 	let className: String
 	let score: Double
 	let ratingsGroupCount: Int32
-	
-	init(screenlet: BaseScreenlet?, classPK: Int64, className: String, score: Double?, ratingsGroupCount: Int32) {
+
+	var resultRating: RatingEntry?
+
+	init(screenlet: BaseScreenlet?,
+			classPK: Int64,
+			className: String,
+			score: Double?,
+			ratingsGroupCount: Int32) {
 		self.classPK = classPK
 		self.className = className
 		self.ratingsGroupCount = ratingsGroupCount
 		self.score = score ?? -1
+
 		super.init(screenlet: screenlet)
 	}
 	

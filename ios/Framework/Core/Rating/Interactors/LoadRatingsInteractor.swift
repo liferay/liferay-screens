@@ -15,17 +15,23 @@ import UIKit
 
 public class LoadRatingsInteractor: ServerReadConnectorInteractor {
 	
-	var resultRating: RatingEntry?
 	let entryId: Int64
 	let classPK: Int64
 	let className: String
 	let ratingsGroupCount: Int32
-	
-	init(screenlet: BaseScreenlet?, entryId: Int64, classPK: Int64, className: String, ratingsGroupCount: Int32) {
+
+	var resultRating: RatingEntry?
+
+	init(screenlet: BaseScreenlet?,
+	     	entryId: Int64,
+	     	classPK: Int64,
+	     	className: String,
+	     	ratingsGroupCount: Int32) {
 		self.entryId = entryId
 		self.classPK = classPK
 		self.className = className
 		self.ratingsGroupCount = ratingsGroupCount
+
 		super.init(screenlet: screenlet)
 	}
 	

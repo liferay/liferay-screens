@@ -16,12 +16,12 @@ import UIKit
 
 @objc public protocol RatingViewModel {
 	
-	var editable: Bool {get set}
+	var editable: Bool { get set }
 
-	var defaultRatingsGroupCount: Int32 {get}
+	var defaultRatingsGroupCount: Int32 { get }
 	
-	var ratingEntry: RatingEntry? {get set}
+	var ratingEntry: RatingEntry? { get set }
 	
-	var selectedUserScore: NSNumber? {get set}
+	var selectedUserScore: NSNumber? { get set }
 	
 }

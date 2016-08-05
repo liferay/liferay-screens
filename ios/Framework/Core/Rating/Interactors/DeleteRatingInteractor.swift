@@ -15,15 +15,20 @@ import UIKit
 
 public class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 	
-	var resultRating: RatingEntry?
 	let classPK: Int64
 	let className: String
 	let ratingsGroupCount: Int32
-	
-	init(screenlet: BaseScreenlet?, classPK: Int64, className: String, ratingsGroupCount: Int32) {
+
+	var resultRating: RatingEntry?
+
+	init(screenlet: BaseScreenlet?,
+			classPK: Int64,
+			className: String,
+			ratingsGroupCount: Int32) {
 		self.classPK = classPK
 		self.className = className
 		self.ratingsGroupCount = ratingsGroupCount
+
 		super.init(screenlet: screenlet)
 	}
 	
