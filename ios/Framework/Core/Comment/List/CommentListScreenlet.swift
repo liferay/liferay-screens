@@ -44,6 +44,12 @@ import UIKit
 		return delegate as? CommentListScreenletDelegate
 	}
 
+	//MARK: Public methods
+
+	public func addComment(comment: Comment) {
+		viewModel?.addComment(comment)
+	}
+
 	//MARK: BaseListScreenlet
 
 	override public func createPageLoadInteractor(

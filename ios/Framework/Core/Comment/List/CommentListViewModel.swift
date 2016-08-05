@@ -15,5 +15,5 @@ import UIKit
 
 
 @objc public protocol CommentListViewModel {
-
+	func addComment(comment: Comment)
 }

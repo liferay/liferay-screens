@@ -32,6 +32,7 @@ class CommentListScreenletViewController: UIViewController,
 
 	func screenlet(screenlet: CommentAddScreenlet, onCommentAdded comment: Comment) {
 		print("DELEGATE: onCommentAdded called -> \(comment)\n")
+		self.listScreenlet?.addComment(comment)
 	}
 
 	func screenlet(screenlet: CommentAddScreenlet, onAddCommentError error: NSError) {

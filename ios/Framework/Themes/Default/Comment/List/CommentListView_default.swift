@@ -16,6 +16,17 @@ import UIKit
 
 public class CommentListView_default: BaseListTableView, CommentListViewModel {
 
+	//MARK: CommentListViewModel
+
+	public func addComment(comment: Comment) {
+		addRow(BaseListView.DefaultSection, element: comment)
+		let indexPath = NSIndexPath(forRow: (rows[BaseListView.DefaultSection]?.count)! - 1, inSection: 0)
+		tableView?.beginUpdates()
+		tableView?.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+		tableView?.endUpdates()
+		tableView?.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
+	}
+
 	//MARK: BaseListTableView
 
 	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
