@@ -15,26 +15,41 @@ import UIKit
 import LiferayScreens
 
 
-class CommentListScreenletViewController: UIViewController, CommentListScreenletDelegate {
+class CommentListScreenletViewController: UIViewController,
+	CommentListScreenletDelegate, CommentAddScreenletDelegate {
 
-	@IBOutlet weak var screenlet: CommentListScreenlet?
+	@IBOutlet weak var listScreenlet: CommentListScreenlet?
+	@IBOutlet weak var addScreenlet: CommentAddScreenlet?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		self.screenlet?.delegate = self
+		self.listScreenlet?.delegate = self
+		self.addScreenlet?.delegate = self
 	}
 
+	//MARK: CommentAddScreenletDelegate
+
+	func screenlet(screenlet: CommentAddScreenlet, onCommentAdded comment: Comment) {
+		print("DELEGATE: onCommentAdded called -> \(comment)\n")
+	}
+
+	func screenlet(screenlet: CommentAddScreenlet, onAddCommentError error: NSError) {
+		print("DELEGATE: onAddCommentError called -> \(error)\n")
+	}
+
+	//MARK: CommentListScreenletDelegate
+
 	func screenlet(screenlet: CommentListScreenlet, onCommentListError error: NSError) {
-		print("DELEGATE: onCommentListError called -> \(error)\n");
+		print("DELEGATE: onCommentListError called -> \(error)\n")
 	}
 
 	func screenlet(screenlet: CommentListScreenlet, onSelectedComment comment: Comment) {
-		print("DELEGATE: onCommentSelected called -> \(comment)\n");
+		print("DELEGATE: onCommentSelected called -> \(comment)\n")
 	}
 
 	func screenlet(screenlet: CommentListScreenlet, onListResponseComments comments: [Comment]) {
-		print("DELEGATE: onCommentListResponse called -> \(comments)\n");
+		print("DELEGATE: onCommentListResponse called -> \(comments)\n")
 	}
 
 }
