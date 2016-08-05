@@ -43,9 +43,9 @@ public class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 			ratingsGroupCount: ratingsGroupCount)
 	}
 	
-	override public func completedConnector(op: ServerConnector) {
-		if let updateOp = op as? RatingUpdateLiferayConnector {
-			self.resultRating = updateOp.resultRating
+	override public func completedConnector(c: ServerConnector) {
+		if let updateCon = c as? RatingUpdateLiferayConnector {
+			self.resultRating = updateCon.resultRating
 		}
 	}
 	

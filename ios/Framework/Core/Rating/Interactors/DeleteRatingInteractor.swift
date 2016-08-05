@@ -39,9 +39,9 @@ public class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 			ratingsGroupCount: ratingsGroupCount)
 	}
 	
-	override public func completedConnector(op: ServerConnector) {
-		if let deleteOp = op as? RatingDeleteLiferayConnector {
-			self.resultRating = deleteOp.resultRating
+	override public func completedConnector(c: ServerConnector) {
+		if let deleteCon = c as? RatingDeleteLiferayConnector {
+			self.resultRating = deleteCon.resultRating
 		}
 	}
 	

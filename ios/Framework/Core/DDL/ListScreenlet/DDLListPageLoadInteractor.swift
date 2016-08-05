@@ -52,7 +52,7 @@ public class DDLListPageLoadInteractor : BaseListPageLoadInteractor {
 		return DDLRecord(dataAndAttributes: serverResult)
 	}
 
-	override public func cacheKey(op: PaginationLiferayConnector) -> String {
+	override public func cacheKey(c: PaginationLiferayConnector) -> String {
 		return "\(recordSetId)"
 	}
 

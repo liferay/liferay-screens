@@ -70,11 +70,11 @@ public class LoadRatingsInteractor: ServerReadConnectorInteractor {
 		return nil
 	}
 	
-	override public func completedConnector(op: ServerConnector) {
-		if let loadOp = op as? RatingLoadByEntryIdLiferayConnector {
-			self.resultRating = loadOp.resultRating
-		} else if let loadOp = op as? RatingLoadByClassPKLiferayConnector {
-			self.resultRating = loadOp.resultRating
+	override public func completedConnector(c: ServerConnector) {
+		if let loadCon = c as? RatingLoadByEntryIdLiferayConnector {
+			self.resultRating = loadCon.resultRating
+		} else if let loadCon = c as? RatingLoadByClassPKLiferayConnector {
+			self.resultRating = loadCon.resultRating
 		}
 	}
 
