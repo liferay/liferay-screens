@@ -56,4 +56,33 @@ public class ImageDisplayScreenlet: BaseFileDisplayScreenlet {
 		return interactor
 	}
 
+	override public func createLoadFileInteractor() -> Interactor? {
+		if let fileEntry = fileEntry {
+			let url = NSURL(string: LiferayServerContext.server + fileEntry.url)
+			let interactor = LoadFileInteractor(screenlet: self, url: url)
+
+			interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+
+			interactor.onSuccess = {
+				if let resultUrl = interactor.resultUrl {
+					let title = self.fileEntry!.title
+
+					self.imageDisplayDelegate?.screenlet?(self, onImageAssetResponse: resultUrl)
+
+					self.imageDisplayViewModel?.url = resultUrl
+					self.imageDisplayViewModel?.title = title
+				}
+				else {
+					self.imageDisplayDelegate?.screenlet?(self, onImageAssetError: NSError.errorWithCause(.InvalidServerResponse))
+				}
+			}
+
+			interactor.onFailure = {
+				self.imageDisplayDelegate?.screenlet?(self, onImageAssetError: $0)
+			}
+
+			return interactor
+		}
+		return nil
+	}
 }

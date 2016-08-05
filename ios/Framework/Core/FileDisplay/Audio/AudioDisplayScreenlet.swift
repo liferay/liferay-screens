@@ -58,5 +58,34 @@ public class AudioDisplayScreenlet: BaseFileDisplayScreenlet {
 		return interactor
 	}
 
+	override public func createLoadFileInteractor() -> Interactor? {
+		if let fileEntry = fileEntry {
+			let url = NSURL(string: LiferayServerContext.server + fileEntry.url)
+			let interactor = LoadFileInteractor(screenlet: self, url: url)
 
+			interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+
+			interactor.onSuccess = {
+				if let resultUrl = interactor.resultUrl {
+					let title = self.fileEntry!.title
+
+					self.audioDisplayDelegate?.screenlet?(self, onAudioAssetResponse: resultUrl)
+
+					self.audioDisplayViewModel?.url = resultUrl
+					self.audioDisplayViewModel?.title = title
+				}
+				else {
+					self.audioDisplayDelegate?.screenlet?(self, onAudioAssetError:
+						NSError.errorWithCause(.InvalidServerResponse))
+				}
+			}
+
+			interactor.onFailure = {
+				self.audioDisplayDelegate?.screenlet?(self, onAudioAssetError: $0)
+			}
+
+			return interactor
+		}
+		return nil
 	}
+}

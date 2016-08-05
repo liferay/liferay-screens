@@ -58,6 +58,34 @@ public class VideoDisplayScreenlet: BaseFileDisplayScreenlet {
 		return interactor
 	}
 
+	override public func createLoadFileInteractor() -> Interactor? {
+		if let fileEntry = fileEntry {
+			let url = NSURL(string: LiferayServerContext.server + fileEntry.url)
+			let interactor = LoadFileInteractor(screenlet: self, url: url)
 
+			interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+
+			interactor.onSuccess = {
+				if let resultUrl = interactor.resultUrl {
+					let title = self.fileEntry!.title
+
+					self.videoDisplayDelegate?.screenlet?(self, onVideoAssetResponse: resultUrl)
+
+					self.videoDisplayViewModel?.url = resultUrl
+					self.videoDisplayViewModel?.title = title
+				}
+				else {
+					self.videoDisplayDelegate?.screenlet?(self, onVideoAssetError:
+						NSError.errorWithCause(.InvalidServerResponse))
+				}
+			}
+
+			interactor.onFailure = {
+				self.videoDisplayDelegate?.screenlet?(self, onVideoAssetError: $0)
+			}
+
+			return interactor
+		}
+		return nil
 	}
 }

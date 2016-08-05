@@ -57,6 +57,33 @@ public class PdfDisplayScreenlet: BaseFileDisplayScreenlet {
 		return interactor
 	}
 
+	override public func createLoadFileInteractor() -> Interactor? {
+		if let fileEntry = fileEntry {
+			let url = NSURL(string: LiferayServerContext.server + fileEntry.url)
+			let interactor = LoadFileInteractor(screenlet: self, url: url)
 
+			interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+
+			interactor.onSuccess = {
+				if let resultUrl = interactor.resultUrl {
+					let title = self.fileEntry!.title
+
+					self.pdfDisplayDelegate?.screenlet?(self, onPdfAssetResponse: resultUrl)
+
+					self.pdfDisplayViewModel?.url = resultUrl
+					self.pdfDisplayViewModel?.title = title
+				}
+				else {
+					self.pdfDisplayDelegate?.screenlet?(self, onPdfAssetError: NSError.errorWithCause(.InvalidServerResponse))
+				}
+			}
+
+			interactor.onFailure = {
+				self.pdfDisplayDelegate?.screenlet?(self, onPdfAssetError: $0)
+			}
+
+			return interactor
+		}
+		return nil
 	}
 }
