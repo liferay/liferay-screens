@@ -34,6 +34,10 @@ public class AudioDisplayScreenlet: BaseScreenlet {
 		return delegate as? AudioDisplayScreenletDelegate
 	}
 
+	public var audioDisplayViewModel: BaseFileDisplayViewModel? {
+		return screenletView as? BaseFileDisplayViewModel
+	}
+
 	//MARK: Public methods
 
 	override public func onShow() {

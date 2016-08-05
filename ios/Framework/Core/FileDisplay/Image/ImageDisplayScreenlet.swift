@@ -33,8 +33,8 @@ public class ImageDisplayScreenlet: BaseScreenlet {
 		return delegate as? ImageDisplayScreenletDelegate
 	}
 
-	public var imageDisplayViewModel: ImageDisplayViewModel? {
-		return screenletView as? ImageDisplayViewModel
+	public var imageDisplayViewModel: BaseFileDisplayViewModel? {
+		return screenletView as? BaseFileDisplayViewModel
 	}
 
 	//MARK: Public methods

@@ -34,6 +34,9 @@ public class VideoDisplayScreenlet: BaseScreenlet {
 		return delegate as? VideoDisplayScreenletDelegate
 	}
 
+	public var videoDisplayViewModel: BaseFileDisplayViewModel? {
+		return screenletView as? BaseFileDisplayViewModel
+
 	//MARK: Public methods
 
 	override public func onShow() {

@@ -33,6 +33,10 @@ public class PdfDisplayScreenlet: BaseScreenlet {
 		return delegate as? PdfDisplayScreenletDelegate
 	}
 
+	public var pdfDisplayViewModel: BaseFileDisplayViewModel? {
+		return screenletView as? BaseFileDisplayViewModel
+	}
+
 	//MARK: Public methods
 
 	override public func onShow() {
