@@ -36,8 +36,8 @@ class SignUpInteractor: ServerConnectorInteractor {
 		return connector
 	}
 
-	override func completedConnector(op: ServerConnector) {
-		self.resultUserAttributes = (op as! SignUpLiferayConnector).resultUserAttributes
+	override func completedConnector(c: ServerConnector) {
+		self.resultUserAttributes = (c as! SignUpLiferayConnector).resultUserAttributes
 	}
 
 }

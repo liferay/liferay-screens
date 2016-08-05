@@ -16,8 +16,6 @@ import Cosmos
 
 public class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 
-	public var selectedUserScore: NSNumber?
-
 	public var defaultRatingsGroupCount: Int32 {
 		return Int32(self.emojis.count)
 	}
@@ -67,7 +65,8 @@ public class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 	}
 
 	func emojiClicked(sender: UIButton) {
-		selectedUserScore = Double(emojis.indexOf(sender)!) / Double(emojis.count)
-		userAction(name: sender.restorationIdentifier)
+		userAction(
+			name: sender.restorationIdentifier,
+			sender: Double(emojis.indexOf(sender)!) / Double(emojis.count))
 	}
 }

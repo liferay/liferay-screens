@@ -19,15 +19,17 @@ public class AssetFactory {
 			map.putAll((Map) map.get("object"));
 
 			String stringLocale = (String) map.get("locale");
-			Locale locale = LiferayLocale.getLocaleWithoutDefault(stringLocale);
-
 			String className = (String) map.get("className");
 
-			if (className.contains("JournalArticle")) {
-				return new WebContent(map, locale);
-			}
-			else if (className.contains("DDLRecord")) {
-				return new Record(map, locale);
+			if (stringLocale != null) {
+				Locale locale = LiferayLocale.getLocaleWithoutDefault(stringLocale);
+
+				if (className.endsWith("JournalArticle")) {
+					return new WebContent(map, locale);
+				}
+				else if (className.endsWith("DDLRecord")) {
+					return new Record(map, locale);
+				}
 			}
 		}
 		return new AssetEntry(map);

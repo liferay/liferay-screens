@@ -16,8 +16,14 @@ import UIKit
 @objc public protocol RatingScreenletDelegate : BaseScreenletDelegate {
 	
 	optional func screenlet(screenlet: RatingScreenlet,
-	                        onRatingRetrieve assetRating: RatingEntry)
-	
+	                        onRatingRetrieve rating: RatingEntry)
+
+	optional func screenlet(screenlet: RatingScreenlet,
+	                        onRatingDeleted rating: RatingEntry)
+
+	optional func screenlet(screenlet: RatingScreenlet,
+	                        onRatingUpdated rating: RatingEntry)
+
 	optional func screenlet(screenlet: RatingScreenlet,
 	                        onRatingError error: NSError)
 	
@@ -31,10 +37,9 @@ import UIKit
 	
 	@IBInspectable public var entryId: Int64 = 0
 	
-	@IBInspectable public var classPK: Int64 = 0
-	
 	@IBInspectable public var className: String = ""
-	
+	@IBInspectable public var classPK: Int64 = 0
+
 	@IBInspectable public var ratingsGroupCount: Int32 = -1
 	
 	@IBInspectable public var autoLoad: Bool = true
@@ -52,7 +57,10 @@ import UIKit
 	public var viewModel: RatingViewModel? {
 		return screenletView as? RatingViewModel
 	}
-	
+
+
+	//MARK: BaseScreenlet methods
+
 	override public func prepareForInterfaceBuilder() {
 		setCustomDefaultThemeName()
 		super.prepareForInterfaceBuilder()
@@ -63,101 +71,141 @@ import UIKit
 	}
 	
 	public override func onCreated() {
-		if ratingsGroupCount == -1 {
-			if let defaultRatingsGroupCount = viewModel?.defaultRatingsGroupCount {
-				ratingsGroupCount = defaultRatingsGroupCount
-			}
+		if let defaultRatingsGroupCount = viewModel?.defaultRatingsGroupCount
+				where ratingsGroupCount == -1 {
+			ratingsGroupCount = defaultRatingsGroupCount
 		}
 	}
 	
+	public override func onShow() {
+		if autoLoad {
+			loadRatings()
+		}
+	}
+
+	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+		let interactor: Interactor?
+
+		switch name {
+		case RatingScreenlet.LoadRatingsAction:
+			interactor = createLoadRatingsInteractor()
+		case RatingScreenlet.DeleteRatingAction:
+			interactor = createDeleteRatingInteractor()
+		case RatingScreenlet.UpdateRatingAction:
+			let selectedScore = sender as! Double
+			interactor = createUpdateRatingInteractor(selectedScore)
+		default:
+			return nil
+		}
+
+		interactor?.onFailure = {
+			self.ratingDisplayDelegate?.screenlet?(self, onRatingError: $0)
+		}
+
+		return interactor
+	}
+
+	public override func performDefaultAction() -> Bool {
+		return performAction(name: RatingScreenlet.LoadRatingsAction, sender: nil)
+	}
+
+
+	//MARK: Public methods
+
+	public func loadRatings() -> Bool {
+		return self.performDefaultAction()
+	}
+
+
+	//MARK: Private methods
+
 	private func setCustomDefaultThemeName() {
 		if themeName == BaseScreenlet.DefaultThemeName {
 			themeName = "default-thumbs"
 		}
 	}
-	
-	private func createLoadRatingsInteractor() -> LoadRatingsInteractor {
-		let interactor = LoadRatingsInteractor(screenlet: self, entryId: entryId, classPK: classPK,
-			className: className, ratingsGroupCount: ratingsGroupCount)
-		
-		interactor.onSuccess = {
-			if let result = interactor.resultRating {
+
+	private func createLoadRatingsInteractor() -> LoadRatingsInteractor? {
+		let interactor: LoadRatingsInteractor?
+
+		if entryId != 0 {
+			interactor = LoadRatingsInteractor(
+				screenlet: self,
+				entryId: entryId,
+				ratingsGroupCount: ratingsGroupCount)
+		}
+		else if className != "" && classPK != 0 {
+			interactor = LoadRatingsInteractor(
+				screenlet: self,
+				className: className,
+				classPK: classPK,
+				ratingsGroupCount: ratingsGroupCount)
+		}
+		else {
+			interactor = nil
+		}
+
+		interactor?.onSuccess = {
+			if let result = interactor?.resultRating {
 				self.className = result.className
 				self.classPK = result.classPK
-				
+
 				self.viewModel?.ratingEntry = result
-				
+
 				self.ratingDisplayDelegate?.screenlet?(self, onRatingRetrieve: result)
 			}
+			else {
+				self.ratingDisplayDelegate?.screenlet?(self,
+						onRatingError: NSError.errorWithCause(.InvalidServerResponse))
+			}
 		}
-		
-		interactor.onFailure = {self.ratingDisplayDelegate?.screenlet?(self, onRatingError: $0)}
-		
+
 		return interactor
 	}
-	
+
 	private func createDeleteRatingInteractor() -> DeleteRatingInteractor {
-		let interactor = DeleteRatingInteractor(screenlet: self, classPK: classPK, className: className,
-			ratingsGroupCount: ratingsGroupCount)
-		
+		let interactor = DeleteRatingInteractor(
+				screenlet: self,
+				className: className,
+				classPK: classPK,
+				ratingsGroupCount: ratingsGroupCount)
+
 		interactor.onSuccess = {
 			if let result = interactor.resultRating {
-				self.viewModel?.ratingEntry = interactor.resultRating
-				
-				self.ratingDisplayDelegate?.screenlet?(self, onRatingRetrieve: result)
+				self.viewModel?.ratingEntry = result
+
+				self.ratingDisplayDelegate?.screenlet?(self, onRatingDeleted: result)
+			}
+			else {
+				self.ratingDisplayDelegate?.screenlet?(self,
+						onRatingError: NSError.errorWithCause(.InvalidServerResponse))
 			}
 		}
-		
-		interactor.onFailure = {self.ratingDisplayDelegate?.screenlet?(self, onRatingError: $0)}
-		
+
 		return interactor
 	}
-	
-	private func createUpdateRatingInteractor() -> UpdateRatingInteractor {
-		let interactor = UpdateRatingInteractor(screenlet: self, classPK: classPK, className: className,
-			score: viewModel?.selectedUserScore?.doubleValue, ratingsGroupCount: ratingsGroupCount)
-		
+
+	private func createUpdateRatingInteractor(selectedScore: Double) -> UpdateRatingInteractor {
+		let interactor = UpdateRatingInteractor(
+				screenlet: self,
+				className: className,
+				classPK: classPK,
+				score: selectedScore,
+				ratingsGroupCount: ratingsGroupCount)
+
 		interactor.onSuccess = {
 			if let result = interactor.resultRating {
-				self.viewModel?.ratingEntry = interactor.resultRating
-			
-				self.ratingDisplayDelegate?.screenlet?(self, onRatingRetrieve: result)
+				self.viewModel?.ratingEntry = result
+
+				self.ratingDisplayDelegate?.screenlet?(self, onRatingUpdated: result)
+			}
+			else {
+				self.ratingDisplayDelegate?.screenlet?(self,
+						onRatingError: NSError.errorWithCause(.InvalidServerResponse))
 			}
 		}
-		
-		interactor.onFailure = {
-			self.ratingDisplayDelegate?.screenlet?(self, onRatingError: $0)
-		}
-		
+
 		return interactor
 	}
-	
-	//MARK: Public methods
-	
-	public override func onShow() {
-		if (autoLoad && SessionContext.isLoggedIn) {
-			loadRatings()
-		}
-	}
-	
-	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
-		switch name {
-		case RatingScreenlet.LoadRatingsAction:
-			return createLoadRatingsInteractor()
-		case RatingScreenlet.DeleteRatingAction:
-			return createDeleteRatingInteractor()
-		case RatingScreenlet.UpdateRatingAction:
-			return createUpdateRatingInteractor()
-		default:
-			return nil
-		}
-	}
-	
-	public override func performDefaultAction() -> Bool {
-		return performAction(name: RatingScreenlet.LoadRatingsAction, sender: nil)
-	}
-	
-	public func loadRatings() -> Bool {
-		return self.performDefaultAction()
-	}
+
 }

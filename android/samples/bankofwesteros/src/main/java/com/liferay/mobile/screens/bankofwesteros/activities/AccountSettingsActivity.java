@@ -95,15 +95,6 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 
 	}
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-
-		if (resultCode == Activity.RESULT_OK) {
-			_userPortraitScreenlet.upload(requestCode, data);
-		}
-	}
-
 	private void saveUser() {
 		final String firstName = _firstName.getText().toString();
 		final String lastName = _lastName.getText().toString();

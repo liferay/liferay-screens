@@ -15,17 +15,23 @@ import UIKit
 
 public class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 	
-	var resultRating: RatingEntry?
-	let classPK: Int64
 	let className: String
+	let classPK: Int64
 	let score: Double
 	let ratingsGroupCount: Int32
-	
-	init(screenlet: BaseScreenlet?, classPK: Int64, className: String, score: Double?, ratingsGroupCount: Int32) {
-		self.classPK = classPK
+
+	var resultRating: RatingEntry?
+
+	init(screenlet: BaseScreenlet?,
+			className: String,
+			classPK: Int64,
+			score: Double?,
+			ratingsGroupCount: Int32) {
 		self.className = className
+		self.classPK = classPK
 		self.ratingsGroupCount = ratingsGroupCount
 		self.score = score ?? -1
+
 		super.init(screenlet: screenlet)
 	}
 	
@@ -37,9 +43,9 @@ public class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 			ratingsGroupCount: ratingsGroupCount)
 	}
 	
-	override public func completedConnector(op: ServerConnector) {
-		if let updateOp = op as? RatingUpdateLiferayConnector {
-			self.resultRating = updateOp.resultRating
+	override public func completedConnector(c: ServerConnector) {
+		if let updateCon = c as? RatingUpdateLiferayConnector {
+			self.resultRating = updateCon.resultRating
 		}
 	}
 	

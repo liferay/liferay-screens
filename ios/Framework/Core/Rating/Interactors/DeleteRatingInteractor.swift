@@ -15,15 +15,20 @@ import UIKit
 
 public class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 	
-	var resultRating: RatingEntry?
-	let classPK: Int64
 	let className: String
+	let classPK: Int64
 	let ratingsGroupCount: Int32
-	
-	init(screenlet: BaseScreenlet?, classPK: Int64, className: String, ratingsGroupCount: Int32) {
-		self.classPK = classPK
+
+	var resultRating: RatingEntry?
+
+	init(screenlet: BaseScreenlet?,
+			className: String,
+			classPK: Int64,
+			ratingsGroupCount: Int32) {
 		self.className = className
+		self.classPK = classPK
 		self.ratingsGroupCount = ratingsGroupCount
+
 		super.init(screenlet: screenlet)
 	}
 	
@@ -34,9 +39,9 @@ public class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 			ratingsGroupCount: ratingsGroupCount)
 	}
 	
-	override public func completedConnector(op: ServerConnector) {
-		if let deleteOp = op as? RatingDeleteLiferayConnector {
-			self.resultRating = deleteOp.resultRating
+	override public func completedConnector(c: ServerConnector) {
+		if let deleteCon = c as? RatingDeleteLiferayConnector {
+			self.resultRating = deleteCon.resultRating
 		}
 	}
 	

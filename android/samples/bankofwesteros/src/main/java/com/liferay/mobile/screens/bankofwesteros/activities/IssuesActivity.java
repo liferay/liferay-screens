@@ -111,6 +111,17 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	}
 
 	@Override
+	public void onListPageFailed(BaseListScreenlet source, int startRow, int endRow, Exception e) {
+
+	}
+
+	@Override
+	public void onListPageReceived(BaseListScreenlet source, int startRow, int endRow, List<Record> entries,
+		int rowCount) {
+
+	}
+
+	@Override
 	public void onListItemSelected(Record element, View view) {
 		selectDDLEntry(element);
 		if (view.getId() == R.id.liferay_list_edit) {
@@ -175,14 +186,6 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	public void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e) {
 	}
 
-	@Override
-	public void onListPageFailed(BaseListScreenlet source, int page, Exception e) {
-	}
-
-	@Override
-	public void onListPageReceived(BaseListScreenlet source, int page, List<Record> entries,
-								   int rowCount) {
-	}
 
 	@Override
 	public void loadingFromCache(boolean success) {
