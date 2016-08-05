@@ -16,8 +16,15 @@ import UIKit
 
 public class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 
-		return ""
+	@IBOutlet weak var addCommentTextField: UITextField?
+	@IBOutlet weak var sendCommentButton: UIButton?
 	public var body: String? {
+		get {
+			return addCommentTextField?.text
+		}
+		set {
+			addCommentTextField?.text = newValue
+		}
 	}
 
 	//MARK: BaseScreenletView
