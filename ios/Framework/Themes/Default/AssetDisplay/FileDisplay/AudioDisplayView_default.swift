@@ -40,22 +40,21 @@ public class AudioDisplayView_default: BaseScreenletView, BaseFileDisplayViewMod
 
 	@IBOutlet weak var titleLabel: UILabel!
 
-	public var fileEntry: FileEntry? {
+	public var url: NSURL? {
 		didSet {
-			if let fileEntry = fileEntry {
-				self.pauseButton.hidden = true
-				let path = LiferayServerContext.server + fileEntry.url
-				let url = NSURL(string: path)
-				let audioData = NSData(contentsOfURL: url!)
+			if let url = url {
 				do {
-					self.audio = try AVAudioPlayer(data: audioData!)
-					if let audio = audio {
-						audio.volume = 0.5
-						audio.numberOfLoops = -1
-						playAction()
+					let audioData = NSData(contentsOfURL: url)
+					if let audioData = audioData {
+						self.audio = try AVAudioPlayer(data: audioData)
+						if let audio = audio {
+							audio.volume = 0.5
+							audio.numberOfLoops = -1
+							playAction()
 
-						self.sliderDuration.maximumValue = Float(audio.duration)
-						self.audioDurationLabel.text = updateAudioDurationLabel(Float(audio.duration))
+							self.sliderDuration.maximumValue = Float(audio.duration)
+							self.audioDurationLabel.text = updateAudioDurationLabel(Float(audio.duration))
+						}
 					}
 				} catch let error as NSError {
 					print("AVAudioPlayer error: \(error.debugDescription)")
@@ -64,9 +63,9 @@ public class AudioDisplayView_default: BaseScreenletView, BaseFileDisplayViewMod
 		}
 	}
 
-	public var audioTitle: String? {
+	public var title: String? {
 		didSet {
-			self.titleLabel.text = audioTitle
+			self.titleLabel.text = title
 		}
 	}
 
