@@ -39,6 +39,10 @@ public class RequestState {
 		return _instance;
 	}
 
+	public void clear(int targetScreenletId) {
+		_states.remove(targetScreenletId);
+	}
+
 	public synchronized void put(int targetScreenletId, Object state) {
 		HashSet<Object> set = _states.get(targetScreenletId);
 

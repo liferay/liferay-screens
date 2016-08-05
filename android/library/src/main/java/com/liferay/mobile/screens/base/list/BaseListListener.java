@@ -11,9 +11,9 @@ import java.util.List;
  */
 public interface BaseListListener<E> extends CacheListener {
 
-	void onListPageFailed(BaseListScreenlet source, int page, Exception e);
+	void onListPageFailed(BaseListScreenlet source, int startRow, int endRow, Exception e);
 
-	void onListPageReceived(BaseListScreenlet source, int page, List<E> entries, int rowCount);
+	void onListPageReceived(BaseListScreenlet source, int startRow, int endRow, List<E> entries, int rowCount);
 
 	void onListItemSelected(E element, View view);
 }

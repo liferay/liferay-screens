@@ -15,6 +15,7 @@
 	<string name="sync_cache">Sync cache</string>
 	<string name="change_theme">Change Theme</string>
 	<string name="webview_label">Web Content Display Screenlet: Shows the HTML of a web content given its articleId.</string>
+	<string name="ratings_label">Ratings Screenlet: Shows the ratings for one asset entry given its id and allows to establish new ones.</string>
 	<string name="webview_structured_label">Web Content Display Screenlet with Structure: Shows the content of same fields based on a DDMStructure.</string>
 	<string name="user_portrait_label">User Portrait Screenlet: Shows the user\'s portrait picture. Can fetch the user portrait from the userId or the portraitId.</string>
 	<string name="signup_label">Signup Screenlet: Signup form to register a new user in Liferay Portal</string>
@@ -40,4 +41,11 @@
 	<string name="surname">Surname</string>
 	<string name="webview_structured_label_first_field">Showing only one field</string>
 	<string name="webview_structured_label_example">Example customizing the view</string>
+	<string name="ratings">Ratings</string>
+	<string name="read_only">Read only</string>
+	<string name="button_for_thumbs_up_down">button for thumbs up/down</string>
+	<string name="button_for_stars">button for stars</string>
+	<string name="button_for_like">button for like</string>
+	<string name="button_for_reactions">button for reactions</string>
+	<string name="button_for_emojis">button for emojis</string>
 </resources>

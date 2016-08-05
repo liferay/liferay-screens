@@ -56,13 +56,14 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 	}
 
 	@Override
-	public void onListPageFailed(BaseListScreenlet source, int page, Exception e) {
+	public void onListPageFailed(BaseListScreenlet source, int startRow, int endRow, Exception e) {
 		error("Page request failed", e);
 	}
 
 	@Override
-	public void onListPageReceived(BaseListScreenlet source, int page, List<Record> entries, int rowCount) {
-//		info("Page " + page + " received!");
+	public void onListPageReceived(BaseListScreenlet source, int startRow, int endRow, List<Record> entries,
+		int rowCount) {
+		info("Row " + startRow + " received!");
 	}
 
 	@Override
