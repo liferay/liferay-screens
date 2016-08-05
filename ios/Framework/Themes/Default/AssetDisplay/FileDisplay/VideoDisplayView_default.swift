@@ -22,12 +22,10 @@ public class VideoDisplayView_default: BaseScreenletView, BaseFileDisplayViewMod
 
 	public var playerController: AVPlayerViewController?
 
-	public var fileEntry: FileEntry? {
+	public var url: NSURL? {
 		didSet {
-			if let fileEntry = fileEntry {
-				let path = LiferayServerContext.server + fileEntry.url
-				let url = NSURL(string: path)
-				let video = AVPlayer(URL: url!)
+			if let url = url {
+				let video = AVPlayer(URL: url)
 				self.playerController = AVPlayerViewController()
 
 				playerController!.player = video
@@ -37,6 +35,11 @@ public class VideoDisplayView_default: BaseScreenletView, BaseFileDisplayViewMod
 
 				video.play()
 			}
+		}
+	}
+
+	public var title: String? {
+		didSet {
 		}
 	}
 }
