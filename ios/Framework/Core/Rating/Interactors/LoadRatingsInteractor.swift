@@ -15,17 +15,17 @@ import UIKit
 
 public class LoadRatingsInteractor: ServerReadConnectorInteractor {
 	
-	let entryId: Int64
-	let classPK: Int64
-	let className: String
+	let entryId: Int64?
+	let classPK: Int64?
+	let className: String?
 	let ratingsGroupCount: Int32
 
 	var resultRating: RatingEntry?
 
 	init(screenlet: BaseScreenlet?,
-	     	entryId: Int64,
-	     	classPK: Int64,
-	     	className: String,
+	     	entryId: Int64?,
+	     	classPK: Int64?,
+	     	className: String?,
 	     	ratingsGroupCount: Int32) {
 		self.entryId = entryId
 		self.classPK = classPK
@@ -36,13 +36,17 @@ public class LoadRatingsInteractor: ServerReadConnectorInteractor {
 	}
 	
 	override public func createConnector() -> ServerConnector? {
-		if entryId != 0 {
+		if let entryId = self.entryId {
 			return LiferayServerContext.connectorFactory.createRatingLoadByEntryIdConnector(
 				entryId: entryId, ratingsGroupCount: ratingsGroupCount)
 		}
-		
-		return LiferayServerContext.connectorFactory.createRatingLoadByClassPKConnector(
-			classPK, className: className, ratingsGroupCount: ratingsGroupCount)
+		else if let classPK = self.classPK, className = self.className {
+			return LiferayServerContext.connectorFactory.createRatingLoadByClassPKConnector(classPK,
+					className: className,
+					ratingsGroupCount: ratingsGroupCount)
+		}
+
+		return nil
 	}
 	
 	override public func completedConnector(op: ServerConnector) {
