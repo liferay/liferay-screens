@@ -29,13 +29,22 @@ public class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 		}
 		set {
 			addCommentTextField?.text = newValue
+			updateButton()
 		}
+	}
+
+	func updateButton() {
+		sendCommentButton?.enabled = !(addCommentTextField?.text?.isEmpty ?? true)
 	}
 
 	//MARK: BaseScreenletView
 
 	override public func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
+	}
+
+	@IBAction func editingDidChangeAction() {
+		updateButton()
 	}
 
 	//MARK: UITextFieldDelegate
