@@ -161,7 +161,8 @@ public class DDMFieldDocument : DDMField {
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
 		switch uploadStatus {
 		case .Uploaded(let json):
-			if let groupId = json["groupId"]?.description.asLong,
+			let groupEntry = json["groupId"]
+			if let groupId = groupEntry?.description.asLong,
 					uuid = json["uuid"] as? String,
 					version = json["version"] as? String {
 				return "{\"groupId\":\(groupId)," +
