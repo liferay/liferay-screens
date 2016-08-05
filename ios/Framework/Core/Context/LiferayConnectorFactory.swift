@@ -357,6 +357,11 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 		return nil
 	}
 
+	public func createCommentLoadConnector(groupId groupId: Int64, commentId: Int64) -> CommentLoadLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: CommentLoadLiferayConnector")
+		return nil
+	}
+
 }
 
 
@@ -584,6 +589,12 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			className: className,
 			classPK: classPK,
 			body: body)
+	}
+
+	public func createCommentLoadConnector(groupId groupId: Int64, commentId: Int64) -> CommentLoadLiferayConnector? {
+		return Liferay70CommentLoadConnector(
+			groupId: groupId,
+			commentId: commentId)
 	}
 
 }

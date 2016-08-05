@@ -42,3 +42,26 @@ public class CommentLoadLiferayConnector: ServerConnector {
 		return error
 	}
 }
+
+public class Liferay70CommentLoadConnector: CommentLoadLiferayConnector {
+	override public func doRun(session session: LRSession) {
+		resultComment = nil
+
+		let service = LRCommentmanagerjsonwsService_v70(session: session)
+
+		do {
+			let result = try service.getCommentWithGroupId(groupId, commentId: commentId)
+
+			lastError = nil
+
+			if let result = result as? [String: AnyObject] {
+				resultComment = Comment(attributes: result)
+			}
+
+		}
+		catch let error as NSError {
+			lastError = error
+		}
+		
+	}
+}
