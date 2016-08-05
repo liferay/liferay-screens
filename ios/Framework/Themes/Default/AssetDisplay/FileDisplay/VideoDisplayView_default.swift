@@ -16,7 +16,7 @@ import AVFoundation
 import AVKit
 
 
-public class VideoDisplayView_default: BaseScreenletView, VideoDisplayViewModel {
+public class VideoDisplayView_default: BaseScreenletView, BaseFileDisplayViewModel {
 
 	@IBOutlet weak var view: UIView!
 

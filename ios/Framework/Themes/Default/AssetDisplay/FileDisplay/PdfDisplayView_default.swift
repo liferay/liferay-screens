@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class PdfDisplayView_default: BaseScreenletView, PdfDisplayViewModel {
+public class PdfDisplayView_default: BaseScreenletView, BaseFileDisplayViewModel {
 
 	@IBOutlet weak var webView: UIWebView!
 

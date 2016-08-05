@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class ImageDisplayView_default: BaseScreenletView, ImageDisplayViewModel {
+public class ImageDisplayView_default: BaseScreenletView, BaseFileDisplayViewModel {
 
 	@IBOutlet weak var imageView: UIImageView!
 

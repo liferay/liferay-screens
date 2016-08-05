@@ -15,7 +15,7 @@ import UIKit
 import AVFoundation
 
 
-public class AudioDisplayView_default: BaseScreenletView, AudioDisplayViewModel {
+public class AudioDisplayView_default: BaseScreenletView, BaseFileDisplayViewModel {
 	
 	@IBOutlet weak var view: UIView!
 
