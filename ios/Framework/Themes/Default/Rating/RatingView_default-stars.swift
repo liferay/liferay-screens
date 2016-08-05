@@ -23,7 +23,9 @@ public class RatingView_default_stars: BaseScreenletView, RatingViewModel {
 				
 				if (self.selectedUserScore != score) {
 					self.selectedUserScore = score
-					self.userAction(name: RatingScreenlet.UpdateRatingAction)
+					self.userAction(
+						name: RatingScreenlet.UpdateRatingAction,
+						sender: score)
 				}
 			}
 		}
@@ -31,10 +33,11 @@ public class RatingView_default_stars: BaseScreenletView, RatingViewModel {
 	
 	@IBOutlet weak var averageRatingBar: CosmosView?
 	
-	public var selectedUserScore: NSNumber?
-
 	public var defaultRatingsGroupCount: Int32 = 1
-	
+
+	private var selectedUserScore: NSNumber?
+
+
 	//MARK: BaseScreenletView
 	
 	public override func createProgressPresenter() -> ProgressPresenter {

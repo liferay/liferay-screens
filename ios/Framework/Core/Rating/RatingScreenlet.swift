@@ -92,7 +92,8 @@ import UIKit
 		case RatingScreenlet.DeleteRatingAction:
 			interactor = createDeleteRatingInteractor()
 		case RatingScreenlet.UpdateRatingAction:
-			interactor = createUpdateRatingInteractor()
+			let selectedScore = sender as! Double
+			interactor = createUpdateRatingInteractor(selectedScore)
 		default:
 			return nil
 		}
@@ -184,12 +185,12 @@ import UIKit
 		return interactor
 	}
 
-	private func createUpdateRatingInteractor() -> UpdateRatingInteractor {
+	private func createUpdateRatingInteractor(selectedScore: Double) -> UpdateRatingInteractor {
 		let interactor = UpdateRatingInteractor(
 				screenlet: self,
 				className: className,
 				classPK: classPK,
-				score: viewModel?.selectedUserScore?.doubleValue,
+				score: selectedScore,
 				ratingsGroupCount: ratingsGroupCount)
 
 		interactor.onSuccess = {

@@ -26,8 +26,6 @@ public class RatingView_default_like: BaseScreenletView, RatingViewModel {
 	
 	@IBOutlet weak var countLabel: UILabel?
 	
-	public var selectedUserScore: NSNumber?
-
 	public var defaultRatingsGroupCount: Int32 = 1
 	
 	//MARK: BaseScreenletView
@@ -61,8 +59,9 @@ public class RatingView_default_like: BaseScreenletView, RatingViewModel {
 	}
 	
 	@IBAction func likeButtonClicked(sender: AnyObject) {
-		self.selectedUserScore = self.ratingEntry?.userScore == -1 ? 1 : 0
-		self.userActionWithSender(sender)
+		self.userAction(
+			name: self.likeButton?.restorationIdentifier,
+			sender: self.ratingEntry?.userScore == -1 ? 1 : 0)
 	}
 	
 }

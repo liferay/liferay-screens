@@ -21,7 +21,5 @@ import UIKit
 	var defaultRatingsGroupCount: Int32 { get }
 	
 	var ratingEntry: RatingEntry? { get set }
-	
-	var selectedUserScore: NSNumber? { get set }
-	
+
 }

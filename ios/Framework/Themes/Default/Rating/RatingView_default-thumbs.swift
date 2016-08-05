@@ -36,8 +36,6 @@ public class RatingView_default_thumbs: BaseScreenletView, RatingViewModel {
 	@IBOutlet weak var negativeCountLabel: UILabel?
 	@IBOutlet weak var possitiveCountLabel: UILabel?
 	
-	public var selectedUserScore: NSNumber?
-
 	public var defaultRatingsGroupCount: Int32 = 2
 	
 	//MARK: BaseScreenletView
@@ -93,11 +91,9 @@ public class RatingView_default_thumbs: BaseScreenletView, RatingViewModel {
 	}
 	
 	@IBAction func possitiveButtonClicked(sender: UIButton) {
-		self.selectedUserScore = 1
-		self.userActionWithSender(sender)
+		self.userAction(name: sender.restorationIdentifier, sender: 1)
 	}
 	@IBAction func negativeButtonClicked(sender: UIButton) {
-		self.selectedUserScore = 0
-		self.userActionWithSender(sender)
+		self.userAction(name: sender.restorationIdentifier, sender: 0)
 	}
 }
