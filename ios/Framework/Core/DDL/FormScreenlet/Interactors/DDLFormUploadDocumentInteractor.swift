@@ -85,8 +85,8 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 			onProgress: self.onProgressClosure)
 	}
 
-	override func completedConnector(op: ServerConnector) {
-		if let lastErrorValue = op.lastError {
+	override func completedConnector(c: ServerConnector) {
+		if let lastErrorValue = c.lastError {
 			if lastErrorValue.code == ScreensErrorCause.NotAvailable.rawValue {
 				let cacheResult = DDMFieldDocument.UploadStatus.CachedStatusData(cacheKey())
 				self.resultResponse = cacheResult
@@ -96,23 +96,23 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 				document.uploadStatus = .Failed(lastErrorValue)
 			}
 		}
-		else if let uploadOp = op as? DDLFormUploadLiferayConnector {
-			self.resultResponse = uploadOp.uploadResult
-			document.uploadStatus = .Uploaded(uploadOp.uploadResult!)
+		else if let uploadCon = c as? DDLFormUploadLiferayConnector {
+			self.resultResponse = uploadCon.uploadResult
+			document.uploadStatus = .Uploaded(uploadCon.uploadResult!)
 		}
 	}
 
 
 	//MARK: Cache methods
 
-	override func writeToCache(op: ServerConnector) {
+	override func writeToCache(c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
 
 		// cache only supports images (right now)
 		if let image = document.currentValue as? UIImage {
-			let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
+			let cacheFunction = (cacheStrategy == .CacheFirst || c.lastError != nil)
 				? cacheManager.setDirty
 				: cacheManager.setClean
 

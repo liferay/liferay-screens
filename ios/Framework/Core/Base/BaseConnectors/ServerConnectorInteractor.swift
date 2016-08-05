@@ -61,7 +61,7 @@ public class ServerConnectorInteractor: Interactor {
 		return nil
 	}
 
-	public func completedConnector(op: ServerConnector) {
+	public func completedConnector(c: ServerConnector) {
 	}
 
 	override public func callOnSuccess() {
@@ -74,11 +74,11 @@ public class ServerConnectorInteractor: Interactor {
 		currentConnector = nil
 	}
 
-	public func readFromCache(op: ServerConnector, result: AnyObject? -> Void) {
+	public func readFromCache(c: ServerConnector, result: AnyObject? -> Void) {
 		result(nil)
 	}
 
-	public func writeToCache(op: ServerConnector) {
+	public func writeToCache(c: ServerConnector) {
 	}
 
 	public func getCacheStrategyImpl(strategyType: CacheStrategyType) -> CacheStrategy {

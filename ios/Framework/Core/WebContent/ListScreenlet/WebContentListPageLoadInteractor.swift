@@ -46,7 +46,7 @@ public class WebContentListPageLoadInteractor : BaseListPageLoadInteractor {
 		return WebContent(attributes: serverResult)
 	}
 
-	override public func cacheKey(op: PaginationLiferayConnector) -> String {
+	override public func cacheKey(c: PaginationLiferayConnector) -> String {
 		return "\((groupId != 0) ? groupId : LiferayServerContext.groupId)-\(folderId)"
 	}
 

@@ -62,7 +62,8 @@ public class BaseListView: BaseScreenletView {
 		
 		if streamMode {
 			onAddedRows(oldRows)
-		} else {
+		}
+		else {
 			onChangedRows(oldRows)
 		}
 	}

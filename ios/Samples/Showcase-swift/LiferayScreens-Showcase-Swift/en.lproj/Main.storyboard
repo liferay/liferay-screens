@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -129,7 +129,7 @@
         <!--WebContentDisplayScreenlet-->
         <scene sceneID="Vwd-Qg-h5f">
             <objects>
-                <viewController title="WebContentDisplayScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="kiQ-mD-UG4" customClass="WebContentDisplayScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="WebContentDisplayScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="kiQ-mD-UG4" customClass="RatingScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KM5-sa-NhK"/>
                         <viewControllerLayoutGuide type="bottom" id="Rya-e6-Pha"/>
@@ -192,6 +192,7 @@
                         <segue destination="kiQ-mD-UG4" kind="push" identifier="WebContentDisplayScreenlet" id="yAA-vv-JOl"/>
                         <segue destination="TY4-Ql-4pF" kind="push" identifier="UserPortraitScreenlet" id="jtf-rk-w86"/>
                         <segue destination="mIJ-mJ-AmA" kind="push" identifier="WebContentListScreenlet" id="NhJ-zR-6pA"/>
+                        <segue destination="N0K-Ji-ryL" kind="push" identifier="RatingScreenlet" id="mGa-c2-uxu"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsJ-Fx-gOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1051,6 +1052,97 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--RatingDisplayScreenlet-->
+        <scene sceneID="U3d-fZ-IXQ">
+            <objects>
+                <viewController title="RatingDisplayScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="N0K-Ji-ryL" customClass="RatingScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="s8Q-dv-O3o"/>
+                        <viewControllerLayoutGuide type="bottom" id="7f1-30-j8U"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="flQ-4S-EHo">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VbC-bI-jPR">
+                                <rect key="frame" x="16" y="84" width="288" height="29"/>
+                                <segments>
+                                    <segment title="Thumbs"/>
+                                    <segment title="Like"/>
+                                    <segment title="Stars"/>
+                                    <segment title="Emojis"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlChanged:" destination="N0K-Ji-ryL" eventType="valueChanged" id="Ou5-g3-b3h"/>
+                                </connections>
+                            </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAQ-sX-WyU" userLabel="Editable switch view">
+                                <rect key="frame" x="93" y="132" width="135" height="45"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Editable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvB-0o-bfZ">
+                                        <rect key="frame" x="65" y="6" width="70" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D7x-W0-d56">
+                                        <rect key="frame" x="8" y="7" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="switchChange:" destination="N0K-Ji-ryL" eventType="valueChanged" id="1tW-d6-8J4"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="QvB-0o-bfZ" secondAttribute="trailing" id="HEg-LS-WYt"/>
+                                    <constraint firstItem="QvB-0o-bfZ" firstAttribute="top" secondItem="MAQ-sX-WyU" secondAttribute="top" constant="6" id="Obm-85-90d"/>
+                                    <constraint firstAttribute="bottom" secondItem="D7x-W0-d56" secondAttribute="bottom" constant="7" id="RYb-sI-2cG"/>
+                                    <constraint firstAttribute="height" constant="45" id="U0D-M1-gLX"/>
+                                    <constraint firstItem="QvB-0o-bfZ" firstAttribute="leading" secondItem="D7x-W0-d56" secondAttribute="trailing" constant="8" id="fWc-lH-WiC"/>
+                                    <constraint firstAttribute="bottom" secondItem="QvB-0o-bfZ" secondAttribute="bottom" constant="8" id="hKo-Lu-KuN"/>
+                                    <constraint firstItem="D7x-W0-d56" firstAttribute="leading" secondItem="MAQ-sX-WyU" secondAttribute="leading" constant="8" id="kCS-Hq-Mnq"/>
+                                    <constraint firstItem="QvB-0o-bfZ" firstAttribute="leading" secondItem="D7x-W0-d56" secondAttribute="trailing" constant="8" id="lrt-Um-ZaJ"/>
+                                    <constraint firstAttribute="width" constant="135" id="oLn-9f-yNr"/>
+                                    <constraint firstItem="D7x-W0-d56" firstAttribute="top" secondItem="MAQ-sX-WyU" secondAttribute="top" constant="7" id="qiI-vU-cgr"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PeC-X4-KBr" customClass="RatingScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="16" y="197" width="288" height="334"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="entryId">
+                                        <integer key="value" value="31869"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MAQ-sX-WyU" firstAttribute="top" secondItem="VbC-bI-jPR" secondAttribute="bottom" constant="20" id="2qI-Ql-E7P"/>
+                            <constraint firstItem="PeC-X4-KBr" firstAttribute="leading" secondItem="flQ-4S-EHo" secondAttribute="leadingMargin" id="3H7-FB-Ng9"/>
+                            <constraint firstItem="MAQ-sX-WyU" firstAttribute="centerX" secondItem="flQ-4S-EHo" secondAttribute="centerX" id="9Ui-Og-4Tr"/>
+                            <constraint firstItem="VbC-bI-jPR" firstAttribute="centerX" secondItem="flQ-4S-EHo" secondAttribute="centerX" id="Cgs-gk-ojW"/>
+                            <constraint firstItem="MAQ-sX-WyU" firstAttribute="top" secondItem="VbC-bI-jPR" secondAttribute="bottom" constant="20" id="Lcw-Wb-NBX"/>
+                            <constraint firstItem="VbC-bI-jPR" firstAttribute="leading" secondItem="flQ-4S-EHo" secondAttribute="leadingMargin" id="PKz-bW-8LU"/>
+                            <constraint firstItem="VbC-bI-jPR" firstAttribute="top" secondItem="s8Q-dv-O3o" secondAttribute="bottom" constant="20" id="UTZ-wj-qHP"/>
+                            <constraint firstItem="PeC-X4-KBr" firstAttribute="trailing" secondItem="flQ-4S-EHo" secondAttribute="trailingMargin" id="YGc-5S-dcW"/>
+                            <constraint firstItem="PeC-X4-KBr" firstAttribute="top" secondItem="MAQ-sX-WyU" secondAttribute="bottom" constant="20" id="fC3-eN-krf"/>
+                            <constraint firstItem="VbC-bI-jPR" firstAttribute="trailing" secondItem="flQ-4S-EHo" secondAttribute="trailingMargin" id="igz-sG-oz9"/>
+                            <constraint firstItem="7f1-30-j8U" firstAttribute="top" secondItem="PeC-X4-KBr" secondAttribute="bottom" constant="20" id="mdD-GZ-MIS"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="IZ1-dH-too"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="600"/>
+                    <connections>
+                        <outlet property="screenlet" destination="PeC-X4-KBr" id="Bne-CZ-CT2"/>
+                        <outlet property="switchControl" destination="D7x-W0-d56" id="RKs-sj-Mx9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dse-CN-iuq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-373" y="360"/>
         </scene>
     </scenes>
     <resources>
