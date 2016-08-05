@@ -33,7 +33,8 @@ public class RatingLoadByEntryIdLiferayConnector: ServerConnector {
 		if error == nil {
 			if entryId == 0 {
 				return ValidationError("rating-screenlet", "undefined-entryId")
-			} else if ratingsGroupCount < 1 {
+			}
+			else if ratingsGroupCount < 1 {
 				return ValidationError("rating-screenlet", "wrong-ratingsGroupCount")
 			}
 		}

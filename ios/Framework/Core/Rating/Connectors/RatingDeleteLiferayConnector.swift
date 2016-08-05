@@ -35,9 +35,11 @@ public class RatingDeleteLiferayConnector: ServerConnector {
 		if error == nil {
 			if classPK == 0 {
 				return ValidationError("rating-screenlet", "undefined-classPK")
-			} else if className == "" {
+			}
+			else if className == "" {
 				return ValidationError("rating-screenlet", "undefined-className")
-			} else if ratingsGroupCount < 1 {
+			}
+			else if ratingsGroupCount < 1 {
 				return ValidationError("rating-screenlet", "wrong-ratingsGroupCount")
 			}
 		}

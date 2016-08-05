@@ -50,7 +50,8 @@ public class RatingView_default_like: BaseScreenletView, RatingViewModel {
 				if rating.userScore == -1 {
 					self.likeButton?.tintColor = UIColor.grayColor()
 					self.likeButton?.restorationIdentifier = RatingScreenlet.UpdateRatingAction
-				} else {
+				}
+				else {
 					self.likeButton?.tintColor = DefaultThemeBasicBlue
 					self.likeButton?.restorationIdentifier = RatingScreenlet.DeleteRatingAction
 				}
