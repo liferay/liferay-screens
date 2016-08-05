@@ -18,6 +18,11 @@ public class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 
 	@IBOutlet weak var addCommentTextField: UITextField?
 	@IBOutlet weak var sendCommentButton: UIButton?
+
+	public override func onShow() {
+		addCommentTextField?.delegate = self
+	}
+
 	public var body: String? {
 		get {
 			return addCommentTextField?.text
@@ -33,4 +38,9 @@ public class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 		return DefaultProgressPresenter()
 	}
 
+	//MARK: UITextFieldDelegate
+	public override func textFieldShouldReturn(textField: UITextField) -> Bool {
+		userAction(name: "add-comment", sender: textField)
+		return super.textFieldShouldReturn(textField)
+	}
 }
