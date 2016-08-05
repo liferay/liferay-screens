@@ -18,9 +18,19 @@ public class ImageDisplayView_default: BaseScreenletView, BaseFileDisplayViewMod
 
 	@IBOutlet weak var imageView: UIImageView!
 
-	public var image: UIImage? {
+	public var url: NSURL? {
 		didSet {
-			imageView.image = image
+			if let url = url {
+				let imageData = NSData(contentsOfURL: url)
+				if let imageData = imageData {
+					imageView.image = UIImage(data: imageData)
+				}
+			}
+		}
+	}
+
+	public var title: String? {
+		didSet{
 		}
 	}
 }
