@@ -22,6 +22,9 @@ public class AudioDisplayView_default: BaseScreenletView, BaseFileDisplayViewMod
 	@IBOutlet weak var playButton: UIButton!
 	@IBOutlet weak var pauseButton: UIButton!
 
+	@IBOutlet weak var rewindButton: UIButton!
+	@IBOutlet weak var forwardButton: UIButton!
+
 	@IBOutlet weak var sliderDuration: UISlider! {
 		didSet {
 			sliderDuration.setThumbImage(NSBundle.imageInBundles(name: "default-point", currentClass: self.dynamicType), forState: UIControlState.Normal)
@@ -57,6 +60,7 @@ public class AudioDisplayView_default: BaseScreenletView, BaseFileDisplayViewMod
 						}
 					}
 				} catch let error as NSError {
+					disableComponents()
 					print("AVAudioPlayer error: \(error.debugDescription)")
 				}
 			}
@@ -133,6 +137,15 @@ public class AudioDisplayView_default: BaseScreenletView, BaseFileDisplayViewMod
 		}
 		updateProgress()
 		updateDurationLabel()
+	}
+
+	private func disableComponents() {
+		playButton.enabled = false
+		rewindButton.enabled = false
+		forwardButton.enabled = false
+		sliderDuration.enabled = false
+		sliderVolume.enabled = false
+		pauseButton.hidden = true
 	}
 
 	func updateProgress() {
