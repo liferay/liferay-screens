@@ -39,8 +39,19 @@ public class HttpDownloadConnector: ServerConnector {
 					self.resultUrl = nil
 				}
 				else {
-					self.lastError = nil
-					self.resultUrl = url
+					let cache = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .AllDomainsMask, true)[0]
+					let fileManager = NSFileManager.defaultManager()
+					let fileName = response?.suggestedFilename ?? ""
+					let destinationUrl = NSURL(fileURLWithPath: cache + "/" + self.encodeUrlString(fileName))
+
+					do {
+						try fileManager.copyItemAtURL(url!, toURL: destinationUrl)
+						self.lastError = nil
+						self.resultUrl = destinationUrl
+					} catch let error as NSError {
+						self.lastError = error
+						self.resultUrl = nil
+					}
 				}
 				dispatch_semaphore_signal(requestSemaphore)
 
@@ -53,5 +64,10 @@ public class HttpDownloadConnector: ServerConnector {
 		// dummy session: won't be used
 		let port = (url.port == nil) ? "" : ":\(url.port!)"
 		return LRSession(server: "http://\(url.host!)\(port)")
+	}
+
+	private func encodeUrlString(originalString: String) -> String {
+		return originalString.stringByAddingPercentEncodingWithAllowedCharacters(
+			.URLHostAllowedCharacterSet()) ?? ""
 	}
 }
