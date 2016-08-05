@@ -16,7 +16,7 @@ import Foundation
 
 @objc public protocol PdfDisplayScreenletDelegate : BaseScreenletDelegate {
 
-	optional func screenlet(screenlet: PdfDisplayScreenlet, onPdfAssetResponse fileEntry: FileEntry)
+	optional func screenlet(screenlet: PdfDisplayScreenlet, onPdfAssetResponse url: NSURL)
 
 	optional func screenlet(screenlet: PdfDisplayScreenlet, onPdfAssetError error: NSError)
 }

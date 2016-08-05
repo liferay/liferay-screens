@@ -16,7 +16,7 @@ import Foundation
 
 @objc public protocol ImageDisplayScreenletDelegate : BaseScreenletDelegate {
 
-	optional func screenlet(screenlet: ImageDisplayScreenlet, onImageAssetResponse image: UIImage) -> UIImage?
+	optional func screenlet(screenlet: ImageDisplayScreenlet, onImageAssetResponse url: NSURL)
 
 	optional func screenlet(screenlet: ImageDisplayScreenlet, onImageAssetError error: NSError)
 }

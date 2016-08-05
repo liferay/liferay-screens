@@ -17,7 +17,7 @@ import AVFoundation
 
 @objc public protocol AudioDisplayScreenletDelegate : BaseScreenletDelegate {
 
-	optional func screenlet(screenlet: AudioDisplayScreenlet, onAudioAssetResponse fileEntry: FileEntry)
+	optional func screenlet(screenlet: AudioDisplayScreenlet, onAudioAssetResponse url: NSURL)
 
 	optional func screenlet(screenlet: AudioDisplayScreenlet, onAudioAssetError error: NSError)
 }

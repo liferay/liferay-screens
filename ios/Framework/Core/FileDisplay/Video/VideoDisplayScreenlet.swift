@@ -17,7 +17,7 @@ import AVFoundation
 
 @objc public protocol VideoDisplayScreenletDelegate : BaseScreenletDelegate {
 
-	optional func screenlet(screenlet: VideoDisplayScreenlet, onVideoAssetResponse fileEntry: FileEntry)
+	optional func screenlet(screenlet: VideoDisplayScreenlet, onVideoAssetResponse url: NSURL)
 
 	optional func screenlet(screenlet: VideoDisplayScreenlet, onVideoAssetError error: NSError)
 }
