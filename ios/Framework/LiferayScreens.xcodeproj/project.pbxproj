@@ -274,7 +274,7 @@
 		889125AE1D5479E6006AFA08 /* RatingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889125A41D5479E6006AFA08 /* RatingViewModel.swift */; };
 		889125B11D547A10006AFA08 /* LRScreensratingsentryService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 889125AF1D547A10006AFA08 /* LRScreensratingsentryService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		889125B21D547A10006AFA08 /* LRScreensratingsentryService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 889125B01D547A10006AFA08 /* LRScreensratingsentryService_v70.m */; };
-		889125B61D547B0D006AFA08 /* RatingEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889125B51D547B0D006AFA08 /* RatingEntry.swift */; };
+		889125B81D547C14006AFA08 /* RatingEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889125B71D547C14006AFA08 /* RatingEntry.swift */; };
 		8892C67E1ACB2E3300192232 /* LiferayScreens.h in Headers */ = {isa = PBXBuildFile; fileRef = 8892C67D1ACB2E3300192232 /* LiferayScreens.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8892C6841ACB2E3300192232 /* LiferayScreens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8892C6781ACB2E3300192232 /* LiferayScreens.framework */; };
 		8892C6AB1ACBD89400192232 /* Bool+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A51ACBD89400192232 /* Bool+Screens.swift */; };
@@ -632,7 +632,7 @@
 		889125A41D5479E6006AFA08 /* RatingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewModel.swift; sourceTree = "<group>"; };
 		889125AF1D547A10006AFA08 /* LRScreensratingsentryService_v70.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensratingsentryService_v70.h; sourceTree = "<group>"; };
 		889125B01D547A10006AFA08 /* LRScreensratingsentryService_v70.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensratingsentryService_v70.m; sourceTree = "<group>"; };
-		889125B51D547B0D006AFA08 /* RatingEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingEntry.swift; sourceTree = "<group>"; };
+		889125B71D547C14006AFA08 /* RatingEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingEntry.swift; sourceTree = "<group>"; };
 		8892C6781ACB2E3300192232 /* LiferayScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LiferayScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8892C67C1ACB2E3300192232 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8892C67D1ACB2E3300192232 /* LiferayScreens.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiferayScreens.h; sourceTree = SOURCE_ROOT; };
@@ -751,6 +751,7 @@
 				0BB503181D37C04A00ABD6B3 /* Asset.swift */,
 				0BB503191D37C04A00ABD6B3 /* DDLRecord.swift */,
 				0BB503661D38CE3A00ABD6B3 /* DDM */,
+				889125B71D547C14006AFA08 /* RatingEntry.swift */,
 				0BB5032B1D37C04A00ABD6B3 /* WebContent.swift */,
 			);
 			path = Models;
@@ -1325,7 +1326,6 @@
 			children = (
 				889125991D5479E6006AFA08 /* Connectors */,
 				8891259E1D5479E6006AFA08 /* Interactors */,
-				889125B51D547B0D006AFA08 /* RatingEntry.swift */,
 				889125A31D5479E6006AFA08 /* RatingScreenlet.swift */,
 				889125A41D5479E6006AFA08 /* RatingViewModel.swift */,
 			);
@@ -2084,7 +2084,7 @@
 				88B2730F1B7107F200477E5E /* ProgressPresenter.swift in Sources */,
 				881E62401ACBFC3400862B9E /* DDLFieldSelectTableCell_default.swift in Sources */,
 				881E62381ACBFC3400862B9E /* DDLFieldDocumentlibraryPresenterViewController_default.swift in Sources */,
-				889125B61D547B0D006AFA08 /* RatingEntry.swift in Sources */,
+				889125B81D547C14006AFA08 /* RatingEntry.swift in Sources */,
 				881E610D1ACBE5F000862B9E /* ForgotPasswordInteractor.swift in Sources */,
 				88B844B81C73D8A3007A447D /* UpdateCurrentUserLiferayConnector.swift in Sources */,
 				0BB5037A1D38CE3A00ABD6B3 /* DDMXSDParser.swift in Sources */,
