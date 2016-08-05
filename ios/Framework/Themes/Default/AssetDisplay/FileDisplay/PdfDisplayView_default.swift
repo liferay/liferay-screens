@@ -18,16 +18,17 @@ public class PdfDisplayView_default: BaseScreenletView, BaseFileDisplayViewModel
 
 	@IBOutlet weak var webView: UIWebView!
 
-	public var fileEntry: FileEntry? {
+	public var url: NSURL? {
 		didSet {
-			if let fileEntry = fileEntry {
-				let path = LiferayServerContext.server + fileEntry.url
-				let url = NSURL(string: path)
-				if let url = url {
-					let request = NSURLRequest(URL: url)
-					webView.loadRequest(request)
-				}
+			if let url = url {
+				let request = NSURLRequest(URL: url)
+				webView.loadRequest(request)
 			}
+		}
+	}
+
+	public var title: String? {
+		didSet {
 		}
 	}
 }
