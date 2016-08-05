@@ -20,11 +20,9 @@ class RatingScreenletViewController: UIViewController {
 	@IBOutlet weak var screenlet: RatingScreenlet!
 	@IBOutlet weak var switchControl: UISwitch!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
 	@IBAction func segmentedControlChanged(sender: UISegmentedControl) {
+		// use your asset's ids here
+
 		switch sender.selectedSegmentIndex {
 		case 1:
 			screenlet.entryId = 32049
