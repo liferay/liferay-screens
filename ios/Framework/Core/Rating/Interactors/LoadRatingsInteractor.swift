@@ -22,7 +22,7 @@ public class LoadRatingsInteractor: ServerReadConnectorInteractor {
 
 	var resultRating: RatingEntry?
 
-	init(screenlet: BaseScreenlet?,
+	private init(screenlet: BaseScreenlet?,
 	     	entryId: Int64?,
 	     	classPK: Int64?,
 	     	className: String?,
@@ -34,7 +34,28 @@ public class LoadRatingsInteractor: ServerReadConnectorInteractor {
 
 		super.init(screenlet: screenlet)
 	}
-	
+
+	convenience init(screenlet: BaseScreenlet?,
+			entryId: Int64,
+			ratingsGroupCount: Int32) {
+		self.init(screenlet: screenlet,
+			entryId: entryId,
+			classPK: nil,
+			className: nil,
+			ratingsGroupCount: ratingsGroupCount)
+	}
+
+	convenience init(screenlet: BaseScreenlet?,
+			classPK: Int64?,
+			className: String?,
+			ratingsGroupCount: Int32) {
+		self.init(screenlet: screenlet,
+		          entryId: nil,
+		          classPK: classPK,
+		          className: className,
+		          ratingsGroupCount: ratingsGroupCount)
+	}
+
 	override public func createConnector() -> ServerConnector? {
 		if let entryId = self.entryId {
 			return LiferayServerContext.connectorFactory.createRatingLoadByEntryIdConnector(

@@ -85,7 +85,7 @@ import UIKit
 	}
 
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
-		let interactor: Interactor
+		let interactor: Interactor?
 
 		switch name {
 		case RatingScreenlet.LoadRatingsAction:
@@ -98,7 +98,7 @@ import UIKit
 			return nil
 		}
 
-		interactor.onFailure = {
+		interactor?.onFailure = {
 			self.ratingDisplayDelegate?.screenlet?(self, onRatingError: $0)
 		}
 
@@ -125,16 +125,28 @@ import UIKit
 		}
 	}
 
-	private func createLoadRatingsInteractor() -> LoadRatingsInteractor {
-		let interactor = LoadRatingsInteractor(
+	private func createLoadRatingsInteractor() -> LoadRatingsInteractor? {
+		let interactor: LoadRatingsInteractor?
+
+		if entryId != 0 {
+			interactor = LoadRatingsInteractor(
 				screenlet: self,
 				entryId: entryId,
+				ratingsGroupCount: ratingsGroupCount)
+		}
+		else if className != "" && classPK != 0 {
+			interactor = LoadRatingsInteractor(
+				screenlet: self,
 				classPK: classPK,
 				className: className,
 				ratingsGroupCount: ratingsGroupCount)
+		}
+		else {
+			interactor = nil
+		}
 
-		interactor.onSuccess = {
-			if let result = interactor.resultRating {
+		interactor?.onSuccess = {
+			if let result = interactor?.resultRating {
 				self.className = result.className
 				self.classPK = result.classPK
 
