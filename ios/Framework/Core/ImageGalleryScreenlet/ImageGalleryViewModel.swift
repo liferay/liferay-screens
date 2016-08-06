@@ -18,4 +18,8 @@ import Foundation
 	optional func onImageEntryDeleted(imageEntry: ImageEntry)
 
 	optional func onImageUploaded(imageEntry: ImageEntry)
+
+	optional func onImageUploadEnqueued(imageEntry: ImageEntryUpload)
+
+	optional func onImageUploadProgress(bytesSent: UInt64, bytesToSend: UInt64, imageEntry: ImageEntryUpload)
 }
