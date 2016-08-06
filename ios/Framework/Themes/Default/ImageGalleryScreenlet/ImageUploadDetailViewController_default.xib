@@ -24,7 +24,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="aRi-CG-aJT">
-                                        <rect key="frame" x="10" y="333" width="355" height="208"/>
+                                        <rect key="frame" x="10" y="333" width="355" height="260"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="Ht5-zS-RzD"/>
@@ -52,7 +52,7 @@
                                     <constraint firstItem="ZQ1-6w-daq" firstAttribute="leading" secondItem="hbx-Ya-RMa" secondAttribute="leading" constant="10" id="8ZI-Jq-JEO"/>
                                     <constraint firstAttribute="trailing" secondItem="aRi-CG-aJT" secondAttribute="trailing" constant="10" id="VSI-dD-LMP"/>
                                     <constraint firstAttribute="trailing" secondItem="ZQ1-6w-daq" secondAttribute="trailing" constant="10" id="Zvo-xu-U25"/>
-                                    <constraint firstAttribute="bottom" secondItem="aRi-CG-aJT" secondAttribute="bottom" constant="62" id="f16-Z8-1q7"/>
+                                    <constraint firstAttribute="bottom" secondItem="aRi-CG-aJT" secondAttribute="bottom" constant="10" id="f16-Z8-1q7"/>
                                     <constraint firstAttribute="trailing" secondItem="PHP-lt-Wvh" secondAttribute="trailing" constant="10" id="khH-AG-3NT"/>
                                     <constraint firstItem="PHP-lt-Wvh" firstAttribute="top" secondItem="ZQ1-6w-daq" secondAttribute="bottom" constant="35" id="nr4-h2-gaP"/>
                                     <constraint firstItem="ZQ1-6w-daq" firstAttribute="top" secondItem="hbx-Ya-RMa" secondAttribute="top" constant="10" id="rlr-E4-tXo"/>

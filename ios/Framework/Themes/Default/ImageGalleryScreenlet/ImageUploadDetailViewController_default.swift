@@ -86,8 +86,9 @@ public class ImageUploadDetailViewController_default: ImageUploadDetailViewContr
 	}
 
 	public func startUploadClick() {
-		startUpload()
-		dismissViewControllerAnimated(true) {}
+		dismissViewControllerAnimated(true) {
+			self.startUpload()
+		}
 	}
 
 	public func cancelClick() {
