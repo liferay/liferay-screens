@@ -19,6 +19,8 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 
 	internal let imageCellId = "ImageCellId"
 
+	public weak var uploadView: UploadProgressView_default?
+
 	public func onImageEntryDeleted(imageEntry: ImageEntry) {
 
 		var section: Int?
@@ -49,6 +51,7 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 	}
 
 	public func onImageUploaded(imageEntry: ImageEntry) {
+		uploadView?.uploadComplete()
 		if let lastSection = self.sections.last {
 			self.addRow(lastSection, element: imageEntry)
 
@@ -62,6 +65,57 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 
 	public override func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
+	}
+
+	public func onImageUploadEnqueued(imageEntry: ImageEntryUpload) {
+		if uploadView == nil {
+			showUploadProgressView()
+		}
+
+		uploadView?.addUpload(imageEntry.image)
+	}
+
+	public func showUploadProgressView() {
+		uploadView = NSBundle.viewForTheme(
+				name: "UploadProgressView",
+				themeName: "default",
+				currentClass: self.dynamicType) as? UploadProgressView_default
+
+		uploadView?.translatesAutoresizingMaskIntoConstraints = false
+		uploadView?.alpha = 0
+
+		addSubview(uploadView!)
+
+		let views = ["view" : self, "uploadView" : uploadView!]
+
+		let constraintH = NSLayoutConstraint.constraintsWithVisualFormat(
+				"H:|-(5)-[uploadView]-(5)-|",
+				options: [],
+				metrics: nil,
+				views: views)
+
+		let constraintV = NSLayoutConstraint.constraintsWithVisualFormat(
+				"V:[uploadView(55)]-(3)-|",
+				options: [],
+				metrics: nil,
+				views: views)
+
+		addConstraints(constraintH)
+		addConstraints(constraintV)
+
+		UIView.animateWithDuration(0.2){
+			self.uploadView?.alpha = 1
+		}
+
+		uploadView?.cancelClosure = { [weak self] in
+			(self?.screenlet as? ImageGalleryScreenlet)?.cancelUploads()
+		}
+	}
+
+	public func onImageUploadProgress(bytesSent: UInt64, bytesToSend: UInt64, imageEntry: ImageEntryUpload) {
+		let progress = Float(bytesSent) / Float(bytesToSend)
+
+		uploadView?.setProgress(progress)
 	}
 	
 }
