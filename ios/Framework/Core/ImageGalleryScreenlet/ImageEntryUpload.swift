@@ -16,11 +16,14 @@ import Foundation
 @objc public class ImageEntryUpload: NSObject {
 
 	public let image: UIImage
+	public let thumbnail: UIImage?
+
 	public let title: String
 	public let descript: String
 
-	public init(image: UIImage, title: String, descript: String = "") {
+	public init(image: UIImage, thumbnail: UIImage? = nil, title: String, descript: String = "") {
 		self.image = image
+		self.thumbnail = thumbnail
 		self.title = title
 		self.descript = descript
 	}
