@@ -95,6 +95,9 @@ import Kingfisher
 			else {
 				return false
 			}
+
+			viewModel.onImageUploadEnqueued?(uploadEntry)
+			
 			if uploadsQueue.isEmpty {
 				uploadsQueue.insert(uploadEntry, atIndex: 0)
 				return super.performAction(name: ImageGalleryScreenlet.UploadImageAction, sender: sender)
@@ -228,6 +231,7 @@ import Kingfisher
 				repositoryId: repositoryId,
 				folderId: folderId) { (title, totalBytesSent, totalBytesToSend) in
 
+			self.viewModel.onImageUploadProgress?(totalBytesSent, bytesToSend: totalBytesToSend, imageEntry: imageUpload)
 			self.imageGalleryScreenletDelegate?.screenlet?(self, onImageUploadProgress: imageUpload, totalBytesSent: totalBytesSent, totalBytesToSend: totalBytesToSend)
 
 		}
@@ -235,13 +239,10 @@ import Kingfisher
 		interactor.onSuccess = {
 			if let result = interactor.result {
 				let imageEntry = ImageEntry(attributes: result)
+				imageEntry.image = imageUpload.thumbnail
 
-				imageUpload.image.resizeImage(toWidth: 300) { [weak self] resizedImage in
-					imageEntry.image = resizedImage
-					self?.imageGalleryScreenletDelegate?.screenlet?(self!, onImageUploaded: imageEntry)
-					self?.viewModel.onImageUploaded?(imageEntry)
-				}
-
+				self.imageGalleryScreenletDelegate?.screenlet?(self, onImageUploaded: imageEntry)
+				self.viewModel.onImageUploaded?(imageEntry)
 				self.startNextUploadIfExist()
 			}
 		}
