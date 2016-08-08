@@ -30,12 +30,8 @@ public abstract class BaseFileDisplayScreenlet
 
 	@Override
 	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
-		try {
-			_fileEntry = (FileEntry) assetEntry;
-			getViewModel().showFinishOperation(_fileEntry);
-		} catch (Exception e) {
-			LiferayLogger.e(e.getMessage());
-		}
+		_fileEntry = (FileEntry) assetEntry;
+		getViewModel().showFinishOperation(_fileEntry);
 
 		if (_listener != null) {
 			_listener.onRetrieveAssetSuccess(assetEntry);
