@@ -60,10 +60,13 @@ public class SlideshowGalleryView extends
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		//Code from https://github.com/lsjwzh/RecyclerViewPager
+		transformViews(_recyclerView);
+	}
+
+	protected void transformViews(final RecyclerView recyclerView) {
 		LinearLayoutManager layout = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-		_recyclerView.setLayoutManager(layout);
-		_recyclerView.addOnScrollListener(new OnScrollListener() {
+		recyclerView.setLayoutManager(layout);
+		recyclerView.addOnScrollListener(new OnScrollListener() {
 
 			@Override
 			public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -95,30 +98,30 @@ public class SlideshowGalleryView extends
 			}
 		});
 
-		_recyclerView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+		recyclerView.addOnLayoutChangeListener(new OnLayoutChangeListener() {
 			@Override
 			public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop,
 				int oldRight, int oldBottom) {
-				if (_recyclerView.getChildCount() < 3) {
-					if (_recyclerView.getChildAt(1) != null) {
-						if (((RecyclerViewPager) _recyclerView).getCurrentPosition() == 0) {
-							View v1 = _recyclerView.getChildAt(1);
+				if (recyclerView.getChildCount() < 3) {
+					if (recyclerView.getChildAt(1) != null) {
+						if (((RecyclerViewPager) recyclerView).getCurrentPosition() == 0) {
+							View v1 = recyclerView.getChildAt(1);
 							v1.setScaleY(0.9f);
 							v1.setScaleX(0.9f);
 						} else {
-							View v1 = _recyclerView.getChildAt(0);
+							View v1 = recyclerView.getChildAt(0);
 							v1.setScaleY(0.9f);
 							v1.setScaleX(0.9f);
 						}
 					}
 				} else {
-					if (_recyclerView.getChildAt(0) != null) {
-						View v0 = _recyclerView.getChildAt(0);
+					if (recyclerView.getChildAt(0) != null) {
+						View v0 = recyclerView.getChildAt(0);
 						v0.setScaleY(0.9f);
 						v0.setScaleX(0.9f);
 					}
-					if (_recyclerView.getChildAt(2) != null) {
-						View v2 = _recyclerView.getChildAt(2);
+					if (recyclerView.getChildAt(2) != null) {
+						View v2 = recyclerView.getChildAt(2);
 						v2.setScaleY(0.9f);
 						v2.setScaleX(0.9f);
 					}
