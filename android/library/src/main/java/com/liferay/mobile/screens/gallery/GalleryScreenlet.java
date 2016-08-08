@@ -142,25 +142,36 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	@Override
 	public void onImageEntryDeleted(long imageEntryId) {
-		getListener().onImageEntryDeleted(imageEntryId);
+		if (getListener() != null) {
+			getListener().onImageEntryDeleted(imageEntryId);
+		}
+
 		getViewModel().deleteImage(imageEntryId);
 	}
 
 	@Override
 	public void onPicturePathReceived(String picturePath) {
+		if (getListener() != null) {
+			getListener().onImageUploadStarted();
+		}
+
 		performUserAction(UPLOAD_IMAGE, picturePath);
-		getListener().onImageUploadStarted();
 	}
 
 	@Override
 	public void onPictureUploaded(ImageEntry entry) {
+		if (getListener() != null) {
+			getListener().onImageUploadEnd(entry);
+		}
+
 		getViewModel().addImage(entry);
-		getListener().onImageUploadEnd(entry);
 	}
 
 	@Override
 	public void onPictureUploadProgress(int totalBytes, int totalBytesSent) {
-		getListener().onImageUploadProgress(totalBytes, totalBytesSent);
+		if (getListener() != null) {
+			getListener().onImageUploadProgress(totalBytes, totalBytesSent);
+		}
 	}
 
 	@Override
