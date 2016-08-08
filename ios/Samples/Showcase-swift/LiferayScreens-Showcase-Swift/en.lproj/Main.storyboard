@@ -408,7 +408,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="book"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="default-collection"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
