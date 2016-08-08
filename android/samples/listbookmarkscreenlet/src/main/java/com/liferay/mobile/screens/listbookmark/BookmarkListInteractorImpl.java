@@ -3,6 +3,7 @@ package com.liferay.mobile.screens.listbookmark;
 import android.support.annotation.NonNull;
 import android.util.Pair;
 
+import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.bookmarksentry.BookmarksEntryService;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
@@ -34,12 +35,13 @@ public class BookmarkListInteractorImpl
 		super(targetScreenletId, offlinePolicy);
 	}
 
-	public void loadRows(int startRow, int endRow, Locale locale, long groupId, long folderId) throws Exception {
+	public void loadRows(int startRow, int endRow, Locale locale, long groupId, long folderId,
+			String obcClassName) throws Exception {
 
 		_groupId = groupId;
 		_folderId = folderId;
 
-		processWithCache(startRow, endRow, locale);
+		processWithCache(startRow, endRow, locale, obcClassName);
 	}
 
 	@Override
@@ -53,8 +55,10 @@ public class BookmarkListInteractorImpl
 	}
 
 	@Override
-	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception {
-		new BookmarksEntryService(session).getEntries(_groupId, _folderId, startRow, endRow);
+	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale,
+		JSONObjectWrapper obc) throws Exception {
+
+		new BookmarksEntryService(session).getEntries(_groupId, _folderId, startRow, endRow, obc);
 	}
 
 	@Override

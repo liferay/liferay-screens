@@ -47,6 +47,7 @@ public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 		connector.groupId = (self.groupId != 0)
 				? self.groupId : LiferayServerContext.groupId
 		connector.classNameId = self.classNameId
+		connector.obcClassName = self.obcClassName
 
 		connector.portletItemName = self.portletItemName
 		connector.customEntryQuery = self.customEntryQuery
