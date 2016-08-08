@@ -14,32 +14,20 @@ import com.squareup.picasso.Picasso;
  */
 public class DetailImageActivity extends AppCompatActivity {
 
-	public static final String GALLERY_SCREENLET_IMAGE_DETAILED = "gallery-screenlet-image-detailed";
+	public static final String GALLERY_SCREENLET_IMAGE_DETAILED = "GALLERY_SCREENLET_IMAGE_DETAILED";
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.gallery_detailed_default);
 
-		initialize();
-		bindViews();
-	}
-
-	private void initialize() {
 		Intent intent = getIntent();
 
-		if (intent != null) {
-			_imageEntry = (ImageEntry) intent.getExtras().get(GALLERY_SCREENLET_IMAGE_DETAILED);
+		if (intent != null && intent.hasExtra(GALLERY_SCREENLET_IMAGE_DETAILED)) {
+			ImageEntry imageEntry = (ImageEntry) intent.getExtras().get(GALLERY_SCREENLET_IMAGE_DETAILED);
+
+			ImageView detailedImageView = (ImageView) findViewById(R.id.detailed_image);
+			Picasso.with(this).load(imageEntry.getImageUrl()).into(detailedImageView);
 		}
 	}
-
-	private void bindViews() {
-		_detailedImageView = (ImageView) findViewById(R.id.detailed_image);
-
-		if (_imageEntry != null) {
-			Picasso.with(this).load(_imageEntry.getImageUrl()).into(_detailedImageView);
-		}
-	}
-	private ImageEntry _imageEntry;
-	private ImageView _detailedImageView;
 }
