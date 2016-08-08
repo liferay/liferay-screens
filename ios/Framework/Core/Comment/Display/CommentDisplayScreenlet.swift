@@ -13,6 +13,18 @@
 */
 import UIKit
 
+
+@objc public protocol CommentDisplayScreenletDelegate : BaseScreenletDelegate {
+
+	optional func screenlet(screenlet: CommentDisplayScreenlet,
+	                        onCommentLoaded comment: Comment)
+
+	optional func screenlet(screenlet: CommentDisplayScreenlet,
+	                        onLoadCommentError error: NSError)
+
+}
+
+
 @IBDesignable public class CommentDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable public var groupId: Int64 = 0
@@ -20,6 +32,10 @@ import UIKit
 	@IBInspectable public var commentId: Int64 = 0
 
 	@IBInspectable public var autoLoad: Bool = true
+
+	public var commentDisplayDelegate: CommentDisplayScreenletDelegate? {
+		return delegate as? CommentDisplayScreenletDelegate
+	}
 
 	//MARK: Public methods
 
