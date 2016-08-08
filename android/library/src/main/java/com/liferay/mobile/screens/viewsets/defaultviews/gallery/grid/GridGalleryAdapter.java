@@ -42,7 +42,7 @@ public class GridGalleryAdapter extends BaseListAdapter<ImageEntry, GridGalleryA
 
 			Picasso picasso = Picasso.with(LiferayScreensContext.getContext());
 
-			if (entry.thumbnailNotAlreadyGenerated()) {
+			if (entry.thumbnailNotGenerated()) {
 				picasso.load(entry.getImageUrl()).fit().centerCrop().into(imageView);
 			} else {
 				picasso.load(entry.getThumbnailUrl()).into(imageView);

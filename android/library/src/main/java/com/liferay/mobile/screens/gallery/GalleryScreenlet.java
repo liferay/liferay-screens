@@ -237,16 +237,20 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	@Override
 	protected void onUserAction(String userActionName, BaseGalleryInteractor interactor, Object... args) {
-		if (userActionName.equals(LOAD_GALLERY)) {
-			loadPage(0);
-		} else if (userActionName.equals(DELETE_IMAGE)) {
-			long fileEntryId = (long) args[0];
-			GalleryDeleteInteractor galleryDeleteInteractor = (GalleryDeleteInteractor) interactor;
-			galleryDeleteInteractor.deleteImageEntry(fileEntryId);
-		} else if (userActionName.equals(UPLOAD_IMAGE)) {
-			String picturePath = (String) args[0];
-			GalleryUploadInteractor galleryUploadInteractor = (GalleryUploadInteractor) interactor;
-			galleryUploadInteractor.uploadImageEntry(_groupId, _folderId, "", "", "", picturePath);
+		switch (userActionName) {
+			case LOAD_GALLERY:
+				loadPage(0);
+				break;
+			case DELETE_IMAGE:
+				long fileEntryId = (long) args[0];
+				GalleryDeleteInteractor galleryDeleteInteractor = (GalleryDeleteInteractor) interactor;
+				galleryDeleteInteractor.deleteImageEntry(fileEntryId);
+				break;
+			case UPLOAD_IMAGE:
+				String picturePath = (String) args[0];
+				GalleryUploadInteractor galleryUploadInteractor = (GalleryUploadInteractor) interactor;
+				galleryUploadInteractor.uploadImageEntry(_groupId, _folderId, "", "", "", picturePath);
+				break;
 		}
 	}
 
