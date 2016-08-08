@@ -127,9 +127,8 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 		file = new File(getContext().getExternalCacheDir().getPath() + "/" + fileEntry.getTitle());
 		if (!file.exists()) {
 			Intent intent = new Intent(getContext(), DownloadService.class);
-			intent.putExtra(DownloadService.URL, filePath);
-			intent.putExtra(DownloadService.CACHE_DIR, getContext().getExternalCacheDir().getPath());
-			intent.putExtra(DownloadService.FILENAME, fileEntry.getTitle());
+			intent.putExtra(DownloadService.REMOTE_PATH, filePath);
+			intent.putExtra(DownloadService.LOCAL_PATH, file.getAbsolutePath());
 			intent.putExtra(DownloadService.RESULT_RECEIVER, new DownloadReceiver(new Handler()));
 			getContext().startService(intent);
 		} else {

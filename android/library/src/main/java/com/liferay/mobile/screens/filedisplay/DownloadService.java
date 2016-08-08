@@ -19,10 +19,12 @@ import java.net.URLConnection;
 public class DownloadService extends IntentService {
 
 	public static final String FILE_DOWNLOAD_PROGRESS = "FILE_DOWNLOAD_PROGRESS";
-	public static final String URL = "URL";
-	public static final String CACHE_DIR = "CACHE_DIR";
-	public static final String FILENAME = "FILENAME";
+	public static final String REMOTE_PATH = "REMOTE_PATH";
+	public static final String LOCAL_PATH = "LOCAL_PATH";
 	public static final String RESULT_RECEIVER = "RESULT_RECEIVER";
+	public static final String EXCEPTION = "EXCEPTION";
+
+	public static final int ERROR_DOWNLOADING = -1;
 	public static final int UPDATE_PROGRESS = 1;
 	public static final int FINISHED_DOWNLOAD = 2;
 
@@ -33,21 +35,26 @@ public class DownloadService extends IntentService {
 	@Override
 	protected void onHandleIntent(Intent intent) {
 
-		String serverUrl = intent.getStringExtra(URL);
-		String cacheDir = intent.getStringExtra(CACHE_DIR);
-		String filename = intent.getStringExtra(FILENAME);
+		String remotePath = intent.getStringExtra(REMOTE_PATH);
+		String localPath = intent.getStringExtra(LOCAL_PATH);
 		ResultReceiver receiver = intent.getParcelableExtra(RESULT_RECEIVER);
 
+		downloadFile(remotePath, localPath, receiver);
+	}
+
+	private void downloadFile(String remotePath, String localPath, ResultReceiver receiver) {
+		OutputStream output = null;
+		InputStream input = null;
+
 		try {
-			URL url = new URL(serverUrl);
+			URL url = new URL(remotePath);
 			URLConnection connection = url.openConnection();
 			connection.connect();
 
 			int fileLength = connection.getContentLength();
 
-			InputStream input = new BufferedInputStream(connection.getInputStream());
-
-			OutputStream output = new FileOutputStream(cacheDir + "/" + filename);
+			input = new BufferedInputStream(connection.getInputStream());
+			output = new FileOutputStream(localPath);
 
 			byte data[] = new byte[1024];
 			long total = 0;
@@ -57,21 +64,39 @@ public class DownloadService extends IntentService {
 
 				output.write(data, 0, count);
 
-				Bundle resultData = new Bundle();
-				int progress = (int) (total * 100 / fileLength);
-				resultData.putInt(FILE_DOWNLOAD_PROGRESS, progress);
-				receiver.send(UPDATE_PROGRESS, resultData);
-				LiferayLogger.i("Progress downloading file: " + progress);
+				sendProgress(receiver, fileLength, total);
 			}
-
-			output.flush();
-			output.close();
-			input.close();
 
 			receiver.send(FINISHED_DOWNLOAD, null);
 		} catch (IOException e) {
-			LiferayLogger.e("Error downloading file", e);
-			receiver.send(-1, null);
+			sendException(receiver, e);
+		} finally {
+			try {
+				if (output != null) {
+					output.flush();
+					output.close();
+				}
+				if (input != null) {
+					input.close();
+				}
+			} catch (IOException e) {
+				sendException(receiver, e);
+			}
 		}
+	}
+
+	private void sendProgress(ResultReceiver receiver, int fileLength, long total) {
+		int progress = (int) (total * 100 / fileLength);
+		Bundle resultData = new Bundle();
+		resultData.putInt(FILE_DOWNLOAD_PROGRESS, progress);
+		receiver.send(UPDATE_PROGRESS, resultData);
+		LiferayLogger.i("Progress downloading file: " + progress);
+	}
+
+	private void sendException(ResultReceiver receiver, IOException e) {
+		Bundle bundle = new Bundle();
+		bundle.putSerializable(EXCEPTION, e);
+		receiver.send(ERROR_DOWNLOADING, bundle);
+		LiferayLogger.e("Error downloading: " + e.getMessage());
 	}
 }
