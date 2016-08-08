@@ -54,36 +54,36 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 	}
 
 	public long getGroupId() {
-		return _groupId;
+		return groupId;
 	}
 
 	public void setGroupId(long _groupId) {
-		this._groupId = _groupId;
+		this.groupId = _groupId;
 	}
 
 	public long getFolderId() {
-		return _folderId;
+		return folderId;
 	}
 
 	public void setFolderId(long _folderId) {
-		this._folderId = _folderId;
+		this.folderId = _folderId;
 	}
 
 	public OfflinePolicy getOfflinePolicy() {
-		return _offlinePolicy;
+		return offlinePolicy;
 	}
 
 	public void setOfflinePolicy(OfflinePolicy _offlinePolicy) {
-		this._offlinePolicy = _offlinePolicy;
+		this.offlinePolicy = _offlinePolicy;
 	}
 
 	public int getColumnsSize() {
-		return _columnsSize;
+		return columnsSize;
 	}
 
 	public void setColumnsSize(int columnsSize) {
-		_columnsSize = columnsSize;
 		getViewModel().setColumns(columnsSize);
+		this.columnsSize = columnsSize;
 	}
 
 	public void load() {
@@ -183,7 +183,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 	protected void loadRows(BaseGalleryInteractor interactor, int startRow, int endRow, Locale locale)
 		throws Exception {
 		GalleryLoadInteractor galleryLoadInteractor = (GalleryLoadInteractor) interactor;
-		galleryLoadInteractor.loadRows(_groupId, _folderId, _mimeTypes, startRow, endRow, locale);
+		galleryLoadInteractor.loadRows(groupId, folderId, mimeTypes, startRow, endRow, locale);
 	}
 
 	@Override
@@ -194,28 +194,27 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 		Integer offlinePolicy =
 			typedArray.getInteger(R.styleable.GalleryScreenlet_offlinePolicy, OfflinePolicy.REMOTE_ONLY.ordinal());
-		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
+		this.offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 
 		long groupId = LiferayServerContext.getGroupId();
 
-		_groupId = castToLongOrUseDefault(typedArray.getString(R.styleable.GalleryScreenlet_groupId), groupId);
+		this.groupId = castToLongOrUseDefault(typedArray.getString(R.styleable.GalleryScreenlet_groupId), groupId);
 
-		_folderId = castToLong(typedArray.getString(R.styleable.GalleryScreenlet_folderId));
+		folderId = castToLong(typedArray.getString(R.styleable.GalleryScreenlet_folderId));
 
-		_columnsSize = typedArray.getInt(R.styleable.GalleryScreenlet_columnsSize, 0);
+		columnsSize = typedArray.getInt(R.styleable.GalleryScreenlet_columnsSize, 0);
 
-		_mimeTypes = parseMimeTypes(typedArray.getString(R.styleable.GalleryScreenlet_mimeTypes));
+		mimeTypes = parseMimeTypes(typedArray.getString(R.styleable.GalleryScreenlet_mimeTypes));
 
 		typedArray.recycle();
 
-		View view = super.createScreenletView(context, attributes);
+		GalleryViewModel view = (GalleryViewModel) super.createScreenletView(context, attributes);
 
-		if (_columnsSize >= 0) {
-			GalleryViewModel viewModel = (GalleryViewModel) view;
-			viewModel.setColumns(_columnsSize);
+		if (columnsSize >= 0) {
+			view.reloadView(columnsSize);
 		}
 
-		return view;
+		return (View) view;
 	}
 
 	@Override
@@ -249,7 +248,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 			case UPLOAD_IMAGE:
 				String picturePath = (String) args[0];
 				GalleryUploadInteractor galleryUploadInteractor = (GalleryUploadInteractor) interactor;
-				galleryUploadInteractor.uploadImageEntry(_groupId, _folderId, "", "", "", picturePath);
+				galleryUploadInteractor.uploadImageEntry(groupId, folderId, "", "", "", picturePath);
 				break;
 		}
 	}
@@ -275,7 +274,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 	}
 
 	protected void autoLoad() {
-		if (SessionContext.isLoggedIn() && _groupId > 0) {
+		if (SessionContext.isLoggedIn() && groupId > 0) {
 			load();
 		}
 	}
@@ -303,9 +302,9 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		activity.startActivity(intent);
 	}
 
-	private long _groupId;
-	private long _folderId;
-	private int _columnsSize;
-	private String[] _mimeTypes;
-	private OfflinePolicy _offlinePolicy;
+	private long groupId;
+	private long folderId;
+	private int columnsSize;
+	private String[] mimeTypes;
+	private OfflinePolicy offlinePolicy;
 }

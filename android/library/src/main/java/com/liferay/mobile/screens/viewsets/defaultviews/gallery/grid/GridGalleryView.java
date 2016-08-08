@@ -82,15 +82,16 @@ public class GridGalleryView
 	}
 
 	@Override
-	public void updateView() {
-		_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), _columnsSize));
+	public void reloadView(Object... params) {
+		columnsSize = (int) params[0];
+		_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), columnsSize));
 	}
 
 	@Override
 	public void onClick(View v) {
-		_choseOriginDialog = new MediaStoreSelectorDialog().createOriginDialog(getContext(), openCamera(),
-			openGallery(), null);
-		_choseOriginDialog.show();
+		choseOriginDialog =
+			new MediaStoreSelectorDialog().createOriginDialog(getContext(), openCamera(), openGallery(), null);
+		choseOriginDialog.show();
 	}
 
 	@Override
@@ -111,7 +112,7 @@ public class GridGalleryView
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-		_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), _columnsSize));
+		_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), columnsSize));
 		FloatingActionButton _uploadFAB = (FloatingActionButton) findViewById(R.id.liferay_upload_fab);
 		_uploadFAB.setOnClickListener(this);
 	}
@@ -129,7 +130,7 @@ public class GridGalleryView
 				if (result) {
 					((GalleryScreenlet) getScreenlet()).openCamera();
 				}
-				_choseOriginDialog.dismiss();
+				choseOriginDialog.dismiss();
 			}
 		};
 	}
@@ -141,14 +142,14 @@ public class GridGalleryView
 				if (result) {
 					((GalleryScreenlet) getScreenlet()).openGallery();
 				}
-				_choseOriginDialog.dismiss();
+				choseOriginDialog.dismiss();
 			}
 		};
 	}
 
 	private static final int DEFAULT_COLS = 3;
 
-	private AlertDialog _choseOriginDialog;
+	private AlertDialog choseOriginDialog;
 
-	private int _columnsSize = DEFAULT_COLS;
+	private int columnsSize = DEFAULT_COLS;
 }
