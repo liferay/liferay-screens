@@ -112,12 +112,13 @@ public class GridGalleryView
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 		_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), _columnsSize));
-		_uploadFAB = (FloatingActionButton) findViewById(R.id.liferay_upload_fab);
+		FloatingActionButton _uploadFAB = (FloatingActionButton) findViewById(R.id.liferay_upload_fab);
 		_uploadFAB.setOnClickListener(this);
 	}
 
 	@Override
 	protected DividerItemDecoration getDividerDecoration() {
+		int _imagesSpacing = 3;
 		return new GridDividerItemDecoration(_imagesSpacing);
 	}
 
@@ -148,8 +149,6 @@ public class GridGalleryView
 	private static final int DEFAULT_COLS = 3;
 
 	private AlertDialog _choseOriginDialog;
-	private FloatingActionButton _uploadFAB;
 
 	private int _columnsSize = DEFAULT_COLS;
-	private int _imagesSpacing = 3;
 }
