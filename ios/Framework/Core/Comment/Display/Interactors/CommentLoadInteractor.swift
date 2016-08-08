@@ -26,4 +26,16 @@ public class CommentLoadInteractor: ServerReadConnectorInteractor {
 
 		super.init(screenlet: screenlet)
 	}
+
+	override public func createConnector() -> CommentLoadLiferayConnector? {
+		return LiferayServerContext.connectorFactory.createCommentLoadConnector(groupId: groupId,
+		                                                                        commentId: commentId)
+	}
+
+	override public func completedConnector(c: ServerConnector) {
+		if let loadCon = (c as? CommentLoadLiferayConnector),
+			comment = loadCon.resultComment {
+			self.resultComment = comment
+		}
+	}
 }
