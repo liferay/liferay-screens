@@ -37,6 +37,10 @@ import UIKit
 		return delegate as? CommentDisplayScreenletDelegate
 	}
 
+	public var viewModel: CommentDisplayViewModel? {
+		return screenletView as? CommentDisplayViewModel
+	}
+
 	//MARK: Public methods
 
 	override public func onShow() {
