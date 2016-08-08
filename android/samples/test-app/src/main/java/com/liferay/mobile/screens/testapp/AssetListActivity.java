@@ -35,17 +35,16 @@ public class AssetListActivity extends ThemeActivity implements BaseListListener
 
 		setContentView(R.layout.asset_list);
 
-		_screenlet = (AssetListScreenlet) findViewById(R.id.asset_list_screenlet);
-
-		_screenlet.setClassNameId(getIntent().getLongExtra("classNameId", 20116));
-		_screenlet.setListener(this);
+		assetListScreenlet = (AssetListScreenlet) findViewById(R.id.asset_list_screenlet);
+		assetListScreenlet.setClassNameId(getIntent().getLongExtra("classNameId", 0));
+		assetListScreenlet.setListener(this);
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 
-		_screenlet.loadPage(0);
+		assetListScreenlet.loadPage(0);
 	}
 
 	@Override
@@ -62,7 +61,7 @@ public class AssetListActivity extends ThemeActivity implements BaseListListener
 	@Override
 	public void onListItemSelected(AssetEntry element, View view) {
 		Intent intent = getIntentWithTheme(AssetDisplayActivity.class);
-		intent.putExtra("entryId", Long.valueOf((String) element.getValues().get("entryId")));
+		intent.putExtra("entryId", (int) element.getValues().get("entryId"));
 		DefaultAnimation.startActivityWithAnimation(this, intent);
 	}
 
@@ -81,5 +80,5 @@ public class AssetListActivity extends ThemeActivity implements BaseListListener
 
 	}
 
-	private AssetListScreenlet _screenlet;
+	private AssetListScreenlet assetListScreenlet;
 }
