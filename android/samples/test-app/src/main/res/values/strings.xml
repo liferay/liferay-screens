@@ -53,4 +53,5 @@
 	<string name="minus">-</string>
 	<string name="plus">+</string>
 	<string name="slideshow">Slideshow</string>
+	<string name="grid">Grid</string>
 </resources>
