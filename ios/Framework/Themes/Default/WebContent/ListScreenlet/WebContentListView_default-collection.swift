@@ -41,7 +41,11 @@ public class WebContentListView_default_collection: BaseListCollectionView {
 		collectionView?.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "progress")
 	}
 
-	override public func doFillLoadedCell(indexPath indexPath: NSIndexPath, cell: UICollectionViewCell, object:AnyObject) {
+	override public func doFillLoadedCell(
+			indexPath indexPath: NSIndexPath,
+			cell: UICollectionViewCell,
+			object:AnyObject) {
+			
 		guard let cell = cell as? WebViewCell, object = object as? WebContent
 			else {
 				return
@@ -52,7 +56,9 @@ public class WebContentListView_default_collection: BaseListCollectionView {
 		cell.layer.borderColor = UIColor.blackColor().CGColor
 	}
 
-	override public func doFillInProgressCell(indexPath indexPath: NSIndexPath, cell: UICollectionViewCell) {
+	override public func doFillInProgressCell(
+			indexPath indexPath: NSIndexPath,
+			cell: UICollectionViewCell) {
 
 		cell.backgroundColor = .blackColor()
 	}
@@ -73,10 +79,10 @@ public class WebViewCell : UICollectionViewCell {
 
 	private let styles =
 		".MobileCSS {padding: 4%; width: 92%;} " +
-			".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, .MobileCSS h2, .MobileCSS h3 { " +
-			"font-size: 110%; font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-weight: 200; } " +
-			".MobileCSS img { width: 100% !important; } " +
-	".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }"
+		".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, .MobileCSS h2, .MobileCSS h3 { " +
+		"font-size: 110%; font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-weight: 200; } " +
+		".MobileCSS img { width: 100% !important; } " +
+		".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }"
 
 	public var html: String {
 		get {

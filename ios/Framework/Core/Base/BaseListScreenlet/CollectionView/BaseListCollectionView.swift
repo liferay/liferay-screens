@@ -155,7 +155,10 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 		return cell
 	}
 
-	public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+	public func collectionView(
+			collectionView: UICollectionView,
+			didSelectItemAtIndexPath indexPath: NSIndexPath) {
+			
 		collectionView.deselectItemAtIndexPath(indexPath, animated: false)
 
 		let rowsForSection = rowsForSectionIndex(indexPath.section)
@@ -166,7 +169,10 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 
 	}
 
-	public func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+	public func collectionView(
+			collectionView: UICollectionView,
+			willDisplayCell cell: UICollectionViewCell,
+			forItemAtIndexPath indexPath: NSIndexPath) {
 
 		let streamMode = (screenlet as! BaseListScreenlet).streamMode
 
@@ -183,7 +189,10 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 		}
 	}
 
-	public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+	public func collectionView(
+			collectionView: UICollectionView,
+			layout collectionViewLayout: UICollectionViewLayout,
+			sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
 
 		// This method is only called when layout is a instance of UICollectionViewFlowLayout
 		let layout = collectionViewLayout as! UICollectionViewFlowLayout
@@ -206,14 +215,19 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 		return layout
 	}
 
-	public func doDequeueReusableCell(indexPath indexPath: NSIndexPath, object: AnyObject?) -> UICollectionViewCell {
+	public func doDequeueReusableCell(
+			indexPath indexPath: NSIndexPath,
+			object: AnyObject?) -> UICollectionViewCell {
 
 		let cellId = doGetCellId(indexPath: indexPath, object: object)
 
 		return collectionView!.dequeueReusableCellWithReuseIdentifier(cellId, forIndexPath: indexPath)
 	}
 
-	public func doFillLoadedCell(indexPath indexPath: NSIndexPath, cell: UICollectionViewCell, object:AnyObject) {
+	public func doFillLoadedCell(
+			indexPath indexPath: NSIndexPath,
+			cell: UICollectionViewCell, object:AnyObject) {
+
 	}
 
 	public func doFillInProgressCell(indexPath indexPath: NSIndexPath, cell: UICollectionViewCell) {
@@ -223,7 +237,9 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 	}
 
 	public func doRegisterLoadMoreCell() {
-		collectionView?.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: defaultCellId)
+		collectionView?.registerClass(
+				UICollectionViewCell.self,
+				forCellWithReuseIdentifier: defaultCellId)
 	}
 
 	public func doGetCellId(indexPath indexPath: NSIndexPath, object: AnyObject?) -> String {
@@ -267,9 +283,10 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 			if refreshControlView == nil {
 				refreshControlView = UIRefreshControl()
 				collectionView?.addSubview(refreshControlView!)
-				refreshControlView!.addTarget(self,
-				                              action: #selector(BaseListTableView.refreshControlBeginRefresh(_:)),
-				                              forControlEvents: .ValueChanged)
+				refreshControlView!.addTarget(
+						self,
+						action: #selector(BaseListTableView.refreshControlBeginRefresh(_:)),
+						forControlEvents: .ValueChanged)
 			}
 		}
 		else if let currentControl = refreshControlView {
