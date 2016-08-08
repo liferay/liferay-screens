@@ -54,5 +54,31 @@ import UIKit
 	public func load() {
 		performDefaultAction()
 	}
+
+	//MARK: BaseScreenlet
+
+	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+		let interactor = CommentLoadInteractor(
+			screenlet: self,
+			groupId: self.groupId,
+			commentId: self.commentId)
+
+		interactor.onSuccess = {
+			if let resultComment = interactor.resultComment {
+				self.commentDisplayDelegate?.screenlet?(self, onCommentLoaded: resultComment)
+				self.viewModel?.comment = resultComment
+			}
+			else {
+				self.commentDisplayDelegate?.screenlet?(self,
+					onLoadCommentError: NSError.errorWithCause(.InvalidServerResponse))
+			}
+		}
+
+		interactor.onFailure = {
+			self.commentDisplayDelegate?.screenlet?(self, onLoadCommentError: $0)
+		}
+		
+		return interactor
+	}
 	
 }
