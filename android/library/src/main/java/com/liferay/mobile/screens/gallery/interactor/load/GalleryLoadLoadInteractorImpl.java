@@ -31,12 +31,12 @@ public class GalleryLoadLoadInteractorImpl extends BaseListInteractor<ImageEntry
 	}
 
 	@Override
-	public void loadRows(long groupId, long folderId, String[] mymeTypes, int startRow, int endRow, Locale locale)
+	public void loadRows(long groupId, long folderId, String[] mimeTypes, int startRow, int endRow, Locale locale)
 		throws Exception {
 
-		_groupId = groupId;
-		_folderId = folderId;
-		_mimeTypes = getMimeTypes(mymeTypes);
+		this.groupId = groupId;
+		this.folderId = folderId;
+		this.mimeTypes = getMimeTypes(mimeTypes);
 
 		validate(groupId, folderId);
 
@@ -61,12 +61,12 @@ public class GalleryLoadLoadInteractorImpl extends BaseListInteractor<ImageEntry
 
 	@Override
 	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception {
-		new DLAppService(session).getFileEntries(_groupId, _folderId, _mimeTypes, startRow, endRow, null);
+		new DLAppService(session).getFileEntries(groupId, folderId, mimeTypes, startRow, endRow, null);
 	}
 
 	@Override
 	protected void getPageRowCountRequest(Session session) throws Exception {
-		new DLAppService(session).getFileEntriesCount(_groupId, _folderId, _mimeTypes);
+		new DLAppService(session).getFileEntriesCount(groupId, folderId, mimeTypes);
 	}
 
 	@Override
@@ -76,17 +76,17 @@ public class GalleryLoadLoadInteractorImpl extends BaseListInteractor<ImageEntry
 		int endRow = (int) args[1];
 		Locale locale = (Locale) args[2];
 
-		String id = String.valueOf(_folderId);
+		String id = String.valueOf(folderId);
 
-		return recoverRows(id, IMAGE_LIST, IMAGE_LIST_COUNT, _groupId, null, locale, startRow, endRow);
+		return recoverRows(id, IMAGE_LIST, IMAGE_LIST_COUNT, groupId, null, locale, startRow, endRow);
 	}
 
 	@Override
 	protected void storeToCache(BaseListEvent event, Object... args) {
 
-		String id = String.valueOf(_folderId);
+		String id = String.valueOf(folderId);
 
-		storeRows(id, IMAGE_LIST, IMAGE_LIST_COUNT, _groupId, null, event);
+		storeRows(id, IMAGE_LIST, IMAGE_LIST_COUNT, groupId, null, event);
 	}
 
 	protected void validate(long groupId, long folderId) {
@@ -121,7 +121,7 @@ public class GalleryLoadLoadInteractorImpl extends BaseListInteractor<ImageEntry
 		.put("image/jpeg")
 		.put("image/gif");
 
-	private long _groupId;
-	private long _folderId;
-	private JSONArray _mimeTypes;
+	private long groupId;
+	private long folderId;
+	private JSONArray mimeTypes;
 }
