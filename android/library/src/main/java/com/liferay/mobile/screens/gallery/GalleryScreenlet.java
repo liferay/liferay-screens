@@ -23,6 +23,7 @@ import com.liferay.mobile.screens.gallery.interactor.upload.GalleryUploadInterac
 import com.liferay.mobile.screens.gallery.interactor.upload.GalleryUploadInteractorImpl;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.gallery.view.GalleryViewModel;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DetailImageActivity;
 import java.util.Locale;
 
@@ -284,7 +285,11 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 	}
 
 	private void startShadowActivityForMediaStore(int mediaStore) {
-		getInteractor(UPLOAD_IMAGE);
+
+		GalleryUploadInteractor galleryUploadInteractor = (GalleryUploadInteractor) getInteractor(UPLOAD_IMAGE);
+		LiferayLogger.e("We initialize the interactor to be able to send him messages, objId:"
+			+ galleryUploadInteractor.toString());
+
 		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
 
 		Intent intent = new Intent(activity, MediaStoreRequestShadowActivity.class);
