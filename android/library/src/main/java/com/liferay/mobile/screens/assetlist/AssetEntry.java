@@ -60,6 +60,14 @@ public class AssetEntry implements Parcelable {
 		return (String) _values.get("title");
 	}
 
+	public String getClassName() {
+		return (String) _values.get("className");
+	}
+
+	public String getMimeType() {
+		return (String) _values.get("mimeType");
+	}
+
 	@Override
 	public void writeToParcel(Parcel destination, int flags) {
 		destination.writeMap(_values);

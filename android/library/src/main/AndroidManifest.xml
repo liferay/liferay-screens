@@ -8,5 +8,6 @@
 
 		<service android:name=".userportrait.interactor.upload.UserPortraitService" />
 		<activity android:name=".base.MediaStoreRequestShadowActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+		<service android:name=".filedisplay.DownloadService" />
 	</application>
 </manifest>

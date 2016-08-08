@@ -2,9 +2,9 @@ package com.liferay.mobile.screens.assetlist.interactor;
 
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.ddl.model.Record;
+import com.liferay.mobile.screens.filedisplay.FileEntry;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.webcontent.WebContent;
-
 import java.util.Locale;
 import java.util.Map;
 
@@ -26,9 +26,10 @@ public class AssetFactory {
 
 				if (className.endsWith("JournalArticle")) {
 					return new WebContent(map, locale);
-				}
-				else if (className.endsWith("DDLRecord")) {
+				} else if (className.endsWith("DDLRecord")) {
 					return new Record(map, locale);
+				} else if (className.endsWith("DLFileEntry")) {
+					return new FileEntry(map);
 				}
 			}
 		}
