@@ -84,7 +84,7 @@ import QuartzCore
 			- themeName: name of the theme to be used. If nil, default theme will be used
 			- initializer: a function which will be launched after the basic screenlet initialization
 	*/
-	public init(frame: CGRect, themeName: String?, initalizer: ((BaseScreenlet)->())?) {
+	public init(frame: CGRect, themeName: String?, initializer: ((BaseScreenlet)->())?) {
 		super.init(frame: frame)
 		
 		onPreCreate()
@@ -93,7 +93,7 @@ import QuartzCore
 		
 		self.themeName = themeName
 		
-		initalizer?(self)
+		initializer?(self)
 		
 		onCreated()
 	}
