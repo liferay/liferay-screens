@@ -33,6 +33,7 @@ public class GalleryLoadLoadInteractorImpl extends BaseListInteractor<ImageEntry
 	@Override
 	public void loadRows(long groupId, long folderId, String[] mymeTypes, int startRow, int endRow, Locale locale)
 		throws Exception {
+
 		_groupId = groupId;
 		_folderId = folderId;
 		_mimeTypes = getMimeTypes(mymeTypes);

@@ -8,7 +8,8 @@ public class GalleryDeleteCallback extends JSONObjectCallback {
 
 	public GalleryDeleteCallback(int targetScreenletId, long imageEntryId) {
 		super(targetScreenletId);
-		_imageEntryId = imageEntryId;
+
+		this.imageEntryId = imageEntryId;
 	}
 
 	@Override
@@ -18,7 +19,7 @@ public class GalleryDeleteCallback extends JSONObjectCallback {
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, JSONObject result) {
-		return new GalleryDeleteEvent(targetScreenletId, _imageEntryId);
+		return new GalleryDeleteEvent(targetScreenletId, imageEntryId);
 	}
 
 	@Override
@@ -26,5 +27,5 @@ public class GalleryDeleteCallback extends JSONObjectCallback {
 		return new GalleryDeleteEvent(targetScreenletId, e);
 	}
 
-	private long _imageEntryId;
+	private long imageEntryId;
 }

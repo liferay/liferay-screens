@@ -7,5 +7,5 @@ import com.liferay.mobile.screens.gallery.interactor.BaseGalleryInteractor;
  */
 public interface GalleryDeleteInteractor extends BaseGalleryInteractor {
 
-	void deleteImageEntry(long imageEntryId) throws Exception;
+	void deleteImageEntry(long imageEntryId);
 }

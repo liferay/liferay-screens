@@ -301,7 +301,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	private long _groupId;
 	private long _folderId;
-	private OfflinePolicy _offlinePolicy;
 	private int _columnsSize;
 	private String[] _mimeTypes;
+	private OfflinePolicy _offlinePolicy;
 }
