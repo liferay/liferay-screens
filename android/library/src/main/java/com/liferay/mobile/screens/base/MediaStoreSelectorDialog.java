@@ -15,8 +15,8 @@ import rx.functions.Action1;
  */
 public class MediaStoreSelectorDialog {
 
-	public AlertDialog createOriginDialog(Context context, Action1 openCamera, Action1 openGallery,
-		Action1 openVideoCamera) {
+	public AlertDialog createOriginDialog(Context context, Action1<Boolean> openCamera, Action1<Boolean> openGallery,
+		Action1<Boolean> openVideoCamera) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
 		LayoutInflater factory = LayoutInflater.from(context);
