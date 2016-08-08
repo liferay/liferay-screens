@@ -82,7 +82,7 @@ public class ScreensassetentryService extends BaseService {
 		return _result.getJSONArray(0);
 	}
 
-	public JSONObject getAssetEntryExtended(long entryId, String locale) throws Exception {
+	public JSONObject getAssetEntry(long entryId, String locale) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -91,7 +91,7 @@ public class ScreensassetentryService extends BaseService {
 			_params.put("entryId", entryId);
 			_params.put("locale", checkNull(locale));
 
-			_command.put("/screens.screensassetentry/get-asset-entry-extended", _params);
+			_command.put("/screens.screensassetentry/get-asset-entry", _params);
 		}
 		catch (JSONException _je) {
 			throw new Exception(_je);
