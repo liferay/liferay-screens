@@ -229,11 +229,16 @@ import Kingfisher
 	}
 
 	internal func createImageUploadInteractor(imageUpload: ImageEntryUpload) -> ImageGalleryUploadInteractor {
+
+		let rowCount = viewModel.totalEntries
+		let page = pageFromRow(rowCount)
+
 		let interactor = ImageGalleryUploadInteractor(
 				screenlet: self,
 				imageUpload: imageUpload,
 				repositoryId: repositoryId,
-				folderId: folderId) { (title, totalBytesSent, totalBytesToSend) in
+				folderId: folderId,
+				page: page) { (title, totalBytesSent, totalBytesToSend) in
 
 			self.viewModel.onImageUploadProgress?(totalBytesSent, bytesToSend: totalBytesToSend, imageEntry: imageUpload)
 			self.imageGalleryScreenletDelegate?.screenlet?(self, onImageUploadProgress: imageUpload, totalBytesSent: totalBytesSent, totalBytesToSend: totalBytesToSend)
