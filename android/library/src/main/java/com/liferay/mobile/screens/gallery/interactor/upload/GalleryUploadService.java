@@ -7,7 +7,6 @@ import com.liferay.mobile.android.http.file.UploadData;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v7.dlapp.DLAppService;
-import com.liferay.mobile.screens.base.interactor.BasicEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
@@ -36,7 +35,8 @@ public class GalleryUploadService extends IntentService {
 	}
 
 	private void uploadFromIntent(Intent intent) {
-		_screenletId = intent.getIntExtra("screenletId", 0);
+
+		int screenletId = intent.getIntExtra("screenletId", 0);
 		long repositoryId = intent.getLongExtra("repositoryId", 0);
 		long folderId = intent.getLongExtra("folderId", 0);
 		String title = intent.getStringExtra("title");
@@ -45,49 +45,47 @@ public class GalleryUploadService extends IntentService {
 		String picturePath = intent.getStringExtra("picturePath");
 
 		try {
-			JSONObject jsonObject = uploadImageEntry(repositoryId, folderId, title, description, changeLog,
-				picturePath);
+			JSONObject jsonObject =
+				uploadImageEntry(screenletId, repositoryId, folderId, title, description, changeLog, picturePath);
 			ImageEntry imageEntry = new ImageEntry(JSONUtil.toMap(jsonObject));
-			createEventAndPost(0, 0, true, imageEntry);
+
+			EventBusUtil.post(new GalleryUploadEvent(screenletId, imageEntry));
 		} catch (Exception e) {
-			BasicEvent event = new GalleryUploadEvent(_screenletId, e);
-			EventBusUtil.post(event);
+			EventBusUtil.post(new GalleryUploadEvent(screenletId, e));
 		}
 	}
 
-	private JSONObject uploadImageEntry(long repositoryId, long folderId, String title, String description,
-		String changeLog, String picturePath) throws Exception {
+	private JSONObject uploadImageEntry(int screenletId, long repositoryId, long folderId, String title,
+		String description, String changeLog, String picturePath) throws Exception {
 
 		String sourceName = picturePath.substring(picturePath.lastIndexOf("/") + 1);
 		if (title.isEmpty()) {
 			title = sourceName;
 		}
-		UploadData uploadData = createUploadData(picturePath, sourceName);
+
+		UploadData uploadData = createUploadData(screenletId, picturePath, sourceName);
 
 		Session session = SessionContext.createSessionFromCurrentSession();
-		return new DLAppService(session).addFileEntry(repositoryId, folderId, sourceName,
-			FileUtil.getMimeType(picturePath), title, description, changeLog, uploadData,
-			getJsonObjectWrapper(SessionContext.getUserId(), LiferayServerContext.getGroupId()));
+		String mimeType = FileUtil.getMimeType(picturePath);
+		long groupId = LiferayServerContext.getGroupId();
+		JSONObjectWrapper serviceContext = getJsonObjectWrapper(SessionContext.getUserId(), groupId);
+
+		return new DLAppService(session).addFileEntry(repositoryId, folderId, sourceName, mimeType, title, description,
+			changeLog, uploadData, serviceContext);
 	}
 
-	private UploadData createUploadData(String picturePath, String pictureName) throws IOException {
-		File file = new File(picturePath);
-		InputStream is = new FileInputStream(file);
+	private UploadData createUploadData(final int screenletId, String path, String name) throws IOException {
 
+		File file = new File(path);
+		InputStream is = new FileInputStream(file);
 		final int fileSize = (int) file.length();
-		UploadData uploadData = new UploadData(is, pictureName, new FileProgressCallback() {
+
+		return new UploadData(is, name, new FileProgressCallback() {
 			@Override
-			public void onProgress(int totalBytesSended) {
-				createEventAndPost(fileSize, totalBytesSended, false, null);
+			public void onProgress(int totalBytesSent) {
+				EventBusUtil.post(new GalleryUploadEvent(screenletId, fileSize, totalBytesSent));
 			}
 		});
-
-		return uploadData;
-	}
-
-	private void createEventAndPost(int totalBytes, int totalBytesSended, boolean isCompleted, ImageEntry entry) {
-		BasicEvent event = new GalleryUploadEvent(_screenletId, totalBytes, totalBytesSended, isCompleted, entry);
-		EventBusUtil.post(event);
 	}
 
 	private JSONObjectWrapper getJsonObjectWrapper(Long userId, Long groupId) throws JSONException {
@@ -97,6 +95,4 @@ public class GalleryUploadService extends IntentService {
 		serviceContextAttributes.put("addGuestPermissions", true);
 		return new JSONObjectWrapper(serviceContextAttributes);
 	}
-
-	private int _screenletId;
 }
