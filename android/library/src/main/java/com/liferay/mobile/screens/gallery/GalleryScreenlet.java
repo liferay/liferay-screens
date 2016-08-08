@@ -18,7 +18,7 @@ import com.liferay.mobile.screens.gallery.interactor.GalleryInteractorListener;
 import com.liferay.mobile.screens.gallery.interactor.delete.GalleryDeleteInteractor;
 import com.liferay.mobile.screens.gallery.interactor.delete.GalleryDeleteInteractorImpl;
 import com.liferay.mobile.screens.gallery.interactor.load.GalleryLoadInteractor;
-import com.liferay.mobile.screens.gallery.interactor.load.GalleryLoadLoadInteractorImpl;
+import com.liferay.mobile.screens.gallery.interactor.load.GalleryLoadInteractorImpl;
 import com.liferay.mobile.screens.gallery.interactor.upload.GalleryUploadInteractor;
 import com.liferay.mobile.screens.gallery.interactor.upload.GalleryUploadInteractorImpl;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
@@ -221,7 +221,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 	@Override
 	protected BaseGalleryInteractor createInteractor(String actionName) {
 		if (actionName.equals(LOAD_GALLERY)) {
-			return new GalleryLoadLoadInteractorImpl(getScreenletId(), _offlinePolicy);
+			return new GalleryLoadInteractorImpl(getScreenletId(), _offlinePolicy);
 		}
 
 		if (actionName.equals(DELETE_IMAGE)) {

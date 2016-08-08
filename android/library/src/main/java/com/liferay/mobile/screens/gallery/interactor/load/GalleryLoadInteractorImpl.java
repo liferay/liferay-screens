@@ -23,10 +23,10 @@ import static com.liferay.mobile.screens.cache.DefaultCachedType.IMAGE_LIST_COUN
 /**
  * @author Víctor Galán Grande
  */
-public class GalleryLoadLoadInteractorImpl extends BaseListInteractor<ImageEntry, GalleryInteractorListener>
+public class GalleryLoadInteractorImpl extends BaseListInteractor<ImageEntry, GalleryInteractorListener>
 	implements GalleryLoadInteractor {
 
-	public GalleryLoadLoadInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
+	public GalleryLoadInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
 		super(targetScreenletId, offlinePolicy);
 	}
 
