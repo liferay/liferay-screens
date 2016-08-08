@@ -7,17 +7,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
-import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.gallery.GalleryListener;
 import com.liferay.mobile.screens.gallery.GalleryScreenlet;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import java.util.List;
 
+import static android.view.View.*;
+
 /**
  * * @author Víctor Galán Grande
  */
-public class GalleryActivity extends ThemeActivity implements GalleryListener, View.OnClickListener {
+public class GalleryActivity extends ThemeActivity implements GalleryListener, OnClickListener {
 
 	private GalleryScreenlet galleryScreenletGrid;
 	private GalleryScreenlet galleryScreenletSlideShow;
@@ -147,20 +148,20 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, V
 
 	private void setGridMode() {
 		isGridMode = true;
-		galleryScreenletSlideShow.setVisibility(View.VISIBLE);
-		galleryScreenletGrid.setVisibility(View.GONE);
-		buttonMinus.setVisibility(View.GONE);
-		buttonPlus.setVisibility(View.GONE);
+		galleryScreenletSlideShow.setVisibility(GONE);
+		galleryScreenletGrid.setVisibility(VISIBLE);
+		buttonMinus.setVisibility(GONE);
+		buttonPlus.setVisibility(GONE);
 
 		changeGalleryView.setText(R.string.grid);
 	}
 
 	private void setSlideshowMode() {
 		isGridMode = false;
-		galleryScreenletSlideShow.setVisibility(View.GONE);
-		galleryScreenletGrid.setVisibility(View.VISIBLE);
-		buttonMinus.setVisibility(View.VISIBLE);
-		buttonPlus.setVisibility(View.VISIBLE);
+		galleryScreenletSlideShow.setVisibility(VISIBLE);
+		galleryScreenletGrid.setVisibility(GONE);
+		buttonMinus.setVisibility(VISIBLE);
+		buttonPlus.setVisibility(VISIBLE);
 
 		changeGalleryView.setText(getString(R.string.slideshow));
 	}
