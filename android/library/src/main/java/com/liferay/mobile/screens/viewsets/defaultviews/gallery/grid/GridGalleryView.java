@@ -35,6 +35,10 @@ public class GridGalleryView
 		super(context, attrs, defStyleAttr);
 	}
 
+	public GridGalleryView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
+	}
+
 	@Override
 	public void onItemClick(int position, View view) {
 		List<ImageEntry> entries = getAdapter().getEntries();
