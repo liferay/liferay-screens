@@ -16,27 +16,33 @@ public class GalleryUploadInteractorImpl extends BaseRemoteInteractor<GalleryInt
 		super(targetScreenletId);
 	}
 
+	@Override
+	public void uploadImageEntry(long repositoryId, long folderId, String title, String description, String changeLog,
+		String picturePath) {
+
+		try {
+
+			validate(repositoryId, folderId, title, description, changeLog, picturePath);
+
+			Intent service = new Intent(LiferayScreensContext.getContext(), GalleryUploadService.class);
+			service.putExtra("screenletId", getTargetScreenletId());
+			service.putExtra("repositoryId", repositoryId);
+			service.putExtra("folderId", folderId);
+			service.putExtra("title", title);
+			service.putExtra("description", description);
+			service.putExtra("changeLog", changeLog);
+			service.putExtra("picturePath", picturePath);
+
+			LiferayScreensContext.getContext().startService(service);
+		} catch (Exception e) {
+			getListener().onPictureUploadFailure(e);
+		}
+	}
+
 	public void onEvent(MediaStoreEvent event) {
 		if (isValidEvent(event)) {
 			getListener().onPicturePathReceived(event.getFilePath());
 		}
-	}
-
-	@Override
-	public void uploadImageEntry(long repositoryId, long folderId, String title,
-		String description, String changeLog, String picturePath) throws Exception {
-
-		validate(repositoryId, folderId, title, description, changeLog, picturePath);
-		Intent service = new Intent(LiferayScreensContext.getContext(), GalleryUploadService.class);
-		service.putExtra("screenletId", getTargetScreenletId());
-		service.putExtra("repositoryId", repositoryId);
-		service.putExtra("folderId", folderId);
-		service.putExtra("title", title);
-		service.putExtra("description", description);
-		service.putExtra("changeLog", changeLog);
-		service.putExtra("picturePath", picturePath);
-
-		LiferayScreensContext.getContext().startService(service);
 	}
 
 	public void onEvent(GalleryUploadEvent event) {
