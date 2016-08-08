@@ -95,7 +95,7 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 		return fileEntryId;
 	}
 
-	public boolean thumbnailNotAlreadyGenerated() {
+	public boolean thumbnailNotGenerated() {
 		return isLessThan60secondsOld();
 	}
 
@@ -110,10 +110,7 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 	}
 
 	private String createThumbnailUrl() {
-		return createImageUrl()
-			+ "?version="
-			+ _values.get("version")
-			+ "&imageThumbnail=1";
+		return createImageUrl() + "?version=" + _values.get("version") + "&imageThumbnail=1";
 	}
 
 	private String createImageUrl() {

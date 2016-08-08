@@ -13,16 +13,16 @@ public class GridDividerItemDecoration extends DividerItemDecoration {
 
 	public GridDividerItemDecoration(int spacing) {
 		super(null);
-		_spacing = spacing;
+		this.spacing = spacing;
 	}
 
 	@Override
 	public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
 
-		outRect.top = _spacing;
-		outRect.bottom = _spacing;
-		outRect.left = _spacing;
-		outRect.right = _spacing;
+		outRect.top = spacing;
+		outRect.bottom = spacing;
+		outRect.left = spacing;
+		outRect.right = spacing;
 	}
 
 	@Override
@@ -30,5 +30,5 @@ public class GridDividerItemDecoration extends DividerItemDecoration {
 
 	}
 
-	private int _spacing;
+	private int spacing;
 }

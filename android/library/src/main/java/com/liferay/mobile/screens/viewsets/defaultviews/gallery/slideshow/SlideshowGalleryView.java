@@ -69,10 +69,6 @@ public class SlideshowGalleryView extends
 		LinearLayoutManager layout = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
 		_recyclerView.setLayoutManager(layout);
 		_recyclerView.addOnScrollListener(new OnScrollListener() {
-			@Override
-			public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-				super.onScrollStateChanged(recyclerView, newState);
-			}
 
 			@Override
 			public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -84,7 +80,6 @@ public class SlideshowGalleryView extends
 					View v = recyclerView.getChildAt(j);
 
 					float rate = 0;
-					;
 					if (v.getLeft() <= padding) {
 						if (v.getLeft() >= padding - v.getWidth()) {
 							rate = (padding - v.getLeft()) * 1f / v.getWidth();
