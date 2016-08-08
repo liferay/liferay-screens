@@ -31,7 +31,7 @@ public class GalleryUploadEvent extends BasicEvent {
 		return totalBytes;
 	}
 
-	public int getTotalBytesSended() {
+	public int getTotalBytesSent() {
 		return totalBytesSent;
 	}
 

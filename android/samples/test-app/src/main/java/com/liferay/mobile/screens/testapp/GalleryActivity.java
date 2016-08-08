@@ -105,8 +105,8 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, V
 	}
 
 	@Override
-	public void onImageUploadProgress(int totalBytes, int totalBytesSended) {
-		float percentage = (totalBytesSended / (float) totalBytes) * 100;
+	public void onImageUploadProgress(int totalBytes, int totalBytesSent) {
+		float percentage = (totalBytesSent / (float) totalBytes) * 100;
 		progressDialog.setProgress((int) percentage);
 	}
 
