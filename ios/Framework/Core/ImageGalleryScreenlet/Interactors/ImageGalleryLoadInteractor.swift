@@ -15,7 +15,8 @@ import Foundation
 
 
 public class ImageGalleryLoadInteractor : BaseListPageLoadInteractor {
-    
+	public static let CacheKey = "image-gallery-key"
+
     public let repositoryId: Int64
     public let folderId: Int64
 	public let mimeTypes: [String]
@@ -50,6 +51,6 @@ public class ImageGalleryLoadInteractor : BaseListPageLoadInteractor {
     }
     
     public override func cacheKey(op: PaginationLiferayConnector) -> String {
-        return "image-gallery-key"
+        return ImageGalleryLoadInteractor.CacheKey
     }
 }
