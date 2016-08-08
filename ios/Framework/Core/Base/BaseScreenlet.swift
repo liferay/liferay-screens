@@ -43,7 +43,9 @@ import QuartzCore
 				_themeName = updateCurrentPreviewImage()
 			}
 			else {
+				onPreCreate()
 				loadScreenletView()
+				onCreated()
 			}
 
 			screenletView?.themeName = _themeName
@@ -86,13 +88,9 @@ import QuartzCore
 	public init(frame: CGRect, themeName: String?) {
 		super.init(frame: frame)
 		
-		onPreCreate()
-		
 		clipsToBounds = true
 		
 		self.themeName = themeName
-		
-		onCreated()
 	}
 
 	override convenience init(frame: CGRect) {
@@ -108,13 +106,13 @@ import QuartzCore
 	override public func awakeFromNib() {
 		super.awakeFromNib()
 
-		onPreCreate()
-
 		clipsToBounds = true
 
-		loadScreenletView()
-
-		onCreated()
+		if themeName == BaseScreenlet.DefaultThemeName {
+			onPreCreate()
+			loadScreenletView()
+			onCreated()
+		}
 	}
 
 	override public func becomeFirstResponder() -> Bool {
@@ -122,7 +120,7 @@ import QuartzCore
 	}
 
 	override public func didMoveToWindow() {
-		if (window != nil) {
+		if window != nil {
 			onShow()
 		}
 		else {
