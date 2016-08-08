@@ -1,12 +1,12 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.gallery.grid;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.squareup.picasso.Picasso;
 
@@ -35,19 +35,20 @@ public class GridGalleryAdapter extends BaseListAdapter<ImageEntry, GridGalleryA
 		public GridGalleryViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
-			_imageView = (ImageView) view.findViewById(R.id.gallery_item_image);
-			_context = view.getContext().getApplicationContext();
+			imageView = (ImageView) view.findViewById(R.id.gallery_item_image);
 		}
 
 		public void bind(ImageEntry entry) {
+
+			Picasso picasso = Picasso.with(LiferayScreensContext.getContext());
+
 			if (entry.thumbnailNotAlreadyGenerated()) {
-				Picasso.with(_context).load(entry.getImageUrl()).fit().centerCrop().into(_imageView);
+				picasso.load(entry.getImageUrl()).fit().centerCrop().into(imageView);
 			} else {
-				Picasso.with(_context).load(entry.getThumbnailUrl()).into(_imageView);
+				picasso.load(entry.getThumbnailUrl()).into(imageView);
 			}
 		}
 
-		private final ImageView _imageView;
-		private final Context _context;
+		private final ImageView imageView;
 	}
 }
