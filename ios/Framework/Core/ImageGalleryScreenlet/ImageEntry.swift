@@ -32,6 +32,7 @@ public class ImageEntry : Asset {
     
     override public init(attributes: [String:AnyObject]) {
         super.init(attributes: attributes)
+		image = attributes["image"] as? UIImage
     }
 
     public required init?(coder aDecoder: NSCoder) {
