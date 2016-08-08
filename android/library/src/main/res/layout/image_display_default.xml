@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.defaultviews.filedisplay.ImageDisplayView
+<com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display.ImageDisplayView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -11,4 +11,4 @@
       android:layout_height="wrap_content"
       android:textAlignment="center"/>
 
-</com.liferay.mobile.screens.viewsets.defaultviews.filedisplay.ImageDisplayView>
+</com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display.ImageDisplayView>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-  <com.liferay.mobile.screens.assetdisplay.AssetDisplayScreenlet
+  <com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet
       android:id="@+id/asset_display_screenlet"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"

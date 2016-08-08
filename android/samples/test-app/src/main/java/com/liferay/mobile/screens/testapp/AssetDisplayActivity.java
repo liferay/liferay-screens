@@ -1,10 +1,9 @@
 package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
-import com.liferay.mobile.screens.assetdisplay.AssetDisplayListener;
-import com.liferay.mobile.screens.assetdisplay.AssetDisplayScreenlet;
-import com.liferay.mobile.screens.assetlist.AssetEntry;
-import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
+import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
+import com.liferay.mobile.screens.asset.list.AssetEntry;
 
 /**
  * @author Sarai Díaz García
