@@ -37,34 +37,9 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	}
 
 	@Override
-	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
-
-		AssetDisplayFactory factory = new AssetDisplayFactory();
-		BaseScreenlet screenlet = factory.getScreenlet(getContext(), assetEntry, _layouts, _autoLoad);
-		if (screenlet != null) {
-			addView(screenlet, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-		} else {
-			LiferayLogger.e("Error loading screenlet");
-		}
-
-		if (_listener != null) {
-			_listener.onRetrieveAssetSuccess(assetEntry);
-		}
-	}
-
-	@Override
-	public void onRetrieveAssetFailure(Exception e) {
-		getViewModel().showFailedOperation(null, e);
-
-		if (_listener != null) {
-			_listener.onRetrieveAssetFailure(e);
-		}
-	}
-
-	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-			attributes, R.styleable.AssetDisplayScreenlet, 0, 0);
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.AssetDisplayScreenlet, 0, 0);
 
 		int layoutId = typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_layoutId, getDefaultLayoutId());
 
@@ -88,6 +63,37 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		return view;
 	}
 
+	public void loadAsset() {
+		getInteractor().getAssetEntry(_entryId);
+	}
+
+	@Override
+	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
+
+		AssetDisplayFactory factory = new AssetDisplayFactory();
+		BaseScreenlet screenlet = factory.getScreenlet(getContext(), assetEntry, _layouts, _autoLoad);
+		if (screenlet != null) {
+			addView(screenlet, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+			if (_listener != null) {
+				_listener.onRetrieveAssetSuccess(assetEntry);
+			}
+		} else {
+			LiferayLogger.e("Error loading screenlet");
+			if (_listener != null) {
+				_listener.onRetrieveAssetFailure(new Exception("Error loading screenlet"));
+			}
+		}
+	}
+
+	@Override
+	public void onRetrieveAssetFailure(Exception e) {
+		getViewModel().showFailedOperation(null, e);
+
+		if (_listener != null) {
+			_listener.onRetrieveAssetFailure(e);
+		}
+	}
+
 	@Override
 	protected AssetDisplayInteractorImpl createInteractor(String actionName) {
 		return new AssetDisplayInteractorImpl(getScreenletId());
@@ -102,18 +108,14 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		}
 	}
 
-	@Override
-	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor,
-		Object... args) {
+	protected void autoLoad() {
+		if (_entryId != 0 && SessionContext.isLoggedIn()) {
+			loadAsset();
+		}
 	}
 
-	public void loadAsset() {
-		try {
-			getInteractor().getAssetEntryExtended(_entryId);
-		} catch (Exception e) {
-			LiferayLogger.e(e.getMessage());
-			onRetrieveAssetFailure(e);
-		}
+	@Override
+	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor, Object... args) {
 	}
 
 	public long getEntryId() {
@@ -128,18 +130,12 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		_listener = listener;
 	}
 
-	protected void autoLoad() {
-		if (_entryId != 0 && SessionContext.isLoggedIn()) {
-			loadAsset();
-		}
-	}
-
 	public void setAutoLoad(boolean autoLoad) {
 		this._autoLoad = autoLoad;
 	}
 
 	private boolean _autoLoad;
-	private HashMap<String, Integer> _layouts;
+	private HashMap<String, Integer> _layouts = new HashMap<>();
 	private long _entryId;
 	private AssetDisplayListener _listener;
 }
