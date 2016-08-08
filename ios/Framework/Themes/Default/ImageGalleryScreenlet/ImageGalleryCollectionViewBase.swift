@@ -19,6 +19,10 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 
 	internal let imageCellId = "ImageCellId"
 
+	public var totalEntries: Int {
+		return rowCount
+	}
+
 	public weak var uploadView: UploadProgressView_default?
 
 	public func onImageEntryDeleted(imageEntry: ImageEntry) {

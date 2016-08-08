@@ -15,6 +15,8 @@ import Foundation
 
 @objc public protocol ImageGalleryViewModel {
 
+	var totalEntries: Int {get}
+
 	optional func onImageEntryDeleted(imageEntry: ImageEntry)
 
 	optional func onImageUploaded(imageEntry: ImageEntry)

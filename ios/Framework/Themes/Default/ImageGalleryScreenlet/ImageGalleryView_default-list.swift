@@ -19,6 +19,10 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
     
     private let imageCellId = "ImageCellId"
 
+	public var totalEntries: Int {
+		return rowCount
+	}
+	
 	public weak var uploadView: UploadProgressView_default?
 
 	public func onImageEntryDeleted(imageEntry: ImageEntry) {
@@ -126,8 +130,13 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
         guard let imageCell = cell as? ImageGalleryCell, entry = object as? ImageEntry else {
             return
         }
-        
-        imageCell.imageUrl = entry.thumbnailUrl
+
+		if let image = entry.image {
+			imageCell.imageView?.image = image
+		}
+		else {
+        	imageCell.imageUrl = entry.thumbnailUrl
+		}
         imageCell.title = entry.title
     }
     
