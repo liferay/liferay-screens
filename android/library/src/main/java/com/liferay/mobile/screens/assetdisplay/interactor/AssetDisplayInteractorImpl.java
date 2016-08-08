@@ -1,8 +1,8 @@
 package com.liferay.mobile.screens.assetdisplay.interactor;
 
-import android.support.annotation.NonNull;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.assetdisplay.AssetDisplayListener;
+import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.assetlist.interactor.AssetFactory;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
@@ -10,8 +10,8 @@ import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.service.v70.ScreensassetentryService;
 import com.liferay.mobile.screens.util.JSONUtil;
-import com.liferay.mobile.screens.util.LiferayLogger;
 import java.util.Locale;
+import java.util.Map;
 import org.json.JSONException;
 
 /**
@@ -22,12 +22,19 @@ public class AssetDisplayInteractorImpl extends BaseRemoteInteractor<AssetDispla
 
 	public AssetDisplayInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
-		_service = getScreensAssetEntryService();
 	}
 
 	@Override
-	public void getAssetEntryExtended(long entryId) throws Exception {
-		_service.getAssetEntryExtended(entryId, Locale.getDefault().getLanguage());
+	public void getAssetEntry(long entryId) {
+
+		try {
+			Session session = SessionContext.createSessionFromCurrentSession();
+			session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
+			ScreensassetentryService service = new ScreensassetentryService(session);
+			service.getAssetEntry(entryId, Locale.getDefault().getLanguage());
+		} catch (Exception e) {
+			getListener().onRetrieveAssetFailure(e);
+		}
 	}
 
 	public void onEvent(JSONObjectEvent event) {
@@ -39,20 +46,12 @@ public class AssetDisplayInteractorImpl extends BaseRemoteInteractor<AssetDispla
 			getListener().onRetrieveAssetFailure(event.getException());
 		} else {
 			try {
-				getListener().onRetrieveAssetSuccess(
-					AssetFactory.createInstance(JSONUtil.toMap(event.getJSONObject())));
+				Map<String, Object> map = JSONUtil.toMap(event.getJSONObject());
+				AssetEntry assetEntry = AssetFactory.createInstance(map);
+				getListener().onRetrieveAssetSuccess(assetEntry);
 			} catch (JSONException e) {
-				LiferayLogger.e(e.getMessage());
+				getListener().onRetrieveAssetFailure(e);
 			}
 		}
 	}
-
-	@NonNull
-	private ScreensassetentryService getScreensAssetEntryService() {
-		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
-		return new ScreensassetentryService(session);
-	}
-
-	private final ScreensassetentryService _service;
 }
