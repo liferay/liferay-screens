@@ -113,7 +113,7 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, V
 	@Override
 	public void onImageUploadEnd(ImageEntry entry) {
 		progressDialog.dismiss();
-		info("Image uploaded");
+		info("Image uploaded: " + entry.toString());
 	}
 
 	@Override
@@ -152,7 +152,7 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, V
 		buttonMinus.setVisibility(View.GONE);
 		buttonPlus.setVisibility(View.GONE);
 
-		changeGalleryView.setText("Grid");
+		changeGalleryView.setText(R.string.grid);
 	}
 
 	private void setSlideshowMode() {
@@ -162,7 +162,7 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, V
 		buttonMinus.setVisibility(View.VISIBLE);
 		buttonPlus.setVisibility(View.VISIBLE);
 
-		changeGalleryView.setText("Slideshow");
+		changeGalleryView.setText(getString(R.string.slideshow));
 	}
 
 	private void createProgressDialog() {
