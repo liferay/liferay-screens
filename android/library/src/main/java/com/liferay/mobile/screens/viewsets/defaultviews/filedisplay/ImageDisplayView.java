@@ -1,6 +1,8 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.filedisplay;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,6 +28,11 @@ public class ImageDisplayView extends LinearLayout implements BaseFileDisplayVie
 
 	public ImageDisplayView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
+	}
+
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
+	public ImageDisplayView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override

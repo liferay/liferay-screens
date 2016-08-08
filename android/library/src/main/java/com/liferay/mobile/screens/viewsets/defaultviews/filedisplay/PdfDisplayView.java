@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.filedisplay;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -44,6 +45,11 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 
 	public PdfDisplayView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
+	}
+
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
+	public PdfDisplayView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override
