@@ -17,6 +17,7 @@ package com.liferay.mobile.screens.ddl.list.interactor;
 import android.support.annotation.NonNull;
 import android.util.Pair;
 
+import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
@@ -48,13 +49,14 @@ public class DDLListInteractorImpl
 	}
 
 	public void loadRows(
-		final long recordSetId, long userId, final int startRow, final int endRow, final Locale locale)
+		final long recordSetId, long userId, final int startRow, final int endRow, final Locale locale,
+		String obcClassName)
 		throws Exception {
 
 		_recordSetId = recordSetId;
 		_userId = userId;
 
-		processWithCache(startRow, endRow, locale);
+		processWithCache(startRow, endRow, locale, obcClassName);
 	}
 
 	@Override
@@ -94,13 +96,15 @@ public class DDLListInteractorImpl
 	}
 
 	@Override
-	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception {
+	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale,
+		JSONObjectWrapper obc) throws Exception {
+
 		ScreensDDLRecordConnector ddlRecordService = ServiceProvider.getInstance().getScreensDDLRecordConnector(session);
 		if (_userId != 0) {
-			ddlRecordService.getDdlRecords(_recordSetId, _userId, locale.toString(), startRow, endRow);
+			ddlRecordService.getDdlRecords(_recordSetId, _userId, locale.toString(), startRow, endRow, obc);
 		}
 		else {
-			ddlRecordService.getDdlRecords(_recordSetId, locale.toString(), startRow, endRow);
+			ddlRecordService.getDdlRecords(_recordSetId, locale.toString(), startRow, endRow, obc);
 		}
 	}
 

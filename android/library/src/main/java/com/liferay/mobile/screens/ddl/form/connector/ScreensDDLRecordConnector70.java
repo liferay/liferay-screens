@@ -1,8 +1,9 @@
 package com.liferay.mobile.screens.ddl.form.connector;
 
+import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.service.v70.ScreensddlrecordService;
 
+import com.liferay.mobile.screens.service.v70.ScreensddlrecordService;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -16,13 +17,15 @@ public class ScreensDDLRecordConnector70 implements ScreensDDLRecordConnector {
 	}
 
 	@Override
-	public JSONArray getDdlRecords(long recordSetId, long userId, String s, int startRow, int endRow) throws Exception {
-		return _ddlRecordService.getDdlRecords(recordSetId, userId, s, startRow, endRow);
+	public JSONArray getDdlRecords(long recordSetId, long userId, String s, int startRow, int endRow,
+		JSONObjectWrapper obc) throws Exception {
+		return _ddlRecordService.getDdlRecords(recordSetId, userId, s, startRow, endRow, obc);
 	}
 
 	@Override
-	public JSONArray getDdlRecords(long recordSetId, String s, int startRow, int endRow) throws Exception {
-		return _ddlRecordService.getDdlRecords(recordSetId, s, startRow, endRow);
+	public JSONArray getDdlRecords(long recordSetId, String s, int startRow, int endRow,
+		JSONObjectWrapper obc) throws Exception {
+		return _ddlRecordService.getDdlRecords(recordSetId, s, startRow, endRow, obc);
 	}
 
 	@Override
