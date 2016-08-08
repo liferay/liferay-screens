@@ -159,8 +159,8 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 	}
 
 	@Override
-	public void onPictureUploadProgress(int totalBytes, int totalBytesSended) {
-		getListener().onImageUploadProgress(totalBytes, totalBytesSended);
+	public void onPictureUploadProgress(int totalBytes, int totalBytesSent) {
+		getListener().onImageUploadProgress(totalBytes, totalBytesSent);
 	}
 
 	@Override

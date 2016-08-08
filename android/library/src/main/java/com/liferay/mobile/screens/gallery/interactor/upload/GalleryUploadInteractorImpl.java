@@ -55,7 +55,7 @@ public class GalleryUploadInteractorImpl extends BaseRemoteInteractor<GalleryInt
 		} else if (event.isCompleted()) {
 			getListener().onPictureUploaded(event.getImageEntry());
 		} else {
-			getListener().onPictureUploadProgress(event.getTotalBytes(), event.getTotalBytesSended());
+			getListener().onPictureUploadProgress(event.getTotalBytes(), event.getTotalBytesSent());
 		}
 	}
 

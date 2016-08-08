@@ -14,7 +14,7 @@ public interface GalleryListener extends BaseListListener<ImageEntry> {
 
 	void onImageUploadStarted();
 
-	void onImageUploadProgress(int totalBytes, int totalBytesSended);
+	void onImageUploadProgress(int totalBytes, int totalBytesSent);
 
 	void onImageUploadEnd(ImageEntry entry);
 
