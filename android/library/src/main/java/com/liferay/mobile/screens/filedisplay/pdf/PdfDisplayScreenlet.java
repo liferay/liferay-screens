@@ -1,11 +1,7 @@
 package com.liferay.mobile.screens.filedisplay.pdf;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
-import android.view.View;
-import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.assetdisplay.interactor.AssetDisplayInteractorImpl;
 import com.liferay.mobile.screens.filedisplay.BaseFileDisplayScreenlet;
 
@@ -18,33 +14,19 @@ public class PdfDisplayScreenlet extends BaseFileDisplayScreenlet {
 		super(context);
 	}
 
-	public PdfDisplayScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public PdfDisplayScreenlet(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public PdfDisplayScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public PdfDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
 	}
 
-	@Override
-	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-			attributes, R.styleable.PdfDisplayScreenlet, 0, 0);
-
-		int layoutId = typedArray.getResourceId(R.styleable.PdfDisplayScreenlet_layoutId, getDefaultLayoutId());
-
-		_autoLoad = typedArray.getBoolean(R.styleable.PdfDisplayScreenlet_autoLoad, true);
-		_entryId = typedArray.getInt(R.styleable.PdfDisplayScreenlet_entryId, 0);
-
-		View view = LayoutInflater.from(context).inflate(layoutId, null);
-
-		typedArray.recycle();
-
-		return view;
+	public PdfDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor,
-		Object... args) {
+	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor, Object... args) {
 	}
 }
