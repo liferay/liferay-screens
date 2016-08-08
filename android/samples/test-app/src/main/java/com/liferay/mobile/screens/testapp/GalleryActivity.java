@@ -53,7 +53,6 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, V
 
 		createProgressDialog();
 
-		SessionContext.createBasicSession("test@liferay.com", "test");
 		columnsSize = galleryScreenletGrid.getColumnsSize();
 	}
 
