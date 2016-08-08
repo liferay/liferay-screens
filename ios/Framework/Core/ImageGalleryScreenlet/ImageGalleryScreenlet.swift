@@ -158,7 +158,11 @@ import Kingfisher
 	}
 
 	public func deleteImageEntry(imageEntry: ImageEntry) {
-		performAction(name: ImageGalleryScreenlet.DeleteImageAction, sender: imageEntry)
+		if offlinePolicy == CacheStrategyType.RemoteOnly.rawValue {
+			performAction(name: ImageGalleryScreenlet.DeleteImageAction, sender: imageEntry)
+		} else {
+			print("Error, delete only works on RemoteOnly mode")
+		}
 	}
 
 	public override func onLoadPageError(page page: Int, error: NSError) {
