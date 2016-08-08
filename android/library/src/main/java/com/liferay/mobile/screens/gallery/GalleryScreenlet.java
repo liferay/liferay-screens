@@ -53,36 +53,75 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
-	public long getGroupId() {
-		return groupId;
+	@Override
+	protected View createScreenletView(Context context, AttributeSet attributes) {
+
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.GalleryScreenlet, 0, 0);
+
+		Integer offlinePolicy =
+			typedArray.getInteger(R.styleable.GalleryScreenlet_offlinePolicy, OfflinePolicy.REMOTE_ONLY.ordinal());
+		this.offlinePolicy = OfflinePolicy.values()[offlinePolicy];
+
+		long groupId = LiferayServerContext.getGroupId();
+
+		this.groupId = castToLongOrUseDefault(typedArray.getString(R.styleable.GalleryScreenlet_groupId), groupId);
+
+		folderId = castToLong(typedArray.getString(R.styleable.GalleryScreenlet_folderId));
+
+		columnsSize = typedArray.getInt(R.styleable.GalleryScreenlet_columnsSize, 0);
+
+		mimeTypes = parseMimeTypes(typedArray.getString(R.styleable.GalleryScreenlet_mimeTypes));
+
+		typedArray.recycle();
+
+		GalleryViewModel view = (GalleryViewModel) super.createScreenletView(context, attributes);
+
+		if (columnsSize >= 0) {
+			view.reloadView(columnsSize);
+		}
+
+		return (View) view;
 	}
 
-	public void setGroupId(long _groupId) {
-		this.groupId = _groupId;
+	@Override
+	protected BaseGalleryInteractor createInteractor(String actionName) {
+		switch (actionName) {
+			case LOAD_GALLERY:
+				return new GalleryLoadInteractorImpl(getScreenletId(), offlinePolicy);
+			case DELETE_IMAGE:
+				return new GalleryDeleteInteractorImpl(getScreenletId());
+			case UPLOAD_IMAGE:
+				return new GalleryUploadInteractorImpl(getScreenletId());
+			default:
+				return null;
+		}
 	}
 
-	public long getFolderId() {
-		return folderId;
+	@Override
+	protected void onUserAction(String userActionName, BaseGalleryInteractor interactor, Object... args) {
+		switch (userActionName) {
+			case LOAD_GALLERY:
+				loadPage(0);
+				break;
+			case DELETE_IMAGE:
+				long fileEntryId = (long) args[0];
+				GalleryDeleteInteractor galleryDeleteInteractor = (GalleryDeleteInteractor) interactor;
+				galleryDeleteInteractor.deleteImageEntry(fileEntryId);
+				break;
+			case UPLOAD_IMAGE:
+				String picturePath = (String) args[0];
+				GalleryUploadInteractor galleryUploadInteractor = (GalleryUploadInteractor) interactor;
+				galleryUploadInteractor.uploadImageEntry(groupId, folderId, "", "", "", picturePath);
+				break;
+		}
 	}
 
-	public void setFolderId(long _folderId) {
-		this.folderId = _folderId;
-	}
-
-	public OfflinePolicy getOfflinePolicy() {
-		return offlinePolicy;
-	}
-
-	public void setOfflinePolicy(OfflinePolicy _offlinePolicy) {
-		this.offlinePolicy = _offlinePolicy;
-	}
-
-	public int getColumnsSize() {
-		return columnsSize;
-	}
-
-	public void setColumnsSize(int columnsSize) {
-		this.columnsSize = columnsSize;
+	@Override
+	protected void loadRows(BaseGalleryInteractor interactor, int startRow, int endRow, Locale locale)
+		throws Exception {
+		GalleryLoadInteractor galleryLoadInteractor = (GalleryLoadInteractor) interactor;
+		galleryLoadInteractor.loadRows(groupId, folderId, mimeTypes, startRow, endRow, locale);
 	}
 
 	public void load() {
@@ -189,76 +228,6 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		getContext().startActivity(intent);
 	}
 
-	@Override
-	protected void loadRows(BaseGalleryInteractor interactor, int startRow, int endRow, Locale locale)
-		throws Exception {
-		GalleryLoadInteractor galleryLoadInteractor = (GalleryLoadInteractor) interactor;
-		galleryLoadInteractor.loadRows(groupId, folderId, mimeTypes, startRow, endRow, locale);
-	}
-
-	@Override
-	protected View createScreenletView(Context context, AttributeSet attributes) {
-
-		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.GalleryScreenlet, 0, 0);
-
-		Integer offlinePolicy =
-			typedArray.getInteger(R.styleable.GalleryScreenlet_offlinePolicy, OfflinePolicy.REMOTE_ONLY.ordinal());
-		this.offlinePolicy = OfflinePolicy.values()[offlinePolicy];
-
-		long groupId = LiferayServerContext.getGroupId();
-
-		this.groupId = castToLongOrUseDefault(typedArray.getString(R.styleable.GalleryScreenlet_groupId), groupId);
-
-		folderId = castToLong(typedArray.getString(R.styleable.GalleryScreenlet_folderId));
-
-		columnsSize = typedArray.getInt(R.styleable.GalleryScreenlet_columnsSize, 0);
-
-		mimeTypes = parseMimeTypes(typedArray.getString(R.styleable.GalleryScreenlet_mimeTypes));
-
-		typedArray.recycle();
-
-		GalleryViewModel view = (GalleryViewModel) super.createScreenletView(context, attributes);
-
-		if (columnsSize >= 0) {
-			view.reloadView(columnsSize);
-		}
-
-		return (View) view;
-	}
-
-	@Override
-	protected BaseGalleryInteractor createInteractor(String actionName) {
-		switch (actionName) {
-			case LOAD_GALLERY:
-				return new GalleryLoadInteractorImpl(getScreenletId(), offlinePolicy);
-			case DELETE_IMAGE:
-				return new GalleryDeleteInteractorImpl(getScreenletId());
-			case UPLOAD_IMAGE:
-				return new GalleryUploadInteractorImpl(getScreenletId());
-			default:
-				return null;
-		}
-	}
-
-	@Override
-	protected void onUserAction(String userActionName, BaseGalleryInteractor interactor, Object... args) {
-		switch (userActionName) {
-			case LOAD_GALLERY:
-				loadPage(0);
-				break;
-			case DELETE_IMAGE:
-				long fileEntryId = (long) args[0];
-				GalleryDeleteInteractor galleryDeleteInteractor = (GalleryDeleteInteractor) interactor;
-				galleryDeleteInteractor.deleteImageEntry(fileEntryId);
-				break;
-			case UPLOAD_IMAGE:
-				String picturePath = (String) args[0];
-				GalleryUploadInteractor galleryUploadInteractor = (GalleryUploadInteractor) interactor;
-				galleryUploadInteractor.uploadImageEntry(groupId, folderId, "", "", "", picturePath);
-				break;
-		}
-	}
 
 	@Override
 	protected void onScreenletAttached() {
@@ -278,6 +247,38 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	public GalleryViewModel getViewModel() {
 		return ((GalleryViewModel) super.getViewModel());
+	}
+
+	public long getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		this.groupId = groupId;
+	}
+
+	public long getFolderId() {
+		return folderId;
+	}
+
+	public void setFolderId(long folderId) {
+		this.folderId = folderId;
+	}
+
+	public OfflinePolicy getOfflinePolicy() {
+		return offlinePolicy;
+	}
+
+	public void setOfflinePolicy(OfflinePolicy _offlinePolicy) {
+		this.offlinePolicy = _offlinePolicy;
+	}
+
+	public int getColumnsSize() {
+		return columnsSize;
+	}
+
+	public void setColumnsSize(int columnsSize) {
+		this.columnsSize = columnsSize;
 	}
 
 	protected void autoLoad() {
