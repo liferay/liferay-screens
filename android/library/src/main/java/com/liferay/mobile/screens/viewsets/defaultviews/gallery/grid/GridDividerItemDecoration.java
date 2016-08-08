@@ -17,8 +17,7 @@ public class GridDividerItemDecoration extends DividerItemDecoration {
 	}
 
 	@Override
-	public void getItemOffsets(Rect outRect, View view, RecyclerView parent,
-		RecyclerView.State state) {
+	public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
 
 		outRect.top = _spacing;
 		outRect.bottom = _spacing;

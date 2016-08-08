@@ -66,8 +66,7 @@ public class SlideshowGalleryView extends
 		super.onFinishInflate();
 
 		//Code from https://github.com/lsjwzh/RecyclerViewPager
-		LinearLayoutManager layout =
-			new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+		LinearLayoutManager layout = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
 		_recyclerView.setLayoutManager(layout);
 		_recyclerView.addOnScrollListener(new OnScrollListener() {
 			@Override
@@ -97,8 +96,7 @@ public class SlideshowGalleryView extends
 					} else {
 
 						if (v.getLeft() <= recyclerView.getWidth() - padding) {
-							rate = (recyclerView.getWidth() - padding - v.getLeft()) * 1f
-								/ v.getWidth();
+							rate = (recyclerView.getWidth() - padding - v.getLeft()) * 1f / v.getWidth();
 						}
 						v.setScaleY(0.9f + rate * 0.1f);
 						v.setScaleX(0.9f + rate * 0.1f);
@@ -109,8 +107,8 @@ public class SlideshowGalleryView extends
 
 		_recyclerView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
 			@Override
-			public void onLayoutChange(View v, int left, int top, int right, int bottom,
-				int oldLeft, int oldTop, int oldRight, int oldBottom) {
+			public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop,
+				int oldRight, int oldBottom) {
 				if (_recyclerView.getChildCount() < 3) {
 					if (_recyclerView.getChildAt(1) != null) {
 						if (((RecyclerViewPager) _recyclerView).getCurrentPosition() == 0) {

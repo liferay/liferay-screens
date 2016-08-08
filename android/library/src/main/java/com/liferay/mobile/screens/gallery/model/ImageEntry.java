@@ -39,23 +39,23 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 
 	private ImageEntry(Parcel in, ClassLoader loader) {
 		super(in, loader);
-		_imageUrl = in.readString();
-		_thumbnailUrl = in.readString();
-		_mimeType = in.readString();
-		_description = in.readString();
-		_createDate = (Long) in.readValue(Long.class.getClassLoader());
-		_creatorUserId = (Long) in.readValue(Long.class.getClassLoader());
+		imageUrl = in.readString();
+		thumbnailUrl = in.readString();
+		mimeType = in.readString();
+		description = in.readString();
+		createDate = (Long) in.readValue(Long.class.getClassLoader());
+		creatorUserId = (Long) in.readValue(Long.class.getClassLoader());
 	}
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		super.writeToParcel(dest, flags);
-		dest.writeString(_imageUrl);
-		dest.writeString(_thumbnailUrl);
-		dest.writeString(_mimeType);
-		dest.writeString(_description);
-		dest.writeValue(_createDate);
-		dest.writeValue(_creatorUserId);
+		dest.writeString(imageUrl);
+		dest.writeString(thumbnailUrl);
+		dest.writeString(mimeType);
+		dest.writeString(description);
+		dest.writeValue(createDate);
+		dest.writeValue(creatorUserId);
 	}
 
 	@Override
@@ -68,31 +68,31 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 	}
 
 	public String getImageUrl() {
-		return _imageUrl;
+		return imageUrl;
 	}
 
 	public String getThumbnailUrl() {
-		return _thumbnailUrl;
+		return thumbnailUrl;
 	}
 
 	public String getMimeType() {
-		return _mimeType;
+		return mimeType;
 	}
 
 	public String description() {
-		return _description;
+		return description;
 	}
 
 	public long createDate() {
-		return _createDate;
+		return createDate;
 	}
 
 	public long getCreatorUserId() {
-		return _creatorUserId;
+		return creatorUserId;
 	}
 
 	public long getFileEntryId() {
-		return _fileEntryId;
+		return fileEntryId;
 	}
 
 	public boolean thumbnailNotAlreadyGenerated() {
@@ -100,13 +100,13 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 	}
 
 	private void parseServerValues() {
-		_imageUrl = createImageUrl();
-		_thumbnailUrl = createThumbnailUrl();
-		_mimeType = (String) _values.get("mimeType");
-		_description = (String) _values.get("description");
-		_createDate = JSONUtil.castToLong(_values.get("createDate"));
-		_creatorUserId = JSONUtil.castToLong(_values.get("userId"));
-		_fileEntryId = JSONUtil.castToLong(_values.get("fileEntryId"));
+		imageUrl = createImageUrl();
+		thumbnailUrl = createThumbnailUrl();
+		mimeType = (String) _values.get("mimeType");
+		description = (String) _values.get("description");
+		createDate = JSONUtil.castToLong(_values.get("createDate"));
+		creatorUserId = JSONUtil.castToLong(_values.get("userId"));
+		fileEntryId = JSONUtil.castToLong(_values.get("fileEntryId"));
 	}
 
 	private String createThumbnailUrl() {
@@ -138,17 +138,17 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 	}
 
 	private boolean isLessThan60secondsOld() {
-		long creationMinutes = TimeUnit.MILLISECONDS.toSeconds(_createDate);
+		long creationMinutes = TimeUnit.MILLISECONDS.toSeconds(createDate);
 		long actualMinutes = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
 
 		return actualMinutes - creationMinutes <= 10;
 	}
 
-	private String _imageUrl;
-	private String _thumbnailUrl;
-	private String _mimeType;
-	private String _description;
-	private Long _createDate;
-	private Long _creatorUserId;
-	private Long _fileEntryId;
+	private String imageUrl;
+	private String thumbnailUrl;
+	private String mimeType;
+	private String description;
+	private Long createDate;
+	private Long creatorUserId;
+	private Long fileEntryId;
 }

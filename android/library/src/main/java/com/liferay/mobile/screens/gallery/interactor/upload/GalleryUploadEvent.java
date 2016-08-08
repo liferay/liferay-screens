@@ -8,13 +8,19 @@ import com.liferay.mobile.screens.gallery.model.ImageEntry;
  */
 public class GalleryUploadEvent extends BasicEvent {
 
-	public GalleryUploadEvent(int targetScreenletId, int totalBytes, int totalBytesSended, boolean isCompleted,
-		ImageEntry entry) {
+	public GalleryUploadEvent(int targetScreenletId, int totalBytes, int totalBytesSent) {
 		super(targetScreenletId);
-		_totalBytes = totalBytes;
-		_totalBytesSended = totalBytesSended;
-		_isCompleted = isCompleted;
-		_imageEntry = entry;
+
+		this.totalBytes = totalBytes;
+		this.totalBytesSent = totalBytesSent;
+		this.completed = false;
+	}
+
+	public GalleryUploadEvent(int screenletId, ImageEntry imageEntry) {
+		super(screenletId);
+
+		this.completed = true;
+		this.imageEntry = imageEntry;
 	}
 
 	public GalleryUploadEvent(int targetScreenletId, Exception exception) {
@@ -22,23 +28,23 @@ public class GalleryUploadEvent extends BasicEvent {
 	}
 
 	public int getTotalBytes() {
-		return _totalBytes;
+		return totalBytes;
 	}
 
 	public int getTotalBytesSended() {
-		return _totalBytesSended;
+		return totalBytesSent;
 	}
 
 	public boolean isCompleted() {
-		return _isCompleted;
+		return completed;
 	}
 
 	public ImageEntry getImageEntry() {
-		return _imageEntry;
+		return imageEntry;
 	}
 
-	private int _totalBytes;
-	private int _totalBytesSended;
-	private boolean _isCompleted;
-	private ImageEntry _imageEntry;
+	private int totalBytes;
+	private int totalBytesSent;
+	private boolean completed;
+	private ImageEntry imageEntry;
 }

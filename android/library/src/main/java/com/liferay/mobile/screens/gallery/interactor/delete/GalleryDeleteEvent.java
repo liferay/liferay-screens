@@ -9,7 +9,8 @@ public class GalleryDeleteEvent extends BasicEvent {
 
 	public GalleryDeleteEvent(int targetScreenletId, long imageEntryId) {
 		super(targetScreenletId);
-		_imageEntryId = imageEntryId;
+
+		this.imageEntryId = imageEntryId;
 	}
 
 	public GalleryDeleteEvent(int targetScreenletId, Exception exception) {
@@ -17,8 +18,8 @@ public class GalleryDeleteEvent extends BasicEvent {
 	}
 
 	public long getImageEntryId() {
-		return _imageEntryId;
+		return imageEntryId;
 	}
 
-	private long _imageEntryId;
+	private long imageEntryId;
 }
