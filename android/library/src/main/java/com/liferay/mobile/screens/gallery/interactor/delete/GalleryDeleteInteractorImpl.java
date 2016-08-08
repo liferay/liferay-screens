@@ -17,11 +17,16 @@ public class GalleryDeleteInteractorImpl extends BaseRemoteInteractor<GalleryInt
 	}
 
 	@Override
-		_imageEntryId = imageEntryId;
-		validate(imageEntryId);
-		getDLAppService().deleteFileEntry(imageEntryId);
 	public void deleteImageEntry(long imageEntryId) {
 		try {
+			validate(imageEntryId);
+
+			Session session = SessionContext.createSessionFromCurrentSession();
+			session.setCallback(new GalleryDeleteCallback(getTargetScreenletId(), imageEntryId));
+
+			DLAppService dlAppService = new DLAppService(session);
+			dlAppService.deleteFileEntry(imageEntryId);
+
 		} catch (Exception e) {
 			getListener().onImageEntryDeleteFailure(e);
 		}
@@ -39,18 +44,9 @@ public class GalleryDeleteInteractorImpl extends BaseRemoteInteractor<GalleryInt
 		}
 	}
 
-	private DLAppService getDLAppService() {
-		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new GalleryDeleteCallback(getTargetScreenletId(), _imageEntryId));
-
-		return new DLAppService(session);
-	}
-
 	private void validate(long imageEntryId) {
 		if (imageEntryId <= 0) {
 			throw new IllegalArgumentException("Image entry Id must be greater than 0");
 		}
 	}
-
-	private long _imageEntryId;
 }
