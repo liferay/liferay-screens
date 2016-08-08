@@ -43,17 +43,17 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 
 		int layoutId = typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_layoutId, getDefaultLayoutId());
 
-		_autoLoad = typedArray.getBoolean(R.styleable.AssetDisplayScreenlet_autoLoad, true);
-		_entryId = typedArray.getInt(R.styleable.AssetDisplayScreenlet_entryId, 0);
+		autoLoad = typedArray.getBoolean(R.styleable.AssetDisplayScreenlet_autoLoad, true);
+		entryId = typedArray.getInt(R.styleable.AssetDisplayScreenlet_entryId, 0);
 
-		_layouts = new HashMap<>();
-		_layouts.put(ImageDisplayScreenlet.class.getName(),
+		layouts = new HashMap<>();
+		layouts.put(ImageDisplayScreenlet.class.getName(),
 			typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_imagelayoutId, R.layout.image_display_default));
-		_layouts.put(VideoDisplayScreenlet.class.getName(),
+		layouts.put(VideoDisplayScreenlet.class.getName(),
 			typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_videolayoutId, R.layout.video_display_default));
-		_layouts.put(AudioDisplayScreenlet.class.getName(),
+		layouts.put(AudioDisplayScreenlet.class.getName(),
 			typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_audiolayoutId, R.layout.audio_display_default));
-		_layouts.put(PdfDisplayScreenlet.class.getName(),
+		layouts.put(PdfDisplayScreenlet.class.getName(),
 			typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_pdflayoutId, R.layout.pdf_display_default));
 
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
@@ -64,23 +64,23 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	}
 
 	public void loadAsset() {
-		getInteractor().getAssetEntry(_entryId);
+		getInteractor().getAssetEntry(entryId);
 	}
 
 	@Override
 	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
 
 		AssetDisplayFactory factory = new AssetDisplayFactory();
-		BaseScreenlet screenlet = factory.getScreenlet(getContext(), assetEntry, _layouts, _autoLoad);
+		BaseScreenlet screenlet = factory.getScreenlet(getContext(), assetEntry, layouts, autoLoad);
 		if (screenlet != null) {
 			addView(screenlet, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-			if (_listener != null) {
-				_listener.onRetrieveAssetSuccess(assetEntry);
+			if (listener != null) {
+				listener.onRetrieveAssetSuccess(assetEntry);
 			}
 		} else {
 			LiferayLogger.e("Error loading screenlet");
-			if (_listener != null) {
-				_listener.onRetrieveAssetFailure(new Exception("Error loading screenlet"));
+			if (listener != null) {
+				listener.onRetrieveAssetFailure(new Exception("Error loading screenlet"));
 			}
 		}
 	}
@@ -89,8 +89,8 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	public void onRetrieveAssetFailure(Exception e) {
 		getViewModel().showFailedOperation(null, e);
 
-		if (_listener != null) {
-			_listener.onRetrieveAssetFailure(e);
+		if (listener != null) {
+			listener.onRetrieveAssetFailure(e);
 		}
 	}
 
@@ -103,13 +103,13 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	protected void onScreenletAttached() {
 		super.onScreenletAttached();
 
-		if (_autoLoad) {
+		if (autoLoad) {
 			autoLoad();
 		}
 	}
 
 	protected void autoLoad() {
-		if (_entryId != 0 && SessionContext.isLoggedIn()) {
+		if (entryId != 0 && SessionContext.isLoggedIn()) {
 			loadAsset();
 		}
 	}
@@ -119,23 +119,23 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	}
 
 	public long getEntryId() {
-		return _entryId;
+		return entryId;
 	}
 
 	public void setEntryId(long entryId) {
-		this._entryId = entryId;
+		this.entryId = entryId;
 	}
 
 	public void setListener(AssetDisplayListener listener) {
-		_listener = listener;
+		this.listener = listener;
 	}
 
 	public void setAutoLoad(boolean autoLoad) {
-		this._autoLoad = autoLoad;
+		this.autoLoad = autoLoad;
 	}
 
-	private boolean _autoLoad;
-	private HashMap<String, Integer> _layouts = new HashMap<>();
-	private long _entryId;
-	private AssetDisplayListener _listener;
+	private boolean autoLoad;
+	private HashMap<String, Integer> layouts = new HashMap<>();
+	private long entryId;
+	private AssetDisplayListener listener;
 }
