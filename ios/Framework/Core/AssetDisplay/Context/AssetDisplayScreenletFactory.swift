@@ -23,7 +23,7 @@ public class AssetDisplayScreenletFactory {
 	}
 
 	let imageMimeTypes = ["image/png", "image/jpg", "image/jpeg", "image/gif"]
-	let videoMimeTypes = ["video/mp4", "video/x-flv", "video/3gp", "video/quicktime", "video/x-msvideo", "video/x-ms-wmv"]
+	let videoMimeTypes = ["video/mp4", "video/3gp", "video/quicktime"]
 	let audioMimeTypes = ["audio/mpeg", "audio/mpeg3", "audio/wav"]
 
 	public func createScreenlet(frame: CGRect, screenlet: AssetDisplayScreenlet?) -> BaseScreenlet? {
