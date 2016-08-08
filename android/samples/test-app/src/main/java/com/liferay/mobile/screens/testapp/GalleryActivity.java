@@ -134,14 +134,14 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, V
 
 		if (v.getId() == R.id.image_gallery_button_minus) {
 			if (columnsSize > 1) {
-				galleryScreenletGrid.setColumnsSize(--columnsSize);
 				galleryScreenletGrid.updateView();
+				galleryScreenletGrid.setColumnsSize(columnsSize--);
 			}
 		}
 
 		if (v.getId() == R.id.image_gallery_button_plus) {
-			galleryScreenletGrid.setColumnsSize(++columnsSize);
 			galleryScreenletGrid.updateView();
+			galleryScreenletGrid.setColumnsSize(columnsSize++);
 		}
 	}
 

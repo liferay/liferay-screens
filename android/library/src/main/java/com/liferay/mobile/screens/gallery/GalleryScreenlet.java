@@ -230,19 +230,16 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	@Override
 	protected BaseGalleryInteractor createInteractor(String actionName) {
-		if (actionName.equals(LOAD_GALLERY)) {
-			return new GalleryLoadInteractorImpl(getScreenletId(), _offlinePolicy);
+		switch (actionName) {
+			case LOAD_GALLERY:
+				return new GalleryLoadInteractorImpl(getScreenletId(), offlinePolicy);
+			case DELETE_IMAGE:
+				return new GalleryDeleteInteractorImpl(getScreenletId());
+			case UPLOAD_IMAGE:
+				return new GalleryUploadInteractorImpl(getScreenletId());
+			default:
+				return null;
 		}
-
-		if (actionName.equals(DELETE_IMAGE)) {
-			return new GalleryDeleteInteractorImpl(getScreenletId());
-		}
-
-		if (actionName.equals(UPLOAD_IMAGE)) {
-			return new GalleryUploadInteractorImpl(getScreenletId());
-		}
-
-		return null;
 	}
 
 	@Override
