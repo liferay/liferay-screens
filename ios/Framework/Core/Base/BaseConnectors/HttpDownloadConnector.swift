@@ -45,7 +45,7 @@ public class HttpDownloadConnector: ServerConnector {
 					let destinationUrl = NSURL(fileURLWithPath: cache + "/" + self.encodeUrlString(fileName))
 
 					do {
-						try fileManager.copyItemAtURL(url!, toURL: destinationUrl)
+						try fileManager.moveItemAtURL(url!, toURL: destinationUrl)
 						self.lastError = nil
 						self.resultUrl = destinationUrl
 					} catch let error as NSError {
