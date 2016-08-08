@@ -12,14 +12,13 @@
 * details.
 */
 import UIKit
-import AFNetworking
 
 public class ImageGalleryCell: UITableViewCell {
 
-    
-	@IBOutlet weak var imagePreview: UIImageView!
-	@IBOutlet weak var imageTitle: UILabel!
+	@IBOutlet private weak var imagePreview: UIImageView!
+	@IBOutlet private weak var imageTitle: UILabel!
 
+	private var placeholderImage: UIImage?
 	
     public var title: String? {
         get {
@@ -35,24 +34,24 @@ public class ImageGalleryCell: UITableViewCell {
             return ""
         }
         set {
-            imagePreview.setImageWithURL(NSURL(string: newValue ?? "")!)
+            imagePreview.lr_setImageWithURL(NSURL(string: newValue ?? "")!)
         }
     }
 
     override public func awakeFromNib() {
         super.awakeFromNib()
         
-        imagePreview.clipsToBounds = true
-        
-        if let image = NSBundle.imageInBundles(
-            name: "default-hourglass",
-            currentClass: self.dynamicType) {
-            
-            imagePreview.image = image
-        }
+		imagePreview.kf_showIndicatorWhenLoading = true
+
+		placeholderImage = NSBundle.imageInBundles(
+			name: "default-placeholder-image",
+			currentClass: self.dynamicType)
+
     }
 
 	public override func prepareForReuse() {
-		imagePreview.image = nil
+		super.prepareForReuse()
+		
+		imagePreview.image = placeholderImage
 	}
 }
