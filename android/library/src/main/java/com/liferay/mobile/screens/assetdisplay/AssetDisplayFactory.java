@@ -1,6 +1,7 @@
 package com.liferay.mobile.screens.assetdisplay;
 
 import android.content.Context;
+import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.assetlist.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.filedisplay.BaseFileDisplayScreenlet;
@@ -9,6 +10,7 @@ import com.liferay.mobile.screens.filedisplay.audio.AudioDisplayScreenlet;
 import com.liferay.mobile.screens.filedisplay.image.ImageDisplayScreenlet;
 import com.liferay.mobile.screens.filedisplay.pdf.PdfDisplayScreenlet;
 import com.liferay.mobile.screens.filedisplay.video.VideoDisplayScreenlet;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -18,44 +20,40 @@ public class AssetDisplayFactory {
 
 	public BaseScreenlet getScreenlet(Context context, AssetEntry assetEntry, HashMap<String, Integer> layouts,
 		boolean autoLoad) {
+
 		String className = assetEntry.getClassName();
+
 		switch (className) {
 			case "com.liferay.document.library.kernel.model.DLFileEntry":
 
-				String mimeType = assetEntry.getMimeType();
-				BaseFileDisplayScreenlet screenlet = null;
+				BaseFileDisplayScreenlet screenlet = getDLFileEntryScreenlet(context, assetEntry.getMimeType());
 
-				if (isImage(mimeType)) {
-					screenlet = new ImageDisplayScreenlet(context);
-				} else if (isVideo(mimeType)) {
-					screenlet = new VideoDisplayScreenlet(context);
-				} else if (isAudio(mimeType)) {
-					screenlet = new AudioDisplayScreenlet(context);
-				} else if (mimeType.equals("application/pdf")) {
-					screenlet = new PdfDisplayScreenlet(context);
+				if (screenlet != null) {
+					screenlet.setFileEntry((FileEntry) assetEntry);
+					screenlet.setAutoLoad(autoLoad);
+					screenlet.render(layouts.get(screenlet.getClass().getName()));
+					return screenlet;
 				}
-
-				screenlet.setFileEntry((FileEntry) assetEntry);
-				screenlet.setAutoLoad(autoLoad);
-				screenlet.render(layouts.get(screenlet.getClass().getName()));
-				return screenlet;
 			default:
 				return null;
 		}
 	}
 
-	private boolean isImage(String mimeType) {
-		return "image/png".equals(mimeType) || "image/jpeg".equals(mimeType) || "image/jpg".equals(mimeType)
-			|| "image/gif".equals(mimeType) || "image/x-ms-bmp".equals(mimeType);
+	private BaseFileDisplayScreenlet getDLFileEntryScreenlet(Context context, String mimeType) {
+		if (is(mimeType, R.array.image_mime_types, context)) {
+			return new ImageDisplayScreenlet(context);
+		} else if (is(mimeType, R.array.video_mime_types, context)) {
+			return new VideoDisplayScreenlet(context);
+		} else if (is(mimeType, R.array.audio_mime_types, context)) {
+			return new AudioDisplayScreenlet(context);
+		} else if (is(mimeType, R.array.pdf_mime_types, context)) {
+			return new PdfDisplayScreenlet(context);
+		}
+		return null;
 	}
 
-	private boolean isVideo(String mimeType) {
-		return "video/mp4".equals(mimeType) || "video/x-flv".equals(mimeType) || "video/3gp".equals(mimeType)
-			|| "video/quicktime".equals(mimeType) || "video/x-msvideo".equals(mimeType) || "video/x-ms-wmv".equals(
-			mimeType);
-	}
-
-	private boolean isAudio(String mimeType) {
-		return "audio/mpeg".equals(mimeType) || "audio/mpeg3".equals(mimeType) || "audio/wav".equals(mimeType);
+	private boolean is(String mimeType, int typesIds, Context context) {
+		String[] mimeTypes = context.getResources().getStringArray(typesIds);
+		return Arrays.asList(mimeTypes).contains(mimeType);
 	}
 }

@@ -9,4 +9,32 @@
 	<string name="UserPortraitScreenlet_default">userportrait_default</string>
 	<string name="WebContentDisplayScreenlet_default">webcontentdisplay_default</string>
 	<string name="WebContentListScreenlet_default">webcontentlist_default</string>
+
+
+	<string-array name="image_mime_types">
+		<item>image/png</item>
+		<item>image/jpeg</item>
+		<item>image/jpg</item>
+		<item>image/gif</item>
+		<item>image/x-ms-bmp</item>
+	</string-array>
+
+	<string-array name="video_mime_types">
+		<item>video/mp4</item>
+		<item>video/x-flv</item>
+		<item>video/3gp</item>
+		<item>video/quicktime</item>
+		<item>video/x-msvideo</item>
+		<item>video/x-ms-wmv</item>
+	</string-array>
+
+	<string-array name="audio_mime_types">
+		<item>audio/mpeg</item>
+		<item>audio/mpeg3</item>
+		<item>audio/wav</item>
+	</string-array>
+
+	<string-array name="pdf_mime_types">
+		<item>application/pdf</item>
+	</string-array>
 </resources>
