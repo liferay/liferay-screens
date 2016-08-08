@@ -12,12 +12,17 @@ public class ImageGalleryGridCell: UICollectionViewCell {
 
 	@IBOutlet private weak var previewImage: UIImageView!
 
+	private var placeholderImage: UIImage?
+
 	public var imageUrl: String  {
 		get {
 			return ""
 		}
 		set {
-			previewImage.setImageWithURL(NSURL(string: newValue)!)
+			previewImage.lr_setImageWithURL(
+					NSURL(string: newValue)!,
+					placeholderImage:  placeholderImage,
+					optionsInfo: [.BackgroundDecode])
 		}
 	}
 
@@ -31,13 +36,19 @@ public class ImageGalleryGridCell: UICollectionViewCell {
 	}
 
 	public override func awakeFromNib() {
+		super.awakeFromNib()
+		
 		previewImage.clipsToBounds = true
-		backgroundColor = .grayColor()
+		previewImage.kf_showIndicatorWhenLoading = true
+
+		placeholderImage = NSBundle.imageInBundles(
+			name: "default-placeholder-image",
+			currentClass: self.dynamicType)
 	}
 
 	public override func prepareForReuse() {
-		previewImage.image = nil
-		previewImage.cancelImageRequestOperation()
-		backgroundColor = .grayColor()
+		super.prepareForReuse()
+
+		previewImage.image = placeholderImage
 	}
 }
