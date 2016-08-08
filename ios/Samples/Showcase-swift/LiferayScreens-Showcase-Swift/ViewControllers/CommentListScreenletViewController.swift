@@ -16,18 +16,30 @@ import LiferayScreens
 
 
 class CommentListScreenletViewController: UIViewController,
-	CommentListScreenletDelegate, CommentAddScreenletDelegate {
+	CommentListScreenletDelegate, CommentAddScreenletDelegate,
+	CommentDisplayScreenletDelegate {
 
 	@IBOutlet weak var listScreenlet: CommentListScreenlet?
 	@IBOutlet weak var addScreenlet: CommentAddScreenlet?
+	@IBOutlet weak var displayScreenlet: CommentDisplayScreenlet?
+
+	@IBOutlet weak var displayScreenletHeightConstraint: NSLayoutConstraint?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		self.listScreenlet?.delegate = self
 		self.addScreenlet?.delegate = self
+		self.displayScreenlet?.delegate = self
+
+		self.displayScreenlet?.layer.cornerRadius = 4
 	}
 
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+		recalculateDisplayScreenletHeightConstraint()
+	}
+	
 	//MARK: CommentAddScreenletDelegate
 
 	func screenlet(screenlet: CommentAddScreenlet, onCommentAdded comment: Comment) {
@@ -47,10 +59,30 @@ class CommentListScreenletViewController: UIViewController,
 
 	func screenlet(screenlet: CommentListScreenlet, onSelectedComment comment: Comment) {
 		print("DELEGATE: onCommentSelected called -> \(comment)\n")
+		self.displayScreenletHeightConstraint?.constant = 115
+		self.displayScreenlet?.commentId = comment.commentId
+		self.displayScreenlet?.load()
 	}
 
 	func screenlet(screenlet: CommentListScreenlet, onListResponseComments comments: [Comment]) {
 		print("DELEGATE: onCommentListResponse called -> \(comments)\n")
+	}
+
+	//MARK: CommentDisplayScreenletDelegate
+
+	func screenlet(screenlet: CommentDisplayScreenlet, onCommentLoaded comment: Comment) {
+		print("DELEGATE: onCommentLoaded called -> \(comment)\n")
+	}
+
+	func screenlet(screenlet: CommentDisplayScreenlet, onLoadCommentError error: NSError) {
+		print("DELEGATE: onLoadCommentError called -> \(error)\n")
+	}
+
+	//MARK: Private methods
+
+	private func recalculateDisplayScreenletHeightConstraint() {
+		let computedHeight = self.displayScreenlet?.computedHeight
+		self.displayScreenletHeightConstraint?.constant = computedHeight ?? 115
 	}
 
 }

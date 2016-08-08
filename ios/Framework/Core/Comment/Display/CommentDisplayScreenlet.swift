@@ -41,6 +41,10 @@ import UIKit
 		return screenletView as? CommentDisplayViewModel
 	}
 
+	public var computedHeight: CGFloat? {
+		return viewModel?.computedHeight
+	}
+
 	//MARK: Public methods
 
 	override public func onShow() {
@@ -65,8 +69,8 @@ import UIKit
 
 		interactor.onSuccess = {
 			if let resultComment = interactor.resultComment {
-				self.commentDisplayDelegate?.screenlet?(self, onCommentLoaded: resultComment)
 				self.viewModel?.comment = resultComment
+				self.commentDisplayDelegate?.screenlet?(self, onCommentLoaded: resultComment)
 			}
 			else {
 				self.commentDisplayDelegate?.screenlet?(self,

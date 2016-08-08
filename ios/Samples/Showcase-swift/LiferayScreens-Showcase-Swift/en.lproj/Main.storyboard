@@ -1168,11 +1168,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qqG-ry-efR" customClass="CommentAddScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="0.0" y="64" width="312" height="40"/>
+                                <rect key="frame" x="16" y="64" width="288" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="3Tw-1F-jhR"/>
-                                    <constraint firstAttribute="width" constant="312" id="xiP-d5-4gT"/>
+                                    <constraint firstAttribute="height" constant="50" id="FvR-GE-Y2C"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="groupId">
@@ -1184,8 +1183,21 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="className" value="com.liferay.blogs.kernel.model.BlogsEntry"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zk9-3x-sNy" customClass="CommentDisplayScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="16" y="396" width="288" height="115"/>
+                                <color key="backgroundColor" red="0.16296140939597314" green="0.72336632013320923" blue="0.72336632013320923" alpha="0.15519935344827587" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="115" id="cRK-6D-X1q"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="groupId">
+                                        <integer key="value" value="20160"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Cs-KB-hzY" customClass="CommentListScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="-4" y="112" width="328" height="407"/>
+                                <rect key="frame" x="-4" y="122" width="328" height="266"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="YES"/>
@@ -1201,26 +1213,29 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qqG-ry-efR" firstAttribute="top" secondItem="cl2-zy-fUp" secondAttribute="bottom" id="0EQ-Jq-2O5"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qqG-ry-efR" secondAttribute="trailingMargin" id="5iC-km-iMc"/>
-                            <constraint firstItem="Ebj-0l-O7f" firstAttribute="top" secondItem="7Cs-KB-hzY" secondAttribute="bottom" id="BOl-mT-uqW"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="7Cs-KB-hzY" secondAttribute="trailing" constant="-20" id="RIK-DL-Nwd"/>
-                            <constraint firstItem="7Cs-KB-hzY" firstAttribute="leading" secondItem="t9h-bk-dC1" secondAttribute="leadingMargin" constant="-20" id="THr-aD-gYO"/>
-                            <constraint firstItem="qqG-ry-efR" firstAttribute="leading" secondItem="t9h-bk-dC1" secondAttribute="leading" id="V50-G6-2g7"/>
-                            <constraint firstItem="7Cs-KB-hzY" firstAttribute="top" secondItem="qqG-ry-efR" secondAttribute="bottom" constant="8" id="gNt-Fc-nAM"/>
-                            <constraint firstItem="7Cs-KB-hzY" firstAttribute="centerX" secondItem="t9h-bk-dC1" secondAttribute="centerX" id="hK8-SK-Ykb"/>
-                            <constraint firstItem="7Cs-KB-hzY" firstAttribute="top" secondItem="qqG-ry-efR" secondAttribute="bottom" constant="8" id="sbH-fb-sW5"/>
+                            <constraint firstItem="Ebj-0l-O7f" firstAttribute="top" secondItem="zk9-3x-sNy" secondAttribute="bottom" constant="8" id="3p6-nA-LTE"/>
+                            <constraint firstItem="7Cs-KB-hzY" firstAttribute="top" secondItem="qqG-ry-efR" secondAttribute="bottom" constant="8" id="4us-tR-qxQ"/>
+                            <constraint firstItem="qqG-ry-efR" firstAttribute="leading" secondItem="t9h-bk-dC1" secondAttribute="leadingMargin" id="BAa-32-9ac"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zk9-3x-sNy" secondAttribute="trailing" id="EkU-8j-gXs"/>
+                            <constraint firstItem="zk9-3x-sNy" firstAttribute="top" secondItem="7Cs-KB-hzY" secondAttribute="bottom" constant="8" id="Gk7-Cb-mzY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qqG-ry-efR" secondAttribute="trailing" id="jYk-Li-LKr"/>
+                            <constraint firstItem="7Cs-KB-hzY" firstAttribute="leading" secondItem="t9h-bk-dC1" secondAttribute="leadingMargin" constant="-20" id="l0A-ZP-lG3"/>
+                            <constraint firstItem="qqG-ry-efR" firstAttribute="top" secondItem="cl2-zy-fUp" secondAttribute="bottom" id="nN1-34-gSj"/>
+                            <constraint firstItem="zk9-3x-sNy" firstAttribute="leading" secondItem="t9h-bk-dC1" secondAttribute="leadingMargin" id="vFW-n1-SMw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7Cs-KB-hzY" secondAttribute="trailing" constant="-20" id="zRx-fY-4Ni"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LCk-yg-4gq"/>
                     <connections>
                         <outlet property="addScreenlet" destination="qqG-ry-efR" id="vSV-3M-Dsc"/>
+                        <outlet property="displayScreenlet" destination="zk9-3x-sNy" id="8lP-Ds-7cE"/>
+                        <outlet property="displayScreenletHeightConstraint" destination="cRK-6D-X1q" id="QZf-a7-quz"/>
                         <outlet property="listScreenlet" destination="7Cs-KB-hzY" id="9de-SP-F0i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mpb-r6-Lc5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-443" y="319"/>
+            <point key="canvasLocation" x="-381" y="-314"/>
         </scene>
     </scenes>
     <resources>

@@ -22,6 +22,28 @@ import Foundation
 		return attributes["body"]!.description
 	}
 
+	public var commentId: Int64 {
+		return (attributes["commentId"]! as! String).asLong!
+	}
+
+	public var userName: String {
+		return attributes["userName"]!.description
+	}
+
+	public var userId: Int64 {
+		return (attributes["userId"]! as! String).asLong!
+	}
+
+	public var createDate: NSDate {
+		let milliseconds = (attributes["createDate"]! as! NSNumber).doubleValue
+		return NSDate(millisecondsSince1970: milliseconds)
+	}
+
+	public var modifiedDate: NSDate {
+		let milliseconds = (attributes["modifiedDate"]! as! NSNumber).doubleValue
+		return NSDate(millisecondsSince1970: milliseconds)
+	}
+
 	public func encodeWithCoder(aCoder: NSCoder) {
 		let keys = Array(self.attributes.keys)
 

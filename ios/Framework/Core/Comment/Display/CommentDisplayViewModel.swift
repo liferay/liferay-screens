@@ -16,4 +16,6 @@ import UIKit
 
 @objc public protocol CommentDisplayViewModel {
 	var comment: Comment? { get set }
+
+	var computedHeight: CGFloat { get }
 }

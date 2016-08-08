@@ -16,6 +16,15 @@ import Foundation
 
 extension NSDate {
 
+	public convenience init(millisecondsSince1970 millis: Double) {
+		let timeInterval = NSTimeInterval(millis/1000)
+		self.init(timeIntervalSince1970: timeInterval)
+	}
+
+	public func equalToDate(date: NSDate) -> Bool {
+		return self.compare(date) == NSComparisonResult.OrderedSame
+	}
+
 	public var timeAgo: String {
 		let components = self.dateComponents()
 

@@ -61,6 +61,10 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		return screenletView as! UserPortraitViewModel
 	}
 
+	public var userId: Int64? {
+		return loadedUserId
+	}
+
 	private var loadedUserId: Int64?
 
 
