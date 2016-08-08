@@ -1,8 +1,8 @@
 package com.liferay.mobile.screens.testapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
 import com.liferay.mobile.screens.cache.DefaultCachedType;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.testapp.fullview.LoginFullActivity;
@@ -40,55 +40,55 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.list_bookmarks).setOnClickListener(this);
 		findViewById(R.id.relogin).setOnClickListener(this);
 		findViewById(R.id.ratings).setOnClickListener(this);
+		findViewById(R.id.gallery).setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.ddl_form:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(DDLFormActivity.class));
+				startActivity(DDLFormActivity.class);
 				break;
 			case R.id.ddl_list:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(DDLListActivity.class));
+				startActivity(DDLListActivity.class);
 				break;
 			case R.id.asset_list:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(SelectAssetActivity.class));
+				startActivity(SelectAssetActivity.class);
 				break;
 			case R.id.web_content_list:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(WebViewListActivity.class));
+				startActivity(WebViewListActivity.class);
 				break;
 			case R.id.sign_up:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(SignUpActivity.class));
+				startActivity(SignUpActivity.class);
 				break;
 			case R.id.forgot_password:
-				DefaultAnimation.startActivityWithAnimation(this,
-					getIntentWithTheme(ForgotPasswordActivity.class));
+				startActivity(ForgotPasswordActivity.class);
 				break;
 			case R.id.user_portrait:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(UserPortraitActivity.class));
+				startActivity(UserPortraitActivity.class);
 				break;
 			case R.id.web_content_display_screenlet:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(WebContentDisplayActivity.class));
+				startActivity(WebContentDisplayActivity.class);
 				break;
 			case R.id.web_content_display_screenlet_structured:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(WebContentDisplayStructuredActivity.class));
+				startActivity(WebContentDisplayStructuredActivity.class);
 				break;
 			case R.id.add_bookmark:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(AddBookmarkActivity.class));
+				startActivity(AddBookmarkActivity.class);
 				break;
 			case R.id.journal_article_with_template:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(JournalArticleWithTemplateActivity.class));
+				startActivity(JournalArticleWithTemplateActivity.class);
 				break;
 			case R.id.filtered_asset:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(FilteredAssetActivity.class));
+				startActivity(FilteredAssetActivity.class);
 				break;
 			case R.id.login_full_screenlet:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(LoginFullActivity.class));
+				startActivity(LoginFullActivity.class);
 				break;
 			case R.id.change_theme:
 				finish();
 				changeToNextTheme();
-				startActivity(getIntentWithTheme(MainActivity.class));
+				startActivity(MainActivity.class);
 				break;
 			case R.id.clear_cache_forms:
 				int formRows = CacheSQL.getInstance().clear(DefaultCachedType.DDL_FORM);
@@ -111,21 +111,26 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				info("Launched resync process");
 				break;
 			case R.id.custom_interactor:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(CustomInteractorActivity.class));
+				startActivity(CustomInteractorActivity.class);
 				break;
 			case R.id.list_bookmarks:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(ListBookmarksActivity.class));
+				startActivity(ListBookmarksActivity.class);
 				break;
 			case R.id.relogin:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(ReloginActivity.class));
+				startActivity(ReloginActivity.class);
 				break;
 			case R.id.ratings:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(RatingsActivity.class));
+				startActivity(RatingsActivity.class);
+				break;
+			case R.id.gallery:
+				startActivity(GalleryActivity.class);
 				break;
 			default:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(LoginActivity.class));
+				startActivity(LoginActivity.class);
 		}
 	}
 
-
+	private void startActivity(Class clasz) {
+		DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(clasz));
+	}
 }

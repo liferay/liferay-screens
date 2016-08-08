@@ -47,12 +47,16 @@ public abstract class BaseListScreenletView<
 		super(context);
 	}
 
-	public BaseListScreenletView(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public BaseListScreenletView(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public BaseListScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public BaseListScreenletView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public BaseListScreenletView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override

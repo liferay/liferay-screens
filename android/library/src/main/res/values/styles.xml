@@ -21,6 +21,10 @@
 		<item name="themeName">default_theme</item>
 	</style>
 
+	<style name="gallery_theme" parent="Theme.AppCompat.NoActionBar">
+		<item name="android:background">@android:color/black</item>
+	</style>
+
 	<style name="white_theme" parent="Theme.AppCompat.Light">
 		<item name="colorAccent">@android:color/white</item>
 		<item name="android:background">@android:color/transparent</item>

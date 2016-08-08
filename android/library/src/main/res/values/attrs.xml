@@ -144,6 +144,16 @@
 		<attr name="editable"/>
 	</declare-styleable>
 
+	<declare-styleable name="GalleryScreenlet">
+		<attr name="groupId"/>
+		<attr name="folderId"/>
+		<attr name="offlinePolicy"/>
+		<attr name="pageSize" />
+		<attr name="firstPageSize" />
+		<attr name="columnsSize" format="integer"/>
+		<attr name="mimeTypes" format="string" />
+	</declare-styleable>
+
 	<declare-styleable name="ModalProgressBar">
 		<attr name="actionViewId" format="reference" />
 	</declare-styleable>
