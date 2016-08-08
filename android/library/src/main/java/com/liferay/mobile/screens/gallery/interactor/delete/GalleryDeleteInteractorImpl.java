@@ -17,10 +17,14 @@ public class GalleryDeleteInteractorImpl extends BaseRemoteInteractor<GalleryInt
 	}
 
 	@Override
-	public void deleteImageEntry(long imageEntryId) throws Exception {
 		_imageEntryId = imageEntryId;
 		validate(imageEntryId);
 		getDLAppService().deleteFileEntry(imageEntryId);
+	public void deleteImageEntry(long imageEntryId) {
+		try {
+		} catch (Exception e) {
+			getListener().onImageEntryDeleteFailure(e);
+		}
 	}
 
 	public void onEvent(GalleryDeleteEvent event) {

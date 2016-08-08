@@ -241,20 +241,11 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		} else if (userActionName.equals(DELETE_IMAGE)) {
 			long fileEntryId = (long) args[0];
 			GalleryDeleteInteractor galleryDeleteInteractor = (GalleryDeleteInteractor) interactor;
-
-			try {
-				galleryDeleteInteractor.deleteImageEntry(fileEntryId);
-			} catch (Exception e) {
-				onImageEntryDeleteFailure(e);
-			}
+			galleryDeleteInteractor.deleteImageEntry(fileEntryId);
 		} else if (userActionName.equals(UPLOAD_IMAGE)) {
 			String picturePath = (String) args[0];
 			GalleryUploadInteractor galleryUploadInteractor = (GalleryUploadInteractor) interactor;
-			try {
-				galleryUploadInteractor.uploadImageEntry(_groupId, _folderId, "", "", "", picturePath);
-			} catch (Exception e) {
-				onPictureUploadFailure(e);
-			}
+			galleryUploadInteractor.uploadImageEntry(_groupId, _folderId, "", "", "", picturePath);
 		}
 	}
 
