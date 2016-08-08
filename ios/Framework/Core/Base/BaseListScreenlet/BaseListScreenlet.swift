@@ -24,8 +24,7 @@ import UIKit
 	
 	@IBInspectable public var refreshControl: Bool = true {
 		didSet {
-			(screenletView as? BaseListTableView)?.refreshClosure =
-				refreshControl ? self.loadList : nil
+			updateRefreshClosure()
 		}
 	}
 	
@@ -47,9 +46,8 @@ import UIKit
 	override public func onCreated() {
 		baseListView.onSelectedRowClosure = onSelectedRow
 		baseListView.fetchPageForRow = loadPageForRow
-		
-		(screenletView as? BaseListTableView)?.refreshClosure =
-			refreshControl ? self.loadList : nil
+
+		updateRefreshClosure()
 	}
 	
 	override public func onShow() {
@@ -158,5 +156,16 @@ import UIKit
 	
 	public func onSelectedRow(row:AnyObject) {
 	}
-	
+
+	internal func updateRefreshClosure() {
+
+		let refreshClosure: (Void -> Bool)? = refreshControl ? self.loadList : nil
+
+		if let screenletView = screenletView as? BaseListTableView {
+			screenletView.refreshClosure = refreshClosure
+		}
+		else if let screenletView = screenletView as? BaseListCollectionView {
+			screenletView.refreshClosure = refreshClosure
+		}
+	}
 }
