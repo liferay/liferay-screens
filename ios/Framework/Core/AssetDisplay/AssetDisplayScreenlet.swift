@@ -21,6 +21,10 @@ import UIKit
 	
 	optional func screenlet(screenlet: AssetDisplayScreenlet,
 	                        onAssetEntryError error: NSError)
+
+	optional func screenlet(screenlet: AssetDisplayScreenlet,
+	                        onConfigureScreenlet childScreenlet: BaseScreenlet?,
+							onAssetEntry assetEntry: Asset)
 }
 
 @IBDesignable public class AssetDisplayScreenlet: BaseScreenlet {

@@ -26,39 +26,32 @@ public class AssetDisplayScreenletFactory {
 	let videoMimeTypes = ["video/mp4", "video/x-flv", "video/3gp", "video/quicktime", "video/x-msvideo", "video/x-ms-wmv"]
 	let audioMimeTypes = ["audio/mpeg", "audio/mpeg3", "audio/wav"]
 
-	public func createScreenlet(frame: CGRect) -> BaseScreenlet? {
+	public func createScreenlet(frame: CGRect, screenlet: AssetDisplayScreenlet?) -> BaseScreenlet? {
 
 		let classAssetName = AssetClassNameIds.get(assetEntry.classNameId)
+
+		var childScreenlet: BaseScreenlet?
 
 		if let className = classAssetName {
 			switch className {
 			case "DLFileEntry":
 				let mimeType = assetEntry.mimeType
 
-				let initializer: (BaseScreenlet -> ()) = { screenlet in
-					if let s = screenlet as? BaseFileDisplayScreenlet {
-						s.fileEntry = FileEntry(attributes: self.assetEntry.attributes)
-						s.autoLoad = false
-						s.loadFile()
-					}
-				}
-
 				if isImage(mimeType) {
-					return ImageDisplayScreenlet(frame: frame, themeName: nil, initalizer: initializer)
+					childScreenlet = ImageDisplayScreenlet(frame: frame, themeName: nil, initalizer: nil)
 				} else if isVideo(mimeType) {
-					return VideoDisplayScreenlet(frame: frame, themeName: nil, initalizer: initializer)
+					childScreenlet = VideoDisplayScreenlet(frame: frame, themeName: nil, initalizer: nil)
 				} else if isAudio(mimeType) {
-					return AudioDisplayScreenlet(frame: frame, themeName: nil, initalizer: initializer)
+					childScreenlet = AudioDisplayScreenlet(frame: frame, themeName: nil, initalizer: nil)
 				} else if mimeType == "application/pdf" {
-					return PdfDisplayScreenlet(frame: frame, themeName: nil, initalizer: initializer)
+					childScreenlet = PdfDisplayScreenlet(frame: frame, themeName: nil, initalizer: nil)
 				}
 			default:
-				return nil
+				break;
 			}
-
 		}
 
-		return nil
+		return configureScreenlet(screenlet, childScreenlet: childScreenlet)
 	}
 
 	func isImage(mimeType: String) -> Bool {
@@ -71,5 +64,20 @@ public class AssetDisplayScreenletFactory {
 
 	func isAudio(mimeType: String) -> Bool {
 		return audioMimeTypes.contains(mimeType)
+	}
+
+	func configureScreenlet(screenlet: AssetDisplayScreenlet?, childScreenlet: BaseScreenlet?) -> BaseScreenlet? {
+
+		if childScreenlet is BaseFileDisplayScreenlet {
+			if let s = childScreenlet as? BaseFileDisplayScreenlet {
+				s.fileEntry = FileEntry(attributes: self.assetEntry.attributes)
+				s.autoLoad = false
+				s.loadFile()
+			}
+		}
+
+		screenlet?.assetDisplayDelegate?.screenlet?(screenlet!, onConfigureScreenlet: childScreenlet, onAssetEntry: self.assetEntry)
+
+		return childScreenlet
 	}
 }
