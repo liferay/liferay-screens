@@ -37,11 +37,6 @@ public class SlideshowGalleryView extends
 	}
 
 	@Override
-	public void setColumns(int numCols) {
-
-	}
-
-	@Override
 	public void deleteImage(long imageEntryId) {
 
 	}
@@ -52,7 +47,7 @@ public class SlideshowGalleryView extends
 	}
 
 	@Override
-	public void updateView() {
+	public void reloadView(Object... params) {
 
 	}
 

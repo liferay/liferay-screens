@@ -27,7 +27,7 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, V
 	private Button buttonPlus;
 	private ProgressDialog progressDialog;
 
-	private int columnsSize = 5;
+	private int columnsSize;
 
 	private boolean isGridMode = true;
 
@@ -54,6 +54,7 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, V
 		createProgressDialog();
 
 		SessionContext.createBasicSession("test@liferay.com", "test");
+		columnsSize = galleryScreenletGrid.getColumnsSize();
 	}
 
 	@Override
@@ -134,14 +135,14 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, V
 
 		if (v.getId() == R.id.image_gallery_button_minus) {
 			if (columnsSize > 1) {
-				galleryScreenletGrid.updateView();
 				galleryScreenletGrid.setColumnsSize(columnsSize--);
+				galleryScreenletGrid.updateView(columnsSize);
 			}
 		}
 
 		if (v.getId() == R.id.image_gallery_button_plus) {
-			galleryScreenletGrid.updateView();
 			galleryScreenletGrid.setColumnsSize(columnsSize++);
+			galleryScreenletGrid.updateView(columnsSize);
 		}
 	}
 

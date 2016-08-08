@@ -52,11 +52,6 @@ public class GridGalleryView
 	}
 
 	@Override
-	public void setColumns(int numCols) {
-		_columnsSize = numCols;
-	}
-
-	@Override
 	public void deleteImage(long imageEntryId) {
 		List<ImageEntry> entries = getAdapter().getEntries();
 

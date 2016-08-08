@@ -82,7 +82,6 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 	}
 
 	public void setColumnsSize(int columnsSize) {
-		getViewModel().setColumns(columnsSize);
 		this.columnsSize = columnsSize;
 	}
 
@@ -179,8 +178,8 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		getListener().onImageUploadFailure(e);
 	}
 
-	public void updateView() {
-		getViewModel().updateView();
+	public void updateView(Object... args) {
+		getViewModel().reloadView(args);
 	}
 
 	public void showImageInFullScreenActivity(ImageEntry image) {
