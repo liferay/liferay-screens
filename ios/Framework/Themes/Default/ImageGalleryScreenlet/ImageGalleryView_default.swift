@@ -66,7 +66,12 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 			return
 		}
 
-		imageCell.imageUrl = entry.thumbnailUrl
+		if let image = entry.image {
+			imageCell.image = image
+		}
+		else {
+			imageCell.imageUrl = entry.thumbnailUrl
+		}
 	}
 
 	public override func layoutSubviews() {
@@ -88,11 +93,7 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 	}
 
 	public override func doGetCellId(indexPath indexPath: NSIndexPath, object: AnyObject?) -> String {
-		if let _ = object {
-			return imageCellId
-		}
-
-		return super.doGetCellId(indexPath: indexPath, object: object)
+		return imageCellId
 	}
 
 	public func changeLayout() {
