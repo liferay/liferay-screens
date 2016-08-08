@@ -39,7 +39,7 @@ public class ImageEntry : Asset {
     }
     
     private func createThumbnailUrl() -> String {
-        return "\(createImageUrl())?version=\(attributes["version"]!)&imageThumbnail=1&t=\(CFAbsoluteTimeGetCurrent())"
+        return "\(createImageUrl())?version=\(attributes["version"]!)&imageThumbnail=1"
     }
     
     private func createImageUrl() -> String {
