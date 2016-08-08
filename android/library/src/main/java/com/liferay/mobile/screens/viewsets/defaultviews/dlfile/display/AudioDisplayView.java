@@ -41,8 +41,8 @@ public class AudioDisplayView extends LinearLayout implements BaseFileDisplayVie
 
 	@Override
 	public void showFinishOperation(String actionName) {
-		throw new UnsupportedOperationException("showFinishOperation(String) is not supported."
-			+ " Use showFinishOperation(FileEntry) instead.");
+		throw new UnsupportedOperationException(
+			"showFinishOperation(String) is not supported." + " Use showFinishOperation(FileEntry) instead.");
 	}
 
 	@Override
@@ -52,36 +52,36 @@ public class AudioDisplayView extends LinearLayout implements BaseFileDisplayVie
 
 	@Override
 	public BaseScreenlet getScreenlet() {
-		return _screenlet;
+		return screenlet;
 	}
 
 	@Override
 	public void setScreenlet(BaseScreenlet screenlet) {
-		this._screenlet = screenlet;
+		this.screenlet = screenlet;
 	}
 
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_audioView = (VideoView) findViewById(R.id.liferay_audio_asset);
+		audioView = (VideoView) findViewById(R.id.liferay_audio_asset);
 	}
 
 	@Override
 	public void showFinishOperation(FileEntry fileEntry) {
-		_fileEntry = fileEntry;
+		this.fileEntry = fileEntry;
 		loadAudio();
 	}
 
 	private void loadAudio() {
-		_audioView.setVideoPath(getResources().getString(R.string.liferay_server) + _fileEntry.getUrl());
-		_audioView.setMediaController(new MediaController(getContext()));
-		_audioView.setZOrderOnTop(true);
-		_audioView.requestFocus();
-		_audioView.start();
+		audioView.setVideoPath(getResources().getString(R.string.liferay_server) + fileEntry.getUrl());
+		audioView.setMediaController(new MediaController(getContext()));
+		audioView.setZOrderOnTop(true);
+		audioView.requestFocus();
+		audioView.start();
 	}
 
-	private BaseScreenlet _screenlet;
-	private VideoView _audioView;
-	private FileEntry _fileEntry;
+	private BaseScreenlet screenlet;
+	private VideoView audioView;
+	private FileEntry fileEntry;
 }

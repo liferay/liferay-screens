@@ -52,36 +52,36 @@ public class VideoDisplayView extends LinearLayout implements BaseFileDisplayVie
 
 	@Override
 	public BaseScreenlet getScreenlet() {
-		return _screenlet;
+		return screenlet;
 	}
 
 	@Override
 	public void setScreenlet(BaseScreenlet screenlet) {
-		this._screenlet = screenlet;
+		this.screenlet = screenlet;
 	}
 
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_videoView = (VideoView) findViewById(R.id.liferay_video_asset);
+		videoView = (VideoView) findViewById(R.id.liferay_video_asset);
 	}
 
 	@Override
 	public void showFinishOperation(FileEntry fileEntry) {
-		_fileEntry = fileEntry;
+		this.fileEntry = fileEntry;
 		loadVideo();
 	}
 
 	private void loadVideo() {
-		_videoView.setVideoPath(getResources().getString(R.string.liferay_server) + _fileEntry.getUrl());
-		_videoView.setMediaController(new MediaController(getContext()));
-		_videoView.setZOrderOnTop(true);
-		_videoView.requestFocus();
-		_videoView.start();
+		videoView.setVideoPath(getResources().getString(R.string.liferay_server) + fileEntry.getUrl());
+		videoView.setMediaController(new MediaController(getContext()));
+		videoView.setZOrderOnTop(true);
+		videoView.requestFocus();
+		videoView.start();
 	}
 
-	private BaseScreenlet _screenlet;
-	private FileEntry _fileEntry;
-	private VideoView _videoView;
+	private BaseScreenlet screenlet;
+	private FileEntry fileEntry;
+	private VideoView videoView;
 }

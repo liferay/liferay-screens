@@ -52,33 +52,33 @@ public class ImageDisplayView extends LinearLayout implements BaseFileDisplayVie
 
 	@Override
 	public BaseScreenlet getScreenlet() {
-		return _screenlet;
+		return screenlet;
 	}
 
 	@Override
 	public void setScreenlet(BaseScreenlet screenlet) {
-		this._screenlet = screenlet;
+		this.screenlet = screenlet;
 	}
 
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_imageView = (ImageView) findViewById(R.id.liferay_image_asset);
+		imageView = (ImageView) findViewById(R.id.liferay_image_asset);
 	}
 
 	@Override
 	public void showFinishOperation(FileEntry fileEntry) {
-		_fileEntry = fileEntry;
+		this.fileEntry = fileEntry;
 		loadImage();
 	}
 
 	private void loadImage() {
-		String path = getResources().getString(R.string.liferay_server) + _fileEntry.getUrl();
-		Picasso.with(getContext()).load(path).into(_imageView);
+		String path = getResources().getString(R.string.liferay_server) + fileEntry.getUrl();
+		Picasso.with(getContext()).load(path).into(imageView);
 	}
 
-	private BaseScreenlet _screenlet;
-	private FileEntry _fileEntry;
-	private ImageView _imageView;
+	private BaseScreenlet screenlet;
+	private FileEntry fileEntry;
+	private ImageView imageView;
 }
