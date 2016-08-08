@@ -10,16 +10,18 @@ import UIKit
 
 public class ImageGallerySlideshowCell: UICollectionViewCell {
 
-	@IBOutlet private var slideshowImage: UIImageView!
+	@IBOutlet private weak var slideshowImage: UIImageView!
 
-	var outputStream: NSOutputStream?
+	private var placeholderImage: UIImage?
 
 	public var imageUrl: String  {
 		get {
 			return ""
 		}
 		set {
-			slideshowImage.setImageWithURL(NSURL(string: newValue)!)
+			slideshowImage.lr_setImageWithURL(NSURL(string: newValue)!,
+					placeholderImage: placeholderImage,
+					optionsInfo: [.BackgroundDecode])
 		}
 	}
 
@@ -32,8 +34,17 @@ public class ImageGallerySlideshowCell: UICollectionViewCell {
 		}
 	}
 
+	public override func awakeFromNib() {
+		super.awakeFromNib()
+		slideshowImage.kf_showIndicatorWhenLoading = true
+		
+		placeholderImage = NSBundle.imageInBundles(
+			name: "default-placeholder-image",
+			currentClass: self.dynamicType)
+	}
+
 	public override func prepareForReuse() {
-		slideshowImage.image = nil
-		slideshowImage.cancelImageRequestOperation()
+		super.prepareForReuse()
+		slideshowImage.image = placeholderImage
 	}
 }
