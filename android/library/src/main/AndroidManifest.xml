@@ -11,6 +11,6 @@
 		<activity android:name=".base.MediaStoreRequestShadowActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
     <activity
         android:name=".viewsets.defaultviews.gallery.DetailImageActivity"
-        android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        android:theme="@style/gallery_theme"/>
   </application>
 </manifest>
