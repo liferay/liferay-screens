@@ -24,12 +24,16 @@ public class SlideshowGalleryView extends
 		super(context);
 	}
 
-	public SlideshowGalleryView(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public SlideshowGalleryView(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public SlideshowGalleryView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public SlideshowGalleryView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public SlideshowGalleryView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override

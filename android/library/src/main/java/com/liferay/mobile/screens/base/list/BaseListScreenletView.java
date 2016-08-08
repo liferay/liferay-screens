@@ -53,9 +53,8 @@ public abstract class BaseListScreenletView<E extends Parcelable, H extends Base
 		super(context, attrs, defStyleAttr);
 	}
 
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	public BaseListScreenletView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
+		super(context, attrs, defStyleAttr, defStyleRes);		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override
