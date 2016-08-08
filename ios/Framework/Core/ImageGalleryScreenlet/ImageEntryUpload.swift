@@ -13,7 +13,7 @@
 */
 import Foundation
 
-@objc public class ImageEntryUpload: NSObject {
+@objc public class ImageEntryUpload: NSObject, NSCoding {
 
 	public let image: UIImage
 	public let thumbnail: UIImage?
@@ -26,5 +26,22 @@ import Foundation
 		self.thumbnail = thumbnail
 		self.title = title
 		self.descript = descript
+	}
+
+	public required init?(coder aDecoder: NSCoder) {
+		image = (aDecoder.decodeObjectForKey("image") as? UIImage)!
+		thumbnail = aDecoder.decodeObjectForKey("thumbnail") as? UIImage
+		title = aDecoder.decodeObjectForKey("title") as! String
+		descript = aDecoder.decodeObjectForKey("descript") as! String
+		super.init()
+	}
+
+	public func encodeWithCoder(aCoder: NSCoder) {
+		aCoder.encodeObject(image, forKey: "image")
+		if let thumbnail = thumbnail {
+			aCoder.encodeObject(thumbnail, forKey: "thumbnail")
+		}
+		aCoder.encodeObject(title, forKey: "title")
+		aCoder.encodeObject(descript, forKey: "descript")
 	}
 }
