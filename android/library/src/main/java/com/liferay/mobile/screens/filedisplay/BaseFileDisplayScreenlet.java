@@ -28,6 +28,23 @@ public abstract class BaseFileDisplayScreenlet
 		super(context, attrs, defStyleAttr);
 	}
 
+
+	@Override
+	protected View createScreenletView(Context context, AttributeSet attributes) {
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.AssetDisplayScreenlet, 0, 0);
+
+		int layoutId = typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_layoutId, getDefaultLayoutId());
+
+		autoLoad = typedArray.getBoolean(R.styleable.AssetDisplayScreenlet_autoLoad, true);
+		entryId = typedArray.getInt(R.styleable.AssetDisplayScreenlet_entryId, 0);
+
+		View view = LayoutInflater.from(context).inflate(layoutId, null);
+
+		typedArray.recycle();
+
+		return view;
+	}
 	@Override
 	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
 		_fileEntry = (FileEntry) assetEntry;
