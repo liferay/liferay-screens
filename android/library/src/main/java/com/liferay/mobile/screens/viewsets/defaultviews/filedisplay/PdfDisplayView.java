@@ -33,7 +33,7 @@ import java.io.IOException;
 /**
  * @author Sarai Díaz García
  */
-public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewModel {
+public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewModel, View.OnClickListener {
 
 	public PdfDisplayView(Context context) {
 		super(context);
@@ -53,13 +53,23 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 	}
 
 	@Override
-	public void showStartOperation(String actionName) {
+	protected void onFinishInflate() {
+		super.onFinishInflate();
+
+		imagePdf = (ImageView) findViewById(R.id.liferay_pdf_renderer);
+
+		progressBar = (ProgressBar) findViewById(R.id.liferay_asset_progress_bar);
+		progressText = (TextView) findViewById(R.id.liferay_asset_progress_number);
+
+		goToPage = (EditText) findViewById(R.id.liferay_go_to_page);
+		goToPageButton = (Button) findViewById(R.id.liferay_go_to_page_submit);
+
+		previousPage = (Button) findViewById(R.id.liferay_previous_page);
+		nextPage = (Button) findViewById(R.id.liferay_next_page);
 	}
 
 	@Override
-	public void showFinishOperation(String actionName) {
-		throw new UnsupportedOperationException("showFinishOperation(String) is not supported."
-			+ " Use showFinishOperation(FileEntry) instead.");
+	public void showStartOperation(String actionName) {
 	}
 
 	@Override
@@ -68,161 +78,148 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 	}
 
 	@Override
-	public BaseScreenlet getScreenlet() {
-		return _screenlet;
-	}
-
-	@Override
-	public void setScreenlet(BaseScreenlet screenlet) {
-		this._screenlet = screenlet;
-	}
-
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
-
-		_imagePdf = (ImageView) findViewById(R.id.liferay_pdf_renderer);
-
-		_progressBar = (ProgressBar) findViewById(R.id.liferay_asset_progress_bar);
-		_progressText = (TextView) findViewById(R.id.liferay_asset_progress_number);
-
-		_editPage = (EditText) findViewById(R.id.liferay_edit_pdf_page);
-		_btnGo = (Button) findViewById(R.id.liferay_btn_go_page);
-
-		_btnPrevious = (Button) findViewById(R.id.liferay_btn_previous);
-		_btnNext = (Button) findViewById(R.id.liferay_btn_next);
-	}
-
-	@Override
 	public void showFinishOperation(FileEntry fileEntry) {
-		_fileEntry = fileEntry;
+		this.fileEntry = fileEntry;
+
 		render();
 	}
 
-	public void setCurrentPage(int currentPage) {
-		this._currentPage = currentPage;
+	@Override
+	public void showFinishOperation(String actionName) {
+		throw new UnsupportedOperationException(
+			"showFinishOperation(String) is not supported." + " Use showFinishOperation(FileEntry) instead.");
+	}
+
+	private void render() {
+		if (Build.VERSION.SDK_INT >= 21) {
+			renderInLollipop();
+		} else {
+			String server = getResources().getString(R.string.liferay_server);
+			getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(server + fileEntry.getUrl())));
+		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		if (v.getId() == R.id.liferay_previous_page) {
+			currentPage--;
+			renderPdfPage();
+		} else if (v.getId() == R.id.liferay_next_page) {
+			currentPage++;
+			renderPdfPage();
+		} else if (v.getId() == R.id.liferay_go_to_page_submit) {
+			String number = goToPage.getText().toString();
+			if (!number.isEmpty()) {
+				currentPage = Integer.parseInt(number) - 1;
+				renderPdfPage();
+			}
+		}
+	}
+
+	private void renderInLollipop() {
+		previousPage.setOnClickListener(this);
+		nextPage.setOnClickListener(this);
+		goToPageButton.setOnClickListener(this);
+
+		progressBar.setVisibility(VISIBLE);
+
+		String filePath = getResources().getString(R.string.liferay_server) + fileEntry.getUrl();
+		file = new File(getContext().getExternalCacheDir().getPath() + "/" + fileEntry.getTitle());
+		if (!file.exists()) {
+			Intent intent = new Intent(getContext(), DownloadService.class);
+			intent.putExtra(DownloadService.URL, filePath);
+			intent.putExtra(DownloadService.CACHE_DIR, getContext().getExternalCacheDir().getPath());
+			intent.putExtra(DownloadService.FILENAME, fileEntry.getTitle());
+			intent.putExtra(DownloadService.RESULT_RECEIVER, new DownloadReceiver(new Handler()));
+			getContext().startService(intent);
+		} else {
+			renderPdfInImageView(file);
+		}
+	}
+
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
+	private void renderPdfPage() {
+		if (currentPage < 0) {
+			currentPage = 0;
+		} else if (currentPage > renderer.getPageCount() - 1) {
+			currentPage = renderer.getPageCount() - 1;
+		}
+
+		Matrix m = imagePdf.getImageMatrix();
+		PdfRenderer.Page page = renderer.openPage(currentPage);
+		Bitmap bitmap = Bitmap.createBitmap(page.getWidth(), page.getHeight(), Bitmap.Config.ARGB_8888);
+		Rect rect = new Rect(0, 0, page.getWidth(), page.getHeight());
+		page.render(bitmap, rect, m, PdfRenderer.Page.RENDER_MODE_FOR_PRINT);
+		imagePdf.setImageMatrix(m);
+		imagePdf.setImageBitmap(bitmap);
+		page.close();
+
+		hideProgressBar();
 	}
 
 	private class DownloadReceiver extends ResultReceiver {
+
 		public DownloadReceiver(Handler handler) {
 			super(handler);
 		}
 
 		protected void onReceiveResult(int resultCode, Bundle resultData) {
 			super.onReceiveResult(resultCode, resultData);
+
 			if (resultCode == DownloadService.UPDATE_PROGRESS) {
-				_progress = resultData.getInt("progress");
-				_progressText.setText(String.valueOf(_progress).concat("%"));
-				_progressBar.setVisibility(VISIBLE);
-				_progressText.setVisibility(VISIBLE);
-				if (_progress == 100) {
-					renderPdfInImageView(_file);
-				}
-			}
-		}
-	}
 
-	private void changePdfPage() {
-		if (_currentPage < 0) {
-			_currentPage = 0;
-		} else if (_currentPage > _renderer.getPageCount() - 1) {
-			_currentPage = _renderer.getPageCount() - 1;
-		}
-
-		Matrix m = _imagePdf.getImageMatrix();
-		PdfRenderer.Page page = _renderer.openPage(_currentPage);
-		Bitmap bitmap = Bitmap.createBitmap(page.getWidth(), page.getHeight(),
-			Bitmap.Config.ARGB_8888);
-		Rect rect = new Rect(0, 0, page.getWidth(), page.getHeight());
-		page.render(bitmap, rect, m, PdfRenderer.Page.RENDER_MODE_FOR_PRINT);
-		_imagePdf.setImageMatrix(m);
-		_imagePdf.setImageBitmap(bitmap);
-		page.close();
-		updateView();
-	}
-
-	private void render() {
-		if (Build.VERSION.SDK_INT >= 21) {
-
-			_btnPrevious.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View view) {
-					_currentPage--;
-					changePdfPage();
-				}
-			});
-
-			_btnNext.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View view) {
-					_currentPage++;
-					changePdfPage();
-				}
-			});
-
-			_btnGo.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					if (!_editPage.getText().toString().isEmpty()) {
-						setCurrentPage(Integer.parseInt(_editPage.getText().toString()));
-						_currentPage--;
-						changePdfPage();
-					}
-				}
-			});
-
-			_progressBar.setVisibility(VISIBLE);
-			String filePath = getResources().getString(R.string.liferay_server) + _fileEntry.getUrl();
-			_file = new File(getContext().getExternalCacheDir().getPath() + "/" + _fileEntry.getTitle());
-			if (!_file.exists()) {
-				Intent intent = new Intent(getContext(), DownloadService.class);
-				intent.putExtra("url", filePath);
-				intent.putExtra("cacheDir", getContext().getExternalCacheDir().getPath());
-				intent.putExtra("filename", _fileEntry.getTitle());
-				intent.putExtra("receiver", new DownloadReceiver(new Handler()));
-				getContext().startService(intent);
-				renderPdfInImageView(_file);
+				int progress = resultData.getInt(DownloadService.FILE_DOWNLOAD_PROGRESS);
+				progressText.setText(String.valueOf(progress).concat("%"));
+				progressBar.setVisibility(VISIBLE);
+				progressText.setVisibility(VISIBLE);
+			} else if (resultCode == DownloadService.FINISHED_DOWNLOAD) {
+				renderPdfInImageView(file);
 			} else {
-				_progressBar.setVisibility(VISIBLE);
-				renderPdfInImageView(_file);
+				//TODO launch error
 			}
-		} else {
-			_intent = new Intent(Intent.ACTION_VIEW,
-				Uri.parse(getResources().getString(R.string.liferay_server) + _fileEntry.getUrl()));
-			getContext().startActivity(_intent);
 		}
 	}
 
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	private void renderPdfInImageView(File file) {
 		try {
-			_renderer = new PdfRenderer(ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY));
-			changePdfPage();
+			renderer = new PdfRenderer(ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY));
+			renderPdfPage();
 		} catch (IOException e) {
 			e.getMessage();
 		}
 	}
 
-	private void updateView() {
-		_btnNext.setVisibility(VISIBLE);
-		_btnPrevious.setVisibility(VISIBLE);
-		_editPage.setVisibility(VISIBLE);
-		_btnGo.setVisibility(VISIBLE);
-		_progressBar.setVisibility(GONE);
-		_progressText.setVisibility(GONE);
+	private void hideProgressBar() {
+		nextPage.setVisibility(VISIBLE);
+		previousPage.setVisibility(VISIBLE);
+		goToPage.setVisibility(VISIBLE);
+		goToPageButton.setVisibility(VISIBLE);
+
+		progressBar.setVisibility(GONE);
+		progressText.setVisibility(GONE);
 	}
 
-	private int _currentPage = 0;
-	private int _progress;
-	private BaseScreenlet _screenlet;
-	private Button _btnNext;
-	private Button _btnPrevious;
-	private Button _btnGo;
-	private EditText _editPage;
-	private File _file;
-	private FileEntry _fileEntry;
-	private ImageView _imagePdf;
-	private Intent _intent;
-	private PdfRenderer _renderer;
-	private ProgressBar _progressBar;
-	private TextView _progressText;
+	@Override
+	public BaseScreenlet getScreenlet() {
+		return screenlet;
+	}
+
+	@Override
+	public void setScreenlet(BaseScreenlet screenlet) {
+		this.screenlet = screenlet;
+	}
+
+	private int currentPage;
+	private BaseScreenlet screenlet;
+	private Button nextPage;
+	private Button previousPage;
+	private Button goToPageButton;
+	private EditText goToPage;
+	private File file;
+	private FileEntry fileEntry;
+	private ImageView imagePdf;
+	private PdfRenderer renderer;
+	private ProgressBar progressBar;
+	private TextView progressText;
 }
