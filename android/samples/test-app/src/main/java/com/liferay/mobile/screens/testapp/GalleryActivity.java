@@ -89,12 +89,12 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, V
 	}
 
 	@Override
-	public void onImageEntryDeleteFailure(GalleryScreenlet screenlet, Exception e) {
+	public void onImageEntryDeleteFailure(Exception e) {
 		error("Error deleting image", e);
 	}
 
 	@Override
-	public void onImageEntryDeleted(GalleryScreenlet screenlet, long imageEntryId) {
+	public void onImageEntryDeleted(long imageEntryId) {
 		info("Image deleted: " + imageEntryId);
 	}
 

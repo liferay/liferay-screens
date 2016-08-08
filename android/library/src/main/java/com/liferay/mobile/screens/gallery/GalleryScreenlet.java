@@ -136,13 +136,13 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 	@Override
 	public void onImageEntryDeleteFailure(Exception e) {
 		if (getListener() != null) {
-			getListener().onImageEntryDeleteFailure(this, e);
+			getListener().onImageEntryDeleteFailure(e);
 		}
 	}
 
 	@Override
 	public void onImageEntryDeleted(long imageEntryId) {
-		getListener().onImageEntryDeleted(this, imageEntryId);
+		getListener().onImageEntryDeleted(imageEntryId);
 		getViewModel().deleteImage(imageEntryId);
 	}
 
