@@ -26,7 +26,6 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 	@IBInspectable public var assetEntryId: Int64 = 0
 
 	@IBInspectable public var classPK: Int64 = 0
-	@IBInspectable public var className: String = ""
 
 	@IBInspectable public var autoLoad: Bool = true
 
@@ -56,6 +55,9 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 		if isActionRunning(name) {
 			cancelInteractorsForAction(name)
 		}
+
+		//TODO add classNames to AssetClassNameIds class
+		let className = "com.liferay.blogs.kernel.model.BlogsEntry"
 
 		let interactor = LoadAssetInteractor(
 			screenlet: self, assetEntryId: assetEntryId, className: className, classPK: classPK)
