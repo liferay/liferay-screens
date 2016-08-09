@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="rating_total">Total: %d</string>
+	<string name="rating_count">%d Ratings</string>
+	<string name="ratings_error">An error occurred during the requested operation</string>
+</resources>

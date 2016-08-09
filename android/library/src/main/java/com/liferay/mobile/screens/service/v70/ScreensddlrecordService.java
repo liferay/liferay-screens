@@ -14,7 +14,9 @@
 
 package com.liferay.mobile.screens.service.v70;
 
+import com.liferay.mobile.android.http.file.UploadData;
 import com.liferay.mobile.android.service.BaseService;
+import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 
 import org.json.JSONArray;
@@ -52,59 +54,6 @@ public class ScreensddlrecordService extends BaseService {
 		}
 
 		return _result.getJSONObject(0);
-	}
-
-	public JSONArray getDdlRecords(long ddlRecordSetId, String locale, int start, int end) throws Exception {
-		JSONObject _command = new JSONObject();
-
-		try {
-			JSONObject _params = new JSONObject();
-
-			_params.put("ddlRecordSetId", ddlRecordSetId);
-			_params.put("locale", checkNull(locale));
-			_params.put("start", start);
-			_params.put("end", end);
-
-			_command.put("/screens.screensddlrecord/get-ddl-records", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
-
-		JSONArray _result = session.invoke(_command);
-
-		if (_result == null) {
-			return null;
-		}
-
-		return _result.getJSONArray(0);
-	}
-
-	public JSONArray getDdlRecords(long ddlRecordSetId, long userId, String locale, int start, int end) throws Exception {
-		JSONObject _command = new JSONObject();
-
-		try {
-			JSONObject _params = new JSONObject();
-
-			_params.put("ddlRecordSetId", ddlRecordSetId);
-			_params.put("userId", userId);
-			_params.put("locale", checkNull(locale));
-			_params.put("start", start);
-			_params.put("end", end);
-
-			_command.put("/screens.screensddlrecord/get-ddl-records", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
-
-		JSONArray _result = session.invoke(_command);
-
-		if (_result == null) {
-			return null;
-		}
-
-		return _result.getJSONArray(0);
 	}
 
 	public Integer getDdlRecordsCount(long ddlRecordSetId) throws Exception {
@@ -152,6 +101,61 @@ public class ScreensddlrecordService extends BaseService {
 		}
 
 		return _result.getInt(0);
+	}
+
+	public JSONArray getDdlRecords(long ddlRecordSetId, long userId, String locale, int start, int end, JSONObjectWrapper obc) throws Exception {
+		JSONObject _command = new JSONObject();
+
+		try {
+			JSONObject _params = new JSONObject();
+
+			_params.put("ddlRecordSetId", ddlRecordSetId);
+			_params.put("userId", userId);
+			_params.put("locale", checkNull(locale));
+			_params.put("start", start);
+			_params.put("end", end);
+			mangleWrapper(_params, "obc", "com.liferay.portal.kernel.util.OrderByComparator<com.liferay.dynamic.data.lists.model.DDLRecord>", obc);
+
+			_command.put("/screens.screensddlrecord/get-ddl-records", _params);
+		}
+		catch (JSONException _je) {
+			throw new Exception(_je);
+		}
+
+		JSONArray _result = session.invoke(_command);
+
+		if (_result == null) {
+			return null;
+		}
+
+		return _result.getJSONArray(0);
+	}
+
+	public JSONArray getDdlRecords(long ddlRecordSetId, String locale, int start, int end, JSONObjectWrapper obc) throws Exception {
+		JSONObject _command = new JSONObject();
+
+		try {
+			JSONObject _params = new JSONObject();
+
+			_params.put("ddlRecordSetId", ddlRecordSetId);
+			_params.put("locale", checkNull(locale));
+			_params.put("start", start);
+			_params.put("end", end);
+			mangleWrapper(_params, "obc", "com.liferay.portal.kernel.util.OrderByComparator<com.liferay.dynamic.data.lists.model.DDLRecord>", obc);
+
+			_command.put("/screens.screensddlrecord/get-ddl-records", _params);
+		}
+		catch (JSONException _je) {
+			throw new Exception(_je);
+		}
+
+		JSONArray _result = session.invoke(_command);
+
+		if (_result == null) {
+			return null;
+		}
+
+		return _result.getJSONArray(0);
 	}
 
 }

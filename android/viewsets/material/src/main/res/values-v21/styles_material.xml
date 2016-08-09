@@ -12,7 +12,7 @@
 		<item name="colorPrimaryDark">@color/colorPrimaryDark_material</item>
 
 		<item name="android:colorControlNormal">@color/colorPrimary_material</item>
-		<item name="android:colorControlHighlight">@color/colorPrimary_material</item>
+		<item name="android:colorControlHighlight">@color/colorAccent_material</item>
 		<item name="android:colorControlActivated">@color/colorPrimary_material</item>
 
 		<item name="android:textColorPrimary">@color/textColorPrimary_material</item>

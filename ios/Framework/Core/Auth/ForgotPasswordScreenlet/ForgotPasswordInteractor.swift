@@ -51,8 +51,8 @@ class ForgotPasswordInteractor: ServerConnectorInteractor {
 		return connector!
 	}
 
-	override func completedConnector(op: ServerConnector) {
-		self.resultPasswordSent = (op as! ForgotPasswordBaseLiferayConnector).resultPasswordSent
+	override func completedConnector(c: ServerConnector) {
+		self.resultPasswordSent = (c as! ForgotPasswordBaseLiferayConnector).resultPasswordSent
 	}
 
 	override func interactionResult() -> AnyObject? {

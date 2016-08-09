@@ -160,7 +160,8 @@ public class DDLFieldTextareaTableCell_default: DDMFieldTableCell, UITextViewDel
 			textViewDidEndEditing(textView)
 			nextCellResponder(textView)
 			result = false
-		} else {
+		}
+		else {
 			result = true
 
 			let newText = (textView.text as NSString).stringByReplacingCharactersInRange(range,

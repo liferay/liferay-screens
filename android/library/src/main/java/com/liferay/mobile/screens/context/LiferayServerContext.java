@@ -47,7 +47,7 @@ public class LiferayServerContext {
 	}
 
 	public static void setCompanyId(long companyId) {
-		_companyId = companyId;
+		LiferayServerContext._companyId = companyId;
 	}
 
 	public static long getGroupId() {
@@ -55,7 +55,7 @@ public class LiferayServerContext {
 	}
 
 	public static void setGroupId(long groupId) {
-		_groupId = groupId;
+		LiferayServerContext._groupId = groupId;
 	}
 
 	public static String getServer() {
@@ -63,7 +63,7 @@ public class LiferayServerContext {
 	}
 
 	public static void setServer(String server) {
-		_server = server;
+		LiferayServerContext._server = server;
 	}
 
 	public static String getClassFactory() {

@@ -47,6 +47,7 @@ public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 		connector.groupId = (self.groupId != 0)
 				? self.groupId : LiferayServerContext.groupId
 		connector.classNameId = self.classNameId
+		connector.obcClassName = self.obcClassName
 
 		connector.portletItemName = self.portletItemName
 		connector.customEntryQuery = self.customEntryQuery
@@ -67,7 +68,7 @@ public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 		}
 	}
 
-	override public func cacheKey(op: PaginationLiferayConnector) -> String {
+	override public func cacheKey(c: PaginationLiferayConnector) -> String {
 		return "\((groupId != 0) ? groupId : LiferayServerContext.groupId)-\(classNameId)"
 	}
 

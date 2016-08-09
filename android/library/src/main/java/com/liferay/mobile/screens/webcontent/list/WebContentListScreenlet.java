@@ -93,8 +93,10 @@ public class WebContentListScreenlet extends BaseListScreenlet<WebContent, WebCo
 	}
 
 	@Override
-	protected void loadRows(WebContentListInteractor interactor, int startRow, int endRow, Locale locale) throws Exception {
-		interactor.load(_groupId, _folderId, startRow, endRow, locale);
+	protected void loadRows(WebContentListInteractor interactor, int startRow, int endRow, Locale locale,
+		String obcClassName) throws Exception {
+
+		interactor.load(_groupId, _folderId, startRow, endRow, locale, obcClassName);
 	}
 
 	@Override

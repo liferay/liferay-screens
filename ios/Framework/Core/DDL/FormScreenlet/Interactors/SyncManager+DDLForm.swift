@@ -157,12 +157,12 @@ extension SyncManager {
 	}
 
 	private func loadRecord(recordId: Int64, result: DDLRecord? -> ()) {
-		let op = LiferayServerContext.connectorFactory.createDDLFormRecordLoadConnector(recordId)
+		let c = LiferayServerContext.connectorFactory.createDDLFormRecordLoadConnector(recordId)
 
-		op.validateAndEnqueue {
-			if let op = $0 as? DDLFormRecordLoadLiferayConnector,
-					recordData = op.resultRecordData,
-					recordAttributes = op.resultRecordAttributes {
+		c.validateAndEnqueue {
+			if let c = $0 as? DDLFormRecordLoadLiferayConnector,
+					recordData = c.resultRecordData,
+					recordAttributes = c.resultRecordAttributes {
 
 				let remoteRecord = DDLRecord(
 					data: recordData,
