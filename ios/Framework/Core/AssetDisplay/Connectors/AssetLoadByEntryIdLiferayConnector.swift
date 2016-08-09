@@ -14,16 +14,14 @@
 import UIKit
 
 
-public class AssetDisplayByClassPKLiferayConnector: ServerConnector, AssetDisplayConnector {
+public class AssetLoadByEntryIdLiferayConnector: ServerConnector, LoadAssetConnector {
 
-	public let className: String
-	public let classPK: Int64
+	public let entryId: Int64
 
 	public var resultAssetEntry: Asset?
 
-	public init(className: String, classPK: Int64) {
-		self.className = className
-		self.classPK = classPK
+	public init(entryId: Int64) {
+		self.entryId = entryId
 
 		super.init()
 	}
@@ -34,10 +32,8 @@ public class AssetDisplayByClassPKLiferayConnector: ServerConnector, AssetDispla
 		let error = super.validateData()
 
 		if error == nil {
-			if classPK == 0 {
-				return ValidationError("assetdisplay-screenlet", "undefined-classpk")
-			} else if className.isEmpty {
-				return ValidationError("assetdisplay-screenlet", "undefined-classname")
+			if entryId == 0 {
+				return ValidationError("assetdisplay-screenlet", "undefined-entryid")
 			}
 		}
 
@@ -45,7 +41,7 @@ public class AssetDisplayByClassPKLiferayConnector: ServerConnector, AssetDispla
 	}
 }
 
-public class Liferay70AssetDisplayByClassPKConnector: AssetDisplayByClassPKLiferayConnector {
+public class Liferay70AssetLoadByEntryIdConnector: AssetLoadByEntryIdLiferayConnector {
 
 	override public func doRun(session session: LRSession) {
 		resultAssetEntry = nil
@@ -53,7 +49,7 @@ public class Liferay70AssetDisplayByClassPKConnector: AssetDisplayByClassPKLifer
 		let service = LRScreensassetentryService_v70(session: session)
 
 		do {
-			let result = try service.getAssetEntryWithClassName(className, classPK: classPK, locale: NSLocale.currentLocaleString)
+			let result = try service.getAssetEntryWithEntryId(entryId, locale: NSLocale.currentLocaleString)
 
 			let assetEntry = Asset(attributes: result as! [String:AnyObject])
 

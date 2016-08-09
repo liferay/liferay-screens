@@ -14,7 +14,7 @@
 import UIKit
 
 
-public protocol AssetDisplayConnector {
+public protocol LoadAssetConnector {
 	var resultAssetEntry: Asset? { get set }
 }
 
@@ -37,14 +37,14 @@ public class LoadAssetInteractor: ServerReadConnectorInteractor {
 
 	override public func createConnector() -> ServerConnector? {
 		if entryId != 0 {
-			return LiferayServerContext.connectorFactory.createAssetDisplayByEntryIdConnector(entryId)
+			return LiferayServerContext.connectorFactory.createAssetLoadByEntryIdConnector(entryId)
 		} else {
-			return LiferayServerContext.connectorFactory.createAssetDisplayByClassPKConnector(className, classPK: classPK)
+			return LiferayServerContext.connectorFactory.createAssetLoadByClassPKConnector(className, classPK: classPK)
 		}
 	}
 
 	override public func completedConnector(op: ServerConnector) {
-		if let assetEntryConnector = op as? AssetDisplayConnector {
+		if let assetEntryConnector = op as? LoadAssetConnector {
 			assetEntry = assetEntryConnector.resultAssetEntry
 		}
 		else {

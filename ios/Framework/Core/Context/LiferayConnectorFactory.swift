@@ -106,9 +106,9 @@ public protocol LiferayConnectorFactory {
 		folderId: Int64,
 		onProgress: DDLFormUploadLiferayConnector.OnProgress?) -> DDLFormUploadLiferayConnector
 	
-	func createAssetDisplayByEntryIdConnector(entryId: Int64) -> AssetDisplayByEntryIdLiferayConnector?
+	func createAssetLoadByEntryIdConnector(entryId: Int64) -> AssetLoadByEntryIdLiferayConnector?
 
-	func createAssetDisplayByClassPKConnector(className: String, classPK: Int64) -> AssetDisplayByClassPKLiferayConnector?
+	func createAssetLoadByClassPKConnector(className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector?
 
 	func createBlogsDisplayByEntryIdConnector(entryId: Int64) -> BlogsDisplayByEntryIdLiferayConnector?
 
@@ -289,13 +289,13 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			onProgress: onProgress)
 	}
 	
-	public func createAssetDisplayByEntryIdConnector(entryId: Int64) -> AssetDisplayByEntryIdLiferayConnector? {
-		print("Unsupported connector in Liferay 6.2: AssetDisplayByEntryIdLiferayConnector")
+	public func createAssetLoadByEntryIdConnector(entryId: Int64) -> AssetLoadByEntryIdLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: AssetLoadByEntryIdLiferayConnector")
 		return nil
 	}
 
-	public func createAssetDisplayByClassPKConnector(className: String, classPK: Int64) -> AssetDisplayByClassPKLiferayConnector? {
-		print("Unsupported connector in Liferay 6.2: AssetDisplayByClassPKLiferayConnector")
+	public func createAssetLoadByClassPKConnector(className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: AssetLoadByClassPKLiferayConnector")
 		return nil
 	}
 
@@ -480,12 +480,12 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			onProgress: onProgress)
 	}
 
-	public func createAssetDisplayByEntryIdConnector(entryId: Int64) -> AssetDisplayByEntryIdLiferayConnector? {
-		return Liferay70AssetDisplayByEntryIdConnector(entryId: entryId)
+	public func createAssetLoadByEntryIdConnector(entryId: Int64) -> AssetLoadByEntryIdLiferayConnector? {
+		return Liferay70AssetLoadByEntryIdConnector(entryId: entryId)
 	}
 
-	public func createAssetDisplayByClassPKConnector(className: String, classPK: Int64) -> AssetDisplayByClassPKLiferayConnector? {
-		return Liferay70AssetDisplayByClassPKConnector(className: className, classPK: classPK)
+	public func createAssetLoadByClassPKConnector(className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector? {
+		return Liferay70AssetLoadByClassPKConnector(className: className, classPK: classPK)
 	}
 
 	public func createBlogsDisplayByEntryIdConnector(entryId: Int64) -> BlogsDisplayByEntryIdLiferayConnector? {
