@@ -102,18 +102,28 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.liferay_previous_page) {
-			currentPage--;
-			renderPdfPage();
+			changeCurrentPage(-1);
 		} else if (v.getId() == R.id.liferay_next_page) {
-			currentPage++;
-			renderPdfPage();
+			changeCurrentPage(+1);
 		} else if (v.getId() == R.id.liferay_go_to_page_submit) {
 			String number = goToPage.getText().toString();
 			if (!number.isEmpty()) {
-				currentPage = Integer.parseInt(number) - 1;
-				renderPdfPage();
+				changeCurrentPage(Integer.parseInt(number) - 1 - currentPage);
 			}
 		}
+	}
+
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
+	private void changeCurrentPage(int i) {
+		currentPage += i;
+
+		if (currentPage < 0) {
+			currentPage = 0;
+		} else if (currentPage > renderer.getPageCount() - 1) {
+			currentPage = renderer.getPageCount() - 1;
+		}
+
+		renderPdfPage(currentPage);
 	}
 
 	private void renderInLollipop() {
@@ -137,21 +147,15 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 	}
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	private void renderPdfPage() {
-		if (currentPage < 0) {
-			currentPage = 0;
-		} else if (currentPage > renderer.getPageCount() - 1) {
-			currentPage = renderer.getPageCount() - 1;
-		}
-
+	private void renderPdfPage(int page) {
 		Matrix m = imagePdf.getImageMatrix();
-		PdfRenderer.Page page = renderer.openPage(currentPage);
-		Bitmap bitmap = Bitmap.createBitmap(page.getWidth(), page.getHeight(), Bitmap.Config.ARGB_8888);
-		Rect rect = new Rect(0, 0, page.getWidth(), page.getHeight());
-		page.render(bitmap, rect, m, PdfRenderer.Page.RENDER_MODE_FOR_PRINT);
+		PdfRenderer.Page renderedPage = renderer.openPage(page);
+		Bitmap bitmap = Bitmap.createBitmap(renderedPage.getWidth(), renderedPage.getHeight(), Bitmap.Config.ARGB_8888);
+		Rect rect = new Rect(0, 0, renderedPage.getWidth(), renderedPage.getHeight());
+		renderedPage.render(bitmap, rect, m, PdfRenderer.Page.RENDER_MODE_FOR_PRINT);
 		imagePdf.setImageMatrix(m);
 		imagePdf.setImageBitmap(bitmap);
-		page.close();
+		renderedPage.close();
 
 		hideProgressBar();
 	}
@@ -183,15 +187,18 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 	private void renderPdfInImageView(File file) {
 		try {
 			renderer = new PdfRenderer(ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY));
-			renderPdfPage();
+			renderPdfPage(0);
 		} catch (IOException e) {
-			e.getMessage();
+			LiferayLogger.e("Error rendering PDF", e);
 		}
 	}
 
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	private void hideProgressBar() {
 		nextPage.setVisibility(VISIBLE);
+		nextPage.setEnabled(currentPage != renderer.getPageCount() - 1);
 		previousPage.setVisibility(VISIBLE);
+		previousPage.setEnabled(currentPage != 0);
 		goToPage.setVisibility(VISIBLE);
 		goToPageButton.setVisibility(VISIBLE);
 
