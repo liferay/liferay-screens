@@ -42,9 +42,13 @@ public class HttpDownloadConnector: ServerConnector {
 					let cache = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .AllDomainsMask, true)[0]
 					let fileManager = NSFileManager.defaultManager()
 					let fileName = response?.suggestedFilename ?? ""
-					let destinationUrl = NSURL(fileURLWithPath: cache + "/" + self.encodeUrlString(fileName))
+					let path = cache + "/" + self.encodeUrlString(fileName)
+					let destinationUrl = NSURL(fileURLWithPath: path)
 
 					do {
+						if fileManager.fileExistsAtPath(path) {
+							try fileManager.removeItemAtURL(destinationUrl)
+						}
 						try fileManager.moveItemAtURL(url!, toURL: destinationUrl)
 						self.lastError = nil
 						self.resultUrl = destinationUrl
