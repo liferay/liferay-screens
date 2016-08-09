@@ -18,16 +18,7 @@ public class AssetDisplayActivity extends ThemeActivity implements AssetDisplayL
 		_screenlet = ((AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet));
 
 		_screenlet.setEntryId(getIntent().getLongExtra("entryId", 0));
-		_screenlet.setAutoLoad(true);
 		_screenlet.setListener(this);
-
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-
-		_screenlet.loadAsset();
 	}
 
 	@Override
