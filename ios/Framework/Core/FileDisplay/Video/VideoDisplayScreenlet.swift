@@ -36,7 +36,7 @@ public class VideoDisplayScreenlet: BaseFileDisplayScreenlet {
 
 	override public func createLoadAssetInteractor() -> Interactor? {
 		let interactor = AssetDisplayInteractor(
-			screenlet: self, entryId: entryId, classPK: classPK, className: className)
+			screenlet: self, entryId: entryId, className: className, classPK: classPK)
 
 		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 

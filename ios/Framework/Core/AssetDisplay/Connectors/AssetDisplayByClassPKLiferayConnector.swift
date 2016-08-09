@@ -17,7 +17,6 @@ import UIKit
 public class AssetDisplayByClassPKLiferayConnector: ServerConnector, AssetDisplayConnector {
 
 	public let className: String
-
 	public let classPK: Int64
 
 	public var resultAssetEntry: Asset?

@@ -22,15 +22,15 @@ public class AssetDisplayInteractor: ServerReadConnectorInteractor {
 
 	public let entryId: Int64
 
-	public let classPK: Int64
 	public let className: String
+	public let classPK: Int64
 
 	public var assetEntry: Asset?
 
-	init(screenlet: BaseScreenlet, entryId: Int64, classPK: Int64, className: String) {
+	init(screenlet: BaseScreenlet, entryId: Int64, className: String, classPK: Int64) {
 		self.entryId = entryId
-		self.classPK = classPK
 		self.className = className
+		self.classPK = classPK
 
 		super.init(screenlet: screenlet)
 	}

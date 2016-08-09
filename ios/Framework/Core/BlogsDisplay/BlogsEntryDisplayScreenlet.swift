@@ -58,7 +58,7 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 		}
 
 		let interactor = AssetDisplayInteractor(
-			screenlet: self, entryId: entryId, classPK: classPK, className: className)
+			screenlet: self, entryId: entryId, className: className, classPK: classPK)
 
 		interactor.onSuccess = {
 			if let resultAsset = interactor.assetEntry {

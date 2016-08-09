@@ -20,8 +20,8 @@ public class BaseFileDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable public var entryId: Int64 = 0
 
-	@IBInspectable public var classPK: Int64 = 0
 	@IBInspectable public var className: String = ""
+	@IBInspectable public var classPK: Int64 = 0
 
 	@IBInspectable public var autoLoad: Bool = true
 

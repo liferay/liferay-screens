@@ -21,6 +21,7 @@ import Foundation
 	optional func screenlet(screenlet: ImageDisplayScreenlet, onImageAssetError error: NSError)
 }
 
+
 public class ImageDisplayScreenlet: BaseFileDisplayScreenlet {
 
 	public var imageDisplayDelegate: ImageDisplayScreenletDelegate? {
@@ -35,7 +36,7 @@ public class ImageDisplayScreenlet: BaseFileDisplayScreenlet {
 
 	override public func createLoadAssetInteractor() -> Interactor? {
 		let interactor = AssetDisplayInteractor(
-			screenlet: self, entryId: entryId, classPK: classPK, className: className)
+			screenlet: self, entryId: entryId, className: className, classPK: classPK)
 
 		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 

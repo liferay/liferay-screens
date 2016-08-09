@@ -55,8 +55,8 @@ import UIKit
 		let interactor = AssetDisplayInteractor(
 			screenlet: self,
 			entryId: self.entryId,
-			classPK: self.classPK,
-			className: self.className)
+			className: self.className,
+			classPK: self.classPK)
 		
 		
 		interactor.onSuccess = {
