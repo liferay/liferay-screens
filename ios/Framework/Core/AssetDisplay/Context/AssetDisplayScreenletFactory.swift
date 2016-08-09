@@ -46,6 +46,8 @@ public class AssetDisplayScreenletFactory {
 				} else if mimeType == "application/pdf" {
 					childScreenlet = PdfDisplayScreenlet(frame: frame, themeName: nil, initalizer: nil)
 				}
+			case "BlogsEntry":
+				childScreenlet = BlogsEntryDisplayScreenlet(frame: frame, themeName: nil, initalizer: nil)
 			default:
 				break;
 			}
@@ -73,6 +75,12 @@ public class AssetDisplayScreenletFactory {
 				s.fileEntry = FileEntry(attributes: self.assetEntry.attributes)
 				s.autoLoad = false
 				s.loadFile()
+			}
+		}
+		else if childScreenlet is BlogsEntryDisplayScreenlet {
+			if let s = childScreenlet as? BlogsEntryDisplayScreenlet {
+				s.blogsEntry = BlogsEntry(attributes: self.assetEntry.attributes)
+				s.autoLoad = false
 			}
 		}
 
