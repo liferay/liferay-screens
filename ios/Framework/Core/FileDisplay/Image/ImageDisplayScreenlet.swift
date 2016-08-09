@@ -28,10 +28,6 @@ public class ImageDisplayScreenlet: FileDisplayScreenlet {
 		return delegate as? ImageDisplayScreenletDelegate
 	}
 
-	public var imageDisplayViewModel: FileDisplayViewModel? {
-		return screenletView as? FileDisplayViewModel
-	}
-
 	//MARK: FileDisplayScreenlet
 
 	override public func createLoadAssetInteractor() -> Interactor? {
@@ -77,8 +73,8 @@ public class ImageDisplayScreenlet: FileDisplayScreenlet {
 
 					self.imageDisplayDelegate?.screenlet?(self, onImageAssetResponse: resultUrl)
 
-					self.imageDisplayViewModel?.url = resultUrl
-					self.imageDisplayViewModel?.title = title
+					self.fileDisplayViewModel?.url = resultUrl
+					self.fileDisplayViewModel?.title = title
 				}
 				else {
 					self.imageDisplayDelegate?.screenlet?(self, onImageAssetError: NSError.errorWithCause(.InvalidServerResponse))

@@ -28,10 +28,6 @@ public class AudioDisplayScreenlet: FileDisplayScreenlet {
 		return delegate as? AudioDisplayScreenletDelegate
 	}
 
-	public var audioDisplayViewModel: FileDisplayViewModel? {
-		return screenletView as? FileDisplayViewModel
-	}
-
 	//MARK: FileDisplayScreenlet
 
 	override public func createLoadAssetInteractor() -> Interactor? {
@@ -78,8 +74,8 @@ public class AudioDisplayScreenlet: FileDisplayScreenlet {
 
 					self.audioDisplayDelegate?.screenlet?(self, onAudioAssetResponse: resultUrl)
 
-					self.audioDisplayViewModel?.url = resultUrl
-					self.audioDisplayViewModel?.title = title
+					self.fileDisplayViewModel?.url = resultUrl
+					self.fileDisplayViewModel?.title = title
 				}
 				else {
 					self.audioDisplayDelegate?.screenlet?(self, onAudioAssetError:

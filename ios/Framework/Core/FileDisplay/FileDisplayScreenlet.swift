@@ -29,6 +29,11 @@ public class FileDisplayScreenlet: BaseScreenlet {
 
 	public var fileEntry: FileEntry?
 
+	public var fileDisplayViewModel: FileDisplayViewModel? {
+		return screenletView as? FileDisplayViewModel
+	}
+
+
 	//MARK: BaseScreenlet
 
 	override public func onShow() {

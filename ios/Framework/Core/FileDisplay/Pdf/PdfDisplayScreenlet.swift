@@ -27,10 +27,6 @@ public class PdfDisplayScreenlet: FileDisplayScreenlet {
 		return delegate as? PdfDisplayScreenletDelegate
 	}
 
-	public var pdfDisplayViewModel: FileDisplayViewModel? {
-		return screenletView as? FileDisplayViewModel
-	}
-
 	//MARK: FileDisplayScreenlet
 
 	override public func createLoadAssetInteractor() -> Interactor? {
@@ -77,8 +73,8 @@ public class PdfDisplayScreenlet: FileDisplayScreenlet {
 
 					self.pdfDisplayDelegate?.screenlet?(self, onPdfAssetResponse: resultUrl)
 
-					self.pdfDisplayViewModel?.url = resultUrl
-					self.pdfDisplayViewModel?.title = title
+					self.fileDisplayViewModel?.url = resultUrl
+					self.fileDisplayViewModel?.title = title
 				}
 				else {
 					self.pdfDisplayDelegate?.screenlet?(self, onPdfAssetError: NSError.errorWithCause(.InvalidServerResponse))
