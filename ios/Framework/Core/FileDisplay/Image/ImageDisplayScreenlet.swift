@@ -14,19 +14,7 @@
 import Foundation
 
 
-@objc public protocol ImageDisplayScreenletDelegate : BaseScreenletDelegate {
-
-	optional func screenlet(screenlet: ImageDisplayScreenlet, onImageAssetResponse url: NSURL)
-
-	optional func screenlet(screenlet: ImageDisplayScreenlet, onImageAssetError error: NSError)
-}
-
-
 public class ImageDisplayScreenlet: FileDisplayScreenlet {
-
-	public var imageDisplayDelegate: ImageDisplayScreenletDelegate? {
-		return delegate as? ImageDisplayScreenletDelegate
-	}
 
 	//MARK: FileDisplayScreenlet
 
@@ -49,12 +37,12 @@ public class ImageDisplayScreenlet: FileDisplayScreenlet {
 				self.load()
 			}
 			else {
-				self.imageDisplayDelegate?.screenlet?(self, onImageAssetError: NSError.errorWithCause(.InvalidServerResponse))
+				self.fileDisplayDelegate?.screenlet?(self, onFileAssetError: NSError.errorWithCause(.InvalidServerResponse))
 			}
 		}
 
 		interactor.onFailure = {
-			self.imageDisplayDelegate?.screenlet?(self, onImageAssetError: $0)
+			self.fileDisplayDelegate?.screenlet?(self, onFileAssetError: $0)
 		}
 
 		return interactor
@@ -71,18 +59,18 @@ public class ImageDisplayScreenlet: FileDisplayScreenlet {
 				if let resultUrl = interactor.resultUrl {
 					let title = self.fileEntry!.title
 
-					self.imageDisplayDelegate?.screenlet?(self, onImageAssetResponse: resultUrl)
+					self.fileDisplayDelegate?.screenlet?(self, onFileAssetResponse: resultUrl)
 
 					self.fileDisplayViewModel?.url = resultUrl
 					self.fileDisplayViewModel?.title = title
 				}
 				else {
-					self.imageDisplayDelegate?.screenlet?(self, onImageAssetError: NSError.errorWithCause(.InvalidServerResponse))
+					self.fileDisplayDelegate?.screenlet?(self, onFileAssetError: NSError.errorWithCause(.InvalidServerResponse))
 				}
 			}
 
 			interactor.onFailure = {
-				self.imageDisplayDelegate?.screenlet?(self, onImageAssetError: $0)
+				self.fileDisplayDelegate?.screenlet?(self, onFileAssetError: $0)
 			}
 
 			return interactor

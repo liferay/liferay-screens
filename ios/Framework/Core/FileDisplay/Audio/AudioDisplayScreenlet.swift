@@ -15,18 +15,7 @@ import Foundation
 import AVFoundation
 
 
-@objc public protocol AudioDisplayScreenletDelegate : BaseScreenletDelegate {
-
-	optional func screenlet(screenlet: AudioDisplayScreenlet, onAudioAssetResponse url: NSURL)
-
-	optional func screenlet(screenlet: AudioDisplayScreenlet, onAudioAssetError error: NSError)
-}
-
 public class AudioDisplayScreenlet: FileDisplayScreenlet {
-
-	public var audioDisplayDelegate: AudioDisplayScreenletDelegate? {
-		return delegate as? AudioDisplayScreenletDelegate
-	}
 
 	//MARK: FileDisplayScreenlet
 
@@ -49,13 +38,13 @@ public class AudioDisplayScreenlet: FileDisplayScreenlet {
 				self.load()
 			}
 			else {
-				self.audioDisplayDelegate?.screenlet?(self, onAudioAssetError:
+				self.fileDisplayDelegate?.screenlet?(self, onFileAssetError:
 					NSError.errorWithCause(.InvalidServerResponse))
 			}
 		}
 
 		interactor.onFailure = {
-			self.audioDisplayDelegate?.screenlet?(self, onAudioAssetError: $0)
+			self.fileDisplayDelegate?.screenlet?(self, onFileAssetError: $0)
 		}
 
 		return interactor
@@ -72,19 +61,19 @@ public class AudioDisplayScreenlet: FileDisplayScreenlet {
 				if let resultUrl = interactor.resultUrl {
 					let title = self.fileEntry!.title
 
-					self.audioDisplayDelegate?.screenlet?(self, onAudioAssetResponse: resultUrl)
+					self.fileDisplayDelegate?.screenlet?(self, onFileAssetResponse: resultUrl)
 
 					self.fileDisplayViewModel?.url = resultUrl
 					self.fileDisplayViewModel?.title = title
 				}
 				else {
-					self.audioDisplayDelegate?.screenlet?(self, onAudioAssetError:
+					self.fileDisplayDelegate?.screenlet?(self, onFileAssetError:
 						NSError.errorWithCause(.InvalidServerResponse))
 				}
 			}
 
 			interactor.onFailure = {
-				self.audioDisplayDelegate?.screenlet?(self, onAudioAssetError: $0)
+				self.fileDisplayDelegate?.screenlet?(self, onFileAssetError: $0)
 			}
 
 			return interactor

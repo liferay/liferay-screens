@@ -14,18 +14,7 @@
 import Foundation
 
 
-@objc public protocol PdfDisplayScreenletDelegate : BaseScreenletDelegate {
-
-	optional func screenlet(screenlet: PdfDisplayScreenlet, onPdfAssetResponse url: NSURL)
-
-	optional func screenlet(screenlet: PdfDisplayScreenlet, onPdfAssetError error: NSError)
-}
-
 public class PdfDisplayScreenlet: FileDisplayScreenlet {
-
-	public var pdfDisplayDelegate: PdfDisplayScreenletDelegate? {
-		return delegate as? PdfDisplayScreenletDelegate
-	}
 
 	//MARK: FileDisplayScreenlet
 
@@ -48,13 +37,13 @@ public class PdfDisplayScreenlet: FileDisplayScreenlet {
 				self.load()
 			}
 			else {
-				self.pdfDisplayDelegate?.screenlet?(self, onPdfAssetError:
+				self.fileDisplayDelegate?.screenlet?(self, onFileAssetError:
 					NSError.errorWithCause(.InvalidServerResponse))
 			}
 		}
 
 		interactor.onFailure = {
-			self.pdfDisplayDelegate?.screenlet?(self, onPdfAssetError: $0)
+			self.fileDisplayDelegate?.screenlet?(self, onFileAssetError: $0)
 		}
 
 		return interactor
@@ -71,18 +60,19 @@ public class PdfDisplayScreenlet: FileDisplayScreenlet {
 				if let resultUrl = interactor.resultUrl {
 					let title = self.fileEntry!.title
 
-					self.pdfDisplayDelegate?.screenlet?(self, onPdfAssetResponse: resultUrl)
+					self.fileDisplayDelegate?.screenlet?(self, onFileAssetResponse: resultUrl)
 
 					self.fileDisplayViewModel?.url = resultUrl
 					self.fileDisplayViewModel?.title = title
 				}
 				else {
-					self.pdfDisplayDelegate?.screenlet?(self, onPdfAssetError: NSError.errorWithCause(.InvalidServerResponse))
+					self.fileDisplayDelegate?.screenlet?(self,
+							onFileAssetError: NSError.errorWithCause(.InvalidServerResponse))
 				}
 			}
 
 			interactor.onFailure = {
-				self.pdfDisplayDelegate?.screenlet?(self, onPdfAssetError: $0)
+				self.fileDisplayDelegate?.screenlet?(self, onFileAssetError: $0)
 			}
 
 			return interactor

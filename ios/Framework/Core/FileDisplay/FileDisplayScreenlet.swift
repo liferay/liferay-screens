@@ -14,6 +14,15 @@
 import Foundation
 
 
+@objc public protocol FileDisplayScreenletDelegate : BaseScreenletDelegate {
+
+	optional func screenlet(screenlet: FileDisplayScreenlet, onFileAssetResponse url: NSURL)
+
+	optional func screenlet(screenlet: FileDisplayScreenlet, onFileAssetError error: NSError)
+}
+
+
+
 public class FileDisplayScreenlet: BaseScreenlet {
 
 	public static let LoadFileAction = "LoadFileAction"
@@ -31,6 +40,10 @@ public class FileDisplayScreenlet: BaseScreenlet {
 
 	public var fileDisplayViewModel: FileDisplayViewModel? {
 		return screenletView as? FileDisplayViewModel
+	}
+
+	public var fileDisplayDelegate: FileDisplayScreenletDelegate? {
+		return delegate as? FileDisplayScreenletDelegate
 	}
 
 
