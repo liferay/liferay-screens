@@ -61,7 +61,7 @@ public class AssetListActivity extends ThemeActivity implements BaseListListener
 	@Override
 	public void onListItemSelected(AssetEntry element, View view) {
 		Intent intent = getIntentWithTheme(AssetDisplayActivity.class);
-		intent.putExtra("entryId", (int) element.getValues().get("entryId"));
+		intent.putExtra("entryId", Long.valueOf((String) element.getValues().get("entryId")));
 		DefaultAnimation.startActivityWithAnimation(this, intent);
 	}
 
