@@ -16,5 +16,5 @@ import UIKit
 
 @objc public protocol AssetDisplayViewModel {
 	
-	var assetEntry: Asset? {get set}
+	var asset: Asset? {get set}
 }

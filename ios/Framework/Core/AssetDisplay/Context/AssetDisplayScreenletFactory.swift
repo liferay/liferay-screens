@@ -14,12 +14,14 @@
 import UIKit
 
 
-public class AssetDisplayScreenletFactory {
+@objc public class AssetDisplayScreenletFactory: NSObject {
 
-	private var assetEntry: Asset
+	private var asset: Asset
 
-	public init(assetEntry: Asset) {
-		self.assetEntry = assetEntry
+	public init(asset: Asset) {
+		self.asset = asset
+
+		super.init()
 	}
 
 	let imageMimeTypes = ["image/png", "image/jpg", "image/jpeg", "image/gif"]
@@ -28,14 +30,14 @@ public class AssetDisplayScreenletFactory {
 
 	public func createScreenlet(frame: CGRect, screenlet: AssetDisplayScreenlet?) -> BaseScreenlet? {
 
-		let classAssetName = AssetClassNameIds.get(assetEntry.classNameId)
+		let classAssetName = AssetClassNameIds.get(asset.classNameId)
 
 		var childScreenlet: BaseScreenlet?
 
 		if let className = classAssetName {
 			switch className {
 			case "DLFileEntry":
-				let mimeType = assetEntry.mimeType
+				let mimeType = asset.mimeType
 
 				if isImage(mimeType) {
 					childScreenlet = ImageDisplayScreenlet(frame: frame, themeName: nil, initalizer: nil)
@@ -72,19 +74,19 @@ public class AssetDisplayScreenletFactory {
 
 		if childScreenlet is BaseFileDisplayScreenlet {
 			if let s = childScreenlet as? BaseFileDisplayScreenlet {
-				s.fileEntry = FileEntry(attributes: self.assetEntry.attributes)
+				s.fileEntry = FileEntry(attributes: self.asset.attributes)
 				s.autoLoad = false
 				s.loadFile()
 			}
 		}
 		else if childScreenlet is BlogsEntryDisplayScreenlet {
 			if let s = childScreenlet as? BlogsEntryDisplayScreenlet {
-				s.blogsEntry = BlogsEntry(attributes: self.assetEntry.attributes)
+				s.blogsEntry = BlogsEntry(attributes: self.asset.attributes)
 				s.autoLoad = false
 			}
 		}
 
-		screenlet?.assetDisplayDelegate?.screenlet?(screenlet!, onConfigureScreenlet: childScreenlet, onAssetEntry: self.assetEntry)
+		screenlet?.assetDisplayDelegate?.screenlet?(screenlet!, onConfigureScreenlet: childScreenlet, onAsset: self.asset)
 
 		return childScreenlet
 	}

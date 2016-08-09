@@ -18,7 +18,7 @@ public class AssetLoadByEntryIdLiferayConnector: ServerConnector, LoadAssetConne
 
 	public let entryId: Int64
 
-	public var resultAssetEntry: Asset?
+	public var resultAsset: Asset?
 
 	public init(entryId: Int64) {
 		self.entryId = entryId
@@ -44,21 +44,19 @@ public class AssetLoadByEntryIdLiferayConnector: ServerConnector, LoadAssetConne
 public class Liferay70AssetLoadByEntryIdConnector: AssetLoadByEntryIdLiferayConnector {
 
 	override public func doRun(session session: LRSession) {
-		resultAssetEntry = nil
+		resultAsset = nil
 
 		let service = LRScreensassetentryService_v70(session: session)
 
 		do {
 			let result = try service.getAssetEntryWithEntryId(entryId, locale: NSLocale.currentLocaleString)
 
-			let assetEntry = Asset(attributes: result as! [String:AnyObject])
-
+			resultAsset = Asset(attributes: result as! [String:AnyObject])
 			lastError = nil
-
-			resultAssetEntry = assetEntry
 		}
 		catch let error as NSError {
 			lastError = error
+			resultAsset = nil
 		}
 	}
 }

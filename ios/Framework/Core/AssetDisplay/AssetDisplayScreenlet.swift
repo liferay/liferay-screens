@@ -17,14 +17,14 @@ import UIKit
 @objc public protocol AssetDisplayScreenletDelegate : BaseScreenletDelegate {
 	
 	optional func screenlet(screenlet: AssetDisplayScreenlet,
-	                        onAssetEntryResponse assetEntry: Asset)
+	                        onAssetResponse asset: Asset)
 	
 	optional func screenlet(screenlet: AssetDisplayScreenlet,
-	                        onAssetEntryError error: NSError)
+	                        onAssetError error: NSError)
 
 	optional func screenlet(screenlet: AssetDisplayScreenlet,
 	                        onConfigureScreenlet childScreenlet: BaseScreenlet?,
-							onAssetEntry assetEntry: Asset)
+							onAsset asset: Asset)
 }
 
 @IBDesignable public class AssetDisplayScreenlet: BaseScreenlet {
@@ -60,15 +60,15 @@ import UIKit
 		
 		
 		interactor.onSuccess = {
-			if let resultAsset = interactor.assetEntry {
-				self.assetDisplayDelegate?.screenlet?(self, onAssetEntryResponse: resultAsset)
+			if let resultAsset = interactor.asset {
+				self.assetDisplayDelegate?.screenlet?(self, onAssetResponse: resultAsset)
 				
-				(self.screenletView as? AssetDisplayViewModel)?.assetEntry = resultAsset
+				(self.screenletView as? AssetDisplayViewModel)?.asset = resultAsset
 			}
 		}
 		
 		interactor.onFailure = {
-			self.assetDisplayDelegate?.screenlet?(self, onAssetEntryError: $0)
+			self.assetDisplayDelegate?.screenlet?(self, onAssetError: $0)
 		}
 		
 		return interactor

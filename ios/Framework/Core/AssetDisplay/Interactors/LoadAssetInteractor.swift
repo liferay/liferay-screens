@@ -15,7 +15,7 @@ import UIKit
 
 
 public protocol LoadAssetConnector {
-	var resultAssetEntry: Asset? { get set }
+	var resultAsset: Asset? { get set }
 }
 
 public class LoadAssetInteractor: ServerReadConnectorInteractor {
@@ -25,7 +25,7 @@ public class LoadAssetInteractor: ServerReadConnectorInteractor {
 	public let className: String
 	public let classPK: Int64
 
-	public var assetEntry: Asset?
+	public var asset: Asset?
 
 	init(screenlet: BaseScreenlet, entryId: Int64, className: String, classPK: Int64) {
 		self.entryId = entryId
@@ -43,12 +43,7 @@ public class LoadAssetInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-	override public func completedConnector(op: ServerConnector) {
-		if let assetEntryConnector = op as? LoadAssetConnector {
-			assetEntry = assetEntryConnector.resultAssetEntry
-		}
-		else {
-			self.assetEntry = nil
-		}
+	override public func completedConnector(c: ServerConnector) {
+		asset = (c as? LoadAssetConnector)?.resultAsset
 	}
 }

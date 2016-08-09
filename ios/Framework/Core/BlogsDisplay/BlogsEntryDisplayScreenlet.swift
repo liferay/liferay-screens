@@ -61,7 +61,7 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 			screenlet: self, entryId: entryId, className: className, classPK: classPK)
 
 		interactor.onSuccess = {
-			if let resultAsset = interactor.assetEntry {
+			if let resultAsset = interactor.asset {
 				self.blogsEntry = BlogsEntry(attributes: resultAsset.attributes)
 				self.blogsEntryViewModel?.blogsEntry = self.blogsEntry
 			}

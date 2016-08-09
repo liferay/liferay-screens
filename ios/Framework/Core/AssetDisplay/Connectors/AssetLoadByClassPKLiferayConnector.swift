@@ -19,7 +19,7 @@ public class AssetLoadByClassPKLiferayConnector: ServerConnector, LoadAssetConne
 	public let className: String
 	public let classPK: Int64
 
-	public var resultAssetEntry: Asset?
+	public var resultAsset: Asset?
 
 	public init(className: String, classPK: Int64) {
 		self.className = className
@@ -48,21 +48,19 @@ public class AssetLoadByClassPKLiferayConnector: ServerConnector, LoadAssetConne
 public class Liferay70AssetLoadByClassPKConnector: AssetLoadByClassPKLiferayConnector {
 
 	override public func doRun(session session: LRSession) {
-		resultAssetEntry = nil
+		resultAsset = nil
 
 		let service = LRScreensassetentryService_v70(session: session)
 
 		do {
 			let result = try service.getAssetEntryWithClassName(className, classPK: classPK, locale: NSLocale.currentLocaleString)
 
-			let assetEntry = Asset(attributes: result as! [String:AnyObject])
-
+			resultAsset = Asset(attributes: result as! [String:AnyObject])
 			lastError = nil
-
-			resultAssetEntry = assetEntry
 		}
 		catch let error as NSError {
 			lastError = error
+			resultAsset = nil
 		}
 	}
 }

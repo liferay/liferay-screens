@@ -40,7 +40,7 @@ public class PdfDisplayScreenlet: BaseFileDisplayScreenlet {
 		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
 		interactor.onSuccess = {
-			if let resultAsset = interactor.assetEntry {
+			if let resultAsset = interactor.asset {
 				self.fileEntry = FileEntry(attributes: resultAsset.attributes)
 				self.loadFile()
 			}

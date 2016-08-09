@@ -22,12 +22,12 @@ public class AssetDisplayView_default: BaseScreenletView, AssetDisplayViewModel 
 		]
 	}
 
-	public var assetEntry: Asset? {
+	public var asset: Asset? {
 		didSet {
-			if let asset = assetEntry {
+			if let asset = self.asset {
 				let frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
 
-				let factory = AssetDisplayScreenletFactory(assetEntry: asset)
+				let factory = AssetDisplayScreenletFactory(asset: asset)
 
 				let screenlet = factory.createScreenlet(frame, screenlet: self.screenlet as? AssetDisplayScreenlet)
 				
