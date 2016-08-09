@@ -14,7 +14,9 @@
 
 package com.liferay.mobile.screens.base.list;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.content.ContextCompat;
@@ -38,21 +40,24 @@ import java.util.List;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public abstract class BaseListScreenletView<
-	E extends Parcelable, H extends BaseListAdapter.ViewHolder, A extends BaseListAdapter<E, H>>
-	extends FrameLayout
-	implements BaseListViewModel<E>, BaseListAdapterListener {
+public abstract class BaseListScreenletView<E extends Parcelable, H extends BaseListAdapter.ViewHolder, A extends BaseListAdapter<E, H>>
+	extends FrameLayout implements BaseListViewModel<E>, BaseListAdapterListener {
 
 	public BaseListScreenletView(Context context) {
 		super(context);
 	}
 
-	public BaseListScreenletView(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public BaseListScreenletView(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public BaseListScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public BaseListScreenletView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
+	public BaseListScreenletView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override

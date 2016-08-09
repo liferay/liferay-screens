@@ -27,6 +27,14 @@ public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, Inte
 		super(context, attrs);
 	}
 
+	public CommentAddScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public CommentAddScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
+	}
+
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray =

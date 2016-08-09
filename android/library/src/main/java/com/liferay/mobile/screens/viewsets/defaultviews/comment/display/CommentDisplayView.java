@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.comment.display;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Build;
@@ -35,6 +36,15 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 
 	public CommentDisplayView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+	}
+
+	public CommentDisplayView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
+	public CommentDisplayView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override

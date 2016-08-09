@@ -22,12 +22,16 @@ public class CommentListView
 		super(context);
 	}
 
-	public CommentListView(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public CommentListView(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public CommentListView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public CommentListView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public CommentListView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override

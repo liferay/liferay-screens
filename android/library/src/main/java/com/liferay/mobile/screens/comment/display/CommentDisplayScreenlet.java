@@ -38,6 +38,14 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 		super(context, attrs);
 	}
 
+	public CommentDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public CommentDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
+	}
+
 	public void refreshView() {
 		getViewModel().refreshView();
 	}
