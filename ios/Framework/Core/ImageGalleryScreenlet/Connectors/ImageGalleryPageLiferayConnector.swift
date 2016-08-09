@@ -49,7 +49,7 @@ public class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
 		return error
 	}
     
-    override public func doAddPageRowsServiceCall(session session: LRBatchSession, startRow: Int, endRow: Int) {
+    override public func doAddPageRowsServiceCall(session session: LRBatchSession, startRow: Int, endRow: Int, obc: LRJSONObjectWrapper?) {
         let service = LRDLAppService_v7(session: session)
         
         do {
@@ -58,7 +58,7 @@ public class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
                                                        mimeTypes: mimeTypes,
                                                        start: Int32(startRow),
                                                        end: Int32(endRow),
-                                                       obc: nil)
+                                                       obc: obc)
         } catch {}
     }
     
