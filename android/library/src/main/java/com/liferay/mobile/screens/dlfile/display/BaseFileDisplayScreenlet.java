@@ -2,6 +2,8 @@ package com.liferay.mobile.screens.dlfile.display;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,9 @@ import com.liferay.mobile.screens.context.SessionContext;
  */
 public abstract class BaseFileDisplayScreenlet
 	extends BaseScreenlet<BaseFileDisplayViewModel, AssetDisplayInteractorImpl> implements AssetDisplayListener {
+
+	public static final String STATE_ENTRY_ID = "STATE_ENTRY_ID";
+	public static final String STATE_FILE_ENTRY = "STATE_FILE_ENTRY";
 
 	public BaseFileDisplayScreenlet(Context context) {
 		super(context);
@@ -94,7 +99,28 @@ public abstract class BaseFileDisplayScreenlet
 		}
 	}
 
-	public int getEntryId() {
+	@Override
+	protected Parcelable onSaveInstanceState() {
+		Parcelable superState = super.onSaveInstanceState();
+		Bundle state = new Bundle();
+		state.putParcelable(STATE_SUPER, superState);
+		state.putLong(STATE_ENTRY_ID, entryId);
+		state.putParcelable(STATE_FILE_ENTRY, fileEntry);
+		return state;
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Parcelable inState) {
+		Bundle state = (Bundle) inState;
+
+		entryId = state.getLong(STATE_ENTRY_ID);
+		fileEntry = state.getParcelable(STATE_FILE_ENTRY);
+
+		Parcelable superState = state.getParcelable(STATE_SUPER);
+		super.onRestoreInstanceState(superState);
+	}
+
+	public long getEntryId() {
 		return entryId;
 	}
 
@@ -115,7 +141,7 @@ public abstract class BaseFileDisplayScreenlet
 	}
 
 	protected boolean autoLoad;
-	protected int entryId;
+	protected long entryId;
 	protected AssetDisplayListener listener;
 	protected FileEntry fileEntry;
 }

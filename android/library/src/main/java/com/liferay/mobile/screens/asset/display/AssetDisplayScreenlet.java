@@ -2,6 +2,8 @@ package com.liferay.mobile.screens.asset.display;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,9 @@ import java.util.HashMap;
  */
 public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, AssetDisplayInteractorImpl>
 	implements AssetDisplayListener {
+
+	public static final String STATE_LAYOUTS = "STATE_LAYOUTS";
+	public static final String STATE_ENTRY_ID = "STATE_ENTRY_ID";
 
 	public AssetDisplayScreenlet(Context context) {
 		super(context);
@@ -120,6 +125,27 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 
 	@Override
 	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor, Object... args) {
+	}
+
+	@Override
+	protected Parcelable onSaveInstanceState() {
+		Parcelable superState = super.onSaveInstanceState();
+		Bundle state = new Bundle();
+		state.putParcelable(STATE_SUPER, superState);
+		state.putSerializable(STATE_LAYOUTS, layouts);
+		state.putLong(STATE_ENTRY_ID, entryId);
+		return state;
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Parcelable inState) {
+		Bundle state = (Bundle) inState;
+
+		layouts = (HashMap<String, Integer>) state.getSerializable(STATE_LAYOUTS);
+		entryId = state.getLong(STATE_ENTRY_ID);
+
+		Parcelable superState = state.getParcelable(STATE_SUPER);
+		super.onRestoreInstanceState(superState);
 	}
 
 	public long getEntryId() {
