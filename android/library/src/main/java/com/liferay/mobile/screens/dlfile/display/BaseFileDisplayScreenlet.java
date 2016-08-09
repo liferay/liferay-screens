@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
+import com.liferay.mobile.screens.asset.display.interactor.AssetDisplayInteractor;
 import com.liferay.mobile.screens.asset.display.interactor.AssetDisplayInteractorImpl;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
@@ -92,7 +93,13 @@ public abstract class BaseFileDisplayScreenlet
 	protected void autoLoad() {
 		if (SessionContext.isLoggedIn()) {
 			try {
-				onRetrieveAssetSuccess(fileEntry);
+				if (fileEntry == null) {
+					AssetDisplayInteractor assetDisplayInteractor = new AssetDisplayInteractorImpl(getScreenletId());
+					assetDisplayInteractor.onScreenletAttached(this);
+					assetDisplayInteractor.getAssetEntry(entryId);
+				} else {
+					onRetrieveAssetSuccess(fileEntry);
+				}
 			} catch (Exception e) {
 				onRetrieveAssetFailure(e);
 			}
