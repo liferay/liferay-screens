@@ -23,7 +23,7 @@ import Foundation
 
 public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 
-	@IBInspectable public var entryId: Int64 = 0
+	@IBInspectable public var assetEntryId: Int64 = 0
 
 	@IBInspectable public var classPK: Int64 = 0
 	@IBInspectable public var className: String = ""
@@ -58,7 +58,7 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 		}
 
 		let interactor = LoadAssetInteractor(
-			screenlet: self, entryId: entryId, className: className, classPK: classPK)
+			screenlet: self, assetEntryId: assetEntryId, className: className, classPK: classPK)
 
 		interactor.onSuccess = {
 			if let resultAsset = interactor.asset {

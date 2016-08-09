@@ -18,7 +18,7 @@ public class BaseFileDisplayScreenlet: BaseScreenlet {
 
 	public static let LoadFileAction = "LoadFileAction"
 
-	@IBInspectable public var entryId: Int64 = 0
+	@IBInspectable public var assetEntryId: Int64 = 0
 
 	@IBInspectable public var className: String = ""
 	@IBInspectable public var classPK: Int64 = 0

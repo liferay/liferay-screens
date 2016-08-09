@@ -29,7 +29,7 @@ import UIKit
 
 @IBDesignable public class AssetDisplayScreenlet: BaseScreenlet {
 	
-	@IBInspectable public var entryId: Int64 = 0
+	@IBInspectable public var assetEntryId: Int64 = 0
 
 	@IBInspectable public var classPK: Int64 = 0
 	@IBInspectable public var className: String = ""
@@ -54,7 +54,7 @@ import UIKit
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		let interactor = LoadAssetInteractor(
 			screenlet: self,
-			entryId: self.entryId,
+			assetEntryId: self.assetEntryId,
 			className: self.className,
 			classPK: self.classPK)
 		
