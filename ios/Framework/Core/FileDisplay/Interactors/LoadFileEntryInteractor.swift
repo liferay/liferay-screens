@@ -16,18 +16,22 @@ import UIKit
 
 class LoadFileEntryInteractor: ServerReadConnectorInteractor {
 
+	let fileEntry: FileEntry
+
 	var resultUrl: NSURL?
 
-	var url: NSURL?
-
-	init(screenlet: BaseScreenlet?, url: NSURL?) {
-		self.url = url
+	init(screenlet: BaseScreenlet?, fileEntry: FileEntry) {
+		self.fileEntry = fileEntry
 
 		super.init(screenlet: screenlet)
 	}
 
 	override func createConnector() -> ServerConnector? {
-		return HttpDownloadConnector(url: url!)
+		guard let url = NSURL(string: LiferayServerContext.server + fileEntry.url) else {
+			return nil
+		}
+
+		return HttpDownloadConnector(url: url)
 	}
 
 	override func completedConnector(op: ServerConnector) {
