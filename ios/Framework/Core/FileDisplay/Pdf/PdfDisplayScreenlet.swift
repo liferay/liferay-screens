@@ -42,7 +42,7 @@ public class PdfDisplayScreenlet: BaseFileDisplayScreenlet {
 		interactor.onSuccess = {
 			if let resultAsset = interactor.asset {
 				self.fileEntry = FileEntry(attributes: resultAsset.attributes)
-				self.loadFile()
+				self.load()
 			}
 			else {
 				self.pdfDisplayDelegate?.screenlet?(self, onPdfAssetError:

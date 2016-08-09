@@ -43,7 +43,7 @@ public class VideoDisplayScreenlet: BaseFileDisplayScreenlet {
 		interactor.onSuccess = {
 			if let resultAsset = interactor.asset {
 				self.fileEntry = FileEntry(attributes: resultAsset.attributes)
-				self.loadFile()
+				self.load()
 			}
 			else {
 				self.videoDisplayDelegate?.screenlet?(self, onVideoAssetError:

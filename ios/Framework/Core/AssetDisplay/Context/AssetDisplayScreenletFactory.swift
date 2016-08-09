@@ -76,7 +76,7 @@ import UIKit
 			if let s = childScreenlet as? BaseFileDisplayScreenlet {
 				s.fileEntry = FileEntry(attributes: self.asset.attributes)
 				s.autoLoad = false
-				s.loadFile()
+				s.load()
 			}
 		}
 		else if childScreenlet is BlogsEntryDisplayScreenlet {

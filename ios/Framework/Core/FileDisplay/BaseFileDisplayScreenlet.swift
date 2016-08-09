@@ -55,11 +55,12 @@ public class BaseFileDisplayScreenlet: BaseScreenlet {
 	//MARK: Public methods
 
 	public func load() -> Bool {
-		return performDefaultAction()
-	}
-
-	public func loadFile() -> Bool {
-		return self.performAction(name: BaseFileDisplayScreenlet.LoadFileAction)
+		if fileEntry == nil {
+			return performDefaultAction()
+		}
+		else {
+			return self.performAction(name: BaseFileDisplayScreenlet.LoadFileAction)
+		}
 	}
 
 	//Child classes must override this method
