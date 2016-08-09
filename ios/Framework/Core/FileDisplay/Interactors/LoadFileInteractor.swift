@@ -31,8 +31,6 @@ class LoadFileInteractor: ServerReadConnectorInteractor {
 	}
 
 	override func completedConnector(op: ServerConnector) {
-		if let op = op as? HttpDownloadConnector {
-			resultUrl = op.resultUrl
-		}
+		resultUrl = (op as? HttpDownloadConnector)?.resultUrl
 	}
 }
