@@ -2,7 +2,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.comment.display;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.text.Html;
@@ -28,7 +28,8 @@ import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 /**
  * @author Alejandro Hernández
  */
-public class CommentDisplayView extends FrameLayout implements CommentDisplayViewModel {
+public class CommentDisplayView extends FrameLayout
+	implements CommentDisplayViewModel, TextView.OnEditorActionListener, View.OnClickListener {
 
 	public CommentDisplayView(Context context) {
 		super(context);
@@ -49,65 +50,27 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 
 	@Override
 	public void refreshView() {
-		if (editable) {
-			editImageButton.setVisibility(VISIBLE);
-			deleteImageButton.setVisibility(VISIBLE);
-		} else {
-			editImageButton.setVisibility(GONE);
-			deleteImageButton.setVisibility(GONE);
-		}
+		editImageButton.setVisibility(editable ? VISIBLE : GONE);
+		deleteImageButton.setVisibility(editable ? VISIBLE : GONE);
 
 		deletionMode(false);
 		editionMode(false);
 
 		if (commentEntry != null) {
 			userPortraitScreenlet.setUserId(commentEntry.getUserId());
-
 			userNameTextView.setText(commentEntry.getUserName());
-
 			createDateTextView.setText(commentEntry.getCreateDateAsTimeSpan());
-
-			if (commentEntry.getModifiedDate() != commentEntry.getCreateDate()) {
-				editedTextView.setVisibility(VISIBLE);
-			} else {
-				editedTextView.setVisibility(GONE);
-			}
-
+			editedTextView.setVisibility(
+				commentEntry.getModifiedDate() != commentEntry.getCreateDate() ? VISIBLE : GONE);
 			bodyTextView.setText(Html.fromHtml(commentEntry.getBody()).toString().replaceAll("\n", "").trim());
 
 			if (commentEntry.isEditable()) {
-				editBodyEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-					@Override
-					public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-						if (actionId == EditorInfo.IME_ACTION_DONE) {
-							editionMode(false);
-							editCommentBody();
-							return true;
-						}
-						return false;
-					}
-				});
-
-				editImageButton.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						if (isDeleting) {
-							getScreenlet().performUserAction(CommentDisplayScreenlet.DELETE_COMMENT_ACTION);
-						} else {
-							editionMode(!isEditing);
-							editCommentBody();
-						}
-					}
-				});
+				editBodyEditText.setOnEditorActionListener(this);
+				editImageButton.setOnClickListener(this);
 			}
 
 			if (commentEntry.isDeletable()) {
-				deleteImageButton.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						deletionMode(!isDeleting);
-					}
-				});
+				deleteImageButton.setOnClickListener(this);
 			}
 		}
 	}
@@ -119,22 +82,22 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 
 	@Override
 	public void showStartOperation(String actionName) {
-		progressBar.setVisibility(View.VISIBLE);
-		contentGroup.setVisibility(View.GONE);
+		progressBar.setVisibility(VISIBLE);
+		contentGroup.setVisibility(GONE);
 	}
 
 	@Override
 	public void showFinishOperation(String actionName) {
-		progressBar.setVisibility(View.GONE);
-		contentGroup.setVisibility(View.VISIBLE);
+		progressBar.setVisibility(GONE);
+		contentGroup.setVisibility(VISIBLE);
 
 		userPortraitScreenlet.load();
 	}
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-		progressBar.setVisibility(View.GONE);
-		contentGroup.setVisibility(View.VISIBLE);
+		progressBar.setVisibility(GONE);
+		contentGroup.setVisibility(VISIBLE);
 	}
 
 	private void editCommentBody() {
@@ -187,10 +150,11 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 	}
 
 	private void changeButtonBackgroundDrawable(ImageButton button, int drawable) {
+		Drawable drawableCompat = ContextCompat.getDrawable(getContext(), drawable);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-			button.setBackground(ContextCompat.getDrawable(getContext(), drawable));
+			button.setBackground(drawableCompat);
 		} else {
-			button.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), drawable));
+			button.setBackgroundDrawable(drawableCompat);
 		}
 	}
 
@@ -245,4 +209,29 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 	private ViewGroup contentGroup;
 	private ProgressBar progressBar;
 	private CommentEntry commentEntry;
+
+	@Override
+	public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+		if (actionId == EditorInfo.IME_ACTION_DONE) {
+			editionMode(false);
+			editCommentBody();
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public void onClick(View v) {
+
+		if (v.getId() == R.id.comment_edit_button) {
+			if (isDeleting) {
+				getScreenlet().performUserAction(CommentDisplayScreenlet.DELETE_COMMENT_ACTION);
+			} else {
+				editionMode(!isEditing);
+				editCommentBody();
+			}
+		} else if (v.getId() == R.id.comment_delete_button) {
+			deletionMode(!isDeleting);
+		}
+	}
 }
