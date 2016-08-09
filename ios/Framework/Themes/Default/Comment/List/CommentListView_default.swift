@@ -27,6 +27,18 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 		tableView?.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
 	}
 
+	public func deleteComment(comment: Comment) {
+		let row = rows[BaseListView.DefaultSection]?.indexOf({
+			(($0 as? Comment)?.commentId ?? 0) == comment.commentId})
+		if let row = row {
+			deleteRow(BaseListView.DefaultSection, row: row)
+			let indexPath = NSIndexPath(forRow: row, inSection: 0)
+			tableView?.beginUpdates()
+			tableView?.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+			tableView?.endUpdates()
+		}
+	}
+
 	//MARK: BaseListTableView
 
 	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
