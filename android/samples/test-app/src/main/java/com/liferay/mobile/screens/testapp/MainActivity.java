@@ -122,6 +122,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				break;
 			case R.id.list_comments:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(CommentsActivity.class));
+				break;
 			case R.id.ratings:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(RatingsActivity.class));
 				break;
