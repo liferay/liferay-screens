@@ -28,7 +28,8 @@ public class CommentDeleteInteractorImpl extends BaseRemoteInteractor<CommentDis
 		}
 	}
 
-	@Override public void deleteComment(long commentId) throws Exception {
+	@Override
+	public void deleteComment(long commentId) throws Exception {
 
 		validate(commentId);
 

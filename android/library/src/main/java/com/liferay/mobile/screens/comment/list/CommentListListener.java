@@ -7,6 +7,7 @@ import com.liferay.mobile.screens.models.CommentEntry;
  * @author Alejandro Hernández
  */
 public interface CommentListListener extends BaseListListener<CommentEntry> {
+
 	void onDeleteCommentFailure(CommentEntry commentEntry, Exception e);
 
 	void onDeleteCommentSuccess(CommentEntry commentEntry);

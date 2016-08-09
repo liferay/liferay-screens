@@ -14,8 +14,8 @@ import java.util.List;
 /**
  * @author Alejandro Hernández
  */
-public class CommentListView extends
-	BaseListScreenletView<CommentEntry, CommentListAdapter.CommentViewHolder, CommentListAdapter>
+public class CommentListView
+	extends BaseListScreenletView<CommentEntry, CommentListAdapter.CommentViewHolder, CommentListAdapter>
 	implements CommentListViewModel, CommentDisplayListener {
 
 	public CommentListView(Context context) {
@@ -30,16 +30,19 @@ public class CommentListView extends
 		super(context, attributes, defaultStyle);
 	}
 
-	@Override public void refreshView() {
+	@Override
+	public void refreshView() {
 		getAdapter().notifyDataSetChanged();
 	}
 
-	@Override public void setEditable(boolean editable) {
-		_editable = editable;
-		getAdapter().setEditable(_editable);
+	@Override
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+		getAdapter().setEditable(this.editable);
 	}
 
-	@Override public void addNewCommentEntry(CommentEntry commentEntry) {
+	@Override
+	public void addNewCommentEntry(CommentEntry commentEntry) {
 		getAdapter().getEntries().add(commentEntry);
 		int newRowCount = getAdapter().getEntries().size();
 		getAdapter().setRowCount(newRowCount);
@@ -49,7 +52,8 @@ public class CommentListView extends
 		showDataState();
 	}
 
-	@Override public void removeCommentEntry(CommentEntry commentEntry) {
+	@Override
+	public void removeCommentEntry(CommentEntry commentEntry) {
 		int position = getAdapter().getEntries().indexOf(commentEntry);
 		getAdapter().getEntries().remove(commentEntry);
 		int newRowCount = getAdapter().getItemCount() - 1;
@@ -61,9 +65,9 @@ public class CommentListView extends
 
 	private void showDataState() {
 		if (getAdapter().getEntries().isEmpty()) {
-			_emptyListTextView.setVisibility(VISIBLE);
+			emptyListTextView.setVisibility(VISIBLE);
 		} else {
-			_emptyListTextView.setVisibility(GONE);
+			emptyListTextView.setVisibility(GONE);
 		}
 	}
 
@@ -78,14 +82,16 @@ public class CommentListView extends
 		showDataState();
 	}
 
-	@Override protected void onFinishInflate() {
+	@Override
+	protected void onFinishInflate() {
 		super.onFinishInflate();
-		_emptyListTextView = (TextView) findViewById(R.id.comment_empty_list);
+		emptyListTextView = (TextView) findViewById(R.id.comment_empty_list);
 
 		setFocusableInTouchMode(true);
 	}
 
-	@Override protected int getItemLayoutId() {
+	@Override
+	protected int getItemLayoutId() {
 		return R.layout.comment_row_default;
 	}
 
@@ -98,38 +104,47 @@ public class CommentListView extends
 		return (CommentListScreenlet) getScreenlet();
 	}
 
-	@Override public void onDeleteCommentFailure(CommentEntry commentEntry, Exception e) {
+	@Override
+	public void onDeleteCommentFailure(CommentEntry commentEntry, Exception e) {
 		getCommentListScreenlet().onDeleteCommentFailure(commentEntry, e);
 	}
 
-	@Override public void onDeleteCommentSuccess(CommentEntry commentEntry) {
+	@Override
+	public void onDeleteCommentSuccess(CommentEntry commentEntry) {
 		refreshView();
 		getCommentListScreenlet().onDeleteCommentSuccess(commentEntry);
 	}
 
-	@Override public void onUpdateCommentFailure(CommentEntry commentEntry, Exception e) {
+	@Override
+	public void onUpdateCommentFailure(CommentEntry commentEntry, Exception e) {
 		getCommentListScreenlet().onUpdateCommentFailure(commentEntry, e);
 	}
 
-	@Override public void onUpdateCommentSuccess(CommentEntry commentEntry) {
+	@Override
+	public void onUpdateCommentSuccess(CommentEntry commentEntry) {
 		getCommentListScreenlet().onUpdateCommentSuccess(commentEntry);
 	}
 
-	@Override public void onLoadCommentFailure(long commentId, Exception e) {
+	@Override
+	public void onLoadCommentFailure(long commentId, Exception e) {
 	}
 
-	@Override public void onLoadCommentSuccess(CommentEntry commentEntry) {
+	@Override
+	public void onLoadCommentSuccess(CommentEntry commentEntry) {
 	}
 
-	@Override public void loadingFromCache(boolean success) {
+	@Override
+	public void loadingFromCache(boolean success) {
 	}
 
-	@Override public void retrievingOnline(boolean triedInCache, Exception e) {
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
 	}
 
-	@Override public void storingToCache(Object object) {
+	@Override
+	public void storingToCache(Object object) {
 	}
 
-	private TextView _emptyListTextView;
-	private boolean _editable;
+	private TextView emptyListTextView;
+	private boolean editable;
 }

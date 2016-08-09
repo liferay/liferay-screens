@@ -10,6 +10,7 @@ import org.json.JSONObject;
  * @author Alejandro Hernández
  */
 public class CommentLoadCallback extends InteractorAsyncTaskCallback<CommentEntry> {
+
 	public CommentLoadCallback(int targetScreenletId) {
 		super(targetScreenletId);
 	}

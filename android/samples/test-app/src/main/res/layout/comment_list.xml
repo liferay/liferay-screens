@@ -13,58 +13,59 @@
 		>
 
 		<TextView
-			style="@style/label"
-			android:layout_alignParentTop="true"
 			android:id="@+id/comment_description"
-			android:text="@string/comment_list_label" />
+			android:layout_alignParentTop="true"
+			android:text="@string/comment_list_label"
+			style="@style/label"
+			/>
 
 		<RelativeLayout
 			android:id="@+id/comment_configuration_display"
-			android:layout_below="@+id/comment_description"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:layout_below="@+id/comment_description"
 			android:background="#e7e7e7"
 			android:elevation="4dp"
-			android:padding="10dp"
 			android:orientation="vertical"
+			android:padding="10dp"
 			>
 
 			<TextView
 				android:id="@+id/comment_display_title"
-				android:text="Configuration"
-				style="@style/TextAppearance.AppCompat.Title"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:text="Configuration"
+				style="@style/TextAppearance.AppCompat.Title"
 				/>
 
 			<android.support.v7.widget.SwitchCompat
 				android:id="@+id/comment_switch_editable"
-				android:layout_below="@id/comment_display_title"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_alignTop="@+id/comment_load_display"
 				android:layout_alignBottom="@+id/comment_load_display"
-				liferay:switchPadding="10dp"
+				android:layout_alignTop="@+id/comment_load_display"
+				android:layout_below="@id/comment_display_title"
 				android:text="Editable"
+				liferay:switchPadding="10dp"
 				/>
 
 			<EditText
 				android:id="@+id/comment_id_display"
-				android:layout_below="@id/comment_display_title"
-				android:layout_toEndOf="@+id/comment_switch_editable"
-				android:layout_alignTop="@+id/comment_load_display"
-				android:layout_alignBottom="@+id/comment_load_display"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
+				android:layout_alignBottom="@+id/comment_load_display"
+				android:layout_alignTop="@+id/comment_load_display"
+				android:layout_below="@id/comment_display_title"
 				android:layout_marginStart="10dp"
+				android:layout_toEndOf="@+id/comment_switch_editable"
 				android:hint="Comment ID"
 				/>
 
 			<Button
 				android:id="@+id/comment_load_display"
-				android:layout_below="@id/comment_display_title"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
+				android:layout_below="@id/comment_display_title"
 				android:layout_marginStart="10dp"
 				android:layout_toEndOf="@+id/comment_id_display"
 				android:text="Load"
@@ -74,57 +75,58 @@
 
 		<TextView
 			android:id="@+id/comment_list_title"
-			android:text="Comment List"
-			android:paddingStart="10dp"
-			android:layout_marginTop="10dp"
-			android:layout_below="@+id/comment_configuration_display"
-			style="@style/TextAppearance.AppCompat.Title"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_below="@+id/comment_configuration_display"
+			android:layout_marginTop="10dp"
+			android:paddingStart="10dp"
+			android:text="Comment List"
+			style="@style/TextAppearance.AppCompat.Title"
 			/>
 
 		<com.liferay.mobile.screens.comment.list.CommentListScreenlet
 			android:id="@+id/comment_list_screenlet"
-			android:layout_below="@+id/comment_list_title"
-			android:layout_above="@+id/comment_display"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:layout_above="@+id/comment_display"
+			android:layout_below="@+id/comment_list_title"
+			liferay:autoLoad="false"
 			liferay:className="@string/liferay_comment_asset_className"
 			liferay:classPK="@string/liferay_comment_asset_id"
-			liferay:autoLoad="false"
 			liferay:editable="false"
-			liferay:offlinePolicy="REMOTE_FIRST" />
+			liferay:offlinePolicy="REMOTE_FIRST"
+			/>
 
 		<LinearLayout
 			android:id="@+id/comment_display"
-			android:layout_alignParentBottom="true"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:orientation="vertical"
-			android:paddingTop="10dp"
-			android:paddingStart="10dp"
-			android:paddingEnd="10dp"
-			android:paddingBottom="20dp"
+			android:layout_alignParentBottom="true"
 			android:background="#e7e7e7"
 			android:elevation="4dp"
+			android:orientation="vertical"
+			android:paddingBottom="20dp"
+			android:paddingEnd="10dp"
+			android:paddingStart="10dp"
+			android:paddingTop="10dp"
 			>
 
 			<TextView
-				android:text="Comment Display"
-				style="@style/TextAppearance.AppCompat.Title"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:text="Comment Display"
+				style="@style/TextAppearance.AppCompat.Title"
 				/>
 
 			<com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet
 				android:id="@+id/comment_display_screenlet"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:visibility="gone"
+				liferay:autoLoad="false"
 				liferay:className="@string/liferay_comment_asset_className"
 				liferay:classPK="@string/liferay_comment_asset_id"
-				liferay:autoLoad="false"
 				liferay:editable="false"
-				android:visibility="gone"
 				/>
 
 			<TextView
@@ -141,13 +143,13 @@
 	<android.support.design.widget.FloatingActionButton
 		android:id="@+id/add_comment_button"
 		android:layout_width="wrap_content"
-		android:src="@drawable/ic_add"
+		android:layout_height="wrap_content"
 		android:layout_margin="16dp"
+		android:elevation="4dp"
+		android:src="@drawable/ic_add"
+		liferay:backgroundTint="?colorPrimaryDark"
 		liferay:layout_anchor="@id/comment_description"
 		liferay:layout_anchorGravity="bottom|right|end"
-		android:elevation="4dp"
-		android:layout_height="wrap_content"
-		liferay:backgroundTint="?colorPrimaryDark"
 		liferay:rippleColor="?colorPrimary"
 		/>
 

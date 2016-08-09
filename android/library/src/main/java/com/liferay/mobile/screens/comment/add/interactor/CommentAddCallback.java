@@ -20,11 +20,13 @@ public class CommentAddCallback extends InteractorAsyncTaskCallback<CommentEntry
 		return new CommentEntry(JSONUtil.toMap((JSONObject) obj));
 	}
 
-	@Override protected BasicEvent createEvent(int targetScreenletId, Exception e) {
+	@Override
+	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
 		return new CommentAddEvent(targetScreenletId, e);
 	}
 
-	@Override protected BasicEvent createEvent(int targetScreenletId, CommentEntry result) {
+	@Override
+	protected BasicEvent createEvent(int targetScreenletId, CommentEntry result) {
 		return new CommentAddEvent(targetScreenletId, result);
 	}
 }

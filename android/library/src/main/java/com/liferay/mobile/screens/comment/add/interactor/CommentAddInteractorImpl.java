@@ -9,8 +9,7 @@ import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
 /**
  * @author Alejandro Hernández
  */
-public class CommentAddInteractorImpl extends BaseRemoteInteractor<CommentAddListener>
-	implements CommentAddInteractor {
+public class CommentAddInteractorImpl extends BaseRemoteInteractor<CommentAddListener> implements CommentAddInteractor {
 
 	public CommentAddInteractorImpl(int targetScreenletId) {
 		super(targetScreenletId);
@@ -22,19 +21,18 @@ public class CommentAddInteractorImpl extends BaseRemoteInteractor<CommentAddLis
 		}
 
 		if (event.isFailed()) {
-			getListener().onAddCommentFailure(_body, event.getException());
+			getListener().onAddCommentFailure(body, event.getException());
 		} else {
 			getListener().onAddCommentSuccess(event.getCommentEntry());
 		}
 	}
 
 	@Override
-	public void addComment(long groupId, String className, long classPK, String body)
-		throws Exception {
+	public void addComment(long groupId, String className, long classPK, String body) throws Exception {
 
 		validate(groupId, className, classPK, body);
 
-		_body = body;
+		this.body = body;
 
 		CommentmanagerjsonwsService service = getCommentsService();
 
@@ -63,5 +61,5 @@ public class CommentAddInteractorImpl extends BaseRemoteInteractor<CommentAddLis
 		}
 	}
 
-	private String _body;
+	private String body;
 }

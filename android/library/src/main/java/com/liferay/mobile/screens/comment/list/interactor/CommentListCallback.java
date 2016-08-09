@@ -11,12 +11,12 @@ import java.util.Map;
  */
 public class CommentListCallback extends BaseListCallback<CommentEntry> {
 
-	public CommentListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange,
-		Locale locale) {
+	public CommentListCallback(int targetScreenletId, Pair<Integer, Integer> rowsRange, Locale locale) {
 		super(targetScreenletId, rowsRange, locale);
 	}
 
-	@Override public CommentEntry createEntity(Map<String, Object> stringObjectMap) {
+	@Override
+	public CommentEntry createEntity(Map<String, Object> stringObjectMap) {
 		return new CommentEntry(stringObjectMap);
 	}
 }

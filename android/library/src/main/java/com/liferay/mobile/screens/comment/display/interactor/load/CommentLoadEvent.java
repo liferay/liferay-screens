@@ -15,13 +15,12 @@ public class CommentLoadEvent extends BasicEvent {
 	public CommentLoadEvent(int targetScreenletId, CommentEntry commentEntry) {
 		super(targetScreenletId);
 
-		_commentEntry = commentEntry;
+		this.commentEntry = commentEntry;
 	}
 
 	public CommentEntry getCommentEntry() {
-		return _commentEntry;
+		return commentEntry;
 	}
 
-	private CommentEntry _commentEntry;
-
+	private CommentEntry commentEntry;
 }

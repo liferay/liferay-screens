@@ -23,8 +23,7 @@ import static com.liferay.mobile.screens.cache.DefaultCachedType.ASSET_LIST_COUN
 /**
  * @author Alejandro Hernández
  */
-public class CommentListInteractorImpl
-	extends BaseListInteractor<CommentEntry, CommentListInteractorListener>
+public class CommentListInteractorImpl extends BaseListInteractor<CommentEntry, CommentListInteractorListener>
 	implements CommentListInteractor {
 
 	public CommentListInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
@@ -32,31 +31,32 @@ public class CommentListInteractorImpl
 	}
 
 	@Override
-	public void loadRows(long groupId, String className, long classPK, int startRow, int endRow)
-		throws Exception {
+	public void loadRows(long groupId, String className, long classPK, int startRow, int endRow) throws Exception {
 
 		validate(groupId, className, classPK);
 
-		this._groupId = groupId;
-		this._className = className;
-		this._classPK = classPK;
+		this.groupId = groupId;
+		this.className = className;
+		this.classPK = classPK;
 
 		Locale locale = LiferayLocale.getDefaultLocale();
 
 		processWithCache(startRow, endRow, locale);
 	}
 
-	@NonNull @Override protected CommentEntry getElement(TableCache tableCache)
-		throws JSONException {
+	@NonNull
+	@Override
+	protected CommentEntry getElement(TableCache tableCache) throws JSONException {
 		return new CommentEntry(JSONUtil.toMap(new JSONObject(tableCache.getContent())));
 	}
 
-	@Override protected String getContent(CommentEntry commentEntry) {
+	@Override
+	protected String getContent(CommentEntry commentEntry) {
 		return new JSONObject(commentEntry.getValues()).toString();
 	}
 
-	@Override protected BaseListCallback<CommentEntry> getCallback(Pair<Integer, Integer> rowsRange,
-		Locale locale) {
+	@Override
+	protected BaseListCallback<CommentEntry> getCallback(Pair<Integer, Integer> rowsRange, Locale locale) {
 		return new CommentListCallback(getTargetScreenletId(), rowsRange, locale);
 	}
 
@@ -64,32 +64,35 @@ public class CommentListInteractorImpl
 	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale, JSONObjectWrapper obc)
 		throws Exception {
 		CommentmanagerjsonwsService service = getCommentsService(session);
-		service.getComments(_groupId, _className, _classPK, startRow, endRow);
+		service.getComments(groupId, className, classPK, startRow, endRow);
 	}
 
-	@Override protected void getPageRowCountRequest(Session session) throws Exception {
+	@Override
+	protected void getPageRowCountRequest(Session session) throws Exception {
 		CommentmanagerjsonwsService service = getCommentsService(session);
-		service.getCommentsCount(_groupId, _className, _classPK);
+		service.getCommentsCount(groupId, className, classPK);
 	}
 
-	@Override protected boolean cached(Object... args) throws Exception {
+	@Override
+	protected boolean cached(Object... args) throws Exception {
 		final int startRow = (int) args[0];
 		final int endRow = (int) args[1];
 
-		return recoverRows(getId(), ASSET_LIST, ASSET_LIST_COUNT, _groupId, null, null, startRow,
-			endRow);
+		return recoverRows(getId(), ASSET_LIST, ASSET_LIST_COUNT, groupId, null, null, startRow, endRow);
 	}
 
-	@Override protected void storeToCache(BaseListEvent event, Object... args) {
-		storeRows(getId(), ASSET_LIST, ASSET_LIST_COUNT, _groupId, null, event);
+	@Override
+	protected void storeToCache(BaseListEvent event, Object... args) {
+		storeRows(getId(), ASSET_LIST, ASSET_LIST_COUNT, groupId, null, event);
 	}
 
 	private CommentmanagerjsonwsService getCommentsService(Session session) {
 		return new CommentmanagerjsonwsService(session);
 	}
 
-	@NonNull private String getId() {
-		return _className + "_" + String.valueOf(_classPK);
+	@NonNull
+	private String getId() {
+		return className + "_" + String.valueOf(classPK);
 	}
 
 	protected void validate(long groupId, String className, long classPK) {
@@ -102,7 +105,7 @@ public class CommentListInteractorImpl
 		}
 	}
 
-	private long _groupId;
-	private String _className;
-	private long _classPK;
+	private long groupId;
+	private String className;
+	private long classPK;
 }

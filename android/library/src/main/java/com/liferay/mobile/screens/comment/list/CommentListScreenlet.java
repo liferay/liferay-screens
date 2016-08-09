@@ -35,8 +35,7 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 		super(context, attrs, defStyleAttr);
 	}
 
-	public CommentListScreenlet(Context context, AttributeSet attrs, int defStyleAttr,
-		int defStyleRes) {
+	public CommentListScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
@@ -52,41 +51,39 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 		((CommentListViewModel) getViewModel()).removeCommentEntry(commentEntry);
 	}
 
-	@Override protected void onScreenletAttached() {
+	@Override
+	protected void onScreenletAttached() {
 		super.onScreenletAttached();
 
 		if (!isInEditMode()) {
-			((CommentListViewModel) getViewModel()).setEditable(_editable);
+			((CommentListViewModel) getViewModel()).setEditable(editable);
 		}
 	}
 
 	@Override
 	protected void loadRows(Interactor interactor, int startRow, int endRow, Locale locale, String obcClassName)
 		throws Exception {
-		((CommentListInteractor) interactor).loadRows(
-			_groupId, _className, _classPK, startRow, endRow);
+		((CommentListInteractor) interactor).loadRows(groupId, className, classPK, startRow, endRow);
 	}
 
-	@Override protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray = context.getTheme()
-			.obtainStyledAttributes(attributes, R.styleable.CommentListScreenlet, 0, 0);
+	@Override
+	protected View createScreenletView(Context context, AttributeSet attributes) {
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.CommentListScreenlet, 0, 0);
 
-		_className = typedArray.getString(R.styleable.CommentListScreenlet_className);
+		className = typedArray.getString(R.styleable.CommentListScreenlet_className);
 
-		_classPK = castToLong(typedArray.getString(R.styleable.CommentListScreenlet_classPK));
+		classPK = castToLong(typedArray.getString(R.styleable.CommentListScreenlet_classPK));
 
-		_editable = typedArray.getBoolean(R.styleable.CommentListScreenlet_editable, true);
+		editable = typedArray.getBoolean(R.styleable.CommentListScreenlet_editable, true);
 
 		Integer offlinePolicy =
-			typedArray.getInteger(R.styleable.CommentListScreenlet_offlinePolicy,
-				OfflinePolicy.REMOTE_ONLY.ordinal());
-		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
+			typedArray.getInteger(R.styleable.CommentListScreenlet_offlinePolicy, OfflinePolicy.REMOTE_ONLY.ordinal());
+		this.offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 
 		long groupId = LiferayServerContext.getGroupId();
 
-		_groupId =
-			castToLongOrUseDefault(typedArray.getString(R.styleable.CommentListScreenlet_groupId),
-				groupId);
+		this.groupId = castToLongOrUseDefault(typedArray.getString(R.styleable.CommentListScreenlet_groupId), groupId);
 
 		typedArray.recycle();
 
@@ -97,89 +94,99 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 	protected void onUserAction(String actionName, Interactor interactor, Object... args) {
 	}
 
-	@Override protected Interactor createInteractor(String actionName) {
-		return new CommentListInteractorImpl(getScreenletId(), _offlinePolicy);
+	@Override
+	protected Interactor createInteractor(String actionName) {
+		return new CommentListInteractorImpl(getScreenletId(), offlinePolicy);
 	}
 
-	@Override public void loadingFromCache(boolean success) {
+	@Override
+	public void loadingFromCache(boolean success) {
 		if (getListener() != null) {
 			getListener().loadingFromCache(success);
 		}
 	}
 
-	@Override public void retrievingOnline(boolean triedInCache, Exception e) {
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
 		if (getListener() != null) {
 			getListener().retrievingOnline(triedInCache, e);
 		}
 	}
 
-	@Override public void storingToCache(Object object) {
+	@Override
+	public void storingToCache(Object object) {
 		if (getListener() != null) {
 			getListener().storingToCache(object);
 		}
 	}
 
-	@Override public void onLoadCommentFailure(long commentId, Exception e) {
+	@Override
+	public void onLoadCommentFailure(long commentId, Exception e) {
 	}
 
-	@Override public void onLoadCommentSuccess(CommentEntry commentEntry) {
+	@Override
+	public void onLoadCommentSuccess(CommentEntry commentEntry) {
 	}
 
-	@Override public void onDeleteCommentFailure(CommentEntry commentEntry, Exception e) {
+	@Override
+	public void onDeleteCommentFailure(CommentEntry commentEntry, Exception e) {
 		if (getCommentListListener() != null) {
 			getCommentListListener().onDeleteCommentFailure(commentEntry, e);
 		}
 	}
 
-	@Override public void onDeleteCommentSuccess(CommentEntry commentEntry) {
+	@Override
+	public void onDeleteCommentSuccess(CommentEntry commentEntry) {
 		if (getCommentListListener() != null) {
 			getCommentListListener().onDeleteCommentSuccess(commentEntry);
 		}
 		removeCommentEntry(commentEntry);
 	}
 
-	@Override public void onUpdateCommentFailure(CommentEntry commentEntry, Exception e) {
+	@Override
+	public void onUpdateCommentFailure(CommentEntry commentEntry, Exception e) {
 		if (getCommentListListener() != null) {
 			getCommentListListener().onUpdateCommentFailure(commentEntry, e);
 		}
 	}
 
-	@Override public void onUpdateCommentSuccess(CommentEntry commentEntry) {
+	@Override
+	public void onUpdateCommentSuccess(CommentEntry commentEntry) {
 		if (getCommentListListener() != null) {
 			getCommentListListener().onUpdateCommentSuccess(commentEntry);
 		}
 	}
 
 	public OfflinePolicy getOfflinePolicy() {
-		return _offlinePolicy;
+		return offlinePolicy;
 	}
 
 	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
-		this._offlinePolicy = offlinePolicy;
+		this.offlinePolicy = offlinePolicy;
 	}
 
 	public String getClassName() {
-		return _className;
+		return className;
 	}
 
 	public void setClassName(String className) {
-		this._className = className;
+		this.className = className;
 	}
 
 	public long getClassPK() {
-		return _classPK;
+		return classPK;
 	}
 
 	public void setClassPK(long classPK) {
-		this._classPK = classPK;
+		this.classPK = classPK;
 	}
 
 	public long getGroupId() {
-		return _groupId;
+		return groupId;
 	}
 
 	public void setGroupId(long groupId) {
-		this._groupId = groupId;
+		this.groupId = groupId;
 	}
 
 	private CommentListListener getCommentListListener() {
@@ -187,17 +194,17 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 	}
 
 	public boolean isEditable() {
-		return _editable;
+		return editable;
 	}
 
 	public void setEditable(boolean editable) {
-		_editable = editable;
+		this.editable = editable;
 		((CommentListViewModel) getViewModel()).setEditable(editable);
 	}
 
-	private OfflinePolicy _offlinePolicy;
-	private String _className;
-	private long _classPK;
-	private long _groupId;
-	private boolean _editable;
+	private OfflinePolicy offlinePolicy;
+	private String className;
+	private long classPK;
+	private long groupId;
+	private boolean editable;
 }

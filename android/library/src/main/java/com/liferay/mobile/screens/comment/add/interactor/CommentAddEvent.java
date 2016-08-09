@@ -7,6 +7,7 @@ import com.liferay.mobile.screens.models.CommentEntry;
  * @author Alejandro Hernández
  */
 public class CommentAddEvent extends BasicEvent {
+
 	public CommentAddEvent(int targetScreenletId, Exception e) {
 		super(targetScreenletId, e);
 	}
@@ -14,12 +15,12 @@ public class CommentAddEvent extends BasicEvent {
 	public CommentAddEvent(int targetScreenletId, CommentEntry commentEntry) {
 		super(targetScreenletId);
 
-		_commentEntry = commentEntry;
+		this.commentEntry = commentEntry;
 	}
 
 	public CommentEntry getCommentEntry() {
-		return _commentEntry;
+		return commentEntry;
 	}
 
-	private CommentEntry _commentEntry;
+	private CommentEntry commentEntry;
 }

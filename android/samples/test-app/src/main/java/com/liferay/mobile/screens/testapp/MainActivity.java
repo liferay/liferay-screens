@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
 import android.view.View;
-
 import com.liferay.mobile.screens.cache.DefaultCachedType;
 import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.testapp.fullview.LoginFullActivity;
@@ -62,8 +61,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(SignUpActivity.class));
 				break;
 			case R.id.forgot_password:
-				DefaultAnimation.startActivityWithAnimation(this,
-					getIntentWithTheme(ForgotPasswordActivity.class));
+				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(ForgotPasswordActivity.class));
 				break;
 			case R.id.user_portrait:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(UserPortraitActivity.class));
@@ -72,13 +70,15 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(WebContentDisplayActivity.class));
 				break;
 			case R.id.web_content_display_screenlet_structured:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(WebContentDisplayStructuredActivity.class));
+				DefaultAnimation.startActivityWithAnimation(this,
+					getIntentWithTheme(WebContentDisplayStructuredActivity.class));
 				break;
 			case R.id.add_bookmark:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(AddBookmarkActivity.class));
 				break;
 			case R.id.journal_article_with_template:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(JournalArticleWithTemplateActivity.class));
+				DefaultAnimation.startActivityWithAnimation(this,
+					getIntentWithTheme(JournalArticleWithTemplateActivity.class));
 				break;
 			case R.id.filtered_asset:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(FilteredAssetActivity.class));
@@ -129,6 +129,4 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(LoginActivity.class));
 		}
 	}
-
-
 }

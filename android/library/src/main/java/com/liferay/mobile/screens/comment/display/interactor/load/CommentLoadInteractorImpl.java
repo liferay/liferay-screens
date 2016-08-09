@@ -10,14 +10,16 @@ import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
 /**
  * @author Alejandro Hernández
  */
-public class CommentLoadInteractorImpl extends BaseCachedRemoteInteractor<CommentDisplayInteractorListener, CommentLoadEvent>
+public class CommentLoadInteractorImpl
+	extends BaseCachedRemoteInteractor<CommentDisplayInteractorListener, CommentLoadEvent>
 	implements CommentLoadInteractor {
 
 	public CommentLoadInteractorImpl(int screenletId, OfflinePolicy offlinePolicy) {
 		super(screenletId, offlinePolicy);
 	}
 
-	@Override public void load(long groupId, long commentId) throws Exception {
+	@Override
+	public void load(long groupId, long commentId) throws Exception {
 		validate(groupId, commentId);
 
 		processWithCache(groupId, commentId);
@@ -30,8 +32,7 @@ public class CommentLoadInteractorImpl extends BaseCachedRemoteInteractor<Commen
 
 		if (event.isFailed()) {
 			getListener().onLoadCommentFailure(event.getException());
-		}
-		else {
+		} else {
 			getListener().onLoadCommentSuccess(event.getCommentEntry());
 		}
 	}
@@ -45,15 +46,18 @@ public class CommentLoadInteractorImpl extends BaseCachedRemoteInteractor<Commen
 		getCommentService().getComment(groupId, commentId);
 	}
 
-	@Override protected boolean cached(Object... args) throws Exception {
+	@Override
+	protected boolean cached(Object... args) throws Exception {
 		return false;
 	}
 
-	@Override protected void storeToCache(CommentLoadEvent event, Object... args) {
+	@Override
+	protected void storeToCache(CommentLoadEvent event, Object... args) {
 
 	}
 
-	@Override protected void notifyError(CommentLoadEvent event) {
+	@Override
+	protected void notifyError(CommentLoadEvent event) {
 		getListener().onLoadCommentFailure(event.getException());
 	}
 

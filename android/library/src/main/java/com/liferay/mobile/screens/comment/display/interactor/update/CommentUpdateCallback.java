@@ -29,5 +29,4 @@ public class CommentUpdateCallback extends InteractorAsyncTaskCallback<CommentEn
 	protected BasicEvent createEvent(int targetScreenletId, CommentEntry result) {
 		return new CommentUpdateEvent(targetScreenletId, result);
 	}
-
 }

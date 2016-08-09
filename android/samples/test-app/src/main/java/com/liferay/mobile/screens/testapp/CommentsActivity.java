@@ -21,8 +21,8 @@ import java.util.List;
 /**
  * @author Alejandro Hernández
  */
-public class CommentsActivity extends ThemeActivity implements CommentListListener,
-	CommentAddListener, View.OnClickListener, CompoundButton.OnCheckedChangeListener,
+public class CommentsActivity extends ThemeActivity
+	implements CommentListListener, CommentAddListener, View.OnClickListener, CompoundButton.OnCheckedChangeListener,
 	CommentDisplayListener {
 
 	@Override
@@ -34,104 +34,118 @@ public class CommentsActivity extends ThemeActivity implements CommentListListen
 		findViewById(R.id.add_comment_button).setOnClickListener(this);
 		findViewById(R.id.comment_load_display).setOnClickListener(this);
 
-		_noCommentView = findViewById(R.id.no_comment_display);
+		noCommentView = findViewById(R.id.no_comment_display);
 
-		_loadEditText = (EditText) findViewById(R.id.comment_id_display);
+		loadEditText = (EditText) findViewById(R.id.comment_id_display);
 
-		((SwitchCompat) findViewById(R.id.comment_switch_editable))
-			.setOnCheckedChangeListener(this);
+		((SwitchCompat) findViewById(R.id.comment_switch_editable)).setOnCheckedChangeListener(this);
 
-		_listScreenlet = (CommentListScreenlet) findViewById(R.id.comment_list_screenlet);
-		_listScreenlet.setGroupId(LiferayServerContext.getGroupId());
-		_listScreenlet.setListener(this);
+		listScreenlet = (CommentListScreenlet) findViewById(R.id.comment_list_screenlet);
+		listScreenlet.setGroupId(LiferayServerContext.getGroupId());
+		listScreenlet.setListener(this);
 
-		_displayScreenlet = (CommentDisplayScreenlet) findViewById(R.id.comment_display_screenlet);
-		_displayScreenlet.setGroupId(LiferayServerContext.getGroupId());
-		_displayScreenlet.setListener(this);
+		displayScreenlet = (CommentDisplayScreenlet) findViewById(R.id.comment_display_screenlet);
+		displayScreenlet.setGroupId(LiferayServerContext.getGroupId());
+		displayScreenlet.setListener(this);
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 
-		_listScreenlet.loadPage(0);
+		listScreenlet.loadPage(0);
 	}
 
-	@Override public void onLoadCommentFailure(long commentId, Exception e) {
+	@Override
+	public void onLoadCommentFailure(long commentId, Exception e) {
 		error(String.format("Error loading comment with id: %d", commentId), e);
 		displayScreenletVisible(false);
 	}
 
 	private void displayScreenletVisible(boolean visible) {
 		if (visible) {
-			_noCommentView.setVisibility(View.GONE);
-			_displayScreenlet.setVisibility(View.VISIBLE);
+			noCommentView.setVisibility(View.GONE);
+			displayScreenlet.setVisibility(View.VISIBLE);
 		} else {
-			_noCommentView.setVisibility(View.VISIBLE);
-			_displayScreenlet.setVisibility(View.GONE);
+			noCommentView.setVisibility(View.VISIBLE);
+			displayScreenlet.setVisibility(View.GONE);
 		}
 	}
 
-	@Override public void onLoadCommentSuccess(CommentEntry commentEntry) {
+	@Override
+	public void onLoadCommentSuccess(CommentEntry commentEntry) {
 		info(String.format("Comment with id: %d succesfully loaded", commentEntry.getCommentId()));
 	}
 
-	@Override public void onDeleteCommentFailure(CommentEntry commentEntry, Exception e) {
+	@Override
+	public void onDeleteCommentFailure(CommentEntry commentEntry, Exception e) {
 		error(String.format("Error deleting comment with id: %d", commentEntry.getCommentId()), e);
 	}
 
-	@Override public void onDeleteCommentSuccess(CommentEntry commentEntry) {
+	@Override
+	public void onDeleteCommentSuccess(CommentEntry commentEntry) {
 		info(String.format("Comment with id: %d succesfully deleted", commentEntry.getCommentId()));
-		if (commentEntry.getCommentId() == _displayScreenlet.getCommentId()) {
+		if (commentEntry.getCommentId() == displayScreenlet.getCommentId()) {
 			displayScreenletVisible(false);
-			_listScreenlet.removeCommentEntry(commentEntry);
+			listScreenlet.removeCommentEntry(commentEntry);
 		}
 	}
 
-	@Override public void onUpdateCommentFailure(CommentEntry commentEntry, Exception e) {
+	@Override
+	public void onUpdateCommentFailure(CommentEntry commentEntry, Exception e) {
 		error(String.format("Error updating comment with id: %d", commentEntry.getCommentId()), e);
 	}
 
-	@Override public void onUpdateCommentSuccess(CommentEntry commentEntry) {
+	@Override
+	public void onUpdateCommentSuccess(CommentEntry commentEntry) {
 		info(String.format("Comment with id: %d succesfully updated", commentEntry.getCommentId()));
-		if (commentEntry.getCommentId() == _displayScreenlet.getCommentId()) {
-			_displayScreenlet.load();
-			_listScreenlet.refreshView();
+		if (commentEntry.getCommentId() == displayScreenlet.getCommentId()) {
+			displayScreenlet.load();
+			listScreenlet.refreshView();
 		}
 	}
 
-	@Override public void onAddCommentFailure(String body, Exception e) {
+	@Override
+	public void onAddCommentFailure(String body, Exception e) {
 		error("Error adding comment", e);
 	}
 
-	@Override public void onAddCommentSuccess(CommentEntry commentEntry) {
+	@Override
+	public void onAddCommentSuccess(CommentEntry commentEntry) {
 		info(String.format("Comment succesfully added, new id: %d", commentEntry.getCommentId()));
-		_dialog.cancel();
-		_listScreenlet.addNewCommentEntry(commentEntry);
+		dialog.cancel();
+		listScreenlet.addNewCommentEntry(commentEntry);
 	}
 
-	@Override public void onListPageFailed(BaseListScreenlet source, int startRow, int endRow, Exception e) {
+	@Override
+	public void onListPageFailed(BaseListScreenlet source, int startRow, int endRow, Exception e) {
 		error(String.format("Error receiving page: %d", startRow), e);
 	}
 
 	@Override
-	public void onListPageReceived(BaseListScreenlet source, int startRow, int endRow, List<CommentEntry> entries, int rowCount) {
+	public void onListPageReceived(BaseListScreenlet source, int startRow, int endRow, List<CommentEntry> entries,
+		int rowCount) {
 	}
 
-	@Override public void onListItemSelected(CommentEntry element, View view) {
-		_loadEditText.setText(String.valueOf(element.getCommentId()));
+	@Override
+	public void onListItemSelected(CommentEntry element, View view) {
+		loadEditText.setText(String.valueOf(element.getCommentId()));
 	}
 
-	@Override public void loadingFromCache(boolean success) {
+	@Override
+	public void loadingFromCache(boolean success) {
 	}
 
-	@Override public void retrievingOnline(boolean triedInCache, Exception e) {
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
 	}
 
-	@Override public void storingToCache(Object object) {
+	@Override
+	public void storingToCache(Object object) {
 	}
 
-	@Override public void onClick(View v) {
+	@Override
+	public void onClick(View v) {
 		int id = v.getId();
 		if (id == R.id.add_comment_button) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -147,29 +161,30 @@ public class CommentsActivity extends ThemeActivity implements CommentListListen
 			CommentAddScreenlet screenlet = (CommentAddScreenlet) dialogView.findViewById(R.id.comment_add_screenlet);
 			screenlet.setListener(this);
 
-			_dialog = builder.create();
-			_dialog.show();
+			dialog = builder.create();
+			dialog.show();
 		} else if (id == R.id.comment_load_display) {
-			String editTextString = _loadEditText.getText().toString();
+			String editTextString = loadEditText.getText().toString();
 			if (!editTextString.isEmpty()) {
 				long commentId = Long.parseLong(editTextString);
-				_displayScreenlet.setCommentId(commentId);
+				displayScreenlet.setCommentId(commentId);
 				displayScreenletVisible(true);
-				_displayScreenlet.load();
+				displayScreenlet.load();
 			}
 		}
 	}
 
-	@Override public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		_listScreenlet.setEditable(isChecked);
-		_displayScreenlet.setEditable(isChecked);
-		_listScreenlet.refreshView();
-		_displayScreenlet.refreshView();
+	@Override
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		listScreenlet.setEditable(isChecked);
+		displayScreenlet.setEditable(isChecked);
+		listScreenlet.refreshView();
+		//displayScreenlet.refreshView();
 	}
 
-	private CommentListScreenlet _listScreenlet;
-	private AlertDialog _dialog;
-	private CommentDisplayScreenlet _displayScreenlet;
-	private EditText _loadEditText;
-	private View _noCommentView;
+	private CommentListScreenlet listScreenlet;
+	private AlertDialog dialog;
+	private CommentDisplayScreenlet displayScreenlet;
+	private EditText loadEditText;
+	private View noCommentView;
 }

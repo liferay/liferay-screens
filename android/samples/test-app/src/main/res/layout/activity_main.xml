@@ -137,8 +137,9 @@
 
 			<Button
 				android:id="@+id/list_comments"
+				android:text="@string/list_comments"
 				style="@style/test_app_button"
-				android:text="@string/list_comments" />
+				/>
 
 			<Button
 				android:id="@+id/relogin"

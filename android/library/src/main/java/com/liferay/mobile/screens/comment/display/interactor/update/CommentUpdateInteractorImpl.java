@@ -48,8 +48,7 @@ public class CommentUpdateInteractorImpl extends BaseRemoteInteractor<CommentDis
 		return new CommentmanagerjsonwsService(session);
 	}
 
-	protected void validate(
-		long groupId, String className, long classPK, long commentId, String newBody) {
+	protected void validate(long groupId, String className, long classPK, long commentId, String newBody) {
 
 		if (groupId <= 0) {
 			throw new IllegalArgumentException("groupId must be greater than 0");

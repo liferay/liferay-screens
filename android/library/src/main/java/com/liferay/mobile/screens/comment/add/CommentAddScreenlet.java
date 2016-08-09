@@ -17,8 +17,7 @@ import com.liferay.mobile.screens.models.CommentEntry;
 /**
  * @author Alejandro Hernández
  */
-public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, Interactor>
-	implements CommentAddListener {
+public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, Interactor> implements CommentAddListener {
 
 	public CommentAddScreenlet(Context context) {
 		super(context);
@@ -28,85 +27,87 @@ public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, Inte
 		super(context, attrs);
 	}
 
-	@Override protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-			attributes, R.styleable.CommentAddScreenlet, 0, 0);
+	@Override
+	protected View createScreenletView(Context context, AttributeSet attributes) {
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.CommentAddScreenlet, 0, 0);
 
-		_className = typedArray.getString(R.styleable.CommentAddScreenlet_className);
+		className = typedArray.getString(R.styleable.CommentAddScreenlet_className);
 
-		_classPK = castToLong(typedArray.getString(R.styleable.CommentAddScreenlet_classPK));
+		classPK = castToLong(typedArray.getString(R.styleable.CommentAddScreenlet_classPK));
 
-		_groupId = castToLongOrUseDefault(typedArray.getString(
-			R.styleable.CommentAddScreenlet_groupId), LiferayServerContext.getGroupId());
+		groupId = castToLongOrUseDefault(typedArray.getString(R.styleable.CommentAddScreenlet_groupId),
+			LiferayServerContext.getGroupId());
 
-		int layoutId = typedArray.getResourceId(
-			R.styleable.CommentAddScreenlet_layoutId, getDefaultLayoutId());
+		int layoutId = typedArray.getResourceId(R.styleable.CommentAddScreenlet_layoutId, getDefaultLayoutId());
 
 		typedArray.recycle();
 
 		return LayoutInflater.from(context).inflate(layoutId, null);
 	}
 
-	@Override protected Interactor createInteractor(String actionName) {
+	@Override
+	protected Interactor createInteractor(String actionName) {
 		return new CommentAddInteractorImpl(getScreenletId());
 	}
 
 	@Override
 	protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
 		try {
-			((CommentAddInteractor) interactor).addComment(
-				_groupId, _className, _classPK, getViewModel().getBody());
+			((CommentAddInteractor) interactor).addComment(groupId, className, classPK, getViewModel().getBody());
 		} catch (Exception e) {
 			onAddCommentFailure(getViewModel().getBody(), e);
 		}
 	}
 
-	@Override public void onAddCommentFailure(String body, Exception e) {
+	@Override
+	public void onAddCommentFailure(String body, Exception e) {
 		if (getListener() != null) {
 			getListener().onAddCommentFailure(body, e);
 		}
 	}
 
-	@Override public void onAddCommentSuccess(CommentEntry commentEntry) {
+	@Override
+	public void onAddCommentSuccess(CommentEntry commentEntry) {
 		if (getListener() != null) {
 			getListener().onAddCommentSuccess(commentEntry);
 		}
 	}
 
 	public CommentAddListener getListener() {
-		return _listener;
+		return listener;
 	}
 
 	public void setListener(CommentAddListener listener) {
-		_listener = listener;
+		this.listener = listener;
 	}
 
 	public String getClassName() {
-		return _className;
+		return className;
 	}
 
 	public void setClassName(String className) {
-		this._className = className;
+		this.className = className;
 	}
 
 	public long getClassPK() {
-		return _classPK;
+		return classPK;
 	}
 
 	public void setClassPK(long classPK) {
-		this._classPK = classPK;
+		this.classPK = classPK;
 	}
 
 	public long getGroupId() {
-		return _groupId;
+		return groupId;
 	}
 
 	public void setGroupId(long groupId) {
-		this._groupId = groupId;
+		this.groupId = groupId;
 	}
 
-	private CommentAddListener _listener;
-	private long _groupId;
-	private String _className;
-	private long _classPK;
+	private CommentAddListener listener;
+	private long groupId;
+	private String className;
+	private long classPK;
 }

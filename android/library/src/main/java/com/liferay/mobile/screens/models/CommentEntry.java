@@ -3,8 +3,6 @@ package com.liferay.mobile.screens.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.format.DateUtils;
-import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.context.User;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,81 +10,82 @@ import java.util.Map;
  * @author Alejandro Hernández
  */
 public class CommentEntry implements Parcelable {
+
 	public CommentEntry() {
 
 	}
 
-	@Override public boolean equals(Object o) {
+	@Override
+	public boolean equals(Object o) {
 		return ((CommentEntry) o).getCommentId() == this.getCommentId();
 	}
 
-	public static final ClassLoaderCreator<CommentEntry> CREATOR =
-		new ClassLoaderCreator<CommentEntry>() {
+	public static final ClassLoaderCreator<CommentEntry> CREATOR = new ClassLoaderCreator<CommentEntry>() {
 
-			@Override
-			public CommentEntry createFromParcel(Parcel source, ClassLoader loader) {
-				return new CommentEntry(source, loader);
-			}
+		@Override
+		public CommentEntry createFromParcel(Parcel source, ClassLoader loader) {
+			return new CommentEntry(source, loader);
+		}
 
-			public CommentEntry createFromParcel(Parcel in) {
-				throw new AssertionError();
-			}
+		public CommentEntry createFromParcel(Parcel in) {
+			throw new AssertionError();
+		}
 
-			public CommentEntry[] newArray(int size) {
-				return new CommentEntry[size];
-			}
-		};
+		public CommentEntry[] newArray(int size) {
+			return new CommentEntry[size];
+		}
+	};
 
 	public CommentEntry(Parcel in, ClassLoader loader) {
-		_values = new HashMap<>();
+		values = new HashMap<>();
 
-		in.readMap(_values, loader);
+		in.readMap(values, loader);
 	}
 
 	public CommentEntry(Map<String, Object> values) {
-		_values = values;
+		this.values = values;
 	}
 
 	public boolean isEditable() {
-		return (boolean) _values.get("updatePermission");
+		return (boolean) values.get("updatePermission");
 	}
 
 	public boolean isDeletable() {
-		return (boolean) _values.get("deletePermission");
+		return (boolean) values.get("deletePermission");
 	}
 
 	public String getBody() {
-		return (String) _values.get("body");
+		return (String) values.get("body");
 	}
 
 	public long getUserId() {
-		return Long.valueOf((String) _values.get("userId"));
+		return Long.valueOf((String) values.get("userId"));
 	}
 
 	public String getUserName() {
-		return (String) _values.get("userName");
+		return (String) values.get("userName");
 	}
 
 	public long getCreateDate() {
-		return (long) _values.get("createDate");
+		return (long) values.get("createDate");
 	}
 
 	public String getCreateDateAsTimeSpan() {
-		return DateUtils.getRelativeTimeSpanString(
-			this.getCreateDate(), System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS).toString();
+		return DateUtils.getRelativeTimeSpanString(this.getCreateDate(), System.currentTimeMillis(),
+			DateUtils.SECOND_IN_MILLIS).toString();
 	}
 
 	public long getModifiedDate() {
-		return (long) _values.get("modifiedDate");
+		return (long) values.get("modifiedDate");
 	}
 
 	@Override
 	public void writeToParcel(Parcel destination, int flags) {
-		destination.writeMap(_values);
+		destination.writeMap(values);
 	}
 
 	public Map<String, Object> getValues() {
-		return _values;
+		return values;
 	}
 
 	@Override
@@ -95,9 +94,8 @@ public class CommentEntry implements Parcelable {
 	}
 
 	public long getCommentId() {
-		return Long.valueOf((String) _values.get("commentId"));
+		return Long.valueOf((String) values.get("commentId"));
 	}
 
-	protected Map<String, Object> _values;
-
+	protected Map<String, Object> values;
 }
