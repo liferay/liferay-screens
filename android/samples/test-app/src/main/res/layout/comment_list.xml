@@ -48,28 +48,6 @@
 				liferay:switchPadding="10dp"
 				/>
 
-			<EditText
-				android:id="@+id/comment_id_display"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_alignBottom="@+id/comment_load_display"
-				android:layout_alignTop="@+id/comment_load_display"
-				android:layout_below="@id/comment_display_title"
-				android:layout_marginStart="10dp"
-				android:layout_toEndOf="@+id/comment_switch_editable"
-				android:hint="@string/comment_id"
-				/>
-
-			<Button
-				android:id="@+id/comment_load_display"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_below="@id/comment_display_title"
-				android:layout_marginStart="10dp"
-				android:layout_toEndOf="@+id/comment_id_display"
-				android:text="@string/load"
-				/>
-
 		</RelativeLayout>
 
 		<TextView
