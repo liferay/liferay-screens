@@ -56,11 +56,18 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 			cancelInteractorsForAction(name)
 		}
 
-		//TODO add classNames to AssetClassNameIds class
-		let className = "com.liferay.blogs.kernel.model.BlogsEntry"
+		let interactor: LoadAssetInteractor
 
-		let interactor = LoadAssetInteractor(
-			screenlet: self, assetEntryId: assetEntryId, className: className, classPK: classPK)
+		if assetEntryId != 0 {
+			interactor = LoadAssetInteractor(screenlet: self, assetEntryId: assetEntryId)
+		}
+		else {
+			//TODO add classNames to AssetClassNameIds class
+			let className = "com.liferay.blogs.kernel.model.BlogsEntry"
+
+			interactor = LoadAssetInteractor(
+				screenlet: self, className: className, classPK: self.classPK)
+		}
 
 		interactor.onSuccess = {
 			if let resultAsset = interactor.asset {

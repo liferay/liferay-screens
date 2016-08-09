@@ -27,7 +27,21 @@ public class LoadAssetInteractor: ServerReadConnectorInteractor {
 
 	public var asset: Asset?
 
-	init(screenlet: BaseScreenlet, assetEntryId: Int64, className: String, classPK: Int64) {
+	public convenience init(screenlet: BaseScreenlet, assetEntryId: Int64) {
+		self.init(screenlet: screenlet,
+				assetEntryId: assetEntryId,
+				className: nil,
+				classPK: nil)
+	}
+
+	public convenience init(screenlet: BaseScreenlet, className: String, classPK: Int64) {
+		self.init(screenlet: screenlet,
+		          assetEntryId: nil,
+		          className: className,
+		          classPK: classPK)
+	}
+
+	private init(screenlet: BaseScreenlet, assetEntryId: Int64?, className: String?, classPK: Int64?) {
 		self.assetEntryId = assetEntryId
 		self.className = className
 		self.classPK = classPK

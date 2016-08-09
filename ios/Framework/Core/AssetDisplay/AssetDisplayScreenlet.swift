@@ -52,13 +52,16 @@ import UIKit
 	}
 	
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
-		let interactor = LoadAssetInteractor(
-			screenlet: self,
-			assetEntryId: self.assetEntryId,
-			className: self.className,
-			classPK: self.classPK)
-		
-		
+		let interactor: LoadAssetInteractor
+
+		if assetEntryId != 0 {
+			interactor = LoadAssetInteractor(screenlet: self, assetEntryId: assetEntryId)
+		}
+		else {
+			interactor = LoadAssetInteractor(
+				screenlet: self, className: self.className, classPK: self.classPK)
+		}
+
 		interactor.onSuccess = {
 			if let resultAsset = interactor.asset {
 				self.assetDisplayDelegate?.screenlet?(self, onAssetResponse: resultAsset)

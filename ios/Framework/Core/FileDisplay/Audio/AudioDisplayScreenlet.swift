@@ -35,8 +35,15 @@ public class AudioDisplayScreenlet: BaseFileDisplayScreenlet {
 	//MARK: BaseFileDisplayScreenlet
 
 	override public func createLoadAssetInteractor() -> Interactor? {
-		let interactor = LoadAssetInteractor(
-			screenlet: self, assetEntryId: assetEntryId, className: className, classPK: classPK)
+		let interactor: LoadAssetInteractor
+
+		if assetEntryId != 0 {
+			interactor = LoadAssetInteractor(screenlet: self, assetEntryId: assetEntryId)
+		}
+		else {
+			interactor = LoadAssetInteractor(
+				screenlet: self, className: self.className, classPK: self.classPK)
+		}
 
 		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
