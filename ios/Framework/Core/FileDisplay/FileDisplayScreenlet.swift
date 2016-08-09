@@ -14,7 +14,7 @@
 import Foundation
 
 
-public class BaseFileDisplayScreenlet: BaseScreenlet {
+public class FileDisplayScreenlet: BaseScreenlet {
 
 	public static let LoadFileAction = "LoadFileAction"
 
@@ -45,7 +45,7 @@ public class BaseFileDisplayScreenlet: BaseScreenlet {
 		switch name {
 		case BaseScreenlet.DefaultAction:
 			return createLoadAssetInteractor()
-		case BaseFileDisplayScreenlet.LoadFileAction:
+		case FileDisplayScreenlet.LoadFileAction:
 			return createLoadFileInteractor()
 		default:
 			return nil
@@ -59,7 +59,7 @@ public class BaseFileDisplayScreenlet: BaseScreenlet {
 			return performDefaultAction()
 		}
 		else {
-			return self.performAction(name: BaseFileDisplayScreenlet.LoadFileAction)
+			return self.performAction(name: FileDisplayScreenlet.LoadFileAction)
 		}
 	}
 

@@ -22,17 +22,17 @@ import AVFoundation
 	optional func screenlet(screenlet: AudioDisplayScreenlet, onAudioAssetError error: NSError)
 }
 
-public class AudioDisplayScreenlet: BaseFileDisplayScreenlet {
+public class AudioDisplayScreenlet: FileDisplayScreenlet {
 
 	public var audioDisplayDelegate: AudioDisplayScreenletDelegate? {
 		return delegate as? AudioDisplayScreenletDelegate
 	}
 
-	public var audioDisplayViewModel: BaseFileDisplayViewModel? {
-		return screenletView as? BaseFileDisplayViewModel
+	public var audioDisplayViewModel: FileDisplayViewModel? {
+		return screenletView as? FileDisplayViewModel
 	}
 
-	//MARK: BaseFileDisplayScreenlet
+	//MARK: FileDisplayScreenlet
 
 	override public func createLoadAssetInteractor() -> Interactor? {
 		let interactor: LoadAssetInteractor

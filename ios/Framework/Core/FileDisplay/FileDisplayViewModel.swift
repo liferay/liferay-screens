@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public protocol BaseFileDisplayViewModel {
+@objc public protocol FileDisplayViewModel {
 
 	var url: NSURL? {get set}
 

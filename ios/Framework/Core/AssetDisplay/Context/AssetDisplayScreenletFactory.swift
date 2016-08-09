@@ -72,8 +72,8 @@ import UIKit
 
 	func configureScreenlet(screenlet: AssetDisplayScreenlet?, childScreenlet: BaseScreenlet?) -> BaseScreenlet? {
 
-		if childScreenlet is BaseFileDisplayScreenlet {
-			if let s = childScreenlet as? BaseFileDisplayScreenlet {
+		if childScreenlet is FileDisplayScreenlet {
+			if let s = childScreenlet as? FileDisplayScreenlet {
 				s.fileEntry = FileEntry(attributes: self.asset.attributes)
 				s.autoLoad = false
 				s.load()

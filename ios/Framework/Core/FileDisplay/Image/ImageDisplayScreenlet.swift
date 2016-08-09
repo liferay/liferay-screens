@@ -22,17 +22,17 @@ import Foundation
 }
 
 
-public class ImageDisplayScreenlet: BaseFileDisplayScreenlet {
+public class ImageDisplayScreenlet: FileDisplayScreenlet {
 
 	public var imageDisplayDelegate: ImageDisplayScreenletDelegate? {
 		return delegate as? ImageDisplayScreenletDelegate
 	}
 
-	public var imageDisplayViewModel: BaseFileDisplayViewModel? {
-		return screenletView as? BaseFileDisplayViewModel
+	public var imageDisplayViewModel: FileDisplayViewModel? {
+		return screenletView as? FileDisplayViewModel
 	}
 
-	//MARK: BaseFileDisplayScreenlet
+	//MARK: FileDisplayScreenlet
 
 	override public func createLoadAssetInteractor() -> Interactor? {
 		let interactor: LoadAssetInteractor

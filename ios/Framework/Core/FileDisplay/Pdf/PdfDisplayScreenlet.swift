@@ -21,17 +21,17 @@ import Foundation
 	optional func screenlet(screenlet: PdfDisplayScreenlet, onPdfAssetError error: NSError)
 }
 
-public class PdfDisplayScreenlet: BaseFileDisplayScreenlet {
+public class PdfDisplayScreenlet: FileDisplayScreenlet {
 
 	public var pdfDisplayDelegate: PdfDisplayScreenletDelegate? {
 		return delegate as? PdfDisplayScreenletDelegate
 	}
 
-	public var pdfDisplayViewModel: BaseFileDisplayViewModel? {
-		return screenletView as? BaseFileDisplayViewModel
+	public var pdfDisplayViewModel: FileDisplayViewModel? {
+		return screenletView as? FileDisplayViewModel
 	}
 
-	//MARK: BaseFileDisplayScreenlet
+	//MARK: FileDisplayScreenlet
 
 	override public func createLoadAssetInteractor() -> Interactor? {
 		let interactor: LoadAssetInteractor
