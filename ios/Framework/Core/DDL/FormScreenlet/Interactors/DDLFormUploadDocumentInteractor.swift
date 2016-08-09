@@ -120,7 +120,8 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 				collection: ScreenletName(DDLFormScreenlet),
 				key: cacheKey(),
 				value: image,
-				attributes: cacheAttributes())
+				attributes: cacheAttributes(),
+				onCompletion: nil)
 		}
 	}
 

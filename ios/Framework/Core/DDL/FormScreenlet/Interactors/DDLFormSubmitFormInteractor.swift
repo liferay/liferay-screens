@@ -130,7 +130,8 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 			collection: ScreenletName(DDLFormScreenlet),
 			key: lastCacheKeyUsed!,
 			value: record.values,
-			attributes: cacheAttributes())
+			attributes: cacheAttributes(),
+			onCompletion: nil)
 	}
 
 	override func callOnSuccess() {
