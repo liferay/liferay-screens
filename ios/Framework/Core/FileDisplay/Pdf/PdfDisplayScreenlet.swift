@@ -13,39 +13,6 @@
 */
 import Foundation
 
-
 public class PdfDisplayScreenlet: FileDisplayScreenlet {
 
-	//MARK: FileDisplayScreenlet
-
-	override public func createLoadFileInteractor() -> Interactor? {
-		if let fileEntry = fileEntry {
-			let url = NSURL(string: LiferayServerContext.server + fileEntry.url)
-			let interactor = LoadFileInteractor(screenlet: self, url: url)
-
-			interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
-
-			interactor.onSuccess = {
-				if let resultUrl = interactor.resultUrl {
-					let title = self.fileEntry!.title
-
-					self.fileDisplayDelegate?.screenlet?(self, onFileAssetResponse: resultUrl)
-
-					self.fileDisplayViewModel?.url = resultUrl
-					self.fileDisplayViewModel?.title = title
-				}
-				else {
-					self.fileDisplayDelegate?.screenlet?(self,
-							onFileAssetError: NSError.errorWithCause(.InvalidServerResponse))
-				}
-			}
-
-			interactor.onFailure = {
-				self.fileDisplayDelegate?.screenlet?(self, onFileAssetError: $0)
-			}
-
-			return interactor
-		}
-		return nil
-	}
 }
