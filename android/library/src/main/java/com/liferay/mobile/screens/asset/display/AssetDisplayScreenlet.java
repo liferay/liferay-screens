@@ -28,12 +28,16 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		super(context);
 	}
 
-	public AssetDisplayScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public AssetDisplayScreenlet(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public AssetDisplayScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public AssetDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public AssetDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override
@@ -135,7 +139,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	}
 
 	private boolean autoLoad;
-	private HashMap<String, Integer> layouts = new HashMap<>();
+	private HashMap<String, Integer> layouts;
 	private long entryId;
 	private AssetDisplayListener listener;
 }

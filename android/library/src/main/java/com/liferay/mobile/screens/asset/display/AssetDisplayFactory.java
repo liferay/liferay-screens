@@ -29,9 +29,11 @@ public class AssetDisplayFactory {
 				BaseFileDisplayScreenlet screenlet = getDLFileEntryScreenlet(context, assetEntry.getMimeType());
 
 				if (screenlet != null) {
+					Integer layoutId = layouts.get(screenlet.getClass().getName());
+
 					screenlet.setFileEntry((FileEntry) assetEntry);
 					screenlet.setAutoLoad(autoLoad);
-					screenlet.render(layouts.get(screenlet.getClass().getName()));
+					screenlet.render(layoutId);
 					return screenlet;
 				}
 			default:
