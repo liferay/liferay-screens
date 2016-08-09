@@ -82,7 +82,33 @@ public class FileDisplayScreenlet: BaseScreenlet {
 	}
 
 	public func createLoadAssetInteractor() -> Interactor? {
-		fatalError("Override createLoadAssetInteractor method")
+		let interactor: LoadAssetInteractor
+
+		if assetEntryId != 0 {
+			interactor = LoadAssetInteractor(screenlet: self, assetEntryId: assetEntryId)
+		}
+		else {
+			interactor = LoadAssetInteractor(
+				screenlet: self, className: self.className, classPK: self.classPK)
+		}
+
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+
+		interactor.onSuccess = {
+			if let resultAsset = interactor.asset {
+				self.fileEntry = FileEntry(attributes: resultAsset.attributes)
+				self.load()
+			}
+			else {
+				self.fileDisplayDelegate?.screenlet?(self, onFileAssetError: NSError.errorWithCause(.InvalidServerResponse))
+			}
+		}
+
+		interactor.onFailure = {
+			self.fileDisplayDelegate?.screenlet?(self, onFileAssetError: $0)
+		}
+
+		return interactor
 	}
 
 	public func createLoadFileInteractor() -> Interactor? {
