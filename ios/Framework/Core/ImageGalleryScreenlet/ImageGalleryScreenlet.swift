@@ -66,8 +66,7 @@ import Kingfisher
 	public let DefaultMimeTypes = ["image/png", "image/jpeg", "image/gif"]
 
 	internal var uploadsQueue = [ImageEntryUpload]()
-
-	internal var loaded = false
+	internal var loadedOnce = false
 
 	public override func onCreated() {
 		super.onCreated()
@@ -75,8 +74,9 @@ import Kingfisher
 	}
 
 	public override func onShow() {
-		if !loaded {
-			loaded = true
+		// Don't reload the view if the picker is presented
+		if !loadedOnce {
+			loadedOnce = true
 			super.onShow()
 		}
 	}
