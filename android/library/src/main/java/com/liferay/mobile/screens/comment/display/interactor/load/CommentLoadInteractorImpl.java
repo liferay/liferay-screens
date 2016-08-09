@@ -25,6 +25,15 @@ public class CommentLoadInteractorImpl
 		processWithCache(groupId, commentId);
 	}
 
+	@Override
+	protected void online(Object[] args) throws Exception {
+
+		long groupId = (long) args[0];
+		long commentId = (long) args[1];
+
+		getCommentService().getComment(groupId, commentId);
+	}
+
 	public void onEvent(CommentLoadEvent event) {
 		if (!isValidEvent(event)) {
 			return;
@@ -35,15 +44,6 @@ public class CommentLoadInteractorImpl
 		} else {
 			getListener().onLoadCommentSuccess(event.getCommentEntry());
 		}
-	}
-
-	@Override
-	protected void online(Object[] args) throws Exception {
-
-		long groupId = (long) args[0];
-		long commentId = (long) args[1];
-
-		getCommentService().getComment(groupId, commentId);
 	}
 
 	@Override
