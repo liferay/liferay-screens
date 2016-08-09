@@ -11,8 +11,12 @@ import org.json.JSONObject;
  */
 public class CommentAddCallback extends InteractorAsyncTaskCallback<CommentEntry> {
 
-	public CommentAddCallback(int targetScreenletId) {
+	private final String body;
+
+	public CommentAddCallback(String body, int targetScreenletId) {
 		super(targetScreenletId);
+
+		this.body = body;
 	}
 
 	@Override
@@ -22,11 +26,11 @@ public class CommentAddCallback extends InteractorAsyncTaskCallback<CommentEntry
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, Exception e) {
-		return new CommentAddEvent(targetScreenletId, e);
+		return new CommentAddEvent(targetScreenletId, body, e);
 	}
 
 	@Override
 	protected BasicEvent createEvent(int targetScreenletId, CommentEntry result) {
-		return new CommentAddEvent(targetScreenletId, result);
+		return new CommentAddEvent(targetScreenletId, body, result);
 	}
 }

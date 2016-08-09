@@ -20,10 +20,8 @@ public class CommentAddInteractorImpl extends BaseRemoteInteractor<CommentAddLis
 
 		validate(groupId, className, classPK, body);
 
-		this.body = body;
-
 		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new CommentAddCallback(getTargetScreenletId()));
+		session.setCallback(new CommentAddCallback(body, getTargetScreenletId()));
 		CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(session);
 
 		service.addComment(groupId, className, classPK, body);
@@ -35,7 +33,7 @@ public class CommentAddInteractorImpl extends BaseRemoteInteractor<CommentAddLis
 		}
 
 		if (event.isFailed()) {
-			getListener().onAddCommentFailure(body, event.getException());
+			getListener().onAddCommentFailure(event.getBody(), event.getException());
 		} else {
 			getListener().onAddCommentSuccess(event.getCommentEntry());
 		}
@@ -53,6 +51,4 @@ public class CommentAddInteractorImpl extends BaseRemoteInteractor<CommentAddLis
 			throw new IllegalArgumentException("classPK must be greater than 0");
 		}
 	}
-
-	private String body;
 }

@@ -8,12 +8,14 @@ import com.liferay.mobile.screens.models.CommentEntry;
  */
 public class CommentAddEvent extends BasicEvent {
 
-	public CommentAddEvent(int targetScreenletId, Exception e) {
+	public CommentAddEvent(int targetScreenletId, String body, Exception e) {
 		super(targetScreenletId, e);
+		this.body = body;
 	}
 
-	public CommentAddEvent(int targetScreenletId, CommentEntry commentEntry) {
+	public CommentAddEvent(int targetScreenletId, String body, CommentEntry commentEntry) {
 		super(targetScreenletId);
+		this.body = body;
 		this.commentEntry = commentEntry;
 	}
 
@@ -21,5 +23,10 @@ public class CommentAddEvent extends BasicEvent {
 		return commentEntry;
 	}
 
+	public String getBody() {
+		return body;
+	}
+
+	private String body;
 	private CommentEntry commentEntry;
 }
