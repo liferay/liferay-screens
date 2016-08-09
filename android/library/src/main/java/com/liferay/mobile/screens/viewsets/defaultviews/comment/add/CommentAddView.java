@@ -12,6 +12,8 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.comment.add.view.CommentAddViewModel;
 
+import static com.liferay.mobile.screens.base.BaseScreenlet.DEFAULT_ACTION;
+
 /**
  * @author Alejandro Hernández
  */
@@ -49,7 +51,7 @@ public class CommentAddView extends RelativeLayout implements CommentAddViewMode
 			String commentText = addCommentEditText.getText().toString();
 			if (!commentText.isEmpty()) {
 				sendButton.setEnabled(false);
-				getScreenlet().performUserAction(commentText);
+				getScreenlet().performUserAction(DEFAULT_ACTION, commentText);
 			}
 		}
 	}
