@@ -63,13 +63,11 @@ public class BaseFileDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
-	//Child classes must override this method
 	public func createLoadAssetInteractor() -> Interactor? {
-		return nil
+		fatalError("Override createLoadAssetInteractor method")
 	}
 
-	//Child classes must override this method
 	public func createLoadFileInteractor() -> Interactor? {
-		return nil
+		fatalError("Override createLoadFileInteractor method")
 	}
 }
