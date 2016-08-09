@@ -52,7 +52,7 @@ import UIKit
 	}
 	
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
-		let interactor = AssetDisplayInteractor(
+		let interactor = LoadAssetInteractor(
 			screenlet: self,
 			entryId: self.entryId,
 			className: self.className,

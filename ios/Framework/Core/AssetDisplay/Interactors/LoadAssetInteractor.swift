@@ -18,7 +18,7 @@ public protocol AssetDisplayConnector {
 	var resultAssetEntry: Asset? { get set }
 }
 
-public class AssetDisplayInteractor: ServerReadConnectorInteractor {
+public class LoadAssetInteractor: ServerReadConnectorInteractor {
 
 	public let entryId: Int64
 

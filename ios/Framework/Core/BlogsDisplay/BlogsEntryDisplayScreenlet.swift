@@ -57,7 +57,7 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 			cancelInteractorsForAction(name)
 		}
 
-		let interactor = AssetDisplayInteractor(
+		let interactor = LoadAssetInteractor(
 			screenlet: self, entryId: entryId, className: className, classPK: classPK)
 
 		interactor.onSuccess = {
