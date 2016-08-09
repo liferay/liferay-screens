@@ -23,11 +23,8 @@ public class CommentDeleteInteractor: ServerWriteConnectorInteractor {
 		super.init(screenlet: screenlet)
 	}
 
-	override public func createConnector() -> CommentLoadLiferayConnector? {
-		return nil
-	}
-
-	override public func completedConnector(c: ServerConnector) {
-
+	override public func createConnector() -> CommentDeleteLiferayConnector? {
+		return LiferayServerContext.connectorFactory.createCommentDeleteConnector(
+			commentId: commentId)
 	}
 }
