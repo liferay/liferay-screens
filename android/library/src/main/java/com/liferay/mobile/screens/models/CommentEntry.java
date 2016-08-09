@@ -17,6 +17,7 @@ public class CommentEntry implements Parcelable {
 
 	@Override
 	public boolean equals(Object o) {
+		//FIXME !
 		return ((CommentEntry) o).getCommentId() == this.getCommentId();
 	}
 
