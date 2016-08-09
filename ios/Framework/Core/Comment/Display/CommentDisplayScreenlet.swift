@@ -22,6 +22,13 @@ import UIKit
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
 	                        onLoadCommentError error: NSError)
 
+	optional func screenlet(screenlet: CommentDisplayScreenlet,
+	                        onCommentDeleted comment: Comment?)
+
+	optional func screenlet(screenlet: CommentDisplayScreenlet,
+	                        onDeleteComment comment: Comment?,
+						    onError error: NSError)
+
 }
 
 
@@ -50,6 +57,15 @@ import UIKit
 		return screenletView as? CommentDisplayViewModel
 	}
 
+	public var comment: Comment? {
+		didSet {
+			if let comment = comment {
+				commentId = comment.commentId
+			}
+			viewModel?.comment = self.comment
+		}
+	}
+
 	public var computedHeight: CGFloat? {
 		return viewModel?.computedHeight
 	}
@@ -76,6 +92,19 @@ import UIKit
 	//MARK: BaseScreenlet
 
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+		switch name {
+		case BaseScreenlet.DefaultAction:
+			return createCommentLoadInteractor()
+		case CommentDisplayScreenlet.DeleteAction:
+			return createCommentDeleteInteractor()
+		default:
+			return nil
+		}
+	}
+
+	//MARK: Private methods
+
+	private func createCommentLoadInteractor() -> Interactor {
 		let interactor = CommentLoadInteractor(
 			screenlet: self,
 			groupId: self.groupId,
@@ -83,6 +112,7 @@ import UIKit
 
 		interactor.onSuccess = {
 			if let resultComment = interactor.resultComment {
+				self.comment = resultComment
 				self.viewModel?.comment = resultComment
 				self.commentDisplayDelegate?.screenlet?(self, onCommentLoaded: resultComment)
 			}
@@ -95,7 +125,23 @@ import UIKit
 		interactor.onFailure = {
 			self.commentDisplayDelegate?.screenlet?(self, onLoadCommentError: $0)
 		}
-		
+
+		return interactor
+	}
+
+	private func createCommentDeleteInteractor() -> Interactor {
+		let interactor = CommentDeleteInteractor(
+			screenlet: self,
+			commentId: self.commentId)
+
+		interactor.onSuccess = {
+			self.commentDisplayDelegate?.screenlet?(self, onCommentDeleted: self.comment)
+		}
+
+		interactor.onFailure = {
+			self.commentDisplayDelegate?.screenlet?(self, onDeleteComment: self.comment, onError: $0)
+		}
+
 		return interactor
 	}
 	
