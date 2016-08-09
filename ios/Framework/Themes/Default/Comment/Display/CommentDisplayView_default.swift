@@ -16,24 +16,34 @@ import UIKit
 
 public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewModel {
 
+	private enum CommentDisplayState {
+		case Normal
+		case Deleting
+		case Editing
+	}
+
 	@IBOutlet weak var userPortraitScreenlet: UserPortraitScreenlet?
 	@IBOutlet weak var userNameLabel: UILabel?
 	@IBOutlet weak var createdDateLabel: UILabel?
 	@IBOutlet weak var editedLabel: UILabel?
 	@IBOutlet weak var bodyLabel: UILabel?
 	@IBOutlet weak var bodyLabelBottomMarginConstraint: NSLayoutConstraint?
-	@IBOutlet weak var deleteButton: UIButton?
-	@IBOutlet weak var editButton: UIButton?
+	@IBOutlet weak var normalStateButtonsContainer: UIView?
+	@IBOutlet weak var deletingStateButtonsContainer: UIView?
+	@IBOutlet weak var editingStateButtonsContainer: UIView?
+
+	private var state: CommentDisplayState = .Normal
 
 	public override var editable: Bool {
 		didSet {
-			deleteButton?.hidden = !editable
-			editButton?.hidden = !editable
+			normalStateButtonsContainer?.hidden = !editable
 		}
 	}
 
 	public var comment: Comment? {
 		didSet {
+			changeState(.Normal)
+
 			if let comment = comment {
 				bodyLabel?.text = comment.body
 				let loadedUserId = userPortraitScreenlet?.userId
@@ -59,9 +69,42 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 		return 0
 	}
 
+	//MARK: View actions
+
+	@IBAction func deleteButtonClicked() {
+		changeState(.Deleting)
+	}
+
+	@IBAction func editButtonClicked() {
+		changeState(.Editing)
+	}
+
+	@IBAction func cancelButtonClicked() {
+		changeState(.Normal)
+	}
+
+	@IBAction func confirmButtonClicked() {
+		if self.state == .Deleting {
+			userAction(name: CommentDisplayScreenlet.DeleteAction)
+		} else if self.state == .Editing {
+			userAction(name: CommentDisplayScreenlet.UpdateAction)
+		}
+
+		changeState(.Normal)
+	}
+
 	//MARK: BaseScreenletView
 
 	override public func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
+	}
+
+	//MARK: Private methods
+
+	private func changeState(state: CommentDisplayState) {
+		self.state = state
+		normalStateButtonsContainer?.hidden = state != .Normal || !editable
+		deletingStateButtonsContainer?.hidden = state != .Deleting || !editable
+		editingStateButtonsContainer?.hidden = state != .Editing
 	}
 }

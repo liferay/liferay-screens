@@ -42,32 +42,114 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gg3-49-pbv">
-                    <rect key="frame" x="424" y="33" width="40" height="28"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <state key="normal" title="Delete"/>
-                </button>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mOk-gp-c4D">
-                    <rect key="frame" x="386" y="33" width="30" height="28"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <state key="normal" title="Edit"/>
-                </button>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K19-Wu-62Q" userLabel="Normal state buttons">
+                    <rect key="frame" x="386" y="33" width="78" height="28"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mOk-gp-c4D">
+                            <rect key="frame" x="0.0" y="0.0" width="30" height="28"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="Edit"/>
+                            <connections>
+                                <action selector="editButtonClicked" destination="ofk-wp-urv" eventType="touchUpInside" id="Zcu-Tl-NcA"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gg3-49-pbv">
+                            <rect key="frame" x="38" y="0.0" width="40" height="28"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="Delete"/>
+                            <connections>
+                                <action selector="deleteButtonClicked" destination="ofk-wp-urv" eventType="touchUpInside" id="UBA-Ua-kyJ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="mOk-gp-c4D" firstAttribute="leading" secondItem="K19-Wu-62Q" secondAttribute="leading" id="5fw-rt-Qul"/>
+                        <constraint firstAttribute="trailing" secondItem="Gg3-49-pbv" secondAttribute="trailing" id="GqY-CV-ghw"/>
+                        <constraint firstItem="mOk-gp-c4D" firstAttribute="top" secondItem="K19-Wu-62Q" secondAttribute="top" id="glh-tH-4Zx"/>
+                        <constraint firstItem="Gg3-49-pbv" firstAttribute="top" secondItem="K19-Wu-62Q" secondAttribute="top" id="ieN-iD-hTx"/>
+                        <constraint firstAttribute="bottom" secondItem="Gg3-49-pbv" secondAttribute="bottom" id="p2n-aF-AaN"/>
+                        <constraint firstAttribute="bottom" secondItem="mOk-gp-c4D" secondAttribute="bottom" id="tFj-j6-vWy"/>
+                        <constraint firstItem="Gg3-49-pbv" firstAttribute="leading" secondItem="mOk-gp-c4D" secondAttribute="trailing" constant="8" id="wvv-ab-EVa"/>
+                    </constraints>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xTL-zV-XBs" userLabel="Editing state buttons">
+                    <rect key="frame" x="365" y="33" width="99" height="28"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jrg-O5-tkB" userLabel="Cancel">
+                            <rect key="frame" x="0.0" y="0.0" width="42" height="28"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="Cancel"/>
+                            <connections>
+                                <action selector="cancelButtonClicked" destination="ofk-wp-urv" eventType="touchUpInside" id="pKJ-26-PcH"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lK8-sE-L5t" userLabel="Confirm">
+                            <rect key="frame" x="50" y="0.0" width="49" height="28"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="Confirm"/>
+                            <connections>
+                                <action selector="confirmButtonClicked" destination="ofk-wp-urv" eventType="touchUpInside" id="51A-Rx-SU3"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="lK8-sE-L5t" secondAttribute="bottom" id="4Ir-qN-dFe"/>
+                        <constraint firstItem="Jrg-O5-tkB" firstAttribute="top" secondItem="xTL-zV-XBs" secondAttribute="top" id="D9a-TM-H4b"/>
+                        <constraint firstAttribute="bottom" secondItem="Jrg-O5-tkB" secondAttribute="bottom" id="EHW-Cx-7Dw"/>
+                        <constraint firstItem="lK8-sE-L5t" firstAttribute="leading" secondItem="Jrg-O5-tkB" secondAttribute="trailing" constant="8" id="GZT-hU-mbE"/>
+                        <constraint firstItem="Jrg-O5-tkB" firstAttribute="leading" secondItem="xTL-zV-XBs" secondAttribute="leading" id="VOk-Fb-QxC"/>
+                        <constraint firstAttribute="trailing" secondItem="lK8-sE-L5t" secondAttribute="trailing" id="Wmc-dP-9GV"/>
+                        <constraint firstItem="lK8-sE-L5t" firstAttribute="top" secondItem="xTL-zV-XBs" secondAttribute="top" id="uBa-4E-cGb"/>
+                    </constraints>
+                </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ewF-4o-z0M" userLabel="Deleting state buttons">
+                    <rect key="frame" x="365" y="33" width="99" height="28"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rt3-lJ-YJQ" userLabel="Confirm">
+                            <rect key="frame" x="0.0" y="0.0" width="49" height="28"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="Confirm"/>
+                            <connections>
+                                <action selector="confirmButtonClicked" destination="ofk-wp-urv" eventType="touchUpInside" id="0bH-rV-cyr"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bI-Tq-WKs" userLabel="Cancel">
+                            <rect key="frame" x="57" y="0.0" width="42" height="28"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <state key="normal" title="Cancel"/>
+                            <connections>
+                                <action selector="cancelButtonClicked" destination="ofk-wp-urv" eventType="touchUpInside" id="5pC-Cy-zyb"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="0bI-Tq-WKs" firstAttribute="leading" secondItem="Rt3-lJ-YJQ" secondAttribute="trailing" constant="8" id="57W-3N-X2s"/>
+                        <constraint firstAttribute="bottom" secondItem="0bI-Tq-WKs" secondAttribute="bottom" id="7Uz-je-dCI"/>
+                        <constraint firstItem="Rt3-lJ-YJQ" firstAttribute="leading" secondItem="ewF-4o-z0M" secondAttribute="leading" id="9Dd-yu-htZ"/>
+                        <constraint firstAttribute="bottom" secondItem="Rt3-lJ-YJQ" secondAttribute="bottom" id="Dii-cA-Sge"/>
+                        <constraint firstItem="0bI-Tq-WKs" firstAttribute="top" secondItem="ewF-4o-z0M" secondAttribute="top" id="JKm-Y2-SsJ"/>
+                        <constraint firstItem="Rt3-lJ-YJQ" firstAttribute="top" secondItem="ewF-4o-z0M" secondAttribute="top" id="TFc-zY-sv0"/>
+                        <constraint firstAttribute="trailing" secondItem="0bI-Tq-WKs" secondAttribute="trailing" id="egT-2S-sjs"/>
+                    </constraints>
+                </view>
             </subviews>
             <constraints>
                 <constraint firstItem="qsA-4f-URH" firstAttribute="leading" secondItem="BYS-C6-vuU" secondAttribute="trailing" constant="8" id="1VW-1y-TUc"/>
+                <constraint firstItem="xTL-zV-XBs" firstAttribute="centerY" secondItem="T0O-Tl-DWI" secondAttribute="centerY" id="34S-iS-M9R"/>
                 <constraint firstAttribute="trailing" secondItem="qsA-4f-URH" secondAttribute="trailing" constant="8" id="53o-gu-WIG"/>
                 <constraint firstItem="qsA-4f-URH" firstAttribute="top" secondItem="ofk-wp-urv" secondAttribute="top" constant="8" id="5mR-x5-hEn"/>
-                <constraint firstAttribute="trailing" secondItem="Gg3-49-pbv" secondAttribute="trailing" constant="8" id="DoM-UC-yIH"/>
+                <constraint firstItem="K19-Wu-62Q" firstAttribute="centerY" secondItem="T0O-Tl-DWI" secondAttribute="centerY" id="AvD-DY-sdY"/>
                 <constraint firstAttribute="bottom" secondItem="7EX-We-tyh" secondAttribute="bottom" constant="8" id="J5r-XO-XPh"/>
-                <constraint firstItem="Gg3-49-pbv" firstAttribute="leading" secondItem="mOk-gp-c4D" secondAttribute="trailing" constant="8" id="JeW-xa-Ze6"/>
+                <constraint firstAttribute="trailing" secondItem="K19-Wu-62Q" secondAttribute="trailing" constant="8" id="NjJ-EG-cGD"/>
+                <constraint firstItem="ewF-4o-z0M" firstAttribute="centerY" secondItem="T0O-Tl-DWI" secondAttribute="centerY" id="Nmj-Bg-nfQ"/>
+                <constraint firstAttribute="trailing" secondItem="ewF-4o-z0M" secondAttribute="trailing" constant="8" id="Sad-fU-sMC"/>
+                <constraint firstAttribute="trailing" secondItem="xTL-zV-XBs" secondAttribute="trailing" constant="8" id="SzL-ds-kWX"/>
                 <constraint firstItem="BYS-C6-vuU" firstAttribute="leading" secondItem="ofk-wp-urv" secondAttribute="leading" constant="8" id="Wka-eq-QzA"/>
                 <constraint firstItem="Bmx-bE-lyO" firstAttribute="leading" secondItem="T0O-Tl-DWI" secondAttribute="trailing" constant="4" id="asz-jL-sJa"/>
                 <constraint firstAttribute="trailing" secondItem="7EX-We-tyh" secondAttribute="trailing" constant="8" id="c2d-Nc-RmT"/>
-                <constraint firstItem="mOk-gp-c4D" firstAttribute="centerY" secondItem="T0O-Tl-DWI" secondAttribute="centerY" id="dlc-fd-i2G"/>
                 <constraint firstItem="Bmx-bE-lyO" firstAttribute="top" secondItem="qsA-4f-URH" secondAttribute="bottom" constant="8" id="haH-6d-T2d"/>
                 <constraint firstItem="7EX-We-tyh" firstAttribute="top" secondItem="BYS-C6-vuU" secondAttribute="bottom" constant="4" id="i1o-ip-2HC"/>
                 <constraint firstItem="T0O-Tl-DWI" firstAttribute="leading" secondItem="BYS-C6-vuU" secondAttribute="trailing" constant="8" id="mpR-zA-uPm"/>
-                <constraint firstItem="Gg3-49-pbv" firstAttribute="centerY" secondItem="T0O-Tl-DWI" secondAttribute="centerY" id="orQ-cy-s0k"/>
                 <constraint firstItem="7EX-We-tyh" firstAttribute="leading" secondItem="ofk-wp-urv" secondAttribute="leading" constant="8" id="sBq-8F-U4R"/>
                 <constraint firstItem="BYS-C6-vuU" firstAttribute="top" secondItem="ofk-wp-urv" secondAttribute="top" constant="8" id="tKt-At-WnI"/>
                 <constraint firstItem="T0O-Tl-DWI" firstAttribute="top" secondItem="qsA-4f-URH" secondAttribute="bottom" constant="8" id="tgJ-dn-Foa"/>
@@ -80,9 +162,10 @@
                 <outlet property="bodyLabel" destination="7EX-We-tyh" id="sPf-dC-r0s"/>
                 <outlet property="bodyLabelBottomMarginConstraint" destination="J5r-XO-XPh" id="PrQ-sq-fcP"/>
                 <outlet property="createdDateLabel" destination="T0O-Tl-DWI" id="ulW-AX-EdD"/>
-                <outlet property="deleteButton" destination="Gg3-49-pbv" id="6Of-1w-XmL"/>
-                <outlet property="editButton" destination="mOk-gp-c4D" id="A8a-LE-khA"/>
+                <outlet property="deletingStateButtonsContainer" destination="ewF-4o-z0M" id="gqd-hp-VIG"/>
                 <outlet property="editedLabel" destination="Bmx-bE-lyO" id="mWH-P0-NVe"/>
+                <outlet property="editingStateButtonsContainer" destination="xTL-zV-XBs" id="5Bw-Ws-qxl"/>
+                <outlet property="normalStateButtonsContainer" destination="K19-Wu-62Q" id="RxK-m6-Ud6"/>
                 <outlet property="userNameLabel" destination="qsA-4f-URH" id="Ifq-rv-7Zf"/>
                 <outlet property="userPortraitScreenlet" destination="BYS-C6-vuU" id="K1O-N7-cUk"/>
             </connections>

@@ -27,6 +27,9 @@ import UIKit
 
 @IBDesignable public class CommentDisplayScreenlet: BaseScreenlet {
 
+	public static let DeleteAction = "deleteAction"
+	public static let UpdateAction = "updateAction"
+
 	@IBInspectable public var groupId: Int64 = 0
 
 	@IBInspectable public var commentId: Int64 = 0
