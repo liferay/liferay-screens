@@ -90,6 +90,7 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 			"showFinishOperation(String) is not supported." + " Use showFinishOperation(FileEntry) instead.");
 	}
 
+	//TODO this should go in the screenlet class
 	private void render() {
 		if (Build.VERSION.SDK_INT >= 21) {
 			renderInLollipop();
