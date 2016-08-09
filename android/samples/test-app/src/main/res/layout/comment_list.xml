@@ -34,7 +34,7 @@
 				android:id="@+id/comment_display_title"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="Configuration"
+				android:text="@string/configuration"
 				style="@style/TextAppearance.AppCompat.Title"
 				/>
 
@@ -45,7 +45,7 @@
 				android:layout_alignBottom="@+id/comment_load_display"
 				android:layout_alignTop="@+id/comment_load_display"
 				android:layout_below="@id/comment_display_title"
-				android:text="Editable"
+				android:text="@string/editable"
 				liferay:switchPadding="10dp"
 				/>
 
@@ -58,7 +58,7 @@
 				android:layout_below="@id/comment_display_title"
 				android:layout_marginStart="10dp"
 				android:layout_toEndOf="@+id/comment_switch_editable"
-				android:hint="Comment ID"
+				android:hint="@string/comment_id"
 				/>
 
 			<Button
@@ -68,7 +68,7 @@
 				android:layout_below="@id/comment_display_title"
 				android:layout_marginStart="10dp"
 				android:layout_toEndOf="@+id/comment_id_display"
-				android:text="Load"
+				android:text="@string/load"
 				/>
 
 		</RelativeLayout>
@@ -80,7 +80,7 @@
 			android:layout_below="@+id/comment_configuration_display"
 			android:layout_marginTop="10dp"
 			android:paddingStart="10dp"
-			android:text="Comment List"
+			android:text="@string/comment_list"
 			style="@style/TextAppearance.AppCompat.Title"
 			/>
 
@@ -114,7 +114,7 @@
 			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="Comment Display"
+				android:text="@string/comment_display"
 				style="@style/TextAppearance.AppCompat.Title"
 				/>
 
@@ -133,7 +133,7 @@
 				android:id="@+id/no_comment_display"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="No loaded comment"
+				android:text="@string/no_loaded_comment"
 				/>
 
 		</LinearLayout>
