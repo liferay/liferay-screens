@@ -61,7 +61,7 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 	}
 
 	@Override
-	protected void loadRows(Interactor interactor, int startRow, int endRow, Locale locale)
+	protected void loadRows(Interactor interactor, int startRow, int endRow, Locale locale, String obcClassName)
 		throws Exception {
 		((CommentListInteractor) interactor).loadRows(
 			_groupId, _className, _classPK, startRow, endRow);

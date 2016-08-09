@@ -2,6 +2,7 @@ package com.liferay.mobile.screens.comment.list.interactor;
 
 import android.support.annotation.NonNull;
 import android.util.Pair;
+import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
@@ -60,7 +61,7 @@ public class CommentListInteractorImpl
 	}
 
 	@Override
-	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale)
+	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale, JSONObjectWrapper obc)
 		throws Exception {
 		CommentmanagerjsonwsService service = getCommentsService(session);
 		service.getComments(_groupId, _className, _classPK, startRow, endRow);
