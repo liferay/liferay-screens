@@ -15,6 +15,20 @@ public class CommentAddInteractorImpl extends BaseRemoteInteractor<CommentAddLis
 		super(targetScreenletId);
 	}
 
+	@Override
+	public void addComment(long groupId, String className, long classPK, String body) throws Exception {
+
+		validate(groupId, className, classPK, body);
+
+		this.body = body;
+
+		Session session = SessionContext.createSessionFromCurrentSession();
+		session.setCallback(new CommentAddCallback(getTargetScreenletId()));
+		CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(session);
+
+		service.addComment(groupId, className, classPK, body);
+	}
+
 	public void onEvent(CommentAddEvent event) {
 		if (!isValidEvent(event)) {
 			return;
@@ -25,27 +39,6 @@ public class CommentAddInteractorImpl extends BaseRemoteInteractor<CommentAddLis
 		} else {
 			getListener().onAddCommentSuccess(event.getCommentEntry());
 		}
-	}
-
-	@Override
-	public void addComment(long groupId, String className, long classPK, String body) throws Exception {
-
-		validate(groupId, className, classPK, body);
-
-		this.body = body;
-
-		CommentmanagerjsonwsService service = getCommentsService();
-
-		service.addComment(groupId, className, classPK, body);
-	}
-
-	protected CommentmanagerjsonwsService getCommentsService() {
-
-		Session session = SessionContext.createSessionFromCurrentSession();
-
-		session.setCallback(new CommentAddCallback(getTargetScreenletId()));
-
-		return new CommentmanagerjsonwsService(session);
 	}
 
 	protected void validate(long groupId, String className, long classPK, String body) {

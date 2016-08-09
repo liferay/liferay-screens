@@ -14,7 +14,6 @@ public class CommentAddEvent extends BasicEvent {
 
 	public CommentAddEvent(int targetScreenletId, CommentEntry commentEntry) {
 		super(targetScreenletId);
-
 		this.commentEntry = commentEntry;
 	}
 

@@ -126,8 +126,7 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 			case UPDATE_COMMENT_ACTION:
 				String body = (String) args[0];
 				try {
-					((CommentUpdateInteractor) interactor).updateComment(groupId, className, classPK, commentId,
-						body);
+					((CommentUpdateInteractor) interactor).updateComment(groupId, className, classPK, commentId, body);
 				} catch (Exception e) {
 					onUpdateCommentFailure(e);
 				}
