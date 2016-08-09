@@ -114,7 +114,7 @@ public class FileDisplayScreenlet: BaseScreenlet {
 	public func createLoadFileInteractor() -> Interactor? {
 		if let fileEntry = fileEntry {
 			let url = NSURL(string: LiferayServerContext.server + fileEntry.url)
-			let interactor = LoadFileInteractor(screenlet: self, url: url)
+			let interactor = LoadFileEntryInteractor(screenlet: self, url: url)
 
 			interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 

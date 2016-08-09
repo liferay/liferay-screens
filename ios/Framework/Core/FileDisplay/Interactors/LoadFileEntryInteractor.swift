@@ -14,7 +14,7 @@
 import UIKit
 
 
-class LoadFileInteractor: ServerReadConnectorInteractor {
+class LoadFileEntryInteractor: ServerReadConnectorInteractor {
 
 	var resultUrl: NSURL?
 
