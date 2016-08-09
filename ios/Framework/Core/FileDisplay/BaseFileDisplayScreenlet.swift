@@ -16,7 +16,7 @@ import Foundation
 
 public class BaseFileDisplayScreenlet: BaseScreenlet {
 
-	public static let LoadFile = "LoadFileAction"
+	public static let LoadFileAction = "LoadFileAction"
 
 	@IBInspectable public var entryId: Int64 = 0
 
@@ -45,7 +45,7 @@ public class BaseFileDisplayScreenlet: BaseScreenlet {
 		switch name {
 		case BaseScreenlet.DefaultAction:
 			return createLoadAssetInteractor()
-		case BaseFileDisplayScreenlet.LoadFile:
+		case BaseFileDisplayScreenlet.LoadFileAction:
 			return createLoadFileInteractor()
 		default:
 			return nil
@@ -59,7 +59,7 @@ public class BaseFileDisplayScreenlet: BaseScreenlet {
 	}
 
 	public func loadFile() -> Bool {
-		return self.performAction(name: BaseFileDisplayScreenlet.LoadFile)
+		return self.performAction(name: BaseFileDisplayScreenlet.LoadFileAction)
 	}
 
 	//Child classes must override this method
