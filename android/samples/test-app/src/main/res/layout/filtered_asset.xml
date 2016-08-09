@@ -6,7 +6,7 @@
 	android:orientation="horizontal"
 	tools:context="com.liferay.mobile.screens.testapp.FilteredAssetActivity">
 
-	<com.liferay.mobile.screens.assetlist.AssetListScreenlet
+	<com.liferay.mobile.screens.asset.list.AssetListScreenlet
 		android:id="@+id/filtered_asset_list"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
