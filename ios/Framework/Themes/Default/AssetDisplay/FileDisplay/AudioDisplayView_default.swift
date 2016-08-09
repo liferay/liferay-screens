@@ -17,31 +17,31 @@ import AVFoundation
 
 public class AudioDisplayView_default: BaseScreenletView, BaseFileDisplayViewModel {
 	
-	@IBOutlet weak var view: UIView!
+	@IBOutlet weak var view: UIView?
 
-	@IBOutlet weak var playButton: UIButton!
-	@IBOutlet weak var pauseButton: UIButton!
+	@IBOutlet weak var playButton: UIButton?
+	@IBOutlet weak var pauseButton: UIButton?
 
-	@IBOutlet weak var rewindButton: UIButton!
-	@IBOutlet weak var forwardButton: UIButton!
+	@IBOutlet weak var rewindButton: UIButton?
+	@IBOutlet weak var forwardButton: UIButton?
 
-	@IBOutlet weak var sliderDuration: UISlider! {
+	@IBOutlet weak var sliderDuration: UISlider? {
 		didSet {
-			sliderDuration.setThumbImage(NSBundle.imageInBundles(name: "default-point", currentClass: self.dynamicType), forState: UIControlState.Normal)
+			sliderDuration?.setThumbImage(NSBundle.imageInBundles(name: "default-point", currentClass: self.dynamicType), forState: UIControlState.Normal)
 		}
 	}
 	
-	@IBOutlet weak var sliderVolume: UISlider! {
+	@IBOutlet weak var sliderVolume: UISlider? {
 		didSet {
-			sliderVolume.setThumbImage(NSBundle.imageInBundles(name: "default-point", currentClass: self.dynamicType), forState: UIControlState.Normal)
+			sliderVolume?.setThumbImage(NSBundle.imageInBundles(name: "default-point", currentClass: self.dynamicType), forState: UIControlState.Normal)
 		}
 	}
 
 
-	@IBOutlet weak var audioProgressLabel: UILabel!
-	@IBOutlet weak var audioDurationLabel: UILabel!
+	@IBOutlet weak var audioProgressLabel: UILabel?
+	@IBOutlet weak var audioDurationLabel: UILabel?
 
-	@IBOutlet weak var titleLabel: UILabel!
+	@IBOutlet weak var titleLabel: UILabel?
 
 	public var url: NSURL? {
 		didSet {
@@ -55,8 +55,8 @@ public class AudioDisplayView_default: BaseScreenletView, BaseFileDisplayViewMod
 							audio.numberOfLoops = -1
 							playAction()
 
-							self.sliderDuration.maximumValue = Float(audio.duration)
-							self.audioDurationLabel.text = updateAudioDurationLabel(Float(audio.duration))
+							self.sliderDuration?.maximumValue = Float(audio.duration)
+							self.audioDurationLabel?.text = updateAudioDurationLabel(Float(audio.duration))
 						}
 					}
 				} catch let error as NSError {
@@ -69,7 +69,7 @@ public class AudioDisplayView_default: BaseScreenletView, BaseFileDisplayViewMod
 
 	public var title: String? {
 		didSet {
-			self.titleLabel.text = title
+			self.titleLabel?.text = title
 		}
 	}
 
@@ -117,8 +117,8 @@ public class AudioDisplayView_default: BaseScreenletView, BaseFileDisplayViewMod
 	}
 
 	private func updateView(play: Bool) {
-		self.pauseButton.hidden = !play
-		self.playButton.hidden = play
+		self.pauseButton?.hidden = !play
+		self.playButton?.hidden = play
 	}
 
 	private func updateAudioDurationLabel(interval: Float) -> String {
@@ -140,26 +140,26 @@ public class AudioDisplayView_default: BaseScreenletView, BaseFileDisplayViewMod
 	}
 
 	private func disableComponents() {
-		playButton.enabled = false
-		rewindButton.enabled = false
-		forwardButton.enabled = false
-		sliderDuration.enabled = false
-		sliderVolume.enabled = false
-		pauseButton.hidden = true
+		playButton?.enabled = false
+		rewindButton?.enabled = false
+		forwardButton?.enabled = false
+		sliderDuration?.enabled = false
+		sliderVolume?.enabled = false
+		pauseButton?.hidden = true
 	}
 
 	func updateProgress() {
-		self.sliderDuration.setValue(Float(audio!.currentTime), animated: true)
+		self.sliderDuration?.setValue(Float(audio!.currentTime), animated: true)
 	}
 
 	func updateDurationLabel() {
 		let currentTime = audio!.currentTime
 		if audio!.playing && currentTime == audio!.duration {
 			self.updateView(false)
-			self.audioProgressLabel.text = updateAudioDurationLabel(0)
+			self.audioProgressLabel?.text = updateAudioDurationLabel(0)
 		}
 		else {
-			self.audioProgressLabel.text = updateAudioDurationLabel(Float(currentTime))
+			self.audioProgressLabel?.text = updateAudioDurationLabel(Float(currentTime))
 		}
 	}
 }

@@ -18,7 +18,7 @@ import AVKit
 
 public class VideoDisplayView_default: BaseScreenletView, BaseFileDisplayViewModel {
 
-	@IBOutlet weak var view: UIView!
+	@IBOutlet weak var view: UIView?
 
 	public var playerController: AVPlayerViewController?
 
@@ -31,7 +31,7 @@ public class VideoDisplayView_default: BaseScreenletView, BaseFileDisplayViewMod
 				playerController!.player = video
 				playerController!.view.frame = self.screenlet!.bounds
 
-				self.view.addSubview(playerController!.view)
+				self.view?.addSubview(playerController!.view)
 
 				video.play()
 			}

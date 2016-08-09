@@ -16,14 +16,14 @@ import UIKit
 
 public class ImageDisplayView_default: BaseScreenletView, BaseFileDisplayViewModel {
 
-	@IBOutlet weak var imageView: UIImageView!
+	@IBOutlet weak var imageView: UIImageView?
 
 	public var url: NSURL? {
 		didSet {
 			if let url = url {
 				let imageData = NSData(contentsOfURL: url)
 				if let imageData = imageData {
-					imageView.image = UIImage(data: imageData)
+					imageView?.image = UIImage(data: imageData)
 				}
 			}
 		}
