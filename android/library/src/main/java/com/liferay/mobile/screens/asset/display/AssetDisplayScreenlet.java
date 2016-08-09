@@ -117,6 +117,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		}
 	}
 
+	//TODO now the autoload is required to be able to load child screenlets
 	protected void autoLoad() {
 		if (entryId != 0 && SessionContext.isLoggedIn()) {
 			loadAsset();
