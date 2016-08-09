@@ -15,12 +15,6 @@ public class CommentEntry implements Parcelable {
 
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		//FIXME !
-		return ((CommentEntry) o).getCommentId() == this.getCommentId();
-	}
-
 	public static final ClassLoaderCreator<CommentEntry> CREATOR = new ClassLoaderCreator<CommentEntry>() {
 
 		@Override
@@ -96,6 +90,21 @@ public class CommentEntry implements Parcelable {
 
 	public long getCommentId() {
 		return Long.valueOf((String) values.get("commentId"));
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+
+		CommentEntry that = (CommentEntry) o;
+
+		return values != null && getCommentId() == that.getCommentId();
 	}
 
 	protected Map<String, Object> values;
