@@ -95,7 +95,7 @@ public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> Signal ->
 			self.delegate?.syncManager?(self, itemsCount: count)
 
 			if count > 0 {
-				self.cacheManager.pendingToSync { (screenlet, key, attributes) -> Bool in
+				self.cacheManager.pendingToSync({ (screenlet, key, attributes) -> Bool in
 					self.delegate?.syncManager?(self,
 						onItemSyncScreenlet: screenlet,
 						startKey: key,
@@ -104,7 +104,7 @@ public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> Signal ->
 					self.enqueueSyncForScreenlet(screenlet, key, attributes)
 
 					return true
-				}
+				})
 			}
 		}
 	}

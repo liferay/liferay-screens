@@ -54,7 +54,8 @@ class UploadUserPortraitInteractor: ServerWriteConnectorInteractor {
 			collection: ScreenletName(UserPortraitScreenlet),
 			key: "userId-\(userId)",
 			value: image,
-			attributes: ["userId": userId.description])
+			attributes: ["userId": userId.description],
+			onCompletion: nil)
 	}
 
 	override func callOnSuccess() {
