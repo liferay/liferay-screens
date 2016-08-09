@@ -20,10 +20,10 @@ public protocol LoadAssetConnector {
 
 public class LoadAssetInteractor: ServerReadConnectorInteractor {
 
-	public let assetEntryId: Int64
+	public let assetEntryId: Int64?
 
-	public let className: String
-	public let classPK: Int64
+	public let className: String?
+	public let classPK: Int64?
 
 	public var asset: Asset?
 
@@ -36,11 +36,13 @@ public class LoadAssetInteractor: ServerReadConnectorInteractor {
 	}
 
 	override public func createConnector() -> ServerConnector? {
-		if assetEntryId != 0 {
+		if let assetEntryId = self.assetEntryId {
 			return LiferayServerContext.connectorFactory.createAssetLoadByEntryIdConnector(assetEntryId)
-		} else {
+		} else if let className = self.className, classPK = self.classPK {
 			return LiferayServerContext.connectorFactory.createAssetLoadByClassPKConnector(className, classPK: classPK)
 		}
+
+		return nil
 	}
 
 	override public func completedConnector(c: ServerConnector) {
