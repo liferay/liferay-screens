@@ -46,7 +46,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 	@IBInspectable public var editable: Bool = false {
 		didSet {
-			(screenletView as? UserPortraitViewModel)?.editable = self.editable
+			screenletView?.editable = self.editable
 		}
 	}
 
@@ -75,7 +75,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 
 		viewModel.borderWidth = self.borderWidth
 		viewModel.borderColor = self.borderColor
-		viewModel.editable = self.editable
+		screenletView?.editable = self.editable
 	}
 
 	public func loadLoggedUserPortrait() -> Bool {

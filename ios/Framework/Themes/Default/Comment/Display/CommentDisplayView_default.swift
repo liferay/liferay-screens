@@ -22,6 +22,15 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 	@IBOutlet weak var editedLabel: UILabel?
 	@IBOutlet weak var bodyLabel: UILabel?
 	@IBOutlet weak var bodyLabelBottomMarginConstraint: NSLayoutConstraint?
+	@IBOutlet weak var deleteButton: UIButton?
+	@IBOutlet weak var editButton: UIButton?
+
+	public override var editable: Bool {
+		didSet {
+			deleteButton?.hidden = !editable
+			editButton?.hidden = !editable
+		}
+	}
 
 	public var comment: Comment? {
 		didSet {

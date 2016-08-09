@@ -37,6 +37,12 @@ import UIKit
 		return delegate as? CommentDisplayScreenletDelegate
 	}
 
+	@IBInspectable public var editable: Bool = false {
+		didSet {
+			screenletView?.editable = self.editable
+		}
+	}
+
 	public var viewModel: CommentDisplayViewModel? {
 		return screenletView as? CommentDisplayViewModel
 	}
@@ -53,6 +59,11 @@ import UIKit
 				load()
 			}
 		}
+	}
+
+	public override func onCreated() {
+		super.onCreated()
+		screenletView?.editable = self.editable
 	}
 
 	public func load() {
