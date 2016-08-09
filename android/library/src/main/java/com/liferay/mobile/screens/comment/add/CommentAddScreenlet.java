@@ -70,6 +70,9 @@ public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, Inte
 
 	@Override
 	public void onAddCommentFailure(String body, Exception e) {
+
+		getViewModel().showFailedOperation(null, e);
+
 		if (getListener() != null) {
 			getListener().onAddCommentFailure(body, e);
 		}
@@ -77,6 +80,9 @@ public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, Inte
 
 	@Override
 	public void onAddCommentSuccess(CommentEntry commentEntry) {
+
+		getViewModel().showFinishOperation(null);
+
 		if (getListener() != null) {
 			getListener().onAddCommentSuccess(commentEntry);
 		}
