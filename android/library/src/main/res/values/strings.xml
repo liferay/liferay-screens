@@ -32,6 +32,7 @@
 		<item>audio/mpeg</item>
 		<item>audio/mpeg3</item>
 		<item>audio/wav</item>
+		<item>audio/x-wav</item>
 	</string-array>
 
 	<string-array name="pdf_mime_types">
