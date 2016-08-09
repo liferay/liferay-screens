@@ -35,6 +35,26 @@ public class CommentAddView extends RelativeLayout implements CommentAddViewMode
 	}
 
 	@Override
+	protected void onFinishInflate() {
+		super.onFinishInflate();
+
+		sendButton = (Button) findViewById(R.id.comment_send);
+		sendButton.setOnClickListener(this);
+		addCommentEditText = (EditText) findViewById(R.id.comment_add);
+	}
+
+	@Override
+	public void onClick(View v) {
+		if (v.getId() == R.id.comment_send) {
+			String commentText = addCommentEditText.getText().toString();
+			if (!commentText.isEmpty()) {
+				sendButton.setEnabled(false);
+				getScreenlet().performUserAction(commentText);
+			}
+		}
+	}
+
+	@Override
 	public void showStartOperation(String actionName) {
 
 	}
@@ -50,26 +70,6 @@ public class CommentAddView extends RelativeLayout implements CommentAddViewMode
 	}
 
 	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
-
-		sendButton = (Button) findViewById(R.id.comment_send);
-		addCommentEditText = (EditText) findViewById(R.id.comment_add);
-		sendButton.setOnClickListener(this);
-	}
-
-	@Override
-	public void onClick(View v) {
-		int i = v.getId();
-		if (i == R.id.comment_send) {
-			if (!addCommentEditText.getText().toString().isEmpty()) {
-				sendButton.setEnabled(false);
-				getScreenlet().performUserAction();
-			}
-		}
-	}
-
-	@Override
 	public BaseScreenlet getScreenlet() {
 		return screenlet;
 	}
@@ -79,13 +79,7 @@ public class CommentAddView extends RelativeLayout implements CommentAddViewMode
 		this.screenlet = screenlet;
 	}
 
-	@Override
-	public String getBody() {
-		return addCommentEditText.getText().toString();
-	}
-
 	private BaseScreenlet screenlet;
-
 	private EditText addCommentEditText;
 	private Button sendButton;
 }

@@ -7,5 +7,4 @@ import com.liferay.mobile.screens.base.view.BaseViewModel;
  */
 public interface CommentAddViewModel extends BaseViewModel {
 
-	String getBody();
 }
