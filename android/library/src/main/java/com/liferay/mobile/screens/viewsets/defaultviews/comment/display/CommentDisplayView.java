@@ -195,11 +195,6 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 	}
 
 	@Override
-	protected void dispatchDraw(Canvas canvas) {
-		super.dispatchDraw(canvas);
-	}
-
-	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 

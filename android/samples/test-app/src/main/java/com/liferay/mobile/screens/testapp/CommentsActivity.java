@@ -16,6 +16,7 @@ import com.liferay.mobile.screens.comment.list.CommentListListener;
 import com.liferay.mobile.screens.comment.list.CommentListScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.models.CommentEntry;
+import com.liferay.mobile.screens.util.LiferayLocale;
 import java.util.List;
 
 /**
@@ -58,7 +59,7 @@ public class CommentsActivity extends ThemeActivity
 
 	@Override
 	public void onLoadCommentFailure(long commentId, Exception e) {
-		error(String.format("Error loading comment with id: %d", commentId), e);
+		error(String.format(LiferayLocale.getDefaultLocale(), "Error loading comment with id: %d", commentId), e);
 		displayScreenletVisible(false);
 	}
 
@@ -74,17 +75,17 @@ public class CommentsActivity extends ThemeActivity
 
 	@Override
 	public void onLoadCommentSuccess(CommentEntry commentEntry) {
-		info(String.format("Comment with id: %d succesfully loaded", commentEntry.getCommentId()));
+		info(String.format(LiferayLocale.getDefaultLocale(),"Comment with id: %d succesfully loaded", commentEntry.getCommentId()));
 	}
 
 	@Override
 	public void onDeleteCommentFailure(CommentEntry commentEntry, Exception e) {
-		error(String.format("Error deleting comment with id: %d", commentEntry.getCommentId()), e);
+		error(String.format(LiferayLocale.getDefaultLocale(),"Error deleting comment with id: %d", commentEntry.getCommentId()), e);
 	}
 
 	@Override
 	public void onDeleteCommentSuccess(CommentEntry commentEntry) {
-		info(String.format("Comment with id: %d succesfully deleted", commentEntry.getCommentId()));
+		info(String.format(LiferayLocale.getDefaultLocale(),"Comment with id: %d succesfully deleted", commentEntry.getCommentId()));
 		if (commentEntry.getCommentId() == displayScreenlet.getCommentId()) {
 			displayScreenletVisible(false);
 			listScreenlet.removeCommentEntry(commentEntry);
@@ -93,12 +94,12 @@ public class CommentsActivity extends ThemeActivity
 
 	@Override
 	public void onUpdateCommentFailure(CommentEntry commentEntry, Exception e) {
-		error(String.format("Error updating comment with id: %d", commentEntry.getCommentId()), e);
+		error(String.format(LiferayLocale.getDefaultLocale(),"Error updating comment with id: %d", commentEntry.getCommentId()), e);
 	}
 
 	@Override
 	public void onUpdateCommentSuccess(CommentEntry commentEntry) {
-		info(String.format("Comment with id: %d succesfully updated", commentEntry.getCommentId()));
+		info(String.format(LiferayLocale.getDefaultLocale(),"Comment with id: %d succesfully updated", commentEntry.getCommentId()));
 		if (commentEntry.getCommentId() == displayScreenlet.getCommentId()) {
 			displayScreenlet.load();
 			listScreenlet.refreshView();
@@ -112,14 +113,14 @@ public class CommentsActivity extends ThemeActivity
 
 	@Override
 	public void onAddCommentSuccess(CommentEntry commentEntry) {
-		info(String.format("Comment succesfully added, new id: %d", commentEntry.getCommentId()));
+		info(String.format(LiferayLocale.getDefaultLocale(),"Comment succesfully added, new id: %d", commentEntry.getCommentId()));
 		dialog.cancel();
 		listScreenlet.addNewCommentEntry(commentEntry);
 	}
 
 	@Override
 	public void onListPageFailed(BaseListScreenlet source, int startRow, int endRow, Exception e) {
-		error(String.format("Error receiving page: %d", startRow), e);
+		error(String.format(LiferayLocale.getDefaultLocale(),"Error receiving page: %d", startRow), e);
 	}
 
 	@Override
@@ -179,7 +180,7 @@ public class CommentsActivity extends ThemeActivity
 		listScreenlet.setEditable(isChecked);
 		displayScreenlet.setEditable(isChecked);
 		listScreenlet.refreshView();
-		//displayScreenlet.refreshView();
+		displayScreenlet.refreshView();
 	}
 
 	private CommentListScreenlet listScreenlet;

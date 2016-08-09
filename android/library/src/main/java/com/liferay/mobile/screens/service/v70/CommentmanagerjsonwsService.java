@@ -14,11 +14,8 @@
 
 package com.liferay.mobile.screens.service.v70;
 
-import com.liferay.mobile.android.http.file.UploadData;
 import com.liferay.mobile.android.service.BaseService;
-import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,8 +38,7 @@ public class CommentmanagerjsonwsService extends BaseService {
 			_params.put("commentId", commentId);
 
 			_command.put("/screens.commentmanagerjsonws/delete-comment", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -60,8 +56,7 @@ public class CommentmanagerjsonwsService extends BaseService {
 			_params.put("classPK", classPK);
 
 			_command.put("/screens.commentmanagerjsonws/get-comments-count", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -74,7 +69,8 @@ public class CommentmanagerjsonwsService extends BaseService {
 		return _result.getInt(0);
 	}
 
-	public JSONObject updateComment(long groupId, String className, long classPK, long commentId, String body) throws Exception {
+	public JSONObject updateComment(long groupId, String className, long classPK, long commentId, String body)
+		throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -87,8 +83,7 @@ public class CommentmanagerjsonwsService extends BaseService {
 			_params.put("body", checkNull(body));
 
 			_command.put("/screens.commentmanagerjsonws/update-comment", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -114,8 +109,7 @@ public class CommentmanagerjsonwsService extends BaseService {
 			_params.put("end", end);
 
 			_command.put("/screens.commentmanagerjsonws/get-comments", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -140,8 +134,7 @@ public class CommentmanagerjsonwsService extends BaseService {
 			_params.put("body", checkNull(body));
 
 			_command.put("/screens.commentmanagerjsonws/add-comment", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -164,8 +157,7 @@ public class CommentmanagerjsonwsService extends BaseService {
 			_params.put("commentId", commentId);
 
 			_command.put("/screens.commentmanagerjsonws/get-comment", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -177,5 +169,4 @@ public class CommentmanagerjsonwsService extends BaseService {
 
 		return _result.getJSONObject(0);
 	}
-
 }

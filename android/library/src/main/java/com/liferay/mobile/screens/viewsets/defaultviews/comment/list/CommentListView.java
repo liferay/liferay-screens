@@ -41,8 +41,8 @@ public class CommentListView
 
 	@Override
 	public void setEditable(boolean editable) {
-		this.editable = editable;
-		getAdapter().setEditable(this.editable);
+		boolean editable1 = editable;
+		getAdapter().setEditable(editable1);
 	}
 
 	@Override
@@ -150,5 +150,4 @@ public class CommentListView
 	}
 
 	private TextView emptyListTextView;
-	private boolean editable;
 }
