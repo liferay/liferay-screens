@@ -40,16 +40,16 @@ import UIKit
 				let mimeType = asset.mimeType
 
 				if isImage(mimeType) {
-					childScreenlet = ImageDisplayScreenlet(frame: frame, themeName: nil, initalizer: nil)
+					childScreenlet = ImageDisplayScreenlet(frame: frame, themeName: nil)
 				} else if isVideo(mimeType) {
-					childScreenlet = VideoDisplayScreenlet(frame: frame, themeName: nil, initalizer: nil)
+					childScreenlet = VideoDisplayScreenlet(frame: frame, themeName: nil)
 				} else if isAudio(mimeType) {
-					childScreenlet = AudioDisplayScreenlet(frame: frame, themeName: nil, initalizer: nil)
+					childScreenlet = AudioDisplayScreenlet(frame: frame, themeName: nil)
 				} else if mimeType == "application/pdf" {
-					childScreenlet = PdfDisplayScreenlet(frame: frame, themeName: nil, initalizer: nil)
+					childScreenlet = PdfDisplayScreenlet(frame: frame, themeName: nil)
 				}
 			case "BlogsEntry":
-				childScreenlet = BlogsEntryDisplayScreenlet(frame: frame, themeName: nil, initalizer: nil)
+				childScreenlet = BlogsEntryDisplayScreenlet(frame: frame, themeName: nil)
 			default:
 				break;
 			}
