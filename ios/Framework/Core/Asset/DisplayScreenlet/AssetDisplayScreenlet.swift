@@ -69,7 +69,13 @@ import UIKit
 		interactor.onSuccess = {
 			if let resultAsset = interactor.asset {
 				self.assetDisplayDelegate?.screenlet?(self, onAssetResponse: resultAsset)
-				self.assetDisplayViewModel?.asset = resultAsset
+
+				if self.createChildScreenlet(resultAsset) {
+					self.assetDisplayViewModel?.asset = resultAsset
+				}
+				else {
+					self.assetDisplayViewModel?.asset = nil
+				}
 			}
 		}
 		
@@ -82,5 +88,23 @@ import UIKit
 	
 	public func load() -> Bool {
 		return self.performDefaultAction()
+	}
+
+	private func createChildScreenlet(asset: Asset) -> Bool {
+		guard let view = screenletView else {
+			return false
+		}
+
+		let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+
+		let factory = AssetDisplayScreenletFactory(asset: asset)
+
+		guard let childScreenlet = factory.createScreenlet(frame, screenlet: self) else {
+			return false
+		}
+
+		addSubview(childScreenlet)
+
+		return true
 	}
 }
