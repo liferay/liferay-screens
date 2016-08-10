@@ -29,6 +29,13 @@ import UIKit
 	                        onDeleteComment comment: Comment?,
 						    onError error: NSError)
 
+	optional func screenlet(screenlet: CommentDisplayScreenlet,
+	                        onCommentUpdated comment: Comment?)
+
+	optional func screenlet(screenlet: CommentDisplayScreenlet,
+	                        onUpdateComment comment: Comment?,
+							onError error: NSError)
+
 }
 
 
@@ -40,6 +47,10 @@ import UIKit
 	@IBInspectable public var groupId: Int64 = 0
 
 	@IBInspectable public var commentId: Int64 = 0
+
+	@IBInspectable public var className: String = ""
+
+	@IBInspectable public var classPK: Int64 = 0
 
 	@IBInspectable public var autoLoad: Bool = true
 
@@ -97,6 +108,8 @@ import UIKit
 			return createCommentLoadInteractor()
 		case CommentDisplayScreenlet.DeleteAction:
 			return createCommentDeleteInteractor()
+		case CommentDisplayScreenlet.UpdateAction:
+			return createCommentUpdateInteractor(sender as? String)
 		default:
 			return nil
 		}
@@ -143,6 +156,36 @@ import UIKit
 		}
 
 		return interactor
+	}
+
+	private func createCommentUpdateInteractor(body: String?) -> Interactor {
+		let interactor = CommentUpdateInteractor(
+			screenlet: self,
+			groupId: groupId,
+			className: className,
+			classPK: classPK,
+			commentId: commentId,
+			body: body)
+
+		interactor.onSuccess = {
+			if let resultComment = interactor.resultComment {
+				self.comment = resultComment
+				self.viewModel?.comment = resultComment
+				self.commentDisplayDelegate?.screenlet?(self, onCommentUpdated: resultComment)
+			}
+			else {
+				self.commentDisplayDelegate?.screenlet?(self,
+					onUpdateComment: self.comment,
+					onError: NSError.errorWithCause(.InvalidServerResponse))
+			}
+		}
+
+		interactor.onFailure = {
+			self.commentDisplayDelegate?.screenlet?(self, onLoadCommentError: $0)
+		}
+		
+		return interactor
+
 	}
 	
 }
