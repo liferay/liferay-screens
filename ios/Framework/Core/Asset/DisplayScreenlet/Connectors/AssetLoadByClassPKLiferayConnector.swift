@@ -36,7 +36,8 @@ public class AssetLoadByClassPKLiferayConnector: ServerConnector, LoadAssetConne
 		if error == nil {
 			if classPK == 0 {
 				return ValidationError("assetdisplay-screenlet", "undefined-classpk")
-			} else if className.isEmpty {
+			}
+			else if className.isEmpty {
 				return ValidationError("assetdisplay-screenlet", "undefined-classname")
 			}
 		}

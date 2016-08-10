@@ -52,7 +52,8 @@ public class LoadAssetInteractor: ServerReadConnectorInteractor {
 	override public func createConnector() -> ServerConnector? {
 		if let assetEntryId = self.assetEntryId {
 			return LiferayServerContext.connectorFactory.createAssetLoadByEntryIdConnector(assetEntryId)
-		} else if let className = self.className, classPK = self.classPK {
+		}
+		else if let className = self.className, classPK = self.classPK {
 			return LiferayServerContext.connectorFactory.createAssetLoadByClassPKConnector(className, classPK: classPK)
 		}
 
