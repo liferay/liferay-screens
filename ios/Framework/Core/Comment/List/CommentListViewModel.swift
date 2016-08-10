@@ -17,4 +17,5 @@ import UIKit
 @objc public protocol CommentListViewModel {
 	func addComment(comment: Comment)
 	func deleteComment(comment: Comment)
+	func updateComment(comment: Comment)
 }

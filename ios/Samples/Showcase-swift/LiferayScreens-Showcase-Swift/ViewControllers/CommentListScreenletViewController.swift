@@ -90,6 +90,17 @@ class CommentListScreenletViewController: UIViewController,
 		print("DELEGATE: onDeleteComment onError called -> \(comment) \(error)\n")
 	}
 
+	func screenlet(screenlet: CommentDisplayScreenlet, onCommentUpdated comment: Comment?) {
+		print("DELEGATE: onCommentUpdated called -> \(comment)\n")
+		if let comment = comment {
+			self.listScreenlet?.updateComment(comment)
+		}
+	}
+
+	func screenlet(screenlet: CommentDisplayScreenlet, onUpdateComment comment: Comment?, onError error: NSError) {
+		print("DELEGATE: onUpdateComment onError called -> \(comment) \(error)\n")
+	}
+
 	//MARK: Private methods
 
 	private func recalculateDisplayScreenletHeightConstraint() {

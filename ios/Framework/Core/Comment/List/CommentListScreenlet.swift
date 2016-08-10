@@ -54,6 +54,10 @@ import UIKit
 		viewModel?.deleteComment(comment)
 	}
 
+	public func updateComment(comment: Comment) {
+		viewModel?.updateComment(comment)
+	}
+
 	//MARK: BaseListScreenlet
 
 	override public func createPageLoadInteractor(
