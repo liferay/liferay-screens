@@ -3,7 +3,6 @@ package com.liferay.mobile.screens.testapp;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CompoundButton;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
@@ -139,22 +138,31 @@ public class CommentsActivity extends ThemeActivity
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.add_comment_button) {
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-			builder.setMessage("Type your comment and press 'Send'").setTitle("Add new comment");
-
-			LayoutInflater inflater = getLayoutInflater();
-
-			View dialogView = inflater.inflate(R.layout.add_comment_dialog, null);
-
-			builder.setView(dialogView);
-
-			CommentAddScreenlet screenlet = (CommentAddScreenlet) dialogView.findViewById(R.id.comment_add_screenlet);
-			screenlet.setListener(this);
-
-			dialog = builder.create();
+			dialog = createDialog();
 			dialog.show();
 		}
+	}
+
+	@Override
+	protected void onPause() {
+		if (dialog != null) {
+			dialog.dismiss();
+		}
+
+		super.onPause();
+	}
+
+	private AlertDialog createDialog() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage("Type your comment and press 'Send'").setTitle("Add new comment");
+
+		View dialogView = getLayoutInflater().inflate(R.layout.add_comment_dialog, null);
+		builder.setView(dialogView);
+
+		CommentAddScreenlet screenlet = (CommentAddScreenlet) dialogView.findViewById(R.id.comment_add_screenlet);
+		screenlet.setListener(this);
+
+		return builder.create();
 	}
 
 	@Override
