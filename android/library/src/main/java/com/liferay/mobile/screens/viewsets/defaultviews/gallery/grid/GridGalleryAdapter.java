@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.gallery.grid;
 
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
@@ -42,8 +43,9 @@ public class GridGalleryAdapter extends BaseListAdapter<ImageEntry, GridGalleryA
 
 			Picasso picasso = Picasso.with(LiferayScreensContext.getContext());
 
-			if (entry.thumbnailNotGenerated()) {
-				picasso.load(entry.getImageUrl()).fit().centerCrop().into(imageView);
+			Bitmap image = entry.getImage();
+			if (image != null) {
+				imageView.setImageBitmap(image);
 			} else {
 				picasso.load(entry.getThumbnailUrl()).into(imageView);
 			}

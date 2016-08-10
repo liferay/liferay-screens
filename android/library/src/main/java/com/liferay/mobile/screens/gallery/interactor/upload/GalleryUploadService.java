@@ -2,6 +2,9 @@ package com.liferay.mobile.screens.gallery.interactor.upload;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.ThumbnailUtils;
 import com.liferay.mobile.android.callback.file.FileProgressCallback;
 import com.liferay.mobile.android.http.file.UploadData;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
@@ -13,6 +16,7 @@ import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.FileUtil;
 import com.liferay.mobile.screens.util.JSONUtil;
+import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -48,6 +52,8 @@ public class GalleryUploadService extends IntentService {
 			JSONObject jsonObject =
 				uploadImageEntry(screenletId, repositoryId, folderId, title, description, changeLog, picturePath);
 			ImageEntry imageEntry = new ImageEntry(JSONUtil.toMap(jsonObject));
+			Bitmap thumbnail = Picasso.with(this).load(new File(picturePath)).get();
+			imageEntry.setImage(thumbnail);
 
 			EventBusUtil.post(new GalleryUploadEvent(screenletId, imageEntry));
 		} catch (Exception e) {

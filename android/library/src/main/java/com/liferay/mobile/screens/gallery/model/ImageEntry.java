@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.gallery.model;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.liferay.mobile.screens.assetlist.AssetEntry;
@@ -75,6 +76,14 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 		return thumbnailUrl;
 	}
 
+	public Bitmap getImage() {
+		return image;
+	}
+
+	public void setImage(Bitmap image) {
+		this.image = image;
+	}
+
 	public String getMimeType() {
 		return mimeType;
 	}
@@ -93,10 +102,6 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 
 	public long getFileEntryId() {
 		return fileEntryId;
-	}
-
-	public boolean thumbnailNotGenerated() {
-		return isLessThan60secondsOld();
 	}
 
 	private void parseServerValues() {
@@ -134,13 +139,7 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 		}
 	}
 
-	private boolean isLessThan60secondsOld() {
-		long creationMinutes = TimeUnit.MILLISECONDS.toSeconds(createDate);
-		long actualMinutes = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
-
-		return actualMinutes - creationMinutes <= 10;
-	}
-
+	private Bitmap image;
 	private String imageUrl;
 	private String thumbnailUrl;
 	private String mimeType;
