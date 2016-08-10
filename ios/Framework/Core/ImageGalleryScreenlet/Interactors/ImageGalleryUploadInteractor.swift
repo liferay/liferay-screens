@@ -67,38 +67,21 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 	//MARK: Cache methods
 
 	public override func writeToCache(c: ServerConnector) {
-		guard let cacheManager = SessionContext.currentContext?.cacheManager
-		else {
-			return
+
+		let uploadFailed = (c.lastError != nil)
+
+		if cacheStrategy == .CacheFirst || uploadFailed {
+			storeParatemetersToResyncLater()
 		}
-
-		if cacheStrategy == .CacheFirst || c.lastError != nil {
-
-			// TODO title could be repeated
-			cacheManager.setDirty(
-				collection: ScreenletName(ImageGalleryScreenlet),
-				key: "uploadEntry-\(imageUpload.title)-\(folderId)-\(repositoryId)",
-				value: imageUpload,
-				attributes: ["folderId": NSNumber(longLong: folderId),
-							 "repositoryId": NSNumber(longLong: repositoryId),
-							 "page": NSNumber(long: page)])
-		} else {
-
+		else {
 			saveResultAndCountOnCache()
-
-			cacheManager.remove(
-				collection: ScreenletName(ImageGalleryScreenlet),
-				key: "uploadEntry-\(imageUpload.title)-\(folderId)-\(repositoryId)")
+			deleteSyncParameters()
 		}
 	}
 
 	public override func callOnSuccess() {
 		if cacheStrategy == .CacheFirst {
-			// update cache with date sent
-			SessionContext.currentContext?.cacheManager.remove(
-					collection: ScreenletName(ImageGalleryScreenlet),
-					key: "uploadEntry-\(imageUpload.title)-\(folderId)-\(repositoryId)")
-
+			deleteSyncParameters()
 			saveResultAndCountOnCache()
 		}
 
@@ -134,22 +117,50 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 
 						newPage.append(entry)
 
-						cacheManager.setClean(
-							collection: ScreenletName(ImageGalleryScreenlet),
-							key: cacheKeyList,
-							value: newPage,
-							attributes: [:])
+						self.storeNewImageEntry(newPage, cacheKey: cacheKeyList)
 
 						if let count = $0.last as? Int {
-							cacheManager.setClean(
-								collection: ScreenletName(ImageGalleryScreenlet),
-								key: cacheKeyCount,
-								value: count + 1,
-								attributes: [:])
+							self.incrementAndStoreImageEntriesCount(count, cacheKey: cacheKeyCount)
 						}
 			})
 		}
 	}
 
+	private func storeParatemetersToResyncLater() {
 
+		// TODO title could be repeated
+		SessionContext.currentContext?.cacheManager.setDirty(
+				collection: ScreenletName(ImageGalleryScreenlet),
+				key: "uploadEntry-\(imageUpload.title)-\(folderId)-\(repositoryId)",
+				value: imageUpload,
+				attributes: ["folderId": NSNumber(longLong: folderId),
+					"repositoryId": NSNumber(longLong: repositoryId),
+					"page": NSNumber(long: page)])
+	}
+
+	private func deleteSyncParameters() {
+
+		SessionContext.currentContext?.cacheManager.remove(
+				collection: ScreenletName(ImageGalleryScreenlet),
+				key: "uploadEntry-\(imageUpload.title)-\(folderId)-\(repositoryId)")
+	}
+
+	private func storeNewImageEntry(page: [[String:AnyObject]], cacheKey: String) {
+		SessionContext.currentContext?.cacheManager.setClean(
+				collection: ScreenletName(ImageGalleryScreenlet),
+				key: cacheKey,
+				value: page,
+				attributes: [:])
+	}
+
+	private func incrementAndStoreImageEntriesCount(count: Int, cacheKey: String) {
+
+		let newCount = count + 1
+
+		SessionContext.currentContext?.cacheManager.setClean(
+				collection: ScreenletName(ImageGalleryScreenlet),
+				key: cacheKey,
+				value: newCount,
+				attributes: [:])
+	}
 }
