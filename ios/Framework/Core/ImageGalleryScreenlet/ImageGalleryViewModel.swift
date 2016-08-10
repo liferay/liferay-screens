@@ -27,5 +27,7 @@ import Foundation
 			bytesSent: UInt64,
 			bytesToSend: UInt64,
 			imageEntryUpload: ImageEntryUpload)
+
+	optional func onImageUploadError(imageEntryUpload: ImageEntryUpload, error: NSError)
 			
 }

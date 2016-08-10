@@ -23,6 +23,10 @@ public class UploadProgressViewBase : UIView {
 
 	}
 
+	public func uploadError() {
+
+	}
+
 	public func setProgress(progress: Float) {
 
 	}

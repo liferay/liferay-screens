@@ -123,6 +123,10 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
 		uploadView?.setProgress(progress)
 	}
 
+	public func onImageUploadError(imageEntryUpload: ImageEntryUpload, error: NSError) {
+		uploadView?.uploadError()
+	}
+
 
 	// MARK: BaseScreenletView
 

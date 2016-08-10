@@ -84,6 +84,10 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 		uploadView?.setProgress(progress)
 	}
 
+	public func onImageUploadError(imageEntryUpload: ImageEntryUpload, error: NSError) {
+		uploadView?.uploadError()
+	}
+
 
 	// MARK: BaseScreenletView
 

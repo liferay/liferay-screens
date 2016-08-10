@@ -289,6 +289,7 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 				self.uploadsQueue.removeAll()
 			}
 			else {
+				self.viewModel.onImageUploadError?(imageUpload, error: $0)
 				self.startNextUploadIfExist()
 			}
 

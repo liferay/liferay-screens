@@ -74,6 +74,12 @@ public class UploadProgressView_default: UploadProgressViewBase {
 		}
 	}
 
+	public override func uploadError() {
+		if uploadsCount == 1 {
+			hide()
+		}
+	}
+
 	public func hide() {
 		UIView.animateWithDuration(0.5 , animations: {
 			self.alpha = 0
