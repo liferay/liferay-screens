@@ -78,10 +78,7 @@ public class CommentsActivity extends ThemeActivity
 	public void onDeleteCommentSuccess(CommentEntry commentEntry) {
 		info(String.format(LiferayLocale.getDefaultLocale(), "Comment with id: %d succesfully deleted",
 			commentEntry.getCommentId()));
-		if (commentEntry.getCommentId() == displayScreenlet.getCommentId()) {
-			showDisplayScreenlet(false);
-			listScreenlet.removeCommentEntry(commentEntry);
-		}
+		showDisplayScreenlet(false);
 	}
 
 	@Override
@@ -94,9 +91,7 @@ public class CommentsActivity extends ThemeActivity
 	public void onUpdateCommentSuccess(CommentEntry commentEntry) {
 		info(String.format(LiferayLocale.getDefaultLocale(), "Comment with id: %d succesfully updated",
 			commentEntry.getCommentId()));
-		if (commentEntry.getCommentId() == displayScreenlet.getCommentId()) {
-			displayScreenlet.load();
-		}
+		showDisplayScreenlet(false);
 	}
 
 	@Override
