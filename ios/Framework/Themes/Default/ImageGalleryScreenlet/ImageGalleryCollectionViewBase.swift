@@ -66,18 +66,18 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 		}
 	}
 
-	public func onImageUploadEnqueued(imageEntry: ImageEntryUpload) {
+	public func onImageUploadEnqueued(imageEntryUpload: ImageEntryUpload) {
 		if uploadView == nil {
 			showUploadProgressView()
 		}
 
-		uploadView?.addUpload(imageEntry.image)
+		uploadView?.addUpload(imageEntryUpload.image)
 	}
 
 	public func onImageUploadProgress(
 		bytesSent: UInt64,
 		bytesToSend: UInt64,
-		imageEntry: ImageEntryUpload) {
+		imageEntryUpload: ImageEntryUpload) {
 
 		let progress = Float(bytesSent) / Float(bytesToSend)
 

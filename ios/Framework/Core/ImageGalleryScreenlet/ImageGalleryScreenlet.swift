@@ -264,7 +264,7 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 			self.viewModel.onImageUploadProgress?(
 					totalBytesSent,
 					bytesToSend: totalBytesToSend,
-					imageEntry: imageUpload)
+					imageEntryUpload: imageUpload)
 
 			self.imageGalleryScreenletDelegate?.screenlet?(
 					self, onImageUploadProgress: imageUpload,

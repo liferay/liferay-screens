@@ -21,11 +21,11 @@ import Foundation
 
 	optional func onImageUploaded(imageEntry: ImageEntry)
 
-	optional func onImageUploadEnqueued(imageEntry: ImageEntryUpload)
+	optional func onImageUploadEnqueued(imageEntryUpload: ImageEntryUpload)
 
 	optional func onImageUploadProgress(
 			bytesSent: UInt64,
 			bytesToSend: UInt64,
-			imageEntry: ImageEntryUpload)
+			imageEntryUpload: ImageEntryUpload)
 			
 }
