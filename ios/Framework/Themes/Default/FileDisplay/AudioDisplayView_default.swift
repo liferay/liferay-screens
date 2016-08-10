@@ -87,10 +87,8 @@ public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 	public var timer: NSTimer?
 	public var duration: NSTimer?
 
-	public override func didMoveToWindow() {
-		if window == nil {
-			audio?.stop()
-		}
+	override public func onHide() {
+		audio?.stop()
 	}
 
 	@IBAction func pauseAction() {
