@@ -34,12 +34,10 @@ public class CommentsActivity extends ThemeActivity
 
 		setContentView(R.layout.comment_list);
 
-		findViewById(R.id.add_comment_button).setOnClickListener(this);
-
 		noCommentView = findViewById(R.id.no_comment_display);
-
 		((SwitchCompat) findViewById(R.id.comment_switch_editable)).setOnCheckedChangeListener(this);
 
+		findViewById(R.id.add_comment_button).setOnClickListener(this);
 		listScreenlet = (CommentListScreenlet) findViewById(R.id.comment_list_screenlet);
 		listScreenlet.setListener(this);
 		displayScreenlet = (CommentDisplayScreenlet) findViewById(R.id.comment_display_screenlet);
@@ -56,10 +54,10 @@ public class CommentsActivity extends ThemeActivity
 	@Override
 	public void onLoadCommentFailure(long commentId, Exception e) {
 		error(String.format(LiferayLocale.getDefaultLocale(), "Error loading comment with id: %d", commentId), e);
-		displayScreenletVisible(false);
+		showDisplayScreenlet(false);
 	}
 
-	private void displayScreenletVisible(boolean visible) {
+	private void showDisplayScreenlet(boolean visible) {
 		noCommentView.setVisibility(visible ? GONE : VISIBLE);
 		displayScreenlet.setVisibility(visible ? VISIBLE : GONE);
 	}
@@ -81,7 +79,7 @@ public class CommentsActivity extends ThemeActivity
 		info(String.format(LiferayLocale.getDefaultLocale(), "Comment with id: %d succesfully deleted",
 			commentEntry.getCommentId()));
 		if (commentEntry.getCommentId() == displayScreenlet.getCommentId()) {
-			displayScreenletVisible(false);
+			showDisplayScreenlet(false);
 			listScreenlet.removeCommentEntry(commentEntry);
 		}
 	}
@@ -128,7 +126,7 @@ public class CommentsActivity extends ThemeActivity
 	@Override
 	public void onListItemSelected(CommentEntry element, View view) {
 		displayScreenlet.setCommentId(element.getCommentId());
-		displayScreenletVisible(true);
+		showDisplayScreenlet(true);
 		displayScreenlet.load();
 	}
 
@@ -173,8 +171,8 @@ public class CommentsActivity extends ThemeActivity
 		displayScreenlet.refreshView();
 	}
 
+	private CommentDisplayScreenlet displayScreenlet;
 	private CommentListScreenlet listScreenlet;
 	private AlertDialog dialog;
-	private CommentDisplayScreenlet displayScreenlet;
 	private View noCommentView;
 }
