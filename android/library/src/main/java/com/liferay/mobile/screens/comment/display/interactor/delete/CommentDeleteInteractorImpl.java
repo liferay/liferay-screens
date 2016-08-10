@@ -17,17 +17,20 @@ public class CommentDeleteInteractorImpl extends BaseRemoteInteractor<CommentDis
 	}
 
 	@Override
-	public void deleteComment(long commentId) throws Exception {
+	public void deleteComment(long commentId) {
+		try {
+			validate(commentId);
 
-		validate(commentId);
+			Session session = SessionContext.createSessionFromCurrentSession();
 
-		Session session = SessionContext.createSessionFromCurrentSession();
+			session.setCallback(new CommentDeleteCallback(getTargetScreenletId()));
 
-		session.setCallback(new CommentDeleteCallback(getTargetScreenletId()));
+			CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(session);
 
-		CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(session);
-
-		service.deleteComment(commentId);
+			service.deleteComment(commentId);
+		} catch (Exception e) {
+			getListener().onDeleteCommentFailure(e);
+		}
 	}
 
 	public void onEvent(CommentDeleteEvent event) {

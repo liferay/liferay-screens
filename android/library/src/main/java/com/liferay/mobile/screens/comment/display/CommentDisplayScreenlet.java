@@ -29,6 +29,7 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 
 	public static final String DELETE_COMMENT_ACTION = "DELETE_COMMENT";
 	public static final String UPDATE_COMMENT_ACTION = "UPDATE_COMMENT";
+	public static final String LOAD_COMMENT_ACTION = "LOAD_COMMENT";
 
 	public CommentDisplayScreenlet(Context context) {
 		super(context);
@@ -108,6 +109,7 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 				return new CommentDeleteInteractorImpl(getScreenletId());
 			case UPDATE_COMMENT_ACTION:
 				return new CommentUpdateInteractorImpl(getScreenletId());
+			case LOAD_COMMENT_ACTION:
 			default:
 				return new CommentLoadInteractorImpl(getScreenletId(), offlinePolicy);
 		}
@@ -117,26 +119,15 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	protected void onUserAction(String actionName, Interactor interactor, Object... args) {
 		switch (actionName) {
 			case DELETE_COMMENT_ACTION:
-				try {
-					((CommentDeleteInteractor) interactor).deleteComment(commentId);
-				} catch (Exception e) {
-					onDeleteCommentFailure(e);
-				}
+				((CommentDeleteInteractor) interactor).deleteComment(commentId);
 				break;
 			case UPDATE_COMMENT_ACTION:
 				String body = (String) args[0];
-				try {
-					((CommentUpdateInteractor) interactor).updateComment(groupId, className, classPK, commentId, body);
-				} catch (Exception e) {
-					onUpdateCommentFailure(e);
-				}
+				((CommentUpdateInteractor) interactor).updateComment(groupId, className, classPK, commentId, body);
 				break;
+			case LOAD_COMMENT_ACTION:
 			default:
-				try {
-					((CommentLoadInteractor) interactor).load(groupId, commentId);
-				} catch (Exception e) {
-					onLoadCommentFailure(e);
-				}
+				((CommentLoadInteractor) interactor).load(groupId, commentId);
 				break;
 		}
 	}

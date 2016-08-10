@@ -5,5 +5,5 @@ package com.liferay.mobile.screens.comment.display.interactor.load;
  */
 public interface CommentLoadInteractor {
 
-	void load(long groupId, long commentId) throws Exception;
+	void load(long groupId, long commentId);
 }

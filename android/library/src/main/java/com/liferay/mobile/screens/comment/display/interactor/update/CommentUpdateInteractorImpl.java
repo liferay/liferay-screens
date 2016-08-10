@@ -17,16 +17,18 @@ public class CommentUpdateInteractorImpl extends BaseRemoteInteractor<CommentDis
 	}
 
 	@Override
-	public void updateComment(long groupId, String className, long classPK, long commentId, String newBody)
-		throws Exception {
+	public void updateComment(long groupId, String className, long classPK, long commentId, String newBody) {
+		try {
+			validate(groupId, className, classPK, commentId, newBody);
 
-		validate(groupId, className, classPK, commentId, newBody);
+			Session session = SessionContext.createSessionFromCurrentSession();
+			session.setCallback(new CommentUpdateCallback(getTargetScreenletId()));
+			CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(session);
 
-		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new CommentUpdateCallback(getTargetScreenletId()));
-		CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(session);
-
-		service.updateComment(groupId, className, classPK, commentId, newBody);
+			service.updateComment(groupId, className, classPK, commentId, newBody);
+		} catch (Exception e) {
+			getListener().onUpdateCommentFailure(e);
+		}
 	}
 
 	public void onEvent(CommentUpdateEvent event) {

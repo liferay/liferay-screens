@@ -19,10 +19,15 @@ public class CommentLoadInteractorImpl
 	}
 
 	@Override
-	public void load(long groupId, long commentId) throws Exception {
-		validate(groupId, commentId);
+	public void load(long groupId, long commentId) {
 
-		processWithCache(groupId, commentId);
+		try {
+			validate(groupId, commentId);
+
+			processWithCache(groupId, commentId);
+		} catch (Exception e) {
+			getListener().onLoadCommentFailure(e);
+		}
 	}
 
 	@Override
