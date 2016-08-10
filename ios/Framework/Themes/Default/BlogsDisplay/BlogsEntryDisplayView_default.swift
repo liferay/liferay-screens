@@ -47,6 +47,8 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 					imageHeightConstraint?.constant = 0
 				}
 
+				//TODO if you're doing several paragrahps, with comments, you need several methods
+
 				//Set user portrait image
 				userPortraitScreenlet?.load(userId: blogsEntry.userId)
 
