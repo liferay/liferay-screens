@@ -57,18 +57,15 @@ public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 		didSet {
 			if let url = url {
 				do {
-					let audioData = NSData(contentsOfURL: url)
-					if let audioData = audioData {
-						self.audio = try AVAudioPlayer(data: audioData)
-						if let audio = audio {
-							audio.volume = self.volume
-							audio.numberOfLoops = self.numberOfLoops
-							playAction()
+					self.audio = try AVAudioPlayer(contentsOfURL: url)
+					if let audio = audio {
+						audio.volume = self.volume
+						audio.numberOfLoops = self.numberOfLoops
+						playAction()
 
-							self.sliderDuration?.maximumValue = Float(audio.duration)
-							self.audioDurationLabel?.text =
-								updateAudioDurationLabel(Float(audio.duration))
-						}
+						self.sliderDuration?.maximumValue = Float(audio.duration)
+						self.audioDurationLabel?.text =
+							updateAudioDurationLabel(Float(audio.duration))
 					}
 				}
 				catch let error as NSError {
