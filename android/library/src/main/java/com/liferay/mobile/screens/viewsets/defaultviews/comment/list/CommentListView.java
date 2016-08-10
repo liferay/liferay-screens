@@ -48,7 +48,7 @@ public class CommentListView
 		getAdapter().notifyItemInserted(newRowCount - 1);
 		_recyclerView.smoothScrollToPosition(newRowCount - 1);
 
-		showDataState();
+		showEmptyListMessage();
 	}
 
 	@Override
@@ -59,15 +59,11 @@ public class CommentListView
 		getAdapter().setRowCount(newRowCount);
 		getAdapter().notifyItemRemoved(position);
 
-		showDataState();
+		showEmptyListMessage();
 	}
 
-	private void showDataState() {
-		if (getAdapter().getEntries().isEmpty()) {
-			emptyListTextView.setVisibility(VISIBLE);
-		} else {
-			emptyListTextView.setVisibility(GONE);
-		}
+	private void showEmptyListMessage() {
+		emptyListTextView.setVisibility(getAdapter().getEntries().isEmpty() ? VISIBLE : GONE);
 	}
 
 	@Override
@@ -78,7 +74,7 @@ public class CommentListView
 
 		super.showFinishOperation(startRow, endRow, serverEntries, rowCount);
 
-		showDataState();
+		showEmptyListMessage();
 	}
 
 	@Override
