@@ -49,6 +49,21 @@ public class ImageGalleryUploadConnector : UploadFileConnector<String> {
 				onUploadedBytes: onUploadBytes)
 	}
 
+	public override func validateData() -> ValidationError? {
+		var error = super.validateData()
+
+		if error == nil {
+			if repositoryId < 0 {
+				error = ValidationError("imagegallery-screenlet","undefined-repositoryid")
+			}
+			else if folderId < 0 {
+				error = ValidationError("imagegallery-screenlet","undefined-folderid")
+			}
+		}
+
+		return error
+	}
+
 	public override func doSendFile(session: LRSession, data: LRUploadData) throws {
 		let service = LRDLAppService_v7(session: session)
 
