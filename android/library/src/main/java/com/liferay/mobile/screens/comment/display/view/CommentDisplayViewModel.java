@@ -8,9 +8,7 @@ import com.liferay.mobile.screens.models.CommentEntry;
  */
 public interface CommentDisplayViewModel extends BaseViewModel {
 
-	void refreshView();
+	void allowEdition(boolean editable);
 
-	void setEditable(boolean editable);
-
-	void setCommentEntry(CommentEntry commentEntry);
+	void showFinishOperation(String loadCommentAction, CommentEntry commentEntry);
 }

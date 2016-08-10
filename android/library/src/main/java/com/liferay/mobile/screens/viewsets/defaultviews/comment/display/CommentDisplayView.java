@@ -49,7 +49,32 @@ public class CommentDisplayView extends FrameLayout
 	}
 
 	@Override
-	public void refreshView() {
+	public void allowEdition(boolean editable) {
+		this.editable = editable;
+		loadView();
+	}
+
+	@Override
+	public void showFinishOperation(String actionName) {
+		loadView();
+	}
+
+	@Override
+	public void showFinishOperation(String loadCommentAction, CommentEntry commentEntry) {
+		this.commentEntry = commentEntry;
+		loadView();
+	}
+
+	@Override
+	public void showStartOperation(String actionName) {
+		progressBar.setVisibility(VISIBLE);
+		contentGroup.setVisibility(GONE);
+	}
+
+	private void loadView() {
+		progressBar.setVisibility(GONE);
+		contentGroup.setVisibility(VISIBLE);
+
 		editImageButton.setVisibility(editable ? VISIBLE : GONE);
 		deleteImageButton.setVisibility(editable ? VISIBLE : GONE);
 
@@ -73,23 +98,6 @@ public class CommentDisplayView extends FrameLayout
 				deleteImageButton.setOnClickListener(this);
 			}
 		}
-	}
-
-	@Override
-	public void setEditable(boolean editable) {
-		this.editable = editable;
-	}
-
-	@Override
-	public void showStartOperation(String actionName) {
-		progressBar.setVisibility(VISIBLE);
-		contentGroup.setVisibility(GONE);
-	}
-
-	@Override
-	public void showFinishOperation(String actionName) {
-		progressBar.setVisibility(GONE);
-		contentGroup.setVisibility(VISIBLE);
 
 		userPortraitScreenlet.load();
 	}
@@ -184,11 +192,6 @@ public class CommentDisplayView extends FrameLayout
 	@Override
 	public void setScreenlet(BaseScreenlet screenlet) {
 		this.screenlet = screenlet;
-	}
-
-	@Override
-	public void setCommentEntry(CommentEntry commentEntry) {
-		this.commentEntry = commentEntry;
 	}
 
 	private TextView userNameTextView;

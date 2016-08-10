@@ -168,8 +168,7 @@ public class CommentsActivity extends ThemeActivity
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		listScreenlet.allowEdition(isChecked);
-		displayScreenlet.setEditable(isChecked);
-		displayScreenlet.refreshView();
+		displayScreenlet.allowEdition(isChecked);
 	}
 
 	private CommentDisplayScreenlet displayScreenlet;

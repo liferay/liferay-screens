@@ -47,16 +47,8 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
-	public void refreshView() {
-		getViewModel().refreshView();
-	}
-
 	@Override
 	protected void onScreenletAttached() {
-		if (!isInEditMode()) {
-			getViewModel().setEditable(editable);
-		}
-
 		if (autoLoad) {
 			autoLoad();
 		}
@@ -138,56 +130,52 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 			getListener().onLoadCommentFailure(commentId, e);
 		}
 
-		getViewModel().showFailedOperation(DEFAULT_ACTION, e);
+		getViewModel().showFailedOperation(LOAD_COMMENT_ACTION, e);
 	}
 
 	@Override
 	public void onLoadCommentSuccess(CommentEntry commentEntry) {
+		getViewModel().showFinishOperation(LOAD_COMMENT_ACTION, commentEntry);
+
 		if (getListener() != null) {
 			getListener().onLoadCommentSuccess(commentEntry);
 		}
-
-		setCommentEntry(commentEntry);
-		refreshView();
-		getViewModel().showFinishOperation(DEFAULT_ACTION);
 	}
 
 	@Override
 	public void onDeleteCommentFailure(Exception e) {
+		getViewModel().showFailedOperation(DELETE_COMMENT_ACTION, e);
+
 		if (getListener() != null) {
 			getListener().onDeleteCommentFailure(commentEntry, e);
 		}
-
-		getViewModel().showFailedOperation(DELETE_COMMENT_ACTION, e);
 	}
 
 	@Override
 	public void onDeleteCommentSuccess() {
+		getViewModel().showFinishOperation(DELETE_COMMENT_ACTION);
+
 		if (getListener() != null) {
 			getListener().onDeleteCommentSuccess(commentEntry);
 		}
-
-		getViewModel().showFinishOperation(DELETE_COMMENT_ACTION);
 	}
 
 	@Override
 	public void onUpdateCommentFailure(Exception e) {
+		getViewModel().showFailedOperation(UPDATE_COMMENT_ACTION, e);
+
 		if (getListener() != null) {
 			getListener().onUpdateCommentFailure(commentEntry, e);
 		}
-
-		getViewModel().showFailedOperation(UPDATE_COMMENT_ACTION, e);
 	}
 
 	@Override
 	public void onUpdateCommentSuccess(CommentEntry commentEntry) {
+		getViewModel().showFinishOperation(UPDATE_COMMENT_ACTION, commentEntry);
+
 		if (getListener() != null) {
 			getListener().onUpdateCommentSuccess(commentEntry);
 		}
-
-		setCommentEntry(commentEntry);
-		refreshView();
-		getViewModel().showFinishOperation(UPDATE_COMMENT_ACTION);
 	}
 
 	@Override
@@ -225,8 +213,6 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 
 	public void setCommentEntry(CommentEntry commentEntry) {
 		this.commentEntry = commentEntry;
-		commentId = commentEntry == null ? 0 : commentEntry.getCommentId();
-		getViewModel().setCommentEntry(commentEntry);
 	}
 
 	public long getCommentId() {
@@ -275,7 +261,11 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 
 	public void setEditable(boolean editable) {
 		this.editable = editable;
-		getViewModel().setEditable(this.editable);
+	}
+
+	public void allowEdition(boolean editable) {
+		this.editable = editable;
+		getViewModel().allowEdition(this.editable);
 	}
 
 	private CommentDisplayListener listener;
