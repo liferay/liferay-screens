@@ -16,12 +16,12 @@ import LRMobileSDK
 
 public class ImageGalleryUploadConnector : UploadFileConnector<String> {
 
-	let repositoryId: Int64
-	let folderId: Int64
-	let sourceFileName: String
-	let title: String
-	let descrip: String
-	let changeLog: String
+	private let repositoryId: Int64
+	private let folderId: Int64
+	private let sourceFileName: String
+	private let title: String
+	private let descrip: String
+	private let changeLog: String
 
 	public init(
 			repositoryId: Int64,

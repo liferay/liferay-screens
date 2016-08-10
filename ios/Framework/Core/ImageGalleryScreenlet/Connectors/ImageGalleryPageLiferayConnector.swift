@@ -16,9 +16,9 @@ import Foundation
 
 public class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
     
-    public let repositoryId: Int64
-    public let folderId: Int64
-	public let mimeTypes: [String]
+	private let repositoryId: Int64
+    private let folderId: Int64
+	private let mimeTypes: [String]
 
 	public init(
 			startRow: Int,

@@ -16,7 +16,7 @@ import LRMobileSDK
 
 public class ImageGalleryDeleteConnector : ServerConnector {
 
-	let imageEntryId: Int64
+	private let imageEntryId: Int64
 
 	public init(imageEntryId: Int64) {
 		self.imageEntryId = imageEntryId
