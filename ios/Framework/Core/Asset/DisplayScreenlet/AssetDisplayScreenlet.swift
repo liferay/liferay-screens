@@ -31,9 +31,9 @@ import UIKit
 	
 	@IBInspectable public var assetEntryId: Int64 = 0
 
-	@IBInspectable public var classPK: Int64 = 0
 	@IBInspectable public var className: String = ""
-	
+	@IBInspectable public var classPK: Int64 = 0
+
 	@IBInspectable public var autoLoad: Bool = true
 
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.CacheFirst.rawValue
@@ -42,12 +42,16 @@ import UIKit
 	public var assetDisplayDelegate: AssetDisplayScreenletDelegate? {
 		return delegate as? AssetDisplayScreenletDelegate
 	}
+
+	public var assetDisplayViewModel: AssetDisplayViewModel? {
+		return screenletView as? AssetDisplayViewModel
+	}
 	
 	//MARK: Public methods
 	
 	override public func onShow() {
 		if autoLoad {
-			loadAsset()
+			load()
 		}
 	}
 	
@@ -65,8 +69,7 @@ import UIKit
 		interactor.onSuccess = {
 			if let resultAsset = interactor.asset {
 				self.assetDisplayDelegate?.screenlet?(self, onAssetResponse: resultAsset)
-				
-				(self.screenletView as? AssetDisplayViewModel)?.asset = resultAsset
+				self.assetDisplayViewModel?.asset = resultAsset
 			}
 		}
 		
@@ -77,7 +80,7 @@ import UIKit
 		return interactor
 	}
 	
-	public func loadAsset() -> Bool {
+	public func load() -> Bool {
 		return self.performDefaultAction()
 	}
 }
