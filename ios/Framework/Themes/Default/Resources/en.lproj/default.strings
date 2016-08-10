@@ -48,3 +48,6 @@
 
 "default-rating-total"="Total: %d";
 "default-rating-ratings"="%d Ratings";
+
+"default-imagegallery-uploading-one"="Uploading image...";
+"default-imagegallery-uploading-several"="Uploading image 1 from %d";

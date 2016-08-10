@@ -84,10 +84,19 @@ public class UploadProgressView_default: UploadProgressViewBase {
 
 	private func updateInformationText() {
 		if uploadsCount == 1 {
-			informationText.text = "Uploading image..."
+			informationText.text = LocalizedString(
+					"default",
+					key: "imagegallery-uploading-one",
+					obj: self)
+
 		}
 		else {
-			informationText.text = "Uploading image 1 from \(uploadsCount)"
+			let message = LocalizedString(
+					"default",
+					key: "imagegallery-uploading-several",
+					obj: self)
+
+			informationText.text = String(format: message, uploadsCount)
 		}
 	}
 }
