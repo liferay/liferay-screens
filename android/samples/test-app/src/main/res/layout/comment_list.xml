@@ -8,7 +8,6 @@
 	<RelativeLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:orientation="vertical"
 		>
 
 		<TextView
@@ -18,37 +17,25 @@
 			style="@style/label"
 			/>
 
-		<RelativeLayout
+		<LinearLayout
 			android:id="@+id/comment_configuration_display"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/comment_description"
-			android:background="#e7e7e7"
-			android:elevation="4dp"
-			android:orientation="vertical"
+			android:background="@color/light_gray_westeros"
+			android:orientation="horizontal"
 			android:padding="10dp"
 			>
-
-			<TextView
-				android:id="@+id/comment_display_title"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="@string/configuration"
-				style="@style/TextAppearance.AppCompat.Title"
-				/>
 
 			<android.support.v7.widget.SwitchCompat
 				android:id="@+id/comment_switch_editable"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
-				android:layout_alignBottom="@+id/comment_load_display"
-				android:layout_alignTop="@+id/comment_load_display"
-				android:layout_below="@id/comment_display_title"
 				android:text="@string/editable"
 				liferay:switchPadding="10dp"
 				/>
 
-		</RelativeLayout>
+		</LinearLayout>
 
 		<TextView
 			android:id="@+id/comment_list_title"
@@ -79,8 +66,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_alignParentBottom="true"
-			android:background="#e7e7e7"
-			android:elevation="4dp"
+			android:background="@color/light_gray_westeros"
 			android:orientation="vertical"
 			android:paddingBottom="20dp"
 			android:paddingEnd="10dp"
