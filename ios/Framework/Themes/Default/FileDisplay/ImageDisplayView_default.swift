@@ -27,7 +27,8 @@ public class ImageDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 	}
 
 	public var title: String? {
-		didSet{
+		didSet {
+			// TODO show the title in a top bar
 		}
 	}
 }
