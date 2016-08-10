@@ -69,19 +69,11 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 		folderId = castToLong(typedArray.getString(R.styleable.GalleryScreenlet_folderId));
 
-		columnsSize = typedArray.getInt(R.styleable.GalleryScreenlet_columnsSize, 0);
-
 		mimeTypes = parseMimeTypes(typedArray.getString(R.styleable.GalleryScreenlet_mimeTypes));
 
 		typedArray.recycle();
 
-		GalleryViewModel view = (GalleryViewModel) super.createScreenletView(context, attributes);
-
-		if (columnsSize >= 0) {
-			view.reloadView(columnsSize);
-		}
-
-		return (View) view;
+		return super.createScreenletView(context, attributes);
 	}
 
 	@Override
@@ -217,10 +209,6 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		getListener().onImageUploadFailure(e);
 	}
 
-	public void updateView(Object... args) {
-		getViewModel().reloadView(args);
-	}
-
 	public void showImageInFullScreenActivity(ImageEntry image) {
 		Intent intent = new Intent(getContext(), DetailImageActivity.class);
 		intent.putExtra(DetailImageActivity.GALLERY_SCREENLET_IMAGE_DETAILED, image);
@@ -273,13 +261,6 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		this.offlinePolicy = _offlinePolicy;
 	}
 
-	public int getColumnsSize() {
-		return columnsSize;
-	}
-
-	public void setColumnsSize(int columnsSize) {
-		this.columnsSize = columnsSize;
-	}
 
 	protected void autoLoad() {
 		if (SessionContext.isLoggedIn() && groupId > 0) {
@@ -312,7 +293,6 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	private long groupId;
 	private long folderId;
-	private int columnsSize;
 	private String[] mimeTypes;
 	private OfflinePolicy offlinePolicy;
 }

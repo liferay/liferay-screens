@@ -17,26 +17,6 @@
 		>
 
 		<Button
-			android:id="@+id/image_gallery_button_plus"
-			android:layout_width="60dp"
-			android:layout_height="wrap_content"
-			android:layout_alignParentStart="true"
-			android:layout_margin="2dp"
-			android:text="@string/plus"
-			android:textSize="20sp"
-			/>
-
-		<Button
-			android:id="@+id/image_gallery_button_minus"
-			android:layout_width="60dp"
-			android:layout_height="wrap_content"
-			android:layout_margin="2dp"
-			android:layout_toRightOf="@id/image_gallery_button_plus"
-			android:text="@string/minus"
-			android:textSize="20sp"
-			/>
-
-		<Button
 			android:id="@+id/change_gallery_view"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
@@ -57,7 +37,6 @@
 			android:id="@+id/gallery_screenlet_grid"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			app:columnsSize="5"
 			app:folderId="@string/liferay_images_folder"
 			app:groupId="@string/liferay_group_id"
 			app:layoutId="@layout/gallery_default"

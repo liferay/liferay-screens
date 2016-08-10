@@ -76,9 +76,7 @@ public class GridGalleryView
 		getAdapter().notifyItemInserted(newRowCount - 1);
 	}
 
-	@Override
-	public void reloadView(Object... params) {
-		columnsSize = (int) params[0];
+	public void reloadView() {
 		_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), columnsSize));
 	}
 
@@ -146,5 +144,5 @@ public class GridGalleryView
 
 	private AlertDialog choseOriginDialog;
 
-	private int columnsSize = DEFAULT_COLS;
+	public int columnsSize = DEFAULT_COLS;
 }

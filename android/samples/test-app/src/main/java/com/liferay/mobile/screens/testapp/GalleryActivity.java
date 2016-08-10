@@ -24,11 +24,7 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 	private GalleryScreenlet galleryScreenletSlideShow;
 
 	private Button changeGalleryView;
-	private Button buttonMinus;
-	private Button buttonPlus;
 	private ProgressDialog progressDialog;
-
-	private int columnsSize;
 
 	private boolean isGridMode = true;
 
@@ -43,18 +39,10 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 		galleryScreenletSlideShow = (GalleryScreenlet) findViewById(R.id.gallery_screenlet_slideshow);
 		galleryScreenletSlideShow.setListener(this);
 
-		buttonMinus = (Button) findViewById(R.id.image_gallery_button_plus);
-		buttonMinus.setOnClickListener(this);
-
-		buttonPlus = (Button) findViewById(R.id.image_gallery_button_minus);
-		buttonPlus.setOnClickListener(this);
-
 		changeGalleryView = (Button) findViewById(R.id.change_gallery_view);
 		changeGalleryView.setOnClickListener(this);
 
 		createProgressDialog();
-
-		columnsSize = galleryScreenletGrid.getColumnsSize();
 	}
 
 	@Override
@@ -132,26 +120,12 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 				setGridMode();
 			}
 		}
-
-		if (v.getId() == R.id.image_gallery_button_minus) {
-			if (columnsSize > 1) {
-				galleryScreenletGrid.setColumnsSize(columnsSize--);
-				galleryScreenletGrid.updateView(columnsSize);
-			}
-		}
-
-		if (v.getId() == R.id.image_gallery_button_plus) {
-			galleryScreenletGrid.setColumnsSize(columnsSize++);
-			galleryScreenletGrid.updateView(columnsSize);
-		}
 	}
 
 	private void setGridMode() {
 		isGridMode = true;
 		galleryScreenletSlideShow.setVisibility(GONE);
 		galleryScreenletGrid.setVisibility(VISIBLE);
-		buttonMinus.setVisibility(GONE);
-		buttonPlus.setVisibility(GONE);
 
 		changeGalleryView.setText(R.string.grid);
 	}
@@ -160,8 +134,6 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 		isGridMode = false;
 		galleryScreenletSlideShow.setVisibility(VISIBLE);
 		galleryScreenletGrid.setVisibility(GONE);
-		buttonMinus.setVisibility(VISIBLE);
-		buttonPlus.setVisibility(VISIBLE);
 
 		changeGalleryView.setText(getString(R.string.slideshow));
 	}
