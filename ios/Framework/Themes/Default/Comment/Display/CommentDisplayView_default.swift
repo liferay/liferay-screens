@@ -27,6 +27,7 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 	@IBOutlet weak var createdDateLabel: UILabel?
 	@IBOutlet weak var editedLabel: UILabel?
 	@IBOutlet weak var bodyLabel: UILabel?
+	@IBOutlet weak var bodyTextField: UITextField?
 	@IBOutlet weak var bodyLabelBottomMarginConstraint: NSLayoutConstraint?
 	@IBOutlet weak var normalStateButtonsContainer: UIView?
 	@IBOutlet weak var deletingStateButtonsContainer: UIView?
@@ -86,8 +87,10 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 	@IBAction func confirmButtonClicked() {
 		if self.state == .Deleting {
 			userAction(name: CommentDisplayScreenlet.DeleteAction)
-		} else if self.state == .Editing {
-			userAction(name: CommentDisplayScreenlet.UpdateAction)
+		} else if self.state == .Editing && bodyTextField?.text != bodyLabel?.text {
+			bodyLabel?.text = bodyTextField?.text
+			userAction(name: CommentDisplayScreenlet.UpdateAction,
+			                         sender: bodyTextField?.text)
 		}
 
 		changeState(.Normal)
@@ -95,8 +98,19 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 
 	//MARK: BaseScreenletView
 
+	public override func onShow() {
+		self.bodyTextField?.delegate = self
+	}
+
 	override public func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
+	}
+
+	//MARK: UITextFieldDelegate
+
+	public override func textFieldShouldReturn(textField: UITextField) -> Bool {
+		confirmButtonClicked()
+		return super.textFieldShouldReturn(textField)
 	}
 
 	//MARK: Private methods
@@ -105,6 +119,17 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 		self.state = state
 		normalStateButtonsContainer?.hidden = state != .Normal || !editable
 		deletingStateButtonsContainer?.hidden = state != .Deleting || !editable
-		editingStateButtonsContainer?.hidden = state != .Editing
+
+		if state == .Editing {
+			editingStateButtonsContainer?.hidden = false
+			bodyLabel?.hidden = true
+			bodyTextField?.hidden = false
+			bodyTextField?.text = bodyLabel?.text
+			bodyTextField?.becomeFirstResponder()
+		} else {
+			editingStateButtonsContainer?.hidden = true
+			bodyLabel?.hidden = false
+			bodyTextField?.hidden = true
+		}
 	}
 }

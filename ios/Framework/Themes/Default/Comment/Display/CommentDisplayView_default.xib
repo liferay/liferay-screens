@@ -14,7 +14,7 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsA-4f-URH" userLabel="UserName">
                     <rect key="frame" x="66" y="8" width="398" height="23"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BYS-C6-vuU" userLabel="UserPortrait" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
@@ -27,19 +27,19 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Edited" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bmx-bE-lyO" userLabel="Edited">
                     <rect key="frame" x="156" y="39" width="51" height="16"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 minutes ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0O-Tl-DWI" userLabel="CreatedDate">
                     <rect key="frame" x="66" y="39" width="86" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Body" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7EX-We-tyh" userLabel="Body">
                     <rect key="frame" x="8" y="62" width="456" height="51"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K19-Wu-62Q" userLabel="Normal state buttons">
@@ -132,14 +132,22 @@
                         <constraint firstAttribute="trailing" secondItem="0bI-Tq-WKs" secondAttribute="trailing" id="egT-2S-sjs"/>
                     </constraints>
                 </view>
+                <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AjW-66-Sf9">
+                    <rect key="frame" x="8" y="62" width="456" height="51"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                </textField>
             </subviews>
             <constraints>
                 <constraint firstItem="qsA-4f-URH" firstAttribute="leading" secondItem="BYS-C6-vuU" secondAttribute="trailing" constant="8" id="1VW-1y-TUc"/>
                 <constraint firstItem="xTL-zV-XBs" firstAttribute="centerY" secondItem="T0O-Tl-DWI" secondAttribute="centerY" id="34S-iS-M9R"/>
                 <constraint firstAttribute="trailing" secondItem="qsA-4f-URH" secondAttribute="trailing" constant="8" id="53o-gu-WIG"/>
                 <constraint firstItem="qsA-4f-URH" firstAttribute="top" secondItem="ofk-wp-urv" secondAttribute="top" constant="8" id="5mR-x5-hEn"/>
+                <constraint firstItem="AjW-66-Sf9" firstAttribute="centerY" secondItem="7EX-We-tyh" secondAttribute="centerY" id="A3Z-8G-Itt"/>
                 <constraint firstItem="K19-Wu-62Q" firstAttribute="centerY" secondItem="T0O-Tl-DWI" secondAttribute="centerY" id="AvD-DY-sdY"/>
+                <constraint firstItem="AjW-66-Sf9" firstAttribute="width" secondItem="7EX-We-tyh" secondAttribute="width" id="Isv-UA-qzM"/>
                 <constraint firstAttribute="bottom" secondItem="7EX-We-tyh" secondAttribute="bottom" constant="8" id="J5r-XO-XPh"/>
+                <constraint firstItem="AjW-66-Sf9" firstAttribute="centerX" secondItem="7EX-We-tyh" secondAttribute="centerX" id="MMx-e8-8SR"/>
                 <constraint firstAttribute="trailing" secondItem="K19-Wu-62Q" secondAttribute="trailing" constant="8" id="NjJ-EG-cGD"/>
                 <constraint firstItem="ewF-4o-z0M" firstAttribute="centerY" secondItem="T0O-Tl-DWI" secondAttribute="centerY" id="Nmj-Bg-nfQ"/>
                 <constraint firstAttribute="trailing" secondItem="ewF-4o-z0M" secondAttribute="trailing" constant="8" id="Sad-fU-sMC"/>
@@ -150,6 +158,7 @@
                 <constraint firstItem="Bmx-bE-lyO" firstAttribute="top" secondItem="qsA-4f-URH" secondAttribute="bottom" constant="8" id="haH-6d-T2d"/>
                 <constraint firstItem="7EX-We-tyh" firstAttribute="top" secondItem="BYS-C6-vuU" secondAttribute="bottom" constant="4" id="i1o-ip-2HC"/>
                 <constraint firstItem="T0O-Tl-DWI" firstAttribute="leading" secondItem="BYS-C6-vuU" secondAttribute="trailing" constant="8" id="mpR-zA-uPm"/>
+                <constraint firstItem="AjW-66-Sf9" firstAttribute="height" secondItem="7EX-We-tyh" secondAttribute="height" id="odB-ST-UDc"/>
                 <constraint firstItem="7EX-We-tyh" firstAttribute="leading" secondItem="ofk-wp-urv" secondAttribute="leading" constant="8" id="sBq-8F-U4R"/>
                 <constraint firstItem="BYS-C6-vuU" firstAttribute="top" secondItem="ofk-wp-urv" secondAttribute="top" constant="8" id="tKt-At-WnI"/>
                 <constraint firstItem="T0O-Tl-DWI" firstAttribute="top" secondItem="qsA-4f-URH" secondAttribute="bottom" constant="8" id="tgJ-dn-Foa"/>
@@ -161,6 +170,7 @@
             <connections>
                 <outlet property="bodyLabel" destination="7EX-We-tyh" id="sPf-dC-r0s"/>
                 <outlet property="bodyLabelBottomMarginConstraint" destination="J5r-XO-XPh" id="PrQ-sq-fcP"/>
+                <outlet property="bodyTextField" destination="AjW-66-Sf9" id="Xbz-zH-ioX"/>
                 <outlet property="createdDateLabel" destination="T0O-Tl-DWI" id="ulW-AX-EdD"/>
                 <outlet property="deletingStateButtonsContainer" destination="ewF-4o-z0M" id="gqd-hp-VIG"/>
                 <outlet property="editedLabel" destination="Bmx-bE-lyO" id="mWH-P0-NVe"/>
