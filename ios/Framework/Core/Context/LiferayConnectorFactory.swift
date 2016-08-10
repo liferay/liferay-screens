@@ -110,8 +110,6 @@ public protocol LiferayConnectorFactory {
 
 	func createAssetLoadByClassPKConnector(className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector?
 
-	func createBlogsDisplayByEntryIdConnector(entryId: Int64) -> BlogsDisplayByEntryIdLiferayConnector?
-
 	func createRatingLoadByEntryIdConnector(
 		entryId entryId: Int64,
 		ratingsGroupCount: Int32) -> RatingLoadByEntryIdLiferayConnector?
@@ -326,11 +324,6 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 
 	public func createRatingLoadByClassPKConnector(classPK: Int64, className: String, ratingsGroupCount: Int32) -> RatingLoadByClassPKLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: RatingLoadByClassPKLiferayConnector")
-		return nil
-	}
-
-	public func createBlogsDisplayByEntryIdConnector(entryId: Int64) -> BlogsDisplayByEntryIdLiferayConnector? {
-		print("Unsupported connector in Liferay 6.2: BlogsDisplayByEntryIdLiferayConnector")
 		return nil
 	}
 
@@ -557,7 +550,4 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 		return Liferay70AssetLoadByClassPKConnector(className: className, classPK: classPK)
 	}
 
-	public func createBlogsDisplayByEntryIdConnector(entryId: Int64) -> BlogsDisplayByEntryIdLiferayConnector? {
-		return Liferay70BlogsDisplayByEntryIdConnector(entryId: entryId)
-	}
 }
