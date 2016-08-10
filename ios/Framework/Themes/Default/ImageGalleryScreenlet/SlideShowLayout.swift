@@ -36,7 +36,9 @@ public class SlideShowLayout : UICollectionViewFlowLayout {
 		initialize()
 	}
 
-	public override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+	public override func layoutAttributesForElementsInRect(
+			rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+			
 		guard let attributesArray = super.layoutAttributesForElementsInRect(rect)
 		else {
 			return []
@@ -79,7 +81,11 @@ public class SlideShowLayout : UICollectionViewFlowLayout {
 		var offsetAdjustment = CGFloat(MAXFLOAT)
 		let horizontalCenter = proposedContentOffset.x + collectionView!.bounds.width / 2
 
-		let targetRect = CGRect(x: proposedContentOffset.x, y: 0, width: collectionView!.bounds.width, height:  collectionView!.bounds.width)
+		let targetRect = CGRect(
+				x: proposedContentOffset.x,
+				y: 0,
+				width: collectionView!.bounds.width,
+				height:  collectionView!.bounds.width)
 
 		let attributes = super.layoutAttributesForElementsInRect(targetRect)
 

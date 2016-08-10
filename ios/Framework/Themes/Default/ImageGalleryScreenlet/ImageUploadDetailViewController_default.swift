@@ -29,6 +29,9 @@ public class ImageUploadDetailViewController_default: ImageUploadDetailViewContr
 		}
 	}
 
+
+	// MARK: UIViewController
+
     override public func viewDidLoad() {
         super.viewDidLoad()
 
@@ -55,9 +58,14 @@ public class ImageUploadDetailViewController_default: ImageUploadDetailViewContr
 	public override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)
 
-		NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-		NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+		NSNotificationCenter.defaultCenter().removeObserver(
+				self, name: UIKeyboardWillShowNotification, object: nil)
+		NSNotificationCenter.defaultCenter().removeObserver(
+				self, name: UIKeyboardWillHideNotification, object: nil)
 	}
+
+
+	// MARK: Private methods
 
 	public func addNavBarButtons() {
 		let uploadButton = UIBarButtonItem(
@@ -81,9 +89,28 @@ public class ImageUploadDetailViewController_default: ImageUploadDetailViewContr
 		descripText?.layer.borderWidth = 0.5
 		descripText?.layer.cornerRadius = 7
 
-		let dismissKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+		let dismissKeyboardGesture = UITapGestureRecognizer(
+				target: self,
+				action: #selector(dismissKeyboard))
+
 		scrollView.addGestureRecognizer(dismissKeyboardGesture)
 	}
+
+	public func dismissKeyboard() {
+		guard let descripText = descripText, titleText = titleText
+			else {
+				return
+		}
+		if descripText.isFirstResponder() {
+			descripText.resignFirstResponder()
+		}
+		else if titleText.isFirstResponder() {
+			titleText.resignFirstResponder()
+		}
+	}
+
+
+	// MARK: Actions
 
 	public func startUploadClick() {
 		dismissViewControllerAnimated(true) {
@@ -95,9 +122,13 @@ public class ImageUploadDetailViewController_default: ImageUploadDetailViewContr
 		dismissViewControllerAnimated(true) {}
 	}
 
+
+	//MARK: Notifications
+
 	func keyboardWillShow(notification: NSNotification) {
 
-		let keyboardHeight = notification.userInfo![UIKeyboardFrameBeginUserInfoKey]!.CGRectValue().height
+		let keyboardHeight =
+				notification.userInfo![UIKeyboardFrameBeginUserInfoKey]!.CGRectValue().height
 
 		var scrollNewFrame = scrollView.frame
 		scrollNewFrame.size.height = view.frame.height - keyboardHeight
@@ -109,7 +140,8 @@ public class ImageUploadDetailViewController_default: ImageUploadDetailViewContr
 	}
 
 	func keyboardWillHide(notification: NSNotification) {
-		let keyboardHeight = notification.userInfo![UIKeyboardFrameBeginUserInfoKey]!.CGRectValue().height
+		let keyboardHeight =
+				notification.userInfo![UIKeyboardFrameBeginUserInfoKey]!.CGRectValue().height
 
 		var scrollNewFrame = scrollView.frame
 		scrollNewFrame.size.height = view.frame.height + keyboardHeight
@@ -117,17 +149,5 @@ public class ImageUploadDetailViewController_default: ImageUploadDetailViewContr
 		scrollView.frame = scrollNewFrame
 	}
 
-	public func dismissKeyboard() {
-		guard let descripText = descripText, titleText = titleText
-		else {
-			return
-		}
-		if descripText.isFirstResponder() {
-			descripText.resignFirstResponder()
-		}
-		else if titleText.isFirstResponder() {
-			titleText.resignFirstResponder()
-		}
-	}
 
 }

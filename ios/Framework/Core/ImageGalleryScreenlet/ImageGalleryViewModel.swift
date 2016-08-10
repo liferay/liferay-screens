@@ -15,7 +15,7 @@ import Foundation
 
 @objc public protocol ImageGalleryViewModel {
 
-	var totalEntries: Int {get}
+	var totalEntries: Int { get }
 
 	optional func onImageEntryDeleted(imageEntry: ImageEntry)
 
@@ -23,5 +23,9 @@ import Foundation
 
 	optional func onImageUploadEnqueued(imageEntry: ImageEntryUpload)
 
-	optional func onImageUploadProgress(bytesSent: UInt64, bytesToSend: UInt64, imageEntry: ImageEntryUpload)
+	optional func onImageUploadProgress(
+			bytesSent: UInt64,
+			bytesToSend: UInt64,
+			imageEntry: ImageEntryUpload)
+			
 }

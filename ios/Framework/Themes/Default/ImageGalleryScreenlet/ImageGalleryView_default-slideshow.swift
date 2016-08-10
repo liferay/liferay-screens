@@ -16,7 +16,8 @@ import UIKit
 
 public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase {
 
-	// BaseListCollectionView
+
+	// MARK: BaseListCollectionView
 
 	public override func doConfigureCollectionView(collectionView: UICollectionView) {
 		collectionView.backgroundColor = .blackColor()
@@ -36,7 +37,10 @@ public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase 
 		return SlideShowLayout()
 	}
 
-	override public func doFillLoadedCell(indexPath indexPath: NSIndexPath, cell: UICollectionViewCell, object:AnyObject) {
+	override public func doFillLoadedCell(
+			indexPath indexPath: NSIndexPath,
+			cell: UICollectionViewCell, object:AnyObject) {
+
 		guard let imageCell = cell as? ImageGallerySlideshowCell, entry = object as? ImageEntry else {
 			return
 		}
@@ -48,7 +52,9 @@ public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase 
 		}
 	}
 
-	public override func doFillInProgressCell(indexPath indexPath: NSIndexPath, cell: UICollectionViewCell) {
+	public override func doFillInProgressCell(
+			indexPath indexPath: NSIndexPath,
+			cell: UICollectionViewCell) {
 
 		cell.backgroundColor = .grayColor()
 	}

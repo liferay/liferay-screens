@@ -41,6 +41,9 @@ public class UploadProgressView_default: UploadProgressViewBase {
 		hide()
 	}
 
+
+	// MARK: UploadProgressViewBase
+
 	public override func setProgress(progress: Float) {
 		progressView.progress = progress
 	}
@@ -74,9 +77,9 @@ public class UploadProgressView_default: UploadProgressViewBase {
 	public func hide() {
 		UIView.animateWithDuration(0.5 , animations: {
 			self.alpha = 0
-		}) { _ in
+		}, completion: { _ in
 			self.removeFromSuperview()
-		}
+		})
 	}
 
 	private func updateInformationText() {

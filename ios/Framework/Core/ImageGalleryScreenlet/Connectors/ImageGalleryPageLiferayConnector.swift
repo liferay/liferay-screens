@@ -20,7 +20,8 @@ public class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
     public let folderId: Int64
 	public let mimeTypes: [String]
 
-	public init(startRow: Int,
+	public init(
+			startRow: Int,
 			endRow:Int,
 			computeRowCount:Bool,
 			repositoryId: Int64,
@@ -49,16 +50,23 @@ public class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
 		return error
 	}
     
-    override public func doAddPageRowsServiceCall(session session: LRBatchSession, startRow: Int, endRow: Int, obc: LRJSONObjectWrapper?) {
+    override public func doAddPageRowsServiceCall(
+			session session: LRBatchSession,
+			startRow: Int,
+			endRow: Int,
+			obc: LRJSONObjectWrapper?) {
+			
         let service = LRDLAppService_v7(session: session)
         
         do {
-            try service.getFileEntriesWithRepositoryId(repositoryId,
-                                                       folderId: folderId,
-                                                       mimeTypes: mimeTypes,
-                                                       start: Int32(startRow),
-                                                       end: Int32(endRow),
-                                                       obc: obc)
+            try service.getFileEntriesWithRepositoryId(
+					repositoryId,
+					folderId: folderId,
+					mimeTypes: mimeTypes,
+					start: Int32(startRow),
+					end: Int32(endRow),
+					obc: obc)
+
         } catch {}
     }
     
@@ -66,9 +74,11 @@ public class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
         let service = LRDLAppService_v7(session: session)
         
         do {
-            try service.getFileEntriesCountWithRepositoryId(repositoryId,
-                                                   folderId: folderId,
-                                                   mimeTypes: mimeTypes)
+            try service.getFileEntriesCountWithRepositoryId(
+					repositoryId,
+					folderId: folderId,
+					mimeTypes: mimeTypes)
+					
         } catch {}
     }
 }

@@ -28,6 +28,9 @@ import Foundation
 		self.descript = descript
 	}
 
+
+	// MARK: NSCoding
+	
 	public required init?(coder aDecoder: NSCoder) {
 		image = (aDecoder.decodeObjectForKey("image") as? UIImage)!
 		thumbnail = aDecoder.decodeObjectForKey("thumbnail") as? UIImage
@@ -38,10 +41,13 @@ import Foundation
 
 	public func encodeWithCoder(aCoder: NSCoder) {
 		aCoder.encodeObject(image, forKey: "image")
+
 		if let thumbnail = thumbnail {
 			aCoder.encodeObject(thumbnail, forKey: "thumbnail")
 		}
+
 		aCoder.encodeObject(title, forKey: "title")
 		aCoder.encodeObject(descript, forKey: "descript")
 	}
+	
 }

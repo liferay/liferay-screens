@@ -25,7 +25,13 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 
 	var result: [String : AnyObject]?
 
-	init(screenlet: ImageGalleryScreenlet?, imageUpload: ImageEntryUpload, repositoryId: Int64, folderId: Int64, page: Int, onUploadedBytes: OnProgress? ) {
+	public init(
+			screenlet: ImageGalleryScreenlet?,
+			imageUpload: ImageEntryUpload,
+			repositoryId: Int64,
+			folderId: Int64,
+			page: Int,
+			onUploadedBytes: OnProgress? ) {
 
 		self.imageUpload = imageUpload
 		self.repositoryId = repositoryId
@@ -37,7 +43,16 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 	}
 
 	public override func createConnector() -> ServerConnector? {
-		return ImageGalleryUploadConnector(repositoryId: repositoryId, folderId: folderId, sourceFileName: imageUpload.title, mimeType: "image/png", title: imageUpload.title, descrip: imageUpload.descript, changeLog: "", image: imageUpload.image, onUploadBytes:  onUploadedBytes)
+		return ImageGalleryUploadConnector(
+				repositoryId: repositoryId,
+				folderId: folderId,
+				sourceFileName: imageUpload.title,
+				mimeType: "image/png",
+				title: imageUpload.title,
+				descrip: imageUpload.descript,
+				changeLog: "",
+				image: imageUpload.image,
+				onUploadBytes:  onUploadedBytes)
 	}
 
 	public override func completedConnector(op: ServerConnector) {
@@ -52,13 +67,14 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 	//MARK: Cache methods
 
 	public override func writeToCache(c: ServerConnector) {
-		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager
+		else {
 			return
 		}
 
 		if cacheStrategy == .CacheFirst || c.lastError != nil {
 
-			//TODO title could be repeated
+			// TODO title could be repeated
 			cacheManager.setDirty(
 				collection: ScreenletName(ImageGalleryScreenlet),
 				key: "uploadEntry-\(imageUpload.title)-\(folderId)-\(repositoryId)",
@@ -70,7 +86,6 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 
 			saveResultAndCountOnCache()
 
-			// Not need to save the imageEntryUpload model if the download was successful
 			cacheManager.remove(
 				collection: ScreenletName(ImageGalleryScreenlet),
 				key: "uploadEntry-\(imageUpload.title)-\(folderId)-\(repositoryId)")
@@ -98,7 +113,8 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 	}
 
 	private func saveResultAndCountOnCache() {
-		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager
+		else {
 			return
 		}
 

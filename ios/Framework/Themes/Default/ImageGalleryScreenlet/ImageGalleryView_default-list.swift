@@ -16,14 +16,17 @@ import AFNetworking
 
 
 public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryViewModel {
+
+	public weak var uploadView: UploadProgressView_default?
     
-    private let imageCellId = "ImageCellId"
+    internal let imageCellId = "ImageCellId"
+
+
+	// MARK: ImageGalleryViewModel
 
 	public var totalEntries: Int {
 		return rowCount
 	}
-	
-	public weak var uploadView: UploadProgressView_default?
 
 	public func onImageEntryDeleted(imageEntry: ImageEntry) {
 
@@ -110,12 +113,18 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
 		}
 	}
 
-	public func onImageUploadProgress(bytesSent: UInt64, bytesToSend: UInt64, imageEntry: ImageEntryUpload) {
+	public func onImageUploadProgress(
+			bytesSent: UInt64,
+			bytesToSend: UInt64,
+			imageEntry: ImageEntryUpload) {
+
 		let progress = Float(bytesSent) / Float(bytesToSend)
 
 		uploadView?.setProgress(progress)
 	}
 
+
+	// MARK: BaseScreenletView
 
     public override func onCreated() {
         super.onCreated()
@@ -125,7 +134,10 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
     override public func createProgressPresenter() -> ProgressPresenter {
         return DefaultProgressPresenter()
     }
-    
+
+
+	// MARK: BaseListTableView
+
     override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
         guard let imageCell = cell as? ImageGalleryCell, entry = object as? ImageEntry else {
             return

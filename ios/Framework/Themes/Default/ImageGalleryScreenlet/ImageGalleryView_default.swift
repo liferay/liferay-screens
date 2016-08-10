@@ -26,6 +26,23 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 
 	internal var lastOffset: CGPoint?
 	internal var currentOrientation: UIInterfaceOrientation?
+
+	// MARK: UIView
+
+	public override func layoutSubviews() {
+		super.layoutSubviews()
+
+		if let orientation = currentOrientation {
+			let actualOrientation = UIApplication.sharedApplication().statusBarOrientation
+
+			if orientation != actualOrientation {
+				changeLayout()
+				currentOrientation = actualOrientation
+			}
+		}
+	}
+
+	// MARK: BaseScreenletView
 	
 	public override func onShow() {
 		super.onShow()
@@ -41,7 +58,7 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 		lastOffset = collectionView?.contentOffset
 	}
 
-	// BaseListCollectionView
+	// MARK: BaseListCollectionView
 
 	public override func doConfigureCollectionView(collectionView: UICollectionView) {
 		collectionView.backgroundColor = .whiteColor()
@@ -52,7 +69,9 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 			name: "ImageGalleryGridCell",
 			currentClass: self.dynamicType) {
 
-			collectionView?.registerNib(imageGalleryGridCellNib, forCellWithReuseIdentifier: imageCellId)
+			collectionView?.registerNib(
+					imageGalleryGridCellNib,
+					forCellWithReuseIdentifier: imageCellId)
 		}
 	}
 
@@ -61,7 +80,11 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 		return createCustomLayout()
 	}
 
-	override public func doFillLoadedCell(indexPath indexPath: NSIndexPath, cell: UICollectionViewCell, object:AnyObject) {
+	override public func doFillLoadedCell(
+			indexPath indexPath: NSIndexPath,
+			cell: UICollectionViewCell,
+			object:AnyObject) {
+
 		guard let imageCell = cell as? ImageGalleryGridCell, entry = object as? ImageEntry else {
 			return
 		}
@@ -74,19 +97,6 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 		}
 	}
 
-	public override func layoutSubviews() {
-		super.layoutSubviews()
-
-		if let orientation = currentOrientation {
-			let actualOrientation = UIApplication.sharedApplication().statusBarOrientation
-
-			if orientation != actualOrientation {
-				changeLayout()
-				currentOrientation = actualOrientation
-			}
-		}
-	}
-
 	public override func doFillInProgressCell(indexPath indexPath: NSIndexPath, cell: UICollectionViewCell) {
 
 		cell.backgroundColor = .grayColor()
@@ -95,6 +105,9 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 	public override func doGetCellId(indexPath indexPath: NSIndexPath, object: AnyObject?) -> String {
 		return imageCellId
 	}
+
+
+	// MARK: Private methods
 
 	public func changeLayout() {
 		if let collectionView = collectionView {

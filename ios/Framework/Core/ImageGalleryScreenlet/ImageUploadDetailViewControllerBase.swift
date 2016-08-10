@@ -27,14 +27,26 @@ public class ImageUploadDetailViewControllerBase: UIViewController {
 
 	public func startUpload() {
 		image?.resizeImage(toWidth: 300) { image in
-			let imageUpload = ImageEntryUpload(image: self.image!, thumbnail: image, title: self.titleText?.text ?? "", descript: self.descripText?.text ?? "")
-			self.screenlet?.performAction(name: ImageGalleryScreenlet.EnqueueUploadAction, sender: imageUpload)
+			let imageUpload = ImageEntryUpload(
+					image: self.image!,
+					thumbnail: image,
+					title: self.titleText?.text ?? "",
+					descript: self.descripText?.text ?? "")
+
+			self.screenlet?.performAction(
+					name: ImageGalleryScreenlet.EnqueueUploadAction,
+					sender: imageUpload)
+
 			self.dismissViewControllerAnimated(true) {}
 		}
 	}
 
 	public func startUpload(title: String, descript: String) {
 		let imageUpload = ImageEntryUpload(image: image!, title: title, descript: descript)
-		screenlet?.performAction(name: ImageGalleryScreenlet.EnqueueUploadAction, sender: imageUpload)
+		
+		screenlet?.performAction(
+				name: ImageGalleryScreenlet.EnqueueUploadAction,
+				sender: imageUpload)
 	}
+	
 }

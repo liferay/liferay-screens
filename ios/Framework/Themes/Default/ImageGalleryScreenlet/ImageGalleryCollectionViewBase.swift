@@ -15,15 +15,16 @@ import UIKit
 
 public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGalleryViewModel {
 
-	// ImageGalleryViewModel
+	public weak var uploadView: UploadProgressView_default?
 
 	internal let imageCellId = "ImageCellId"
+
+
+	// MARK: ImageGalleryViewModel
 
 	public var totalEntries: Int {
 		return rowCount
 	}
-
-	public weak var uploadView: UploadProgressView_default?
 
 	public func onImageEntryDeleted(imageEntry: ImageEntry) {
 
@@ -44,7 +45,7 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 		}
 
 		guard let finalSection = section, finalRowIndex = rowIndex, finalSectionKey = sectionKey
-			else {
+		else {
 				return
 		}
 
@@ -65,18 +66,29 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 		}
 	}
 
-	// BaseScreenletView
-
-	public override func createProgressPresenter() -> ProgressPresenter {
-		return DefaultProgressPresenter()
-	}
-
 	public func onImageUploadEnqueued(imageEntry: ImageEntryUpload) {
 		if uploadView == nil {
 			showUploadProgressView()
 		}
 
 		uploadView?.addUpload(imageEntry.image)
+	}
+
+	public func onImageUploadProgress(
+		bytesSent: UInt64,
+		bytesToSend: UInt64,
+		imageEntry: ImageEntryUpload) {
+
+		let progress = Float(bytesSent) / Float(bytesToSend)
+
+		uploadView?.setProgress(progress)
+	}
+
+
+	// MARK: BaseScreenletView
+
+	public override func createProgressPresenter() -> ProgressPresenter {
+		return DefaultProgressPresenter()
 	}
 
 	public func showUploadProgressView() {
@@ -116,10 +128,4 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 		}
 	}
 
-	public func onImageUploadProgress(bytesSent: UInt64, bytesToSend: UInt64, imageEntry: ImageEntryUpload) {
-		let progress = Float(bytesSent) / Float(bytesToSend)
-
-		uploadView?.setProgress(progress)
-	}
-	
 }

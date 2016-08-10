@@ -45,7 +45,7 @@ import Kingfisher
 }
 
 
-@IBDesignable public class ImageGalleryScreenlet : BaseListScreenlet {
+public class ImageGalleryScreenlet : BaseListScreenlet {
 
 	public static let DeleteImageAction = "delete-image-action"
 	public static let UploadImageAction = "upload-image-action"
@@ -57,7 +57,7 @@ import Kingfisher
     @IBInspectable public var folderId: Int64 = -1
 	@IBInspectable public var mimeTypes: String = ""
 
-	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.CacheOnly.rawValue {
+	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.CacheFirst.rawValue {
 		didSet {
 			ImageCache.screensOfflinePolicy = offlinePolicy ?? CacheStrategyType.RemoteFirst.rawValue
 		}
@@ -68,19 +68,6 @@ import Kingfisher
 	internal var uploadsQueue = [ImageEntryUpload]()
 	internal var loadedOnce = false
 
-	public override func onCreated() {
-		super.onCreated()
-		ImageCache.screensOfflinePolicy = offlinePolicy ?? CacheStrategyType.RemoteFirst.rawValue
-	}
-
-	public override func onShow() {
-		// Don't reload the view if the picker is presented
-		if !loadedOnce {
-			loadedOnce = true
-			super.onShow()
-		}
-	}
-
 	public var imageGalleryScreenletDelegate: ImageGalleryScreenletDelegate? {
 		return delegate as? ImageGalleryScreenletDelegate
 	}
@@ -89,27 +76,8 @@ import Kingfisher
 		return screenletView as! ImageGalleryViewModel
 	}
 
-	public override func performAction(name name: String, sender: AnyObject?) -> Bool {
-		if name == ImageGalleryScreenlet.EnqueueUploadAction {
-			guard let uploadEntry = sender as? ImageEntryUpload
-			else {
-				return false
-			}
 
-			viewModel.onImageUploadEnqueued?(uploadEntry)
-			
-			if uploadsQueue.isEmpty {
-				uploadsQueue.insert(uploadEntry, atIndex: 0)
-				return super.performAction(name: ImageGalleryScreenlet.UploadImageAction, sender: sender)
-			}
-			else {
-				uploadsQueue.insert(uploadEntry, atIndex: 0)
-				return false
-			}
-		}
-
-		return super.performAction(name: name, sender: sender)
-	}
+	// MARK: Public methods
 
 	public func cancelUploads() {
 		uploadsQueue.removeAll()
@@ -164,6 +132,9 @@ import Kingfisher
 			print("Error, delete only works on RemoteOnly mode")
 		}
 	}
+	
+
+	// MARK: BaseListScreenlet
 
 	public override func onLoadPageError(page page: Int, error: NSError) {
 		super.onLoadPageError(page: page, error: error)
@@ -180,22 +151,69 @@ import Kingfisher
 		imageGalleryScreenletDelegate?.screenlet?(self, onImageEntrySelected: row as! ImageEntry)
 	}
 
+
+	// MARK: BaseScreenlet
+
+	public override func onCreated() {
+		super.onCreated()
+		ImageCache.screensOfflinePolicy = offlinePolicy ?? CacheStrategyType.RemoteFirst.rawValue
+	}
+
+	public override func onShow() {
+		// Don't reload the view if the picker is presented
+		if !loadedOnce {
+			loadedOnce = true
+			super.onShow()
+		}
+	}
+
+	public override func performAction(name name: String, sender: AnyObject?) -> Bool {
+		if name == ImageGalleryScreenlet.EnqueueUploadAction {
+			guard let uploadEntry = sender as? ImageEntryUpload
+				else {
+					return false
+			}
+
+			viewModel.onImageUploadEnqueued?(uploadEntry)
+
+			if uploadsQueue.isEmpty {
+				uploadsQueue.insert(uploadEntry, atIndex: 0)
+				return super.performAction(name: ImageGalleryScreenlet.UploadImageAction, sender: sender)
+			}
+			else {
+				uploadsQueue.insert(uploadEntry, atIndex: 0)
+				return false
+			}
+		}
+
+		return super.performAction(name: name, sender: sender)
+	}
+
 	public override func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		switch name {
+
 		case BaseListScreenlet.LoadInitialPageAction, BaseListScreenlet.LoadPageAction:
 			return super.createInteractor(name: name, sender: sender)
+
 		case ImageGalleryScreenlet.DeleteImageAction:
 			let imageEntry = sender as! ImageEntry
 			return createImageGalleryDeleteInteractor(imageEntry)
+
 		case ImageGalleryScreenlet.UploadImageAction:
 			let imageUpload = sender as! ImageEntryUpload
 			return createImageUploadInteractor(imageUpload)
+
 		default:
 			return nil
 		}
 	}
 
-	internal func createImageGalleryDeleteInteractor(imageEntry: ImageEntry) -> ImageGalleryDeleteInteractor {
+
+	// MARK: Private methods
+
+	internal func createImageGalleryDeleteInteractor(
+			imageEntry: ImageEntry) -> ImageGalleryDeleteInteractor {
+
 		let interactor = ImageGalleryDeleteInteractor(screenlet: self, imageEntryId: imageEntry.imageEntryId)
 
 		interactor.onSuccess = {
@@ -212,7 +230,9 @@ import Kingfisher
 		return interactor
 	}
 
-	public override func createPageLoadInteractor(page page: Int, computeRowCount: Bool) -> BaseListPageLoadInteractor {
+	public override func createPageLoadInteractor(
+			page page: Int,
+			computeRowCount: Bool) -> BaseListPageLoadInteractor {
 
 		let finalMimeTypes = mimeTypes.isEmpty ? DefaultMimeTypes : parseMimeTypes(mimeTypes)
 
@@ -228,7 +248,8 @@ import Kingfisher
 		return interactor
 	}
 
-	internal func createImageUploadInteractor(imageUpload: ImageEntryUpload) -> ImageGalleryUploadInteractor {
+	internal func createImageUploadInteractor(
+			imageUpload: ImageEntryUpload) -> ImageGalleryUploadInteractor {
 
 		let rowCount = viewModel.totalEntries
 		let page = pageFromRow(rowCount)
@@ -240,8 +261,15 @@ import Kingfisher
 				folderId: folderId,
 				page: page) { (title, totalBytesSent, totalBytesToSend) in
 
-			self.viewModel.onImageUploadProgress?(totalBytesSent, bytesToSend: totalBytesToSend, imageEntry: imageUpload)
-			self.imageGalleryScreenletDelegate?.screenlet?(self, onImageUploadProgress: imageUpload, totalBytesSent: totalBytesSent, totalBytesToSend: totalBytesToSend)
+			self.viewModel.onImageUploadProgress?(
+					totalBytesSent,
+					bytesToSend: totalBytesToSend,
+					imageEntry: imageUpload)
+
+			self.imageGalleryScreenletDelegate?.screenlet?(
+					self, onImageUploadProgress: imageUpload,
+					totalBytesSent: totalBytesSent,
+					totalBytesToSend: totalBytesToSend)
 
 		}
 
@@ -282,7 +310,7 @@ import Kingfisher
 		}
 	}
 
-	private func createImageUploadDetailViewControllerFromNib() -> ImageUploadDetailViewControllerBase? {
+	internal func createImageUploadDetailViewControllerFromNib() -> ImageUploadDetailViewControllerBase? {
 		let viewControllerName = "ImageUploadDetailViewController"
 
 		if let foundView = NSBundle.viewForTheme(

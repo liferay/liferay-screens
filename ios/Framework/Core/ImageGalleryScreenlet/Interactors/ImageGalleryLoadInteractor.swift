@@ -22,7 +22,8 @@ public class ImageGalleryLoadInteractor : BaseListPageLoadInteractor {
 	public let mimeTypes: [String]
 
     
-    public init(screenlet: BaseListScreenlet,
+    public init(
+			screenlet: BaseListScreenlet,
 			page: Int, computeRowCount:Bool,
 			repositoryId: Int64,
 			folderId: Int64,
@@ -38,12 +39,13 @@ public class ImageGalleryLoadInteractor : BaseListPageLoadInteractor {
     public override func createConnector() -> PaginationLiferayConnector {
         let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
         
-        return ImageGalleryPageLiferayConnector(startRow: pager(self.page),
-                                                endRow: pager(self.page + 1),
-                                                computeRowCount: self.computeRowCount,
-                                                repositoryId: repositoryId,
-                                                folderId: folderId,
-												mimeTypes: mimeTypes)
+        return ImageGalleryPageLiferayConnector(
+				startRow: pager(self.page),
+				endRow: pager(self.page + 1),
+				computeRowCount: self.computeRowCount,
+				repositoryId: repositoryId,
+				folderId: folderId,
+				mimeTypes: mimeTypes)
     }
 
     public override func convertResult(serverResult: [String : AnyObject]) -> AnyObject {

@@ -26,7 +26,9 @@ extension SyncManager {
 			let page = attributes["page"]!.description.asNumber!.longValue
 
 			self.cacheManager.getAny(collection: ScreenletName(ImageGalleryScreenlet), key: key) {
+			
 				if let imageEntryUpload = $0 as? ImageEntryUpload {
+
 					let interactor = ImageGalleryUploadInteractor(
 							screenlet: nil,
 							imageUpload: imageEntryUpload,
@@ -46,6 +48,7 @@ extension SyncManager {
 					}
 				}
 				else {
+
 					self.delegate?.syncManager?(self,
 							onItemSyncScreenlet: ScreenletName(ImageGalleryScreenlet),
 							failedKey: key,

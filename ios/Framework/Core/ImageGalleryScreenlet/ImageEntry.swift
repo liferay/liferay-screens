@@ -40,20 +40,32 @@ public class ImageEntry : Asset {
     }
     
     private func createThumbnailUrl() -> String {
-        return "\(createImageUrl())?version=\(attributes["version"]!)&imageThumbnail=1"
+		guard let version = attributes["version"]
+		else {
+			return ""
+		}
+        return "\(createImageUrl())?version=\(version)&imageThumbnail=1"
     }
     
     private func createImageUrl() -> String {
-        return "\(LiferayServerContext.server)/documents/\(attributes["groupId"]!)/" +
-            "\(attributes["folderId"]!)/\(encodeUrlString(title))/\(attributes["uuid"]!)"
+		guard let groupId = attributes["groupId"], folderId = attributes["folderId"],
+				uuid = attributes["uuid"]
+		else {
+			return ""
+		}
+        return "\(LiferayServerContext.server)/documents/\(groupId)/" +
+            "\(folderId)/\(encodeUrlString(title))/\(uuid)"
     }
     
     private func encodeUrlString(originalString: String) -> String {
         return originalString.stringByAddingPercentEncodingWithAllowedCharacters(
             .URLHostAllowedCharacterSet()) ?? ""
     }
+	
 }
 
+
+// MARK: Equatable
 
 public func ==(lhs: ImageEntry, rhs: ImageEntry) -> Bool {
 	return lhs.imageEntryId == rhs.imageEntryId

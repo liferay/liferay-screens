@@ -23,7 +23,8 @@ public class ImageGalleryUploadConnector : UploadFileConnector<String> {
 	let descrip: String
 	let changeLog: String
 
-	public init(repositoryId: Int64,
+	public init(
+			repositoryId: Int64,
 			folderId: Int64,
 			sourceFileName: String,
 			mimeType: String,
@@ -52,15 +53,16 @@ public class ImageGalleryUploadConnector : UploadFileConnector<String> {
 		let service = LRDLAppService_v7(session: session)
 
 		let serviceContext = LRJSONObjectWrapper(JSONObject: ["addGuestPermissions":true])
-		try service.addFileEntryWithRepositoryId(repositoryId,
-		                                         folderId: folderId,
-		                                         sourceFileName: fileName,
-		                                         mimeType: mimeType,
-		                                         title: title,
-		                                         description: descrip,
-		                                         changeLog: changeLog,
-		                                         file: data,
-		                                         serviceContext: serviceContext)
+		try service.addFileEntryWithRepositoryId(
+				repositoryId,
+				folderId: folderId,
+			 	sourceFileName: fileName,
+			 	mimeType: mimeType,
+			 	title: title,
+			 	description: descrip,
+			 	changeLog: changeLog,
+			 	file: data,
+			 	serviceContext: serviceContext)
 	}
 	
 }

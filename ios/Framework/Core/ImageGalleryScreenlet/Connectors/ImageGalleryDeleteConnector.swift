@@ -43,4 +43,5 @@ public class ImageGalleryDeleteConnector : ServerConnector {
 
 		lastError = error
 	}
+	
 }
