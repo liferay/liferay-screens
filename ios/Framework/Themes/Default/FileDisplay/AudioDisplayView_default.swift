@@ -16,7 +16,10 @@ import AVFoundation
 
 
 public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
-	
+
+	public var volume: Float = 0.5
+	public var numberOfLoops = -1
+
 	@IBOutlet weak var view: UIView?
 
 	@IBOutlet weak var playButton: UIButton?
@@ -58,8 +61,8 @@ public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 					if let audioData = audioData {
 						self.audio = try AVAudioPlayer(data: audioData)
 						if let audio = audio {
-							audio.volume = 0.5
-							audio.numberOfLoops = -1
+							audio.volume = self.volume
+							audio.numberOfLoops = self.numberOfLoops
 							playAction()
 
 							self.sliderDuration?.maximumValue = Float(audio.duration)
