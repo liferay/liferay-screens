@@ -43,11 +43,15 @@ public class CommentListView
 	@Override
 	public void addNewCommentEntry(CommentEntry commentEntry) {
 		getAdapter().getEntries().add(commentEntry);
-		int newRowCount = getAdapter().getEntries().size();
-		getAdapter().setRowCount(newRowCount);
-		getAdapter().notifyItemInserted(newRowCount - 1);
-		_recyclerView.smoothScrollToPosition(newRowCount - 1);
+		int size = getAdapter().getEntries().size();
+		getAdapter().setRowCount(size);
+		if (size == 0) {
+			getAdapter().notifyDataSetChanged();
+		} else {
+			getAdapter().notifyItemInserted(size - 1);
+		}
 
+		_recyclerView.smoothScrollToPosition(size - 1);
 		showEmptyListMessage();
 	}
 
@@ -55,10 +59,8 @@ public class CommentListView
 	public void removeCommentEntry(CommentEntry commentEntry) {
 		int position = getAdapter().getEntries().indexOf(commentEntry);
 		getAdapter().getEntries().remove(commentEntry);
-		int newRowCount = getAdapter().getItemCount() - 1;
-		getAdapter().setRowCount(newRowCount);
+		getAdapter().setRowCount(getAdapter().getEntries().size());
 		getAdapter().notifyItemRemoved(position);
-
 		showEmptyListMessage();
 	}
 
@@ -107,7 +109,6 @@ public class CommentListView
 
 	@Override
 	public void onDeleteCommentSuccess(CommentEntry commentEntry) {
-		refreshView();
 		getCommentListScreenlet().onDeleteCommentSuccess(commentEntry);
 	}
 
