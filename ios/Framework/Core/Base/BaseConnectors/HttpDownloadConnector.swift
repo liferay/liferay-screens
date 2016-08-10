@@ -49,7 +49,8 @@ public class HttpDownloadConnector: ServerConnector {
 						let newPath = try self.moveTmpToCache(localURL.absoluteString)
 						self.resultUrl = NSURL(fileURLWithPath: newPath)
 						self.lastError = nil
-					} catch let error as NSError {
+					}
+					catch let error as NSError {
 						self.lastError = error
 						self.resultUrl = nil
 					}
