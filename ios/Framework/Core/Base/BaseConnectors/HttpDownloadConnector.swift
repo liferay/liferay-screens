@@ -69,6 +69,14 @@ public class HttpDownloadConnector: ServerConnector {
 
 
 	private func moveTmpToCache(localPath: String) throws -> String {
+		// TODO try to keep the file extension especified in "suggestedFilename" or
+		// add the extension based on the response's mime type (prefered, the former 
+		// will be empty in most cases)
+		// This is important because some players (video or audio players) use that 
+		// extension to figure out the internal format.
+		// If the extension is not present, they try to guess based on some heuristics, 
+		// and it probably won't work
+
 		let cachePath = cacheFilePath()
 
 		try NSFileManager.defaultManager().moveItemAtPath(localPath, toPath: cachePath)
