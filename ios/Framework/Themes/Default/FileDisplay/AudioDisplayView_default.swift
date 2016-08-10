@@ -27,16 +27,23 @@ public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
 	@IBOutlet weak var sliderDuration: UISlider? {
 		didSet {
-			sliderDuration?.setThumbImage(NSBundle.imageInBundles(name: "default-point", currentClass: self.dynamicType), forState: UIControlState.Normal)
+			sliderDuration?.setThumbImage(
+				NSBundle.imageInBundles(
+					name: "default-point",
+					currentClass: self.dynamicType),
+				forState: UIControlState.Normal)
 		}
 	}
 	
 	@IBOutlet weak var sliderVolume: UISlider? {
 		didSet {
-			sliderVolume?.setThumbImage(NSBundle.imageInBundles(name: "default-point", currentClass: self.dynamicType), forState: UIControlState.Normal)
+			sliderVolume?.setThumbImage(
+				NSBundle.imageInBundles(
+					name: "default-point",
+					currentClass: self.dynamicType),
+				forState: UIControlState.Normal)
 		}
 	}
-
 
 	@IBOutlet weak var audioProgressLabel: UILabel?
 	@IBOutlet weak var audioDurationLabel: UILabel?
@@ -56,10 +63,12 @@ public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 							playAction()
 
 							self.sliderDuration?.maximumValue = Float(audio.duration)
-							self.audioDurationLabel?.text = updateAudioDurationLabel(Float(audio.duration))
+							self.audioDurationLabel?.text =
+								updateAudioDurationLabel(Float(audio.duration))
 						}
 					}
-				} catch let error as NSError {
+				}
+				catch let error as NSError {
 					disableComponents()
 					print("AVAudioPlayer error: \(error.debugDescription)")
 				}
@@ -93,8 +102,19 @@ public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
 	@IBAction func playAction() {
 		audio?.play()
-		timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(AudioDisplayView_default.updateProgress), userInfo: nil, repeats: true)
-		duration = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: #selector(AudioDisplayView_default.updateDurationLabel), userInfo: nil, repeats: true)
+
+		timer = NSTimer.scheduledTimerWithTimeInterval(0.01,
+				target: self,
+				selector: #selector(AudioDisplayView_default.updateProgress),
+				userInfo: nil,
+				repeats: true)
+
+		duration = NSTimer.scheduledTimerWithTimeInterval(0.01,
+				target: self,
+				selector: #selector(AudioDisplayView_default.updateDurationLabel),
+				userInfo: nil,
+				repeats: true)
+
 		self.updateView(true)
 	}
 
@@ -110,7 +130,6 @@ public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 	@IBAction func moveRewindAction() {
 		changeCurrentTime(-5, slider: false)
 	}
-
 	
 	@IBAction func moveForwardAction() {
 		changeCurrentTime(5, slider: false)

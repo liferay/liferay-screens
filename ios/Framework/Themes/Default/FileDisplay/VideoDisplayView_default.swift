@@ -25,11 +25,11 @@ public class VideoDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 	public var url: NSURL? {
 		didSet {
 			if let url = url {
-				let video = AVPlayer(URL: url)
 				self.playerController = AVPlayerViewController()
 
+				let video = AVPlayer(URL: url)
 				playerController!.player = video
-				playerController!.view.frame = self.screenlet!.bounds
+				playerController!.view.frame = self.bounds
 
 				self.view?.addSubview(playerController!.view)
 

@@ -21,8 +21,7 @@ public class PdfDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 	public var url: NSURL? {
 		didSet {
 			if let url = url {
-				let request = NSURLRequest(URL: url)
-				webView.loadRequest(request)
+				webView.loadRequest(NSURLRequest(URL: url))
 			}
 		}
 	}

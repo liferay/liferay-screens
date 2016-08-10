@@ -20,11 +20,8 @@ public class ImageDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
 	public var url: NSURL? {
 		didSet {
-			if let url = url {
-				let imageData = NSData(contentsOfURL: url)
-				if let imageData = imageData {
-					imageView?.image = UIImage(data: imageData)
-				}
+			if let url = url, imageData = NSData(contentsOfURL: url) {
+				imageView?.image = UIImage(data: imageData)
 			}
 		}
 	}
