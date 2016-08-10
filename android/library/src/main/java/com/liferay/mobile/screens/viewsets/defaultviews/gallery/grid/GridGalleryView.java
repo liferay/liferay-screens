@@ -103,6 +103,13 @@ public class GridGalleryView
 	}
 
 	@Override
+	public void showStartOperation(String actionName) {
+		if(actionName == null){
+			super.showStartOperation(actionName);
+		}
+	}
+
+	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 		_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), columnsSize));
