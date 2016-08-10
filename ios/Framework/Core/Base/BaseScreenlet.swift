@@ -43,7 +43,9 @@ import QuartzCore
 				_themeName = updateCurrentPreviewImage()
 			}
 			else {
+				onPreCreate()
 				loadScreenletView()
+				onCreated()
 			}
 
 			screenletView?.themeName = _themeName
@@ -82,24 +84,17 @@ import QuartzCore
 
 		- parameters:
 			- themeName: name of the theme to be used. If nil, default theme will be used
-			- initializer: a function which will be launched after the basic screenlet initialization
 	*/
-	public init(frame: CGRect, themeName: String?, initalizer: ((BaseScreenlet)->())?) {
+	public init(frame: CGRect, themeName: String?) {
 		super.init(frame: frame)
-		
-		onPreCreate()
 		
 		clipsToBounds = true
 		
 		self.themeName = themeName
-		
-		initalizer?(self)
-		
-		onCreated()
 	}
 
-	override init(frame: CGRect) {
-		super.init(frame: frame)
+	override convenience init(frame: CGRect) {
+		self.init(frame: frame, themeName: nil)
 	}
 	
 	required public init?(coder aDecoder: NSCoder) {
@@ -111,13 +106,13 @@ import QuartzCore
 	override public func awakeFromNib() {
 		super.awakeFromNib()
 
-		onPreCreate()
-
 		clipsToBounds = true
 
-		loadScreenletView()
-
-		onCreated()
+		if themeName == BaseScreenlet.DefaultThemeName {
+			onPreCreate()
+			loadScreenletView()
+			onCreated()
+		}
 	}
 
 	override public func becomeFirstResponder() -> Bool {
@@ -125,7 +120,7 @@ import QuartzCore
 	}
 
 	override public func didMoveToWindow() {
-		if (window != nil) {
+		if window != nil {
 			onShow()
 		}
 		else {

@@ -99,8 +99,10 @@ public class DDLListScreenlet
 	}
 
 	@Override
-	protected void loadRows(DDLListInteractor interactor, int startRow, int endRow, Locale locale) throws Exception {
-		interactor.loadRows(_recordSetId, _userId, startRow, endRow, locale);
+	protected void loadRows(DDLListInteractor interactor, int startRow, int endRow, Locale locale, String obcClassName)
+		throws Exception {
+
+		interactor.loadRows(_recordSetId, _userId, startRow, endRow, locale, obcClassName);
 	}
 
 	@Override

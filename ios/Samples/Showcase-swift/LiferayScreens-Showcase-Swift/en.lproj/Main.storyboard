@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -129,7 +129,7 @@
         <!--WebContentDisplayScreenlet-->
         <scene sceneID="Vwd-Qg-h5f">
             <objects>
-                <viewController title="WebContentDisplayScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="kiQ-mD-UG4" customClass="WebContentDisplayScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="WebContentDisplayScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="kiQ-mD-UG4" customClass="RatingScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KM5-sa-NhK"/>
                         <viewControllerLayoutGuide type="bottom" id="Rya-e6-Pha"/>
@@ -192,6 +192,7 @@
                         <segue destination="kiQ-mD-UG4" kind="push" identifier="WebContentDisplayScreenlet" id="yAA-vv-JOl"/>
                         <segue destination="TY4-Ql-4pF" kind="push" identifier="UserPortraitScreenlet" id="jtf-rk-w86"/>
                         <segue destination="mIJ-mJ-AmA" kind="push" identifier="WebContentListScreenlet" id="NhJ-zR-6pA"/>
+                        <segue destination="N0K-Ji-ryL" kind="push" identifier="RatingScreenlet" id="mGa-c2-uxu"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsJ-Fx-gOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -210,19 +211,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYU-Mh-as3" customClass="DDLFormScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="0.0" y="149" width="320" height="370"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="structureId">
-                                        <integer key="value" value="20591"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="recordSetId">
-                                        <integer key="value" value="20596"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vga-YL-TFF">
                                 <rect key="frame" x="214" y="87" width="97" height="44"/>
                                 <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
@@ -256,6 +244,19 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYU-Mh-as3" customClass="DDLFormScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="0.0" y="149" width="320" height="370"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="structureId">
+                                        <integer key="value" value="20591"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="recordSetId">
+                                        <integer key="value" value="20596"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -295,7 +296,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wpq-oW-X15" customClass="DDLListScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="0.0" y="214" width="320" height="305"/>
+                                <rect key="frame" x="0.0" y="261" width="320" height="258"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
@@ -337,8 +338,18 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order by:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="367-Tl-T0H">
+                                <rect key="frame" x="16" y="165" width="102" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="kLA-IE-bed"/>
+                                    <constraint firstAttribute="width" constant="102" id="tS3-oT-Ssl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GKb-ow-nT7">
-                                <rect key="frame" x="16" y="162" width="288" height="44"/>
+                                <rect key="frame" x="16" y="209" width="288" height="44"/>
                                 <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="4lK-tM-XbJ"/>
@@ -358,21 +369,26 @@
                                     <action selector="loadList:" destination="MGb-m9-wGz" eventType="touchUpInside" id="JYB-T9-eMo"/>
                                 </connections>
                             </button>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fSf-5o-lA5">
+                                <rect key="frame" x="123" y="160" width="181" height="41"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="cTM-Oc-iFx" firstAttribute="top" secondItem="wpq-oW-X15" secondAttribute="bottom" id="0c2-JD-2yU"/>
                             <constraint firstItem="gyP-fl-oPf" firstAttribute="top" secondItem="pjY-t2-Pg3" secondAttribute="bottom" constant="10" id="3a1-Cq-xzt"/>
+                            <constraint firstItem="GKb-ow-nT7" firstAttribute="top" secondItem="367-Tl-T0H" secondAttribute="bottom" constant="23" id="67r-gQ-C3e"/>
                             <constraint firstAttribute="trailingMargin" secondItem="wpq-oW-X15" secondAttribute="trailing" constant="-16" id="AWN-kP-UAc"/>
                             <constraint firstItem="GKb-ow-nT7" firstAttribute="leading" secondItem="NHf-o4-UUq" secondAttribute="leadingMargin" id="BJi-ha-VGO"/>
                             <constraint firstItem="gyP-fl-oPf" firstAttribute="trailing" secondItem="NHf-o4-UUq" secondAttribute="trailingMargin" id="BfY-Kz-n1y"/>
+                            <constraint firstItem="367-Tl-T0H" firstAttribute="top" secondItem="h02-pH-Ump" secondAttribute="bottom" constant="24" id="CZM-dL-WwC"/>
                             <constraint firstItem="gyP-fl-oPf" firstAttribute="leading" secondItem="h02-pH-Ump" secondAttribute="trailing" constant="5" id="SNa-Aa-U9t"/>
                             <constraint firstItem="pjY-t2-Pg3" firstAttribute="leading" secondItem="TCP-In-SYv" secondAttribute="trailing" constant="5" id="Vtf-Rr-IxD"/>
                             <constraint firstItem="h02-pH-Ump" firstAttribute="top" secondItem="iaB-gN-3UH" secondAttribute="bottom" constant="56" id="agL-e9-6qs"/>
                             <constraint firstItem="wpq-oW-X15" firstAttribute="top" secondItem="GKb-ow-nT7" secondAttribute="bottom" constant="8" id="fpO-ZZ-Pz2"/>
-                            <constraint firstItem="GKb-ow-nT7" firstAttribute="top" secondItem="gyP-fl-oPf" secondAttribute="bottom" constant="16" id="gxn-zD-ght"/>
                             <constraint firstItem="pjY-t2-Pg3" firstAttribute="top" secondItem="iaB-gN-3UH" secondAttribute="bottom" constant="12" id="kWK-tN-rYA"/>
                             <constraint firstItem="h02-pH-Ump" firstAttribute="leading" secondItem="NHf-o4-UUq" secondAttribute="leadingMargin" id="lTv-ig-ME2"/>
+                            <constraint firstItem="367-Tl-T0H" firstAttribute="leading" secondItem="NHf-o4-UUq" secondAttribute="leading" constant="16" id="mRW-FZ-tEj"/>
                             <constraint firstItem="GKb-ow-nT7" firstAttribute="trailing" secondItem="NHf-o4-UUq" secondAttribute="trailingMargin" id="mjF-uJ-2oI"/>
                             <constraint firstItem="TCP-In-SYv" firstAttribute="top" secondItem="iaB-gN-3UH" secondAttribute="bottom" constant="16" id="ppv-DN-Xzk"/>
                             <constraint firstItem="wpq-oW-X15" firstAttribute="leading" secondItem="NHf-o4-UUq" secondAttribute="leadingMargin" constant="-16" id="rIa-I5-Fmd"/>
@@ -383,6 +399,7 @@
                     <navigationItem key="navigationItem" id="gob-5s-h0O"/>
                     <connections>
                         <outlet property="labelFieldsTextField" destination="gyP-fl-oPf" id="HyG-bS-voI"/>
+                        <outlet property="pickerView" destination="fSf-5o-lA5" id="TkI-SV-jJJ"/>
                         <outlet property="recordSetIdTextField" destination="pjY-t2-Pg3" id="X7K-4Q-Eza"/>
                         <outlet property="screenlet" destination="wpq-oW-X15" id="7Hb-Yv-WLV"/>
                     </connections>
@@ -441,7 +458,9 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="book"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="default-collection"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="orderBy" value="Id"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="orderByClassName" value="com.liferay.portlet.journal.util.comparator.ArticleIDComparator"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
@@ -477,9 +496,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Miy-jz-jyL" customClass="AssetListScreenlet" customModule="LiferayScreens">
                                 <rect key="frame" x="0.0" y="64" width="320" height="324"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vKJ-1q-GBo">
                                 <rect key="frame" x="16" y="467" width="288" height="44"/>
@@ -896,7 +912,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="6Q4-t8-cpv">
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="6Q4-t8-cpv" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
                                 <rect key="frame" x="186" y="357" width="60" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -963,7 +979,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Xgo-At-ulf"/>
                     <connections>
-                        <outlet property="editableScreenletContainer" destination="6Q4-t8-cpv" id="jM5-h3-8tf"/>
+                        <outlet property="editableScreenlet" destination="6Q4-t8-cpv" id="we0-Xr-gmR"/>
                         <outlet property="screenlet" destination="dUK-mV-I2G" id="DZF-FN-NDC"/>
                         <outlet property="screenletWithDelegate" destination="OfG-dw-9hx" id="OGJ-bb-XTI"/>
                         <outlet property="userIdField" destination="g8B-1u-S4d" id="6Nc-it-meo"/>
@@ -1081,6 +1097,97 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--RatingDisplayScreenlet-->
+        <scene sceneID="U3d-fZ-IXQ">
+            <objects>
+                <viewController title="RatingDisplayScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="N0K-Ji-ryL" customClass="RatingScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="s8Q-dv-O3o"/>
+                        <viewControllerLayoutGuide type="bottom" id="7f1-30-j8U"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="flQ-4S-EHo">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VbC-bI-jPR">
+                                <rect key="frame" x="16" y="84" width="288" height="29"/>
+                                <segments>
+                                    <segment title="Thumbs"/>
+                                    <segment title="Like"/>
+                                    <segment title="Stars"/>
+                                    <segment title="Emojis"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlChanged:" destination="N0K-Ji-ryL" eventType="valueChanged" id="Ou5-g3-b3h"/>
+                                </connections>
+                            </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAQ-sX-WyU" userLabel="Editable switch view">
+                                <rect key="frame" x="93" y="132" width="135" height="45"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Editable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvB-0o-bfZ">
+                                        <rect key="frame" x="65" y="6" width="70" height="31"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D7x-W0-d56">
+                                        <rect key="frame" x="8" y="7" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="switchChange:" destination="N0K-Ji-ryL" eventType="valueChanged" id="1tW-d6-8J4"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="QvB-0o-bfZ" secondAttribute="trailing" id="HEg-LS-WYt"/>
+                                    <constraint firstItem="QvB-0o-bfZ" firstAttribute="top" secondItem="MAQ-sX-WyU" secondAttribute="top" constant="6" id="Obm-85-90d"/>
+                                    <constraint firstAttribute="bottom" secondItem="D7x-W0-d56" secondAttribute="bottom" constant="7" id="RYb-sI-2cG"/>
+                                    <constraint firstAttribute="height" constant="45" id="U0D-M1-gLX"/>
+                                    <constraint firstItem="QvB-0o-bfZ" firstAttribute="leading" secondItem="D7x-W0-d56" secondAttribute="trailing" constant="8" id="fWc-lH-WiC"/>
+                                    <constraint firstAttribute="bottom" secondItem="QvB-0o-bfZ" secondAttribute="bottom" constant="8" id="hKo-Lu-KuN"/>
+                                    <constraint firstItem="D7x-W0-d56" firstAttribute="leading" secondItem="MAQ-sX-WyU" secondAttribute="leading" constant="8" id="kCS-Hq-Mnq"/>
+                                    <constraint firstItem="QvB-0o-bfZ" firstAttribute="leading" secondItem="D7x-W0-d56" secondAttribute="trailing" constant="8" id="lrt-Um-ZaJ"/>
+                                    <constraint firstAttribute="width" constant="135" id="oLn-9f-yNr"/>
+                                    <constraint firstItem="D7x-W0-d56" firstAttribute="top" secondItem="MAQ-sX-WyU" secondAttribute="top" constant="7" id="qiI-vU-cgr"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PeC-X4-KBr" customClass="RatingScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="16" y="197" width="288" height="334"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="entryId">
+                                        <integer key="value" value="31869"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MAQ-sX-WyU" firstAttribute="top" secondItem="VbC-bI-jPR" secondAttribute="bottom" constant="20" id="2qI-Ql-E7P"/>
+                            <constraint firstItem="PeC-X4-KBr" firstAttribute="leading" secondItem="flQ-4S-EHo" secondAttribute="leadingMargin" id="3H7-FB-Ng9"/>
+                            <constraint firstItem="MAQ-sX-WyU" firstAttribute="centerX" secondItem="flQ-4S-EHo" secondAttribute="centerX" id="9Ui-Og-4Tr"/>
+                            <constraint firstItem="VbC-bI-jPR" firstAttribute="centerX" secondItem="flQ-4S-EHo" secondAttribute="centerX" id="Cgs-gk-ojW"/>
+                            <constraint firstItem="MAQ-sX-WyU" firstAttribute="top" secondItem="VbC-bI-jPR" secondAttribute="bottom" constant="20" id="Lcw-Wb-NBX"/>
+                            <constraint firstItem="VbC-bI-jPR" firstAttribute="leading" secondItem="flQ-4S-EHo" secondAttribute="leadingMargin" id="PKz-bW-8LU"/>
+                            <constraint firstItem="VbC-bI-jPR" firstAttribute="top" secondItem="s8Q-dv-O3o" secondAttribute="bottom" constant="20" id="UTZ-wj-qHP"/>
+                            <constraint firstItem="PeC-X4-KBr" firstAttribute="trailing" secondItem="flQ-4S-EHo" secondAttribute="trailingMargin" id="YGc-5S-dcW"/>
+                            <constraint firstItem="PeC-X4-KBr" firstAttribute="top" secondItem="MAQ-sX-WyU" secondAttribute="bottom" constant="20" id="fC3-eN-krf"/>
+                            <constraint firstItem="VbC-bI-jPR" firstAttribute="trailing" secondItem="flQ-4S-EHo" secondAttribute="trailingMargin" id="igz-sG-oz9"/>
+                            <constraint firstItem="7f1-30-j8U" firstAttribute="top" secondItem="PeC-X4-KBr" secondAttribute="bottom" constant="20" id="mdD-GZ-MIS"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="IZ1-dH-too"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="600"/>
+                    <connections>
+                        <outlet property="screenlet" destination="PeC-X4-KBr" id="Bne-CZ-CT2"/>
+                        <outlet property="switchControl" destination="D7x-W0-d56" id="RKs-sj-Mx9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dse-CN-iuq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-373" y="360"/>
         </scene>
     </scenes>
     <resources>

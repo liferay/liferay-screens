@@ -112,6 +112,26 @@ public protocol LiferayConnectorFactory {
 
 	func createBlogsDisplayByEntryIdConnector(entryId: Int64) -> BlogsDisplayByEntryIdLiferayConnector?
 
+	func createRatingLoadByEntryIdConnector(
+		entryId entryId: Int64,
+		ratingsGroupCount: Int32) -> RatingLoadByEntryIdLiferayConnector?
+	
+	func createRatingLoadByClassPKConnector(
+		classPK: Int64,
+		className: String,
+		ratingsGroupCount: Int32) -> RatingLoadByClassPKLiferayConnector?
+	
+	func createRatingUpdateConnector(
+		classPK classPK: Int64,
+		className: String,
+		score: Double,
+		ratingsGroupCount: Int32) -> RatingUpdateLiferayConnector?
+	
+	func createRatingDeleteConnector(
+		classPK classPK: Int64,
+		className: String,
+		ratingsGroupCount: Int32) -> RatingDeleteLiferayConnector?
+
 }
 
 
@@ -294,8 +314,18 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 		return nil
 	}
 
+	public func createRatingLoadByEntryIdConnector(entryId entryId: Int64, ratingsGroupCount: Int32) -> RatingLoadByEntryIdLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: RatingLoadByEntryIdLiferayConnector")
+		return nil
+	}
+
 	public func createAssetLoadByClassPKConnector(className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: AssetLoadByClassPKLiferayConnector")
+		return nil
+	}
+
+	public func createRatingLoadByClassPKConnector(classPK: Int64, className: String, ratingsGroupCount: Int32) -> RatingLoadByClassPKLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: RatingLoadByClassPKLiferayConnector")
 		return nil
 	}
 
@@ -303,6 +333,17 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 		print("Unsupported connector in Liferay 6.2: BlogsDisplayByEntryIdLiferayConnector")
 		return nil
 	}
+
+	public func createRatingUpdateConnector(classPK classPK: Int64, className: String, score: Double, ratingsGroupCount: Int32) -> RatingUpdateLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: RatingUpdateLiferayConnector")
+		return nil
+	}
+	
+	public func createRatingDeleteConnector(classPK classPK: Int64, className: String, ratingsGroupCount: Int32) -> RatingDeleteLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: RatingDeleteLiferayConnector")
+		return nil
+	}
+
 }
 
 
@@ -478,6 +519,34 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			repositoryId: repositoryId,
 			folderId: folderId,
 			onProgress: onProgress)
+	}
+	
+	public func createRatingLoadByEntryIdConnector(entryId entryId: Int64, ratingsGroupCount: Int32) -> RatingLoadByEntryIdLiferayConnector? {
+		return Liferay70RatingLoadByEntryIdConnector(
+			entryId: entryId,
+			ratingsGroupCount: ratingsGroupCount)
+	}
+	
+	public func createRatingLoadByClassPKConnector(classPK: Int64, className: String, ratingsGroupCount: Int32) -> RatingLoadByClassPKLiferayConnector? {
+		return Liferay70RatingLoadByClassPKConnector(
+			classPK: classPK,
+			className: className,
+			ratingsGroupCount: ratingsGroupCount)
+	}
+	
+	public func createRatingUpdateConnector(classPK classPK: Int64, className: String, score: Double, ratingsGroupCount: Int32) -> RatingUpdateLiferayConnector? {
+		return Liferay70RatingUpdateConnector(
+			classPK: classPK,
+			className: className,
+			score: score,
+			ratingsGroupCount: ratingsGroupCount)
+	}
+	
+	public func createRatingDeleteConnector(classPK classPK: Int64, className: String, ratingsGroupCount: Int32) -> RatingDeleteLiferayConnector? {
+		return Liferay70RatingDeleteConnector(
+			classPK: classPK,
+			className: className,
+			ratingsGroupCount: ratingsGroupCount)
 	}
 
 	public func createAssetLoadByEntryIdConnector(entryId: Int64) -> AssetLoadByEntryIdLiferayConnector? {

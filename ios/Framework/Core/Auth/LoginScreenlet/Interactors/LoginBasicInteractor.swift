@@ -113,8 +113,8 @@ public class LoginBasicInteractor: ServerConnectorInteractor {
 		return connector
 	}
 
-	override public func completedConnector(op: ServerConnector) {
-		self.resultUserAttributes = (op as! GetUserBaseLiferayConnector).resultUserAttributes
+	override public func completedConnector(c: ServerConnector) {
+		self.resultUserAttributes = (c as! GetUserBaseLiferayConnector).resultUserAttributes
 	}
 
 }

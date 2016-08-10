@@ -61,12 +61,12 @@ import UIKit
 
 	private func doStep(
 			number: Int,
-			_ op: ServerConnector,
+			_ c: ServerConnector,
 			_ waitGroup: dispatch_group_t) -> ValidationError? {
 
-		let originalCallback = op.onComplete
+		let originalCallback = c.onComplete
 
-		return op.validateAndEnqueue { connector in
+		return c.validateAndEnqueue { connector in
 			self.lastError = connector.lastError ?? self.lastError
 
 			originalCallback?(connector)

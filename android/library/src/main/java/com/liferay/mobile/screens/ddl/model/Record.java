@@ -17,7 +17,7 @@ package com.liferay.mobile.screens.ddl.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.liferay.mobile.screens.assetlist.AssetEntry;
+import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.util.JSONUtil;
 
 import org.json.JSONException;

@@ -44,6 +44,7 @@ public class DDLListPageLoadInteractor : BaseListPageLoadInteractor {
 
 		connector.userId = (self.userId != 0) ? self.userId : nil
 		connector.recordSetId = self.recordSetId
+		connector.obcClassName = self.obcClassName
 
 		return connector;
 	}
@@ -52,7 +53,7 @@ public class DDLListPageLoadInteractor : BaseListPageLoadInteractor {
 		return DDLRecord(dataAndAttributes: serverResult)
 	}
 
-	override public func cacheKey(op: PaginationLiferayConnector) -> String {
+	override public func cacheKey(c: PaginationLiferayConnector) -> String {
 		return "\(recordSetId)"
 	}
 

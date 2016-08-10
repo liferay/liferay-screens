@@ -49,12 +49,12 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-	override func completedConnector(op: ServerConnector) {
-		if let htmlConnector = (op as? WebContentLoadHtmlLiferayConnector),
+	override func completedConnector(c: ServerConnector) {
+		if let htmlConnector = (c as? WebContentLoadHtmlLiferayConnector),
 				html = htmlConnector.resultHTML {
 			self.resultHTML = html
 		}
-		else if let record = (op as? WebContentLoadStructuredLiferayConnector)?.resultRecord {
+		else if let record = (c as? WebContentLoadStructuredLiferayConnector)?.resultRecord {
 			self.resultRecord = record
 		}
 		else {
@@ -63,28 +63,28 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-	override func readFromCache(op: ServerConnector, result: AnyObject? -> ()) {
+	override func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
 		}
-		guard let loadOp = op as? WebContentLoadBaseLiferayConnector else {
+		guard let loadCon = c as? WebContentLoadBaseLiferayConnector else {
 			result(nil)
 			return
 		}
 
-		if let loadHtml = loadOp as? WebContentLoadHtmlLiferayConnector {
+		if let loadHtml = loadCon as? WebContentLoadHtmlLiferayConnector {
 			cacheManager.getString(
 					collection: ScreenletName(WebContentDisplayScreenlet),
-					key: articleCacheKey(loadOp.groupId, loadOp.articleId)) {
+					key: articleCacheKey(loadCon.groupId, loadCon.articleId)) {
 				loadHtml.resultHTML = $0
 				result($0)
 			}
 		}
-		else if let loadStructured = loadOp as? WebContentLoadStructuredLiferayConnector {
+		else if let loadStructured = loadCon as? WebContentLoadStructuredLiferayConnector {
 			cacheManager.getAny(
 					collection: ScreenletName(WebContentDisplayScreenlet),
-					key: articleCacheKey(loadOp.groupId, loadOp.articleId)) {
+					key: articleCacheKey(loadCon.groupId, loadCon.articleId)) {
 				loadStructured.resultRecord = $0 as? DDLRecord
 				result(loadStructured.resultRecord)
 			}
@@ -94,27 +94,27 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-	override func writeToCache(op: ServerConnector) {
+	override func writeToCache(c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
-		guard let loadOp = op as? WebContentLoadBaseLiferayConnector else {
+		guard let loadCon = c as? WebContentLoadBaseLiferayConnector else {
 			return
 		}
 		guard let value: NSCoding =
-				(loadOp as? WebContentLoadHtmlLiferayConnector)?.resultHTML
+				(loadCon as? WebContentLoadHtmlLiferayConnector)?.resultHTML
 				??
-				(loadOp as? WebContentLoadStructuredLiferayConnector)?.resultRecord else {
+				(loadCon as? WebContentLoadStructuredLiferayConnector)?.resultRecord else {
 			return
 		}
 
 		cacheManager.setClean(
 			collection: ScreenletName(WebContentDisplayScreenlet),
-			key: articleCacheKey(loadOp.groupId, loadOp.articleId),
+			key: articleCacheKey(loadCon.groupId, loadCon.articleId),
 			value: value,
 			attributes: [
 				"groupId": NSNumber(longLong: groupId),
-				"articleId": loadOp.articleId])
+				"articleId": loadCon.articleId])
 	}
 
 	private func articleCacheKey(groupId: Int64, _ articleId: String) -> String {

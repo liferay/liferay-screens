@@ -4,5 +4,6 @@
 		<attr name="groupId"/>
 		<attr name="folderId"/>
 		<attr name="offlinePolicy"/>
+		<attr name="obcClassName" />
 	</declare-styleable>
 </resources>

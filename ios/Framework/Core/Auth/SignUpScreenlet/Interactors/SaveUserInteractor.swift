@@ -25,8 +25,8 @@ public class SaveUserInteractor: ServerConnectorInteractor {
 			viewModel: screenlet.viewModel)
 	}
 
-	override public func completedConnector(op: ServerConnector) {
-		self.resultUserAttributes = (op as! UpdateCurrentUserLiferayConnector).resultUserAttributes
+	override public func completedConnector(c: ServerConnector) {
+		self.resultUserAttributes = (c as! UpdateCurrentUserLiferayConnector).resultUserAttributes
 	}
 
 }

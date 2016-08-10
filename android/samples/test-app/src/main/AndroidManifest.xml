@@ -40,6 +40,8 @@
 		<activity android:name=".ListBookmarksActivity" />
 		<activity android:name=".WebContentDisplayStructuredActivity" />
 		<activity android:name=".WebViewListActivity" />
+		<activity android:name=".RatingsActivity"/>
+		<activity android:name=".AssetDisplayActivity" />
 
 		<receiver android:name="com.liferay.mobile.screens.cache.CacheReceiver">
 			<intent-filter>

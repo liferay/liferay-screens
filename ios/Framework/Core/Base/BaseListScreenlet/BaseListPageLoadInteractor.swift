@@ -18,6 +18,8 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 	
 	public let page: Int
 	public let computeRowCount: Bool
+
+	public var obcClassName: String?
 	
 	public var resultAllPagesContent: [String : [AnyObject?]]?
 	public var resultPageContent: [String : [AnyObject]]?
@@ -36,9 +38,9 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 		fatalError("createConnector must be overriden")
 	}
 	
-	override public func completedConnector(op: ServerConnector) {
-		if let pageOp = op as? PaginationLiferayConnector {
-			processLoadPageResult(pageOp.resultPageContent ?? [], rowCount: pageOp.resultRowCount)
+	override public func completedConnector(c: ServerConnector) {
+		if let pageCon = c as? PaginationLiferayConnector {
+			processLoadPageResult(pageCon.resultPageContent ?? [], rowCount: pageCon.resultRowCount)
 		}
 	}
 	
@@ -166,24 +168,24 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 	
 	//MARK: Cache
 	
-	override public func readFromCache(op: ServerConnector, result: AnyObject? -> ()) {
+	override public func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
 		}
 		
-		if let loadOp = op as? PaginationLiferayConnector {
-			let key = cacheKey(loadOp)
+		if let loadCon = c as? PaginationLiferayConnector {
+			let key = cacheKey(loadCon)
 			cacheManager.getSome(
 				collection: ScreenletName(screenlet!.dynamicType),
 				keys: ["\(key)-\(page)", "\(key)-\(page)-count"]) {
 					
-					loadOp.resultPageContent = $0.first as? [[String:AnyObject]]
+					loadCon.resultPageContent = $0.first as? [[String:AnyObject]]
 					if $0.count > 1 {
-						loadOp.resultRowCount = $0.last as? Int
+						loadCon.resultRowCount = $0.last as? Int
 					}
 					
-					result(loadOp.resultPageContent)
+					result(loadCon.resultPageContent)
 			}
 		}
 		else {
@@ -191,16 +193,16 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 		}
 	}
 	
-	override public func writeToCache(op: ServerConnector) {
+	override public func writeToCache(c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
 		
-		if let loadOp = op as? PaginationLiferayConnector,
-			pageContent = loadOp.resultPageContent
+		if let loadCon = c as? PaginationLiferayConnector,
+			pageContent = loadCon.resultPageContent
 			where !pageContent.isEmpty {
 			
-			let key = cacheKey(loadOp)
+			let key = cacheKey(loadCon)
 			
 			cacheManager.setClean(
 				collection: ScreenletName(screenlet!.dynamicType),
@@ -208,7 +210,7 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 				value: pageContent,
 				attributes: [:])
 			
-			if let rowCount = loadOp.resultRowCount {
+			if let rowCount = loadCon.resultRowCount {
 				cacheManager.setClean(
 					collection: ScreenletName(screenlet!.dynamicType),
 					key: "\(key)-\(page)-count",
@@ -218,7 +220,7 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 		}
 	}
 	
-	public func cacheKey(op: PaginationLiferayConnector) -> String {
+	public func cacheKey(c: PaginationLiferayConnector) -> String {
 		fatalError("cacheKey must be overriden")
 	}
 	

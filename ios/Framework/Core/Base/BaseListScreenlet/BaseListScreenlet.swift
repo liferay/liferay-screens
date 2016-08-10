@@ -24,13 +24,13 @@ import UIKit
 	
 	@IBInspectable public var refreshControl: Bool = true {
 		didSet {
-			(screenletView as? BaseListTableView)?.refreshClosure =
-				refreshControl ? self.loadList : nil
+			updateRefreshClosure()
 		}
 	}
 	
 	@IBInspectable public var firstPageSize: Int = 50
 	@IBInspectable public var pageSize: Int = 25
+	@IBInspectable public var obcClassName: String = ""
 	
 	public var baseListView: BaseListView {
 		return screenletView as! BaseListView
@@ -46,9 +46,8 @@ import UIKit
 	override public func onCreated() {
 		baseListView.onSelectedRowClosure = onSelectedRow
 		baseListView.fetchPageForRow = loadPageForRow
-		
-		(screenletView as? BaseListTableView)?.refreshClosure =
-			refreshControl ? self.loadList : nil
+
+		updateRefreshClosure()
 	}
 	
 	override public func onShow() {
@@ -61,15 +60,17 @@ import UIKit
 	
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		let page = (sender as? Int) ?? 0
-		
+
 		let interactor = createPageLoadInteractor(
 			page: page,
 			computeRowCount: (page == 0))
 		
+		
 		paginationInteractors[page] = interactor
+
+		interactor.obcClassName = (obcClassName == "") ? nil : obcClassName
 		
 		interactor.onSuccess = {
-			
 			self.baseListView.setRows(interactor.resultAllPagesContent!, newRows: interactor.resultPageContent!,
 			                          rowCount: interactor.resultRowCount ?? self.baseListView.rowCount,
 			                          sections: interactor.sections ?? [BaseListView.DefaultSection])
@@ -140,11 +141,10 @@ import UIKit
 	
 	
 	public func createPageLoadInteractor(
-		page page: Int,
-		     computeRowCount: Bool)
-		-> BaseListPageLoadInteractor {
+			page page: Int,
+			computeRowCount: Bool) -> BaseListPageLoadInteractor {
 			
-			fatalError("createPageLoadInteractor must be overriden")
+		fatalError("createPageLoadInteractor must be overriden")
 	}
 	
 	public func onLoadPageError(page page: Int, error: NSError) {
@@ -156,5 +156,16 @@ import UIKit
 	
 	public func onSelectedRow(row:AnyObject) {
 	}
-	
+
+	internal func updateRefreshClosure() {
+
+		let refreshClosure: (Void -> Bool)? = refreshControl ? self.loadList : nil
+
+		if let screenletView = screenletView as? BaseListTableView {
+			screenletView.refreshClosure = refreshClosure
+		}
+		else if let screenletView = screenletView as? BaseListCollectionView {
+			screenletView.refreshClosure = refreshClosure
+		}
+	}
 }
