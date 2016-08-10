@@ -55,8 +55,8 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 				onUploadBytes:  onUploadedBytes)
 	}
 
-	public override func completedConnector(op: ServerConnector) {
-		if let op = op as? ImageGalleryUploadConnector, uploadResult = op.uploadResult {
+	public override func completedConnector(c: ServerConnector) {
+		if let c = c as? ImageGalleryUploadConnector, uploadResult = c.uploadResult {
 			result = uploadResult
 		}
 		else if cacheStrategy == .CacheOnly {

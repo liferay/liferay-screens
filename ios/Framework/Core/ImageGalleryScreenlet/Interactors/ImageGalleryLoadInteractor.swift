@@ -52,7 +52,7 @@ public class ImageGalleryLoadInteractor : BaseListPageLoadInteractor {
         return ImageEntry(attributes:serverResult)
     }
     
-    public override func cacheKey(op: PaginationLiferayConnector) -> String {
+    public override func cacheKey(c: PaginationLiferayConnector) -> String {
         return ImageGalleryLoadInteractor.CacheKey
     }
 }
