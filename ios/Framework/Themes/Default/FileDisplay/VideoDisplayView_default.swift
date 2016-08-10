@@ -24,6 +24,11 @@ public class VideoDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
 	public var url: NSURL? {
 		didSet {
+			if let playerController = self.playerController {
+				playerController.view.removeFromSuperview()
+				self.playerController = nil
+			}
+
 			if let url = url {
 				self.playerController = AVPlayerViewController()
 
