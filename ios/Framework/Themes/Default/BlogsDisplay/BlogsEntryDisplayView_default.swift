@@ -28,7 +28,8 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 
 	@IBOutlet weak var imageHeightConstraint: NSLayoutConstraint?
 
-	public var contentStyle: String = "font-size:17"
+	public var contentStyle = "font-size:17"
+	public var headerImageHeight: CGFloat = 125.0
 
 	public var blogsEntry: BlogsEntry? {
 		didSet {
@@ -37,7 +38,7 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 				//Set image blog if exist
 				let imageId = blogsEntry.coverImageFileEntryId
 				if imageId != 0 {
-					imageHeightConstraint?.constant = 125
+					imageHeightConstraint?.constant = self.headerImageHeight
 
 					imageDisplayScreenlet?.className = FileEntry.className
 					imageDisplayScreenlet?.classPK = imageId
@@ -61,8 +62,7 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 				let dateFormatter = NSDateFormatter()
 				dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
 				dateFormatter.locale = NSLocale(localeIdentifier: NSLocale.currentLocaleString)
-				let dateString = dateFormatter.stringFromDate(date)
-				dateLabel?.text = dateString
+				dateLabel?.text = dateFormatter.stringFromDate(date)
 
 				//Set blog title and subtitle
 				titleLabel?.text = blogsEntry.title
