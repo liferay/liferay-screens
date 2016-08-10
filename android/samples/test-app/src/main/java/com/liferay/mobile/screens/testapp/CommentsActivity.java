@@ -96,7 +96,6 @@ public class CommentsActivity extends ThemeActivity
 			commentEntry.getCommentId()));
 		if (commentEntry.getCommentId() == displayScreenlet.getCommentId()) {
 			displayScreenlet.load();
-			listScreenlet.refreshView();
 		}
 	}
 
@@ -165,9 +164,8 @@ public class CommentsActivity extends ThemeActivity
 
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		listScreenlet.setEditable(isChecked);
+		listScreenlet.allowEdition(isChecked);
 		displayScreenlet.setEditable(isChecked);
-		listScreenlet.refreshView();
 		displayScreenlet.refreshView();
 	}
 

@@ -35,14 +35,9 @@ public class CommentListView
 	}
 
 	@Override
-	public void refreshView() {
+	public void allowEdition(boolean editable) {
+		getAdapter().setEditable(editable);
 		getAdapter().notifyDataSetChanged();
-	}
-
-	@Override
-	public void setEditable(boolean editable) {
-		boolean editable1 = editable;
-		getAdapter().setEditable(editable1);
 	}
 
 	@Override

@@ -39,16 +39,12 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
-	public void refreshView() {
-		((CommentListViewModel) getViewModel()).refreshView();
-	}
-
 	public void addNewCommentEntry(CommentEntry commentEntry) {
-		((CommentListViewModel) getViewModel()).addNewCommentEntry(commentEntry);
+		getViewModel().addNewCommentEntry(commentEntry);
 	}
 
 	public void removeCommentEntry(CommentEntry commentEntry) {
-		((CommentListViewModel) getViewModel()).removeCommentEntry(commentEntry);
+		getViewModel().removeCommentEntry(commentEntry);
 	}
 
 	@Override
@@ -56,7 +52,7 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 		super.onScreenletAttached();
 
 		if (!isInEditMode()) {
-			((CommentListViewModel) getViewModel()).setEditable(editable);
+			getViewModel().allowEdition(editable);
 		}
 	}
 
@@ -197,9 +193,14 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 		return editable;
 	}
 
-	public void setEditable(boolean editable) {
+	public void allowEdition(boolean editable) {
 		this.editable = editable;
-		((CommentListViewModel) getViewModel()).setEditable(editable);
+
+		getViewModel().allowEdition(editable);
+	}
+
+	protected CommentListViewModel getViewModel() {
+		return (CommentListViewModel) super.getViewModel();
 	}
 
 	private OfflinePolicy offlinePolicy;
