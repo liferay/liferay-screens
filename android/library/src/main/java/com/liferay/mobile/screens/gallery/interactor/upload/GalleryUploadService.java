@@ -1,6 +1,8 @@
 package com.liferay.mobile.screens.gallery.interactor.upload;
 
 import android.app.IntentService;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,6 +12,7 @@ import com.liferay.mobile.android.http.file.UploadData;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v7.dlapp.DLAppService;
+import com.liferay.mobile.screens.base.interactor.BasicEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
@@ -29,8 +32,26 @@ import org.json.JSONObject;
  */
 public class GalleryUploadService extends IntentService {
 
+	private boolean shouldCancel = false;
+
 	public GalleryUploadService() {
 		super(GalleryUploadService.class.getCanonicalName());
+	}
+
+	@Override
+	public void onCreate() {
+		super.onCreate();
+		EventBusUtil.register(this);
+	}
+
+	public void onEvent(CancelUploadEvent event) {
+		shouldCancel = true;
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		EventBusUtil.unregister(this);
 	}
 
 	@Override
@@ -39,6 +60,10 @@ public class GalleryUploadService extends IntentService {
 	}
 
 	private void uploadFromIntent(Intent intent) {
+
+		if (shouldCancel) {
+			return;
+		}
 
 		int screenletId = intent.getIntExtra("screenletId", 0);
 		long repositoryId = intent.getLongExtra("repositoryId", 0);
@@ -66,7 +91,7 @@ public class GalleryUploadService extends IntentService {
 
 		String sourceName = picturePath.substring(picturePath.lastIndexOf("/") + 1);
 		if (title.isEmpty()) {
-			title = sourceName;
+			title = System.nanoTime() + sourceName;
 		}
 
 		UploadData uploadData = createUploadData(screenletId, picturePath, sourceName);
@@ -90,6 +115,11 @@ public class GalleryUploadService extends IntentService {
 			@Override
 			public void onProgress(int totalBytesSent) {
 				EventBusUtil.post(new GalleryUploadEvent(screenletId, fileSize, totalBytesSent));
+			}
+
+			@Override
+			public boolean isCancelled() {
+				return shouldCancel;
 			}
 		});
 	}
