@@ -70,8 +70,8 @@ import UIKit
 			if let resultAsset = interactor.asset {
 				self.assetDisplayDelegate?.screenlet?(self, onAssetResponse: resultAsset)
 
-				if let childScreenlet = self.createChildScreenlet(resultAsset) {
-					self.assetDisplayViewModel?.childScreenlet = childScreenlet
+				if let innerScreenlet = self.createInnerScreenlet(resultAsset) {
+					self.assetDisplayViewModel?.innerScreenlet = innerScreenlet
 					self.assetDisplayViewModel?.asset = resultAsset
 				}
 				else {
@@ -91,7 +91,7 @@ import UIKit
 		return self.performDefaultAction()
 	}
 
-	private func createChildScreenlet(asset: Asset) -> BaseScreenlet? {
+	public func createInnerScreenlet(asset: Asset) -> BaseScreenlet? {
 		guard let view = screenletView else {
 			return nil
 		}
@@ -100,28 +100,28 @@ import UIKit
 
 		let factory = AssetDisplayFactory()
 
-		guard let childScreenlet = factory.createScreenlet(frame, asset: asset) else {
+		guard let innerScreenlet = factory.createScreenlet(frame, asset: asset) else {
 			return nil
 		}
 
-		configureChildScreenlet(childScreenlet, asset: asset)
+		configureInnerScreenlet(innerScreenlet, asset: asset)
 
-		return childScreenlet
+		return innerScreenlet
 	}
 
-	func configureChildScreenlet(childScreenlet: BaseScreenlet, asset: Asset) {
-		if let screenlet = childScreenlet as? FileDisplayScreenlet {
+	public func configureInnerScreenlet(innerScreenlet: BaseScreenlet, asset: Asset) {
+		if let screenlet = innerScreenlet as? FileDisplayScreenlet {
 			screenlet.fileEntry = FileEntry(attributes: asset.attributes)
 			screenlet.autoLoad = false
 			screenlet.load()
 		}
-		else if let screenlet = childScreenlet as? BlogsEntryDisplayScreenlet {
+		else if let screenlet = innerScreenlet as? BlogsEntryDisplayScreenlet {
 			screenlet.blogsEntry = BlogsEntry(attributes: asset.attributes)
 			screenlet.autoLoad = false
 			screenlet.load()
 		}
 
-		assetDisplayDelegate?.screenlet?(self, onConfigureScreenlet: childScreenlet, onAsset: asset)
+		assetDisplayDelegate?.screenlet?(self, onConfigureScreenlet: innerScreenlet, onAsset: asset)
 	}
 
 }

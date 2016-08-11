@@ -24,11 +24,11 @@ public class AssetDisplayView_default: BaseScreenletView, AssetDisplayViewModel 
 
 	public var asset: Asset?
 
-	public var childScreenlet: BaseScreenlet? {
+	public var innerScreenlet: BaseScreenlet? {
 		set {
-			if let oldScreenlet = self.childScreenlet {
+			if let oldScreenlet = self.innerScreenlet {
 				oldScreenlet.removeFromSuperview()
-				self.childScreenlet = nil
+				self.innerScreenlet = nil
 			}
 
 			if let newScreenlet = newValue {
