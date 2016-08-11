@@ -100,7 +100,7 @@ import UIKit
 
 		let factory = AssetDisplayScreenletFactory(asset: asset)
 
-		guard let childScreenlet = factory.createScreenlet(frame, screenlet: self) else {
+		guard let childScreenlet = factory.createScreenlet(frame) else {
 			return nil
 		}
 

@@ -28,7 +28,7 @@ import UIKit
 	let videoMimeTypes = ["video/mp4", "video/3gp", "video/quicktime"]
 	let audioMimeTypes = ["audio/mpeg", "audio/mpeg3", "audio/wav"]
 
-	public func createScreenlet(frame: CGRect, screenlet: AssetDisplayScreenlet?) -> BaseScreenlet? {
+	public func createScreenlet(frame: CGRect) -> BaseScreenlet? {
 
 		let classAssetName = AssetClassNameIds.get(asset.classNameId)
 
