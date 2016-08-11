@@ -17,33 +17,23 @@ import UIKit
 @objc public class AssetDisplayScreenletFactory: NSObject {
 
 	public func createScreenlet(frame: CGRect, asset: Asset) -> BaseScreenlet? {
-		// TODO don't use AssetClassNameIds here
-		// Using this class makes the programmer to set the correct ids inside it
-		// and this is a new configuration step.
-		// Try to retrieve the className from the portal somehow.
-		let classAssetName = AssetClassNameIds.get(asset.classNameId)
-
-		var childScreenlet: BaseScreenlet?
-
-		if let className = classAssetName {
-			if asset.isAnyMimeType(ImageDisplayScreenlet.supportedMimeTypes) {
-				childScreenlet = ImageDisplayScreenlet(frame: frame, themeName: nil)
-			}
-			else if asset.isAnyMimeType(VideoDisplayScreenlet.supportedMimeTypes) {
-				childScreenlet = VideoDisplayScreenlet(frame: frame, themeName: nil)
-			}
-			else if asset.isAnyMimeType(AudioDisplayScreenlet.supportedMimeTypes) {
-				childScreenlet = AudioDisplayScreenlet(frame: frame, themeName: nil)
-			}
-			else if asset.isAnyMimeType(PdfDisplayScreenlet.supportedMimeTypes) {
-				childScreenlet = PdfDisplayScreenlet(frame: frame, themeName: nil)
-			}
-			else if asset.isAnyMimeType(BlogsEntryDisplayScreenlet.supportedMimeTypes) {
-				childScreenlet = BlogsEntryDisplayScreenlet(frame: frame, themeName: nil)
-			}
+		if asset.isAnyMimeType(ImageDisplayScreenlet.supportedMimeTypes) {
+			return ImageDisplayScreenlet(frame: frame, themeName: nil)
+		}
+		else if asset.isAnyMimeType(VideoDisplayScreenlet.supportedMimeTypes) {
+			return VideoDisplayScreenlet(frame: frame, themeName: nil)
+		}
+		else if asset.isAnyMimeType(AudioDisplayScreenlet.supportedMimeTypes) {
+			return AudioDisplayScreenlet(frame: frame, themeName: nil)
+		}
+		else if asset.isAnyMimeType(PdfDisplayScreenlet.supportedMimeTypes) {
+			return PdfDisplayScreenlet(frame: frame, themeName: nil)
+		}
+		else if asset.isAnyMimeType(BlogsEntryDisplayScreenlet.supportedMimeTypes) {
+			return BlogsEntryDisplayScreenlet(frame: frame, themeName: nil)
 		}
 
-		return childScreenlet
+		return nil
 	}
 
 }
