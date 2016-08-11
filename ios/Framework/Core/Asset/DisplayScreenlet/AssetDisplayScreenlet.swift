@@ -98,7 +98,7 @@ import UIKit
 
 		let frame = CGRect(origin: CGPointZero, size: view.frame.size)
 
-		let factory = AssetDisplayScreenletFactory()
+		let factory = AssetDisplayFactory()
 
 		guard let childScreenlet = factory.createScreenlet(frame, asset: asset) else {
 			return nil

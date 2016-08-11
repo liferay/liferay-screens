@@ -14,7 +14,7 @@
 import UIKit
 
 
-@objc public class AssetDisplayScreenletFactory: NSObject {
+@objc public class AssetDisplayFactory: NSObject {
 
 	public func createScreenlet(frame: CGRect, asset: Asset) -> BaseScreenlet? {
 		if asset.isAnyMimeType(ImageDisplayScreenlet.supportedMimeTypes) {
