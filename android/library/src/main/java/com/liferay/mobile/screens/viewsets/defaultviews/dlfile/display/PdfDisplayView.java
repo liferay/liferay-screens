@@ -66,6 +66,8 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 
 		previousPage = (Button) findViewById(R.id.liferay_previous_page);
 		nextPage = (Button) findViewById(R.id.liferay_next_page);
+
+		title = (TextView) findViewById(R.id.liferay_asset_title);
 	}
 
 	@Override
@@ -189,6 +191,7 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 		try {
 			renderer = new PdfRenderer(ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY));
 			renderPdfPage(0);
+			title.setText(fileEntry.getTitle());
 		} catch (IOException e) {
 			LiferayLogger.e("Error rendering PDF", e);
 		}
@@ -205,6 +208,8 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 
 		progressBar.setVisibility(GONE);
 		progressText.setVisibility(GONE);
+
+		title.setVisibility(VISIBLE);
 	}
 
 	@Override
@@ -229,4 +234,5 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 	private PdfRenderer renderer;
 	private ProgressBar progressBar;
 	private TextView progressText;
+	private TextView title;
 }
