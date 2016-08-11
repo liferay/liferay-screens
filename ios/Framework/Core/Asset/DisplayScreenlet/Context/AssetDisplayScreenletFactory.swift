@@ -21,7 +21,10 @@ import UIKit
 	let audioMimeTypes = ["audio/mpeg", "audio/mpeg3", "audio/wav"]
 
 	public func createScreenlet(frame: CGRect, asset: Asset) -> BaseScreenlet? {
-
+		// TODO don't use AssetClassNameIds here
+		// Using this class makes the programmer to set the correct ids inside it
+		// and this is a new configuration step.
+		// Try to retrieve the className from the portal somehow.
 		let classAssetName = AssetClassNameIds.get(asset.classNameId)
 
 		var childScreenlet: BaseScreenlet?
