@@ -22,6 +22,10 @@ import Foundation
 
 	public var originalBody: String {
 		return attributes["body"]!.description
+			.stringByReplacingOccurrencesOfString("\n", withString: "")
+			.stringByReplacingOccurrencesOfString("</p><p>", withString: "\n")
+			.stringByReplacingOccurrencesOfString("<p>", withString: "")
+			.stringByReplacingOccurrencesOfString("</p>", withString: "")
 	}
 
 	public var plainBody: String {
