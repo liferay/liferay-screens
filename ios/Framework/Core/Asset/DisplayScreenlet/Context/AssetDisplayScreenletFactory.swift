@@ -58,7 +58,7 @@ import UIKit
 			}
 		}
 
-		return configureScreenlet(screenlet, childScreenlet: childScreenlet)
+		return childScreenlet
 	}
 
 	func isImage(mimeType: String) -> Bool {
@@ -73,24 +73,4 @@ import UIKit
 		return audioMimeTypes.contains(mimeType)
 	}
 
-	func configureScreenlet(screenlet: AssetDisplayScreenlet?, childScreenlet: BaseScreenlet?) -> BaseScreenlet? {
-
-		if childScreenlet is FileDisplayScreenlet {
-			if let s = childScreenlet as? FileDisplayScreenlet {
-				s.fileEntry = FileEntry(attributes: self.asset.attributes)
-				s.autoLoad = false
-				s.load()
-			}
-		}
-		else if childScreenlet is BlogsEntryDisplayScreenlet {
-			if let s = childScreenlet as? BlogsEntryDisplayScreenlet {
-				s.blogsEntry = BlogsEntry(attributes: self.asset.attributes)
-				s.autoLoad = false
-			}
-		}
-
-		screenlet?.assetDisplayDelegate?.screenlet?(screenlet!, onConfigureScreenlet: childScreenlet, onAsset: self.asset)
-
-		return childScreenlet
-	}
 }

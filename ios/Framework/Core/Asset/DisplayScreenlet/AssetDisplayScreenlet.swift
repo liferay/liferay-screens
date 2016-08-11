@@ -104,8 +104,24 @@ import UIKit
 			return nil
 		}
 
-		addSubview(childScreenlet)
+		configureChildScreenlet(childScreenlet, asset: asset)
 
 		return childScreenlet
 	}
+
+	func configureChildScreenlet(childScreenlet: BaseScreenlet, asset: Asset) {
+		if let screenlet = childScreenlet as? FileDisplayScreenlet {
+			screenlet.fileEntry = FileEntry(attributes: asset.attributes)
+			screenlet.autoLoad = false
+			screenlet.load()
+		}
+		else if let screenlet = childScreenlet as? BlogsEntryDisplayScreenlet {
+			screenlet.blogsEntry = BlogsEntry(attributes: asset.attributes)
+			screenlet.autoLoad = false
+			screenlet.load()
+		}
+
+		assetDisplayDelegate?.screenlet?(self, onConfigureScreenlet: childScreenlet, onAsset: asset)
+	}
+
 }
