@@ -78,7 +78,24 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 	}
 
 	@IBAction func editButtonClicked() {
-		changeState(.Editing)
+		if let viewController = self.presentingViewController, editedComment = self.comment
+				where editedComment.isStyled {
+			let alertController = UIAlertController(
+				title: LocalizedString("default", key: "comment-display-warning", obj: self),
+				message: LocalizedString("default", key: "comment-display-styled", obj: self),
+				preferredStyle: UIAlertControllerStyle.Alert)
+
+			let dismissAction = UIAlertAction(
+					title: LocalizedString("default", key: "comment-display-dismiss", obj: self),
+					style: UIAlertActionStyle.Default) { _ in
+				self.changeState(.Editing)
+			}
+			alertController.addAction(dismissAction)
+
+			viewController.presentViewController(alertController, animated: true, completion: nil)
+		} else {
+			changeState(.Editing)
+		}
 	}
 
 	@IBAction func cancelButtonClicked() {

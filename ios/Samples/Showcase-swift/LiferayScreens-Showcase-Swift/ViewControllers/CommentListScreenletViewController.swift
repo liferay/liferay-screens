@@ -31,6 +31,7 @@ class CommentListScreenletViewController: UIViewController,
 		self.listScreenlet?.delegate = self
 		self.addScreenlet?.delegate = self
 		self.displayScreenlet?.delegate = self
+		self.displayScreenlet?.presentingViewController = self
 
 		self.displayScreenlet?.layer.cornerRadius = 4
 	}
