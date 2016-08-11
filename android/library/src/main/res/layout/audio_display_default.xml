@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display.AudioDisplayView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	>
 
-  <VideoView
-      android:id="@+id/liferay_audio_asset"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"/>
+	<VideoView
+		android:id="@+id/liferay_audio_asset"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display.AudioDisplayView>
