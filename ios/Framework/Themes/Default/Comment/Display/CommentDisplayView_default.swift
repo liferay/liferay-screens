@@ -46,7 +46,8 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 			changeState(.Normal)
 
 			if let comment = comment {
-				bodyLabel?.text = comment.body
+				bodyLabel?.attributedText = stringToAttributedText(comment.htmlBody)
+
 				let loadedUserId = userPortraitScreenlet?.userId
 				if loadedUserId == nil || loadedUserId != comment.userId {
 					userPortraitScreenlet?.load(userId: comment.userId)
@@ -138,5 +139,16 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 			bodyLabel?.hidden = false
 			bodyTextField?.hidden = true
 		}
+	}
+
+	private func stringToAttributedText(string: String) -> NSAttributedString {
+		let encodedData = string.dataUsingEncoding(NSUTF8StringEncoding)!
+
+		var attributes : [String: AnyObject] = [
+			NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+			NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding,
+		]
+
+		return try! NSAttributedString(data: encodedData, options: attributes, documentAttributes: nil)
 	}
 }

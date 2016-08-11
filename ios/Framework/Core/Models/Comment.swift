@@ -16,10 +16,28 @@ import Foundation
 
 @objc public class Comment : NSObject, NSCoding {
 
+	private let AllowedTags = ["strong", "i", "b", "a", "/strong", "/i", "/b", "/a"]
+
 	public let attributes :[String:AnyObject]
 
-	public var body: String {
+	public var originalBody: String {
 		return attributes["body"]!.description
+	}
+
+	public var plainBody: String {
+		return originalBody.stringByReplacingOccurrencesOfString(
+			"<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+	}
+
+	public var htmlBody: String {
+		return originalBody.stringByReplacingOccurrencesOfString(
+				"(?i)<(?!\(AllowedTags.joinWithSeparator("|"))).*?>", withString: "",
+				options: .RegularExpressionSearch, range: nil)
+			.stringByReplacingOccurrencesOfString("\n", withString: "</br>")
+	}
+
+	public var isStyled: Bool {
+		return plainBody != htmlBody.stringByReplacingOccurrencesOfString("</br>", withString: "\n")
 	}
 
 	public var commentId: Int64 {

@@ -56,7 +56,7 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 
 	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
 		if let comment = object as? Comment {
-			cell.textLabel?.text = comment.body
+			cell.textLabel?.text = comment.plainBody
 			cell.accessoryType = .DisclosureIndicator
 			cell.accessoryView = nil
 		}
