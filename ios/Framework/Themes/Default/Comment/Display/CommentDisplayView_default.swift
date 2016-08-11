@@ -106,6 +106,13 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 		return DefaultProgressPresenter()
 	}
 
+	public override var progressMessages: [String : ProgressMessages] {
+		return [
+			CommentDisplayScreenlet.DeleteAction: [.Working: NoProgressMessage],
+			CommentDisplayScreenlet.UpdateAction: [.Working: NoProgressMessage]
+		]
+	}
+
 	//MARK: UITextFieldDelegate
 
 	public override func textFieldShouldReturn(textField: UITextField) -> Bool {
