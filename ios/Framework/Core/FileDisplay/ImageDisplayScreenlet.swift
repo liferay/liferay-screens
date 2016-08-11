@@ -15,4 +15,8 @@ import Foundation
 
 public class ImageDisplayScreenlet: FileDisplayScreenlet {
 
+	override public class var supportedMimeTypes: [String] {
+		return ["image/png", "image/jpg", "image/jpeg", "image/gif"]
+	}
+
 }

@@ -15,4 +15,8 @@ import Foundation
 
 public class PdfDisplayScreenlet: FileDisplayScreenlet {
 
+	override public class var supportedMimeTypes: [String] {
+		return ["application/pdf"]
+	}
+
 }

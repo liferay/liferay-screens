@@ -15,4 +15,8 @@ import Foundation
 
 public class VideoDisplayScreenlet: FileDisplayScreenlet {
 
+	override public class var supportedMimeTypes: [String] {
+		return ["video/mp4", "video/3gp", "video/quicktime"]
+	}
+
 }

@@ -36,6 +36,10 @@ public class FileDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
+	public class var supportedMimeTypes: [String] {
+		return []
+	}
+
 	public var fileEntry: FileEntry?
 
 	public var fileDisplayViewModel: FileDisplayViewModel? {

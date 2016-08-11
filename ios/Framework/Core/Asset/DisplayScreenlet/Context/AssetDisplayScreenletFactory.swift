@@ -16,10 +16,6 @@ import UIKit
 
 @objc public class AssetDisplayScreenletFactory: NSObject {
 
-	let imageMimeTypes = ["image/png", "image/jpg", "image/jpeg", "image/gif"]
-	let videoMimeTypes = ["video/mp4", "video/3gp", "video/quicktime"]
-	let audioMimeTypes = ["audio/mpeg", "audio/mpeg3", "audio/wav"]
-
 	public func createScreenlet(frame: CGRect, asset: Asset) -> BaseScreenlet? {
 		// TODO don't use AssetClassNameIds here
 		// Using this class makes the programmer to set the correct ids inside it
@@ -33,16 +29,16 @@ import UIKit
 			switch className {
 			case "DLFileEntry":
 
-				if asset.isAnyMimeType(imageMimeTypes) {
+				if asset.isAnyMimeType(ImageDisplayScreenlet.supportedMimeTypes) {
 					childScreenlet = ImageDisplayScreenlet(frame: frame, themeName: nil)
 				}
-				else if asset.isAnyMimeType(videoMimeTypes) {
+				else if asset.isAnyMimeType(VideoDisplayScreenlet.supportedMimeTypes) {
 					childScreenlet = VideoDisplayScreenlet(frame: frame, themeName: nil)
 				}
-				else if asset.isAnyMimeType(audioMimeTypes) {
+				else if asset.isAnyMimeType(AudioDisplayScreenlet.supportedMimeTypes) {
 					childScreenlet = AudioDisplayScreenlet(frame: frame, themeName: nil)
 				}
-				else if asset.isAnyMimeType(["application/pdf"]) {
+				else if asset.isAnyMimeType(PdfDisplayScreenlet.supportedMimeTypes) {
 					childScreenlet = PdfDisplayScreenlet(frame: frame, themeName: nil)
 				}
 			case "BlogsEntry":
@@ -53,18 +49,6 @@ import UIKit
 		}
 
 		return childScreenlet
-	}
-
-	func isImage(mimeType: String) -> Bool {
-		return imageMimeTypes.contains(mimeType)
-	}
-
-	func isVideo(mimeType: String) -> Bool {
-		return videoMimeTypes.contains(mimeType)
-	}
-
-	func isAudio(mimeType: String) -> Bool {
-		return audioMimeTypes.contains(mimeType)
 	}
 
 }
