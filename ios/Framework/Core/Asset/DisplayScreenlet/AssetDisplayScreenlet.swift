@@ -95,7 +95,7 @@ import UIKit
 			return false
 		}
 
-		let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+		let frame = CGRect(origin: CGPointZero, size: view.frame.size)
 
 		let factory = AssetDisplayScreenletFactory(asset: asset)
 
