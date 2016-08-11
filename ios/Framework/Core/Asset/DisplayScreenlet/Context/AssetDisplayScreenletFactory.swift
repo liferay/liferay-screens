@@ -26,25 +26,20 @@ import UIKit
 		var childScreenlet: BaseScreenlet?
 
 		if let className = classAssetName {
-			switch className {
-			case "DLFileEntry":
-
-				if asset.isAnyMimeType(ImageDisplayScreenlet.supportedMimeTypes) {
-					childScreenlet = ImageDisplayScreenlet(frame: frame, themeName: nil)
-				}
-				else if asset.isAnyMimeType(VideoDisplayScreenlet.supportedMimeTypes) {
-					childScreenlet = VideoDisplayScreenlet(frame: frame, themeName: nil)
-				}
-				else if asset.isAnyMimeType(AudioDisplayScreenlet.supportedMimeTypes) {
-					childScreenlet = AudioDisplayScreenlet(frame: frame, themeName: nil)
-				}
-				else if asset.isAnyMimeType(PdfDisplayScreenlet.supportedMimeTypes) {
-					childScreenlet = PdfDisplayScreenlet(frame: frame, themeName: nil)
-				}
-			case "BlogsEntry":
+			if asset.isAnyMimeType(ImageDisplayScreenlet.supportedMimeTypes) {
+				childScreenlet = ImageDisplayScreenlet(frame: frame, themeName: nil)
+			}
+			else if asset.isAnyMimeType(VideoDisplayScreenlet.supportedMimeTypes) {
+				childScreenlet = VideoDisplayScreenlet(frame: frame, themeName: nil)
+			}
+			else if asset.isAnyMimeType(AudioDisplayScreenlet.supportedMimeTypes) {
+				childScreenlet = AudioDisplayScreenlet(frame: frame, themeName: nil)
+			}
+			else if asset.isAnyMimeType(PdfDisplayScreenlet.supportedMimeTypes) {
+				childScreenlet = PdfDisplayScreenlet(frame: frame, themeName: nil)
+			}
+			else if asset.isAnyMimeType(BlogsEntryDisplayScreenlet.supportedMimeTypes) {
 				childScreenlet = BlogsEntryDisplayScreenlet(frame: frame, themeName: nil)
-			default:
-				break;
 			}
 		}
 

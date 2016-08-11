@@ -21,6 +21,7 @@ import Foundation
 	optional func screenlet(screenlet: BlogsEntryDisplayScreenlet, onBlogAssetError error: NSError)
 }
 
+
 public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable public var assetEntryId: Int64 = 0
@@ -28,6 +29,10 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 	@IBInspectable public var classPK: Int64 = 0
 
 	@IBInspectable public var autoLoad: Bool = true
+
+	public class var supportedMimeTypes: [String] {
+		return ["text/html"]
+	}
 
 	public var blogsEntry: BlogsEntry? {
 		didSet {
