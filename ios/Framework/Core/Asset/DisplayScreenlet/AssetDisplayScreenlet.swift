@@ -71,6 +71,7 @@ import UIKit
 				self.assetDisplayDelegate?.screenlet?(self, onAssetResponse: resultAsset)
 
 				if let childScreenlet = self.createChildScreenlet(resultAsset) {
+					self.assetDisplayViewModel?.childScreenlet = childScreenlet
 					self.assetDisplayViewModel?.asset = resultAsset
 				}
 				else {

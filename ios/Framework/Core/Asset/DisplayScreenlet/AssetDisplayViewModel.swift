@@ -17,4 +17,6 @@ import UIKit
 @objc public protocol AssetDisplayViewModel {
 	
 	var asset: Asset? {get set}
+	var childScreenlet: BaseScreenlet? {get set}
+
 }

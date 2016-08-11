@@ -23,4 +23,22 @@ public class AssetDisplayView_default: BaseScreenletView, AssetDisplayViewModel 
 	}
 
 	public var asset: Asset?
+
+	public var childScreenlet: BaseScreenlet? {
+		set {
+			if let oldScreenlet = self.childScreenlet {
+				oldScreenlet.removeFromSuperview()
+				self.childScreenlet = nil
+			}
+
+			if let newScreenlet = newValue {
+				newScreenlet.frame = CGRect(origin: CGPointZero, size: self.frame.size)
+				self.addSubview(newScreenlet)
+			}
+		}
+		get {
+			// fake, but valid
+			return self.screenlet
+		}
+	}
 }
