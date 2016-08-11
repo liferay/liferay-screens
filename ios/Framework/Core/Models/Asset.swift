@@ -14,11 +14,18 @@
 import Foundation
 
 
-@objc public class Asset : NSObject, NSCoding {
+@objc public class Asset : NSObject, NSCoding, MimeTypeable {
 
 	public let attributes :[String:AnyObject]
 
 	public let title: String
+
+
+	// MARK: MimeTypeable
+
+	public var mimeType: String? {
+		return attributes["mimeType"]?.description
+	}
 
 	override public var description: String {
 		return attributes["description"] as! String
@@ -42,10 +49,6 @@ import Foundation
 
 	public var url: String {
 		return attributes["url"]!.description!
-	}
-
-	public var mimeType: String {
-		return attributes["mimeType"]!.description!
 	}
 
 	public var entryId: Int64 {
