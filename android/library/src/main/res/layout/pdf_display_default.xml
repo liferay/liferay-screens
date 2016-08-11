@@ -30,37 +30,6 @@
 		tools:visibility="visible"
 		/>
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:weightSum="3"
-		>
-
-		<EditText
-			android:id="@+id/liferay_go_to_page"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginRight="5dp"
-			android:layout_weight="1"
-			android:inputType="number"
-			android:visibility="gone"
-			tools:visibility="visible"
-			/>
-
-		<Button
-			android:id="@+id/liferay_go_to_page_submit"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginLeft="5dp"
-			android:layout_weight="2"
-			android:text="@string/pdf_go"
-			android:visibility="gone"
-			tools:visibility="visible"
-			/>
-
-	</LinearLayout>
-
 	<ImageView
 		android:id="@+id/liferay_pdf_renderer"
 		android:layout_width="match_parent"
@@ -70,9 +39,20 @@
 		android:scaleType="fitXY"
 		/>
 
+	<TextView
+		android:id="@+id/liferay_asset_title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:gravity="center"
+		android:visibility="gone"
+		tools:visibility="visible"
+		/>
+
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
 		android:orientation="horizontal"
 		>
 
@@ -96,6 +76,37 @@
 			android:layout_weight="1"
 			android:text="@string/pdf_next"
 			android:textSize="20sp"
+			android:visibility="gone"
+			tools:visibility="visible"
+			/>
+
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="10dp"
+		android:orientation="horizontal"
+		>
+
+		<EditText
+			android:id="@+id/liferay_go_to_page"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginRight="5dp"
+			android:layout_weight="1"
+			android:inputType="number"
+			android:visibility="gone"
+			tools:visibility="visible"
+			/>
+
+		<Button
+			android:id="@+id/liferay_go_to_page_submit"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="5dp"
+			android:layout_weight="2"
+			android:text="@string/pdf_go"
 			android:visibility="gone"
 			tools:visibility="visible"
 			/>
