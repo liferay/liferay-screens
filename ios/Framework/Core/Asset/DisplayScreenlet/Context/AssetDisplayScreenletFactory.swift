@@ -16,19 +16,11 @@ import UIKit
 
 @objc public class AssetDisplayScreenletFactory: NSObject {
 
-	private var asset: Asset
-
-	public init(asset: Asset) {
-		self.asset = asset
-
-		super.init()
-	}
-
 	let imageMimeTypes = ["image/png", "image/jpg", "image/jpeg", "image/gif"]
 	let videoMimeTypes = ["video/mp4", "video/3gp", "video/quicktime"]
 	let audioMimeTypes = ["audio/mpeg", "audio/mpeg3", "audio/wav"]
 
-	public func createScreenlet(frame: CGRect) -> BaseScreenlet? {
+	public func createScreenlet(frame: CGRect, asset: Asset) -> BaseScreenlet? {
 
 		let classAssetName = AssetClassNameIds.get(asset.classNameId)
 
