@@ -32,18 +32,17 @@ import UIKit
 		if let className = classAssetName {
 			switch className {
 			case "DLFileEntry":
-				let mimeType = asset.mimeType
 
-				if isImage(mimeType) {
+				if asset.isAnyMimeType(imageMimeTypes) {
 					childScreenlet = ImageDisplayScreenlet(frame: frame, themeName: nil)
 				}
-				else if isVideo(mimeType) {
+				else if asset.isAnyMimeType(videoMimeTypes) {
 					childScreenlet = VideoDisplayScreenlet(frame: frame, themeName: nil)
 				}
-				else if isAudio(mimeType) {
+				else if asset.isAnyMimeType(audioMimeTypes) {
 					childScreenlet = AudioDisplayScreenlet(frame: frame, themeName: nil)
 				}
-				else if mimeType == "application/pdf" {
+				else if asset.isAnyMimeType(["application/pdf"]) {
 					childScreenlet = PdfDisplayScreenlet(frame: frame, themeName: nil)
 				}
 			case "BlogsEntry":

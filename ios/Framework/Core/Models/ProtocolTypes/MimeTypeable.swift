@@ -19,3 +19,15 @@ public protocol MimeTypeable {
 	var mimeType: String? { get }
 
 }
+
+
+public extension MimeTypeable {
+
+	public func isAnyMimeType(mimeTypes: [String]) -> Bool {
+		guard let mimeType = self.mimeType else {
+			return false
+		}
+
+		return mimeTypes.contains(mimeType)
+	}
+}
