@@ -57,12 +57,20 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 				usernameLabel?.text = blogsEntry.userName
 
 				//Set blog display date from timestamp
-				let timeStamp = NSTimeInterval(blogsEntry.displayDate)/1000.0
-				let date = NSDate(timeIntervalSince1970: timeStamp)
-				let dateFormatter = NSDateFormatter()
-				dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
-				dateFormatter.locale = NSLocale(localeIdentifier: NSLocale.currentLocaleString)
-				dateLabel?.text = dateFormatter.stringFromDate(date)
+				if let date = blogsEntry.displayDate {
+					let dateFormatter = NSDateFormatter()
+					dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
+					dateFormatter.locale = NSLocale(localeIdentifier: NSLocale.currentLocaleString)
+
+					dateLabel?.text = dateFormatter.stringFromDate(date)
+				}
+				else {
+					//TODO i18n
+					dateLabel?.text = "Unknown date"
+				}
+
+
+				dateLabel?.text = blogsEntry.displayDateFormatted
 
 				//Set blog title and subtitle
 				titleLabel?.text = blogsEntry.title

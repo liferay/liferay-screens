@@ -32,8 +32,26 @@ import Foundation
 		return stringValue("userName") ?? ""
 	}
 
-	public var displayDate: Int64 {
-		return int64Value("displayDate") ?? 0
+	public var displayDate: NSDate? {
+		guard let value = int64Value("displayDate") else {
+			return nil
+		}
+
+		let timeStamp = NSTimeInterval(value)/1000.0
+		return NSDate(timeIntervalSince1970: timeStamp)
+	}
+
+	public var displayDateFormatted: String {
+		guard let date = self.displayDate else {
+			//TODO i18n
+			return "Unknown date"
+		}
+
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
+		dateFormatter.locale = NSLocale(localeIdentifier: NSLocale.currentLocaleString)
+
+		return dateFormatter.stringFromDate(date)
 	}
 
 	public var content: String {
