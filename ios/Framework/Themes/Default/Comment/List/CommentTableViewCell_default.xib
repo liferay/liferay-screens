@@ -15,8 +15,8 @@
                     <rect key="frame" x="0.0" y="0.0" width="555" height="176"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="NO"/>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="NO"/>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>

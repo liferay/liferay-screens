@@ -50,6 +50,12 @@ import UIKit
 		return delegate as? CommentListScreenletDelegate
 	}
 
+	@IBInspectable public var editable: Bool = false {
+		didSet {
+			screenletView?.editable = self.editable
+		}
+	}
+
 	//MARK: Public methods
 
 	public func addComment(comment: Comment) {
@@ -62,6 +68,11 @@ import UIKit
 
 	public func updateComment(comment: Comment) {
 		viewModel?.updateComment(comment)
+	}
+
+	public override func onCreated() {
+		super.onCreated()
+		screenletView?.editable = self.editable
 	}
 
 	//MARK: BaseListScreenlet

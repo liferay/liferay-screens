@@ -1195,6 +1195,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="classPK">
                                         <integer key="value" value="29713"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
