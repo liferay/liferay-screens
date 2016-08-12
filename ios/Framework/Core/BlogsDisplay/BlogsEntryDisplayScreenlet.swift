@@ -16,9 +16,11 @@ import Foundation
 
 @objc public protocol BlogsEntryDisplayScreenletDelegate : BaseScreenletDelegate {
 
-	optional func screenlet(screenlet: BlogsEntryDisplayScreenlet, onBlogAssetResponse blogEntry: BlogsEntry)
+	optional func screenlet(screenlet: BlogsEntryDisplayScreenlet,
+			onBlogEntryResponse blogEntry: BlogsEntry)
 
-	optional func screenlet(screenlet: BlogsEntryDisplayScreenlet, onBlogAssetError error: NSError)
+	optional func screenlet(screenlet: BlogsEntryDisplayScreenlet,
+			onBlogEntryError error: NSError)
 }
 
 
@@ -80,12 +82,12 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 				self.blogsEntryViewModel?.blogsEntry = self.blogsEntry
 			}
 			else {
-				self.blogsEntryDisplayDelegate?.screenlet?(self, onBlogAssetError: NSError.errorWithCause(.InvalidServerResponse))
+				self.blogsEntryDisplayDelegate?.screenlet?(self, onBlogEntryError: NSError.errorWithCause(.InvalidServerResponse))
 			}
 		}
 
 		interactor.onFailure = {
-			self.blogsEntryDisplayDelegate?.screenlet?(self, onBlogAssetError: $0)
+			self.blogsEntryDisplayDelegate?.screenlet?(self, onBlogEntryError: $0)
 		}
 
 		return interactor
