@@ -21,58 +21,63 @@ import Foundation
 	}
 
 	public var blogId: Int64 {
-		if let blogsEntry = blogsEntry {
-			return blogsEntry["blogId"]!.description.asLong!
-		}
-		return 0
+		return int64Value("blogId") ?? 0
 	}
 
 	public var subtitle: String {
-		if let blogsEntry = blogsEntry {
-			return blogsEntry["subtitle"]!.description
-		}
-		return ""
+		return stringValue("subtitle") ?? ""
 	}
 
 	public var userName: String {
-		if let blogsEntry = blogsEntry {
-			return blogsEntry["userName"]!.description
-		}
-		return ""
+		return stringValue("userName") ?? ""
 	}
 
-	public var displayDate: Int64 {
-		if let blogsEntry = blogsEntry {
-			return blogsEntry["displayDate"]!.description.asLong!
+	public var displayDate: NSDate? {
+		guard let value = int64Value("displayDate") else {
+			return nil
 		}
-		return 0
+
+		let timeStamp = NSTimeInterval(value)/1000.0
+		return NSDate(timeIntervalSince1970: timeStamp)
+	}
+
+	public var displayDateFormatted: String {
+		guard let date = self.displayDate else {
+			//TODO i18n
+			return "Unknown date"
+		}
+
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
+		dateFormatter.locale = NSLocale(localeIdentifier: NSLocale.currentLocaleString)
+
+		return dateFormatter.stringFromDate(date)
 	}
 
 	public var content: String {
-		if let blogsEntry = blogsEntry {
-			return blogsEntry["content"]!.description
-		}
-		return ""
+		return stringValue("content") ?? ""
 	}
 
 	public var userId: Int64 {
-		if let blogsEntry = blogsEntry {
-			return blogsEntry["userId"]!.description.asLong!
-		}
-		return 0
+		return int64Value("userId") ?? 0
 	}
 
 	public var coverImageFileEntryId: Int64 {
-		if let blogsEntry = blogsEntry {
-			return blogsEntry["coverImageFileEntryId"]!.description.asLong!
-		}
-		return 0
+		return int64Value("coverImageFileEntryId") ?? 0
 	}
 
 	// MARK: MimeTypeable
 
 	override public var mimeType: String? {
 		return "text/html"
+	}
+
+	private func int64Value(key: String) -> Int64? {
+		return blogsEntry?[key]?.description.asLong
+	}
+
+	private func stringValue(key: String) -> String? {
+		return blogsEntry?[key]?.description
 	}
 
 }

@@ -31,6 +31,14 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 	public var contentStyle = "font-size:17"
 	public var headerImageHeight: CGFloat = 125.0
 
+	private let dateFormatter: NSDateFormatter = {
+			let dateFormatter = NSDateFormatter()
+			dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
+			dateFormatter.locale = NSLocale(
+				localeIdentifier: NSLocale.currentLocaleString)
+			return dateFormatter
+		}()
+
 	public var blogsEntry: BlogsEntry? {
 		didSet {
 			if let blogsEntry = blogsEntry {
@@ -57,12 +65,16 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 				usernameLabel?.text = blogsEntry.userName
 
 				//Set blog display date from timestamp
-				let timeStamp = NSTimeInterval(blogsEntry.displayDate)/1000.0
-				let date = NSDate(timeIntervalSince1970: timeStamp)
-				let dateFormatter = NSDateFormatter()
-				dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
-				dateFormatter.locale = NSLocale(localeIdentifier: NSLocale.currentLocaleString)
-				dateLabel?.text = dateFormatter.stringFromDate(date)
+				if let date = blogsEntry.displayDate {
+					dateLabel?.text = dateFormatter.stringFromDate(date)
+				}
+				else {
+					//TODO i18n
+					dateLabel?.text = "Unknown date"
+				}
+
+
+				dateLabel?.text = blogsEntry.displayDateFormatted
 
 				//Set blog title and subtitle
 				titleLabel?.text = blogsEntry.title
