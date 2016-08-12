@@ -36,12 +36,6 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Body" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7EX-We-tyh" userLabel="Body">
-                    <rect key="frame" x="8" y="62" width="456" height="51"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K19-Wu-62Q" userLabel="Normal state buttons">
                     <rect key="frame" x="386" y="33" width="78" height="28"/>
                     <subviews>
@@ -132,34 +126,31 @@
                         <constraint firstAttribute="trailing" secondItem="0bI-Tq-WKs" secondAttribute="trailing" id="egT-2S-sjs"/>
                     </constraints>
                 </view>
-                <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AjW-66-Sf9">
-                    <rect key="frame" x="8" y="62" width="456" height="51"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7hm-Bc-gU5">
+                    <rect key="frame" x="8" y="66" width="456" height="47"/>
+                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                </textField>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <constraints>
                 <constraint firstItem="qsA-4f-URH" firstAttribute="leading" secondItem="BYS-C6-vuU" secondAttribute="trailing" constant="8" id="1VW-1y-TUc"/>
                 <constraint firstItem="xTL-zV-XBs" firstAttribute="centerY" secondItem="T0O-Tl-DWI" secondAttribute="centerY" id="34S-iS-M9R"/>
                 <constraint firstAttribute="trailing" secondItem="qsA-4f-URH" secondAttribute="trailing" constant="8" id="53o-gu-WIG"/>
+                <constraint firstAttribute="trailing" secondItem="7hm-Bc-gU5" secondAttribute="trailing" constant="8" id="5fF-Gd-51a"/>
                 <constraint firstItem="qsA-4f-URH" firstAttribute="top" secondItem="ofk-wp-urv" secondAttribute="top" constant="8" id="5mR-x5-hEn"/>
-                <constraint firstItem="AjW-66-Sf9" firstAttribute="centerY" secondItem="7EX-We-tyh" secondAttribute="centerY" id="A3Z-8G-Itt"/>
+                <constraint firstAttribute="bottom" secondItem="7hm-Bc-gU5" secondAttribute="bottom" constant="8" id="6MC-4M-PuM"/>
                 <constraint firstItem="K19-Wu-62Q" firstAttribute="centerY" secondItem="T0O-Tl-DWI" secondAttribute="centerY" id="AvD-DY-sdY"/>
-                <constraint firstItem="AjW-66-Sf9" firstAttribute="width" secondItem="7EX-We-tyh" secondAttribute="width" id="Isv-UA-qzM"/>
-                <constraint firstAttribute="bottom" secondItem="7EX-We-tyh" secondAttribute="bottom" constant="8" id="J5r-XO-XPh"/>
-                <constraint firstItem="AjW-66-Sf9" firstAttribute="centerX" secondItem="7EX-We-tyh" secondAttribute="centerX" id="MMx-e8-8SR"/>
+                <constraint firstItem="7hm-Bc-gU5" firstAttribute="top" secondItem="BYS-C6-vuU" secondAttribute="bottom" constant="8" id="Fcd-p7-R6z"/>
+                <constraint firstItem="7hm-Bc-gU5" firstAttribute="leading" secondItem="ofk-wp-urv" secondAttribute="leading" constant="8" id="Hla-zd-gA8"/>
                 <constraint firstAttribute="trailing" secondItem="K19-Wu-62Q" secondAttribute="trailing" constant="8" id="NjJ-EG-cGD"/>
                 <constraint firstItem="ewF-4o-z0M" firstAttribute="centerY" secondItem="T0O-Tl-DWI" secondAttribute="centerY" id="Nmj-Bg-nfQ"/>
                 <constraint firstAttribute="trailing" secondItem="ewF-4o-z0M" secondAttribute="trailing" constant="8" id="Sad-fU-sMC"/>
                 <constraint firstAttribute="trailing" secondItem="xTL-zV-XBs" secondAttribute="trailing" constant="8" id="SzL-ds-kWX"/>
                 <constraint firstItem="BYS-C6-vuU" firstAttribute="leading" secondItem="ofk-wp-urv" secondAttribute="leading" constant="8" id="Wka-eq-QzA"/>
                 <constraint firstItem="Bmx-bE-lyO" firstAttribute="leading" secondItem="T0O-Tl-DWI" secondAttribute="trailing" constant="4" id="asz-jL-sJa"/>
-                <constraint firstAttribute="trailing" secondItem="7EX-We-tyh" secondAttribute="trailing" constant="8" id="c2d-Nc-RmT"/>
                 <constraint firstItem="Bmx-bE-lyO" firstAttribute="top" secondItem="qsA-4f-URH" secondAttribute="bottom" constant="8" id="haH-6d-T2d"/>
-                <constraint firstItem="7EX-We-tyh" firstAttribute="top" secondItem="BYS-C6-vuU" secondAttribute="bottom" constant="4" id="i1o-ip-2HC"/>
                 <constraint firstItem="T0O-Tl-DWI" firstAttribute="leading" secondItem="BYS-C6-vuU" secondAttribute="trailing" constant="8" id="mpR-zA-uPm"/>
-                <constraint firstItem="AjW-66-Sf9" firstAttribute="height" secondItem="7EX-We-tyh" secondAttribute="height" id="odB-ST-UDc"/>
-                <constraint firstItem="7EX-We-tyh" firstAttribute="leading" secondItem="ofk-wp-urv" secondAttribute="leading" constant="8" id="sBq-8F-U4R"/>
                 <constraint firstItem="BYS-C6-vuU" firstAttribute="top" secondItem="ofk-wp-urv" secondAttribute="top" constant="8" id="tKt-At-WnI"/>
                 <constraint firstItem="T0O-Tl-DWI" firstAttribute="top" secondItem="qsA-4f-URH" secondAttribute="bottom" constant="8" id="tgJ-dn-Foa"/>
             </constraints>
@@ -168,9 +159,8 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="bodyLabel" destination="7EX-We-tyh" id="sPf-dC-r0s"/>
-                <outlet property="bodyLabelBottomMarginConstraint" destination="J5r-XO-XPh" id="PrQ-sq-fcP"/>
-                <outlet property="bodyTextField" destination="AjW-66-Sf9" id="Xbz-zH-ioX"/>
+                <outlet property="bodyTextView" destination="7hm-Bc-gU5" id="k9M-Fl-eO2"/>
+                <outlet property="bodyTextViewBottomMarginConstraint" destination="6MC-4M-PuM" id="snB-ib-wgK"/>
                 <outlet property="createdDateLabel" destination="T0O-Tl-DWI" id="ulW-AX-EdD"/>
                 <outlet property="deletingStateButtonsContainer" destination="ewF-4o-z0M" id="gqd-hp-VIG"/>
                 <outlet property="editedLabel" destination="Bmx-bE-lyO" id="mWH-P0-NVe"/>

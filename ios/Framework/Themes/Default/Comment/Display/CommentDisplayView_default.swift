@@ -26,9 +26,8 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 	@IBOutlet weak var userNameLabel: UILabel?
 	@IBOutlet weak var createdDateLabel: UILabel?
 	@IBOutlet weak var editedLabel: UILabel?
-	@IBOutlet weak var bodyLabel: UILabel?
-	@IBOutlet weak var bodyTextField: UITextField?
-	@IBOutlet weak var bodyLabelBottomMarginConstraint: NSLayoutConstraint?
+	@IBOutlet weak var bodyTextView: UITextView?
+	@IBOutlet weak var bodyTextViewBottomMarginConstraint: NSLayoutConstraint?
 	@IBOutlet weak var normalStateButtonsContainer: UIView?
 	@IBOutlet weak var deletingStateButtonsContainer: UIView?
 	@IBOutlet weak var editingStateButtonsContainer: UIView?
@@ -46,7 +45,8 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 			changeState(.Normal)
 
 			if let comment = comment {
-				bodyLabel?.attributedText = stringToAttributedText(comment.htmlBody)
+				//TODO change to attributed text
+				bodyTextView?.text = comment.plainBody
 
 				let loadedUserId = userPortraitScreenlet?.userId
 				if loadedUserId == nil || loadedUserId != comment.userId {
@@ -60,11 +60,11 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 	}
 
 	public var computedHeight: CGFloat {
-		if let label = bodyLabel {
+		if let label = bodyTextView {
 			label.sizeToFit()
 			let height = label.frame.height
 			let y = label.frame.origin.y
-			let margin: CGFloat = bodyLabelBottomMarginConstraint?.constant ?? 0
+			let margin: CGFloat = bodyTextViewBottomMarginConstraint?.constant ?? 0
 			return  height + y + margin
 		}
 
@@ -105,20 +105,15 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 	@IBAction func confirmButtonClicked() {
 		if self.state == .Deleting {
 			userAction(name: CommentDisplayScreenlet.DeleteAction)
-		} else if self.state == .Editing && bodyTextField?.text != bodyLabel?.text {
-			bodyLabel?.text = bodyTextField?.text
+		} else if self.state == .Editing {
 			userAction(name: CommentDisplayScreenlet.UpdateAction,
-			                         sender: bodyTextField?.text)
+			                         sender: bodyTextView?.text)
 		}
 
 		changeState(.Normal)
 	}
 
 	//MARK: BaseScreenletView
-
-	public override func onShow() {
-		self.bodyTextField?.delegate = self
-	}
 
 	override public func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
@@ -147,14 +142,11 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 
 		if state == .Editing {
 			editingStateButtonsContainer?.hidden = false
-			bodyLabel?.hidden = true
-			bodyTextField?.hidden = false
-			bodyTextField?.text = bodyLabel?.text
-			bodyTextField?.becomeFirstResponder()
+			bodyTextView?.editable = true
+			bodyTextView?.becomeFirstResponder()
 		} else {
 			editingStateButtonsContainer?.hidden = true
-			bodyLabel?.hidden = false
-			bodyTextField?.hidden = true
+			bodyTextView?.editable = false
 		}
 	}
 
