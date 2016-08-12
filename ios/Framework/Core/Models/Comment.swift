@@ -67,6 +67,14 @@ import Foundation
 		return NSDate(millisecondsSince1970: milliseconds)
 	}
 
+	public var canDelete: Bool {
+		return attributes["deletePermission"]! as! Bool
+	}
+
+	public var canEdit: Bool {
+		return attributes["updatePermission"]! as! Bool
+	}
+
 	public func encodeWithCoder(aCoder: NSCoder) {
 		let keys = Array(self.attributes.keys)
 

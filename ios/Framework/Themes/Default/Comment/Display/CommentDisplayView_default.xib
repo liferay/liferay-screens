@@ -162,7 +162,9 @@
                 <outlet property="bodyTextView" destination="7hm-Bc-gU5" id="k9M-Fl-eO2"/>
                 <outlet property="bodyTextViewBottomMarginConstraint" destination="6MC-4M-PuM" id="snB-ib-wgK"/>
                 <outlet property="createdDateLabel" destination="T0O-Tl-DWI" id="ulW-AX-EdD"/>
+                <outlet property="deleteButton" destination="Gg3-49-pbv" id="Tdt-tD-E6E"/>
                 <outlet property="deletingStateButtonsContainer" destination="ewF-4o-z0M" id="gqd-hp-VIG"/>
+                <outlet property="editButton" destination="mOk-gp-c4D" id="ORd-HZ-hSd"/>
                 <outlet property="editedLabel" destination="Bmx-bE-lyO" id="mWH-P0-NVe"/>
                 <outlet property="editingStateButtonsContainer" destination="xTL-zV-XBs" id="5Bw-Ws-qxl"/>
                 <outlet property="normalStateButtonsContainer" destination="K19-Wu-62Q" id="RxK-m6-Ud6"/>

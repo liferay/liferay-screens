@@ -31,6 +31,8 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 	@IBOutlet weak var normalStateButtonsContainer: UIView?
 	@IBOutlet weak var deletingStateButtonsContainer: UIView?
 	@IBOutlet weak var editingStateButtonsContainer: UIView?
+	@IBOutlet weak var deleteButton: UIButton?
+	@IBOutlet weak var editButton: UIButton?
 
 	private var state: CommentDisplayState = .Normal
 
@@ -47,6 +49,10 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 			if let comment = comment {
 				//TODO change to attributed text
 				bodyTextView?.text = comment.plainBody
+
+				deleteButton?.enabled = comment.canDelete
+				
+				editButton?.enabled = comment.canEdit
 
 				let loadedUserId = userPortraitScreenlet?.userId
 				if loadedUserId == nil || loadedUserId != comment.userId {
