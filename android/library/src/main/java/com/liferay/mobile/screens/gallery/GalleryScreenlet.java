@@ -27,7 +27,10 @@ import com.liferay.mobile.screens.gallery.view.GalleryViewModel;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DetailImageActivity;
+import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DetailUploadDefaultActivity;
 import java.util.Locale;
+
+import static java.lang.Class.forName;
 
 /**
  * @author Víctor Galán Grande
@@ -105,8 +108,10 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 				break;
 			case UPLOAD_IMAGE:
 				String picturePath = (String) args[0];
+				String title = (String) args[1];
+				String description = (String) args[2];
 				GalleryUploadInteractor galleryUploadInteractor = (GalleryUploadInteractor) interactor;
-				galleryUploadInteractor.uploadImageEntry(groupId, folderId, "", "", "", picturePath);
+				galleryUploadInteractor.uploadImageEntry(groupId, folderId, title, description, "", picturePath);
 				break;
 		}
 	}
@@ -129,6 +134,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 	public void deleteEntry(long fileEntryId) {
 		performUserAction(DELETE_IMAGE, fileEntryId);
 	}
+
 
 	public void openCamera() {
 		startShadowActivityForMediaStore(MediaStoreRequestShadowActivity.TAKE_PICTURE_WITH_CAMERA);
@@ -183,12 +189,13 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	@Override
 	public void onPicturePathReceived(String picturePath) {
+		Class activityUploadDetail = null;
 		if (getListener() != null) {
-			getListener().onImageUploadStarted();
+			activityUploadDetail = getListener().provideImageUploadDetailActivity();
 		}
-		getViewModel().imageUploadStart(picturePath);
 
-		performUserAction(UPLOAD_IMAGE, picturePath);
+		startUploadDetailActivity(activityUploadDetail, picturePath);
+		//performUserAction(UPLOAD_IMAGE, picturePath);
 	}
 
 	@Override
@@ -212,6 +219,17 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 	@Override
 	public void onPictureUploadFailure(Exception e) {
 		getListener().onImageUploadFailure(e);
+	}
+
+	@Override
+	public void onPictureUploadInformationReceived(String picturePath, String title, String description) {
+		if (getListener() != null) {
+			getListener().onImageUploadStarted();
+		}
+
+		getViewModel().imageUploadStart(picturePath);
+
+		performUserAction(UPLOAD_IMAGE, picturePath, title, description);
 	}
 
 	public void showImageInFullScreenActivity(ImageEntry image) {
@@ -279,6 +297,24 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		}
 
 		return mimeTypesRaw.split(",");
+	}
+
+	private void startUploadDetailActivity(Class activityUploadDetail, String picturePath) {
+
+		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
+
+		Intent intent = null;
+		if (activityUploadDetail == null || activityUploadDetail.isAssignableFrom(BaseDetailUploadActivity.class)) {
+			intent = new Intent(activity, DetailUploadDefaultActivity.class);
+		}
+		else {
+			intent = new Intent(activity, activityUploadDetail);
+		}
+
+		intent.putExtra(BaseDetailUploadActivity.SCREENLET_ID_KEY, getScreenletId());
+		intent.putExtra(BaseDetailUploadActivity.PICTURE_PATH_KEY, picturePath);
+
+		activity.startActivity(intent);
 	}
 
 	private void startShadowActivityForMediaStore(int mediaStore) {
