@@ -145,6 +145,14 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 		}
 	}
 
+	public void allowEdition(boolean editable) {
+		this.editable = editable;
+		if (commentEntry != null) {
+			commentEntry.setEditable(editable);
+			getViewModel().showFinishOperation(LOAD_COMMENT_ACTION, commentEntry);
+		}
+	}
+
 	@Override
 	public void onDeleteCommentFailure(Exception e) {
 		getViewModel().showFailedOperation(DELETE_COMMENT_ACTION, e);

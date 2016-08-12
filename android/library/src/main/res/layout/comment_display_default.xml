@@ -4,7 +4,6 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:paddingEnd="10dp"
 	android:paddingRight="10dp"
 	>
 
@@ -28,7 +27,6 @@
 			android:layout_width="70dp"
 			android:layout_height="70dp"
 			android:layout_alignParentLeft="true"
-			android:layout_alignParentStart="true"
 			liferay:offlinePolicy="REMOTE_FIRST"
 			/>
 
@@ -36,13 +34,10 @@
 			android:id="@+id/comment_user_name"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginEnd="10dp"
 			android:layout_marginRight="10dp"
 			android:layout_marginTop="10dp"
-			android:layout_toEndOf="@+id/comment_user_portrait"
 			android:layout_toLeftOf="@+id/comment_first_action"
 			android:layout_toRightOf="@+id/comment_user_portrait"
-			android:layout_toStartOf="@+id/comment_first_action"
 			android:padding="0dp"
 			android:textStyle="bold"
 			tools:text="Android Phone Jr."
@@ -52,13 +47,11 @@
 			android:id="@+id/comment_create_date"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_above="@+id/comment_view_switcher"
+			android:layout_above="@+id/comment_body_group"
 			android:layout_below="@+id/comment_user_name"
 			android:layout_marginBottom="10dp"
-			android:layout_marginEnd="3dp"
 			android:layout_marginRight="3dp"
 			android:layout_marginTop="5dp"
-			android:layout_toEndOf="@+id/comment_user_portrait"
 			android:layout_toRightOf="@+id/comment_user_portrait"
 			android:padding="0dp"
 			android:textSize="12sp"
@@ -69,16 +62,13 @@
 			android:id="@+id/comment_edited"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_above="@+id/comment_view_switcher"
+			android:layout_above="@+id/comment_body_group"
 			android:layout_below="@+id/comment_user_name"
 			android:layout_marginBottom="10dp"
-			android:layout_marginEnd="10dp"
 			android:layout_marginRight="10dp"
 			android:layout_marginTop="5dp"
-			android:layout_toEndOf="@+id/comment_create_date"
 			android:layout_toLeftOf="@+id/comment_first_action"
 			android:layout_toRightOf="@+id/comment_create_date"
-			android:layout_toStartOf="@+id/comment_first_action"
 			android:padding="0dp"
 			android:text="@string/edited"
 			android:textSize="12sp"
@@ -91,11 +81,9 @@
 			android:id="@+id/comment_first_action"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginEnd="10dp"
 			android:layout_marginRight="10dp"
 			android:layout_marginTop="10dp"
 			android:layout_toLeftOf="@+id/comment_second_action"
-			android:layout_toStartOf="@+id/comment_second_action"
 			android:contentDescription="@string/edit_comment"
 			android:src="@drawable/default_comment_edit"
 			android:visibility="gone"
@@ -106,8 +94,7 @@
 			android:id="@+id/comment_second_action"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_alignEnd="@+id/comment_view_switcher"
-			android:layout_alignRight="@+id/comment_view_switcher"
+			android:layout_alignRight="@+id/comment_body_group"
 			android:layout_marginTop="10dp"
 			android:contentDescription="@string/delete_comment"
 			android:src="@drawable/default_comment_delete"
@@ -115,19 +102,15 @@
 			tools:visibility="visible"
 			/>
 
-		<ViewSwitcher
-			android:id="@+id/comment_view_switcher"
+		<FrameLayout
+			android:id="@+id/comment_body_group"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_alignParentEnd="true"
 			android:layout_alignParentLeft="true"
 			android:layout_alignParentRight="true"
-			android:layout_alignParentStart="true"
 			android:layout_below="@+id/comment_user_portrait"
 			android:layout_marginBottom="10dp"
 			android:layout_marginLeft="10dp"
-			android:layout_marginStart="10dp"
-			android:measureAllChildren="false"
 			>
 
 			<TextView
@@ -148,8 +131,8 @@
 				android:lines="3"
 				android:textSize="15sp"
 				/>
+		</FrameLayout>
 
-		</ViewSwitcher>
 	</RelativeLayout>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.comment.display.CommentDisplayView>
