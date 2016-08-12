@@ -19,10 +19,12 @@ import com.liferay.mobile.screens.gallery.interactor.delete.GalleryDeleteInterac
 import com.liferay.mobile.screens.gallery.interactor.delete.GalleryDeleteInteractorImpl;
 import com.liferay.mobile.screens.gallery.interactor.load.GalleryLoadInteractor;
 import com.liferay.mobile.screens.gallery.interactor.load.GalleryLoadInteractorImpl;
+import com.liferay.mobile.screens.gallery.interactor.upload.CancelUploadEvent;
 import com.liferay.mobile.screens.gallery.interactor.upload.GalleryUploadInteractor;
 import com.liferay.mobile.screens.gallery.interactor.upload.GalleryUploadInteractorImpl;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.gallery.view.GalleryViewModel;
+import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DetailImageActivity;
 import java.util.Locale;
@@ -184,6 +186,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		if (getListener() != null) {
 			getListener().onImageUploadStarted();
 		}
+		getViewModel().imageUploadStart(picturePath);
 
 		performUserAction(UPLOAD_IMAGE, picturePath);
 	}
@@ -193,7 +196,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		if (getListener() != null) {
 			getListener().onImageUploadEnd(entry);
 		}
-
+		getViewModel().imageUploadComplete();
 		getViewModel().addImage(entry);
 	}
 
@@ -202,6 +205,8 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		if (getListener() != null) {
 			getListener().onImageUploadProgress(totalBytes, totalBytesSent);
 		}
+
+		getViewModel().imageUploadProgress(totalBytes, totalBytesSent);
 	}
 
 	@Override

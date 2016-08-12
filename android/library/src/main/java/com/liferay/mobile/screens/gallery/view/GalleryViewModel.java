@@ -11,4 +11,12 @@ public interface GalleryViewModel extends BaseListViewModel<ImageEntry> {
 	void deleteImage(long imageEntryId);
 
 	void addImage(ImageEntry imageEntry);
+
+	void imageUploadStart(String picturePath);
+
+	void imageUploadProgress(int bytesSent, int totalBytes);
+
+	void imageUploadComplete();
+
+	void imageUploadError(Exception e);
 }
