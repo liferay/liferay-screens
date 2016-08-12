@@ -10,6 +10,7 @@
 		0BD612C91D36709E00CD4D76 /* RatingScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD612C81D36709E00CD4D76 /* RatingScreenletViewController.swift */; };
 		4A244F934838CD2208782444 /* Pods_LiferayScreens_Showcase_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13D0A9CE1E740FFDD9D2884C /* Pods_LiferayScreens_Showcase_Swift.framework */; };
 		881B74411B9EEDED00EA64ED /* OfflineSyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B74401B9EEDED00EA64ED /* OfflineSyncViewController.swift */; };
+		88AE870B1D5CD34C009BE84D /* AssetDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE870A1D5CD34C009BE84D /* AssetDisplayViewController.swift */; };
 		88CC3AFC1CC153D900E0AEB7 /* WebContentDisplayView_book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC3AF81CC153D900E0AEB7 /* WebContentDisplayView_book.swift */; };
 		88CC3AFD1CC153D900E0AEB7 /* WebContentDisplayView_book.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CC3AF91CC153D900E0AEB7 /* WebContentDisplayView_book.xib */; };
 		88CC3AFE1CC153D900E0AEB7 /* WebContentListView_book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC3AFA1CC153D900E0AEB7 /* WebContentListView_book.swift */; };
@@ -45,6 +46,7 @@
 		2B4C45252D99EAFB09DDD12A /* Pods-LiferayScreens-Showcase-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreens-Showcase-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreens-Showcase-Swift/Pods-LiferayScreens-Showcase-Swift.release.xcconfig"; sourceTree = "<group>"; };
 		869461C649CEAF0B480B4E18 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		881B74401B9EEDED00EA64ED /* OfflineSyncViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfflineSyncViewController.swift; sourceTree = "<group>"; };
+		88AE870A1D5CD34C009BE84D /* AssetDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayViewController.swift; sourceTree = "<group>"; };
 		88CC3AF81CC153D900E0AEB7 /* WebContentDisplayView_book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayView_book.swift; sourceTree = "<group>"; };
 		88CC3AF91CC153D900E0AEB7 /* WebContentDisplayView_book.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebContentDisplayView_book.xib; sourceTree = "<group>"; };
 		88CC3AFA1CC153D900E0AEB7 /* WebContentListView_book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentListView_book.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 		88DE2A9E1AD3E01400714701 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				88AE870A1D5CD34C009BE84D /* AssetDisplayViewController.swift */,
 				88DE2AA31AD3EFEF00714701 /* AssetListScreenletViewController.swift */,
 				88DE2AA41AD3EFEF00714701 /* DDLFormScreenletViewController.swift */,
 				88DE2AA51AD3EFEF00714701 /* DDLListScreenletViewController.swift */,
@@ -353,6 +356,7 @@
 				88DE2AAC1AD3EFEF00714701 /* DDLFormScreenletViewController.swift in Sources */,
 				88DE2AA01AD3E01400714701 /* HomeLoginViewController.swift in Sources */,
 				88DE2AB01AD3EFEF00714701 /* SignUpScreenletViewController.swift in Sources */,
+				88AE870B1D5CD34C009BE84D /* AssetDisplayViewController.swift in Sources */,
 				88DE2AB41AD3F00B00714701 /* UIImageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
