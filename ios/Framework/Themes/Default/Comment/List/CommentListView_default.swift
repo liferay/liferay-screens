@@ -16,6 +16,12 @@ import UIKit
 
 public class CommentListView_default: BaseListTableView, CommentListViewModel {
 
+	let CommentCellId = "commentCell"
+
+	var commentListScreenlet: CommentListScreenlet {
+		return screenlet as! CommentListScreenlet
+	}
+
 	//MARK: CommentListViewModel
 
 	public func addComment(comment: Comment) {
@@ -54,10 +60,31 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 
 	//MARK: BaseListTableView
 
+	override public func doRegisterCellNibs() {
+		let nib = NSBundle.nibInBundles(
+			name: "CommentTableViewCell_default", currentClass: self.dynamicType)
+
+		if let commentNib = nib {
+			tableView?.registerNib(commentNib, forCellReuseIdentifier: CommentCellId)
+		}
+	}
+
+	override public func doCreateCell(cellId: String) -> UITableViewCell {
+		let cell = CommentTableViewCell_default(style: .Default, reuseIdentifier: cellId)
+		cell.commentDisplayScreenlet?.groupId = commentListScreenlet.groupId
+		cell.commentDisplayScreenlet?.className = commentListScreenlet.className
+		cell.commentDisplayScreenlet?.classPK = commentListScreenlet.classPK
+		return cell
+	}
+
+	override public func doGetCellId(row row: Int, object: AnyObject?) -> String {
+		return CommentCellId
+	}
+
 	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
-		if let comment = object as? Comment {
-			cell.textLabel?.text = comment.plainBody
-			cell.accessoryType = .DisclosureIndicator
+		if let comment = object as? Comment, commentCell = cell as? CommentTableViewCell_default {
+			commentCell.commentDisplayScreenlet?.comment = comment
+			cell.accessoryType = .None
 			cell.accessoryView = nil
 		}
 	}
