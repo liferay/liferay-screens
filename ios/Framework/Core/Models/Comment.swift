@@ -22,6 +22,7 @@ import Foundation
 
 	public var originalBody: String {
 		return attributes["body"]!.description
+			.stringByReplacingOccurrencesOfString("\n ", withString: "")
 			.stringByReplacingOccurrencesOfString("\n", withString: "")
 			.stringByReplacingOccurrencesOfString("</p><p>", withString: "\n")
 			.stringByReplacingOccurrencesOfString("<p>", withString: "")
