@@ -60,23 +60,19 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 
 	@Override
 	public void onListRowsFailure(int startRow, int endRow, Exception e) {
-		int page = getPageFromRow(startRow);
-
-		getViewModel().showFinishOperation(page, e);
+		getViewModel().showFinishOperation(startRow, endRow, e);
 
 		if (_listener != null) {
-			_listener.onListPageFailed(this, page, e);
+			_listener.onListPageFailed(this, startRow, endRow, e);
 		}
 	}
 
 	@Override
 	public void onListRowsReceived(int startRow, int endRow, List<E> entries, int rowCount) {
-		int page = getPageFromRow(startRow);
-
-		getViewModel().showFinishOperation(page, entries, rowCount);
+		getViewModel().showFinishOperation(startRow, endRow, entries, rowCount);
 
 		if (_listener != null) {
-			_listener.onListPageReceived(this, page, entries, rowCount);
+			_listener.onListPageReceived(this, startRow, endRow, entries, rowCount);
 		}
 	}
 
@@ -107,7 +103,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 		int endRow = getFirstRowForPage(page + 1);
 
 		try {
-			loadRows(getInteractor(), startRow, endRow, locale);
+			loadRows(getInteractor(), startRow, endRow, locale, _obcClassName);
 		}
 		catch (Exception e) {
 			onListRowsFailure(startRow, endRow, e);
@@ -154,7 +150,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 		_labelFields = labelFields;
 	}
 
-	protected abstract void loadRows(N interactor, int startRow, int endRow, Locale locale)
+	protected abstract void loadRows(N interactor, int startRow, int endRow, Locale locale, String obcClassName)
 		throws Exception;
 
 	@Override
@@ -175,6 +171,8 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 		_autoLoad = typedArray.getBoolean(R.styleable.AssetListScreenlet_autoLoad, true);
 
 		_labelFields = parse(typedArray.getString(R.styleable.AssetListScreenlet_labelFields));
+
+		_obcClassName = typedArray.getString(R.styleable.AssetListScreenlet_obcClassName);
 
 		typedArray.recycle();
 
@@ -215,5 +213,6 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 	protected int _firstPageSize;
 	protected BaseListListener<E> _listener;
 	protected int _pageSize;
+	protected String _obcClassName;
 	private List<String> _labelFields;
 }

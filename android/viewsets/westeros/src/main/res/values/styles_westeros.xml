@@ -7,6 +7,10 @@
 		<item name="android:textColorPrimary">@color/textColorPrimary_westeros</item>
 		<item name="android:textColorSecondary">@color/light_gray_westeros</item>
 
+		<item name="colorControlNormal">@color/colorPrimary_westeros</item>
+		<item name="colorControlHighlight">@color/colorAccent_westeros</item>
+		<item name="colorControlActivated">@color/colorPrimary_westeros</item>
+
 		<item name="android:textViewStyle">@style/westeros_text_view</item>
 		<item name="android:editTextStyle">@style/westeros_edit_text</item>
 		<item name="android:buttonStyle">@style/westeros_button</item>

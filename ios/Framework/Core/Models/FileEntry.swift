@@ -16,6 +16,7 @@ import Foundation
 
 @objc public class FileEntry: Asset {
 
+	//TODO use AssetClassNameIds
 	public static var className = "com.liferay.document.library.kernel.model.DLFileEntry"
 	
 	override public var url: String {

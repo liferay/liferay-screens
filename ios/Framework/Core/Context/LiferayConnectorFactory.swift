@@ -106,11 +106,29 @@ public protocol LiferayConnectorFactory {
 		folderId: Int64,
 		onProgress: DDLFormUploadLiferayConnector.OnProgress?) -> DDLFormUploadLiferayConnector
 	
-	func createAssetDisplayByEntryIdConnector(entryId: Int64) -> AssetDisplayByEntryIdLiferayConnector?
+	func createAssetLoadByEntryIdConnector(entryId: Int64) -> AssetLoadByEntryIdLiferayConnector?
 
-	func createAssetDisplayByClassPKConnector(className: String, classPK: Int64) -> AssetDisplayByClassPKLiferayConnector?
+	func createAssetLoadByClassPKConnector(className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector?
 
-	func createBlogsDisplayByEntryIdConnector(entryId: Int64) -> BlogsDisplayByEntryIdLiferayConnector?
+	func createRatingLoadByEntryIdConnector(
+		entryId entryId: Int64,
+		ratingsGroupCount: Int32) -> RatingLoadByEntryIdLiferayConnector?
+	
+	func createRatingLoadByClassPKConnector(
+		classPK: Int64,
+		className: String,
+		ratingsGroupCount: Int32) -> RatingLoadByClassPKLiferayConnector?
+	
+	func createRatingUpdateConnector(
+		classPK classPK: Int64,
+		className: String,
+		score: Double,
+		ratingsGroupCount: Int32) -> RatingUpdateLiferayConnector?
+	
+	func createRatingDeleteConnector(
+		classPK classPK: Int64,
+		className: String,
+		ratingsGroupCount: Int32) -> RatingDeleteLiferayConnector?
 
 }
 
@@ -289,20 +307,36 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			onProgress: onProgress)
 	}
 	
-	public func createAssetDisplayByEntryIdConnector(entryId: Int64) -> AssetDisplayByEntryIdLiferayConnector? {
-		print("Unsupported connector in Liferay 6.2: AssetDisplayByEntryIdLiferayConnector")
+	public func createAssetLoadByEntryIdConnector(entryId: Int64) -> AssetLoadByEntryIdLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: AssetLoadByEntryIdLiferayConnector")
 		return nil
 	}
 
-	public func createAssetDisplayByClassPKConnector(className: String, classPK: Int64) -> AssetDisplayByClassPKLiferayConnector? {
-		print("Unsupported connector in Liferay 6.2: AssetDisplayByClassPKLiferayConnector")
+	public func createRatingLoadByEntryIdConnector(entryId entryId: Int64, ratingsGroupCount: Int32) -> RatingLoadByEntryIdLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: RatingLoadByEntryIdLiferayConnector")
 		return nil
 	}
 
-	public func createBlogsDisplayByEntryIdConnector(entryId: Int64) -> BlogsDisplayByEntryIdLiferayConnector? {
-		print("Unsupported connector in Liferay 6.2: BlogsDisplayByEntryIdLiferayConnector")
+	public func createAssetLoadByClassPKConnector(className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: AssetLoadByClassPKLiferayConnector")
 		return nil
 	}
+
+	public func createRatingLoadByClassPKConnector(classPK: Int64, className: String, ratingsGroupCount: Int32) -> RatingLoadByClassPKLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: RatingLoadByClassPKLiferayConnector")
+		return nil
+	}
+
+	public func createRatingUpdateConnector(classPK classPK: Int64, className: String, score: Double, ratingsGroupCount: Int32) -> RatingUpdateLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: RatingUpdateLiferayConnector")
+		return nil
+	}
+	
+	public func createRatingDeleteConnector(classPK classPK: Int64, className: String, ratingsGroupCount: Int32) -> RatingDeleteLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: RatingDeleteLiferayConnector")
+		return nil
+	}
+
 }
 
 
@@ -479,16 +513,41 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			folderId: folderId,
 			onProgress: onProgress)
 	}
-
-	public func createAssetDisplayByEntryIdConnector(entryId: Int64) -> AssetDisplayByEntryIdLiferayConnector? {
-		return Liferay70AssetDisplayByEntryIdConnector(entryId: entryId)
+	
+	public func createRatingLoadByEntryIdConnector(entryId entryId: Int64, ratingsGroupCount: Int32) -> RatingLoadByEntryIdLiferayConnector? {
+		return Liferay70RatingLoadByEntryIdConnector(
+			entryId: entryId,
+			ratingsGroupCount: ratingsGroupCount)
+	}
+	
+	public func createRatingLoadByClassPKConnector(classPK: Int64, className: String, ratingsGroupCount: Int32) -> RatingLoadByClassPKLiferayConnector? {
+		return Liferay70RatingLoadByClassPKConnector(
+			classPK: classPK,
+			className: className,
+			ratingsGroupCount: ratingsGroupCount)
+	}
+	
+	public func createRatingUpdateConnector(classPK classPK: Int64, className: String, score: Double, ratingsGroupCount: Int32) -> RatingUpdateLiferayConnector? {
+		return Liferay70RatingUpdateConnector(
+			classPK: classPK,
+			className: className,
+			score: score,
+			ratingsGroupCount: ratingsGroupCount)
+	}
+	
+	public func createRatingDeleteConnector(classPK classPK: Int64, className: String, ratingsGroupCount: Int32) -> RatingDeleteLiferayConnector? {
+		return Liferay70RatingDeleteConnector(
+			classPK: classPK,
+			className: className,
+			ratingsGroupCount: ratingsGroupCount)
 	}
 
-	public func createAssetDisplayByClassPKConnector(className: String, classPK: Int64) -> AssetDisplayByClassPKLiferayConnector? {
-		return Liferay70AssetDisplayByClassPKConnector(className: className, classPK: classPK)
+	public func createAssetLoadByEntryIdConnector(entryId: Int64) -> AssetLoadByEntryIdLiferayConnector? {
+		return Liferay70AssetLoadByEntryIdConnector(entryId: entryId)
 	}
 
-	public func createBlogsDisplayByEntryIdConnector(entryId: Int64) -> BlogsDisplayByEntryIdLiferayConnector? {
-		return Liferay70BlogsDisplayByEntryIdConnector(entryId: entryId)
+	public func createAssetLoadByClassPKConnector(className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector? {
+		return Liferay70AssetLoadByClassPKConnector(className: className, classPK: classPK)
 	}
+
 }

@@ -3,7 +3,7 @@ package com.liferay.mobile.screens.webcontent;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.liferay.mobile.screens.assetlist.AssetEntry;
+import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.ddl.ContentParser;
 import com.liferay.mobile.screens.ddl.FieldParser;
 import com.liferay.mobile.screens.ddl.model.DDMStructure;

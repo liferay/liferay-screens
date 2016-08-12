@@ -24,7 +24,7 @@ class AssetDisplayViewController: UIViewController, AssetDisplayScreenletDelegat
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		self.screenlet?.entryId = self.entryId
+		self.screenlet?.assetEntryId = self.entryId
 		self.screenlet?.delegate = self
 	}
 	

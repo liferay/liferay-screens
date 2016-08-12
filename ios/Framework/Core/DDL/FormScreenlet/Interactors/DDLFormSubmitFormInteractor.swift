@@ -98,12 +98,12 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 		return connector
 	}
 
-	override func completedConnector(op: ServerConnector) {
-		if let loadOp = op as? DDLFormSubmitLiferayConnector {
-				self.resultRecordId = loadOp.resultRecordId
-				self.resultAttributes = loadOp.resultAttributes
+	override func completedConnector(c: ServerConnector) {
+		if let loadCon = c as? DDLFormSubmitLiferayConnector {
+				self.resultRecordId = loadCon.resultRecordId
+				self.resultAttributes = loadCon.resultAttributes
 
-			if let modifiedDate = loadOp.resultAttributes?["modifiedDate"] as? NSNumber {
+			if let modifiedDate = loadCon.resultAttributes?["modifiedDate"] as? NSNumber {
 				record.attributes["modifiedDate"] = modifiedDate
 			}
 		}
@@ -112,14 +112,14 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 
 	//MARK: Cache methods
 
-	override func writeToCache(op: ServerConnector) {
+	override func writeToCache(c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
 
-		let submitOp = op as! DDLFormSubmitLiferayConnector
+		let submitOp = c as! DDLFormSubmitLiferayConnector
 
-		let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
+		let cacheFunction = (cacheStrategy == .CacheFirst || c.lastError != nil)
 			? cacheManager.setDirty
 			: cacheManager.setClean
 
@@ -130,7 +130,8 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 			collection: ScreenletName(DDLFormScreenlet),
 			key: lastCacheKeyUsed!,
 			value: record.values,
-			attributes: cacheAttributes())
+			attributes: cacheAttributes(),
+			onCompletion: nil)
 	}
 
 	override func callOnSuccess() {

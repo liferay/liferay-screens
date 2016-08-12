@@ -68,4 +68,11 @@ import Foundation
 		}
 		return 0
 	}
+
+	// MARK: MimeTypeable
+
+	override public var mimeType: String? {
+		return "text/html"
+	}
+
 }

@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 	s.name         = 'LiferayScreens'
 	s.module_name  = 'LiferayScreens'
-	s.version      = '1.4.0'
+	s.version      = '1.4.1'
 	s.summary      = 'A family of visual components called screenlets that are connected to the Liferay Platform used as a backend'
 	s.homepage     = 'https://www.liferay.com/liferay-screens'
 	s.license = { 
@@ -51,7 +51,7 @@ Pod::Spec.new do |s|
 	}
 
 	# Core
-	s.dependency 'Liferay-iOS-SDK', '~> 7.0.3'
+	s.dependency 'Liferay-iOS-SDK', '~> 7.0.4'
 	s.dependency 'Liferay-OAuth', '~> 1.2.0'
 	s.dependency 'MBProgressHUD', '0.9.1'
 	s.dependency 'SMXMLDocument', '1.1'
@@ -68,5 +68,8 @@ Pod::Spec.new do |s|
 	s.dependency 'DTPickerPresenter', '0.2.0'
 	s.dependency 'TNRadioButtonGroup', '0.4'
 	s.dependency 'MDRadialProgress', '1.3.2'
+
+	# RatingBar
+	s.dependency 'Cosmos', '~> 1.2'
 
 end

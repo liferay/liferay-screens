@@ -21,14 +21,18 @@ import Foundation
 	optional func screenlet(screenlet: BlogsEntryDisplayScreenlet, onBlogAssetError error: NSError)
 }
 
+
 public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 
-	@IBInspectable public var entryId: Int64 = 0
+	@IBInspectable public var assetEntryId: Int64 = 0
 
 	@IBInspectable public var classPK: Int64 = 0
-	@IBInspectable public var className: String = ""
 
 	@IBInspectable public var autoLoad: Bool = true
+
+	public class var supportedMimeTypes: [String] {
+		return ["text/html"]
+	}
 
 	public var blogsEntry: BlogsEntry? {
 		didSet {
@@ -57,11 +61,21 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 			cancelInteractorsForAction(name)
 		}
 
-		let interactor = AssetDisplayInteractor(
-			screenlet: self, entryId: entryId, classPK: classPK, className: className)
+		let interactor: LoadAssetInteractor
+
+		if assetEntryId != 0 {
+			interactor = LoadAssetInteractor(screenlet: self, assetEntryId: assetEntryId)
+		}
+		else {
+			//TODO add classNames to AssetClassNameIds class
+			let className = "com.liferay.blogs.kernel.model.BlogsEntry"
+
+			interactor = LoadAssetInteractor(
+				screenlet: self, className: className, classPK: self.classPK)
+		}
 
 		interactor.onSuccess = {
-			if let resultAsset = interactor.assetEntry {
+			if let resultAsset = interactor.asset {
 				self.blogsEntry = BlogsEntry(attributes: resultAsset.attributes)
 				self.blogsEntryViewModel?.blogsEntry = self.blogsEntry
 			}

@@ -33,26 +33,24 @@ public class HttpDownloadConnector: ServerConnector {
 		let requestSemaphore = dispatch_semaphore_create(0)
 
 		session.downloadTaskWithURL(self.url, completionHandler:
-			{ (url, response, error) in
+			{ (_localURL, response, error) in
+				guard let localURL = _localURL else {
+					self.lastError = NSError.errorWithCause(.InvalidServerResponse)
+					self.resultUrl = nil
+					return
+				}
+
 				if let error = error {
 					self.lastError = error
 					self.resultUrl = nil
 				}
 				else {
-					let cache = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .AllDomainsMask, true)[0]
-					let fileManager = NSFileManager.defaultManager()
-					let fileName = response?.suggestedFilename ?? ""
-					let path = cache + "/" + self.encodeUrlString(fileName)
-					let destinationUrl = NSURL(fileURLWithPath: path)
-
 					do {
-						if fileManager.fileExistsAtPath(path) {
-							try fileManager.removeItemAtURL(destinationUrl)
-						}
-						try fileManager.moveItemAtURL(url!, toURL: destinationUrl)
+						let newPath = try self.moveTmpToCache(localURL.absoluteString)
+						self.resultUrl = NSURL(fileURLWithPath: newPath)
 						self.lastError = nil
-						self.resultUrl = destinationUrl
-					} catch let error as NSError {
+					}
+					catch let error as NSError {
 						self.lastError = error
 						self.resultUrl = nil
 					}
@@ -70,8 +68,20 @@ public class HttpDownloadConnector: ServerConnector {
 		return LRSession(server: "http://\(url.host!)\(port)")
 	}
 
-	private func encodeUrlString(originalString: String) -> String {
-		return originalString.stringByAddingPercentEncodingWithAllowedCharacters(
-			.URLHostAllowedCharacterSet()) ?? ""
+
+	private func moveTmpToCache(localPath: String) throws -> String {
+		// TODO try to keep the file extension especified in "suggestedFilename" or
+		// add the extension based on the response's mime type (prefered, the former 
+		// will be empty in most cases)
+		// This is important because some players (video or audio players) use that 
+		// extension to figure out the internal format.
+		// If the extension is not present, they try to guess based on some heuristics, 
+		// and it probably won't work
+
+		let cachePath = cacheFilePath()
+
+		try NSFileManager.defaultManager().moveItemAtPath(localPath, toPath: cachePath)
+
+		return cachePath
 	}
 }

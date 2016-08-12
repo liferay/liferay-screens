@@ -30,33 +30,6 @@
 	return (NSDictionary *)[self.session invoke:_command error:error];
 }
 
-- (NSArray *)getDdlRecordsWithDdlRecordSetId:(long long)ddlRecordSetId locale:(NSString *)locale start:(int)start end:(int)end error:(NSError **)error {
-	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
-		@"ddlRecordSetId": @(ddlRecordSetId),
-		@"locale": [self checkNull: locale],
-		@"start": @(start),
-		@"end": @(end)
-	}];
-
-	NSDictionary *_command = @{@"/screens.screensddlrecord/get-ddl-records": _params};
-
-	return (NSArray *)[self.session invoke:_command error:error];
-}
-
-- (NSArray *)getDdlRecordsWithDdlRecordSetId:(long long)ddlRecordSetId userId:(long long)userId locale:(NSString *)locale start:(int)start end:(int)end error:(NSError **)error {
-	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
-		@"ddlRecordSetId": @(ddlRecordSetId),
-		@"userId": @(userId),
-		@"locale": [self checkNull: locale],
-		@"start": @(start),
-		@"end": @(end)
-	}];
-
-	NSDictionary *_command = @{@"/screens.screensddlrecord/get-ddl-records": _params};
-
-	return (NSArray *)[self.session invoke:_command error:error];
-}
-
 - (NSNumber *)getDdlRecordsCountWithDdlRecordSetId:(long long)ddlRecordSetId error:(NSError **)error {
 	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
 		@"ddlRecordSetId": @(ddlRecordSetId)
@@ -76,6 +49,37 @@
 	NSDictionary *_command = @{@"/screens.screensddlrecord/get-ddl-records-count": _params};
 
 	return (NSNumber *)[self.session invoke:_command error:error];
+}
+
+- (NSArray *)getDdlRecordsWithDdlRecordSetId:(long long)ddlRecordSetId userId:(long long)userId locale:(NSString *)locale start:(int)start end:(int)end obc:(LRJSONObjectWrapper *)obc error:(NSError **)error {
+	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
+		@"ddlRecordSetId": @(ddlRecordSetId),
+		@"userId": @(userId),
+		@"locale": [self checkNull: locale],
+		@"start": @(start),
+		@"end": @(end),
+	}];
+
+	[self mangleWrapperWithParams:_params name:@"obc" className:@"com.liferay.portal.kernel.util.OrderByComparator<com.liferay.dynamic.data.lists.model.DDLRecord>" wrapper:obc];
+
+	NSDictionary *_command = @{@"/screens.screensddlrecord/get-ddl-records": _params};
+
+	return (NSArray *)[self.session invoke:_command error:error];
+}
+
+- (NSArray *)getDdlRecordsWithDdlRecordSetId:(long long)ddlRecordSetId locale:(NSString *)locale start:(int)start end:(int)end obc:(LRJSONObjectWrapper *)obc error:(NSError **)error {
+	NSMutableDictionary *_params = [NSMutableDictionary dictionaryWithDictionary:@{
+		@"ddlRecordSetId": @(ddlRecordSetId),
+		@"locale": [self checkNull: locale],
+		@"start": @(start),
+		@"end": @(end),
+	}];
+
+	[self mangleWrapperWithParams:_params name:@"obc" className:@"com.liferay.portal.kernel.util.OrderByComparator<com.liferay.dynamic.data.lists.model.DDLRecord>" wrapper:obc];
+
+	NSDictionary *_command = @{@"/screens.screensddlrecord/get-ddl-records": _params};
+
+	return (NSArray *)[self.session invoke:_command error:error];
 }
 
 @end

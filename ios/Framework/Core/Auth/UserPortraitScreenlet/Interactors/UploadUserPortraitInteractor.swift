@@ -34,19 +34,19 @@ class UploadUserPortraitInteractor: ServerWriteConnectorInteractor {
 				image: self.image)
 	}
 
-	override func completedConnector(op: ServerConnector) {
-		self.uploadResult = (op as! UploadUserPortraitLiferayConnector).uploadResult
+	override func completedConnector(c: ServerConnector) {
+		self.uploadResult = (c as! UploadUserPortraitLiferayConnector).uploadResult
 	}
 
 
 	//MARK: Cache methods
 
-	override func writeToCache(op: ServerConnector) {
+	override func writeToCache(c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
 
-		let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
+		let cacheFunction = (cacheStrategy == .CacheFirst || c.lastError != nil)
 			? cacheManager.setDirty
 			: cacheManager.setClean
 
@@ -54,7 +54,8 @@ class UploadUserPortraitInteractor: ServerWriteConnectorInteractor {
 			collection: ScreenletName(UserPortraitScreenlet),
 			key: "userId-\(userId)",
 			value: image,
-			attributes: ["userId": userId.description])
+			attributes: ["userId": userId.description],
+			onCompletion: nil)
 	}
 
 	override func callOnSuccess() {

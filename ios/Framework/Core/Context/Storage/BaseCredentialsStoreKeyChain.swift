@@ -58,7 +58,8 @@ import UIKit
 				try keychain.remove("companyId")
 				try keychain.remove("groupId")
 				try keychain.remove("user_attributes")
-			} catch {
+			}
+			catch {
 			}
 		}
 
