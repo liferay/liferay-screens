@@ -45,7 +45,7 @@ public class CommentListView
 		getAdapter().getEntries().add(commentEntry);
 		int size = getAdapter().getEntries().size();
 		getAdapter().setRowCount(size);
-		if (size == 0) {
+		if (size <= 1) {
 			getAdapter().notifyDataSetChanged();
 		} else {
 			getAdapter().notifyItemInserted(size - 1);

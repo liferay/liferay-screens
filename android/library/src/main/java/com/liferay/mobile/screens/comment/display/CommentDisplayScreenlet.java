@@ -135,6 +135,9 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 
 	@Override
 	public void onLoadCommentSuccess(CommentEntry commentEntry) {
+		this.commentEntry = commentEntry;
+		this.commentId = commentEntry.getCommentId();
+		commentEntry.setEditable(editable);
 		getViewModel().showFinishOperation(LOAD_COMMENT_ACTION, commentEntry);
 
 		if (getListener() != null) {
@@ -255,17 +258,8 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 		this.offlinePolicy = offlinePolicy;
 	}
 
-	public boolean isEditable() {
-		return editable;
-	}
-
 	public void setEditable(boolean editable) {
 		this.editable = editable;
-	}
-
-	public void allowEdition(boolean editable) {
-		this.editable = editable;
-		getViewModel().allowEdition(this.editable);
 	}
 
 	private CommentDisplayListener listener;

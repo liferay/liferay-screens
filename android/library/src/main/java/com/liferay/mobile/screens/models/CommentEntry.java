@@ -11,6 +11,8 @@ import java.util.Map;
  */
 public class CommentEntry implements Parcelable {
 
+	private boolean editable;
+
 	public CommentEntry() {
 
 	}
@@ -41,7 +43,7 @@ public class CommentEntry implements Parcelable {
 		this.values = values;
 	}
 
-	public boolean isEditable() {
+	public boolean isUpdatable() {
 		return (boolean) values.get("updatePermission");
 	}
 
@@ -108,4 +110,12 @@ public class CommentEntry implements Parcelable {
 	}
 
 	protected Map<String, Object> values;
+
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+
+	public boolean isEditable() {
+		return this.editable;
+	}
 }

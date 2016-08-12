@@ -7,11 +7,8 @@ import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.util.AttributeSet;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -28,8 +25,7 @@ import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 /**
  * @author Alejandro Hernández
  */
-public class CommentDisplayView extends FrameLayout
-	implements CommentDisplayViewModel, TextView.OnEditorActionListener, View.OnClickListener {
+public class CommentDisplayView extends FrameLayout implements CommentDisplayViewModel, View.OnClickListener {
 
 	public CommentDisplayView(Context context) {
 		super(context);
@@ -46,12 +42,6 @@ public class CommentDisplayView extends FrameLayout
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	public CommentDisplayView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
-	}
-
-	@Override
-	public void allowEdition(boolean editable) {
-		this.editable = editable;
-		loadView();
 	}
 
 	@Override
@@ -75,86 +65,84 @@ public class CommentDisplayView extends FrameLayout
 		progressBar.setVisibility(GONE);
 		contentGroup.setVisibility(VISIBLE);
 
-		editImageButton.setVisibility(editable ? VISIBLE : GONE);
-		deleteImageButton.setVisibility(editable ? VISIBLE : GONE);
-
-		deletionMode(false);
-		editionMode(false);
-
 		if (commentEntry != null) {
-			userPortraitScreenlet.setUserId(commentEntry.getUserId());
-			userNameTextView.setText(commentEntry.getUserName());
-			createDateTextView.setText(commentEntry.getCreateDateAsTimeSpan());
-			editedTextView.setVisibility(
-				commentEntry.getModifiedDate() != commentEntry.getCreateDate() ? VISIBLE : GONE);
-			bodyTextView.setText(Html.fromHtml(commentEntry.getBody()).toString().replaceAll("\n", "").trim());
+			changeButtonBackgrounds(commentEntry);
+			reloadButtons();
+			loadCommentInView(commentEntry);
+		}
+	}
 
-			if (commentEntry.isEditable()) {
-				editBodyEditText.setOnEditorActionListener(this);
-				editImageButton.setOnClickListener(this);
-			}
+	private void loadCommentInView(CommentEntry commentEntry) {
+		userPortraitScreenlet.setUserId(commentEntry.getUserId());
+		//FIXME !
+		//userPortraitScreenlet.load();
+		userNameTextView.setText(commentEntry.getUserName());
+		createDateTextView.setText(commentEntry.getCreateDateAsTimeSpan());
+		editedTextView.setVisibility(commentEntry.getModifiedDate() != commentEntry.getCreateDate() ? VISIBLE : GONE);
+		bodyTextView.setText(Html.fromHtml(commentEntry.getBody()).toString().replaceAll("\n", "").trim());
+	}
 
-			if (commentEntry.isDeletable()) {
-				deleteImageButton.setOnClickListener(this);
-			}
+	private void changeButtonBackgrounds(CommentEntry commentEntry) {
+
+		boolean editable = commentEntry.isEditable();
+
+		if (editable) {
+			editImageButton.setVisibility(VISIBLE);
+			editImageButton.setOnClickListener(this);
+			deleteImageButton.setVisibility(VISIBLE);
+			deleteImageButton.setOnClickListener(this);
+		} else {
+			editImageButton.setVisibility(GONE);
+			deleteImageButton.setVisibility(GONE);
+		}
+	}
+
+	private void reloadButtons() {
+
+		if (editing && viewSwitcher.getCurrentView() != editBodyEditText) {
+			viewSwitcher.showNext();
+		} else if (!editing && viewSwitcher.getCurrentView() != bodyTextView) {
+			viewSwitcher.showPrevious();
 		}
 
-		userPortraitScreenlet.load();
+		boolean inAction = editing || deleting;
+		editImageButton.setImageResource(inAction ? R.drawable.default_ok : R.drawable.default_comment_edit);
+		changeButtonBackgroundDrawable(editImageButton,
+			inAction ? R.drawable.default_button_selector_green : R.drawable.default_button_selector);
+
+		deleteImageButton.setImageResource(inAction ? R.drawable.default_cancel : R.drawable.default_comment_delete);
+		changeButtonBackgroundDrawable(deleteImageButton,
+			inAction ? R.drawable.default_button_selector_red : R.drawable.default_button_selector);
+	}
+
+	@Override
+	public void onClick(View v) {
+
+		if (v.getId() == R.id.comment_first_action) {
+			if (editing) {
+				String editedText = editBodyEditText.getText().toString();
+				if (!editedText.equals(bodyTextView.getText())) {
+					getScreenlet().performUserAction(CommentDisplayScreenlet.UPDATE_COMMENT_ACTION, editedText);
+				}
+			} else if (deleting) {
+				getScreenlet().performUserAction(CommentDisplayScreenlet.DELETE_COMMENT_ACTION);
+			} else {
+				editBodyEditText.setText(bodyTextView.getText());
+			}
+			editing = !editing && !deleting;
+			deleting = false;
+			reloadButtons();
+		} else if (v.getId() == R.id.comment_second_action) {
+			deleting = !editing && !deleting;
+			editing = false;
+			reloadButtons();
+		}
 	}
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
 		progressBar.setVisibility(GONE);
 		contentGroup.setVisibility(VISIBLE);
-	}
-
-	private void editCommentBody() {
-		if (!isEditing) {
-			String editedText = editBodyEditText.getText().toString();
-			if (!editedText.equals(bodyTextView.getText())) {
-				getScreenlet().performUserAction(CommentDisplayScreenlet.UPDATE_COMMENT_ACTION, editedText);
-			}
-		}
-	}
-
-	private void editionMode(boolean on) {
-		isEditing = on;
-
-		if (isEditing && viewSwitcher.getCurrentView() != editBodyEditText) {
-			viewSwitcher.showNext();
-		} else if (!isEditing && viewSwitcher.getCurrentView() != bodyTextView) {
-			viewSwitcher.showPrevious();
-		}
-
-		InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-		if (isEditing) {
-			editImageButton.setImageResource(R.drawable.default_ok);
-
-			//Set selection at end of input
-			editBodyEditText.requestFocus();
-			editBodyEditText.setText("");
-			editBodyEditText.append(bodyTextView.getText());
-
-			imm.showSoftInput(editBodyEditText, InputMethodManager.SHOW_FORCED);
-		} else {
-			editImageButton.setImageResource(R.drawable.default_comment_edit);
-
-			imm.hideSoftInputFromWindow(editBodyEditText.getWindowToken(), 0);
-		}
-	}
-
-	private void deletionMode(boolean on) {
-		isDeleting = on;
-
-		changeButtonBackgroundDrawable(deleteImageButton,
-			isDeleting ? R.drawable.default_button_selector_red : R.drawable.default_button_selector);
-
-		deleteImageButton.setImageResource(isDeleting ? R.drawable.default_cancel : R.drawable.default_comment_delete);
-
-		changeButtonBackgroundDrawable(editImageButton,
-			isDeleting ? R.drawable.default_button_selector_green : R.drawable.default_button_selector);
-
-		editImageButton.setImageResource(isDeleting ? R.drawable.default_ok : R.drawable.default_comment_edit);
 	}
 
 	private void changeButtonBackgroundDrawable(ImageButton button, int drawable) {
@@ -175,11 +163,10 @@ public class CommentDisplayView extends FrameLayout
 		userPortraitScreenlet = (UserPortraitScreenlet) findViewById(R.id.comment_user_portrait);
 		createDateTextView = (TextView) findViewById(R.id.comment_create_date);
 		editedTextView = (TextView) findViewById(R.id.comment_edited);
-		editImageButton = (ImageButton) findViewById(R.id.comment_edit_button);
-		deleteImageButton = (ImageButton) findViewById(R.id.comment_delete_button);
+		editImageButton = (ImageButton) findViewById(R.id.comment_first_action);
+		deleteImageButton = (ImageButton) findViewById(R.id.comment_second_action);
 		editBodyEditText = (EditText) findViewById(R.id.comment_edit_body);
 		viewSwitcher = (ViewSwitcher) findViewById(R.id.comment_view_switcher);
-
 		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
 		contentGroup = (ViewGroup) findViewById(R.id.comment_display_content);
 	}
@@ -195,46 +182,20 @@ public class CommentDisplayView extends FrameLayout
 	}
 
 	private TextView userNameTextView;
-	private TextView bodyTextView;
-	private UserPortraitScreenlet userPortraitScreenlet;
 	private TextView createDateTextView;
+	private TextView bodyTextView;
 	private TextView editedTextView;
+	private UserPortraitScreenlet userPortraitScreenlet;
+	private EditText editBodyEditText;
+
 	private ImageButton editImageButton;
 	private ImageButton deleteImageButton;
-	private EditText editBodyEditText;
 	private ViewSwitcher viewSwitcher;
-
-	private boolean editable;
-	private boolean isDeleting;
-	private boolean isEditing;
+	private boolean deleting;
+	private boolean editing;
 
 	private BaseScreenlet screenlet;
 	private ViewGroup contentGroup;
 	private ProgressBar progressBar;
 	private CommentEntry commentEntry;
-
-	@Override
-	public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-		if (actionId == EditorInfo.IME_ACTION_DONE) {
-			editionMode(false);
-			editCommentBody();
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public void onClick(View v) {
-
-		if (v.getId() == R.id.comment_edit_button) {
-			if (isDeleting) {
-				getScreenlet().performUserAction(CommentDisplayScreenlet.DELETE_COMMENT_ACTION);
-			} else {
-				editionMode(!isEditing);
-				editCommentBody();
-			}
-		} else if (v.getId() == R.id.comment_delete_button) {
-			deletionMode(!isDeleting);
-		}
-	}
 }
