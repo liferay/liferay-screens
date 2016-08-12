@@ -45,7 +45,7 @@ public class GalleryUploadInteractorImpl extends BaseRemoteInteractor<GalleryInt
 		}
 	}
 
-	public void onEvent(GalleryUploadEvent event) {
+	public void onEventMainThread(GalleryUploadEvent event) {
 		if (!isValidEvent(event)) {
 			return;
 		}
