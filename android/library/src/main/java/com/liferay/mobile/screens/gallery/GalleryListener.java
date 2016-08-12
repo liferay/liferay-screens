@@ -19,4 +19,6 @@ public interface GalleryListener extends BaseListListener<ImageEntry> {
 	void onImageUploadEnd(ImageEntry entry);
 
 	void onImageUploadFailure(Exception e);
+
+	Class provideImageUploadDetailActivity();
 }
