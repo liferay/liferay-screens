@@ -21,58 +21,45 @@ import Foundation
 	}
 
 	public var blogId: Int64 {
-		if let blogsEntry = blogsEntry {
-			return blogsEntry["blogId"]!.description.asLong!
-		}
-		return 0
+		return int64Value("blogId") ?? 0
 	}
 
 	public var subtitle: String {
-		if let blogsEntry = blogsEntry {
-			return blogsEntry["subtitle"]!.description
-		}
-		return ""
+		return stringValue("subtitle") ?? ""
 	}
 
 	public var userName: String {
-		if let blogsEntry = blogsEntry {
-			return blogsEntry["userName"]!.description
-		}
-		return ""
+		return stringValue("userName") ?? ""
 	}
 
 	public var displayDate: Int64 {
-		if let blogsEntry = blogsEntry {
-			return blogsEntry["displayDate"]!.description.asLong!
-		}
-		return 0
+		return int64Value("displayDate") ?? 0
 	}
 
 	public var content: String {
-		if let blogsEntry = blogsEntry {
-			return blogsEntry["content"]!.description
-		}
-		return ""
+		return stringValue("content") ?? ""
 	}
 
 	public var userId: Int64 {
-		if let blogsEntry = blogsEntry {
-			return blogsEntry["userId"]!.description.asLong!
-		}
-		return 0
+		return int64Value("userId") ?? 0
 	}
 
 	public var coverImageFileEntryId: Int64 {
-		if let blogsEntry = blogsEntry {
-			return blogsEntry["coverImageFileEntryId"]!.description.asLong!
-		}
-		return 0
+		return int64Value("coverImageFileEntryId") ?? 0
 	}
 
 	// MARK: MimeTypeable
 
 	override public var mimeType: String? {
 		return "text/html"
+	}
+
+	private func int64Value(key: String) -> Int64? {
+		return blogsEntry?[key]?.description.asLong
+	}
+
+	private func stringValue(key: String) -> String? {
+		return blogsEntry?[key]?.description
 	}
 
 }
