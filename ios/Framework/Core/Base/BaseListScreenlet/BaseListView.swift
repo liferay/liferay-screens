@@ -73,7 +73,7 @@ public class BaseListView: BaseScreenletView {
 		_rows = [String : [AnyObject?]]()
 		_rows[BaseListView.DefaultSection] = [AnyObject?]()
 		_rowCount = 0
-		_sections = [String]()
+		_sections = [BaseListView.DefaultSection]
 		
 		onClearRows(oldRows)
 	}
