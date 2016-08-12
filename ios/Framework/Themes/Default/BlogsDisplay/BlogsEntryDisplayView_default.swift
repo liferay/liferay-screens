@@ -31,6 +31,14 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 	public var contentStyle = "font-size:17"
 	public var headerImageHeight: CGFloat = 125.0
 
+	private let dateFormatter: NSDateFormatter = {
+			let dateFormatter = NSDateFormatter()
+			dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
+			dateFormatter.locale = NSLocale(
+				localeIdentifier: NSLocale.currentLocaleString)
+			return dateFormatter
+		}()
+
 	public var blogsEntry: BlogsEntry? {
 		didSet {
 			if let blogsEntry = blogsEntry {
@@ -58,10 +66,6 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 
 				//Set blog display date from timestamp
 				if let date = blogsEntry.displayDate {
-					let dateFormatter = NSDateFormatter()
-					dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
-					dateFormatter.locale = NSLocale(localeIdentifier: NSLocale.currentLocaleString)
-
 					dateLabel?.text = dateFormatter.stringFromDate(date)
 				}
 				else {
