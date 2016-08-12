@@ -2,10 +2,15 @@ package com.liferay.mobile.screens.viewsets.defaultviews.gallery.grid;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.util.AttributeSet;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.MediaStoreSelectorDialog;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
@@ -13,6 +18,7 @@ import com.liferay.mobile.screens.gallery.GalleryScreenlet;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.gallery.view.GalleryViewModel;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
+import com.liferay.mobile.screens.viewsets.defaultviews.gallery.UploadProgressView;
 import java.util.List;
 import rx.functions.Action1;
 
@@ -74,6 +80,45 @@ public class GridGalleryView
 		getAdapter().getEntries().add(imageEntry);
 
 		getAdapter().notifyItemInserted(newRowCount - 1);
+	}
+
+	@Override
+	public void imageUploadStart(String picturePath) {
+		if (uploadProgressView == null) {
+			createProgressView();
+		}
+
+		uploadProgressView.setVisibility(VISIBLE);
+		uploadProgressView.addUpload(picturePath);
+	}
+
+	private void createProgressView() {
+		uploadProgressView =
+			(UploadProgressView) LayoutInflater.from(getContext()).inflate(R.layout.gallery_progress_view_default, null);
+
+		int height = getPixelsFromDp(60);
+		int margin = getPixelsFromDp(5);
+
+		LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
+		layoutParams.setMargins(margin, margin, margin, 0);
+
+		addView(uploadProgressView, layoutParams);
+	}
+
+	@Override
+	public void imageUploadProgress(int totalBytes, int totalBytesSent) {
+		float percentage = (totalBytesSent / (float) totalBytes) * 100;
+		uploadProgressView.setProgress((int) percentage);
+	}
+
+	@Override
+	public void imageUploadComplete() {
+		uploadProgressView.uploadCompleteOrError();
+	}
+
+	@Override
+	public void imageUploadError(Exception e) {
+		uploadProgressView.uploadCompleteOrError();
 	}
 
 	public void reloadView() {
@@ -147,8 +192,14 @@ public class GridGalleryView
 		};
 	}
 
-	private static final int DEFAULT_COLS = 3;
+	private int getPixelsFromDp(int dp) {
+		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
+	}
 
+
+	private static final int DEFAULT_COLS = 4;
+
+	private UploadProgressView uploadProgressView;
 	private AlertDialog choseOriginDialog;
 
 	public int columnsSize = DEFAULT_COLS;

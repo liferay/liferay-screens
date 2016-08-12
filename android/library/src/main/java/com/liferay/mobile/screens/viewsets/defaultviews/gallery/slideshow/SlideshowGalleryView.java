@@ -47,6 +47,26 @@ public class SlideshowGalleryView extends
 	}
 
 	@Override
+	public void imageUploadStart(String picturePath) {
+
+	}
+
+	@Override
+	public void imageUploadProgress(int bytesSent, int totalBytes) {
+
+	}
+
+	@Override
+	public void imageUploadComplete() {
+
+	}
+
+	@Override
+	public void imageUploadError(Exception e) {
+
+	}
+
+	@Override
 	protected SlideshowGalleryAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
 		return new SlideshowGalleryAdapter(itemLayoutId, itemProgressLayoutId, this);
 	}
