@@ -25,10 +25,16 @@ import UIKit
 	optional func screenlet(screenlet: CommentListScreenlet,
 			onSelectedComment comment: Comment)
 
+	optional func screenlet(screenlet: CommentListScreenlet,
+	        onDeletedComment comment: Comment)
+
+	optional func screenlet(screenlet: CommentListScreenlet,
+	        onCommentDelete comment: Comment,
+	        onError error: NSError)
 }
 
 
-@IBDesignable public class CommentListScreenlet: BaseListScreenlet {
+@IBDesignable public class CommentListScreenlet: BaseListScreenlet, CommentDisplayScreenletDelegate {
 
 	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var className: String = ""
@@ -94,6 +100,22 @@ import UIKit
 	override public func onSelectedRow(row: AnyObject) {
 		commentListDelegate?.screenlet?(self,
 				onSelectedComment: row as! Comment)
+	}
+
+	//MARK: CommentDisplayScreenletDelegate
+
+	public func screenlet(screenlet: CommentDisplayScreenlet, onCommentDeleted comment: Comment?) {
+		if let deletedComment = comment {
+			deleteComment(deletedComment)
+			commentListDelegate?.screenlet?(self, onDeletedComment: deletedComment)
+		}
+	}
+
+	public func screenlet(screenlet: CommentDisplayScreenlet, onDeleteComment comment: Comment?,
+			onError error: NSError) {
+		if let comment = comment {
+			commentListDelegate?.screenlet?(self, onDeletedComment: comment)
+		}
 	}
 
 }

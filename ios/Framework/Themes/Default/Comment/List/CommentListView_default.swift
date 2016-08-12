@@ -69,11 +69,15 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 		}
 	}
 
-	override public func doCreateCell(cellId: String) -> UITableViewCell {
-		let cell = CommentTableViewCell_default(style: .Default, reuseIdentifier: cellId)
-		cell.commentDisplayScreenlet?.groupId = commentListScreenlet.groupId
-		cell.commentDisplayScreenlet?.className = commentListScreenlet.className
-		cell.commentDisplayScreenlet?.classPK = commentListScreenlet.classPK
+	public override func doDequeueReusableCell(row row: Int, object: AnyObject?) -> UITableViewCell {
+		let cell = super.doDequeueReusableCell(row: row, object: object)
+		if let commentCell = cell as? CommentTableViewCell_default {
+			commentCell.commentDisplayScreenlet?.groupId = commentListScreenlet.groupId
+			commentCell.commentDisplayScreenlet?.className = commentListScreenlet.className
+			commentCell.commentDisplayScreenlet?.classPK = commentListScreenlet.classPK
+			commentCell.commentDisplayScreenlet?.delegate = screenlet
+				as? CommentDisplayScreenletDelegate
+		}
 		return cell
 	}
 

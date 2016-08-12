@@ -53,4 +53,12 @@ class CommentListScreenletViewController: UIViewController,
 		print("DELEGATE: onCommentListResponse called -> \(comments)\n")
 	}
 
+	func screenlet(screenlet: CommentListScreenlet, onDeletedComment comment: Comment) {
+		print("DELEGATE: onDeletedComment called -> \(comment)\n")
+	}
+
+	func screenlet(screenlet: CommentListScreenlet, onCommentDelete comment: Comment, onError error: NSError) {
+		print("DELEGATE: onCommentDelete onError called -> \(comment) \(error)\n")
+	}
+
 }
