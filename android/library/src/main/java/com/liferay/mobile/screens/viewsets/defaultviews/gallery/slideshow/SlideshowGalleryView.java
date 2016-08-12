@@ -11,14 +11,14 @@ import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.gallery.view.GalleryViewModel;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
+import com.liferay.mobile.screens.viewsets.defaultviews.gallery.BaseGalleryView;
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 
 /**
  * @author Víctor Galán Grande
  */
 public class SlideshowGalleryView extends
-	BaseListScreenletView<ImageEntry, SlideshowGalleryAdapter.SlideshowGalleryViewHolder, SlideshowGalleryAdapter>
-	implements GalleryViewModel {
+	BaseGalleryView<SlideshowGalleryAdapter.SlideshowGalleryViewHolder, SlideshowGalleryAdapter> {
 
 	public SlideshowGalleryView(Context context) {
 		super(context);
@@ -34,36 +34,6 @@ public class SlideshowGalleryView extends
 
 	public SlideshowGalleryView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
-	}
-
-	@Override
-	public void deleteImage(long imageEntryId) {
-
-	}
-
-	@Override
-	public void addImage(ImageEntry imageEntry) {
-
-	}
-
-	@Override
-	public void imageUploadStart(String picturePath) {
-
-	}
-
-	@Override
-	public void imageUploadProgress(int bytesSent, int totalBytes) {
-
-	}
-
-	@Override
-	public void imageUploadComplete() {
-
-	}
-
-	@Override
-	public void imageUploadError(Exception e) {
-
 	}
 
 	@Override
