@@ -39,6 +39,13 @@ public class GalleryUploadInteractorImpl extends BaseRemoteInteractor<GalleryInt
 		}
 	}
 
+	public void onEvent(StartUploadEvent event) {
+		if (isValidEvent(event)) {
+			getListener().onPictureUploadInformationReceived(event.getPicturePath(), event.getTitle(),
+				event.getDescription());
+		}
+	}
+
 	public void onEvent(MediaStoreEvent event) {
 		if (isValidEvent(event)) {
 			getListener().onPicturePathReceived(event.getFilePath());
