@@ -12,6 +12,7 @@ import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
+import com.liferay.mobile.screens.context.PicassoScreens;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.gallery.interactor.BaseGalleryInteractor;
 import com.liferay.mobile.screens.gallery.interactor.GalleryInteractorListener;
@@ -67,6 +68,8 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		Integer offlinePolicy =
 			typedArray.getInteger(R.styleable.GalleryScreenlet_offlinePolicy, OfflinePolicy.REMOTE_ONLY.ordinal());
 		this.offlinePolicy = OfflinePolicy.values()[offlinePolicy];
+
+		PicassoScreens.setOfflinePolicy(this.offlinePolicy);
 
 		long groupId = LiferayServerContext.getGroupId();
 
