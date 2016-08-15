@@ -8,6 +8,7 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
+import com.liferay.mobile.screens.context.PicassoScreens;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.squareup.picasso.Picasso;
 
@@ -41,8 +42,7 @@ public class SlideshowGalleryAdapter
 		}
 
 		public void bind(ImageEntry entry) {
-			Context context = LiferayScreensContext.getContext();
-			Picasso.with(context).load(entry.getImageUrl()).into(_imageView);
+			PicassoScreens.load(entry.getImageUrl()).placeholder(R.drawable.default_placeholder_image).into(_imageView);
 		}
 
 		private final ImageView _imageView;
