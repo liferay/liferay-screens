@@ -91,7 +91,7 @@ public class GridGalleryView
 		return new GridDividerItemDecoration(_imagesSpacing);
 	}
 
-	private static final int DEFAULT_COLS = 4;
+	private static final int DEFAULT_COLS = 3;
 
 	public int columnsSize = DEFAULT_COLS;
 }

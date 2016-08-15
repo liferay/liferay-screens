@@ -8,6 +8,7 @@
 	>
 
 	<FrameLayout
+		android:id="@+id/recycler_container"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 
@@ -22,6 +23,10 @@
 			android:id="@+id/liferay_recycler_list"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
+			android:paddingRight="10dp"
+			android:paddingLeft="10dp"
+			android:paddingTop="5dp"
+			android:paddingBottom="5dp"
 			android:visibility="gone"/>
 
 		<android.support.design.widget.FloatingActionButton
@@ -30,15 +35,9 @@
 			android:layout_height="wrap_content"
 			android:layout_gravity="end|bottom"
 			android:layout_margin="10dp"
-			app:backgroundTint="@color/colorPrimary_default"
+			app:backgroundTint="?colorPrimary"
 			android:src="@drawable/default_upload_icon"/>
 
 	</FrameLayout>
-
-	<ImageView
-		android:id="@+id/gallery_detailed_image"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:scaleType="fitCenter"/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.gallery.grid.GridGalleryView>
