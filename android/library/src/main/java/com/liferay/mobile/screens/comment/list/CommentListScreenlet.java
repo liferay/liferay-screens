@@ -133,10 +133,11 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 
 	@Override
 	public void onDeleteCommentSuccess(CommentEntry commentEntry) {
+		removeCommentEntry(commentEntry);
+
 		if (getCommentListListener() != null) {
 			getCommentListListener().onDeleteCommentSuccess(commentEntry);
 		}
-		removeCommentEntry(commentEntry);
 	}
 
 	@Override
