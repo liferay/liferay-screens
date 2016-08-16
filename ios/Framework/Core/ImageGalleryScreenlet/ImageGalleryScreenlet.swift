@@ -132,7 +132,6 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 
 		if let viewController = viewController {
 			viewController.image = imageUpload.image
-			viewController.title = imageUpload.title
 			viewController.screenlet = self
 
 			let navigationController = UINavigationController(rootViewController: viewController)
