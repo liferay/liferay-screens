@@ -53,8 +53,6 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 	public static let UploadImageAction = "upload-image-action"
 	public static let EnqueueUploadAction = "enqueue-upload-action"
 
-	public static let DefaultColumns = 4
-    
     @IBInspectable public var repositoryId: Int64 = -1
     @IBInspectable public var folderId: Int64 = -1
 	@IBInspectable public var mimeTypes: String = ""

@@ -16,9 +16,11 @@ import UIKit
 
 public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 
-	var spacing: CGFloat = 1.0
-	
-	public var columnNumber = ImageGalleryScreenlet.DefaultColumns {
+	public static let DefaultColumns = 4
+
+	public var spacing: CGFloat = 1.0
+
+	public var columnNumber = ImageGalleryView_default.DefaultColumns {
 		didSet {
 			changeLayout()
 		}
