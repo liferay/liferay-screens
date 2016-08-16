@@ -113,6 +113,7 @@ import UIKit
 		if let screenlet = innerScreenlet as? FileDisplayScreenlet {
 			screenlet.fileEntry = FileEntry(attributes: asset.attributes)
 			screenlet.autoLoad = false
+			screenlet.presentingViewController = self.presentingViewController
 			screenlet.load()
 		}
 		else if let screenlet = innerScreenlet as? BlogsEntryDisplayScreenlet {

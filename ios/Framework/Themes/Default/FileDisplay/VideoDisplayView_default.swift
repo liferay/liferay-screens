@@ -45,7 +45,7 @@ public class VideoDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
 	public var title: String? {
 		didSet {
-			//TODO show the title in a top bar
+			self.presentingViewController?.title = title
 		}
 	}
 }

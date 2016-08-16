@@ -78,6 +78,7 @@ public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
 	public var title: String? {
 		didSet {
+			self.presentingViewController?.title = title
 			self.titleLabel?.text = title
 		}
 	}

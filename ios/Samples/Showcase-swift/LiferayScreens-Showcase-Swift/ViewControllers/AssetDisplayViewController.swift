@@ -26,6 +26,7 @@ class AssetDisplayViewController: UIViewController, AssetDisplayScreenletDelegat
 		
 		self.screenlet?.assetEntryId = self.entryId
 		self.screenlet?.delegate = self
+		self.screenlet?.presentingViewController = self
 	}
 	
 	func screenlet(screenlet: AssetDisplayScreenlet,
