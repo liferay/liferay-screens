@@ -95,8 +95,7 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 	}
 
 	private func saveResultAndCountOnCache() {
-		guard let cacheManager = SessionContext.currentContext?.cacheManager
-		else {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
 
@@ -109,19 +108,19 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 					collection: ScreenletName(ImageGalleryScreenlet),
 					keys: [cacheKeyList, cacheKeyCount], result: {
 
-						var newPage = [[String:AnyObject]]()
+				var newPage = [[String:AnyObject]]()
 
-						if let oldPage = $0.first as? [[String:AnyObject]] {
-							newPage.appendContentsOf(oldPage)
-						}
+				if let oldPage = $0.first as? [[String:AnyObject]] {
+					newPage.appendContentsOf(oldPage)
+				}
 
-						newPage.append(entry)
+				newPage.append(entry)
 
-						self.storeNewImageEntry(newPage, cacheKey: cacheKeyList)
+				self.storeNewImageEntry(newPage, cacheKey: cacheKeyList)
 
-						if let count = $0.last as? Int {
-							self.incrementAndStoreImageEntriesCount(count, cacheKey: cacheKeyCount)
-						}
+				if let count = $0.last as? Int {
+					self.incrementAndStoreImageEntriesCount(count, cacheKey: cacheKeyCount)
+				}
 			})
 		}
 	}
