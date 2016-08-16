@@ -26,8 +26,8 @@ import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.oauth.activity.OAuthActivity;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
+import com.liferay.mobile.screens.auth.login.interactor.BaseLoginInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginBasicInteractor;
-import com.liferay.mobile.screens.auth.login.interactor.LoginInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginOAuthInteractor;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
@@ -43,7 +43,7 @@ import static com.liferay.mobile.screens.context.storage.CredentialsStorageBuild
  * @author Silvio Santos
  */
 public class LoginScreenlet
-	extends BaseScreenlet<LoginViewModel, LoginInteractor>
+	extends BaseScreenlet<LoginViewModel, BaseLoginInteractor>
 	implements LoginListener {
 
 	public static final String OAUTH = "OAUTH";
@@ -95,9 +95,8 @@ public class LoginScreenlet
 				OAuthConfig oauthConfig = (OAuthConfig) intent.getSerializableExtra(
 					OAuthActivity.EXTRA_OAUTH_CONFIG);
 
-				LoginOAuthInteractor oauthInteractor = (LoginOAuthInteractor) getInteractor(OAUTH);
-				oauthInteractor.setOAuthConfig(oauthConfig);
-				oauthInteractor.login();
+				BaseLoginInteractor oauthInteractor = getInteractor(OAUTH);
+				oauthInteractor.start(oauthConfig);
 			}
 			catch (Exception e) {
 				onLoginFailure(e);
@@ -208,12 +207,12 @@ public class LoginScreenlet
 	}
 
 	@Override
-	protected LoginInteractor createInteractor(String actionName) {
+	protected BaseLoginInteractor createInteractor(String actionName) {
 		if (BASIC_AUTH.equals(actionName)) {
-			return new LoginBasicInteractor(getScreenletId());
+			return new LoginBasicInteractor();
 		}
 		else {
-			LoginOAuthInteractor oauthInteractor = new LoginOAuthInteractor(getScreenletId());
+			LoginOAuthInteractor oauthInteractor = new LoginOAuthInteractor();
 
 			OAuthConfig config = new OAuthConfig(
 				LiferayServerContext.getServer(),
@@ -226,25 +225,15 @@ public class LoginScreenlet
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, LoginInteractor interactor, Object... args) {
+	protected void onUserAction(String userActionName, BaseLoginInteractor interactor, Object... args) {
 		if (BASIC_AUTH.equals(userActionName)) {
+
 			LoginViewModel viewModel = getViewModel();
-			LoginBasicInteractor loginBasicInteractor = (LoginBasicInteractor) interactor;
-
-			loginBasicInteractor.setLogin(viewModel.getLogin());
-			loginBasicInteractor.setPassword(viewModel.getPassword());
-			loginBasicInteractor.setBasicAuthMethod(viewModel.getBasicAuthMethod());
-
-			try {
-				interactor.login();
-			}
-			catch (Exception e) {
-				onLoginFailure(e);
-			}
+			interactor.start(viewModel.getLogin(), viewModel.getPassword(), viewModel.getBasicAuthMethod());
 		}
 		else {
-			LoginOAuthInteractor oauthInteractor = (LoginOAuthInteractor) interactor;
 
+			LoginOAuthInteractor oauthInteractor = (LoginOAuthInteractor) interactor;
 			Intent intent = new Intent(getContext(), OAuthActivity.class);
 			intent.putExtra(OAuthActivity.EXTRA_OAUTH_CONFIG, oauthInteractor.getOAuthConfig());
 			LiferayScreensContext.getActivityFromContext(getContext()).startActivityForResult(intent, REQUEST_OAUTH_CODE);
