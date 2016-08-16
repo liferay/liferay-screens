@@ -41,19 +41,6 @@ import Foundation
 		return NSDate(timeIntervalSince1970: timeStamp)
 	}
 
-	public var displayDateFormatted: String {
-		guard let date = self.displayDate else {
-			//TODO i18n
-			return "Unknown date"
-		}
-
-		let dateFormatter = NSDateFormatter()
-		dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
-		dateFormatter.locale = NSLocale(localeIdentifier: NSLocale.currentLocaleString)
-
-		return dateFormatter.stringFromDate(date)
-	}
-
 	public var content: String {
 		return stringValue("content") ?? ""
 	}
