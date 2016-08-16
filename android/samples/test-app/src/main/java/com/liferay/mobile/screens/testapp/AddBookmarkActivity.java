@@ -36,7 +36,7 @@ public class AddBookmarkActivity extends ThemeActivity implements AddBookmarkLis
 
 	@Override
 	public Interactor createInteractor(String actionName) {
-		return new AddBookmarkInteractorImpl(_screenlet.getScreenletId());
+		return new AddBookmarkInteractorImpl();
 	}
 
 	private AddBookmarkScreenlet _screenlet;
