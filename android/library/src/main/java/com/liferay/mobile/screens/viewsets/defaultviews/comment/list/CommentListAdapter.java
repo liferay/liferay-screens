@@ -49,14 +49,15 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 	}
 
 	@Override
-	public void onViewAttachedToWindow(CommentViewHolder holder) {
-		super.onViewAttachedToWindow(holder);
+	public void onViewAttachedToWindow(CommentViewHolder commentViewHolder) {
+		super.onViewAttachedToWindow(commentViewHolder);
 
-		holder.load();
+		//TODO this should be easier to do... expose a method? think in other way of doing it
+		commentViewHolder.loadDisplayScreenlet();
 	}
 
 	public class CommentViewHolder extends BaseListAdapter.ViewHolder {
-		
+
 		public CommentViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 			commentDisplayScreenlet = (CommentDisplayScreenlet) view.findViewById(R.id.comment_view);
@@ -74,7 +75,7 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 		private CommentEntry entry;
 		private final CommentDisplayScreenlet commentDisplayScreenlet;
 
-		public void load() {
+		public void loadDisplayScreenlet() {
 			commentDisplayScreenlet.onLoadCommentSuccess(entry);
 		}
 	}
