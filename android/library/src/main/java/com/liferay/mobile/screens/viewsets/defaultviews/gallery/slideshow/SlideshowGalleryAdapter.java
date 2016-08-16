@@ -42,7 +42,7 @@ public class SlideshowGalleryAdapter
 		}
 
 		public void bind(ImageEntry entry) {
-			PicassoScreens.load(entry.getImageUrl()).placeholder(R.drawable.default_placeholder_image).into(_imageView);
+			PicassoScreens.load(entry.getImageUrl()).placeholder(R.drawable.default_placeholder_image).resize(900, 900).centerInside().into(_imageView);
 		}
 
 		private final ImageView _imageView;
