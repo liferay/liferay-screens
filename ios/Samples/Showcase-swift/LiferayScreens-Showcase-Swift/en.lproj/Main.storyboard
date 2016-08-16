@@ -1187,7 +1187,7 @@
                                 <rect key="frame" x="-4" y="122" width="328" height="389"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="groupId">
                                         <integer key="value" value="20160"/>
                                     </userDefinedRuntimeAttribute>
