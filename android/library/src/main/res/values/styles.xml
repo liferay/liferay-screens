@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="default_theme" parent="Theme.AppCompat.Light">
+	<style name="default_theme" parent="default_theme.base"/>
+
+	<style name="default_theme.base" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="colorPrimary">@color/colorPrimary_default</item>
 		<item name="colorAccent">@color/colorPrimaryLight_default</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryLight_default</item>
 		<item name="android:textColorPrimary">@color/textColorPrimary_default</item>
 		<item name="android:textColorSecondary">@color/textColorSecondary_default</item>
 

@@ -25,6 +25,7 @@
 	<string name="ddl_list_label">DDL List Screenlet: Shows a list of DDL records of a specific recordSetId</string>
 	<string name="ddl_form_label">DDL Form Screenlet: Shows a DDLRecord form. Allows file uploading and all DDL fields.</string>
 	<string name="asset_list_label">Asset List Screenlet: Shows a list of assets of a specific className</string>
+	<string name="comment_list_label">Comment List Screenlet: Shows a list of comments of a specific asset</string>
 	<string name="web_content_list_label">WebContent List Screenlet: Shows a list of web content of a specific folderId</string>
 	<string name="main_activity_label">List of all the screenlets supported on version 1.0.0 of Liferay Screens</string>
 	<string name="customizing_a_screenlet">Customizing an screenlet</string>
@@ -33,6 +34,7 @@
 	<string name="filtered_asset">Filtered asset</string>
 	<string name="email_address">Email Address</string>
 	<string name="sign_in">Sign In</string>
+	<string name="list_comments">Comment List</string>
 
 	<string name="custom_interactor">Login with custom interactor</string>
 	<string name="list_bookmarks">List Bookmarks</string>
@@ -48,4 +50,11 @@
 	<string name="button_for_like">button for like</string>
 	<string name="button_for_reactions">button for reactions</string>
 	<string name="button_for_emojis">button for emojis</string>
+	<string name="configuration">Configuration</string>
+	<string name="editable">Editable</string>
+	<string name="comment_id">Comment ID</string>
+	<string name="load">Load</string>
+	<string name="comment_list">Comment List</string>
+	<string name="comment_display">Comment Display</string>
+	<string name="no_loaded_comment">No loaded comment</string>
 </resources>

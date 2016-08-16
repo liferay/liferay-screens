@@ -14,7 +14,9 @@
 
 package com.liferay.mobile.screens.base.list;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.content.ContextCompat;
@@ -24,13 +26,11 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
-
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.list.view.BaseListViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,21 +38,24 @@ import java.util.List;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public abstract class BaseListScreenletView<
-	E extends Parcelable, H extends BaseListAdapter.ViewHolder, A extends BaseListAdapter<E, H>>
-	extends FrameLayout
-	implements BaseListViewModel<E>, BaseListAdapterListener {
+public abstract class BaseListScreenletView<E extends Parcelable, H extends BaseListAdapter.ViewHolder, A extends BaseListAdapter<E, H>>
+	extends FrameLayout implements BaseListViewModel<E>, BaseListAdapterListener {
 
 	public BaseListScreenletView(Context context) {
 		super(context);
 	}
 
-	public BaseListScreenletView(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public BaseListScreenletView(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public BaseListScreenletView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public BaseListScreenletView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
+	public BaseListScreenletView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override
@@ -108,14 +111,12 @@ public abstract class BaseListScreenletView<
 			}
 		}
 
-
 		if (realRowCount != entries.size()) {
 			if (realRowCount > entries.size()) {
 				for (int i = entries.size(); i < realRowCount; i++) {
 					entries.add(null);
 				}
-			}
-			else {
+			} else {
 				for (int i = realRowCount; i < entries.size(); i++) {
 					entries.remove(i);
 				}
@@ -125,7 +126,6 @@ public abstract class BaseListScreenletView<
 		for (int i = 0; i < serverEntries.size() && entries.size() > i + rowToFill; i++) {
 			entries.set(i + rowToFill, serverEntries.get(i));
 		}
-
 
 		adapter.setRowCount(realRowCount);
 		adapter.notifyDataSetChanged();
@@ -197,7 +197,8 @@ public abstract class BaseListScreenletView<
 		state.putParcelableArrayList(_STATE_ENTRIES, entries);
 		state.putSerializable(_STATE_ROW_COUNT, adapter.getItemCount());
 		state.putParcelable(_STATE_SUPER, superState);
-		state.putStringArrayList(_STATE_LABEL_FIELDS, (ArrayList<String>) ((BaseListScreenlet) getScreenlet()).getLabelFields());
+		state.putStringArrayList(_STATE_LABEL_FIELDS,
+			(ArrayList<String>) ((BaseListScreenlet) getScreenlet()).getLabelFields());
 		state.putInt(_STATE_FIRST_ROW, _firstRow);
 
 		return state;
@@ -220,8 +221,7 @@ public abstract class BaseListScreenletView<
 
 		RecyclerView.ItemDecoration dividerItemDecoration = getDividerDecoration();
 		if (dividerItemDecoration != null) {
-			_recyclerView.addItemDecoration(
-				getDividerDecoration());
+			_recyclerView.addItemDecoration(getDividerDecoration());
 		}
 	}
 
@@ -264,5 +264,4 @@ public abstract class BaseListScreenletView<
 	private static final String _STATE_FIRST_ROW = "firstRow";
 	private static final String _STATE_LABEL_FIELDS = "label_fields";
 	private BaseScreenlet _screenlet;
-
 }

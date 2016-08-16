@@ -289,7 +289,7 @@ public class UserPortraitScreenlet
 			} else {
 				UserPortraitLoadInteractor userPortraitLoadInteractor =
 					(UserPortraitLoadInteractor) getInteractor(userActionName);
-				if (_portraitId != 0 && _uuid != null) {
+	 			if (_portraitId != 0 && _uuid != null) {
 					userPortraitLoadInteractor.load(_male, _portraitId, _uuid);
 				} else {
 					if (SessionContext.hasUserInfo() && _userId == 0) {
