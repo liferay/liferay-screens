@@ -1,6 +1,5 @@
 package com.liferay.mobile.screens.testapp;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -11,9 +10,12 @@ import com.liferay.mobile.screens.gallery.GalleryListener;
 import com.liferay.mobile.screens.gallery.GalleryScreenlet;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.util.LiferayLogger;
+import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DetailUploadDefaultActivity;
 import java.util.List;
 
-import static android.view.View.*;
+import static android.view.View.GONE;
+import static android.view.View.OnClickListener;
+import static android.view.View.VISIBLE;
 
 /**
  * * @author Víctor Galán Grande
@@ -24,7 +26,6 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 	private GalleryScreenlet galleryScreenletSlideShow;
 
 	private Button changeGalleryView;
-	private ProgressDialog progressDialog;
 
 	private boolean isGridMode = true;
 
@@ -41,8 +42,6 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 
 		changeGalleryView = (Button) findViewById(R.id.change_gallery_view);
 		changeGalleryView.setOnClickListener(this);
-
-		createProgressDialog();
 	}
 
 	@Override
@@ -88,27 +87,28 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 	}
 
 	@Override
-	public void onImageUploadStarted() {
-		progressDialog.setProgress(0);
-		progressDialog.show();
+	public void onImageUploadStarted(String picturePath, String title, String description) {
+		LiferayLogger.i("Image upload started: " + picturePath + " title: " + title + " description: " + description);
 	}
 
 	@Override
 	public void onImageUploadProgress(int totalBytes, int totalBytesSent) {
-		float percentage = (totalBytesSent / (float) totalBytes) * 100;
-		progressDialog.setProgress((int) percentage);
+		LiferayLogger.i("Image upload progresss " + totalBytes + " from " + totalBytesSent);
 	}
 
 	@Override
 	public void onImageUploadEnd(ImageEntry entry) {
-		progressDialog.dismiss();
-		info("Image uploaded: " + entry.toString());
+		info("Image upload end " + entry.getImageUrl());
 	}
 
 	@Override
 	public void onImageUploadFailure(Exception e) {
-		error("Error uploading image", e);
-		progressDialog.dismiss();
+		error("Image upload failure", e);
+	}
+
+	@Override
+	public Class provideImageUploadDetailActivity() {
+		return DetailUploadDefaultActivity.class;
 	}
 
 	@Override
@@ -127,7 +127,7 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 		galleryScreenletSlideShow.setVisibility(GONE);
 		galleryScreenletGrid.setVisibility(VISIBLE);
 
-		changeGalleryView.setText(R.string.grid);
+		changeGalleryView.setText(R.string.slideshow);
 	}
 
 	private void setSlideshowMode() {
@@ -135,15 +135,6 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 		galleryScreenletSlideShow.setVisibility(VISIBLE);
 		galleryScreenletGrid.setVisibility(GONE);
 
-		changeGalleryView.setText(getString(R.string.slideshow));
-	}
-
-	private void createProgressDialog() {
-		progressDialog = new ProgressDialog(this);
-		progressDialog.setTitle("Uploading image");
-		progressDialog.setMessage("Upload in progress");
-		progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-		progressDialog.setProgress(0);
-		progressDialog.setCanceledOnTouchOutside(false);
+		changeGalleryView.setText(getString(R.string.grid));
 	}
 }
