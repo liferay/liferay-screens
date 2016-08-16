@@ -22,7 +22,6 @@ import android.view.View;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
-import com.liferay.mobile.screens.auth.forgotpassword.interactor.ForgotPasswordInteractor;
 import com.liferay.mobile.screens.auth.forgotpassword.interactor.ForgotPasswordInteractorImpl;
 import com.liferay.mobile.screens.auth.forgotpassword.view.ForgotPasswordViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
@@ -32,7 +31,7 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
  * @author Silvio Santos
  */
 public class ForgotPasswordScreenlet
-	extends BaseScreenlet<ForgotPasswordViewModel, ForgotPasswordInteractor>
+	extends BaseScreenlet<ForgotPasswordViewModel, ForgotPasswordInteractorImpl>
 	implements ForgotPasswordListener {
 
 	public ForgotPasswordScreenlet(Context context) {
@@ -140,12 +139,12 @@ public class ForgotPasswordScreenlet
 	}
 
 	@Override
-	protected ForgotPasswordInteractor createInteractor(String actionName) {
-		return new ForgotPasswordInteractorImpl(getScreenletId());
+	protected ForgotPasswordInteractorImpl createInteractor(String actionName) {
+		return new ForgotPasswordInteractorImpl();
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, ForgotPasswordInteractor interactor, Object... args) {
+	protected void onUserAction(String userActionName, ForgotPasswordInteractorImpl interactor, Object... args) {
 
 		ForgotPasswordViewModel viewModel = getViewModel();
 
@@ -153,7 +152,7 @@ public class ForgotPasswordScreenlet
 		BasicAuthMethod method = viewModel.getBasicAuthMethod();
 
 		try {
-			interactor.requestPassword(
+			interactor.start(
 				_companyId, login, method, _anonymousApiUserName, _anonymousApiPassword);
 		}
 		catch (Exception e) {
