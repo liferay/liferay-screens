@@ -48,3 +48,5 @@
 
 "default-rating-total"="Total: %d";
 "default-rating-ratings"="%d Ratings";
+
+"default-blog-unknown-date"="Unknown date";

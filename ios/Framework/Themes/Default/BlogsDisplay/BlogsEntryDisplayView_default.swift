@@ -78,8 +78,7 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 			dateLabel?.text = dateFormatter.stringFromDate(date)
 		}
 		else {
-			//TODO i18n
-			dateLabel?.text = "Unknown date"
+			dateLabel?.text = LocalizedString("default", key: "blog-unknown-date", obj: self)
 		}
 	}
 
