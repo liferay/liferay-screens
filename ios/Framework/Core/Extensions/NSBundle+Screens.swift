@@ -109,6 +109,34 @@ extension NSBundle {
         }
     }
 
+	public class func viewForThemeOrDefault(
+			name name: String,
+			themeName: String,
+			currentClass: AnyClass) -> AnyObject? {
+
+		if let foundView = NSBundle.viewForTheme(
+				name: name,
+				themeName: themeName,
+				currentClass: currentClass) {
+
+			return foundView
+		}
+
+		if themeName == BaseScreenlet.DefaultThemeName {
+			return nil
+		}
+
+		if let foundView = NSBundle.viewForTheme(
+				name: name,
+				themeName: BaseScreenlet.DefaultThemeName,
+				currentClass: currentClass) {
+
+			return foundView
+		}
+
+		return nil
+	}
+
 	public class func viewForTheme(
 			name name: String,
 			themeName: String,
