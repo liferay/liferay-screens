@@ -35,7 +35,9 @@ import Kingfisher
 	                        onImageUploadStart image: ImageEntryUpload)
 							
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-	                        onImageUploadProgress image: ImageEntryUpload, totalBytesSent: UInt64, totalBytesToSend: UInt64)
+	                        onImageUploadProgress image: ImageEntryUpload,
+							totalBytesSent: UInt64,
+							totalBytesToSend: UInt64)
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
 	                        onImageUploadError error: NSError)
@@ -128,7 +130,8 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 	public func deleteImageEntry(imageEntry: ImageEntry) {
 		if offlinePolicy == CacheStrategyType.RemoteOnly.rawValue {
 			performAction(name: ImageGalleryScreenlet.DeleteImageAction, sender: imageEntry)
-		} else {
+		}
+		else {
 			print("Error, delete only works on RemoteOnly mode")
 		}
 	}
