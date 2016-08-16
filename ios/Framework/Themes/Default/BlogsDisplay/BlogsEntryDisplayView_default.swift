@@ -32,64 +32,70 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 	public var headerImageHeight: CGFloat = 125.0
 
 	private let dateFormatter: NSDateFormatter = {
-			let dateFormatter = NSDateFormatter()
-			dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
-			dateFormatter.locale = NSLocale(
-				localeIdentifier: NSLocale.currentLocaleString)
-			return dateFormatter
-		}()
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
+		dateFormatter.locale = NSLocale(
+			localeIdentifier: NSLocale.currentLocaleString)
+		return dateFormatter
+	}()
+
+	private var selectedBlogsEntry: BlogsEntry?
 
 	public var blogsEntry: BlogsEntry? {
 		didSet {
 			if let blogsEntry = blogsEntry {
-
-				//Set image blog if exist
-				let imageId = blogsEntry.coverImageFileEntryId
-				if imageId != 0 {
-					imageHeightConstraint?.constant = self.headerImageHeight
-
-					imageDisplayScreenlet?.className = AssetClassNameIds.getClassName(AssetClassNameIdDLFileEntry)!
-					imageDisplayScreenlet?.classPK = imageId
-					imageDisplayScreenlet?.load()
-				}
-				else {
-					imageHeightConstraint?.constant = 0
-				}
-
-				//TODO if you're doing several paragrahps, with comments, you need several methods
-
-				//Set user portrait image
-				userPortraitScreenlet?.load(userId: blogsEntry.userId)
-
-				//Set username
-				usernameLabel?.text = blogsEntry.userName
-
-				//Set blog display date from timestamp
-				if let date = blogsEntry.displayDate {
-					dateLabel?.text = dateFormatter.stringFromDate(date)
-				}
-				else {
-					//TODO i18n
-					dateLabel?.text = "Unknown date"
-				}
-
-
-				dateLabel?.text = blogsEntry.displayDateFormatted
-
-				//Set blog title and subtitle
-				titleLabel?.text = blogsEntry.title
-				subtitleLabel?.text = blogsEntry.subtitle
-
-				//Set html content
-				let content = "<span style=\"\(contentStyle)\">\(blogsEntry.content)</span>"
-
-				let encodedData = content.dataUsingEncoding(NSUTF8StringEncoding)!
-				let attributedOptions : [String: AnyObject] = [
-					NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-					NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding
-				]
-				contentLabel?.attributedText = try! NSAttributedString(data: encodedData, options: attributedOptions, documentAttributes: nil)
+				self.selectedBlogsEntry = blogsEntry
+				self.setImage()
+				self.setUserInfo()
+				self.setDate()
+				self.setTitleSubtitle()
+				self.setContent()
 			}
 		}
+	}
+
+	private func setImage() {
+		let imageId = self.selectedBlogsEntry?.coverImageFileEntryId
+		if imageId != 0 {
+			imageHeightConstraint?.constant = self.headerImageHeight
+
+			imageDisplayScreenlet?.className = AssetClassNameIds.getClassName(AssetClassNameIdDLFileEntry)!
+			imageDisplayScreenlet?.classPK = imageId!
+			imageDisplayScreenlet?.load()
+		}
+		else {
+			imageHeightConstraint?.constant = 0
+		}
+	}
+
+	private func setUserInfo() {
+		userPortraitScreenlet?.load(userId: self.selectedBlogsEntry!.userId)
+		usernameLabel?.text = self.selectedBlogsEntry?.userName
+	}
+
+	private func setDate() {
+		if let date = self.selectedBlogsEntry?.displayDate {
+			dateLabel?.text = dateFormatter.stringFromDate(date)
+		}
+		else {
+			//TODO i18n
+			dateLabel?.text = "Unknown date"
+		}
+	}
+
+	private func setTitleSubtitle() {
+		titleLabel?.text = self.selectedBlogsEntry?.title
+		subtitleLabel?.text = self.selectedBlogsEntry?.subtitle
+	}
+
+	private func setContent() {
+		let content = "<span style=\"\(contentStyle)\">\(self.selectedBlogsEntry!.content)</span>"
+
+		let encodedData = content.dataUsingEncoding(NSUTF8StringEncoding)!
+		let attributedOptions : [String: AnyObject] = [
+			NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+			NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding
+		]
+		contentLabel?.attributedText = try! NSAttributedString(data: encodedData, options: attributedOptions, documentAttributes: nil)
 	}
 }
