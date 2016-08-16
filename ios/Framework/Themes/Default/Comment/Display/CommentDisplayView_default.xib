@@ -66,36 +66,6 @@
                         <constraint firstItem="Gg3-49-pbv" firstAttribute="leading" secondItem="mOk-gp-c4D" secondAttribute="trailing" constant="8" id="wvv-ab-EVa"/>
                     </constraints>
                 </view>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xTL-zV-XBs" userLabel="Editing state buttons">
-                    <rect key="frame" x="365" y="33" width="99" height="28"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jrg-O5-tkB" userLabel="Cancel">
-                            <rect key="frame" x="0.0" y="0.0" width="42" height="28"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="Cancel"/>
-                            <connections>
-                                <action selector="cancelButtonClicked" destination="ofk-wp-urv" eventType="touchUpInside" id="pKJ-26-PcH"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lK8-sE-L5t" userLabel="Confirm">
-                            <rect key="frame" x="50" y="0.0" width="49" height="28"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <state key="normal" title="Confirm"/>
-                            <connections>
-                                <action selector="confirmButtonClicked" destination="ofk-wp-urv" eventType="touchUpInside" id="51A-Rx-SU3"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <constraints>
-                        <constraint firstAttribute="bottom" secondItem="lK8-sE-L5t" secondAttribute="bottom" id="4Ir-qN-dFe"/>
-                        <constraint firstItem="Jrg-O5-tkB" firstAttribute="top" secondItem="xTL-zV-XBs" secondAttribute="top" id="D9a-TM-H4b"/>
-                        <constraint firstAttribute="bottom" secondItem="Jrg-O5-tkB" secondAttribute="bottom" id="EHW-Cx-7Dw"/>
-                        <constraint firstItem="lK8-sE-L5t" firstAttribute="leading" secondItem="Jrg-O5-tkB" secondAttribute="trailing" constant="8" id="GZT-hU-mbE"/>
-                        <constraint firstItem="Jrg-O5-tkB" firstAttribute="leading" secondItem="xTL-zV-XBs" secondAttribute="leading" id="VOk-Fb-QxC"/>
-                        <constraint firstAttribute="trailing" secondItem="lK8-sE-L5t" secondAttribute="trailing" id="Wmc-dP-9GV"/>
-                        <constraint firstItem="lK8-sE-L5t" firstAttribute="top" secondItem="xTL-zV-XBs" secondAttribute="top" id="uBa-4E-cGb"/>
-                    </constraints>
-                </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ewF-4o-z0M" userLabel="Deleting state buttons">
                     <rect key="frame" x="365" y="33" width="99" height="28"/>
                     <subviews>
@@ -104,7 +74,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <state key="normal" title="Confirm"/>
                             <connections>
-                                <action selector="confirmButtonClicked" destination="ofk-wp-urv" eventType="touchUpInside" id="0bH-rV-cyr"/>
+                                <action selector="confirmDeletionButtonClicked" destination="ofk-wp-urv" eventType="touchUpInside" id="v5Z-Ym-ZQv"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0bI-Tq-WKs" userLabel="Cancel">
@@ -112,7 +82,7 @@
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <state key="normal" title="Cancel"/>
                             <connections>
-                                <action selector="cancelButtonClicked" destination="ofk-wp-urv" eventType="touchUpInside" id="5pC-Cy-zyb"/>
+                                <action selector="cancelDeletionButtonClicked" destination="ofk-wp-urv" eventType="touchUpInside" id="Cbe-uK-l4n"/>
                             </connections>
                         </button>
                     </subviews>
@@ -142,7 +112,6 @@
             </subviews>
             <constraints>
                 <constraint firstItem="qsA-4f-URH" firstAttribute="leading" secondItem="BYS-C6-vuU" secondAttribute="trailing" constant="8" id="1VW-1y-TUc"/>
-                <constraint firstItem="xTL-zV-XBs" firstAttribute="centerY" secondItem="T0O-Tl-DWI" secondAttribute="centerY" id="34S-iS-M9R"/>
                 <constraint firstAttribute="trailing" secondItem="qsA-4f-URH" secondAttribute="trailing" constant="8" id="53o-gu-WIG"/>
                 <constraint firstAttribute="trailing" secondItem="7hm-Bc-gU5" secondAttribute="trailing" constant="8" id="5fF-Gd-51a"/>
                 <constraint firstItem="qsA-4f-URH" firstAttribute="top" secondItem="ofk-wp-urv" secondAttribute="top" constant="8" id="5mR-x5-hEn"/>
@@ -153,7 +122,6 @@
                 <constraint firstAttribute="trailing" secondItem="K19-Wu-62Q" secondAttribute="trailing" constant="8" id="NjJ-EG-cGD"/>
                 <constraint firstItem="ewF-4o-z0M" firstAttribute="centerY" secondItem="T0O-Tl-DWI" secondAttribute="centerY" id="Nmj-Bg-nfQ"/>
                 <constraint firstAttribute="trailing" secondItem="ewF-4o-z0M" secondAttribute="trailing" constant="8" id="Sad-fU-sMC"/>
-                <constraint firstAttribute="trailing" secondItem="xTL-zV-XBs" secondAttribute="trailing" constant="8" id="SzL-ds-kWX"/>
                 <constraint firstItem="BYS-C6-vuU" firstAttribute="leading" secondItem="ofk-wp-urv" secondAttribute="leading" constant="8" id="Wka-eq-QzA"/>
                 <constraint firstItem="Bmx-bE-lyO" firstAttribute="leading" secondItem="T0O-Tl-DWI" secondAttribute="trailing" constant="4" id="asz-jL-sJa"/>
                 <constraint firstItem="Bmx-bE-lyO" firstAttribute="top" secondItem="qsA-4f-URH" secondAttribute="bottom" constant="8" id="haH-6d-T2d"/>
@@ -173,7 +141,6 @@
                 <outlet property="deletingStateButtonsContainer" destination="ewF-4o-z0M" id="gqd-hp-VIG"/>
                 <outlet property="editButton" destination="mOk-gp-c4D" id="ORd-HZ-hSd"/>
                 <outlet property="editedLabel" destination="Bmx-bE-lyO" id="mWH-P0-NVe"/>
-                <outlet property="editingStateButtonsContainer" destination="xTL-zV-XBs" id="5Bw-Ws-qxl"/>
                 <outlet property="normalStateButtonsContainer" destination="K19-Wu-62Q" id="RxK-m6-Ud6"/>
                 <outlet property="userNameLabel" destination="qsA-4f-URH" id="Ifq-rv-7Zf"/>
                 <outlet property="userPortraitScreenlet" destination="BYS-C6-vuU" id="K1O-N7-cUk"/>

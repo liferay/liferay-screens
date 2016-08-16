@@ -72,7 +72,6 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 	@IBOutlet weak var bodyTextViewBottomMarginConstraint: NSLayoutConstraint?
 	@IBOutlet weak var normalStateButtonsContainer: UIView?
 	@IBOutlet weak var deletingStateButtonsContainer: UIView?
-	@IBOutlet weak var editingStateButtonsContainer: UIView?
 	@IBOutlet weak var deleteButton: UIButton?
 	@IBOutlet weak var editButton: UIButton?
 
@@ -89,7 +88,6 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 			changeState(.Normal)
 
 			if let comment = comment {
-				//TODO change to attributed text
 				bodyTextView?.attributedText = comment.htmlBody.toHtmlTextWithAttributes(
 					CommentDisplayView_default.attributedTextAttributes)
 
@@ -127,38 +125,15 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 	}
 
 	@IBAction func editButtonClicked() {
-		if let viewController = self.presentingViewController, editedComment = self.comment
-				where editedComment.isStyled {
-			let alertController = UIAlertController(
-				title: LocalizedString("default", key: "comment-display-warning", obj: self),
-				message: LocalizedString("default", key: "comment-display-styled", obj: self),
-				preferredStyle: UIAlertControllerStyle.Alert)
-
-			let dismissAction = UIAlertAction(
-					title: LocalizedString("default", key: "comment-display-dismiss", obj: self),
-					style: UIAlertActionStyle.Default) { _ in
-				self.changeState(.Editing)
-			}
-			alertController.addAction(dismissAction)
-
-			viewController.presentViewController(alertController, animated: true, completion: nil)
-		} else {
-			changeState(.Editing)
-		}
+		editComment()
 	}
 
-	@IBAction func cancelButtonClicked() {
+	@IBAction func cancelDeletionButtonClicked() {
 		changeState(.Normal)
 	}
 
-	@IBAction func confirmButtonClicked() {
-		if self.state == .Deleting {
-			userAction(name: CommentDisplayScreenlet.DeleteAction)
-		} else if self.state == .Editing {
-			userAction(name: CommentDisplayScreenlet.UpdateAction,
-			                         sender: bodyTextView?.text)
-		}
-
+	@IBAction func confirmDeletionButtonClicked() {
+		userAction(name: CommentDisplayScreenlet.DeleteAction)
 		changeState(.Normal)
 	}
 
@@ -175,13 +150,6 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 		]
 	}
 
-	//MARK: UITextFieldDelegate
-
-	public override func textFieldShouldReturn(textField: UITextField) -> Bool {
-		confirmButtonClicked()
-		return super.textFieldShouldReturn(textField)
-	}
-
 	//MARK: Private methods
 
 	private func changeState(state: CommentDisplayState) {
@@ -190,12 +158,6 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 		deletingStateButtonsContainer?.hidden = state != .Deleting || !editable
 
 		if state == .Editing {
-			editingStateButtonsContainer?.hidden = false
-			bodyTextView?.editable = true
-			bodyTextView?.becomeFirstResponder()
-		} else {
-			editingStateButtonsContainer?.hidden = true
-			bodyTextView?.editable = false
 		}
 	}
 }
