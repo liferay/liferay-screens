@@ -68,4 +68,29 @@ extension String {
 		return found?.value ?? self
 	}
 
+	public func toHtmlTextWithAttributes(attributes: [String: NSObject])
+			-> NSAttributedString? {
+
+		var text = self
+
+		if let font = attributes[NSFontAttributeName] as? UIFont {
+			text = "<span style=\"font-family: \(font.fontName);font-size: \(font.pointSize)\">" +
+				"\(text)</span>"
+		}
+
+		let encodedData = text.dataUsingEncoding(NSUTF8StringEncoding)
+
+		if let data = encodedData {
+
+			let attributes = attributes.copyAndMerge([
+				NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+				NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding,
+			])
+
+			return try! NSAttributedString(data: encodedData!, options: attributes, documentAttributes: nil)
+		}
+
+		return nil
+	}
+
 }
