@@ -119,7 +119,7 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 					return
 				}
 
-				let title = "\(self.filePrefix)\(Int(CFAbsoluteTimeGetCurrent())).png"
+				let title = "\(self.filePrefix)\(NSUUID().UUIDString).png"
 				let imageUpload = ImageEntryUpload(image: image, title: title)
 				self.showDetailUploadView(imageUpload)
 			}
