@@ -58,6 +58,13 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 		}
 	}
 
+	//MARK: BaseListView
+
+	public override func onClearRows(oldRows: [String : [AnyObject?]]) {
+		super.onClearRows(oldRows)
+		self.tableView?.tableFooterView = UIView()
+	}
+
 	//MARK: BaseListTableView
 
 	override public func doRegisterCellNibs() {
@@ -105,7 +112,18 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 		}
 	}
 
+	public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		let comment = rows[BaseListView.DefaultSection]?[indexPath.row] as? Comment
+		return CommentDisplayView_default.heightForText(comment?.htmlBody,
+			width: tableView.frame.width)
+	}
+
 	//MARK: BaseScreenletView
+
+	public override func onShow() {
+		super.onShow()
+		self.tableView?.tableFooterView = UIView()
+	}
 
 	override public func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()

@@ -11,20 +11,32 @@
             <rect key="frame" x="0.0" y="0.0" width="555" height="176"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wzi-eY-eAl" customClass="CommentDisplayScreenlet" customModule="LiferayScreens">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ccj-rn-vga" userLabel="Content View">
                     <rect key="frame" x="0.0" y="0.0" width="555" height="176"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wzi-eY-eAl" customClass="CommentDisplayScreenlet" customModule="LiferayScreens">
+                            <rect key="frame" x="0.0" y="0.0" width="555" height="176"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="NO"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="NO"/>
-                    </userDefinedRuntimeAttributes>
+                    <constraints>
+                        <constraint firstItem="wzi-eY-eAl" firstAttribute="leading" secondItem="ccj-rn-vga" secondAttribute="leading" id="94V-Tq-va7"/>
+                        <constraint firstItem="wzi-eY-eAl" firstAttribute="top" secondItem="ccj-rn-vga" secondAttribute="top" id="ZiJ-Pm-EYR"/>
+                        <constraint firstAttribute="bottom" secondItem="wzi-eY-eAl" secondAttribute="bottom" id="fW8-rN-k2G"/>
+                        <constraint firstAttribute="trailing" secondItem="wzi-eY-eAl" secondAttribute="trailing" id="ita-Gt-dNC"/>
+                    </constraints>
                 </view>
             </subviews>
             <constraints>
-                <constraint firstItem="wzi-eY-eAl" firstAttribute="top" secondItem="fpK-7V-dre" secondAttribute="top" id="5VM-h6-axF"/>
-                <constraint firstItem="wzi-eY-eAl" firstAttribute="leading" secondItem="fpK-7V-dre" secondAttribute="leading" id="Fhn-7a-r71"/>
-                <constraint firstAttribute="bottom" secondItem="wzi-eY-eAl" secondAttribute="bottom" id="OZc-Ia-jyy"/>
-                <constraint firstAttribute="trailing" secondItem="wzi-eY-eAl" secondAttribute="trailing" id="Xrc-wQ-s9m"/>
+                <constraint firstAttribute="trailing" secondItem="ccj-rn-vga" secondAttribute="trailing" id="LIg-UO-Apz"/>
+                <constraint firstItem="ccj-rn-vga" firstAttribute="leading" secondItem="fpK-7V-dre" secondAttribute="leading" id="QtT-y8-FbL"/>
+                <constraint firstItem="ccj-rn-vga" firstAttribute="top" secondItem="fpK-7V-dre" secondAttribute="top" id="rT3-pc-RA7"/>
+                <constraint firstAttribute="bottom" secondItem="ccj-rn-vga" secondAttribute="bottom" id="zDS-sa-Mpb"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>

@@ -16,6 +16,48 @@ import UIKit
 
 public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewModel {
 
+	//Left/right UITextView padding
+	private static let TextViewPadding: CGFloat = 16
+
+	//This fixed height equals the sum of UserPortraitScreenlet height, plus UITextView insets,
+	//plus margin between user portrait - text view, plus one pixel for rounding
+	private static let FixedHeight: CGFloat = 50 + 8 + 8 + 8 + 1
+
+	//Top/bottom UITextView insets
+	private static let TextViewInsets: CGFloat = 16
+
+	public class func heightForText(text: String?, width: CGFloat) -> CGFloat {
+		let realWidth = width - TextViewPadding
+
+		let attributedText = text?.toHtmlTextWithAttributes(attributedTextAttributes)
+
+		if let attributedText = attributedText {
+			let rect = attributedText.boundingRectWithSize(
+				CGSizeMake(realWidth, CGFloat.max),
+				options: [.UsesLineFragmentOrigin, .UsesFontLeading],
+				context: nil)
+
+			return rect.height + FixedHeight + TextViewInsets
+		}
+
+		return 110
+	}
+
+	public static var attributedTextAttributes: [String: NSObject] {
+		var paragrahpStyle = NSMutableParagraphStyle()
+		paragrahpStyle.lineBreakMode = .ByWordWrapping
+
+		var attributes: [String: NSObject] = [NSParagraphStyleAttributeName: paragrahpStyle]
+
+		let font = UIFont(name: "HelveticaNeue", size: 14)
+
+		if let font = font {
+			attributes[NSFontAttributeName] = font
+		}
+
+		return attributes
+	}
+
 	private enum CommentDisplayState {
 		case Normal
 		case Deleting
@@ -48,7 +90,8 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 
 			if let comment = comment {
 				//TODO change to attributed text
-				bodyTextView?.text = comment.plainBody
+				bodyTextView?.attributedText = comment.htmlBody.toHtmlTextWithAttributes(
+					CommentDisplayView_default.attributedTextAttributes)
 
 				deleteButton?.enabled = comment.canDelete
 				
@@ -154,16 +197,5 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 			editingStateButtonsContainer?.hidden = true
 			bodyTextView?.editable = false
 		}
-	}
-
-	private func stringToAttributedText(string: String) -> NSAttributedString {
-		let encodedData = string.dataUsingEncoding(NSUTF8StringEncoding)!
-
-		var attributes : [String: AnyObject] = [
-			NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-			NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding,
-		]
-
-		return try! NSAttributedString(data: encodedData, options: attributes, documentAttributes: nil)
 	}
 }
