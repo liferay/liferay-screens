@@ -107,7 +107,7 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 	@Override
 	public void onClick(View v) {
 
-		if (v.getId() == R.id.comment_first_action) {
+		if (v.getId() == R.id.comment_edit_or_confirm) {
 			if (editing) {
 				String editedText = editBodyEditText.getText().toString();
 				if (!editedText.equals(bodyTextView.getText())) {
@@ -121,7 +121,7 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 			editing = !editing && !deleting;
 			deleting = false;
 			showEditionButtons();
-		} else if (v.getId() == R.id.comment_second_action) {
+		} else if (v.getId() == R.id.comment_delete_or_cancel) {
 			deleting = !editing && !deleting;
 			editing = false;
 			showEditionButtons();
@@ -143,8 +143,8 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 		userPortraitScreenlet = (UserPortraitScreenlet) findViewById(R.id.comment_user_portrait);
 		createDateTextView = (TextView) findViewById(R.id.comment_create_date);
 		editedTextView = (TextView) findViewById(R.id.comment_edited);
-		editImageButton = (ImageButton) findViewById(R.id.comment_first_action);
-		deleteImageButton = (ImageButton) findViewById(R.id.comment_second_action);
+		editImageButton = (ImageButton) findViewById(R.id.comment_edit_or_confirm);
+		deleteImageButton = (ImageButton) findViewById(R.id.comment_delete_or_cancel);
 		editBodyEditText = (EditText) findViewById(R.id.comment_edit_body);
 		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
 		contentGroup = (ViewGroup) findViewById(R.id.comment_display_content);
