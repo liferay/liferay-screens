@@ -23,9 +23,9 @@ public class ImageUploadDetailViewController_default: ImageUploadDetailViewContr
 		}
 	}
 
-	public override var tTitle: String? {
+	public override var title: String? {
 		didSet {
-			titleText?.text = tTitle
+			titleText?.text = self.title
 		}
 	}
 

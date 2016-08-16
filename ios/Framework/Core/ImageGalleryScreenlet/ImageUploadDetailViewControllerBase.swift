@@ -16,7 +16,6 @@ import UIKit
 public class ImageUploadDetailViewControllerBase: UIViewController {
 
 	public var image: UIImage?
-	public var tTitle: String?
 	public var descript: String?
 
 	public weak var screenlet: ImageGalleryScreenlet?
