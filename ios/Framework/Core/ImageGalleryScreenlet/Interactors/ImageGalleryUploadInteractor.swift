@@ -67,7 +67,6 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 	//MARK: Cache methods
 
 	public override func writeToCache(c: ServerConnector) {
-
 		let uploadFailed = (c.lastError != nil)
 
 		if cacheStrategy == .CacheFirst || uploadFailed {
@@ -102,8 +101,9 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 		}
 
 		if let entry = result {
-			let cacheKeyList = "\(ImageGalleryLoadInteractor.CacheKey)-\(page)"
-			let cacheKeyCount = "\(ImageGalleryLoadInteractor.CacheKey)-count"
+			let cacheKey = "\(ImageGalleryLoadInteractor.CacheKey)-\(repositoryId)-\(folderId)"
+			let cacheKeyList = "\(cacheKey)-\(page)"
+			let cacheKeyCount = "\(cacheKey)-count"
 
 			cacheManager.getSome(
 					collection: ScreenletName(ImageGalleryScreenlet),
@@ -139,7 +139,6 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 	}
 
 	private func deleteSyncParameters() {
-
 		SessionContext.currentContext?.cacheManager.remove(
 				collection: ScreenletName(ImageGalleryScreenlet),
 				key: "uploadEntry-\(imageUpload.title)-\(folderId)-\(repositoryId)")
@@ -154,7 +153,6 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 	}
 
 	private func incrementAndStoreImageEntriesCount(count: Int, cacheKey: String) {
-
 		let newCount = count + 1
 
 		SessionContext.currentContext?.cacheManager.setClean(
