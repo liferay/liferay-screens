@@ -31,23 +31,23 @@ public class SlideshowLayout extends RecyclerView.OnScrollListener implements Vi
 					rate = 1;
 				}
 
-				v.setScaleY(1 - rate * 0.3f);
-				v.setScaleX(1 - rate * 0.3f);
+				v.setScaleY(1 - rate * scaleDelta);
+				v.setScaleX(1 - rate * scaleDelta);
 
-				v.setTranslationY(rate * 200);
+				v.setTranslationY(rate * yOffset);
 
-				v.setAlpha((1 - rate) * 1 + 0.5f);
+				v.setAlpha((1 - rate) * 1 + alphaOffset);
 			} else {
 
 				if (v.getLeft() <= recyclerView.getWidth() - padding) {
 					rate = (recyclerView.getWidth() - padding - v.getLeft()) * 1f / v.getWidth();
 				}
-				v.setScaleY(0.7f + rate * 0.3f);
-				v.setScaleX(0.7f + rate * 0.3f);
+				v.setScaleY(scaleOffset + rate * scaleDelta);
+				v.setScaleX(scaleOffset + rate * scaleDelta);
 
-				v.setTranslationY((1 - rate) * 200);
+				v.setTranslationY((1 - rate) * yOffset);
 
-				v.setAlpha(rate * 1 + 0.5f);
+				v.setAlpha(rate * 1 + alphaOffset);
 			}
 		}
 	}
@@ -80,11 +80,17 @@ public class SlideshowLayout extends RecyclerView.OnScrollListener implements Vi
 	}
 
 	private void assignDefaultValues(View view) {
-		view.setScaleY(0.7f);
-		view.setScaleX(0.7f);
-		view.setTranslationY(200);
-		view.setAlpha(0.5f);
+		view.setScaleY(scaleOffset);
+		view.setScaleX(scaleOffset);
+		view.setTranslationY(yOffset);
+		view.setAlpha(alphaOffset);
 	}
+
+	private static final int yOffset = 200;
+	private static final float scaleOffset = 0.7f;
+	private static final float alphaOffset = 0.5f;
+
+	private static final float scaleDelta = 1 - scaleOffset;
 
 	private RecyclerView recyclerView;
 }
