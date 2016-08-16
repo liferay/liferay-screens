@@ -82,6 +82,8 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 			commentCell.commentDisplayScreenlet?.groupId = commentListScreenlet.groupId
 			commentCell.commentDisplayScreenlet?.className = commentListScreenlet.className
 			commentCell.commentDisplayScreenlet?.classPK = commentListScreenlet.classPK
+			commentCell.commentDisplayScreenlet?.presentingViewController =
+				self.presentingViewController
 			commentCell.commentDisplayScreenlet?.delegate = screenlet
 				as? CommentDisplayScreenletDelegate
 		}

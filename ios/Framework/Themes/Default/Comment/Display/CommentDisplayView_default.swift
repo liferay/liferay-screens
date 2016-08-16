@@ -98,6 +98,8 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 	@IBOutlet weak var deleteButton: UIButton?
 	@IBOutlet weak var editButton: UIButton?
 
+	var editViewController: CommentEditViewController_default?
+
 	private var state: CommentDisplayState = .Normal
 
 	public override var editable: Bool {
@@ -181,6 +183,23 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 		deletingStateButtonsContainer?.hidden = state != .Deleting || !editable
 
 		if state == .Editing {
+			editViewController = CommentEditViewController_default(body: comment?.plainBody)
+			editViewController!.updatedBodyClosure = updatedBodyClosure
+			
+			if let vc = self.presentingViewController {
+				vc.presentViewController(editViewController!, animated: true, completion: {})
+			}
+			else {
+				print("ERROR: You neet to set the presentingViewController before editing comments")
+			}
+		}
+	}
+
+	private func updatedBodyClosure(body: String?) {
+		editViewController?.dismissViewControllerAnimated(true, completion: nil)
+
+		if let updatedBody = body where updatedBody != comment?.plainBody {
+			userAction(name: CommentDisplayScreenlet.UpdateAction, sender: updatedBody)
 		}
 	}
 }

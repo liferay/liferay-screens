@@ -52,6 +52,8 @@
 "default-comment-display-warning"="Warning";
 "default-comment-display-styled"="This comment has styled content, which will be lost if you edit it";
 "default-comment-display-dismiss"="Dismiss";
+"default-comment-display-cancel"="Cancel";
+"default-comment-display-confirm"="Confirm";
 
 "default-time-ago-seconds" = "%d seconds ago";
 "default-time-ago-minute" = "A minute ago";

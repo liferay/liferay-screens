@@ -25,6 +25,7 @@ class CommentListScreenletViewController: UIViewController,
 		super.viewDidLoad()
 
 		self.listScreenlet?.delegate = self
+		self.listScreenlet?.presentingViewController = self
 		self.addScreenlet?.delegate = self
 	}
 	
