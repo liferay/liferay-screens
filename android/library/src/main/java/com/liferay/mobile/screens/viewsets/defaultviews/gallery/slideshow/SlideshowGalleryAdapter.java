@@ -1,16 +1,13 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.gallery.slideshow;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
-import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.PicassoScreens;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
-import com.squareup.picasso.Picasso;
 
 /**
  * @author Víctor Galán Grande
@@ -42,7 +39,11 @@ public class SlideshowGalleryAdapter
 		}
 
 		public void bind(ImageEntry entry) {
-			PicassoScreens.load(entry.getImageUrl()).placeholder(R.drawable.default_placeholder_image).resize(900, 900).centerInside().into(_imageView);
+			PicassoScreens.load(entry.getImageUrl())
+				.placeholder(R.drawable.default_placeholder_image)
+				.resize(900, 900)
+				.centerInside()
+				.into(_imageView);
 		}
 
 		private final ImageView _imageView;

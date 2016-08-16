@@ -1,27 +1,13 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.gallery.grid;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.util.AttributeSet;
-import android.util.TypedValue;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.base.MediaStoreSelectorDialog;
-import com.liferay.mobile.screens.base.list.BaseListScreenletView;
-import com.liferay.mobile.screens.gallery.GalleryScreenlet;
-import com.liferay.mobile.screens.gallery.model.ImageEntry;
-import com.liferay.mobile.screens.gallery.view.GalleryViewModel;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
 import com.liferay.mobile.screens.viewsets.defaultviews.gallery.BaseGalleryView;
-import com.liferay.mobile.screens.viewsets.defaultviews.gallery.UploadProgressView;
-import java.util.List;
-import rx.functions.Action1;
 
 /**
  * @author Víctor Galán Grande
@@ -29,6 +15,8 @@ import rx.functions.Action1;
 public class GridGalleryView
 	extends BaseGalleryView<GridGalleryAdapter.GridGalleryViewHolder, GridGalleryAdapter>
 	implements View.OnClickListener {
+
+	public int columnsSize = DEFAULT_COLS;
 
 	public GridGalleryView(Context context) {
 		super(context);
@@ -72,7 +60,7 @@ public class GridGalleryView
 
 	@Override
 	public void showStartOperation(String actionName) {
-		if(actionName == null){
+		if (actionName == null) {
 			super.showStartOperation(actionName);
 		}
 	}
@@ -90,8 +78,5 @@ public class GridGalleryView
 		int _imagesSpacing = 3;
 		return new GridDividerItemDecoration(_imagesSpacing);
 	}
-
 	private static final int DEFAULT_COLS = 3;
-
-	public int columnsSize = DEFAULT_COLS;
 }

@@ -20,18 +20,14 @@ import com.liferay.mobile.screens.gallery.interactor.delete.GalleryDeleteInterac
 import com.liferay.mobile.screens.gallery.interactor.delete.GalleryDeleteInteractorImpl;
 import com.liferay.mobile.screens.gallery.interactor.load.GalleryLoadInteractor;
 import com.liferay.mobile.screens.gallery.interactor.load.GalleryLoadInteractorImpl;
-import com.liferay.mobile.screens.gallery.interactor.upload.CancelUploadEvent;
 import com.liferay.mobile.screens.gallery.interactor.upload.GalleryUploadInteractor;
 import com.liferay.mobile.screens.gallery.interactor.upload.GalleryUploadInteractorImpl;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.gallery.view.GalleryViewModel;
-import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DetailImageActivity;
 import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DetailUploadDefaultActivity;
 import java.util.Locale;
-
-import static java.lang.Class.forName;
 
 /**
  * @author Víctor Galán Grande
@@ -138,7 +134,6 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		performUserAction(DELETE_IMAGE, fileEntryId);
 	}
 
-
 	public void openCamera() {
 		startShadowActivityForMediaStore(MediaStoreRequestShadowActivity.TAKE_PICTURE_WITH_CAMERA);
 	}
@@ -241,7 +236,6 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		getContext().startActivity(intent);
 	}
 
-
 	@Override
 	protected void onScreenletAttached() {
 		if (_autoLoad) {
@@ -286,7 +280,6 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		this.offlinePolicy = _offlinePolicy;
 	}
 
-
 	protected void autoLoad() {
 		if (SessionContext.isLoggedIn() && groupId > 0) {
 			load();
@@ -308,8 +301,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		Intent intent = null;
 		if (activityUploadDetail == null || activityUploadDetail.isAssignableFrom(BaseDetailUploadActivity.class)) {
 			intent = new Intent(activity, DetailUploadDefaultActivity.class);
-		}
-		else {
+		} else {
 			intent = new Intent(activity, activityUploadDetail);
 		}
 

@@ -26,7 +26,6 @@ public class GalleryDeleteInteractorImpl extends BaseRemoteInteractor<GalleryInt
 
 			DLAppService dlAppService = new DLAppService(session);
 			dlAppService.deleteFileEntry(imageEntryId);
-
 		} catch (Exception e) {
 			getListener().onImageEntryDeleteFailure(e);
 		}

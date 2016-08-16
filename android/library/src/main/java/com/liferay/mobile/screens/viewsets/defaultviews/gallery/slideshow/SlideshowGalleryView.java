@@ -3,16 +3,10 @@ package com.liferay.mobile.screens.viewsets.defaultviews.gallery.slideshow;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.util.AttributeSet;
-import android.view.View;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.base.list.BaseListScreenletView;
-import com.liferay.mobile.screens.gallery.model.ImageEntry;
-import com.liferay.mobile.screens.gallery.view.GalleryViewModel;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
 import com.liferay.mobile.screens.viewsets.defaultviews.gallery.BaseGalleryView;
-import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 
 /**
  * @author Víctor Galán Grande

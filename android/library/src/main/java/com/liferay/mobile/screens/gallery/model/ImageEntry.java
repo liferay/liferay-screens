@@ -10,7 +10,6 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author Víctor Galán Grande

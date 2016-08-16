@@ -21,7 +21,7 @@ import rx.functions.Action1;
  * @author Víctor Galán Grande
  */
 public abstract class BaseGalleryView<H extends BaseListAdapter.ViewHolder, A extends BaseListAdapter<ImageEntry, H>>
-		extends BaseListScreenletView<ImageEntry, H, A> implements GalleryViewModel{
+	extends BaseListScreenletView<ImageEntry, H, A> implements GalleryViewModel {
 
 	public BaseGalleryView(Context context) {
 		super(context);
@@ -94,7 +94,8 @@ public abstract class BaseGalleryView<H extends BaseListAdapter.ViewHolder, A ex
 
 	private void createProgressView() {
 		uploadProgressView =
-			(UploadProgressView) LayoutInflater.from(getContext()).inflate(R.layout.gallery_progress_view_default, null);
+			(UploadProgressView) LayoutInflater.from(getContext())
+				.inflate(R.layout.gallery_progress_view_default, null);
 
 		int height = getPixelsFromDp(60);
 		int margin = getPixelsFromDp(5);

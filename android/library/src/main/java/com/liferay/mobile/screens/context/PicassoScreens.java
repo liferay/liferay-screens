@@ -51,7 +51,7 @@ public class PicassoScreens {
 	private static Picasso getPicasso() {
 
 		if (offlinePolicy.equals(OfflinePolicy.REMOTE_ONLY)) {
-			if(picassoWithoutCache == null) {
+			if (picassoWithoutCache == null) {
 				synchronized (PicassoScreens.class) {
 					Context context = LiferayScreensContext.getContext();
 					Downloader downloader = new OkHttpDownloader(LiferayServerContext.getOkHttpClientNoCache());
@@ -60,8 +60,7 @@ public class PicassoScreens {
 			}
 
 			return picassoWithoutCache;
-		}
-		else if(picasso == null) {
+		} else if (picasso == null) {
 			synchronized (PicassoScreens.class) {
 				Context context = LiferayScreensContext.getContext();
 				Downloader downloader = new OkHttpDownloader(LiferayServerContext.getOkHttpClient());

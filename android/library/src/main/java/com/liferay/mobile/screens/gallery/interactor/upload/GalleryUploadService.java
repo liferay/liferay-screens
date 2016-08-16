@@ -1,18 +1,13 @@
 package com.liferay.mobile.screens.gallery.interactor.upload;
 
 import android.app.IntentService;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.ThumbnailUtils;
 import com.liferay.mobile.android.callback.file.FileProgressCallback;
 import com.liferay.mobile.android.http.file.UploadData;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v7.dlapp.DLAppService;
-import com.liferay.mobile.screens.base.interactor.BasicEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
@@ -31,8 +26,6 @@ import org.json.JSONObject;
  * @author Víctor Galán Grande
  */
 public class GalleryUploadService extends IntentService {
-
-	private boolean shouldCancel = false;
 
 	public GalleryUploadService() {
 		super(GalleryUploadService.class.getCanonicalName());
@@ -131,4 +124,5 @@ public class GalleryUploadService extends IntentService {
 		serviceContextAttributes.put("addGuestPermissions", true);
 		return new JSONObjectWrapper(serviceContextAttributes);
 	}
+	private boolean shouldCancel = false;
 }

@@ -5,11 +5,9 @@ import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.TextSwitcher;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
@@ -18,14 +16,13 @@ import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.squareup.picasso.Picasso;
 import java.io.File;
-import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
 /**
  * @author Víctor Galán Grande
  */
-public class UploadProgressView extends RelativeLayout implements View.OnClickListener{
+public class UploadProgressView extends RelativeLayout implements View.OnClickListener {
 	public UploadProgressView(Context context) {
 		super(context);
 	}
@@ -48,7 +45,7 @@ public class UploadProgressView extends RelativeLayout implements View.OnClickLi
 		images.add(imagePath);
 
 		LiferayLogger.d("Image added" + imagePath);
-		if(uploadCount == 1) {
+		if (uploadCount == 1) {
 			setImage(images.poll());
 		}
 
@@ -57,18 +54,17 @@ public class UploadProgressView extends RelativeLayout implements View.OnClickLi
 
 	public void uploadCompleteOrError() {
 		setProgress(0);
-		uploadCount --;
+		uploadCount--;
 		updateText();
 		if (uploadCount >= 1) {
 			LiferayLogger.d("seteo imagen" + images.size());
 			setImage(images.poll());
-		}
-		else {
+		} else {
 			hide();
 		}
 	}
 
-	public void setProgress(int progress){
+	public void setProgress(int progress) {
 		progressBar.setProgress(progress);
 	}
 
@@ -100,8 +96,7 @@ public class UploadProgressView extends RelativeLayout implements View.OnClickLi
 	private void updateText() {
 		if (uploadCount == 1) {
 			setOneUploadText();
-		}
-		else {
+		} else {
 			setSeveralUploadText();
 		}
 	}
@@ -115,7 +110,6 @@ public class UploadProgressView extends RelativeLayout implements View.OnClickLi
 		String text = LiferayScreensContext.getContext().getString(R.string.gallery_uploading_several, uploadCount);
 		uploadText.setText(text);
 	}
-
 
 	private void initialize() {
 		progressBar = (ProgressBar) findViewById(R.id.progress_view_progressbar);
