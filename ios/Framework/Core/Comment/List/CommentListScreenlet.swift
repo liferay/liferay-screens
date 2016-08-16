@@ -31,6 +31,13 @@ import UIKit
 	optional func screenlet(screenlet: CommentListScreenlet,
 	        onCommentDelete comment: Comment,
 	        onError error: NSError)
+
+	optional func screenlet(screenlet: CommentListScreenlet,
+	        onUpdatedComment comment: Comment)
+
+	optional func screenlet(screenlet: CommentListScreenlet,
+	        onCommentUpdate comment: Comment,
+	        onError error: NSError)
 }
 
 
@@ -125,7 +132,21 @@ import UIKit
 	public func screenlet(screenlet: CommentDisplayScreenlet, onDeleteComment comment: Comment?,
 			onError error: NSError) {
 		if let comment = comment {
-			commentListDelegate?.screenlet?(self, onDeletedComment: comment)
+			commentListDelegate?.screenlet?(self, onCommentDelete: comment, onError: error)
+		}
+	}
+
+	public func screenlet(screenlet: CommentDisplayScreenlet, onCommentUpdated comment: Comment?) {
+		if let updatedComment = comment {
+			updateComment(updatedComment)
+			commentListDelegate?.screenlet?(self, onUpdatedComment: updatedComment)
+		}
+	}
+
+	public func screenlet(screenlet: CommentDisplayScreenlet, onUpdateComment comment: Comment?,
+			onError error: NSError) {
+		if let comment = comment {
+			commentListDelegate?.screenlet?(self, onCommentUpdate: comment, onError: error)
 		}
 	}
 
