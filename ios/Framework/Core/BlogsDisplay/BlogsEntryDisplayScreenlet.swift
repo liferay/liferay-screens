@@ -90,7 +90,10 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 		return interactor
 	}
 
-	public func load() -> Bool {
-		return self.performDefaultAction()
+	public func load() -> Bool? {
+		if self.blogsEntry == nil {
+			return self.performDefaultAction()
+		}
+		return nil
 	}
 }
