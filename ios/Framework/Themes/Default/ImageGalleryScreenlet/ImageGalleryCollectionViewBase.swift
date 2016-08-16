@@ -98,7 +98,7 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 	public func showUploadProgressView() {
 		uploadView = NSBundle.viewForTheme(
 				name: "UploadProgressView",
-				themeName: "default",
+				themeName: BaseScreenlet.DefaultThemeName,
 				currentClass: self.dynamicType) as? UploadProgressView_default
 
 		uploadView?.translatesAutoresizingMaskIntoConstraints = false

@@ -333,7 +333,7 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 
 		if let foundView = NSBundle.viewForTheme(
 				name: viewControllerName,
-				themeName: themeName ?? "default",
+				themeName: themeName ?? BaseScreenlet.DefaultThemeName,
 				currentClass: self.dynamicType) as? ImageUploadDetailViewControllerBase {
 
 			return foundView
@@ -341,7 +341,7 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 
 		if let foundView = NSBundle.viewForTheme(
 			name: viewControllerName,
-			themeName: "default",
+			themeName: BaseScreenlet.DefaultThemeName,
 			currentClass: self.dynamicType) as? ImageUploadDetailViewControllerBase {
 
 			return foundView

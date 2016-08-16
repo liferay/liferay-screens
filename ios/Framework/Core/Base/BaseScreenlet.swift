@@ -372,7 +372,7 @@ import QuartzCore
 
 		if let foundView = NSBundle.viewForTheme(
 				name: viewName,
-				themeName: "default",
+				themeName: BaseScreenlet.DefaultThemeName,
 				currentClass: self.dynamicType) as? BaseScreenletView {
 
 			return foundView
