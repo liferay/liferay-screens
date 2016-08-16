@@ -17,33 +17,25 @@ import java.io.File;
 public class PicassoScreens {
 
 	public static RequestCreator load(String url) {
-		initializePicassoSingleton();
-
-		RequestCreator requestCreator = picasso.load(url);
+		RequestCreator requestCreator = getPicasso().load(url);
 
 		return applyOfflinePolicies(requestCreator);
 	}
 
 	public static RequestCreator load(Uri uri) {
-		initializePicassoSingleton();
-
-		RequestCreator requestCreator = picasso.load(uri);
+		RequestCreator requestCreator = getPicasso().load(uri);
 
 		return applyOfflinePolicies(requestCreator);
 	}
 
 	public static RequestCreator load(File file) {
-		initializePicassoSingleton();
-
-		RequestCreator requestCreator = picasso.load(file);
+		RequestCreator requestCreator = getPicasso().load(file);
 
 		return applyOfflinePolicies(requestCreator);
 	}
 
 	public static RequestCreator load(int resourceId) {
-		initializePicassoSingleton();
-
-		RequestCreator requestCreator = picasso.load(resourceId);
+		RequestCreator requestCreator = getPicasso().load(resourceId);
 
 		return applyOfflinePolicies(requestCreator);
 	}
@@ -56,15 +48,28 @@ public class PicassoScreens {
 		PicassoScreens.offlinePolicy = offlinePolicy;
 	}
 
-	private static void initializePicassoSingleton() {
-		if(picasso == null) {
+	private static Picasso getPicasso() {
+
+		if (offlinePolicy.equals(OfflinePolicy.REMOTE_ONLY)) {
+			if(picassoWithoutCache == null) {
+				synchronized (PicassoScreens.class) {
+					Context context = LiferayScreensContext.getContext();
+					Downloader downloader = new OkHttpDownloader(LiferayServerContext.getOkHttpClientNoCache());
+					picassoWithoutCache = new Picasso.Builder(context).downloader(downloader).build();
+				}
+			}
+
+			return picassoWithoutCache;
+		}
+		else if(picasso == null) {
 			synchronized (PicassoScreens.class) {
 				Context context = LiferayScreensContext.getContext();
 				Downloader downloader = new OkHttpDownloader(LiferayServerContext.getOkHttpClient());
 				picasso = new Picasso.Builder(context).downloader(downloader).build();
-				picasso.setIndicatorsEnabled(true);
 			}
 		}
+
+		return picasso;
 	}
 
 	private static RequestCreator applyOfflinePolicies(RequestCreator picassoRequestCreator) {
@@ -76,8 +81,7 @@ public class PicassoScreens {
 				break;
 
 			case REMOTE_FIRST:
-				picassoRequestCreator.memoryPolicy(MemoryPolicy.NO_CACHE)
-					.networkPolicy(NetworkPolicy.NO_CACHE);
+				picassoRequestCreator.networkPolicy(NetworkPolicy.NO_CACHE);
 				break;
 
 			case CACHE_FIRST:
@@ -92,5 +96,6 @@ public class PicassoScreens {
 	}
 
 	private static volatile Picasso picasso;
+	private static volatile Picasso picassoWithoutCache;
 	private static OfflinePolicy offlinePolicy;
 }
