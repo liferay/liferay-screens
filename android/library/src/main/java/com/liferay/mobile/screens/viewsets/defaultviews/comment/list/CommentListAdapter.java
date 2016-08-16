@@ -48,8 +48,15 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 		this.editable = editable;
 	}
 
-	public class CommentViewHolder extends BaseListAdapter.ViewHolder {
+	@Override
+	public void onViewAttachedToWindow(CommentViewHolder holder) {
+		super.onViewAttachedToWindow(holder);
 
+		holder.load();
+	}
+
+	public class CommentViewHolder extends BaseListAdapter.ViewHolder {
+		
 		public CommentViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 			commentDisplayScreenlet = (CommentDisplayScreenlet) view.findViewById(R.id.comment_view);
@@ -61,10 +68,15 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 
 		public void bind(CommentEntry entry) {
 			commentDisplayScreenlet.setEditable(editable);
-			commentDisplayScreenlet.onLoadCommentSuccess(entry);
+			this.entry = entry;
 		}
 
+		private CommentEntry entry;
 		private final CommentDisplayScreenlet commentDisplayScreenlet;
+
+		public void load() {
+			commentDisplayScreenlet.onLoadCommentSuccess(entry);
+		}
 	}
 
 	private CommentDisplayListener commentDisplayListener;
