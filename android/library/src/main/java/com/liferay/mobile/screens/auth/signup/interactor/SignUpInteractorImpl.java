@@ -20,79 +20,63 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.auth.signup.SignUpListener;
-import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
-import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
+import com.liferay.mobile.screens.base.thread.BaseRemoteInteractorNew;
+import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.util.ServiceProvider;
-
-import org.json.JSONArray;
-
 import java.util.Locale;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * @author Silvio Santos
  */
-public class SignUpInteractorImpl extends BaseRemoteInteractor<SignUpListener>
-	implements SignUpInteractor {
+public class SignUpInteractorImpl extends BaseRemoteInteractorNew<SignUpListener, BasicThreadEvent> {
 
-	public SignUpInteractorImpl(int targetScreenletId) {
-		super(targetScreenletId);
+	@Override
+	public BasicThreadEvent execute(Object[] args) throws Exception {
+
+		long companyId = (long) args[0];
+		String firstName = (String) args[1];
+		String middleName = (String) args[2];
+		String lastName = (String) args[3];
+		String emailAddress = (String) args[4];
+		String screenName = (String) args[5];
+		String password = (String) args[6];
+		String jobTitle = (String) args[7];
+		Locale locale = (Locale) args[8];
+		String anonymousApiUserName = (String) args[9];
+		String anonymousApiPassword = (String) args[10];
+
+		validate(companyId, firstName, emailAddress, locale, anonymousApiUserName, anonymousApiPassword);
+
+		Authentication authentication = new BasicAuthentication(anonymousApiUserName, anonymousApiPassword);
+
+		Session anonymousSession = new SessionImpl(LiferayServerContext.getServer(), authentication);
+		anonymousSession.setCallback(new JSONObjectCallback(getTargetScreenletId()));
+		UserConnector userConnector = ServiceProvider.getInstance().getUserConnector(anonymousSession);
+
+		JSONObject jsonObject =
+			sendSignUpRequest(userConnector, companyId, firstName, middleName, lastName, emailAddress, screenName,
+				password, jobTitle, locale);
+		return new BasicThreadEvent(jsonObject);
 	}
 
-	public void onEvent(JSONObjectEvent event) {
-		if (!isValidEvent(event)) {
-			return;
-		}
-
-		if (event.isFailed()) {
-			getListener().onSignUpFailure(event.getException());
-		}
-		else {
-			getListener().onSignUpSuccess(new User(event.getJSONObject()));
-		}
+	@Override
+	public void onSuccess(BasicThreadEvent event) throws Exception {
+		getListener().onSignUpSuccess(new User(event.getJSONObject()));
 	}
 
-	public void signUp(
-		long companyId, String firstName, String middleName,
-		String lastName, String emailAddress, String screenName,
-		String password, String jobTitle, Locale locale,
-		String anonymousApiUserName, String anonymousApiPassword)
-		throws Exception {
-
-		validate(
-			companyId, firstName, emailAddress, locale, anonymousApiUserName,
-			anonymousApiPassword);
-
-		UserConnector userConnector = getUserConnector(
-			anonymousApiUserName, anonymousApiPassword);
-
-		sendSignUpRequest(
-			userConnector, companyId, firstName, middleName, lastName, emailAddress,
-			screenName, password, jobTitle, locale);
+	@Override
+	public void onFailure(Exception e) {
+		getListener().onSignUpFailure(e);
 	}
 
-	protected UserConnector getUserConnector(
-		String anonymousApiUserName, String anonymousApiPassword) {
-
-		Authentication authentication = new BasicAuthentication(
-			anonymousApiUserName, anonymousApiPassword);
-
-		Session anonymousSession = new SessionImpl(
-			LiferayServerContext.getServer(), authentication);
-
-		anonymousSession.setCallback(
-			new JSONObjectCallback(getTargetScreenletId()));
-
-		return ServiceProvider.getInstance().getUserConnector(anonymousSession);
-	}
-
-	protected void sendSignUpRequest(
-		UserConnector service, long companyId, String firstName,
-		String middleName, String lastName, String emailAddress,
-		String screenName, String password, String jobTitle, Locale locale)
-		throws Exception {
+	protected JSONObject sendSignUpRequest(UserConnector userConnector, long companyId, String firstName,
+		String middleName, String lastName, String emailAddress, String screenName, String password, String jobTitle,
+		Locale locale) throws Exception {
 
 		middleName = (middleName != null) ? middleName : "";
 		lastName = (lastName != null) ? lastName : "";
@@ -118,46 +102,27 @@ public class SignUpInteractorImpl extends BaseRemoteInteractor<SignUpListener>
 		JSONArray userGroupIds = new JSONArray();
 		boolean sendEmail = true;
 
-		service.addUser(
-			companyId, autoPassword, password, password, autoScreenName,
-			screenName, emailAddress, facebookId, openId, locale.toString(),
-			firstName, middleName, lastName, prefixId, suffixId, male,
-			birthdayMonth, birthdayDay, birthdayYear, jobTitle, groupIds,
-			organizationIds, roleIds, userGroupIds, sendEmail, null);
+		return userConnector.addUser(companyId, autoPassword, password, password, autoScreenName, screenName,
+			emailAddress, facebookId, openId, locale.toString(), firstName, middleName, lastName, prefixId, suffixId,
+			male, birthdayMonth, birthdayDay, birthdayYear, jobTitle, groupIds, organizationIds, roleIds, userGroupIds,
+			sendEmail, null);
 	}
 
-	protected void validate(
-		long companyId, String firstName, String emailAddress, Locale locale,
+	protected void validate(long companyId, String firstName, String emailAddress, Locale locale,
 		String anonymousApiUserName, String anonymousApiPassword) {
 
 		if (companyId <= 0) {
-			throw new IllegalArgumentException(
-				"CompanyId cannot be 0 or negative");
-		}
-
-		if ((firstName == null) || firstName.isEmpty()) {
-			throw new IllegalArgumentException(
-				"First name cannot be empty");
-		}
-
-		if ((emailAddress == null) || emailAddress.isEmpty()) {
-			throw new IllegalArgumentException(
-				"Email address cannot be empty");
-		}
-
-		if (locale == null) {
+			throw new IllegalArgumentException("CompanyId cannot be 0 or negative");
+		} else if ((firstName == null) || firstName.isEmpty()) {
+			throw new IllegalArgumentException("First name cannot be empty");
+		} else if ((emailAddress == null) || emailAddress.isEmpty()) {
+			throw new IllegalArgumentException("Email address cannot be empty");
+		} else if (locale == null) {
 			throw new IllegalArgumentException("Locale cannot be empty");
-		}
-
-		if ((anonymousApiUserName == null) || anonymousApiUserName.isEmpty()) {
-			throw new IllegalArgumentException(
-				"Anonymous api user name cannot be empty");
-		}
-
-		if ((anonymousApiPassword == null) || anonymousApiPassword.isEmpty()) {
-			throw new IllegalArgumentException(
-				"Anonymous api password cannot be empty");
+		} else if ((anonymousApiUserName == null) || anonymousApiUserName.isEmpty()) {
+			throw new IllegalArgumentException("Anonymous api user name cannot be empty");
+		} else if ((anonymousApiPassword == null) || anonymousApiPassword.isEmpty()) {
+			throw new IllegalArgumentException("Anonymous api password cannot be empty");
 		}
 	}
-
 }
