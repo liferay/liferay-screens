@@ -177,6 +177,10 @@ public let AssetClassNameIdWikiNode = "WikiNode"
 		return classNameIds[className]
 	}
 
+	public class func getClassName(className: String) -> String? {
+		return classNames[className]
+	}
+
 	public class func get(classNameId: Int64) -> String? {
 		return classNameIds.filter({$0.1 == classNameId}).first?.0
 	}
@@ -185,4 +189,7 @@ public let AssetClassNameIdWikiNode = "WikiNode"
 		classNameIds[className] = newId
 	}
 
+	public class func set(className: String, newClassName: String) {
+		classNames[className] = newClassName
+	}
 }
