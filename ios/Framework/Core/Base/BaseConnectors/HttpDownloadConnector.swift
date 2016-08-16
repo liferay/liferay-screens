@@ -46,8 +46,9 @@ public class HttpDownloadConnector: ServerConnector {
 				}
 				else {
 					do {
-						let newPath = try self.moveTmpToCache(localURL.absoluteString)
-						self.resultUrl = NSURL(fileURLWithPath: newPath)
+						let newPathURL = try self.moveTmpToCache(localURL.absoluteString,
+							fileExtension: self.fileExtension(response))
+						self.resultUrl = newPathURL
 						self.lastError = nil
 					}
 					catch let error as NSError {
@@ -69,20 +70,16 @@ public class HttpDownloadConnector: ServerConnector {
 	}
 
 
-	private func moveTmpToCache(localPath: String) throws -> String {
-		// TODO try to keep the file extension especified in "suggestedFilename" or
-		// add the extension based on the response's mime type (prefered, the former 
-		// will be empty in most cases)
-		// This is important because some players (video or audio players) use that 
-		// extension to figure out the internal format.
-		// If the extension is not present, they try to guess based on some heuristics, 
-		// and it probably won't work
+	private func moveTmpToCache(localPath: String, fileExtension: String) throws -> NSURL {
 
 		let cachePath = cacheFilePath()
+		let cachePathUrl = NSURL(fileURLWithPath: cachePath + "." + fileExtension)
 
-		try NSFileManager.defaultManager().moveItemAtPath(localPath, toPath: cachePath)
+		try NSFileManager.defaultManager().moveItemAtURL(NSURL(string: localPath)!, toURL: cachePathUrl)
 
-		return cachePath
+		return cachePathUrl
+	}
+
 	private func fileExtension(response: NSURLResponse?) -> String {
 		if let ext = response?.MIMEType?.characters.split("/").map(String.init)[1] {
 			return ext
