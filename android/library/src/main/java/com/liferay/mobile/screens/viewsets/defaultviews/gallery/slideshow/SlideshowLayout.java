@@ -2,8 +2,6 @@ package com.liferay.mobile.screens.viewsets.defaultviews.gallery.slideshow;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.AbsListView;
-import com.liferay.mobile.screens.util.LiferayLogger;
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 
 /**
@@ -25,6 +23,7 @@ public class SlideshowLayout extends RecyclerView.OnScrollListener implements Vi
 			View v = recyclerView.getChildAt(j);
 
 			float rate = 0;
+
 			if (v.getLeft() <= padding) {
 				if (v.getLeft() >= padding - v.getWidth()) {
 					rate = (padding - v.getLeft()) * 1f / v.getWidth();
@@ -56,42 +55,35 @@ public class SlideshowLayout extends RecyclerView.OnScrollListener implements Vi
 	@Override
 	public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop,
 		int oldRight, int oldBottom) {
-		
 
+		// Set the default values to the neighbors
 		if (recyclerView.getChildCount() < 3) {
 			if (recyclerView.getChildAt(1) != null) {
 				if (((RecyclerViewPager) recyclerView).getCurrentPosition() == 0) {
-					View v1 = recyclerView.getChildAt(1);
-					v1.setScaleY(0.7f);
-					v1.setScaleX(0.7f);
-					v1.setTranslationY(200);
-					v1.setAlpha(0.5f);
-
+					View view = recyclerView.getChildAt(1);
+					assignDefaultValues(view);
 				} else {
-					View v1 = recyclerView.getChildAt(0);
-					v1.setScaleY(0.7f);
-					v1.setScaleX(0.7f);
-					v1.setTranslationY(200);
-					v1.setAlpha(0.5f);
+					View view = recyclerView.getChildAt(0);
+					assignDefaultValues(view);
 				}
 			}
 		} else {
 			if (recyclerView.getChildAt(0) != null) {
-				View v0 = recyclerView.getChildAt(0);
-				v0.setScaleY(0.7f);
-				v0.setScaleX(0.7f);
-				v0.setTranslationY(200);
-				v0.setAlpha(0.5f);
+				View view = recyclerView.getChildAt(0);
+				assignDefaultValues(view);
 			}
 			if (recyclerView.getChildAt(2) != null) {
-				View v2 = recyclerView.getChildAt(2);
-				v2.setScaleY(0.7f);
-				v2.setScaleX(0.7f);
-				v2.setTranslationY(200);
-				v2.setAlpha(0.5f);
+				View view = recyclerView.getChildAt(2);
+				assignDefaultValues(view);
 			}
-
 		}
+	}
+
+	private void assignDefaultValues(View view) {
+		view.setScaleY(0.7f);
+		view.setScaleX(0.7f);
+		view.setTranslationY(200);
+		view.setAlpha(0.5f);
 	}
 
 	private RecyclerView recyclerView;
