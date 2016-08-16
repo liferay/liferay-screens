@@ -48,7 +48,7 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 				if imageId != 0 {
 					imageHeightConstraint?.constant = self.headerImageHeight
 
-					imageDisplayScreenlet?.className = FileEntry.className
+					imageDisplayScreenlet?.className = AssetClassNameIds.getClassName(AssetClassNameIdDLFileEntry)!
 					imageDisplayScreenlet?.classPK = imageId
 					imageDisplayScreenlet?.load()
 				}
