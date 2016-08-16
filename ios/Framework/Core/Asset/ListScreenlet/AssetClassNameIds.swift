@@ -117,6 +117,61 @@ public let AssetClassNameIdWikiNode = "WikiNode"
 		]
 	}()
 
+	private static var classNames: [String:String] = {
+
+		// These are the default className for a Liferay Portal 7.0 CE GA2
+		// installation.
+		// Be aware your installation probably have different className, so
+		// you probably we'll need to overwrite these values like this:
+		//		AssetClassNameIds.set(AssetClassNameIdGroup, "com.liferay.portal.kernel.model.Group")
+
+		return [
+			// Users and sites
+			AssetClassNameIdGroup : "com.liferay.portal.kernel.model.Group",
+			AssetClassNameIdLayout : "com.liferay.portal.kernel.model.Layout",
+			AssetClassNameIdOrganization : "com.liferay.portal.kernel.model.Organization",
+			AssetClassNameIdUser : "com.liferay.portal.kernel.model.User",
+			AssetClassNameIdUserGroup : "com.liferay.portal.kernel.model.UserGroup",
+
+			// Blogs
+			AssetClassNameIdBlogsEntry : "com.liferay.blogs.kernel.model.BlogsEntry",
+
+			// Bookmarks
+			AssetClassNameIdBookmarksEntry : "com.liferay.bookmarks.model.BookmarksEntry",
+			AssetClassNameIdBookmarksFolder : "com.liferay.bookmarks.model.BookmarksFolder",
+
+			// Document Library
+			AssetClassNameIdDLFileEntry : "com.liferay.document.library.kernel.model.DLFileEntry",
+			AssetClassNameIdDLFolder: "com.liferay.document.library.kernel.model.DLFolder",
+			AssetClassNameIdDLFileEntryMetadata : "com.liferay.document.library.kernel.model.DLFileEntryMetadata",
+			AssetClassNameIdDLFileEntryType : "com.liferay.document.library.kernel.model.DLFileEntryType",
+			AssetClassNameIdDLFileRank : "com.liferay.document.library.kernel.model.DLFileRank",
+			AssetClassNameIdDLFileShortcut : "com.liferay.document.library.kernel.model.DLFileShortcut",
+			AssetClassNameIdDLFileVersion : "com.liferay.document.library.kernel.model.DLFileVersion",
+
+			// DDL
+			AssetClassNameIdDDLRecord : "com.liferay.dynamic.data.lists.model.DDLRecord",
+			AssetClassNameIdDDLRecordSet : "com.liferay.dynamic.data.lists.model.DDLRecordSet",
+			AssetClassNameIdDDLRecordVersion : "com.liferay.dynamic.data.lists.model.DDLRecordVersion",
+
+			// Journal
+			AssetClassNameIdJournalArticle : "com.liferay.journal.model.JournalArticle",
+			AssetClassNameIdJournalArticleImage : "com.liferay.journal.model.JournalArticleImage",
+			AssetClassNameIdJournalFolder : "com.liferay.journal.model.JournalFolder",
+
+			// MessageBoard
+			AssetClassNameIdMBMessage : "com.liferay.message.boards.kernel.model.MBMessage",
+			AssetClassNameIdMBThread : "com.liferay.message.boards.kernel.model.MBThread",
+			AssetClassNameIdMBCategory : "com.liferay.message.boards.kernel.model.MBCategory",
+			AssetClassNameIdMBDiscussion : "com.liferay.message.boards.kernel.model.MBDiscussion",
+			AssetClassNameIdMBMailingList : "com.liferay.message.boards.kernel.model.MBMailingList",
+
+			// Wiki
+			AssetClassNameIdWikiPage : "com.liferay.wiki.model.WikiPage",
+			AssetClassNameIdWikiPageResource : "com.liferay.wiki.model.WikiPageResource",
+			AssetClassNameIdWikiNode : "com.liferay.wiki.model.WikiNode"
+		]
+	}()
 
 	public class func get(className: String) -> Int64? {
 		return classNameIds[className]
