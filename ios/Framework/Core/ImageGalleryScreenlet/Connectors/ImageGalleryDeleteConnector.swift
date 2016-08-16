@@ -39,6 +39,7 @@ public class ImageGalleryDeleteConnector : ServerConnector {
 		let service = LRDLAppService_v7(session: session)
 
 		var error: NSError?
+
 		service.deleteFileEntryWithFileEntryId(imageEntryId, error: &error)
 
 		lastError = error

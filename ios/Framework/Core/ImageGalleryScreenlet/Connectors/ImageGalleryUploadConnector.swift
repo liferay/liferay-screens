@@ -23,8 +23,7 @@ public class ImageGalleryUploadConnector : UploadFileConnector<String> {
 	private let descrip: String
 	private let changeLog: String
 
-	public init(
-			repositoryId: Int64,
+	public init(repositoryId: Int64,
 			folderId: Int64,
 			sourceFileName: String,
 			mimeType: String,
@@ -34,19 +33,19 @@ public class ImageGalleryUploadConnector : UploadFileConnector<String> {
 			image: UIImage,
 			onUploadBytes: OnProgress?) {
 
-			self.repositoryId = repositoryId
-			self.folderId = folderId
-			self.sourceFileName = sourceFileName
-			self.title = title
-			self.descrip = descrip
-			self.changeLog = changeLog
+		self.repositoryId = repositoryId
+		self.folderId = folderId
+		self.sourceFileName = sourceFileName
+		self.title = title
+		self.descrip = descrip
+		self.changeLog = changeLog
 
 		super.init(
-				image: image,
-				fileName: sourceFileName,
-				mimeType: mimeType,
-				parameter: title,
-				onUploadedBytes: onUploadBytes)
+			image: image,
+			fileName: sourceFileName,
+			mimeType: mimeType,
+			parameter: title,
+			onUploadedBytes: onUploadBytes)
 	}
 
 	public override func validateData() -> ValidationError? {
@@ -68,8 +67,7 @@ public class ImageGalleryUploadConnector : UploadFileConnector<String> {
 		let service = LRDLAppService_v7(session: session)
 
 		let serviceContext = LRJSONObjectWrapper(JSONObject: ["addGuestPermissions":true])
-		try service.addFileEntryWithRepositoryId(
-				repositoryId,
+		try service.addFileEntryWithRepositoryId(repositoryId,
 				folderId: folderId,
 			 	sourceFileName: fileName,
 			 	mimeType: mimeType,

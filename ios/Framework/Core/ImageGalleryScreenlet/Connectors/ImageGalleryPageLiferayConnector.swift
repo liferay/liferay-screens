@@ -59,26 +59,25 @@ public class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
         let service = LRDLAppService_v7(session: session)
         
         do {
-            try service.getFileEntriesWithRepositoryId(
-					repositoryId,
+            try service.getFileEntriesWithRepositoryId(repositoryId,
 					folderId: folderId,
 					mimeTypes: mimeTypes,
 					start: Int32(startRow),
 					end: Int32(endRow),
 					obc: obc)
-
-        } catch {}
+        }
+		catch {
+		}
     }
     
     override public func doAddRowCountServiceCall(session session: LRBatchSession) {
         let service = LRDLAppService_v7(session: session)
         
         do {
-            try service.getFileEntriesCountWithRepositoryId(
-					repositoryId,
+            try service.getFileEntriesCountWithRepositoryId(repositoryId,
 					folderId: folderId,
 					mimeTypes: mimeTypes)
-					
-        } catch {}
+        } catch {
+		}
     }
 }
