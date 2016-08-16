@@ -100,6 +100,14 @@ import UIKit
 		performDefaultAction()
 	}
 
+	public func deleteComment() {
+		performAction(name: CommentDisplayScreenlet.DeleteAction)
+	}
+
+	public func editComment() {
+		viewModel?.editComment()
+	}
+
 	//MARK: BaseScreenlet
 
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {

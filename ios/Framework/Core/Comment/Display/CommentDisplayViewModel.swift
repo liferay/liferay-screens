@@ -18,4 +18,6 @@ import UIKit
 	var comment: Comment? { get set }
 
 	var computedHeight: CGFloat { get }
+
+	func editComment()
 }
