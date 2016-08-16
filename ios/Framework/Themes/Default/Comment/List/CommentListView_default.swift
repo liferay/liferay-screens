@@ -120,6 +120,33 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 			width: tableView.frame.width)
 	}
 
+	public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+		if let comment = rows[BaseListView.DefaultSection]?[indexPath.row] as? Comment {
+			return comment.canEdit || comment.canDelete
+		}
+
+		return false
+	}
+
+	func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+
+		let editRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Edit", handler:{action, indexPath in
+			let cell = tableView.cellForRowAtIndexPath(indexPath) as? CommentTableViewCell_default
+			cell?.commentDisplayScreenlet?.editComment()
+			tableView.setEditing(false, animated: true)
+		})
+		editRowAction.backgroundColor = UIColor(red: 0, green: 0.7216, blue: 0.8784, alpha: 1.0)
+
+		let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler:{action, indexPath in
+			let cell = tableView.cellForRowAtIndexPath(indexPath) as? CommentTableViewCell_default
+			cell?.commentDisplayScreenlet?.deleteComment()
+			tableView.setEditing(false, animated: true)
+		})
+		deleteRowAction.backgroundColor = UIColor(red: 0.7686, green: 0.2431, blue: 0, alpha: 1.0)
+
+		return [deleteRowAction, editRowAction];
+	}
+
 	//MARK: BaseScreenletView
 
 	public override func onShow() {
