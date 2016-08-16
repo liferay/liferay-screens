@@ -103,10 +103,13 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 					key: "userportrait-choose-existing-picture",
 					obj: self)
 
+			//TODO add i18n to "Cancel"
+			let cancelText = "Cancel"
+
 			let alert = MediaSelector(
 				viewController: viewController,
 				types: [.Camera : takeNewPicture, .Image : chooseExisting],
-				cancelMessage: "Cancel") { (image, _) in
+				cancelMessage: cancelText) { (image, _) in
 
 					if let image = image {
 						let imageUpload = ImageEntryUpload(image: image, title: "test\(Int(CFAbsoluteTimeGetCurrent())).png")
