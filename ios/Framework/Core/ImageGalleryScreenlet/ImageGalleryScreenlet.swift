@@ -64,6 +64,8 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 		}
 	}
 
+	public var uploadDetailViewControllerName = "ImageUploadDetailViewController"
+
 	public let DefaultMimeTypes = ["image/png", "image/jpeg", "image/gif"]
 
 	internal var uploadsQueue = [ImageEntryUpload]()
@@ -329,17 +331,16 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 	}
 
 	internal func createImageUploadDetailViewControllerFromNib() -> ImageUploadDetailViewControllerBase? {
-		let viewControllerName = "ImageUploadDetailViewController"
 
 		if let foundView = NSBundle.viewForThemeOrDefault(
-				name: viewControllerName,
+				name: uploadDetailViewControllerName,
 				themeName: themeName ?? BaseScreenlet.DefaultThemeName,
 				currentClass: self.dynamicType) as? ImageUploadDetailViewControllerBase {
 
 			return foundView
 		}
 
-		print("ERROR: Xib file doesn't found for \(viewControllerName) and theme '\(themeName)'\n")
+		print("ERROR: Xib file doesn't found for \(uploadDetailViewControllerName) and theme '\(themeName)'\n")
 		
 		return nil
 	}
