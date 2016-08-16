@@ -198,7 +198,6 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		}
 
 		startUploadDetailActivity(activityUploadDetail, picturePath);
-		//performUserAction(UPLOAD_IMAGE, picturePath);
 	}
 
 	@Override
@@ -227,7 +226,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 	@Override
 	public void onPictureUploadInformationReceived(String picturePath, String title, String description) {
 		if (getListener() != null) {
-			getListener().onImageUploadStarted();
+			getListener().onImageUploadStarted(picturePath, title, description);
 		}
 
 		getViewModel().imageUploadStart(picturePath);
