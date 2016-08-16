@@ -19,13 +19,13 @@ import Foundation
 	public let thumbnail: UIImage?
 
 	public let title: String
-	public let descript: String
+	public let notes: String
 
-	public init(image: UIImage, thumbnail: UIImage? = nil, title: String, descript: String = "") {
+	public init(image: UIImage, thumbnail: UIImage? = nil, title: String, notes: String = "") {
 		self.image = image
 		self.thumbnail = thumbnail
 		self.title = title
-		self.descript = descript
+		self.notes = notes
 	}
 
 
@@ -35,7 +35,7 @@ import Foundation
 		image = (aDecoder.decodeObjectForKey("image") as? UIImage)!
 		thumbnail = aDecoder.decodeObjectForKey("thumbnail") as? UIImage
 		title = aDecoder.decodeObjectForKey("title") as! String
-		descript = aDecoder.decodeObjectForKey("descript") as! String
+		notes = aDecoder.decodeObjectForKey("notes") as! String
 		super.init()
 	}
 
@@ -47,7 +47,7 @@ import Foundation
 		}
 
 		aCoder.encodeObject(title, forKey: "title")
-		aCoder.encodeObject(descript, forKey: "descript")
+		aCoder.encodeObject(notes, forKey: "notes")
 	}
 	
 }

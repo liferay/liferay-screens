@@ -49,7 +49,7 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 				sourceFileName: imageUpload.title,
 				mimeType: "image/png",
 				title: imageUpload.title,
-				descrip: imageUpload.descript,
+				descrip: imageUpload.notes,
 				changeLog: "",
 				image: imageUpload.image,
 				onUploadBytes:  onUploadedBytes)
