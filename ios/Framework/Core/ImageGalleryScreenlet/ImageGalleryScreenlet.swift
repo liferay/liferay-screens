@@ -57,6 +57,8 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
     @IBInspectable public var folderId: Int64 = -1
 	@IBInspectable public var mimeTypes: String = ""
 
+	@IBInspectable public var filePrefix: String = "gallery-"
+
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.CacheFirst.rawValue {
 		didSet {
 			ImageCache.screensOfflinePolicy =
@@ -117,7 +119,8 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 					return
 				}
 
-				let imageUpload = ImageEntryUpload(image: image, title: "test\(Int(CFAbsoluteTimeGetCurrent())).png")
+				let title = "\(self.filePrefix)\(Int(CFAbsoluteTimeGetCurrent())).png"
+				let imageUpload = ImageEntryUpload(image: image, title: title)
 				self.showDetailUploadView(imageUpload)
 			}
 			alert.show()
