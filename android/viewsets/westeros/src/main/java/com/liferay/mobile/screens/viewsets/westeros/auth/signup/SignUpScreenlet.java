@@ -16,15 +16,12 @@ package com.liferay.mobile.screens.viewsets.westeros.auth.signup;
 
 import android.content.Context;
 import android.util.AttributeSet;
-
-import com.liferay.mobile.screens.auth.signup.interactor.SignUpInteractor;
-import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.auth.signup.interactor.SignUpInteractorImpl;
 
 /**
  * @author Silvio Santos
  */
-public class SignUpScreenlet
-	extends com.liferay.mobile.screens.auth.signup.SignUpScreenlet
+public class SignUpScreenlet extends com.liferay.mobile.screens.auth.signup.SignUpScreenlet
 	implements com.liferay.mobile.screens.viewsets.westeros.auth.signup.SignUpListener {
 
 	public static final String TERMS_AND_CONDITIONS = "TERMS_AND_CONDITIONS";
@@ -61,21 +58,10 @@ public class SignUpScreenlet
 	}
 
 	@Override
-	public void onSignUpFailure(Exception e) {
-		super.onSignUpFailure(e);
-	}
-
-	@Override
-	public void onSignUpSuccess(User user) {
-		super.onSignUpSuccess(user);
-	}
-
-	@Override
-	protected void onUserAction(String userActionName, SignUpInteractor interactor, Object... args) {
+	protected void onUserAction(String userActionName, SignUpInteractorImpl interactor, Object... args) {
 		if (TERMS_AND_CONDITIONS.equals(userActionName)) {
 			onClickOnTermsAndConditions();
-		}
-		else {
+		} else {
 			super.onUserAction(userActionName, interactor, args);
 		}
 	}
