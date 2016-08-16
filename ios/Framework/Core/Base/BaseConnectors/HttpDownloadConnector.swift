@@ -83,5 +83,15 @@ public class HttpDownloadConnector: ServerConnector {
 		try NSFileManager.defaultManager().moveItemAtPath(localPath, toPath: cachePath)
 
 		return cachePath
+	private func fileExtension(response: NSURLResponse?) -> String {
+		if let ext = response?.MIMEType?.characters.split("/").map(String.init)[1] {
+			return ext
+		}
+
+		if let ext = response?.suggestedFilename?.characters.split(".").map(String.init).last {
+			return ext
+		}
+
+		return "tmp"
 	}
 }
