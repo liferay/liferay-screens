@@ -112,7 +112,10 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 
 			let alert = MediaSelector(
 					viewController: viewController,
-					types: [.Camera : takeNewPicture, .Image : chooseExisting],
+					types: [
+						.Camera: takeNewPicture,
+						.Image: chooseExisting
+					],
 					cancelMessage: cancelText) { (image, _) in
 
 				guard let image = image else {
