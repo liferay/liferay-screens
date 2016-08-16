@@ -26,19 +26,21 @@ public class AssetDisplayView_default: BaseScreenletView, AssetDisplayViewModel 
 
 	public var innerScreenlet: BaseScreenlet? {
 		set {
-			if let oldScreenlet = self.innerScreenlet {
+			if let oldScreenlet = _innerScreenlet {
 				oldScreenlet.removeFromSuperview()
-				self.innerScreenlet = nil
+				_innerScreenlet = nil
 			}
 
 			if let newScreenlet = newValue {
 				newScreenlet.frame = CGRect(origin: CGPointZero, size: self.frame.size)
+				_innerScreenlet = newValue
 				self.addSubview(newScreenlet)
 			}
 		}
 		get {
-			// fake, but valid
-			return self.screenlet
+			return _innerScreenlet
 		}
 	}
+
+	private var _innerScreenlet: BaseScreenlet?
 }
