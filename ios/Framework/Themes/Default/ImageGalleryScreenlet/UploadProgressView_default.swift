@@ -13,7 +13,7 @@
 */
 import UIKit
 
-public class UploadProgressView_default: UploadProgressViewBase {
+public class UploadProgressView_default: UIView, UploadProgressViewBase {
 
 	@IBOutlet weak private var previewImage: UIImageView!
 	@IBOutlet weak private var progressView: UIProgressView!
@@ -44,11 +44,11 @@ public class UploadProgressView_default: UploadProgressViewBase {
 
 	// MARK: UploadProgressViewBase
 
-	public override func setProgress(progress: Float) {
+	public func setProgress(progress: Float) {
 		progressView.progress = progress
 	}
 
-	public override func addUpload(thumbnail: UIImage? = nil) {
+	public func addUpload(thumbnail: UIImage? = nil) {
 		uploadsCount += 1
 
 		if let thumbnail = thumbnail {
@@ -62,7 +62,7 @@ public class UploadProgressView_default: UploadProgressViewBase {
 		updateInformationText()
 	}
 
-	public override func uploadComplete() {
+	public func uploadComplete() {
 		if uploadsCount == 1 {
 			hide()
 		}
@@ -74,7 +74,7 @@ public class UploadProgressView_default: UploadProgressViewBase {
 		}
 	}
 
-	public override func uploadError() {
+	public func uploadError() {
 		if uploadsCount == 1 {
 			hide()
 		}
