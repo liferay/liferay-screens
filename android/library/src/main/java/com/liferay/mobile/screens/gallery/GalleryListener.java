@@ -12,7 +12,7 @@ public interface GalleryListener extends BaseListListener<ImageEntry> {
 
 	void onImageEntryDeleted(long imageEntryId);
 
-	void onImageUploadStarted();
+	void onImageUploadStarted(String picturePath, String title, String description);
 
 	void onImageUploadProgress(int totalBytes, int totalBytesSent);
 
