@@ -59,7 +59,8 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.CacheFirst.rawValue {
 		didSet {
-			ImageCache.screensOfflinePolicy = offlinePolicy ?? CacheStrategyType.RemoteFirst.rawValue
+			ImageCache.screensOfflinePolicy =
+				offlinePolicy ?? CacheStrategyType.RemoteFirst.rawValue
 		}
 	}
 
@@ -88,14 +89,19 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 		KingfisherManager.sharedManager.cache.clearMemoryCache()
 		KingfisherManager.sharedManager.cache.clearDiskCache()
 
-		SessionContext.currentContext?.cacheManager.remove(collection: ScreenletName(self.dynamicType))
+		SessionContext.currentContext?.cacheManager.remove(
+			collection: ScreenletName(self.dynamicType))
 	}
 
 	public func startMediaSelectorAndUpload() {
 		if let viewController = presentingViewController {
 
-			let takeNewPicture = LocalizedString("default", key: "userportrait-take-new-picture", obj: self)
-			let chooseExisting = LocalizedString("default", key: "userportrait-choose-existing-picture", obj: self)
+			let takeNewPicture = LocalizedString("default",
+					key: "userportrait-take-new-picture",
+					obj: self)
+			let chooseExisting = LocalizedString("default",
+					key: "userportrait-choose-existing-picture",
+					obj: self)
 
 			let alert = MediaSelector(
 				viewController: viewController,
@@ -179,7 +185,9 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 
 			if uploadsQueue.isEmpty {
 				uploadsQueue.insert(uploadEntry, atIndex: 0)
-				return super.performAction(name: ImageGalleryScreenlet.UploadImageAction, sender: sender)
+				return super.performAction(
+						name: ImageGalleryScreenlet.UploadImageAction,
+						sender: sender)
 			}
 			else {
 				uploadsQueue.insert(uploadEntry, atIndex: 0)
@@ -192,7 +200,6 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 
 	public override func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		switch name {
-
 		case BaseListScreenlet.LoadInitialPageAction, BaseListScreenlet.LoadPageAction:
 			return super.createInteractor(name: name, sender: sender)
 
@@ -215,7 +222,9 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 	internal func createImageGalleryDeleteInteractor(
 			imageEntry: ImageEntry) -> ImageGalleryDeleteInteractor {
 
-		let interactor = ImageGalleryDeleteInteractor(screenlet: self, imageEntryId: imageEntry.imageEntryId)
+		let interactor = ImageGalleryDeleteInteractor(
+				screenlet: self,
+				imageEntryId: imageEntry.imageEntryId)
 
 		interactor.onSuccess = {
 			self.imageGalleryDelegate?.screenlet?(self, onImageEntryDeleted: imageEntry)
@@ -237,14 +246,16 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 
 		let finalMimeTypes = mimeTypes.isEmpty ? DefaultMimeTypes : parseMimeTypes(mimeTypes)
 
-		let interactor = ImageGalleryLoadInteractor(screenlet: self,
-		                                            page: page,
-		                                            computeRowCount: computeRowCount,
-		                                            repositoryId: repositoryId,
-		                                            folderId: folderId,
-		                                            mimeTypes: finalMimeTypes)
+		let interactor = ImageGalleryLoadInteractor(
+				screenlet: self,
+				page: page,
+				computeRowCount: computeRowCount,
+				repositoryId: repositoryId,
+				folderId: folderId,
+				mimeTypes: finalMimeTypes)
 
-		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+		interactor.cacheStrategy =
+			CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 		
 		return interactor
 	}
@@ -271,18 +282,19 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 					self, onImageUploadProgress: imageUpload,
 					totalBytesSent: totalBytesSent,
 					totalBytesToSend: totalBytesToSend)
-
 		}
 
 		interactor.onSuccess = {
-			if let result = interactor.result {
-				let imageEntry = ImageEntry(attributes: result)
-				imageEntry.image = imageUpload.thumbnail
-
-				self.imageGalleryDelegate?.screenlet?(self, onImageUploaded: imageEntry)
-				self.viewModel.onImageUploaded?(imageEntry)
-				self.startNextUploadIfExist()
+			guard let result = interactor.result else {
+				return
 			}
+
+			let imageEntry = ImageEntry(attributes: result)
+			imageEntry.image = imageUpload.thumbnail
+
+			self.imageGalleryDelegate?.screenlet?(self, onImageUploaded: imageEntry)
+			self.viewModel.onImageUploaded?(imageEntry)
+			self.startNextUploadIfExist()
 		}
 
 		interactor.onFailure = {
@@ -297,7 +309,8 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 			self.imageGalleryDelegate?.screenlet?(self, onImageUploadError: $0)
 		}
 
-		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+		interactor.cacheStrategy =
+			CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
 		self.imageGalleryDelegate?.screenlet?(self, onImageUploadStart: imageUpload)
 
