@@ -17,33 +17,33 @@ import Kingfisher
 @objc public protocol ImageGalleryScreenletDelegate : BaseScreenletDelegate {
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-	                        onImageEntriesResponse imageEntries: [ImageEntry])
+			onImageEntriesResponse imageEntries: [ImageEntry])
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-	                        onImageEntriesError error: NSError)
+			onImageEntriesError error: NSError)
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-	                        onImageEntrySelected imageEntry: ImageEntry)
+			onImageEntrySelected imageEntry: ImageEntry)
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-	                        onImageEntryDeleted: ImageEntry)
+			onImageEntryDeleted: ImageEntry)
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-	                        onImageEntryDeleteError: NSError)
+			onImageEntryDeleteError: NSError)
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-	                        onImageUploadStart image: ImageEntryUpload)
+			onImageUploadStart image: ImageEntryUpload)
 							
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-	                        onImageUploadProgress image: ImageEntryUpload,
-							totalBytesSent: UInt64,
-							totalBytesToSend: UInt64)
+			onImageUploadProgress image: ImageEntryUpload,
+			totalBytesSent: UInt64,
+			totalBytesToSend: UInt64)
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-	                        onImageUploadError error: NSError)
+			onImageUploadError error: NSError)
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-	                        onImageUploaded image: ImageEntry)
+			onImageUploaded image: ImageEntry)
 }
 
 
@@ -107,14 +107,16 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 			let cancelText = "Cancel"
 
 			let alert = MediaSelector(
-				viewController: viewController,
-				types: [.Camera : takeNewPicture, .Image : chooseExisting],
-				cancelMessage: cancelText) { (image, _) in
+					viewController: viewController,
+					types: [.Camera : takeNewPicture, .Image : chooseExisting],
+					cancelMessage: cancelText) { (image, _) in
 
-					if let image = image {
-						let imageUpload = ImageEntryUpload(image: image, title: "test\(Int(CFAbsoluteTimeGetCurrent())).png")
-						self.showDetailUploadView(imageUpload)
-					}
+				guard let image = image else {
+					return
+				}
+
+				let imageUpload = ImageEntryUpload(image: image, title: "test\(Int(CFAbsoluteTimeGetCurrent())).png")
+				self.showDetailUploadView(imageUpload)
 			}
 			alert.show()
 		}
@@ -124,7 +126,6 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 		let viewController = createImageUploadDetailViewControllerFromNib()
 
 		if let viewController = viewController {
-
 			viewController.image = imageUpload.image
 			viewController.tTitle = imageUpload.title
 			viewController.screenlet = self
@@ -179,9 +180,8 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 
 	public override func performAction(name name: String, sender: AnyObject?) -> Bool {
 		if name == ImageGalleryScreenlet.EnqueueUploadAction {
-			guard let uploadEntry = sender as? ImageEntryUpload
-				else {
-					return false
+			guard let uploadEntry = sender as? ImageEntryUpload else {
+				return false
 			}
 
 			viewModel.onImageUploadEnqueued?(uploadEntry)

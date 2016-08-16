@@ -101,32 +101,38 @@ extension NSBundle {
 	}
     
     public class func nibInBundles(name name: String, currentClass: AnyClass) -> UINib? {
-        
         return resourceInBundle(
-            name: name,
-            ofType: "nib",
-            currentClass: currentClass) { _, bundle in
-                return UINib(nibName: name, bundle: bundle)
+            	name: name,
+            	ofType: "nib",
+            	currentClass: currentClass) { _, bundle in
+			return UINib(nibName: name, bundle: bundle)
         }
     }
 
-	public class func viewForTheme(name name: String, themeName: String, currentClass: AnyClass) -> AnyObject? {
+	public class func viewForTheme(
+			name name: String,
+			themeName: String,
+			currentClass: AnyClass) -> AnyObject? {
+
 		let nibName = "\(name)_\(themeName)"
 		return resourceInBundle(
 				name: nibName,
 				ofType: "nib",
 				currentClass: currentClass) {_  , bundle in
 
-				let views = bundle.loadNibNamed(nibName, owner: currentClass, options: nil)
-				assert(views.count > 0, "Malformed xib \(nibName). Without views")
+			let views = bundle.loadNibNamed(nibName, owner: currentClass, options: nil)
+			assert(views.count > 0, "Malformed xib \(nibName). Without views")
 
 			return views[0]
 		}
 	}
     
-    public class func resourceInBundle<T>(name name: String, ofType type: String, currentClass: AnyClass,
-                                       @noescape resourceInit: (String , NSBundle) -> T?) -> T? {
-        
+    public class func resourceInBundle<T>(
+			name name: String,
+			ofType type: String,
+			currentClass: AnyClass,
+			@noescape resourceInit: (String , NSBundle) -> T?) -> T? {
+
         for bundle in allBundles(currentClass) {
             if let path = bundle.pathForResource(name, ofType: type) {
                 return resourceInit(path, bundle)
