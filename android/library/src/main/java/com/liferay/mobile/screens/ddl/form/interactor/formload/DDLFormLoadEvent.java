@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.ddl.form.interactor.formload;
 
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormBaseEvent;
 import com.liferay.mobile.screens.ddl.model.Record;
-
 import org.json.JSONObject;
 
 /**
@@ -24,12 +23,16 @@ import org.json.JSONObject;
  */
 public class DDLFormLoadEvent extends DDLFormBaseEvent {
 
-	public DDLFormLoadEvent(int targetScreenletId, Record record, Exception e) {
-		super(targetScreenletId, record, e);
+	public DDLFormLoadEvent(Record record, Exception e) {
+		super(record, e);
 	}
 
-	public DDLFormLoadEvent(int targetScreenletId, Record record, JSONObject jsonObject) {
-		super(targetScreenletId, record, jsonObject);
+	public DDLFormLoadEvent(Record record, JSONObject jsonObject) {
+		super(record, jsonObject);
 	}
 
+	@Override
+	public String getId() throws Exception {
+		return String.valueOf(getRecord().getStructureId());
+	}
 }
