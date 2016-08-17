@@ -2,10 +2,11 @@ package com.liferay.mobile.screens.asset.display.interactor;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
+import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.asset.list.interactor.AssetFactory;
-import com.liferay.mobile.screens.base.thread.BaseRemoteInteractorNew;
-import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
+import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.service.v70.ScreensassetentryService;
 import com.liferay.mobile.screens.util.JSONUtil;
@@ -16,21 +17,22 @@ import org.json.JSONObject;
 /**
  * @author Sarai Díaz García
  */
-public class AssetDisplayInteractorImpl extends BaseRemoteInteractorNew<AssetDisplayListener, BasicThreadEvent> {
+public class AssetDisplayInteractorImpl
+	extends BaseCachedThreadRemoteInteractor<AssetDisplayListener, AssetDisplayInteractorImpl.AssetEvent> {
 
 	@Override
-	public BasicThreadEvent execute(Object... args) throws Exception {
+	public AssetEvent execute(Object... args) throws Exception {
 
-		long entryId = (long) args[0];
+		final long entryId = (long) args[0];
 
 		Session session = SessionContext.createSessionFromCurrentSession();
 		ScreensassetentryService service = new ScreensassetentryService(session);
 		JSONObject jsonObject = service.getAssetEntry(entryId, Locale.getDefault().getLanguage());
-		return new BasicThreadEvent(jsonObject);
+		return new AssetEvent(entryId, jsonObject);
 	}
 
 	@Override
-	public void onSuccess(BasicThreadEvent event) throws Exception {
+	public void onSuccess(AssetEvent event) throws Exception {
 		Map<String, Object> map = JSONUtil.toMap(event.getJSONObject());
 		AssetEntry assetEntry = AssetFactory.createInstance(map);
 		getListener().onRetrieveAssetSuccess(assetEntry);
@@ -38,6 +40,29 @@ public class AssetDisplayInteractorImpl extends BaseRemoteInteractorNew<AssetDis
 
 	@Override
 	public void onFailure(Exception e) {
-		getListener().onRetrieveAssetFailure(e);
+		getListener().error(e, AssetDisplayScreenlet.DEFAULT_ACTION);
+	}
+
+	@Override
+	protected AssetEvent createEventFromArgs(Object... args) throws Exception {
+
+		final long entryId = (long) args[0];
+
+		return new AssetEvent(entryId, new JSONObject());
+	}
+
+	public class AssetEvent extends OfflineEventNew {
+
+		private final long entryId;
+
+		public AssetEvent(long entryId, JSONObject jsonObject) {
+			super(jsonObject);
+			this.entryId = entryId;
+		}
+
+		@Override
+		public String getId() throws Exception {
+			return String.valueOf(entryId);
+		}
 	}
 }

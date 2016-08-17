@@ -22,7 +22,22 @@ public class AssetDisplayActivity extends ThemeActivity implements AssetDisplayL
 	}
 
 	@Override
-	public void onRetrieveAssetFailure(Exception e) {
+	public void loadingFromCache(boolean success) {
+
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+
+	}
+
+	@Override
+	public void error(Exception e, String userAction) {
 		error("Could not receive asset entry", e);
 	}
 

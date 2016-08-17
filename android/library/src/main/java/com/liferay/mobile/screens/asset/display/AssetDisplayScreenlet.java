@@ -89,17 +89,32 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		} else {
 			LiferayLogger.e("Error loading screenlet");
 			if (listener != null) {
-				listener.onRetrieveAssetFailure(new Exception("Error loading screenlet"));
+				listener.error(new Exception("Error loading screenlet"), DEFAULT_ACTION);
 			}
 		}
 	}
 
 	@Override
-	public void onRetrieveAssetFailure(Exception e) {
+	public void loadingFromCache(boolean success) {
+
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+
+	}
+
+	@Override
+	public void error(Exception e, String userAction) {
 		getViewModel().showFailedOperation(null, e);
 
 		if (listener != null) {
-			listener.onRetrieveAssetFailure(e);
+			listener.error(e, DEFAULT_ACTION);
 		}
 	}
 

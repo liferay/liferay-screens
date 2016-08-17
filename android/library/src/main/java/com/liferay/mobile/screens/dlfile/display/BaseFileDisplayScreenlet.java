@@ -67,11 +67,32 @@ public abstract class BaseFileDisplayScreenlet
 	}
 
 	@Override
-	public void onRetrieveAssetFailure(Exception e) {
+	public void loadingFromCache(boolean success) {
+		if (listener != null) {
+			listener.loadingFromCache(success);
+		}
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+		if (listener != null) {
+			listener.retrievingOnline(triedInCache, e);
+		}
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+		if (listener != null) {
+			listener.storingToCache(object);
+		}
+	}
+
+	@Override
+	public void error(Exception e, String userAction) {
 		getViewModel().showFailedOperation(null, e);
 
 		if (listener != null) {
-			listener.onRetrieveAssetFailure(e);
+			listener.error(e, userAction);
 		}
 	}
 
@@ -91,16 +112,12 @@ public abstract class BaseFileDisplayScreenlet
 
 	protected void autoLoad() {
 		if (SessionContext.isLoggedIn()) {
-			try {
-				if (fileEntry == null) {
-					AssetDisplayInteractorImpl assetDisplayInteractor = new AssetDisplayInteractorImpl();
-					assetDisplayInteractor.onScreenletAttached(this);
-					assetDisplayInteractor.start(entryId);
-				} else {
-					onRetrieveAssetSuccess(fileEntry);
-				}
-			} catch (Exception e) {
-				onRetrieveAssetFailure(e);
+			if (fileEntry == null) {
+				AssetDisplayInteractorImpl assetDisplayInteractor = new AssetDisplayInteractorImpl();
+				assetDisplayInteractor.onScreenletAttached(this);
+				assetDisplayInteractor.start(entryId);
+			} else {
+				onRetrieveAssetSuccess(fileEntry);
 			}
 		}
 	}
