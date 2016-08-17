@@ -107,8 +107,7 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 					key: "userportrait-choose-existing-picture",
 					obj: self)
 
-			//TODO add i18n to "Cancel"
-			let cancelText = "Cancel"
+			let cancelText = LocalizedString("imagegallery-screenlet", key: "cancel", obj: self)
 
 			let alert = MediaSelector(
 					viewController: viewController,

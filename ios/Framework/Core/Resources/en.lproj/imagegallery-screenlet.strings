@@ -1,3 +1,4 @@
-"undefined-imageentryid"="Image entry Id could not be less than 0";
-"undefined-repositoryid"="Repository Id could not be less than 0";
-"undefined-folderid"="Folder Id could not be less than 0";
+"imagegallery-screenlet-undefined-imageentryid"="Image entry Id could not be less than 0";
+"imagegallery-screenlet-undefined-repositoryid"="Repository Id could not be less than 0";
+"imagegallery-screenlet-undefined-folderid"="Folder Id could not be less than 0";
+"imagegallery-screenlet-cancel"="Cancel";

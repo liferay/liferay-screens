@@ -1,3 +1,4 @@
-"undefined-imageentryid"="Image entry id no puede ser menor que 0";
-"undefined-repositoryid"="Image entry id no puede ser menor que 0";
-"undefined-folderid"="Image entry id no puede ser menor que 0";
+"imagegallery-screenlet-undefined-imageentryid"="Image entry id no puede ser menor que 0";
+"imagegallery-screenlet-undefined-repositoryid"="Image entry id no puede ser menor que 0";
+"imagegallery-screenlet-undefined-folderid"="Image entry id no puede ser menor que 0";
+"imagegallery-screenlet-cancel"="Cancelar";
