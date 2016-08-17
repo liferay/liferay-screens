@@ -2,8 +2,8 @@ package com.liferay.mobile.screens.base.thread;
 
 import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.base.thread.event.ErrorThreadEvent;
-import com.liferay.mobile.screens.base.thread.event.JSONThreadObjectEvent;
-import com.liferay.mobile.screens.cache.CacheListener;
+import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
+import com.liferay.mobile.screens.base.thread.listener.OfflineListenerNew;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
@@ -11,20 +11,18 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 import com.snappydb.DB;
 import com.snappydb.DBFactory;
 import com.snappydb.SnappydbException;
-
+import java.util.Locale;
 import java.util.NoSuchElementException;
 
 /**
  * @author Javier Gamarra
  */
-public abstract class BaseCachedThreadRemoteInteractor<L extends CacheListener, E extends JSONThreadObjectEvent>
+public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListenerNew, E extends OfflineEventNew>
 	extends BaseThreadInteractor<L, E> {
 
-	public BaseCachedThreadRemoteInteractor(int targetScreenletId, OfflinePolicy offlinePolicy) {
-		super(targetScreenletId);
-
-		_offlinePolicy = offlinePolicy;
-	}
+	private long groupId;
+	private long userId;
+	private Locale locale;
 
 	public void start(final Object... args) {
 		new Thread(new Runnable() {
@@ -38,12 +36,10 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends CacheListener, 
 							if (!_retrievedFromCache) {
 								online(true, null, args);
 							}
-						}
-						catch (Exception e) {
+						} catch (Exception e) {
 							online(true, e, args);
 						}
-					}
-					else if (_offlinePolicy == OfflinePolicy.CACHE_ONLY) {
+					} else if (_offlinePolicy == OfflinePolicy.CACHE_ONLY) {
 						LiferayLogger.i("Trying to retrieve object from cache");
 
 						boolean _retrievedFromCache = cached(args);
@@ -51,12 +47,10 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends CacheListener, 
 						if (!_retrievedFromCache) {
 							throw new NoSuchElementException();
 						}
-					}
-					else if (_offlinePolicy == OfflinePolicy.REMOTE_FIRST) {
+					} else if (_offlinePolicy == OfflinePolicy.REMOTE_FIRST) {
 						try {
 							online(false, null, args);
-						}
-						catch (Exception e) {
+						} catch (Exception e) {
 							LiferayLogger.e("Retrieve online first failed, trying cached version", e);
 
 							boolean _retrievedFromCache = cached(args);
@@ -65,12 +59,10 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends CacheListener, 
 								throw new NoSuchElementException();
 							}
 						}
-					}
-					else {
+					} else {
 						online(false, null, args);
 					}
-				}
-				catch (Exception e) {
+				} catch (Exception e) {
 					BasicThreadEvent event = new ErrorThreadEvent(e);
 					event.setTargetScreenletId(getTargetScreenletId());
 					EventBusUtil.post(event);
@@ -96,26 +88,23 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends CacheListener, 
 					}
 				}
 				onFailure(event.getException());
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				onFailure(event.getException());
 			}
-		}
-		else {
+		} else {
 			try {
 				if (!event.isCachedRequest()) {
 					storeToCache(event);
 				}
 
 				onSuccess(event);
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				onFailure(e);
 			}
 		}
 	}
 
-	protected void online(boolean triedOffline, Exception e, Object... args) throws Exception {
+	protected void online(boolean triedOffline, Exception e, Object[] args) throws Exception {
 
 		if (triedOffline) {
 			LiferayLogger.i("Retrieve from cache first failed, trying online");
@@ -123,15 +112,23 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends CacheListener, 
 
 		getListener().retrievingOnline(triedOffline, e);
 
-		E event = execute(args);
-		event.setTargetScreenletId(getTargetScreenletId());
-		event.setCachedRequest(false);
-		EventBusUtil.post(event);
+		E newEvent = execute(args);
+		newEvent.setTargetScreenletId(getTargetScreenletId());
+		newEvent.setCachedRequest(false);
+		newEvent.setGroupId(groupId);
+		newEvent.setLocale(locale);
+		newEvent.setUserId(userId);
+		EventBusUtil.post(newEvent);
 	}
 
-	protected boolean cachedById(String fullId) throws SnappydbException {
+	@Override
+	public void onFailure(Exception e) {
+		getListener().error(e, null);
+	}
+
+	protected boolean cachedById(String fullId, Class<E> clazz) throws SnappydbException {
 		DB snappyDB = DBFactory.open(LiferayScreensContext.getContext());
-		E offlineEvent = snappyDB.getObject(fullId, getEventClass());
+		E offlineEvent = snappyDB.getObject(fullId, clazz);
 		if (offlineEvent != null) {
 			offlineEvent.setCachedRequest(true);
 			offlineEvent.setTargetScreenletId(getTargetScreenletId());
@@ -143,7 +140,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends CacheListener, 
 		return false;
 	}
 
-	protected void storeToCache(E event) throws SnappydbException {
+	protected void storeToCache(E event) throws Exception {
 
 		getListener().storingToCache(event);
 
@@ -155,27 +152,55 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends CacheListener, 
 	protected boolean cached(E event) throws Exception {
 
 		String fullId = getFullId(event);
-		return cachedById(fullId);
+		return cachedById(fullId, (Class<E>) event.getClass());
 	}
 
 	protected boolean cached(Object... args) throws Exception {
 
-		String fullId = getFullId(getCachedContent(args));
-		return cachedById(fullId);
+		E event = createEventFromArgs(args);
+
+		event.setTargetScreenletId(getTargetScreenletId());
+		event.setCachedRequest(false);
+		event.setGroupId(groupId);
+		event.setLocale(locale);
+		event.setUserId(userId);
+
+		return cachedById(getFullId(event), (Class<E>) event.getClass());
 	}
 
-	protected String getFullId(IdCache event) {
-		return getEventClass().getName() + "_" + event.getGroupId() + "_" + event.getUserId() + "_" + event.getLocale() + "_" + event.getId();
+	protected String getFullId(E event) throws Exception {
+		return event.getClass().getName()
+			+ "_"
+			+ event.getGroupId()
+			+ "_"
+			+ event.getUserId()
+			+ "_"
+			+ event.getLocale()
+			+ "_"
+			+ event.getId();
 	}
 
-	protected abstract IdCache getCachedContent(Object[] args);
-
-	protected abstract Class<E> getEventClass();
+	protected abstract E createEventFromArgs(Object... args) throws Exception;
 
 	protected OfflinePolicy getOfflinePolicy() {
 		return _offlinePolicy;
 	}
 
-	private final OfflinePolicy _offlinePolicy;
+	private OfflinePolicy _offlinePolicy;
 
+	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
+		_offlinePolicy = offlinePolicy;
+	}
+
+	public void setGroupId(long groupId) {
+		this.groupId = groupId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
+	public void setLocale(Locale locale) {
+		this.locale = locale;
+	}
 }

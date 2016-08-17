@@ -28,7 +28,6 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity;
 import com.liferay.mobile.screens.base.interactor.Interactor;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
@@ -202,14 +201,6 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 		_editable = editable;
 	}
 
-	public OfflinePolicy getOfflinePolicy() {
-		return _offlinePolicy;
-	}
-
-	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
-		_offlinePolicy = offlinePolicy;
-	}
-
 	protected void autoLoad() {
 		if (((_portraitId != 0) && (_uuid != null)) || (_userId != 0)) {
 			try {
@@ -231,10 +222,6 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 		_uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
 		_editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
 
-		int offlinePolicy =
-			typedArray.getInt(R.styleable.UserPortraitScreenlet_offlinePolicy, OfflinePolicy.REMOTE_ONLY.ordinal());
-		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
-
 		_userId = castToLongOrUseDefault(typedArray.getString(R.styleable.UserPortraitScreenlet_userId), 0L);
 
 		if (SessionContext.hasUserInfo() && _portraitId == 0 && _uuid == null && _userId == 0) {
@@ -251,7 +238,7 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 	@Override
 	protected Interactor createInteractor(String actionName) {
 		if (UPLOAD_PORTRAIT.equals(actionName)) {
-			return new UserPortraitUploadInteractorImpl(getScreenletId(), _offlinePolicy);
+			return new UserPortraitUploadInteractorImpl(getScreenletId(), getOfflinePolicy());
 		} else {
 			return new UserPortraitLoadInteractorImpl();
 		}
@@ -327,5 +314,4 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 	private long _userId;
 	private boolean _editable;
 	private UserPortraitListener _listener;
-	private OfflinePolicy _offlinePolicy;
 }
