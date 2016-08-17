@@ -410,8 +410,8 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 	private CustomInteractorListener _customInteractorListener;
 
-	private OfflinePolicy offlinePolicy;
-	private long groupId;
-	private long userId;
-	private Locale locale;
+	protected OfflinePolicy offlinePolicy;
+	protected long groupId;
+	protected long userId;
+	protected Locale locale;
 }

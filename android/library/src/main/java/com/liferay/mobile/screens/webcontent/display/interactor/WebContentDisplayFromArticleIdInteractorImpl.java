@@ -15,104 +15,59 @@
 package com.liferay.mobile.screens.webcontent.display.interactor;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.cache.DefaultCachedType;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
-import com.liferay.mobile.screens.cache.sql.CacheSQL;
-import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import com.liferay.mobile.screens.webcontent.display.connector.JournalContentConnector;
 import com.liferay.mobile.screens.webcontent.display.connector.ScreensJournalContentConnector;
-
 import java.util.Locale;
 
 /**
  * @author Jose Manuel Navarro
  */
-public class WebContentDisplayFromArticleIdInteractorImpl
-	extends WebContentDisplayBaseInteractorImpl
-	implements WebContentDisplayFromArticleIdInteractor {
+public class WebContentDisplayFromArticleIdInteractorImpl extends WebContentDisplayBaseInteractorImpl {
 
-	public WebContentDisplayFromArticleIdInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
-		super(targetScreenletId, offlinePolicy);
-	}
+	@Override
+	public WebContentDisplayEvent execute(Object... args) throws Exception {
 
-	public void load(long groupId, String articleId, Long templateId, Locale locale)
-		throws Exception {
+		String articleId = (String) args[0];
+		Long templateId = (Long) args[1];
 
 		validate(groupId, articleId, locale);
 
-		processWithCache(groupId, articleId, locale, templateId);
+		String content = getContent(articleId, templateId);
+		return new WebContentDisplayEvent(articleId, templateId, content);
 	}
 
-	public void onEvent(WebContentDisplayEvent event) {
-		if (!isValidEvent(event)) {
-			return;
-		}
-
-		onEventWithCache(event, event.getGroupId(), event.getArticleId(), event.getLocale(), event.getTemplateId());
-
-		if (!event.isFailed()) {
-			getListener().onWebContentReceived(null, event.getWebContent());
-		}
-	}
-
-	@Override
-	protected void online(Object[] args) throws Exception {
-
-		long groupId = (long) args[0];
-		String articleId = (String) args[1];
-		Locale locale = (Locale) args[2];
-		Long templateId = (Long) args[3];
-
+	private String getContent(String articleId, Long templateId) throws Exception {
 		if (templateId == null || templateId == 0) {
-			JournalContentConnector connector = getJournalArticleService(groupId, articleId, locale);
-			connector.getArticleContent(groupId, articleId, locale.toString(), null);
-		}
-		else {
-			ScreensJournalContentConnector connector = getScreensJournalArticleService(groupId, articleId, locale, templateId);
-			connector.getJournalArticleContent(groupId, articleId, templateId, locale.toString());
+			JournalContentConnector connector = getJournalArticleService();
+			return connector.getArticleContent(groupId, articleId, locale.toString(), null);
+		} else {
+			ScreensJournalContentConnector connector = getScreensJournalArticleService();
+			return connector.getJournalArticleContent(groupId, articleId, templateId, locale.toString());
 		}
 	}
 
 	@Override
-	protected boolean cached(Object[] args) {
-
-		long groupId = (long) args[0];
-		String articleId = (String) args[1];
-		Locale locale = (Locale) args[2];
-		Long templateId = (Long) args[3];
-
-		String id = articleId + (templateId == null || templateId == 0 ? "" : templateId);
-		Long userId = SessionContext.getUserId();
-		TableCache webContent = (TableCache) CacheSQL.getInstance().getById(DefaultCachedType.WEB_CONTENT, id, groupId, userId, locale);
-		if (webContent != null) {
-			onEvent(new WebContentDisplayEvent(getTargetScreenletId(), groupId, articleId, locale, templateId, webContent.getContent()));
-			return true;
-		}
-		return false;
+	public void onSuccess(WebContentDisplayEvent event) throws Exception {
+		getListener().onWebContentReceived(event.getWebContent());
 	}
 
 	@Override
-	protected void storeToCache(WebContentDisplayEvent event, Object... args) {
-		String templateString = event.getTemplateId() == null || event.getTemplateId() == 0
-			? "" : event.getTemplateId().toString();
-		String webContentId = event.getArticleId() + templateString;
-		CacheSQL.getInstance().set(new TableCache(webContentId, DefaultCachedType.WEB_CONTENT,
-			event.getWebContent().getHtml(), event.getGroupId(), null, event.getLocale()));
+	protected WebContentDisplayEvent createEventFromArgs(Object... args) throws Exception {
+		String articleId = (String) args[0];
+		Long templateId = (Long) args[1];
+
+		return new WebContentDisplayEvent(articleId, templateId, null);
 	}
 
-	protected JournalContentConnector getJournalArticleService(long groupId, String articleId, Locale locale) {
+	protected JournalContentConnector getJournalArticleService() {
 		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new WebContentDisplayFromArticleIdCallback(getTargetScreenletId(), groupId, articleId, locale));
 		return ServiceProvider.getInstance().getJournalContentConnector(session);
 	}
 
-	protected ScreensJournalContentConnector getScreensJournalArticleService(long groupId, String articleId, Locale locale, Long templateId) {
+	protected ScreensJournalContentConnector getScreensJournalArticleService() {
 		Session session = SessionContext.createSessionFromCurrentSession();
-		WebContentDisplayFromArticleIdCallback callback =
-			new WebContentDisplayFromArticleIdCallback(getTargetScreenletId(), groupId, articleId, locale, templateId);
-		session.setCallback(callback);
 		return ServiceProvider.getInstance().getScreensJournalContentConnector(session);
 	}
 
@@ -121,9 +76,7 @@ public class WebContentDisplayFromArticleIdInteractorImpl
 
 		if (groupId <= 0) {
 			throw new IllegalArgumentException("GroupId cannot be 0 or negative");
-		}
-
-		if (articleId == null || articleId.isEmpty()) {
+		} else if (articleId == null || articleId.isEmpty()) {
 			throw new IllegalArgumentException("ArticleId cannot be empty");
 		}
 	}

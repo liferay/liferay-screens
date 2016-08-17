@@ -20,9 +20,9 @@ import java.util.NoSuchElementException;
 public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListenerNew, E extends OfflineEventNew>
 	extends BaseThreadInteractor<L, E> {
 
-	private long groupId;
-	private long userId;
-	private Locale locale;
+	protected long groupId;
+	protected long userId;
+	protected Locale locale;
 
 	public void start(final Object... args) {
 		new Thread(new Runnable() {
