@@ -114,6 +114,21 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 		}
 	}
 
+	public override func doConfigurePlaceholderView(view: UIView) {
+		if let placeholder = view as? EmptyListPlaceholderView_default {
+			placeholder.topLabel.text = LocalizedString("default",
+				key: "comment-list-empty-title", obj: self)
+			placeholder.bottomLabel.text = LocalizedString("default",
+				key: "comment-list-empty-subtitle", obj: self)
+
+			if let image = NSBundle.imageInBundles(
+				name: "default-comment",
+				currentClass: self.dynamicType) {
+				placeholder.imageView.image = image.imageWithRenderingMode(.AlwaysTemplate)
+			}
+		}
+	}
+
 	public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 		let comment = rows[BaseListView.DefaultSection]?[indexPath.row] as? Comment
 		return CommentDisplayView_default.heightForText(comment?.htmlBody,

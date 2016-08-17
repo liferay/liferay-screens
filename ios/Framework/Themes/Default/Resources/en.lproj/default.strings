@@ -56,6 +56,9 @@
 "default-comment-display-confirm"="Confirm";
 "default-comment-display-type"="Type your comment...";
 
+"default-comment-list-empty-title"="Comments";
+"default-comment-list-empty-subtitle"="This discussion don't have any comments yet. Add a new comment or come back later.";
+
 "default-time-ago-seconds" = "%d seconds ago";
 "default-time-ago-minute" = "A minute ago";
 "default-time-ago-minutes" = "%d minutes ago";
