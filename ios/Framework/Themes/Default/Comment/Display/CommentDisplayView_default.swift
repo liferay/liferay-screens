@@ -184,7 +184,7 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 
 		if state == .Editing {
 			editViewController = CommentEditViewController_default(body: comment?.plainBody)
-			editViewController!.updatedBodyClosure = updatedBodyClosure
+			editViewController!.confirmBodyClosure = confirmBodyClosure
 			
 			if let vc = self.presentingViewController {
 				vc.presentViewController(editViewController!, animated: true, completion: {})
@@ -195,7 +195,7 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 		}
 	}
 
-	private func updatedBodyClosure(body: String?) {
+	private func confirmBodyClosure(body: String?) {
 		editViewController?.dismissViewControllerAnimated(true, completion: nil)
 
 		if let updatedBody = body where updatedBody != comment?.plainBody {

@@ -21,7 +21,7 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 	@IBOutlet public var confirmButton: UIButton?
 	@IBOutlet public var cancelButton: UIButton?
 
-	public var updatedBodyClosure: (String? -> Void)?
+	public var confirmBodyClosure: (String? -> Void)?
 
 	private var placeholderLabel : UILabel!
 
@@ -79,11 +79,21 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 	}
 
 	@IBAction public func cancelButtonAction() {
+<<<<<<< HEAD
 		updatedBodyClosure?(nil)
 	}
 
 	@IBAction public func confirmButtonAction() {
 		updatedBodyClosure?(bodyTextView?.text)
+=======
+		bodyTextView?.resignFirstResponder()
+		confirmBodyClosure?(nil)
+	}
+
+	@IBAction public func confirmButtonAction() {
+		bodyTextView?.resignFirstResponder()
+		confirmBodyClosure?(bodyTextView?.text)
+>>>>>>> eab8708... LSR-859 change closure name in edit view controller
 	}
 	
 }
