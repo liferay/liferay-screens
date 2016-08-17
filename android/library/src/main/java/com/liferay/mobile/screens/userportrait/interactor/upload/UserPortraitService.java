@@ -20,17 +20,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
-
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
+import com.liferay.mobile.screens.base.thread.event.ErrorThreadEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.ServiceProvider;
-
-import org.json.JSONObject;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
@@ -44,8 +42,7 @@ public class UserPortraitService extends IntentService {
 		super(UserPortraitService.class.getCanonicalName());
 	}
 
-	public static int calculateInSampleSize(
-		BitmapFactory.Options options, int reqWidth, int reqHeight) {
+	public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
 		final int height = options.outHeight;
 		final int width = options.outWidth;
 		int inSampleSize = 1;
@@ -57,8 +54,7 @@ public class UserPortraitService extends IntentService {
 
 			// Calculate the largest inSampleSize value that is a power of 2 and keeps both
 			// height and width larger than the requested height and width.
-			while ((halfHeight / inSampleSize) > reqHeight
-				&& (halfWidth / inSampleSize) > reqWidth) {
+			while ((halfHeight / inSampleSize) > reqHeight && (halfWidth / inSampleSize) > reqWidth) {
 				inSampleSize *= 2;
 			}
 		}
@@ -78,12 +74,11 @@ public class UserPortraitService extends IntentService {
 
 		try {
 			JSONObject jsonObject = uploadUserPortrait(userId, picturePath);
-
-			UserPortraitUploadEvent event = new UserPortraitUploadEvent(targetScreenletId, picturePath, userId, jsonObject);
+			UserPortraitUploadEvent event = new UserPortraitUploadEvent(picturePath, jsonObject);
+			event.setTargetScreenletId(targetScreenletId);
 			EventBusUtil.post(event);
-		}
-		catch (Exception e) {
-			EventBusUtil.post(new UserPortraitUploadEvent(targetScreenletId, picturePath, userId, e));
+		} catch (Exception e) {
+			EventBusUtil.post(new ErrorThreadEvent(e));
 		}
 	}
 
@@ -91,9 +86,9 @@ public class UserPortraitService extends IntentService {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setConnectionTimeout(CONNECTION_TIMEOUT);
 		UserConnector userService = ServiceProvider.getInstance().getUserConnector(session);
-		byte[] decodeSampledBitmapFromResource = decodeSampledBitmapFromResource(picturePath, PORTRAIT_SIZE, PORTRAIT_SIZE);
-		return userService.updatePortrait(userId,
-			decodeSampledBitmapFromResource);
+		byte[] decodeSampledBitmapFromResource =
+			decodeSampledBitmapFromResource(picturePath, PORTRAIT_SIZE, PORTRAIT_SIZE);
+		return userService.updatePortrait(userId, decodeSampledBitmapFromResource);
 	}
 
 	private static Bitmap rotateImage(Bitmap source, float angle) {
@@ -102,8 +97,7 @@ public class UserPortraitService extends IntentService {
 		return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
 	}
 
-	private static byte[] decodeSampledBitmapFromResource(String path, int reqWidth, int reqHeight)
-		throws IOException {
+	private static byte[] decodeSampledBitmapFromResource(String path, int reqWidth, int reqHeight) throws IOException {
 
 		// First decode with inJustDecodeBounds=true to check dimensions
 		final BitmapFactory.Options options = new BitmapFactory.Options();
