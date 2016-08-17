@@ -1168,7 +1168,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Cs-KB-hzY" customClass="CommentListScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="-4" y="72" width="328" height="439"/>
+                                <rect key="frame" x="-4" y="64" width="328" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
@@ -1186,8 +1186,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7Cs-KB-hzY" firstAttribute="leading" secondItem="t9h-bk-dC1" secondAttribute="leadingMargin" constant="-20" id="2YC-XV-UiA"/>
-                            <constraint firstItem="7Cs-KB-hzY" firstAttribute="top" secondItem="cl2-zy-fUp" secondAttribute="bottom" constant="8" id="8c1-rW-lGo"/>
-                            <constraint firstItem="Ebj-0l-O7f" firstAttribute="top" secondItem="7Cs-KB-hzY" secondAttribute="bottom" constant="8" id="zEN-Qe-N4e"/>
+                            <constraint firstItem="7Cs-KB-hzY" firstAttribute="top" secondItem="cl2-zy-fUp" secondAttribute="bottom" id="8c1-rW-lGo"/>
+                            <constraint firstItem="Ebj-0l-O7f" firstAttribute="top" secondItem="7Cs-KB-hzY" secondAttribute="bottom" id="zEN-Qe-N4e"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7Cs-KB-hzY" secondAttribute="trailing" constant="-20" id="zRx-fY-4Ni"/>
                         </constraints>
                     </view>

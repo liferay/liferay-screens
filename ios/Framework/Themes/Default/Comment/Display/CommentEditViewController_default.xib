@@ -15,18 +15,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Sgv-hX-AuX">
-            <rect key="frame" x="0.0" y="0.0" width="382" height="518"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7cK-8p-jiu" userLabel="Body">
-                    <rect key="frame" x="8" y="20" width="366" height="394"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h26-Oi-dOP">
-                    <rect key="frame" x="8" y="422" width="366" height="40"/>
+                    <rect key="frame" x="50" y="308" width="500" height="40"/>
                     <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="00e-mj-heu"/>
@@ -47,7 +40,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="3" contentMode="scaleToFill" restorationIdentifier="submit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yrm-5p-7i4">
-                    <rect key="frame" x="8" y="470" width="366" height="40"/>
+                    <rect key="frame" x="50" y="356" width="500" height="40"/>
                     <color key="backgroundColor" red="0.057840337149999997" green="0.47049217729999998" blue="0.60271843110000001" alpha="0.87" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="PTE-be-cvg"/>
@@ -67,24 +60,42 @@
                         <action selector="cancelButtonAction" destination="-1" eventType="touchUpInside" id="KHr-GH-EkG"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2y-wT-Rzx" userLabel="Body Container View">
+                    <rect key="frame" x="50" y="100" width="500" height="200"/>
+                    <subviews>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7cK-8p-jiu" userLabel="Body">
+                            <rect key="frame" x="8" y="8" width="484" height="184"/>
+                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="E8W-iK-gqk">
+                            <variation key="heightClass=compact" constant="100"/>
+                        </constraint>
+                        <constraint firstAttribute="trailing" secondItem="7cK-8p-jiu" secondAttribute="trailing" constant="8" id="Vz3-05-10J"/>
+                        <constraint firstItem="7cK-8p-jiu" firstAttribute="leading" secondItem="o2y-wT-Rzx" secondAttribute="leading" constant="8" id="l28-KS-x8F"/>
+                        <constraint firstItem="7cK-8p-jiu" firstAttribute="top" secondItem="o2y-wT-Rzx" secondAttribute="top" constant="8" id="ryy-KS-zzQ"/>
+                        <constraint firstAttribute="bottom" secondItem="7cK-8p-jiu" secondAttribute="bottom" constant="8" id="z1E-7j-OVL"/>
+                    </constraints>
+                </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="0.20299030172413793" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="7cK-8p-jiu" firstAttribute="top" secondItem="Sgv-hX-AuX" secondAttribute="top" constant="20" id="0hy-Iv-3QQ"/>
-                <constraint firstItem="h26-Oi-dOP" firstAttribute="leading" secondItem="Sgv-hX-AuX" secondAttribute="leading" constant="8" id="5oG-JD-tW0"/>
-                <constraint firstAttribute="trailing" secondItem="h26-Oi-dOP" secondAttribute="trailing" constant="8" id="HYw-Xy-Efd"/>
+                <constraint firstItem="h26-Oi-dOP" firstAttribute="width" secondItem="o2y-wT-Rzx" secondAttribute="width" id="0ex-8o-SX4"/>
+                <constraint firstItem="yrm-5p-7i4" firstAttribute="centerX" secondItem="Sgv-hX-AuX" secondAttribute="centerX" id="Dr1-5J-sxq"/>
+                <constraint firstItem="yrm-5p-7i4" firstAttribute="width" secondItem="o2y-wT-Rzx" secondAttribute="width" id="H4I-zl-XR7"/>
+                <constraint firstItem="o2y-wT-Rzx" firstAttribute="top" secondItem="Sgv-hX-AuX" secondAttribute="top" constant="100" id="N5x-KH-2n5"/>
+                <constraint firstItem="h26-Oi-dOP" firstAttribute="centerX" secondItem="Sgv-hX-AuX" secondAttribute="centerX" id="VGv-fY-TGz"/>
                 <constraint firstItem="yrm-5p-7i4" firstAttribute="top" secondItem="h26-Oi-dOP" secondAttribute="bottom" constant="8" id="YmW-yF-CrD"/>
-                <constraint firstItem="h26-Oi-dOP" firstAttribute="top" secondItem="7cK-8p-jiu" secondAttribute="bottom" constant="8" id="ecb-ed-V3b"/>
-                <constraint firstItem="h26-Oi-dOP" firstAttribute="top" secondItem="7cK-8p-jiu" secondAttribute="bottom" constant="8" id="fqc-dw-vhl"/>
-                <constraint firstAttribute="trailing" secondItem="7cK-8p-jiu" secondAttribute="trailing" constant="8" id="i9X-M6-kW1"/>
-                <constraint firstAttribute="bottom" secondItem="yrm-5p-7i4" secondAttribute="bottom" constant="8" id="opt-yM-Mby"/>
-                <constraint firstItem="7cK-8p-jiu" firstAttribute="leading" secondItem="Sgv-hX-AuX" secondAttribute="leading" constant="8" id="wcE-bN-4CQ"/>
-                <constraint firstAttribute="trailing" secondItem="yrm-5p-7i4" secondAttribute="trailing" constant="8" id="yfU-yf-zgX"/>
-                <constraint firstItem="yrm-5p-7i4" firstAttribute="leading" secondItem="Sgv-hX-AuX" secondAttribute="leading" constant="8" id="zkH-gl-eyD"/>
+                <constraint firstItem="o2y-wT-Rzx" firstAttribute="leading" secondItem="Sgv-hX-AuX" secondAttribute="leading" constant="50" id="fyz-gv-3Kq"/>
+                <constraint firstItem="h26-Oi-dOP" firstAttribute="top" secondItem="o2y-wT-Rzx" secondAttribute="bottom" constant="8" id="ho6-Zf-XPi"/>
+                <constraint firstAttribute="trailing" secondItem="o2y-wT-Rzx" secondAttribute="trailing" constant="50" id="iPP-yj-zcg"/>
             </constraints>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="317" y="322"/>
+            <point key="canvasLocation" x="390" y="335"/>
         </view>
     </objects>
 </document>

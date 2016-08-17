@@ -32,6 +32,8 @@ class CommentListScreenletViewController: UIViewController,
 
 	@IBAction func insertButtonPressed(sender: AnyObject) {
 		editViewController = CommentEditViewController_default(body: "")
+		self.definesPresentationContext = true
+		editViewController?.modalPresentationStyle = .OverCurrentContext
 		editViewController!.confirmBodyClosure = addComment
 		presentViewController(editViewController!, animated: true, completion: {})
 	}
