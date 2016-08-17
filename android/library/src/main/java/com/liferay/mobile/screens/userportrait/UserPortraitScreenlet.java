@@ -238,7 +238,7 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 	@Override
 	protected Interactor createInteractor(String actionName) {
 		if (UPLOAD_PORTRAIT.equals(actionName)) {
-			return new UserPortraitUploadInteractorImpl(getScreenletId(), getOfflinePolicy());
+			return new UserPortraitUploadInteractorImpl();
 		} else {
 			return new UserPortraitLoadInteractorImpl();
 		}
@@ -251,7 +251,7 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 				(UserPortraitUploadInteractorImpl) getInteractor(userActionName);
 			String path = (String) args[0];
 			if (_userId != 0) {
-				userPortraitInteractor.upload(_userId, path);
+				userPortraitInteractor.start(path);
 			}
 		} else {
 			UserPortraitLoadInteractorImpl userPortraitLoadInteractor =

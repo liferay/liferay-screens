@@ -51,7 +51,7 @@ public class MediaStoreRequestShadowActivity extends Activity {
 			path = _filePath;
 		}
 
-		MediaStoreEvent event = new MediaStoreEvent(_screenletId, path);
+		MediaStoreEvent event = new MediaStoreEvent(path);
 
 		EventBusUtil.post(event);
 	}

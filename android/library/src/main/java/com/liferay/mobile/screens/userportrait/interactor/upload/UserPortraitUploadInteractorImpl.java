@@ -4,11 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import com.liferay.mobile.screens.base.MediaStoreEvent;
-import com.liferay.mobile.screens.base.interactor.BaseCachedWriteRemoteInteractor;
-import com.liferay.mobile.screens.cache.DefaultCachedType;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
-import com.liferay.mobile.screens.cache.sql.CacheSQL;
-import com.liferay.mobile.screens.cache.tablecache.TableCache;
+import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -21,65 +17,55 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.util.Iterator;
-import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
  */
 public class UserPortraitUploadInteractorImpl
-	extends BaseCachedWriteRemoteInteractor<UserPortraitInteractorListener, UserPortraitUploadEvent> {
+	extends BaseCachedWriteThreadRemoteInteractor<UserPortraitInteractorListener, UserPortraitUploadEvent> {
 
-	public UserPortraitUploadInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
-		super(targetScreenletId, offlinePolicy);
+	@Override
+	protected void online(UserPortraitUploadEvent event) throws Exception {
+		String picturePath = event.getPicturePath();
+
+		Intent service = new Intent(LiferayScreensContext.getContext(), UserPortraitService.class);
+		service.putExtra("picturePath", picturePath);
+		service.putExtra("screenletId", getTargetScreenletId());
+		service.putExtra("userId", userId);
+
+		LiferayScreensContext.getContext().startService(service);
 	}
 
-	public void upload(final Long userId, final String picturePath) {
-		try {
-			storeWithCache(userId, picturePath, false);
-		} catch (Exception e) {
-			getListener().error(e, UserPortraitScreenlet.UPLOAD_PORTRAIT);
-		}
+	@Override
+	protected UserPortraitUploadEvent createEvent(Object[] args) throws Exception {
+		return new UserPortraitUploadEvent((String) args[0]);
 	}
 
-	public void onEventMainThread(UserPortraitUploadEvent event) {
+	@Override
+	public UserPortraitUploadEvent execute(UserPortraitUploadEvent event) throws Exception {
+		throw new AssertionError("should not be called!");
+	}
 
-		if (!isValidEvent(event)) {
-			return;
+	@Override
+	public void onSuccess(UserPortraitUploadEvent event) throws Exception {
+
+		User oldLoggedUser = SessionContext.getCurrentUser();
+
+		User user = new User(event.getJSONObject());
+		if (oldLoggedUser != null && user.getId() == oldLoggedUser.getId()) {
+			SessionContext.setCurrentUser(user);
 		}
 
-		if (event.isFailed()) {
-			try {
-				storeToCacheAndLaunchEvent(event, event.getUserId(), event.getPicturePath());
-			} catch (Exception e) {
-				getListener().error(event.getException(), UserPortraitScreenlet.UPLOAD_PORTRAIT);
-			}
-		} else {
-			if (!event.isCacheRequest()) {
-				store(true, event.getUserId(), event.getPicturePath());
-			}
+		Uri userPortraitUri = new UserPortraitUriBuilder().getUserPortraitUri(LiferayServerContext.getServer(), true,
+			user.getPortraitId(), user.getUuid());
+		invalidateUrl(userPortraitUri);
 
-			User oldLoggedUser = SessionContext.getCurrentUser();
+		getListener().onUserPortraitUploaded(oldLoggedUser.getId());
+	}
 
-			if (event.getJSONObject() != null) {
-				User user = new User(event.getJSONObject());
-				if (oldLoggedUser != null && user.getId() == oldLoggedUser.getId()) {
-					SessionContext.setCurrentUser(user);
-				}
-
-				Uri userPortraitUri =
-					new UserPortraitUriBuilder().getUserPortraitUri(LiferayServerContext.getServer(), true,
-						user.getPortraitId(), user.getUuid());
-				invalidateUrl(userPortraitUri);
-			}
-
-			try {
-				if (oldLoggedUser != null) {
-					getListener().onUserPortraitUploaded(oldLoggedUser.getId());
-				}
-			} catch (Exception e) {
-				getListener().error(e, UserPortraitScreenlet.UPLOAD_PORTRAIT);
-			}
-		}
+	@Override
+	protected void onFailure(UserPortraitUploadEvent event) {
+		getListener().error(event.getException(), UserPortraitScreenlet.UPLOAD_PORTRAIT);
 	}
 
 	private void invalidateUrl(Uri userPortraitURL) {
@@ -105,42 +91,6 @@ public class UserPortraitUploadInteractorImpl
 	}
 
 	public void onEvent(MediaStoreEvent event) {
-		if (isValidEvent(event)) {
-			getListener().onPicturePathReceived(event.getFilePath());
-		}
-	}
-
-	@Override
-	public void online(Object[] args) throws Exception {
-
-		long userId = (long) args[0];
-		String picturePath = (String) args[1];
-
-		Intent service = new Intent(LiferayScreensContext.getContext(), UserPortraitService.class);
-		service.putExtra("picturePath", picturePath);
-		service.putExtra("screenletId", getTargetScreenletId());
-		service.putExtra("userId", userId);
-
-		LiferayScreensContext.getContext().startService(service);
-	}
-
-	@Override
-	protected void storeToCacheAndLaunchEvent(Object... args) {
-
-		long userId = (long) args[0];
-		String picturePath = (String) args[1];
-
-		store(false, userId, picturePath);
-
-		UserPortraitUploadEvent event =
-			new UserPortraitUploadEvent(getTargetScreenletId(), picturePath, userId, new JSONObject());
-		event.setCacheRequest(true);
-		onEventMainThread(event);
-	}
-
-	private void store(boolean synced, long userId, String picturePath) {
-		TableCache file = new TableCache(String.valueOf(userId), DefaultCachedType.USER_PORTRAIT_UPLOAD, picturePath);
-		file.setDirty(!synced);
-		CacheSQL.getInstance().set(file);
+		getListener().onPicturePathReceived(event.getFilePath());
 	}
 }
