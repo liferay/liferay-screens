@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
-import com.liferay.mobile.screens.asset.display.interactor.AssetDisplayInteractor;
 import com.liferay.mobile.screens.asset.display.interactor.AssetDisplayInteractorImpl;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
@@ -78,7 +77,7 @@ public abstract class BaseFileDisplayScreenlet
 
 	@Override
 	protected AssetDisplayInteractorImpl createInteractor(String actionName) {
-		return new AssetDisplayInteractorImpl(this.getScreenletId());
+		return new AssetDisplayInteractorImpl();
 	}
 
 	@Override
@@ -94,9 +93,9 @@ public abstract class BaseFileDisplayScreenlet
 		if (SessionContext.isLoggedIn()) {
 			try {
 				if (fileEntry == null) {
-					AssetDisplayInteractor assetDisplayInteractor = new AssetDisplayInteractorImpl(getScreenletId());
+					AssetDisplayInteractorImpl assetDisplayInteractor = new AssetDisplayInteractorImpl();
 					assetDisplayInteractor.onScreenletAttached(this);
-					assetDisplayInteractor.getAssetEntry(entryId);
+					assetDisplayInteractor.start(entryId);
 				} else {
 					onRetrieveAssetSuccess(fileEntry);
 				}
