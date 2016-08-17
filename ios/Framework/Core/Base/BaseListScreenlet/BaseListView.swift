@@ -98,6 +98,18 @@ public class BaseListView: BaseScreenletView {
 		
 		return rows[key]!
 	}
+
+	public func hasAnyRows() -> Bool {
+		let hasAnyRows = rows.values.stoppableReduce(0) { (value, element, hasToStop) in
+			if value > 0 {
+				hasToStop = true
+			}
+
+			return value + element.count
+		}
+
+		return (hasAnyRows != 0)
+	}
 	
 	internal func hasMoreRows(newRows: [String : [AnyObject]]) -> Bool {
 		if newRows.count == 0 {
@@ -105,7 +117,7 @@ public class BaseListView: BaseScreenletView {
 		}
 		
 		let newRowsCount = newRows.values.reduce(0) { $0 + $1.count }
-		let isFirstPage = self.isFirstPage()
+		let isFirstPage = !self.hasAnyRows()
 		
 		//If we are receiving less elements than the page size there are no more rows in the server
 		if isFirstPage && newRowsCount < (screenlet as? BaseListScreenlet)?.firstPageSize {
@@ -116,17 +128,5 @@ public class BaseListView: BaseScreenletView {
 		}
 		
 		return true
-	}
-	
-	internal func isFirstPage() -> Bool {
-		let hasAnyRows = rows.values.stoppableReduce(0) { (value, element, hasToStop) in
-			if value > 0 {
-				hasToStop = true
-			}
-			
-			return value + element.count
-			}
-		
-		return (hasAnyRows == 0)
 	}
 }

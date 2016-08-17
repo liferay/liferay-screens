@@ -49,6 +49,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		tableView?.dataSource = self
 		
 		doRegisterCellNibs()
+		createPlaceholderView()
 	}
 	
 	override public func onChangedRows(oldRows: [String : [AnyObject?]]) {
@@ -110,6 +111,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	//MARK: UITableViewDataSource
 	
 	public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		tableView.backgroundView?.hidden = hasAnyRows()
 		return rowsForSectionIndex(section).count
 	}
 	
@@ -201,6 +203,9 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	public func doCreateCell(cellId: String) -> UITableViewCell {
 		return UITableViewCell(style: .Default, reuseIdentifier: cellId)
 	}
+
+	public func doConfigurePlaceholderView(view: UIView) {
+	}
 	
 	public func createLoadingMoreView() -> UIView? {
 		let progressView = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: 30))
@@ -289,5 +294,43 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	internal func turnStreamModeOn() {
 		moreRows = true
 		(screenlet as? BaseListScreenlet)?.streamMode = true
+	}
+
+	internal func createPlaceholderView() {
+		let view = getViewFromTheme()
+		if let placeholderView = view {
+			doConfigurePlaceholderView(placeholderView)
+			tableView?.backgroundView = placeholderView
+		}
+	}
+
+	//TODO: replace with new method for retrieving themed views
+	private func getViewFromTheme() -> UIView? {
+
+		func tryLoadForTheme(themeName: String, inBundles bundles: [NSBundle]) -> UIView? {
+			for bundle in bundles {
+				let nibName = "EmptyListPlaceholderView_\(themeName)"
+				let nibPath = bundle.pathForResource(nibName, ofType:"nib")
+
+				if nibPath != nil {
+					let views = bundle.loadNibNamed(nibName, owner:self, options:nil)
+					return (views[0] as? UIView)
+				}
+			}
+
+			return nil;
+		}
+
+		let bundles = NSBundle.allBundles(self.dynamicType);
+
+		if let foundView = tryLoadForTheme(self.themeName, inBundles: bundles) {
+			return foundView
+		}
+
+		if let foundView = tryLoadForTheme(BaseScreenlet.DefaultThemeName, inBundles: bundles) {
+			return foundView
+		}
+
+		return nil
 	}
 }

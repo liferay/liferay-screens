@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EmptyListPlaceholderView_default" customModule="LiferayScreens">
+            <connections>
+                <outlet property="bottomLabel" destination="lEl-Bh-2ng" id="6bM-sL-wbE"/>
+                <outlet property="imageView" destination="ceg-S1-tnK" id="1s0-TE-BVM"/>
+                <outlet property="topLabel" destination="7sy-2I-XrW" id="yIU-dF-0mK"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EQs-Qa-ayi" userLabel="Container view">
+                    <rect key="frame" x="20" y="206" width="560" height="188"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ceg-S1-tnK" userLabel="Image">
+                            <rect key="frame" x="230" y="10" width="100" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="4kv-8a-Wni"/>
+                                <constraint firstAttribute="height" constant="100" id="Xmk-ON-sSe"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7sy-2I-XrW" userLabel="Top">
+                            <rect key="frame" x="20" y="120" width="520" height="27"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEl-Bh-2ng" userLabel="Bottom">
+                            <rect key="frame" x="20" y="157" width="520" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="ceg-S1-tnK" firstAttribute="centerX" secondItem="EQs-Qa-ayi" secondAttribute="centerX" id="89A-bx-E6a"/>
+                        <constraint firstItem="lEl-Bh-2ng" firstAttribute="leading" secondItem="EQs-Qa-ayi" secondAttribute="leading" constant="20" id="AJY-kY-dy1"/>
+                        <constraint firstItem="7sy-2I-XrW" firstAttribute="centerX" secondItem="EQs-Qa-ayi" secondAttribute="centerX" id="Avf-Ql-dBd"/>
+                        <constraint firstItem="lEl-Bh-2ng" firstAttribute="centerX" secondItem="EQs-Qa-ayi" secondAttribute="centerX" id="CaV-cf-HHt"/>
+                        <constraint firstAttribute="trailing" secondItem="7sy-2I-XrW" secondAttribute="trailing" constant="20" id="Ix8-mJ-8F1"/>
+                        <constraint firstAttribute="trailing" secondItem="lEl-Bh-2ng" secondAttribute="trailing" constant="20" id="Nw4-RO-dw0"/>
+                        <constraint firstItem="ceg-S1-tnK" firstAttribute="top" secondItem="EQs-Qa-ayi" secondAttribute="top" constant="10" id="Qnf-yZ-vNW"/>
+                        <constraint firstItem="7sy-2I-XrW" firstAttribute="top" secondItem="ceg-S1-tnK" secondAttribute="bottom" constant="10" id="R07-Fs-4Uh"/>
+                        <constraint firstItem="7sy-2I-XrW" firstAttribute="leading" secondItem="EQs-Qa-ayi" secondAttribute="leading" constant="20" id="dLi-fQ-qSV"/>
+                        <constraint firstAttribute="bottom" secondItem="lEl-Bh-2ng" secondAttribute="bottom" constant="10" id="mam-iH-QH2"/>
+                        <constraint firstItem="lEl-Bh-2ng" firstAttribute="top" secondItem="7sy-2I-XrW" secondAttribute="bottom" constant="10" id="oPJ-kD-mzV"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="EQs-Qa-ayi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="QOT-lb-6GE"/>
+                <constraint firstItem="EQs-Qa-ayi" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="QUc-AX-rMS"/>
+                <constraint firstAttribute="trailing" secondItem="EQs-Qa-ayi" secondAttribute="trailing" constant="20" id="SRj-aU-ORm"/>
+                <constraint firstItem="EQs-Qa-ayi" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="tmu-ct-qZ4"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
