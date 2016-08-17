@@ -16,30 +16,20 @@ import LiferayScreens
 
 
 class CommentListScreenletViewController: UIViewController,
-	CommentListScreenletDelegate, CommentAddScreenletDelegate {
+	CommentListScreenletDelegate {
 
 	@IBOutlet weak var listScreenlet: CommentListScreenlet?
-	@IBOutlet weak var addScreenlet: CommentAddScreenlet?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		self.listScreenlet?.delegate = self
 		self.listScreenlet?.presentingViewController = self
-		self.addScreenlet?.delegate = self
-
 		self.listScreenlet?.loadList()
 	}
-	
-	//MARK: CommentAddScreenletDelegate
 
-	func screenlet(screenlet: CommentAddScreenlet, onCommentAdded comment: Comment) {
-		print("DELEGATE: onCommentAdded called -> \(comment)\n")
-		self.listScreenlet?.addComment(comment)
 	}
 
-	func screenlet(screenlet: CommentAddScreenlet, onAddCommentError error: NSError) {
-		print("DELEGATE: onAddCommentError called -> \(error)\n")
 	}
 
 	//MARK: CommentListScreenletDelegate
