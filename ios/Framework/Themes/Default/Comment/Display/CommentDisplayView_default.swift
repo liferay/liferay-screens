@@ -13,6 +13,11 @@
 */
 import UIKit
 
+public enum CommentDisplayState_default {
+	case Normal
+	case Deleting
+	case Editing
+}
 
 public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewModel {
 
@@ -81,12 +86,6 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 		}
 	}
 
-	private enum CommentDisplayState {
-		case Normal
-		case Deleting
-		case Editing
-	}
-
 	@IBOutlet weak var userPortraitScreenlet: UserPortraitScreenlet?
 	@IBOutlet weak var userNameLabel: UILabel?
 	@IBOutlet weak var createdDateLabel: UILabel?
@@ -100,7 +99,7 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 
 	var editViewController: CommentEditViewController_default?
 
-	private var state: CommentDisplayState = .Normal
+	private var state: CommentDisplayState_default = .Normal
 
 	public override var editable: Bool {
 		didSet {
@@ -131,16 +130,33 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 		}
 	}
 
-	public var computedHeight: CGFloat {
-		if let label = bodyTextView {
-			label.sizeToFit()
-			let height = label.frame.height
-			let y = label.frame.origin.y
-			let margin: CGFloat = bodyTextViewBottomMarginConstraint?.constant ?? 0
-			return  height + y + margin
-		}
+	//MARK: Public methods
 
-		return 0
+	public func changeState(state: CommentDisplayState_default) {
+		self.state = state
+		normalStateButtonsContainer?.hidden = state != .Normal || !editable
+		deletingStateButtonsContainer?.hidden = state != .Deleting || !editable
+
+		if state == .Editing {
+			editViewController = CommentEditViewController_default(body: comment?.plainBody)
+			editViewController?.modalPresentationStyle = .OverCurrentContext
+			editViewController!.confirmBodyClosure = confirmBodyClosure
+
+			if let vc = self.presentingViewController {
+				vc.presentViewController(editViewController!, animated: true, completion: {})
+			}
+			else {
+				print("ERROR: You neet to set the presentingViewController before editing comments")
+			}
+		}
+	}
+
+	public func confirmBodyClosure(body: String?) {
+		editViewController?.dismissViewControllerAnimated(true, completion: nil)
+
+		if let updatedBody = body where updatedBody != comment?.plainBody {
+			userAction(name: CommentDisplayScreenlet.UpdateAction, sender: updatedBody)
+		}
 	}
 
 	//MARK: View actions
@@ -173,33 +189,5 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 			CommentDisplayScreenlet.DeleteAction: [.Working: NoProgressMessage],
 			CommentDisplayScreenlet.UpdateAction: [.Working: NoProgressMessage]
 		]
-	}
-
-	//MARK: Private methods
-
-	private func changeState(state: CommentDisplayState) {
-		self.state = state
-		normalStateButtonsContainer?.hidden = state != .Normal || !editable
-		deletingStateButtonsContainer?.hidden = state != .Deleting || !editable
-
-		if state == .Editing {
-			editViewController = CommentEditViewController_default(body: comment?.plainBody)
-			editViewController!.confirmBodyClosure = confirmBodyClosure
-			
-			if let vc = self.presentingViewController {
-				vc.presentViewController(editViewController!, animated: true, completion: {})
-			}
-			else {
-				print("ERROR: You neet to set the presentingViewController before editing comments")
-			}
-		}
-	}
-
-	private func confirmBodyClosure(body: String?) {
-		editViewController?.dismissViewControllerAnimated(true, completion: nil)
-
-		if let updatedBody = body where updatedBody != comment?.plainBody {
-			userAction(name: CommentDisplayScreenlet.UpdateAction, sender: updatedBody)
-		}
 	}
 }

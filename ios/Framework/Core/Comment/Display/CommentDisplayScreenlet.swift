@@ -77,10 +77,6 @@ import UIKit
 		}
 	}
 
-	public var computedHeight: CGFloat? {
-		return viewModel?.computedHeight
-	}
-
 	//MARK: Public methods
 
 	override public func onShow() {
