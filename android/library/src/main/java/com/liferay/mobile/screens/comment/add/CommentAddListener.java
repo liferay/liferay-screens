@@ -7,7 +7,7 @@ import com.liferay.mobile.screens.models.CommentEntry;
  */
 public interface CommentAddListener {
 
-	void onAddCommentFailure(String body, Exception e);
+	void onAddCommentFailure(Exception e);
 
 	void onAddCommentSuccess(CommentEntry commentEntry);
 }
