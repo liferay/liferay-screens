@@ -1,7 +1,6 @@
 package com.liferay.mobile.screens.rating.interactor.load;
 
-import android.support.annotation.NonNull;
-import com.liferay.mobile.screens.base.interactor.InteractorAsyncTaskCallback;
+import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.rating.interactor.BaseRatingInteractorImpl;
 import com.liferay.mobile.screens.service.v70.ScreensratingsentryService;
 import org.json.JSONObject;
@@ -9,37 +8,36 @@ import org.json.JSONObject;
 /**
  * @author Alejandro Hernández
  */
-public class RatingLoadInteractorImpl extends BaseRatingInteractorImpl implements RatingLoadInteractor {
-
-	public RatingLoadInteractorImpl(int targetScreenletId) {
-		super(targetScreenletId);
-	}
+public class RatingLoadInteractorImpl extends BaseRatingInteractorImpl {
 
 	@Override
-	public void loadRatings(long entryId, long classPK, String className, int ratingsGroupCount) throws Exception {
+	public BasicThreadEvent execute(Object... args) throws Exception {
+
+		long entryId = (long) args[0];
+		long classPK = (long) args[1];
+		String className = (String) args[2];
+		int ratingGroupCounts = (int) args[3];
+
 		validate(entryId, className, classPK);
+
+		JSONObject jsonObject = getRatingsEntries(entryId, classPK, className, ratingGroupCounts);
+		return new BasicThreadEvent(jsonObject);
+	}
+
+	private JSONObject getRatingsEntries(long entryId, long classPK, String className, int ratingGroupCounts)
+		throws Exception {
 
 		ScreensratingsentryService service = getScreensratingsentryService();
 		if (entryId != 0) {
-			service.getRatingsEntries(entryId, ratingsGroupCount);
+			return service.getRatingsEntries(entryId, ratingGroupCounts);
 		} else {
-			service.getRatingsEntries(classPK, className, ratingsGroupCount);
+			return service.getRatingsEntries(classPK, className, ratingGroupCounts);
 		}
 	}
 
-	public void onEvent(RatingLoadEvent event) {
-		processEvent(event);
-	}
-
-	protected void validate(long entryId, String className, long classPK) {
+	private void validate(long entryId, String className, long classPK) {
 		if (entryId == 0 && (className == null || classPK == 0)) {
 			throw new IllegalArgumentException("Either entryId or className & classPK cannot" + "be empty");
 		}
-	}
-
-	@NonNull
-	@Override
-	protected InteractorAsyncTaskCallback<JSONObject> getCallback() {
-		return new RatingLoadCallback(getTargetScreenletId());
 	}
 }
