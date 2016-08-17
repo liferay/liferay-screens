@@ -3,7 +3,7 @@ package com.liferay.mobile.screens.gallery.model;
 import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.liferay.mobile.screens.assetlist.AssetEntry;
+import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;

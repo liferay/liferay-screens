@@ -73,14 +73,12 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				break;
 			case R.id.web_content_display_screenlet_structured:
 				startActivity(WebContentDisplayStructuredActivity.class);
-					getIntentWithTheme(WebContentDisplayStructuredActivity.class));
 				break;
 			case R.id.add_bookmark:
 				startActivity(AddBookmarkActivity.class);
 				break;
 			case R.id.journal_article_with_template:
 				startActivity(JournalArticleWithTemplateActivity.class);
-					getIntentWithTheme(JournalArticleWithTemplateActivity.class));
 				break;
 			case R.id.filtered_asset:
 				startActivity(FilteredAssetActivity.class);
