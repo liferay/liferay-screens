@@ -21,27 +21,21 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
-
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
-import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.webcontent.WebContent;
-import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayBaseInteractor;
-import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayFromArticleIdInteractor;
+import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayBaseInteractorImpl;
 import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayFromArticleIdInteractorImpl;
-import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayFromStructureInteractor;
 import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayFromStructureInteractorImpl;
 import com.liferay.mobile.screens.webcontent.display.view.WebContentDisplayViewModel;
-
-import java.util.Locale;
 
 /**
  * @author Jose Manuel Navarro
  */
 public class WebContentDisplayScreenlet
-	extends BaseScreenlet<WebContentDisplayViewModel, WebContentDisplayBaseInteractor>
+	extends BaseScreenlet<WebContentDisplayViewModel, WebContentDisplayBaseInteractorImpl>
 	implements WebContentDisplayListener {
 
 	public static final String WEB_CONTENT_BY_ARTICLE_ID = "WEB_CONTENT_BY_ARTICLE_ID";
@@ -66,18 +60,17 @@ public class WebContentDisplayScreenlet
 	public void load() {
 		if (_structureId != 0) {
 			performUserAction(WEB_CONTENT_WITH_STRUCTURE);
-		}
-		else {
+		} else {
 			performUserAction(WEB_CONTENT_BY_ARTICLE_ID);
 		}
 	}
 
 	@Override
-	public void onWebContentFailure(WebContentDisplayScreenlet source, Exception e) {
-		getViewModel().showFailedOperation(null, e);
+	public void error(Exception e, String userAction) {
+		getViewModel().showFailedOperation(userAction, e);
 
 		if (_listener != null) {
-			_listener.onWebContentFailure(this, e);
+			_listener.error(e, userAction);
 		}
 	}
 
@@ -89,11 +82,11 @@ public class WebContentDisplayScreenlet
 	}
 
 	@Override
-	public WebContent onWebContentReceived(WebContentDisplayScreenlet source, WebContent webContent) {
+	public WebContent onWebContentReceived(WebContent webContent) {
 		WebContent modifiedHtml = webContent;
 
 		if (_listener != null) {
-			WebContent listenerHtml = _listener.onWebContentReceived(this, webContent);
+			WebContent listenerHtml = _listener.onWebContentReceived(webContent);
 
 			if (listenerHtml != null) {
 				modifiedHtml = listenerHtml;
@@ -170,14 +163,6 @@ public class WebContentDisplayScreenlet
 		_autoLoad = autoLoad;
 	}
 
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		_groupId = groupId;
-	}
-
 	public String getLabelFields() {
 		return _labelFields;
 	}
@@ -196,28 +181,19 @@ public class WebContentDisplayScreenlet
 
 	protected void autoLoad() {
 		if (_articleId != null && SessionContext.isLoggedIn()) {
-			try {
-				load();
-			}
-			catch (Exception e) {
-				onWebContentFailure(this, e);
-			}
+			load();
 		}
 	}
 
 	@Override
-	protected View createScreenletView(
-		Context context, AttributeSet attributes) {
+	protected View createScreenletView(Context context, AttributeSet attributes) {
 
-		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-			attributes, R.styleable.WebContentDisplayScreenlet, 0, 0);
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.WebContentDisplayScreenlet, 0, 0);
 
 		_autoLoad = typedArray.getBoolean(R.styleable.WebContentDisplayScreenlet_autoLoad, true);
 
 		_articleId = typedArray.getString(R.styleable.WebContentDisplayScreenlet_articleId);
-
-		_groupId = castToLongOrUseDefault(typedArray.getString(
-			R.styleable.WebContentDisplayScreenlet_groupId), LiferayServerContext.getGroupId());
 
 		_templateId = castToLong(typedArray.getString(R.styleable.WebContentDisplayScreenlet_templateId));
 
@@ -225,15 +201,13 @@ public class WebContentDisplayScreenlet
 
 		_labelFields = typedArray.getString(R.styleable.WebContentDisplayScreenlet_labelFields);
 
-		_javascriptEnabled = typedArray.getBoolean(
-			R.styleable.WebContentDisplayScreenlet_javascriptEnabled, false);
+		_javascriptEnabled = typedArray.getBoolean(R.styleable.WebContentDisplayScreenlet_javascriptEnabled, false);
 
 		int offlinePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_offlinePolicy,
 			OfflinePolicy.REMOTE_ONLY.ordinal());
 		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 
-		int layoutId = typedArray.getResourceId(
-			R.styleable.WebContentDisplayScreenlet_layoutId, getDefaultLayoutId());
+		int layoutId = typedArray.getResourceId(R.styleable.WebContentDisplayScreenlet_layoutId, getDefaultLayoutId());
 
 		typedArray.recycle();
 
@@ -241,37 +215,29 @@ public class WebContentDisplayScreenlet
 	}
 
 	@Override
-	protected WebContentDisplayBaseInteractor createInteractor(String actionName) {
+	protected WebContentDisplayBaseInteractorImpl createInteractor(String actionName) {
 		if (WEB_CONTENT_BY_ARTICLE_ID.equals(actionName)) {
-			return new WebContentDisplayFromArticleIdInteractorImpl(getScreenletId(), _offlinePolicy);
-		}
-		else {
-			return new WebContentDisplayFromStructureInteractorImpl(getScreenletId(), _offlinePolicy);
+			return new WebContentDisplayFromArticleIdInteractorImpl();
+		} else {
+			return new WebContentDisplayFromStructureInteractorImpl();
 		}
 	}
 
 	@Override
-	protected void onUserAction(String userActionName,
-								WebContentDisplayBaseInteractor interactor, Object... args) {
+	protected void onUserAction(String userActionName, WebContentDisplayBaseInteractorImpl interactor, Object... args) {
 
-		try {
-			Locale locale = getResources().getConfiguration().locale;
+		locale = getResources().getConfiguration().locale;
 
-			if (WEB_CONTENT_BY_ARTICLE_ID.equals(userActionName)) {
-				WebContentDisplayFromArticleIdInteractor interactorFromArticleId =
-					(WebContentDisplayFromArticleIdInteractor) getInteractor(userActionName);
+		if (WEB_CONTENT_BY_ARTICLE_ID.equals(userActionName)) {
+			WebContentDisplayFromArticleIdInteractorImpl interactorFromArticleId =
+				(WebContentDisplayFromArticleIdInteractorImpl) getInteractor(userActionName);
 
-				interactorFromArticleId.load(_groupId, _articleId, _templateId, locale);
-			}
-			else {
-				WebContentDisplayFromStructureInteractor interactorFromStructure =
-					(WebContentDisplayFromStructureInteractor) getInteractor(userActionName);
+			interactorFromArticleId.start(_articleId, _templateId);
+		} else {
+			WebContentDisplayFromStructureInteractorImpl interactorFromStructure =
+				(WebContentDisplayFromStructureInteractorImpl) getInteractor(userActionName);
 
-				interactorFromStructure.load(_structureId, _groupId, _articleId, locale);
-			}
-		}
-		catch (Exception e) {
-			onWebContentFailure(this, e);
+			interactorFromStructure.start(_structureId, _articleId);
 		}
 	}
 
@@ -286,10 +252,8 @@ public class WebContentDisplayScreenlet
 	private String _articleId;
 	private Long _structureId;
 	private boolean _autoLoad;
-	private long _groupId;
 	private boolean _javascriptEnabled;
 	private String _labelFields;
 	private WebContentDisplayListener _listener;
 	private OfflinePolicy _offlinePolicy;
-
 }

@@ -14,87 +14,39 @@
 
 package com.liferay.mobile.screens.webcontent.display.interactor;
 
-import com.liferay.mobile.screens.base.interactor.BasicEvent;
+import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
 import com.liferay.mobile.screens.webcontent.WebContent;
-
-import java.util.Locale;
 
 /**
  * @author Jose Manuel Navarro
  */
-public class WebContentDisplayEvent extends BasicEvent {
+public class WebContentDisplayEvent extends OfflineEventNew {
+
+	private String id;
 
 	public WebContentDisplayEvent() {
 		super();
 	}
 
-	public WebContentDisplayEvent(int targetScreenletId, long groupId, String articleId, Locale locale, Long templateId, Exception e) {
-		super(targetScreenletId, e);
-
-		_articleId = articleId;
-		_groupId = groupId;
-		_locale = locale;
-		_templateId = templateId;
+	@Override
+	public String getId() throws Exception {
+		return id;
 	}
 
-	public WebContentDisplayEvent(int targetScreenletId, long groupId, String articleId, Locale locale, Long templateId, String html) {
-		super(targetScreenletId);
+	public WebContentDisplayEvent(String articleId, Long templateId, String html) {
 		_webContent = new WebContent(html);
 
 		_articleId = articleId;
-		_groupId = groupId;
-		_locale = locale;
 		_templateId = templateId;
+		id = _articleId + (_templateId == null ? "-" : templateId);
 	}
 
-	public WebContentDisplayEvent(int targetScreenletId, long classPK, Locale locale, Long templateId, Exception e) {
-		super(targetScreenletId, e);
-
-		_classPK = classPK;
-		_locale = locale;
-		_templateId = templateId;
-	}
-
-	public WebContentDisplayEvent(int targetScreenletId, long classPK, Locale locale, Long templateId, String html) {
-		super(targetScreenletId);
-		_webContent = new WebContent(html);
-
-		_classPK = classPK;
-		_locale = locale;
-		_templateId = templateId;
-	}
-
-	public WebContentDisplayEvent(int targetScreenletId, Long structureId, String articleId, Locale locale, Exception e) {
-		super(targetScreenletId, e);
-
-		_structureId = structureId;
-		_articleId = articleId;
-		_locale = locale;
-	}
-
-	public WebContentDisplayEvent(int targetScreenletId, Long structureId, String articleId, Locale locale, WebContent webContent) {
-		super(targetScreenletId);
+	public WebContentDisplayEvent(Long structureId, String articleId, WebContent webContent) {
 		_webContent = webContent;
 
 		_structureId = structureId;
 		_articleId = articleId;
-		_locale = locale;
-	}
-
-	public Long getGroupId() {
-		return _groupId;
-	}
-
-	public Locale getLocale() {
-		return _locale;
-	}
-
-	public long getClassPK() {
-		return _classPK;
-	}
-
-	public void setClassPK(long classPK) {
-		_classPK = classPK;
+		id = _articleId + _structureId;
 	}
 
 	public String getArticleId() {
@@ -118,9 +70,6 @@ public class WebContentDisplayEvent extends BasicEvent {
 	}
 
 	private String _articleId;
-	private long _classPK;
-	private long _groupId;
-	private Locale _locale;
 	private Long _templateId;
 	private Long _structureId;
 	private WebContent _webContent;
