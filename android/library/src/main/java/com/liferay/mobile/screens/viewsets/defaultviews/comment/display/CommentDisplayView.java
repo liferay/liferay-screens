@@ -18,7 +18,7 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.display.view.CommentDisplayViewModel;
-import com.liferay.mobile.screens.models.CommentEntry;
+import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 
 /**

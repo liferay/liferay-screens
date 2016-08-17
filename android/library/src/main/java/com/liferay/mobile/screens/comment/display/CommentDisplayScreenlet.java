@@ -16,7 +16,7 @@ import com.liferay.mobile.screens.comment.display.interactor.update.CommentUpdat
 import com.liferay.mobile.screens.comment.display.view.CommentDisplayViewModel;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.models.CommentEntry;
+import com.liferay.mobile.screens.comment.CommentEntry;
 
 /**
  * @author Alejandro Hernández

@@ -9,7 +9,7 @@ import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.tablecache.TableCache;
-import com.liferay.mobile.screens.models.CommentEntry;
+import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
 import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.LiferayLocale;

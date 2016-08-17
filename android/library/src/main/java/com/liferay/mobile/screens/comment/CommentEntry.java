@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.models;
+package com.liferay.mobile.screens.comment;
 
 import android.os.Parcel;
 import android.os.Parcelable;

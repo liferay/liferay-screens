@@ -4,7 +4,7 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.thread.BaseRemoteInteractorNew;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.models.CommentEntry;
+import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
 import com.liferay.mobile.screens.util.JSONUtil;
 import org.json.JSONObject;
