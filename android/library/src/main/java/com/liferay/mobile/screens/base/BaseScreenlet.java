@@ -18,6 +18,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -27,30 +28,34 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
-
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.interactor.CustomInteractorListener;
 import com.liferay.mobile.screens.base.interactor.Interactor;
+import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.BaseRemoteInteractorNew;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
+import com.liferay.mobile.screens.context.LiferayServerContext;
+import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;
-
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author Silvio Santos
  */
-public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interactor>
-	extends FrameLayout {
+public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interactor> extends FrameLayout {
 
 	public static final String DEFAULT_ACTION = "default_action";
 
 	public BaseScreenlet(Context context) {
 		super(context);
 
-//		init(context, null);
+		//		init(context, null);
 	}
 
 	public BaseScreenlet(Context context, AttributeSet attrs) {
@@ -118,11 +123,22 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 	protected I prepareInteractor(String actionName) {
 
-		I result = _customInteractorListener == null ?
-			createInteractor(actionName) :
-			(I) _customInteractorListener.createInteractor(actionName);
+		I result = _customInteractorListener == null ? createInteractor(actionName)
+			: (I) _customInteractorListener.createInteractor(actionName);
 
 		if (result != null) {
+
+			if (result instanceof BaseCachedThreadRemoteInteractor) {
+				BaseCachedThreadRemoteInteractor interactor = (BaseCachedThreadRemoteInteractor) result;
+				interactor.setTargetScreenletId(getScreenletId());
+				interactor.setOfflinePolicy(getOfflinePolicy());
+				interactor.setGroupId(getGroupId());
+				interactor.setUserId(getUserId());
+				interactor.setLocale(getLocale());
+			} else if (result instanceof BaseRemoteInteractorNew) {
+				((BaseRemoteInteractorNew) result).setTargetScreenletId(getScreenletId());
+			}
+
 			result.onScreenletAttached(this);
 			_interactors.put(actionName, result);
 		}
@@ -131,6 +147,22 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 	protected void init(Context context, AttributeSet attributes) {
 		LiferayScreensContext.init(context);
+
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.OfflineScreenlet, 0, 0);
+
+		groupId = castToLongOrUseDefault(typedArray.getString(R.styleable.OfflineScreenlet_groupId),
+			LiferayServerContext.getGroupId());
+
+		userId = castToLongOrUseDefault(typedArray.getString(R.styleable.OfflineScreenlet_userId),
+			SessionContext.getUserId());
+
+		String localeAttribute = typedArray.getString(R.styleable.OfflineScreenlet_locale);
+		locale = locale == null ? LiferayLocale.getDefaultLocale() : new Locale(localeAttribute);
+
+		Integer offlinePolicyAttribute =
+			typedArray.getInteger(R.styleable.OfflineScreenlet_offlinePolicy, OfflinePolicy.REMOTE_ONLY.ordinal());
+		offlinePolicy = OfflinePolicy.values()[offlinePolicyAttribute];
 
 		assignView(createScreenletView(context, attributes));
 	}
@@ -162,20 +194,18 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 			// first, get the identifier of the string key
 			String layoutNameKeyName = getClass().getSimpleName() + "_" + getLayoutTheme();
-			int layoutNameKeyId = ctx.getResources().getIdentifier(
-				layoutNameKeyName, "string", packageName);
+			int layoutNameKeyId = ctx.getResources().getIdentifier(layoutNameKeyName, "string", packageName);
 
 			if (layoutNameKeyId == 0) {
-				layoutNameKeyId = ctx.getResources().getIdentifier(
-					getClass().getSimpleName() + "_default", "string", packageName);
+				layoutNameKeyId =
+					ctx.getResources().getIdentifier(getClass().getSimpleName() + "_default", "string", packageName);
 			}
 
 			// second, get the identifier of the layout specified in key layoutNameKeyId
 
 			String layoutName = ctx.getString(layoutNameKeyId);
 			return ctx.getResources().getIdentifier(layoutName, "layout", packageName);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			//We don't want to crash if the user creates a custom screenlet without adding a
 			// default layout to it
 			return 0;
@@ -243,8 +273,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		Bundle state = new Bundle();
 		state.putParcelable(_STATE_SUPER, superState);
 		state.putInt(_STATE_SCREENLET_ID, _screenletId);
-		state.putStringArray(
-			_STATE_INTERACTORS, _interactors.keySet().toArray(new String[_interactors.size()]));
+		state.putStringArray(_STATE_INTERACTORS, _interactors.keySet().toArray(new String[_interactors.size()]));
 
 		return state;
 	}
@@ -271,8 +300,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		}
 		try {
 			return Long.valueOf(value);
-		}
-		catch (NumberFormatException e) {
+		} catch (NumberFormatException e) {
 			LiferayLogger.e("You have supplied a string and we expected a long number", e);
 			throw e;
 		}
@@ -291,10 +319,11 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	private String getActivityTheme() {
 		try {
 			TypedValue outValue = new TypedValue();
-			LiferayScreensContext.getActivityFromContext(getContext()).getTheme().resolveAttribute(R.attr.themeName, outValue, true);
+			LiferayScreensContext.getActivityFromContext(getContext())
+				.getTheme()
+				.resolveAttribute(R.attr.themeName, outValue, true);
 			return (String) outValue.string;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			LiferayLogger.d("Screens theme not found");
 		}
 		return null;
@@ -307,8 +336,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 			PackageInfo packageInfo = ctx.getPackageManager().getPackageInfo(packageName, PackageManager.GET_META_DATA);
 			int applicationThemeId = packageInfo.applicationInfo.theme;
 			return getResources().getResourceEntryName(applicationThemeId);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			LiferayLogger.d("Screens theme not found");
 		}
 		return null;
@@ -338,6 +366,38 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		}
 	}
 
+	public long getGroupId() {
+		return groupId;
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
+		this.offlinePolicy = offlinePolicy;
+	}
+
+	public void setGroupId(long groupId) {
+		this.groupId = groupId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
+	public void setLocale(Locale locale) {
+		this.locale = locale;
+	}
+
+	public Locale getLocale() {
+		return locale;
+	}
+
+	public OfflinePolicy getOfflinePolicy() {
+		return offlinePolicy;
+	}
+
 	protected static final String STATE_SUPER = "STATE_SUPER";
 	private static final String _STATE_SCREENLET_ID = "basescreenlet-screenletId";
 	private static final String _STATE_SUPER = "basescreenlet-super";
@@ -350,4 +410,8 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 	private CustomInteractorListener _customInteractorListener;
 
+	private OfflinePolicy offlinePolicy;
+	private long groupId;
+	private long userId;
+	private Locale locale;
 }
