@@ -129,7 +129,6 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 	}
 
 	func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
-
 		let editRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Edit", handler:{action, indexPath in
 			let cell = tableView.cellForRowAtIndexPath(indexPath) as? CommentTableViewCell_default
 			cell?.commentDisplayScreenlet?.editComment()

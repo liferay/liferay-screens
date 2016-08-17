@@ -87,7 +87,7 @@ extension String {
 				NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding,
 			])
 
-			return try! NSAttributedString(data: encodedData!, options: attributes, documentAttributes: nil)
+			return try! NSAttributedString(data: data, options: attributes, documentAttributes: nil)
 		}
 
 		return nil

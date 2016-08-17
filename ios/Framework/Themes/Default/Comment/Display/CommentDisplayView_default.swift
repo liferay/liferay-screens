@@ -44,7 +44,7 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 	}
 
 	public static var attributedTextAttributes: [String: NSObject] {
-		var paragrahpStyle = NSMutableParagraphStyle()
+		let paragrahpStyle = NSMutableParagraphStyle()
 		paragrahpStyle.lineBreakMode = .ByWordWrapping
 
 		var attributes: [String: NSObject] = [NSParagraphStyleAttributeName: paragrahpStyle]
