@@ -23,6 +23,9 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 	let page: Int
 	let onUploadedBytes: OnProgress?
 
+	// Initialized only when created from synchronizer
+	var UUID: String?
+
 	var result: [String : AnyObject]?
 
 	public init(
@@ -40,6 +43,26 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 		self.onUploadedBytes = onUploadedBytes
 
 		super.init(screenlet: screenlet)
+	}
+
+	public convenience init(screenlet: ImageGalleryScreenlet?,
+	                        imageUpload: ImageEntryUpload,
+	                        repositoryId: Int64,
+	                        folderId: Int64,
+	                        page: Int,
+	                        onUploadedBytes: OnProgress?,
+	                        UUID: String) {
+
+			
+		self.init(
+				screenlet: screenlet,
+				imageUpload: imageUpload,
+				repositoryId: repositoryId,
+				folderId: folderId,
+				page: page,
+				onUploadedBytes: onUploadedBytes)
+
+		self.UUID = UUID
 	}
 
 	public override func createConnector() -> ServerConnector? {
@@ -127,22 +150,31 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 
 	private func storeParatemetersToResyncLater() {
 
-		// TODO Use UUID to generate an unique cache key?
-		SessionContext.currentContext?.cacheManager.setDirty(
-				collection: ScreenletName(ImageGalleryScreenlet),
-				key: "uploadEntry-\(imageUpload.title)-\(folderId)-\(repositoryId)",
-				value: imageUpload,
-				attributes: [
-					"folderId": NSNumber(longLong: folderId),
-					"repositoryId": NSNumber(longLong: repositoryId),
-					"page": NSNumber(long: page)
-				])
+		if UUID == nil {
+
+			// Not stored yet
+			UUID = NSUUID().UUIDString
+
+			SessionContext.currentContext?.cacheManager.setDirty(
+					collection: ScreenletName(ImageGalleryScreenlet),
+					key: UUID!,
+					value: imageUpload,
+					attributes: [
+						"folderId": NSNumber(longLong: folderId),
+						"repositoryId": NSNumber(longLong: repositoryId),
+						"page": NSNumber(long: page)
+					])
+		}
 	}
 
 	private func deleteSyncParameters() {
-		SessionContext.currentContext?.cacheManager.remove(
+
+		// Exists if the parameters have been saved
+		if let key = UUID {
+			SessionContext.currentContext?.cacheManager.remove(
 				collection: ScreenletName(ImageGalleryScreenlet),
-				key: "uploadEntry-\(imageUpload.title)-\(folderId)-\(repositoryId)")
+				key: key)
+		}
 	}
 
 	private func storeNewImageEntry(page: [[String:AnyObject]], cacheKey: String) {
