@@ -78,7 +78,12 @@ public class DDLFormAddRecordInteractorImpl
 
 	@Override
 	public void onFailure(Exception e) {
-		getListener().error(e, DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION);
+
+	}
+
+	@Override
+	public void onFailure(DDLFormAddRecordEvent event) {
+		getListener().error(event.getException(), DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION);
 	}
 
 	protected void validate(long groupId, Record record) {

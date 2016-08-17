@@ -380,7 +380,7 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 			case UPDATE_RECORD_ACTION:
 				return new DDLFormUpdateRecordInteractorImpl();
 			case UPLOAD_DOCUMENT_ACTION:
-				return new DDLFormDocumentUploadInteractorImpl(getScreenletId(), _offlinePolicy);
+				return new DDLFormDocumentUploadInteractorImpl();
 			default:
 				return null;
 		}
