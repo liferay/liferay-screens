@@ -18,23 +18,20 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
-
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
+import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
-import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractor;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorImpl;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorListener;
 import com.liferay.mobile.screens.ddl.model.Record;
-
 import java.util.Locale;
 
 /**
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListScreenlet
-	extends BaseListScreenlet<Record, DDLListInteractor>
+public class DDLListScreenlet extends BaseListScreenlet<Record, DDLListInteractorImpl>
 	implements DDLListInteractorListener {
 
 	public DDLListScreenlet(Context context) {
@@ -99,33 +96,38 @@ public class DDLListScreenlet
 	}
 
 	@Override
-	protected void loadRows(DDLListInteractor interactor, int startRow, int endRow, Locale locale, String obcClassName)
-		throws Exception {
+	public void error(Exception e, String userAction) {
 
-		interactor.loadRows(_recordSetId, _userId, startRow, endRow, locale, obcClassName);
+	}
+
+	@Override
+	protected void loadRows(DDLListInteractorImpl interactor, int startRow, int endRow, Locale locale,
+		String obcClassName) throws Exception {
+
+		Query query = new Query(startRow, endRow, obcClassName);
+
+		interactor.start(query, _recordSetId, _userId);
 	}
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-			attributes, R.styleable.DDLListScreenlet, 0, 0);
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.DDLListScreenlet, 0, 0);
 
-		int offlinePolicy = typedArray.getInt(R.styleable.DDLListScreenlet_offlinePolicy,
-			OfflinePolicy.REMOTE_ONLY.ordinal());
+		int offlinePolicy =
+			typedArray.getInt(R.styleable.DDLListScreenlet_offlinePolicy, OfflinePolicy.REMOTE_ONLY.ordinal());
 		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 
-		_recordSetId = castToLong(typedArray.getString(
-			R.styleable.DDLListScreenlet_recordSetId));
-		_userId = castToLong(typedArray.getString(
-			R.styleable.DDLListScreenlet_userId));
+		_recordSetId = castToLong(typedArray.getString(R.styleable.DDLListScreenlet_recordSetId));
+		_userId = castToLong(typedArray.getString(R.styleable.DDLListScreenlet_userId));
 		typedArray.recycle();
 
 		return super.createScreenletView(context, attributes);
 	}
 
 	@Override
-	protected DDLListInteractor createInteractor(String actionName) {
-		return new DDLListInteractorImpl(getScreenletId(), _offlinePolicy);
+	protected DDLListInteractorImpl createInteractor(String actionName) {
+		return new DDLListInteractorImpl();
 	}
 
 	private long _recordSetId;
