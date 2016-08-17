@@ -120,10 +120,11 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 	}
 
 	@Override
-	protected void loadRows(BaseGalleryInteractor interactor, int startRow, int endRow, Locale locale)
-		throws Exception {
+	protected void loadRows(BaseGalleryInteractor interactor, int startRow, int endRow, Locale locale,
+		String obcClassName) throws Exception {
+
 		GalleryLoadInteractor galleryLoadInteractor = (GalleryLoadInteractor) interactor;
-		galleryLoadInteractor.loadRows(groupId, folderId, mimeTypes, startRow, endRow, locale);
+		galleryLoadInteractor.loadRows(groupId, folderId, mimeTypes, startRow, endRow, locale, obcClassName);
 	}
 
 	public void load() {

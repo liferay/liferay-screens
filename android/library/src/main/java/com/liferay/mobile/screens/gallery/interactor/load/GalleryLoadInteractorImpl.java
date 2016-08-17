@@ -2,6 +2,7 @@ package com.liferay.mobile.screens.gallery.interactor.load;
 
 import android.support.annotation.NonNull;
 import android.util.Pair;
+import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v7.dlapp.DLAppService;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
@@ -31,8 +32,8 @@ public class GalleryLoadInteractorImpl extends BaseListInteractor<ImageEntry, Ga
 	}
 
 	@Override
-	public void loadRows(long groupId, long folderId, String[] mimeTypes, int startRow, int endRow, Locale locale)
-		throws Exception {
+	public void loadRows(long groupId, long folderId, String[] mimeTypes, int startRow, int endRow, Locale locale,
+		String obcClassName) throws Exception {
 
 		this.groupId = groupId;
 		this.folderId = folderId;
@@ -40,7 +41,7 @@ public class GalleryLoadInteractorImpl extends BaseListInteractor<ImageEntry, Ga
 
 		validate(groupId, folderId);
 
-		processWithCache(startRow, endRow, locale);
+		processWithCache(startRow, endRow, locale, obcClassName);
 	}
 
 	@NonNull
@@ -60,8 +61,10 @@ public class GalleryLoadInteractorImpl extends BaseListInteractor<ImageEntry, Ga
 	}
 
 	@Override
-	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception {
-		new DLAppService(session).getFileEntries(groupId, folderId, mimeTypes, startRow, endRow, null);
+	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale, JSONObjectWrapper obc)
+		throws Exception {
+
+		new DLAppService(session).getFileEntries(groupId, folderId, mimeTypes, startRow, endRow, obc);
 	}
 
 	@Override

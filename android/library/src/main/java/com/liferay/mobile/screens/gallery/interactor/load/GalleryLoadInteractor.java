@@ -8,6 +8,6 @@ import java.util.Locale;
  */
 public interface GalleryLoadInteractor extends BaseGalleryInteractor {
 
-	void loadRows(long groupId, long folderId, String[] mimeTypes, int startRow, int endRow, Locale locale)
-		throws Exception;
+	void loadRows(long groupId, long folderId, String[] mimeTypes, int startRow, int endRow, Locale locale,
+		String obcClassName) throws Exception;
 }
