@@ -33,7 +33,7 @@ class CommentListScreenletViewController: UIViewController,
 	@IBAction func insertButtonPressed(sender: AnyObject) {
 		editViewController = CommentEditViewController_default(body: "")
 		self.definesPresentationContext = true
-		editViewController?.modalPresentationStyle = .OverCurrentContext
+		editViewController!.modalPresentationStyle = .OverCurrentContext
 		editViewController!.confirmBodyClosure = addComment
 		presentViewController(editViewController!, animated: true, completion: {})
 	}
@@ -80,7 +80,8 @@ class CommentListScreenletViewController: UIViewController,
 		print("DELEGATE: onDeletedComment called -> \(comment)\n")
 	}
 
-	func screenlet(screenlet: CommentListScreenlet, onCommentDelete comment: Comment, onError error: NSError) {
+	func screenlet(screenlet: CommentListScreenlet, onCommentDelete comment: Comment,
+			onError error: NSError) {
 		print("DELEGATE: onCommentDelete onError called -> \(comment) \(error)\n")
 	}
 
@@ -88,7 +89,8 @@ class CommentListScreenletViewController: UIViewController,
 		print("DELEGATE: onUpdatedComment called -> \(comment)\n")
 	}
 
-	func screenlet(screenlet: CommentListScreenlet, onCommentUpdate comment: Comment, onError error: NSError) {
+	func screenlet(screenlet: CommentListScreenlet, onCommentUpdate comment: Comment,
+			onError error: NSError) {
 		print("DELEGATE: onCommentUpdate onError called -> \(comment) \(error)\n")
 	}
 
