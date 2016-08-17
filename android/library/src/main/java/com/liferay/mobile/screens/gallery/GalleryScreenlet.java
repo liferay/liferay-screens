@@ -301,7 +301,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		}
 	}
 
-	private String[] parseMimeTypes(String mimeTypesRaw) {
+	protected String[] parseMimeTypes(String mimeTypesRaw) {
 		if (mimeTypesRaw == null) {
 			return null;
 		}
@@ -309,7 +309,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		return mimeTypesRaw.split(",");
 	}
 
-	private void startUploadDetailActivity(Class activityUploadDetail, String picturePath) {
+	protected void startUploadDetailActivity(Class activityUploadDetail, String picturePath) {
 
 		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
 
@@ -326,7 +326,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		activity.startActivity(intent);
 	}
 
-	private void startShadowActivityForMediaStore(int mediaStore) {
+	protected void startShadowActivityForMediaStore(int mediaStore) {
 
 		GalleryUploadInteractor galleryUploadInteractor = (GalleryUploadInteractor) getInteractor(UPLOAD_IMAGE);
 		LiferayLogger.e("We initialize the interactor to be able to send him messages, objId:"
