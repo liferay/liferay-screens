@@ -127,14 +127,16 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 
 	private func storeParatemetersToResyncLater() {
 
-		// TODO title could be repeated
+		// TODO Use UUID to generate an unique cache key?
 		SessionContext.currentContext?.cacheManager.setDirty(
 				collection: ScreenletName(ImageGalleryScreenlet),
 				key: "uploadEntry-\(imageUpload.title)-\(folderId)-\(repositoryId)",
 				value: imageUpload,
-				attributes: ["folderId": NSNumber(longLong: folderId),
+				attributes: [
+					"folderId": NSNumber(longLong: folderId),
 					"repositoryId": NSNumber(longLong: repositoryId),
-					"page": NSNumber(long: page)])
+					"page": NSNumber(long: page)
+				])
 	}
 
 	private func deleteSyncParameters() {
