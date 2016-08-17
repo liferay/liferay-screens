@@ -14,155 +14,84 @@
 
 package com.liferay.mobile.screens.ddl.form.interactor.add;
 
-import android.support.annotation.NonNull;
-
-import com.liferay.mobile.android.exception.ServerException;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.base.interactor.BaseCachedWriteRemoteInteractor;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
-import com.liferay.mobile.screens.cache.ddl.form.DDLRecordCache;
-import com.liferay.mobile.screens.cache.sql.CacheSQL;
+import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
+import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordConnector;
 import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.util.ServiceProvider;
-
-import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
  * @author Jose Manuel Navarro
  */
 public class DDLFormAddRecordInteractorImpl
-	extends BaseCachedWriteRemoteInteractor<DDLFormListener, DDLFormAddRecordEvent>
-	implements DDLFormAddRecordInteractor {
-
-	public DDLFormAddRecordInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
-		super(targetScreenletId, offlinePolicy);
-	}
+	extends BaseCachedWriteThreadRemoteInteractor<DDLFormListener, DDLFormAddRecordEvent> {
 
 	@Override
-	public void addRecord(final long groupId, final Record record) throws Exception {
-		validate(groupId, record);
+	public DDLFormAddRecordEvent execute(DDLFormAddRecordEvent event) throws Exception {
 
-		storeWithCache(groupId, record);
-	}
+		Session session = SessionContext.createSessionFromCurrentSession();
+		DDLRecordConnector ddlRecordConnector = ServiceProvider.getInstance().getDDLRecordConnector(session);
 
-	public void onEvent(DDLFormAddRecordEvent event) {
-		if (!isValidEvent(event)) {
-			return;
-		}
-
-		if (event.isFailed()) {
-			try {
-				if (event.getException() instanceof ServerException) {
-					notifyError(event);
-				}
-				else {
-					storeToCacheAndLaunchEvent(event.getGroupId(), event.getRecord());
-				}
-			}
-			catch (Exception e) {
-				notifyError(event);
-			}
-		}
-		else {
-			if (!event.isCacheRequest()) {
-				store(true, event.getGroupId(), event.getRecord());
-			}
-
-			try {
-				if (event.getJSONObject().has("recordId")) {
-					long recordId = event.getJSONObject().getLong("recordId");
-					event.getRecord().setRecordId(recordId);
-				}
-				getListener().onDDLFormRecordAdded(event.getRecord());
-			}
-			catch (JSONException e) {
-				notifyError(event);
-			}
-		}
-	}
-
-	@Override
-	public void online(Object... args) throws Exception {
-
-		long groupId = (long) args[0];
-		Record record = (Record) args[1];
+		Record record = event.getRecord();
 
 		final JSONObject fieldsValues = new JSONObject(record.getData());
 
 		final JSONObject serviceContextAttributes = new JSONObject();
 		serviceContextAttributes.put("userId", record.getCreatorUserId());
-		serviceContextAttributes.put("scopeGroupId", groupId);
+		serviceContextAttributes.put("scopeGroupId", event.getGroupId());
 
 		JSONObjectWrapper serviceContextWrapper = new JSONObjectWrapper(serviceContextAttributes);
-		getDDLRecordService(record, groupId).addRecord(groupId, record.getRecordSetId(), 0, fieldsValues, serviceContextWrapper);
-	}
 
-	protected void notifyError(DDLFormAddRecordEvent event) {
-		getListener().onDDLFormRecordAddFailed(event.getException());
+		JSONObject jsonObject =
+			ddlRecordConnector.addRecord(event.getGroupId(), record.getRecordSetId(), 0, fieldsValues,
+				serviceContextWrapper);
+
+		event.setJSONObject(jsonObject);
+
+		return event;
 	}
 
 	@Override
-	protected void storeToCacheAndLaunchEvent(Object... args) {
+	protected DDLFormAddRecordEvent createEvent(Object[] args) throws Exception {
+
 		long groupId = (long) args[0];
 		Record record = (Record) args[1];
 
-		final JSONObject fieldsValues = store(false, groupId, record);
+		validate(groupId, record);
 
-		DDLFormAddRecordEvent event = new DDLFormAddRecordEvent(getTargetScreenletId(), record, groupId, fieldsValues);
-		event.setCacheRequest(true);
-		onEvent(event);
+		return new DDLFormAddRecordEvent(record, new JSONObject());
 	}
 
-	protected DDLRecordConnector getDDLRecordService(Record record, long groupId) {
-		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new DDLFormAddRecordCallback(getTargetScreenletId(), record, groupId));
-		return ServiceProvider.getInstance().getDDLRecordConnector(session);
+	@Override
+	public void onSuccess(DDLFormAddRecordEvent event) throws Exception {
+		if (event.getJSONObject().has("recordId")) {
+			long recordId = event.getJSONObject().getLong("recordId");
+			event.getRecord().setRecordId(recordId);
+		}
+		getListener().onDDLFormRecordAdded(event.getRecord());
+	}
+
+	@Override
+	public void onFailure(Exception e) {
+		getListener().error(e, DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION);
 	}
 
 	protected void validate(long groupId, Record record) {
 		if (groupId <= 0) {
 			throw new IllegalArgumentException("groupId cannot be 0 or negative");
-		}
-
-		if (record == null) {
+		} else if (record == null) {
 			throw new IllegalArgumentException("record cannot be empty");
-		}
-
-		if (record.getFieldCount() == 0) {
+		} else if (record.getFieldCount() == 0) {
 			throw new IllegalArgumentException("Record's fields cannot be empty");
-		}
-
-		if (record.getCreatorUserId() <= 0) {
+		} else if (record.getCreatorUserId() <= 0) {
 			throw new IllegalArgumentException("Record's userId cannot be 0 or negative");
-		}
-
-		if (record.getRecordSetId() <= 0) {
+		} else if (record.getRecordSetId() <= 0) {
 			throw new IllegalArgumentException("Record's recordSetId cannot be 0 or negative");
 		}
 	}
-
-	@NonNull
-	private JSONObject store(boolean synced, long groupId, Record record) {
-		final JSONObject fieldsValues = new JSONObject(record.getData());
-
-		try {
-			JSONObject valuesAndAttributes = new JSONObject();
-			valuesAndAttributes.put("modelValues", fieldsValues);
-			DDLRecordCache recordCache = new DDLRecordCache(groupId, record, valuesAndAttributes);
-			recordCache.setDirty(!synced);
-			CacheSQL.getInstance().set(recordCache);
-		}
-		catch (JSONException e) {
-			LiferayLogger.e("Couldn't parse JSON values", e);
-		}
-
-		return fieldsValues;
-	}
-
 }
