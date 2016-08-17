@@ -69,4 +69,5 @@ public abstract class OfflineEventNew extends BasicThreadEvent {
 	private boolean cachedRequest;
 
 	public abstract String getId() throws Exception;
+
 }

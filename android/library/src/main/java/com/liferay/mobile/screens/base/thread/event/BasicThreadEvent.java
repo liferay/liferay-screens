@@ -39,6 +39,10 @@ public class BasicThreadEvent {
 		return _targetScreenletId;
 	}
 
+	public void setJSONObject(JSONObject jsonObject) {
+		_jsonObject = jsonObject;
+	}
+
 	public void setTargetScreenletId(int targetScreenletId) {
 		_targetScreenletId = targetScreenletId;
 	}
