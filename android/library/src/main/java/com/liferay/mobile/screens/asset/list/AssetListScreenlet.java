@@ -26,7 +26,6 @@ import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import java.util.HashMap;
-import java.util.Locale;
 
 /**
  * @author Silvio Santos
@@ -117,8 +116,7 @@ public class AssetListScreenlet extends BaseListScreenlet<AssetEntry, AssetListI
 	}
 
 	@Override
-	protected void loadRows(AssetListInteractorImpl interactor, int startRow, int endRow, Locale locale,
-		String obcClassName) throws Exception {
+	protected void loadRows(AssetListInteractorImpl interactor, int startRow, int endRow, String obcClassName) throws Exception {
 
 		Query query = new Query(startRow, endRow, obcClassName);
 

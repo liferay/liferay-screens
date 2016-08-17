@@ -25,11 +25,6 @@ public class AssetDisplayView extends FrameLayout implements AssetDisplayViewMod
 	}
 
 	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
-	}
-
-	@Override
 	public void showStartOperation(String actionName) {
 	}
 

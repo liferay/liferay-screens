@@ -27,7 +27,7 @@ public class CommentListInteractorImpl extends BaseListInteractor<CommentEntry, 
 	}
 
 	@Override
-	protected Integer getPageRowCountRequest(Query query, Object... args) throws Exception {
+	protected Integer getPageRowCountRequest(Object... args) throws Exception {
 
 		String className = (String) args[0];
 		long classPK = (long) args[1];

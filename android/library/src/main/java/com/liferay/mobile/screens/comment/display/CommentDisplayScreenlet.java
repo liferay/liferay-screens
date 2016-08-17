@@ -122,15 +122,6 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	}
 
 	@Override
-	public void onLoadCommentFailure(Exception e) {
-		if (getListener() != null) {
-			getListener().onLoadCommentFailure(commentId, e);
-		}
-
-		getViewModel().showFailedOperation(LOAD_COMMENT_ACTION, e);
-	}
-
-	@Override
 	public void onLoadCommentSuccess(CommentEntry commentEntry) {
 		this.commentEntry = commentEntry;
 		this.commentId = commentEntry.getCommentId();
@@ -151,29 +142,11 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	}
 
 	@Override
-	public void onDeleteCommentFailure(Exception e) {
-		getViewModel().showFailedOperation(DELETE_COMMENT_ACTION, e);
-
-		if (getListener() != null) {
-			getListener().onDeleteCommentFailure(commentEntry, e);
-		}
-	}
-
-	@Override
 	public void onDeleteCommentSuccess() {
 		getViewModel().showFinishOperation(DELETE_COMMENT_ACTION);
 
 		if (getListener() != null) {
 			getListener().onDeleteCommentSuccess(commentEntry);
-		}
-	}
-
-	@Override
-	public void onUpdateCommentFailure(Exception e) {
-		getViewModel().showFailedOperation(UPDATE_COMMENT_ACTION, e);
-
-		if (getListener() != null) {
-			getListener().onUpdateCommentFailure(commentEntry, e);
 		}
 	}
 
@@ -204,6 +177,15 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	public void storingToCache(Object object) {
 		if (getListener() != null) {
 			getListener().storingToCache(object);
+		}
+	}
+
+	@Override
+	public void error(Exception e, String userAction) {
+		getViewModel().showFailedOperation(userAction, e);
+
+		if (getListener() != null) {
+			getListener().error(e, userAction);
 		}
 	}
 

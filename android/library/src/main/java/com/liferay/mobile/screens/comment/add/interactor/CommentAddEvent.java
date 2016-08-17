@@ -13,11 +13,6 @@ public class CommentAddEvent extends BasicThreadEvent {
 		this.commentEntry = commentEntry;
 	}
 
-	public CommentAddEvent(String body, Exception e) {
-		super(e);
-		this.body = body;
-	}
-
 	public CommentEntry getCommentEntry() {
 		return commentEntry;
 	}

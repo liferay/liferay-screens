@@ -4,23 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.view.View;
-
 import com.liferay.mobile.android.callback.typed.JSONObjectCallback;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.ddlrecordset.DDLRecordSetService;
 import com.liferay.mobile.pushnotifications.R;
 import com.liferay.mobile.screens.base.list.BaseListListener;
-import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.push.PushScreensActivity;
 import com.liferay.mobile.screens.util.LiferayLogger;
-
+import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.List;
 
 public class NotificationsActivity extends PushScreensActivity implements BaseListListener<Record> {
 
@@ -38,12 +34,12 @@ public class NotificationsActivity extends PushScreensActivity implements BaseLi
 	}
 
 	@Override
-	public void onListPageFailed(BaseListScreenlet source, int startRow, int endRow, Exception e) {
+	public void onListPageFailed(int startRow, Exception e) {
 
 	}
 
 	@Override
-	public void onListPageReceived(BaseListScreenlet source, int startRow, int endRow, List<Record> entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List<Record> entries, int rowCount) {
 
 	}
 
@@ -64,6 +60,11 @@ public class NotificationsActivity extends PushScreensActivity implements BaseLi
 
 	@Override
 	public void storingToCache(Object object) {
+
+	}
+
+	@Override
+	public void error(Exception e, String userAction) {
 
 	}
 
@@ -102,8 +103,7 @@ public class NotificationsActivity extends PushScreensActivity implements BaseLi
 			session.setCallback(getCallback(recordId, recordSetId));
 
 			new DDLRecordSetService(session).getRecordSet(recordSetId);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			LiferayLogger.e("error loading structure id", e);
 		}
 	}
@@ -120,8 +120,7 @@ public class NotificationsActivity extends PushScreensActivity implements BaseLi
 					intent.putExtra("structureId", result.getInt("DDMStructureId"));
 
 					startActivity(intent);
-				}
-				catch (JSONException e) {
+				} catch (JSONException e) {
 					LiferayLogger.e("error parsing JSON", e);
 				}
 			}

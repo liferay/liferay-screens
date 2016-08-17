@@ -7,7 +7,6 @@ import android.view.View;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import java.util.Locale;
 
 /**
  * @author Javier Gamarra
@@ -68,8 +67,7 @@ public class BookmarkListScreenlet extends BaseListScreenlet<Bookmark, BookmarkL
 	}
 
 	@Override
-	protected void loadRows(BookmarkListInteractorImpl interactor, int startRow, int endRow, Locale locale,
-		String obcClassName) throws Exception {
+	protected void loadRows(BookmarkListInteractorImpl interactor, int startRow, int endRow, String obcClassName) throws Exception {
 
 		((BookmarkListListener) getListener()).interactorCalled();
 

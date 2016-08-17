@@ -95,7 +95,7 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 		}
 
 		JSONArray jsonArray = getPageRowsRequest(query, args);
-		int rowCount = getPageRowCountRequest(query, args);
+		int rowCount = getPageRowCountRequest(args);
 
 		List<E> entries = new ArrayList<>();
 
@@ -151,7 +151,7 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 
 	protected abstract JSONArray getPageRowsRequest(Query query, Object... args) throws Exception;
 
-	protected abstract Integer getPageRowCountRequest(Query query, Object... args) throws Exception;
+	protected abstract Integer getPageRowCountRequest(Object... args) throws Exception;
 
 	protected abstract E createEntity(Map<String, Object> stringObjectMap);
 

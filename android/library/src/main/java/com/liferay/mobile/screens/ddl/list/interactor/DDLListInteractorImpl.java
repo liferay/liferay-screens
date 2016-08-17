@@ -59,7 +59,7 @@ public class DDLListInteractorImpl extends BaseListInteractor<Record, DDLListInt
 	}
 
 	@Override
-	protected Integer getPageRowCountRequest(Query query, Object... args) throws Exception {
+	protected Integer getPageRowCountRequest(Object... args) throws Exception {
 
 		long _recordSetId = (long) args[0];
 		long _userId = (long) args[1];

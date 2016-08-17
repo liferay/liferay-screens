@@ -3,6 +3,7 @@ package com.liferay.mobile.screens.comment.display.interactor.delete;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.thread.BaseRemoteInteractorNew;
 import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
+import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
@@ -35,7 +36,7 @@ public class CommentDeleteInteractorImpl
 
 	@Override
 	public void onFailure(Exception e) {
-		getListener().onDeleteCommentFailure(e);
+		getListener().error(e, CommentDisplayScreenlet.DELETE_COMMENT_ACTION);
 	}
 
 	protected void validate(long commentId) {

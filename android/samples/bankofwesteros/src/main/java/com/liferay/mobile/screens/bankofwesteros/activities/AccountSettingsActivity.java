@@ -41,8 +41,8 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 		BasicAuthentication basicAuth = (BasicAuthentication) SessionContext.getAuthentication();
 		_password.setText(basicAuth.getPassword());
 
-		_userPortraitScreenlet = (UserPortraitScreenlet) findViewById(R.id.userportrait);
-		_userPortraitScreenlet.setListener(this);
+		UserPortraitScreenlet userPortraitScreenlet = (UserPortraitScreenlet) findViewById(R.id.userportrait);
+		userPortraitScreenlet.setListener(this);
 	}
 
 	@Override
@@ -139,6 +139,4 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 	private EditText _lastName;
 	private EditText _emailAddress;
 	private EditText _password;
-
-	private UserPortraitScreenlet _userPortraitScreenlet;
 }

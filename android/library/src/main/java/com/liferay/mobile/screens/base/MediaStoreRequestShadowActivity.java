@@ -24,8 +24,7 @@ public class MediaStoreRequestShadowActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		_screenletId = getIntent().getIntExtra(SCREENLET_ID, 0);
-		_mediaStoreType = getIntent().getIntExtra(MEDIA_STORE_TYPE, 0);
+		mediaStoreType = getIntent().getIntExtra(MEDIA_STORE_TYPE, 0);
 
 		sendIntent();
 	}
@@ -45,10 +44,10 @@ public class MediaStoreRequestShadowActivity extends Activity {
 
 		String path = "";
 
-		if (_mediaStoreType == SELECT_IMAGE_FROM_GALLERY) {
+		if (mediaStoreType == SELECT_IMAGE_FROM_GALLERY) {
 			path = FileUtil.getPath(this, intentData.getData());
-		} else if (_mediaStoreType == TAKE_PICTURE_WITH_CAMERA) {
-			path = _filePath;
+		} else if (mediaStoreType == TAKE_PICTURE_WITH_CAMERA) {
+			path = filePath;
 		}
 
 		MediaStoreEvent event = new MediaStoreEvent(path);
@@ -57,29 +56,27 @@ public class MediaStoreRequestShadowActivity extends Activity {
 	}
 
 	private void sendIntent() {
-		if (_mediaStoreType == SELECT_IMAGE_FROM_GALLERY) {
+		if (mediaStoreType == SELECT_IMAGE_FROM_GALLERY) {
 			openGallery();
-		} else if (_mediaStoreType == TAKE_PICTURE_WITH_CAMERA) {
+		} else if (mediaStoreType == TAKE_PICTURE_WITH_CAMERA) {
 			openCamera();
 		}
 	}
 
 	private void openGallery() {
 		Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-		startActivityForResult(galleryIntent, _mediaStoreType);
+		startActivityForResult(galleryIntent, mediaStoreType);
 	}
 
 	private void openCamera() {
 		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		File imageFile = FileUtil.createImageFile();
-		_filePath = imageFile.getPath();
+		filePath = imageFile.getPath();
 		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
 
-		startActivityForResult(cameraIntent, _mediaStoreType);
+		startActivityForResult(cameraIntent, mediaStoreType);
 	}
 
-	private int _mediaStoreType;
-	private int _screenletId;
-
-	private String _filePath;
+	private int mediaStoreType;
+	private String filePath;
 }

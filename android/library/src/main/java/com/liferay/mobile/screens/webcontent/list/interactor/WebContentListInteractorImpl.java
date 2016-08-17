@@ -34,7 +34,7 @@ public class WebContentListInteractorImpl extends BaseListInteractor<WebContent,
 	}
 
 	@Override
-	protected Integer getPageRowCountRequest(Query query, Object... args) throws Exception {
+	protected Integer getPageRowCountRequest(Object... args) throws Exception {
 
 		long _folderId = (long) args[0];
 		Session session = SessionContext.createSessionFromCurrentSession();

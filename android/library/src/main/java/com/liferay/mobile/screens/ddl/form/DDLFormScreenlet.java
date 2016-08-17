@@ -31,7 +31,6 @@ import com.liferay.mobile.screens.ddl.form.interactor.add.DDLFormAddRecordIntera
 import com.liferay.mobile.screens.ddl.form.interactor.formload.DDLFormLoadInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.interactor.recordload.DDLFormLoadRecordNewInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.interactor.update.DDLFormUpdateRecordInteractorImpl;
-import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
@@ -512,9 +511,9 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 				try {
 					getViewModel().showStartOperation(UPLOAD_DOCUMENT_ACTION, documentToUpload);
 
-					DDLFormDocumentUploadInteractor uploadInteractor = (DDLFormDocumentUploadInteractor) interactor;
+					DDLFormDocumentUploadInteractorImpl uploadInteractor = (DDLFormDocumentUploadInteractorImpl) interactor;
 
-					uploadInteractor.upload(_groupId, _userId, _repositoryId, _folderId, _filePrefix, documentToUpload);
+					uploadInteractor.start(_groupId, _userId, _repositoryId, _folderId, _filePrefix, documentToUpload);
 				} catch (Exception e) {
 					onDDLFormDocumentUploadFailed(documentToUpload, e);
 				}
