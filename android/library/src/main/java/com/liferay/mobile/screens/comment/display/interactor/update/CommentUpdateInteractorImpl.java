@@ -2,9 +2,10 @@ package com.liferay.mobile.screens.comment.display.interactor.update;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.thread.BaseRemoteInteractorNew;
+import com.liferay.mobile.screens.comment.CommentEntry;
+import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
 import com.liferay.mobile.screens.util.JSONUtil;
 import org.json.JSONObject;
@@ -42,7 +43,7 @@ public class CommentUpdateInteractorImpl
 
 	@Override
 	public void onFailure(Exception e) {
-		getListener().onUpdateCommentFailure(e);
+		getListener().error(e, CommentDisplayScreenlet.UPDATE_COMMENT_ACTION);
 	}
 
 	protected void validate(long groupId, String className, long classPK, long commentId, String newBody) {

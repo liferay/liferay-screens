@@ -62,7 +62,7 @@ public class AssetListInteractorImpl extends BaseListInteractor<AssetEntry, Asse
 	}
 
 	@Override
-	protected Integer getPageRowCountRequest(Query query, Object... args) throws Exception {
+	protected Integer getPageRowCountRequest(Object... args) throws Exception {
 
 		long _classNameId = (long) args[0];
 		String _portletItemName = (String) args[1];

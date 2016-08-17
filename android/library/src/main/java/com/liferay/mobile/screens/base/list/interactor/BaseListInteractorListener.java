@@ -15,8 +15,6 @@
 package com.liferay.mobile.screens.base.list.interactor;
 
 import com.liferay.mobile.screens.base.thread.listener.OfflineListenerNew;
-import com.liferay.mobile.screens.cache.CacheListener;
-
 import java.util.List;
 
 /**
@@ -28,5 +26,4 @@ public interface BaseListInteractorListener<E> extends OfflineListenerNew {
 	void onListRowsFailure(int startRow, int endRow, Exception e);
 
 	void onListRowsReceived(int startRow, int endRow, List<E> entries, int rowCount);
-
 }

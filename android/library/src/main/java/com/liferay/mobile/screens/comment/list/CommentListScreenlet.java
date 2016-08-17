@@ -14,7 +14,6 @@ import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorI
 import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorListener;
 import com.liferay.mobile.screens.comment.list.view.CommentListViewModel;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import java.util.Locale;
 
 /**
  * @author Alejandro Hernández
@@ -56,8 +55,7 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Commen
 	}
 
 	@Override
-	protected void loadRows(CommentListInteractorImpl interactor, int startRow, int endRow, Locale locale,
-		String obcClassName) throws Exception {
+	protected void loadRows(CommentListInteractorImpl interactor, int startRow, int endRow, String obcClassName) throws Exception {
 
 		Query query = new Query(startRow, endRow, obcClassName);
 

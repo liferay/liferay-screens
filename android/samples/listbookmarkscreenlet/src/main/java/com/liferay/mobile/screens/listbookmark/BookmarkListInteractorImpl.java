@@ -6,7 +6,6 @@ import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
 import com.liferay.mobile.screens.base.list.interactor.Query;
-import com.liferay.mobile.screens.cache.CachedType;
 import com.liferay.mobile.screens.context.SessionContext;
 import java.util.Map;
 import org.json.JSONArray;
@@ -27,7 +26,7 @@ public class BookmarkListInteractorImpl extends BaseListInteractor<Bookmark, Bas
 	}
 
 	@Override
-	protected Integer getPageRowCountRequest(Query query, Object... args) throws Exception {
+	protected Integer getPageRowCountRequest(Object... args) throws Exception {
 
 		long folderId = (long) args[0];
 
@@ -43,9 +42,5 @@ public class BookmarkListInteractorImpl extends BaseListInteractor<Bookmark, Bas
 	@Override
 	protected BaseListEvent<Bookmark> createEventFromArgs(Object... args) throws Exception {
 		return null;
-	}
-
-	private enum BOOKMARK_LIST implements CachedType {
-		BOOKMARK, BOOKMARK_COUNT
 	}
 }

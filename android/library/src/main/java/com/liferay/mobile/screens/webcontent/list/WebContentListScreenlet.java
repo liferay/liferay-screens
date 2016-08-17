@@ -10,10 +10,8 @@ import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.webcontent.WebContent;
-import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayBaseInteractorImpl;
 import com.liferay.mobile.screens.webcontent.list.interactor.WebContentListInteractorImpl;
 import com.liferay.mobile.screens.webcontent.list.interactor.WebContentListInteractorListener;
-import java.util.Locale;
 
 /**
  * @author Javier Gamarra
@@ -97,8 +95,7 @@ public class WebContentListScreenlet extends BaseListScreenlet<WebContent, WebCo
 	}
 
 	@Override
-	protected void loadRows(WebContentListInteractorImpl interactor, int startRow, int endRow, Locale locale,
-		String obcClassName) throws Exception {
+	protected void loadRows(WebContentListInteractorImpl interactor, int startRow, int endRow, String obcClassName) throws Exception {
 
 		Query query = new Query(startRow, endRow, obcClassName);
 
