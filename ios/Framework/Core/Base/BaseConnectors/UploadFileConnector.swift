@@ -70,7 +70,8 @@ public class UploadFileConnector<T> : ServerConnector, LRCallback, LRFileProgres
 			if let imageData = UIImagePNGRepresentation(image!) {
 				bytesToSend = Int64(imageData.length)
 				inputStream = NSInputStream(data: imageData)
-			} else {
+			}
+			else {
 				print("ERROR: could not create inputstream from image")
 			}
 		}

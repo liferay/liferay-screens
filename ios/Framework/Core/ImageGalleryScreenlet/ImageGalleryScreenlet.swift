@@ -17,31 +17,33 @@ import Kingfisher
 @objc public protocol ImageGalleryScreenletDelegate : BaseScreenletDelegate {
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-	                        onImageEntriesResponse imageEntries: [ImageEntry])
+			onImageEntriesResponse imageEntries: [ImageEntry])
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-	                        onImageEntriesError error: NSError)
+			onImageEntriesError error: NSError)
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-	                        onImageEntrySelected imageEntry: ImageEntry)
+			onImageEntrySelected imageEntry: ImageEntry)
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-	                        onImageEntryDeleted: ImageEntry)
+			onImageEntryDeleted: ImageEntry)
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-	                        onImageEntryDeleteError: NSError)
+			onImageEntryDeleteError: NSError)
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-	                        onImageUploadStart image: ImageEntryUpload)
+			onImageUploadStart image: ImageEntryUpload)
 							
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-	                        onImageUploadProgress image: ImageEntryUpload, totalBytesSent: UInt64, totalBytesToSend: UInt64)
+			onImageUploadProgress image: ImageEntryUpload,
+			totalBytesSent: UInt64,
+			totalBytesToSend: UInt64)
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-	                        onImageUploadError error: NSError)
+			onImageUploadError error: NSError)
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-	                        onImageUploaded image: ImageEntry)
+			onImageUploaded image: ImageEntry)
 }
 
 
@@ -51,24 +53,27 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 	public static let UploadImageAction = "upload-image-action"
 	public static let EnqueueUploadAction = "enqueue-upload-action"
 
-	public static let DefaultColumns = 4
-    
     @IBInspectable public var repositoryId: Int64 = -1
     @IBInspectable public var folderId: Int64 = -1
 	@IBInspectable public var mimeTypes: String = ""
 
+	@IBInspectable public var filePrefix: String = "gallery-"
+
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.CacheFirst.rawValue {
 		didSet {
-			ImageCache.screensOfflinePolicy = offlinePolicy ?? CacheStrategyType.RemoteFirst.rawValue
+			ImageCache.screensOfflinePolicy =
+				offlinePolicy ?? CacheStrategyType.RemoteFirst.rawValue
 		}
 	}
+
+	public var uploadDetailViewControllerName = "ImageUploadDetailViewController"
 
 	public let DefaultMimeTypes = ["image/png", "image/jpeg", "image/gif"]
 
 	internal var uploadsQueue = [ImageEntryUpload]()
 	internal var loadedOnce = false
 
-	public var imageGalleryScreenletDelegate: ImageGalleryScreenletDelegate? {
+	public var imageGalleryDelegate: ImageGalleryScreenletDelegate? {
 		return delegate as? ImageGalleryScreenletDelegate
 	}
 
@@ -88,24 +93,38 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 		KingfisherManager.sharedManager.cache.clearMemoryCache()
 		KingfisherManager.sharedManager.cache.clearDiskCache()
 
-		SessionContext.currentContext?.cacheManager.remove(collection: ScreenletName(self.dynamicType))
+		SessionContext.currentContext?.cacheManager.remove(
+			collection: ScreenletName(self.dynamicType))
 	}
 
 	public func startMediaSelectorAndUpload() {
 		if let viewController = presentingViewController {
 
-			let takeNewPicture = LocalizedString("default", key: "userportrait-take-new-picture", obj: self)
-			let chooseExisting = LocalizedString("default", key: "userportrait-choose-existing-picture", obj: self)
+			let takeNewPicture = LocalizedString("default",
+					key: "userportrait-take-new-picture",
+					obj: self)
+			let chooseExisting = LocalizedString("default",
+					key: "userportrait-choose-existing-picture",
+					obj: self)
+
+			//TODO add i18n to "Cancel"
+			let cancelText = "Cancel"
 
 			let alert = MediaSelector(
-				viewController: viewController,
-				types: [.Camera : takeNewPicture, .Image : chooseExisting],
-				cancelMessage: "Cancel") { (image, _) in
+					viewController: viewController,
+					types: [
+						.Camera: takeNewPicture,
+						.Image: chooseExisting
+					],
+					cancelMessage: cancelText) { (image, _) in
 
-					if let image = image {
-						let imageUpload = ImageEntryUpload(image: image, title: "test\(Int(CFAbsoluteTimeGetCurrent())).png")
-						self.showDetailUploadView(imageUpload)
-					}
+				guard let image = image else {
+					return
+				}
+
+				let title = "\(self.filePrefix)\(NSUUID().UUIDString).png"
+				let imageUpload = ImageEntryUpload(image: image, title: title)
+				self.showDetailUploadView(imageUpload)
 			}
 			alert.show()
 		}
@@ -115,9 +134,7 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 		let viewController = createImageUploadDetailViewControllerFromNib()
 
 		if let viewController = viewController {
-
 			viewController.image = imageUpload.image
-			viewController.tTitle = imageUpload.title
 			viewController.screenlet = self
 
 			let navigationController = UINavigationController(rootViewController: viewController)
@@ -128,7 +145,8 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 	public func deleteImageEntry(imageEntry: ImageEntry) {
 		if offlinePolicy == CacheStrategyType.RemoteOnly.rawValue {
 			performAction(name: ImageGalleryScreenlet.DeleteImageAction, sender: imageEntry)
-		} else {
+		}
+		else {
 			print("Error, delete only works on RemoteOnly mode")
 		}
 	}
@@ -138,17 +156,17 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 
 	public override func onLoadPageError(page page: Int, error: NSError) {
 		super.onLoadPageError(page: page, error: error)
-		imageGalleryScreenletDelegate?.screenlet?(self, onImageEntriesError: error)
+		imageGalleryDelegate?.screenlet?(self, onImageEntriesError: error)
 	}
 
 	public override func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
 		super.onLoadPageResult(page: page, rows: rows, rowCount: rowCount)
-		imageGalleryScreenletDelegate?.screenlet?(self, onImageEntriesResponse: rows as! [ImageEntry])
+		imageGalleryDelegate?.screenlet?(self, onImageEntriesResponse: rows as! [ImageEntry])
 	}
 
 	public override func onSelectedRow(row: AnyObject) {
 		super.onSelectedRow(row)
-		imageGalleryScreenletDelegate?.screenlet?(self, onImageEntrySelected: row as! ImageEntry)
+		imageGalleryDelegate?.screenlet?(self, onImageEntrySelected: row as! ImageEntry)
 	}
 
 
@@ -169,16 +187,17 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 
 	public override func performAction(name name: String, sender: AnyObject?) -> Bool {
 		if name == ImageGalleryScreenlet.EnqueueUploadAction {
-			guard let uploadEntry = sender as? ImageEntryUpload
-				else {
-					return false
+			guard let uploadEntry = sender as? ImageEntryUpload else {
+				return false
 			}
 
 			viewModel.onImageUploadEnqueued?(uploadEntry)
 
 			if uploadsQueue.isEmpty {
 				uploadsQueue.insert(uploadEntry, atIndex: 0)
-				return super.performAction(name: ImageGalleryScreenlet.UploadImageAction, sender: sender)
+				return super.performAction(
+						name: ImageGalleryScreenlet.UploadImageAction,
+						sender: sender)
 			}
 			else {
 				uploadsQueue.insert(uploadEntry, atIndex: 0)
@@ -191,7 +210,6 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 
 	public override func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		switch name {
-
 		case BaseListScreenlet.LoadInitialPageAction, BaseListScreenlet.LoadPageAction:
 			return super.createInteractor(name: name, sender: sender)
 
@@ -214,15 +232,17 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 	internal func createImageGalleryDeleteInteractor(
 			imageEntry: ImageEntry) -> ImageGalleryDeleteInteractor {
 
-		let interactor = ImageGalleryDeleteInteractor(screenlet: self, imageEntryId: imageEntry.imageEntryId)
+		let interactor = ImageGalleryDeleteInteractor(
+				screenlet: self,
+				imageEntryId: imageEntry.imageEntryId)
 
 		interactor.onSuccess = {
-			self.imageGalleryScreenletDelegate?.screenlet?(self, onImageEntryDeleted: imageEntry)
+			self.imageGalleryDelegate?.screenlet?(self, onImageEntryDeleted: imageEntry)
 			self.viewModel.onImageEntryDeleted?(imageEntry)
 		}
 
 		interactor.onFailure = {
-			self.imageGalleryScreenletDelegate?.screenlet?(self, onImageEntryDeleteError: $0)
+			self.imageGalleryDelegate?.screenlet?(self, onImageEntryDeleteError: $0)
 		}
 
 		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
@@ -236,14 +256,16 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 
 		let finalMimeTypes = mimeTypes.isEmpty ? DefaultMimeTypes : parseMimeTypes(mimeTypes)
 
-		let interactor = ImageGalleryLoadInteractor(screenlet: self,
-		                                            page: page,
-		                                            computeRowCount: computeRowCount,
-		                                            repositoryId: repositoryId,
-		                                            folderId: folderId,
-		                                            mimeTypes: finalMimeTypes)
+		let interactor = ImageGalleryLoadInteractor(
+				screenlet: self,
+				page: page,
+				computeRowCount: computeRowCount,
+				repositoryId: repositoryId,
+				folderId: folderId,
+				mimeTypes: finalMimeTypes)
 
-		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+		interactor.cacheStrategy =
+			CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 		
 		return interactor
 	}
@@ -266,22 +288,23 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 					bytesToSend: totalBytesToSend,
 					imageEntryUpload: imageUpload)
 
-			self.imageGalleryScreenletDelegate?.screenlet?(
+			self.imageGalleryDelegate?.screenlet?(
 					self, onImageUploadProgress: imageUpload,
 					totalBytesSent: totalBytesSent,
 					totalBytesToSend: totalBytesToSend)
-
 		}
 
 		interactor.onSuccess = {
-			if let result = interactor.result {
-				let imageEntry = ImageEntry(attributes: result)
-				imageEntry.image = imageUpload.thumbnail
-
-				self.imageGalleryScreenletDelegate?.screenlet?(self, onImageUploaded: imageEntry)
-				self.viewModel.onImageUploaded?(imageEntry)
-				self.startNextUploadIfExist()
+			guard let result = interactor.result else {
+				return
 			}
+
+			let imageEntry = ImageEntry(attributes: result)
+			imageEntry.image = imageUpload.thumbnail
+
+			self.imageGalleryDelegate?.screenlet?(self, onImageUploaded: imageEntry)
+			self.viewModel.onImageUploaded?(imageEntry)
+			self.startNextUploadIfExist()
 		}
 
 		interactor.onFailure = {
@@ -293,12 +316,13 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 				self.startNextUploadIfExist()
 			}
 
-			self.imageGalleryScreenletDelegate?.screenlet?(self, onImageUploadError: $0)
+			self.imageGalleryDelegate?.screenlet?(self, onImageUploadError: $0)
 		}
 
-		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+		interactor.cacheStrategy =
+			CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
-		self.imageGalleryScreenletDelegate?.screenlet?(self, onImageUploadStart: imageUpload)
+		self.imageGalleryDelegate?.screenlet?(self, onImageUploadStart: imageUpload)
 
 		return interactor
 	}
@@ -312,25 +336,16 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 	}
 
 	internal func createImageUploadDetailViewControllerFromNib() -> ImageUploadDetailViewControllerBase? {
-		let viewControllerName = "ImageUploadDetailViewController"
 
-		if let foundView = NSBundle.viewForTheme(
-				name: viewControllerName,
-				themeName: themeName ?? "default",
+		if let foundView = NSBundle.viewControllerForThemeOrDefault(
+				name: uploadDetailViewControllerName,
+				themeName: themeName ?? BaseScreenlet.DefaultThemeName,
 				currentClass: self.dynamicType) as? ImageUploadDetailViewControllerBase {
 
 			return foundView
 		}
 
-		if let foundView = NSBundle.viewForTheme(
-			name: viewControllerName,
-			themeName: "default",
-			currentClass: self.dynamicType) as? ImageUploadDetailViewControllerBase {
-
-			return foundView
-		}
-
-		print("ERROR: Xib file doesn't found for \(viewControllerName) and theme '\(themeName)'\n")
+		print("ERROR: Xib file doesn't found for \(uploadDetailViewControllerName) and theme '\(themeName)'\n")
 		
 		return nil
 	}

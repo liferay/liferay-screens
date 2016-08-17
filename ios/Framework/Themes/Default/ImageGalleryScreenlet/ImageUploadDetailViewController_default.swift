@@ -23,9 +23,10 @@ public class ImageUploadDetailViewController_default: ImageUploadDetailViewContr
 		}
 	}
 
-	public override var tTitle: String? {
+	public override var title: String? {
 		didSet {
-			titleText?.text = tTitle
+			//TODO check this title doesn't change the UIViewController's title bar
+			titleText?.text = self.title
 		}
 	}
 
@@ -97,9 +98,8 @@ public class ImageUploadDetailViewController_default: ImageUploadDetailViewContr
 	}
 
 	public func dismissKeyboard() {
-		guard let descripText = descripText, titleText = titleText
-			else {
-				return
+		guard let descripText = descripText, titleText = titleText else {
+			return
 		}
 		if descripText.isFirstResponder() {
 			descripText.resignFirstResponder()

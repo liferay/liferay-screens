@@ -13,22 +13,16 @@
 */
 import UIKit
 
-public class UploadProgressViewBase : UIView {
+public protocol UploadProgressViewBase {
 
-	public func addUpload(thumbnail: UIImage?) {
+	func addUpload(thumbnail: UIImage?)
 
-	}
+	func uploadComplete()
 
-	public func uploadComplete() {
+	func uploadError()
 
-	}
+	func setProgress(progress: Float)
 
-	public func uploadError() {
-
-	}
-
-	public func setProgress(progress: Float) {
-
-	}
+	var cancelClosure: (Void -> Void)? { get set }
 
 }

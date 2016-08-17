@@ -79,7 +79,7 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
 	public func showUploadProgressView() {
 		uploadView = NSBundle.viewForTheme(
 			name: "UploadProgressView",
-			themeName: "default",
+			themeName: BaseScreenlet.DefaultThemeName,
 			currentClass: self.dynamicType) as? UploadProgressView_default
 
 		uploadView?.translatesAutoresizingMaskIntoConstraints = false
@@ -104,7 +104,7 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
 		addConstraints(constraintH)
 		addConstraints(constraintV)
 
-		UIView.animateWithDuration(0.5){
+		UIView.animateWithDuration(0.5) {
 			self.uploadView?.alpha = 1
 		}
 

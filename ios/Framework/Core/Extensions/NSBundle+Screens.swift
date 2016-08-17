@@ -44,6 +44,8 @@ extension NSBundle {
 		}
 	}
 
+	//MARK: bundlesForX methods
+
 	public class func bundlesForDefaultTheme() -> [NSBundle] {
 		return [bundleForName("LiferayScreens-default"), bundleForName("LiferayScreens-ee-default")]
 	}
@@ -90,6 +92,8 @@ extension NSBundle {
 	}
 
 
+	//MARK: xInBundles methods
+
 	public class func imageInBundles(name name: String, currentClass: AnyClass) -> UIImage? {
 		for bundle in allBundles(currentClass) {
 			if let path = bundle.pathForResource(name, ofType: "png") {
@@ -101,32 +105,113 @@ extension NSBundle {
 	}
     
     public class func nibInBundles(name name: String, currentClass: AnyClass) -> UINib? {
-        
         return resourceInBundle(
-            name: name,
-            ofType: "nib",
-            currentClass: currentClass) { _, bundle in
-                return UINib(nibName: name, bundle: bundle)
+            	name: name,
+            	ofType: "nib",
+            	currentClass: currentClass) { _, bundle in
+			return UINib(nibName: name, bundle: bundle)
         }
     }
 
-	public class func viewForTheme(name name: String, themeName: String, currentClass: AnyClass) -> AnyObject? {
+
+	//MARK: xforTheme methods
+
+	public class func viewControllerForThemeOrDefault(
+			name name: String,
+			themeName: String,
+			currentClass: AnyClass) -> UIViewController? {
+
+		return rootNibObjectForThemeOrDefault(
+			name: name,
+			themeName: themeName,
+			currentClass: currentClass) as? UIViewController
+	}
+
+	public class func viewForThemeOrDefault(
+			name name: String,
+			themeName: String,
+			currentClass: AnyClass) -> UIView? {
+
+		return rootNibObjectForThemeOrDefault(
+			name: name,
+			themeName: themeName,
+			currentClass: currentClass) as? UIView
+	}
+
+	public class func viewControllerForTheme(
+			name name: String,
+			themeName: String,
+			currentClass: AnyClass) -> UIViewController? {
+
+		return rootNibObjectForTheme(
+			name: name,
+			themeName: themeName,
+			currentClass: currentClass) as? UIViewController
+	}
+
+	public class func viewForTheme(
+			name name: String,
+			themeName: String,
+			currentClass: AnyClass) -> UIView? {
+
+		return rootNibObjectForTheme(
+			name: name,
+			themeName: themeName,
+			currentClass: currentClass) as? UIView
+	}
+
+	public class func rootNibObjectForThemeOrDefault(
+			name name: String,
+			themeName: String,
+			currentClass: AnyClass) -> AnyObject? {
+
+		if let foundObject = NSBundle.rootNibObjectForTheme(
+				name: name,
+				themeName: themeName,
+				currentClass: currentClass) {
+
+			return foundObject
+		}
+
+		if themeName == BaseScreenlet.DefaultThemeName {
+			return nil
+		}
+
+		if let foundObject = NSBundle.rootNibObjectForTheme(
+				name: name,
+				themeName: BaseScreenlet.DefaultThemeName,
+				currentClass: currentClass) {
+
+			return foundObject
+		}
+
+		return nil
+	}
+
+	public class func rootNibObjectForTheme(
+			name name: String,
+			themeName: String,
+			currentClass: AnyClass) -> AnyObject? {
+
 		let nibName = "\(name)_\(themeName)"
 		return resourceInBundle(
 				name: nibName,
 				ofType: "nib",
-				currentClass: currentClass) {_  , bundle in
+				currentClass: currentClass) {_, bundle in
 
-				let views = bundle.loadNibNamed(nibName, owner: currentClass, options: nil)
-				assert(views.count > 0, "Malformed xib \(nibName). Without views")
+			let objects = bundle.loadNibNamed(nibName, owner: currentClass, options: nil)
+			assert(objects.count > 0, "Malformed xib \(nibName). Without objects")
 
-			return views[0]
+			return objects[0]
 		}
 	}
     
-    public class func resourceInBundle<T>(name name: String, ofType type: String, currentClass: AnyClass,
-                                       @noescape resourceInit: (String , NSBundle) -> T?) -> T? {
-        
+    public class func resourceInBundle<T>(
+			name name: String,
+			ofType type: String,
+			currentClass: AnyClass,
+			@noescape resourceInit: (String , NSBundle) -> T?) -> T? {
+
         for bundle in allBundles(currentClass) {
             if let path = bundle.pathForResource(name, ofType: type) {
                 return resourceInit(path, bundle)
