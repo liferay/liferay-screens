@@ -9,7 +9,10 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
+import com.liferay.mobile.screens.cache.DefaultCachedType;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.cache.sql.CacheSQL;
+import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.PicassoScreens;
@@ -27,6 +30,7 @@ import com.liferay.mobile.screens.gallery.view.GalleryViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DetailImageActivity;
 import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DetailUploadDefaultActivity;
+import java.io.IOException;
 import java.util.Locale;
 
 /**
@@ -132,6 +136,12 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	public void deleteEntry(long fileEntryId) {
 		performUserAction(DELETE_IMAGE, fileEntryId);
+	}
+
+	public void deleteCaches() throws IOException {
+		LiferayServerContext.getOkHttpClient().getCache().evictAll();
+		CacheSQL.getInstance().clear(DefaultCachedType.IMAGE_LIST);
+		CacheSQL.getInstance().clear(DefaultCachedType.IMAGE_LIST_COUNT);
 	}
 
 	public void openCamera() {
