@@ -9,11 +9,8 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.rating.interactor.delete.RatingDeleteInteractor;
 import com.liferay.mobile.screens.rating.interactor.delete.RatingDeleteInteractorImpl;
-import com.liferay.mobile.screens.rating.interactor.load.RatingLoadInteractor;
 import com.liferay.mobile.screens.rating.interactor.load.RatingLoadInteractorImpl;
-import com.liferay.mobile.screens.rating.interactor.update.RatingUpdateInteractor;
 import com.liferay.mobile.screens.rating.interactor.update.RatingUpdateInteractorImpl;
 import com.liferay.mobile.screens.rating.view.RatingViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -85,11 +82,11 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 	protected Interactor createInteractor(String actionName) {
 		switch (actionName) {
 			case LOAD_RATINGS_ACTION:
-				return new RatingLoadInteractorImpl(getScreenletId());
+				return new RatingLoadInteractorImpl();
 			case DELETE_RATING_ACTION:
-				return new RatingDeleteInteractorImpl(getScreenletId());
+				return new RatingDeleteInteractorImpl();
 			case UPDATE_RATING_ACTION:
-				return new RatingUpdateInteractorImpl(getScreenletId());
+				return new RatingUpdateInteractorImpl();
 			default:
 				return null;
 		}
@@ -100,14 +97,14 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 		try {
 			switch (userActionName) {
 				case LOAD_RATINGS_ACTION:
-					((RatingLoadInteractor) interactor).loadRatings(entryId, classPK, className, ratingsGroupCount);
+					((RatingLoadInteractorImpl) interactor).start(entryId, classPK, className, ratingsGroupCount);
 					break;
 				case UPDATE_RATING_ACTION:
 					double score = (double) args[0];
-					((RatingUpdateInteractor) interactor).updateRating(classPK, className, score, ratingsGroupCount);
+					((RatingUpdateInteractorImpl) interactor).start(classPK, className, score, ratingsGroupCount);
 					break;
 				case DELETE_RATING_ACTION:
-					((RatingDeleteInteractor) interactor).deleteRating(classPK, className, ratingsGroupCount);
+					((RatingDeleteInteractorImpl) interactor).start(classPK, className, ratingsGroupCount);
 					break;
 				default:
 					break;
