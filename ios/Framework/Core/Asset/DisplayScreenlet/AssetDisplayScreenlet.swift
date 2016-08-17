@@ -25,6 +25,8 @@ import UIKit
 	optional func screenlet(screenlet: AssetDisplayScreenlet,
 	                        onConfigureScreenlet childScreenlet: BaseScreenlet?,
 							onAsset asset: Asset)
+
+	optional func screenlet(screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView?
 }
 
 @IBDesignable public class AssetDisplayScreenlet: BaseScreenlet {
