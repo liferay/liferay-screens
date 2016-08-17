@@ -72,8 +72,8 @@ public class DDLFormUpdateRecordInteractorImpl
 	}
 
 	@Override
-	public void onFailure(Exception e) {
-		getListener().error(e, DDLFormScreenlet.UPDATE_RECORD_ACTION);
+	public void onFailure(DDLFormUpdateRecordEvent event) {
+		getListener().error(event.getException(), DDLFormScreenlet.UPDATE_RECORD_ACTION);
 	}
 
 	protected void validate(long groupId, Record record) {

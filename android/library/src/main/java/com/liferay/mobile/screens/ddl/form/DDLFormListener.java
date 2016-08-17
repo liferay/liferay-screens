@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.ddl.form;
 
 import com.liferay.mobile.screens.base.thread.listener.OfflineListenerNew;
+import com.liferay.mobile.screens.ddl.form.interactor.add.DDLFormAddRecordInteractorImpl;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
 import java.util.Map;
@@ -30,6 +31,7 @@ public interface DDLFormListener extends OfflineListenerNew {
 	void onDDLFormRecordLoaded(Record record, Map<String, Object> valuesAndAttributes);
 
 	void onDDLFormRecordAdded(Record record);
+
 
 	void onDDLFormRecordUpdated(Record record);
 
