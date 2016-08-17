@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.rating.interactor.update;
 
-import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.rating.interactor.BaseRatingInteractorImpl;
+import com.liferay.mobile.screens.rating.interactor.RatingEvent;
 import com.liferay.mobile.screens.service.v70.ScreensratingsentryService;
 import java.security.InvalidParameterException;
 import org.json.JSONObject;
@@ -12,7 +12,7 @@ import org.json.JSONObject;
 public class RatingUpdateInteractorImpl extends BaseRatingInteractorImpl {
 
 	@Override
-	public BasicThreadEvent execute(Object... args) throws Exception {
+	public RatingEvent execute(Object... args) throws Exception {
 
 		long classPK = (long) args[0];
 		String className = (String) args[1];
@@ -23,7 +23,7 @@ public class RatingUpdateInteractorImpl extends BaseRatingInteractorImpl {
 
 		ScreensratingsentryService service = getScreensratingsentryService();
 		JSONObject jsonObject = service.updateRatingsEntry(classPK, className, score, ratingGroupCounts);
-		return new BasicThreadEvent(jsonObject);
+		return new RatingEvent(classPK, className, jsonObject);
 	}
 
 	protected void validate(double score) throws InvalidParameterException {

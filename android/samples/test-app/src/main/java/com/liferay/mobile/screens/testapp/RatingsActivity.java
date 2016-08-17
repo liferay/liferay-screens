@@ -77,7 +77,22 @@ public class RatingsActivity extends ThemeActivity
 	}
 
 	@Override
-	public void onRatingOperationFailure(Exception exception) {
+	public void loadingFromCache(boolean success) {
+
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+
+	}
+
+	@Override
+	public void error(Exception exception, String userAction) {
 		error("There was an error loading screenlet", exception);
 	}
 

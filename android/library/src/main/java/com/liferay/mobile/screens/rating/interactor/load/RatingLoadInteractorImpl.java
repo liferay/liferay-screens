@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.rating.interactor.load;
 
-import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.rating.interactor.BaseRatingInteractorImpl;
+import com.liferay.mobile.screens.rating.interactor.RatingEvent;
 import com.liferay.mobile.screens.service.v70.ScreensratingsentryService;
 import org.json.JSONObject;
 
@@ -11,7 +11,7 @@ import org.json.JSONObject;
 public class RatingLoadInteractorImpl extends BaseRatingInteractorImpl {
 
 	@Override
-	public BasicThreadEvent execute(Object... args) throws Exception {
+	public RatingEvent execute(Object... args) throws Exception {
 
 		long entryId = (long) args[0];
 		long classPK = (long) args[1];
@@ -21,7 +21,7 @@ public class RatingLoadInteractorImpl extends BaseRatingInteractorImpl {
 		validate(entryId, className, classPK);
 
 		JSONObject jsonObject = getRatingsEntries(entryId, classPK, className, ratingGroupCounts);
-		return new BasicThreadEvent(jsonObject);
+		return entryId == 0 ? new RatingEvent(classPK, className, jsonObject) : new RatingEvent(entryId, jsonObject);
 	}
 
 	private JSONObject getRatingsEntries(long entryId, long classPK, String className, int ratingGroupCounts)

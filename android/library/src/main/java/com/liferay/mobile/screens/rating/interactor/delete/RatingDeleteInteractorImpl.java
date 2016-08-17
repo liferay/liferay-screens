@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.rating.interactor.delete;
 
-import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.rating.interactor.BaseRatingInteractorImpl;
+import com.liferay.mobile.screens.rating.interactor.RatingEvent;
 import org.json.JSONObject;
 
 /**
@@ -10,15 +10,15 @@ import org.json.JSONObject;
 public class RatingDeleteInteractorImpl extends BaseRatingInteractorImpl {
 
 	@Override
-	public BasicThreadEvent execute(Object... args) throws Exception {
+	public RatingEvent execute(Object... args) throws Exception {
 
-		long classPK = (long) args[0];
-		String className = (String) args[1];
+		final long classPK = (long) args[0];
+		final String className = (String) args[1];
 		int ratingGroupCounts = (int) args[2];
 
 		JSONObject jsonObject =
 			getScreensratingsentryService().deleteRatingsEntry(classPK, className, ratingGroupCounts);
 
-		return new BasicThreadEvent(jsonObject);
+		return new RatingEvent(classPK, className, jsonObject);
 	}
 }
