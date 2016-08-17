@@ -7,6 +7,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:orientation="vertical"
+	android:layout_margin="10dp"
 	>
 
 	<com.liferay.mobile.screens.util.SquareRelativeLayout
@@ -55,7 +56,7 @@
 			/>
 
 	</android.support.design.widget.TextInputLayout>
-	
+
 	<LinearLayout
 		android:gravity="end"
 		android:orientation="horizontal"

@@ -18,6 +18,6 @@
 			android:theme="@style/gallery_theme"/>
 		<activity
 			android:name=".viewsets.defaultviews.gallery.DetailUploadDefaultActivity"
-			android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+			android:theme="@style/detail_upload_theme"/>
 	</application>
 </manifest>
