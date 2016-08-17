@@ -127,6 +127,19 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
 		uploadView?.uploadError()
 	}
 
+	public func indexFor(imageEntry imageEntry: ImageEntry) -> NSNumber? {
+
+		var index: Int? = nil
+
+		for (_, sectionEntries) in rows {
+			if let idx = sectionEntries.indexOf({$0 as! ImageEntry == imageEntry}) {
+				index = idx
+				break
+			}
+		}
+
+		return index
+	}
 
 	// MARK: BaseScreenletView
 

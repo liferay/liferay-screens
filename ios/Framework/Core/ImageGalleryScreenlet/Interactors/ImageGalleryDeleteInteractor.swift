@@ -16,13 +16,35 @@ import Foundation
 public class ImageGalleryDeleteInteractor: ServerWriteConnectorInteractor {
 
 	let imageEntryId: Int64
+	let repositoryId: Int64
+	let folderId: Int64
+	let page: Int
 
-	init(screenlet: BaseScreenlet?, imageEntryId: Int64) {
+	public init(
+			screenlet: BaseScreenlet?,
+			imageEntryId: Int64,
+			repositoryId: Int64,
+			folderId: Int64,
+			page: Int) {
+
 		self.imageEntryId = imageEntryId
+		self.page = page
+		self.repositoryId = repositoryId
+		self.folderId = folderId
+
 		super.init(screenlet: screenlet)
 	}
 
 	public override func createConnector() -> ServerConnector? {
 		return LiferayServerContext.connectorFactory.createImageGalleryDeleteConnector(imageEntryId)
+	}
+
+	public override func writeToCache(c: ServerConnector) {
+		let cacheKey = "\(ImageGalleryLoadInteractor.CacheKey)-\(repositoryId)-\(folderId)"
+
+		SessionContext.currentContext?.cacheManager.remove(
+			collection: ScreenletName(ImageGalleryScreenlet),
+			key: "\(cacheKey)-\(page)")
+		
 	}
 }

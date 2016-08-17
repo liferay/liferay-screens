@@ -142,11 +142,13 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 	}
 
 	public func deleteImageEntry(imageEntry: ImageEntry) {
-		if offlinePolicy == CacheStrategyType.RemoteOnly.rawValue {
+		if offlinePolicy == CacheStrategyType.RemoteOnly.rawValue ||
+				offlinePolicy == CacheStrategyType.RemoteFirst.rawValue {
+
 			performAction(name: ImageGalleryScreenlet.DeleteImageAction, sender: imageEntry)
 		}
 		else {
-			print("Error, delete only works on RemoteOnly mode")
+			print("Error, delete only works on RemoteOnly or RemoteFirst mode")
 		}
 	}
 	
@@ -229,24 +231,39 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 	// MARK: Private methods
 
 	internal func createImageGalleryDeleteInteractor(
-			imageEntry: ImageEntry) -> ImageGalleryDeleteInteractor {
+			imageEntry: ImageEntry) -> ImageGalleryDeleteInteractor? {
 
-		let interactor = ImageGalleryDeleteInteractor(
+		let index = viewModel.indexFor?(imageEntry: imageEntry)
+
+		if let index = index {
+
+			let page = pageFromRow(index.integerValue)
+
+			let interactor = ImageGalleryDeleteInteractor(
 				screenlet: self,
-				imageEntryId: imageEntry.imageEntryId)
+				imageEntryId: imageEntry.imageEntryId,
+				repositoryId: repositoryId,
+				folderId: folderId,
+				page: page)
 
-		interactor.onSuccess = {
-			self.imageGalleryDelegate?.screenlet?(self, onImageEntryDeleted: imageEntry)
-			self.viewModel.onImageEntryDeleted?(imageEntry)
+			interactor.onSuccess = {
+				self.imageGalleryDelegate?.screenlet?(self, onImageEntryDeleted: imageEntry)
+				self.viewModel.onImageEntryDeleted?(imageEntry)
+			}
+
+			interactor.onFailure = {
+				self.imageGalleryDelegate?.screenlet?(self, onImageEntryDeleteError: $0)
+			}
+
+			interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+
+			return interactor
 		}
+		else {
+			print("ERROR Image entry does not exist")
 
-		interactor.onFailure = {
-			self.imageGalleryDelegate?.screenlet?(self, onImageEntryDeleteError: $0)
+			return nil
 		}
-
-		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
-		
-		return interactor
 	}
 
 	public override func createPageLoadInteractor(

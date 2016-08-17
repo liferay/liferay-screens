@@ -29,5 +29,7 @@ import Foundation
 			imageEntryUpload: ImageEntryUpload)
 
 	optional func onImageUploadError(imageEntryUpload: ImageEntryUpload, error: NSError)
+
+	optional func indexFor(imageEntry imageEntry: ImageEntry) -> NSNumber?
 			
 }
