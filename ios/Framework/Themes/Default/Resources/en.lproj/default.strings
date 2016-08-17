@@ -54,6 +54,7 @@
 "default-comment-display-dismiss"="Dismiss";
 "default-comment-display-cancel"="Cancel";
 "default-comment-display-confirm"="Confirm";
+"default-comment-display-type"="Type your comment...";
 
 "default-time-ago-seconds" = "%d seconds ago";
 "default-time-ago-minute" = "A minute ago";

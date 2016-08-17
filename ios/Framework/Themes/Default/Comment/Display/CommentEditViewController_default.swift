@@ -15,13 +15,15 @@ import UIKit
 
 private let xibName = "CommentEditViewController_default"
 
-public class CommentEditViewController_default: UIViewController {
+public class CommentEditViewController_default: UIViewController, UITextViewDelegate {
 
 	@IBOutlet public var bodyTextView: UITextView?
 	@IBOutlet public var confirmButton: UIButton?
 	@IBOutlet public var cancelButton: UIButton?
 
 	public var updatedBodyClosure: (String? -> Void)?
+
+	private var placeholderLabel : UILabel!
 
 	private var initialBody: String?
 
@@ -45,6 +47,10 @@ public class CommentEditViewController_default: UIViewController {
 		super.init(coder: aDecoder)
 	}
 
+	public func textViewDidChange(textView: UITextView) {
+		placeholderLabel.hidden = !textView.text.isEmpty
+	}
+
 	public override func viewDidLoad() {
 		confirmButton?.replaceAttributedTitle(
 			LocalizedString("default", key: "comment-display-confirm", obj: self),
@@ -53,7 +59,23 @@ public class CommentEditViewController_default: UIViewController {
 			LocalizedString("default", key: "comment-display-cancel", obj: self),
 			forState: .Normal)
 
-		bodyTextView?.text = initialBody
+		if let textView = bodyTextView {
+			textView.text = initialBody
+			textView.delegate = self
+
+			//Add an UILabel as the placeholder of the UITextView
+			placeholderLabel = UILabel()
+			placeholderLabel.text = LocalizedString(
+				"default", key: "comment-display-type", obj: self)
+			placeholderLabel.font = UIFont.italicSystemFontOfSize(textView.font!.pointSize)
+			placeholderLabel.sizeToFit()
+			textView.addSubview(placeholderLabel)
+			placeholderLabel.frame.origin = CGPointMake(5, textView.font!.pointSize / 2)
+			placeholderLabel.textColor = UIColor(white: 0, alpha: 0.3)
+			placeholderLabel.hidden = !textView.text.isEmpty
+
+			bodyTextView?.becomeFirstResponder()
+		}
 	}
 
 	@IBAction public func cancelButtonAction() {
