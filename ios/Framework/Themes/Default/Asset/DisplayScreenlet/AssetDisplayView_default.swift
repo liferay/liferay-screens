@@ -24,7 +24,7 @@ public class AssetDisplayView_default: BaseScreenletView, AssetDisplayViewModel 
 
 	public var asset: Asset?
 
-	public var innerScreenlet: BaseScreenlet? {
+	public var innerScreenlet: UIView? {
 		set {
 			if let oldScreenlet = _innerScreenlet {
 				oldScreenlet.removeFromSuperview()
@@ -42,5 +42,5 @@ public class AssetDisplayView_default: BaseScreenletView, AssetDisplayViewModel 
 		}
 	}
 
-	private var _innerScreenlet: BaseScreenlet?
+	private var _innerScreenlet: UIView?
 }

@@ -93,7 +93,7 @@ import UIKit
 		return self.performDefaultAction()
 	}
 
-	public func createInnerScreenlet(asset: Asset) -> BaseScreenlet? {
+	public func createInnerScreenlet(asset: Asset) -> UIView? {
 		guard let view = screenletView else {
 			return nil
 		}
@@ -103,7 +103,7 @@ import UIKit
 		let factory = AssetDisplayFactory()
 
 		guard let innerScreenlet = factory.createScreenlet(frame, asset: asset) else {
-			return nil
+			return assetDisplayDelegate?.screenlet?(self, onAsset: asset)
 		}
 
 		configureInnerScreenlet(innerScreenlet, asset: asset)

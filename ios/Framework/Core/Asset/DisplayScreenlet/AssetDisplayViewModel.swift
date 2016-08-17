@@ -17,6 +17,6 @@ import UIKit
 @objc public protocol AssetDisplayViewModel {
 	
 	var asset: Asset? {get set}
-	var innerScreenlet: BaseScreenlet? {get set}
+	var innerScreenlet: UIView? {get set}
 
 }
