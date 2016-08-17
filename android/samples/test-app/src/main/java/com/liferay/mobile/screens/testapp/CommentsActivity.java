@@ -94,7 +94,7 @@ public class CommentsActivity extends ThemeActivity
 	}
 
 	@Override
-	public void onAddCommentFailure(String body, Exception e) {
+	public void onAddCommentFailure(Exception e) {
 		error("Error adding comment", e);
 	}
 
