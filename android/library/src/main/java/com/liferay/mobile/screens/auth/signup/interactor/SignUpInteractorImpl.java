@@ -20,7 +20,6 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.auth.signup.SignUpListener;
-import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
 import com.liferay.mobile.screens.base.thread.BaseRemoteInteractorNew;
 import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
@@ -55,7 +54,6 @@ public class SignUpInteractorImpl extends BaseRemoteInteractorNew<SignUpListener
 		Authentication authentication = new BasicAuthentication(anonymousApiUserName, anonymousApiPassword);
 
 		Session anonymousSession = new SessionImpl(LiferayServerContext.getServer(), authentication);
-		anonymousSession.setCallback(new JSONObjectCallback(getTargetScreenletId()));
 		UserConnector userConnector = ServiceProvider.getInstance().getUserConnector(anonymousSession);
 
 		JSONObject jsonObject =
