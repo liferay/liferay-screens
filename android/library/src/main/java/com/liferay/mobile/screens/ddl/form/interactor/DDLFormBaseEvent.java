@@ -14,25 +14,23 @@
 
 package com.liferay.mobile.screens.ddl.form.interactor;
 
-import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
+import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
 import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.userportrait.interactor.upload.RemoteWrite;
-
 import org.json.JSONObject;
 
 /**
  * @author Silvio Santos
  */
-public class DDLFormBaseEvent extends JSONObjectEvent implements RemoteWrite {
+public abstract class DDLFormBaseEvent extends OfflineEventNew {
 
-	public DDLFormBaseEvent(int targetScreenletId, Record record, Exception e) {
-		super(targetScreenletId, e);
+	public DDLFormBaseEvent(Record record, Exception e) {
+		super(e);
 
 		_record = record;
 	}
 
-	public DDLFormBaseEvent(int targetScreenletId, Record record, JSONObject jsonObject) {
-		super(targetScreenletId, jsonObject);
+	public DDLFormBaseEvent(Record record, JSONObject jsonObject) {
+		super(jsonObject);
 
 		_record = record;
 	}
@@ -41,16 +39,5 @@ public class DDLFormBaseEvent extends JSONObjectEvent implements RemoteWrite {
 		return _record;
 	}
 
-	@Override
-	public boolean isCacheRequest() {
-		return _cacheRequest;
-	}
-
-	public void setCacheRequest(boolean cacheRequest) {
-		_cacheRequest = cacheRequest;
-	}
-
-	private boolean _cacheRequest;
 	private final Record _record;
-
 }
