@@ -1191,7 +1191,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="7Cs-KB-hzY" secondAttribute="trailing" constant="-20" id="zRx-fY-4Ni"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="LCk-yg-4gq"/>
+                    <navigationItem key="navigationItem" id="LCk-yg-4gq">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="mBW-cM-Sfu">
+                            <connections>
+                                <action selector="insertButtonPressed:" destination="My4-vf-44F" id="PPh-Aq-7F2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="listScreenlet" destination="7Cs-KB-hzY" id="9de-SP-F0i"/>
                     </connections>

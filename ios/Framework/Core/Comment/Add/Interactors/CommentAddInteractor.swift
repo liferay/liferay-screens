@@ -22,7 +22,8 @@ public class CommentAddInteractor: ServerWriteConnectorInteractor {
 
 	public var resultComment: Comment?
 
-	init(screenlet: BaseScreenlet, groupId: Int64, className: String, classPK: Int64, body: String?) {
+	public init(screenlet: BaseScreenlet?,
+	    	groupId: Int64, className: String, classPK: Int64, body: String?) {
 		self.groupId = (groupId != 0) ? groupId : LiferayServerContext.groupId
 		self.className = className
 		self.classPK = classPK

@@ -28,8 +28,36 @@ class CommentListScreenletViewController: UIViewController,
 		self.listScreenlet?.loadList()
 	}
 
+	var editViewController: CommentEditViewController_default?
+
+	@IBAction func insertButtonPressed(sender: AnyObject) {
+		editViewController = CommentEditViewController_default(body: "")
+		editViewController!.confirmBodyClosure = addComment
+		presentViewController(editViewController!, animated: true, completion: {})
 	}
 
+	private func addComment(body: String?) {
+		editViewController?.dismissViewControllerAnimated(true, completion: nil)
+		if let newCommentBody = body, screenlet = listScreenlet {
+			let interactor = CommentAddInteractor(
+				screenlet: nil,
+				groupId: screenlet.groupId,
+				className: screenlet.className,
+				classPK: screenlet.classPK,
+				body: newCommentBody)
+
+			interactor.onSuccess = {
+				if let comment = interactor.resultComment {
+					screenlet.addComment(comment)
+				}
+			}
+
+			interactor.onFailure = {
+				print("ERROR: adding comment \($0)")
+			}
+
+			interactor.start()
+		}
 	}
 
 	//MARK: CommentListScreenletDelegate

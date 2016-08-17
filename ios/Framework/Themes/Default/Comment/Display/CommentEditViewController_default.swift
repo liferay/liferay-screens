@@ -59,7 +59,7 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 			LocalizedString("default", key: "comment-display-cancel", obj: self),
 			forState: .Normal)
 
-		if let textView = bodyTextView {
+		if let textView = bodyTextView, font = textView.font {
 			textView.text = initialBody
 			textView.delegate = self
 
@@ -67,25 +67,18 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 			placeholderLabel = UILabel()
 			placeholderLabel.text = LocalizedString(
 				"default", key: "comment-display-type", obj: self)
-			placeholderLabel.font = UIFont.italicSystemFontOfSize(textView.font!.pointSize)
+			placeholderLabel.font = UIFont.italicSystemFontOfSize(font.pointSize)
 			placeholderLabel.sizeToFit()
-			textView.addSubview(placeholderLabel)
-			placeholderLabel.frame.origin = CGPointMake(5, textView.font!.pointSize / 2)
+			placeholderLabel.frame.origin = CGPointMake(5, font.pointSize / 2)
 			placeholderLabel.textColor = UIColor(white: 0, alpha: 0.3)
 			placeholderLabel.hidden = !textView.text.isEmpty
+			textView.addSubview(placeholderLabel)
 
 			bodyTextView?.becomeFirstResponder()
 		}
 	}
 
 	@IBAction public func cancelButtonAction() {
-<<<<<<< HEAD
-		updatedBodyClosure?(nil)
-	}
-
-	@IBAction public func confirmButtonAction() {
-		updatedBodyClosure?(bodyTextView?.text)
-=======
 		bodyTextView?.resignFirstResponder()
 		confirmBodyClosure?(nil)
 	}
@@ -93,7 +86,6 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 	@IBAction public func confirmButtonAction() {
 		bodyTextView?.resignFirstResponder()
 		confirmBodyClosure?(bodyTextView?.text)
->>>>>>> eab8708... LSR-859 change closure name in edit view controller
 	}
 	
 }
