@@ -23,6 +23,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 	protected long groupId;
 	protected long userId;
 	protected Locale locale;
+	protected OfflinePolicy _offlinePolicy;
 
 	public void start(final Object... args) {
 		new Thread(new Runnable() {
@@ -113,12 +114,16 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 		getListener().retrievingOnline(triedOffline, e);
 
 		E newEvent = execute(args);
+		decorateEvent(newEvent);
+		EventBusUtil.post(newEvent);
+	}
+
+	protected void decorateEvent(E newEvent) {
 		newEvent.setTargetScreenletId(getTargetScreenletId());
 		newEvent.setCachedRequest(false);
 		newEvent.setGroupId(groupId);
 		newEvent.setLocale(locale);
 		newEvent.setUserId(userId);
-		EventBusUtil.post(newEvent);
 	}
 
 	@Override
@@ -159,11 +164,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 
 		E event = createEventFromArgs(args);
 
-		event.setTargetScreenletId(getTargetScreenletId());
-		event.setCachedRequest(false);
-		event.setGroupId(groupId);
-		event.setLocale(locale);
-		event.setUserId(userId);
+		decorateEvent(event);
 
 		return cachedById(getFullId(event), (Class<E>) event.getClass());
 	}
@@ -185,8 +186,6 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 	protected OfflinePolicy getOfflinePolicy() {
 		return _offlinePolicy;
 	}
-
-	private OfflinePolicy _offlinePolicy;
 
 	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
 		_offlinePolicy = offlinePolicy;
