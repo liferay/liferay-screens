@@ -4,22 +4,21 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
-
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
+import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.webcontent.WebContent;
-import com.liferay.mobile.screens.webcontent.list.interactor.WebContentListInteractor;
+import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayBaseInteractorImpl;
 import com.liferay.mobile.screens.webcontent.list.interactor.WebContentListInteractorImpl;
 import com.liferay.mobile.screens.webcontent.list.interactor.WebContentListInteractorListener;
-
 import java.util.Locale;
 
 /**
  * @author Javier Gamarra
  */
-public class WebContentListScreenlet extends BaseListScreenlet<WebContent, WebContentListInteractor>
+public class WebContentListScreenlet extends BaseListScreenlet<WebContent, WebContentListInteractorImpl>
 	implements WebContentListInteractorListener {
 
 	public WebContentListScreenlet(Context context) {
@@ -59,6 +58,11 @@ public class WebContentListScreenlet extends BaseListScreenlet<WebContent, WebCo
 		}
 	}
 
+	@Override
+	public void error(Exception e, String userAction) {
+
+	}
+
 	public OfflinePolicy getOfflinePolicy() {
 		return _offlinePolicy;
 	}
@@ -93,34 +97,33 @@ public class WebContentListScreenlet extends BaseListScreenlet<WebContent, WebCo
 	}
 
 	@Override
-	protected void loadRows(WebContentListInteractor interactor, int startRow, int endRow, Locale locale,
+	protected void loadRows(WebContentListInteractorImpl interactor, int startRow, int endRow, Locale locale,
 		String obcClassName) throws Exception {
 
-		interactor.load(_groupId, _folderId, startRow, endRow, locale, obcClassName);
+		Query query = new Query(startRow, endRow, obcClassName);
+
+		interactor.start(query, _folderId);
 	}
 
 	@Override
-	protected WebContentListInteractor createInteractor(String actionName) {
-		return new WebContentListInteractorImpl(getScreenletId(), _offlinePolicy);
+	protected WebContentListInteractorImpl createInteractor(String actionName) {
+		return new WebContentListInteractorImpl();
 	}
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-			attributes, R.styleable.WebContentListScreenlet, 0, 0);
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.WebContentListScreenlet, 0, 0);
 
-		Integer offlinePolicy = typedArray.getInteger(
-			R.styleable.WebContentListScreenlet_offlinePolicy,
+		Integer offlinePolicy = typedArray.getInteger(R.styleable.WebContentListScreenlet_offlinePolicy,
 			OfflinePolicy.REMOTE_ONLY.ordinal());
 		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 
-		_folderId = castToLongOrUseDefault(typedArray.getString(
-			R.styleable.WebContentListScreenlet_folderId), 0);
+		_folderId = castToLongOrUseDefault(typedArray.getString(R.styleable.WebContentListScreenlet_folderId), 0);
 
 		long groupId = LiferayServerContext.getGroupId();
 
-		_groupId = castToLongOrUseDefault(typedArray.getString(
-			R.styleable.WebContentListScreenlet_groupId), groupId);
+		_groupId = castToLongOrUseDefault(typedArray.getString(R.styleable.WebContentListScreenlet_groupId), groupId);
 
 		typedArray.recycle();
 
