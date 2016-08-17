@@ -225,7 +225,11 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	@Override
 	public void onPictureUploadFailure(Exception e) {
-		getListener().onImageUploadFailure(e);
+		if(getListener() != null) {
+			getListener().onImageUploadFailure(e);
+		}
+
+		getViewModel().imageUploadError(e);
 	}
 
 	@Override
