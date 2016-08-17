@@ -4,7 +4,6 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.asset.list.interactor.AssetFactory;
-import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
 import com.liferay.mobile.screens.base.thread.BaseRemoteInteractorNew;
 import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -25,7 +24,6 @@ public class AssetDisplayInteractorImpl extends BaseRemoteInteractorNew<AssetDis
 		long entryId = (long) args[0];
 
 		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
 		ScreensassetentryService service = new ScreensassetentryService(session);
 		JSONObject jsonObject = service.getAssetEntry(entryId, Locale.getDefault().getLanguage());
 		return new BasicThreadEvent(jsonObject);
