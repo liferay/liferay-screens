@@ -13,6 +13,7 @@ import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitUriBuilder;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -26,15 +27,18 @@ import org.json.JSONObject;
  * @author Javier Gamarra
  */
 public class UserPortraitUploadInteractorImpl
-	extends BaseCachedWriteRemoteInteractor<UserPortraitInteractorListener, UserPortraitUploadEvent>
-	implements UserPortraitUploadInteractor {
+	extends BaseCachedWriteRemoteInteractor<UserPortraitInteractorListener, UserPortraitUploadEvent> {
 
 	public UserPortraitUploadInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
 		super(targetScreenletId, offlinePolicy);
 	}
 
-	public void upload(final Long userId, final String picturePath) throws Exception {
-		storeWithCache(userId, picturePath, false);
+	public void upload(final Long userId, final String picturePath) {
+		try {
+			storeWithCache(userId, picturePath, false);
+		} catch (Exception e) {
+			getListener().error(e, UserPortraitScreenlet.UPLOAD_PORTRAIT);
+		}
 	}
 
 	public void onEventMainThread(UserPortraitUploadEvent event) {
@@ -47,7 +51,7 @@ public class UserPortraitUploadInteractorImpl
 			try {
 				storeToCacheAndLaunchEvent(event, event.getUserId(), event.getPicturePath());
 			} catch (Exception e) {
-				getListener().onUserPortraitUploadFailure(event.getException());
+				getListener().error(event.getException(), UserPortraitScreenlet.UPLOAD_PORTRAIT);
 			}
 		} else {
 			if (!event.isCacheRequest()) {
@@ -73,7 +77,7 @@ public class UserPortraitUploadInteractorImpl
 					getListener().onUserPortraitUploaded(oldLoggedUser.getId());
 				}
 			} catch (Exception e) {
-				getListener().onUserPortraitUploadFailure(e);
+				getListener().error(e, UserPortraitScreenlet.UPLOAD_PORTRAIT);
 			}
 		}
 	}
