@@ -14,7 +14,7 @@ import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorI
 import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorListener;
 import com.liferay.mobile.screens.comment.list.view.CommentListViewModel;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.models.CommentEntry;
+import com.liferay.mobile.screens.comment.CommentEntry;
 import java.util.Locale;
 
 /**

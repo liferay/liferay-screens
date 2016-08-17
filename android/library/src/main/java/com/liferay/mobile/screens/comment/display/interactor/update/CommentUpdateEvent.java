@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.comment.display.interactor.update;
 
 import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
-import com.liferay.mobile.screens.models.CommentEntry;
+import com.liferay.mobile.screens.comment.CommentEntry;
 
 /**
  * @author Alejandro Hernández

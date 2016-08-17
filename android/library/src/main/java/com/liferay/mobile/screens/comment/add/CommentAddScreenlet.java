@@ -10,7 +10,7 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.comment.add.interactor.CommentAddInteractorImpl;
 import com.liferay.mobile.screens.comment.add.view.CommentAddViewModel;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.models.CommentEntry;
+import com.liferay.mobile.screens.comment.CommentEntry;
 
 /**
  * @author Alejandro Hernández

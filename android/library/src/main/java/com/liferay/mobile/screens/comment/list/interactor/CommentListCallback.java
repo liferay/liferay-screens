@@ -2,7 +2,7 @@ package com.liferay.mobile.screens.comment.list.interactor;
 
 import android.util.Pair;
 import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
-import com.liferay.mobile.screens.models.CommentEntry;
+import com.liferay.mobile.screens.comment.CommentEntry;
 import java.util.Locale;
 import java.util.Map;
 
