@@ -27,7 +27,7 @@ import org.json.JSONObject;
 public class LoginBasicInteractor extends BaseLoginInteractor {
 
 	@Override
-	public BasicThreadEvent execute(Object[] args) throws Exception {
+	public BasicThreadEvent execute(Object... args) throws Exception {
 
 		String login = (String) args[0];
 		String password = (String) args[1];
@@ -35,8 +35,7 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 
 		validate(login, password, basicAuthMethod);
 
-		Session session = SessionContext.createBasicSession(login, password);
-		UserConnector userConnector = ServiceProvider.getInstance().getUserConnector(session);
+		UserConnector userConnector = getUserConnector(login, password);
 
 		JSONObject jsonObject = getUser(login, basicAuthMethod, userConnector);
 
@@ -66,5 +65,10 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 		} else if (basicAuthMethod == BasicAuthMethod.USER_ID && !TextUtils.isDigitsOnly(login)) {
 			throw new IllegalArgumentException("UserId has to be a number");
 		}
+	}
+
+	public UserConnector getUserConnector(String login, String password) {
+		Session session = SessionContext.createBasicSession(login, password);
+		return ServiceProvider.getInstance().getUserConnector(session);
 	}
 }
