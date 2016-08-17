@@ -23,10 +23,9 @@ public class ImageUploadDetailViewController_default: ImageUploadDetailViewContr
 		}
 	}
 
-	public override var title: String? {
+	public override var imageTitle: String? {
 		didSet {
-			//TODO check this title doesn't change the UIViewController's title bar
-			titleText?.text = self.title
+			titleText?.text = imageTitle
 		}
 	}
 
