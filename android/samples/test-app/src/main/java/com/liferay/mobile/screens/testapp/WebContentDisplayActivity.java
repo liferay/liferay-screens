@@ -17,7 +17,6 @@ package com.liferay.mobile.screens.testapp;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.webkit.WebView;
-
 import com.liferay.mobile.screens.webcontent.WebContent;
 import com.liferay.mobile.screens.webcontent.display.WebContentDisplayListener;
 import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
@@ -39,14 +38,9 @@ public class WebContentDisplayActivity extends ThemeActivity implements WebConte
 	}
 
 	@Override
-	public WebContent onWebContentReceived(WebContentDisplayScreenlet source, WebContent html) {
+	public WebContent onWebContentReceived(WebContent html) {
 		info("Web Content received!");
 		return null;
-	}
-
-	@Override
-	public void onWebContentFailure(WebContentDisplayScreenlet source, Exception e) {
-		error("Could not receive web content information", e);
 	}
 
 	@Override
@@ -67,5 +61,10 @@ public class WebContentDisplayActivity extends ThemeActivity implements WebConte
 	@Override
 	public void storingToCache(Object object) {
 
+	}
+
+	@Override
+	public void error(Exception e, String userAction) {
+		error("Could not receive web content information", e);
 	}
 }
