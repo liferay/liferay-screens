@@ -337,7 +337,7 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 
 	internal func createImageUploadDetailViewControllerFromNib() -> ImageUploadDetailViewControllerBase? {
 
-		if let foundView = NSBundle.viewForThemeOrDefault(
+		if let foundView = NSBundle.viewControllerForThemeOrDefault(
 				name: uploadDetailViewControllerName,
 				themeName: themeName ?? BaseScreenlet.DefaultThemeName,
 				currentClass: self.dynamicType) as? ImageUploadDetailViewControllerBase {
