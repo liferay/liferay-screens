@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.jakewharton.rxbinding.view.RxView;
 import com.liferay.mobile.screens.bankofwesteros.R;
 import com.liferay.mobile.screens.bankofwesteros.utils.Card;
@@ -31,20 +30,18 @@ import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
 import com.tbruyelle.rxpermissions.RxPermissions;
-
-import org.json.JSONObject;
-
 import java.text.SimpleDateFormat;
 import java.util.List;
-
+import java.util.Map;
+import org.json.JSONObject;
 import rx.Observable;
 import rx.functions.Action1;
 
 /**
  * @author Javier Gamarra
  */
-public class IssuesActivity extends CardActivity implements View.OnClickListener,
-	DDLFormListener, BaseListListener<Record>, View.OnTouchListener {
+public class IssuesActivity extends CardActivity
+	implements View.OnClickListener, DDLFormListener, BaseListListener<Record>, View.OnTouchListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -99,8 +96,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 				if (_cardHistory.peek() == Card.BACKGROUND) {
 					toCard1();
 					_card1ToBackgroundMenu.setImageDrawable(getResources().getDrawable(R.drawable.icon_options_red));
-				}
-				else {
+				} else {
 					_card1ToBackgroundMenu.setImageDrawable(getResources().getDrawable(R.drawable.icon_options_close));
 					toBackground();
 				}
@@ -126,8 +122,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 		selectDDLEntry(element);
 		if (view.getId() == R.id.liferay_list_edit) {
 			toCard2();
-		}
-		else if (view.getId() == R.id.liferay_list_view) {
+		} else if (view.getId() == R.id.liferay_list_view) {
 			goRightCard1(element);
 		}
 	}
@@ -137,8 +132,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
 			v.setBackgroundColor(getResources().getColor(android.R.color.white));
 			return true;
-		}
-		else if (event.getAction() == MotionEvent.ACTION_UP) {
+		} else if (event.getAction() == MotionEvent.ACTION_UP) {
 			launchMenu(v);
 		}
 		return false;
@@ -155,27 +149,11 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	}
 
 	@Override
-	public void onDDLFormLoadFailed(Exception e) {
-	}
-
-	@Override
 	public void onDDLFormLoaded(Record record) {
 	}
 
 	@Override
-	public void onDDLFormRecordLoaded(Record record) {
-	}
-
-	@Override
-	public void onDDLFormRecordLoadFailed(Exception e) {
-	}
-
-	@Override
-	public void onDDLFormRecordAddFailed(Exception e) {
-	}
-
-	@Override
-	public void onDDLFormUpdateRecordFailed(Exception e) {
+	public void onDDLFormRecordLoaded(Record record, Map<String, Object> valuesAndAttributes) {
 	}
 
 	@Override
@@ -185,7 +163,6 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	@Override
 	public void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e) {
 	}
-
 
 	@Override
 	public void loadingFromCache(boolean success) {
@@ -199,6 +176,11 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 
 	@Override
 	public void storingToCache(Object object) {
+
+	}
+
+	@Override
+	public void error(Exception e, String userAction) {
 
 	}
 
@@ -247,8 +229,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 			_ddlFormScreenlet.setRecordId(_entry.getRecordId());
 			_ddlFormScreenlet.loadRecord();
 			goLeftCard1();
-		}
-		else {
+		} else {
 			clearDDLEntrySelected();
 		}
 	}
@@ -343,8 +324,10 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 				public void call(Boolean result) {
 					button.setBackgroundColor(getResources().getColor(R.color.light_gray_westeros));
 					if (result) {
-						if (ActivityCompat.checkSelfPermission(IssuesActivity.this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-							startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(getString(R.string.default_telephone_uri))));
+						if (ActivityCompat.checkSelfPermission(IssuesActivity.this, Manifest.permission.CALL_PHONE)
+							== PackageManager.PERMISSION_GRANTED) {
+							startActivity(
+								new Intent(Intent.ACTION_CALL, Uri.parse(getString(R.string.default_telephone_uri))));
 						}
 					}
 				}
@@ -361,5 +344,4 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	private ImageView _card1ToBackgroundMenu;
 	private TextView _reportIssueTitle;
 	private Button _sendButton;
-
 }

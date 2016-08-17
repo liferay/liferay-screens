@@ -4,14 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-
 import com.liferay.mobile.pushnotifications.R;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
-
+import java.util.Map;
 import org.json.JSONObject;
 
 public class NotificationDetailActivity extends AppCompatActivity implements DDLFormListener {
@@ -46,12 +45,17 @@ public class NotificationDetailActivity extends AppCompatActivity implements DDL
 	}
 
 	@Override
+	public void error(Exception e, String userAction) {
+
+	}
+
+	@Override
 	public void onDDLFormLoaded(Record record) {
 
 	}
 
 	@Override
-	public void onDDLFormRecordLoaded(Record record) {
+	public void onDDLFormRecordLoaded(Record record, Map<String, Object> valuesAndAttributes) {
 
 	}
 
@@ -68,26 +72,6 @@ public class NotificationDetailActivity extends AppCompatActivity implements DDL
 		Intent intent = new Intent(this, NotificationsActivity.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		startActivity(intent);
-	}
-
-	@Override
-	public void onDDLFormLoadFailed(Exception e) {
-
-	}
-
-	@Override
-	public void onDDLFormRecordLoadFailed(Exception e) {
-
-	}
-
-	@Override
-	public void onDDLFormRecordAddFailed(Exception e) {
-
-	}
-
-	@Override
-	public void onDDLFormUpdateRecordFailed(Exception e) {
-
 	}
 
 	@Override
