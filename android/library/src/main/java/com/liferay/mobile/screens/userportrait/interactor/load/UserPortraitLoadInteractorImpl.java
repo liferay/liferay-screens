@@ -22,13 +22,12 @@ import android.support.annotation.NonNull;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
-import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.userportrait.UserPortraitListener;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
+import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitUriBuilder;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import com.squareup.picasso.Downloader;
@@ -46,8 +45,8 @@ import org.json.JSONObject;
  * @author Javier Gamarra
  * @author Jose Manuel Navarro
  */
-public class UserPortraitLoadInteractorImpl extends
-	BaseCachedThreadRemoteInteractor<UserPortraitListener, UserPortraitLoadInteractorImpl.UserPortraitOfflineEventNew>
+public class UserPortraitLoadInteractorImpl
+	extends BaseCachedThreadRemoteInteractor<UserPortraitInteractorListener, UserPortraitOfflineEventNew>
 	implements Target {
 
 	@Override
@@ -108,27 +107,11 @@ public class UserPortraitLoadInteractorImpl extends
 	}
 
 	@Override
-	protected UserPortraitOfflineEventNew createEventFromArgs(Object... args) throws Exception {
+	protected String getIdFromArgs(Object... args) throws Exception {
 		if (args.length == 1) {
-			long userId = (long) args[0];
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("userId", userId);
-			return new UserPortraitOfflineEventNew(jsonObject);
+			return String.valueOf(args[0]);
 		} else {
-			return createEventFromUUID(args);
-		}
-	}
-
-	public class UserPortraitOfflineEventNew extends OfflineEventNew {
-
-		public UserPortraitOfflineEventNew(JSONObject jsonObject) {
-			super(jsonObject);
-		}
-
-		@Override
-		public String getId() throws Exception {
-			return getJSONObject().has("userId") ? String.valueOf(getJSONObject().getLong("userId"))
-				: getJSONObject().getString("uuid");
+			return (String) args[2];
 		}
 	}
 
@@ -149,7 +132,7 @@ public class UserPortraitLoadInteractorImpl extends
 	@Override
 	public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
 		if (getListener() != null) {
-			getListener().onUserPortraitLoadReceived(bitmap);
+			getListener().onEndUserPortraitLoadRequest(bitmap);
 		}
 	}
 
