@@ -6,6 +6,7 @@ import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
 import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import com.liferay.mobile.screens.webcontent.WebContent;
+import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
 import com.liferay.mobile.screens.webcontent.display.connector.JournalContentConnector;
 import java.util.Locale;
 import org.json.JSONObject;
@@ -35,6 +36,11 @@ public class WebContentDisplayFromStructureInteractorImpl extends WebContentDisp
 
 		WebContent webContent = new WebContent(JSONUtil.toMap(article), locale);
 		return new WebContentDisplayEvent(webContent);
+	}
+
+	@Override
+	public void onFailure(Exception e) {
+		getListener().error(e, WebContentDisplayScreenlet.WEB_CONTENT_WITH_STRUCTURE);
 	}
 
 	@Override

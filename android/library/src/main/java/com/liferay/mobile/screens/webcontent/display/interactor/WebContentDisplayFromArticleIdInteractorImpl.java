@@ -16,7 +16,9 @@ package com.liferay.mobile.screens.webcontent.display.interactor;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.util.ServiceProvider;
+import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
 import com.liferay.mobile.screens.webcontent.display.connector.JournalContentConnector;
 import com.liferay.mobile.screens.webcontent.display.connector.ScreensJournalContentConnector;
 import java.util.Locale;
@@ -36,6 +38,11 @@ public class WebContentDisplayFromArticleIdInteractorImpl extends WebContentDisp
 
 		String content = getContent(articleId, templateId);
 		return new WebContentDisplayEvent(content);
+	}
+
+	@Override
+	public void onFailure(Exception e) {
+		getListener().error(e, WebContentDisplayScreenlet.WEB_CONTENT_BY_ARTICLE_ID);
 	}
 
 	private String getContent(String articleId, Long templateId) throws Exception {
