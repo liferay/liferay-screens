@@ -14,11 +14,8 @@
 import UIKit
 
 
-@objc public protocol UserPortraitViewModel {
-
-	var image: UIImage? {get set}
-
-	var borderWidth: CGFloat {get set}
-	var borderColor: UIColor? {get set}
+public class CommentTableViewCell_default: UITableViewCell {
+	
+	@IBOutlet weak var commentDisplayScreenlet: CommentDisplayScreenlet?
 
 }

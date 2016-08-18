@@ -48,3 +48,28 @@
 
 "default-rating-total"="Total: %d";
 "default-rating-ratings"="%d Ratings";
+
+"default-comment-display-warning"="Warning";
+"default-comment-display-styled"="This comment has styled content, which will be lost if you edit it";
+"default-comment-display-dismiss"="Dismiss";
+"default-comment-display-cancel"="Cancel";
+"default-comment-display-confirm"="Confirm";
+"default-comment-display-type"="Type your comment...";
+
+"default-comment-list-empty-title"="Comments";
+"default-comment-list-empty-subtitle"="This discussion don't have any comments yet. Add a new comment or come back later.";
+
+"default-time-ago-seconds" = "%d seconds ago";
+"default-time-ago-minute" = "A minute ago";
+"default-time-ago-minutes" = "%d minutes ago";
+"default-time-ago-hour" = "An hour ago";
+"default-time-ago-hours" = "%d hours ago";
+"default-time-ago-days" = "%d days ago";
+"default-time-ago-weeks" = "%d weeks ago";
+"default-time-ago-months" = "%d months ago";
+"default-time-ago-years" = "%d years ago";
+"default-time-yesterday" = "Yesterday";
+"default-time-now" = "Just now";
+"default-time-last-week" = "Last week";
+"default-time-last-month" = "Last month";
+"default-time-last-year" = "Last year";

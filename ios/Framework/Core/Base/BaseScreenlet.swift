@@ -15,7 +15,7 @@ import UIKit
 import QuartzCore
 
 
-@objc public protocol BaseScreenletDelegate {
+@objc public protocol BaseScreenletDelegate: NSObjectProtocol {
 
 	optional func screenlet(screenlet: BaseScreenlet,
 		customInteractorForAction: String,

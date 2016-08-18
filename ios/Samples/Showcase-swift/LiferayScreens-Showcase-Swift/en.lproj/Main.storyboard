@@ -193,6 +193,7 @@
                         <segue destination="TY4-Ql-4pF" kind="push" identifier="UserPortraitScreenlet" id="jtf-rk-w86"/>
                         <segue destination="mIJ-mJ-AmA" kind="push" identifier="WebContentListScreenlet" id="NhJ-zR-6pA"/>
                         <segue destination="N0K-Ji-ryL" kind="push" identifier="RatingScreenlet" id="mGa-c2-uxu"/>
+                        <segue destination="My4-vf-44F" kind="push" identifier="CommentListScreenlet" id="zPF-BA-bIW"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsJ-Fx-gOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1153,6 +1154,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dse-CN-iuq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-373" y="360"/>
+        </scene>
+        <!--CommentListScreenlet-->
+        <scene sceneID="A79-LW-apD">
+            <objects>
+                <viewController title="CommentListScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="My4-vf-44F" customClass="CommentListScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cl2-zy-fUp"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ebj-0l-O7f"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="t9h-bk-dC1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Cs-KB-hzY" customClass="CommentListScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="-4" y="64" width="328" height="455"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="groupId">
+                                        <integer key="value" value="20160"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="className" value="com.liferay.blogs.kernel.model.BlogsEntry"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="classPK">
+                                        <integer key="value" value="29713"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7Cs-KB-hzY" firstAttribute="leading" secondItem="t9h-bk-dC1" secondAttribute="leadingMargin" constant="-20" id="2YC-XV-UiA"/>
+                            <constraint firstItem="7Cs-KB-hzY" firstAttribute="top" secondItem="cl2-zy-fUp" secondAttribute="bottom" id="8c1-rW-lGo"/>
+                            <constraint firstItem="Ebj-0l-O7f" firstAttribute="top" secondItem="7Cs-KB-hzY" secondAttribute="bottom" id="zEN-Qe-N4e"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7Cs-KB-hzY" secondAttribute="trailing" constant="-20" id="zRx-fY-4Ni"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="LCk-yg-4gq">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="mBW-cM-Sfu">
+                            <connections>
+                                <action selector="insertButtonPressed:" destination="My4-vf-44F" id="PPh-Aq-7F2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="listScreenlet" destination="7Cs-KB-hzY" id="9de-SP-F0i"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mpb-r6-Lc5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-373" y="-311"/>
         </scene>
     </scenes>
     <resources>

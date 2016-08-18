@@ -14,11 +14,9 @@
 import UIKit
 
 
-@objc public protocol UserPortraitViewModel {
+@objc public protocol CommentDisplayViewModel {
 
-	var image: UIImage? {get set}
+	var comment: Comment? { get set }
 
-	var borderWidth: CGFloat {get set}
-	var borderColor: UIColor? {get set}
-
+	func editComment()
 }

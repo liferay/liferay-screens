@@ -126,6 +126,34 @@ public protocol LiferayConnectorFactory {
 		className: String,
 		ratingsGroupCount: Int32) -> RatingDeleteLiferayConnector?
 
+	func createCommentListPageConnector(
+		groupId groupId: Int64,
+		className: String,
+		classPK: Int64,
+		startRow: Int,
+		endRow: Int,
+		computeRowCount: Bool) -> CommentListPageLiferayConnector?
+
+	func createCommentAddConnector(
+		groupId groupId: Int64,
+		className: String,
+		classPK: Int64,
+		body: String?) -> CommentAddLiferayConnector?
+
+	func createCommentLoadConnector(
+		groupId groupId: Int64,
+		commentId: Int64) -> CommentLoadLiferayConnector?
+
+	func createCommentDeleteConnector(
+		commentId commentId: Int64) -> CommentDeleteLiferayConnector?
+
+	func createCommentUpdateConnector(
+		groupId groupId: Int64,
+		className: String,
+		classPK: Int64,
+		commentId: Int64,
+		body: String?) -> CommentUpdateLiferayConnector?
+
 }
 
 
@@ -320,6 +348,37 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 	
 	public func createRatingDeleteConnector(classPK classPK: Int64, className: String, ratingsGroupCount: Int32) -> RatingDeleteLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: RatingDeleteLiferayConnector")
+		return nil
+	}
+
+	public func createCommentListPageConnector(
+			groupId groupId: Int64,
+			className: String,
+			classPK: Int64,
+			startRow: Int,
+			endRow: Int,
+			computeRowCount: Bool) -> CommentListPageLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: CommentListPageLiferayConnector")
+		return nil
+	}
+
+	public func createCommentAddConnector(groupId groupId: Int64, className: String, classPK: Int64, body: String?) -> CommentAddLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: CommentAddLiferayConnector")
+		return nil
+	}
+
+	public func createCommentLoadConnector(groupId groupId: Int64, commentId: Int64) -> CommentLoadLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: CommentLoadLiferayConnector")
+		return nil
+	}
+
+	public func createCommentDeleteConnector(commentId commentId: Int64) -> CommentDeleteLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: CommentDeleteLiferayConnector")
+		return nil
+	}
+
+	public func createCommentUpdateConnector(groupId groupId: Int64, className: String, classPK: Int64, commentId: Int64, body: String?) -> CommentUpdateLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: CommentUpdateLiferayConnector")
 		return nil
 	}
 
@@ -526,6 +585,50 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			classPK: classPK,
 			className: className,
 			ratingsGroupCount: ratingsGroupCount)
+	}
+
+	public func createCommentListPageConnector(
+		groupId groupId: Int64,
+				className: String,
+				classPK: Int64,
+				startRow: Int,
+		        endRow: Int,
+		        computeRowCount: Bool) -> CommentListPageLiferayConnector? {
+		return Liferay70CommentListPageConnector(
+			groupId: groupId,
+			className: className,
+			classPK: classPK,
+			startRow: startRow,
+			endRow: endRow,
+			computeRowCount: computeRowCount)
+	}
+
+	public func createCommentAddConnector(groupId groupId: Int64, className: String, classPK: Int64, body: String?) -> CommentAddLiferayConnector? {
+		return Liferay70CommentAddConnector(
+			groupId: groupId,
+			className: className,
+			classPK: classPK,
+			body: body)
+	}
+
+	public func createCommentLoadConnector(groupId groupId: Int64, commentId: Int64) -> CommentLoadLiferayConnector? {
+		return Liferay70CommentLoadConnector(
+			groupId: groupId,
+			commentId: commentId)
+	}
+
+	public func createCommentDeleteConnector(commentId commentId: Int64) -> CommentDeleteLiferayConnector? {
+		return Liferay70CommentDeleteConnector(
+			commentId: commentId)
+	}
+
+	public func createCommentUpdateConnector(groupId groupId: Int64, className: String, classPK: Int64, commentId: Int64, body: String?) -> CommentUpdateLiferayConnector? {
+		return Liferay70CommentUpdateConnector(
+			groupId: groupId,
+			className: className,
+			classPK: classPK,
+			commentId: commentId,
+			body: body)
 	}
 
 }

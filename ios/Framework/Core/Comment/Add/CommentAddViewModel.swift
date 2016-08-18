@@ -14,11 +14,6 @@
 import UIKit
 
 
-@objc public protocol UserPortraitViewModel {
-
-	var image: UIImage? {get set}
-
-	var borderWidth: CGFloat {get set}
-	var borderColor: UIColor? {get set}
-
+@objc public protocol CommentAddViewModel {
+	var body: String? { get set }
 }

@@ -11,14 +11,17 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
+
 import UIKit
 
+public class EmptyListPlaceholderView_default: UIView {
+	@IBOutlet weak var imageView: UIImageView!
+	@IBOutlet weak var topLabel: UILabel!
+	@IBOutlet weak var bottomLabel: UILabel!
 
-@objc public protocol UserPortraitViewModel {
-
-	var image: UIImage? {get set}
-
-	var borderWidth: CGFloat {get set}
-	var borderColor: UIColor? {get set}
-
+	public override func awakeFromNib() {
+		imageView.image = nil
+		topLabel.text = nil
+		bottomLabel.text = nil
+	}
 }
