@@ -20,6 +20,7 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 	@IBOutlet public var bodyTextView: UITextView?
 	@IBOutlet public var confirmButton: UIButton?
 	@IBOutlet public var cancelButton: UIButton?
+	@IBOutlet public var scrollView: UIScrollView?
 
 	public var confirmBodyClosure: (String? -> Void)?
 
@@ -59,6 +60,12 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 			LocalizedString("default", key: "comment-display-cancel", obj: self),
 			forState: .Normal)
 
+		let notificationCenter = NSNotificationCenter.defaultCenter()
+		notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard),
+			name: UIKeyboardWillHideNotification, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard),
+			name: UIKeyboardWillChangeFrameNotification, object: nil)
+
 		if let textView = bodyTextView, font = textView.font {
 			textView.text = initialBody
 			textView.delegate = self
@@ -75,6 +82,27 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 			textView.addSubview(placeholderLabel)
 
 			bodyTextView?.becomeFirstResponder()
+		}
+	}
+
+	func adjustForKeyboard(notification: NSNotification) {
+		let userInfo = notification.userInfo!
+
+		if let keyboardScreenEndFrame =
+				(notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue(),
+				scroll = scrollView {
+
+			let keyboardViewEndFrame =
+				view.convertRect(keyboardScreenEndFrame, fromView: view.window)
+
+			if notification.name == UIKeyboardWillHideNotification {
+				scroll.contentInset = UIEdgeInsetsZero
+			} else {
+				scroll.contentInset =
+					UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
+			}
+
+			scroll.scrollIndicatorInsets = scroll.contentInset
 		}
 	}
 
