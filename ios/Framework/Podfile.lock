@@ -33,7 +33,7 @@ PODS:
   - DTPickerPresenter (0.2.0)
   - KeychainAccess (2.3.1)
   - Kingfisher (2.4.2)
-  - Liferay-iOS-SDK (7.0.5):
+  - Liferay-iOS-SDK (7.0.4):
     - AFNetworking (= 2.6.3)
   - Liferay-OAuth (1.2.1):
     - Liferay-iOS-SDK (~> 7.0.4)
@@ -113,7 +113,7 @@ SPEC CHECKSUMS:
   DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
   KeychainAccess: d54b31c75745cfa595b3654590e8cb491a75d411
   Kingfisher: 05bf8d04408aaa70fcd2c8c81b9f1d0f1ad313dd
-  Liferay-iOS-SDK: 118ea82feb7e07b0aece93ebb727839ef78afacf
+  Liferay-iOS-SDK: 07eb17d11fe88f71ed4c69a528736f75b4ee46be
   Liferay-OAuth: a9ff190558928bec8ebc18dd326b01bddd7e2968
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MDRadialProgress: 1068574b9b4b870f64b605b07f734385bde5104d
