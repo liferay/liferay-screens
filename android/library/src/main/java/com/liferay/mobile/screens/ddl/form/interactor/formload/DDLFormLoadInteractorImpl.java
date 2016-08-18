@@ -18,7 +18,9 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
+import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import org.json.JSONObject;
@@ -26,10 +28,10 @@ import org.json.JSONObject;
 /**
  * @author Jose Manuel Navarro
  */
-public class DDLFormLoadInteractorImpl extends BaseCachedThreadRemoteInteractor<DDLFormListener, DDLFormLoadEvent> {
+public class DDLFormLoadInteractorImpl extends BaseCachedThreadRemoteInteractor<DDLFormListener, DDLFormEvent> {
 
 	@Override
-	public DDLFormLoadEvent execute(Object... args) throws Exception {
+	public DDLFormEvent execute(Object... args) throws Exception {
 
 		Record record = (Record) args[0];
 
@@ -38,11 +40,11 @@ public class DDLFormLoadInteractorImpl extends BaseCachedThreadRemoteInteractor<
 		Session session = SessionContext.createSessionFromCurrentSession();
 		DDMStructureConnector ddmStructureConnector = ServiceProvider.getInstance().getDDMStructureConnector(session);
 		JSONObject jsonObject = ddmStructureConnector.getStructure(record.getStructureId());
-		return new DDLFormLoadEvent(record, jsonObject);
+		return new DDLFormEvent(record, jsonObject);
 	}
 
 	@Override
-	public void onSuccess(DDLFormLoadEvent event) throws Exception {
+	public void onSuccess(DDLFormEvent event) throws Exception {
 		Record formRecord = event.getRecord();
 
 		formRecord.parseDDMStructure(event.getJSONObject());
@@ -56,11 +58,14 @@ public class DDLFormLoadInteractorImpl extends BaseCachedThreadRemoteInteractor<
 	}
 
 	@Override
-	protected DDLFormLoadEvent createEventFromArgs(Object... args) throws Exception {
+	public void onFailure(Exception e) {
+		getListener().error(e, DDLFormScreenlet.LOAD_FORM_ACTION);
+	}
 
+	@Override
+	protected String getIdFromArgs(Object... args) throws Exception {
 		Record record = (Record) args[0];
-
-		return new DDLFormLoadEvent(record, new JSONObject());
+		return String.valueOf(record.getStructureId());
 	}
 
 	protected void validate(Record record) {

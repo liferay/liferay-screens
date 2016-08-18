@@ -19,7 +19,9 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
+import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.ServiceProvider;
@@ -32,10 +34,10 @@ import org.json.JSONObject;
  * @author Jose Manuel Navarro
  */
 public class DDLFormLoadRecordNewInteractorImpl
-	extends BaseCachedThreadRemoteInteractor<DDLFormListener, DDLFormLoadRecordEvent> {
+	extends BaseCachedThreadRemoteInteractor<DDLFormListener, DDLFormEvent> {
 
 	@Override
-	public DDLFormLoadRecordEvent execute(Object[] args) throws Exception {
+	public DDLFormEvent execute(Object[] args) throws Exception {
 
 		Record record = (Record) args[0];
 
@@ -46,11 +48,16 @@ public class DDLFormLoadRecordNewInteractorImpl
 			ServiceProvider.getInstance().getScreensDDLRecordConnector(session);
 
 		JSONObject jsonObject = ddlRecordService.getDdlRecord(record.getRecordId(), record.getLocale().toString());
-		return new DDLFormLoadRecordEvent(record, jsonObject);
+		return new DDLFormEvent(record, jsonObject);
 	}
 
 	@Override
-	public void onSuccess(DDLFormLoadRecordEvent event) throws Exception {
+	public void onFailure(Exception e) {
+		getListener().error(e, DDLFormScreenlet.LOAD_RECORD_ACTION);
+	}
+
+	@Override
+	public void onSuccess(DDLFormEvent event) throws Exception {
 
 		Map<String, Object> valuesAndAttributes = getStringObjectMap(event.getJSONObject());
 
@@ -58,10 +65,9 @@ public class DDLFormLoadRecordNewInteractorImpl
 	}
 
 	@Override
-	protected DDLFormLoadRecordEvent createEventFromArgs(Object[] args) {
+	protected String getIdFromArgs(Object[] args) {
 		Record record = (Record) args[0];
-
-		return new DDLFormLoadRecordEvent(record, new JSONObject());
+		return String.valueOf(record.getRecordId());
 	}
 
 	protected void validate(Record record) {

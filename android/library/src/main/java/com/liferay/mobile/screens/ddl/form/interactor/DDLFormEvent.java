@@ -12,27 +12,30 @@
  * details.
  */
 
-package com.liferay.mobile.screens.ddl.form.interactor.add;
+package com.liferay.mobile.screens.ddl.form.interactor;
 
-import com.liferay.mobile.screens.ddl.form.interactor.DDLFormBaseEvent;
+import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
 import com.liferay.mobile.screens.ddl.model.Record;
 import org.json.JSONObject;
 
 /**
- * @author Jose Manuel Navarro
+ * @author Silvio Santos
  */
-public class DDLFormAddRecordEvent extends DDLFormBaseEvent {
+public class DDLFormEvent extends OfflineEventNew {
 
-	public DDLFormAddRecordEvent(Record record, Exception e) {
-		super(record, e);
+	public DDLFormEvent() {
+		super();
 	}
 
-	public DDLFormAddRecordEvent(Record record, JSONObject jsonObject) {
-		super(record, jsonObject);
+	public DDLFormEvent(Record record, JSONObject jsonObject) {
+		super(jsonObject);
+
+		_record = record;
 	}
 
-	@Override
-	public String getId() throws Exception {
-		return String.valueOf(getRecord().getStructureId());
+	public Record getRecord() {
+		return _record;
 	}
+
+	private Record _record;
 }
