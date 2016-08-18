@@ -41,4 +41,19 @@ class AssetDisplayViewController: UIViewController, AssetDisplayScreenletDelegat
 	               onAssetEntryError error: NSError) {
 		print("DELEGATE: onAssetEntryError -> \(error)\n");
 	}
+
+	func screenlet(screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView? {
+		if let type = asset.attributes["object"]?.allKeys.first as? String {
+			if type == "user" {
+				let vc = self.storyboard?.instantiateViewControllerWithIdentifier("UserDisplay") as? UserDisplayViewController
+				if let userVc = vc {
+					self.addChildViewController(userVc)
+					screenlet.addSubview(userVc.view)
+					userVc.view.frame = screenlet.bounds
+					userVc.user = User(attributes: asset.attributes)
+				}
+			}
+		}
+		return nil
+	}
 }
