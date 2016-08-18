@@ -37,16 +37,32 @@ public class ImageUploadDetailViewControllerBase: UIViewController {
 	public func startUpload(title: String, notes: String, thumbnail: UIImage? = nil) {
 
 		let nonEmptyTitle = title.isEmpty ? "\(NSUUID().UUIDString)" : title
+
+		if thumbnail == nil {
+			image?.resizeImage(toWidth: 300) { resizedImage in
+				let imageUpload = ImageEntryUpload(
+					image: self.image!,
+					thumbnail: resizedImage,
+					title: nonEmptyTitle,
+					notes: notes)
+
+				self.screenlet?.performAction(
+					name: ImageGalleryScreenlet.EnqueueUploadAction,
+					sender: imageUpload)
+			}
+		}
+		else {
 		
-		let imageUpload = ImageEntryUpload(
-				image: image!,
-				thumbnail: thumbnail,
-				title: nonEmptyTitle,
-				notes: notes)
-		
-		screenlet?.performAction(
-				name: ImageGalleryScreenlet.EnqueueUploadAction,
-				sender: imageUpload)
+			let imageUpload = ImageEntryUpload(
+					image: image!,
+					thumbnail: thumbnail,
+					title: nonEmptyTitle,
+					notes: notes)
+			
+			screenlet?.performAction(
+					name: ImageGalleryScreenlet.EnqueueUploadAction,
+					sender: imageUpload)
+			}
 	}
 	
 }
