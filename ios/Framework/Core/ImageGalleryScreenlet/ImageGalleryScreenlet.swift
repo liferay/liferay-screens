@@ -44,6 +44,9 @@ import Kingfisher
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
 			onImageUploaded image: ImageEntry)
+
+	optional func screenlet(screenlet: ImageGalleryScreenlet,
+			onImageUploadDetailViewcontrollerCreated: UIViewController) -> Bool
 }
 
 
@@ -136,8 +139,14 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 			viewController.image = imageUpload.image
 			viewController.screenlet = self
 
-			let navigationController = UINavigationController(rootViewController: viewController)
-			presentingViewController?.presentViewController(navigationController, animated: true) {}
+			let presented = imageGalleryDelegate?.screenlet?(
+					self,
+					onImageUploadDetailViewcontrollerCreated: viewController) ?? false
+
+			if !presented {
+				let navigationController = UINavigationController(rootViewController: viewController)
+				presentingViewController?.presentViewController(navigationController, animated: true) {}
+			}
 		}
 	}
 
