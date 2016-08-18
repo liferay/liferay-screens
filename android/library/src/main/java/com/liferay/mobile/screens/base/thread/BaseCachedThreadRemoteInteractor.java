@@ -11,6 +11,8 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 import com.snappydb.DB;
 import com.snappydb.DBFactory;
 import com.snappydb.SnappydbException;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 
@@ -73,36 +75,31 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 	}
 
 	public void onEventMainThread(E event) {
-		LiferayLogger.i("event = [" + event + "]");
+		try {
+			LiferayLogger.i("event = [" + event + "]");
 
-		if (!isValidEvent(event)) {
-			return;
-		}
-
-		if (event.isFailed()) {
-			try {
-				if (OfflinePolicy.REMOTE_FIRST.equals(_offlinePolicy)) {
-					boolean _retrievedFromCache = cached(event);
-
-					if (_retrievedFromCache) {
-						return;
-					}
-				}
-				onFailure(event.getException());
-			} catch (Exception e) {
-				onFailure(event.getException());
+			if (!isValidEvent(event)) {
+				return;
 			}
-		} else {
-			try {
+
+			if (event.isFailed()) {
+				onFailure(event.getException());
+			} else {
+
 				if (!event.isCachedRequest()) {
 					storeToCache(event);
 				}
 
 				onSuccess(event);
-			} catch (Exception e) {
-				onFailure(e);
 			}
+		} catch (Exception e) {
+			onFailure(e);
 		}
+	}
+
+	@Override
+	public void onFailure(Exception e) {
+		getListener().error(e, null);
 	}
 
 	protected void online(boolean triedOffline, Exception e, Object[] args) throws Exception {
@@ -114,21 +111,57 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 		getListener().retrievingOnline(triedOffline, e);
 
 		E newEvent = execute(args);
-		decorateEvent(newEvent);
-		EventBusUtil.post(newEvent);
-	}
-
-	protected void decorateEvent(E newEvent) {
 		newEvent.setTargetScreenletId(getTargetScreenletId());
 		newEvent.setCachedRequest(false);
 		newEvent.setGroupId(groupId);
 		newEvent.setLocale(locale);
 		newEvent.setUserId(userId);
+		newEvent.setCacheKey(getIdFromArgs(args));
+		EventBusUtil.post(newEvent);
 	}
 
-	@Override
-	public void onFailure(Exception e) {
-		getListener().error(e, null);
+	protected boolean cached(Object... args) throws Exception {
+
+		String cacheKey = getIdFromArgs(args);
+
+		Class clasz = getEventClass();
+
+		String id = clasz.getName() + "_" + groupId + "_" + userId + "_" + locale + "_" + cacheKey;
+
+		return cachedById(id, clasz);
+	}
+
+	private Class getEventClass() {
+
+		Class clasz = (Class) getClass();
+		Type genericSuperclass = clasz.getGenericSuperclass();
+		while (!(genericSuperclass instanceof ParameterizedType)) {
+			clasz = clasz.getSuperclass();
+			genericSuperclass = clasz.getGenericSuperclass();
+		}
+
+		return (Class) ((ParameterizedType) genericSuperclass).getActualTypeArguments()[1];
+	}
+
+	protected String getFullId(E event) throws Exception {
+		return event.getClass().getName()
+			+ "_"
+			+ event.getGroupId()
+			+ "_"
+			+ event.getUserId()
+			+ "_"
+			+ event.getLocale()
+			+ "_"
+			+ event.getCacheKey();
+	}
+
+	protected void storeToCache(E event) throws Exception {
+
+		getListener().storingToCache(event);
+
+		DB snappydb = DBFactory.open(LiferayScreensContext.getContext());
+		snappydb.put(getFullId(event), event);
+		snappydb.close();
 	}
 
 	protected boolean cachedById(String fullId, Class<E> clazz) throws SnappydbException {
@@ -145,43 +178,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 		return false;
 	}
 
-	protected void storeToCache(E event) throws Exception {
-
-		getListener().storingToCache(event);
-
-		DB snappydb = DBFactory.open(LiferayScreensContext.getContext());
-		snappydb.put(getFullId(event), event);
-		snappydb.close();
-	}
-
-	protected boolean cached(E event) throws Exception {
-
-		String fullId = getFullId(event);
-		return cachedById(fullId, (Class<E>) event.getClass());
-	}
-
-	protected boolean cached(Object... args) throws Exception {
-
-		E event = createEventFromArgs(args);
-
-		decorateEvent(event);
-
-		return cachedById(getFullId(event), (Class<E>) event.getClass());
-	}
-
-	protected String getFullId(E event) throws Exception {
-		return event.getClass().getName()
-			+ "_"
-			+ event.getGroupId()
-			+ "_"
-			+ event.getUserId()
-			+ "_"
-			+ event.getLocale()
-			+ "_"
-			+ event.getId();
-	}
-
-	protected abstract E createEventFromArgs(Object... args) throws Exception;
+	protected abstract String getIdFromArgs(Object... args) throws Exception;
 
 	protected OfflinePolicy getOfflinePolicy() {
 		return _offlinePolicy;

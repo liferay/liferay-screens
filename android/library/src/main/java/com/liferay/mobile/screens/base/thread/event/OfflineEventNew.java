@@ -63,11 +63,17 @@ public abstract class OfflineEventNew extends BasicThreadEvent {
 		this.cachedRequest = cachedRequest;
 	}
 
+	public String getCacheKey() {
+		return cacheKey;
+	}
+
+	public void setCacheKey(String cacheKey) {
+		this.cacheKey = cacheKey;
+	}
+
 	private Locale _locale;
 	private long _groupId;
 	private long _userId;
 	private boolean cachedRequest;
-
-	public abstract String getId() throws Exception;
-
+	private String cacheKey;
 }

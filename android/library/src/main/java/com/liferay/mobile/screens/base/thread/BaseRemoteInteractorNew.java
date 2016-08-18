@@ -6,6 +6,6 @@ public abstract class BaseRemoteInteractorNew<L, E extends BasicThreadEvent>
 	extends BaseThreadInteractor<L, E> {
 
 	public void onEventMainThread(E event) {
-		super.onEventMainThread(event);
+		super.processEvent(event);
 	}
 }

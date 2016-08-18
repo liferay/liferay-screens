@@ -41,20 +41,20 @@ public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent> implem
 		onFailure(event.getException());
 	}
 
-	public void onEventMainThread(E event) {
-		LiferayLogger.i("event = [" + event + "]");
-		if (!isValidEvent(event)) {
-			return;
-		}
-
-		if (event.isFailed()) {
-			onFailure(event.getException());
-		} else {
-			try {
-				onSuccess(event);
-			} catch (Exception e) {
-				onFailure(e);
+	public void processEvent(E event) {
+		try {
+			LiferayLogger.i("event = [" + event + "]");
+			if (!isValidEvent(event)) {
+				return;
 			}
+
+			if (event.isFailed()) {
+				onFailure(event.getException());
+			} else {
+				onSuccess(event);
+			}
+		} catch (Exception e) {
+			onFailure(e);
 		}
 	}
 
