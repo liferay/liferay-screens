@@ -97,11 +97,6 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 		}
 	}
 
-	@Override
-	public void onFailure(Exception e) {
-		getListener().error(e, null);
-	}
-
 	protected void online(boolean triedOffline, Exception e, Object[] args) throws Exception {
 
 		if (triedOffline) {
