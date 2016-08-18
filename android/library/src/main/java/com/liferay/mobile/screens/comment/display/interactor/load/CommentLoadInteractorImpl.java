@@ -27,13 +27,13 @@ public class CommentLoadInteractorImpl
 		Session session = SessionContext.createSessionFromCurrentSession();
 		CommentmanagerjsonwsService commentService = new CommentmanagerjsonwsService(session);
 		JSONObject jsonObject = commentService.getComment(groupId, commentId);
-
-		return new CommentEvent(commentId, null, 0, null, new CommentEntry(JSONUtil.toMap(jsonObject)));
+		return new CommentEvent(jsonObject);
 	}
 
 	@Override
 	public void onSuccess(CommentEvent event) throws Exception {
-		getListener().onLoadCommentSuccess(event.getCommentEntry());
+		CommentEntry commentEntry = new CommentEntry(JSONUtil.toMap(event.getJSONObject()));
+		getListener().onLoadCommentSuccess(commentEntry);
 	}
 
 	@Override
@@ -42,10 +42,9 @@ public class CommentLoadInteractorImpl
 	}
 
 	@Override
-	protected CommentEvent createEventFromArgs(Object... args) throws Exception {
+	protected String getIdFromArgs(Object... args) throws Exception {
 		long commentId = (long) args[0];
-
-		return new CommentEvent(commentId, null, 0, null);
+		return String.valueOf(commentId);
 	}
 
 	private void validate(long groupId, long commentId) {

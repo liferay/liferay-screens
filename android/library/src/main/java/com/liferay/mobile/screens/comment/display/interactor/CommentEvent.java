@@ -2,6 +2,7 @@ package com.liferay.mobile.screens.comment.display.interactor;
 
 import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
 import com.liferay.mobile.screens.comment.CommentEntry;
+import org.json.JSONObject;
 
 /**
  * @author Alejandro Hernández
@@ -29,16 +30,15 @@ public class CommentEvent extends OfflineEventNew {
 		this.body = body;
 	}
 
+	public CommentEvent(JSONObject jsonObject) {
+		super(jsonObject);
+	}
+
 	public CommentEntry getCommentEntry() {
 		return commentEntry;
 	}
 
 	private CommentEntry commentEntry;
-
-	@Override
-	public String getId() throws Exception {
-		return String.valueOf(commentId);
-	}
 
 	public String getClassName() {
 		return className;
