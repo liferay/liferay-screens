@@ -33,7 +33,7 @@ public abstract class BaseRatingInteractorImpl extends BaseCachedThreadRemoteInt
 		final long classPK = (long) args[0];
 		final String className = (String) args[1];
 
-		return new RatingEvent(classPK, className, new JSONObject());
+		return new RatingEvent(classPK, className, 0, new JSONObject());
 	}
 
 	@NonNull
