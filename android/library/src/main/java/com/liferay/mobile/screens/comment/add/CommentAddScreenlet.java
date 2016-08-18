@@ -7,10 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.add.interactor.CommentAddInteractorImpl;
 import com.liferay.mobile.screens.comment.add.view.CommentAddViewModel;
-import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.comment.CommentEntry;
 
 /**
  * @author Alejandro Hernández
@@ -43,9 +42,6 @@ public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, Comm
 
 		classPK = castToLong(typedArray.getString(R.styleable.CommentAddScreenlet_classPK));
 
-		groupId = castToLongOrUseDefault(typedArray.getString(R.styleable.CommentAddScreenlet_groupId),
-			LiferayServerContext.getGroupId());
-
 		int layoutId = typedArray.getResourceId(R.styleable.CommentAddScreenlet_layoutId, getDefaultLayoutId());
 
 		typedArray.recycle();
@@ -61,16 +57,16 @@ public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, Comm
 	@Override
 	protected void onUserAction(String userActionName, CommentAddInteractorImpl interactor, Object... args) {
 		String body = (String) args[0];
-		interactor.start(groupId, className, classPK, body);
+		interactor.start(className, classPK, body);
 	}
 
 	@Override
-	public void onAddCommentFailure(Exception e) {
+	public void error(Exception e, String userAction) {
 
 		getViewModel().showFailedOperation(null, e);
 
 		if (getListener() != null) {
-			getListener().onAddCommentFailure(e);
+			getListener().error(e, userAction);
 		}
 	}
 
@@ -81,6 +77,27 @@ public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, Comm
 
 		if (getListener() != null) {
 			getListener().onAddCommentSuccess(commentEntry);
+		}
+	}
+
+	@Override
+	public void loadingFromCache(boolean success) {
+		if (getListener() != null) {
+			getListener().loadingFromCache(success);
+		}
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+		if (getListener() != null) {
+			getListener().retrievingOnline(triedInCache, e);
+		}
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+		if (getListener() != null) {
+			getListener().storingToCache(object);
 		}
 	}
 
@@ -108,16 +125,7 @@ public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, Comm
 		this.classPK = classPK;
 	}
 
-	public long getGroupId() {
-		return groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		this.groupId = groupId;
-	}
-
 	private CommentAddListener listener;
-	private long groupId;
 	private String className;
 	private long classPK;
 }

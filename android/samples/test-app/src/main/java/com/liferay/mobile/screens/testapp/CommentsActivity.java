@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.widget.CompoundButton;
+import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.add.CommentAddListener;
 import com.liferay.mobile.screens.comment.add.CommentAddScreenlet;
 import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
 import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.list.CommentListListener;
 import com.liferay.mobile.screens.comment.list.CommentListScreenlet;
-import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import java.util.List;
 
@@ -90,11 +90,6 @@ public class CommentsActivity extends ThemeActivity
 		info(String.format(LiferayLocale.getDefaultLocale(), "Comment with id: %d succesfully updated",
 			commentEntry.getCommentId()));
 		showDisplayScreenlet(false);
-	}
-
-	@Override
-	public void onAddCommentFailure(Exception e) {
-		error("Error adding comment", e);
 	}
 
 	@Override
