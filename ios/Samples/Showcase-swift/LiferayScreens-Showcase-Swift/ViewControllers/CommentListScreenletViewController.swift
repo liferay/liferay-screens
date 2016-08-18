@@ -31,15 +31,21 @@ class CommentListScreenletViewController: UIViewController,
 	var editViewController: CommentEditViewController_default?
 
 	@IBAction func insertButtonPressed(sender: AnyObject) {
-		editViewController = CommentEditViewController_default(body: "")
-		self.definesPresentationContext = true
-		editViewController!.modalPresentationStyle = .OverCurrentContext
-		editViewController!.confirmBodyClosure = addComment
-		presentViewController(editViewController!, animated: true, completion: {})
+		if editViewController == nil {
+			editViewController = CommentEditViewController_default(body: "")
+			self.definesPresentationContext = true
+			editViewController!.modalPresentationStyle = .OverCurrentContext
+			editViewController!.confirmButton?.titleLabel?.text = "Add comment"
+			editViewController!.confirmBodyClosure = addComment
+			presentViewController(editViewController!, animated: true, completion: nil)
+		}
 	}
 
 	private func addComment(body: String?) {
-		editViewController?.dismissViewControllerAnimated(true, completion: nil)
+		editViewController?.dismissViewControllerAnimated(true) {
+			self.editViewController = nil
+		}
+
 		if let newCommentBody = body, screenlet = listScreenlet {
 			let interactor = CommentAddInteractor(
 				screenlet: nil,
