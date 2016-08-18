@@ -19,23 +19,20 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.base.interactor.Interactor;
+import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
+import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.base.list.view.BaseListViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * @author Silvio Santos
  */
-public abstract class BaseListScreenlet<E, N extends Interactor>
-	extends BaseScreenlet<BaseListViewModel, N>
+public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends BaseScreenlet<BaseListViewModel, N>
 	implements BaseListInteractorListener<E> {
 
 	public BaseListScreenlet(Context context) {
@@ -97,15 +94,14 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 			getViewModel().showStartOperation(null);
 		}
 
-		Locale locale = getResources().getConfiguration().locale;
-
 		int startRow = getFirstRowForPage(page);
 		int endRow = getFirstRowForPage(page + 1);
 
 		try {
-			loadRows(getInteractor(), startRow, endRow, _obcClassName);
-		}
-		catch (Exception e) {
+			N interactor = getInteractor();
+			interactor.setQuery(new Query(startRow, endRow, _obcClassName));
+			loadRows(interactor);
+		} catch (Exception e) {
 			onListRowsFailure(startRow, endRow, e);
 		}
 	}
@@ -150,21 +146,17 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 		_labelFields = labelFields;
 	}
 
-	protected abstract void loadRows(N interactor, int startRow, int endRow, String obcClassName)
-		throws Exception;
+	protected abstract void loadRows(N interactor) throws Exception;
 
 	@Override
-	protected View createScreenletView(
-		Context context, AttributeSet attributes) {
+	protected View createScreenletView(Context context, AttributeSet attributes) {
 
-		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-			attributes, R.styleable.AssetListScreenlet, 0, 0);
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.AssetListScreenlet, 0, 0);
 
-		int layoutId = typedArray.getResourceId(
-			R.styleable.AssetListScreenlet_layoutId, getDefaultLayoutId());
+		int layoutId = typedArray.getResourceId(R.styleable.AssetListScreenlet_layoutId, getDefaultLayoutId());
 
-		_firstPageSize = typedArray.getInteger(
-			R.styleable.AssetListScreenlet_firstPageSize, _FIRST_PAGE_SIZE);
+		_firstPageSize = typedArray.getInteger(R.styleable.AssetListScreenlet_firstPageSize, _FIRST_PAGE_SIZE);
 
 		_pageSize = typedArray.getInteger(R.styleable.AssetListScreenlet_pageSize, _PAGE_SIZE);
 

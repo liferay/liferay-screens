@@ -1,7 +1,6 @@
 package com.liferay.mobile.screens.webcontent.list.interactor;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -17,15 +16,18 @@ import org.json.JSONArray;
 public class WebContentListInteractorImpl extends BaseListInteractor<WebContent, WebContentListInteractorListener> {
 
 	@Override
-	protected BaseListEvent<WebContent> createEventFromArgs(Object... args) throws Exception {
-		return null;
+	protected String getIdFromArgs(Object... args) throws Exception {
+		long folderId = (long) args[0];
+
+		return String.valueOf(folderId);
 	}
 
 	@Override
 	protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {
 
 		long _folderId = (long) args[0];
-		Session session = SessionContext.createSessionFromCurrentSession();
+
+		Session session = getSession();
 
 		JournalContentConnector journalContentConnector =
 			ServiceProvider.getInstance().getJournalContentConnector(session);
@@ -37,10 +39,9 @@ public class WebContentListInteractorImpl extends BaseListInteractor<WebContent,
 	protected Integer getPageRowCountRequest(Object... args) throws Exception {
 
 		long _folderId = (long) args[0];
-		Session session = SessionContext.createSessionFromCurrentSession();
 
 		JournalContentConnector journalContentConnector =
-			ServiceProvider.getInstance().getJournalContentConnector(session);
+			ServiceProvider.getInstance().getJournalContentConnector(getSession());
 		return journalContentConnector.getJournalArticlesCount(groupId, _folderId);
 	}
 

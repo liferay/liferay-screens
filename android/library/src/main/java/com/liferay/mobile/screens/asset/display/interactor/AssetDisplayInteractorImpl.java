@@ -1,13 +1,11 @@
 package com.liferay.mobile.screens.asset.display.interactor;
 
-import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
 import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.asset.list.interactor.AssetFactory;
 import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
 import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
-import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.service.v70.ScreensassetentryService;
 import com.liferay.mobile.screens.util.JSONUtil;
 import java.util.Locale;
@@ -25,8 +23,7 @@ public class AssetDisplayInteractorImpl
 
 		final long entryId = (long) args[0];
 
-		Session session = SessionContext.createSessionFromCurrentSession();
-		ScreensassetentryService service = new ScreensassetentryService(session);
+		ScreensassetentryService service = new ScreensassetentryService(getSession());
 		JSONObject jsonObject = service.getAssetEntry(entryId, Locale.getDefault().getLanguage());
 		return new AssetEvent(jsonObject);
 	}

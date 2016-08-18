@@ -22,7 +22,6 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.asset.list.interactor.AssetListInteractorImpl;
 import com.liferay.mobile.screens.asset.list.interactor.AssetListInteractorListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
-import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import java.util.HashMap;
@@ -116,11 +115,8 @@ public class AssetListScreenlet extends BaseListScreenlet<AssetEntry, AssetListI
 	}
 
 	@Override
-	protected void loadRows(AssetListInteractorImpl interactor, int startRow, int endRow, String obcClassName) throws Exception {
-
-		Query query = new Query(startRow, endRow, obcClassName);
-
-		interactor.start(query, _classNameId, _portletItemName, _customEntryQuery);
+	protected void loadRows(AssetListInteractorImpl interactor) throws Exception {
+		interactor.start(_classNameId, _portletItemName, _customEntryQuery);
 	}
 
 	@Override

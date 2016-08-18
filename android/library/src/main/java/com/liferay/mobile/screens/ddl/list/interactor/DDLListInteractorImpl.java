@@ -15,11 +15,8 @@
 package com.liferay.mobile.screens.ddl.list.interactor;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
-import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.base.list.interactor.Query;
-import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.ServiceProvider;
@@ -45,9 +42,8 @@ public class DDLListInteractorImpl extends BaseListInteractor<Record, DDLListInt
 	protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {
 		long _recordSetId = (long) args[0];
 		long _userId = (long) args[1];
-		Session session = SessionContext.createSessionFromCurrentSession();
 		ScreensDDLRecordConnector ddlRecordService =
-			ServiceProvider.getInstance().getScreensDDLRecordConnector(session);
+			ServiceProvider.getInstance().getScreensDDLRecordConnector(getSession());
 		int startRow = query.getStartRow();
 		int endRow = query.getEndRow();
 		JSONObjectWrapper obc = query.getObjC();
@@ -64,10 +60,8 @@ public class DDLListInteractorImpl extends BaseListInteractor<Record, DDLListInt
 		long _recordSetId = (long) args[0];
 		long _userId = (long) args[1];
 
-		Session session = SessionContext.createSessionFromCurrentSession();
-
 		ScreensDDLRecordConnector ddlRecordService =
-			ServiceProvider.getInstance().getScreensDDLRecordConnector(session);
+			ServiceProvider.getInstance().getScreensDDLRecordConnector(getSession());
 
 		if (_userId != 0) {
 			return ddlRecordService.getDdlRecordsCount(_recordSetId, _userId);
@@ -82,7 +76,7 @@ public class DDLListInteractorImpl extends BaseListInteractor<Record, DDLListInt
 	}
 
 	@Override
-	protected BaseListEvent<Record> createEventFromArgs(Object... args) throws Exception {
+	protected String getIdFromArgs(Object... args) throws Exception {
 		return null;
 	}
 }

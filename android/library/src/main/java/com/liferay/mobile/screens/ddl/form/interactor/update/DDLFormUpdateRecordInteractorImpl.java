@@ -15,12 +15,11 @@
 package com.liferay.mobile.screens.ddl.form.interactor.update;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
-import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
-import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordConnector;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import org.json.JSONObject;
@@ -29,10 +28,10 @@ import org.json.JSONObject;
  * @author Jose Manuel Navarro
  */
 public class DDLFormUpdateRecordInteractorImpl
-	extends BaseCachedWriteThreadRemoteInteractor<DDLFormListener, DDLFormUpdateRecordEvent> {
+	extends BaseCachedWriteThreadRemoteInteractor<DDLFormListener, DDLFormEvent> {
 
 	@Override
-	public DDLFormUpdateRecordEvent execute(DDLFormUpdateRecordEvent event) throws Exception {
+	public DDLFormEvent execute(DDLFormEvent event) throws Exception {
 
 		Record record = event.getRecord();
 
@@ -44,8 +43,7 @@ public class DDLFormUpdateRecordInteractorImpl
 
 		JSONObjectWrapper serviceContextWrapper = new JSONObjectWrapper(serviceContextAttributes);
 
-		Session session = SessionContext.createSessionFromCurrentSession();
-		DDLRecordConnector ddlRecordConnector = ServiceProvider.getInstance().getDDLRecordConnector(session);
+		DDLRecordConnector ddlRecordConnector = ServiceProvider.getInstance().getDDLRecordConnector(getSession());
 
 		JSONObject jsonObject =
 			ddlRecordConnector.updateRecord(record.getRecordId(), 0, fieldsValues, false, serviceContextWrapper);
@@ -56,23 +54,23 @@ public class DDLFormUpdateRecordInteractorImpl
 	}
 
 	@Override
-	protected DDLFormUpdateRecordEvent createEvent(Object[] args) throws Exception {
+	protected DDLFormEvent createEvent(Object[] args) throws Exception {
 
 		long groupId = (long) args[0];
 		Record record = (Record) args[1];
 
 		validate(groupId, record);
 
-		return new DDLFormUpdateRecordEvent(record, new JSONObject());
+		return new DDLFormEvent(record, new JSONObject());
 	}
 
 	@Override
-	public void onSuccess(DDLFormUpdateRecordEvent event) throws Exception {
+	public void onSuccess(DDLFormEvent event) throws Exception {
 		getListener().onDDLFormRecordUpdated(event.getRecord());
 	}
 
 	@Override
-	public void onFailure(DDLFormUpdateRecordEvent event) {
+	public void onFailure(DDLFormEvent event) {
 		getListener().error(event.getException(), DDLFormScreenlet.UPDATE_RECORD_ACTION);
 	}
 

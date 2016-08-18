@@ -14,9 +14,6 @@
 
 package com.liferay.mobile.screens.webcontent.display.interactor;
 
-import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
 import com.liferay.mobile.screens.webcontent.display.connector.JournalContentConnector;
@@ -68,13 +65,11 @@ public class WebContentDisplayFromArticleIdInteractorImpl extends WebContentDisp
 	}
 
 	protected JournalContentConnector getJournalArticleService() {
-		Session session = SessionContext.createSessionFromCurrentSession();
-		return ServiceProvider.getInstance().getJournalContentConnector(session);
+		return ServiceProvider.getInstance().getJournalContentConnector(getSession());
 	}
 
 	protected ScreensJournalContentConnector getScreensJournalArticleService() {
-		Session session = SessionContext.createSessionFromCurrentSession();
-		return ServiceProvider.getInstance().getScreensJournalContentConnector(session);
+		return ServiceProvider.getInstance().getScreensJournalContentConnector(getSession());
 	}
 
 	protected void validate(long groupId, String articleId, Locale locale) {

@@ -1,11 +1,9 @@
 package com.liferay.mobile.screens.comment.list.interactor;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.comment.CommentEntry;
-import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
 import java.util.Map;
 import org.json.JSONArray;
@@ -21,8 +19,7 @@ public class CommentListInteractorImpl extends BaseListInteractor<CommentEntry, 
 		String className = (String) args[0];
 		long classPK = (long) args[1];
 
-		Session session = SessionContext.createSessionFromCurrentSession();
-		CommentmanagerjsonwsService service = getCommentsService(session);
+		CommentmanagerjsonwsService service = getCommentsService(getSession());
 		return service.getComments(groupId, className, classPK, query.getStartRow(), query.getEndRow());
 	}
 
@@ -32,8 +29,7 @@ public class CommentListInteractorImpl extends BaseListInteractor<CommentEntry, 
 		String className = (String) args[0];
 		long classPK = (long) args[1];
 
-		Session session = SessionContext.createSessionFromCurrentSession();
-		CommentmanagerjsonwsService service = getCommentsService(session);
+		CommentmanagerjsonwsService service = getCommentsService(getSession());
 		return service.getCommentsCount(groupId, className, classPK);
 	}
 
@@ -43,7 +39,7 @@ public class CommentListInteractorImpl extends BaseListInteractor<CommentEntry, 
 	}
 
 	@Override
-	protected BaseListEvent<CommentEntry> createEventFromArgs(Object... args) throws Exception {
+	protected String getIdFromArgs(Object... args) throws Exception {
 		String className = (String) args[0];
 		long classPK = (long) args[1];
 

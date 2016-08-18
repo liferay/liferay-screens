@@ -1,12 +1,10 @@
 package com.liferay.mobile.screens.comment.display.interactor.update;
 
-import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
 import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
 import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
-import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
 import com.liferay.mobile.screens.util.JSONUtil;
 import org.json.JSONObject;
@@ -26,8 +24,7 @@ public class CommentUpdateInteractorImpl
 
 		validate(groupId, className, classPK, commentId, newBody);
 
-		Session session = SessionContext.createSessionFromCurrentSession();
-		CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(session);
+		CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(getSession());
 
 		JSONObject jsonObject = service.updateComment(groupId, className, classPK, commentId, newBody);
 

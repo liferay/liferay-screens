@@ -1,7 +1,5 @@
 package com.liferay.mobile.screens.webcontent.display.interactor;
 
-import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
 import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.ServiceProvider;
@@ -24,13 +22,11 @@ public class WebContentDisplayFromStructureInteractorImpl extends WebContentDisp
 
 		validate(structureId, groupId, articleId, locale);
 
-		Session session = SessionContext.createSessionFromCurrentSession();
-
 		JournalContentConnector journalArticleConnector =
-			ServiceProvider.getInstance().getJournalContentConnector(session);
+			ServiceProvider.getInstance().getJournalContentConnector(getSession());
 		JSONObject article = journalArticleConnector.getArticle(groupId, articleId);
 
-		DDMStructureConnector structureConnector = ServiceProvider.getInstance().getDDMStructureConnector(session);
+		DDMStructureConnector structureConnector = ServiceProvider.getInstance().getDDMStructureConnector(getSession());
 		JSONObject ddmStructure = structureConnector.getStructure(structureId);
 		article.put("DDMStructure", ddmStructure);
 

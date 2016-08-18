@@ -2,12 +2,10 @@ package com.liferay.mobile.screens.bookmark.interactor;
 
 import android.support.annotation.NonNull;
 import android.webkit.URLUtil;
-import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v7.bookmarksentry.BookmarksEntryService;
 import com.liferay.mobile.screens.base.thread.BaseRemoteInteractorNew;
 import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.context.SessionContext;
 import org.json.JSONObject;
 
 /**
@@ -47,12 +45,11 @@ public class AddBookmarkInteractorImpl extends BaseRemoteInteractorNew<AddBookma
 
 	@NonNull
 	private JSONObject getJSONObject(String url, String title, long folderId) throws Exception {
-		Session session = SessionContext.createSessionFromCurrentSession();
 		if (LiferayServerContext.isLiferay7()) {
-			return new BookmarksEntryService(session).addEntry(LiferayServerContext.getGroupId(), folderId, title, url,
-				"", null);
+			return new BookmarksEntryService(getSession()).addEntry(LiferayServerContext.getGroupId(), folderId, title,
+				url, "", null);
 		} else {
-			return new com.liferay.mobile.android.v62.bookmarksentry.BookmarksEntryService(session).addEntry(
+			return new com.liferay.mobile.android.v62.bookmarksentry.BookmarksEntryService(getSession()).addEntry(
 				LiferayServerContext.getGroupId(), folderId, title, url, "", null);
 		}
 	}

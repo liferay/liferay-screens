@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
-import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.webcontent.WebContent;
@@ -95,11 +94,8 @@ public class WebContentListScreenlet extends BaseListScreenlet<WebContent, WebCo
 	}
 
 	@Override
-	protected void loadRows(WebContentListInteractorImpl interactor, int startRow, int endRow, String obcClassName) throws Exception {
-
-		Query query = new Query(startRow, endRow, obcClassName);
-
-		interactor.start(query, _folderId);
+	protected void loadRows(WebContentListInteractorImpl interactor) throws Exception {
+		interactor.start(_folderId);
 	}
 
 	@Override

@@ -14,9 +14,7 @@
 
 package com.liferay.mobile.screens.ddl.form.interactor.formload;
 
-import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
-import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
@@ -37,8 +35,8 @@ public class DDLFormLoadInteractorImpl extends BaseCachedThreadRemoteInteractor<
 
 		validate(record);
 
-		Session session = SessionContext.createSessionFromCurrentSession();
-		DDMStructureConnector ddmStructureConnector = ServiceProvider.getInstance().getDDMStructureConnector(session);
+		DDMStructureConnector ddmStructureConnector =
+			ServiceProvider.getInstance().getDDMStructureConnector(getSession());
 		JSONObject jsonObject = ddmStructureConnector.getStructure(record.getStructureId());
 		return new DDLFormEvent(record, jsonObject);
 	}

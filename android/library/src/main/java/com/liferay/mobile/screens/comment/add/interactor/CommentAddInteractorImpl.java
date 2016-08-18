@@ -1,12 +1,10 @@
 package com.liferay.mobile.screens.comment.add.interactor;
 
-import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
 import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.add.CommentAddListener;
 import com.liferay.mobile.screens.comment.add.CommentAddScreenlet;
 import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
-import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
 import com.liferay.mobile.screens.util.JSONUtil;
 import org.json.JSONObject;
@@ -14,8 +12,7 @@ import org.json.JSONObject;
 /**
  * @author Alejandro Hernández
  */
-public class CommentAddInteractorImpl
-	extends BaseCachedWriteThreadRemoteInteractor<CommentAddListener, CommentEvent> {
+public class CommentAddInteractorImpl extends BaseCachedWriteThreadRemoteInteractor<CommentAddListener, CommentEvent> {
 
 	@Override
 	public CommentEvent execute(CommentEvent event) throws Exception {
@@ -26,8 +23,7 @@ public class CommentAddInteractorImpl
 
 		validate(groupId, className, classPK, body);
 
-		Session session = SessionContext.createSessionFromCurrentSession();
-		CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(session);
+		CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(getSession());
 
 		JSONObject jsonObject = service.addComment(groupId, className, classPK, body);
 		CommentEntry commentEntry = new CommentEntry(JSONUtil.toMap(jsonObject));

@@ -20,7 +20,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
-import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorImpl;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorListener;
@@ -100,11 +99,8 @@ public class DDLListScreenlet extends BaseListScreenlet<Record, DDLListInteracto
 	}
 
 	@Override
-	protected void loadRows(DDLListInteractorImpl interactor, int startRow, int endRow, String obcClassName) throws Exception {
-
-		Query query = new Query(startRow, endRow, obcClassName);
-
-		interactor.start(query, _recordSetId, _userId);
+	protected void loadRows(DDLListInteractorImpl interactor) throws Exception {
+		interactor.start(_recordSetId, _userId);
 	}
 
 	@Override

@@ -19,14 +19,11 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitUriBuilder;
@@ -58,9 +55,7 @@ public class UserPortraitLoadInteractorImpl
 
 			validate(userId);
 
-			Session session = SessionContext.createSessionFromCurrentSession();
-
-			UserConnector userConnector = ServiceProvider.getInstance().getUserConnector(session);
+			UserConnector userConnector = ServiceProvider.getInstance().getUserConnector(getSession());
 
 			JSONObject jsonObject = userConnector.getUserById(userId);
 			return new UserPortraitOfflineEventNew(jsonObject);

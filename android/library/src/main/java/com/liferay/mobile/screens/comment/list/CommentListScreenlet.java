@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
-import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
@@ -55,11 +54,8 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Commen
 	}
 
 	@Override
-	protected void loadRows(CommentListInteractorImpl interactor, int startRow, int endRow, String obcClassName) throws Exception {
-
-		Query query = new Query(startRow, endRow, obcClassName);
-
-		interactor.start(query, className, classPK);
+	protected void loadRows(CommentListInteractorImpl interactor) throws Exception {
+		interactor.start(className, classPK);
 	}
 
 	@Override

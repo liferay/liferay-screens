@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
-import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 
 /**
@@ -67,12 +66,11 @@ public class BookmarkListScreenlet extends BaseListScreenlet<Bookmark, BookmarkL
 	}
 
 	@Override
-	protected void loadRows(BookmarkListInteractorImpl interactor, int startRow, int endRow, String obcClassName) throws Exception {
+	protected void loadRows(BookmarkListInteractorImpl interactor) throws Exception {
 
 		((BookmarkListListener) getListener()).interactorCalled();
 
-		Query query = new Query(startRow, endRow, obcClassName);
-		interactor.start(query, _folderId);
+		interactor.start(_folderId);
 	}
 
 	@Override

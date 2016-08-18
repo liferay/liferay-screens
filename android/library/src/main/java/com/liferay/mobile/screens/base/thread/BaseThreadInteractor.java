@@ -1,8 +1,10 @@
 package com.liferay.mobile.screens.base.thread;
 
+import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.base.thread.event.ErrorThreadEvent;
+import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
@@ -76,6 +78,10 @@ public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent> implem
 
 	public boolean isValidEvent(E event) {
 		return getListener() != null && event.getTargetScreenletId() == getTargetScreenletId();
+	}
+
+	protected Session getSession() {
+		return SessionContext.createSessionFromCurrentSession();
 	}
 
 	public int getTargetScreenletId() {

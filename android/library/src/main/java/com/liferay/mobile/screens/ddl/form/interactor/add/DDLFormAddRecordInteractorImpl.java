@@ -15,12 +15,11 @@
 package com.liferay.mobile.screens.ddl.form.interactor.add;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
-import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
-import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordConnector;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import org.json.JSONObject;
@@ -29,13 +28,12 @@ import org.json.JSONObject;
  * @author Jose Manuel Navarro
  */
 public class DDLFormAddRecordInteractorImpl
-	extends BaseCachedWriteThreadRemoteInteractor<DDLFormListener, DDLFormAddRecordEvent> {
+	extends BaseCachedWriteThreadRemoteInteractor<DDLFormListener, DDLFormEvent> {
 
 	@Override
-	public DDLFormAddRecordEvent execute(DDLFormAddRecordEvent event) throws Exception {
+	public DDLFormEvent execute(DDLFormEvent event) throws Exception {
 
-		Session session = SessionContext.createSessionFromCurrentSession();
-		DDLRecordConnector ddlRecordConnector = ServiceProvider.getInstance().getDDLRecordConnector(session);
+		DDLRecordConnector ddlRecordConnector = ServiceProvider.getInstance().getDDLRecordConnector(getSession());
 
 		Record record = event.getRecord();
 
@@ -57,18 +55,18 @@ public class DDLFormAddRecordInteractorImpl
 	}
 
 	@Override
-	protected DDLFormAddRecordEvent createEvent(Object[] args) throws Exception {
+	protected DDLFormEvent createEvent(Object[] args) throws Exception {
 
 		long groupId = (long) args[0];
 		Record record = (Record) args[1];
 
 		validate(groupId, record);
 
-		return new DDLFormAddRecordEvent(record, new JSONObject());
+		return new DDLFormEvent(record, new JSONObject());
 	}
 
 	@Override
-	public void onSuccess(DDLFormAddRecordEvent event) throws Exception {
+	public void onSuccess(DDLFormEvent event) throws Exception {
 		if (event.getJSONObject().has("recordId")) {
 			long recordId = event.getJSONObject().getLong("recordId");
 			event.getRecord().setRecordId(recordId);
@@ -77,12 +75,7 @@ public class DDLFormAddRecordInteractorImpl
 	}
 
 	@Override
-	public void onFailure(Exception e) {
-
-	}
-
-	@Override
-	public void onFailure(DDLFormAddRecordEvent event) {
+	public void onFailure(DDLFormEvent event) {
 		getListener().error(event.getException(), DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION);
 	}
 

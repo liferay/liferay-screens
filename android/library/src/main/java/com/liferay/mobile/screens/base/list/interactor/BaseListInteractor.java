@@ -27,11 +27,13 @@ import org.json.JSONObject;
 public abstract class BaseListInteractor<E, L extends BaseListInteractorListener>
 	extends BaseCachedThreadRemoteInteractor<L, BaseListEvent<E>> {
 
+	private Query query;
+
 	public BaseListEvent<E> execute(Object... args) throws Exception {
 		throw new AssertionError("a");
 	}
 
-	public void start(final Query query, final Object... args) {
+	public void start(final Object... args) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -156,35 +158,24 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 	protected abstract E createEntity(Map<String, Object> stringObjectMap);
 
 	public void onEventMainThread(BaseListEvent event) {
-		LiferayLogger.i("event = [" + event + "]");
+		try {
+			LiferayLogger.i("event = [" + event + "]");
 
-		if (!isValidEvent(event)) {
-			return;
-		}
-
-		if (event.isFailed()) {
-			try {
-				if (OfflinePolicy.REMOTE_FIRST.equals(_offlinePolicy)) {
-					boolean _retrievedFromCache = cached(event);
-
-					if (_retrievedFromCache) {
-						return;
-					}
-				}
-				onFailure(event);
-			} catch (Exception e) {
-				onFailure(event);
+			if (!isValidEvent(event)) {
+				return;
 			}
-		} else {
-			try {
+
+			if (event.isFailed()) {
+				onFailure(event);
+			} else {
 				if (!event.isCachedRequest()) {
 					storeToCache(event);
 				}
 
 				onSuccess(event);
-			} catch (Exception e) {
-				onFailure(e);
 			}
+		} catch (Exception e) {
+			onFailure(event);
 		}
 	}
 
@@ -222,7 +213,7 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 			+ "_"
 			+ event.getLocale()
 			+ "_"
-			+ event.getId();
+			+ event.getCacheKey();
 	}
 
 	protected void online(boolean triedOffline, Exception e, Query query, Object[] args) throws Exception {
@@ -234,7 +225,8 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 		getListener().retrievingOnline(triedOffline, e);
 
 		BaseListEvent<E> newEvent = execute(query, args);
-		decorateEvent(newEvent);
+		//FIXME !
+		//decorateEvent(newEvent);
 		EventBusUtil.post(newEvent);
 	}
 
@@ -242,4 +234,8 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 	protected long userId;
 	protected Locale locale;
 	protected OfflinePolicy _offlinePolicy;
+
+	public void setQuery(Query query) {
+		this.query = query;
+	}
 }

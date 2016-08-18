@@ -1,11 +1,9 @@
 package com.liferay.mobile.screens.comment.display.interactor.delete;
 
-import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
 import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
 import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
-import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
 
 /**
@@ -21,8 +19,7 @@ public class CommentDeleteInteractorImpl
 
 		validate(commentId);
 
-		Session session = SessionContext.createSessionFromCurrentSession();
-		CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(session);
+		CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(getSession());
 
 		service.deleteComment(commentId);
 

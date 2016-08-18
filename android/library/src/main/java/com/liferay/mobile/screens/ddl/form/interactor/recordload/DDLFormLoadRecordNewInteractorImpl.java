@@ -15,9 +15,7 @@
 package com.liferay.mobile.screens.ddl.form.interactor.recordload;
 
 import android.support.annotation.NonNull;
-import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
-import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector;
@@ -43,9 +41,8 @@ public class DDLFormLoadRecordNewInteractorImpl
 
 		validate(record);
 
-		Session session = SessionContext.createSessionFromCurrentSession();
 		ScreensDDLRecordConnector ddlRecordService =
-			ServiceProvider.getInstance().getScreensDDLRecordConnector(session);
+			ServiceProvider.getInstance().getScreensDDLRecordConnector(getSession());
 
 		JSONObject jsonObject = ddlRecordService.getDdlRecord(record.getRecordId(), record.getLocale().toString());
 		return new DDLFormEvent(record, jsonObject);
