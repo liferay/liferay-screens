@@ -35,7 +35,7 @@ public class WebContentDisplayFromArticleIdInteractorImpl extends WebContentDisp
 		validate(groupId, articleId, locale);
 
 		String content = getContent(articleId, templateId);
-		return new WebContentDisplayEvent(articleId, templateId, content);
+		return new WebContentDisplayEvent(content);
 	}
 
 	private String getContent(String articleId, Long templateId) throws Exception {
@@ -54,11 +54,10 @@ public class WebContentDisplayFromArticleIdInteractorImpl extends WebContentDisp
 	}
 
 	@Override
-	protected WebContentDisplayEvent createEventFromArgs(Object... args) throws Exception {
+	protected String getIdFromArgs(Object... args) throws Exception {
 		String articleId = (String) args[0];
 		Long templateId = (Long) args[1];
-
-		return new WebContentDisplayEvent(articleId, templateId, null);
+		return articleId + (templateId == null ? "-" : templateId);
 	}
 
 	protected JournalContentConnector getJournalArticleService() {

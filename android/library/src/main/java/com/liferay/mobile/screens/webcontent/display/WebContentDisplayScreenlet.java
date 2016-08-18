@@ -23,7 +23,6 @@ import android.view.View;
 import android.webkit.WebView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.webcontent.WebContent;
 import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayBaseInteractorImpl;
@@ -147,14 +146,6 @@ public class WebContentDisplayScreenlet
 		_templateId = templateId;
 	}
 
-	public OfflinePolicy getOfflinePolicy() {
-		return _offlinePolicy;
-	}
-
-	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
-		_offlinePolicy = offlinePolicy;
-	}
-
 	public boolean isAutoLoad() {
 		return _autoLoad;
 	}
@@ -203,10 +194,6 @@ public class WebContentDisplayScreenlet
 
 		_javascriptEnabled = typedArray.getBoolean(R.styleable.WebContentDisplayScreenlet_javascriptEnabled, false);
 
-		int offlinePolicy = typedArray.getInt(R.styleable.WebContentDisplayScreenlet_offlinePolicy,
-			OfflinePolicy.REMOTE_ONLY.ordinal());
-		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
-
 		int layoutId = typedArray.getResourceId(R.styleable.WebContentDisplayScreenlet_layoutId, getDefaultLayoutId());
 
 		typedArray.recycle();
@@ -237,7 +224,7 @@ public class WebContentDisplayScreenlet
 			WebContentDisplayFromStructureInteractorImpl interactorFromStructure =
 				(WebContentDisplayFromStructureInteractorImpl) getInteractor(userActionName);
 
-			interactorFromStructure.start(_structureId, _articleId);
+			interactorFromStructure.start(_articleId, _structureId);
 		}
 	}
 
@@ -255,5 +242,4 @@ public class WebContentDisplayScreenlet
 	private boolean _javascriptEnabled;
 	private String _labelFields;
 	private WebContentDisplayListener _listener;
-	private OfflinePolicy _offlinePolicy;
 }

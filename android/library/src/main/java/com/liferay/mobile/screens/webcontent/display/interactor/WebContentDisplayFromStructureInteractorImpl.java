@@ -18,8 +18,8 @@ public class WebContentDisplayFromStructureInteractorImpl extends WebContentDisp
 	@Override
 	public WebContentDisplayEvent execute(Object... args) throws Exception {
 
-		Long structureId = (Long) args[0];
-		String articleId = (String) args[1];
+		String articleId = (String) args[0];
+		Long structureId = (Long) args[1];
 
 		validate(structureId, groupId, articleId, locale);
 
@@ -31,11 +31,10 @@ public class WebContentDisplayFromStructureInteractorImpl extends WebContentDisp
 
 		DDMStructureConnector structureConnector = ServiceProvider.getInstance().getDDMStructureConnector(session);
 		JSONObject ddmStructure = structureConnector.getStructure(structureId);
-
 		article.put("DDMStructure", ddmStructure);
-		WebContent webContent = new WebContent(JSONUtil.toMap(article), locale);
 
-		return new WebContentDisplayEvent(structureId, articleId, webContent);
+		WebContent webContent = new WebContent(JSONUtil.toMap(article), locale);
+		return new WebContentDisplayEvent(webContent);
 	}
 
 	@Override
@@ -44,12 +43,10 @@ public class WebContentDisplayFromStructureInteractorImpl extends WebContentDisp
 	}
 
 	@Override
-	protected WebContentDisplayEvent createEventFromArgs(Object... args) throws Exception {
-
-		Long structureId = (Long) args[0];
-		String articleId = (String) args[1];
-
-		return new WebContentDisplayEvent(structureId, articleId, null);
+	protected String getIdFromArgs(Object... args) throws Exception {
+		String articleId = (String) args[0];
+		Long structureId = (Long) args[1];
+		return articleId + (structureId == null ? "-" : structureId);
 	}
 
 	private void validate(Long structureId, long groupId, String articleId, Locale locale) {

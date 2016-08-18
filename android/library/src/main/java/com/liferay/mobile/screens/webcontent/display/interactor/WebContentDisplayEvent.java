@@ -22,55 +22,21 @@ import com.liferay.mobile.screens.webcontent.WebContent;
  */
 public class WebContentDisplayEvent extends OfflineEventNew {
 
-	private String id;
-
 	public WebContentDisplayEvent() {
 		super();
 	}
 
-	@Override
-	public String getId() throws Exception {
-		return id;
-	}
-
-	public WebContentDisplayEvent(String articleId, Long templateId, String html) {
+	public WebContentDisplayEvent(String html) {
 		_webContent = new WebContent(html);
-
-		_articleId = articleId;
-		_templateId = templateId;
-		id = _articleId + (_templateId == null ? "-" : templateId);
 	}
 
-	public WebContentDisplayEvent(Long structureId, String articleId, WebContent webContent) {
+	public WebContentDisplayEvent(WebContent webContent) {
 		_webContent = webContent;
-
-		_structureId = structureId;
-		_articleId = articleId;
-		id = _articleId + _structureId;
-	}
-
-	public String getArticleId() {
-		return _articleId;
-	}
-
-	public Long getTemplateId() {
-		return _templateId;
-	}
-
-	public Long getStructureId() {
-		return _structureId;
-	}
-
-	public void setStructureId(Long structureId) {
-		_structureId = structureId;
 	}
 
 	public WebContent getWebContent() {
 		return _webContent;
 	}
 
-	private String _articleId;
-	private Long _templateId;
-	private Long _structureId;
 	private WebContent _webContent;
 }
