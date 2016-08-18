@@ -78,9 +78,7 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 			}
 			alertController.addAction(dismissAction)
 
-			viewController.presentViewController(alertController, animated: true, completion: {
-				self.changeState(.Editing)
-			})
+			viewController.presentViewController(alertController, animated: true, completion: nil)
 		} else {
 			changeState(.Editing)
 		}

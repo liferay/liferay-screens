@@ -23,6 +23,8 @@ class CommentListScreenletViewController: UIViewController,
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		self.definesPresentationContext = true
+
 		self.listScreenlet?.delegate = self
 		self.listScreenlet?.presentingViewController = self
 		self.listScreenlet?.loadList()
@@ -33,7 +35,6 @@ class CommentListScreenletViewController: UIViewController,
 	@IBAction func insertButtonPressed(sender: AnyObject) {
 		if editViewController == nil {
 			editViewController = CommentEditViewController_default(body: "")
-			self.definesPresentationContext = true
 			editViewController!.modalPresentationStyle = .OverCurrentContext
 			editViewController!.confirmButton?.titleLabel?.text = "Add comment"
 			editViewController!.confirmBodyClosure = addComment
