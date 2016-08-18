@@ -19,14 +19,17 @@ class AssetDisplayViewController: UIViewController, AssetDisplayScreenletDelegat
 	
 	@IBOutlet var screenlet: AssetDisplayScreenlet?
 	
-	var entryId: Int64 = 0
+	var entryId: Int64?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-		self.screenlet?.assetEntryId = self.entryId
+
+		if let id = entryId {
+			self.screenlet?.assetEntryId = id
+		}
 		self.screenlet?.delegate = self
 		self.screenlet?.presentingViewController = self
+		self.screenlet?.load()
 	}
 	
 	func screenlet(screenlet: AssetDisplayScreenlet,
