@@ -26,6 +26,7 @@ import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitUriBuilder;
@@ -66,6 +67,11 @@ public class UserPortraitLoadInteractorImpl
 		} else {
 			return createEventFromUUID(args);
 		}
+	}
+
+	@Override
+	public void onFailure(Exception e) {
+		getListener().error(e, UserPortraitScreenlet.LOAD_PORTRAIT);
 	}
 
 	@NonNull
