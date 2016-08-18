@@ -31,7 +31,9 @@ import Foundation
 
 	public var plainBody: String {
 		return originalBody.stringByReplacingOccurrencesOfString(
-			"<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+				"<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+			.stringByReplacingOccurrencesOfString("&lt;", withString: "<")
+			.stringByReplacingOccurrencesOfString("&gt;", withString: ">")
 	}
 
 	public var htmlBody: String {
@@ -42,7 +44,7 @@ import Foundation
 	}
 
 	public var isStyled: Bool {
-		return plainBody != htmlBody.stringByReplacingOccurrencesOfString("</br>", withString: "\n")
+		return originalBody.containsString("<")
 	}
 
 	public var commentId: Int64 {
