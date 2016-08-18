@@ -28,7 +28,7 @@ public class AssetDisplayInteractorImpl
 		Session session = SessionContext.createSessionFromCurrentSession();
 		ScreensassetentryService service = new ScreensassetentryService(session);
 		JSONObject jsonObject = service.getAssetEntry(entryId, Locale.getDefault().getLanguage());
-		return new AssetEvent(entryId, jsonObject);
+		return new AssetEvent(jsonObject);
 	}
 
 	@Override
@@ -44,25 +44,19 @@ public class AssetDisplayInteractorImpl
 	}
 
 	@Override
-	protected AssetEvent createEventFromArgs(Object... args) throws Exception {
-
+	protected String getIdFromArgs(Object... args) throws Exception {
 		final long entryId = (long) args[0];
-
-		return new AssetEvent(entryId, new JSONObject());
+		return String.valueOf(entryId);
 	}
 
 	public class AssetEvent extends OfflineEventNew {
 
-		private final long entryId;
-
-		public AssetEvent(long entryId, JSONObject jsonObject) {
-			super(jsonObject);
-			this.entryId = entryId;
+		public AssetEvent() {
+			super();
 		}
 
-		@Override
-		public String getId() throws Exception {
-			return String.valueOf(entryId);
+		public AssetEvent(JSONObject jsonObject) {
+			super(jsonObject);
 		}
 	}
 }
