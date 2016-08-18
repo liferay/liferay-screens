@@ -21,18 +21,18 @@ public enum CommentDisplayState_default {
 
 public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewModel {
 
-	//Left/right UITextView padding
-	private static let TextViewPadding: CGFloat = 16
+	//Left/right UILabel padding
+	private static let LabelPadding: CGFloat = 16
 
-	//This fixed height equals the sum of UserPortraitScreenlet height, plus UITextView insets,
+	//This fixed height equals the sum of UserPortraitScreenlet height, plus UILabel insets,
 	//plus margin between user portrait - text view, plus one pixel for rounding
 	private static let FixedHeight: CGFloat = 50 + 8 + 8 + 8 + 1
 
-	//Top/bottom UITextView insets
-	private static let TextViewInsets: CGFloat = 16
+	//Top/bottom UILabel insets
+	private static let LabelInsets: CGFloat = 16
 
 	public class func heightForText(text: String?, width: CGFloat) -> CGFloat {
-		let realWidth = width - TextViewPadding
+		let realWidth = width - LabelPadding
 
 		let attributedText = text?.toHtmlTextWithAttributes(attributedTextAttributes)
 
@@ -42,7 +42,7 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 				options: [.UsesLineFragmentOrigin, .UsesFontLeading],
 				context: nil)
 
-			return rect.height + FixedHeight + TextViewInsets
+			return rect.height + FixedHeight + LabelInsets
 		}
 
 		return 110
@@ -54,7 +54,7 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 
 		var attributes: [String: NSObject] = [NSParagraphStyleAttributeName: paragrahpStyle]
 
-		let font = UIFont(name: "HelveticaNeue", size: 14)
+		let font = UIFont(name: "HelveticaNeue", size: 17)
 
 		if let font = font {
 			attributes[NSFontAttributeName] = font
@@ -88,8 +88,8 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 	@IBOutlet weak var userNameLabel: UILabel?
 	@IBOutlet weak var createdDateLabel: UILabel?
 	@IBOutlet weak var editedLabel: UILabel?
-	@IBOutlet weak var bodyTextView: UITextView?
-	@IBOutlet weak var bodyTextViewBottomMarginConstraint: NSLayoutConstraint?
+	@IBOutlet weak var bodyLabel: UILabel?
+	@IBOutlet weak var bodyLabelBottomMarginConstraint: NSLayoutConstraint?
 	@IBOutlet weak var normalStateButtonsContainer: UIView?
 	@IBOutlet weak var deletingStateButtonsContainer: UIView?
 	@IBOutlet weak var deleteButton: UIButton?
@@ -110,7 +110,7 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 			changeState(.Normal)
 
 			if let comment = comment {
-				bodyTextView?.attributedText = comment.htmlBody.toHtmlTextWithAttributes(
+				bodyLabel?.attributedText = comment.htmlBody.toHtmlTextWithAttributes(
 					CommentDisplayView_default.attributedTextAttributes)
 
 				deleteButton?.enabled = comment.canDelete

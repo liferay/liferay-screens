@@ -96,46 +96,46 @@
                         <constraint firstAttribute="trailing" secondItem="0bI-Tq-WKs" secondAttribute="trailing" id="egT-2S-sjs"/>
                     </constraints>
                 </view>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7hm-Bc-gU5">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JUT-Zw-z7I">
                     <rect key="frame" x="8" y="66" width="456" height="47"/>
                     <attributedString key="attributedText">
-                        <fragment>
-                            <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                        <fragment content="Body">
                             <attributes>
-                                <font key="NSFont" size="14" name="HelveticaNeue"/>
-                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                             </attributes>
                         </fragment>
                     </attributedString>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <constraints>
                 <constraint firstItem="qsA-4f-URH" firstAttribute="leading" secondItem="BYS-C6-vuU" secondAttribute="trailing" constant="8" id="1VW-1y-TUc"/>
                 <constraint firstAttribute="trailing" secondItem="qsA-4f-URH" secondAttribute="trailing" constant="8" id="53o-gu-WIG"/>
-                <constraint firstAttribute="trailing" secondItem="7hm-Bc-gU5" secondAttribute="trailing" constant="8" id="5fF-Gd-51a"/>
                 <constraint firstItem="qsA-4f-URH" firstAttribute="top" secondItem="ofk-wp-urv" secondAttribute="top" constant="8" id="5mR-x5-hEn"/>
-                <constraint firstAttribute="bottom" secondItem="7hm-Bc-gU5" secondAttribute="bottom" constant="8" id="6MC-4M-PuM"/>
+                <constraint firstAttribute="trailing" secondItem="JUT-Zw-z7I" secondAttribute="trailing" constant="8" id="7Kq-Cw-hYp"/>
+                <constraint firstItem="JUT-Zw-z7I" firstAttribute="leading" secondItem="ofk-wp-urv" secondAttribute="leading" constant="8" id="8Q0-ef-64d"/>
                 <constraint firstItem="K19-Wu-62Q" firstAttribute="centerY" secondItem="T0O-Tl-DWI" secondAttribute="centerY" id="AvD-DY-sdY"/>
-                <constraint firstItem="7hm-Bc-gU5" firstAttribute="top" secondItem="BYS-C6-vuU" secondAttribute="bottom" constant="8" id="Fcd-p7-R6z"/>
-                <constraint firstItem="7hm-Bc-gU5" firstAttribute="leading" secondItem="ofk-wp-urv" secondAttribute="leading" constant="8" id="Hla-zd-gA8"/>
                 <constraint firstAttribute="trailing" secondItem="K19-Wu-62Q" secondAttribute="trailing" constant="8" id="NjJ-EG-cGD"/>
                 <constraint firstItem="ewF-4o-z0M" firstAttribute="centerY" secondItem="T0O-Tl-DWI" secondAttribute="centerY" id="Nmj-Bg-nfQ"/>
                 <constraint firstAttribute="trailing" secondItem="ewF-4o-z0M" secondAttribute="trailing" constant="8" id="Sad-fU-sMC"/>
                 <constraint firstItem="BYS-C6-vuU" firstAttribute="leading" secondItem="ofk-wp-urv" secondAttribute="leading" constant="8" id="Wka-eq-QzA"/>
                 <constraint firstItem="Bmx-bE-lyO" firstAttribute="leading" secondItem="T0O-Tl-DWI" secondAttribute="trailing" constant="4" id="asz-jL-sJa"/>
+                <constraint firstAttribute="bottom" secondItem="JUT-Zw-z7I" secondAttribute="bottom" constant="8" id="bHW-5O-bPf"/>
                 <constraint firstItem="Bmx-bE-lyO" firstAttribute="top" secondItem="qsA-4f-URH" secondAttribute="bottom" constant="8" id="haH-6d-T2d"/>
                 <constraint firstItem="T0O-Tl-DWI" firstAttribute="leading" secondItem="BYS-C6-vuU" secondAttribute="trailing" constant="8" id="mpR-zA-uPm"/>
                 <constraint firstItem="BYS-C6-vuU" firstAttribute="top" secondItem="ofk-wp-urv" secondAttribute="top" constant="8" id="tKt-At-WnI"/>
                 <constraint firstItem="T0O-Tl-DWI" firstAttribute="top" secondItem="qsA-4f-URH" secondAttribute="bottom" constant="8" id="tgJ-dn-Foa"/>
+                <constraint firstItem="JUT-Zw-z7I" firstAttribute="top" secondItem="BYS-C6-vuU" secondAttribute="bottom" constant="8" id="ui5-Mi-Kzz"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="bodyTextView" destination="7hm-Bc-gU5" id="k9M-Fl-eO2"/>
-                <outlet property="bodyTextViewBottomMarginConstraint" destination="6MC-4M-PuM" id="snB-ib-wgK"/>
+                <outlet property="bodyLabel" destination="JUT-Zw-z7I" id="vmm-Cn-mU9"/>
+                <outlet property="bodyLabelBottomMarginConstraint" destination="bHW-5O-bPf" id="RDR-5y-EpA"/>
                 <outlet property="createdDateLabel" destination="T0O-Tl-DWI" id="ulW-AX-EdD"/>
                 <outlet property="deleteButton" destination="Gg3-49-pbv" id="Tdt-tD-E6E"/>
                 <outlet property="deletingStateButtonsContainer" destination="ewF-4o-z0M" id="gqd-hp-VIG"/>
