@@ -21,7 +21,8 @@ public class RatingLoadInteractorImpl extends BaseRatingInteractorImpl {
 		validate(entryId, className, classPK);
 
 		JSONObject jsonObject = getRatingsEntries(entryId, classPK, className, ratingGroupCounts);
-		return entryId == 0 ? new RatingEvent(classPK, className, jsonObject) : new RatingEvent(entryId, jsonObject);
+		return entryId == 0 ? new RatingEvent(classPK, className, ratingGroupCounts, jsonObject)
+			: new RatingEvent(entryId, jsonObject);
 	}
 
 	private JSONObject getRatingsEntries(long entryId, long classPK, String className, int ratingGroupCounts)

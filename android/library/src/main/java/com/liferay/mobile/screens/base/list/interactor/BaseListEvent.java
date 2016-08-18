@@ -44,7 +44,7 @@ public class BaseListEvent<E> extends OfflineEventNew {
 
 	@Override
 	public String getId() throws Exception {
-		return null;
+		return _startRow + "_" + _endRow;
 	}
 
 	public int getRowCount() {

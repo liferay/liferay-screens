@@ -7,6 +7,7 @@ import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.auth.login.interactor.BaseLoginInteractor;
 import com.liferay.mobile.screens.base.interactor.CustomInteractorListener;
 import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
+import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import org.json.JSONObject;
 
@@ -49,6 +50,9 @@ public class CustomInteractorActivity extends ThemeActivity
 			String username = "test";
 
 			if (username.equals(login) && username.equals(password)) {
+
+				SessionContext.createBasicSession(login, password);
+
 				JSONObject jsonObject = new JSONObject();
 				jsonObject.put("emailAddress", "test@liferay.com");
 				jsonObject.put("userId", "0");
