@@ -16,7 +16,6 @@
 		android:layout_marginTop="20dp"
 		android:visibility="gone"
 		tools:visibility="visible"
-		style="@android:style/Widget.ProgressBar"
 		/>
 
 	<TextView
@@ -36,7 +35,7 @@
 		android:layout_height="wrap_content"
 		android:layout_weight="8"
 		android:adjustViewBounds="true"
-		android:scaleType="fitXY"
+		android:scaleType="fitCenter"
 		/>
 
 	<TextView
