@@ -14,17 +14,22 @@
 
 package com.liferay.mobile.screens.asset.list.interactor;
 
+import android.util.Pair;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
-import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.asset.list.connector.AssetEntryConnector;
 import com.liferay.mobile.screens.asset.list.connector.ScreensAssetEntryConnector;
+import com.liferay.mobile.screens.base.context.RequestState;
 import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.ServiceProvider;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,19 +40,50 @@ import org.json.JSONObject;
  */
 public class AssetListInteractorImpl extends BaseListInteractor<AssetEntry, AssetListInteractorListener> {
 
-	@Override
-	protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {
+	public BaseListEvent<AssetEntry> execute(Object... args) throws Exception {
 
-		long _classNameId = (long) args[0];
-		String _portletItemName = (String) args[1];
-		String _customEntryQuery = (String) args[2];
+		int startRow = query.getStartRow();
+		int endRow = query.getEndRow();
 
-		Session session = SessionContext.createSessionFromCurrentSession();
+		validate(startRow, endRow, locale);
 
-		if (_portletItemName == null) {
+		Pair<Integer, Integer> rowsRange = new Pair<>(startRow, endRow);
 
-			ScreensAssetEntryConnector connector = ServiceProvider.getInstance().getScreensAssetEntryConnector(session);
-			JSONObject entryQueryAttributes = configureEntryQuery(groupId, _classNameId, _customEntryQuery);
+		RequestState requestState = RequestState.getInstance();
+
+		// check if this page is already being loaded
+		if (requestState.contains(getTargetScreenletId(), rowsRange)) {
+			throw new AssertionError("Page already requested");
+		}
+
+		long classNameId = (long) args[0];
+		HashMap<String, Object> customEntryQuery = (HashMap<String, Object>) args[1];
+		String portletItemName = (String) args[2];
+
+		validate(query.getStartRow(), query.getEndRow(), locale, portletItemName, classNameId);
+
+		JSONArray jsonArray = getEntries(query, classNameId, customEntryQuery, portletItemName);
+		int rowCount = getCount(classNameId, customEntryQuery, portletItemName, jsonArray);
+
+		List<AssetEntry> entries = new ArrayList<>();
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonObject = jsonArray.getJSONObject(i);
+			entries.add(createEntity(JSONUtil.toMap(jsonObject)));
+		}
+
+		requestState.put(getTargetScreenletId(), rowsRange);
+
+		return new BaseListEvent<>(startRow, endRow, entries, rowCount);
+	}
+
+	private JSONArray getEntries(Query query, long classNameId, HashMap<String, Object> customEntryQuery,
+		String portletItemName) throws Exception {
+		if (portletItemName == null) {
+
+			ScreensAssetEntryConnector connector =
+				ServiceProvider.getInstance().getScreensAssetEntryConnector(getSession());
+			JSONObject entryQueryAttributes = configureEntryQuery(groupId, classNameId, customEntryQuery);
 			entryQueryAttributes.put("start", query.getStartRow());
 			entryQueryAttributes.put("end", query.getEndRow());
 
@@ -55,25 +91,33 @@ public class AssetListInteractorImpl extends BaseListInteractor<AssetEntry, Asse
 
 			return connector.getAssetEntries(entryQuery, locale.toString());
 		} else {
-			ScreensAssetEntryConnector connector = ServiceProvider.getInstance().getScreensAssetEntryConnector(session);
-			return connector.getAssetEntries(LiferayServerContext.getCompanyId(), groupId, _portletItemName,
+			ScreensAssetEntryConnector connector =
+				ServiceProvider.getInstance().getScreensAssetEntryConnector(getSession());
+			return connector.getAssetEntries(LiferayServerContext.getCompanyId(), groupId, portletItemName,
 				locale.toString(), query.getEndRow());
 		}
 	}
 
+	private int getCount(long classNameId, HashMap<String, Object> customEntryQuery, String portletItemName,
+		JSONArray jsonArray) throws Exception {
+		if (portletItemName == null) {
+			JSONObject entryQueryParams = configureEntryQuery(groupId, classNameId, customEntryQuery);
+			JSONObjectWrapper entryQuery = new JSONObjectWrapper(entryQueryParams);
+			AssetEntryConnector connector = ServiceProvider.getInstance().getAssetEntryConnector(getSession());
+			return connector.getEntriesCount(entryQuery);
+		} else {
+			return jsonArray.length();
+		}
+	}
+
+	@Override
+	protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {
+		throw new AssertionError("Should not be called!");
+	}
+
 	@Override
 	protected Integer getPageRowCountRequest(Object... args) throws Exception {
-
-		long _classNameId = (long) args[0];
-		String _portletItemName = (String) args[1];
-		String _customEntryQuery = (String) args[2];
-
-		Session session = SessionContext.createSessionFromCurrentSession();
-
-		JSONObject entryQueryParams = configureEntryQuery(groupId, _classNameId, _customEntryQuery);
-		JSONObjectWrapper entryQuery = new JSONObjectWrapper(entryQueryParams);
-		AssetEntryConnector connector = ServiceProvider.getInstance().getAssetEntryConnector(session);
-		return connector.getEntriesCount(entryQuery);
+		throw new AssertionError("Should not be called!");
 	}
 
 	@Override
@@ -82,14 +126,17 @@ public class AssetListInteractorImpl extends BaseListInteractor<AssetEntry, Asse
 	}
 
 	@Override
-	protected BaseListEvent<AssetEntry> createEventFromArgs(Object... args) throws Exception {
-		return null;
+	protected String getIdFromArgs(Object... args) throws Exception {
+		long classNameId = (long) args[0];
+		String portletItemName = (String) args[2];
+
+		return portletItemName == null ? String.valueOf(classNameId) : portletItemName;
 	}
 
-	protected JSONObject configureEntryQuery(long groupId, long classNameId, String _customEntryQuery)
+	protected JSONObject configureEntryQuery(long groupId, long classNameId, HashMap<String, Object> customEntryQuery)
 		throws JSONException {
 
-		JSONObject entryQueryParams = _customEntryQuery == null ? new JSONObject() : new JSONObject(_customEntryQuery);
+		JSONObject entryQueryParams = customEntryQuery == null ? new JSONObject() : new JSONObject(customEntryQuery);
 
 		if (!entryQueryParams.has("classNameIds")) {
 			entryQueryParams.put("classNameIds", classNameId);
@@ -103,15 +150,14 @@ public class AssetListInteractorImpl extends BaseListInteractor<AssetEntry, Asse
 		return entryQueryParams;
 	}
 
-	//@Override
-	//protected void validate(int startRow, int endRow, Locale locale) {
-	//
-	//	if (_groupId <= 0) {
-	//		throw new IllegalArgumentException("GroupId cannot be 0 or negative");
-	//	} else if (_portletItemName == null && _classNameId <= 0) {
-	//		throw new IllegalArgumentException("ClassNameId cannot be 0 or negative");
-	//	}
-	//
-	//	super.validate(startRow, endRow, locale);
-	//}
+	protected void validate(int startRow, int endRow, Locale locale, String portletItemName, long classNameId) {
+
+		if (groupId <= 0) {
+			throw new IllegalArgumentException("GroupId cannot be 0 or negative");
+		} else if (portletItemName == null && classNameId <= 0) {
+			throw new IllegalArgumentException("ClassNameId cannot be 0 or negative");
+		}
+
+		super.validate(startRow, endRow, locale);
+	}
 }

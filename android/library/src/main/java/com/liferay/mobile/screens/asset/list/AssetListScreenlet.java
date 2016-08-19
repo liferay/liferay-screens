@@ -116,7 +116,7 @@ public class AssetListScreenlet extends BaseListScreenlet<AssetEntry, AssetListI
 
 	@Override
 	protected void loadRows(AssetListInteractorImpl interactor) throws Exception {
-		interactor.start(_classNameId, _portletItemName, _customEntryQuery);
+		interactor.start(_classNameId, _customEntryQuery, _portletItemName);
 	}
 
 	@Override

@@ -31,7 +31,9 @@ import android.widget.FrameLayout;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.interactor.CustomInteractorListener;
 import com.liferay.mobile.screens.base.interactor.Interactor;
+import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
 import com.liferay.mobile.screens.base.thread.BaseRemoteInteractorNew;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
@@ -127,8 +129,21 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 			: (I) _customInteractorListener.createInteractor(actionName);
 
 		if (result != null) {
-
-			if (result instanceof BaseCachedThreadRemoteInteractor) {
+			if (result instanceof BaseListInteractor) {
+				BaseListInteractor interactor = (BaseListInteractor) result;
+				interactor.setTargetScreenletId(getScreenletId());
+				interactor.setOfflinePolicy(getOfflinePolicy());
+				interactor.setGroupId(getGroupId());
+				interactor.setUserId(getUserId());
+				interactor.setLocale(getLocale());
+			} else if (result instanceof BaseCachedWriteThreadRemoteInteractor) {
+				BaseCachedWriteThreadRemoteInteractor interactor = (BaseCachedWriteThreadRemoteInteractor) result;
+				interactor.setTargetScreenletId(getScreenletId());
+				interactor.setOfflinePolicy(getOfflinePolicy());
+				interactor.setGroupId(getGroupId());
+				interactor.setUserId(getUserId());
+				interactor.setLocale(getLocale());
+			} else if (result instanceof BaseCachedThreadRemoteInteractor) {
 				BaseCachedThreadRemoteInteractor interactor = (BaseCachedThreadRemoteInteractor) result;
 				interactor.setTargetScreenletId(getScreenletId());
 				interactor.setOfflinePolicy(getOfflinePolicy());
