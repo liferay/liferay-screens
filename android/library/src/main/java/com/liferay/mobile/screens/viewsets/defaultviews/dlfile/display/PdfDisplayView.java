@@ -145,13 +145,13 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 			intent.putExtra(DownloadService.RESULT_RECEIVER, new DownloadReceiver(new Handler()));
 			getContext().startService(intent);
 		} else {
+			m = imagePdf.getImageMatrix();
 			renderPdfInImageView(file);
 		}
 	}
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	private void renderPdfPage(int page) {
-		Matrix m = imagePdf.getImageMatrix();
 		PdfRenderer.Page renderedPage = renderer.openPage(page);
 		Bitmap bitmap = Bitmap.createBitmap(renderedPage.getWidth(), renderedPage.getHeight(), Bitmap.Config.ARGB_8888);
 		Rect rect = new Rect(0, 0, renderedPage.getWidth(), renderedPage.getHeight());
@@ -235,4 +235,5 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 	private ProgressBar progressBar;
 	private TextView progressText;
 	private TextView title;
+	private Matrix m;
 }
