@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0B1063161D49E7C9001D8DE3 /* WebContentListView_default-collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1063151D49E7C9001D8DE3 /* WebContentListView_default-collection.swift */; };
 		0B1063181D49E7DE001D8DE3 /* WebContentListView_default-collection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B1063171D49E7DE001D8DE3 /* WebContentListView_default-collection.xib */; };
+		0B11DE1D1D65B5C400D11340 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B11DE1C1D65B5C400D11340 /* User.swift */; };
 		0B2677DE1D3D1E5700FDFC5B /* LRScreensddlrecordService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B2677DC1D3D1E5700FDFC5B /* LRScreensddlrecordService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B2677DF1D3D1E5700FDFC5B /* LRScreensddlrecordService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2677DD1D3D1E5700FDFC5B /* LRScreensddlrecordService_v62.m */; };
 		0BB5032C1D37C04A00ABD6B3 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB503181D37C04A00ABD6B3 /* Asset.swift */; };
@@ -498,6 +499,7 @@
 /* Begin PBXFileReference section */
 		0B1063151D49E7C9001D8DE3 /* WebContentListView_default-collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebContentListView_default-collection.swift"; sourceTree = "<group>"; };
 		0B1063171D49E7DE001D8DE3 /* WebContentListView_default-collection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WebContentListView_default-collection.xib"; sourceTree = "<group>"; };
+		0B11DE1C1D65B5C400D11340 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0B2677DC1D3D1E5700FDFC5B /* LRScreensddlrecordService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensddlrecordService_v62.h; sourceTree = "<group>"; };
 		0B2677DD1D3D1E5700FDFC5B /* LRScreensddlrecordService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensddlrecordService_v62.m; sourceTree = "<group>"; };
 		0BB503181D37C04A00ABD6B3 /* Asset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
@@ -864,11 +866,12 @@
 				0BB503181D37C04A00ABD6B3 /* Asset.swift */,
 				88AE86DD1D5B3807009BE84D /* BlogsEntry.swift */,
 				0BB503191D37C04A00ABD6B3 /* DDLRecord.swift */,
-				0BB503661D38CE3A00ABD6B3 /* DDM */,
 				88AE86DE1D5B3807009BE84D /* FileEntry.swift */,
-				88AE87001D5C9463009BE84D /* ProtocolTypes */,
 				889125B71D547C14006AFA08 /* RatingEntry.swift */,
+				0B11DE1C1D65B5C400D11340 /* User.swift */,
 				0BB5032B1D37C04A00ABD6B3 /* WebContent.swift */,
+				0BB503661D38CE3A00ABD6B3 /* DDM */,
+				88AE87001D5C9463009BE84D /* ProtocolTypes */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2395,6 +2398,7 @@
 				887F0D151B99AABB0007AECE /* String+Screens.swift in Sources */,
 				881E60CF1ACBE56700862B9E /* BaseListView.swift in Sources */,
 				881E617D1ACBEE0B00862B9E /* DDLFormLoadRecordInteractor.swift in Sources */,
+				0B11DE1D1D65B5C400D11340 /* User.swift in Sources */,
 				88B844AF1C73D888007A447D /* LoginByUserIdLiferayConnectors.swift in Sources */,
 				88AF683C1CBFF58700097014 /* WebContentListTableView.swift in Sources */,
 				881E622A1ACBFC3400862B9E /* ForgotPasswordView_default.swift in Sources */,
