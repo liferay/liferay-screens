@@ -24,8 +24,11 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 
 	private GalleryScreenlet galleryScreenletGrid;
 	private GalleryScreenlet galleryScreenletSlideShow;
+	private GalleryScreenlet galleryScreenletList;
 
-	private Button changeGalleryView;
+	private Button changeGalleryViewGrid;
+	private Button changeGalleryViewSlideShow;
+	private Button changeGalleryViewList;
 
 	private boolean isGridMode = true;
 
@@ -40,8 +43,17 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 		galleryScreenletSlideShow = (GalleryScreenlet) findViewById(R.id.gallery_screenlet_slideshow);
 		galleryScreenletSlideShow.setListener(this);
 
-		changeGalleryView = (Button) findViewById(R.id.change_gallery_view);
-		changeGalleryView.setOnClickListener(this);
+		galleryScreenletList = (GalleryScreenlet) findViewById(R.id.gallery_screenlet_list);
+		galleryScreenletList.setListener(this);
+
+		changeGalleryViewGrid = (Button) findViewById(R.id.change_gallery_view_grid);
+		changeGalleryViewGrid.setOnClickListener(this);
+
+		changeGalleryViewSlideShow = (Button) findViewById(R.id.change_gallery_view_slideshow);
+		changeGalleryViewSlideShow.setOnClickListener(this);
+
+		changeGalleryViewList = (Button) findViewById(R.id.change_gallery_view_list);
+		changeGalleryViewList.setOnClickListener(this);
 	}
 
 	@Override
@@ -113,12 +125,17 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 
 	@Override
 	public void onClick(View v) {
-		if (v.getId() == R.id.change_gallery_view) {
-			if (isGridMode) {
-				setSlideshowMode();
-			} else {
+
+		switch (v.getId()) {
+			case R.id.change_gallery_view_grid:
 				setGridMode();
-			}
+				break;
+			case R.id.change_gallery_view_slideshow:
+				setSlideshowMode();
+				break;
+			case R.id.change_gallery_view_list:
+				setListMode();
+				break;
 		}
 	}
 
@@ -126,15 +143,20 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 		isGridMode = true;
 		galleryScreenletSlideShow.setVisibility(GONE);
 		galleryScreenletGrid.setVisibility(VISIBLE);
-
-		changeGalleryView.setText(R.string.slideshow);
+		galleryScreenletList.setVisibility(GONE);
 	}
 
 	private void setSlideshowMode() {
 		isGridMode = false;
 		galleryScreenletSlideShow.setVisibility(VISIBLE);
 		galleryScreenletGrid.setVisibility(GONE);
+		galleryScreenletList.setVisibility(GONE);
+	}
 
-		changeGalleryView.setText(getString(R.string.grid));
+	private void setListMode() {
+		isGridMode = false;
+		galleryScreenletList.setVisibility(VISIBLE);
+		galleryScreenletSlideShow.setVisibility(GONE);
+		galleryScreenletGrid.setVisibility(GONE);
 	}
 }
