@@ -79,7 +79,8 @@ public class Liferay70CommentUpdateConnector: CommentUpdateLiferayConnector {
 			.characters.split("\n").map({"<p>\(String($0))</p>"}).joinWithSeparator("")
 
 		do {
-			let result = try service.updateCommentWithGroupId(groupId, className: className, classPK: classPK, commentId: commentId, body: formattedBody)
+			let result = try service.updateCommentWithGroupId(groupId, className: className,
+				classPK: classPK, commentId: commentId, body: formattedBody)
 
 			lastError = nil
 
@@ -91,6 +92,6 @@ public class Liferay70CommentUpdateConnector: CommentUpdateLiferayConnector {
 		catch let error as NSError {
 			lastError = error
 		}
-		
+
 	}
 }

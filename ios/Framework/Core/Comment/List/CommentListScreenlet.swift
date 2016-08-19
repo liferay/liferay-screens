@@ -17,36 +17,36 @@ import UIKit
 @objc public protocol CommentListScreenletDelegate : BaseScreenletDelegate {
 
 	optional func screenlet(screenlet: CommentListScreenlet,
-			onListResponseComments comments: [Comment])
+	                        onListResponseComments comments: [Comment])
 
 	optional func screenlet(screenlet: CommentListScreenlet,
-			onCommentListError error: NSError)
+	                        onCommentListError error: NSError)
 
 	optional func screenlet(screenlet: CommentListScreenlet,
-			onSelectedComment comment: Comment)
+	                        onSelectedComment comment: Comment)
 
 	optional func screenlet(screenlet: CommentListScreenlet,
-	        onDeletedComment comment: Comment)
+	                        onDeletedComment comment: Comment)
 
 	optional func screenlet(screenlet: CommentListScreenlet,
-	        onCommentDelete comment: Comment,
-	        onError error: NSError)
+	                        onCommentDelete comment: Comment,
+	                                        onError error: NSError)
 
 	optional func screenlet(screenlet: CommentListScreenlet,
-	        onUpdatedComment comment: Comment)
+	                        onUpdatedComment comment: Comment)
 
 	optional func screenlet(screenlet: CommentListScreenlet,
-	        onCommentUpdate comment: Comment,
-	        onError error: NSError)
+	                        onCommentUpdate comment: Comment,
+	                                        onError error: NSError)
 }
 
 
-@IBDesignable public class CommentListScreenlet: BaseListScreenlet, CommentDisplayScreenletDelegate {
+@IBDesignable public class CommentListScreenlet: BaseListScreenlet,
+		CommentDisplayScreenletDelegate {
 
 	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var className: String = ""
 	@IBInspectable public var classPK: Int64 = 0
-
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 	@IBInspectable public var editable: Bool = false {
 		didSet {
@@ -110,13 +110,14 @@ import UIKit
 		super.onLoadPageResult(page: page, rows: rows, rowCount: rowCount)
 
 		commentListDelegate?.screenlet?(self,
-				onListResponseComments: rows as! [Comment])
+		                                onListResponseComments: rows as! [Comment])
 	}
 
 	override public func onSelectedRow(row: AnyObject) {
 		commentListDelegate?.screenlet?(self,
-				onSelectedComment: row as! Comment)
+		                                onSelectedComment: row as! Comment)
 	}
+
 
 	//MARK: CommentDisplayScreenletDelegate
 

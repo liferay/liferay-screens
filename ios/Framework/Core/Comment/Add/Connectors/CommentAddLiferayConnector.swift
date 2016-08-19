@@ -72,7 +72,7 @@ public class Liferay70CommentAddConnector: CommentAddLiferayConnector {
 			                                               className: className,
 			                                               classPK: classPK,
 			                                               body: formattedBody)
-			
+
 			lastError = nil
 
 			if let result = result as? [String: AnyObject] {
@@ -83,6 +83,6 @@ public class Liferay70CommentAddConnector: CommentAddLiferayConnector {
 		catch let error as NSError {
 			lastError = error
 		}
-		
+
 	}
 }

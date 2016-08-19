@@ -19,7 +19,8 @@ public class CommentListPageLiferayConnector: PaginationLiferayConnector {
 	public let className: String
 	public let classPK: Int64
 
-	public init(groupId: Int64, className: String, classPK: Int64, startRow: Int, endRow: Int, computeRowCount: Bool) {
+	public init(groupId: Int64, className: String, classPK: Int64, startRow: Int, endRow: Int,
+			computeRowCount: Bool) {
 		self.groupId = groupId
 		self.className = className
 		self.classPK = classPK
@@ -68,7 +69,7 @@ public class Liferay70CommentListPageConnector: CommentListPageLiferayConnector 
 
 	override public func doAddRowCountServiceCall(session session: LRBatchSession) {
 		let service = LRCommentmanagerjsonwsService_v70(session: session)
-		
+
 		do {
 			try service.getCommentsCountWithGroupId(groupId, className: className, classPK: classPK)
 		}

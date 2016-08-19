@@ -28,8 +28,8 @@ public class CommentLoadInteractor: ServerReadConnectorInteractor {
 	}
 
 	override public func createConnector() -> CommentLoadLiferayConnector? {
-		return LiferayServerContext.connectorFactory.createCommentLoadConnector(groupId: groupId,
-		                                                                        commentId: commentId)
+		return LiferayServerContext.connectorFactory.createCommentLoadConnector(
+			groupId: groupId, commentId: commentId)
 	}
 
 	override public func completedConnector(c: ServerConnector) {

@@ -16,7 +16,7 @@ import LiferayScreens
 
 
 class CommentListScreenletViewController: UIViewController,
-	CommentListScreenletDelegate {
+		CommentListScreenletDelegate {
 
 	@IBOutlet weak var listScreenlet: CommentListScreenlet?
 
@@ -61,7 +61,7 @@ class CommentListScreenletViewController: UIViewController,
 	}
 
 	func screenlet(screenlet: CommentListScreenlet, onCommentDelete comment: Comment,
-			onError error: NSError) {
+	               onError error: NSError) {
 		print("DELEGATE: onCommentDelete onError called -> \(comment) \(error)\n")
 	}
 
@@ -70,7 +70,7 @@ class CommentListScreenletViewController: UIViewController,
 	}
 
 	func screenlet(screenlet: CommentListScreenlet, onCommentUpdate comment: Comment,
-			onError error: NSError) {
+	               onError error: NSError) {
 		print("DELEGATE: onCommentUpdate onError called -> \(comment) \(error)\n")
 	}
 

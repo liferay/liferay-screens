@@ -45,15 +45,10 @@ import UIKit
 	public static let UpdateAction = "updateAction"
 
 	@IBInspectable public var groupId: Int64 = 0
-
 	@IBInspectable public var commentId: Int64 = 0
-
 	@IBInspectable public var className: String = ""
-
 	@IBInspectable public var classPK: Int64 = 0
-
 	@IBInspectable public var autoLoad: Bool = true
-
 	@IBInspectable public var editable: Bool = false {
 		didSet {
 			screenletView?.editable = self.editable
@@ -120,6 +115,7 @@ import UIKit
 			return nil
 		}
 	}
+
 
 	//MARK: Private methods
 
@@ -189,9 +185,8 @@ import UIKit
 		interactor.onFailure = {
 			self.commentDisplayDelegate?.screenlet?(self, onLoadCommentError: $0)
 		}
-		
+
 		return interactor
 
 	}
-	
 }

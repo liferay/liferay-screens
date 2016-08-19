@@ -68,8 +68,7 @@ extension String {
 		return found?.value ?? self
 	}
 
-	public func toHtmlTextWithAttributes(attributes: [String: NSObject])
-			-> NSAttributedString? {
+	public func toHtmlTextWithAttributes(attributes: [String: NSObject]) -> NSAttributedString? {
 
 		var text = self
 

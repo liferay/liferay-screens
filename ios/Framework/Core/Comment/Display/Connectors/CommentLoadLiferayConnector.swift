@@ -62,6 +62,6 @@ public class Liferay70CommentLoadConnector: CommentLoadLiferayConnector {
 		catch let error as NSError {
 			lastError = error
 		}
-		
+
 	}
 }

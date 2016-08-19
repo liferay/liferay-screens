@@ -23,13 +23,8 @@ public class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 
 	public var resultComment: Comment?
 
-	init(screenlet: BaseScreenlet,
-		groupId: Int64,
-		className: String,
-		classPK: Int64,
-		commentId: Int64,
-		body: String?) {
-
+	init(screenlet: BaseScreenlet, groupId: Int64, className: String, classPK: Int64,
+			commentId: Int64, body: String?) {
 		self.groupId = (groupId != 0) ? groupId : LiferayServerContext.groupId
 		self.className = className
 		self.classPK = classPK
@@ -41,10 +36,7 @@ public class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 
 	override public func createConnector() -> CommentUpdateLiferayConnector? {
 		return LiferayServerContext.connectorFactory.createCommentUpdateConnector(groupId: groupId,
-																			className: className,
-																			classPK: classPK,
-																			commentId: commentId,
-																			body: body)
+			className: className, classPK: classPK, commentId: commentId, body: body)
 	}
 
 	public override func completedConnector(c: ServerConnector) {

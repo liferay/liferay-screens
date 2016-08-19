@@ -39,7 +39,8 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 
 	public func addComment(comment: Comment) {
 		addRow(BaseListView.DefaultSection, element: comment)
-		let indexPath = NSIndexPath(forRow: (rows[BaseListView.DefaultSection]?.count)! - 1, inSection: 0)
+		let indexPath = NSIndexPath(forRow: (rows[BaseListView.DefaultSection]?.count)! - 1,
+			inSection: 0)
 		tableView?.beginUpdates()
 		tableView?.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
 		tableView?.endUpdates()
@@ -83,7 +84,8 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 		}
 	}
 
-	public override func doDequeueReusableCell(row row: Int, object: AnyObject?) -> UITableViewCell {
+	override public func doDequeueReusableCell(row row: Int, object: AnyObject?)
+			-> UITableViewCell {
 		let cell = super.doDequeueReusableCell(row: row, object: object)
 		if let commentCell = cell as? CommentTableViewCell_default {
 			commentCell.commentDisplayScreenlet?.groupId = commentListScreenlet.groupId
@@ -139,7 +141,8 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 			width: tableView.frame.width)
 	}
 
-	public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+	public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath)
+			-> Bool {
 		if let comment = rows[BaseListView.DefaultSection]?[indexPath.row] as? Comment {
 			return comment.canEdit || comment.canDelete
 		}
@@ -147,15 +150,18 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 		return false
 	}
 
-	func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
-		let editRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Edit", handler:{action, indexPath in
+	public func tableView(tableView: UITableView,
+			editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+		let editRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default,
+				title: "Edit", handler:{action, indexPath in
 			let cell = tableView.cellForRowAtIndexPath(indexPath) as? CommentTableViewCell_default
 			cell?.commentDisplayScreenlet?.editComment()
 			tableView.setEditing(false, animated: true)
 		})
 		editRowAction.backgroundColor = UIColor(red: 0, green: 0.7216, blue: 0.8784, alpha: 1.0)
 
-		let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler:{action, indexPath in
+		let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default,
+				title: "Delete", handler:{action, indexPath in
 			let cell = tableView.cellForRowAtIndexPath(indexPath) as? CommentTableViewCell_default
 			cell?.commentDisplayScreenlet?.deleteComment()
 			tableView.setEditing(false, animated: true)
