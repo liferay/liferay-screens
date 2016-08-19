@@ -25,44 +25,34 @@ public class ImageUploadDetailViewBase: UIView {
 	@IBOutlet public weak var descripText: UITextView?
 
 	public func startUpload() {
-		image?.resizeImage(toWidth: 300) { image in
-
-			self.startUpload(
-					self.titleText?.text ?? "",
-					notes: self.descripText?.text ?? "",
-					thumbnail: image)
-		}
+		self.startUpload(
+			self.titleText?.text ?? "",
+			notes: self.descripText?.text ?? "")
 	}
 
 	public func startUpload(title: String, notes: String, thumbnail: UIImage? = nil) {
+		let nonEmptyTitle = title.isEmpty
+				? "\(self.screenlet!.filePrefix)\(NSUUID().UUIDString)"
+				: title
 
-		let nonEmptyTitle = title.isEmpty ? "\(NSUUID().UUIDString)" : title
+		let actionClosure: UIImage -> Void = { thumbnailImage in
+			let imageUpload = ImageEntryUpload(
+				image: self.image!,
+				thumbnail: thumbnailImage,
+				title: nonEmptyTitle,
+				notes: notes)
 
-		if thumbnail == nil {
-			image?.resizeImage(toWidth: 300) { resizedImage in
-				let imageUpload = ImageEntryUpload(
-					image: self.image!,
-					thumbnail: resizedImage,
-					title: nonEmptyTitle,
-					notes: notes)
+			self.screenlet?.performAction(
+				name: ImageGalleryScreenlet.EnqueueUploadAction,
+				sender: imageUpload)
+		}
 
-				self.screenlet?.performAction(
-					name: ImageGalleryScreenlet.EnqueueUploadAction,
-					sender: imageUpload)
-			}
+		if let thumbnail = thumbnail {
+			actionClosure(thumbnail)
 		}
 		else {
-		
-			let imageUpload = ImageEntryUpload(
-					image: image!,
-					thumbnail: thumbnail,
-					title: nonEmptyTitle,
-					notes: notes)
-			
-			screenlet?.performAction(
-					name: ImageGalleryScreenlet.EnqueueUploadAction,
-					sender: imageUpload)
-			}
+			image?.resizeImage(toWidth: 300, completion: actionClosure)
+		}
 	}
 	
 }

@@ -97,18 +97,14 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 		uploadProgressView?.uploadError()
 	}
 
-	public func indexFor(imageEntry imageEntry: ImageEntry) -> NSNumber? {
-
-		var index: Int? = nil
-
+	public func indexOf(imageEntry imageEntry: ImageEntry) -> Int {
 		for (_, sectionEntries) in rows {
 			if let idx = sectionEntries.indexOf({$0 as! ImageEntry == imageEntry}) {
-				index = idx
-				break
+				return idx;
 			}
 		}
 
-		return index
+		return -1
 	}
 
 

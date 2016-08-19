@@ -24,7 +24,7 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 	let onUploadedBytes: OnProgress?
 
 	// Initialized only when created from synchronizer
-	var UUID: String?
+	var cacheKeyUsed: String?
 
 	var result: [String : AnyObject]?
 
@@ -45,15 +45,15 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 		super.init(screenlet: screenlet)
 	}
 
-	public convenience init(screenlet: ImageGalleryScreenlet?,
-	                        imageUpload: ImageEntryUpload,
-	                        repositoryId: Int64,
-	                        folderId: Int64,
-	                        page: Int,
-	                        onUploadedBytes: OnProgress?,
-	                        UUID: String) {
+	public convenience init(
+			screenlet: ImageGalleryScreenlet?,
+			imageUpload: ImageEntryUpload,
+			repositoryId: Int64,
+			folderId: Int64,
+			page: Int,
+			onUploadedBytes: OnProgress?,
+			cacheKeyUsed: String) {
 
-			
 		self.init(
 				screenlet: screenlet,
 				imageUpload: imageUpload,
@@ -62,7 +62,7 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 				page: page,
 				onUploadedBytes: onUploadedBytes)
 
-		self.UUID = UUID
+		self.cacheKeyUsed = cacheKeyUsed
 	}
 
 	public override func createConnector() -> ServerConnector? {
@@ -149,15 +149,13 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 	}
 
 	private func storeParatemetersToResyncLater() {
-
-		if UUID == nil {
-
+		if cacheKeyUsed == nil {
 			// Not stored yet
-			UUID = NSUUID().UUIDString
+			cacheKeyUsed = NSUUID().UUIDString
 
 			SessionContext.currentContext?.cacheManager.setDirty(
 					collection: ScreenletName(ImageGalleryScreenlet),
-					key: UUID!,
+					key: cacheKeyUsed!,
 					value: imageUpload,
 					attributes: [
 						"folderId": NSNumber(longLong: folderId),
@@ -168,12 +166,11 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 	}
 
 	private func deleteSyncParameters() {
-
 		// Exists if the parameters have been saved
-		if let key = UUID {
+		if let cacheKeyUsed = self.cacheKeyUsed {
 			SessionContext.currentContext?.cacheManager.remove(
 				collection: ScreenletName(ImageGalleryScreenlet),
-				key: key)
+				key: cacheKeyUsed)
 		}
 	}
 

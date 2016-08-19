@@ -116,17 +116,6 @@ extension NSBundle {
 
 	//MARK: xforTheme methods
 
-	public class func viewControllerForThemeOrDefault(
-			name name: String,
-			themeName: String,
-			currentClass: AnyClass) -> UIViewController? {
-
-		return rootNibObjectForThemeOrDefault(
-			name: name,
-			themeName: themeName,
-			currentClass: currentClass) as? UIViewController
-	}
-
 	public class func viewForThemeOrDefault(
 			name name: String,
 			themeName: String,
@@ -136,17 +125,6 @@ extension NSBundle {
 			name: name,
 			themeName: themeName,
 			currentClass: currentClass) as? UIView
-	}
-
-	public class func viewControllerForTheme(
-			name name: String,
-			themeName: String,
-			currentClass: AnyClass) -> UIViewController? {
-
-		return rootNibObjectForTheme(
-			name: name,
-			themeName: themeName,
-			currentClass: currentClass) as? UIViewController
 	}
 
 	public class func viewForTheme(

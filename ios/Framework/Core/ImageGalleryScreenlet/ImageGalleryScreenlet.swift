@@ -244,11 +244,10 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 	internal func createImageGalleryDeleteInteractor(
 			imageEntry: ImageEntry) -> ImageGalleryDeleteInteractor? {
 
-		let index = viewModel.indexFor?(imageEntry: imageEntry)
+		let index = viewModel.indexOf?(imageEntry: imageEntry) ?? -1
 
-		if let index = index {
-
-			let page = pageFromRow(index.integerValue)
+		if index != -1 {
+			let page = pageFromRow(index)
 
 			let interactor = ImageGalleryDeleteInteractor(
 				screenlet: self,
