@@ -41,6 +41,9 @@ public class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 
 	public override func onShow() {
 		addCommentTextField?.delegate = self
+		sendCommentButton?.replaceAttributedTitle(
+			LocalizedString("default", key: "comment-add-send", obj: self),
+			forState: .Normal)
 	}
 
 	override public func createProgressPresenter() -> ProgressPresenter {

@@ -117,6 +117,7 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 
 	public override func onShow() {
 		super.onShow()
+		editedLabel?.text = LocalizedString("default", key: "comment-display-edited", obj: self)
 	}
 
 	public override var editable: Bool {

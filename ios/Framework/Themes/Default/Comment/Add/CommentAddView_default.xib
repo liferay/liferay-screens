@@ -19,9 +19,17 @@
                         <action selector="editingDidChangeAction" destination="iN0-l3-epB" eventType="editingChanged" id="6kM-1c-Xmr"/>
                     </connections>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" restorationIdentifier="add-comment" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KOW-5A-wES">
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" restorationIdentifier="add-comment" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KOW-5A-wES">
                     <rect key="frame" x="377" y="8" width="36" height="31"/>
-                    <state key="normal" title="Send"/>
+                    <state key="normal">
+                        <attributedString key="attributedTitle">
+                            <fragment content="Send">
+                                <attributes>
+                                    <font key="NSFont" size="15" name="HelveticaNeue"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </state>
                 </button>
             </subviews>
             <constraints>

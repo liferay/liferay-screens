@@ -49,6 +49,9 @@
 "default-rating-total"="Total: %d";
 "default-rating-ratings"="%d Ratings";
 
+"default-comment-add-send"="Send";
+
+"default-comment-display-edited"="- Edited";
 "default-comment-display-warning"="Warning";
 "default-comment-display-styled"="This comment has styled content, which will be lost if you edit it";
 "default-comment-display-dismiss"="Dismiss";
