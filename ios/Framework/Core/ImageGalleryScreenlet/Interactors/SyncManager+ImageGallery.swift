@@ -36,7 +36,7 @@ extension SyncManager {
 							folderId: folderId,
 							page: page,
 							onUploadedBytes: nil,
-							UUID: key)
+							cacheKeyUsed: key)
 
 					self.prepareInteractorForSync(
 							interactor, key: key,
