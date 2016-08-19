@@ -48,3 +48,8 @@
 
 "default-imagegallery-uploading-one"="Subiendo imagen...";
 "default-imagegallery-uploading-several"="Subiendo imagen 1 de %d";
+
+"default-imagegallery-upload"="Subir";
+"default-imagegallery-cancel"="Cancelar";
+"default-imagegallery-title"="Título";
+"default-imagegallery-description"="Descripción";

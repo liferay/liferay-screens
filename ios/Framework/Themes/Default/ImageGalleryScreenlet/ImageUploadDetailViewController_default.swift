@@ -43,13 +43,13 @@ public class ImageUploadDetailViewController_default: UIViewController {
 
 	public func addNavBarButtons() {
 		let uploadButton = UIBarButtonItem(
-				title: "Upload",
+				title: LocalizedString("default",key: "imagegallery-upload", obj: self),
 				style: .Plain,
 				target: self,
 				action: #selector(startUploadClick))
 
 		let cancelButton = UIBarButtonItem(
-				title: "Cancel",
+				title: LocalizedString("default",key: "imagegallery-cancel", obj: self),
 				style: .Plain,
 				target: self,
 				action: #selector(cancelClick))

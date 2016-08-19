@@ -51,3 +51,10 @@
 
 "default-imagegallery-uploading-one"="Uploading image...";
 "default-imagegallery-uploading-several"="Uploading image 1 from %d";
+
+"default-imagegallery-upload"="Upload";
+"default-imagegallery-cancel"="Cancel";
+"default-imagegallery-title"="Título";
+"default-imagegallery-description"="Description";
+
+
