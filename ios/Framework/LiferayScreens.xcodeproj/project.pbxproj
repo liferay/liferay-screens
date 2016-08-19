@@ -12,8 +12,6 @@
 		0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		0B2C41541D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C41421D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift */; };
 		0B2C415F1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C414D1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift */; };
-		0B2C41601D5A3C7C00764326 /* ImageUploadDetailViewController_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C414E1D5A3C7C00764326 /* ImageUploadDetailViewController_default.xib */; };
-		0B2C41621D5A3C7C00764326 /* UploadProgressView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C41501D5A3C7C00764326 /* UploadProgressView_default.swift */; };
 		0B2C41631D5A3C7C00764326 /* UploadProgressView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C41511D5A3C7C00764326 /* UploadProgressView_default.xib */; };
 		0B2C41661D5A3CF400764326 /* LRScreensddlrecordService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B2C41641D5A3CF400764326 /* LRScreensddlrecordService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B2C41671D5A3CF400764326 /* LRScreensddlrecordService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C41651D5A3CF400764326 /* LRScreensddlrecordService_v62.m */; };
@@ -24,7 +22,7 @@
 		0B5B5E861D5869DB0007D4B1 /* ImageEntryUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E791D5869DB0007D4B1 /* ImageEntryUpload.swift */; };
 		0B5B5E871D5869DB0007D4B1 /* ImageGalleryScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E7A1D5869DB0007D4B1 /* ImageGalleryScreenlet.swift */; };
 		0B5B5E881D5869DB0007D4B1 /* ImageGalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E7B1D5869DB0007D4B1 /* ImageGalleryViewModel.swift */; };
-		0B5B5E891D5869DB0007D4B1 /* ImageUploadDetailViewControllerBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E7C1D5869DB0007D4B1 /* ImageUploadDetailViewControllerBase.swift */; };
+		0B5B5E891D5869DB0007D4B1 /* ImageUploadDetailViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E7C1D5869DB0007D4B1 /* ImageUploadDetailViewBase.swift */; };
 		0B5B5E8A1D5869DB0007D4B1 /* ImageGalleryDeleteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E7E1D5869DB0007D4B1 /* ImageGalleryDeleteInteractor.swift */; };
 		0B5B5E8B1D5869DB0007D4B1 /* ImageGalleryLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E7F1D5869DB0007D4B1 /* ImageGalleryLoadInteractor.swift */; };
 		0B5B5E8C1D5869DB0007D4B1 /* ImageGalleryUploadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E801D5869DB0007D4B1 /* ImageGalleryUploadInteractor.swift */; };
@@ -39,6 +37,9 @@
 		0B5B5EC11D5873F70007D4B1 /* default-cancel-upload@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5B5EBE1D5873F70007D4B1 /* default-cancel-upload@3x.png */; };
 		0B5B5EC41D58742B0007D4B1 /* imagegallery-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B5B5EC21D58742B0007D4B1 /* imagegallery-screenlet.strings */; };
 		0B5B5EC81D5876A10007D4B1 /* default-placeholder-image.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5B5EC71D5876A10007D4B1 /* default-placeholder-image.png */; };
+		0B6463771D66EEB7007F3289 /* ImageUploadDetailView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6463761D66EEB7007F3289 /* ImageUploadDetailView_default.xib */; };
+		0B6463791D66F143007F3289 /* ImageUploadDetailView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6463781D66F143007F3289 /* ImageUploadDetailView_default.swift */; };
+		0B64637B1D66F172007F3289 /* UploadProgressView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B64637A1D66F172007F3289 /* UploadProgressView_default.swift */; };
 		0B89C9951D58B01200A9EAE7 /* SyncManager+ImageGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B89C9941D58B01200A9EAE7 /* SyncManager+ImageGallery.swift */; };
 		0BB5032C1D37C04A00ABD6B3 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB503181D37C04A00ABD6B3 /* Asset.swift */; };
 		0BB5032D1D37C04A00ABD6B3 /* DDLRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB503191D37C04A00ABD6B3 /* DDLRecord.swift */; };
@@ -486,8 +487,6 @@
 		0B1063171D49E7DE001D8DE3 /* WebContentListView_default-collection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WebContentListView_default-collection.xib"; sourceTree = "<group>"; };
 		0B2C41421D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryCollectionViewBase.swift; sourceTree = "<group>"; };
 		0B2C414D1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploadDetailViewController_default.swift; sourceTree = "<group>"; };
-		0B2C414E1D5A3C7C00764326 /* ImageUploadDetailViewController_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageUploadDetailViewController_default.xib; sourceTree = "<group>"; };
-		0B2C41501D5A3C7C00764326 /* UploadProgressView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadProgressView_default.swift; sourceTree = "<group>"; };
 		0B2C41511D5A3C7C00764326 /* UploadProgressView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadProgressView_default.xib; sourceTree = "<group>"; };
 		0B2C41641D5A3CF400764326 /* LRScreensddlrecordService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensddlrecordService_v62.h; sourceTree = "<group>"; };
 		0B2C41651D5A3CF400764326 /* LRScreensddlrecordService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensddlrecordService_v62.m; sourceTree = "<group>"; };
@@ -499,7 +498,7 @@
 		0B5B5E791D5869DB0007D4B1 /* ImageEntryUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEntryUpload.swift; sourceTree = "<group>"; };
 		0B5B5E7A1D5869DB0007D4B1 /* ImageGalleryScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryScreenlet.swift; sourceTree = "<group>"; };
 		0B5B5E7B1D5869DB0007D4B1 /* ImageGalleryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryViewModel.swift; sourceTree = "<group>"; };
-		0B5B5E7C1D5869DB0007D4B1 /* ImageUploadDetailViewControllerBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploadDetailViewControllerBase.swift; sourceTree = "<group>"; };
+		0B5B5E7C1D5869DB0007D4B1 /* ImageUploadDetailViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploadDetailViewBase.swift; sourceTree = "<group>"; };
 		0B5B5E7E1D5869DB0007D4B1 /* ImageGalleryDeleteInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryDeleteInteractor.swift; sourceTree = "<group>"; };
 		0B5B5E7F1D5869DB0007D4B1 /* ImageGalleryLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryLoadInteractor.swift; sourceTree = "<group>"; };
 		0B5B5E801D5869DB0007D4B1 /* ImageGalleryUploadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryUploadInteractor.swift; sourceTree = "<group>"; };
@@ -514,6 +513,9 @@
 		0B5B5EC31D58742B0007D4B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/imagegallery-screenlet.strings"; sourceTree = "<group>"; };
 		0B5B5EC51D5874330007D4B1 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/imagegallery-screenlet.strings"; sourceTree = "<group>"; };
 		0B5B5EC71D5876A10007D4B1 /* default-placeholder-image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-placeholder-image.png"; sourceTree = "<group>"; };
+		0B6463761D66EEB7007F3289 /* ImageUploadDetailView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageUploadDetailView_default.xib; sourceTree = "<group>"; };
+		0B6463781D66F143007F3289 /* ImageUploadDetailView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploadDetailView_default.swift; sourceTree = "<group>"; };
+		0B64637A1D66F172007F3289 /* UploadProgressView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadProgressView_default.swift; sourceTree = "<group>"; };
 		0B89C9941D58B01200A9EAE7 /* SyncManager+ImageGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncManager+ImageGallery.swift"; sourceTree = "<group>"; };
 		0BB503181D37C04A00ABD6B3 /* Asset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
 		0BB503191D37C04A00ABD6B3 /* DDLRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLRecord.swift; sourceTree = "<group>"; };
@@ -861,10 +863,11 @@
 				0BBEDA1F1D5B230700F8CB31 /* List */,
 				0BBEDA141D5B22FF00F8CB31 /* Slideshow */,
 				0B2C41421D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift */,
+				0B6463781D66F143007F3289 /* ImageUploadDetailView_default.swift */,
+				0B64637A1D66F172007F3289 /* UploadProgressView_default.swift */,
 				0B2C414D1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift */,
-				0B2C414E1D5A3C7C00764326 /* ImageUploadDetailViewController_default.xib */,
-				0B2C41501D5A3C7C00764326 /* UploadProgressView_default.swift */,
 				0B2C41511D5A3C7C00764326 /* UploadProgressView_default.xib */,
+				0B6463761D66EEB7007F3289 /* ImageUploadDetailView_default.xib */,
 			);
 			path = ImageGalleryScreenlet;
 			sourceTree = "<group>";
@@ -883,7 +886,7 @@
 				0B5B5E791D5869DB0007D4B1 /* ImageEntryUpload.swift */,
 				0B5B5E7A1D5869DB0007D4B1 /* ImageGalleryScreenlet.swift */,
 				0B5B5E7B1D5869DB0007D4B1 /* ImageGalleryViewModel.swift */,
-				0B5B5E7C1D5869DB0007D4B1 /* ImageUploadDetailViewControllerBase.swift */,
+				0B5B5E7C1D5869DB0007D4B1 /* ImageUploadDetailViewBase.swift */,
 				0B5B5E811D5869DB0007D4B1 /* UploadProgressViewBase.swift */,
 				0B5B5E741D5869DB0007D4B1 /* Connectors */,
 				0B5B5E7D1D5869DB0007D4B1 /* Interactors */,
@@ -2060,7 +2063,6 @@
 				881E625A1ACBFC3400862B9E /* default-form-gradient-top@2x.png in Resources */,
 				889125C91D549757006AFA08 /* RatingView_default-thumbs.xib in Resources */,
 				881E62611ACBFC3400862B9E /* default-multiline-field.png in Resources */,
-				0B2C41601D5A3C7C00764326 /* ImageUploadDetailViewController_default.xib in Resources */,
 				0BBEDA301D5B230E00F8CB31 /* ImageGalleryView_default.xib in Resources */,
 				888DF5B51ACC9FF100EB7DA1 /* LoginView_default.xib in Resources */,
 				881E62591ACBFC3400862B9E /* default-form-gradient-top.png in Resources */,
@@ -2069,6 +2071,7 @@
 				889125C51D549757006AFA08 /* RatingView_default-like.xib in Resources */,
 				0B5B5EC01D5873F70007D4B1 /* default-cancel-upload@2x.png in Resources */,
 				88CC3AF61CC12C2600E0AEB7 /* WebContentListView_default.xib in Resources */,
+				0B6463771D66EEB7007F3289 /* ImageUploadDetailView_default.xib in Resources */,
 				880ACA811B0224A0007AD007 /* core.strings in Resources */,
 				881E62621ACBFC3400862B9E /* default-multiline-field@2x.png in Resources */,
 				0BBEDA1B1D5B22FF00F8CB31 /* ImageGallerySlideshowCell.xib in Resources */,
@@ -2256,7 +2259,7 @@
 				0BB5032C1D37C04A00ABD6B3 /* Asset.swift in Sources */,
 				8892C6AB1ACBD89400192232 /* Bool+Screens.swift in Sources */,
 				887F0D121B99A79A0007AECE /* LRSession+Screens.swift in Sources */,
-				0B5B5E891D5869DB0007D4B1 /* ImageUploadDetailViewControllerBase.swift in Sources */,
+				0B5B5E891D5869DB0007D4B1 /* ImageUploadDetailViewBase.swift in Sources */,
 				881E49C61B95CE66007DBEC9 /* DownloadUserPortraitInteractor.swift in Sources */,
 				887DAAA91CC670330011FEBF /* Dictionary+Screens.swift in Sources */,
 				0B5B5E881D5869DB0007D4B1 /* ImageGalleryViewModel.swift in Sources */,
@@ -2272,6 +2275,7 @@
 				0BB5037F1D38CE3A00ABD6B3 /* DDMFieldDate.swift in Sources */,
 				881E62361ACBFC3400862B9E /* DDLFieldDateTableCell_default.swift in Sources */,
 				889125C81D549757006AFA08 /* RatingView_default-thumbs.swift in Sources */,
+				0B6463791D66F143007F3289 /* ImageUploadDetailView_default.swift in Sources */,
 				0BBEDA1C1D5B22FF00F8CB31 /* ImageGalleryView_default-slideshow.swift in Sources */,
 				881E61481ACBEDC600862B9E /* AssetListScreenlet.swift in Sources */,
 				888DF5B11ACC9FC200EB7DA1 /* LoginScreenlet.swift in Sources */,
@@ -2362,7 +2366,7 @@
 				881E617F1ACBEE0B00862B9E /* DDLFormUploadDocumentInteractor.swift in Sources */,
 				881E623A1ACBFC3400862B9E /* DDLFieldDocumentlibraryTableCell_default.swift in Sources */,
 				881E60BA1ACBE3FF00862B9E /* BaseScreenletView.swift in Sources */,
-				0B2C41621D5A3C7C00764326 /* UploadProgressView_default.swift in Sources */,
+				0B64637B1D66F172007F3289 /* UploadProgressView_default.swift in Sources */,
 				887E054E1C6A4DB000CA3807 /* LRScreensassetentryService_v62.m in Sources */,
 				8892C6AE1ACBD89400192232 /* NSLocale+Screens.swift in Sources */,
 				88B2730F1B7107F200477E5E /* ProgressPresenter.swift in Sources */,
