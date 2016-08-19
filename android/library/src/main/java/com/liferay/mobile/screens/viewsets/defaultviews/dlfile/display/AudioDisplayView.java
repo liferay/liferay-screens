@@ -16,7 +16,7 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 /**
  * @author Sarai Díaz García
  */
-public class AudioDisplayView extends LinearLayout implements BaseFileDisplayViewModel {
+public class AudioDisplayView extends FrameLayout implements BaseFileDisplayViewModel {
 
 	public AudioDisplayView(Context context) {
 		super(context);
