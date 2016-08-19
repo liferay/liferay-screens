@@ -31,7 +31,9 @@ public class ImageUploadDetailViewBase: UIView {
 	}
 
 	public func startUpload(title: String, notes: String, thumbnail: UIImage? = nil) {
-		let nonEmptyTitle = title.isEmpty ? "\(NSUUID().UUIDString)" : title
+		let nonEmptyTitle = title.isEmpty
+				? "\(self.screenlet!.filePrefix)\(NSUUID().UUIDString)"
+				: title
 
 		let actionClosure: UIImage -> Void = { thumbnailImage in
 			let imageUpload = ImageEntryUpload(
