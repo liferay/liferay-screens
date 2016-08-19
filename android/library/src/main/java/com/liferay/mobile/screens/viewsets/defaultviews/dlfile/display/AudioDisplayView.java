@@ -4,8 +4,9 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.VideoView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
@@ -65,6 +66,7 @@ public class AudioDisplayView extends FrameLayout implements BaseFileDisplayView
 		super.onFinishInflate();
 
 		audioView = (VideoView) findViewById(R.id.liferay_audio_asset);
+		title = (TextView) findViewById(R.id.liferay_audio_title);
 	}
 
 	@Override
@@ -74,6 +76,7 @@ public class AudioDisplayView extends FrameLayout implements BaseFileDisplayView
 	}
 
 	private void loadAudio() {
+		title.setText(fileEntry.getTitle());
 		audioView.setVideoPath(getResources().getString(R.string.liferay_server) + fileEntry.getUrl());
 		audioView.setMediaController(new MediaController(getContext()));
 		audioView.setZOrderOnTop(true);
@@ -84,4 +87,5 @@ public class AudioDisplayView extends FrameLayout implements BaseFileDisplayView
 	private BaseScreenlet screenlet;
 	private VideoView audioView;
 	private FileEntry fileEntry;
+	private TextView title;
 }

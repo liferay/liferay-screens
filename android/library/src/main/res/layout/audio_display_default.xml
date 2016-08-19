@@ -3,13 +3,41 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:orientation="vertical"
+	android:background="@color/textColorSecondary_default"
 	>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:orientation="vertical"
+		>
+
+		<TextView
+			android:id="@+id/liferay_audio_title"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:textSize="20sp"
+			/>
+
+		<ImageView
+			android:id="@+id/liferay_audio_image_background"
+			android:layout_width="150dp"
+			android:layout_height="150dp"
+			android:layout_gravity="center"
+			android:scaleType="fitCenter"
+			android:src="@drawable/default_audio_background"
+			android:tint="@android:color/black"
+			/>
+
+	</LinearLayout>
 
 	<VideoView
 		android:id="@+id/liferay_audio_asset"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="match_parent"
+		android:background="@android:color/transparent"
 		/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display.AudioDisplayView>
