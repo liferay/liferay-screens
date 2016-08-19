@@ -122,32 +122,24 @@ import UIKit
 
 	//MARK: CommentDisplayScreenletDelegate
 
-	public func screenlet(screenlet: CommentDisplayScreenlet, onCommentDeleted comment: Comment?) {
-		if let deletedComment = comment {
-			deleteComment(deletedComment)
-			commentListDelegate?.screenlet?(self, onDeletedComment: deletedComment)
-		}
+	public func screenlet(screenlet: CommentDisplayScreenlet, onCommentDeleted comment: Comment) {
+		deleteComment(comment)
+		commentListDelegate?.screenlet?(self, onDeletedComment: comment)
 	}
 
-	public func screenlet(screenlet: CommentDisplayScreenlet, onDeleteComment comment: Comment?,
-			onError error: NSError) {
-		if let comment = comment {
-			commentListDelegate?.screenlet?(self, onCommentDelete: comment, onError: error)
-		}
+	public func screenlet(screenlet: CommentDisplayScreenlet, onDeleteComment comment: Comment,
+	                      onError error: NSError) {
+		commentListDelegate?.screenlet?(self, onCommentDelete: comment, onError: error)
 	}
 
-	public func screenlet(screenlet: CommentDisplayScreenlet, onCommentUpdated comment: Comment?) {
-		if let updatedComment = comment {
-			updateComment(updatedComment)
-			commentListDelegate?.screenlet?(self, onUpdatedComment: updatedComment)
-		}
+	public func screenlet(screenlet: CommentDisplayScreenlet, onCommentUpdated comment: Comment) {
+		updateComment(comment)
+		commentListDelegate?.screenlet?(self, onUpdatedComment: comment)
 	}
 
-	public func screenlet(screenlet: CommentDisplayScreenlet, onUpdateComment comment: Comment?,
-			onError error: NSError) {
-		if let comment = comment {
-			commentListDelegate?.screenlet?(self, onCommentUpdate: comment, onError: error)
-		}
+	public func screenlet(screenlet: CommentDisplayScreenlet, onUpdateComment comment: Comment,
+	                      onError error: NSError) {
+		commentListDelegate?.screenlet?(self, onCommentUpdate: comment, onError: error)
 	}
-
+	
 }

@@ -23,17 +23,17 @@ import UIKit
 	                        onLoadCommentError error: NSError)
 
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
-	                        onCommentDeleted comment: Comment?)
+	                        onCommentDeleted comment: Comment)
 
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
-	                        onDeleteComment comment: Comment?,
+	                        onDeleteComment comment: Comment,
 						    onError error: NSError)
 
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
-	                        onCommentUpdated comment: Comment?)
+	                        onCommentUpdated comment: Comment)
 
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
-	                        onUpdateComment comment: Comment?,
+	                        onUpdateComment comment: Comment,
 							onError error: NSError)
 
 }
@@ -152,11 +152,11 @@ import UIKit
 			commentId: self.commentId)
 
 		interactor.onSuccess = {
-			self.commentDisplayDelegate?.screenlet?(self, onCommentDeleted: self.comment)
+			self.commentDisplayDelegate?.screenlet?(self, onCommentDeleted: self.comment!)
 		}
 
 		interactor.onFailure = {
-			self.commentDisplayDelegate?.screenlet?(self, onDeleteComment: self.comment, onError: $0)
+			self.commentDisplayDelegate?.screenlet?(self, onDeleteComment: self.comment!, onError: $0)
 		}
 
 		return interactor
@@ -179,7 +179,7 @@ import UIKit
 			}
 			else {
 				self.commentDisplayDelegate?.screenlet?(self,
-					onUpdateComment: self.comment,
+					onUpdateComment: self.comment!,
 					onError: NSError.errorWithCause(.InvalidServerResponse))
 			}
 		}
