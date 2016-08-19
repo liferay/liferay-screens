@@ -125,7 +125,7 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
 	public func onImageUploadProgress(
 			bytesSent: UInt64,
 			bytesToSend: UInt64,
-			imageEntry: ImageEntryUpload) {
+			imageEntryUpload: ImageEntryUpload) {
 
 		let progress = Float(bytesSent) / Float(bytesToSend)
 
