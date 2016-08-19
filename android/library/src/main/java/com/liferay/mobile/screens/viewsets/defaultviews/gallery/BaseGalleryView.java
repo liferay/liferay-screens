@@ -46,6 +46,13 @@ public abstract class BaseGalleryView<H extends BaseListAdapter.ViewHolder, A ex
 	}
 
 	@Override
+	public void showStartOperation(String actionName) {
+		if (actionName == null) {
+			super.showStartOperation(actionName);
+		}
+	}
+
+	@Override
 	public void onItemClick(int position, View view) {
 		List<ImageEntry> entries = getAdapter().getEntries();
 

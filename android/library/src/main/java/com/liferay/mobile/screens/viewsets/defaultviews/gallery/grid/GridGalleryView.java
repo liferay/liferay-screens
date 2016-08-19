@@ -58,12 +58,6 @@ public class GridGalleryView
 		return R.layout.list_item_progress_empty;
 	}
 
-	@Override
-	public void showStartOperation(String actionName) {
-		if (actionName == null) {
-			super.showStartOperation(actionName);
-		}
-	}
 
 	@Override
 	protected void onFinishInflate() {
