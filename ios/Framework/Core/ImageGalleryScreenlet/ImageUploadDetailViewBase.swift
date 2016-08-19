@@ -13,7 +13,7 @@
 */
 import UIKit
 
-public class ImageUploadDetailViewControllerBase: UIViewController {
+public class ImageUploadDetailViewBase: UIView {
 
 	public var image: UIImage?
 	public var imageTitle: String?

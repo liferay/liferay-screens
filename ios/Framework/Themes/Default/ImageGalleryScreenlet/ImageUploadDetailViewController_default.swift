@@ -13,56 +13,30 @@
 */
 import UIKit
 
-public class ImageUploadDetailViewController_default: ImageUploadDetailViewControllerBase {
+public class ImageUploadDetailViewController_default: UIViewController {
 
-	@IBOutlet weak var scrollView: UIScrollView!
-
-	public override var image: UIImage? {
-		didSet {
-			imagePreview?.image = image
-		}
-	}
-
-	public override var imageTitle: String? {
-		didSet {
-			titleText?.text = imageTitle
-		}
-	}
-
+	public var imageUploadDetailview: ImageUploadDetailViewBase?
 
 	// MARK: UIViewController
+
+	public init(imageUploadDetailview: ImageUploadDetailViewBase) {
+		super.init(nibName: nil, bundle: nil)
+		self.imageUploadDetailview = imageUploadDetailview
+	}
+	
+	public required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+	}
 
     override public func viewDidLoad() {
         super.viewDidLoad()
 
+		edgesForExtendedLayout = .None
+
 		addNavBarButtons()
-		initialize()
+
+		addImageUploadView()
     }
-
-	public override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-
-		NSNotificationCenter.defaultCenter().addObserver(
-				self,
-				selector: #selector(keyboardWillShow(_:)),
-				name: UIKeyboardWillShowNotification,
-				object: nil)
-
-		NSNotificationCenter.defaultCenter().addObserver(
-				self,
-				selector: #selector(keyboardWillHide(_:)),
-				name: UIKeyboardWillHideNotification,
-				object: nil)
-	}
-
-	public override func viewWillDisappear(animated: Bool) {
-		super.viewWillDisappear(animated)
-
-		NSNotificationCenter.defaultCenter().removeObserver(
-				self, name: UIKeyboardWillShowNotification, object: nil)
-		NSNotificationCenter.defaultCenter().removeObserver(
-				self, name: UIKeyboardWillHideNotification, object: nil)
-	}
 
 
 	// MARK: Private methods
@@ -84,28 +58,11 @@ public class ImageUploadDetailViewController_default: ImageUploadDetailViewContr
 		navigationItem.leftBarButtonItem = cancelButton
 	}
 
-	public func initialize() {
-		descripText?.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.4).CGColor
-		descripText?.layer.borderWidth = 0.5
-		descripText?.layer.cornerRadius = 7
+	public func addImageUploadView() {
+		imageUploadDetailview?.frame = view.frame
+		view.addSubview(imageUploadDetailview!)
 
-		let dismissKeyboardGesture = UITapGestureRecognizer(
-				target: self,
-				action: #selector(dismissKeyboard))
-
-		scrollView.addGestureRecognizer(dismissKeyboardGesture)
-	}
-
-	public func dismissKeyboard() {
-		guard let descripText = descripText, titleText = titleText else {
-			return
-		}
-		if descripText.isFirstResponder() {
-			descripText.resignFirstResponder()
-		}
-		else if titleText.isFirstResponder() {
-			titleText.resignFirstResponder()
-		}
+		imageUploadDetailview!.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
 	}
 
 
@@ -113,40 +70,11 @@ public class ImageUploadDetailViewController_default: ImageUploadDetailViewContr
 
 	public func startUploadClick() {
 		dismissViewControllerAnimated(true) {
-			self.startUpload()
+			self.imageUploadDetailview?.startUpload()
 		}
 	}
 
 	public func cancelClick() {
 		dismissViewControllerAnimated(true) {}
 	}
-
-
-	//MARK: Notifications
-
-	func keyboardWillShow(notification: NSNotification) {
-
-		let keyboardHeight =
-				notification.userInfo![UIKeyboardFrameBeginUserInfoKey]!.CGRectValue().height
-
-		var scrollNewFrame = scrollView.frame
-		scrollNewFrame.size.height = view.frame.height - keyboardHeight
-
-		scrollView.frame = scrollNewFrame
-
-		let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.frame.height)
-		scrollView.setContentOffset(bottomOffset, animated: true)
-	}
-
-	func keyboardWillHide(notification: NSNotification) {
-		let keyboardHeight =
-				notification.userInfo![UIKeyboardFrameBeginUserInfoKey]!.CGRectValue().height
-
-		var scrollNewFrame = scrollView.frame
-		scrollNewFrame.size.height = view.frame.height + keyboardHeight
-
-		scrollView.frame = scrollNewFrame
-	}
-
-
 }
