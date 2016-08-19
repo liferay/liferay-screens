@@ -28,68 +28,37 @@ extension NSDate {
 	public var timeAgo: String {
 		let components = self.dateComponents()
 
-		if components.year > 0 {
-			if components.year < 2 {
-				return LocalizedString("default", key: "time-last-year", obj: self)
-			} else {
-				return String(format:
-					LocalizedString("default", key: "time-ago-years", obj: self), components.year)
-			}
+		switch (components.year, components.month, components.day,
+		        components.hour, components.minute, components.second) {
+		case (1, _, _, _, _, _):
+			return LocalizedString("default", key: "time-last-year", obj: self)
+		case let (y, _, _, _, _, _) where y > 1:
+			return String(format: LocalizedString("default", key: "time-ago-years", obj: self), y)
+		case (0, 1, _, _, _, _):
+			return LocalizedString("default", key: "time-last-month", obj: self)
+		case let (0, m, _, _, _, _) where m > 1:
+			return String(format: LocalizedString("default", key: "time-ago-months", obj: self), m)
+		case (0, 0, 7...13, _, _, _):
+			return LocalizedString("default", key: "time-last-week", obj: self)
+		case let (0, 0, d, _, _, _) where d > 13:
+			return String(format: LocalizedString("default", key: "time-ago-weeks", obj: self), d/7)
+		case (0, 0, 1, _, _, _):
+			return LocalizedString("default", key: "time-yesterday", obj: self)
+		case let (0, 0, d, _, _, _) where d > 1:
+			return String(format: LocalizedString("default", key: "time-ago-days", obj: self), d)
+		case (0, 0, 0, 1, _, _):
+			return LocalizedString("default", key: "time-ago-hour", obj: self)
+		case let (0, 0, 0, h, _, _) where h > 1:
+			return String(format: LocalizedString("default", key: "time-ago-hours", obj: self), h)
+		case (0, 0, 0, 0, 1, _):
+			return LocalizedString("default", key: "time-ago-minute", obj: self)
+		case let (0, 0, 0, 0, m, _) where m > 1:
+			return String(format: LocalizedString("default", key: "time-ago-minutes", obj: self), m)
+		case let (0, 0, 0, 0, 0, s) where s > 5:
+			return String(format: LocalizedString("default", key: "time-ago-seconds", obj: self), s)
+		default:
+			return LocalizedString("default", key: "time-now", obj: self)
 		}
-
-		if components.month > 0 {
-			if components.month < 2 {
-				return LocalizedString("default", key: "time-last-month", obj: self)
-			} else {
-				return String(format:
-					LocalizedString("default", key: "time-ago-months", obj: self), components.month)
-			}
-		}
-
-		if components.day >= 7 {
-			let week = components.day/7
-			if week < 2 {
-				return LocalizedString("default", key: "time-last-week", obj: self)
-			} else {
-				return String(format:
-					LocalizedString("default", key: "time-ago-weeks", obj: self), week)
-			}
-		}
-
-		if components.day > 0 {
-			if components.day < 2 {
-				return LocalizedString("default", key: "time-yesterday", obj: self)
-			} else  {
-				return String(format:
-					LocalizedString("default", key: "time-ago-days", obj: self), components.day)
-			}
-		}
-
-		if components.hour > 0 {
-			if components.hour < 2 {
-				return LocalizedString("default", key: "time-ago-hour", obj: self)
-			} else  {
-				return String(format:
-					LocalizedString("default", key: "time-ago-hours", obj: self), components.hour)
-			}
-		}
-
-		if components.minute > 0 {
-			if components.minute < 2 {
-				return LocalizedString("default", key: "time-ago-minute", obj: self)
-			} else {
-				return String(format:
-					LocalizedString("default", key: "time-ago-minutes", obj: self),
-						components.minute)
-			}
-		}
-
-		if components.second > 0 && components.second < 5 {
-			return String(format: LocalizedString("default", key: "time-ago-seconds", obj: self),
-				components.second)
-		}
-
-		return LocalizedString("default", key: "time-now", obj: self)
 	}
 
 	private func dateComponents() -> NSDateComponents {
