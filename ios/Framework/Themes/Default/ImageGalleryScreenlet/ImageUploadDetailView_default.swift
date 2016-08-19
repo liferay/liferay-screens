@@ -14,9 +14,10 @@
 import UIKit
 
 
-public class ImageUploadDetailView_default : ImageUploadDetailViewBase {
+public class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextViewDelegate {
 
 	@IBOutlet weak var scrollView: UIScrollView!
+	@IBOutlet weak var hintLabel: UILabel!
 
 	public override var image: UIImage? {
 		didSet {
@@ -38,12 +39,17 @@ public class ImageUploadDetailView_default : ImageUploadDetailViewBase {
 		descripText?.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.4).CGColor
 		descripText?.layer.borderWidth = 0.5
 		descripText?.layer.cornerRadius = 7
+		descripText?.delegate = self
+
+		hintLabel?.text = LocalizedString("default",key: "imagegallery-description", obj: self)
+
+		titleText?.placeholder = LocalizedString("default",key: "imagegallery-title", obj: self)
 
 		let dismissKeyboardGesture = UITapGestureRecognizer(
 			target: self,
 			action: #selector(dismissKeyboard))
 
-		scrollView.addGestureRecognizer(dismissKeyboardGesture)
+		scrollView?.addGestureRecognizer(dismissKeyboardGesture)
 	}
 
 	public override func didMoveToWindow() {
@@ -70,6 +76,16 @@ public class ImageUploadDetailView_default : ImageUploadDetailViewBase {
 				self, name: UIKeyboardWillShowNotification, object: nil)
 		NSNotificationCenter.defaultCenter().removeObserver(
 				self, name: UIKeyboardWillHideNotification, object: nil)
+	}
+
+	public func textViewDidBeginEditing(textView: UITextView) {
+		hintLabel.alpha = 0
+	}
+
+	public func textViewDidEndEditing(textView: UITextView) {
+		if textView.text.isEmpty {
+			hintLabel.alpha = 0.5
+		}
 	}
 
 	public func dismissKeyboard() {

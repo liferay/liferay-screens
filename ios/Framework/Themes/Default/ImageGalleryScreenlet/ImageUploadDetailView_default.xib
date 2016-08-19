@@ -22,22 +22,33 @@
                                     <rect key="frame" x="10" y="10" width="394" height="294.5"/>
                                 </imageView>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7kb-v8-ibf">
-                                    <rect key="frame" x="10" y="339.5" width="394" height="30"/>
+                                    <rect key="frame" x="10" y="339" width="394" height="30"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="Description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="F4o-7V-hSX">
-                                    <rect key="frame" x="10" y="381" width="394" height="346.5"/>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="F4o-7V-hSX">
+                                    <rect key="frame" x="10" y="379" width="394" height="337"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
+                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJt-45-V2W">
+                                    <rect key="frame" x="15" y="384" width="100" height="18"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="100" id="ev8-LE-sYc"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" red="0.60115346859999996" green="0.60115346859999996" blue="0.60115346859999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="eJt-45-V2W" firstAttribute="leading" secondItem="F4o-7V-hSX" secondAttribute="leading" constant="5" id="37d-mP-b5m"/>
                                 <constraint firstItem="GKw-fX-6n8" firstAttribute="height" secondItem="TAG-QP-wGW" secondAttribute="height" multiplier="0.4" id="6a5-rl-x1Q"/>
                                 <constraint firstAttribute="trailing" secondItem="GKw-fX-6n8" secondAttribute="trailing" constant="10" id="DnV-wz-N4J"/>
                                 <constraint firstAttribute="trailing" secondItem="7kb-v8-ibf" secondAttribute="trailing" constant="10" id="Dui-X4-5jq"/>
+                                <constraint firstItem="eJt-45-V2W" firstAttribute="top" secondItem="F4o-7V-hSX" secondAttribute="top" constant="5" id="IrK-HM-vHg"/>
                                 <constraint firstItem="F4o-7V-hSX" firstAttribute="leading" secondItem="TAG-QP-wGW" secondAttribute="leading" constant="10" id="KF6-1o-9py"/>
                                 <constraint firstAttribute="bottom" secondItem="F4o-7V-hSX" secondAttribute="bottom" constant="20" id="SkV-M6-HZG"/>
                                 <constraint firstItem="GKw-fX-6n8" firstAttribute="leading" secondItem="TAG-QP-wGW" secondAttribute="leading" constant="10" id="UK8-Ls-XcI"/>
@@ -69,6 +80,7 @@
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
             <connections>
                 <outlet property="descripText" destination="F4o-7V-hSX" id="Nfg-Ks-6Cd"/>
+                <outlet property="hintLabel" destination="eJt-45-V2W" id="wjp-YS-bzi"/>
                 <outlet property="imagePreview" destination="GKw-fX-6n8" id="yTI-2s-2Di"/>
                 <outlet property="scrollView" destination="Ybc-jD-eR2" id="X6U-6P-BjR"/>
                 <outlet property="titleText" destination="7kb-v8-ibf" id="ieh-kg-ehA"/>
