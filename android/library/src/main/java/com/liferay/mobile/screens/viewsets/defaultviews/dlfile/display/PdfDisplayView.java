@@ -58,8 +58,8 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 
 		imagePdf = (ImageView) findViewById(R.id.liferay_pdf_renderer);
 
-		progressBar = (ProgressBar) findViewById(R.id.liferay_asset_progress_bar);
 		progressText = (TextView) findViewById(R.id.liferay_asset_progress_number);
+		progressBar = (ProgressBar) findViewById(R.id.liferay_asset_progress_horizontal);
 
 		goToPage = (EditText) findViewById(R.id.liferay_go_to_page);
 		goToPageButton = (Button) findViewById(R.id.liferay_go_to_page_submit);
@@ -134,8 +134,6 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 		nextPage.setOnClickListener(this);
 		goToPageButton.setOnClickListener(this);
 
-		progressBar.setVisibility(VISIBLE);
-
 		String filePath = getResources().getString(R.string.liferay_server) + fileEntry.getUrl();
 		file = new File(getContext().getExternalCacheDir().getPath() + "/" + fileEntry.getTitle());
 		if (!file.exists()) {
@@ -145,7 +143,6 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 			intent.putExtra(DownloadService.RESULT_RECEIVER, new DownloadReceiver(new Handler()));
 			getContext().startService(intent);
 		} else {
-			m = imagePdf.getImageMatrix();
 			renderPdfInImageView(file);
 		}
 	}
@@ -173,11 +170,9 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 			super.onReceiveResult(resultCode, resultData);
 
 			if (resultCode == DownloadService.UPDATE_PROGRESS) {
-
 				int progress = resultData.getInt(DownloadService.FILE_DOWNLOAD_PROGRESS);
 				progressText.setText(String.valueOf(progress).concat("%"));
-				progressBar.setVisibility(VISIBLE);
-				progressText.setVisibility(VISIBLE);
+				progressBar.setProgress(progress);
 			} else if (resultCode == DownloadService.FINISHED_DOWNLOAD) {
 				renderPdfInImageView(file);
 			} else {
@@ -190,6 +185,7 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 	private void renderPdfInImageView(File file) {
 		try {
 			renderer = new PdfRenderer(ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY));
+			m = imagePdf.getImageMatrix();
 			renderPdfPage(0);
 			title.setText(fileEntry.getTitle());
 		} catch (IOException e) {
