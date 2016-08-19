@@ -17,7 +17,16 @@ import AFNetworking
 
 public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryViewModel {
 
-	public weak var uploadView: UploadProgressView_default?
+	public var uploadProgressView: UploadProgressViewBase? {
+		get {
+			return _uploadView as? UploadProgressViewBase
+		}
+		set {
+			_uploadView = newValue as? UIView
+		}
+	}
+
+	public weak var _uploadView: UIView?
     
     internal let imageCellId = "ImageCellId"
 
@@ -58,7 +67,7 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
 	}
 
 	public func onImageUploaded(imageEntry: ImageEntry) {
-		uploadView?.uploadComplete()
+		uploadProgressView?.uploadComplete()
 		if let lastSection = self.sections.last {
 			self.addRow(lastSection, element: imageEntry)
 
@@ -69,25 +78,25 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
 	}
 
 	public func onImageUploadEnqueued(imageEntry: ImageEntryUpload) {
-		if uploadView == nil {
+		if uploadProgressView == nil {
 			showUploadProgressView()
 		}
 
-		uploadView?.addUpload(imageEntry.image)
+		uploadProgressView?.addUpload(imageEntry.image)
 	}
 
 	public func showUploadProgressView() {
-		uploadView = NSBundle.viewForTheme(
+		uploadProgressView = NSBundle.viewForTheme(
 			name: "UploadProgressView",
 			themeName: BaseScreenlet.DefaultThemeName,
 			currentClass: self.dynamicType) as? UploadProgressView_default
 
-		uploadView?.translatesAutoresizingMaskIntoConstraints = false
-		uploadView?.alpha = 0
+		_uploadView?.translatesAutoresizingMaskIntoConstraints = false
+		_uploadView?.alpha = 0
 
-		addSubview(uploadView!)
+		addSubview(_uploadView!)
 
-		let views = ["view" : self, "uploadView" : uploadView!]
+		let views = ["view" : self, "uploadView" : _uploadView!]
 
 		let constraintH = NSLayoutConstraint.constraintsWithVisualFormat(
 			"H:|-(5)-[uploadView]-(5)-|",
@@ -105,10 +114,10 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
 		addConstraints(constraintV)
 
 		UIView.animateWithDuration(0.5) {
-			self.uploadView?.alpha = 1
+			self._uploadView?.alpha = 1
 		}
 
-		uploadView?.cancelClosure = { [weak self] in
+		uploadProgressView?.cancelClosure = { [weak self] in
 			(self?.screenlet as? ImageGalleryScreenlet)?.cancelUploads()
 		}
 	}
@@ -120,11 +129,11 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
 
 		let progress = Float(bytesSent) / Float(bytesToSend)
 
-		uploadView?.setProgress(progress)
+		uploadProgressView?.setProgress(progress)
 	}
 
 	public func onImageUploadError(imageEntryUpload: ImageEntryUpload, error: NSError) {
-		uploadView?.uploadError()
+		uploadProgressView?.uploadError()
 	}
 
 	public func indexFor(imageEntry imageEntry: ImageEntry) -> NSNumber? {
