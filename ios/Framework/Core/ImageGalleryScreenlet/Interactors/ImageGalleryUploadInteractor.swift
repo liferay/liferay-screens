@@ -45,15 +45,15 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 		super.init(screenlet: screenlet)
 	}
 
-	public convenience init(screenlet: ImageGalleryScreenlet?,
-	                        imageUpload: ImageEntryUpload,
-	                        repositoryId: Int64,
-	                        folderId: Int64,
-	                        page: Int,
-	                        onUploadedBytes: OnProgress?,
-	                        UUID: String) {
+	public convenience init(
+			screenlet: ImageGalleryScreenlet?,
+			imageUpload: ImageEntryUpload,
+			repositoryId: Int64,
+			folderId: Int64,
+			page: Int,
+			onUploadedBytes: OnProgress?,
+			UUID: String) {
 
-			
 		self.init(
 				screenlet: screenlet,
 				imageUpload: imageUpload,
