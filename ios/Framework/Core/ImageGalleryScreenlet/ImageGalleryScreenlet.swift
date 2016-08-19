@@ -46,7 +46,7 @@ import Kingfisher
 			onImageUploaded image: ImageEntry)
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-			onImageUploadDetailViewcontrollerCreated: UIViewController) -> Bool
+			onImageUploadDetailViewCreated: ImageUploadDetailViewBase) -> Bool
 }
 
 
@@ -69,7 +69,7 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 		}
 	}
 
-	public var uploadDetailViewControllerName = "ImageUploadDetailViewController"
+	public var uploadDetailViewName = "ImageUploadDetailView"
 
 	public let DefaultMimeTypes = ["image/png", "image/jpeg", "image/gif"]
 
@@ -133,18 +133,20 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 	}
 
 	public func showDetailUploadView(imageUpload: ImageEntryUpload) {
-		let viewController = createImageUploadDetailViewControllerFromNib()
+		let detailUploadView = createImageUploadDetailViewFromNib()
 
-		if let viewController = viewController {
-			viewController.image = imageUpload.image
-			viewController.screenlet = self
+		if let detailUploadView = detailUploadView {
+			detailUploadView.image = imageUpload.image
+			detailUploadView.screenlet = self
 
 			let presented = imageGalleryDelegate?.screenlet?(
 					self,
-					onImageUploadDetailViewcontrollerCreated: viewController) ?? false
+					onImageUploadDetailViewCreated: detailUploadView) ?? false
 
 			if !presented {
-				let navigationController = UINavigationController(rootViewController: viewController)
+				let defaultViewController =
+						ImageUploadDetailViewController_default(imageUploadDetailview: detailUploadView)
+				let navigationController = UINavigationController(rootViewController: defaultViewController)
 				presentingViewController?.presentViewController(navigationController, animated: true) {}
 			}
 		}
@@ -360,17 +362,17 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 		}
 	}
 
-	internal func createImageUploadDetailViewControllerFromNib() -> ImageUploadDetailViewControllerBase? {
+	internal func createImageUploadDetailViewFromNib() -> ImageUploadDetailViewBase? {
 
-		if let foundView = NSBundle.viewControllerForThemeOrDefault(
-				name: uploadDetailViewControllerName,
+		if let foundView = NSBundle.viewForThemeOrDefault(
+				name: uploadDetailViewName,
 				themeName: themeName ?? BaseScreenlet.DefaultThemeName,
-				currentClass: self.dynamicType) as? ImageUploadDetailViewControllerBase {
+				currentClass: self.dynamicType) as? ImageUploadDetailViewBase {
 
 			return foundView
 		}
 
-		print("ERROR: Xib file doesn't found for \(uploadDetailViewControllerName) and theme '\(themeName)'\n")
+		print("ERROR: Xib file doesn't found for \(uploadDetailViewName) and theme '\(themeName)'\n")
 		
 		return nil
 	}
