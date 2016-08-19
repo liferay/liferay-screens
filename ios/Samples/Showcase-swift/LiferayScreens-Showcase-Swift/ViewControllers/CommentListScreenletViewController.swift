@@ -20,6 +20,8 @@ class CommentListScreenletViewController: UIViewController,
 
 	@IBOutlet weak var listScreenlet: CommentListScreenlet?
 
+	var editViewController: CommentEditViewController_default?
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -30,8 +32,6 @@ class CommentListScreenletViewController: UIViewController,
 		self.listScreenlet?.loadList()
 	}
 
-	var editViewController: CommentEditViewController_default?
-
 	@IBAction func insertButtonPressed(sender: AnyObject) {
 		if editViewController == nil {
 			editViewController = CommentEditViewController_default(body: "")
@@ -39,33 +39,6 @@ class CommentListScreenletViewController: UIViewController,
 			editViewController!.confirmButton?.titleLabel?.text = "Add comment"
 			editViewController!.confirmBodyClosure = addComment
 			presentViewController(editViewController!, animated: true, completion: nil)
-		}
-	}
-
-	private func addComment(body: String?) {
-		editViewController?.dismissViewControllerAnimated(true) {
-			self.editViewController = nil
-		}
-
-		if let newCommentBody = body, screenlet = listScreenlet {
-			let interactor = CommentAddInteractor(
-				screenlet: nil,
-				groupId: screenlet.groupId,
-				className: screenlet.className,
-				classPK: screenlet.classPK,
-				body: newCommentBody)
-
-			interactor.onSuccess = {
-				if let comment = interactor.resultComment {
-					screenlet.addComment(comment)
-				}
-			}
-
-			interactor.onFailure = {
-				print("ERROR: adding comment \($0)")
-			}
-
-			interactor.start()
 		}
 	}
 
@@ -99,6 +72,35 @@ class CommentListScreenletViewController: UIViewController,
 	func screenlet(screenlet: CommentListScreenlet, onCommentUpdate comment: Comment,
 			onError error: NSError) {
 		print("DELEGATE: onCommentUpdate onError called -> \(comment) \(error)\n")
+	}
+
+	//MARK: Private methods
+
+	private func addComment(body: String?) {
+		editViewController?.dismissViewControllerAnimated(true) {
+			self.editViewController = nil
+		}
+
+		if let newCommentBody = body, screenlet = listScreenlet {
+			let interactor = CommentAddInteractor(
+				screenlet: nil,
+				groupId: screenlet.groupId,
+				className: screenlet.className,
+				classPK: screenlet.classPK,
+				body: newCommentBody)
+
+			interactor.onSuccess = {
+				if let comment = interactor.resultComment {
+					screenlet.addComment(comment)
+				}
+			}
+
+			interactor.onFailure = {
+				print("ERROR: adding comment \($0)")
+			}
+
+			interactor.start()
+		}
 	}
 
 }

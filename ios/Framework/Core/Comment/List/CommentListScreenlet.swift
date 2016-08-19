@@ -48,6 +48,11 @@ import UIKit
 	@IBInspectable public var classPK: Int64 = 0
 
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+	@IBInspectable public var editable: Bool = false {
+		didSet {
+			screenletView?.editable = self.editable
+		}
+	}
 
 	public var viewModel: CommentListViewModel? {
 		return screenletView as? CommentListViewModel
@@ -57,11 +62,6 @@ import UIKit
 		return delegate as? CommentListScreenletDelegate
 	}
 
-	@IBInspectable public var editable: Bool = false {
-		didSet {
-			screenletView?.editable = self.editable
-		}
-	}
 
 	//MARK: Public methods
 
@@ -77,29 +77,27 @@ import UIKit
 		viewModel?.updateComment(comment)
 	}
 
+
+	//MARK: BaseListScreenlet
+
 	public override func onCreated() {
 		super.onCreated()
 		screenletView?.editable = self.editable
 	}
 
-	//MARK: BaseListScreenlet
+	override public func createPageLoadInteractor(page page: Int, computeRowCount: Bool)
+		-> BaseListPageLoadInteractor {
+			let interactor = CommentListPageLoadInteractor(
+				screenlet: self,
+				page: page,
+				computeRowCount: computeRowCount,
+				groupId: groupId,
+				className: className,
+				classPK: classPK)
 
-	override public func createPageLoadInteractor(
-			page page: Int,
-			computeRowCount: Bool)
-			-> BaseListPageLoadInteractor {
+			interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
-		let interactor = CommentListPageLoadInteractor(
-			screenlet: self,
-			page: page,
-			computeRowCount: computeRowCount,
-			groupId: groupId,
-			className: className,
-			classPK: classPK)
-
-		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
-
-		return interactor
+			return interactor
 	}
 
 	override public func onLoadPageError(page page: Int, error: NSError) {

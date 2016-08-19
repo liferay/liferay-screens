@@ -28,6 +28,9 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 
 	private var initialBody: String?
 
+
+	//MARK: Initializers
+
 	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 	}
@@ -48,9 +51,8 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 		super.init(coder: aDecoder)
 	}
 
-	public func textViewDidChange(textView: UITextView) {
-		placeholderLabel.hidden = !textView.text.isEmpty
-	}
+
+	//MARK: UIViewController
 
 	public override func viewDidLoad() {
 		confirmButton?.replaceAttributedTitle(
@@ -85,9 +87,10 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 		}
 	}
 
-	func adjustForKeyboard(notification: NSNotification) {
-		let userInfo = notification.userInfo!
 
+	//MARK: Keyboard action
+
+	func adjustForKeyboard(notification: NSNotification) {
 		if let keyboardScreenEndFrame =
 				(notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue(),
 				scroll = scrollView {
@@ -106,6 +109,16 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 		}
 	}
 
+
+	//MARK: UITextViewDelegate
+
+	public func textViewDidChange(textView: UITextView) {
+		placeholderLabel.hidden = !textView.text.isEmpty
+	}
+
+
+	//MARK: View actions
+
 	@IBAction public func cancelButtonAction() {
 		bodyTextView?.resignFirstResponder()
 		confirmBodyClosure?(nil)
@@ -115,5 +128,4 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 		bodyTextView?.resignFirstResponder()
 		confirmBodyClosure?(bodyTextView?.text)
 	}
-	
 }

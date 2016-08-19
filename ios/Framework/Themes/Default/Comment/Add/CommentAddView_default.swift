@@ -19,10 +19,6 @@ public class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 	@IBOutlet weak var addCommentTextField: UITextField?
 	@IBOutlet weak var sendCommentButton: UIButton?
 
-	public override func onShow() {
-		addCommentTextField?.delegate = self
-	}
-
 	public var body: String? {
 		get {
 			return addCommentTextField?.text
@@ -33,21 +29,34 @@ public class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 		}
 	}
 
+
+	//MARK: Public methods
+
 	func updateButton() {
 		sendCommentButton?.enabled = !(addCommentTextField?.text?.isEmpty ?? true)
 	}
 
+
 	//MARK: BaseScreenletView
+
+	public override func onShow() {
+		addCommentTextField?.delegate = self
+	}
 
 	override public func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
 	}
 
+
+	//MARK: View actions
+
 	@IBAction func editingDidChangeAction() {
 		updateButton()
 	}
 
+
 	//MARK: UITextFieldDelegate
+
 	public override func textFieldShouldReturn(textField: UITextField) -> Bool {
 		userAction(name: "add-comment", sender: textField)
 		return super.textFieldShouldReturn(textField)

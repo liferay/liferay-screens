@@ -41,7 +41,8 @@ import UIKit
 		return screenletView as? CommentAddViewModel
 	}
 
-	//MARK: Public methods
+
+	//MARK: BaseScreenlet
 
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		let interactor = CommentAddInteractor(
@@ -65,7 +66,7 @@ import UIKit
 		interactor.onFailure = {
 			self.commentAddDelegate?.screenlet?(self, onAddCommentError: $0)
 		}
-		
+
 		return interactor
 	}
 	

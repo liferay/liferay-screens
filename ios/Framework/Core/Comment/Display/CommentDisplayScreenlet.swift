@@ -54,14 +54,14 @@ import UIKit
 
 	@IBInspectable public var autoLoad: Bool = true
 
-	public var commentDisplayDelegate: CommentDisplayScreenletDelegate? {
-		return delegate as? CommentDisplayScreenletDelegate
-	}
-
 	@IBInspectable public var editable: Bool = false {
 		didSet {
 			screenletView?.editable = self.editable
 		}
+	}
+
+	public var commentDisplayDelegate: CommentDisplayScreenletDelegate? {
+		return delegate as? CommentDisplayScreenletDelegate
 	}
 
 	public var viewModel: CommentDisplayViewModel? {
@@ -77,20 +77,8 @@ import UIKit
 		}
 	}
 
+
 	//MARK: Public methods
-
-	override public func onShow() {
-		if !isRunningOnInterfaceBuilder {
-			if autoLoad {
-				load()
-			}
-		}
-	}
-
-	public override func onCreated() {
-		super.onCreated()
-		screenletView?.editable = self.editable
-	}
 
 	public func load() {
 		performDefaultAction()
@@ -104,7 +92,21 @@ import UIKit
 		viewModel?.editComment()
 	}
 
+
 	//MARK: BaseScreenlet
+
+	public override func onCreated() {
+		super.onCreated()
+		screenletView?.editable = self.editable
+	}
+
+	override public func onShow() {
+		if !isRunningOnInterfaceBuilder {
+			if autoLoad {
+				load()
+			}
+		}
+	}
 
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		switch name {

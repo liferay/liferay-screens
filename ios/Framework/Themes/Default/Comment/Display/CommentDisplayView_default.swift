@@ -31,6 +31,122 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 	//Top/bottom UILabel insets
 	private static let LabelInsets: CGFloat = 16
 
+	@IBOutlet weak var userPortraitScreenlet: UserPortraitScreenlet?
+	@IBOutlet weak var userNameLabel: UILabel?
+	@IBOutlet weak var createdDateLabel: UILabel?
+	@IBOutlet weak var editedLabel: UILabel?
+	@IBOutlet weak var bodyLabel: UILabel?
+	@IBOutlet weak var bodyLabelBottomMarginConstraint: NSLayoutConstraint?
+	@IBOutlet weak var normalStateButtonsContainer: UIView?
+	@IBOutlet weak var deletingStateButtonsContainer: UIView?
+	@IBOutlet weak var deleteButton: UIButton?
+	@IBOutlet weak var editButton: UIButton?
+
+	var editViewController: CommentEditViewController_default?
+
+	public var state: CommentDisplayState_default = .Normal {
+		didSet {
+			normalStateButtonsContainer?.hidden = state != .Normal || !editable
+			deletingStateButtonsContainer?.hidden = state != .Deleting || !editable
+
+			if state == .Editing {
+				editViewController = CommentEditViewController_default(body: comment?.plainBody)
+				editViewController?.modalPresentationStyle = .OverCurrentContext
+				editViewController!.confirmBodyClosure = confirmBodyClosure
+
+				if let vc = self.presentingViewController {
+					vc.presentViewController(editViewController!, animated: true, completion: {})
+				}
+				else {
+					print("ERROR: You neet to set the presentingViewController " +
+						"before editing comments")
+				}
+			}
+		}
+	}
+
+
+	//MARK: CommentDisplayViewModel
+
+	public func editComment() {
+		if let viewController = self.presentingViewController, editedComment = self.comment
+			where editedComment.isStyled {
+			let alertController = UIAlertController(
+				title: LocalizedString("default", key: "comment-display-warning", obj: self),
+				message: LocalizedString("default", key: "comment-display-styled", obj: self),
+				preferredStyle: UIAlertControllerStyle.Alert)
+
+			let dismissAction = UIAlertAction(
+				title: LocalizedString("default", key: "comment-display-dismiss", obj: self),
+				style: UIAlertActionStyle.Default) { _ in
+					self.state = .Editing
+			}
+			alertController.addAction(dismissAction)
+
+			viewController.presentViewController(alertController, animated: true, completion: nil)
+		} else {
+			self.state = .Editing
+		}
+	}
+
+	public var comment: Comment? {
+		didSet {
+			self.state = .Normal
+
+			if let comment = comment {
+				bodyLabel?.attributedText = comment.htmlBody.toHtmlTextWithAttributes(
+					CommentDisplayView_default.attributedTextAttributes)
+
+				deleteButton?.enabled = comment.canDelete
+				editButton?.enabled = comment.canEdit
+
+				let loadedUserId = userPortraitScreenlet?.userId
+				if loadedUserId == nil || loadedUserId != comment.userId {
+					userPortraitScreenlet?.load(userId: comment.userId)
+				}
+
+				userNameLabel?.text = comment.userName
+				createdDateLabel?.text = comment.createDate.timeAgo
+				editedLabel?.hidden = comment.createDate.equalToDate(comment.modifiedDate)
+			}
+		}
+	}
+
+
+	//MARK: BaseScreenletView
+
+	public override func onShow() {
+		super.onShow()
+	}
+
+	public override var editable: Bool {
+		didSet {
+			normalStateButtonsContainer?.hidden = !editable
+		}
+	}
+
+	override public func createProgressPresenter() -> ProgressPresenter {
+		return DefaultProgressPresenter()
+	}
+
+	public override var progressMessages: [String : ProgressMessages] {
+		return [
+			CommentDisplayScreenlet.DeleteAction: [.Working: NoProgressMessage],
+			CommentDisplayScreenlet.UpdateAction: [.Working: NoProgressMessage]
+		]
+	}
+
+
+	//MARK: Public methods
+
+	public func confirmBodyClosure(body: String?) {
+		editViewController?.dismissViewControllerAnimated(true, completion: nil)
+
+		if let updatedBody = body where updatedBody != comment?.plainBody {
+			userAction(name: CommentDisplayScreenlet.UpdateAction, sender: updatedBody)
+		}
+	}
+
 	public class func heightForText(text: String?, width: CGFloat) -> CGFloat {
 		let realWidth = width - LabelPadding
 
@@ -63,104 +179,11 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 		return attributes
 	}
 
-	public func editComment() {
-		if let viewController = self.presentingViewController, editedComment = self.comment
-			where editedComment.isStyled {
-			let alertController = UIAlertController(
-				title: LocalizedString("default", key: "comment-display-warning", obj: self),
-				message: LocalizedString("default", key: "comment-display-styled", obj: self),
-				preferredStyle: UIAlertControllerStyle.Alert)
-
-			let dismissAction = UIAlertAction(
-				title: LocalizedString("default", key: "comment-display-dismiss", obj: self),
-				style: UIAlertActionStyle.Default) { _ in
-					self.changeState(.Editing)
-			}
-			alertController.addAction(dismissAction)
-
-			viewController.presentViewController(alertController, animated: true, completion: nil)
-		} else {
-			changeState(.Editing)
-		}
-	}
-
-	@IBOutlet weak var userPortraitScreenlet: UserPortraitScreenlet?
-	@IBOutlet weak var userNameLabel: UILabel?
-	@IBOutlet weak var createdDateLabel: UILabel?
-	@IBOutlet weak var editedLabel: UILabel?
-	@IBOutlet weak var bodyLabel: UILabel?
-	@IBOutlet weak var bodyLabelBottomMarginConstraint: NSLayoutConstraint?
-	@IBOutlet weak var normalStateButtonsContainer: UIView?
-	@IBOutlet weak var deletingStateButtonsContainer: UIView?
-	@IBOutlet weak var deleteButton: UIButton?
-	@IBOutlet weak var editButton: UIButton?
-
-	var editViewController: CommentEditViewController_default?
-
-	private var state: CommentDisplayState_default = .Normal
-
-	public override var editable: Bool {
-		didSet {
-			normalStateButtonsContainer?.hidden = !editable
-		}
-	}
-
-	public var comment: Comment? {
-		didSet {
-			changeState(.Normal)
-
-			if let comment = comment {
-				bodyLabel?.attributedText = comment.htmlBody.toHtmlTextWithAttributes(
-					CommentDisplayView_default.attributedTextAttributes)
-
-				deleteButton?.enabled = comment.canDelete
-				
-				editButton?.enabled = comment.canEdit
-
-				let loadedUserId = userPortraitScreenlet?.userId
-				if loadedUserId == nil || loadedUserId != comment.userId {
-					userPortraitScreenlet?.load(userId: comment.userId)
-				}
-				userNameLabel?.text = comment.userName
-				createdDateLabel?.text = comment.createDate.timeAgo
-				editedLabel?.hidden = comment.createDate.equalToDate(comment.modifiedDate)
-			}
-		}
-	}
-
-	//MARK: Public methods
-
-	public func changeState(state: CommentDisplayState_default) {
-		self.state = state
-		normalStateButtonsContainer?.hidden = state != .Normal || !editable
-		deletingStateButtonsContainer?.hidden = state != .Deleting || !editable
-
-		if state == .Editing {
-			editViewController = CommentEditViewController_default(body: comment?.plainBody)
-			editViewController?.modalPresentationStyle = .OverCurrentContext
-			editViewController!.confirmBodyClosure = confirmBodyClosure
-
-			if let vc = self.presentingViewController {
-				vc.presentViewController(editViewController!, animated: true, completion: {})
-			}
-			else {
-				print("ERROR: You neet to set the presentingViewController before editing comments")
-			}
-		}
-	}
-
-	public func confirmBodyClosure(body: String?) {
-		editViewController?.dismissViewControllerAnimated(true, completion: nil)
-
-		if let updatedBody = body where updatedBody != comment?.plainBody {
-			userAction(name: CommentDisplayScreenlet.UpdateAction, sender: updatedBody)
-		}
-	}
 
 	//MARK: View actions
 
 	@IBAction func deleteButtonClicked() {
-		changeState(.Deleting)
+		self.state = .Deleting
 	}
 
 	@IBAction func editButtonClicked() {
@@ -168,24 +191,11 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 	}
 
 	@IBAction func cancelDeletionButtonClicked() {
-		changeState(.Normal)
+		self.state = .Normal
 	}
 
 	@IBAction func confirmDeletionButtonClicked() {
 		userAction(name: CommentDisplayScreenlet.DeleteAction)
-		changeState(.Normal)
-	}
-
-	//MARK: BaseScreenletView
-
-	override public func createProgressPresenter() -> ProgressPresenter {
-		return DefaultProgressPresenter()
-	}
-
-	public override var progressMessages: [String : ProgressMessages] {
-		return [
-			CommentDisplayScreenlet.DeleteAction: [.Working: NoProgressMessage],
-			CommentDisplayScreenlet.UpdateAction: [.Working: NoProgressMessage]
-		]
+		self.state = .Normal
 	}
 }

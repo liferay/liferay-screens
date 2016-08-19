@@ -22,6 +22,19 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 		return screenlet as! CommentListScreenlet
 	}
 
+
+	//MARK: BaseScreenletView
+
+	override public func onShow() {
+		super.onShow()
+		self.tableView?.tableFooterView = UIView()
+	}
+
+	override public func createProgressPresenter() -> ProgressPresenter {
+		return DefaultProgressPresenter()
+	}
+
+
 	//MARK: CommentListViewModel
 
 	public func addComment(comment: Comment) {
@@ -58,12 +71,6 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 		}
 	}
 
-	//MARK: BaseListView
-
-	public override func onClearRows(oldRows: [String : [AnyObject?]]) {
-		super.onClearRows(oldRows)
-		self.tableView?.tableFooterView = UIView()
-	}
 
 	//MARK: BaseListTableView
 
@@ -114,7 +121,19 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 		}
 	}
 
-	public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+
+	//MARK: BaseListView
+
+	public override func onClearRows(oldRows: [String : [AnyObject?]]) {
+		super.onClearRows(oldRows)
+		self.tableView?.tableFooterView = UIView()
+	}
+
+
+	//UITableViewDelegate
+
+	public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath)
+			-> CGFloat {
 		let comment = rows[BaseListView.DefaultSection]?[indexPath.row] as? Comment
 		return CommentDisplayView_default.heightForText(comment?.htmlBody,
 			width: tableView.frame.width)
@@ -145,16 +164,4 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 
 		return [deleteRowAction, editRowAction];
 	}
-
-	//MARK: BaseScreenletView
-
-	public override func onShow() {
-		super.onShow()
-		self.tableView?.tableFooterView = UIView()
-	}
-
-	override public func createProgressPresenter() -> ProgressPresenter {
-		return DefaultProgressPresenter()
-	}
-
 }
