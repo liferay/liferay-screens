@@ -26,7 +26,6 @@ public class ImageUploadDetailViewBase: UIView {
 
 	public func startUpload() {
 		image?.resizeImage(toWidth: 300) { image in
-
 			self.startUpload(
 					self.titleText?.text ?? "",
 					notes: self.descripText?.text ?? "",
@@ -35,7 +34,6 @@ public class ImageUploadDetailViewBase: UIView {
 	}
 
 	public func startUpload(title: String, notes: String, thumbnail: UIImage? = nil) {
-
 		let nonEmptyTitle = title.isEmpty ? "\(NSUUID().UUIDString)" : title
 
 		if thumbnail == nil {
@@ -52,7 +50,6 @@ public class ImageUploadDetailViewBase: UIView {
 			}
 		}
 		else {
-		
 			let imageUpload = ImageEntryUpload(
 					image: image!,
 					thumbnail: thumbnail,
