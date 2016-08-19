@@ -2,6 +2,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
@@ -67,12 +68,14 @@ public class AudioDisplayView extends FrameLayout implements BaseFileDisplayView
 
 		audioView = (VideoView) findViewById(R.id.liferay_audio_asset);
 		title = (TextView) findViewById(R.id.liferay_audio_title);
+		message = (TextView) findViewById(R.id.liferay_audio_message);
 	}
 
 	@Override
 	public void showFinishOperation(FileEntry fileEntry) {
 		this.fileEntry = fileEntry;
 		loadAudio();
+		loadErrorListener();
 	}
 
 	private void loadAudio() {
@@ -84,8 +87,19 @@ public class AudioDisplayView extends FrameLayout implements BaseFileDisplayView
 		audioView.start();
 	}
 
+	private void loadErrorListener() {
+		audioView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+			@Override
+			public boolean onError(MediaPlayer mp, int what, int extra) {
+				message.setText(R.string.audio_error);
+				return false;
+			}
+		});
+	}
+
 	private BaseScreenlet screenlet;
 	private VideoView audioView;
 	private FileEntry fileEntry;
 	private TextView title;
+	private TextView message;
 }
