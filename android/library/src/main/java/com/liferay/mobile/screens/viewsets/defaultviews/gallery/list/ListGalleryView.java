@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.gallery.BaseGalleryView;
-import com.liferay.mobile.screens.viewsets.defaultviews.gallery.grid.GridGalleryAdapter;
 
 /**
  * @author Víctor Galán Grande
