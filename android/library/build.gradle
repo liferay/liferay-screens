@@ -53,8 +53,10 @@ dependencies {
 	testCompile libraries.robolectric
 	testCompile libraries.mockito
 
-	compile 'com.snappydb:snappydb-lib:0.5.2'
-	compile 'com.esotericsoftware.kryo:kryo:2.24.0'
+	compile('com.snappydb:snappydb-lib:0.5.2') {
+		exclude group: 'com.esotericsoftware.kryo', module: 'kryo'
+	}
+	compile 'com.esotericsoftware:kryo:4.0.0'
 }
 
 apply from: '../bintray.gradle'
