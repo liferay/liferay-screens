@@ -173,23 +173,23 @@ public let AssetClassNameKey_WikiNode = "WikiNode"
 		]
 	}()
 
-	public class func get(className: String) -> Int64? {
-		return classNameIds[className]
+	public class func getClassNameId(key: String) -> Int64? {
+		return classNameIds[key]
 	}
 
-	public class func getClassName(className: String) -> String? {
-		return classNames[className]
+	public class func getClassName(key: String) -> String? {
+		return classNames[key]
 	}
 
-	public class func get(classNameId: Int64) -> String? {
+	public class func getClassNameFromId(classNameId: Int64) -> String? {
 		return classNameIds.filter({$0.1 == classNameId}).first?.0
 	}
 
-	public class func set(className: String, newId: Int64) {
-		classNameIds[className] = newId
+	public class func set(key: String, newId: Int64) {
+		classNameIds[key] = newId
 	}
 
-	public class func set(className: String, newClassName: String) {
-		classNames[className] = newClassName
+	public class func set(key: String, newClassName: String) {
+		classNames[key] = newClassName
 	}
 }
