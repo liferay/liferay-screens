@@ -2,7 +2,11 @@ package com.liferay.mobile.screens.viewsets.defaultviews.asset.display;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.asset.display.AssetDisplayViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -27,19 +31,26 @@ public class AssetDisplayView extends FrameLayout implements AssetDisplayViewMod
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
+
+		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
+		container = (ViewGroup) findViewById(R.id.inner_screenlet_container);
 	}
 
 	@Override
 	public void showStartOperation(String actionName) {
+		progressBar.setVisibility(VISIBLE);
+		container.setVisibility(GONE);
 	}
 
 	@Override
 	public void showFinishOperation(String actionName) {
-		LiferayLogger.i("Asset display successful");
+		throw new UnsupportedOperationException("showFinishOperation(String) is not supported."
+			+ " Use showFinishOperation(BaseScreenlet) instead.");
 	}
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
+		progressBar.setVisibility(GONE);
 		LiferayLogger.e("Could not load asset", e);
 	}
 
@@ -54,4 +65,6 @@ public class AssetDisplayView extends FrameLayout implements AssetDisplayViewMod
 	}
 
 	private BaseScreenlet screenlet;
+	private ProgressBar progressBar;
+	private ViewGroup container;
 }
