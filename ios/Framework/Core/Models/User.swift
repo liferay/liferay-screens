@@ -14,6 +14,8 @@
 import Foundation
 
 
+//TODO if we have an User model, we have to use in the SessionContext object 
+// (instead of "userAttributes" property)
 @objc public class User: Asset {
 
 	public var user: [String:AnyObject]? {
