@@ -116,6 +116,7 @@
 		0BBEDA2E1D5B230E00F8CB31 /* ImageGalleryGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBEDA2A1D5B230E00F8CB31 /* ImageGalleryGridCell.xib */; };
 		0BBEDA2F1D5B230E00F8CB31 /* ImageGalleryView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEDA2B1D5B230E00F8CB31 /* ImageGalleryView_default.swift */; };
 		0BBEDA301D5B230E00F8CB31 /* ImageGalleryView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBEDA2C1D5B230E00F8CB31 /* ImageGalleryView_default.xib */; };
+		0BC3F6F91D6B0D3100493B7A /* LRScreensjournalarticleService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05491C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0BC4A9C81D5DB6EE00518419 /* CommentTableViewCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC4A9C71D5DB6EE00518419 /* CommentTableViewCell_default.swift */; };
 		0BC4A9CA1D5DB99000518419 /* CommentTableViewCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC4A9C91D5DB99000518419 /* CommentTableViewCell_default.xib */; };
 		0BCB4FB11D37C08B0023E2CA /* LRScreensddlrecordService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BCB4FAF1D37C08B0023E2CA /* LRScreensddlrecordService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -2127,6 +2128,7 @@
 				887E069B1C6A4DF800CA3807 /* LRScreensjournalarticleService_v70.h in Headers */,
 				0BD0827E1D6AE84A003317EC /* LRScreensddlrecordService_v62.h in Headers */,
 				887E06971C6A4DF800CA3807 /* LRScreensassetentryService_v70.h in Headers */,
+				0BC3F6F91D6B0D3100493B7A /* LRScreensjournalarticleService_v62.h in Headers */,
 				88DE2AA21AD3ED6800714701 /* LiferayScreensFrameworkConfig.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
