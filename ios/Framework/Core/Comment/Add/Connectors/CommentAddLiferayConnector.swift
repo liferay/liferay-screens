@@ -68,7 +68,8 @@ public class Liferay70CommentAddConnector: CommentAddLiferayConnector {
 				.stringByReplacingOccurrencesOfString(">", withString: "&gt;")
 				.characters
 				.split("\n")
-				.map { "<p>\(String($0))</p>" }
+				.map(String.init)
+				.map { "<p>\($0)</p>" }
 				.joinWithSeparator("")
 
 		do {
