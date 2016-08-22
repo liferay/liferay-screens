@@ -17,24 +17,24 @@ import UIKit
 @objc public protocol CommentDisplayScreenletDelegate : BaseScreenletDelegate {
 
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
-	                        onCommentLoaded comment: Comment)
+			onCommentLoaded comment: Comment)
 
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
-	                        onLoadCommentError error: NSError)
+			onLoadCommentError error: NSError)
 
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
-	                        onCommentDeleted comment: Comment)
+			onCommentDeleted comment: Comment)
 
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
-	                        onDeleteComment comment: Comment,
-						    onError error: NSError)
+			onDeleteComment comment: Comment,
+			onError error: NSError)
 
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
-	                        onCommentUpdated comment: Comment)
+			onCommentUpdated comment: Comment)
 
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
-	                        onUpdateComment comment: Comment,
-							onError error: NSError)
+			onUpdateComment comment: Comment,
+			onError error: NSError)
 
 }
 

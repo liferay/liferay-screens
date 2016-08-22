@@ -30,7 +30,6 @@ public class CommentAddLiferayConnector: ServerConnector {
 		super.init()
 	}
 
-
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
 
@@ -54,6 +53,7 @@ public class CommentAddLiferayConnector: ServerConnector {
 
 		return error
 	}
+
 }
 
 public class Liferay70CommentAddConnector: CommentAddLiferayConnector {
@@ -62,16 +62,20 @@ public class Liferay70CommentAddConnector: CommentAddLiferayConnector {
 
 		let service = LRCommentmanagerjsonwsService_v70(session: session)
 
-		let formattedBody = body!
-			.stringByReplacingOccurrencesOfString("<", withString: "&lt;")
-			.stringByReplacingOccurrencesOfString(">", withString: "&gt;")
-			.characters.split("\n").map({"<p>\(String($0))</p>"}).joinWithSeparator("")
+		let formattedBody =
+			body
+				.stringByReplacingOccurrencesOfString("<", withString: "&lt;")
+				.stringByReplacingOccurrencesOfString(">", withString: "&gt;")
+				.characters
+				.split("\n")
+				.map { "<p>\(String($0))</p>" }
+				.joinWithSeparator("")
 
 		do {
 			let result = try service.addCommentWithGroupId(groupId,
-			                                               className: className,
-			                                               classPK: classPK,
-			                                               body: formattedBody)
+					className: className,
+					classPK: classPK,
+					body: formattedBody)
 
 			lastError = nil
 

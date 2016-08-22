@@ -17,10 +17,10 @@ import UIKit
 @objc public protocol CommentAddScreenletDelegate : BaseScreenletDelegate {
 
 	optional func screenlet(screenlet: CommentAddScreenlet,
-	                        onCommentAdded comment: Comment)
+			onCommentAdded comment: Comment)
 
 	optional func screenlet(screenlet: CommentAddScreenlet,
-	                        onAddCommentError error: NSError)
+			onAddCommentError error: NSError)
 
 }
 

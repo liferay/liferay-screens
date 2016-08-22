@@ -14,11 +14,11 @@
 import Foundation
 
 
-@objc public class Comment : NSObject, NSCoding {
+@objc public class Comment: NSObject, NSCoding {
 
 	private let AllowedTags = ["strong", "i", "b", "a", "/strong", "/i", "/b", "/a"]
 
-	public let attributes :[String:AnyObject]
+	public let attributes: [String:AnyObject]
 
 	public var originalBody: String {
 		return attributes["body"]!.description
@@ -31,15 +31,20 @@ import Foundation
 
 	public var plainBody: String {
 		return originalBody.stringByReplacingOccurrencesOfString(
-				"<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+				"<[^>]+>",
+				withString: "",
+				options: .RegularExpressionSearch,
+				range: nil)
 			.stringByReplacingOccurrencesOfString("&lt;", withString: "<")
 			.stringByReplacingOccurrencesOfString("&gt;", withString: ">")
 	}
 
 	public var htmlBody: String {
 		return originalBody.stringByReplacingOccurrencesOfString(
-				"(?i)<(?!\(AllowedTags.joinWithSeparator("|"))).*?>", withString: "",
-				options: .RegularExpressionSearch, range: nil)
+				"(?i)<(?!\(AllowedTags.joinWithSeparator("|"))).*?>",
+				withString: "",
+				options: .RegularExpressionSearch,
+				range: nil)
 			.stringByReplacingOccurrencesOfString("\n", withString: "</br>")
 	}
 
