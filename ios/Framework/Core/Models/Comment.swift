@@ -78,11 +78,11 @@ import Foundation
 	}
 
 	public var canDelete: Bool {
-		return attributes["deletePermission"]! as! Bool
+		return attributes["deletePermission"] as? Bool ?? false
 	}
 
 	public var canEdit: Bool {
-		return attributes["updatePermission"]! as! Bool
+		return attributes["updatePermission"] as? Bool ?? false
 	}
 
 	public func encodeWithCoder(aCoder: NSCoder) {
