@@ -14,49 +14,49 @@
 import UIKit
 
 // Users and sites
-public let AssetClassNameIdGroup = "Group"
-public let AssetClassNameIdLayout = "Layout"
-public let AssetClassNameIdOrganization = "Organization"
-public let AssetClassNameIdUser = "User"
-public let AssetClassNameIdUserGroup = "UserGroup"
+public let AssetClassNameKey_Group = "Group"
+public let AssetClassNameKey_Layout = "Layout"
+public let AssetClassNameKey_Organization = "Organization"
+public let AssetClassNameKey_User = "User"
+public let AssetClassNameKey_UserGroup = "UserGroup"
 
 // Blogs
-public let AssetClassNameIdBlogsEntry = "BlogsEntry"
+public let AssetClassNameKey_BlogsEntry = "BlogsEntry"
 
 // Bookmarks
-public let AssetClassNameIdBookmarksEntry = "BookmarksEntry"
-public let AssetClassNameIdBookmarksFolder = "BookmarksFolder"
+public let AssetClassNameKey_BookmarksEntry = "BookmarksEntry"
+public let AssetClassNameKey_BookmarksFolder = "BookmarksFolder"
 
 // Document Library
-public let AssetClassNameIdDLFileEntry = "DLFileEntry"
-public let AssetClassNameIdDLFolder = "DLFolder"
-public let AssetClassNameIdDLFileEntryMetadata = "DLFileEntryMetadata"
-public let AssetClassNameIdDLFileEntryType = "DLFileEntryType"
-public let AssetClassNameIdDLFileRank = "DLFileRank"
-public let AssetClassNameIdDLFileShortcut = "DLFileShortcut"
-public let AssetClassNameIdDLFileVersion = "DLFileVersion"
+public let AssetClassNameKey_DLFileEntry = "DLFileEntry"
+public let AssetClassNameKey_DLFolder = "DLFolder"
+public let AssetClassNameKey_DLFileEntryMetadata = "DLFileEntryMetadata"
+public let AssetClassNameKey_DLFileEntryType = "DLFileEntryType"
+public let AssetClassNameKey_DLFileRank = "DLFileRank"
+public let AssetClassNameKey_DLFileShortcut = "DLFileShortcut"
+public let AssetClassNameKey_DLFileVersion = "DLFileVersion"
 
 // DDL
-public let AssetClassNameIdDDLRecord = "DDLRecord"
-public let AssetClassNameIdDDLRecordSet = "DDLRecordSet"
-public let AssetClassNameIdDDLRecordVersion = "DDLRecordVersion"
+public let AssetClassNameKey_DDLRecord = "DDLRecord"
+public let AssetClassNameKey_DDLRecordSet = "DDLRecordSet"
+public let AssetClassNameKey_DDLRecordVersion = "DDLRecordVersion"
 
 // Journal
-public let AssetClassNameIdJournalArticle = "JournalArticle"
-public let AssetClassNameIdJournalArticleImage = "JournalArticleImage"
-public let AssetClassNameIdJournalFolder = "JournalFolder"
+public let AssetClassNameKey_JournalArticle = "JournalArticle"
+public let AssetClassNameKey_JournalArticleImage = "JournalArticleImage"
+public let AssetClassNameKey_JournalFolder = "JournalFolder"
 
 // MessageBoard
-public let AssetClassNameIdMBMessage = "MBMessage"
-public let AssetClassNameIdMBThread = "MBThread"
-public let AssetClassNameIdMBCategory = "MBCategory"
-public let AssetClassNameIdMBDiscussion = "MBDiscussion"
-public let AssetClassNameIdMBMailingList = "MBMailingList"
+public let AssetClassNameKey_MBMessage = "MBMessage"
+public let AssetClassNameKey_MBThread = "MBThread"
+public let AssetClassNameKey_MBCategory = "MBCategory"
+public let AssetClassNameKey_MBDiscussion = "MBDiscussion"
+public let AssetClassNameKey_MBMailingList = "MBMailingList"
 
 // Wiki
-public let AssetClassNameIdWikiPage = "WikiPage"
-public let AssetClassNameIdWikiPageResource = "WikiPageResource"
-public let AssetClassNameIdWikiNode = "WikiNode"
+public let AssetClassNameKey_WikiPage = "WikiPage"
+public let AssetClassNameKey_WikiPageResource = "WikiPageResource"
+public let AssetClassNameKey_WikiNode = "WikiNode"
 
 
 @objc public class AssetClassNameIds : NSObject {
@@ -67,53 +67,53 @@ public let AssetClassNameIdWikiNode = "WikiNode"
 		// installation.
 		// Be aware your installation probably have different identifiers, so
 		// you probably we'll need to overwrite these values like this:
-		//		AssetClassNameIds.set(AssetClassNameIdGroup, 1234)
+		//		AssetClassNameKey_s.set(AssetClassNameKey_Group, 1234)
 
 		return [
 			// Users and sites
-			AssetClassNameIdGroup : 10001,
-			AssetClassNameIdLayout : 10002,
-			AssetClassNameIdOrganization : 10003,
-			AssetClassNameIdUser : 10005,
-			AssetClassNameIdUserGroup : 10006,
+			AssetClassNameKey_Group : 10001,
+			AssetClassNameKey_Layout : 10002,
+			AssetClassNameKey_Organization : 10003,
+			AssetClassNameKey_User : 10005,
+			AssetClassNameKey_UserGroup : 10006,
 
 			// Blogs
-			AssetClassNameIdBlogsEntry : 10007,
+			AssetClassNameKey_BlogsEntry : 10007,
 
 			// Bookmarks
-			AssetClassNameIdBookmarksEntry : 10008,
-			AssetClassNameIdBookmarksFolder : 10009,
+			AssetClassNameKey_BookmarksEntry : 10008,
+			AssetClassNameKey_BookmarksFolder : 10009,
 
 			// Document Library
-			AssetClassNameIdDLFileEntry : 10011,
-			AssetClassNameIdDLFolder: 10012,
-			AssetClassNameIdDLFileEntryMetadata : 10091,
-			AssetClassNameIdDLFileEntryType : 10092,
-			AssetClassNameIdDLFileRank : 10093,
-			AssetClassNameIdDLFileShortcut : 10094,
-			AssetClassNameIdDLFileVersion : 10095,
+			AssetClassNameKey_DLFileEntry : 10011,
+			AssetClassNameKey_DLFolder: 10012,
+			AssetClassNameKey_DLFileEntryMetadata : 10091,
+			AssetClassNameKey_DLFileEntryType : 10092,
+			AssetClassNameKey_DLFileRank : 10093,
+			AssetClassNameKey_DLFileShortcut : 10094,
+			AssetClassNameKey_DLFileVersion : 10095,
 
 			// DDL
-			AssetClassNameIdDDLRecord : 10097,
-			AssetClassNameIdDDLRecordSet : 10098,
-			AssetClassNameIdDDLRecordVersion : 10099,
+			AssetClassNameKey_DDLRecord : 10097,
+			AssetClassNameKey_DDLRecordSet : 10098,
+			AssetClassNameKey_DDLRecordVersion : 10099,
 
 			// Journal
-			AssetClassNameIdJournalArticle : 10109,
-			AssetClassNameIdJournalArticleImage : 10110,
-			AssetClassNameIdJournalFolder : 10013,
+			AssetClassNameKey_JournalArticle : 10109,
+			AssetClassNameKey_JournalArticleImage : 10110,
+			AssetClassNameKey_JournalFolder : 10013,
 
 			// MessageBoard
-			AssetClassNameIdMBMessage : 10014,
-			AssetClassNameIdMBThread : 10015,
-			AssetClassNameIdMBCategory : 10115,
-			AssetClassNameIdMBDiscussion : 10116,
-			AssetClassNameIdMBMailingList : 10117,
+			AssetClassNameKey_MBMessage : 10014,
+			AssetClassNameKey_MBThread : 10015,
+			AssetClassNameKey_MBCategory : 10115,
+			AssetClassNameKey_MBDiscussion : 10116,
+			AssetClassNameKey_MBMailingList : 10117,
 
 			// Wiki
-			AssetClassNameIdWikiPage : 10016,
-			AssetClassNameIdWikiPageResource : 10153,
-			AssetClassNameIdWikiNode : 10152
+			AssetClassNameKey_WikiPage : 10016,
+			AssetClassNameKey_WikiPageResource : 10153,
+			AssetClassNameKey_WikiNode : 10152
 		]
 	}()
 
@@ -123,53 +123,53 @@ public let AssetClassNameIdWikiNode = "WikiNode"
 		// installation.
 		// Be aware your installation probably have different className, so
 		// you probably we'll need to overwrite these values like this:
-		//		AssetClassNameIds.set(AssetClassNameIdGroup, "com.liferay.portal.kernel.model.Group")
+		//		AssetClassNameIds.set(AssetClassNameKey_Group, "com.liferay.portal.kernel.model.Group")
 
 		return [
 			// Users and sites
-			AssetClassNameIdGroup : "com.liferay.portal.kernel.model.Group",
-			AssetClassNameIdLayout : "com.liferay.portal.kernel.model.Layout",
-			AssetClassNameIdOrganization : "com.liferay.portal.kernel.model.Organization",
-			AssetClassNameIdUser : "com.liferay.portal.kernel.model.User",
-			AssetClassNameIdUserGroup : "com.liferay.portal.kernel.model.UserGroup",
+			AssetClassNameKey_Group : "com.liferay.portal.kernel.model.Group",
+			AssetClassNameKey_Layout : "com.liferay.portal.kernel.model.Layout",
+			AssetClassNameKey_Organization : "com.liferay.portal.kernel.model.Organization",
+			AssetClassNameKey_User : "com.liferay.portal.kernel.model.User",
+			AssetClassNameKey_UserGroup : "com.liferay.portal.kernel.model.UserGroup",
 
 			// Blogs
-			AssetClassNameIdBlogsEntry : "com.liferay.blogs.kernel.model.BlogsEntry",
+			AssetClassNameKey_BlogsEntry : "com.liferay.blogs.kernel.model.BlogsEntry",
 
 			// Bookmarks
-			AssetClassNameIdBookmarksEntry : "com.liferay.bookmarks.model.BookmarksEntry",
-			AssetClassNameIdBookmarksFolder : "com.liferay.bookmarks.model.BookmarksFolder",
+			AssetClassNameKey_BookmarksEntry : "com.liferay.bookmarks.model.BookmarksEntry",
+			AssetClassNameKey_BookmarksFolder : "com.liferay.bookmarks.model.BookmarksFolder",
 
 			// Document Library
-			AssetClassNameIdDLFileEntry : "com.liferay.document.library.kernel.model.DLFileEntry",
-			AssetClassNameIdDLFolder: "com.liferay.document.library.kernel.model.DLFolder",
-			AssetClassNameIdDLFileEntryMetadata : "com.liferay.document.library.kernel.model.DLFileEntryMetadata",
-			AssetClassNameIdDLFileEntryType : "com.liferay.document.library.kernel.model.DLFileEntryType",
-			AssetClassNameIdDLFileRank : "com.liferay.document.library.kernel.model.DLFileRank",
-			AssetClassNameIdDLFileShortcut : "com.liferay.document.library.kernel.model.DLFileShortcut",
-			AssetClassNameIdDLFileVersion : "com.liferay.document.library.kernel.model.DLFileVersion",
+			AssetClassNameKey_DLFileEntry : "com.liferay.document.library.kernel.model.DLFileEntry",
+			AssetClassNameKey_DLFolder : "com.liferay.document.library.kernel.model.DLFolder",
+			AssetClassNameKey_DLFileEntryMetadata : "com.liferay.document.library.kernel.model.DLFileEntryMetadata",
+			AssetClassNameKey_DLFileEntryType : "com.liferay.document.library.kernel.model.DLFileEntryType",
+			AssetClassNameKey_DLFileRank : "com.liferay.document.library.kernel.model.DLFileRank",
+			AssetClassNameKey_DLFileShortcut : "com.liferay.document.library.kernel.model.DLFileShortcut",
+			AssetClassNameKey_DLFileVersion : "com.liferay.document.library.kernel.model.DLFileVersion",
 
 			// DDL
-			AssetClassNameIdDDLRecord : "com.liferay.dynamic.data.lists.model.DDLRecord",
-			AssetClassNameIdDDLRecordSet : "com.liferay.dynamic.data.lists.model.DDLRecordSet",
-			AssetClassNameIdDDLRecordVersion : "com.liferay.dynamic.data.lists.model.DDLRecordVersion",
+			AssetClassNameKey_DDLRecord : "com.liferay.dynamic.data.lists.model.DDLRecord",
+			AssetClassNameKey_DDLRecordSet : "com.liferay.dynamic.data.lists.model.DDLRecordSet",
+			AssetClassNameKey_DDLRecordVersion : "com.liferay.dynamic.data.lists.model.DDLRecordVersion",
 
 			// Journal
-			AssetClassNameIdJournalArticle : "com.liferay.journal.model.JournalArticle",
-			AssetClassNameIdJournalArticleImage : "com.liferay.journal.model.JournalArticleImage",
-			AssetClassNameIdJournalFolder : "com.liferay.journal.model.JournalFolder",
+			AssetClassNameKey_JournalArticle : "com.liferay.journal.model.JournalArticle",
+			AssetClassNameKey_JournalArticleImage : "com.liferay.journal.model.JournalArticleImage",
+			AssetClassNameKey_JournalFolder : "com.liferay.journal.model.JournalFolder",
 
 			// MessageBoard
-			AssetClassNameIdMBMessage : "com.liferay.message.boards.kernel.model.MBMessage",
-			AssetClassNameIdMBThread : "com.liferay.message.boards.kernel.model.MBThread",
-			AssetClassNameIdMBCategory : "com.liferay.message.boards.kernel.model.MBCategory",
-			AssetClassNameIdMBDiscussion : "com.liferay.message.boards.kernel.model.MBDiscussion",
-			AssetClassNameIdMBMailingList : "com.liferay.message.boards.kernel.model.MBMailingList",
+			AssetClassNameKey_MBMessage : "com.liferay.message.boards.kernel.model.MBMessage",
+			AssetClassNameKey_MBThread : "com.liferay.message.boards.kernel.model.MBThread",
+			AssetClassNameKey_MBCategory : "com.liferay.message.boards.kernel.model.MBCategory",
+			AssetClassNameKey_MBDiscussion : "com.liferay.message.boards.kernel.model.MBDiscussion",
+			AssetClassNameKey_MBMailingList : "com.liferay.message.boards.kernel.model.MBMailingList",
 
 			// Wiki
-			AssetClassNameIdWikiPage : "com.liferay.wiki.model.WikiPage",
-			AssetClassNameIdWikiPageResource : "com.liferay.wiki.model.WikiPageResource",
-			AssetClassNameIdWikiNode : "com.liferay.wiki.model.WikiNode"
+			AssetClassNameKey_WikiPage : "com.liferay.wiki.model.WikiPage",
+			AssetClassNameKey_WikiPageResource : "com.liferay.wiki.model.WikiPageResource",
+			AssetClassNameKey_WikiNode : "com.liferay.wiki.model.WikiNode"
 		]
 	}()
 
