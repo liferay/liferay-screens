@@ -21,11 +21,11 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 	@IBOutlet var screenlet: AssetListScreenlet?
 	@IBOutlet var picker: UIPickerView?
 
-	var selectedAsset = AssetClassNameIds.get(AssetClassNameIdGroup)
+	var selectedAsset = AssetClasses.getClassNameId(AssetClassNameKey_Group)
     
 	var selectAssetEntry: Asset?
 
-	var pickerData:[(name:String, assetId:Int64)] = []
+	var pickerData:[AssetClassEntry] = []
 
 	@IBAction func changeAssetAction(sender: AnyObject) {
 		showPicker(false, animated:true)
@@ -42,7 +42,7 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 	}
 
 	func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-		selectedAsset = pickerData[row].assetId
+		selectedAsset = pickerData[row].classNameId
 		print("[ASSET TYPE] -> Selected \(selectedAsset!)\n")
 	}
 
@@ -55,7 +55,7 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 	}
 
 	func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-		return NSAttributedString(string: pickerData[row].name)
+		return NSAttributedString(string: pickerData[row].className)
 	}
 
 	override func viewDidLoad() {
@@ -63,71 +63,70 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 
 		// demo.liferay.com identifiers are not the standard ones
 
-		AssetClassNameIds.set(AssetClassNameIdGroup, newId: 20001)
-		AssetClassNameIds.set(AssetClassNameIdLayout, newId: 20002)
-		AssetClassNameIds.set(AssetClassNameIdOrganization, newId: 20003)
-		AssetClassNameIds.set(AssetClassNameIdUser, newId: 20005)
-		AssetClassNameIds.set(AssetClassNameIdUserGroup, newId: 20006)
-		AssetClassNameIds.set(AssetClassNameIdBlogsEntry, newId: 20007)
-		AssetClassNameIds.set(AssetClassNameIdBookmarksEntry, newId: 20392)
-		AssetClassNameIds.set(AssetClassNameIdBookmarksFolder, newId: 20393)
-		AssetClassNameIds.set(AssetClassNameIdDLFileEntry, newId: 20008)
-		AssetClassNameIds.set(AssetClassNameIdDLFolder, newId: 20009)
-		AssetClassNameIds.set(AssetClassNameIdDLFileEntryMetadata, newId: 20086)
-		AssetClassNameIds.set(AssetClassNameIdDLFileEntryType, newId: 20087)
-		AssetClassNameIds.set(AssetClassNameIdDLFileRank, newId: 20088)
-		AssetClassNameIds.set(AssetClassNameIdDLFileShortcut, newId: 20089)
-		AssetClassNameIds.set(AssetClassNameIdDLFileVersion, newId: 20090)
-		AssetClassNameIds.set(AssetClassNameIdDDLRecord, newId: 20422)
-		AssetClassNameIds.set(AssetClassNameIdDDLRecordSet, newId: 20423)
-		AssetClassNameIds.set(AssetClassNameIdDDLRecordVersion, newId: 20424)
-		AssetClassNameIds.set(AssetClassNameIdJournalArticle, newId: 20109)
-		AssetClassNameIds.set(AssetClassNameIdJournalArticleImage, newId: 20481)
-		AssetClassNameIds.set(AssetClassNameIdJournalFolder, newId: 20485)
-		AssetClassNameIds.set(AssetClassNameIdMBMessage, newId: 20010)
-		AssetClassNameIds.set(AssetClassNameIdMBThread, newId: 20011)
-		AssetClassNameIds.set(AssetClassNameIdMBCategory, newId: 20098)
-		AssetClassNameIds.set(AssetClassNameIdMBDiscussion, newId: 20099)
-		AssetClassNameIds.set(AssetClassNameIdMBMailingList, newId: 20100)
-		AssetClassNameIds.set(AssetClassNameIdWikiPage, newId: 20374)
-		AssetClassNameIds.set(AssetClassNameIdWikiPageResource, newId: 20375)
-		AssetClassNameIds.set(AssetClassNameIdWikiNode, newId: 20373)
+		AssetClasses.set(AssetClassNameKey_Group, newId: 20001)
+		AssetClasses.set(AssetClassNameKey_Layout, newId: 20002)
+		AssetClasses.set(AssetClassNameKey_Organization, newId: 20003)
+		AssetClasses.set(AssetClassNameKey_User, newId: 20005)
+		AssetClasses.set(AssetClassNameKey_UserGroup, newId: 20006)
+		AssetClasses.set(AssetClassNameKey_BlogsEntry, newId: 20007)
+		AssetClasses.set(AssetClassNameKey_BookmarksEntry, newId: 20392)
+		AssetClasses.set(AssetClassNameKey_BookmarksFolder, newId: 20393)
+		AssetClasses.set(AssetClassNameKey_DLFileEntry, newId: 20008)
+		AssetClasses.set(AssetClassNameKey_DLFolder, newId: 20009)
+		AssetClasses.set(AssetClassNameKey_DLFileEntryMetadata, newId: 20086)
+		AssetClasses.set(AssetClassNameKey_DLFileEntryType, newId: 20087)
+		AssetClasses.set(AssetClassNameKey_DLFileRank, newId: 20088)
+		AssetClasses.set(AssetClassNameKey_DLFileShortcut, newId: 20089)
+		AssetClasses.set(AssetClassNameKey_DLFileVersion, newId: 20090)
+		AssetClasses.set(AssetClassNameKey_DDLRecord, newId: 20422)
+		AssetClasses.set(AssetClassNameKey_DDLRecordSet, newId: 20423)
+		AssetClasses.set(AssetClassNameKey_DDLRecordVersion, newId: 20424)
+		AssetClasses.set(AssetClassNameKey_JournalArticle, newId: 20109)
+		AssetClasses.set(AssetClassNameKey_JournalArticleImage, newId: 20481)
+		AssetClasses.set(AssetClassNameKey_JournalFolder, newId: 20485)
+		AssetClasses.set(AssetClassNameKey_MBMessage, newId: 20010)
+		AssetClasses.set(AssetClassNameKey_MBThread, newId: 20011)
+		AssetClasses.set(AssetClassNameKey_MBCategory, newId: 20098)
+		AssetClasses.set(AssetClassNameKey_MBDiscussion, newId: 20099)
+		AssetClasses.set(AssetClassNameKey_MBMailingList, newId: 20100)
+		AssetClasses.set(AssetClassNameKey_WikiPage, newId: 20374)
+		AssetClasses.set(AssetClassNameKey_WikiPageResource, newId: 20375)
+		AssetClasses.set(AssetClassNameKey_WikiNode, newId: 20373)
 
-		let assets = [
-			AssetClassNameIdGroup,
-			AssetClassNameIdLayout,
-			AssetClassNameIdOrganization,
-			AssetClassNameIdUser,
-			AssetClassNameIdUserGroup,
-			AssetClassNameIdBlogsEntry,
-			AssetClassNameIdBookmarksEntry,
-			AssetClassNameIdBookmarksFolder,
-			AssetClassNameIdDLFileEntry,
-			AssetClassNameIdDLFileEntryMetadata,
-			AssetClassNameIdDLFileEntryType,
-			AssetClassNameIdDLFileRank,
-			AssetClassNameIdDLFileShortcut,
-			AssetClassNameIdDLFileVersion,
-			AssetClassNameIdDDLRecord,
-			AssetClassNameIdDDLRecordSet,
-			AssetClassNameIdJournalArticle,
-			AssetClassNameIdJournalFolder,
-			AssetClassNameIdMBMessage,
-			AssetClassNameIdMBThread,
-			AssetClassNameIdMBCategory,
-			AssetClassNameIdMBDiscussion,
-			AssetClassNameIdMBMailingList,
-			AssetClassNameIdWikiPage,
-			AssetClassNameIdWikiPageResource,
-			AssetClassNameIdWikiNode
+		let assetClasses = [
+			AssetClassNameKey_Group,
+			AssetClassNameKey_Layout,
+			AssetClassNameKey_Organization,
+			AssetClassNameKey_User,
+			AssetClassNameKey_UserGroup,
+			AssetClassNameKey_BlogsEntry,
+			AssetClassNameKey_BookmarksEntry,
+			AssetClassNameKey_BookmarksFolder,
+			AssetClassNameKey_DLFileEntry,
+			AssetClassNameKey_DLFileEntryMetadata,
+			AssetClassNameKey_DLFileEntryType,
+			AssetClassNameKey_DLFileRank,
+			AssetClassNameKey_DLFileShortcut,
+			AssetClassNameKey_DLFileVersion,
+			AssetClassNameKey_DDLRecord,
+			AssetClassNameKey_DDLRecordSet,
+			AssetClassNameKey_JournalArticle,
+			AssetClassNameKey_JournalFolder,
+			AssetClassNameKey_MBMessage,
+			AssetClassNameKey_MBThread,
+			AssetClassNameKey_MBCategory,
+			AssetClassNameKey_MBDiscussion,
+			AssetClassNameKey_MBMailingList,
+			AssetClassNameKey_WikiPage,
+			AssetClassNameKey_WikiPageResource,
+			AssetClassNameKey_WikiNode
 		]
 
-		for asset in assets {
+		for assetKey in assetClasses {
 			pickerData.append(
-				(
-					name: asset,
-					assetId: AssetClassNameIds.get(asset)!
-				))
+				AssetClassEntry(
+					AssetClasses.getClassNameId(assetKey)!,
+					AssetClasses.getClassName(assetKey)!))
 		}
 		
 		self.screenlet?.delegate = self
