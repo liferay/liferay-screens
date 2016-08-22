@@ -75,21 +75,12 @@ public class Liferay70CommentUpdateConnector: CommentUpdateLiferayConnector {
 
 		let service = LRCommentmanagerjsonwsService_v70(session: session)
 
-		let formattedBody = body
-			.stringByReplacingOccurrencesOfString("<", withString: "&lt;")
-			.stringByReplacingOccurrencesOfString(">", withString: "&gt;")
-			.characters
-			.split("\n")
-			.map(String.init)
-			.map{"<p>\($0)</p>"}
-			.joinWithSeparator("")
-
 		do {
 			let result = try service.updateCommentWithGroupId(groupId,
 					className: className,
 					classPK: classPK,
 					commentId: commentId,
-					body: formattedBody)
+					body: Comment.plainBodyToHtml(body))
 
 			if let result = result as? [String: AnyObject] {
 				resultComment = Comment(attributes: result)

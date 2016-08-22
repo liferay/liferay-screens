@@ -62,21 +62,11 @@ public class Liferay70CommentAddConnector: CommentAddLiferayConnector {
 
 		let service = LRCommentmanagerjsonwsService_v70(session: session)
 
-		let formattedBody =
-			body
-				.stringByReplacingOccurrencesOfString("<", withString: "&lt;")
-				.stringByReplacingOccurrencesOfString(">", withString: "&gt;")
-				.characters
-				.split("\n")
-				.map(String.init)
-				.map { "<p>\($0)</p>" }
-				.joinWithSeparator("")
-
 		do {
 			let result = try service.addCommentWithGroupId(groupId,
 					className: className,
 					classPK: classPK,
-					body: formattedBody)
+					body: Comment.plainBodyToHtml(body))
 
 			lastError = nil
 

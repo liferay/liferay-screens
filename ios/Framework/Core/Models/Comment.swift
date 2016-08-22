@@ -16,6 +16,17 @@ import Foundation
 
 @objc public class Comment: NSObject, NSCoding {
 
+	public static func plainBodyToHtml(plainBody: String) -> String {
+		return plainBody
+			.stringByReplacingOccurrencesOfString("<", withString: "&lt;")
+			.stringByReplacingOccurrencesOfString(">", withString: "&gt;")
+			.characters
+			.split("\n")
+			.map(String.init)
+			.map { "<p>\($0)</p>" }
+			.joinWithSeparator("")
+	}
+
 	private let AllowedTags = ["strong", "i", "b", "a"]
 
 	public let attributes: [String:AnyObject]
