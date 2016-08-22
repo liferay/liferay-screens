@@ -226,7 +226,8 @@ public class DDMXSDParser {
 
 			let foundMetadataElements = metadataElements!.filter(
 				{ (metadataElement:SMXMLElement) -> Bool in
-					if let metadataLocale = metadataElement.attributes["locale"]?.description {
+					let elementLocaleMetadata = metadataElement.attributes["locale"]
+					if let metadataLocale = elementLocaleMetadata?.description {
 						return metadataLocale.hasPrefix(currentLanguageCode + "_")
 					}
 

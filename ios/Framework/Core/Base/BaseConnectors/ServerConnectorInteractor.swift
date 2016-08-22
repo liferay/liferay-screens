@@ -53,7 +53,7 @@ public class ServerConnectorInteractor: Interactor {
 
 	override public func cancel() {
 		currentConnector?.cancel()
-		cancelled = true
+		super.cancel()
 	}
 
 

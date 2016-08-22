@@ -57,6 +57,7 @@ Pod::Spec.new do |s|
 	s.dependency 'SMXMLDocument', '1.1'
 	s.dependency 'ODRefreshControl', '1.2'
 	s.dependency 'YapDatabase/SQLCipher', '2.8.2'
+	s.dependency 'Kingfisher', '~> 2.4'
 
 	# Login & signup: save credentials
 	s.dependency 'KeychainAccess', '2.3.1'

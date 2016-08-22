@@ -193,6 +193,7 @@
                         <segue destination="TY4-Ql-4pF" kind="push" identifier="UserPortraitScreenlet" id="jtf-rk-w86"/>
                         <segue destination="mIJ-mJ-AmA" kind="push" identifier="WebContentListScreenlet" id="NhJ-zR-6pA"/>
                         <segue destination="N0K-Ji-ryL" kind="push" identifier="RatingScreenlet" id="mGa-c2-uxu"/>
+                        <segue destination="TKo-oY-mMB" kind="push" identifier="ImageGalleryScreenlet" id="PQh-RJ-6ds"/>
                         <segue destination="My4-vf-44F" kind="push" identifier="CommentListScreenlet" id="zPF-BA-bIW"/>
                     </connections>
                 </tableViewController>
@@ -447,6 +448,64 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Br9-uc-FlJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="362" y="2445"/>
+        </scene>
+        <!--Image Gallery Screenlet Controller-->
+        <scene sceneID="izp-aj-3u6">
+            <objects>
+                <viewController storyboardIdentifier="image-gallery" id="TKo-oY-mMB" customClass="ImageGalleryScreenletController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EEh-bY-4Z4"/>
+                        <viewControllerLayoutGuide type="bottom" id="i1N-BA-kSy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vgu-8B-dnX">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PvT-tM-Bkx" customClass="ImageGalleryScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="folderId">
+                                        <integer key="value" value="34810"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="repositoryId">
+                                        <integer key="value" value="20147"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="mimeTypes" value="image/png,image/jpeg"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="PvT-tM-Bkx" secondAttribute="trailing" id="A69-rd-R1u"/>
+                            <constraint firstItem="PvT-tM-Bkx" firstAttribute="leading" secondItem="vgu-8B-dnX" secondAttribute="leading" id="SSr-An-Ltm"/>
+                            <constraint firstItem="PvT-tM-Bkx" firstAttribute="top" secondItem="vgu-8B-dnX" secondAttribute="topMargin" id="TpE-Q5-AmP"/>
+                            <constraint firstItem="PvT-tM-Bkx" firstAttribute="bottom" secondItem="vgu-8B-dnX" secondAttribute="bottomMargin" id="vek-6E-FBp"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="eCz-Es-CbX">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="U0B-lD-wJf">
+                            <rect key="frame" x="45" y="7" width="230" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Grid"/>
+                                <segment title="Slideshow"/>
+                                <segment title="List"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentedControlValueChanged:" destination="TKo-oY-mMB" eventType="valueChanged" id="d2o-Gv-cJl"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="screenlet" destination="PvT-tM-Bkx" id="npj-Vw-Cg6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XTO-eU-HbY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="947" y="2460"/>
         </scene>
         <!--AssetListScreenlet-->
         <scene sceneID="Gof-EM-hXa">
