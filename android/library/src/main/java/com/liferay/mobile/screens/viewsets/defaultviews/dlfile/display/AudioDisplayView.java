@@ -7,6 +7,7 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.MediaController;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 import com.liferay.mobile.screens.R;
@@ -39,6 +40,7 @@ public class AudioDisplayView extends FrameLayout implements BaseFileDisplayView
 
 	@Override
 	public void showStartOperation(String actionName) {
+		progressBar.setVisibility(VISIBLE);
 	}
 
 	@Override
@@ -49,6 +51,8 @@ public class AudioDisplayView extends FrameLayout implements BaseFileDisplayView
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
+		progressBar.setVisibility(GONE);
+		message.setText(R.string.audio_error);
 		LiferayLogger.e("Could not load file asset: " + e.getMessage());
 	}
 
@@ -69,16 +73,19 @@ public class AudioDisplayView extends FrameLayout implements BaseFileDisplayView
 		audioView = (VideoView) findViewById(R.id.liferay_audio_asset);
 		title = (TextView) findViewById(R.id.liferay_audio_title);
 		message = (TextView) findViewById(R.id.liferay_audio_message);
+		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
 	}
 
 	@Override
 	public void showFinishOperation(FileEntry fileEntry) {
 		this.fileEntry = fileEntry;
 		loadAudio();
+		loadPrepareListener();
 		loadErrorListener();
 	}
 
 	private void loadAudio() {
+		progressBar.setVisibility(VISIBLE);
 		title.setText(fileEntry.getTitle());
 		audioView.setVideoPath(getResources().getString(R.string.liferay_server) + fileEntry.getUrl());
 		audioView.setMediaController(new MediaController(getContext()));
@@ -87,10 +94,20 @@ public class AudioDisplayView extends FrameLayout implements BaseFileDisplayView
 		audioView.start();
 	}
 
+	private void loadPrepareListener() {
+		audioView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+			@Override
+			public void onPrepared(MediaPlayer mp) {
+				progressBar.setVisibility(INVISIBLE);
+			}
+		});
+	}
+
 	private void loadErrorListener() {
 		audioView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
 			@Override
 			public boolean onError(MediaPlayer mp, int what, int extra) {
+				progressBar.setVisibility(GONE);
 				message.setText(R.string.audio_error);
 				return false;
 			}
@@ -102,4 +119,5 @@ public class AudioDisplayView extends FrameLayout implements BaseFileDisplayView
 	private FileEntry fileEntry;
 	private TextView title;
 	private TextView message;
+	private ProgressBar progressBar;
 }
