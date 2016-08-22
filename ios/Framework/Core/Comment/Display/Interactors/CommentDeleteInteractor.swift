@@ -15,9 +15,10 @@ import UIKit
 
 
 public class CommentDeleteInteractor: ServerWriteConnectorInteractor {
+
 	let commentId: Int64
 
-	init(screenlet: BaseScreenlet, commentId: Int64) {
+	init(screenlet: BaseScreenlet?, commentId: Int64) {
 		self.commentId = commentId
 
 		super.init(screenlet: screenlet)
@@ -27,4 +28,5 @@ public class CommentDeleteInteractor: ServerWriteConnectorInteractor {
 		return LiferayServerContext.connectorFactory.createCommentDeleteConnector(
 			commentId: commentId)
 	}
+
 }

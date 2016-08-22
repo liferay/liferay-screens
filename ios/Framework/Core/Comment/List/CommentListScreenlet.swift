@@ -17,27 +17,28 @@ import UIKit
 @objc public protocol CommentListScreenletDelegate : BaseScreenletDelegate {
 
 	optional func screenlet(screenlet: CommentListScreenlet,
-	                        onListResponseComments comments: [Comment])
+			onListResponseComments comments: [Comment])
 
 	optional func screenlet(screenlet: CommentListScreenlet,
-	                        onCommentListError error: NSError)
+			onCommentListError error: NSError)
 
 	optional func screenlet(screenlet: CommentListScreenlet,
-	                        onSelectedComment comment: Comment)
+			onSelectedComment comment: Comment)
 
 	optional func screenlet(screenlet: CommentListScreenlet,
-	                        onDeletedComment comment: Comment)
+			onDeletedComment comment: Comment)
 
 	optional func screenlet(screenlet: CommentListScreenlet,
-	                        onCommentDelete comment: Comment,
-	                                        onError error: NSError)
+			onCommentDelete comment: Comment,
+			onError error: NSError)
 
 	optional func screenlet(screenlet: CommentListScreenlet,
-	                        onUpdatedComment comment: Comment)
+			onUpdatedComment comment: Comment)
 
 	optional func screenlet(screenlet: CommentListScreenlet,
-	                        onCommentUpdate comment: Comment,
-	                                        onError error: NSError)
+			onCommentUpdate comment: Comment,
+			onError error: NSError)
+
 }
 
 
@@ -85,9 +86,10 @@ import UIKit
 		screenletView?.editable = self.editable
 	}
 
-	override public func createPageLoadInteractor(page page: Int, computeRowCount: Bool)
-		-> BaseListPageLoadInteractor {
-			let interactor = CommentListPageLoadInteractor(
+	override public func createPageLoadInteractor(
+			page page: Int,
+			computeRowCount: Bool) -> BaseListPageLoadInteractor {
+		let interactor = CommentListPageLoadInteractor(
 				screenlet: self,
 				page: page,
 				computeRowCount: computeRowCount,
@@ -95,9 +97,9 @@ import UIKit
 				className: className,
 				classPK: classPK)
 
-			interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
-			return interactor
+		return interactor
 	}
 
 	override public func onLoadPageError(page page: Int, error: NSError) {
@@ -110,34 +112,42 @@ import UIKit
 		super.onLoadPageResult(page: page, rows: rows, rowCount: rowCount)
 
 		commentListDelegate?.screenlet?(self,
-		                                onListResponseComments: rows as! [Comment])
+				onListResponseComments: rows as! [Comment])
 	}
 
 	override public func onSelectedRow(row: AnyObject) {
 		commentListDelegate?.screenlet?(self,
-		                                onSelectedComment: row as! Comment)
+				onSelectedComment: row as! Comment)
 	}
 
 
 	//MARK: CommentDisplayScreenletDelegate
 
-	public func screenlet(screenlet: CommentDisplayScreenlet, onCommentDeleted comment: Comment) {
+	public func screenlet(
+			screenlet: CommentDisplayScreenlet,
+			onCommentDeleted comment: Comment) {
 		deleteComment(comment)
 		commentListDelegate?.screenlet?(self, onDeletedComment: comment)
 	}
 
-	public func screenlet(screenlet: CommentDisplayScreenlet, onDeleteComment comment: Comment,
-	                      onError error: NSError) {
+	public func screenlet(
+			screenlet: CommentDisplayScreenlet,
+			onDeleteComment comment: Comment,
+			onError error: NSError) {
 		commentListDelegate?.screenlet?(self, onCommentDelete: comment, onError: error)
 	}
 
-	public func screenlet(screenlet: CommentDisplayScreenlet, onCommentUpdated comment: Comment) {
+	public func screenlet(
+			screenlet: CommentDisplayScreenlet,
+			onCommentUpdated comment: Comment) {
 		updateComment(comment)
 		commentListDelegate?.screenlet?(self, onUpdatedComment: comment)
 	}
 
-	public func screenlet(screenlet: CommentDisplayScreenlet, onUpdateComment comment: Comment,
-	                      onError error: NSError) {
+	public func screenlet(
+			screenlet: CommentDisplayScreenlet,
+			onUpdateComment comment: Comment,
+			onError error: NSError) {
 		commentListDelegate?.screenlet?(self, onCommentUpdate: comment, onError: error)
 	}
 	

@@ -65,9 +65,11 @@ public class CommentUpdateLiferayConnector: ServerConnector {
 
 		return error
 	}
+
 }
 
 public class Liferay70CommentUpdateConnector: CommentUpdateLiferayConnector {
+
 	override public func doRun(session session: LRSession) {
 		resultComment = nil
 
@@ -76,11 +78,17 @@ public class Liferay70CommentUpdateConnector: CommentUpdateLiferayConnector {
 		let formattedBody = body!
 			.stringByReplacingOccurrencesOfString("<", withString: "&lt;")
 			.stringByReplacingOccurrencesOfString(">", withString: "&gt;")
-			.characters.split("\n").map({"<p>\(String($0))</p>"}).joinWithSeparator("")
+			.characters
+			.split("\n")
+			.map {"<p>\(String($0))</p>"}
+			.joinWithSeparator("")
 
 		do {
-			let result = try service.updateCommentWithGroupId(groupId, className: className,
-				classPK: classPK, commentId: commentId, body: formattedBody)
+			let result = try service.updateCommentWithGroupId(groupId,
+					className: className,
+					classPK: classPK,
+					commentId: commentId,
+					body: formattedBody)
 
 			lastError = nil
 
@@ -94,4 +102,5 @@ public class Liferay70CommentUpdateConnector: CommentUpdateLiferayConnector {
 		}
 
 	}
+
 }

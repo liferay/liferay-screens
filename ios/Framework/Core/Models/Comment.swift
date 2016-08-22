@@ -30,7 +30,8 @@ import Foundation
 	}
 
 	public var plainBody: String {
-		return originalBody.stringByReplacingOccurrencesOfString(
+		return originalBody
+			.stringByReplacingOccurrencesOfString(
 				"<[^>]+>",
 				withString: "",
 				options: .RegularExpressionSearch,
@@ -43,7 +44,8 @@ import Foundation
 		let closeTags = AllowedTags.map { "/\($0)" }
 		let allTags = closeTags + AllowedTags
 
-		return originalBody.stringByReplacingOccurrencesOfString(
+		return originalBody
+			.stringByReplacingOccurrencesOfString(
 				"(?i)<(?!\(allTags.joinWithSeparator("|"))).*?>",
 				withString: "",
 				options: .RegularExpressionSearch,

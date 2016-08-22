@@ -19,7 +19,12 @@ public class CommentListPageLiferayConnector: PaginationLiferayConnector {
 	public let className: String
 	public let classPK: Int64
 
-	public init(groupId: Int64, className: String, classPK: Int64, startRow: Int, endRow: Int,
+	public init(
+			groupId: Int64,
+			className: String,
+			classPK: Int64,
+			startRow: Int,
+			endRow: Int,
 			computeRowCount: Bool) {
 		self.groupId = groupId
 		self.className = className
@@ -27,7 +32,6 @@ public class CommentListPageLiferayConnector: PaginationLiferayConnector {
 
 		super.init(startRow: startRow, endRow: endRow, computeRowCount: true)
 	}
-
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -53,15 +57,18 @@ public class CommentListPageLiferayConnector: PaginationLiferayConnector {
 public class Liferay70CommentListPageConnector: CommentListPageLiferayConnector {
 
 	public override func doAddPageRowsServiceCall(
-		session session: LRBatchSession, startRow: Int, endRow: Int, obc: LRJSONObjectWrapper?) {
+			session session: LRBatchSession,
+			startRow: Int,
+			endRow: Int,
+			obc: LRJSONObjectWrapper?) {
 		let service = LRCommentmanagerjsonwsService_v70(session: session)
 
 		do {
 			try service.getCommentsWithGroupId(groupId,
-			                                   className: className,
-			                                   classPK: classPK,
-			                                   start: Int32(startRow),
-			                                   end: Int32(endRow))
+					className: className,
+					classPK: classPK,
+					start: Int32(startRow),
+					end: Int32(endRow))
 		}
 		catch _ as NSError {
 		}
@@ -71,7 +78,9 @@ public class Liferay70CommentListPageConnector: CommentListPageLiferayConnector 
 		let service = LRCommentmanagerjsonwsService_v70(session: session)
 
 		do {
-			try service.getCommentsCountWithGroupId(groupId, className: className, classPK: classPK)
+			try service.getCommentsCountWithGroupId(groupId,
+					className: className,
+					classPK: classPK)
 		}
 		catch _ as NSError {
 		}
