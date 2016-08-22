@@ -122,43 +122,21 @@ public class UserPortraitView_default: BaseScreenletView,
 			let takeNewPicture = LocalizedString("default", key: "userportrait-take-new-picture", obj: self)
 			let chooseExisting = LocalizedString("default", key: "userportrait-choose-existing-picture", obj: self)
 
-			let sheet = UIActionSheet(
-				title: "Change portrait",
-				delegate: self,
-				cancelButtonTitle: "Cancel",
-				destructiveButtonTitle: nil, otherButtonTitles: takeNewPicture, chooseExisting)
-			sheet.showInView(self)
+			let alert = MediaSelector(
+					viewController: self.presentingViewController!,
+					types: [.ImageEdited : chooseExisting, .Camera : takeNewPicture],
+					cancelMessage: "Cancel",
+					alertTitle: "Change portrait") { (image, _) in
+
+				self.userAction(name: "upload-portrait", sender: image)
+			}
+
+			alert.show()
 
 			return false
 		}
 
 		return true
-	}
-
-	public func actionSheet(
-			actionSheet: UIActionSheet,
-			clickedButtonAtIndex buttonIndex: Int) {
-
-		let newPicture = 1
-		let chooseExisting = 2
-
-		switch buttonIndex {
-		case newPicture:
-			imagePicker.sourceType = .Camera
-
-		case chooseExisting:
-			imagePicker.sourceType = .SavedPhotosAlbum
-
-		default:
-			return
-		}
-
-		if let vc = self.presentingViewController {
-			vc.presentViewController(imagePicker, animated: true, completion: {})
-		}
-		else {
-			print("ERROR: You neet to set the presentingViewController before using UIActionSheet\n")
-		}
 	}
 
 	public func loadPlaceholder() {
@@ -172,24 +150,6 @@ public class UserPortraitView_default: BaseScreenletView,
 				}
 			}
 		}
-	}
-
-
-	//MARK: UIImagePickerControllerDelegate
-
-	public func imagePickerController(
-			picker: UIImagePickerController,
-			didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-
-		let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage
-
-		imagePicker.dismissViewControllerAnimated(true) {}
-
-		userAction(name: "upload-portrait", sender: editedImage)
-	}
-
-	public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-		imagePicker.dismissViewControllerAnimated(true) {}
 	}
 
 }

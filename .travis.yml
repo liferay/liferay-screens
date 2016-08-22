@@ -44,6 +44,6 @@ script:
 
 ##    - iOS tests
     - cd ../ios/Framework
-    - pod install
+    - pod _0.39.0_ install
     - ./run-tests.sh
     - cd ../..

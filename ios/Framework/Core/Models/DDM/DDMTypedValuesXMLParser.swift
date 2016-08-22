@@ -156,7 +156,8 @@ public class DDMTypedValuesXMLParser {
 			// Pre-final fallback (a3, b2): find any metadata starting with language
 
 			resultElement = contentElements.filter {
-				if let contentLocale = $0.attributes["language-id"]?.description {
+				let languageId = $0.attributes["language-id"]
+				if let contentLocale = languageId?.description {
 					return contentLocale.hasPrefix(currentLanguageCode + "_")
 				}
 
