@@ -21,6 +21,8 @@ import com.liferay.mobile.screens.context.SessionContext;
 public abstract class BaseFileDisplayScreenlet
 	extends BaseScreenlet<BaseFileDisplayViewModel, AssetDisplayInteractorImpl> implements AssetDisplayListener {
 
+	public static final String LOAD_ASSET_ACTION = "LOAD_ASSET_ACTION";
+
 	public static final String STATE_ENTRY_ID = "STATE_ENTRY_ID";
 	public static final String STATE_FILE_ENTRY = "STATE_FILE_ENTRY";
 
@@ -38,6 +40,14 @@ public abstract class BaseFileDisplayScreenlet
 
 	public BaseFileDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
+	}
+
+	public void load() {
+		performUserAction(LOAD_ASSET_ACTION);
+	}
+
+	public void loadFile() {
+		onRetrieveAssetSuccess(fileEntry);
 	}
 
 	@Override
@@ -83,8 +93,13 @@ public abstract class BaseFileDisplayScreenlet
 
 	@Override
 	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor, Object... args) {
+		switch (userActionName) {
+			case LOAD_ASSET_ACTION:
+				interactor.getAssetEntry(entryId);
+		}
 	}
 
+	@Override
 	protected void onScreenletAttached() {
 		super.onScreenletAttached();
 
@@ -97,11 +112,9 @@ public abstract class BaseFileDisplayScreenlet
 		if (SessionContext.isLoggedIn()) {
 			try {
 				if (fileEntry == null) {
-					AssetDisplayInteractor assetDisplayInteractor = new AssetDisplayInteractorImpl(getScreenletId());
-					assetDisplayInteractor.onScreenletAttached(this);
-					assetDisplayInteractor.getAssetEntry(entryId);
+					load();
 				} else {
-					onRetrieveAssetSuccess(fileEntry);
+					loadFile();
 				}
 			} catch (Exception e) {
 				onRetrieveAssetFailure(e);
