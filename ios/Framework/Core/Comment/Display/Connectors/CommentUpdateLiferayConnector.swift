@@ -91,15 +91,18 @@ public class Liferay70CommentUpdateConnector: CommentUpdateLiferayConnector {
 					commentId: commentId,
 					body: formattedBody)
 
-			lastError = nil
-
 			if let result = result as? [String: AnyObject] {
 				resultComment = Comment(attributes: result)
+				lastError = nil
 			}
-
+			else {
+				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				resultComment = nil
+			}
 		}
 		catch let error as NSError {
 			lastError = error
+			resultComment = nil
 		}
 
 	}
