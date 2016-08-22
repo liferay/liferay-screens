@@ -58,8 +58,6 @@ public class CommentAddLiferayConnector: ServerConnector {
 
 public class Liferay70CommentAddConnector: CommentAddLiferayConnector {
 	override public func doRun(session session: LRSession) {
-		resultComment = nil
-
 		let service = LRCommentmanagerjsonwsService_v70(session: session)
 
 		do {
@@ -68,15 +66,18 @@ public class Liferay70CommentAddConnector: CommentAddLiferayConnector {
 					classPK: classPK,
 					body: Comment.plainBodyToHtml(body))
 
-			lastError = nil
-
 			if let result = result as? [String: AnyObject] {
 				resultComment = Comment(attributes: result)
+				lastError = nil
 			}
-
+			else {
+				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				resultComment = nil
+			}
 		}
 		catch let error as NSError {
 			lastError = error
+			resultComment = nil
 		}
 
 	}
