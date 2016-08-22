@@ -73,7 +73,7 @@ public let AssetClassNameKey_WikiNode = "WikiNode"
 
 }
 
-@objc public class AssetClassNameIds : NSObject {
+@objc public class AssetClassNameIds: NSObject {
 
 	private static var classNameEntries: [String:AssetClassEntry] = {
 
@@ -84,49 +84,49 @@ public let AssetClassNameKey_WikiNode = "WikiNode"
 		//		AssetClassNameKey_s.setClassNameId(AssetClassNameKey_Group, 1234)
 		return [
 			// Users and sites
-			AssetClassNameKey_Group : AssetClassEntry(20045, "com.liferay.portal.kernel.model.Group"),
-			AssetClassNameKey_Layout : AssetClassEntry(20047, "com.liferay.portal.kernel.model.Layout"),
-			AssetClassNameKey_Organization : AssetClassEntry(20059, "com.liferay.portal.kernel.model.Organization"),
-			AssetClassNameKey_User : AssetClassEntry(20087, "com.liferay.portal.kernel.model.User"),
-			AssetClassNameKey_UserGroup : AssetClassEntry(20088, "com.liferay.portal.kernel.model.UserGroup"),
+			AssetClassNameKey_Group: AssetClassEntry(20045, "com.liferay.portal.kernel.model.Group"),
+			AssetClassNameKey_Layout: AssetClassEntry(20047, "com.liferay.portal.kernel.model.Layout"),
+			AssetClassNameKey_Organization: AssetClassEntry(20059, "com.liferay.portal.kernel.model.Organization"),
+			AssetClassNameKey_User: AssetClassEntry(20087, "com.liferay.portal.kernel.model.User"),
+			AssetClassNameKey_UserGroup: AssetClassEntry(20088, "com.liferay.portal.kernel.model.UserGroup"),
 
 			// Blogs
-			AssetClassNameKey_BlogsEntry : AssetClassEntry(20011, "com.liferay.blogs.kernel.model.BlogsEntry"),
+			AssetClassNameKey_BlogsEntry: AssetClassEntry(20011, "com.liferay.blogs.kernel.model.BlogsEntry"),
 
 			// Bookmarks
-			AssetClassNameKey_BookmarksEntry : AssetClassEntry(27401, "com.liferay.bookmarks.model.BookmarksEntry"),
-			AssetClassNameKey_BookmarksFolder : AssetClassEntry(27402, "com.liferay.bookmarks.model.BookmarksFolder"),
+			AssetClassNameKey_BookmarksEntry: AssetClassEntry(27401, "com.liferay.bookmarks.model.BookmarksEntry"),
+			AssetClassNameKey_BookmarksFolder: AssetClassEntry(27402, "com.liferay.bookmarks.model.BookmarksFolder"),
 
 			// Document Library
-			AssetClassNameKey_DLFileEntry : AssetClassEntry(20015, "com.liferay.document.library.kernel.model.DLFileEntry"),
+			AssetClassNameKey_DLFileEntry: AssetClassEntry(20015, "com.liferay.document.library.kernel.model.DLFileEntry"),
 			AssetClassNameKey_DLFolder: AssetClassEntry(20021, "com.liferay.document.library.kernel.model.DLFolder"),
-			AssetClassNameKey_DLFileEntryMetadata : AssetClassEntry(20016, "com.liferay.document.library.kernel.model.DLFileEntryMetadata"),
-			AssetClassNameKey_DLFileEntryType : AssetClassEntry(20017, "com.liferay.document.library.kernel.model.DLFileEntryType"),
-			AssetClassNameKey_DLFileRank : AssetClassEntry(20018, "com.liferay.document.library.kernel.model.DLFileRank"),
-			AssetClassNameKey_DLFileShortcut : AssetClassEntry(20019, "com.liferay.document.library.kernel.model.DLFileShortcut"),
-			AssetClassNameKey_DLFileVersion : AssetClassEntry(20020, "com.liferay.document.library.kernel.model.DLFileVersion"),
+			AssetClassNameKey_DLFileEntryMetadata: AssetClassEntry(20016, "com.liferay.document.library.kernel.model.DLFileEntryMetadata"),
+			AssetClassNameKey_DLFileEntryType: AssetClassEntry(20017, "com.liferay.document.library.kernel.model.DLFileEntryType"),
+			AssetClassNameKey_DLFileRank: AssetClassEntry(20018, "com.liferay.document.library.kernel.model.DLFileRank"),
+			AssetClassNameKey_DLFileShortcut: AssetClassEntry(20019, "com.liferay.document.library.kernel.model.DLFileShortcut"),
+			AssetClassNameKey_DLFileVersion: AssetClassEntry(20020, "com.liferay.document.library.kernel.model.DLFileVersion"),
 
 			// DDL
-			AssetClassNameKey_DDLRecord : AssetClassEntry(29101, "com.liferay.dynamic.data.lists.model.DDLRecord"),
-			AssetClassNameKey_DDLRecordSet : AssetClassEntry(29102, "com.liferay.dynamic.data.lists.model.DDLRecordSet"),
-			AssetClassNameKey_DDLRecordVersion : AssetClassEntry(29103, "com.liferay.dynamic.data.lists.model.DDLRecordVersion"),
+			AssetClassNameKey_DDLRecord: AssetClassEntry(29101, "com.liferay.dynamic.data.lists.model.DDLRecord"),
+			AssetClassNameKey_DDLRecordSet: AssetClassEntry(29102, "com.liferay.dynamic.data.lists.model.DDLRecordSet"),
+			AssetClassNameKey_DDLRecordVersion: AssetClassEntry(29103, "com.liferay.dynamic.data.lists.model.DDLRecordVersion"),
 
 			// Journal
-			AssetClassNameKey_JournalArticle : AssetClassEntry(29501, "com.liferay.journal.model.JournalArticle"),
-			AssetClassNameKey_JournalArticleImage : AssetClassEntry(29502, "com.liferay.journal.model.JournalArticleImage"),
-			AssetClassNameKey_JournalFolder : AssetClassEntry(29506, "com.liferay.journal.model.JournalFolder"),
+			AssetClassNameKey_JournalArticle: AssetClassEntry(29501, "com.liferay.journal.model.JournalArticle"),
+			AssetClassNameKey_JournalArticleImage: AssetClassEntry(29502, "com.liferay.journal.model.JournalArticleImage"),
+			AssetClassNameKey_JournalFolder: AssetClassEntry(29506, "com.liferay.journal.model.JournalFolder"),
 
 			// MessageBoard
-			AssetClassNameKey_MBMessage : AssetClassEntry(20032, "com.liferay.message.boards.kernel.model.MBMessage"),
-			AssetClassNameKey_MBThread : AssetClassEntry(20034, "com.liferay.message.boards.kernel.model.MBThread"),
-			AssetClassNameKey_MBCategory : AssetClassEntry(20029, "com.liferay.message.boards.kernel.model.MBCategory"),
-			AssetClassNameKey_MBDiscussion : AssetClassEntry(20030, "com.liferay.message.boards.kernel.model.MBDiscussion"),
-			AssetClassNameKey_MBMailingList : AssetClassEntry(20031, "com.liferay.message.boards.kernel.model.MBMailingList"),
+			AssetClassNameKey_MBMessage: AssetClassEntry(20032, "com.liferay.message.boards.kernel.model.MBMessage"),
+			AssetClassNameKey_MBThread: AssetClassEntry(20034, "com.liferay.message.boards.kernel.model.MBThread"),
+			AssetClassNameKey_MBCategory: AssetClassEntry(20029, "com.liferay.message.boards.kernel.model.MBCategory"),
+			AssetClassNameKey_MBDiscussion: AssetClassEntry(20030, "com.liferay.message.boards.kernel.model.MBDiscussion"),
+			AssetClassNameKey_MBMailingList: AssetClassEntry(20031, "com.liferay.message.boards.kernel.model.MBMailingList"),
 
 			// Wiki
-			AssetClassNameKey_WikiPage : AssetClassEntry(27902, "com.liferay.wiki.model.WikiPage"),
-			AssetClassNameKey_WikiPageResource : AssetClassEntry(27903, "com.liferay.wiki.model.WikiPageResource"),
-			AssetClassNameKey_WikiNode : AssetClassEntry(27901, "com.liferay.wiki.model.WikiNode")
+			AssetClassNameKey_WikiPage: AssetClassEntry(27902, "com.liferay.wiki.model.WikiPage"),
+			AssetClassNameKey_WikiPageResource: AssetClassEntry(27903, "com.liferay.wiki.model.WikiPageResource"),
+			AssetClassNameKey_WikiNode: AssetClassEntry(27901, "com.liferay.wiki.model.WikiNode")
 		]
 	}()
 
