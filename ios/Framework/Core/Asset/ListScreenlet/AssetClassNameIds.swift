@@ -63,7 +63,7 @@ public let AssetClassNameKey_WikiNode = "WikiNode"
 
 	private static var classNameIds: [String:Int64] = {
 
-		// These are the default identifiers for a Liferay Portal 6.2 CE GA2
+		// These are the default identifiers for a Liferay Portal 7.0 GA3
 		// installation.
 		// Be aware your installation probably have different identifiers, so
 		// you probably we'll need to overwrite these values like this:
@@ -71,55 +71,55 @@ public let AssetClassNameKey_WikiNode = "WikiNode"
 
 		return [
 			// Users and sites
-			AssetClassNameKey_Group : 10001,
-			AssetClassNameKey_Layout : 10002,
-			AssetClassNameKey_Organization : 10003,
-			AssetClassNameKey_User : 10005,
-			AssetClassNameKey_UserGroup : 10006,
+			AssetClassNameKey_Group : 20045,
+			AssetClassNameKey_Layout : 20047,
+			AssetClassNameKey_Organization : 20059,
+			AssetClassNameKey_User : 20087,
+			AssetClassNameKey_UserGroup : 20088,
 
 			// Blogs
-			AssetClassNameKey_BlogsEntry : 10007,
+			AssetClassNameKey_BlogsEntry : 20011,
 
 			// Bookmarks
-			AssetClassNameKey_BookmarksEntry : 10008,
-			AssetClassNameKey_BookmarksFolder : 10009,
+			AssetClassNameKey_BookmarksEntry : 27401,
+			AssetClassNameKey_BookmarksFolder : 27402,
 
 			// Document Library
-			AssetClassNameKey_DLFileEntry : 10011,
-			AssetClassNameKey_DLFolder: 10012,
-			AssetClassNameKey_DLFileEntryMetadata : 10091,
-			AssetClassNameKey_DLFileEntryType : 10092,
-			AssetClassNameKey_DLFileRank : 10093,
-			AssetClassNameKey_DLFileShortcut : 10094,
-			AssetClassNameKey_DLFileVersion : 10095,
+			AssetClassNameKey_DLFileEntry : 20015,
+			AssetClassNameKey_DLFolder: 20021,
+			AssetClassNameKey_DLFileEntryMetadata : 20016,
+			AssetClassNameKey_DLFileEntryType : 20017,
+			AssetClassNameKey_DLFileRank : 20018,
+			AssetClassNameKey_DLFileShortcut : 20019,
+			AssetClassNameKey_DLFileVersion : 20020,
 
 			// DDL
-			AssetClassNameKey_DDLRecord : 10097,
-			AssetClassNameKey_DDLRecordSet : 10098,
-			AssetClassNameKey_DDLRecordVersion : 10099,
+			AssetClassNameKey_DDLRecord : 29101,
+			AssetClassNameKey_DDLRecordSet : 29102,
+			AssetClassNameKey_DDLRecordVersion : 29103,
 
 			// Journal
-			AssetClassNameKey_JournalArticle : 10109,
-			AssetClassNameKey_JournalArticleImage : 10110,
-			AssetClassNameKey_JournalFolder : 10013,
+			AssetClassNameKey_JournalArticle : 29501,
+			AssetClassNameKey_JournalArticleImage : 29502,
+			AssetClassNameKey_JournalFolder : 29506,
 
 			// MessageBoard
-			AssetClassNameKey_MBMessage : 10014,
-			AssetClassNameKey_MBThread : 10015,
-			AssetClassNameKey_MBCategory : 10115,
-			AssetClassNameKey_MBDiscussion : 10116,
-			AssetClassNameKey_MBMailingList : 10117,
+			AssetClassNameKey_MBMessage : 20032,
+			AssetClassNameKey_MBThread : 20034,
+			AssetClassNameKey_MBCategory : 20029,
+			AssetClassNameKey_MBDiscussion : 20030,
+			AssetClassNameKey_MBMailingList : 20031,
 
 			// Wiki
-			AssetClassNameKey_WikiPage : 10016,
-			AssetClassNameKey_WikiPageResource : 10153,
-			AssetClassNameKey_WikiNode : 10152
+			AssetClassNameKey_WikiPage : 27902,
+			AssetClassNameKey_WikiPageResource : 27903,
+			AssetClassNameKey_WikiNode : 27901
 		]
 	}()
 
 	private static var classNames: [String:String] = {
 
-		// These are the default className for a Liferay Portal 7.0 CE GA2
+		// These are the default className for a Liferay Portal 7.0 GA3
 		// installation.
 		// Be aware your installation probably have different className, so
 		// you probably we'll need to overwrite these values like this:
