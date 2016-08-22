@@ -57,6 +57,7 @@ public class CommentAddLiferayConnector: ServerConnector {
 }
 
 public class Liferay70CommentAddConnector: CommentAddLiferayConnector {
+
 	override public func doRun(session session: LRSession) {
 		let service = LRCommentmanagerjsonwsService_v70(session: session)
 
@@ -81,4 +82,5 @@ public class Liferay70CommentAddConnector: CommentAddLiferayConnector {
 		}
 
 	}
+
 }

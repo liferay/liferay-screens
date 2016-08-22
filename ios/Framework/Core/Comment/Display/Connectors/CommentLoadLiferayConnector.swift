@@ -44,6 +44,7 @@ public class CommentLoadLiferayConnector: ServerConnector {
 }
 
 public class Liferay70CommentLoadConnector: CommentLoadLiferayConnector {
+
 	override public func doRun(session session: LRSession) {
 		resultComment = nil
 
@@ -65,6 +66,6 @@ public class Liferay70CommentLoadConnector: CommentLoadLiferayConnector {
 			lastError = error
 			resultComment = nil
 		}
-
 	}
+
 }
