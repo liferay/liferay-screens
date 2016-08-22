@@ -2,15 +2,14 @@
 <com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display.ImageDisplayView
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:orientation="vertical"
+	android:layout_height="match_parent"
 	>
 
 	<ImageView
 		android:id="@+id/liferay_image_asset"
-		android:layout_width="match_parent"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_gravity="center"
+		android:layout_centerInParent="true"
 		/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display.ImageDisplayView>

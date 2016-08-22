@@ -5,7 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.dlfile.display.BaseFileDisplayViewModel;
@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso;
 /**
  * @author Sarai Díaz García
  */
-public class ImageDisplayView extends LinearLayout implements BaseFileDisplayViewModel {
+public class ImageDisplayView extends RelativeLayout implements BaseFileDisplayViewModel {
 
 	public ImageDisplayView(Context context) {
 		super(context);
