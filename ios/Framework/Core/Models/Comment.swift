@@ -16,7 +16,7 @@ import Foundation
 
 @objc public class Comment: NSObject, NSCoding {
 
-	private let AllowedTags = ["strong", "i", "b", "a", "/strong", "/i", "/b", "/a"]
+	private let AllowedTags = ["strong", "i", "b", "a"]
 
 	public let attributes: [String:AnyObject]
 
@@ -40,8 +40,11 @@ import Foundation
 	}
 
 	public var htmlBody: String {
+		let closeTags = AllowedTags.map { "/\($0)" }
+		let allTags = closeTags + AllowedTags
+
 		return originalBody.stringByReplacingOccurrencesOfString(
-				"(?i)<(?!\(AllowedTags.joinWithSeparator("|"))).*?>",
+				"(?i)<(?!\(allTags.joinWithSeparator("|"))).*?>",
 				withString: "",
 				options: .RegularExpressionSearch,
 				range: nil)
