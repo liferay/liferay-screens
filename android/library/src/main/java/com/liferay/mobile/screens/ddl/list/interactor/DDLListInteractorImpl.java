@@ -40,34 +40,30 @@ public class DDLListInteractorImpl extends BaseListInteractor<Record, DDLListInt
 
 	@Override
 	protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {
-		long _recordSetId = (long) args[0];
-		long _userId = (long) args[1];
+		long recordSetId = (long) args[0];
+		long userId = (long) args[1];
+
 		ScreensDDLRecordConnector ddlRecordService =
 			ServiceProvider.getInstance().getScreensDDLRecordConnector(getSession());
 		int startRow = query.getStartRow();
 		int endRow = query.getEndRow();
 		JSONObjectWrapper obc = query.getObjC();
-		if (_userId != 0) {
-			return ddlRecordService.getDdlRecords(_recordSetId, _userId, locale.toString(), startRow, endRow, obc);
-		} else {
-			return ddlRecordService.getDdlRecords(_recordSetId, locale.toString(), startRow, endRow, obc);
-		}
+		String localeString = locale.toString();
+
+		return userId != 0 ? ddlRecordService.getDdlRecords(recordSetId, userId, localeString, startRow, endRow, obc)
+			: ddlRecordService.getDdlRecords(recordSetId, localeString, startRow, endRow, obc);
 	}
 
 	@Override
 	protected Integer getPageRowCountRequest(Object... args) throws Exception {
-
-		long _recordSetId = (long) args[0];
-		long _userId = (long) args[1];
+		long recordSetId = (long) args[0];
+		long userId = (long) args[1];
 
 		ScreensDDLRecordConnector ddlRecordService =
 			ServiceProvider.getInstance().getScreensDDLRecordConnector(getSession());
 
-		if (_userId != 0) {
-			return ddlRecordService.getDdlRecordsCount(_recordSetId, _userId);
-		} else {
-			return ddlRecordService.getDdlRecordsCount(_recordSetId);
-		}
+		return userId != 0 ? ddlRecordService.getDdlRecordsCount(recordSetId, userId)
+			: ddlRecordService.getDdlRecordsCount(recordSetId);
 	}
 
 	@Override
