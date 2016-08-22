@@ -59,137 +59,101 @@ public let AssetClassNameKey_WikiPageResource = "WikiPageResource"
 public let AssetClassNameKey_WikiNode = "WikiNode"
 
 
+@objc public class AssetClassEntry: NSObject {
+
+	let classNameId: Int64
+	let className: String
+
+	public init(_ classNameId: Int64, _ className: String) {
+		self.classNameId = classNameId
+		self.className = className
+
+		super.init()
+	}
+
+}
+
 @objc public class AssetClassNameIds : NSObject {
 
-	private static var classNameIds: [String:Int64] = {
+	private static var classNameEntries: [String:AssetClassEntry] = {
 
-		// These are the default identifiers for a Liferay Portal 7.0 GA3
+		// These are the default values for a Liferay Portal 7.0 GA3
 		// installation.
 		// Be aware your installation probably have different identifiers, so
 		// you probably we'll need to overwrite these values like this:
-		//		AssetClassNameKey_s.set(AssetClassNameKey_Group, 1234)
-
+		//		AssetClassNameKey_s.setClassNameId(AssetClassNameKey_Group, 1234)
 		return [
 			// Users and sites
-			AssetClassNameKey_Group : 20045,
-			AssetClassNameKey_Layout : 20047,
-			AssetClassNameKey_Organization : 20059,
-			AssetClassNameKey_User : 20087,
-			AssetClassNameKey_UserGroup : 20088,
+			AssetClassNameKey_Group : AssetClassEntry(20045, "com.liferay.portal.kernel.model.Group"),
+			AssetClassNameKey_Layout : AssetClassEntry(20047, "com.liferay.portal.kernel.model.Layout"),
+			AssetClassNameKey_Organization : AssetClassEntry(20059, "com.liferay.portal.kernel.model.Organization"),
+			AssetClassNameKey_User : AssetClassEntry(20087, "com.liferay.portal.kernel.model.User"),
+			AssetClassNameKey_UserGroup : AssetClassEntry(20088, "com.liferay.portal.kernel.model.UserGroup"),
 
 			// Blogs
-			AssetClassNameKey_BlogsEntry : 20011,
+			AssetClassNameKey_BlogsEntry : AssetClassEntry(20011, "com.liferay.blogs.kernel.model.BlogsEntry"),
 
 			// Bookmarks
-			AssetClassNameKey_BookmarksEntry : 27401,
-			AssetClassNameKey_BookmarksFolder : 27402,
+			AssetClassNameKey_BookmarksEntry : AssetClassEntry(27401, "com.liferay.bookmarks.model.BookmarksEntry"),
+			AssetClassNameKey_BookmarksFolder : AssetClassEntry(27402, "com.liferay.bookmarks.model.BookmarksFolder"),
 
 			// Document Library
-			AssetClassNameKey_DLFileEntry : 20015,
-			AssetClassNameKey_DLFolder: 20021,
-			AssetClassNameKey_DLFileEntryMetadata : 20016,
-			AssetClassNameKey_DLFileEntryType : 20017,
-			AssetClassNameKey_DLFileRank : 20018,
-			AssetClassNameKey_DLFileShortcut : 20019,
-			AssetClassNameKey_DLFileVersion : 20020,
+			AssetClassNameKey_DLFileEntry : AssetClassEntry(20015, "com.liferay.document.library.kernel.model.DLFileEntry"),
+			AssetClassNameKey_DLFolder: AssetClassEntry(20021, "com.liferay.document.library.kernel.model.DLFolder"),
+			AssetClassNameKey_DLFileEntryMetadata : AssetClassEntry(20016, "com.liferay.document.library.kernel.model.DLFileEntryMetadata"),
+			AssetClassNameKey_DLFileEntryType : AssetClassEntry(20017, "com.liferay.document.library.kernel.model.DLFileEntryType"),
+			AssetClassNameKey_DLFileRank : AssetClassEntry(20018, "com.liferay.document.library.kernel.model.DLFileRank"),
+			AssetClassNameKey_DLFileShortcut : AssetClassEntry(20019, "com.liferay.document.library.kernel.model.DLFileShortcut"),
+			AssetClassNameKey_DLFileVersion : AssetClassEntry(20020, "com.liferay.document.library.kernel.model.DLFileVersion"),
 
 			// DDL
-			AssetClassNameKey_DDLRecord : 29101,
-			AssetClassNameKey_DDLRecordSet : 29102,
-			AssetClassNameKey_DDLRecordVersion : 29103,
+			AssetClassNameKey_DDLRecord : AssetClassEntry(29101, "com.liferay.dynamic.data.lists.model.DDLRecord"),
+			AssetClassNameKey_DDLRecordSet : AssetClassEntry(29102, "com.liferay.dynamic.data.lists.model.DDLRecordSet"),
+			AssetClassNameKey_DDLRecordVersion : AssetClassEntry(29103, "com.liferay.dynamic.data.lists.model.DDLRecordVersion"),
 
 			// Journal
-			AssetClassNameKey_JournalArticle : 29501,
-			AssetClassNameKey_JournalArticleImage : 29502,
-			AssetClassNameKey_JournalFolder : 29506,
+			AssetClassNameKey_JournalArticle : AssetClassEntry(29501, "com.liferay.journal.model.JournalArticle"),
+			AssetClassNameKey_JournalArticleImage : AssetClassEntry(29502, "com.liferay.journal.model.JournalArticleImage"),
+			AssetClassNameKey_JournalFolder : AssetClassEntry(29506, "com.liferay.journal.model.JournalFolder"),
 
 			// MessageBoard
-			AssetClassNameKey_MBMessage : 20032,
-			AssetClassNameKey_MBThread : 20034,
-			AssetClassNameKey_MBCategory : 20029,
-			AssetClassNameKey_MBDiscussion : 20030,
-			AssetClassNameKey_MBMailingList : 20031,
+			AssetClassNameKey_MBMessage : AssetClassEntry(20032, "com.liferay.message.boards.kernel.model.MBMessage"),
+			AssetClassNameKey_MBThread : AssetClassEntry(20034, "com.liferay.message.boards.kernel.model.MBThread"),
+			AssetClassNameKey_MBCategory : AssetClassEntry(20029, "com.liferay.message.boards.kernel.model.MBCategory"),
+			AssetClassNameKey_MBDiscussion : AssetClassEntry(20030, "com.liferay.message.boards.kernel.model.MBDiscussion"),
+			AssetClassNameKey_MBMailingList : AssetClassEntry(20031, "com.liferay.message.boards.kernel.model.MBMailingList"),
 
 			// Wiki
-			AssetClassNameKey_WikiPage : 27902,
-			AssetClassNameKey_WikiPageResource : 27903,
-			AssetClassNameKey_WikiNode : 27901
-		]
-	}()
-
-	private static var classNames: [String:String] = {
-
-		// These are the default className for a Liferay Portal 7.0 GA3
-		// installation.
-		// Be aware your installation probably have different className, so
-		// you probably we'll need to overwrite these values like this:
-		//		AssetClassNameIds.set(AssetClassNameKey_Group, "com.liferay.portal.kernel.model.Group")
-
-		return [
-			// Users and sites
-			AssetClassNameKey_Group : "com.liferay.portal.kernel.model.Group",
-			AssetClassNameKey_Layout : "com.liferay.portal.kernel.model.Layout",
-			AssetClassNameKey_Organization : "com.liferay.portal.kernel.model.Organization",
-			AssetClassNameKey_User : "com.liferay.portal.kernel.model.User",
-			AssetClassNameKey_UserGroup : "com.liferay.portal.kernel.model.UserGroup",
-
-			// Blogs
-			AssetClassNameKey_BlogsEntry : "com.liferay.blogs.kernel.model.BlogsEntry",
-
-			// Bookmarks
-			AssetClassNameKey_BookmarksEntry : "com.liferay.bookmarks.model.BookmarksEntry",
-			AssetClassNameKey_BookmarksFolder : "com.liferay.bookmarks.model.BookmarksFolder",
-
-			// Document Library
-			AssetClassNameKey_DLFileEntry : "com.liferay.document.library.kernel.model.DLFileEntry",
-			AssetClassNameKey_DLFolder : "com.liferay.document.library.kernel.model.DLFolder",
-			AssetClassNameKey_DLFileEntryMetadata : "com.liferay.document.library.kernel.model.DLFileEntryMetadata",
-			AssetClassNameKey_DLFileEntryType : "com.liferay.document.library.kernel.model.DLFileEntryType",
-			AssetClassNameKey_DLFileRank : "com.liferay.document.library.kernel.model.DLFileRank",
-			AssetClassNameKey_DLFileShortcut : "com.liferay.document.library.kernel.model.DLFileShortcut",
-			AssetClassNameKey_DLFileVersion : "com.liferay.document.library.kernel.model.DLFileVersion",
-
-			// DDL
-			AssetClassNameKey_DDLRecord : "com.liferay.dynamic.data.lists.model.DDLRecord",
-			AssetClassNameKey_DDLRecordSet : "com.liferay.dynamic.data.lists.model.DDLRecordSet",
-			AssetClassNameKey_DDLRecordVersion : "com.liferay.dynamic.data.lists.model.DDLRecordVersion",
-
-			// Journal
-			AssetClassNameKey_JournalArticle : "com.liferay.journal.model.JournalArticle",
-			AssetClassNameKey_JournalArticleImage : "com.liferay.journal.model.JournalArticleImage",
-			AssetClassNameKey_JournalFolder : "com.liferay.journal.model.JournalFolder",
-
-			// MessageBoard
-			AssetClassNameKey_MBMessage : "com.liferay.message.boards.kernel.model.MBMessage",
-			AssetClassNameKey_MBThread : "com.liferay.message.boards.kernel.model.MBThread",
-			AssetClassNameKey_MBCategory : "com.liferay.message.boards.kernel.model.MBCategory",
-			AssetClassNameKey_MBDiscussion : "com.liferay.message.boards.kernel.model.MBDiscussion",
-			AssetClassNameKey_MBMailingList : "com.liferay.message.boards.kernel.model.MBMailingList",
-
-			// Wiki
-			AssetClassNameKey_WikiPage : "com.liferay.wiki.model.WikiPage",
-			AssetClassNameKey_WikiPageResource : "com.liferay.wiki.model.WikiPageResource",
-			AssetClassNameKey_WikiNode : "com.liferay.wiki.model.WikiNode"
+			AssetClassNameKey_WikiPage : AssetClassEntry(27902, "com.liferay.wiki.model.WikiPage"),
+			AssetClassNameKey_WikiPageResource : AssetClassEntry(27903, "com.liferay.wiki.model.WikiPageResource"),
+			AssetClassNameKey_WikiNode : AssetClassEntry(27901, "com.liferay.wiki.model.WikiNode")
 		]
 	}()
 
 	public class func getClassNameId(key: String) -> Int64? {
-		return classNameIds[key]
+		return classNameEntries[key]?.classNameId
 	}
 
 	public class func getClassName(key: String) -> String? {
-		return classNames[key]
+		return classNameEntries[key]?.className
 	}
 
 	public class func getClassNameFromId(classNameId: Int64) -> String? {
-		return classNameIds.filter({$0.1 == classNameId}).first?.0
+		return classNameEntries.filter {
+				$0.1.classNameId == classNameId
+			}
+			.first?.1.className
 	}
 
 	public class func set(key: String, newId: Int64) {
-		classNameIds[key] = newId
+		if let currentEntry = classNameEntries[key] {
+			classNameEntries[key] = AssetClassEntry(newId, currentEntry.className)
+		}
 	}
 
 	public class func set(key: String, newClassName: String) {
-		classNames[key] = newClassName
+		if let currentEntry = classNameEntries[key] {
+			classNameEntries[key] = AssetClassEntry(currentEntry.classNameId, newClassName)
+		}
 	}
 }
