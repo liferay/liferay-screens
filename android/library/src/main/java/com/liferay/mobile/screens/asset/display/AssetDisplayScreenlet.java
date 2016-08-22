@@ -73,7 +73,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	}
 
 	public void loadAsset() {
-		getInteractor().getAssetEntry(entryId);
+		performUserAction();
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		AssetDisplayFactory factory = new AssetDisplayFactory();
 		BaseScreenlet screenlet = factory.getScreenlet(getContext(), assetEntry, layouts, autoLoad);
 		if (screenlet != null) {
-			addView(screenlet, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+			getViewModel().showFinishOperation(screenlet);
 			if (listener != null) {
 				listener.onRetrieveAssetSuccess(assetEntry);
 			}
@@ -126,6 +126,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 
 	@Override
 	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor, Object... args) {
+		interactor.getAssetEntry(entryId);
 	}
 
 	@Override

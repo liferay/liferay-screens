@@ -64,6 +64,15 @@ public class AssetDisplayView extends FrameLayout implements AssetDisplayViewMod
 		this.screenlet = screenlet;
 	}
 
+	@Override
+	public void showFinishOperation(BaseScreenlet screenlet) {
+		container.removeAllViews();
+		container.addView(screenlet, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+		progressBar.setVisibility(GONE);
+		container.setVisibility(VISIBLE);
+		LiferayLogger.d("Asset display loaded successfully");
+	}
+
 	private BaseScreenlet screenlet;
 	private ProgressBar progressBar;
 	private ViewGroup container;
