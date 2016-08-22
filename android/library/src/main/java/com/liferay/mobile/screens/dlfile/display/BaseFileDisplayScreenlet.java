@@ -82,6 +82,9 @@ public abstract class BaseFileDisplayScreenlet
 	}
 
 	@Override
+	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor, Object... args) {
+	}
+
 	protected void onScreenletAttached() {
 		super.onScreenletAttached();
 

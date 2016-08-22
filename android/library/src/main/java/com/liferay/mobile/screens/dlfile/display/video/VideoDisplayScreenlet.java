@@ -25,9 +25,4 @@ public class VideoDisplayScreenlet extends BaseFileDisplayScreenlet {
 	public VideoDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
-
-	@Override
-	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor, Object... args) {
-
-	}
 }

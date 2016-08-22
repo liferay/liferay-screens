@@ -25,8 +25,4 @@ public class PdfDisplayScreenlet extends BaseFileDisplayScreenlet {
 	public PdfDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
-
-	@Override
-	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor, Object... args) {
-	}
 }
