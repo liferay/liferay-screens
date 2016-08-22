@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.base.list.interactor;
 
+import android.util.Pair;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import org.json.JSONObject;
 
@@ -29,6 +30,10 @@ public class Query {
 		//FIXME
 		JSONObjectWrapper jsonObjectWrapper = new JSONObjectWrapper(new JSONObject());
 		return jsonObjectWrapper;
+	}
+
+	public Pair<Integer, Integer> getRowRange() {
+		return new Pair<>(startRow, endRow);
 	}
 
 	public void setObjC(String objC) {

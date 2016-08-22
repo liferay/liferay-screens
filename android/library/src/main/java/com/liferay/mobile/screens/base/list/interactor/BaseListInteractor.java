@@ -1,6 +1,5 @@
 package com.liferay.mobile.screens.base.list.interactor;
 
-import android.util.Pair;
 import com.liferay.mobile.screens.base.context.RequestState;
 import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
 import com.liferay.mobile.screens.util.JSONUtil;
@@ -26,14 +25,7 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 
 		validate(startRow, endRow, locale);
 
-		Pair<Integer, Integer> rowsRange = new Pair<>(startRow, endRow);
-
-		RequestState requestState = RequestState.getInstance();
-
-		// check if this page is already being loaded
-		if (requestState.contains(getTargetScreenletId(), rowsRange)) {
-			throw new AssertionError("Page already requested");
-		}
+		checkIfPageAlreadyRequested(query);
 
 		JSONArray jsonArray = getPageRowsRequest(query, args);
 		int rowCount = getPageRowCountRequest(args);
@@ -45,15 +37,14 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 			entries.add(createEntity(JSONUtil.toMap(jsonObject)));
 		}
 
-		requestState.put(getTargetScreenletId(), rowsRange);
+		storePageRequested(query);
 
-		return new BaseListEvent<>(startRow, endRow, entries, rowCount);
+		return new BaseListEvent<>(query, entries, rowCount);
 	}
 
 	@Override
 	public void onSuccess(BaseListEvent event) throws Exception {
-
-		cleanRequestState(event.getStartRow(), event.getEndRow());
+		cleanRequestState(event.getQuery());
 
 		List entries = event.getEntries();
 		int rowCount = event.getRowCount();
@@ -62,13 +53,23 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 
 	@Override
 	public void onFailure(Exception e) {
-		cleanRequestState(0, 0);
+		cleanRequestState(new Query(0, 0, null));
+
 		getListener().onListRowsFailure(0, 0, e);
 	}
 
-	private void cleanRequestState(int startRow, int endRow) {
-		Pair<Integer, Integer> rowsRange = new Pair<>(startRow, endRow);
-		RequestState.getInstance().remove(getTargetScreenletId(), rowsRange);
+	private void cleanRequestState(Query query) {
+		RequestState.getInstance().remove(getTargetScreenletId(), query.getRowRange());
+	}
+
+	private void checkIfPageAlreadyRequested(Query query) {
+		if (RequestState.getInstance().contains(getTargetScreenletId(), query.getRowRange())) {
+			throw new AssertionError("Page already requested");
+		}
+	}
+
+	private void storePageRequested(Query query) {
+		RequestState.getInstance().put(getTargetScreenletId(), query.getRowRange());
 	}
 
 	protected void validate(int startRow, int endRow, Locale locale) {
@@ -92,11 +93,4 @@ public abstract class BaseListInteractor<E, L extends BaseListInteractorListener
 	protected abstract Integer getPageRowCountRequest(Object... args) throws Exception;
 
 	protected abstract E createEntity(Map<String, Object> stringObjectMap);
-
-	//private void onFailure(BaseListEvent event) {
-	//	cleanRequestState(event.getStartRow(), event.getEndRow());
-	//	getListener().onListRowsFailure(event.getStartRow(), event.getEndRow(), event.getException());
-	//}
-
-	//	return String.format(Locale.US, "%s_%05d", recordSetId, row);
 }

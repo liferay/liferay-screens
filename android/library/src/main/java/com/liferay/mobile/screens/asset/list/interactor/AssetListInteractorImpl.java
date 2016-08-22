@@ -74,7 +74,7 @@ public class AssetListInteractorImpl extends BaseListInteractor<AssetEntry, Asse
 
 		requestState.put(getTargetScreenletId(), rowsRange);
 
-		return new BaseListEvent<>(startRow, endRow, entries, rowCount);
+		return new BaseListEvent<>(query, entries, rowCount);
 	}
 
 	private JSONArray getEntries(Query query, long classNameId, HashMap<String, Object> customEntryQuery,

@@ -22,11 +22,18 @@ import java.util.List;
  */
 public class BaseListEvent<E> extends OfflineEventNew {
 
-	public BaseListEvent(int startRow, int endRow, List<E> entries, int rowCount) {
+	private final Query _query;
+
+	public Query getQuery() {
+		return _query;
+	}
+
+	public BaseListEvent(Query query, List<E> entries, int rowCount) {
 
 		_entries = entries;
-		_startRow = startRow;
-		_endRow = endRow;
+		_startRow = query.getStartRow();
+		_endRow = query.getEndRow();
+		_query = query;
 		_rowCount = rowCount;
 	}
 
