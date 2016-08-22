@@ -15,6 +15,7 @@ import android.os.ParcelFileDescriptor;
 import android.os.ResultReceiver;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -112,6 +113,7 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 			String number = goToPage.getText().toString();
 			if (!number.isEmpty()) {
 				changeCurrentPage(Integer.parseInt(number) - 1 - currentPage);
+				closeKeyboard(v);
 			}
 		}
 	}
@@ -206,6 +208,11 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 		progressText.setVisibility(GONE);
 
 		title.setVisibility(VISIBLE);
+	}
+
+	private void closeKeyboard(View view) {
+		InputMethodManager inputManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+		inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 	}
 
 	@Override
