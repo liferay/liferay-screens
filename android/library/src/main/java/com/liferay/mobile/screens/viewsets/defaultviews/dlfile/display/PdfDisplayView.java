@@ -83,7 +83,6 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 	@Override
 	public void showFinishOperation(FileEntry fileEntry) {
 		this.fileEntry = fileEntry;
-
 		render();
 	}
 
@@ -154,8 +153,8 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 		PdfRenderer.Page renderedPage = renderer.openPage(page);
 		Bitmap bitmap = Bitmap.createBitmap(renderedPage.getWidth(), renderedPage.getHeight(), Bitmap.Config.ARGB_8888);
 		Rect rect = new Rect(0, 0, renderedPage.getWidth(), renderedPage.getHeight());
-		renderedPage.render(bitmap, rect, m, PdfRenderer.Page.RENDER_MODE_FOR_PRINT);
-		imagePdf.setImageMatrix(m);
+		renderedPage.render(bitmap, rect, matrix, PdfRenderer.Page.RENDER_MODE_FOR_PRINT);
+		imagePdf.setImageMatrix(matrix);
 		imagePdf.setImageBitmap(bitmap);
 		renderedPage.close();
 
@@ -187,7 +186,7 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 	private void renderPdfInImageView(File file) {
 		try {
 			renderer = new PdfRenderer(ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY));
-			m = imagePdf.getImageMatrix();
+			matrix = imagePdf.getImageMatrix();
 			renderPdfPage(0);
 			title.setText(fileEntry.getTitle());
 		} catch (IOException e) {
@@ -211,7 +210,8 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 	}
 
 	private void closeKeyboard(View view) {
-		InputMethodManager inputManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+		InputMethodManager inputManager =
+			(InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 		inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 	}
 
@@ -238,5 +238,5 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 	private ProgressBar progressBar;
 	private TextView progressText;
 	private TextView title;
-	private Matrix m;
+	private Matrix matrix;
 }

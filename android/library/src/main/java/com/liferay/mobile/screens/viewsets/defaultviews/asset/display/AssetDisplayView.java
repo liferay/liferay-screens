@@ -45,13 +45,13 @@ public class AssetDisplayView extends FrameLayout implements AssetDisplayViewMod
 
 	@Override
 	public BaseScreenlet getScreenlet() {
-		return _screenlet;
+		return screenlet;
 	}
 
 	@Override
 	public void setScreenlet(BaseScreenlet screenlet) {
-		this._screenlet = screenlet;
+		this.screenlet = screenlet;
 	}
 
-	private BaseScreenlet _screenlet;
+	private BaseScreenlet screenlet;
 }
