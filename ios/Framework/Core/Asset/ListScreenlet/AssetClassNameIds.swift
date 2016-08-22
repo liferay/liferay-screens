@@ -61,8 +61,8 @@ public let AssetClassNameKey_WikiNode = "WikiNode"
 
 @objc public class AssetClassEntry: NSObject {
 
-	let classNameId: Int64
-	let className: String
+	public let classNameId: Int64
+	public let className: String
 
 	public init(_ classNameId: Int64, _ className: String) {
 		self.classNameId = classNameId
@@ -73,7 +73,7 @@ public let AssetClassNameKey_WikiNode = "WikiNode"
 
 }
 
-@objc public class AssetClassNameIds: NSObject {
+@objc public class AssetClasses: NSObject {
 
 	private static var classNameEntries: [String:AssetClassEntry] = {
 
