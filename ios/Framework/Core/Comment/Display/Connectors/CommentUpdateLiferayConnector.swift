@@ -19,7 +19,7 @@ public class CommentUpdateLiferayConnector: ServerConnector {
 	public let className: String
 	public let classPK: Int64
 	public let commentId: Int64
-	public let body: String?
+	public let body: String
 
 	public var resultComment: Comment?
 
@@ -27,7 +27,7 @@ public class CommentUpdateLiferayConnector: ServerConnector {
 	            className: String,
 	            classPK: Int64,
 	            commentId: Int64,
-	            body: String?) {
+	            body: String) {
 
 		self.groupId = groupId
 		self.className = className
@@ -58,7 +58,7 @@ public class CommentUpdateLiferayConnector: ServerConnector {
 				return ValidationError("comment-display-screenlet", "undefined-commentId")
 			}
 
-			if body == nil || body == "" {
+			if body.isEmpty {
 				return ValidationError("comment-display-screenlet", "undefined-body")
 			}
 		}
@@ -75,7 +75,7 @@ public class Liferay70CommentUpdateConnector: CommentUpdateLiferayConnector {
 
 		let service = LRCommentmanagerjsonwsService_v70(session: session)
 
-		let formattedBody = body!
+		let formattedBody = body
 			.stringByReplacingOccurrencesOfString("<", withString: "&lt;")
 			.stringByReplacingOccurrencesOfString(">", withString: "&gt;")
 			.characters

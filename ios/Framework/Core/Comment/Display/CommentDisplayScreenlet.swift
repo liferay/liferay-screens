@@ -108,7 +108,10 @@ import UIKit
 		case CommentDisplayScreenlet.DeleteAction:
 			return createCommentDeleteInteractor()
 		case CommentDisplayScreenlet.UpdateAction:
-			return createCommentUpdateInteractor(sender as? String)
+			guard let body = sender as? String else {
+				return nil
+			}
+			return createCommentUpdateInteractor(body)
 		default:
 			return nil
 		}
@@ -158,7 +161,7 @@ import UIKit
 		return interactor
 	}
 
-	private func createCommentUpdateInteractor(body: String?) -> Interactor {
+	private func createCommentUpdateInteractor(body: String) -> Interactor {
 		let interactor = CommentUpdateInteractor(
 			screenlet: self,
 			groupId: groupId,
