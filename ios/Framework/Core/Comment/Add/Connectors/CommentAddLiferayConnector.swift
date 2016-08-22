@@ -18,11 +18,11 @@ public class CommentAddLiferayConnector: ServerConnector {
 	public let groupId: Int64
 	public let className: String
 	public let classPK: Int64
-	public let body: String?
+	public let body: String
 
 	public var resultComment: Comment?
 
-	public init(groupId: Int64, className: String, classPK: Int64, body: String?) {
+	public init(groupId: Int64, className: String, classPK: Int64, body: String) {
 		self.groupId = groupId
 		self.className = className
 		self.classPK = classPK
@@ -46,7 +46,7 @@ public class CommentAddLiferayConnector: ServerConnector {
 				return ValidationError("comment-add-screenlet", "undefined-classPK")
 			}
 
-			if body == nil || body!.isEmpty {
+			if body.isEmpty {
 				return ValidationError("comment-add-screenlet", "empty-body")
 			}
 		}

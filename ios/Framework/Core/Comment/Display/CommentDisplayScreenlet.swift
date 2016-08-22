@@ -59,8 +59,8 @@ import UIKit
 		return delegate as? CommentDisplayScreenletDelegate
 	}
 
-	public var viewModel: CommentDisplayViewModel? {
-		return screenletView as? CommentDisplayViewModel
+	public var viewModel: CommentDisplayViewModel {
+		return screenletView as! CommentDisplayViewModel
 	}
 
 	public var comment: Comment? {
@@ -68,7 +68,7 @@ import UIKit
 			if let comment = comment {
 				commentId = comment.commentId
 			}
-			viewModel?.comment = self.comment
+			viewModel.comment = self.comment
 		}
 	}
 
@@ -84,7 +84,7 @@ import UIKit
 	}
 
 	public func editComment() {
-		viewModel?.editComment()
+		viewModel.editComment()
 	}
 
 
@@ -128,7 +128,7 @@ import UIKit
 		interactor.onSuccess = {
 			if let resultComment = interactor.resultComment {
 				self.comment = resultComment
-				self.viewModel?.comment = resultComment
+				self.viewModel.comment = resultComment
 				self.commentDisplayDelegate?.screenlet?(self, onCommentLoaded: resultComment)
 			}
 			else {
@@ -172,7 +172,7 @@ import UIKit
 		interactor.onSuccess = {
 			if let resultComment = interactor.resultComment {
 				self.comment = resultComment
-				self.viewModel?.comment = resultComment
+				self.viewModel.comment = resultComment
 				self.commentDisplayDelegate?.screenlet?(self, onCommentUpdated: resultComment)
 			}
 			else {

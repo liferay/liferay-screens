@@ -19,7 +19,7 @@ public class CommentAddInteractor: ServerWriteConnectorInteractor {
 	let groupId: Int64
 	let className: String
 	let classPK: Int64
-	let body: String?
+	let body: String
 
 	public var resultComment: Comment?
 
@@ -28,7 +28,7 @@ public class CommentAddInteractor: ServerWriteConnectorInteractor {
 			groupId: Int64,
 			className: String,
 			classPK: Int64,
-			body: String?) {
+			body: String) {
 
 		self.groupId = (groupId != 0) ? groupId : LiferayServerContext.groupId
 		self.className = className

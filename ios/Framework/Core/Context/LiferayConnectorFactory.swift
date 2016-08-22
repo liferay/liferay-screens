@@ -140,7 +140,7 @@ public protocol LiferayConnectorFactory {
 		groupId groupId: Int64,
 		className: String,
 		classPK: Int64,
-		body: String?) -> CommentAddLiferayConnector?
+		body: String) -> CommentAddLiferayConnector?
 
 	func createCommentLoadConnector(
 		groupId groupId: Int64,
@@ -368,7 +368,7 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 		return nil
 	}
 
-	public func createCommentAddConnector(groupId groupId: Int64, className: String, classPK: Int64, body: String?) -> CommentAddLiferayConnector? {
+	public func createCommentAddConnector(groupId groupId: Int64, className: String, classPK: Int64, body: String) -> CommentAddLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: CommentAddLiferayConnector")
 		return nil
 	}
@@ -613,7 +613,7 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			computeRowCount: computeRowCount)
 	}
 
-	public func createCommentAddConnector(groupId groupId: Int64, className: String, classPK: Int64, body: String?) -> CommentAddLiferayConnector? {
+	public func createCommentAddConnector(groupId groupId: Int64, className: String, classPK: Int64, body: String) -> CommentAddLiferayConnector? {
 		return Liferay70CommentAddConnector(
 			groupId: groupId,
 			className: className,

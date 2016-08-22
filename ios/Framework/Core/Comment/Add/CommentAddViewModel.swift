@@ -16,6 +16,6 @@ import UIKit
 
 @objc public protocol CommentAddViewModel {
 
-	var body: String? { get set }
+	var body: String { get set }
 
 }

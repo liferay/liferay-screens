@@ -35,8 +35,8 @@ import UIKit
 		return delegate as? CommentAddScreenletDelegate
 	}
 
-	public var viewModel: CommentAddViewModel? {
-		return screenletView as? CommentAddViewModel
+	public var viewModel: CommentAddViewModel {
+		return screenletView as! CommentAddViewModel
 	}
 
 
@@ -48,12 +48,12 @@ import UIKit
 			groupId: self.groupId,
 			className: self.className,
 			classPK: self.classPK,
-			body: self.viewModel?.body)
+			body: self.viewModel.body)
 
 		interactor.onSuccess = {
 			if let resultComment = interactor.resultComment {
 				self.commentAddDelegate?.screenlet?(self, onCommentAdded: resultComment)
-				self.viewModel?.body = ""
+				self.viewModel.body = ""
 			}
 			else {
 				self.commentAddDelegate?.screenlet?(self,
