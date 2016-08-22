@@ -22,10 +22,5 @@ public class UserPortraitUploadEvent extends OfflineEventNew {
 		return _picturePath;
 	}
 
-	@Override
-	public String getId() throws Exception {
-		return _picturePath;
-	}
-
 	private String _picturePath;
 }

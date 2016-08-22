@@ -10,6 +10,7 @@ import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.snappydb.DB;
 import com.snappydb.DBFactory;
+import java.util.Locale;
 
 /**
  * @author Javier Gamarra
@@ -52,7 +53,6 @@ public abstract class BaseCachedWriteThreadRemoteInteractor<L extends OfflineLis
 	}
 
 	public void onEventMainThread(E event) {
-		super.onEventMainThread(event);
 		try {
 			if (event.isFailed()) {
 				store(event);
@@ -109,7 +109,7 @@ public abstract class BaseCachedWriteThreadRemoteInteractor<L extends OfflineLis
 			+ "_"
 			+ event.getLocale()
 			+ "_"
-			+ event.getId();
+			+ event.getCacheKey();
 	}
 
 	protected abstract E createEvent(Object[] args) throws Exception;
@@ -118,7 +118,24 @@ public abstract class BaseCachedWriteThreadRemoteInteractor<L extends OfflineLis
 		return offlinePolicy;
 	}
 
-	private OfflinePolicy offlinePolicy;
+	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
+		this.offlinePolicy = offlinePolicy;
+	}
+
+	public void setGroupId(long groupId) {
+		this.groupId = groupId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
+	public void setLocale(Locale locale) {
+		this.locale = locale;
+	}
+
+	protected Locale locale;
+	protected OfflinePolicy offlinePolicy;
 	protected long groupId;
 	protected long userId;
 }

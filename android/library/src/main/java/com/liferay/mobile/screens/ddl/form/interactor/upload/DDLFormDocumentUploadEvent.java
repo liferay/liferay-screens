@@ -44,8 +44,4 @@ public class DDLFormDocumentUploadEvent extends OfflineEventNew {
 	private Long _folderId;
 	private String _filePrefix;
 
-	@Override
-	public String getId() throws Exception {
-		return _documentField.getName();
-	}
 }

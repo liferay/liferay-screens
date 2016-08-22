@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.base.thread;
 
+import android.support.annotation.NonNull;
 import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.base.thread.event.ErrorThreadEvent;
 import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
@@ -10,9 +11,7 @@ import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.snappydb.DB;
 import com.snappydb.DBFactory;
-import com.snappydb.SnappydbException;
 import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 
@@ -25,14 +24,14 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 	protected long groupId;
 	protected long userId;
 	protected Locale locale;
-	protected OfflinePolicy _offlinePolicy;
+	protected OfflinePolicy offlinePolicy;
 
 	public void start(final Object... args) {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					if (_offlinePolicy == OfflinePolicy.CACHE_FIRST) {
+					if (offlinePolicy == OfflinePolicy.CACHE_FIRST) {
 						try {
 							boolean _retrievedFromCache = cached(args);
 
@@ -42,7 +41,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 						} catch (Exception e) {
 							online(true, e, args);
 						}
-					} else if (_offlinePolicy == OfflinePolicy.CACHE_ONLY) {
+					} else if (offlinePolicy == OfflinePolicy.CACHE_ONLY) {
 						LiferayLogger.i("Trying to retrieve object from cache");
 
 						boolean _retrievedFromCache = cached(args);
@@ -50,7 +49,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 						if (!_retrievedFromCache) {
 							throw new NoSuchElementException();
 						}
-					} else if (_offlinePolicy == OfflinePolicy.REMOTE_FIRST) {
+					} else if (offlinePolicy == OfflinePolicy.REMOTE_FIRST) {
 						try {
 							online(false, null, args);
 						} catch (Exception e) {
@@ -118,50 +117,12 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 	protected boolean cached(Object... args) throws Exception {
 
 		String cacheKey = getIdFromArgs(args);
-
 		Class clasz = getEventClass();
 
-		String id = clasz.getName() + "_" + groupId + "_" + userId + "_" + locale + "_" + cacheKey;
+		String id = getFullId(clasz, groupId, userId, locale, cacheKey);
 
-		return cachedById(id, clasz);
-	}
-
-	private Class getEventClass() {
-
-		Class clasz = (Class) getClass();
-		Type genericSuperclass = clasz.getGenericSuperclass();
-		while (!(genericSuperclass instanceof ParameterizedType)) {
-			clasz = clasz.getSuperclass();
-			genericSuperclass = clasz.getGenericSuperclass();
-		}
-
-		return (Class) ((ParameterizedType) genericSuperclass).getActualTypeArguments()[1];
-	}
-
-	protected String getFullId(E event) throws Exception {
-		return event.getClass().getName()
-			+ "_"
-			+ event.getGroupId()
-			+ "_"
-			+ event.getUserId()
-			+ "_"
-			+ event.getLocale()
-			+ "_"
-			+ event.getCacheKey();
-	}
-
-	protected void storeToCache(E event) throws Exception {
-
-		getListener().storingToCache(event);
-
-		DB snappydb = DBFactory.open(LiferayScreensContext.getContext());
-		snappydb.put(getFullId(event), event);
-		snappydb.close();
-	}
-
-	protected boolean cachedById(String fullId, Class<E> clazz) throws SnappydbException {
 		DB snappyDB = DBFactory.open(LiferayScreensContext.getContext());
-		E offlineEvent = snappyDB.getObject(fullId, clazz);
+		E offlineEvent = (E) snappyDB.getObject(id, clasz);
 		if (offlineEvent != null) {
 			offlineEvent.setCachedRequest(true);
 			offlineEvent.setTargetScreenletId(getTargetScreenletId());
@@ -173,14 +134,42 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 		return false;
 	}
 
+	protected Class getEventClass() {
+
+		Class clasz = (Class) getClass();
+		while (!(clasz.getGenericSuperclass() instanceof ParameterizedType)) {
+			clasz = clasz.getSuperclass();
+		}
+
+		return (Class) ((ParameterizedType) clasz.getGenericSuperclass()).getActualTypeArguments()[1];
+	}
+
+	protected void storeToCache(E event) throws Exception {
+
+		getListener().storingToCache(event);
+
+		DB snappydb = DBFactory.open(LiferayScreensContext.getContext());
+
+		String id =
+			getFullId(event.getClass(), event.getGroupId(), event.getUserId(), event.getLocale(), event.getCacheKey());
+
+		snappydb.put(id, event);
+		snappydb.close();
+	}
+
+	@NonNull
+	private String getFullId(Class clasz, long groupId, long userId, Locale locale, String cacheKey) {
+		return clasz.getName() + "_" + groupId + "_" + userId + "_" + locale + "_" + cacheKey;
+	}
+
 	protected abstract String getIdFromArgs(Object... args) throws Exception;
 
 	protected OfflinePolicy getOfflinePolicy() {
-		return _offlinePolicy;
+		return offlinePolicy;
 	}
 
 	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
-		_offlinePolicy = offlinePolicy;
+		this.offlinePolicy = offlinePolicy;
 	}
 
 	public void setGroupId(long groupId) {
