@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
@@ -34,7 +35,7 @@ import java.io.IOException;
 /**
  * @author Sarai Díaz García
  */
-public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewModel, View.OnClickListener {
+public class PdfDisplayView extends RelativeLayout implements BaseFileDisplayViewModel, View.OnClickListener {
 
 	public PdfDisplayView(Context context) {
 		super(context);
@@ -60,7 +61,8 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 		imagePdf = (ImageView) findViewById(R.id.liferay_pdf_renderer);
 
 		progressText = (TextView) findViewById(R.id.liferay_asset_progress_number);
-		progressBar = (ProgressBar) findViewById(R.id.liferay_asset_progress_horizontal);
+		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
+		progressBarHorizontal = (ProgressBar) findViewById(R.id.liferay_asset_progress_horizontal);
 
 		goToPage = (EditText) findViewById(R.id.liferay_go_to_page);
 		goToPageButton = (Button) findViewById(R.id.liferay_go_to_page_submit);
@@ -68,15 +70,25 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 		previousPage = (Button) findViewById(R.id.liferay_previous_page);
 		nextPage = (Button) findViewById(R.id.liferay_next_page);
 
+		linearLayoutButtons = (LinearLayout) findViewById(R.id.liferay_linear_buttons);
+
 		title = (TextView) findViewById(R.id.liferay_asset_title);
 	}
 
 	@Override
+	public void showFinishOperation(String actionName) {
+		throw new UnsupportedOperationException(
+			"showFinishOperation(String) is not supported." + " Use showFinishOperation(FileEntry) instead.");
+	}
+
+	@Override
 	public void showStartOperation(String actionName) {
+		progressBar.setVisibility(VISIBLE);
 	}
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
+		progressBar.setVisibility(GONE);
 		LiferayLogger.e("Could not load file asset: " + e.getMessage());
 	}
 
@@ -86,17 +98,12 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 		render();
 	}
 
-	@Override
-	public void showFinishOperation(String actionName) {
-		throw new UnsupportedOperationException(
-			"showFinishOperation(String) is not supported." + " Use showFinishOperation(FileEntry) instead.");
-	}
-
 	//TODO this should go in the screenlet class
 	private void render() {
 		if (Build.VERSION.SDK_INT >= 21) {
 			renderInLollipop();
-		} else {
+		}
+		else {
 			String server = getResources().getString(R.string.liferay_server);
 			getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(server + fileEntry.getUrl())));
 		}
@@ -106,9 +113,11 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 	public void onClick(View v) {
 		if (v.getId() == R.id.liferay_previous_page) {
 			changeCurrentPage(-1);
-		} else if (v.getId() == R.id.liferay_next_page) {
+		}
+		else if (v.getId() == R.id.liferay_next_page) {
 			changeCurrentPage(+1);
-		} else if (v.getId() == R.id.liferay_go_to_page_submit) {
+		}
+		else if (v.getId() == R.id.liferay_go_to_page_submit) {
 			String number = goToPage.getText().toString();
 			if (!number.isEmpty()) {
 				changeCurrentPage(Integer.parseInt(number) - 1 - currentPage);
@@ -123,7 +132,8 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 
 		if (currentPage < 0) {
 			currentPage = 0;
-		} else if (currentPage > renderer.getPageCount() - 1) {
+		}
+		else if (currentPage > renderer.getPageCount() - 1) {
 			currentPage = renderer.getPageCount() - 1;
 		}
 
@@ -143,7 +153,8 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 			intent.putExtra(DownloadService.LOCAL_PATH, file.getAbsolutePath());
 			intent.putExtra(DownloadService.RESULT_RECEIVER, new DownloadReceiver(new Handler()));
 			getContext().startService(intent);
-		} else {
+		}
+		else {
 			renderPdfInImageView(file);
 		}
 	}
@@ -173,10 +184,12 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 			if (resultCode == DownloadService.UPDATE_PROGRESS) {
 				int progress = resultData.getInt(DownloadService.FILE_DOWNLOAD_PROGRESS);
 				progressText.setText(String.valueOf(progress).concat("%"));
-				progressBar.setProgress(progress);
-			} else if (resultCode == DownloadService.FINISHED_DOWNLOAD) {
+				progressBarHorizontal.setProgress(progress);
+			}
+			else if (resultCode == DownloadService.FINISHED_DOWNLOAD) {
 				renderPdfInImageView(file);
-			} else {
+			}
+			else {
 				//TODO launch error
 			}
 		}
@@ -184,6 +197,7 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	private void renderPdfInImageView(File file) {
+		progressBar.setVisibility(VISIBLE);
 		try {
 			renderer = new PdfRenderer(ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY));
 			matrix = imagePdf.getImageMatrix();
@@ -196,13 +210,11 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	private void hideProgressBar() {
-		nextPage.setVisibility(VISIBLE);
+		linearLayoutButtons.setVisibility(VISIBLE);
 		nextPage.setEnabled(currentPage != renderer.getPageCount() - 1);
-		previousPage.setVisibility(VISIBLE);
 		previousPage.setEnabled(currentPage != 0);
-		goToPage.setVisibility(VISIBLE);
-		goToPageButton.setVisibility(VISIBLE);
 
+		progressBarHorizontal.setVisibility(GONE);
 		progressBar.setVisibility(GONE);
 		progressText.setVisibility(GONE);
 
@@ -231,12 +243,14 @@ public class PdfDisplayView extends LinearLayout implements BaseFileDisplayViewM
 	private Button previousPage;
 	private Button goToPageButton;
 	private EditText goToPage;
+	private LinearLayout linearLayoutButtons;
 	private File file;
 	private FileEntry fileEntry;
 	private ImageView imagePdf;
 	private PdfRenderer renderer;
-	private ProgressBar progressBar;
+	private ProgressBar progressBarHorizontal;
 	private TextView progressText;
 	private TextView title;
 	private Matrix matrix;
+	private ProgressBar progressBar;
 }

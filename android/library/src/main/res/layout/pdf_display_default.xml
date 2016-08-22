@@ -4,7 +4,6 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:orientation="vertical"
 	android:padding="8dp"
 	>
 
@@ -22,16 +21,26 @@
 		android:id="@+id/liferay_asset_progress_number"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_gravity="center"
+		android:layout_below="@+id/liferay_asset_progress_horizontal"
+		android:layout_centerInParent="true"
 		android:textSize="20sp"
 		tools:text="99%"
+		/>
+
+	<ProgressBar
+		android:id="@+id/liferay_progress"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerInParent="true"
+		android:visibility="invisible"
 		/>
 
 	<ImageView
 		android:id="@+id/liferay_pdf_renderer"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_weight="8"
+		android:layout_above="@+id/liferay_linear_buttons"
+		android:layout_alignParentTop="true"
 		android:adjustViewBounds="true"
 		android:scaleType="fitCenter"
 		/>
@@ -40,17 +49,22 @@
 		android:id="@+id/liferay_asset_title"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="10dp"
+		android:layout_above="@+id/liferay_linear_buttons"
+		android:layout_below="@+id/liferay_pdf_renderer"
 		android:gravity="center"
 		android:visibility="gone"
+		tools:text="Demo-file.pdf"
 		tools:visibility="visible"
 		/>
 
 	<LinearLayout
+		android:id="@+id/liferay_linear_buttons"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="10dp"
+		android:layout_alignParentBottom="true"
 		android:orientation="horizontal"
+		android:visibility="gone"
+		tools:visibility="visible"
 		>
 
 		<Button
@@ -61,9 +75,7 @@
 			android:layout_marginRight="5sp"
 			android:layout_weight="1"
 			android:text="@string/pdf_previous"
-			android:textSize="20sp"
-			android:visibility="gone"
-			tools:visibility="visible"
+			android:textSize="16sp"
 			/>
 
 		<Button
@@ -74,9 +86,7 @@
 			android:layout_marginRight="5sp"
 			android:layout_weight="1"
 			android:text="@string/pdf_next"
-			android:textSize="20sp"
-			android:visibility="gone"
-			tools:visibility="visible"
+			android:textSize="16sp"
 			/>
 
 		<EditText
@@ -87,8 +97,6 @@
 			android:layout_marginRight="5sp"
 			android:layout_weight="1"
 			android:inputType="number"
-			android:visibility="gone"
-			tools:visibility="visible"
 			/>
 
 		<Button
@@ -97,8 +105,7 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:text="@string/pdf_go"
-			android:visibility="gone"
-			tools:visibility="visible"
+			android:textSize="16sp"
 			/>
 
 	</LinearLayout>
