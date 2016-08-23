@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="liferay_server">https://demo.liferay.com/screens</string>
+	<string name="liferay_company_id">20155</string>
+	<string name="liferay_group_id">20525</string>
+
+	<!-- SignupScreenlet values -->
+	<string name="liferay_anonymousApiUserName">anonymous1@liferay.com</string>
+	<string name="liferay_anonymousApiPassword">anonymous1</string>
+
+	<!-- DDLFormScreenlet values -->
+	<string name="liferay_recordset_id">20593</string>
+	<string name="liferay_structure_id">20589</string>
+	<string name="liferay_recordset_fields">Title</string>
+
+</resources>

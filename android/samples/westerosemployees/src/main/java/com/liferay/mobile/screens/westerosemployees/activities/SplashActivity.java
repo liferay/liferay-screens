@@ -1,15 +1,14 @@
-package com.liferay.mobile.screens.bankofwesteros.activities;
+package com.liferay.mobile.screens.westerosemployees.activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import com.liferay.mobile.screens.westerosemployees.R;
 
-import com.liferay.mobile.screens.bankofwesteros.R;
-
-import static com.liferay.mobile.screens.bankofwesteros.activities.TourActivity.TOUR_VISITED;
-import static com.liferay.mobile.screens.bankofwesteros.activities.TourActivity.WESTEROS_PREFERENCES;
+import static com.liferay.mobile.screens.westerosemployees.activities.TourActivity.TOUR_VISITED;
+import static com.liferay.mobile.screens.westerosemployees.activities.TourActivity.WESTEROS_PREFERENCES;
 
 /**
  * @author Javier Gamarra
