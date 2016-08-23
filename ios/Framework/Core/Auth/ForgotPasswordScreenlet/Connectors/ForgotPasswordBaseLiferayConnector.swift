@@ -53,7 +53,8 @@ public class ForgotPasswordBaseLiferayConnector: ServerConnector {
 		do {
 			resultPasswordSent = try sendForgotPasswordRequest(session)
 			lastError = nil
-		} catch (let error as NSError) {
+		}
+		catch (let error as NSError) {
 			lastError = error
 			resultPasswordSent = nil
 		}

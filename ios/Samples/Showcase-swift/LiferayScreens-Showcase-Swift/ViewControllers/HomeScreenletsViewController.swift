@@ -18,8 +18,8 @@ class HomeScreenletsViewController: UITableViewController {
 	private let data: [Int:[String]] = [
 			0 : ["Auth Module", "LoginScreenlet", "SignUpScreenlet", "ForgotPasswordScreenlet"],
 			1 : ["DDL Module", "DDLListScreenlet", "DDLFormScreenlet"],
-			2 : ["Web Content Module", "WebContentDisplayScreenlet", "WebContentListScreenlet"],			
-			3 : ["Others", "AssetListScreenlet", "UserPortraitScreenlet","RatingScreenlet", "ImageGalleryScreenlet"]
+			2 : ["Web Content Module", "WebContentDisplayScreenlet", "WebContentListScreenlet"],
+			3 : ["Others", "AssetListScreenlet", "UserPortraitScreenlet", "RatingScreenlet", "ImageGalleryScreenlet", "AssetDisplayScreenlet"]
 		]
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

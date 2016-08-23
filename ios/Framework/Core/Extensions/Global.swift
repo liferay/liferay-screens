@@ -199,3 +199,14 @@ public func centeredRectInView(view: UIView, size: CGSize) -> CGRect {
 			size.width,
 			size.height)
 }
+
+public func cacheFilePath() -> String {
+	let cache = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .AllDomainsMask, true)[0]
+
+	var cachePath = ""
+	repeat {
+		cachePath = "\(cache)/\(NSUUID().UUIDString)"
+	} while (NSFileManager.defaultManager().fileExistsAtPath(cachePath))
+
+	return cachePath
+}
