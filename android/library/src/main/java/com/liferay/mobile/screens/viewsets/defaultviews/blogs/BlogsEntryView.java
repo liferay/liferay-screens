@@ -1,0 +1,78 @@
+package com.liferay.mobile.screens.viewsets.defaultviews.blogs;
+
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.os.Build;
+import android.util.AttributeSet;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.blogs.BlogsEntry;
+import com.liferay.mobile.screens.blogs.BlogsEntryDisplayViewModel;
+import com.liferay.mobile.screens.util.LiferayLogger;
+
+/**
+ * @author Sarai Díaz García
+ */
+public class BlogsEntryView extends RelativeLayout implements BlogsEntryDisplayViewModel {
+
+	public BlogsEntryView(Context context) {
+		super(context);
+	}
+
+	public BlogsEntryView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+	}
+
+	public BlogsEntryView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
+	public BlogsEntryView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
+	}
+
+	@Override
+	public void showStartOperation(String actionName) {
+		progressBar.setVisibility(VISIBLE);
+	}
+
+	@Override
+	public void showFinishOperation(String actionName) {
+		throw new UnsupportedOperationException(
+			"showFinishOperation(String) is not supported." + " Use showFinishOperation(BlogsEntry) instead.");
+	}
+
+	@Override
+	public void showFailedOperation(String actionName, Exception e) {
+		progressBar.setVisibility(GONE);
+		LiferayLogger.e("Could not load file asset: " + e.getMessage());
+	}
+
+	@Override
+	public BaseScreenlet getScreenlet() {
+		return screenlet;
+	}
+
+	@Override
+	public void setScreenlet(BaseScreenlet screenlet) {
+		this.screenlet = screenlet;
+	}
+
+	@Override
+	protected void onFinishInflate() {
+		super.onFinishInflate();
+		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
+	}
+
+	@Override
+	public void showFinishOperation(BlogsEntry blogsEntry) {
+		this.blogsEntry = blogsEntry;
+	}
+
+	private BaseScreenlet screenlet;
+	private BlogsEntry blogsEntry;
+	private ProgressBar progressBar;
+}
