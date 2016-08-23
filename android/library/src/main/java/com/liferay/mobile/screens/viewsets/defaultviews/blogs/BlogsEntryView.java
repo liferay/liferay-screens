@@ -3,9 +3,11 @@ package com.liferay.mobile.screens.viewsets.defaultviews.blogs;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
+import android.text.Html;
 import android.util.AttributeSet;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.blogs.BlogsEntry;
@@ -64,15 +66,31 @@ public class BlogsEntryView extends RelativeLayout implements BlogsEntryDisplayV
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
+
 		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
+
+		title = (TextView) findViewById(R.id.liferay_blog_title);
+		subtitle = (TextView) findViewById(R.id.liferay_blog_subtitle);
+		content = (TextView) findViewById(R.id.liferay_blog_content);
 	}
 
 	@Override
 	public void showFinishOperation(BlogsEntry blogsEntry) {
 		this.blogsEntry = blogsEntry;
+		loadBlogsEntry();
+		progressBar.setVisibility(GONE);
+	}
+
+	private void loadBlogsEntry() {
+		title.setText(blogsEntry.getTitle());
+		subtitle.setText(blogsEntry.getSubtitle());
+		content.setText(Html.fromHtml(blogsEntry.getContent()));
 	}
 
 	private BaseScreenlet screenlet;
 	private BlogsEntry blogsEntry;
 	private ProgressBar progressBar;
+	private TextView title;
+	private TextView subtitle;
+	private TextView content;
 }
