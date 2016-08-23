@@ -13,6 +13,7 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.asset.display.interactor.AssetDisplayInteractorImpl;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.blogs.BlogsEntryDisplayScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.dlfile.display.audio.AudioDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet;
@@ -65,6 +66,8 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 			typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_audiolayoutId, R.layout.audio_display_default));
 		layouts.put(PdfDisplayScreenlet.class.getName(),
 			typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_pdflayoutId, R.layout.pdf_display_default));
+		layouts.put(BlogsEntryDisplayScreenlet.class.getName(),
+			typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_blogsLayoutId, R.layout.blogsentry_display_default));
 
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
 
