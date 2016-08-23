@@ -51,10 +51,21 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 
 	@Override
 	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
+		blogsEntry = (BlogsEntry) assetEntry;
+		getViewModel().showFinishOperation(blogsEntry);
+
+		if (listener != null) {
+			listener.onRetrieveAssetSuccess(assetEntry);
+		}
 	}
 
 	@Override
 	public void onRetrieveAssetFailure(Exception e) {
+		getViewModel().showFailedOperation(null, e);
+
+		if (listener != null) {
+			listener.onRetrieveAssetFailure(e);
+		}
 	}
 
 	public long getEntryId() {
