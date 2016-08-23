@@ -167,6 +167,7 @@
 		<attr format="reference" name="videolayoutId"/>
 		<attr format="reference" name="audiolayoutId"/>
 		<attr format="reference" name="pdflayoutId"/>
+		<attr format="reference" name="blogsLayoutId"/>
 	</declare-styleable>
 
 	<declare-styleable name="ImageDisplayScreenlet">
@@ -188,6 +189,12 @@
 	</declare-styleable>
 
 	<declare-styleable name="PdfDisplayScreenlet">
+		<attr name="layoutId"/>
+		<attr name="autoLoad"/>
+		<attr name="entryId"/>
+	</declare-styleable>
+
+	<declare-styleable name="BlogsEntryDisplayScreenlet">
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="entryId"/>
