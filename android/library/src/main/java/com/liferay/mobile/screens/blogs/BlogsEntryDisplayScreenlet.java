@@ -19,6 +19,8 @@ import com.liferay.mobile.screens.context.SessionContext;
 public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayViewModel, AssetDisplayInteractorImpl>
 	implements AssetDisplayListener {
 
+	public static final String LOAD_ASSET_ACTION = "LOAD_ASSET_ACTION";
+
 	public BlogsEntryDisplayScreenlet(Context context) {
 		super(context);
 	}
@@ -33,6 +35,14 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 
 	public BlogsEntryDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
+	}
+
+	public void load() {
+		performUserAction(LOAD_ASSET_ACTION);
+	}
+
+	public void loadBlogsEntry() {
+		onRetrieveAssetSuccess(blogsEntry);
 	}
 
 	@Override
@@ -81,6 +91,30 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 
 		if (listener != null) {
 			listener.onRetrieveAssetFailure(e);
+		}
+	}
+
+	@Override
+	protected void onScreenletAttached() {
+		super.onScreenletAttached();
+
+		if (autoLoad) {
+			autoLoad();
+		}
+	}
+
+	protected void autoLoad() {
+		if (SessionContext.isLoggedIn()) {
+			try {
+				if (blogsEntry == null) {
+					load();
+				}
+				else {
+					loadBlogsEntry();
+				}
+			} catch (Exception e) {
+				onRetrieveAssetFailure(e);
+			}
 		}
 	}
 
