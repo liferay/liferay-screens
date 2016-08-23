@@ -56,4 +56,41 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 	@Override
 	public void onRetrieveAssetFailure(Exception e) {
 	}
+
+	public long getEntryId() {
+		return entryId;
+	}
+
+	public void setEntryId(long entryId) {
+		this.entryId = entryId;
+	}
+
+	public BlogsEntry getBlogsEntry() {
+		return blogsEntry;
+	}
+
+	public void setBlogsEntry(BlogsEntry blogsEntry) {
+		this.blogsEntry = blogsEntry;
+	}
+
+	public boolean getAutoLoad() {
+		return autoLoad;
+	}
+
+	public void setAutoLoad(boolean autoLoad) {
+		this.autoLoad = autoLoad;
+	}
+
+	public AssetDisplayListener getListener() {
+		return listener;
+	}
+
+	public void setListener(AssetDisplayListener listener) {
+		this.listener = listener;
+	}
+
+	protected long entryId;
+	protected boolean autoLoad;
+	protected AssetDisplayListener listener;
+	protected BlogsEntry blogsEntry;
 }
