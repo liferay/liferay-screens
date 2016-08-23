@@ -25,7 +25,7 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
     
 	var selectAssetEntry: Asset?
 
-	var pickerData:[AssetClassEntry] = []
+	var pickerData:[String] = []
 
 	@IBAction func changeAssetAction(sender: AnyObject) {
 		showPicker(false, animated:true)
@@ -42,7 +42,7 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 	}
 
 	func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-		selectedAsset = pickerData[row].classNameId
+		selectedAsset = AssetClasses.getClassNameId(pickerData[row])
 		print("[ASSET TYPE] -> Selected \(selectedAsset!)\n")
 	}
 
@@ -55,7 +55,7 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 	}
 
 	func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-		return NSAttributedString(string: pickerData[row].className)
+		return NSAttributedString(string: pickerData[row])
 	}
 
 	override func viewDidLoad() {
@@ -123,10 +123,7 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 		]
 
 		for assetKey in assetClasses {
-			pickerData.append(
-				AssetClassEntry(
-					AssetClasses.getClassNameId(assetKey)!,
-					AssetClasses.getClassName(assetKey)!))
+			pickerData.append(assetKey)
 		}
 		
 		self.screenlet?.delegate = self
