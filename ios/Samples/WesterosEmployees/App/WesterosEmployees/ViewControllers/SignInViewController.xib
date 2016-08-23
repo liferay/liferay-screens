@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignInViewController" customModule="WesterosEmployees" customModuleProvider="target">
+            <connections>
+                <outlet property="backArrow" destination="G2O-c8-giH" id="QuQ-N2-Hen"/>
+                <outlet property="forgotPage" destination="BSq-Mj-WPg" id="tKC-YX-FPh"/>
+                <outlet property="forgotPasswordScreenlet" destination="agF-4y-83g" id="zbG-qx-QcW"/>
+                <outlet property="forgotTitle" destination="Eug-pP-wux" id="S8T-jh-hsu"/>
+                <outlet property="loginScreenlet" destination="hZ1-eE-IBY" id="DIT-bf-bai"/>
+                <outlet property="scroll" destination="aYu-ha-uGh" id="uPz-5G-jdJ"/>
+                <outlet property="signInPage" destination="mro-th-HxE" id="9Wk-4C-6DT"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="368"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" scrollEnabled="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYu-ha-uGh">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="368"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="brG-eE-VEu" userLabel="ContentView">
+                            <rect key="frame" x="0.0" y="0.0" width="750" height="368"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mro-th-HxE" userLabel="signIn">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="368"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZ1-eE-IBY" customClass="LoginScreenlet" customModule="LiferayScreens">
+                                            <rect key="frame" x="25" y="80" width="325" height="221"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="221" id="T8w-W4-j3w"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cg4-y9-Lxr">
+                                            <rect key="frame" x="111" y="315" width="153" height="34"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
+                                            <state key="normal" title="Forgot password?">
+                                                <color key="titleColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="forgotPasswordAction:" destination="-1" eventType="touchUpInside" id="wdU-tN-p6w"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="Cg4-y9-Lxr" secondAttribute="trailing" constant="111" id="0VJ-Na-Qhu"/>
+                                        <constraint firstItem="Cg4-y9-Lxr" firstAttribute="top" secondItem="hZ1-eE-IBY" secondAttribute="bottom" constant="14" id="8QB-8L-6Qd"/>
+                                        <constraint firstItem="Cg4-y9-Lxr" firstAttribute="leading" secondItem="mro-th-HxE" secondAttribute="leading" constant="111" id="8v4-4l-fiJ"/>
+                                        <constraint firstAttribute="trailing" secondItem="hZ1-eE-IBY" secondAttribute="trailing" constant="25" id="SVH-es-UlM"/>
+                                        <constraint firstItem="hZ1-eE-IBY" firstAttribute="leading" secondItem="mro-th-HxE" secondAttribute="leading" constant="25" id="V38-tl-Pgz"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Cg4-y9-Lxr" secondAttribute="bottom" constant="19" id="VND-T9-um9"/>
+                                        <constraint firstItem="Cg4-y9-Lxr" firstAttribute="centerX" secondItem="mro-th-HxE" secondAttribute="centerX" id="nLw-pb-aAx"/>
+                                        <constraint firstItem="hZ1-eE-IBY" firstAttribute="top" secondItem="mro-th-HxE" secondAttribute="top" constant="80" id="wLb-dM-3hZ"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BSq-Mj-WPg" userLabel="forgot">
+                                    <rect key="frame" x="375" y="0.0" width="375" height="368"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eug-pP-wux">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="Yjw-Yt-4aY"/>
+                                                <constraint firstAttribute="height" constant="80" id="xnM-Sl-A8k"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
+                                            <state key="normal" title="FORGOT PASSWORD">
+                                                <color key="titleColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="backAction:" destination="-1" eventType="touchUpInside" id="H9G-NY-Xud"/>
+                                            </connections>
+                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_LEFT.png" translatesAutoresizingMaskIntoConstraints="NO" id="G2O-c8-giH">
+                                            <rect key="frame" x="17" y="30" width="12" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="12" id="2L0-ff-4Vv"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="12" id="uJJ-bk-2Xh"/>
+                                                <constraint firstAttribute="height" constant="20" id="uob-hy-Yzq"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="zDY-ga-CEu"/>
+                                            </constraints>
+                                        </imageView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="agF-4y-83g" customClass="ForgotPasswordScreenlet" customModule="LiferayScreens">
+                                            <rect key="frame" x="25" y="100" width="325" height="240"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="Eug-pP-wux" firstAttribute="leading" secondItem="BSq-Mj-WPg" secondAttribute="leading" id="3ob-7v-97R"/>
+                                        <constraint firstItem="Eug-pP-wux" firstAttribute="top" secondItem="BSq-Mj-WPg" secondAttribute="top" id="8Fi-mk-WZo"/>
+                                        <constraint firstAttribute="bottom" secondItem="agF-4y-83g" secondAttribute="bottom" constant="28" id="AU9-bJ-bjL"/>
+                                        <constraint firstItem="G2O-c8-giH" firstAttribute="centerY" secondItem="Eug-pP-wux" secondAttribute="centerY" id="Nn3-1N-eCR"/>
+                                        <constraint firstItem="agF-4y-83g" firstAttribute="leading" secondItem="BSq-Mj-WPg" secondAttribute="leading" constant="25" id="eW2-ds-WGV"/>
+                                        <constraint firstAttribute="trailing" secondItem="agF-4y-83g" secondAttribute="trailing" constant="25" id="fc9-vv-p7Z"/>
+                                        <constraint firstItem="G2O-c8-giH" firstAttribute="leading" secondItem="BSq-Mj-WPg" secondAttribute="leading" constant="17" id="iZi-X3-Htw"/>
+                                        <constraint firstAttribute="trailing" secondItem="Eug-pP-wux" secondAttribute="trailing" id="k07-oO-cNf"/>
+                                        <constraint firstItem="agF-4y-83g" firstAttribute="centerX" secondItem="BSq-Mj-WPg" secondAttribute="centerX" id="tuE-4V-1Lh"/>
+                                        <constraint firstItem="agF-4y-83g" firstAttribute="top" secondItem="Eug-pP-wux" secondAttribute="bottom" constant="20" id="vEM-LW-V54"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="BSq-Mj-WPg" firstAttribute="top" secondItem="brG-eE-VEu" secondAttribute="top" id="71i-sh-pLM"/>
+                                <constraint firstAttribute="bottom" secondItem="mro-th-HxE" secondAttribute="bottom" id="Fc7-da-HiT"/>
+                                <constraint firstAttribute="bottom" secondItem="BSq-Mj-WPg" secondAttribute="bottom" id="INR-c4-cf3"/>
+                                <constraint firstItem="mro-th-HxE" firstAttribute="top" secondItem="brG-eE-VEu" secondAttribute="top" id="OEJ-Bj-ShT"/>
+                                <constraint firstItem="BSq-Mj-WPg" firstAttribute="leading" secondItem="mro-th-HxE" secondAttribute="trailing" id="htM-Qx-2qc"/>
+                                <constraint firstItem="mro-th-HxE" firstAttribute="leading" secondItem="brG-eE-VEu" secondAttribute="leading" id="sa8-eb-ywE"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="hZ1-eE-IBY" firstAttribute="centerX" secondItem="aYu-ha-uGh" secondAttribute="centerX" id="0rQ-X7-HZl"/>
+                        <constraint firstItem="mro-th-HxE" firstAttribute="width" secondItem="aYu-ha-uGh" secondAttribute="width" id="DZh-mt-4xw"/>
+                        <constraint firstAttribute="bottom" secondItem="brG-eE-VEu" secondAttribute="bottom" id="LMl-6w-W13"/>
+                        <constraint firstItem="brG-eE-VEu" firstAttribute="top" secondItem="aYu-ha-uGh" secondAttribute="top" id="RAe-pQ-TRO"/>
+                        <constraint firstItem="BSq-Mj-WPg" firstAttribute="width" secondItem="aYu-ha-uGh" secondAttribute="width" id="S64-GE-dBg"/>
+                        <constraint firstItem="brG-eE-VEu" firstAttribute="width" secondItem="aYu-ha-uGh" secondAttribute="width" multiplier="2" id="oVw-Iq-gR8"/>
+                        <constraint firstItem="brG-eE-VEu" firstAttribute="leading" secondItem="aYu-ha-uGh" secondAttribute="leading" id="sdy-i3-GoC"/>
+                        <constraint firstItem="brG-eE-VEu" firstAttribute="centerY" secondItem="aYu-ha-uGh" secondAttribute="centerY" id="vkq-EQ-fSe"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="aYu-ha-uGh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cFB-Zj-Lmt"/>
+                <constraint firstAttribute="trailing" secondItem="aYu-ha-uGh" secondAttribute="trailing" id="iRk-QM-qNI"/>
+                <constraint firstAttribute="bottom" secondItem="aYu-ha-uGh" secondAttribute="bottom" id="tLS-JQ-Pak"/>
+                <constraint firstItem="aYu-ha-uGh" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="unL-CD-BQJ"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="4"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="569.5" y="554"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_LEFT.png" width="12" height="20"/>
+    </resources>
+</document>
