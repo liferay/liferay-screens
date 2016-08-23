@@ -1,13 +1,14 @@
 package com.liferay.mobile.screens.asset.display;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.asset.display.interactor.AssetDisplayInteractorImpl;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
@@ -86,10 +87,19 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 			if (listener != null) {
 				listener.onRetrieveAssetSuccess(assetEntry);
 			}
-		} else {
-			LiferayLogger.e("Error loading screenlet");
-			if (listener != null) {
-				listener.onRetrieveAssetFailure(new Exception("Error loading screenlet"));
+		}
+		else {
+			String server = getResources().getString(R.string.liferay_server);
+			String url = server + assetEntry.getUrl();
+			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+			if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+				getContext().startActivity(intent);
+			}
+			else {
+				LiferayLogger.e("Error loading screenlet");
+				if (listener != null) {
+					listener.onRetrieveAssetFailure(new Exception("Error loading screenlet"));
+				}
 			}
 		}
 	}
