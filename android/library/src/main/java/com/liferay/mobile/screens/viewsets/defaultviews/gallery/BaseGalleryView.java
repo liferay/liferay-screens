@@ -102,15 +102,9 @@ public abstract class BaseGalleryView<H extends BaseListAdapter.ViewHolder, A ex
 	private void createProgressView() {
 		uploadProgressView =
 			(UploadProgressView) LayoutInflater.from(getContext())
-				.inflate(R.layout.gallery_progress_view_default, null);
+				.inflate(R.layout.gallery_progress_view_default, this, false);
 
-		int height = getPixelsFromDp(60);
-		int margin = getPixelsFromDp(5);
-
-		LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
-		layoutParams.setMargins(margin, margin, margin, 0);
-
-		addView(uploadProgressView, layoutParams);
+		addView(uploadProgressView);
 	}
 
 	@Override
@@ -151,10 +145,6 @@ public abstract class BaseGalleryView<H extends BaseListAdapter.ViewHolder, A ex
 				choseOriginDialog.dismiss();
 			}
 		};
-	}
-
-	private int getPixelsFromDp(int dp) {
-		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, getResources().getDisplayMetrics());
 	}
 
 	private UploadProgressView uploadProgressView;
