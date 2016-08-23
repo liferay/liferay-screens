@@ -37,7 +37,19 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
-		return null;
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.BlogsEntryDisplayScreenlet, 0, 0);
+
+		int layoutId = typedArray.getResourceId(R.styleable.BlogsEntryDisplayScreenlet_layoutId, getDefaultLayoutId());
+
+		autoLoad = typedArray.getBoolean(R.styleable.BlogsEntryDisplayScreenlet_autoLoad, true);
+		entryId = typedArray.getInt(R.styleable.BlogsEntryDisplayScreenlet_entryId, 0);
+
+		View view = LayoutInflater.from(context).inflate(layoutId, null);
+
+		typedArray.recycle();
+
+		return view;
 	}
 
 	@Override
