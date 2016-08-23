@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.dlfile.display.video;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import com.liferay.mobile.screens.asset.display.interactor.AssetDisplayInteractorImpl;
 import com.liferay.mobile.screens.dlfile.display.BaseFileDisplayScreenlet;
 
 /**

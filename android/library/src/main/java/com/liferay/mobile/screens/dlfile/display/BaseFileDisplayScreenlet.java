@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
-import com.liferay.mobile.screens.asset.display.interactor.AssetDisplayInteractor;
 import com.liferay.mobile.screens.asset.display.interactor.AssetDisplayInteractorImpl;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
@@ -113,7 +112,8 @@ public abstract class BaseFileDisplayScreenlet
 			try {
 				if (fileEntry == null) {
 					load();
-				} else {
+				}
+				else {
 					loadFile();
 				}
 			} catch (Exception e) {
