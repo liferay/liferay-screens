@@ -54,11 +54,15 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 
 	@Override
 	protected AssetDisplayInteractorImpl createInteractor(String actionName) {
-		return null;
+		return new AssetDisplayInteractorImpl(this.getScreenletId());
 	}
 
 	@Override
 	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor, Object... args) {
+		switch (userActionName) {
+			case LOAD_ASSET_ACTION:
+				interactor.getAssetEntry(entryId);
+		}
 	}
 
 	@Override
