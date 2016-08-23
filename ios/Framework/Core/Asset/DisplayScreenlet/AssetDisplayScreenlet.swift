@@ -121,7 +121,6 @@ import UIKit
 		else if let screenlet = innerScreenlet as? BlogsEntryDisplayScreenlet {
 			screenlet.blogsEntry = BlogsEntry(attributes: asset.attributes)
 			screenlet.autoLoad = false
-			screenlet.load()
 		}
 
 		assetDisplayDelegate?.screenlet?(self, onConfigureScreenlet: innerScreenlet, onAsset: asset)
