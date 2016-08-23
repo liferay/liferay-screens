@@ -14,182 +14,146 @@
 import UIKit
 
 // Users and sites
-public let AssetClassNameIdGroup = "Group"
-public let AssetClassNameIdLayout = "Layout"
-public let AssetClassNameIdOrganization = "Organization"
-public let AssetClassNameIdUser = "User"
-public let AssetClassNameIdUserGroup = "UserGroup"
+public let AssetClassNameKey_Group = "Group"
+public let AssetClassNameKey_Layout = "Layout"
+public let AssetClassNameKey_Organization = "Organization"
+public let AssetClassNameKey_User = "User"
+public let AssetClassNameKey_UserGroup = "UserGroup"
 
 // Blogs
-public let AssetClassNameIdBlogsEntry = "BlogsEntry"
+public let AssetClassNameKey_BlogsEntry = "BlogsEntry"
 
 // Bookmarks
-public let AssetClassNameIdBookmarksEntry = "BookmarksEntry"
-public let AssetClassNameIdBookmarksFolder = "BookmarksFolder"
+public let AssetClassNameKey_BookmarksEntry = "BookmarksEntry"
+public let AssetClassNameKey_BookmarksFolder = "BookmarksFolder"
 
 // Document Library
-public let AssetClassNameIdDLFileEntry = "DLFileEntry"
-public let AssetClassNameIdDLFolder = "DLFolder"
-public let AssetClassNameIdDLFileEntryMetadata = "DLFileEntryMetadata"
-public let AssetClassNameIdDLFileEntryType = "DLFileEntryType"
-public let AssetClassNameIdDLFileRank = "DLFileRank"
-public let AssetClassNameIdDLFileShortcut = "DLFileShortcut"
-public let AssetClassNameIdDLFileVersion = "DLFileVersion"
+public let AssetClassNameKey_DLFileEntry = "DLFileEntry"
+public let AssetClassNameKey_DLFolder = "DLFolder"
+public let AssetClassNameKey_DLFileEntryMetadata = "DLFileEntryMetadata"
+public let AssetClassNameKey_DLFileEntryType = "DLFileEntryType"
+public let AssetClassNameKey_DLFileRank = "DLFileRank"
+public let AssetClassNameKey_DLFileShortcut = "DLFileShortcut"
+public let AssetClassNameKey_DLFileVersion = "DLFileVersion"
 
 // DDL
-public let AssetClassNameIdDDLRecord = "DDLRecord"
-public let AssetClassNameIdDDLRecordSet = "DDLRecordSet"
-public let AssetClassNameIdDDLRecordVersion = "DDLRecordVersion"
+public let AssetClassNameKey_DDLRecord = "DDLRecord"
+public let AssetClassNameKey_DDLRecordSet = "DDLRecordSet"
+public let AssetClassNameKey_DDLRecordVersion = "DDLRecordVersion"
 
 // Journal
-public let AssetClassNameIdJournalArticle = "JournalArticle"
-public let AssetClassNameIdJournalArticleImage = "JournalArticleImage"
-public let AssetClassNameIdJournalFolder = "JournalFolder"
+public let AssetClassNameKey_JournalArticle = "JournalArticle"
+public let AssetClassNameKey_JournalArticleImage = "JournalArticleImage"
+public let AssetClassNameKey_JournalFolder = "JournalFolder"
 
 // MessageBoard
-public let AssetClassNameIdMBMessage = "MBMessage"
-public let AssetClassNameIdMBThread = "MBThread"
-public let AssetClassNameIdMBCategory = "MBCategory"
-public let AssetClassNameIdMBDiscussion = "MBDiscussion"
-public let AssetClassNameIdMBMailingList = "MBMailingList"
+public let AssetClassNameKey_MBMessage = "MBMessage"
+public let AssetClassNameKey_MBThread = "MBThread"
+public let AssetClassNameKey_MBCategory = "MBCategory"
+public let AssetClassNameKey_MBDiscussion = "MBDiscussion"
+public let AssetClassNameKey_MBMailingList = "MBMailingList"
 
 // Wiki
-public let AssetClassNameIdWikiPage = "WikiPage"
-public let AssetClassNameIdWikiPageResource = "WikiPageResource"
-public let AssetClassNameIdWikiNode = "WikiNode"
+public let AssetClassNameKey_WikiPage = "WikiPage"
+public let AssetClassNameKey_WikiPageResource = "WikiPageResource"
+public let AssetClassNameKey_WikiNode = "WikiNode"
 
 
-@objc public class AssetClassNameIds : NSObject {
+@objc public class AssetClassEntry: NSObject {
 
-	private static var classNameIds: [String:Int64] = {
+	public let classNameId: Int64
+	public let className: String
 
-		// These are the default identifiers for a Liferay Portal 6.2 CE GA2
+	public init(_ classNameId: Int64, _ className: String) {
+		self.classNameId = classNameId
+		self.className = className
+
+		super.init()
+	}
+
+}
+
+@objc public class AssetClasses: NSObject {
+
+	private static var classNameEntries: [String:AssetClassEntry] = {
+
+		// These are the default values for a Liferay Portal 7.0 GA3
 		// installation.
 		// Be aware your installation probably have different identifiers, so
 		// you probably we'll need to overwrite these values like this:
-		//		AssetClassNameIds.set(AssetClassNameIdGroup, 1234)
-
+		//		AssetClassNameKey_s.setClassNameId(AssetClassNameKey_Group, 1234)
 		return [
 			// Users and sites
-			AssetClassNameIdGroup : 10001,
-			AssetClassNameIdLayout : 10002,
-			AssetClassNameIdOrganization : 10003,
-			AssetClassNameIdUser : 10005,
-			AssetClassNameIdUserGroup : 10006,
+			AssetClassNameKey_Group: AssetClassEntry(20045, "com.liferay.portal.kernel.model.Group"),
+			AssetClassNameKey_Layout: AssetClassEntry(20047, "com.liferay.portal.kernel.model.Layout"),
+			AssetClassNameKey_Organization: AssetClassEntry(20059, "com.liferay.portal.kernel.model.Organization"),
+			AssetClassNameKey_User: AssetClassEntry(20087, "com.liferay.portal.kernel.model.User"),
+			AssetClassNameKey_UserGroup: AssetClassEntry(20088, "com.liferay.portal.kernel.model.UserGroup"),
 
 			// Blogs
-			AssetClassNameIdBlogsEntry : 10007,
+			AssetClassNameKey_BlogsEntry: AssetClassEntry(20011, "com.liferay.blogs.kernel.model.BlogsEntry"),
 
 			// Bookmarks
-			AssetClassNameIdBookmarksEntry : 10008,
-			AssetClassNameIdBookmarksFolder : 10009,
+			AssetClassNameKey_BookmarksEntry: AssetClassEntry(27401, "com.liferay.bookmarks.model.BookmarksEntry"),
+			AssetClassNameKey_BookmarksFolder: AssetClassEntry(27402, "com.liferay.bookmarks.model.BookmarksFolder"),
 
 			// Document Library
-			AssetClassNameIdDLFileEntry : 10011,
-			AssetClassNameIdDLFolder: 10012,
-			AssetClassNameIdDLFileEntryMetadata : 10091,
-			AssetClassNameIdDLFileEntryType : 10092,
-			AssetClassNameIdDLFileRank : 10093,
-			AssetClassNameIdDLFileShortcut : 10094,
-			AssetClassNameIdDLFileVersion : 10095,
+			AssetClassNameKey_DLFileEntry: AssetClassEntry(20015, "com.liferay.document.library.kernel.model.DLFileEntry"),
+			AssetClassNameKey_DLFolder: AssetClassEntry(20021, "com.liferay.document.library.kernel.model.DLFolder"),
+			AssetClassNameKey_DLFileEntryMetadata: AssetClassEntry(20016, "com.liferay.document.library.kernel.model.DLFileEntryMetadata"),
+			AssetClassNameKey_DLFileEntryType: AssetClassEntry(20017, "com.liferay.document.library.kernel.model.DLFileEntryType"),
+			AssetClassNameKey_DLFileRank: AssetClassEntry(20018, "com.liferay.document.library.kernel.model.DLFileRank"),
+			AssetClassNameKey_DLFileShortcut: AssetClassEntry(20019, "com.liferay.document.library.kernel.model.DLFileShortcut"),
+			AssetClassNameKey_DLFileVersion: AssetClassEntry(20020, "com.liferay.document.library.kernel.model.DLFileVersion"),
 
 			// DDL
-			AssetClassNameIdDDLRecord : 10097,
-			AssetClassNameIdDDLRecordSet : 10098,
-			AssetClassNameIdDDLRecordVersion : 10099,
+			AssetClassNameKey_DDLRecord: AssetClassEntry(29101, "com.liferay.dynamic.data.lists.model.DDLRecord"),
+			AssetClassNameKey_DDLRecordSet: AssetClassEntry(29102, "com.liferay.dynamic.data.lists.model.DDLRecordSet"),
+			AssetClassNameKey_DDLRecordVersion: AssetClassEntry(29103, "com.liferay.dynamic.data.lists.model.DDLRecordVersion"),
 
 			// Journal
-			AssetClassNameIdJournalArticle : 10109,
-			AssetClassNameIdJournalArticleImage : 10110,
-			AssetClassNameIdJournalFolder : 10013,
+			AssetClassNameKey_JournalArticle: AssetClassEntry(29501, "com.liferay.journal.model.JournalArticle"),
+			AssetClassNameKey_JournalArticleImage: AssetClassEntry(29502, "com.liferay.journal.model.JournalArticleImage"),
+			AssetClassNameKey_JournalFolder: AssetClassEntry(29506, "com.liferay.journal.model.JournalFolder"),
 
 			// MessageBoard
-			AssetClassNameIdMBMessage : 10014,
-			AssetClassNameIdMBThread : 10015,
-			AssetClassNameIdMBCategory : 10115,
-			AssetClassNameIdMBDiscussion : 10116,
-			AssetClassNameIdMBMailingList : 10117,
+			AssetClassNameKey_MBMessage: AssetClassEntry(20032, "com.liferay.message.boards.kernel.model.MBMessage"),
+			AssetClassNameKey_MBThread: AssetClassEntry(20034, "com.liferay.message.boards.kernel.model.MBThread"),
+			AssetClassNameKey_MBCategory: AssetClassEntry(20029, "com.liferay.message.boards.kernel.model.MBCategory"),
+			AssetClassNameKey_MBDiscussion: AssetClassEntry(20030, "com.liferay.message.boards.kernel.model.MBDiscussion"),
+			AssetClassNameKey_MBMailingList: AssetClassEntry(20031, "com.liferay.message.boards.kernel.model.MBMailingList"),
 
 			// Wiki
-			AssetClassNameIdWikiPage : 10016,
-			AssetClassNameIdWikiPageResource : 10153,
-			AssetClassNameIdWikiNode : 10152
+			AssetClassNameKey_WikiPage: AssetClassEntry(27902, "com.liferay.wiki.model.WikiPage"),
+			AssetClassNameKey_WikiPageResource: AssetClassEntry(27903, "com.liferay.wiki.model.WikiPageResource"),
+			AssetClassNameKey_WikiNode: AssetClassEntry(27901, "com.liferay.wiki.model.WikiNode")
 		]
 	}()
 
-	private static var classNames: [String:String] = {
-
-		// These are the default className for a Liferay Portal 7.0 CE GA2
-		// installation.
-		// Be aware your installation probably have different className, so
-		// you probably we'll need to overwrite these values like this:
-		//		AssetClassNameIds.set(AssetClassNameIdGroup, "com.liferay.portal.kernel.model.Group")
-
-		return [
-			// Users and sites
-			AssetClassNameIdGroup : "com.liferay.portal.kernel.model.Group",
-			AssetClassNameIdLayout : "com.liferay.portal.kernel.model.Layout",
-			AssetClassNameIdOrganization : "com.liferay.portal.kernel.model.Organization",
-			AssetClassNameIdUser : "com.liferay.portal.kernel.model.User",
-			AssetClassNameIdUserGroup : "com.liferay.portal.kernel.model.UserGroup",
-
-			// Blogs
-			AssetClassNameIdBlogsEntry : "com.liferay.blogs.kernel.model.BlogsEntry",
-
-			// Bookmarks
-			AssetClassNameIdBookmarksEntry : "com.liferay.bookmarks.model.BookmarksEntry",
-			AssetClassNameIdBookmarksFolder : "com.liferay.bookmarks.model.BookmarksFolder",
-
-			// Document Library
-			AssetClassNameIdDLFileEntry : "com.liferay.document.library.kernel.model.DLFileEntry",
-			AssetClassNameIdDLFolder: "com.liferay.document.library.kernel.model.DLFolder",
-			AssetClassNameIdDLFileEntryMetadata : "com.liferay.document.library.kernel.model.DLFileEntryMetadata",
-			AssetClassNameIdDLFileEntryType : "com.liferay.document.library.kernel.model.DLFileEntryType",
-			AssetClassNameIdDLFileRank : "com.liferay.document.library.kernel.model.DLFileRank",
-			AssetClassNameIdDLFileShortcut : "com.liferay.document.library.kernel.model.DLFileShortcut",
-			AssetClassNameIdDLFileVersion : "com.liferay.document.library.kernel.model.DLFileVersion",
-
-			// DDL
-			AssetClassNameIdDDLRecord : "com.liferay.dynamic.data.lists.model.DDLRecord",
-			AssetClassNameIdDDLRecordSet : "com.liferay.dynamic.data.lists.model.DDLRecordSet",
-			AssetClassNameIdDDLRecordVersion : "com.liferay.dynamic.data.lists.model.DDLRecordVersion",
-
-			// Journal
-			AssetClassNameIdJournalArticle : "com.liferay.journal.model.JournalArticle",
-			AssetClassNameIdJournalArticleImage : "com.liferay.journal.model.JournalArticleImage",
-			AssetClassNameIdJournalFolder : "com.liferay.journal.model.JournalFolder",
-
-			// MessageBoard
-			AssetClassNameIdMBMessage : "com.liferay.message.boards.kernel.model.MBMessage",
-			AssetClassNameIdMBThread : "com.liferay.message.boards.kernel.model.MBThread",
-			AssetClassNameIdMBCategory : "com.liferay.message.boards.kernel.model.MBCategory",
-			AssetClassNameIdMBDiscussion : "com.liferay.message.boards.kernel.model.MBDiscussion",
-			AssetClassNameIdMBMailingList : "com.liferay.message.boards.kernel.model.MBMailingList",
-
-			// Wiki
-			AssetClassNameIdWikiPage : "com.liferay.wiki.model.WikiPage",
-			AssetClassNameIdWikiPageResource : "com.liferay.wiki.model.WikiPageResource",
-			AssetClassNameIdWikiNode : "com.liferay.wiki.model.WikiNode"
-		]
-	}()
-
-	public class func get(className: String) -> Int64? {
-		return classNameIds[className]
+	public class func getClassNameId(key: String) -> Int64? {
+		return classNameEntries[key]?.classNameId
 	}
 
-	public class func getClassName(className: String) -> String? {
-		return classNames[className]
+	public class func getClassName(key: String) -> String? {
+		return classNameEntries[key]?.className
 	}
 
-	public class func get(classNameId: Int64) -> String? {
-		return classNameIds.filter({$0.1 == classNameId}).first?.0
+	public class func getClassNameFromId(classNameId: Int64) -> String? {
+		return classNameEntries.filter {
+				$0.1.classNameId == classNameId
+			}
+			.first?.1.className
 	}
 
-	public class func set(className: String, newId: Int64) {
-		classNameIds[className] = newId
+	public class func set(key: String, newId: Int64) {
+		if let currentEntry = classNameEntries[key] {
+			classNameEntries[key] = AssetClassEntry(newId, currentEntry.className)
+		}
 	}
 
-	public class func set(className: String, newClassName: String) {
-		classNames[className] = newClassName
+	public class func set(key: String, newClassName: String) {
+		if let currentEntry = classNameEntries[key] {
+			classNameEntries[key] = AssetClassEntry(currentEntry.classNameId, newClassName)
+		}
 	}
 }

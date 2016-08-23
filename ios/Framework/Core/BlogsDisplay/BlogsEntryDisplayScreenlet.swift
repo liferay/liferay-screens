@@ -70,7 +70,7 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 		}
 		else {
 			interactor = LoadAssetInteractor(
-				screenlet: self, className: AssetClassNameIds.getClassName(AssetClassNameIdBlogsEntry)!, classPK: self.classPK)
+				screenlet: self, className: AssetClasses.getClassName(AssetClassNameKey_BlogsEntry)!, classPK: self.classPK)
 		}
 
 		interactor.onSuccess = {
@@ -90,10 +90,7 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 		return interactor
 	}
 
-	public func load() -> Bool? {
-		if self.blogsEntry == nil {
-			return self.performDefaultAction()
-		}
-		return nil
+	public func load() -> Bool {
+		return self.performDefaultAction()
 	}
 }
