@@ -130,6 +130,8 @@ public protocol LiferayConnectorFactory {
 		className: String,
 		ratingsGroupCount: Int32) -> RatingDeleteLiferayConnector?
 
+	func createImageGalleryDeleteConnector(imageEntryId: Int64) -> ImageGalleryDeleteConnector?
+
 }
 
 
@@ -337,6 +339,10 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 		return nil
 	}
 
+	public func createImageGalleryDeleteConnector(imageEntryId: Int64) -> ImageGalleryDeleteConnector? {
+		return nil
+	}
+	
 }
 
 
@@ -540,6 +546,10 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			classPK: classPK,
 			className: className,
 			ratingsGroupCount: ratingsGroupCount)
+	}
+
+	public func createImageGalleryDeleteConnector(imageEntryId: Int64) -> ImageGalleryDeleteConnector? {
+		return ImageGalleryDeleteConnector(imageEntryId: imageEntryId)
 	}
 
 	public func createAssetLoadByEntryIdConnector(entryId: Int64) -> AssetLoadByEntryIdLiferayConnector? {

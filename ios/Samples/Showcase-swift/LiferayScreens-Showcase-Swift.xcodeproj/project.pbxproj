@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B4E095F1D648C5100A75D92 /* UserDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4E095E1D648C5100A75D92 /* UserDisplayViewController.swift */; };
 		0BD612C91D36709E00CD4D76 /* RatingScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD612C81D36709E00CD4D76 /* RatingScreenletViewController.swift */; };
+		0B7AD4361D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7AD4351D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift */; };
 		4A244F934838CD2208782444 /* Pods_LiferayScreens_Showcase_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13D0A9CE1E740FFDD9D2884C /* Pods_LiferayScreens_Showcase_Swift.framework */; };
 		881B74411B9EEDED00EA64ED /* OfflineSyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B74401B9EEDED00EA64ED /* OfflineSyncViewController.swift */; };
-		88AE870B1D5CD34C009BE84D /* AssetDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AE870A1D5CD34C009BE84D /* AssetDisplayViewController.swift */; };
 		88CC3AFC1CC153D900E0AEB7 /* WebContentDisplayView_book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC3AF81CC153D900E0AEB7 /* WebContentDisplayView_book.swift */; };
 		88CC3AFD1CC153D900E0AEB7 /* WebContentDisplayView_book.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CC3AF91CC153D900E0AEB7 /* WebContentDisplayView_book.xib */; };
 		88CC3AFE1CC153D900E0AEB7 /* WebContentListView_book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC3AFA1CC153D900E0AEB7 /* WebContentListView_book.swift */; };
@@ -41,14 +40,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0B4E095E1D648C5100A75D92 /* UserDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDisplayViewController.swift; sourceTree = "<group>"; };
 		0BD612C81D36709E00CD4D76 /* RatingScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingScreenletViewController.swift; sourceTree = "<group>"; };
+		0B7AD4351D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryScreenletController.swift; sourceTree = "<group>"; };
 		13D0A9CE1E740FFDD9D2884C /* Pods_LiferayScreens_Showcase_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiferayScreens_Showcase_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F7AD30F6279ED703F034F12 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		2B4C45252D99EAFB09DDD12A /* Pods-LiferayScreens-Showcase-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreens-Showcase-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreens-Showcase-Swift/Pods-LiferayScreens-Showcase-Swift.release.xcconfig"; sourceTree = "<group>"; };
 		869461C649CEAF0B480B4E18 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		881B74401B9EEDED00EA64ED /* OfflineSyncViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfflineSyncViewController.swift; sourceTree = "<group>"; };
-		88AE870A1D5CD34C009BE84D /* AssetDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayViewController.swift; sourceTree = "<group>"; };
 		88CC3AF81CC153D900E0AEB7 /* WebContentDisplayView_book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayView_book.swift; sourceTree = "<group>"; };
 		88CC3AF91CC153D900E0AEB7 /* WebContentDisplayView_book.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebContentDisplayView_book.xib; sourceTree = "<group>"; };
 		88CC3AFA1CC153D900E0AEB7 /* WebContentListView_book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentListView_book.swift; sourceTree = "<group>"; };
@@ -178,7 +176,6 @@
 		88DE2A9E1AD3E01400714701 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				88AE870A1D5CD34C009BE84D /* AssetDisplayViewController.swift */,
 				88DE2AA31AD3EFEF00714701 /* AssetListScreenletViewController.swift */,
 				88DE2AA41AD3EFEF00714701 /* DDLFormScreenletViewController.swift */,
 				88DE2AA51AD3EFEF00714701 /* DDLListScreenletViewController.swift */,
@@ -191,7 +188,7 @@
 				88DE2AA91AD3EFEF00714701 /* UserPortraitScreenletViewController.swift */,
 				88DE2AAA1AD3EFEF00714701 /* WebContentDisplayScreenletViewController.swift */,
 				88CC3B081CC5289D00E0AEB7 /* WebContentListScreenletViewController.swift */,
-				0B4E095E1D648C5100A75D92 /* UserDisplayViewController.swift */,
+				0B7AD4351D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -232,6 +229,7 @@
 				TargetAttributes = {
 					88DE2A6B1AD3DDE600714701 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = JWC89658Q6;
 					};
 				};
 			};
@@ -352,15 +350,14 @@
 				88CC3B091CC5289D00E0AEB7 /* WebContentListScreenletViewController.swift in Sources */,
 				88CC3B021CC158C800E0AEB7 /* HtmlTableViewCell.swift in Sources */,
 				0BD612C91D36709E00CD4D76 /* RatingScreenletViewController.swift in Sources */,
-				0B4E095F1D648C5100A75D92 /* UserDisplayViewController.swift in Sources */,
 				88DE2AAE1AD3EFEF00714701 /* ForgotPasswordScreenletViewController.swift in Sources */,
+				0B7AD4361D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift in Sources */,
 				88DE2AAD1AD3EFEF00714701 /* DDLListScreenletViewController.swift in Sources */,
 				88DE2AAB1AD3EFEF00714701 /* AssetListScreenletViewController.swift in Sources */,
 				88DE2A721AD3DDE600714701 /* AppDelegate.swift in Sources */,
 				88DE2AAC1AD3EFEF00714701 /* DDLFormScreenletViewController.swift in Sources */,
 				88DE2AA01AD3E01400714701 /* HomeLoginViewController.swift in Sources */,
 				88DE2AB01AD3EFEF00714701 /* SignUpScreenletViewController.swift in Sources */,
-				88AE870B1D5CD34C009BE84D /* AssetDisplayViewController.swift in Sources */,
 				88DE2AB41AD3F00B00714701 /* UIImageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -477,9 +474,10 @@
 			baseConfigurationReference = B9F27EE5D1E22F881E8B3B99 /* Pods-LiferayScreens-Showcase-Swift.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "LiferayScreens-Showcase-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.LiferayScreens-Showcase-Swifta";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -489,9 +487,10 @@
 			baseConfigurationReference = 2B4C45252D99EAFB09DDD12A /* Pods-LiferayScreens-Showcase-Swift.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "LiferayScreens-Showcase-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.LiferayScreens-Showcase-Swifta";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

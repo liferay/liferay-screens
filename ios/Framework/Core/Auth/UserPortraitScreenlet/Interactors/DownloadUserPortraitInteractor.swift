@@ -240,10 +240,12 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 	}
 
 	private func createConnectorFor(attributes attributes: [String:AnyObject]?) -> ServerConnector? {
+		let portraitEntry = attributes?["portraitId"]
+		let userEntry = attributes?["userId"]
 		if let attributes = attributes,
-				portraitId = attributes["portraitId"]?.description.asLong,
+				portraitId = portraitEntry?.description.asLong,
 				uuid = attributes["uuid"] as? String,
-				userId = attributes["userId"]?.description.asLong {
+				userId = userEntry?.description.asLong {
 
 			resultUserId = userId
 

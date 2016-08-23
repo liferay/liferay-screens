@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.liferay.mobile.pushnotifications">
 
-	<uses-permission android:name="android.permission.WAKE_LOCK" />
-	<uses-permission android:name="android.permission.CAMERA" />
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+	<uses-permission android:name="android.permission.WAKE_LOCK"/>
+	<uses-permission android:name="android.permission.CAMERA"/>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
 
 	<application
 		android:allowBackup="true"
@@ -17,28 +17,28 @@
 			android:name=".activities.LoginActivity"
 			android:label="@string/push_example">
 			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
+				<action android:name="android.intent.action.MAIN"/>
+				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
 		<activity
 			android:name=".activities.NotificationsActivity"
-			android:label="@string/notifications_activity" />
+			android:label="@string/notifications_activity"/>
 		<activity
 			android:name=".activities.NotificationDetailActivity"
-			android:label="@string/notification_detail" />
+			android:label="@string/notification_detail"/>
 
 		<receiver
 			android:name=".notification.PushReceiver"
 			android:permission="com.google.android.c2dm.permission.SEND">
 			<intent-filter>
-				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+				<action android:name="com.google.android.c2dm.intent.RECEIVE"/>
 
-				<category android:name="com.liferay.mobile.push" />
+				<category android:name="com.liferay.mobile.push"/>
 			</intent-filter>
 		</receiver>
 
-		<service android:name=".notification.PushService" />
+		<service android:name=".notification.PushService"/>
 
 	</application>
 

@@ -26,6 +26,10 @@
 	<!--WebContentDisplayScreenlet values-->
 	<string name="liferay_article_id">63864</string>
 
+	<!--CommentListScreenlet values-->
+	<string name="liferay_comment_asset_className">com.liferay.blogs.kernel.model.BlogsEntry</string>
+	<string name="liferay_comment_asset_id">38699</string>
+
 	<!--RatingScreenlet-->
 	<string name="liferay_rating_thumb_asset_id">31869</string>
 	<string name="liferay_rating_star_asset_id">32049</string>

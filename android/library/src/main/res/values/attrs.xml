@@ -30,6 +30,8 @@
 	<attr format="integer" name="pageSize"/>
 	<attr format="string" name="labelFields"/>
 	<attr format="string" name="structureId"/>
+	<attr format="string" name="classPK"/>
+	<attr format="string" name="className"/>
 	<attr format="boolean" name="editable"/>
 	<attr format="string" name="obcClassName"/>
 	<attr format="string" name="entryId"/>
@@ -45,6 +47,37 @@
 		<attr name="pageSize"/>
 		<attr name="labelFields"/>
 		<attr name="obcClassName"/>
+	</declare-styleable>
+
+	<declare-styleable name="CommentAddScreenlet">
+		<attr name="layoutId"/>
+		<attr name="groupId"/>
+		<attr name="classPK"/>
+		<attr name="className"/>
+	</declare-styleable>
+
+	<declare-styleable name="CommentDisplayScreenlet">
+		<attr name="layoutId"/>
+		<attr name="autoLoad"/>
+		<attr name="groupId"/>
+		<attr name="offlinePolicy"/>
+		<attr format="string" name="commentId"/>
+		<attr name="classPK"/>
+		<attr name="className"/>
+		<attr name="editable"/>
+	</declare-styleable>
+
+	<declare-styleable name="CommentListScreenlet">
+		<attr name="layoutId"/>
+		<attr name="autoLoad"/>
+		<attr name="groupId"/>
+		<attr name="offlinePolicy"/>
+		<attr name="classPK"/>
+		<attr name="className"/>
+		<attr name="firstPageSize"/>
+		<attr name="pageSize"/>
+		<attr name="labelFields"/>
+		<attr name="editable"/>
 	</declare-styleable>
 
 	<declare-styleable name="DDLFormScreenlet">
@@ -153,9 +186,9 @@
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="editable"/>
+		<attr name="className"/>
+		<attr name="classPK"/>
 		<attr name="entryId"/>
-		<attr format="string" name="className"/>
-		<attr format="string" name="classPK"/>
 		<attr format="integer" name="ratingsGroupCount"/>
 	</declare-styleable>
 

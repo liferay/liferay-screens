@@ -178,7 +178,7 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 			let key = cacheKey(loadCon)
 			cacheManager.getSome(
 				collection: ScreenletName(screenlet!.dynamicType),
-				keys: ["\(key)-\(page)", "\(key)-\(page)-count"]) {
+				keys: ["\(key)-\(page)", "\(key)-count"]) {
 					
 					loadCon.resultPageContent = $0.first as? [[String:AnyObject]]
 					if $0.count > 1 {
@@ -213,7 +213,7 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 			if let rowCount = loadCon.resultRowCount {
 				cacheManager.setClean(
 					collection: ScreenletName(screenlet!.dynamicType),
-					key: "\(key)-\(page)-count",
+					key: "\(key)-count",
 					value: rowCount,
 					attributes: [:])
 			}
