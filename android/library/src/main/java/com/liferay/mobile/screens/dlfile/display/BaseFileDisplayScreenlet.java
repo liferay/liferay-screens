@@ -59,6 +59,9 @@ public abstract class BaseFileDisplayScreenlet
 		autoLoad = typedArray.getBoolean(R.styleable.AssetDisplayScreenlet_autoLoad, true);
 		entryId = typedArray.getInt(R.styleable.AssetDisplayScreenlet_entryId, 0);
 
+		className = typedArray.getString(R.styleable.AssetDisplayScreenlet_className);
+		classPK = typedArray.getInt(R.styleable.AssetDisplayScreenlet_classPK, 0);
+
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
 
 		typedArray.recycle();
@@ -94,7 +97,11 @@ public abstract class BaseFileDisplayScreenlet
 	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor, Object... args) {
 		switch (userActionName) {
 			case LOAD_ASSET_ACTION:
-				interactor.getAssetEntry(entryId);
+				if (entryId != 0) {
+					interactor.getAssetEntry(entryId);
+				} else {
+					interactor.getAssetEntry(className, classPK);
+				}
 		}
 	}
 
@@ -110,7 +117,7 @@ public abstract class BaseFileDisplayScreenlet
 	protected void autoLoad() {
 		if (SessionContext.isLoggedIn()) {
 			try {
-				if (fileEntry == null) {
+				if (fileEntry == null || (className != null && classPK != 0)) {
 					load();
 				} else {
 					loadFile();
@@ -146,8 +153,24 @@ public abstract class BaseFileDisplayScreenlet
 		return entryId;
 	}
 
-	public void setEntryId(int entryId) {
+	public void setEntryId(long entryId) {
 		this.entryId = entryId;
+	}
+
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	public long getClassPK() {
+		return classPK;
+	}
+
+	public void setClassPK(long classPK) {
+		this.classPK = classPK;
 	}
 
 	public void setListener(AssetDisplayListener listener) {
@@ -164,6 +187,8 @@ public abstract class BaseFileDisplayScreenlet
 
 	protected boolean autoLoad;
 	protected long entryId;
+	protected long classPK;
+	protected String className;
 	protected AssetDisplayListener listener;
 	protected FileEntry fileEntry;
 }

@@ -57,6 +57,9 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		autoLoad = typedArray.getBoolean(R.styleable.AssetDisplayScreenlet_autoLoad, true);
 		entryId = typedArray.getInt(R.styleable.AssetDisplayScreenlet_entryId, 0);
 
+		className = typedArray.getString(R.styleable.AssetDisplayScreenlet_className);
+		classPK = typedArray.getInt(R.styleable.AssetDisplayScreenlet_classPK, 0);
+
 		layouts = new HashMap<>();
 		layouts.put(ImageDisplayScreenlet.class.getName(),
 			typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_imagelayoutId, R.layout.image_display_default));
@@ -131,14 +134,20 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 
 	//TODO now the autoload is required to be able to load child screenlets
 	protected void autoLoad() {
-		if (entryId != 0 && SessionContext.isLoggedIn()) {
-			loadAsset();
+		if (SessionContext.isLoggedIn()) {
+			if (entryId != 0 || (className != null && classPK != 0)) {
+				loadAsset();
+			}
 		}
 	}
 
 	@Override
 	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor, Object... args) {
-		interactor.getAssetEntry(entryId);
+		if (entryId != 0) {
+			interactor.getAssetEntry(entryId);
+		} else {
+			interactor.getAssetEntry(className, classPK);
+		}
 	}
 
 	@Override
@@ -170,6 +179,22 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		this.entryId = entryId;
 	}
 
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	public long getClassPK() {
+		return classPK;
+	}
+
+	public void setClassPK(long classPK) {
+		this.classPK = classPK;
+	}
+
 	public void setListener(AssetDisplayListener listener) {
 		this.listener = listener;
 	}
@@ -181,5 +206,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	private boolean autoLoad;
 	private HashMap<String, Integer> layouts;
 	private long entryId;
+	private long classPK;
+	private String className;
 	private AssetDisplayListener listener;
 }

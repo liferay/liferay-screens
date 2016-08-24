@@ -55,6 +55,9 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 		autoLoad = typedArray.getBoolean(R.styleable.BlogsEntryDisplayScreenlet_autoLoad, true);
 		entryId = typedArray.getInt(R.styleable.BlogsEntryDisplayScreenlet_entryId, 0);
 
+		className = typedArray.getString(R.styleable.AssetDisplayScreenlet_className);
+		classPK = typedArray.getInt(R.styleable.AssetDisplayScreenlet_classPK, 0);
+
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
 
 		typedArray.recycle();
@@ -71,7 +74,11 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor, Object... args) {
 		switch (userActionName) {
 			case LOAD_BLOGS_ACTION:
-				interactor.getAssetEntry(entryId);
+				if (entryId != 0) {
+					interactor.getAssetEntry(entryId);
+				} else {
+					interactor.getAssetEntry(className, classPK);
+				}
 		}
 	}
 
@@ -106,7 +113,7 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 	protected void autoLoad() {
 		if (SessionContext.isLoggedIn()) {
 			try {
-				if (blogsEntry == null) {
+				if (blogsEntry == null || (className != null && classPK != 0)) {
 					load();
 				}
 				else {
@@ -130,6 +137,22 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 		return blogsEntry;
 	}
 
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	public long getClassPK() {
+		return classPK;
+	}
+
+	public void setClassPK(long classPK) {
+		this.classPK = classPK;
+	}
+
 	public void setBlogsEntry(BlogsEntry blogsEntry) {
 		this.blogsEntry = blogsEntry;
 	}
@@ -150,8 +173,10 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 		this.listener = listener;
 	}
 
-	protected long entryId;
-	protected boolean autoLoad;
-	protected AssetDisplayListener listener;
-	protected BlogsEntry blogsEntry;
+	private long entryId;
+	private String className;
+	private long classPK;
+	private boolean autoLoad;
+	private AssetDisplayListener listener;
+	private BlogsEntry blogsEntry;
 }

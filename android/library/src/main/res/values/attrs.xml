@@ -33,6 +33,8 @@
 	<attr format="boolean" name="editable"/>
 	<attr format="string" name="obcClassName"/>
 	<attr format="string" name="entryId"/>
+	<attr format="string" name="className"/>
+	<attr format="string" name="classPK"/>
 
 	<declare-styleable name="AssetListScreenlet">
 		<attr name="layoutId"/>
@@ -154,8 +156,8 @@
 		<attr name="autoLoad"/>
 		<attr name="editable"/>
 		<attr name="entryId"/>
-		<attr format="string" name="className"/>
-		<attr format="string" name="classPK"/>
+		<attr name="className"/>
+		<attr name="classPK"/>
 		<attr format="integer" name="ratingsGroupCount"/>
 	</declare-styleable>
 
@@ -163,6 +165,8 @@
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="entryId"/>
+		<attr name="className"/>
+		<attr name="classPK"/>
 		<attr format="reference" name="imagelayoutId"/>
 		<attr format="reference" name="videolayoutId"/>
 		<attr format="reference" name="audiolayoutId"/>
@@ -174,29 +178,39 @@
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="entryId"/>
+		<attr name="className"/>
+		<attr name="classPK"/>
 	</declare-styleable>
 
 	<declare-styleable name="VideoDisplayScreenlet">
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="entryId"/>
+		<attr name="className"/>
+		<attr name="classPK"/>
 	</declare-styleable>
 
 	<declare-styleable name="AudioDisplayScreenlet">
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="entryId"/>
+		<attr name="className"/>
+		<attr name="classPK"/>
 	</declare-styleable>
 
 	<declare-styleable name="PdfDisplayScreenlet">
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="entryId"/>
+		<attr name="className"/>
+		<attr name="classPK"/>
 	</declare-styleable>
 
 	<declare-styleable name="BlogsEntryDisplayScreenlet">
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="entryId"/>
+		<attr name="className"/>
+		<attr name="classPK"/>
 	</declare-styleable>
 </resources>
