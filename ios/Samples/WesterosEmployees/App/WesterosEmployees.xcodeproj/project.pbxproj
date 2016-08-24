@@ -67,6 +67,12 @@
 		0B35AF6F1D6C3614002E3D2F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35AF6E1D6C3614002E3D2F /* HomeViewController.swift */; };
 		0B35AF711D6C361C002E3D2F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35AF701D6C361C002E3D2F /* AuthViewController.swift */; };
 		0B35AF731D6C4678002E3D2F /* liferay-server-context.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B35AF721D6C4678002E3D2F /* liferay-server-context.plist */; };
+		0B9309471D6DAC7E003824D6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9309451D6DAC7E003824D6 /* CardView.swift */; };
+		0B9309481D6DAC7E003824D6 /* CardDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9309461D6DAC7E003824D6 /* CardDeckView.swift */; };
+		0B93094A1D6DAC91003824D6 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9309491D6DAC91003824D6 /* Resources.swift */; };
+		0B93094C1D6DAC9A003824D6 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B93094B1D6DAC9A003824D6 /* CardViewController.swift */; };
+		0B93094F1D6DACD9003824D6 /* Westeros+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B93094E1D6DACD9003824D6 /* Westeros+Array.swift */; };
+		0B9309511D6DB0D9003824D6 /* Westeros+CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9309501D6DB0D9003824D6 /* Westeros+CGRect.swift */; };
 		4A05F25992DBA9E39C52A44F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4E72B9B4122BAE349CEF7 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -134,6 +140,12 @@
 		0B35AF6E1D6C3614002E3D2F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0B35AF701D6C361C002E3D2F /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		0B35AF721D6C4678002E3D2F /* liferay-server-context.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-server-context.plist"; sourceTree = "<group>"; };
+		0B9309451D6DAC7E003824D6 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		0B9309461D6DAC7E003824D6 /* CardDeckView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDeckView.swift; sourceTree = "<group>"; };
+		0B9309491D6DAC91003824D6 /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		0B93094B1D6DAC9A003824D6 /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
+		0B93094E1D6DACD9003824D6 /* Westeros+Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Westeros+Array.swift"; path = "../Westeros+Array.swift"; sourceTree = "<group>"; };
+		0B9309501D6DB0D9003824D6 /* Westeros+CGRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Westeros+CGRect.swift"; sourceTree = "<group>"; };
 		1824BD97996F1C2F00DAA278 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		67B4E72B9B4122BAE349CEF7 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1333B220C6252F61EB4CA33 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -173,6 +185,8 @@
 		0B0A22961D6B0CDA0061B50D /* WesterosEmployees */ = {
 			isa = PBXGroup;
 			children = (
+				0B93094D1D6DACBA003824D6 /* Extensions */,
+				0B9309441D6DAC5F003824D6 /* CardFramework */,
 				0B35AF651D6C34D3002E3D2F /* StoryBoards */,
 				0B0A23441D6B22100061B50D /* Misc */,
 				0B0A23521D6B221B0061B50D /* ViewControllers */,
@@ -272,6 +286,7 @@
 		0B0A23441D6B22100061B50D /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				0B9309491D6DAC91003824D6 /* Resources.swift */,
 				0B0A23461D6B22100061B50D /* KeyboardListener.swift */,
 			);
 			path = Misc;
@@ -340,6 +355,25 @@
 				0B35AF6B1D6C359D002E3D2F /* Auth.storyboard */,
 			);
 			name = StoryBoards;
+			sourceTree = "<group>";
+		};
+		0B9309441D6DAC5F003824D6 /* CardFramework */ = {
+			isa = PBXGroup;
+			children = (
+				0B9309451D6DAC7E003824D6 /* CardView.swift */,
+				0B9309461D6DAC7E003824D6 /* CardDeckView.swift */,
+				0B93094B1D6DAC9A003824D6 /* CardViewController.swift */,
+			);
+			path = CardFramework;
+			sourceTree = "<group>";
+		};
+		0B93094D1D6DACBA003824D6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0B93094E1D6DACD9003824D6 /* Westeros+Array.swift */,
+				0B9309501D6DB0D9003824D6 /* Westeros+CGRect.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		1074EBBF0286CC5E94EB3099 /* Frameworks */ = {
@@ -526,6 +560,8 @@
 			files = (
 				0B35AF6F1D6C3614002E3D2F /* HomeViewController.swift in Sources */,
 				0B0A23691D6B221B0061B50D /* SignUpViewController.swift in Sources */,
+				0B9309481D6DAC7E003824D6 /* CardDeckView.swift in Sources */,
+				0B93094C1D6DAC9A003824D6 /* CardViewController.swift in Sources */,
 				0B0A23121D6B1D840061B50D /* SignUpView_westeros.swift in Sources */,
 				0B0A231A1D6B1D840061B50D /* WesterosThemeConstants.swift in Sources */,
 				0B0A23191D6B1D840061B50D /* WesterosProgressPresenter.swift in Sources */,
@@ -538,6 +574,10 @@
 				0B0A22981D6B0CDA0061B50D /* AppDelegate.swift in Sources */,
 				0B0A23141D6B1D840061B50D /* SignUpView_westeros_edit.swift in Sources */,
 				0B0A23181D6B1D840061B50D /* BorderedTextField.swift in Sources */,
+				0B93094A1D6DAC91003824D6 /* Resources.swift in Sources */,
+				0B9309511D6DB0D9003824D6 /* Westeros+CGRect.swift in Sources */,
+				0B93094F1D6DACD9003824D6 /* Westeros+Array.swift in Sources */,
+				0B9309471D6DAC7E003824D6 /* CardView.swift in Sources */,
 				0B35AF711D6C361C002E3D2F /* AuthViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
