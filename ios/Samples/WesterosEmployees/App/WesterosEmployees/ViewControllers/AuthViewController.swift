@@ -17,12 +17,9 @@ import LiferayScreens
 class AuthViewController: UIViewController, LoginScreenletDelegate {
 
 	@IBOutlet var cardDeck: CardDeckView!
-	@IBOutlet weak var signInCard: CardView!
-	@IBOutlet weak var signUpCard: CardView!
 
 	var signInController: SignInViewController?
 	var signUpController: SignUpViewController?
-
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -31,30 +28,20 @@ class AuthViewController: UIViewController, LoginScreenletDelegate {
 			self.dismissViewControllerAnimated(true, completion: nil)
 		}
 
-		signInCard.frame.size.height = signInCard.normalHeight - signInCard.minimizedHeight
+		cardDeck.addCards(["Sign In", "Sign Up"])
 
-		signInController = SignInViewController(card: signInCard)
+		signInController = SignInViewController(card: cardDeck.cards[0])
 		signInController!.onDone = onDone
 
-		cardDeck.topCard = signInCard
-
-		signUpCard.normalHeight = cardDeck.frame.size.height - 50
-
-		signUpCard.frame.size.height = signUpCard.normalHeight - signUpCard.minimizedHeight
-
-		signUpController = SignUpViewController(card: signUpCard)
+		signUpController = SignUpViewController(card: cardDeck.cards[1])
 		signUpController!.onDone = onDone
 
-		cardDeck.bottomCard = signUpCard
-
-		signUpCard.currentState = .Minimized
-
-		signInCard.currentState = .Hidden
-		signInCard.resetToCurrentState()
+		cardDeck.cards[0].currentState = .Hidden
+		cardDeck.cards[0].resetToCurrentState()
 	}
 
 	override func viewWillAppear(animated: Bool) {
-		self.signInCard.nextState = .Minimized
-		self.signInCard.changeToNextState(nil, delay: 0.5)
+		self.cardDeck.cards[0].nextState = .Minimized
+		self.cardDeck.cards[0].changeToNextState(nil, delay: 0.5)
 	}
 }
