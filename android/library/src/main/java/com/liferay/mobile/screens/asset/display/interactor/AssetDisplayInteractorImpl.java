@@ -44,8 +44,7 @@ public class AssetDisplayInteractorImpl extends BaseRemoteInteractor<AssetDispla
 
 		if (event.isFailed()) {
 			getListener().onRetrieveAssetFailure(event.getException());
-		}
-		else {
+		} else {
 			try {
 				Map<String, Object> map = JSONUtil.toMap(event.getJSONObject());
 				AssetEntry assetEntry = AssetFactory.createInstance(map);

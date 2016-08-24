@@ -112,8 +112,7 @@ public abstract class BaseFileDisplayScreenlet
 			try {
 				if (fileEntry == null) {
 					load();
-				}
-				else {
+				} else {
 					loadFile();
 				}
 			} catch (Exception e) {

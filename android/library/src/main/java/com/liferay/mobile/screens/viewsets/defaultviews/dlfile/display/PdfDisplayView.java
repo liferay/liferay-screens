@@ -102,8 +102,7 @@ public class PdfDisplayView extends RelativeLayout implements BaseFileDisplayVie
 	private void render() {
 		if (Build.VERSION.SDK_INT >= 21) {
 			renderInLollipop();
-		}
-		else {
+		} else {
 			String server = getResources().getString(R.string.liferay_server);
 			getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(server + fileEntry.getUrl())));
 		}
@@ -113,11 +112,9 @@ public class PdfDisplayView extends RelativeLayout implements BaseFileDisplayVie
 	public void onClick(View v) {
 		if (v.getId() == R.id.liferay_previous_page) {
 			changeCurrentPage(-1);
-		}
-		else if (v.getId() == R.id.liferay_next_page) {
+		} else if (v.getId() == R.id.liferay_next_page) {
 			changeCurrentPage(+1);
-		}
-		else if (v.getId() == R.id.liferay_go_to_page_submit) {
+		} else if (v.getId() == R.id.liferay_go_to_page_submit) {
 			String number = goToPage.getText().toString();
 			if (!number.isEmpty()) {
 				changeCurrentPage(Integer.parseInt(number) - 1 - currentPage);
@@ -132,8 +129,7 @@ public class PdfDisplayView extends RelativeLayout implements BaseFileDisplayVie
 
 		if (currentPage < 0) {
 			currentPage = 0;
-		}
-		else if (currentPage > renderer.getPageCount() - 1) {
+		} else if (currentPage > renderer.getPageCount() - 1) {
 			currentPage = renderer.getPageCount() - 1;
 		}
 
@@ -153,8 +149,7 @@ public class PdfDisplayView extends RelativeLayout implements BaseFileDisplayVie
 			intent.putExtra(DownloadService.LOCAL_PATH, file.getAbsolutePath());
 			intent.putExtra(DownloadService.RESULT_RECEIVER, new DownloadReceiver(new Handler()));
 			getContext().startService(intent);
-		}
-		else {
+		} else {
 			renderPdfInImageView(file);
 		}
 	}
@@ -170,29 +165,6 @@ public class PdfDisplayView extends RelativeLayout implements BaseFileDisplayVie
 		renderedPage.close();
 
 		hideProgressBar();
-	}
-
-	private class DownloadReceiver extends ResultReceiver {
-
-		public DownloadReceiver(Handler handler) {
-			super(handler);
-		}
-
-		protected void onReceiveResult(int resultCode, Bundle resultData) {
-			super.onReceiveResult(resultCode, resultData);
-
-			if (resultCode == DownloadService.UPDATE_PROGRESS) {
-				int progress = resultData.getInt(DownloadService.FILE_DOWNLOAD_PROGRESS);
-				progressText.setText(String.valueOf(progress).concat("%"));
-				progressBarHorizontal.setProgress(progress);
-			}
-			else if (resultCode == DownloadService.FINISHED_DOWNLOAD) {
-				renderPdfInImageView(file);
-			}
-			else {
-				//TODO launch error
-			}
-		}
 	}
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -237,6 +209,26 @@ public class PdfDisplayView extends RelativeLayout implements BaseFileDisplayVie
 		this.screenlet = screenlet;
 	}
 
+	private class DownloadReceiver extends ResultReceiver {
+
+		public DownloadReceiver(Handler handler) {
+			super(handler);
+		}
+
+		protected void onReceiveResult(int resultCode, Bundle resultData) {
+			super.onReceiveResult(resultCode, resultData);
+
+			if (resultCode == DownloadService.UPDATE_PROGRESS) {
+				int progress = resultData.getInt(DownloadService.FILE_DOWNLOAD_PROGRESS);
+				progressText.setText(String.valueOf(progress).concat("%"));
+				progressBarHorizontal.setProgress(progress);
+			} else if (resultCode == DownloadService.FINISHED_DOWNLOAD) {
+				renderPdfInImageView(file);
+			} else {
+				//TODO launch error
+			}
+		}
+	}
 	private int currentPage;
 	private BaseScreenlet screenlet;
 	private Button nextPage;

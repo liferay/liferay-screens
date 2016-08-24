@@ -55,14 +55,11 @@ public class AssetDisplayFactory {
 	private BaseFileDisplayScreenlet getDLFileEntryScreenlet(Context context, String mimeType) {
 		if (is(mimeType, R.array.image_mime_types, context)) {
 			return new ImageDisplayScreenlet(context);
-		}
-		else if (is(mimeType, R.array.video_mime_types, context)) {
+		} else if (is(mimeType, R.array.video_mime_types, context)) {
 			return new VideoDisplayScreenlet(context);
-		}
-		else if (is(mimeType, R.array.audio_mime_types, context)) {
+		} else if (is(mimeType, R.array.audio_mime_types, context)) {
 			return new AudioDisplayScreenlet(context);
-		}
-		else if (is(mimeType, R.array.pdf_mime_types, context)) {
+		} else if (is(mimeType, R.array.pdf_mime_types, context)) {
 			return new PdfDisplayScreenlet(context);
 		}
 		return null;

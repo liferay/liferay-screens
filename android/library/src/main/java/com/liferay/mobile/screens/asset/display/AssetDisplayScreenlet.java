@@ -67,7 +67,8 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		layouts.put(PdfDisplayScreenlet.class.getName(),
 			typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_pdflayoutId, R.layout.pdf_display_default));
 		layouts.put(BlogsEntryDisplayScreenlet.class.getName(),
-			typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_blogsLayoutId, R.layout.blogsentry_display_default));
+			typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_blogsLayoutId,
+				R.layout.blogsentry_display_default));
 
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
 
@@ -90,15 +91,13 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 			if (listener != null) {
 				listener.onRetrieveAssetSuccess(assetEntry);
 			}
-		}
-		else {
+		} else {
 			String server = getResources().getString(R.string.liferay_server);
 			String url = server + assetEntry.getUrl();
 			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 			if (intent.resolveActivity(getContext().getPackageManager()) != null) {
 				getContext().startActivity(intent);
-			}
-			else {
+			} else {
 				LiferayLogger.e("Error loading screenlet");
 				if (listener != null) {
 					listener.onRetrieveAssetFailure(new Exception("Error loading screenlet"));
