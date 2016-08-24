@@ -12,6 +12,7 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.blogs.BlogsEntry;
 import com.liferay.mobile.screens.blogs.BlogsEntryDisplayViewModel;
+import com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
@@ -70,6 +71,8 @@ public class BlogsEntryView extends RelativeLayout implements BlogsEntryDisplayV
 
 		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
 
+		imageDisplayScreenlet = (ImageDisplayScreenlet) findViewById(R.id.liferay_blog_image);
+
 		userPortraitScreenlet = (UserPortraitScreenlet) findViewById(R.id.user_portrait_screenlet);
 
 		userName = (TextView) findViewById(R.id.liferay_blog_username);
@@ -88,6 +91,14 @@ public class BlogsEntryView extends RelativeLayout implements BlogsEntryDisplayV
 	}
 
 	private void loadBlogsEntry() {
+		long coverImageId = blogsEntry.getCoverImage();
+		if (coverImageId != 0) {
+			imageDisplayScreenlet.setClassName("com.liferay.document.library.kernel.model.DLFileEntry");
+			imageDisplayScreenlet.setClassPK(coverImageId);
+			imageDisplayScreenlet.load();
+			imageDisplayScreenlet.setVisibility(VISIBLE);
+		}
+
 		userPortraitScreenlet.setUserId(blogsEntry.getUserId());
 		userPortraitScreenlet.setEditable(false);
 		userPortraitScreenlet.load();
@@ -109,4 +120,5 @@ public class BlogsEntryView extends RelativeLayout implements BlogsEntryDisplayV
 	private TextView userName;
 	private TextView date;
 	private UserPortraitScreenlet userPortraitScreenlet;
+	private ImageDisplayScreenlet imageDisplayScreenlet;
 }

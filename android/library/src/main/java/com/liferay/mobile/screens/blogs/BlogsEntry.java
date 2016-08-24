@@ -35,6 +35,11 @@ public class BlogsEntry extends AssetEntry {
 		return dateToString(displayDate);
 	}
 
+	public long getCoverImage() {
+		String cover = getBlogsEntry().get("coverImageFileEntryId").toString();
+		return Long.valueOf(cover);
+	}
+
 	public long getUserId() {
 		return Long.valueOf(getBlogsEntry().get("userId").toString());
 	}

@@ -17,6 +17,15 @@
 			android:layout_height="wrap_content"
 			>
 
+			<com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet
+				android:id="@+id/liferay_blog_image"
+				android:layout_width="match_parent"
+				android:layout_height="150dp"
+				android:layout_alignParentTop="true"
+				android:visibility="gone"
+				liferay:autoLoad="false"
+				/>
+
 			<ProgressBar
 				android:id="@+id/liferay_progress"
 				android:layout_width="wrap_content"
@@ -29,6 +38,7 @@
 				android:id="@+id/user_portrait_screenlet"
 				android:layout_width="100dp"
 				android:layout_height="100dp"
+				android:layout_below="@id/liferay_blog_image"
 				android:layout_margin="10sp"
 				liferay:autoLoad="false"
 				liferay:editable="true"
