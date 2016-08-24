@@ -15,23 +15,10 @@ import UIKit
 import LiferayScreens
 
 
-class SignInViewController: CardViewController,
-		LoginScreenletDelegate,
-		ForgotPasswordScreenletDelegate,
-		KeyboardListener {
+class SignInViewController: CardViewController, LoginScreenletDelegate, KeyboardListener {
 
 	//MARK: Outlets
-
-	@IBOutlet weak var scroll: UIScrollView!
-	@IBOutlet weak var forgotTitle: UIButton!
-	@IBOutlet weak var backArrow: UIImageView!
-
-	@IBOutlet weak var signInPage: UIView!
-	@IBOutlet weak var forgotPage: UIView!
-
 	@IBOutlet weak var loginScreenlet: LoginScreenlet!
-	@IBOutlet weak var forgotPasswordScreenlet: ForgotPasswordScreenlet!
-
 
 	//MARK: Init methods
 
@@ -50,66 +37,14 @@ class SignInViewController: CardViewController,
 		super.init(coder: aDecoder)
 	}
 
+	@IBAction func forgotPasswordAction() {
+	}
+
 
 	//MARK: UIViewController
 
-	override func viewDidLayoutSubviews() {
-		super.viewDidLayoutSubviews()
-
-		scroll.contentSize = CGSize(width: scroll.frame.width * 2, height: scroll.frame.height)
-	}
-
 	override func viewDidLoad() {
-		scroll.contentSize = CGSizeMake(scroll.frame.size.width * 2, scroll.frame.size.height)
-
-		signInPage.frame = scroll.frame
-		forgotPage.frame = CGRectMake(scroll.frame.size.width,
-			y: scroll.frame.origin.y,
-			size: scroll.frame.size)
-
 		self.loginScreenlet.delegate = self
-		self.forgotPasswordScreenlet.delegate = self
-
-		self.forgotPasswordScreenlet.anonymousApiUserName =
-				LiferayServerContext.propertyForKey("anonymousUsername") as? String
-		self.forgotPasswordScreenlet.anonymousApiPassword =
-				LiferayServerContext.propertyForKey("anonymousPassword") as? String
-	}
-
-	override func viewWillAppear(animated: Bool) {
-		if cardView!.button.superview !== scroll {
-			cardView!.button.removeFromSuperview()
-			scroll.addSubview(cardView!.button)
-		}
-	}
-
-	@IBAction func backAction(sender: AnyObject) {
-		UIView.animateWithDuration(0.3,
-				animations: {
-					self.forgotTitle.alpha = 0.0
-					self.backArrow.alpha = 0.0
-					self.cardView?.arrow.alpha = 1.0
-				},
-				completion: nil)
-
-		let newRect = CGRectMake(0, y: 0, size: scroll.frame.size)
-		scroll.scrollRectToVisible(newRect, animated: true)
-	}
-
-	@IBAction func forgotPasswordAction(sender: AnyObject) {
-		self.forgotTitle.alpha = 0.0
-		self.backArrow.alpha = 0.0
-
-		UIView.animateWithDuration(0.5,
-				animations: {
-					self.forgotTitle.alpha = 1.0
-					self.backArrow.alpha = 1.0
-					self.cardView!.arrow.alpha = 0.0
-				},
-				completion: nil)
-
-		let newRect = CGRectMake(scroll.frame.size.width, y: 0, size: scroll.frame.size)
-		scroll.scrollRectToVisible(newRect, animated: true)
 	}
 
 	func screenlet(screenlet: BaseScreenlet,
@@ -117,10 +52,8 @@ class SignInViewController: CardViewController,
 		onDone?()
 	}
 
-	func screenlet(screenlet: ForgotPasswordScreenlet,
-			onForgotPasswordSent passwordSent: Bool) {
-		backAction(self)
-	}
+
+	//MARK: CardViewController
 
 	override func cardWillAppear() {
 		registerKeyboardListener(self)
@@ -130,6 +63,9 @@ class SignInViewController: CardViewController,
 		unregisterKeyboardListener(self)
 	}
 
+
+	//MARK: KeyboardListener
+
 	func showKeyboard(notif: NSNotification) {
 		if cardView?.currentState == .Normal {
 			cardView?.nextState = .Maximized
@@ -138,7 +74,6 @@ class SignInViewController: CardViewController,
 	}
 
 	func hideKeyboard(notif: NSNotification) {
-
 		if cardView?.currentState == .Maximized {
 			cardView?.nextState = .Normal
 			cardView?.changeToNextState()
