@@ -38,6 +38,8 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 	extends BaseScreenlet<BaseListViewModel, N>
 	implements BaseListInteractorListener<E> {
 
+	public static final String LOAD_INITIAL_PAGE_ACTION = "LOAD_INITIAL_PAGE_ACTION";
+
 	public BaseListScreenlet(Context context) {
 		super(context);
 	}
@@ -94,7 +96,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 
 	public void loadPage(int page) {
 		if (page == 0) {
-			getViewModel().showStartOperation(null);
+			getViewModel().showStartOperation(LOAD_INITIAL_PAGE_ACTION);
 		}
 
 		Locale locale = getResources().getConfiguration().locale;
