@@ -36,12 +36,14 @@ class AuthViewController: UIViewController, LoginScreenletDelegate {
 		signUpController = SignUpViewController(card: cardDeck.cards[1])
 		signUpController!.onDone = onDone
 
-		cardDeck.cards[0].currentState = .Hidden
-		cardDeck.cards[0].resetToCurrentState()
+		self.cardDeck.layoutIfNeeded()
 	}
 
 	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		self.cardDeck.cards[0].currentState = .Hidden
+		self.cardDeck.cards[0].resetToCurrentState()
 		self.cardDeck.cards[0].nextState = .Minimized
-		self.cardDeck.cards[0].changeToNextState(nil, delay: 0.5)
+		self.cardDeck.cards[0].changeToNextState(delay: 0.5)
 	}
 }
