@@ -19,7 +19,7 @@ import com.liferay.mobile.screens.context.SessionContext;
 public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayViewModel, AssetDisplayInteractorImpl>
 	implements AssetDisplayListener {
 
-	public static final String LOAD_ASSET_ACTION = "LOAD_ASSET_ACTION";
+	public static final String LOAD_BLOGS_ACTION = "LOAD_BLOGS_ACTION";
 
 	public BlogsEntryDisplayScreenlet(Context context) {
 		super(context);
@@ -38,7 +38,7 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 	}
 
 	public void load() {
-		performUserAction(LOAD_ASSET_ACTION);
+		performUserAction(LOAD_BLOGS_ACTION);
 	}
 
 	public void loadBlogsEntry() {
@@ -70,7 +70,7 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 	@Override
 	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor, Object... args) {
 		switch (userActionName) {
-			case LOAD_ASSET_ACTION:
+			case LOAD_BLOGS_ACTION:
 				interactor.getAssetEntry(entryId);
 		}
 	}
