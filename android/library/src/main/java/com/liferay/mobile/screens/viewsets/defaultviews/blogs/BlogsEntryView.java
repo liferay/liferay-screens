@@ -12,6 +12,7 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.blogs.BlogsEntry;
 import com.liferay.mobile.screens.blogs.BlogsEntryDisplayViewModel;
+import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
 /**
@@ -69,6 +70,11 @@ public class BlogsEntryView extends RelativeLayout implements BlogsEntryDisplayV
 
 		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
 
+		userPortraitScreenlet = (UserPortraitScreenlet) findViewById(R.id.user_portrait_screenlet);
+
+		userName = (TextView) findViewById(R.id.liferay_blog_username);
+		date = (TextView) findViewById(R.id.liferay_blog_date);
+
 		title = (TextView) findViewById(R.id.liferay_blog_title);
 		subtitle = (TextView) findViewById(R.id.liferay_blog_subtitle);
 		content = (TextView) findViewById(R.id.liferay_blog_content);
@@ -82,6 +88,13 @@ public class BlogsEntryView extends RelativeLayout implements BlogsEntryDisplayV
 	}
 
 	private void loadBlogsEntry() {
+		userPortraitScreenlet.setUserId(blogsEntry.getUserId());
+		userPortraitScreenlet.setEditable(false);
+		userPortraitScreenlet.load();
+
+		userName.setText(blogsEntry.getUserName());
+		date.setText(blogsEntry.getDate());
+
 		title.setText(blogsEntry.getTitle());
 		subtitle.setText(blogsEntry.getSubtitle());
 		content.setText(Html.fromHtml(blogsEntry.getContent()));
@@ -93,4 +106,7 @@ public class BlogsEntryView extends RelativeLayout implements BlogsEntryDisplayV
 	private TextView title;
 	private TextView subtitle;
 	private TextView content;
+	private TextView userName;
+	private TextView date;
+	private UserPortraitScreenlet userPortraitScreenlet;
 }
