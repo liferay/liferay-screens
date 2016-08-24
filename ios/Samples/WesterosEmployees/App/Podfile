@@ -7,4 +7,4 @@ pod 'LiferayScreens', :path => '../../../..'
 
 pod 'TPKeyboardAvoiding'
 pod 'MGSwipeTableCell'
-
+pod 'PureLayout'
