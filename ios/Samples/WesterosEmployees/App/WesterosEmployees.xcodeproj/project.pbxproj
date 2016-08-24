@@ -30,12 +30,7 @@
 		0B0A232B1D6B1D840061B50D /* westeros.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A22F31D6B1D840061B50D /* westeros.strings */; };
 		0B0A23301D6B1D840061B50D /* flat7-portrait-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A22FA1D6B1D840061B50D /* flat7-portrait-placeholder.png */; };
 		0B0A23311D6B1D840061B50D /* flat7-portrait-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A22FB1D6B1D840061B50D /* flat7-portrait-placeholder@2x.png */; };
-		0B0A23471D6B22100061B50D /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A23451D6B22100061B50D /* Colors.swift */; };
 		0B0A23481D6B22100061B50D /* KeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A23461D6B22100061B50D /* KeyboardListener.swift */; };
-		0B0A234E1D6B22160061B50D /* CardDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A234A1D6B22160061B50D /* CardDeckView.swift */; };
-		0B0A234F1D6B22160061B50D /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A234B1D6B22160061B50D /* CardView.swift */; };
-		0B0A23511D6B22160061B50D /* OnBoardingCardDeck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A234D1D6B22160061B50D /* OnBoardingCardDeck.swift */; };
-		0B0A23611D6B221B0061B50D /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A23541D6B221B0061B50D /* CardViewController.swift */; };
 		0B0A23671D6B221B0061B50D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A235A1D6B221B0061B50D /* SignInViewController.swift */; };
 		0B0A23681D6B221B0061B50D /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A235B1D6B221B0061B50D /* SignInViewController.xib */; };
 		0B0A23691D6B221B0061B50D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A235C1D6B221B0061B50D /* SignUpViewController.swift */; };
@@ -102,12 +97,7 @@
 		0B0A22F51D6B1D840061B50D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/westeros.strings; sourceTree = "<group>"; };
 		0B0A22FA1D6B1D840061B50D /* flat7-portrait-placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-portrait-placeholder.png"; sourceTree = "<group>"; };
 		0B0A22FB1D6B1D840061B50D /* flat7-portrait-placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flat7-portrait-placeholder@2x.png"; sourceTree = "<group>"; };
-		0B0A23451D6B22100061B50D /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		0B0A23461D6B22100061B50D /* KeyboardListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardListener.swift; sourceTree = "<group>"; };
-		0B0A234A1D6B22160061B50D /* CardDeckView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDeckView.swift; sourceTree = "<group>"; };
-		0B0A234B1D6B22160061B50D /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		0B0A234D1D6B22160061B50D /* OnBoardingCardDeck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnBoardingCardDeck.swift; sourceTree = "<group>"; };
-		0B0A23541D6B221B0061B50D /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		0B0A235A1D6B221B0061B50D /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		0B0A235B1D6B221B0061B50D /* SignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 		0B0A235C1D6B221B0061B50D /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -185,7 +175,6 @@
 			children = (
 				0B35AF651D6C34D3002E3D2F /* StoryBoards */,
 				0B0A23441D6B22100061B50D /* Misc */,
-				0B0A23491D6B22160061B50D /* Views */,
 				0B0A23521D6B221B0061B50D /* ViewControllers */,
 				0B0A22971D6B0CDA0061B50D /* AppDelegate.swift */,
 				0B0A229E1D6B0CDA0061B50D /* Assets.xcassets */,
@@ -283,20 +272,9 @@
 		0B0A23441D6B22100061B50D /* Misc */ = {
 			isa = PBXGroup;
 			children = (
-				0B0A23451D6B22100061B50D /* Colors.swift */,
 				0B0A23461D6B22100061B50D /* KeyboardListener.swift */,
 			);
 			path = Misc;
-			sourceTree = "<group>";
-		};
-		0B0A23491D6B22160061B50D /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				0B0A234A1D6B22160061B50D /* CardDeckView.swift */,
-				0B0A234B1D6B22160061B50D /* CardView.swift */,
-				0B0A234D1D6B22160061B50D /* OnBoardingCardDeck.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		0B0A23521D6B221B0061B50D /* ViewControllers */ = {
@@ -304,7 +282,6 @@
 			children = (
 				0B35AF701D6C361C002E3D2F /* AuthViewController.swift */,
 				0B35AF6E1D6C3614002E3D2F /* HomeViewController.swift */,
-				0B0A23541D6B221B0061B50D /* CardViewController.swift */,
 				0B0A235A1D6B221B0061B50D /* SignInViewController.swift */,
 				0B0A235B1D6B221B0061B50D /* SignInViewController.xib */,
 				0B0A235C1D6B221B0061B50D /* SignUpViewController.swift */,
@@ -548,17 +525,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B35AF6F1D6C3614002E3D2F /* HomeViewController.swift in Sources */,
-				0B0A23471D6B22100061B50D /* Colors.swift in Sources */,
-				0B0A234E1D6B22160061B50D /* CardDeckView.swift in Sources */,
 				0B0A23691D6B221B0061B50D /* SignUpViewController.swift in Sources */,
 				0B0A23121D6B1D840061B50D /* SignUpView_westeros.swift in Sources */,
 				0B0A231A1D6B1D840061B50D /* WesterosThemeConstants.swift in Sources */,
-				0B0A23611D6B221B0061B50D /* CardViewController.swift in Sources */,
 				0B0A23191D6B1D840061B50D /* WesterosProgressPresenter.swift in Sources */,
 				0B0A230E1D6B1D840061B50D /* ForgotPasswordView_westeros.swift in Sources */,
 				0B0A23161D6B1D840061B50D /* UserPortraitView_westeros.swift in Sources */,
 				0B0A23481D6B22100061B50D /* KeyboardListener.swift in Sources */,
-				0B0A234F1D6B22160061B50D /* CardView.swift in Sources */,
 				0B0A23101D6B1D840061B50D /* LoginView_westeros.swift in Sources */,
 				0B0A23671D6B221B0061B50D /* SignInViewController.swift in Sources */,
 				0B0A236B1D6B221B0061B50D /* TourViewController.swift in Sources */,
@@ -566,7 +539,6 @@
 				0B0A23141D6B1D840061B50D /* SignUpView_westeros_edit.swift in Sources */,
 				0B0A23181D6B1D840061B50D /* BorderedTextField.swift in Sources */,
 				0B35AF711D6C361C002E3D2F /* AuthViewController.swift in Sources */,
-				0B0A23511D6B22160061B50D /* OnBoardingCardDeck.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
