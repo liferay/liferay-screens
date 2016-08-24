@@ -18,9 +18,31 @@ public var tourCompleted = false
 
 class HomeViewController: UIViewController {
 
+	@IBOutlet weak var cardDeck: CardDeckView!
+	@IBOutlet weak var userProfileView: UIView!
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		cardDeck.addCards(["Documentation", "Blogs", "Gallery"])
+
+		self.userProfileView.layer.zPosition = -1000
+		self.cardDeck.layer.zPosition = 0
+	}
+
+	override func viewWillAppear(animated: Bool) {
+		let isLoggedIn = SessionContext.isLoggedIn
+		if isLoggedIn {
+			UIView.animateWithDuration(1.5) {
+				self.userProfileView.alpha = 1.0
+			}
+		} else {
+			self.userProfileView.alpha = 0.0
+		}
+
+		cardDeck.cards.forEach {
+			$0.hidden = !isLoggedIn
+		}
 	}
 
 	override func viewDidAppear(animated: Bool) {
