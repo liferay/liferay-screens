@@ -20,6 +20,8 @@ class SignInViewController: CardViewController,
 		ForgotPasswordScreenletDelegate,
 		KeyboardListener {
 
+	//MARK: Outlets
+
 	@IBOutlet weak var scroll: UIScrollView!
 	@IBOutlet weak var forgotTitle: UIButton!
 	@IBOutlet weak var backArrow: UIImageView!
@@ -31,6 +33,8 @@ class SignInViewController: CardViewController,
 	@IBOutlet weak var forgotPasswordScreenlet: ForgotPasswordScreenlet!
 
 
+	//MARK: Init methods
+
 	override init(card: CardView, nibName: String) {
 		let save = card.minimizedHeight
 		card.minimizedHeight = 0
@@ -39,12 +43,15 @@ class SignInViewController: CardViewController,
 	}
 
 	convenience init(card: CardView) {
-		self.init(card: card, nibName:"SignInViewController")
+		self.init(card: card, nibName: "SignInViewController")
 	}
 
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
+
+
+	//MARK: UIViewController
 
 	override func viewDidLayoutSubviews() {
 		super.viewDidLayoutSubviews()
@@ -70,9 +77,9 @@ class SignInViewController: CardViewController,
 	}
 
 	override func viewWillAppear(animated: Bool) {
-		if cardView!.button!.superview !== scroll {
-			cardView!.button!.removeFromSuperview()
-			scroll.addSubview(cardView!.button!)
+		if cardView!.button.superview !== scroll {
+			cardView!.button.removeFromSuperview()
+			scroll.addSubview(cardView!.button)
 		}
 	}
 
@@ -81,7 +88,7 @@ class SignInViewController: CardViewController,
 				animations: {
 					self.forgotTitle.alpha = 0.0
 					self.backArrow.alpha = 0.0
-					self.cardView?.arrow?.alpha = 1.0
+					self.cardView?.arrow.alpha = 1.0
 				},
 				completion: nil)
 
@@ -97,7 +104,7 @@ class SignInViewController: CardViewController,
 				animations: {
 					self.forgotTitle.alpha = 1.0
 					self.backArrow.alpha = 1.0
-					self.cardView?.arrow?.alpha = 0.0
+					self.cardView!.arrow.alpha = 0.0
 				},
 				completion: nil)
 

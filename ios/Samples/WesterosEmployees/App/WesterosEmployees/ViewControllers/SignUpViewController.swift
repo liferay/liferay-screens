@@ -23,7 +23,7 @@ class SignUpViewController: CardViewController, SignUpScreenletDelegate {
 	}
 
 	convenience init(card: CardView) {
-		self.init(card: card, nibName:"SignUpViewController")
+		self.init(card: card, nibName: "SignUpViewController")
 	}
 
 	required init?(coder aDecoder: NSCoder) {
