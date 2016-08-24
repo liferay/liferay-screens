@@ -124,5 +124,6 @@ public class GalleryUploadService extends IntentService {
 		serviceContextAttributes.put("addGuestPermissions", true);
 		return new JSONObjectWrapper(serviceContextAttributes);
 	}
-	private boolean shouldCancel = false;
+
+	private boolean shouldCancel;
 }
