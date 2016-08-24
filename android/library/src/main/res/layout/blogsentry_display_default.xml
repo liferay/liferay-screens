@@ -20,7 +20,7 @@
 			<com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet
 				android:id="@+id/liferay_blog_image"
 				android:layout_width="match_parent"
-				android:layout_height="150dp"
+				android:layout_height="125dp"
 				android:layout_alignParentTop="true"
 				android:visibility="gone"
 				liferay:autoLoad="false"
@@ -39,7 +39,6 @@
 				android:layout_width="100dp"
 				android:layout_height="100dp"
 				android:layout_below="@id/liferay_blog_image"
-				android:layout_margin="10sp"
 				liferay:autoLoad="false"
 				liferay:editable="true"
 				liferay:offlinePolicy="REMOTE_FIRST"
@@ -49,7 +48,9 @@
 				android:id="@+id/liferay_blog_userinfo"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:layout_alignBottom="@id/user_portrait_screenlet"
+				android:layout_below="@id/liferay_blog_image"
+				android:layout_marginLeft="5sp"
+				android:layout_marginStart="5sp"
 				android:layout_toEndOf="@id/user_portrait_screenlet"
 				android:layout_toRightOf="@id/user_portrait_screenlet"
 				android:gravity="center"
@@ -117,4 +118,5 @@
 		</RelativeLayout>
 
 	</ScrollView>
+	
 </com.liferay.mobile.screens.viewsets.defaultviews.blogs.BlogsEntryView>
