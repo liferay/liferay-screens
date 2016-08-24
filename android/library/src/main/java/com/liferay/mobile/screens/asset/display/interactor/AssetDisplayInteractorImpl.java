@@ -26,12 +26,23 @@ public class AssetDisplayInteractorImpl extends BaseRemoteInteractor<AssetDispla
 
 	@Override
 	public void getAssetEntry(long entryId) {
-
 		try {
 			Session session = SessionContext.createSessionFromCurrentSession();
 			session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
 			ScreensassetentryService service = new ScreensassetentryService(session);
 			service.getAssetEntry(entryId, Locale.getDefault().getLanguage());
+		} catch (Exception e) {
+			getListener().onRetrieveAssetFailure(e);
+		}
+	}
+
+	@Override
+	public void getAssetEntry(String className, long classPK) {
+		try {
+			Session session = SessionContext.createSessionFromCurrentSession();
+			session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
+			ScreensassetentryService service = new ScreensassetentryService(session);
+			service.getAssetEntry(className, classPK, Locale.getDefault().getLanguage());
 		} catch (Exception e) {
 			getListener().onRetrieveAssetFailure(e);
 		}
