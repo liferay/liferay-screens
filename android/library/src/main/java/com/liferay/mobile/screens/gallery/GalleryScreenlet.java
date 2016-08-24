@@ -189,11 +189,11 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	@Override
 	public void onImageEntryDeleted(long imageEntryId) {
+		getViewModel().deleteImage(imageEntryId);
+
 		if (getListener() != null) {
 			getListener().onImageEntryDeleted(imageEntryId);
 		}
-
-		getViewModel().deleteImage(imageEntryId);
 	}
 
 	@Override
@@ -208,40 +208,41 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	@Override
 	public void onPictureUploaded(ImageEntry entry) {
+		getViewModel().imageUploadComplete();
+		getViewModel().addImage(entry);
+
 		if (getListener() != null) {
 			getListener().onImageUploadEnd(entry);
 		}
-		getViewModel().imageUploadComplete();
-		getViewModel().addImage(entry);
 	}
 
 	@Override
 	public void onPictureUploadProgress(int totalBytes, int totalBytesSent) {
+		getViewModel().imageUploadProgress(totalBytes, totalBytesSent);
+
 		if (getListener() != null) {
 			getListener().onImageUploadProgress(totalBytes, totalBytesSent);
 		}
-
-		getViewModel().imageUploadProgress(totalBytes, totalBytesSent);
 	}
 
 	@Override
 	public void onPictureUploadFailure(Exception e) {
+		getViewModel().imageUploadError(e);
+
 		if(getListener() != null) {
 			getListener().onImageUploadFailure(e);
 		}
-
-		getViewModel().imageUploadError(e);
 	}
 
 	@Override
 	public void onPictureUploadInformationReceived(String picturePath, String title, String description) {
-		if (getListener() != null) {
-			getListener().onImageUploadStarted(picturePath, title, description);
-		}
-
 		getViewModel().imageUploadStart(picturePath);
 
 		performUserAction(UPLOAD_IMAGE, picturePath, title, description);
+
+		if (getListener() != null) {
+			getListener().onImageUploadStarted(picturePath, title, description);
+		}
 	}
 
 	public void showImageInFullScreenActivity(ImageEntry image) {
