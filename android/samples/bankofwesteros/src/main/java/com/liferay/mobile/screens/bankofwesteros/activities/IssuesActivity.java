@@ -33,7 +33,6 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 import org.json.JSONObject;
-import rx.Observable;
 import rx.functions.Action1;
 
 /**
@@ -66,7 +65,7 @@ public class IssuesActivity extends CardActivity
 		TextView callMenuEntry = (TextView) findViewById(R.id.call_menu_entry);
 		callMenuEntry.setText(getCallSpannableString(), TextView.BufferType.SPANNABLE);
 
-		tryToCall(RxView.clicks(callMenuEntry), callMenuEntry);
+		tryToCall(callMenuEntry);
 
 		findViewById(R.id.account_settings_menu_entry).setOnTouchListener(this);
 		findViewById(R.id.send_message_menu_entry).setOnTouchListener(this);
@@ -314,10 +313,10 @@ public class IssuesActivity extends CardActivity
 		v.setBackgroundColor(getResources().getColor(color));
 	}
 
-	private void tryToCall(Observable trigger, final View button) {
-		RxPermissions.getInstance(this).
-			request(trigger, Manifest.permission.CALL_PHONE).
-			subscribe(new Action1<Boolean>() {
+	private void tryToCall(final View button) {
+		RxView.clicks(button)
+			.compose(RxPermissions.getInstance(this).ensure(Manifest.permission.CALL_PHONE))
+			.subscribe(new Action1<Boolean>() {
 				@Override
 				public void call(Boolean result) {
 					button.setBackgroundColor(getResources().getColor(R.color.light_gray_westeros));

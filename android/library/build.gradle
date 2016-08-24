@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.neenbedankt.android-apt'
 
 android {
 	compileSdkVersion rootProject.ext.compileSdkVersion
@@ -23,7 +22,6 @@ android {
 		exclude 'META-INF/LICENSE'
 		exclude 'META-INF/NOTICE'
 	}
-
 }
 
 dependencies {
@@ -40,11 +38,7 @@ dependencies {
 
 	compile libraries.eventbus
 	compile libraries.picasso
-	compile libraries.storio
-	compile libraries.storioannotations
 	compile libraries.rxjava
-
-	apt libraries.storioapt
 
 	compile libraries.rxpermissions
 	compile libraries.rxbinding
@@ -53,10 +47,10 @@ dependencies {
 	testCompile libraries.robolectric
 	testCompile libraries.mockito
 
-	compile('com.snappydb:snappydb-lib:0.5.2') {
+	compile(libraries.snappydb) {
 		exclude group: 'com.esotericsoftware.kryo', module: 'kryo'
 	}
-	compile 'com.esotericsoftware:kryo:4.0.0'
+	compile libraries.kryo
 }
 
 apply from: '../bintray.gradle'

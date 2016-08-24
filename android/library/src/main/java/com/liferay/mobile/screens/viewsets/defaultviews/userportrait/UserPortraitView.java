@@ -32,7 +32,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-
 import com.jakewharton.rxbinding.view.RxView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
@@ -40,7 +39,6 @@ import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.tbruyelle.rxpermissions.RxPermissions;
-
 import rx.functions.Action1;
 
 /**
@@ -53,8 +51,7 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 		super(context);
 	}
 
-	public UserPortraitView(
-		Context context, AttributeSet attributes) {
+	public UserPortraitView(Context context, AttributeSet attributes) {
 		super(context, attributes);
 	}
 
@@ -84,8 +81,7 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 		if (UserPortraitScreenlet.LOAD_PORTRAIT.equals(actionName)) {
 			LiferayLogger.e("portrait failed to load", e);
 			setDefaultImagePlaceholder();
-		}
-		else {
+		} else {
 			LiferayLogger.e("portrait failed to upload", e);
 		}
 		_portraitProgress.setVisibility(INVISIBLE);
@@ -104,12 +100,11 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.liferay_replace_image) {
-			_choseOriginDialog = createOriginDialog();
 			_choseOriginDialog.show();
 		}
 	}
 
-	public Action1 openCamera() {
+	public Action1<Boolean> openCamera() {
 		return new Action1<Boolean>() {
 			@Override
 			public void call(Boolean result) {
@@ -121,7 +116,7 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 		};
 	}
 
-	public Action1 openGallery() {
+	public Action1<Boolean> openGallery() {
 		return new Action1<Boolean>() {
 			@Override
 			public void call(Boolean result) {
@@ -137,19 +132,19 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 		AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
 		LayoutInflater factory = LayoutInflater.from(getContext());
-		final View customDialogView = factory.inflate(
-			R.layout.user_portrait_chose_origin_default, null);
+		final View customDialogView = factory.inflate(R.layout.user_portrait_chose_origin_default, null);
 		builder.setView(customDialogView);
 
+		RxPermissions rxPermissions = RxPermissions.getInstance(getContext());
+
 		View takePhoto = customDialogView.findViewById(R.id.liferay_dialog_take_photo);
-		RxPermissions.getInstance(getContext())
-			.request(RxView.clicks(takePhoto),
-				Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+		RxView.clicks(takePhoto)
+			.compose(rxPermissions.ensure(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE))
 			.subscribe(openCamera());
 
 		View selectFile = customDialogView.findViewById(R.id.liferay_dialog_select_file);
-		RxPermissions.getInstance(getContext())
-			.request(RxView.clicks(selectFile), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+		RxView.clicks(selectFile)
+			.compose(rxPermissions.ensure(Manifest.permission.WRITE_EXTERNAL_STORAGE))
 			.subscribe(openGallery());
 
 		return builder.create();
@@ -164,6 +159,8 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 		_portraitAddButton = (ImageButton) findViewById(R.id.liferay_replace_image);
 
 		setDefaultImagePlaceholder();
+
+		_choseOriginDialog = createOriginDialog();
 	}
 
 	@Override
@@ -202,8 +199,7 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 
 		RectF rect = getRectF(bitmap, borderWidth);
 
-		Bitmap finalBitmap = Bitmap.createBitmap(
-			bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+		Bitmap finalBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
 
 		Canvas canvas = new Canvas(finalBitmap);
 
@@ -245,8 +241,7 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 	}
 
 	private void setDefaultImagePlaceholder() {
-		Bitmap defaultBitmap = BitmapFactory.decodeResource(
-			getResources(), R.drawable.default_portrait_placeholder);
+		Bitmap defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.default_portrait_placeholder);
 		_portraitImage.setImageBitmap(transformBitmap(defaultBitmap));
 	}
 
