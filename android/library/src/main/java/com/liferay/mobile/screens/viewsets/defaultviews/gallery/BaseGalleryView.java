@@ -3,10 +3,8 @@ package com.liferay.mobile.screens.viewsets.defaultviews.gallery;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.MediaStoreSelectorDialog;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
@@ -16,6 +14,8 @@ import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.gallery.view.GalleryViewModel;
 import java.util.List;
 import rx.functions.Action1;
+
+import static com.liferay.mobile.screens.base.list.BaseListScreenlet.LOAD_INITIAL_PAGE_ACTION;
 
 /**
  * @author Víctor Galán Grande
@@ -47,7 +47,7 @@ public abstract class BaseGalleryView<H extends BaseListAdapter.ViewHolder, A ex
 
 	@Override
 	public void showStartOperation(String actionName) {
-		if (actionName == null) {
+		if (actionName.equals(LOAD_INITIAL_PAGE_ACTION)) {
 			super.showStartOperation(actionName);
 		}
 	}
