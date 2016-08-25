@@ -118,4 +118,12 @@ public class CommentEntry implements Parcelable {
 	public boolean isEditable() {
 		return this.editable;
 	}
+
+	public String getClassName() {
+		return (String) values.get("className");
+	}
+
+	public long getClassPK() {
+		return (long) values.get("classPK");
+	}
 }

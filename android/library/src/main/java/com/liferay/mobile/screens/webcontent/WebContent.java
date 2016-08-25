@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.webcontent;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.ddl.ContentParser;
 import com.liferay.mobile.screens.ddl.FieldParser;
@@ -10,14 +9,12 @@ import com.liferay.mobile.screens.ddl.model.DDMStructure;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.WithDDM;
 import com.liferay.mobile.screens.util.LiferayLogger;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
@@ -28,23 +25,22 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 		super();
 	}
 
-	public static final ClassLoaderCreator<WebContent> CREATOR =
-		new ClassLoaderCreator<WebContent>() {
-			@Override
-			public WebContent createFromParcel(Parcel source, ClassLoader loader) {
-				return new WebContent(source, loader);
-			}
+	public static final ClassLoaderCreator<WebContent> CREATOR = new ClassLoaderCreator<WebContent>() {
+		@Override
+		public WebContent createFromParcel(Parcel source, ClassLoader loader) {
+			return new WebContent(source, loader);
+		}
 
-			@Override
-			public WebContent createFromParcel(Parcel in) {
-				throw new AssertionError();
-			}
+		@Override
+		public WebContent createFromParcel(Parcel in) {
+			throw new AssertionError();
+		}
 
-			@Override
-			public WebContent[] newArray(int size) {
-				return new WebContent[size];
-			}
-		};
+		@Override
+		public WebContent[] newArray(int size) {
+			return new WebContent[size];
+		}
+	};
 
 	public static final String DDM_STRUCTURE = "DDMStructure";
 
@@ -67,20 +63,17 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 			if (content.contains("dynamic-element")) {
 				ContentParser contentParser = new ContentParser();
 
-				List<Field> fields = contentParser.parseContent(_ddmStructure,
-					content);
+				List<Field> fields = contentParser.parseContent(_ddmStructure, content);
 
 				_ddmStructure.setFields(fields);
 				if (_ddmStructure.getFieldCount() > 0) {
 					_html = (String) _ddmStructure.getField(0).getCurrentValue();
 				}
-			}
-			else {
+			} else {
 				FieldParser fieldParser = new FieldParser();
 				_html = fieldParser.parseStaticContent(content, locale);
 			}
-		}
-		catch (JSONException e) {
+		} catch (JSONException e) {
 			LiferayLogger.e("Error parsing structure");
 		}
 	}
@@ -144,4 +137,8 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 
 	private DDMStructure _ddmStructure;
 	private String _html;
+
+	public String getArticleId() {
+		return String.valueOf(_values.get("articleId"));
+	}
 }

@@ -32,27 +32,27 @@ public abstract class OfflineEventNew extends BasicThreadEvent {
 	}
 
 	public long getUserId() {
-		return _userId;
+		return userId;
 	}
 
 	public void setUserId(long userId) {
-		_userId = userId;
+		this.userId = userId;
 	}
 
 	public long getGroupId() {
-		return _groupId;
+		return groupId;
 	}
 
 	public void setGroupId(long groupId) {
-		_groupId = groupId;
+		this.groupId = groupId;
 	}
 
 	public Locale getLocale() {
-		return _locale;
+		return locale;
 	}
 
 	public void setLocale(Locale locale) {
-		_locale = locale;
+		this.locale = locale;
 	}
 
 	public boolean isCachedRequest() {
@@ -71,9 +71,9 @@ public abstract class OfflineEventNew extends BasicThreadEvent {
 		this.cacheKey = cacheKey;
 	}
 
-	private Locale _locale;
-	private long _groupId;
-	private long _userId;
+	private Locale locale;
+	private long groupId;
+	private long userId;
 	private boolean cachedRequest;
 	private String cacheKey;
 }

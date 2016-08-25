@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.asset.list;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,22 +28,21 @@ public class AssetEntry implements Parcelable {
 		super();
 	}
 
-	public static final ClassLoaderCreator<AssetEntry> CREATOR =
-		new ClassLoaderCreator<AssetEntry>() {
+	public static final ClassLoaderCreator<AssetEntry> CREATOR = new ClassLoaderCreator<AssetEntry>() {
 
-			@Override
-			public AssetEntry createFromParcel(Parcel source, ClassLoader loader) {
-				return new AssetEntry(source, loader);
-			}
+		@Override
+		public AssetEntry createFromParcel(Parcel source, ClassLoader loader) {
+			return new AssetEntry(source, loader);
+		}
 
-			public AssetEntry createFromParcel(Parcel in) {
-				throw new AssertionError();
-			}
+		public AssetEntry createFromParcel(Parcel in) {
+			throw new AssertionError();
+		}
 
-			public AssetEntry[] newArray(int size) {
-				return new AssetEntry[size];
-			}
-		};
+		public AssetEntry[] newArray(int size) {
+			return new AssetEntry[size];
+		}
+	};
 
 	protected AssetEntry(Parcel in, ClassLoader loader) {
 		_values = new HashMap<>();
@@ -83,4 +81,8 @@ public class AssetEntry implements Parcelable {
 	}
 
 	protected Map<String, Object> _values;
+
+	public String getEntryId() {
+		return String.valueOf(_values.get("entryId"));
+	}
 }
