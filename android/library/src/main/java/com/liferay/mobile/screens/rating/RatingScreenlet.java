@@ -9,10 +9,12 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.rating.interactor.RatingEvent;
 import com.liferay.mobile.screens.rating.interactor.delete.RatingDeleteInteractorImpl;
 import com.liferay.mobile.screens.rating.interactor.load.RatingLoadInteractorImpl;
 import com.liferay.mobile.screens.rating.interactor.update.RatingUpdateInteractorImpl;
 import com.liferay.mobile.screens.rating.view.RatingViewModel;
+import org.json.JSONObject;
 
 /**
  * @author Alejandro Hernández
@@ -99,10 +101,12 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 				break;
 			case UPDATE_RATING_ACTION:
 				double score = (double) args[0];
-				((RatingUpdateInteractorImpl) interactor).start(classPK, className, score, ratingsGroupCount);
+				((RatingUpdateInteractorImpl) interactor).start(
+					new RatingEvent(classPK, className, ratingsGroupCount, score));
 				break;
 			case DELETE_RATING_ACTION:
-				((RatingDeleteInteractorImpl) interactor).start(classPK, className, ratingsGroupCount);
+				((RatingDeleteInteractorImpl) interactor).start(
+					new RatingEvent(classPK, className, ratingsGroupCount, new JSONObject()));
 				break;
 			default:
 				break;

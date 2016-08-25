@@ -28,15 +28,6 @@ public class RatingDeleteInteractorImpl extends BaseCachedWriteThreadRemoteInter
 	}
 
 	@Override
-	protected RatingEvent createEvent(Object[] args) throws Exception {
-		final long classPK = (long) args[0];
-		final String className = (String) args[1];
-		final int ratingGroupCounts = (int) args[2];
-
-		return new RatingEvent(classPK, className, ratingGroupCounts, new JSONObject());
-	}
-
-	@Override
 	public void onSuccess(RatingEvent event) throws Exception {
 		JSONObject result = event.getJSONObject();
 		AssetRating assetRating = new AssetRating(result.getLong("classPK"), result.getString("className"),
