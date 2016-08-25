@@ -170,7 +170,8 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 			LiferayServerContext.getGroupId());
 
 		Long userAttribute = castToLong(typedArray.getString(R.styleable.OfflineScreenlet_userId));
-		userId = userAttribute == null ? SessionContext.getUserId() : userAttribute;
+		Long userId = SessionContext.getUserId();
+		this.userId = (userAttribute == 0 ? (userId == null ? 0 : userId) : userAttribute);
 
 		String localeAttribute = typedArray.getString(R.styleable.OfflineScreenlet_locale);
 		locale = locale == null ? LiferayLocale.getDefaultLocale() : new Locale(localeAttribute);
