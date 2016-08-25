@@ -37,11 +37,6 @@ public class UserPortraitUploadInteractorImpl
 	}
 
 	@Override
-	protected UserPortraitUploadEvent createEvent(Object[] args) throws Exception {
-		return new UserPortraitUploadEvent((String) args[0]);
-	}
-
-	@Override
 	public UserPortraitUploadEvent execute(UserPortraitUploadEvent event) throws Exception {
 		throw new AssertionError("should not be called!");
 	}

@@ -32,6 +32,7 @@ import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadInteractorImpl;
+import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadEvent;
 import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadInteractorImpl;
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -251,7 +252,7 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 				(UserPortraitUploadInteractorImpl) getInteractor(userActionName);
 			String path = (String) args[0];
 			if (_userId != 0) {
-				userPortraitInteractor.start(path);
+				userPortraitInteractor.start(new UserPortraitUploadEvent(path));
 			}
 		} else {
 			UserPortraitLoadInteractorImpl userPortraitLoadInteractor =
