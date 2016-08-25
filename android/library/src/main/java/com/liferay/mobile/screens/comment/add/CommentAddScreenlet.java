@@ -10,6 +10,7 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.add.interactor.CommentAddInteractorImpl;
 import com.liferay.mobile.screens.comment.add.view.CommentAddViewModel;
+import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
 
 /**
  * @author Alejandro Hernández
@@ -57,7 +58,8 @@ public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, Comm
 	@Override
 	protected void onUserAction(String userActionName, CommentAddInteractorImpl interactor, Object... args) {
 		String body = (String) args[0];
-		interactor.start(className, classPK, body);
+
+		interactor.start(new CommentEvent(0, className, classPK, body));
 	}
 
 	@Override

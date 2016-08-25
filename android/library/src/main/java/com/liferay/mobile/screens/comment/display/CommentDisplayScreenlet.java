@@ -11,6 +11,7 @@ import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
+import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
 import com.liferay.mobile.screens.comment.display.interactor.delete.CommentDeleteInteractorImpl;
 import com.liferay.mobile.screens.comment.display.interactor.load.CommentLoadInteractorImpl;
 import com.liferay.mobile.screens.comment.display.interactor.update.CommentUpdateInteractorImpl;
@@ -104,11 +105,11 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	protected void onUserAction(String actionName, Interactor interactor, Object... args) {
 		switch (actionName) {
 			case DELETE_COMMENT_ACTION:
-				((CommentDeleteInteractorImpl) interactor).start(commentId);
+				((CommentDeleteInteractorImpl) interactor).start(new CommentEvent(commentId, className, classPK, null));
 				break;
 			case UPDATE_COMMENT_ACTION:
 				String body = (String) args[0];
-				((CommentUpdateInteractorImpl) interactor).start(commentId, className, classPK, body);
+				((CommentUpdateInteractorImpl) interactor).start(new CommentEvent(commentId, className, classPK, body));
 				break;
 			case LOAD_COMMENT_ACTION:
 			default:

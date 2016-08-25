@@ -27,12 +27,6 @@ public class CommentDeleteInteractorImpl
 	}
 
 	@Override
-	protected CommentEvent createEvent(Object[] args) throws Exception {
-		long commentId = (long) args[0];
-		return new CommentEvent(commentId, null, 0, null);
-	}
-
-	@Override
 	public void onSuccess(CommentEvent event) throws Exception {
 		getListener().onDeleteCommentSuccess();
 	}

@@ -31,15 +31,6 @@ public class CommentAddInteractorImpl extends BaseCachedWriteThreadRemoteInterac
 	}
 
 	@Override
-	protected CommentEvent createEvent(Object[] args) throws Exception {
-		long commentId = (long) args[0];
-		String className = (String) args[1];
-		long classPK = (long) args[2];
-		String body = (String) args[3];
-		return new CommentEvent(commentId, className, classPK, body);
-	}
-
-	@Override
 	public void onSuccess(CommentEvent event) throws Exception {
 		getListener().onAddCommentSuccess(event.getCommentEntry());
 	}
