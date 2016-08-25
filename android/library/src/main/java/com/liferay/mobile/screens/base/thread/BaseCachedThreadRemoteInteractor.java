@@ -6,6 +6,7 @@ import com.liferay.mobile.screens.base.thread.event.ErrorThreadEvent;
 import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
 import com.liferay.mobile.screens.base.thread.listener.OfflineListenerNew;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.cache.executor.Executor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -27,7 +28,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 	protected OfflinePolicy offlinePolicy;
 
 	public void start(final Object... args) {
-		new Thread(new Runnable() {
+		Executor.execute(new Runnable() {
 			@Override
 			public void run() {
 				try {
@@ -70,7 +71,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 					EventBusUtil.post(event);
 				}
 			}
-		}).start();
+		});
 	}
 
 	public void onEventMainThread(E event) {
@@ -105,13 +106,15 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 		getListener().retrievingOnline(triedOffline, e);
 
 		E newEvent = execute(args);
-		newEvent.setTargetScreenletId(getTargetScreenletId());
-		newEvent.setCachedRequest(false);
-		newEvent.setGroupId(groupId);
-		newEvent.setLocale(locale);
-		newEvent.setUserId(userId);
-		newEvent.setCacheKey(getIdFromArgs(args));
-		EventBusUtil.post(newEvent);
+		if (newEvent != null) {
+			newEvent.setTargetScreenletId(getTargetScreenletId());
+			newEvent.setCachedRequest(false);
+			newEvent.setGroupId(groupId);
+			newEvent.setLocale(locale);
+			newEvent.setUserId(userId);
+			newEvent.setCacheKey(getIdFromArgs(args));
+			EventBusUtil.post(newEvent);
+		}
 	}
 
 	protected boolean cached(Object... args) throws Exception {

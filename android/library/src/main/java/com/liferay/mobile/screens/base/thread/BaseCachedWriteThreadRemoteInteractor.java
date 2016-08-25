@@ -5,6 +5,7 @@ import com.liferay.mobile.screens.base.thread.event.ErrorThreadEvent;
 import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
 import com.liferay.mobile.screens.base.thread.listener.OfflineListenerNew;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.cache.executor.Executor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -19,7 +20,7 @@ public abstract class BaseCachedWriteThreadRemoteInteractor<L extends OfflineLis
 	extends BaseThreadInteractor<L, E> {
 
 	public void start(final Object... args) {
-		new Thread(new Runnable() {
+		Executor.execute(new Runnable() {
 			@Override
 			public void run() {
 				try {
@@ -49,7 +50,7 @@ public abstract class BaseCachedWriteThreadRemoteInteractor<L extends OfflineLis
 					EventBusUtil.post(event);
 				}
 			}
-		}).start();
+		});
 	}
 
 	public void onEventMainThread(E event) {

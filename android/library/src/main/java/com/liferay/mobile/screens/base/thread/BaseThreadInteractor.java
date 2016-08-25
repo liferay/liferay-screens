@@ -4,6 +4,7 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.base.thread.event.ErrorThreadEvent;
+import com.liferay.mobile.screens.cache.executor.Executor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -18,20 +19,22 @@ public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent> implem
 	}
 
 	public void start(final Object... args) {
-		new Thread(new Runnable() {
+		Executor.execute(new Runnable() {
 			@Override
 			public void run() {
 				try {
 					E event = execute(args);
-					event.setTargetScreenletId(getTargetScreenletId());
-					EventBusUtil.post(event);
+					if (event != null) {
+						event.setTargetScreenletId(getTargetScreenletId());
+						EventBusUtil.post(event);
+					}
 				} catch (Exception e) {
 					ErrorThreadEvent errorNewEvent = new ErrorThreadEvent(e);
 					errorNewEvent.setTargetScreenletId(getTargetScreenletId());
 					EventBusUtil.post(errorNewEvent);
 				}
 			}
-		}).start();
+		});
 	}
 
 	public void onEventMainThread(ErrorThreadEvent event) {
