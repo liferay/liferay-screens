@@ -11,21 +11,18 @@ import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.snappydb.DB;
 import com.snappydb.DBFactory;
-import java.util.Locale;
 
 /**
  * @author Javier Gamarra
  */
 public abstract class BaseCachedWriteThreadRemoteInteractor<L extends OfflineListenerNew, E extends OfflineEventNew>
-	extends BaseThreadInteractor<L, E> {
+	extends BaseCachedThreadRemoteInteractor<L, E> {
 
-	public void start(final Object... args) {
+	public void start(final E event) {
 		Executor.execute(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					E event = createEvent(args);
-
 					if (offlinePolicy == OfflinePolicy.CACHE_ONLY) {
 						storeToCacheAndLaunchEvent(event);
 					} else if (offlinePolicy == OfflinePolicy.CACHE_FIRST) {
@@ -47,6 +44,7 @@ public abstract class BaseCachedWriteThreadRemoteInteractor<L extends OfflineLis
 				} catch (Exception e) {
 					BasicThreadEvent event = new ErrorThreadEvent(e);
 					event.setTargetScreenletId(getTargetScreenletId());
+					event.setActionName(getActionName());
 					EventBusUtil.post(event);
 				}
 			}
@@ -110,7 +108,7 @@ public abstract class BaseCachedWriteThreadRemoteInteractor<L extends OfflineLis
 	}
 
 	protected String getFullId(E event) throws Exception {
-		return event.getClass().getName()
+		return event.getClass().getSimpleName()
 			+ "_"
 			+ event.getGroupId()
 			+ "_"
@@ -121,30 +119,8 @@ public abstract class BaseCachedWriteThreadRemoteInteractor<L extends OfflineLis
 			+ event.getCacheKey();
 	}
 
-	protected abstract E createEvent(Object[] args) throws Exception;
-
-	protected OfflinePolicy getOfflinePolicy() {
-		return offlinePolicy;
+	@Override
+	protected String getIdFromArgs(Object... args) throws Exception {
+		return null;
 	}
-
-	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
-		this.offlinePolicy = offlinePolicy;
-	}
-
-	public void setGroupId(long groupId) {
-		this.groupId = groupId;
-	}
-
-	public void setUserId(long userId) {
-		this.userId = userId;
-	}
-
-	public void setLocale(Locale locale) {
-		this.locale = locale;
-	}
-
-	protected Locale locale;
-	protected OfflinePolicy offlinePolicy;
-	protected long groupId;
-	protected long userId;
 }
