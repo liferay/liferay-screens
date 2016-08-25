@@ -17,8 +17,6 @@
 		0B0A23111D6B1D840061B50D /* LoginView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A22D21D6B1D840061B50D /* LoginView_westeros.xib */; };
 		0B0A23121D6B1D840061B50D /* SignUpView_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A22D41D6B1D840061B50D /* SignUpView_westeros.swift */; };
 		0B0A23131D6B1D840061B50D /* SignUpView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A22D51D6B1D840061B50D /* SignUpView_westeros.xib */; };
-		0B0A23141D6B1D840061B50D /* SignUpView_westeros_edit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A22D61D6B1D840061B50D /* SignUpView_westeros_edit.swift */; };
-		0B0A23151D6B1D840061B50D /* SignUpView_westeros_edit.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A22D71D6B1D840061B50D /* SignUpView_westeros_edit.xib */; };
 		0B0A23161D6B1D840061B50D /* UserPortraitView_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A22D91D6B1D840061B50D /* UserPortraitView_westeros.swift */; };
 		0B0A23171D6B1D840061B50D /* UserPortraitView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A22DA1D6B1D840061B50D /* UserPortraitView_westeros.xib */; };
 		0B0A23181D6B1D840061B50D /* BorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A22DC1D6B1D840061B50D /* BorderedTextField.swift */; };
@@ -89,8 +87,6 @@
 		0B0A22D21D6B1D840061B50D /* LoginView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView_westeros.xib; sourceTree = "<group>"; };
 		0B0A22D41D6B1D840061B50D /* SignUpView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView_westeros.swift; sourceTree = "<group>"; };
 		0B0A22D51D6B1D840061B50D /* SignUpView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpView_westeros.xib; sourceTree = "<group>"; };
-		0B0A22D61D6B1D840061B50D /* SignUpView_westeros_edit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView_westeros_edit.swift; sourceTree = "<group>"; };
-		0B0A22D71D6B1D840061B50D /* SignUpView_westeros_edit.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpView_westeros_edit.xib; sourceTree = "<group>"; };
 		0B0A22D91D6B1D840061B50D /* UserPortraitView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitView_westeros.swift; sourceTree = "<group>"; };
 		0B0A22DA1D6B1D840061B50D /* UserPortraitView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserPortraitView_westeros.xib; sourceTree = "<group>"; };
 		0B0A22DC1D6B1D840061B50D /* BorderedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedTextField.swift; sourceTree = "<group>"; };
@@ -245,8 +241,6 @@
 			children = (
 				0B0A22D41D6B1D840061B50D /* SignUpView_westeros.swift */,
 				0B0A22D51D6B1D840061B50D /* SignUpView_westeros.xib */,
-				0B0A22D61D6B1D840061B50D /* SignUpView_westeros_edit.swift */,
-				0B0A22D71D6B1D840061B50D /* SignUpView_westeros_edit.xib */,
 			);
 			path = SignUpScreenlet;
 			sourceTree = "<group>";
@@ -497,7 +491,6 @@
 				0B0A232A1D6B1D840061B50D /* circle_see pasword_ON@3x.png in Resources */,
 				0B0A23291D6B1D840061B50D /* circle_see pasword_ON@2x.png in Resources */,
 				0B0A239D1D6B22EF0061B50D /* tour-step1@2x.png in Resources */,
-				0B0A23151D6B1D840061B50D /* SignUpView_westeros_edit.xib in Resources */,
 				0B0A239F1D6B22EF0061B50D /* tour-step2.png in Resources */,
 				0B0A229D1D6B0CDA0061B50D /* Main.storyboard in Resources */,
 			);
@@ -572,7 +565,6 @@
 				0B0A23671D6B221B0061B50D /* SignInViewController.swift in Sources */,
 				0B0A236B1D6B221B0061B50D /* TourViewController.swift in Sources */,
 				0B0A22981D6B0CDA0061B50D /* AppDelegate.swift in Sources */,
-				0B0A23141D6B1D840061B50D /* SignUpView_westeros_edit.swift in Sources */,
 				0B0A23181D6B1D840061B50D /* BorderedTextField.swift in Sources */,
 				0B93094A1D6DAC91003824D6 /* Resources.swift in Sources */,
 				0B9309511D6DB0D9003824D6 /* Westeros+CGRect.swift in Sources */,

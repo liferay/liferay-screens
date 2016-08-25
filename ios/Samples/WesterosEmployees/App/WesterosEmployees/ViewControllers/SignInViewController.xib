@@ -16,35 +16,37 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="368"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hZ1-eE-IBY" customClass="LoginScreenlet" customModule="LiferayScreens">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="326"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZ1-eE-IBY" customClass="LoginScreenlet" customModule="LiferayScreens">
+                    <rect key="frame" x="25" y="69" width="325" height="225"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="225" id="mpz-TE-EEi"/>
+                        <constraint firstAttribute="width" constant="325" id="zIT-I2-k70"/>
+                    </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cg4-y9-Lxr">
-                    <rect key="frame" x="111" y="334" width="153" height="34"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cg4-y9-Lxr">
+                    <rect key="frame" x="121" y="314" width="132" height="34"/>
                     <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
                     <state key="normal" title="Forgot password?">
                         <color key="titleColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="forgotPasswordAction" destination="-1" eventType="touchUpInside" id="wTY-ga-fwZ"/>
-                        <action selector="forgotPasswordAction:" destination="-1" eventType="touchUpInside" id="wdU-tN-p6w"/>
+                        <action selector="forgotPasswordAction" destination="-1" eventType="touchUpInside" id="cbk-Qx-U79"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Cg4-y9-Lxr" firstAttribute="top" secondItem="hZ1-eE-IBY" secondAttribute="bottom" constant="20" id="KgH-QZ-t7m"/>
+                <constraint firstItem="hZ1-eE-IBY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="X3M-A5-IGF"/>
+                <constraint firstItem="Cg4-y9-Lxr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pcb-1y-6ME"/>
+                <constraint firstAttribute="bottom" secondItem="Cg4-y9-Lxr" secondAttribute="bottom" constant="20" id="qmd-dS-yR4"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                    <integer key="value" value="4"/>
-                </userDefinedRuntimeAttribute>
-            </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="569.5" y="554"/>
         </view>
     </objects>
