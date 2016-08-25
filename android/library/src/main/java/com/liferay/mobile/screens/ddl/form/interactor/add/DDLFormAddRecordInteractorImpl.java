@@ -33,7 +33,7 @@ public class DDLFormAddRecordInteractorImpl
 	@Override
 	public DDLFormEvent execute(DDLFormEvent event) throws Exception {
 
-		validate(groupId, event.getRecord());
+		validate(event.getGroupId(), event.getRecord());
 
 		DDLRecordConnector ddlRecordConnector = ServiceProvider.getInstance().getDDLRecordConnector(getSession());
 

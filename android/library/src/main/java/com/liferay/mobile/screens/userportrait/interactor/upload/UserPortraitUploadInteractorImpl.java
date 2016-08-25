@@ -31,7 +31,7 @@ public class UserPortraitUploadInteractorImpl
 		Intent service = new Intent(LiferayScreensContext.getContext(), UserPortraitService.class);
 		service.putExtra("picturePath", picturePath);
 		service.putExtra("screenletId", getTargetScreenletId());
-		service.putExtra("userId", userId);
+		service.putExtra("userId", event.getUserId());
 
 		LiferayScreensContext.getContext().startService(service);
 	}

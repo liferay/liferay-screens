@@ -22,11 +22,11 @@ public class CommentUpdateInteractorImpl
 		long commentId = event.getCommentId();
 		String newBody = event.getBody();
 
-		validate(groupId, className, classPK, commentId, newBody);
+		validate(event.getGroupId(), className, classPK, commentId, newBody);
 
 		CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(getSession());
 
-		JSONObject jsonObject = service.updateComment(groupId, className, classPK, commentId, newBody);
+		JSONObject jsonObject = service.updateComment(event.getGroupId(), className, classPK, commentId, newBody);
 
 		CommentEntry commentEntry = new CommentEntry(JSONUtil.toMap(jsonObject));
 		return new CommentEvent(commentId, className, classPK, newBody, commentEntry);

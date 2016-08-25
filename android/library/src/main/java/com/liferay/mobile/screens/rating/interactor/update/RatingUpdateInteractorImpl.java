@@ -11,8 +11,6 @@ import java.security.InvalidParameterException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import static com.liferay.mobile.screens.R.attr.classPK;
-
 /**
  * @author Alejandro Hernández
  */
@@ -26,9 +24,10 @@ public class RatingUpdateInteractorImpl extends BaseCachedWriteThreadRemoteInter
 		ScreensratingsentryService ratingsEntryService =
 			new ScreensratingsentryService(SessionContext.createSessionFromCurrentSession());
 
-		JSONObject jsonObject = ratingsEntryService.updateRatingsEntry(classPK, event.getClassName(), event.getScore(),
-			event.getRatingGroupCounts());
-		return new RatingEvent(classPK, event.getClassName(), event.getRatingGroupCounts(), jsonObject);
+		JSONObject jsonObject =
+			ratingsEntryService.updateRatingsEntry(event.getClassPK(), event.getClassName(), event.getScore(),
+				event.getRatingGroupCounts());
+		return new RatingEvent(event.getClassPK(), event.getClassName(), event.getRatingGroupCounts(), jsonObject);
 	}
 
 	@Override

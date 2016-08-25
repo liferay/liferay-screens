@@ -18,7 +18,7 @@ public class DDLFormDocumentUploadInteractorImpl
 
 		Intent service = new Intent(LiferayScreensContext.getContext(), UploadService.class);
 		service.putExtra("file", event.getDocumentField());
-		service.putExtra("userId", userId);
+		service.putExtra("userId", event.getUserId());
 		service.putExtra("folderId", event.getFolderId());
 		service.putExtra("screenletId", getTargetScreenletId());
 		service.putExtra("filePrefix", event.getFilePrefix());

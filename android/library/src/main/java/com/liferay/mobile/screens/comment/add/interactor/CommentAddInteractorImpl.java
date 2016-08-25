@@ -21,11 +21,11 @@ public class CommentAddInteractorImpl extends BaseCachedWriteThreadRemoteInterac
 		long classPK = event.getClassPK();
 		String body = event.getBody();
 
-		validate(groupId, className, classPK, body);
+		validate(event.getGroupId(), className, classPK, body);
 
 		CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(getSession());
 
-		JSONObject jsonObject = service.addComment(groupId, className, classPK, body);
+		JSONObject jsonObject = service.addComment(event.getGroupId(), className, classPK, body);
 		CommentEntry commentEntry = new CommentEntry(JSONUtil.toMap(jsonObject));
 		return new CommentEvent(commentEntry.getCommentId(), className, classPK, body, commentEntry);
 	}
