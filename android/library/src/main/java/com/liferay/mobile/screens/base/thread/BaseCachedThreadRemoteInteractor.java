@@ -119,7 +119,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 		String cacheKey = getIdFromArgs(args);
 		Class clasz = getEventClass();
 
-		String id = getFullId(clasz, groupId, userId, locale, cacheKey);
+		String id = getFullId(clasz, groupId, userId, locale, cacheKey, null);
 
 		DB snappyDB = DBFactory.open(LiferayScreensContext.getContext());
 		E offlineEvent = (E) snappyDB.getObject(id, clasz);
@@ -151,15 +151,17 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 		DB snappydb = DBFactory.open(LiferayScreensContext.getContext());
 
 		String id =
-			getFullId(event.getClass(), event.getGroupId(), event.getUserId(), event.getLocale(), event.getCacheKey());
+			getFullId(event.getClass(), event.getGroupId(), event.getUserId(), event.getLocale(), event.getCacheKey(),
+				null);
 
 		snappydb.put(id, event);
 		snappydb.close();
 	}
 
 	@NonNull
-	private String getFullId(Class clasz, long groupId, long userId, Locale locale, String cacheKey) {
-		return clasz.getName() + "_" + groupId + "_" + userId + "_" + locale + "_" + cacheKey;
+	protected String getFullId(Class clasz, long groupId, long userId, Locale locale, String cacheKey, Integer row) {
+		return clasz.getSimpleName() + "_" + groupId + "_" + userId + "_" + locale + "_" +
+			(row == null ? "" : String.format(Locale.US, "%05d", row) + "_") + (cacheKey == null ? "" : cacheKey);
 	}
 
 	protected abstract String getIdFromArgs(Object... args) throws Exception;

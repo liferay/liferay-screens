@@ -99,7 +99,8 @@ public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends
 
 		try {
 			N interactor = getInteractor();
-			interactor.setQuery(new Query(startRow, endRow, _obcClassName));
+			Query query = new Query(startRow, endRow, _obcClassName);
+			interactor.setQuery(query);
 			loadRows(interactor);
 		} catch (Exception e) {
 			onListRowsFailure(startRow, endRow, e);
