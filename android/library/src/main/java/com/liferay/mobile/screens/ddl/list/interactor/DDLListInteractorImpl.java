@@ -18,17 +18,19 @@ import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import java.util.Locale;
 import java.util.Map;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListInteractorImpl extends BaseListInteractor<Record, DDLListInteractorListener> {
+public class DDLListInteractorImpl extends BaseListInteractor<DDLListInteractorListener, DDLFormEvent> {
 
 	protected void validate(long recordSetId, int startRow, int endRow, Locale locale) {
 		super.validate(startRow, endRow, locale);
@@ -47,11 +49,10 @@ public class DDLListInteractorImpl extends BaseListInteractor<Record, DDLListInt
 			ServiceProvider.getInstance().getScreensDDLRecordConnector(getSession());
 		int startRow = query.getStartRow();
 		int endRow = query.getEndRow();
-		JSONObjectWrapper obc = query.getObjC();
 		String localeString = locale.toString();
 
-		return userId != 0 ? ddlRecordService.getDdlRecords(recordSetId, userId, localeString, startRow, endRow, obc)
-			: ddlRecordService.getDdlRecords(recordSetId, localeString, startRow, endRow, obc);
+		return userId != 0 ? ddlRecordService.getDdlRecords(recordSetId, userId, localeString, startRow, endRow, query.getComparatorJSONWrapper())
+			: ddlRecordService.getDdlRecords(recordSetId, localeString, startRow, endRow, query.getComparatorJSONWrapper());
 	}
 
 	@Override
@@ -67,12 +68,12 @@ public class DDLListInteractorImpl extends BaseListInteractor<Record, DDLListInt
 	}
 
 	@Override
-	protected Record createEntity(Map<String, Object> stringObjectMap) {
-		return new Record(stringObjectMap, locale);
+	protected DDLFormEvent createEntity(Map<String, Object> stringObjectMap) {
+		return new DDLFormEvent(new Record(stringObjectMap, locale), new JSONObject(stringObjectMap));
 	}
 
 	@Override
 	protected String getIdFromArgs(Object... args) throws Exception {
-		return null;
+		return String.valueOf(args[0]);
 	}
 }

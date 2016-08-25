@@ -20,7 +20,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorImpl;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorListener;
 import com.liferay.mobile.screens.ddl.model.Record;
@@ -49,27 +48,11 @@ public class DDLListScreenlet extends BaseListScreenlet<Record, DDLListInteracto
 	}
 
 	public long getRecordSetId() {
-		return _recordSetId;
+		return recordSetId;
 	}
 
 	public void setRecordSetId(long recordSetId) {
-		_recordSetId = recordSetId;
-	}
-
-	public long getUserId() {
-		return _userId;
-	}
-
-	public void setUserId(long userId) {
-		_userId = userId;
-	}
-
-	public OfflinePolicy getOfflinePolicy() {
-		return _offlinePolicy;
-	}
-
-	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
-		_offlinePolicy = offlinePolicy;
+		this.recordSetId = recordSetId;
 	}
 
 	@Override
@@ -100,20 +83,14 @@ public class DDLListScreenlet extends BaseListScreenlet<Record, DDLListInteracto
 
 	@Override
 	protected void loadRows(DDLListInteractorImpl interactor) throws Exception {
-		interactor.start(_recordSetId, _userId);
+		interactor.start(recordSetId, userId);
 	}
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray =
 			context.getTheme().obtainStyledAttributes(attributes, R.styleable.DDLListScreenlet, 0, 0);
-
-		int offlinePolicy =
-			typedArray.getInt(R.styleable.DDLListScreenlet_offlinePolicy, OfflinePolicy.REMOTE_ONLY.ordinal());
-		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
-
-		_recordSetId = castToLong(typedArray.getString(R.styleable.DDLListScreenlet_recordSetId));
-		_userId = castToLong(typedArray.getString(R.styleable.DDLListScreenlet_userId));
+		recordSetId = castToLong(typedArray.getString(R.styleable.DDLListScreenlet_recordSetId));
 		typedArray.recycle();
 
 		return super.createScreenletView(context, attributes);
@@ -124,7 +101,5 @@ public class DDLListScreenlet extends BaseListScreenlet<Record, DDLListInteracto
 		return new DDLListInteractorImpl();
 	}
 
-	private long _recordSetId;
-	private long _userId;
-	private OfflinePolicy _offlinePolicy;
+	private long recordSetId;
 }

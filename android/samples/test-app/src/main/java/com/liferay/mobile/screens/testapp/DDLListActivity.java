@@ -74,7 +74,7 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 
 	@Override
 	public void retrievingOnline(boolean triedInCache, Exception e) {
-		//		info("Retrieving online... and tried in cache: " + triedInCache);
+		info("Retrieving online... and tried in cache: " + triedInCache);
 	}
 
 	@Override
