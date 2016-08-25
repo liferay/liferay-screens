@@ -26,11 +26,13 @@ public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent> implem
 					E event = execute(args);
 					if (event != null) {
 						event.setTargetScreenletId(getTargetScreenletId());
+						event.setActionName(getActionName());
 						EventBusUtil.post(event);
 					}
 				} catch (Exception e) {
 					ErrorThreadEvent errorNewEvent = new ErrorThreadEvent(e);
 					errorNewEvent.setTargetScreenletId(getTargetScreenletId());
+					errorNewEvent.setActionName(getActionName());
 					EventBusUtil.post(errorNewEvent);
 				}
 			}
@@ -80,7 +82,8 @@ public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent> implem
 	}
 
 	public boolean isValidEvent(E event) {
-		return getListener() != null && event.getTargetScreenletId() == getTargetScreenletId();
+		return getListener() != null && event.getTargetScreenletId() == getTargetScreenletId() && actionName.equals(
+			event.getActionName());
 	}
 
 	protected Session getSession() {
@@ -99,6 +102,15 @@ public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent> implem
 		return listener;
 	}
 
+	public String getActionName() {
+		return actionName;
+	}
+
+	public void setActionName(String actionName) {
+		this.actionName = actionName;
+	}
+
 	private int targetScreenletId;
 	private L listener;
+	private String actionName;
 }

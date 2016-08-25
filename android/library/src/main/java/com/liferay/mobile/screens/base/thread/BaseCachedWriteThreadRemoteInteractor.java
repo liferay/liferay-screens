@@ -82,16 +82,24 @@ public abstract class BaseCachedWriteThreadRemoteInteractor<L extends OfflineLis
 		throw new AssertionError("Shouldn't be called");
 	}
 
-	protected void online(E event) throws Exception {
-		E resultEvent = execute(event);
-		resultEvent.setTargetScreenletId(getTargetScreenletId());
-		EventBusUtil.post(resultEvent);
+	protected void online(E onlineEvent) throws Exception {
+		E event = execute(onlineEvent);
+		event.setGroupId(groupId);
+		event.setLocale(locale);
+		event.setUserId(userId);
+		event.setTargetScreenletId(getTargetScreenletId());
+		event.setActionName(getActionName());
+		EventBusUtil.post(event);
 	}
 
 	protected void storeToCacheAndLaunchEvent(E event) throws Exception {
 		store(event);
 		event.setCachedRequest(true);
+		event.setGroupId(groupId);
+		event.setLocale(locale);
+		event.setUserId(userId);
 		event.setTargetScreenletId(getTargetScreenletId());
+		event.setActionName(getActionName());
 		EventBusUtil.post(event);
 	}
 

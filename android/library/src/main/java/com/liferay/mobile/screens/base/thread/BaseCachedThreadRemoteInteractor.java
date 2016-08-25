@@ -68,6 +68,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 				} catch (Exception e) {
 					BasicThreadEvent event = new ErrorThreadEvent(e);
 					event.setTargetScreenletId(getTargetScreenletId());
+					event.setActionName(getActionName());
 					EventBusUtil.post(event);
 				}
 			}
@@ -108,6 +109,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 		E newEvent = execute(args);
 		if (newEvent != null) {
 			newEvent.setTargetScreenletId(getTargetScreenletId());
+			newEvent.setActionName(getActionName());
 			newEvent.setCachedRequest(false);
 			newEvent.setGroupId(groupId);
 			newEvent.setLocale(locale);
@@ -129,6 +131,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 		if (offlineEvent != null) {
 			offlineEvent.setCachedRequest(true);
 			offlineEvent.setTargetScreenletId(getTargetScreenletId());
+			offlineEvent.setActionName(getActionName());
 			EventBusUtil.post(offlineEvent);
 			getListener().loadingFromCache(true);
 			return true;

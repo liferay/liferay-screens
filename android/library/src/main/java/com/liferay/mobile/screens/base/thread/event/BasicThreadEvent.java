@@ -18,6 +18,8 @@ import org.json.JSONObject;
 
 public class BasicThreadEvent {
 
+	private String actionName;
+
 	public BasicThreadEvent() {
 		super();
 	}
@@ -58,4 +60,12 @@ public class BasicThreadEvent {
 	private JSONObject _jsonObject;
 	private Exception _exception;
 	private int _targetScreenletId;
+
+	public String getActionName() {
+		return actionName;
+	}
+
+	public void setActionName(String actionName) {
+		this.actionName = actionName;
+	}
 }

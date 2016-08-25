@@ -117,6 +117,7 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 		BaseListEvent offlineEvent = (BaseListEvent) snappyDB.getObject(listKey, clasz);
 		if (offlineEvent != null) {
 			offlineEvent.setCachedRequest(true);
+			offlineEvent.setActionName(getActionName());
 			offlineEvent.setTargetScreenletId(getTargetScreenletId());
 
 			Class childClass = getEventClass();
@@ -191,6 +192,7 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 		BaseListEvent<E> newEvent = execute(query, args);
 		if (newEvent != null) {
 			newEvent.setTargetScreenletId(getTargetScreenletId());
+			newEvent.setActionName(getActionName());
 			newEvent.setCachedRequest(false);
 			newEvent.setGroupId(groupId);
 			newEvent.setLocale(locale);
