@@ -71,9 +71,18 @@ public abstract class OfflineEventNew extends BasicThreadEvent {
 		this.cacheKey = cacheKey;
 	}
 
+	public boolean isDirty() {
+		return dirty;
+	}
+
+	public void setDirty(boolean dirty) {
+		this.dirty = dirty;
+	}
+
 	private Locale locale;
 	private long groupId;
 	private long userId;
 	private boolean cachedRequest;
 	private String cacheKey;
+	private boolean dirty;
 }
