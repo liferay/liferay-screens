@@ -22,7 +22,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
-
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
@@ -33,15 +32,13 @@ import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
-
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @author Silvio Santos
  */
-public class DDLFormView
-	extends ScrollView implements DDLFormViewModel, View.OnClickListener {
+public class DDLFormView extends ScrollView implements DDLFormViewModel, View.OnClickListener {
 
 	public DDLFormView(Context context) {
 		super(context);
@@ -59,7 +56,6 @@ public class DDLFormView
 	public int getFieldLayoutId(Field.EditorType editorType) {
 		return _layoutIds.get(editorType);
 	}
-
 
 	@Override
 	public void setFieldLayoutId(Field.EditorType editorType, int layoutId) {
@@ -117,10 +113,11 @@ public class DDLFormView
 			DocumentField documentField = (DocumentField) argument;
 
 			findFieldView(documentField).refresh();
-		}
-		else {
+		} else if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
 			LiferayLogger.i("loading DDLForm");
-			showProgressBar(actionName);
+			_loadingFormProgressBar.setVisibility(VISIBLE);
+		} else {
+			_progressBar.setVisibility(VISIBLE);
 		}
 	}
 
@@ -174,8 +171,7 @@ public class DDLFormView
 			LiferayLogger.e("error loading DDLForm", e);
 
 			clearFormFields();
-		}
-		else if (actionName.equals(DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION)) {
+		} else if (actionName.equals(DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION)) {
 			LiferayLogger.e("error uploading", e);
 
 			DocumentField documentField = (DocumentField) argument;
@@ -195,8 +191,7 @@ public class DDLFormView
 
 		if (getDDLFormScreenlet().isShowSubmitButton()) {
 			_submitButton.setVisibility(VISIBLE);
-		}
-		else {
+		} else {
 			_submitButton.setVisibility(INVISIBLE);
 		}
 
@@ -209,8 +204,7 @@ public class DDLFormView
 			if (getDDLFormScreenlet().validateForm()) {
 				getDDLFormScreenlet().submitForm();
 			}
-		}
-		else {
+		} else {
 			getDDLFormScreenlet().startUpload((DocumentField) view.getTag());
 		}
 	}
@@ -220,20 +214,10 @@ public class DDLFormView
 		_submitButton.setVisibility(INVISIBLE);
 	}
 
-	protected void showProgressBar(String actionName) {
-		if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
-			_loadingFormProgressBar.setVisibility(VISIBLE);
-		}
-		else {
-			_progressBar.setVisibility(VISIBLE);
-		}
-	}
-
 	protected void hideProgressBar(String actionName) {
 		if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
 			_loadingFormProgressBar.setVisibility(INVISIBLE);
-		}
-		else {
+		} else {
 			_progressBar.setVisibility(INVISIBLE);
 		}
 	}
@@ -254,8 +238,7 @@ public class DDLFormView
 
 		if (_customLayoutIds.containsKey(field.getName())) {
 			layoutId = getCustomFieldLayoutId(field.getName());
-		}
-		else {
+		} else {
 			layoutId = getFieldLayoutId(field.getEditorType());
 		}
 
@@ -314,5 +297,4 @@ public class DDLFormView
 		_defaultLayoutIds.put(Field.EditorType.TEXT_AREA, R.layout.ddlfield_text_area_default);
 		_defaultLayoutIds.put(Field.EditorType.DOCUMENT, R.layout.ddlfield_document_default);
 	}
-
 }
