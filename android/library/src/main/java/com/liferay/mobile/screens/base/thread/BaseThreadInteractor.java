@@ -25,14 +25,12 @@ public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent> implem
 				try {
 					E event = execute(args);
 					if (event != null) {
-						event.setTargetScreenletId(getTargetScreenletId());
-						event.setActionName(getActionName());
+						decorateBaseEvent(event);
 						EventBusUtil.post(event);
 					}
 				} catch (Exception e) {
 					ErrorThreadEvent errorNewEvent = new ErrorThreadEvent(e);
-					errorNewEvent.setTargetScreenletId(getTargetScreenletId());
-					errorNewEvent.setActionName(getActionName());
+					decorateBaseEvent(errorNewEvent);
 					EventBusUtil.post(errorNewEvent);
 				}
 			}
@@ -108,6 +106,11 @@ public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent> implem
 
 	public void setActionName(String actionName) {
 		this.actionName = actionName;
+	}
+
+	protected void decorateBaseEvent(BasicThreadEvent event) {
+		event.setTargetScreenletId(getTargetScreenletId());
+		event.setActionName(getActionName());
 	}
 
 	private int targetScreenletId;

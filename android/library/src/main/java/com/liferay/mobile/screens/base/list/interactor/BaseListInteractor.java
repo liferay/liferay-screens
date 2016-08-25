@@ -3,6 +3,7 @@ package com.liferay.mobile.screens.base.list.interactor;
 import android.support.annotation.NonNull;
 import com.liferay.mobile.screens.base.context.RequestState;
 import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.JSONUtil;
@@ -116,9 +117,9 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 		DB snappyDB = DBFactory.open(LiferayScreensContext.getContext());
 		BaseListEvent offlineEvent = (BaseListEvent) snappyDB.getObject(listKey, clasz);
 		if (offlineEvent != null) {
+
+			decorateBaseEvent(offlineEvent);
 			offlineEvent.setCachedRequest(true);
-			offlineEvent.setActionName(getActionName());
-			offlineEvent.setTargetScreenletId(getTargetScreenletId());
 
 			Class childClass = getEventClass();
 
@@ -193,12 +194,8 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 
 		BaseListEvent<E> newEvent = execute(query, args);
 		if (newEvent != null) {
-			newEvent.setTargetScreenletId(getTargetScreenletId());
-			newEvent.setActionName(getActionName());
-			newEvent.setCachedRequest(false);
-			newEvent.setGroupId(groupId);
-			newEvent.setLocale(locale);
-			newEvent.setUserId(userId);
+			decorateEvent(newEvent, false);
+
 			newEvent.setCacheKey(getListId(query, args));
 			EventBusUtil.post(newEvent);
 		}

@@ -67,8 +67,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 					}
 				} catch (Exception e) {
 					BasicThreadEvent event = new ErrorThreadEvent(e);
-					event.setTargetScreenletId(getTargetScreenletId());
-					event.setActionName(getActionName());
+					decorateBaseEvent(event);
 					EventBusUtil.post(event);
 				}
 			}
@@ -108,15 +107,18 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 
 		E newEvent = execute(args);
 		if (newEvent != null) {
-			newEvent.setTargetScreenletId(getTargetScreenletId());
-			newEvent.setActionName(getActionName());
-			newEvent.setCachedRequest(false);
-			newEvent.setGroupId(groupId);
-			newEvent.setLocale(locale);
-			newEvent.setUserId(userId);
+			decorateEvent(newEvent, false);
 			newEvent.setCacheKey(getIdFromArgs(args));
 			EventBusUtil.post(newEvent);
 		}
+	}
+
+	protected void decorateEvent(OfflineEventNew event, boolean cachedRequest) {
+		decorateBaseEvent(event);
+		event.setGroupId(groupId);
+		event.setLocale(locale);
+		event.setUserId(userId);
+		event.setCachedRequest(cachedRequest);
 	}
 
 	protected boolean cached(Object... args) throws Exception {
@@ -130,9 +132,8 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 		E offlineEvent = (E) snappyDB.getObject(id, clasz);
 		snappyDB.close();
 		if (offlineEvent != null) {
+			decorateBaseEvent(offlineEvent);
 			offlineEvent.setCachedRequest(true);
-			offlineEvent.setTargetScreenletId(getTargetScreenletId());
-			offlineEvent.setActionName(getActionName());
 			EventBusUtil.post(offlineEvent);
 			getListener().loadingFromCache(true);
 			return true;
@@ -167,8 +168,12 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 
 	@NonNull
 	protected String getFullId(Class clasz, long groupId, long userId, Locale locale, String cacheKey, Integer row) {
-		return clasz.getSimpleName() + "_" + groupId + "_" + userId + "_" + locale + "_" +
-			(row == null ? "" : String.format(Locale.US, "%05d", row) + "_") + (cacheKey == null ? "" : cacheKey);
+		return clasz.getSimpleName() + "_" +
+			groupId + "_" +
+			userId + "_" +
+			locale + "_" +
+			(row == null ? "" : String.format(Locale.US, "%05d", row) + "_") +
+			(cacheKey == null ? "" : cacheKey);
 	}
 
 	protected abstract String getIdFromArgs(Object... args) throws Exception;

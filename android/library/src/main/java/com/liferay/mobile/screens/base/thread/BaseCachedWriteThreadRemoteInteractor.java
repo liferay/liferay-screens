@@ -43,8 +43,7 @@ public abstract class BaseCachedWriteThreadRemoteInteractor<L extends OfflineLis
 					}
 				} catch (Exception e) {
 					BasicThreadEvent event = new ErrorThreadEvent(e);
-					event.setTargetScreenletId(getTargetScreenletId());
-					event.setActionName(getActionName());
+					decorateBaseEvent(event);
 					EventBusUtil.post(event);
 				}
 			}
@@ -81,42 +80,24 @@ public abstract class BaseCachedWriteThreadRemoteInteractor<L extends OfflineLis
 	}
 
 	protected void online(E onlineEvent) throws Exception {
+		decorateEvent(onlineEvent, false);
 		E event = execute(onlineEvent);
-		event.setGroupId(groupId);
-		event.setLocale(locale);
-		event.setUserId(userId);
-		event.setTargetScreenletId(getTargetScreenletId());
-		event.setActionName(getActionName());
 		EventBusUtil.post(event);
 	}
 
 	protected void storeToCacheAndLaunchEvent(E event) throws Exception {
+		decorateEvent(event, true);
+		event.setDirty(true);
 		store(event);
-		event.setCachedRequest(true);
-		event.setGroupId(groupId);
-		event.setLocale(locale);
-		event.setUserId(userId);
-		event.setTargetScreenletId(getTargetScreenletId());
-		event.setActionName(getActionName());
 		EventBusUtil.post(event);
 	}
 
 	protected void store(E event) throws Exception {
 		DB snappydb = DBFactory.open(LiferayScreensContext.getContext());
-		snappydb.put(getFullId(event), event);
+		snappydb.put(
+			getFullId(event.getClass(), event.getGroupId(), event.getUserId(), event.getLocale(), event.getCacheKey(),
+				null), event);
 		snappydb.close();
-	}
-
-	protected String getFullId(E event) throws Exception {
-		return event.getClass().getSimpleName()
-			+ "_"
-			+ event.getGroupId()
-			+ "_"
-			+ event.getUserId()
-			+ "_"
-			+ event.getLocale()
-			+ "_"
-			+ event.getCacheKey();
 	}
 
 	@Override
