@@ -81,6 +81,14 @@ public class AssetEntry implements Parcelable {
 			+ _values.get("uuid");
 	}
 
+	public Map<String, Object> getObject() {
+		return (Map<String, Object>) _values.get("object");
+	}
+
+	public String getObjectType() {
+		return getObject().keySet().iterator().next();
+	}
+
 	private long getFolder() {
 		if (_values.get("folderId") != null) {
 			return (long) _values.get("folderId");
