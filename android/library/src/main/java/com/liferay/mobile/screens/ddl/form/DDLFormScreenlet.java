@@ -27,10 +27,12 @@ import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
 import com.liferay.mobile.screens.ddl.form.interactor.add.DDLFormAddRecordInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.interactor.formload.DDLFormLoadInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.interactor.recordload.DDLFormLoadRecordNewInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.interactor.update.DDLFormUpdateRecordInteractorImpl;
+import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadEvent;
 import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
@@ -489,10 +491,7 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 			}
 			case ADD_RECORD_ACTION: {
 				getViewModel().showStartOperation(ADD_RECORD_ACTION, _record);
-
-				DDLFormAddRecordInteractorImpl addInteractor = (DDLFormAddRecordInteractorImpl) interactor;
-
-				addInteractor.start(_groupId, _record);
+				((DDLFormAddRecordInteractorImpl) interactor).start(new DDLFormEvent(_record, new JSONObject()));
 				break;
 			}
 			case UPDATE_RECORD_ACTION: {
@@ -500,23 +499,17 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 
 				DDLFormUpdateRecordInteractorImpl updateInteractor = (DDLFormUpdateRecordInteractorImpl) interactor;
 
-				updateInteractor.start(_groupId, _record);
+				updateInteractor.start(new DDLFormEvent(_record, new JSONObject()));
 				break;
 			}
 			case UPLOAD_DOCUMENT_ACTION: {
-				DocumentField documentToUpload = (DocumentField) args[0];
+				DocumentField documentField = (DocumentField) args[0];
+				documentField.moveToUploadInProgressState();
 
-				documentToUpload.moveToUploadInProgressState();
+				getViewModel().showStartOperation(UPLOAD_DOCUMENT_ACTION, documentField);
 
-				try {
-					getViewModel().showStartOperation(UPLOAD_DOCUMENT_ACTION, documentToUpload);
-
-					DDLFormDocumentUploadInteractorImpl uploadInteractor = (DDLFormDocumentUploadInteractorImpl) interactor;
-
-					uploadInteractor.start(_groupId, _userId, _repositoryId, _folderId, _filePrefix, documentToUpload);
-				} catch (Exception e) {
-					onDDLFormDocumentUploadFailed(documentToUpload, e);
-				}
+				((DDLFormDocumentUploadInteractorImpl) interactor).start(
+					new DDLFormDocumentUploadEvent(documentField, _repositoryId, _folderId, _filePrefix));
 				break;
 			}
 		}

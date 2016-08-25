@@ -33,6 +33,8 @@ public class DDLFormAddRecordInteractorImpl
 	@Override
 	public DDLFormEvent execute(DDLFormEvent event) throws Exception {
 
+		validate(groupId, event.getRecord());
+
 		DDLRecordConnector ddlRecordConnector = ServiceProvider.getInstance().getDDLRecordConnector(getSession());
 
 		Record record = event.getRecord();
@@ -52,17 +54,6 @@ public class DDLFormAddRecordInteractorImpl
 		event.setJSONObject(jsonObject);
 
 		return event;
-	}
-
-	@Override
-	protected DDLFormEvent createEvent(Object[] args) throws Exception {
-
-		long groupId = (long) args[0];
-		Record record = (Record) args[1];
-
-		validate(groupId, record);
-
-		return new DDLFormEvent(record, new JSONObject());
 	}
 
 	@Override

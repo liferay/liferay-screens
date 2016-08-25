@@ -32,17 +32,6 @@ public class DDLFormDocumentUploadInteractorImpl
 	}
 
 	@Override
-	protected DDLFormDocumentUploadEvent createEvent(Object[] args) throws Exception {
-
-		DocumentField documentField = (DocumentField) args[0];
-		long repositoryId = args[1] == null ? groupId : (long) args[1];
-		long folderId = (long) args[2];
-		String filePrefix = (String) args[3];
-
-		return new DDLFormDocumentUploadEvent(documentField, repositoryId, folderId, filePrefix);
-	}
-
-	@Override
 	public void onSuccess(DDLFormDocumentUploadEvent event) throws Exception {
 		getListener().onDDLFormDocumentUploaded(event.getDocumentField(), event.getJSONObject());
 	}

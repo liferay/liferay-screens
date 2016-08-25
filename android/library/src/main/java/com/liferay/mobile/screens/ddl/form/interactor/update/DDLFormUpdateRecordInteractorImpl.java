@@ -54,17 +54,6 @@ public class DDLFormUpdateRecordInteractorImpl
 	}
 
 	@Override
-	protected DDLFormEvent createEvent(Object[] args) throws Exception {
-
-		long groupId = (long) args[0];
-		Record record = (Record) args[1];
-
-		validate(groupId, record);
-
-		return new DDLFormEvent(record, new JSONObject());
-	}
-
-	@Override
 	public void onSuccess(DDLFormEvent event) throws Exception {
 		getListener().onDDLFormRecordUpdated(event.getRecord());
 	}
