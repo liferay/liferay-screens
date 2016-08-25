@@ -29,7 +29,7 @@ public class DDLFormEvent extends ListEvent<Record> {
 
 	@Override
 	public String getCacheKey() {
-		return String.valueOf(_record.getRecordId());
+		return String.valueOf(record.getRecordId());
 	}
 
 	@Override
@@ -40,12 +40,12 @@ public class DDLFormEvent extends ListEvent<Record> {
 	public DDLFormEvent(Record record, JSONObject jsonObject) {
 		super(jsonObject);
 
-		_record = record;
+		this.record = record;
 	}
 
 	public Record getRecord() {
-		return _record;
+		return record;
 	}
 
-	private Record _record;
+	private Record record;
 }
