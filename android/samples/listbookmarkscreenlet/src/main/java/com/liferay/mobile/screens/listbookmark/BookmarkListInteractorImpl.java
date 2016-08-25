@@ -10,13 +10,15 @@ import org.json.JSONArray;
 /**
  * @author Javier Gamarra
  */
-public class BookmarkListInteractorImpl extends BaseListInteractor<Bookmark, BaseListInteractorListener<Bookmark>> {
+public class BookmarkListInteractorImpl
+	extends BaseListInteractor<BaseListInteractorListener<Bookmark>, BookmarkEvent> {
 
 	@Override
 	protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {
 		long folderId = (long) args[0];
+
 		return new BookmarksEntryService(getSession()).getEntries(groupId, folderId, query.getStartRow(),
-			query.getEndRow(), query.getObjC());
+			query.getEndRow(), query.getComparatorJSONWrapper());
 	}
 
 	@Override
@@ -26,13 +28,13 @@ public class BookmarkListInteractorImpl extends BaseListInteractor<Bookmark, Bas
 	}
 
 	@Override
-	protected String getIdFromArgs(Object... args) throws Exception {
-		long folderId = (long) args[0];
-		return String.valueOf(folderId);
+	protected BookmarkEvent createEntity(Map<String, Object> stringObjectMap) {
+		Bookmark bookmark = new Bookmark(stringObjectMap);
+		return new BookmarkEvent(bookmark);
 	}
 
 	@Override
-	protected Bookmark createEntity(Map<String, Object> stringObjectMap) {
-		return null;
+	protected String getIdFromArgs(Object... args) throws Exception {
+		return String.valueOf(args[0]);
 	}
 }
