@@ -2,6 +2,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.asset.display;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -65,8 +66,8 @@ public class AssetDisplayView extends FrameLayout implements AssetDisplayViewMod
 	}
 
 	@Override
-	public void showFinishOperation(BaseScreenlet screenlet) {
-		container.addView(screenlet, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+	public void showFinishOperation(View view) {
+		container.addView(view, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
 		progressBar.setVisibility(GONE);
 		container.setVisibility(VISIBLE);
 		LiferayLogger.d("Asset display loaded successfully");
