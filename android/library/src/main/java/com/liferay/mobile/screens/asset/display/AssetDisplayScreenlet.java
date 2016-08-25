@@ -90,22 +90,36 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		AssetDisplayFactory factory = new AssetDisplayFactory();
 		BaseScreenlet screenlet = factory.getScreenlet(getContext(), assetEntry, layouts, autoLoad);
 		if (screenlet != null) {
-			getViewModel().showFinishOperation(screenlet);
-			if (listener != null) {
-				listener.onRetrieveAssetSuccess(assetEntry);
+			if (configureListener != null) {
+				configureListener.onConfigureChildScreenlet(this, screenlet, assetEntry);
 			}
+			getViewModel().showFinishOperation(screenlet);
 		} else {
-			String server = getResources().getString(R.string.liferay_server);
-			String url = server + assetEntry.getUrl();
-			Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-			if (intent.resolveActivity(getContext().getPackageManager()) != null) {
-				getContext().startActivity(intent);
+
+			View customView = null;
+			if (configureListener != null) {
+				customView = configureListener.onRenderCustomAsset(assetEntry);
+			}
+
+			if (customView != null) {
+				getViewModel().showFinishOperation(customView);
 			} else {
-				LiferayLogger.e("Error loading screenlet");
-				if (listener != null) {
-					listener.onRetrieveAssetFailure(new Exception("Error loading screenlet"));
+				String server = getResources().getString(R.string.liferay_server);
+				String url = server + assetEntry.getUrl();
+				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+				if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+					getContext().startActivity(intent);
+				} else {
+					LiferayLogger.e("Error loading screenlet");
+					if (listener != null) {
+						listener.onRetrieveAssetFailure(new Exception("Error loading screenlet"));
+					}
 				}
 			}
+		}
+
+		if (listener != null) {
+			listener.onRetrieveAssetSuccess(assetEntry);
 		}
 	}
 
@@ -199,6 +213,11 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		this.listener = listener;
 	}
 
+	public void setInnerListener(
+		AssetDisplayInnerScreenletListener configureListener) {
+		this.configureListener = configureListener;
+	}
+
 	public void setAutoLoad(boolean autoLoad) {
 		this.autoLoad = autoLoad;
 	}
@@ -209,4 +228,5 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	private long classPK;
 	private String className;
 	private AssetDisplayListener listener;
+	private AssetDisplayInnerScreenletListener configureListener;
 }
