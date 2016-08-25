@@ -4,6 +4,7 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.comment.CommentEntry;
+import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
 import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
 import java.util.Map;
 import org.json.JSONArray;
@@ -11,7 +12,7 @@ import org.json.JSONArray;
 /**
  * @author Alejandro Hernández
  */
-public class CommentListInteractorImpl extends BaseListInteractor<CommentEntry, CommentListInteractorListener> {
+public class CommentListInteractorImpl extends BaseListInteractor<CommentListInteractorListener, CommentEvent> {
 
 	@Override
 	protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {
@@ -19,8 +20,8 @@ public class CommentListInteractorImpl extends BaseListInteractor<CommentEntry, 
 		String className = (String) args[0];
 		long classPK = (long) args[1];
 
-		CommentmanagerjsonwsService service = getCommentsService(getSession());
-		return service.getComments(groupId, className, classPK, query.getStartRow(), query.getEndRow());
+		return getService(getSession()).getComments(groupId, className, classPK, query.getStartRow(),
+			query.getEndRow());
 	}
 
 	@Override
@@ -29,13 +30,15 @@ public class CommentListInteractorImpl extends BaseListInteractor<CommentEntry, 
 		String className = (String) args[0];
 		long classPK = (long) args[1];
 
-		CommentmanagerjsonwsService service = getCommentsService(getSession());
-		return service.getCommentsCount(groupId, className, classPK);
+		return getService(getSession()).getCommentsCount(groupId, className, classPK);
 	}
 
 	@Override
-	protected CommentEntry createEntity(Map<String, Object> stringObjectMap) {
-		return new CommentEntry(stringObjectMap);
+	protected CommentEvent createEntity(Map<String, Object> stringObjectMap) {
+		CommentEntry commentEntry = new CommentEntry(stringObjectMap);
+
+		return new CommentEvent(commentEntry.getCommentId(), commentEntry.getClassName(), commentEntry.getClassPK(),
+			commentEntry.getBody(), commentEntry);
 	}
 
 	@Override
@@ -43,10 +46,10 @@ public class CommentListInteractorImpl extends BaseListInteractor<CommentEntry, 
 		String className = (String) args[0];
 		long classPK = (long) args[1];
 
-		return null;
+		return className + "-" + classPK;
 	}
 
-	private CommentmanagerjsonwsService getCommentsService(Session session) {
+	private CommentmanagerjsonwsService getService(Session session) {
 		return new CommentmanagerjsonwsService(session);
 	}
 
