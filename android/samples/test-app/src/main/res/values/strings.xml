@@ -49,4 +49,6 @@
 	<string name="button_for_like">button for like</string>
 	<string name="button_for_reactions">button for reactions</string>
 	<string name="button_for_emojis">button for emojis</string>
+	<string name="email">Email</string>
+	<string name="nickname">Nickname</string>
 </resources>
