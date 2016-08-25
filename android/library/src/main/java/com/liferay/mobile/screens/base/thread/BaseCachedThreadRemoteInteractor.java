@@ -128,6 +128,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 
 		DB snappyDB = DBFactory.open(LiferayScreensContext.getContext());
 		E offlineEvent = (E) snappyDB.getObject(id, clasz);
+		snappyDB.close();
 		if (offlineEvent != null) {
 			offlineEvent.setCachedRequest(true);
 			offlineEvent.setTargetScreenletId(getTargetScreenletId());

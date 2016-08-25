@@ -126,6 +126,7 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 
 			String keys[] = snappyDB.findKeys(elementKey, offlineEvent.getQuery().getStartRow(),
 				offlineEvent.getQuery().getLimit());
+			snappyDB.close();
 
 			List<E> entries = new ArrayList<>();
 			for (String key : keys) {
@@ -137,6 +138,7 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 			getListener().loadingFromCache(true);
 			return true;
 		}
+		snappyDB.close();
 		getListener().loadingFromCache(false);
 		return false;
 	}

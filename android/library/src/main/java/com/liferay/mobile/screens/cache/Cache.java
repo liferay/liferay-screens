@@ -19,6 +19,7 @@ public class Cache {
 			for (String key : keys) {
 				snappyDB.del(key);
 			}
+			snappyDB.close();
 		} catch (SnappydbException e) {
 			LiferayLogger.e("Error deleting className");
 			return false;
@@ -30,6 +31,7 @@ public class Cache {
 		try {
 			DB snappyDB = DBFactory.open(LiferayScreensContext.getContext());
 			snappyDB.destroy();
+			snappyDB.close();
 			return true;
 		} catch (SnappydbException e) {
 			LiferayLogger.e("Error destroying DB");
