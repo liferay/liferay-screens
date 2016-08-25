@@ -14,17 +14,27 @@
 
 package com.liferay.mobile.screens.ddl.form.interactor;
 
-import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
+import com.liferay.mobile.screens.base.list.interactor.ListEvent;
 import com.liferay.mobile.screens.ddl.model.Record;
 import org.json.JSONObject;
 
 /**
  * @author Silvio Santos
  */
-public class DDLFormEvent extends OfflineEventNew {
+public class DDLFormEvent extends ListEvent<Record> {
 
 	public DDLFormEvent() {
 		super();
+	}
+
+	@Override
+	public String getCacheKey() {
+		return String.valueOf(_record.getRecordId());
+	}
+
+	@Override
+	public Record getModel() {
+		return getRecord();
 	}
 
 	public DDLFormEvent(Record record, JSONObject jsonObject) {

@@ -1,14 +1,24 @@
 package com.liferay.mobile.screens.asset;
 
 import com.liferay.mobile.screens.asset.list.AssetEntry;
-import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
+import com.liferay.mobile.screens.base.list.interactor.ListEvent;
 
-public class AssetEvent extends OfflineEventNew {
+public class AssetEvent extends ListEvent<AssetEntry> {
 
 	private AssetEntry assetEntry;
 
 	public AssetEvent() {
 		super();
+	}
+
+	@Override
+	public String getCacheKey() {
+		return assetEntry.getEntryId();
+	}
+
+	@Override
+	public AssetEntry getModel() {
+		return assetEntry;
 	}
 
 	public AssetEvent(AssetEntry assetEntry) {

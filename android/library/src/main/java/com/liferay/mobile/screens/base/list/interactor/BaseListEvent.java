@@ -22,39 +22,45 @@ import java.util.List;
  */
 public class BaseListEvent<E> extends OfflineEventNew {
 
-	private final Query _query;
-
-	public Query getQuery() {
-		return _query;
+	public BaseListEvent() {
+		super();
 	}
 
 	public BaseListEvent(Query query, List<E> entries, int rowCount) {
-
-		_entries = entries;
-		_startRow = query.getStartRow();
-		_endRow = query.getEndRow();
-		_query = query;
-		_rowCount = rowCount;
+		this.query = query;
+		this.entries = entries;
+		this.rowCount = rowCount;
 	}
 
 	public List<E> getEntries() {
-		return _entries;
+		return entries;
+	}
+
+	public void setEntries(List<E> entries) {
+		this.entries = entries;
 	}
 
 	public int getStartRow() {
-		return _startRow;
+		return query.getStartRow();
 	}
 
 	public int getEndRow() {
-		return _endRow;
+		return query.getEndRow();
 	}
 
 	public int getRowCount() {
-		return _rowCount;
+		return rowCount;
 	}
 
-	private List<E> _entries;
-	private int _startRow;
-	private int _endRow;
-	private int _rowCount;
+	public Query getQuery() {
+		return query;
+	}
+
+	public void setQuery(Query query) {
+		this.query = query;
+	}
+
+	private List<E> entries;
+	private int rowCount;
+	private Query query;
 }

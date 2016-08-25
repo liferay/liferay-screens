@@ -14,16 +14,26 @@
 
 package com.liferay.mobile.screens.webcontent.display.interactor;
 
-import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
+import com.liferay.mobile.screens.base.list.interactor.ListEvent;
 import com.liferay.mobile.screens.webcontent.WebContent;
 
 /**
  * @author Jose Manuel Navarro
  */
-public class WebContentDisplayEvent extends OfflineEventNew {
+public class WebContentDisplayEvent extends ListEvent<WebContent> {
 
 	public WebContentDisplayEvent() {
 		super();
+	}
+
+	@Override
+	public String getCacheKey() {
+		return _webContent.getArticleId();
+	}
+
+	@Override
+	public WebContent getModel() {
+		return _webContent;
 	}
 
 	public WebContentDisplayEvent(String html) {
