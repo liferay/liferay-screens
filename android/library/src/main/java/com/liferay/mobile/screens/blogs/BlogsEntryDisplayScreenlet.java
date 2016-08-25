@@ -115,8 +115,7 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 			try {
 				if (blogsEntry == null || (className != null && classPK != 0)) {
 					load();
-				}
-				else {
+				} else {
 					loadBlogsEntry();
 				}
 			} catch (Exception e) {

@@ -38,6 +38,8 @@ public class AssetDisplayFactory {
 					screenlet.render(layoutId);
 					return screenlet;
 				}
+				return null;
+
 			case "com.liferay.blogs.kernel.model.BlogsEntry":
 
 				BlogsEntryDisplayScreenlet blogsScreenlet = new BlogsEntryDisplayScreenlet(context);
