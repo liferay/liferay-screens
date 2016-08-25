@@ -14,12 +14,11 @@
 
 package com.liferay.mobile.screens.asset.list.interactor;
 
-import android.util.Pair;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
+import com.liferay.mobile.screens.asset.AssetEvent;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.asset.list.connector.AssetEntryConnector;
 import com.liferay.mobile.screens.asset.list.connector.ScreensAssetEntryConnector;
-import com.liferay.mobile.screens.base.context.RequestState;
 import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.base.list.interactor.Query;
@@ -38,43 +37,30 @@ import org.json.JSONObject;
 /**
  * @author Silvio Santos
  */
-public class AssetListInteractorImpl extends BaseListInteractor<AssetEntry, AssetListInteractorListener> {
+public class AssetListInteractorImpl extends BaseListInteractor<AssetListInteractorListener, AssetEvent> {
 
-	public BaseListEvent<AssetEntry> execute(Object... args) throws Exception {
+	public BaseListEvent<AssetEvent> execute(Query query, Object... args) throws Exception {
 
-		int startRow = query.getStartRow();
-		int endRow = query.getEndRow();
+		if (notRequestingRightNow(query)) {
 
-		validate(startRow, endRow, locale);
+			long classNameId = (long) args[0];
+			HashMap<String, Object> customEntryQuery = (HashMap<String, Object>) args[1];
+			String portletItemName = (String) args[2];
 
-		Pair<Integer, Integer> rowsRange = new Pair<>(startRow, endRow);
+			validate(query.getStartRow(), query.getEndRow(), locale, portletItemName, classNameId);
 
-		RequestState requestState = RequestState.getInstance();
+			JSONArray jsonArray = getEntries(query, classNameId, customEntryQuery, portletItemName);
+			int rowCount = getCount(classNameId, customEntryQuery, portletItemName, jsonArray);
 
-		// check if this page is already being loaded
-		if (requestState.contains(getTargetScreenletId(), rowsRange)) {
-			throw new AssertionError("Page already requested");
+			List<AssetEvent> entries = new ArrayList<>();
+
+			for (int i = 0; i < jsonArray.length(); i++) {
+				JSONObject jsonObject = jsonArray.getJSONObject(i);
+				entries.add(createEntity(JSONUtil.toMap(jsonObject)));
+			}
+			return new BaseListEvent<>(query, entries, rowCount);
 		}
-
-		long classNameId = (long) args[0];
-		HashMap<String, Object> customEntryQuery = (HashMap<String, Object>) args[1];
-		String portletItemName = (String) args[2];
-
-		validate(query.getStartRow(), query.getEndRow(), locale, portletItemName, classNameId);
-
-		JSONArray jsonArray = getEntries(query, classNameId, customEntryQuery, portletItemName);
-		int rowCount = getCount(classNameId, customEntryQuery, portletItemName, jsonArray);
-
-		List<AssetEntry> entries = new ArrayList<>();
-
-		for (int i = 0; i < jsonArray.length(); i++) {
-			JSONObject jsonObject = jsonArray.getJSONObject(i);
-			entries.add(createEntity(JSONUtil.toMap(jsonObject)));
-		}
-
-		requestState.put(getTargetScreenletId(), rowsRange);
-
-		return new BaseListEvent<>(query, entries, rowCount);
+		return null;
 	}
 
 	private JSONArray getEntries(Query query, long classNameId, HashMap<String, Object> customEntryQuery,
@@ -121,8 +107,8 @@ public class AssetListInteractorImpl extends BaseListInteractor<AssetEntry, Asse
 	}
 
 	@Override
-	protected AssetEntry createEntity(Map<String, Object> stringObjectMap) {
-		return new AssetEntry(stringObjectMap);
+	protected AssetEvent createEntity(Map<String, Object> stringObjectMap) {
+		return new AssetEvent(new AssetEntry(stringObjectMap));
 	}
 
 	@Override
