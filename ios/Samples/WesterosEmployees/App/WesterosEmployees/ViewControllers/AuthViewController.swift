@@ -30,6 +30,9 @@ class AuthViewController: UIViewController, LoginScreenletDelegate {
 
 		cardDeck.addCards(["Sign In", "Sign Up"])
 
+		//Make login only expand to half of the page on normal height
+		cardDeck.cards[0].normalHeight = self.view.frame.height * 0.7
+
 		signInController = SignInViewController(card: cardDeck.cards[0])
 		signInController!.onDone = onDone
 

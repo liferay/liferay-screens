@@ -18,15 +18,12 @@ import LiferayScreens
 class SignInViewController: CardViewController, LoginScreenletDelegate, KeyboardListener {
 
 	//MARK: Outlets
-	@IBOutlet weak var loginScreenlet: LoginScreenlet!
+	@IBOutlet weak var loginScreenlet: LoginScreenlet?
 
 	//MARK: Init methods
 
 	override init(card: CardView, nibName: String) {
-		let save = card.minimizedHeight
-		card.minimizedHeight = 0
 		super.init(card: card, nibName: nibName)
-		card.minimizedHeight = save
 	}
 
 	convenience init(card: CardView) {
@@ -44,7 +41,7 @@ class SignInViewController: CardViewController, LoginScreenletDelegate, Keyboard
 	//MARK: UIViewController
 
 	override func viewDidLoad() {
-		self.loginScreenlet.delegate = self
+		self.loginScreenlet?.delegate = self
 	}
 
 	func screenlet(screenlet: BaseScreenlet,
@@ -61,6 +58,7 @@ class SignInViewController: CardViewController, LoginScreenletDelegate, Keyboard
 
 	override func cardWillDisappear() {
 		unregisterKeyboardListener(self)
+		self.view.endEditing(true)
 	}
 
 
