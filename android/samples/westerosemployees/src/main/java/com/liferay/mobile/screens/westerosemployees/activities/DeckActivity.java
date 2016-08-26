@@ -27,6 +27,7 @@ public class DeckActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		cards = new ArrayList<>();
 	}
 
 	@Override
@@ -47,7 +48,7 @@ public class DeckActivity extends Activity {
 
 	protected void calculateSize() {
 		if (maxWidth != 0 && maxHeight != 0) {
-			onWindowDrawnOnScreens();
+			initializeDeckAndCards();
 		} else {
 			final View content = findViewById(android.R.id.content);
 			content.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -62,7 +63,7 @@ public class DeckActivity extends Activity {
 					maxWidth = content.getWidth();
 					maxHeight = content.getHeight();
 
-					onWindowDrawnOnScreens();
+					initializeDeckAndCards();
 				}
 
 				@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -73,6 +74,70 @@ public class DeckActivity extends Activity {
 		}
 	}
 
+	protected void initializeDeckAndCards() {
+		FrameLayout base = (FrameLayout) findViewById(android.R.id.content);
+
+		FrameLayout content = (FrameLayout) base.getChildAt(0);
+
+		fillDeck(content);
+		initCards();
+	}
+
+	protected void fillDeck(ViewGroup content) {
+
+		for (int i = 0; i < content.getChildCount(); i++) {
+			View view = content.getChildAt(i);
+			if (view instanceof Card) {
+				cards.add((Card) view);
+			}
+		}
+	}
+
+	protected void initCards() {
+		for (int i = 0, size = cards.size(); i < size; i++) {
+			final Card card = cards.get(i);
+
+			int minimizedPosition = maxHeight - (size - i) * Card.CARD_SIZE;
+
+			card.initPosition(minimizedPosition);
+		}
+	}
+
+	protected void onClick(Card card) {
+		changeState(card);
+	}
+
+	protected void changeState(Card card) {
+		//Get index of the selected view
+		int indexSelected = cards.indexOf(card);
+
+		for (int i = 0, size = cards.size(); i < size; i++) {
+			Card view = cards.get(i);
+
+			if (indexSelected > i) {
+				int depth = indexSelected - i;
+				view.setState(CardState.BACKGROUND);
+			}
+
+			if (i == indexSelected) {
+				if (view.getCardState() == CardState.NORMAL) {
+					if (i != 0) {
+						cards.get(i - 1).setState(CardState.NORMAL);
+					}
+
+					view.setState(CardState.MINIMIZED);
+				} else {
+					view.setState(CardState.NORMAL);
+				}
+			}
+
+			if (indexSelected < i) {
+				view.setState(CardState.MINIMIZED);
+			}
+		}
+	}
+
+	protected List<Card> cards;
 
 	protected int maxWidth;
 	protected int maxHeight;
