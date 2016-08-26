@@ -2,8 +2,10 @@ package com.liferay.mobile.screens.westerosemployees.Views;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -18,11 +20,11 @@ import java.util.List;
 
 public class Card extends FrameLayout {
 
-	public static final int MARGIN = 30;
+	public static final int MARGIN = 5;
 	public static final int DURATION_MILLIS = 300;
-	public static final int CARD_SIZE = 250;
+	public static final int CARD_SIZE = 80;
 
-	public static int NORMAL_Y = MARGIN * 4;
+	public static int NORMAL_Y = MARGIN * 5;
 	public static int BACKGROUND_Y = MARGIN;
 
 	public Card(Context context) {
@@ -85,6 +87,8 @@ public class Card extends FrameLayout {
 
 	public void initPosition(int minimizedPosition) {
 		this.minimizedPosition = minimizedPosition;
+		this.normalY = convertDpToPx(NORMAL_Y);
+		this.backgroundY = convertDpToPx(BACKGROUND_Y);
 
 		setY(minimizedPosition);
 	}
@@ -93,12 +97,12 @@ public class Card extends FrameLayout {
 		switch (state) {
 			case BACKGROUND:
 				animate().setDuration(DURATION_MILLIS).scaleX(0.95f);
-				animate().setDuration(DURATION_MILLIS).translationY(BACKGROUND_Y);
+				animate().setDuration(DURATION_MILLIS).translationY(backgroundY);
 				break;
 			case NORMAL:
 				showArrows(true);
 				animate().setDuration(DURATION_MILLIS).scaleX(1f);
-				animate().setDuration(DURATION_MILLIS).translationY(NORMAL_Y);
+				animate().setDuration(DURATION_MILLIS).translationY(normalY);
 				break;
 			case MINIMIZED:
 				showArrows(false);
@@ -140,6 +144,10 @@ public class Card extends FrameLayout {
 		}
 	}
 
+	public CardState getCardState() {
+		return cardState;
+	}
+
 	protected void showArrows(boolean show) {
 		int visibility = show ? VISIBLE : INVISIBLE;
 
@@ -166,18 +174,21 @@ public class Card extends FrameLayout {
 		return views;
 	}
 
-	public CardState getCardState() {
-		return cardState;
+	private int convertDpToPx(int dp) {
+		Resources resources = getResources();
+		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
 	}
 
-
 	protected List<View> arrows;
+	protected List<View> titles;
 	protected int index;
 
 	protected int maxWidth;
 	protected int maxHeight;
 
 	protected int minimizedPosition;
+	protected int normalY;
+	protected int backgroundY;
 
 	protected CardState cardState;
 }
