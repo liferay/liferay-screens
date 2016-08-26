@@ -49,13 +49,6 @@ public class CardView: UIView {
 	public var normalHeight: CGFloat = 0
 	public var maximizedMargin: CGFloat = 30
 
-	//Card properties
-	public var title: String = "Card" {
-		didSet {
-			self.button.setTitle(title.uppercaseString, forState: .Normal)
-		}
-	}
-
 	//Subviews
 	public var arrow: UIImageView = UIImageView.newAutoLayoutView()
 	public var button: UIButton = UIButton.newAutoLayoutView()
@@ -132,8 +125,8 @@ public class CardView: UIView {
 	///    - title: title for the card
 	///    - buttonFontColor: color for the button text
 	///    - arrowImage: image to be used as "indicator" arrow
-	public func initializeView(title: String, buttonFontColor fontColor: UIColor,
-	                         arrowImage image: UIImage) {
+	public func initializeView(backgroundColor backgroundColor: UIColor,
+			buttonTitle: String, buttonFontColor fontColor: UIColor, arrowImage image: UIImage) {
 		//Add button and arrow
 		addSubview(button)
 		button.addSubview(arrow)
@@ -143,14 +136,14 @@ public class CardView: UIView {
 		cardContentView.addSubview(scrollView)
 		scrollView.addSubview(scrollContentView)
 
+		self.backgroundColor = backgroundColor
+
 		//Initialize scroll view
 		scrollView.bounces = true
 		scrollView.scrollEnabled = true
 		scrollView.pagingEnabled = true
 
-		self.layer.cornerRadius = CardView.DefaultCornerRadius
-
-		setButton(title, fontColor: fontColor)
+		setButton(buttonTitle, fontColor: fontColor)
 		setArrowImage(image)
 	}
 
@@ -282,15 +275,31 @@ public class CardView: UIView {
 
 			onChangeCompleted = nil
 
-			//Animate the constraint change
-			UIView.animateWithDuration((time ?? CardView.DefaultAnimationTime) * 1.30,
-				delay: delay,
-				usingSpringWithDamping: 1.0,
-				initialSpringVelocity: 0.0,
-				options: [.BeginFromCurrentState, .CurveEaseIn],
-				animations: {
-					self.layoutIfNeeded()
-				}, completion: onComplete)
+			if currentState == .Minimized || currentState == .Hidden {
+				//Animate the constraint change
+				UIView.animateWithDuration((time ?? CardView.DefaultAnimationTime) * 1.30,
+					delay: delay,
+					usingSpringWithDamping: 1.0,
+					initialSpringVelocity: 0.0,
+					options: [.BeginFromCurrentState, .CurveEaseIn],
+					animations: {
+						self.layoutIfNeeded()
+						self.setNeedsDisplay()
+					}, completion: onComplete)
+			} else {
+				//Animate the constraint change
+				UIView.animateWithDuration((time ?? CardView.DefaultAnimationTime) * 1.30,
+					delay: delay,
+					usingSpringWithDamping: 1.0,
+					initialSpringVelocity: 0.0,
+					options: [.BeginFromCurrentState, .CurveEaseIn],
+					animations: {
+						self.layoutIfNeeded()
+					}, completion: { flag in
+						self.setNeedsDisplay()
+						onComplete?(flag)
+					})
+			}
 		}
 
 		//Show/hide the arrow
@@ -309,7 +318,8 @@ public class CardView: UIView {
 		UIView.animateWithDuration(time ?? CardView.DefaultAnimationTime, delay: delay,
 			options: UIViewAnimationOptions.CurveEaseIn,
 		    animations: {
-				self.arrow.alpha = self.nextState == .Normal || self.nextState == .Maximized ? 1.0 : 0.0
+				self.arrow.alpha =
+					self.nextState == .Normal || self.nextState == .Maximized ? 1.0 : 0.0
 			}, completion: nil)
 	}
 	
@@ -403,6 +413,25 @@ public class CardView: UIView {
 
 
 	//MARK: UIView
+
+	override public func drawRect(rect: CGRect) {
+		super.drawRect(rect)
+
+		//Create mask path with top rounding corners
+		let maskPath = UIBezierPath(
+				roundedRect: self.bounds,
+				byRoundingCorners: [.TopLeft, .TopRight],
+				cornerRadii: CGSize(width: CardView.DefaultCornerRadius,
+					height: CardView.DefaultCornerRadius))
+
+		//Create mask layer, with card bounds and previously mask
+		let maskLayer = CAShapeLayer()
+		maskLayer.frame = self.bounds
+		maskLayer.path  = maskPath.CGPath
+
+		//Apply layer to card mask
+		self.layer.mask = maskLayer
+	}
 
 	public override func updateConstraints() {
 		super.updateConstraints()

@@ -137,9 +137,9 @@ public class CardDeckView: UIView {
 	public func createCard(title: String, index: Int) -> CardView {
 		//Create Card
 		let card = CardView.newAutoLayoutView()
-		card.backgroundColor = Resources.backgroundColorForIndex(index)
 		card.layer.zPosition = zPositionForIndex(index)
-		card.initializeView(title, buttonFontColor: Resources.textColorForIndex(index),
+		card.initializeView(backgroundColor: Resources.backgroundColorForIndex(index),
+		    buttonTitle: title, buttonFontColor: Resources.textColorForIndex(index),
 			arrowImage: Resources.arrowImageForIndex(index))
 		card.button.addTarget(self, action: #selector(CardDeckView.cardTouchUpInside(_:)),
 			forControlEvents: .TouchUpInside)
