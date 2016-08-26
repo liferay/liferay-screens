@@ -4,6 +4,7 @@ import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.blogs.BlogsEntry;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.dlfile.display.FileEntry;
+import com.liferay.mobile.screens.user.display.UserAsset;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.webcontent.WebContent;
 import java.util.Locale;
@@ -33,6 +34,8 @@ public class AssetFactory {
 					return new FileEntry(map);
 				} else if (className.endsWith("BlogsEntry")) {
 					return new BlogsEntry(map);
+				} else if (className.endsWith("User")) {
+					return new UserAsset(map);
 				}
 			}
 		}
