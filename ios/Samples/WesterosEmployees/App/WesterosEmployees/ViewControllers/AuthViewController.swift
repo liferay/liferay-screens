@@ -20,6 +20,7 @@ class AuthViewController: UIViewController, LoginScreenletDelegate {
 
 	var signInController: SignInViewController?
 	var signUpController: SignUpViewController?
+	var forgotPasswordController: ForgotPasswordViewController?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -35,6 +36,8 @@ class AuthViewController: UIViewController, LoginScreenletDelegate {
 
 		signInController = SignInViewController(card: cardDeck.cards[0])
 		signInController!.onDone = onDone
+
+		forgotPasswordController = ForgotPasswordViewController(card: cardDeck.cards[0])
 
 		signUpController = SignUpViewController(card: cardDeck.cards[1])
 		signUpController!.onDone = onDone
