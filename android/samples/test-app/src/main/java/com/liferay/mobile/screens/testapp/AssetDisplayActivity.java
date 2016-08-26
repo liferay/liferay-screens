@@ -1,14 +1,22 @@
 package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.view.View;
+import android.widget.TextView;
+import com.liferay.mobile.screens.asset.display.AssetDisplayInnerScreenletListener;
 import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
 import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
+import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.user.display.UserAsset;
+import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 
 /**
  * @author Sarai Díaz García
  */
-public class AssetDisplayActivity extends ThemeActivity implements AssetDisplayListener {
+public class AssetDisplayActivity extends ThemeActivity implements AssetDisplayListener,
+	AssetDisplayInnerScreenletListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +27,7 @@ public class AssetDisplayActivity extends ThemeActivity implements AssetDisplayL
 
 		screenlet.setEntryId(getIntent().getLongExtra("entryId", 0));
 		screenlet.setListener(this);
+		screenlet.setInnerListener(this);
 	}
 
 	@Override
@@ -29,6 +38,15 @@ public class AssetDisplayActivity extends ThemeActivity implements AssetDisplayL
 	@Override
 	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
 		info("Asset entry received! -> " + assetEntry.getTitle());
+	}
+
+	@Override
+	public void onConfigureChildScreenlet(AssetDisplayScreenlet screenlet, BaseScreenlet innerScreenlet,
+		AssetEntry assetEntry) {
+	}
+
+	@Override
+	public View onRenderCustomAsset(AssetEntry assetEntry) {
 	}
 
 	private AssetDisplayScreenlet screenlet;
