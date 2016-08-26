@@ -9,6 +9,10 @@ import org.json.JSONObject;
  */
 public class DDLFormDocumentUploadEvent extends OfflineEventNew {
 
+	public DDLFormDocumentUploadEvent() {
+		super();
+	}
+
 	public DDLFormDocumentUploadEvent(DocumentField documentField, Long repositoryId, Long folderId,
 		String filePrefix) {
 		this(documentField, repositoryId, folderId, filePrefix, new JSONObject());
@@ -43,5 +47,4 @@ public class DDLFormDocumentUploadEvent extends OfflineEventNew {
 	private Long _repositoryId;
 	private Long _folderId;
 	private String _filePrefix;
-
 }

@@ -14,11 +14,15 @@
 
 package com.liferay.mobile.screens.base.thread.event;
 
+import java.io.Serializable;
 import org.json.JSONObject;
 
-public class BasicThreadEvent {
+public class BasicThreadEvent implements Serializable {
 
 	private String actionName;
+	private transient JSONObject jsonObject;
+	private Exception exception;
+	private int targetScreenletId;
 
 	public BasicThreadEvent() {
 		super();
@@ -26,40 +30,36 @@ public class BasicThreadEvent {
 
 	public BasicThreadEvent(JSONObject jsonObject) {
 		super();
-		_jsonObject = jsonObject;
+		this.jsonObject = jsonObject;
 	}
 
 	public BasicThreadEvent(Exception exception) {
-		_exception = exception;
+		this.exception = exception;
 	}
 
 	public Exception getException() {
-		return _exception;
+		return exception;
 	}
 
 	public int getTargetScreenletId() {
-		return _targetScreenletId;
+		return targetScreenletId;
 	}
 
 	public void setJSONObject(JSONObject jsonObject) {
-		_jsonObject = jsonObject;
+		this.jsonObject = jsonObject;
 	}
 
 	public void setTargetScreenletId(int targetScreenletId) {
-		_targetScreenletId = targetScreenletId;
+		this.targetScreenletId = targetScreenletId;
 	}
 
 	public boolean isFailed() {
-		return _exception != null;
+		return exception != null;
 	}
 
 	public JSONObject getJSONObject() {
-		return _jsonObject;
+		return jsonObject;
 	}
-
-	private JSONObject _jsonObject;
-	private Exception _exception;
-	private int _targetScreenletId;
 
 	public String getActionName() {
 		return actionName;
