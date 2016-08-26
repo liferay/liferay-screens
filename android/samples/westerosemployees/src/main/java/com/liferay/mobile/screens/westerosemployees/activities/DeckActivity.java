@@ -111,6 +111,7 @@ public class DeckActivity extends Activity {
 
 	protected void onClick(Card card) {
 		changeState(card);
+		cardHistory.add(card);
 	}
 
 	protected void changeState(Card card) {
@@ -156,7 +157,14 @@ public class DeckActivity extends Activity {
 		}
 	}
 
+	protected void toPreviousCard() {
+		Card card = cardHistory.poll();
+
+		changeState(card);
+	}
+
 	protected List<Card> cards;
+	protected Queue<Card> cardHistory = Collections.asLifoQueue(new ArrayDeque<Card>());
 
 	protected int maxWidth;
 	protected int maxHeight;
