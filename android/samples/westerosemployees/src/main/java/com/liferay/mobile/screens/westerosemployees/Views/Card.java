@@ -112,10 +112,35 @@ public class Card extends FrameLayout {
 		cardState = state;
 	}
 
+	public void goRight() {
+
+		View current = getChildAt(index);
+		View next = getChildAt(index + 1);
+
+		if (next != null) {
+			index++;
+			current.animate().translationX(-maxWidth);
+			next.animate().translationX(0);
+		}
+	}
+
+	public void goLeft() {
+
+		View current = getChildAt(index);
+		View next = getChildAt(index - 1);
+
+		if (next != null) {
+			index--;
+			next.animate().translationX(0);
+			current.animate().translationX(maxWidth);
+		}
+	}
 
 	public CardState getCardState() {
 		return cardState;
 	}
+
+	protected int index;
 
 	protected int maxWidth;
 	protected int maxHeight;
