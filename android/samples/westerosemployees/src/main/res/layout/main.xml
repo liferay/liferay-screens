@@ -3,7 +3,8 @@
 	android:id="@+id/main_view"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/background_gray_westeros">
+	android:background="@color/background_gray_westeros"
+	>
 
 	<ImageView
 		android:id="@+id/background"
@@ -11,34 +12,39 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_horizontal"
 		android:layout_margin="30dp"
-		android:background="@drawable/westeros_gray_logo" />
+		android:background="@drawable/westeros_gray_logo"
+		/>
 
-	<FrameLayout
+	<com.liferay.mobile.screens.westerosemployees.Views.SignInCard
 		android:id="@+id/card1"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:background="@drawable/westeros_white_shape_ripple"
-		android:elevation="8dp">
+		android:elevation="8dp"
+		>
 
 		<RelativeLayout
 			android:id="@+id/card1_subview1"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:orientation="vertical">
+			android:orientation="vertical"
+			>
 
 			<TextView
 				android:id="@+id/title_sign_in_subview"
+				android:text="@string/sign_in"
 				style="@style/westeros_card_title"
-				android:text="@string/sign_in" />
+				/>
 
 			<ImageView
 				android:id="@+id/card1_to_background"
-				style="@style/westeros_arrow"
 				android:layout_alignParentEnd="true"
 				android:layout_alignParentRight="true"
 				android:src="@drawable/icon_down"
-				android:tag="card1_to_background"
-				android:visibility="invisible" />
+				android:tag="arrow"
+				android:visibility="invisible"
+				style="@style/westeros_arrow"
+				/>
 
 			<com.liferay.mobile.screens.auth.login.LoginScreenlet
 				android:id="@+id/login_screenlet"
@@ -46,7 +52,8 @@
 				android:layout_height="match_parent"
 				android:layout_below="@id/title_sign_in_subview"
 				liferay:basicAuthMethod="email"
-				liferay:layoutId="@layout/login_westeros" />
+				liferay:layoutId="@layout/login_westeros"
+				/>
 
 		</RelativeLayout>
 
@@ -54,28 +61,32 @@
 			android:id="@+id/card1_subview2"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:orientation="vertical">
+			android:orientation="vertical"
+			>
 
 			<ImageView
 				android:id="@+id/card1_to_front_view"
-				style="@style/westeros_arrow"
 				android:layout_alignParentLeft="true"
 				android:layout_alignParentStart="true"
 				android:src="@drawable/icon_left"
-				android:tag="card1_to_front_view" />
+				android:tag="arrow"
+				style="@style/westeros_arrow"
+				/>
 
 			<TextView
 				android:id="@+id/title_forgot_password_subview"
+				android:text="@string/forgot_password_title"
 				style="@style/westeros_card_title"
-				android:text="@string/forgot_password_title" />
+				/>
 
 			<ImageView
 				android:id="@+id/card1_subview_to_background"
-				style="@style/westeros_arrow"
 				android:layout_alignParentEnd="true"
 				android:layout_alignParentRight="true"
 				android:src="@drawable/icon_down"
-				android:tag="card1_subview_to_background" />
+				android:tag="arrow"
+				style="@style/westeros_arrow"
+				/>
 
 			<com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet
 				android:id="@+id/forgot_password_screenlet"
@@ -84,42 +95,47 @@
 				android:layout_below="@+id/title_forgot_password_subview"
 				liferay:anonymousApiPassword="@string/liferay_anonymousApiPassword"
 				liferay:anonymousApiUserName="@string/liferay_anonymousApiUserName"
-				liferay:layoutId="@layout/forgotpassword_westeros" />
+				liferay:layoutId="@layout/forgotpassword_westeros"
+				/>
 
 		</RelativeLayout>
 
 
-	</FrameLayout>
+	</com.liferay.mobile.screens.westerosemployees.Views.SignInCard>
 
-	<FrameLayout
+	<com.liferay.mobile.screens.westerosemployees.Views.SignUpCard
 		android:id="@+id/card2"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:background="@drawable/westeros_button_ripple"
 		android:elevation="16dp"
-		android:focusableInTouchMode="true">
+		android:focusableInTouchMode="true"
+		>
 
 
 		<RelativeLayout
 			android:id="@+id/card2_subview1"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:orientation="vertical">
+			android:orientation="vertical"
+			>
 
 			<TextView
 				android:id="@+id/title_sign_up_subview"
-				style="@style/westeros_card_title"
 				android:text="@string/sign_up"
-				android:textColor="@android:color/white" />
+				android:textColor="@android:color/white"
+				style="@style/westeros_card_title"
+				/>
 
 			<ImageView
 				android:id="@+id/card2_to_card1"
-				style="@style/westeros_arrow"
 				android:layout_alignParentEnd="true"
 				android:layout_alignParentRight="true"
 				android:src="@drawable/icon_down_white"
-				android:tag="card2_to_card1"
-				android:visibility="invisible" />
+				android:tag="arrow"
+				android:visibility="invisible"
+				style="@style/westeros_arrow"
+				/>
 
 			<com.liferay.mobile.screens.viewsets.westeros.auth.signup.SignUpScreenlet
 				android:id="@+id/signup_screenlet"
@@ -128,53 +144,60 @@
 				android:layout_below="@id/title_sign_up_subview"
 				liferay:anonymousApiPassword="@string/liferay_anonymousApiPassword"
 				liferay:anonymousApiUserName="@string/liferay_anonymousApiUserName"
-				liferay:layoutId="@layout/sign_up_westeros" />
+				liferay:layoutId="@layout/sign_up_westeros"
+				/>
 		</RelativeLayout>
 
 		<RelativeLayout
 			android:id="@+id/card2_subview2"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:orientation="vertical">
+			android:orientation="vertical"
+			>
 
 			<ImageView
 				android:id="@+id/card2_to_front_view"
-				style="@style/westeros_arrow"
 				android:layout_alignParentLeft="true"
 				android:layout_alignParentStart="true"
 				android:src="@drawable/icon_left_white"
-				android:tag="card2_to_front_view" />
+				android:tag="arrow"
+				style="@style/westeros_arrow"
+				/>
 
 			<TextView
 				android:id="@+id/title_term_subview"
-				style="@style/westeros_card_title"
 				android:text="@string/terms"
-				android:textColor="@android:color/white" />
+				android:textColor="@android:color/white"
+				style="@style/westeros_card_title"
+				/>
 
 			<ImageView
 				android:id="@+id/card2_subview_to_card1"
-				style="@style/westeros_arrow"
 				android:layout_alignParentEnd="true"
 				android:layout_alignParentRight="true"
 				android:src="@drawable/icon_down_white"
-				android:tag="card2_subview_to_card1" />
+				android:tag="arrow"
+				style="@style/westeros_arrow"
+				/>
 
 			<ScrollView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_below="@id/title_term_subview">
+				android:layout_below="@id/title_term_subview"
+				>
 
 				<TextView
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:text="@string/terms_text"
-					android:textColor="@android:color/white" />
+					android:textColor="@android:color/white"
+					/>
 
 			</ScrollView>
 
 		</RelativeLayout>
 
-	</FrameLayout>
+	</com.liferay.mobile.screens.westerosemployees.Views.SignUpCard>
 
 	<FrameLayout
 		android:id="@+id/crouton_view_anchor"
@@ -183,5 +206,6 @@
 		android:layout_gravity="bottom"
 		android:elevation="24dp"
 		android:orientation="vertical"
-		android:visibility="visible" />
+		android:visibility="visible"
+		/>
 </FrameLayout>
