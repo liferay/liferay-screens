@@ -100,6 +100,12 @@ public class DeckActivity extends Activity {
 			int minimizedPosition = maxHeight - (size - i) * Card.CARD_SIZE;
 
 			card.initPosition(minimizedPosition);
+			card.setOnTouchListener(new FlingTouchListener(this, new FlingListener() {
+				@Override
+				public void onFling(Movement movement) {
+					DeckActivity.this.onFling(movement, card);
+				}
+			}));
 		}
 	}
 
@@ -108,7 +114,7 @@ public class DeckActivity extends Activity {
 	}
 
 	protected void changeState(Card card) {
-		//Get index of the selected view
+		// Get the index of the selected card
 		int indexSelected = cards.indexOf(card);
 
 		for (int i = 0, size = cards.size(); i < size; i++) {
@@ -134,6 +140,19 @@ public class DeckActivity extends Activity {
 			if (indexSelected < i) {
 				view.setState(CardState.MINIMIZED);
 			}
+		}
+	}
+
+	protected void onFling(FlingListener.Movement movement, Card card) {
+		switch (movement) {
+			case TOUCH:
+				onClick(card);
+				break;
+			case RIGHT:
+				card.goRight();
+				break;
+			case LEFT:
+				card.goLeft();
 		}
 	}
 
