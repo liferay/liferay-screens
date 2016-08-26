@@ -46,6 +46,8 @@ public class Card extends FrameLayout {
 		super.onFinishInflate();
 
 		initializeSize();
+
+		arrows = getViewsByTag(this, "arrow");
 	}
 
 	private void initializeSize() {
@@ -94,10 +96,12 @@ public class Card extends FrameLayout {
 				animate().setDuration(DURATION_MILLIS).translationY(BACKGROUND_Y);
 				break;
 			case NORMAL:
+				showArrows(true);
 				animate().setDuration(DURATION_MILLIS).scaleX(1f);
 				animate().setDuration(DURATION_MILLIS).translationY(NORMAL_Y);
 				break;
 			case MINIMIZED:
+				showArrows(false);
 				animate().setDuration(DURATION_MILLIS).translationY(minimizedPosition);
 				break;
 			case MAXIMIZED:
@@ -136,10 +140,38 @@ public class Card extends FrameLayout {
 		}
 	}
 
+	protected void showArrows(boolean show) {
+		int visibility = show ? VISIBLE : INVISIBLE;
+
+		for (View arrow : arrows) {
+			arrow.setVisibility(visibility);
+		}
+	}
+
+	protected static List<View> getViewsByTag(ViewGroup root, String tag){
+		List<View> views = new ArrayList<>();
+		final int childCount = root.getChildCount();
+		for (int i = 0; i < childCount; i++) {
+			final View child = root.getChildAt(i);
+			if (child instanceof ViewGroup) {
+				views.addAll(getViewsByTag((ViewGroup) child, tag));
+			}
+
+			final Object tagObj = child.getTag();
+			if (tagObj != null && tagObj.equals(tag)) {
+				views.add(child);
+			}
+		}
+
+		return views;
+	}
+
 	public CardState getCardState() {
 		return cardState;
 	}
 
+
+	protected List<View> arrows;
 	protected int index;
 
 	protected int maxWidth;
