@@ -25,15 +25,19 @@ public class UserPortraitUploadInteractorImpl
 	extends BaseCachedWriteThreadRemoteInteractor<UserPortraitInteractorListener, UserPortraitUploadEvent> {
 
 	@Override
-	protected void online(UserPortraitUploadEvent event) throws Exception {
+	public void online(UserPortraitUploadEvent event) throws Exception {
+		decorateEvent(event, false);
 		String picturePath = event.getPicturePath();
 
-		Intent service = new Intent(LiferayScreensContext.getContext(), UserPortraitService.class);
-		service.putExtra("picturePath", picturePath);
-		service.putExtra("screenletId", getTargetScreenletId());
-		service.putExtra("userId", event.getUserId());
+		Intent intent = new Intent(LiferayScreensContext.getContext(), UserPortraitService.class);
+		intent.putExtra("picturePath", picturePath);
+		intent.putExtra("screenletId", getTargetScreenletId());
+		intent.putExtra("actionName", event.getActionName());
+		intent.putExtra("userId", event.getUserId());
+		intent.putExtra("groupId", event.getGroupId());
+		intent.putExtra("locale", event.getLocale());
 
-		LiferayScreensContext.getContext().startService(service);
+		LiferayScreensContext.getContext().startService(intent);
 	}
 
 	@Override
