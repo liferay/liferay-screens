@@ -52,7 +52,14 @@ public abstract class BaseCachedWriteThreadRemoteInteractor<L extends OfflineLis
 
 	public void onEventMainThread(E event) {
 		try {
+			LiferayLogger.i("event = [" + event + "]");
+
+			if (!isValidEvent(event)) {
+				return;
+			}
+
 			if (event.isFailed()) {
+				event.setDirty(true);
 				store(event);
 				onSuccess(event);
 			} else {

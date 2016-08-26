@@ -5,8 +5,34 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.annotation.NonNull;
+import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
+import com.liferay.mobile.screens.comment.add.interactor.CommentAddInteractorImpl;
+import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
+import com.liferay.mobile.screens.comment.display.interactor.delete.CommentDeleteInteractorImpl;
+import com.liferay.mobile.screens.comment.display.interactor.update.CommentUpdateInteractorImpl;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
+import com.liferay.mobile.screens.ddl.form.interactor.add.DDLFormAddRecordInteractorImpl;
+import com.liferay.mobile.screens.ddl.form.interactor.update.DDLFormUpdateRecordInteractorImpl;
+import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadEvent;
+import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadInteractorImpl;
+import com.liferay.mobile.screens.rating.interactor.RatingEvent;
+import com.liferay.mobile.screens.rating.interactor.delete.RatingDeleteInteractorImpl;
+import com.liferay.mobile.screens.rating.interactor.update.RatingUpdateInteractorImpl;
+import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadEvent;
+import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadInteractorImpl;
+import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;
+import com.snappydb.DB;
+import com.snappydb.DBFactory;
+import java.util.Locale;
+
+import static com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet.DELETE_COMMENT_ACTION;
+import static com.liferay.mobile.screens.rating.RatingScreenlet.DELETE_RATING_ACTION;
 
 /**
  * @author Javier Gamarra
@@ -18,7 +44,7 @@ public class CacheSyncService extends IntentService {
 	}
 
 	@Override
-	protected void onHandleIntent(Intent intent) {
+	protected void onHandleIntent(final Intent intent) {
 		ConnectivityManager cm =
 			(ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -27,11 +53,67 @@ public class CacheSyncService extends IntentService {
 
 		if (isConnected && SessionContext.isLoggedIn() && SessionContext.getCurrentUser() != null) {
 			try {
-				//FIXME !
-				//Cache cache = CacheSQL.getInstance();
-				//sendPortrait(cache);
-				//sendDocuments(cache);
-				//sendRecords(cache);
+
+				Context context = LiferayScreensContext.getContext();
+				DB snappyDB = DBFactory.open(context);
+
+				sync(snappyDB, DDLFormEvent.class, new SyncConsumer() {
+					@Override
+					public void sync(OfflineEventNew event) throws Exception {
+						BaseCachedWriteThreadRemoteInteractor interactor =
+							((DDLFormEvent) event).getRecord().getRecordId() == 0 ? new DDLFormAddRecordInteractorImpl()
+								: new DDLFormUpdateRecordInteractorImpl();
+						interactor.execute(event);
+					}
+				});
+
+				sync(snappyDB, UserPortraitUploadEvent.class, new SyncConsumer() {
+					@Override
+					public void sync(OfflineEventNew event) throws Exception {
+						UserPortraitUploadInteractorImpl interactor = new UserPortraitUploadInteractorImpl();
+						interactor.online((UserPortraitUploadEvent) event);
+					}
+				});
+
+				sync(snappyDB, DDLFormDocumentUploadEvent.class, new SyncConsumer() {
+					@Override
+					public void sync(OfflineEventNew event) throws Exception {
+						BaseCachedWriteThreadRemoteInteractor interactor = new DDLFormDocumentUploadInteractorImpl();
+						interactor.execute(event);
+					}
+				});
+
+				sync(snappyDB, CommentEvent.class, new SyncConsumer() {
+					@Override
+					public void sync(OfflineEventNew event) throws Exception {
+						CommentEvent commentEvent = (CommentEvent) event;
+						BaseCachedWriteThreadRemoteInteractor interactor = getCommentInteractor(commentEvent);
+						interactor.execute(commentEvent);
+					}
+
+					@NonNull
+					private BaseCachedWriteThreadRemoteInteractor getCommentInteractor(CommentEvent commentEvent) {
+						if (DELETE_COMMENT_ACTION.equals(commentEvent.getActionName())) {
+							return new CommentDeleteInteractorImpl();
+						} else if (commentEvent.getCommentId() == 0) {
+							return new CommentAddInteractorImpl();
+						} else {
+							return new CommentUpdateInteractorImpl();
+						}
+					}
+				});
+
+				sync(snappyDB, RatingEvent.class, new SyncConsumer() {
+					@Override
+					public void sync(OfflineEventNew event) throws Exception {
+						BaseCachedWriteThreadRemoteInteractor interactor =
+							DELETE_RATING_ACTION.equals(event.getActionName()) ? new RatingDeleteInteractorImpl()
+								: new RatingUpdateInteractorImpl();
+						interactor.execute(event);
+					}
+				});
+
+				snappyDB.close();
 			} catch (Exception e) {
 				LiferayLogger.e("Error syncing resources", e);
 			}
@@ -39,107 +121,30 @@ public class CacheSyncService extends IntentService {
 		CacheReceiver.completeWakefulIntent(intent);
 	}
 
-	//private void sendPortrait(Cache cache) {
-	//	Long userId = SessionContext.getUserId();
-	//
-	//	List<TableCache> userPortraits = cache.get(USER_PORTRAIT_UPLOAD,
-	//		" AND " + TableCache.DIRTY + " = 1 " +
-	//			" AND " + TableCache.USER_ID + " = ? ",
-	//		userId);
-	//
-	//	for (TableCache userPortrait : userPortraits) {
-	//		try {
-	//			UserPortraitService userPortraitService = new UserPortraitService();
-	//			JSONObject jsonObject = userPortraitService.uploadUserPortrait(Long.valueOf(userPortrait.getId()), userPortrait.getContent());
-	//			LiferayLogger.i(jsonObject.toString());
-	//
-	//			userPortrait.setDirty(false);
-	//			userPortrait.setSyncDate(new Date());
-	//			cache.set(userPortrait);
-	//		}
-	//		catch (Exception e) {
-	//			LiferayLogger.e("Error sending portrait images", e);
-	//		}
-	//	}
-	//}
-	//
-	//private void sendDocuments(Cache cache) {
-	//	Long userId = SessionContext.getUserId();
-	//	long groupId = LiferayServerContext.getGroupId();
-	//
-	//	List<DocumentUploadCache> documentsToUpload = cache.get(DOCUMENT_UPLOAD,
-	//		DocumentUploadCache.DIRTY + " = 1 " +
-	//			"AND " + DocumentUploadCache.USER_ID + " = ? " +
-	//			"AND " + DocumentUploadCache.GROUP_ID + " = ? ",
-	//		userId,
-	//		groupId);
-	//
-	//	for (DocumentUploadCache document : documentsToUpload) {
-	//		try {
-	//			Map<String, Object> objectObjectHashMap = new HashMap<>();
-	//			DocumentField documentField = new DocumentField(objectObjectHashMap, LiferayLocale.getDefaultLocale(), Locale.US);
-	//			documentField.createLocalFile(document.getPath());
-	//
-	//			UploadService uploadService = new UploadService();
-	//			JSONObject jsonObject = uploadService.uploadFile(documentField, document.getUserId(), document.getGroupId(),
-	//				document.getRepositoryId(), document.getFolderId(), document.getFilePrefix());
-	//			LiferayLogger.i(jsonObject.toString());
-	//
-	//			document.setDirty(false);
-	//			document.setSyncDate(new Date());
-	//			cache.set(document);
-	//		}
-	//		catch (Exception e) {
-	//			LiferayLogger.e("Error sending documentsToUpload", e);
-	//		}
-	//	}
-	//}
-	//
-	//private void sendRecords(Cache cache) {
-	//
-	//	Long groupId = LiferayServerContext.getGroupId();
-	//	List<DDLRecordCache> records = getLatestRecordsToSync(cache);
-	//
-	//	DDLRecordConnector recordService = ServiceProvider.getInstance().getDDLRecordConnector(SessionContext.createSessionFromCurrentSession());
-	//
-	//	for (DDLRecordCache cachedRecord : records) {
-	//		try {
-	//			Record record = cachedRecord.getRecord();
-	//			record.setCreatorUserId(SessionContext.getCurrentUser().getId());
-	//			final JSONObject serviceContextAttributes = new JSONObject();
-	//			serviceContextAttributes.put("userId", record.getCreatorUserId());
-	//			serviceContextAttributes.put("scopeGroupId", groupId);
-	//			JSONObjectWrapper serviceContextWrapper = new JSONObjectWrapper(serviceContextAttributes);
-	//			JSONObject jsonContent = cachedRecord.getJSONContent();
-	//
-	//			if (jsonContent.has("modelValues")) {
-	//				jsonContent = (JSONObject) jsonContent.get("modelValues");
-	//			}
-	//
-	//			JSONObject jsonObject = saveOrUpdate(recordService, record, groupId, serviceContextWrapper, jsonContent);
-	//			LiferayLogger.i(jsonObject.toString());
-	//
-	//			cachedRecord.setDirty(false);
-	//			cachedRecord.setSyncDate(new Date());
-	//			cache.set(cachedRecord);
-	//		}
-	//		catch (Exception e) {
-	//			LiferayLogger.e("Error syncing a record", e);
-	//		}
-	//	}
-	//}
-	//
-	//private List<DDLRecordCache> getLatestRecordsToSync(Cache cache) {
-	//	long groupId = LiferayServerContext.getGroupId();
-	//	return cache.get(DDL_RECORD, DDLRecordCache.DIRTY + " = 1 AND " + TableCache.GROUP_ID + " = ? ", groupId);
-	//}
-	//
-	//private JSONObject saveOrUpdate(DDLRecordConnector recordService, Record record, long groupId, JSONObjectWrapper serviceContextWrapper, JSONObject jsonContent) throws Exception {
-	//	if (record.getRecordId() == 0) {
-	//		return recordService.addRecord(groupId, record.getRecordSetId(), 0, jsonContent, serviceContextWrapper);
-	//	}
-	//	else {
-	//		return recordService.updateRecord(record.getRecordId(), 0, jsonContent, true, serviceContextWrapper);
-	//	}
-	//}
+	private void sync(DB snappyDB, Class clasz, SyncConsumer syncConsumer) throws Exception {
+		String simpleName = getFullId(clasz);
+		String[] keys = snappyDB.findKeys(simpleName);
+
+		for (String key : keys) {
+			OfflineEventNew event = (OfflineEventNew) snappyDB.getObject(key, clasz);
+			if (event.isDirty()) {
+				syncConsumer.sync(event);
+				event.setDirty(false);
+				snappyDB.put(key, event);
+			}
+		}
+	}
+
+	@NonNull
+	private String getFullId(Class clasz) {
+		long groupId = LiferayServerContext.getGroupId();
+		Long userId = SessionContext.getUserId();
+		Locale locale = LiferayLocale.getDefaultLocale();
+		return clasz.getSimpleName() + "_" + groupId + "_" + userId + "_" + locale;
+	}
+
+	private interface SyncConsumer {
+
+		void sync(OfflineEventNew event) throws Exception;
+	}
 }

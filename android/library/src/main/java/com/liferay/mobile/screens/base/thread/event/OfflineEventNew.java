@@ -27,8 +27,8 @@ public abstract class OfflineEventNew extends BasicThreadEvent {
 		super(jsonObject);
 	}
 
-	public OfflineEventNew(Exception e) {
-		super(e);
+	public OfflineEventNew(Exception exception) {
+		super(exception);
 	}
 
 	public long getUserId() {
