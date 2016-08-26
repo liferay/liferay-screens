@@ -46,8 +46,6 @@ public class Card extends FrameLayout {
 		super.onFinishInflate();
 
 		initializeSize();
-
-		arrows = getViewsByTag(this, "arrow");
 	}
 
 	private void initializeSize() {
@@ -89,10 +87,35 @@ public class Card extends FrameLayout {
 		setY(minimizedPosition);
 	}
 
+	public void setState(CardState state) {
+		switch (state) {
+			case BACKGROUND:
+				animate().setDuration(DURATION_MILLIS).scaleX(0.95f);
+				animate().setDuration(DURATION_MILLIS).translationY(BACKGROUND_Y);
+				break;
+			case NORMAL:
+				animate().setDuration(DURATION_MILLIS).scaleX(1f);
+				animate().setDuration(DURATION_MILLIS).translationY(NORMAL_Y);
+				break;
+			case MINIMIZED:
+				animate().setDuration(DURATION_MILLIS).translationY(minimizedPosition);
+				break;
+			case MAXIMIZED:
+				animate().setDuration(DURATION_MILLIS).translationY(0);
+				break;
+
+			case HIDDEN:
+				animate().setDuration(DURATION_MILLIS).translationY(maxHeight);
+				break;
+		}
+
+		cardState = state;
+	}
+
+
 	public CardState getCardState() {
 		return cardState;
 	}
-	
 
 	protected int maxWidth;
 	protected int maxHeight;
