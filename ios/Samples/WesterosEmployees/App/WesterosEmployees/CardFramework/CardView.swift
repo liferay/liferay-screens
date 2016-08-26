@@ -32,6 +32,10 @@ public class CardView: UIView {
 	public enum ShowState {
 		case Minimized, Normal, Maximized, Background, Hidden
 
+		var isInBottom: Bool {
+			return (self == .Minimized || self == .Hidden)
+		}
+
 		var isVisible: Bool {
 			return (self == .Normal || self == .Maximized)
 		}
@@ -238,7 +242,7 @@ public class CardView: UIView {
 	///    - delay: delay for the animation start
 	///    - onComplete: closure to be executed when the animation finishes
 	public func changeToNextState(animateArrow: Bool = true, time: Double? = nil,
-	        delay: Double = 0.0, onComplete: (Bool -> Void)? = nil) {
+	    	delay: Double = 0.0, animateContent: Bool = true, onComplete: (Bool -> Void)? = nil) {
 
 		//Exit if we are asked to change to our current state
 		if nextState == currentState {
@@ -275,30 +279,44 @@ public class CardView: UIView {
 
 			onChangeCompleted = nil
 
-			if currentState == .Minimized || currentState == .Hidden {
-				//Animate the constraint change
-				UIView.animateWithDuration((time ?? CardView.DefaultAnimationTime) * 1.30,
-					delay: delay,
-					usingSpringWithDamping: 1.0,
-					initialSpringVelocity: 0.0,
-					options: [.BeginFromCurrentState, .CurveEaseIn],
-					animations: {
-						self.layoutIfNeeded()
+			let completion: (Bool -> ()) = { flag in
+				if self.currentState.isInBottom {
+					self.setNeedsDisplay()
+				}
+				onComplete?(flag)
+			}
+
+			let animateCardContent = animateContent && self.currentState.isInBottom
+
+			if animateCardContent {
+				self.cardContentView.alpha = 0
+			} else if animateContent && !self.currentState.isInBottom {
+				UIView.animateWithDuration(0.3, animations: {self.cardContentView.alpha = 0})
+			}
+
+			let time = (time ?? CardView.DefaultAnimationTime) * 1.30
+
+			//Animate the constraint change
+			UIView.animateWithDuration(time,
+				delay: delay,
+				usingSpringWithDamping: 1.0,
+				initialSpringVelocity: 0.0,
+				options: [.BeginFromCurrentState, .CurveEaseIn],
+				animations: {
+					self.layoutIfNeeded()
+
+					if self.currentState.isInBottom {
 						self.setNeedsDisplay()
-					}, completion: onComplete)
-			} else {
-				//Animate the constraint change
-				UIView.animateWithDuration((time ?? CardView.DefaultAnimationTime) * 1.30,
-					delay: delay,
-					usingSpringWithDamping: 1.0,
-					initialSpringVelocity: 0.0,
-					options: [.BeginFromCurrentState, .CurveEaseIn],
+					}
+				}, completion: completion)
+
+			if animateCardContent {
+				UIView.animateWithDuration(0.5,
+					delay: (delay + time) * 0.3,
+					options: [],
 					animations: {
-						self.layoutIfNeeded()
-					}, completion: { flag in
-						self.setNeedsDisplay()
-						onComplete?(flag)
-					})
+						self.cardContentView.alpha = 1
+					}, completion: nil)
 			}
 		}
 
