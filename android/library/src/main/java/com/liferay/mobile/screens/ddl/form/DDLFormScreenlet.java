@@ -186,27 +186,6 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 		}
 	}
 
-	@Override
-	public void loadingFromCache(boolean success) {
-		if (_listener != null) {
-			_listener.loadingFromCache(success);
-		}
-	}
-
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
-		if (_listener != null) {
-			_listener.retrievingOnline(triedInCache, e);
-		}
-	}
-
-	@Override
-	public void storingToCache(Object object) {
-		if (_listener != null) {
-			_listener.storingToCache(object);
-		}
-	}
-
 	public void onDDLFormDocumentUploaded(DocumentField documentField, JSONObject jsonObject) {
 		//TODO this is confusing. Why can't I use the argument? Change to receive only the name
 		DocumentField originalField = (DocumentField) _record.getFieldByName(documentField.getName());

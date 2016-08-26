@@ -109,27 +109,6 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 	}
 
 	@Override
-	public void loadingFromCache(boolean success) {
-		if (_listener != null) {
-			_listener.loadingFromCache(success);
-		}
-	}
-
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
-		if (_listener != null) {
-			_listener.retrievingOnline(triedInCache, e);
-		}
-	}
-
-	@Override
-	public void storingToCache(Object object) {
-		if (_listener != null) {
-			_listener.storingToCache(object);
-		}
-	}
-
-	@Override
 	public void error(Exception e, String userAction) {
 		if (_listener != null) {
 			_listener.error(e, userAction);

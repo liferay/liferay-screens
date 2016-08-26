@@ -67,27 +67,6 @@ public abstract class BaseFileDisplayScreenlet
 	}
 
 	@Override
-	public void loadingFromCache(boolean success) {
-		if (listener != null) {
-			listener.loadingFromCache(success);
-		}
-	}
-
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
-		if (listener != null) {
-			listener.retrievingOnline(triedInCache, e);
-		}
-	}
-
-	@Override
-	public void storingToCache(Object object) {
-		if (listener != null) {
-			listener.storingToCache(object);
-		}
-	}
-
-	@Override
 	public void error(Exception e, String userAction) {
 		getViewModel().showFailedOperation(null, e);
 

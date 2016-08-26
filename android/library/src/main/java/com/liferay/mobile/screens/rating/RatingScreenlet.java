@@ -137,27 +137,6 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 	}
 
 	@Override
-	public void loadingFromCache(boolean success) {
-		if (listener != null) {
-			listener.loadingFromCache(success);
-		}
-	}
-
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
-		if (listener != null) {
-			listener.retrievingOnline(triedInCache, e);
-		}
-	}
-
-	@Override
-	public void storingToCache(Object object) {
-		if (listener != null) {
-			listener.storingToCache(object);
-		}
-	}
-
-	@Override
 	public void error(Exception exception, String userAction) {
 		getViewModel().showFailedOperation(userAction, exception);
 

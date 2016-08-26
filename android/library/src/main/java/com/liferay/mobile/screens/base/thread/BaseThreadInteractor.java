@@ -113,7 +113,7 @@ public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent> implem
 		event.setActionName(getActionName());
 	}
 
+	protected L listener;
 	private int targetScreenletId;
-	private L listener;
 	private String actionName;
 }

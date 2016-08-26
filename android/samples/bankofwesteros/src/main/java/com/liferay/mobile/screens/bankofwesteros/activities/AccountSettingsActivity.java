@@ -72,21 +72,6 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 		WesterosSnackbar.showSnackbar(this, "Error at " + userAction, R.color.colorAccent_westeros);
 	}
 
-	@Override
-	public void loadingFromCache(boolean success) {
-
-	}
-
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
-
-	}
-
-	@Override
-	public void storingToCache(Object object) {
-
-	}
-
 	private void saveUser() {
 		final String firstName = _firstName.getText().toString();
 		final String lastName = _lastName.getText().toString();

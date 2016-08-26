@@ -5,12 +5,6 @@ package com.liferay.mobile.screens.base.thread.listener;
  */
 public interface OfflineListenerNew {
 
-	void loadingFromCache(boolean success);
-
-	void retrievingOnline(boolean triedInCache, Exception e);
-
-	void storingToCache(Object object);
-
+	//TODO Error propagating event instead of the exception
 	void error(Exception e, String userAction);
-
 }

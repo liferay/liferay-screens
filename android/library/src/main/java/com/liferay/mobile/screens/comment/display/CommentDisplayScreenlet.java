@@ -157,27 +157,6 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	}
 
 	@Override
-	public void loadingFromCache(boolean success) {
-		if (getListener() != null) {
-			getListener().loadingFromCache(success);
-		}
-	}
-
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
-		if (getListener() != null) {
-			getListener().retrievingOnline(triedInCache, e);
-		}
-	}
-
-	@Override
-	public void storingToCache(Object object) {
-		if (getListener() != null) {
-			getListener().storingToCache(object);
-		}
-	}
-
-	@Override
 	public void error(Exception e, String userAction) {
 		getViewModel().showFailedOperation(userAction, e);
 

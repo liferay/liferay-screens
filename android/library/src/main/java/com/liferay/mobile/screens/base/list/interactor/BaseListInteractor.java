@@ -136,11 +136,11 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 			offlineEvent.setEntries(entries);
 
 			EventBusUtil.post(offlineEvent);
-			getListener().loadingFromCache(true);
+			loadingFromCache(true);
 			return true;
 		}
 		snappyDB.close();
-		getListener().loadingFromCache(false);
+		loadingFromCache(false);
 		return false;
 	}
 
@@ -151,7 +151,7 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 
 	protected void storeToCache(BaseListEvent event) throws Exception {
 
-		getListener().storingToCache(event);
+		storingToCache(event);
 
 		DB snappydb = DBFactory.open(LiferayScreensContext.getContext());
 
@@ -190,7 +190,7 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 			LiferayLogger.i("Retrieve from cache first failed, trying online");
 		}
 
-		getListener().retrievingOnline(triedOffline, e);
+		retrievingOnline(triedOffline, e);
 
 		BaseListEvent<E> newEvent = execute(query, args);
 		if (newEvent != null) {

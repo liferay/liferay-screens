@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.base.thread.event.ErrorThreadEvent;
 import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
+import com.liferay.mobile.screens.base.thread.listener.CacheListener;
 import com.liferay.mobile.screens.base.thread.listener.OfflineListenerNew;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.executor.Executor;
@@ -26,7 +27,9 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 	protected long userId;
 	protected Locale locale;
 	protected OfflinePolicy offlinePolicy;
+	protected CacheListener cacheListener;
 
+	//TODO use events as interface that way we don't need to cast between varargs
 	public void start(final Object... args) {
 		Executor.execute(new Runnable() {
 			@Override
@@ -103,7 +106,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 			LiferayLogger.i("Retrieve from cache first failed, trying online");
 		}
 
-		getListener().retrievingOnline(triedOffline, e);
+		retrievingOnline(triedOffline, e);
 
 		E newEvent = execute(args);
 		if (newEvent != null) {
@@ -135,10 +138,10 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 			decorateBaseEvent(offlineEvent);
 			offlineEvent.setCachedRequest(true);
 			EventBusUtil.post(offlineEvent);
-			getListener().loadingFromCache(true);
+			loadingFromCache(true);
 			return true;
 		}
-		getListener().loadingFromCache(false);
+		loadingFromCache(false);
 		return false;
 	}
 
@@ -154,7 +157,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 
 	protected void storeToCache(E event) throws Exception {
 
-		getListener().storingToCache(event);
+		storingToCache(event);
 
 		DB snappydb = DBFactory.open(LiferayScreensContext.getContext());
 
@@ -174,6 +177,38 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 			locale + "_" +
 			(row == null ? "" : String.format(Locale.US, "%05d", row) + "_") +
 			(cacheKey == null ? "" : cacheKey);
+	}
+
+	protected void retrievingOnline(boolean triedOffline, Exception e) {
+		if (cacheListener != null) {
+			cacheListener.retrievingOnline(triedOffline, e);
+		}
+	}
+
+	protected void storingToCache(E event) {
+		if (cacheListener != null) {
+			storingToCache(event);
+		}
+	}
+
+	protected void loadingFromCache(boolean loadingFromCache) {
+		if (cacheListener != null) {
+			cacheListener.loadingFromCache(loadingFromCache);
+		}
+	}
+
+	@Override
+	public void onScreenletAttached(L listener) {
+		this.listener = listener;
+		this.cacheListener = (CacheListener) listener;
+		EventBusUtil.register(this);
+	}
+
+	@Override
+	public void onScreenletDetached(L listener) {
+		EventBusUtil.unregister(this);
+		this.listener = null;
+		this.cacheListener = null;
 	}
 
 	protected abstract String getIdFromArgs(Object... args) throws Exception;

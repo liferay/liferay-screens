@@ -33,6 +33,7 @@ import com.liferay.mobile.screens.base.interactor.CustomInteractorListener;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
 import com.liferay.mobile.screens.base.thread.BaseThreadInteractor;
+import com.liferay.mobile.screens.base.thread.listener.CacheListener;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
@@ -48,7 +49,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * @author Silvio Santos
  */
-public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interactor> extends FrameLayout {
+public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interactor> extends FrameLayout
+	implements CacheListener {
 
 	public static final String DEFAULT_ACTION = "default_action";
 
@@ -370,6 +372,27 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		}
 	}
 
+	@Override
+	public void loadingFromCache(boolean success) {
+		if (cacheListener != null) {
+			cacheListener.loadingFromCache(success);
+		}
+	}
+
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+		if (cacheListener != null) {
+			cacheListener.retrievingOnline(triedInCache, e);
+		}
+	}
+
+	@Override
+	public void storingToCache(Object object) {
+		if (cacheListener != null) {
+			cacheListener.storingToCache(object);
+		}
+	}
+
 	public long getGroupId() {
 		return groupId;
 	}
@@ -402,6 +425,14 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		return offlinePolicy;
 	}
 
+	public CacheListener getCacheListener() {
+		return cacheListener;
+	}
+
+	public void setCacheListener(CacheListener cacheListener) {
+		this.cacheListener = cacheListener;
+	}
+
 	protected static final String STATE_SUPER = "STATE_SUPER";
 	private static final String _STATE_SCREENLET_ID = "basescreenlet-screenletId";
 	private static final String _STATE_SUPER = "basescreenlet-super";
@@ -418,4 +449,5 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	protected long groupId;
 	protected long userId;
 	protected Locale locale;
+	protected CacheListener cacheListener;
 }
