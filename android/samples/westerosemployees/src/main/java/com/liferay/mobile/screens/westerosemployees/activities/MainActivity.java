@@ -14,8 +14,12 @@
 
 package com.liferay.mobile.screens.westerosemployees.activities;
 
+import android.annotation.TargetApi;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import com.liferay.mobile.screens.westerosemployees.R;
@@ -27,48 +31,54 @@ import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
 import com.liferay.mobile.screens.viewsets.westeros.auth.signup.SignUpListener;
 import com.liferay.mobile.screens.viewsets.westeros.auth.signup.SignUpScreenlet;
+import com.liferay.mobile.screens.westerosemployees.Views.Card;
+import com.liferay.mobile.screens.westerosemployees.utils.CardState;
 
-public class MainActivity extends CardActivity
-	implements View.OnClickListener, LoginListener, ForgotPasswordListener, SignUpListener {
-
-	public static final int CARD1_REST_POSITION = 100;
+public class MainActivity extends DeckActivity implements LoginListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		_background = (ImageView) findViewById(R.id.background);
-		_background.setOnClickListener(this);
+		setTransparentMenuBar();
 
-		//TODO move to the screenlet?
-		View forgotPasswordText = findViewById(R.id.liferay_forgot_link);
-		forgotPasswordText.setOnClickListener(this);
-		_forgotPasswordField = (EditText) findViewById(R.id.liferay_forgot_email);
-
-		LoginScreenlet loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
-		loginScreenlet.setListener(this);
-
-		ForgotPasswordScreenlet forgotPasswordScreenlet =
-			(ForgotPasswordScreenlet) findViewById(R.id.forgot_password_screenlet);
-		forgotPasswordScreenlet.setListener(this);
-
-		SignUpScreenlet signUpScreenlet = (SignUpScreenlet) findViewById(R.id.signup_screenlet);
-		signUpScreenlet.setListener(this);
+		findViews();
 	}
 
-	@Override
-	public void onClick(final View view) {
-		if (view.getId() == R.id.liferay_forgot_link) {
-			goRightCard1();
-		} else {
-			super.onClick(view);
+	private void findViews() {
+		loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
+		loginScreenlet.setListener(this);
+	}
+
+	private void setTransparentMenuBar() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+			setStatusBar();
 		}
+	}
+
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
+	private void setStatusBar() {
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+		getWindow().setStatusBarColor(getResources().getColor(R.color.background_gray_westeros));
 	}
 
 	@Override
 	public void onLoginSuccess(User user) {
-		;
+		toNextActivity();
+	}
+
+	private void toNextActivity() {
+		findViewById(R.id.background).animate().alpha(0f).withEndAction(new Runnable() {
+			@Override
+			public void run() {
+				startActivity(new Intent(MainActivity.this, UserActivity.class));
+			}
+		});
+		for(Card card: cards) {
+			card.setState(CardState.HIDDEN);
+		}
 	}
 
 	@Override
@@ -76,50 +86,5 @@ public class MainActivity extends CardActivity
 		WesterosSnackbar.showSnackbar(this, "Login failed!", R.color.colorAccent_westeros);
 	}
 
-	@Override
-	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
-		_forgotPasswordField.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.circle_email, 0);
-		WesterosSnackbar.showSnackbar(this, "Password requested!", R.color.green_westeros);
-	}
-
-	@Override
-	public void onForgotPasswordRequestFailure(Exception e) {
-		WesterosSnackbar.showSnackbar(this, "Failed to request password", R.color.colorAccent_westeros);
-	}
-
-	@Override
-	public void onSignUpSuccess(User user) {
-
-	}
-
-	@Override
-	public void onSignUpFailure(Exception e) {
-		WesterosSnackbar.showSnackbar(this, "Sign up failed!", R.color.colorAccent_westeros);
-	}
-
-	@Override
-	public void onClickOnTermsAndConditions() {
-		goRightCard2();
-	}
-
-	@Override
-	protected void animateScreenAfterLoad() {
-
-		_card1.setY(_card1FoldedPosition);
-		_card2.setY(_card2FoldedPosition);
-		_card1RestPosition = convertDpToPx(CARD1_REST_POSITION);
-
-		_background.animate().alpha(1);
-
-		toBackground();
-	}
-
-	@Override
-	protected void goRightCard1() {
-		_forgotPasswordField.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-		super.goRightCard1();
-	}
-
-	private ImageView _background;
-	private EditText _forgotPasswordField;
+	private LoginScreenlet loginScreenlet;
 }
