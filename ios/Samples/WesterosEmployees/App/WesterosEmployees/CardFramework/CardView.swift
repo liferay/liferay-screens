@@ -290,7 +290,7 @@ public class CardView: UIView {
 
 			if animateCardContent {
 				self.cardContentView.alpha = 0
-			} else if animateContent && !self.currentState.isInBottom {
+			} else if animateContent && nextState.isInBottom {
 				UIView.animateWithDuration(0.3, animations: {self.cardContentView.alpha = 0})
 			}
 
