@@ -5,10 +5,10 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
+import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
 import com.liferay.mobile.screens.comment.list.CommentListScreenlet;
 import com.liferay.mobile.screens.comment.list.view.CommentListViewModel;
-import com.liferay.mobile.screens.models.CommentEntry;
 import java.util.List;
 
 /**
@@ -140,6 +140,11 @@ public class CommentListView
 
 	@Override
 	public void storingToCache(Object object) {
+	}
+
+	@Override
+	public void error(Exception e, String userAction) {
+
 	}
 
 	private TextView emptyListTextView;

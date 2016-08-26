@@ -1,46 +1,49 @@
 package com.liferay.mobile.screens.comment.display.interactor.update;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.BaseRemoteInteractorNew;
+import com.liferay.mobile.screens.comment.CommentEntry;
+import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
+import com.liferay.mobile.screens.util.JSONUtil;
+import org.json.JSONObject;
 
 /**
  * @author Alejandro Hernández
  */
-public class CommentUpdateInteractorImpl extends BaseRemoteInteractor<CommentDisplayInteractorListener>
-	implements CommentUpdateInteractor {
+public class CommentUpdateInteractorImpl
+	extends BaseRemoteInteractorNew<CommentDisplayInteractorListener, CommentUpdateEvent> {
 
-	public CommentUpdateInteractorImpl(int targetScreenletId) {
-		super(targetScreenletId);
+	@Override
+	public CommentUpdateEvent execute(Object... args) throws Exception {
+
+		long groupId = (long) args[0];
+		String className = (String) args[1];
+		long classPK = (long) args[2];
+		long commentId = (long) args[3];
+		String newBody = (String) args[4];
+
+		validate(groupId, className, classPK, commentId, newBody);
+
+		Session session = SessionContext.createSessionFromCurrentSession();
+		CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(session);
+
+		JSONObject jsonObject = service.updateComment(groupId, className, classPK, commentId, newBody);
+
+		CommentEntry commentEntry = new CommentEntry(JSONUtil.toMap(jsonObject));
+		return new CommentUpdateEvent(commentEntry);
 	}
 
 	@Override
-	public void updateComment(long groupId, String className, long classPK, long commentId, String newBody) {
-		try {
-			validate(groupId, className, classPK, commentId, newBody);
-
-			Session session = SessionContext.createSessionFromCurrentSession();
-			session.setCallback(new CommentUpdateCallback(getTargetScreenletId()));
-			CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(session);
-
-			service.updateComment(groupId, className, classPK, commentId, newBody);
-		} catch (Exception e) {
-			getListener().onUpdateCommentFailure(e);
-		}
+	public void onSuccess(CommentUpdateEvent event) throws Exception {
+		getListener().onUpdateCommentSuccess(event.getCommentEntry());
 	}
 
-	public void onEvent(CommentUpdateEvent event) {
-		if (!isValidEvent(event)) {
-			return;
-		}
-
-		if (event.isFailed()) {
-			getListener().onUpdateCommentFailure(event.getException());
-		} else {
-			getListener().onUpdateCommentSuccess(event.getCommentEntry());
-		}
+	@Override
+	public void onFailure(Exception e) {
+		getListener().error(e, CommentDisplayScreenlet.UPDATE_COMMENT_ACTION);
 	}
 
 	protected void validate(long groupId, String className, long classPK, long commentId, String newBody) {

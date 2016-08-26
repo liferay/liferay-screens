@@ -9,6 +9,7 @@ import android.support.v4.content.WakefulBroadcastReceiver;
  * @author Javier Gamarra
  */
 public class CacheReceiver extends WakefulBroadcastReceiver {
+
 	@Override
 	public void onReceive(Context context, Intent intent) {
 

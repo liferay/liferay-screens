@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.comment.display.view;
 
 import com.liferay.mobile.screens.base.view.BaseViewModel;
-import com.liferay.mobile.screens.models.CommentEntry;
+import com.liferay.mobile.screens.comment.CommentEntry;
 
 /**
  * @author Alejandro Hernández

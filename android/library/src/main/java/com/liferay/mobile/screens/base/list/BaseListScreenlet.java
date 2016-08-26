@@ -63,7 +63,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 		getViewModel().showFinishOperation(startRow, endRow, e);
 
 		if (_listener != null) {
-			_listener.onListPageFailed(this, startRow, endRow, e);
+			_listener.onListPageFailed(startRow, e);
 		}
 	}
 
@@ -72,7 +72,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 		getViewModel().showFinishOperation(startRow, endRow, entries, rowCount);
 
 		if (_listener != null) {
-			_listener.onListPageReceived(this, startRow, endRow, entries, rowCount);
+			_listener.onListPageReceived(startRow, endRow, entries, rowCount);
 		}
 	}
 
@@ -103,7 +103,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 		int endRow = getFirstRowForPage(page + 1);
 
 		try {
-			loadRows(getInteractor(), startRow, endRow, locale, _obcClassName);
+			loadRows(getInteractor(), startRow, endRow, _obcClassName);
 		}
 		catch (Exception e) {
 			onListRowsFailure(startRow, endRow, e);
@@ -150,7 +150,7 @@ public abstract class BaseListScreenlet<E, N extends Interactor>
 		_labelFields = labelFields;
 	}
 
-	protected abstract void loadRows(N interactor, int startRow, int endRow, Locale locale, String obcClassName)
+	protected abstract void loadRows(N interactor, int startRow, int endRow, String obcClassName)
 		throws Exception;
 
 	@Override

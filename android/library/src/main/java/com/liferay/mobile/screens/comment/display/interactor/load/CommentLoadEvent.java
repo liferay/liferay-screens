@@ -1,20 +1,14 @@
 package com.liferay.mobile.screens.comment.display.interactor.load;
 
-import com.liferay.mobile.screens.base.interactor.BasicEvent;
-import com.liferay.mobile.screens.models.CommentEntry;
+import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
+import com.liferay.mobile.screens.comment.CommentEntry;
 
 /**
  * @author Alejandro Hernández
  */
-public class CommentLoadEvent extends BasicEvent {
+public class CommentLoadEvent extends BasicThreadEvent {
 
-	public CommentLoadEvent(int targetScreenletId, Exception e) {
-		super(targetScreenletId, e);
-	}
-
-	public CommentLoadEvent(int targetScreenletId, CommentEntry commentEntry) {
-		super(targetScreenletId);
-
+	public CommentLoadEvent(CommentEntry commentEntry) {
 		this.commentEntry = commentEntry;
 	}
 

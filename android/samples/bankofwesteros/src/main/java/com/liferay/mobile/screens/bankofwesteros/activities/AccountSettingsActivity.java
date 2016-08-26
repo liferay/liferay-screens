@@ -1,12 +1,10 @@
 package com.liferay.mobile.screens.bankofwesteros.activities;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.callback.typed.JSONObjectCallback;
 import com.liferay.mobile.screens.bankofwesteros.R;
@@ -17,7 +15,6 @@ import com.liferay.mobile.screens.userportrait.UserPortraitListener;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
-
 import org.json.JSONObject;
 
 /**
@@ -44,8 +41,8 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 		BasicAuthentication basicAuth = (BasicAuthentication) SessionContext.getAuthentication();
 		_password.setText(basicAuth.getPassword());
 
-		_userPortraitScreenlet = (UserPortraitScreenlet) findViewById(R.id.userportrait);
-		_userPortraitScreenlet.setListener(this);
+		UserPortraitScreenlet userPortraitScreenlet = (UserPortraitScreenlet) findViewById(R.id.userportrait);
+		userPortraitScreenlet.setListener(this);
 	}
 
 	@Override
@@ -61,23 +58,18 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 	}
 
 	@Override
-	public Bitmap onUserPortraitLoadReceived(UserPortraitScreenlet source, Bitmap bitmap) {
+	public Bitmap onUserPortraitLoadReceived(Bitmap bitmap) {
 		return null;
 	}
 
 	@Override
-	public void onUserPortraitLoadFailure(UserPortraitScreenlet source, Exception e) {
-
-	}
-
-	@Override
-	public void onUserPortraitUploaded(UserPortraitScreenlet source) {
+	public void onUserPortraitUploaded() {
 		WesterosSnackbar.showSnackbar(this, "Portrait updated", R.color.green_westeros);
 	}
 
 	@Override
-	public void onUserPortraitUploadFailure(UserPortraitScreenlet source, Exception e) {
-		WesterosSnackbar.showSnackbar(this, "Error updating portrait", R.color.colorAccent_westeros);
+	public void error(Exception e, String userAction) {
+		WesterosSnackbar.showSnackbar(this, "Error at " + userAction, R.color.colorAccent_westeros);
 	}
 
 	@Override
@@ -127,11 +119,11 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 			@Override
 			public void onFailure(Exception exception) {
 				LiferayLogger.e("error", exception);
-				WesterosSnackbar.showSnackbar(AccountSettingsActivity.this, "Error updating user", R.color.colorAccent_westeros);
+				WesterosSnackbar.showSnackbar(AccountSettingsActivity.this, "Error updating user",
+					R.color.colorAccent_westeros);
 			}
 		});
 	}
-
 
 	private void setError(EditText editText) {
 		editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.icon_warning, 0);
@@ -147,7 +139,4 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 	private EditText _lastName;
 	private EditText _emailAddress;
 	private EditText _password;
-
-	private UserPortraitScreenlet _userPortraitScreenlet;
-
 }

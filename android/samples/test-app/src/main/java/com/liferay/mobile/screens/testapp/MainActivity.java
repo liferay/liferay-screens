@@ -2,8 +2,6 @@ package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
 import android.view.View;
-import com.liferay.mobile.screens.cache.DefaultCachedType;
-import com.liferay.mobile.screens.cache.sql.CacheSQL;
 import com.liferay.mobile.screens.testapp.fullview.LoginFullActivity;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 
@@ -92,24 +90,25 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				startActivity(getIntentWithTheme(MainActivity.class));
 				break;
 			case R.id.clear_cache_forms:
-				int formRows = CacheSQL.getInstance().clear(DefaultCachedType.DDL_FORM);
-				int recordRows = CacheSQL.getInstance().clear(DefaultCachedType.DDL_RECORD);
-				int listRows = CacheSQL.getInstance().clear(DefaultCachedType.DDL_LIST);
-				int countRows = CacheSQL.getInstance().clear(DefaultCachedType.DDL_LIST_COUNT);
-
-				String cacheFormsMessage = "Deleted " + formRows + " forms, " + recordRows + " records, " +
-					listRows + " list rows and " + countRows + " count rows.";
-
-				info(cacheFormsMessage);
+				//FIXME !
+				//int formRows = CacheSQL.getInstance().clear(DefaultCachedType.DDL_FORM);
+				//int recordRows = CacheSQL.getInstance().clear(DefaultCachedType.DDL_RECORD);
+				//int listRows = CacheSQL.getInstance().clear(DefaultCachedType.DDL_LIST);
+				//int countRows = CacheSQL.getInstance().clear(DefaultCachedType.DDL_LIST_COUNT);
+				//
+				//String cacheFormsMessage = "Deleted " + formRows + " forms, " + recordRows + " records, " +
+				//	listRows + " list rows and " + countRows + " count rows.";
+				//
+				//info(cacheFormsMessage);
 				break;
 			case R.id.clear_cache:
-				boolean success = CacheSQL.getInstance().clear(this);
-				String clearCacheMessage = "Cache cleared: " + (success ? "sucessfully" : "failed");
-				info(clearCacheMessage);
+				//boolean success = CacheSQL.getInstance().clear(this);
+				//String clearCacheMessage = "Cache cleared: " + (success ? "sucessfully" : "failed");
+				//info(clearCacheMessage);
 				break;
 			case R.id.sync_cache:
-				CacheSQL.getInstance().resync();
-				info("Launched resync process");
+				//CacheSQL.getInstance().resync();
+				//info("Launched resync process");
 				break;
 			case R.id.custom_interactor:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(CustomInteractorActivity.class));

@@ -15,10 +15,10 @@ public class AssetDisplayActivity extends ThemeActivity implements AssetDisplayL
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.asset_display);
 
-		_screenlet = ((AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet));
+		AssetDisplayScreenlet screenlet = ((AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet));
 
-		_screenlet.setEntryId(getIntent().getLongExtra("entryId", 0));
-		_screenlet.setListener(this);
+		screenlet.setEntryId(getIntent().getLongExtra("entryId", 0));
+		screenlet.setListener(this);
 	}
 
 	@Override
@@ -30,6 +30,4 @@ public class AssetDisplayActivity extends ThemeActivity implements AssetDisplayL
 	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
 		info("Asset entry received! -> " + assetEntry.getTitle());
 	}
-
-	private AssetDisplayScreenlet _screenlet;
 }

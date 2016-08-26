@@ -1,42 +1,44 @@
 package com.liferay.mobile.screens.comment.add.interactor;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.BaseRemoteInteractorNew;
 import com.liferay.mobile.screens.comment.add.CommentAddListener;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
+import com.liferay.mobile.screens.util.JSONUtil;
+import org.json.JSONObject;
 
 /**
  * @author Alejandro Hernández
  */
-public class CommentAddInteractorImpl extends BaseRemoteInteractor<CommentAddListener> implements CommentAddInteractor {
-
-	public CommentAddInteractorImpl(int targetScreenletId) {
-		super(targetScreenletId);
-	}
+public class CommentAddInteractorImpl extends BaseRemoteInteractorNew<CommentAddListener, CommentAddEvent> {
 
 	@Override
-	public void addComment(long groupId, String className, long classPK, String body) throws Exception {
+	public CommentAddEvent execute(Object... args) throws Exception {
+
+		long groupId = (long) args[0];
+		String className = (String) args[1];
+		long classPK = (long) args[2];
+		String body = (String) args[3];
 
 		validate(groupId, className, classPK, body);
 
 		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new CommentAddCallback(body, getTargetScreenletId()));
 		CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(session);
 
-		service.addComment(groupId, className, classPK, body);
+		JSONObject jsonObject = service.addComment(groupId, className, classPK, body);
+		return new CommentAddEvent(body, new CommentEntry(JSONUtil.toMap(jsonObject)));
 	}
 
-	public void onEvent(CommentAddEvent event) {
-		if (!isValidEvent(event)) {
-			return;
-		}
+	@Override
+	public void onSuccess(CommentAddEvent event) throws Exception {
+		getListener().onAddCommentSuccess(event.getCommentEntry());
+	}
 
-		if (event.isFailed()) {
-			getListener().onAddCommentFailure(event.getBody(), event.getException());
-		} else {
-			getListener().onAddCommentSuccess(event.getCommentEntry());
-		}
+	@Override
+	public void onFailure(Exception e) {
+		getListener().onAddCommentFailure(e);
 	}
 
 	protected void validate(long groupId, String className, long classPK, String body) {

@@ -26,7 +26,7 @@ import java.util.Map;
 public class AssetEntry implements Parcelable {
 
 	public AssetEntry() {
-
+		super();
 	}
 
 	public static final ClassLoaderCreator<AssetEntry> CREATOR =

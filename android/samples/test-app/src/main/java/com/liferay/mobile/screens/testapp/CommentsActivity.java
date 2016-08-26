@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.widget.CompoundButton;
-import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.comment.add.CommentAddListener;
 import com.liferay.mobile.screens.comment.add.CommentAddScreenlet;
 import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
 import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.list.CommentListListener;
 import com.liferay.mobile.screens.comment.list.CommentListScreenlet;
-import com.liferay.mobile.screens.models.CommentEntry;
+import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import java.util.List;
 
@@ -94,7 +93,7 @@ public class CommentsActivity extends ThemeActivity
 	}
 
 	@Override
-	public void onAddCommentFailure(String body, Exception e) {
+	public void onAddCommentFailure(Exception e) {
 		error("Error adding comment", e);
 	}
 
@@ -107,13 +106,12 @@ public class CommentsActivity extends ThemeActivity
 	}
 
 	@Override
-	public void onListPageFailed(BaseListScreenlet source, int startRow, int endRow, Exception e) {
+	public void onListPageFailed(int startRow, Exception e) {
 		error(String.format(LiferayLocale.getDefaultLocale(), "Error receiving page: %d", startRow), e);
 	}
 
 	@Override
-	public void onListPageReceived(BaseListScreenlet source, int startRow, int endRow, List<CommentEntry> entries,
-		int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List<CommentEntry> entries, int rowCount) {
 	}
 
 	@Override
@@ -133,6 +131,11 @@ public class CommentsActivity extends ThemeActivity
 
 	@Override
 	public void storingToCache(Object object) {
+	}
+
+	@Override
+	public void error(Exception e, String userAction) {
+
 	}
 
 	@Override

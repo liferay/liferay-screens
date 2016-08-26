@@ -28,6 +28,10 @@ import java.util.Map;
  */
 public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsField.Option>> {
 
+	public StringWithOptionsField() {
+		super();
+	}
+
 	public static final Parcelable.ClassLoaderCreator<StringWithOptionsField> CREATOR =
 		new Parcelable.ClassLoaderCreator<StringWithOptionsField>() {
 
@@ -262,6 +266,10 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 	private boolean _multiple;
 
 	public static class Option implements Serializable {
+
+		public Option() {
+			super();
+		}
 
 		public String label;
 		public String name;

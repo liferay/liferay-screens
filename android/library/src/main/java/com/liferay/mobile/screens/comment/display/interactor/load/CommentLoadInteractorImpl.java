@@ -1,77 +1,44 @@
 package com.liferay.mobile.screens.comment.display.interactor.load;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.base.thread.BaseRemoteInteractorNew;
+import com.liferay.mobile.screens.comment.CommentEntry;
+import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
+import com.liferay.mobile.screens.util.JSONUtil;
+import org.json.JSONObject;
 
 /**
  * @author Alejandro Hernández
  */
 public class CommentLoadInteractorImpl
-	extends BaseCachedRemoteInteractor<CommentDisplayInteractorListener, CommentLoadEvent>
-	implements CommentLoadInteractor {
-
-	public CommentLoadInteractorImpl(int screenletId, OfflinePolicy offlinePolicy) {
-		super(screenletId, offlinePolicy);
-	}
+	extends BaseRemoteInteractorNew<CommentDisplayInteractorListener, CommentLoadEvent> {
 
 	@Override
-	public void load(long groupId, long commentId) {
-
-		try {
-			validate(groupId, commentId);
-
-			processWithCache(groupId, commentId);
-		} catch (Exception e) {
-			getListener().onLoadCommentFailure(e);
-		}
-	}
-
-	@Override
-	protected void online(Object[] args) throws Exception {
+	public CommentLoadEvent execute(Object... args) throws Exception {
 
 		long groupId = (long) args[0];
 		long commentId = (long) args[1];
 
-		getCommentService().getComment(groupId, commentId);
-	}
+		validate(groupId, commentId);
 
-	public void onEvent(CommentLoadEvent event) {
-		if (!isValidEvent(event)) {
-			return;
-		}
-
-		if (event.isFailed()) {
-			getListener().onLoadCommentFailure(event.getException());
-		} else {
-			getListener().onLoadCommentSuccess(event.getCommentEntry());
-		}
-	}
-
-	@Override
-	protected boolean cached(Object... args) throws Exception {
-		return false;
-	}
-
-	@Override
-	protected void storeToCache(CommentLoadEvent event, Object... args) {
-
-	}
-
-	@Override
-	protected void notifyError(CommentLoadEvent event) {
-		getListener().onLoadCommentFailure(event.getException());
-	}
-
-	protected CommentmanagerjsonwsService getCommentService() {
 		Session session = SessionContext.createSessionFromCurrentSession();
+		CommentmanagerjsonwsService commentService = new CommentmanagerjsonwsService(session);
+		JSONObject jsonObject = commentService.getComment(groupId, commentId);
 
-		session.setCallback(new CommentLoadCallback(getTargetScreenletId()));
+		return new CommentLoadEvent(new CommentEntry(JSONUtil.toMap(jsonObject)));
+	}
 
-		return new CommentmanagerjsonwsService(session);
+	@Override
+	public void onSuccess(CommentLoadEvent event) throws Exception {
+		getListener().onLoadCommentSuccess(event.getCommentEntry());
+	}
+
+	@Override
+	public void onFailure(Exception e) {
+		getListener().error(e, CommentDisplayScreenlet.LOAD_COMMENT_ACTION);
 	}
 
 	private void validate(long groupId, long commentId) {

@@ -17,9 +17,9 @@ package com.liferay.mobile.screens.ddl.form.service;
 import android.app.IntentService;
 import android.content.Intent;
 import android.webkit.MimeTypeMap;
-
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
+import com.liferay.mobile.screens.base.thread.event.ErrorThreadEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadEvent;
@@ -27,10 +27,6 @@ import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.util.ServiceProvider;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -38,6 +34,8 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
@@ -67,18 +65,15 @@ public class UploadService extends IntentService {
 		try {
 			JSONObject jsonObject = uploadFile(file, userId, groupId, repositoryId, folderId, filePrefix);
 
-			DDLFormDocumentUploadEvent event = new DDLFormDocumentUploadEvent(targetScreenletId, file, userId, groupId, repositoryId,
-				folderId, filePrefix, jsonObject);
+			DDLFormDocumentUploadEvent event = new DDLFormDocumentUploadEvent(file, repositoryId, folderId, filePrefix, jsonObject);
 			EventBusUtil.post(event);
-		}
-		catch (Exception e) {
-			EventBusUtil.post(new DDLFormDocumentUploadEvent(targetScreenletId, file, userId, groupId, repositoryId,
-				folderId, filePrefix, e));
+		} catch (Exception e) {
+			EventBusUtil.post(new ErrorThreadEvent(e));
 		}
 	}
 
-	public JSONObject uploadFile(DocumentField file, Long userId, Long groupId, Long repositoryId,
-								 Long folderId, String filePrefix) throws Exception {
+	public JSONObject uploadFile(DocumentField file, Long userId, Long groupId, Long repositoryId, Long folderId,
+		String filePrefix) throws Exception {
 		String path = file.getCurrentValue().toString();
 		String name = path.substring(path.lastIndexOf("/") + 1);
 		String date = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
@@ -92,8 +87,8 @@ public class UploadService extends IntentService {
 
 		String fileName = (filePrefix == null ? "" : filePrefix) + date + "_" + name;
 
-		return dlAppConnector.addFileEntry(repositoryId, folderId, name,
-			getMimeType(path), fileName, "", "", getBytes(new File(path)), serviceContextWrapper);
+		return dlAppConnector.addFileEntry(repositoryId, folderId, name, getMimeType(path), fileName, "", "",
+			getBytes(new File(path)), serviceContextWrapper);
 	}
 
 	private byte[] getBytes(File file) throws IOException {
@@ -104,14 +99,12 @@ public class UploadService extends IntentService {
 			if (ios.read(buffer) == -1) {
 				throw new IOException("EOF reached while trying to read the whole file");
 			}
-		}
-		finally {
+		} finally {
 			try {
 				if (ios != null) {
 					ios.close();
 				}
-			}
-			catch (IOException e) {
+			} catch (IOException e) {
 				LiferayLogger.e("Error closing stream", e);
 			}
 		}

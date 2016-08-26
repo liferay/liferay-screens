@@ -14,13 +14,17 @@
 
 package com.liferay.mobile.screens.base.thread.event;
 
-/**
- * @author Silvio Santos
- */
+import org.json.JSONObject;
+
 public class BasicThreadEvent {
 
 	public BasicThreadEvent() {
 		super();
+	}
+
+	public BasicThreadEvent(JSONObject jsonObject) {
+		super();
+		_jsonObject = jsonObject;
 	}
 
 	public BasicThreadEvent(Exception exception) {
@@ -35,6 +39,10 @@ public class BasicThreadEvent {
 		return _targetScreenletId;
 	}
 
+	public void setJSONObject(JSONObject jsonObject) {
+		_jsonObject = jsonObject;
+	}
+
 	public void setTargetScreenletId(int targetScreenletId) {
 		_targetScreenletId = targetScreenletId;
 	}
@@ -43,11 +51,11 @@ public class BasicThreadEvent {
 		return _exception != null;
 	}
 
-	public void setException(Exception exception) {
-		_exception = exception;
+	public JSONObject getJSONObject() {
+		return _jsonObject;
 	}
 
+	private JSONObject _jsonObject;
 	private Exception _exception;
 	private int _targetScreenletId;
-
 }

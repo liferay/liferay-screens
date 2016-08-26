@@ -14,11 +14,9 @@
 
 package com.liferay.mobile.screens.service.v62;
 
-import com.liferay.mobile.android.http.file.UploadData;
 import com.liferay.mobile.android.service.BaseService;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,8 +40,7 @@ public class ScreensddlrecordService extends BaseService {
 			_params.put("locale", checkNull(locale));
 
 			_command.put("/screens-web.screensddlrecord/get-ddl-record", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -56,7 +53,8 @@ public class ScreensddlrecordService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public JSONArray getDdlRecords(long ddlRecordSetId, String locale, int start, int end, JSONObjectWrapper obc) throws Exception {
+	public JSONArray getDdlRecords(long ddlRecordSetId, String locale, int start, int end, JSONObjectWrapper obc)
+		throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -69,8 +67,7 @@ public class ScreensddlrecordService extends BaseService {
 			mangleWrapper(_params, "obc", "com.liferay.portal.kernel.util.OrderByComparator", obc);
 
 			_command.put("/screens-web.screensddlrecord/get-ddl-records", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -83,7 +80,8 @@ public class ScreensddlrecordService extends BaseService {
 		return _result.getJSONArray(0);
 	}
 
-	public JSONArray getDdlRecords(long ddlRecordSetId, long userId, String locale, int start, int end, JSONObjectWrapper obc) throws Exception {
+	public JSONArray getDdlRecords(long ddlRecordSetId, long userId, String locale, int start, int end,
+		JSONObjectWrapper obc) throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -97,8 +95,7 @@ public class ScreensddlrecordService extends BaseService {
 			mangleWrapper(_params, "obc", "com.liferay.portal.kernel.util.OrderByComparator", obc);
 
 			_command.put("/screens-web.screensddlrecord/get-ddl-records", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -120,8 +117,7 @@ public class ScreensddlrecordService extends BaseService {
 			_params.put("ddlRecordSetId", ddlRecordSetId);
 
 			_command.put("/screens-web.screensddlrecord/get-ddl-records-count", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -144,8 +140,7 @@ public class ScreensddlrecordService extends BaseService {
 			_params.put("userId", userId);
 
 			_command.put("/screens-web.screensddlrecord/get-ddl-records-count", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -157,5 +152,4 @@ public class ScreensddlrecordService extends BaseService {
 
 		return _result.getInt(0);
 	}
-
 }

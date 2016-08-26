@@ -1,7 +1,6 @@
 package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
-
 import com.liferay.mobile.screens.base.interactor.CustomInteractorListener;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.bookmark.AddBookmarkScreenlet;
@@ -18,10 +17,10 @@ public class AddBookmarkActivity extends ThemeActivity implements AddBookmarkLis
 		super.onCreate(state);
 		setContentView(R.layout.add_bookmark);
 
-		_screenlet = (AddBookmarkScreenlet) findViewById(R.id.bookmark_screenlet);
-		_screenlet.setListener(this);
+		AddBookmarkScreenlet screenlet = (AddBookmarkScreenlet) findViewById(R.id.bookmark_screenlet);
+		screenlet.setListener(this);
 
-		_screenlet.setCustomInteractorListener(this);
+		screenlet.setCustomInteractorListener(this);
 	}
 
 	@Override
@@ -36,8 +35,6 @@ public class AddBookmarkActivity extends ThemeActivity implements AddBookmarkLis
 
 	@Override
 	public Interactor createInteractor(String actionName) {
-		return new AddBookmarkInteractorImpl(_screenlet.getScreenletId());
+		return new AddBookmarkInteractorImpl();
 	}
-
-	private AddBookmarkScreenlet _screenlet;
 }

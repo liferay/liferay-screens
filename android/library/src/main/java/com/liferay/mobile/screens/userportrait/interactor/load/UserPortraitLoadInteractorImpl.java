@@ -18,19 +18,17 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-
+import android.support.annotation.NonNull;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
-import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
-import com.liferay.mobile.screens.cache.Cache;
-import com.liferay.mobile.screens.cache.DefaultCachedType;
+import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
-import com.liferay.mobile.screens.cache.sql.CacheSQL;
-import com.liferay.mobile.screens.cache.userportrait.UserPortraitCache;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
+import com.liferay.mobile.screens.userportrait.UserPortraitListener;
+import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitUriBuilder;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import com.squareup.picasso.Downloader;
@@ -40,30 +38,62 @@ import com.squareup.picasso.OkHttpDownloader;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
 import com.squareup.picasso.Target;
-
-import org.json.JSONObject;
-
 import java.io.IOException;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
  * @author Jose Manuel Navarro
  */
-public class UserPortraitLoadInteractorImpl
-	extends BaseCachedRemoteInteractor<UserPortraitInteractorListener, UserPortraitLoadEvent>
-	implements UserPortraitLoadInteractor, Target {
+public class UserPortraitLoadInteractorImpl extends
+	BaseCachedThreadRemoteInteractor<UserPortraitListener, UserPortraitLoadInteractorImpl.UserPortraitOfflineEventNew>
+	implements Target {
 
-	public UserPortraitLoadInteractorImpl(int screenletId, OfflinePolicy offlinePolicy) {
-		super(screenletId, offlinePolicy);
+	@Override
+	public UserPortraitOfflineEventNew execute(Object... args) throws Exception {
+		//TODO move to 2 interactors
+		if (args.length == 1) {
+			long userId = (long) args[0];
+
+			validate(userId);
+
+			Session session = SessionContext.createSessionFromCurrentSession();
+
+			UserConnector userConnector = ServiceProvider.getInstance().getUserConnector(session);
+
+			JSONObject jsonObject = userConnector.getUserById(userId);
+			return new UserPortraitOfflineEventNew(jsonObject);
+		} else {
+			return createEventFromUUID(args);
+		}
+	}
+
+	@NonNull
+	private UserPortraitOfflineEventNew createEventFromUUID(Object[] args) throws JSONException {
+		boolean male = (boolean) args[0];
+		long portraitId = (long) args[1];
+		String uuid = (String) args[2];
+
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("male", male);
+		jsonObject.put("portraitId", portraitId);
+		jsonObject.put("uuid", uuid);
+
+		return new UserPortraitOfflineEventNew(jsonObject);
 	}
 
 	@Override
-	public void load(boolean male, long portraitId, String uuid) {
+	public void onSuccess(UserPortraitOfflineEventNew event) throws Exception {
+
+		JSONObject userAttributes = event.getJSONObject();
+		long portraitId = userAttributes.getLong("portraitId");
+		String uuid = userAttributes.getString("uuid");
+
 		validate(uuid);
 
 		UserPortraitUriBuilder userPortraitUriBuilder = new UserPortraitUriBuilder();
-		Uri uri = userPortraitUriBuilder.getUserPortraitUri(LiferayServerContext.getServer(),
-			male, portraitId, uuid);
+		Uri uri = userPortraitUriBuilder.getUserPortraitUri(LiferayServerContext.getServer(), true, portraitId, uuid);
 
 		Context context = LiferayScreensContext.getContext();
 		Downloader downloader = new OkHttpDownloader(userPortraitUriBuilder.getUserPortraitClient(context));
@@ -71,119 +101,34 @@ public class UserPortraitLoadInteractorImpl
 		RequestCreator requestCreator = picasso.load(uri);
 
 		if (OfflinePolicy.REMOTE_ONLY.equals(getOfflinePolicy())) {
-			requestCreator = requestCreator
-				.memoryPolicy(MemoryPolicy.NO_CACHE)
-				.networkPolicy(NetworkPolicy.NO_CACHE);
+			requestCreator = requestCreator.memoryPolicy(MemoryPolicy.NO_CACHE).networkPolicy(NetworkPolicy.NO_CACHE);
 		}
 
 		requestCreator.into(this);
 	}
 
 	@Override
-	public void load(final long userId) throws Exception {
-
-		validate(userId);
-
-		processWithCache(userId);
-	}
-
-	public void onEvent(UserPortraitLoadEvent event) {
-		if (!isValidEvent(event)) {
-			return;
-		}
-
-		if (event.isFailed()) {
-			onEventWithCache(event, event.getUserId());
-		}
-		else {
-			JSONObject userAttributes = event.getJSONObject();
-			try {
-				long portraitId = userAttributes.getLong("portraitId");
-				Long userId = userAttributes.getLong("userId");
-				String uuid = userAttributes.getString("uuid");
-
-				if (hasToStoreToCache()) {
-					storeToCache(event, userId, portraitId, uuid);
-				}
-				load(true, portraitId, uuid);
-			}
-			catch (Exception e) {
-				notifyError(event);
-			}
-
+	protected UserPortraitOfflineEventNew createEventFromArgs(Object... args) throws Exception {
+		if (args.length == 1) {
+			long userId = (long) args[0];
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("userId", userId);
+			return new UserPortraitOfflineEventNew(jsonObject);
+		} else {
+			return createEventFromUUID(args);
 		}
 	}
 
-	@Override
-	public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-		if (getListener() != null) {
-			getListener().onEndUserPortraitLoadRequest(bitmap);
+	public class UserPortraitOfflineEventNew extends OfflineEventNew {
+
+		public UserPortraitOfflineEventNew(JSONObject jsonObject) {
+			super(jsonObject);
 		}
-	}
 
-	@Override
-	public void onBitmapFailed(Drawable errorDrawable) {
-		if (getListener() != null) {
-			getListener().onUserPortraitLoadFailure(new IOException("Portrait cannot be loaded"));
-		}
-	}
-
-	@Override
-	public void onPrepareLoad(Drawable placeHolderDrawable) {
-	}
-
-	@Override
-	protected void online(Object[] args) throws Exception {
-
-		long userId = (long) args[0];
-
-		getUserService(userId).getUserById(userId);
-	}
-
-	@Override
-	protected boolean cached(Object[] args) {
-
-		long userId = (long) args[0];
-
-		Cache cache = CacheSQL.getInstance();
-		UserPortraitCache userPortraitCache = (UserPortraitCache) cache.getById(
-			DefaultCachedType.USER_PORTRAIT, String.valueOf(userId));
-
-		if (userPortraitCache != null) {
-			load(userPortraitCache.isMale(), userPortraitCache.getPortraitId(), userPortraitCache.getUuid());
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	protected void storeToCache(UserPortraitLoadEvent event, Object... args) {
-
-		long userId = (long) args[0];
-		long portraitId = (long) args[1];
-		String uuid = (String) args[2];
-
-		CacheSQL.getInstance().set(new UserPortraitCache(userId, true, portraitId, uuid));
-	}
-
-	@Override
-	protected void notifyError(UserPortraitLoadEvent event) {
-		getListener().onUserPortraitLoadFailure(event.getException());
-	}
-
-	protected UserConnector getUserService(long userId) {
-		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new UserPortraitLoadCallback(getTargetScreenletId(), userId));
-
-		return ServiceProvider.getInstance().getUserConnector(session);
-	}
-
-	private void validate(String uuid) {
-		if (getListener() == null) {
-			throw new IllegalArgumentException("Listener cannot be empty");
-		}
-		if (uuid == null || uuid.isEmpty()) {
-			throw new IllegalArgumentException("userId cannot be empty");
+		@Override
+		public String getId() throws Exception {
+			return getJSONObject().has("userId") ? String.valueOf(getJSONObject().getLong("userId"))
+				: getJSONObject().getString("uuid");
 		}
 	}
 
@@ -193,4 +138,29 @@ public class UserPortraitLoadInteractorImpl
 		}
 	}
 
+	private void validate(String uuid) {
+		if (getListener() == null) {
+			throw new IllegalArgumentException("Listener cannot be empty");
+		} else if (uuid == null || uuid.isEmpty()) {
+			throw new IllegalArgumentException("userId cannot be empty");
+		}
+	}
+
+	@Override
+	public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+		if (getListener() != null) {
+			getListener().onUserPortraitLoadReceived(bitmap);
+		}
+	}
+
+	@Override
+	public void onBitmapFailed(Drawable errorDrawable) {
+		if (getListener() != null) {
+			getListener().error(new IOException("Portrait cannot be loaded"), UserPortraitScreenlet.LOAD_PORTRAIT);
+		}
+	}
+
+	@Override
+	public void onPrepareLoad(Drawable placeHolderDrawable) {
+	}
 }

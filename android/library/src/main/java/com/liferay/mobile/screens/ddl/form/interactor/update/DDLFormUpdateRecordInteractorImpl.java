@@ -14,142 +14,77 @@
 
 package com.liferay.mobile.screens.ddl.form.interactor.update;
 
-import android.support.annotation.NonNull;
-
-import com.liferay.mobile.android.exception.ServerException;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.base.interactor.BaseCachedWriteRemoteInteractor;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
-import com.liferay.mobile.screens.cache.ddl.form.DDLRecordCache;
-import com.liferay.mobile.screens.cache.sql.CacheSQL;
+import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
+import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordConnector;
 import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.util.ServiceProvider;
-
-import org.json.JSONException;
 import org.json.JSONObject;
-
 
 /**
  * @author Jose Manuel Navarro
  */
 public class DDLFormUpdateRecordInteractorImpl
-	extends BaseCachedWriteRemoteInteractor<DDLFormListener, DDLFormUpdateRecordEvent>
-	implements DDLFormUpdateRecordInteractor {
-
-	public DDLFormUpdateRecordInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
-		super(targetScreenletId, offlinePolicy);
-	}
+	extends BaseCachedWriteThreadRemoteInteractor<DDLFormListener, DDLFormUpdateRecordEvent> {
 
 	@Override
-	public void updateRecord(long groupId, final Record record) throws Exception {
-		validate(groupId, record);
+	public DDLFormUpdateRecordEvent execute(DDLFormUpdateRecordEvent event) throws Exception {
 
-		storeWithCache(groupId, record);
-	}
+		Record record = event.getRecord();
 
-	public void onEvent(DDLFormUpdateRecordEvent event) {
-		if (!isValidEvent(event)) {
-			return;
-		}
-
-		if (event.isFailed()) {
-			try {
-				if (event.getException() instanceof ServerException) {
-					getListener().onDDLFormUpdateRecordFailed(event.getException());
-				}
-				else {
-					storeToCacheAndLaunchEvent(event.getGroupId(), event.getRecord());
-				}
-			}
-			catch (Exception e) {
-				getListener().onDDLFormUpdateRecordFailed(event.getException());
-			}
-		}
-		else {
-			if (!event.isCacheRequest()) {
-				store(true, event.getGroupId(), event.getRecord());
-			}
-
-			getListener().onDDLFormRecordUpdated(event.getRecord());
-		}
-	}
-
-	@Override
-	protected void online(Object[] args) throws Exception {
-
-		long groupId = (long) args[0];
-		Record record = (Record) args[1];
 		JSONObject fieldsValues = new JSONObject(record.getData());
 
 		final JSONObject serviceContextAttributes = new JSONObject();
 		serviceContextAttributes.put("userId", record.getCreatorUserId());
-		serviceContextAttributes.put("scopeGroupId", groupId);
+		serviceContextAttributes.put("scopeGroupId", event.getGroupId());
 
 		JSONObjectWrapper serviceContextWrapper = new JSONObjectWrapper(serviceContextAttributes);
 
-		getDDLRecordService(record, groupId).updateRecord(record.getRecordId(),
-			0, fieldsValues, false, serviceContextWrapper);
+		Session session = SessionContext.createSessionFromCurrentSession();
+		DDLRecordConnector ddlRecordConnector = ServiceProvider.getInstance().getDDLRecordConnector(session);
+
+		JSONObject jsonObject =
+			ddlRecordConnector.updateRecord(record.getRecordId(), 0, fieldsValues, false, serviceContextWrapper);
+
+		event.setJSONObject(jsonObject);
+
+		return event;
 	}
 
 	@Override
-	protected void storeToCacheAndLaunchEvent(Object... args) {
+	protected DDLFormUpdateRecordEvent createEvent(Object[] args) throws Exception {
+
 		long groupId = (long) args[0];
 		Record record = (Record) args[1];
 
-		final JSONObject fieldsValues = store(false, groupId, record);
+		validate(groupId, record);
 
-		DDLFormUpdateRecordEvent event = new DDLFormUpdateRecordEvent(getTargetScreenletId(), record, groupId, fieldsValues);
-		event.setCacheRequest(true);
-		onEvent(event);
+		return new DDLFormUpdateRecordEvent(record, new JSONObject());
 	}
 
-	protected DDLRecordConnector getDDLRecordService(Record record, long groupId) {
-		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new DDLFormUpdateRecordCallback(getTargetScreenletId(), record, groupId));
-		return ServiceProvider.getInstance().getDDLRecordConnector(session);
+	@Override
+	public void onSuccess(DDLFormUpdateRecordEvent event) throws Exception {
+		getListener().onDDLFormRecordUpdated(event.getRecord());
+	}
+
+	@Override
+	public void onFailure(DDLFormUpdateRecordEvent event) {
+		getListener().error(event.getException(), DDLFormScreenlet.UPDATE_RECORD_ACTION);
 	}
 
 	protected void validate(long groupId, Record record) {
 		if (groupId <= 0) {
 			throw new IllegalArgumentException("groupId cannot be 0 or negative");
-		}
-
-		if (record == null) {
+		} else if (record == null) {
 			throw new IllegalArgumentException("record cannot be empty");
-		}
-
-		if (record.getFieldCount() == 0) {
+		} else if (record.getFieldCount() == 0) {
 			throw new IllegalArgumentException("Record's fields cannot be empty");
-		}
-
-		if (record.getRecordId() <= 0) {
+		} else if (record.getRecordId() <= 0) {
 			throw new IllegalArgumentException("Record's recordId cannot be 0 or negative");
 		}
 	}
-
-	@NonNull
-	private JSONObject store(boolean synced, long groupId, Record record) {
-		final JSONObject fieldsValues = new JSONObject(record.getData());
-		saveDDLRecord(record, fieldsValues, groupId, !synced);
-		return fieldsValues;
-	}
-
-	private void saveDDLRecord(Record record, JSONObject fieldValues, Long groupId, boolean dirty) {
-		try {
-			JSONObject valuesAndAttributes = new JSONObject();
-			valuesAndAttributes.put("modelValues", fieldValues);
-			DDLRecordCache recordCache = new DDLRecordCache(groupId, record, valuesAndAttributes);
-			recordCache.setDirty(dirty);
-			CacheSQL.getInstance().set(recordCache);
-		}
-		catch (JSONException e) {
-			LiferayLogger.e("Couldn't parse JSON values", e);
-		}
-	}
-
 }

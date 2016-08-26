@@ -73,7 +73,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	}
 
 	public void loadAsset() {
-		getInteractor().getAssetEntry(entryId);
+		getInteractor().start(entryId);
 	}
 
 	@Override
@@ -105,7 +105,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 
 	@Override
 	protected AssetDisplayInteractorImpl createInteractor(String actionName) {
-		return new AssetDisplayInteractorImpl(getScreenletId());
+		return new AssetDisplayInteractorImpl();
 	}
 
 	@Override

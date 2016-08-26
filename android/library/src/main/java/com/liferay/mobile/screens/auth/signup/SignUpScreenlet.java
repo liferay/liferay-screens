@@ -19,11 +19,9 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginListener;
-import com.liferay.mobile.screens.auth.signup.interactor.SignUpInteractor;
 import com.liferay.mobile.screens.auth.signup.interactor.SignUpInteractorImpl;
 import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
@@ -31,15 +29,12 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder.StorageType;
-
 import java.util.Locale;
 
 /**
  * @author Silvio Santos
  */
-public class SignUpScreenlet
-	extends BaseScreenlet<SignUpViewModel, SignUpInteractor>
-	implements SignUpListener {
+public class SignUpScreenlet extends BaseScreenlet<SignUpViewModel, SignUpInteractorImpl> implements SignUpListener {
 
 	public SignUpScreenlet(Context context) {
 		super(context);
@@ -169,23 +164,19 @@ public class SignUpScreenlet
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-			attributes, R.styleable.SignUpScreenlet, 0, 0);
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.SignUpScreenlet, 0, 0);
 
-		_companyId = castToLongOrUseDefault(typedArray.getString(
-			R.styleable.SignUpScreenlet_companyId),
+		_companyId = castToLongOrUseDefault(typedArray.getString(R.styleable.SignUpScreenlet_companyId),
 			LiferayServerContext.getCompanyId());
 
-		_anonymousApiUserName = typedArray.getString(
-			R.styleable.SignUpScreenlet_anonymousApiUserName);
+		_anonymousApiUserName = typedArray.getString(R.styleable.SignUpScreenlet_anonymousApiUserName);
 
-		_anonymousApiPassword = typedArray.getString(
-			R.styleable.SignUpScreenlet_anonymousApiPassword);
+		_anonymousApiPassword = typedArray.getString(R.styleable.SignUpScreenlet_anonymousApiPassword);
 
 		_autoLogin = typedArray.getBoolean(R.styleable.SignUpScreenlet_autoLogin, true);
 
-		int storageValue = typedArray.getInt(R.styleable.SignUpScreenlet_credentialsStorage,
-			StorageType.NONE.toInt());
+		int storageValue = typedArray.getInt(R.styleable.SignUpScreenlet_credentialsStorage, StorageType.NONE.toInt());
 
 		_credentialsStorage = StorageType.valueOf(storageValue);
 
@@ -194,8 +185,7 @@ public class SignUpScreenlet
 		int authMethodId = typedArray.getInt(R.styleable.SignUpScreenlet_basicAuthMethod, 0);
 		_basicAuthMethod = BasicAuthMethod.getValue(authMethodId);
 
-		int layoutId = typedArray.getResourceId(
-			R.styleable.SignUpScreenlet_layoutId, getDefaultLayoutId());
+		int layoutId = typedArray.getResourceId(R.styleable.SignUpScreenlet_layoutId, getDefaultLayoutId());
 
 		typedArray.recycle();
 
@@ -203,12 +193,12 @@ public class SignUpScreenlet
 	}
 
 	@Override
-	protected SignUpInteractor createInteractor(String actionName) {
-		return new SignUpInteractorImpl(getScreenletId());
+	protected SignUpInteractorImpl createInteractor(String actionName) {
+		return new SignUpInteractorImpl();
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, SignUpInteractor interactor, Object... args) {
+	protected void onUserAction(String userActionName, SignUpInteractorImpl interactor, Object... args) {
 		SignUpViewModel viewModel = getViewModel();
 
 		String firstName = viewModel.getFirstName();
@@ -220,15 +210,8 @@ public class SignUpScreenlet
 		String jobTitle = viewModel.getJobTitle();
 		Locale locale = getResources().getConfiguration().locale;
 
-		try {
-			interactor.signUp(
-				_companyId, firstName, middleName, lastName, emailAddress,
-				screenName, password, jobTitle, locale, _anonymousApiUserName,
-				_anonymousApiPassword);
-		}
-		catch (Exception e) {
-			onSignUpFailure(e);
-		}
+		interactor.start(_companyId, firstName, middleName, lastName, emailAddress, screenName, password, jobTitle,
+			locale, _anonymousApiUserName, _anonymousApiPassword);
 	}
 
 	private String _anonymousApiPassword;
@@ -240,5 +223,4 @@ public class SignUpScreenlet
 
 	private SignUpListener _listener;
 	private LoginListener _autoLoginListener;
-
 }

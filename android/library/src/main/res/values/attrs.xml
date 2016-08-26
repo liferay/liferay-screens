@@ -5,6 +5,7 @@
 	<attr format="string" name="anonymousApiPassword"/>
 	<attr format="boolean" name="autoLoad"/>
 	<attr format="string" name="folderId"/>
+	<attr format="string" name="locale"/>
 	<attr format="enum" name="basicAuthMethod">
 		<enum name="email" value="0"/>
 		<enum name="screen_name" value="1"/>
@@ -21,6 +22,7 @@
 		<enum name="CACHE_FIRST" value="2"/>
 		<enum name="REMOTE_FIRST" value="3"/>
 	</attr>
+
 	<attr format="string" name="companyId"/>
 	<attr format="string" name="groupId"/>
 	<attr format="reference" name="layoutId"/>
@@ -35,6 +37,13 @@
 	<attr format="boolean" name="editable"/>
 	<attr format="string" name="obcClassName"/>
 	<attr format="string" name="entryId"/>
+
+	<declare-styleable name="OfflineScreenlet">
+		<attr name="groupId"/>
+		<attr name="offlinePolicy"/>
+		<attr name="userId"/>
+		<attr name="locale"/>
+	</declare-styleable>
 
 	<declare-styleable name="AssetListScreenlet">
 		<attr name="layoutId"/>

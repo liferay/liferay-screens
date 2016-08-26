@@ -1,98 +1,57 @@
 package com.liferay.mobile.screens.comment.list.interactor;
 
-import android.support.annotation.NonNull;
-import android.util.Pair;
-import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.base.list.interactor.BaseListCallback;
 import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
-import com.liferay.mobile.screens.cache.tablecache.TableCache;
-import com.liferay.mobile.screens.models.CommentEntry;
+import com.liferay.mobile.screens.base.list.interactor.Query;
+import com.liferay.mobile.screens.comment.CommentEntry;
+import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
-import com.liferay.mobile.screens.util.JSONUtil;
-import com.liferay.mobile.screens.util.LiferayLocale;
-import java.util.Locale;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import static com.liferay.mobile.screens.cache.DefaultCachedType.ASSET_LIST;
-import static com.liferay.mobile.screens.cache.DefaultCachedType.ASSET_LIST_COUNT;
+import java.util.Map;
+import org.json.JSONArray;
 
 /**
  * @author Alejandro Hernández
  */
-public class CommentListInteractorImpl extends BaseListInteractor<CommentEntry, CommentListInteractorListener>
-	implements CommentListInteractor {
-
-	public CommentListInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
-		super(targetScreenletId, offlinePolicy);
-	}
+public class CommentListInteractorImpl extends BaseListInteractor<CommentEntry, CommentListInteractorListener> {
 
 	@Override
-	public void loadRows(long groupId, String className, long classPK, int startRow, int endRow) throws Exception {
+	protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {
 
-		validate(groupId, className, classPK);
+		String className = (String) args[0];
+		long classPK = (long) args[1];
 
-		this.groupId = groupId;
-		this.className = className;
-		this.classPK = classPK;
-
-		Locale locale = LiferayLocale.getDefaultLocale();
-
-		processWithCache(startRow, endRow, locale);
-	}
-
-	@NonNull
-	@Override
-	protected CommentEntry getElement(TableCache tableCache) throws JSONException {
-		return new CommentEntry(JSONUtil.toMap(new JSONObject(tableCache.getContent())));
-	}
-
-	@Override
-	protected String getContent(CommentEntry commentEntry) {
-		return new JSONObject(commentEntry.getValues()).toString();
-	}
-
-	@Override
-	protected BaseListCallback<CommentEntry> getCallback(Pair<Integer, Integer> rowsRange, Locale locale) {
-		return new CommentListCallback(getTargetScreenletId(), rowsRange, locale);
-	}
-
-	@Override
-	protected void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale, JSONObjectWrapper obc)
-		throws Exception {
+		Session session = SessionContext.createSessionFromCurrentSession();
 		CommentmanagerjsonwsService service = getCommentsService(session);
-		service.getComments(groupId, className, classPK, startRow, endRow);
+		return service.getComments(groupId, className, classPK, query.getStartRow(), query.getEndRow());
 	}
 
 	@Override
-	protected void getPageRowCountRequest(Session session) throws Exception {
+	protected Integer getPageRowCountRequest(Object... args) throws Exception {
+
+		String className = (String) args[0];
+		long classPK = (long) args[1];
+
+		Session session = SessionContext.createSessionFromCurrentSession();
 		CommentmanagerjsonwsService service = getCommentsService(session);
-		service.getCommentsCount(groupId, className, classPK);
+		return service.getCommentsCount(groupId, className, classPK);
 	}
 
 	@Override
-	protected boolean cached(Object... args) throws Exception {
-		final int startRow = (int) args[0];
-		final int endRow = (int) args[1];
-
-		return recoverRows(getId(), ASSET_LIST, ASSET_LIST_COUNT, groupId, null, null, startRow, endRow);
+	protected CommentEntry createEntity(Map<String, Object> stringObjectMap) {
+		return new CommentEntry(stringObjectMap);
 	}
 
 	@Override
-	protected void storeToCache(BaseListEvent event, Object... args) {
-		storeRows(getId(), ASSET_LIST, ASSET_LIST_COUNT, groupId, null, event);
+	protected BaseListEvent<CommentEntry> createEventFromArgs(Object... args) throws Exception {
+		String className = (String) args[0];
+		long classPK = (long) args[1];
+
+		return null;
 	}
 
 	private CommentmanagerjsonwsService getCommentsService(Session session) {
 		return new CommentmanagerjsonwsService(session);
-	}
-
-	@NonNull
-	private String getId() {
-		return className + "_" + String.valueOf(classPK);
 	}
 
 	protected void validate(long groupId, String className, long classPK) {
@@ -104,8 +63,4 @@ public class CommentListInteractorImpl extends BaseListInteractor<CommentEntry, 
 			throw new IllegalArgumentException("classPK must be greater than 0");
 		}
 	}
-
-	private long groupId;
-	private String className;
-	private long classPK;
 }

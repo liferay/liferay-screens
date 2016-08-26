@@ -5,7 +5,6 @@ import android.view.View;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.asset.list.AssetListScreenlet;
 import com.liferay.mobile.screens.base.list.BaseListListener;
-import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import java.util.List;
 
 public class FilteredAssetActivity extends ThemeActivity implements BaseListListener<AssetEntry> {
@@ -20,13 +19,12 @@ public class FilteredAssetActivity extends ThemeActivity implements BaseListList
 	}
 
 	@Override
-	public void onListPageFailed(BaseListScreenlet source, int startRow, int endRow, Exception e) {
+	public void onListPageFailed(int startRow, Exception e) {
 
 	}
 
 	@Override
-	public void onListPageReceived(BaseListScreenlet source, int startRow, int endRow, List<AssetEntry> entries,
-		int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries, int rowCount) {
 
 	}
 
@@ -47,6 +45,11 @@ public class FilteredAssetActivity extends ThemeActivity implements BaseListList
 
 	@Override
 	public void storingToCache(Object object) {
+
+	}
+
+	@Override
+	public void error(Exception e, String userAction) {
 
 	}
 }

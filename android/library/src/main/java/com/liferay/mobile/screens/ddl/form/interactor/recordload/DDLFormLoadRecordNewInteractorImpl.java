@@ -12,84 +12,62 @@
  * details.
  */
 
-package com.liferay.mobile.screens.base.thread.interactors;
+package com.liferay.mobile.screens.ddl.form.interactor.recordload;
 
 import android.support.annotation.NonNull;
-
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
-import com.liferay.mobile.screens.base.thread.IdCache;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.ServiceProvider;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * @author Jose Manuel Navarro
  */
-public class DDLFormLoadRecordThreadInteractorImpl
-	extends BaseCachedThreadRemoteInteractor<DDLFormListener, DDLFormLoadRecordThreadEvent> {
-
-	public DDLFormLoadRecordThreadInteractorImpl(int targetScreenletId, OfflinePolicy offlinePolicy) {
-		super(targetScreenletId, offlinePolicy);
-	}
+public class DDLFormLoadRecordNewInteractorImpl
+	extends BaseCachedThreadRemoteInteractor<DDLFormListener, DDLFormLoadRecordEvent> {
 
 	@Override
-	public DDLFormLoadRecordThreadEvent execute(Object[] args) throws Exception {
+	public DDLFormLoadRecordEvent execute(Object[] args) throws Exception {
 
 		Record record = (Record) args[0];
 
 		validate(record);
 
 		Session session = SessionContext.createSessionFromCurrentSession();
-		ScreensDDLRecordConnector ddlRecordService = ServiceProvider.getInstance().getScreensDDLRecordConnector(session);
+		ScreensDDLRecordConnector ddlRecordService =
+			ServiceProvider.getInstance().getScreensDDLRecordConnector(session);
 
 		JSONObject jsonObject = ddlRecordService.getDdlRecord(record.getRecordId(), record.getLocale().toString());
-		return new DDLFormLoadRecordThreadEvent(jsonObject, record);
+		return new DDLFormLoadRecordEvent(record, jsonObject);
 	}
 
 	@Override
-	public void onFailure(Exception e) {
-		getListener().onDDLFormRecordLoadFailed(e);
-	}
-
-	@Override
-	public void onSuccess(DDLFormLoadRecordThreadEvent event) throws JSONException {
+	public void onSuccess(DDLFormLoadRecordEvent event) throws Exception {
 
 		Map<String, Object> valuesAndAttributes = getStringObjectMap(event.getJSONObject());
-		event.getRecord().setValuesAndAttributes(valuesAndAttributes);
-		event.getRecord().refresh();
 
-		getListener().onDDLFormRecordLoaded(event.getRecord());
+		getListener().onDDLFormRecordLoaded(event.getRecord(), valuesAndAttributes);
 	}
 
 	@Override
-	protected IdCache getCachedContent(Object[] args) {
+	protected DDLFormLoadRecordEvent createEventFromArgs(Object[] args) {
 		Record record = (Record) args[0];
 
-		return new IdCacheImpl(String.valueOf(record.getRecordId()));
-	}
-
-	@Override
-	protected Class<DDLFormLoadRecordThreadEvent> getEventClass() {
-		return DDLFormLoadRecordThreadEvent.class;
+		return new DDLFormLoadRecordEvent(record, new JSONObject());
 	}
 
 	protected void validate(Record record) {
 		if (record == null) {
 			throw new IllegalArgumentException("record cannot be empty");
-		}
-
-		if (record.getRecordId() <= 0) {
+		} else if (record.getRecordId() <= 0) {
 			throw new IllegalArgumentException("Record's recordId cannot be 0 or negative");
 		}
 	}
@@ -99,12 +77,10 @@ public class DDLFormLoadRecordThreadInteractorImpl
 		Map<String, Object> modelValues = JSONUtil.toMap(jsonObject);
 		if (modelValues.containsKey("modelValues")) {
 			return modelValues;
-		}
-		else {
+		} else {
 			Map<String, Object> valuesAndAttributes = new HashMap<>();
 			valuesAndAttributes.put("modelValues", modelValues);
 			return valuesAndAttributes;
 		}
 	}
-
 }

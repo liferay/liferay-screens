@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -14,40 +14,31 @@
 
 package com.liferay.mobile.screens.base.thread.event;
 
-import com.liferay.mobile.screens.base.thread.IdCache;
-
+import java.util.Locale;
 import org.json.JSONObject;
 
-import java.util.Locale;
+public abstract class OfflineEventNew extends BasicThreadEvent {
 
-/**
- * @author Silvio Santos
- */
-public abstract class JSONThreadObjectEvent extends BasicThreadEvent implements IdCache {
+	public OfflineEventNew() {
+		super();
+	}
 
-	public JSONThreadObjectEvent(Exception e) {
+	public OfflineEventNew(JSONObject jsonObject) {
+		super(jsonObject);
+	}
+
+	public OfflineEventNew(Exception e) {
 		super(e);
 	}
 
-	public JSONThreadObjectEvent(JSONObject jsonObject) {
-		super();
-		_jsonObject = jsonObject;
-	}
-
-	public JSONObject getJSONObject() {
-		return _jsonObject;
-	}
-
-	@Override
-	public String getUserId() {
+	public long getUserId() {
 		return _userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(long userId) {
 		_userId = userId;
 	}
 
-	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
@@ -56,15 +47,6 @@ public abstract class JSONThreadObjectEvent extends BasicThreadEvent implements 
 		_groupId = groupId;
 	}
 
-	public JSONObject getJsonObject() {
-		return _jsonObject;
-	}
-
-	public void setJsonObject(JSONObject jsonObject) {
-		_jsonObject = jsonObject;
-	}
-
-	@Override
 	public Locale getLocale() {
 		return _locale;
 	}
@@ -81,10 +63,11 @@ public abstract class JSONThreadObjectEvent extends BasicThreadEvent implements 
 		this.cachedRequest = cachedRequest;
 	}
 
-	private JSONObject _jsonObject;
 	private Locale _locale;
 	private long _groupId;
-	private String _userId;
+	private long _userId;
 	private boolean cachedRequest;
+
+	public abstract String getId() throws Exception;
 
 }

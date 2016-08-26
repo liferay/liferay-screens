@@ -7,17 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.base.interactor.Interactor;
-import com.liferay.mobile.screens.comment.add.interactor.CommentAddInteractor;
 import com.liferay.mobile.screens.comment.add.interactor.CommentAddInteractorImpl;
 import com.liferay.mobile.screens.comment.add.view.CommentAddViewModel;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.models.CommentEntry;
+import com.liferay.mobile.screens.comment.CommentEntry;
 
 /**
  * @author Alejandro Hernández
  */
-public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, Interactor> implements CommentAddListener {
+public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, CommentAddInteractorImpl>
+	implements CommentAddListener {
 
 	public CommentAddScreenlet(Context context) {
 		super(context);
@@ -55,27 +54,23 @@ public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, Inte
 	}
 
 	@Override
-	protected Interactor createInteractor(String actionName) {
-		return new CommentAddInteractorImpl(getScreenletId());
+	protected CommentAddInteractorImpl createInteractor(String actionName) {
+		return new CommentAddInteractorImpl();
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
+	protected void onUserAction(String userActionName, CommentAddInteractorImpl interactor, Object... args) {
 		String body = (String) args[0];
-		try {
-			((CommentAddInteractor) interactor).addComment(groupId, className, classPK, body);
-		} catch (Exception e) {
-			onAddCommentFailure(body, e);
-		}
+		interactor.start(groupId, className, classPK, body);
 	}
 
 	@Override
-	public void onAddCommentFailure(String body, Exception e) {
+	public void onAddCommentFailure(Exception e) {
 
 		getViewModel().showFailedOperation(null, e);
 
 		if (getListener() != null) {
-			getListener().onAddCommentFailure(body, e);
+			getListener().onAddCommentFailure(e);
 		}
 	}
 

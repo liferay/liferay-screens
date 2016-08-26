@@ -21,6 +21,10 @@ import java.util.Locale;
  */
 public class DDMStructure implements Parcelable {
 
+	public DDMStructure() {
+		super();
+	}
+
 	public static final Parcelable.ClassLoaderCreator<DDMStructure> CREATOR = new ClassLoaderCreator<DDMStructure>() {
 		@Override
 		public DDMStructure createFromParcel(Parcel source, ClassLoader classLoader) {

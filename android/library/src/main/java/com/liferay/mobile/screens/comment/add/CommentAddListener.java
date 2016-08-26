@@ -1,13 +1,13 @@
 package com.liferay.mobile.screens.comment.add;
 
-import com.liferay.mobile.screens.models.CommentEntry;
+import com.liferay.mobile.screens.comment.CommentEntry;
 
 /**
  * @author Alejandro Hernández
  */
 public interface CommentAddListener {
 
-	void onAddCommentFailure(String body, Exception e);
+	void onAddCommentFailure(Exception e);
 
 	void onAddCommentSuccess(CommentEntry commentEntry);
 }

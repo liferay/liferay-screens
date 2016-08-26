@@ -16,40 +16,38 @@ package com.liferay.mobile.screens.auth.login.interactor;
 
 import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
+import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.ServiceProvider;
+import org.json.JSONObject;
 
 /**
  * @author Jose Manuel Navarro
  */
 public class LoginOAuthInteractor extends BaseLoginInteractor {
 
-	public LoginOAuthInteractor(int targetScreenletId) {
-		super(targetScreenletId);
-	}
+	@Override
+	public BasicThreadEvent execute(Object[] args) throws Exception {
 
-	public OAuthConfig getOAuthConfig() {
-		return _OAuthConfig;
-	}
-
-	public void setOAuthConfig(OAuthConfig value) {
-		_OAuthConfig = value;
-	}
-
-	public void login() throws Exception {
-		if (_OAuthConfig == null) {
+		if (OAuthConfig == null) {
 			throw new IllegalArgumentException("OAuth configuration cannot be empty");
 		}
 
-		Session session = SessionContext.createOAuthSession(_OAuthConfig);
-		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
+		Session session = SessionContext.createOAuthSession(OAuthConfig);
+		JSONObject jsonObject = ServiceProvider.getInstance().getCurrentUserConnector(session).getCurrentUser();
 
-		ServiceProvider.getInstance().getCurrentUserConnector(session).getCurrentUser();
+		return new BasicThreadEvent(jsonObject);
+	}
+
+	public OAuthConfig getOAuthConfig() {
+		return OAuthConfig;
+	}
+
+	public void setOAuthConfig(OAuthConfig value) {
+		OAuthConfig = value;
 	}
 
 	// NOTE: this interactor can store state because this attribute
 	// isn't used after the request is fired.
-	private OAuthConfig _OAuthConfig;
-
+	private OAuthConfig OAuthConfig;
 }

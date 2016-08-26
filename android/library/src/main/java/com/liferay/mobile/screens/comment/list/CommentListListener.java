@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.comment.list;
 
 import com.liferay.mobile.screens.base.list.BaseListListener;
-import com.liferay.mobile.screens.models.CommentEntry;
+import com.liferay.mobile.screens.comment.CommentEntry;
 
 /**
  * @author Alejandro Hernández
@@ -15,8 +15,4 @@ public interface CommentListListener extends BaseListListener<CommentEntry> {
 	void onUpdateCommentFailure(CommentEntry commentEntry, Exception e);
 
 	void onUpdateCommentSuccess(CommentEntry commentEntry);
-
-	void onAddCommentFailure(String body, Exception e);
-
-	void onAddCommentSuccess(CommentEntry commentEntry);
 }
