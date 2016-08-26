@@ -31,7 +31,6 @@ public class Cache {
 		try {
 			DB snappyDB = DBFactory.open(LiferayScreensContext.getContext());
 			snappyDB.destroy();
-			snappyDB.close();
 			return true;
 		} catch (SnappydbException e) {
 			LiferayLogger.e("Error destroying DB");
