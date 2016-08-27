@@ -27,20 +27,22 @@ public class DDLFormEvent extends ListEvent<Record> {
 		super();
 	}
 
+	public DDLFormEvent(Record record, JSONObject jsonObject) {
+		super(jsonObject);
+
+		this.record = record;
+	}
+
 	@Override
 	public String getCacheKey() {
-		return String.valueOf(record.getRecordId());
+		long recordId = record.getRecordId();
+		long structureId = record.getStructureId();
+		return String.valueOf(structureId) + String.valueOf(recordId);
 	}
 
 	@Override
 	public Record getModel() {
 		return getRecord();
-	}
-
-	public DDLFormEvent(Record record, JSONObject jsonObject) {
-		super(jsonObject);
-
-		this.record = record;
 	}
 
 	public Record getRecord() {

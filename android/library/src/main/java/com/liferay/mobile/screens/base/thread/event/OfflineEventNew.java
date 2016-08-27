@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.base.thread.event;
 
+import java.util.Date;
 import java.util.Locale;
 import org.json.JSONObject;
 
@@ -79,10 +80,19 @@ public abstract class OfflineEventNew extends BasicThreadEvent {
 		this.dirty = dirty;
 	}
 
+	public Date getSyncDate() {
+		return syncDate;
+	}
+
+	public void setSyncDate(Date syncDate) {
+		this.syncDate = syncDate;
+	}
+
 	private Locale locale;
 	private long groupId;
 	private long userId;
 	private boolean cachedRequest;
 	private String cacheKey;
+	private Date syncDate;
 	private boolean dirty;
 }

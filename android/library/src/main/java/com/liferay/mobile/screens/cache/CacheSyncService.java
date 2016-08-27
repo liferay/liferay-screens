@@ -29,6 +29,8 @@ import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.snappydb.DB;
 import com.snappydb.DBFactory;
+import com.snappydb.SnappydbException;
+import java.util.Date;
 import java.util.Locale;
 
 import static com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet.DELETE_COMMENT_ACTION;
@@ -52,8 +54,8 @@ public class CacheSyncService extends IntentService {
 		boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
 
 		if (isConnected && SessionContext.isLoggedIn() && SessionContext.getCurrentUser() != null) {
-			try {
 
+			try {
 				Context context = LiferayScreensContext.getContext();
 				DB snappyDB = DBFactory.open(context);
 
@@ -114,24 +116,29 @@ public class CacheSyncService extends IntentService {
 				});
 
 				snappyDB.close();
-			} catch (Exception e) {
-				LiferayLogger.e("Error syncing resources", e);
+			} catch (SnappydbException e) {
+				LiferayLogger.e("Error with the database cache");
 			}
 		}
 		CacheReceiver.completeWakefulIntent(intent);
 	}
 
-	private void sync(DB snappyDB, Class clasz, SyncConsumer syncConsumer) throws Exception {
-		String simpleName = getFullId(clasz);
-		String[] keys = snappyDB.findKeys(simpleName);
+	private void sync(DB snappyDB, Class clasz, SyncConsumer syncConsumer) {
+		try {
+			String simpleName = getFullId(clasz);
+			String[] keys = snappyDB.findKeys(simpleName);
 
-		for (String key : keys) {
-			OfflineEventNew event = (OfflineEventNew) snappyDB.getObject(key, clasz);
-			if (event.isDirty()) {
-				syncConsumer.sync(event);
-				event.setDirty(false);
-				snappyDB.put(key, event);
+			for (String key : keys) {
+				OfflineEventNew event = (OfflineEventNew) snappyDB.getObject(key, clasz);
+				if (event.isDirty()) {
+					syncConsumer.sync(event);
+					event.setDirty(false);
+					event.setSyncDate(new Date());
+					snappyDB.put(key, event);
+				}
 			}
+		} catch (Exception e) {
+			LiferayLogger.e("Error syncing " + clasz.getSimpleName() + " resources", e);
 		}
 	}
 
