@@ -18,13 +18,14 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.view.View;
+import com.liferay.mobile.screens.base.thread.listener.CacheListener;
 import com.liferay.mobile.screens.userportrait.UserPortraitListener;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 
 /**
  * @author Javier Gamarra
  */
-public class UserPortraitActivity extends ThemeActivity implements UserPortraitListener {
+public class UserPortraitActivity extends ThemeActivity implements UserPortraitListener, CacheListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,7 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 
 		_screenlet = (UserPortraitScreenlet) findViewById(R.id.user_portrait_screenlet);
 		_screenlet.setListener(this);
+		_screenlet.setCacheListener(this);
 	}
 
 	@Override

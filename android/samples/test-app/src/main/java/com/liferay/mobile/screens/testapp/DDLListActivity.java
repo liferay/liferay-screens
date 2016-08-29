@@ -20,6 +20,7 @@ import android.view.View;
 import com.liferay.mobile.android.callback.typed.JSONObjectCallback;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.list.BaseListListener;
+import com.liferay.mobile.screens.base.thread.listener.CacheListener;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.model.Record;
@@ -32,7 +33,7 @@ import org.json.JSONObject;
 /**
  * @author Javier Gamarra
  */
-public class DDLListActivity extends ThemeActivity implements BaseListListener<Record> {
+public class DDLListActivity extends ThemeActivity implements BaseListListener<Record>, CacheListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 
 		_screenlet = (DDLListScreenlet) findViewById(R.id.ddl_list_screenlet);
 		_screenlet.setListener(this);
+		_screenlet.setCacheListener(this);
 	}
 
 	@Override

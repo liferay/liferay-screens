@@ -41,18 +41,6 @@ public class JournalArticleWithTemplateActivity extends ThemeActivity implements
 	}
 
 	@Override
-	public void loadingFromCache(boolean success) {
-	}
-
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
-	}
-
-	@Override
-	public void storingToCache(Object object) {
-	}
-
-	@Override
 	public void error(Exception e, String userAction) {
 
 	}
