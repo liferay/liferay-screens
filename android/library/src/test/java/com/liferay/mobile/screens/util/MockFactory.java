@@ -17,7 +17,6 @@ package com.liferay.mobile.screens.util;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.auth.login.interactor.LoginBasicInteractor;
-import com.liferay.mobile.screens.userportrait.UserPortraitListener;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 
 import static org.mockito.Mockito.mock;

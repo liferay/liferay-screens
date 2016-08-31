@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
@@ -64,11 +65,11 @@ public class WebContentListScreenlet extends BaseListScreenlet<WebContent, WebCo
 	}
 
 	@Override
-	public WebContentListListener getListener() {
+	public BaseListListener<WebContent> getListener() {
 		return _listener;
 	}
 
-	public void setListener(WebContentListListener listener) {
+	public void setListener(BaseListListener<WebContent> listener) {
 		_listener = listener;
 	}
 
@@ -105,5 +106,5 @@ public class WebContentListScreenlet extends BaseListScreenlet<WebContent, WebCo
 	private OfflinePolicy _offlinePolicy;
 	private long _groupId;
 	private long _folderId;
-	private WebContentListListener _listener;
+	private BaseListListener<WebContent> _listener;
 }
