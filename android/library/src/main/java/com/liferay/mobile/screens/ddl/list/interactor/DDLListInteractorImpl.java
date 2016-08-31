@@ -14,7 +14,6 @@
 
 package com.liferay.mobile.screens.ddl.list.interactor;
 
-import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector;
@@ -73,7 +72,7 @@ public class DDLListInteractorImpl extends BaseListInteractor<DDLListInteractorL
 	}
 
 	@Override
-	protected String getIdFromArgs(Object... args) throws Exception {
+	protected String getIdFromArgs(Object... args) {
 		return String.valueOf(args[0]);
 	}
 }

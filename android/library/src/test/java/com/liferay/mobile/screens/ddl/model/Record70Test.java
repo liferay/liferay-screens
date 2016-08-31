@@ -15,9 +15,10 @@
 package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
-
 import com.liferay.mobile.screens.BuildConfig;
-
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
@@ -25,10 +26,6 @@ import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
-
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
@@ -69,7 +66,7 @@ public class Record70Test {
 	public static class AfterCreatingFromXSD {
 
 		@Test
-		public void shouldReturnTheFiedsByIndex() throws Exception {
+		public void shouldReturnTheFieldsByIndex() throws Exception {
 
 			Record record = new Record(new Locale("en", "US"));
 			parse(record, JSON_BOOLEAN);
@@ -80,7 +77,6 @@ public class Record70Test {
 
 			assertEquals("A_Bool", field.getName());
 		}
-
 	}
 
 	@Config(constants = BuildConfig.class)
@@ -122,8 +118,7 @@ public class Record70Test {
 				"\"repeatable\": false, " +
 				"\"required\": false, " +
 				"\"showLabel\": true, " +
-				"\"type\": \"checkbox\"},"
-				+ "{" +
+				"\"type\": \"checkbox\"}," + "{" +
 				"            \"label\": {" +
 				"                \"en_US\": \"Title\"" +
 				"            }," +
@@ -148,7 +143,6 @@ public class Record70Test {
 				"        }" +
 				"]}";
 
-
 			Record record = new Record(new Locale("en", "US"));
 			parse(record, json);
 
@@ -164,7 +158,6 @@ public class Record70Test {
 			assertNotNull(values.get("A_Bool"));
 			assertNull(values.get("A_Text"));
 		}
-
 	}
 
 	@Config(constants = BuildConfig.class)
@@ -176,8 +169,7 @@ public class Record70Test {
 
 			String json = "{\"availableLanguageIds\": [ \"en_US\"], " +
 				"\"defaultLanguageId\": \"en_US\", " +
-				"\"fields\": [ "
-				+ "{" +
+				"\"fields\": [ " + "{" +
 				"            \"label\": {" +
 				"                \"en_US\": \"Title\"" +
 				"            }," +
@@ -218,7 +210,6 @@ public class Record70Test {
 
 			assertEquals("xyz", field.getCurrentValue());
 		}
-
 	}
 
 	@Config(constants = BuildConfig.class)
@@ -549,7 +540,6 @@ public class Record70Test {
 
 			parcel.setDataPosition(0);
 
-
 			Record deserializedRecord = parcel.readParcelable(record.getClass().getClassLoader());
 
 			assertEquals(record.getFieldCount(), deserializedRecord.getFieldCount());
@@ -570,7 +560,7 @@ public class Record70Test {
 		}
 
 		@Test
-		public void shouldSerializeAndDeserializeAStructure() throws Exception {
+		public void shouldSerializeAndDeserializeAStructure() {
 
 			DDMStructure structure = new DDMStructure(Locale.US);
 
@@ -587,7 +577,5 @@ public class Record70Test {
 			assertEquals(structure.getLocale(), deserializedStructure.getLocale());
 			parcel.recycle();
 		}
-
 	}
-
 }

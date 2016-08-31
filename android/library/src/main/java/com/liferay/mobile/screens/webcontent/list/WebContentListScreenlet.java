@@ -74,7 +74,7 @@ public class WebContentListScreenlet extends BaseListScreenlet<WebContent, WebCo
 	}
 
 	@Override
-	protected void loadRows(WebContentListInteractorImpl interactor) throws Exception {
+	protected void loadRows(WebContentListInteractorImpl interactor) {
 		interactor.start(_folderId);
 	}
 

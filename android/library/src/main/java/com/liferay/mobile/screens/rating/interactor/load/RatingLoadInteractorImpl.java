@@ -45,7 +45,7 @@ public class RatingLoadInteractorImpl extends BaseCachedThreadRemoteInteractor<R
 	}
 
 	@Override
-	protected String getIdFromArgs(Object... args) throws Exception {
+	protected String getIdFromArgs(Object... args) {
 		long entryId = (long) args[0];
 		long classPK = (long) args[1];
 		String className = (String) args[2];

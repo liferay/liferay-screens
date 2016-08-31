@@ -45,7 +45,7 @@ public class WebContentDisplayFromStructureInteractorImpl extends WebContentDisp
 	}
 
 	@Override
-	protected String getIdFromArgs(Object... args) throws Exception {
+	protected String getIdFromArgs(Object... args) {
 		String articleId = (String) args[0];
 		Long structureId = (Long) args[1];
 		return articleId + (structureId == null ? "-" : structureId);

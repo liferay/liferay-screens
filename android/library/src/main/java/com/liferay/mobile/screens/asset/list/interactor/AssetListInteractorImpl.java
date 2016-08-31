@@ -112,7 +112,7 @@ public class AssetListInteractorImpl extends BaseListInteractor<AssetListInterac
 	}
 
 	@Override
-	protected String getIdFromArgs(Object... args) throws Exception {
+	protected String getIdFromArgs(Object... args) {
 		long classNameId = (long) args[0];
 		String portletItemName = (String) args[2];
 

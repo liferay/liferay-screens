@@ -42,7 +42,7 @@ public class CommentListInteractorImpl extends BaseListInteractor<CommentListInt
 	}
 
 	@Override
-	protected String getIdFromArgs(Object... args) throws Exception {
+	protected String getIdFromArgs(Object... args) {
 		String className = (String) args[0];
 		long classPK = (long) args[1];
 

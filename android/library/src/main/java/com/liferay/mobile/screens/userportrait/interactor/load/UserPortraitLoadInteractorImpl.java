@@ -108,7 +108,7 @@ public class UserPortraitLoadInteractorImpl
 	}
 
 	@Override
-	protected String getIdFromArgs(Object... args) throws Exception {
+	protected String getIdFromArgs(Object... args) {
 		if (args.length == 1) {
 			return String.valueOf(args[0]);
 		} else {

@@ -147,7 +147,7 @@ public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends
 		_labelFields = labelFields;
 	}
 
-	protected abstract void loadRows(N interactor) throws Exception;
+	protected abstract void loadRows(N interactor);
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {

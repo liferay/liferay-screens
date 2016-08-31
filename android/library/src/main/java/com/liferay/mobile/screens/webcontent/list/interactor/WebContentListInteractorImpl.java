@@ -19,7 +19,7 @@ public class WebContentListInteractorImpl
 	extends BaseListInteractor<WebContentListInteractorListener, WebContentDisplayEvent> {
 
 	@Override
-	protected String getIdFromArgs(Object... args) throws Exception {
+	protected String getIdFromArgs(Object... args) {
 		long folderId = (long) args[0];
 
 		return String.valueOf(folderId);

@@ -39,7 +39,7 @@ public class CommentLoadInteractorImpl
 	}
 
 	@Override
-	protected String getIdFromArgs(Object... args) throws Exception {
+	protected String getIdFromArgs(Object... args) {
 		long commentId = (long) args[0];
 		return String.valueOf(commentId);
 	}

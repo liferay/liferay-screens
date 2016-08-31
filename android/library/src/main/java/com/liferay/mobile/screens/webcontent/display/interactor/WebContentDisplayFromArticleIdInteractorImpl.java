@@ -58,7 +58,7 @@ public class WebContentDisplayFromArticleIdInteractorImpl extends WebContentDisp
 	}
 
 	@Override
-	protected String getIdFromArgs(Object... args) throws Exception {
+	protected String getIdFromArgs(Object... args) {
 		String articleId = (String) args[0];
 		Long templateId = (Long) args[1];
 		return articleId + (templateId == null ? "-" : templateId);

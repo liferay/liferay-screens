@@ -61,7 +61,7 @@ public class DDLListScreenlet extends BaseListScreenlet<Record, DDLListInteracto
 	}
 
 	@Override
-	protected void loadRows(DDLListInteractorImpl interactor) throws Exception {
+	protected void loadRows(DDLListInteractorImpl interactor) {
 		interactor.start(recordSetId, userId);
 	}
 

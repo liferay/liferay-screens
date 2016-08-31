@@ -45,7 +45,7 @@ public class BookmarkListScreenlet extends BaseListScreenlet<Bookmark, BookmarkL
 	}
 
 	@Override
-	protected void loadRows(BookmarkListInteractorImpl interactor) throws Exception {
+	protected void loadRows(BookmarkListInteractorImpl interactor) {
 
 		((BookmarkListListener) getListener()).interactorCalled();
 

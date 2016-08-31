@@ -34,7 +34,7 @@ public class BookmarkListInteractorImpl
 	}
 
 	@Override
-	protected String getIdFromArgs(Object... args) throws Exception {
+	protected String getIdFromArgs(Object... args) {
 		return String.valueOf(args[0]);
 	}
 }

@@ -54,7 +54,7 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Commen
 	}
 
 	@Override
-	protected void loadRows(CommentListInteractorImpl interactor) throws Exception {
+	protected void loadRows(CommentListInteractorImpl interactor) {
 		interactor.start(className, classPK);
 	}
 

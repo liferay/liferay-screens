@@ -61,7 +61,7 @@ public class DDLFormLoadInteractorImpl extends BaseCachedThreadRemoteInteractor<
 	}
 
 	@Override
-	protected String getIdFromArgs(Object... args) throws Exception {
+	protected String getIdFromArgs(Object... args) {
 		Record record = (Record) args[0];
 		return String.valueOf(record.getStructureId());
 	}
