@@ -56,8 +56,8 @@ public abstract class OfflineEventNew extends BasicThreadEvent {
 		this.locale = locale;
 	}
 
-	public boolean isCachedRequest() {
-		return cachedRequest;
+	public boolean isOnlineRequest() {
+		return !cachedRequest;
 	}
 
 	public void setCachedRequest(boolean cachedRequest) {

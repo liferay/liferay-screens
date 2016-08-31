@@ -4,13 +4,11 @@ import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.base.thread.event.ErrorThreadEvent;
 import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
 import com.liferay.mobile.screens.base.thread.listener.OfflineListenerNew;
+import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.cache.executor.Executor;
-import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.snappydb.DB;
-import com.snappydb.DBFactory;
 
 /**
  * @author Javier Gamarra
@@ -54,7 +52,7 @@ public abstract class BaseCachedWriteThreadRemoteInteractor<L extends OfflineLis
 		try {
 			LiferayLogger.i("event = [" + event + "]");
 
-			if (!isValidEvent(event)) {
+			if (isInvalidEvent(event)) {
 				return;
 			}
 
@@ -63,7 +61,7 @@ public abstract class BaseCachedWriteThreadRemoteInteractor<L extends OfflineLis
 				store(event);
 				onSuccess(event);
 			} else {
-				if (!event.isCachedRequest()) {
+				if (event.isOnlineRequest()) {
 					store(event);
 				}
 				onSuccess(event);
@@ -100,15 +98,11 @@ public abstract class BaseCachedWriteThreadRemoteInteractor<L extends OfflineLis
 	}
 
 	protected void store(E event) throws Exception {
-		DB snappydb = DBFactory.open(LiferayScreensContext.getContext());
-		snappydb.put(
-			getFullId(event.getClass(), event.getGroupId(), event.getUserId(), event.getLocale(), event.getCacheKey(),
-				null), event);
-		snappydb.close();
+		Cache.storeObject(event);
 	}
 
 	@Override
-	protected String getIdFromArgs(Object... args) throws Exception {
+	protected String getIdFromArgs(Object... args) {
 		return null;
 	}
 }

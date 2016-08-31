@@ -49,7 +49,7 @@ public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent> implem
 	public void processEvent(E event) {
 		try {
 			LiferayLogger.i("event = [" + event + "]");
-			if (!isValidEvent(event)) {
+			if (isInvalidEvent(event)) {
 				return;
 			}
 
@@ -79,8 +79,8 @@ public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent> implem
 		this.listener = null;
 	}
 
-	public boolean isValidEvent(E event) {
-		return getListener() != null && event.getTargetScreenletId() == getTargetScreenletId() && actionName.equals(
+	protected boolean isInvalidEvent(E event) {
+		return getListener() == null || event.getTargetScreenletId() != getTargetScreenletId() || !actionName.equals(
 			event.getActionName());
 	}
 

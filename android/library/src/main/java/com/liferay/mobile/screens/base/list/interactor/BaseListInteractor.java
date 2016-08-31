@@ -3,13 +3,10 @@ package com.liferay.mobile.screens.base.list.interactor;
 import android.support.annotation.NonNull;
 import com.liferay.mobile.screens.base.context.RequestState;
 import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
-import com.liferay.mobile.screens.context.LiferayScreensContext;
+import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.snappydb.DB;
-import com.snappydb.DBFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -110,12 +107,10 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 	protected boolean cached(Object... args) throws Exception {
 
 		String cacheKey = getListId(query, args);
-		Class clasz = BaseListEvent.class;
+		Class aClass = BaseListEvent.class;
 
-		String listKey = getFullId(clasz, groupId, userId, locale, cacheKey, null);
+		BaseListEvent offlineEvent = Cache.getObject(aClass, groupId, userId, locale, cacheKey);
 
-		DB snappyDB = DBFactory.open(LiferayScreensContext.getContext());
-		BaseListEvent offlineEvent = (BaseListEvent) snappyDB.getObject(listKey, clasz);
 		if (offlineEvent != null) {
 
 			decorateBaseEvent(offlineEvent);
@@ -123,15 +118,12 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 
 			Class childClass = getEventClass();
 
-			String elementKey = getFullId(childClass, groupId, userId, locale, null, null);
-
-			String keys[] = snappyDB.findKeys(elementKey, offlineEvent.getQuery().getStartRow(),
+			String keys[] = Cache.findKeys(childClass, groupId, userId, locale, offlineEvent.getQuery().getStartRow(),
 				offlineEvent.getQuery().getLimit());
-			snappyDB.close();
 
 			List<E> entries = new ArrayList<>();
 			for (String key : keys) {
-				entries.add((E) snappyDB.getObject(key, childClass));
+				entries.add((E) Cache.getObject(childClass, groupId, userId, key));
 			}
 			offlineEvent.setEntries(entries);
 
@@ -139,45 +131,25 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 			loadingFromCache(true);
 			return true;
 		}
-		snappyDB.close();
 		loadingFromCache(false);
 		return false;
 	}
 
 	@NonNull
 	private String getListId(Query query, Object... args) throws Exception {
-		return getIdFromArgs(args) + "-" + query.getStartRowFormatted() + "-" + query.getEndRowFormatted();
+		return getIdFromArgs(args) + Cache.SEPARATOR + query.getStartRowFormatted() + Cache.SEPARATOR + query.getEndRowFormatted();
 	}
 
 	protected void storeToCache(BaseListEvent event) throws Exception {
 
 		storingToCache(event);
 
-		DB snappydb = DBFactory.open(LiferayScreensContext.getContext());
-
-		String listKey =
-			getFullId(event.getClass(), event.getGroupId(), event.getUserId(), event.getLocale(), event.getCacheKey(),
-				null);
-
 		List<E> entries = event.getEntries();
 		for (int i = 0; i < entries.size(); i++) {
-
-			E entry = entries.get(i);
-
-			//String id = getFullId(entry.getClass(), event.getGroupId(), event.getUserId(), event.getLocale(),
-			//	entry.getCacheKey(), i + query.getStartRow());
-
-			String id = getFullId(entry.getClass(), event.getGroupId(), event.getUserId(), event.getLocale(),
-				entry.getCacheKey(), null);
-			snappydb.put(id, entry);
+			Cache.storeObject(entries.get(i), i + query.getStartRow());
 		}
 
-		event.setEntries(new ArrayList());
-
-		snappydb.put(listKey, event);
-
-		event.setEntries(entries);
-		snappydb.close();
+		Cache.storeObject(event);
 	}
 
 	public void setQuery(Query query) {
