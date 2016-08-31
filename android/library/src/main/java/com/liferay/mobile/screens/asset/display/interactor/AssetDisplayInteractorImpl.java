@@ -1,11 +1,11 @@
 package com.liferay.mobile.screens.asset.display.interactor;
 
+import com.liferay.mobile.screens.asset.AssetEvent;
 import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
 import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.asset.list.interactor.AssetFactory;
 import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
-import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
 import com.liferay.mobile.screens.service.v70.ScreensassetentryService;
 import com.liferay.mobile.screens.util.JSONUtil;
 import java.util.Locale;
@@ -15,8 +15,7 @@ import org.json.JSONObject;
 /**
  * @author Sarai Díaz García
  */
-public class AssetDisplayInteractorImpl
-	extends BaseCachedThreadRemoteInteractor<AssetDisplayListener, AssetDisplayInteractorImpl.AssetEvent> {
+public class AssetDisplayInteractorImpl extends BaseCachedThreadRemoteInteractor<AssetDisplayListener, AssetEvent> {
 
 	@Override
 	public AssetEvent execute(Object... args) throws Exception {
@@ -41,19 +40,8 @@ public class AssetDisplayInteractorImpl
 	}
 
 	@Override
-	protected String getIdFromArgs(Object... args) throws Exception {
+	protected String getIdFromArgs(Object... args) {
 		final long entryId = (long) args[0];
 		return String.valueOf(entryId);
-	}
-
-	public class AssetEvent extends OfflineEventNew {
-
-		public AssetEvent() {
-			super();
-		}
-
-		public AssetEvent(JSONObject jsonObject) {
-			super(jsonObject);
-		}
 	}
 }
