@@ -3,7 +3,6 @@ package com.liferay.mobile.screens.testapp;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.SwitchCompat;
 import android.util.TypedValue;
@@ -83,7 +82,7 @@ public class RatingsActivity extends ThemeActivity
 
 	@Override
 	public void onRatingOperationSuccess(AssetRating assetRating) {
-		info("Screenlet loaded succesfully");
+		info("Screenlet loaded successfully");
 	}
 
 	private void displayScreenlet(int layoutId, int entryId, int ratingsGroupCount) {
@@ -110,7 +109,6 @@ public class RatingsActivity extends ThemeActivity
 		return ContextCompat.getColor(this, android.R.color.darker_gray);
 	}
 
-	@NonNull
 	@ColorInt
 	private int getPrimaryColor() {
 		TypedValue typedValue = new TypedValue();

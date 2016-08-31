@@ -97,7 +97,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				break;
 			case R.id.clear_cache:
 				boolean success = Cache.destroy();
-				String clearCacheMessage = "Cache cleared: " + (success ? "sucessfully" : "failed");
+				String clearCacheMessage = "Cache cleared: " + (success ? "successfully" : "failed");
 				info(clearCacheMessage);
 				break;
 			case R.id.sync_cache:

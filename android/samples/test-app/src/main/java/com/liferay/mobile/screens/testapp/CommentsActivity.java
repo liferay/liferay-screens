@@ -62,7 +62,7 @@ public class CommentsActivity extends ThemeActivity
 
 	@Override
 	public void onLoadCommentSuccess(CommentEntry commentEntry) {
-		info(String.format(LiferayLocale.getDefaultLocale(), "Comment with id: %d succesfully loaded",
+		info(String.format(LiferayLocale.getDefaultLocale(), "Comment with id: %d successfully loaded",
 			commentEntry.getCommentId()));
 	}
 
@@ -74,7 +74,7 @@ public class CommentsActivity extends ThemeActivity
 
 	@Override
 	public void onDeleteCommentSuccess(CommentEntry commentEntry) {
-		info(String.format(LiferayLocale.getDefaultLocale(), "Comment with id: %d succesfully deleted",
+		info(String.format(LiferayLocale.getDefaultLocale(), "Comment with id: %d successfully deleted",
 			commentEntry.getCommentId()));
 		showDisplayScreenlet(false);
 	}
@@ -87,14 +87,14 @@ public class CommentsActivity extends ThemeActivity
 
 	@Override
 	public void onUpdateCommentSuccess(CommentEntry commentEntry) {
-		info(String.format(LiferayLocale.getDefaultLocale(), "Comment with id: %d succesfully updated",
+		info(String.format(LiferayLocale.getDefaultLocale(), "Comment with id: %d successfully updated",
 			commentEntry.getCommentId()));
 		showDisplayScreenlet(false);
 	}
 
 	@Override
 	public void onAddCommentSuccess(CommentEntry commentEntry) {
-		info(String.format(LiferayLocale.getDefaultLocale(), "Comment succesfully added, new id: %d",
+		info(String.format(LiferayLocale.getDefaultLocale(), "Comment successfully added, new id: %d",
 			commentEntry.getCommentId()));
 		dialog.cancel();
 		listScreenlet.addNewCommentEntry(commentEntry);
