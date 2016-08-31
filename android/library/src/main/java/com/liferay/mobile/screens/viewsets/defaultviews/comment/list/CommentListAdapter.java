@@ -80,7 +80,7 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 		}
 	}
 
-	private CommentDisplayListener commentDisplayListener;
+	private final CommentDisplayListener commentDisplayListener;
 
 	private String className;
 	private long classPK;

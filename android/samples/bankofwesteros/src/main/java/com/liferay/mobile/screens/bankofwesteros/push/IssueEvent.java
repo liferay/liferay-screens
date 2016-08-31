@@ -13,5 +13,5 @@ public class IssueEvent {
 		return _message;
 	}
 
-	private String _message;
+	private final String _message;
 }

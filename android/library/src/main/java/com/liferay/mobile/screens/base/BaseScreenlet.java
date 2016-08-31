@@ -439,7 +439,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	private static final String _STATE_INTERACTORS = "basescreenlet-interactors";
 	private static final AtomicInteger sNextId = new AtomicInteger(1);
 
-	private Map<String, I> _interactors = new HashMap<>();
+	private final Map<String, I> _interactors = new HashMap<>();
 	private int _screenletId;
 	private View _screenletView;
 

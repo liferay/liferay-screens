@@ -109,15 +109,19 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 
 	@Override
 	public void showStartOperation(String actionName, Object argument) {
-		if (actionName.equals(DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION)) {
-			DocumentField documentField = (DocumentField) argument;
+		switch (actionName) {
+			case DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION:
+				DocumentField documentField = (DocumentField) argument;
 
-			findFieldView(documentField).refresh();
-		} else if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
-			LiferayLogger.i("loading DDLForm");
-			_loadingFormProgressBar.setVisibility(VISIBLE);
-		} else {
-			_progressBar.setVisibility(VISIBLE);
+				findFieldView(documentField).refresh();
+				break;
+			case DDLFormScreenlet.LOAD_FORM_ACTION:
+				LiferayLogger.i("loading DDLForm");
+				_loadingFormProgressBar.setVisibility(VISIBLE);
+				break;
+			default:
+				_progressBar.setVisibility(VISIBLE);
+				break;
 		}
 	}
 
@@ -280,9 +284,9 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 	protected ViewGroup _fieldsContainerView;
 	protected Button _submitButton;
 
-	private static Map<Field.EditorType, Integer> _defaultLayoutIds = new HashMap<>(16);
-	private Map<Field.EditorType, Integer> _layoutIds = new HashMap<>();
-	private Map<String, Integer> _customLayoutIds = new HashMap<>();
+	private static final Map<Field.EditorType, Integer> _defaultLayoutIds = new HashMap<>(16);
+	private final Map<Field.EditorType, Integer> _layoutIds = new HashMap<>();
+	private final Map<String, Integer> _customLayoutIds = new HashMap<>();
 	private BaseScreenlet _screenlet;
 
 	static {

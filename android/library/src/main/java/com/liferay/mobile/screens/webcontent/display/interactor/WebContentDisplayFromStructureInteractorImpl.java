@@ -9,6 +9,8 @@ import com.liferay.mobile.screens.webcontent.display.connector.JournalContentCon
 import java.util.Locale;
 import org.json.JSONObject;
 
+import static com.liferay.mobile.screens.cache.Cache.SEPARATOR;
+
 /**
  * @author Javier Gamarra
  */
@@ -48,7 +50,7 @@ public class WebContentDisplayFromStructureInteractorImpl extends WebContentDisp
 	protected String getIdFromArgs(Object... args) {
 		String articleId = (String) args[0];
 		Long structureId = (Long) args[1];
-		return articleId + (structureId == null ? "-" : structureId);
+		return articleId + (structureId == null ? SEPARATOR : structureId);
 	}
 
 	private void validate(Long structureId, long groupId, String articleId, Locale locale) {

@@ -13,5 +13,5 @@ public class MediaStoreEvent {
 		return _filePath;
 	}
 
-	private String _filePath;
+	private final String _filePath;
 }

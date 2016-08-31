@@ -1,18 +1,8 @@
 package com.liferay.mobile.screens.ddl;
 
 import android.support.annotation.Nullable;
-
 import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;
-
-import org.w3c.dom.Attr;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -20,10 +10,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 /**
  * @author Javier Gamarra
@@ -70,8 +66,7 @@ public abstract class AbstractXMLParser {
 		for (int i = 0; i < len; ++i) {
 			Element childElement = (Element) childList.item(i);
 
-			if (attrValue.equals(childElement.getAttribute(attrName)) &&
-				childElement.getParentNode() == element) {
+			if (attrValue.equals(childElement.getAttribute(attrName)) && childElement.getParentNode() == element) {
 				result.add(childElement);
 			}
 		}
@@ -80,7 +75,8 @@ public abstract class AbstractXMLParser {
 	}
 
 	@Nullable
-	protected Element getLocaleFallback(Element dynamicElement, Locale locale, Locale defaultLocale, String tagName, String attrName) {
+	protected Element getLocaleFallback(Element dynamicElement, Locale locale, Locale defaultLocale, String tagName,
+		String attrName) {
 
 		// Locale matching fallback mechanism: it's designed in such a way to return
 		// the most suitable locale among the available ones. It minimizes the default
@@ -107,8 +103,7 @@ public abstract class AbstractXMLParser {
 
 		Element resultElement = null;
 
-		Element metadataElement = getChild(
-			dynamicElement, tagName, attrName, locale.toString());
+		Element metadataElement = getChild(dynamicElement, tagName, attrName, locale.toString());
 
 		if (metadataElement != null) {
 			// cases 'a1' and 'b1'
@@ -124,8 +119,8 @@ public abstract class AbstractXMLParser {
 				for (int i = 0; resultElement == null && i < metadataLen; ++i) {
 					Element childElement = (Element) metadataList.item(i);
 					String childLocale = childElement.getAttribute(attrName);
-					if (childLocale != null && supportedLocale.equals(childLocale)
-						&& dynamicElement.equals(childElement.getParentNode())) {
+					if (childLocale != null && supportedLocale.equals(childLocale) && dynamicElement.equals(
+						childElement.getParentNode())) {
 						resultElement = childElement;
 					}
 				}
@@ -134,8 +129,7 @@ public abstract class AbstractXMLParser {
 
 		if (resultElement == null) {
 			// Final fallback (a4, b3): find default metadata
-			resultElement = getChild(
-				dynamicElement, tagName, attrName, defaultLocale.toString());
+			resultElement = getChild(dynamicElement, tagName, attrName, defaultLocale.toString());
 		}
 
 		return resultElement;
@@ -144,10 +138,11 @@ public abstract class AbstractXMLParser {
 	protected String getLocaleFallbackFromString(String content, Locale locale, String tagName, String attrName) {
 		try {
 			Document document = getDocument(content);
-			Element localeFallback = getLocaleFallback(document.getDocumentElement(), locale, LiferayLocale.getDefaultLocale(), tagName, attrName);
+			Element localeFallback =
+				getLocaleFallback(document.getDocumentElement(), locale, LiferayLocale.getDefaultLocale(), tagName,
+					attrName);
 			return localeFallback == null ? "" : localeFallback.getTextContent();
-		}
-		catch (ParserConfigurationException | SAXException | IOException e) {
+		} catch (ParserConfigurationException | SAXException | IOException e) {
 			LiferayLogger.e("Error parsing value");
 			return null;
 		}
@@ -158,8 +153,7 @@ public abstract class AbstractXMLParser {
 			Document document = getDocument(content);
 			Element element = getChildElementAndFallbackToLocale(document.getDocumentElement(), locale, elementValue);
 			return element == null ? null : element.getTextContent();
-		}
-		catch (ParserConfigurationException | IOException | SAXException e) {
+		} catch (ParserConfigurationException | IOException | SAXException e) {
 			LiferayLogger.e("Error parsing content", e);
 		}
 		return null;
@@ -176,8 +170,7 @@ public abstract class AbstractXMLParser {
 		int separator = defaultLocaleValue.indexOf('_');
 		if (separator == -1) {
 			defaultLocale = new Locale(defaultLocaleValue);
-		}
-		else {
+		} else {
 			String language = defaultLocaleValue.substring(0, separator);
 			String country = defaultLocaleValue.substring(separator + 1);
 			defaultLocale = new Locale(language, country);
@@ -189,12 +182,7 @@ public abstract class AbstractXMLParser {
 		Locale defaultLocale = LiferayLocale.getDefaultLocale();
 		List<Element> elements = getChildren(root, "dynamic-element", "name", elementValue);
 
-		for (Element dynamicElement : elements) {
-			Element element = getLocaleFallback(dynamicElement, locale, defaultLocale, "dynamic-content", "language-id");
-			// We shouldn't have several elements with the same name
-			return element;
-		}
-		return null;
+		return elements.isEmpty() ? null
+			: getLocaleFallback(elements.get(0), locale, defaultLocale, "dynamic-content", "language-id");
 	}
-
 }

@@ -60,7 +60,6 @@ public class UploadService extends IntentService {
 		Long repositoryId = intent.getLongExtra("repositoryId", 0);
 		Long folderId = intent.getLongExtra("folderId", 0);
 		String filePrefix = intent.getStringExtra("filePrefix");
-		int targetScreenletId = intent.getIntExtra("screenletId", 0);
 
 		try {
 			JSONObject jsonObject = uploadFile(file, userId, groupId, repositoryId, folderId, filePrefix);

@@ -107,6 +107,6 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 		}
 	}
 
-	private Drawable mDivider;
+	private final Drawable mDivider;
 
 }

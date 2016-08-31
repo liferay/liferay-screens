@@ -124,7 +124,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 			_value = value;
 		}
 
-		private String _value;
+		private final String _value;
 
 	}
 
@@ -190,7 +190,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 			_values = values;
 		}
 
-		private String[] _values;
+		private final String[] _values;
 
 	}
 

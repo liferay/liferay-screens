@@ -59,6 +59,6 @@ public enum AssetClassnameIds70 {
 		_value = value;
 	}
 
-	private long _value;
+	private final long _value;
 
 }

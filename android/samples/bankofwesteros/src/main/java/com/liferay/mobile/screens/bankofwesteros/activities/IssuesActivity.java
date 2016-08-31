@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
@@ -93,9 +94,11 @@ public class IssuesActivity extends CardActivity
 			case R.id.card1_to_background_menu:
 				if (_cardHistory.peek() == Card.BACKGROUND) {
 					toCard1();
-					_card1ToBackgroundMenu.setImageDrawable(getResources().getDrawable(R.drawable.icon_options_red));
+					_card1ToBackgroundMenu.setImageDrawable(
+						ResourcesCompat.getDrawable(getResources(), R.drawable.icon_options_red, getTheme()));
 				} else {
-					_card1ToBackgroundMenu.setImageDrawable(getResources().getDrawable(R.drawable.icon_options_close));
+					_card1ToBackgroundMenu.setImageDrawable(
+						ResourcesCompat.getDrawable(getResources(), R.drawable.icon_options_close, getTheme()));
 					toBackground();
 				}
 				break;
@@ -127,7 +130,7 @@ public class IssuesActivity extends CardActivity
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
-			v.setBackgroundColor(getResources().getColor(android.R.color.white));
+			v.setBackgroundColor(ResourcesCompat.getColor(getResources(), android.R.color.white, getTheme()));
 			return true;
 		} else if (event.getAction() == MotionEvent.ACTION_UP) {
 			launchMenu(v);
@@ -169,7 +172,8 @@ public class IssuesActivity extends CardActivity
 	@Override
 	protected void animateScreenAfterLoad() {
 		_cardHistory.offer(Card.CARD1);
-		_card1ToBackgroundMenu.setImageDrawable(getResources().getDrawable(R.drawable.icon_options_red));
+		_card1ToBackgroundMenu.setImageDrawable(
+			ResourcesCompat.getDrawable(getResources(), R.drawable.icon_options_red, getTheme()));
 
 		//TODO extract this animation
 		_backgroundCard.setY(_maxHeight);
@@ -200,7 +204,8 @@ public class IssuesActivity extends CardActivity
 
 		clearDDLEntrySelected();
 
-		_card1ToBackgroundMenu.setImageDrawable(getResources().getDrawable(R.drawable.icon_options_red));
+		_card1ToBackgroundMenu.setImageDrawable(
+			ResourcesCompat.getDrawable(getResources(), R.drawable.icon_options_red, getTheme()));
 		_card1ToBackground.setImageResource(R.drawable.icon_down);
 	}
 
@@ -217,7 +222,7 @@ public class IssuesActivity extends CardActivity
 	}
 
 	private SpannableStringBuilder getCallSpannableString() {
-		int darkGrayColor = getResources().getColor(R.color.textColorSecondary_westeros);
+		int darkGrayColor = ResourcesCompat.getColor(getResources(), R.color.textColorSecondary_westeros, getTheme());
 		int subTitleStart = 4;
 
 		SpannableStringBuilder ssb = new SpannableStringBuilder(getString(R.string.call_menu_entry));
@@ -256,7 +261,7 @@ public class IssuesActivity extends CardActivity
 		issueTitle.setText(String.valueOf(serverValue));
 
 		String date = new SimpleDateFormat("dd/MM/yyyy").format(element.getServerAttribute("createDate"));
-		((TextView) findViewById(R.id.createdAt)).setText("Created " + date);
+		((TextView) findViewById(R.id.createdAt)).setText(getString(R.string.created) + date);
 
 		TextView description = (TextView) findViewById(R.id.description);
 		description.setText(String.valueOf(element.getServerValue("Description")));
@@ -295,7 +300,7 @@ public class IssuesActivity extends CardActivity
 				startActivity(intent);
 				break;
 		}
-		v.setBackgroundColor(getResources().getColor(color));
+		v.setBackgroundColor(ResourcesCompat.getColor(getResources(), color, getTheme()));
 	}
 
 	private void tryToCall(final View button) {
@@ -304,7 +309,8 @@ public class IssuesActivity extends CardActivity
 			.subscribe(new Action1<Boolean>() {
 				@Override
 				public void call(Boolean result) {
-					button.setBackgroundColor(getResources().getColor(R.color.light_gray_westeros));
+					button.setBackgroundColor(
+						ResourcesCompat.getColor(getResources(), R.color.light_gray_westeros, getTheme()));
 					if (result) {
 						if (ActivityCompat.checkSelfPermission(IssuesActivity.this, Manifest.permission.CALL_PHONE)
 							== PackageManager.PERMISSION_GRANTED) {

@@ -10,6 +10,8 @@ import com.liferay.mobile.screens.service.v70.ScreensratingsentryService;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import static com.liferay.mobile.screens.cache.Cache.SEPARATOR;
+
 /**
  * @author Alejandro Hernández
  */
@@ -51,7 +53,9 @@ public class RatingLoadInteractorImpl extends BaseCachedThreadRemoteInteractor<R
 		String className = (String) args[2];
 		int ratingGroupCounts = (int) args[3];
 
-		return (entryId == 0 ? className + "-" + classPK : String.valueOf(entryId)) + "-" + ratingGroupCounts;
+		return (entryId == 0 ? className + SEPARATOR + classPK : String.valueOf(entryId))
+			+ SEPARATOR
+			+ ratingGroupCounts;
 	}
 
 	protected int[] toIntArray(JSONArray array) {

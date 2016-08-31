@@ -9,6 +9,8 @@ import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
 import java.util.Map;
 import org.json.JSONArray;
 
+import static com.liferay.mobile.screens.cache.Cache.SEPARATOR;
+
 /**
  * @author Alejandro Hernández
  */
@@ -46,7 +48,7 @@ public class CommentListInteractorImpl extends BaseListInteractor<CommentListInt
 		String className = (String) args[0];
 		long classPK = (long) args[1];
 
-		return className + "-" + classPK;
+		return className + SEPARATOR + classPK;
 	}
 
 	private CommentmanagerjsonwsService getService(Session session) {

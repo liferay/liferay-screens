@@ -121,5 +121,5 @@ public class RatingsActivity extends ThemeActivity
 	private SwitchCompat readOnlySwitch;
 	private RatingScreenlet ratingScreenlet;
 	private LinearLayout container;
-	private List<View> buttons = new ArrayList<>();
+	private final List<View> buttons = new ArrayList<>();
 }

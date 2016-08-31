@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.res.ResourcesCompat;
 import android.transition.TransitionManager;
 import android.util.TypedValue;
 import android.view.View;
@@ -14,12 +15,10 @@ import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-
 import com.liferay.mobile.screens.bankofwesteros.R;
 import com.liferay.mobile.screens.bankofwesteros.gestures.FlingListener;
 import com.liferay.mobile.screens.bankofwesteros.gestures.FlingTouchListener;
 import com.liferay.mobile.screens.bankofwesteros.utils.Card;
-
 import java.util.ArrayDeque;
 import java.util.Collections;
 import java.util.Queue;
@@ -49,16 +48,14 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 
 		if (_maxWidth != 0 && _maxHeight != 0) {
 			animateScreenAfterLoad();
-		}
-		else {
+		} else {
 			final View content = findViewById(android.R.id.content);
 			content.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 				@Override
 				public void onGlobalLayout() {
 					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 						removeObserver();
-					}
-					else {
+					} else {
 						content.getViewTreeObserver().removeGlobalOnLayoutListener(this);
 					}
 
@@ -81,17 +78,13 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 	public void onClick(View v) {
 		if (v == _card1 || v == _card2SubViewToCard1 || v == _card2ToCard1) {
 			toCard1(null);
-		}
-		else if (v == _card2) {
+		} else if (v == _card2) {
 			toCard2();
-		}
-		else if (v == _card1ToFrontView) {
+		} else if (v == _card1ToFrontView) {
 			goLeftCard1();
-		}
-		else if (v == _card2ToFrontView) {
+		} else if (v == _card2ToFrontView) {
 			goLeftCard2();
-		}
-		else {
+		} else {
 			toBackground();
 		}
 	}
@@ -100,8 +93,7 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 	public void onBackPressed() {
 		if (_cardHistory.isEmpty() || _cardHistory.size() == 1) {
 			super.onBackPressed();
-		}
-		else {
+		} else {
 			toPreviousCard();
 		}
 	}
@@ -243,7 +235,8 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 	private void setStatusBar() {
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-		getWindow().setStatusBarColor(getResources().getColor(R.color.background_gray_westeros));
+		getWindow().setStatusBarColor(
+			ResourcesCompat.getColor(getResources(), R.color.background_gray_westeros, getTheme()));
 	}
 
 	@TargetApi(Build.VERSION_CODES.KITKAT)
@@ -298,7 +291,6 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 		};
 	}
 
-
 	private void showArrowIcon(ImageView view) {
 		showOrHideView(view, VISIBLE);
 	}
@@ -321,8 +313,7 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 		return view;
 	}
 
-	private void setFrameLayoutMargins(View view, int marginLeft, int marginTop,
-									   int marginRight, int marginBottom) {
+	private void setFrameLayoutMargins(View view, int marginLeft, int marginTop, int marginRight, int marginBottom) {
 		FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
 		layoutParams.setMargins(marginLeft, marginTop, marginRight, marginBottom);
 		view.setLayoutParams(layoutParams);
@@ -335,11 +326,9 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 		Card previousCard = _cardHistory.peek();
 		if (previousCard == Card.CARD2) {
 			toCard2();
-		}
-		else if (previousCard == Card.CARD1) {
+		} else if (previousCard == Card.CARD1) {
 			toCard1();
-		}
-		else {
+		} else {
 			toBackground();
 		}
 
@@ -356,7 +345,7 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 	protected ViewGroup _card1;
 	protected ViewGroup _card2;
 
-	protected Queue<Card> _cardHistory = Collections.asLifoQueue(new ArrayDeque<Card>());
+	protected final Queue<Card> _cardHistory = Collections.asLifoQueue(new ArrayDeque<Card>());
 
 	private int _cardHeight;
 	private ViewGroup _card1Subview1;
@@ -370,5 +359,4 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 	private ImageView _card2ToCard1;
 	private ImageView _card2ToFrontView;
 	private ImageView _card2SubViewToCard1;
-
 }

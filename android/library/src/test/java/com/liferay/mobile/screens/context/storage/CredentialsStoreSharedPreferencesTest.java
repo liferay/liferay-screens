@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.context.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.RobolectricManifestTestRunner;
@@ -26,7 +25,6 @@ import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.BaseCredentialsStorageSharedPreferences;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.BasicCredentialsStorageSharedPreferences;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -104,9 +102,8 @@ public class CredentialsStoreSharedPreferencesTest {
 			setBasicTestDataInStore(store);
 			store.storeCredentials();
 
-			SharedPreferences sharedPref =
-				RuntimeEnvironment.application.getApplicationContext().getSharedPreferences(
-					BaseCredentialsStorageSharedPreferences.getStoreName(), Context.MODE_PRIVATE);
+			SharedPreferences sharedPref = RuntimeEnvironment.application.getApplicationContext()
+				.getSharedPreferences(BaseCredentialsStorageSharedPreferences.getStoreName(), Context.MODE_PRIVATE);
 
 			assertEquals("user123", sharedPref.getString("username", "not-present"));
 			assertEquals("pass123", sharedPref.getString("password", "not-present"));
@@ -115,7 +112,6 @@ public class CredentialsStoreSharedPreferencesTest {
 			assertEquals(LiferayServerContext.getCompanyId(), sharedPref.getLong("companyId", 0));
 			assertEquals("{\"userId\":123}", sharedPref.getString("attributes", "not-present"));
 		}
-
 	}
 
 	@RunWith(RobolectricManifestTestRunner.class)
@@ -135,13 +131,11 @@ public class CredentialsStoreSharedPreferencesTest {
 
 			store.removeStoredCredentials();
 
-			SharedPreferences sharedPref =
-				RuntimeEnvironment.application.getApplicationContext().getSharedPreferences(
-					BaseCredentialsStorageSharedPreferences.getStoreName(), Context.MODE_PRIVATE);
+			SharedPreferences sharedPref = RuntimeEnvironment.application.getApplicationContext()
+				.getSharedPreferences(BaseCredentialsStorageSharedPreferences.getStoreName(), Context.MODE_PRIVATE);
 
 			assertFalse(sharedPref.contains("username"));
 		}
-
 	}
 
 	@RunWith(RobolectricManifestTestRunner.class)
@@ -154,7 +148,7 @@ public class CredentialsStoreSharedPreferencesTest {
 		}
 
 		@Test
-		public void shouldNotLoadWhenCredentialsAreNotStored() throws Exception {
+		public void shouldNotLoadWhenCredentialsAreNotStored() {
 			BasicCredentialsStorageSharedPreferences store = new BasicCredentialsStorageSharedPreferences();
 			store.setContext(RuntimeEnvironment.application.getApplicationContext());
 			store.removeStoredCredentials();
@@ -199,7 +193,5 @@ public class CredentialsStoreSharedPreferencesTest {
 			assertEquals("pass123", auth.getPassword());
 			assertEquals(123, store.getUser().getId());
 		}
-
 	}
-
 }

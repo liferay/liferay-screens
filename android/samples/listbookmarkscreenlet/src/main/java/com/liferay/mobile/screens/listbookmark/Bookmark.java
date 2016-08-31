@@ -53,6 +53,6 @@ public class Bookmark implements Parcelable {
 		_values = values;
 	}
 
-	private String _url;
+	private final String _url;
 	private Map _values;
 }

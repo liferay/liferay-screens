@@ -110,10 +110,10 @@ public abstract class BaseListAdapter<E, H extends BaseListAdapter.ViewHolder>
 
 	protected static final int LAYOUT_TYPE_DEFAULT = 0;
 	protected static final int LAYOUT_TYPE_PROGRESS = 1;
-	private List<E> _entries;
-	private int _layoutId;
-	private BaseListAdapterListener _listener;
-	private int _progressLayoutId;
+	private final List<E> _entries;
+	private final int _layoutId;
+	private final BaseListAdapterListener _listener;
+	private final int _progressLayoutId;
 	private int _rowCount;
 	private List<String> _labelFields;
 
@@ -134,7 +134,7 @@ public abstract class BaseListAdapter<E, H extends BaseListAdapter.ViewHolder>
 			_listener.onItemClick(getAdapterPosition(), v);
 		}
 
-		private BaseListAdapterListener _listener;
+		private final BaseListAdapterListener _listener;
 	}
 
 }

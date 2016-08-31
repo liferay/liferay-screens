@@ -71,6 +71,6 @@ public class DDLFormPagerViewAdapter extends PagerAdapter {
 		return (view == object);
 	}
 
-	private List<Field> _fields;
-	private Map<Field.EditorType, Integer> _layoutIds;
+	private final List<Field> _fields;
+	private final Map<Field.EditorType, Integer> _layoutIds;
 }

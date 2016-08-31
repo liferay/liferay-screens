@@ -20,6 +20,8 @@ import com.liferay.mobile.screens.webcontent.display.connector.JournalContentCon
 import com.liferay.mobile.screens.webcontent.display.connector.ScreensJournalContentConnector;
 import java.util.Locale;
 
+import static com.liferay.mobile.screens.cache.Cache.SEPARATOR;
+
 /**
  * @author Jose Manuel Navarro
  */
@@ -61,7 +63,7 @@ public class WebContentDisplayFromArticleIdInteractorImpl extends WebContentDisp
 	protected String getIdFromArgs(Object... args) {
 		String articleId = (String) args[0];
 		Long templateId = (Long) args[1];
-		return articleId + (templateId == null ? "-" : templateId);
+		return articleId + (templateId == null ? SEPARATOR : templateId);
 	}
 
 	protected JournalContentConnector getJournalArticleService() {

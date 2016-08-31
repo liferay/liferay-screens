@@ -30,7 +30,7 @@ public class DDLFormView extends com.liferay.mobile.screens.viewsets.defaultview
 		setFieldLayoutId(editorType, _materialLayoutIds.get(editorType));
 	}
 
-	private static Map<Field.EditorType, Integer> _materialLayoutIds = new HashMap<>();
+	private static final Map<Field.EditorType, Integer> _materialLayoutIds = new HashMap<>();
 
 	static {
 		_materialLayoutIds.put(Field.EditorType.CHECKBOX, R.layout.ddlfield_checkbox_material);
