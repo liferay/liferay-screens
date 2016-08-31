@@ -239,7 +239,9 @@ import QuartzCore
 	 * start the interaction programatically.
 	 */
 	public func performAction(name name: String, sender: AnyObject? = nil) -> Bool {
-		let result: Bool
+		guard !isRunningOnInterfaceBuilder else {
+			return false
+		}
 
 		let customInteractor = self.delegate?.screenlet?(self,
 				customInteractorForAction: name,
@@ -256,14 +258,12 @@ import QuartzCore
 				showHUDWithMessage(message, forInteractor: interactor)
 			}
 
-			result = onAction(name: name, interactor: interactor, sender: sender)
-		}
-		else {
-			print("WARN: No interactor created for action \(name)\n")
-			result = false
+			return onAction(name: name, interactor: interactor, sender: sender)
 		}
 
-		return result
+		print("WARN: No interactor created for action \(name)\n")
+
+		return false
 	}
 
 	public func performDefaultAction() -> Bool {

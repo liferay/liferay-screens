@@ -36,13 +36,8 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 	}
 
 	public convenience init(body: String?) {
-		func bundleForXib() -> NSBundle? {
-			let bundles = NSBundle.allBundles(CommentEditViewController_default.self);
-
-			return bundles.filter{$0.pathForResource(xibName, ofType:"nib") != nil}.first
-		}
-
-		self.init(nibName: xibName, bundle: bundleForXib())
+		self.init(nibName: xibName,
+				bundle: NSBundle.bundleForNibName(xibName, currentClass: self.dynamicType))
 
 		self.initialBody = body
 	}

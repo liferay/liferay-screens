@@ -44,6 +44,7 @@ public class CommentLoadLiferayConnector: ServerConnector {
 }
 
 public class Liferay70CommentLoadConnector: CommentLoadLiferayConnector {
+
 	override public func doRun(session session: LRSession) {
 		resultComment = nil
 
@@ -52,16 +53,19 @@ public class Liferay70CommentLoadConnector: CommentLoadLiferayConnector {
 		do {
 			let result = try service.getCommentWithGroupId(groupId, commentId: commentId)
 
-			lastError = nil
-
 			if let result = result as? [String: AnyObject] {
 				resultComment = Comment(attributes: result)
+				lastError = nil
 			}
-
+			else {
+				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				resultComment = nil
+			}
 		}
 		catch let error as NSError {
 			lastError = error
+			resultComment = nil
 		}
-
 	}
+
 }

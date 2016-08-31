@@ -14,11 +14,22 @@
 import Foundation
 
 
-@objc public class Comment : NSObject, NSCoding {
+@objc public class Comment: NSObject, NSCoding {
 
-	private let AllowedTags = ["strong", "i", "b", "a", "/strong", "/i", "/b", "/a"]
+	public static func plainBodyToHtml(plainBody: String) -> String {
+		return plainBody
+			.stringByReplacingOccurrencesOfString("<", withString: "&lt;")
+			.stringByReplacingOccurrencesOfString(">", withString: "&gt;")
+			.characters
+			.split("\n")
+			.map(String.init)
+			.map { "<p>\($0)</p>" }
+			.joinWithSeparator("")
+	}
 
-	public let attributes :[String:AnyObject]
+	private let AllowedTags = ["strong", "i", "b", "a"]
+
+	public let attributes: [String:AnyObject]
 
 	public var originalBody: String {
 		return attributes["body"]!.description
@@ -30,16 +41,26 @@ import Foundation
 	}
 
 	public var plainBody: String {
-		return originalBody.stringByReplacingOccurrencesOfString(
-				"<[^>]+>", withString: "", options: .RegularExpressionSearch, range: nil)
+		return originalBody
+			.stringByReplacingOccurrencesOfString(
+				"<[^>]+>",
+				withString: "",
+				options: .RegularExpressionSearch,
+				range: nil)
 			.stringByReplacingOccurrencesOfString("&lt;", withString: "<")
 			.stringByReplacingOccurrencesOfString("&gt;", withString: ">")
 	}
 
 	public var htmlBody: String {
-		return originalBody.stringByReplacingOccurrencesOfString(
-				"(?i)<(?!\(AllowedTags.joinWithSeparator("|"))).*?>", withString: "",
-				options: .RegularExpressionSearch, range: nil)
+		let closeTags = AllowedTags.map { "/\($0)" }
+		let allTags = closeTags + AllowedTags
+
+		return originalBody
+			.stringByReplacingOccurrencesOfString(
+				"(?i)<(?!\(allTags.joinWithSeparator("|"))).*?>",
+				withString: "",
+				options: .RegularExpressionSearch,
+				range: nil)
 			.stringByReplacingOccurrencesOfString("\n", withString: "</br>")
 	}
 
@@ -70,11 +91,11 @@ import Foundation
 	}
 
 	public var canDelete: Bool {
-		return attributes["deletePermission"]! as! Bool
+		return attributes["deletePermission"] as? Bool ?? false
 	}
 
 	public var canEdit: Bool {
-		return attributes["updatePermission"]! as! Bool
+		return attributes["updatePermission"] as? Bool ?? false
 	}
 
 	public func encodeWithCoder(aCoder: NSCoder) {

@@ -15,6 +15,7 @@ import UIKit
 
 
 public class CommentLoadInteractor: ServerReadConnectorInteractor {
+
 	let groupId: Int64
 	let commentId: Int64
 
@@ -34,8 +35,9 @@ public class CommentLoadInteractor: ServerReadConnectorInteractor {
 
 	override public func completedConnector(c: ServerConnector) {
 		if let loadCon = (c as? CommentLoadLiferayConnector),
-			comment = loadCon.resultComment {
+				comment = loadCon.resultComment {
 			self.resultComment = comment
 		}
 	}
+
 }

@@ -19,7 +19,7 @@ public class CommentUpdateLiferayConnector: ServerConnector {
 	public let className: String
 	public let classPK: Int64
 	public let commentId: Int64
-	public let body: String?
+	public let body: String
 
 	public var resultComment: Comment?
 
@@ -27,7 +27,7 @@ public class CommentUpdateLiferayConnector: ServerConnector {
 	            className: String,
 	            classPK: Int64,
 	            commentId: Int64,
-	            body: String?) {
+	            body: String) {
 
 		self.groupId = groupId
 		self.className = className
@@ -58,40 +58,44 @@ public class CommentUpdateLiferayConnector: ServerConnector {
 				return ValidationError("comment-display-screenlet", "undefined-commentId")
 			}
 
-			if body == nil || body == "" {
+			if body.isEmpty {
 				return ValidationError("comment-display-screenlet", "undefined-body")
 			}
 		}
 
 		return error
 	}
+
 }
 
 public class Liferay70CommentUpdateConnector: CommentUpdateLiferayConnector {
+
 	override public func doRun(session session: LRSession) {
 		resultComment = nil
 
 		let service = LRCommentmanagerjsonwsService_v70(session: session)
 
-		let formattedBody = body!
-			.stringByReplacingOccurrencesOfString("<", withString: "&lt;")
-			.stringByReplacingOccurrencesOfString(">", withString: "&gt;")
-			.characters.split("\n").map({"<p>\(String($0))</p>"}).joinWithSeparator("")
-
 		do {
-			let result = try service.updateCommentWithGroupId(groupId, className: className,
-				classPK: classPK, commentId: commentId, body: formattedBody)
-
-			lastError = nil
+			let result = try service.updateCommentWithGroupId(groupId,
+					className: className,
+					classPK: classPK,
+					commentId: commentId,
+					body: Comment.plainBodyToHtml(body))
 
 			if let result = result as? [String: AnyObject] {
 				resultComment = Comment(attributes: result)
+				lastError = nil
 			}
-
+			else {
+				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				resultComment = nil
+			}
 		}
 		catch let error as NSError {
 			lastError = error
+			resultComment = nil
 		}
 
 	}
+
 }

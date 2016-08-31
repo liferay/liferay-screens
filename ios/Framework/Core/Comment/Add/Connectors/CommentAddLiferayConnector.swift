@@ -18,18 +18,17 @@ public class CommentAddLiferayConnector: ServerConnector {
 	public let groupId: Int64
 	public let className: String
 	public let classPK: Int64
-	public let body: String?
+	public let body: String
 
 	public var resultComment: Comment?
 
-	public init(groupId: Int64, className: String, classPK: Int64, body: String?) {
+	public init(groupId: Int64, className: String, classPK: Int64, body: String) {
 		self.groupId = groupId
 		self.className = className
 		self.classPK = classPK
 		self.body = body
 		super.init()
 	}
-
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -47,42 +46,41 @@ public class CommentAddLiferayConnector: ServerConnector {
 				return ValidationError("comment-add-screenlet", "undefined-classPK")
 			}
 
-			if body == nil || body!.isEmpty {
+			if body.isEmpty {
 				return ValidationError("comment-add-screenlet", "empty-body")
 			}
 		}
 
 		return error
 	}
+
 }
 
 public class Liferay70CommentAddConnector: CommentAddLiferayConnector {
+
 	override public func doRun(session session: LRSession) {
-		resultComment = nil
-
 		let service = LRCommentmanagerjsonwsService_v70(session: session)
-
-		let formattedBody = body!
-			.stringByReplacingOccurrencesOfString("<", withString: "&lt;")
-			.stringByReplacingOccurrencesOfString(">", withString: "&gt;")
-			.characters.split("\n").map({"<p>\(String($0))</p>"}).joinWithSeparator("")
 
 		do {
 			let result = try service.addCommentWithGroupId(groupId,
-			                                               className: className,
-			                                               classPK: classPK,
-			                                               body: formattedBody)
-
-			lastError = nil
+					className: className,
+					classPK: classPK,
+					body: Comment.plainBodyToHtml(body))
 
 			if let result = result as? [String: AnyObject] {
 				resultComment = Comment(attributes: result)
+				lastError = nil
 			}
-
+			else {
+				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				resultComment = nil
+			}
 		}
 		catch let error as NSError {
 			lastError = error
+			resultComment = nil
 		}
 
 	}
+
 }

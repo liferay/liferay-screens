@@ -17,24 +17,24 @@ import UIKit
 @objc public protocol CommentDisplayScreenletDelegate : BaseScreenletDelegate {
 
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
-	                        onCommentLoaded comment: Comment)
+			onCommentLoaded comment: Comment)
 
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
-	                        onLoadCommentError error: NSError)
+			onLoadCommentError error: NSError)
 
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
-	                        onCommentDeleted comment: Comment)
+			onCommentDeleted comment: Comment)
 
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
-	                        onDeleteComment comment: Comment,
-						    onError error: NSError)
+			onDeleteComment comment: Comment,
+			onError error: NSError)
 
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
-	                        onCommentUpdated comment: Comment)
+			onCommentUpdated comment: Comment)
 
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
-	                        onUpdateComment comment: Comment,
-							onError error: NSError)
+			onUpdateComment comment: Comment,
+			onError error: NSError)
 
 }
 
@@ -59,8 +59,8 @@ import UIKit
 		return delegate as? CommentDisplayScreenletDelegate
 	}
 
-	public var viewModel: CommentDisplayViewModel? {
-		return screenletView as? CommentDisplayViewModel
+	public var viewModel: CommentDisplayViewModel {
+		return screenletView as! CommentDisplayViewModel
 	}
 
 	public var comment: Comment? {
@@ -68,7 +68,7 @@ import UIKit
 			if let comment = comment {
 				commentId = comment.commentId
 			}
-			viewModel?.comment = self.comment
+			viewModel.comment = self.comment
 		}
 	}
 
@@ -84,7 +84,7 @@ import UIKit
 	}
 
 	public func editComment() {
-		viewModel?.editComment()
+		viewModel.editComment()
 	}
 
 
@@ -96,10 +96,8 @@ import UIKit
 	}
 
 	override public func onShow() {
-		if !isRunningOnInterfaceBuilder {
-			if autoLoad {
-				load()
-			}
+		if autoLoad {
+			load()
 		}
 	}
 
@@ -110,7 +108,10 @@ import UIKit
 		case CommentDisplayScreenlet.DeleteAction:
 			return createCommentDeleteInteractor()
 		case CommentDisplayScreenlet.UpdateAction:
-			return createCommentUpdateInteractor(sender as? String)
+			guard let body = sender as? String else {
+				return nil
+			}
+			return createCommentUpdateInteractor(body)
 		default:
 			return nil
 		}
@@ -128,7 +129,7 @@ import UIKit
 		interactor.onSuccess = {
 			if let resultComment = interactor.resultComment {
 				self.comment = resultComment
-				self.viewModel?.comment = resultComment
+				self.viewModel.comment = resultComment
 				self.commentDisplayDelegate?.screenlet?(self, onCommentLoaded: resultComment)
 			}
 			else {
@@ -160,7 +161,7 @@ import UIKit
 		return interactor
 	}
 
-	private func createCommentUpdateInteractor(body: String?) -> Interactor {
+	private func createCommentUpdateInteractor(body: String) -> Interactor {
 		let interactor = CommentUpdateInteractor(
 			screenlet: self,
 			groupId: groupId,
@@ -172,7 +173,7 @@ import UIKit
 		interactor.onSuccess = {
 			if let resultComment = interactor.resultComment {
 				self.comment = resultComment
-				self.viewModel?.comment = resultComment
+				self.viewModel.comment = resultComment
 				self.commentDisplayDelegate?.screenlet?(self, onCommentUpdated: resultComment)
 			}
 			else {

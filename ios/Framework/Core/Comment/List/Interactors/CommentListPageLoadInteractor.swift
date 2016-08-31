@@ -14,12 +14,18 @@
 import UIKit
 
 public class CommentListPageLoadInteractor: BaseListPageLoadInteractor {
+
 	let groupId: Int64
 	let className: String
 	let classPK: Int64
 
-	public init(screenlet: BaseListScreenlet, page: Int, computeRowCount: Bool, groupId: Int64,
-			className: String, classPK: Int64) {
+	public init(
+			screenlet: BaseListScreenlet,
+			page: Int,
+			computeRowCount: Bool,
+			groupId: Int64,
+			className: String,
+			classPK: Int64) {
 		self.groupId = (groupId != 0) ? groupId : LiferayServerContext.groupId
 		self.className = className
 		self.classPK = classPK
@@ -46,4 +52,5 @@ public class CommentListPageLoadInteractor: BaseListPageLoadInteractor {
 	override public func cacheKey(op: PaginationLiferayConnector) -> String {
 		return "COMMENTS_\(groupId)_\(classPK)_\(className)"
 	}
+
 }

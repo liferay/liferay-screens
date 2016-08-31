@@ -91,6 +91,15 @@ extension NSBundle {
 		return [NSBundle.mainBundle()]
 	}
 
+	public class func bundleForNibName(name: String, currentClass: AnyClass) -> NSBundle? {
+		return NSBundle.allBundles(currentClass)
+			.filter{
+				$0.pathForResource(name, ofType:"nib") != nil
+			}
+			.first
+	}
+
+
 
 	//MARK: xInBundles methods
 
