@@ -110,6 +110,10 @@ public protocol LiferayConnectorFactory {
 		folderId: Int64,
 		onProgress: DDLFormUploadLiferayConnector.OnProgress?) -> DDLFormUploadLiferayConnector
 	
+	func createAssetLoadByEntryIdConnector(entryId: Int64) -> AssetLoadByEntryIdLiferayConnector?
+
+	func createAssetLoadByClassPKConnector(className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector?
+
 	func createRatingLoadByEntryIdConnector(
 		entryId entryId: Int64,
 		ratingsGroupCount: Int32) -> RatingLoadByEntryIdLiferayConnector?
@@ -352,6 +356,11 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 	public func createRatingLoadByEntryIdConnector(
 			entryId entryId: Int64,
 			ratingsGroupCount: Int32) -> RatingLoadByEntryIdLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: AssetLoadByEntryIdLiferayConnector")
+		return nil
+	}
+
+	public func createAssetLoadByEntryIdConnector(entryId: Int64) -> AssetLoadByEntryIdLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: RatingLoadByEntryIdLiferayConnector")
 		return nil
 	}
@@ -361,6 +370,11 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			className: String,
 			ratingsGroupCount: Int32) -> RatingLoadByClassPKLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: RatingLoadByClassPKLiferayConnector")
+		return nil
+	}
+
+	public func createAssetLoadByClassPKConnector(className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: AssetLoadByClassPKLiferayConnector")
 		return nil
 	}
 	
@@ -713,6 +727,14 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			classPK: classPK,
 			commentId: commentId,
 			body: body)
+	}
+
+	public func createAssetLoadByEntryIdConnector(entryId: Int64) -> AssetLoadByEntryIdLiferayConnector? {
+		return Liferay70AssetLoadByEntryIdConnector(entryId: entryId)
+	}
+
+	public func createAssetLoadByClassPKConnector(className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector? {
+		return Liferay70AssetLoadByClassPKConnector(className: className, classPK: classPK)
 	}
 
 }

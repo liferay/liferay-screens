@@ -19,7 +19,7 @@ class HomeScreenletsViewController: UITableViewController {
 			0 : ["Auth Module", "LoginScreenlet", "SignUpScreenlet", "ForgotPasswordScreenlet"],
 			1 : ["DDL Module", "DDLListScreenlet", "DDLFormScreenlet"],
 			2 : ["Web Content Module", "WebContentDisplayScreenlet", "WebContentListScreenlet"],
-			3 : ["Others", "AssetListScreenlet", "UserPortraitScreenlet", "RatingScreenlet", "CommentListScreenlet", "ImageGalleryScreenlet"]
+			3 : ["Others", "AssetListScreenlet", "UserPortraitScreenlet", "RatingScreenlet", "ImageGalleryScreenlet", "AssetDisplayScreenlet", "CommentListScreenlet"]
 		]
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
