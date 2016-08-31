@@ -16,7 +16,7 @@ public class Cache {
 
 	public final static String SEPARATOR = "-";
 
-	public static <E extends OfflineEventNew> E getObject(Class aClass, long groupId, long userId, Locale locale,
+	public static <E extends OfflineEventNew> E getObject(Class aClass, Long groupId, Long userId, Locale locale,
 		String cacheKey) throws Exception {
 		DB snappyDB = openDatabase(groupId, userId);
 		String id = getFullId(aClass, locale, cacheKey, null);
@@ -25,7 +25,7 @@ public class Cache {
 		return object;
 	}
 
-	public static <E extends OfflineEventNew> E getObject(Class aClass, long groupId, long userId, String key)
+	public static <E extends OfflineEventNew> E getObject(Class aClass, Long groupId, Long userId, String key)
 		throws Exception {
 		DB snappyDB = openDatabase(groupId, userId);
 		E object = (E) snappyDB.getObject(key, aClass);
@@ -44,7 +44,14 @@ public class Cache {
 		storeObject(event, null);
 	}
 
-	public static String[] findKeys(Class childClass, long groupId, long userId, Locale locale, int startRow, int limit)
+	public static <E extends OfflineEventNew> void deleteObject(E event) throws Exception {
+		DB snappyDB = openDatabase(event.getGroupId(), event.getUserId());
+		String id = getFullId(event.getClass(), event.getLocale(), event.getCacheKey(), null);
+		snappyDB.del(id);
+		snappyDB.close();
+	}
+
+	public static String[] findKeys(Class childClass, Long groupId, Long userId, Locale locale, int startRow, int limit)
 		throws Exception {
 		DB snappyDB = openDatabase(groupId, userId);
 		String elementKey = getFullId(childClass, locale, null, null);
@@ -92,8 +99,9 @@ public class Cache {
 	private static DB openDatabase(Long groupId, Long userId) throws Exception {
 		try {
 			Context context = LiferayScreensContext.getContext();
-			return groupId == null || userId == null ? DBFactory.open(context)
+			DB db = groupId == null || userId == null ? DBFactory.open(context)
 				: DBFactory.open(context, databaseName(groupId, userId));
+			return db;
 		} catch (SnappydbException e) {
 			throw new Exception("Database exception", e);
 		}
@@ -107,7 +115,7 @@ public class Cache {
 			(cacheKey == null ? "" : cacheKey);
 	}
 
-	private static String databaseName(long groupId, Long userId) {
-		return "DB" + SEPARATOR + groupId + SEPARATOR + userId;
+	private static String databaseName(Long groupId, Long userId) {
+		return "DB" + SEPARATOR + (groupId == null ? 0 : groupId) + SEPARATOR + (userId == null ? 0 : userId);
 	}
 }

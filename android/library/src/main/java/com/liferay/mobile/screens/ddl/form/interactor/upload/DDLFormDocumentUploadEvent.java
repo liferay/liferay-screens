@@ -27,6 +27,10 @@ public class DDLFormDocumentUploadEvent extends OfflineEventNew {
 		_filePrefix = filePrefix;
 	}
 
+	public DDLFormDocumentUploadEvent(Exception e) {
+		super(e);
+	}
+
 	public Long getRepositoryId() {
 		return _repositoryId;
 	}

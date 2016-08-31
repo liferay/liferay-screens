@@ -18,6 +18,8 @@ import com.liferay.mobile.screens.base.list.interactor.ListEvent;
 import com.liferay.mobile.screens.ddl.model.Record;
 import org.json.JSONObject;
 
+import static com.liferay.mobile.screens.cache.Cache.SEPARATOR;
+
 /**
  * @author Silvio Santos
  */
@@ -35,9 +37,9 @@ public class DDLFormEvent extends ListEvent<Record> {
 
 	@Override
 	public String getCacheKey() {
+		long recordSetId = record.getRecordSetId();
 		long recordId = record.getRecordId();
-		long structureId = record.getStructureId();
-		return String.valueOf(structureId) + String.valueOf(recordId);
+		return String.valueOf(recordSetId) + SEPARATOR + String.valueOf(recordId);
 	}
 
 	@Override

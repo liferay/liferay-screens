@@ -41,7 +41,6 @@ public class CommentAddInteractorImpl extends BaseCachedWriteThreadRemoteInterac
 	}
 
 	protected void validate(long groupId, String className, long classPK, String body) {
-
 		if (body.isEmpty()) {
 			throw new IllegalArgumentException("comment body cannot be empty");
 		} else if (groupId <= 0) {
