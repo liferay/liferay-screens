@@ -88,11 +88,20 @@ public abstract class OfflineEventNew extends BasicThreadEvent {
 		this.syncDate = syncDate;
 	}
 
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
+	}
+
 	private Locale locale;
 	private long groupId;
 	private long userId;
-	private boolean cachedRequest;
 	private String cacheKey;
 	private Date syncDate;
+	private boolean cachedRequest;
 	private boolean dirty;
+	private boolean deleted;
 }
