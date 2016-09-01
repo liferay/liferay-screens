@@ -136,7 +136,7 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 	}
 
 	@NonNull
-	private String getListId(Query query, Object... args) throws Exception {
+	private String getListId(Query query, Object... args) {
 		return getIdFromArgs(args) + Cache.SEPARATOR + query.getStartRowFormatted() + Cache.SEPARATOR + query.getEndRowFormatted();
 	}
 

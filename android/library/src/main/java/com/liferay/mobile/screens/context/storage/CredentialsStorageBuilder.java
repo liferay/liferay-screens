@@ -92,7 +92,6 @@ public class CredentialsStorageBuilder {
 		}
 
 		//TODO implement other storage mechanisms
-		StorageType _storageType = storageType;
 		LiferayLogger.d("We currently support only one type of storage: " + storageType._value);
 		return this;
 	}

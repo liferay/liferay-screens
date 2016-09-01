@@ -101,6 +101,7 @@ public class Cache {
 			Context context = LiferayScreensContext.getContext();
 			DB db = groupId == null || userId == null ? DBFactory.open(context)
 				: DBFactory.open(context, databaseName(groupId, userId));
+			LiferayLogger.d("Opening db: " + db.toString());
 			return db;
 		} catch (SnappydbException e) {
 			throw new Exception("Database exception", e);
