@@ -28,7 +28,7 @@ public class WebContentListInteractorImpl
 	@Override
 	protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {
 
-		long _folderId = (long) args[0];
+		long folderId = (long) args[0];
 
 		Session session = getSession();
 
@@ -36,18 +36,18 @@ public class WebContentListInteractorImpl
 
 		JournalContentConnector journalContentConnector =
 			ServiceProvider.getInstance().getJournalContentConnector(session);
-		return journalContentConnector.getJournalArticles(groupId, _folderId, query.getStartRow(), query.getEndRow(),
+		return journalContentConnector.getJournalArticles(groupId, folderId, query.getStartRow(), query.getEndRow(),
 			comparator);
 	}
 
 	@Override
 	protected Integer getPageRowCountRequest(Object... args) throws Exception {
 
-		long _folderId = (long) args[0];
+		long folderId = (long) args[0];
 
 		JournalContentConnector journalContentConnector =
 			ServiceProvider.getInstance().getJournalContentConnector(getSession());
-		return journalContentConnector.getJournalArticlesCount(groupId, _folderId);
+		return journalContentConnector.getJournalArticlesCount(groupId, folderId);
 	}
 
 	@Override

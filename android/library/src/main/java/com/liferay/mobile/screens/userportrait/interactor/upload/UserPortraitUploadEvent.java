@@ -19,7 +19,7 @@ public class UserPortraitUploadEvent extends OfflineEventNew {
 	public UserPortraitUploadEvent(String picturePath, JSONObject jsonObject) {
 		super(jsonObject);
 
-		this._picturePath = picturePath;
+		this.picturePath = picturePath;
 	}
 
 	public UserPortraitUploadEvent(Exception exception) {
@@ -27,12 +27,12 @@ public class UserPortraitUploadEvent extends OfflineEventNew {
 	}
 
 	public String getPicturePath() {
-		return _picturePath;
+		return picturePath;
 	}
 
-	private String _picturePath;
+	private String picturePath;
 
 	public void setPicturePath(String picturePath) {
-		this._picturePath = picturePath;
+		this.picturePath = picturePath;
 	}
 }

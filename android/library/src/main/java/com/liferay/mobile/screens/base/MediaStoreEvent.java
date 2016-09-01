@@ -6,12 +6,12 @@ package com.liferay.mobile.screens.base;
 public class MediaStoreEvent {
 
 	public MediaStoreEvent(String filePath) {
-		_filePath = filePath;
+		this.filePath = filePath;
 	}
 
 	public String getFilePath() {
-		return _filePath;
+		return filePath;
 	}
 
-	private final String _filePath;
+	private final String filePath;
 }

@@ -19,7 +19,7 @@ public class AddDeliciousInteractorImpl extends BaseRemoteInteractorNew<AddBookm
 	 *
 	 * If the token is invalidated the API calls will return an HTTP Error 401, Unauthorized Request
 	 */
-	public static final String OAUTH_TOKEN = "11336429-c2378f3c44a29f593e31aa4f5521e4dd";
+	private static final String OAUTH_TOKEN = "11336429-c2378f3c44a29f593e31aa4f5521e4dd";
 
 	@Override
 	public BasicThreadEvent execute(Object[] args) throws Exception {
@@ -64,13 +64,13 @@ public class AddDeliciousInteractorImpl extends BaseRemoteInteractorNew<AddBookm
 		getListener().onAddBookmarkSuccess();
 	}
 
-	static class BookmarkAdded extends BasicThreadEvent {
+	private static class BookmarkAdded extends BasicThreadEvent {
 
-		public BookmarkAdded(String text) {
+		BookmarkAdded(String text) {
 			this.text = text;
 		}
 
-		public BookmarkAdded(Exception e) {
+		BookmarkAdded(Exception e) {
 			super(e);
 		}
 

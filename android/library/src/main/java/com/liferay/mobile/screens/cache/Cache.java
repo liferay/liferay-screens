@@ -14,7 +14,7 @@ import java.util.Locale;
 
 public class Cache {
 
-	public final static String SEPARATOR = "-";
+	public static final String SEPARATOR = "-";
 
 	public static <E extends OfflineEventNew> E getObject(Class aClass, Long groupId, Long userId, Locale locale,
 		String cacheKey) throws Exception {

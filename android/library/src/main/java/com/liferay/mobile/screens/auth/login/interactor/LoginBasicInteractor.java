@@ -42,16 +42,16 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 		return new BasicThreadEvent(jsonObject);
 	}
 
-	protected JSONObject getUser(String _login, BasicAuthMethod _basicAuthMethod, UserConnector userConnector)
+	protected JSONObject getUser(String login, BasicAuthMethod basicAuthMethod, UserConnector userConnector)
 		throws Exception {
-		switch (_basicAuthMethod) {
+		switch (basicAuthMethod) {
 			case USER_ID:
-				return userConnector.getUserById(Long.parseLong(_login));
+				return userConnector.getUserById(Long.parseLong(login));
 			case SCREEN_NAME:
-				return userConnector.getUserByScreenName(LiferayServerContext.getCompanyId(), _login);
+				return userConnector.getUserByScreenName(LiferayServerContext.getCompanyId(), login);
 			case EMAIL:
 			default:
-				return userConnector.getUserByEmailAddress(LiferayServerContext.getCompanyId(), _login);
+				return userConnector.getUserByEmailAddress(LiferayServerContext.getCompanyId(), login);
 		}
 	}
 

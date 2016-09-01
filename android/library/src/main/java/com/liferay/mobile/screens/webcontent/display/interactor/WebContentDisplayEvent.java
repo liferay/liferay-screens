@@ -28,25 +28,25 @@ public class WebContentDisplayEvent extends ListEvent<WebContent> {
 
 	@Override
 	public String getCacheKey() {
-		return _webContent.getArticleId();
+		return webContent.getArticleId();
 	}
 
 	@Override
 	public WebContent getModel() {
-		return _webContent;
+		return webContent;
 	}
 
 	public WebContentDisplayEvent(String html) {
-		_webContent = new WebContent(html);
+		webContent = new WebContent(html);
 	}
 
 	public WebContentDisplayEvent(WebContent webContent) {
-		_webContent = webContent;
+		this.webContent = webContent;
 	}
 
 	public WebContent getWebContent() {
-		return _webContent;
+		return webContent;
 	}
 
-	private WebContent _webContent;
+	private WebContent webContent;
 }

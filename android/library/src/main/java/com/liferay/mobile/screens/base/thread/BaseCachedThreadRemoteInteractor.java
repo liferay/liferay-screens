@@ -34,9 +34,9 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 				try {
 					if (offlinePolicy == OfflinePolicy.CACHE_FIRST) {
 						try {
-							boolean _retrievedFromCache = cached(args);
+							boolean retrievedFromCache = cached(args);
 
-							if (!_retrievedFromCache) {
+							if (!retrievedFromCache) {
 								online(true, null, args);
 							}
 						} catch (Exception e) {
@@ -45,9 +45,9 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 					} else if (offlinePolicy == OfflinePolicy.CACHE_ONLY) {
 						LiferayLogger.i("Trying to retrieve object from cache");
 
-						boolean _retrievedFromCache = cached(args);
+						boolean retrievedFromCache = cached(args);
 
-						if (!_retrievedFromCache) {
+						if (!retrievedFromCache) {
 							throw new NoSuchElementException();
 						}
 					} else if (offlinePolicy == OfflinePolicy.REMOTE_FIRST) {
@@ -56,9 +56,9 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 						} catch (Exception e) {
 							LiferayLogger.e("Retrieve online first failed, trying cached version", e);
 
-							boolean _retrievedFromCache = cached(args);
+							boolean retrievedFromCache = cached(args);
 
-							if (!_retrievedFromCache) {
+							if (!retrievedFromCache) {
 								throw new NoSuchElementException();
 							}
 						}

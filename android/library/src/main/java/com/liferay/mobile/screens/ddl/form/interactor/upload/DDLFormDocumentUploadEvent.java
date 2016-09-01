@@ -21,10 +21,10 @@ public class DDLFormDocumentUploadEvent extends OfflineEventNew {
 	public DDLFormDocumentUploadEvent(DocumentField documentField, Long repositoryId, Long folderId, String filePrefix,
 		JSONObject jsonObject) {
 		super(jsonObject);
-		_documentField = documentField;
-		_repositoryId = repositoryId;
-		_folderId = folderId;
-		_filePrefix = filePrefix;
+		this.documentField = documentField;
+		this.repositoryId = repositoryId;
+		this.folderId = folderId;
+		this.filePrefix = filePrefix;
 	}
 
 	public DDLFormDocumentUploadEvent(Exception e) {
@@ -32,23 +32,23 @@ public class DDLFormDocumentUploadEvent extends OfflineEventNew {
 	}
 
 	public Long getRepositoryId() {
-		return _repositoryId;
+		return repositoryId;
 	}
 
 	public Long getFolderId() {
-		return _folderId;
+		return folderId;
 	}
 
 	public String getFilePrefix() {
-		return _filePrefix;
+		return filePrefix;
 	}
 
 	public DocumentField getDocumentField() {
-		return _documentField;
+		return documentField;
 	}
 
-	private DocumentField _documentField;
-	private Long _repositoryId;
-	private Long _folderId;
-	private String _filePrefix;
+	private DocumentField documentField;
+	private Long repositoryId;
+	private Long folderId;
+	private String filePrefix;
 }

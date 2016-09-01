@@ -118,7 +118,7 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 
 			Class childClass = getEventClass();
 
-			String keys[] = Cache.findKeys(childClass, groupId, userId, locale, offlineEvent.getQuery().getStartRow(),
+			String[] keys = Cache.findKeys(childClass, groupId, userId, locale, offlineEvent.getQuery().getStartRow(),
 				offlineEvent.getQuery().getLimit());
 
 			List<E> entries = new ArrayList<>();
@@ -137,7 +137,11 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 
 	@NonNull
 	private String getListId(Query query, Object... args) {
-		return getIdFromArgs(args) + Cache.SEPARATOR + query.getStartRowFormatted() + Cache.SEPARATOR + query.getEndRowFormatted();
+		return getIdFromArgs(args)
+			+ Cache.SEPARATOR
+			+ query.getStartRowFormatted()
+			+ Cache.SEPARATOR
+			+ query.getEndRowFormatted();
 	}
 
 	protected void storeToCache(BaseListEvent event) throws Exception {

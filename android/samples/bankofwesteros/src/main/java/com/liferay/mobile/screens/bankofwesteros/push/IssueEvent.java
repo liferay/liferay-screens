@@ -6,12 +6,12 @@ package com.liferay.mobile.screens.bankofwesteros.push;
 public class IssueEvent {
 
 	public IssueEvent(String message) {
-		_message = message;
+		this.message = message;
 	}
 
 	public String getMessage() {
-		return _message;
+		return message;
 	}
 
-	private final String _message;
+	private final String message;
 }

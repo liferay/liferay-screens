@@ -7,7 +7,6 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.util.LiferayLogger;
-
 import org.json.JSONArray;
 
 /**
@@ -17,7 +16,8 @@ public class UpdateUserInteractorImpl {
 
 	//TODO to move to a screenlet
 
-	public void saveUser(String firstName, String lastName, final String emailAddress, final String newPassword, JSONObjectCallback callback) {
+	public void saveUser(String firstName, String lastName, final String emailAddress, final String newPassword,
+		JSONObjectCallback callback) {
 		Session sessionFromCurrentSession = SessionContext.createSessionFromCurrentSession();
 		sessionFromCurrentSession.setCallback(callback);
 
@@ -26,34 +26,27 @@ public class UpdateUserInteractorImpl {
 		try {
 			JSONArray array = new JSONArray();
 
-
 			if (LiferayServerContext.isLiferay7()) {
 				com.liferay.mobile.android.v7.user.UserService userService =
 					new com.liferay.mobile.android.v7.user.UserService(sessionFromCurrentSession);
 				userService.updateUser(user.getInt("userId"), "test2", newPassword, newPassword, false,
 					user.getString("reminderQueryQuestion"), user.getString("reminderQueryAnswer"),
-					user.getString("screenName"), emailAddress, user.getInt("facebookId"),
-					user.getString("openId"), user.getString("languageId"), "", user.getString("greeting"),
-					user.getString("comments"), firstName, user.getString("middleName"),
-					lastName, 0, 0, true, 1, 1, 1900, user.getString("emailAddress"),
-					"", "", "", "", user.getString("jobTitle"),
-					array, array, array, array, array, null);
-			}
-			else {
+					user.getString("screenName"), emailAddress, user.getInt("facebookId"), user.getString("openId"),
+					user.getString("languageId"), "", user.getString("greeting"), user.getString("comments"), firstName,
+					user.getString("middleName"), lastName, 0, 0, true, 1, 1, 1900, user.getString("emailAddress"), "",
+					"", "", "", user.getString("jobTitle"), array, array, array, array, array, null);
+			} else {
 				UserService userService = new UserService(sessionFromCurrentSession);
 				//FIXME example implementation!
 				userService.updateUser(user.getInt("userId"), "test2", newPassword, newPassword, false,
 					user.getString("reminderQueryQuestion"), user.getString("reminderQueryAnswer"),
-					user.getString("screenName"), emailAddress, user.getInt("facebookId"),
-					user.getString("openId"), user.getString("languageId"), "", user.getString("greeting"),
-					user.getString("comments"), firstName, user.getString("middleName"),
-					lastName, 0, 0, true, 1, 1, 1900, user.getString("emailAddress"),
-					"", "", "", "", "", "", "", "", "", user.getString("jobTitle"),
-					array, array, array, array, array, null);
+					user.getString("screenName"), emailAddress, user.getInt("facebookId"), user.getString("openId"),
+					user.getString("languageId"), "", user.getString("greeting"), user.getString("comments"), firstName,
+					user.getString("middleName"), lastName, 0, 0, true, 1, 1, 1900, user.getString("emailAddress"), "",
+					"", "", "", "", "", "", "", "", user.getString("jobTitle"), array, array, array, array, array,
+					null);
 			}
-
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			LiferayLogger.e("Error parsing JSON", e);
 		}
 	}
