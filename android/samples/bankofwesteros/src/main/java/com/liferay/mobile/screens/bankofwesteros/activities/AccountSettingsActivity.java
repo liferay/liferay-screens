@@ -47,13 +47,10 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 
 	@Override
 	public void onClick(View v) {
-		switch (v.getId()) {
-			case R.id.account_settings_save:
-				saveUser();
-				break;
-			case R.id.arrow_back_to_issues:
-				finish();
-				break;
+		if (v.getId() == R.id.account_settings_save) {
+			saveUser();
+		} else if (v.getId() == R.id.arrow_back_to_issues) {
+			finish();
 		}
 	}
 

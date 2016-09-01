@@ -39,7 +39,7 @@ public class DDLFormEvent extends ListEvent<Record> {
 	public String getCacheKey() {
 		long recordSetId = record.getRecordSetId();
 		long recordId = record.getRecordId();
-		return String.valueOf(recordSetId) + SEPARATOR + String.valueOf(recordId);
+		return recordSetId + SEPARATOR + recordId;
 	}
 
 	@Override

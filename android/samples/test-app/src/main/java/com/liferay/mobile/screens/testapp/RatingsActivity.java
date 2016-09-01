@@ -49,9 +49,6 @@ public class RatingsActivity extends ThemeActivity
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-			case R.id.button_rating_thumb:
-				displayScreenlet(R.layout.rating_thumb_default, R.string.liferay_rating_thumb_asset_id, 2);
-				break;
 			case R.id.button_rating_like:
 				displayScreenlet(R.layout.rating_like_default, R.string.liferay_rating_like_asset_id, 1);
 				break;
@@ -64,6 +61,10 @@ public class RatingsActivity extends ThemeActivity
 				break;
 			case R.id.button_rating_emojis:
 				displayScreenlet(R.layout.rating_emojis_default, R.string.liferay_rating_reactions_emojis_asset_id, 4);
+				break;
+			case R.id.button_rating_thumb:
+			default:
+				displayScreenlet(R.layout.rating_thumb_default, R.string.liferay_rating_thumb_asset_id, 2);
 				break;
 		}
 

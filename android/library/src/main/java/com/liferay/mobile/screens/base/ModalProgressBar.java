@@ -29,8 +29,6 @@ public class ModalProgressBar extends ProgressBar {
 
 	public ModalProgressBar(Context context) {
 		super(context);
-
-		init(context, null);
 	}
 
 	public ModalProgressBar(Context context, AttributeSet attributes) {

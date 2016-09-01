@@ -95,7 +95,7 @@ public abstract class AbstractXMLParser {
 		//  b3. Matches elements for default locale
 
 		NodeList metadataList = dynamicElement.getElementsByTagName(tagName);
-		int metadataLen = (metadataList == null) ? 0 : metadataList.getLength();
+		int metadataLen = metadataList.getLength();
 
 		if (metadataLen == 0) {
 			return null;

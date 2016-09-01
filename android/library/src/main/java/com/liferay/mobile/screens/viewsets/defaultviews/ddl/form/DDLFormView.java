@@ -134,12 +134,6 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 	public void showFinishOperation(String actionName, Object argument) {
 		hideProgressBar(actionName);
 		switch (actionName) {
-			case DDLFormScreenlet.LOAD_FORM_ACTION:
-				LiferayLogger.i("loaded form");
-				Record record = (Record) argument;
-
-				showFormFields(record);
-				break;
 			case DDLFormScreenlet.LOAD_RECORD_ACTION:
 				LiferayLogger.i("loaded record");
 				showRecordValues();
@@ -149,6 +143,13 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 				DocumentField documentField = (DocumentField) argument;
 
 				findFieldView(documentField).refresh();
+				break;
+			case DDLFormScreenlet.LOAD_FORM_ACTION:
+			default:
+				LiferayLogger.i("loaded form");
+				Record record = (Record) argument;
+
+				showFormFields(record);
 				break;
 		}
 	}

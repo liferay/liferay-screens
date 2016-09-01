@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,17 +48,14 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			}
 		};
 
-	public StringWithOptionsField(Map<String, Object> attributes, Locale locale,
-	                              Locale defaultLocale) {
+	public StringWithOptionsField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
 
-		List<Map<String, String>> availableOptions =
-			(List<Map<String, String>>) attributes.get("options");
+		List<Map<String, String>> availableOptions = (List<Map<String, String>>) attributes.get("options");
 
 		if (availableOptions == null) {
 			_availableOptions = new ArrayList<>();
-		}
-		else {
+		} else {
 			_availableOptions = new ArrayList<>(availableOptions.size());
 
 			for (Map<String, String> optionMap : availableOptions) {
@@ -70,8 +66,7 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 		Object multipleValue = attributes.get("multiple");
 		_multiple = (multipleValue != null) ? Boolean.valueOf(multipleValue.toString()) : false;
 
-		ArrayList<Option> predefinedOptions =
-			convertFromString(getAttributeStringValue(attributes, "predefinedValue"));
+		ArrayList<Option> predefinedOptions = convertFromString(getAttributeStringValue(attributes, "predefinedValue"));
 
 		setPredefinedValue(predefinedOptions);
 		setCurrentValue(predefinedOptions);
@@ -102,7 +97,7 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 	public void clearOption(Option option) {
 		List<Option> options = getCurrentValue();
 
-		if (options == null) {
+		if (options.isEmpty()) {
 			return;
 		}
 
@@ -121,8 +116,7 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			options.add(option);
 
 			setCurrentValue(options);
-		}
-		else {
+		} else {
 			ArrayList<Option> options = getCurrentValue();
 
 			if (options == null) {
@@ -205,8 +199,7 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			if (isFirst) {
 				result.append('"');
 				isFirst = false;
-			}
-			else {
+			} else {
 				result.append(", \"");
 			}
 
@@ -226,12 +219,14 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			return "";
 		}
 
-		String label = values.get(0).label;
+		StringBuilder stringBuilder = new StringBuilder(values.get(0).label);
+
 		for (int i = 1; i < values.size(); i++) {
-			label += " - " + values.get(i).label;
+			stringBuilder.append(" - ");
+			stringBuilder.append(values.get(i).label);
 		}
 
-		return label;
+		return stringBuilder.toString();
 	}
 
 	protected Option findOptionByValue(String value) {
@@ -295,10 +290,8 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 				Option opt = (Option) obj;
 
 				if (name != null) {
-					return label.equals(opt.label) && value.equals(opt.value) && name.equals(
-						opt.name);
-				}
-				else {
+					return label.equals(opt.label) && value.equals(opt.value) && name.equals(opt.name);
+				} else {
 					return label.equals(opt.label) && value.equals(opt.value);
 				}
 			}

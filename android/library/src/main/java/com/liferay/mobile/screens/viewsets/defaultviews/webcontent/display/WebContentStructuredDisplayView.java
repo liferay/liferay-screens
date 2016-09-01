@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.ddl.model.Field;
@@ -15,8 +14,7 @@ import com.liferay.mobile.screens.webcontent.display.view.WebContentDisplayViewM
 /**
  * @author Javier Gamarra
  */
-public class WebContentStructuredDisplayView extends LinearLayout
-	implements WebContentDisplayViewModel {
+public class WebContentStructuredDisplayView extends LinearLayout implements WebContentDisplayViewModel {
 
 	public WebContentStructuredDisplayView(Context context) {
 		super(context);
@@ -68,20 +66,21 @@ public class WebContentStructuredDisplayView extends LinearLayout
 		WebContentDisplayScreenlet screenlet = (WebContentDisplayScreenlet) getScreenlet();
 		String labelFields = screenlet.getLabelFields();
 
-		String value = "";
-
 		if (labelFields.isEmpty()) {
 			return (String) webContent.getDDMStructure().getField(0).getCurrentValue();
 		}
 
+		StringBuilder stringBuilder = new StringBuilder("");
+
 		for (String label : labelFields.split(",")) {
 			Field field = webContent.getDDMStructure().getFieldByName(label);
 			if (field != null) {
-				value += field.getCurrentValue() + "\r\n";
+				stringBuilder.append(field.getCurrentValue());
+				stringBuilder.append("\r\n");
 			}
 		}
 
-		return value;
+		return stringBuilder.toString();
 	}
 
 	@Override

@@ -2,16 +2,16 @@ package com.liferay.mobile.screens.base.list.interactor;
 
 import android.util.Pair;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
+import java.io.Serializable;
 import java.util.Locale;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Query {
+public class Query implements Serializable {
 
 	private int startRow;
 	private int endRow;
 	private String comparator;
-	private String endRowFormatted;
 
 	public Query() {
 		super();

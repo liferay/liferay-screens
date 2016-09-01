@@ -58,7 +58,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		public static DataType valueOf(Element element) {
 			String attributeValue = element.getAttribute("dataType");
 
-			if (attributeValue == null) {
+			if (attributeValue.isEmpty()) {
 				return UNSUPPORTED;
 			}
 

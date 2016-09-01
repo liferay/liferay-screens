@@ -292,6 +292,7 @@ public class IssuesActivity extends CardActivity
 				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.default_sms_uri))));
 				break;
 			case R.id.sign_out_menu_entry:
+			default:
 				color = R.color.light_gray_westeros;
 
 				SessionContext.logout();
