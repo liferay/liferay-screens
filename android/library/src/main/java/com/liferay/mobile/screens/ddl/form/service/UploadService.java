@@ -19,7 +19,7 @@ import android.content.Intent;
 import android.webkit.MimeTypeMap;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.base.thread.event.ErrorThreadEvent;
+import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadEvent;
@@ -60,14 +60,20 @@ public class UploadService extends IntentService {
 		Long repositoryId = intent.getLongExtra("repositoryId", 0);
 		Long folderId = intent.getLongExtra("folderId", 0);
 		String filePrefix = intent.getStringExtra("filePrefix");
+		int targetScreenletId = intent.getIntExtra("targetScreenletId", 0);
+		String actionName = intent.getStringExtra("actionName");
 
 		try {
 			JSONObject jsonObject = uploadFile(file, userId, groupId, repositoryId, folderId, filePrefix);
 
-			DDLFormDocumentUploadEvent event = new DDLFormDocumentUploadEvent(file, repositoryId, folderId, filePrefix, jsonObject);
+			DDLFormDocumentUploadEvent event =
+				new DDLFormDocumentUploadEvent(file, repositoryId, folderId, filePrefix, jsonObject);
+			decorateEvent(event, groupId, userId, null, targetScreenletId, actionName);
 			EventBusUtil.post(event);
 		} catch (Exception e) {
-			EventBusUtil.post(new ErrorThreadEvent(e));
+			DDLFormDocumentUploadEvent event = new DDLFormDocumentUploadEvent(e);
+			decorateEvent(event, groupId, userId, null, targetScreenletId, actionName);
+			EventBusUtil.post(event);
 		}
 	}
 
@@ -124,5 +130,15 @@ public class UploadService extends IntentService {
 			return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
 		}
 		return null;
+	}
+
+	private void decorateEvent(OfflineEventNew event, long groupId, long userId, Locale locale, int targetScreenletId,
+		String actionName) {
+		event.setGroupId(groupId);
+		event.setUserId(userId);
+		event.setLocale(locale);
+		event.setCachedRequest(false);
+		event.setTargetScreenletId(targetScreenletId);
+		event.setActionName(actionName);
 	}
 }

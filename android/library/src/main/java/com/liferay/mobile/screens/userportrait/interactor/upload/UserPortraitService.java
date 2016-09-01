@@ -22,13 +22,13 @@ import android.graphics.Matrix;
 import android.media.ExifInterface;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
+import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Locale;
-import java.util.Random;
 import org.json.JSONObject;
 
 /**
@@ -50,38 +50,23 @@ public class UserPortraitService extends IntentService {
 
 	public void uploadFromIntent(Intent intent) {
 		String picturePath = intent.getStringExtra("picturePath");
-
-		int targetScreenletId = intent.getIntExtra("screenletId", 0);
-		String actionName = intent.getStringExtra("actionName");
 		long groupId = intent.getLongExtra("groupId", 0L);
 		long userId = intent.getLongExtra("userId", 0L);
 		Locale locale = (Locale) intent.getSerializableExtra("locale");
+		int targetScreenletId = intent.getIntExtra("targetScreenletId", 0);
+		String actionName = intent.getStringExtra("actionName");
 
 		try {
-
-			Random random = new Random(System.currentTimeMillis());
-			int chance = random.nextInt(6);
-
-			if (chance >= 1) {
-				throw new Exception("Chance");
-			}
 			JSONObject jsonObject = uploadUserPortrait(userId, picturePath);
 			UserPortraitUploadEvent event = new UserPortraitUploadEvent(picturePath, jsonObject);
 			event.setPicturePath(picturePath);
-			event.setGroupId(groupId);
-			event.setUserId(userId);
-			event.setLocale(locale);
-			event.setCachedRequest(false);
-			sendEvent(targetScreenletId, actionName, event);
+			decorateEvent(event, groupId, userId, locale, targetScreenletId, actionName);
+			EventBusUtil.post(event);
 		} catch (Exception e) {
 			UserPortraitUploadEvent event = new UserPortraitUploadEvent(e);
 			event.setPicturePath(picturePath);
-			event.setGroupId(groupId);
-			event.setUserId(userId);
-			event.setLocale(locale);
-			event.setCachedRequest(false);
-
-			sendEvent(targetScreenletId, actionName, event);
+			decorateEvent(event, groupId, userId, locale, targetScreenletId, actionName);
+			EventBusUtil.post(event);
 		}
 	}
 
@@ -151,9 +136,13 @@ public class UserPortraitService extends IntentService {
 		}
 	}
 
-	private void sendEvent(int targetScreenletId, String actionName, UserPortraitUploadEvent event) {
+	private void decorateEvent(OfflineEventNew event, long groupId, long userId, Locale locale, int targetScreenletId,
+		String actionName) {
+		event.setGroupId(groupId);
+		event.setUserId(userId);
+		event.setLocale(locale);
+		event.setCachedRequest(false);
 		event.setTargetScreenletId(targetScreenletId);
 		event.setActionName(actionName);
-		EventBusUtil.post(event);
 	}
 }

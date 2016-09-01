@@ -15,22 +15,24 @@ public class DDLFormDocumentUploadInteractorImpl
 
 	@Override
 	protected void online(DDLFormDocumentUploadEvent event) throws Exception {
+		decorateEvent(event, false);
+		execute(event);
+	}
+
+	@Override
+	public DDLFormDocumentUploadEvent execute(DDLFormDocumentUploadEvent event) {
 
 		Context context = LiferayScreensContext.getContext();
-
 		Intent service = new Intent(context, UploadService.class);
 		service.putExtra("file", event.getDocumentField());
 		service.putExtra("userId", event.getUserId());
 		service.putExtra("folderId", event.getFolderId());
-		service.putExtra("screenletId", getTargetScreenletId());
 		service.putExtra("filePrefix", event.getFilePrefix());
+		service.putExtra("targetScreenletId", getTargetScreenletId());
+		service.putExtra("actionName", getActionName());
 
 		context.startService(service);
-	}
-
-	@Override
-	public DDLFormDocumentUploadEvent execute(DDLFormDocumentUploadEvent event) throws Exception {
-		throw new AssertionError("Should not be called");
+		return null;
 	}
 
 	@Override

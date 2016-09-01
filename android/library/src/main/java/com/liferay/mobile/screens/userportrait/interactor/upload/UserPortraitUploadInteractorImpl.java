@@ -27,22 +27,24 @@ public class UserPortraitUploadInteractorImpl
 	@Override
 	public void online(UserPortraitUploadEvent event) throws Exception {
 		decorateEvent(event, false);
-		String picturePath = event.getPicturePath();
+		execute(event);
+	}
 
-		Intent intent = new Intent(LiferayScreensContext.getContext(), UserPortraitService.class);
-		intent.putExtra("picturePath", picturePath);
-		intent.putExtra("screenletId", getTargetScreenletId());
+	@Override
+	public UserPortraitUploadEvent execute(UserPortraitUploadEvent event) {
+
+		Context context = LiferayScreensContext.getContext();
+		Intent intent = new Intent(context, UserPortraitService.class);
+		intent.putExtra("picturePath", event.getPicturePath());
 		intent.putExtra("actionName", event.getActionName());
 		intent.putExtra("userId", event.getUserId());
 		intent.putExtra("groupId", event.getGroupId());
 		intent.putExtra("locale", event.getLocale());
+		intent.putExtra("targetScreenletId", getTargetScreenletId());
+		intent.putExtra("actionName", getActionName());
 
-		LiferayScreensContext.getContext().startService(intent);
-	}
-
-	@Override
-	public UserPortraitUploadEvent execute(UserPortraitUploadEvent event) throws Exception {
-		throw new AssertionError("should not be called!");
+		context.startService(intent);
+		return null;
 	}
 
 	@Override
