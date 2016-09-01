@@ -46,81 +46,82 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.ddl_form:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(DDLFormActivity.class));
+				start(DDLFormActivity.class);
 				break;
 			case R.id.ddl_list:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(DDLListActivity.class));
+				start(DDLListActivity.class);
 				break;
 			case R.id.asset_list:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(SelectAssetActivity.class));
+				start(SelectAssetActivity.class);
 				break;
 			case R.id.web_content_list:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(WebViewListActivity.class));
+				start(WebViewListActivity.class);
 				break;
 			case R.id.sign_up:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(SignUpActivity.class));
+				start(SignUpActivity.class);
 				break;
 			case R.id.forgot_password:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(ForgotPasswordActivity.class));
+				start(ForgotPasswordActivity.class);
 				break;
 			case R.id.user_portrait:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(UserPortraitActivity.class));
+				start(UserPortraitActivity.class);
 				break;
 			case R.id.web_content_display_screenlet:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(WebContentDisplayActivity.class));
+				start(WebContentDisplayActivity.class);
 				break;
 			case R.id.web_content_display_screenlet_structured:
-				DefaultAnimation.startActivityWithAnimation(this,
-					getIntentWithTheme(WebContentDisplayStructuredActivity.class));
+				start(WebContentDisplayStructuredActivity.class);
 				break;
 			case R.id.add_bookmark:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(AddBookmarkActivity.class));
+				start(AddBookmarkActivity.class);
 				break;
 			case R.id.journal_article_with_template:
-				DefaultAnimation.startActivityWithAnimation(this,
-					getIntentWithTheme(JournalArticleWithTemplateActivity.class));
+				start(JournalArticleWithTemplateActivity.class);
 				break;
 			case R.id.filtered_asset:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(FilteredAssetActivity.class));
+				start(FilteredAssetActivity.class);
 				break;
 			case R.id.login_full_screenlet:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(LoginFullActivity.class));
+				start(LoginFullActivity.class);
 				break;
 			case R.id.change_theme:
 				finish();
 				changeToNextTheme();
-				startActivity(getIntentWithTheme(MainActivity.class));
+				start(MainActivity.class);
 				break;
 			case R.id.clear_cache_forms:
-				Cache.destroy(DDLFormEvent.class.getSimpleName());
-				info("Deleted DDLFormEvent cache entries");
+				boolean destroyed = Cache.destroy(DDLFormEvent.class.getSimpleName());
+				info("Deleted DDLFormEvent cache entries: " + (destroyed ? "successfully" : "failed"));
 				break;
 			case R.id.clear_cache:
 				boolean success = Cache.destroy();
-				String clearCacheMessage = "Cache cleared: " + (success ? "successfully" : "failed");
-				info(clearCacheMessage);
+				info("Cache cleared: " + (success ? "successfully" : "failed"));
 				break;
 			case R.id.sync_cache:
 				Cache.resync();
 				info("Launched resync process");
 				break;
 			case R.id.custom_interactor:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(CustomInteractorActivity.class));
+				start(CustomInteractorActivity.class);
 				break;
 			case R.id.list_bookmarks:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(ListBookmarksActivity.class));
+				start(ListBookmarksActivity.class);
 				break;
 			case R.id.relogin:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(ReloginActivity.class));
+				start(ReloginActivity.class);
 				break;
 			case R.id.list_comments:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(CommentsActivity.class));
+				start(CommentsActivity.class);
 				break;
 			case R.id.ratings:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(RatingsActivity.class));
+				start(RatingsActivity.class);
 				break;
 			default:
-				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(LoginActivity.class));
+				start(LoginActivity.class);
 		}
+	}
+
+	private void start(Class activity) {
+		DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(activity));
 	}
 }
