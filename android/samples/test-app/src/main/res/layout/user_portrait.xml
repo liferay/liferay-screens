@@ -4,11 +4,13 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="@android:color/white"
-	android:orientation="vertical">
+	android:orientation="vertical"
+	>
 
 	<TextView
 		style="@style/label"
-		android:text="@string/user_portrait_label" />
+		android:text="@string/user_portrait_label"
+		/>
 
 	<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
 		android:id="@+id/user_portrait_screenlet"
@@ -16,6 +18,7 @@
 		android:layout_height="100dp"
 		liferay:autoLoad="false"
 		liferay:editable="true"
-		liferay:offlinePolicy="REMOTE_FIRST" />
+		liferay:offlinePolicy="REMOTE_FIRST"
+		/>
 
 </LinearLayout>

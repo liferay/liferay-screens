@@ -4,7 +4,8 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:paddingRight="10dp">
+	android:paddingRight="10dp"
+	>
 
 	<ProgressBar
 		android:id="@+id/liferay_progress"
@@ -13,19 +14,22 @@
 		android:layout_gravity="center"
 		android:layout_margin="15dp"
 		android:visibility="gone"
-		tools:visibility="visible" />
+		tools:visibility="visible"
+		/>
 
 	<RelativeLayout
 		android:id="@+id/comment_display_content"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		>
 
 		<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
 			android:id="@+id/comment_user_portrait"
 			android:layout_width="70dp"
 			android:layout_height="70dp"
 			android:layout_alignParentLeft="true"
-			liferay:offlinePolicy="REMOTE_FIRST" />
+			liferay:offlinePolicy="REMOTE_FIRST"
+			/>
 
 		<TextView
 			android:id="@+id/comment_user_name"
@@ -37,7 +41,8 @@
 			android:layout_toRightOf="@+id/comment_user_portrait"
 			android:padding="0dp"
 			android:textStyle="bold"
-			tools:text="Android Phone Jr." />
+			tools:text="Android Phone Jr."
+			/>
 
 		<TextView
 			android:id="@+id/comment_create_date"
@@ -51,7 +56,8 @@
 			android:layout_toRightOf="@+id/comment_user_portrait"
 			android:padding="0dp"
 			android:textSize="12sp"
-			tools:text="15 minutes ago" />
+			tools:text="15 minutes ago"
+			/>
 
 		<TextView
 			android:id="@+id/comment_edited"
@@ -69,7 +75,8 @@
 			android:textSize="12sp"
 			android:textStyle="bold|italic"
 			android:visibility="gone"
-			tools:visibility="visible" />
+			tools:visibility="visible"
+			/>
 
 		<ImageButton
 			android:id="@+id/comment_edit_or_confirm"
@@ -81,7 +88,8 @@
 			android:contentDescription="@string/edit_comment"
 			android:src="@drawable/default_comment_edit"
 			android:visibility="gone"
-			tools:visibility="visible" />
+			tools:visibility="visible"
+			/>
 
 		<ImageButton
 			android:id="@+id/comment_delete_or_cancel"
@@ -92,7 +100,8 @@
 			android:contentDescription="@string/delete_comment"
 			android:src="@drawable/default_comment_delete"
 			android:visibility="gone"
-			tools:visibility="visible" />
+			tools:visibility="visible"
+			/>
 
 		<FrameLayout
 			android:id="@+id/comment_body_group"
@@ -102,13 +111,16 @@
 			android:layout_alignParentRight="true"
 			android:layout_below="@+id/comment_user_portrait"
 			android:layout_marginBottom="10dp"
-			android:layout_marginLeft="10dp">
+			android:layout_marginLeft="10dp"
+			>
 
 			<TextView
 				android:id="@+id/comment_body"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:padding="0dp" />
+				android:labelFor="@+id/comment_edit_body"
+				android:padding="0dp"
+				/>
 
 			<EditText
 				android:id="@+id/comment_edit_body"
@@ -118,7 +130,8 @@
 				android:imeOptions="actionDone"
 				android:inputType="text"
 				android:lines="3"
-				android:textSize="15sp" />
+				android:textSize="15sp"
+				/>
 		</FrameLayout>
 
 	</RelativeLayout>

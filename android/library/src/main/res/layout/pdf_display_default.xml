@@ -44,6 +44,7 @@
 			android:layout_marginRight="5dp"
 			android:layout_weight="1"
 			android:inputType="number"
+			android:labelFor="@+id/liferay_go_to_page"
 			android:visibility="gone"
 			tools:visibility="visible"
 			/>
@@ -67,6 +68,7 @@
 		android:layout_height="wrap_content"
 		android:layout_weight="8"
 		android:adjustViewBounds="true"
+		android:contentDescription="@string/pdf_content"
 		android:scaleType="fitXY"
 		/>
 

@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:background="@android:color/white">
+	android:background="@android:color/white"
+	>
 
 	<ImageView
 		android:id="@+id/notification_image"
@@ -13,7 +14,9 @@
 		android:layout_centerVertical="true"
 		android:layout_marginLeft="10dp"
 		android:layout_marginStart="10dp"
-		android:src="@drawable/liferay_icon" />
+		android:contentDescription="@string/liferay_screens_icon"
+		android:src="@drawable/liferay_icon"
+		/>
 
 	<LinearLayout
 		android:layout_width="wrap_content"
@@ -25,7 +28,8 @@
 		android:padding="15dp"
 		android:paddingLeft="50dp"
 		android:paddingRight="50dp"
-		android:paddingStart="50dp">
+		android:paddingStart="50dp"
+		>
 
 		<TextView
 			android:id="@+id/notification_title"
@@ -33,20 +37,23 @@
 			android:layout_height="wrap_content"
 			android:textAllCaps="true"
 			android:textColor="@color/material_primary"
-			android:textStyle="bold" />
+			android:textStyle="bold"
+			/>
 
 		<TextView
 			android:id="@+id/notification_subtitle"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:textSize="14sp" />
+			android:textSize="14sp"
+			/>
 	</LinearLayout>
 
 	<View
 		android:layout_width="match_parent"
 		android:layout_height="1dp"
 		android:layout_alignParentBottom="true"
-		android:background="@android:color/darker_gray" />
+		android:background="@android:color/darker_gray"
+		/>
 
 </RelativeLayout>
 

@@ -51,5 +51,14 @@
 	<string name="default_telephone_uri">tel:900000000</string>
 	<string name="default_sms_uri">sms:900000000</string>
 	<string name="created">"Created "</string>
+	<string name="tour_image">Tour Image</string>
+	<string name="window">Window</string>
+	<string name="girl_asking_for_support">Girl asking for support</string>
+	<string name="westeros_logo">Westeros Logo</string>
+	<string name="back_arrow">back arrow</string>
+	<string name="westeros_gray_logo">Westeros Gray Logo</string>
+	<string name="down_arrow">down arrow</string>
+	<string name="two_parallel_lines">two parallel lines</string>
+	<string name="left_arrow">left arrow</string>
 
 </resources>

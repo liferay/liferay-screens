@@ -5,4 +5,5 @@
 	android:drawableEnd="@drawable/material_query_builder"
 	android:drawableRight="@drawable/material_query_builder"
 	android:gravity="center_vertical"
-	android:text="@string/default_empty_value" />
+	android:text="@string/default_empty_value"
+	/>
