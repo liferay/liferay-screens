@@ -53,6 +53,7 @@ public class UserPortraitUploadInteractorImpl
 		User oldLoggedUser = SessionContext.getCurrentUser();
 
 		User user = new User(event.getJSONObject());
+
 		if (oldLoggedUser != null && user.getId() == oldLoggedUser.getId()) {
 			SessionContext.setCurrentUser(user);
 		}
@@ -61,7 +62,7 @@ public class UserPortraitUploadInteractorImpl
 			user.getPortraitId(), user.getUuid());
 		invalidateUrl(userPortraitUri);
 
-		getListener().onUserPortraitUploaded(oldLoggedUser.getId());
+		getListener().onUserPortraitUploaded(oldLoggedUser == null ? null : oldLoggedUser.getId());
 	}
 
 	@Override

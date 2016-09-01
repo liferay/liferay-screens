@@ -1,7 +1,6 @@
 package com.liferay.mobile.screens.base;
 
 import android.util.Log;
-
 import com.liferay.mobile.screens.context.LiferayServerContext;
 
 /**
@@ -10,8 +9,8 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 public class FactoryProvider {
 
 	public static AbstractFactory getInstance() {
-		if (_abstractFactory == null) {
-			synchronized (AbstractFactory.class) {
+		synchronized (AbstractFactory.class) {
+			if (_abstractFactory == null) {
 				_abstractFactory = createFactory();
 			}
 		}
@@ -21,8 +20,7 @@ public class FactoryProvider {
 	private static AbstractFactory createFactory() {
 		try {
 			return (AbstractFactory) Class.forName(LiferayServerContext.getClassFactory()).newInstance();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			Log.e("LiferayScreens", "Error creating the instance class, " +
 				"there isn't an attribute called *factory_class* that can be instantiated. " +
 				"Are you sure that your class and package exists and it has a public empty constructor?");

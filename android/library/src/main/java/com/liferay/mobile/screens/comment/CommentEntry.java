@@ -56,7 +56,7 @@ public class CommentEntry implements Parcelable {
 	}
 
 	public long getUserId() {
-		return Long.valueOf((String) values.get("userId"));
+		return Long.parseLong((String) values.get("userId"));
 	}
 
 	public String getUserName() {
@@ -91,7 +91,7 @@ public class CommentEntry implements Parcelable {
 	}
 
 	public long getCommentId() {
-		return Long.valueOf((String) values.get("commentId"));
+		return Long.parseLong((String) values.get("commentId"));
 	}
 
 	@Override

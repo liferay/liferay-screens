@@ -64,7 +64,7 @@ public class AddDeliciousInteractorImpl extends BaseRemoteInteractorNew<AddBookm
 		getListener().onAddBookmarkSuccess();
 	}
 
-	class BookmarkAdded extends BasicThreadEvent {
+	static class BookmarkAdded extends BasicThreadEvent {
 
 		public BookmarkAdded(String text) {
 			this.text = text;

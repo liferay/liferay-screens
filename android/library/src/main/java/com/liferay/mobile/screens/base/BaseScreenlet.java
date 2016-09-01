@@ -305,7 +305,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 			return defaultValue;
 		}
 		try {
-			return Long.valueOf(value);
+			return Long.parseLong(value);
 		} catch (NumberFormatException e) {
 			LiferayLogger.e("You have supplied a string and we expected a long number", e);
 			throw e;

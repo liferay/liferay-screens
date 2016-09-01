@@ -39,7 +39,7 @@ public class CustomInteractorActivity extends ThemeActivity
 		return new CustomLoginInteractor();
 	}
 
-	private class CustomLoginInteractor extends BaseLoginInteractor {
+	private static class CustomLoginInteractor extends BaseLoginInteractor {
 
 		@Override
 		public BasicThreadEvent execute(Object[] args) throws Exception {

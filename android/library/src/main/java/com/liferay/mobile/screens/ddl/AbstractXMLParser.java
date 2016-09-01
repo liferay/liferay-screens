@@ -59,7 +59,7 @@ public abstract class AbstractXMLParser {
 
 	protected List<Element> getChildren(Element element, String tagName, String attrName, String attrValue) {
 		NodeList childList = element.getElementsByTagName(tagName);
-		int len = (childList == null) ? 0 : childList.getLength();
+		int len = childList.getLength();
 
 		List<Element> result = new ArrayList<>(len);
 
@@ -119,8 +119,7 @@ public abstract class AbstractXMLParser {
 				for (int i = 0; resultElement == null && i < metadataLen; ++i) {
 					Element childElement = (Element) metadataList.item(i);
 					String childLocale = childElement.getAttribute(attrName);
-					if (childLocale != null && supportedLocale.equals(childLocale) && dynamicElement.equals(
-						childElement.getParentNode())) {
+					if (supportedLocale.equals(childLocale) && dynamicElement.equals(childElement.getParentNode())) {
 						resultElement = childElement;
 					}
 				}
@@ -162,7 +161,7 @@ public abstract class AbstractXMLParser {
 	@Nullable
 	protected Locale getDefaultDocumentLocale(Element root) {
 		String defaultLocaleValue = root.getAttribute("default-locale");
-		if (defaultLocaleValue == null) {
+		if (defaultLocaleValue.isEmpty()) {
 			return null;
 		}
 

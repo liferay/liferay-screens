@@ -87,7 +87,7 @@ public class RatingsActivity extends ThemeActivity
 
 	private void displayScreenlet(int layoutId, int entryId, int ratingsGroupCount) {
 		ratingScreenlet = new RatingScreenlet(this);
-		ratingScreenlet.setEntryId(Long.valueOf(getResources().getString(entryId)));
+		ratingScreenlet.setEntryId(Long.parseLong(getResources().getString(entryId)));
 		ratingScreenlet.setAutoLoad(true);
 		ratingScreenlet.setRatingsGroupCount(ratingsGroupCount);
 		ratingScreenlet.render(layoutId);
