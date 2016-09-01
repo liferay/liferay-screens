@@ -80,7 +80,7 @@ public class UploadService extends IntentService {
 	public JSONObject uploadFile(DocumentField file, Long userId, Long groupId, Long repositoryId, Long folderId,
 		String filePrefix) throws Exception {
 		String path = file.getCurrentValue().toString();
-		String name = path.substring(path.lastIndexOf("/") + 1);
+		String name = path.substring(path.lastIndexOf('/') + 1);
 		String date = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
 
 		Session session = SessionContext.createSessionFromCurrentSession();

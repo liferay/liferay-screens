@@ -76,13 +76,13 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 
 	@Override
 	public void onClick(View v) {
-		if (v == _card1 || v == _card2SubViewToCard1 || v == _card2ToCard1) {
+		if (v.equals(_card1) || v.equals(_card2SubViewToCard1) || v.equals(_card2ToCard1)) {
 			toCard1(null);
-		} else if (v == _card2) {
+		} else if (v.equals(_card2)) {
 			toCard2();
-		} else if (v == _card1ToFrontView) {
+		} else if (v.equals(_card1ToFrontView)) {
 			goLeftCard1();
-		} else if (v == _card2ToFrontView) {
+		} else if (v.equals(_card2ToFrontView)) {
 			goLeftCard2();
 		} else {
 			toBackground();

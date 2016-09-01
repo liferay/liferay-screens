@@ -8,6 +8,10 @@ import java.util.concurrent.Executors;
  */
 public class Executor {
 
+	private Executor() {
+		super();
+	}
+
 	public static final int N_THREADS = 3;
 
 	public static synchronized ExecutorService getExecutor() {

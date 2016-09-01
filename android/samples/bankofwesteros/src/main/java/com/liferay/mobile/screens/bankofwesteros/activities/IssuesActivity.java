@@ -312,12 +312,11 @@ public class IssuesActivity extends CardActivity
 				public void call(Boolean result) {
 					button.setBackgroundColor(
 						ResourcesCompat.getColor(getResources(), R.color.light_gray_westeros, getTheme()));
-					if (result) {
-						if (ActivityCompat.checkSelfPermission(IssuesActivity.this, Manifest.permission.CALL_PHONE)
-							== PackageManager.PERMISSION_GRANTED) {
-							startActivity(
-								new Intent(Intent.ACTION_CALL, Uri.parse(getString(R.string.default_telephone_uri))));
-						}
+					if (result
+						&& ActivityCompat.checkSelfPermission(IssuesActivity.this, Manifest.permission.CALL_PHONE)
+						== PackageManager.PERMISSION_GRANTED) {
+						startActivity(
+							new Intent(Intent.ACTION_CALL, Uri.parse(getString(R.string.default_telephone_uri))));
 					}
 				}
 			});

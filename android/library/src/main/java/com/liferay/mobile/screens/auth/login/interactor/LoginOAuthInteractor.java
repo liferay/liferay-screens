@@ -29,25 +29,25 @@ public class LoginOAuthInteractor extends BaseLoginInteractor {
 	@Override
 	public BasicThreadEvent execute(Object[] args) throws Exception {
 
-		if (OAuthConfig == null) {
+		if (config == null) {
 			throw new IllegalArgumentException("OAuth configuration cannot be empty");
 		}
 
-		Session session = SessionContext.createOAuthSession(OAuthConfig);
+		Session session = SessionContext.createOAuthSession(config);
 		JSONObject jsonObject = ServiceProvider.getInstance().getCurrentUserConnector(session).getCurrentUser();
 
 		return new BasicThreadEvent(jsonObject);
 	}
 
 	public OAuthConfig getOAuthConfig() {
-		return OAuthConfig;
+		return config;
 	}
 
-	public void setOAuthConfig(OAuthConfig value) {
-		OAuthConfig = value;
+	public void setOAuthConfig(OAuthConfig config) {
+		this.config = config;
 	}
 
 	// NOTE: this interactor can store state because this attribute
 	// isn't used after the request is fired.
-	private OAuthConfig OAuthConfig;
+	private OAuthConfig config;
 }

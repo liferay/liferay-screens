@@ -119,10 +119,6 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 		} else {
 			ArrayList<Option> options = getCurrentValue();
 
-			if (options == null) {
-				options = new ArrayList<>();
-			}
-
 			if (!options.contains(option)) {
 				options.add(option);
 			}

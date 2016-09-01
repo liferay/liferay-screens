@@ -11,14 +11,14 @@ import com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.pdf.PdfDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.video.VideoDisplayScreenlet;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Sarai Díaz García
  */
 public class AssetDisplayFactory {
 
-	public BaseScreenlet getScreenlet(Context context, AssetEntry assetEntry, HashMap<String, Integer> layouts,
+	public BaseScreenlet getScreenlet(Context context, AssetEntry assetEntry, Map<String, Integer> layouts,
 		boolean autoLoad) {
 
 		String className = assetEntry.getClassName();

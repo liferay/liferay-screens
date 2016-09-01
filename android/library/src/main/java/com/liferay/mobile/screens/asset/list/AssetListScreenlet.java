@@ -25,6 +25,7 @@ import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Silvio Santos
@@ -85,7 +86,7 @@ public class AssetListScreenlet extends BaseListScreenlet<AssetEntry, AssetListI
 
 	}
 
-	public HashMap<String, Object> getCustomEntryQuery() {
+	public Map<String, Object> getCustomEntryQuery() {
 		return _customEntryQuery;
 	}
 

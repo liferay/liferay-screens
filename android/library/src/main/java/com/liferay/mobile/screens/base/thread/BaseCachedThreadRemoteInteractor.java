@@ -59,7 +59,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 							boolean retrievedFromCache = cached(args);
 
 							if (!retrievedFromCache) {
-								throw new NoSuchElementException();
+								throw new RuntimeException("Not found in cache", e);
 							}
 						}
 					} else {

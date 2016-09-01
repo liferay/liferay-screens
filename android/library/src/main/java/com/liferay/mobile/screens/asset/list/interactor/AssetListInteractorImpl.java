@@ -63,7 +63,7 @@ public class AssetListInteractorImpl extends BaseListInteractor<AssetListInterac
 		return null;
 	}
 
-	private JSONArray getEntries(Query query, long classNameId, HashMap<String, Object> customEntryQuery,
+	private JSONArray getEntries(Query query, long classNameId, Map<String, Object> customEntryQuery,
 		String portletItemName) throws Exception {
 		if (portletItemName == null) {
 
@@ -84,7 +84,7 @@ public class AssetListInteractorImpl extends BaseListInteractor<AssetListInterac
 		}
 	}
 
-	private int getCount(long classNameId, HashMap<String, Object> customEntryQuery, String portletItemName,
+	private int getCount(long classNameId, Map<String, Object> customEntryQuery, String portletItemName,
 		JSONArray jsonArray) throws Exception {
 		if (portletItemName == null) {
 			JSONObject entryQueryParams = configureEntryQuery(groupId, classNameId, customEntryQuery);
@@ -119,7 +119,7 @@ public class AssetListInteractorImpl extends BaseListInteractor<AssetListInterac
 		return portletItemName == null ? String.valueOf(classNameId) : portletItemName;
 	}
 
-	protected JSONObject configureEntryQuery(long groupId, long classNameId, HashMap<String, Object> customEntryQuery)
+	protected JSONObject configureEntryQuery(long groupId, long classNameId, Map<String, Object> customEntryQuery)
 		throws JSONException {
 
 		JSONObject entryQueryParams = customEntryQuery == null ? new JSONObject() : new JSONObject(customEntryQuery);

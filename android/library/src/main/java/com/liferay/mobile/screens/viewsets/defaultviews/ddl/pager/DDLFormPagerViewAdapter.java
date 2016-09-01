@@ -68,7 +68,7 @@ public class DDLFormPagerViewAdapter extends PagerAdapter {
 
 	@Override
 	public boolean isViewFromObject(View view, Object object) {
-		return (view == object);
+		return view.equals(object);
 	}
 
 	private final List<Field> _fields;

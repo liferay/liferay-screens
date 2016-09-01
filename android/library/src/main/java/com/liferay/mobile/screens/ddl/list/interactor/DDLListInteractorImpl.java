@@ -50,8 +50,10 @@ public class DDLListInteractorImpl extends BaseListInteractor<DDLListInteractorL
 		int endRow = query.getEndRow();
 		String localeString = locale.toString();
 
-		return userId != 0 ? ddlRecordService.getDdlRecords(recordSetId, userId, localeString, startRow, endRow, query.getComparatorJSONWrapper())
-			: ddlRecordService.getDdlRecords(recordSetId, localeString, startRow, endRow, query.getComparatorJSONWrapper());
+		return userId != 0 ? ddlRecordService.getDdlRecords(recordSetId, userId, localeString, startRow, endRow,
+			query.getComparatorJSONWrapper())
+			: ddlRecordService.getDdlRecords(recordSetId, localeString, startRow, endRow,
+				query.getComparatorJSONWrapper());
 	}
 
 	@Override

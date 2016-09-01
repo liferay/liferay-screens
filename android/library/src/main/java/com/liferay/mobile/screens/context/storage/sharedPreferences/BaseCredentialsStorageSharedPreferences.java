@@ -107,7 +107,7 @@ public abstract class BaseCredentialsStorageSharedPreferences implements Credent
 			_user = new User(new JSONObject(userAttributes));
 		}
 		catch (JSONException e) {
-			throw new IllegalStateException("Stored user attributes are corrupted");
+			throw new IllegalStateException("Stored user attributes are corrupted", e);
 		}
 
 		return true;

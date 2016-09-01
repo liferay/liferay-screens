@@ -185,12 +185,12 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		parseServerValues();
 	}
 
-	public HashMap<String, Object> getModelValues() {
+	public Map<String, Object> getModelValues() {
 		return (HashMap<String, Object>) _values.get(MODEL_VALUES);
 	}
 
-	public HashMap<String, Object> getModelAttributes() {
-		return (HashMap<String, Object>) _values.get(MODEL_ATTRIBUTES);
+	public Map<String, Object> getModelAttributes() {
+		return (Map<String, Object>) _values.get(MODEL_ATTRIBUTES);
 	}
 
 	@Override

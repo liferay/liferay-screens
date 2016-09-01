@@ -14,6 +14,10 @@ import java.util.Locale;
 
 public class Cache {
 
+	private Cache() {
+		super();
+	}
+
 	public static final String SEPARATOR = "-";
 
 	public static <E extends OfflineEventNew> E getObject(Class aClass, Long groupId, Long userId, Locale locale,
@@ -110,10 +114,8 @@ public class Cache {
 
 	@NonNull
 	private static String getFullId(Class aClass, Locale locale, String cacheKey, Integer row) {
-		return aClass.getSimpleName() + SEPARATOR +
-			locale + SEPARATOR +
-			(row == null ? "" : String.format(Locale.US, "%05d", row) + SEPARATOR) +
-			(cacheKey == null ? "" : cacheKey);
+		return aClass.getSimpleName() + SEPARATOR + locale + SEPARATOR + (row == null ? ""
+			: String.format(Locale.US, "%05d", row) + SEPARATOR) + (cacheKey == null ? "" : cacheKey);
 	}
 
 	private static String databaseName(Long groupId, Long userId) {
