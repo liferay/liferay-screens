@@ -4,6 +4,8 @@ import android.content.Context;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.blogs.BlogsEntry;
+import com.liferay.mobile.screens.blogs.BlogsEntryDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.BaseFileDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.FileEntry;
 import com.liferay.mobile.screens.dlfile.display.audio.AudioDisplayScreenlet;
@@ -36,6 +38,17 @@ public class AssetDisplayFactory {
 					screenlet.render(layoutId);
 					return screenlet;
 				}
+				return null;
+
+			case "com.liferay.blogs.kernel.model.BlogsEntry":
+
+				BlogsEntryDisplayScreenlet blogsScreenlet = new BlogsEntryDisplayScreenlet(context);
+				Integer layoutId = layouts.get(blogsScreenlet.getClass().getName());
+				blogsScreenlet.setBlogsEntry((BlogsEntry) assetEntry);
+				blogsScreenlet.setAutoLoad(autoLoad);
+				blogsScreenlet.render(layoutId);
+				return blogsScreenlet;
+
 			default:
 				return null;
 		}

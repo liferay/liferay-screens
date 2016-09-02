@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.dlfile.display.audio;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import com.liferay.mobile.screens.asset.display.interactor.AssetDisplayInteractorImpl;
 import com.liferay.mobile.screens.dlfile.display.BaseFileDisplayScreenlet;
 
 /**
@@ -24,9 +23,5 @@ public class AudioDisplayScreenlet extends BaseFileDisplayScreenlet {
 
 	public AudioDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
-	}
-
-	@Override
-	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor, Object... args) {
 	}
 }

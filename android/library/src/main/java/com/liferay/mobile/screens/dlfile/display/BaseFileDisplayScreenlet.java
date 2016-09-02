@@ -20,6 +20,8 @@ import com.liferay.mobile.screens.context.SessionContext;
 public abstract class BaseFileDisplayScreenlet
 	extends BaseScreenlet<BaseFileDisplayViewModel, AssetDisplayInteractorImpl> implements AssetDisplayListener {
 
+	public static final String LOAD_ASSET_ACTION = "LOAD_ASSET_ACTION";
+
 	public static final String STATE_ENTRY_ID = "STATE_ENTRY_ID";
 	public static final String STATE_FILE_ENTRY = "STATE_FILE_ENTRY";
 
@@ -39,6 +41,14 @@ public abstract class BaseFileDisplayScreenlet
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
+	public void load() {
+		performUserAction(LOAD_ASSET_ACTION);
+	}
+
+	public void loadFile() {
+		onRetrieveAssetSuccess(fileEntry);
+	}
+
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray =
@@ -48,6 +58,9 @@ public abstract class BaseFileDisplayScreenlet
 
 		autoLoad = typedArray.getBoolean(R.styleable.AssetDisplayScreenlet_autoLoad, true);
 		entryId = typedArray.getInt(R.styleable.AssetDisplayScreenlet_entryId, 0);
+
+		className = typedArray.getString(R.styleable.AssetDisplayScreenlet_className);
+		classPK = typedArray.getInt(R.styleable.AssetDisplayScreenlet_classPK, 0);
 
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
 
@@ -81,6 +94,18 @@ public abstract class BaseFileDisplayScreenlet
 	}
 
 	@Override
+	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor, Object... args) {
+		switch (userActionName) {
+			case LOAD_ASSET_ACTION:
+				if (entryId != 0) {
+					interactor.getAssetEntry(entryId);
+				} else {
+					interactor.getAssetEntry(className, classPK);
+				}
+		}
+	}
+
+	@Override
 	protected void onScreenletAttached() {
 		super.onScreenletAttached();
 
@@ -91,12 +116,10 @@ public abstract class BaseFileDisplayScreenlet
 
 	protected void autoLoad() {
 		if (SessionContext.isLoggedIn()) {
-			if (fileEntry == null) {
-				AssetDisplayInteractorImpl assetDisplayInteractor = new AssetDisplayInteractorImpl();
-				assetDisplayInteractor.onScreenletAttached(this);
-				assetDisplayInteractor.start(entryId);
+			if (fileEntry == null || (className != null && classPK != 0)) {
+				load();
 			} else {
-				onRetrieveAssetSuccess(fileEntry);
+				loadFile();
 			}
 		}
 	}
@@ -126,8 +149,24 @@ public abstract class BaseFileDisplayScreenlet
 		return entryId;
 	}
 
-	public void setEntryId(int entryId) {
+	public void setEntryId(long entryId) {
 		this.entryId = entryId;
+	}
+
+	public String getClassName() {
+		return className;
+	}
+
+	public void setClassName(String className) {
+		this.className = className;
+	}
+
+	public long getClassPK() {
+		return classPK;
+	}
+
+	public void setClassPK(long classPK) {
+		this.classPK = classPK;
 	}
 
 	public void setListener(AssetDisplayListener listener) {
@@ -144,6 +183,8 @@ public abstract class BaseFileDisplayScreenlet
 
 	protected boolean autoLoad;
 	protected long entryId;
+	protected long classPK;
+	protected String className;
 	protected AssetDisplayListener listener;
 	protected FileEntry fileEntry;
 }

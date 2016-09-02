@@ -16,6 +16,9 @@ package com.liferay.mobile.screens.asset.list;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import com.liferay.mobile.screens.util.LiferayLogger;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,6 +67,41 @@ public class AssetEntry implements Parcelable {
 
 	public String getMimeType() {
 		return (String) _values.get("mimeType");
+	}
+
+	public String getUrl() {
+		return "/documents/"
+			+ _values.get("groupId")
+			+ "/"
+			+ getFolder()
+			+ "/"
+			+ encodeUrlString((String) _values.get("title"))
+			+ "/"
+			+ _values.get("uuid");
+	}
+
+	public Map<String, Object> getObject() {
+		return (Map<String, Object>) _values.get("object");
+	}
+
+	public String getObjectType() {
+		return getObject().keySet().iterator().next();
+	}
+
+	private long getFolder() {
+		if (_values.get("folderId") != null) {
+			return (long) _values.get("folderId");
+		}
+		return 0;
+	}
+
+	private String encodeUrlString(String urlToEncode) {
+		try {
+			return URLEncoder.encode(urlToEncode, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			LiferayLogger.e("Error encoding string: " + e.getMessage());
+			return "";
+		}
 	}
 
 	@Override

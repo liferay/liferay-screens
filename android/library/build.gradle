@@ -28,6 +28,7 @@ dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
 
 	compile libraries.appCompat
+	compile libraries.design
 	compile libraries.recyclerView
 	compile libraries.sdk
 	compile(libraries.push) {
@@ -42,6 +43,8 @@ dependencies {
 
 	compile libraries.rxpermissions
 	compile libraries.rxbinding
+
+	compile 'com.lsjwzh:recyclerviewpager:1.0.8'
 
 	testCompile libraries.junit
 	testCompile libraries.robolectric

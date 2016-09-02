@@ -8,6 +8,7 @@
 	<string name="webview_structured">Web View with DDMStructure</string>
 	<string name="webview_list">Web View List</string>
 	<string name="asset_list">Asset List</string>
+	<string name="user_display">User Display</string>
 	<string name="ddl_form">DDL Form</string>
 	<string name="ddl_list">DDL List</string>
 	<string name="clear_cache_forms">Clear cache forms</string>
@@ -29,6 +30,8 @@
 	<string name="web_content_list_label">WebContent List Screenlet: Shows a list of web content of a specific folderId</string>
 	<string name="main_activity_label">List of all the screenlets supported on version 1.0.0 of Liferay Screens</string>
 	<string name="customizing_a_screenlet">Customizing an screenlet</string>
+	<string name="image_gallery_label">Shows a gallery of photos from a folder in Liferay Portal</string>
+	<string name="image_gallery">Image gallery</string>
 	<string name="add_a_bookmark">Add a Bookmark</string>
 	<string name="journal_article_with_template">Journal Article with template</string>
 	<string name="filtered_asset">Filtered asset</string>
@@ -51,7 +54,16 @@
 	<string name="button_for_reactions">button for reactions</string>
 	<string name="button_for_emojis">button for emojis</string>
 	<string name="editable">Editable</string>
+	<string name="comment_id">Comment ID</string>
+	<string name="minus">-</string>
+	<string name="plus">+</string>
+	<string name="slideshow">Slideshow</string>
+	<string name="load">Load</string>
+	<string name="grid">Grid</string>
+	<string name="list">List</string>
 	<string name="comment_list">Comment List</string>
 	<string name="comment_display">Comment Display</string>
 	<string name="no_loaded_comment">No loaded comment</string>
+	<string name="email">Email</string>
+	<string name="nickname">Nickname</string>
 </resources>

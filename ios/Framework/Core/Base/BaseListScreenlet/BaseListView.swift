@@ -73,7 +73,7 @@ public class BaseListView: BaseScreenletView {
 		_rows = [String : [AnyObject?]]()
 		_rows[BaseListView.DefaultSection] = [AnyObject?]()
 		_rowCount = 0
-		_sections = [String]()
+		_sections = [BaseListView.DefaultSection]
 		
 		onClearRows(oldRows)
 	}
@@ -97,6 +97,11 @@ public class BaseListView: BaseScreenletView {
 		_rows[section]?.append(element)
 	}
 	
+
+	public func updateRow(section: String, row: Int, element: AnyObject) {
+		_rows[section]?[row] = element
+	}
+
 	public func rowsForSectionIndex(index: Int) -> [AnyObject?] {
 		let key = sections[index]
 		

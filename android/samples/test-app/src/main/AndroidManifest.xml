@@ -45,6 +45,7 @@
 			android:windowSoftInputMode="adjustPan"/>
 		<activity android:name=".RatingsActivity"/>
 		<activity android:name=".AssetDisplayActivity" />
+		<activity android:name=".GalleryActivity"/>
 
 		<receiver android:name="com.liferay.mobile.screens.cache.CacheReceiver">
 			<intent-filter>

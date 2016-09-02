@@ -14,13 +14,33 @@
 
 package com.liferay.mobile.screens.context;
 
+import android.content.Context;
 import android.content.res.Resources;
+import android.provider.ContactsContract;
+import android.widget.ImageView;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.squareup.okhttp.Cache;
+import com.squareup.okhttp.CacheControl;
+import com.squareup.okhttp.Interceptor;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Downloader;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.OkHttpDownloader;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestCreator;
+import java.io.IOException;
 
 /**
  * @author Silvio Santos
  */
 public class LiferayServerContext {
+
+	private static final int MAX_SIZE = 100 * 1024 * 1024;
 
 	public static void reloadFromResources(Resources resources, final String packageName) {
 
@@ -94,6 +114,31 @@ public class LiferayServerContext {
 		LiferayServerContext._portalVersion = portalVersion;
 	}
 
+	public static OkHttpClient getOkHttpClient() {
+		if (okHttpClient == null) {
+			okHttpClient = new OkHttpClient();
+			okHttpClient.setCache(new Cache(LiferayScreensContext.getContext().getCacheDir(), MAX_SIZE));
+		}
+
+		return okHttpClient;
+	}
+
+	public static OkHttpClient getOkHttpClientNoCache() {
+		OkHttpClient noCacheClient = getOkHttpClient().clone();
+		noCacheClient.interceptors().add(new Interceptor() {
+			@Override
+			public Response intercept(Chain chain) throws IOException {
+				Request originalRequest = chain.request();
+
+				Request newRequest = originalRequest.newBuilder().cacheControl(CacheControl.FORCE_NETWORK).build();
+
+				return chain.proceed(newRequest);
+			}
+		});
+
+		return noCacheClient;
+	}
+
 	private static long getValueFromIntegerOrString(final Resources resources, final int stringId, int integerId) {
 		return integerId == 0 ? Long.parseLong(resources.getString(stringId)) : resources.getInteger(integerId);
 	}
@@ -104,4 +149,6 @@ public class LiferayServerContext {
 	private static String _classFactory;
 	private static LiferayPortalVersion _portalVersion;
 	private static String _versionFactory;
+
+	private static OkHttpClient okHttpClient;
 }

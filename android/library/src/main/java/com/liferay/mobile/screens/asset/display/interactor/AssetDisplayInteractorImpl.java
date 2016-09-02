@@ -44,4 +44,45 @@ public class AssetDisplayInteractorImpl extends BaseCachedThreadRemoteInteractor
 		final long entryId = (long) args[0];
 		return String.valueOf(entryId);
 	}
+
+	public void getAssetEntry(long entryId) {
+		try {
+			Session session = SessionContext.createSessionFromCurrentSession();
+			session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
+			ScreensassetentryService service = new ScreensassetentryService(session);
+			service.getAssetEntry(entryId, Locale.getDefault().getLanguage());
+		} catch (Exception e) {
+			getListener().onRetrieveAssetFailure(e);
+		}
+	}
+
+	@Override
+	public void getAssetEntry(String className, long classPK) {
+		try {
+			Session session = SessionContext.createSessionFromCurrentSession();
+			session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
+			ScreensassetentryService service = new ScreensassetentryService(session);
+			service.getAssetEntry(className, classPK, Locale.getDefault().getLanguage());
+		} catch (Exception e) {
+			getListener().onRetrieveAssetFailure(e);
+		}
+	}
+
+	public void onEvent(JSONObjectEvent event) {
+		if (!isValidEvent(event)) {
+			return;
+		}
+
+		if (event.isFailed()) {
+			getListener().onRetrieveAssetFailure(event.getException());
+		} else {
+			try {
+				Map<String, Object> map = JSONUtil.toMap(event.getJSONObject());
+				AssetEntry assetEntry = AssetFactory.createInstance(map);
+				getListener().onRetrieveAssetSuccess(assetEntry);
+			} catch (JSONException e) {
+				getListener().onRetrieveAssetFailure(e);
+			}
+		}
+	}
 }

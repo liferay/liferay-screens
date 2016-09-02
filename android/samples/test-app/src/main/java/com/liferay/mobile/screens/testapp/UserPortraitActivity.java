@@ -33,16 +33,16 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 
 		setContentView(R.layout.user_portrait);
 
-		_screenlet = (UserPortraitScreenlet) findViewById(R.id.user_portrait_screenlet);
-		_screenlet.setListener(this);
-		_screenlet.setCacheListener(this);
+		screenlet = (UserPortraitScreenlet) findViewById(R.id.user_portrait_screenlet);
+		screenlet.setListener(this);
+		screenlet.setCacheListener(this);
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 
-		_screenlet.load();
+		screenlet.load();
 	}
 
 	@Override
@@ -79,5 +79,5 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 
 	}
 
-	private UserPortraitScreenlet _screenlet;
+	private UserPortraitScreenlet screenlet;
 }

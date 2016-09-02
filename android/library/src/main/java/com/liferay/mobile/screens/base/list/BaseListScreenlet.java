@@ -35,6 +35,8 @@ import java.util.List;
 public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends BaseScreenlet<BaseListViewModel, N>
 	implements BaseListInteractorListener<E> {
 
+	public static final String LOAD_INITIAL_PAGE_ACTION = "LOAD_INITIAL_PAGE_ACTION";
+
 	public BaseListScreenlet(Context context) {
 		super(context);
 	}
@@ -91,7 +93,7 @@ public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends
 
 	public void loadPage(int page) {
 		if (page == 0) {
-			getViewModel().showStartOperation(null);
+			getViewModel().showStartOperation(LOAD_INITIAL_PAGE_ACTION);
 		}
 
 		int startRow = getFirstRowForPage(page);

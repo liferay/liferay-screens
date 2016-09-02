@@ -41,16 +41,16 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 
 		setContentView(R.layout.ddl_list);
 
-		_screenlet = (DDLListScreenlet) findViewById(R.id.ddl_list_screenlet);
-		_screenlet.setListener(this);
-		_screenlet.setCacheListener(this);
+		screenlet = (DDLListScreenlet) findViewById(R.id.ddl_list_screenlet);
+		screenlet.setListener(this);
+		screenlet.setCacheListener(this);
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 
-		_screenlet.loadPage(0);
+		screenlet.loadPage(0);
 	}
 
 	@Override
@@ -127,5 +127,5 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 		};
 	}
 
-	private DDLListScreenlet _screenlet;
+	private DDLListScreenlet screenlet;
 }
