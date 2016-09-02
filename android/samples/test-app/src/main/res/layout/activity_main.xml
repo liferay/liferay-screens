@@ -160,6 +160,12 @@
 				/>
 
 			<Button
+				android:id="@+id/gallery"
+				android:text="@string/image_gallery"
+				style="@style/test_app_button"
+				/>
+
+			<Button
 				android:id="@+id/change_theme"
 				android:text="@string/change_theme"
 				style="@style/test_app_button"

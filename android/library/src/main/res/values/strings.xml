@@ -15,6 +15,7 @@
 	<string name="WebContentDisplayScreenlet_default">webcontentdisplay_default</string>
 	<string name="WebContentListScreenlet_default">webcontentlist_default</string>
 	<string name="CommentAddScreenlet_default">comment_add_default</string>
+	<string name="GalleryScreenlet_default">gallery_default</string>
 	<string name="CommentDisplayScreenlet_default">comment_display_default</string>
 	<string name="CommentListScreenlet_default">comment_list_default</string>
 
