@@ -36,19 +36,9 @@ public class DDMFieldDocumentlibraryPresenterViewController_default:
 	}
 
 	public convenience init() {
-		func bundleForXib() -> NSBundle? {
-			let bundles = NSBundle.allBundles(
-					DDMFieldDocumentlibraryPresenterViewController_default.self);
-
-			return bundles.filter {
-					$0.pathForResource(xibName, ofType:"nib") != nil
-				}
-				.first
-		}
-
 		self.init(
 			nibName: xibName,
-			bundle: bundleForXib())
+			bundle: NSBundle.bundleForNibName(xibName, currentClass: self.dynamicType))
 
 		imagePicker.delegate = self
 		imagePicker.allowsEditing = false

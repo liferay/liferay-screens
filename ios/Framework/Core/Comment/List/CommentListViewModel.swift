@@ -14,11 +14,10 @@
 import UIKit
 
 
-@objc public protocol UserPortraitViewModel {
+@objc public protocol CommentListViewModel {
 
-	var image: UIImage? {get set}
-
-	var borderWidth: CGFloat {get set}
-	var borderColor: UIColor? {get set}
+	func addComment(comment: Comment)
+	func deleteComment(comment: Comment)
+	func updateComment(comment: Comment)
 
 }

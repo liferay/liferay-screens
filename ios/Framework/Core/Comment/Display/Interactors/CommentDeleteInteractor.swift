@@ -14,11 +14,19 @@
 import UIKit
 
 
-@objc public protocol UserPortraitViewModel {
+public class CommentDeleteInteractor: ServerWriteConnectorInteractor {
 
-	var image: UIImage? {get set}
+	let commentId: Int64
 
-	var borderWidth: CGFloat {get set}
-	var borderColor: UIColor? {get set}
+	init(screenlet: BaseScreenlet?, commentId: Int64) {
+		self.commentId = commentId
+
+		super.init(screenlet: screenlet)
+	}
+
+	override public func createConnector() -> CommentDeleteLiferayConnector? {
+		return LiferayServerContext.connectorFactory.createCommentDeleteConnector(
+			commentId: commentId)
+	}
 
 }
