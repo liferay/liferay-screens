@@ -20,8 +20,8 @@ public class ReloginActivity extends ThemeActivity implements LoginListener {
 		setContentView(R.layout.relogin);
 
 		if (SessionContext.isLoggedIn()) {
-			_userName = (TextView) findViewById(R.id.user_name);
-			_userName.setText(SessionContext.getCurrentUser().getLastName());
+			userName = (TextView) findViewById(R.id.user_name);
+			userName.setText(SessionContext.getCurrentUser().getLastName());
 		}
 	}
 
@@ -34,7 +34,7 @@ public class ReloginActivity extends ThemeActivity implements LoginListener {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				_userName.setText(user.getLastName());
+				userName.setText(user.getLastName());
 				info("Relogin successful!");
 			}
 		});
@@ -49,9 +49,9 @@ public class ReloginActivity extends ThemeActivity implements LoginListener {
 		if (SessionContext.isLoggedIn()) {
 			final User user = SessionContext.getCurrentUser();
 			user.getAttributes().put("lastName", "EXAMPLE_LASTNAME");
-			_userName.setText(user.getLastName());
+			userName.setText(user.getLastName());
 		}
 	}
 
-	private TextView _userName;
+	private TextView userName;
 }

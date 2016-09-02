@@ -2,10 +2,13 @@ package com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import android.widget.MediaController;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.VideoView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
@@ -16,7 +19,7 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 /**
  * @author Sarai Díaz García
  */
-public class AudioDisplayView extends LinearLayout implements BaseFileDisplayViewModel {
+public class AudioDisplayView extends FrameLayout implements BaseFileDisplayViewModel {
 
 	public AudioDisplayView(Context context) {
 		super(context);
@@ -37,6 +40,7 @@ public class AudioDisplayView extends LinearLayout implements BaseFileDisplayVie
 
 	@Override
 	public void showStartOperation(String actionName) {
+		progressBar.setVisibility(VISIBLE);
 	}
 
 	@Override
@@ -47,6 +51,8 @@ public class AudioDisplayView extends LinearLayout implements BaseFileDisplayVie
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
+		progressBar.setVisibility(GONE);
+		message.setText(R.string.audio_error);
 		LiferayLogger.e("Could not load file asset: " + e.getMessage());
 	}
 
@@ -65,15 +71,22 @@ public class AudioDisplayView extends LinearLayout implements BaseFileDisplayVie
 		super.onFinishInflate();
 
 		audioView = (VideoView) findViewById(R.id.liferay_audio_asset);
+		title = (TextView) findViewById(R.id.liferay_audio_title);
+		message = (TextView) findViewById(R.id.liferay_audio_message);
+		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
 	}
 
 	@Override
 	public void showFinishOperation(FileEntry fileEntry) {
 		this.fileEntry = fileEntry;
 		loadAudio();
+		loadPrepareListener();
+		loadErrorListener();
 	}
 
 	private void loadAudio() {
+		progressBar.setVisibility(VISIBLE);
+		title.setText(fileEntry.getTitle());
 		audioView.setVideoPath(getResources().getString(R.string.liferay_server) + fileEntry.getUrl());
 		audioView.setMediaController(new MediaController(getContext()));
 		audioView.setZOrderOnTop(true);
@@ -81,7 +94,30 @@ public class AudioDisplayView extends LinearLayout implements BaseFileDisplayVie
 		audioView.start();
 	}
 
+	private void loadPrepareListener() {
+		audioView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+			@Override
+			public void onPrepared(MediaPlayer mp) {
+				progressBar.setVisibility(INVISIBLE);
+			}
+		});
+	}
+
+	private void loadErrorListener() {
+		audioView.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+			@Override
+			public boolean onError(MediaPlayer mp, int what, int extra) {
+				progressBar.setVisibility(GONE);
+				message.setText(R.string.audio_error);
+				return false;
+			}
+		});
+	}
+
 	private BaseScreenlet screenlet;
 	private VideoView audioView;
 	private FileEntry fileEntry;
+	private TextView title;
+	private TextView message;
+	private ProgressBar progressBar;
 }

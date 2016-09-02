@@ -35,8 +35,8 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 
 		setContentView(R.layout.ddl_form);
 
-		_screenlet = (DDLFormScreenlet) findViewById(R.id.ddl_form_screenlet);
-		_screenlet.setListener(this);
+		screenlet = (DDLFormScreenlet) findViewById(R.id.ddl_form_screenlet);
+		screenlet.setListener(this);
 
 		initScreenletFromIntent(getIntent());
 	}
@@ -45,14 +45,14 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 	protected void onResume() {
 		super.onResume();
 
-		if (!_loaded) {
-			_screenlet.load();
+		if (!loaded) {
+			screenlet.load();
 		}
 	}
 
 	@Override
 	public void onDDLFormLoaded(Record record) {
-		_loaded = true;
+		loaded = true;
 		info("Form loaded!");
 	}
 
@@ -121,32 +121,32 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 		super.onActivityResult(requestCode, resultCode, data);
 
 		if (resultCode == RESULT_OK) {
-			_screenlet.startUploadByPosition(requestCode);
+			screenlet.startUploadByPosition(requestCode);
 		}
 	}
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		outState.putBoolean(STATE_LOADED, _loaded);
+		outState.putBoolean(STATE_LOADED, loaded);
 	}
 
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
-		_loaded = savedInstanceState.getBoolean(STATE_LOADED);
+		loaded = savedInstanceState.getBoolean(STATE_LOADED);
 	}
 
 	private void initScreenletFromIntent(Intent intent) {
 		if (intent.hasExtra("recordId")) {
-			_screenlet.setRecordId(intent.getLongExtra("recordId", 0));
-			_screenlet.setRecordSetId(intent.getLongExtra("recordSetId", 0));
-			_screenlet.setStructureId(intent.getLongExtra("structureId", 0));
+			screenlet.setRecordId(intent.getLongExtra("recordId", 0));
+			screenlet.setRecordSetId(intent.getLongExtra("recordSetId", 0));
+			screenlet.setStructureId(intent.getLongExtra("structureId", 0));
 		}
 	}
 
-	private DDLFormScreenlet _screenlet;
-	private boolean _loaded;
+	private DDLFormScreenlet screenlet;
+	private boolean loaded;
 
 	private static final String STATE_LOADED = "STATE_LOADED";
 }

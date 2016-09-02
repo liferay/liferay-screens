@@ -8,6 +8,7 @@
 	<string name="webview_structured">Web View with DDMStructure</string>
 	<string name="webview_list">Web View List</string>
 	<string name="asset_list">Asset List</string>
+	<string name="user_display">User Display</string>
 	<string name="ddl_form">DDL Form</string>
 	<string name="ddl_list">DDL List</string>
 	<string name="clear_cache_forms">Clear cache forms</string>
@@ -57,4 +58,6 @@
 	<string name="comment_list">Comment List</string>
 	<string name="comment_display">Comment Display</string>
 	<string name="no_loaded_comment">No loaded comment</string>
+	<string name="email">Email</string>
+	<string name="nickname">Nickname</string>
 </resources>

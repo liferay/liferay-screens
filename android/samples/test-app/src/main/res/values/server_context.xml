@@ -54,6 +54,7 @@
 	<string name="liferay_oauth_consumer_key">f4adeb99-9ddf-4c9c-a408-347ce8be340a</string>
 	<string name="liferay_oauth_consumer_secret">0176690f0fd46a4a3a839ca9bf4edd0c</string>
 
+	<string name="liferay_user_entryId">0</string>
 
 
 

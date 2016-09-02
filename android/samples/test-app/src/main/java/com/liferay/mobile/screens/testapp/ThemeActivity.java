@@ -32,7 +32,7 @@ public abstract class ThemeActivity extends AppCompatActivity {
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		_currentThemePosition = getIntent().getIntExtra("currentThemePosition", 0);
+		currentThemePosition = getIntent().getIntExtra("currentThemePosition", 0);
 		setTheme(getCurrentTheme());
 	}
 
@@ -40,11 +40,11 @@ public abstract class ThemeActivity extends AppCompatActivity {
 	protected void onResume() {
 		super.onResume();
 
-		_content = findViewById(android.R.id.content);
+		content = findViewById(android.R.id.content);
 	}
 
 	protected void changeToNextTheme() {
-		_currentThemePosition = (_currentThemePosition + 1) % themes.length;
+		currentThemePosition = (currentThemePosition + 1) % themes.length;
 	}
 
 	protected void error(String message, Exception e) {
@@ -52,22 +52,22 @@ public abstract class ThemeActivity extends AppCompatActivity {
 	}
 
 	protected void info(String message) {
-		int color = colors[_currentThemePosition];
+		int color = colors[currentThemePosition];
 		showSnackbarWithColor(message, ContextCompat.getColor(this, color));
 	}
 
 	protected Intent getIntentWithTheme(Class destinationClass) {
 		Intent intent = new Intent(this, destinationClass);
-		intent.putExtra("currentThemePosition", _currentThemePosition);
+		intent.putExtra("currentThemePosition", currentThemePosition);
 		return intent;
 	}
 
 	private int getCurrentTheme() {
-		return themes[_currentThemePosition];
+		return themes[currentThemePosition];
 	}
 
 	private void showSnackbarWithColor(String message, int color) {
-		Snackbar snackbar = Snackbar.make(_content, message, Snackbar.LENGTH_SHORT);
+		Snackbar snackbar = Snackbar.make(content, message, Snackbar.LENGTH_SHORT);
 		ViewGroup group = (ViewGroup) snackbar.getView();
 		group.setBackgroundColor(color);
 		snackbar.show();
@@ -75,7 +75,7 @@ public abstract class ThemeActivity extends AppCompatActivity {
 
 	int[] themes = {R.style.default_theme, R.style.material_theme, R.style.westeros_theme};
 	int[] colors = {R.color.colorPrimary_default, R.color.colorPrimary_material, R.color.colorPrimary_westeros};
-	private Integer _currentThemePosition;
-	private View _content;
+	private Integer currentThemePosition;
+	private View content;
 
 }

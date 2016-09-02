@@ -34,15 +34,15 @@ public class LoginActivity extends ThemeActivity implements LoginListener {
 
 		setContentView(R.layout.login);
 
-		_loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
-		_loginScreenlet.setListener(this);
+		loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
+		loginScreenlet.setListener(this);
 
 		setDefaultValues();
 	}
 
 	@Override
 	public void onActivityResult(int request, int result, Intent intent) {
-		_loginScreenlet.sendOAuthResult(result, intent);
+		loginScreenlet.sendOAuthResult(result, intent);
 	}
 
 	@Override
@@ -56,12 +56,12 @@ public class LoginActivity extends ThemeActivity implements LoginListener {
 	}
 
 	private void setDefaultValues() {
-		EditText login = (EditText) _loginScreenlet.findViewById(R.id.liferay_login);
+		EditText login = (EditText) loginScreenlet.findViewById(R.id.liferay_login);
 		login.setText(getString(R.string.default_user_name));
 
-		EditText password = (EditText) _loginScreenlet.findViewById(R.id.liferay_password);
+		EditText password = (EditText) loginScreenlet.findViewById(R.id.liferay_password);
 		password.setText(getString(R.string.default_password));
 	}
 
-	private LoginScreenlet _loginScreenlet;
+	private LoginScreenlet loginScreenlet;
 }
