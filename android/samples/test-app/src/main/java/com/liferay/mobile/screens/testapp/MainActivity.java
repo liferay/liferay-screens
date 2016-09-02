@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.testapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import com.liferay.mobile.screens.cache.DefaultCachedType;
@@ -40,6 +41,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.relogin).setOnClickListener(this);
 		findViewById(R.id.list_comments).setOnClickListener(this);
 		findViewById(R.id.ratings).setOnClickListener(this);
+		findViewById(R.id.user_display).setOnClickListener(this);
 	}
 
 	@Override
@@ -125,6 +127,11 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				break;
 			case R.id.ratings:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(RatingsActivity.class));
+				break;
+			case R.id.user_display:
+				Intent intent = getIntentWithTheme(AssetDisplayActivity.class);
+				intent.putExtra("entryId", Long.valueOf(getResources().getString(R.string.liferay_user_entryId)));
+				DefaultAnimation.startActivityWithAnimation(this, intent);
 				break;
 			default:
 				DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(LoginActivity.class));

@@ -2,6 +2,7 @@
 <resources>
 	<string name="AssetListScreenlet_default">asset_list_default</string>
 	<string name="AudioDisplayScreenlet_default">audio_display_default</string>
+	<string name="BlogsEntryDisplayScreenlet_default">blogsentry_display_default</string>
 	<string name="LoginScreenlet_default">login_default</string>
 	<string name="SignUpScreenlet_default">sign_up_default</string>
 	<string name="ForgotPasswordScreenlet_default">forgotpassword_default</string>

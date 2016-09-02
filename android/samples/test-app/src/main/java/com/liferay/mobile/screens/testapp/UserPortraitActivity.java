@@ -35,15 +35,15 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 
 		setContentView(R.layout.user_portrait);
 
-		_screenlet = (UserPortraitScreenlet) findViewById(R.id.user_portrait_screenlet);
-		_screenlet.setListener(this);
+		screenlet = (UserPortraitScreenlet) findViewById(R.id.user_portrait_screenlet);
+		screenlet.setListener(this);
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 
-		_screenlet.load();
+		screenlet.load();
 	}
 
 	@Override
@@ -85,5 +85,5 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 		Snackbar.make(content, "Storing to cache...", Snackbar.LENGTH_SHORT).show();
 	}
 
-	private UserPortraitScreenlet _screenlet;
+	private UserPortraitScreenlet screenlet;
 }

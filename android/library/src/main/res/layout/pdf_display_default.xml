@@ -4,100 +4,108 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:orientation="vertical"
 	android:padding="8dp"
 	>
 
 	<ProgressBar
-		android:id="@+id/liferay_asset_progress_bar"
-		android:layout_width="wrap_content"
+		android:id="@+id/liferay_asset_progress_horizontal"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:layout_marginTop="20dp"
-		android:visibility="gone"
-		tools:visibility="visible"
-		style="@android:style/Widget.ProgressBar"
+		android:layout_marginTop="10sp"
+		android:max="100"
+		tools:progress="45"
+		style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
 		/>
 
 	<TextView
 		android:id="@+id/liferay_asset_progress_number"
-		android:layout_width="match_parent"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_marginTop="20dp"
-		android:gravity="center"
-		android:textSize="30sp"
-		android:visibility="gone"
-		tools:visibility="visible"
+		android:layout_below="@+id/liferay_asset_progress_horizontal"
+		android:layout_centerInParent="true"
+		android:textSize="20sp"
+		tools:text="99%"
 		/>
 
-	<LinearLayout
-		android:layout_width="match_parent"
+	<ProgressBar
+		android:id="@+id/liferay_progress"
+		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:weightSum="3"
-		>
-
-		<EditText
-			android:id="@+id/liferay_go_to_page"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginRight="5dp"
-			android:layout_weight="1"
-			android:inputType="number"
-			android:visibility="gone"
-			tools:visibility="visible"
-			/>
-
-		<Button
-			android:id="@+id/liferay_go_to_page_submit"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginLeft="5dp"
-			android:layout_weight="2"
-			android:text="@string/pdf_go"
-			android:visibility="gone"
-			tools:visibility="visible"
-			/>
-
-	</LinearLayout>
+		android:layout_centerInParent="true"
+		android:visibility="invisible"
+		/>
 
 	<ImageView
 		android:id="@+id/liferay_pdf_renderer"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_weight="8"
+		android:layout_above="@+id/liferay_linear_buttons"
+		android:layout_alignParentTop="true"
 		android:adjustViewBounds="true"
-		android:scaleType="fitXY"
+		android:scaleType="fitCenter"
+		/>
+
+	<TextView
+		android:id="@+id/liferay_asset_title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_above="@+id/liferay_linear_buttons"
+		android:layout_below="@+id/liferay_pdf_renderer"
+		android:gravity="center"
+		android:visibility="gone"
+		tools:text="Demo-file.pdf"
+		tools:visibility="visible"
 		/>
 
 	<LinearLayout
+		android:id="@+id/liferay_linear_buttons"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
 		android:orientation="horizontal"
+		android:visibility="gone"
+		tools:visibility="visible"
 		>
 
 		<Button
 			android:id="@+id/liferay_previous_page"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_marginRight="5dp"
+			android:layout_marginEnd="5sp"
+			android:layout_marginRight="5sp"
 			android:layout_weight="1"
 			android:text="@string/pdf_previous"
-			android:textSize="20sp"
-			android:visibility="gone"
-			tools:visibility="visible"
+			android:textSize="16sp"
 			/>
 
 		<Button
 			android:id="@+id/liferay_next_page"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_marginLeft="5dp"
+			android:layout_marginEnd="5sp"
+			android:layout_marginRight="5sp"
 			android:layout_weight="1"
 			android:text="@string/pdf_next"
-			android:textSize="20sp"
-			android:visibility="gone"
-			tools:visibility="visible"
+			android:textSize="16sp"
+			/>
+
+		<EditText
+			android:id="@+id/liferay_go_to_page"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginEnd="5sp"
+			android:layout_marginRight="5sp"
+			android:layout_weight="1"
+			android:inputType="number"
+			/>
+
+		<Button
+			android:id="@+id/liferay_go_to_page_submit"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="@string/pdf_go"
+			android:textSize="16sp"
 			/>
 
 	</LinearLayout>

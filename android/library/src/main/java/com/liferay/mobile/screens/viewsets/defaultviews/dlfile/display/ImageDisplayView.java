@@ -5,18 +5,20 @@ import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.dlfile.display.BaseFileDisplayViewModel;
 import com.liferay.mobile.screens.dlfile.display.FileEntry;
 import com.liferay.mobile.screens.util.LiferayLogger;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 /**
  * @author Sarai Díaz García
  */
-public class ImageDisplayView extends LinearLayout implements BaseFileDisplayViewModel {
+public class ImageDisplayView extends RelativeLayout implements BaseFileDisplayViewModel, Callback {
 
 	public ImageDisplayView(Context context) {
 		super(context);
@@ -37,6 +39,7 @@ public class ImageDisplayView extends LinearLayout implements BaseFileDisplayVie
 
 	@Override
 	public void showStartOperation(String actionName) {
+		progressBar.setVisibility(VISIBLE);
 	}
 
 	@Override
@@ -47,6 +50,7 @@ public class ImageDisplayView extends LinearLayout implements BaseFileDisplayVie
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
+		progressBar.setVisibility(GONE);
 		LiferayLogger.e("Could not load file asset: " + e.getMessage());
 	}
 
@@ -65,6 +69,7 @@ public class ImageDisplayView extends LinearLayout implements BaseFileDisplayVie
 		super.onFinishInflate();
 
 		imageView = (ImageView) findViewById(R.id.liferay_image_asset);
+		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
 	}
 
 	@Override
@@ -74,11 +79,23 @@ public class ImageDisplayView extends LinearLayout implements BaseFileDisplayVie
 	}
 
 	private void loadImage() {
+		progressBar.setVisibility(VISIBLE);
 		String path = getResources().getString(R.string.liferay_server) + fileEntry.getUrl();
-		Picasso.with(getContext()).load(path).into(imageView);
+		Picasso.with(getContext()).load(path).into(imageView, this);
+	}
+
+	@Override
+	public void onSuccess() {
+		progressBar.setVisibility(GONE);
+	}
+
+	@Override
+	public void onError() {
+		progressBar.setVisibility(GONE);
 	}
 
 	private BaseScreenlet screenlet;
 	private FileEntry fileEntry;
 	private ImageView imageView;
+	private ProgressBar progressBar;
 }
