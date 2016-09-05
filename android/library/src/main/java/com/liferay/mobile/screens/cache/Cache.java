@@ -9,7 +9,6 @@ import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.snappydb.DB;
 import com.snappydb.DBFactory;
-import com.snappydb.SnappydbException;
 import java.util.Locale;
 
 public class Cache {
@@ -20,74 +19,96 @@ public class Cache {
 
 	public static final String SEPARATOR = "-";
 
-	public static <E extends OfflineEventNew> E getObject(Class aClass, Long groupId, Long userId, Locale locale,
-		String cacheKey) throws Exception {
-		DB snappyDB = openDatabase(groupId, userId);
-		String id = getFullId(aClass, locale, cacheKey, null);
-		E object = (E) snappyDB.getObject(id, aClass);
-		snappyDB.close();
-		return object;
+	public static <E extends OfflineEventNew> E getObject(final Class<E> aClass, final Long groupId, final Long userId,
+		final Locale locale, final String cacheKey) throws Exception {
+		return (E) doDatabaseOperation(groupId, userId, new Func1<E>() {
+			@Override
+			public E call(DB db) throws Exception {
+				return db.getObject(getFullId(aClass, locale, cacheKey, null), aClass);
+			}
+		});
 	}
 
-	public static <E extends OfflineEventNew> E getObject(Class aClass, Long groupId, Long userId, String key)
-		throws Exception {
-		DB snappyDB = openDatabase(groupId, userId);
-		E object = (E) snappyDB.getObject(key, aClass);
-		snappyDB.close();
-		return object;
+	public static <E extends OfflineEventNew> E getObject(final Class<E> aClass, Long groupId, Long userId,
+		final String key) throws Exception {
+		return (E) doDatabaseOperation(groupId, userId, new Func1<E>() {
+			@Override
+			public E call(DB db) throws Exception {
+				return db.getObject(key, aClass);
+			}
+		});
 	}
 
-	public static <E extends OfflineEventNew> void storeObject(E event, Integer i) throws Exception {
-		DB snappyDB = openDatabase(event.getGroupId(), event.getUserId());
-		String id = getFullId(event.getClass(), event.getLocale(), event.getCacheKey(), i);
-		snappyDB.put(id, event);
-		snappyDB.close();
+	public static <E extends OfflineEventNew> void storeObject(final E event, final Integer i) throws Exception {
+		doDatabaseOperation(event.getGroupId(), event.getUserId(), new Func1<Void>() {
+			@Override
+			public Void call(DB db) throws Exception {
+				db.put(getFullId(event.getClass(), event.getLocale(), event.getCacheKey(), i), event);
+				return null;
+			}
+		});
 	}
 
 	public static <E extends OfflineEventNew> void storeObject(E event) throws Exception {
 		storeObject(event, null);
 	}
 
-	public static <E extends OfflineEventNew> void deleteObject(E event) throws Exception {
-		DB snappyDB = openDatabase(event.getGroupId(), event.getUserId());
-		String id = getFullId(event.getClass(), event.getLocale(), event.getCacheKey(), null);
-		snappyDB.del(id);
-		snappyDB.close();
-	}
-
-	public static String[] findKeys(Class childClass, Long groupId, Long userId, Locale locale, int startRow, int limit)
-		throws Exception {
-		DB snappyDB = openDatabase(groupId, userId);
-		String elementKey = getFullId(childClass, locale, null, null);
-		String[] keys = snappyDB.findKeys(elementKey, startRow, limit);
-		snappyDB.close();
-		return keys;
-	}
-
-	public static boolean destroy(String className) {
-		try {
-			DB snappyDB = openDatabase(null, null);
-
-			String[] keys = snappyDB.findKeys(className);
-			for (String key : keys) {
-				snappyDB.del(key);
+	public static <E extends OfflineEventNew> void deleteObject(final E event) throws Exception {
+		doDatabaseOperation(event.getGroupId(), event.getUserId(), new Func1<Void>() {
+			@Override
+			public Void call(DB db) throws Exception {
+				db.del(getFullId(event.getClass(), event.getLocale(), event.getCacheKey(), null));
+				return null;
 			}
-			snappyDB.close();
-		} catch (Exception e) {
-			LiferayLogger.e("Error deleting className");
-			return false;
-		}
-		return true;
+		});
 	}
 
-	public static boolean destroy() {
+	public static String[] findKeys(final Class childClass, Long groupId, Long userId, final Locale locale,
+		final int startRow, final int limit) throws Exception {
+		return (String[]) doDatabaseOperation(groupId, userId, new Func1<String[]>() {
+			@Override
+			public String[] call(DB db) throws Exception {
+				return db.findKeys(getFullId(childClass, locale, null, null), startRow, limit);
+			}
+		});
+	}
+
+	public static boolean destroy(Long groupId, Long userId, final String className) throws Exception {
+		return (boolean) doDatabaseOperation(groupId, userId, new Func1<Boolean>() {
+			@Override
+			public Boolean call(DB db) throws Exception {
+				String[] keys = db.findKeys(className);
+				for (String key : keys) {
+					db.del(key);
+				}
+				return true;
+			}
+		});
+	}
+
+	public static boolean destroy(Long groupId, Long userId) throws Exception {
+		return (boolean) doDatabaseOperation(groupId, userId, new Func1<Boolean>() {
+			@Override
+			public Boolean call(DB db) throws Exception {
+				db.destroy();
+				return true;
+			}
+		});
+	}
+
+	interface Func1<R> {
+		R call(DB db) throws Exception;
+	}
+
+	private static Object doDatabaseOperation(Long groupId, Long userId, Func1 func1) throws Exception {
+		DB snappyDB = null;
 		try {
-			DB snappyDB = openDatabase(null, null);
-			snappyDB.destroy();
-			return true;
-		} catch (Exception e) {
-			LiferayLogger.e("Error destroying DB");
-			return false;
+			snappyDB = openDatabase(groupId, userId);
+			return func1.call(snappyDB);
+		} finally {
+			if (snappyDB != null && snappyDB.isOpen()) {
+				snappyDB.close();
+			}
 		}
 	}
 
@@ -101,15 +122,11 @@ public class Cache {
 
 	@NonNull
 	private static DB openDatabase(Long groupId, Long userId) throws Exception {
-		try {
-			Context context = LiferayScreensContext.getContext();
-			DB db = groupId == null || userId == null ? DBFactory.open(context)
-				: DBFactory.open(context, databaseName(groupId, userId));
-			LiferayLogger.d("Opening db: " + db.toString());
-			return db;
-		} catch (SnappydbException e) {
-			throw new Exception("Database exception", e);
-		}
+		Context context = LiferayScreensContext.getContext();
+		DB db = groupId == null || userId == null ? DBFactory.open(context)
+			: DBFactory.open(context, databaseName(groupId, userId));
+		LiferayLogger.d("Opening db: " + db.toString());
+		return db;
 	}
 
 	@NonNull
