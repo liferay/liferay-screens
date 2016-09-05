@@ -127,7 +127,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 		String cacheKey = getIdFromArgs(args);
 		Class aClass = getEventClass();
 
-		E offlineEvent = Cache.getObject(aClass, groupId, userId, locale, cacheKey);
+		E offlineEvent = (E) Cache.getObject(aClass, groupId, userId, locale, cacheKey);
 
 		if (offlineEvent != null) {
 			decorateBaseEvent(offlineEvent);

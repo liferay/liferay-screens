@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import com.liferay.mobile.screens.cache.Cache;
+import com.liferay.mobile.screens.context.LiferayServerContext;
+import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
 import com.liferay.mobile.screens.testapp.fullview.LoginFullActivity;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 
 /**
@@ -93,12 +96,24 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				start(MainActivity.class);
 				break;
 			case R.id.clear_cache_forms:
-				boolean destroyed = Cache.destroy(DDLFormEvent.class.getSimpleName());
-				info("Deleted DDLFormEvent cache entries: " + (destroyed ? "successfully" : "failed"));
+				try {
+					Long groupId = LiferayServerContext.getGroupId();
+					Long userId = SessionContext.getUserId();
+					boolean destroyed = Cache.destroy(groupId, userId, DDLFormEvent.class.getSimpleName());
+					info("Deleted DDLFormEvent cache entries: " + (destroyed ? "successfully" : "failed"));
+				} catch (Exception e) {
+					LiferayLogger.e("Error clearing cache", e);
+				}
 				break;
 			case R.id.clear_cache:
-				boolean success = Cache.destroy();
-				info("Cache cleared: " + (success ? "successfully" : "failed"));
+				try {
+					Long groupId = LiferayServerContext.getGroupId();
+					Long userId = SessionContext.getUserId();
+					boolean success = Cache.destroy(groupId, userId);
+					info("Cache cleared: " + (success ? "successfully" : "failed"));
+				} catch (Exception e) {
+					LiferayLogger.e("Error clearing cache", e);
+				}
 				break;
 			case R.id.sync_cache:
 				Cache.resync();
