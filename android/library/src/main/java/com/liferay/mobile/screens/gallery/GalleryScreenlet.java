@@ -9,20 +9,16 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
+import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
-import com.liferay.mobile.screens.cache.sql.CacheSQL;
-import com.liferay.mobile.screens.cache.tablecache.TableCache;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.PicassoScreens;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.gallery.interactor.BaseGalleryInteractor;
 import com.liferay.mobile.screens.gallery.interactor.GalleryInteractorListener;
-import com.liferay.mobile.screens.gallery.interactor.delete.GalleryDeleteInteractor;
 import com.liferay.mobile.screens.gallery.interactor.delete.GalleryDeleteInteractorImpl;
-import com.liferay.mobile.screens.gallery.interactor.load.GalleryLoadInteractor;
+import com.liferay.mobile.screens.gallery.interactor.load.GalleryEvent;
 import com.liferay.mobile.screens.gallery.interactor.load.GalleryLoadInteractorImpl;
-import com.liferay.mobile.screens.gallery.interactor.upload.GalleryUploadInteractor;
 import com.liferay.mobile.screens.gallery.interactor.upload.GalleryUploadInteractorImpl;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.gallery.view.GalleryViewModel;
@@ -30,12 +26,11 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DetailImageActivity;
 import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DetailUploadDefaultActivity;
 import java.io.IOException;
-import java.util.Locale;
 
 /**
  * @author Víctor Galán Grande
  */
-public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryInteractor>
+public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadInteractorImpl>
 	implements GalleryInteractorListener {
 
 	public static final String LOAD_GALLERY = "LOAD_GALLERY";
@@ -84,46 +79,29 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 	}
 
 	@Override
-	protected BaseGalleryInteractor createInteractor(String actionName) {
-		switch (actionName) {
-			case LOAD_GALLERY:
-				return new GalleryLoadInteractorImpl(getScreenletId(), offlinePolicy);
-			case DELETE_IMAGE:
-				return new GalleryDeleteInteractorImpl(getScreenletId());
-			case UPLOAD_IMAGE:
-				return new GalleryUploadInteractorImpl(getScreenletId());
-			default:
-				return null;
-		}
+	protected GalleryLoadInteractorImpl createInteractor(String actionName) {
+		return new GalleryLoadInteractorImpl();
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, BaseGalleryInteractor interactor, Object... args) {
+	protected void onUserAction(String userActionName, GalleryLoadInteractorImpl interactor, Object... args) {
 		switch (userActionName) {
 			case LOAD_GALLERY:
 				loadPage(0);
 				break;
 			case DELETE_IMAGE:
 				long fileEntryId = (long) args[0];
-				GalleryDeleteInteractor galleryDeleteInteractor = (GalleryDeleteInteractor) interactor;
-				galleryDeleteInteractor.deleteImageEntry(fileEntryId);
+				GalleryDeleteInteractorImpl galleryDeleteInteractor = new GalleryDeleteInteractorImpl();
+				galleryDeleteInteractor.start(new GalleryEvent(new ImageEntry(fileEntryId)));
 				break;
 			case UPLOAD_IMAGE:
 				String picturePath = (String) args[0];
 				String title = (String) args[1];
 				String description = (String) args[2];
-				GalleryUploadInteractor galleryUploadInteractor = (GalleryUploadInteractor) interactor;
-				galleryUploadInteractor.uploadImageEntry(groupId, folderId, title, description, "", picturePath);
+				GalleryUploadInteractorImpl galleryUploadInteractor = new GalleryUploadInteractorImpl();
+				galleryUploadInteractor.start(folderId, title, description, picturePath);
 				break;
 		}
-	}
-
-	@Override
-	protected void loadRows(BaseGalleryInteractor interactor, int startRow, int endRow, Locale locale,
-		String obcClassName) throws Exception {
-
-		GalleryLoadInteractor galleryLoadInteractor = (GalleryLoadInteractor) interactor;
-		galleryLoadInteractor.loadRows(groupId, folderId, mimeTypes, startRow, endRow, locale, obcClassName);
 	}
 
 	public void load() {
@@ -140,8 +118,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	public void deleteCaches() throws IOException {
 		LiferayServerContext.getOkHttpClient().getCache().evictAll();
-		CacheSQL.getInstance().clear(DefaultCachedType.IMAGE_LIST);
-		CacheSQL.getInstance().clear(DefaultCachedType.IMAGE_LIST_COUNT);
+		Cache.destroy(GalleryEvent.class.getName());
 	}
 
 	public void openCamera() {
@@ -152,37 +129,9 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		startShadowActivityForMediaStore(MediaStoreRequestShadowActivity.SELECT_IMAGE_FROM_GALLERY);
 	}
 
-	@Override
-	public void loadingFromCache(boolean success) {
-		if (getListener() != null) {
-			getListener().loadingFromCache(success);
-		}
-	}
-
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
-		if (getListener() != null) {
-			getListener().retrievingOnline(triedInCache, e);
-		}
-	}
-
-	@Override
-	public void storingToCache(Object object) {
-		if (getListener() != null) {
-			getListener().storingToCache(object);
-		}
-	}
-
 	public void onImageClicked(ImageEntry image, View view) {
 		if (getListener() != null) {
 			getListener().onListItemSelected(image, view);
-		}
-	}
-
-	@Override
-	public void onImageEntryDeleteFailure(Exception e) {
-		if (getListener() != null) {
-			getListener().onImageEntryDeleteFailure(e);
 		}
 	}
 
@@ -225,11 +174,9 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 	}
 
 	@Override
-	public void onPictureUploadFailure(Exception e) {
-		getViewModel().imageUploadError(e);
-
-		if(getListener() != null) {
-			getListener().onImageUploadFailure(e);
+	public void error(Exception e, String userAction) {
+		if (getListener() != null) {
+			getListener().error(e, userAction);
 		}
 	}
 
@@ -258,25 +205,17 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		}
 	}
 
-	@Override
-	public BaseGalleryInteractor getInteractor() {
-		return super.getInteractor(LOAD_GALLERY);
-	}
-
 	public GalleryListener getListener() {
 		return ((GalleryListener) super.getListener());
 	}
 
+	@Override
+	protected void loadRows(GalleryLoadInteractorImpl interactor) {
+		interactor.start(folderId, mimeTypes);
+	}
+
 	public GalleryViewModel getViewModel() {
 		return ((GalleryViewModel) super.getViewModel());
-	}
-
-	public long getGroupId() {
-		return groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		this.groupId = groupId;
 	}
 
 	public long getFolderId() {
@@ -285,14 +224,6 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	public void setFolderId(long folderId) {
 		this.folderId = folderId;
-	}
-
-	public OfflinePolicy getOfflinePolicy() {
-		return offlinePolicy;
-	}
-
-	public void setOfflinePolicy(OfflinePolicy _offlinePolicy) {
-		this.offlinePolicy = _offlinePolicy;
 	}
 
 	protected void autoLoad() {
@@ -313,7 +244,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
 
-		Intent intent = null;
+		Intent intent;
 		if (activityUploadDetail == null || activityUploadDetail.isAssignableFrom(BaseDetailUploadActivity.class)) {
 			intent = new Intent(activity, DetailUploadDefaultActivity.class);
 		} else {
@@ -328,7 +259,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 
 	protected void startShadowActivityForMediaStore(int mediaStore) {
 
-		GalleryUploadInteractor galleryUploadInteractor = (GalleryUploadInteractor) getInteractor(UPLOAD_IMAGE);
+		GalleryUploadInteractorImpl galleryUploadInteractor = new GalleryUploadInteractorImpl();
 		LiferayLogger.e("We initialize the interactor to be able to send him messages, objId:"
 			+ galleryUploadInteractor.toString());
 
@@ -341,8 +272,6 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, BaseGalleryI
 		activity.startActivity(intent);
 	}
 
-	private long groupId;
 	private long folderId;
 	private String[] mimeTypes;
-	private OfflinePolicy offlinePolicy;
 }
