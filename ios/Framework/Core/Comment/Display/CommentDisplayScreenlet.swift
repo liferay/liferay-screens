@@ -45,9 +45,13 @@ import UIKit
 	public static let UpdateAction = "updateAction"
 
 	@IBInspectable public var commentId: Int64 = 0
+
 	@IBInspectable public var className: String = ""
 	@IBInspectable public var classPK: Int64 = 0
+
 	@IBInspectable public var autoLoad: Bool = true
+	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+
 	@IBInspectable public var editable: Bool = false {
 		didSet {
 			screenletView?.editable = self.editable
@@ -123,6 +127,8 @@ import UIKit
 		let interactor = CommentLoadInteractor(
 			screenlet: self,
 			commentId: self.commentId)
+
+		interactor.cacheStrategy = CacheStrategyType(rawValue: offlinePolicy ?? "") ?? .RemoteFirst
 
 		interactor.onSuccess = {
 			if let resultComment = interactor.resultComment {
