@@ -79,7 +79,7 @@ public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent> implem
 		this.listener = null;
 	}
 
-	protected boolean isInvalidEvent(E event) {
+	protected boolean isInvalidEvent(BasicThreadEvent event) {
 		return getListener() == null || event.getTargetScreenletId() != getTargetScreenletId() || !actionName.equals(
 			event.getActionName());
 	}

@@ -112,7 +112,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 				} else {
 					LiferayLogger.e("Error loading screenlet");
 					if (listener != null) {
-						listener.onRetrieveAssetFailure(new Exception("Error loading screenlet"));
+						listener.error(new Exception("Error loading screenlet"), DEFAULT_ACTION);
 					}
 				}
 			}
@@ -158,9 +158,9 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	@Override
 	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor, Object... args) {
 		if (entryId != 0) {
-			interactor.getAssetEntry(entryId);
+			interactor.start(entryId);
 		} else {
-			interactor.getAssetEntry(className, classPK);
+			interactor.start(className, classPK);
 		}
 	}
 
@@ -213,8 +213,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		this.listener = listener;
 	}
 
-	public void setInnerListener(
-		AssetDisplayInnerScreenletListener configureListener) {
+	public void setInnerListener(AssetDisplayInnerScreenletListener configureListener) {
 		this.configureListener = configureListener;
 	}
 
