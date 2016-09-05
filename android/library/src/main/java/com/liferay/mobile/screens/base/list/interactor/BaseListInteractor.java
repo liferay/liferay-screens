@@ -109,7 +109,7 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 		String cacheKey = getListId(query, args);
 		Class aClass = BaseListEvent.class;
 
-		BaseListEvent offlineEvent = Cache.getObject(aClass, groupId, userId, locale, cacheKey);
+		BaseListEvent offlineEvent = (BaseListEvent) Cache.getObject(aClass, groupId, userId, locale, cacheKey);
 
 		if (offlineEvent != null) {
 
@@ -171,6 +171,10 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 		BaseListEvent<E> newEvent = execute(query, args);
 		if (newEvent != null) {
 			decorateEvent(newEvent, false);
+
+			for (E event : newEvent.getEntries()) {
+				decorateEvent(event, false);
+			}
 
 			newEvent.setCacheKey(getListId(query, args));
 			EventBusUtil.post(newEvent);
