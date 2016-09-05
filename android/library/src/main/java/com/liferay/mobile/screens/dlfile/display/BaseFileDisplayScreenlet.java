@@ -98,9 +98,9 @@ public abstract class BaseFileDisplayScreenlet
 		switch (userActionName) {
 			case LOAD_ASSET_ACTION:
 				if (entryId != 0) {
-					interactor.getAssetEntry(entryId);
+					interactor.start(entryId);
 				} else {
-					interactor.getAssetEntry(className, classPK);
+					interactor.start(className, classPK);
 				}
 		}
 	}
