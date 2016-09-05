@@ -10,6 +10,7 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v7.dlapp.DLAppService;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.gallery.interactor.load.GalleryEvent;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.FileUtil;
@@ -73,9 +74,9 @@ public class GalleryUploadService extends IntentService {
 			Bitmap thumbnail = Picasso.with(this).load(new File(picturePath)).get();
 			imageEntry.setImage(thumbnail);
 
-			EventBusUtil.post(new GalleryUploadEvent(screenletId, imageEntry));
+			EventBusUtil.post(new GalleryEvent(imageEntry));
 		} catch (Exception e) {
-			EventBusUtil.post(new GalleryUploadEvent(screenletId, e));
+			EventBusUtil.post(new GalleryEvent(e));
 		}
 	}
 
@@ -87,7 +88,7 @@ public class GalleryUploadService extends IntentService {
 			title = System.nanoTime() + sourceName;
 		}
 
-		UploadData uploadData = createUploadData(screenletId, picturePath, sourceName);
+		UploadData uploadData = createUploadData(picturePath, sourceName);
 
 		Session session = SessionContext.createSessionFromCurrentSession();
 		String mimeType = FileUtil.getMimeType(picturePath);
@@ -98,7 +99,7 @@ public class GalleryUploadService extends IntentService {
 			changeLog, uploadData, serviceContext);
 	}
 
-	private UploadData createUploadData(final int screenletId, String path, String name) throws IOException {
+	private UploadData createUploadData(String path, String name) throws IOException {
 
 		File file = new File(path);
 		InputStream is = new FileInputStream(file);
@@ -107,7 +108,7 @@ public class GalleryUploadService extends IntentService {
 		return new UploadData(is, name, new FileProgressCallback() {
 			@Override
 			public void onProgress(int totalBytesSent) {
-				EventBusUtil.post(new GalleryUploadEvent(screenletId, fileSize, totalBytesSent));
+				EventBusUtil.post(new GalleryEvent(fileSize, totalBytesSent));
 			}
 
 			@Override

@@ -13,6 +13,10 @@ public abstract class ListEvent<E> extends OfflineEventNew {
 		super(jsonObject);
 	}
 
+	public ListEvent(Exception e) {
+		super(e);
+	}
+
 	public abstract String getCacheKey();
 
 	public abstract E getModel();

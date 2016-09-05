@@ -31,6 +31,20 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 			return new ImageEntry[size];
 		}
 	};
+	private Bitmap image;
+	private String imageUrl;
+	private String thumbnailUrl;
+	private String mimeType;
+	private String description;
+	private Long createDate;
+	private Long creatorUserId;
+	private Long fileEntryId;
+	private Long repositoryId;
+	private Long folderId;
+
+	public ImageEntry(long fileEntryId) {
+		this.fileEntryId = fileEntryId;
+	}
 
 	public ImageEntry(Map<String, Object> values) {
 		super(values);
@@ -103,6 +117,14 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 		return fileEntryId;
 	}
 
+	public long getRepositoryId() {
+		return repositoryId;
+	}
+
+	public long getFolderId() {
+		return folderId;
+	}
+
 	private void parseServerValues() {
 		imageUrl = createImageUrl();
 		thumbnailUrl = createThumbnailUrl();
@@ -137,13 +159,4 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 			return "";
 		}
 	}
-
-	private Bitmap image;
-	private String imageUrl;
-	private String thumbnailUrl;
-	private String mimeType;
-	private String description;
-	private Long createDate;
-	private Long creatorUserId;
-	private Long fileEntryId;
 }
