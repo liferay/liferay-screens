@@ -15,6 +15,10 @@ public class GalleryEvent extends ListEvent<ImageEntry> {
 	private String changeLog;
 	private boolean starting;
 
+	public GalleryEvent() {
+		super();
+	}
+
 	public GalleryEvent(ImageEntry imageEntry) {
 		this.imageEntry = imageEntry;
 		this.completed = true;

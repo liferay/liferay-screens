@@ -31,6 +31,7 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 			return new ImageEntry[size];
 		}
 	};
+
 	private Bitmap image;
 	private String imageUrl;
 	private String thumbnailUrl;
@@ -49,6 +50,10 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 	public ImageEntry(Map<String, Object> values) {
 		super(values);
 		parseServerValues();
+	}
+
+	public ImageEntry() {
+		super();
 	}
 
 	private ImageEntry(Parcel in, ClassLoader loader) {
