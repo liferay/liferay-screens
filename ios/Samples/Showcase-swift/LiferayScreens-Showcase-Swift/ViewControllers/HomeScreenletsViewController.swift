@@ -16,10 +16,11 @@ import UIKit
 class HomeScreenletsViewController: UITableViewController {
 
 	private let data: [Int:[String]] = [
-			0 : ["Auth Module", "LoginScreenlet", "SignUpScreenlet", "ForgotPasswordScreenlet"],
-			1 : ["DDL Module", "DDLListScreenlet", "DDLFormScreenlet"],
-			2 : ["Web Content Module", "WebContentDisplayScreenlet", "WebContentListScreenlet"],
-			3 : ["Others", "AssetListScreenlet", "UserPortraitScreenlet", "RatingScreenlet", "ImageGalleryScreenlet", "AssetDisplayScreenlet", "CommentListScreenlet"]
+			0: ["Auth Module", "LoginScreenlet", "SignUpScreenlet", "ForgotPasswordScreenlet"],
+			1: ["DDL Module", "DDLListScreenlet", "DDLFormScreenlet"],
+			2: ["Web Content Module", "WebContentDisplayScreenlet", "WebContentListScreenlet"],
+			3: ["Assets", "AssetListScreenlet", "AssetDisplayScreenlet"],
+			4: ["Others", "UserPortraitScreenlet", "RatingScreenlet", "ImageGalleryScreenlet", "CommentListScreenlet"]
 		]
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -46,7 +47,6 @@ class HomeScreenletsViewController: UITableViewController {
 	}
 
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
 		if let record = data[indexPath.section] {
 			self.performSegueWithIdentifier(record[indexPath.row + 1], sender: self)
 		}
