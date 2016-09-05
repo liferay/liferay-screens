@@ -83,11 +83,6 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 	}
 
 	@Override
-	public void onImageEntryDeleteFailure(Exception e) {
-		error("Error deleting image", e);
-	}
-
-	@Override
 	public void onImageEntryDeleted(long imageEntryId) {
 		info("Image deleted: " + imageEntryId);
 	}
@@ -105,11 +100,6 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 	@Override
 	public void onImageUploadEnd(ImageEntry entry) {
 		info("Image upload end " + entry.getImageUrl());
-	}
-
-	@Override
-	public void onImageUploadFailure(Exception e) {
-		error("Image upload failure", e);
 	}
 
 	@Override
@@ -153,6 +143,6 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 
 	@Override
 	public void error(Exception e, String userAction) {
-
+		error("Error when " + userAction, e);
 	}
 }

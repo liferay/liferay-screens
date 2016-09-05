@@ -10,7 +10,6 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.cache.Cache;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.PicassoScreens;
@@ -59,18 +58,9 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 		TypedArray typedArray =
 			context.getTheme().obtainStyledAttributes(attributes, R.styleable.GalleryScreenlet, 0, 0);
 
-		Integer offlinePolicy =
-			typedArray.getInteger(R.styleable.GalleryScreenlet_offlinePolicy, OfflinePolicy.REMOTE_ONLY.ordinal());
-		this.offlinePolicy = OfflinePolicy.values()[offlinePolicy];
-
 		PicassoScreens.setOfflinePolicy(this.offlinePolicy);
 
-		long groupId = LiferayServerContext.getGroupId();
-
-		this.groupId = castToLongOrUseDefault(typedArray.getString(R.styleable.GalleryScreenlet_groupId), groupId);
-
 		folderId = castToLong(typedArray.getString(R.styleable.GalleryScreenlet_folderId));
-
 		mimeTypes = parseMimeTypes(typedArray.getString(R.styleable.GalleryScreenlet_mimeTypes));
 
 		typedArray.recycle();
@@ -118,7 +108,11 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 
 	public void deleteCaches() throws IOException {
 		LiferayServerContext.getOkHttpClient().getCache().evictAll();
-		Cache.destroy(GalleryEvent.class.getName());
+		try {
+			Cache.destroy(groupId, userId, GalleryEvent.class.getName());
+		} catch (Exception e) {
+			LiferayLogger.e("Error deleting db", e);
+		}
 	}
 
 	public void openCamera() {
