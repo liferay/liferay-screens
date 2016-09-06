@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.listbookmark;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import java.util.Map;
 
 /**
@@ -21,6 +20,10 @@ public class Bookmark implements Parcelable {
 			return new Bookmark[size];
 		}
 	};
+
+	public Bookmark() {
+		super();
+	}
 
 	protected Bookmark(Parcel in) {
 		_url = in.readString();
@@ -53,6 +56,6 @@ public class Bookmark implements Parcelable {
 		_values = values;
 	}
 
-	private final String _url;
+	private String _url;
 	private Map _values;
 }

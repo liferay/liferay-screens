@@ -4,7 +4,11 @@ import com.liferay.mobile.screens.base.list.interactor.ListEvent;
 
 public class BookmarkEvent extends ListEvent<Bookmark> {
 
-	private final Bookmark bookmark;
+	private Bookmark bookmark;
+
+	public BookmarkEvent() {
+		super();
+	}
 
 	public BookmarkEvent(Bookmark bookmark) {
 		this.bookmark = bookmark;
