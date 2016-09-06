@@ -14,13 +14,30 @@
 import UIKit
 import PureLayout
 
+///Delegate for cards, usually it will be adopted by a CardDeckView
+@objc public protocol CardDelegate : NSObjectProtocol {
+
+	///Get the title for a page of the card
+	/// - parameter titleForPage page: index of the page
+	/// - returns: title for the page
+	optional func card(card: CardView,
+					   titleForPage page: Int) -> String?
+
+	///Called when trying to move right to a page that doesn't exist
+	/// - parameter onMissingPage page: index of the page
+	/// - returns: true, if a view for the missing page has been added, false otherwise
+	optional func card(card: CardView,
+	                   onMissingPage page: Int) -> Bool
+	
+}
+
 ///Custom view used to show one card in screen, this class will usually be used with a CardDeckView.
 ///
 ///To fully create a card you can do something like this:
 ///
 ///    let card = CardView.newAutoLayoutView()
 ///    card.backgroundColor = .redColor()
-///    card.createTitleView("My card", buttonFontColor: .blackColor(), arrowImage: image)
+///    card.createTitleView("My card", buttonFontColor: .blackColor(), buttonImage: image)
 ///    card.button.addTarget(self, action: selector, forControlEvents: .TouchUpInside)
 ///
 ///CardView uses [PureLayout](https://github.com/PureLayout/PureLayout) to set its constraints.
@@ -70,6 +87,15 @@ public class CardView: UIView {
 	var nextState: ShowState = .Normal
 	var beforeBackgroundState: ShowState = .Normal
 
+	//Delegate for customizing cards
+	var delegate: CardDelegate?
+
+	//Current page of the scroll view
+	var currentPage: Int {
+		let width = scrollView.frame.size.width
+		return lround(Double(scrollView.contentOffset.x) / Double(width))
+	}
+
 	///This controller will be notified when the card appears/dissapears
 	weak var presentingController: CardViewController?
 
@@ -118,6 +144,52 @@ public class CardView: UIView {
 				view.autoPinEdge(.Left, toEdge: .Right, ofView: last)
 			}
 		}
+		
+		scrollView.layoutIfNeeded()
+	}
+
+	///Moves the content inside the scrollview to the right. If no content found, it will try
+	///to add it via delegate
+	public func moveRight() {
+		let nextPage = currentPage + 1
+
+		if nextPage < scrollContentView.subviews.count ||
+			delegate?.card?(self, onMissingPage: nextPage) ?? false {
+			moveToPage(nextPage)
+		}
+	}
+
+	///Moves the content inside the scrollview to the left.
+	public func moveLeft() {
+		if currentPage != 0 {
+			moveToPage(currentPage - 1)
+		}
+	}
+
+	///Moves the content inside the scrollview to a page
+	/// - parameter page: index of the page to move to
+	public func moveToPage(page: Int) {
+		let rect = CGRectMake(scrollView.frame.size.width * CGFloat(page),
+			y: 0, size: scrollView.frame.size)
+
+		scrollView.scrollRectToVisible(rect, animated: true)
+
+		changeButtonText(self.delegate?.card?(self, titleForPage: page))
+
+		//If it's one of the first views, rotate arrow accordingly
+		if page < 2 {
+			UIView.animateWithDuration(0.3, animations: {
+				self.arrow.transform = page == 0 ?
+					CGAffineTransformIdentity :
+					CGAffineTransformMakeRotation(CGFloat(M_PI_2))
+			})
+		}
+	}
+
+	///Change card button text title
+	/// - parameter text: new text for the button
+	public func changeButtonText(text: String?) {
+		button.setTitle(text?.uppercaseString, forState: .Normal)
 	}
 
 
@@ -130,7 +202,7 @@ public class CardView: UIView {
 	///    - buttonFontColor: color for the button text
 	///    - arrowImage: image to be used as "indicator" arrow
 	public func initializeView(backgroundColor backgroundColor: UIColor,
-			buttonTitle: String, buttonFontColor fontColor: UIColor, arrowImage image: UIImage) {
+			buttonTitle: String?, buttonFontColor fontColor: UIColor, buttonImage image: UIImage) {
 		//Add button and arrow
 		addSubview(button)
 		button.addSubview(arrow)
@@ -144,8 +216,8 @@ public class CardView: UIView {
 
 		//Initialize scroll view
 		scrollView.bounces = true
-		scrollView.scrollEnabled = true
-		scrollView.pagingEnabled = true
+		scrollView.scrollEnabled = false
+		scrollView.pagingEnabled = false
 
 		setButton(buttonTitle, fontColor: fontColor)
 		setArrowImage(image)
@@ -183,8 +255,8 @@ public class CardView: UIView {
 	/// - parameters:
 	///    - title: title for the button
 	///    - fontColor: color for the title
-	public func setButton(title: String, fontColor: UIColor) {
-		self.button.setTitle(title.uppercaseString, forState: .Normal)
+	public func setButton(title: String?, fontColor: UIColor) {
+		changeButtonText(title)
 		self.button.titleLabel?.font = UIFont(name: CardView.DefaultFontName,
 		                                      size: CardView.DefaultFontSize)
 		self.button.setTitleColor(fontColor, forState: .Normal)

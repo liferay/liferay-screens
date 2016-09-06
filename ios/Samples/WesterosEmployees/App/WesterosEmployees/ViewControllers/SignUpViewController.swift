@@ -18,18 +18,16 @@ class SignUpViewController: CardViewController, SignUpScreenletDelegate {
 
 	@IBOutlet weak var screenlet: SignUpScreenlet?
 
-	override init(card: CardView, nibName: String) {
-		super.init(card: card, nibName: nibName)
+
+	//MARK: Init methods
+
+	convenience init() {
+		self.init(nibName: "SignUpViewController", bundle: nil)
 	}
 
-	convenience init(card: CardView) {
-		self.init(card: card, nibName: "SignUpViewController")
-	}
 
-	required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-	}
-
+	//MARK: UIViewController
+	
 	override func viewDidLoad() {
 		self.screenlet?.delegate = self
 
@@ -38,6 +36,9 @@ class SignUpViewController: CardViewController, SignUpScreenletDelegate {
 		self.screenlet?.anonymousApiPassword =
 				LiferayServerContext.propertyForKey("anonymousPassword") as? String
 	}
+
+
+	//MARK: SignUpScreenletDelegate
 
 	func screenlet(screenlet: SignUpScreenlet,
 			onSignUpResponseUserAttributes attributes: [String:AnyObject]) {

@@ -16,27 +16,61 @@ import LiferayScreens
 
 public var tourCompleted = false
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
+	CardDeckDelegate, CardDeckDataSource {
+
+
+	//MARK: Outlets
 
 	@IBOutlet weak var cardDeck: CardDeckView?
-	@IBOutlet weak var userProfileView: UIView?
+	@IBOutlet weak var userProfileView: AssetDisplayScreenlet?
+
+
+	//MARK: Card ViewControllers
+
+	var documentationViewController: DocumentationViewController?
+	var blogsViewController: BlogsViewController?
+	var galleryViewController: GalleryViewController?
+
+
+	//MARK: UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		cardDeck?.addCards(["Documentation", "Blogs", "Gallery"])
-
 		self.userProfileView?.layer.zPosition = -1000
 		self.cardDeck?.layer.zPosition = 0
+
+		documentationViewController = DocumentationViewController()
+		blogsViewController = BlogsViewController()
+		galleryViewController = GalleryViewController()
+
+		cardDeck?.delegate = self
+		cardDeck?.dataSource = self
 	}
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		let isLoggedIn = SessionContext.isLoggedIn
+
 		if isLoggedIn {
-			UIView.animateWithDuration(1.5) {
-				self.cardDeck?.alpha = 1.0
-			}
+			self.userProfileView?.delegate = self
+
+			userProfileView?.className = AssetClasses.getClassName(AssetClassNameKey_User)!
+			userProfileView?.classPK = SessionContext.currentContext!.userId!
+			userProfileView?.load()
+
+			self.cardDeck?.alpha = 1.0
+
+			self.cardDeck?.cards[1].currentState = .Hidden
+			self.cardDeck?.cards[1].resetToCurrentState()
+			self.cardDeck?.cards[1].nextState = .Minimized
+			self.cardDeck?.cards[1].changeToNextState(delay: 0.5)
+
+			self.cardDeck?.cards[0].currentState = .Hidden
+			self.cardDeck?.cards[0].resetToCurrentState()
+			self.cardDeck?.cards[0].nextState = .Minimized
+			self.cardDeck?.cards[0].changeToNextState(delay: 1.0)
 		} else {
 			self.cardDeck?.alpha = 0.0
 		}
@@ -57,5 +91,56 @@ class HomeViewController: UIViewController {
 		}
 	}
 
+
+	//MARK: AssetDisplayScreenletDelegate
+
+	func screenlet(screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView? {
+		if let type = asset.attributes["object"]?.allKeys.first as? String {
+			if type == "user" {
+				let vc = UserDisplayViewController(nibName: "UserDisplayViewController", bundle: nil)
+				self.addChildViewController(vc)
+				screenlet.addSubview(vc.view)
+				vc.view.frame = screenlet.bounds
+				vc.user = User(attributes: asset.attributes)
+			}
+		}
+		return nil
+	}
+
+	//MARK: CardDeckDataSource
+
+	func numberOfCardsIn(cardDeck: CardDeckView) -> Int {
+		return 3
+	}
+
+	func cardDeck(cardDeck: CardDeckView, controllerForCard position: CardPosition)
+		-> CardViewController? {
+			switch (position.card, position.page) {
+			case (0, 0):
+				return documentationViewController
+			case (1, 0):
+				return blogsViewController
+			case (2, 0):
+				return galleryViewController
+			default:
+				return nil
+			}
+	}
+
+
+	//MARK: CardDeckDelegate
+
+	func cardDeck(cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
+		switch (position.card, position.page) {
+		case (0, 0):
+			return "Documentation"
+		case (1, 0):
+			return "Blogs"
+		case (2, 0):
+			return "Gallery"
+		default:
+			return nil
+		}
+	}
 }
 

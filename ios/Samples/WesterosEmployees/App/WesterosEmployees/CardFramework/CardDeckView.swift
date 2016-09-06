@@ -14,6 +14,69 @@
 import UIKit
 import PureLayout
 
+
+///Indicates the position for a page inside a card
+public class CardPosition: NSObject {
+	let card: Int
+	let page: Int
+
+	init (card: Int, page: Int) {
+		self.card = card
+		self.page = page
+	}
+}
+
+
+///Delegate for customizing cards inside a CardDeck
+@objc public protocol CardDeckDelegate : NSObjectProtocol {
+
+	///Get the title for a page in a card
+	/// - parameter titleForCard position: position for the title
+	/// - returns: title for the page
+	optional func cardDeck(cardDeck: CardDeckView,
+	                       titleForCard position: CardPosition) -> String?
+
+	///Get the background color for a card
+	/// - parameter colorForCardIndex index: position of the card
+	/// - returns: background color for the card
+	optional func cardDeck(cardDeck: CardDeckView,
+	                       colorForCardIndex index: Int) -> UIColor?
+
+	///Get the button text color for a card
+	/// - parameter colorForButtonIndex index: position of the card
+	/// - returns: color for the button text of the card
+	optional func cardDeck(cardDeck: CardDeckView,
+	                       colorForButtonIndex index: Int) -> UIColor?
+
+	///Get the button image for a card
+	/// - parameter buttonImageForCardIndex index: position of the card
+	/// - returns: image for the button of the card
+	optional func cardDeck(cardDeck: CardDeckView,
+	                       buttonImageForCardIndex index: Int) -> UIImage?
+	
+}
+
+///Data source for card decks
+@objc public protocol CardDeckDataSource : NSObjectProtocol {
+
+	///Get the number of cards in this deck
+	func numberOfCardsIn(cardDeck: CardDeckView) -> Int
+
+	///Get the CardViewController for a position
+	/// - parameter controllerForCard position: position for the controller
+	/// - returns: controller for given position
+	func cardDeck(cardDeck: CardDeckView,
+	              controllerForCard position: CardPosition) -> CardViewController?
+
+	///Customize visual aspects of the card
+	/// - parameters:
+	///    - customizeCard card: card to be customized
+	///    - atIndex index: index of the card
+	optional func cardDeck(cardDeck: CardDeckView,
+	              customizeCard card: CardView, atIndex index: Int)
+	
+}
+
 ///View used to hold an array of cards. This class will auto arrange them in screen and handle
 ///its states.
 ///
@@ -21,11 +84,47 @@ import PureLayout
 ///
 ///    cardDeck.addCards(["Top card", "Middle card", "Bottom card"])
 ///
-public class CardDeckView: UIView {
+public class CardDeckView: UIView, CardDelegate {
 
 	//Default configuration constants
 	public static let DefaultBackgroundSpacing: CGFloat = 70
 	public static let DefaultZPositionMultiplier: CGFloat = 1000
+
+	//Delegate for customizing cards for this deck
+	public var delegate: CardDeckDelegate?
+
+	//Data source for providing card content
+	public var dataSource: CardDeckDataSource? {
+		didSet {
+			if let source = dataSource {
+				let count = source.numberOfCardsIn(self)
+
+				let initialHeight = CardView.DefaultMinimizedHeight
+
+				for index in 0...count {
+					//For each title we will create a card, each card should be on top of the previous ones
+					let card = createCardForIndex(index)
+
+					//The normal height for a card will be its parent size with a padding
+					card.normalHeight = self.frame.size.height - CardDeckView.DefaultBackgroundSpacing
+
+					//The minimized height for a card will be the initial height plus the height of the
+					//previous ones
+					card.minimizedHeight = initialHeight +
+						CGFloat(count - index - 1) * initialHeight
+
+					self.dataSource?.cardDeck?(self, customizeCard: card, atIndex: index)
+
+					card.updateSubviewsConstraints()
+
+					addSubview(card)
+
+					//Set constraints for this card
+					setConstraintsForCard(card)
+				}
+			}
+		}
+	}
 
 	//List of cards in this deck
 	public var cards: [CardView] {
@@ -33,32 +132,6 @@ public class CardDeckView: UIView {
 	}
 
 	//MARK: Public methods
-
-	///Creates an array of cards usign the received arguments as titles.
-	/// - parameter titles: array of titles for the cards
-	public func addCards(titles: [String]) {
-		let initialHeight = CardView.DefaultMinimizedHeight
-
-		for index in 0..<titles.count {
-			//For each title we will create a card, each card should be on top of the previous ones
-			let card = createCard(titles[index], index: index)
-
-			//The normal height for a card will be its parent size with a padding
-			card.normalHeight = self.frame.size.height - CardDeckView.DefaultBackgroundSpacing
-
-			//The minimized height for a card will be the initial height plus the height of the
-			//previous ones
-			card.minimizedHeight = initialHeight +
-				CGFloat(titles.count - index - 1) * initialHeight
-
-			card.updateSubviewsConstraints()
-
-			addSubview(card)
-
-			//Set constraints for this card
-			setConstraintsForCard(card)
-		}
-	}
 
 	///Method launched when a button-card is clicked.
 	///You can retrieve the card by getting the superview.
@@ -69,44 +142,48 @@ public class CardDeckView: UIView {
 	public func cardTouchUpInside(sender: UIButton) {
 		if let card = sender.superview as? CardView {
 
-			//Split from the clicked card
-			let (top, bottom) = cards.splitAtIndex(cards.indexOf(card)!)
+			if card.currentPage != 0 && card.currentState.isVisible {
+				card.moveLeft()
+			} else {
+				//Split from the clicked card
+				let (top, bottom) = cards.splitAtIndex(cards.indexOf(card)!)
 
-			switch (card.currentState) {
-			case .Minimized:
-				//If the card is minimized all top-cards go to background
-				top.forEach {
-					if $0.currentState != .Background {
-						change($0, toState: .Normal, animateArrow: false)
-						change($0, toState: .Background)
+				switch (card.currentState) {
+				case .Minimized:
+					//If the card is minimized all top-cards go to background
+					top.forEach {
+						if $0.currentState != .Background {
+							change($0, toState: .Normal, animateArrow: false)
+							change($0, toState: .Background)
+						}
 					}
+
+					//Actual card should appear in screen
+					change(card, toState: .Normal)
+
+					//Make sure bottom cards stay minimized
+					bottom.forEach {
+						change($0, toState: .Minimized)
+					}
+
+				case .Maximized, .Normal:
+					//Minimize all cards
+					cards.forEach {
+						change($0, toState: .Minimized)
+					}
+
+				case .Background:
+					//Bring the card to foreground
+					change(card, toState: .Normal)
+
+					//Make sure bottom cards stay minimized
+					bottom.forEach {
+						change($0, toState: .Minimized)
+					}
+					
+				default:
+					break
 				}
-
-				//Actual card should appear in screen
-				change(card, toState: .Normal)
-
-				//Make sure bottom cards stay minimized
-				bottom.forEach {
-					change($0, toState: .Minimized)
-				}
-
-			case .Maximized, .Normal:
-				//Minimize all cards
-				cards.forEach {
-					change($0, toState: .Minimized)
-				}
-
-			case .Background:
-				//Bring the card to foreground
-				change(card, toState: .Normal)
-
-				//Make sure bottom cards stay minimized
-				bottom.forEach {
-					change($0, toState: .Minimized)
-				}
-
-			default:
-				break
 			}
 		}
 	}
@@ -134,15 +211,35 @@ public class CardDeckView: UIView {
 	///    - title: title for the card
 	///    - index: index of this card in the deck
 	/// - returns: the CardView object
-	public func createCard(title: String, index: Int) -> CardView {
+	public func createCardForIndex(index: Int) -> CardView {
 		//Create Card
 		let card = CardView.newAutoLayoutView()
 		card.layer.zPosition = zPositionForIndex(index)
-		card.initializeView(backgroundColor: Resources.backgroundColorForIndex(index),
-		    buttonTitle: title, buttonFontColor: Resources.textColorForIndex(index),
-			arrowImage: Resources.arrowImageForIndex(index))
+
+		let cardBackgroundColor = self.delegate?.cardDeck?(self, colorForCardIndex: index)
+			?? DefaultResources.backgroundColorForIndex(index)
+
+		let buttonFontColor = self.delegate?.cardDeck?(self, colorForButtonIndex: index)
+			?? DefaultResources.textColorForIndex(index)
+
+		let arrowImage = self.delegate?.cardDeck?(self, buttonImageForCardIndex: index)
+			?? DefaultResources.arrowImageForIndex(index)
+
+		let cardPosition = CardPosition(card: index, page: 0)
+
+		let title = self.delegate?.cardDeck?(self, titleForCard: cardPosition)
+
+		card.initializeView(backgroundColor: cardBackgroundColor,
+		    buttonTitle: title, buttonFontColor: buttonFontColor,
+			buttonImage: arrowImage)
+
+		card.delegate = self
+
 		card.button.addTarget(self, action: #selector(CardDeckView.cardTouchUpInside(_:)),
 			forControlEvents: .TouchUpInside)
+
+		let controller = dataSource?.cardDeck(self, controllerForCard: cardPosition)
+		controller?.cardView = card 
 
 		return card
 	}
@@ -152,5 +249,29 @@ public class CardDeckView: UIView {
 	/// - returns: z position for this index
 	public func zPositionForIndex(index: Int) -> CGFloat {
 		return CardDeckView.DefaultZPositionMultiplier * (CGFloat(index) + 1)
+	}
+
+
+	//MARK: CardDelegate
+
+	public func card(card: CardView, titleForPage page: Int) -> String? {
+		if let index = cards.indexOf(card) {
+			let cardPosition = CardPosition(card: index, page: page)
+			return self.delegate?.cardDeck?(self, titleForCard: cardPosition)
+		}
+
+		return nil
+	}
+
+	public func card(card: CardView, onMissingPage page: Int) -> Bool {
+		if let index = cards.indexOf(card) {
+			let cardPosition = CardPosition(card: index, page: page)
+			let controller = dataSource?.cardDeck(self, controllerForCard: cardPosition)
+			controller?.cardView = card
+
+			return controller != nil
+		}
+
+		return false
 	}
 }

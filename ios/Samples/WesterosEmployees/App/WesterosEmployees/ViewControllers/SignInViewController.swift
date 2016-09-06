@@ -17,24 +17,22 @@ import LiferayScreens
 
 class SignInViewController: CardViewController, LoginScreenletDelegate, KeyboardListener {
 
+	
 	//MARK: Outlets
 	@IBOutlet weak var loginScreenlet: LoginScreenlet?
 
+
 	//MARK: Init methods
 
-	override init(card: CardView, nibName: String) {
-		super.init(card: card, nibName: nibName)
+	convenience init() {
+		self.init(nibName: "SignInViewController", bundle: nil)
 	}
 
-	convenience init(card: CardView) {
-		self.init(card: card, nibName: "SignInViewController")
-	}
 
-	required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-	}
+	//MARK: View actions
 
 	@IBAction func forgotPasswordAction() {
+		cardView?.moveRight()
 	}
 
 

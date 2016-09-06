@@ -14,7 +14,7 @@
 import UIKit
 import LiferayScreens
 
-class AuthViewController: UIViewController, LoginScreenletDelegate {
+class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource {
 
 	@IBOutlet var cardDeck: CardDeckView!
 
@@ -22,6 +22,8 @@ class AuthViewController: UIViewController, LoginScreenletDelegate {
 	var signUpController: SignUpViewController?
 	var forgotPasswordController: ForgotPasswordViewController?
 
+
+	//MARK: UIViewController
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -29,18 +31,16 @@ class AuthViewController: UIViewController, LoginScreenletDelegate {
 			self.dismissViewControllerAnimated(true, completion: nil)
 		}
 
-		cardDeck.addCards(["Sign In", "Sign Up"])
-
-		//Make login only expand to half of the page on normal height
-		cardDeck.cards[0].normalHeight = self.view.frame.height * 0.7
-
-		signInController = SignInViewController(card: cardDeck.cards[0])
+		signInController = SignInViewController()
 		signInController!.onDone = onDone
 
-		forgotPasswordController = ForgotPasswordViewController(card: cardDeck.cards[0])
+		forgotPasswordController = ForgotPasswordViewController()
 
-		signUpController = SignUpViewController(card: cardDeck.cards[1])
+		signUpController = SignUpViewController()
 		signUpController!.onDone = onDone
+
+		cardDeck.delegate = self
+		cardDeck.dataSource = self
 
 		self.cardDeck.layoutIfNeeded()
 	}
@@ -51,5 +51,49 @@ class AuthViewController: UIViewController, LoginScreenletDelegate {
 		self.cardDeck.cards[0].resetToCurrentState()
 		self.cardDeck.cards[0].nextState = .Minimized
 		self.cardDeck.cards[0].changeToNextState(delay: 0.5)
+	}
+
+
+	//MARK: CardDeckDataSource
+
+	func numberOfCardsIn(cardDeck: CardDeckView) -> Int {
+		return 2
+	}
+
+	func cardDeck(cardDeck: CardDeckView, controllerForCard position: CardPosition)
+			-> CardViewController? {
+		switch (position.card, position.page) {
+    	case (0, 0):
+			return signInController
+		case (0, 1):
+			return forgotPasswordController
+		case (1, 0):
+			return signUpController
+    	default:
+			return nil
+		}
+	}
+
+	func cardDeck(cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
+		if index == 0 {
+			//Make login only expand to half of the page on normal height
+			card.normalHeight = self.view.frame.height * 0.7
+		}
+	}
+
+
+	//MARK: CardDeckDelegate
+
+	func cardDeck(cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
+		switch (position.card, position.page) {
+		case (0, 0):
+			return "Sign In"
+		case (0, 1):
+			return "Forgot password"
+		case (1, 0):
+			return "Sign Up"
+		default:
+			return nil
+		}
 	}
 }
