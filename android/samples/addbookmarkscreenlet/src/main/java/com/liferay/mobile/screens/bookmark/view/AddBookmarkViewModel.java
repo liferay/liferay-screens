@@ -14,5 +14,4 @@ public interface AddBookmarkViewModel extends BaseViewModel {
 	String getTitle();
 
 	void setTitle(String value);
-
 }

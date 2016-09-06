@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.bookmark.interactor.AddBookmarkInteractorImpl;
 import com.liferay.mobile.screens.bookmark.interactor.AddBookmarkListener;
@@ -14,9 +13,11 @@ import com.liferay.mobile.screens.bookmark.view.AddBookmarkViewModel;
 /**
  * @author Javier Gamarra
  */
-public class AddBookmarkScreenlet
-	extends BaseScreenlet<AddBookmarkViewModel, AddBookmarkInteractorImpl>
+public class AddBookmarkScreenlet extends BaseScreenlet<AddBookmarkViewModel, AddBookmarkInteractorImpl>
 	implements AddBookmarkListener {
+
+	private long _folderId;
+	private AddBookmarkListener _listener;
 
 	public AddBookmarkScreenlet(Context context) {
 		super(context);
@@ -68,7 +69,8 @@ public class AddBookmarkScreenlet
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray = context.getTheme().obtainStyledAttributes(attributes, R.styleable.AddBookmarkScreenlet, 0, 0);
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.AddBookmarkScreenlet, 0, 0);
 
 		int layoutId = typedArray.getResourceId(R.styleable.AddBookmarkScreenlet_layoutId, 0);
 
@@ -99,13 +101,8 @@ public class AddBookmarkScreenlet
 
 		try {
 			interactor.start(url, title, _folderId);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			onAddBookmarkFailure(e);
 		}
 	}
-
-	private long _folderId;
-	private AddBookmarkListener _listener;
-
 }

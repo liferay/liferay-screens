@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.bookmark.AddBookmarkScreenlet;
 import com.liferay.mobile.screens.bookmark.R;
@@ -16,6 +15,10 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  * @author Javier Gamarra
  */
 public class AddBookmarkView extends LinearLayout implements AddBookmarkViewModel, View.OnClickListener {
+
+	private EditText _urlText;
+	private EditText _titleText;
+	private BaseScreenlet _screenlet;
 
 	public AddBookmarkView(Context context) {
 		super(context);
@@ -85,9 +88,4 @@ public class AddBookmarkView extends LinearLayout implements AddBookmarkViewMode
 		Button addButton = (Button) findViewById(R.id.add_button);
 		addButton.setOnClickListener(this);
 	}
-
-	private EditText _urlText;
-	private EditText _titleText;
-
-	private BaseScreenlet _screenlet;
 }
