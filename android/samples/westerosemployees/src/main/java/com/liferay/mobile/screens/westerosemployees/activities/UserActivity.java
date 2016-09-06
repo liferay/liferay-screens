@@ -65,7 +65,7 @@ public class UserActivity extends DeckActivity {
 			}
 		}
 
-		else {
+		else if (movement == FlingListener.Movement.TOUCH && card.getCardSubviewCurrentIndex() == 0) {
 			super.onFling(movement, card);
 		}
 	}
