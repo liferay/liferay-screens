@@ -20,6 +20,8 @@ import org.json.JSONObject;
 
 public class NotificationsActivity extends PushScreensActivity implements BaseListListener<Record> {
 
+	private DDLListScreenlet ddlList;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -116,6 +118,4 @@ public class NotificationsActivity extends PushScreensActivity implements BaseLi
 			}
 		};
 	}
-
-	private DDLListScreenlet ddlList;
 }

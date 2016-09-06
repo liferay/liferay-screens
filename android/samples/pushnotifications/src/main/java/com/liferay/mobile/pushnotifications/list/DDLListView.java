@@ -19,23 +19,24 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
-
 import com.liferay.mobile.pushnotifications.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.list.view.DDLListViewModel;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Javier Gamarra
  */
-public class DDLListView
-	extends BaseListScreenletView<Record, DDLListAdapter.ImageViewHolder, DDLListAdapter>
+public class DDLListView extends BaseListScreenletView<Record, DDLListAdapter.ImageViewHolder, DDLListAdapter>
 	implements DDLListViewModel, SwipeRefreshLayout.OnRefreshListener {
+
+	private static final String _STATE_LABEL_FIELDS = "ddllistview-label_fields";
+	private static final String _STATE_SUPER = "ddllistview-super";
+	private SwipeRefreshLayout _swipeRefreshLayout;
 
 	public DDLListView(Context context) {
 		super(context);
@@ -105,15 +106,8 @@ public class DDLListView
 		return state;
 	}
 
-
 	@Override
 	protected DividerItemDecoration getDividerDecoration() {
 		return null;
 	}
-
-	private SwipeRefreshLayout _swipeRefreshLayout;
-
-	private static final String _STATE_LABEL_FIELDS = "ddllistview-label_fields";
-	private static final String _STATE_SUPER = "ddllistview-super";
-
 }
