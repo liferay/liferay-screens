@@ -18,7 +18,6 @@ import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.viewsets.R;
 
@@ -27,6 +26,8 @@ import com.liferay.mobile.screens.viewsets.R;
  */
 public class ForgotPasswordView
 	extends com.liferay.mobile.screens.viewsets.defaultviews.auth.forgotpassword.ForgotPasswordView {
+
+	protected ImageView _drawableLogin;
 
 	public ForgotPasswordView(Context context) {
 		super(context);
@@ -58,14 +59,10 @@ public class ForgotPasswordView
 	protected int getLoginEditTextDrawableId() {
 		if (BasicAuthMethod.USER_ID.equals(getBasicAuthMethod())) {
 			return R.drawable.material_account_box;
-		}
-		else if (BasicAuthMethod.EMAIL.equals(getBasicAuthMethod())) {
+		} else if (BasicAuthMethod.EMAIL.equals(getBasicAuthMethod())) {
 			return R.drawable.material_email;
 		}
 
 		return R.drawable.material_account_box;
 	}
-
-	protected ImageView _drawableLogin;
-
 }

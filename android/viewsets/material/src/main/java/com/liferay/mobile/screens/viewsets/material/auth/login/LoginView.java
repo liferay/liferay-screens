@@ -20,16 +20,17 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.viewsets.R;
 
 /**
  * @author Silvio Santos
  */
-public class LoginView
-	extends com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginView
+public class LoginView extends com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginView
 	implements View.OnTouchListener {
+
+	protected ImageView _drawableLogin;
+	protected ImageView _drawablePassword;
 
 	public LoginView(Context context) {
 		super(context);
@@ -81,22 +82,16 @@ public class LoginView
 	protected int getLoginEditTextDrawableId() {
 		if (BasicAuthMethod.USER_ID.equals(getBasicAuthMethod())) {
 			return R.drawable.material_account_box;
-		}
-		else if (BasicAuthMethod.EMAIL.equals(getBasicAuthMethod())) {
+		} else if (BasicAuthMethod.EMAIL.equals(getBasicAuthMethod())) {
 			return R.drawable.material_email;
 		}
 
 		return R.drawable.material_account_box;
 	}
 
-	private void changeColorOfImageView(
-		ImageView viewToPrimaryColor, ImageView viewToSecondaryText) {
+	private void changeColorOfImageView(ImageView viewToPrimaryColor, ImageView viewToSecondaryText) {
 
 		viewToPrimaryColor.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorPrimary_material));
 		viewToSecondaryText.setColorFilter(ContextCompat.getColor(getContext(), R.color.textColorSecondary_material));
 	}
-
-	protected ImageView _drawableLogin;
-	protected ImageView _drawablePassword;
-
 }
