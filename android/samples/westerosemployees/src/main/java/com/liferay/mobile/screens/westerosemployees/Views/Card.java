@@ -16,6 +16,7 @@ import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.widget.FrameLayout;
 import com.liferay.mobile.screens.westerosemployees.utils.CardState;
+import com.liferay.mobile.screens.westerosemployees.utils.PixelUtil;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,8 +94,8 @@ public class Card extends FrameLayout {
 
 	public void initPosition(int minimizedPosition) {
 		this.minimizedPosition = minimizedPosition;
-		this.normalY = convertDpToPx(NORMAL_Y);
-		this.backgroundY = convertDpToPx(BACKGROUND_Y);
+		this.normalY = PixelUtil.pixelFromDp(getContext(), NORMAL_Y);
+		this.backgroundY = PixelUtil.pixelFromDp(getContext(), BACKGROUND_Y);
 
 		setY(minimizedPosition);
 	}
@@ -177,7 +178,8 @@ public class Card extends FrameLayout {
 		}
 
 		ViewGroup.LayoutParams params = getLayoutParams();
-		params.height = maxHeight - (maxHeight - minimizedPosition - convertDpToPx(CARD_SIZE) + statusBarHeight);
+		params.height = maxHeight - (maxHeight - minimizedPosition - PixelUtil.pixelFromDp(getContext(), CARD_SIZE)
+			+ statusBarHeight);
 		setLayoutParams(params);
 	}
 
@@ -215,12 +217,8 @@ public class Card extends FrameLayout {
 		return views;
 	}
 
-	private int convertDpToPx(int dp) {
-		Resources resources = getResources();
-		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
-	}
-
 	protected static int statusBarHeight;
+
 	protected List<View> arrows;
 	protected List<View> titles;
 	protected int index;

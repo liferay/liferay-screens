@@ -16,6 +16,7 @@ import com.liferay.mobile.screens.westerosemployees.Views.Card;
 import com.liferay.mobile.screens.westerosemployees.gestures.FlingListener;
 import com.liferay.mobile.screens.westerosemployees.gestures.FlingTouchListener;
 import com.liferay.mobile.screens.westerosemployees.utils.CardState;
+import com.liferay.mobile.screens.westerosemployees.utils.PixelUtil;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -102,7 +103,7 @@ public class DeckActivity extends Activity {
 		for (int i = 0, size = cards.size(); i < size; i++) {
 			final Card card = cards.get(i);
 
-			int cardSize = convertDpToPx(Card.CARD_SIZE);
+			int cardSize = PixelUtil.pixelFromDp(this, Card.CARD_SIZE);
 			int minimizedPosition = maxHeight - (size - i) * cardSize;
 
 			card.initPosition(minimizedPosition);
@@ -128,7 +129,6 @@ public class DeckActivity extends Activity {
 			Card view = cards.get(i);
 
 			if (indexSelected > i) {
-				int depth = indexSelected - i;
 				view.setState(CardState.BACKGROUND);
 			}
 
@@ -180,11 +180,6 @@ public class DeckActivity extends Activity {
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 		getWindow().setStatusBarColor(getResources().getColor(R.color.background_gray_westeros));
-	}
-
-	private int convertDpToPx(int dp) {
-		Resources resources = getResources();
-		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
 	}
 
 	protected List<Card> cards;
