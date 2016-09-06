@@ -21,6 +21,10 @@ class HomeViewController: UIViewController {
 	@IBOutlet weak var cardDeck: CardDeckView?
 	@IBOutlet weak var userProfileView: UIView?
 
+	var documentationViewController: DocumentationViewController?
+	var blogsViewController: BlogsViewController?
+	var galleryViewController: GalleryViewController?
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -28,6 +32,10 @@ class HomeViewController: UIViewController {
 
 		self.userProfileView?.layer.zPosition = -1000
 		self.cardDeck?.layer.zPosition = 0
+
+		documentationViewController = DocumentationViewController(card: cardDeck!.cards[0])
+		blogsViewController = BlogsViewController(card: cardDeck!.cards[1])
+		galleryViewController = GalleryViewController(card: cardDeck!.cards[2])
 	}
 
 	override func viewWillAppear(animated: Bool) {
