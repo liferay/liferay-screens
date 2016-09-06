@@ -20,6 +20,19 @@ extension SyncManager {
 			attributes: [String:AnyObject])
 			-> Signal -> () {
 
+		if key.hasPrefix("delete-") {
+			return deleteSynchronizer(key, attributes: attributes)
+		}
+
+
+		return { _ in
+		}
+	}
+
+	func deleteSynchronizer(
+			key: String,
+			attributes: [String:AnyObject])
+			-> Signal -> () {
 		return { signal in
 			let commentId = (attributes["commentId"] as! NSNumber).longLongValue
 
