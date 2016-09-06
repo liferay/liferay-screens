@@ -14,14 +14,11 @@
 
 package com.liferay.mobile.screens.viewsets.defaultviews.ddl.list;
 
-import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.AttributeSet;
 import android.view.View;
 
 /**
@@ -29,12 +26,6 @@ import android.view.View;
  * https://gist.github.com/fatfingers/233abbae200b5e87297b
  */
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {
-
-	public DividerItemDecoration(Context context, AttributeSet attrs) {
-		final TypedArray a = context.obtainStyledAttributes(attrs, new int[]{android.R.attr.listDivider});
-		mDivider = a.getDrawable(0);
-		a.recycle();
-	}
 
 	public DividerItemDecoration(Drawable divider) {
 		mDivider = divider;
@@ -107,6 +98,6 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 		}
 	}
 
-	private Drawable mDivider;
+	private final Drawable mDivider;
 
 }

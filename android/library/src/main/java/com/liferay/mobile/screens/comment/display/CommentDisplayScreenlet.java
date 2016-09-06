@@ -9,17 +9,14 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
-import com.liferay.mobile.screens.comment.display.interactor.delete.CommentDeleteInteractor;
+import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
 import com.liferay.mobile.screens.comment.display.interactor.delete.CommentDeleteInteractorImpl;
-import com.liferay.mobile.screens.comment.display.interactor.load.CommentLoadInteractor;
 import com.liferay.mobile.screens.comment.display.interactor.load.CommentLoadInteractorImpl;
-import com.liferay.mobile.screens.comment.display.interactor.update.CommentUpdateInteractor;
 import com.liferay.mobile.screens.comment.display.interactor.update.CommentUpdateInteractorImpl;
 import com.liferay.mobile.screens.comment.display.view.CommentDisplayViewModel;
-import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.models.CommentEntry;
 
 /**
  * @author Alejandro Hernández
@@ -80,9 +77,6 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 
 		editable = typedArray.getBoolean(R.styleable.CommentDisplayScreenlet_editable, true);
 
-		groupId = castToLongOrUseDefault(typedArray.getString(R.styleable.CommentDisplayScreenlet_groupId),
-			LiferayServerContext.getGroupId());
-
 		int offlinePolicy =
 			typedArray.getInt(R.styleable.CommentDisplayScreenlet_offlinePolicy, OfflinePolicy.REMOTE_ONLY.ordinal());
 		this.offlinePolicy = OfflinePolicy.values()[offlinePolicy];
@@ -98,12 +92,12 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	protected Interactor createInteractor(String actionName) {
 		switch (actionName) {
 			case DELETE_COMMENT_ACTION:
-				return new CommentDeleteInteractorImpl(getScreenletId());
+				return new CommentDeleteInteractorImpl();
 			case UPDATE_COMMENT_ACTION:
-				return new CommentUpdateInteractorImpl(getScreenletId());
+				return new CommentUpdateInteractorImpl();
 			case LOAD_COMMENT_ACTION:
 			default:
-				return new CommentLoadInteractorImpl(getScreenletId(), offlinePolicy);
+				return new CommentLoadInteractorImpl();
 		}
 	}
 
@@ -111,26 +105,17 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	protected void onUserAction(String actionName, Interactor interactor, Object... args) {
 		switch (actionName) {
 			case DELETE_COMMENT_ACTION:
-				((CommentDeleteInteractor) interactor).deleteComment(commentId);
+				((CommentDeleteInteractorImpl) interactor).start(new CommentEvent(commentId, className, classPK, null));
 				break;
 			case UPDATE_COMMENT_ACTION:
 				String body = (String) args[0];
-				((CommentUpdateInteractor) interactor).updateComment(groupId, className, classPK, commentId, body);
+				((CommentUpdateInteractorImpl) interactor).start(new CommentEvent(commentId, className, classPK, body));
 				break;
 			case LOAD_COMMENT_ACTION:
 			default:
-				((CommentLoadInteractor) interactor).load(groupId, commentId);
+				((CommentLoadInteractorImpl) interactor).start(commentId);
 				break;
 		}
-	}
-
-	@Override
-	public void onLoadCommentFailure(Exception e) {
-		if (getListener() != null) {
-			getListener().onLoadCommentFailure(commentId, e);
-		}
-
-		getViewModel().showFailedOperation(LOAD_COMMENT_ACTION, e);
 	}
 
 	@Override
@@ -154,29 +139,11 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	}
 
 	@Override
-	public void onDeleteCommentFailure(Exception e) {
-		getViewModel().showFailedOperation(DELETE_COMMENT_ACTION, e);
-
-		if (getListener() != null) {
-			getListener().onDeleteCommentFailure(commentEntry, e);
-		}
-	}
-
-	@Override
 	public void onDeleteCommentSuccess() {
 		getViewModel().showFinishOperation(DELETE_COMMENT_ACTION);
 
 		if (getListener() != null) {
 			getListener().onDeleteCommentSuccess(commentEntry);
-		}
-	}
-
-	@Override
-	public void onUpdateCommentFailure(Exception e) {
-		getViewModel().showFailedOperation(UPDATE_COMMENT_ACTION, e);
-
-		if (getListener() != null) {
-			getListener().onUpdateCommentFailure(commentEntry, e);
 		}
 	}
 
@@ -190,23 +157,11 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	}
 
 	@Override
-	public void loadingFromCache(boolean success) {
-		if (getListener() != null) {
-			getListener().loadingFromCache(success);
-		}
-	}
+	public void error(Exception e, String userAction) {
+		getViewModel().showFailedOperation(userAction, e);
 
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
 		if (getListener() != null) {
-			getListener().retrievingOnline(triedInCache, e);
-		}
-	}
-
-	@Override
-	public void storingToCache(Object object) {
-		if (getListener() != null) {
-			getListener().storingToCache(object);
+			getListener().error(e, userAction);
 		}
 	}
 

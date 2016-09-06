@@ -31,6 +31,10 @@ import java.util.Map;
  */
 public abstract class Field<T extends Serializable> implements Parcelable {
 
+	public Field() {
+		super();
+	}
+
 	public enum DataType {
 		BOOLEAN("boolean"),
 		STRING("string"),
@@ -54,7 +58,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		public static DataType valueOf(Element element) {
 			String attributeValue = element.getAttribute("dataType");
 
-			if (attributeValue == null) {
+			if (attributeValue.isEmpty()) {
 				return UNSUPPORTED;
 			}
 
@@ -120,7 +124,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 			_value = value;
 		}
 
-		private String _value;
+		private final String _value;
 
 	}
 
@@ -186,7 +190,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 			_values = values;
 		}
 
-		private String[] _values;
+		private final String[] _values;
 
 	}
 

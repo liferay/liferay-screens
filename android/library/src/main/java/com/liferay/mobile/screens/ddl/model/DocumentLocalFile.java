@@ -24,6 +24,6 @@ public class DocumentLocalFile extends DocumentFile {
 		return _path != null && !_path.isEmpty();
 	}
 
-	private String _path;
+	private final String _path;
 
 }

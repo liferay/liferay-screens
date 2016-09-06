@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.context.storage;
 
 import android.content.Context;
-
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.oauth.OAuth;
@@ -23,6 +22,7 @@ import com.liferay.mobile.screens.base.AbstractFactory;
 import com.liferay.mobile.screens.base.FactoryProvider;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.BaseCredentialsStorageSharedPreferences;
+import com.liferay.mobile.screens.util.LiferayLogger;
 
 /**
  * @author Jose Manuel Navarro
@@ -53,7 +53,7 @@ public class CredentialsStorageBuilder {
 			_value = value;
 		}
 
-		private int _value;
+		private final int _value;
 	}
 
 	public CredentialsStorageBuilder setAuthentication(Authentication auth) {
@@ -91,8 +91,8 @@ public class CredentialsStorageBuilder {
 			throw new IllegalStateException("You must set the context before storageType");
 		}
 
-		_storageType = storageType;
-
+		//TODO implement other storage mechanisms
+		LiferayLogger.d("We currently support only one type of storage: " + storageType._value);
 		return this;
 	}
 
@@ -130,15 +130,12 @@ public class CredentialsStorageBuilder {
 				default:
 					return new CredentialsStorageVoid();
 			}
-		}
-		else {
+		} else {
 			if (_auth instanceof BasicAuthentication) {
 				return instance.getBasicCredentialsStorageSharedPreferences();
-			}
-			else if (_auth instanceof OAuth) {
+			} else if (_auth instanceof OAuth) {
 				return instance.getOAuthCredentialsStorageSharedPreferences();
-			}
-			else {
+			} else {
 				throw new IllegalStateException("Authentication type is not supported");
 			}
 		}
@@ -146,8 +143,5 @@ public class CredentialsStorageBuilder {
 
 	private Authentication _auth;
 	private User _user;
-	//TODO implement other storage mechanisms
-	private StorageType _storageType = StorageType.AUTO;
 	private Context _context;
-
 }

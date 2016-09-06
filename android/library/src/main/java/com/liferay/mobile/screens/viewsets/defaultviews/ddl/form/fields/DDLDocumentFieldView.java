@@ -26,7 +26,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
-
 import com.jakewharton.rxbinding.view.RxView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
@@ -35,9 +34,7 @@ import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.util.FileUtil;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormView;
 import com.tbruyelle.rxpermissions.RxPermissions;
-
 import java.io.File;
-
 import rx.functions.Action1;
 
 /**
@@ -72,16 +69,13 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		if (getField().isUploaded()) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_circle_success, 0);
 			_progressBar.setVisibility(GONE);
-		}
-		else if (getField().isUploadFailed()) {
+		} else if (getField().isUploadFailed()) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_circle_failed, 0);
 			_progressBar.setVisibility(GONE);
-		}
-		else if (getField().isUploading()) {
+		} else if (getField().isUploading()) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 			_progressBar.setVisibility(VISIBLE);
-		}
-		else {
+		} else {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_blue, 0);
 			_progressBar.setVisibility(GONE);
 		}
@@ -125,24 +119,23 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
 		LayoutInflater factory = LayoutInflater.from(getContext());
-		final View customDialogView = factory.inflate(
-			R.layout.ddlfield_document_chose_option_default, null);
+		final View customDialogView = factory.inflate(R.layout.ddlfield_document_chose_option_default, null);
 
 		View takeVideoButton = customDialogView.findViewById(R.id.liferay_dialog_take_video_form);
-		RxPermissions.getInstance(getContext())
-			.request(RxView.clicks(takeVideoButton),
-				Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+
+		RxPermissions rxPermissions = RxPermissions.getInstance(getContext());
+		RxView.clicks(takeVideoButton)
+			.compose(rxPermissions.ensure(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE))
 			.subscribe(launchCamera(MediaStore.ACTION_VIDEO_CAPTURE));
 
 		View takePhotoButton = customDialogView.findViewById(R.id.liferay_dialog_take_photo_form);
-		RxPermissions.getInstance(getContext())
-			.request(RxView.clicks(takePhotoButton),
-				Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+		RxView.clicks(takePhotoButton)
+			.compose(rxPermissions.ensure(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE))
 			.subscribe(launchCamera(MediaStore.ACTION_IMAGE_CAPTURE));
 
 		final View selectFileButton = customDialogView.findViewById(R.id.liferay_dialog_select_file_form);
-		RxPermissions.getInstance(getContext())
-			.request(RxView.clicks(selectFileButton), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+		RxView.clicks(selectFileButton)
+			.compose(rxPermissions.ensure(Manifest.permission.WRITE_EXTERNAL_STORAGE))
 			.subscribe(chooseFile(selectFileButton));
 
 		builder.setView(customDialogView);
@@ -189,8 +182,8 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 			public void call(Boolean result) {
 				if (result) {
 					Intent cameraIntent = new Intent(intent);
-					File file = MediaStore.ACTION_VIDEO_CAPTURE.equals(intent) ?
-						FileUtil.createVideoFile() : FileUtil.createImageFile();
+					File file = MediaStore.ACTION_VIDEO_CAPTURE.equals(intent) ? FileUtil.createVideoFile()
+						: FileUtil.createImageFile();
 
 					if (file != null) {
 						getField().createLocalFile(file.getAbsolutePath());
@@ -210,5 +203,4 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 	protected AlertDialog _fileDialog;
 
 	private int _positionInForm;
-
 }

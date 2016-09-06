@@ -5,22 +5,19 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
-import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractor;
 import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorImpl;
 import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorListener;
 import com.liferay.mobile.screens.comment.list.view.CommentListViewModel;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.models.CommentEntry;
-import java.util.Locale;
 
 /**
  * @author Alejandro Hernández
  */
-public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Interactor>
+public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, CommentListInteractorImpl>
 	implements CommentListInteractorListener, CommentDisplayListener {
 
 	public CommentListScreenlet(Context context) {
@@ -57,9 +54,8 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 	}
 
 	@Override
-	protected void loadRows(Interactor interactor, int startRow, int endRow, Locale locale, String obcClassName)
-		throws Exception {
-		((CommentListInteractor) interactor).loadRows(groupId, className, classPK, startRow, endRow);
+	protected void loadRows(CommentListInteractorImpl interactor) {
+		interactor.start(className, classPK);
 	}
 
 	@Override
@@ -87,33 +83,17 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Intera
 	}
 
 	@Override
-	protected void onUserAction(String actionName, Interactor interactor, Object... args) {
+	protected void onUserAction(String actionName, CommentListInteractorImpl interactor, Object... args) {
 	}
 
 	@Override
-	protected Interactor createInteractor(String actionName) {
-		return new CommentListInteractorImpl(getScreenletId(), offlinePolicy);
+	protected CommentListInteractorImpl createInteractor(String actionName) {
+		return new CommentListInteractorImpl();
 	}
 
 	@Override
-	public void loadingFromCache(boolean success) {
-		if (getListener() != null) {
-			getListener().loadingFromCache(success);
-		}
-	}
+	public void error(Exception e, String userAction) {
 
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
-		if (getListener() != null) {
-			getListener().retrievingOnline(triedInCache, e);
-		}
-	}
-
-	@Override
-	public void storingToCache(Object object) {
-		if (getListener() != null) {
-			getListener().storingToCache(object);
-		}
 	}
 
 	@Override

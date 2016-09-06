@@ -3,7 +3,6 @@ package com.liferay.mobile.screens.testapp;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.SwitchCompat;
 import android.util.TypedValue;
@@ -50,9 +49,6 @@ public class RatingsActivity extends ThemeActivity
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-			case R.id.button_rating_thumb:
-				displayScreenlet(R.layout.rating_thumb_default, R.string.liferay_rating_thumb_asset_id, 2);
-				break;
 			case R.id.button_rating_like:
 				displayScreenlet(R.layout.rating_like_default, R.string.liferay_rating_like_asset_id, 1);
 				break;
@@ -66,6 +62,10 @@ public class RatingsActivity extends ThemeActivity
 			case R.id.button_rating_emojis:
 				displayScreenlet(R.layout.rating_emojis_default, R.string.liferay_rating_reactions_emojis_asset_id, 4);
 				break;
+			case R.id.button_rating_thumb:
+			default:
+				displayScreenlet(R.layout.rating_thumb_default, R.string.liferay_rating_thumb_asset_id, 2);
+				break;
 		}
 
 		tintButtons(v.getId());
@@ -77,18 +77,18 @@ public class RatingsActivity extends ThemeActivity
 	}
 
 	@Override
-	public void onRatingOperationFailure(Exception exception) {
+	public void error(Exception exception, String userAction) {
 		error("There was an error loading screenlet", exception);
 	}
 
 	@Override
 	public void onRatingOperationSuccess(AssetRating assetRating) {
-		info("Screenlet loaded succesfully");
+		info("Screenlet loaded successfully");
 	}
 
 	private void displayScreenlet(int layoutId, int entryId, int ratingsGroupCount) {
 		ratingScreenlet = new RatingScreenlet(this);
-		ratingScreenlet.setEntryId(Long.valueOf(getResources().getString(entryId)));
+		ratingScreenlet.setEntryId(Long.parseLong(getResources().getString(entryId)));
 		ratingScreenlet.setAutoLoad(true);
 		ratingScreenlet.setRatingsGroupCount(ratingsGroupCount);
 		ratingScreenlet.render(layoutId);
@@ -110,7 +110,6 @@ public class RatingsActivity extends ThemeActivity
 		return ContextCompat.getColor(this, android.R.color.darker_gray);
 	}
 
-	@NonNull
 	@ColorInt
 	private int getPrimaryColor() {
 		TypedValue typedValue = new TypedValue();
@@ -121,5 +120,5 @@ public class RatingsActivity extends ThemeActivity
 	private SwitchCompat readOnlySwitch;
 	private RatingScreenlet ratingScreenlet;
 	private LinearLayout container;
-	private List<View> buttons = new ArrayList<>();
+	private final List<View> buttons = new ArrayList<>();
 }

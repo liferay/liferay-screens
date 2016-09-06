@@ -36,7 +36,7 @@ public class OAuthAuthentication extends OAuth {
 		return _tokenSecret;
 	}
 
-	private String _token;
-	private String _tokenSecret;
+	private final String _token;
+	private final String _tokenSecret;
 
 }

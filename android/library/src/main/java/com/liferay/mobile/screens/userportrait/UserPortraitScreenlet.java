@@ -27,14 +27,12 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.userportrait.interactor.BaseUserPortraitInteractor;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
-import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadInteractor;
 import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadInteractorImpl;
-import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadInteractor;
+import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadEvent;
 import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadInteractorImpl;
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -43,8 +41,7 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  * @author Javier Gamarra
  * @author Jose Manuel Navarro
  */
-public class UserPortraitScreenlet
-	extends BaseScreenlet<UserPortraitViewModel, BaseUserPortraitInteractor>
+public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, Interactor>
 	implements UserPortraitInteractorListener {
 
 	public static final String UPLOAD_PORTRAIT = "UPLOAD_PORTRAIT";
@@ -83,7 +80,7 @@ public class UserPortraitScreenlet
 		Bitmap finalImage = bitmap;
 
 		if (_listener != null) {
-			finalImage = _listener.onUserPortraitLoadReceived(this, bitmap);
+			finalImage = _listener.onUserPortraitLoadReceived(bitmap);
 
 			if (finalImage == null) {
 				finalImage = bitmap;
@@ -96,36 +93,14 @@ public class UserPortraitScreenlet
 	}
 
 	@Override
-	public void onUserPortraitLoadFailure(Exception e) {
-		if (_listener != null) {
-			_listener.onUserPortraitLoadFailure(this, e);
-		}
-
-		getViewModel().showFailedOperation(LOAD_PORTRAIT, e);
-	}
-
-	@Override
 	public void onUserPortraitUploaded(Long uuid) {
 		if (_listener != null) {
-			_listener.onUserPortraitUploaded(this);
+			_listener.onUserPortraitUploaded();
 		}
 
 		getViewModel().showFinishOperation(UPLOAD_PORTRAIT);
 
-		try {
-			((UserPortraitLoadInteractor) getInteractor(LOAD_PORTRAIT)).load(uuid);
-		} catch (Exception e) {
-			LiferayLogger.e("Error reloading user portrait", e);
-		}
-	}
-
-	@Override
-	public void onUserPortraitUploadFailure(Exception e) {
-		if (_listener != null) {
-			_listener.onUserPortraitUploadFailure(this, e);
-		}
-
-		getViewModel().showFailedOperation(UPLOAD_PORTRAIT, e);
+		((UserPortraitLoadInteractorImpl) getInteractor(LOAD_PORTRAIT)).start(uuid);
 	}
 
 	@Override
@@ -134,24 +109,12 @@ public class UserPortraitScreenlet
 	}
 
 	@Override
-	public void loadingFromCache(boolean success) {
+	public void error(Exception e, String userAction) {
 		if (_listener != null) {
-			_listener.loadingFromCache(success);
+			_listener.error(e, userAction);
 		}
-	}
 
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
-		if (_listener != null) {
-			_listener.retrievingOnline(triedInCache, e);
-		}
-	}
-
-	@Override
-	public void storingToCache(Object object) {
-		if (_listener != null) {
-			_listener.storingToCache(object);
-		}
+		getViewModel().showFailedOperation(userAction, e);
 	}
 
 	public void setListener(UserPortraitListener listener) {
@@ -218,14 +181,6 @@ public class UserPortraitScreenlet
 		_editable = editable;
 	}
 
-	public OfflinePolicy getOfflinePolicy() {
-		return _offlinePolicy;
-	}
-
-	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
-		_offlinePolicy = offlinePolicy;
-	}
-
 	protected void autoLoad() {
 		if (((_portraitId != 0) && (_uuid != null)) || (_userId != 0)) {
 			try {
@@ -238,8 +193,8 @@ public class UserPortraitScreenlet
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-			attributes, R.styleable.UserPortraitScreenlet, 0, 0);
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.UserPortraitScreenlet, 0, 0);
 
 		_autoLoad = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_autoLoad, true);
 		_male = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_male, true);
@@ -247,18 +202,13 @@ public class UserPortraitScreenlet
 		_uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
 		_editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
 
-		int offlinePolicy = typedArray.getInt(R.styleable.UserPortraitScreenlet_offlinePolicy,
-			OfflinePolicy.REMOTE_ONLY.ordinal());
-		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
-
 		_userId = castToLongOrUseDefault(typedArray.getString(R.styleable.UserPortraitScreenlet_userId), 0L);
 
 		if (SessionContext.hasUserInfo() && _portraitId == 0 && _uuid == null && _userId == 0) {
 			_userId = SessionContext.getCurrentUser().getId();
 		}
 
-		int layoutId = typedArray.getResourceId(
-			R.styleable.UserPortraitScreenlet_layoutId, getDefaultLayoutId());
+		int layoutId = typedArray.getResourceId(R.styleable.UserPortraitScreenlet_layoutId, getDefaultLayoutId());
 
 		typedArray.recycle();
 
@@ -266,41 +216,35 @@ public class UserPortraitScreenlet
 	}
 
 	@Override
-	protected BaseUserPortraitInteractor createInteractor(String actionName) {
+	protected Interactor createInteractor(String actionName) {
 		if (UPLOAD_PORTRAIT.equals(actionName)) {
-			return new UserPortraitUploadInteractorImpl(getScreenletId(), _offlinePolicy);
+			return new UserPortraitUploadInteractorImpl();
 		} else {
-			return new UserPortraitLoadInteractorImpl(getScreenletId(), _offlinePolicy);
+			return new UserPortraitLoadInteractorImpl();
 		}
 	}
 
 	@Override
-	protected void onUserAction(
-		String userActionName, BaseUserPortraitInteractor interactor, Object... args) {
-
-		try {
-			if (UPLOAD_PORTRAIT.equals(userActionName)) {
-				UserPortraitUploadInteractor userPortraitInteractor =
-					(UserPortraitUploadInteractor) getInteractor(userActionName);
-				String path = (String) args[0];
-				if (_userId != 0) {
-					userPortraitInteractor.upload(_userId, path);
-				}
+	protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
+		if (UPLOAD_PORTRAIT.equals(userActionName)) {
+			UserPortraitUploadInteractorImpl userPortraitInteractor =
+				(UserPortraitUploadInteractorImpl) getInteractor(userActionName);
+			String path = (String) args[0];
+			if (_userId != 0) {
+				userPortraitInteractor.start(new UserPortraitUploadEvent(path));
+			}
+		} else {
+			UserPortraitLoadInteractorImpl userPortraitLoadInteractor =
+				(UserPortraitLoadInteractorImpl) getInteractor(userActionName);
+			if (_portraitId != 0 && _uuid != null) {
+				userPortraitLoadInteractor.start(_male, _portraitId, _uuid);
 			} else {
-				UserPortraitLoadInteractor userPortraitLoadInteractor =
-					(UserPortraitLoadInteractor) getInteractor(userActionName);
-	 			if (_portraitId != 0 && _uuid != null) {
-					userPortraitLoadInteractor.load(_male, _portraitId, _uuid);
+				if (SessionContext.hasUserInfo() && _userId == 0) {
+					userPortraitLoadInteractor.start(SessionContext.getCurrentUser().getId());
 				} else {
-					if (SessionContext.hasUserInfo() && _userId == 0) {
-						userPortraitLoadInteractor.load(SessionContext.getCurrentUser().getId());
-					} else {
-						userPortraitLoadInteractor.load(_userId);
-					}
+					userPortraitLoadInteractor.start(_userId);
 				}
 			}
-		} catch (Exception e) {
-			onUserPortraitLoadFailure(e);
 		}
 	}
 
@@ -350,5 +294,4 @@ public class UserPortraitScreenlet
 	private long _userId;
 	private boolean _editable;
 	private UserPortraitListener _listener;
-	private OfflinePolicy _offlinePolicy;
 }

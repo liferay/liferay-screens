@@ -10,4 +10,5 @@
 	android:drawablePadding="16dp"
 	android:drawableStart="@drawable/material_tinted_list_icon"
 	android:focusable="true"
-	android:gravity="center_vertical" />
+	android:gravity="center_vertical"
+	/>

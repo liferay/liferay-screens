@@ -80,17 +80,17 @@ public abstract class BaseFileDisplayScreenlet
 	}
 
 	@Override
-	public void onRetrieveAssetFailure(Exception e) {
+	public void error(Exception e, String userAction) {
 		getViewModel().showFailedOperation(null, e);
 
 		if (listener != null) {
-			listener.onRetrieveAssetFailure(e);
+			listener.error(e, userAction);
 		}
 	}
 
 	@Override
 	protected AssetDisplayInteractorImpl createInteractor(String actionName) {
-		return new AssetDisplayInteractorImpl(this.getScreenletId());
+		return new AssetDisplayInteractorImpl();
 	}
 
 	@Override
@@ -98,9 +98,9 @@ public abstract class BaseFileDisplayScreenlet
 		switch (userActionName) {
 			case LOAD_ASSET_ACTION:
 				if (entryId != 0) {
-					interactor.getAssetEntry(entryId);
+					interactor.start(entryId);
 				} else {
-					interactor.getAssetEntry(className, classPK);
+					interactor.start(className, classPK);
 				}
 		}
 	}
@@ -116,14 +116,10 @@ public abstract class BaseFileDisplayScreenlet
 
 	protected void autoLoad() {
 		if (SessionContext.isLoggedIn()) {
-			try {
-				if (fileEntry == null || (className != null && classPK != 0)) {
-					load();
-				} else {
-					loadFile();
-				}
-			} catch (Exception e) {
-				onRetrieveAssetFailure(e);
+			if (fileEntry == null || (className != null && classPK != 0)) {
+				load();
+			} else {
+				loadFile();
 			}
 		}
 	}

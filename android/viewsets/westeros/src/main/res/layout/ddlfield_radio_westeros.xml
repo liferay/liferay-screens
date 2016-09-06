@@ -3,16 +3,18 @@
 	android:id="@+id/radio_group"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:padding="20dp">
+	android:padding="20dp"
+	>
 
 	<TextView
 		android:id="@+id/liferay_ddl_label"
-		style="@style/westeros_label"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginLeft="0dp"
 		android:paddingLeft="0dp"
 		android:textColor="@android:color/white"
-		android:visibility="gone" />
+		android:visibility="gone"
+		style="@style/westeros_label"
+		/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldRadioView>

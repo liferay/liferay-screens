@@ -14,6 +14,10 @@ import java.util.Map;
  */
 public class DocumentField extends Field<DocumentFile> {
 
+	public DocumentField() {
+		super();
+	}
+
 	public static final Parcelable.ClassLoaderCreator<DocumentField> CREATOR =
 		new Parcelable.ClassLoaderCreator<DocumentField>() {
 

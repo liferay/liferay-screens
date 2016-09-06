@@ -3,4 +3,5 @@
 	android:id="@+id/liferay_list_title"
 	style="@style/default_list_item"
 	android:drawableRight="@drawable/default_hourglass_tinted"
-	android:text="@string/default_empty_value" />
+	android:text="@string/default_empty_value"
+	/>

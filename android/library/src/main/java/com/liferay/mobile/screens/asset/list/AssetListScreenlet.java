@@ -18,23 +18,19 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
-
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.asset.list.interactor.AssetListInteractor;
 import com.liferay.mobile.screens.asset.list.interactor.AssetListInteractorImpl;
 import com.liferay.mobile.screens.asset.list.interactor.AssetListInteractorListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-
 import java.util.HashMap;
-import java.util.Locale;
+import java.util.Map;
 
 /**
  * @author Silvio Santos
  */
-public class AssetListScreenlet
-	extends BaseListScreenlet<AssetEntry, AssetListInteractor>
+public class AssetListScreenlet extends BaseListScreenlet<AssetEntry, AssetListInteractorImpl>
 	implements AssetListInteractorListener {
 
 	public AssetListScreenlet(Context context) {
@@ -86,27 +82,11 @@ public class AssetListScreenlet
 	}
 
 	@Override
-	public void loadingFromCache(boolean success) {
-		if (getListener() != null) {
-			getListener().loadingFromCache(success);
-		}
+	public void error(Exception e, String userAction) {
+
 	}
 
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
-		if (getListener() != null) {
-			getListener().retrievingOnline(triedInCache, e);
-		}
-	}
-
-	@Override
-	public void storingToCache(Object object) {
-		if (getListener() != null) {
-			getListener().storingToCache(object);
-		}
-	}
-
-	public HashMap<String, Object> getCustomEntryQuery() {
+	public Map<String, Object> getCustomEntryQuery() {
 		return _customEntryQuery;
 	}
 
@@ -115,29 +95,24 @@ public class AssetListScreenlet
 	}
 
 	@Override
-	protected void loadRows(AssetListInteractor interactor, int startRow, int endRow, Locale locale,
-		String obcClassName) throws Exception {
-
-		interactor.loadRows(_groupId, _classNameId, _portletItemName, _customEntryQuery, startRow, endRow, locale);
+	protected void loadRows(AssetListInteractorImpl interactor) {
+		interactor.start(_classNameId, _customEntryQuery, _portletItemName);
 	}
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-			attributes, R.styleable.AssetListScreenlet, 0, 0);
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.AssetListScreenlet, 0, 0);
 
-		_classNameId = castToLong(typedArray.getString(
-			R.styleable.AssetListScreenlet_classNameId));
+		_classNameId = castToLong(typedArray.getString(R.styleable.AssetListScreenlet_classNameId));
 
-		Integer offlinePolicy = typedArray.getInteger(
-			R.styleable.AssetListScreenlet_offlinePolicy,
-			OfflinePolicy.REMOTE_ONLY.ordinal());
+		Integer offlinePolicy =
+			typedArray.getInteger(R.styleable.AssetListScreenlet_offlinePolicy, OfflinePolicy.REMOTE_ONLY.ordinal());
 		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
 
 		long groupId = LiferayServerContext.getGroupId();
 
-		_groupId = castToLongOrUseDefault(typedArray.getString(
-			R.styleable.AssetListScreenlet_groupId), groupId);
+		_groupId = castToLongOrUseDefault(typedArray.getString(R.styleable.AssetListScreenlet_groupId), groupId);
 
 		_portletItemName = typedArray.getString(R.styleable.AssetListScreenlet_portletItemName);
 
@@ -147,8 +122,8 @@ public class AssetListScreenlet
 	}
 
 	@Override
-	protected AssetListInteractor createInteractor(String actionName) {
-		return new AssetListInteractorImpl(getScreenletId(), _offlinePolicy);
+	protected AssetListInteractorImpl createInteractor(String actionName) {
+		return new AssetListInteractorImpl();
 	}
 
 	private OfflinePolicy _offlinePolicy;
@@ -156,5 +131,4 @@ public class AssetListScreenlet
 	private long _groupId;
 	private String _portletItemName;
 	private HashMap<String, Object> _customEntryQuery = new HashMap<>();
-
 }

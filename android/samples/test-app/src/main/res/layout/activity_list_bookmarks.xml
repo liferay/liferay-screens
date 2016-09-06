@@ -8,7 +8,8 @@
 	android:paddingLeft="@dimen/activity_horizontal_margin"
 	android:paddingRight="@dimen/activity_horizontal_margin"
 	android:paddingTop="@dimen/activity_vertical_margin"
-	tools:context=".ListBookmarksActivity">
+	tools:context=".ListBookmarksActivity"
+	>
 
 	<com.liferay.mobile.screens.listbookmark.BookmarkListScreenlet
 		android:id="@+id/bookmarklist_screenlet"
@@ -18,6 +19,7 @@
 		app:groupId="20525"
 		app:layoutId="@layout/list_bookmarks"
 		app:offlinePolicy="REMOTE_FIRST"
-		app:obcClassName="com.liferay.portlet.bookmarks.util.comparator.EntryURLComparator"/>
+		app:obcClassName="com.liferay.portlet.bookmarks.util.comparator.EntryURLComparator"
+		/>
 
 </RelativeLayout>

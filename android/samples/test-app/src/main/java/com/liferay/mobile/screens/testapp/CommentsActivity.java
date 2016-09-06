@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.widget.CompoundButton;
-import com.liferay.mobile.screens.base.list.BaseListScreenlet;
+import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.add.CommentAddListener;
 import com.liferay.mobile.screens.comment.add.CommentAddScreenlet;
 import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
 import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.list.CommentListListener;
 import com.liferay.mobile.screens.comment.list.CommentListScreenlet;
-import com.liferay.mobile.screens.models.CommentEntry;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import java.util.List;
 
@@ -63,7 +62,7 @@ public class CommentsActivity extends ThemeActivity
 
 	@Override
 	public void onLoadCommentSuccess(CommentEntry commentEntry) {
-		info(String.format(LiferayLocale.getDefaultLocale(), "Comment with id: %d succesfully loaded",
+		info(String.format(LiferayLocale.getDefaultLocale(), "Comment with id: %d successfully loaded",
 			commentEntry.getCommentId()));
 	}
 
@@ -75,7 +74,7 @@ public class CommentsActivity extends ThemeActivity
 
 	@Override
 	public void onDeleteCommentSuccess(CommentEntry commentEntry) {
-		info(String.format(LiferayLocale.getDefaultLocale(), "Comment with id: %d succesfully deleted",
+		info(String.format(LiferayLocale.getDefaultLocale(), "Comment with id: %d successfully deleted",
 			commentEntry.getCommentId()));
 		showDisplayScreenlet(false);
 	}
@@ -88,32 +87,26 @@ public class CommentsActivity extends ThemeActivity
 
 	@Override
 	public void onUpdateCommentSuccess(CommentEntry commentEntry) {
-		info(String.format(LiferayLocale.getDefaultLocale(), "Comment with id: %d succesfully updated",
+		info(String.format(LiferayLocale.getDefaultLocale(), "Comment with id: %d successfully updated",
 			commentEntry.getCommentId()));
 		showDisplayScreenlet(false);
 	}
 
 	@Override
-	public void onAddCommentFailure(String body, Exception e) {
-		error("Error adding comment", e);
-	}
-
-	@Override
 	public void onAddCommentSuccess(CommentEntry commentEntry) {
-		info(String.format(LiferayLocale.getDefaultLocale(), "Comment succesfully added, new id: %d",
+		info(String.format(LiferayLocale.getDefaultLocale(), "Comment successfully added, new id: %d",
 			commentEntry.getCommentId()));
 		dialog.cancel();
 		listScreenlet.addNewCommentEntry(commentEntry);
 	}
 
 	@Override
-	public void onListPageFailed(BaseListScreenlet source, int startRow, int endRow, Exception e) {
+	public void onListPageFailed(int startRow, Exception e) {
 		error(String.format(LiferayLocale.getDefaultLocale(), "Error receiving page: %d", startRow), e);
 	}
 
 	@Override
-	public void onListPageReceived(BaseListScreenlet source, int startRow, int endRow, List<CommentEntry> entries,
-		int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List<CommentEntry> entries, int rowCount) {
 	}
 
 	@Override
@@ -124,15 +117,8 @@ public class CommentsActivity extends ThemeActivity
 	}
 
 	@Override
-	public void loadingFromCache(boolean success) {
-	}
+	public void error(Exception e, String userAction) {
 
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
-	}
-
-	@Override
-	public void storingToCache(Object object) {
 	}
 
 	@Override

@@ -2,87 +2,79 @@ package com.liferay.mobile.screens.base.thread;
 
 import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.base.thread.event.ErrorThreadEvent;
-import com.liferay.mobile.screens.base.thread.event.JSONThreadObjectEvent;
-import com.liferay.mobile.screens.cache.CacheListener;
+import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
+import com.liferay.mobile.screens.base.thread.listener.OfflineListenerNew;
+import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.OfflinePolicy;
-import com.liferay.mobile.screens.context.LiferayScreensContext;
+import com.liferay.mobile.screens.cache.executor.Executor;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.snappydb.DB;
-import com.snappydb.DBFactory;
-import com.snappydb.SnappydbException;
-
-import org.json.JSONException;
 
 /**
  * @author Javier Gamarra
  */
-public abstract class BaseCachedWriteThreadRemoteInteractor<L extends CacheListener, E extends JSONThreadObjectEvent>
-	extends BaseThreadInteractor<L, E> {
+public abstract class BaseCachedWriteThreadRemoteInteractor<L extends OfflineListenerNew, E extends OfflineEventNew>
+	extends BaseCachedThreadRemoteInteractor<L, E> {
 
-	public BaseCachedWriteThreadRemoteInteractor(int targetScreenletId, OfflinePolicy offlinePolicy) {
-		super(targetScreenletId);
-
-		_offlinePolicy = offlinePolicy;
-	}
-
-	public void start(final Object... args) {
-		new Thread(new Runnable() {
+	public void start(final E event) {
+		Executor.execute(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					E event = createEvent(args);
-
-					if (_offlinePolicy == OfflinePolicy.CACHE_ONLY) {
+					if (offlinePolicy == OfflinePolicy.CACHE_ONLY) {
 						storeToCacheAndLaunchEvent(event);
-					}
-					else if (_offlinePolicy == OfflinePolicy.CACHE_FIRST) {
+					} else if (offlinePolicy == OfflinePolicy.CACHE_FIRST) {
 						try {
 							storeToCacheAndLaunchEvent(event);
-						}
-						catch (Exception e) {
+						} catch (Exception e) {
 							online(event);
 						}
-					}
-					else if (_offlinePolicy == OfflinePolicy.REMOTE_FIRST) {
+					} else if (offlinePolicy == OfflinePolicy.REMOTE_FIRST) {
 						try {
 							online(event);
-						}
-						catch (Exception e) {
+						} catch (Exception e) {
 							storeToCacheAndLaunchEvent(event);
 							LiferayLogger.i("Store online first failed, trying to store locally version");
 						}
-					}
-					else {
+					} else {
 						online(event);
 					}
-				}
-				catch (Exception e) {
+				} catch (Exception e) {
 					BasicThreadEvent event = new ErrorThreadEvent(e);
-					event.setTargetScreenletId(getTargetScreenletId());
+					decorateBaseEvent(event);
 					EventBusUtil.post(event);
 				}
 			}
-		}).start();
+		});
 	}
 
 	public void onEventMainThread(E event) {
-		super.onEventMainThread(event);
 		try {
+			LiferayLogger.i("event = [" + event + "]");
+
+			if (isInvalidEvent(event)) {
+				return;
+			}
+
 			if (event.isFailed()) {
+				event.setDirty(true);
 				store(event);
 				onSuccess(event);
-			}
-			else {
-				if (!event.isCachedRequest()) {
+			} else {
+				if (event.isOnlineRequest()) {
 					store(event);
 				}
 				onSuccess(event);
 			}
+		} catch (Exception e) {
+			onFailure(event);
 		}
-		catch (Exception e) {
-			onFailure(e);
-		}
+	}
+
+	protected abstract void onFailure(E event);
+
+	public void onFailure(Exception e) {
+
 	}
 
 	public abstract E execute(E event) throws Exception;
@@ -92,37 +84,25 @@ public abstract class BaseCachedWriteThreadRemoteInteractor<L extends CacheListe
 		throw new AssertionError("Shouldn't be called");
 	}
 
-	protected void online(E event) throws Exception {
-		E resultEvent = execute(event);
-		resultEvent.setTargetScreenletId(getTargetScreenletId());
-		EventBusUtil.post(resultEvent);
-	}
-
-	protected void storeToCacheAndLaunchEvent(E event) throws Exception {
-		store(event);
-		event.setCachedRequest(true);
-		event.setTargetScreenletId(getTargetScreenletId());
+	protected void online(E onlineEvent) throws Exception {
+		decorateEvent(onlineEvent, false);
+		E event = execute(onlineEvent);
 		EventBusUtil.post(event);
 	}
 
-	protected void store(E event) throws SnappydbException {
-		DB snappydb = DBFactory.open(LiferayScreensContext.getContext());
-		snappydb.put(getFullId(event), event);
-		snappydb.close();
+	protected void storeToCacheAndLaunchEvent(E event) throws Exception {
+		decorateEvent(event, true);
+		event.setDirty(true);
+		store(event);
+		EventBusUtil.post(event);
 	}
 
-	protected String getFullId(IdCache event) {
-		return getEventClass().getName() + "_" + event.getGroupId() + "_" + event.getUserId() + "_" + event.getLocale() + "_" + event.getId();
+	protected void store(E event) throws Exception {
+		Cache.storeObject(event);
 	}
 
-	protected abstract E createEvent(Object[] args) throws JSONException, Exception;
-
-	protected abstract Class getEventClass();
-
-	protected OfflinePolicy getOfflinePolicy() {
-		return _offlinePolicy;
+	@Override
+	protected String getIdFromArgs(Object... args) {
+		return null;
 	}
-
-	private final OfflinePolicy _offlinePolicy;
-
 }

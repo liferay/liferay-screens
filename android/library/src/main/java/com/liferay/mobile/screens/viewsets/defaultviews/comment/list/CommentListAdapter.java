@@ -7,7 +7,7 @@ import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
 import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
 import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
-import com.liferay.mobile.screens.models.CommentEntry;
+import com.liferay.mobile.screens.comment.CommentEntry;
 
 /**
  * @author Alejandro Hernández
@@ -80,7 +80,7 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 		}
 	}
 
-	private CommentDisplayListener commentDisplayListener;
+	private final CommentDisplayListener commentDisplayListener;
 
 	private String className;
 	private long classPK;

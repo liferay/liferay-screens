@@ -3,9 +3,12 @@ package com.liferay.mobile.screens.testapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import com.liferay.mobile.screens.cache.DefaultCachedType;
-import com.liferay.mobile.screens.cache.sql.CacheSQL;
+import com.liferay.mobile.screens.cache.Cache;
+import com.liferay.mobile.screens.context.LiferayServerContext;
+import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
 import com.liferay.mobile.screens.testapp.fullview.LoginFullActivity;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 
 /**
@@ -49,86 +52,90 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.ddl_form:
-				startActivity(DDLFormActivity.class);
+				start(DDLFormActivity.class);
 				break;
 			case R.id.ddl_list:
-				startActivity(DDLListActivity.class);
+				start(DDLListActivity.class);
 				break;
 			case R.id.asset_list:
-				startActivity(SelectAssetActivity.class);
+				start(SelectAssetActivity.class);
 				break;
 			case R.id.web_content_list:
-				startActivity(WebViewListActivity.class);
+				start(WebViewListActivity.class);
 				break;
 			case R.id.sign_up:
-				startActivity(SignUpActivity.class);
+				start(SignUpActivity.class);
 				break;
 			case R.id.forgot_password:
-				startActivity(ForgotPasswordActivity.class);
+				start(ForgotPasswordActivity.class);
 				break;
 			case R.id.user_portrait:
-				startActivity(UserPortraitActivity.class);
+				start(UserPortraitActivity.class);
 				break;
 			case R.id.web_content_display_screenlet:
-				startActivity(WebContentDisplayActivity.class);
+				start(WebContentDisplayActivity.class);
 				break;
 			case R.id.web_content_display_screenlet_structured:
-				startActivity(WebContentDisplayStructuredActivity.class);
+				start(WebContentDisplayStructuredActivity.class);
 				break;
 			case R.id.add_bookmark:
-				startActivity(AddBookmarkActivity.class);
+				start(AddBookmarkActivity.class);
 				break;
 			case R.id.journal_article_with_template:
-				startActivity(JournalArticleWithTemplateActivity.class);
+				start(JournalArticleWithTemplateActivity.class);
 				break;
 			case R.id.filtered_asset:
-				startActivity(FilteredAssetActivity.class);
+				start(FilteredAssetActivity.class);
 				break;
 			case R.id.login_full_screenlet:
-				startActivity(LoginFullActivity.class);
+				start(LoginFullActivity.class);
 				break;
 			case R.id.change_theme:
 				finish();
 				changeToNextTheme();
-				startActivity(MainActivity.class);
+				start(MainActivity.class);
 				break;
 			case R.id.clear_cache_forms:
-				int formRows = CacheSQL.getInstance().clear(DefaultCachedType.DDL_FORM);
-				int recordRows = CacheSQL.getInstance().clear(DefaultCachedType.DDL_RECORD);
-				int listRows = CacheSQL.getInstance().clear(DefaultCachedType.DDL_LIST);
-				int countRows = CacheSQL.getInstance().clear(DefaultCachedType.DDL_LIST_COUNT);
-
-				String cacheFormsMessage = "Deleted " + formRows + " forms, " + recordRows + " records, " +
-					listRows + " list rows and " + countRows + " count rows.";
-
-				info(cacheFormsMessage);
+				try {
+					Long groupId = LiferayServerContext.getGroupId();
+					Long userId = SessionContext.getUserId();
+					boolean destroyed = Cache.destroy(groupId, userId, DDLFormEvent.class.getSimpleName());
+					info("Deleted DDLFormEvent cache entries: " + (destroyed ? "successfully" : "failed"));
+				} catch (Exception e) {
+					LiferayLogger.e("Error clearing cache", e);
+				}
 				break;
 			case R.id.clear_cache:
-				boolean success = CacheSQL.getInstance().clear(this);
-				String clearCacheMessage = "Cache cleared: " + (success ? "sucessfully" : "failed");
-				info(clearCacheMessage);
+				try {
+					Long groupId = LiferayServerContext.getGroupId();
+					Long userId = SessionContext.getUserId();
+					boolean success = Cache.destroy(groupId, userId);
+					info("Cache cleared: " + (success ? "successfully" : "failed"));
+				} catch (Exception e) {
+					LiferayLogger.e("Error clearing cache", e);
+				}
 				break;
 			case R.id.sync_cache:
-				CacheSQL.getInstance().resync();
+				Cache.resync();
 				info("Launched resync process");
 				break;
 			case R.id.custom_interactor:
-				startActivity(CustomInteractorActivity.class);
+				start(CustomInteractorActivity.class);
 				break;
 			case R.id.list_bookmarks:
-				startActivity(ListBookmarksActivity.class);
+				start(ListBookmarksActivity.class);
 				break;
 			case R.id.relogin:
-				startActivity(ReloginActivity.class);
+				start(ReloginActivity.class);
 				break;
 			case R.id.list_comments:
-				startActivity(CommentsActivity.class);
+				start(CommentsActivity.class);
 				break;
 			case R.id.ratings:
-				startActivity(RatingsActivity.class);
+				start(RatingsActivity.class);
 				break;
 			case R.id.gallery:
-				startActivity(GalleryActivity.class);
+				start(GalleryActivity.class);
 				break;
 			case R.id.user_display:
 				Intent intent = getIntentWithTheme(AssetDisplayActivity.class);
@@ -136,11 +143,11 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				DefaultAnimation.startActivityWithAnimation(this, intent);
 				break;
 			default:
-				startActivity(LoginActivity.class);
+				start(LoginActivity.class);
 		}
 	}
 
-	private void startActivity(Class clasz) {
+	private void start(Class clasz) {
 		DefaultAnimation.startActivityWithAnimation(this, getIntentWithTheme(clasz));
 	}
 }

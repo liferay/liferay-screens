@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
@@ -16,13 +17,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.jakewharton.rxbinding.view.RxView;
 import com.liferay.mobile.screens.bankofwesteros.R;
 import com.liferay.mobile.screens.bankofwesteros.utils.Card;
 import com.liferay.mobile.screens.bankofwesteros.utils.EndAnimationListener;
 import com.liferay.mobile.screens.base.list.BaseListListener;
-import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
@@ -31,20 +30,17 @@ import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
 import com.tbruyelle.rxpermissions.RxPermissions;
-
-import org.json.JSONObject;
-
 import java.text.SimpleDateFormat;
 import java.util.List;
-
-import rx.Observable;
+import java.util.Map;
+import org.json.JSONObject;
 import rx.functions.Action1;
 
 /**
  * @author Javier Gamarra
  */
-public class IssuesActivity extends CardActivity implements View.OnClickListener,
-	DDLFormListener, BaseListListener<Record>, View.OnTouchListener {
+public class IssuesActivity extends CardActivity
+	implements View.OnClickListener, DDLFormListener, BaseListListener<Record>, View.OnTouchListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +66,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 		TextView callMenuEntry = (TextView) findViewById(R.id.call_menu_entry);
 		callMenuEntry.setText(getCallSpannableString(), TextView.BufferType.SPANNABLE);
 
-		tryToCall(RxView.clicks(callMenuEntry), callMenuEntry);
+		tryToCall(callMenuEntry);
 
 		findViewById(R.id.account_settings_menu_entry).setOnTouchListener(this);
 		findViewById(R.id.send_message_menu_entry).setOnTouchListener(this);
@@ -98,10 +94,11 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 			case R.id.card1_to_background_menu:
 				if (_cardHistory.peek() == Card.BACKGROUND) {
 					toCard1();
-					_card1ToBackgroundMenu.setImageDrawable(getResources().getDrawable(R.drawable.icon_options_red));
-				}
-				else {
-					_card1ToBackgroundMenu.setImageDrawable(getResources().getDrawable(R.drawable.icon_options_close));
+					_card1ToBackgroundMenu.setImageDrawable(
+						ResourcesCompat.getDrawable(getResources(), R.drawable.icon_options_red, getTheme()));
+				} else {
+					_card1ToBackgroundMenu.setImageDrawable(
+						ResourcesCompat.getDrawable(getResources(), R.drawable.icon_options_close, getTheme()));
 					toBackground();
 				}
 				break;
@@ -111,13 +108,12 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	}
 
 	@Override
-	public void onListPageFailed(BaseListScreenlet source, int startRow, int endRow, Exception e) {
+	public void onListPageFailed(int startRow, Exception e) {
 
 	}
 
 	@Override
-	public void onListPageReceived(BaseListScreenlet source, int startRow, int endRow, List<Record> entries,
-		int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List<Record> entries, int rowCount) {
 
 	}
 
@@ -126,8 +122,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 		selectDDLEntry(element);
 		if (view.getId() == R.id.liferay_list_edit) {
 			toCard2();
-		}
-		else if (view.getId() == R.id.liferay_list_view) {
+		} else if (view.getId() == R.id.liferay_list_view) {
 			goRightCard1(element);
 		}
 	}
@@ -135,10 +130,9 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
-			v.setBackgroundColor(getResources().getColor(android.R.color.white));
+			v.setBackgroundColor(ResourcesCompat.getColor(getResources(), android.R.color.white, getTheme()));
 			return true;
-		}
-		else if (event.getAction() == MotionEvent.ACTION_UP) {
+		} else if (event.getAction() == MotionEvent.ACTION_UP) {
 			launchMenu(v);
 		}
 		return false;
@@ -155,27 +149,11 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	}
 
 	@Override
-	public void onDDLFormLoadFailed(Exception e) {
-	}
-
-	@Override
 	public void onDDLFormLoaded(Record record) {
 	}
 
 	@Override
-	public void onDDLFormRecordLoaded(Record record) {
-	}
-
-	@Override
-	public void onDDLFormRecordLoadFailed(Exception e) {
-	}
-
-	@Override
-	public void onDDLFormRecordAddFailed(Exception e) {
-	}
-
-	@Override
-	public void onDDLFormUpdateRecordFailed(Exception e) {
+	public void onDDLFormRecordLoaded(Record record, Map<String, Object> valuesAndAttributes) {
 	}
 
 	@Override
@@ -186,26 +164,16 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	public void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e) {
 	}
 
-
 	@Override
-	public void loadingFromCache(boolean success) {
-
-	}
-
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
-
-	}
-
-	@Override
-	public void storingToCache(Object object) {
+	public void error(Exception e, String userAction) {
 
 	}
 
 	@Override
 	protected void animateScreenAfterLoad() {
 		_cardHistory.offer(Card.CARD1);
-		_card1ToBackgroundMenu.setImageDrawable(getResources().getDrawable(R.drawable.icon_options_red));
+		_card1ToBackgroundMenu.setImageDrawable(
+			ResourcesCompat.getDrawable(getResources(), R.drawable.icon_options_red, getTheme()));
 
 		//TODO extract this animation
 		_backgroundCard.setY(_maxHeight);
@@ -236,7 +204,8 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 
 		clearDDLEntrySelected();
 
-		_card1ToBackgroundMenu.setImageDrawable(getResources().getDrawable(R.drawable.icon_options_red));
+		_card1ToBackgroundMenu.setImageDrawable(
+			ResourcesCompat.getDrawable(getResources(), R.drawable.icon_options_red, getTheme()));
 		_card1ToBackground.setImageResource(R.drawable.icon_down);
 	}
 
@@ -247,14 +216,13 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 			_ddlFormScreenlet.setRecordId(_entry.getRecordId());
 			_ddlFormScreenlet.loadRecord();
 			goLeftCard1();
-		}
-		else {
+		} else {
 			clearDDLEntrySelected();
 		}
 	}
 
 	private SpannableStringBuilder getCallSpannableString() {
-		int darkGrayColor = getResources().getColor(R.color.textColorSecondary_westeros);
+		int darkGrayColor = ResourcesCompat.getColor(getResources(), R.color.textColorSecondary_westeros, getTheme());
 		int subTitleStart = 4;
 
 		SpannableStringBuilder ssb = new SpannableStringBuilder(getString(R.string.call_menu_entry));
@@ -293,7 +261,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 		issueTitle.setText(String.valueOf(serverValue));
 
 		String date = new SimpleDateFormat("dd/MM/yyyy").format(element.getServerAttribute("createDate"));
-		((TextView) findViewById(R.id.createdAt)).setText("Created " + date);
+		((TextView) findViewById(R.id.createdAt)).setText(getString(R.string.created) + date);
 
 		TextView description = (TextView) findViewById(R.id.description);
 		description.setText(String.valueOf(element.getServerValue("Description")));
@@ -324,6 +292,7 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 				startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.default_sms_uri))));
 				break;
 			case R.id.sign_out_menu_entry:
+			default:
 				color = R.color.light_gray_westeros;
 
 				SessionContext.logout();
@@ -332,20 +301,22 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 				startActivity(intent);
 				break;
 		}
-		v.setBackgroundColor(getResources().getColor(color));
+		v.setBackgroundColor(ResourcesCompat.getColor(getResources(), color, getTheme()));
 	}
 
-	private void tryToCall(Observable trigger, final View button) {
-		RxPermissions.getInstance(this).
-			request(trigger, Manifest.permission.CALL_PHONE).
-			subscribe(new Action1<Boolean>() {
+	private void tryToCall(final View button) {
+		RxView.clicks(button)
+			.compose(RxPermissions.getInstance(this).ensure(Manifest.permission.CALL_PHONE))
+			.subscribe(new Action1<Boolean>() {
 				@Override
 				public void call(Boolean result) {
-					button.setBackgroundColor(getResources().getColor(R.color.light_gray_westeros));
-					if (result) {
-						if (ActivityCompat.checkSelfPermission(IssuesActivity.this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
-							startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(getString(R.string.default_telephone_uri))));
-						}
+					button.setBackgroundColor(
+						ResourcesCompat.getColor(getResources(), R.color.light_gray_westeros, getTheme()));
+					if (result
+						&& ActivityCompat.checkSelfPermission(IssuesActivity.this, Manifest.permission.CALL_PHONE)
+						== PackageManager.PERMISSION_GRANTED) {
+						startActivity(
+							new Intent(Intent.ACTION_CALL, Uri.parse(getString(R.string.default_telephone_uri))));
 					}
 				}
 			});
@@ -361,5 +332,4 @@ public class IssuesActivity extends CardActivity implements View.OnClickListener
 	private ImageView _card1ToBackgroundMenu;
 	private TextView _reportIssueTitle;
 	private Button _sendButton;
-
 }

@@ -27,7 +27,6 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.viewsets.westeros.R;
 import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
@@ -84,22 +83,15 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 			WesterosSnackbar.showSnackbar(LiferayScreensContext.getActivityFromContext(getContext()),
 				"You must accept the terms & conditions", R.color.colorAccent_westeros);
 			return false;
-		}
-
-		if (!checkField(_firstName, _firstNameValidation)) {
+		} else if (!checkField(_firstName, _firstNameValidation)) {
 			return false;
-		}
-
-		if (!checkField(_lastName, _lastNameValidation)) {
+		} else if (!checkField(_lastName, _lastNameValidation)) {
 			return false;
-		}
-
-		if (!checkField(_emailAddress, _emailAddressValidation)) {
+		} else if (!checkField(_emailAddress, _emailAddressValidation)) {
 			return false;
 		}
 
 		return checkField(_password, _passwordValidation);
-
 	}
 
 	private boolean checkField(EditText field, View validationView) {
@@ -110,7 +102,8 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 	}
 
 	private void changeBackgroundAndIcon(EditText editText, boolean valid) {
-		editText.setBackgroundResource(valid ? R.drawable.westeros_dark_edit_text_drawable : R.drawable.westeros_warning_edit_text_drawable);
+		editText.setBackgroundResource(
+			valid ? R.drawable.westeros_dark_edit_text_drawable : R.drawable.westeros_warning_edit_text_drawable);
 		editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, valid ? 0 : R.drawable.westeros_icon_warning_white, 0);
 	}
 
@@ -129,8 +122,8 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 		}, 13, ssb.length(), 0);
 
 		ssb.setSpan(new StyleSpan(Typeface.BOLD), 13, ssb.length(), 0);
-		ssb.setSpan(new ForegroundColorSpan(
-			ContextCompat.getColor(getContext(), android.R.color.white)), 13, ssb.length(), 0);
+		ssb.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getContext(), android.R.color.white)), 13,
+			ssb.length(), 0);
 
 		textView.setText(ssb, TextView.BufferType.SPANNABLE);
 	}

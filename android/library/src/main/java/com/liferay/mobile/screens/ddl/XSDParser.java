@@ -16,21 +16,18 @@ package com.liferay.mobile.screens.ddl;
 
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.util.LiferayLogger;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
 import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  * @author Jose Manuel Navarro
@@ -41,8 +38,7 @@ public class XSDParser extends AbstractXMLParser implements DDMStructureParser {
 		try {
 			Document document = getDocument(xml);
 			return processDocument(document, locale);
-		}
-		catch (ParserConfigurationException | IOException e) {
+		} catch (ParserConfigurationException | IOException e) {
 			LiferayLogger.e("Error parsing form", e);
 			return null;
 		}
@@ -54,7 +50,9 @@ public class XSDParser extends AbstractXMLParser implements DDMStructureParser {
 		Element root = document.getDocumentElement();
 
 		Locale defaultLocale = getDefaultDocumentLocale(root);
-		if (defaultLocale == null) return null;
+		if (defaultLocale == null) {
+			return null;
+		}
 
 		NodeList dynamicElementList = root.getElementsByTagName("dynamic-element");
 
@@ -69,13 +67,11 @@ public class XSDParser extends AbstractXMLParser implements DDMStructureParser {
 					result.add(childField);
 				}
 				parentField = childField;
-			}
-			else {
+			} else {
 				if (childField != null) {
 					parentField.getFields().add(childField);
 				}
 			}
-
 		}
 
 		return result;
@@ -86,8 +82,7 @@ public class XSDParser extends AbstractXMLParser implements DDMStructureParser {
 
 		Map<String, Object> attributes = getAttributes(dynamicElement);
 
-		Map<String, Object> localizedMetadata =
-			processLocalizedMetadata(dynamicElement, locale, defaultLocale);
+		Map<String, Object> localizedMetadata = processLocalizedMetadata(dynamicElement, locale, defaultLocale);
 
 		Map<String, Object> mergedMap = new HashMap<>();
 
@@ -97,8 +92,8 @@ public class XSDParser extends AbstractXMLParser implements DDMStructureParser {
 		return dataType.createField(mergedMap, locale, defaultLocale);
 	}
 
-	protected Map<String, Object> processLocalizedMetadata(
-		Element dynamicElement, Locale locale, Locale defaultLocale) {
+	protected Map<String, Object> processLocalizedMetadata(Element dynamicElement, Locale locale,
+		Locale defaultLocale) {
 
 		Map<String, Object> result = new HashMap<>();
 
@@ -117,8 +112,7 @@ public class XSDParser extends AbstractXMLParser implements DDMStructureParser {
 		return result;
 	}
 
-	protected List<Map<String, String>> findOptions(
-		Element dynamicElement, Locale locale, Locale defaultLocale) {
+	protected List<Map<String, String>> findOptions(Element dynamicElement, Locale locale, Locale defaultLocale) {
 
 		List<Element> options = getChildren(dynamicElement, "dynamic-element", "type", "option");
 
@@ -135,8 +129,7 @@ public class XSDParser extends AbstractXMLParser implements DDMStructureParser {
 			Element foundLabelElement = getChild(localizedLabelMetadata, "entry", "name", "label");
 			if (foundLabelElement != null) {
 				optionMap.put("label", foundLabelElement.getFirstChild().getNodeValue());
-			}
-			else {
+			} else {
 				// use value as fallback
 				optionMap.put("label", optionDynamicElement.getAttribute("value"));
 			}
@@ -147,8 +140,7 @@ public class XSDParser extends AbstractXMLParser implements DDMStructureParser {
 		return result;
 	}
 
-	protected void addLocalizedElement(
-		Element localizedMetadata, String elementName, Map<String, Object> result) {
+	protected void addLocalizedElement(Element localizedMetadata, String elementName, Map<String, Object> result) {
 
 		Element foundElement = getChild(localizedMetadata, "entry", "name", elementName);
 		if (foundElement != null) {
@@ -159,10 +151,8 @@ public class XSDParser extends AbstractXMLParser implements DDMStructureParser {
 		}
 	}
 
-	protected Element findMetadataElement(
-		Element dynamicElement, Locale locale, Locale defaultLocale) {
+	protected Element findMetadataElement(Element dynamicElement, Locale locale, Locale defaultLocale) {
 
 		return getLocaleFallback(dynamicElement, locale, defaultLocale, "meta-data", "locale");
 	}
-
 }

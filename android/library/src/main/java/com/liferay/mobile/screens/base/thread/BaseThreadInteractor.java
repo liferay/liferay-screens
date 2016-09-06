@@ -1,65 +1,119 @@
 package com.liferay.mobile.screens.base.thread;
 
-import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.android.service.Session;
+import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.base.thread.event.ErrorThreadEvent;
+import com.liferay.mobile.screens.cache.executor.Executor;
+import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
 /**
  * @author Javier Gamarra
  */
-public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent>
-	extends BaseRemoteInteractor<L> {
+public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent> implements Interactor<L> {
 
-	public BaseThreadInteractor(int targetScreenletId) {
-		super(targetScreenletId);
+	public BaseThreadInteractor() {
+		super();
 	}
 
 	public void start(final Object... args) {
-		new Thread(new Runnable() {
+		Executor.execute(new Runnable() {
 			@Override
 			public void run() {
 				try {
 					E event = execute(args);
-					event.setTargetScreenletId(getTargetScreenletId());
-					EventBusUtil.post(event);
-				}
-				catch (Exception e) {
-					BasicThreadEvent basicThreadEvent = new ErrorThreadEvent(e);
-					basicThreadEvent.setTargetScreenletId(getTargetScreenletId());
-					EventBusUtil.post(basicThreadEvent);
+					if (event != null) {
+						decorateBaseEvent(event);
+						EventBusUtil.post(event);
+					}
+				} catch (Exception e) {
+					ErrorThreadEvent errorNewEvent = new ErrorThreadEvent(e);
+					decorateBaseEvent(errorNewEvent);
+					EventBusUtil.post(errorNewEvent);
 				}
 			}
-		}).start();
+		});
 	}
 
-	public void onEventMainThread(E event) {
-		LiferayLogger.i("event = [" + event + "]");
-		if (!isValidEvent(event)) {
+	public void onEventMainThread(ErrorThreadEvent event) {
+
+		if (getListener() == null || event.getTargetScreenletId() != getTargetScreenletId()) {
 			return;
 		}
 
-		if (event.isFailed()) {
-			onFailure(event.getException());
-		}
-		else {
-			try {
+		onFailure(event.getException());
+	}
+
+	public void processEvent(E event) {
+		try {
+			LiferayLogger.i("event = [" + event + "]");
+			if (isInvalidEvent(event)) {
+				return;
+			}
+
+			if (event.isFailed()) {
+				onFailure(event.getException());
+			} else {
 				onSuccess(event);
 			}
-			catch (Exception e) {
-				onFailure(e);
-			}
+		} catch (Exception e) {
+			onFailure(e);
 		}
 	}
 
-	public abstract E execute(Object[] args) throws Exception;
-
-	public abstract void onFailure(Exception e);
+	public abstract E execute(Object... args) throws Exception;
 
 	public abstract void onSuccess(E event) throws Exception;
 
-	protected boolean isValidEvent(BasicThreadEvent event) {
-		return getListener() != null && event.getTargetScreenletId() == getTargetScreenletId();
+	public abstract void onFailure(Exception e);
+
+	public void onScreenletAttached(L listener) {
+		this.listener = listener;
+		EventBusUtil.register(this);
 	}
+
+	public void onScreenletDetached(L listener) {
+		EventBusUtil.unregister(this);
+		this.listener = null;
+	}
+
+	protected boolean isInvalidEvent(BasicThreadEvent event) {
+		return getListener() == null || event.getTargetScreenletId() != getTargetScreenletId() || !actionName.equals(
+			event.getActionName());
+	}
+
+	protected Session getSession() {
+		return SessionContext.createSessionFromCurrentSession();
+	}
+
+	public int getTargetScreenletId() {
+		return targetScreenletId;
+	}
+
+	public void setTargetScreenletId(int targetScreenletId) {
+		this.targetScreenletId = targetScreenletId;
+	}
+
+	public L getListener() {
+		return listener;
+	}
+
+	public String getActionName() {
+		return actionName;
+	}
+
+	public void setActionName(String actionName) {
+		this.actionName = actionName;
+	}
+
+	protected void decorateBaseEvent(BasicThreadEvent event) {
+		event.setTargetScreenletId(getTargetScreenletId());
+		event.setActionName(getActionName());
+	}
+
+	protected L listener;
+	private int targetScreenletId;
+	private String actionName;
 }

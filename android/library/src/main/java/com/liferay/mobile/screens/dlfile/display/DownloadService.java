@@ -67,13 +67,13 @@ public class DownloadService extends IntentService {
 				sendProgress(receiver, fileLength, total);
 			}
 
+			output.flush();
 			receiver.send(FINISHED_DOWNLOAD, null);
 		} catch (IOException e) {
 			sendException(receiver, e);
 		} finally {
 			try {
 				if (output != null) {
-					output.flush();
 					output.close();
 				}
 				if (input != null) {

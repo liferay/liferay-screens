@@ -22,20 +22,18 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
-
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.webcontent.WebContent;
 import com.liferay.mobile.screens.util.LiferayLogger;
+import com.liferay.mobile.screens.webcontent.WebContent;
 import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
 import com.liferay.mobile.screens.webcontent.display.view.WebContentDisplayViewModel;
 
 /**
  * @author Silvio Santos
  */
-public class WebContentDisplayView extends FrameLayout
-	implements WebContentDisplayViewModel, View.OnTouchListener {
+public class WebContentDisplayView extends FrameLayout implements WebContentDisplayViewModel, View.OnTouchListener {
 
 	public WebContentDisplayView(Context context) {
 		super(context);
@@ -51,11 +49,11 @@ public class WebContentDisplayView extends FrameLayout
 
 	@Override
 	public void showStartOperation(String actionName) {
-		if (_progressBar != null) {
-			_progressBar.setVisibility(View.VISIBLE);
+		if (progressBar != null) {
+			progressBar.setVisibility(View.VISIBLE);
 		}
-		if (_webView != null) {
-			_webView.setVisibility(View.GONE);
+		if (webView != null) {
+			webView.setVisibility(View.GONE);
 		}
 	}
 
@@ -66,30 +64,28 @@ public class WebContentDisplayView extends FrameLayout
 
 	@Override
 	public void showFinishOperation(WebContent webContent) {
-		if (_progressBar != null) {
-			_progressBar.setVisibility(View.GONE);
+		if (progressBar != null) {
+			progressBar.setVisibility(View.GONE);
 		}
-		if (_webView != null) {
-			_webView.setVisibility(View.VISIBLE);
+		if (webView != null) {
+			webView.setVisibility(View.VISIBLE);
 
 			LiferayLogger.i("article loaded: " + webContent);
 
 			String styledHtml = STYLES + "<div class=\"MobileCSS\">" + webContent.getHtml() + "</div>";
 
 			//TODO check encoding
-			_webView.loadDataWithBaseURL(
-				LiferayServerContext.getServer(), styledHtml, "text/html", "utf-8",
-				null);
+			webView.loadDataWithBaseURL(LiferayServerContext.getServer(), styledHtml, "text/html", "utf-8", null);
 		}
 	}
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-		if (_progressBar != null) {
-			_progressBar.setVisibility(View.GONE);
+		if (progressBar != null) {
+			progressBar.setVisibility(View.GONE);
 		}
-		if (_webView != null) {
-			_webView.setVisibility(View.VISIBLE);
+		if (webView != null) {
+			webView.setVisibility(View.VISIBLE);
 		}
 
 		LiferayLogger.e(getContext().getString(R.string.loading_article_error), e);
@@ -97,17 +93,17 @@ public class WebContentDisplayView extends FrameLayout
 
 	@Override
 	public BaseScreenlet getScreenlet() {
-		return _screenlet;
+		return screenlet;
 	}
 
 	@Override
 	public void setScreenlet(BaseScreenlet screenlet) {
-		_screenlet = screenlet;
+		this.screenlet = screenlet;
 	}
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		WebView.HitTestResult result = _webView.getHitTestResult();
+		WebView.HitTestResult result = webView.getHitTestResult();
 		((WebContentDisplayScreenlet) getScreenlet()).onWebContentClicked(result, event);
 		return false;
 	}
@@ -116,8 +112,8 @@ public class WebContentDisplayView extends FrameLayout
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_webView = (WebView) findViewById(R.id.liferay_webview);
-		_progressBar = (ProgressBar) findViewById(R.id.liferay_webview_progress);
+		webView = (WebView) findViewById(R.id.liferay_webview);
+		progressBar = (ProgressBar) findViewById(R.id.liferay_webview_progress);
 	}
 
 	@Override
@@ -125,28 +121,26 @@ public class WebContentDisplayView extends FrameLayout
 		super.onAttachedToWindow();
 
 		WebContentDisplayScreenlet screenlet = (WebContentDisplayScreenlet) getScreenlet();
-		if (_webView != null) {
+		if (webView != null) {
 			if (screenlet.isJavascriptEnabled()) {
-				_webView.getSettings().setJavaScriptEnabled(true);
-				_webView.setWebChromeClient(new WebChromeClient());
+				webView.getSettings().setJavaScriptEnabled(true);
+				webView.setWebChromeClient(new WebChromeClient());
 			}
-			_webView.setOnTouchListener(this);
+			webView.setOnTouchListener(this);
 		}
 	}
 
-	protected WebView _webView;
-	protected ProgressBar _progressBar;
+	protected WebView webView;
+	protected ProgressBar progressBar;
+	private BaseScreenlet screenlet;
 
-	private static final String STYLES =
-		"<style>" +
-			".MobileCSS {padding: 4%; width: 92%;} " +
-			".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, " +
-			".MobileCSS h2, .MobileCSS h3{ " +
-			"font-size: 110%; font-weight: 200;" +
-			"font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;} " +
-			".MobileCSS img { width: 100% !important; } " +
-			".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }" +
-			"</style>";
-
-	private BaseScreenlet _screenlet;
+	private static final String STYLES = "<style>"
+		+ ".MobileCSS {padding: 4%; width: 92%;} "
+		+ ".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, "
+		+ ".MobileCSS h2, .MobileCSS h3{ "
+		+ "font-size: 110%; font-weight: 200;"
+		+ "font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;} "
+		+ ".MobileCSS img { width: 100% !important; } "
+		+ ".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }"
+		+ "</style>";
 }

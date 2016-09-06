@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.push;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -55,7 +54,7 @@ public abstract class PushScreensActivity extends AppCompatActivity
 			String message = "Error registering with Liferay Push";
 			LiferayLogger.e(message, e);
 		}
-		_push.onPushNotification(this);
+		push.onPushNotification(this);
 	}
 
 	@Override
@@ -81,9 +80,9 @@ public abstract class PushScreensActivity extends AppCompatActivity
 
 			Session session = SessionContext.isLoggedIn() ?
 				SessionContext.createSessionFromCurrentSession() : getDefaultSession();
-			_push = Push.with(session);
+			push = Push.with(session);
 			LiferayPortalVersion portalVersion = LiferayServerContext.getPortalVersion();
-			_push.withPortalVersion(portalVersion.getVersion());
+			push.withPortalVersion(portalVersion.getVersion());
 
 			SharedPreferences preferences = getSharedPreferences();
 
@@ -92,10 +91,10 @@ public abstract class PushScreensActivity extends AppCompatActivity
 			boolean appUpdated = getVersionCode() != preferences.getInt(VERSION_CODE, 0);
 
 			if (!userAlreadyRegistered || appUpdated || BuildConfig.DEBUG) {
-				_push.onSuccess(this).onFailure(this).register(this, getSenderId());
+				push.onSuccess(this).onFailure(this).register(this, getSenderId());
 			}
 			else {
-				_push.onPushNotification(this);
+				push.onPushNotification(this);
 			}
 		}
 		catch (Exception e) {
@@ -137,9 +136,9 @@ public abstract class PushScreensActivity extends AppCompatActivity
 	protected abstract Session getDefaultSession();
 
 	protected void unsubscribeFromBuses() {
-//		if (_push != null) {
+//		if (push != null) {
 //			FIXME !
-//			_push.unsubscribe();
+//			push.unsubscribe();
 //		}
 	}
 
@@ -150,14 +149,13 @@ public abstract class PushScreensActivity extends AppCompatActivity
 	protected abstract String getSenderId();
 
 	private int getVersionCode() throws PackageManager.NameNotFoundException {
-		PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
-		return pInfo.versionCode;
+		return getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
 	}
 
 	private SharedPreferences getSharedPreferences() {
 		return getSharedPreferences(PUSH_PREFERENCES, Context.MODE_PRIVATE);
 	}
 
-	private Push _push;
+	private Push push;
 
 }

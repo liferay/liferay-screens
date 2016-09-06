@@ -18,6 +18,15 @@
 	<string name="GalleryScreenlet_default">gallery_default</string>
 	<string name="CommentDisplayScreenlet_default">comment_display_default</string>
 	<string name="CommentListScreenlet_default">comment_list_default</string>
+	<string name="asset_image">asset image</string>
+	<string name="thumbs_up">thumbs up</string>
+	<string name="very_sad_smiley">sad smiley</string>
+	<string name="sad_smiley">sad smiley</string>
+	<string name="neutral_smiley">neutral smiley</string>
+	<string name="happy_smiley">happy smiley</string>
+	<string name="very_happy_smiley">very happy smiley</string>
+	<string name="pdf_content">pdf content</string>
+	<string name="thumbs_down">thumbs down</string>
 
 	<string-array name="image_mime_types">
 		<item>image/png</item>

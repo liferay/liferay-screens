@@ -21,7 +21,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
@@ -33,8 +32,7 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 /**
  * @author Jose Manuel Navarro
  */
-public class ForgotPasswordView extends LinearLayout
-	implements ForgotPasswordViewModel, View.OnClickListener {
+public class ForgotPasswordView extends LinearLayout implements ForgotPasswordViewModel, View.OnClickListener {
 
 	public ForgotPasswordView(Context context) {
 		super(context);
@@ -78,9 +76,7 @@ public class ForgotPasswordView extends LinearLayout
 	public void showFinishOperation(boolean passwordSent) {
 		_progressBar.finishProgress();
 
-		int operationMsg = (passwordSent) ? R.string.password_sent : R.string.password_sent;
-
-		String msg = getResources().getString(operationMsg) + " " +
+		String msg = getResources().getString(R.string.password_sent) + " " +
 			getResources().getString(R.string.check_your_inbox);
 
 		LiferayLogger.i(msg);
@@ -110,12 +106,11 @@ public class ForgotPasswordView extends LinearLayout
 		screenlet.performUserAction();
 	}
 
-
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_loginEditText = (EditText) findViewById(R.id.liferay_forgot_email);
+		_loginEditText = (EditText) findViewById(R.id.liferay_forgot_login);
 		_progressBar = (ModalProgressBar) findViewById(R.id.liferay_progress);
 
 		Button requestButton = (Button) findViewById(R.id.liferay_forgot_button);
@@ -133,14 +128,13 @@ public class ForgotPasswordView extends LinearLayout
 		_loginEditText.setInputType(_basicAuthMethod.getInputType());
 		_loginEditText.setCompoundDrawablesWithIntrinsicBounds(
 			ContextCompat.getDrawable(getContext(), getLoginEditTextDrawableId()), null, null, null);
-		_loginEditText.setText(getLoginEditTextLabel());
+		_loginEditText.setHint(getLoginEditTextLabel());
 	}
 
 	protected int getLoginEditTextLabel() {
 		if (BasicAuthMethod.SCREEN_NAME.equals(_basicAuthMethod)) {
 			return R.string.screen_name;
-		}
-		else if (BasicAuthMethod.USER_ID.equals(_basicAuthMethod)) {
+		} else if (BasicAuthMethod.USER_ID.equals(_basicAuthMethod)) {
 			return R.string.user_id;
 		}
 		return R.string.email_address;
@@ -149,8 +143,7 @@ public class ForgotPasswordView extends LinearLayout
 	protected int getLoginEditTextDrawableId() {
 		if (BasicAuthMethod.USER_ID.equals(_basicAuthMethod)) {
 			return R.drawable.default_user_icon;
-		}
-		else if (BasicAuthMethod.EMAIL.equals(_basicAuthMethod)) {
+		} else if (BasicAuthMethod.EMAIL.equals(_basicAuthMethod)) {
 			return R.drawable.default_mail_icon;
 		}
 

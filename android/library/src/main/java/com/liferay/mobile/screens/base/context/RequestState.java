@@ -71,6 +71,6 @@ public class RequestState {
 
 	private static RequestState _instance;
 
-	private SparseArray<HashSet<Object>> _states = new SparseArray<>();
+	private final SparseArray<HashSet<Object>> _states = new SparseArray<>();
 
 }

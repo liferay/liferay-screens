@@ -48,8 +48,7 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 		super(context);
 	}
 
-	public UserPortraitView(
-		Context context, AttributeSet attributes) {
+	public UserPortraitView(Context context, AttributeSet attributes) {
 		super(context, attributes);
 	}
 
@@ -98,13 +97,13 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.liferay_replace_image) {
-			_choseOriginDialog = new MediaStoreSelectorDialog().createOriginDialog(getContext(), openCamera(),
-				openGallery(), null);
+			_choseOriginDialog =
+				new MediaStoreSelectorDialog().createOriginDialog(getContext(), openCamera(), openGallery(), null);
 			_choseOriginDialog.show();
 		}
 	}
 
-	public Action1 openCamera() {
+	public Action1<Boolean> openCamera() {
 		return new Action1<Boolean>() {
 			@Override
 			public void call(Boolean result) {
@@ -116,7 +115,7 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 		};
 	}
 
-	public Action1 openGallery() {
+	public Action1<Boolean> openGallery() {
 		return new Action1<Boolean>() {
 			@Override
 			public void call(Boolean result) {
@@ -137,6 +136,9 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 		_portraitAddButton = (ImageButton) findViewById(R.id.liferay_replace_image);
 
 		setDefaultImagePlaceholder();
+
+		_choseOriginDialog =
+			new MediaStoreSelectorDialog().createOriginDialog(getContext(), openCamera(), openGallery(), null);
 	}
 
 	@Override
@@ -175,8 +177,7 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 
 		RectF rect = getRectF(bitmap, borderWidth);
 
-		Bitmap finalBitmap = Bitmap.createBitmap(
-			bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+		Bitmap finalBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
 
 		Canvas canvas = new Canvas(finalBitmap);
 
@@ -218,8 +219,7 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 	}
 
 	private void setDefaultImagePlaceholder() {
-		Bitmap defaultBitmap = BitmapFactory.decodeResource(
-			getResources(), R.drawable.default_portrait_placeholder);
+		Bitmap defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.default_portrait_placeholder);
 		_portraitImage.setImageBitmap(transformBitmap(defaultBitmap));
 	}
 

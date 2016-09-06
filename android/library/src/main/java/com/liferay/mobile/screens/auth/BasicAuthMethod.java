@@ -49,6 +49,6 @@ public enum BasicAuthMethod {
 		_value = value;
 	}
 
-	private int _value;
+	private final int _value;
 
 }

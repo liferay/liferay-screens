@@ -8,13 +8,17 @@ import java.util.concurrent.Executors;
  */
 public class Executor {
 
+	private Executor() {
+		super();
+	}
+
 	public static final int N_THREADS = 3;
 
-	public synchronized static ExecutorService getExecutor() {
-		if (_executor == null) {
-			_executor = Executors.newFixedThreadPool(N_THREADS);
+	public static synchronized ExecutorService getExecutor() {
+		if (executor == null) {
+			executor = Executors.newFixedThreadPool(N_THREADS);
 		}
-		return _executor;
+		return executor;
 	}
 
 	public static void execute(Runnable runnable) {
@@ -24,6 +28,5 @@ public class Executor {
 		getExecutor().execute(runnable);
 	}
 
-	private static ExecutorService _executor;
-
+	private static ExecutorService executor;
 }

@@ -3,11 +3,9 @@ package com.liferay.mobile.screens.userportrait.interactor;
 import android.content.Context;
 import android.net.Uri;
 import android.util.Base64;
-
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.squareup.okhttp.Cache;
 import com.squareup.okhttp.OkHttpClient;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
@@ -42,8 +40,7 @@ public class UserPortraitUriBuilder {
 			String token = Base64.encodeToString(bytes, Base64.NO_WRAP);
 
 			return URLEncoder.encode(token, "UTF8");
-		}
-		catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
 			LiferayLogger.e("Algorithm not found!", e);
 		}
 		return null;

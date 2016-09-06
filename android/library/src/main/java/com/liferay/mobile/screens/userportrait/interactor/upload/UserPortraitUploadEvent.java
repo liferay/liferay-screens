@@ -1,46 +1,38 @@
 package com.liferay.mobile.screens.userportrait.interactor.upload;
 
-import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
-
+import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
 import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
  */
-public class UserPortraitUploadEvent extends JSONObjectEvent implements RemoteWrite {
+public class UserPortraitUploadEvent extends OfflineEventNew {
 
-	public UserPortraitUploadEvent(int targetScreenletId, String picturePath, long userId, Exception e) {
-		super(targetScreenletId, e);
-
-		_picturePath = picturePath;
-		_userId = userId;
+	public UserPortraitUploadEvent() {
+		super();
 	}
 
-	public UserPortraitUploadEvent(int targetScreenletId, String picturePath, long userId, JSONObject jsonObject) {
-		super(targetScreenletId, jsonObject);
+	public UserPortraitUploadEvent(String picturePath) {
+		this(picturePath, new JSONObject());
+	}
 
-		_picturePath = picturePath;
-		_userId = userId;
+	public UserPortraitUploadEvent(String picturePath, JSONObject jsonObject) {
+		super(jsonObject);
+
+		this.picturePath = picturePath;
+	}
+
+	public UserPortraitUploadEvent(Exception exception) {
+		super(exception);
 	}
 
 	public String getPicturePath() {
-		return _picturePath;
+		return picturePath;
 	}
 
-	public long getUserId() {
-		return _userId;
-	}
+	private String picturePath;
 
-	@Override
-	public boolean isCacheRequest() {
-		return _cacheRequest;
+	public void setPicturePath(String picturePath) {
+		this.picturePath = picturePath;
 	}
-
-	public void setCacheRequest(boolean cacheRequest) {
-		_cacheRequest = cacheRequest;
-	}
-
-	private String _picturePath;
-	private long _userId;
-	private boolean _cacheRequest;
 }

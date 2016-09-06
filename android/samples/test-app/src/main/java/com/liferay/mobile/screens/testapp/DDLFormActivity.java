@@ -16,12 +16,11 @@ package com.liferay.mobile.screens.testapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
-
+import java.util.Map;
 import org.json.JSONObject;
 
 /**
@@ -57,7 +56,7 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 	}
 
 	@Override
-	public void onDDLFormRecordLoaded(Record record) {
+	public void onDDLFormRecordLoaded(Record record, Map<String, Object> valuesAndAttributes) {
 		info("Record loaded!");
 	}
 
@@ -72,26 +71,6 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 	}
 
 	@Override
-	public void onDDLFormLoadFailed(Exception e) {
-		error("Form load failed", e);
-	}
-
-	@Override
-	public void onDDLFormRecordLoadFailed(Exception e) {
-		error("Record load failed", e);
-	}
-
-	@Override
-	public void onDDLFormRecordAddFailed(Exception e) {
-		error("Add failed", e);
-	}
-
-	@Override
-	public void onDDLFormUpdateRecordFailed(Exception e) {
-		error("Update failed", e);
-	}
-
-	@Override
 	public void onDDLFormDocumentUploaded(DocumentField documentField, JSONObject jsonObject) {
 		info("Document uploaded!");
 	}
@@ -102,18 +81,8 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 	}
 
 	@Override
-	public void loadingFromCache(boolean success) {
-
-	}
-
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
-
-	}
-
-	@Override
-	public void storingToCache(Object object) {
-
+	public void error(Exception e, String userAction) {
+		error(userAction + " failed", e);
 	}
 
 	@Override

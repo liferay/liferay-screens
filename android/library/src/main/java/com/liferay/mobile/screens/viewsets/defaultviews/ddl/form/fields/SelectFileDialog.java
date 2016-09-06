@@ -44,7 +44,7 @@ public class SelectFileDialog {
 			@Override
 			public void onClick(DialogInterface d, int arg1) {
 				currentFile = editText.getText().toString();
-				listener.onFileChosen(currentDir + "/" + currentFile);
+				listener.onFileChosen(currentDir + '/' + currentFile);
 			}
 		});
 
@@ -76,13 +76,13 @@ public class SelectFileDialog {
 
 				String newPath = currentDir;
 				if ("..".equals(selection)) {
-					newPath = currentDir.substring(0, currentDir.lastIndexOf("/"));
+					newPath = currentDir.substring(0, currentDir.lastIndexOf('/'));
 				}
 				else if (selection.indexOf('/') != -1) {
-					newPath += "/" + selection.substring(0, selection.length() - 1);
+					newPath += '/' + selection.substring(0, selection.length() - 1);
 				}
 				else {
-					newPath += "/" + selection;
+					newPath += '/' + selection;
 				}
 
 				currentFile = "";
@@ -121,7 +121,7 @@ public class SelectFileDialog {
 		}
 
 		File dirFile = new File(directory);
-		if (!dirFile.exists() || !dirFile.isDirectory()
+		if (dirFile == null || !dirFile.exists() || !dirFile.isDirectory()
 			|| dirFile.listFiles() == null || dirFile.listFiles().length == 0) {
 			if (currentDir.equals(SD_DIRECTORY)) {
 				throw new SecurityException("Are you sure that the read or write permission is set in the manifest.xml?");
@@ -136,7 +136,7 @@ public class SelectFileDialog {
 
 		for (File file : dirFile.listFiles()) {
 			if (file.isDirectory()) {
-				entries.add(file.getName() + "/");
+				entries.add(file.getName() + '/');
 			}
 			else {
 				entries.add(file.getName());

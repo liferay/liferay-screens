@@ -65,18 +65,18 @@ public enum AssetClassnameIds {
 	WIKI_NODE(20152, "com.liferay.wiki.model.WikiNode");
 
 	public long getValue() {
-		return _value;
+		return value;
 	}
 
 	public String getClassName() {
-		return _className;
+		return className;
 	}
 
 	AssetClassnameIds(long value, String className) {
-		_value = value;
-		_className = className;
+		this.value = value;
+		this.className = className;
 	}
 
-	private long _value;
-	private String _className;
+	private final long value;
+	private final String className;
 }

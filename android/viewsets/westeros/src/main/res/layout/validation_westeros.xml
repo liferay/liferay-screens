@@ -10,4 +10,5 @@
 	android:text="@string/all_fields_required"
 	android:textColor="@color/colorPrimary_westeros"
 	android:textSize="16sp"
-	android:visibility="gone" />
+	android:visibility="gone"
+	/>

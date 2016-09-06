@@ -17,7 +17,6 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 import android.content.Context;
 import android.text.InputType;
 import android.util.AttributeSet;
-
 import com.liferay.mobile.screens.ddl.model.NumberField;
 
 /**
@@ -48,10 +47,10 @@ public class DDLFieldNumberView extends BaseDDLFieldTextView<NumberField> {
 
 			case NUMBER:
 			case DECIMAL:
-				getTextEditText().setInputType(
-					InputType.TYPE_CLASS_NUMBER |
-						InputType.TYPE_NUMBER_FLAG_SIGNED |
-						InputType.TYPE_NUMBER_FLAG_DECIMAL);
+			default:
+				getTextEditText().setInputType(InputType.TYPE_CLASS_NUMBER |
+					InputType.TYPE_NUMBER_FLAG_SIGNED |
+					InputType.TYPE_NUMBER_FLAG_DECIMAL);
 				break;
 		}
 	}
@@ -65,5 +64,4 @@ public class DDLFieldNumberView extends BaseDDLFieldTextView<NumberField> {
 	protected void onTextChanged(String text) {
 		getField().setCurrentStringValue(text);
 	}
-
 }

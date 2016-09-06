@@ -27,7 +27,7 @@ public class DDLFormView extends com.liferay.mobile.screens.viewsets.defaultview
 		setFieldLayoutId(editorType, _westerosLayoutIds.get(editorType));
 	}
 
-	private static Map<Field.EditorType, Integer> _westerosLayoutIds = new HashMap<>();
+	private static final Map<Field.EditorType, Integer> _westerosLayoutIds = new HashMap<>();
 
 	static {
 		_westerosLayoutIds.put(Field.EditorType.CHECKBOX, R.layout.ddlfield_checkbox_westeros);

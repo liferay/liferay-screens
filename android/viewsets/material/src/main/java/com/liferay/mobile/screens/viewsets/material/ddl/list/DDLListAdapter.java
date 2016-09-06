@@ -61,7 +61,7 @@ public class DDLListAdapter
 
 	public static class TwoTextsViewHolder extends BaseListAdapter.ViewHolder {
 
-		public TextView subtitleTextView;
+		public final TextView subtitleTextView;
 
 		public TwoTextsViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);

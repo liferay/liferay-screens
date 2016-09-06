@@ -15,23 +15,17 @@
 package com.liferay.mobile.screens.userportrait.interactor;
 
 import android.graphics.Bitmap;
-
-import com.liferay.mobile.screens.cache.CacheListener;
+import com.liferay.mobile.screens.base.thread.listener.OfflineListenerNew;
 
 /**
  * @author Javier Gamarra
  * @author Jose Manuel Navarro
  */
-public interface UserPortraitInteractorListener extends CacheListener {
+public interface UserPortraitInteractorListener extends OfflineListenerNew {
 
 	Bitmap onEndUserPortraitLoadRequest(Bitmap bitmap);
 
-	void onUserPortraitLoadFailure(Exception e);
-
 	void onUserPortraitUploaded(Long userId);
 
-	void onUserPortraitUploadFailure(Exception e);
-
 	void onPicturePathReceived(String picturePath);
-
 }

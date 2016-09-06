@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import com.liferay.mobile.screens.base.list.BaseListScreenlet;
+import com.liferay.mobile.screens.base.thread.listener.CacheListener;
 import com.liferay.mobile.screens.gallery.GalleryListener;
 import com.liferay.mobile.screens.gallery.GalleryScreenlet;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
@@ -20,17 +20,11 @@ import static android.view.View.VISIBLE;
 /**
  * * @author Víctor Galán Grande
  */
-public class GalleryActivity extends ThemeActivity implements GalleryListener, OnClickListener {
+public class GalleryActivity extends ThemeActivity implements GalleryListener, OnClickListener, CacheListener {
 
 	private GalleryScreenlet galleryScreenletGrid;
 	private GalleryScreenlet galleryScreenletSlideShow;
 	private GalleryScreenlet galleryScreenletList;
-
-	private Button changeGalleryViewGrid;
-	private Button changeGalleryViewSlideShow;
-	private Button changeGalleryViewList;
-
-	private boolean isGridMode = true;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,25 +39,25 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 
 		galleryScreenletList = (GalleryScreenlet) findViewById(R.id.gallery_screenlet_list);
 		galleryScreenletList.setListener(this);
+		galleryScreenletList.setCacheListener(this);
 
-		changeGalleryViewGrid = (Button) findViewById(R.id.change_gallery_view_grid);
+		Button changeGalleryViewGrid = (Button) findViewById(R.id.change_gallery_view_grid);
 		changeGalleryViewGrid.setOnClickListener(this);
 
-		changeGalleryViewSlideShow = (Button) findViewById(R.id.change_gallery_view_slideshow);
+		Button changeGalleryViewSlideShow = (Button) findViewById(R.id.change_gallery_view_slideshow);
 		changeGalleryViewSlideShow.setOnClickListener(this);
 
-		changeGalleryViewList = (Button) findViewById(R.id.change_gallery_view_list);
+		Button changeGalleryViewList = (Button) findViewById(R.id.change_gallery_view_list);
 		changeGalleryViewList.setOnClickListener(this);
 	}
 
 	@Override
-	public void onListPageFailed(BaseListScreenlet source, int startRow, int endRow, Exception e) {
+	public void onListPageFailed(int startRow, Exception e) {
 		error("Error loading page", e);
 	}
 
 	@Override
-	public void onListPageReceived(BaseListScreenlet source, int startRow, int endRow, List<ImageEntry> entries,
-		int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List<ImageEntry> entries, int rowCount) {
 		Log.i(GalleryScreenlet.class.getName(), "row: " + startRow + "received with " + entries.size() + "entries");
 	}
 
@@ -89,11 +83,6 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 	}
 
 	@Override
-	public void onImageEntryDeleteFailure(Exception e) {
-		error("Error deleting image", e);
-	}
-
-	@Override
 	public void onImageEntryDeleted(long imageEntryId) {
 		info("Image deleted: " + imageEntryId);
 	}
@@ -111,11 +100,6 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 	@Override
 	public void onImageUploadEnd(ImageEntry entry) {
 		info("Image upload end " + entry.getImageUrl());
-	}
-
-	@Override
-	public void onImageUploadFailure(Exception e) {
-		error("Image upload failure", e);
 	}
 
 	@Override
@@ -140,23 +124,25 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 	}
 
 	private void setGridMode() {
-		isGridMode = true;
 		galleryScreenletSlideShow.setVisibility(GONE);
 		galleryScreenletGrid.setVisibility(VISIBLE);
 		galleryScreenletList.setVisibility(GONE);
 	}
 
 	private void setSlideshowMode() {
-		isGridMode = false;
 		galleryScreenletSlideShow.setVisibility(VISIBLE);
 		galleryScreenletGrid.setVisibility(GONE);
 		galleryScreenletList.setVisibility(GONE);
 	}
 
 	private void setListMode() {
-		isGridMode = false;
 		galleryScreenletList.setVisibility(VISIBLE);
 		galleryScreenletSlideShow.setVisibility(GONE);
 		galleryScreenletGrid.setVisibility(GONE);
+	}
+
+	@Override
+	public void error(Exception e, String userAction) {
+		error("Error when " + userAction, e);
 	}
 }

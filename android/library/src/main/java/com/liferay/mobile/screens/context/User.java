@@ -104,7 +104,7 @@ public class User {
 		return _jsonObject.toString();
 	}
 
-	private Map<String, Object> _attributes;
-	private JSONObject _jsonObject;
+	private final Map<String, Object> _attributes;
+	private final JSONObject _jsonObject;
 
 }

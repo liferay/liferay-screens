@@ -14,40 +14,58 @@
 
 package com.liferay.mobile.screens.base.thread.event;
 
-/**
- * @author Silvio Santos
- */
-public class BasicThreadEvent {
+import java.io.Serializable;
+import org.json.JSONObject;
+
+public class BasicThreadEvent implements Serializable {
+
+	private String actionName;
+	private JSONObject jsonObject;
+	private Exception exception;
+	private int targetScreenletId;
 
 	public BasicThreadEvent() {
 		super();
 	}
 
+	public BasicThreadEvent(JSONObject jsonObject) {
+		super();
+		this.jsonObject = jsonObject;
+	}
+
 	public BasicThreadEvent(Exception exception) {
-		_exception = exception;
+		this.exception = exception;
 	}
 
 	public Exception getException() {
-		return _exception;
+		return exception;
 	}
 
 	public int getTargetScreenletId() {
-		return _targetScreenletId;
+		return targetScreenletId;
+	}
+
+	public void setJSONObject(JSONObject jsonObject) {
+		this.jsonObject = jsonObject;
 	}
 
 	public void setTargetScreenletId(int targetScreenletId) {
-		_targetScreenletId = targetScreenletId;
+		this.targetScreenletId = targetScreenletId;
 	}
 
 	public boolean isFailed() {
-		return _exception != null;
+		return exception != null;
 	}
 
-	public void setException(Exception exception) {
-		_exception = exception;
+	public JSONObject getJSONObject() {
+		return jsonObject;
 	}
 
-	private Exception _exception;
-	private int _targetScreenletId;
+	public String getActionName() {
+		return actionName;
+	}
 
+	public void setActionName(String actionName) {
+		this.actionName = actionName;
+	}
 }

@@ -32,6 +32,10 @@ import java.util.TimeZone;
  */
 public class DateField extends Field<Date> {
 
+	public DateField() {
+		super();
+	}
+
 	public static final Parcelable.ClassLoaderCreator<DateField> CREATOR =
 		new Parcelable.ClassLoaderCreator<DateField>() {
 
@@ -75,7 +79,7 @@ public class DateField extends Field<Date> {
 				return _SERVER_70_YYYY_FORMAT.parse(stringValue);
 			}
 			else if (lastSeparator == -1) {
-				return new Date(Long.valueOf(stringValue));
+				return new Date(Long.parseLong(stringValue));
 			}
 			else if (stringValue.length() - lastSeparator - 1 == 2) {
 				return _SERVER_YY_FORMAT.parse(stringValue);

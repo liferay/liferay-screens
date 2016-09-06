@@ -142,7 +142,7 @@ public class JsonParser implements DDMStructureParser {
 		String supportedLocale = LiferayLocale.getSupportedLocaleWithNoDefault(locale.getLanguage());
 		// Pre-final fallback (a2, a3, b2): find any metadata with the portal supported languages
 
-		if (supportedLocale != null) {
+		if (supportedLocale.isEmpty()) {
 			return field.getString(supportedLocale);
 		}
 

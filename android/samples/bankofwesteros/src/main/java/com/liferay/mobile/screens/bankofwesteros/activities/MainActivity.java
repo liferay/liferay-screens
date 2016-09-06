@@ -48,7 +48,7 @@ public class MainActivity extends CardActivity implements View.OnClickListener, 
 		//TODO move to the screenlet?
 		View forgotPasswordText = findViewById(R.id.liferay_forgot_link);
 		forgotPasswordText.setOnClickListener(this);
-		_forgotPasswordField = (EditText) findViewById(R.id.liferay_forgot_email);
+		_forgotPasswordField = (EditText) findViewById(R.id.liferay_forgot_login);
 
 		LoginScreenlet loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
 		loginScreenlet.setListener(this);

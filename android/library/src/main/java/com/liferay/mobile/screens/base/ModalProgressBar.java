@@ -19,8 +19,8 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ProgressBar;
-
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.util.LiferayLogger;
 
 /**
  * @author Jose Manuel Navarro
@@ -29,8 +29,6 @@ public class ModalProgressBar extends ProgressBar {
 
 	public ModalProgressBar(Context context) {
 		super(context);
-
-		init(context, null);
 	}
 
 	public ModalProgressBar(Context context, AttributeSet attributes) {
@@ -59,8 +57,7 @@ public class ModalProgressBar extends ProgressBar {
 
 		if (actionView != null) {
 			setVisibility(v, actionView);
-		}
-		else {
+		} else {
 			super.setVisibility(v);
 		}
 	}
@@ -77,7 +74,7 @@ public class ModalProgressBar extends ProgressBar {
 
 	protected void init(Context context, AttributeSet attributes) {
 		for (int i = 0; i < attributes.getAttributeCount(); ++i) {
-			System.out.println(attributes.getAttributeName(i) + " - " + attributes.getAttributeValue(i));
+			LiferayLogger.d(attributes.getAttributeName(i) + " - " + attributes.getAttributeValue(i));
 		}
 		TypedArray typedArray =
 			context.getTheme().obtainStyledAttributes(attributes, R.styleable.ModalProgressBar, 0, 0);
@@ -101,5 +98,4 @@ public class ModalProgressBar extends ProgressBar {
 	}
 
 	private int _actionViewId;
-
 }

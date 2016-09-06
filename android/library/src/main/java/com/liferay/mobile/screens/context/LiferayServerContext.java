@@ -140,7 +140,7 @@ public class LiferayServerContext {
 	}
 
 	private static long getValueFromIntegerOrString(final Resources resources, final int stringId, int integerId) {
-		return integerId == 0 ? Long.valueOf(resources.getString(stringId)) : resources.getInteger(integerId);
+		return integerId == 0 ? Long.parseLong(resources.getString(stringId)) : resources.getInteger(integerId);
 	}
 
 	private static String _server;
