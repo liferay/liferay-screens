@@ -25,6 +25,8 @@ import static com.liferay.mobile.screens.cache.Cache.SEPARATOR;
  */
 public class DDLFormEvent extends ListEvent<Record> {
 
+	private Record record;
+
 	public DDLFormEvent() {
 		super();
 	}
@@ -50,6 +52,4 @@ public class DDLFormEvent extends ListEvent<Record> {
 	public Record getRecord() {
 		return record;
 	}
-
-	private Record record;
 }

@@ -35,6 +35,8 @@ public class SlideshowGalleryAdapter
 
 	public class SlideshowGalleryViewHolder extends BaseListAdapter.ViewHolder {
 
+		private final ImageView _imageView;
+
 		public SlideshowGalleryViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
@@ -48,7 +50,5 @@ public class SlideshowGalleryAdapter
 				.centerInside()
 				.into(_imageView);
 		}
-
-		private final ImageView _imageView;
 	}
 }

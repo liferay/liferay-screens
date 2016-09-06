@@ -28,6 +28,8 @@ import org.json.JSONObject;
  */
 public class GalleryUploadService extends IntentService {
 
+	private boolean shouldCancel;
+
 	public GalleryUploadService() {
 		super(GalleryUploadService.class.getCanonicalName());
 	}
@@ -125,6 +127,4 @@ public class GalleryUploadService extends IntentService {
 		serviceContextAttributes.put("addGuestPermissions", true);
 		return new JSONObjectWrapper(serviceContextAttributes);
 	}
-
-	private boolean shouldCancel;
 }

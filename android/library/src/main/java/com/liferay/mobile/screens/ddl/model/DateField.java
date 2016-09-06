@@ -32,10 +32,6 @@ import java.util.TimeZone;
  */
 public class DateField extends Field<Date> {
 
-	public DateField() {
-		super();
-	}
-
 	public static final Parcelable.ClassLoaderCreator<DateField> CREATOR =
 		new Parcelable.ClassLoaderCreator<DateField>() {
 
@@ -52,14 +48,28 @@ public class DateField extends Field<Date> {
 				return new DateField[size];
 			}
 		};
+	private static final DateFormat _SERVER_YYYY_FORMAT = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+	private static final DateFormat _SERVER_YY_FORMAT = new SimpleDateFormat("MM/dd/yy", Locale.US);
+	private static final DateFormat _SERVER_70_YYYY_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+	private static final TimeZone _GMT_TIMEZONE = TimeZone.getTimeZone("GMT");
 
+	static {
+		_SERVER_YYYY_FORMAT.setTimeZone(_GMT_TIMEZONE);
+		_SERVER_YY_FORMAT.setTimeZone(_GMT_TIMEZONE);
+		_SERVER_70_YYYY_FORMAT.setTimeZone(_GMT_TIMEZONE);
+	}
+
+	private DateFormat _clientFormat;
+
+	public DateField() {
+		super();
+	}
 
 	public DateField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
 
 		init(locale);
 	}
-
 	protected DateField(Parcel source, ClassLoader loader) {
 		super(source, loader);
 
@@ -107,19 +117,6 @@ public class DateField extends Field<Date> {
 	private void init(Locale locale) {
 		_clientFormat = DateFormat.getDateInstance(DateFormat.LONG, locale);
 		_clientFormat.setTimeZone(_GMT_TIMEZONE);
-	}
-
-	private static final DateFormat _SERVER_YYYY_FORMAT = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
-	private static final DateFormat _SERVER_YY_FORMAT = new SimpleDateFormat("MM/dd/yy", Locale.US);
-	private static final DateFormat _SERVER_70_YYYY_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-
-	private static final TimeZone _GMT_TIMEZONE = TimeZone.getTimeZone("GMT");
-	private DateFormat _clientFormat;
-
-	static {
-		_SERVER_YYYY_FORMAT.setTimeZone(_GMT_TIMEZONE);
-		_SERVER_YY_FORMAT.setTimeZone(_GMT_TIMEZONE);
-		_SERVER_70_YYYY_FORMAT.setTimeZone(_GMT_TIMEZONE);
 	}
 
 }

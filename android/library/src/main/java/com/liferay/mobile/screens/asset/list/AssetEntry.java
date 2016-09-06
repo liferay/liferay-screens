@@ -27,10 +27,6 @@ import java.util.Map;
  */
 public class AssetEntry implements Parcelable {
 
-	public AssetEntry() {
-		super();
-	}
-
 	public static final ClassLoaderCreator<AssetEntry> CREATOR = new ClassLoaderCreator<AssetEntry>() {
 
 		@Override
@@ -46,6 +42,11 @@ public class AssetEntry implements Parcelable {
 			return new AssetEntry[size];
 		}
 	};
+	protected Map<String, Object> _values;
+
+	public AssetEntry() {
+		super();
+	}
 
 	protected AssetEntry(Parcel in, ClassLoader loader) {
 		_values = new HashMap<>();
@@ -117,8 +118,6 @@ public class AssetEntry implements Parcelable {
 	public int describeContents() {
 		return 0;
 	}
-
-	protected Map<String, Object> _values;
 
 	public String getEntryId() {
 		return String.valueOf(_values.get("entryId"));

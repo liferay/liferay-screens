@@ -11,6 +11,8 @@ import org.json.JSONArray;
  */
 public class ScreensAssetEntryConnector62 implements ScreensAssetEntryConnector {
 
+	private final ScreensassetentryService _screensassetentryService;
+
 	public ScreensAssetEntryConnector62(Session session) {
 		_screensassetentryService = new ScreensassetentryService(session);
 	}
@@ -24,6 +26,4 @@ public class ScreensAssetEntryConnector62 implements ScreensAssetEntryConnector 
 	public JSONArray getAssetEntries(long companyId, long groupId, String portletItemName, String s, int endRow) throws Exception {
 		return _screensassetentryService.getAssetEntries(companyId, groupId, portletItemName, s, endRow);
 	}
-
-	private final ScreensassetentryService _screensassetentryService;
 }

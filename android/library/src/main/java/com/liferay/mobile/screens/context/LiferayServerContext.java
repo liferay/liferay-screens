@@ -30,6 +30,13 @@ import java.io.IOException;
 public class LiferayServerContext {
 
 	private static final int MAX_SIZE = 100 * 1024 * 1024;
+	private static String _server;
+	private static long _companyId;
+	private static long _groupId;
+	private static String _classFactory;
+	private static LiferayPortalVersion _portalVersion;
+	private static String _versionFactory;
+	private static OkHttpClient okHttpClient;
 
 	public static void reloadFromResources(Resources resources, final String packageName) {
 
@@ -131,13 +138,4 @@ public class LiferayServerContext {
 	private static long getValueFromIntegerOrString(final Resources resources, final int stringId, int integerId) {
 		return integerId == 0 ? Long.parseLong(resources.getString(stringId)) : resources.getInteger(integerId);
 	}
-
-	private static String _server;
-	private static long _companyId;
-	private static long _groupId;
-	private static String _classFactory;
-	private static LiferayPortalVersion _portalVersion;
-	private static String _versionFactory;
-
-	private static OkHttpClient okHttpClient;
 }

@@ -27,6 +27,15 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	public static final String DELETE_COMMENT_ACTION = "DELETE_COMMENT";
 	public static final String UPDATE_COMMENT_ACTION = "UPDATE_COMMENT";
 	public static final String LOAD_COMMENT_ACTION = "LOAD_COMMENT";
+	private CommentDisplayListener listener;
+	private CommentEntry commentEntry;
+	private long commentId;
+	private String className;
+	private long classPK;
+	private long groupId;
+	private OfflinePolicy offlinePolicy;
+	private boolean autoLoad;
+	private boolean editable;
 
 	public CommentDisplayScreenlet(Context context) {
 		super(context);
@@ -224,15 +233,4 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	public void setEditable(boolean editable) {
 		this.editable = editable;
 	}
-
-	private CommentDisplayListener listener;
-
-	private CommentEntry commentEntry;
-	private long commentId;
-	private String className;
-	private long classPK;
-	private long groupId;
-	private OfflinePolicy offlinePolicy;
-	private boolean autoLoad;
-	private boolean editable;
 }

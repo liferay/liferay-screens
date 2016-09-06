@@ -25,11 +25,8 @@ public class RequestState {
 
 	//TODO we should add javadoc for the most important classes like this one.
 
-	public synchronized boolean contains(int targetScreenletId, Object state) {
-		HashSet<Object> set = _states.get(targetScreenletId);
-
-		return set != null && set.contains(state);
-	}
+	private static RequestState _instance;
+	private final SparseArray<HashSet<Object>> _states = new SparseArray<>();
 
 	public synchronized static RequestState getInstance() {
 		if (_instance == null) {
@@ -37,6 +34,12 @@ public class RequestState {
 		}
 
 		return _instance;
+	}
+
+	public synchronized boolean contains(int targetScreenletId, Object state) {
+		HashSet<Object> set = _states.get(targetScreenletId);
+
+		return set != null && set.contains(state);
 	}
 
 	public void clear(int targetScreenletId) {
@@ -68,9 +71,5 @@ public class RequestState {
 			_states.remove(targetScreenletId);
 		}
 	}
-
-	private static RequestState _instance;
-
-	private final SparseArray<HashSet<Object>> _states = new SparseArray<>();
 
 }

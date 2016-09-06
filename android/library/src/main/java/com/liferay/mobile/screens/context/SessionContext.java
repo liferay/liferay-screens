@@ -36,6 +36,9 @@ import java.security.AccessControlException;
  */
 public class SessionContext {
 
+	private static Session _currentUserSession;
+	private static User _currentUser;
+
 	public static void logout() {
 		_currentUserSession = null;
 		_currentUser = null;
@@ -172,8 +175,5 @@ public class SessionContext {
 			throw new UnsupportedOperationException("StorageType " + storageType + "is not supported");
 		}
 	}
-
-	private static Session _currentUserSession;
-	private static User _currentUser;
 
 }

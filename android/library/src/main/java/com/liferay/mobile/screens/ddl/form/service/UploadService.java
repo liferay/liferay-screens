@@ -48,6 +48,14 @@ public class UploadService extends IntentService {
 		super(UploadService.class.getCanonicalName());
 	}
 
+	private static String getMimeType(String path) {
+		String extension = MimeTypeMap.getFileExtensionFromUrl(path);
+		if (extension != null) {
+			return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+		}
+		return null;
+	}
+
 	@Override
 	public void onHandleIntent(Intent intent) {
 		uploadFromIntent(intent);
@@ -122,14 +130,6 @@ public class UploadService extends IntentService {
 		serviceContextAttributes.put("userId", userId);
 		serviceContextAttributes.put("scopeGroupId", groupId);
 		return new JSONObjectWrapper(serviceContextAttributes);
-	}
-
-	private static String getMimeType(String path) {
-		String extension = MimeTypeMap.getFileExtensionFromUrl(path);
-		if (extension != null) {
-			return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
-		}
-		return null;
 	}
 
 	private void decorateEvent(OfflineEventNew event, long groupId, long userId, Locale locale, int targetScreenletId,

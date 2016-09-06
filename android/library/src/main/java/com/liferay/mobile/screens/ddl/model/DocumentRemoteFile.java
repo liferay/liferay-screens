@@ -8,6 +8,11 @@ import org.json.JSONObject;
  */
 public class DocumentRemoteFile extends DocumentFile {
 
+	private long _groupId;
+	private String _uuid;
+	private int _version;
+	private String _title;
+
 	public DocumentRemoteFile(String json) throws JSONException {
 		JSONObject jsonObject = new JSONObject(json);
 
@@ -35,9 +40,4 @@ public class DocumentRemoteFile extends DocumentFile {
 	public boolean isValid() {
 		return _uuid != null;
 	}
-
-	private long _groupId;
-	private String _uuid;
-	private int _version;
-	private String _title;
 }

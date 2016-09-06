@@ -39,6 +39,16 @@ import java.util.List;
 public abstract class BaseListScreenletView<E extends Parcelable, H extends BaseListAdapter.ViewHolder, A extends BaseListAdapter<E, H>>
 	extends FrameLayout implements BaseListViewModel<E>, BaseListAdapterListener {
 
+	private static final String _STATE_ENTRIES = "entries";
+	private static final String _STATE_ROW_COUNT = "rowCount";
+	private static final String _STATE_SUPER = "super";
+	private static final String _STATE_FIRST_ROW = "firstRow";
+	private static final String _STATE_LABEL_FIELDS = "label_fields";
+	protected int _firstRow = 0;
+	protected ProgressBar _progressBar;
+	protected RecyclerView _recyclerView;
+	private BaseScreenlet _screenlet;
+
 	public BaseListScreenletView(Context context) {
 		super(context);
 	}
@@ -251,14 +261,4 @@ public abstract class BaseListScreenletView<E extends Parcelable, H extends Base
 	}
 
 	protected abstract A createListAdapter(int itemLayoutId, int itemProgressLayoutId);
-
-	protected int _firstRow = 0;
-	protected ProgressBar _progressBar;
-	protected RecyclerView _recyclerView;
-	private static final String _STATE_ENTRIES = "entries";
-	private static final String _STATE_ROW_COUNT = "rowCount";
-	private static final String _STATE_SUPER = "super";
-	private static final String _STATE_FIRST_ROW = "firstRow";
-	private static final String _STATE_LABEL_FIELDS = "label_fields";
-	private BaseScreenlet _screenlet;
 }

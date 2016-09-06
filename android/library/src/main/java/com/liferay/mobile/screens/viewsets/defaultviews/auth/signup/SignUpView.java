@@ -35,6 +35,13 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 public class SignUpView extends LinearLayout
 	implements SignUpViewModel, View.OnClickListener {
 
+	protected EditText _emailAddress;
+	protected EditText _firstName;
+	protected EditText _lastName;
+	protected EditText _password;
+	protected ModalProgressBar _progressBar;
+	private BaseScreenlet _screenlet;
+
 	public SignUpView(Context context) {
 		super(context);
 	}
@@ -137,12 +144,4 @@ public class SignUpView extends LinearLayout
 		Button signUpButton = (Button) findViewById(R.id.liferay_sign_up_button);
 		signUpButton.setOnClickListener(this);
 	}
-
-	protected EditText _emailAddress;
-	protected EditText _firstName;
-	protected EditText _lastName;
-	protected EditText _password;
-	protected ModalProgressBar _progressBar;
-
-	private BaseScreenlet _screenlet;
 }

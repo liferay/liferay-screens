@@ -17,6 +17,10 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  */
 public class AssetDisplayView extends FrameLayout implements AssetDisplayViewModel {
 
+	private BaseScreenlet screenlet;
+	private ProgressBar progressBar;
+	private ViewGroup container;
+
 	public AssetDisplayView(Context context) {
 		super(context);
 	}
@@ -72,8 +76,4 @@ public class AssetDisplayView extends FrameLayout implements AssetDisplayViewMod
 		container.setVisibility(VISIBLE);
 		LiferayLogger.d("Asset display loaded successfully");
 	}
-
-	private BaseScreenlet screenlet;
-	private ProgressBar progressBar;
-	private ViewGroup container;
 }

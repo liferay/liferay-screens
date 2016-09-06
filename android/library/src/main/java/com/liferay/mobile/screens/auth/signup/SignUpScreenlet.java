@@ -36,6 +36,15 @@ import java.util.Locale;
  */
 public class SignUpScreenlet extends BaseScreenlet<SignUpViewModel, SignUpInteractorImpl> implements SignUpListener {
 
+	private String _anonymousApiPassword;
+	private String _anonymousApiUserName;
+	private boolean _autoLogin;
+	private long _companyId;
+	private StorageType _credentialsStorage;
+	private BasicAuthMethod _basicAuthMethod;
+	private SignUpListener _listener;
+	private LoginListener _autoLoginListener;
+
 	public SignUpScreenlet(Context context) {
 		super(context);
 	}
@@ -213,14 +222,4 @@ public class SignUpScreenlet extends BaseScreenlet<SignUpViewModel, SignUpIntera
 		interactor.start(_companyId, firstName, middleName, lastName, emailAddress, screenName, password, jobTitle,
 			locale, _anonymousApiUserName, _anonymousApiPassword);
 	}
-
-	private String _anonymousApiPassword;
-	private String _anonymousApiUserName;
-	private boolean _autoLogin;
-	private long _companyId;
-	private StorageType _credentialsStorage;
-	private BasicAuthMethod _basicAuthMethod;
-
-	private SignUpListener _listener;
-	private LoginListener _autoLoginListener;
 }

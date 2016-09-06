@@ -45,10 +45,6 @@ public class BasicThreadEvent implements Serializable {
 		return targetScreenletId;
 	}
 
-	public void setJSONObject(JSONObject jsonObject) {
-		this.jsonObject = jsonObject;
-	}
-
 	public void setTargetScreenletId(int targetScreenletId) {
 		this.targetScreenletId = targetScreenletId;
 	}
@@ -59,6 +55,10 @@ public class BasicThreadEvent implements Serializable {
 
 	public JSONObject getJSONObject() {
 		return jsonObject;
+	}
+
+	public void setJSONObject(JSONObject jsonObject) {
+		this.jsonObject = jsonObject;
 	}
 
 	public String getActionName() {

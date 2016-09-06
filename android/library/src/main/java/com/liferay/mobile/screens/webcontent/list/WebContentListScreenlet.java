@@ -19,6 +19,11 @@ import com.liferay.mobile.screens.webcontent.list.interactor.WebContentListInter
 public class WebContentListScreenlet extends BaseListScreenlet<WebContent, WebContentListInteractorImpl>
 	implements WebContentListInteractorListener {
 
+	private OfflinePolicy _offlinePolicy;
+	private long _groupId;
+	private long _folderId;
+	private BaseListListener<WebContent> _listener;
+
 	public WebContentListScreenlet(Context context) {
 		super(context);
 	}
@@ -102,9 +107,4 @@ public class WebContentListScreenlet extends BaseListScreenlet<WebContent, WebCo
 
 		return super.createScreenletView(context, attributes);
 	}
-
-	private OfflinePolicy _offlinePolicy;
-	private long _groupId;
-	private long _folderId;
-	private BaseListListener<WebContent> _listener;
 }

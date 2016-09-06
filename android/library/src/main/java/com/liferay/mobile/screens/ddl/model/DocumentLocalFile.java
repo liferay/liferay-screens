@@ -5,6 +5,8 @@ package com.liferay.mobile.screens.ddl.model;
  */
 public class DocumentLocalFile extends DocumentFile {
 
+	private final String _path;
+
 	public DocumentLocalFile(String path) {
 		_path = path;
 	}
@@ -23,7 +25,5 @@ public class DocumentLocalFile extends DocumentFile {
 	public boolean isValid() {
 		return _path != null && !_path.isEmpty();
 	}
-
-	private final String _path;
 
 }

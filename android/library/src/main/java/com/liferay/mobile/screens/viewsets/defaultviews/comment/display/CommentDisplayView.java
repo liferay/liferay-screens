@@ -26,6 +26,21 @@ import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
  */
 public class CommentDisplayView extends FrameLayout implements CommentDisplayViewModel, View.OnClickListener {
 
+	private TextView userNameTextView;
+	private TextView createDateTextView;
+	private TextView bodyTextView;
+	private TextView editedTextView;
+	private UserPortraitScreenlet userPortraitScreenlet;
+	private EditText editBodyEditText;
+	private ImageButton editImageButton;
+	private ImageButton deleteImageButton;
+	private boolean deleting;
+	private boolean editing;
+	private BaseScreenlet screenlet;
+	private ViewGroup contentGroup;
+	private ProgressBar progressBar;
+	private CommentEntry commentEntry;
+
 	public CommentDisplayView(Context context) {
 		super(context);
 	}
@@ -37,7 +52,6 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 	public CommentDisplayView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 	}
-
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	public CommentDisplayView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
@@ -166,21 +180,4 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 			button.setBackgroundDrawable(drawableCompat);
 		}
 	}
-
-	private TextView userNameTextView;
-	private TextView createDateTextView;
-	private TextView bodyTextView;
-	private TextView editedTextView;
-	private UserPortraitScreenlet userPortraitScreenlet;
-	private EditText editBodyEditText;
-
-	private ImageButton editImageButton;
-	private ImageButton deleteImageButton;
-	private boolean deleting;
-	private boolean editing;
-
-	private BaseScreenlet screenlet;
-	private ViewGroup contentGroup;
-	private ProgressBar progressBar;
-	private CommentEntry commentEntry;
 }

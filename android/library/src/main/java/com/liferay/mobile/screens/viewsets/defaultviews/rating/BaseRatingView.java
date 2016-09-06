@@ -17,6 +17,10 @@ import static com.liferay.mobile.screens.rating.RatingScreenlet.LOAD_RATINGS_ACT
  */
 public abstract class BaseRatingView extends LinearLayout implements RatingViewModel {
 
+	protected ProgressBar progressBar;
+	protected ViewGroup content;
+	private BaseScreenlet screenlet;
+
 	public BaseRatingView(Context context) {
 		super(context);
 	}
@@ -80,8 +84,4 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 		progressBar = (ProgressBar) findViewById(R.id.liferay_rating_progress);
 		content = (ViewGroup) findViewById(R.id.liferay_rating_content);
 	}
-
-	protected ProgressBar progressBar;
-	protected ViewGroup content;
-	private BaseScreenlet screenlet;
 }

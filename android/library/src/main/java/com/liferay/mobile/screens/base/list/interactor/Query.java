@@ -33,6 +33,10 @@ public class Query implements Serializable {
 		return startRow;
 	}
 
+	public void setStartRow(int startRow) {
+		this.startRow = startRow;
+	}
+
 	public String getStartRowFormatted() {
 		return formatted(startRow);
 	}
@@ -43,10 +47,6 @@ public class Query implements Serializable {
 
 	private String formatted(int endRow) {
 		return String.format(Locale.US, "%05d", endRow);
-	}
-
-	public void setStartRow(int startRow) {
-		this.startRow = startRow;
 	}
 
 	public int getEndRow() {
@@ -61,12 +61,12 @@ public class Query implements Serializable {
 		return comparator;
 	}
 
-	public JSONObjectWrapper getComparatorJSONWrapper() throws JSONException {
-		return comparator == null ? null : new JSONObjectWrapper(comparator, new JSONObject());
-	}
-
 	public void setComparator(String comparator) {
 		this.comparator = comparator;
+	}
+
+	public JSONObjectWrapper getComparatorJSONWrapper() throws JSONException {
+		return comparator == null ? null : new JSONObjectWrapper(comparator, new JSONObject());
 	}
 
 	public Pair<Integer, Integer> getRowRange() {

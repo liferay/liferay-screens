@@ -36,6 +36,8 @@ public class User {
 	public static final String FIRST_NAME = "firstName";
 	public static final String LAST_NAME = "lastName";
 	public static final String SCREEN_NAME = "screenName";
+	private final Map<String, Object> _attributes;
+	private final JSONObject _jsonObject;
 
 	public User(JSONObject jsonObject) {
 		_jsonObject = jsonObject;
@@ -103,8 +105,5 @@ public class User {
 	public String toString() {
 		return _jsonObject.toString();
 	}
-
-	private final Map<String, Object> _attributes;
-	private final JSONObject _jsonObject;
 
 }

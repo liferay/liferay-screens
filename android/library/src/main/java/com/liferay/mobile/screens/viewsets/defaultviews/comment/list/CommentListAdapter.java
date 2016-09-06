@@ -14,6 +14,12 @@ import com.liferay.mobile.screens.comment.CommentEntry;
  */
 public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentListAdapter.CommentViewHolder> {
 
+	private final CommentDisplayListener commentDisplayListener;
+	private String className;
+	private long classPK;
+	private long groupId;
+	private boolean editable;
+
 	public CommentListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener,
 		CommentDisplayListener commentDisplayListener) {
 		super(layoutId, progressLayoutId, listener);
@@ -58,6 +64,9 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 
 	public class CommentViewHolder extends BaseListAdapter.ViewHolder {
 
+		private final CommentDisplayScreenlet commentDisplayScreenlet;
+		private CommentEntry entry;
+
 		public CommentViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 			commentDisplayScreenlet = (CommentDisplayScreenlet) view.findViewById(R.id.comment_view);
@@ -72,18 +81,8 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 			this.entry = entry;
 		}
 
-		private CommentEntry entry;
-		private final CommentDisplayScreenlet commentDisplayScreenlet;
-
 		public void loadDisplayScreenlet() {
 			commentDisplayScreenlet.onLoadCommentSuccess(entry);
 		}
 	}
-
-	private final CommentDisplayListener commentDisplayListener;
-
-	private String className;
-	private long classPK;
-	private long groupId;
-	private boolean editable;
 }

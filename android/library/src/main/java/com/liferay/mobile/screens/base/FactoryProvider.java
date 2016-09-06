@@ -8,6 +8,8 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
  */
 public class FactoryProvider {
 
+	private static AbstractFactory _abstractFactory;
+
 	public static AbstractFactory getInstance() {
 		synchronized (AbstractFactory.class) {
 			if (_abstractFactory == null) {
@@ -27,6 +29,4 @@ public class FactoryProvider {
 			return new FactoryCE();
 		}
 	}
-
-	private static AbstractFactory _abstractFactory;
 }

@@ -33,6 +33,15 @@ import java.util.List;
 public abstract class BaseListAdapter<E, H extends BaseListAdapter.ViewHolder>
 	extends RecyclerView.Adapter<H> {
 
+	protected static final int LAYOUT_TYPE_DEFAULT = 0;
+	protected static final int LAYOUT_TYPE_PROGRESS = 1;
+	private final List<E> _entries;
+	private final int _layoutId;
+	private final BaseListAdapterListener _listener;
+	private final int _progressLayoutId;
+	private int _rowCount;
+	private List<String> _labelFields;
+
 	public BaseListAdapter(
 		int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 
@@ -108,17 +117,9 @@ public abstract class BaseListAdapter<E, H extends BaseListAdapter.ViewHolder>
 
 	protected abstract void fillHolder(E entry, H holder);
 
-	protected static final int LAYOUT_TYPE_DEFAULT = 0;
-	protected static final int LAYOUT_TYPE_PROGRESS = 1;
-	private final List<E> _entries;
-	private final int _layoutId;
-	private final BaseListAdapterListener _listener;
-	private final int _progressLayoutId;
-	private int _rowCount;
-	private List<String> _labelFields;
-
 	public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+		private final BaseListAdapterListener _listener;
 		public TextView textView;
 
 		public ViewHolder(View view, BaseListAdapterListener listener) {
@@ -133,8 +134,6 @@ public abstract class BaseListAdapter<E, H extends BaseListAdapter.ViewHolder>
 		public void onClick(View v) {
 			_listener.onItemClick(getAdapterPosition(), v);
 		}
-
-		private final BaseListAdapterListener _listener;
 	}
 
 }

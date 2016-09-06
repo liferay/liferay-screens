@@ -16,6 +16,10 @@ public class AssetEvent extends ListEvent<AssetEntry> {
 		super(jsonObject);
 	}
 
+	public AssetEvent(AssetEntry assetEntry) {
+		this.assetEntry = assetEntry;
+	}
+
 	@Override
 	public String getListKey() {
 		return assetEntry.getEntryId();
@@ -24,10 +28,6 @@ public class AssetEvent extends ListEvent<AssetEntry> {
 	@Override
 	public AssetEntry getModel() {
 		return assetEntry;
-	}
-
-	public AssetEvent(AssetEntry assetEntry) {
-		this.assetEntry = assetEntry;
 	}
 
 	public AssetEntry getAssetEntry() {

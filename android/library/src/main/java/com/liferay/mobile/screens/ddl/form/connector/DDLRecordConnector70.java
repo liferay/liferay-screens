@@ -10,6 +10,8 @@ import org.json.JSONObject;
  * @author Javier Gamarra
  */
 public class DDLRecordConnector70 implements DDLRecordConnector {
+	private final DDLRecordService _ddlRecordService;
+
 	public DDLRecordConnector70(Session session) {
 		_ddlRecordService = new DDLRecordService(session);
 	}
@@ -23,6 +25,4 @@ public class DDLRecordConnector70 implements DDLRecordConnector {
 	public JSONObject updateRecord(long recordId, int i, JSONObject jsonContent, boolean b, JSONObjectWrapper serviceContextWrapper) throws Exception {
 		return _ddlRecordService.updateRecord(recordId, i, jsonContent, b, serviceContextWrapper);
 	}
-
-	private final DDLRecordService _ddlRecordService;
 }

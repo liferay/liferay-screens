@@ -31,167 +31,24 @@ import java.util.Map;
  */
 public abstract class Field<T extends Serializable> implements Parcelable {
 
+	private DataType _dataType;
+	private EditorType _editorType;
+	private String _name;
+	private String _label;
+	private String _tip;
+	private boolean _readOnly;
+	private boolean _repeatable;
+	private boolean _required;
+	private boolean _showLabel;
+	private T _predefinedValue;
+	private T _currentValue;
+	private boolean _lastValidationResult = true;
+	private Locale _currentLocale;
+	private Locale _defaultLocale;
+	private List<Field> _fields = new ArrayList<>();
+
 	public Field() {
 		super();
-	}
-
-	public enum DataType {
-		BOOLEAN("boolean"),
-		STRING("string"),
-		HTML("html"),
-		DATE("date"),
-		NUMBER("number"),
-		IMAGE("image"),
-		DOCUMENT("document-library"),
-		UNSUPPORTED("");
-
-		public static DataType valueOf(Map<String, Object> attributes) {
-			Object mapValue = attributes.get("dataType");
-
-			if (mapValue == null) {
-				return UNSUPPORTED;
-			}
-
-			return valueOfString(mapValue.toString());
-		}
-
-		public static DataType valueOf(Element element) {
-			String attributeValue = element.getAttribute("dataType");
-
-			if (attributeValue.isEmpty()) {
-				return UNSUPPORTED;
-			}
-
-			return valueOfString(attributeValue);
-		}
-
-		public static DataType valueOfString(String name) {
-			if (name != null) {
-				for (DataType dataType : values()) {
-					if (name.equals(dataType._value)) {
-						return dataType;
-					}
-				}
-
-				if (name.equals("integer") || name.equals("double")) {
-					return NUMBER;
-				}
-			}
-
-			return UNSUPPORTED;
-		}
-
-		public Field createField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
-			if (STRING.equals(this)) {
-				EditorType editor = EditorType.valueOf(attributes);
-
-				if (editor == EditorType.SELECT || editor == EditorType.RADIO) {
-					return new StringWithOptionsField(attributes, locale, defaultLocale);
-				}
-				else if (editor == EditorType.DATE) {
-					return new DateField(attributes, locale, defaultLocale);
-				}
-				else {
-					return new StringField(attributes, locale, defaultLocale);
-				}
-			}
-			else if (HTML.equals(this)) {
-				return new StringField(attributes, locale, defaultLocale);
-			}
-			else if (BOOLEAN.equals(this)) {
-				return new BooleanField(attributes, locale, defaultLocale);
-			}
-			else if (DATE.equals(this)) {
-				return new DateField(attributes, locale, defaultLocale);
-			}
-			else if (NUMBER.equals(this)) {
-				return new NumberField(attributes, locale, defaultLocale);
-			}
-			else if (DOCUMENT.equals(this)) {
-				return new DocumentField(attributes, locale, defaultLocale);
-			}
-			else if (IMAGE.equals(this)) {
-				return new ImageField(attributes, locale, defaultLocale);
-			}
-			return null;
-		}
-
-		public String getValue() {
-			return _value;
-		}
-
-		DataType(String value) {
-			_value = value;
-		}
-
-		private final String _value;
-
-	}
-
-	public enum EditorType {
-		CHECKBOX("checkbox"),
-		TEXT("text"),
-		TEXT_AREA("textarea", "paragraph", "ddm-text-html"),
-		DATE("ddm-date", "date"),
-		NUMBER("ddm-number", "number"),
-		INTEGER("ddm-integer", "integer"),
-		DECIMAL("ddm-decimal", "decimal"),
-		SELECT("select"),
-		RADIO("radio"),
-		DOCUMENT("ddm-documentlibrary", "documentlibrary", "wcm-image"),
-		UNSUPPORTED("");
-
-		public static List<EditorType> all() {
-			List<EditorType> editorTypes = new ArrayList<>(Arrays.asList(EditorType.values()));
-
-			editorTypes.remove(UNSUPPORTED);
-
-			return editorTypes;
-		}
-
-		public static EditorType valueOf(Map<String, Object> attributes) {
-			Object mapValue = attributes.get("type");
-
-			if (mapValue == null) {
-				return UNSUPPORTED;
-			}
-
-			if ("text".equals(mapValue) && "integer".equals(attributes.get("dataType"))) {
-				return DECIMAL;
-			}
-			return valueOfString(mapValue.toString());
-		}
-
-		public static EditorType valueOfString(String name) {
-			EditorType result = UNSUPPORTED;
-
-			if (name != null) {
-				for (EditorType editorType : values()) {
-					for (String value : editorType._values) {
-						if (name.equals(value)) {
-							return editorType;
-						}
-					}
-				}
-			}
-
-			return result;
-		}
-
-		public String[] getValues() {
-			return _values;
-		}
-
-		public String getValue() {
-			return _values[0];
-		}
-
-		EditorType(String... values) {
-			_values = values;
-		}
-
-		private final String[] _values;
-
 	}
 
 	public Field(Map<String, Object> attributes, Locale currentLocale, Locale defaultLocale) {
@@ -405,22 +262,163 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	protected boolean doValidate() {
 		return true;
 	}
+	public enum DataType {
+		BOOLEAN("boolean"),
+		STRING("string"),
+		HTML("html"),
+		DATE("date"),
+		NUMBER("number"),
+		IMAGE("image"),
+		DOCUMENT("document-library"),
+		UNSUPPORTED("");
 
-	private DataType _dataType;
-	private EditorType _editorType;
-	private String _name;
-	private String _label;
-	private String _tip;
-	private boolean _readOnly;
-	private boolean _repeatable;
-	private boolean _required;
-	private boolean _showLabel;
-	private T _predefinedValue;
-	private T _currentValue;
-	private boolean _lastValidationResult = true;
-	private Locale _currentLocale;
-	private Locale _defaultLocale;
+		private final String _value;
 
-	private List<Field> _fields = new ArrayList<>();
+		DataType(String value) {
+			_value = value;
+		}
+
+		public static DataType valueOf(Map<String, Object> attributes) {
+			Object mapValue = attributes.get("dataType");
+
+			if (mapValue == null) {
+				return UNSUPPORTED;
+			}
+
+			return valueOfString(mapValue.toString());
+		}
+
+		public static DataType valueOf(Element element) {
+			String attributeValue = element.getAttribute("dataType");
+
+			if (attributeValue.isEmpty()) {
+				return UNSUPPORTED;
+			}
+
+			return valueOfString(attributeValue);
+		}
+
+		public static DataType valueOfString(String name) {
+			if (name != null) {
+				for (DataType dataType : values()) {
+					if (name.equals(dataType._value)) {
+						return dataType;
+					}
+				}
+
+				if (name.equals("integer") || name.equals("double")) {
+					return NUMBER;
+				}
+			}
+
+			return UNSUPPORTED;
+		}
+
+		public Field createField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+			if (STRING.equals(this)) {
+				EditorType editor = EditorType.valueOf(attributes);
+
+				if (editor == EditorType.SELECT || editor == EditorType.RADIO) {
+					return new StringWithOptionsField(attributes, locale, defaultLocale);
+				}
+				else if (editor == EditorType.DATE) {
+					return new DateField(attributes, locale, defaultLocale);
+				}
+				else {
+					return new StringField(attributes, locale, defaultLocale);
+				}
+			}
+			else if (HTML.equals(this)) {
+				return new StringField(attributes, locale, defaultLocale);
+			}
+			else if (BOOLEAN.equals(this)) {
+				return new BooleanField(attributes, locale, defaultLocale);
+			}
+			else if (DATE.equals(this)) {
+				return new DateField(attributes, locale, defaultLocale);
+			}
+			else if (NUMBER.equals(this)) {
+				return new NumberField(attributes, locale, defaultLocale);
+			}
+			else if (DOCUMENT.equals(this)) {
+				return new DocumentField(attributes, locale, defaultLocale);
+			}
+			else if (IMAGE.equals(this)) {
+				return new ImageField(attributes, locale, defaultLocale);
+			}
+			return null;
+		}
+
+		public String getValue() {
+			return _value;
+		}
+
+	}
+
+	public enum EditorType {
+		CHECKBOX("checkbox"),
+		TEXT("text"),
+		TEXT_AREA("textarea", "paragraph", "ddm-text-html"),
+		DATE("ddm-date", "date"),
+		NUMBER("ddm-number", "number"),
+		INTEGER("ddm-integer", "integer"),
+		DECIMAL("ddm-decimal", "decimal"),
+		SELECT("select"),
+		RADIO("radio"),
+		DOCUMENT("ddm-documentlibrary", "documentlibrary", "wcm-image"),
+		UNSUPPORTED("");
+
+		private final String[] _values;
+
+		EditorType(String... values) {
+			_values = values;
+		}
+
+		public static List<EditorType> all() {
+			List<EditorType> editorTypes = new ArrayList<>(Arrays.asList(EditorType.values()));
+
+			editorTypes.remove(UNSUPPORTED);
+
+			return editorTypes;
+		}
+
+		public static EditorType valueOf(Map<String, Object> attributes) {
+			Object mapValue = attributes.get("type");
+
+			if (mapValue == null) {
+				return UNSUPPORTED;
+			}
+
+			if ("text".equals(mapValue) && "integer".equals(attributes.get("dataType"))) {
+				return DECIMAL;
+			}
+			return valueOfString(mapValue.toString());
+		}
+
+		public static EditorType valueOfString(String name) {
+			EditorType result = UNSUPPORTED;
+
+			if (name != null) {
+				for (EditorType editorType : values()) {
+					for (String value : editorType._values) {
+						if (name.equals(value)) {
+							return editorType;
+						}
+					}
+				}
+			}
+
+			return result;
+		}
+
+		public String[] getValues() {
+			return _values;
+		}
+
+		public String getValue() {
+			return _values[0];
+		}
+
+	}
 
 }

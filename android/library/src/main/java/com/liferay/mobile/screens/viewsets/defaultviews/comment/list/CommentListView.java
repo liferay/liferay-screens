@@ -18,6 +18,8 @@ public class CommentListView
 	extends BaseListScreenletView<CommentEntry, CommentListAdapter.CommentViewHolder, CommentListAdapter>
 	implements CommentListViewModel, CommentDisplayListener {
 
+	private TextView emptyListTextView;
+
 	public CommentListView(Context context) {
 		super(context);
 	}
@@ -134,6 +136,4 @@ public class CommentListView
 	public void error(Exception e, String userAction) {
 
 	}
-
-	private TextView emptyListTextView;
 }

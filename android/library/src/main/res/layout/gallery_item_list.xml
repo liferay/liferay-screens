@@ -7,19 +7,19 @@
 
 	<ImageView
 		android:id="@+id/gallery_item_image"
-		android:layout_margin="5dp"
 		android:layout_width="80dp"
 		android:layout_height="80dp"
-		android:scaleType="centerCrop"
 		android:layout_gravity="center"
+		android:layout_margin="5dp"
+		android:scaleType="centerCrop"
 		/>
 
 	<TextView
 		android:id="@+id/liferay_list_title"
-		android:layout_margin="5dp"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
+		android:layout_margin="5dp"
 		/>
 </LinearLayout>
 

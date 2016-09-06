@@ -24,6 +24,12 @@ public abstract class BaseFileDisplayScreenlet
 
 	public static final String STATE_ENTRY_ID = "STATE_ENTRY_ID";
 	public static final String STATE_FILE_ENTRY = "STATE_FILE_ENTRY";
+	protected boolean autoLoad;
+	protected long entryId;
+	protected long classPK;
+	protected String className;
+	protected AssetDisplayListener listener;
+	protected FileEntry fileEntry;
 
 	public BaseFileDisplayScreenlet(Context context) {
 		super(context);
@@ -180,11 +186,4 @@ public abstract class BaseFileDisplayScreenlet
 	public void setAutoLoad(boolean autoLoad) {
 		this.autoLoad = autoLoad;
 	}
-
-	protected boolean autoLoad;
-	protected long entryId;
-	protected long classPK;
-	protected String className;
-	protected AssetDisplayListener listener;
-	protected FileEntry fileEntry;
 }

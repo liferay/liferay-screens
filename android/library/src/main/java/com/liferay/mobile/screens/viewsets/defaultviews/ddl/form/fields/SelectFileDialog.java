@@ -22,6 +22,20 @@ import java.util.List;
 
 public class SelectFileDialog {
 
+	private static final String SD_DIRECTORY = Environment.getExternalStorageDirectory().getAbsolutePath();
+	private String currentFile = "";
+	private String currentDir = "";
+
+	public static String checkIfDirExists(String directory) {
+		try {
+			File file = new File(directory);
+			return file.exists() && file.isDirectory() ? file.getCanonicalPath() : null;
+		}
+		catch (IOException e) {
+			return null;
+		}
+	}
+
 	public AlertDialog createDialog(final Context context, final SimpleFileDialogListener listener) {
 		currentDir = calculateDefaultPath();
 
@@ -55,16 +69,6 @@ public class SelectFileDialog {
 		listView.setOnItemClickListener(createListener(files, editText, adapter));
 
 		return dialogBuilder.create();
-	}
-
-	public static String checkIfDirExists(String directory) {
-		try {
-			File file = new File(directory);
-			return file.exists() && file.isDirectory() ? file.getCanonicalPath() : null;
-		}
-		catch (IOException e) {
-			return null;
-		}
 	}
 
 	private AdapterView.OnItemClickListener createListener(final List<String> files, final EditText editText, final ArrayAdapter<String> adapter) {
@@ -150,10 +154,6 @@ public class SelectFileDialog {
 		});
 		return entries;
 	}
-
-	private String currentFile = "";
-	private String currentDir = "";
-	private static final String SD_DIRECTORY = Environment.getExternalStorageDirectory().getAbsolutePath();
 
 	public interface SimpleFileDialogListener {
 		void onFileChosen(String path);

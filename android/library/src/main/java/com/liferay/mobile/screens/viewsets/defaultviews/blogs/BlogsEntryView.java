@@ -21,6 +21,17 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  */
 public class BlogsEntryView extends RelativeLayout implements BlogsEntryDisplayViewModel {
 
+	private BaseScreenlet screenlet;
+	private BlogsEntry blogsEntry;
+	private ProgressBar progressBar;
+	private TextView title;
+	private TextView subtitle;
+	private TextView content;
+	private TextView userName;
+	private TextView date;
+	private UserPortraitScreenlet userPortraitScreenlet;
+	private ImageDisplayScreenlet imageDisplayScreenlet;
+
 	public BlogsEntryView(Context context) {
 		super(context);
 	}
@@ -32,7 +43,6 @@ public class BlogsEntryView extends RelativeLayout implements BlogsEntryDisplayV
 	public BlogsEntryView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 	}
-
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	public BlogsEntryView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
@@ -110,15 +120,4 @@ public class BlogsEntryView extends RelativeLayout implements BlogsEntryDisplayV
 		subtitle.setText(blogsEntry.getSubtitle());
 		content.setText(Html.fromHtml(blogsEntry.getContent()));
 	}
-
-	private BaseScreenlet screenlet;
-	private BlogsEntry blogsEntry;
-	private ProgressBar progressBar;
-	private TextView title;
-	private TextView subtitle;
-	private TextView content;
-	private TextView userName;
-	private TextView date;
-	private UserPortraitScreenlet userPortraitScreenlet;
-	private ImageDisplayScreenlet imageDisplayScreenlet;
 }

@@ -46,6 +46,16 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 
 	public static final String UPLOAD_PORTRAIT = "UPLOAD_PORTRAIT";
 	public static final String LOAD_PORTRAIT = "LOAD_PORTRAIT";
+	private static final String _STATE_SUPER = "userportrait-super";
+	private static final String _STATE_FILE_PATH = "userportrait-filePath";
+	private String _filePath;
+	private boolean _autoLoad;
+	private boolean _male;
+	private long _portraitId;
+	private String _uuid;
+	private long _userId;
+	private boolean _editable;
+	private UserPortraitListener _listener;
 
 	public UserPortraitScreenlet(Context context) {
 		super(context);
@@ -282,16 +292,4 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 
 		activity.startActivity(intent);
 	}
-
-	private static final String _STATE_SUPER = "userportrait-super";
-	private static final String _STATE_FILE_PATH = "userportrait-filePath";
-
-	private String _filePath;
-	private boolean _autoLoad;
-	private boolean _male;
-	private long _portraitId;
-	private String _uuid;
-	private long _userId;
-	private boolean _editable;
-	private UserPortraitListener _listener;
 }

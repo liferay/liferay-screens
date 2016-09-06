@@ -3,10 +3,10 @@
 	android:shape="oval">
 	<corners android:radius="10dip"/>
 	<stroke
-		android:width="2dip"
-		android:color="@color/pure_red_default"/>
+		android:color="@color/pure_red_default"
+		android:width="2dip"/>
 	<solid android:color="@color/clear_red_default"/>
 	<size
-		android:width="31dp"
-		android:height="31dp"/>
+		android:height="31dp"
+		android:width="31dp"/>
 </shape>

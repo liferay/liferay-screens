@@ -11,12 +11,6 @@ import java.util.Map;
  */
 public class CommentEntry implements Parcelable {
 
-	private boolean editable;
-
-	public CommentEntry() {
-
-	}
-
 	public static final ClassLoaderCreator<CommentEntry> CREATOR = new ClassLoaderCreator<CommentEntry>() {
 
 		@Override
@@ -32,6 +26,12 @@ public class CommentEntry implements Parcelable {
 			return new CommentEntry[size];
 		}
 	};
+	protected Map<String, Object> values;
+	private boolean editable;
+
+	public CommentEntry() {
+
+	}
 
 	public CommentEntry(Parcel in, ClassLoader loader) {
 		values = new HashMap<>();
@@ -109,14 +109,12 @@ public class CommentEntry implements Parcelable {
 		return values != null && getCommentId() == that.getCommentId();
 	}
 
-	protected Map<String, Object> values;
+	public boolean isEditable() {
+		return this.editable;
+	}
 
 	public void setEditable(boolean editable) {
 		this.editable = editable;
-	}
-
-	public boolean isEditable() {
-		return this.editable;
 	}
 
 	public String getClassName() {

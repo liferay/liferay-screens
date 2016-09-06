@@ -12,6 +12,8 @@ import org.json.JSONObject;
  */
 public class ScreensDDLRecordConnector62 implements ScreensDDLRecordConnector {
 
+	private final ScreensddlrecordService _ddlRecordService;
+
 	public ScreensDDLRecordConnector62(Session session) {
 		_ddlRecordService = new ScreensddlrecordService(session);
 	}
@@ -42,6 +44,4 @@ public class ScreensDDLRecordConnector62 implements ScreensDDLRecordConnector {
 	public JSONObject getDdlRecord(long recordId, String s) throws Exception {
 		return _ddlRecordService.getDdlRecord(recordId, s);
 	}
-
-	private final ScreensddlrecordService _ddlRecordService;
 }

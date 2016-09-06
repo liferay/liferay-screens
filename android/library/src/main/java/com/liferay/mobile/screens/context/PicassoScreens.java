@@ -16,6 +16,10 @@ import java.io.File;
  */
 public class PicassoScreens {
 
+	private static volatile Picasso picasso;
+	private static volatile Picasso picassoWithoutCache;
+	private static OfflinePolicy offlinePolicy;
+
 	public static RequestCreator load(String url) {
 		RequestCreator requestCreator = getPicasso().load(url);
 
@@ -93,8 +97,4 @@ public class PicassoScreens {
 
 		return picassoRequestCreator;
 	}
-
-	private static volatile Picasso picasso;
-	private static volatile Picasso picassoWithoutCache;
-	private static OfflinePolicy offlinePolicy;
 }

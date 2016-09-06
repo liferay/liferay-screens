@@ -38,6 +38,16 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 public class LoginView extends LinearLayout
 	implements LoginViewModel, View.OnClickListener {
 
+	protected EditText _loginEditText;
+	protected EditText _passwordEditText;
+	protected Button _submitButton;
+	protected LinearLayout _basicAuthenticationLayout;
+	protected Button _oAuthButton;
+	protected ModalProgressBar _progressBar;
+	private AuthenticationType _authenticationType;
+	private BasicAuthMethod _basicAuthMethod;
+	private BaseScreenlet _screenlet;
+
 	public LoginView(Context context) {
 		super(context);
 	}
@@ -209,16 +219,4 @@ public class LoginView extends LinearLayout
 				return R.string.email_address;
 		}
 	}
-
-	protected EditText _loginEditText;
-	protected EditText _passwordEditText;
-	protected Button _submitButton;
-	protected LinearLayout _basicAuthenticationLayout;
-	protected Button _oAuthButton;
-	protected ModalProgressBar _progressBar;
-
-	private AuthenticationType _authenticationType;
-	private BasicAuthMethod _basicAuthMethod;
-
-	private BaseScreenlet _screenlet;
 }

@@ -33,6 +33,11 @@ import com.liferay.mobile.screens.ddl.model.Field;
 public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 	implements DDLFieldViewModel<T>, TextWatcher {
 
+	protected TextView _labelTextView;
+	protected EditText _textEditText;
+	protected View _parentView;
+	private T _field;
+
 	public BaseDDLFieldTextView(Context context) {
 		super(context);
 	}
@@ -143,11 +148,5 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 	}
 
 	protected abstract void onTextChanged(String text);
-
-	protected TextView _labelTextView;
-	protected EditText _textEditText;
-	protected View _parentView;
-
-	private T _field;
 
 }

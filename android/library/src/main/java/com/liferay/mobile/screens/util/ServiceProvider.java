@@ -8,6 +8,8 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
  */
 public class ServiceProvider {
 
+	private static ServiceVersionFactory _versionFactory;
+
 	public static ServiceVersionFactory getInstance() {
 		synchronized (ServiceProvider.class) {
 			if (_versionFactory == null) {
@@ -33,6 +35,4 @@ public class ServiceProvider {
 			return new ServiceVersionFactory62();
 		}
 	}
-
-	private static ServiceVersionFactory _versionFactory;
 }

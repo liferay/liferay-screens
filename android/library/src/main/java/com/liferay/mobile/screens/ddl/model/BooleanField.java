@@ -25,10 +25,6 @@ import java.util.Map;
  */
 public class BooleanField extends Field<Boolean> {
 
-	public BooleanField() {
-		super();
-	}
-
 	public static final Parcelable.ClassLoaderCreator<BooleanField> CREATOR =
 		new Parcelable.ClassLoaderCreator<BooleanField>() {
 
@@ -45,6 +41,10 @@ public class BooleanField extends Field<Boolean> {
 				return new BooleanField[size];
 			}
 		};
+
+	public BooleanField() {
+		super();
+	}
 
 
 	public BooleanField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {

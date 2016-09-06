@@ -8,6 +8,8 @@ import com.liferay.mobile.android.v62.ddlrecordset.DDLRecordSetService;
  */
 public class DDLRecordSetConnector62 implements DDLRecordSetConnector {
 
+	private final DDLRecordSetService _ddlRecordSetService;
+
 	public DDLRecordSetConnector62(Session session) {
 		_ddlRecordSetService = new DDLRecordSetService(session);
 	}
@@ -16,6 +18,4 @@ public class DDLRecordSetConnector62 implements DDLRecordSetConnector {
 	public void getRecordSet(long recordSetId) throws Exception {
 		_ddlRecordSetService.getRecordSet(recordSetId);
 	}
-
-	private final DDLRecordSetService _ddlRecordSetService;
 }

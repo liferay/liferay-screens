@@ -31,6 +31,8 @@ import com.liferay.mobile.screens.ddl.model.Record;
 public class DDLListScreenlet extends BaseListScreenlet<Record, DDLListInteractorImpl>
 	implements DDLListInteractorListener {
 
+	private long recordSetId;
+
 	public DDLListScreenlet(Context context) {
 		super(context);
 	}
@@ -81,6 +83,4 @@ public class DDLListScreenlet extends BaseListScreenlet<Record, DDLListInteracto
 	protected DDLListInteractorImpl createInteractor(String actionName) {
 		return new DDLListInteractorImpl();
 	}
-
-	private long recordSetId;
 }

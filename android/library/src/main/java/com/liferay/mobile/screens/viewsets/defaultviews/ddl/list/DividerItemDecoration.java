@@ -27,6 +27,8 @@ import android.view.View;
  */
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
+	private final Drawable mDivider;
+
 	public DividerItemDecoration(Drawable divider) {
 		mDivider = divider;
 	}
@@ -97,7 +99,5 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 			throw new IllegalStateException("DividerItemDecoration can only be used with a LinearLayoutManager.");
 		}
 	}
-
-	private final Drawable mDivider;
 
 }

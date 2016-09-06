@@ -21,10 +21,6 @@ import org.json.JSONObject;
  */
 public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 
-	public WebContent() {
-		super();
-	}
-
 	public static final ClassLoaderCreator<WebContent> CREATOR = new ClassLoaderCreator<WebContent>() {
 		@Override
 		public WebContent createFromParcel(Parcel source, ClassLoader loader) {
@@ -41,8 +37,13 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 			return new WebContent[size];
 		}
 	};
-
 	public static final String DDM_STRUCTURE = "DDMStructure";
+	private DDMStructure ddmStructure;
+	private String html;
+
+	public WebContent() {
+		super();
+	}
 
 	public WebContent(Parcel in, ClassLoader classLoader) {
 		super(in, classLoader);
@@ -138,7 +139,4 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 	public String getArticleId() {
 		return String.valueOf(_values.get("articleId"));
 	}
-
-	private DDMStructure ddmStructure;
-	private String html;
 }

@@ -36,6 +36,8 @@ import java.util.List;
 public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsField>
 	implements View.OnClickListener {
 
+	protected AlertDialog _alertDialog;
+
 	public DDLFieldSelectView(Context context) {
 		super(context);
 	}
@@ -172,6 +174,4 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 			}
 		}
 	}
-
-	protected AlertDialog _alertDialog;
 }

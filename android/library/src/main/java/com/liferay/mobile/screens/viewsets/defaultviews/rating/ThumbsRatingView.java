@@ -16,6 +16,12 @@ import static com.liferay.mobile.screens.rating.RatingScreenlet.UPDATE_RATING_AC
  */
 public class ThumbsRatingView extends BaseRatingView implements View.OnClickListener {
 
+	private ImageButton negativeButton;
+	private ImageButton positiveButton;
+	private TextView negativeCountLabel;
+	private TextView positiveCountLabel;
+	private double userScore;
+
 	public ThumbsRatingView(Context context) {
 		super(context);
 	}
@@ -97,10 +103,4 @@ public class ThumbsRatingView extends BaseRatingView implements View.OnClickList
 		negativeButton.setOnClickListener(this);
 		positiveButton.setOnClickListener(this);
 	}
-
-	private ImageButton negativeButton;
-	private ImageButton positiveButton;
-	private TextView negativeCountLabel;
-	private TextView positiveCountLabel;
-	private double userScore;
 }

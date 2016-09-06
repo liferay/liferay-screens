@@ -27,6 +27,8 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  */
 public class ModalProgressBar extends ProgressBar {
 
+	private int _actionViewId;
+
 	public ModalProgressBar(Context context) {
 		super(context);
 	}
@@ -96,6 +98,4 @@ public class ModalProgressBar extends ProgressBar {
 
 		return findActionView((View) parent.getParent(), actionViewId);
 	}
-
-	private int _actionViewId;
 }

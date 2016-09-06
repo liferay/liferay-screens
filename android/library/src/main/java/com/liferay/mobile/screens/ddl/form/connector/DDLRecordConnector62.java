@@ -10,6 +10,8 @@ import org.json.JSONObject;
  */
 public class DDLRecordConnector62 implements DDLRecordConnector {
 
+	private final DDLRecordService _ddlRecordService;
+
 	public DDLRecordConnector62(Session session) {
 		_ddlRecordService = new DDLRecordService(session);
 	}
@@ -25,6 +27,4 @@ public class DDLRecordConnector62 implements DDLRecordConnector {
 		JSONObjectWrapper serviceContextWrapper) throws Exception {
 		return _ddlRecordService.updateRecord(recordId, i, jsonContent, b, serviceContextWrapper);
 	}
-
-	private final DDLRecordService _ddlRecordService;
 }

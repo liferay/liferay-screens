@@ -53,6 +53,8 @@ public class SessionContextTest {
 	@RunWith(RobolectricManifestTestRunner.class)
 	public static class WhenCreateSession {
 
+		private Session _session;
+
 		@Before
 		public void setUp() {
 			_session = SessionContext.createBasicSession("username", "password");
@@ -95,8 +97,6 @@ public class SessionContextTest {
 			assertEquals("username", auth.getUsername());
 			assertEquals("password", auth.getPassword());
 		}
-
-		private Session _session;
 
 	}
 

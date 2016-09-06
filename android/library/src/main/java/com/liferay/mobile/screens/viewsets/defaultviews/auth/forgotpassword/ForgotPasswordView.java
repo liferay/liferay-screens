@@ -34,6 +34,11 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  */
 public class ForgotPasswordView extends LinearLayout implements ForgotPasswordViewModel, View.OnClickListener {
 
+	protected EditText _loginEditText;
+	protected ModalProgressBar _progressBar;
+	private BasicAuthMethod _basicAuthMethod;
+	private BaseScreenlet _screenlet;
+
 	public ForgotPasswordView(Context context) {
 		super(context);
 	}
@@ -153,11 +158,4 @@ public class ForgotPasswordView extends LinearLayout implements ForgotPasswordVi
 	protected EditText getLoginEditText() {
 		return _loginEditText;
 	}
-
-	protected EditText _loginEditText;
-	protected ModalProgressBar _progressBar;
-
-	private BasicAuthMethod _basicAuthMethod;
-
-	private BaseScreenlet _screenlet;
 }

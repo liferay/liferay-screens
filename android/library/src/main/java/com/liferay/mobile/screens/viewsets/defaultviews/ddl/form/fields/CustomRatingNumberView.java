@@ -31,6 +31,10 @@ import com.liferay.mobile.screens.ddl.model.NumberField;
  */
 public class CustomRatingNumberView extends LinearLayout implements DDLFieldViewModel<NumberField>, RatingBar.OnRatingBarChangeListener {
 
+	protected NumberField _field;
+	protected RatingBar _ratingBar;
+	protected View _parentView;
+
 	public CustomRatingNumberView(Context context) {
 		super(context);
 	}
@@ -131,9 +135,5 @@ public class CustomRatingNumberView extends LinearLayout implements DDLFieldView
 		// normalize the number to 0..numStars value
 		return (ratio * (float) _ratingBar.getNumStars());
 	}
-
-	protected NumberField _field;
-	protected RatingBar _ratingBar;
-	protected View _parentView;
 
 }

@@ -32,6 +32,8 @@ public class GridGalleryAdapter extends BaseListAdapter<ImageEntry, GridGalleryA
 
 	public class GridGalleryViewHolder extends BaseListAdapter.ViewHolder {
 
+		private final ImageView imageView;
+
 		public GridGalleryViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
@@ -49,7 +51,5 @@ public class GridGalleryAdapter extends BaseListAdapter<ImageEntry, GridGalleryA
 					.into(imageView);
 			}
 		}
-
-		private final ImageView imageView;
 	}
 }

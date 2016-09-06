@@ -21,6 +21,8 @@ import de.greenrobot.event.EventBus;
  */
 public class EventBusUtil {
 
+	private static EventBus bus;
+
 	private EventBusUtil() {
 		super();
 	}
@@ -46,7 +48,5 @@ public class EventBusUtil {
 
 		return bus;
 	}
-
-	private static EventBus bus;
 
 }

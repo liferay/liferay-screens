@@ -33,6 +33,8 @@ import java.util.Map;
  */
 public class DDLFormPagerView extends DDLFormView {
 
+	private ViewPager _pager;
+
 	public DDLFormPagerView(Context context) {
 		super(context);
 	}
@@ -64,7 +66,5 @@ public class DDLFormPagerView extends DDLFormView {
 
 		_pager = (ViewPager) findViewById(R.id.liferay_pager);
 	}
-
-	private ViewPager _pager;
 
 }

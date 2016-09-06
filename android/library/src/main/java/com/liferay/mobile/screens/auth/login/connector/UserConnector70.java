@@ -13,6 +13,8 @@ import org.json.JSONObject;
  */
 public class UserConnector70 implements UserConnector, ForgotPasswordConnector, CurrentUserConnector {
 
+	private final UserService _userService;
+
 	public UserConnector70(Session session) {
 		_userService = new UserService(session);
 	}
@@ -64,6 +66,4 @@ public class UserConnector70 implements UserConnector, ForgotPasswordConnector, 
 	public JSONObject getCurrentUser() throws Exception {
 		return _userService.getCurrentUser();
 	}
-
-	private final UserService _userService;
 }

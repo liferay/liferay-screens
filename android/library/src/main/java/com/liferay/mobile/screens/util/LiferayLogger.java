@@ -23,6 +23,9 @@ import com.liferay.mobile.screens.BuildConfig;
  */
 public class LiferayLogger {
 
+	private static final boolean LOGGING_ENABLED = true;
+	private static final String TAG = "LiferayScreens";
+
 	public static void d(String message) {
 		if (loggingEnabled()) {
 			Log.d(TAG, message);
@@ -50,7 +53,4 @@ public class LiferayLogger {
 	private static boolean loggingEnabled() {
 		return BuildConfig.DEBUG || LOGGING_ENABLED;
 	}
-
-	private static final boolean LOGGING_ENABLED = true;
-	private static final String TAG = "LiferayScreens";
 }

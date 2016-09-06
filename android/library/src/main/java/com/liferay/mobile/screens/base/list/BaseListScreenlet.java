@@ -36,6 +36,14 @@ public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends
 	implements BaseListInteractorListener<E> {
 
 	public static final String LOAD_INITIAL_PAGE_ACTION = "LOAD_INITIAL_PAGE_ACTION";
+	protected static final int _FIRST_PAGE_SIZE = 50;
+	protected static final int _PAGE_SIZE = 25;
+	protected boolean _autoLoad;
+	protected int _firstPageSize;
+	protected BaseListListener<E> _listener;
+	protected int _pageSize;
+	protected String _obcClassName;
+	private List<String> _labelFields;
 
 	public BaseListScreenlet(Context context) {
 		super(context);
@@ -200,14 +208,4 @@ public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends
 		}
 		return parsedFields;
 	}
-
-	protected static final int _FIRST_PAGE_SIZE = 50;
-	protected static final int _PAGE_SIZE = 25;
-
-	protected boolean _autoLoad;
-	protected int _firstPageSize;
-	protected BaseListListener<E> _listener;
-	protected int _pageSize;
-	protected String _obcClassName;
-	private List<String> _labelFields;
 }

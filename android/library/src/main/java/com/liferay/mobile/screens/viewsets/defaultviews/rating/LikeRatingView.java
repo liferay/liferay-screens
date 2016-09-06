@@ -14,6 +14,10 @@ import com.liferay.mobile.screens.rating.RatingScreenlet;
  */
 public class LikeRatingView extends BaseRatingView implements View.OnClickListener {
 
+	private ImageButton likeButton;
+	private TextView likeCountLabel;
+	private boolean hasUserRate;
+
 	public LikeRatingView(Context context) {
 		super(context);
 	}
@@ -64,8 +68,4 @@ public class LikeRatingView extends BaseRatingView implements View.OnClickListen
 		likeButton = (ImageButton) findViewById(R.id.likeRatingButton);
 		likeCountLabel = (TextView) findViewById(R.id.likeCountLabel);
 	}
-
-	private ImageButton likeButton;
-	private TextView likeCountLabel;
-	private boolean hasUserRate;
 }

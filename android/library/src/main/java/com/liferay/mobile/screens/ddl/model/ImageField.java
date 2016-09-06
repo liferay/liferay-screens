@@ -11,10 +11,6 @@ import java.util.Map;
  */
 public class ImageField extends StringField implements Parcelable {
 
-	public ImageField() {
-		super();
-	}
-
 	public static final ClassLoaderCreator<ImageField> CREATOR =
 		new ClassLoaderCreator<ImageField>() {
 
@@ -31,6 +27,10 @@ public class ImageField extends StringField implements Parcelable {
 				return new ImageField[size];
 			}
 		};
+
+	public ImageField() {
+		super();
+	}
 
 	public ImageField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);

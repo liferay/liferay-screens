@@ -11,6 +11,8 @@ import org.json.JSONObject;
  */
 public class ScreensUserConnector62 implements ForgotPasswordConnector, CurrentUserConnector {
 
+	private final ScreensuserService screensUserService;
+
 	public ScreensUserConnector62(Session session) {
 		screensUserService = new ScreensuserService(session);
 	}
@@ -33,6 +35,4 @@ public class ScreensUserConnector62 implements ForgotPasswordConnector, CurrentU
 	public JSONObject getCurrentUser() throws Exception {
 		return screensUserService.getCurrentUser();
 	}
-
-	private final ScreensuserService screensUserService;
 }

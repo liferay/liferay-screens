@@ -34,6 +34,12 @@ public class ForgotPasswordScreenlet
 	extends BaseScreenlet<ForgotPasswordViewModel, ForgotPasswordInteractorImpl>
 	implements ForgotPasswordListener {
 
+	private String _anonymousApiPassword;
+	private String _anonymousApiUserName;
+	private long _companyId;
+	private BasicAuthMethod _basicAuthMethod;
+	private ForgotPasswordListener _listener;
+
 	public ForgotPasswordScreenlet(Context context) {
 		super(context);
 	}
@@ -159,11 +165,5 @@ public class ForgotPasswordScreenlet
 			onForgotPasswordRequestFailure(e);
 		}
 	}
-
-	private String _anonymousApiPassword;
-	private String _anonymousApiUserName;
-	private long _companyId;
-	private BasicAuthMethod _basicAuthMethod;
-	private ForgotPasswordListener _listener;
 
 }

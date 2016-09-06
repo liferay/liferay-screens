@@ -13,11 +13,11 @@ import java.util.Locale;
 
 public class Cache {
 
+	public static final String SEPARATOR = "-";
+
 	private Cache() {
 		super();
 	}
-
-	public static final String SEPARATOR = "-";
 
 	public static <E extends OfflineEventNew> E getObject(final Class<E> aClass, final Long groupId, final Long userId,
 		final Locale locale, final String cacheKey) throws Exception {
@@ -96,10 +96,6 @@ public class Cache {
 		});
 	}
 
-	interface Func1<R> {
-		R call(DB db) throws Exception;
-	}
-
 	private static Object doDatabaseOperation(Long groupId, Long userId, Func1 func1) throws Exception {
 		DB snappyDB = null;
 		try {
@@ -137,5 +133,9 @@ public class Cache {
 
 	private static String databaseName(Long groupId, Long userId) {
 		return "DB" + SEPARATOR + (groupId == null ? 0 : groupId) + SEPARATOR + (userId == null ? 0 : userId);
+	}
+
+	interface Func1<R> {
+		R call(DB db) throws Exception;
 	}
 }

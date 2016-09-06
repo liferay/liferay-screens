@@ -40,6 +40,29 @@ import java.util.Map;
  */
 public class DDLFormView extends ScrollView implements DDLFormViewModel, View.OnClickListener {
 
+	private static final Map<Field.EditorType, Integer> _defaultLayoutIds = new HashMap<>(16);
+
+	static {
+		_defaultLayoutIds.put(Field.EditorType.CHECKBOX, R.layout.ddlfield_checkbox_default);
+		_defaultLayoutIds.put(Field.EditorType.DATE, R.layout.ddlfield_date_default);
+		_defaultLayoutIds.put(Field.EditorType.NUMBER, R.layout.ddlfield_number_default);
+		_defaultLayoutIds.put(Field.EditorType.INTEGER, R.layout.ddlfield_number_default);
+		_defaultLayoutIds.put(Field.EditorType.DECIMAL, R.layout.ddlfield_number_default);
+		_defaultLayoutIds.put(Field.EditorType.RADIO, R.layout.ddlfield_radio_default);
+		_defaultLayoutIds.put(Field.EditorType.SELECT, R.layout.ddlfield_select_default);
+		_defaultLayoutIds.put(Field.EditorType.TEXT, R.layout.ddlfield_text_default);
+		_defaultLayoutIds.put(Field.EditorType.TEXT_AREA, R.layout.ddlfield_text_area_default);
+		_defaultLayoutIds.put(Field.EditorType.DOCUMENT, R.layout.ddlfield_document_default);
+	}
+
+	private final Map<Field.EditorType, Integer> _layoutIds = new HashMap<>();
+	private final Map<String, Integer> _customLayoutIds = new HashMap<>();
+	protected ProgressBar _progressBar;
+	protected ProgressBar _loadingFormProgressBar;
+	protected ViewGroup _fieldsContainerView;
+	protected Button _submitButton;
+	private BaseScreenlet _screenlet;
+
 	public DDLFormView(Context context) {
 		super(context);
 	}
@@ -278,28 +301,5 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 			}
 		}
 		return null;
-	}
-
-	protected ProgressBar _progressBar;
-	protected ProgressBar _loadingFormProgressBar;
-	protected ViewGroup _fieldsContainerView;
-	protected Button _submitButton;
-
-	private static final Map<Field.EditorType, Integer> _defaultLayoutIds = new HashMap<>(16);
-	private final Map<Field.EditorType, Integer> _layoutIds = new HashMap<>();
-	private final Map<String, Integer> _customLayoutIds = new HashMap<>();
-	private BaseScreenlet _screenlet;
-
-	static {
-		_defaultLayoutIds.put(Field.EditorType.CHECKBOX, R.layout.ddlfield_checkbox_default);
-		_defaultLayoutIds.put(Field.EditorType.DATE, R.layout.ddlfield_date_default);
-		_defaultLayoutIds.put(Field.EditorType.NUMBER, R.layout.ddlfield_number_default);
-		_defaultLayoutIds.put(Field.EditorType.INTEGER, R.layout.ddlfield_number_default);
-		_defaultLayoutIds.put(Field.EditorType.DECIMAL, R.layout.ddlfield_number_default);
-		_defaultLayoutIds.put(Field.EditorType.RADIO, R.layout.ddlfield_radio_default);
-		_defaultLayoutIds.put(Field.EditorType.SELECT, R.layout.ddlfield_select_default);
-		_defaultLayoutIds.put(Field.EditorType.TEXT, R.layout.ddlfield_text_default);
-		_defaultLayoutIds.put(Field.EditorType.TEXT_AREA, R.layout.ddlfield_text_area_default);
-		_defaultLayoutIds.put(Field.EditorType.DOCUMENT, R.layout.ddlfield_document_default);
 	}
 }

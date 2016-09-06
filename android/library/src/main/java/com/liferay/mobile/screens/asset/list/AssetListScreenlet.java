@@ -33,6 +33,12 @@ import java.util.Map;
 public class AssetListScreenlet extends BaseListScreenlet<AssetEntry, AssetListInteractorImpl>
 	implements AssetListInteractorListener {
 
+	private OfflinePolicy _offlinePolicy;
+	private long _classNameId;
+	private long _groupId;
+	private String _portletItemName;
+	private HashMap<String, Object> _customEntryQuery = new HashMap<>();
+
 	public AssetListScreenlet(Context context) {
 		super(context);
 	}
@@ -125,10 +131,4 @@ public class AssetListScreenlet extends BaseListScreenlet<AssetEntry, AssetListI
 	protected AssetListInteractorImpl createInteractor(String actionName) {
 		return new AssetListInteractorImpl();
 	}
-
-	private OfflinePolicy _offlinePolicy;
-	private long _classNameId;
-	private long _groupId;
-	private String _portletItemName;
-	private HashMap<String, Object> _customEntryQuery = new HashMap<>();
 }

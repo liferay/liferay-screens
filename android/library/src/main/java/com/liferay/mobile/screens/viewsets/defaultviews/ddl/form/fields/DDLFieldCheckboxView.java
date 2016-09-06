@@ -31,6 +31,10 @@ import com.liferay.mobile.screens.ddl.model.BooleanField;
 public class DDLFieldCheckboxView extends LinearLayout
 	implements DDLFieldViewModel<BooleanField>, CompoundButton.OnCheckedChangeListener {
 
+	protected BooleanField _field;
+	protected SwitchCompat _switch;
+	protected View _parentView;
+
 	public DDLFieldCheckboxView(Context context) {
 		super(context);
 	}
@@ -104,9 +108,5 @@ public class DDLFieldCheckboxView extends LinearLayout
 
 		_switch.setOnCheckedChangeListener(this);
 	}
-
-	protected BooleanField _field;
-	protected SwitchCompat _switch;
-	protected View _parentView;
 
 }

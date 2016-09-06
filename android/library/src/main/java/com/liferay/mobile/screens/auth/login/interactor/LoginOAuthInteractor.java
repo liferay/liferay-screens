@@ -26,6 +26,10 @@ import org.json.JSONObject;
  */
 public class LoginOAuthInteractor extends BaseLoginInteractor {
 
+	// NOTE: this interactor can store state because this attribute
+	// isn't used after the request is fired.
+	private OAuthConfig config;
+
 	@Override
 	public BasicThreadEvent execute(Object[] args) throws Exception {
 
@@ -46,8 +50,4 @@ public class LoginOAuthInteractor extends BaseLoginInteractor {
 	public void setOAuthConfig(OAuthConfig config) {
 		this.config = config;
 	}
-
-	// NOTE: this interactor can store state because this attribute
-	// isn't used after the request is fired.
-	private OAuthConfig config;
 }

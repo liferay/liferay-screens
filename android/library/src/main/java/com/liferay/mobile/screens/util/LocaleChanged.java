@@ -7,6 +7,9 @@ import java.util.Locale;
  */
 public class LocaleChanged {
 
+	private final Locale _newLocale;
+	private final Locale _oldLocale;
+
 	public LocaleChanged(Locale newLocale, Locale oldLocale) {
 		_newLocale = newLocale;
 		_oldLocale = oldLocale;
@@ -19,7 +22,4 @@ public class LocaleChanged {
 	public Locale getOldLocale() {
 		return _oldLocale;
 	}
-
-	private final Locale _newLocale;
-	private final Locale _oldLocale;
 }

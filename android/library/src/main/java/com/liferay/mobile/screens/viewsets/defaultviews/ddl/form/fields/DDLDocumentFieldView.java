@@ -43,6 +43,11 @@ import rx.functions.Action1;
 public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 	implements DDLFieldViewModel<DocumentField>, View.OnClickListener {
 
+	protected ProgressBar _progressBar;
+	protected AlertDialog _choseOriginDialog;
+	protected AlertDialog _fileDialog;
+	private int _positionInForm;
+
 	public DDLDocumentFieldView(Context context) {
 		super(context);
 	}
@@ -197,10 +202,4 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 			}
 		};
 	}
-
-	protected ProgressBar _progressBar;
-	protected AlertDialog _choseOriginDialog;
-	protected AlertDialog _fileDialog;
-
-	private int _positionInForm;
 }

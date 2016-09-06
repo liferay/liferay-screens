@@ -20,6 +20,15 @@ import org.json.JSONObject;
 
 public abstract class OfflineEventNew extends BasicThreadEvent {
 
+	private Locale locale;
+	private long groupId;
+	private long userId;
+	private String cacheKey;
+	private Date syncDate;
+	private boolean cachedRequest;
+	private boolean dirty;
+	private boolean deleted;
+
 	public OfflineEventNew() {
 		super();
 	}
@@ -95,13 +104,4 @@ public abstract class OfflineEventNew extends BasicThreadEvent {
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
-
-	private Locale locale;
-	private long groupId;
-	private long userId;
-	private String cacheKey;
-	private Date syncDate;
-	private boolean cachedRequest;
-	private boolean dirty;
-	private boolean deleted;
 }

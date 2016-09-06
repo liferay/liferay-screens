@@ -34,10 +34,6 @@ import java.util.Map;
  */
 public class Record extends AssetEntry implements WithDDM, Parcelable {
 
-	public Record() {
-		super();
-	}
-
 	public static final Parcelable.ClassLoaderCreator<Record> CREATOR =
 		new ClassLoaderCreator<Record>() {
 
@@ -54,9 +50,17 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 				return new Record[size];
 			}
 		};
-
 	public static final String MODEL_VALUES = "modelValues";
 	public static final String MODEL_ATTRIBUTES = "modelAttributes";
+	private DDMStructure _ddmStructure;
+	private Long _creatorUserId;
+	private Long _structureId;
+	private Long _recordSetId;
+	private Long _recordId;
+
+	public Record() {
+		super();
+	}
 
 	public Record(Map<String, Object> valuesAndAttributes, Locale locale) {
 		super(valuesAndAttributes);
@@ -67,6 +71,15 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 
 	public Record(Locale locale) {
 		this(new HashMap<String, Object>(), locale);
+	}
+
+	private Record(Parcel in, ClassLoader loader) {
+		super(in, loader);
+		_ddmStructure = in.readParcelable(DDMStructure.class.getClassLoader());
+		_creatorUserId = (Long) in.readValue(Long.class.getClassLoader());
+		_structureId = (Long) in.readValue(Long.class.getClassLoader());
+		_recordSetId = (Long) in.readValue(Long.class.getClassLoader());
+		_recordId = (Long) in.readValue(Long.class.getClassLoader());
 	}
 
 	public void refresh() {
@@ -222,15 +235,6 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		_ddmStructure.parse(jsonObject);
 	}
 
-	private Record(Parcel in, ClassLoader loader) {
-		super(in, loader);
-		_ddmStructure = in.readParcelable(DDMStructure.class.getClassLoader());
-		_creatorUserId = (Long) in.readValue(Long.class.getClassLoader());
-		_structureId = (Long) in.readValue(Long.class.getClassLoader());
-		_recordSetId = (Long) in.readValue(Long.class.getClassLoader());
-		_recordId = (Long) in.readValue(Long.class.getClassLoader());
-	}
-
 	private void parseServerValues() {
 		//TODO refactor
 		Long recordId = JSONUtil.castToLong(getServerAttribute("recordId"));
@@ -246,10 +250,4 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 			_creatorUserId = userId;
 		}
 	}
-
-	private DDMStructure _ddmStructure;
-	private Long _creatorUserId;
-	private Long _structureId;
-	private Long _recordSetId;
-	private Long _recordId;
 }

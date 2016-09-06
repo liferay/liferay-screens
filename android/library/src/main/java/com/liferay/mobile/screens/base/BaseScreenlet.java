@@ -53,6 +53,20 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	implements CacheListener {
 
 	public static final String DEFAULT_ACTION = "default_action";
+	protected static final String STATE_SUPER = "STATE_SUPER";
+	private static final String _STATE_SCREENLET_ID = "basescreenlet-screenletId";
+	private static final String _STATE_SUPER = "basescreenlet-super";
+	private static final String _STATE_INTERACTORS = "basescreenlet-interactors";
+	private static final AtomicInteger sNextId = new AtomicInteger(1);
+	private final Map<String, I> _interactors = new HashMap<>();
+	protected OfflinePolicy offlinePolicy;
+	protected long groupId;
+	protected long userId;
+	protected Locale locale;
+	protected CacheListener cacheListener;
+	private int _screenletId;
+	private View _screenletView;
+	private CustomInteractorListener _customInteractorListener;
 
 	public BaseScreenlet(Context context) {
 		super(context);
@@ -77,6 +91,23 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		super(context, attrs, defStyleAttr, defStyleRes);
 
 		init(context, attrs);
+	}
+
+	private static int _generateScreenletId() {
+
+		// This implementation is copied from View.generateViewId() method We
+		// cannot rely on that method because it's introduced in API Level 17
+
+		while (true) {
+			final int result = sNextId.get();
+			int newValue = result + 1;
+			if (newValue > 0x00FFFFFF) {
+				newValue = 1;
+			}
+			if (sNextId.compareAndSet(result, newValue)) {
+				return result;
+			}
+		}
 	}
 
 	public int getScreenletId() {
@@ -355,23 +386,6 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		return null;
 	}
 
-	private static int _generateScreenletId() {
-
-		// This implementation is copied from View.generateViewId() method We
-		// cannot rely on that method because it's introduced in API Level 17
-
-		while (true) {
-			final int result = sNextId.get();
-			int newValue = result + 1;
-			if (newValue > 0x00FFFFFF) {
-				newValue = 1;
-			}
-			if (sNextId.compareAndSet(result, newValue)) {
-				return result;
-			}
-		}
-	}
-
 	@Override
 	public void loadingFromCache(boolean success) {
 		if (cacheListener != null) {
@@ -397,32 +411,32 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		return groupId;
 	}
 
-	public long getUserId() {
-		return userId;
-	}
-
-	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
-		this.offlinePolicy = offlinePolicy;
-	}
-
 	public void setGroupId(long groupId) {
 		this.groupId = groupId;
+	}
+
+	public long getUserId() {
+		return userId;
 	}
 
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 
-	public void setLocale(Locale locale) {
-		this.locale = locale;
-	}
-
 	public Locale getLocale() {
 		return locale;
 	}
 
+	public void setLocale(Locale locale) {
+		this.locale = locale;
+	}
+
 	public OfflinePolicy getOfflinePolicy() {
 		return offlinePolicy;
+	}
+
+	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
+		this.offlinePolicy = offlinePolicy;
 	}
 
 	public CacheListener getCacheListener() {
@@ -432,22 +446,4 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	public void setCacheListener(CacheListener cacheListener) {
 		this.cacheListener = cacheListener;
 	}
-
-	protected static final String STATE_SUPER = "STATE_SUPER";
-	private static final String _STATE_SCREENLET_ID = "basescreenlet-screenletId";
-	private static final String _STATE_SUPER = "basescreenlet-super";
-	private static final String _STATE_INTERACTORS = "basescreenlet-interactors";
-	private static final AtomicInteger sNextId = new AtomicInteger(1);
-
-	private final Map<String, I> _interactors = new HashMap<>();
-	private int _screenletId;
-	private View _screenletView;
-
-	private CustomInteractorListener _customInteractorListener;
-
-	protected OfflinePolicy offlinePolicy;
-	protected long groupId;
-	protected long userId;
-	protected Locale locale;
-	protected CacheListener cacheListener;
 }

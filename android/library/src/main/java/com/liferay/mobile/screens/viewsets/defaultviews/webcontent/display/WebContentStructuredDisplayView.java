@@ -16,6 +16,9 @@ import com.liferay.mobile.screens.webcontent.display.view.WebContentDisplayViewM
  */
 public class WebContentStructuredDisplayView extends LinearLayout implements WebContentDisplayViewModel {
 
+	private BaseScreenlet _screenlet;
+	private TextView _contentField;
+
 	public WebContentStructuredDisplayView(Context context) {
 		super(context);
 	}
@@ -91,7 +94,4 @@ public class WebContentStructuredDisplayView extends LinearLayout implements Web
 
 		_contentField = (TextView) findViewById(R.id.web_content_field);
 	}
-
-	private BaseScreenlet _screenlet;
-	private TextView _contentField;
 }

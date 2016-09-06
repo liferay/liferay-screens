@@ -37,6 +37,9 @@ import java.util.List;
 public class DDLFieldRadioView extends RadioGroup
 	implements DDLFieldViewModel<StringWithOptionsField>, CompoundButton.OnCheckedChangeListener {
 
+	protected View _parentView;
+	private StringWithOptionsField _field;
+
 	public DDLFieldRadioView(Context context) {
 		super(context);
 	}
@@ -157,9 +160,5 @@ public class DDLFieldRadioView extends RadioGroup
 		}
 		return Typeface.create("sans-serif-light", Typeface.NORMAL);
 	}
-
-	protected View _parentView;
-
-	private StringWithOptionsField _field;
 
 }

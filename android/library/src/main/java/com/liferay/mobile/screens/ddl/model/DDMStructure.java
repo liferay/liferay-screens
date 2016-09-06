@@ -21,10 +21,6 @@ import java.util.Locale;
  */
 public class DDMStructure implements Parcelable {
 
-	public DDMStructure() {
-		super();
-	}
-
 	public static final Parcelable.ClassLoaderCreator<DDMStructure> CREATOR = new ClassLoaderCreator<DDMStructure>() {
 		@Override
 		public DDMStructure createFromParcel(Parcel source, ClassLoader classLoader) {
@@ -41,6 +37,13 @@ public class DDMStructure implements Parcelable {
 			return new DDMStructure[size];
 		}
 	};
+	protected List<Field> _fields = new ArrayList<>();
+	protected Locale _locale = Locale.US;
+	protected boolean _parsed;
+
+	public DDMStructure() {
+		super();
+	}
 
 	public DDMStructure(Locale locale) {
 		_locale = locale;
@@ -125,8 +128,4 @@ public class DDMStructure implements Parcelable {
 			_fields = new ArrayList<>();
 		}
 	}
-
-	protected List<Field> _fields = new ArrayList<>();
-	protected Locale _locale = Locale.US;
-	protected boolean _parsed;
 }

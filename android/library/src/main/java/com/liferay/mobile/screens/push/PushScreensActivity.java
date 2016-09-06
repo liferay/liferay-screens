@@ -30,6 +30,7 @@ public abstract class PushScreensActivity extends AppCompatActivity
 	public static final String VERSION_CODE = "VERSION_CODE";
 	public static final String TOKEN = "TOKEN";
 	public static final String USER = "USER";
+	private Push push;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -155,7 +156,5 @@ public abstract class PushScreensActivity extends AppCompatActivity
 	private SharedPreferences getSharedPreferences() {
 		return getSharedPreferences(PUSH_PREFERENCES, Context.MODE_PRIVATE);
 	}
-
-	private Push push;
 
 }

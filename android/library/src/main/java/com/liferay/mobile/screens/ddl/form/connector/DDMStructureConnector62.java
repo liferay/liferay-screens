@@ -10,6 +10,8 @@ import org.json.JSONObject;
  */
 public class DDMStructureConnector62 implements DDMStructureConnector {
 
+	private final DDMStructureService _ddmStructureService;
+
 	public DDMStructureConnector62(Session session) {
 		_ddmStructureService = new DDMStructureService(session);
 	}
@@ -18,6 +20,4 @@ public class DDMStructureConnector62 implements DDMStructureConnector {
 	public JSONObject getStructure(long structureId) throws Exception {
 		return _ddmStructureService.getStructure(structureId);
 	}
-
-	private final DDMStructureService _ddmStructureService;
 }

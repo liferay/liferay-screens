@@ -29,32 +29,9 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  */
 public class CredentialsStorageBuilder {
 
-	public enum StorageType {
-
-		// These values are synced with 'credentialStore' attr
-		NONE(0),
-		AUTO(1),
-		SHARED_PREFERENCES(2);
-
-		public static StorageType valueOf(int value) {
-			for (StorageType s : values()) {
-				if (s._value == value) {
-					return s;
-				}
-			}
-			return NONE;
-		}
-
-		public int toInt() {
-			return _value;
-		}
-
-		StorageType(int value) {
-			_value = value;
-		}
-
-		private final int _value;
-	}
+	private Authentication _auth;
+	private User _user;
+	private Context _context;
 
 	public CredentialsStorageBuilder setAuthentication(Authentication auth) {
 		if (auth == null) {
@@ -140,8 +117,30 @@ public class CredentialsStorageBuilder {
 			}
 		}
 	}
+	public enum StorageType {
 
-	private Authentication _auth;
-	private User _user;
-	private Context _context;
+		// These values are synced with 'credentialStore' attr
+		NONE(0),
+		AUTO(1),
+		SHARED_PREFERENCES(2);
+
+		private final int _value;
+
+		StorageType(int value) {
+			_value = value;
+		}
+
+		public static StorageType valueOf(int value) {
+			for (StorageType s : values()) {
+				if (s._value == value) {
+					return s;
+				}
+			}
+			return NONE;
+		}
+
+		public int toInt() {
+			return _value;
+		}
+	}
 }

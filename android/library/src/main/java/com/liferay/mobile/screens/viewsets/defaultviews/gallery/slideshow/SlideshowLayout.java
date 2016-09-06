@@ -9,6 +9,11 @@ import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
  */
 public class SlideshowLayout extends RecyclerView.OnScrollListener implements View.OnLayoutChangeListener {
 
+	private static final int yOffset = 200;
+	private static final float scaleOffset = 0.7f;
+	private static final float alphaOffset = 0.5f;
+	private static final float scaleDelta = 1 - scaleOffset;
+	private RecyclerView recyclerView;
 	public SlideshowLayout(RecyclerView recyclerView) {
 		this.recyclerView = recyclerView;
 	}
@@ -85,12 +90,4 @@ public class SlideshowLayout extends RecyclerView.OnScrollListener implements Vi
 		view.setTranslationY(yOffset);
 		view.setAlpha(alphaOffset);
 	}
-
-	private static final int yOffset = 200;
-	private static final float scaleOffset = 0.7f;
-	private static final float alphaOffset = 0.5f;
-
-	private static final float scaleDelta = 1 - scaleOffset;
-
-	private RecyclerView recyclerView;
 }

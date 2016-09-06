@@ -44,6 +44,12 @@ import rx.functions.Action1;
  */
 public class UserPortraitView extends FrameLayout implements UserPortraitViewModel, View.OnClickListener {
 
+	protected ImageView _portraitImage;
+	protected ImageButton _portraitAddButton;
+	protected ProgressBar _portraitProgress;
+	protected AlertDialog _choseOriginDialog;
+	private BaseScreenlet _screenlet;
+
 	public UserPortraitView(Context context) {
 		super(context);
 	}
@@ -222,11 +228,4 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 		Bitmap defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.default_portrait_placeholder);
 		_portraitImage.setImageBitmap(transformBitmap(defaultBitmap));
 	}
-
-	protected ImageView _portraitImage;
-	protected ImageButton _portraitAddButton;
-	protected ProgressBar _portraitProgress;
-	protected AlertDialog _choseOriginDialog;
-
-	private BaseScreenlet _screenlet;
 }

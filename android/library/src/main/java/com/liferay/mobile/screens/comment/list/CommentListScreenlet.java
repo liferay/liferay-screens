@@ -20,6 +20,12 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, CommentListInteractorImpl>
 	implements CommentListInteractorListener, CommentDisplayListener {
 
+	private OfflinePolicy offlinePolicy;
+	private String className;
+	private long classPK;
+	private long groupId;
+	private boolean editable;
+
 	public CommentListScreenlet(Context context) {
 		super(context);
 	}
@@ -183,10 +189,4 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Commen
 	protected CommentListViewModel getViewModel() {
 		return (CommentListViewModel) super.getViewModel();
 	}
-
-	private OfflinePolicy offlinePolicy;
-	private String className;
-	private long classPK;
-	private long groupId;
-	private boolean editable;
 }

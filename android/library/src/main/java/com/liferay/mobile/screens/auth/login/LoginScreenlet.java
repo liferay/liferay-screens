@@ -50,6 +50,11 @@ public class LoginScreenlet
 	public static final String BASIC_AUTH = "BASIC_AUTH";
 	public static final int REQUEST_OAUTH_CODE = 1;
 	public static final String LOGIN_SUCCESSFUL = "com.liferay.mobile.screens.auth.login.success";
+	private LoginListener _listener;
+	private BasicAuthMethod _basicAuthMethod;
+	private StorageType _credentialsStorage;
+	private String _oauthConsumerKey;
+	private String _oauthConsumerSecret;
 
 	public LoginScreenlet(Context context) {
 		super(context);
@@ -239,12 +244,5 @@ public class LoginScreenlet
 			LiferayScreensContext.getActivityFromContext(getContext()).startActivityForResult(intent, REQUEST_OAUTH_CODE);
 		}
 	}
-
-	private LoginListener _listener;
-	private BasicAuthMethod _basicAuthMethod;
-	private StorageType _credentialsStorage;
-
-	private String _oauthConsumerKey;
-	private String _oauthConsumerSecret;
 
 }

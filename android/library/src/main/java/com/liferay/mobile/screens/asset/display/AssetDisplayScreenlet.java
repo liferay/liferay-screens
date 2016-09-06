@@ -30,6 +30,13 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 
 	public static final String STATE_LAYOUTS = "STATE_LAYOUTS";
 	public static final String STATE_ENTRY_ID = "STATE_ENTRY_ID";
+	private boolean autoLoad;
+	private HashMap<String, Integer> layouts;
+	private long entryId;
+	private long classPK;
+	private String className;
+	private AssetDisplayListener listener;
+	private AssetDisplayInnerScreenletListener configureListener;
 
 	public AssetDisplayScreenlet(Context context) {
 		super(context);
@@ -220,12 +227,4 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	public void setAutoLoad(boolean autoLoad) {
 		this.autoLoad = autoLoad;
 	}
-
-	private boolean autoLoad;
-	private HashMap<String, Integer> layouts;
-	private long entryId;
-	private long classPK;
-	private String className;
-	private AssetDisplayListener listener;
-	private AssetDisplayInnerScreenletListener configureListener;
 }

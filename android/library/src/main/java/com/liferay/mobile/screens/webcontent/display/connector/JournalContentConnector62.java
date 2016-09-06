@@ -12,6 +12,8 @@ import org.json.JSONObject;
  */
 public class JournalContentConnector62 implements JournalContentConnector {
 
+	private final JournalArticleService _journalArticleService;
+
 	public JournalContentConnector62(Session session) {
 		_journalArticleService = new JournalArticleService(session);
 	}
@@ -35,6 +37,4 @@ public class JournalContentConnector62 implements JournalContentConnector {
 	public Integer getJournalArticlesCount(long groupId, long folderId) throws Exception {
 		return _journalArticleService.getArticlesCount(groupId, folderId);
 	}
-
-	private final JournalArticleService _journalArticleService;
 }

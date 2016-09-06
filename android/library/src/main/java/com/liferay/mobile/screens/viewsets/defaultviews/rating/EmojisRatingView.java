@@ -21,6 +21,9 @@ public class EmojisRatingView extends BaseRatingView implements View.OnClickList
 	public static final String[] EMOJIS = new String[] {
 		"\uD83D\uDE1C", "\uD83D\uDE01", "\uD83D\uDE02", "\uD83D\uDE0E"
 	};
+	private List<Button> emojis;
+	private List<TextView> labels;
+	private double userScore;
 
 	public EmojisRatingView(Context context) {
 		super(context);
@@ -116,8 +119,4 @@ public class EmojisRatingView extends BaseRatingView implements View.OnClickList
 			}
 		}
 	}
-
-	private List<Button> emojis;
-	private List<TextView> labels;
-	private double userScore;
 }

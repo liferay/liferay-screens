@@ -21,6 +21,12 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  */
 public class VideoDisplayView extends RelativeLayout implements BaseFileDisplayViewModel {
 
+	private BaseScreenlet screenlet;
+	private FileEntry fileEntry;
+	private VideoView videoView;
+	private TextView message;
+	private ProgressBar progressBar;
+
 	public VideoDisplayView(Context context) {
 		super(context);
 	}
@@ -111,10 +117,4 @@ public class VideoDisplayView extends RelativeLayout implements BaseFileDisplayV
 			}
 		});
 	}
-
-	private BaseScreenlet screenlet;
-	private FileEntry fileEntry;
-	private VideoView videoView;
-	private TextView message;
-	private ProgressBar progressBar;
 }

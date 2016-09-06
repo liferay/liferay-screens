@@ -53,6 +53,35 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 	public static final String ADD_RECORD_ACTION = "addRecord";
 	public static final String UPDATE_RECORD_ACTION = "updateRecord";
 	public static final String UPLOAD_DOCUMENT_ACTION = "uploadDocument";
+	private static final String _STATE_SUPER = "ddlform-super";
+	private static final String _STATE_AUTOSCROLL_ON_VALIDATION = "ddlform-autoScrollOnValidation";
+	private static final String _STATE_SHOW_SUBMIT_BUTTON = "ddlform-showSubmitButton";
+	private static final String _STATE_GROUP_ID = "ddlform-groupId";
+	private static final String _STATE_STRUCTURE_ID = "ddlform-structureId";
+	private static final String _STATE_RECORDSET_ID = "ddlform-recordSetId";
+	private static final String _STATE_RECORD_ID = "ddlform-recordId";
+	private static final String _STATE_USER_ID = "ddlform-userId";
+	private static final String _STATE_RECORD = "ddlform-record";
+	private static final String _STATE_LOAD_RECORD_AFTER_FORM = "ddlform-loadRecordAfterForm";
+	private static final String _STATE_REPOSITORY_ID = "ddlform-repositoryId";
+	private static final String _STATE_FOLDER_ID = "ddlform-folderId";
+	private static final String _STATE_FILE_PREFIX = "ddlform-filePrefixId";
+	private static final String _STATE_OFFLINE_POLICY = "ddlform-offlinePolicy";
+	private boolean _autoLoad;
+	private boolean _autoScrollOnValidation;
+	private boolean _showSubmitButton;
+	private long _groupId;
+	private long _structureId;
+	private long _recordSetId;
+	private long _recordId;
+	private long _userId;
+	private long _repositoryId;
+	private long _folderId;
+	private String _filePrefix;
+	private Record _record;
+	private DDLFormListener _listener;
+	private boolean _loadRecordAfterForm;
+	private OfflinePolicy _offlinePolicy;
 
 	public DDLFormScreenlet(Context context) {
 		super(context);
@@ -565,38 +594,4 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 			viewModel.setFieldLayoutId(editorType, resourceId);
 		}
 	}
-
-	private static final String _STATE_SUPER = "ddlform-super";
-	private static final String _STATE_AUTOSCROLL_ON_VALIDATION = "ddlform-autoScrollOnValidation";
-	private static final String _STATE_SHOW_SUBMIT_BUTTON = "ddlform-showSubmitButton";
-	private static final String _STATE_GROUP_ID = "ddlform-groupId";
-	private static final String _STATE_STRUCTURE_ID = "ddlform-structureId";
-	private static final String _STATE_RECORDSET_ID = "ddlform-recordSetId";
-	private static final String _STATE_RECORD_ID = "ddlform-recordId";
-	private static final String _STATE_USER_ID = "ddlform-userId";
-	private static final String _STATE_RECORD = "ddlform-record";
-	private static final String _STATE_LOAD_RECORD_AFTER_FORM = "ddlform-loadRecordAfterForm";
-	private static final String _STATE_REPOSITORY_ID = "ddlform-repositoryId";
-	private static final String _STATE_FOLDER_ID = "ddlform-folderId";
-	private static final String _STATE_FILE_PREFIX = "ddlform-filePrefixId";
-	private static final String _STATE_OFFLINE_POLICY = "ddlform-offlinePolicy";
-
-	private boolean _autoLoad;
-	private boolean _autoScrollOnValidation;
-	private boolean _showSubmitButton;
-	private long _groupId;
-	private long _structureId;
-	private long _recordSetId;
-	private long _recordId;
-	private long _userId;
-	private long _repositoryId;
-	private long _folderId;
-	private String _filePrefix;
-
-	private Record _record;
-
-	private DDLFormListener _listener;
-
-	private boolean _loadRecordAfterForm;
-	private OfflinePolicy _offlinePolicy;
 }

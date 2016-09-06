@@ -35,6 +35,8 @@ import java.util.Locale;
 public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 	implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
 
+	protected DatePickerDialog _pickerDialog;
+
 	public DDLFieldDateView(Context context) {
 		super(context);
 	}
@@ -117,6 +119,4 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 		//not doing anything at the moment, because field is being set
 		//using the DatePickerDialog
 	}
-
-	protected DatePickerDialog _pickerDialog;
 }

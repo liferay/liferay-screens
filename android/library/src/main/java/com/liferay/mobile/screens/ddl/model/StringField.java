@@ -25,10 +25,6 @@ import java.util.Map;
  */
 public class StringField extends Field<String> {
 
-	public StringField() {
-		super();
-	}
-
 	public static final Parcelable.ClassLoaderCreator<StringField> CREATOR =
 		new Parcelable.ClassLoaderCreator<StringField>() {
 
@@ -45,6 +41,10 @@ public class StringField extends Field<String> {
 				return new StringField[size];
 			}
 		};
+
+	public StringField() {
+		super();
+	}
 
 
 	public StringField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {

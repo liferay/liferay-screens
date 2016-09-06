@@ -14,6 +14,10 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  */
 public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent> implements Interactor<L> {
 
+	protected L listener;
+	private int targetScreenletId;
+	private String actionName;
+
 	public BaseThreadInteractor() {
 		super();
 	}
@@ -112,8 +116,4 @@ public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent> implem
 		event.setTargetScreenletId(getTargetScreenletId());
 		event.setActionName(getActionName());
 	}
-
-	protected L listener;
-	private int targetScreenletId;
-	private String actionName;
 }

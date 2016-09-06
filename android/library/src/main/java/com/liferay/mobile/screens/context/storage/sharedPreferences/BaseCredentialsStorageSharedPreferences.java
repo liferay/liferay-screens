@@ -36,6 +36,28 @@ import java.net.URL;
  */
 public abstract class BaseCredentialsStorageSharedPreferences implements CredentialsStorage {
 
+	private SharedPreferences _sharedPref;
+	private Authentication _auth;
+	private User _user;
+
+	public static String getStoreName() {
+		try {
+			URL url = new URL(LiferayServerContext.getServer());
+			return "liferay-screens-" + url.getHost() + "-" + url.getPort();
+		}
+		catch (MalformedURLException e) {
+			LiferayLogger.e("Error parsing url", e);
+		}
+
+		return "liferay-screens";
+	}
+
+	public static AuthenticationType getStoredAuthenticationType(Context context) {
+		SharedPreferences sharedPref = context.getSharedPreferences(
+			getStoreName(), Context.MODE_PRIVATE);
+		return AuthenticationType.valueOf(sharedPref.getString("auth", AuthenticationType.VOID.name()));
+	}
+
 	@Override
 	public void storeCredentials() {
 		if (_sharedPref == null) {
@@ -113,24 +135,6 @@ public abstract class BaseCredentialsStorageSharedPreferences implements Credent
 		return true;
 	}
 
-	public static String getStoreName() {
-		try {
-			URL url = new URL(LiferayServerContext.getServer());
-			return "liferay-screens-" + url.getHost() + "-" + url.getPort();
-		}
-		catch (MalformedURLException e) {
-			LiferayLogger.e("Error parsing url", e);
-		}
-
-		return "liferay-screens";
-	}
-
-	public static AuthenticationType getStoredAuthenticationType(Context context) {
-		SharedPreferences sharedPref = context.getSharedPreferences(
-			getStoreName(), Context.MODE_PRIVATE);
-		return AuthenticationType.valueOf(sharedPref.getString("auth", AuthenticationType.VOID.name()));
-	}
-
 	@Override
 	public Authentication getAuthentication() {
 		return _auth;
@@ -167,9 +171,5 @@ public abstract class BaseCredentialsStorageSharedPreferences implements Credent
 	protected abstract void storeAuth(Authentication auth);
 
 	protected abstract Authentication loadAuth();
-
-	private SharedPreferences _sharedPref;
-	private Authentication _auth;
-	private User _user;
 
 }

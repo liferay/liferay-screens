@@ -31,6 +31,9 @@ import java.util.Map;
  */
 public class DDLFormPagerViewAdapter extends PagerAdapter {
 
+	private final List<Field> _fields;
+	private final Map<Field.EditorType, Integer> _layoutIds;
+
 	public DDLFormPagerViewAdapter(List<Field> fields, Map<Field.EditorType, Integer> layoutIds) {
 
 		_fields = fields;
@@ -70,7 +73,4 @@ public class DDLFormPagerViewAdapter extends PagerAdapter {
 	public boolean isViewFromObject(View view, Object object) {
 		return view.equals(object);
 	}
-
-	private final List<Field> _fields;
-	private final Map<Field.EditorType, Integer> _layoutIds;
 }

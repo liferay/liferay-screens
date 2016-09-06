@@ -23,6 +23,10 @@ import static com.liferay.mobile.screens.rating.RatingScreenlet.UPDATE_RATING_AC
  */
 public class ReactionsRatingView extends BaseRatingView implements View.OnClickListener {
 
+	private List<ImageButton> reactions;
+	private List<TextView> labels;
+	private double userScore;
+
 	public ReactionsRatingView(Context context) {
 		super(context);
 	}
@@ -123,8 +127,4 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 			}
 		}
 	}
-
-	private List<ImageButton> reactions;
-	private List<TextView> labels;
-	private double userScore;
 }

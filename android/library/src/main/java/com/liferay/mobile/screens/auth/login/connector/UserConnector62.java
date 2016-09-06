@@ -12,6 +12,8 @@ import org.json.JSONObject;
  */
 public class UserConnector62 implements UserConnector {
 
+	private final UserService _userService;
+
 	public UserConnector62(Session session) {
 		_userService = new UserService(session);
 	}
@@ -44,6 +46,4 @@ public class UserConnector62 implements UserConnector {
 	public JSONObject updatePortrait(long userId, byte[] bitmap) throws Exception {
 		return _userService.updatePortrait(userId, bitmap);
 	}
-
-	private final UserService _userService;
 }

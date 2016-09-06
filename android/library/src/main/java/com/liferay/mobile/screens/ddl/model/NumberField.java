@@ -27,10 +27,6 @@ import java.util.Map;
  */
 public class NumberField extends Field<Number> {
 
-	public NumberField() {
-		super();
-	}
-
 	public static final Parcelable.ClassLoaderCreator<NumberField> CREATOR =
 		new Parcelable.ClassLoaderCreator<NumberField>() {
 
@@ -47,6 +43,12 @@ public class NumberField extends Field<Number> {
 				return new NumberField[size];
 			}
 		};
+	private NumberFormat _labelFormatter;
+	private NumberFormat _defaultLabelFormatter;
+
+	public NumberField() {
+		super();
+	}
 
 	public NumberField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
@@ -92,8 +94,5 @@ public class NumberField extends Field<Number> {
 		}
 		return _labelFormatter;
 	}
-
-	private NumberFormat _labelFormatter;
-	private NumberFormat _defaultLabelFormatter;
 
 }

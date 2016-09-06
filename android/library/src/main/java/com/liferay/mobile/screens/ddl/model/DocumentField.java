@@ -14,10 +14,6 @@ import java.util.Map;
  */
 public class DocumentField extends Field<DocumentFile> {
 
-	public DocumentField() {
-		super();
-	}
-
 	public static final Parcelable.ClassLoaderCreator<DocumentField> CREATOR =
 		new Parcelable.ClassLoaderCreator<DocumentField>() {
 
@@ -34,12 +30,10 @@ public class DocumentField extends Field<DocumentFile> {
 				return new DocumentField[size];
 			}
 		};
+	private State _state = State.IDLE;
 
-	private enum State {
-		IDLE,
-		UPLOADING,
-		UPLOADED,
-		FAILED
+	public DocumentField() {
+		super();
 	}
 
 	public DocumentField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
@@ -152,6 +146,11 @@ public class DocumentField extends Field<DocumentFile> {
 		return valid;
 	}
 
-	private State _state = State.IDLE;
+	private enum State {
+		IDLE,
+		UPLOADING,
+		UPLOADED,
+		FAILED
+	}
 
 }

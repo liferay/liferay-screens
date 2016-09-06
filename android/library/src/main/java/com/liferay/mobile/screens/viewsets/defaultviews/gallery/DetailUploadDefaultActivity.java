@@ -16,6 +16,12 @@ import java.io.File;
  */
 public class DetailUploadDefaultActivity extends BaseDetailUploadActivity implements View.OnClickListener {
 
+	private int screenletId;
+	private String picturePath;
+	private EditText editTitle;
+	private EditText editDescription;
+	private ImageView imageView;
+
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -57,11 +63,4 @@ public class DetailUploadDefaultActivity extends BaseDetailUploadActivity implem
 			finish();
 		}
 	}
-
-	private int screenletId;
-	private String picturePath;
-
-	private EditText editTitle;
-	private EditText editDescription;
-	private ImageView imageView;
 }

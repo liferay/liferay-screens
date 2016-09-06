@@ -23,6 +23,11 @@ import android.content.ContextWrapper;
  */
 public class LiferayScreensContext {
 
+	private static Context context;
+
+	private LiferayScreensContext() {
+	}
+
 	public static void init(Context context) {
 		LiferayScreensContext.context = context.getApplicationContext();
 
@@ -53,9 +58,4 @@ public class LiferayScreensContext {
 			return (Activity) ((ContextWrapper) context).getBaseContext();
 		}
 	}
-
-	private LiferayScreensContext() {
-	}
-
-	private static Context context;
 }

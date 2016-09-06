@@ -39,6 +39,13 @@ public class WebContentDisplayScreenlet
 
 	public static final String WEB_CONTENT_BY_ARTICLE_ID = "WEB_CONTENT_BY_ARTICLE_ID";
 	public static final String WEB_CONTENT_WITH_STRUCTURE = "WEB_CONTENT_WITH_STRUCTURE";
+	private Long _templateId;
+	private String _articleId;
+	private Long _structureId;
+	private boolean _autoLoad;
+	private boolean _javascriptEnabled;
+	private String _labelFields;
+	private WebContentDisplayListener _listener;
 
 	public WebContentDisplayScreenlet(Context context) {
 		super(context);
@@ -213,12 +220,4 @@ public class WebContentDisplayScreenlet
 			autoLoad();
 		}
 	}
-
-	private Long _templateId;
-	private String _articleId;
-	private Long _structureId;
-	private boolean _autoLoad;
-	private boolean _javascriptEnabled;
-	private String _labelFields;
-	private WebContentDisplayListener _listener;
 }

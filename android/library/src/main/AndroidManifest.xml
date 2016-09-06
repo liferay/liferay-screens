@@ -9,7 +9,8 @@
 		<service android:name=".userportrait.interactor.upload.UserPortraitService"/>
 		<service android:name=".gallery.interactor.upload.GalleryUploadService"/>
 
-		<service android:name=".dlfile.display.DownloadService" />
+		<service android:name=".dlfile.display.DownloadService"/>
+
 		<activity
 			android:name=".base.MediaStoreRequestShadowActivity"
 			android:theme="@android:style/Theme.Translucent.NoTitleBar"/>

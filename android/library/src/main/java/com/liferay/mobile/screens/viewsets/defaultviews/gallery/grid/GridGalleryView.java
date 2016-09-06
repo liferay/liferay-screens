@@ -16,6 +16,7 @@ public class GridGalleryView
 	extends BaseGalleryView<GridGalleryAdapter.GridGalleryViewHolder, GridGalleryAdapter>
 	implements View.OnClickListener {
 
+	private static final int DEFAULT_COLS = 3;
 	public int columnsSize = DEFAULT_COLS;
 
 	public GridGalleryView(Context context) {
@@ -58,7 +59,6 @@ public class GridGalleryView
 		return R.layout.list_item_progress_empty;
 	}
 
-
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
@@ -72,5 +72,4 @@ public class GridGalleryView
 		int _imagesSpacing = 3;
 		return new GridDividerItemDecoration(_imagesSpacing);
 	}
-	private static final int DEFAULT_COLS = 3;
 }

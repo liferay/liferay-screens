@@ -10,6 +10,8 @@ import org.json.JSONObject;
  * @author Javier Gamarra
  */
 public class DLAppConnector70 implements DLAppConnector {
+	private final DLAppService _dlAppService;
+
 	public DLAppConnector70(Session session) {
 		_dlAppService = new DLAppService(session);
 	}
@@ -18,6 +20,4 @@ public class DLAppConnector70 implements DLAppConnector {
 	public JSONObject addFileEntry(Long repositoryId, Long folderId, String name, String mimeType, String fileName, String s, String s1, byte[] bytes, JSONObjectWrapper serviceContextWrapper) throws Exception {
 		return _dlAppService.addFileEntry(repositoryId, folderId, name, mimeType, fileName, s, s1, bytes, serviceContextWrapper);
 	}
-
-	private final DLAppService _dlAppService;
 }

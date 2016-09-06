@@ -43,42 +43,6 @@ public class UserPortraitService extends IntentService {
 		super(UserPortraitService.class.getCanonicalName());
 	}
 
-	@Override
-	public void onHandleIntent(Intent intent) {
-		uploadFromIntent(intent);
-	}
-
-	public void uploadFromIntent(Intent intent) {
-		String picturePath = intent.getStringExtra("picturePath");
-		long groupId = intent.getLongExtra("groupId", 0L);
-		long userId = intent.getLongExtra("userId", 0L);
-		Locale locale = (Locale) intent.getSerializableExtra("locale");
-		int targetScreenletId = intent.getIntExtra("targetScreenletId", 0);
-		String actionName = intent.getStringExtra("actionName");
-
-		try {
-			JSONObject jsonObject = uploadUserPortrait(userId, picturePath);
-			UserPortraitUploadEvent event = new UserPortraitUploadEvent(picturePath, jsonObject);
-			event.setPicturePath(picturePath);
-			decorateEvent(event, groupId, userId, locale, targetScreenletId, actionName);
-			EventBusUtil.post(event);
-		} catch (Exception e) {
-			UserPortraitUploadEvent event = new UserPortraitUploadEvent(e);
-			event.setPicturePath(picturePath);
-			decorateEvent(event, groupId, userId, locale, targetScreenletId, actionName);
-			EventBusUtil.post(event);
-		}
-	}
-
-	public JSONObject uploadUserPortrait(long userId, String picturePath) throws Exception {
-		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setConnectionTimeout(CONNECTION_TIMEOUT);
-		UserConnector userService = ServiceProvider.getInstance().getUserConnector(session);
-		byte[] decodeSampledBitmapFromResource =
-			decodeSampledBitmapFromResource(picturePath, PORTRAIT_SIZE, PORTRAIT_SIZE);
-		return userService.updatePortrait(userId, decodeSampledBitmapFromResource);
-	}
-
 	private static Bitmap rotateImage(Bitmap source, float angle) {
 		Matrix matrix = new Matrix();
 		matrix.postRotate(angle);
@@ -134,6 +98,42 @@ public class UserPortraitService extends IntentService {
 			default:
 				return bitmap;
 		}
+	}
+
+	@Override
+	public void onHandleIntent(Intent intent) {
+		uploadFromIntent(intent);
+	}
+
+	public void uploadFromIntent(Intent intent) {
+		String picturePath = intent.getStringExtra("picturePath");
+		long groupId = intent.getLongExtra("groupId", 0L);
+		long userId = intent.getLongExtra("userId", 0L);
+		Locale locale = (Locale) intent.getSerializableExtra("locale");
+		int targetScreenletId = intent.getIntExtra("targetScreenletId", 0);
+		String actionName = intent.getStringExtra("actionName");
+
+		try {
+			JSONObject jsonObject = uploadUserPortrait(userId, picturePath);
+			UserPortraitUploadEvent event = new UserPortraitUploadEvent(picturePath, jsonObject);
+			event.setPicturePath(picturePath);
+			decorateEvent(event, groupId, userId, locale, targetScreenletId, actionName);
+			EventBusUtil.post(event);
+		} catch (Exception e) {
+			UserPortraitUploadEvent event = new UserPortraitUploadEvent(e);
+			event.setPicturePath(picturePath);
+			decorateEvent(event, groupId, userId, locale, targetScreenletId, actionName);
+			EventBusUtil.post(event);
+		}
+	}
+
+	public JSONObject uploadUserPortrait(long userId, String picturePath) throws Exception {
+		Session session = SessionContext.createSessionFromCurrentSession();
+		session.setConnectionTimeout(CONNECTION_TIMEOUT);
+		UserConnector userService = ServiceProvider.getInstance().getUserConnector(session);
+		byte[] decodeSampledBitmapFromResource =
+			decodeSampledBitmapFromResource(picturePath, PORTRAIT_SIZE, PORTRAIT_SIZE);
+		return userService.updatePortrait(userId, decodeSampledBitmapFromResource);
 	}
 
 	private void decorateEvent(OfflineEventNew event, long groupId, long userId, Locale locale, int targetScreenletId,

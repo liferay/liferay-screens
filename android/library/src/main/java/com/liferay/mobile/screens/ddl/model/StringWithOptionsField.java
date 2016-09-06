@@ -27,10 +27,6 @@ import java.util.Map;
  */
 public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsField.Option>> {
 
-	public StringWithOptionsField() {
-		super();
-	}
-
 	public static final Parcelable.ClassLoaderCreator<StringWithOptionsField> CREATOR =
 		new Parcelable.ClassLoaderCreator<StringWithOptionsField>() {
 
@@ -47,6 +43,12 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 				return new StringWithOptionsField[size];
 			}
 		};
+	private ArrayList<Option> _availableOptions;
+	private boolean _multiple;
+
+	public StringWithOptionsField() {
+		super();
+	}
 
 	public StringWithOptionsField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
@@ -253,18 +255,14 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 		return null;
 	}
 
-	private ArrayList<Option> _availableOptions;
-	private boolean _multiple;
-
 	public static class Option implements Serializable {
-
-		public Option() {
-			super();
-		}
 
 		public String label;
 		public String name;
 		public String value;
+		public Option() {
+			super();
+		}
 
 		public Option(Map<String, String> optionMap) {
 			this(optionMap.get("label"), optionMap.get("name"), optionMap.get("value"));
