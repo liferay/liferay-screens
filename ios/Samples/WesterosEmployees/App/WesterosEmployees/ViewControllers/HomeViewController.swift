@@ -16,10 +16,10 @@ import LiferayScreens
 
 public var tourCompleted = false
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, AssetDisplayScreenletDelegate {
 
 	@IBOutlet weak var cardDeck: CardDeckView?
-	@IBOutlet weak var userProfileView: UIView?
+	@IBOutlet weak var userProfileView: AssetDisplayScreenlet?
 
 	var documentationViewController: DocumentationViewController?
 	var blogsViewController: BlogsViewController?
@@ -42,6 +42,12 @@ class HomeViewController: UIViewController {
 		super.viewWillAppear(animated)
 		let isLoggedIn = SessionContext.isLoggedIn
 		if isLoggedIn {
+			self.userProfileView?.delegate = self
+
+			userProfileView?.className = AssetClasses.getClassName(AssetClassNameKey_User)!
+			userProfileView?.classPK = SessionContext.currentContext!.userId!
+			userProfileView?.load()
+
 			UIView.animateWithDuration(1.5) {
 				self.cardDeck?.alpha = 1.0
 			}
@@ -65,5 +71,17 @@ class HomeViewController: UIViewController {
 		}
 	}
 
+	func screenlet(screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView? {
+		if let type = asset.attributes["object"]?.allKeys.first as? String {
+			if type == "user" {
+				let vc = UserDisplayViewController(nibName: "UserDisplayViewController", bundle: nil)
+				self.addChildViewController(vc)
+				screenlet.addSubview(vc.view)
+				vc.view.frame = screenlet.bounds
+				vc.user = User(attributes: asset.attributes)
+			}
+		}
+		return nil
+	}
 }
 
