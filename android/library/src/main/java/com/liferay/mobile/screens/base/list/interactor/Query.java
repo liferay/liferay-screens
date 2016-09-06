@@ -62,7 +62,7 @@ public class Query implements Serializable {
 	}
 
 	public JSONObjectWrapper getComparatorJSONWrapper() throws JSONException {
-		return comparator == null ? null : new JSONObjectWrapper(new JSONObject(comparator));
+		return comparator == null ? null : new JSONObjectWrapper(comparator, new JSONObject());
 	}
 
 	public void setComparator(String comparator) {
