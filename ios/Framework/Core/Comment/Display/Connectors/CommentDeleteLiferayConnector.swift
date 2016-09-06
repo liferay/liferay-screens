@@ -40,7 +40,12 @@ public class Liferay70CommentDeleteConnector: CommentDeleteLiferayConnector {
 
 	override public func doRun(session session: LRSession) {
 		let service = LRCommentmanagerjsonwsService_v7(session: session)
-		service.deleteCommentWithCommentId(commentId, error: &lastError)
+
+		var error: NSError? = nil
+
+		service.deleteCommentWithCommentId(commentId, error: &error)
+
+		lastError = error
 	}
 
 }
