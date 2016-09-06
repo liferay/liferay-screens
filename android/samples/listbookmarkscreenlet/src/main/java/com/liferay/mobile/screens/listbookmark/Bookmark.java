@@ -20,6 +20,8 @@ public class Bookmark implements Parcelable {
 			return new Bookmark[size];
 		}
 	};
+	private String _url;
+	private Map _values;
 
 	public Bookmark() {
 		super();
@@ -55,7 +57,4 @@ public class Bookmark implements Parcelable {
 	public void setValues(Map values) {
 		_values = values;
 	}
-
-	private String _url;
-	private Map _values;
 }

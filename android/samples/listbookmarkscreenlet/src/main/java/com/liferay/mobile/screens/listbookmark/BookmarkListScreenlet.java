@@ -12,6 +12,8 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
  */
 public class BookmarkListScreenlet extends BaseListScreenlet<Bookmark, BookmarkListInteractorImpl> {
 
+	private long _folderId;
+
 	public BookmarkListScreenlet(Context context) {
 		super(context);
 	}
@@ -56,6 +58,4 @@ public class BookmarkListScreenlet extends BaseListScreenlet<Bookmark, BookmarkL
 	protected BookmarkListInteractorImpl createInteractor(String actionName) {
 		return new BookmarkListInteractorImpl();
 	}
-
-	private long _folderId;
 }

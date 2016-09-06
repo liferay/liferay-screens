@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.listbookmark;
 
 import android.content.Context;
 import android.util.AttributeSet;
-
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 
 /**
