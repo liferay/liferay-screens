@@ -41,8 +41,6 @@ public class MainActivity extends DeckActivity implements LoginListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		setTransparentMenuBar();
-
 		findViews();
 	}
 
@@ -51,18 +49,7 @@ public class MainActivity extends DeckActivity implements LoginListener {
 		loginScreenlet.setListener(this);
 	}
 
-	private void setTransparentMenuBar() {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			setStatusBar();
-		}
-	}
 
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	private void setStatusBar() {
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-		getWindow().setStatusBarColor(getResources().getColor(R.color.background_gray_westeros));
-	}
 
 	@Override
 	public void onLoginSuccess(User user) {
