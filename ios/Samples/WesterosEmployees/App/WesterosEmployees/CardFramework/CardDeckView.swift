@@ -21,7 +21,7 @@ import PureLayout
 ///
 ///    cardDeck.addCards(["Top card", "Middle card", "Bottom card"])
 ///
-public class CardDeckView: UIView {
+public class CardDeckView: UIView, CardDelegate {
 
 	//Default configuration constants
 	public static let DefaultBackgroundSpacing: CGFloat = 70
@@ -141,6 +141,8 @@ public class CardDeckView: UIView {
 		card.initializeView(backgroundColor: Resources.backgroundColorForIndex(index),
 		    buttonTitle: title, buttonFontColor: Resources.textColorForIndex(index),
 			arrowImage: Resources.arrowImageForIndex(index))
+		card.delegate = self
+
 		card.button.addTarget(self, action: #selector(CardDeckView.cardTouchUpInside(_:)),
 			forControlEvents: .TouchUpInside)
 
@@ -152,5 +154,22 @@ public class CardDeckView: UIView {
 	/// - returns: z position for this index
 	public func zPositionForIndex(index: Int) -> CGFloat {
 		return CardDeckView.DefaultZPositionMultiplier * (CGFloat(index) + 1)
+	}
+
+
+	//MARK: CardDelegate
+
+	public func card(card: CardView, titleForPage page: Int) -> String? {
+		if let index = cards.indexOf(card) {
+		}
+
+		return nil
+	}
+
+	public func card(card: CardView, onMissingPage page: Int) -> Bool {
+		if let index = cards.indexOf(card) {
+		}
+
+		return false
 	}
 }
