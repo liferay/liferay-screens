@@ -142,6 +142,28 @@ public class CardView: UIView {
 		scrollView.layoutIfNeeded()
 	}
 
+	///Moves the content inside the scrollview to the right. If no content found, it will try
+	///to add it via delegate
+	public func moveRight() {
+		let width = scrollView.frame.size.width
+		let currentPage = lround(Double(scrollView.contentOffset.x) / Double(width))
+		let nextPage = currentPage + 1
+
+		if nextPage < scrollContentView.subviews.count ||
+				delegate?.card?(self, onMissingPage: nextPage) ?? false {
+			let rect = CGRectMake(width * CGFloat(nextPage), y: 0, size: scrollView.frame.size)
+			scrollView.scrollRectToVisible(rect, animated: true)
+
+			changeButtonText(self.delegate?.card?(self, titleForPage: nextPage))
+		}
+	}
+
+	///Change card button text title
+	/// - parameter text: new text for the button
+	public func changeButtonText(text: String?) {
+		button.setTitle(text?.uppercaseString, forState: .Normal)
+	}
+
 
 	//MARK: View methods
 
@@ -166,8 +188,8 @@ public class CardView: UIView {
 
 		//Initialize scroll view
 		scrollView.bounces = true
-		scrollView.scrollEnabled = true
-		scrollView.pagingEnabled = true
+		scrollView.scrollEnabled = false
+		scrollView.pagingEnabled = false
 
 		setButton(buttonTitle, fontColor: fontColor)
 		setArrowImage(image)
@@ -206,7 +228,7 @@ public class CardView: UIView {
 	///    - title: title for the button
 	///    - fontColor: color for the title
 	public func setButton(title: String?, fontColor: UIColor) {
-		self.button.setTitle(title?.uppercaseString, forState: .Normal)
+		changeButtonText(title)
 		self.button.titleLabel?.font = UIFont(name: CardView.DefaultFontName,
 		                                      size: CardView.DefaultFontSize)
 		self.button.setTitleColor(fontColor, forState: .Normal)
