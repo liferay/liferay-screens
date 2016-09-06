@@ -55,6 +55,28 @@ public class CardPosition: NSObject {
 	                       buttonImageForCardIndex index: Int) -> UIImage?
 	
 }
+
+///Data source for card decks
+@objc public protocol CardDeckDataSource : NSObjectProtocol {
+
+	///Get the number of cards in this deck
+	func numberOfCardsIn(cardDeck: CardDeckView) -> Int
+
+	///Get the CardViewController for a position
+	/// - parameter controllerForCard position: position for the controller
+	/// - returns: controller for given position
+	func cardDeck(cardDeck: CardDeckView,
+	              controllerForCard position: CardPosition) -> CardViewController?
+
+	///Customize visual aspects of the card
+	/// - parameters:
+	///    - customizeCard card: card to be customized
+	///    - atIndex index: index of the card
+	optional func cardDeck(cardDeck: CardDeckView,
+	              customizeCard card: CardView, atIndex index: Int)
+	
+}
+
 ///View used to hold an array of cards. This class will auto arrange them in screen and handle
 ///its states.
 ///
@@ -76,6 +98,8 @@ public class CardDeckView: UIView, CardDelegate {
 	public var delegate: CardDeckDelegate?
 
 	//MARK: Public methods
+	//Data source for providing card content
+	public var dataSource: CardDeckDataSource? {
 
 	///Creates an array of cards usign the received arguments as titles.
 	/// - parameter titles: array of titles for the cards
@@ -228,6 +252,10 @@ public class CardDeckView: UIView, CardDelegate {
 
 	public func card(card: CardView, onMissingPage page: Int) -> Bool {
 		if let index = cards.indexOf(card) {
+			let cardPosition = CardPosition(card: index, page: page)
+			let controller = dataSource?.cardDeck(self, controllerForCard: cardPosition)
+
+			return controller != nil
 		}
 
 		return false
