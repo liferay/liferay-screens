@@ -14,25 +14,14 @@
 
 package com.liferay.mobile.screens.context;
 
-import android.content.Context;
 import android.content.res.Resources;
-import android.provider.ContactsContract;
-import android.widget.ImageView;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
 import com.squareup.okhttp.Cache;
 import com.squareup.okhttp.CacheControl;
 import com.squareup.okhttp.Interceptor;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Downloader;
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.OkHttpDownloader;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.RequestCreator;
 import java.io.IOException;
 
 /**
