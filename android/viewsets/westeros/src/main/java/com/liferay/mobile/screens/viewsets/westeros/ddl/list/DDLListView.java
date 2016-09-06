@@ -17,7 +17,6 @@ package com.liferay.mobile.screens.viewsets.westeros.ddl.list;
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
-
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 import com.liferay.mobile.screens.ddl.list.view.DDLListViewModel;
@@ -29,9 +28,10 @@ import com.liferay.mobile.screens.viewsets.westeros.R;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListView
-	extends BaseListScreenletView<Record, DDLListAdapter.SwipeActionsViewHolder, DDLListAdapter>
+public class DDLListView extends BaseListScreenletView<Record, DDLListAdapter.SwipeActionsViewHolder, DDLListAdapter>
 	implements DDLListViewModel, SwipeRefreshLayout.OnRefreshListener {
+
+	private SwipeRefreshLayout _swipeRefreshLayout;
 
 	public DDLListView(Context context) {
 		super(context);
@@ -73,7 +73,4 @@ public class DDLListView
 	protected DividerItemDecoration getDividerDecoration() {
 		return null;
 	}
-
-	private SwipeRefreshLayout _swipeRefreshLayout;
-
 }

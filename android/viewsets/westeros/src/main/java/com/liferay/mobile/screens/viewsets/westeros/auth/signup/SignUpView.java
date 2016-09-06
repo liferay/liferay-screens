@@ -36,6 +36,11 @@ import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
  */
 public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews.auth.signup.SignUpView {
 
+	private TextView _firstNameValidation;
+	private TextView _lastNameValidation;
+	private TextView _emailAddressValidation;
+	private TextView _passwordValidation;
+
 	public SignUpView(Context context) {
 		super(context);
 	}
@@ -127,9 +132,4 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 
 		textView.setText(ssb, TextView.BufferType.SPANNABLE);
 	}
-
-	private TextView _firstNameValidation;
-	private TextView _lastNameValidation;
-	private TextView _emailAddressValidation;
-	private TextView _passwordValidation;
 }

@@ -18,13 +18,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.util.AttributeSet;
 import android.view.View;
-
 import com.liferay.mobile.screens.viewsets.westeros.R;
 
 /**
  * @author Jose Manuel Navarro
  */
-public class DDLFieldSelectView extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldSelectView implements DialogInterface.OnClickListener {
+public class DDLFieldSelectView
+	extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldSelectView
+	implements DialogInterface.OnClickListener {
 
 	public DDLFieldSelectView(Context context) {
 		super(context);
