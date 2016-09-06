@@ -17,15 +17,7 @@ class GalleryViewController: CardViewController {
 
 	//MARK: Init methods
 
-	override init(card: CardView, nibName: String) {
-		super.init(card: card, nibName: nibName)
-	}
-
-	convenience init(card: CardView) {
-		self.init(card: card, nibName: "GalleryViewController")
-	}
-
-	required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
+	convenience init() {
+		self.init(nibName: "GalleryViewController", bundle: nil)
 	}
 }

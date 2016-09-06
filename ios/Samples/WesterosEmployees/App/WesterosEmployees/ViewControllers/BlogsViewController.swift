@@ -17,15 +17,7 @@ class BlogsViewController: CardViewController {
 
 	//MARK: Init methods
 
-	override init(card: CardView, nibName: String) {
-		super.init(card: card, nibName: nibName)
-	}
-
-	convenience init(card: CardView) {
-		self.init(card: card, nibName: "BlogsViewController")
-	}
-
-	required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
+	convenience init() {
+		self.init(nibName: "BlogsViewController", bundle: nil)
 	}
 }
