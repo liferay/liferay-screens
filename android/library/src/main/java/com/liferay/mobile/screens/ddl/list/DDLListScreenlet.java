@@ -57,7 +57,9 @@ public class DDLListScreenlet extends BaseListScreenlet<Record, DDLListInteracto
 
 	@Override
 	public void error(Exception e, String userAction) {
-
+		if (getListener() != null) {
+			getListener().error(e, userAction);
+		}
 	}
 
 	@Override
