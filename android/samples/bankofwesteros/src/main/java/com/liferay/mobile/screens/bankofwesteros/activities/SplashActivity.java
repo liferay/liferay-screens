@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-
 import com.liferay.mobile.screens.bankofwesteros.R;
 
 import static com.liferay.mobile.screens.bankofwesteros.activities.TourActivity.TOUR_VISITED;
@@ -15,6 +14,8 @@ import static com.liferay.mobile.screens.bankofwesteros.activities.TourActivity.
  * @author Javier Gamarra
  */
 public class SplashActivity extends Activity {
+
+	private static final int DELAY_MILLIS = 2000;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,15 +31,11 @@ public class SplashActivity extends Activity {
 				startActivity(new Intent(SplashActivity.this, destination));
 			}
 		}, DELAY_MILLIS);
-
 	}
 
 	private Class getDestinationActivity() {
 		SharedPreferences preferences = getSharedPreferences(WESTEROS_PREFERENCES, MODE_PRIVATE);
-		boolean tourVisited = preferences.contains(TOUR_VISITED) &&
-			preferences.getBoolean(TOUR_VISITED, false);
+		boolean tourVisited = preferences.contains(TOUR_VISITED) && preferences.getBoolean(TOUR_VISITED, false);
 		return tourVisited ? MainActivity.class : TourActivity.class;
 	}
-
-	private static final int DELAY_MILLIS = 2000;
 }

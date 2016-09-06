@@ -15,7 +15,6 @@ import android.text.Spanned;
 import android.text.style.ImageSpan;
 import android.view.View;
 import android.widget.Button;
-
 import com.liferay.mobile.screens.bankofwesteros.R;
 import com.liferay.mobile.screens.bankofwesteros.fragments.TourPageFragment;
 
@@ -26,6 +25,9 @@ public class TourActivity extends FragmentActivity implements View.OnClickListen
 
 	public static final String TOUR_VISITED = "TOUR_VISITED";
 	public static final String WESTEROS_PREFERENCES = "WESTEROS_PREFERENCES";
+	private static final int NUM_PAGES = 3;
+	private ViewPager _viewPager;
+	private Button _tourButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +51,7 @@ public class TourActivity extends FragmentActivity implements View.OnClickListen
 			preferences.edit().putBoolean(TOUR_VISITED, true).apply();
 
 			startActivity(new Intent(this, MainActivity.class));
-		}
-		else {
+		} else {
 			_viewPager.setCurrentItem(_viewPager.getCurrentItem() + 1, true);
 		}
 	}
@@ -59,8 +60,7 @@ public class TourActivity extends FragmentActivity implements View.OnClickListen
 	public void onBackPressed() {
 		if (_viewPager.getCurrentItem() == 0) {
 			super.onBackPressed();
-		}
-		else {
+		} else {
 			_viewPager.setCurrentItem(_viewPager.getCurrentItem() - 1);
 		}
 	}
@@ -82,10 +82,6 @@ public class TourActivity extends FragmentActivity implements View.OnClickListen
 
 	}
 
-	private ViewPager _viewPager;
-	private Button _tourButton;
-	private static final int NUM_PAGES = 3;
-
 	private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
 		public ScreenSlidePagerAdapter(FragmentManager fm) {
 			super(fm);
@@ -104,7 +100,8 @@ public class TourActivity extends FragmentActivity implements View.OnClickListen
 		@Override
 		public CharSequence getPageTitle(int position) {
 
-			int drawableId = _viewPager.getCurrentItem() == position ? R.drawable.pagination_on : R.drawable.pagination_off;
+			int drawableId =
+				_viewPager.getCurrentItem() == position ? R.drawable.pagination_on : R.drawable.pagination_off;
 			Drawable drawable = ResourcesCompat.getDrawable(getResources(), drawableId, getTheme());
 			drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 			ImageSpan imageSpan = new ImageSpan(drawable, ImageSpan.ALIGN_BOTTOM);
@@ -117,14 +114,11 @@ public class TourActivity extends FragmentActivity implements View.OnClickListen
 		private int getLayout(int position) {
 			if (position == 0) {
 				return R.layout.tour0;
-			}
-			else if (position == 1) {
+			} else if (position == 1) {
 				return R.layout.tour1;
-			}
-			else {
+			} else {
 				return R.layout.tour2;
 			}
 		}
 	}
-
 }

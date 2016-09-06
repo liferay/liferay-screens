@@ -22,6 +22,11 @@ import org.json.JSONObject;
  */
 public class AccountSettingsActivity extends Activity implements View.OnClickListener, UserPortraitListener {
 
+	private EditText _firstName;
+	private EditText _lastName;
+	private EditText _emailAddress;
+	private EditText _password;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -116,9 +121,4 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 		editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 		editText.setBackgroundResource(R.drawable.westeros_edit_text_selector);
 	}
-
-	private EditText _firstName;
-	private EditText _lastName;
-	private EditText _emailAddress;
-	private EditText _password;
 }

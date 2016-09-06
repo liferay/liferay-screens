@@ -27,8 +27,8 @@
 
 	<Button
 		android:id="@+id/tour_button"
-		style="@style/westeros_button"
 		android:text="@string/next"
+		style="@style/westeros_button"
 		/>
 
 </LinearLayout>

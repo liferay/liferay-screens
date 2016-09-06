@@ -32,6 +32,25 @@ import static android.view.View.VISIBLE;
 public abstract class CardActivity extends Activity implements View.OnClickListener {
 
 	public static final int TOP_POSITION = 18;
+	protected final Queue<Card> _cardHistory = Collections.asLifoQueue(new ArrayDeque<Card>());
+	protected int _maxWidth;
+	protected int _maxHeight;
+	protected int _card1RestPosition;
+	protected int _card1FoldedPosition;
+	protected int _card2FoldedPosition;
+	protected ViewGroup _card1;
+	protected ViewGroup _card2;
+	private int _cardHeight;
+	private ViewGroup _card1Subview1;
+	private ViewGroup _card1Subview2;
+	private ViewGroup _card2Subview1;
+	private ViewGroup _card2Subview2;
+	private ImageView _card1ToBackground;
+	private ImageView _card1ToFrontView;
+	private ImageView _card1SubViewToBackground;
+	private ImageView _card2ToCard1;
+	private ImageView _card2ToFrontView;
+	private ImageView _card2SubViewToCard1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -335,28 +354,4 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 		//we have to remove from the queue the last back movement
 		_cardHistory.poll();
 	}
-
-	protected int _maxWidth;
-	protected int _maxHeight;
-	protected int _card1RestPosition;
-	protected int _card1FoldedPosition;
-	protected int _card2FoldedPosition;
-
-	protected ViewGroup _card1;
-	protected ViewGroup _card2;
-
-	protected final Queue<Card> _cardHistory = Collections.asLifoQueue(new ArrayDeque<Card>());
-
-	private int _cardHeight;
-	private ViewGroup _card1Subview1;
-	private ViewGroup _card1Subview2;
-	private ViewGroup _card2Subview1;
-	private ViewGroup _card2Subview2;
-
-	private ImageView _card1ToBackground;
-	private ImageView _card1ToFrontView;
-	private ImageView _card1SubViewToBackground;
-	private ImageView _card2ToCard1;
-	private ImageView _card2ToFrontView;
-	private ImageView _card2SubViewToCard1;
 }

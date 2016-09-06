@@ -42,6 +42,15 @@ import rx.functions.Action1;
 public class IssuesActivity extends CardActivity
 	implements View.OnClickListener, DDLFormListener, BaseListListener<Record>, View.OnTouchListener {
 
+	private DDLFormScreenlet _ddlFormScreenlet;
+	private DDLListScreenlet _ddlListScreenlet;
+	private Record _entry;
+	private View _backgroundCard;
+	private ImageView _card1ToBackground;
+	private ImageView _card1ToBackgroundMenu;
+	private TextView _reportIssueTitle;
+	private Button _sendButton;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -321,15 +330,4 @@ public class IssuesActivity extends CardActivity
 				}
 			});
 	}
-
-	private DDLFormScreenlet _ddlFormScreenlet;
-	private DDLListScreenlet _ddlListScreenlet;
-
-	private Record _entry;
-
-	private View _backgroundCard;
-	private ImageView _card1ToBackground;
-	private ImageView _card1ToBackgroundMenu;
-	private TextView _reportIssueTitle;
-	private Button _sendButton;
 }
