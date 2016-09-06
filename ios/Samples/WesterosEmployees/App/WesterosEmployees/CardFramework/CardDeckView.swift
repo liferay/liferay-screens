@@ -14,6 +14,47 @@
 import UIKit
 import PureLayout
 
+
+///Indicates the position for a page inside a card
+public class CardPosition: NSObject {
+	let card: Int
+	let page: Int
+
+	init (card: Int, page: Int) {
+		self.card = card
+		self.page = page
+	}
+}
+
+
+///Delegate for customizing cards inside a CardDeck
+@objc public protocol CardDeckDelegate : NSObjectProtocol {
+
+	///Get the title for a page in a card
+	/// - parameter titleForCard position: position for the title
+	/// - returns: title for the page
+	optional func cardDeck(cardDeck: CardDeckView,
+	                       titleForCard position: CardPosition) -> String?
+
+	///Get the background color for a card
+	/// - parameter colorForCardIndex index: position of the card
+	/// - returns: background color for the card
+	optional func cardDeck(cardDeck: CardDeckView,
+	                       colorForCardIndex index: Int) -> UIColor?
+
+	///Get the button text color for a card
+	/// - parameter colorForButtonIndex index: position of the card
+	/// - returns: color for the button text of the card
+	optional func cardDeck(cardDeck: CardDeckView,
+	                       colorForButtonIndex index: Int) -> UIColor?
+
+	///Get the button image for a card
+	/// - parameter buttonImageForCardIndex index: position of the card
+	/// - returns: image for the button of the card
+	optional func cardDeck(cardDeck: CardDeckView,
+	                       buttonImageForCardIndex index: Int) -> UIImage?
+	
+}
 ///View used to hold an array of cards. This class will auto arrange them in screen and handle
 ///its states.
 ///
@@ -31,6 +72,8 @@ public class CardDeckView: UIView, CardDelegate {
 	public var cards: [CardView] {
 		return self.subviews.filter{$0 is CardView}.map{$0 as! CardView}
 	}
+	//Delegate for customizing cards for this deck
+	public var delegate: CardDeckDelegate?
 
 	//MARK: Public methods
 
@@ -138,9 +181,24 @@ public class CardDeckView: UIView, CardDelegate {
 		//Create Card
 		let card = CardView.newAutoLayoutView()
 		card.layer.zPosition = zPositionForIndex(index)
-		card.initializeView(backgroundColor: Resources.backgroundColorForIndex(index),
-		    buttonTitle: title, buttonFontColor: Resources.textColorForIndex(index),
-			arrowImage: Resources.arrowImageForIndex(index))
+
+		let cardBackgroundColor = self.delegate?.cardDeck?(self, colorForCardIndex: index)
+			?? DefaultResources.backgroundColorForIndex(index)
+
+		let buttonFontColor = self.delegate?.cardDeck?(self, colorForButtonIndex: index)
+			?? DefaultResources.textColorForIndex(index)
+
+		let arrowImage = self.delegate?.cardDeck?(self, buttonImageForCardIndex: index)
+			?? DefaultResources.arrowImageForIndex(index)
+
+		let cardPosition = CardPosition(card: index, page: 0)
+
+		let title = self.delegate?.cardDeck?(self, titleForCard: cardPosition)
+
+		card.initializeView(backgroundColor: cardBackgroundColor,
+		    buttonTitle: title, buttonFontColor: buttonFontColor,
+			buttonImage: arrowImage)
+
 		card.delegate = self
 
 		card.button.addTarget(self, action: #selector(CardDeckView.cardTouchUpInside(_:)),
@@ -161,6 +219,8 @@ public class CardDeckView: UIView, CardDelegate {
 
 	public func card(card: CardView, titleForPage page: Int) -> String? {
 		if let index = cards.indexOf(card) {
+			let cardPosition = CardPosition(card: index, page: page)
+			return self.delegate?.cardDeck?(self, titleForCard: cardPosition)
 		}
 
 		return nil
