@@ -1,14 +1,19 @@
 package com.liferay.mobile.screens.westerosemployees.Views;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
+import android.graphics.Rect;
 import android.os.Build;
+import android.transition.TransitionManager;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.Window;
 import android.widget.FrameLayout;
 import com.liferay.mobile.screens.westerosemployees.utils.CardState;
 import java.util.ArrayList;
@@ -69,6 +74,7 @@ public class Card extends FrameLayout {
 					maxHeight = getHeight();
 
 					takeSubviewsOffScreen();
+					setNormalModeHeight();
 				}
 
 				@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -101,6 +107,7 @@ public class Card extends FrameLayout {
 				break;
 			case NORMAL:
 				showArrows(true);
+				setNormalModeHeight();
 				animate().setDuration(DURATION_MILLIS).scaleX(1f);
 				animate().setDuration(DURATION_MILLIS).translationY(normalY);
 				break;
@@ -109,6 +116,7 @@ public class Card extends FrameLayout {
 				animate().setDuration(DURATION_MILLIS).translationY(minimizedPosition);
 				break;
 			case MAXIMIZED:
+				setMaximizedModeHeight();
 				animate().setDuration(DURATION_MILLIS).translationY(0);
 				break;
 
@@ -152,6 +160,27 @@ public class Card extends FrameLayout {
 		}
 	}
 
+	protected void setMaximizedModeHeight() {
+		TransitionManager.beginDelayedTransition(this);
+		ViewGroup.LayoutParams params = getLayoutParams();
+		params.height = maxHeight;
+		setLayoutParams(params);
+	}
+
+	protected void setNormalModeHeight() {
+		TransitionManager.beginDelayedTransition(this);
+		if (statusBarHeight == 0) {
+			Rect rectangle = new Rect();
+			Window window = ((Activity) getContext()).getWindow();
+			window.getDecorView().getWindowVisibleDisplayFrame(rectangle);
+			statusBarHeight = rectangle.top;
+		}
+
+		ViewGroup.LayoutParams params = getLayoutParams();
+		params.height = maxHeight - (maxHeight - minimizedPosition - convertDpToPx(CARD_SIZE) + statusBarHeight);
+		setLayoutParams(params);
+	}
+
 	public CardState getCardState() {
 		return cardState;
 	}
@@ -187,6 +216,7 @@ public class Card extends FrameLayout {
 		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
 	}
 
+	protected static int statusBarHeight;
 	protected List<View> arrows;
 	protected List<View> titles;
 	protected int index;
