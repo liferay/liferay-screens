@@ -19,6 +19,7 @@ class ForgotPasswordViewController: CardViewController,
 		ForgotPasswordScreenletDelegate,
 		KeyboardListener {
 
+
 	//MARK: Outlets
 	
 	@IBOutlet weak var forgotPasswordScreenlet: ForgotPasswordScreenlet?
@@ -26,16 +27,8 @@ class ForgotPasswordViewController: CardViewController,
 
 	//MARK: Init methods
 
-	override init(card: CardView, nibName: String) {
-		super.init(card: card, nibName: nibName)
-	}
-
-	convenience init(card: CardView) {
-		self.init(card: card, nibName: "ForgotPasswordViewController")
-	}
-
-	required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
+	convenience init() {
+		self.init(nibName: "ForgotPasswordViewController", bundle: nil)
 	}
 
 
