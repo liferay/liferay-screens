@@ -61,6 +61,14 @@
 		0B0A23A21D6B22EF0061B50D /* tour-step3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A23871D6B22EF0061B50D /* tour-step3.png */; };
 		0B0A23A31D6B22EF0061B50D /* tour-step3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A23881D6B22EF0061B50D /* tour-step3@2x.png */; };
 		0B0A23A41D6B22EF0061B50D /* tour-step3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A23891D6B22EF0061B50D /* tour-step3@3x.png */; };
+		0B282F121D7ED7BE0090F800 /* DocumentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B282F101D7ED7BE0090F800 /* DocumentationViewController.swift */; };
+		0B282F131D7ED7BE0090F800 /* DocumentationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B282F111D7ED7BE0090F800 /* DocumentationViewController.xib */; };
+		0B282F161D7ED9210090F800 /* BlogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B282F141D7ED9210090F800 /* BlogsViewController.swift */; };
+		0B282F171D7ED9210090F800 /* BlogsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B282F151D7ED9210090F800 /* BlogsViewController.xib */; };
+		0B282F1A1D7ED95A0090F800 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B282F181D7ED95A0090F800 /* GalleryViewController.swift */; };
+		0B282F1B1D7ED95A0090F800 /* GalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B282F191D7ED95A0090F800 /* GalleryViewController.xib */; };
+		0B282F1E1D7EE2570090F800 /* UserDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B282F1C1D7EE2570090F800 /* UserDisplayViewController.swift */; };
+		0B282F1F1D7EE2570090F800 /* UserDisplayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B282F1D1D7EE2570090F800 /* UserDisplayViewController.xib */; };
 		0B35AF6D1D6C359D002E3D2F /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B35AF6B1D6C359D002E3D2F /* Auth.storyboard */; };
 		0B35AF6F1D6C3614002E3D2F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35AF6E1D6C3614002E3D2F /* HomeViewController.swift */; };
 		0B35AF711D6C361C002E3D2F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35AF701D6C361C002E3D2F /* AuthViewController.swift */; };
@@ -134,6 +142,14 @@
 		0B0A23871D6B22EF0061B50D /* tour-step3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step3.png"; sourceTree = "<group>"; };
 		0B0A23881D6B22EF0061B50D /* tour-step3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step3@2x.png"; sourceTree = "<group>"; };
 		0B0A23891D6B22EF0061B50D /* tour-step3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step3@3x.png"; sourceTree = "<group>"; };
+		0B282F101D7ED7BE0090F800 /* DocumentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentationViewController.swift; sourceTree = "<group>"; };
+		0B282F111D7ED7BE0090F800 /* DocumentationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentationViewController.xib; sourceTree = "<group>"; };
+		0B282F141D7ED9210090F800 /* BlogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogsViewController.swift; sourceTree = "<group>"; };
+		0B282F151D7ED9210090F800 /* BlogsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BlogsViewController.xib; sourceTree = "<group>"; };
+		0B282F181D7ED95A0090F800 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		0B282F191D7ED95A0090F800 /* GalleryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryViewController.xib; sourceTree = "<group>"; };
+		0B282F1C1D7EE2570090F800 /* UserDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDisplayViewController.swift; sourceTree = "<group>"; };
+		0B282F1D1D7EE2570090F800 /* UserDisplayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDisplayViewController.xib; sourceTree = "<group>"; };
 		0B35AF6C1D6C359D002E3D2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Auth.storyboard; sourceTree = "<group>"; };
 		0B35AF6E1D6C3614002E3D2F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0B35AF701D6C361C002E3D2F /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
@@ -294,14 +310,22 @@
 			isa = PBXGroup;
 			children = (
 				0B35AF701D6C361C002E3D2F /* AuthViewController.swift */,
+				0B282F141D7ED9210090F800 /* BlogsViewController.swift */,
+				0B282F151D7ED9210090F800 /* BlogsViewController.xib */,
+				0B282F101D7ED7BE0090F800 /* DocumentationViewController.swift */,
+				0B282F111D7ED7BE0090F800 /* DocumentationViewController.xib */,
+				0B9309521D6DBE40003824D6 /* ForgotPaswordViewController.swift */,
+				0B9309541D6DBE58003824D6 /* ForgotPasswordViewController.xib */,
+				0B282F181D7ED95A0090F800 /* GalleryViewController.swift */,
+				0B282F191D7ED95A0090F800 /* GalleryViewController.xib */,
 				0B35AF6E1D6C3614002E3D2F /* HomeViewController.swift */,
 				0B0A235A1D6B221B0061B50D /* SignInViewController.swift */,
 				0B0A235B1D6B221B0061B50D /* SignInViewController.xib */,
 				0B0A235C1D6B221B0061B50D /* SignUpViewController.swift */,
 				0B0A235D1D6B221B0061B50D /* SignUpViewController.xib */,
-				0B9309521D6DBE40003824D6 /* ForgotPaswordViewController.swift */,
-				0B9309541D6DBE58003824D6 /* ForgotPasswordViewController.xib */,
 				0B0A235E1D6B221B0061B50D /* TourViewController.swift */,
+				0B282F1C1D7EE2570090F800 /* UserDisplayViewController.swift */,
+				0B282F1D1D7EE2570090F800 /* UserDisplayViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -476,9 +500,12 @@
 				0B0A23951D6B22EF0061B50D /* icon_LEFT@3x.png in Resources */,
 				0B0A23981D6B22EF0061B50D /* logo_BG_grey@3x.png in Resources */,
 				0B0A239B1D6B22EF0061B50D /* Logo_BG_red@3x.png in Resources */,
+				0B282F171D7ED9210090F800 /* BlogsViewController.xib in Resources */,
 				0B0A23301D6B1D840061B50D /* flat7-portrait-placeholder.png in Resources */,
 				0B0A230F1D6B1D840061B50D /* ForgotPasswordView_westeros.xib in Resources */,
 				0B0A23911D6B22EF0061B50D /* icon_DOWN_W@2x.png in Resources */,
+				0B282F1B1D7ED95A0090F800 /* GalleryViewController.xib in Resources */,
+				0B282F1F1D7EE2570090F800 /* UserDisplayViewController.xib in Resources */,
 				0B0A23A11D6B22EF0061B50D /* tour-step2@3x.png in Resources */,
 				0B0A23171D6B1D840061B50D /* UserPortraitView_westeros.xib in Resources */,
 				0B0A239C1D6B22EF0061B50D /* tour-step1.png in Resources */,
@@ -500,6 +527,7 @@
 				0B0A239D1D6B22EF0061B50D /* tour-step1@2x.png in Resources */,
 				0B0A239F1D6B22EF0061B50D /* tour-step2.png in Resources */,
 				0B0A229D1D6B0CDA0061B50D /* Main.storyboard in Resources */,
+				0B282F131D7ED7BE0090F800 /* DocumentationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,12 +599,16 @@
 				0B0A23481D6B22100061B50D /* KeyboardListener.swift in Sources */,
 				0B0A23101D6B1D840061B50D /* LoginView_westeros.swift in Sources */,
 				0B0A23671D6B221B0061B50D /* SignInViewController.swift in Sources */,
+				0B282F121D7ED7BE0090F800 /* DocumentationViewController.swift in Sources */,
 				0B0A236B1D6B221B0061B50D /* TourViewController.swift in Sources */,
 				0B0A22981D6B0CDA0061B50D /* AppDelegate.swift in Sources */,
 				0B0A23181D6B1D840061B50D /* BorderedTextField.swift in Sources */,
 				0B93094A1D6DAC91003824D6 /* Resources.swift in Sources */,
 				0B9309511D6DB0D9003824D6 /* Westeros+CGRect.swift in Sources */,
+				0B282F161D7ED9210090F800 /* BlogsViewController.swift in Sources */,
+				0B282F1E1D7EE2570090F800 /* UserDisplayViewController.swift in Sources */,
 				0B93094F1D6DACD9003824D6 /* Westeros+Array.swift in Sources */,
+				0B282F1A1D7ED95A0090F800 /* GalleryViewController.swift in Sources */,
 				0B9309471D6DAC7E003824D6 /* CardView.swift in Sources */,
 				0B35AF711D6C361C002E3D2F /* AuthViewController.swift in Sources */,
 			);
