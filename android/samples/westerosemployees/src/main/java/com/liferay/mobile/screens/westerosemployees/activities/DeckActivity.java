@@ -97,7 +97,8 @@ public class DeckActivity extends Activity {
 		for (int i = 0, size = cards.size(); i < size; i++) {
 			final Card card = cards.get(i);
 
-			int minimizedPosition = maxHeight - (size - i) * Card.CARD_SIZE;
+			int cardSize = convertDpToPx(Card.CARD_SIZE);
+			int minimizedPosition = maxHeight - (size - i) * cardSize;
 
 			card.initPosition(minimizedPosition);
 			card.setOnTouchListener(new FlingTouchListener(this, new FlingListener() {
