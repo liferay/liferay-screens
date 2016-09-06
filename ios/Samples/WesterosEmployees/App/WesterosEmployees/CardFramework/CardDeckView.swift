@@ -142,44 +142,48 @@ public class CardDeckView: UIView, CardDelegate {
 	public func cardTouchUpInside(sender: UIButton) {
 		if let card = sender.superview as? CardView {
 
-			//Split from the clicked card
-			let (top, bottom) = cards.splitAtIndex(cards.indexOf(card)!)
+			if card.currentPage != 0 && card.currentState.isVisible {
+				card.moveLeft()
+			} else {
+				//Split from the clicked card
+				let (top, bottom) = cards.splitAtIndex(cards.indexOf(card)!)
 
-			switch (card.currentState) {
-			case .Minimized:
-				//If the card is minimized all top-cards go to background
-				top.forEach {
-					if $0.currentState != .Background {
-						change($0, toState: .Normal, animateArrow: false)
-						change($0, toState: .Background)
+				switch (card.currentState) {
+				case .Minimized:
+					//If the card is minimized all top-cards go to background
+					top.forEach {
+						if $0.currentState != .Background {
+							change($0, toState: .Normal, animateArrow: false)
+							change($0, toState: .Background)
+						}
 					}
+
+					//Actual card should appear in screen
+					change(card, toState: .Normal)
+
+					//Make sure bottom cards stay minimized
+					bottom.forEach {
+						change($0, toState: .Minimized)
+					}
+
+				case .Maximized, .Normal:
+					//Minimize all cards
+					cards.forEach {
+						change($0, toState: .Minimized)
+					}
+
+				case .Background:
+					//Bring the card to foreground
+					change(card, toState: .Normal)
+
+					//Make sure bottom cards stay minimized
+					bottom.forEach {
+						change($0, toState: .Minimized)
+					}
+					
+				default:
+					break
 				}
-
-				//Actual card should appear in screen
-				change(card, toState: .Normal)
-
-				//Make sure bottom cards stay minimized
-				bottom.forEach {
-					change($0, toState: .Minimized)
-				}
-
-			case .Maximized, .Normal:
-				//Minimize all cards
-				cards.forEach {
-					change($0, toState: .Minimized)
-				}
-
-			case .Background:
-				//Bring the card to foreground
-				change(card, toState: .Normal)
-
-				//Make sure bottom cards stay minimized
-				bottom.forEach {
-					change($0, toState: .Minimized)
-				}
-
-			default:
-				break
 			}
 		}
 	}

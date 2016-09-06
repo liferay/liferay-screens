@@ -90,6 +90,12 @@ public class CardView: UIView {
 	//Delegate for customizing cards
 	var delegate: CardDelegate?
 
+	//Current page of the scroll view
+	var currentPage: Int {
+		let width = scrollView.frame.size.width
+		return lround(Double(scrollView.contentOffset.x) / Double(width))
+	}
+
 	///This controller will be notified when the card appears/dissapears
 	weak var presentingController: CardViewController?
 
@@ -145,16 +151,38 @@ public class CardView: UIView {
 	///Moves the content inside the scrollview to the right. If no content found, it will try
 	///to add it via delegate
 	public func moveRight() {
-		let width = scrollView.frame.size.width
-		let currentPage = lround(Double(scrollView.contentOffset.x) / Double(width))
 		let nextPage = currentPage + 1
 
 		if nextPage < scrollContentView.subviews.count ||
-				delegate?.card?(self, onMissingPage: nextPage) ?? false {
-			let rect = CGRectMake(width * CGFloat(nextPage), y: 0, size: scrollView.frame.size)
-			scrollView.scrollRectToVisible(rect, animated: true)
+			delegate?.card?(self, onMissingPage: nextPage) ?? false {
+			moveToPage(nextPage)
+		}
+	}
 
-			changeButtonText(self.delegate?.card?(self, titleForPage: nextPage))
+	///Moves the content inside the scrollview to the left.
+	public func moveLeft() {
+		if currentPage != 0 {
+			moveToPage(currentPage - 1)
+		}
+	}
+
+	///Moves the content inside the scrollview to a page
+	/// - parameter page: index of the page to move to
+	public func moveToPage(page: Int) {
+		let rect = CGRectMake(scrollView.frame.size.width * CGFloat(page),
+			y: 0, size: scrollView.frame.size)
+
+		scrollView.scrollRectToVisible(rect, animated: true)
+
+		changeButtonText(self.delegate?.card?(self, titleForPage: page))
+
+		//If it's one of the first views, rotate arrow accordingly
+		if page < 2 {
+			UIView.animateWithDuration(0.3, animations: {
+				self.arrow.transform = page == 0 ?
+					CGAffineTransformIdentity :
+					CGAffineTransformMakeRotation(CGFloat(M_PI_2))
+			})
 		}
 	}
 
