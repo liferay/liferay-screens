@@ -70,6 +70,12 @@
 				/>
 
 			<Button
+				android:id="@+id/user_display"
+				android:text="@string/user_display"
+				style="@style/test_app_button"
+				/>
+
+			<Button
 				android:id="@+id/web_content_list"
 				android:text="@string/webview_list"
 				style="@style/test_app_button"
@@ -150,6 +156,12 @@
 			<Button
 				android:id="@+id/ratings"
 				android:text="@string/ratings"
+				style="@style/test_app_button"
+				/>
+
+			<Button
+				android:id="@+id/gallery"
+				android:text="@string/image_gallery"
 				style="@style/test_app_button"
 				/>
 

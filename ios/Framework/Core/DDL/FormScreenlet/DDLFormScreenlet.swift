@@ -116,6 +116,7 @@ import UIKit
 
 	override public func onCreated() {
 		formView.showSubmitButton = showSubmitButton
+		screenletView?.editable = self.editable
 	}
 
 	override public func onShow() {

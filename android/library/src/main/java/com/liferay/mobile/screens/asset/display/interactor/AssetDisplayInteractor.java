@@ -9,4 +9,6 @@ import com.liferay.mobile.screens.base.interactor.Interactor;
 public interface AssetDisplayInteractor extends Interactor<AssetDisplayListener> {
 
 	void getAssetEntry(long entryId) throws Exception;
+
+	void getAssetEntry(String className, long classPK) throws Exception;
 }

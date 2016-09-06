@@ -30,6 +30,7 @@ dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
 
 	compile libraries.appCompat
+	compile libraries.design
 	compile libraries.recyclerView
 	compile libraries.sdk
 	compile(libraries.push) {
@@ -43,6 +44,8 @@ dependencies {
 	compile libraries.storio
 	compile libraries.storioannotations
 	compile libraries.rxjava
+
+	compile 'com.lsjwzh:recyclerviewpager:1.0.8'
 
 	apt libraries.storioapt
 

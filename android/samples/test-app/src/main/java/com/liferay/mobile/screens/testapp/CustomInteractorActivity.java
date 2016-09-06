@@ -1,7 +1,6 @@
 package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
-
 import com.liferay.mobile.android.exception.AuthenticationException;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
@@ -10,7 +9,6 @@ import com.liferay.mobile.screens.auth.login.interactor.LoginInteractor;
 import com.liferay.mobile.screens.base.interactor.CustomInteractorListener;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
-
 import org.json.JSONObject;
 
 public class CustomInteractorActivity extends ThemeActivity
@@ -21,9 +19,9 @@ public class CustomInteractorActivity extends ThemeActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.content_custom_interactor);
 
-		_loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet_custom_interactor);
-		_loginScreenlet.setListener(this);
-		_loginScreenlet.setCustomInteractorListener(this);
+		loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet_custom_interactor);
+		loginScreenlet.setListener(this);
+		loginScreenlet.setCustomInteractorListener(this);
 	}
 
 	@Override
@@ -38,10 +36,10 @@ public class CustomInteractorActivity extends ThemeActivity
 
 	@Override
 	public LoginInteractor createInteractor(String actionName) {
-		return new CustomLoginInteractor(_loginScreenlet.getScreenletId());
+		return new CustomLoginInteractor(loginScreenlet.getScreenletId());
 	}
 
-	private LoginScreenlet _loginScreenlet;
+	private LoginScreenlet loginScreenlet;
 
 	private class CustomLoginInteractor extends LoginBasicInteractor {
 

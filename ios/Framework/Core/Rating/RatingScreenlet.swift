@@ -46,7 +46,7 @@ import UIKit
 	
 	@IBInspectable public var editable: Bool = false {
 		didSet {
-			viewModel?.editable = self.editable
+			screenletView?.editable = self.editable
 		}
 	}
 	
@@ -75,6 +75,7 @@ import UIKit
 				where ratingsGroupCount == -1 {
 			ratingsGroupCount = defaultRatingsGroupCount
 		}
+		screenletView?.editable = self.editable
 	}
 	
 	public override func onShow() {

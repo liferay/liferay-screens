@@ -23,6 +23,8 @@
  */
 @interface LRScreensassetentryService_v70 : LRBaseService
 
+- (NSDictionary *)getAssetEntryWithClassName:(NSString *)className classPK:(long long)classPK locale:(NSString *)locale error:(NSError **)error;
+- (NSDictionary *)getAssetEntryWithEntryId:(long long)entryId locale:(NSString *)locale error:(NSError **)error;
 - (NSArray *)getAssetEntriesWithCompanyId:(long long)companyId groupId:(long long)groupId portletItemName:(NSString *)portletItemName locale:(NSString *)locale max:(int)max error:(NSError **)error;
 - (NSArray *)getAssetEntriesWithAssetEntryQuery:(LRJSONObjectWrapper *)assetEntryQuery locale:(NSString *)locale error:(NSError **)error;
 

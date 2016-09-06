@@ -20,6 +20,5 @@ import UIKit
 
 	var borderWidth: CGFloat {get set}
 	var borderColor: UIColor? {get set}
-	var editable: Bool {get set}
 
 }

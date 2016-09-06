@@ -15,11 +15,6 @@ import UIKit
 
 
 @objc public protocol RatingViewModel {
-	
-	var editable: Bool { get set }
-
 	var defaultRatingsGroupCount: Int32 { get }
-	
 	var ratingEntry: RatingEntry? { get set }
-
 }

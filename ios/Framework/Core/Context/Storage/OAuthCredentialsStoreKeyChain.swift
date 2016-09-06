@@ -31,7 +31,8 @@ public class OAuthCredentialsStoreKeyChain : BaseCredentialsStoreKeyChain {
 			try keychain.set(oauth.config.consumerSecret, key: "oauth_consumer_secret")
 			try keychain.set(oauth.config.token, key: "oauth_token")
 			try keychain.set(oauth.config.tokenSecret, key: "oauth_token_secret")
-		} catch {
+		}
+		catch {
 		}
 	}
 

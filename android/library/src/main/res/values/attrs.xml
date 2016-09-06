@@ -178,6 +178,15 @@
 		<attr name="editable"/>
 	</declare-styleable>
 
+	<declare-styleable name="GalleryScreenlet">
+		<attr name="groupId"/>
+		<attr name="folderId"/>
+		<attr name="offlinePolicy"/>
+		<attr name="pageSize" />
+		<attr name="firstPageSize" />
+		<attr name="mimeTypes" format="string" />
+	</declare-styleable>
+
 	<declare-styleable name="ModalProgressBar">
 		<attr format="reference" name="actionViewId"/>
 	</declare-styleable>
@@ -196,33 +205,52 @@
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="entryId"/>
+		<attr name="className"/>
+		<attr name="classPK"/>
 		<attr format="reference" name="imagelayoutId"/>
 		<attr format="reference" name="videolayoutId"/>
 		<attr format="reference" name="audiolayoutId"/>
 		<attr format="reference" name="pdflayoutId"/>
+		<attr format="reference" name="blogsLayoutId"/>
 	</declare-styleable>
 
 	<declare-styleable name="ImageDisplayScreenlet">
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="entryId"/>
+		<attr name="className"/>
+		<attr name="classPK"/>
 	</declare-styleable>
 
 	<declare-styleable name="VideoDisplayScreenlet">
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="entryId"/>
+		<attr name="className"/>
+		<attr name="classPK"/>
 	</declare-styleable>
 
 	<declare-styleable name="AudioDisplayScreenlet">
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="entryId"/>
+		<attr name="className"/>
+		<attr name="classPK"/>
 	</declare-styleable>
 
 	<declare-styleable name="PdfDisplayScreenlet">
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="entryId"/>
+		<attr name="className"/>
+		<attr name="classPK"/>
+	</declare-styleable>
+
+	<declare-styleable name="BlogsEntryDisplayScreenlet">
+		<attr name="layoutId"/>
+		<attr name="autoLoad"/>
+		<attr name="entryId"/>
+		<attr name="className"/>
+		<attr name="classPK"/>
 	</declare-styleable>
 </resources>

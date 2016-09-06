@@ -28,7 +28,8 @@ public class BasicCredentialsStoreKeyChain : BaseCredentialsStoreKeyChain {
 			try keychain.set(StringFromAuthType(AuthType.Basic), key: "auth_type")
 			try keychain.set(basicAuth.username, key: "basicauth_username")
 			try keychain.set(basicAuth.password, key: "basicauth_password")
-		} catch {
+		}
+		catch {
 		}
 	}
 
