@@ -12,14 +12,7 @@
 * details.
 */
 import UIKit
-import LiferayScreens
 
-
-public class SignUpView_westeros_edit: SignUpView_westeros {
-
-	public override func onSetTranslations() {
-		super.onSetTranslations()
-		
-		signUpButton?.replaceAttributedTitle("SAVE", forState: .Normal)
-	}
+func CGRectMake(x: CGFloat, y: CGFloat, size: CGSize) -> CGRect {
+	return CGRectMake(x, y, size.width, size.height)
 }

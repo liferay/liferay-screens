@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -14,13 +15,71 @@
                         <viewControllerLayoutGuide type="top" id="zEg-ob-KLa"/>
                         <viewControllerLayoutGuide type="bottom" id="f0x-E7-OSP"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ram-q3-t4X">
+                    <view key="view" contentMode="scaleToFill" id="ceC-yD-KnB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kjo-Hh-Kwh" customClass="CardDeckView" customModule="WesterosEmployees" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PrA-hs-Mlk" userLabel="User Profile">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Firstname Lastname" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ul-kf-huk">
+                                                <rect key="frame" x="20" y="170" width="335" height="24"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ejh-lU-ZvF" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
+                                                <rect key="frame" x="138" y="50" width="100" height="100"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="fA9-V3-zQ2"/>
+                                                    <constraint firstAttribute="width" constant="100" id="pLo-mL-oiI"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Ejh-lU-ZvF" firstAttribute="top" secondItem="PrA-hs-Mlk" secondAttribute="top" constant="50" id="LHX-ih-RXR"/>
+                                            <constraint firstItem="5ul-kf-huk" firstAttribute="leading" secondItem="PrA-hs-Mlk" secondAttribute="leading" constant="20" id="SKE-TP-GBe"/>
+                                            <constraint firstItem="5ul-kf-huk" firstAttribute="centerX" secondItem="PrA-hs-Mlk" secondAttribute="centerX" id="eOm-OF-alv"/>
+                                            <constraint firstItem="5ul-kf-huk" firstAttribute="top" secondItem="Ejh-lU-ZvF" secondAttribute="bottom" constant="20" id="hmu-xj-Tdn"/>
+                                            <constraint firstAttribute="trailing" secondItem="5ul-kf-huk" secondAttribute="trailing" constant="20" id="vzl-gO-81a"/>
+                                            <constraint firstItem="Ejh-lU-ZvF" firstAttribute="centerX" secondItem="PrA-hs-Mlk" secondAttribute="centerX" id="zVO-IE-Jhj"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="PrA-hs-Mlk" firstAttribute="top" secondItem="kjo-Hh-Kwh" secondAttribute="top" id="3de-ke-baE"/>
+                                    <constraint firstAttribute="trailing" secondItem="PrA-hs-Mlk" secondAttribute="trailing" id="Ukf-4v-mzY"/>
+                                    <constraint firstItem="PrA-hs-Mlk" firstAttribute="leading" secondItem="kjo-Hh-Kwh" secondAttribute="leading" id="lVP-4N-mlb"/>
+                                    <constraint firstAttribute="bottom" secondItem="PrA-hs-Mlk" secondAttribute="bottom" id="zIp-cV-7LL"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.83921568629999999" green="0.83921568629999999" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="kjo-Hh-Kwh" firstAttribute="top" secondItem="ceC-yD-KnB" secondAttribute="topMargin" id="7Nq-hU-Kf7"/>
+                            <constraint firstItem="kjo-Hh-Kwh" firstAttribute="leading" secondItem="ceC-yD-KnB" secondAttribute="leading" id="KVz-KX-cTu"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="kjo-Hh-Kwh" secondAttribute="bottom" id="YJd-si-HIB"/>
+                            <constraint firstAttribute="trailing" secondItem="kjo-Hh-Kwh" secondAttribute="trailing" id="h42-TZ-gNj"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="cardDeck" destination="kjo-Hh-Kwh" id="yml-ve-rfy"/>
+                        <outlet property="userProfileView" destination="PrA-hs-Mlk" id="uu0-wp-t67"/>
                         <segue destination="GmK-7W-ZSi" kind="show" identifier="tour" id="UMz-We-zVk"/>
                         <segue destination="Fcc-Vc-T92" kind="show" identifier="login" action="showDetailViewController:sender:" id="b2q-Sj-PM5"/>
                     </connections>

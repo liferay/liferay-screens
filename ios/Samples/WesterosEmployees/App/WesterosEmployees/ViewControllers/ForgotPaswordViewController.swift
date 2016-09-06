@@ -15,10 +15,14 @@ import UIKit
 import LiferayScreens
 
 
-class SignInViewController: CardViewController, LoginScreenletDelegate, KeyboardListener {
+class ForgotPasswordViewController: CardViewController,
+		ForgotPasswordScreenletDelegate,
+		KeyboardListener {
 
 	//MARK: Outlets
-	@IBOutlet weak var loginScreenlet: LoginScreenlet?
+	
+	@IBOutlet weak var forgotPasswordScreenlet: ForgotPasswordScreenlet?
+
 
 	//MARK: Init methods
 
@@ -27,26 +31,31 @@ class SignInViewController: CardViewController, LoginScreenletDelegate, Keyboard
 	}
 
 	convenience init(card: CardView) {
-		self.init(card: card, nibName: "SignInViewController")
+		self.init(card: card, nibName: "ForgotPasswordViewController")
 	}
 
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 
-	@IBAction func forgotPasswordAction() {
-	}
-
 
 	//MARK: UIViewController
 
+
 	override func viewDidLoad() {
-		self.loginScreenlet?.delegate = self
+		self.forgotPasswordScreenlet?.delegate = self
+		self.forgotPasswordScreenlet?.anonymousApiUserName =
+				LiferayServerContext.propertyForKey("anonymousUsername") as? String
+		self.forgotPasswordScreenlet?.anonymousApiPassword =
+				LiferayServerContext.propertyForKey("anonymousPassword") as? String
 	}
 
-	func screenlet(screenlet: BaseScreenlet,
-			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
-		onDone?()
+
+	//MARK: ForgotPasswordScreenletDelegate
+
+	func screenlet(screenlet: ForgotPasswordScreenlet,
+			onForgotPasswordSent passwordSent: Bool) {
+		//TODO: go back to login view
 	}
 
 

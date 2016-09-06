@@ -18,9 +18,28 @@ public var tourCompleted = false
 
 class HomeViewController: UIViewController {
 
+	@IBOutlet weak var cardDeck: CardDeckView?
+	@IBOutlet weak var userProfileView: UIView?
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		cardDeck?.addCards(["Documentation", "Blogs", "Gallery"])
+
+		self.userProfileView?.layer.zPosition = -1000
+		self.cardDeck?.layer.zPosition = 0
+	}
+
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		let isLoggedIn = SessionContext.isLoggedIn
+		if isLoggedIn {
+			UIView.animateWithDuration(1.5) {
+				self.cardDeck?.alpha = 1.0
+			}
+		} else {
+			self.cardDeck?.alpha = 0.0
+		}
 	}
 
 	override func viewDidAppear(animated: Bool) {
@@ -28,13 +47,14 @@ class HomeViewController: UIViewController {
 
 		if !SessionContext.isLoggedIn {
 			if !tourCompleted {
-				performSegueWithIdentifier("tour", sender: nil)
+				dispatch_delayed(0.5) {
+					self.performSegueWithIdentifier("tour", sender: nil)
+				}
 			}
 			else {
-				performSegueWithIdentifier("login", sender: nil)
+				self.performSegueWithIdentifier("login", sender: nil)
 			}
 		}
-		
 	}
 
 }

@@ -117,7 +117,6 @@
                     </userDefinedRuntimeAttributes>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="Yrl-SF-ugf" firstAttribute="top" secondItem="mgG-gp-gtC" secondAttribute="bottom" constant="15" id="18W-Z5-msh"/>
                 <constraint firstItem="5d0-dX-qc8" firstAttribute="top" secondItem="Yrl-SF-ugf" secondAttribute="bottom" constant="30" id="9hV-vr-Wa0"/>
@@ -142,7 +141,7 @@
                 <outlet property="passwordField" destination="XBk-dU-LXI" id="OFG-vp-FF1"/>
                 <outlet property="userNameField" destination="lQM-e9-Lbg" id="ztb-QJ-nuc"/>
             </connections>
-            <point key="canvasLocation" x="143.5" y="149.5"/>
+            <point key="canvasLocation" x="386.5" y="258.5"/>
         </view>
     </objects>
     <resources>

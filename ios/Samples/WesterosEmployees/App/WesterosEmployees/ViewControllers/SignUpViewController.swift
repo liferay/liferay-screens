@@ -16,14 +16,14 @@ import LiferayScreens
 
 class SignUpViewController: CardViewController, SignUpScreenletDelegate {
 
-	@IBOutlet weak var screenlet: SignUpScreenlet!
+	@IBOutlet weak var screenlet: SignUpScreenlet?
 
 	override init(card: CardView, nibName: String) {
 		super.init(card: card, nibName: nibName)
 	}
 
 	convenience init(card: CardView) {
-		self.init(card: card, nibName:"SignUpViewController")
+		self.init(card: card, nibName: "SignUpViewController")
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -31,11 +31,11 @@ class SignUpViewController: CardViewController, SignUpScreenletDelegate {
 	}
 
 	override func viewDidLoad() {
-		self.screenlet.delegate = self
+		self.screenlet?.delegate = self
 
-		self.screenlet.anonymousApiUserName =
+		self.screenlet?.anonymousApiUserName =
 				LiferayServerContext.propertyForKey("anonymousUsername") as? String
-		self.screenlet.anonymousApiPassword =
+		self.screenlet?.anonymousApiPassword =
 				LiferayServerContext.propertyForKey("anonymousPassword") as? String
 	}
 

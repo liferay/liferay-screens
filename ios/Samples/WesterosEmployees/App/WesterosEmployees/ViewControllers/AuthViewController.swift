@@ -17,12 +17,10 @@ import LiferayScreens
 class AuthViewController: UIViewController, LoginScreenletDelegate {
 
 	@IBOutlet var cardDeck: CardDeckView!
-	@IBOutlet weak var signInCard: CardView!
-	@IBOutlet weak var signUpCard: CardView!
 
 	var signInController: SignInViewController?
 	var signUpController: SignUpViewController?
-
+	var forgotPasswordController: ForgotPasswordViewController?
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -31,30 +29,27 @@ class AuthViewController: UIViewController, LoginScreenletDelegate {
 			self.dismissViewControllerAnimated(true, completion: nil)
 		}
 
-		signInCard.frame.size.height = signInCard.normalHeight - signInCard.minimizedHeight
+		cardDeck.addCards(["Sign In", "Sign Up"])
 
-		signInController = SignInViewController(card: signInCard)
+		//Make login only expand to half of the page on normal height
+		cardDeck.cards[0].normalHeight = self.view.frame.height * 0.7
+
+		signInController = SignInViewController(card: cardDeck.cards[0])
 		signInController!.onDone = onDone
 
-		cardDeck.topCard = signInCard
+		forgotPasswordController = ForgotPasswordViewController(card: cardDeck.cards[0])
 
-		signUpCard.normalHeight = cardDeck.frame.size.height - 50
-
-		signUpCard.frame.size.height = signUpCard.normalHeight - signUpCard.minimizedHeight
-
-		signUpController = SignUpViewController(card: signUpCard)
+		signUpController = SignUpViewController(card: cardDeck.cards[1])
 		signUpController!.onDone = onDone
 
-		cardDeck.bottomCard = signUpCard
-
-		signUpCard.currentState = .Minimized
-
-		signInCard.currentState = .Hidden
-		signInCard.resetToCurrentState()
+		self.cardDeck.layoutIfNeeded()
 	}
 
 	override func viewWillAppear(animated: Bool) {
-		self.signInCard.nextState = .Minimized
-		self.signInCard.changeToNextState(nil, delay: 0.5)
+		super.viewWillAppear(animated)
+		self.cardDeck.cards[0].currentState = .Hidden
+		self.cardDeck.cards[0].resetToCurrentState()
+		self.cardDeck.cards[0].nextState = .Minimized
+		self.cardDeck.cards[0].changeToNextState(delay: 0.5)
 	}
 }
