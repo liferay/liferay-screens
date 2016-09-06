@@ -94,7 +94,7 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 
 	@Override
 	public void onImageUploadProgress(int totalBytes, int totalBytesSent) {
-		LiferayLogger.i("Image upload progresss " + totalBytes + " from " + totalBytesSent);
+		LiferayLogger.i("Image upload progress " + totalBytes + " from " + totalBytesSent);
 	}
 
 	@Override
