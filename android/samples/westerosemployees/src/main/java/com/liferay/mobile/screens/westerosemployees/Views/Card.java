@@ -185,6 +185,10 @@ public class Card extends FrameLayout {
 		return cardState;
 	}
 
+	public int getCardSubviewCurrentIndex() {
+		return index;
+	}
+
 	protected void showArrows(boolean show) {
 		int visibility = show ? VISIBLE : INVISIBLE;
 
