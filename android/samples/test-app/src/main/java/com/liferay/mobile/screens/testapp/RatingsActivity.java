@@ -21,6 +21,11 @@ import java.util.List;
 public class RatingsActivity extends ThemeActivity
 	implements RatingListener, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
+	private final List<View> buttons = new ArrayList<>();
+	private SwitchCompat readOnlySwitch;
+	private RatingScreenlet ratingScreenlet;
+	private LinearLayout container;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -116,9 +121,4 @@ public class RatingsActivity extends ThemeActivity
 		getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
 		return typedValue.data;
 	}
-
-	private SwitchCompat readOnlySwitch;
-	private RatingScreenlet ratingScreenlet;
-	private LinearLayout container;
-	private final List<View> buttons = new ArrayList<>();
 }

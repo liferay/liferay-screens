@@ -7,8 +7,8 @@
 	>
 
 	<TextView
-		style="@style/label"
 		android:text="@string/webview_structured_label"
+		style="@style/label"
 		/>
 
 	<com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
@@ -22,8 +22,8 @@
 		/>
 
 	<TextView
-		style="@style/label"
 		android:text="@string/webview_structured_label_first_field"
+		style="@style/label"
 		/>
 
 	<com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
@@ -37,8 +37,8 @@
 		/>
 
 	<TextView
-		style="@style/label"
 		android:text="@string/webview_structured_label_example"
+		style="@style/label"
 		/>
 
 	<com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet

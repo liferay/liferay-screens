@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
-
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
 

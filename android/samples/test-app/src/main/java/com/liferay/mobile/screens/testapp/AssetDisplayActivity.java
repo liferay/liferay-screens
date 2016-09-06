@@ -15,8 +15,8 @@ import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 /**
  * @author Sarai Díaz García
  */
-public class AssetDisplayActivity extends ThemeActivity implements AssetDisplayListener,
-	AssetDisplayInnerScreenletListener {
+public class AssetDisplayActivity extends ThemeActivity
+	implements AssetDisplayListener, AssetDisplayInnerScreenletListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -77,5 +77,4 @@ public class AssetDisplayActivity extends ThemeActivity implements AssetDisplayL
 		}
 		return null;
 	}
-
 }

@@ -17,7 +17,6 @@ package com.liferay.mobile.screens.testapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
-
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.context.User;
@@ -27,6 +26,7 @@ import com.liferay.mobile.screens.context.User;
  */
 public class LoginActivity extends ThemeActivity implements LoginListener {
 
+	private LoginScreenlet loginScreenlet;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +62,4 @@ public class LoginActivity extends ThemeActivity implements LoginListener {
 		EditText password = (EditText) loginScreenlet.findViewById(R.id.liferay_password);
 		password.setText(getString(R.string.default_password));
 	}
-
-	private LoginScreenlet loginScreenlet;
 }

@@ -28,6 +28,8 @@ import java.util.List;
  */
 public class AssetListActivity extends ThemeActivity implements BaseListListener<AssetEntry> {
 
+	private AssetListScreenlet assetListScreenlet;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -67,6 +69,4 @@ public class AssetListActivity extends ThemeActivity implements BaseListListener
 	public void error(Exception e, String userAction) {
 
 	}
-
-	private AssetListScreenlet assetListScreenlet;
 }

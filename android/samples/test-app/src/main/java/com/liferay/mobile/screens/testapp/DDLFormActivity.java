@@ -28,6 +28,10 @@ import org.json.JSONObject;
  */
 public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 
+	private static final String STATE_LOADED = "STATE_LOADED";
+	private DDLFormScreenlet screenlet;
+	private boolean loaded;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -113,9 +117,4 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 			screenlet.setStructureId(intent.getLongExtra("structureId", 0));
 		}
 	}
-
-	private DDLFormScreenlet screenlet;
-	private boolean loaded;
-
-	private static final String STATE_LOADED = "STATE_LOADED";
 }

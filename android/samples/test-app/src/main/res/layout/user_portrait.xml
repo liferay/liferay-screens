@@ -8,8 +8,8 @@
 	>
 
 	<TextView
-		style="@style/label"
 		android:text="@string/user_portrait_label"
+		style="@style/label"
 		/>
 
 	<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
