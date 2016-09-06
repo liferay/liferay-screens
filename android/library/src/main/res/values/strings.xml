@@ -27,6 +27,7 @@
 	<string name="very_happy_smiley">very happy smiley</string>
 	<string name="pdf_content">pdf content</string>
 	<string name="thumbs_down">thumbs down</string>
+	<string name="uploading_image">Uploading image...</string>
 
 	<string-array name="image_mime_types">
 		<item>image/png</item>
