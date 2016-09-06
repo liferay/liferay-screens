@@ -16,35 +16,16 @@ import PureLayout
 
 ///Base view controller class for view controllers that work inside a card.
 ///Override this class
-class CardViewController: UIViewController {
+public class CardViewController: UIViewController {
 
 	var onDone: (Void -> Void)?
 
 	///Card which holds the controlled view of this controller
-	let cardView: CardView?
-
-	private var didSetupConstraints = false
-
-	//MARK: Init methods
-
-	///Creates a CardViewController, from a given nib name, inyecting its view into the card
-	/// - parameters:
-	///    - card: card where the controlled view will be inyected
-	///    - nibName: name of the nib for this ViewController
-	init(card: CardView, nibName: String) {
-		self.cardView = card
-
-		super.init(nibName: nibName, bundle: nil)
-
-		card.addPage(self.view)
-
-		card.presentingController = self
-	}
-
-	required init?(coder aDecoder: NSCoder) {
-		self.cardView = nil
-
-		super.init(coder: aDecoder)
+	var cardView: CardView? {
+		didSet {
+			cardView?.addPage(self.view)
+			cardView?.presentingController = self
+		}
 	}
 
 

@@ -90,42 +90,48 @@ public class CardDeckView: UIView, CardDelegate {
 	public static let DefaultBackgroundSpacing: CGFloat = 70
 	public static let DefaultZPositionMultiplier: CGFloat = 1000
 
+	//Delegate for customizing cards for this deck
+	public var delegate: CardDeckDelegate?
+
+	//Data source for providing card content
+	public var dataSource: CardDeckDataSource? {
+		didSet {
+			if let source = dataSource {
+				let count = source.numberOfCardsIn(self)
+
+				let initialHeight = CardView.DefaultMinimizedHeight
+
+				for index in 0...count {
+					//For each title we will create a card, each card should be on top of the previous ones
+					let card = createCardForIndex(index)
+
+					//The normal height for a card will be its parent size with a padding
+					card.normalHeight = self.frame.size.height - CardDeckView.DefaultBackgroundSpacing
+
+					//The minimized height for a card will be the initial height plus the height of the
+					//previous ones
+					card.minimizedHeight = initialHeight +
+						CGFloat(count - index - 1) * initialHeight
+
+					self.dataSource?.cardDeck?(self, customizeCard: card, atIndex: index)
+
+					card.updateSubviewsConstraints()
+
+					addSubview(card)
+
+					//Set constraints for this card
+					setConstraintsForCard(card)
+				}
+			}
+		}
+	}
+
 	//List of cards in this deck
 	public var cards: [CardView] {
 		return self.subviews.filter{$0 is CardView}.map{$0 as! CardView}
 	}
-	//Delegate for customizing cards for this deck
-	public var delegate: CardDeckDelegate?
 
 	//MARK: Public methods
-	//Data source for providing card content
-	public var dataSource: CardDeckDataSource? {
-
-	///Creates an array of cards usign the received arguments as titles.
-	/// - parameter titles: array of titles for the cards
-	public func addCards(titles: [String]) {
-		let initialHeight = CardView.DefaultMinimizedHeight
-
-		for index in 0..<titles.count {
-			//For each title we will create a card, each card should be on top of the previous ones
-			let card = createCard(titles[index], index: index)
-
-			//The normal height for a card will be its parent size with a padding
-			card.normalHeight = self.frame.size.height - CardDeckView.DefaultBackgroundSpacing
-
-			//The minimized height for a card will be the initial height plus the height of the
-			//previous ones
-			card.minimizedHeight = initialHeight +
-				CGFloat(titles.count - index - 1) * initialHeight
-
-			card.updateSubviewsConstraints()
-
-			addSubview(card)
-
-			//Set constraints for this card
-			setConstraintsForCard(card)
-		}
-	}
 
 	///Method launched when a button-card is clicked.
 	///You can retrieve the card by getting the superview.
@@ -201,7 +207,7 @@ public class CardDeckView: UIView, CardDelegate {
 	///    - title: title for the card
 	///    - index: index of this card in the deck
 	/// - returns: the CardView object
-	public func createCard(title: String, index: Int) -> CardView {
+	public func createCardForIndex(index: Int) -> CardView {
 		//Create Card
 		let card = CardView.newAutoLayoutView()
 		card.layer.zPosition = zPositionForIndex(index)
@@ -227,6 +233,9 @@ public class CardDeckView: UIView, CardDelegate {
 
 		card.button.addTarget(self, action: #selector(CardDeckView.cardTouchUpInside(_:)),
 			forControlEvents: .TouchUpInside)
+
+		let controller = dataSource?.cardDeck(self, controllerForCard: cardPosition)
+		controller?.cardView = card 
 
 		return card
 	}
@@ -254,6 +263,7 @@ public class CardDeckView: UIView, CardDelegate {
 		if let index = cards.indexOf(card) {
 			let cardPosition = CardPosition(card: index, page: page)
 			let controller = dataSource?.cardDeck(self, controllerForCard: cardPosition)
+			controller?.cardView = card
 
 			return controller != nil
 		}
