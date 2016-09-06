@@ -161,7 +161,6 @@ public class CacheSyncService extends IntentService {
 	}
 
 	public void onEventMainThread(DDLFormDocumentUploadEvent event) {
-		//FIXME !
 		//event.setCacheKey(event.getDocumentField());
 		storeEvent(event);
 	}
