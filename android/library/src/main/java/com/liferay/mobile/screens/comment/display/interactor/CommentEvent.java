@@ -35,7 +35,7 @@ public class CommentEvent extends ListEvent<CommentEntry> {
 	}
 
 	@Override
-	public String getCacheKey() {
+	public String getListKey() {
 		return String.valueOf(commentEntry.getCommentId());
 	}
 

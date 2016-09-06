@@ -36,7 +36,7 @@ public class DDLFormEvent extends ListEvent<Record> {
 	}
 
 	@Override
-	public String getCacheKey() {
+	public String getListKey() {
 		long recordSetId = record.getRecordSetId();
 		long recordId = record.getRecordId();
 		return recordSetId + SEPARATOR + recordId;

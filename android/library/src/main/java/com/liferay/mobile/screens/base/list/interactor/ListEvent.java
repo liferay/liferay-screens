@@ -17,7 +17,7 @@ public abstract class ListEvent<E> extends OfflineEventNew {
 		super(e);
 	}
 
-	public abstract String getCacheKey();
+	public abstract String getListKey();
 
 	public abstract E getModel();
 }

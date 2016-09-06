@@ -27,7 +27,7 @@ public class WebContentDisplayEvent extends ListEvent<WebContent> {
 	}
 
 	@Override
-	public String getCacheKey() {
+	public String getListKey() {
 		return webContent.getArticleId();
 	}
 

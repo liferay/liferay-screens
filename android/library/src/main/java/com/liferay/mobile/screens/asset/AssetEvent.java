@@ -17,7 +17,7 @@ public class AssetEvent extends ListEvent<AssetEntry> {
 	}
 
 	@Override
-	public String getCacheKey() {
+	public String getListKey() {
 		return assetEntry.getEntryId();
 	}
 

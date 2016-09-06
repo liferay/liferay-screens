@@ -64,7 +64,7 @@ public class GalleryEvent extends ListEvent<ImageEntry> {
 	}
 
 	@Override
-	public String getCacheKey() {
+	public String getListKey() {
 		return imageEntry.getImageUrl();
 	}
 

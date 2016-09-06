@@ -174,6 +174,7 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 
 			for (E event : newEvent.getEntries()) {
 				decorateEvent(event, false);
+				event.setCacheKey(event.getListKey());
 			}
 
 			newEvent.setCacheKey(getListId(query, args));

@@ -11,7 +11,7 @@ public class BookmarkEvent extends ListEvent<Bookmark> {
 	}
 
 	@Override
-	public String getCacheKey() {
+	public String getListKey() {
 		return bookmark.getUrl();
 	}
 
