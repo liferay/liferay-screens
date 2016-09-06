@@ -20,7 +20,7 @@ import org.json.JSONObject;
 public class BasicThreadEvent implements Serializable {
 
 	private String actionName;
-	private transient JSONObject jsonObject;
+	private JSONObject jsonObject;
 	private Exception exception;
 	private int targetScreenletId;
 
