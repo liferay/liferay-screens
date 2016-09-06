@@ -520,7 +520,6 @@
                                 </state>
                                 <connections>
                                     <action selector="loadComment:" destination="myx-wj-dMR" eventType="touchUpInside" id="DjL-ET-1fn"/>
-                                    <action selector="loadPortrait:" destination="TY4-Ql-4pF" eventType="touchUpInside" id="G6B-iZ-Byj"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="comment id" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ixf-v5-nVE">
@@ -539,19 +538,42 @@
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="offlinePolicy" value="cache-first"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pe3-Rn-W4v">
+                                <rect key="frame" x="226" y="284" width="82" height="44"/>
+                                <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="w0w-Cg-Qnz"/>
+                                    <constraint firstAttribute="width" constant="82" id="zZ4-XY-fG6"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="DELETE">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="deleteComment:" destination="myx-wj-dMR" eventType="touchUpInside" id="zAW-43-j10"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Ixf-v5-nVE" firstAttribute="leading" secondItem="bW1-qx-aPC" secondAttribute="leadingMargin" id="2ml-OA-LXe"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Pe3-Rn-W4v" secondAttribute="trailing" constant="-4" id="6Hd-Sw-NVY"/>
                             <constraint firstItem="Ebc-cC-7DS" firstAttribute="leading" secondItem="bW1-qx-aPC" secondAttribute="leadingMargin" id="V0j-EN-Lt5"/>
                             <constraint firstItem="Ebc-cC-7DS" firstAttribute="trailing" secondItem="bW1-qx-aPC" secondAttribute="trailingMargin" id="ZY3-Z0-2kV"/>
                             <constraint firstItem="VNL-Ik-kay" firstAttribute="trailing" secondItem="bW1-qx-aPC" secondAttribute="trailingMargin" id="bk9-L4-IVg"/>
                             <constraint firstItem="VNL-Ik-kay" firstAttribute="leading" secondItem="Ixf-v5-nVE" secondAttribute="trailing" constant="8" id="cwH-QJ-45y"/>
                             <constraint firstItem="Ebc-cC-7DS" firstAttribute="top" secondItem="VNL-Ik-kay" secondAttribute="bottom" constant="20" id="fYB-jf-6QO"/>
                             <constraint firstItem="VNL-Ik-kay" firstAttribute="top" secondItem="zgn-S7-hoK" secondAttribute="bottom" constant="8" id="tLU-Yv-soV"/>
+                            <constraint firstItem="Pe3-Rn-W4v" firstAttribute="top" secondItem="Ebc-cC-7DS" secondAttribute="bottom" constant="20" id="xMs-eW-OG1"/>
                             <constraint firstItem="Ixf-v5-nVE" firstAttribute="top" secondItem="zgn-S7-hoK" secondAttribute="bottom" constant="15" id="zwC-N3-b50"/>
                         </constraints>
                     </view>
@@ -1483,23 +1505,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mpb-r6-Lc5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-819" y="783"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="clh-Ku-4UG">
-            <objects>
-                <viewController id="rFR-7d-UQv" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="an9-zU-0kA"/>
-                        <viewControllerLayoutGuide type="bottom" id="hfg-9f-8PF"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="RLM-ge-0aI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YTc-Nr-drQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
     <resources>

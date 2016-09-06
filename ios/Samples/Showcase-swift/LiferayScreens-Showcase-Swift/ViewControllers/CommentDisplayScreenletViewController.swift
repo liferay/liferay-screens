@@ -30,6 +30,10 @@ class CommentDisplayScreenletViewController: UIViewController, CommentDisplayScr
 		}
 	}
 
+	@IBAction func deleteComment(sender: AnyObject) {
+		self.screenlet?.deleteComment()
+	}
+
 	func screenlet(
 			screenlet: CommentDisplayScreenlet,
 			onCommentLoaded comment: Comment) {
