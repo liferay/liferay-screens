@@ -121,6 +121,10 @@ public class Card extends FrameLayout {
 	}
 
 	public void goRight() {
+		goRight(null);
+	}
+
+	public void goRight(Runnable endAction) {
 
 		View current = getChildAt(index);
 		View next = getChildAt(index + 1);
@@ -128,18 +132,22 @@ public class Card extends FrameLayout {
 		if (next != null) {
 			index++;
 			current.animate().translationX(-maxWidth);
-			next.animate().translationX(0);
+			next.animate().translationX(0).withEndAction(endAction);
 		}
 	}
 
 	public void goLeft() {
+		goLeft(null);
+	}
+
+	public void goLeft(Runnable endAction) {
 
 		View current = getChildAt(index);
 		View next = getChildAt(index - 1);
 
 		if (next != null) {
 			index--;
-			next.animate().translationX(0);
+			next.animate().translationX(0).withEndAction(endAction);
 			current.animate().translationX(maxWidth);
 		}
 	}
