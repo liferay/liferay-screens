@@ -30,84 +30,88 @@ import java.io.IOException;
 public class LiferayServerContext {
 
 	private static final int MAX_SIZE = 100 * 1024 * 1024;
-	private static String _server;
-	private static long _companyId;
-	private static long _groupId;
-	private static String _classFactory;
-	private static LiferayPortalVersion _portalVersion;
-	private static String _versionFactory;
+	private static String server;
+	private static long companyId;
+	private static long groupId;
+	private static String classFactory;
+	private static LiferayPortalVersion portalVersion;
+	private static String versionFactory;
 	private static OkHttpClient okHttpClient;
+
+	private LiferayServerContext() {
+		super();
+	}
 
 	public static void reloadFromResources(Resources resources, final String packageName) {
 
 		int companyIdentifier = resources.getIdentifier("liferay_company_id", "integer", packageName);
 		int groupIdentifier = resources.getIdentifier("liferay_group_id", "integer", packageName);
 
-		_companyId = getValueFromIntegerOrString(resources, R.string.liferay_company_id, companyIdentifier);
-		_groupId = getValueFromIntegerOrString(resources, R.string.liferay_group_id, groupIdentifier);
-		_server = resources.getString(R.string.liferay_server);
-		_classFactory = resources.getString(R.string.liferay_class_factory);
-		_portalVersion = LiferayPortalVersion.fromInt(resources.getInteger(R.integer.liferay_portal_version));
-		_versionFactory = resources.getString(R.string.liferay_version_factory);
+		companyId = getValueFromIntegerOrString(resources, R.string.liferay_company_id, companyIdentifier);
+		groupId = getValueFromIntegerOrString(resources, R.string.liferay_group_id, groupIdentifier);
+		server = resources.getString(R.string.liferay_server);
+		classFactory = resources.getString(R.string.liferay_class_factory);
+		portalVersion = LiferayPortalVersion.fromInt(resources.getInteger(R.integer.liferay_portal_version));
+		versionFactory = resources.getString(R.string.liferay_version_factory);
 	}
 
 	public static void loadFromResources(Resources resources, final String packageName) {
 
-		if (_companyId == 0 || _groupId == 0 || _server == null) {
+		if (companyId == 0 || groupId == 0 || server == null) {
 			reloadFromResources(resources, packageName);
 		}
 	}
 
 	public static long getCompanyId() {
-		return _companyId;
+		return companyId;
 	}
 
 	public static void setCompanyId(long companyId) {
-		LiferayServerContext._companyId = companyId;
+		LiferayServerContext.companyId = companyId;
 	}
 
 	public static long getGroupId() {
-		return _groupId;
+		return groupId;
 	}
 
 	public static void setGroupId(long groupId) {
-		LiferayServerContext._groupId = groupId;
+		LiferayServerContext.groupId = groupId;
 	}
 
 	public static String getServer() {
-		return _server;
+		return server;
 	}
 
 	public static void setServer(String server) {
-		LiferayServerContext._server = server;
+		LiferayServerContext.server = server;
 	}
 
 	public static String getClassFactory() {
-		return _classFactory;
+		return classFactory;
 	}
 
 	public static void setFactoryClass(String factoryClass) {
-		_classFactory = factoryClass;
+		classFactory = factoryClass;
 	}
 
 	public static boolean isLiferay7() {
-		return LiferayPortalVersion.VERSION_70.equals(_portalVersion);
+		return LiferayPortalVersion.VERSION_70.equals(portalVersion);
 	}
 
 	public static boolean isLiferay62() {
-		return LiferayPortalVersion.VERSION_70.equals(_portalVersion);
+		return LiferayPortalVersion.VERSION_70.equals(portalVersion);
 	}
 
 	public static String getVersionFactory() {
-		return _versionFactory;
+		return versionFactory;
 	}
 
 	public static LiferayPortalVersion getPortalVersion() {
-		return _portalVersion;
+		return portalVersion;
 	}
 
 	public static void setPortalVersion(LiferayPortalVersion portalVersion) {
-		LiferayServerContext._portalVersion = portalVersion;
+		LiferayServerContext.portalVersion = portalVersion;
 	}
 
 	public static OkHttpClient getOkHttpClient() {

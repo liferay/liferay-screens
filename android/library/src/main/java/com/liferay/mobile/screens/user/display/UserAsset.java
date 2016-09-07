@@ -14,7 +14,7 @@ public class UserAsset extends AssetEntry {
 	}
 
 	public Map<String, Object> getUserAsset() {
-		return (Map<String, Object>) _values.get("user");
+		return (Map<String, Object>) values.get("user");
 	}
 
 	public String getGreeting() {

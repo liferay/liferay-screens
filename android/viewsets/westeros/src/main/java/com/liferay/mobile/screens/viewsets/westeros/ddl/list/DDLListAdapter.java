@@ -87,38 +87,39 @@ public class DDLListAdapter extends BaseListAdapter<Record, DDLListAdapter.Swipe
 			}
 
 			holder.textView.setText(titleField);
-			holder._subtitleTextView.setText(builder.toString());
+			holder.subtitleTextView.setText(builder.toString());
 		}
 	}
 
 	public static class SwipeActionsViewHolder extends BaseListAdapter.ViewHolder implements View.OnClickListener {
 
-		private final BaseListAdapterListener _listener;
-		private final TextView _subtitleTextView;
-		private final SwipeLayout _swipeLayout;
+		private final BaseListAdapterListener listener;
+		private final TextView subtitleTextView;
+		private final SwipeLayout swipeLayout;
+
 		public SwipeActionsViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
-			this._subtitleTextView = (TextView) view.findViewById(R.id.liferay_list_subtitle);
+			this.subtitleTextView = (TextView) view.findViewById(R.id.liferay_list_subtitle);
 
-			_listener = listener;
+			this.listener = listener;
 
 			view.setOnClickListener(this);
 			view.findViewById(R.id.liferay_list_edit).setOnClickListener(this);
 			view.findViewById(R.id.liferay_list_view).setOnClickListener(this);
-			_swipeLayout = (SwipeLayout) view.findViewById(R.id.liferay_swipe_layout);
+			swipeLayout = (SwipeLayout) view.findViewById(R.id.liferay_swipe_layout);
 		}
 
 		@Override
 		public void onClick(View v) {
-			boolean opened = SwipeLayout.Status.Open.equals(_swipeLayout.getOpenStatus());
+			boolean opened = SwipeLayout.Status.Open.equals(swipeLayout.getOpenStatus());
 			if (opened && (v.getId() == R.id.liferay_list_edit || v.getId() == R.id.liferay_list_view)) {
 
-				_listener.onItemClick(getAdapterPosition(), v);
+				listener.onItemClick(getAdapterPosition(), v);
 			} else if (!opened) {
-				_swipeLayout.open(true);
+				swipeLayout.open(true);
 			} else {
-				_swipeLayout.close(true);
+				swipeLayout.close(true);
 			}
 		}
 	}

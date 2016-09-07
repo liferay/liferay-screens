@@ -111,6 +111,7 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 	public void onClick(View v) {
 
 		switch (v.getId()) {
+			default:
 			case R.id.change_gallery_view_grid:
 				setGridMode();
 				break;

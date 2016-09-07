@@ -5,10 +5,10 @@ package com.liferay.mobile.screens.ddl.model;
  */
 public class DocumentLocalFile extends DocumentFile {
 
-	private final String _path;
+	private final String path;
 
 	public DocumentLocalFile(String path) {
-		_path = path;
+		this.path = path;
 	}
 
 	@Override
@@ -18,12 +18,11 @@ public class DocumentLocalFile extends DocumentFile {
 
 	@Override
 	public String toString() {
-		return _path;
+		return path;
 	}
 
 	@Override
 	public boolean isValid() {
-		return _path != null && !_path.isEmpty();
+		return path != null && !path.isEmpty();
 	}
-
 }

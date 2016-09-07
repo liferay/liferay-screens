@@ -27,7 +27,7 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  */
 public class ModalProgressBar extends ProgressBar {
 
-	private int _actionViewId;
+	private int actionViewId;
 
 	public ModalProgressBar(Context context) {
 		super(context);
@@ -55,7 +55,7 @@ public class ModalProgressBar extends ProgressBar {
 
 	@Override
 	public void setVisibility(int v) {
-		View actionView = findActionView((View) getParent(), _actionViewId);
+		View actionView = findActionView((View) getParent(), actionViewId);
 
 		if (actionView != null) {
 			setVisibility(v, actionView);
@@ -81,7 +81,7 @@ public class ModalProgressBar extends ProgressBar {
 		TypedArray typedArray =
 			context.getTheme().obtainStyledAttributes(attributes, R.styleable.ModalProgressBar, 0, 0);
 
-		_actionViewId = typedArray.getResourceId(R.styleable.ModalProgressBar_actionViewId, 0);
+		actionViewId = typedArray.getResourceId(R.styleable.ModalProgressBar_actionViewId, 0);
 
 		typedArray.recycle();
 	}

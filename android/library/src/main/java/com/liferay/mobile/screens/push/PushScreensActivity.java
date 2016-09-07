@@ -6,18 +6,16 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.push.Push;
 import com.liferay.mobile.screens.BuildConfig;
-import com.liferay.mobile.screens.context.OAuthAuthentication;
 import com.liferay.mobile.screens.context.LiferayPortalVersion;
 import com.liferay.mobile.screens.context.LiferayServerContext;
+import com.liferay.mobile.screens.context.OAuthAuthentication;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.LiferayLogger;
-
 import org.json.JSONObject;
 
 /**
@@ -50,8 +48,7 @@ public abstract class PushScreensActivity extends AppCompatActivity
 			editor.putString(USER, getCurrentUser());
 			editor.putInt(VERSION_CODE, getVersionCode());
 			editor.apply();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			String message = "Error registering with Liferay Push";
 			LiferayLogger.e(message, e);
 		}
@@ -79,8 +76,8 @@ public abstract class PushScreensActivity extends AppCompatActivity
 	protected void registerWithPush() {
 		try {
 
-			Session session = SessionContext.isLoggedIn() ?
-				SessionContext.createSessionFromCurrentSession() : getDefaultSession();
+			Session session =
+				SessionContext.isLoggedIn() ? SessionContext.createSessionFromCurrentSession() : getDefaultSession();
 			push = Push.with(session);
 			LiferayPortalVersion portalVersion = LiferayServerContext.getPortalVersion();
 			push.withPortalVersion(portalVersion.getVersion());
@@ -93,12 +90,10 @@ public abstract class PushScreensActivity extends AppCompatActivity
 
 			if (!userAlreadyRegistered || appUpdated || BuildConfig.DEBUG) {
 				push.onSuccess(this).onFailure(this).register(this, getSenderId());
-			}
-			else {
+			} else {
 				push.onPushNotification(this);
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			String message = "Error registering with Google Push";
 			LiferayLogger.e(message, e);
 			onErrorRegisteringPush(message, e);
@@ -118,16 +113,13 @@ public abstract class PushScreensActivity extends AppCompatActivity
 
 			if (authentication instanceof BasicAuthentication) {
 				return ((BasicAuthentication) authentication).getUsername();
-			}
-			else if (authentication instanceof OAuthAuthentication) {
+			} else if (authentication instanceof OAuthAuthentication) {
 				return ((OAuthAuthentication) authentication).getToken();
-			}
-			else {
+			} else {
 				LiferayLogger.e("Can't obtain a valid user from this authentication: " + authentication);
 				return "-";
 			}
-		}
-		else {
+		} else {
 			Session defaultSession = getDefaultSession();
 			LiferayLogger.e("Using default session for push... is this the right behaviour?");
 			return ((BasicAuthentication) defaultSession.getAuthentication()).getUsername();
@@ -137,10 +129,10 @@ public abstract class PushScreensActivity extends AppCompatActivity
 	protected abstract Session getDefaultSession();
 
 	protected void unsubscribeFromBuses() {
-//		if (push != null) {
-//			FIXME !
-//			push.unsubscribe();
-//		}
+		//		if (push != null) {
+		//			FIXME !
+		//			push.unsubscribe();
+		//		}
 	}
 
 	protected abstract void onPushNotificationReceived(JSONObject jsonObject);
@@ -156,5 +148,4 @@ public abstract class PushScreensActivity extends AppCompatActivity
 	private SharedPreferences getSharedPreferences() {
 		return getSharedPreferences(PUSH_PREFERENCES, Context.MODE_PRIVATE);
 	}
-
 }

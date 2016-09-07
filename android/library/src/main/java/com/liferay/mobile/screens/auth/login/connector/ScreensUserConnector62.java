@@ -3,7 +3,6 @@ package com.liferay.mobile.screens.auth.login.connector;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.auth.forgotpassword.connector.ForgotPasswordConnector;
 import com.liferay.mobile.screens.service.v62.ScreensuserService;
-
 import org.json.JSONObject;
 
 /**

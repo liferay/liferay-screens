@@ -14,33 +14,35 @@
 
 package com.liferay.mobile.screens.util;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * @author Silvio Santos
  */
 public class JSONUtil {
 
+	private JSONUtil() {
+		super();
+	}
+
 	public static List toList(JSONArray jsonArray) throws JSONException {
 		List<Object> list = new ArrayList<>();
 
 		for (int i = 0; i < jsonArray.length(); i++) {
-			list.add(_fromJson(jsonArray.get(i)));
+			list.add(fromJson(jsonArray.get(i)));
 		}
 
 		return list;
 	}
 
-	public static Map<String, Object> toMap(JSONObject jsonObject)
-		throws JSONException {
+	public static Map<String, Object> toMap(JSONObject jsonObject) throws JSONException {
 
 		Map<String, Object> map = new HashMap<>();
 		Iterator<String> keys = jsonObject.keys();
@@ -49,7 +51,7 @@ public class JSONUtil {
 			String key = keys.next();
 			Object object = jsonObject.get(key);
 
-			map.put(key, _fromJson(object));
+			map.put(key, fromJson(object));
 		}
 
 		return map;
@@ -58,28 +60,22 @@ public class JSONUtil {
 	public static Long castToLong(final Object o) {
 		if (o instanceof Integer) {
 			return ((Integer) o).longValue();
-		}
-		else if (o instanceof String) {
+		} else if (o instanceof String) {
 			return Long.valueOf((String) o);
-		}
-		else {
+		} else {
 			return (Long) o;
 		}
 	}
 
-	private static Object _fromJson(Object object) throws JSONException {
+	private static Object fromJson(Object object) throws JSONException {
 		if (object == JSONObject.NULL) {
 			return null;
-		}
-		else if (object instanceof JSONObject) {
+		} else if (object instanceof JSONObject) {
 			return toMap((JSONObject) object);
-		}
-		else if (object instanceof JSONArray) {
+		} else if (object instanceof JSONArray) {
 			return toList((JSONArray) object);
-		}
-		else {
+		} else {
 			return object;
 		}
 	}
-
 }

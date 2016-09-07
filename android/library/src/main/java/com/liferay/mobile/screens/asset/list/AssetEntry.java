@@ -42,47 +42,41 @@ public class AssetEntry implements Parcelable {
 			return new AssetEntry[size];
 		}
 	};
-	protected Map<String, Object> _values;
+	protected Map<String, Object> values;
 
 	public AssetEntry() {
 		super();
 	}
 
 	protected AssetEntry(Parcel in, ClassLoader loader) {
-		_values = new HashMap<>();
+		values = new HashMap<>();
 
-		in.readMap(_values, loader);
+		in.readMap(values, loader);
 	}
 
 	public AssetEntry(Map<String, Object> values) {
-		_values = values;
+		this.values = values;
 	}
 
 	public String getTitle() {
-		return (String) _values.get("title");
+		return (String) values.get("title");
 	}
 
 	public String getClassName() {
-		return (String) _values.get("className");
+		return (String) values.get("className");
 	}
 
 	public String getMimeType() {
-		return (String) _values.get("mimeType");
+		return (String) values.get("mimeType");
 	}
 
 	public String getUrl() {
-		return "/documents/"
-			+ _values.get("groupId")
-			+ "/"
-			+ getFolder()
-			+ "/"
-			+ encodeUrlString((String) _values.get("title"))
-			+ "/"
-			+ _values.get("uuid");
+		return "/documents/" + values.get("groupId") + "/" + getFolder() + "/" + encodeUrlString(
+			(String) values.get("title")) + "/" + values.get("uuid");
 	}
 
 	public Map<String, Object> getObject() {
-		return (Map<String, Object>) _values.get("object");
+		return (Map<String, Object>) values.get("object");
 	}
 
 	public String getObjectType() {
@@ -90,8 +84,8 @@ public class AssetEntry implements Parcelable {
 	}
 
 	private long getFolder() {
-		if (_values.get("folderId") != null) {
-			return (long) _values.get("folderId");
+		if (values.get("folderId") != null) {
+			return (long) values.get("folderId");
 		}
 		return 0;
 	}
@@ -107,11 +101,11 @@ public class AssetEntry implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel destination, int flags) {
-		destination.writeMap(_values);
+		destination.writeMap(values);
 	}
 
 	public Map<String, Object> getValues() {
-		return _values;
+		return values;
 	}
 
 	@Override
@@ -120,6 +114,6 @@ public class AssetEntry implements Parcelable {
 	}
 
 	public String getEntryId() {
-		return String.valueOf(_values.get("entryId"));
+		return String.valueOf(values.get("entryId"));
 	}
 }

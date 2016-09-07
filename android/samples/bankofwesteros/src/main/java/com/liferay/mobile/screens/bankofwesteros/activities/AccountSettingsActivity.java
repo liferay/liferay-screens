@@ -22,10 +22,10 @@ import org.json.JSONObject;
  */
 public class AccountSettingsActivity extends Activity implements View.OnClickListener, UserPortraitListener {
 
-	private EditText _firstName;
-	private EditText _lastName;
-	private EditText _emailAddress;
-	private EditText _password;
+	private EditText firstName;
+	private EditText lastName;
+	private EditText emailAddress;
+	private EditText password;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +36,15 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 		findViewById(R.id.account_settings_save).setOnClickListener(this);
 
 		User user = SessionContext.getCurrentUser();
-		_firstName = (EditText) findViewById(R.id.first_name);
-		_firstName.setText(user.getFirstName());
-		_lastName = (EditText) findViewById(R.id.last_name);
-		_lastName.setText(user.getLastName());
-		_emailAddress = (EditText) findViewById(R.id.email_address);
-		_emailAddress.setText(user.getEmail());
-		_password = (EditText) findViewById(R.id.password);
+		firstName = (EditText) findViewById(R.id.first_name);
+		firstName.setText(user.getFirstName());
+		lastName = (EditText) findViewById(R.id.last_name);
+		lastName.setText(user.getLastName());
+		emailAddress = (EditText) findViewById(R.id.email_address);
+		emailAddress.setText(user.getEmail());
+		password = (EditText) findViewById(R.id.password);
 		BasicAuthentication basicAuth = (BasicAuthentication) SessionContext.getAuthentication();
-		_password.setText(basicAuth.getPassword());
+		password.setText(basicAuth.getPassword());
 
 		UserPortraitScreenlet userPortraitScreenlet = (UserPortraitScreenlet) findViewById(R.id.userportrait);
 		userPortraitScreenlet.setListener(this);
@@ -75,19 +75,19 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 	}
 
 	private void saveUser() {
-		final String firstName = _firstName.getText().toString();
-		final String lastName = _lastName.getText().toString();
-		final String emailAddress = _emailAddress.getText().toString();
-		final String newPassword = _password.getText().toString();
+		final String firstName = this.firstName.getText().toString();
+		final String lastName = this.lastName.getText().toString();
+		final String emailAddress = this.emailAddress.getText().toString();
+		final String newPassword = password.getText().toString();
 
-		if (_password.getText().toString().isEmpty()) {
-			setError(_password);
+		if (password.getText().toString().isEmpty()) {
+			setError(password);
 			return;
 		}
 
 		BasicAuthentication basicAuth = (BasicAuthentication) SessionContext.getAuthentication();
-		if (basicAuth.getPassword().equals(_password.getText().toString())) {
-			setError(_password);
+		if (basicAuth.getPassword().equals(password.getText().toString())) {
+			setError(password);
 			WesterosSnackbar.showSnackbar(this, "Password should be different", R.color.colorAccent_westeros);
 			return;
 		}
@@ -99,7 +99,7 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 
 				SessionContext.createBasicSession(emailAddress, newPassword);
 
-				clearError(_password);
+				clearError(password);
 				WesterosSnackbar.showSnackbar(AccountSettingsActivity.this, "User updated", R.color.green_westeros);
 			}
 

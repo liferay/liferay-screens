@@ -101,13 +101,10 @@ public abstract class BaseFileDisplayScreenlet
 
 	@Override
 	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor, Object... args) {
-		switch (userActionName) {
-			case LOAD_ASSET_ACTION:
-				if (entryId != 0) {
-					interactor.start(entryId);
-				} else {
-					interactor.start(className, classPK);
-				}
+		if (entryId != 0) {
+			interactor.start(entryId);
+		} else {
+			interactor.start(className, classPK);
 		}
 	}
 

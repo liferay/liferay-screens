@@ -28,16 +28,16 @@ public class BookmarkAdapter extends BaseListAdapter<Bookmark, BookmarkAdapter.B
 
 	public class BookmarkViewHolder extends BaseListAdapter.ViewHolder {
 
-		private final TextView _url;
+		private final TextView url;
 
 		public BookmarkViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
-			_url = (TextView) view.findViewById(R.id.bookmark_url);
+			url = (TextView) view.findViewById(R.id.bookmark_url);
 		}
 
 		public void bind(Bookmark entry) {
-			_url.setText(entry.getUrl());
+			url.setText(entry.getUrl());
 		}
 	}
 }

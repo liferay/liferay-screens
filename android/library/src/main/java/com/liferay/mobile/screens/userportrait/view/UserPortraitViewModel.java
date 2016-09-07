@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.userportrait.view;
 
 import android.graphics.Bitmap;
-
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 
 /**
@@ -24,5 +23,4 @@ import com.liferay.mobile.screens.base.view.BaseViewModel;
 public interface UserPortraitViewModel extends BaseViewModel {
 
 	void showFinishOperation(Bitmap bitmap);
-
 }

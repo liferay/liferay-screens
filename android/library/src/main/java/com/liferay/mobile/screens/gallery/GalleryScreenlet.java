@@ -78,6 +78,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 	@Override
 	protected void onUserAction(String userActionName, GalleryLoadInteractorImpl interactor, Object... args) {
 		switch (userActionName) {
+			default:
 			case LOAD_GALLERY:
 				loadPage(0);
 				break;
@@ -196,7 +197,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 
 	@Override
 	protected void onScreenletAttached() {
-		if (_autoLoad) {
+		if (autoLoad) {
 			autoLoad();
 		}
 	}

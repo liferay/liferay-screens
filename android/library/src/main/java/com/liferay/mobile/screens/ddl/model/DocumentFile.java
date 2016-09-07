@@ -10,5 +10,4 @@ public abstract class DocumentFile implements Serializable {
 	public abstract String toData();
 
 	public abstract boolean isValid();
-
 }

@@ -8,36 +8,34 @@ import org.json.JSONObject;
  */
 public class DocumentRemoteFile extends DocumentFile {
 
-	private long _groupId;
-	private String _uuid;
-	private int _version;
-	private String _title;
+	private long groupId;
+	private String uuid;
+	private int version;
+	private String title;
 
 	public DocumentRemoteFile(String json) throws JSONException {
 		JSONObject jsonObject = new JSONObject(json);
 
-		_uuid = jsonObject.getString("uuid");
-		_version = jsonObject.getInt("version");
-		_groupId = jsonObject.getInt("groupId");
+		uuid = jsonObject.getString("uuid");
+		version = jsonObject.getInt("version");
+		groupId = jsonObject.getInt("groupId");
 
 		// this is empty if we're retrieving the record
-		_title = jsonObject.optString("title");
+		title = jsonObject.optString("title");
 	}
 
 	@Override
 	public String toData() {
-		return "{\"groupId\":" + _groupId + ", " +
-			"\"uuid\":\"" + _uuid + "\", " +
-			"\"version\":" + _version + "}";
+		return "{\"groupId\":" + groupId + ", " + "\"uuid\":\"" + uuid + "\", " + "\"version\":" + version + "}";
 	}
 
 	@Override
 	public String toString() {
-		return _title.isEmpty() ? "File in server" : _title;
+		return title.isEmpty() ? "File in server" : title;
 	}
 
 	@Override
 	public boolean isValid() {
-		return _uuid != null;
+		return uuid != null;
 	}
 }

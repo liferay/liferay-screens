@@ -42,8 +42,8 @@ public class ListGalleryView extends BaseGalleryView<ListGalleryAdapter.ListGall
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-		FloatingActionButton _uploadFAB = (FloatingActionButton) findViewById(R.id.liferay_upload_fab);
-		_uploadFAB.setOnClickListener(this);
+		FloatingActionButton uploadFAB = (FloatingActionButton) findViewById(R.id.liferay_upload_fab);
+		uploadFAB.setOnClickListener(this);
 	}
 
 	@Override

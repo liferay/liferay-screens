@@ -228,7 +228,7 @@ public class PdfDisplayView extends RelativeLayout implements BaseFileDisplayVie
 
 	private class DownloadReceiver extends ResultReceiver {
 
-		public DownloadReceiver(Handler handler) {
+		DownloadReceiver(Handler handler) {
 			super(handler);
 		}
 

@@ -29,8 +29,8 @@ import com.liferay.mobile.screens.viewsets.R;
 public class LoginView extends com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginView
 	implements View.OnTouchListener {
 
-	protected ImageView _drawableLogin;
-	protected ImageView _drawablePassword;
+	protected ImageView drawableLogin;
+	protected ImageView drawablePassword;
 
 	public LoginView(Context context) {
 		super(context);
@@ -46,8 +46,8 @@ public class LoginView extends com.liferay.mobile.screens.viewsets.defaultviews.
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		ImageView primary = (v.getId() == R.id.liferay_login) ? _drawableLogin : _drawablePassword;
-		ImageView secondary = (v.getId() == R.id.liferay_login) ? _drawablePassword : _drawableLogin;
+		ImageView primary = (v.getId() == R.id.liferay_login) ? drawableLogin : drawablePassword;
+		ImageView secondary = (v.getId() == R.id.liferay_login) ? drawablePassword : drawableLogin;
 
 		changeColorOfImageView(primary, secondary);
 
@@ -66,16 +66,16 @@ public class LoginView extends com.liferay.mobile.screens.viewsets.defaultviews.
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_drawableLogin = (ImageView) findViewById(R.id.drawable_login);
-		_drawablePassword = (ImageView) findViewById(R.id.drawable_password);
+		drawableLogin = (ImageView) findViewById(R.id.drawable_login);
+		drawablePassword = (ImageView) findViewById(R.id.drawable_password);
 
-		changeColorOfImageView(_drawableLogin, _drawablePassword);
+		changeColorOfImageView(drawableLogin, drawablePassword);
 	}
 
 	@Override
 	protected void refreshLoginEditTextStyle() {
 		getLoginEditText().setInputType(getBasicAuthMethod().getInputType());
-		_drawableLogin.setImageResource(getLoginEditTextDrawableId());
+		drawableLogin.setImageResource(getLoginEditTextDrawableId());
 	}
 
 	@Override

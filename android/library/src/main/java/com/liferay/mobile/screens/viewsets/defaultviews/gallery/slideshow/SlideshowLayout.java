@@ -9,11 +9,12 @@ import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
  */
 public class SlideshowLayout extends RecyclerView.OnScrollListener implements View.OnLayoutChangeListener {
 
-	private static final int yOffset = 200;
-	private static final float scaleOffset = 0.7f;
-	private static final float alphaOffset = 0.5f;
-	private static final float scaleDelta = 1 - scaleOffset;
+	private static final int Y_OFFSET = 200;
+	private static final float SCALE_OFFSET = 0.7f;
+	private static final float ALPHA_OFFSET = 0.5f;
+	private static final float SCALE_DELTA = 1 - SCALE_OFFSET;
 	private RecyclerView recyclerView;
+
 	public SlideshowLayout(RecyclerView recyclerView) {
 		this.recyclerView = recyclerView;
 	}
@@ -36,30 +37,30 @@ public class SlideshowLayout extends RecyclerView.OnScrollListener implements Vi
 					rate = 1;
 				}
 
-				v.setScaleY(1 - rate * scaleDelta);
-				v.setScaleX(1 - rate * scaleDelta);
+				v.setScaleY(1 - rate * SCALE_DELTA);
+				v.setScaleX(1 - rate * SCALE_DELTA);
 
-				v.setTranslationY(rate * yOffset);
+				v.setTranslationY(rate * Y_OFFSET);
 
-				v.setAlpha((1 - rate) * 1 + alphaOffset);
+				v.setAlpha((1 - rate) * 1 + ALPHA_OFFSET);
 			} else {
 
 				if (v.getLeft() <= recyclerView.getWidth() - padding) {
 					rate = (recyclerView.getWidth() - padding - v.getLeft()) * 1f / v.getWidth();
 				}
-				v.setScaleY(scaleOffset + rate * scaleDelta);
-				v.setScaleX(scaleOffset + rate * scaleDelta);
+				v.setScaleY(SCALE_OFFSET + rate * SCALE_DELTA);
+				v.setScaleX(SCALE_OFFSET + rate * SCALE_DELTA);
 
-				v.setTranslationY((1 - rate) * yOffset);
+				v.setTranslationY((1 - rate) * Y_OFFSET);
 
-				v.setAlpha(rate * 1 + alphaOffset);
+				v.setAlpha(rate * 1 + ALPHA_OFFSET);
 			}
 		}
 	}
 
 	@Override
-	public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop,
-		int oldRight, int oldBottom) {
+	public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight,
+		int oldBottom) {
 
 		// Set the default values to the neighbors
 		if (recyclerView.getChildCount() < 3) {
@@ -85,9 +86,9 @@ public class SlideshowLayout extends RecyclerView.OnScrollListener implements Vi
 	}
 
 	private void assignDefaultValues(View view) {
-		view.setScaleY(scaleOffset);
-		view.setScaleX(scaleOffset);
-		view.setTranslationY(yOffset);
-		view.setAlpha(alphaOffset);
+		view.setScaleY(SCALE_OFFSET);
+		view.setScaleX(SCALE_OFFSET);
+		view.setTranslationY(Y_OFFSET);
+		view.setAlpha(ALPHA_OFFSET);
 	}
 }

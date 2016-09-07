@@ -20,6 +20,10 @@ public class PicassoScreens {
 	private static volatile Picasso picassoWithoutCache;
 	private static OfflinePolicy offlinePolicy;
 
+	private PicassoScreens() {
+		super();
+	}
+
 	public static RequestCreator load(String url) {
 		RequestCreator requestCreator = getPicasso().load(url);
 

@@ -11,8 +11,8 @@ import com.liferay.mobile.screens.viewsets.defaultviews.gallery.BaseGalleryView;
 /**
  * @author Víctor Galán Grande
  */
-public class SlideshowGalleryView extends
-	BaseGalleryView<SlideshowGalleryAdapter.SlideshowGalleryViewHolder, SlideshowGalleryAdapter> {
+public class SlideshowGalleryView
+	extends BaseGalleryView<SlideshowGalleryAdapter.SlideshowGalleryViewHolder, SlideshowGalleryAdapter> {
 
 	public SlideshowGalleryView(Context context) {
 		super(context);
@@ -39,14 +39,14 @@ public class SlideshowGalleryView extends
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		transformViews(_recyclerView);
+		transformViews(recyclerView);
 	}
 
 	protected void transformViews(final RecyclerView recyclerView) {
 		LinearLayoutManager layout = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
 		recyclerView.setLayoutManager(layout);
 
-		SlideshowLayout slideshowLayout = new SlideshowLayout(_recyclerView);
+		SlideshowLayout slideshowLayout = new SlideshowLayout(this.recyclerView);
 		recyclerView.addOnScrollListener(slideshowLayout);
 		recyclerView.addOnLayoutChangeListener(slideshowLayout);
 	}

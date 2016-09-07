@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import java.text.NumberFormat;
 import java.text.ParsePosition;
 import java.util.Locale;
@@ -43,8 +42,8 @@ public class NumberField extends Field<Number> {
 				return new NumberField[size];
 			}
 		};
-	private NumberFormat _labelFormatter;
-	private NumberFormat _defaultLabelFormatter;
+	private NumberFormat labelFormatter;
+	private NumberFormat defaultLabelFormatter;
 
 	public NumberField() {
 		super();
@@ -69,10 +68,9 @@ public class NumberField extends Field<Number> {
 
 		if (stringValue.length() == pos.getIndex()) {
 			return value;
-		}
-		else {
+		} else {
 			pos = new ParsePosition(0);
-			value = _defaultLabelFormatter.parse(stringValue, pos);
+			value = defaultLabelFormatter.parse(stringValue, pos);
 			return stringValue.length() == pos.getIndex() ? value : null;
 		}
 	}
@@ -88,11 +86,10 @@ public class NumberField extends Field<Number> {
 	}
 
 	private NumberFormat getLabelFormatter() {
-		if (_labelFormatter == null || _defaultLabelFormatter == null) {
-			_labelFormatter = NumberFormat.getNumberInstance(getCurrentLocale());
-			_defaultLabelFormatter = NumberFormat.getNumberInstance(getDefaultLocale());
+		if (labelFormatter == null || defaultLabelFormatter == null) {
+			labelFormatter = NumberFormat.getNumberInstance(getCurrentLocale());
+			defaultLabelFormatter = NumberFormat.getNumberInstance(getDefaultLocale());
 		}
-		return _labelFormatter;
+		return labelFormatter;
 	}
-
 }

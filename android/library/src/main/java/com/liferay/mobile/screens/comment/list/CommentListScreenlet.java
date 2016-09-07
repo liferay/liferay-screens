@@ -99,7 +99,9 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Commen
 
 	@Override
 	public void error(Exception e, String userAction) {
-
+		if (getListener() != null) {
+			getListener().error(e, userAction);
+		}
 	}
 
 	@Override

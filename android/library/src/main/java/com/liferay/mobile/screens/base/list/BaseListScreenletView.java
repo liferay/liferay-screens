@@ -14,7 +14,9 @@
 
 package com.liferay.mobile.screens.base.list;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.content.ContextCompat;
@@ -39,15 +41,15 @@ import java.util.List;
 public abstract class BaseListScreenletView<E extends Parcelable, H extends BaseListAdapter.ViewHolder, A extends BaseListAdapter<E, H>>
 	extends FrameLayout implements BaseListViewModel<E>, BaseListAdapterListener {
 
-	private static final String _STATE_ENTRIES = "entries";
-	private static final String _STATE_ROW_COUNT = "rowCount";
-	private static final String _STATE_SUPER = "super";
-	private static final String _STATE_FIRST_ROW = "firstRow";
-	private static final String _STATE_LABEL_FIELDS = "label_fields";
-	protected int _firstRow = 0;
-	protected ProgressBar _progressBar;
-	protected RecyclerView _recyclerView;
-	private BaseScreenlet _screenlet;
+	private static final String STATE_ENTRIES = "entries";
+	private static final String STATE_ROW_COUNT = "rowCount";
+	private static final String STATE_SUPER = "super";
+	private static final String STATE_FIRST_ROW = "firstRow";
+	private static final String STATE_LABEL_FIELDS = "label_fields";
+	protected int firstRow = 0;
+	protected ProgressBar progressBar;
+	protected RecyclerView recyclerView;
+	private BaseScreenlet screenlet;
 
 	public BaseListScreenletView(Context context) {
 		super(context);
@@ -61,6 +63,7 @@ public abstract class BaseListScreenletView<E extends Parcelable, H extends Base
 		super(context, attrs, defStyleAttr);
 	}
 
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	public BaseListScreenletView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
@@ -78,8 +81,8 @@ public abstract class BaseListScreenletView<E extends Parcelable, H extends Base
 
 	@Override
 	public void showStartOperation(String actionName) {
-		_progressBar.setVisibility(View.VISIBLE);
-		_recyclerView.setVisibility(View.GONE);
+		progressBar.setVisibility(View.VISIBLE);
+		recyclerView.setVisibility(View.GONE);
 		LiferayLogger.i("loading list");
 	}
 
@@ -92,8 +95,8 @@ public abstract class BaseListScreenletView<E extends Parcelable, H extends Base
 	public void showFinishOperation(int startRow, int endRow, List<E> serverEntries, int totalRowCount) {
 		LiferayLogger.i("loaded page " + startRow + " of list with " + serverEntries);
 
-		_progressBar.setVisibility(View.GONE);
-		_recyclerView.setVisibility(View.VISIBLE);
+		progressBar.setVisibility(View.GONE);
+		recyclerView.setVisibility(View.VISIBLE);
 
 		BaseListScreenlet screenlet = (BaseListScreenlet) getScreenlet();
 
@@ -103,13 +106,13 @@ public abstract class BaseListScreenletView<E extends Parcelable, H extends Base
 		List<E> entries = adapter.getEntries();
 
 		// we have to take into account that we start requesting the 2 page (and we don't want the first 2 ones)
-		int rowToFill = startRow - _firstRow;
-		int realRowCount = totalRowCount - _firstRow;
+		int rowToFill = startRow - firstRow;
+		int realRowCount = totalRowCount - firstRow;
 
 		if (entries.isEmpty()) {
 
-			_firstRow = rowToFill;
-			realRowCount = totalRowCount - _firstRow;
+			firstRow = rowToFill;
+			realRowCount = totalRowCount - firstRow;
 			rowToFill = 0;
 
 			// we fill all entries in the first load
@@ -146,51 +149,51 @@ public abstract class BaseListScreenletView<E extends Parcelable, H extends Base
 
 	@Override
 	public void showFinishOperation(int startRow, int endRow, Exception e) {
-		_progressBar.setVisibility(View.GONE);
-		_recyclerView.setVisibility(View.VISIBLE);
+		progressBar.setVisibility(View.GONE);
+		recyclerView.setVisibility(View.VISIBLE);
 		LiferayLogger.e(getContext().getString(R.string.loading_list_error), e);
 	}
 
 	public A getAdapter() {
-		return (A) _recyclerView.getAdapter();
+		return (A) recyclerView.getAdapter();
 	}
 
 	@Override
 	public BaseScreenlet getScreenlet() {
-		return _screenlet;
+		return screenlet;
 	}
 
 	@Override
 	public void setScreenlet(BaseScreenlet screenlet) {
-		_screenlet = screenlet;
+		this.screenlet = screenlet;
 	}
 
 	@Override
 	public void onPageNotFound(int row) {
 		BaseListScreenlet screenlet = (BaseListScreenlet) getScreenlet();
 
-		screenlet.loadPageForRow(row + _firstRow);
+		screenlet.loadPageForRow(row + firstRow);
 	}
 
 	@Override
 	protected void onRestoreInstanceState(Parcelable inState) {
 		Bundle state = (Bundle) inState;
-		Parcelable superState = state.getParcelable(_STATE_SUPER);
+		Parcelable superState = state.getParcelable(STATE_SUPER);
 
 		super.onRestoreInstanceState(superState);
 
-		List<E> entries = state.getParcelableArrayList(_STATE_ENTRIES);
+		List<E> entries = state.getParcelableArrayList(STATE_ENTRIES);
 
 		A adapter = getAdapter();
-		adapter.setRowCount(state.getInt(_STATE_ROW_COUNT));
+		adapter.setRowCount(state.getInt(STATE_ROW_COUNT));
 		adapter.getEntries().addAll(entries == null ? new ArrayList<E>() : entries);
 		adapter.notifyDataSetChanged();
 
-		List labelFields = state.getStringArrayList(_STATE_LABEL_FIELDS);
+		List labelFields = state.getStringArrayList(STATE_LABEL_FIELDS);
 
 		getAdapter().setLabelFields(labelFields);
 
-		_firstRow = state.getInt(_STATE_FIRST_ROW);
+		firstRow = state.getInt(STATE_FIRST_ROW);
 	}
 
 	@Override
@@ -201,12 +204,12 @@ public abstract class BaseListScreenletView<E extends Parcelable, H extends Base
 		ArrayList<E> entries = (ArrayList<E>) adapter.getEntries();
 
 		Bundle state = new Bundle();
-		state.putParcelableArrayList(_STATE_ENTRIES, entries);
-		state.putSerializable(_STATE_ROW_COUNT, adapter.getItemCount());
-		state.putParcelable(_STATE_SUPER, superState);
-		state.putStringArrayList(_STATE_LABEL_FIELDS,
+		state.putParcelableArrayList(STATE_ENTRIES, entries);
+		state.putSerializable(STATE_ROW_COUNT, adapter.getItemCount());
+		state.putParcelable(STATE_SUPER, superState);
+		state.putStringArrayList(STATE_LABEL_FIELDS,
 			(ArrayList<String>) ((BaseListScreenlet) getScreenlet()).getLabelFields());
-		state.putInt(_STATE_FIRST_ROW, _firstRow);
+		state.putInt(STATE_FIRST_ROW, firstRow);
 
 		return state;
 	}
@@ -218,17 +221,17 @@ public abstract class BaseListScreenletView<E extends Parcelable, H extends Base
 		int itemLayoutId = getItemLayoutId();
 		int itemProgressLayoutId = getItemProgressLayoutId();
 
-		_recyclerView = (RecyclerView) findViewById(R.id.liferay_recycler_list);
-		_progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
+		recyclerView = (RecyclerView) findViewById(R.id.liferay_recycler_list);
+		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
 
 		A adapter = createListAdapter(itemLayoutId, itemProgressLayoutId);
-		_recyclerView.setHasFixedSize(true);
-		_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-		_recyclerView.setAdapter(adapter);
+		recyclerView.setHasFixedSize(true);
+		recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+		recyclerView.setAdapter(adapter);
 
 		RecyclerView.ItemDecoration dividerItemDecoration = getDividerDecoration();
 		if (dividerItemDecoration != null) {
-			_recyclerView.addItemDecoration(getDividerDecoration());
+			recyclerView.addItemDecoration(getDividerDecoration());
 		}
 	}
 
@@ -245,19 +248,19 @@ public abstract class BaseListScreenletView<E extends Parcelable, H extends Base
 	}
 
 	protected ProgressBar getProgressBar() {
-		return _progressBar;
+		return progressBar;
 	}
 
 	protected void setProgressBar(ProgressBar value) {
-		_progressBar = value;
+		progressBar = value;
 	}
 
 	protected RecyclerView getRecyclerView() {
-		return _recyclerView;
+		return recyclerView;
 	}
 
 	protected void setRecyclerView(RecyclerView value) {
-		_recyclerView = value;
+		recyclerView = value;
 	}
 
 	protected abstract A createListAdapter(int itemLayoutId, int itemProgressLayoutId);

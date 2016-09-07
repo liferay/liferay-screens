@@ -16,9 +16,7 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import com.liferay.mobile.screens.util.LiferayLogger;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -48,18 +46,18 @@ public class DateField extends Field<Date> {
 				return new DateField[size];
 			}
 		};
-	private static final DateFormat _SERVER_YYYY_FORMAT = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
-	private static final DateFormat _SERVER_YY_FORMAT = new SimpleDateFormat("MM/dd/yy", Locale.US);
-	private static final DateFormat _SERVER_70_YYYY_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-	private static final TimeZone _GMT_TIMEZONE = TimeZone.getTimeZone("GMT");
+	private static final DateFormat SERVER_YYYY_FORMAT = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
+	private static final DateFormat SERVER_YY_FORMAT = new SimpleDateFormat("MM/dd/yy", Locale.US);
+	private static final DateFormat SERVER_70_YYYY_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+	private static final TimeZone GMT_TIMEZONE = TimeZone.getTimeZone("GMT");
 
 	static {
-		_SERVER_YYYY_FORMAT.setTimeZone(_GMT_TIMEZONE);
-		_SERVER_YY_FORMAT.setTimeZone(_GMT_TIMEZONE);
-		_SERVER_70_YYYY_FORMAT.setTimeZone(_GMT_TIMEZONE);
+		SERVER_YYYY_FORMAT.setTimeZone(GMT_TIMEZONE);
+		SERVER_YY_FORMAT.setTimeZone(GMT_TIMEZONE);
+		SERVER_70_YYYY_FORMAT.setTimeZone(GMT_TIMEZONE);
 	}
 
-	private DateFormat _clientFormat;
+	private DateFormat clientFormat;
 
 	public DateField() {
 		super();
@@ -70,6 +68,7 @@ public class DateField extends Field<Date> {
 
 		init(locale);
 	}
+
 	protected DateField(Parcel source, ClassLoader loader) {
 		super(source, loader);
 
@@ -86,19 +85,15 @@ public class DateField extends Field<Date> {
 			int lastSeparator = stringValue.lastIndexOf('/');
 
 			if (stringValue.contains("-")) {
-				return _SERVER_70_YYYY_FORMAT.parse(stringValue);
-			}
-			else if (lastSeparator == -1) {
+				return SERVER_70_YYYY_FORMAT.parse(stringValue);
+			} else if (lastSeparator == -1) {
 				return new Date(Long.parseLong(stringValue));
+			} else if (stringValue.length() - lastSeparator - 1 == 2) {
+				return SERVER_YY_FORMAT.parse(stringValue);
+			} else {
+				return SERVER_YYYY_FORMAT.parse(stringValue);
 			}
-			else if (stringValue.length() - lastSeparator - 1 == 2) {
-				return _SERVER_YY_FORMAT.parse(stringValue);
-			}
-			else {
-				return _SERVER_YYYY_FORMAT.parse(stringValue);
-			}
-		}
-		catch (ParseException e) {
+		} catch (ParseException e) {
 			LiferayLogger.e("Error parsing date " + stringValue);
 		}
 		return null;
@@ -111,12 +106,11 @@ public class DateField extends Field<Date> {
 
 	@Override
 	protected String convertToFormattedString(Date value) {
-		return (value == null) ? null : _clientFormat.format(value);
+		return (value == null) ? null : clientFormat.format(value);
 	}
 
 	private void init(Locale locale) {
-		_clientFormat = DateFormat.getDateInstance(DateFormat.LONG, locale);
-		_clientFormat.setTimeZone(_GMT_TIMEZONE);
+		clientFormat = DateFormat.getDateInstance(DateFormat.LONG, locale);
+		clientFormat.setTimeZone(GMT_TIMEZONE);
 	}
-
 }

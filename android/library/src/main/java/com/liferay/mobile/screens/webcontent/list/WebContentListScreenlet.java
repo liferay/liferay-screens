@@ -5,10 +5,7 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
-import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.webcontent.WebContent;
 import com.liferay.mobile.screens.webcontent.list.interactor.WebContentListInteractorImpl;
 import com.liferay.mobile.screens.webcontent.list.interactor.WebContentListInteractorListener;
@@ -19,10 +16,7 @@ import com.liferay.mobile.screens.webcontent.list.interactor.WebContentListInter
 public class WebContentListScreenlet extends BaseListScreenlet<WebContent, WebContentListInteractorImpl>
 	implements WebContentListInteractorListener {
 
-	private OfflinePolicy _offlinePolicy;
-	private long _groupId;
-	private long _folderId;
-	private BaseListListener<WebContent> _listener;
+	private long folderId;
 
 	public WebContentListScreenlet(Context context) {
 		super(context);
@@ -42,45 +36,22 @@ public class WebContentListScreenlet extends BaseListScreenlet<WebContent, WebCo
 
 	@Override
 	public void error(Exception e, String userAction) {
-
-	}
-
-	public OfflinePolicy getOfflinePolicy() {
-		return _offlinePolicy;
-	}
-
-	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
-		_offlinePolicy = offlinePolicy;
-	}
-
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		_groupId = groupId;
+		if (getListener() != null) {
+			getListener().error(e, userAction);
+		}
 	}
 
 	public long getFolderId() {
-		return _folderId;
+		return folderId;
 	}
 
 	public void setFolderId(long folderId) {
-		_folderId = folderId;
-	}
-
-	@Override
-	public BaseListListener<WebContent> getListener() {
-		return _listener;
-	}
-
-	public void setListener(BaseListListener<WebContent> listener) {
-		_listener = listener;
+		this.folderId = folderId;
 	}
 
 	@Override
 	protected void loadRows(WebContentListInteractorImpl interactor) {
-		interactor.start(_folderId);
+		interactor.start(folderId);
 	}
 
 	@Override
@@ -93,15 +64,7 @@ public class WebContentListScreenlet extends BaseListScreenlet<WebContent, WebCo
 		TypedArray typedArray =
 			context.getTheme().obtainStyledAttributes(attributes, R.styleable.WebContentListScreenlet, 0, 0);
 
-		Integer offlinePolicy = typedArray.getInteger(R.styleable.WebContentListScreenlet_offlinePolicy,
-			OfflinePolicy.REMOTE_ONLY.ordinal());
-		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
-
-		_folderId = castToLongOrUseDefault(typedArray.getString(R.styleable.WebContentListScreenlet_folderId), 0);
-
-		long groupId = LiferayServerContext.getGroupId();
-
-		_groupId = castToLongOrUseDefault(typedArray.getString(R.styleable.WebContentListScreenlet_groupId), groupId);
+		folderId = castToLongOrUseDefault(typedArray.getString(R.styleable.WebContentListScreenlet_folderId), 0);
 
 		typedArray.recycle();
 

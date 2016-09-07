@@ -10,9 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-
 import com.liferay.mobile.screens.R;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,8 +28,7 @@ public class SelectFileDialog {
 		try {
 			File file = new File(directory);
 			return file.exists() && file.isDirectory() ? file.getCanonicalPath() : null;
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			return null;
 		}
 	}
@@ -40,8 +37,7 @@ public class SelectFileDialog {
 		currentDir = calculateDefaultPath();
 
 		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
-		LayoutInflater inflater = (LayoutInflater) context.getSystemService
-			(Context.LAYOUT_INFLATER_SERVICE);
+		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 		View view = inflater.inflate(R.layout.select_file_default, null);
 		dialogBuilder.setView(view);
@@ -63,7 +59,8 @@ public class SelectFileDialog {
 		});
 
 		final List<String> files = getFileEntries(currentDir);
-		final ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.select_dialog_item, android.R.id.text1, files);
+		final ArrayAdapter<String> adapter =
+			new ArrayAdapter<>(context, android.R.layout.select_dialog_item, android.R.id.text1, files);
 		ListView listView = (ListView) view.findViewById(R.id.default_list);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(createListener(files, editText, adapter));
@@ -71,7 +68,8 @@ public class SelectFileDialog {
 		return dialogBuilder.create();
 	}
 
-	private AdapterView.OnItemClickListener createListener(final List<String> files, final EditText editText, final ArrayAdapter<String> adapter) {
+	private AdapterView.OnItemClickListener createListener(final List<String> files, final EditText editText,
+		final ArrayAdapter<String> adapter) {
 		return new AdapterView.OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -81,19 +79,16 @@ public class SelectFileDialog {
 				String newPath = currentDir;
 				if ("..".equals(selection)) {
 					newPath = currentDir.substring(0, currentDir.lastIndexOf('/'));
-				}
-				else if (selection.indexOf('/') != -1) {
+				} else if (selection.indexOf('/') != -1) {
 					newPath += '/' + selection.substring(0, selection.length() - 1);
-				}
-				else {
+				} else {
 					newPath += '/' + selection;
 				}
 
 				currentFile = "";
 				if (new File(newPath).isFile()) {
 					currentFile = selection;
-				}
-				else {
+				} else {
 					currentDir = newPath;
 				}
 
@@ -110,8 +105,7 @@ public class SelectFileDialog {
 		final String sdPath = checkIfDirExists(SD_DIRECTORY);
 		if (sdPath != null) {
 			return sdPath;
-		}
-		else if (defaultPath != null) {
+		} else if (defaultPath != null) {
 			return defaultPath;
 		}
 		return "";
@@ -125,24 +119,28 @@ public class SelectFileDialog {
 		}
 
 		File dirFile = new File(directory);
-		if (dirFile == null || !dirFile.exists() || !dirFile.isDirectory()
-			|| dirFile.listFiles() == null || dirFile.listFiles().length == 0) {
+		if (dirFile == null
+			|| !dirFile.exists()
+			|| !dirFile.isDirectory()
+			|| dirFile.listFiles() == null
+			|| dirFile.listFiles().length == 0) {
 			if (currentDir.equals(SD_DIRECTORY)) {
-				throw new SecurityException("Are you sure that the read or write permission is set in the manifest.xml?");
+				throw new SecurityException(
+					"Are you sure that the read or write permission is set in the manifest.xml?");
 			}
 			return entries;
 		}
 
 		String storageState = Environment.getExternalStorageState();
-		if (!Environment.MEDIA_MOUNTED.equals(storageState) && !Environment.MEDIA_MOUNTED_READ_ONLY.equals(storageState)) {
+		if (!Environment.MEDIA_MOUNTED.equals(storageState) && !Environment.MEDIA_MOUNTED_READ_ONLY.equals(
+			storageState)) {
 			throw new SecurityException("Storage media is unavailable.");
 		}
 
 		for (File file : dirFile.listFiles()) {
 			if (file.isDirectory()) {
 				entries.add(file.getName() + '/');
-			}
-			else {
+			} else {
 				entries.add(file.getName());
 			}
 		}

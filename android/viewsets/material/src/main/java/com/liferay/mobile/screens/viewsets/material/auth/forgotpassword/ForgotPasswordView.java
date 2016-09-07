@@ -27,7 +27,7 @@ import com.liferay.mobile.screens.viewsets.R;
 public class ForgotPasswordView
 	extends com.liferay.mobile.screens.viewsets.defaultviews.auth.forgotpassword.ForgotPasswordView {
 
-	protected ImageView _drawableLogin;
+	protected ImageView drawableLogin;
 
 	public ForgotPasswordView(Context context) {
 		super(context);
@@ -45,14 +45,14 @@ public class ForgotPasswordView
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_drawableLogin = (ImageView) findViewById(R.id.drawable_login);
-		_drawableLogin.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorPrimary_material));
+		drawableLogin = (ImageView) findViewById(R.id.drawable_login);
+		drawableLogin.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorPrimary_material));
 	}
 
 	@Override
 	protected void refreshLoginEditTextStyle() {
 		getLoginEditText().setInputType(getBasicAuthMethod().getInputType());
-		_drawableLogin.setImageResource(getLoginEditTextDrawableId());
+		drawableLogin.setImageResource(getLoginEditTextDrawableId());
 	}
 
 	@Override

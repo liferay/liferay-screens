@@ -76,7 +76,7 @@ public abstract class BaseGalleryView<H extends BaseListAdapter.ViewHolder, A ex
 				entries.remove(i);
 				int newRowCount = getAdapter().getItemCount() - 1;
 				getAdapter().setRowCount(newRowCount);
-				_recyclerView.getAdapter().notifyItemRemoved(i);
+				recyclerView.getAdapter().notifyItemRemoved(i);
 				break;
 			}
 		}
@@ -103,9 +103,8 @@ public abstract class BaseGalleryView<H extends BaseListAdapter.ViewHolder, A ex
 	}
 
 	private void createProgressView() {
-		uploadProgressView =
-			(UploadProgressView) LayoutInflater.from(getContext())
-				.inflate(R.layout.gallery_progress_view_default, this, false);
+		uploadProgressView = (UploadProgressView) LayoutInflater.from(getContext())
+			.inflate(R.layout.gallery_progress_view_default, this, false);
 
 		addView(uploadProgressView);
 	}

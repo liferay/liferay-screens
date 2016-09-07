@@ -16,8 +16,8 @@ import com.liferay.mobile.screens.bookmark.view.AddBookmarkViewModel;
 public class AddBookmarkScreenlet extends BaseScreenlet<AddBookmarkViewModel, AddBookmarkInteractorImpl>
 	implements AddBookmarkListener {
 
-	private long _folderId;
-	private AddBookmarkListener _listener;
+	private long folderId;
+	private AddBookmarkListener listener;
 
 	public AddBookmarkScreenlet(Context context) {
 		super(context);
@@ -38,33 +38,33 @@ public class AddBookmarkScreenlet extends BaseScreenlet<AddBookmarkViewModel, Ad
 	public void onAddBookmarkSuccess() {
 		getViewModel().showFinishOperation(null);
 
-		if (_listener != null) {
-			_listener.onAddBookmarkSuccess();
+		if (listener != null) {
+			listener.onAddBookmarkSuccess();
 		}
 	}
 
 	public void onAddBookmarkFailure(Exception e) {
 		getViewModel().showFailedOperation(null, e);
 
-		if (_listener != null) {
-			_listener.onAddBookmarkFailure(e);
+		if (listener != null) {
+			listener.onAddBookmarkFailure(e);
 		}
 	}
 
 	public long getFolderId() {
-		return _folderId;
+		return folderId;
 	}
 
 	public void setFolderId(long folderId) {
-		_folderId = folderId;
+		this.folderId = folderId;
 	}
 
 	public AddBookmarkListener getListener() {
-		return _listener;
+		return listener;
 	}
 
 	public void setListener(AddBookmarkListener listener) {
-		_listener = listener;
+		this.listener = listener;
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class AddBookmarkScreenlet extends BaseScreenlet<AddBookmarkViewModel, Ad
 
 		String defaultTitle = typedArray.getString(R.styleable.AddBookmarkScreenlet_defaultTitle);
 
-		_folderId = castToLong(typedArray.getString(R.styleable.AddBookmarkScreenlet_folderId));
+		folderId = castToLong(typedArray.getString(R.styleable.AddBookmarkScreenlet_folderId));
 
 		typedArray.recycle();
 
@@ -100,7 +100,7 @@ public class AddBookmarkScreenlet extends BaseScreenlet<AddBookmarkViewModel, Ad
 		String title = viewModel.getTitle();
 
 		try {
-			interactor.start(url, title, _folderId);
+			interactor.start(url, title, folderId);
 		} catch (Exception e) {
 			onAddBookmarkFailure(e);
 		}

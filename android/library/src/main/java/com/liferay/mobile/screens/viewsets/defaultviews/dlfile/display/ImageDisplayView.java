@@ -49,8 +49,8 @@ public class ImageDisplayView extends RelativeLayout implements BaseFileDisplayV
 
 	@Override
 	public void showFinishOperation(String actionName) {
-		throw new UnsupportedOperationException("showFinishOperation(String) is not supported."
-			+ " Use showFinishOperation(FileEntry) instead.");
+		throw new UnsupportedOperationException(
+			"showFinishOperation(String) is not supported." + " Use showFinishOperation(FileEntry) instead.");
 	}
 
 	@Override

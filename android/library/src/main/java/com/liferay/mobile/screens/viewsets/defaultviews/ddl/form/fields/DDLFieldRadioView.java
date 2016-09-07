@@ -24,11 +24,9 @@ import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
-
 import java.util.List;
 
 /**
@@ -37,8 +35,8 @@ import java.util.List;
 public class DDLFieldRadioView extends RadioGroup
 	implements DDLFieldViewModel<StringWithOptionsField>, CompoundButton.OnCheckedChangeListener {
 
-	protected View _parentView;
-	private StringWithOptionsField _field;
+	protected View parentView;
+	private StringWithOptionsField field;
 
 	public DDLFieldRadioView(Context context) {
 		super(context);
@@ -50,22 +48,22 @@ public class DDLFieldRadioView extends RadioGroup
 
 	@Override
 	public StringWithOptionsField getField() {
-		return _field;
+		return field;
 	}
 
 	@Override
 	public void setField(StringWithOptionsField field) {
-		_field = field;
+		this.field = field;
 
-		if (_field.isShowLabel()) {
+		if (this.field.isShowLabel()) {
 			TextView label = (TextView) findViewById(R.id.liferay_ddl_label);
 
 			label.setText(field.getLabel());
 			label.setVisibility(VISIBLE);
 		}
 
-		LayoutParams layoutParams = new LayoutParams(
-			ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+		LayoutParams layoutParams =
+			new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
 		List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
 
@@ -77,7 +75,7 @@ public class DDLFieldRadioView extends RadioGroup
 			radioButton.setText(opt.label);
 			radioButton.setTag(opt);
 			radioButton.setOnCheckedChangeListener(this);
-			radioButton.setTypeface(_getTypeface());
+			radioButton.setTypeface(getTypeface());
 			radioButton.setSaveEnabled(true);
 			addView(radioButton);
 		}
@@ -87,7 +85,7 @@ public class DDLFieldRadioView extends RadioGroup
 
 	@Override
 	public void refresh() {
-		List<StringWithOptionsField.Option> selectedOptions = _field.getCurrentValue();
+		List<StringWithOptionsField.Option> selectedOptions = field.getCurrentValue();
 
 		if (selectedOptions != null) {
 			for (StringWithOptionsField.Option opt : selectedOptions) {
@@ -104,12 +102,11 @@ public class DDLFieldRadioView extends RadioGroup
 	public void onPostValidation(boolean valid) {
 		String errorText = valid ? null : getContext().getString(R.string.required_value);
 
-		if (_field.isShowLabel()) {
+		if (field.isShowLabel()) {
 			TextView label = (TextView) findViewById(R.id.liferay_ddl_label);
 			label.setError(errorText);
-		}
-		else {
-			List<StringWithOptionsField.Option> availableOptions = _field.getAvailableOptions();
+		} else {
+			List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
 			StringWithOptionsField.Option opt = availableOptions.get(0);
 			RadioButton radioButton = (RadioButton) findViewWithTag(opt);
 			if (radioButton != null) {
@@ -120,12 +117,12 @@ public class DDLFieldRadioView extends RadioGroup
 
 	@Override
 	public View getParentView() {
-		return _parentView;
+		return parentView;
 	}
 
 	@Override
 	public void setParentView(View view) {
-		_parentView = view;
+		parentView = view;
 	}
 
 	@Override
@@ -139,10 +136,9 @@ public class DDLFieldRadioView extends RadioGroup
 
 		StringWithOptionsField.Option opt = (StringWithOptionsField.Option) radioButton.getTag();
 		if (isChecked) {
-			_field.selectOption(opt);
-		}
-		else {
-			_field.clearOption(opt);
+			field.selectOption(opt);
+		} else {
+			field.clearOption(opt);
 		}
 	}
 
@@ -153,12 +149,11 @@ public class DDLFieldRadioView extends RadioGroup
 		setSaveEnabled(true);
 	}
 
-	private Typeface _getTypeface() {
+	private Typeface getTypeface() {
 		//FIXME replace with constructor with styles when we have the drawables
 		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
 			return Typeface.DEFAULT;
 		}
 		return Typeface.create("sans-serif-light", Typeface.NORMAL);
 	}
-
 }

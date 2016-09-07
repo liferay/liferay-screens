@@ -67,10 +67,10 @@ public class DDLListAdapter extends BaseListAdapter<Record, DDLListAdapter.Image
 				}
 			}
 
-			buildURL(entry, holder._imageView);
+			buildURL(entry, holder.imageView);
 
 			holder.textView.setText(titleField);
-			holder._subtitleTextView.setText(builder.toString());
+			holder.subtitleTextView.setText(builder.toString());
 		}
 	}
 
@@ -121,24 +121,25 @@ public class DDLListAdapter extends BaseListAdapter<Record, DDLListAdapter.Image
 
 	public static class ImageViewHolder extends BaseListAdapter.ViewHolder implements View.OnClickListener {
 
-		private final BaseListAdapterListener _listener;
-		private final TextView _subtitleTextView;
-		private final ImageView _imageView;
+		private final BaseListAdapterListener listener;
+		private final TextView subtitleTextView;
+		private final ImageView imageView;
+
 		public ImageViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
 			this.textView = (TextView) view.findViewById(R.id.notification_title);
-			this._subtitleTextView = (TextView) view.findViewById(R.id.notification_subtitle);
-			this._imageView = (ImageView) view.findViewById(R.id.notification_image);
+			this.subtitleTextView = (TextView) view.findViewById(R.id.notification_subtitle);
+			this.imageView = (ImageView) view.findViewById(R.id.notification_image);
 
-			_listener = listener;
+			this.listener = listener;
 
 			view.setOnClickListener(this);
 		}
 
 		@Override
 		public void onClick(View v) {
-			_listener.onItemClick(getAdapterPosition(), v);
+			listener.onItemClick(getAdapterPosition(), v);
 		}
 	}
 }

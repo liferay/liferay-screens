@@ -41,8 +41,7 @@ public class ScreensassetentryService extends BaseService {
 			_params.put("locale", checkNull(locale));
 
 			_command.put("/screens.screensassetentry/get-asset-entry", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -65,8 +64,7 @@ public class ScreensassetentryService extends BaseService {
 			_params.put("locale", checkNull(locale));
 
 			_command.put("/screens.screensassetentry/get-asset-entry", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -79,7 +77,8 @@ public class ScreensassetentryService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public JSONArray getAssetEntries(long companyId, long groupId, String portletItemName, String locale, int max) throws Exception {
+	public JSONArray getAssetEntries(long companyId, long groupId, String portletItemName, String locale, int max)
+		throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -92,8 +91,7 @@ public class ScreensassetentryService extends BaseService {
 			_params.put("max", max);
 
 			_command.put("/screens.screensassetentry/get-asset-entries", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -112,12 +110,12 @@ public class ScreensassetentryService extends BaseService {
 		try {
 			JSONObject _params = new JSONObject();
 
-			mangleWrapper(_params, "assetEntryQuery", "com.liferay.asset.kernel.service.persistence.AssetEntryQuery", assetEntryQuery);
+			mangleWrapper(_params, "assetEntryQuery", "com.liferay.asset.kernel.service.persistence.AssetEntryQuery",
+				assetEntryQuery);
 			_params.put("locale", checkNull(locale));
 
 			_command.put("/screens.screensassetentry/get-asset-entries", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -129,5 +127,4 @@ public class ScreensassetentryService extends BaseService {
 
 		return _result.getJSONArray(0);
 	}
-
 }

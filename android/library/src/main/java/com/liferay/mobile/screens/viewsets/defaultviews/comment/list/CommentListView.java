@@ -53,7 +53,7 @@ public class CommentListView
 			getAdapter().notifyItemInserted(size - 1);
 		}
 
-		_recyclerView.smoothScrollToPosition(size - 1);
+		recyclerView.smoothScrollToPosition(size - 1);
 		showEmptyListMessage();
 	}
 

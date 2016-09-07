@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.viewsets.defaultviews.asset.list;
 
 import android.support.annotation.NonNull;
 import android.view.View;
-
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
@@ -40,5 +39,4 @@ public class AssetListAdapter extends BaseListAdapter<AssetEntry, BaseListAdapte
 	protected void fillHolder(AssetEntry entry, ViewHolder holder) {
 		holder.textView.setText(entry.getTitle());
 	}
-
 }

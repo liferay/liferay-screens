@@ -36,10 +36,10 @@ import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
  */
 public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews.auth.signup.SignUpView {
 
-	private TextView _firstNameValidation;
-	private TextView _lastNameValidation;
-	private TextView _emailAddressValidation;
-	private TextView _passwordValidation;
+	private TextView firstNameValidation;
+	private TextView lastNameValidation;
+	private TextView emailAddressValidation;
+	private TextView passwordValidation;
 
 	public SignUpView(Context context) {
 		super(context);
@@ -67,13 +67,13 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 
 		initClickableTermsAndConditions();
 
-		_firstNameValidation = (TextView) findViewById(R.id.first_name_validation);
-		_lastNameValidation = (TextView) findViewById(R.id.last_name_validation);
-		_lastNameValidation.setText(R.string.last_name_cant_be_empty);
-		_emailAddressValidation = (TextView) findViewById(R.id.email_address_validation);
-		_emailAddressValidation.setText(R.string.email_address_cant_be_empty);
-		_passwordValidation = (TextView) findViewById(R.id.password_validation);
-		_passwordValidation.setText(R.string.password_cant_be_empty);
+		firstNameValidation = (TextView) findViewById(R.id.first_name_validation);
+		lastNameValidation = (TextView) findViewById(R.id.last_name_validation);
+		lastNameValidation.setText(R.string.last_name_cant_be_empty);
+		emailAddressValidation = (TextView) findViewById(R.id.email_address_validation);
+		emailAddressValidation.setText(R.string.email_address_cant_be_empty);
+		passwordValidation = (TextView) findViewById(R.id.password_validation);
+		passwordValidation.setText(R.string.password_cant_be_empty);
 	}
 
 	private SignUpScreenlet getSignUpScreenlet() {
@@ -88,15 +88,15 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 			WesterosSnackbar.showSnackbar(LiferayScreensContext.getActivityFromContext(getContext()),
 				"You must accept the terms & conditions", R.color.colorAccent_westeros);
 			return false;
-		} else if (!checkField(_firstName, _firstNameValidation)) {
+		} else if (!checkField(firstName, firstNameValidation)) {
 			return false;
-		} else if (!checkField(_lastName, _lastNameValidation)) {
+		} else if (!checkField(lastName, lastNameValidation)) {
 			return false;
-		} else if (!checkField(_emailAddress, _emailAddressValidation)) {
+		} else if (!checkField(emailAddress, emailAddressValidation)) {
 			return false;
 		}
 
-		return checkField(_password, _passwordValidation);
+		return checkField(password, passwordValidation);
 	}
 
 	private boolean checkField(EditText field, View validationView) {

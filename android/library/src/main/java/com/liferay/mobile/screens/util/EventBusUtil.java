@@ -48,5 +48,4 @@ public class EventBusUtil {
 
 		return bus;
 	}
-
 }

@@ -76,5 +76,4 @@ public class ServiceVersionFactory70 implements ServiceVersionFactory {
 	public ScreensJournalContentConnector getScreensJournalContentConnector(Session session) {
 		return new ScreensJournalContentConnector70(session);
 	}
-
 }

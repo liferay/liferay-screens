@@ -49,8 +49,8 @@ public class AssetDisplayView extends FrameLayout implements AssetDisplayViewMod
 
 	@Override
 	public void showFinishOperation(String actionName) {
-		throw new UnsupportedOperationException("showFinishOperation(String) is not supported."
-			+ " Use showFinishOperation(BaseScreenlet) instead.");
+		throw new UnsupportedOperationException(
+			"showFinishOperation(String) is not supported." + " Use showFinishOperation(BaseScreenlet) instead.");
 	}
 
 	@Override

@@ -36,21 +36,21 @@ public class MainActivity extends CardActivity
 	implements View.OnClickListener, LoginListener, ForgotPasswordListener, SignUpListener {
 
 	public static final int CARD1_REST_POSITION = 100;
-	private ImageView _background;
-	private EditText _forgotPasswordField;
+	private ImageView background;
+	private EditText forgotPasswordField;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		_background = (ImageView) findViewById(R.id.background);
-		_background.setOnClickListener(this);
+		background = (ImageView) findViewById(R.id.background);
+		background.setOnClickListener(this);
 
 		//TODO move to the screenlet?
 		View forgotPasswordText = findViewById(R.id.liferay_forgot_link);
 		forgotPasswordText.setOnClickListener(this);
-		_forgotPasswordField = (EditText) findViewById(R.id.liferay_forgot_login);
+		forgotPasswordField = (EditText) findViewById(R.id.liferay_forgot_login);
 
 		LoginScreenlet loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
 		loginScreenlet.setListener(this);
@@ -84,7 +84,7 @@ public class MainActivity extends CardActivity
 
 	@Override
 	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
-		_forgotPasswordField.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.circle_email, 0);
+		forgotPasswordField.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.circle_email, 0);
 		WesterosSnackbar.showSnackbar(this, "Password requested!", R.color.green_westeros);
 	}
 
@@ -115,21 +115,21 @@ public class MainActivity extends CardActivity
 		_card2.setY(_card2FoldedPosition);
 		_card1RestPosition = convertDpToPx(CARD1_REST_POSITION);
 
-		_background.animate().alpha(1);
+		background.animate().alpha(1);
 
 		toBackground();
 	}
 
 	@Override
 	protected void goRightCard1() {
-		_forgotPasswordField.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+		forgotPasswordField.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 		super.goRightCard1();
 	}
 
 	private void toIssues() {
-		_background.animate().alpha(0);
+		background.animate().alpha(0);
 
-		int maxHeightInDp = convertDpToPx(_maxHeight);
+		int maxHeightInDp = convertDpToPx(maxHeight);
 		_card2.animate().y(maxHeightInDp);
 
 		final ViewPropertyAnimator animate = _card1.animate();

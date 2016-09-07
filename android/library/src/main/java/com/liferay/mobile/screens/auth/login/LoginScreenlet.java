@@ -21,7 +21,6 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.oauth.activity.OAuthActivity;
 import com.liferay.mobile.screens.R;
@@ -42,19 +41,17 @@ import static com.liferay.mobile.screens.context.storage.CredentialsStorageBuild
 /**
  * @author Silvio Santos
  */
-public class LoginScreenlet
-	extends BaseScreenlet<LoginViewModel, BaseLoginInteractor>
-	implements LoginListener {
+public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInteractor> implements LoginListener {
 
 	public static final String OAUTH = "OAUTH";
 	public static final String BASIC_AUTH = "BASIC_AUTH";
 	public static final int REQUEST_OAUTH_CODE = 1;
 	public static final String LOGIN_SUCCESSFUL = "com.liferay.mobile.screens.auth.login.success";
-	private LoginListener _listener;
-	private BasicAuthMethod _basicAuthMethod;
-	private StorageType _credentialsStorage;
-	private String _oauthConsumerKey;
-	private String _oauthConsumerSecret;
+	private LoginListener listener;
+	private BasicAuthMethod basicAuthMethod;
+	private StorageType credentialsStorage;
+	private String oauthConsumerKey;
+	private String oauthConsumerSecret;
 
 	public LoginScreenlet(Context context) {
 		super(context);
@@ -76,8 +73,8 @@ public class LoginScreenlet
 	public void onLoginFailure(Exception e) {
 		getViewModel().showFailedOperation(null, e);
 
-		if (_listener != null) {
-			_listener.onLoginFailure(e);
+		if (listener != null) {
+			listener.onLoginFailure(e);
 		}
 	}
 
@@ -85,123 +82,113 @@ public class LoginScreenlet
 	public void onLoginSuccess(User user) {
 		getViewModel().showFinishOperation(user);
 
-		if (_listener != null) {
-			_listener.onLoginSuccess(user);
+		if (listener != null) {
+			listener.onLoginSuccess(user);
 		}
 
 		getContext().sendBroadcast(new Intent(LOGIN_SUCCESSFUL));
 
-		SessionContext.storeCredentials(_credentialsStorage);
+		SessionContext.storeCredentials(credentialsStorage);
 	}
 
 	public void sendOAuthResult(int result, Intent intent) {
 		if (result == Activity.RESULT_OK) {
 			try {
-				OAuthConfig oauthConfig = (OAuthConfig) intent.getSerializableExtra(
-					OAuthActivity.EXTRA_OAUTH_CONFIG);
+				OAuthConfig oauthConfig = (OAuthConfig) intent.getSerializableExtra(OAuthActivity.EXTRA_OAUTH_CONFIG);
 
 				BaseLoginInteractor oauthInteractor = getInteractor(OAUTH);
 				oauthInteractor.start(oauthConfig);
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				onLoginFailure(e);
 			}
-		}
-		else if (result == Activity.RESULT_CANCELED && intent != null) {
-			Exception exception = (Exception) intent.getSerializableExtra(
-				OAuthActivity.EXTRA_EXCEPTION);
+		} else if (result == Activity.RESULT_CANCELED && intent != null) {
+			Exception exception = (Exception) intent.getSerializableExtra(OAuthActivity.EXTRA_EXCEPTION);
 			onLoginFailure(exception);
 		}
 	}
 
 	public void setListener(LoginListener listener) {
-		_listener = listener;
+		this.listener = listener;
 	}
 
 	public BasicAuthMethod getAuthMethod() {
-		return _basicAuthMethod;
+		return basicAuthMethod;
 	}
 
 	public StorageType getCredentialsStorage() {
-		return _credentialsStorage;
+		return credentialsStorage;
 	}
 
 	public void setCredentialsStorage(StorageType value) {
-		_credentialsStorage = value;
+		credentialsStorage = value;
 	}
 
 	public String getOAuthConsumerSecret() {
-		return _oauthConsumerSecret;
+		return oauthConsumerSecret;
 	}
 
 	public void setOAuthConsumerSecret(String value) {
-		_oauthConsumerSecret = value;
+		oauthConsumerSecret = value;
 	}
 
 	public String getOAuthConsumerKey() {
-		return _oauthConsumerKey;
+		return oauthConsumerKey;
 	}
 
 	public void setOAuthConsumerKey(String value) {
-		_oauthConsumerKey = value;
+		oauthConsumerKey = value;
 	}
 
 	public BasicAuthMethod getBasicAuthMethod() {
-		return _basicAuthMethod;
+		return basicAuthMethod;
 	}
 
 	public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
-		_basicAuthMethod = basicAuthMethod;
+		this.basicAuthMethod = basicAuthMethod;
 
-		getViewModel().setBasicAuthMethod(_basicAuthMethod);
+		getViewModel().setBasicAuthMethod(this.basicAuthMethod);
 	}
 
 	public String getOauthConsumerKey() {
-		return _oauthConsumerKey;
+		return oauthConsumerKey;
 	}
 
 	public void setOauthConsumerKey(String oauthConsumerKey) {
-		_oauthConsumerKey = oauthConsumerKey;
+		this.oauthConsumerKey = oauthConsumerKey;
 	}
 
 	public String getOauthConsumerSecret() {
-		return _oauthConsumerSecret;
+		return oauthConsumerSecret;
 	}
 
 	public void setOauthConsumerSecret(String oauthConsumerSecret) {
-		_oauthConsumerSecret = oauthConsumerSecret;
+		this.oauthConsumerSecret = oauthConsumerSecret;
 	}
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-			attributes, R.styleable.LoginScreenlet, 0, 0);
+		TypedArray typedArray = context.getTheme().obtainStyledAttributes(attributes, R.styleable.LoginScreenlet, 0, 0);
 
-		int storeValue = typedArray.getInt(R.styleable.LoginScreenlet_credentialsStorage,
-			StorageType.NONE.toInt());
+		int storeValue = typedArray.getInt(R.styleable.LoginScreenlet_credentialsStorage, StorageType.NONE.toInt());
 
-		_credentialsStorage = StorageType.valueOf(storeValue);
+		credentialsStorage = StorageType.valueOf(storeValue);
 
-		_oauthConsumerKey =
-			typedArray.getString(R.styleable.LoginScreenlet_oauthConsumerKey);
-		_oauthConsumerSecret =
-			typedArray.getString(R.styleable.LoginScreenlet_oauthConsumerSecret);
+		oauthConsumerKey = typedArray.getString(R.styleable.LoginScreenlet_oauthConsumerKey);
+		oauthConsumerSecret = typedArray.getString(R.styleable.LoginScreenlet_oauthConsumerSecret);
 
-		int layoutId = typedArray.getResourceId(
-			R.styleable.LoginScreenlet_layoutId, getDefaultLayoutId());
+		int layoutId = typedArray.getResourceId(R.styleable.LoginScreenlet_layoutId, getDefaultLayoutId());
 
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
 
 		LoginViewModel loginViewModel = (LoginViewModel) view;
 
-		if (_oauthConsumerKey != null && _oauthConsumerSecret != null) {
+		if (oauthConsumerKey != null && oauthConsumerSecret != null) {
 			loginViewModel.setAuthenticationType(AuthenticationType.OAUTH);
-		}
-		else {
+		} else {
 			int authMethodId = typedArray.getInt(R.styleable.LoginScreenlet_basicAuthMethod, 0);
 
-			_basicAuthMethod = BasicAuthMethod.getValue(authMethodId);
-			loginViewModel.setBasicAuthMethod(_basicAuthMethod);
+			basicAuthMethod = BasicAuthMethod.getValue(authMethodId);
+			loginViewModel.setBasicAuthMethod(basicAuthMethod);
 
 			loginViewModel.setAuthenticationType(AuthenticationType.BASIC);
 		}
@@ -215,13 +202,11 @@ public class LoginScreenlet
 	protected BaseLoginInteractor createInteractor(String actionName) {
 		if (BASIC_AUTH.equals(actionName)) {
 			return new LoginBasicInteractor();
-		}
-		else {
+		} else {
 			LoginOAuthInteractor oauthInteractor = new LoginOAuthInteractor();
 
-			OAuthConfig config = new OAuthConfig(
-				LiferayServerContext.getServer(),
-				_oauthConsumerKey, _oauthConsumerSecret);
+			OAuthConfig config =
+				new OAuthConfig(LiferayServerContext.getServer(), oauthConsumerKey, oauthConsumerSecret);
 
 			oauthInteractor.setOAuthConfig(config);
 
@@ -235,14 +220,13 @@ public class LoginScreenlet
 
 			LoginViewModel viewModel = getViewModel();
 			interactor.start(viewModel.getLogin(), viewModel.getPassword(), viewModel.getBasicAuthMethod());
-		}
-		else {
+		} else {
 
 			LoginOAuthInteractor oauthInteractor = (LoginOAuthInteractor) interactor;
 			Intent intent = new Intent(getContext(), OAuthActivity.class);
 			intent.putExtra(OAuthActivity.EXTRA_OAUTH_CONFIG, oauthInteractor.getOAuthConfig());
-			LiferayScreensContext.getActivityFromContext(getContext()).startActivityForResult(intent, REQUEST_OAUTH_CODE);
+			LiferayScreensContext.getActivityFromContext(getContext())
+				.startActivityForResult(intent, REQUEST_OAUTH_CODE);
 		}
 	}
-
 }

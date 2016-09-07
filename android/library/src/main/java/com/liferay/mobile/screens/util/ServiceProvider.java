@@ -8,22 +8,25 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
  */
 public class ServiceProvider {
 
-	private static ServiceVersionFactory _versionFactory;
+	private static ServiceVersionFactory versionFactory;
+
+	private ServiceProvider() {
+		super();
+	}
 
 	public static ServiceVersionFactory getInstance() {
 		synchronized (ServiceProvider.class) {
-			if (_versionFactory == null) {
-				_versionFactory = createFactory();
+			if (versionFactory == null) {
+				versionFactory = createFactory();
 			}
 		}
-		return _versionFactory;
+		return versionFactory;
 	}
 
 	private static ServiceVersionFactory createFactory() {
 		try {
 			if (!LiferayServerContext.getVersionFactory().isEmpty()) {
-				return (ServiceVersionFactory) Class.forName(
-					LiferayServerContext.getVersionFactory()).newInstance();
+				return (ServiceVersionFactory) Class.forName(LiferayServerContext.getVersionFactory()).newInstance();
 			}
 			if (LiferayServerContext.isLiferay7()) {
 				return new ServiceVersionFactory70();

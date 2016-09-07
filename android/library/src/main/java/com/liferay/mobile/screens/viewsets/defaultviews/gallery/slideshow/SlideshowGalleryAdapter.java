@@ -35,12 +35,12 @@ public class SlideshowGalleryAdapter
 
 	public class SlideshowGalleryViewHolder extends BaseListAdapter.ViewHolder {
 
-		private final ImageView _imageView;
+		private final ImageView imageView;
 
 		public SlideshowGalleryViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
-			_imageView = (ImageView) view.findViewById(R.id.gallery_item_image);
+			imageView = (ImageView) view.findViewById(R.id.gallery_item_image);
 		}
 
 		public void bind(ImageEntry entry) {
@@ -48,7 +48,7 @@ public class SlideshowGalleryAdapter
 				.placeholder(R.drawable.default_placeholder_image)
 				.resize(resizedWidth, resizedHeight)
 				.centerInside()
-				.into(_imageView);
+				.into(imageView);
 		}
 	}
 }

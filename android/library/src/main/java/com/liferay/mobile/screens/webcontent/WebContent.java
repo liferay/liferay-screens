@@ -137,6 +137,6 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 	}
 
 	public String getArticleId() {
-		return String.valueOf(_values.get("articleId"));
+		return String.valueOf(values.get("articleId"));
 	}
 }

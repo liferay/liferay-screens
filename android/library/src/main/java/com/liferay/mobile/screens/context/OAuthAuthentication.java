@@ -22,21 +22,20 @@ import com.liferay.mobile.android.oauth.OAuthConfig;
  */
 public class OAuthAuthentication extends OAuth {
 
-	private final String _token;
-	private final String _tokenSecret;
+	private final String token;
+	private final String tokenSecret;
 
 	public OAuthAuthentication(OAuthConfig config) {
 		super(config);
-		_token = config.getToken();
-		_tokenSecret = config.getTokenSecret();
+		token = config.getToken();
+		tokenSecret = config.getTokenSecret();
 	}
 
 	public String getToken() {
-		return _token;
+		return token;
 	}
 
 	public String getTokenSecret() {
-		return _tokenSecret;
+		return tokenSecret;
 	}
-
 }

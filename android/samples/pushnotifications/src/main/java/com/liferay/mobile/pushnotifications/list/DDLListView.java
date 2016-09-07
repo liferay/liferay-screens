@@ -34,9 +34,9 @@ import java.util.List;
 public class DDLListView extends BaseListScreenletView<Record, DDLListAdapter.ImageViewHolder, DDLListAdapter>
 	implements DDLListViewModel, SwipeRefreshLayout.OnRefreshListener {
 
-	private static final String _STATE_LABEL_FIELDS = "ddllistview-label_fields";
-	private static final String _STATE_SUPER = "ddllistview-super";
-	private SwipeRefreshLayout _swipeRefreshLayout;
+	private static final String STATE_LABEL_FIELDS = "ddllistview-label_fields";
+	private static final String STATE_SUPER = "ddllistview-super";
+	private SwipeRefreshLayout swipeRefreshLayout;
 
 	public DDLListView(Context context) {
 		super(context);
@@ -52,7 +52,7 @@ public class DDLListView extends BaseListScreenletView<Record, DDLListAdapter.Im
 
 	@Override
 	public void onRefresh() {
-		_swipeRefreshLayout.setRefreshing(false);
+		swipeRefreshLayout.setRefreshing(false);
 		((DDLListScreenlet) getParent()).loadPage(0);
 	}
 
@@ -79,17 +79,17 @@ public class DDLListView extends BaseListScreenletView<Record, DDLListAdapter.Im
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.liferay_swipe_refresh);
-		_swipeRefreshLayout.setOnRefreshListener(this);
+		swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.liferay_swipe_refresh);
+		swipeRefreshLayout.setOnRefreshListener(this);
 	}
 
 	@Override
 	protected void onRestoreInstanceState(Parcelable inState) {
 		Bundle state = (Bundle) inState;
-		Parcelable superState = state.getParcelable(_STATE_SUPER);
+		Parcelable superState = state.getParcelable(STATE_SUPER);
 		super.onRestoreInstanceState(superState);
 
-		List labelFields = state.getStringArrayList(_STATE_LABEL_FIELDS);
+		List labelFields = state.getStringArrayList(STATE_LABEL_FIELDS);
 
 		getAdapter().setLabelFields(labelFields);
 	}
@@ -100,8 +100,8 @@ public class DDLListView extends BaseListScreenletView<Record, DDLListAdapter.Im
 
 		Bundle state = new Bundle();
 		DDLListScreenlet screenlet = (DDLListScreenlet) getParent();
-		state.putStringArrayList(_STATE_LABEL_FIELDS, (ArrayList<String>) screenlet.getLabelFields());
-		state.putParcelable(_STATE_SUPER, superState);
+		state.putStringArrayList(STATE_LABEL_FIELDS, (ArrayList<String>) screenlet.getLabelFields());
+		state.putParcelable(STATE_SUPER, superState);
 
 		return state;
 	}

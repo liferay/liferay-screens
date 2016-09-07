@@ -22,5 +22,4 @@ public interface ForgotPasswordListener {
 	void onForgotPasswordRequestSuccess(boolean passwordSent);
 
 	void onForgotPasswordRequestFailure(Exception e);
-
 }

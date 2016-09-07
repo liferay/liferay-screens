@@ -17,12 +17,10 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddl.pager;
 import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormView;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +31,7 @@ import java.util.Map;
  */
 public class DDLFormPagerView extends DDLFormView {
 
-	private ViewPager _pager;
+	private ViewPager pager;
 
 	public DDLFormPagerView(Context context) {
 		super(context);
@@ -57,14 +55,13 @@ public class DDLFormPagerView extends DDLFormView {
 			fields.add(record.getField(i));
 		}
 
-		_pager.setAdapter(new DDLFormPagerViewAdapter(fields, layoutIds));
+		pager.setAdapter(new DDLFormPagerViewAdapter(fields, layoutIds));
 	}
 
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_pager = (ViewPager) findViewById(R.id.liferay_pager);
+		pager = (ViewPager) findViewById(R.id.liferay_pager);
 	}
-
 }

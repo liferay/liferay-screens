@@ -29,11 +29,14 @@ import android.view.ViewAnimationUtils;
  */
 public class DefaultAnimation {
 
+	private DefaultAnimation() {
+		super();
+	}
+
 	public static void showViewWithReveal(View view) {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			applyRevealForLollipop(view);
-		}
-		else {
+		} else {
 			view.setVisibility(View.VISIBLE);
 		}
 	}
@@ -48,8 +51,7 @@ public class DefaultAnimation {
 	public static void startActivityWithAnimation(Activity activity, Intent intent) {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			startActivityForLollipop(activity, intent);
-		}
-		else {
+		} else {
 			activity.startActivity(intent);
 		}
 	}
@@ -71,8 +73,7 @@ public class DefaultAnimation {
 
 			view.setVisibility(View.VISIBLE);
 			anim.start();
-		}
-		else {
+		} else {
 			view.setVisibility(View.VISIBLE);
 		}
 	}
@@ -102,15 +103,13 @@ public class DefaultAnimation {
 
 			// start the animation
 			anim.start();
-		}
-		else {
+		} else {
 			view.setVisibility(View.INVISIBLE);
 		}
 	}
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	private static void startActivityForLollipop(Activity activity, Intent intent) {
-		activity.startActivity(intent,
-			ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
+		activity.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(activity).toBundle());
 	}
 }

@@ -36,14 +36,14 @@ public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends
 	implements BaseListInteractorListener<E> {
 
 	public static final String LOAD_INITIAL_PAGE_ACTION = "LOAD_INITIAL_PAGE_ACTION";
-	protected static final int _FIRST_PAGE_SIZE = 50;
-	protected static final int _PAGE_SIZE = 25;
-	protected boolean _autoLoad;
-	protected int _firstPageSize;
-	protected BaseListListener<E> _listener;
-	protected int _pageSize;
-	protected String _obcClassName;
-	private List<String> _labelFields;
+	protected static final int FIRST_PAGE_SIZE = 50;
+	protected static final int PAGE_SIZE = 25;
+	protected boolean autoLoad;
+	protected int firstPageSize;
+	protected BaseListListener<E> listener;
+	protected int pageSize;
+	protected String obcClassName;
+	private List<String> labelFields;
 
 	public BaseListScreenlet(Context context) {
 		super(context);
@@ -69,8 +69,8 @@ public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends
 	public void onListRowsFailure(int startRow, int endRow, Exception e) {
 		getViewModel().showFinishOperation(startRow, endRow, e);
 
-		if (_listener != null) {
-			_listener.onListPageFailed(startRow, e);
+		if (listener != null) {
+			listener.onListPageFailed(startRow, e);
 		}
 	}
 
@@ -78,8 +78,8 @@ public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends
 	public void onListRowsReceived(int startRow, int endRow, List<E> entries, int rowCount) {
 		getViewModel().showFinishOperation(startRow, endRow, entries, rowCount);
 
-		if (_listener != null) {
-			_listener.onListPageReceived(startRow, endRow, entries, rowCount);
+		if (listener != null) {
+			listener.onListPageReceived(startRow, endRow, entries, rowCount);
 		}
 	}
 
@@ -88,15 +88,15 @@ public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends
 			return 0;
 		}
 
-		return (_firstPageSize + (page - 1) * _pageSize);
+		return (firstPageSize + (page - 1) * pageSize);
 	}
 
 	public int getPageFromRow(int row) {
-		if (row < _firstPageSize) {
+		if (row < firstPageSize) {
 			return 0;
 		}
 
-		return ((row - _firstPageSize) / _pageSize) + 1;
+		return ((row - firstPageSize) / pageSize) + 1;
 	}
 
 	public void loadPage(int page) {
@@ -109,7 +109,7 @@ public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends
 
 		try {
 			N interactor = getInteractor();
-			Query query = new Query(startRow, endRow, _obcClassName);
+			Query query = new Query(startRow, endRow, obcClassName);
 			interactor.setQuery(query);
 			loadRows(interactor);
 		} catch (Exception e) {
@@ -118,43 +118,43 @@ public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends
 	}
 
 	public boolean isAutoLoad() {
-		return _autoLoad;
+		return autoLoad;
 	}
 
 	public void setAutoLoad(boolean autoLoad) {
-		_autoLoad = autoLoad;
+		this.autoLoad = autoLoad;
 	}
 
 	public int getFirstPageSize() {
-		return _firstPageSize;
+		return firstPageSize;
 	}
 
 	public void setFirstPageSize(int firstPageSize) {
-		_firstPageSize = firstPageSize;
+		this.firstPageSize = firstPageSize;
 	}
 
 	public BaseListListener<E> getListener() {
-		return _listener;
+		return listener;
 	}
 
 	public void setListener(BaseListListener<E> listener) {
-		_listener = listener;
+		this.listener = listener;
 	}
 
 	public int getPageSize() {
-		return _pageSize;
+		return pageSize;
 	}
 
 	public void setPageSize(int pageSize) {
-		_pageSize = pageSize;
+		this.pageSize = pageSize;
 	}
 
 	public List<String> getLabelFields() {
-		return _labelFields;
+		return labelFields;
 	}
 
 	public void setLabelFields(List<String> labelFields) {
-		_labelFields = labelFields;
+		this.labelFields = labelFields;
 	}
 
 	protected abstract void loadRows(N interactor);
@@ -167,15 +167,15 @@ public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends
 
 		int layoutId = typedArray.getResourceId(R.styleable.AssetListScreenlet_layoutId, getDefaultLayoutId());
 
-		_firstPageSize = typedArray.getInteger(R.styleable.AssetListScreenlet_firstPageSize, _FIRST_PAGE_SIZE);
+		firstPageSize = typedArray.getInteger(R.styleable.AssetListScreenlet_firstPageSize, FIRST_PAGE_SIZE);
 
-		_pageSize = typedArray.getInteger(R.styleable.AssetListScreenlet_pageSize, _PAGE_SIZE);
+		pageSize = typedArray.getInteger(R.styleable.AssetListScreenlet_pageSize, PAGE_SIZE);
 
-		_autoLoad = typedArray.getBoolean(R.styleable.AssetListScreenlet_autoLoad, true);
+		autoLoad = typedArray.getBoolean(R.styleable.AssetListScreenlet_autoLoad, true);
 
-		_labelFields = parse(typedArray.getString(R.styleable.AssetListScreenlet_labelFields));
+		labelFields = parse(typedArray.getString(R.styleable.AssetListScreenlet_labelFields));
 
-		_obcClassName = typedArray.getString(R.styleable.AssetListScreenlet_obcClassName);
+		obcClassName = typedArray.getString(R.styleable.AssetListScreenlet_obcClassName);
 
 		typedArray.recycle();
 
@@ -186,7 +186,7 @@ public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends
 	protected void onScreenletAttached() {
 		super.onScreenletAttached();
 
-		if (_autoLoad) {
+		if (autoLoad) {
 			//LMW-176 TODO handle when first page is already loaded
 			loadPage(0);
 		}

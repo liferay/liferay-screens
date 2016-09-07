@@ -42,35 +42,35 @@ import rx.functions.Action1;
 public class IssuesActivity extends CardActivity
 	implements View.OnClickListener, DDLFormListener, BaseListListener<Record>, View.OnTouchListener {
 
-	private DDLFormScreenlet _ddlFormScreenlet;
-	private DDLListScreenlet _ddlListScreenlet;
-	private Record _entry;
-	private View _backgroundCard;
-	private ImageView _card1ToBackground;
-	private ImageView _card1ToBackgroundMenu;
-	private TextView _reportIssueTitle;
-	private Button _sendButton;
+	private DDLFormScreenlet ddlFormScreenlet;
+	private DDLListScreenlet ddlListScreenlet;
+	private Record record;
+	private View backgroundCard;
+	private ImageView card1ToBackground;
+	private ImageView card1ToBackgroundMenu;
+	private TextView reportIssueTitle;
+	private Button sendButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.issues);
 
-		_backgroundCard = findViewById(R.id.background);
+		backgroundCard = findViewById(R.id.background);
 
-		_card1ToBackgroundMenu = (ImageView) findViewById(R.id.card1_to_background_menu);
-		_card1ToBackgroundMenu.setOnClickListener(this);
-		_card1ToBackground = (ImageView) findViewById(R.id.card1_to_background);
-		_card1ToBackground.setOnClickListener(this);
+		card1ToBackgroundMenu = (ImageView) findViewById(R.id.card1_to_background_menu);
+		card1ToBackgroundMenu.setOnClickListener(this);
+		card1ToBackground = (ImageView) findViewById(R.id.card1_to_background);
+		card1ToBackground.setOnClickListener(this);
 
-		_reportIssueTitle = (TextView) findViewById(R.id.report_issue_title);
+		reportIssueTitle = (TextView) findViewById(R.id.report_issue_title);
 
-		_ddlFormScreenlet = (DDLFormScreenlet) findViewById(R.id.ddlform);
-		_ddlFormScreenlet.setListener(this);
-		_ddlListScreenlet = (DDLListScreenlet) findViewById(R.id.ddllist);
-		_ddlListScreenlet.setListener(this);
+		ddlFormScreenlet = (DDLFormScreenlet) findViewById(R.id.ddlform);
+		ddlFormScreenlet.setListener(this);
+		ddlListScreenlet = (DDLListScreenlet) findViewById(R.id.ddllist);
+		ddlListScreenlet.setListener(this);
 
-		_sendButton = (Button) findViewById(R.id.liferay_form_submit);
+		sendButton = (Button) findViewById(R.id.liferay_form_submit);
 
 		TextView callMenuEntry = (TextView) findViewById(R.id.call_menu_entry);
 		callMenuEntry.setText(getCallSpannableString(), TextView.BufferType.SPANNABLE);
@@ -97,16 +97,16 @@ public class IssuesActivity extends CardActivity
 		switch (v.getId()) {
 			case R.id.card1_to_front_view:
 				goLeftCard1();
-				_reportIssueTitle.setText(getString(R.string.report_issue));
+				reportIssueTitle.setText(getString(R.string.report_issue));
 				break;
 			case R.id.card1_to_background:
 			case R.id.card1_to_background_menu:
-				if (_cardHistory.peek() == Card.BACKGROUND) {
+				if (cardHistory.peek() == Card.BACKGROUND) {
 					toCard1();
-					_card1ToBackgroundMenu.setImageDrawable(
+					card1ToBackgroundMenu.setImageDrawable(
 						ResourcesCompat.getDrawable(getResources(), R.drawable.icon_options_red, getTheme()));
 				} else {
-					_card1ToBackgroundMenu.setImageDrawable(
+					card1ToBackgroundMenu.setImageDrawable(
 						ResourcesCompat.getDrawable(getResources(), R.drawable.icon_options_close, getTheme()));
 					toBackground();
 				}
@@ -180,21 +180,21 @@ public class IssuesActivity extends CardActivity
 
 	@Override
 	protected void animateScreenAfterLoad() {
-		_cardHistory.offer(Card.CARD1);
-		_card1ToBackgroundMenu.setImageDrawable(
+		cardHistory.offer(Card.CARD1);
+		card1ToBackgroundMenu.setImageDrawable(
 			ResourcesCompat.getDrawable(getResources(), R.drawable.icon_options_red, getTheme()));
 
 		//TODO extract this animation
-		_backgroundCard.setY(_maxHeight);
-		_card1.setY(_maxHeight);
-		_card2.setY(_maxHeight);
+		backgroundCard.setY(maxHeight);
+		card1.setY(maxHeight);
+		card2.setY(maxHeight);
 
-		_card1.animate().y(_card1RestPosition);
-		_card2.animate().y(_card2FoldedPosition).setListener(new EndAnimationListener() {
+		card1.animate().y(card1RestPosition);
+		card2.animate().y(card2FoldedPosition).setListener(new EndAnimationListener() {
 
 			@Override
 			public void onAnimationEnd(Animator animator) {
-				_backgroundCard.setY(0);
+				backgroundCard.setY(0);
 			}
 		});
 	}
@@ -202,28 +202,28 @@ public class IssuesActivity extends CardActivity
 	@Override
 	protected void toBackground() {
 		super.toBackground();
-		_card1ToBackground.setImageResource(R.drawable.icon_up);
-		_card1ToBackground.setVisibility(View.VISIBLE);
+		card1ToBackground.setImageResource(R.drawable.icon_up);
+		card1ToBackground.setVisibility(View.VISIBLE);
 	}
 
 	@Override
 	protected void toCard1(Animator.AnimatorListener listener) {
 		super.toCard1(listener);
-		_ddlFormScreenlet.loadForm();
+		ddlFormScreenlet.loadForm();
 
 		clearDDLEntrySelected();
 
-		_card1ToBackgroundMenu.setImageDrawable(
+		card1ToBackgroundMenu.setImageDrawable(
 			ResourcesCompat.getDrawable(getResources(), R.drawable.icon_options_red, getTheme()));
-		_card1ToBackground.setImageResource(R.drawable.icon_down);
+		card1ToBackground.setImageResource(R.drawable.icon_down);
 	}
 
 	@Override
 	protected void toCard2() {
 		super.toCard2();
-		if (_entry != null) {
-			_ddlFormScreenlet.setRecordId(_entry.getRecordId());
-			_ddlFormScreenlet.loadRecord();
+		if (record != null) {
+			ddlFormScreenlet.setRecordId(record.getRecordId());
+			ddlFormScreenlet.loadRecord();
 			goLeftCard1();
 		} else {
 			clearDDLEntrySelected();
@@ -241,20 +241,20 @@ public class IssuesActivity extends CardActivity
 	}
 
 	private void selectDDLEntry(Record entry) {
-		_entry = entry;
-		_reportIssueTitle.setText(getString(R.string.edit_issue));
-		_sendButton.setText(getString(R.string.save).toUpperCase());
+		record = entry;
+		reportIssueTitle.setText(getString(R.string.edit_issue));
+		sendButton.setText(getString(R.string.save).toUpperCase());
 	}
 
 	private void clearDDLEntrySelected() {
-		_entry = null;
-		_reportIssueTitle.setText(getString(R.string.report_issue));
-		_sendButton.setText(getString(R.string.send).toUpperCase());
-		_ddlFormScreenlet.setRecordId(0);
+		record = null;
+		reportIssueTitle.setText(getString(R.string.report_issue));
+		sendButton.setText(getString(R.string.send).toUpperCase());
+		ddlFormScreenlet.setRecordId(0);
 	}
 
 	private void reloadListAndShowResult(final String message) {
-		_ddlListScreenlet.loadPage(0);
+		ddlListScreenlet.loadPage(0);
 		toCard1(new EndAnimationListener() {
 
 			@Override

@@ -43,10 +43,10 @@ import rx.functions.Action1;
 public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 	implements DDLFieldViewModel<DocumentField>, View.OnClickListener {
 
-	protected ProgressBar _progressBar;
-	protected AlertDialog _choseOriginDialog;
-	protected AlertDialog _fileDialog;
-	private int _positionInForm;
+	protected ProgressBar progressBar;
+	protected AlertDialog choseOriginDialog;
+	protected AlertDialog fileDialog;
+	private int positionInForm;
 
 	public DDLDocumentFieldView(Context context) {
 		super(context);
@@ -63,8 +63,8 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 	@Override
 	public void onClick(final View view) {
 		if (view.getId() == R.id.liferay_ddl_edit_text) {
-			_choseOriginDialog = createOriginDialog();
-			_choseOriginDialog.show();
+			choseOriginDialog = createOriginDialog();
+			choseOriginDialog.show();
 		}
 	}
 
@@ -73,22 +73,22 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		getTextEditText().setText(getField().toFormattedString());
 		if (getField().isUploaded()) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_circle_success, 0);
-			_progressBar.setVisibility(GONE);
+			progressBar.setVisibility(GONE);
 		} else if (getField().isUploadFailed()) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_circle_failed, 0);
-			_progressBar.setVisibility(GONE);
+			progressBar.setVisibility(GONE);
 		} else if (getField().isUploading()) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-			_progressBar.setVisibility(VISIBLE);
+			progressBar.setVisibility(VISIBLE);
 		} else {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_blue, 0);
-			_progressBar.setVisibility(GONE);
+			progressBar.setVisibility(GONE);
 		}
 	}
 
 	@Override
 	public void setPositionInParent(int position) {
-		_positionInForm = position;
+		positionInForm = position;
 	}
 
 	@Override
@@ -96,22 +96,22 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		super.onDetachedFromWindow();
 
 		// Avoid WindowLeak error on orientation changes
-		if (_choseOriginDialog != null) {
-			_choseOriginDialog.dismiss();
-			_choseOriginDialog = null;
+		if (choseOriginDialog != null) {
+			choseOriginDialog.dismiss();
+			choseOriginDialog = null;
 		}
 
 		// Avoid WindowLeak error on orientation changes
-		if (_fileDialog != null) {
-			_fileDialog.dismiss();
-			_fileDialog = null;
+		if (fileDialog != null) {
+			fileDialog.dismiss();
+			fileDialog = null;
 		}
 	}
 
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-		_progressBar = (ProgressBar) findViewById(R.id.liferay_document_progress);
+		progressBar = (ProgressBar) findViewById(R.id.liferay_document_progress);
 		getTextEditText().setOnClickListener(this);
 	}
 
@@ -148,7 +148,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 	}
 
 	protected ProgressBar getProgressBar() {
-		return _progressBar;
+		return progressBar;
 	}
 
 	@NonNull
@@ -157,12 +157,12 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 			@Override
 			public void call(Boolean result) {
 				if (result) {
-					_fileDialog = new SelectFileDialog().createDialog(getContext(),
+					fileDialog = new SelectFileDialog().createDialog(getContext(),
 						new SelectFileDialog.SimpleFileDialogListener() {
 
 							@Override
 							public void onFileChosen(String path) {
-								_progressBar.setVisibility(VISIBLE);
+								progressBar.setVisibility(VISIBLE);
 								getTextEditText().setText(path);
 
 								DocumentField field = getField();
@@ -170,12 +170,12 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 								field.moveToUploadInProgressState();
 								view.setTag(field);
 								((DDLFormView) getParentView()).onClick(view);
-								_choseOriginDialog.dismiss();
+								choseOriginDialog.dismiss();
 							}
 						});
-					_fileDialog.show();
+					fileDialog.show();
 				}
-				_choseOriginDialog.dismiss();
+				choseOriginDialog.dismiss();
 			}
 		};
 	}
@@ -195,10 +195,10 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 						cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
 
 						Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
-						activity.startActivityForResult(cameraIntent, _positionInForm);
+						activity.startActivityForResult(cameraIntent, positionInForm);
 					}
 				}
-				_choseOriginDialog.dismiss();
+				choseOriginDialog.dismiss();
 			}
 		};
 	}

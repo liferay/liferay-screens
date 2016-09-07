@@ -16,9 +16,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.display.view.CommentDisplayViewModel;
-import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 
 /**
@@ -52,6 +52,7 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 	public CommentDisplayView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 	}
+
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	public CommentDisplayView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);

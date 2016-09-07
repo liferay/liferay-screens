@@ -20,25 +20,25 @@ public class Bookmark implements Parcelable {
 			return new Bookmark[size];
 		}
 	};
-	private String _url;
-	private Map _values;
+	private String url;
+	private Map values;
 
 	public Bookmark() {
 		super();
 	}
 
 	protected Bookmark(Parcel in) {
-		_url = in.readString();
+		url = in.readString();
 	}
 
 	public Bookmark(Map<String, Object> stringObjectMap) {
-		_url = (String) stringObjectMap.get("url");
-		_values = stringObjectMap;
+		url = (String) stringObjectMap.get("url");
+		values = stringObjectMap;
 	}
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(_url);
+		dest.writeString(url);
 	}
 
 	@Override
@@ -47,14 +47,14 @@ public class Bookmark implements Parcelable {
 	}
 
 	public String getUrl() {
-		return _url;
+		return url;
 	}
 
 	public Map getValues() {
-		return _values;
+		return values;
 	}
 
 	public void setValues(Map values) {
-		_values = values;
+		this.values = values;
 	}
 }

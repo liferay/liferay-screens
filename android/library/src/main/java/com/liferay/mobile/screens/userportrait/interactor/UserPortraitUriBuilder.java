@@ -23,10 +23,9 @@ public class UserPortraitUriBuilder {
 
 	public Uri getUserPortraitUri(String server, boolean male, long portraitId, String uuid) {
 		String maleString = male ? "male" : "female";
-		String url = server +
-			"/image/user_" + maleString +
-			"_portrait?img_id=" + portraitId +
-			"&img_id_token=" + getSHA1String(uuid);
+		String url =
+			server + "/image/user_" + maleString + "_portrait?img_id=" + portraitId + "&img_id_token=" + getSHA1String(
+				uuid);
 		return Uri.parse(url);
 	}
 

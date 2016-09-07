@@ -31,7 +31,7 @@ import com.liferay.mobile.screens.viewsets.westeros.R;
 public class DDLListView extends BaseListScreenletView<Record, DDLListAdapter.SwipeActionsViewHolder, DDLListAdapter>
 	implements DDLListViewModel, SwipeRefreshLayout.OnRefreshListener {
 
-	private SwipeRefreshLayout _swipeRefreshLayout;
+	private SwipeRefreshLayout swipeRefreshLayout;
 
 	public DDLListView(Context context) {
 		super(context);
@@ -47,7 +47,7 @@ public class DDLListView extends BaseListScreenletView<Record, DDLListAdapter.Sw
 
 	@Override
 	public void onRefresh() {
-		_swipeRefreshLayout.setRefreshing(false);
+		swipeRefreshLayout.setRefreshing(false);
 		((BaseListScreenlet) getScreenlet()).loadPage(0);
 	}
 
@@ -65,8 +65,8 @@ public class DDLListView extends BaseListScreenletView<Record, DDLListAdapter.Sw
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.liferay_swipe_refresh);
-		_swipeRefreshLayout.setOnRefreshListener(this);
+		swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.liferay_swipe_refresh);
+		swipeRefreshLayout.setOnRefreshListener(this);
 	}
 
 	@Override

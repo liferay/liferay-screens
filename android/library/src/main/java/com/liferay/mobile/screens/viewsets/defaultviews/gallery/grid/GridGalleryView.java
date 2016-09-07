@@ -12,8 +12,7 @@ import com.liferay.mobile.screens.viewsets.defaultviews.gallery.BaseGalleryView;
 /**
  * @author Víctor Galán Grande
  */
-public class GridGalleryView
-	extends BaseGalleryView<GridGalleryAdapter.GridGalleryViewHolder, GridGalleryAdapter>
+public class GridGalleryView extends BaseGalleryView<GridGalleryAdapter.GridGalleryViewHolder, GridGalleryAdapter>
 	implements View.OnClickListener {
 
 	private static final int DEFAULT_COLS = 3;
@@ -36,7 +35,7 @@ public class GridGalleryView
 	}
 
 	public void reloadView() {
-		_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), columnsSize));
+		recyclerView.setLayoutManager(new GridLayoutManager(getContext(), columnsSize));
 	}
 
 	@Override
@@ -62,14 +61,14 @@ public class GridGalleryView
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-		_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), columnsSize));
-		FloatingActionButton _uploadFAB = (FloatingActionButton) findViewById(R.id.liferay_upload_fab);
-		_uploadFAB.setOnClickListener(this);
+		recyclerView.setLayoutManager(new GridLayoutManager(getContext(), columnsSize));
+		FloatingActionButton uploadFAB = (FloatingActionButton) findViewById(R.id.liferay_upload_fab);
+		uploadFAB.setOnClickListener(this);
 	}
 
 	@Override
 	protected DividerItemDecoration getDividerDecoration() {
-		int _imagesSpacing = 3;
-		return new GridDividerItemDecoration(_imagesSpacing);
+		int imagesSpacing = 3;
+		return new GridDividerItemDecoration(imagesSpacing);
 	}
 }

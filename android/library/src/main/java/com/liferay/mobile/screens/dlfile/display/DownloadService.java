@@ -56,7 +56,7 @@ public class DownloadService extends IntentService {
 			input = new BufferedInputStream(connection.getInputStream());
 			output = new FileOutputStream(localPath);
 
-			byte data[] = new byte[1024];
+			byte[] data = new byte[1024];
 			long total = 0;
 			int count;
 			while ((count = input.read(data)) != -1) {
