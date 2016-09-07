@@ -14,27 +14,18 @@
 
 package com.liferay.mobile.screens.westerosemployees.activities;
 
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.EditText;
-import android.widget.ImageView;
 import com.liferay.mobile.screens.westerosemployees.R;
-import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
-import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
-import com.liferay.mobile.screens.viewsets.westeros.auth.signup.SignUpListener;
-import com.liferay.mobile.screens.viewsets.westeros.auth.signup.SignUpScreenlet;
 import com.liferay.mobile.screens.westerosemployees.Views.Card;
+import com.liferay.mobile.screens.westerosemployees.Views.Deck;
 import com.liferay.mobile.screens.westerosemployees.utils.CardState;
 
-public class MainActivity extends DeckActivity implements LoginListener {
+public class MainActivity extends WesterosActivity implements LoginListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +38,9 @@ public class MainActivity extends DeckActivity implements LoginListener {
 	private void findViews() {
 		loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
 		loginScreenlet.setListener(this);
+
+		deck = (Deck) findViewById(R.id.deck);
 	}
-
-
 
 	@Override
 	public void onLoginSuccess(User user) {
@@ -63,9 +54,8 @@ public class MainActivity extends DeckActivity implements LoginListener {
 				startActivity(new Intent(MainActivity.this, UserActivity.class));
 			}
 		});
-		for(Card card: cards) {
-			card.setState(CardState.HIDDEN);
-		}
+
+		deck.setCardsState(CardState.HIDDEN);
 	}
 
 	@Override
@@ -74,4 +64,5 @@ public class MainActivity extends DeckActivity implements LoginListener {
 	}
 
 	private LoginScreenlet loginScreenlet;
+	private Deck deck;
 }
