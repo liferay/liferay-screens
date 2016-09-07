@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="AssetListScreenlet_default">asset_list_default</string>
+	<string name="AssetDisplayScreenlet_default">asset_display_default</string>
 	<string name="AudioDisplayScreenlet_default">audio_display_default</string>
 	<string name="BlogsEntryDisplayScreenlet_default">blogsentry_display_default</string>
 	<string name="LoginScreenlet_default">login_default</string>
