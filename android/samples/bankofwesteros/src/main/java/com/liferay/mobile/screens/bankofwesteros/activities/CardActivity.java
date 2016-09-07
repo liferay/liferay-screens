@@ -138,9 +138,9 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 		card1ToBackground = findAndAddListener(card1, "card1_to_background");
 		card1ToFrontView = findAndAddListener(card1, "card1_to_front_view");
 		card1SubViewToBackground = findAndAddListener(card1, "card1_subview_to_background");
-		card2ToCard1 = findAndAddListener(card2, "card2_tocard1");
+		card2ToCard1 = findAndAddListener(card2, "card2_to_card1");
 		card2ToFrontView = findAndAddListener(card2, "card2_to_front_view");
-		card2SubViewToCard1 = findAndAddListener(card2, "card2_subview_tocard1");
+		card2SubViewToCard1 = findAndAddListener(card2, "card2_subview_to_card1");
 	}
 
 	protected void calculateHeightAndWidth() {

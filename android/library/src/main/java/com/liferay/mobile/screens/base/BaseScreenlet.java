@@ -54,7 +54,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 	public static final String DEFAULT_ACTION = "default_action";
 	private static final String STATE_SCREENLET_ID = "basescreenlet-screenletId";
-	private static final String STATE_SUPER = "basescreenlet-super";
+	protected static final String STATE_SUPER = "basescreenlet-super";
 	private static final String STATE_INTERACTORS = "basescreenlet-interactors";
 	private static final AtomicInteger NEXT_ID = new AtomicInteger(1);
 	private final Map<String, I> interactors = new HashMap<>();

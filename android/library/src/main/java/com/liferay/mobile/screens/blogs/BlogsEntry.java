@@ -17,11 +17,6 @@ public class BlogsEntry extends AssetEntry {
 		super(map);
 	}
 
-	@Override
-	public String getTitle() {
-		return super.getTitle();
-	}
-
 	public Map<String, Object> getBlogsEntry() {
 		return (Map<String, Object>) values.get("blogsEntry");
 	}

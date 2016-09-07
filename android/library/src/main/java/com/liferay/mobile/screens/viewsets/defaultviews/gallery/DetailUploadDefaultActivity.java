@@ -16,7 +16,6 @@ import java.io.File;
  */
 public class DetailUploadDefaultActivity extends BaseDetailUploadActivity implements View.OnClickListener {
 
-	private int screenletId;
 	private String picturePath;
 	private EditText editTitle;
 	private EditText editDescription;
@@ -37,7 +36,6 @@ public class DetailUploadDefaultActivity extends BaseDetailUploadActivity implem
 		Intent intent = getIntent();
 
 		picturePath = intent.getStringExtra(PICTURE_PATH_KEY);
-		screenletId = intent.getIntExtra(SCREENLET_ID_KEY, 0);
 	}
 
 	private void bindViews() {
