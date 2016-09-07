@@ -21,6 +21,9 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="classNameId">
+                            <integer key="value" value="20015"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>

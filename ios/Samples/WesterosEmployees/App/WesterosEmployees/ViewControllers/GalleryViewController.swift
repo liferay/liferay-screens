@@ -18,13 +18,13 @@ class GalleryViewController: CardViewController {
 
 	@IBOutlet weak var imageGalleryScreenlet: ImageGalleryScreenlet?
 
-	override func reload() {
-		imageGalleryScreenlet?.loadList()
-	}
-
 	//MARK: Init methods
 
 	convenience init() {
 		self.init(nibName: "GalleryViewController", bundle: nil)
+	}
+
+	override func cardWillAppear() {
+		imageGalleryScreenlet?.loadList()
 	}
 }

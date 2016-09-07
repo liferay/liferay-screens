@@ -28,11 +28,6 @@ public class CardViewController: UIViewController {
 		}
 	}
 
-	///Method for reloading view controller, this should be called before showing the controller.
-	public func reload() {
-	}
-
-
 	//MARK: card view state methods
 
 	///Method triggered when the card is going to appear on screen (maximized and normal states).

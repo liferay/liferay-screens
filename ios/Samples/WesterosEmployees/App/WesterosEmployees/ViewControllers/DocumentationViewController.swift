@@ -29,8 +29,7 @@ class DocumentationViewController: CardViewController {
 
 	//MARK: CardViewController
 
-	override func reload() {
-		assetListScreenlet?.classNameId = 20015
+	override func cardWillAppear() {
 		assetListScreenlet?.loadList()
 	}
 }

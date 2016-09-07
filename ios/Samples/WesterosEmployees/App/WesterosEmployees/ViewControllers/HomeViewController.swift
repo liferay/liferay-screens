@@ -63,9 +63,6 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 				userProfileView?.load()
 			}
 
-			//self.documentationViewController?.reload()
-			self.galleryViewController?.reload()
-
 			self.cardDeck?.alpha = 1.0
 			self.userProfileView?.alpha = 1.0
 
