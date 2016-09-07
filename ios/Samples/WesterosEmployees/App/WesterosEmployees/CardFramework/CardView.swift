@@ -88,6 +88,7 @@ public class CardView: UIView {
 	//Constraints
 	private var didSetupConstraints = false
 	private var heightConstraint: NSLayoutConstraint?
+	private var contentBottomConstraint: NSLayoutConstraint?
 	private var scrollContentWidthConstraint: NSLayoutConstraint?
 
 	//States
@@ -247,14 +248,19 @@ public class CardView: UIView {
 		switch state {
 		case .Minimized:
 			self.heightConstraint?.constant = self.minimizedHeight
+			break
 		case .Normal:
 			self.heightConstraint?.constant = self.normalHeight
+			break
 		case .Maximized:
 			if let superView = self.superview {
 				self.heightConstraint?.constant = superView.frame.height - self.maximizedMargin
+				self.contentBottomConstraint?.constant = 0
 			}
+			break
 		case .Hidden:
 			self.heightConstraint?.constant = 0
+			break
 		default:
 			break
 		}
@@ -301,8 +307,9 @@ public class CardView: UIView {
 		self.cardContentView.autoPinEdge(.Top, toEdge: .Bottom, ofView: button)
 		self.cardContentView.autoPinEdgeToSuperviewEdge(.Left)
 		self.cardContentView.autoPinEdgeToSuperviewEdge(.Right)
-		self.cardContentView.autoPinEdgeToSuperviewEdge(.Bottom, withInset: self.minimizedHeight -
-			CardView.DefaultMinimizedHeight, relation: .LessThanOrEqual)
+		contentBottomConstraint = self.cardContentView.autoPinEdgeToSuperviewEdge(
+			.Bottom, withInset: self.minimizedHeight - CardView.DefaultMinimizedHeight,
+			relation: .LessThanOrEqual)
 
 		//Scrollview constraints
 		self.scrollView.autoPinEdgesToSuperviewEdges()
@@ -349,6 +356,11 @@ public class CardView: UIView {
 			}
 		}
 
+		if currentState == .Maximized {
+			self.contentBottomConstraint?.constant = self.minimizedHeight -
+				CardView.DefaultMinimizedHeight
+		}
+
 		//Sets the height for the next state
 		setHeightConstraintForState(nextState)
 
@@ -370,7 +382,7 @@ public class CardView: UIView {
 			onChangeCompleted = nil
 
 			let completion: (Bool -> ()) = { flag in
-				if self.currentState.isInBottom {
+				if self.currentState.isInBottom || self.currentState == .Maximized {
 					self.setNeedsDisplay()
 				}
 				onComplete?(flag)
@@ -395,7 +407,7 @@ public class CardView: UIView {
 				animations: {
 					self.layoutIfNeeded()
 
-					if self.currentState.isInBottom {
+					if self.currentState.isInBottom || self.nextState == .Maximized {
 						self.setNeedsDisplay()
 					}
 				}, completion: completion)
