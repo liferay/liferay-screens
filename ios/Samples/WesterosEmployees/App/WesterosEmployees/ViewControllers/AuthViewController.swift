@@ -21,6 +21,7 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 	var signInController: SignInViewController?
 	var signUpController: SignUpViewController?
 	var forgotPasswordController: ForgotPasswordViewController?
+	var termsController: TermsViewController?
 
 
 	//MARK: UIViewController
@@ -35,6 +36,7 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 		signInController!.onDone = onDone
 
 		forgotPasswordController = ForgotPasswordViewController()
+		termsController = TermsViewController()
 
 		signUpController = SignUpViewController()
 		signUpController!.onDone = onDone
@@ -68,6 +70,8 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 			return forgotPasswordController
 		case (1, 0):
 			return signUpController
+		case (1, 1):
+			return termsController
     	default:
 			return nil
 		}
@@ -99,6 +103,8 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 			return "Forgot password"
 		case (1, 0):
 			return "Sign Up"
+		case (1, 1):
+			return "Terms and Conditions"
 		default:
 			return nil
 		}
