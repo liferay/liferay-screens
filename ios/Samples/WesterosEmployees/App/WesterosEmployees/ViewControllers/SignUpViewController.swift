@@ -16,13 +16,28 @@ import LiferayScreens
 
 class SignUpViewController: CardViewController, SignUpScreenletDelegate {
 
+	//MARK: Outlets
+
 	@IBOutlet weak var screenlet: SignUpScreenlet?
+	@IBOutlet weak var signUpButton: UIButton?
 
 
 	//MARK: Init methods
 
 	convenience init() {
 		self.init(nibName: "SignUpViewController", bundle: nil)
+	}
+
+
+	//MARK: View actions
+
+	@IBAction func termsButtonClicked() {
+		cardView?.moveRight()
+	}
+
+	@IBAction func signUpButtonClicked() {
+		signUpButton?.enabled = false
+		screenlet?.performAction(name: "signup-action")
 	}
 
 
@@ -42,7 +57,12 @@ class SignUpViewController: CardViewController, SignUpScreenletDelegate {
 
 	func screenlet(screenlet: SignUpScreenlet,
 			onSignUpResponseUserAttributes attributes: [String:AnyObject]) {
+		signUpButton?.enabled = true
 		onDone?()
+	}
+
+	func screenlet(screenlet: SignUpScreenlet, onSignUpError error: NSError) {
+		signUpButton?.enabled = true
 	}
 	
 

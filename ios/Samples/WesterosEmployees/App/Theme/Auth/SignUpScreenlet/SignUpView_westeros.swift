@@ -47,4 +47,10 @@ public class SignUpView_westeros: SignUpView_default {
 		return false
 	}
 
+	public override func onStartInteraction() {
+	}
+
+	public override func onFinishInteraction(result: AnyObject?, error: NSError?) {
+	}
+
 }

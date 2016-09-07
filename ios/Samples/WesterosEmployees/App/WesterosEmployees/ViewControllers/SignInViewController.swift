@@ -42,6 +42,9 @@ class SignInViewController: CardViewController, LoginScreenletDelegate, Keyboard
 		self.loginScreenlet?.delegate = self
 	}
 
+
+	//MARK: LoginScreenletDelegate
+
 	func screenlet(screenlet: BaseScreenlet,
 			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
 		onDone?()
