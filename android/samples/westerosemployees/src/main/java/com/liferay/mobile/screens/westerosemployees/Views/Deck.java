@@ -1,91 +1,83 @@
-package com.liferay.mobile.screens.westerosemployees.activities;
+package com.liferay.mobile.screens.westerosemployees.Views;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
-import android.content.res.Resources;
+import android.content.Context;
 import android.os.Build;
-import android.os.Bundle;
-import android.util.TypedValue;
+import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
-import com.liferay.mobile.screens.westerosemployees.R;
-import com.liferay.mobile.screens.westerosemployees.Views.Card;
 import com.liferay.mobile.screens.westerosemployees.gestures.FlingListener;
 import com.liferay.mobile.screens.westerosemployees.gestures.FlingTouchListener;
 import com.liferay.mobile.screens.westerosemployees.utils.CardState;
 import com.liferay.mobile.screens.westerosemployees.utils.PixelUtil;
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Queue;
 
 /**
  * @author Víctor Galán Grande
  */
-public class DeckActivity extends Activity {
-
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
-		cards = new ArrayList<>();
-		setTransparentMenuBar();
+public class Deck extends FrameLayout {
+	public Deck(Context context) {
+		super(context);
 	}
 
-	@Override
-	protected void onStart() {
-		super.onStart();
-
-		calculateSize();
+	public Deck(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	@Override
-	public void onBackPressed() {
-		if (cardHistory.isEmpty()) {
-			super.onBackPressed();
-		} else {
-			toPreviousCard();
+	public Deck(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public Deck(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
+	}
+
+	public void setCardsState(CardState state) {
+		for (Card card : cards){
+			card.setState(state);
 		}
 	}
 
-	protected void calculateSize() {
+	@Override
+	protected void onFinishInflate() {
+		super.onFinishInflate();
+
+		initializeSize();
+	}
+
+	private void initializeSize() {
 		if (maxWidth != 0 && maxHeight != 0) {
 			initializeDeckAndCards();
 		} else {
-			final View content = findViewById(android.R.id.content);
-			content.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+			getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 				@Override
 				public void onGlobalLayout() {
 					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
 						removeObserver();
 					} else {
-						content.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+						getViewTreeObserver().removeGlobalOnLayoutListener(this);
 					}
 
-					maxWidth = content.getWidth();
-					maxHeight = content.getHeight();
+					maxWidth = getWidth();
+					maxHeight = getHeight();
 
 					initializeDeckAndCards();
 				}
 
 				@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 				private void removeObserver() {
-					content.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+					getViewTreeObserver().removeOnGlobalLayoutListener(this);
 				}
 			});
 		}
 	}
 
 	protected void initializeDeckAndCards() {
-		FrameLayout base = (FrameLayout) findViewById(android.R.id.content);
 
-		FrameLayout content = (FrameLayout) base.getChildAt(0);
-
-		fillDeck(content);
+		fillDeck(this);
 		initCards();
 	}
 
@@ -103,14 +95,14 @@ public class DeckActivity extends Activity {
 		for (int i = 0, size = cards.size(); i < size; i++) {
 			final Card card = cards.get(i);
 
-			int cardSize = PixelUtil.pixelFromDp(this, Card.CARD_SIZE);
+			int cardSize = PixelUtil.pixelFromDp(getContext(), Card.CARD_SIZE);
 			int minimizedPosition = maxHeight - (size - i) * cardSize;
 
 			card.initPosition(minimizedPosition);
-			card.setOnTouchListener(new FlingTouchListener(this, new FlingListener() {
+			card.setOnTouchListener(new FlingTouchListener(getContext().getApplicationContext(), new FlingListener() {
 				@Override
-				public void onFling(Movement movement) {
-					DeckActivity.this.onFling(movement, card);
+				public void onFling(FlingListener.Movement movement) {
+					Deck.this.onFling(movement, card);
 				}
 			}));
 		}
@@ -118,7 +110,6 @@ public class DeckActivity extends Activity {
 
 	protected void onClick(Card card) {
 		changeState(card);
-		cardHistory.add(card);
 	}
 
 	protected void changeState(Card card) {
@@ -163,28 +154,8 @@ public class DeckActivity extends Activity {
 		}
 	}
 
-	protected void toPreviousCard() {
-		Card card = cardHistory.poll();
+	protected List<Card> cards = new ArrayList<>();
 
-		changeState(card);
-	}
-
-	private void setTransparentMenuBar() {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			setStatusBar();
-		}
-	}
-
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	private void setStatusBar() {
-		getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-		getWindow().setStatusBarColor(getResources().getColor(R.color.background_gray_westeros));
-	}
-
-	protected List<Card> cards;
-	protected Queue<Card> cardHistory = Collections.asLifoQueue(new ArrayDeque<Card>());
-
-	protected int maxWidth;
-	protected int maxHeight;
+	private int maxWidth;
+	private int maxHeight;
 }
