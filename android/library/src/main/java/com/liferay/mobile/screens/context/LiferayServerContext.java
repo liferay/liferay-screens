@@ -115,11 +115,12 @@ public class LiferayServerContext {
 	}
 
 	public static OkHttpClient getOkHttpClient() {
-		if (okHttpClient == null) {
-			okHttpClient = new OkHttpClient();
-			okHttpClient.setCache(new Cache(LiferayScreensContext.getContext().getCacheDir(), MAX_SIZE));
+		synchronized (LiferayServerContext.class) {
+			if (okHttpClient == null) {
+				okHttpClient = new OkHttpClient();
+				okHttpClient.setCache(new Cache(LiferayScreensContext.getContext().getCacheDir(), MAX_SIZE));
+			}
 		}
-
 		return okHttpClient;
 	}
 

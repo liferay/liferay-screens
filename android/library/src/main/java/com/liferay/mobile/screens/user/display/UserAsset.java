@@ -42,6 +42,6 @@ public class UserAsset extends AssetEntry {
 	}
 
 	public long getId() {
-		return Long.valueOf(getUserAsset().get("userId").toString());
+		return Long.parseLong(getUserAsset().get("userId").toString());
 	}
 }

@@ -111,9 +111,9 @@ public class MainActivity extends CardActivity
 	@Override
 	protected void animateScreenAfterLoad() {
 
-		_card1.setY(_card1FoldedPosition);
-		_card2.setY(_card2FoldedPosition);
-		_card1RestPosition = convertDpToPx(CARD1_REST_POSITION);
+		card1.setY(card1FoldedPosition);
+		card2.setY(card2FoldedPosition);
+		card1RestPosition = convertDpToPx(CARD1_REST_POSITION);
 
 		background.animate().alpha(1);
 
@@ -130,9 +130,9 @@ public class MainActivity extends CardActivity
 		background.animate().alpha(0);
 
 		int maxHeightInDp = convertDpToPx(maxHeight);
-		_card2.animate().y(maxHeightInDp);
+		card2.animate().y(maxHeightInDp);
 
-		final ViewPropertyAnimator animate = _card1.animate();
+		final ViewPropertyAnimator animate = card1.animate();
 		animate.y(maxHeightInDp).setListener(new EndAnimationListener() {
 			@Override
 			public void onAnimationEnd(Animator animator) {

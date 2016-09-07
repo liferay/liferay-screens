@@ -23,7 +23,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
-import java.util.TimeZone;
 
 /**
  * @author Jose Manuel Navarro
@@ -46,18 +45,6 @@ public class DateField extends Field<Date> {
 				return new DateField[size];
 			}
 		};
-	private static final DateFormat SERVER_YYYY_FORMAT = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
-	private static final DateFormat SERVER_YY_FORMAT = new SimpleDateFormat("MM/dd/yy", Locale.US);
-	private static final DateFormat SERVER_70_YYYY_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-	private static final TimeZone GMT_TIMEZONE = TimeZone.getTimeZone("GMT");
-
-	static {
-		SERVER_YYYY_FORMAT.setTimeZone(GMT_TIMEZONE);
-		SERVER_YY_FORMAT.setTimeZone(GMT_TIMEZONE);
-		SERVER_70_YYYY_FORMAT.setTimeZone(GMT_TIMEZONE);
-	}
-
-	private DateFormat clientFormat;
 
 	public DateField() {
 		super();
@@ -65,14 +52,10 @@ public class DateField extends Field<Date> {
 
 	public DateField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
-
-		init(locale);
 	}
 
 	protected DateField(Parcel source, ClassLoader loader) {
 		super(source, loader);
-
-		init(getCurrentLocale());
 	}
 
 	@Override
@@ -85,13 +68,13 @@ public class DateField extends Field<Date> {
 			int lastSeparator = stringValue.lastIndexOf('/');
 
 			if (stringValue.contains("-")) {
-				return SERVER_70_YYYY_FORMAT.parse(stringValue);
+				return new SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(stringValue);
 			} else if (lastSeparator == -1) {
 				return new Date(Long.parseLong(stringValue));
 			} else if (stringValue.length() - lastSeparator - 1 == 2) {
-				return SERVER_YY_FORMAT.parse(stringValue);
+				return new SimpleDateFormat("MM/dd/yy", Locale.US).parse(stringValue);
 			} else {
-				return SERVER_YYYY_FORMAT.parse(stringValue);
+				return new SimpleDateFormat("MM/dd/yyyy", Locale.US).parse(stringValue);
 			}
 		} catch (ParseException e) {
 			LiferayLogger.e("Error parsing date " + stringValue);
@@ -106,11 +89,6 @@ public class DateField extends Field<Date> {
 
 	@Override
 	protected String convertToFormattedString(Date value) {
-		return (value == null) ? null : clientFormat.format(value);
-	}
-
-	private void init(Locale locale) {
-		clientFormat = DateFormat.getDateInstance(DateFormat.LONG, locale);
-		clientFormat.setTimeZone(GMT_TIMEZONE);
+		return (value == null) ? null : DateFormat.getDateInstance(DateFormat.LONG, getCurrentLocale()).format(value);
 	}
 }

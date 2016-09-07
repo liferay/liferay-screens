@@ -15,8 +15,8 @@ import com.liferay.mobile.screens.gallery.model.ImageEntry;
 public class SlideshowGalleryAdapter
 	extends BaseListAdapter<ImageEntry, SlideshowGalleryAdapter.SlideshowGalleryViewHolder> {
 
-	public static int resizedWidth = 900;
-	public static int resizedHeight = resizedWidth;
+	public static final int RESIZED_WIDTH = 900;
+	public static final int RESIZED_HEIGHT = RESIZED_WIDTH;
 
 	public SlideshowGalleryAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 		super(layoutId, progressLayoutId, listener);
@@ -46,7 +46,7 @@ public class SlideshowGalleryAdapter
 		public void bind(ImageEntry entry) {
 			PicassoScreens.load(entry.getImageUrl())
 				.placeholder(R.drawable.default_placeholder_image)
-				.resize(resizedWidth, resizedHeight)
+				.resize(RESIZED_WIDTH, RESIZED_HEIGHT)
 				.centerInside()
 				.into(imageView);
 		}

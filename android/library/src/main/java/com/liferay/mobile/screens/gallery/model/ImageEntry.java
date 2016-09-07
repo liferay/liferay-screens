@@ -138,6 +138,8 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 		createDate = JSONUtil.castToLong(values.get("createDate"));
 		creatorUserId = JSONUtil.castToLong(values.get("userId"));
 		fileEntryId = JSONUtil.castToLong(values.get("fileEntryId"));
+		folderId = JSONUtil.castToLong(values.get("folderId"));
+		repositoryId = JSONUtil.castToLong(values.get("repositoryId"));
 	}
 
 	private String createThumbnailUrl() {
