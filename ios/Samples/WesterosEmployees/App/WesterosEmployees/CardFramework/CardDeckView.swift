@@ -103,31 +103,33 @@ public class CardDeckView: UIView, CardDelegate {
 	//MARK: UIView
 
 	public override func willMoveToWindow(newWindow: UIWindow?) {
-		guard let source = dataSource else { return }
-		let count = source.numberOfCardsIn(self)
+		if cards.isEmpty {
+			guard let source = dataSource else { return }
+			let count = source.numberOfCardsIn(self)
 
-		let initialHeight = CardView.DefaultMinimizedHeight
+			let initialHeight = CardView.DefaultMinimizedHeight
 
-		for index in 0...count {
-			//For each title we will create a card, each card should be on top of the previous ones
-			let card = createCardForIndex(index)
+			for index in 0...count {
+				//For each title we will create a card, each card should be on top of the previous ones
+				let card = createCardForIndex(index)
 
-			//The normal height for a card will be its parent size with a padding
-			card.normalHeight = self.frame.size.height - CardDeckView.DefaultBackgroundSpacing
+				//The normal height for a card will be its parent size with a padding
+				card.normalHeight = self.frame.size.height - CardDeckView.DefaultBackgroundSpacing
 
-			//The minimized height for a card will be the initial height plus the height of the
-			//previous ones
-			card.minimizedHeight = initialHeight +
-				CGFloat(count - index - 1) * initialHeight
+				//The minimized height for a card will be the initial height plus the height of the
+				//previous ones
+				card.minimizedHeight = initialHeight +
+					CGFloat(count - index - 1) * initialHeight
 
-			self.delegate?.cardDeck?(self, customizeCard: card, atIndex: index)
+				self.delegate?.cardDeck?(self, customizeCard: card, atIndex: index)
 
-			card.updateSubviewsConstraints()
+				card.updateSubviewsConstraints()
 
-			addSubview(card)
+				addSubview(card)
 
-			//Set constraints for this card
-			setConstraintsForCard(card)
+				//Set constraints for this card
+				setConstraintsForCard(card)
+			}
 		}
 	}
 
