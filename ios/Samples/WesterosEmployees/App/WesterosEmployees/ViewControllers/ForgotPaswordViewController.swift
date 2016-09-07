@@ -48,7 +48,7 @@ class ForgotPasswordViewController: CardViewController,
 
 	func screenlet(screenlet: ForgotPasswordScreenlet,
 			onForgotPasswordSent passwordSent: Bool) {
-		//TODO: go back to login view
+		cardView?.moveLeft()
 	}
 
 

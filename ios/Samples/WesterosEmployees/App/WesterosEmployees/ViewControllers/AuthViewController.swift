@@ -46,11 +46,8 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 	}
 
 	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-		self.cardDeck?.cards[0].currentState = .Hidden
-		self.cardDeck?.cards[0].resetToCurrentState()
-		self.cardDeck?.cards[0].nextState = .Minimized
-		self.cardDeck?.cards[0].changeToNextState(delay: 0.5)
+		cardDeck?.cards[safe: 0]?.nextState = .Minimized
+		cardDeck?.cards[safe: 0]?.changeToNextState(delay: 0.5)
 	}
 
 
@@ -75,9 +72,17 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 	}
 
 	func cardDeck(cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
+		//SignIn card
 		if index == 0 {
 			//Make login only expand to half of the page on normal height
 			card.normalHeight = self.view.frame.height * 0.7
+
+			//Don't maximized when changing pages
+			card.maximizeOnMove = false
+
+			//Start sign in card hidden
+			card.currentState = .Hidden
+			card.resetToCurrentState()
 		}
 	}
 

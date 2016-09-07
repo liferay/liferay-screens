@@ -22,5 +22,10 @@ extension Array {
 
 		return (Array(leftSplit), Array(rightSplit))
 	}
+
+	///Returns the element at the specified index if it exist, otherwise return nil
+	subscript (safe index: Index) -> Generator.Element? {
+		return indices.contains(index) ? self[index] : nil
+	}
 }
 
