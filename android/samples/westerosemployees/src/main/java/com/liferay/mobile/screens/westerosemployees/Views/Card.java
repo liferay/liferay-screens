@@ -195,8 +195,14 @@ public class Card extends FrameLayout {
 		int visibility = show ? VISIBLE : INVISIBLE;
 
 		for (View arrow : arrows) {
-			arrow.setVisibility(visibility);
+			if (isChildArrow(arrow)) {
+				arrow.setVisibility(visibility);
+			}
 		}
+	}
+
+	protected boolean isChildArrow(View arrow) {
+		return arrow.getParent().getParent().equals(this);
 	}
 
 	protected static List<View> getViewsByTag(ViewGroup root, String tag){
