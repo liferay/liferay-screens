@@ -38,6 +38,9 @@
 	<string name="my_issues">My Issues</string>
 	<string name="issue_detail">Issue Detail</string>
 	<string name="sign_in">Sign In</string>
+	<string name="docs">Docs</string>
+	<string name="blogs">Blogs</string>
+	<string name="gallery">Gallery</string>
 	<string name="forgot_password_title">Forgot Password</string>
 	<string name="next">Next</string>
 	<string name="problems_with_laptop">Problems with your laptop?</string>

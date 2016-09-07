@@ -1,0 +1,32 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/main_view"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/background_gray_westeros"
+	>
+
+	<ImageView
+		android:id="@+id/background"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal"
+		android:layout_margin="30dp"
+		android:background="@drawable/westeros_gray_logo"
+		/>
+
+	<include layout="@layout/card_documents"/>
+
+	<include layout="@layout/card_blogs"/>
+
+	<include layout="@layout/card_gallery"/>
+
+	<FrameLayout
+		android:id="@+id/crouton_view_anchor"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/westeros_card_title_height"
+		android:layout_gravity="bottom"
+		android:elevation="24dp"
+		android:orientation="vertical"
+		android:visibility="visible"
+		/>
+</FrameLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.westerosemployees.Views.Card
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@drawable/westeros_button_ripple"
+	android:elevation="8dp"
+	>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@drawable/westeros_white_shape_ripple"
+		android:orientation="vertical"
+		>
+
+		<TextView
+			android:id="@+id/title_sign_in_subview"
+			android:tag="title"
+			android:text="@string/docs"
+			style="@style/westeros_card_title"
+			/>
+
+		<ImageView
+			android:id="@+id/card1_to_background"
+			android:layout_alignParentEnd="true"
+			android:layout_alignParentRight="true"
+			android:src="@drawable/icon_down"
+			android:tag="arrow"
+			android:visibility="invisible"
+			style="@style/westeros_arrow"
+			/>
+
+	</RelativeLayout>
+
+</com.liferay.mobile.screens.westerosemployees.Views.Card>
