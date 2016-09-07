@@ -16,7 +16,7 @@ import LiferayScreens
 
 class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource {
 
-	@IBOutlet var cardDeck: CardDeckView!
+	@IBOutlet var cardDeck: CardDeckView?
 
 	var signInController: SignInViewController?
 	var signUpController: SignUpViewController?
@@ -39,18 +39,18 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 		signUpController = SignUpViewController()
 		signUpController!.onDone = onDone
 
-		cardDeck.delegate = self
-		cardDeck.dataSource = self
+		cardDeck?.delegate = self
+		cardDeck?.dataSource = self
 
-		self.cardDeck.layoutIfNeeded()
+		self.cardDeck?.layoutIfNeeded()
 	}
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		self.cardDeck.cards[0].currentState = .Hidden
-		self.cardDeck.cards[0].resetToCurrentState()
-		self.cardDeck.cards[0].nextState = .Minimized
-		self.cardDeck.cards[0].changeToNextState(delay: 0.5)
+		self.cardDeck?.cards[0].currentState = .Hidden
+		self.cardDeck?.cards[0].resetToCurrentState()
+		self.cardDeck?.cards[0].nextState = .Minimized
+		self.cardDeck?.cards[0].changeToNextState(delay: 0.5)
 	}
 
 
