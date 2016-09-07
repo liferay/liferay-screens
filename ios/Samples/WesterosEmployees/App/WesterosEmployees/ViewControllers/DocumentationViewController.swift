@@ -27,9 +27,9 @@ class DocumentationViewController: CardViewController {
 	}
 
 
-	//MARK: CardViewController
+	//MARK: Public methods
 
-	override func cardWillAppear() {
+	func load() {
 		assetListScreenlet?.loadList()
 	}
 }

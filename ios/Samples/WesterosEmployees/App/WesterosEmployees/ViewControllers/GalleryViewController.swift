@@ -16,7 +16,11 @@ import LiferayScreens
 
 class GalleryViewController: CardViewController {
 
+
+	//MARK: Outlets
+
 	@IBOutlet weak var imageGalleryScreenlet: ImageGalleryScreenlet?
+
 
 	//MARK: Init methods
 
@@ -24,7 +28,10 @@ class GalleryViewController: CardViewController {
 		self.init(nibName: "GalleryViewController", bundle: nil)
 	}
 
-	override func cardWillAppear() {
+
+	//MARK: Public methods
+
+	func load() {
 		imageGalleryScreenlet?.loadList()
 	}
 }
