@@ -193,14 +193,15 @@ public class CardView: UIView {
 
 		scrollView.scrollRectToVisible(rect, animated: true)
 
-		changeButtonText(self.delegate?.card?(self, titleForPage: page))
-
 		//If it's one of the first views, rotate arrow accordingly
 		if page < 2 {
 			UIView.animateWithDuration(0.3, animations: {
 				self.arrow.transform = page == 0 ?
 					CGAffineTransformIdentity :
 					CGAffineTransformMakeRotation(CGFloat(M_PI_2))
+				}, completion: { _ in
+
+				self.changeButtonText(self.delegate?.card?(self, titleForPage: page))
 			})
 		}
 	}
