@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>server</key>
-	<string>https://demo.liferay.com/screens</string>
+	<string>http://screens-challenge.liferay.org.es</string>
 	<key>companyId</key>
-	<real>20155</real>
+	<integer>20116</integer>
 	<key>groupId</key>
-	<real>20525</real>
+	<integer>20160</integer>
 	<key>anonymousUsername</key>
 	<string>anonymous@liferay.com</string>
 	<key>anonymousPassword</key>

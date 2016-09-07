@@ -56,23 +56,32 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 		if isLoggedIn {
 			self.userProfileView?.delegate = self
 
-			userProfileView?.className = AssetClasses.getClassName(AssetClassNameKey_User)!
-			userProfileView?.classPK = SessionContext.currentContext!.userId!
-			userProfileView?.load()
+			//Load user profile
+			if userProfileView?.classPK != SessionContext.currentContext!.userId! {
+				userProfileView?.className = AssetClasses.getClassName(AssetClassNameKey_User)!
+				userProfileView?.classPK = SessionContext.currentContext!.userId!
+				userProfileView?.load()
+			}
+
+			//self.documentationViewController?.reload()
 
 			self.cardDeck?.alpha = 1.0
+			self.userProfileView?.alpha = 1.0
 
+			//Show second card with a small delay
 			self.cardDeck?.cards[1].currentState = .Hidden
 			self.cardDeck?.cards[1].resetToCurrentState()
 			self.cardDeck?.cards[1].nextState = .Minimized
 			self.cardDeck?.cards[1].changeToNextState(delay: 0.5)
 
+			//Show first card with a big delay
 			self.cardDeck?.cards[0].currentState = .Hidden
 			self.cardDeck?.cards[0].resetToCurrentState()
 			self.cardDeck?.cards[0].nextState = .Minimized
 			self.cardDeck?.cards[0].changeToNextState(delay: 1.0)
 		} else {
 			self.cardDeck?.alpha = 0.0
+			self.userProfileView?.alpha = 0.0
 		}
 	}
 

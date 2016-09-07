@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10117"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DocumentationViewController" customModule="WesterosEmployees" customModuleProvider="target">
             <connections>
+                <outlet property="assetListScreenlet" destination="MIW-NX-StD" id="VbS-Ah-bby"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,10 +15,25 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="363" height="289"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MIW-NX-StD" customClass="AssetListScreenlet" customModule="LiferayScreens">
+                    <rect key="frame" x="0.0" y="0.0" width="363" height="289"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="MIW-NX-StD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="642-3c-dX6"/>
+                <constraint firstAttribute="bottom" secondItem="MIW-NX-StD" secondAttribute="bottom" id="MXA-jG-k9h"/>
+                <constraint firstAttribute="trailing" secondItem="MIW-NX-StD" secondAttribute="trailing" id="b2H-ti-284"/>
+                <constraint firstItem="MIW-NX-StD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="vfn-56-T1D"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="498.5" y="526.5"/>
+            <point key="canvasLocation" x="391.5" y="367.5"/>
         </view>
     </objects>
 </document>

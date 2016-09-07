@@ -12,12 +12,25 @@
 * details.
 */
 import UIKit
+import LiferayScreens
 
 class DocumentationViewController: CardViewController {
+
+	//MARK: Outlets
+
+	@IBOutlet weak var assetListScreenlet: AssetListScreenlet?
 
 	//MARK: Init methods
 
 	convenience init() {
 		self.init(nibName: "DocumentationViewController", bundle: nil)
+	}
+
+
+	//MARK: CardViewController
+
+	override func reload() {
+		assetListScreenlet?.classNameId = 20015
+		assetListScreenlet?.loadList()
 	}
 }

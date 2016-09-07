@@ -18,14 +18,18 @@ import PureLayout
 ///Override this class
 public class CardViewController: UIViewController {
 
-	var onDone: (Void -> Void)?
+	public var onDone: (Void -> Void)?
 
 	///Card which holds the controlled view of this controller
-	var cardView: CardView? {
+	public var cardView: CardView? {
 		didSet {
 			cardView?.addPage(self.view)
 			cardView?.presentingController = self
 		}
+	}
+
+	///Method for reloading view controller, this should be called before showing the controller.
+	public func reload() {
 	}
 
 
@@ -33,12 +37,12 @@ public class CardViewController: UIViewController {
 
 	///Method triggered when the card is going to appear on screen (maximized and normal states).
 	///You should override this method.
-	func cardWillAppear() {
+	public func cardWillAppear() {
 	}
 
 	///Method triggered when the card is going to disappear of screen (background and minimized
 	///states). You should override this method.
-	func cardWillDisappear() {
+	public func cardWillDisappear() {
 	}
 
 }
