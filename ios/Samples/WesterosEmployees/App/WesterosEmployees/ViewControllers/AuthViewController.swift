@@ -45,9 +45,11 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 		self.cardDeck?.layoutIfNeeded()
 	}
 
-	override func viewWillAppear(animated: Bool) {
+	override func viewDidAppear(animated: Bool) {
+		super.viewDidAppear(animated)
+
 		cardDeck?.cards[safe: 0]?.nextState = .Minimized
-		cardDeck?.cards[safe: 0]?.changeToNextState(delay: 0.5)
+		cardDeck?.cards[safe: 0]?.changeToNextState()
 	}
 
 
@@ -71,6 +73,9 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 		}
 	}
 
+
+	//MARK: CardDeckDelegate
+
 	func cardDeck(cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
 		//SignIn card
 		if index == 0 {
@@ -85,9 +90,6 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 			card.resetToCurrentState()
 		}
 	}
-
-
-	//MARK: CardDeckDelegate
 
 	func cardDeck(cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
 		switch (position.card, position.page) {
