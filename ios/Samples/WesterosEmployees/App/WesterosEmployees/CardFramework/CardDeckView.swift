@@ -274,4 +274,34 @@ public class CardDeckView: UIView, CardDelegate {
 
 		return false
 	}
+
+	public func card(card: CardView, onMovingToPage page: Int, moveToRight right: Bool) {
+		if card.maximizeOnMove {
+			if page == 0 {
+				let (top, bottom) = cards.splitAtIndex(cards.indexOf(card)!)
+
+				//Send top cards to background
+				top.forEach {
+					change($0, toState: .Normal, animateArrow: false)
+					change($0, toState: .Background)
+				}
+
+				//Minimize bottom cards
+				bottom.forEach {
+					change($0, toState: .Minimized)
+				}
+
+				change(card, toState: .Normal)
+
+			} else if card.currentState != .Maximized {
+
+				//Hide all cards, and maximize current card
+				cards.filter({ $0 != card }).forEach {
+					change($0, toState: .Hidden)
+				}
+
+				change(card, toState: .Maximized)
+			}
+		}
+	}
 }

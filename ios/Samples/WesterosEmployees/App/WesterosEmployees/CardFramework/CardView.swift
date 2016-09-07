@@ -28,6 +28,14 @@ import PureLayout
 	/// - returns: true, if a view for the missing page has been added, false otherwise
 	optional func card(card: CardView,
 	                   onMissingPage page: Int) -> Bool
+
+	///Called when a card scroll content has move to another page
+	/// - parameters:
+	///    - onMovingToPage page: number of the page the card has moved to
+	///    - moveToRight right: true if content move to the right
+	optional func card(card: CardView,
+	                   onMovingToPage page: Int,
+	                   moveToRight right: Bool)
 	
 }
 
@@ -96,6 +104,9 @@ public class CardView: UIView {
 		return lround(Double(scrollView.contentOffset.x) / Double(width))
 	}
 
+	//Control for maximizing cards on page move
+	var maximizeOnMove = true
+
 	///This controller will be notified when the card appears/dissapears
 	weak var presentingController: CardViewController?
 
@@ -156,13 +167,20 @@ public class CardView: UIView {
 		if nextPage < scrollContentView.subviews.count ||
 			delegate?.card?(self, onMissingPage: nextPage) ?? false {
 			moveToPage(nextPage)
+
+			//Notify the delegate that the scroll has changed
+			self.delegate?.card?(self, onMovingToPage: nextPage, moveToRight: true)
 		}
 	}
 
 	///Moves the content inside the scrollview to the left.
 	public func moveLeft() {
 		if currentPage != 0 {
-			moveToPage(currentPage - 1)
+			let nextPage = currentPage - 1
+			moveToPage(nextPage)
+
+			//Notify the delegate that the scroll has changed
+			self.delegate?.card?(self, onMovingToPage: nextPage, moveToRight: false)
 		}
 	}
 
