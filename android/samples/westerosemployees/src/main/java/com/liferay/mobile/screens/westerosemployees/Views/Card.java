@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.os.Build;
 import android.transition.TransitionManager;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.widget.FrameLayout;
+import com.liferay.mobile.screens.westerosemployees.R;
 import com.liferay.mobile.screens.westerosemployees.utils.CardState;
 import com.liferay.mobile.screens.westerosemployees.utils.PixelUtil;
 import java.util.ArrayList;
@@ -39,14 +41,25 @@ public class Card extends FrameLayout {
 
 	public Card(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		init(context, attrs);
 	}
 
 	public Card(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
+		init(context, attrs);
 	}
 
 	public Card(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
+		init(context, attrs);
+	}
+
+	protected void init(Context context, AttributeSet attributeSet) {
+
+		TypedArray array = context.obtainStyledAttributes(attributeSet, R.styleable.Card);
+
+		normalY = array.getDimensionPixelSize(R.styleable.Card_normalMarginTop,
+			PixelUtil.pixelFromDp(getContext(), NORMAL_Y));
 	}
 
 	@Override
@@ -94,7 +107,7 @@ public class Card extends FrameLayout {
 
 	public void initPosition(int minimizedPosition) {
 		this.minimizedPosition = minimizedPosition;
-		this.normalY = PixelUtil.pixelFromDp(getContext(), NORMAL_Y);
+		//this.normalY = PixelUtil.pixelFromDp(getContext(), NORMAL_Y);
 		this.backgroundY = PixelUtil.pixelFromDp(getContext(), BACKGROUND_Y);
 
 		setY(minimizedPosition);
@@ -226,7 +239,6 @@ public class Card extends FrameLayout {
 	protected static int statusBarHeight;
 
 	protected List<View> arrows;
-	protected List<View> titles;
 	protected int index;
 
 	protected int maxWidth;
