@@ -23,6 +23,15 @@ import Foundation
 		return ""
 	}
 
+	public var fileExtension: String? {
+		if let object = attributes["object"] {
+			if let fileEntry = object["fileEntry"] {
+				return fileEntry!["extension"] as? String
+			}
+		}
+		return ""
+	}
+
 	public var fileEntry: [String:AnyObject]? {
 		return attributes["object"]?.firstItem as? [String:AnyObject]
 	}
