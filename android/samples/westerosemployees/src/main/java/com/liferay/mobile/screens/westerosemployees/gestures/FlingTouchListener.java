@@ -24,12 +24,6 @@ public class FlingTouchListener implements View.OnTouchListener {
 		return true;
 	}
 
-	private GestureDetector gestureDetector;
-	private FlingListener flingListener;
-	private static final float SWIPE_VELOCITY_THRESHOLD = 10f;
-	private static final float SWIPE_MOVEMENT_THRESHOLD = 100f;
-	private int cardSizeMinimizedPx;
-
 	private class GestureDetectorListener extends GestureDetector.SimpleOnGestureListener {
 
 		@Override
@@ -56,16 +50,14 @@ public class FlingTouchListener implements View.OnTouchListener {
 			if (Math.abs(swipeY) > SWIPE_MOVEMENT_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
 				if (swipeY > 0) {
 					flingListener.onFling(FlingListener.Movement.DOWN);
-				}
-				else {
+				} else {
 					flingListener.onFling(FlingListener.Movement.UP);
 				}
-			}
-			else if (Math.abs(e2.getX() - e1.getX()) > SWIPE_MOVEMENT_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
+			} else if (Math.abs(e2.getX() - e1.getX()) > SWIPE_MOVEMENT_THRESHOLD
+				&& Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
 				if (swipeX > 0) {
 					flingListener.onFling(FlingListener.Movement.LEFT);
-				}
-				else {
+				} else {
 					flingListener.onFling(FlingListener.Movement.RIGHT);
 				}
 			}
@@ -73,4 +65,9 @@ public class FlingTouchListener implements View.OnTouchListener {
 			return true;
 		}
 	}
+	private static final float SWIPE_VELOCITY_THRESHOLD = 10f;
+	private static final float SWIPE_MOVEMENT_THRESHOLD = 100f;
+	private GestureDetector gestureDetector;
+	private FlingListener flingListener;
+	private int cardSizeMinimizedPx;
 }

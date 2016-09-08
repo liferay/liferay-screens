@@ -27,47 +27,41 @@ public class UserDeck extends Deck {
 
 	@Override
 	protected void onFling(FlingListener.Movement movement, final Card card) {
-		if(movement == FlingListener.Movement.RIGHT) {
+		if (movement == FlingListener.Movement.RIGHT) {
 
 			card.goRight(new Runnable() {
 				@Override
 				public void run() {
 					int selectedCard = cards.indexOf(card);
 
-					for(int i = 0; i < cards.size(); i++) {
+					for (int i = 0; i < cards.size(); i++) {
 						Card c = cards.get(i);
 
-						if(i == selectedCard) {
+						if (i == selectedCard) {
 							c.setState(CardState.MAXIMIZED);
-						}
-						else if(i > selectedCard) {
+						} else if (i > selectedCard) {
 							c.setState(CardState.HIDDEN);
 						}
 					}
 				}
 			});
-		}
-
-		else if(movement == FlingListener.Movement.LEFT) {
+		} else if (movement == FlingListener.Movement.LEFT) {
 			card.goLeft();
 
 			if (card.getCardSubviewCurrentIndex() == 0) {
 				int selectedCard = cards.indexOf(card);
 
-				for(int i = 0; i < cards.size(); i++) {
+				for (int i = 0; i < cards.size(); i++) {
 					Card c = cards.get(i);
 
-					if(i == selectedCard) {
+					if (i == selectedCard) {
 						c.setState(CardState.NORMAL);
-					}
-					else if(i > selectedCard) {
+					} else if (i > selectedCard) {
 						c.setState(CardState.MINIMIZED);
 					}
 				}
 			}
-		}
-
-		else if (movement == FlingListener.Movement.TOUCH && card.getCardSubviewCurrentIndex() == 0) {
+		} else if (movement == FlingListener.Movement.TOUCH && card.getCardSubviewCurrentIndex() == 0) {
 			super.onClick(card);
 		}
 	}

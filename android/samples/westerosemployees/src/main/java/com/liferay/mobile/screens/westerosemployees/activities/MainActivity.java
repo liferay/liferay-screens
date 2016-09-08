@@ -16,12 +16,11 @@ package com.liferay.mobile.screens.westerosemployees.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import com.liferay.mobile.screens.westerosemployees.R;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
-import com.liferay.mobile.screens.westerosemployees.Views.Card;
+import com.liferay.mobile.screens.westerosemployees.R;
 import com.liferay.mobile.screens.westerosemployees.Views.Deck;
 import com.liferay.mobile.screens.westerosemployees.utils.CardState;
 

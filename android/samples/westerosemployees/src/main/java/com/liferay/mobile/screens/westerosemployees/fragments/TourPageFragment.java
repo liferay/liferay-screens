@@ -23,7 +23,7 @@ public class TourPageFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-							 Bundle savedInstanceState) {
+		Bundle savedInstanceState) {
 
 		int layoutId = getArguments().getInt(LAYOUT_ID);
 		return inflater.inflate(layoutId, container, false);

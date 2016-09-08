@@ -29,7 +29,6 @@ public class SplashActivity extends Activity {
 				startActivity(new Intent(SplashActivity.this, destination));
 			}
 		}, DELAY_MILLIS);
-
 	}
 
 	private Class getDestinationActivity() {

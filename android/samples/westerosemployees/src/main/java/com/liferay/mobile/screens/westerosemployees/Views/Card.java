@@ -14,7 +14,6 @@ import android.widget.FrameLayout;
 import com.liferay.mobile.screens.westerosemployees.R;
 import com.liferay.mobile.screens.westerosemployees.utils.CardState;
 import com.liferay.mobile.screens.westerosemployees.utils.ViewUtil;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -92,36 +91,36 @@ public class Card extends FrameLayout {
 		switch (state) {
 			case BACKGROUND:
 				animator = animate().setStartDelay(0)
-						.setDuration(DURATION_MILLIS)
-						.scaleX(0.95f)
-						.translationY(backgroundY);
+					.setDuration(DURATION_MILLIS)
+					.scaleX(0.95f)
+					.translationY(backgroundY);
 				break;
 			case NORMAL:
 				showArrows(true);
 				setNormalModeHeight();
 				animator = animate().setStartDelay(0)
-						.setDuration(DURATION_MILLIS)
-						.scaleX(1f)
-						.translationY(normalY);
+					.setDuration(DURATION_MILLIS)
+					.scaleX(1f)
+					.translationY(normalY);
 				break;
 			case MINIMIZED:
 				showArrows(false);
 				animator = animate().setStartDelay(0)
-						.setDuration(DURATION_MILLIS)
-						.scaleX(1f)
-						.translationY(minimizedPosition);
+					.setDuration(DURATION_MILLIS)
+					.scaleX(1f)
+					.translationY(minimizedPosition);
 				break;
 			case MAXIMIZED:
 				setMaximizedModeHeight();
 				animator = animate().setStartDelay(0)
-						.setDuration(DURATION_MILLIS)
-						.translationY(0);
+					.setDuration(DURATION_MILLIS)
+					.translationY(0);
 				break;
 
 			case HIDDEN:
 				animator = animate().setStartDelay(0)
-						.setDuration(DURATION_MILLIS)
-						.translationY(maxHeight);
+					.setDuration(DURATION_MILLIS)
+					.translationY(maxHeight);
 				break;
 		}
 

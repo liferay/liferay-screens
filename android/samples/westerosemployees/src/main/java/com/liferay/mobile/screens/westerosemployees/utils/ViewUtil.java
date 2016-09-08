@@ -13,12 +13,12 @@ import java.util.List;
  */
 public class ViewUtil {
 
-	public static int pixelFromDp(Context context, int dp){
+	public static int pixelFromDp(Context context, int dp) {
 		Resources resources = context.getResources();
 		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
 	}
 
-	public static List<View> getViewsByTagPrefix(ViewGroup root, String tagPrefix){
+	public static List<View> getViewsByTagPrefix(ViewGroup root, String tagPrefix) {
 		List<View> views = new ArrayList<>();
 		final int childCount = root.getChildCount();
 		for (int i = 0; i < childCount; i++) {

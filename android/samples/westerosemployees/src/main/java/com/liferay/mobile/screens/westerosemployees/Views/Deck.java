@@ -37,7 +37,7 @@ public class Deck extends FrameLayout {
 	}
 
 	public void setCardsState(CardState state) {
-		for (Card card : cards){
+		for (Card card : cards) {
 			card.setState(state);
 		}
 	}
@@ -125,13 +125,12 @@ public class Deck extends FrameLayout {
 					if (card.getCardSubviewCurrentIndex() == 0) {
 						int selectedCard = cards.indexOf(card);
 
-						for(int i = 0; i < cards.size(); i++) {
+						for (int i = 0; i < cards.size(); i++) {
 							Card c = cards.get(i);
 
-							if(i == selectedCard) {
+							if (i == selectedCard) {
 								c.setState(CardState.NORMAL);
-							}
-							else if(i > selectedCard) {
+							} else if (i > selectedCard) {
 								c.setState(CardState.MINIMIZED);
 							}
 						}
