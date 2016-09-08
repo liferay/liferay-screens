@@ -66,37 +66,9 @@ public class Card extends FrameLayout {
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		initializeSize();
-
 		arrows = getViewsByTag(this, "arrow");
 	}
 
-	private void initializeSize() {
-		if (maxWidth != 0 && maxHeight != 0) {
-			takeSubviewsOffScreen();
-		} else {
-			getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-				@Override
-				public void onGlobalLayout() {
-					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-						removeObserver();
-					} else {
-						getViewTreeObserver().removeGlobalOnLayoutListener(this);
-					}
-
-					maxWidth = getWidth();
-					maxHeight = getHeight();
-
-					takeSubviewsOffScreen();
-					setNormalModeHeight();
-				}
-
-				@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-				private void removeObserver() {
-					getViewTreeObserver().removeOnGlobalLayoutListener(this);
-				}
-			});
-		}
 	}
 
 	private void takeSubviewsOffScreen() {
@@ -105,12 +77,15 @@ public class Card extends FrameLayout {
 		}
 	}
 
-	public void initPosition(int minimizedPosition) {
+	public void initPosition(int minimizedPosition, int maxHeight, int maxWidth) {
 		this.minimizedPosition = minimizedPosition;
-		//this.normalY = PixelUtil.pixelFromDp(getContext(), NORMAL_Y);
 		this.backgroundY = PixelUtil.pixelFromDp(getContext(), BACKGROUND_Y);
+		this.maxHeight = maxHeight;
+		this.maxWidth = maxWidth;
 
-		setY(minimizedPosition);
+		setY(maxHeight);
+
+		takeSubviewsOffScreen();
 	}
 
 	public void setState(CardState state) {

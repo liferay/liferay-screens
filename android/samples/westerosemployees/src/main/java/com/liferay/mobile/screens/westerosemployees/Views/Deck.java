@@ -98,7 +98,7 @@ public class Deck extends FrameLayout {
 			int cardSize = PixelUtil.pixelFromDp(getContext(), Card.CARD_SIZE);
 			int minimizedPosition = maxHeight - (size - i) * cardSize;
 
-			card.initPosition(minimizedPosition);
+			card.initPosition(minimizedPosition, maxHeight, maxWidth);
 			card.setOnTouchListener(new FlingTouchListener(getContext().getApplicationContext(), new FlingListener() {
 				@Override
 				public void onFling(FlingListener.Movement movement) {
