@@ -23,7 +23,7 @@ public class CommentAddInteractor: ServerWriteConnectorInteractor {
 	public var resultComment: Comment?
 
 	public init(
-			screenlet: BaseScreenlet?,
+			screenlet: BaseScreenlet,
 			className: String,
 			classPK: Int64,
 			body: String) {
@@ -33,6 +33,20 @@ public class CommentAddInteractor: ServerWriteConnectorInteractor {
 		self.body = body
 
 		super.init(screenlet: screenlet)
+	}
+
+	public init(
+		groupId: Int64,
+		className: String,
+		classPK: Int64,
+		body: String) {
+
+		self.groupId = (groupId != 0) ? groupId : LiferayServerContext.groupId
+		self.className = className
+		self.classPK = classPK
+		self.body = body
+
+		super.init(screenlet: nil)
 	}
 
 	override public func createConnector() -> CommentAddLiferayConnector? {
@@ -48,4 +62,32 @@ public class CommentAddInteractor: ServerWriteConnectorInteractor {
 			self.resultComment = comment
 		}
 	}
+
+	//MARK: Cache methods
+
+	override public func writeToCache(c: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+		guard let addCon = c as? CommentAddLiferayConnector else {
+			return
+		}
+
+		let cacheFunction = (cacheStrategy == .CacheFirst || c.lastError != nil)
+			? cacheManager.setDirty
+			: cacheManager.setClean
+
+		cacheFunction(
+			collection: "CommentsScreenlet",
+			key: "add-comment-\(NSUUID().UUIDString)",
+			value: "",
+			attributes: [
+				"groupId": NSNumber(longLong: addCon.groupId),
+				"className": addCon.className,
+				"classPK": NSNumber(longLong: addCon.classPK),
+				"body": addCon.body,
+			],
+			onCompletion: nil)
+	}
+
 }
