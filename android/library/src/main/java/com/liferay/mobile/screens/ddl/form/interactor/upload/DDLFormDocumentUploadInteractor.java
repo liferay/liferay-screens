@@ -10,7 +10,7 @@ import com.liferay.mobile.screens.ddl.form.service.UploadService;
 /**
  * @author Javier Gamarra
  */
-public class DDLFormDocumentUploadInteractorImpl
+public class DDLFormDocumentUploadInteractor
 	extends BaseCacheWriteInteractor<DDLFormListener, DDLFormDocumentUploadEvent> {
 
 	@Override

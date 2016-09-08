@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.rating.interactor.delete;
+package com.liferay.mobile.screens.rating.interactor.update;
 
 import com.liferay.mobile.screens.base.thread.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -7,23 +7,26 @@ import com.liferay.mobile.screens.rating.RatingListener;
 import com.liferay.mobile.screens.rating.RatingScreenlet;
 import com.liferay.mobile.screens.rating.interactor.RatingEvent;
 import com.liferay.mobile.screens.service.v70.ScreensratingsentryService;
+import java.security.InvalidParameterException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
  * @author Alejandro Hernández
  */
-public class RatingDeleteInteractorImpl extends BaseCacheWriteInteractor<RatingListener, RatingEvent> {
+public class RatingUpdateInteractor extends BaseCacheWriteInteractor<RatingListener, RatingEvent> {
 
 	@Override
 	public RatingEvent execute(RatingEvent event) throws Exception {
 
+		validate(event.getScore());
+
 		ScreensratingsentryService ratingsEntryService =
 			new ScreensratingsentryService(SessionContext.createSessionFromCurrentSession());
 
-		JSONObject jsonObject = ratingsEntryService.deleteRatingsEntry(event.getClassPK(), event.getClassName(),
-			event.getRatingGroupCounts());
-
+		JSONObject jsonObject =
+			ratingsEntryService.updateRatingsEntry(event.getClassPK(), event.getClassName(), event.getScore(),
+				event.getRatingGroupCounts());
 		return new RatingEvent(event.getClassPK(), event.getClassName(), event.getRatingGroupCounts(), jsonObject);
 	}
 
@@ -38,7 +41,13 @@ public class RatingDeleteInteractorImpl extends BaseCacheWriteInteractor<RatingL
 
 	@Override
 	protected void onFailure(RatingEvent event) {
-		getListener().error(event.getException(), RatingScreenlet.DELETE_RATING_ACTION);
+		getListener().error(event.getException(), RatingScreenlet.UPDATE_RATING_ACTION);
+	}
+
+	protected void validate(double score) throws InvalidParameterException {
+		if ((score > 1) || (score < 0)) {
+			throw new InvalidParameterException("Score " + score + " is not a double value between 0 and 1");
+		}
 	}
 
 	protected int[] toIntArray(JSONArray array) {

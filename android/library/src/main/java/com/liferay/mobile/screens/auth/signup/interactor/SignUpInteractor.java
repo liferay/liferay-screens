@@ -32,7 +32,7 @@ import org.json.JSONObject;
 /**
  * @author Silvio Santos
  */
-public class SignUpInteractorImpl extends BaseRemoteInteractor<SignUpListener, BasicEvent> {
+public class SignUpInteractor extends BaseRemoteInteractor<SignUpListener, BasicEvent> {
 
 	@Override
 	public BasicEvent execute(Object[] args) throws Exception {

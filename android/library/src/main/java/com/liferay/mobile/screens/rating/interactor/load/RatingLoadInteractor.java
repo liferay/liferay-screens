@@ -15,7 +15,7 @@ import static com.liferay.mobile.screens.cache.Cache.SEPARATOR;
 /**
  * @author Alejandro Hernández
  */
-public class RatingLoadInteractorImpl extends BaseCacheReadInteractor<RatingListener, RatingEvent> {
+public class RatingLoadInteractor extends BaseCacheReadInteractor<RatingListener, RatingEvent> {
 
 	@Override
 	public RatingEvent execute(Object... args) throws Exception {

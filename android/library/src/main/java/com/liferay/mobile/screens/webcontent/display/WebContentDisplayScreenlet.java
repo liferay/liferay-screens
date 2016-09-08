@@ -25,16 +25,16 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.webcontent.WebContent;
-import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayBaseInteractorImpl;
-import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayFromArticleIdInteractorImpl;
-import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayFromStructureInteractorImpl;
+import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayBaseInteractor;
+import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayFromArticleIdInteractor;
+import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayFromStructureInteractor;
 import com.liferay.mobile.screens.webcontent.display.view.WebContentDisplayViewModel;
 
 /**
  * @author Jose Manuel Navarro
  */
 public class WebContentDisplayScreenlet
-	extends BaseScreenlet<WebContentDisplayViewModel, WebContentDisplayBaseInteractorImpl>
+	extends BaseScreenlet<WebContentDisplayViewModel, WebContentDisplayBaseInteractor>
 	implements WebContentDisplayListener {
 
 	public static final String WEB_CONTENT_BY_ARTICLE_ID = "WEB_CONTENT_BY_ARTICLE_ID";
@@ -188,27 +188,27 @@ public class WebContentDisplayScreenlet
 	}
 
 	@Override
-	protected WebContentDisplayBaseInteractorImpl createInteractor(String actionName) {
+	protected WebContentDisplayBaseInteractor createInteractor(String actionName) {
 		if (WEB_CONTENT_BY_ARTICLE_ID.equals(actionName)) {
-			return new WebContentDisplayFromArticleIdInteractorImpl();
+			return new WebContentDisplayFromArticleIdInteractor();
 		} else {
-			return new WebContentDisplayFromStructureInteractorImpl();
+			return new WebContentDisplayFromStructureInteractor();
 		}
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, WebContentDisplayBaseInteractorImpl interactor, Object... args) {
+	protected void onUserAction(String userActionName, WebContentDisplayBaseInteractor interactor, Object... args) {
 
 		locale = getResources().getConfiguration().locale;
 
 		if (WEB_CONTENT_BY_ARTICLE_ID.equals(userActionName)) {
-			WebContentDisplayFromArticleIdInteractorImpl interactorFromArticleId =
-				(WebContentDisplayFromArticleIdInteractorImpl) getInteractor(userActionName);
+			WebContentDisplayFromArticleIdInteractor interactorFromArticleId =
+				(WebContentDisplayFromArticleIdInteractor) getInteractor(userActionName);
 
 			interactorFromArticleId.start(articleId, templateId);
 		} else {
-			WebContentDisplayFromStructureInteractorImpl interactorFromStructure =
-				(WebContentDisplayFromStructureInteractorImpl) getInteractor(userActionName);
+			WebContentDisplayFromStructureInteractor interactorFromStructure =
+				(WebContentDisplayFromStructureInteractor) getInteractor(userActionName);
 
 			interactorFromStructure.start(articleId, structureId);
 		}

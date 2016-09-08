@@ -25,7 +25,7 @@ import static com.liferay.mobile.screens.cache.Cache.SEPARATOR;
 /**
  * @author Jose Manuel Navarro
  */
-public class WebContentDisplayFromArticleIdInteractorImpl extends WebContentDisplayBaseInteractorImpl {
+public class WebContentDisplayFromArticleIdInteractor extends WebContentDisplayBaseInteractor {
 
 	@Override
 	public WebContentDisplayEvent execute(Object... args) throws Exception {

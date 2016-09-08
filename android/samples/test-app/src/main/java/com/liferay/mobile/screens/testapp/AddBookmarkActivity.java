@@ -4,7 +4,7 @@ import android.os.Bundle;
 import com.liferay.mobile.screens.base.interactor.CustomInteractorListener;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.bookmark.AddBookmarkScreenlet;
-import com.liferay.mobile.screens.bookmark.interactor.AddBookmarkInteractorImpl;
+import com.liferay.mobile.screens.bookmark.interactor.AddBookmarkInteractor;
 import com.liferay.mobile.screens.bookmark.interactor.AddBookmarkListener;
 
 /**
@@ -34,6 +34,6 @@ public class AddBookmarkActivity extends ThemeActivity implements AddBookmarkLis
 
 	@Override
 	public Interactor createInteractor(String actionName) {
-		return new AddBookmarkInteractorImpl();
+		return new AddBookmarkInteractor();
 	}
 }

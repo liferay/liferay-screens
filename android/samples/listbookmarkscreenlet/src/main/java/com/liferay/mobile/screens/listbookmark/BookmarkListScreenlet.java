@@ -10,7 +10,7 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 /**
  * @author Javier Gamarra
  */
-public class BookmarkListScreenlet extends BaseListScreenlet<Bookmark, BookmarkListInteractorImpl> {
+public class BookmarkListScreenlet extends BaseListScreenlet<Bookmark, BookmarkListInteractor> {
 
 	private long folderId;
 
@@ -49,7 +49,7 @@ public class BookmarkListScreenlet extends BaseListScreenlet<Bookmark, BookmarkL
 	}
 
 	@Override
-	protected void loadRows(BookmarkListInteractorImpl interactor) {
+	protected void loadRows(BookmarkListInteractor interactor) {
 
 		((BookmarkListListener) getListener()).interactorCalled();
 
@@ -57,7 +57,7 @@ public class BookmarkListScreenlet extends BaseListScreenlet<Bookmark, BookmarkL
 	}
 
 	@Override
-	protected BookmarkListInteractorImpl createInteractor(String actionName) {
-		return new BookmarkListInteractorImpl();
+	protected BookmarkListInteractor createInteractor(String actionName) {
+		return new BookmarkListInteractor();
 	}
 }

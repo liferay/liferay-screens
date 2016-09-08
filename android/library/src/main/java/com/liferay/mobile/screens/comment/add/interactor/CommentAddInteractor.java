@@ -12,7 +12,7 @@ import org.json.JSONObject;
 /**
  * @author Alejandro Hernández
  */
-public class CommentAddInteractorImpl extends BaseCacheWriteInteractor<CommentAddListener, CommentEvent> {
+public class CommentAddInteractor extends BaseCacheWriteInteractor<CommentAddListener, CommentEvent> {
 
 	@Override
 	public CommentEvent execute(CommentEvent event) throws Exception {

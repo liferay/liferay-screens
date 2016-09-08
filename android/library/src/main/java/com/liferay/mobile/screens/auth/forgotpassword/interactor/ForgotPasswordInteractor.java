@@ -28,7 +28,7 @@ import com.liferay.mobile.screens.util.ServiceProvider;
 /**
  * @author Jose Manuel Navarro
  */
-public class ForgotPasswordInteractorImpl extends BaseRemoteInteractor<ForgotPasswordListener, ForgotPasswordEvent> {
+public class ForgotPasswordInteractor extends BaseRemoteInteractor<ForgotPasswordListener, ForgotPasswordEvent> {
 
 	@Override
 	public ForgotPasswordEvent execute(Object[] args) throws Exception {

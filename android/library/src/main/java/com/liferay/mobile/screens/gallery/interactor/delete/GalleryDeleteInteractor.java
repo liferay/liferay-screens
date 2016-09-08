@@ -8,8 +8,7 @@ import com.liferay.mobile.screens.gallery.interactor.load.GalleryEvent;
 /**
  * @author Víctor Galán Grande
  */
-public class GalleryDeleteInteractorImpl
-	extends BaseCacheWriteInteractor<GalleryInteractorListener, GalleryEvent> {
+public class GalleryDeleteInteractor extends BaseCacheWriteInteractor<GalleryInteractorListener, GalleryEvent> {
 
 	@Override
 	public GalleryEvent execute(GalleryEvent event) throws Exception {

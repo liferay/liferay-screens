@@ -17,7 +17,7 @@ import org.json.JSONObject;
 /**
  * @author Sarai Díaz García
  */
-public class AssetDisplayInteractorImpl extends BaseCacheReadInteractor<AssetDisplayListener, AssetEvent> {
+public class AssetDisplayInteractor extends BaseCacheReadInteractor<AssetDisplayListener, AssetEvent> {
 
 	@Override
 	public AssetEvent execute(Object... args) throws Exception {

@@ -21,7 +21,7 @@ import java.util.Iterator;
 /**
  * @author Javier Gamarra
  */
-public class UserPortraitUploadInteractorImpl
+public class UserPortraitUploadInteractor
 	extends BaseCacheWriteInteractor<UserPortraitInteractorListener, UserPortraitUploadEvent> {
 
 	@Override

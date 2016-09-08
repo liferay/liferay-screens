@@ -15,10 +15,10 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.PicassoScreens;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.gallery.interactor.GalleryInteractorListener;
-import com.liferay.mobile.screens.gallery.interactor.delete.GalleryDeleteInteractorImpl;
+import com.liferay.mobile.screens.gallery.interactor.delete.GalleryDeleteInteractor;
 import com.liferay.mobile.screens.gallery.interactor.load.GalleryEvent;
-import com.liferay.mobile.screens.gallery.interactor.load.GalleryLoadInteractorImpl;
-import com.liferay.mobile.screens.gallery.interactor.upload.GalleryUploadInteractorImpl;
+import com.liferay.mobile.screens.gallery.interactor.load.GalleryLoadInteractor;
+import com.liferay.mobile.screens.gallery.interactor.upload.GalleryUploadInteractor;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.gallery.view.GalleryViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -29,7 +29,7 @@ import java.io.IOException;
 /**
  * @author Víctor Galán Grande
  */
-public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadInteractorImpl>
+public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadInteractor>
 	implements GalleryInteractorListener {
 
 	public static final String LOAD_GALLERY = "LOAD_GALLERY";
@@ -71,12 +71,12 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 	}
 
 	@Override
-	protected GalleryLoadInteractorImpl createInteractor(String actionName) {
-		return new GalleryLoadInteractorImpl();
+	protected GalleryLoadInteractor createInteractor(String actionName) {
+		return new GalleryLoadInteractor();
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, GalleryLoadInteractorImpl interactor, Object... args) {
+	protected void onUserAction(String userActionName, GalleryLoadInteractor interactor, Object... args) {
 		switch (userActionName) {
 			default:
 			case LOAD_GALLERY:
@@ -84,14 +84,14 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 				break;
 			case DELETE_IMAGE:
 				long fileEntryId = (long) args[0];
-				GalleryDeleteInteractorImpl galleryDeleteInteractor = new GalleryDeleteInteractorImpl();
+				GalleryDeleteInteractor galleryDeleteInteractor = new GalleryDeleteInteractor();
 				galleryDeleteInteractor.start(new GalleryEvent(new ImageEntry(fileEntryId)));
 				break;
 			case UPLOAD_IMAGE:
 				String picturePath = (String) args[0];
 				String title = (String) args[1];
 				String description = (String) args[2];
-				GalleryUploadInteractorImpl galleryUploadInteractor = new GalleryUploadInteractorImpl();
+				GalleryUploadInteractor galleryUploadInteractor = new GalleryUploadInteractor();
 				galleryUploadInteractor.start(folderId, title, description, picturePath);
 				break;
 		}
@@ -207,7 +207,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 	}
 
 	@Override
-	protected void loadRows(GalleryLoadInteractorImpl interactor) {
+	protected void loadRows(GalleryLoadInteractor interactor) {
 		interactor.start(folderId, mimeTypes);
 	}
 
@@ -256,7 +256,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 
 	protected void startShadowActivityForMediaStore(int mediaStore) {
 
-		GalleryUploadInteractorImpl galleryUploadInteractor = new GalleryUploadInteractorImpl();
+		GalleryUploadInteractor galleryUploadInteractor = new GalleryUploadInteractor();
 		LiferayLogger.e("We initialize the interactor to be able to send him messages, objId:"
 			+ galleryUploadInteractor.toString());
 

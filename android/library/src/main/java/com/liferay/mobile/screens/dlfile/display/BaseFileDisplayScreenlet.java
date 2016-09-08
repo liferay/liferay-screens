@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
-import com.liferay.mobile.screens.asset.display.interactor.AssetDisplayInteractorImpl;
+import com.liferay.mobile.screens.asset.display.interactor.AssetDisplayInteractor;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -18,7 +18,7 @@ import com.liferay.mobile.screens.context.SessionContext;
  * @author Sarai Díaz García
  */
 public abstract class BaseFileDisplayScreenlet
-	extends BaseScreenlet<BaseFileDisplayViewModel, AssetDisplayInteractorImpl> implements AssetDisplayListener {
+	extends BaseScreenlet<BaseFileDisplayViewModel, AssetDisplayInteractor> implements AssetDisplayListener {
 
 	public static final String LOAD_ASSET_ACTION = "LOAD_ASSET_ACTION";
 
@@ -95,12 +95,12 @@ public abstract class BaseFileDisplayScreenlet
 	}
 
 	@Override
-	protected AssetDisplayInteractorImpl createInteractor(String actionName) {
-		return new AssetDisplayInteractorImpl();
+	protected AssetDisplayInteractor createInteractor(String actionName) {
+		return new AssetDisplayInteractor();
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor, Object... args) {
+	protected void onUserAction(String userActionName, AssetDisplayInteractor interactor, Object... args) {
 		if (entryId != 0) {
 			interactor.start(entryId);
 		} else {

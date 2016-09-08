@@ -29,7 +29,7 @@ import org.json.JSONObject;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListInteractorImpl extends BaseListInteractor<DDLListInteractorListener, DDLFormEvent> {
+public class DDLListInteractor extends BaseListInteractor<DDLListInteractorListener, DDLFormEvent> {
 
 	protected void validate(long recordSetId, int startRow, int endRow, Locale locale) {
 		super.validate(startRow, endRow, locale);

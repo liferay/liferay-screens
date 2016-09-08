@@ -12,7 +12,7 @@ import org.json.JSONArray;
 /**
  * @author Javier Gamarra
  */
-public class UpdateUserInteractorImpl {
+public class UpdateUserInteractor {
 
 	//TODO to move to a screenlet
 

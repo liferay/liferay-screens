@@ -26,7 +26,7 @@ import org.json.JSONObject;
 /**
  * @author Jose Manuel Navarro
  */
-public class DDLFormLoadInteractorImpl extends BaseCacheReadInteractor<DDLFormListener, DDLFormEvent> {
+public class DDLFormLoadInteractor extends BaseCacheReadInteractor<DDLFormListener, DDLFormEvent> {
 
 	@Override
 	public DDLFormEvent execute(Object... args) throws Exception {

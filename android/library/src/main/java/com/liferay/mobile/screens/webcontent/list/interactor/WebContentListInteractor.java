@@ -15,7 +15,7 @@ import org.json.JSONObject;
 /**
  * @author Javier Gamarra
  */
-public class WebContentListInteractorImpl
+public class WebContentListInteractor
 	extends BaseListInteractor<WebContentListInteractorListener, WebContentDisplayEvent> {
 
 	@Override

@@ -10,8 +10,7 @@ import org.json.JSONArray;
 /**
  * @author Javier Gamarra
  */
-public class BookmarkListInteractorImpl
-	extends BaseListInteractor<BaseListInteractorListener<Bookmark>, BookmarkEvent> {
+public class BookmarkListInteractor extends BaseListInteractor<BaseListInteractorListener<Bookmark>, BookmarkEvent> {
 
 	@Override
 	protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {

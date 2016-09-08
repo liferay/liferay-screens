@@ -12,9 +12,9 @@ import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
 import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
-import com.liferay.mobile.screens.comment.display.interactor.delete.CommentDeleteInteractorImpl;
-import com.liferay.mobile.screens.comment.display.interactor.load.CommentLoadInteractorImpl;
-import com.liferay.mobile.screens.comment.display.interactor.update.CommentUpdateInteractorImpl;
+import com.liferay.mobile.screens.comment.display.interactor.delete.CommentDeleteInteractor;
+import com.liferay.mobile.screens.comment.display.interactor.load.CommentLoadInteractor;
+import com.liferay.mobile.screens.comment.display.interactor.update.CommentUpdateInteractor;
 import com.liferay.mobile.screens.comment.display.view.CommentDisplayViewModel;
 import com.liferay.mobile.screens.context.SessionContext;
 
@@ -101,12 +101,12 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	protected Interactor createInteractor(String actionName) {
 		switch (actionName) {
 			case DELETE_COMMENT_ACTION:
-				return new CommentDeleteInteractorImpl();
+				return new CommentDeleteInteractor();
 			case UPDATE_COMMENT_ACTION:
-				return new CommentUpdateInteractorImpl();
+				return new CommentUpdateInteractor();
 			case LOAD_COMMENT_ACTION:
 			default:
-				return new CommentLoadInteractorImpl();
+				return new CommentLoadInteractor();
 		}
 	}
 
@@ -114,15 +114,15 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	protected void onUserAction(String actionName, Interactor interactor, Object... args) {
 		switch (actionName) {
 			case DELETE_COMMENT_ACTION:
-				((CommentDeleteInteractorImpl) interactor).start(new CommentEvent(commentId, className, classPK, null));
+				((CommentDeleteInteractor) interactor).start(new CommentEvent(commentId, className, classPK, null));
 				break;
 			case UPDATE_COMMENT_ACTION:
 				String body = (String) args[0];
-				((CommentUpdateInteractorImpl) interactor).start(new CommentEvent(commentId, className, classPK, body));
+				((CommentUpdateInteractor) interactor).start(new CommentEvent(commentId, className, classPK, body));
 				break;
 			case LOAD_COMMENT_ACTION:
 			default:
-				((CommentLoadInteractorImpl) interactor).start(commentId);
+				((CommentLoadInteractor) interactor).start(commentId);
 				break;
 		}
 	}

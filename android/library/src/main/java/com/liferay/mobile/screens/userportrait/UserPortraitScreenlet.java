@@ -31,9 +31,9 @@ import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
-import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadInteractorImpl;
+import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadInteractor;
 import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadEvent;
-import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadInteractorImpl;
+import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadInteractor;
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
@@ -109,7 +109,7 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 
 		getViewModel().showFinishOperation(UPLOAD_PORTRAIT);
 
-		((UserPortraitLoadInteractorImpl) getInteractor(LOAD_PORTRAIT)).start(uuid);
+		((UserPortraitLoadInteractor) getInteractor(LOAD_PORTRAIT)).start(uuid);
 	}
 
 	@Override
@@ -213,24 +213,24 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 	@Override
 	protected Interactor createInteractor(String actionName) {
 		if (UPLOAD_PORTRAIT.equals(actionName)) {
-			return new UserPortraitUploadInteractorImpl();
+			return new UserPortraitUploadInteractor();
 		} else {
-			return new UserPortraitLoadInteractorImpl();
+			return new UserPortraitLoadInteractor();
 		}
 	}
 
 	@Override
 	protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
 		if (UPLOAD_PORTRAIT.equals(userActionName)) {
-			UserPortraitUploadInteractorImpl userPortraitInteractor =
-				(UserPortraitUploadInteractorImpl) getInteractor(userActionName);
+			UserPortraitUploadInteractor userPortraitInteractor =
+				(UserPortraitUploadInteractor) getInteractor(userActionName);
 			String path = (String) args[0];
 			if (userId != 0) {
 				userPortraitInteractor.start(new UserPortraitUploadEvent(path));
 			}
 		} else {
-			UserPortraitLoadInteractorImpl userPortraitLoadInteractor =
-				(UserPortraitLoadInteractorImpl) getInteractor(userActionName);
+			UserPortraitLoadInteractor userPortraitLoadInteractor =
+				(UserPortraitLoadInteractor) getInteractor(userActionName);
 			if (portraitId != 0 && uuid != null) {
 				userPortraitLoadInteractor.start(male, portraitId, uuid);
 			} else {

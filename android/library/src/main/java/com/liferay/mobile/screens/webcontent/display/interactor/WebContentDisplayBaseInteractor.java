@@ -7,7 +7,7 @@ import java.util.Locale;
 /**
  * @author Javier Gamarra
  */
-public abstract class WebContentDisplayBaseInteractorImpl
+public abstract class WebContentDisplayBaseInteractor
 	extends BaseCacheReadInteractor<WebContentDisplayListener, WebContentDisplayEvent> {
 
 	protected void validate(Locale locale) {

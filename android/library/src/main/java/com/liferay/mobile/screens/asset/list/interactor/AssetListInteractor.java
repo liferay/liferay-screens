@@ -37,7 +37,7 @@ import org.json.JSONObject;
 /**
  * @author Silvio Santos
  */
-public class AssetListInteractorImpl extends BaseListInteractor<AssetListInteractorListener, AssetEvent> {
+public class AssetListInteractor extends BaseListInteractor<AssetListInteractorListener, AssetEvent> {
 
 	public BaseListEvent<AssetEvent> execute(Query query, Object... args) throws Exception {
 

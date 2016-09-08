@@ -7,13 +7,13 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.webcontent.WebContent;
-import com.liferay.mobile.screens.webcontent.list.interactor.WebContentListInteractorImpl;
+import com.liferay.mobile.screens.webcontent.list.interactor.WebContentListInteractor;
 import com.liferay.mobile.screens.webcontent.list.interactor.WebContentListInteractorListener;
 
 /**
  * @author Javier Gamarra
  */
-public class WebContentListScreenlet extends BaseListScreenlet<WebContent, WebContentListInteractorImpl>
+public class WebContentListScreenlet extends BaseListScreenlet<WebContent, WebContentListInteractor>
 	implements WebContentListInteractorListener {
 
 	private long folderId;
@@ -50,13 +50,13 @@ public class WebContentListScreenlet extends BaseListScreenlet<WebContent, WebCo
 	}
 
 	@Override
-	protected void loadRows(WebContentListInteractorImpl interactor) {
+	protected void loadRows(WebContentListInteractor interactor) {
 		interactor.start(folderId);
 	}
 
 	@Override
-	protected WebContentListInteractorImpl createInteractor(String actionName) {
-		return new WebContentListInteractorImpl();
+	protected WebContentListInteractor createInteractor(String actionName) {
+		return new WebContentListInteractor();
 	}
 
 	@Override

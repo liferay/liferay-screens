@@ -8,23 +8,23 @@ import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import com.liferay.mobile.screens.base.thread.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.base.thread.event.CachedEvent;
-import com.liferay.mobile.screens.comment.add.interactor.CommentAddInteractorImpl;
+import com.liferay.mobile.screens.comment.add.interactor.CommentAddInteractor;
 import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
-import com.liferay.mobile.screens.comment.display.interactor.delete.CommentDeleteInteractorImpl;
-import com.liferay.mobile.screens.comment.display.interactor.update.CommentUpdateInteractorImpl;
+import com.liferay.mobile.screens.comment.display.interactor.delete.CommentDeleteInteractor;
+import com.liferay.mobile.screens.comment.display.interactor.update.CommentUpdateInteractor;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
-import com.liferay.mobile.screens.ddl.form.interactor.add.DDLFormAddRecordInteractorImpl;
-import com.liferay.mobile.screens.ddl.form.interactor.update.DDLFormUpdateRecordInteractorImpl;
+import com.liferay.mobile.screens.ddl.form.interactor.add.DDLFormAddRecordInteractor;
+import com.liferay.mobile.screens.ddl.form.interactor.update.DDLFormUpdateRecordInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadEvent;
-import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadInteractorImpl;
+import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadInteractor;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.rating.interactor.RatingEvent;
-import com.liferay.mobile.screens.rating.interactor.delete.RatingDeleteInteractorImpl;
-import com.liferay.mobile.screens.rating.interactor.update.RatingUpdateInteractorImpl;
+import com.liferay.mobile.screens.rating.interactor.delete.RatingDeleteInteractor;
+import com.liferay.mobile.screens.rating.interactor.update.RatingUpdateInteractor;
 import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadEvent;
-import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadInteractorImpl;
+import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadInteractor;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -59,8 +59,8 @@ public class CacheSyncService extends IntentService {
 				public DDLFormEvent getOfflineEventNew(DDLFormEvent event) throws Exception {
 					Record record = event.getRecord();
 					BaseCacheWriteInteractor interactor =
-						record.getRecordId() == 0 ? new DDLFormAddRecordInteractorImpl()
-							: new DDLFormUpdateRecordInteractorImpl();
+						record.getRecordId() == 0 ? new DDLFormAddRecordInteractor()
+							: new DDLFormUpdateRecordInteractor();
 					event = (DDLFormEvent) interactor.execute(event);
 					event.setCacheKey(record.getStructureId() + SEPARATOR + record.getRecordId());
 					return event;
@@ -80,11 +80,11 @@ public class CacheSyncService extends IntentService {
 				@NonNull
 				private BaseCacheWriteInteractor getCommentInteractor(CommentEvent commentEvent) {
 					if (DELETE_COMMENT_ACTION.equals(commentEvent.getActionName())) {
-						return new CommentDeleteInteractorImpl();
+						return new CommentDeleteInteractor();
 					} else if (commentEvent.getCommentId() == 0) {
-						return new CommentAddInteractorImpl();
+						return new CommentAddInteractor();
 					} else {
-						return new CommentUpdateInteractorImpl();
+						return new CommentUpdateInteractor();
 					}
 				}
 			});
@@ -93,8 +93,8 @@ public class CacheSyncService extends IntentService {
 				@Override
 				public RatingEvent getOfflineEventNew(RatingEvent event) throws Exception {
 					BaseCacheWriteInteractor interactor =
-						DELETE_RATING_ACTION.equals(event.getActionName()) ? new RatingDeleteInteractorImpl()
-							: new RatingUpdateInteractorImpl();
+						DELETE_RATING_ACTION.equals(event.getActionName()) ? new RatingDeleteInteractor()
+							: new RatingUpdateInteractor();
 					event = (RatingEvent) interactor.execute(event);
 					event.setCacheKey(event.getClassName() + SEPARATOR + event.getClassPK());
 					event.setDeleted(DELETE_RATING_ACTION.equals(event.getActionName()));
@@ -105,7 +105,7 @@ public class CacheSyncService extends IntentService {
 			sync(UserPortraitUploadEvent.class, new SyncProvider<UserPortraitUploadEvent>() {
 				@Override
 				public UserPortraitUploadEvent getOfflineEventNew(UserPortraitUploadEvent event) throws Exception {
-					UserPortraitUploadInteractorImpl interactor = new UserPortraitUploadInteractorImpl();
+					UserPortraitUploadInteractor interactor = new UserPortraitUploadInteractor();
 					EventBusUtil.register(this);
 					interactor.execute(event);
 					return null;
@@ -116,7 +116,7 @@ public class CacheSyncService extends IntentService {
 				@Override
 				public DDLFormDocumentUploadEvent getOfflineEventNew(DDLFormDocumentUploadEvent event)
 					throws Exception {
-					DDLFormDocumentUploadInteractorImpl interactor = new DDLFormDocumentUploadInteractorImpl();
+					DDLFormDocumentUploadInteractor interactor = new DDLFormDocumentUploadInteractor();
 					EventBusUtil.register(this);
 					interactor.execute(event);
 					return null;

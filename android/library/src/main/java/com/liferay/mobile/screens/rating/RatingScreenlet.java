@@ -10,9 +10,9 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.rating.interactor.RatingEvent;
-import com.liferay.mobile.screens.rating.interactor.delete.RatingDeleteInteractorImpl;
-import com.liferay.mobile.screens.rating.interactor.load.RatingLoadInteractorImpl;
-import com.liferay.mobile.screens.rating.interactor.update.RatingUpdateInteractorImpl;
+import com.liferay.mobile.screens.rating.interactor.delete.RatingDeleteInteractor;
+import com.liferay.mobile.screens.rating.interactor.load.RatingLoadInteractor;
+import com.liferay.mobile.screens.rating.interactor.update.RatingUpdateInteractor;
 import com.liferay.mobile.screens.rating.view.RatingViewModel;
 import org.json.JSONObject;
 
@@ -90,11 +90,11 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 	protected Interactor createInteractor(String actionName) {
 		switch (actionName) {
 			case LOAD_RATINGS_ACTION:
-				return new RatingLoadInteractorImpl();
+				return new RatingLoadInteractor();
 			case DELETE_RATING_ACTION:
-				return new RatingDeleteInteractorImpl();
+				return new RatingDeleteInteractor();
 			case UPDATE_RATING_ACTION:
-				return new RatingUpdateInteractorImpl();
+				return new RatingUpdateInteractor();
 			default:
 				return null;
 		}
@@ -104,15 +104,15 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 	protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
 		switch (userActionName) {
 			case LOAD_RATINGS_ACTION:
-				((RatingLoadInteractorImpl) interactor).start(entryId, classPK, className, ratingsGroupCount);
+				((RatingLoadInteractor) interactor).start(entryId, classPK, className, ratingsGroupCount);
 				break;
 			case UPDATE_RATING_ACTION:
 				double score = (double) args[0];
-				((RatingUpdateInteractorImpl) interactor).start(
+				((RatingUpdateInteractor) interactor).start(
 					new RatingEvent(classPK, className, ratingsGroupCount, score));
 				break;
 			case DELETE_RATING_ACTION:
-				((RatingDeleteInteractorImpl) interactor).start(
+				((RatingDeleteInteractor) interactor).start(
 					new RatingEvent(classPK, className, ratingsGroupCount, new JSONObject()));
 				break;
 			default:

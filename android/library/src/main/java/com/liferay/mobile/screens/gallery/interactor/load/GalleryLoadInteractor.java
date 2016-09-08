@@ -11,7 +11,7 @@ import org.json.JSONArray;
 /**
  * @author Víctor Galán Grande
  */
-public class GalleryLoadInteractorImpl extends BaseListInteractor<GalleryInteractorListener, GalleryEvent> {
+public class GalleryLoadInteractor extends BaseListInteractor<GalleryInteractorListener, GalleryEvent> {
 
 	private static final JSONArray DEFAULT_MIME_TYPES =
 		new JSONArray().put("image/png").put("image/jpeg").put("image/gif");

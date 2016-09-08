@@ -9,7 +9,7 @@ import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
-import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorImpl;
+import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractor;
 import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorListener;
 import com.liferay.mobile.screens.comment.list.view.CommentListViewModel;
 import com.liferay.mobile.screens.context.LiferayServerContext;
@@ -17,7 +17,7 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 /**
  * @author Alejandro Hernández
  */
-public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, CommentListInteractorImpl>
+public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, CommentListInteractor>
 	implements CommentListInteractorListener, CommentDisplayListener {
 
 	private CachePolicy cachePolicy;
@@ -60,7 +60,7 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Commen
 	}
 
 	@Override
-	protected void loadRows(CommentListInteractorImpl interactor) {
+	protected void loadRows(CommentListInteractor interactor) {
 		interactor.start(className, classPK);
 	}
 
@@ -89,12 +89,12 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Commen
 	}
 
 	@Override
-	protected void onUserAction(String actionName, CommentListInteractorImpl interactor, Object... args) {
+	protected void onUserAction(String actionName, CommentListInteractor interactor, Object... args) {
 	}
 
 	@Override
-	protected CommentListInteractorImpl createInteractor(String actionName) {
-		return new CommentListInteractorImpl();
+	protected CommentListInteractor createInteractor(String actionName) {
+		return new CommentListInteractor();
 	}
 
 	@Override

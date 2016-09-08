@@ -25,12 +25,12 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
-import com.liferay.mobile.screens.ddl.form.interactor.add.DDLFormAddRecordInteractorImpl;
-import com.liferay.mobile.screens.ddl.form.interactor.formload.DDLFormLoadInteractorImpl;
-import com.liferay.mobile.screens.ddl.form.interactor.recordload.DDLFormLoadRecordInteractorImpl;
-import com.liferay.mobile.screens.ddl.form.interactor.update.DDLFormUpdateRecordInteractorImpl;
+import com.liferay.mobile.screens.ddl.form.interactor.add.DDLFormAddRecordInteractor;
+import com.liferay.mobile.screens.ddl.form.interactor.formload.DDLFormLoadInteractor;
+import com.liferay.mobile.screens.ddl.form.interactor.recordload.DDLFormLoadRecordInteractor;
+import com.liferay.mobile.screens.ddl.form.interactor.update.DDLFormUpdateRecordInteractor;
 import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadEvent;
-import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadInteractorImpl;
+import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadInteractor;
 import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Field;
@@ -349,15 +349,15 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 	protected Interactor<DDLFormListener> createInteractor(String actionName) {
 		switch (actionName) {
 			case LOAD_FORM_ACTION:
-				return new DDLFormLoadInteractorImpl();
+				return new DDLFormLoadInteractor();
 			case LOAD_RECORD_ACTION:
-				return new DDLFormLoadRecordInteractorImpl();
+				return new DDLFormLoadRecordInteractor();
 			case ADD_RECORD_ACTION:
-				return new DDLFormAddRecordInteractorImpl();
+				return new DDLFormAddRecordInteractor();
 			case UPDATE_RECORD_ACTION:
-				return new DDLFormUpdateRecordInteractorImpl();
+				return new DDLFormUpdateRecordInteractor();
 			case UPLOAD_DOCUMENT_ACTION:
-				return new DDLFormDocumentUploadInteractorImpl();
+				return new DDLFormDocumentUploadInteractor();
 			default:
 				return null;
 		}
@@ -434,14 +434,14 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 			case LOAD_FORM_ACTION:
 				getViewModel().showStartOperation(LOAD_FORM_ACTION, record);
 
-				DDLFormLoadInteractorImpl loadInteractor = (DDLFormLoadInteractorImpl) interactor;
+				DDLFormLoadInteractor loadInteractor = (DDLFormLoadInteractor) interactor;
 
 				loadInteractor.start(record);
 				break;
 			case LOAD_RECORD_ACTION:
 				if (record.isRecordStructurePresent()) {
 					getViewModel().showStartOperation(LOAD_RECORD_ACTION, record);
-					((DDLFormLoadRecordInteractorImpl) interactor).start(record);
+					((DDLFormLoadRecordInteractor) interactor).start(record);
 				} else {
 					// request both structure and data
 					loadRecordAfterForm = true;
@@ -450,12 +450,12 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 				break;
 			case ADD_RECORD_ACTION:
 				getViewModel().showStartOperation(ADD_RECORD_ACTION, record);
-				((DDLFormAddRecordInteractorImpl) interactor).start(new DDLFormEvent(record, new JSONObject()));
+				((DDLFormAddRecordInteractor) interactor).start(new DDLFormEvent(record, new JSONObject()));
 				break;
 			case UPDATE_RECORD_ACTION:
 				getViewModel().showStartOperation(UPDATE_RECORD_ACTION, record);
 
-				DDLFormUpdateRecordInteractorImpl updateInteractor = (DDLFormUpdateRecordInteractorImpl) interactor;
+				DDLFormUpdateRecordInteractor updateInteractor = (DDLFormUpdateRecordInteractor) interactor;
 
 				updateInteractor.start(new DDLFormEvent(record, new JSONObject()));
 				break;
@@ -465,7 +465,7 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 
 				getViewModel().showStartOperation(UPLOAD_DOCUMENT_ACTION, documentField);
 
-				((DDLFormDocumentUploadInteractorImpl) interactor).start(
+				((DDLFormDocumentUploadInteractor) interactor).start(
 					new DDLFormDocumentUploadEvent(documentField, repositoryId, folderId, filePrefix));
 				break;
 		}

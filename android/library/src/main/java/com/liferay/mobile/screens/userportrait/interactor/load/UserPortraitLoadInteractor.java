@@ -43,9 +43,8 @@ import org.json.JSONObject;
  * @author Javier Gamarra
  * @author Jose Manuel Navarro
  */
-public class UserPortraitLoadInteractorImpl
-	extends BaseCacheReadInteractor<UserPortraitInteractorListener, UserPortraitCachedEvent>
-	implements Target {
+public class UserPortraitLoadInteractor
+	extends BaseCacheReadInteractor<UserPortraitInteractorListener, UserPortraitCachedEvent> implements Target {
 
 	@Override
 	public UserPortraitCachedEvent execute(Object... args) throws Exception {

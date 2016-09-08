@@ -14,7 +14,7 @@ import static com.liferay.mobile.screens.cache.Cache.SEPARATOR;
 /**
  * @author Alejandro Hernández
  */
-public class CommentListInteractorImpl extends BaseListInteractor<CommentListInteractorListener, CommentEvent> {
+public class CommentListInteractor extends BaseListInteractor<CommentListInteractorListener, CommentEvent> {
 
 	@Override
 	protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {

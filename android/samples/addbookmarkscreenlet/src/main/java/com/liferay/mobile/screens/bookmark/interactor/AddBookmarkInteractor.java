@@ -11,7 +11,7 @@ import org.json.JSONObject;
 /**
  * @author Javier Gamarra
  */
-public class AddBookmarkInteractorImpl extends BaseRemoteInteractor<AddBookmarkListener, BasicEvent> {
+public class AddBookmarkInteractor extends BaseRemoteInteractor<AddBookmarkListener, BasicEvent> {
 
 	@Override
 	public BasicEvent execute(Object[] args) throws Exception {

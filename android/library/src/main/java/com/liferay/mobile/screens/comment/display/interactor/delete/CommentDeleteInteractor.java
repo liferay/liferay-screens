@@ -9,8 +9,7 @@ import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
 /**
  * @author Alejandro Hernández
  */
-public class CommentDeleteInteractorImpl
-	extends BaseCacheWriteInteractor<CommentDisplayInteractorListener, CommentEvent> {
+public class CommentDeleteInteractor extends BaseCacheWriteInteractor<CommentDisplayInteractorListener, CommentEvent> {
 
 	@Override
 	public CommentEvent execute(CommentEvent event) throws Exception {
