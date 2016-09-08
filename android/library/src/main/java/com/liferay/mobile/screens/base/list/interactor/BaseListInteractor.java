@@ -2,7 +2,7 @@ package com.liferay.mobile.screens.base.list.interactor;
 
 import android.support.annotation.NonNull;
 import com.liferay.mobile.screens.base.context.RequestState;
-import com.liferay.mobile.screens.base.thread.BaseCacheReadInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.JSONUtil;

@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.ddl.form.interactor.upload;
 
-import com.liferay.mobile.screens.base.thread.event.CachedEvent;
+import com.liferay.mobile.screens.base.interactor.event.CachedEvent;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import org.json.JSONObject;
 

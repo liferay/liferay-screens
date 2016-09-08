@@ -18,7 +18,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.view.View;
-import com.liferay.mobile.screens.base.thread.listener.CacheListener;
+import com.liferay.mobile.screens.base.interactor.listener.CacheListener;
 import com.liferay.mobile.screens.userportrait.UserPortraitListener;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 

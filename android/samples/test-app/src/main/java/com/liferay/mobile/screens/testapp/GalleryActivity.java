@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import com.liferay.mobile.screens.base.thread.listener.CacheListener;
+import com.liferay.mobile.screens.base.interactor.listener.CacheListener;
 import com.liferay.mobile.screens.gallery.GalleryListener;
 import com.liferay.mobile.screens.gallery.GalleryScreenlet;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;

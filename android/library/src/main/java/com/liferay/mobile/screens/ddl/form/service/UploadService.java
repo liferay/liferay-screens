@@ -19,7 +19,7 @@ import android.content.Intent;
 import android.webkit.MimeTypeMap;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.base.thread.event.CachedEvent;
+import com.liferay.mobile.screens.base.interactor.event.CachedEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadEvent;

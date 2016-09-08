@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.rating.interactor.update;
 
-import com.liferay.mobile.screens.base.thread.BaseCacheWriteInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.rating.AssetRating;
 import com.liferay.mobile.screens.rating.RatingListener;

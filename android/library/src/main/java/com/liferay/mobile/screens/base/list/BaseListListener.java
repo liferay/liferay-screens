@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.base.list;
 
 import android.view.View;
-import com.liferay.mobile.screens.base.thread.listener.BaseCacheListener;
+import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import java.util.List;
 
 /**

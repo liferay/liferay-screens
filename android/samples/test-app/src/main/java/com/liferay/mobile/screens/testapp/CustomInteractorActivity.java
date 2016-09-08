@@ -6,7 +6,7 @@ import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.auth.login.interactor.BaseLoginInteractor;
 import com.liferay.mobile.screens.base.interactor.CustomInteractorListener;
-import com.liferay.mobile.screens.base.thread.event.BasicEvent;
+import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import org.json.JSONObject;

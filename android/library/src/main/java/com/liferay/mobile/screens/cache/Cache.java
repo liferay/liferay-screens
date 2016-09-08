@@ -4,7 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import com.liferay.mobile.screens.base.thread.event.CachedEvent;
+import com.liferay.mobile.screens.base.interactor.event.CachedEvent;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.snappydb.DB;

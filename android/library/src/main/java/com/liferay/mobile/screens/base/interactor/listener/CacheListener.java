@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.base.thread.listener;
+package com.liferay.mobile.screens.base.interactor.listener;
 
 public interface CacheListener {
 

@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.bookmark.interactor;
 
-import com.liferay.mobile.screens.base.thread.BaseRemoteInteractor;
-import com.liferay.mobile.screens.base.thread.event.BasicEvent;
+import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.squareup.okhttp.Headers;
 import com.squareup.okhttp.OkHttpClient;

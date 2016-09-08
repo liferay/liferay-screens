@@ -6,7 +6,7 @@ import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
 import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.asset.list.interactor.AssetFactory;
-import com.liferay.mobile.screens.base.thread.BaseCacheReadInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.service.v70.ScreensassetentryService;
 import com.liferay.mobile.screens.util.JSONUtil;

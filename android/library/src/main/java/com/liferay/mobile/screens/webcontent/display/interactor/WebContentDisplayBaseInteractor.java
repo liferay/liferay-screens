@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.webcontent.display.interactor;
 
-import com.liferay.mobile.screens.base.thread.BaseCacheReadInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.webcontent.display.WebContentDisplayListener;
 import java.util.Locale;
 

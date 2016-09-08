@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.base.list.interactor;
 
-import com.liferay.mobile.screens.base.thread.event.CachedEvent;
+import com.liferay.mobile.screens.base.interactor.event.CachedEvent;
 import org.json.JSONObject;
 
 public abstract class ListEvent<E> extends CachedEvent {

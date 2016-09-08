@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.base;
 
-import com.liferay.mobile.screens.base.thread.event.CachedEvent;
+import com.liferay.mobile.screens.base.interactor.event.CachedEvent;
 
 /**
  * @author Víctor Galán Grande

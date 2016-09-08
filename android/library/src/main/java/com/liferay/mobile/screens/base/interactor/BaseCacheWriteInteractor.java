@@ -1,9 +1,9 @@
-package com.liferay.mobile.screens.base.thread;
+package com.liferay.mobile.screens.base.interactor;
 
-import com.liferay.mobile.screens.base.thread.event.BasicEvent;
-import com.liferay.mobile.screens.base.thread.event.ErrorEvent;
-import com.liferay.mobile.screens.base.thread.event.CachedEvent;
-import com.liferay.mobile.screens.base.thread.listener.BaseCacheListener;
+import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
+import com.liferay.mobile.screens.base.interactor.event.ErrorEvent;
+import com.liferay.mobile.screens.base.interactor.event.CachedEvent;
+import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.executor.Executor;

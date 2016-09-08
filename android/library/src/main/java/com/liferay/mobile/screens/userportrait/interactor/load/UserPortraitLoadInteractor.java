@@ -20,7 +20,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
-import com.liferay.mobile.screens.base.thread.BaseCacheReadInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;

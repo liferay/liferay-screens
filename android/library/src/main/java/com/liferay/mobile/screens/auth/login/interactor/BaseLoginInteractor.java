@@ -15,8 +15,8 @@
 package com.liferay.mobile.screens.auth.login.interactor;
 
 import com.liferay.mobile.screens.auth.login.LoginListener;
-import com.liferay.mobile.screens.base.thread.BaseRemoteInteractor;
-import com.liferay.mobile.screens.base.thread.event.BasicEvent;
+import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 

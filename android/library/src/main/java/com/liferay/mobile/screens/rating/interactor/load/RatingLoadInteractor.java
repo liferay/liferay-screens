@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.rating.interactor.load;
 
-import com.liferay.mobile.screens.base.thread.BaseCacheReadInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.rating.AssetRating;
 import com.liferay.mobile.screens.rating.RatingListener;

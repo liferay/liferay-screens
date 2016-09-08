@@ -16,7 +16,7 @@ package com.liferay.mobile.screens.auth.login.interactor;
 
 import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.base.thread.event.BasicEvent;
+import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import org.json.JSONObject;

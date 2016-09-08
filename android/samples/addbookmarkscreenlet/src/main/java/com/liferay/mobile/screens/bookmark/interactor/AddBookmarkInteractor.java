@@ -3,8 +3,8 @@ package com.liferay.mobile.screens.bookmark.interactor;
 import android.support.annotation.NonNull;
 import android.webkit.URLUtil;
 import com.liferay.mobile.android.v7.bookmarksentry.BookmarksEntryService;
-import com.liferay.mobile.screens.base.thread.BaseRemoteInteractor;
-import com.liferay.mobile.screens.base.thread.event.BasicEvent;
+import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import org.json.JSONObject;
 

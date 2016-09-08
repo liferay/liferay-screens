@@ -1,9 +1,8 @@
-package com.liferay.mobile.screens.base.thread;
+package com.liferay.mobile.screens.base.interactor;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.base.interactor.Interactor;
-import com.liferay.mobile.screens.base.thread.event.BasicEvent;
-import com.liferay.mobile.screens.base.thread.event.ErrorEvent;
+import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
+import com.liferay.mobile.screens.base.interactor.event.ErrorEvent;
 import com.liferay.mobile.screens.cache.executor.Executor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.EventBusUtil;

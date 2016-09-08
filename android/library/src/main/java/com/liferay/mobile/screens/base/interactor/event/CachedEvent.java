@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.base.thread.event;
+package com.liferay.mobile.screens.base.interactor.event;
 
 import java.util.Date;
 import java.util.Locale;

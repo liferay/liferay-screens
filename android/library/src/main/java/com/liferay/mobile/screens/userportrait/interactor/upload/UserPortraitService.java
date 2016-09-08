@@ -22,7 +22,7 @@ import android.graphics.Matrix;
 import android.media.ExifInterface;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
-import com.liferay.mobile.screens.base.thread.event.CachedEvent;
+import com.liferay.mobile.screens.base.interactor.event.CachedEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.ServiceProvider;

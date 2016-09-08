@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.comment.add.interactor;
 
-import com.liferay.mobile.screens.base.thread.BaseCacheWriteInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.add.CommentAddListener;
 import com.liferay.mobile.screens.comment.add.CommentAddScreenlet;

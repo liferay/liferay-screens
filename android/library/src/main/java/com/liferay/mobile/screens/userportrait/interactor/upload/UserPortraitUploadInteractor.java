@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import com.liferay.mobile.screens.base.MediaStoreEvent;
-import com.liferay.mobile.screens.base.thread.BaseCacheWriteInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;

@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.ddl.form.interactor.add;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
-import com.liferay.mobile.screens.base.thread.BaseCacheWriteInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordConnector;

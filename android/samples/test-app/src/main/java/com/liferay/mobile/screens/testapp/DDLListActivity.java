@@ -20,7 +20,7 @@ import android.view.View;
 import com.liferay.mobile.android.callback.typed.JSONObjectCallback;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.list.BaseListListener;
-import com.liferay.mobile.screens.base.thread.listener.CacheListener;
+import com.liferay.mobile.screens.base.interactor.listener.CacheListener;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.model.Record;

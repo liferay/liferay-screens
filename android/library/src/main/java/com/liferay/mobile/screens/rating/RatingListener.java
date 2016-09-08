@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.rating;
 
-import com.liferay.mobile.screens.base.thread.listener.BaseCacheListener;
+import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 
 /**
  * @author Alejandro Hernández

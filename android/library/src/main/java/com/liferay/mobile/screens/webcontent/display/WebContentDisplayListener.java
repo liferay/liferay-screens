@@ -16,7 +16,7 @@ package com.liferay.mobile.screens.webcontent.display;
 
 import android.view.MotionEvent;
 import android.webkit.WebView;
-import com.liferay.mobile.screens.base.thread.listener.BaseCacheListener;
+import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import com.liferay.mobile.screens.webcontent.WebContent;
 
 /**

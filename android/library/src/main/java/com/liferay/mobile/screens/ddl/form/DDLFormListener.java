@@ -14,7 +14,7 @@
 
 package com.liferay.mobile.screens.ddl.form;
 
-import com.liferay.mobile.screens.base.thread.listener.BaseCacheListener;
+import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
 import java.util.Map;

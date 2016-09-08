@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.comment.add;
 
-import com.liferay.mobile.screens.base.thread.listener.BaseCacheListener;
+import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import com.liferay.mobile.screens.comment.CommentEntry;
 
 /**

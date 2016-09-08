@@ -14,7 +14,7 @@
 
 package com.liferay.mobile.screens.base.list.interactor;
 
-import com.liferay.mobile.screens.base.thread.listener.BaseCacheListener;
+import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import java.util.List;
 
 /**

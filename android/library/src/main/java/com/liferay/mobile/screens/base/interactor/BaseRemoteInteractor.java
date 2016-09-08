@@ -1,6 +1,6 @@
-package com.liferay.mobile.screens.base.thread;
+package com.liferay.mobile.screens.base.interactor;
 
-import com.liferay.mobile.screens.base.thread.event.BasicEvent;
+import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 
 public abstract class BaseRemoteInteractor<L, E extends BasicEvent> extends BaseInteractor<L, E> {
 

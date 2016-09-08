@@ -14,7 +14,7 @@
 
 package com.liferay.mobile.screens.ddl.form.interactor.formload;
 
-import com.liferay.mobile.screens.base.thread.BaseCacheReadInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;

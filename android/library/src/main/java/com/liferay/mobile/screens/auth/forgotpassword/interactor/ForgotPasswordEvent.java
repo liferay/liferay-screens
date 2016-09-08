@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.auth.forgotpassword.interactor;
 
-import com.liferay.mobile.screens.base.thread.event.BasicEvent;
+import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 
 public class ForgotPasswordEvent extends BasicEvent {
 

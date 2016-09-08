@@ -2,7 +2,7 @@ package com.liferay.mobile.screens.ddl.form.interactor.upload;
 
 import android.content.Context;
 import android.content.Intent;
-import com.liferay.mobile.screens.base.thread.BaseCacheWriteInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.service.UploadService;
