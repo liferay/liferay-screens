@@ -23,7 +23,9 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 	//MARK: Outlets
 
 	@IBOutlet weak var cardDeck: CardDeckView?
-	@IBOutlet weak var userProfileView: AssetDisplayScreenlet?
+	@IBOutlet weak var userView: UIView?
+	@IBOutlet weak var userPortraitScreenlet: UserPortraitScreenlet?
+	@IBOutlet weak var userNameLabel: UILabel?
 
 
 	//MARK: Card ViewControllers
@@ -33,12 +35,17 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 	var galleryViewController: GalleryViewController?
 
 
+	//MARK: View actions
+
+
+
+
 	//MARK: UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		self.userProfileView?.layer.zPosition = -1000
+		self.userView?.layer.zPosition = -1000
 		self.cardDeck?.layer.zPosition = 0
 
 		documentationViewController = DocumentationViewController()
@@ -54,17 +61,17 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 		let isLoggedIn = SessionContext.isLoggedIn
 
 		if isLoggedIn {
-			self.userProfileView?.delegate = self
 
 			//Load user profile
-			if userProfileView?.classPK != SessionContext.currentContext!.userId! {
-				userProfileView?.className = AssetClasses.getClassName(AssetClassNameKey_User)!
-				userProfileView?.classPK = SessionContext.currentContext!.userId!
-				userProfileView?.load()
+			if userPortraitScreenlet?.userId != SessionContext.currentContext!.userId! {
+				userPortraitScreenlet?.load(userId: SessionContext.currentContext!.userId!)
+				let firstName = SessionContext.currentContext!.userAttribute("firstName") as! String
+				let lastName = SessionContext.currentContext!.userAttribute("lastName") as! String
+				userNameLabel?.text = "\(firstName) \(lastName)".stringByTrimmingCharactersInSet(
+					NSCharacterSet.whitespaceAndNewlineCharacterSet())
 			}
 
 			self.cardDeck?.alpha = 1.0
-			self.userProfileView?.alpha = 1.0
 
 			//Load lists accross the app
 			self.documentationViewController?.load()
@@ -84,7 +91,6 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 			self.cardDeck?.cards[0].changeToNextState(delay: 1.0)
 		} else {
 			self.cardDeck?.alpha = 0.0
-			self.userProfileView?.alpha = 0.0
 		}
 	}
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sUr-X0-jI8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sUr-X0-jI8">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -22,18 +22,45 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kjo-Hh-Kwh" customClass="CardDeckView" customModule="WesterosEmployees" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PrA-hs-Mlk" userLabel="User Profile" customClass="AssetDisplayScreenlet" customModule="LiferayScreens">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
-                                        </userDefinedRuntimeAttributes>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PxX-Vo-WhH" userLabel="User">
+                                        <rect key="frame" x="16" y="40" width="343" height="60"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ZJ-Uu-WlF" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
+                                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="60" id="9Ul-qi-H86"/>
+                                                    <constraint firstAttribute="height" constant="60" id="Qns-pL-V4p"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Firstname Lastname" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgB-N5-DkM">
+                                                <rect key="frame" x="68" y="18" width="267" height="24"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="8ZJ-Uu-WlF" secondAttribute="bottom" id="9aL-Tx-xRc"/>
+                                            <constraint firstAttribute="trailing" secondItem="hgB-N5-DkM" secondAttribute="trailing" constant="8" id="ET1-Im-cwY"/>
+                                            <constraint firstAttribute="bottom" secondItem="hgB-N5-DkM" secondAttribute="bottom" constant="18" id="ShN-nN-u9N"/>
+                                            <constraint firstAttribute="height" constant="60" id="VbA-gc-IHC"/>
+                                            <constraint firstItem="hgB-N5-DkM" firstAttribute="leading" secondItem="8ZJ-Uu-WlF" secondAttribute="trailing" constant="8" id="as9-PF-ggM"/>
+                                            <constraint firstItem="hgB-N5-DkM" firstAttribute="top" secondItem="PxX-Vo-WhH" secondAttribute="top" constant="18" id="hvj-Hl-4WB"/>
+                                            <constraint firstItem="8ZJ-Uu-WlF" firstAttribute="leading" secondItem="PxX-Vo-WhH" secondAttribute="leading" id="jn5-33-a6L"/>
+                                            <constraint firstItem="8ZJ-Uu-WlF" firstAttribute="top" secondItem="PxX-Vo-WhH" secondAttribute="top" id="nUu-62-Bmt"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="PrA-hs-Mlk" firstAttribute="top" secondItem="kjo-Hh-Kwh" secondAttribute="top" id="3de-ke-baE"/>
-                                    <constraint firstAttribute="trailing" secondItem="PrA-hs-Mlk" secondAttribute="trailing" id="Ukf-4v-mzY"/>
-                                    <constraint firstItem="PrA-hs-Mlk" firstAttribute="leading" secondItem="kjo-Hh-Kwh" secondAttribute="leading" id="lVP-4N-mlb"/>
-                                    <constraint firstAttribute="bottom" secondItem="PrA-hs-Mlk" secondAttribute="bottom" id="zIp-cV-7LL"/>
+                                    <constraint firstItem="PxX-Vo-WhH" firstAttribute="top" secondItem="kjo-Hh-Kwh" secondAttribute="top" constant="40" id="9y5-mY-z1Q"/>
+                                    <constraint firstAttribute="trailing" secondItem="PxX-Vo-WhH" secondAttribute="trailing" constant="16" id="iUb-Ov-74n"/>
+                                    <constraint firstItem="PxX-Vo-WhH" firstAttribute="leading" secondItem="kjo-Hh-Kwh" secondAttribute="leading" constant="16" id="tvO-1r-jbo"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -48,14 +75,17 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="cardDeck" destination="kjo-Hh-Kwh" id="yml-ve-rfy"/>
-                        <outlet property="userProfileView" destination="PrA-hs-Mlk" id="VAI-4i-5ZK"/>
+                        <outlet property="userNameLabel" destination="hgB-N5-DkM" id="aTb-8Y-kKa"/>
+                        <outlet property="userPortraitScreenlet" destination="8ZJ-Uu-WlF" id="VJ6-ba-rKQ"/>
+                        <outlet property="userView" destination="PxX-Vo-WhH" id="h0j-Ca-JJQ"/>
                         <segue destination="GmK-7W-ZSi" kind="show" identifier="tour" id="UMz-We-zVk"/>
                         <segue destination="Fcc-Vc-T92" kind="show" identifier="login" action="showDetailViewController:sender:" id="b2q-Sj-PM5"/>
+                        <segue destination="d4M-wM-mNK" kind="show" identifier="user_profile" id="DhX-Ga-Sal"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MXt-sF-AWv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1095.9375" y="314.26056338028167"/>
+            <point key="canvasLocation" x="-1415.5" y="359.5"/>
         </scene>
         <!--Tour View Controller-->
         <scene sceneID="a2l-Iy-61X">
@@ -297,6 +327,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Y2-ei-DaF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-551.5" y="633.5"/>
+        </scene>
+        <!--UserProfile-->
+        <scene sceneID="xfb-V0-zzV">
+            <objects>
+                <viewControllerPlaceholder storyboardName="UserProfile" id="d4M-wM-mNK" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5BD-nx-HcI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-688.5" y="40"/>
         </scene>
         <!--Auth-->
         <scene sceneID="QwS-pD-D6M">
