@@ -20,8 +20,10 @@ public class CommentLoadInteractor: ServerReadConnectorInteractor {
 
 	public var resultComment: Comment?
 
-	init(screenlet: BaseScreenlet, commentId: Int64) {
-		self.commentId = commentId
+	override init(screenlet: BaseScreenlet?) {
+		let commentScreenlet = screenlet as! CommentDisplayScreenlet
+
+		self.commentId = commentScreenlet.commentId
 
 		super.init(screenlet: screenlet)
 	}
@@ -83,13 +85,13 @@ public class CommentLoadInteractor: ServerReadConnectorInteractor {
 			key: commentCacheKey(loadCon.groupId, loadCon.commentId),
 			value: comment,
 			attributes: [
-				"groupId": NSNumber(longLong: loadCon.groupId),
-				"commentId": NSNumber(longLong: loadCon.commentId)])
+				"commentId": NSNumber(longLong: loadCon.commentId)
+			])
 	}
 
 
-	private func commentCacheKey(groupId: Int64, _ commentId: Int64) -> String {
-		return "group-\(groupId)-comment-\(commentId)"
+	private func commentCacheKey(commentId: Int64) -> String {
+		return "comment-\(commentId)"
 	}
 
 }

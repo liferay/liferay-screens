@@ -21,21 +21,19 @@ public class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 
 	public var resultComment: Comment?
 
-	init(screenlet: BaseScreenlet,
-			commentId: Int64,
-			body: String) {
-		self.commentId = commentId
+	init(screenlet: CommentDisplayScreenlet, body: String) {
+		self.className = screenlet.className
+		self.classPK = screenlet.classPK
+		self.commentId = screenlet.commentId
 		self.body = body
 
 		super.init(screenlet: screenlet)
 	}
 
-	init(groupId: Int64,
-			className: String,
+	init(className: String,
 			classPK: Int64,
 			commentId: Int64,
 			body: String) {
-		self.groupId = (groupId != 0) ? groupId : LiferayServerContext.groupId
 		self.className = className
 		self.classPK = classPK
 		self.commentId = commentId
@@ -76,7 +74,6 @@ public class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 			key: "update-commentId-\(updateCon.commentId)",
 			value: "",
 			attributes: [
-				"groupId": NSNumber(longLong: updateCon.groupId),
 				"className": updateCon.className,
 				"classPK": NSNumber(longLong: updateCon.classPK),
 				"commentId": NSNumber(longLong: updateCon.commentId),

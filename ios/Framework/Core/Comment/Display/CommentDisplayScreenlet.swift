@@ -124,9 +124,7 @@ import UIKit
 	//MARK: Private methods
 
 	private func createCommentLoadInteractor() -> Interactor {
-		let interactor = CommentLoadInteractor(
-			screenlet: self,
-			commentId: self.commentId)
+		let interactor = CommentLoadInteractor(screenlet: self)
 
 		interactor.cacheStrategy = CacheStrategyType(rawValue: offlinePolicy ?? "") ?? .RemoteFirst
 
@@ -150,9 +148,7 @@ import UIKit
 	}
 
 	private func createCommentDeleteInteractor() -> Interactor {
-		let interactor = CommentDeleteInteractor(
-			screenlet: self,
-			commentId: self.commentId)
+		let interactor = CommentDeleteInteractor(screenlet: self)
 
 		interactor.onSuccess = {
 			self.commentDisplayDelegate?.screenlet?(self, onCommentDeleted: self.comment!)
@@ -166,10 +162,7 @@ import UIKit
 	}
 
 	private func createCommentUpdateInteractor(body: String) -> Interactor {
-		let interactor = CommentUpdateInteractor(
-			screenlet: self,
-			commentId: commentId,
-			body: body)
+		let interactor = CommentUpdateInteractor(screenlet: self, body: body)
 
 		interactor.onSuccess = {
 			if let resultComment = interactor.resultComment {

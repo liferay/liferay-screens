@@ -42,11 +42,7 @@ import UIKit
 	//MARK: BaseScreenlet
 
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
-		let interactor = CommentAddInteractor(
-			screenlet: self,
-			className: self.className,
-			classPK: self.classPK,
-			body: self.viewModel.body)
+		let interactor = CommentAddInteractor(screenlet: self, body: self.viewModel.body)
 
 		interactor.onSuccess = {
 			if let resultComment = interactor.resultComment {

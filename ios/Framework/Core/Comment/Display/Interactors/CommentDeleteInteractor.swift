@@ -18,8 +18,8 @@ public class CommentDeleteInteractor: ServerWriteConnectorInteractor {
 
 	let commentId: Int64
 
-	public init(screenlet: BaseScreenlet, commentId: Int64) {
-		self.commentId = commentId
+	override public init(screenlet: BaseScreenlet?) {
+		self.commentId = (screenlet as! CommentDisplayScreenlet).commentId
 
 		super.init(screenlet: screenlet)
 	}
