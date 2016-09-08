@@ -53,7 +53,6 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 	private boolean male;
 	private long portraitId;
 	private String uuid;
-	private long userid;
 	private boolean editable;
 	private UserPortraitListener listener;
 
@@ -155,14 +154,6 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 		this.uuid = uuid;
 	}
 
-	public long getUserId() {
-		return userid;
-	}
-
-	public void setUserId(long userId) {
-		userid = userId;
-	}
-
 	public boolean getEditable() {
 		return editable;
 	}
@@ -192,7 +183,7 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 	}
 
 	protected void autoLoad() {
-		if (((portraitId != 0) && (uuid != null)) || (userid != 0)) {
+		if (((portraitId != 0) && (uuid != null)) || (userId != 0)) {
 			try {
 				load();
 			} catch (Exception e) {
@@ -211,12 +202,6 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 		portraitId = typedArray.getInt(R.styleable.UserPortraitScreenlet_portraitId, 0);
 		uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
 		editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
-
-		userid = castToLongOrUseDefault(typedArray.getString(R.styleable.UserPortraitScreenlet_userId), 0L);
-
-		if (SessionContext.hasUserInfo() && portraitId == 0 && uuid == null && userid == 0) {
-			userid = SessionContext.getCurrentUser().getId();
-		}
 
 		int layoutId = typedArray.getResourceId(R.styleable.UserPortraitScreenlet_layoutId, getDefaultLayoutId());
 
@@ -240,7 +225,7 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 			UserPortraitUploadInteractorImpl userPortraitInteractor =
 				(UserPortraitUploadInteractorImpl) getInteractor(userActionName);
 			String path = (String) args[0];
-			if (userid != 0) {
+			if (userId != 0) {
 				userPortraitInteractor.start(new UserPortraitUploadEvent(path));
 			}
 		} else {
@@ -249,10 +234,10 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 			if (portraitId != 0 && uuid != null) {
 				userPortraitLoadInteractor.start(male, portraitId, uuid);
 			} else {
-				if (SessionContext.hasUserInfo() && userid == 0) {
+				if (SessionContext.hasUserInfo() && userId == 0) {
 					userPortraitLoadInteractor.start(SessionContext.getCurrentUser().getId());
 				} else {
-					userPortraitLoadInteractor.start(userid);
+					userPortraitLoadInteractor.start(userId);
 				}
 			}
 		}
