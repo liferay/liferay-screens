@@ -27,7 +27,6 @@ class AssetListView_westeros: AssetListView_default {
 		if let entry = object as? Asset {
 			cell.backgroundColor = UIColor.clearColor()
 			cell.textLabel?.text = entry.title
-			cell.textLabel?.textColor = UIColor.whiteColor()
 			cell.accessoryType = .DisclosureIndicator
 			cell.accessoryView = nil
 		}
