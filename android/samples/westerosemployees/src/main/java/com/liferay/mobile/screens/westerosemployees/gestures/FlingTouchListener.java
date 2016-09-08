@@ -4,9 +4,8 @@ import android.content.Context;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.westerosemployees.Views.Card;
-import com.liferay.mobile.screens.westerosemployees.utils.PixelUtil;
+import com.liferay.mobile.screens.westerosemployees.utils.ViewUtil;
 
 /**
  * @author Javier Gamarra
@@ -16,7 +15,7 @@ public class FlingTouchListener implements View.OnTouchListener {
 	public FlingTouchListener(Context context, FlingListener flingListener) {
 		gestureDetector = new GestureDetector(context, new GestureDetectorListener());
 		this.flingListener = flingListener;
-		cardSizeMinimizedPx = PixelUtil.pixelFromDp(context, Card.CARD_SIZE);
+		cardSizeMinimizedPx = ViewUtil.pixelFromDp(context, Card.CARD_SIZE);
 	}
 
 	@Override
