@@ -8,6 +8,7 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.transition.TransitionManager;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -69,7 +70,18 @@ public class Card extends FrameLayout {
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		arrows = getViewsByTag(this, "arrow");
+		arrows = getViewsByTagPrefix(this, getContext().getString(R.string.arrow_tag));
+
+		for (View arrow : arrows) {
+			if (arrow.getTag().equals(getContext().getString(R.string.arrow_back_tag))) {
+				arrow.setOnClickListener(new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						goLeft();
+					}
+				});
+			}
+		}
 	}
 
 	public CardState getCardState() {
@@ -203,23 +215,24 @@ public class Card extends FrameLayout {
 		return arrow.getParent().getParent().equals(this);
 	}
 
-	protected static List<View> getViewsByTag(ViewGroup root, String tag){
+	protected static List<View> getViewsByTagPrefix(ViewGroup root, String tagPrefix){
 		List<View> views = new ArrayList<>();
 		final int childCount = root.getChildCount();
 		for (int i = 0; i < childCount; i++) {
 			final View child = root.getChildAt(i);
 			if (child instanceof ViewGroup) {
-				views.addAll(getViewsByTag((ViewGroup) child, tag));
+				views.addAll(getViewsByTagPrefix((ViewGroup) child, tagPrefix));
 			}
 
 			final Object tagObj = child.getTag();
-			if (tagObj != null && tagObj.equals(tag)) {
+			if (tagObj != null && tagObj.toString().startsWith(tagPrefix)) {
 				views.add(child);
 			}
 		}
 
 		return views;
 	}
+
 
 	private void takeSubviewsOffScreen() {
 		for (int i = 1; i < getChildCount(); i++) {

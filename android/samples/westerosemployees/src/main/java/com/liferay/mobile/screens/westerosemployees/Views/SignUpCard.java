@@ -29,17 +29,11 @@ public class SignUpCard extends Card implements View.OnClickListener {
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		findViewById(R.id.terms).setOnClickListener(this);
 		findViewById(R.id.card2_to_front_view).setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
-		if (v.getId() == R.id.terms) {
-			goRight();
-		}
-		else if(v.getId() == R.id.card2_to_front_view) {
-			goLeft();
-		}
+		goRight();
 	}
 }

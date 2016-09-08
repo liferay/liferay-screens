@@ -28,17 +28,11 @@ public class SignInCard extends Card implements View.OnClickListener {
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-
-		findViewById(R.id.card1_to_front_view).setOnClickListener(this);
 		findViewById(R.id.liferay_forgot_link).setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
-		if (v.getId() == R.id.liferay_forgot_link) {
-			goRight();
-		} else if (v.getId() == R.id.card1_to_front_view) {
-			goLeft();
-		}
+		goRight();
 	}
 }
