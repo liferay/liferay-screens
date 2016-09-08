@@ -126,6 +126,7 @@ public class Card extends FrameLayout {
 				showArrows(false);
 				animator = animate().setStartDelay(0)
 						.setDuration(DURATION_MILLIS)
+						.scaleX(1f)
 						.translationY(minimizedPosition);
 				break;
 			case MAXIMIZED:

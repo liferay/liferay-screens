@@ -128,7 +128,8 @@ public class Deck extends FrameLayout {
 			if (i == indexSelected) {
 				if (view.getCardState() == CardState.NORMAL) {
 					if (i != 0) {
-						cards.get(i - 1).setState(CardState.NORMAL);
+						minimizeAllCards();
+						return;
 					}
 
 					view.setState(CardState.MINIMIZED);
@@ -140,6 +141,12 @@ public class Deck extends FrameLayout {
 			if (indexSelected < i) {
 				view.setState(CardState.MINIMIZED);
 			}
+		}
+	}
+
+	protected void minimizeAllCards() {
+		for (Card card : cards) {
+			card.setState(CardState.MINIMIZED);
 		}
 	}
 
