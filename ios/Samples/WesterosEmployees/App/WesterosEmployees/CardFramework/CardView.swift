@@ -57,10 +57,12 @@ public class CardView: UIView {
 	public enum ShowState {
 		case Minimized, Normal, Maximized, Background, Hidden
 
+		///True if in this state, card is in bottom (minimized or hidden)
 		var isInBottom: Bool {
 			return (self == .Minimized || self == .Hidden)
 		}
 
+		///True if state is visible (normal or maximized)
 		var isVisible: Bool {
 			return (self == .Normal || self == .Maximized)
 		}
@@ -81,6 +83,7 @@ public class CardView: UIView {
 	//Subviews
 	public var arrow: UIImageView = UIImageView.newAutoLayoutView()
 	public var button: UIButton = UIButton.newAutoLayoutView()
+	public var secondaryButton: UIButton = UIButton.newAutoLayoutView()
 	public var scrollView: UIScrollView = UIScrollView.newAutoLayoutView()
 	public var cardContentView = UIView.newAutoLayoutView()
 	public var scrollContentView: UIView = UIView.newAutoLayoutView()
@@ -105,8 +108,9 @@ public class CardView: UIView {
 		return lround(Double(scrollView.contentOffset.x) / Double(width))
 	}
 
-	//Control for maximizing cards on page move
+	//Controls
 	var maximizeOnMove = true
+	var animateSecondaryButton = false
 
 	///This controller will be notified when the card appears/dissapears
 	weak var presentingController: CardViewController?
@@ -226,6 +230,7 @@ public class CardView: UIView {
 		//Add button and arrow
 		addSubview(button)
 		button.addSubview(arrow)
+		button.addSubview(secondaryButton)
 
 		//Add content view and scrollview
 		addSubview(cardContentView)
@@ -241,6 +246,9 @@ public class CardView: UIView {
 
 		setButton(buttonTitle, fontColor: fontColor)
 		setArrowImage(image)
+
+		//Hide secondary button by default
+		self.secondaryButton.alpha = 0.0
 	}
 
 	///Sets the constant value for the height constraint for a given state.
@@ -270,10 +278,20 @@ public class CardView: UIView {
 	///Sets the arrow image
 	/// - parameter image: UIImage for the arrow UIImageView
 	public func setArrowImage(image: UIImage) {
-
 		//Set arrow properties
 		self.arrow.image = image
 		self.arrow.alpha = 0.0
+	}
+
+	///Sets the secondary button image
+	/// - parameter image: UIImage for the button
+	public func setSecondaryButtonImage(image: UIImage) {
+		let imageWithRenderingMode = image.imageWithRenderingMode(.AlwaysTemplate)
+		self.secondaryButton.setImage(imageWithRenderingMode, forState: .Normal)
+		self.secondaryButton.imageView?.tintColor = self.button.titleLabel?.textColor
+
+		//Animate secondary button by default
+		self.animateSecondaryButton = true
 	}
 
 	///Sets the button properties
@@ -297,6 +315,15 @@ public class CardView: UIView {
 		}
 		self.arrow.autoAlignAxisToSuperviewAxis(.Horizontal)
 		self.arrow.autoPinEdgeToSuperviewEdge(.Left, withInset: CardView.DefaultMinimizedHeight / 2)
+
+		//Secondary button constraints
+		self.secondaryButton.autoAlignAxisToSuperviewAxis(.Horizontal)
+		self.secondaryButton.autoPinEdgeToSuperviewEdge(
+			.Right, withInset: CardView.DefaultMinimizedHeight / 2)
+		if let image = self.secondaryButton.imageView?.image {
+			self.secondaryButton.autoSetDimension(.Height, toSize: image.size.height)
+			self.secondaryButton.autoSetDimension(.Width, toSize: image.size.width)
+		}
 
 		//Button constraints
 		self.button.autoPinEdgeToSuperviewEdge(.Left)
@@ -428,6 +455,11 @@ public class CardView: UIView {
 			toggleArrow()
 		}
 
+		//Show/hide the secondary button
+		if animateSecondaryButton {
+			toggleSecondaryButton()
+		}
+
 		self.currentState = self.nextState
 	}
 
@@ -440,7 +472,20 @@ public class CardView: UIView {
 			options: UIViewAnimationOptions.CurveEaseIn,
 		    animations: {
 				self.arrow.alpha =
-					self.nextState == .Normal || self.nextState == .Maximized ? 1.0 : 0.0
+					self.nextState.isVisible ? 1.0 : 0.0
+			}, completion: nil)
+	}
+
+	///Toggles the secondary button visibility, depending on the next state.
+	/// - parameters:
+	///    - time: how much time will take up the animation
+	///    - delay: delay for the animation start
+	public func toggleSecondaryButton(time: Double? = nil, delay: Double = 0.0) {
+		UIView.animateWithDuration(time ?? CardView.DefaultAnimationTime, delay: delay,
+			options: UIViewAnimationOptions.CurveEaseIn,
+			animations: {
+				self.secondaryButton.alpha =
+					self.nextState.isVisible ? 1.0 : 0.0
 			}, completion: nil)
 	}
 	

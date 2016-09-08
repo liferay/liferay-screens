@@ -142,6 +142,15 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 
 	//MARK: CardDeckDelegate
 
+	func cardDeck(cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
+		if index == 2 {
+			let image = UIImage(named: "icon_ADD")
+			if let image = image {
+				card.setSecondaryButtonImage(image)
+			}
+		}
+	}
+
 	func cardDeck(cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
 		switch (position.card, position.page) {
 		case (0, 0):
