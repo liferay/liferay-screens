@@ -60,6 +60,8 @@ public class Card extends FrameLayout {
 
 		normalY = array.getDimensionPixelSize(R.styleable.Card_normalMarginTop,
 			PixelUtil.pixelFromDp(getContext(), NORMAL_Y));
+
+		array.recycle();
 	}
 
 	@Override
