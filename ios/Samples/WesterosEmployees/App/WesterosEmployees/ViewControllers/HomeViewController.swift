@@ -67,8 +67,9 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 			self.userProfileView?.alpha = 1.0
 
 			//Load lists accross the app
-			self.galleryViewController?.load()
 			self.documentationViewController?.load()
+			self.blogsViewController?.load()
+			self.galleryViewController?.load()
 
 			//Show second card with a small delay
 			self.cardDeck?.cards[1].currentState = .Hidden
