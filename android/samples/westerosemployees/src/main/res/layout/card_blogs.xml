@@ -14,19 +14,18 @@
 		>
 
 		<TextView
-			android:id="@+id/title_sign_in_subview"
+			android:id="@+id/blogs_title"
 			android:tag="title"
 			android:text="@string/blogs"
 			android:textColor="@android:color/white"
-			style="@style/westeros_card_title"
+			style="@style/westeros_card_title_white"
 			/>
 
 		<ImageView
-			android:id="@+id/card1_to_background"
 			android:layout_alignParentEnd="true"
 			android:layout_alignParentRight="true"
 			android:src="@drawable/icon_down_white"
-			android:tag="arrow"
+			android:tag="@string/arrow_tag"
 			android:visibility="invisible"
 			style="@style/westeros_arrow"
 			/>

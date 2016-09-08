@@ -1,35 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.westerosemployees.Views.Card
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@drawable/westeros_button_ripple"
+	android:background="@drawable/westeros_white_shape_ripple"
 	android:elevation="8dp"
 	>
 
 	<RelativeLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:background="@drawable/westeros_white_shape_ripple"
 		android:orientation="vertical"
 		>
 
 		<TextView
-			android:id="@+id/title_sign_in_subview"
+			android:id="@+id/documents_title"
 			android:tag="title"
 			android:text="@string/docs"
-			style="@style/westeros_card_title"
+			style="@style/westeros_card_title_black"
 			/>
 
 		<ImageView
-			android:id="@+id/card1_to_background"
 			android:layout_alignParentEnd="true"
 			android:layout_alignParentRight="true"
 			android:src="@drawable/icon_down"
-			android:tag="arrow"
+			android:tag="@string/arrow_tag"
 			android:visibility="invisible"
 			style="@style/westeros_arrow"
 			/>
+
+		<com.liferay.mobile.screens.asset.list.AssetListScreenlet
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_below="@id/documents_title"
+			app:classNameId="20015"
+			/>
+
+	</RelativeLayout>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		>
+
+		<TextView
+			android:id="@+id/documents_detail_title"
+			android:tag="title"
+			android:text="@string/docs"
+			style="@style/westeros_card_title_black"
+			/>
+
+		<ImageView
+			android:id="@+id/card1_to_background1"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentStart="true"
+			android:src="@drawable/icon_left"
+			android:tag="@string/arrow_back_tag"
+			android:visibility="invisible"
+			style="@style/westeros_arrow"
+			/>
+
+		<com.liferay.mobile.screens.westerosemployees.Views.Deck
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			>
+
+			<include layout="@layout/card_blogs"/>
+
+		</com.liferay.mobile.screens.westerosemployees.Views.Deck>
 
 	</RelativeLayout>
 

@@ -29,7 +29,7 @@ public class SignUpCard extends Card implements View.OnClickListener {
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		findViewById(R.id.card2_to_front_view).setOnClickListener(this);
+		findViewById(R.id.terms).setOnClickListener(this);
 	}
 
 	@Override

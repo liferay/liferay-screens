@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.westerosemployees.Views.Card
 	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="@drawable/westeros_button_ripple"
@@ -16,21 +17,30 @@
 		>
 
 		<TextView
-			android:id="@+id/title_sign_in_subview"
+			android:id="@+id/gallery_title"
 			android:tag="title"
 			android:text="@string/gallery"
-			style="@style/westeros_card_title"
+			style="@style/westeros_card_title_black"
 			/>
 
 		<ImageView
-			android:id="@+id/card1_to_background"
 			android:layout_alignParentEnd="true"
 			android:layout_alignParentRight="true"
 			android:src="@drawable/icon_down"
-			android:tag="arrow"
+			android:tag="@string/arrow_tag"
 			android:visibility="invisible"
 			style="@style/westeros_arrow"
 			/>
+
+		<com.liferay.mobile.screens.gallery.GalleryScreenlet
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_below="@id/gallery_title"
+			app:folderId="30911"
+			app:groupId="@string/liferay_group_id"
+			>
+			
+		</com.liferay.mobile.screens.gallery.GalleryScreenlet>
 
 	</RelativeLayout>
 

@@ -14,11 +14,17 @@
 		android:background="@drawable/westeros_gray_logo"
 		/>
 
-	<include layout="@layout/card_documents"/>
+	<com.liferay.mobile.screens.westerosemployees.Views.UserDeck
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		>
+		<include layout="@layout/card_documents"/>
 
-	<include layout="@layout/card_blogs"/>
+		<include layout="@layout/card_blogs"/>
 
-	<include layout="@layout/card_gallery"/>
+		<include layout="@layout/card_gallery"/>
+
+	</com.liferay.mobile.screens.westerosemployees.Views.UserDeck>
 
 	<FrameLayout
 		android:id="@+id/crouton_view_anchor"
