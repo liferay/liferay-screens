@@ -66,37 +66,21 @@ import Foundation
 
 		let xmlTitle = attributes["title"] as! String
 		title = xmlTitle.asLocalized(NSLocale(localeIdentifier: NSLocale.currentLocaleString))
+
+		super.init()
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
-		let keys = (aDecoder.decodeObjectForKey("asset-attr-keys") as? [String]) ?? [String]()
+		self.attributes = aDecoder.decodeObjectForKey("asset-attrs") as? [String:AnyObject] ?? [:]
 
-		var attrs = [String:AnyObject]()
-
-		for k in keys {
-			if let v = aDecoder.decodeObjectForKey("asset-attr-\(k)") {
-				attrs[k] = v
-			}
-		}
-
-		self.attributes = attrs
-
-		let xmlTitle = (attributes["title"] as? String) ?? ""
+		let xmlTitle = attributes["title"] as! String
 		title = xmlTitle.asLocalized(NSLocale(localeIdentifier: NSLocale.currentLocaleString))
 
 		super.init()
 	}
 
 	public func encodeWithCoder(aCoder: NSCoder) {
-		let keys = Array(self.attributes.keys)
-
-		aCoder.encodeObject(keys, forKey:"asset-attr-keys")
-
-		for (k,v) in self.attributes {
-			if let coderValue = v as? NSCoder {
-				aCoder.encodeObject(coderValue, forKey:"asset-attr-\(k)")
-			}
-		}
+		aCoder.encodeObject(attributes, forKey: "asset-attrs")
 	}
 	
 }

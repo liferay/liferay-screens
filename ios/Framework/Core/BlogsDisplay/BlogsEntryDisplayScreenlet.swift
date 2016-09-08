@@ -70,7 +70,9 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 		}
 		else {
 			interactor = LoadAssetInteractor(
-				screenlet: self, className: AssetClasses.getClassName(AssetClassNameKey_BlogsEntry)!, classPK: self.classPK)
+				screenlet: self,
+				className: AssetClasses.getClassName(AssetClassNameKey_BlogsEntry)!,
+				classPK: self.classPK)
 		}
 
 		interactor.onSuccess = {
