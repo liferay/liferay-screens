@@ -2,8 +2,8 @@ package com.liferay.mobile.screens.base.thread;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.interactor.Interactor;
-import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
-import com.liferay.mobile.screens.base.thread.event.ErrorThreadEvent;
+import com.liferay.mobile.screens.base.thread.event.BasicEvent;
+import com.liferay.mobile.screens.base.thread.event.ErrorEvent;
 import com.liferay.mobile.screens.cache.executor.Executor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
@@ -12,13 +12,13 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 /**
  * @author Javier Gamarra
  */
-public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent> implements Interactor<L> {
+public abstract class BaseInteractor<L, E extends BasicEvent> implements Interactor<L> {
 
 	protected L listener;
 	private int targetScreenletId;
 	private String actionName;
 
-	public BaseThreadInteractor() {
+	public BaseInteractor() {
 		super();
 	}
 
@@ -33,7 +33,7 @@ public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent> implem
 						EventBusUtil.post(event);
 					}
 				} catch (Exception e) {
-					ErrorThreadEvent errorNewEvent = new ErrorThreadEvent(e);
+					ErrorEvent errorNewEvent = new ErrorEvent(e);
 					decorateBaseEvent(errorNewEvent);
 					EventBusUtil.post(errorNewEvent);
 				}
@@ -41,7 +41,7 @@ public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent> implem
 		});
 	}
 
-	public void onEventMainThread(ErrorThreadEvent event) {
+	public void onEventMainThread(ErrorEvent event) {
 
 		if (getListener() == null || event.getTargetScreenletId() != getTargetScreenletId()) {
 			return;
@@ -83,7 +83,7 @@ public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent> implem
 		this.listener = null;
 	}
 
-	protected boolean isInvalidEvent(BasicThreadEvent event) {
+	protected boolean isInvalidEvent(BasicEvent event) {
 		return getListener() == null || event.getTargetScreenletId() != getTargetScreenletId() || !actionName.equals(
 			event.getActionName());
 	}
@@ -112,7 +112,7 @@ public abstract class BaseThreadInteractor<L, E extends BasicThreadEvent> implem
 		this.actionName = actionName;
 	}
 
-	protected void decorateBaseEvent(BasicThreadEvent event) {
+	protected void decorateBaseEvent(BasicEvent event) {
 		event.setTargetScreenletId(getTargetScreenletId());
 		event.setActionName(getActionName());
 	}

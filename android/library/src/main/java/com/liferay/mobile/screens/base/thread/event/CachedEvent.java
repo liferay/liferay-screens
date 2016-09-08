@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.Locale;
 import org.json.JSONObject;
 
-public abstract class OfflineEventNew extends BasicThreadEvent {
+public abstract class CachedEvent extends BasicEvent {
 
 	private Locale locale;
 	private long groupId;
@@ -29,15 +29,15 @@ public abstract class OfflineEventNew extends BasicThreadEvent {
 	private boolean dirty;
 	private boolean deleted;
 
-	public OfflineEventNew() {
+	public CachedEvent() {
 		super();
 	}
 
-	public OfflineEventNew(JSONObject jsonObject) {
+	public CachedEvent(JSONObject jsonObject) {
 		super(jsonObject);
 	}
 
-	public OfflineEventNew(Exception exception) {
+	public CachedEvent(Exception exception) {
 		super(exception);
 	}
 

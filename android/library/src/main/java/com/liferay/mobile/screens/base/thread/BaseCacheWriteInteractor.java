@@ -1,11 +1,11 @@
 package com.liferay.mobile.screens.base.thread;
 
-import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
-import com.liferay.mobile.screens.base.thread.event.ErrorThreadEvent;
-import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
-import com.liferay.mobile.screens.base.thread.listener.OfflineListenerNew;
+import com.liferay.mobile.screens.base.thread.event.BasicEvent;
+import com.liferay.mobile.screens.base.thread.event.ErrorEvent;
+import com.liferay.mobile.screens.base.thread.event.CachedEvent;
+import com.liferay.mobile.screens.base.thread.listener.BaseCacheListener;
 import com.liferay.mobile.screens.cache.Cache;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.executor.Executor;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -13,23 +13,23 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 /**
  * @author Javier Gamarra
  */
-public abstract class BaseCachedWriteThreadRemoteInteractor<L extends OfflineListenerNew, E extends OfflineEventNew>
-	extends BaseCachedThreadRemoteInteractor<L, E> {
+public abstract class BaseCacheWriteInteractor<L extends BaseCacheListener, E extends CachedEvent>
+	extends BaseCacheReadInteractor<L, E> {
 
 	public void start(final E event) {
 		Executor.execute(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					if (offlinePolicy == OfflinePolicy.CACHE_ONLY) {
+					if (cachePolicy == CachePolicy.CACHE_ONLY) {
 						storeToCacheAndLaunchEvent(event);
-					} else if (offlinePolicy == OfflinePolicy.CACHE_FIRST) {
+					} else if (cachePolicy == CachePolicy.CACHE_FIRST) {
 						try {
 							storeToCacheAndLaunchEvent(event);
 						} catch (Exception e) {
 							online(event);
 						}
-					} else if (offlinePolicy == OfflinePolicy.REMOTE_FIRST) {
+					} else if (cachePolicy == CachePolicy.REMOTE_FIRST) {
 						try {
 							online(event);
 						} catch (Exception e) {
@@ -40,7 +40,7 @@ public abstract class BaseCachedWriteThreadRemoteInteractor<L extends OfflineLis
 						online(event);
 					}
 				} catch (Exception e) {
-					BasicThreadEvent event = new ErrorThreadEvent(e);
+					BasicEvent event = new ErrorEvent(e);
 					decorateBaseEvent(event);
 					EventBusUtil.post(event);
 				}

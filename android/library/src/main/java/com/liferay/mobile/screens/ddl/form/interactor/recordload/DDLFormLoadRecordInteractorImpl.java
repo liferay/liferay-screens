@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.ddl.form.interactor.recordload;
 
 import android.support.annotation.NonNull;
-import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector;
@@ -31,8 +31,7 @@ import org.json.JSONObject;
 /**
  * @author Jose Manuel Navarro
  */
-public class DDLFormLoadRecordNewInteractorImpl
-	extends BaseCachedThreadRemoteInteractor<DDLFormListener, DDLFormEvent> {
+public class DDLFormLoadRecordInteractorImpl extends BaseCacheReadInteractor<DDLFormListener, DDLFormEvent> {
 
 	@Override
 	public DDLFormEvent execute(Object[] args) throws Exception {

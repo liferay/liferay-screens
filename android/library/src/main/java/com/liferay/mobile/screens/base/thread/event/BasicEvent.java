@@ -17,23 +17,23 @@ package com.liferay.mobile.screens.base.thread.event;
 import java.io.Serializable;
 import org.json.JSONObject;
 
-public class BasicThreadEvent implements Serializable {
+public class BasicEvent implements Serializable {
 
 	private String actionName;
 	private JSONObject jsonObject;
 	private Exception exception;
 	private int targetScreenletId;
 
-	public BasicThreadEvent() {
+	public BasicEvent() {
 		super();
 	}
 
-	public BasicThreadEvent(JSONObject jsonObject) {
+	public BasicEvent(JSONObject jsonObject) {
 		super();
 		this.jsonObject = jsonObject;
 	}
 
-	public BasicThreadEvent(Exception exception) {
+	public BasicEvent(Exception exception) {
 		this.exception = exception;
 	}
 

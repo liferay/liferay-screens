@@ -1,12 +1,12 @@
 package com.liferay.mobile.screens.base.thread;
 
-import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
-import com.liferay.mobile.screens.base.thread.event.ErrorThreadEvent;
-import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
+import com.liferay.mobile.screens.base.thread.event.BasicEvent;
+import com.liferay.mobile.screens.base.thread.event.CachedEvent;
+import com.liferay.mobile.screens.base.thread.event.ErrorEvent;
+import com.liferay.mobile.screens.base.thread.listener.BaseCacheListener;
 import com.liferay.mobile.screens.base.thread.listener.CacheListener;
-import com.liferay.mobile.screens.base.thread.listener.OfflineListenerNew;
 import com.liferay.mobile.screens.cache.Cache;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.executor.Executor;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -17,13 +17,13 @@ import java.util.NoSuchElementException;
 /**
  * @author Javier Gamarra
  */
-public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListenerNew, E extends OfflineEventNew>
-	extends BaseThreadInteractor<L, E> {
+public abstract class BaseCacheReadInteractor<L extends BaseCacheListener, E extends CachedEvent>
+	extends BaseInteractor<L, E> {
 
 	protected long groupId;
 	protected long userId;
 	protected Locale locale;
-	protected OfflinePolicy offlinePolicy;
+	protected CachePolicy cachePolicy;
 	protected CacheListener cacheListener;
 
 	//TODO use events as interface that way we don't need to cast between varargs
@@ -32,7 +32,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 			@Override
 			public void run() {
 				try {
-					if (offlinePolicy == OfflinePolicy.CACHE_FIRST) {
+					if (cachePolicy == CachePolicy.CACHE_FIRST) {
 						try {
 							boolean retrievedFromCache = cached(args);
 
@@ -42,7 +42,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 						} catch (Exception e) {
 							online(true, e, args);
 						}
-					} else if (offlinePolicy == OfflinePolicy.CACHE_ONLY) {
+					} else if (cachePolicy == CachePolicy.CACHE_ONLY) {
 						LiferayLogger.i("Trying to retrieve object from cache");
 
 						boolean retrievedFromCache = cached(args);
@@ -50,7 +50,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 						if (!retrievedFromCache) {
 							throw new NoSuchElementException();
 						}
-					} else if (offlinePolicy == OfflinePolicy.REMOTE_FIRST) {
+					} else if (cachePolicy == CachePolicy.REMOTE_FIRST) {
 						try {
 							online(false, null, args);
 						} catch (Exception e) {
@@ -66,7 +66,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 						online(false, null, args);
 					}
 				} catch (Exception e) {
-					BasicThreadEvent event = new ErrorThreadEvent(e);
+					BasicEvent event = new ErrorEvent(e);
 					decorateBaseEvent(event);
 					EventBusUtil.post(event);
 				}
@@ -114,7 +114,7 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 		}
 	}
 
-	protected void decorateEvent(OfflineEventNew event, boolean cachedRequest) {
+	protected void decorateEvent(CachedEvent event, boolean cachedRequest) {
 		decorateBaseEvent(event);
 		event.setGroupId(groupId);
 		event.setLocale(locale);
@@ -127,12 +127,12 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 		String cacheKey = getIdFromArgs(args);
 		Class aClass = getEventClass();
 
-		E offlineEvent = (E) Cache.getObject(aClass, groupId, userId, locale, cacheKey);
+		E event = (E) Cache.getObject(aClass, groupId, userId, locale, cacheKey);
 
-		if (offlineEvent != null) {
-			decorateBaseEvent(offlineEvent);
-			offlineEvent.setCachedRequest(true);
-			EventBusUtil.post(offlineEvent);
+		if (event != null) {
+			decorateBaseEvent(event);
+			event.setCachedRequest(true);
+			EventBusUtil.post(event);
 			loadingFromCache(true);
 			return true;
 		}
@@ -191,12 +191,12 @@ public abstract class BaseCachedThreadRemoteInteractor<L extends OfflineListener
 
 	protected abstract String getIdFromArgs(Object... args);
 
-	protected OfflinePolicy getOfflinePolicy() {
-		return offlinePolicy;
+	protected CachePolicy getCachePolicy() {
+		return cachePolicy;
 	}
 
-	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
-		this.offlinePolicy = offlinePolicy;
+	public void setCachePolicy(CachePolicy cachePolicy) {
+		this.cachePolicy = cachePolicy;
 	}
 
 	public void setGroupId(long groupId) {
