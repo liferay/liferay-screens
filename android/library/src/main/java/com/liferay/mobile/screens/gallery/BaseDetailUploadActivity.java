@@ -7,7 +7,7 @@ import com.liferay.mobile.screens.util.EventBusUtil;
 /**
  * @author Víctor Galán Grande
  */
-public class BaseDetailUploadActivity extends AppCompatActivity {
+public abstract class BaseDetailUploadActivity extends AppCompatActivity {
 
 	public static final String SCREENLET_ID_KEY = "SCREENLET_ID_KEY";
 	public static final String PICTURE_PATH_KEY = "PICTURE_PATH_KEY";

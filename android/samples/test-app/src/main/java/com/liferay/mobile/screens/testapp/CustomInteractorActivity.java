@@ -6,7 +6,7 @@ import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.auth.login.interactor.BaseLoginInteractor;
 import com.liferay.mobile.screens.base.interactor.CustomInteractorListener;
-import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
+import com.liferay.mobile.screens.base.thread.event.BasicEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import org.json.JSONObject;
@@ -42,7 +42,7 @@ public class CustomInteractorActivity extends ThemeActivity
 	private static class CustomLoginInteractor extends BaseLoginInteractor {
 
 		@Override
-		public BasicThreadEvent execute(Object[] args) throws Exception {
+		public BasicEvent execute(Object[] args) throws Exception {
 
 			String login = (String) args[0];
 			String password = (String) args[1];
@@ -59,7 +59,7 @@ public class CustomInteractorActivity extends ThemeActivity
 				jsonObject.put("firstName", username);
 				jsonObject.put("lastName", username);
 				jsonObject.put("screenName", username);
-				return new BasicThreadEvent(jsonObject);
+				return new BasicEvent(jsonObject);
 			}
 			throw new AuthenticationException("bad login");
 		}

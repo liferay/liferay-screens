@@ -1,11 +1,11 @@
 package com.liferay.mobile.screens.base;
 
-import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
+import com.liferay.mobile.screens.base.thread.event.CachedEvent;
 
 /**
  * @author Víctor Galán Grande
  */
-public class MediaStoreEvent extends OfflineEventNew {
+public class MediaStoreEvent extends CachedEvent {
 
 	private final String filePath;
 

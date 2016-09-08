@@ -2,7 +2,7 @@ package com.liferay.mobile.screens.base.list.interactor;
 
 import android.support.annotation.NonNull;
 import com.liferay.mobile.screens.base.context.RequestState;
-import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.JSONUtil;
@@ -18,7 +18,7 @@ import org.json.JSONObject;
  * @author Javier Gamarra
  */
 public abstract class BaseListInteractor<L extends BaseListInteractorListener, E extends ListEvent>
-	extends BaseCachedThreadRemoteInteractor<L, BaseListEvent<E>> {
+	extends BaseCacheReadInteractor<L, BaseListEvent<E>> {
 
 	protected Query query;
 
@@ -109,25 +109,25 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 		String cacheKey = getListId(query, args);
 		Class aClass = BaseListEvent.class;
 
-		BaseListEvent offlineEvent = (BaseListEvent) Cache.getObject(aClass, groupId, userId, locale, cacheKey);
+		BaseListEvent event = (BaseListEvent) Cache.getObject(aClass, groupId, userId, locale, cacheKey);
 
-		if (offlineEvent != null) {
+		if (event != null) {
 
-			decorateBaseEvent(offlineEvent);
-			offlineEvent.setCachedRequest(true);
+			decorateBaseEvent(event);
+			event.setCachedRequest(true);
 
 			Class childClass = getEventClass();
 
-			String[] keys = Cache.findKeys(childClass, groupId, userId, locale, offlineEvent.getQuery().getStartRow(),
-				offlineEvent.getQuery().getLimit());
+			String[] keys = Cache.findKeys(childClass, groupId, userId, locale, event.getQuery().getStartRow(),
+				event.getQuery().getLimit());
 
 			List<E> entries = new ArrayList<>();
 			for (String key : keys) {
 				entries.add((E) Cache.getObject(childClass, groupId, userId, key));
 			}
-			offlineEvent.setEntries(entries);
+			event.setEntries(entries);
 
-			EventBusUtil.post(offlineEvent);
+			EventBusUtil.post(event);
 			loadingFromCache(true);
 			return true;
 		}

@@ -19,7 +19,7 @@ import android.content.Intent;
 import android.webkit.MimeTypeMap;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
+import com.liferay.mobile.screens.base.thread.event.CachedEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadEvent;
@@ -132,7 +132,7 @@ public class UploadService extends IntentService {
 		return new JSONObjectWrapper(serviceContextAttributes);
 	}
 
-	private void decorateEvent(OfflineEventNew event, long groupId, long userId, Locale locale, int targetScreenletId,
+	private void decorateEvent(CachedEvent event, long groupId, long userId, Locale locale, int targetScreenletId,
 		String actionName) {
 		event.setGroupId(groupId);
 		event.setUserId(userId);

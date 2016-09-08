@@ -2,7 +2,7 @@ package com.liferay.mobile.screens.gallery.interactor.upload;
 
 import android.content.Intent;
 import com.liferay.mobile.screens.base.MediaStoreEvent;
-import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.gallery.interactor.GalleryInteractorListener;
 import com.liferay.mobile.screens.gallery.interactor.load.GalleryEvent;
@@ -12,7 +12,7 @@ import com.liferay.mobile.screens.gallery.model.ImageEntry;
  * @author Víctor Galán Grande
  */
 public class GalleryUploadInteractorImpl
-	extends BaseCachedWriteThreadRemoteInteractor<GalleryInteractorListener, GalleryEvent> {
+	extends BaseCacheWriteInteractor<GalleryInteractorListener, GalleryEvent> {
 
 	@Override
 	public GalleryEvent execute(GalleryEvent event) throws Exception {

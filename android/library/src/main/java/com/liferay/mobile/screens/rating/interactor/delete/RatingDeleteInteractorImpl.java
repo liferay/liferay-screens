@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.rating.interactor.delete;
 
-import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.rating.AssetRating;
 import com.liferay.mobile.screens.rating.RatingListener;
@@ -13,7 +13,7 @@ import org.json.JSONObject;
 /**
  * @author Alejandro Hernández
  */
-public class RatingDeleteInteractorImpl extends BaseCachedWriteThreadRemoteInteractor<RatingListener, RatingEvent> {
+public class RatingDeleteInteractorImpl extends BaseCacheWriteInteractor<RatingListener, RatingEvent> {
 
 	@Override
 	public RatingEvent execute(RatingEvent event) throws Exception {

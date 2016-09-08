@@ -1,9 +1,9 @@
 package com.liferay.mobile.screens.base.list.interactor;
 
-import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
+import com.liferay.mobile.screens.base.thread.event.CachedEvent;
 import org.json.JSONObject;
 
-public abstract class ListEvent<E> extends OfflineEventNew {
+public abstract class ListEvent<E> extends CachedEvent {
 
 	public ListEvent() {
 		super();

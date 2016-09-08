@@ -20,8 +20,8 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
-import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.base.thread.BaseCacheReadInteractor;
+import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
@@ -44,11 +44,11 @@ import org.json.JSONObject;
  * @author Jose Manuel Navarro
  */
 public class UserPortraitLoadInteractorImpl
-	extends BaseCachedThreadRemoteInteractor<UserPortraitInteractorListener, UserPortraitOfflineEventNew>
+	extends BaseCacheReadInteractor<UserPortraitInteractorListener, UserPortraitCachedEvent>
 	implements Target {
 
 	@Override
-	public UserPortraitOfflineEventNew execute(Object... args) throws Exception {
+	public UserPortraitCachedEvent execute(Object... args) throws Exception {
 		//TODO move to 2 interactors
 		if (args.length == 1) {
 			long userId = (long) args[0];
@@ -58,7 +58,7 @@ public class UserPortraitLoadInteractorImpl
 			UserConnector userConnector = ServiceProvider.getInstance().getUserConnector(getSession());
 
 			JSONObject jsonObject = userConnector.getUserById(userId);
-			return new UserPortraitOfflineEventNew(jsonObject);
+			return new UserPortraitCachedEvent(jsonObject);
 		} else {
 			return createEventFromUUID(args);
 		}
@@ -70,7 +70,7 @@ public class UserPortraitLoadInteractorImpl
 	}
 
 	@NonNull
-	private UserPortraitOfflineEventNew createEventFromUUID(Object[] args) throws JSONException {
+	private UserPortraitCachedEvent createEventFromUUID(Object[] args) throws JSONException {
 		boolean male = (boolean) args[0];
 		long portraitId = (long) args[1];
 		String uuid = (String) args[2];
@@ -80,11 +80,11 @@ public class UserPortraitLoadInteractorImpl
 		jsonObject.put("portraitId", portraitId);
 		jsonObject.put("uuid", uuid);
 
-		return new UserPortraitOfflineEventNew(jsonObject);
+		return new UserPortraitCachedEvent(jsonObject);
 	}
 
 	@Override
-	public void onSuccess(UserPortraitOfflineEventNew event) throws Exception {
+	public void onSuccess(UserPortraitCachedEvent event) throws Exception {
 
 		JSONObject userAttributes = event.getJSONObject();
 		long portraitId = userAttributes.getLong("portraitId");
@@ -100,7 +100,7 @@ public class UserPortraitLoadInteractorImpl
 		Picasso picasso = new Picasso.Builder(context).downloader(downloader).build();
 		RequestCreator requestCreator = picasso.load(uri);
 
-		if (OfflinePolicy.REMOTE_ONLY.equals(getOfflinePolicy())) {
+		if (CachePolicy.REMOTE_ONLY.equals(getCachePolicy())) {
 			requestCreator = requestCreator.memoryPolicy(MemoryPolicy.NO_CACHE).networkPolicy(NetworkPolicy.NO_CACHE);
 		}
 

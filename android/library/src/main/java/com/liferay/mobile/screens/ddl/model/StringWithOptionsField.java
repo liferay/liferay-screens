@@ -276,6 +276,14 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 		}
 
 		@Override
+		public int hashCode() {
+			int result = label != null ? label.hashCode() : 0;
+			result = 31 * result + (name != null ? name.hashCode() : 0);
+			result = 31 * result + (value != null ? value.hashCode() : 0);
+			return result;
+		}
+
+		@Override
 		public boolean equals(Object obj) {
 			if (obj == null) {
 				return false;

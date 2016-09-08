@@ -17,7 +17,7 @@
 		android:layout_height="match_parent"
 		app:folderId="@string/web_content_folderId"
 		app:labelFields="Text"
-		app:offlinePolicy="REMOTE_FIRST"
+		app:cachePolicy="REMOTE_FIRST"
 		/>
 
 </LinearLayout>

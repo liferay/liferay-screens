@@ -4,7 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
+import com.liferay.mobile.screens.base.thread.event.CachedEvent;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.snappydb.DB;
@@ -19,7 +19,7 @@ public class Cache {
 		super();
 	}
 
-	public static <E extends OfflineEventNew> E getObject(final Class<E> aClass, final Long groupId, final Long userId,
+	public static <E extends CachedEvent> E getObject(final Class<E> aClass, final Long groupId, final Long userId,
 		final Locale locale, final String cacheKey) throws Exception {
 		return (E) doDatabaseOperation(groupId, userId, new Func1<E>() {
 			@Override
@@ -29,7 +29,7 @@ public class Cache {
 		});
 	}
 
-	public static <E extends OfflineEventNew> E getObject(final Class<E> aClass, Long groupId, Long userId,
+	public static <E extends CachedEvent> E getObject(final Class<E> aClass, Long groupId, Long userId,
 		final String key) throws Exception {
 		return (E) doDatabaseOperation(groupId, userId, new Func1<E>() {
 			@Override
@@ -39,7 +39,7 @@ public class Cache {
 		});
 	}
 
-	public static <E extends OfflineEventNew> void storeObject(final E event, final Integer i) throws Exception {
+	public static <E extends CachedEvent> void storeObject(final E event, final Integer i) throws Exception {
 		doDatabaseOperation(event.getGroupId(), event.getUserId(), new Func1<Void>() {
 			@Override
 			public Void call(DB db) throws Exception {
@@ -49,11 +49,11 @@ public class Cache {
 		});
 	}
 
-	public static <E extends OfflineEventNew> void storeObject(E event) throws Exception {
+	public static <E extends CachedEvent> void storeObject(E event) throws Exception {
 		storeObject(event, null);
 	}
 
-	public static <E extends OfflineEventNew> void deleteObject(final E event) throws Exception {
+	public static <E extends CachedEvent> void deleteObject(final E event) throws Exception {
 		doDatabaseOperation(event.getGroupId(), event.getUserId(), new Func1<Void>() {
 			@Override
 			public Void call(DB db) throws Exception {

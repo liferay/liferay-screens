@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.ddl.form.interactor.update;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
-import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordConnector;
@@ -27,8 +27,7 @@ import org.json.JSONObject;
 /**
  * @author Jose Manuel Navarro
  */
-public class DDLFormUpdateRecordInteractorImpl
-	extends BaseCachedWriteThreadRemoteInteractor<DDLFormListener, DDLFormEvent> {
+public class DDLFormUpdateRecordInteractorImpl extends BaseCacheWriteInteractor<DDLFormListener, DDLFormEvent> {
 
 	@Override
 	public DDLFormEvent execute(DDLFormEvent event) throws Exception {

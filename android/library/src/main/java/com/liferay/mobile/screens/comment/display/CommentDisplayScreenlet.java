@@ -8,7 +8,7 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.interactor.Interactor;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
 import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
@@ -33,7 +33,7 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	private String className;
 	private long classPK;
 	private long groupId;
-	private OfflinePolicy offlinePolicy;
+	private CachePolicy cachePolicy;
 	private boolean autoLoad;
 	private boolean editable;
 
@@ -86,9 +86,9 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 
 		editable = typedArray.getBoolean(R.styleable.CommentDisplayScreenlet_editable, true);
 
-		int offlinePolicy =
-			typedArray.getInt(R.styleable.CommentDisplayScreenlet_offlinePolicy, OfflinePolicy.REMOTE_ONLY.ordinal());
-		this.offlinePolicy = OfflinePolicy.values()[offlinePolicy];
+		int cachePolicy =
+			typedArray.getInt(R.styleable.CommentDisplayScreenlet_cachePolicy, CachePolicy.REMOTE_ONLY.ordinal());
+		this.cachePolicy = CachePolicy.values()[cachePolicy];
 
 		int layoutId = typedArray.getResourceId(R.styleable.CommentDisplayScreenlet_layoutId, getDefaultLayoutId());
 
@@ -222,12 +222,12 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 		this.groupId = groupId;
 	}
 
-	public OfflinePolicy getOfflinePolicy() {
-		return offlinePolicy;
+	public CachePolicy getCachePolicy() {
+		return cachePolicy;
 	}
 
-	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
-		this.offlinePolicy = offlinePolicy;
+	public void setCachePolicy(CachePolicy cachePolicy) {
+		this.cachePolicy = cachePolicy;
 	}
 
 	public void setEditable(boolean editable) {

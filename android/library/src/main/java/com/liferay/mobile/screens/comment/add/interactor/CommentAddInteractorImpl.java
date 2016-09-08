@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.comment.add.interactor;
 
-import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.add.CommentAddListener;
 import com.liferay.mobile.screens.comment.add.CommentAddScreenlet;
@@ -12,7 +12,7 @@ import org.json.JSONObject;
 /**
  * @author Alejandro Hernández
  */
-public class CommentAddInteractorImpl extends BaseCachedWriteThreadRemoteInteractor<CommentAddListener, CommentEvent> {
+public class CommentAddInteractorImpl extends BaseCacheWriteInteractor<CommentAddListener, CommentEvent> {
 
 	@Override
 	public CommentEvent execute(CommentEvent event) throws Exception {

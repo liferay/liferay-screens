@@ -27,7 +27,7 @@ import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
 import com.liferay.mobile.screens.ddl.form.interactor.add.DDLFormAddRecordInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.interactor.formload.DDLFormLoadInteractorImpl;
-import com.liferay.mobile.screens.ddl.form.interactor.recordload.DDLFormLoadRecordNewInteractorImpl;
+import com.liferay.mobile.screens.ddl.form.interactor.recordload.DDLFormLoadRecordInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.interactor.update.DDLFormUpdateRecordInteractorImpl;
 import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadEvent;
 import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadInteractorImpl;
@@ -351,7 +351,7 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 			case LOAD_FORM_ACTION:
 				return new DDLFormLoadInteractorImpl();
 			case LOAD_RECORD_ACTION:
-				return new DDLFormLoadRecordNewInteractorImpl();
+				return new DDLFormLoadRecordInteractorImpl();
 			case ADD_RECORD_ACTION:
 				return new DDLFormAddRecordInteractorImpl();
 			case UPDATE_RECORD_ACTION:
@@ -441,7 +441,7 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 			case LOAD_RECORD_ACTION:
 				if (record.isRecordStructurePresent()) {
 					getViewModel().showStartOperation(LOAD_RECORD_ACTION, record);
-					((DDLFormLoadRecordNewInteractorImpl) interactor).start(record);
+					((DDLFormLoadRecordInteractorImpl) interactor).start(record);
 				} else {
 					// request both structure and data
 					loadRecordAfterForm = true;

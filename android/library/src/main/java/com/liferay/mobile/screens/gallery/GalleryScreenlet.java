@@ -60,7 +60,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 		TypedArray typedArray =
 			context.getTheme().obtainStyledAttributes(attributes, R.styleable.GalleryScreenlet, 0, 0);
 
-		PicassoScreens.setOfflinePolicy(this.offlinePolicy);
+		PicassoScreens.setCachePolicy(this.cachePolicy);
 
 		folderId = castToLong(typedArray.getString(R.styleable.GalleryScreenlet_folderId));
 		mimeTypes = parseMimeTypes(typedArray.getString(R.styleable.GalleryScreenlet_mimeTypes));

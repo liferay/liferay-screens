@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.comment.display.interactor.delete;
 
-import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
 import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
@@ -10,7 +10,7 @@ import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
  * @author Alejandro Hernández
  */
 public class CommentDeleteInteractorImpl
-	extends BaseCachedWriteThreadRemoteInteractor<CommentDisplayInteractorListener, CommentEvent> {
+	extends BaseCacheWriteInteractor<CommentDisplayInteractorListener, CommentEvent> {
 
 	@Override
 	public CommentEvent execute(CommentEvent event) throws Exception {

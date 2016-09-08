@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import com.liferay.mobile.screens.base.MediaStoreEvent;
-import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -22,7 +22,7 @@ import java.util.Iterator;
  * @author Javier Gamarra
  */
 public class UserPortraitUploadInteractorImpl
-	extends BaseCachedWriteThreadRemoteInteractor<UserPortraitInteractorListener, UserPortraitUploadEvent> {
+	extends BaseCacheWriteInteractor<UserPortraitInteractorListener, UserPortraitUploadEvent> {
 
 	@Override
 	public void online(UserPortraitUploadEvent event) throws Exception {

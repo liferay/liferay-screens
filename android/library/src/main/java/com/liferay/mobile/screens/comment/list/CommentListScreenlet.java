@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
 import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorImpl;
@@ -20,7 +20,7 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, CommentListInteractorImpl>
 	implements CommentListInteractorListener, CommentDisplayListener {
 
-	private OfflinePolicy offlinePolicy;
+	private CachePolicy cachePolicy;
 	private String className;
 	private long classPK;
 	private long groupId;
@@ -75,9 +75,9 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Commen
 
 		editable = typedArray.getBoolean(R.styleable.CommentListScreenlet_editable, true);
 
-		Integer offlinePolicy =
-			typedArray.getInteger(R.styleable.CommentListScreenlet_offlinePolicy, OfflinePolicy.REMOTE_ONLY.ordinal());
-		this.offlinePolicy = OfflinePolicy.values()[offlinePolicy];
+		Integer cachePolicy =
+			typedArray.getInteger(R.styleable.CommentListScreenlet_cachePolicy, CachePolicy.REMOTE_ONLY.ordinal());
+		this.cachePolicy = CachePolicy.values()[cachePolicy];
 
 		long groupId = LiferayServerContext.getGroupId();
 
@@ -142,12 +142,12 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Commen
 		}
 	}
 
-	public OfflinePolicy getOfflinePolicy() {
-		return offlinePolicy;
+	public CachePolicy getCachePolicy() {
+		return cachePolicy;
 	}
 
-	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
-		this.offlinePolicy = offlinePolicy;
+	public void setCachePolicy(CachePolicy cachePolicy) {
+		this.cachePolicy = cachePolicy;
 	}
 
 	public String getClassName() {

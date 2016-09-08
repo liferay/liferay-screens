@@ -19,8 +19,8 @@ import com.liferay.mobile.screens.RobolectricManifestTestRunner;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
-import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
-import com.liferay.mobile.screens.base.thread.event.ErrorThreadEvent;
+import com.liferay.mobile.screens.base.thread.event.BasicEvent;
+import com.liferay.mobile.screens.base.thread.event.ErrorEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.util.MockFactory;
@@ -132,7 +132,7 @@ public class LoginInteractorTest {
 		public void shouldCallListenerSuccess() throws Exception {
 			LoginListener listener = MockFactory.mockLoginListener();
 			JSONObject result = new JSONObject();
-			BasicThreadEvent event = new BasicThreadEvent(result);
+			BasicEvent event = new BasicEvent(result);
 
 			_loginWithResponseEvent(event, listener);
 
@@ -143,14 +143,14 @@ public class LoginInteractorTest {
 		public void shouldCallListenerFailure() throws Exception {
 			LoginListener listener = MockFactory.mockLoginListener();
 			Exception e = new Exception();
-			BasicThreadEvent event = new ErrorThreadEvent(e);
+			BasicEvent event = new ErrorEvent(e);
 
 			_loginWithResponseEvent(event, listener);
 
 			verify(listener).onLoginFailure(e);
 		}
 
-		private void _loginWithResponseEvent(final BasicThreadEvent event, LoginListener listener) throws Exception {
+		private void _loginWithResponseEvent(final BasicEvent event, LoginListener listener) throws Exception {
 
 			final LoginBasicInteractor interactorSpy = MockFactory.spyLoginInteractor();
 

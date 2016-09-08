@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.comment.display.interactor.load;
 
-import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
@@ -13,7 +13,7 @@ import org.json.JSONObject;
  * @author Alejandro Hernández
  */
 public class CommentLoadInteractorImpl
-	extends BaseCachedThreadRemoteInteractor<CommentDisplayInteractorListener, CommentEvent> {
+	extends BaseCacheReadInteractor<CommentDisplayInteractorListener, CommentEvent> {
 
 	@Override
 	public CommentEvent execute(Object... args) throws Exception {

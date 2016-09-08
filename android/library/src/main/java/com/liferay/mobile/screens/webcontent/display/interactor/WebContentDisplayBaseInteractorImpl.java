@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.webcontent.display.interactor;
 
-import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.webcontent.display.WebContentDisplayListener;
 import java.util.Locale;
 
@@ -8,7 +8,7 @@ import java.util.Locale;
  * @author Javier Gamarra
  */
 public abstract class WebContentDisplayBaseInteractorImpl
-	extends BaseCachedThreadRemoteInteractor<WebContentDisplayListener, WebContentDisplayEvent> {
+	extends BaseCacheReadInteractor<WebContentDisplayListener, WebContentDisplayEvent> {
 
 	protected void validate(Locale locale) {
 		if (locale == null) {

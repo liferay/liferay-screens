@@ -20,8 +20,8 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.auth.signup.SignUpListener;
-import com.liferay.mobile.screens.base.thread.BaseRemoteInteractorNew;
-import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
+import com.liferay.mobile.screens.base.thread.BaseRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.event.BasicEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.util.ServiceProvider;
@@ -32,10 +32,10 @@ import org.json.JSONObject;
 /**
  * @author Silvio Santos
  */
-public class SignUpInteractorImpl extends BaseRemoteInteractorNew<SignUpListener, BasicThreadEvent> {
+public class SignUpInteractorImpl extends BaseRemoteInteractor<SignUpListener, BasicEvent> {
 
 	@Override
-	public BasicThreadEvent execute(Object[] args) throws Exception {
+	public BasicEvent execute(Object[] args) throws Exception {
 
 		long companyId = (long) args[0];
 		String firstName = (String) args[1];
@@ -59,11 +59,11 @@ public class SignUpInteractorImpl extends BaseRemoteInteractorNew<SignUpListener
 		JSONObject jsonObject =
 			sendSignUpRequest(userConnector, companyId, firstName, middleName, lastName, emailAddress, screenName,
 				password, jobTitle, locale);
-		return new BasicThreadEvent(jsonObject);
+		return new BasicEvent(jsonObject);
 	}
 
 	@Override
-	public void onSuccess(BasicThreadEvent event) throws Exception {
+	public void onSuccess(BasicEvent event) throws Exception {
 		getListener().onSignUpSuccess(new User(event.getJSONObject()));
 	}
 

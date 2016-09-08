@@ -16,7 +16,7 @@
 		<enum name="auto" value="1"/>
 		<enum name="shared_preferences" value="2"/>
 	</attr>
-	<attr format="enum" name="offlinePolicy">
+	<attr format="enum" name="cachePolicy">
 		<enum name="REMOTE_ONLY" value="0"/>
 		<enum name="CACHE_ONLY" value="1"/>
 		<enum name="CACHE_FIRST" value="2"/>
@@ -38,9 +38,9 @@
 	<attr format="string" name="obcClassName"/>
 	<attr format="string" name="entryId"/>
 
-	<declare-styleable name="OfflineScreenlet">
+	<declare-styleable name="CacheScreenlet">
 		<attr name="groupId"/>
-		<attr name="offlinePolicy"/>
+		<attr name="cachePolicy"/>
 		<attr name="userId"/>
 		<attr name="locale"/>
 	</declare-styleable>
@@ -49,7 +49,7 @@
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="groupId"/>
-		<attr name="offlinePolicy"/>
+		<attr name="cachePolicy"/>
 		<attr format="string" name="portletItemName"/>
 		<attr format="string" name="classNameId"/>
 		<attr name="firstPageSize"/>
@@ -69,7 +69,7 @@
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="groupId"/>
-		<attr name="offlinePolicy"/>
+		<attr name="cachePolicy"/>
 		<attr format="string" name="commentId"/>
 		<attr name="classPK"/>
 		<attr name="className"/>
@@ -80,7 +80,7 @@
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="groupId"/>
-		<attr name="offlinePolicy"/>
+		<attr name="cachePolicy"/>
 		<attr name="classPK"/>
 		<attr name="className"/>
 		<attr name="firstPageSize"/>
@@ -98,7 +98,7 @@
 		<attr name="recordSetId"/>
 		<attr name="userId"/>
 		<attr name="autoLoad"/>
-		<attr name="offlinePolicy"/>
+		<attr name="cachePolicy"/>
 		<attr format="string" name="filePrefix"/>
 		<attr format="string" name="repositoryId"/>
 		<attr name="folderId"/>
@@ -118,7 +118,7 @@
 		<attr name="autoLoad"/>
 		<attr name="recordSetId"/>
 		<attr name="userId"/>
-		<attr name="offlinePolicy"/>
+		<attr name="cachePolicy"/>
 		<attr name="firstPageSize"/>
 		<attr name="pageSize"/>
 		<attr name="labelFields"/>
@@ -156,7 +156,7 @@
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr name="groupId"/>
-		<attr name="offlinePolicy"/>
+		<attr name="cachePolicy"/>
 		<attr format="string" name="templateId"/>
 		<attr name="structureId"/>
 		<attr format="boolean" name="javascriptEnabled"/>
@@ -169,7 +169,7 @@
 		<attr name="autoLoad"/>
 		<attr name="folderId"/>
 		<attr name="groupId"/>
-		<attr name="offlinePolicy"/>
+		<attr name="cachePolicy"/>
 		<attr name="firstPageSize"/>
 		<attr name="pageSize"/>
 		<attr name="labelFields"/>
@@ -179,7 +179,7 @@
 	<declare-styleable name="UserPortraitScreenlet">
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
-		<attr name="offlinePolicy"/>
+		<attr name="cachePolicy"/>
 		<attr format="boolean" name="male"/>
 		<attr format="string" name="portraitId"/>
 		<attr format="string" name="uuid"/>
@@ -190,7 +190,7 @@
 	<declare-styleable name="GalleryScreenlet">
 		<attr name="groupId"/>
 		<attr name="folderId"/>
-		<attr name="offlinePolicy"/>
+		<attr name="cachePolicy"/>
 		<attr name="pageSize"/>
 		<attr name="firstPageSize"/>
 		<attr format="string" name="mimeTypes"/>

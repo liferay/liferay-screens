@@ -22,7 +22,7 @@ import android.graphics.Matrix;
 import android.media.ExifInterface;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
-import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
+import com.liferay.mobile.screens.base.thread.event.CachedEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.ServiceProvider;
@@ -136,7 +136,7 @@ public class UserPortraitService extends IntentService {
 		return userService.updatePortrait(userId, decodeSampledBitmapFromResource);
 	}
 
-	private void decorateEvent(OfflineEventNew event, long groupId, long userId, Locale locale, int targetScreenletId,
+	private void decorateEvent(CachedEvent event, long groupId, long userId, Locale locale, int targetScreenletId,
 		String actionName) {
 		event.setGroupId(groupId);
 		event.setUserId(userId);

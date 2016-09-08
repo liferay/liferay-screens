@@ -18,7 +18,7 @@ import android.text.TextUtils;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
-import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
+import com.liferay.mobile.screens.base.thread.event.BasicEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.ServiceProvider;
@@ -27,7 +27,7 @@ import org.json.JSONObject;
 public class LoginBasicInteractor extends BaseLoginInteractor {
 
 	@Override
-	public BasicThreadEvent execute(Object... args) throws Exception {
+	public BasicEvent execute(Object... args) throws Exception {
 
 		String login = (String) args[0];
 		String password = (String) args[1];
@@ -39,7 +39,7 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 
 		JSONObject jsonObject = getUser(login, basicAuthMethod, userConnector);
 
-		return new BasicThreadEvent(jsonObject);
+		return new BasicEvent(jsonObject);
 	}
 
 	protected JSONObject getUser(String login, BasicAuthMethod basicAuthMethod, UserConnector userConnector)

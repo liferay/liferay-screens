@@ -8,11 +8,11 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
  */
 public class FactoryProvider {
 
+	private static AbstractFactory abstractFactory;
+
 	private FactoryProvider() {
 		super();
 	}
-
-	private static AbstractFactory abstractFactory;
 
 	public static AbstractFactory getInstance() {
 		synchronized (AbstractFactory.class) {

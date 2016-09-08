@@ -16,7 +16,7 @@ package com.liferay.mobile.screens.auth.login.interactor;
 
 import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
+import com.liferay.mobile.screens.base.thread.event.BasicEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import org.json.JSONObject;
@@ -31,7 +31,7 @@ public class LoginOAuthInteractor extends BaseLoginInteractor {
 	private OAuthConfig config;
 
 	@Override
-	public BasicThreadEvent execute(Object[] args) throws Exception {
+	public BasicEvent execute(Object[] args) throws Exception {
 
 		if (config == null) {
 			throw new IllegalArgumentException("OAuth configuration cannot be empty");
@@ -40,7 +40,7 @@ public class LoginOAuthInteractor extends BaseLoginInteractor {
 		Session session = SessionContext.createOAuthSession(config);
 		JSONObject jsonObject = ServiceProvider.getInstance().getCurrentUserConnector(session).getCurrentUser();
 
-		return new BasicThreadEvent(jsonObject);
+		return new BasicEvent(jsonObject);
 	}
 
 	public OAuthConfig getOAuthConfig() {

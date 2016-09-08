@@ -14,13 +14,13 @@
 
 package com.liferay.mobile.screens.base.list.interactor;
 
-import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
+import com.liferay.mobile.screens.base.thread.event.CachedEvent;
 import java.util.List;
 
 /**
  * @author Javier Gamarra
  */
-public class BaseListEvent<E> extends OfflineEventNew {
+public class BaseListEvent<E> extends CachedEvent {
 
 	private List<E> entries;
 	private int rowCount;

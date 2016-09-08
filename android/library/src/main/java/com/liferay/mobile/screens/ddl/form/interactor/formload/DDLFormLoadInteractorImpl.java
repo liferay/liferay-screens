@@ -14,7 +14,7 @@
 
 package com.liferay.mobile.screens.ddl.form.interactor.formload;
 
-import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
@@ -26,7 +26,7 @@ import org.json.JSONObject;
 /**
  * @author Jose Manuel Navarro
  */
-public class DDLFormLoadInteractorImpl extends BaseCachedThreadRemoteInteractor<DDLFormListener, DDLFormEvent> {
+public class DDLFormLoadInteractorImpl extends BaseCacheReadInteractor<DDLFormListener, DDLFormEvent> {
 
 	@Override
 	public DDLFormEvent execute(Object... args) throws Exception {

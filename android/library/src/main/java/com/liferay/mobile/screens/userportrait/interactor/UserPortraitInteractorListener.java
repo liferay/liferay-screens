@@ -15,13 +15,13 @@
 package com.liferay.mobile.screens.userportrait.interactor;
 
 import android.graphics.Bitmap;
-import com.liferay.mobile.screens.base.thread.listener.OfflineListenerNew;
+import com.liferay.mobile.screens.base.thread.listener.BaseCacheListener;
 
 /**
  * @author Javier Gamarra
  * @author Jose Manuel Navarro
  */
-public interface UserPortraitInteractorListener extends OfflineListenerNew {
+public interface UserPortraitInteractorListener extends BaseCacheListener {
 
 	Bitmap onEndUserPortraitLoadRequest(Bitmap bitmap);
 

@@ -21,14 +21,14 @@ import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
 import com.liferay.mobile.screens.auth.forgotpassword.connector.ForgotPasswordConnector;
-import com.liferay.mobile.screens.base.thread.BaseRemoteInteractorNew;
+import com.liferay.mobile.screens.base.thread.BaseRemoteInteractor;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.util.ServiceProvider;
 
 /**
  * @author Jose Manuel Navarro
  */
-public class ForgotPasswordInteractorImpl extends BaseRemoteInteractorNew<ForgotPasswordListener, ForgotPasswordEvent> {
+public class ForgotPasswordInteractorImpl extends BaseRemoteInteractor<ForgotPasswordListener, ForgotPasswordEvent> {
 
 	@Override
 	public ForgotPasswordEvent execute(Object[] args) throws Exception {

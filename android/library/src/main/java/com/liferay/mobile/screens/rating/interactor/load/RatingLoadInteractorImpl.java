@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.rating.interactor.load;
 
-import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.rating.AssetRating;
 import com.liferay.mobile.screens.rating.RatingListener;
@@ -15,7 +15,7 @@ import static com.liferay.mobile.screens.cache.Cache.SEPARATOR;
 /**
  * @author Alejandro Hernández
  */
-public class RatingLoadInteractorImpl extends BaseCachedThreadRemoteInteractor<RatingListener, RatingEvent> {
+public class RatingLoadInteractorImpl extends BaseCacheReadInteractor<RatingListener, RatingEvent> {
 
 	@Override
 	public RatingEvent execute(Object... args) throws Exception {

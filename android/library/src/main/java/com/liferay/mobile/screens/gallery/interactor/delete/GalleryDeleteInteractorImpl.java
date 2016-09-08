@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.gallery.interactor.delete;
 
 import com.liferay.mobile.android.v7.dlapp.DLAppService;
-import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.gallery.interactor.GalleryInteractorListener;
 import com.liferay.mobile.screens.gallery.interactor.load.GalleryEvent;
 
@@ -9,7 +9,7 @@ import com.liferay.mobile.screens.gallery.interactor.load.GalleryEvent;
  * @author Víctor Galán Grande
  */
 public class GalleryDeleteInteractorImpl
-	extends BaseCachedWriteThreadRemoteInteractor<GalleryInteractorListener, GalleryEvent> {
+	extends BaseCacheWriteInteractor<GalleryInteractorListener, GalleryEvent> {
 
 	@Override
 	public GalleryEvent execute(GalleryEvent event) throws Exception {

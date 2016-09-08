@@ -3,18 +3,18 @@ package com.liferay.mobile.screens.bookmark.interactor;
 import android.support.annotation.NonNull;
 import android.webkit.URLUtil;
 import com.liferay.mobile.android.v7.bookmarksentry.BookmarksEntryService;
-import com.liferay.mobile.screens.base.thread.BaseRemoteInteractorNew;
-import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
+import com.liferay.mobile.screens.base.thread.BaseRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.event.BasicEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
  */
-public class AddBookmarkInteractorImpl extends BaseRemoteInteractorNew<AddBookmarkListener, BasicThreadEvent> {
+public class AddBookmarkInteractorImpl extends BaseRemoteInteractor<AddBookmarkListener, BasicEvent> {
 
 	@Override
-	public BasicThreadEvent execute(Object[] args) throws Exception {
+	public BasicEvent execute(Object[] args) throws Exception {
 		String url = (String) args[0];
 		String title = (String) args[1];
 		long folderId = (long) args[2];
@@ -22,11 +22,11 @@ public class AddBookmarkInteractorImpl extends BaseRemoteInteractorNew<AddBookma
 		validate(url, folderId);
 
 		JSONObject jsonObject = getJSONObject(url, title, folderId);
-		return new BasicThreadEvent(jsonObject);
+		return new BasicEvent(jsonObject);
 	}
 
 	@Override
-	public void onSuccess(BasicThreadEvent event) throws Exception {
+	public void onSuccess(BasicEvent event) throws Exception {
 		getListener().onAddBookmarkSuccess();
 	}
 

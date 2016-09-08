@@ -12,8 +12,6 @@ import static com.liferay.mobile.screens.auth.login.LoginScreenlet.LOGIN_SUCCESS
  */
 public class CacheReceiver extends WakefulBroadcastReceiver {
 
-	public static final String SYNC_CACHE = "SYNC_CACHE";
-
 	@Override
 	public void onReceive(Context context, Intent intent) {
 
