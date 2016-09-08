@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.gallery;
 
 import android.support.v7.app.AppCompatActivity;
-import com.liferay.mobile.screens.gallery.interactor.load.GalleryEvent;
+import com.liferay.mobile.screens.gallery.interactor.GalleryEvent;
 import com.liferay.mobile.screens.util.EventBusUtil;
 
 /**

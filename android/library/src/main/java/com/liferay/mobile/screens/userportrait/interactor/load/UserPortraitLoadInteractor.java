@@ -44,10 +44,10 @@ import org.json.JSONObject;
  * @author Jose Manuel Navarro
  */
 public class UserPortraitLoadInteractor
-	extends BaseCacheReadInteractor<UserPortraitInteractorListener, UserPortraitCachedEvent> implements Target {
+	extends BaseCacheReadInteractor<UserPortraitInteractorListener, UserPortraitEvent> implements Target {
 
 	@Override
-	public UserPortraitCachedEvent execute(Object... args) throws Exception {
+	public UserPortraitEvent execute(Object... args) throws Exception {
 		//TODO move to 2 interactors
 		if (args.length == 1) {
 			long userId = (long) args[0];
@@ -57,7 +57,7 @@ public class UserPortraitLoadInteractor
 			UserConnector userConnector = ServiceProvider.getInstance().getUserConnector(getSession());
 
 			JSONObject jsonObject = userConnector.getUserById(userId);
-			return new UserPortraitCachedEvent(jsonObject);
+			return new UserPortraitEvent(jsonObject);
 		} else {
 			return createEventFromUUID(args);
 		}
@@ -69,7 +69,7 @@ public class UserPortraitLoadInteractor
 	}
 
 	@NonNull
-	private UserPortraitCachedEvent createEventFromUUID(Object[] args) throws JSONException {
+	private UserPortraitEvent createEventFromUUID(Object[] args) throws JSONException {
 		boolean male = (boolean) args[0];
 		long portraitId = (long) args[1];
 		String uuid = (String) args[2];
@@ -79,11 +79,11 @@ public class UserPortraitLoadInteractor
 		jsonObject.put("portraitId", portraitId);
 		jsonObject.put("uuid", uuid);
 
-		return new UserPortraitCachedEvent(jsonObject);
+		return new UserPortraitEvent(jsonObject);
 	}
 
 	@Override
-	public void onSuccess(UserPortraitCachedEvent event) throws Exception {
+	public void onSuccess(UserPortraitEvent event) throws Exception {
 
 		JSONObject userAttributes = event.getJSONObject();
 		long portraitId = userAttributes.getLong("portraitId");

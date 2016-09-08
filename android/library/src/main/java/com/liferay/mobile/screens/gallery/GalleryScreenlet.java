@@ -16,7 +16,7 @@ import com.liferay.mobile.screens.context.PicassoScreens;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.gallery.interactor.GalleryInteractorListener;
 import com.liferay.mobile.screens.gallery.interactor.delete.GalleryDeleteInteractor;
-import com.liferay.mobile.screens.gallery.interactor.load.GalleryEvent;
+import com.liferay.mobile.screens.gallery.interactor.GalleryEvent;
 import com.liferay.mobile.screens.gallery.interactor.load.GalleryLoadInteractor;
 import com.liferay.mobile.screens.gallery.interactor.upload.GalleryUploadInteractor;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;

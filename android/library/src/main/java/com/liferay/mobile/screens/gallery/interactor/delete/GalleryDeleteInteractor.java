@@ -3,7 +3,7 @@ package com.liferay.mobile.screens.gallery.interactor.delete;
 import com.liferay.mobile.android.v7.dlapp.DLAppService;
 import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.gallery.interactor.GalleryInteractorListener;
-import com.liferay.mobile.screens.gallery.interactor.load.GalleryEvent;
+import com.liferay.mobile.screens.gallery.interactor.GalleryEvent;
 
 /**
  * @author Víctor Galán Grande

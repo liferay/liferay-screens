@@ -3,6 +3,7 @@ package com.liferay.mobile.screens.gallery.interactor.load;
 import com.liferay.mobile.android.v7.dlapp.DLAppService;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.base.list.interactor.Query;
+import com.liferay.mobile.screens.gallery.interactor.GalleryEvent;
 import com.liferay.mobile.screens.gallery.interactor.GalleryInteractorListener;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import java.util.Map;

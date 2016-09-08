@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.gallery.interactor.load;
+package com.liferay.mobile.screens.gallery.interactor;
 
 import com.liferay.mobile.screens.base.list.interactor.ListEvent;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;

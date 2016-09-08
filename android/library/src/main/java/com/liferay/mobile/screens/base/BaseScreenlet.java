@@ -29,10 +29,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.base.interactor.CustomInteractorListener;
-import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.base.interactor.BaseInteractor;
+import com.liferay.mobile.screens.base.interactor.CustomInteractorListener;
+import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.base.interactor.listener.CacheListener;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.cache.CachePolicy;
@@ -164,16 +164,16 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 		if (result != null) {
 			if (result instanceof BaseInteractor) {
-				BaseInteractor threadInteractor = (BaseInteractor) result;
-				threadInteractor.setTargetScreenletId(getScreenletId());
-				threadInteractor.setActionName(actionName);
+				BaseInteractor baseInteractor = (BaseInteractor) result;
+				baseInteractor.setTargetScreenletId(getScreenletId());
+				baseInteractor.setActionName(actionName);
 
-				if (threadInteractor instanceof BaseCacheReadInteractor) {
-					BaseCacheReadInteractor cachedThreadRemoteInteractor = (BaseCacheReadInteractor) threadInteractor;
-					cachedThreadRemoteInteractor.setCachePolicy(getCachePolicy());
-					cachedThreadRemoteInteractor.setGroupId(getGroupId());
-					cachedThreadRemoteInteractor.setUserId(getUserId());
-					cachedThreadRemoteInteractor.setLocale(getLocale());
+				if (baseInteractor instanceof BaseCacheReadInteractor) {
+					BaseCacheReadInteractor baseCacheReadInteractor = (BaseCacheReadInteractor) baseInteractor;
+					baseCacheReadInteractor.setCachePolicy(getCachePolicy());
+					baseCacheReadInteractor.setGroupId(getGroupId());
+					baseCacheReadInteractor.setUserId(getUserId());
+					baseCacheReadInteractor.setLocale(getLocale());
 				}
 			}
 
@@ -186,8 +186,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	protected void init(Context context, AttributeSet attributes) {
 		LiferayScreensContext.init(context);
 
-		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.CacheScreenlet, 0, 0);
+		TypedArray typedArray = context.getTheme().obtainStyledAttributes(attributes, R.styleable.CacheScreenlet, 0, 0);
 
 		groupId = castToLongOrUseDefault(typedArray.getString(R.styleable.CacheScreenlet_groupId),
 			LiferayServerContext.getGroupId());
@@ -199,9 +198,9 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		String localeAttribute = typedArray.getString(R.styleable.CacheScreenlet_locale);
 		locale = locale == null ? LiferayLocale.getDefaultLocale() : new Locale(localeAttribute);
 
-		Integer offlinePolicyAttribute =
+		Integer cachePolicyAttribute =
 			typedArray.getInteger(R.styleable.CacheScreenlet_cachePolicy, CachePolicy.REMOTE_ONLY.ordinal());
-		cachePolicy = CachePolicy.values()[offlinePolicyAttribute];
+		cachePolicy = CachePolicy.values()[cachePolicyAttribute];
 
 		assignView(createScreenletView(context, attributes));
 	}

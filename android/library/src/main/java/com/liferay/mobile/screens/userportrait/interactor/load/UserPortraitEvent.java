@@ -3,13 +3,13 @@ package com.liferay.mobile.screens.userportrait.interactor.load;
 import com.liferay.mobile.screens.base.interactor.event.CachedEvent;
 import org.json.JSONObject;
 
-public class UserPortraitCachedEvent extends CachedEvent {
+public class UserPortraitEvent extends CachedEvent {
 
-	public UserPortraitCachedEvent() {
+	public UserPortraitEvent() {
 		super();
 	}
 
-	public UserPortraitCachedEvent(JSONObject jsonObject) {
+	public UserPortraitEvent(JSONObject jsonObject) {
 		super(jsonObject);
 	}
 }

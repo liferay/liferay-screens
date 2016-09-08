@@ -5,7 +5,7 @@ import com.liferay.mobile.screens.base.MediaStoreEvent;
 import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.gallery.interactor.GalleryInteractorListener;
-import com.liferay.mobile.screens.gallery.interactor.load.GalleryEvent;
+import com.liferay.mobile.screens.gallery.interactor.GalleryEvent;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 
 /**
