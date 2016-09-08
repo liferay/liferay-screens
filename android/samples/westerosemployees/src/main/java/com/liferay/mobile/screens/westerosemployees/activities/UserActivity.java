@@ -15,7 +15,6 @@ public class UserActivity extends WesterosActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		SessionContext.createBasicSession("test@liferay.com","test");
 		setContentView(R.layout.user);
 	}
 }
