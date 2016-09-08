@@ -12,12 +12,21 @@
 * details.
 */
 import UIKit
+import LiferayScreens
 
 class BlogsViewController: CardViewController {
+
+	@IBOutlet weak var assetListScreenlet: AssetListScreenlet?
 
 	//MARK: Init methods
 
 	convenience init() {
 		self.init(nibName: "BlogsViewController", bundle: nil)
+	}
+
+	//MARK: Public methods
+
+	func load() {
+		assetListScreenlet?.loadList()
 	}
 }
