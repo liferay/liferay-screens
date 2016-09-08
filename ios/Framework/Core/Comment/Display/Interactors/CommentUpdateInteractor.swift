@@ -30,6 +30,20 @@ public class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 		super.init(screenlet: screenlet)
 	}
 
+	init(groupId: Int64,
+			className: String,
+			classPK: Int64,
+			commentId: Int64,
+			body: String) {
+		self.groupId = (groupId != 0) ? groupId : LiferayServerContext.groupId
+		self.className = className
+		self.classPK = classPK
+		self.commentId = commentId
+		self.body = body
+
+		super.init(screenlet: nil)
+	}
+
 	override public func createConnector() -> CommentUpdateLiferayConnector? {
 		return LiferayServerContext.connectorFactory.createCommentUpdateConnector(
 				commentId: commentId,
@@ -42,4 +56,33 @@ public class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 			self.resultComment = comment
 		}
 	}
+
+	//MARK: Cache methods
+
+	override public func writeToCache(c: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+		guard let updateCon = c as? CommentUpdateLiferayConnector else {
+			return
+		}
+
+		let cacheFunction = (cacheStrategy == .CacheFirst || c.lastError != nil)
+			? cacheManager.setDirty
+			: cacheManager.setClean
+
+		cacheFunction(
+			collection: "CommentsScreenlet",
+			key: "update-commentId-\(updateCon.commentId)",
+			value: "",
+			attributes: [
+				"groupId": NSNumber(longLong: updateCon.groupId),
+				"className": updateCon.className,
+				"classPK": NSNumber(longLong: updateCon.classPK),
+				"commentId": NSNumber(longLong: updateCon.commentId),
+				"body": updateCon.body,
+			],
+			onCompletion: nil)
+	}
+
 }
