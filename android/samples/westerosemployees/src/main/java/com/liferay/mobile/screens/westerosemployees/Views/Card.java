@@ -13,6 +13,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.widget.FrameLayout;
@@ -71,12 +72,12 @@ public class Card extends FrameLayout {
 		arrows = getViewsByTag(this, "arrow");
 	}
 
+	public CardState getCardState() {
+		return cardState;
 	}
 
-	private void takeSubviewsOffScreen() {
-		for (int i = 1; i < getChildCount(); i++) {
-			getChildAt(i).setX(maxWidth);
-		}
+	public int getCardSubviewCurrentIndex() {
+		return index;
 	}
 
 	public void initPosition(int minimizedPosition, int maxHeight, int maxWidth) {
@@ -188,14 +189,6 @@ public class Card extends FrameLayout {
 		setLayoutParams(params);
 	}
 
-	public CardState getCardState() {
-		return cardState;
-	}
-
-	public int getCardSubviewCurrentIndex() {
-		return index;
-	}
-
 	protected void showArrows(boolean show) {
 		int visibility = show ? VISIBLE : INVISIBLE;
 
@@ -226,6 +219,12 @@ public class Card extends FrameLayout {
 		}
 
 		return views;
+	}
+
+	private void takeSubviewsOffScreen() {
+		for (int i = 1; i < getChildCount(); i++) {
+			getChildAt(i).setX(maxWidth);
+		}
 	}
 
 	protected static int statusBarHeight;
