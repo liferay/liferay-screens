@@ -24,6 +24,9 @@ public protocol MimeTypeable {
 public extension MimeTypeable {
 
 	public func isAnyMimeType(mimeTypes: [String]) -> Bool {
+		guard (self.mimeType ?? "") != "" else {
+			return false
+		}
 		guard let mimeType = self.mimeType else {
 			return false
 		}

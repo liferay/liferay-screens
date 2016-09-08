@@ -100,9 +100,7 @@ import UIKit
 
 		let frame = CGRect(origin: CGPointZero, size: view.frame.size)
 
-		let factory = AssetDisplayFactory()
-
-		guard let innerScreenlet = factory.createScreenlet(frame, asset: asset) else {
+		guard let innerScreenlet = AssetDisplayFactory.createScreenlet(frame, asset: asset) else {
 			return assetDisplayDelegate?.screenlet?(self, onAsset: asset)
 		}
 
