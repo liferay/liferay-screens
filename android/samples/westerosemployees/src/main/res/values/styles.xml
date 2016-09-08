@@ -1,6 +1,6 @@
 <resources>
 
-	<style name="westeros_card_title">
+	<style name="westeros_card_title_black">
 		<item name="android:layout_centerHorizontal">true</item>
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">@dimen/westeros_card_title_height</item>
@@ -8,6 +8,10 @@
 		<item name="android:textColor">@color/textColorPrimary_westeros</item>
 		<item name="android:textSize">18sp</item>
 		<item name="android:textAllCaps">true</item>
+	</style>
+
+	<style name="westeros_card_title_white" parent="westeros_card_title_black">
+		<item name="android:textColor">@android:color/white</item>
 	</style>
 
 	<style name="westeros_tour_text">
