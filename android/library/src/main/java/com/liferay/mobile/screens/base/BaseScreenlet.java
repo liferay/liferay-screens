@@ -57,6 +57,10 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	protected static final String STATE_SUPER = "basescreenlet-super";
 	private static final String STATE_INTERACTORS = "basescreenlet-interactors";
 	private static final AtomicInteger NEXT_ID = new AtomicInteger(1);
+	public static final String STATE_OFFLINE_POLICY = "STATE_OFFLINE_POLICY";
+	public static final String STATE_GROUP_ID = "STATE_GROUP_ID";
+	public static final String STATE_USER_ID = "STATE_USER_ID";
+	public static final String STATE_LOCALE = "STATE_LOCALE";
 	private final Map<String, I> interactors = new HashMap<>();
 	protected OfflinePolicy offlinePolicy;
 	protected long groupId;
@@ -281,6 +285,11 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 		super.onRestoreInstanceState(superState);
 
+		offlinePolicy = OfflinePolicy.values()[state.getInt(STATE_OFFLINE_POLICY)];
+		groupId = state.getLong(STATE_GROUP_ID);
+		userId = state.getLong(STATE_USER_ID);
+		locale = (Locale) state.getSerializable(STATE_LOCALE);
+
 		// The screenletId is restored only if it was not generated yet. If the
 		// screenletId already exists at this point, it means that an interactor
 		// is using it, so we cannot restore the previous value. As a side
@@ -310,6 +319,10 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		state.putParcelable(STATE_SUPER, superState);
 		state.putInt(STATE_SCREENLET_ID, screenletId);
 		state.putStringArray(STATE_INTERACTORS, interactors.keySet().toArray(new String[interactors.size()]));
+		state.putInt(STATE_OFFLINE_POLICY, offlinePolicy.ordinal());
+		state.putLong(STATE_GROUP_ID, groupId);
+		state.putLong(STATE_USER_ID, userId);
+		state.putSerializable(STATE_LOCALE, locale);
 
 		return state;
 	}

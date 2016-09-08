@@ -11,7 +11,7 @@ import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDeco
  */
 public class GridDividerItemDecoration extends DividerItemDecoration {
 
-	private int spacing;
+	private final int spacing;
 
 	public GridDividerItemDecoration(int spacing) {
 		super(null);

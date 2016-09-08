@@ -27,7 +27,11 @@
 	<string name="very_happy_smiley">very happy smiley</string>
 	<string name="pdf_content">pdf content</string>
 	<string name="thumbs_down">thumbs down</string>
-	<string name="uploading_image">Uploading image...</string>
+	<string name="uploading_image">Uploading image…</string>
+	<string name="gallery_image">gallery image</string>
+	<string name="placeholder_while_image_loads">placeholder while image loads</string>
+	<string name="audio_player_background">audio player background</string>
+	<string name="cancel_button">cancel button</string>
 
 	<string-array name="image_mime_types">
 		<item>image/png</item>

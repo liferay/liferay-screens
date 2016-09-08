@@ -23,7 +23,7 @@ import java.util.Queue;
  * @author Víctor Galán Grande
  */
 public class UploadProgressView extends RelativeLayout implements View.OnClickListener {
-	private Queue<String> images = new PriorityQueue<>();
+	private final Queue<String> images = new PriorityQueue<>();
 	private int uploadCount = 0;
 	private ProgressBar progressBar;
 	private TextView uploadText;

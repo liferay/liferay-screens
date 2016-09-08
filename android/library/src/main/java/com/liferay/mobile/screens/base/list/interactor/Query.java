@@ -4,7 +4,6 @@ import android.util.Pair;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import java.io.Serializable;
 import java.util.Locale;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Query implements Serializable {
@@ -65,7 +64,7 @@ public class Query implements Serializable {
 		this.comparator = comparator;
 	}
 
-	public JSONObjectWrapper getComparatorJSONWrapper() throws JSONException {
+	public JSONObjectWrapper getComparatorJSONWrapper() {
 		return comparator == null ? null : new JSONObjectWrapper(comparator, new JSONObject());
 	}
 

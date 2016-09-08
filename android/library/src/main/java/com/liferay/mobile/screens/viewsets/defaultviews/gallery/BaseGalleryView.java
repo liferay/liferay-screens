@@ -120,11 +120,6 @@ public abstract class BaseGalleryView<H extends BaseListAdapter.ViewHolder, A ex
 		uploadProgressView.uploadCompleteOrError();
 	}
 
-	@Override
-	public void imageUploadError(Exception e) {
-		uploadProgressView.uploadCompleteOrError();
-	}
-
 	private Action1 openCamera() {
 		return new Action1<Boolean>() {
 			@Override

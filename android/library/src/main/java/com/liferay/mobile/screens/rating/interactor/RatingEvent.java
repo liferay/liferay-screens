@@ -8,7 +8,6 @@ public class RatingEvent extends OfflineEventNew {
 	private double score;
 	private long classPK;
 	private String className;
-	private long entryId;
 	private int ratingGroupCounts;
 
 	public RatingEvent(JSONObject jsonObject) {

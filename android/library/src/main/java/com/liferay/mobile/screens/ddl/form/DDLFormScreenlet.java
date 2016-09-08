@@ -53,17 +53,14 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 	private static final String STATE_SUPER = "ddlform-super";
 	private static final String STATE_AUTOSCROLL_ON_VALIDATION = "ddlform-autoScrollOnValidation";
 	private static final String STATE_SHOW_SUBMIT_BUTTON = "ddlform-showSubmitButton";
-	private static final String STATE_GROUP_ID = "ddlform-groupId";
 	private static final String STATE_STRUCTURE_ID = "ddlform-structureId";
 	private static final String STATE_RECORDSET_ID = "ddlform-recordSetId";
 	private static final String STATE_RECORD_ID = "ddlform-recordId";
-	private static final String STATE_USER_ID = "ddlform-userId";
 	private static final String STATE_RECORD = "ddlform-record";
 	private static final String STATE_LOAD_RECORD_AFTER_FORM = "ddlform-loadRecordAfterForm";
 	private static final String STATE_REPOSITORY_ID = "ddlform-repositoryId";
 	private static final String STATE_FOLDER_ID = "ddlform-folderId";
 	private static final String STATE_FILE_PREFIX = "ddlform-filePrefixId";
-	private static final String STATE_OFFLINE_POLICY = "ddlform-offlinePolicy";
 	private boolean autoLoad;
 	private boolean autoScrollOnValidation;
 	private boolean showSubmitButton;

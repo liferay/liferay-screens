@@ -44,7 +44,7 @@ public class StarsRatingView extends BaseRatingView implements RatingBar.OnRatin
 
 			userRatingBar.setRating(getRating(assetRating.getTotalScore(), userRatingBar.getNumStars()));
 			averageRatingBar.setRating(getRating(assetRating.getAverage(), averageRatingBar.getNumStars()));
-			totalCountTextView.setText(getResources().getString(R.string.rating_count, assetRating.getTotalCount()));
+			totalCountTextView.setText(getResources().getString(R.plurals.rating_count, assetRating.getTotalCount()));
 		}
 	}
 

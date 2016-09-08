@@ -16,6 +16,7 @@
 		android:layout_centerVertical="true"
 		android:layout_gravity="start"
 		android:layout_margin="10dp"
+		android:contentDescription="@string/placeholder_while_image_loads"
 		android:scaleType="centerCrop"
 		android:src="@drawable/default_portrait_placeholder"
 		/>
@@ -28,6 +29,7 @@
 		android:layout_centerVertical="true"
 		android:layout_margin="5dp"
 		android:background="@android:color/transparent"
+		android:contentDescription="@string/cancel_button"
 		android:src="@drawable/default_gallery_cancel"
 		/>
 

@@ -34,7 +34,9 @@
 			</intent-filter>
 		</activity>
 
-		<receiver android:name=".push.GCMBroadcastReceiver">
+		<receiver
+			android:name=".push.GCMBroadcastReceiver"
+			android:exported="false">
 			<intent-filter>
 				<action android:name="com.google.android.c2dm.intent.RECEIVE"/>
 				<category android:name="com.liferay.mobile.screens.bankofwesteros"/>

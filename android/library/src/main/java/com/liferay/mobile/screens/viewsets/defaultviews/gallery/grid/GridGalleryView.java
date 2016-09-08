@@ -15,8 +15,7 @@ import com.liferay.mobile.screens.viewsets.defaultviews.gallery.BaseGalleryView;
 public class GridGalleryView extends BaseGalleryView<GridGalleryAdapter.GridGalleryViewHolder, GridGalleryAdapter>
 	implements View.OnClickListener {
 
-	private static final int DEFAULT_COLS = 3;
-	public int columnsSize = DEFAULT_COLS;
+	public static final int COLUMNS_SIZE = 3;
 
 	public GridGalleryView(Context context) {
 		super(context);
@@ -35,7 +34,7 @@ public class GridGalleryView extends BaseGalleryView<GridGalleryAdapter.GridGall
 	}
 
 	public void reloadView() {
-		recyclerView.setLayoutManager(new GridLayoutManager(getContext(), columnsSize));
+		recyclerView.setLayoutManager(new GridLayoutManager(getContext(), COLUMNS_SIZE));
 	}
 
 	@Override
@@ -61,7 +60,7 @@ public class GridGalleryView extends BaseGalleryView<GridGalleryAdapter.GridGall
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-		recyclerView.setLayoutManager(new GridLayoutManager(getContext(), columnsSize));
+		recyclerView.setLayoutManager(new GridLayoutManager(getContext(), COLUMNS_SIZE));
 		FloatingActionButton uploadFAB = (FloatingActionButton) findViewById(R.id.liferay_upload_fab);
 		uploadFAB.setOnClickListener(this);
 	}

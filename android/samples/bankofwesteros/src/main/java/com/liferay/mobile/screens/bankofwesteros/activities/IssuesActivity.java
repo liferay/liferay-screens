@@ -30,7 +30,7 @@ import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
 import com.tbruyelle.rxpermissions.RxPermissions;
-import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 import java.util.List;
 import java.util.Map;
 import org.json.JSONObject;
@@ -269,8 +269,8 @@ public class IssuesActivity extends CardActivity
 		Object serverValue = element.getServerValue(getString(R.string.liferay_recordset_fields));
 		issueTitle.setText(String.valueOf(serverValue));
 
-		String date = new SimpleDateFormat("dd/MM/yyyy").format(element.getServerAttribute("createDate"));
-		((TextView) findViewById(R.id.createdAt)).setText(getString(R.string.created) + date);
+		String date = DateFormat.getDateTimeInstance().format(element.getServerAttribute("createDate"));
+		((TextView) findViewById(R.id.createdAt)).setText(getString(R.string.created, date));
 
 		TextView description = (TextView) findViewById(R.id.description);
 		description.setText(String.valueOf(element.getServerValue("Description")));
@@ -280,7 +280,7 @@ public class IssuesActivity extends CardActivity
 			severity = severity.replace("[\"", "");
 			severity = severity.replace("\"]", "");
 			TextView severityField = (TextView) findViewById(R.id.severity);
-			severityField.setText("Severity: " + severity);
+			severityField.setText(getString(R.string.severity_detail, severity));
 		}
 
 		goRightCard1();

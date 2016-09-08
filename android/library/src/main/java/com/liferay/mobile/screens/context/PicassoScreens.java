@@ -82,6 +82,7 @@ public class PicassoScreens {
 	private static RequestCreator applyOfflinePolicies(RequestCreator picassoRequestCreator) {
 		switch (offlinePolicy) {
 
+			default:
 			case REMOTE_ONLY:
 				picassoRequestCreator.memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
 					.networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE);
