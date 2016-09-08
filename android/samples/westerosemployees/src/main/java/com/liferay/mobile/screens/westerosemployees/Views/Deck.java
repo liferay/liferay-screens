@@ -105,6 +105,8 @@ public class Deck extends FrameLayout {
 					Deck.this.onFling(movement, card);
 				}
 			}));
+
+			card.setState(CardState.MINIMIZED).setStartDelay(200 * cards.size() - i - 1).setDuration(300);
 		}
 	}
 

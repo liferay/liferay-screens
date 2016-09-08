@@ -90,33 +90,48 @@ public class Card extends FrameLayout {
 		takeSubviewsOffScreen();
 	}
 
-	public void setState(CardState state) {
+	public ViewPropertyAnimator setState(CardState state) {
+
+		ViewPropertyAnimator animator = null;
+
 		switch (state) {
 			case BACKGROUND:
-				animate().setDuration(DURATION_MILLIS).scaleX(0.95f);
-				animate().setDuration(DURATION_MILLIS).translationY(backgroundY);
+				animator = animate().setStartDelay(0)
+						.setDuration(DURATION_MILLIS)
+						.scaleX(0.95f)
+						.translationY(backgroundY);
 				break;
 			case NORMAL:
 				showArrows(true);
 				setNormalModeHeight();
-				animate().setDuration(DURATION_MILLIS).scaleX(1f);
-				animate().setDuration(DURATION_MILLIS).translationY(normalY);
+				animator = animate().setStartDelay(0)
+						.setDuration(DURATION_MILLIS)
+						.scaleX(1f)
+						.translationY(normalY);
 				break;
 			case MINIMIZED:
 				showArrows(false);
-				animate().setDuration(DURATION_MILLIS).translationY(minimizedPosition);
+				animator = animate().setStartDelay(0)
+						.setDuration(DURATION_MILLIS)
+						.translationY(minimizedPosition);
 				break;
 			case MAXIMIZED:
 				setMaximizedModeHeight();
-				animate().setDuration(DURATION_MILLIS).translationY(0);
+				animator = animate().setStartDelay(0)
+						.setDuration(DURATION_MILLIS)
+						.translationY(0);
 				break;
 
 			case HIDDEN:
-				animate().setDuration(DURATION_MILLIS).translationY(maxHeight);
+				animator = animate().setStartDelay(0)
+						.setDuration(DURATION_MILLIS)
+						.translationY(maxHeight);
 				break;
 		}
 
 		cardState = state;
+
+		return animator;
 	}
 
 	public void goRight() {
