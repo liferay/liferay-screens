@@ -148,11 +148,6 @@ public class Deck extends FrameLayout {
 			case TOUCH:
 				onClick(card);
 				break;
-			case RIGHT:
-				card.goRight();
-				break;
-			case LEFT:
-				card.goLeft();
 		}
 	}
 
