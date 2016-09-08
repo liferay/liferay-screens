@@ -27,25 +27,25 @@ public class PicassoScreens {
 	public static RequestCreator load(String url) {
 		RequestCreator requestCreator = getPicasso().load(url);
 
-		return applyOfflinePolicies(requestCreator);
+		return applyCachePolicies(requestCreator);
 	}
 
 	public static RequestCreator load(Uri uri) {
 		RequestCreator requestCreator = getPicasso().load(uri);
 
-		return applyOfflinePolicies(requestCreator);
+		return applyCachePolicies(requestCreator);
 	}
 
 	public static RequestCreator load(File file) {
 		RequestCreator requestCreator = getPicasso().load(file);
 
-		return applyOfflinePolicies(requestCreator);
+		return applyCachePolicies(requestCreator);
 	}
 
 	public static RequestCreator load(int resourceId) {
 		RequestCreator requestCreator = getPicasso().load(resourceId);
 
-		return applyOfflinePolicies(requestCreator);
+		return applyCachePolicies(requestCreator);
 	}
 
 	public static CachePolicy getCachePolicy() {
@@ -79,7 +79,7 @@ public class PicassoScreens {
 		return picasso;
 	}
 
-	private static RequestCreator applyOfflinePolicies(RequestCreator picassoRequestCreator) {
+	private static RequestCreator applyCachePolicies(RequestCreator picassoRequestCreator) {
 		switch (cachePolicy) {
 
 			default:

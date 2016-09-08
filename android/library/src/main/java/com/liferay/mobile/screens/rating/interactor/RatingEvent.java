@@ -1,9 +1,9 @@
 package com.liferay.mobile.screens.rating.interactor;
 
-import com.liferay.mobile.screens.base.interactor.event.CachedEvent;
+import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
 import org.json.JSONObject;
 
-public class RatingEvent extends CachedEvent {
+public class RatingEvent extends CacheEvent {
 
 	private double score;
 	private long classPK;

@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.base.interactor;
 
 import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
-import com.liferay.mobile.screens.base.interactor.event.CachedEvent;
+import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
 import com.liferay.mobile.screens.base.interactor.event.ErrorEvent;
 import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import com.liferay.mobile.screens.base.interactor.listener.CacheListener;
@@ -17,7 +17,7 @@ import java.util.NoSuchElementException;
 /**
  * @author Javier Gamarra
  */
-public abstract class BaseCacheReadInteractor<L extends BaseCacheListener, E extends CachedEvent>
+public abstract class BaseCacheReadInteractor<L extends BaseCacheListener, E extends CacheEvent>
 	extends BaseInteractor<L, E> {
 
 	protected long groupId;
@@ -114,12 +114,12 @@ public abstract class BaseCacheReadInteractor<L extends BaseCacheListener, E ext
 		}
 	}
 
-	protected void decorateEvent(CachedEvent event, boolean cachedRequest) {
+	protected void decorateEvent(CacheEvent event, boolean cachedRequest) {
 		decorateBaseEvent(event);
 		event.setGroupId(groupId);
 		event.setLocale(locale);
 		event.setUserId(userId);
-		event.setCachedRequest(cachedRequest);
+		event.setCached(cachedRequest);
 	}
 
 	protected boolean cached(Object... args) throws Exception {
@@ -131,7 +131,7 @@ public abstract class BaseCacheReadInteractor<L extends BaseCacheListener, E ext
 
 		if (event != null) {
 			decorateBaseEvent(event);
-			event.setCachedRequest(true);
+			event.setCached(true);
 			EventBusUtil.post(event);
 			loadingFromCache(true);
 			return true;

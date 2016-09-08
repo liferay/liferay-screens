@@ -18,26 +18,26 @@ import java.util.Date;
 import java.util.Locale;
 import org.json.JSONObject;
 
-public abstract class CachedEvent extends BasicEvent {
+public abstract class CacheEvent extends BasicEvent {
 
 	private Locale locale;
 	private long groupId;
 	private long userId;
 	private String cacheKey;
 	private Date syncDate;
-	private boolean cachedRequest;
+	private boolean cached;
 	private boolean dirty;
 	private boolean deleted;
 
-	public CachedEvent() {
+	public CacheEvent() {
 		super();
 	}
 
-	public CachedEvent(JSONObject jsonObject) {
+	public CacheEvent(JSONObject jsonObject) {
 		super(jsonObject);
 	}
 
-	public CachedEvent(Exception exception) {
+	public CacheEvent(Exception exception) {
 		super(exception);
 	}
 
@@ -66,11 +66,11 @@ public abstract class CachedEvent extends BasicEvent {
 	}
 
 	public boolean isOnlineRequest() {
-		return !cachedRequest;
+		return !cached;
 	}
 
-	public void setCachedRequest(boolean cachedRequest) {
-		this.cachedRequest = cachedRequest;
+	public void setCached(boolean cached) {
+		this.cached = cached;
 	}
 
 	public String getCacheKey() {

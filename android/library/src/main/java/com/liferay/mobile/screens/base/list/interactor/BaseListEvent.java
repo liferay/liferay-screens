@@ -14,13 +14,13 @@
 
 package com.liferay.mobile.screens.base.list.interactor;
 
-import com.liferay.mobile.screens.base.interactor.event.CachedEvent;
+import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
 import java.util.List;
 
 /**
  * @author Javier Gamarra
  */
-public class BaseListEvent<E> extends CachedEvent {
+public class BaseListEvent<E> extends CacheEvent {
 
 	private List<E> entries;
 	private int rowCount;

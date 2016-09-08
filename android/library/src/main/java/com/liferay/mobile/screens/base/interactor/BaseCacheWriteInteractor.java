@@ -2,7 +2,7 @@ package com.liferay.mobile.screens.base.interactor;
 
 import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 import com.liferay.mobile.screens.base.interactor.event.ErrorEvent;
-import com.liferay.mobile.screens.base.interactor.event.CachedEvent;
+import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
 import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.CachePolicy;
@@ -13,7 +13,7 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 /**
  * @author Javier Gamarra
  */
-public abstract class BaseCacheWriteInteractor<L extends BaseCacheListener, E extends CachedEvent>
+public abstract class BaseCacheWriteInteractor<L extends BaseCacheListener, E extends CacheEvent>
 	extends BaseCacheReadInteractor<L, E> {
 
 	public void start(final E event) {

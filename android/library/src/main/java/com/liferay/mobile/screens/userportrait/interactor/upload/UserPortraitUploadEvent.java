@@ -1,12 +1,12 @@
 package com.liferay.mobile.screens.userportrait.interactor.upload;
 
-import com.liferay.mobile.screens.base.interactor.event.CachedEvent;
+import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
 import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
  */
-public class UserPortraitUploadEvent extends CachedEvent {
+public class UserPortraitUploadEvent extends CacheEvent {
 
 	private String picturePath;
 

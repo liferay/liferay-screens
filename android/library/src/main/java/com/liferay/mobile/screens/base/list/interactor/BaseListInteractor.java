@@ -114,7 +114,7 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 		if (event != null) {
 
 			decorateBaseEvent(event);
-			event.setCachedRequest(true);
+			event.setCached(true);
 
 			Class childClass = getEventClass();
 

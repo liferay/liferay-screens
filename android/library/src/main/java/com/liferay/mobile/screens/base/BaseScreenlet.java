@@ -53,7 +53,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	implements CacheListener {
 
 	public static final String DEFAULT_ACTION = "default_action";
-	public static final String STATE_OFFLINE_POLICY = "STATE_OFFLINE_POLICY";
+	public static final String STATE_CACHE_POLICY = "STATE_CACHE_POLICY";
 	public static final String STATE_GROUP_ID = "STATE_GROUP_ID";
 	public static final String STATE_USER_ID = "STATE_USER_ID";
 	public static final String STATE_LOCALE = "STATE_LOCALE";
@@ -283,7 +283,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 		super.onRestoreInstanceState(superState);
 
-		cachePolicy = CachePolicy.values()[state.getInt(STATE_OFFLINE_POLICY)];
+		cachePolicy = CachePolicy.values()[state.getInt(STATE_CACHE_POLICY)];
 		groupId = state.getLong(STATE_GROUP_ID);
 		userId = state.getLong(STATE_USER_ID);
 		locale = (Locale) state.getSerializable(STATE_LOCALE);
@@ -317,7 +317,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		state.putParcelable(STATE_SUPER, superState);
 		state.putInt(STATE_SCREENLET_ID, screenletId);
 		state.putStringArray(STATE_INTERACTORS, interactors.keySet().toArray(new String[interactors.size()]));
-		state.putInt(STATE_OFFLINE_POLICY, cachePolicy.ordinal());
+		state.putInt(STATE_CACHE_POLICY, cachePolicy.ordinal());
 		state.putLong(STATE_GROUP_ID, groupId);
 		state.putLong(STATE_USER_ID, userId);
 		state.putSerializable(STATE_LOCALE, locale);
