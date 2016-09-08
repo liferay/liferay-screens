@@ -1,26 +1,19 @@
 package com.liferay.mobile.screens.westerosemployees.Views;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
-import android.os.Build;
-import android.support.v4.content.ContextCompat;
 import android.transition.TransitionManager;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
-import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.widget.FrameLayout;
 import com.liferay.mobile.screens.westerosemployees.R;
 import com.liferay.mobile.screens.westerosemployees.utils.CardState;
-import com.liferay.mobile.screens.westerosemployees.utils.PixelUtil;
+import com.liferay.mobile.screens.westerosemployees.utils.ViewUtil;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +54,7 @@ public class Card extends FrameLayout {
 		TypedArray array = context.obtainStyledAttributes(attributeSet, R.styleable.Card);
 
 		normalY = array.getDimensionPixelSize(R.styleable.Card_normalMarginTop,
-			PixelUtil.pixelFromDp(getContext(), NORMAL_Y));
+			ViewUtil.pixelFromDp(getContext(), NORMAL_Y));
 
 		array.recycle();
 	}
@@ -70,18 +63,7 @@ public class Card extends FrameLayout {
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		arrows = getViewsByTagPrefix(this, getContext().getString(R.string.arrow_tag));
-
-		for (View arrow : arrows) {
-			if (arrow.getTag().equals(getContext().getString(R.string.arrow_back_tag))) {
-				arrow.setOnClickListener(new OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						goLeft();
-					}
-				});
-			}
-		}
+		arrows = ViewUtil.getViewsByTagPrefix(this, getContext().getString(R.string.arrow_tag));
 	}
 
 	public CardState getCardState() {
@@ -94,7 +76,7 @@ public class Card extends FrameLayout {
 
 	public void initPosition(int minimizedPosition, int maxHeight, int maxWidth) {
 		this.minimizedPosition = minimizedPosition;
-		this.backgroundY = PixelUtil.pixelFromDp(getContext(), BACKGROUND_Y);
+		this.backgroundY = ViewUtil.pixelFromDp(getContext(), BACKGROUND_Y);
 		this.maxHeight = maxHeight;
 		this.maxWidth = maxWidth;
 
@@ -197,7 +179,7 @@ public class Card extends FrameLayout {
 		}
 
 		ViewGroup.LayoutParams params = getLayoutParams();
-		params.height = maxHeight - (maxHeight - minimizedPosition - PixelUtil.pixelFromDp(getContext(), CARD_SIZE)
+		params.height = maxHeight - (maxHeight - minimizedPosition - ViewUtil.pixelFromDp(getContext(), CARD_SIZE)
 			+ statusBarHeight);
 		setLayoutParams(params);
 	}
@@ -215,25 +197,6 @@ public class Card extends FrameLayout {
 	protected boolean isChildArrow(View arrow) {
 		return arrow.getParent().getParent().equals(this);
 	}
-
-	protected static List<View> getViewsByTagPrefix(ViewGroup root, String tagPrefix){
-		List<View> views = new ArrayList<>();
-		final int childCount = root.getChildCount();
-		for (int i = 0; i < childCount; i++) {
-			final View child = root.getChildAt(i);
-			if (child instanceof ViewGroup) {
-				views.addAll(getViewsByTagPrefix((ViewGroup) child, tagPrefix));
-			}
-
-			final Object tagObj = child.getTag();
-			if (tagObj != null && tagObj.toString().startsWith(tagPrefix)) {
-				views.add(child);
-			}
-		}
-
-		return views;
-	}
-
 
 	private void takeSubviewsOffScreen() {
 		for (int i = 1; i < getChildCount(); i++) {

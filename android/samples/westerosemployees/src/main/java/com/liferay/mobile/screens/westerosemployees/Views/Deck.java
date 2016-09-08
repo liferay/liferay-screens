@@ -8,10 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
+import com.liferay.mobile.screens.westerosemployees.R;
 import com.liferay.mobile.screens.westerosemployees.gestures.FlingListener;
 import com.liferay.mobile.screens.westerosemployees.gestures.FlingTouchListener;
 import com.liferay.mobile.screens.westerosemployees.utils.CardState;
-import com.liferay.mobile.screens.westerosemployees.utils.PixelUtil;
+import com.liferay.mobile.screens.westerosemployees.utils.ViewUtil;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,6 +80,7 @@ public class Deck extends FrameLayout {
 
 		fillDeck(this);
 		initCards();
+		initBackArrows();
 	}
 
 	protected void fillDeck(ViewGroup content) {
@@ -95,7 +97,7 @@ public class Deck extends FrameLayout {
 		for (int i = 0, size = cards.size(); i < size; i++) {
 			final Card card = cards.get(i);
 
-			int cardSize = PixelUtil.pixelFromDp(getContext(), Card.CARD_SIZE);
+			int cardSize = ViewUtil.pixelFromDp(getContext(), Card.CARD_SIZE);
 			int minimizedPosition = maxHeight - (size - i) * cardSize;
 
 			card.initPosition(minimizedPosition, maxHeight, maxWidth);
@@ -107,6 +109,35 @@ public class Deck extends FrameLayout {
 			}));
 
 			card.setState(CardState.MINIMIZED).setStartDelay(200 * cards.size() - i - 1).setDuration(300);
+		}
+	}
+
+	protected void initBackArrows() {
+		List<View> backArrows = ViewUtil.getViewsByTagPrefix(this, getContext().getString(R.string.arrow_back_tag));
+
+		for (View backArrow : backArrows) {
+			backArrow.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Card card = (Card) v.getParent().getParent();
+					card.goLeft();
+
+					if (card.getCardSubviewCurrentIndex() == 0) {
+						int selectedCard = cards.indexOf(card);
+
+						for(int i = 0; i < cards.size(); i++) {
+							Card c = cards.get(i);
+
+							if(i == selectedCard) {
+								c.setState(CardState.NORMAL);
+							}
+							else if(i > selectedCard) {
+								c.setState(CardState.MINIMIZED);
+							}
+						}
+					}
+				}
+			});
 		}
 	}
 
