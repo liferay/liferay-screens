@@ -20,8 +20,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.asset.list.interactor.AssetListInteractor;
-import com.liferay.mobile.screens.asset.list.interactor.AssetListInteractorListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
+import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +29,7 @@ import java.util.Map;
  * @author Silvio Santos
  */
 public class AssetListScreenlet extends BaseListScreenlet<AssetEntry, AssetListInteractor>
-	implements AssetListInteractorListener {
+	implements BaseListInteractorListener<AssetEntry> {
 
 	private long classNameId;
 	private String portletItemName;

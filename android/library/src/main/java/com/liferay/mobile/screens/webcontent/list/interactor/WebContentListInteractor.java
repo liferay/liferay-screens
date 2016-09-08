@@ -3,6 +3,7 @@ package com.liferay.mobile.screens.webcontent.list.interactor;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
+import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
 import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import com.liferay.mobile.screens.webcontent.WebContent;
@@ -16,7 +17,7 @@ import org.json.JSONObject;
  * @author Javier Gamarra
  */
 public class WebContentListInteractor
-	extends BaseListInteractor<WebContentListInteractorListener, WebContentDisplayEvent> {
+	extends BaseListInteractor<BaseListInteractorListener<WebContent>, WebContentDisplayEvent> {
 
 	@Override
 	protected String getIdFromArgs(Object... args) {

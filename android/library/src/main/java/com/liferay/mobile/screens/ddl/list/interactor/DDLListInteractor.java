@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.ddl.list.interactor;
 
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
+import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
 import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
@@ -29,7 +30,7 @@ import org.json.JSONObject;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListInteractor extends BaseListInteractor<DDLListInteractorListener, DDLFormEvent> {
+public class DDLListInteractor extends BaseListInteractor<BaseListInteractorListener<Record>, DDLFormEvent> {
 
 	protected void validate(long recordSetId, int startRow, int endRow, Locale locale) {
 		super.validate(startRow, endRow, locale);

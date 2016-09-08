@@ -6,11 +6,11 @@ import android.util.AttributeSet;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
+import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
 import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
 import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractor;
-import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorListener;
 import com.liferay.mobile.screens.comment.list.view.CommentListViewModel;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 
@@ -18,7 +18,7 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
  * @author Alejandro Hernández
  */
 public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, CommentListInteractor>
-	implements CommentListInteractorListener, CommentDisplayListener {
+	implements CommentDisplayListener, BaseListInteractorListener<CommentEntry> {
 
 	private CachePolicy cachePolicy;
 	private String className;

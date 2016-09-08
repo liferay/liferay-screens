@@ -2,6 +2,7 @@ package com.liferay.mobile.screens.comment.list.interactor;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
+import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
 import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
@@ -14,7 +15,7 @@ import static com.liferay.mobile.screens.cache.Cache.SEPARATOR;
 /**
  * @author Alejandro Hernández
  */
-public class CommentListInteractor extends BaseListInteractor<CommentListInteractorListener, CommentEvent> {
+public class CommentListInteractor extends BaseListInteractor<BaseListInteractorListener<CommentEntry>, CommentEvent> {
 
 	@Override
 	protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {

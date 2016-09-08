@@ -6,15 +6,15 @@ import android.util.AttributeSet;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
+import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
 import com.liferay.mobile.screens.webcontent.WebContent;
 import com.liferay.mobile.screens.webcontent.list.interactor.WebContentListInteractor;
-import com.liferay.mobile.screens.webcontent.list.interactor.WebContentListInteractorListener;
 
 /**
  * @author Javier Gamarra
  */
 public class WebContentListScreenlet extends BaseListScreenlet<WebContent, WebContentListInteractor>
-	implements WebContentListInteractorListener {
+	implements BaseListInteractorListener<WebContent> {
 
 	private long folderId;
 

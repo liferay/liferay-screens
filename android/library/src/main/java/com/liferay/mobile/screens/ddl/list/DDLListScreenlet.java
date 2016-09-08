@@ -20,8 +20,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
+import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractor;
-import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorListener;
 import com.liferay.mobile.screens.ddl.model.Record;
 
 /**
@@ -29,7 +29,7 @@ import com.liferay.mobile.screens.ddl.model.Record;
  * @author Silvio Santos
  */
 public class DDLListScreenlet extends BaseListScreenlet<Record, DDLListInteractor>
-	implements DDLListInteractorListener {
+	implements BaseListInteractorListener<Record> {
 
 	private long recordSetId;
 

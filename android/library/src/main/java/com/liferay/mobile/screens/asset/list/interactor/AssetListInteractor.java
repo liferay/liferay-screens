@@ -21,6 +21,7 @@ import com.liferay.mobile.screens.asset.list.connector.AssetEntryConnector;
 import com.liferay.mobile.screens.asset.list.connector.ScreensAssetEntryConnector;
 import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
+import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
 import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.util.JSONUtil;
@@ -37,7 +38,7 @@ import org.json.JSONObject;
 /**
  * @author Silvio Santos
  */
-public class AssetListInteractor extends BaseListInteractor<AssetListInteractorListener, AssetEvent> {
+public class AssetListInteractor extends BaseListInteractor<BaseListInteractorListener<AssetEntry>, AssetEvent> {
 
 	public BaseListEvent<AssetEvent> execute(Query query, Object... args) throws Exception {
 
