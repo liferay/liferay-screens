@@ -107,24 +107,7 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 			}
 			else {
 				self.performSegueWithIdentifier("login", sender: nil)
-			}
 		}
-	}
-
-
-	//MARK: AssetDisplayScreenletDelegate
-
-	func screenlet(screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView? {
-		if let type = asset.attributes["object"]?.allKeys.first as? String {
-			if type == "user" {
-				let vc = UserDisplayViewController(nibName: "UserDisplayViewController", bundle: nil)
-				self.addChildViewController(vc)
-				screenlet.addSubview(vc.view)
-				vc.view.frame = screenlet.bounds
-				vc.user = User(attributes: asset.attributes)
-			}
-		}
-		return nil
 	}
 
 	//MARK: CardDeckDataSource

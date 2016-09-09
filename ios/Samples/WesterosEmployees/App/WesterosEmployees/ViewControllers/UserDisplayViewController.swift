@@ -16,31 +16,46 @@ import LiferayScreens
 
 public class UserDisplayViewController: UIViewController {
 
+
+	//MARK: Outlets
+
 	@IBOutlet weak var userPortraitScreenlet: UserPortraitScreenlet?
-	@IBOutlet weak var usernameLabel: UILabel?
+	@IBOutlet weak var userNameLabel: UILabel?
 	@IBOutlet weak var jobTitleLabel: UILabel?
 	@IBOutlet weak var emailLabel: UILabel?
-	@IBOutlet weak var nicknameLabel: UILabel?
-
-	@IBOutlet weak var emailText: UILabel! {
+	@IBOutlet weak var nickNameLabel: UILabel?
+	@IBOutlet weak var signOutButton: UIButton? {
 		didSet {
-			usernameLabel?.textColor = WesterosThemeBasicRed
+			signOutButton?.layer.borderWidth = 3.0
+			signOutButton?.layer.borderColor = WesterosThemeBasicRed.CGColor
 		}
 	}
 
-	@IBOutlet weak var nicknameText: UILabel! {
-		didSet {
-			usernameLabel?.textColor = WesterosThemeBasicRed
-		}
+
+	//MARK: View actions
+
+	@IBAction func goBackButtonClick() {
+		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 
-	public var user: User? {
-		didSet {
-			userPortraitScreenlet?.load(userId: user!.userId)
-			usernameLabel?.text = "\(user!.firstName) \(user!.lastName)"
-			jobTitleLabel?.text = user!.jobTitle
-			emailLabel?.text = user!.email
-			nicknameLabel?.text = user!.screenName
-		}
+
+	//MARK: UIViewController
+
+	public override func viewDidLoad() {
+		userPortraitScreenlet?.load(userId: SessionContext.currentContext!.userId!)
+
+		let firstName = SessionContext.currentContext!.userAttribute("firstName") as! String
+		let middleName = SessionContext.currentContext!.userAttribute("middleName") as! String
+		let lastName = SessionContext.currentContext!.userAttribute("lastName") as! String
+		userNameLabel?.text = "\(firstName) \(middleName) \(lastName)"
+			.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+			.stringByReplacingOccurrencesOfString("  ", withString: " ")
+
+		jobTitleLabel?.text = SessionContext.currentContext!.userAttribute("jobTitle") as? String
+
+		emailLabel?.text = SessionContext.currentContext!.userAttribute("emailAddress") as? String
+
+		nickNameLabel?.text = SessionContext.currentContext!.userAttribute("screenName") as? String
 	}
+
 }
