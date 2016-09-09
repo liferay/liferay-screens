@@ -1,6 +1,7 @@
 package com.liferay.mobile.screens.dlfile.display;
 
 import com.liferay.mobile.screens.asset.list.AssetEntry;
+import com.liferay.mobile.screens.util.JSONUtil;
 import java.util.Map;
 
 /**
@@ -16,5 +17,13 @@ public class FileEntry extends AssetEntry {
 		String url = (String) _values.get("url");
 		int index = url.lastIndexOf("/");
 		return url.substring(0, index);
+	}
+
+	public Map<String, Object> getFileEntry() {
+		return (Map<String, Object>) _values.get("fileEntry");
+	}
+
+	public String getExtension() {
+		return (String) getFileEntry().get("extension");
 	}
 }
