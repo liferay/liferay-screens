@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ImageDisplayView_westeros_blog" customModule="WesterosEmployees" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="115" height="116"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no-photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="ktK-FI-VDI">
+                    <rect key="frame" x="0.0" y="0.0" width="115" height="116"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="ktK-FI-VDI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Qcp-nC-jKM"/>
+                <constraint firstAttribute="trailing" secondItem="ktK-FI-VDI" secondAttribute="trailing" id="foa-8y-qlV"/>
+                <constraint firstAttribute="bottom" secondItem="ktK-FI-VDI" secondAttribute="bottom" id="hAu-nN-5Ix"/>
+                <constraint firstItem="ktK-FI-VDI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hIn-aI-DhK"/>
+                <constraint firstItem="ktK-FI-VDI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jbl-ep-vqW"/>
+                <constraint firstItem="ktK-FI-VDI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="m9d-iD-Ccl"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="imageView" destination="ktK-FI-VDI" id="hln-aN-nF5"/>
+            </connections>
+            <point key="canvasLocation" x="227.5" y="265"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="no-photo.png" width="48" height="48"/>
+    </resources>
+</document>
