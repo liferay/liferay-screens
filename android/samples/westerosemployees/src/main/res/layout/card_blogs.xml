@@ -3,8 +3,10 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:background="@drawable/westeros_button_ripple"
 	android:elevation="8dp"
+
 	>
 
 	<RelativeLayout
@@ -28,6 +30,14 @@
 			android:tag="@string/arrow_tag"
 			android:visibility="invisible"
 			style="@style/westeros_arrow"
+			/>
+
+		<com.liferay.mobile.screens.asset.list.AssetListScreenlet
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_below="@id/blogs_title"
+			app:classNameId="20011"
+			app:layoutId="@layout/asset_list_westeros_blogs"
 			/>
 
 	</RelativeLayout>
