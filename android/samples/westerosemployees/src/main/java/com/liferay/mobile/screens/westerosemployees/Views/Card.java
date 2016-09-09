@@ -26,7 +26,7 @@ public class Card extends FrameLayout {
 	public static final int DURATION_MILLIS = 300;
 	public static final int CARD_SIZE = 60;
 
-	public static int NORMAL_Y = MARGIN * 5;
+	public static int NORMAL_Y = MARGIN * 7;
 	public static int BACKGROUND_Y = MARGIN;
 
 	public Card(Context context) {
