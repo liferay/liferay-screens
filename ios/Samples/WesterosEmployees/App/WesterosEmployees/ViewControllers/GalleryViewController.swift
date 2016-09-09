@@ -19,7 +19,11 @@ class GalleryViewController: CardViewController {
 
 	//MARK: Outlets
 
-	@IBOutlet weak var imageGalleryScreenlet: ImageGalleryScreenlet?
+	@IBOutlet weak var imageGalleryScreenlet: ImageGalleryScreenlet? {
+		didSet {
+			imageGalleryScreenlet?.presentingViewController = self
+		}
+	}
 
 
 	//MARK: Init methods
@@ -33,5 +37,20 @@ class GalleryViewController: CardViewController {
 
 	func load() {
 		imageGalleryScreenlet?.loadList()
+	}
+
+	func startGalleryUpload() {
+		imageGalleryScreenlet?.startMediaSelectorAndUpload()
+	}
+
+
+	//MARK: CardViewController
+
+	override var cardView: CardView? {
+		didSet {
+			cardView?.addPage(self.view)
+			cardView?.presentingController = self
+			cardView?.secondaryButton.addTarget(self, action: #selector(GalleryViewController.startGalleryUpload), forControlEvents: .TouchUpInside)
+		}
 	}
 }
