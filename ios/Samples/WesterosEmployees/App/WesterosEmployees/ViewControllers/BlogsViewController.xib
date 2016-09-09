@@ -23,7 +23,7 @@
                             <integer key="value" value="20011"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros_blog"/>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
