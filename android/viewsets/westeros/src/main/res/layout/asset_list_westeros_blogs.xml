@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.westeros.asset.list.AssetListView
+<com.liferay.mobile.screens.viewsets.westeros.asset.list.blogs.AssetListView
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:id="@+id/liferay_list_screenlet"
 	android:layout_width="match_parent"
@@ -20,4 +20,4 @@
 		android:layout_height="wrap_content"
 		android:visibility="gone"
 		/>
-</com.liferay.mobile.screens.viewsets.westeros.asset.list.AssetListView>
+</com.liferay.mobile.screens.viewsets.westeros.asset.list.blogs.AssetListView>

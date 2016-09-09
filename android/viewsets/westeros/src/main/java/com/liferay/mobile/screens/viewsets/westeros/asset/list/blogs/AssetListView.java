@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.viewsets.westeros.asset.list;
+package com.liferay.mobile.screens.viewsets.westeros.asset.list.blogs;
 
 import android.content.Context;
 import android.util.AttributeSet;
