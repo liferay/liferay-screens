@@ -38,6 +38,11 @@ public class UserDisplayViewController: UIViewController {
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 
+	@IBAction func signOutButtonClick() {
+		SessionContext.logout()
+		self.dismissViewControllerAnimated(true, completion: nil)
+	}
+
 
 	//MARK: UIViewController
 
