@@ -16,14 +16,14 @@
             <rect key="frame" x="0.0" y="0.0" width="363" height="289"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MIW-NX-StD" customClass="AssetListScreenlet" customModule="LiferayScreens">
+                <view contentMode="scaleToFill" semanticContentAttribute="playback" translatesAutoresizingMaskIntoConstraints="NO" id="MIW-NX-StD" customClass="AssetListScreenlet" customModule="LiferayScreens">
                     <rect key="frame" x="0.0" y="0.0" width="363" height="289"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
                         <userDefinedRuntimeAttribute type="number" keyPath="classNameId">
                             <integer key="value" value="20015"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros_custom"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros_doc"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="portletItemName" value="DocumentationWesterosEmployees"/>
                     </userDefinedRuntimeAttributes>
                 </view>

@@ -14,7 +14,7 @@
 import UIKit
 import LiferayScreens
 
-class AssetListView_westeros_custom: AssetListView_westeros {
+class AssetListView_westeros_doc: AssetListView_westeros {
 
 	let DocumentCellId = "documentCell"
 
@@ -58,18 +58,5 @@ class AssetListView_westeros_custom: AssetListView_westeros {
 
 		let fileEntry = FileEntry(attributes: entry.attributes)
 		docCell.fileExtension = fileEntry.fileExtension!
-	}
-
-	override func doFillInProgressCell(row row: Int, cell: UITableViewCell) {
-		cell.textLabel?.text = "..."
-		cell.accessoryType = .None
-
-		if let image = NSBundle.imageInBundles(
-			name: "default-hourglass",
-			currentClass: self.dynamicType) {
-
-			cell.accessoryView = UIImageView(image: image)
-			cell.accessoryView?.frame = CGRectMake(0, 0, image.size.width, image.size.height)
-		}
 	}
 }
