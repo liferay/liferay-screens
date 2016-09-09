@@ -37,7 +37,9 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 
 	//MARK: View actions
 
-
+	@IBAction func userButtonClicked() {
+		performSegueWithIdentifier("user_profile", sender: self)
+	}
 
 
 	//MARK: UIViewController

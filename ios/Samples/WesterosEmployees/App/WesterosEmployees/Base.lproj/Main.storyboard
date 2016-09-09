@@ -56,10 +56,20 @@
                                             <constraint firstItem="8ZJ-Uu-WlF" firstAttribute="top" secondItem="PxX-Vo-WhH" secondAttribute="top" id="nUu-62-Bmt"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPM-B1-9qN" userLabel="User Button">
+                                        <rect key="frame" x="16" y="40" width="343" height="60"/>
+                                        <connections>
+                                            <action selector="userButtonClicked" destination="sUr-X0-jI8" eventType="touchUpInside" id="RiS-eZ-Ub0"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="PxX-Vo-WhH" firstAttribute="top" secondItem="kjo-Hh-Kwh" secondAttribute="top" constant="40" id="9y5-mY-z1Q"/>
+                                    <constraint firstItem="PxX-Vo-WhH" firstAttribute="centerY" secondItem="IPM-B1-9qN" secondAttribute="centerY" id="C1x-8w-TmD"/>
+                                    <constraint firstItem="PxX-Vo-WhH" firstAttribute="height" secondItem="IPM-B1-9qN" secondAttribute="height" id="LRF-72-v8m"/>
+                                    <constraint firstItem="PxX-Vo-WhH" firstAttribute="width" secondItem="IPM-B1-9qN" secondAttribute="width" id="dnN-cW-AKq"/>
                                     <constraint firstAttribute="trailing" secondItem="PxX-Vo-WhH" secondAttribute="trailing" constant="16" id="iUb-Ov-74n"/>
+                                    <constraint firstItem="PxX-Vo-WhH" firstAttribute="centerX" secondItem="IPM-B1-9qN" secondAttribute="centerX" id="kZn-tI-XGM"/>
                                     <constraint firstItem="PxX-Vo-WhH" firstAttribute="leading" secondItem="kjo-Hh-Kwh" secondAttribute="leading" constant="16" id="tvO-1r-jbo"/>
                                 </constraints>
                             </view>
