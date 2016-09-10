@@ -24,7 +24,6 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_margin="10dp"
-		android:onClick="change"
 		android:text="@string/change_surname"
 		/>
 
@@ -33,7 +32,6 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_margin="10dp"
-		android:onClick="relogin"
 		android:text="@string/relogin"
 		/>
 
