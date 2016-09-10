@@ -21,6 +21,7 @@ import android.view.View;
 import com.liferay.mobile.screens.base.interactor.listener.CacheListener;
 import com.liferay.mobile.screens.userportrait.UserPortraitListener;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
+import com.liferay.mobile.screens.util.LiferayLogger;
 
 /**
  * @author Javier Gamarra
@@ -50,7 +51,7 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 	@Override
 	public Bitmap onUserPortraitLoadReceived(Bitmap bitmap) {
 		info("User portrait received!");
-
+		LiferayLogger.i("Bitmap received with width " + bitmap.getWidth() + " and height " + bitmap.getHeight());
 		return null;
 	}
 

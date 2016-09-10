@@ -23,10 +23,10 @@ public class WebContentListAdapter extends BaseListAdapter<WebContent, WebConten
 
 	@Override
 	protected void fillHolder(WebContent entry, ViewHolder holder) {
-		holder.textView.setText(calculateValue(entry, holder));
+		holder.textView.setText(calculateValue(entry));
 	}
 
-	protected String calculateValue(WebContent entry, ViewHolder holder) {
+	protected String calculateValue(WebContent entry) {
 		if (getLabelFields().isEmpty()) {
 			return entry.getTitle();
 		} else {

@@ -63,18 +63,8 @@ public class SignUpView extends LinearLayout implements SignUpViewModel, View.On
 	}
 
 	@Override
-	public String getJobTitle() {
-		return null;
-	}
-
-	@Override
 	public String getLastName() {
 		return lastName.getText().toString();
-	}
-
-	@Override
-	public String getMiddleName() {
-		return null;
 	}
 
 	@Override
@@ -83,7 +73,17 @@ public class SignUpView extends LinearLayout implements SignUpViewModel, View.On
 	}
 
 	@Override
+	public String getMiddleName() {
+		return null;
+	}
+
+	@Override
 	public String getScreenName() {
+		return null;
+	}
+
+	@Override
+	public String getJobTitle() {
 		return null;
 	}
 

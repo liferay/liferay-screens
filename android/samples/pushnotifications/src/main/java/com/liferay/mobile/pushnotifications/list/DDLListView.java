@@ -89,7 +89,7 @@ public class DDLListView extends BaseListScreenletView<Record, DDLListAdapter.Im
 		Parcelable superState = state.getParcelable(STATE_SUPER);
 		super.onRestoreInstanceState(superState);
 
-		List labelFields = state.getStringArrayList(STATE_LABEL_FIELDS);
+		List<String> labelFields = state.getStringArrayList(STATE_LABEL_FIELDS);
 
 		getAdapter().setLabelFields(labelFields);
 	}
