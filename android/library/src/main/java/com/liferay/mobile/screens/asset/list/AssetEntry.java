@@ -84,7 +84,7 @@ public class AssetEntry implements Parcelable {
 	}
 
 	private long getFolder() {
-		if (values.get("folderId") != null) {
+		if (values.containsKey("folderId")) {
 			return (long) values.get("folderId");
 		}
 		return 0;
