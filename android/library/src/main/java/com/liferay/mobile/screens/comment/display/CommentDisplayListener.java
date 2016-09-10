@@ -8,15 +8,9 @@ import com.liferay.mobile.screens.comment.CommentEntry;
  */
 public interface CommentDisplayListener extends BaseCacheListener {
 
-	void onLoadCommentFailure(long commentId, Exception e);
-
 	void onLoadCommentSuccess(CommentEntry commentEntry);
 
-	void onDeleteCommentFailure(CommentEntry commentEntry, Exception e);
-
 	void onDeleteCommentSuccess(CommentEntry commentEntry);
-
-	void onUpdateCommentFailure(CommentEntry commentEntry, Exception e);
 
 	void onUpdateCommentSuccess(CommentEntry commentEntry);
 }

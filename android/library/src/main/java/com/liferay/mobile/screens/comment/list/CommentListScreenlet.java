@@ -102,21 +102,13 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Commen
 		if (getListener() != null) {
 			getListener().error(e, userAction);
 		}
-	}
-
-	@Override
-	public void onLoadCommentFailure(long commentId, Exception e) {
+		if (getCommentListListener() != null) {
+			getCommentListListener().error(e, userAction);
+		}
 	}
 
 	@Override
 	public void onLoadCommentSuccess(CommentEntry commentEntry) {
-	}
-
-	@Override
-	public void onDeleteCommentFailure(CommentEntry commentEntry, Exception e) {
-		if (getCommentListListener() != null) {
-			getCommentListListener().onDeleteCommentFailure(commentEntry, e);
-		}
 	}
 
 	@Override
@@ -125,13 +117,6 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Commen
 
 		if (getCommentListListener() != null) {
 			getCommentListListener().onDeleteCommentSuccess(commentEntry);
-		}
-	}
-
-	@Override
-	public void onUpdateCommentFailure(CommentEntry commentEntry, Exception e) {
-		if (getCommentListListener() != null) {
-			getCommentListListener().onUpdateCommentFailure(commentEntry, e);
 		}
 	}
 
