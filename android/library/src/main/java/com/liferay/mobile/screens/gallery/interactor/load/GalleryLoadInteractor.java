@@ -22,6 +22,8 @@ public class GalleryLoadInteractor extends BaseListInteractor<GalleryInteractorL
 		long folderId = (long) args[0];
 		JSONArray mimeTypes = getMimeTypes((String[]) args[1]);
 
+		validate(groupId, folderId);
+
 		return new DLAppService(getSession()).getFileEntries(groupId, folderId, mimeTypes, query.getStartRow(),
 			query.getEndRow(), query.getComparatorJSONWrapper());
 	}
@@ -31,6 +33,8 @@ public class GalleryLoadInteractor extends BaseListInteractor<GalleryInteractorL
 
 		long folderId = (long) args[0];
 		JSONArray mimeTypes = getMimeTypes((String[]) args[1]);
+
+		validate(groupId, folderId);
 
 		return new DLAppService(getSession()).getFileEntriesCount(groupId, folderId, mimeTypes);
 	}

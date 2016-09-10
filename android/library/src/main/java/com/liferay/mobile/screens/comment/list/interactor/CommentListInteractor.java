@@ -23,6 +23,8 @@ public class CommentListInteractor extends BaseListInteractor<BaseListInteractor
 		String className = (String) args[0];
 		long classPK = (long) args[1];
 
+		validate(groupId, className, classPK);
+
 		return getService(getSession()).getComments(groupId, className, classPK, query.getStartRow(),
 			query.getEndRow());
 	}
@@ -32,6 +34,8 @@ public class CommentListInteractor extends BaseListInteractor<BaseListInteractor
 
 		String className = (String) args[0];
 		long classPK = (long) args[1];
+
+		validate(groupId, className, classPK);
 
 		return getService(getSession()).getCommentsCount(groupId, className, classPK);
 	}

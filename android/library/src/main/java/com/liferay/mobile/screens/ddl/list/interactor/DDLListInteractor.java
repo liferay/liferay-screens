@@ -45,6 +45,8 @@ public class DDLListInteractor extends BaseListInteractor<BaseListInteractorList
 		long recordSetId = (long) args[0];
 		long userId = (long) args[1];
 
+		validate(recordSetId, query.getStartRow(), query.getEndRow(), locale);
+
 		ScreensDDLRecordConnector ddlRecordService =
 			ServiceProvider.getInstance().getScreensDDLRecordConnector(getSession());
 		int startRow = query.getStartRow();
@@ -61,6 +63,8 @@ public class DDLListInteractor extends BaseListInteractor<BaseListInteractorList
 	protected Integer getPageRowCountRequest(Object... args) throws Exception {
 		long recordSetId = (long) args[0];
 		long userId = (long) args[1];
+
+		validate(recordSetId, query.getStartRow(), query.getEndRow(), locale);
 
 		ScreensDDLRecordConnector ddlRecordService =
 			ServiceProvider.getInstance().getScreensDDLRecordConnector(getSession());

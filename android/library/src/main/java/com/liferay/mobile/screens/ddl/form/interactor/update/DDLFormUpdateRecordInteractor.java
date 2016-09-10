@@ -34,6 +34,8 @@ public class DDLFormUpdateRecordInteractor extends BaseCacheWriteInteractor<DDLF
 
 		Record record = event.getRecord();
 
+		validate(groupId, record);
+
 		JSONObject fieldsValues = new JSONObject(record.getData());
 
 		final JSONObject serviceContextAttributes = new JSONObject();
