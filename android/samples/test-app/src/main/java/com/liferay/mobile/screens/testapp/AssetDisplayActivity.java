@@ -43,7 +43,7 @@ public class AssetDisplayActivity extends ThemeActivity
 	@Override
 	public void onConfigureChildScreenlet(AssetDisplayScreenlet screenlet, BaseScreenlet innerScreenlet,
 		AssetEntry assetEntry) {
-		if (assetEntry.getObjectType().equals("blogsEntry")) {
+		if ("blogsEntry".equals(assetEntry.getObjectType())) {
 			innerScreenlet.setBackgroundColor(ContextCompat.getColor(this, R.color.light_gray_westeros));
 		}
 		info("Configure your screenlet here! -> " + assetEntry.getTitle());
@@ -51,7 +51,7 @@ public class AssetDisplayActivity extends ThemeActivity
 
 	@Override
 	public View onRenderCustomAsset(AssetEntry assetEntry) {
-		if (assetEntry.getObjectType().equals("user")) {
+		if (assetEntry instanceof UserAsset) {
 			View view = getLayoutInflater().inflate(R.layout.user_display, null);
 			UserAsset user = (UserAsset) assetEntry;
 
