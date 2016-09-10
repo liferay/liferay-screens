@@ -62,6 +62,7 @@ public class GalleryUploadService extends IntentService {
 		}
 
 		int screenletId = intent.getIntExtra("screenletId", 0);
+		String actionName = intent.getStringExtra("actionName");
 		long repositoryId = intent.getLongExtra("repositoryId", 0);
 		long folderId = intent.getLongExtra("folderId", 0);
 		String title = intent.getStringExtra("title");
@@ -71,19 +72,25 @@ public class GalleryUploadService extends IntentService {
 
 		try {
 			JSONObject jsonObject =
-				uploadImageEntry(screenletId, repositoryId, folderId, title, description, changeLog, picturePath);
+				uploadImageEntry(repositoryId, folderId, title, description, changeLog, picturePath);
 			ImageEntry imageEntry = new ImageEntry(JSONUtil.toMap(jsonObject));
 			Bitmap thumbnail = Picasso.with(this).load(new File(picturePath)).get();
 			imageEntry.setImage(thumbnail);
 
-			EventBusUtil.post(new GalleryEvent(imageEntry));
+			GalleryEvent event = new GalleryEvent(imageEntry);
+			event.setTargetScreenletId(screenletId);
+			event.setActionName(actionName);
+			EventBusUtil.post(event);
 		} catch (Exception e) {
-			EventBusUtil.post(new GalleryEvent(e));
+			GalleryEvent event = new GalleryEvent(e);
+			event.setTargetScreenletId(screenletId);
+			event.setActionName(actionName);
+			EventBusUtil.post(event);
 		}
 	}
 
-	private JSONObject uploadImageEntry(int screenletId, long repositoryId, long folderId, String title,
-		String description, String changeLog, String picturePath) throws Exception {
+	private JSONObject uploadImageEntry(long repositoryId, long folderId, String title, String description,
+		String changeLog, String picturePath) throws Exception {
 
 		String sourceName = picturePath.substring(picturePath.lastIndexOf('/') + 1);
 		if (title.isEmpty()) {
