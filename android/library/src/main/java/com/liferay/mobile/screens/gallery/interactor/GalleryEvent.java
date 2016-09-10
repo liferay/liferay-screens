@@ -7,12 +7,12 @@ public class GalleryEvent extends ListEvent<ImageEntry> {
 
 	private String title;
 	private String description;
+	private String changeLog;
 	private int totalBytes;
 	private int totalBytesSent;
 	private boolean completed;
 	private ImageEntry imageEntry;
 	private String picturePath;
-	private String changeLog;
 	private boolean starting;
 
 	public GalleryEvent() {
@@ -36,11 +36,22 @@ public class GalleryEvent extends ListEvent<ImageEntry> {
 		super(e);
 	}
 
-	public GalleryEvent(String picturePath, String title, String description) {
+	public GalleryEvent(String picturePath, String title, String description, String changeLog) {
 		this.picturePath = picturePath;
 		this.title = title;
 		this.description = description;
+		this.changeLog = changeLog;
 		starting = false;
+	}
+
+	@Override
+	public String getListKey() {
+		return imageEntry.getImageUrl();
+	}
+
+	@Override
+	public ImageEntry getModel() {
+		return imageEntry;
 	}
 
 	public int getTotalBytes() {
@@ -63,16 +74,6 @@ public class GalleryEvent extends ListEvent<ImageEntry> {
 		this.imageEntry = imageEntry;
 	}
 
-	@Override
-	public String getListKey() {
-		return imageEntry.getImageUrl();
-	}
-
-	@Override
-	public ImageEntry getModel() {
-		return imageEntry;
-	}
-
 	public String getPicturePath() {
 		return picturePath;
 	}
@@ -87,6 +88,10 @@ public class GalleryEvent extends ListEvent<ImageEntry> {
 
 	public String getChangeLog() {
 		return changeLog;
+	}
+
+	public void setChangeLog(String changeLog) {
+		this.changeLog = changeLog;
 	}
 
 	public boolean isStarting() {

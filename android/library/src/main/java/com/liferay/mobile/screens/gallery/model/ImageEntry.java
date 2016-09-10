@@ -106,14 +106,6 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 		return mimeType;
 	}
 
-	public String description() {
-		return description;
-	}
-
-	public long createDate() {
-		return createDate;
-	}
-
 	public long getCreatorUserId() {
 		return creatorUserId;
 	}
