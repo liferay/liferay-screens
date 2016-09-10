@@ -28,7 +28,6 @@ public class UpdateUserInteractor {
 
 			UserConnector userConnector = ServiceProvider.getInstance().getUserConnector(sessionFromCurrentSession);
 
-			//FIXME example implementation!
 			userConnector.updateUser(user.getInt("userId"), "test2", newPassword, newPassword, false,
 				user.getString("reminderQueryQuestion"), user.getString("reminderQueryAnswer"),
 				user.getString("screenName"), emailAddress, user.getInt("facebookId"), user.getString("openId"),

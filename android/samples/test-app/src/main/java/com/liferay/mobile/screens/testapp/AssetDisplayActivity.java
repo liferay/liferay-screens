@@ -9,7 +9,7 @@ import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
 import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.user.display.UserAsset;
+import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 
 /**
@@ -51,9 +51,9 @@ public class AssetDisplayActivity extends ThemeActivity
 
 	@Override
 	public View onRenderCustomAsset(AssetEntry assetEntry) {
-		if (assetEntry instanceof UserAsset) {
+		if (assetEntry instanceof User) {
 			View view = getLayoutInflater().inflate(R.layout.user_display, null);
-			UserAsset user = (UserAsset) assetEntry;
+			User user = (User) assetEntry;
 
 			TextView greeting = (TextView) view.findViewById(R.id.liferay_user_greeting);
 			UserPortraitScreenlet userPortraitScreenlet =
