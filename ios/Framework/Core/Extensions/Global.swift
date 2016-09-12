@@ -210,3 +210,7 @@ public func cacheFilePath() -> String {
 
 	return cachePath
 }
+
+public func isCacheFilePath(path: String) -> Bool {
+	return path.containsString("/Library/Caches/")
+}
