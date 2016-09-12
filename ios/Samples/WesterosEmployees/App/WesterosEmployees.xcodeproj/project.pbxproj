@@ -117,6 +117,8 @@
 		0BD07A261D82C4C200470A2E /* no-photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD07A231D82C4C200470A2E /* no-photo.png */; };
 		0BD07A271D82C4C200470A2E /* no-photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD07A241D82C4C200470A2E /* no-photo@2x.png */; };
 		0BD07A281D82C4C200470A2E /* no-photo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD07A251D82C4C200470A2E /* no-photo@3x.png */; };
+		0BD07A2E1D82EEA100470A2E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD07A2D1D82EEA100470A2E /* DetailViewController.swift */; };
+		0BD07A301D82EEC500470A2E /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD07A2F1D82EEC500470A2E /* DetailViewController.xib */; };
 		4A05F25992DBA9E39C52A44F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4E72B9B4122BAE349CEF7 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -234,6 +236,8 @@
 		0BD07A231D82C4C200470A2E /* no-photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no-photo.png"; sourceTree = "<group>"; };
 		0BD07A241D82C4C200470A2E /* no-photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no-photo@2x.png"; sourceTree = "<group>"; };
 		0BD07A251D82C4C200470A2E /* no-photo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no-photo@3x.png"; sourceTree = "<group>"; };
+		0BD07A2D1D82EEA100470A2E /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		0BD07A2F1D82EEC500470A2E /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		1824BD97996F1C2F00DAA278 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		67B4E72B9B4122BAE349CEF7 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1333B220C6252F61EB4CA33 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -403,6 +407,8 @@
 				0B35AF701D6C361C002E3D2F /* AuthViewController.swift */,
 				0B282F141D7ED9210090F800 /* BlogsViewController.swift */,
 				0B282F151D7ED9210090F800 /* BlogsViewController.xib */,
+				0BD07A2D1D82EEA100470A2E /* DetailViewController.swift */,
+				0BD07A2F1D82EEC500470A2E /* DetailViewController.xib */,
 				0B282F101D7ED7BE0090F800 /* DocumentationViewController.swift */,
 				0B282F111D7ED7BE0090F800 /* DocumentationViewController.xib */,
 				0B9309521D6DBE40003824D6 /* ForgotPaswordViewController.swift */,
@@ -629,6 +635,7 @@
 				0BC6BA311D815B380042156E /* DocumentationTableViewCell_westeros.xib in Resources */,
 				0B0A22A21D6B0CDA0061B50D /* LaunchScreen.storyboard in Resources */,
 				0B26EB1E1D81873C000201C6 /* UserProfile.storyboard in Resources */,
+				0BD07A301D82EEC500470A2E /* DetailViewController.xib in Resources */,
 				0B0A23951D6B22EF0061B50D /* icon_LEFT@3x.png in Resources */,
 				0BC6BA491D8188670042156E /* file-pdf@3x.png in Resources */,
 				0BC6BA421D8188670042156E /* file-music@2x.png in Resources */,
@@ -731,6 +738,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BD07A2E1D82EEA100470A2E /* DetailViewController.swift in Sources */,
 				0B9309531D6DBE40003824D6 /* ForgotPaswordViewController.swift in Sources */,
 				0BD07A1C1D82BEE200470A2E /* ImageDisplayView_westeros_blog.swift in Sources */,
 				0B35AF6F1D6C3614002E3D2F /* HomeViewController.swift in Sources */,
