@@ -20,7 +20,7 @@ public class FileEntry extends AssetEntry {
 	}
 
 	public Map<String, Object> getFileEntry() {
-		return (Map<String, Object>) _values.get("fileEntry");
+		return (Map<String, Object>) getObject().get("fileEntry");
 	}
 
 	public String getExtension() {

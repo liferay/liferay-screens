@@ -18,7 +18,7 @@ public class BlogsEntry extends AssetEntry {
 	}
 
 	public Map<String, Object> getBlogsEntry() {
-		return (Map<String, Object>) values.get("blogsEntry");
+		return (Map<String, Object>) getObject().get("blogsEntry");
 	}
 
 	public String getUserName() {
