@@ -14,7 +14,8 @@
 import UIKit
 import LiferayScreens
 
-class DetailViewController: CardViewController, AssetDisplayScreenletDelegate {
+class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
+	CardDeckDelegate, CardDeckDataSource {
 
 	@IBOutlet weak var assetDisplayScreenlet: AssetDisplayScreenlet? {
 		didSet {
@@ -23,6 +24,12 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate {
 	}
 
 	@IBOutlet weak var ratingScreenlet: RatingScreenlet?
+
+	@IBOutlet weak var cardDeck: CardDeckView? {
+		didSet {
+			self.cardDeck?.delegate = self
+		}
+	}
 
 	var fileEntryId: Int64? {
 		didSet {
@@ -42,6 +49,25 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate {
 	}
 
 
+	//MARK: UIViewController
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+
+		self.cardDeck?.layer.zPosition = 0
+		
+		commentsViewController = CommentsViewController()
+
+		cardDeck?.delegate = self
+		cardDeck?.dataSource = self
+	}
+
+
+	//MARK: Card ViewControllers
+
+	var commentsViewController: CommentsViewController?
+
+
 	//MARK: Init methods
 
 	convenience init() {
@@ -53,5 +79,45 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate {
 
 	func screenlet(screenlet: AssetDisplayScreenlet, onAssetResponse asset: Asset) {
 		self.cardView?.changeButtonText(asset.title)
+	}
+	
+
+	//MARK: CardDeckDataSource
+
+	func numberOfCardsIn(cardDeck: CardDeckView) -> Int {
+		return 1
+	}
+
+	func cardDeck(cardDeck: CardDeckView, controllerForCard position: CardPosition)
+		-> CardViewController? {
+			return commentsViewController
+	}
+
+
+	//MARK: CardDeckDelegate
+
+	func cardDeck(cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
+		let image = UIImage(named: "icon_ADD")
+		if let image = image {
+			card.setSecondaryButtonImage(image)
+		}
+
+		card.normalHeight = self.view.frame.height * 1.3
+	}
+
+	func cardDeck(cardDeck: CardDeckView, colorForCardIndex index: Int) -> UIColor? {
+		return DefaultResources.OddColorBackground
+	}
+
+	func cardDeck(cardDeck: CardDeckView, colorForButtonIndex index: Int) -> UIColor? {
+		return DefaultResources.EvenColorBackground
+	}
+
+	func cardDeck(cardDeck: CardDeckView, buttonImageForCardIndex index: Int) -> UIImage? {
+		return UIImage(named: "icon_DOWN_W")
+	}
+
+	func cardDeck(cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
+		return "Comments"
 	}
 }
