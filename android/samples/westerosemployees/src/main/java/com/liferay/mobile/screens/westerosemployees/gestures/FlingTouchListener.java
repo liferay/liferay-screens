@@ -67,7 +67,7 @@ public class FlingTouchListener implements View.OnTouchListener {
 	}
 	private static final float SWIPE_VELOCITY_THRESHOLD = 10f;
 	private static final float SWIPE_MOVEMENT_THRESHOLD = 100f;
-	private GestureDetector gestureDetector;
-	private FlingListener flingListener;
-	private int cardSizeMinimizedPx;
+	private final GestureDetector gestureDetector;
+	private final FlingListener flingListener;
+	private final int cardSizeMinimizedPx;
 }

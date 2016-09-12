@@ -65,7 +65,7 @@ public class AssetListAdapter extends BaseListAdapter<AssetEntry, AssetListAdapt
 		}
 
 		private void setImageForExtension(String extension) {
-			@DrawableRes int drawableId = R.drawable.westeros_document_list_none_type;
+			int drawableId;
 
 			switch (extension) {
 				case "mp3":
@@ -82,6 +82,8 @@ public class AssetListAdapter extends BaseListAdapter<AssetEntry, AssetListAdapt
 				case "jpeg":
 					drawableId = R.drawable.westeros_document_list_image_type;
 					break;
+				default:
+					drawableId = R.drawable.westeros_document_list_none_type;
 			}
 
 			Context context = LiferayScreensContext.getContext();

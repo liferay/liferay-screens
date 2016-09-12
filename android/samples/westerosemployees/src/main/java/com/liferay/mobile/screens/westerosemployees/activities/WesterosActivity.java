@@ -4,13 +4,14 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.WindowManager;
 import com.liferay.mobile.screens.westerosemployees.R;
 
 /**
  * @author Víctor Galán Grande
  */
-public class WesterosActivity extends Activity {
+public abstract class WesterosActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,6 @@ public class WesterosActivity extends Activity {
 	private void setStatusBar() {
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-		getWindow().setStatusBarColor(getResources().getColor(R.color.background_gray_westeros));
+		getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.background_gray_westeros));
 	}
 }
