@@ -22,6 +22,8 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate {
 		}
 	}
 
+	@IBOutlet weak var ratingScreenlet: RatingScreenlet?
+
 	var fileEntryId: Int64? {
 		didSet {
 			if let entryId = fileEntryId {
@@ -30,6 +32,11 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate {
 				assetDisplayScreenlet?.className = AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
 				assetDisplayScreenlet?.classPK = entryId
 				assetDisplayScreenlet?.load()
+
+				/* Load asset rating */
+				ratingScreenlet?.className = AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
+				ratingScreenlet?.classPK = entryId
+				ratingScreenlet?.loadRatings()
 			}
 		}
 	}
