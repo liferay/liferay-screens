@@ -83,8 +83,8 @@ public abstract class BaseInteractor<L, E extends BasicEvent> implements Interac
 	}
 
 	protected boolean isInvalidEvent(BasicEvent event) {
-		return getListener() == null || event.getTargetScreenletId() != getTargetScreenletId() || !actionName.equals(
-			event.getActionName());
+		return getListener() == null || event.getTargetScreenletId() != getTargetScreenletId() || (actionName != null
+			&& !actionName.equals(event.getActionName()));
 	}
 
 	protected Session getSession() {
