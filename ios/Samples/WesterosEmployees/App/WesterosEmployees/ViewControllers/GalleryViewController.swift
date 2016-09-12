@@ -14,13 +14,15 @@
 import UIKit
 import LiferayScreens
 
-class GalleryViewController: CardViewController {
+class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate {
 
+	var selectedImageEntry: ImageEntry?
 
 	//MARK: Outlets
 
 	@IBOutlet weak var imageGalleryScreenlet: ImageGalleryScreenlet? {
 		didSet {
+			imageGalleryScreenlet?.delegate = self
 			imageGalleryScreenlet?.presentingViewController = self
 		}
 	}
@@ -52,5 +54,13 @@ class GalleryViewController: CardViewController {
 			cardView?.presentingController = self
 			cardView?.secondaryButton.addTarget(self, action: #selector(GalleryViewController.startGalleryUpload), forControlEvents: .TouchUpInside)
 		}
+	}
+
+
+	//MARK: ImageGalleryScreenletDelegate
+
+	func screenlet(screenlet: ImageGalleryScreenlet, onImageEntrySelected imageEntry: ImageEntry) {
+		self.selectedImageEntry = imageEntry
+		cardView?.moveRight()
 	}
 }
