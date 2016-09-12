@@ -60,6 +60,11 @@ import PureLayout
 	///    - atIndex index: index of the card
 	optional func cardDeck(cardDeck: CardDeckView,
 	                       customizeCard card: CardView, atIndex index: Int)
+
+	///Notify that a card page have changed
+	/// - parameter onPageChange position: position of the change
+	optional func cardDeck(cardDeck: CardDeckView,
+	                       onPageChange position: CardPosition)
 }
 
 ///Data source for card decks
@@ -278,6 +283,11 @@ public class CardDeckView: UIView, CardDelegate {
 	}
 
 	public func card(card: CardView, onMovingToPage page: Int, moveToRight right: Bool) {
+		if let index = cards.indexOf(card) {
+			let cardPosition = CardPosition(card: index, page: page)
+			self.delegate?.cardDeck?(self, onPageChange: cardPosition)
+		}
+
 		if card.maximizeOnMove {
 			if page == 0 {
 				let (top, bottom) = cards.splitAtIndex(cards.indexOf(card)!)
