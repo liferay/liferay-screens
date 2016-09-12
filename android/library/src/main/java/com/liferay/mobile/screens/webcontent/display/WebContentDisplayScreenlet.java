@@ -64,11 +64,7 @@ public class WebContentDisplayScreenlet
 	}
 
 	public void load() {
-		if (structureId != 0) {
-			performUserAction(WEB_CONTENT_WITH_STRUCTURE);
-		} else {
-			performUserAction(WEB_CONTENT_BY_ARTICLE_ID);
-		}
+		performUserAction(structureId != 0 ? WEB_CONTENT_WITH_STRUCTURE : WEB_CONTENT_BY_ARTICLE_ID);
 	}
 
 	@Override

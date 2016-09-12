@@ -234,11 +234,8 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 			if (portraitId != 0 && uuid != null) {
 				userPortraitLoadInteractor.start(male, portraitId, uuid);
 			} else {
-				if (SessionContext.hasUserInfo() && userId == 0) {
-					userPortraitLoadInteractor.start(SessionContext.getCurrentUser().getId());
-				} else {
-					userPortraitLoadInteractor.start(userId);
-				}
+				userPortraitLoadInteractor.start(
+					SessionContext.hasUserInfo() && userId == 0 ? SessionContext.getCurrentUser().getId() : userId);
 			}
 		}
 	}

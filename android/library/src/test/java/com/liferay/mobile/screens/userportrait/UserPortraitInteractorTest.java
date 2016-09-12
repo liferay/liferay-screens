@@ -57,7 +57,7 @@ public class UserPortraitInteractorTest {
 		@Test
 		public void shouldRaiseInvalidArgumentWhenPortraitIdIsZero() throws Exception {
 			UserPortraitLoadInteractor interactor = new UserPortraitLoadInteractor();
-			interactor.onScreenletAttached(MockFactory.mockUserPortraitInteractorListener());
+			interactor.onScreenletAttached(MockFactory.mockUserPortraitScreenlet());
 
 			try {
 				interactor.start(true, 0, "xxx");
@@ -69,7 +69,7 @@ public class UserPortraitInteractorTest {
 		@Test
 		public void shouldRaiseInvalidArgumentWhenUUIDIsNull() throws Exception {
 			UserPortraitLoadInteractor interactor = new UserPortraitLoadInteractor();
-			interactor.onScreenletAttached(MockFactory.mockUserPortraitInteractorListener());
+			interactor.onScreenletAttached(MockFactory.mockUserPortraitScreenlet());
 
 			try {
 				interactor.start(true, 123, null);
@@ -81,7 +81,7 @@ public class UserPortraitInteractorTest {
 		@Test
 		public void shouldRaiseInvalidArgumentWhenUUIDIsEmpty() throws Exception {
 			UserPortraitLoadInteractor interactor = new UserPortraitLoadInteractor();
-			interactor.onScreenletAttached(MockFactory.mockUserPortraitInteractorListener());
+			interactor.onScreenletAttached(MockFactory.mockUserPortraitScreenlet());
 
 			try {
 				interactor.start(true, 123, "");
