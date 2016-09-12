@@ -213,7 +213,9 @@ public class CardView: UIView {
 	///Change card button text title
 	/// - parameter text: new text for the button
 	public func changeButtonText(text: String?) {
-		button.setTitle(text?.uppercaseString, forState: .Normal)
+		if let text = text {
+			button.setTitle(text.uppercaseString, forState: .Normal)
+		}
 	}
 
 
