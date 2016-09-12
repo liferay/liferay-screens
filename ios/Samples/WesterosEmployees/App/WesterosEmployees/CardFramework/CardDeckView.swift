@@ -114,7 +114,7 @@ public class CardDeckView: UIView, CardDelegate {
 
 			let initialHeight = CardView.DefaultMinimizedHeight
 
-			for index in 0...count {
+			for index in 0...(count - 1) {
 				//For each title we will create a card, each card should be on top of the previous ones
 				let card = createCardForIndex(index)
 
