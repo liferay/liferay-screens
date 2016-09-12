@@ -283,11 +283,6 @@ public class CardDeckView: UIView, CardDelegate {
 	}
 
 	public func card(card: CardView, onMovingToPage page: Int, moveToRight right: Bool) {
-		if let index = cards.indexOf(card) {
-			let cardPosition = CardPosition(card: index, page: page)
-			self.delegate?.cardDeck?(self, onPageChange: cardPosition)
-		}
-
 		if card.maximizeOnMove {
 			if page == 0 {
 				let (top, bottom) = cards.splitAtIndex(cards.indexOf(card)!)
@@ -314,6 +309,11 @@ public class CardDeckView: UIView, CardDelegate {
 
 				change(card, toState: .Maximized)
 			}
+		}
+
+		if let index = cards.indexOf(card) {
+			let cardPosition = CardPosition(card: index, page: page)
+			self.delegate?.cardDeck?(self, onPageChange: cardPosition)
 		}
 	}
 }
