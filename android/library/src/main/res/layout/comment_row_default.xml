@@ -13,7 +13,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		app:autoLoad="false"
-		app:offlinePolicy="REMOTE_FIRST"
+		app:cachePolicy="REMOTE_FIRST"
 		/>
 
 </RelativeLayout>

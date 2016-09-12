@@ -14,10 +14,10 @@
 
 package com.liferay.mobile.screens.context;
 
+import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,7 +25,7 @@ import org.json.JSONObject;
 /**
  * @author Silvio Santos
  */
-public class User {
+public class User extends AssetEntry {
 
 	public static final String EMAIL_ADDRESS = "emailAddress";
 	public static final String USER_ID = "userId";
@@ -34,24 +34,23 @@ public class User {
 	public static final String FIRST_NAME = "firstName";
 	public static final String LAST_NAME = "lastName";
 	public static final String SCREEN_NAME = "screenName";
-	private final Map<String, Object> attributes;
-	private final JSONObject jsonObject;
+	public static final String GREETING = "greeting";
+	public static final String JOB_TITLE = "jobTitle";
+	private Map<String, Object> attributes;
+	private JSONObject jsonObject;
 
 	public User(JSONObject jsonObject) {
 		this.jsonObject = jsonObject;
-		attributes = new HashMap<>(jsonObject.length());
-
-		Iterator<String> it = jsonObject.keys();
-
-		while (it.hasNext()) {
-			String key = it.next();
-
-			try {
-				attributes.put(key, jsonObject.get(key));
-			} catch (JSONException e) {
-				LiferayLogger.e("Error parsing json", e);
-			}
+		this.attributes = new HashMap<>();
+		try {
+			attributes.putAll(JSONUtil.toMap(jsonObject));
+		} catch (JSONException e) {
+			LiferayLogger.e("Error parsing json", e);
 		}
+	}
+
+	public User(Map<String, Object> map) {
+		this.attributes = map;
 	}
 
 	public long getId() {
@@ -80,6 +79,14 @@ public class User {
 
 	public String getScreenName() {
 		return (String) attributes.get(SCREEN_NAME);
+	}
+
+	public String getGreeting() {
+		return (String) attributes.get(GREETING);
+	}
+
+	public String getJobTitle() {
+		return (String) attributes.get(JOB_TITLE);
 	}
 
 	public Map<String, Object> getAttributes() {

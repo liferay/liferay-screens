@@ -22,12 +22,11 @@ import com.liferay.mobile.screens.BuildConfig;
  */
 public class LiferayLogger {
 
+	private static final boolean LOGGING_ENABLED = true;
+	private static final String TAG = "LiferayScreens";
 	private LiferayLogger() {
 		super();
 	}
-
-	private static final boolean LOGGING_ENABLED = true;
-	private static final String TAG = "LiferayScreens";
 
 	public static void d(String message) {
 		if (loggingEnabled()) {

@@ -1,13 +1,13 @@
 package com.liferay.mobile.screens.base.list;
 
 import android.view.View;
-import com.liferay.mobile.screens.base.thread.listener.OfflineListenerNew;
+import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import java.util.List;
 
 /**
  * @author Javier Gamarra
  */
-public interface BaseListListener<E> extends OfflineListenerNew {
+public interface BaseListListener<E> extends BaseCacheListener {
 
 	void onListPageFailed(int startRow, Exception e);
 

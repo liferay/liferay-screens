@@ -119,8 +119,7 @@ public class SelectFileDialog {
 		}
 
 		File dirFile = new File(directory);
-		if (dirFile == null
-			|| !dirFile.exists()
+		if (!dirFile.exists()
 			|| !dirFile.isDirectory()
 			|| dirFile.listFiles() == null
 			|| dirFile.listFiles().length == 0) {
@@ -153,7 +152,7 @@ public class SelectFileDialog {
 		return entries;
 	}
 
-	public interface SimpleFileDialogListener {
+	interface SimpleFileDialogListener {
 		void onFileChosen(String path);
 	}
 }

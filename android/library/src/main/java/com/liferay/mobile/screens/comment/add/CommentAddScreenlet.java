@@ -8,14 +8,14 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.comment.CommentEntry;
-import com.liferay.mobile.screens.comment.add.interactor.CommentAddInteractorImpl;
+import com.liferay.mobile.screens.comment.add.interactor.CommentAddInteractor;
 import com.liferay.mobile.screens.comment.add.view.CommentAddViewModel;
 import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
 
 /**
  * @author Alejandro Hernández
  */
-public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, CommentAddInteractorImpl>
+public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, CommentAddInteractor>
 	implements CommentAddListener {
 
 	private CommentAddListener listener;
@@ -55,12 +55,12 @@ public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, Comm
 	}
 
 	@Override
-	protected CommentAddInteractorImpl createInteractor(String actionName) {
-		return new CommentAddInteractorImpl();
+	protected CommentAddInteractor createInteractor(String actionName) {
+		return new CommentAddInteractor();
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, CommentAddInteractorImpl interactor, Object... args) {
+	protected void onUserAction(String userActionName, CommentAddInteractor interactor, Object... args) {
 		String body = (String) args[0];
 
 		interactor.start(new CommentEvent(0, className, classPK, body));

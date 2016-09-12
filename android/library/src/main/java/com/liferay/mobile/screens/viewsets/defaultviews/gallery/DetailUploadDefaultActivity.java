@@ -56,7 +56,7 @@ public class DetailUploadDefaultActivity extends BaseDetailUploadActivity implem
 		if (v.getId() == R.id.liferay_gallery_upload_upload) {
 
 			finishActivityAndStartUpload(picturePath, editTitle.getText().toString(),
-				editDescription.getText().toString());
+				editDescription.getText().toString(), "");
 		} else if (v.getId() == R.id.liferay_gallery_upload_cancel) {
 			finish();
 		}

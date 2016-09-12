@@ -15,15 +15,15 @@
 package com.liferay.mobile.screens.auth.login.interactor;
 
 import com.liferay.mobile.screens.auth.login.LoginListener;
-import com.liferay.mobile.screens.base.thread.BaseRemoteInteractorNew;
-import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
+import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 
-public abstract class BaseLoginInteractor extends BaseRemoteInteractorNew<LoginListener, BasicThreadEvent> {
+public abstract class BaseLoginInteractor extends BaseRemoteInteractor<LoginListener, BasicEvent> {
 
 	@Override
-	public void onSuccess(BasicThreadEvent event) throws Exception {
+	public void onSuccess(BasicEvent event) throws Exception {
 		User user = new User(event.getJSONObject());
 		SessionContext.setCurrentUser(user);
 		getListener().onLoginSuccess(user);

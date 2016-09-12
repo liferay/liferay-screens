@@ -14,6 +14,7 @@ public class FlingTouchListener implements View.OnTouchListener {
 	private static final float SWIPE_MOVEMENT_THRESHOLD = 100f;
 	private final GestureDetector gestureDetector;
 	private final FlingListener flingListener;
+
 	public FlingTouchListener(Context context, FlingListener flingListener) {
 		gestureDetector = new GestureDetector(context, new GestureDetectorListener());
 		this.flingListener = flingListener;

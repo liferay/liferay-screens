@@ -29,13 +29,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseInteractor;
 import com.liferay.mobile.screens.base.interactor.CustomInteractorListener;
 import com.liferay.mobile.screens.base.interactor.Interactor;
-import com.liferay.mobile.screens.base.thread.BaseCachedThreadRemoteInteractor;
-import com.liferay.mobile.screens.base.thread.BaseThreadInteractor;
-import com.liferay.mobile.screens.base.thread.listener.CacheListener;
+import com.liferay.mobile.screens.base.interactor.listener.CacheListener;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -53,16 +53,16 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	implements CacheListener {
 
 	public static final String DEFAULT_ACTION = "default_action";
-	private static final String STATE_SCREENLET_ID = "basescreenlet-screenletId";
-	protected static final String STATE_SUPER = "basescreenlet-super";
-	private static final String STATE_INTERACTORS = "basescreenlet-interactors";
-	private static final AtomicInteger NEXT_ID = new AtomicInteger(1);
-	public static final String STATE_OFFLINE_POLICY = "STATE_OFFLINE_POLICY";
+	public static final String STATE_CACHE_POLICY = "STATE_CACHE_POLICY";
 	public static final String STATE_GROUP_ID = "STATE_GROUP_ID";
 	public static final String STATE_USER_ID = "STATE_USER_ID";
 	public static final String STATE_LOCALE = "STATE_LOCALE";
+	protected static final String STATE_SUPER = "basescreenlet-super";
+	private static final String STATE_SCREENLET_ID = "basescreenlet-screenletId";
+	private static final String STATE_INTERACTORS = "basescreenlet-interactors";
+	private static final AtomicInteger NEXT_ID = new AtomicInteger(1);
 	private final Map<String, I> interactors = new HashMap<>();
-	protected OfflinePolicy offlinePolicy;
+	protected CachePolicy cachePolicy;
 	protected long groupId;
 	protected long userId;
 	protected Locale locale;
@@ -163,18 +163,17 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 			: (I) customInteractorListener.createInteractor(actionName);
 
 		if (result != null) {
-			if (result instanceof BaseThreadInteractor) {
-				BaseThreadInteractor threadInteractor = (BaseThreadInteractor) result;
-				threadInteractor.setTargetScreenletId(getScreenletId());
-				threadInteractor.setActionName(actionName);
+			if (result instanceof BaseInteractor) {
+				BaseInteractor baseInteractor = (BaseInteractor) result;
+				baseInteractor.setTargetScreenletId(getScreenletId());
+				baseInteractor.setActionName(actionName);
 
-				if (threadInteractor instanceof BaseCachedThreadRemoteInteractor) {
-					BaseCachedThreadRemoteInteractor cachedThreadRemoteInteractor =
-						(BaseCachedThreadRemoteInteractor) threadInteractor;
-					cachedThreadRemoteInteractor.setOfflinePolicy(getOfflinePolicy());
-					cachedThreadRemoteInteractor.setGroupId(getGroupId());
-					cachedThreadRemoteInteractor.setUserId(getUserId());
-					cachedThreadRemoteInteractor.setLocale(getLocale());
+				if (baseInteractor instanceof BaseCacheReadInteractor) {
+					BaseCacheReadInteractor baseCacheReadInteractor = (BaseCacheReadInteractor) baseInteractor;
+					baseCacheReadInteractor.setCachePolicy(getCachePolicy());
+					baseCacheReadInteractor.setGroupId(getGroupId());
+					baseCacheReadInteractor.setUserId(getUserId());
+					baseCacheReadInteractor.setLocale(getLocale());
 				}
 			}
 
@@ -187,22 +186,21 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	protected void init(Context context, AttributeSet attributes) {
 		LiferayScreensContext.init(context);
 
-		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.OfflineScreenlet, 0, 0);
+		TypedArray typedArray = context.getTheme().obtainStyledAttributes(attributes, R.styleable.CacheScreenlet, 0, 0);
 
-		groupId = castToLongOrUseDefault(typedArray.getString(R.styleable.OfflineScreenlet_groupId),
+		groupId = castToLongOrUseDefault(typedArray.getString(R.styleable.CacheScreenlet_groupId),
 			LiferayServerContext.getGroupId());
 
-		Long userAttribute = castToLong(typedArray.getString(R.styleable.OfflineScreenlet_userId));
+		Long userAttribute = castToLong(typedArray.getString(R.styleable.CacheScreenlet_userId));
 		Long userId = SessionContext.getUserId();
 		this.userId = (userAttribute == 0 ? (userId == null ? 0 : userId) : userAttribute);
 
-		String localeAttribute = typedArray.getString(R.styleable.OfflineScreenlet_locale);
+		String localeAttribute = typedArray.getString(R.styleable.CacheScreenlet_locale);
 		locale = locale == null ? LiferayLocale.getDefaultLocale() : new Locale(localeAttribute);
 
-		Integer offlinePolicyAttribute =
-			typedArray.getInteger(R.styleable.OfflineScreenlet_offlinePolicy, OfflinePolicy.REMOTE_ONLY.ordinal());
-		offlinePolicy = OfflinePolicy.values()[offlinePolicyAttribute];
+		Integer cachePolicyAttribute =
+			typedArray.getInteger(R.styleable.CacheScreenlet_cachePolicy, CachePolicy.REMOTE_ONLY.ordinal());
+		cachePolicy = CachePolicy.values()[cachePolicyAttribute];
 
 		assignView(createScreenletView(context, attributes));
 	}
@@ -285,7 +283,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 		super.onRestoreInstanceState(superState);
 
-		offlinePolicy = OfflinePolicy.values()[state.getInt(STATE_OFFLINE_POLICY)];
+		cachePolicy = CachePolicy.values()[state.getInt(STATE_CACHE_POLICY)];
 		groupId = state.getLong(STATE_GROUP_ID);
 		userId = state.getLong(STATE_USER_ID);
 		locale = (Locale) state.getSerializable(STATE_LOCALE);
@@ -319,7 +317,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		state.putParcelable(STATE_SUPER, superState);
 		state.putInt(STATE_SCREENLET_ID, screenletId);
 		state.putStringArray(STATE_INTERACTORS, interactors.keySet().toArray(new String[interactors.size()]));
-		state.putInt(STATE_OFFLINE_POLICY, offlinePolicy.ordinal());
+		state.putInt(STATE_CACHE_POLICY, cachePolicy.ordinal());
 		state.putLong(STATE_GROUP_ID, groupId);
 		state.putLong(STATE_USER_ID, userId);
 		state.putSerializable(STATE_LOCALE, locale);
@@ -443,12 +441,12 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		this.locale = locale;
 	}
 
-	public OfflinePolicy getOfflinePolicy() {
-		return offlinePolicy;
+	public CachePolicy getCachePolicy() {
+		return cachePolicy;
 	}
 
-	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
-		this.offlinePolicy = offlinePolicy;
+	public void setCachePolicy(CachePolicy cachePolicy) {
+		this.cachePolicy = cachePolicy;
 	}
 
 	public CacheListener getCacheListener() {

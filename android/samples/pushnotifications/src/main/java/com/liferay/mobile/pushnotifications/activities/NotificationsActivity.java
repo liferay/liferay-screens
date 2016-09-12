@@ -65,6 +65,7 @@ public class NotificationsActivity extends PushScreensActivity implements BaseLi
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
+				LiferayLogger.d("Push notification received! " + jsonObject);
 				Snackbar.make(findViewById(android.R.id.content), "Reloading list...", Snackbar.LENGTH_SHORT).show();
 				ddlList.loadPage(0);
 			}
@@ -73,7 +74,7 @@ public class NotificationsActivity extends PushScreensActivity implements BaseLi
 
 	@Override
 	protected void onErrorRegisteringPush(final String message, final Exception e) {
-
+		LiferayLogger.e("Error receiving push notifications: " + message, e);
 	}
 
 	@Override

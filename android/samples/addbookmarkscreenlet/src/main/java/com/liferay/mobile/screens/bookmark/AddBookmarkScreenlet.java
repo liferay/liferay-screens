@@ -6,14 +6,14 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.bookmark.interactor.AddBookmarkInteractorImpl;
+import com.liferay.mobile.screens.bookmark.interactor.AddBookmarkInteractor;
 import com.liferay.mobile.screens.bookmark.interactor.AddBookmarkListener;
 import com.liferay.mobile.screens.bookmark.view.AddBookmarkViewModel;
 
 /**
  * @author Javier Gamarra
  */
-public class AddBookmarkScreenlet extends BaseScreenlet<AddBookmarkViewModel, AddBookmarkInteractorImpl>
+public class AddBookmarkScreenlet extends BaseScreenlet<AddBookmarkViewModel, AddBookmarkInteractor>
 	implements AddBookmarkListener {
 
 	private long folderId;
@@ -89,12 +89,12 @@ public class AddBookmarkScreenlet extends BaseScreenlet<AddBookmarkViewModel, Ad
 	}
 
 	@Override
-	protected AddBookmarkInteractorImpl createInteractor(String actionName) {
-		return new AddBookmarkInteractorImpl();
+	protected AddBookmarkInteractor createInteractor(String actionName) {
+		return new AddBookmarkInteractor();
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, AddBookmarkInteractorImpl interactor, Object... args) {
+	protected void onUserAction(String userActionName, AddBookmarkInteractor interactor, Object... args) {
 		AddBookmarkViewModel viewModel = getViewModel();
 		String url = viewModel.getURL();
 		String title = viewModel.getTitle();

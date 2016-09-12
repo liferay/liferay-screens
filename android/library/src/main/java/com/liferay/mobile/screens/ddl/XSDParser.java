@@ -50,9 +50,6 @@ public class XSDParser extends AbstractXMLParser implements DDMStructureParser {
 		Element root = document.getDocumentElement();
 
 		Locale defaultLocale = getDefaultDocumentLocale(root);
-		if (defaultLocale == null) {
-			return null;
-		}
 
 		NodeList dynamicElementList = root.getElementsByTagName("dynamic-element");
 

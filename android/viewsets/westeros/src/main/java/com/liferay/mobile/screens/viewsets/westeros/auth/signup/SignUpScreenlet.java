@@ -16,7 +16,7 @@ package com.liferay.mobile.screens.viewsets.westeros.auth.signup;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import com.liferay.mobile.screens.auth.signup.interactor.SignUpInteractorImpl;
+import com.liferay.mobile.screens.auth.signup.interactor.SignUpInteractor;
 
 /**
  * @author Silvio Santos
@@ -59,7 +59,7 @@ public class SignUpScreenlet extends com.liferay.mobile.screens.auth.signup.Sign
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, SignUpInteractorImpl interactor, Object... args) {
+	protected void onUserAction(String userActionName, SignUpInteractor interactor, Object... args) {
 		if (TERMS_AND_CONDITIONS.equals(userActionName)) {
 			onClickOnTermsAndConditions();
 		} else {

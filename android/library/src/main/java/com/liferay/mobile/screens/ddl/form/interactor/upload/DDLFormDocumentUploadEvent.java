@@ -1,13 +1,13 @@
 package com.liferay.mobile.screens.ddl.form.interactor.upload;
 
-import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
+import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
  */
-public class DDLFormDocumentUploadEvent extends OfflineEventNew {
+public class DDLFormDocumentUploadEvent extends CacheEvent {
 
 	private DocumentField documentField;
 	private Long repositoryId;

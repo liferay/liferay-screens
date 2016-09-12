@@ -11,7 +11,7 @@ import com.liferay.mobile.screens.context.User;
 /**
  * @author Javier Gamarra
  */
-public class ReloginActivity extends ThemeActivity implements LoginListener {
+public class ReloginActivity extends ThemeActivity implements LoginListener, View.OnClickListener {
 
 	private TextView userName;
 
@@ -24,9 +24,21 @@ public class ReloginActivity extends ThemeActivity implements LoginListener {
 			userName = (TextView) findViewById(R.id.user_name);
 			userName.setText(SessionContext.getCurrentUser().getLastName());
 		}
+
+		findViewById(R.id.update_user).setOnClickListener(this);
+		findViewById(R.id.relogin_button).setOnClickListener(this);
 	}
 
-	public void relogin(View view) {
+	@Override
+	public void onClick(View v) {
+		if (v.getId() == R.id.update_user) {
+			change();
+		} else {
+			relogin();
+		}
+	}
+
+	public void relogin() {
 		SessionContext.relogin(this);
 	}
 
@@ -46,7 +58,7 @@ public class ReloginActivity extends ThemeActivity implements LoginListener {
 		error("Error relogin", e);
 	}
 
-	public void change(View view) {
+	public void change() {
 		if (SessionContext.isLoggedIn()) {
 			final User user = SessionContext.getCurrentUser();
 			user.getAttributes().put("lastName", "EXAMPLE_LASTNAME");

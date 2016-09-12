@@ -22,7 +22,7 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginListener;
-import com.liferay.mobile.screens.auth.signup.interactor.SignUpInteractorImpl;
+import com.liferay.mobile.screens.auth.signup.interactor.SignUpInteractor;
 import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
@@ -34,7 +34,7 @@ import java.util.Locale;
 /**
  * @author Silvio Santos
  */
-public class SignUpScreenlet extends BaseScreenlet<SignUpViewModel, SignUpInteractorImpl> implements SignUpListener {
+public class SignUpScreenlet extends BaseScreenlet<SignUpViewModel, SignUpInteractor> implements SignUpListener {
 
 	private String anonymousApiPassword;
 	private String anonymousApiUserName;
@@ -202,12 +202,12 @@ public class SignUpScreenlet extends BaseScreenlet<SignUpViewModel, SignUpIntera
 	}
 
 	@Override
-	protected SignUpInteractorImpl createInteractor(String actionName) {
-		return new SignUpInteractorImpl();
+	protected SignUpInteractor createInteractor(String actionName) {
+		return new SignUpInteractor();
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, SignUpInteractorImpl interactor, Object... args) {
+	protected void onUserAction(String userActionName, SignUpInteractor interactor, Object... args) {
 		SignUpViewModel viewModel = getViewModel();
 
 		String firstName = viewModel.getFirstName();

@@ -22,6 +22,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import com.liferay.mobile.screens.util.LiferayLogger;
 
 /**
  * @author Javier Gamarra
@@ -55,6 +56,7 @@ public abstract class ThemeActivity extends AppCompatActivity {
 
 	protected void error(String message, Exception e) {
 		showSnackbarWithColor(message, ContextCompat.getColor(this, R.color.red_default));
+		LiferayLogger.e("Error ", e);
 	}
 
 	protected void info(String message) {

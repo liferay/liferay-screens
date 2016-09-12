@@ -6,21 +6,21 @@ import android.util.AttributeSet;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
+import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
-import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorImpl;
-import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractorListener;
+import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractor;
 import com.liferay.mobile.screens.comment.list.view.CommentListViewModel;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 
 /**
  * @author Alejandro Hernández
  */
-public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, CommentListInteractorImpl>
-	implements CommentListInteractorListener, CommentDisplayListener {
+public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, CommentListInteractor>
+	implements CommentDisplayListener, BaseListInteractorListener<CommentEntry> {
 
-	private OfflinePolicy offlinePolicy;
+	private CachePolicy cachePolicy;
 	private String className;
 	private long classPK;
 	private long groupId;
@@ -60,7 +60,7 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Commen
 	}
 
 	@Override
-	protected void loadRows(CommentListInteractorImpl interactor) {
+	protected void loadRows(CommentListInteractor interactor) {
 		interactor.start(className, classPK);
 	}
 
@@ -75,9 +75,9 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Commen
 
 		editable = typedArray.getBoolean(R.styleable.CommentListScreenlet_editable, true);
 
-		Integer offlinePolicy =
-			typedArray.getInteger(R.styleable.CommentListScreenlet_offlinePolicy, OfflinePolicy.REMOTE_ONLY.ordinal());
-		this.offlinePolicy = OfflinePolicy.values()[offlinePolicy];
+		Integer cachePolicy =
+			typedArray.getInteger(R.styleable.CommentListScreenlet_cachePolicy, CachePolicy.REMOTE_ONLY.ordinal());
+		this.cachePolicy = CachePolicy.values()[cachePolicy];
 
 		long groupId = LiferayServerContext.getGroupId();
 
@@ -89,12 +89,12 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Commen
 	}
 
 	@Override
-	protected void onUserAction(String actionName, CommentListInteractorImpl interactor, Object... args) {
+	protected void onUserAction(String actionName, CommentListInteractor interactor, Object... args) {
 	}
 
 	@Override
-	protected CommentListInteractorImpl createInteractor(String actionName) {
-		return new CommentListInteractorImpl();
+	protected CommentListInteractor createInteractor(String actionName) {
+		return new CommentListInteractor();
 	}
 
 	@Override
@@ -102,21 +102,13 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Commen
 		if (getListener() != null) {
 			getListener().error(e, userAction);
 		}
-	}
-
-	@Override
-	public void onLoadCommentFailure(long commentId, Exception e) {
+		if (getCommentListListener() != null) {
+			getCommentListListener().error(e, userAction);
+		}
 	}
 
 	@Override
 	public void onLoadCommentSuccess(CommentEntry commentEntry) {
-	}
-
-	@Override
-	public void onDeleteCommentFailure(CommentEntry commentEntry, Exception e) {
-		if (getCommentListListener() != null) {
-			getCommentListListener().onDeleteCommentFailure(commentEntry, e);
-		}
 	}
 
 	@Override
@@ -129,25 +121,18 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Commen
 	}
 
 	@Override
-	public void onUpdateCommentFailure(CommentEntry commentEntry, Exception e) {
-		if (getCommentListListener() != null) {
-			getCommentListListener().onUpdateCommentFailure(commentEntry, e);
-		}
-	}
-
-	@Override
 	public void onUpdateCommentSuccess(CommentEntry commentEntry) {
 		if (getCommentListListener() != null) {
 			getCommentListListener().onUpdateCommentSuccess(commentEntry);
 		}
 	}
 
-	public OfflinePolicy getOfflinePolicy() {
-		return offlinePolicy;
+	public CachePolicy getCachePolicy() {
+		return cachePolicy;
 	}
 
-	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
-		this.offlinePolicy = offlinePolicy;
+	public void setCachePolicy(CachePolicy cachePolicy) {
+		this.cachePolicy = cachePolicy;
 	}
 
 	public String getClassName() {

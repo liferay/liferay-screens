@@ -26,15 +26,15 @@ public interface SignUpViewModel extends BaseViewModel {
 
 	String getFirstName();
 
-	String getJobTitle();
-
 	String getLastName();
-
-	String getMiddleName();
 
 	String getPassword();
 
+	void showFinishOperation(User user);
+
+	String getMiddleName();
+
 	String getScreenName();
 
-	void showFinishOperation(User user);
+	String getJobTitle();
 }

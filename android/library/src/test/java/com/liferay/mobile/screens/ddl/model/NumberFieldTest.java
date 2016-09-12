@@ -40,8 +40,8 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class NumberFieldTest {
 
-	private static final Locale _spanishLocale = new Locale("es", "ES");
-	private static final Locale _usLocale = new Locale("en", "US");
+	private static final Locale spanishLocale = new Locale("es", "ES");
+	private static final Locale usLocale = new Locale("en", "US");
 
 	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
@@ -49,28 +49,28 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnNullWhenNullStringIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 			assertNull(field.convertFromString(null));
 		}
 
 		@Test
 		public void shouldReturnNullWhenEmptyStringIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 			assertNull(field.convertFromString(""));
 		}
 
 		@Test
 		public void shouldReturnNullWhenInvalidStringIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 			assertNull(field.convertFromString("12a3"));
 		}
 
 		@Test
 		public void shouldReturnValueWhenParsingWithAlternativeLocale() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 			assertNotNull(field.convertFromString("12,3"));
 			assertNotNull(field.convertFromString("12,000"));
@@ -78,7 +78,7 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnLongWhenIntegerStringIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 			Number result = field.convertFromString("123");
 
@@ -88,7 +88,7 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnDoubleWhenDecimalStringIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale, _spanishLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), usLocale, spanishLocale);
 
 			Number result = field.convertFromString("123.4");
 
@@ -103,14 +103,14 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnNullWhenNullNumberIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 			assertNull(field.convertToData(null));
 		}
 
 		@Test
 		public void shouldReturnIntegerStringWhenIntegerNumberIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 			assertEquals("123", field.convertToData(123));
 			assertEquals("123", field.convertToData(123L));
@@ -118,7 +118,7 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnDecimalStringWhenDecimalNumberIsSupplied() throws Exception {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 			assertEquals("123.4", field.convertToData(123.4d));
 			assertEquals("123.4", field.convertToData(123.4f));
@@ -131,14 +131,14 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnEmptyWhenNullNumberIsSupplied() {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 			assertEquals("", field.convertToFormattedString(null));
 		}
 
 		@Test
 		public void shouldReturnSpanishFormattedIntegerNumber() {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 			assertEquals("1234", field.convertToData(1234));
 			assertEquals("1234", field.convertToData(1234L));
@@ -146,7 +146,7 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnUSFormattedIntegerNumber() {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale, _usLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), usLocale, usLocale);
 
 			assertEquals("1234", field.convertToData(1234));
 			assertEquals("1234", field.convertToData(1234L));
@@ -154,7 +154,7 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnUSFormattedDecimalNumber() {
-			NumberField field = new NumberField(new HashMap<String, Object>(), _usLocale, _usLocale);
+			NumberField field = new NumberField(new HashMap<String, Object>(), usLocale, usLocale);
 
 			assertEquals("123.4", field.convertToData(123.4d));
 			assertEquals("123.4", field.convertToData(123.4f));
@@ -181,7 +181,7 @@ public class NumberFieldTest {
 					"</dynamic-element>" +
 					"</root>";
 
-			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
+			List<Field> resultList = new XSDParser().parse(xsd, usLocale);
 
 			assertNotNull(resultList);
 			assertEquals(1, resultList.size());
@@ -216,7 +216,7 @@ public class NumberFieldTest {
 					"</dynamic-element>" +
 					"</root>";
 
-			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
+			List<Field> resultList = new XSDParser().parse(xsd, usLocale);
 
 			assertNotNull(resultList);
 			assertEquals(1, resultList.size());
@@ -251,7 +251,7 @@ public class NumberFieldTest {
 					"</dynamic-element>" +
 					"</root>";
 
-			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
+			List<Field> resultList = new XSDParser().parse(xsd, usLocale);
 
 			assertNotNull(resultList);
 			assertEquals(1, resultList.size());
@@ -309,7 +309,7 @@ public class NumberFieldTest {
 				"        }" +
 				"]}";
 
-			List<Field> resultList = new JsonParser().parse(JSON_NUMBER, _usLocale);
+			List<Field> resultList = new JsonParser().parse(JSON_NUMBER, usLocale);
 
 			assertNotNull(resultList);
 			assertEquals(1, resultList.size());
@@ -361,7 +361,7 @@ public class NumberFieldTest {
 				"        }" +
 				"]}";
 
-			List<Field> resultList = new JsonParser().parse(JSON_NUMBER, _usLocale);
+			List<Field> resultList = new JsonParser().parse(JSON_NUMBER, usLocale);
 
 			assertNotNull(resultList);
 			assertEquals(1, resultList.size());
@@ -414,7 +414,7 @@ public class NumberFieldTest {
 				"]}";
 
 
-			List<Field> resultList = new JsonParser().parse(JSON_NUMBER, _usLocale);
+			List<Field> resultList = new JsonParser().parse(JSON_NUMBER, usLocale);
 
 			assertNotNull(resultList);
 			assertEquals(1, resultList.size());
