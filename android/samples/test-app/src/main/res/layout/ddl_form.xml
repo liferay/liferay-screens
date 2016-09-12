@@ -18,11 +18,11 @@
 		android:layout_marginTop="0dp"
 		android:paddingTop="0dp"
 		liferay:autoLoad="false"
-		liferay:filePrefix="jre"
-		liferay:folderId="@string/folder_id"
 		liferay:cachePolicy="REMOTE_FIRST"
+		liferay:filePrefix="jre"
+		liferay:folderId="@string/liferay_ddm_folder_id"
 		liferay:recordSetId="@string/liferay_recordset_id"
-		liferay:repositoryId="@string/repository_id"
+		liferay:repositoryId="@string/liferay_ddm_repository_id"
 		liferay:structureId="@string/liferay_structure_id"
 		/>
 
