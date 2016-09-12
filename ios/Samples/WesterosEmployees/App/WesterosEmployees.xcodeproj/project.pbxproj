@@ -119,6 +119,8 @@
 		0BD07A281D82C4C200470A2E /* no-photo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD07A251D82C4C200470A2E /* no-photo@3x.png */; };
 		0BD07A2E1D82EEA100470A2E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD07A2D1D82EEA100470A2E /* DetailViewController.swift */; };
 		0BD07A301D82EEC500470A2E /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD07A2F1D82EEC500470A2E /* DetailViewController.xib */; };
+		0BD07A331D86AEDD00470A2E /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD07A311D86AEDD00470A2E /* CommentsViewController.swift */; };
+		0BD07A341D86AEDD00470A2E /* CommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD07A321D86AEDD00470A2E /* CommentsViewController.xib */; };
 		4A05F25992DBA9E39C52A44F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4E72B9B4122BAE349CEF7 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -238,6 +240,8 @@
 		0BD07A251D82C4C200470A2E /* no-photo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no-photo@3x.png"; sourceTree = "<group>"; };
 		0BD07A2D1D82EEA100470A2E /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		0BD07A2F1D82EEC500470A2E /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		0BD07A311D86AEDD00470A2E /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		0BD07A321D86AEDD00470A2E /* CommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsViewController.xib; sourceTree = "<group>"; };
 		1824BD97996F1C2F00DAA278 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		67B4E72B9B4122BAE349CEF7 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1333B220C6252F61EB4CA33 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -407,6 +411,8 @@
 				0B35AF701D6C361C002E3D2F /* AuthViewController.swift */,
 				0B282F141D7ED9210090F800 /* BlogsViewController.swift */,
 				0B282F151D7ED9210090F800 /* BlogsViewController.xib */,
+				0BD07A311D86AEDD00470A2E /* CommentsViewController.swift */,
+				0BD07A321D86AEDD00470A2E /* CommentsViewController.xib */,
 				0BD07A2D1D82EEA100470A2E /* DetailViewController.swift */,
 				0BD07A2F1D82EEC500470A2E /* DetailViewController.xib */,
 				0B282F101D7ED7BE0090F800 /* DocumentationViewController.swift */,
@@ -601,6 +607,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BD07A341D86AEDD00470A2E /* CommentsViewController.xib in Resources */,
 				0BC6BA4B1D8188670042156E /* file-photo@2x.png in Resources */,
 				0B0A239A1D6B22EF0061B50D /* Logo_BG_red@2x.png in Resources */,
 				0B0A23681D6B221B0061B50D /* SignInViewController.xib in Resources */,
@@ -758,6 +765,7 @@
 				0B318C031D81BC700027C04B /* AssetListView_westeros_doc.swift in Sources */,
 				0B282F121D7ED7BE0090F800 /* DocumentationViewController.swift in Sources */,
 				0B0A236B1D6B221B0061B50D /* TourViewController.swift in Sources */,
+				0BD07A331D86AEDD00470A2E /* CommentsViewController.swift in Sources */,
 				0B0A22981D6B0CDA0061B50D /* AppDelegate.swift in Sources */,
 				0B318C0B1D81C2450027C04B /* BlogsEntryTableViewCell_westeros.swift in Sources */,
 				0B26EAFB1D803FA4000201C6 /* TermsViewController.swift in Sources */,
