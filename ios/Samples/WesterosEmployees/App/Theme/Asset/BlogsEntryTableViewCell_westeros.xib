@@ -24,7 +24,7 @@
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                <integer key="value" value="3"/>
+                                <integer key="value" value="25"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros_blog"/>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
