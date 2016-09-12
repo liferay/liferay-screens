@@ -33,6 +33,7 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 	var documentationViewController: DocumentationViewController?
 	var blogsViewController: BlogsViewController?
 	var galleryViewController: GalleryViewController?
+	var detailViewController: DetailViewController?
 
 
 	//MARK: View actions
@@ -53,6 +54,7 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 		documentationViewController = DocumentationViewController()
 		blogsViewController = BlogsViewController()
 		galleryViewController = GalleryViewController()
+		detailViewController = DetailViewController()
 
 		cardDeck?.delegate = self
 		cardDeck?.dataSource = self
@@ -107,6 +109,7 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 			}
 			else {
 				self.performSegueWithIdentifier("login", sender: nil)
+			}
 		}
 	}
 
@@ -125,6 +128,8 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 				return blogsViewController
 			case (2, 0):
 				return galleryViewController
+			case (2, 1):
+				return detailViewController
 			default:
 				return nil
 			}
@@ -152,6 +157,15 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 			return "Gallery"
 		default:
 			return nil
+		}
+	}
+
+	func cardDeck(cardDeck: CardDeckView, onPageChange position: CardPosition) {
+		switch (position.card, position.page) {
+		case (2, 1):
+			detailViewController?.fileEntryId = galleryViewController?.selectedImageEntry?.imageEntryId
+		default:
+			break
 		}
 	}
 }
