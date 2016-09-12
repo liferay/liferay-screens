@@ -16,13 +16,11 @@ package com.liferay.mobile.screens.context;
 
 import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * @author Silvio Santos
@@ -36,10 +34,12 @@ public class User {
 	public static final String FIRST_NAME = "firstName";
 	public static final String LAST_NAME = "lastName";
 	public static final String SCREEN_NAME = "screenName";
+	private final Map<String, Object> attributes;
+	private final JSONObject jsonObject;
 
 	public User(JSONObject jsonObject) {
-		_jsonObject = jsonObject;
-		_attributes = new HashMap<>(jsonObject.length());
+		this.jsonObject = jsonObject;
+		attributes = new HashMap<>(jsonObject.length());
 
 		Iterator<String> it = jsonObject.keys();
 
@@ -47,24 +47,23 @@ public class User {
 			String key = it.next();
 
 			try {
-				_attributes.put(key, jsonObject.get(key));
-			}
-			catch (JSONException e) {
+				attributes.put(key, jsonObject.get(key));
+			} catch (JSONException e) {
 				LiferayLogger.e("Error parsing json", e);
 			}
 		}
 	}
 
 	public long getId() {
-		return JSONUtil.castToLong(_attributes.get(USER_ID));
+		return JSONUtil.castToLong(attributes.get(USER_ID));
 	}
 
 	public String getUuid() {
-		return _attributes.get(UUID).toString();
+		return attributes.get(UUID).toString();
 	}
 
 	public long getPortraitId() {
-		return JSONUtil.castToLong(_attributes.get(PORTRAIT_ID));
+		return JSONUtil.castToLong(attributes.get(PORTRAIT_ID));
 	}
 
 	public String getFirstName() {
@@ -80,31 +79,27 @@ public class User {
 	}
 
 	public String getScreenName() {
-		return (String) _attributes.get(SCREEN_NAME);
+		return (String) attributes.get(SCREEN_NAME);
 	}
 
 	public Map<String, Object> getAttributes() {
-		return _attributes;
+		return attributes;
 	}
 
 	public String getString(String key) {
-		return (String) _attributes.get(key);
+		return (String) attributes.get(key);
 	}
 
 	public long getInt(String key) {
-		return (int) _attributes.get(key);
+		return (int) attributes.get(key);
 	}
 
 	public long getLong(String key) {
-		return (long) _attributes.get(key);
+		return (long) attributes.get(key);
 	}
 
 	@Override
 	public String toString() {
-		return _jsonObject.toString();
+		return jsonObject.toString();
 	}
-
-	private Map<String, Object> _attributes;
-	private JSONObject _jsonObject;
-
 }

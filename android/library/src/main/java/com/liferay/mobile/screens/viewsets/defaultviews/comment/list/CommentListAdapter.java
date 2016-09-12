@@ -5,14 +5,20 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
+import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
 import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
-import com.liferay.mobile.screens.models.CommentEntry;
 
 /**
  * @author Alejandro Hernández
  */
 public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentListAdapter.CommentViewHolder> {
+
+	private final CommentDisplayListener commentDisplayListener;
+	private String className;
+	private long classPK;
+	private long groupId;
+	private boolean editable;
 
 	public CommentListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener,
 		CommentDisplayListener commentDisplayListener) {
@@ -58,6 +64,9 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 
 	public class CommentViewHolder extends BaseListAdapter.ViewHolder {
 
+		private final CommentDisplayScreenlet commentDisplayScreenlet;
+		private CommentEntry entry;
+
 		public CommentViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 			commentDisplayScreenlet = (CommentDisplayScreenlet) view.findViewById(R.id.comment_view);
@@ -72,18 +81,8 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 			this.entry = entry;
 		}
 
-		private CommentEntry entry;
-		private final CommentDisplayScreenlet commentDisplayScreenlet;
-
 		public void loadDisplayScreenlet() {
 			commentDisplayScreenlet.onLoadCommentSuccess(entry);
 		}
 	}
-
-	private CommentDisplayListener commentDisplayListener;
-
-	private String className;
-	private long classPK;
-	private long groupId;
-	private boolean editable;
 }

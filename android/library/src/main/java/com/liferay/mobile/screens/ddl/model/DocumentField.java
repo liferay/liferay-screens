@@ -3,11 +3,9 @@ package com.liferay.mobile.screens.ddl.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
-
-import org.json.JSONException;
-
 import java.util.Locale;
 import java.util.Map;
+import org.json.JSONException;
 
 /**
  * @author Javier Gamarra
@@ -30,12 +28,10 @@ public class DocumentField extends Field<DocumentFile> {
 				return new DocumentField[size];
 			}
 		};
+	private State state = State.IDLE;
 
-	private enum State {
-		IDLE,
-		UPLOADING,
-		UPLOADED,
-		FAILED
+	public DocumentField() {
+		super();
 	}
 
 	public DocumentField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
@@ -47,8 +43,8 @@ public class DocumentField extends Field<DocumentFile> {
 	}
 
 	public boolean moveToUploadInProgressState() {
-		if (_state == State.IDLE || _state == State.FAILED || _state == State.UPLOADED) {
-			_state = State.UPLOADING;
+		if (state == State.IDLE || state == State.FAILED || state == State.UPLOADED) {
+			state = State.UPLOADING;
 			return true;
 		}
 
@@ -56,8 +52,8 @@ public class DocumentField extends Field<DocumentFile> {
 	}
 
 	public boolean moveToUploadCompleteState() {
-		if (_state == State.UPLOADING) {
-			_state = State.UPLOADED;
+		if (state == State.UPLOADING) {
+			state = State.UPLOADED;
 			return true;
 		}
 
@@ -65,8 +61,8 @@ public class DocumentField extends Field<DocumentFile> {
 	}
 
 	public boolean moveToUploadFailureState() {
-		if (_state == State.UPLOADING) {
-			_state = State.FAILED;
+		if (state == State.UPLOADING) {
+			state = State.FAILED;
 			return true;
 		}
 
@@ -74,15 +70,15 @@ public class DocumentField extends Field<DocumentFile> {
 	}
 
 	public boolean isUploaded() {
-		return (_state == State.UPLOADED);
+		return (state == State.UPLOADED);
 	}
 
 	public boolean isUploading() {
-		return (_state == State.UPLOADING);
+		return (state == State.UPLOADING);
 	}
 
 	public boolean isUploadFailed() {
-		return (_state == State.FAILED);
+		return (state == State.FAILED);
 	}
 
 	public void createLocalFile(String path) {
@@ -103,8 +99,7 @@ public class DocumentField extends Field<DocumentFile> {
 
 		try {
 			result = new DocumentRemoteFile(string);
-		}
-		catch (JSONException e) {
+		} catch (JSONException e) {
 			Log.e("liferay-screens", "Can't parse the document JSON", e);
 		}
 
@@ -131,8 +126,7 @@ public class DocumentField extends Field<DocumentFile> {
 			if (isRequired()) {
 				valid = false;
 			}
-		}
-		else {
+		} else {
 			if (!currentValue.isValid()) {
 				valid = false;
 			}
@@ -140,14 +134,17 @@ public class DocumentField extends Field<DocumentFile> {
 
 		if (isUploading()) {
 			valid = false;
-		}
-		else if (isUploadFailed()) {
+		} else if (isUploadFailed()) {
 			valid = false;
 		}
 
 		return valid;
 	}
 
-	private State _state = State.IDLE;
-
+	private enum State {
+		IDLE,
+		UPLOADING,
+		UPLOADED,
+		FAILED
+	}
 }

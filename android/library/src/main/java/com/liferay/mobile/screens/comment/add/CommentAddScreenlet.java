@@ -7,17 +7,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.base.interactor.Interactor;
-import com.liferay.mobile.screens.comment.add.interactor.CommentAddInteractor;
+import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.add.interactor.CommentAddInteractorImpl;
 import com.liferay.mobile.screens.comment.add.view.CommentAddViewModel;
-import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.models.CommentEntry;
+import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
 
 /**
  * @author Alejandro Hernández
  */
-public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, Interactor> implements CommentAddListener {
+public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, CommentAddInteractorImpl>
+	implements CommentAddListener {
+
+	private CommentAddListener listener;
+	private String className;
+	private long classPK;
 
 	public CommentAddScreenlet(Context context) {
 		super(context);
@@ -44,9 +47,6 @@ public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, Inte
 
 		classPK = castToLong(typedArray.getString(R.styleable.CommentAddScreenlet_classPK));
 
-		groupId = castToLongOrUseDefault(typedArray.getString(R.styleable.CommentAddScreenlet_groupId),
-			LiferayServerContext.getGroupId());
-
 		int layoutId = typedArray.getResourceId(R.styleable.CommentAddScreenlet_layoutId, getDefaultLayoutId());
 
 		typedArray.recycle();
@@ -55,27 +55,24 @@ public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, Inte
 	}
 
 	@Override
-	protected Interactor createInteractor(String actionName) {
-		return new CommentAddInteractorImpl(getScreenletId());
+	protected CommentAddInteractorImpl createInteractor(String actionName) {
+		return new CommentAddInteractorImpl();
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
+	protected void onUserAction(String userActionName, CommentAddInteractorImpl interactor, Object... args) {
 		String body = (String) args[0];
-		try {
-			((CommentAddInteractor) interactor).addComment(groupId, className, classPK, body);
-		} catch (Exception e) {
-			onAddCommentFailure(body, e);
-		}
+
+		interactor.start(new CommentEvent(0, className, classPK, body));
 	}
 
 	@Override
-	public void onAddCommentFailure(String body, Exception e) {
+	public void error(Exception e, String userAction) {
 
 		getViewModel().showFailedOperation(null, e);
 
 		if (getListener() != null) {
-			getListener().onAddCommentFailure(body, e);
+			getListener().error(e, userAction);
 		}
 	}
 
@@ -112,17 +109,4 @@ public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, Inte
 	public void setClassPK(long classPK) {
 		this.classPK = classPK;
 	}
-
-	public long getGroupId() {
-		return groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		this.groupId = groupId;
-	}
-
-	private CommentAddListener listener;
-	private long groupId;
-	private String className;
-	private long classPK;
 }

@@ -14,60 +14,53 @@
 
 package com.liferay.mobile.screens.base.list.interactor;
 
-import com.liferay.mobile.screens.base.interactor.BasicEvent;
-
+import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * @author Javier Gamarra
  */
-public class BaseListEvent<E> extends BasicEvent {
+public class BaseListEvent<E> extends OfflineEventNew {
 
-	public BaseListEvent(int targetScreenletId, int startRow, int endRow, Locale locale, Exception e) {
-		super(targetScreenletId, e);
+	private List<E> entries;
+	private int rowCount;
+	private Query query;
 
-		_startRow = startRow;
-		_endRow = endRow;
-		_locale = locale;
+	public BaseListEvent() {
+		super();
 	}
 
-	public BaseListEvent(
-		int targetScreenletId, int startRow, int endRow, Locale locale, List<E> entries,
-		int rowCount) {
-
-		super(targetScreenletId);
-
-		_entries = entries;
-		_startRow = startRow;
-		_endRow = endRow;
-		_rowCount = rowCount;
-		_locale = locale;
+	public BaseListEvent(Query query, List<E> entries, int rowCount) {
+		this.query = query;
+		this.entries = entries;
+		this.rowCount = rowCount;
 	}
 
 	public List<E> getEntries() {
-		return _entries;
+		return entries;
+	}
+
+	public void setEntries(List<E> entries) {
+		this.entries = entries;
 	}
 
 	public int getStartRow() {
-		return _startRow;
+		return query.getStartRow();
 	}
 
 	public int getEndRow() {
-		return _endRow;
-	}
-
-	public Locale getLocale() {
-		return _locale;
+		return query.getEndRow();
 	}
 
 	public int getRowCount() {
-		return _rowCount;
+		return rowCount;
 	}
 
-	private List<E> _entries;
-	private int _startRow;
-	private int _endRow;
-	private int _rowCount;
-	private Locale _locale;
+	public Query getQuery() {
+		return query;
+	}
+
+	public void setQuery(Query query) {
+		this.query = query;
+	}
 }

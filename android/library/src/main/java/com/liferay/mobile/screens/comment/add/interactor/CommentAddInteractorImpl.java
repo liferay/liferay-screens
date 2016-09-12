@@ -1,46 +1,46 @@
 package com.liferay.mobile.screens.comment.add.interactor;
 
-import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
+import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.add.CommentAddListener;
-import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.comment.add.CommentAddScreenlet;
+import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
 import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
+import com.liferay.mobile.screens.util.JSONUtil;
+import org.json.JSONObject;
 
 /**
  * @author Alejandro Hernández
  */
-public class CommentAddInteractorImpl extends BaseRemoteInteractor<CommentAddListener> implements CommentAddInteractor {
+public class CommentAddInteractorImpl extends BaseCachedWriteThreadRemoteInteractor<CommentAddListener, CommentEvent> {
 
-	public CommentAddInteractorImpl(int targetScreenletId) {
-		super(targetScreenletId);
+	@Override
+	public CommentEvent execute(CommentEvent event) throws Exception {
+
+		String className = event.getClassName();
+		long classPK = event.getClassPK();
+		String body = event.getBody();
+
+		validate(event.getGroupId(), className, classPK, body);
+
+		CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(getSession());
+
+		JSONObject jsonObject = service.addComment(event.getGroupId(), className, classPK, body);
+		CommentEntry commentEntry = new CommentEntry(JSONUtil.toMap(jsonObject));
+		return new CommentEvent(commentEntry.getCommentId(), className, classPK, body, commentEntry);
 	}
 
 	@Override
-	public void addComment(long groupId, String className, long classPK, String body) throws Exception {
-
-		validate(groupId, className, classPK, body);
-
-		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new CommentAddCallback(body, getTargetScreenletId()));
-		CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(session);
-
-		service.addComment(groupId, className, classPK, body);
+	public void onSuccess(CommentEvent event) throws Exception {
+		getListener().onAddCommentSuccess(event.getCommentEntry());
 	}
 
-	public void onEvent(CommentAddEvent event) {
-		if (!isValidEvent(event)) {
-			return;
-		}
-
-		if (event.isFailed()) {
-			getListener().onAddCommentFailure(event.getBody(), event.getException());
-		} else {
-			getListener().onAddCommentSuccess(event.getCommentEntry());
-		}
+	@Override
+	protected void onFailure(CommentEvent event) {
+		getListener().error(event.getException(), CommentAddScreenlet.DEFAULT_ACTION);
 	}
 
 	protected void validate(long groupId, String className, long classPK, String body) {
-
 		if (body.isEmpty()) {
 			throw new IllegalArgumentException("comment body cannot be empty");
 		} else if (groupId <= 0) {

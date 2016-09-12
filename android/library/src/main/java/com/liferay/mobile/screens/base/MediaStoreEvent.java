@@ -1,24 +1,19 @@
 package com.liferay.mobile.screens.base;
 
-import com.liferay.mobile.screens.base.interactor.BasicEvent;
+import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
 
 /**
  * @author Víctor Galán Grande
  */
-public class MediaStoreEvent extends BasicEvent {
+public class MediaStoreEvent extends OfflineEventNew {
 
-	public MediaStoreEvent(int targetScreenletId, String filePath) {
-		super(targetScreenletId);
-		_filePath = filePath;
-	}
+	private final String filePath;
 
-	public MediaStoreEvent(int targetScreenletId, Exception exception) {
-		super(targetScreenletId, exception);
+	public MediaStoreEvent(String filePath) {
+		this.filePath = filePath;
 	}
 
 	public String getFilePath() {
-		return _filePath;
+		return filePath;
 	}
-
-	private String _filePath;
 }

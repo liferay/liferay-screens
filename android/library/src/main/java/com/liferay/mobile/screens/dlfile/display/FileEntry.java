@@ -14,8 +14,8 @@ public class FileEntry extends AssetEntry {
 	}
 
 	public String getUrl() {
-		String url = (String) _values.get("url");
-		int index = url.lastIndexOf("/");
+		String url = (String) values.get("url");
+		int index = url.lastIndexOf('/');
 		return url.substring(0, index);
 	}
 

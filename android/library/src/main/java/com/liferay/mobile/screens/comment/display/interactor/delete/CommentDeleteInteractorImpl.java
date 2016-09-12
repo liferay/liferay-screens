@@ -1,52 +1,42 @@
 package com.liferay.mobile.screens.comment.display.interactor.delete;
 
-import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
+import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
-import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
 import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
 
 /**
  * @author Alejandro Hernández
  */
-public class CommentDeleteInteractorImpl extends BaseRemoteInteractor<CommentDisplayInteractorListener>
-	implements CommentDeleteInteractor {
+public class CommentDeleteInteractorImpl
+	extends BaseCachedWriteThreadRemoteInteractor<CommentDisplayInteractorListener, CommentEvent> {
 
-	public CommentDeleteInteractorImpl(int targetScreenletId) {
-		super(targetScreenletId);
+	@Override
+	public CommentEvent execute(CommentEvent event) throws Exception {
+
+		long commentId = event.getCommentId();
+
+		validate(commentId);
+
+		CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(getSession());
+
+		service.deleteComment(commentId);
+
+		return new CommentEvent();
 	}
 
 	@Override
-	public void deleteComment(long commentId) {
-		try {
-			validate(commentId);
-
-			Session session = SessionContext.createSessionFromCurrentSession();
-
-			session.setCallback(new CommentDeleteCallback(getTargetScreenletId()));
-
-			CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(session);
-
-			service.deleteComment(commentId);
-		} catch (Exception e) {
-			getListener().onDeleteCommentFailure(e);
-		}
+	public void onSuccess(CommentEvent event) throws Exception {
+		getListener().onDeleteCommentSuccess();
 	}
 
-	public void onEvent(CommentDeleteEvent event) {
-		if (!isValidEvent(event)) {
-			return;
-		}
-
-		if (event.isFailed()) {
-			getListener().onDeleteCommentFailure(event.getException());
-		} else {
-			getListener().onDeleteCommentSuccess();
-		}
+	@Override
+	protected void onFailure(CommentEvent event) {
+		getListener().error(event.getException(), CommentDisplayScreenlet.DELETE_COMMENT_ACTION);
 	}
 
 	protected void validate(long commentId) {
-
 		if (commentId <= 0) {
 			throw new IllegalArgumentException("commentId cannot be 0 or negative");
 		}

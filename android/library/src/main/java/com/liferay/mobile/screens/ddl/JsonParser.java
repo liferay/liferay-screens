@@ -1,21 +1,18 @@
 package com.liferay.mobile.screens.ddl;
 
 import android.support.annotation.NonNull;
-
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
@@ -30,16 +27,14 @@ public class JsonParser implements DDMStructureParser {
 		try {
 			JSONObject jsonObject = new JSONObject(json);
 			return processDocument(jsonObject, locale);
-		}
-		catch (JSONException e) {
+		} catch (JSONException e) {
 			LiferayLogger.e("Error parsing form", e);
 		}
 
 		return null;
 	}
 
-	protected List<Field> processDocument(JSONObject jsonObject, Locale locale)
-		throws JSONException {
+	protected List<Field> processDocument(JSONObject jsonObject, Locale locale) throws JSONException {
 
 		List<Field> result = new ArrayList<>();
 
@@ -63,16 +58,13 @@ public class JsonParser implements DDMStructureParser {
 		return result;
 	}
 
-	protected Field createFormField(
-		JSONObject field, Locale formLocale, Locale locale)
-		throws JSONException {
+	protected Field createFormField(JSONObject field, Locale formLocale, Locale locale) throws JSONException {
 
 		Field.DataType dataType = Field.DataType.valueOfString(field.getString("dataType"));
 
 		Map<String, Object> attributes = getAttributes(field);
 
-		Map<String, Object> localizedMetadata =
-			processLocalizedMetadata(field, formLocale, locale);
+		Map<String, Object> localizedMetadata = processLocalizedMetadata(field, formLocale, locale);
 
 		Map<String, Object> mergedMap = new HashMap<>();
 
@@ -91,8 +83,7 @@ public class JsonParser implements DDMStructureParser {
 		return newField;
 	}
 
-	protected Map<String, Object> processLocalizedMetadata(
-		JSONObject field, Locale formLocale, Locale locale)
+	protected Map<String, Object> processLocalizedMetadata(JSONObject field, Locale formLocale, Locale locale)
 		throws JSONException {
 
 		Map<String, Object> result = new HashMap<>();
@@ -106,16 +97,15 @@ public class JsonParser implements DDMStructureParser {
 		return result;
 	}
 
-	protected String addLocalizedElement(
-		JSONObject jsonObject, String key, Locale formLocale, Locale locale) throws JSONException {
+	protected String addLocalizedElement(JSONObject jsonObject, String key, Locale formLocale, Locale locale)
+		throws JSONException {
 		if (jsonObject.has(key)) {
 			return addLocalizedElement(jsonObject.getJSONObject(key), formLocale, locale);
 		}
 		return "";
 	}
 
-	protected String addLocalizedElement(
-		JSONObject field, Locale formLocale, Locale locale) throws JSONException {
+	protected String addLocalizedElement(JSONObject field, Locale formLocale, Locale locale) throws JSONException {
 
 		// Locale matching fallback mechanism: it's designed in such a way to return
 		// the most suitable locale among the available ones. It minimizes the default
@@ -133,7 +123,6 @@ public class JsonParser implements DDMStructureParser {
 		//  b2. Matches elements for any country: "es_ES", "es_AR"...
 		//  b3. Matches elements for default locale
 
-
 		if (field.has(locale.toString())) {
 			//			 cases 'a1' and 'b1'
 			return field.getString(locale.toString());
@@ -142,7 +131,7 @@ public class JsonParser implements DDMStructureParser {
 		String supportedLocale = LiferayLocale.getSupportedLocaleWithNoDefault(locale.getLanguage());
 		// Pre-final fallback (a2, a3, b2): find any metadata with the portal supported languages
 
-		if (supportedLocale != null) {
+		if (supportedLocale.isEmpty()) {
 			return field.getString(supportedLocale);
 		}
 
@@ -150,8 +139,8 @@ public class JsonParser implements DDMStructureParser {
 		return field.getString(formLocale.toString());
 	}
 
-	protected List<Map<String, String>> findOptions(
-		JSONObject field, Locale locale, Locale defaultLocale) throws JSONException {
+	protected List<Map<String, String>> findOptions(JSONObject field, Locale locale, Locale defaultLocale)
+		throws JSONException {
 
 		JSONArray options = field.getJSONArray("options");
 
@@ -183,7 +172,6 @@ public class JsonParser implements DDMStructureParser {
 		return result;
 	}
 
-
 	@NonNull
 	private Locale parseLocale(String defaultLocaleValue) {
 
@@ -191,12 +179,10 @@ public class JsonParser implements DDMStructureParser {
 
 		if (separator == -1) {
 			return new Locale(defaultLocaleValue);
-		}
-		else {
+		} else {
 			String language = defaultLocaleValue.substring(0, separator);
 			String country = defaultLocaleValue.substring(separator + 1);
 			return new Locale(language, country);
 		}
 	}
-
 }

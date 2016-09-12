@@ -10,6 +10,7 @@ import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v7.dlapp.DLAppService;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.gallery.interactor.load.GalleryEvent;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.FileUtil;
@@ -26,6 +27,8 @@ import org.json.JSONObject;
  * @author Víctor Galán Grande
  */
 public class GalleryUploadService extends IntentService {
+
+	private boolean shouldCancel;
 
 	public GalleryUploadService() {
 		super(GalleryUploadService.class.getCanonicalName());
@@ -73,21 +76,21 @@ public class GalleryUploadService extends IntentService {
 			Bitmap thumbnail = Picasso.with(this).load(new File(picturePath)).get();
 			imageEntry.setImage(thumbnail);
 
-			EventBusUtil.post(new GalleryUploadEvent(screenletId, imageEntry));
+			EventBusUtil.post(new GalleryEvent(imageEntry));
 		} catch (Exception e) {
-			EventBusUtil.post(new GalleryUploadEvent(screenletId, e));
+			EventBusUtil.post(new GalleryEvent(e));
 		}
 	}
 
 	private JSONObject uploadImageEntry(int screenletId, long repositoryId, long folderId, String title,
 		String description, String changeLog, String picturePath) throws Exception {
 
-		String sourceName = picturePath.substring(picturePath.lastIndexOf("/") + 1);
+		String sourceName = picturePath.substring(picturePath.lastIndexOf('/') + 1);
 		if (title.isEmpty()) {
 			title = System.nanoTime() + sourceName;
 		}
 
-		UploadData uploadData = createUploadData(screenletId, picturePath, sourceName);
+		UploadData uploadData = createUploadData(picturePath, sourceName);
 
 		Session session = SessionContext.createSessionFromCurrentSession();
 		String mimeType = FileUtil.getMimeType(picturePath);
@@ -98,7 +101,7 @@ public class GalleryUploadService extends IntentService {
 			changeLog, uploadData, serviceContext);
 	}
 
-	private UploadData createUploadData(final int screenletId, String path, String name) throws IOException {
+	private UploadData createUploadData(String path, String name) throws IOException {
 
 		File file = new File(path);
 		InputStream is = new FileInputStream(file);
@@ -107,7 +110,7 @@ public class GalleryUploadService extends IntentService {
 		return new UploadData(is, name, new FileProgressCallback() {
 			@Override
 			public void onProgress(int totalBytesSent) {
-				EventBusUtil.post(new GalleryUploadEvent(screenletId, fileSize, totalBytesSent));
+				EventBusUtil.post(new GalleryEvent(fileSize, totalBytesSent));
 			}
 
 			@Override
@@ -124,6 +127,4 @@ public class GalleryUploadService extends IntentService {
 		serviceContextAttributes.put("addGuestPermissions", true);
 		return new JSONObjectWrapper(serviceContextAttributes);
 	}
-
-	private boolean shouldCancel;
 }

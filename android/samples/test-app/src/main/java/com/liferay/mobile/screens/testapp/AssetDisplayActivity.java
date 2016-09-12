@@ -15,15 +15,15 @@ import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 /**
  * @author Sarai Díaz García
  */
-public class AssetDisplayActivity extends ThemeActivity implements AssetDisplayListener,
-	AssetDisplayInnerScreenletListener {
+public class AssetDisplayActivity extends ThemeActivity
+	implements AssetDisplayListener, AssetDisplayInnerScreenletListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.asset_display);
 
-		screenlet = ((AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet));
+		AssetDisplayScreenlet screenlet = ((AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet));
 
 		screenlet.setEntryId(getIntent().getLongExtra("entryId", 0));
 		screenlet.setListener(this);
@@ -31,7 +31,7 @@ public class AssetDisplayActivity extends ThemeActivity implements AssetDisplayL
 	}
 
 	@Override
-	public void onRetrieveAssetFailure(Exception e) {
+	public void error(Exception e, String userAction) {
 		error("Could not receive asset entry", e);
 	}
 
@@ -77,6 +77,4 @@ public class AssetDisplayActivity extends ThemeActivity implements AssetDisplayL
 		}
 		return null;
 	}
-
-	private AssetDisplayScreenlet screenlet;
 }

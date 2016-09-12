@@ -32,6 +32,7 @@
 			android:layout_height="60dp"
 			android:layout_alignParentLeft="true"
 			android:background="@drawable/ripple"
+			android:contentDescription="@string/very_sad_smiley"
 			android:scaleType="fitXY"
 			android:src="@drawable/default_mood_very_dissatisfied"
 			/>
@@ -42,6 +43,7 @@
 			android:layout_height="60dp"
 			android:layout_toRightOf="@+id/very_dissatisfied_button"
 			android:background="@drawable/ripple"
+			android:contentDescription="@string/sad_smiley"
 			android:scaleType="fitXY"
 			android:src="@drawable/default_mood_dissatisfied"
 			/>
@@ -52,8 +54,9 @@
 			android:layout_height="60dp"
 			android:layout_toRightOf="@id/dissatisfied_button"
 			android:background="@drawable/ripple"
-			android:src="@drawable/default_mood_neutral"
+			android:contentDescription="@string/neutral_smiley"
 			android:scaleType="fitXY"
+			android:src="@drawable/default_mood_neutral"
 			/>
 
 		<ImageButton
@@ -62,6 +65,7 @@
 			android:layout_height="60dp"
 			android:layout_toRightOf="@id/neutral_button"
 			android:background="@drawable/ripple"
+			android:contentDescription="@string/happy_smiley"
 			android:scaleType="fitXY"
 			android:src="@drawable/default_mood_satisfied"
 			/>
@@ -72,6 +76,7 @@
 			android:layout_height="60dp"
 			android:layout_toRightOf="@id/satisfied_button"
 			android:background="@drawable/ripple"
+			android:contentDescription="@string/very_happy_smiley"
 			android:scaleType="fitXY"
 			android:src="@drawable/default_mood_very_satisfied"
 			/>

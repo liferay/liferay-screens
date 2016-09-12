@@ -8,8 +8,6 @@ import com.liferay.mobile.screens.gallery.model.ImageEntry;
  */
 public interface GalleryListener extends BaseListListener<ImageEntry> {
 
-	void onImageEntryDeleteFailure(Exception e);
-
 	void onImageEntryDeleted(long imageEntryId);
 
 	void onImageUploadStarted(String picturePath, String title, String description);
@@ -17,8 +15,6 @@ public interface GalleryListener extends BaseListListener<ImageEntry> {
 	void onImageUploadProgress(int totalBytes, int totalBytesSent);
 
 	void onImageUploadEnd(ImageEntry entry);
-
-	void onImageUploadFailure(Exception e);
 
 	Class provideImageUploadDetailActivity();
 }

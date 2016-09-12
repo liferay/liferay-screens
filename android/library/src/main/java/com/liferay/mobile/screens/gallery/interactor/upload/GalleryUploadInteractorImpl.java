@@ -2,67 +2,61 @@ package com.liferay.mobile.screens.gallery.interactor.upload;
 
 import android.content.Intent;
 import com.liferay.mobile.screens.base.MediaStoreEvent;
-import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.gallery.interactor.GalleryInteractorListener;
+import com.liferay.mobile.screens.gallery.interactor.load.GalleryEvent;
+import com.liferay.mobile.screens.gallery.model.ImageEntry;
 
 /**
  * @author Víctor Galán Grande
  */
-public class GalleryUploadInteractorImpl extends BaseRemoteInteractor<GalleryInteractorListener>
-	implements GalleryUploadInteractor {
+public class GalleryUploadInteractorImpl
+	extends BaseCachedWriteThreadRemoteInteractor<GalleryInteractorListener, GalleryEvent> {
 
-	public GalleryUploadInteractorImpl(int targetScreenletId) {
-		super(targetScreenletId);
+	@Override
+	public GalleryEvent execute(GalleryEvent event) throws Exception {
+
+		ImageEntry imageEntry = event.getImageEntry();
+		validate(imageEntry.getRepositoryId(), imageEntry.getFolderId(), imageEntry.getTitle(), event.getDescription(),
+			event.getChangeLog(), event.getPicturePath());
+
+		Intent service = new Intent(LiferayScreensContext.getContext(), GalleryUploadService.class);
+		service.putExtra("screenletId", getTargetScreenletId());
+
+		service.putExtra("repositoryId", imageEntry.getRepositoryId());
+		service.putExtra("folderId", imageEntry.getFolderId());
+		service.putExtra("title", event.getTitle());
+		service.putExtra("description", event.getDescription());
+		service.putExtra("changeLog", event.getChangeLog());
+		service.putExtra("picturePath", event.getPicturePath());
+
+		LiferayScreensContext.getContext().startService(service);
+
+		return null;
 	}
 
 	@Override
-	public void uploadImageEntry(long repositoryId, long folderId, String title, String description, String changeLog,
-		String picturePath) {
+	public void onSuccess(GalleryEvent event) throws Exception {
 
-		try {
-
-			validate(repositoryId, folderId, title, description, changeLog, picturePath);
-
-			Intent service = new Intent(LiferayScreensContext.getContext(), GalleryUploadService.class);
-			service.putExtra("screenletId", getTargetScreenletId());
-			service.putExtra("repositoryId", repositoryId);
-			service.putExtra("folderId", folderId);
-			service.putExtra("title", title);
-			service.putExtra("description", description);
-			service.putExtra("changeLog", changeLog);
-			service.putExtra("picturePath", picturePath);
-
-			LiferayScreensContext.getContext().startService(service);
-		} catch (Exception e) {
-			getListener().onPictureUploadFailure(e);
-		}
-	}
-
-	public void onEvent(StartUploadEvent event) {
-		if (isValidEvent(event)) {
+		if (event.isStarting()) {
 			getListener().onPictureUploadInformationReceived(event.getPicturePath(), event.getTitle(),
 				event.getDescription());
-		}
-	}
-
-	public void onEvent(MediaStoreEvent event) {
-		if (isValidEvent(event)) {
-			getListener().onPicturePathReceived(event.getFilePath());
-		}
-	}
-
-	public void onEventMainThread(GalleryUploadEvent event) {
-		if (!isValidEvent(event)) {
-			return;
-		}
-
-		if (event.isFailed()) {
-			getListener().onPictureUploadFailure(event.getException());
 		} else if (event.isCompleted()) {
 			getListener().onPictureUploaded(event.getImageEntry());
 		} else {
 			getListener().onPictureUploadProgress(event.getTotalBytes(), event.getTotalBytesSent());
+		}
+	}
+
+	@Override
+	protected void onFailure(GalleryEvent event) {
+		getListener().error(event.getException(), getActionName());
+	}
+
+	public void onEvent(MediaStoreEvent event) {
+		if (!isInvalidEvent(event)) {
+			getListener().onPicturePathReceived(event.getFilePath());
 		}
 	}
 
@@ -71,25 +65,15 @@ public class GalleryUploadInteractorImpl extends BaseRemoteInteractor<GalleryInt
 
 		if (repositoryId <= 0) {
 			throw new IllegalArgumentException("Repository Id has to be greater than 0");
-		}
-
-		if (folderId < 0) {
+		} else if (folderId < 0) {
 			throw new IllegalArgumentException("Folder Id has to be greater than 0");
-		}
-
-		if (title == null) {
+		} else if (title == null) {
 			throw new IllegalArgumentException("Title can not be null");
-		}
-
-		if (description == null) {
+		} else if (description == null) {
 			throw new IllegalArgumentException("Description can not be null");
-		}
-
-		if (changeLog == null) {
+		} else if (changeLog == null) {
 			throw new IllegalArgumentException("Changelog can not be null");
-		}
-
-		if (picturePath == null) {
+		} else if (picturePath == null) {
 			throw new IllegalArgumentException("Picture path can not be null");
 		}
 	}

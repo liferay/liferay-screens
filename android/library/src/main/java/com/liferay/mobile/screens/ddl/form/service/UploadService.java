@@ -17,9 +17,9 @@ package com.liferay.mobile.screens.ddl.form.service;
 import android.app.IntentService;
 import android.content.Intent;
 import android.webkit.MimeTypeMap;
-
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
+import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadEvent;
@@ -27,10 +27,6 @@ import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.util.ServiceProvider;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -38,6 +34,8 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
@@ -48,6 +46,14 @@ public class UploadService extends IntentService {
 
 	public UploadService() {
 		super(UploadService.class.getCanonicalName());
+	}
+
+	private static String getMimeType(String path) {
+		String extension = MimeTypeMap.getFileExtensionFromUrl(path);
+		if (extension != null) {
+			return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+		}
+		return null;
 	}
 
 	@Override
@@ -62,25 +68,27 @@ public class UploadService extends IntentService {
 		Long repositoryId = intent.getLongExtra("repositoryId", 0);
 		Long folderId = intent.getLongExtra("folderId", 0);
 		String filePrefix = intent.getStringExtra("filePrefix");
-		int targetScreenletId = intent.getIntExtra("screenletId", 0);
+		int targetScreenletId = intent.getIntExtra("targetScreenletId", 0);
+		String actionName = intent.getStringExtra("actionName");
 
 		try {
 			JSONObject jsonObject = uploadFile(file, userId, groupId, repositoryId, folderId, filePrefix);
 
-			DDLFormDocumentUploadEvent event = new DDLFormDocumentUploadEvent(targetScreenletId, file, userId, groupId, repositoryId,
-				folderId, filePrefix, jsonObject);
+			DDLFormDocumentUploadEvent event =
+				new DDLFormDocumentUploadEvent(file, repositoryId, folderId, filePrefix, jsonObject);
+			decorateEvent(event, groupId, userId, null, targetScreenletId, actionName);
 			EventBusUtil.post(event);
-		}
-		catch (Exception e) {
-			EventBusUtil.post(new DDLFormDocumentUploadEvent(targetScreenletId, file, userId, groupId, repositoryId,
-				folderId, filePrefix, e));
+		} catch (Exception e) {
+			DDLFormDocumentUploadEvent event = new DDLFormDocumentUploadEvent(e);
+			decorateEvent(event, groupId, userId, null, targetScreenletId, actionName);
+			EventBusUtil.post(event);
 		}
 	}
 
-	public JSONObject uploadFile(DocumentField file, Long userId, Long groupId, Long repositoryId,
-								 Long folderId, String filePrefix) throws Exception {
+	public JSONObject uploadFile(DocumentField file, Long userId, Long groupId, Long repositoryId, Long folderId,
+		String filePrefix) throws Exception {
 		String path = file.getCurrentValue().toString();
-		String name = path.substring(path.lastIndexOf("/") + 1);
+		String name = path.substring(path.lastIndexOf('/') + 1);
 		String date = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
 
 		Session session = SessionContext.createSessionFromCurrentSession();
@@ -92,8 +100,8 @@ public class UploadService extends IntentService {
 
 		String fileName = (filePrefix == null ? "" : filePrefix) + date + "_" + name;
 
-		return dlAppConnector.addFileEntry(repositoryId, folderId, name,
-			getMimeType(path), fileName, "", "", getBytes(new File(path)), serviceContextWrapper);
+		return dlAppConnector.addFileEntry(repositoryId, folderId, name, getMimeType(path), fileName, "", "",
+			getBytes(new File(path)), serviceContextWrapper);
 	}
 
 	private byte[] getBytes(File file) throws IOException {
@@ -104,14 +112,12 @@ public class UploadService extends IntentService {
 			if (ios.read(buffer) == -1) {
 				throw new IOException("EOF reached while trying to read the whole file");
 			}
-		}
-		finally {
+		} finally {
 			try {
 				if (ios != null) {
 					ios.close();
 				}
-			}
-			catch (IOException e) {
+			} catch (IOException e) {
 				LiferayLogger.e("Error closing stream", e);
 			}
 		}
@@ -126,11 +132,13 @@ public class UploadService extends IntentService {
 		return new JSONObjectWrapper(serviceContextAttributes);
 	}
 
-	private static String getMimeType(String path) {
-		String extension = MimeTypeMap.getFileExtensionFromUrl(path);
-		if (extension != null) {
-			return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
-		}
-		return null;
+	private void decorateEvent(OfflineEventNew event, long groupId, long userId, Locale locale, int targetScreenletId,
+		String actionName) {
+		event.setGroupId(groupId);
+		event.setUserId(userId);
+		event.setLocale(locale);
+		event.setCachedRequest(false);
+		event.setTargetScreenletId(targetScreenletId);
+		event.setActionName(actionName);
 	}
 }

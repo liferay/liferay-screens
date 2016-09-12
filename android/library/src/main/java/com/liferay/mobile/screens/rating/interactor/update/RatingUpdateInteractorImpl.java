@@ -1,32 +1,47 @@
 package com.liferay.mobile.screens.rating.interactor.update;
 
-import android.support.annotation.NonNull;
-import com.liferay.mobile.screens.base.interactor.InteractorAsyncTaskCallback;
-import com.liferay.mobile.screens.rating.interactor.BaseRatingInteractorImpl;
+import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
+import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.rating.AssetRating;
+import com.liferay.mobile.screens.rating.RatingListener;
+import com.liferay.mobile.screens.rating.RatingScreenlet;
+import com.liferay.mobile.screens.rating.interactor.RatingEvent;
 import com.liferay.mobile.screens.service.v70.ScreensratingsentryService;
 import java.security.InvalidParameterException;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
  * @author Alejandro Hernández
  */
-public class RatingUpdateInteractorImpl extends BaseRatingInteractorImpl implements RatingUpdateInteractor {
+public class RatingUpdateInteractorImpl extends BaseCachedWriteThreadRemoteInteractor<RatingListener, RatingEvent> {
 
-	public RatingUpdateInteractorImpl(int targetScreenletId) {
-		super(targetScreenletId);
+	@Override
+	public RatingEvent execute(RatingEvent event) throws Exception {
+
+		validate(event.getScore());
+
+		ScreensratingsentryService ratingsEntryService =
+			new ScreensratingsentryService(SessionContext.createSessionFromCurrentSession());
+
+		JSONObject jsonObject =
+			ratingsEntryService.updateRatingsEntry(event.getClassPK(), event.getClassName(), event.getScore(),
+				event.getRatingGroupCounts());
+		return new RatingEvent(event.getClassPK(), event.getClassName(), event.getRatingGroupCounts(), jsonObject);
 	}
 
 	@Override
-	public void updateRating(long classPK, String className, double score, int ratingsGroupCount) throws Exception {
-
-		validate(score);
-
-		ScreensratingsentryService service = getScreensratingsentryService();
-		service.updateRatingsEntry(classPK, className, score, ratingsGroupCount);
+	public void onSuccess(RatingEvent event) throws Exception {
+		JSONObject result = event.getJSONObject();
+		AssetRating assetRating = new AssetRating(result.getLong("classPK"), result.getString("className"),
+			toIntArray(result.getJSONArray("ratings")), result.getDouble("average"), result.getDouble("userScore"),
+			result.getDouble("totalScore"), result.getInt("totalCount"));
+		getListener().onRatingOperationSuccess(assetRating);
 	}
 
-	public void onEvent(RatingUpdateEvent event) {
-		processEvent(event);
+	@Override
+	protected void onFailure(RatingEvent event) {
+		getListener().error(event.getException(), RatingScreenlet.UPDATE_RATING_ACTION);
 	}
 
 	protected void validate(double score) throws InvalidParameterException {
@@ -35,9 +50,11 @@ public class RatingUpdateInteractorImpl extends BaseRatingInteractorImpl impleme
 		}
 	}
 
-	@NonNull
-	@Override
-	protected InteractorAsyncTaskCallback<JSONObject> getCallback() {
-		return new RatingUpdateCallback(getTargetScreenletId());
+	protected int[] toIntArray(JSONArray array) {
+		int[] intArray = new int[array.length()];
+		for (int i = 0; i < array.length(); i++) {
+			intArray[i] = array.optInt(i);
+		}
+		return intArray;
 	}
 }

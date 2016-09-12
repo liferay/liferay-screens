@@ -30,6 +30,13 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 
 	public static final String STATE_LAYOUTS = "STATE_LAYOUTS";
 	public static final String STATE_ENTRY_ID = "STATE_ENTRY_ID";
+	private boolean autoLoad;
+	private HashMap<String, Integer> layouts;
+	private long entryId;
+	private long classPK;
+	private String className;
+	private AssetDisplayListener listener;
+	private AssetDisplayInnerScreenletListener configureListener;
 
 	public AssetDisplayScreenlet(Context context) {
 		super(context);
@@ -112,7 +119,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 				} else {
 					LiferayLogger.e("Error loading screenlet");
 					if (listener != null) {
-						listener.onRetrieveAssetFailure(new Exception("Error loading screenlet"));
+						listener.error(new Exception("Error loading screenlet"), DEFAULT_ACTION);
 					}
 				}
 			}
@@ -124,17 +131,17 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	}
 
 	@Override
-	public void onRetrieveAssetFailure(Exception e) {
+	public void error(Exception e, String userAction) {
 		getViewModel().showFailedOperation(null, e);
 
 		if (listener != null) {
-			listener.onRetrieveAssetFailure(e);
+			listener.error(e, DEFAULT_ACTION);
 		}
 	}
 
 	@Override
 	protected AssetDisplayInteractorImpl createInteractor(String actionName) {
-		return new AssetDisplayInteractorImpl(getScreenletId());
+		return new AssetDisplayInteractorImpl();
 	}
 
 	@Override
@@ -148,19 +155,17 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 
 	//TODO now the autoload is required to be able to load child screenlets
 	protected void autoLoad() {
-		if (SessionContext.isLoggedIn()) {
-			if (entryId != 0 || (className != null && classPK != 0)) {
-				loadAsset();
-			}
+		if (SessionContext.isLoggedIn() && (entryId != 0 || (className != null && classPK != 0))) {
+			loadAsset();
 		}
 	}
 
 	@Override
 	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor, Object... args) {
 		if (entryId != 0) {
-			interactor.getAssetEntry(entryId);
+			interactor.start(entryId);
 		} else {
-			interactor.getAssetEntry(className, classPK);
+			interactor.start(className, classPK);
 		}
 	}
 
@@ -213,20 +218,11 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		this.listener = listener;
 	}
 
-	public void setInnerListener(
-		AssetDisplayInnerScreenletListener configureListener) {
+	public void setInnerListener(AssetDisplayInnerScreenletListener configureListener) {
 		this.configureListener = configureListener;
 	}
 
 	public void setAutoLoad(boolean autoLoad) {
 		this.autoLoad = autoLoad;
 	}
-
-	private boolean autoLoad;
-	private HashMap<String, Integer> layouts;
-	private long entryId;
-	private long classPK;
-	private String className;
-	private AssetDisplayListener listener;
-	private AssetDisplayInnerScreenletListener configureListener;
 }

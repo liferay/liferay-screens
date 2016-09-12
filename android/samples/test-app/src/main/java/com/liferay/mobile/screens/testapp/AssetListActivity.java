@@ -20,7 +20,6 @@ import android.view.View;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.asset.list.AssetListScreenlet;
 import com.liferay.mobile.screens.base.list.BaseListListener;
-import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 import java.util.List;
 
@@ -28,6 +27,8 @@ import java.util.List;
  * @author Javier Gamarra
  */
 public class AssetListActivity extends ThemeActivity implements BaseListListener<AssetEntry> {
+
+	private AssetListScreenlet assetListScreenlet;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +49,12 @@ public class AssetListActivity extends ThemeActivity implements BaseListListener
 	}
 
 	@Override
-	public void onListPageFailed(BaseListScreenlet source, int startRow, int endRow, Exception e) {
+	public void onListPageFailed(int startRow, Exception e) {
 		error("Page request failed", e);
 	}
 
 	@Override
-	public void onListPageReceived(BaseListScreenlet source, int startRow, int endRow, List<AssetEntry> entries,
-		int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries, int rowCount) {
 		info("Row " + startRow + " received!");
 	}
 
@@ -66,19 +66,7 @@ public class AssetListActivity extends ThemeActivity implements BaseListListener
 	}
 
 	@Override
-	public void loadingFromCache(boolean success) {
+	public void error(Exception e, String userAction) {
 
 	}
-
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
-
-	}
-
-	@Override
-	public void storingToCache(Object object) {
-
-	}
-
-	private AssetListScreenlet assetListScreenlet;
 }

@@ -20,7 +20,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
@@ -29,7 +28,12 @@ import com.liferay.mobile.screens.ddl.model.NumberField;
 /**
  * @author Jose Manuel Navarro
  */
-public class CustomRatingNumberView extends LinearLayout implements DDLFieldViewModel<NumberField>, RatingBar.OnRatingBarChangeListener {
+public class CustomRatingNumberView extends LinearLayout
+	implements DDLFieldViewModel<NumberField>, RatingBar.OnRatingBarChangeListener {
+
+	protected NumberField field;
+	protected RatingBar ratingBar;
+	protected View parentView;
 
 	public CustomRatingNumberView(Context context) {
 		super(context);
@@ -45,17 +49,17 @@ public class CustomRatingNumberView extends LinearLayout implements DDLFieldView
 
 	@Override
 	public NumberField getField() {
-		return _field;
+		return field;
 	}
 
 	@Override
 	public void setField(NumberField field) {
-		_field = field;
+		this.field = field;
 
 		TextView label = (TextView) findViewById(R.id.liferay_ddl_label);
 
-		if (_field.isShowLabel()) {
-			label.setText(_field.getLabel());
+		if (this.field.isShowLabel()) {
+			label.setText(this.field.getLabel());
 			label.setVisibility(VISIBLE);
 		}
 
@@ -66,16 +70,15 @@ public class CustomRatingNumberView extends LinearLayout implements DDLFieldView
 	public void refresh() {
 		float rating = 0;
 
-		if (_field.getCurrentValue() != null) {
-			if (_field.getEditorType() == Field.EditorType.INTEGER) {
-				rating = _field.getCurrentValue().floatValue();
-			}
-			else {
-				rating = valueToRating(_field.getCurrentValue().floatValue());
+		if (field.getCurrentValue() != null) {
+			if (field.getEditorType() == Field.EditorType.INTEGER) {
+				rating = field.getCurrentValue().floatValue();
+			} else {
+				rating = valueToRating(field.getCurrentValue().floatValue());
 			}
 		}
 
-		_ratingBar.setRating(rating);
+		ratingBar.setRating(rating);
 	}
 
 	@Override
@@ -85,12 +88,12 @@ public class CustomRatingNumberView extends LinearLayout implements DDLFieldView
 
 	@Override
 	public View getParentView() {
-		return _parentView;
+		return parentView;
 	}
 
 	@Override
 	public void setParentView(View view) {
-		_parentView = view;
+		parentView = view;
 	}
 
 	@Override
@@ -103,11 +106,10 @@ public class CustomRatingNumberView extends LinearLayout implements DDLFieldView
 			return;
 		}
 
-		if (_field.getEditorType() == Field.EditorType.INTEGER) {
-			_field.setCurrentValue(rating);
-		}
-		else {
-			_field.setCurrentValue(ratingToValue(rating));
+		if (field.getEditorType() == Field.EditorType.INTEGER) {
+			field.setCurrentValue(rating);
+		} else {
+			field.setCurrentValue(ratingToValue(rating));
 		}
 	}
 
@@ -117,23 +119,18 @@ public class CustomRatingNumberView extends LinearLayout implements DDLFieldView
 
 		setSaveEnabled(false);
 
-		_ratingBar = (RatingBar) findViewById(R.id.liferay_ddl_custom_rating);
+		ratingBar = (RatingBar) findViewById(R.id.liferay_ddl_custom_rating);
 
-		_ratingBar.setOnRatingBarChangeListener(this);
+		ratingBar.setOnRatingBarChangeListener(this);
 	}
 
 	protected float ratingToValue(float score) {
 		// normalize the number to 0..1 value
-		return (score / (float) _ratingBar.getNumStars());
+		return (score / (float) ratingBar.getNumStars());
 	}
 
 	protected float valueToRating(float ratio) {
 		// normalize the number to 0..numStars value
-		return (ratio * (float) _ratingBar.getNumStars());
+		return (ratio * (float) ratingBar.getNumStars());
 	}
-
-	protected NumberField _field;
-	protected RatingBar _ratingBar;
-	protected View _parentView;
-
 }

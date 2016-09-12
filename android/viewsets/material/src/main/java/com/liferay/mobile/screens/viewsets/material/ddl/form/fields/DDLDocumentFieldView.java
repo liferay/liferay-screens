@@ -17,7 +17,6 @@ package com.liferay.mobile.screens.viewsets.material.ddl.form.fields;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-
 import com.liferay.mobile.screens.viewsets.R;
 
 /**
@@ -44,19 +43,15 @@ public class DDLDocumentFieldView
 		if (getField().isUploaded()) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.material_tinted_done, 0);
 			getProgressBar().setVisibility(View.GONE);
-		}
-		else if (getField().isUploadFailed()) {
+		} else if (getField().isUploadFailed()) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.material_tinted_remove, 0);
 			getProgressBar().setVisibility(View.GONE);
-		}
-		else if (getField().isUploading()) {
+		} else if (getField().isUploading()) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 			getProgressBar().setVisibility(View.VISIBLE);
-		}
-		else {
+		} else {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.material_tinted_perm_media, 0);
 			getProgressBar().setVisibility(View.GONE);
 		}
 	}
-
 }

@@ -5,10 +5,10 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
+import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
 import com.liferay.mobile.screens.comment.list.CommentListScreenlet;
 import com.liferay.mobile.screens.comment.list.view.CommentListViewModel;
-import com.liferay.mobile.screens.models.CommentEntry;
 import java.util.List;
 
 /**
@@ -17,6 +17,8 @@ import java.util.List;
 public class CommentListView
 	extends BaseListScreenletView<CommentEntry, CommentListAdapter.CommentViewHolder, CommentListAdapter>
 	implements CommentListViewModel, CommentDisplayListener {
+
+	private TextView emptyListTextView;
 
 	public CommentListView(Context context) {
 		super(context);
@@ -51,7 +53,7 @@ public class CommentListView
 			getAdapter().notifyItemInserted(size - 1);
 		}
 
-		_recyclerView.smoothScrollToPosition(size - 1);
+		recyclerView.smoothScrollToPosition(size - 1);
 		showEmptyListMessage();
 	}
 
@@ -131,16 +133,7 @@ public class CommentListView
 	}
 
 	@Override
-	public void loadingFromCache(boolean success) {
-	}
+	public void error(Exception e, String userAction) {
 
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
 	}
-
-	@Override
-	public void storingToCache(Object object) {
-	}
-
-	private TextView emptyListTextView;
 }

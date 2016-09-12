@@ -19,23 +19,24 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
-
 import com.liferay.mobile.pushnotifications.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.list.view.DDLListViewModel;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Javier Gamarra
  */
-public class DDLListView
-	extends BaseListScreenletView<Record, DDLListAdapter.ImageViewHolder, DDLListAdapter>
+public class DDLListView extends BaseListScreenletView<Record, DDLListAdapter.ImageViewHolder, DDLListAdapter>
 	implements DDLListViewModel, SwipeRefreshLayout.OnRefreshListener {
+
+	private static final String STATE_LABEL_FIELDS = "ddllistview-label_fields";
+	private static final String STATE_SUPER = "ddllistview-super";
+	private SwipeRefreshLayout swipeRefreshLayout;
 
 	public DDLListView(Context context) {
 		super(context);
@@ -51,7 +52,7 @@ public class DDLListView
 
 	@Override
 	public void onRefresh() {
-		_swipeRefreshLayout.setRefreshing(false);
+		swipeRefreshLayout.setRefreshing(false);
 		((DDLListScreenlet) getParent()).loadPage(0);
 	}
 
@@ -78,17 +79,17 @@ public class DDLListView
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.liferay_swipe_refresh);
-		_swipeRefreshLayout.setOnRefreshListener(this);
+		swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.liferay_swipe_refresh);
+		swipeRefreshLayout.setOnRefreshListener(this);
 	}
 
 	@Override
 	protected void onRestoreInstanceState(Parcelable inState) {
 		Bundle state = (Bundle) inState;
-		Parcelable superState = state.getParcelable(_STATE_SUPER);
+		Parcelable superState = state.getParcelable(STATE_SUPER);
 		super.onRestoreInstanceState(superState);
 
-		List labelFields = state.getStringArrayList(_STATE_LABEL_FIELDS);
+		List labelFields = state.getStringArrayList(STATE_LABEL_FIELDS);
 
 		getAdapter().setLabelFields(labelFields);
 	}
@@ -99,21 +100,14 @@ public class DDLListView
 
 		Bundle state = new Bundle();
 		DDLListScreenlet screenlet = (DDLListScreenlet) getParent();
-		state.putStringArrayList(_STATE_LABEL_FIELDS, (ArrayList<String>) screenlet.getLabelFields());
-		state.putParcelable(_STATE_SUPER, superState);
+		state.putStringArrayList(STATE_LABEL_FIELDS, (ArrayList<String>) screenlet.getLabelFields());
+		state.putParcelable(STATE_SUPER, superState);
 
 		return state;
 	}
-
 
 	@Override
 	protected DividerItemDecoration getDividerDecoration() {
 		return null;
 	}
-
-	private SwipeRefreshLayout _swipeRefreshLayout;
-
-	private static final String _STATE_LABEL_FIELDS = "ddllistview-label_fields";
-	private static final String _STATE_SUPER = "ddllistview-super";
-
 }

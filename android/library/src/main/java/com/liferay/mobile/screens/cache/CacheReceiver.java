@@ -5,15 +5,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.WakefulBroadcastReceiver;
 
+import static com.liferay.mobile.screens.auth.login.LoginScreenlet.LOGIN_SUCCESSFUL;
+
 /**
  * @author Javier Gamarra
  */
 public class CacheReceiver extends WakefulBroadcastReceiver {
+
+	public static final String SYNC_CACHE = "SYNC_CACHE";
+
 	@Override
 	public void onReceive(Context context, Intent intent) {
 
-		ComponentName component = new ComponentName(context.getPackageName(), CacheSyncService.class.getName());
-		intent.setComponent(component);
-		startWakefulService(context, intent);
+		String action = intent.getAction();
+		if (LOGIN_SUCCESSFUL.equals(action)) {
+			ComponentName component = new ComponentName(context.getPackageName(), CacheSyncService.class.getName());
+			intent.setComponent(component);
+			startWakefulService(context, intent);
+		}
 	}
 }

@@ -20,7 +20,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import com.liferay.mobile.screens.testapp.utils.AssetClassnameIds;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 
@@ -36,8 +35,8 @@ public class SelectAssetActivity extends ThemeActivity implements AdapterView.On
 		setContentView(R.layout.select_asset);
 
 		ListView assetList = (ListView) findViewById(R.id.select_asset_list);
-		ArrayAdapter<AssetClassnameIds> adapter = new ArrayAdapter<>(this,
-			android.R.layout.simple_list_item_1, AssetClassnameIds.values());
+		ArrayAdapter<AssetClassnameIds> adapter =
+			new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, AssetClassnameIds.values());
 		assetList.setAdapter(adapter);
 		assetList.setOnItemClickListener(this);
 	}

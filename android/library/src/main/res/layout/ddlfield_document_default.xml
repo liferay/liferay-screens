@@ -3,17 +3,20 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:orientation="vertical"
-	android:padding="10dp">
+	android:padding="10dp"
+	>
 
 	<TextView
 		android:id="@+id/liferay_ddl_label"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:visibility="gone" />
+		android:visibility="gone"
+		/>
 
 	<FrameLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		>
 
 		<EditText
 			android:id="@+id/liferay_ddl_edit_text"
@@ -24,17 +27,20 @@
 			android:editable="false"
 			android:focusable="false"
 			android:inputType="none"
+			android:labelFor="@+id/liferay_ddl_edit_text"
 			android:paddingBottom="5dp"
 			android:paddingLeft="5dp"
 			android:paddingRight="5dp"
-			android:paddingTop="5dp" />
+			android:paddingTop="5dp"
+			/>
 
 		<ProgressBar
 			android:id="@+id/liferay_document_progress"
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:layout_gravity="end|center_vertical"
-			android:visibility="invisible" />
+			android:visibility="invisible"
+			/>
 	</FrameLayout>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView>

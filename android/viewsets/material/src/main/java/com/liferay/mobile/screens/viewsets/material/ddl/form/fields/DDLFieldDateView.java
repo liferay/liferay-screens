@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.viewsets.material.ddl.form.fields;
 
 import android.content.Context;
 import android.util.AttributeSet;
-
 import com.liferay.mobile.screens.viewsets.R;
 
 /**
@@ -40,5 +39,4 @@ public class DDLFieldDateView
 	protected int getDatePickerStyle() {
 		return R.style.material_date_picker;
 	}
-
 }

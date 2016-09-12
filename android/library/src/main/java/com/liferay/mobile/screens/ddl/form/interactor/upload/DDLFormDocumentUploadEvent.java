@@ -1,80 +1,54 @@
 package com.liferay.mobile.screens.ddl.form.interactor.upload;
 
-import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
+import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
-import com.liferay.mobile.screens.userportrait.interactor.upload.RemoteWrite;
-
 import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
  */
-public class DDLFormDocumentUploadEvent extends JSONObjectEvent implements RemoteWrite {
+public class DDLFormDocumentUploadEvent extends OfflineEventNew {
 
-	public DDLFormDocumentUploadEvent(int targetScreenletId, DocumentField documentField,
-									  Long userId, Long groupId, Long repositoryId,
-									  Long folderId, String filePrefix, JSONObject jsonObject) {
-		super(targetScreenletId, jsonObject);
+	private DocumentField documentField;
+	private Long repositoryId;
+	private Long folderId;
+	private String filePrefix;
 
-		_documentField = documentField;
-		_userId = userId;
-		_groupId = groupId;
-		_repositoryId = repositoryId;
-		_folderId = folderId;
-		_filePrefix = filePrefix;
+	public DDLFormDocumentUploadEvent() {
+		super();
 	}
 
-	public DDLFormDocumentUploadEvent(int targetScreenletId, DocumentField documentField,
-									  Long userId, Long groupId, Long repositoryId,
-									  Long folderId, String filePrefix, Exception e) {
-		super(targetScreenletId, e);
-
-		_documentField = documentField;
-		_userId = userId;
-		_groupId = groupId;
-		_repositoryId = repositoryId;
-		_folderId = folderId;
-		_filePrefix = filePrefix;
+	public DDLFormDocumentUploadEvent(DocumentField documentField, Long repositoryId, Long folderId,
+		String filePrefix) {
+		this(documentField, repositoryId, folderId, filePrefix, new JSONObject());
 	}
 
-	public Long getUserId() {
-		return _userId;
+	public DDLFormDocumentUploadEvent(DocumentField documentField, Long repositoryId, Long folderId, String filePrefix,
+		JSONObject jsonObject) {
+		super(jsonObject);
+		this.documentField = documentField;
+		this.repositoryId = repositoryId;
+		this.folderId = folderId;
+		this.filePrefix = filePrefix;
 	}
 
-	public Long getGroupId() {
-		return _groupId;
+	public DDLFormDocumentUploadEvent(Exception e) {
+		super(e);
 	}
 
 	public Long getRepositoryId() {
-		return _repositoryId;
+		return repositoryId;
 	}
 
 	public Long getFolderId() {
-		return _folderId;
+		return folderId;
 	}
 
 	public String getFilePrefix() {
-		return _filePrefix;
+		return filePrefix;
 	}
 
 	public DocumentField getDocumentField() {
-		return _documentField;
+		return documentField;
 	}
-
-	@Override
-	public boolean isCacheRequest() {
-		return _cacheRequest;
-	}
-
-	public void setCacheRequest(boolean cacheRequest) {
-		_cacheRequest = cacheRequest;
-	}
-
-	private final DocumentField _documentField;
-	private final Long _userId;
-	private final Long _groupId;
-	private final Long _repositoryId;
-	private final Long _folderId;
-	private final String _filePrefix;
-	private boolean _cacheRequest;
 }

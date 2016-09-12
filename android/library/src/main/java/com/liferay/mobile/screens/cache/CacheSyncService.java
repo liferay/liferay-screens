@@ -5,34 +5,35 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-
-import com.liferay.mobile.android.service.JSONObjectWrapper;
-import com.liferay.mobile.screens.cache.ddl.documentupload.DocumentUploadCache;
-import com.liferay.mobile.screens.cache.ddl.form.DDLRecordCache;
-import com.liferay.mobile.screens.cache.sql.CacheSQL;
-import com.liferay.mobile.screens.cache.tablecache.TableCache;
+import android.support.annotation.NonNull;
+import com.liferay.mobile.screens.base.thread.BaseCachedWriteThreadRemoteInteractor;
+import com.liferay.mobile.screens.base.thread.event.OfflineEventNew;
+import com.liferay.mobile.screens.comment.add.interactor.CommentAddInteractorImpl;
+import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
+import com.liferay.mobile.screens.comment.display.interactor.delete.CommentDeleteInteractorImpl;
+import com.liferay.mobile.screens.comment.display.interactor.update.CommentUpdateInteractorImpl;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.ddl.form.connector.DDLRecordConnector;
-import com.liferay.mobile.screens.ddl.form.service.UploadService;
-import com.liferay.mobile.screens.ddl.model.DocumentField;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
+import com.liferay.mobile.screens.ddl.form.interactor.add.DDLFormAddRecordInteractorImpl;
+import com.liferay.mobile.screens.ddl.form.interactor.update.DDLFormUpdateRecordInteractorImpl;
+import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadEvent;
+import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadInteractorImpl;
 import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitService;
+import com.liferay.mobile.screens.rating.interactor.RatingEvent;
+import com.liferay.mobile.screens.rating.interactor.delete.RatingDeleteInteractorImpl;
+import com.liferay.mobile.screens.rating.interactor.update.RatingUpdateInteractorImpl;
+import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadEvent;
+import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadInteractorImpl;
+import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.util.ServiceProvider;
-
-import org.json.JSONObject;
-
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
-import static com.liferay.mobile.screens.cache.DefaultCachedType.DDL_RECORD;
-import static com.liferay.mobile.screens.cache.DefaultCachedType.DOCUMENT_UPLOAD;
-import static com.liferay.mobile.screens.cache.DefaultCachedType.USER_PORTRAIT_UPLOAD;
+import static com.liferay.mobile.screens.cache.Cache.SEPARATOR;
+import static com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet.DELETE_COMMENT_ACTION;
+import static com.liferay.mobile.screens.rating.RatingScreenlet.DELETE_RATING_ACTION;
 
 /**
  * @author Javier Gamarra
@@ -44,129 +45,138 @@ public class CacheSyncService extends IntentService {
 	}
 
 	@Override
-	protected void onHandleIntent(Intent intent) {
+	protected void onHandleIntent(final Intent intent) {
 		ConnectivityManager cm =
 			(ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
 		NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-		boolean isConnected = activeNetwork != null &&
-			activeNetwork.isConnectedOrConnecting();
+		boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
 
 		if (isConnected && SessionContext.isLoggedIn() && SessionContext.getCurrentUser() != null) {
-			try {
-				Cache cache = CacheSQL.getInstance();
-				sendPortrait(cache);
-				sendDocuments(cache);
-				sendRecords(cache);
-			}
-			catch (Exception e) {
-				LiferayLogger.e("Error syncing resources", e);
-			}
+
+			sync(DDLFormEvent.class, new SyncProvider<DDLFormEvent>() {
+				@Override
+				public DDLFormEvent getOfflineEventNew(DDLFormEvent event) throws Exception {
+					Record record = event.getRecord();
+					BaseCachedWriteThreadRemoteInteractor interactor =
+						record.getRecordId() == 0 ? new DDLFormAddRecordInteractorImpl()
+							: new DDLFormUpdateRecordInteractorImpl();
+					event = (DDLFormEvent) interactor.execute(event);
+					event.setCacheKey(record.getStructureId() + SEPARATOR + record.getRecordId());
+					return event;
+				}
+			});
+
+			sync(CommentEvent.class, new SyncProvider<CommentEvent>() {
+				@Override
+				public CommentEvent getOfflineEventNew(CommentEvent event) throws Exception {
+					BaseCachedWriteThreadRemoteInteractor interactor = getCommentInteractor(event);
+					event = (CommentEvent) interactor.execute(event);
+					event.setCacheKey(String.valueOf(event.getCommentId()));
+					event.setDeleted(DELETE_COMMENT_ACTION.equals(event.getActionName()));
+					return event;
+				}
+
+				@NonNull
+				private BaseCachedWriteThreadRemoteInteractor getCommentInteractor(CommentEvent commentEvent) {
+					if (DELETE_COMMENT_ACTION.equals(commentEvent.getActionName())) {
+						return new CommentDeleteInteractorImpl();
+					} else if (commentEvent.getCommentId() == 0) {
+						return new CommentAddInteractorImpl();
+					} else {
+						return new CommentUpdateInteractorImpl();
+					}
+				}
+			});
+
+			sync(RatingEvent.class, new SyncProvider<RatingEvent>() {
+				@Override
+				public RatingEvent getOfflineEventNew(RatingEvent event) throws Exception {
+					BaseCachedWriteThreadRemoteInteractor interactor =
+						DELETE_RATING_ACTION.equals(event.getActionName()) ? new RatingDeleteInteractorImpl()
+							: new RatingUpdateInteractorImpl();
+					event = (RatingEvent) interactor.execute(event);
+					event.setCacheKey(event.getClassName() + SEPARATOR + event.getClassPK());
+					event.setDeleted(DELETE_RATING_ACTION.equals(event.getActionName()));
+					return event;
+				}
+			});
+
+			sync(UserPortraitUploadEvent.class, new SyncProvider<UserPortraitUploadEvent>() {
+				@Override
+				public UserPortraitUploadEvent getOfflineEventNew(UserPortraitUploadEvent event) throws Exception {
+					UserPortraitUploadInteractorImpl interactor = new UserPortraitUploadInteractorImpl();
+					EventBusUtil.register(this);
+					interactor.execute(event);
+					return null;
+				}
+			});
+
+			sync(DDLFormDocumentUploadEvent.class, new SyncProvider<DDLFormDocumentUploadEvent>() {
+				@Override
+				public DDLFormDocumentUploadEvent getOfflineEventNew(DDLFormDocumentUploadEvent event)
+					throws Exception {
+					DDLFormDocumentUploadInteractorImpl interactor = new DDLFormDocumentUploadInteractorImpl();
+					EventBusUtil.register(this);
+					interactor.execute(event);
+					return null;
+				}
+			});
 		}
 		CacheReceiver.completeWakefulIntent(intent);
 	}
 
-	private void sendPortrait(Cache cache) {
-		Long userId = SessionContext.getUserId();
-
-		List<TableCache> userPortraits = cache.get(USER_PORTRAIT_UPLOAD,
-			" AND " + TableCache.DIRTY + " = 1 " +
-				" AND " + TableCache.USER_ID + " = ? ",
-			userId);
-
-		for (TableCache userPortrait : userPortraits) {
-			try {
-				UserPortraitService userPortraitService = new UserPortraitService();
-				JSONObject jsonObject = userPortraitService.uploadUserPortrait(Long.valueOf(userPortrait.getId()), userPortrait.getContent());
-				LiferayLogger.i(jsonObject.toString());
-
-				userPortrait.setDirty(false);
-				userPortrait.setSyncDate(new Date());
-				cache.set(userPortrait);
-			}
-			catch (Exception e) {
-				LiferayLogger.e("Error sending portrait images", e);
-			}
-		}
-	}
-
-	private void sendDocuments(Cache cache) {
-		Long userId = SessionContext.getUserId();
-		long groupId = LiferayServerContext.getGroupId();
-
-		List<DocumentUploadCache> documentsToUpload = cache.get(DOCUMENT_UPLOAD,
-			DocumentUploadCache.DIRTY + " = 1 " +
-				"AND " + DocumentUploadCache.USER_ID + " = ? " +
-				"AND " + DocumentUploadCache.GROUP_ID + " = ? ",
-			userId,
-			groupId);
-
-		for (DocumentUploadCache document : documentsToUpload) {
-			try {
-				Map<String, Object> objectObjectHashMap = new HashMap<>();
-				DocumentField documentField = new DocumentField(objectObjectHashMap, LiferayLocale.getDefaultLocale(), Locale.US);
-				documentField.createLocalFile(document.getPath());
-
-				UploadService uploadService = new UploadService();
-				JSONObject jsonObject = uploadService.uploadFile(documentField, document.getUserId(), document.getGroupId(),
-					document.getRepositoryId(), document.getFolderId(), document.getFilePrefix());
-				LiferayLogger.i(jsonObject.toString());
-
-				document.setDirty(false);
-				document.setSyncDate(new Date());
-				cache.set(document);
-			}
-			catch (Exception e) {
-				LiferayLogger.e("Error sending documentsToUpload", e);
-			}
-		}
-	}
-
-	private void sendRecords(Cache cache) {
-
+	private void sync(Class aClass, SyncProvider syncProvider) {
 		Long groupId = LiferayServerContext.getGroupId();
-		List<DDLRecordCache> records = getLatestRecordsToSync(cache);
+		Long userId = SessionContext.getUserId();
+		Locale locale = LiferayLocale.getDefaultLocale();
 
-		DDLRecordConnector recordService = ServiceProvider.getInstance().getDDLRecordConnector(SessionContext.createSessionFromCurrentSession());
+		try {
+			String[] keys = Cache.findKeys(aClass, groupId, userId, locale, 0, Integer.MAX_VALUE);
+			for (String key : keys) {
 
-		for (DDLRecordCache cachedRecord : records) {
-			try {
-				Record record = cachedRecord.getRecord();
-				record.setCreatorUserId(SessionContext.getCurrentUser().getId());
-				final JSONObject serviceContextAttributes = new JSONObject();
-				serviceContextAttributes.put("userId", record.getCreatorUserId());
-				serviceContextAttributes.put("scopeGroupId", groupId);
-				JSONObjectWrapper serviceContextWrapper = new JSONObjectWrapper(serviceContextAttributes);
-				JSONObject jsonContent = cachedRecord.getJSONContent();
-
-				if (jsonContent.has("modelValues")) {
-					jsonContent = (JSONObject) jsonContent.get("modelValues");
+				OfflineEventNew event = Cache.getObject(aClass, groupId, userId, key);
+				if (event.isDirty()) {
+					event = syncProvider.getOfflineEventNew(event);
+					if (event != null) {
+						event.setLocale(locale);
+						event.setDirty(false);
+						event.setSyncDate(new Date());
+						if (event.isDeleted()) {
+							Cache.deleteObject(event);
+						} else {
+							Cache.storeObject(event);
+						}
+					}
 				}
-
-				JSONObject jsonObject = saveOrUpdate(recordService, record, groupId, serviceContextWrapper, jsonContent);
-				LiferayLogger.i(jsonObject.toString());
-
-				cachedRecord.setDirty(false);
-				cachedRecord.setSyncDate(new Date());
-				cache.set(cachedRecord);
 			}
-			catch (Exception e) {
-				LiferayLogger.e("Error syncing a record", e);
-			}
+		} catch (Exception e) {
+			LiferayLogger.e("Error syncing " + aClass.getSimpleName() + " resources", e);
 		}
 	}
 
-	private List<DDLRecordCache> getLatestRecordsToSync(Cache cache) {
-		long groupId = LiferayServerContext.getGroupId();
-		return cache.get(DDL_RECORD, DDLRecordCache.DIRTY + " = 1 AND " + TableCache.GROUP_ID + " = ? ", groupId);
+	public void onEventMainThread(UserPortraitUploadEvent event) {
+		event.setCacheKey(String.valueOf(event.getUserId()));
+		storeEvent(event);
 	}
 
-	private JSONObject saveOrUpdate(DDLRecordConnector recordService, Record record, long groupId, JSONObjectWrapper serviceContextWrapper, JSONObject jsonContent) throws Exception {
-		if (record.getRecordId() == 0) {
-			return recordService.addRecord(groupId, record.getRecordSetId(), 0, jsonContent, serviceContextWrapper);
+	public void onEventMainThread(DDLFormDocumentUploadEvent event) {
+		//event.setCacheKey(event.getDocumentField());
+		storeEvent(event);
+	}
+
+	private void storeEvent(OfflineEventNew event) {
+		try {
+			event.setDirty(false);
+			event.setSyncDate(new Date());
+			Cache.storeObject(event);
+		} catch (Exception e) {
+			LiferayLogger.e("Error syncing " + event.getClass().getSimpleName() + " resources", e);
 		}
-		else {
-			return recordService.updateRecord(record.getRecordId(), 0, jsonContent, true, serviceContextWrapper);
-		}
+	}
+
+	private interface SyncProvider<E extends OfflineEventNew> {
+
+		E getOfflineEventNew(E event) throws Exception;
 	}
 }

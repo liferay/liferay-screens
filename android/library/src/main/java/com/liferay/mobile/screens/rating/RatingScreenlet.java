@@ -9,14 +9,12 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.rating.interactor.delete.RatingDeleteInteractor;
+import com.liferay.mobile.screens.rating.interactor.RatingEvent;
 import com.liferay.mobile.screens.rating.interactor.delete.RatingDeleteInteractorImpl;
-import com.liferay.mobile.screens.rating.interactor.load.RatingLoadInteractor;
 import com.liferay.mobile.screens.rating.interactor.load.RatingLoadInteractorImpl;
-import com.liferay.mobile.screens.rating.interactor.update.RatingUpdateInteractor;
 import com.liferay.mobile.screens.rating.interactor.update.RatingUpdateInteractorImpl;
 import com.liferay.mobile.screens.rating.view.RatingViewModel;
-import com.liferay.mobile.screens.util.LiferayLogger;
+import org.json.JSONObject;
 
 /**
  * @author Alejandro Hernández
@@ -27,6 +25,13 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 	public static final String LOAD_RATINGS_ACTION = "LOAD_RATINGS";
 	public static final String UPDATE_RATING_ACTION = "UPDATE_RATING";
 	public static final String DELETE_RATING_ACTION = "DELETE_RATING";
+	private RatingListener listener;
+	private long entryId;
+	private int ratingsGroupCount;
+	private boolean autoLoad;
+	private boolean editable;
+	private String className;
+	private long classPK;
 
 	public RatingScreenlet(Context context) {
 		super(context);
@@ -85,11 +90,11 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 	protected Interactor createInteractor(String actionName) {
 		switch (actionName) {
 			case LOAD_RATINGS_ACTION:
-				return new RatingLoadInteractorImpl(getScreenletId());
+				return new RatingLoadInteractorImpl();
 			case DELETE_RATING_ACTION:
-				return new RatingDeleteInteractorImpl(getScreenletId());
+				return new RatingDeleteInteractorImpl();
 			case UPDATE_RATING_ACTION:
-				return new RatingUpdateInteractorImpl(getScreenletId());
+				return new RatingUpdateInteractorImpl();
 			default:
 				return null;
 		}
@@ -97,48 +102,32 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 
 	@Override
 	protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
-		try {
-			switch (userActionName) {
-				case LOAD_RATINGS_ACTION:
-					((RatingLoadInteractor) interactor).loadRatings(entryId, classPK, className, ratingsGroupCount);
-					break;
-				case UPDATE_RATING_ACTION:
-					double score = (double) args[0];
-					((RatingUpdateInteractor) interactor).updateRating(classPK, className, score, ratingsGroupCount);
-					break;
-				case DELETE_RATING_ACTION:
-					((RatingDeleteInteractor) interactor).deleteRating(classPK, className, ratingsGroupCount);
-					break;
-				default:
-					break;
-			}
-		} catch (Exception e) {
-			LiferayLogger.e(e.getMessage());
-			onRatingOperationFailure(e);
+		switch (userActionName) {
+			case LOAD_RATINGS_ACTION:
+				((RatingLoadInteractorImpl) interactor).start(entryId, classPK, className, ratingsGroupCount);
+				break;
+			case UPDATE_RATING_ACTION:
+				double score = (double) args[0];
+				((RatingUpdateInteractorImpl) interactor).start(
+					new RatingEvent(classPK, className, ratingsGroupCount, score));
+				break;
+			case DELETE_RATING_ACTION:
+				((RatingDeleteInteractorImpl) interactor).start(
+					new RatingEvent(classPK, className, ratingsGroupCount, new JSONObject()));
+				break;
+			default:
+				break;
 		}
 	}
 
 	protected void autoLoad() {
 		if (SessionContext.isLoggedIn()) {
-			try {
-				load();
-			} catch (Exception e) {
-				onRatingOperationFailure(e);
-			}
+			load();
 		}
 	}
 
 	public void load() {
 		performUserAction(LOAD_RATINGS_ACTION);
-	}
-
-	@Override
-	public void onRatingOperationFailure(Exception exception) {
-		getViewModel().showFailedOperation(null, exception);
-
-		if (listener != null) {
-			listener.onRatingOperationFailure(exception);
-		}
 	}
 
 	@Override
@@ -151,6 +140,15 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 
 		if (listener != null) {
 			listener.onRatingOperationSuccess(assetRating);
+		}
+	}
+
+	@Override
+	public void error(Exception exception, String userAction) {
+		getViewModel().showFailedOperation(userAction, exception);
+
+		if (listener != null) {
+			listener.error(exception, userAction);
 		}
 	}
 
@@ -205,12 +203,4 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 	public void setRatingsGroupCount(int ratingsGroupCount) {
 		this.ratingsGroupCount = ratingsGroupCount;
 	}
-
-	private RatingListener listener;
-	private long entryId;
-	private int ratingsGroupCount;
-	private boolean autoLoad;
-	private boolean editable;
-	private String className;
-	private long classPK;
 }

@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddl.list;
 
 import android.content.Context;
 import android.util.AttributeSet;
-
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 import com.liferay.mobile.screens.ddl.list.view.DDLListViewModel;
@@ -26,8 +25,7 @@ import com.liferay.mobile.screens.ddl.model.Record;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListView
-	extends BaseListScreenletView<Record, BaseListAdapter.ViewHolder, DDLListAdapter>
+public class DDLListView extends BaseListScreenletView<Record, BaseListAdapter.ViewHolder, DDLListAdapter>
 	implements DDLListViewModel {
 
 	public DDLListView(Context context) {
@@ -46,5 +44,4 @@ public class DDLListView
 	protected DDLListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
 		return new DDLListAdapter(itemLayoutId, itemProgressLayoutId, this);
 	}
-
 }

@@ -14,6 +14,10 @@ import static com.liferay.mobile.screens.rating.RatingScreenlet.UPDATE_RATING_AC
  */
 public class StarsRatingView extends BaseRatingView implements RatingBar.OnRatingBarChangeListener {
 
+	private TextView totalCountTextView;
+	private RatingBar averageRatingBar;
+	private RatingBar userRatingBar;
+
 	public StarsRatingView(Context context) {
 		super(context);
 	}
@@ -40,7 +44,7 @@ public class StarsRatingView extends BaseRatingView implements RatingBar.OnRatin
 
 			userRatingBar.setRating(getRating(assetRating.getTotalScore(), userRatingBar.getNumStars()));
 			averageRatingBar.setRating(getRating(assetRating.getAverage(), averageRatingBar.getNumStars()));
-			totalCountTextView.setText(getResources().getString(R.string.rating_count, assetRating.getTotalCount()));
+			totalCountTextView.setText(getResources().getString(R.plurals.rating_count, assetRating.getTotalCount()));
 		}
 	}
 
@@ -71,8 +75,4 @@ public class StarsRatingView extends BaseRatingView implements RatingBar.OnRatin
 	private float getRating(double score, int numStars) {
 		return (float) score * numStars;
 	}
-
-	private TextView totalCountTextView;
-	private RatingBar averageRatingBar;
-	private RatingBar userRatingBar;
 }

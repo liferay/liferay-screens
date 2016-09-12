@@ -17,19 +17,18 @@ package com.liferay.mobile.screens.ddl.model;
 import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.ddl.JsonParser;
 import com.liferay.mobile.screens.ddl.XSDParser;
-
-import org.junit.Test;
-import org.junit.experimental.runners.Enclosed;
-import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+import org.junit.Test;
+import org.junit.experimental.runners.Enclosed;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
+import org.xml.sax.SAXException;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
@@ -50,28 +49,28 @@ public class DateFieldTest {
 	public static class WhenConvertingFromString {
 
 		@Test
-		public void shouldReturnNullWhenNullStringIsSupplied() throws Exception {
+		public void shouldReturnNullWhenNullStringIsSupplied() {
 			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
 			assertNull(field.convertFromString(null));
 		}
 
 		@Test
-		public void shouldReturnNullWhenTooShortStringIsSupplied() throws Exception {
+		public void shouldReturnNullWhenTooShortStringIsSupplied() {
 			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
 			assertNull(field.convertFromString("01/05"));
 		}
 
 		@Test
-		public void shouldReturnNullWhenInvalidStringIsSupplied() throws Exception {
+		public void shouldReturnNullWhenInvalidStringIsSupplied() {
 			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
 			assertNull(field.convertFromString("ab/01/2001"));
 		}
 
 		@Test
-		public void shouldReturnDateWhenShortStringIsSupplied() throws Exception {
+		public void shouldReturnDateWhenShortStringIsSupplied() {
 			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
 			Date result = field.convertFromString("12/31/00");
@@ -87,7 +86,7 @@ public class DateFieldTest {
 		}
 
 		@Test
-		public void shouldReturnDateWhenLongStringIsSupplied() throws Exception {
+		public void shouldReturnDateWhenLongStringIsSupplied() {
 			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
 			Date result = field.convertFromString("12/31/2000");
@@ -103,7 +102,7 @@ public class DateFieldTest {
 		}
 
 		@Test
-		public void shouldReturnDateWhenStringWithOneLetterDayIsSupplied() throws Exception {
+		public void shouldReturnDateWhenStringWithOneLetterDayIsSupplied() {
 			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
 			Date result = field.convertFromString("12/1/00");
@@ -119,7 +118,7 @@ public class DateFieldTest {
 		}
 
 		@Test
-		public void shouldReturnDateWhenStringWithOneLetterMonthIsSupplied() throws Exception {
+		public void shouldReturnDateWhenStringWithOneLetterMonthIsSupplied() {
 			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
 			Date result = field.convertFromString("1/31/00");
@@ -140,14 +139,14 @@ public class DateFieldTest {
 	public static class WhenConvertingToString {
 
 		@Test
-		public void shouldReturnNullWhenNullDateIsSupplied() throws Exception {
+		public void shouldReturnNullWhenNullDateIsSupplied() {
 			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
 			assertNull(field.convertToData(null));
 		}
 
 		@Test
-		public void shouldReturnEpochWhenDateIsSupplied() throws Exception {
+		public void shouldReturnEpochWhenDateIsSupplied() {
 			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
 			Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
@@ -162,14 +161,14 @@ public class DateFieldTest {
 	public static class WhenConvertingToFormattedString {
 
 		@Test
-		public void shouldReturnNullWhenNullDateIsSupplied() throws Exception {
+		public void shouldReturnNullWhenNullDateIsSupplied() {
 			DateField field = new DateField(new HashMap<String, Object>(), US_LOCALE, US_LOCALE);
 
 			assertNull(field.convertToFormattedString(null));
 		}
 
 		@Test
-		public void shouldReturnSpanishFormattedStringWhenDateIsSupplied() throws Exception {
+		public void shouldReturnSpanishFormattedStringWhenDateIsSupplied() {
 			DateField field = new DateField(new HashMap<String, Object>(), SPANISH_LOCALE, US_LOCALE);
 
 			Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
@@ -179,7 +178,7 @@ public class DateFieldTest {
 		}
 
 		@Test
-		public void shouldReturnUSFormattedStringWhenDateIsSupplied() throws Exception {
+		public void shouldReturnUSFormattedStringWhenDateIsSupplied() {
 			DateField field = new DateField(new HashMap<String, Object>(), US_LOCALE, US_LOCALE);
 
 			Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
@@ -192,20 +191,20 @@ public class DateFieldTest {
 	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingXSD {
+
 		@Test
-		public void shouldReturnDateFieldObject() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"date\" " +
-					"fieldNamespace=\"ddm\" " +
-					"type=\"ddm-date\" " +
-					"name=\"A_Date\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"predefinedValue\"><![CDATA[06/19/2004]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"</root>";
+		public void shouldReturnDateFieldObject() throws SAXException {
+			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+				"<dynamic-element " +
+				"dataType=\"date\" " +
+				"fieldNamespace=\"ddm\" " +
+				"type=\"ddm-date\" " +
+				"name=\"A_Date\" > " +
+				"<meta-data locale=\"en_US\"> " +
+				"<entry name=\"predefinedValue\"><![CDATA[06/19/2004]]></entry> " +
+				"</meta-data> " +
+				"</dynamic-element>" +
+				"</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, US_LOCALE);
 
@@ -231,8 +230,9 @@ public class DateFieldTest {
 	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingJson {
+
 		@Test
-		public void shouldReturnDateFieldObject() throws Exception {
+		public void shouldReturnDateFieldObject() {
 
 			String JSON_DATE = "{\"availableLanguageIds\": [ \"en_US\"], " +
 				"\"defaultLanguageId\": \"en_US\", " +
@@ -272,5 +272,4 @@ public class DateFieldTest {
 			assertEquals(dateField.getCurrentValue(), dateField.getPredefinedValue());
 		}
 	}
-
 }

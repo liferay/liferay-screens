@@ -3,7 +3,6 @@ package com.liferay.mobile.screens.viewsets.westeros.ddl.form;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-
 import com.liferay.mobile.screens.viewsets.westeros.R;
 
 /**
@@ -30,19 +29,16 @@ public class DDLDocumentFieldView
 		if (getField().isUploaded()) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.westeros_done_tinted, 0);
 			getProgressBar().setVisibility(View.GONE);
-		}
-		else if (getField().isUploadFailed()) {
-			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.westeros_highlight_remove_tinted, 0);
+		} else if (getField().isUploadFailed()) {
+			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.westeros_highlight_remove_tinted,
+				0);
 			getProgressBar().setVisibility(View.GONE);
-		}
-		else if (getField().isUploading()) {
+		} else if (getField().isUploading()) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 			getProgressBar().setVisibility(View.VISIBLE);
-		}
-		else {
+		} else {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.westeros_perm_media_tinted, 0);
 			getProgressBar().setVisibility(View.GONE);
 		}
 	}
-
 }

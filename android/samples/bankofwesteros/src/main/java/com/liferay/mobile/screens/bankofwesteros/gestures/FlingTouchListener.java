@@ -10,27 +10,26 @@ import android.view.View;
  */
 public class FlingTouchListener implements View.OnTouchListener {
 
+	private static final float SWIPE_VELOCITY_THRESHOLD = 10f;
+	private static final float SWIPE_MOVEMENT_THRESHOLD = 100f;
+	private final GestureDetector gestureDetector;
+	private final FlingListener flingListener;
 	public FlingTouchListener(Context context, FlingListener flingListener) {
-		_gestureDetector = new GestureDetector(context, new GestureDetectorListener());
-		_flingListener = flingListener;
+		gestureDetector = new GestureDetector(context, new GestureDetectorListener());
+		this.flingListener = flingListener;
 	}
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		_gestureDetector.onTouchEvent(event);
+		gestureDetector.onTouchEvent(event);
 		return true;
 	}
-
-	private GestureDetector _gestureDetector;
-	private FlingListener _flingListener;
-	private static final float SWIPE_VELOCITY_THRESHOLD = 10f;
-	private static final float SWIPE_MOVEMENT_THRESHOLD = 100f;
 
 	private class GestureDetectorListener extends GestureDetector.SimpleOnGestureListener {
 
 		@Override
 		public boolean onSingleTapConfirmed(MotionEvent e) {
-			_flingListener.onFling(FlingListener.Movement.TOUCH);
+			flingListener.onFling(FlingListener.Movement.TOUCH);
 			return true;
 		}
 
@@ -45,18 +44,16 @@ public class FlingTouchListener implements View.OnTouchListener {
 			float swipeX = e2.getX() - e1.getX();
 			if (Math.abs(swipeY) > SWIPE_MOVEMENT_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
 				if (swipeY > 0) {
-					_flingListener.onFling(FlingListener.Movement.DOWN);
+					flingListener.onFling(FlingListener.Movement.DOWN);
+				} else {
+					flingListener.onFling(FlingListener.Movement.UP);
 				}
-				else {
-					_flingListener.onFling(FlingListener.Movement.UP);
-				}
-			}
-			else if (Math.abs(e2.getX() - e1.getX()) > SWIPE_MOVEMENT_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
+			} else if (Math.abs(e2.getX() - e1.getX()) > SWIPE_MOVEMENT_THRESHOLD
+				&& Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
 				if (swipeX > 0) {
-					_flingListener.onFling(FlingListener.Movement.LEFT);
-				}
-				else {
-					_flingListener.onFling(FlingListener.Movement.RIGHT);
+					flingListener.onFling(FlingListener.Movement.LEFT);
+				} else {
+					flingListener.onFling(FlingListener.Movement.RIGHT);
 				}
 			}
 

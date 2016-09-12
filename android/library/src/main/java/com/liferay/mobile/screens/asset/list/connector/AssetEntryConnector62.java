@@ -9,14 +9,14 @@ import com.liferay.mobile.android.v62.assetentry.AssetEntryService;
  */
 public class AssetEntryConnector62 implements AssetEntryConnector {
 
+	private final AssetEntryService assetEntryService;
+
 	public AssetEntryConnector62(Session session) {
-		_assetEntryService = new AssetEntryService(session);
+		assetEntryService = new AssetEntryService(session);
 	}
 
 	@Override
 	public Integer getEntriesCount(JSONObjectWrapper entryQuery) throws Exception {
-		return _assetEntryService.getEntriesCount(entryQuery);
+		return assetEntryService.getEntriesCount(entryQuery);
 	}
-
-	private final AssetEntryService _assetEntryService;
 }

@@ -20,6 +20,12 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 	implements AssetDisplayListener {
 
 	public static final String LOAD_BLOGS_ACTION = "LOAD_BLOGS_ACTION";
+	private long entryId;
+	private String className;
+	private long classPK;
+	private boolean autoLoad;
+	private AssetDisplayListener listener;
+	private BlogsEntry blogsEntry;
 
 	public BlogsEntryDisplayScreenlet(Context context) {
 		super(context);
@@ -67,24 +73,22 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 
 	@Override
 	protected AssetDisplayInteractorImpl createInteractor(String actionName) {
-		return new AssetDisplayInteractorImpl(this.getScreenletId());
+		return new AssetDisplayInteractorImpl();
 	}
 
 	@Override
 	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor, Object... args) {
-		switch (userActionName) {
-			case LOAD_BLOGS_ACTION:
-				if (entryId != 0) {
-					interactor.getAssetEntry(entryId);
-				} else {
-					interactor.getAssetEntry(className, classPK);
-				}
+		if (entryId != 0) {
+			interactor.start(entryId);
+		} else {
+			interactor.start(className, classPK);
 		}
 	}
 
 	@Override
 	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
 		blogsEntry = (BlogsEntry) assetEntry;
+
 		getViewModel().showFinishOperation(blogsEntry);
 
 		if (listener != null) {
@@ -93,11 +97,11 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 	}
 
 	@Override
-	public void onRetrieveAssetFailure(Exception e) {
-		getViewModel().showFailedOperation(null, e);
+	public void error(Exception e, String userAction) {
+		getViewModel().showFailedOperation(userAction, e);
 
 		if (listener != null) {
-			listener.onRetrieveAssetFailure(e);
+			listener.error(e, userAction);
 		}
 	}
 
@@ -112,14 +116,10 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 
 	protected void autoLoad() {
 		if (SessionContext.isLoggedIn()) {
-			try {
-				if (blogsEntry == null || (className != null && classPK != 0)) {
-					load();
-				} else {
-					loadBlogsEntry();
-				}
-			} catch (Exception e) {
-				onRetrieveAssetFailure(e);
+			if (blogsEntry == null || (className != null && classPK != 0)) {
+				load();
+			} else {
+				loadBlogsEntry();
 			}
 		}
 	}
@@ -134,6 +134,10 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 
 	public BlogsEntry getBlogsEntry() {
 		return blogsEntry;
+	}
+
+	public void setBlogsEntry(BlogsEntry blogsEntry) {
+		this.blogsEntry = blogsEntry;
 	}
 
 	public String getClassName() {
@@ -152,10 +156,6 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 		this.classPK = classPK;
 	}
 
-	public void setBlogsEntry(BlogsEntry blogsEntry) {
-		this.blogsEntry = blogsEntry;
-	}
-
 	public boolean getAutoLoad() {
 		return autoLoad;
 	}
@@ -171,11 +171,4 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 	public void setListener(AssetDisplayListener listener) {
 		this.listener = listener;
 	}
-
-	private long entryId;
-	private String className;
-	private long classPK;
-	private boolean autoLoad;
-	private AssetDisplayListener listener;
-	private BlogsEntry blogsEntry;
 }

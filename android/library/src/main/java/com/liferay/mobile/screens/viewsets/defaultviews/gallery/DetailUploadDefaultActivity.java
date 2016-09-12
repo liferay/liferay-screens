@@ -16,6 +16,11 @@ import java.io.File;
  */
 public class DetailUploadDefaultActivity extends BaseDetailUploadActivity implements View.OnClickListener {
 
+	private String picturePath;
+	private EditText editTitle;
+	private EditText editDescription;
+	private ImageView imageView;
+
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,7 +36,6 @@ public class DetailUploadDefaultActivity extends BaseDetailUploadActivity implem
 		Intent intent = getIntent();
 
 		picturePath = intent.getStringExtra(PICTURE_PATH_KEY);
-		screenletId = intent.getIntExtra(SCREENLET_ID_KEY, 0);
 	}
 
 	private void bindViews() {
@@ -51,17 +55,10 @@ public class DetailUploadDefaultActivity extends BaseDetailUploadActivity implem
 	public void onClick(View v) {
 		if (v.getId() == R.id.liferay_gallery_upload_upload) {
 
-			finishActivityAndstartUpload(screenletId, picturePath, editTitle.getText().toString(),
+			finishActivityAndStartUpload(picturePath, editTitle.getText().toString(),
 				editDescription.getText().toString());
 		} else if (v.getId() == R.id.liferay_gallery_upload_cancel) {
 			finish();
 		}
 	}
-
-	private int screenletId;
-	private String picturePath;
-
-	private EditText editTitle;
-	private EditText editDescription;
-	private ImageView imageView;
 }

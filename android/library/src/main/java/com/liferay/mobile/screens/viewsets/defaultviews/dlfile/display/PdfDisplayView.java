@@ -37,6 +37,23 @@ import java.io.IOException;
  */
 public class PdfDisplayView extends RelativeLayout implements BaseFileDisplayViewModel, View.OnClickListener {
 
+	private int currentPage;
+	private BaseScreenlet screenlet;
+	private Button nextPage;
+	private Button previousPage;
+	private Button goToPageButton;
+	private EditText goToPage;
+	private LinearLayout linearLayoutButtons;
+	private File file;
+	private FileEntry fileEntry;
+	private ImageView imagePdf;
+	private PdfRenderer renderer;
+	private ProgressBar progressBarHorizontal;
+	private TextView progressText;
+	private TextView title;
+	private Matrix matrix;
+	private ProgressBar progressBar;
+
 	public PdfDisplayView(Context context) {
 		super(context);
 	}
@@ -211,7 +228,7 @@ public class PdfDisplayView extends RelativeLayout implements BaseFileDisplayVie
 
 	private class DownloadReceiver extends ResultReceiver {
 
-		public DownloadReceiver(Handler handler) {
+		DownloadReceiver(Handler handler) {
 			super(handler);
 		}
 
@@ -229,20 +246,4 @@ public class PdfDisplayView extends RelativeLayout implements BaseFileDisplayVie
 			}
 		}
 	}
-	private int currentPage;
-	private BaseScreenlet screenlet;
-	private Button nextPage;
-	private Button previousPage;
-	private Button goToPageButton;
-	private EditText goToPage;
-	private LinearLayout linearLayoutButtons;
-	private File file;
-	private FileEntry fileEntry;
-	private ImageView imagePdf;
-	private PdfRenderer renderer;
-	private ProgressBar progressBarHorizontal;
-	private TextView progressText;
-	private TextView title;
-	private Matrix matrix;
-	private ProgressBar progressBar;
 }

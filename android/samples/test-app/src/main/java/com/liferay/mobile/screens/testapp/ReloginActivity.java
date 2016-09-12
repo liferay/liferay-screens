@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
-
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
@@ -13,6 +12,8 @@ import com.liferay.mobile.screens.context.User;
  * @author Javier Gamarra
  */
 public class ReloginActivity extends ThemeActivity implements LoginListener {
+
+	private TextView userName;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +53,4 @@ public class ReloginActivity extends ThemeActivity implements LoginListener {
 			userName.setText(user.getLastName());
 		}
 	}
-
-	private TextView userName;
 }

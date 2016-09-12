@@ -2,20 +2,22 @@
 <com.liferay.mobile.screens.viewsets.westeros.ddl.form.DDLFieldSelectView xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:orientation="vertical">
+	android:orientation="vertical"
+	>
 
 	<RelativeLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		>
 
 		<EditText
 			android:id="@+id/liferay_ddl_edit_text"
+			android:hint="@string/severity"
 			style="@style/westeros_dark_edit_text"
-			android:hint="@string/severity" />
+			/>
 
 		<TextView
 			android:id="@+id/liferay_ddl_label"
-			style="@style/westeros_text_view"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_alignParentEnd="true"
@@ -27,7 +29,9 @@
 			android:text="@string/severity"
 			android:textColor="@android:color/white"
 			android:textSize="18sp"
-			android:visibility="gone" />
+			android:visibility="gone"
+			style="@style/westeros_text_view"
+			/>
 
 	</RelativeLayout>
 

@@ -56,7 +56,7 @@ public class DownloadService extends IntentService {
 			input = new BufferedInputStream(connection.getInputStream());
 			output = new FileOutputStream(localPath);
 
-			byte data[] = new byte[1024];
+			byte[] data = new byte[1024];
 			long total = 0;
 			int count;
 			while ((count = input.read(data)) != -1) {
@@ -67,13 +67,13 @@ public class DownloadService extends IntentService {
 				sendProgress(receiver, fileLength, total);
 			}
 
+			output.flush();
 			receiver.send(FINISHED_DOWNLOAD, null);
 		} catch (IOException e) {
 			sendException(receiver, e);
 		} finally {
 			try {
 				if (output != null) {
-					output.flush();
 					output.close();
 				}
 				if (input != null) {

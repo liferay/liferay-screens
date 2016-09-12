@@ -1,57 +1,56 @@
 package com.liferay.mobile.screens.bookmark.interactor;
 
+import android.support.annotation.NonNull;
 import android.webkit.URLUtil;
-
-import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v7.bookmarksentry.BookmarksEntryService;
-import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
-import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
-import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
+import com.liferay.mobile.screens.base.thread.BaseRemoteInteractorNew;
+import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.context.SessionContext;
+import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
  */
-public class AddBookmarkInteractorImpl
-	extends BaseRemoteInteractor<AddBookmarkListener>
-	implements AddBookmarkInteractor {
+public class AddBookmarkInteractorImpl extends BaseRemoteInteractorNew<AddBookmarkListener, BasicThreadEvent> {
 
-	public AddBookmarkInteractorImpl(int targetScreenletId) {
-		super(targetScreenletId);
+	@Override
+	public BasicThreadEvent execute(Object[] args) throws Exception {
+		String url = (String) args[0];
+		String title = (String) args[1];
+		long folderId = (long) args[2];
+
+		validate(url, folderId);
+
+		JSONObject jsonObject = getJSONObject(url, title, folderId);
+		return new BasicThreadEvent(jsonObject);
 	}
 
-	public void addBookmark(String url, String title, long folderId) throws Exception {
+	@Override
+	public void onSuccess(BasicThreadEvent event) throws Exception {
+		getListener().onAddBookmarkSuccess();
+	}
+
+	@Override
+	public void onFailure(Exception e) {
+		getListener().onAddBookmarkFailure(e);
+	}
+
+	private void validate(String url, long folderId) {
 		if (url == null || url.isEmpty() || !URLUtil.isValidUrl(url)) {
 			throw new IllegalArgumentException("Invalid url");
-		}
-
-		if (folderId == 0) {
+		} else if (folderId == 0) {
 			throw new IllegalArgumentException("folderId not set");
-		}
-
-		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
-		if (LiferayServerContext.isLiferay7()) {
-			new BookmarksEntryService(session)
-				.addEntry(LiferayServerContext.getGroupId(), folderId, title, url, "", null);
-		}
-		else {
-			new com.liferay.mobile.android.v62.bookmarksentry.BookmarksEntryService(session)
-				.addEntry(LiferayServerContext.getGroupId(), folderId, title, url, "", null);
 		}
 	}
 
-	public void onEvent(JSONObjectEvent event) {
-		if (!isValidEvent(event)) {
-			return;
-		}
-
-		if (event.isFailed()) {
-			getListener().onAddBookmarkFailure(event.getException());
-		}
-		else {
-			getListener().onAddBookmarkSuccess();
+	@NonNull
+	private JSONObject getJSONObject(String url, String title, long folderId) throws Exception {
+		if (LiferayServerContext.isLiferay7()) {
+			return new BookmarksEntryService(getSession()).addEntry(LiferayServerContext.getGroupId(), folderId, title,
+				url, "", null);
+		} else {
+			return new com.liferay.mobile.android.v62.bookmarksentry.BookmarksEntryService(getSession()).addEntry(
+				LiferayServerContext.getGroupId(), folderId, title, url, "", null);
 		}
 	}
 }

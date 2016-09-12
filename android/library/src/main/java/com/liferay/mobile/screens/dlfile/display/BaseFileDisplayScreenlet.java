@@ -24,6 +24,12 @@ public abstract class BaseFileDisplayScreenlet
 
 	public static final String STATE_ENTRY_ID = "STATE_ENTRY_ID";
 	public static final String STATE_FILE_ENTRY = "STATE_FILE_ENTRY";
+	protected boolean autoLoad;
+	protected long entryId;
+	protected long classPK;
+	protected String className;
+	protected AssetDisplayListener listener;
+	protected FileEntry fileEntry;
 
 	public BaseFileDisplayScreenlet(Context context) {
 		super(context);
@@ -80,28 +86,25 @@ public abstract class BaseFileDisplayScreenlet
 	}
 
 	@Override
-	public void onRetrieveAssetFailure(Exception e) {
+	public void error(Exception e, String userAction) {
 		getViewModel().showFailedOperation(null, e);
 
 		if (listener != null) {
-			listener.onRetrieveAssetFailure(e);
+			listener.error(e, userAction);
 		}
 	}
 
 	@Override
 	protected AssetDisplayInteractorImpl createInteractor(String actionName) {
-		return new AssetDisplayInteractorImpl(this.getScreenletId());
+		return new AssetDisplayInteractorImpl();
 	}
 
 	@Override
 	protected void onUserAction(String userActionName, AssetDisplayInteractorImpl interactor, Object... args) {
-		switch (userActionName) {
-			case LOAD_ASSET_ACTION:
-				if (entryId != 0) {
-					interactor.getAssetEntry(entryId);
-				} else {
-					interactor.getAssetEntry(className, classPK);
-				}
+		if (entryId != 0) {
+			interactor.start(entryId);
+		} else {
+			interactor.start(className, classPK);
 		}
 	}
 
@@ -116,14 +119,10 @@ public abstract class BaseFileDisplayScreenlet
 
 	protected void autoLoad() {
 		if (SessionContext.isLoggedIn()) {
-			try {
-				if (fileEntry == null || (className != null && classPK != 0)) {
-					load();
-				} else {
-					loadFile();
-				}
-			} catch (Exception e) {
-				onRetrieveAssetFailure(e);
+			if (fileEntry == null || (className != null && classPK != 0)) {
+				load();
+			} else {
+				loadFile();
 			}
 		}
 	}
@@ -184,11 +183,4 @@ public abstract class BaseFileDisplayScreenlet
 	public void setAutoLoad(boolean autoLoad) {
 		this.autoLoad = autoLoad;
 	}
-
-	protected boolean autoLoad;
-	protected long entryId;
-	protected long classPK;
-	protected String className;
-	protected AssetDisplayListener listener;
-	protected FileEntry fileEntry;
 }

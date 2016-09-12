@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.ddl.form.view;
 
 import android.view.View;
-
 import com.liferay.mobile.screens.ddl.model.Field;
 
 /**
@@ -36,6 +35,4 @@ public interface DDLFieldViewModel<T extends Field> {
 	void setParentView(View view);
 
 	void setPositionInParent(int position);
-
-
 }

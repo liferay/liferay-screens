@@ -15,6 +15,10 @@ import java.util.Map;
  */
 public class AssetFactory {
 
+	private AssetFactory() {
+		super();
+	}
+
 	public static AssetEntry createInstance(Map<String, Object> map) {
 
 		if (map.containsKey("object")) {
@@ -40,9 +44,5 @@ public class AssetFactory {
 			}
 		}
 		return new AssetEntry(map);
-	}
-
-	private AssetFactory() {
-		super();
 	}
 }

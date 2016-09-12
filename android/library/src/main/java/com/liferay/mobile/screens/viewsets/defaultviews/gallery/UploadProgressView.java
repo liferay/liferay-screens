@@ -23,6 +23,12 @@ import java.util.Queue;
  * @author Víctor Galán Grande
  */
 public class UploadProgressView extends RelativeLayout implements View.OnClickListener {
+	private final Queue<String> images = new PriorityQueue<>();
+	private int uploadCount = 0;
+	private ProgressBar progressBar;
+	private TextView uploadText;
+	private ImageView image;
+
 	public UploadProgressView(Context context) {
 		super(context);
 	}
@@ -57,7 +63,7 @@ public class UploadProgressView extends RelativeLayout implements View.OnClickLi
 		uploadCount--;
 		updateText();
 		if (uploadCount >= 1) {
-			LiferayLogger.d("seteo imagen" + images.size());
+			LiferayLogger.d("Setting image" + images.size());
 			setImage(images.poll());
 		} else {
 			hide();
@@ -70,7 +76,7 @@ public class UploadProgressView extends RelativeLayout implements View.OnClickLi
 
 	public void setImage(String path) {
 		Picasso.with(getContext()).load(new File(path)).fit().into(image);
-		LiferayLogger.d("Image setted" + path);
+		LiferayLogger.d("Image set " + path);
 	}
 
 	@Override
@@ -118,11 +124,4 @@ public class UploadProgressView extends RelativeLayout implements View.OnClickLi
 
 		findViewById(R.id.progress_view_cancel_button).setOnClickListener(this);
 	}
-
-	private Queue<String> images = new PriorityQueue<>();
-	private int uploadCount = 0;
-
-	private ProgressBar progressBar;
-	private TextView uploadText;
-	private ImageView image;
 }

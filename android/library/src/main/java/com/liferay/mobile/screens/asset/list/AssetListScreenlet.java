@@ -18,24 +18,22 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
-
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.asset.list.interactor.AssetListInteractor;
 import com.liferay.mobile.screens.asset.list.interactor.AssetListInteractorImpl;
 import com.liferay.mobile.screens.asset.list.interactor.AssetListInteractorListener;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
-import com.liferay.mobile.screens.context.LiferayServerContext;
-
 import java.util.HashMap;
-import java.util.Locale;
+import java.util.Map;
 
 /**
  * @author Silvio Santos
  */
-public class AssetListScreenlet
-	extends BaseListScreenlet<AssetEntry, AssetListInteractor>
+public class AssetListScreenlet extends BaseListScreenlet<AssetEntry, AssetListInteractorImpl>
 	implements AssetListInteractorListener {
+
+	private long classNameId;
+	private String portletItemName;
+	private HashMap<String, Object> customEntryQuery = new HashMap<>();
 
 	public AssetListScreenlet(Context context) {
 		super(context);
@@ -54,92 +52,41 @@ public class AssetListScreenlet
 	}
 
 	public long getClassNameId() {
-		return _classNameId;
+		return classNameId;
 	}
 
 	public void setClassNameId(long classNameId) {
-		_classNameId = classNameId;
-	}
-
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		_groupId = groupId;
-	}
-
-	public OfflinePolicy getOfflinePolicy() {
-		return _offlinePolicy;
-	}
-
-	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
-		_offlinePolicy = offlinePolicy;
+		this.classNameId = classNameId;
 	}
 
 	public String getPortletItemName() {
-		return _portletItemName;
+		return portletItemName;
 	}
 
 	public void setPortletItemName(String portletItemName) {
-		_portletItemName = portletItemName;
+		this.portletItemName = portletItemName;
 	}
 
-	@Override
-	public void loadingFromCache(boolean success) {
-		if (getListener() != null) {
-			getListener().loadingFromCache(success);
-		}
-	}
-
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
-		if (getListener() != null) {
-			getListener().retrievingOnline(triedInCache, e);
-		}
-	}
-
-	@Override
-	public void storingToCache(Object object) {
-		if (getListener() != null) {
-			getListener().storingToCache(object);
-		}
-	}
-
-	public HashMap<String, Object> getCustomEntryQuery() {
-		return _customEntryQuery;
+	public Map<String, Object> getCustomEntryQuery() {
+		return customEntryQuery;
 	}
 
 	public void setCustomEntryQuery(HashMap<String, Object> customEntryQuery) {
-		_customEntryQuery = customEntryQuery;
+		this.customEntryQuery = customEntryQuery;
 	}
 
 	@Override
-	protected void loadRows(AssetListInteractor interactor, int startRow, int endRow, Locale locale,
-		String obcClassName) throws Exception {
-
-		interactor.loadRows(_groupId, _classNameId, _portletItemName, _customEntryQuery, startRow, endRow, locale);
+	protected void loadRows(AssetListInteractorImpl interactor) {
+		interactor.start(classNameId, customEntryQuery, portletItemName);
 	}
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-			attributes, R.styleable.AssetListScreenlet, 0, 0);
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.AssetListScreenlet, 0, 0);
 
-		_classNameId = castToLong(typedArray.getString(
-			R.styleable.AssetListScreenlet_classNameId));
-
-		Integer offlinePolicy = typedArray.getInteger(
-			R.styleable.AssetListScreenlet_offlinePolicy,
-			OfflinePolicy.REMOTE_ONLY.ordinal());
-		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
-
-		long groupId = LiferayServerContext.getGroupId();
-
-		_groupId = castToLongOrUseDefault(typedArray.getString(
-			R.styleable.AssetListScreenlet_groupId), groupId);
-
-		_portletItemName = typedArray.getString(R.styleable.AssetListScreenlet_portletItemName);
+		classNameId = castToLong(typedArray.getString(R.styleable.AssetListScreenlet_classNameId));
+		portletItemName = typedArray.getString(R.styleable.AssetListScreenlet_portletItemName);
 
 		typedArray.recycle();
 
@@ -147,14 +94,14 @@ public class AssetListScreenlet
 	}
 
 	@Override
-	protected AssetListInteractor createInteractor(String actionName) {
-		return new AssetListInteractorImpl(getScreenletId(), _offlinePolicy);
+	public void error(Exception e, String userAction) {
+		if (getListener() != null) {
+			getListener().error(e, userAction);
+		}
 	}
 
-	private OfflinePolicy _offlinePolicy;
-	private long _classNameId;
-	private long _groupId;
-	private String _portletItemName;
-	private HashMap<String, Object> _customEntryQuery = new HashMap<>();
-
+	@Override
+	protected AssetListInteractorImpl createInteractor(String actionName) {
+		return new AssetListInteractorImpl();
+	}
 }

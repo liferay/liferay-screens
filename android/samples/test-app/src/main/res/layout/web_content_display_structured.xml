@@ -3,11 +3,13 @@
 	xmlns:liferay="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:orientation="vertical">
+	android:orientation="vertical"
+	>
 
 	<TextView
+		android:text="@string/webview_structured_label"
 		style="@style/label"
-		android:text="@string/webview_structured_label" />
+		/>
 
 	<com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
 		android:layout_width="match_parent"
@@ -16,11 +18,13 @@
 		liferay:labelFields="@string/liferay_article_structured_label_fields"
 		liferay:layoutId="@layout/webcontentdisplay_structured_default"
 		liferay:offlinePolicy="REMOTE_FIRST"
-		liferay:structureId="@string/liferay_article_structured_structure_id" />
+		liferay:structureId="@string/liferay_article_structured_structure_id"
+		/>
 
 	<TextView
+		android:text="@string/webview_structured_label_first_field"
 		style="@style/label"
-		android:text="@string/webview_structured_label_first_field" />
+		/>
 
 	<com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
 		android:layout_width="match_parent"
@@ -29,11 +33,13 @@
 		liferay:labelFields="@string/liferay_article_structured_label_fields_first_field"
 		liferay:layoutId="@layout/webcontentdisplay_structured_default"
 		liferay:offlinePolicy="REMOTE_FIRST"
-		liferay:structureId="@string/liferay_article_structured_structure_id" />
+		liferay:structureId="@string/liferay_article_structured_structure_id"
+		/>
 
 	<TextView
+		android:text="@string/webview_structured_label_example"
 		style="@style/label"
-		android:text="@string/webview_structured_label_example" />
+		/>
 
 	<com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
 		android:layout_width="match_parent"
@@ -42,7 +48,8 @@
 		liferay:labelFields="@string/liferay_article_structured_label_fields_first_field"
 		liferay:layoutId="@layout/webcontentdisplaystructured_example"
 		liferay:offlinePolicy="REMOTE_FIRST"
-		liferay:structureId="@string/liferay_article_structured_structure_id" />
+		liferay:structureId="@string/liferay_article_structured_structure_id"
+		/>
 
 
 </LinearLayout>

@@ -2,10 +2,8 @@ package com.liferay.mobile.pushnotifications.download;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.RequestCreator;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 

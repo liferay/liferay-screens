@@ -19,10 +19,8 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
-
 import java.util.List;
 import java.util.Map;
 
@@ -31,24 +29,27 @@ import java.util.Map;
  */
 public class DDLFormPagerViewAdapter extends PagerAdapter {
 
+	private final List<Field> fields;
+	private final Map<Field.EditorType, Integer> layoutIds;
+
 	public DDLFormPagerViewAdapter(List<Field> fields, Map<Field.EditorType, Integer> layoutIds) {
 
-		_fields = fields;
-		_layoutIds = layoutIds;
+		this.fields = fields;
+		this.layoutIds = layoutIds;
 	}
 
 	@Override
 	public int getCount() {
-		return _fields.size();
+		return fields.size();
 	}
 
 	@Override
 	public Object instantiateItem(ViewGroup container, int position) {
 		Context context = container.getContext();
 
-		Field field = _fields.get(position);
+		Field field = fields.get(position);
 		Field.EditorType type = field.getEditorType();
-		int layoutId = _layoutIds.get(type);
+		int layoutId = layoutIds.get(type);
 
 		LayoutInflater inflater = LayoutInflater.from(context);
 		View view = inflater.inflate(layoutId, container, false);
@@ -68,9 +69,6 @@ public class DDLFormPagerViewAdapter extends PagerAdapter {
 
 	@Override
 	public boolean isViewFromObject(View view, Object object) {
-		return (view == object);
+		return view.equals(object);
 	}
-
-	private List<Field> _fields;
-	private Map<Field.EditorType, Integer> _layoutIds;
 }

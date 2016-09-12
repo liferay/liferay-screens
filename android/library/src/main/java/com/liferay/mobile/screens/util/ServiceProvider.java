@@ -1,7 +1,6 @@
 package com.liferay.mobile.screens.util;
 
 import android.util.Log;
-
 import com.liferay.mobile.screens.context.LiferayServerContext;
 
 /**
@@ -9,34 +8,34 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
  */
 public class ServiceProvider {
 
+	private static ServiceVersionFactory versionFactory;
+
+	private ServiceProvider() {
+		super();
+	}
+
 	public static ServiceVersionFactory getInstance() {
-		if (_versionFactory == null) {
-			synchronized (ServiceProvider.class) {
-				_versionFactory = createFactory();
+		synchronized (ServiceProvider.class) {
+			if (versionFactory == null) {
+				versionFactory = createFactory();
 			}
 		}
-		return _versionFactory;
+		return versionFactory;
 	}
 
 	private static ServiceVersionFactory createFactory() {
 		try {
 			if (!LiferayServerContext.getVersionFactory().isEmpty()) {
-				return (ServiceVersionFactory)
-					Class.forName(LiferayServerContext.getVersionFactory()).newInstance();
+				return (ServiceVersionFactory) Class.forName(LiferayServerContext.getVersionFactory()).newInstance();
 			}
 			if (LiferayServerContext.isLiferay7()) {
 				return new ServiceVersionFactory70();
-			}
-			else {
+			} else {
 				return new ServiceVersionFactory62();
 			}
-
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			Log.e("LiferayScreens", "Error creating the instance class");
 			return new ServiceVersionFactory62();
 		}
 	}
-
-	private static ServiceVersionFactory _versionFactory;
 }

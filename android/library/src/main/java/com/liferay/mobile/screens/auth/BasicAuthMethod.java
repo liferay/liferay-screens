@@ -23,9 +23,15 @@ public enum BasicAuthMethod {
 
 	EMAIL(0), SCREEN_NAME(1), USER_ID(2);
 
+	private final int value;
+
+	BasicAuthMethod(int value) {
+		this.value = value;
+	}
+
 	public static BasicAuthMethod getValue(int value) {
 		for (BasicAuthMethod method : BasicAuthMethod.values()) {
-			if (method._value == value) {
+			if (method.value == value) {
 				return method;
 			}
 		}
@@ -44,11 +50,5 @@ public enum BasicAuthMethod {
 				return InputType.TYPE_NULL;
 		}
 	}
-
-	BasicAuthMethod(int value) {
-		_value = value;
-	}
-
-	private int _value;
 
 }

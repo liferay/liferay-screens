@@ -3,7 +3,6 @@ package com.liferay.mobile.screens.testapp.webviewstructured;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.TextView;
-
 import com.liferay.mobile.screens.ddl.model.DDMStructure;
 import com.liferay.mobile.screens.testapp.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.webcontent.display.WebContentStructuredDisplayView;

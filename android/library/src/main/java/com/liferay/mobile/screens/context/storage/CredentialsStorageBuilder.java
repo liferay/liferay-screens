@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.context.storage;
 
 import android.content.Context;
-
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.oauth.OAuth;
@@ -23,45 +22,23 @@ import com.liferay.mobile.screens.base.AbstractFactory;
 import com.liferay.mobile.screens.base.FactoryProvider;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.BaseCredentialsStorageSharedPreferences;
+import com.liferay.mobile.screens.util.LiferayLogger;
 
 /**
  * @author Jose Manuel Navarro
  */
 public class CredentialsStorageBuilder {
 
-	public enum StorageType {
-
-		// These values are synced with 'credentialStore' attr
-		NONE(0),
-		AUTO(1),
-		SHARED_PREFERENCES(2);
-
-		public static StorageType valueOf(int value) {
-			for (StorageType s : values()) {
-				if (s._value == value) {
-					return s;
-				}
-			}
-			return NONE;
-		}
-
-		public int toInt() {
-			return _value;
-		}
-
-		StorageType(int value) {
-			_value = value;
-		}
-
-		private int _value;
-	}
+	private Authentication auth;
+	private User user;
+	private Context context;
 
 	public CredentialsStorageBuilder setAuthentication(Authentication auth) {
 		if (auth == null) {
 			throw new IllegalStateException("Authentication cannot be null. Make sure you have a session created");
 		}
 
-		_auth = auth;
+		this.auth = auth;
 
 		return this;
 	}
@@ -71,7 +48,7 @@ public class CredentialsStorageBuilder {
 			throw new IllegalStateException("User cannot be null. Make sure you have a session created");
 		}
 
-		_user = user;
+		this.user = user;
 
 		return this;
 	}
@@ -81,36 +58,36 @@ public class CredentialsStorageBuilder {
 			throw new IllegalStateException("Context cannot be null");
 		}
 
-		_context = context;
+		this.context = context;
 
 		return this;
 	}
 
 	public CredentialsStorageBuilder setStorageType(StorageType storageType) {
-		if (_context == null) {
+		if (context == null) {
 			throw new IllegalStateException("You must set the context before storageType");
 		}
 
-		_storageType = storageType;
-
+		//TODO implement other storage mechanisms
+		LiferayLogger.d("We currently support only one type of storage: " + storageType.value);
 		return this;
 	}
 
 	public CredentialsStorage build() {
-		if (_context == null) {
+		if (context == null) {
 			throw new IllegalStateException("You must call setContext() before");
 		}
 
 		CredentialsStorage credentialsStorage = createStore();
 
-		credentialsStorage.setContext(_context);
+		credentialsStorage.setContext(context);
 
-		if (_auth != null) {
-			credentialsStorage.setAuthentication(_auth);
+		if (auth != null) {
+			credentialsStorage.setAuthentication(auth);
 		}
 
-		if (_user != null) {
-			credentialsStorage.setUser(_user);
+		if (user != null) {
+			credentialsStorage.setUser(user);
 		}
 
 		return credentialsStorage;
@@ -120,9 +97,9 @@ public class CredentialsStorageBuilder {
 
 		AbstractFactory instance = FactoryProvider.getInstance();
 
-		if (_auth == null) {
+		if (auth == null) {
 			// figure out the type from stored value
-			switch (BaseCredentialsStorageSharedPreferences.getStoredAuthenticationType(_context)) {
+			switch (BaseCredentialsStorageSharedPreferences.getStoredAuthenticationType(context)) {
 				case BASIC:
 					return instance.getBasicCredentialsStorageSharedPreferences();
 				case OAUTH:
@@ -130,24 +107,41 @@ public class CredentialsStorageBuilder {
 				default:
 					return new CredentialsStorageVoid();
 			}
-		}
-		else {
-			if (_auth instanceof BasicAuthentication) {
+		} else {
+			if (auth instanceof BasicAuthentication) {
 				return instance.getBasicCredentialsStorageSharedPreferences();
-			}
-			else if (_auth instanceof OAuth) {
+			} else if (auth instanceof OAuth) {
 				return instance.getOAuthCredentialsStorageSharedPreferences();
-			}
-			else {
+			} else {
 				throw new IllegalStateException("Authentication type is not supported");
 			}
 		}
 	}
 
-	private Authentication _auth;
-	private User _user;
-	//TODO implement other storage mechanisms
-	private StorageType _storageType = StorageType.AUTO;
-	private Context _context;
+	public enum StorageType {
 
+		// These values are synced with 'credentialStore' attr
+		NONE(0),
+		AUTO(1),
+		SHARED_PREFERENCES(2);
+
+		private final int value;
+
+		StorageType(int value) {
+			this.value = value;
+		}
+
+		public static StorageType valueOf(int value) {
+			for (StorageType s : values()) {
+				if (s.value == value) {
+					return s;
+				}
+			}
+			return NONE;
+		}
+
+		public int toInt() {
+			return value;
+		}
+	}
 }

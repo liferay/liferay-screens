@@ -14,11 +14,8 @@
 
 package com.liferay.mobile.screens.service.v70;
 
-import com.liferay.mobile.android.http.file.UploadData;
 import com.liferay.mobile.android.service.BaseService;
-import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,8 +40,7 @@ public class ScreensratingsentryService extends BaseService {
 			_params.put("ratingsLength", ratingsLength);
 
 			_command.put("/screens.screensratingsentry/get-ratings-entries", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -67,8 +63,7 @@ public class ScreensratingsentryService extends BaseService {
 			_params.put("ratingsLength", ratingsLength);
 
 			_command.put("/screens.screensratingsentry/get-ratings-entries", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -81,7 +76,8 @@ public class ScreensratingsentryService extends BaseService {
 		return _result.getJSONObject(0);
 	}
 
-	public JSONObject updateRatingsEntry(long classPK, String className, double score, int ratingsLength) throws Exception {
+	public JSONObject updateRatingsEntry(long classPK, String className, double score, int ratingsLength)
+		throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -93,8 +89,7 @@ public class ScreensratingsentryService extends BaseService {
 			_params.put("ratingsLength", ratingsLength);
 
 			_command.put("/screens.screensratingsentry/update-ratings-entry", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -118,8 +113,7 @@ public class ScreensratingsentryService extends BaseService {
 			_params.put("ratingsLength", ratingsLength);
 
 			_command.put("/screens.screensratingsentry/delete-ratings-entry", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -131,5 +125,4 @@ public class ScreensratingsentryService extends BaseService {
 
 		return _result.getJSONObject(0);
 	}
-
 }

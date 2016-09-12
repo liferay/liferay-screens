@@ -27,14 +27,12 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.userportrait.interactor.BaseUserPortraitInteractor;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
-import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadInteractor;
 import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadInteractorImpl;
-import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadInteractor;
+import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadEvent;
 import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadInteractorImpl;
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -43,12 +41,21 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  * @author Javier Gamarra
  * @author Jose Manuel Navarro
  */
-public class UserPortraitScreenlet
-	extends BaseScreenlet<UserPortraitViewModel, BaseUserPortraitInteractor>
+public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, Interactor>
 	implements UserPortraitInteractorListener {
 
 	public static final String UPLOAD_PORTRAIT = "UPLOAD_PORTRAIT";
 	public static final String LOAD_PORTRAIT = "LOAD_PORTRAIT";
+	private static final String STATE_SUPER = "userportrait-super";
+	private static final String STATE_FILE_PATH = "userportrait-filePath";
+	private String filePath;
+	private boolean autoLoad;
+	private boolean male;
+	private long portraitId;
+	private String uuid;
+	private long userid;
+	private boolean editable;
+	private UserPortraitListener listener;
 
 	public UserPortraitScreenlet(Context context) {
 		super(context);
@@ -82,8 +89,8 @@ public class UserPortraitScreenlet
 	public Bitmap onEndUserPortraitLoadRequest(Bitmap bitmap) {
 		Bitmap finalImage = bitmap;
 
-		if (_listener != null) {
-			finalImage = _listener.onUserPortraitLoadReceived(this, bitmap);
+		if (listener != null) {
+			finalImage = listener.onUserPortraitLoadReceived(bitmap);
 
 			if (finalImage == null) {
 				finalImage = bitmap;
@@ -96,36 +103,14 @@ public class UserPortraitScreenlet
 	}
 
 	@Override
-	public void onUserPortraitLoadFailure(Exception e) {
-		if (_listener != null) {
-			_listener.onUserPortraitLoadFailure(this, e);
-		}
-
-		getViewModel().showFailedOperation(LOAD_PORTRAIT, e);
-	}
-
-	@Override
 	public void onUserPortraitUploaded(Long uuid) {
-		if (_listener != null) {
-			_listener.onUserPortraitUploaded(this);
+		if (listener != null) {
+			listener.onUserPortraitUploaded();
 		}
 
 		getViewModel().showFinishOperation(UPLOAD_PORTRAIT);
 
-		try {
-			((UserPortraitLoadInteractor) getInteractor(LOAD_PORTRAIT)).load(uuid);
-		} catch (Exception e) {
-			LiferayLogger.e("Error reloading user portrait", e);
-		}
-	}
-
-	@Override
-	public void onUserPortraitUploadFailure(Exception e) {
-		if (_listener != null) {
-			_listener.onUserPortraitUploadFailure(this, e);
-		}
-
-		getViewModel().showFailedOperation(UPLOAD_PORTRAIT, e);
+		((UserPortraitLoadInteractorImpl) getInteractor(LOAD_PORTRAIT)).start(uuid);
 	}
 
 	@Override
@@ -134,100 +119,80 @@ public class UserPortraitScreenlet
 	}
 
 	@Override
-	public void loadingFromCache(boolean success) {
-		if (_listener != null) {
-			_listener.loadingFromCache(success);
+	public void error(Exception e, String userAction) {
+		if (listener != null) {
+			listener.error(e, userAction);
 		}
-	}
 
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
-		if (_listener != null) {
-			_listener.retrievingOnline(triedInCache, e);
-		}
-	}
-
-	@Override
-	public void storingToCache(Object object) {
-		if (_listener != null) {
-			_listener.storingToCache(object);
-		}
+		getViewModel().showFailedOperation(userAction, e);
 	}
 
 	public void setListener(UserPortraitListener listener) {
-		_listener = listener;
+		this.listener = listener;
 	}
 
 	public boolean isMale() {
-		return _male;
+		return male;
 	}
 
 	public void setMale(boolean male) {
-		_male = male;
+		this.male = male;
 	}
 
 	public long getPortraitId() {
-		return _portraitId;
+		return portraitId;
 	}
 
 	public void setPortraitId(long portraitId) {
-		_portraitId = portraitId;
+		this.portraitId = portraitId;
 	}
 
 	public String getUuid() {
-		return _uuid;
+		return uuid;
 	}
 
 	public void setUuid(String uuid) {
-		_uuid = uuid;
+		this.uuid = uuid;
 	}
 
 	public long getUserId() {
-		return _userId;
+		return userid;
 	}
 
 	public void setUserId(long userId) {
-		_userId = userId;
+		userid = userId;
 	}
 
 	public boolean getEditable() {
-		return _editable;
+		return editable;
 	}
 
 	public String getFilePath() {
-		return _filePath;
+		return filePath;
 	}
 
 	public void setFilePath(String filePath) {
-		_filePath = filePath;
+		this.filePath = filePath;
 	}
 
 	public boolean isAutoLoad() {
-		return _autoLoad;
+		return autoLoad;
 	}
 
 	public void setAutoLoad(boolean autoLoad) {
-		_autoLoad = autoLoad;
+		this.autoLoad = autoLoad;
 	}
 
 	public boolean isEditable() {
-		return _editable;
+		return editable;
 	}
 
 	public void setEditable(boolean editable) {
-		_editable = editable;
-	}
-
-	public OfflinePolicy getOfflinePolicy() {
-		return _offlinePolicy;
-	}
-
-	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
-		_offlinePolicy = offlinePolicy;
+		this.editable = editable;
 	}
 
 	protected void autoLoad() {
-		if (((_portraitId != 0) && (_uuid != null)) || (_userId != 0)) {
+		if (((portraitId != 0) && (uuid != null)) || (userid != 0)) {
 			try {
 				load();
 			} catch (Exception e) {
@@ -238,27 +203,22 @@ public class UserPortraitScreenlet
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-			attributes, R.styleable.UserPortraitScreenlet, 0, 0);
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.UserPortraitScreenlet, 0, 0);
 
-		_autoLoad = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_autoLoad, true);
-		_male = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_male, true);
-		_portraitId = typedArray.getInt(R.styleable.UserPortraitScreenlet_portraitId, 0);
-		_uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
-		_editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
+		autoLoad = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_autoLoad, true);
+		male = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_male, true);
+		portraitId = typedArray.getInt(R.styleable.UserPortraitScreenlet_portraitId, 0);
+		uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
+		editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
 
-		int offlinePolicy = typedArray.getInt(R.styleable.UserPortraitScreenlet_offlinePolicy,
-			OfflinePolicy.REMOTE_ONLY.ordinal());
-		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
+		userid = castToLongOrUseDefault(typedArray.getString(R.styleable.UserPortraitScreenlet_userId), 0L);
 
-		_userId = castToLongOrUseDefault(typedArray.getString(R.styleable.UserPortraitScreenlet_userId), 0L);
-
-		if (SessionContext.hasUserInfo() && _portraitId == 0 && _uuid == null && _userId == 0) {
-			_userId = SessionContext.getCurrentUser().getId();
+		if (SessionContext.hasUserInfo() && portraitId == 0 && uuid == null && userid == 0) {
+			userid = SessionContext.getCurrentUser().getId();
 		}
 
-		int layoutId = typedArray.getResourceId(
-			R.styleable.UserPortraitScreenlet_layoutId, getDefaultLayoutId());
+		int layoutId = typedArray.getResourceId(R.styleable.UserPortraitScreenlet_layoutId, getDefaultLayoutId());
 
 		typedArray.recycle();
 
@@ -266,47 +226,41 @@ public class UserPortraitScreenlet
 	}
 
 	@Override
-	protected BaseUserPortraitInteractor createInteractor(String actionName) {
+	protected Interactor createInteractor(String actionName) {
 		if (UPLOAD_PORTRAIT.equals(actionName)) {
-			return new UserPortraitUploadInteractorImpl(getScreenletId(), _offlinePolicy);
+			return new UserPortraitUploadInteractorImpl();
 		} else {
-			return new UserPortraitLoadInteractorImpl(getScreenletId(), _offlinePolicy);
+			return new UserPortraitLoadInteractorImpl();
 		}
 	}
 
 	@Override
-	protected void onUserAction(
-		String userActionName, BaseUserPortraitInteractor interactor, Object... args) {
-
-		try {
-			if (UPLOAD_PORTRAIT.equals(userActionName)) {
-				UserPortraitUploadInteractor userPortraitInteractor =
-					(UserPortraitUploadInteractor) getInteractor(userActionName);
-				String path = (String) args[0];
-				if (_userId != 0) {
-					userPortraitInteractor.upload(_userId, path);
-				}
+	protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
+		if (UPLOAD_PORTRAIT.equals(userActionName)) {
+			UserPortraitUploadInteractorImpl userPortraitInteractor =
+				(UserPortraitUploadInteractorImpl) getInteractor(userActionName);
+			String path = (String) args[0];
+			if (userid != 0) {
+				userPortraitInteractor.start(new UserPortraitUploadEvent(path));
+			}
+		} else {
+			UserPortraitLoadInteractorImpl userPortraitLoadInteractor =
+				(UserPortraitLoadInteractorImpl) getInteractor(userActionName);
+			if (portraitId != 0 && uuid != null) {
+				userPortraitLoadInteractor.start(male, portraitId, uuid);
 			} else {
-				UserPortraitLoadInteractor userPortraitLoadInteractor =
-					(UserPortraitLoadInteractor) getInteractor(userActionName);
-	 			if (_portraitId != 0 && _uuid != null) {
-					userPortraitLoadInteractor.load(_male, _portraitId, _uuid);
+				if (SessionContext.hasUserInfo() && userid == 0) {
+					userPortraitLoadInteractor.start(SessionContext.getCurrentUser().getId());
 				} else {
-					if (SessionContext.hasUserInfo() && _userId == 0) {
-						userPortraitLoadInteractor.load(SessionContext.getCurrentUser().getId());
-					} else {
-						userPortraitLoadInteractor.load(_userId);
-					}
+					userPortraitLoadInteractor.start(userid);
 				}
 			}
-		} catch (Exception e) {
-			onUserPortraitLoadFailure(e);
 		}
 	}
 
 	@Override
 	protected void onScreenletAttached() {
-		if (_autoLoad) {
+		if (autoLoad) {
 			autoLoad();
 		}
 	}
@@ -314,15 +268,15 @@ public class UserPortraitScreenlet
 	@Override
 	protected void onRestoreInstanceState(Parcelable inState) {
 		Bundle bundle = (Bundle) inState;
-		super.onRestoreInstanceState(bundle.getParcelable(_STATE_SUPER));
-		_filePath = bundle.getString(_STATE_FILE_PATH);
+		super.onRestoreInstanceState(bundle.getParcelable(STATE_SUPER));
+		filePath = bundle.getString(STATE_FILE_PATH);
 	}
 
 	@Override
 	protected Parcelable onSaveInstanceState() {
 		Bundle bundle = new Bundle();
-		bundle.putParcelable(_STATE_SUPER, super.onSaveInstanceState());
-		bundle.putString(_STATE_FILE_PATH, _filePath);
+		bundle.putParcelable(STATE_SUPER, super.onSaveInstanceState());
+		bundle.putString(STATE_FILE_PATH, filePath);
 		return bundle;
 	}
 
@@ -338,17 +292,4 @@ public class UserPortraitScreenlet
 
 		activity.startActivity(intent);
 	}
-
-	private static final String _STATE_SUPER = "userportrait-super";
-	private static final String _STATE_FILE_PATH = "userportrait-filePath";
-
-	private String _filePath;
-	private boolean _autoLoad;
-	private boolean _male;
-	private long _portraitId;
-	private String _uuid;
-	private long _userId;
-	private boolean _editable;
-	private UserPortraitListener _listener;
-	private OfflinePolicy _offlinePolicy;
 }
