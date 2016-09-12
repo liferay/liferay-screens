@@ -164,6 +164,7 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 		switch (position.card, position.page) {
 		case (2, 1):
 			detailViewController?.fileEntryId = galleryViewController?.selectedImageEntry?.imageEntryId
+			cardDeck.cards[2].secondaryButton.alpha = 0.0
 		default:
 			break
 		}
