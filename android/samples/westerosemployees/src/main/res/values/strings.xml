@@ -55,5 +55,7 @@
 	<string name="default_sms_uri">sms:900000000</string>
 	<string name="arrow_back_tag">arrow_back</string>
 	<string name="arrow_tag">arrow</string>
+	<string name="email">EMAIL</string>
+	<string name="screenname">SCREENNAME</string>
 
 </resources>

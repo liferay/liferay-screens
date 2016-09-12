@@ -36,5 +36,9 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 		startActivity(intent);
 		finish();
 	}
+
+	@Override
+	public void onClick(View v) {
+		startActivity(new Intent(this, UserProfileAcivity.class));
 	}
 }
