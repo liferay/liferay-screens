@@ -1,22 +1,18 @@
 package com.liferay.mobile.screens.ddl;
 
 import android.os.Parcel;
-
 import com.liferay.mobile.screens.ddl.model.DDMStructure;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.util.LiferayLogger;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
 import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  * @author Javier Gamarra
@@ -26,9 +22,9 @@ public class ContentParser extends AbstractXMLParser {
 	public List<Field> parseContent(DDMStructure structure, String content) {
 		try {
 			Document document = getDocument(content);
-			return createDocument(document.getDocumentElement(), structure.getFields(), structure.getLocale(), getDefaultDocumentLocale(document.getDocumentElement()));
-		}
-		catch (ParserConfigurationException | IOException | SAXException e) {
+			return createDocument(document.getDocumentElement(), structure.getFields(), structure.getLocale(),
+				getDefaultDocumentLocale(document.getDocumentElement()));
+		} catch (ParserConfigurationException | IOException | SAXException e) {
 			LiferayLogger.e("Error parsing content", e);
 			return null;
 		}
@@ -58,7 +54,8 @@ public class ContentParser extends AbstractXMLParser {
 
 			Field field = getFieldByName(currentFields, dynamicElement.getAttribute("name"));
 			if (field != null) {
-				Element element = getLocaleFallback(dynamicElement, locale, defaultLocale, "dynamic-content", "language-id");
+				Element element =
+					getLocaleFallback(dynamicElement, locale, defaultLocale, "dynamic-content", "language-id");
 				Field otherField = field.isRepeatable() ? clone(field) : field;
 				otherField.setCurrentValue(element.getTextContent());
 				if (dynamicElement.getElementsByTagName("dynamic-element").getLength() > 0) {

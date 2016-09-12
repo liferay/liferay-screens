@@ -10,5 +10,4 @@ public interface ForgotPasswordConnector {
 	Boolean sendPasswordByScreenName(long companyId, String screenName) throws Exception;
 
 	Boolean sendPasswordByUserId(long userId) throws Exception;
-
 }

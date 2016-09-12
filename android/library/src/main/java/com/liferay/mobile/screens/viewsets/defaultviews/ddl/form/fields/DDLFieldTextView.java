@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 
 import android.content.Context;
 import android.util.AttributeSet;
-
 import com.liferay.mobile.screens.ddl.model.StringField;
 
 /**

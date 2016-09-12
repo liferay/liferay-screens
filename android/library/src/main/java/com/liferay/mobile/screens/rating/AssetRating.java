@@ -5,6 +5,14 @@ package com.liferay.mobile.screens.rating;
  */
 public class AssetRating {
 
+	private int[] ratings;
+	private double average;
+	private String className;
+	private double userScore;
+	private double totalScore;
+	private long classPK;
+	private int totalCount;
+
 	public AssetRating(long classPK, String className, int[] ratings, double average, double userScore,
 		double totalScore, int totalCount) {
 
@@ -72,12 +80,4 @@ public class AssetRating {
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 	}
-
-	private int[] ratings;
-	private double average;
-	private String className;
-	private double userScore;
-	private double totalScore;
-	private long classPK;
-	private int totalCount;
 }

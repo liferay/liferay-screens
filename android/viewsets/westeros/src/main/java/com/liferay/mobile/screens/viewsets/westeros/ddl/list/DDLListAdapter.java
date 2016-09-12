@@ -19,13 +19,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.daimajia.swipe.SwipeLayout;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.viewsets.westeros.R;
-
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
@@ -35,8 +33,7 @@ import java.util.Locale;
  */
 public class DDLListAdapter extends BaseListAdapter<Record, DDLListAdapter.SwipeActionsViewHolder> {
 
-	public DDLListAdapter(
-		int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
+	public DDLListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 
 		super(layoutId, progressLayoutId, listener);
 	}
@@ -52,8 +49,7 @@ public class DDLListAdapter extends BaseListAdapter<Record, DDLListAdapter.Swipe
 			SwipeLayout swipe = (SwipeLayout) view.findViewById(R.id.liferay_swipe_layout);
 			swipe.setShowMode(SwipeLayout.ShowMode.LayDown);
 			swipe.setDragEdge(SwipeLayout.DragEdge.Right);
-		}
-		else {
+		} else {
 			view = inflater.inflate(getProgressLayoutId(), parent, false);
 		}
 
@@ -84,55 +80,47 @@ public class DDLListAdapter extends BaseListAdapter<Record, DDLListAdapter.Swipe
 				}
 			}
 			if (builder.length() == 0) {
-				String date = new SimpleDateFormat("dd/MM/yyyy", Locale.US)
-					.format(entry.getServerAttribute("createDate"));
+				String date =
+					new SimpleDateFormat("dd/MM/yyyy", Locale.US).format(entry.getServerAttribute("createDate"));
 				builder.append("Created ");
 				builder.append(date);
 			}
 
 			holder.textView.setText(titleField);
-			holder._subtitleTextView.setText(builder.toString());
+			holder.subtitleTextView.setText(builder.toString());
 		}
 	}
 
-	public static class SwipeActionsViewHolder
-		extends BaseListAdapter.ViewHolder implements View.OnClickListener {
+	public static class SwipeActionsViewHolder extends BaseListAdapter.ViewHolder implements View.OnClickListener {
+
+		private final BaseListAdapterListener listener;
+		private final TextView subtitleTextView;
+		private final SwipeLayout swipeLayout;
 
 		public SwipeActionsViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
-			this._subtitleTextView = (TextView) view.findViewById(R.id.liferay_list_subtitle);
+			this.subtitleTextView = (TextView) view.findViewById(R.id.liferay_list_subtitle);
 
-			_listener = listener;
+			this.listener = listener;
 
 			view.setOnClickListener(this);
 			view.findViewById(R.id.liferay_list_edit).setOnClickListener(this);
 			view.findViewById(R.id.liferay_list_view).setOnClickListener(this);
-			_swipeLayout = (SwipeLayout) view.findViewById(R.id.liferay_swipe_layout);
-
+			swipeLayout = (SwipeLayout) view.findViewById(R.id.liferay_swipe_layout);
 		}
 
 		@Override
 		public void onClick(View v) {
-			boolean opened = SwipeLayout.Status.Open.equals(_swipeLayout.getOpenStatus());
-			if (opened &&
-				(v.getId() == R.id.liferay_list_edit
-					|| v.getId() == R.id.liferay_list_view)) {
+			boolean opened = SwipeLayout.Status.Open.equals(swipeLayout.getOpenStatus());
+			if (opened && (v.getId() == R.id.liferay_list_edit || v.getId() == R.id.liferay_list_view)) {
 
-				_listener.onItemClick(getAdapterPosition(), v);
-			}
-			else if (!opened) {
-				_swipeLayout.open(true);
-			}
-			else {
-				_swipeLayout.close(true);
+				listener.onItemClick(getAdapterPosition(), v);
+			} else if (!opened) {
+				swipeLayout.open(true);
+			} else {
+				swipeLayout.close(true);
 			}
 		}
-
-		private final BaseListAdapterListener _listener;
-		private final TextView _subtitleTextView;
-		private final SwipeLayout _swipeLayout;
-
 	}
-
 }

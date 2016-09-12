@@ -83,7 +83,7 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 	}
 
 	public Object getServerAttribute(String field) {
-		return _values.get(field);
+		return values.get(field);
 	}
 
 	public String getImageUrl() {
@@ -133,27 +133,29 @@ public class ImageEntry extends AssetEntry implements Parcelable {
 	private void parseServerValues() {
 		imageUrl = createImageUrl();
 		thumbnailUrl = createThumbnailUrl();
-		mimeType = (String) _values.get("mimeType");
-		description = (String) _values.get("description");
-		createDate = JSONUtil.castToLong(_values.get("createDate"));
-		creatorUserId = JSONUtil.castToLong(_values.get("userId"));
-		fileEntryId = JSONUtil.castToLong(_values.get("fileEntryId"));
+		mimeType = (String) values.get("mimeType");
+		description = (String) values.get("description");
+		createDate = JSONUtil.castToLong(values.get("createDate"));
+		creatorUserId = JSONUtil.castToLong(values.get("userId"));
+		fileEntryId = JSONUtil.castToLong(values.get("fileEntryId"));
+		folderId = JSONUtil.castToLong(values.get("folderId"));
+		repositoryId = JSONUtil.castToLong(values.get("repositoryId"));
 	}
 
 	private String createThumbnailUrl() {
-		return createImageUrl() + "?version=" + _values.get("version") + "&imageThumbnail=1";
+		return createImageUrl() + "?version=" + values.get("version") + "&imageThumbnail=1";
 	}
 
 	private String createImageUrl() {
 		return LiferayServerContext.getServer()
 			+ "/documents/"
-			+ _values.get("groupId")
+			+ values.get("groupId")
 			+ "/"
-			+ _values.get("folderId")
+			+ values.get("folderId")
 			+ "/"
-			+ encodeUrlString((String) _values.get("title"))
+			+ encodeUrlString((String) values.get("title"))
 			+ "/"
-			+ _values.get("uuid");
+			+ values.get("uuid");
 	}
 
 	private String encodeUrlString(String urlToEncode) {

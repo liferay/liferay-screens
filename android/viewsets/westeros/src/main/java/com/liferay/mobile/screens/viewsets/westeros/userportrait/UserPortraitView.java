@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.viewsets.westeros.userportrait;
 
 import android.content.Context;
 import android.util.AttributeSet;
-
 import com.liferay.mobile.screens.viewsets.westeros.R;
 
 /**
@@ -28,8 +27,7 @@ public class UserPortraitView extends com.liferay.mobile.screens.viewsets.defaul
 		super(context);
 	}
 
-	public UserPortraitView(
-		Context context, AttributeSet attributes) {
+	public UserPortraitView(Context context, AttributeSet attributes) {
 		super(context, attributes);
 	}
 

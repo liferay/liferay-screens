@@ -13,6 +13,9 @@ import org.json.JSONArray;
  */
 public class GalleryLoadInteractorImpl extends BaseListInteractor<GalleryInteractorListener, GalleryEvent> {
 
+	private static final JSONArray DEFAULT_MIME_TYPES =
+		new JSONArray().put("image/png").put("image/jpeg").put("image/gif");
+
 	@Override
 	protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {
 		long folderId = (long) args[0];
@@ -65,7 +68,4 @@ public class GalleryLoadInteractorImpl extends BaseListInteractor<GalleryInterac
 
 		return jsonMimeTypes;
 	}
-
-	private static final JSONArray DEFAULT_MIME_TYPES =
-		new JSONArray().put("image/png").put("image/jpeg").put("image/gif");
 }

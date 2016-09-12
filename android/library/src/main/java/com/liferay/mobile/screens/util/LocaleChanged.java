@@ -7,19 +7,19 @@ import java.util.Locale;
  */
 public class LocaleChanged {
 
+	private final Locale newLocale;
+	private final Locale oldLocale;
+
 	public LocaleChanged(Locale newLocale, Locale oldLocale) {
-		_newLocale = newLocale;
-		_oldLocale = oldLocale;
+		this.newLocale = newLocale;
+		this.oldLocale = oldLocale;
 	}
 
 	public Locale getNewLocale() {
-		return _newLocale;
+		return newLocale;
 	}
 
 	public Locale getOldLocale() {
-		return _oldLocale;
+		return oldLocale;
 	}
-
-	private final Locale _newLocale;
-	private final Locale _oldLocale;
 }

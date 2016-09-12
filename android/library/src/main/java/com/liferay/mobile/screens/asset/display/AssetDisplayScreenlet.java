@@ -30,6 +30,13 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 
 	public static final String STATE_LAYOUTS = "STATE_LAYOUTS";
 	public static final String STATE_ENTRY_ID = "STATE_ENTRY_ID";
+	private boolean autoLoad;
+	private HashMap<String, Integer> layouts;
+	private long entryId;
+	private long classPK;
+	private String className;
+	private AssetDisplayListener listener;
+	private AssetDisplayInnerScreenletListener configureListener;
 
 	public AssetDisplayScreenlet(Context context) {
 		super(context);
@@ -148,10 +155,8 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 
 	//TODO now the autoload is required to be able to load child screenlets
 	protected void autoLoad() {
-		if (SessionContext.isLoggedIn()) {
-			if (entryId != 0 || (className != null && classPK != 0)) {
-				loadAsset();
-			}
+		if (SessionContext.isLoggedIn() && (entryId != 0 || (className != null && classPK != 0))) {
+			loadAsset();
 		}
 	}
 
@@ -220,12 +225,4 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	public void setAutoLoad(boolean autoLoad) {
 		this.autoLoad = autoLoad;
 	}
-
-	private boolean autoLoad;
-	private HashMap<String, Integer> layouts;
-	private long entryId;
-	private long classPK;
-	private String className;
-	private AssetDisplayListener listener;
-	private AssetDisplayInnerScreenletListener configureListener;
 }

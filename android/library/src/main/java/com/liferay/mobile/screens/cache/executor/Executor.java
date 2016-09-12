@@ -8,11 +8,12 @@ import java.util.concurrent.Executors;
  */
 public class Executor {
 
+	public static final int N_THREADS = 3;
+	private static ExecutorService executor;
+
 	private Executor() {
 		super();
 	}
-
-	public static final int N_THREADS = 3;
 
 	public static synchronized ExecutorService getExecutor() {
 		if (executor == null) {
@@ -27,6 +28,4 @@ public class Executor {
 		}
 		getExecutor().execute(runnable);
 	}
-
-	private static ExecutorService executor;
 }

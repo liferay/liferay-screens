@@ -16,8 +16,10 @@
 		android:layout_centerVertical="true"
 		android:layout_gravity="start"
 		android:layout_margin="10dp"
+		android:contentDescription="@string/placeholder_while_image_loads"
 		android:scaleType="centerCrop"
-		android:src="@drawable/default_portrait_placeholder"/>
+		android:src="@drawable/default_portrait_placeholder"
+		/>
 
 	<ImageButton
 		android:id="@+id/progress_view_cancel_button"
@@ -27,7 +29,9 @@
 		android:layout_centerVertical="true"
 		android:layout_margin="5dp"
 		android:background="@android:color/transparent"
-		android:src="@drawable/default_gallery_cancel"/>
+		android:contentDescription="@string/cancel_button"
+		android:src="@drawable/default_gallery_cancel"
+		/>
 
 	<RelativeLayout
 		android:layout_width="wrap_content"
@@ -42,7 +46,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_alignParentTop="true"
-			android:text="Uploading image..."
+			android:text="@string/uploading_image"
 			/>
 
 		<ProgressBar

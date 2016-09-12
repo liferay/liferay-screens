@@ -21,6 +21,13 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  */
 public class AudioDisplayView extends FrameLayout implements BaseFileDisplayViewModel {
 
+	private BaseScreenlet screenlet;
+	private VideoView audioView;
+	private FileEntry fileEntry;
+	private TextView title;
+	private TextView message;
+	private ProgressBar progressBar;
+
 	public AudioDisplayView(Context context) {
 		super(context);
 	}
@@ -113,11 +120,4 @@ public class AudioDisplayView extends FrameLayout implements BaseFileDisplayView
 			}
 		});
 	}
-
-	private BaseScreenlet screenlet;
-	private VideoView audioView;
-	private FileEntry fileEntry;
-	private TextView title;
-	private TextView message;
-	private ProgressBar progressBar;
 }

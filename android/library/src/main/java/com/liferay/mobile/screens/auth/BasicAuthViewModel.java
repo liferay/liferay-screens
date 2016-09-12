@@ -24,5 +24,4 @@ public interface BasicAuthViewModel extends BaseViewModel {
 	BasicAuthMethod getBasicAuthMethod();
 
 	void setBasicAuthMethod(BasicAuthMethod basicAuthMethod);
-
 }

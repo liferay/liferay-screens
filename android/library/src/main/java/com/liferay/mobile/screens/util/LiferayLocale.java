@@ -13,6 +13,10 @@ import java.util.Locale;
  */
 public class LiferayLocale {
 
+	private LiferayLocale() {
+		super();
+	}
+
 	public static String getSupportedLocale(String locale) {
 		String localeStr = getSupportedLocaleWithNoDefault(locale);
 		return localeStr == null ? "en_US" : localeStr;

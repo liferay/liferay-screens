@@ -19,7 +19,6 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.liferay.mobile.android.callback.typed.JSONObjectCallback;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.dlfileentry.DLFileEntryService;
@@ -32,17 +31,14 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.LiferayLogger;
-
 import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
  */
-public class DDLListAdapter
-	extends BaseListAdapter<Record, DDLListAdapter.ImageViewHolder> {
+public class DDLListAdapter extends BaseListAdapter<Record, DDLListAdapter.ImageViewHolder> {
 
-	public DDLListAdapter(
-		int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
+	public DDLListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 
 		super(layoutId, progressLayoutId, listener);
 	}
@@ -71,10 +67,10 @@ public class DDLListAdapter
 				}
 			}
 
-			buildURL(entry, holder._imageView);
+			buildURL(entry, holder.imageView);
 
 			holder.textView.setText(titleField);
-			holder._subtitleTextView.setText(builder.toString());
+			holder.subtitleTextView.setText(builder.toString());
 		}
 	}
 
@@ -91,15 +87,13 @@ public class DDLListAdapter
 
 				downloadPicture(session, uuid, groupId, imageView);
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			LiferayLogger.e("Error loading image", e);
 		}
 	}
 
-	private void downloadPicture(final Session session, final String uuid,
-								 final Long groupId, final ImageView imageView)
-		throws Exception {
+	private void downloadPicture(final Session session, final String uuid, final Long groupId,
+		final ImageView imageView) throws Exception {
 
 		final Context context = LiferayScreensContext.getContext();
 		final String server = LiferayServerContext.getServer();
@@ -110,8 +104,7 @@ public class DDLListAdapter
 				try {
 					new DownloadPicture().
 						createRequest(context, result, server, 200).into(imageView);
-				}
-				catch (Exception e) {
+				} catch (Exception e) {
 					LiferayLogger.e("Error downloading picture", e);
 				}
 			}
@@ -126,30 +119,27 @@ public class DDLListAdapter
 		entryService.getFileEntryByUuidAndGroupId(uuid, groupId);
 	}
 
-	public static class ImageViewHolder
-		extends BaseListAdapter.ViewHolder implements View.OnClickListener {
+	public static class ImageViewHolder extends BaseListAdapter.ViewHolder implements View.OnClickListener {
+
+		private final BaseListAdapterListener listener;
+		private final TextView subtitleTextView;
+		private final ImageView imageView;
 
 		public ImageViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
 			this.textView = (TextView) view.findViewById(R.id.notification_title);
-			this._subtitleTextView = (TextView) view.findViewById(R.id.notification_subtitle);
-			this._imageView = (ImageView) view.findViewById(R.id.notification_image);
+			this.subtitleTextView = (TextView) view.findViewById(R.id.notification_subtitle);
+			this.imageView = (ImageView) view.findViewById(R.id.notification_image);
 
-			_listener = listener;
+			this.listener = listener;
 
 			view.setOnClickListener(this);
 		}
 
 		@Override
 		public void onClick(View v) {
-			_listener.onItemClick(getAdapterPosition(), v);
+			listener.onItemClick(getAdapterPosition(), v);
 		}
-
-		private final BaseListAdapterListener _listener;
-		private final TextView _subtitleTextView;
-		private final ImageView _imageView;
-
 	}
-
 }

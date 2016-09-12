@@ -24,5 +24,4 @@ public interface SignUpListener {
 	void onSignUpFailure(Exception e);
 
 	void onSignUpSuccess(User user);
-
 }

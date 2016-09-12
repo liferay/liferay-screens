@@ -5,18 +5,18 @@
 	>
 
 	<LinearLayout
-		style="@style/material_list_item"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:orientation="horizontal"
+		style="@style/material_list_item"
 		>
 
 		<ImageView
-			style="@style/material_list_item_icon"
 			android:layout_width="wrap_content"
 			android:layout_height="match_parent"
 			android:layout_gravity="center_vertical"
 			android:contentDescription="@string/list_icon"
+			style="@style/material_list_item_icon"
 			/>
 
 		<LinearLayout
@@ -30,16 +30,16 @@
 
 			<TextView
 				android:id="@+id/liferay_list_title"
-				style="@style/material_list_item_title"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				style="@style/material_list_item_title"
 				/>
 
 			<TextView
 				android:id="@+id/liferay_list_subtitle"
-				style="@style/material_list_item_subtitle"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				style="@style/material_list_item_subtitle"
 				/>
 		</LinearLayout>
 	</LinearLayout>

@@ -18,6 +18,10 @@ import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
 public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, CommentAddInteractorImpl>
 	implements CommentAddListener {
 
+	private CommentAddListener listener;
+	private String className;
+	private long classPK;
+
 	public CommentAddScreenlet(Context context) {
 		super(context);
 	}
@@ -105,8 +109,4 @@ public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, Comm
 	public void setClassPK(long classPK) {
 		this.classPK = classPK;
 	}
-
-	private CommentAddListener listener;
-	private String className;
-	private long classPK;
 }

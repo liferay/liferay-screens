@@ -20,9 +20,7 @@ import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 
-
-public abstract class BaseLoginInteractor
-	extends BaseRemoteInteractorNew<LoginListener, BasicThreadEvent> {
+public abstract class BaseLoginInteractor extends BaseRemoteInteractorNew<LoginListener, BasicThreadEvent> {
 
 	@Override
 	public void onSuccess(BasicThreadEvent event) throws Exception {
@@ -36,5 +34,4 @@ public abstract class BaseLoginInteractor
 		SessionContext.logout();
 		getListener().onLoginFailure(e);
 	}
-
 }

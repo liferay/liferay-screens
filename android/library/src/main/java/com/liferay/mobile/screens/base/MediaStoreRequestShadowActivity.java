@@ -19,6 +19,8 @@ public class MediaStoreRequestShadowActivity extends Activity {
 
 	public static final String MEDIA_STORE_TYPE = "MEDIA_STORE_TYPE";
 	public static final String SCREENLET_ID = "SCREENLET_ID";
+	private int mediaStoreType;
+	private String filePath;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +78,4 @@ public class MediaStoreRequestShadowActivity extends Activity {
 
 		startActivityForResult(cameraIntent, mediaStoreType);
 	}
-
-	private int mediaStoreType;
-	private String filePath;
 }

@@ -28,6 +28,12 @@ import android.view.ViewGroup;
  */
 public abstract class ThemeActivity extends AppCompatActivity {
 
+	private final int[] themes = { R.style.default_theme, R.style.material_theme, R.style.westeros_theme };
+	private final int[] colors =
+		{ R.color.colorPrimary_default, R.color.colorPrimary_material, R.color.colorPrimary_westeros };
+	private Integer currentThemePosition;
+	private View content;
+
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -72,10 +78,4 @@ public abstract class ThemeActivity extends AppCompatActivity {
 		group.setBackgroundColor(color);
 		snackbar.show();
 	}
-
-	private final int[] themes = {R.style.default_theme, R.style.material_theme, R.style.westeros_theme};
-	private final int[] colors = {R.color.colorPrimary_default, R.color.colorPrimary_material, R.color.colorPrimary_westeros};
-	private Integer currentThemePosition;
-	private View content;
-
 }

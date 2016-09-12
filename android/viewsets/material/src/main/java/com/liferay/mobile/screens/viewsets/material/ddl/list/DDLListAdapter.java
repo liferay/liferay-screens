@@ -17,7 +17,6 @@ package com.liferay.mobile.screens.viewsets.material.ddl.list;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
-
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
 import com.liferay.mobile.screens.ddl.model.Record;
@@ -27,8 +26,7 @@ import com.liferay.mobile.screens.viewsets.R;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListAdapter
-	extends BaseListAdapter<Record, DDLListAdapter.TwoTextsViewHolder> {
+public class DDLListAdapter extends BaseListAdapter<Record, DDLListAdapter.TwoTextsViewHolder> {
 
 	public DDLListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 		super(layoutId, progressLayoutId, listener);
@@ -69,5 +67,4 @@ public class DDLListAdapter
 			this.subtitleTextView = (TextView) view.findViewById(R.id.liferay_list_subtitle);
 		}
 	}
-
 }

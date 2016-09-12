@@ -66,6 +66,8 @@ public class AddDeliciousInteractorImpl extends BaseRemoteInteractorNew<AddBookm
 
 	private static class BookmarkAdded extends BasicThreadEvent {
 
+		private String text;
+
 		BookmarkAdded(String text) {
 			this.text = text;
 		}
@@ -77,8 +79,6 @@ public class AddDeliciousInteractorImpl extends BaseRemoteInteractorNew<AddBookm
 		public String getText() {
 			return text;
 		}
-
-		private String text;
 	}
 }
 

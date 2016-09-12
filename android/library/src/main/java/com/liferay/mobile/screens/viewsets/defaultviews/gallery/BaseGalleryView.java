@@ -23,6 +23,9 @@ import static com.liferay.mobile.screens.base.list.BaseListScreenlet.LOAD_INITIA
 public abstract class BaseGalleryView<H extends BaseListAdapter.ViewHolder, A extends BaseListAdapter<ImageEntry, H>>
 	extends BaseListScreenletView<ImageEntry, H, A> implements GalleryViewModel {
 
+	private UploadProgressView uploadProgressView;
+	private AlertDialog choseOriginDialog;
+
 	public BaseGalleryView(Context context) {
 		super(context);
 	}
@@ -73,7 +76,7 @@ public abstract class BaseGalleryView<H extends BaseListAdapter.ViewHolder, A ex
 				entries.remove(i);
 				int newRowCount = getAdapter().getItemCount() - 1;
 				getAdapter().setRowCount(newRowCount);
-				_recyclerView.getAdapter().notifyItemRemoved(i);
+				recyclerView.getAdapter().notifyItemRemoved(i);
 				break;
 			}
 		}
@@ -100,9 +103,8 @@ public abstract class BaseGalleryView<H extends BaseListAdapter.ViewHolder, A ex
 	}
 
 	private void createProgressView() {
-		uploadProgressView =
-			(UploadProgressView) LayoutInflater.from(getContext())
-				.inflate(R.layout.gallery_progress_view_default, this, false);
+		uploadProgressView = (UploadProgressView) LayoutInflater.from(getContext())
+			.inflate(R.layout.gallery_progress_view_default, this, false);
 
 		addView(uploadProgressView);
 	}
@@ -115,11 +117,6 @@ public abstract class BaseGalleryView<H extends BaseListAdapter.ViewHolder, A ex
 
 	@Override
 	public void imageUploadComplete() {
-		uploadProgressView.uploadCompleteOrError();
-	}
-
-	@Override
-	public void imageUploadError(Exception e) {
 		uploadProgressView.uploadCompleteOrError();
 	}
 
@@ -146,7 +143,4 @@ public abstract class BaseGalleryView<H extends BaseListAdapter.ViewHolder, A ex
 			}
 		};
 	}
-
-	private UploadProgressView uploadProgressView;
-	private AlertDialog choseOriginDialog;
 }

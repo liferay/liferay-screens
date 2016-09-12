@@ -7,9 +7,9 @@
 
 	<android.support.v7.widget.SwitchCompat
 		android:id="@+id/liferay_ddl_switch"
-		style="@style/default_checkbox"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		style="@style/default_checkbox"
 		/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldCheckboxView>

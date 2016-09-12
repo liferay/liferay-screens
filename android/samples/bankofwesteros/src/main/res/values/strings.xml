@@ -30,6 +30,7 @@
 	<string name="report_issue">Report Issue</string>
 	<string name="account_settings">Account Settings</string>
 	<string name="severity">Severity</string>
+	<string name="severity_detail">Severity: %s</string>
 	<string name="send">Send Issue</string>
 	<string name="reset_password_text">We will send you a link to reset your password.\r\n\r\nThe link will be valid 24 hours</string>
 	<string name="send_password">Send Password</string>
@@ -50,7 +51,7 @@
 	<string name="call_menu_entry">Call (Monday &#8211; Friday, 06:00 &#8211; 22:00)</string>
 	<string name="default_telephone_uri">tel:900000000</string>
 	<string name="default_sms_uri">sms:900000000</string>
-	<string name="created">"Created "</string>
+	<string name="created">Created %s</string>
 	<string name="tour_image">Tour Image</string>
 	<string name="window">Window</string>
 	<string name="girl_asking_for_support">Girl asking for support</string>

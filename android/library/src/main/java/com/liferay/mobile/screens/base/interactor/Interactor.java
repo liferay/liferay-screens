@@ -22,5 +22,4 @@ public interface Interactor<L> {
 	void onScreenletAttached(L listener);
 
 	void onScreenletDetached(L listener);
-
 }

@@ -28,6 +28,8 @@ import org.json.JSONObject;
  */
 public class GalleryUploadService extends IntentService {
 
+	private boolean shouldCancel;
+
 	public GalleryUploadService() {
 		super(GalleryUploadService.class.getCanonicalName());
 	}
@@ -83,7 +85,7 @@ public class GalleryUploadService extends IntentService {
 	private JSONObject uploadImageEntry(int screenletId, long repositoryId, long folderId, String title,
 		String description, String changeLog, String picturePath) throws Exception {
 
-		String sourceName = picturePath.substring(picturePath.lastIndexOf("/") + 1);
+		String sourceName = picturePath.substring(picturePath.lastIndexOf('/') + 1);
 		if (title.isEmpty()) {
 			title = System.nanoTime() + sourceName;
 		}
@@ -125,6 +127,4 @@ public class GalleryUploadService extends IntentService {
 		serviceContextAttributes.put("addGuestPermissions", true);
 		return new JSONObjectWrapper(serviceContextAttributes);
 	}
-
-	private boolean shouldCancel;
 }

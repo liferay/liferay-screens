@@ -16,15 +16,30 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.display.view.CommentDisplayViewModel;
-import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 
 /**
  * @author Alejandro Hernández
  */
 public class CommentDisplayView extends FrameLayout implements CommentDisplayViewModel, View.OnClickListener {
+
+	private TextView userNameTextView;
+	private TextView createDateTextView;
+	private TextView bodyTextView;
+	private TextView editedTextView;
+	private UserPortraitScreenlet userPortraitScreenlet;
+	private EditText editBodyEditText;
+	private ImageButton editImageButton;
+	private ImageButton deleteImageButton;
+	private boolean deleting;
+	private boolean editing;
+	private BaseScreenlet screenlet;
+	private ViewGroup contentGroup;
+	private ProgressBar progressBar;
+	private CommentEntry commentEntry;
 
 	public CommentDisplayView(Context context) {
 		super(context);
@@ -166,21 +181,4 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 			button.setBackgroundDrawable(drawableCompat);
 		}
 	}
-
-	private TextView userNameTextView;
-	private TextView createDateTextView;
-	private TextView bodyTextView;
-	private TextView editedTextView;
-	private UserPortraitScreenlet userPortraitScreenlet;
-	private EditText editBodyEditText;
-
-	private ImageButton editImageButton;
-	private ImageButton deleteImageButton;
-	private boolean deleting;
-	private boolean editing;
-
-	private BaseScreenlet screenlet;
-	private ViewGroup contentGroup;
-	private ProgressBar progressBar;
-	private CommentEntry commentEntry;
 }

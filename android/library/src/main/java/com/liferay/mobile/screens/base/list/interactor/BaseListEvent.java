@@ -22,6 +22,10 @@ import java.util.List;
  */
 public class BaseListEvent<E> extends OfflineEventNew {
 
+	private List<E> entries;
+	private int rowCount;
+	private Query query;
+
 	public BaseListEvent() {
 		super();
 	}
@@ -59,8 +63,4 @@ public class BaseListEvent<E> extends OfflineEventNew {
 	public void setQuery(Query query) {
 		this.query = query;
 	}
-
-	private List<E> entries;
-	private int rowCount;
-	private Query query;
 }

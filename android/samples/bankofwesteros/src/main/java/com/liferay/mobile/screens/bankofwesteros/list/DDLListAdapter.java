@@ -19,8 +19,7 @@ import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListAdapter
-	extends com.liferay.mobile.screens.viewsets.westeros.ddl.list.DDLListAdapter {
+public class DDLListAdapter extends com.liferay.mobile.screens.viewsets.westeros.ddl.list.DDLListAdapter {
 
 	public DDLListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 		super(layoutId, progressLayoutId, listener);
@@ -31,14 +30,11 @@ public class DDLListAdapter
 		int drawable = R.drawable.issue_open;
 		if (position < 1) {
 			drawable = R.drawable.issue_reject;
-		}
-		else if (position < 2) {
+		} else if (position < 2) {
 			drawable = R.drawable.done;
-		}
-		else if (position < 3) {
+		} else if (position < 3) {
 			drawable = R.drawable.issue_waiting;
 		}
 		return drawable;
 	}
-
 }

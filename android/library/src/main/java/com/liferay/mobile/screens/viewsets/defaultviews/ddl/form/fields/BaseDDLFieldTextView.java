@@ -22,7 +22,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
@@ -32,6 +31,11 @@ import com.liferay.mobile.screens.ddl.model.Field;
  */
 public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 	implements DDLFieldViewModel<T>, TextWatcher {
+
+	protected TextView labelTextView;
+	protected EditText textEditText;
+	protected View parentView;
+	private T field;
 
 	public BaseDDLFieldTextView(Context context) {
 		super(context);
@@ -47,8 +51,8 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 
 	@Override
 	public void afterTextChanged(Editable editable) {
-		if (!_field.getLastValidationResult()) {
-			_field.setLastValidationResult(true);
+		if (!field.getLastValidationResult()) {
+			field.setLastValidationResult(true);
 
 			onPostValidation(true);
 		}
@@ -57,30 +61,28 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 	}
 
 	@Override
-	public void beforeTextChanged(
-		CharSequence text, int start, int count, int after) {
+	public void beforeTextChanged(CharSequence text, int start, int count, int after) {
 	}
 
 	@Override
 	public T getField() {
-		return _field;
+		return field;
 	}
 
 	@Override
 	public void setField(T field) {
-		_field = field;
+		this.field = field;
 
-		if (_field.isShowLabel()) {
-			_textEditText.setHint("");
-			if (_labelTextView != null) {
-				_labelTextView.setText(_field.getLabel());
-				_labelTextView.setVisibility(VISIBLE);
+		if (this.field.isShowLabel()) {
+			textEditText.setHint("");
+			if (labelTextView != null) {
+				labelTextView.setText(this.field.getLabel());
+				labelTextView.setVisibility(VISIBLE);
 			}
-		}
-		else {
-			_textEditText.setHint(_field.getLabel());
-			if (_labelTextView != null) {
-				_labelTextView.setVisibility(GONE);
+		} else {
+			textEditText.setHint(this.field.getLabel());
+			if (labelTextView != null) {
+				labelTextView.setVisibility(GONE);
 			}
 		}
 
@@ -88,42 +90,40 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 	}
 
 	public TextView getLabelTextView() {
-		return _labelTextView;
+		return labelTextView;
 	}
 
 	public EditText getTextEditText() {
-		return _textEditText;
+		return textEditText;
 	}
 
 	@Override
 	public View getParentView() {
-		return _parentView;
+		return parentView;
 	}
 
 	@Override
 	public void setParentView(View view) {
-		_parentView = view;
+		parentView = view;
 	}
 
 	@Override
-	public void onTextChanged(
-		CharSequence text, int start, int before, int count) {
+	public void onTextChanged(CharSequence text, int start, int before, int count) {
 	}
 
 	@Override
 	public void refresh() {
-		_textEditText.setText(_field.toFormattedString());
+		textEditText.setText(field.toFormattedString());
 	}
 
 	@Override
 	public void onPostValidation(boolean valid) {
 		String errorText = valid ? null : getResources().getString(R.string.invalid);
 
-		if (_labelTextView == null) {
-			_textEditText.setError(errorText);
-		}
-		else {
-			_labelTextView.setError(errorText);
+		if (labelTextView == null) {
+			textEditText.setError(errorText);
+		} else {
+			labelTextView.setError(errorText);
 		}
 	}
 
@@ -131,23 +131,16 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_labelTextView = (TextView) findViewById(R.id.liferay_ddl_label);
-		_textEditText = (EditText) findViewById(R.id.liferay_ddl_edit_text);
+		labelTextView = (TextView) findViewById(R.id.liferay_ddl_label);
+		textEditText = (EditText) findViewById(R.id.liferay_ddl_edit_text);
 
-		_textEditText.addTextChangedListener(this);
+		textEditText.addTextChangedListener(this);
 
 		//We are not saving the text view state because when state is restored,
 		//the ids of other DDLFields are conflicting.
 		//It is not a problem because all state is stored in Field objects.
-		_textEditText.setSaveEnabled(false);
+		textEditText.setSaveEnabled(false);
 	}
 
 	protected abstract void onTextChanged(String text);
-
-	protected TextView _labelTextView;
-	protected EditText _textEditText;
-	protected View _parentView;
-
-	private T _field;
-
 }

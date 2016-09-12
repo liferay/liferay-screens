@@ -3,13 +3,14 @@ package com.liferay.mobile.screens.auth.login.connector;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.auth.forgotpassword.connector.ForgotPasswordConnector;
 import com.liferay.mobile.screens.service.v62.ScreensuserService;
-
 import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
  */
 public class ScreensUserConnector62 implements ForgotPasswordConnector, CurrentUserConnector {
+
+	private final ScreensuserService screensUserService;
 
 	public ScreensUserConnector62(Session session) {
 		screensUserService = new ScreensuserService(session);
@@ -33,6 +34,4 @@ public class ScreensUserConnector62 implements ForgotPasswordConnector, CurrentU
 	public JSONObject getCurrentUser() throws Exception {
 		return screensUserService.getCurrentUser();
 	}
-
-	private final ScreensuserService screensUserService;
 }

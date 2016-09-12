@@ -16,18 +16,15 @@ package com.liferay.mobile.screens.viewsets.defaultviews.asset.list;
 
 import android.content.Context;
 import android.util.AttributeSet;
-
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.asset.list.view.AssetListViewModel;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 
-
 /**
  * @author Silvio Santos
  */
-public class AssetListView
-	extends BaseListScreenletView<AssetEntry, BaseListAdapter.ViewHolder, AssetListAdapter>
+public class AssetListView extends BaseListScreenletView<AssetEntry, BaseListAdapter.ViewHolder, AssetListAdapter>
 	implements AssetListViewModel {
 
 	public AssetListView(Context context) {
@@ -46,5 +43,4 @@ public class AssetListView
 	protected AssetListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
 		return new AssetListAdapter(itemLayoutId, itemProgressLayoutId, this);
 	}
-
 }

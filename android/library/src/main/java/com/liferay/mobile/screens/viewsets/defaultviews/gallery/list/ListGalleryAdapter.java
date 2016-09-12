@@ -32,6 +32,8 @@ public class ListGalleryAdapter extends BaseListAdapter<ImageEntry, ListGalleryA
 
 	public class ListGalleryViewHolder extends BaseListAdapter.ViewHolder {
 
+		private final ImageView imageView;
+
 		public ListGalleryViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
@@ -51,7 +53,5 @@ public class ListGalleryAdapter extends BaseListAdapter<ImageEntry, ListGalleryA
 
 			this.textView.setText(entry.getTitle());
 		}
-
-		private final ImageView imageView;
 	}
 }

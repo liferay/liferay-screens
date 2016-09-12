@@ -17,6 +17,10 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  */
 public class AssetDisplayView extends FrameLayout implements AssetDisplayViewModel {
 
+	private BaseScreenlet screenlet;
+	private ProgressBar progressBar;
+	private ViewGroup container;
+
 	public AssetDisplayView(Context context) {
 		super(context);
 	}
@@ -45,8 +49,8 @@ public class AssetDisplayView extends FrameLayout implements AssetDisplayViewMod
 
 	@Override
 	public void showFinishOperation(String actionName) {
-		throw new UnsupportedOperationException("showFinishOperation(String) is not supported."
-			+ " Use showFinishOperation(BaseScreenlet) instead.");
+		throw new UnsupportedOperationException(
+			"showFinishOperation(String) is not supported." + " Use showFinishOperation(BaseScreenlet) instead.");
 	}
 
 	@Override
@@ -72,8 +76,4 @@ public class AssetDisplayView extends FrameLayout implements AssetDisplayViewMod
 		container.setVisibility(VISIBLE);
 		LiferayLogger.d("Asset display loaded successfully");
 	}
-
-	private BaseScreenlet screenlet;
-	private ProgressBar progressBar;
-	private ViewGroup container;
 }

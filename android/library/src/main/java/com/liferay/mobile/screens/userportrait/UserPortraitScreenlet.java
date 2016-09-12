@@ -46,6 +46,16 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 
 	public static final String UPLOAD_PORTRAIT = "UPLOAD_PORTRAIT";
 	public static final String LOAD_PORTRAIT = "LOAD_PORTRAIT";
+	private static final String STATE_SUPER = "userportrait-super";
+	private static final String STATE_FILE_PATH = "userportrait-filePath";
+	private String filePath;
+	private boolean autoLoad;
+	private boolean male;
+	private long portraitId;
+	private String uuid;
+	private long userid;
+	private boolean editable;
+	private UserPortraitListener listener;
 
 	public UserPortraitScreenlet(Context context) {
 		super(context);
@@ -79,8 +89,8 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 	public Bitmap onEndUserPortraitLoadRequest(Bitmap bitmap) {
 		Bitmap finalImage = bitmap;
 
-		if (_listener != null) {
-			finalImage = _listener.onUserPortraitLoadReceived(bitmap);
+		if (listener != null) {
+			finalImage = listener.onUserPortraitLoadReceived(bitmap);
 
 			if (finalImage == null) {
 				finalImage = bitmap;
@@ -94,8 +104,8 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 
 	@Override
 	public void onUserPortraitUploaded(Long uuid) {
-		if (_listener != null) {
-			_listener.onUserPortraitUploaded();
+		if (listener != null) {
+			listener.onUserPortraitUploaded();
 		}
 
 		getViewModel().showFinishOperation(UPLOAD_PORTRAIT);
@@ -110,79 +120,79 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 
 	@Override
 	public void error(Exception e, String userAction) {
-		if (_listener != null) {
-			_listener.error(e, userAction);
+		if (listener != null) {
+			listener.error(e, userAction);
 		}
 
 		getViewModel().showFailedOperation(userAction, e);
 	}
 
 	public void setListener(UserPortraitListener listener) {
-		_listener = listener;
+		this.listener = listener;
 	}
 
 	public boolean isMale() {
-		return _male;
+		return male;
 	}
 
 	public void setMale(boolean male) {
-		_male = male;
+		this.male = male;
 	}
 
 	public long getPortraitId() {
-		return _portraitId;
+		return portraitId;
 	}
 
 	public void setPortraitId(long portraitId) {
-		_portraitId = portraitId;
+		this.portraitId = portraitId;
 	}
 
 	public String getUuid() {
-		return _uuid;
+		return uuid;
 	}
 
 	public void setUuid(String uuid) {
-		_uuid = uuid;
+		this.uuid = uuid;
 	}
 
 	public long getUserId() {
-		return _userId;
+		return userid;
 	}
 
 	public void setUserId(long userId) {
-		_userId = userId;
+		userid = userId;
 	}
 
 	public boolean getEditable() {
-		return _editable;
+		return editable;
 	}
 
 	public String getFilePath() {
-		return _filePath;
+		return filePath;
 	}
 
 	public void setFilePath(String filePath) {
-		_filePath = filePath;
+		this.filePath = filePath;
 	}
 
 	public boolean isAutoLoad() {
-		return _autoLoad;
+		return autoLoad;
 	}
 
 	public void setAutoLoad(boolean autoLoad) {
-		_autoLoad = autoLoad;
+		this.autoLoad = autoLoad;
 	}
 
 	public boolean isEditable() {
-		return _editable;
+		return editable;
 	}
 
 	public void setEditable(boolean editable) {
-		_editable = editable;
+		this.editable = editable;
 	}
 
 	protected void autoLoad() {
-		if (((_portraitId != 0) && (_uuid != null)) || (_userId != 0)) {
+		if (((portraitId != 0) && (uuid != null)) || (userid != 0)) {
 			try {
 				load();
 			} catch (Exception e) {
@@ -196,16 +206,16 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 		TypedArray typedArray =
 			context.getTheme().obtainStyledAttributes(attributes, R.styleable.UserPortraitScreenlet, 0, 0);
 
-		_autoLoad = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_autoLoad, true);
-		_male = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_male, true);
-		_portraitId = typedArray.getInt(R.styleable.UserPortraitScreenlet_portraitId, 0);
-		_uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
-		_editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
+		autoLoad = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_autoLoad, true);
+		male = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_male, true);
+		portraitId = typedArray.getInt(R.styleable.UserPortraitScreenlet_portraitId, 0);
+		uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
+		editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
 
-		_userId = castToLongOrUseDefault(typedArray.getString(R.styleable.UserPortraitScreenlet_userId), 0L);
+		userid = castToLongOrUseDefault(typedArray.getString(R.styleable.UserPortraitScreenlet_userId), 0L);
 
-		if (SessionContext.hasUserInfo() && _portraitId == 0 && _uuid == null && _userId == 0) {
-			_userId = SessionContext.getCurrentUser().getId();
+		if (SessionContext.hasUserInfo() && portraitId == 0 && uuid == null && userid == 0) {
+			userid = SessionContext.getCurrentUser().getId();
 		}
 
 		int layoutId = typedArray.getResourceId(R.styleable.UserPortraitScreenlet_layoutId, getDefaultLayoutId());
@@ -230,19 +240,19 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 			UserPortraitUploadInteractorImpl userPortraitInteractor =
 				(UserPortraitUploadInteractorImpl) getInteractor(userActionName);
 			String path = (String) args[0];
-			if (_userId != 0) {
+			if (userid != 0) {
 				userPortraitInteractor.start(new UserPortraitUploadEvent(path));
 			}
 		} else {
 			UserPortraitLoadInteractorImpl userPortraitLoadInteractor =
 				(UserPortraitLoadInteractorImpl) getInteractor(userActionName);
-			if (_portraitId != 0 && _uuid != null) {
-				userPortraitLoadInteractor.start(_male, _portraitId, _uuid);
+			if (portraitId != 0 && uuid != null) {
+				userPortraitLoadInteractor.start(male, portraitId, uuid);
 			} else {
-				if (SessionContext.hasUserInfo() && _userId == 0) {
+				if (SessionContext.hasUserInfo() && userid == 0) {
 					userPortraitLoadInteractor.start(SessionContext.getCurrentUser().getId());
 				} else {
-					userPortraitLoadInteractor.start(_userId);
+					userPortraitLoadInteractor.start(userid);
 				}
 			}
 		}
@@ -250,7 +260,7 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 
 	@Override
 	protected void onScreenletAttached() {
-		if (_autoLoad) {
+		if (autoLoad) {
 			autoLoad();
 		}
 	}
@@ -258,15 +268,15 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 	@Override
 	protected void onRestoreInstanceState(Parcelable inState) {
 		Bundle bundle = (Bundle) inState;
-		super.onRestoreInstanceState(bundle.getParcelable(_STATE_SUPER));
-		_filePath = bundle.getString(_STATE_FILE_PATH);
+		super.onRestoreInstanceState(bundle.getParcelable(STATE_SUPER));
+		filePath = bundle.getString(STATE_FILE_PATH);
 	}
 
 	@Override
 	protected Parcelable onSaveInstanceState() {
 		Bundle bundle = new Bundle();
-		bundle.putParcelable(_STATE_SUPER, super.onSaveInstanceState());
-		bundle.putString(_STATE_FILE_PATH, _filePath);
+		bundle.putParcelable(STATE_SUPER, super.onSaveInstanceState());
+		bundle.putString(STATE_FILE_PATH, filePath);
 		return bundle;
 	}
 
@@ -282,16 +292,4 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 
 		activity.startActivity(intent);
 	}
-
-	private static final String _STATE_SUPER = "userportrait-super";
-	private static final String _STATE_FILE_PATH = "userportrait-filePath";
-
-	private String _filePath;
-	private boolean _autoLoad;
-	private boolean _male;
-	private long _portraitId;
-	private String _uuid;
-	private long _userId;
-	private boolean _editable;
-	private UserPortraitListener _listener;
 }

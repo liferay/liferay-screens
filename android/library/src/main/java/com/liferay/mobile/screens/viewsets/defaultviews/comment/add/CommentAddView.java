@@ -19,6 +19,10 @@ import static com.liferay.mobile.screens.base.BaseScreenlet.DEFAULT_ACTION;
  */
 public class CommentAddView extends RelativeLayout implements CommentAddViewModel, View.OnClickListener {
 
+	private BaseScreenlet screenlet;
+	private EditText addCommentEditText;
+	private Button sendButton;
+
 	public CommentAddView(Context context) {
 		super(context);
 	}
@@ -80,9 +84,5 @@ public class CommentAddView extends RelativeLayout implements CommentAddViewMode
 	public void setScreenlet(BaseScreenlet screenlet) {
 		this.screenlet = screenlet;
 	}
-
-	private BaseScreenlet screenlet;
-	private EditText addCommentEditText;
-	private Button sendButton;
 }
 

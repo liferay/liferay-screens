@@ -17,13 +17,8 @@ public class BlogsEntry extends AssetEntry {
 		super(map);
 	}
 
-	@Override
-	public String getTitle() {
-		return super.getTitle();
-	}
-
 	public Map<String, Object> getBlogsEntry() {
-		return (Map<String, Object>) _values.get("blogsEntry");
+		return (Map<String, Object>) values.get("blogsEntry");
 	}
 
 	public String getUserName() {
@@ -31,17 +26,17 @@ public class BlogsEntry extends AssetEntry {
 	}
 
 	public String getDate() {
-		long displayDate = Long.valueOf(getBlogsEntry().get("displayDate").toString());
+		long displayDate = Long.parseLong(getBlogsEntry().get("displayDate").toString());
 		return dateToString(displayDate);
 	}
 
 	public long getCoverImage() {
 		String cover = getBlogsEntry().get("coverImageFileEntryId").toString();
-		return Long.valueOf(cover);
+		return Long.parseLong(cover);
 	}
 
 	public long getUserId() {
-		return Long.valueOf(getBlogsEntry().get("userId").toString());
+		return Long.parseLong(getBlogsEntry().get("userId").toString());
 	}
 
 	public String getSubtitle() {

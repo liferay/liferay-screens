@@ -16,6 +16,9 @@ import com.liferay.mobile.screens.webcontent.display.view.WebContentDisplayViewM
  */
 public class WebContentStructuredDisplayView extends LinearLayout implements WebContentDisplayViewModel {
 
+	private BaseScreenlet screenlet;
+	private TextView contentField;
+
 	public WebContentStructuredDisplayView(Context context) {
 		super(context);
 	}
@@ -32,8 +35,8 @@ public class WebContentStructuredDisplayView extends LinearLayout implements Web
 	public void showFinishOperation(WebContent webContent) {
 		String value = getValueFromLabelFields(webContent);
 
-		if (_contentField != null) {
-			_contentField.setText(value);
+		if (contentField != null) {
+			contentField.setText(value);
 		}
 	}
 
@@ -54,12 +57,12 @@ public class WebContentStructuredDisplayView extends LinearLayout implements Web
 
 	@Override
 	public BaseScreenlet getScreenlet() {
-		return _screenlet;
+		return screenlet;
 	}
 
 	@Override
 	public void setScreenlet(BaseScreenlet screenlet) {
-		_screenlet = screenlet;
+		this.screenlet = screenlet;
 	}
 
 	protected String getValueFromLabelFields(WebContent webContent) {
@@ -89,9 +92,6 @@ public class WebContentStructuredDisplayView extends LinearLayout implements Web
 
 		setOrientation(LinearLayout.VERTICAL);
 
-		_contentField = (TextView) findViewById(R.id.web_content_field);
+		contentField = (TextView) findViewById(R.id.web_content_field);
 	}
-
-	private BaseScreenlet _screenlet;
-	private TextView _contentField;
 }

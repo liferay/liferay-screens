@@ -11,6 +11,8 @@ import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDeco
  */
 public class GridDividerItemDecoration extends DividerItemDecoration {
 
+	private final int spacing;
+
 	public GridDividerItemDecoration(int spacing) {
 		super(null);
 		this.spacing = spacing;
@@ -29,6 +31,4 @@ public class GridDividerItemDecoration extends DividerItemDecoration {
 	public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
 
 	}
-
-	private int spacing;
 }

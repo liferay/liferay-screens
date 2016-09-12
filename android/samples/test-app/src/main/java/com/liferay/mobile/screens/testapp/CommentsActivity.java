@@ -26,6 +26,11 @@ public class CommentsActivity extends ThemeActivity
 	implements CommentListListener, CommentAddListener, OnClickListener, CompoundButton.OnCheckedChangeListener,
 	CommentDisplayListener {
 
+	private CommentDisplayScreenlet displayScreenlet;
+	private CommentListScreenlet listScreenlet;
+	private AlertDialog dialog;
+	private View noCommentView;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -156,9 +161,4 @@ public class CommentsActivity extends ThemeActivity
 		listScreenlet.allowEdition(isChecked);
 		displayScreenlet.allowEdition(isChecked);
 	}
-
-	private CommentDisplayScreenlet displayScreenlet;
-	private CommentListScreenlet listScreenlet;
-	private AlertDialog dialog;
-	private View noCommentView;
 }

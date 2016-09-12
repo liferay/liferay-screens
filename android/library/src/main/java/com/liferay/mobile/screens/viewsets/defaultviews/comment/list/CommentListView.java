@@ -18,6 +18,8 @@ public class CommentListView
 	extends BaseListScreenletView<CommentEntry, CommentListAdapter.CommentViewHolder, CommentListAdapter>
 	implements CommentListViewModel, CommentDisplayListener {
 
+	private TextView emptyListTextView;
+
 	public CommentListView(Context context) {
 		super(context);
 	}
@@ -51,7 +53,7 @@ public class CommentListView
 			getAdapter().notifyItemInserted(size - 1);
 		}
 
-		_recyclerView.smoothScrollToPosition(size - 1);
+		recyclerView.smoothScrollToPosition(size - 1);
 		showEmptyListMessage();
 	}
 
@@ -134,6 +136,4 @@ public class CommentListView
 	public void error(Exception e, String userAction) {
 
 	}
-
-	private TextView emptyListTextView;
 }

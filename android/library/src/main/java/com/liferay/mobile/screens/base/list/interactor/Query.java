@@ -4,7 +4,6 @@ import android.util.Pair;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import java.io.Serializable;
 import java.util.Locale;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Query implements Serializable {
@@ -33,6 +32,10 @@ public class Query implements Serializable {
 		return startRow;
 	}
 
+	public void setStartRow(int startRow) {
+		this.startRow = startRow;
+	}
+
 	public String getStartRowFormatted() {
 		return formatted(startRow);
 	}
@@ -43,10 +46,6 @@ public class Query implements Serializable {
 
 	private String formatted(int endRow) {
 		return String.format(Locale.US, "%05d", endRow);
-	}
-
-	public void setStartRow(int startRow) {
-		this.startRow = startRow;
 	}
 
 	public int getEndRow() {
@@ -61,12 +60,12 @@ public class Query implements Serializable {
 		return comparator;
 	}
 
-	public JSONObjectWrapper getComparatorJSONWrapper() throws JSONException {
-		return comparator == null ? null : new JSONObjectWrapper(comparator, new JSONObject());
-	}
-
 	public void setComparator(String comparator) {
 		this.comparator = comparator;
+	}
+
+	public JSONObjectWrapper getComparatorJSONWrapper() {
+		return comparator == null ? null : new JSONObjectWrapper(comparator, new JSONObject());
 	}
 
 	public Pair<Integer, Integer> getRowRange() {

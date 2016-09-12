@@ -17,6 +17,10 @@ import java.io.IOException;
  */
 public class FileUtil {
 
+	private FileUtil() {
+		super();
+	}
+
 	public static File createImageFile() {
 		return createFile("PHOTO", Environment.DIRECTORY_PICTURES, ".jpg");
 	}
@@ -80,18 +84,16 @@ public class FileUtil {
 		return getDataColumn(context, contentUri, selection, selectionArgs);
 	}
 
-	private static String getDataColumn(Context context, Uri uri, String selection,
-		String[] selectionArgs) {
+	private static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
 		Cursor cursor = null;
 		final String column = "_data";
 		final String[] projection = { column };
 
 		try {
-			cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs,
-				null);
+			cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
 			if (cursor != null && cursor.moveToFirst()) {
-				final int column_index = cursor.getColumnIndexOrThrow(column);
-				return cursor.getString(column_index);
+				final int columnIndex = cursor.getColumnIndexOrThrow(column);
+				return cursor.getString(columnIndex);
 			}
 		} finally {
 			if (cursor != null) {

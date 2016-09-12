@@ -13,6 +13,7 @@ public class CommentEvent extends ListEvent<CommentEntry> {
 	private long classPK;
 	private long commentId;
 	private String body;
+	private CommentEntry commentEntry;
 
 	public CommentEvent() {
 		super();
@@ -47,8 +48,6 @@ public class CommentEvent extends ListEvent<CommentEntry> {
 	public CommentEntry getCommentEntry() {
 		return commentEntry;
 	}
-
-	private CommentEntry commentEntry;
 
 	public String getClassName() {
 		return className;

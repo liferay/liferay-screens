@@ -48,9 +48,9 @@ public class DDLFieldNumberView extends BaseDDLFieldTextView<NumberField> {
 			case NUMBER:
 			case DECIMAL:
 			default:
-				getTextEditText().setInputType(InputType.TYPE_CLASS_NUMBER |
-					InputType.TYPE_NUMBER_FLAG_SIGNED |
-					InputType.TYPE_NUMBER_FLAG_DECIMAL);
+				getTextEditText().setInputType(InputType.TYPE_CLASS_NUMBER
+					| InputType.TYPE_NUMBER_FLAG_SIGNED
+					| InputType.TYPE_NUMBER_FLAG_DECIMAL);
 				break;
 		}
 	}

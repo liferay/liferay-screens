@@ -35,6 +35,8 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 	public static final String LOAD_GALLERY = "LOAD_GALLERY";
 	public static final String DELETE_IMAGE = "DELETE_IMAGE";
 	public static final String UPLOAD_IMAGE = "UPLOAD_IMAGE";
+	private long folderId;
+	private String[] mimeTypes;
 
 	public GalleryScreenlet(Context context) {
 		super(context);
@@ -76,6 +78,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 	@Override
 	protected void onUserAction(String userActionName, GalleryLoadInteractorImpl interactor, Object... args) {
 		switch (userActionName) {
+			default:
 			case LOAD_GALLERY:
 				loadPage(0);
 				break;
@@ -194,7 +197,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 
 	@Override
 	protected void onScreenletAttached() {
-		if (_autoLoad) {
+		if (autoLoad) {
 			autoLoad();
 		}
 	}
@@ -265,7 +268,4 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 
 		activity.startActivity(intent);
 	}
-
-	private long folderId;
-	private String[] mimeTypes;
 }

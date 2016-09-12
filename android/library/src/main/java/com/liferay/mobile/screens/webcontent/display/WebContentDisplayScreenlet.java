@@ -39,6 +39,13 @@ public class WebContentDisplayScreenlet
 
 	public static final String WEB_CONTENT_BY_ARTICLE_ID = "WEB_CONTENT_BY_ARTICLE_ID";
 	public static final String WEB_CONTENT_WITH_STRUCTURE = "WEB_CONTENT_WITH_STRUCTURE";
+	private Long templateId;
+	private String articleId;
+	private Long structureId;
+	private boolean autoLoad;
+	private boolean javascriptEnabled;
+	private String labelFields;
+	private WebContentDisplayListener listener;
 
 	public WebContentDisplayScreenlet(Context context) {
 		super(context);
@@ -57,7 +64,7 @@ public class WebContentDisplayScreenlet
 	}
 
 	public void load() {
-		if (_structureId != 0) {
+		if (structureId != 0) {
 			performUserAction(WEB_CONTENT_WITH_STRUCTURE);
 		} else {
 			performUserAction(WEB_CONTENT_BY_ARTICLE_ID);
@@ -68,15 +75,15 @@ public class WebContentDisplayScreenlet
 	public void error(Exception e, String userAction) {
 		getViewModel().showFailedOperation(userAction, e);
 
-		if (_listener != null) {
-			_listener.error(e, userAction);
+		if (listener != null) {
+			listener.error(e, userAction);
 		}
 	}
 
 	@Override
 	public void onWebContentClicked(WebView.HitTestResult result, MotionEvent event) {
-		if (_listener != null) {
-			_listener.onWebContentClicked(result, event);
+		if (listener != null) {
+			listener.onWebContentClicked(result, event);
 		}
 	}
 
@@ -84,8 +91,8 @@ public class WebContentDisplayScreenlet
 	public WebContent onWebContentReceived(WebContent webContent) {
 		WebContent modifiedHtml = webContent;
 
-		if (_listener != null) {
-			WebContent listenerHtml = _listener.onWebContentReceived(webContent);
+		if (listener != null) {
+			WebContent listenerHtml = listener.onWebContentReceived(webContent);
 
 			if (listenerHtml != null) {
 				modifiedHtml = listenerHtml;
@@ -98,59 +105,59 @@ public class WebContentDisplayScreenlet
 	}
 
 	public void setListener(WebContentDisplayListener listener) {
-		_listener = listener;
+		this.listener = listener;
 	}
 
 	public boolean isJavascriptEnabled() {
-		return _javascriptEnabled;
+		return javascriptEnabled;
 	}
 
 	public void setJavascriptEnabled(boolean javascriptEnabled) {
-		_javascriptEnabled = javascriptEnabled;
+		this.javascriptEnabled = javascriptEnabled;
 	}
 
 	public String getArticleId() {
-		return _articleId;
+		return articleId;
 	}
 
 	public void setArticleId(String articleId) {
-		_articleId = articleId;
+		this.articleId = articleId;
 	}
 
 	public Long getTemplateId() {
-		return _templateId;
+		return templateId;
 	}
 
 	public void setTemplateId(Long templateId) {
-		_templateId = templateId;
+		this.templateId = templateId;
 	}
 
 	public boolean isAutoLoad() {
-		return _autoLoad;
+		return autoLoad;
 	}
 
 	public void setAutoLoad(boolean autoLoad) {
-		_autoLoad = autoLoad;
+		this.autoLoad = autoLoad;
 	}
 
 	public String getLabelFields() {
-		return _labelFields;
+		return labelFields;
 	}
 
 	public void setLabelFields(String labelFields) {
-		_labelFields = labelFields;
+		this.labelFields = labelFields;
 	}
 
 	public Long getStructureId() {
-		return _structureId;
+		return structureId;
 	}
 
 	public void setStructureId(Long structureId) {
-		_structureId = structureId;
+		this.structureId = structureId;
 	}
 
 	protected void autoLoad() {
-		if (_articleId != null && SessionContext.isLoggedIn()) {
+		if (articleId != null && SessionContext.isLoggedIn()) {
 			load();
 		}
 	}
@@ -161,17 +168,17 @@ public class WebContentDisplayScreenlet
 		TypedArray typedArray =
 			context.getTheme().obtainStyledAttributes(attributes, R.styleable.WebContentDisplayScreenlet, 0, 0);
 
-		_autoLoad = typedArray.getBoolean(R.styleable.WebContentDisplayScreenlet_autoLoad, true);
+		autoLoad = typedArray.getBoolean(R.styleable.WebContentDisplayScreenlet_autoLoad, true);
 
-		_articleId = typedArray.getString(R.styleable.WebContentDisplayScreenlet_articleId);
+		articleId = typedArray.getString(R.styleable.WebContentDisplayScreenlet_articleId);
 
-		_templateId = castToLong(typedArray.getString(R.styleable.WebContentDisplayScreenlet_templateId));
+		templateId = castToLong(typedArray.getString(R.styleable.WebContentDisplayScreenlet_templateId));
 
-		_structureId = castToLong(typedArray.getString(R.styleable.WebContentDisplayScreenlet_structureId));
+		structureId = castToLong(typedArray.getString(R.styleable.WebContentDisplayScreenlet_structureId));
 
-		_labelFields = typedArray.getString(R.styleable.WebContentDisplayScreenlet_labelFields);
+		labelFields = typedArray.getString(R.styleable.WebContentDisplayScreenlet_labelFields);
 
-		_javascriptEnabled = typedArray.getBoolean(R.styleable.WebContentDisplayScreenlet_javascriptEnabled, false);
+		javascriptEnabled = typedArray.getBoolean(R.styleable.WebContentDisplayScreenlet_javascriptEnabled, false);
 
 		int layoutId = typedArray.getResourceId(R.styleable.WebContentDisplayScreenlet_layoutId, getDefaultLayoutId());
 
@@ -198,27 +205,19 @@ public class WebContentDisplayScreenlet
 			WebContentDisplayFromArticleIdInteractorImpl interactorFromArticleId =
 				(WebContentDisplayFromArticleIdInteractorImpl) getInteractor(userActionName);
 
-			interactorFromArticleId.start(_articleId, _templateId);
+			interactorFromArticleId.start(articleId, templateId);
 		} else {
 			WebContentDisplayFromStructureInteractorImpl interactorFromStructure =
 				(WebContentDisplayFromStructureInteractorImpl) getInteractor(userActionName);
 
-			interactorFromStructure.start(_articleId, _structureId);
+			interactorFromStructure.start(articleId, structureId);
 		}
 	}
 
 	@Override
 	protected void onScreenletAttached() {
-		if (_autoLoad) {
+		if (autoLoad) {
 			autoLoad();
 		}
 	}
-
-	private Long _templateId;
-	private String _articleId;
-	private Long _structureId;
-	private boolean _autoLoad;
-	private boolean _javascriptEnabled;
-	private String _labelFields;
-	private WebContentDisplayListener _listener;
 }

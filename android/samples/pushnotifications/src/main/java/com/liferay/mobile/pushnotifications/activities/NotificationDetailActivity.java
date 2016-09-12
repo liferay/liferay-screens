@@ -15,6 +15,8 @@ import org.json.JSONObject;
 
 public class NotificationDetailActivity extends AppCompatActivity implements DDLFormListener {
 
+	private DDLFormScreenlet ddlFormScreenlet;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -77,6 +79,4 @@ public class NotificationDetailActivity extends AppCompatActivity implements DDL
 			ddlFormScreenlet.startUploadByPosition(requestCode);
 		}
 	}
-
-	private DDLFormScreenlet ddlFormScreenlet;
 }

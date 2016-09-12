@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.testapp.fullview;
 
 import android.content.Context;
 import android.util.AttributeSet;
-
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.auth.login.interactor.LoginBasicInteractor;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -32,5 +31,4 @@ public class LoginFullScreenlet extends LoginScreenlet {
 		LiferayLogger.e("logging call to interactor: " + userActionName);
 		super.onUserAction(userActionName, interactor, args);
 	}
-
 }

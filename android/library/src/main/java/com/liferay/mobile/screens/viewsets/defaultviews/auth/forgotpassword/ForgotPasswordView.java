@@ -34,6 +34,11 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  */
 public class ForgotPasswordView extends LinearLayout implements ForgotPasswordViewModel, View.OnClickListener {
 
+	protected EditText loginEditText;
+	protected ModalProgressBar progressBar;
+	private BasicAuthMethod basicAuthMethod;
+	private BaseScreenlet screenlet;
+
 	public ForgotPasswordView(Context context) {
 		super(context);
 	}
@@ -48,23 +53,23 @@ public class ForgotPasswordView extends LinearLayout implements ForgotPasswordVi
 
 	@Override
 	public BasicAuthMethod getBasicAuthMethod() {
-		return _basicAuthMethod;
+		return basicAuthMethod;
 	}
 
 	public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
-		_basicAuthMethod = basicAuthMethod;
+		this.basicAuthMethod = basicAuthMethod;
 
 		refreshLoginEditTextStyle();
 	}
 
 	@Override
 	public String getLogin() {
-		return _loginEditText.getText().toString();
+		return loginEditText.getText().toString();
 	}
 
 	@Override
 	public void showStartOperation(String actionName) {
-		_progressBar.startProgress();
+		progressBar.startProgress();
 	}
 
 	@Override
@@ -74,29 +79,29 @@ public class ForgotPasswordView extends LinearLayout implements ForgotPasswordVi
 
 	@Override
 	public void showFinishOperation(boolean passwordSent) {
-		_progressBar.finishProgress();
+		progressBar.finishProgress();
 
-		String msg = getResources().getString(R.string.password_sent) + " " +
-			getResources().getString(R.string.check_your_inbox);
+		String msg = getResources().getString(R.string.password_sent) + " " + getResources().getString(
+			R.string.check_your_inbox);
 
 		LiferayLogger.i(msg);
 	}
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-		_progressBar.finishProgress();
+		progressBar.finishProgress();
 
 		LiferayLogger.e("Could not send password", e);
 	}
 
 	@Override
 	public BaseScreenlet getScreenlet() {
-		return _screenlet;
+		return screenlet;
 	}
 
 	@Override
 	public void setScreenlet(BaseScreenlet screenlet) {
-		_screenlet = screenlet;
+		this.screenlet = screenlet;
 	}
 
 	@Override
@@ -110,8 +115,8 @@ public class ForgotPasswordView extends LinearLayout implements ForgotPasswordVi
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_loginEditText = (EditText) findViewById(R.id.liferay_forgot_login);
-		_progressBar = (ModalProgressBar) findViewById(R.id.liferay_progress);
+		loginEditText = (EditText) findViewById(R.id.liferay_forgot_login);
+		progressBar = (ModalProgressBar) findViewById(R.id.liferay_progress);
 
 		Button requestButton = (Button) findViewById(R.id.liferay_forgot_button);
 		requestButton.setOnClickListener(this);
@@ -125,25 +130,25 @@ public class ForgotPasswordView extends LinearLayout implements ForgotPasswordVi
 	}
 
 	protected void refreshLoginEditTextStyle() {
-		_loginEditText.setInputType(_basicAuthMethod.getInputType());
-		_loginEditText.setCompoundDrawablesWithIntrinsicBounds(
+		loginEditText.setInputType(basicAuthMethod.getInputType());
+		loginEditText.setCompoundDrawablesWithIntrinsicBounds(
 			ContextCompat.getDrawable(getContext(), getLoginEditTextDrawableId()), null, null, null);
-		_loginEditText.setHint(getLoginEditTextLabel());
+		loginEditText.setHint(getLoginEditTextLabel());
 	}
 
 	protected int getLoginEditTextLabel() {
-		if (BasicAuthMethod.SCREEN_NAME.equals(_basicAuthMethod)) {
+		if (BasicAuthMethod.SCREEN_NAME.equals(basicAuthMethod)) {
 			return R.string.screen_name;
-		} else if (BasicAuthMethod.USER_ID.equals(_basicAuthMethod)) {
+		} else if (BasicAuthMethod.USER_ID.equals(basicAuthMethod)) {
 			return R.string.user_id;
 		}
 		return R.string.email_address;
 	}
 
 	protected int getLoginEditTextDrawableId() {
-		if (BasicAuthMethod.USER_ID.equals(_basicAuthMethod)) {
+		if (BasicAuthMethod.USER_ID.equals(basicAuthMethod)) {
 			return R.drawable.default_user_icon;
-		} else if (BasicAuthMethod.EMAIL.equals(_basicAuthMethod)) {
+		} else if (BasicAuthMethod.EMAIL.equals(basicAuthMethod)) {
 			return R.drawable.default_mail_icon;
 		}
 
@@ -151,13 +156,6 @@ public class ForgotPasswordView extends LinearLayout implements ForgotPasswordVi
 	}
 
 	protected EditText getLoginEditText() {
-		return _loginEditText;
+		return loginEditText;
 	}
-
-	protected EditText _loginEditText;
-	protected ModalProgressBar _progressBar;
-
-	private BasicAuthMethod _basicAuthMethod;
-
-	private BaseScreenlet _screenlet;
 }

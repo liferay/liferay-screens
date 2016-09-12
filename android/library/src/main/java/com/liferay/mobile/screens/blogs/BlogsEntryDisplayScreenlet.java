@@ -20,6 +20,12 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 	implements AssetDisplayListener {
 
 	public static final String LOAD_BLOGS_ACTION = "LOAD_BLOGS_ACTION";
+	private long entryId;
+	private String className;
+	private long classPK;
+	private boolean autoLoad;
+	private AssetDisplayListener listener;
+	private BlogsEntry blogsEntry;
 
 	public BlogsEntryDisplayScreenlet(Context context) {
 		super(context);
@@ -130,6 +136,10 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 		return blogsEntry;
 	}
 
+	public void setBlogsEntry(BlogsEntry blogsEntry) {
+		this.blogsEntry = blogsEntry;
+	}
+
 	public String getClassName() {
 		return className;
 	}
@@ -144,10 +154,6 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 
 	public void setClassPK(long classPK) {
 		this.classPK = classPK;
-	}
-
-	public void setBlogsEntry(BlogsEntry blogsEntry) {
-		this.blogsEntry = blogsEntry;
 	}
 
 	public boolean getAutoLoad() {
@@ -165,11 +171,4 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 	public void setListener(AssetDisplayListener listener) {
 		this.listener = listener;
 	}
-
-	private long entryId;
-	private String className;
-	private long classPK;
-	private boolean autoLoad;
-	private AssetDisplayListener listener;
-	private BlogsEntry blogsEntry;
 }

@@ -30,8 +30,7 @@ public class BasicCredentialsStorageSharedPreferences extends BaseCredentialsSto
 	@Override
 	protected void storeAuth(Authentication auth) {
 		BasicAuthentication basicAuth = (BasicAuthentication) auth;
-		getSharedPref()
-			.edit()
+		getSharedPref().edit()
 			.putString(AUTH, AuthenticationType.BASIC.name())
 			.putString(USERNAME, basicAuth.getUsername())
 			.putString(PASSWORD, basicAuth.getPassword())
@@ -49,5 +48,4 @@ public class BasicCredentialsStorageSharedPreferences extends BaseCredentialsSto
 
 		return new BasicAuthentication(userName, password);
 	}
-
 }

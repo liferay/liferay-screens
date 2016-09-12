@@ -36,6 +36,15 @@ import java.util.Locale;
  */
 public class SignUpScreenlet extends BaseScreenlet<SignUpViewModel, SignUpInteractorImpl> implements SignUpListener {
 
+	private String anonymousApiPassword;
+	private String anonymousApiUserName;
+	private boolean autoLogin;
+	private long companyId;
+	private StorageType credentialsStorage;
+	private BasicAuthMethod basicAuthMethod;
+	private SignUpListener listener;
+	private LoginListener autoLoginListener;
+
 	public SignUpScreenlet(Context context) {
 		super(context);
 	}
@@ -69,7 +78,7 @@ public class SignUpScreenlet extends BaseScreenlet<SignUpViewModel, SignUpIntera
 			getListener().onSignUpSuccess(user);
 		}
 
-		if (_autoLogin) {
+		if (autoLogin) {
 			SignUpViewModel viewModel = getViewModel();
 
 			String authUsername = getAuthUsernameFromUser(user);
@@ -78,16 +87,16 @@ public class SignUpScreenlet extends BaseScreenlet<SignUpViewModel, SignUpIntera
 			SessionContext.createBasicSession(authUsername, password);
 			SessionContext.setCurrentUser(user);
 
-			if (_autoLoginListener != null) {
-				_autoLoginListener.onLoginSuccess(user);
+			if (autoLoginListener != null) {
+				autoLoginListener.onLoginSuccess(user);
 			}
 
-			SessionContext.storeCredentials(_credentialsStorage);
+			SessionContext.storeCredentials(credentialsStorage);
 		}
 	}
 
 	public String getAuthUsernameFromUser(User user) {
-		switch (_basicAuthMethod) {
+		switch (basicAuthMethod) {
 			case SCREEN_NAME:
 				return user.getScreenName();
 			case USER_ID:
@@ -99,67 +108,67 @@ public class SignUpScreenlet extends BaseScreenlet<SignUpViewModel, SignUpIntera
 	}
 
 	public String getAnonymousApiPassword() {
-		return _anonymousApiPassword;
+		return anonymousApiPassword;
 	}
 
 	public void setAnonymousApiPassword(String value) {
-		_anonymousApiPassword = value;
+		anonymousApiPassword = value;
 	}
 
 	public String getAnonymousApiUserName() {
-		return _anonymousApiUserName;
+		return anonymousApiUserName;
 	}
 
 	public void setAnonymousApiUserName(String value) {
-		_anonymousApiUserName = value;
+		anonymousApiUserName = value;
 	}
 
 	public boolean isAutoLogin() {
-		return _autoLogin;
+		return autoLogin;
 	}
 
 	public void setAutoLogin(boolean value) {
-		_autoLogin = value;
+		autoLogin = value;
 	}
 
 	public long getCompanyId() {
-		return _companyId;
+		return companyId;
 	}
 
 	public void setCompanyId(long value) {
-		_companyId = value;
+		companyId = value;
 	}
 
 	public SignUpListener getListener() {
-		return _listener;
+		return listener;
 	}
 
 	public void setListener(SignUpListener value) {
-		_listener = value;
+		listener = value;
 	}
 
 	public LoginListener getAutoLoginListener() {
-		return _autoLoginListener;
+		return autoLoginListener;
 	}
 
 	public void setAutoLoginListener(LoginListener value) {
-		_autoLoginListener = value;
+		autoLoginListener = value;
 	}
 
 	public StorageType getCredentialsStorage() {
-		return _credentialsStorage;
+		return credentialsStorage;
 	}
 
 	public void setCredentialsStorage(StorageType value) {
-		_credentialsStorage = value;
+		credentialsStorage = value;
 	}
 
 	public BasicAuthMethod getBasicAuthMethod() {
-		return _basicAuthMethod;
+		return basicAuthMethod;
 	}
 
 	public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
-		_basicAuthMethod = basicAuthMethod;
+		this.basicAuthMethod = basicAuthMethod;
 	}
 
 	@Override
@@ -167,23 +176,23 @@ public class SignUpScreenlet extends BaseScreenlet<SignUpViewModel, SignUpIntera
 		TypedArray typedArray =
 			context.getTheme().obtainStyledAttributes(attributes, R.styleable.SignUpScreenlet, 0, 0);
 
-		_companyId = castToLongOrUseDefault(typedArray.getString(R.styleable.SignUpScreenlet_companyId),
+		companyId = castToLongOrUseDefault(typedArray.getString(R.styleable.SignUpScreenlet_companyId),
 			LiferayServerContext.getCompanyId());
 
-		_anonymousApiUserName = typedArray.getString(R.styleable.SignUpScreenlet_anonymousApiUserName);
+		anonymousApiUserName = typedArray.getString(R.styleable.SignUpScreenlet_anonymousApiUserName);
 
-		_anonymousApiPassword = typedArray.getString(R.styleable.SignUpScreenlet_anonymousApiPassword);
+		anonymousApiPassword = typedArray.getString(R.styleable.SignUpScreenlet_anonymousApiPassword);
 
-		_autoLogin = typedArray.getBoolean(R.styleable.SignUpScreenlet_autoLogin, true);
+		autoLogin = typedArray.getBoolean(R.styleable.SignUpScreenlet_autoLogin, true);
 
 		int storageValue = typedArray.getInt(R.styleable.SignUpScreenlet_credentialsStorage, StorageType.NONE.toInt());
 
-		_credentialsStorage = StorageType.valueOf(storageValue);
+		credentialsStorage = StorageType.valueOf(storageValue);
 
-		_autoLogin = typedArray.getBoolean(R.styleable.SignUpScreenlet_autoLogin, true);
+		autoLogin = typedArray.getBoolean(R.styleable.SignUpScreenlet_autoLogin, true);
 
 		int authMethodId = typedArray.getInt(R.styleable.SignUpScreenlet_basicAuthMethod, 0);
-		_basicAuthMethod = BasicAuthMethod.getValue(authMethodId);
+		basicAuthMethod = BasicAuthMethod.getValue(authMethodId);
 
 		int layoutId = typedArray.getResourceId(R.styleable.SignUpScreenlet_layoutId, getDefaultLayoutId());
 
@@ -210,17 +219,7 @@ public class SignUpScreenlet extends BaseScreenlet<SignUpViewModel, SignUpIntera
 		String jobTitle = viewModel.getJobTitle();
 		Locale locale = getResources().getConfiguration().locale;
 
-		interactor.start(_companyId, firstName, middleName, lastName, emailAddress, screenName, password, jobTitle,
-			locale, _anonymousApiUserName, _anonymousApiPassword);
+		interactor.start(companyId, firstName, middleName, lastName, emailAddress, screenName, password, jobTitle,
+			locale, anonymousApiUserName, anonymousApiPassword);
 	}
-
-	private String _anonymousApiPassword;
-	private String _anonymousApiUserName;
-	private boolean _autoLogin;
-	private long _companyId;
-	private StorageType _credentialsStorage;
-	private BasicAuthMethod _basicAuthMethod;
-
-	private SignUpListener _listener;
-	private LoginListener _autoLoginListener;
 }

@@ -6,8 +6,8 @@
 	>
 
 	<TextView
-		style="@style/label"
 		android:text="@string/select_asset_label"
+		style="@style/label"
 		/>
 
 	<ListView

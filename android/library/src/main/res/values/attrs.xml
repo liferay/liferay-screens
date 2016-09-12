@@ -191,9 +191,9 @@
 		<attr name="groupId"/>
 		<attr name="folderId"/>
 		<attr name="offlinePolicy"/>
-		<attr name="pageSize" />
-		<attr name="firstPageSize" />
-		<attr name="mimeTypes" format="string" />
+		<attr name="pageSize"/>
+		<attr name="firstPageSize"/>
+		<attr format="string" name="mimeTypes"/>
 	</declare-styleable>
 
 	<declare-styleable name="ModalProgressBar">

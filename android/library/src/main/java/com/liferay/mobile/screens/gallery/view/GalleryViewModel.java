@@ -17,6 +17,4 @@ public interface GalleryViewModel extends BaseListViewModel<ImageEntry> {
 	void imageUploadProgress(int bytesSent, int totalBytes);
 
 	void imageUploadComplete();
-
-	void imageUploadError(Exception e);
 }

@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.context.storage;
 
 import android.content.Context;
-
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.screens.context.User;
@@ -60,5 +59,4 @@ public class CredentialsStorageVoid implements CredentialsStorage {
 	@Override
 	public void setContext(Context ctx) {
 	}
-
 }

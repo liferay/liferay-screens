@@ -42,6 +42,9 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class StringWithOptionsFieldTest {
 
+	private static final Locale _spanishLocale = new Locale("es", "ES");
+	private static final Locale _usLocale = new Locale("en", "US");
+
 	private static Map<String, Object> _createParsedData() {
 		Map<String, String> optionData1 = new HashMap<>();
 		optionData1.put("label", "Option 1");
@@ -64,9 +67,6 @@ public class StringWithOptionsFieldTest {
 
 		return parsedData;
 	}
-
-	private static final Locale _spanishLocale = new Locale("es", "ES");
-	private static final Locale _usLocale = new Locale("en", "US");
 
 	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)

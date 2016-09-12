@@ -8,6 +8,8 @@ import org.json.JSONObject;
  */
 public class UserPortraitUploadEvent extends OfflineEventNew {
 
+	private String picturePath;
+
 	public UserPortraitUploadEvent() {
 		super();
 	}
@@ -29,8 +31,6 @@ public class UserPortraitUploadEvent extends OfflineEventNew {
 	public String getPicturePath() {
 		return picturePath;
 	}
-
-	private String picturePath;
 
 	public void setPicturePath(String picturePath) {
 		this.picturePath = picturePath;

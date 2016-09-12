@@ -14,7 +14,7 @@ public class UserAsset extends AssetEntry {
 	}
 
 	public Map<String, Object> getUserAsset() {
-		return (Map<String, Object>) _values.get("user");
+		return (Map<String, Object>) values.get("user");
 	}
 
 	public String getGreeting() {
@@ -42,6 +42,6 @@ public class UserAsset extends AssetEntry {
 	}
 
 	public long getId() {
-		return Long.valueOf(getUserAsset().get("userId").toString());
+		return Long.parseLong(getUserAsset().get("userId").toString());
 	}
 }

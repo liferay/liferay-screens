@@ -25,6 +25,13 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 	public static final String LOAD_RATINGS_ACTION = "LOAD_RATINGS";
 	public static final String UPDATE_RATING_ACTION = "UPDATE_RATING";
 	public static final String DELETE_RATING_ACTION = "DELETE_RATING";
+	private RatingListener listener;
+	private long entryId;
+	private int ratingsGroupCount;
+	private boolean autoLoad;
+	private boolean editable;
+	private String className;
+	private long classPK;
 
 	public RatingScreenlet(Context context) {
 		super(context);
@@ -196,12 +203,4 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 	public void setRatingsGroupCount(int ratingsGroupCount) {
 		this.ratingsGroupCount = ratingsGroupCount;
 	}
-
-	private RatingListener listener;
-	private long entryId;
-	private int ratingsGroupCount;
-	private boolean autoLoad;
-	private boolean editable;
-	private String className;
-	private long classPK;
 }

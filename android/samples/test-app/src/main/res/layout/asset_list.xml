@@ -8,8 +8,8 @@
 	>
 
 	<TextView
-		style="@style/label"
 		android:text="@string/asset_list_label"
+		style="@style/label"
 		/>
 
 	<com.liferay.mobile.screens.asset.list.AssetListScreenlet

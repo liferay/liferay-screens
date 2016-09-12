@@ -26,6 +26,7 @@
 			android:layout_width="150dp"
 			android:layout_height="150dp"
 			android:layout_gravity="center"
+			android:contentDescription="@string/audio_player_background"
 			android:scaleType="fitCenter"
 			android:src="@drawable/default_audio_background"
 			android:tint="@android:color/black"

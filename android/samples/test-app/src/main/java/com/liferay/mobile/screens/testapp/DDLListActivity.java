@@ -35,6 +35,8 @@ import org.json.JSONObject;
  */
 public class DDLListActivity extends ThemeActivity implements BaseListListener<Record>, CacheListener {
 
+	private DDLListScreenlet screenlet;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -126,6 +128,4 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 			}
 		};
 	}
-
-	private DDLListScreenlet screenlet;
 }

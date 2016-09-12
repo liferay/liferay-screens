@@ -27,6 +27,8 @@ import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
  */
 public class UserPortraitActivity extends ThemeActivity implements UserPortraitListener, CacheListener {
 
+	private UserPortraitScreenlet screenlet;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -78,6 +80,4 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 	public void error(Exception e, String userAction) {
 
 	}
-
-	private UserPortraitScreenlet screenlet;
 }

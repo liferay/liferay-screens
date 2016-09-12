@@ -15,7 +15,6 @@ import android.text.Spanned;
 import android.text.style.ImageSpan;
 import android.view.View;
 import android.widget.Button;
-
 import com.liferay.mobile.screens.bankofwesteros.R;
 import com.liferay.mobile.screens.bankofwesteros.fragments.TourPageFragment;
 
@@ -26,49 +25,50 @@ public class TourActivity extends FragmentActivity implements View.OnClickListen
 
 	public static final String TOUR_VISITED = "TOUR_VISITED";
 	public static final String WESTEROS_PREFERENCES = "WESTEROS_PREFERENCES";
+	private static final int NUM_PAGES = 3;
+	private ViewPager viewPager;
+	private Button tourButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tour);
 
-		_tourButton = (Button) findViewById(R.id.tour_button);
-		_tourButton.setOnClickListener(this);
+		tourButton = (Button) findViewById(R.id.tour_button);
+		tourButton.setOnClickListener(this);
 
-		_viewPager = (ViewPager) findViewById(R.id.pager);
-		_viewPager.setAdapter(new ScreenSlidePagerAdapter(getSupportFragmentManager()));
-		_viewPager.setOnPageChangeListener(this);
+		viewPager = (ViewPager) findViewById(R.id.pager);
+		viewPager.setAdapter(new ScreenSlidePagerAdapter(getSupportFragmentManager()));
+		viewPager.setOnPageChangeListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
-		boolean lastPage = _viewPager.getCurrentItem() == NUM_PAGES - 1;
+		boolean lastPage = viewPager.getCurrentItem() == NUM_PAGES - 1;
 
 		if (lastPage) {
 			SharedPreferences preferences = getSharedPreferences(WESTEROS_PREFERENCES, MODE_PRIVATE);
 			preferences.edit().putBoolean(TOUR_VISITED, true).apply();
 
 			startActivity(new Intent(this, MainActivity.class));
-		}
-		else {
-			_viewPager.setCurrentItem(_viewPager.getCurrentItem() + 1, true);
+		} else {
+			viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
 		}
 	}
 
 	@Override
 	public void onBackPressed() {
-		if (_viewPager.getCurrentItem() == 0) {
+		if (viewPager.getCurrentItem() == 0) {
 			super.onBackPressed();
-		}
-		else {
-			_viewPager.setCurrentItem(_viewPager.getCurrentItem() - 1);
+		} else {
+			viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
 		}
 	}
 
 	@Override
 	public void onPageSelected(int position) {
 		if (position == NUM_PAGES - 1) {
-			_tourButton.setText(getString(R.string.start));
+			tourButton.setText(getString(R.string.start));
 		}
 	}
 
@@ -82,12 +82,8 @@ public class TourActivity extends FragmentActivity implements View.OnClickListen
 
 	}
 
-	private ViewPager _viewPager;
-	private Button _tourButton;
-	private static final int NUM_PAGES = 3;
-
 	private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-		public ScreenSlidePagerAdapter(FragmentManager fm) {
+		ScreenSlidePagerAdapter(FragmentManager fm) {
 			super(fm);
 		}
 
@@ -104,7 +100,8 @@ public class TourActivity extends FragmentActivity implements View.OnClickListen
 		@Override
 		public CharSequence getPageTitle(int position) {
 
-			int drawableId = _viewPager.getCurrentItem() == position ? R.drawable.pagination_on : R.drawable.pagination_off;
+			int drawableId =
+				viewPager.getCurrentItem() == position ? R.drawable.pagination_on : R.drawable.pagination_off;
 			Drawable drawable = ResourcesCompat.getDrawable(getResources(), drawableId, getTheme());
 			drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 			ImageSpan imageSpan = new ImageSpan(drawable, ImageSpan.ALIGN_BOTTOM);
@@ -117,14 +114,11 @@ public class TourActivity extends FragmentActivity implements View.OnClickListen
 		private int getLayout(int position) {
 			if (position == 0) {
 				return R.layout.tour0;
-			}
-			else if (position == 1) {
+			} else if (position == 1) {
 				return R.layout.tour1;
-			}
-			else {
+			} else {
 				return R.layout.tour2;
 			}
 		}
 	}
-
 }

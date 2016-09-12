@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.base.context;
 
 import android.util.SparseArray;
-
 import java.util.HashSet;
 
 /**
@@ -25,38 +24,41 @@ public class RequestState {
 
 	//TODO we should add javadoc for the most important classes like this one.
 
+	private static RequestState instance;
+	private final SparseArray<HashSet<Object>> states = new SparseArray<>();
+
+	public static synchronized RequestState getInstance() {
+		if (instance == null) {
+			instance = new RequestState();
+		}
+
+		return instance;
+	}
+
 	public synchronized boolean contains(int targetScreenletId, Object state) {
-		HashSet<Object> set = _states.get(targetScreenletId);
+		HashSet<Object> set = states.get(targetScreenletId);
 
 		return set != null && set.contains(state);
 	}
 
-	public synchronized static RequestState getInstance() {
-		if (_instance == null) {
-			_instance = new RequestState();
-		}
-
-		return _instance;
-	}
-
 	public void clear(int targetScreenletId) {
-		_states.remove(targetScreenletId);
+		states.remove(targetScreenletId);
 	}
 
 	public synchronized void put(int targetScreenletId, Object state) {
-		HashSet<Object> set = _states.get(targetScreenletId);
+		HashSet<Object> set = states.get(targetScreenletId);
 
 		if (set == null) {
 			set = new HashSet<>();
 
-			_states.put(targetScreenletId, set);
+			states.put(targetScreenletId, set);
 		}
 
 		set.add(state);
 	}
 
 	public synchronized void remove(int targetScreenletId, Object state) {
-		HashSet<Object> set = _states.get(targetScreenletId);
+		HashSet<Object> set = states.get(targetScreenletId);
 
 		if (set == null) {
 			return;
@@ -65,12 +67,7 @@ public class RequestState {
 		set.remove(state);
 
 		if (set.isEmpty()) {
-			_states.remove(targetScreenletId);
+			states.remove(targetScreenletId);
 		}
 	}
-
-	private static RequestState _instance;
-
-	private final SparseArray<HashSet<Object>> _states = new SparseArray<>();
-
 }

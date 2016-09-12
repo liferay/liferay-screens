@@ -12,11 +12,10 @@ import com.liferay.mobile.screens.viewsets.defaultviews.gallery.BaseGalleryView;
 /**
  * @author Víctor Galán Grande
  */
-public class GridGalleryView
-	extends BaseGalleryView<GridGalleryAdapter.GridGalleryViewHolder, GridGalleryAdapter>
+public class GridGalleryView extends BaseGalleryView<GridGalleryAdapter.GridGalleryViewHolder, GridGalleryAdapter>
 	implements View.OnClickListener {
 
-	public int columnsSize = DEFAULT_COLS;
+	public static final int COLUMNS_SIZE = 3;
 
 	public GridGalleryView(Context context) {
 		super(context);
@@ -35,7 +34,7 @@ public class GridGalleryView
 	}
 
 	public void reloadView() {
-		_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), columnsSize));
+		recyclerView.setLayoutManager(new GridLayoutManager(getContext(), COLUMNS_SIZE));
 	}
 
 	@Override
@@ -58,19 +57,17 @@ public class GridGalleryView
 		return R.layout.list_item_progress_empty;
 	}
 
-
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-		_recyclerView.setLayoutManager(new GridLayoutManager(getContext(), columnsSize));
-		FloatingActionButton _uploadFAB = (FloatingActionButton) findViewById(R.id.liferay_upload_fab);
-		_uploadFAB.setOnClickListener(this);
+		recyclerView.setLayoutManager(new GridLayoutManager(getContext(), COLUMNS_SIZE));
+		FloatingActionButton uploadFAB = (FloatingActionButton) findViewById(R.id.liferay_upload_fab);
+		uploadFAB.setOnClickListener(this);
 	}
 
 	@Override
 	protected DividerItemDecoration getDividerDecoration() {
-		int _imagesSpacing = 3;
-		return new GridDividerItemDecoration(_imagesSpacing);
+		int imagesSpacing = 3;
+		return new GridDividerItemDecoration(imagesSpacing);
 	}
-	private static final int DEFAULT_COLS = 3;
 }

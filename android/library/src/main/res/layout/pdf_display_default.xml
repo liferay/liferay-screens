@@ -42,6 +42,7 @@
 		android:layout_above="@+id/liferay_linear_buttons"
 		android:layout_alignParentTop="true"
 		android:adjustViewBounds="true"
+		android:contentDescription="@string/pdf_content"
 		android:scaleType="fitCenter"
 		/>
 
@@ -97,6 +98,7 @@
 			android:layout_marginRight="5sp"
 			android:layout_weight="1"
 			android:inputType="number"
+			android:labelFor="@+id/liferay_go_to_page"
 			/>
 
 		<Button

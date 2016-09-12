@@ -20,6 +20,11 @@ import com.squareup.picasso.Picasso;
  */
 public class ImageDisplayView extends RelativeLayout implements BaseFileDisplayViewModel, Callback {
 
+	private BaseScreenlet screenlet;
+	private FileEntry fileEntry;
+	private ImageView imageView;
+	private ProgressBar progressBar;
+
 	public ImageDisplayView(Context context) {
 		super(context);
 	}
@@ -44,8 +49,8 @@ public class ImageDisplayView extends RelativeLayout implements BaseFileDisplayV
 
 	@Override
 	public void showFinishOperation(String actionName) {
-		throw new UnsupportedOperationException("showFinishOperation(String) is not supported."
-			+ " Use showFinishOperation(FileEntry) instead.");
+		throw new UnsupportedOperationException(
+			"showFinishOperation(String) is not supported." + " Use showFinishOperation(FileEntry) instead.");
 	}
 
 	@Override
@@ -93,9 +98,4 @@ public class ImageDisplayView extends RelativeLayout implements BaseFileDisplayV
 	public void onError() {
 		progressBar.setVisibility(GONE);
 	}
-
-	private BaseScreenlet screenlet;
-	private FileEntry fileEntry;
-	private ImageView imageView;
-	private ProgressBar progressBar;
 }

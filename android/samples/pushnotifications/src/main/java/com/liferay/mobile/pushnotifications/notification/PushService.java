@@ -12,7 +12,6 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
-
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.v62.dlfileentry.DLFileEntryService;
 import com.liferay.mobile.pushnotifications.R;
@@ -22,7 +21,6 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.push.AbstractPushService;
 import com.liferay.mobile.screens.util.LiferayLogger;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -47,12 +45,11 @@ public class PushService extends AbstractPushService {
 	private void createGlobalNotification(String title, String description, Bitmap bitmap) {
 		Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-		NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-			.setContentTitle(title)
+		NotificationCompat.Builder builder = new NotificationCompat.Builder(this).setContentTitle(title)
 			.setContentText(description)
 			.setAutoCancel(true)
 			.setSound(uri)
-			.setVibrate(new long[]{2000, 1000, 2000, 1000})
+			.setVibrate(new long[] { 2000, 1000, 2000, 1000 })
 			.setSmallIcon(R.drawable.liferay_glyph);
 
 		if (bitmap != null) {
@@ -62,8 +59,7 @@ public class PushService extends AbstractPushService {
 		builder.setContentIntent(createPendingIntentForNotifications());
 
 		Notification notification = builder.build();
-		NotificationManager notificationManager =
-			(NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+		NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 		notificationManager.notify(NOTIFICATION_ID, notification);
 	}
 
@@ -89,10 +85,8 @@ public class PushService extends AbstractPushService {
 
 				JSONObject result = getFileEntry(uuid, groupId, session);
 
-				return new DownloadPicture().createRequest(this, result,
-					LiferayServerContext.getServer(), 100).get();
-			}
-			catch (Exception e) {
+				return new DownloadPicture().createRequest(this, result, LiferayServerContext.getServer(), 100).get();
+			} catch (Exception e) {
 				LiferayLogger.e("Error loading picture", e);
 			}
 		}
@@ -103,10 +97,9 @@ public class PushService extends AbstractPushService {
 		if (LiferayServerContext.isLiferay7()) {
 			DLFileEntryService entryService = new DLFileEntryService(session);
 			return entryService.getFileEntryByUuidAndGroupId(uuid, groupId);
-		}
-		else {
-			com.liferay.mobile.android.v7.dlfileentry.DLFileEntryService entryService
-				= new com.liferay.mobile.android.v7.dlfileentry.DLFileEntryService(session);
+		} else {
+			com.liferay.mobile.android.v7.dlfileentry.DLFileEntryService entryService =
+				new com.liferay.mobile.android.v7.dlfileentry.DLFileEntryService(session);
 			return entryService.getFileEntryByUuidAndGroupId(uuid, groupId);
 		}
 	}

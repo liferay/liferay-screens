@@ -20,14 +20,12 @@ import android.text.method.PasswordTransformationMethod;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-
 import com.liferay.mobile.screens.viewsets.westeros.R;
 
 /**
  * @author Silvio Santos
  */
-public class LoginView
-	extends com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginView
+public class LoginView extends com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginView
 	implements View.OnTouchListener {
 
 	public LoginView(Context context) {

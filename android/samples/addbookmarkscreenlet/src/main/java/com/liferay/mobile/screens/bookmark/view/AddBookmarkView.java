@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.bookmark.AddBookmarkScreenlet;
 import com.liferay.mobile.screens.bookmark.R;
@@ -16,6 +15,10 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  * @author Javier Gamarra
  */
 public class AddBookmarkView extends LinearLayout implements AddBookmarkViewModel, View.OnClickListener {
+
+	private EditText urlText;
+	private EditText titleText;
+	private BaseScreenlet screenlet;
 
 	public AddBookmarkView(Context context) {
 		super(context);
@@ -46,12 +49,12 @@ public class AddBookmarkView extends LinearLayout implements AddBookmarkViewMode
 
 	@Override
 	public BaseScreenlet getScreenlet() {
-		return _screenlet;
+		return screenlet;
 	}
 
 	@Override
 	public void setScreenlet(BaseScreenlet screenlet) {
-		_screenlet = screenlet;
+		this.screenlet = screenlet;
 	}
 
 	public void onClick(View v) {
@@ -61,33 +64,28 @@ public class AddBookmarkView extends LinearLayout implements AddBookmarkViewMode
 	}
 
 	public String getURL() {
-		return _urlText.getText().toString();
+		return urlText.getText().toString();
 	}
 
 	public void setURL(String value) {
-		_urlText.setText(value);
+		urlText.setText(value);
 	}
 
 	public String getTitle() {
-		return _titleText.getText().toString();
+		return titleText.getText().toString();
 	}
 
 	public void setTitle(String value) {
-		_titleText.setText(value);
+		titleText.setText(value);
 	}
 
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_urlText = (EditText) findViewById(R.id.url);
-		_titleText = (EditText) findViewById(R.id.title_bookmark);
+		urlText = (EditText) findViewById(R.id.url);
+		titleText = (EditText) findViewById(R.id.title_bookmark);
 
 		Button addButton = (Button) findViewById(R.id.add_button);
 		addButton.setOnClickListener(this);
 	}
-
-	private EditText _urlText;
-	private EditText _titleText;
-
-	private BaseScreenlet _screenlet;
 }
