@@ -56,7 +56,14 @@ public class AssetDisplayInteractorImpl extends BaseCachedThreadRemoteInteractor
 
 	@Override
 	protected String getIdFromArgs(Object... args) {
-		final long entryId = (long) args[0];
-		return String.valueOf(entryId);
+		final long cacheId;
+
+		if (args.length > 1) {
+			cacheId = (long) args[1];
+		} else {
+			cacheId = (long) args[0];
+		}
+
+		return String.valueOf(cacheId);
 	}
 }
