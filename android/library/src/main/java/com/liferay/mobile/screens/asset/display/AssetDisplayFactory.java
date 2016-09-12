@@ -12,6 +12,8 @@ import com.liferay.mobile.screens.dlfile.display.audio.AudioDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.pdf.PdfDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.video.VideoDisplayScreenlet;
+import com.liferay.mobile.screens.webcontent.WebContent;
+import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -23,35 +25,35 @@ public class AssetDisplayFactory {
 	public BaseScreenlet getScreenlet(Context context, AssetEntry assetEntry, Map<String, Integer> layouts,
 		boolean autoLoad) {
 
-		String className = assetEntry.getClassName();
+		if (assetEntry instanceof FileEntry) {
 
-		switch (className) {
-			case "com.liferay.document.library.kernel.model.DLFileEntry":
+			BaseFileDisplayScreenlet screenlet = getDLFileEntryScreenlet(context, assetEntry.getMimeType());
 
-				BaseFileDisplayScreenlet screenlet = getDLFileEntryScreenlet(context, assetEntry.getMimeType());
+			if (screenlet != null) {
+				Integer layoutId = layouts.get(screenlet.getClass().getName());
 
-				if (screenlet != null) {
-					Integer layoutId = layouts.get(screenlet.getClass().getName());
-
-					screenlet.setFileEntry((FileEntry) assetEntry);
-					screenlet.setAutoLoad(autoLoad);
-					screenlet.render(layoutId);
-					return screenlet;
-				}
-				return null;
-
-			case "com.liferay.blogs.kernel.model.BlogsEntry":
-
-				BlogsEntryDisplayScreenlet blogsScreenlet = new BlogsEntryDisplayScreenlet(context);
-				Integer layoutId = layouts.get(blogsScreenlet.getClass().getName());
-				blogsScreenlet.setBlogsEntry((BlogsEntry) assetEntry);
-				blogsScreenlet.setAutoLoad(autoLoad);
-				blogsScreenlet.render(layoutId);
-				return blogsScreenlet;
-
-			default:
-				return null;
+				screenlet.setFileEntry((FileEntry) assetEntry);
+				screenlet.setAutoLoad(autoLoad);
+				screenlet.render(layoutId);
+				return screenlet;
+			}
+			return null;
+		} else if (assetEntry instanceof WebContent) {
+			WebContentDisplayScreenlet webContentDisplayScreenlet = new WebContentDisplayScreenlet(context);
+			Integer layoutId = layouts.get(webContentDisplayScreenlet.getClass().getName());
+			webContentDisplayScreenlet.setAutoLoad(autoLoad);
+			webContentDisplayScreenlet.render(layoutId);
+			webContentDisplayScreenlet.onWebContentReceived((WebContent) assetEntry);
+			return webContentDisplayScreenlet;
+		} else if (assetEntry instanceof BlogsEntry) {
+			BlogsEntryDisplayScreenlet blogsScreenlet = new BlogsEntryDisplayScreenlet(context);
+			Integer layoutId = layouts.get(blogsScreenlet.getClass().getName());
+			blogsScreenlet.setBlogsEntry((BlogsEntry) assetEntry);
+			blogsScreenlet.setAutoLoad(autoLoad);
+			blogsScreenlet.render(layoutId);
+			return blogsScreenlet;
 		}
+		return null;
 	}
 
 	private BaseFileDisplayScreenlet getDLFileEntryScreenlet(Context context, String mimeType) {

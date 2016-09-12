@@ -20,6 +20,7 @@ import com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.pdf.PdfDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.video.VideoDisplayScreenlet;
 import com.liferay.mobile.screens.util.LiferayLogger;
+import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
 import java.util.HashMap;
 
 /**
@@ -79,6 +80,9 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		layouts.put(BlogsEntryDisplayScreenlet.class.getName(),
 			typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_blogsLayoutId,
 				R.layout.blogsentry_display_default));
+		layouts.put(WebContentDisplayScreenlet.class.getName(),
+			typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_webDisplayLayoutId,
+				R.layout.webcontentdisplay_default));
 
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
 
