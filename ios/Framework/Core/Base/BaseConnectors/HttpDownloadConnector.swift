@@ -34,17 +34,15 @@ public class HttpDownloadConnector: ServerConnector {
 
 		session.downloadTaskWithURL(self.url, completionHandler:
 			{ (_localURL, response, error) in
-				guard let localURL = _localURL else {
-					self.lastError = NSError.errorWithCause(.InvalidServerResponse)
-					self.resultUrl = nil
-					return
-				}
-
 				if let error = error {
 					self.lastError = error
 					self.resultUrl = nil
 				}
-				else {
+				else if _localURL == nil {
+					self.lastError = NSError.errorWithCause(.InvalidServerResponse)
+					self.resultUrl = nil
+				}
+				else if let localURL = _localURL {
 					do {
 						let newPathURL = try self.moveTmpToCache(localURL.absoluteString,
 							fileExtension: self.fileExtension(response))

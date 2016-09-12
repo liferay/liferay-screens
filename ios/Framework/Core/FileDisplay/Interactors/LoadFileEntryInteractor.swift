@@ -20,7 +20,7 @@ class LoadFileEntryInteractor: ServerReadConnectorInteractor {
 
 	var resultUrl: NSURL?
 
-	init(screenlet: BaseScreenlet?, fileEntry: FileEntry) {
+	init(screenlet: BaseScreenlet, fileEntry: FileEntry) {
 		self.fileEntry = fileEntry
 
 		super.init(screenlet: screenlet)
@@ -37,4 +37,44 @@ class LoadFileEntryInteractor: ServerReadConnectorInteractor {
 	override func completedConnector(op: ServerConnector) {
 		resultUrl = (op as? HttpDownloadConnector)?.resultUrl
 	}
+
+
+	//MARK: Cache
+
+	override func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			result(nil)
+			return
+		}
+		guard let loadCon = c as? HttpDownloadConnector else {
+			result(nil)
+			return
+		}
+
+		cacheManager.getLocalFileURL(
+				collection: "load-file-entry",
+				key: fileEntry.url) {
+			loadCon.resultUrl = $0
+			result($0)
+		}
+	}
+
+	override func writeToCache(c: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+		guard let downloadCon = c as? HttpDownloadConnector else {
+			return
+		}
+		guard let resultUrl = downloadCon.resultUrl else {
+			return
+		}
+
+		cacheManager.setClean(
+			collection: "load-file-entry",
+			key: fileEntry.url,
+			localFileURL: resultUrl,
+			attributes: ["fileEntry": fileEntry])
+	}
+
 }
