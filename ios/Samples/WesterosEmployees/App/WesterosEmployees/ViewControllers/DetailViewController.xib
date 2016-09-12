@@ -8,56 +8,68 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="WesterosEmployees" customModuleProvider="target">
             <connections>
                 <outlet property="assetDisplayScreenlet" destination="d9H-mH-LSG" id="3QW-Iw-CoD"/>
+                <outlet property="cardDeck" destination="dBo-Xf-6tR" id="liy-dK-fpT"/>
                 <outlet property="ratingScreenlet" destination="Dbs-xq-G8Y" id="G55-BF-hBo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="297" height="448"/>
+            <rect key="frame" x="0.0" y="0.0" width="297" height="347"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9H-mH-LSG" customClass="AssetDisplayScreenlet" customModule="LiferayScreens">
-                    <rect key="frame" x="0.0" y="0.0" width="297" height="350"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="350" id="ENe-xY-mgE"/>
-                        <constraint firstAttribute="height" constant="350" id="JzJ-rq-mfr"/>
-                    </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
-                    </userDefinedRuntimeAttributes>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="JzJ-rq-mfr"/>
-                        </mask>
-                    </variation>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dbs-xq-G8Y" customClass="RatingScreenlet" customModule="LiferayScreens">
-                    <rect key="frame" x="0.0" y="358" width="297" height="90"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBo-Xf-6tR" customClass="CardDeckView" customModule="WesterosEmployees" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="297" height="347"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9H-mH-LSG" customClass="AssetDisplayScreenlet" customModule="LiferayScreens">
+                            <rect key="frame" x="0.0" y="0.0" width="297" height="169"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="300" id="i0w-1y-fjK"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                            </userDefinedRuntimeAttributes>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="i0w-1y-fjK"/>
+                                </mask>
+                            </variation>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dbs-xq-G8Y" customClass="RatingScreenlet" customModule="LiferayScreens">
+                            <rect key="frame" x="10" y="177" width="277" height="90"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="90" id="9Hs-jh-Vz7"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="default-stars"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="90" id="9Hs-jh-Vz7"/>
+                        <constraint firstItem="d9H-mH-LSG" firstAttribute="top" secondItem="dBo-Xf-6tR" secondAttribute="top" id="0eS-OA-o9c"/>
+                        <constraint firstItem="d9H-mH-LSG" firstAttribute="leading" secondItem="dBo-Xf-6tR" secondAttribute="leading" id="47r-SW-Zpu"/>
+                        <constraint firstItem="Dbs-xq-G8Y" firstAttribute="top" secondItem="d9H-mH-LSG" secondAttribute="bottom" constant="8" id="MIr-8z-8gF"/>
+                        <constraint firstAttribute="trailing" secondItem="d9H-mH-LSG" secondAttribute="trailing" id="Pcw-fg-uOm"/>
+                        <constraint firstItem="Dbs-xq-G8Y" firstAttribute="leading" secondItem="dBo-Xf-6tR" secondAttribute="leading" constant="10" id="geR-tu-DP5"/>
+                        <constraint firstAttribute="trailing" secondItem="Dbs-xq-G8Y" secondAttribute="trailing" constant="10" id="kJd-Nb-VPs"/>
+                        <constraint firstAttribute="bottom" secondItem="Dbs-xq-G8Y" secondAttribute="bottom" constant="80" id="p3h-Ub-uFc"/>
                     </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="default-stars"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <constraints>
-                <constraint firstItem="Dbs-xq-G8Y" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CMp-Zo-jAg"/>
-                <constraint firstAttribute="trailing" secondItem="d9H-mH-LSG" secondAttribute="trailing" id="NkJ-sQ-j8N"/>
-                <constraint firstItem="d9H-mH-LSG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Te2-4N-UL9"/>
-                <constraint firstItem="Dbs-xq-G8Y" firstAttribute="top" secondItem="d9H-mH-LSG" secondAttribute="bottom" constant="8" id="nrJ-kU-dGS"/>
-                <constraint firstAttribute="trailing" secondItem="Dbs-xq-G8Y" secondAttribute="trailing" id="oAB-f5-lAI"/>
-                <constraint firstItem="d9H-mH-LSG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="r7L-DO-WjJ"/>
-                <constraint firstItem="d9H-mH-LSG" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="yge-1K-2Zf"/>
+                <constraint firstAttribute="trailing" secondItem="dBo-Xf-6tR" secondAttribute="trailing" id="4ji-Io-CDB"/>
+                <constraint firstItem="dBo-Xf-6tR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gEY-P9-I3U"/>
+                <constraint firstAttribute="bottom" secondItem="dBo-Xf-6tR" secondAttribute="bottom" id="kQC-fH-Hy2"/>
+                <constraint firstItem="dBo-Xf-6tR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="y19-sB-Jel"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="133.5" y="729"/>
+            <point key="canvasLocation" x="133.5" y="650.5"/>
         </view>
     </objects>
 </document>
