@@ -19,17 +19,17 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.asset.list.interactor.AssetListInteractorImpl;
-import com.liferay.mobile.screens.asset.list.interactor.AssetListInteractorListener;
+import com.liferay.mobile.screens.asset.list.interactor.AssetListInteractor;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
+import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @author Silvio Santos
  */
-public class AssetListScreenlet extends BaseListScreenlet<AssetEntry, AssetListInteractorImpl>
-	implements AssetListInteractorListener {
+public class AssetListScreenlet extends BaseListScreenlet<AssetEntry, AssetListInteractor>
+	implements BaseListInteractorListener<AssetEntry> {
 
 	private long classNameId;
 	private String portletItemName;
@@ -76,7 +76,7 @@ public class AssetListScreenlet extends BaseListScreenlet<AssetEntry, AssetListI
 	}
 
 	@Override
-	protected void loadRows(AssetListInteractorImpl interactor) {
+	protected void loadRows(AssetListInteractor interactor) {
 		interactor.start(classNameId, customEntryQuery, portletItemName);
 	}
 
@@ -101,7 +101,7 @@ public class AssetListScreenlet extends BaseListScreenlet<AssetEntry, AssetListI
 	}
 
 	@Override
-	protected AssetListInteractorImpl createInteractor(String actionName) {
-		return new AssetListInteractorImpl();
+	protected AssetListInteractor createInteractor(String actionName) {
+		return new AssetListInteractor();
 	}
 }

@@ -1,8 +1,8 @@
 package com.liferay.mobile.screens.auth.forgotpassword.interactor;
 
-import com.liferay.mobile.screens.base.thread.event.BasicThreadEvent;
+import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 
-public class ForgotPasswordEvent extends BasicThreadEvent {
+public class ForgotPasswordEvent extends BasicEvent {
 
 	private final Boolean sent;
 

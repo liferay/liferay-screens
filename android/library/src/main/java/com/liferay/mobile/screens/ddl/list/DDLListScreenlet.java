@@ -20,16 +20,16 @@ import android.util.AttributeSet;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
-import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorImpl;
-import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorListener;
+import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
+import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractor;
 import com.liferay.mobile.screens.ddl.model.Record;
 
 /**
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListScreenlet extends BaseListScreenlet<Record, DDLListInteractorImpl>
-	implements DDLListInteractorListener {
+public class DDLListScreenlet extends BaseListScreenlet<Record, DDLListInteractor>
+	implements BaseListInteractorListener<Record> {
 
 	private long recordSetId;
 
@@ -65,7 +65,7 @@ public class DDLListScreenlet extends BaseListScreenlet<Record, DDLListInteracto
 	}
 
 	@Override
-	protected void loadRows(DDLListInteractorImpl interactor) {
+	protected void loadRows(DDLListInteractor interactor) {
 		interactor.start(recordSetId, userId);
 	}
 
@@ -80,7 +80,7 @@ public class DDLListScreenlet extends BaseListScreenlet<Record, DDLListInteracto
 	}
 
 	@Override
-	protected DDLListInteractorImpl createInteractor(String actionName) {
-		return new DDLListInteractorImpl();
+	protected DDLListInteractor createInteractor(String actionName) {
+		return new DDLListInteractor();
 	}
 }

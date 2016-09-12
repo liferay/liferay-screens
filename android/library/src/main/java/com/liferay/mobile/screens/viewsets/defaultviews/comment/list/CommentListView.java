@@ -105,18 +105,8 @@ public class CommentListView
 	}
 
 	@Override
-	public void onDeleteCommentFailure(CommentEntry commentEntry, Exception e) {
-		getCommentListScreenlet().onDeleteCommentFailure(commentEntry, e);
-	}
-
-	@Override
 	public void onDeleteCommentSuccess(CommentEntry commentEntry) {
 		getCommentListScreenlet().onDeleteCommentSuccess(commentEntry);
-	}
-
-	@Override
-	public void onUpdateCommentFailure(CommentEntry commentEntry, Exception e) {
-		getCommentListScreenlet().onUpdateCommentFailure(commentEntry, e);
 	}
 
 	@Override
@@ -125,15 +115,11 @@ public class CommentListView
 	}
 
 	@Override
-	public void onLoadCommentFailure(long commentId, Exception e) {
-	}
-
-	@Override
 	public void onLoadCommentSuccess(CommentEntry commentEntry) {
 	}
 
 	@Override
 	public void error(Exception e, String userAction) {
-
+		getCommentListScreenlet().error(e, userAction);
 	}
 }

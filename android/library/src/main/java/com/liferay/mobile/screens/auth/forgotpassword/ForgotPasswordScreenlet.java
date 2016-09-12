@@ -21,7 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
-import com.liferay.mobile.screens.auth.forgotpassword.interactor.ForgotPasswordInteractorImpl;
+import com.liferay.mobile.screens.auth.forgotpassword.interactor.ForgotPasswordInteractor;
 import com.liferay.mobile.screens.auth.forgotpassword.view.ForgotPasswordViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
@@ -29,7 +29,7 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 /**
  * @author Silvio Santos
  */
-public class ForgotPasswordScreenlet extends BaseScreenlet<ForgotPasswordViewModel, ForgotPasswordInteractorImpl>
+public class ForgotPasswordScreenlet extends BaseScreenlet<ForgotPasswordViewModel, ForgotPasswordInteractor>
 	implements ForgotPasswordListener {
 
 	private String anonymousApiPassword;
@@ -139,12 +139,12 @@ public class ForgotPasswordScreenlet extends BaseScreenlet<ForgotPasswordViewMod
 	}
 
 	@Override
-	protected ForgotPasswordInteractorImpl createInteractor(String actionName) {
-		return new ForgotPasswordInteractorImpl();
+	protected ForgotPasswordInteractor createInteractor(String actionName) {
+		return new ForgotPasswordInteractor();
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, ForgotPasswordInteractorImpl interactor, Object... args) {
+	protected void onUserAction(String userActionName, ForgotPasswordInteractor interactor, Object... args) {
 
 		ForgotPasswordViewModel viewModel = getViewModel();
 

@@ -33,6 +33,7 @@ public class UserConnector70 implements UserConnector, ForgotPasswordConnector, 
 		return userService.getUserByScreenName(companyId, screenName);
 	}
 
+	@SuppressWarnings("CheckStyle")
 	@Override
 	public JSONObject addUser(long companyId, boolean autoPassword, String password, String password1,
 		boolean autoScreenName, String screenName, String emailAddress, long facebookId, String openId, String s,

@@ -8,7 +8,7 @@ import android.widget.EditText;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.callback.typed.JSONObjectCallback;
 import com.liferay.mobile.screens.bankofwesteros.R;
-import com.liferay.mobile.screens.bankofwesteros.views.UpdateUserInteractorImpl;
+import com.liferay.mobile.screens.bankofwesteros.views.UpdateUserInteractor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.userportrait.UserPortraitListener;
@@ -92,7 +92,7 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 			return;
 		}
 
-		UpdateUserInteractorImpl updateUserInteractor = new UpdateUserInteractorImpl();
+		UpdateUserInteractor updateUserInteractor = new UpdateUserInteractor();
 		updateUserInteractor.saveUser(firstName, lastName, emailAddress, newPassword, new JSONObjectCallback() {
 			@Override
 			public void onSuccess(JSONObject result) {

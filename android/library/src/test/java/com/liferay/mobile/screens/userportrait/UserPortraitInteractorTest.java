@@ -17,7 +17,7 @@ package com.liferay.mobile.screens.userportrait;
 import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.RobolectricManifestTestRunner;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
-import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadInteractorImpl;
+import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadInteractor;
 import com.liferay.mobile.screens.util.MockFactory;
 import junit.framework.Assert;
 import org.junit.Before;
@@ -45,7 +45,7 @@ public class UserPortraitInteractorTest {
 
 		@Test
 		public void shouldRaiseInvalidArgumentWhenListenerIsNull() throws Exception {
-			UserPortraitLoadInteractorImpl interactor = new UserPortraitLoadInteractorImpl();
+			UserPortraitLoadInteractor interactor = new UserPortraitLoadInteractor();
 
 			try {
 				interactor.start(true, 123, "xxx");
@@ -56,8 +56,8 @@ public class UserPortraitInteractorTest {
 
 		@Test
 		public void shouldRaiseInvalidArgumentWhenPortraitIdIsZero() throws Exception {
-			UserPortraitLoadInteractorImpl interactor = new UserPortraitLoadInteractorImpl();
-			interactor.onScreenletAttached(MockFactory.mockUserPortraitInteractorListener());
+			UserPortraitLoadInteractor interactor = new UserPortraitLoadInteractor();
+			interactor.onScreenletAttached(MockFactory.mockUserPortraitScreenlet());
 
 			try {
 				interactor.start(true, 0, "xxx");
@@ -68,8 +68,8 @@ public class UserPortraitInteractorTest {
 
 		@Test
 		public void shouldRaiseInvalidArgumentWhenUUIDIsNull() throws Exception {
-			UserPortraitLoadInteractorImpl interactor = new UserPortraitLoadInteractorImpl();
-			interactor.onScreenletAttached(MockFactory.mockUserPortraitInteractorListener());
+			UserPortraitLoadInteractor interactor = new UserPortraitLoadInteractor();
+			interactor.onScreenletAttached(MockFactory.mockUserPortraitScreenlet());
 
 			try {
 				interactor.start(true, 123, null);
@@ -80,8 +80,8 @@ public class UserPortraitInteractorTest {
 
 		@Test
 		public void shouldRaiseInvalidArgumentWhenUUIDIsEmpty() throws Exception {
-			UserPortraitLoadInteractorImpl interactor = new UserPortraitLoadInteractorImpl();
-			interactor.onScreenletAttached(MockFactory.mockUserPortraitInteractorListener());
+			UserPortraitLoadInteractor interactor = new UserPortraitLoadInteractor();
+			interactor.onScreenletAttached(MockFactory.mockUserPortraitScreenlet());
 
 			try {
 				interactor.start(true, 123, "");

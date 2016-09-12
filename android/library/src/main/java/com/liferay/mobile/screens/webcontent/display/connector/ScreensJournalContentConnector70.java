@@ -15,16 +15,6 @@ public class ScreensJournalContentConnector70 implements ScreensJournalContentCo
 	}
 
 	@Override
-	public String getJournalArticleContent(long classPK, String locale) throws Exception {
-		return screensjournalarticleService.getJournalArticleContent(classPK, locale);
-	}
-
-	@Override
-	public String getJournalArticleContent(long classPK, long templateId, String locale) throws Exception {
-		return screensjournalarticleService.getJournalArticleContent(classPK, templateId, locale);
-	}
-
-	@Override
 	public String getJournalArticleContent(long groupId, String articleId, long templateId, String locale)
 		throws Exception {
 		return screensjournalarticleService.getJournalArticleContent(groupId, articleId, templateId, locale);

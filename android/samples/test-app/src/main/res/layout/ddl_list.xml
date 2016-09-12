@@ -18,7 +18,7 @@
 		android:layout_height="match_parent"
 		liferay:autoLoad="false"
 		liferay:labelFields="@string/liferay_recordset_fields"
-		liferay:offlinePolicy="REMOTE_FIRST"
+		liferay:cachePolicy="REMOTE_FIRST"
 		liferay:recordSetId="@string/liferay_recordset_id"
 		/>
 

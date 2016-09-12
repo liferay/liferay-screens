@@ -34,7 +34,7 @@ import static junit.framework.Assert.assertEquals;
 @RunWith(Enclosed.class)
 public class XSDParserLocalizationTest {
 
-	private static final Locale _spanishLocale = new Locale("es", "ES");
+	private static final Locale spanishLocale = new Locale("es", "ES");
 	private static final String booleanFieldWithTranslationsXSD =
 		"<root available-locales=\"es_ES, es_AR, es, en_US, en_AU\" default-locale=\"es_ES\"> " +
 			"<dynamic-element dataType=\"boolean\" " +
@@ -78,7 +78,7 @@ public class XSDParserLocalizationTest {
 		@Test
 		public void shouldFindFullMatch() throws Exception {
 			List<Field> fields =
-				new XSDParser().parse(booleanFieldWithTranslationsXSD, _spanishLocale);
+				new XSDParser().parse(booleanFieldWithTranslationsXSD, spanishLocale);
 
 			assertEquals("Un Booleano para 'es_ES'", fields.get(0).getLabel());
 		}

@@ -13,7 +13,7 @@ public class SlideshowLayout extends RecyclerView.OnScrollListener implements Vi
 	private static final float SCALE_OFFSET = 0.7f;
 	private static final float ALPHA_OFFSET = 0.5f;
 	private static final float SCALE_DELTA = 1 - SCALE_OFFSET;
-	private RecyclerView recyclerView;
+	private final RecyclerView recyclerView;
 
 	public SlideshowLayout(RecyclerView recyclerView) {
 		this.recyclerView = recyclerView;

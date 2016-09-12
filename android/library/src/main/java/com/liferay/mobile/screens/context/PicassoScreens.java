@@ -2,7 +2,7 @@ package com.liferay.mobile.screens.context;
 
 import android.content.Context;
 import android.net.Uri;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.cache.CachePolicy;
 import com.squareup.picasso.Downloader;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
@@ -18,7 +18,7 @@ public class PicassoScreens {
 
 	private static volatile Picasso picasso;
 	private static volatile Picasso picassoWithoutCache;
-	private static OfflinePolicy offlinePolicy;
+	private static CachePolicy cachePolicy;
 
 	private PicassoScreens() {
 		super();
@@ -27,38 +27,38 @@ public class PicassoScreens {
 	public static RequestCreator load(String url) {
 		RequestCreator requestCreator = getPicasso().load(url);
 
-		return applyOfflinePolicies(requestCreator);
+		return applyCachePolicies(requestCreator);
 	}
 
 	public static RequestCreator load(Uri uri) {
 		RequestCreator requestCreator = getPicasso().load(uri);
 
-		return applyOfflinePolicies(requestCreator);
+		return applyCachePolicies(requestCreator);
 	}
 
 	public static RequestCreator load(File file) {
 		RequestCreator requestCreator = getPicasso().load(file);
 
-		return applyOfflinePolicies(requestCreator);
+		return applyCachePolicies(requestCreator);
 	}
 
 	public static RequestCreator load(int resourceId) {
 		RequestCreator requestCreator = getPicasso().load(resourceId);
 
-		return applyOfflinePolicies(requestCreator);
+		return applyCachePolicies(requestCreator);
 	}
 
-	public static OfflinePolicy getOfflinePolicy() {
-		return offlinePolicy;
+	public static CachePolicy getCachePolicy() {
+		return cachePolicy;
 	}
 
-	public static void setOfflinePolicy(OfflinePolicy offlinePolicy) {
-		PicassoScreens.offlinePolicy = offlinePolicy;
+	public static void setCachePolicy(CachePolicy cachePolicy) {
+		PicassoScreens.cachePolicy = cachePolicy;
 	}
 
 	private static Picasso getPicasso() {
 
-		if (offlinePolicy.equals(OfflinePolicy.REMOTE_ONLY)) {
+		if (cachePolicy.equals(CachePolicy.REMOTE_ONLY)) {
 			if (picassoWithoutCache == null) {
 				synchronized (PicassoScreens.class) {
 					Context context = LiferayScreensContext.getContext();
@@ -79,8 +79,8 @@ public class PicassoScreens {
 		return picasso;
 	}
 
-	private static RequestCreator applyOfflinePolicies(RequestCreator picassoRequestCreator) {
-		switch (offlinePolicy) {
+	private static RequestCreator applyCachePolicies(RequestCreator picassoRequestCreator) {
+		switch (cachePolicy) {
 
 			default:
 			case REMOTE_ONLY:

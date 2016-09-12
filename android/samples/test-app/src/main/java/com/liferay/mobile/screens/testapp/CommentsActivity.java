@@ -54,12 +54,6 @@ public class CommentsActivity extends ThemeActivity
 		listScreenlet.loadPage(0);
 	}
 
-	@Override
-	public void onLoadCommentFailure(long commentId, Exception e) {
-		error(String.format(LiferayLocale.getDefaultLocale(), "Error loading comment with id: %d", commentId), e);
-		showDisplayScreenlet(false);
-	}
-
 	private void showDisplayScreenlet(boolean visible) {
 		noCommentView.setVisibility(visible ? GONE : VISIBLE);
 		displayScreenlet.setVisibility(visible ? VISIBLE : GONE);
@@ -72,22 +66,10 @@ public class CommentsActivity extends ThemeActivity
 	}
 
 	@Override
-	public void onDeleteCommentFailure(CommentEntry commentEntry, Exception e) {
-		error(String.format(LiferayLocale.getDefaultLocale(), "Error deleting comment with id: %d",
-			commentEntry.getCommentId()), e);
-	}
-
-	@Override
 	public void onDeleteCommentSuccess(CommentEntry commentEntry) {
 		info(String.format(LiferayLocale.getDefaultLocale(), "Comment with id: %d successfully deleted",
 			commentEntry.getCommentId()));
 		showDisplayScreenlet(false);
-	}
-
-	@Override
-	public void onUpdateCommentFailure(CommentEntry commentEntry, Exception e) {
-		error(String.format(LiferayLocale.getDefaultLocale(), "Error updating comment with id: %d",
-			commentEntry.getCommentId()), e);
 	}
 
 	@Override
@@ -123,7 +105,7 @@ public class CommentsActivity extends ThemeActivity
 
 	@Override
 	public void error(Exception e, String userAction) {
-
+		error("Error " + userAction + " comment", e);
 	}
 
 	@Override

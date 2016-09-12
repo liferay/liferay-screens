@@ -14,7 +14,7 @@
 
 package com.liferay.mobile.screens.ddl.form;
 
-import com.liferay.mobile.screens.base.thread.listener.OfflineListenerNew;
+import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
 import java.util.Map;
@@ -23,7 +23,7 @@ import org.json.JSONObject;
 /**
  * @author Jose Manuel Navarro
  */
-public interface DDLFormListener extends OfflineListenerNew {
+public interface DDLFormListener extends BaseCacheListener {
 
 	void onDDLFormLoaded(Record record);
 

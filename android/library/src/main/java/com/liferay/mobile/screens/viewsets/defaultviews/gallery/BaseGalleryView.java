@@ -120,7 +120,7 @@ public abstract class BaseGalleryView<H extends BaseListAdapter.ViewHolder, A ex
 		uploadProgressView.uploadCompleteOrError();
 	}
 
-	private Action1 openCamera() {
+	private Action1<Boolean> openCamera() {
 		return new Action1<Boolean>() {
 			@Override
 			public void call(Boolean result) {
@@ -132,7 +132,7 @@ public abstract class BaseGalleryView<H extends BaseListAdapter.ViewHolder, A ex
 		};
 	}
 
-	private Action1 openGallery() {
+	private Action1<Boolean> openGallery() {
 		return new Action1<Boolean>() {
 			@Override
 			public void call(Boolean result) {
