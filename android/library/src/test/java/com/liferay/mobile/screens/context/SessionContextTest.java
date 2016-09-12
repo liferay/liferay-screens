@@ -53,19 +53,19 @@ public class SessionContextTest {
 	@RunWith(RobolectricManifestTestRunner.class)
 	public static class WhenCreateSession {
 
-		private Session _session;
+		private Session session;
 
 		@Before
 		public void setUp() {
-			_session = SessionContext.createBasicSession("username", "password");
-			assertNotNull(_session);
+			session = SessionContext.createBasicSession("username", "password");
+			assertNotNull(session);
 		}
 
 		@Test
 		public void shouldCreateTheRightSession() throws Exception {
-			assertTrue(_session.getAuthentication() instanceof BasicAuthentication);
+			assertTrue(session.getAuthentication() instanceof BasicAuthentication);
 
-			BasicAuthentication auth = (BasicAuthentication) _session.getAuthentication();
+			BasicAuthentication auth = (BasicAuthentication) session.getAuthentication();
 
 			assertEquals("username", auth.getUsername());
 			assertEquals("password", auth.getPassword());
@@ -78,13 +78,13 @@ public class SessionContextTest {
 
 			assertNotNull(secondSession);
 
-			BasicAuthentication auth1 = (BasicAuthentication) _session.getAuthentication();
+			BasicAuthentication auth1 = (BasicAuthentication) session.getAuthentication();
 			BasicAuthentication auth2 = (BasicAuthentication) secondSession.getAuthentication();
 
 			assertEquals(auth1.getUsername(), auth2.getUsername());
 			assertEquals(auth1.getPassword(), auth2.getPassword());
 
-			assertNotSame(_session, secondSession);
+			assertNotSame(session, secondSession);
 		}
 
 		@Test
@@ -92,7 +92,7 @@ public class SessionContextTest {
 			BasicAuthentication auth = (BasicAuthentication) SessionContext.getAuthentication();
 
 			assertNotNull(auth);
-			assertSame(_session.getAuthentication(), auth);
+			assertSame(session.getAuthentication(), auth);
 
 			assertEquals("username", auth.getUsername());
 			assertEquals("password", auth.getPassword());

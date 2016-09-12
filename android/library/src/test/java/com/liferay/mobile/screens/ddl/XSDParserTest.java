@@ -39,8 +39,8 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class XSDParserTest {
 
-	private static final Locale _spanishLocale = new Locale("es", "ES");
-	private static final Locale _usLocale = new Locale("en", "US");
+	private static final Locale spanishLocale = new Locale("es", "ES");
+	private static final Locale usLocale = new Locale("en", "US");
 
 	@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
@@ -50,24 +50,24 @@ public class XSDParserTest {
 		public void whenParseMalformedXML() throws Exception {
 			String malformedXML = "<root available-locales=\"en_US>";
 
-			new XSDParser().parse(malformedXML, _spanishLocale);
+			new XSDParser().parse(malformedXML, spanishLocale);
 		}
 
 		@Test(expected = IllegalArgumentException.class)
 		public void whenParseEmptyStringXML() throws Exception {
-			new XSDParser().parse("", _spanishLocale);
+			new XSDParser().parse("", spanishLocale);
 		}
 
 		@Test(expected = IllegalArgumentException.class)
 		public void whenParseNullXML() throws Exception {
-			new XSDParser().parse(null, _spanishLocale);
+			new XSDParser().parse(null, spanishLocale);
 		}
 
 		@Test
 		public void whenParseEmptyXML() throws Exception {
 			String malformedXML = "<root available-locales=\"en_US\"></root>";
 
-			List<Field> resultList = new XSDParser().parse(malformedXML, _spanishLocale);
+			List<Field> resultList = new XSDParser().parse(malformedXML, spanishLocale);
 
 			assertNotNull(resultList);
 			assertEquals(0, resultList.size());
@@ -98,7 +98,7 @@ public class XSDParserTest {
 					"</dynamic-element>" +
 					"</root>";
 
-			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
+			List<Field> resultList = new XSDParser().parse(xsd, usLocale);
 
 			assertNotNull(resultList);
 			assertEquals(1, resultList.size());
@@ -136,7 +136,7 @@ public class XSDParserTest {
 					"</dynamic-element>" +
 					"</root>";
 
-			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
+			List<Field> resultList = new XSDParser().parse(xsd, usLocale);
 			Field resultField = resultList.get(0);
 
 			assertEquals("", resultField.getTip());
@@ -158,7 +158,7 @@ public class XSDParserTest {
 					"</dynamic-element>" +
 					"</root>";
 
-			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
+			List<Field> resultList = new XSDParser().parse(xsd, usLocale);
 			Field resultField = resultList.get(0);
 
 			assertEquals("", resultField.getTip());
@@ -178,7 +178,7 @@ public class XSDParserTest {
 					"</dynamic-element>" +
 					"</root>";
 
-			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
+			List<Field> resultList = new XSDParser().parse(xsd, usLocale);
 			Field resultField = resultList.get(0);
 
 			assertEquals("", resultField.getTip());
@@ -195,7 +195,7 @@ public class XSDParserTest {
 					"</dynamic-element>" +
 					"</root>";
 
-			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
+			List<Field> resultList = new XSDParser().parse(xsd, usLocale);
 			Field resultField = resultList.get(0);
 
 			assertEquals("", resultField.getTip());
