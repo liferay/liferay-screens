@@ -34,6 +34,7 @@ public class User {
 	public static final String FIRST_NAME = "firstName";
 	public static final String LAST_NAME = "lastName";
 	public static final String SCREEN_NAME = "screenName";
+	public static final String JOB_TITLE = "jobTitle";
 	private final Map<String, Object> attributes;
 	private final JSONObject jsonObject;
 
@@ -74,12 +75,20 @@ public class User {
 		return getString(LAST_NAME);
 	}
 
+	public String getFullName() {
+		return String.format("%s %s", getFirstName(), getLastName());
+	}
+
 	public String getEmail() {
 		return getString(EMAIL_ADDRESS);
 	}
 
 	public String getScreenName() {
 		return (String) attributes.get(SCREEN_NAME);
+	}
+
+	public String getJobTitle() {
+		return (String) attributes.get(JOB_TITLE);
 	}
 
 	public Map<String, Object> getAttributes() {
