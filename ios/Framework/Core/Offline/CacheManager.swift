@@ -54,7 +54,6 @@ public enum CacheStrategyType: String {
 	}
 
 	public func getString(collection collection: String, key: String, result: String? -> ()) {
-
 		var value: AnyObject?
 		readConnection.asyncReadWithBlock( { transaction in
 				value = transaction.objectForKey(key, inCollection: collection)
@@ -83,7 +82,6 @@ public enum CacheStrategyType: String {
 	}
 
 	public func getAny(collection collection: String, key: String, result: AnyObject? -> ()) {
-
 		var value: AnyObject?
 
 		readConnection.asyncReadWithBlock ({ transaction in
@@ -133,7 +131,6 @@ public enum CacheStrategyType: String {
 	}
 
 	public func getSome(collection collection: String, keys: [String], result: [AnyObject?] -> ()) {
-
 		var values = [AnyObject?]()
 
 		readConnection.asyncReadWithBlock ({ transaction in
@@ -149,7 +146,6 @@ public enum CacheStrategyType: String {
 
 
 	public func getMetadata(collection collection: String, key: String, result: CacheMetadata? -> ()) {
-
 		var value: AnyObject?
 
 		readConnection.asyncReadWithBlock ({ transaction in
@@ -191,7 +187,6 @@ public enum CacheStrategyType: String {
 			attributes: attributes,
 			onCompletion: onCompletion)
 	}
-
 
 	public func setDirty(
 			collection collection: String,
@@ -301,7 +296,6 @@ public enum CacheStrategyType: String {
 	}
 
 	public func countPendingToSync(result: UInt -> ()) {
-
 		var value: UInt = 0
 
 		pendingToSyncTransaction ({ transaction in

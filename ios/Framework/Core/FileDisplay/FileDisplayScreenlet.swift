@@ -131,7 +131,8 @@ public class FileDisplayScreenlet: BaseScreenlet {
 					self.fileDisplayViewModel?.title = title
 				}
 				else {
-					self.fileDisplayDelegate?.screenlet?(self, onFileAssetError: NSError.errorWithCause(.InvalidServerResponse))
+					self.fileDisplayDelegate?.screenlet?(self,
+							onFileAssetError: NSError.errorWithCause(.InvalidServerResponse))
 				}
 			}
 

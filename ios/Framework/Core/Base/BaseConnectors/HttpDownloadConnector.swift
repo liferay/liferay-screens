@@ -71,7 +71,6 @@ public class HttpDownloadConnector: ServerConnector {
 
 
 	private func moveTmpToCache(localPath: String, fileExtension: String) throws -> NSURL {
-
 		let cachePath = cacheFilePath()
 		let cachePathUrl = NSURL(fileURLWithPath: cachePath + "." + fileExtension)
 
