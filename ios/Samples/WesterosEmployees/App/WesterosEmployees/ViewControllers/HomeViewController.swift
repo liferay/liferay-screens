@@ -26,7 +26,7 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 	@IBOutlet weak var userView: UIView?
 	@IBOutlet weak var userPortraitScreenlet: UserPortraitScreenlet?
 	@IBOutlet weak var userNameLabel: UILabel?
-
+	@IBOutlet weak var assetListScreenlet: AssetListScreenlet?
 
 	//MARK: Card ViewControllers
 
@@ -74,6 +74,8 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 				userNameLabel?.text = "\(firstName) \(lastName)".stringByTrimmingCharactersInSet(
 					NSCharacterSet.whitespaceAndNewlineCharacterSet())
 			}
+
+			assetListScreenlet?.loadList()
 
 			self.cardDeck?.alpha = 1.0
 

@@ -62,15 +62,36 @@
                                             <action selector="userButtonClicked" destination="sUr-X0-jI8" eventType="touchUpInside" id="RiS-eZ-Ub0"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDy-iV-fag" customClass="AssetListScreenlet" customModule="LiferayScreens">
+                                        <rect key="frame" x="0.0" y="162" width="375" height="295"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="portletItemName" value="WesterosEmployeesNews"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latest changes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YLw-JF-ukC">
+                                        <rect key="frame" x="16" y="116" width="343" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="KDy-iV-fag" secondAttribute="bottom" constant="210" id="05r-BM-sse"/>
+                                    <constraint firstItem="KDy-iV-fag" firstAttribute="top" secondItem="YLw-JF-ukC" secondAttribute="bottom" constant="16" id="6mv-11-AfN"/>
+                                    <constraint firstItem="YLw-JF-ukC" firstAttribute="top" secondItem="IPM-B1-9qN" secondAttribute="bottom" constant="16" id="6rJ-Od-2NA"/>
                                     <constraint firstItem="PxX-Vo-WhH" firstAttribute="top" secondItem="kjo-Hh-Kwh" secondAttribute="top" constant="40" id="9y5-mY-z1Q"/>
                                     <constraint firstItem="PxX-Vo-WhH" firstAttribute="centerY" secondItem="IPM-B1-9qN" secondAttribute="centerY" id="C1x-8w-TmD"/>
+                                    <constraint firstAttribute="trailing" secondItem="KDy-iV-fag" secondAttribute="trailing" id="KJg-wf-2lE"/>
                                     <constraint firstItem="PxX-Vo-WhH" firstAttribute="height" secondItem="IPM-B1-9qN" secondAttribute="height" id="LRF-72-v8m"/>
+                                    <constraint firstAttribute="trailing" secondItem="YLw-JF-ukC" secondAttribute="trailing" constant="16" id="NB5-ti-BmL"/>
+                                    <constraint firstItem="KDy-iV-fag" firstAttribute="leading" secondItem="kjo-Hh-Kwh" secondAttribute="leading" id="P47-Ny-h2f"/>
                                     <constraint firstItem="PxX-Vo-WhH" firstAttribute="width" secondItem="IPM-B1-9qN" secondAttribute="width" id="dnN-cW-AKq"/>
                                     <constraint firstAttribute="trailing" secondItem="PxX-Vo-WhH" secondAttribute="trailing" constant="16" id="iUb-Ov-74n"/>
                                     <constraint firstItem="PxX-Vo-WhH" firstAttribute="centerX" secondItem="IPM-B1-9qN" secondAttribute="centerX" id="kZn-tI-XGM"/>
                                     <constraint firstItem="PxX-Vo-WhH" firstAttribute="leading" secondItem="kjo-Hh-Kwh" secondAttribute="leading" constant="16" id="tvO-1r-jbo"/>
+                                    <constraint firstItem="YLw-JF-ukC" firstAttribute="leading" secondItem="kjo-Hh-Kwh" secondAttribute="leading" constant="16" id="wZr-n2-QTl"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -84,6 +105,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="assetListScreenlet" destination="KDy-iV-fag" id="45b-7h-daZ"/>
                         <outlet property="cardDeck" destination="kjo-Hh-Kwh" id="yml-ve-rfy"/>
                         <outlet property="userNameLabel" destination="hgB-N5-DkM" id="aTb-8Y-kKa"/>
                         <outlet property="userPortraitScreenlet" destination="8ZJ-Uu-WlF" id="VJ6-ba-rKQ"/>
@@ -95,7 +117,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MXt-sF-AWv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1415.5" y="359.5"/>
+            <point key="canvasLocation" x="-1510.5" y="197.5"/>
         </scene>
         <!--Tour View Controller-->
         <scene sceneID="a2l-Iy-61X">
