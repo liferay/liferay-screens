@@ -65,16 +65,10 @@ extension SyncManager {
 			attributes: [String:AnyObject])
 			-> Signal -> () {
 		return { signal in
-			let groupId = (attributes["groupId"] as! NSNumber).longLongValue
-			let className = (attributes["className"] as! String)
-			let classPK = (attributes["classPK"] as! NSNumber).longLongValue
 			let commentId = (attributes["commentId"] as! NSNumber).longLongValue
 			let body = (attributes["body"] as! String)
 
 			let interactor = CommentUpdateInteractor(
-					groupId: groupId,
-					className: className,
-					classPK: classPK,
 					commentId: commentId,
 					body: body)
 
@@ -100,13 +94,11 @@ extension SyncManager {
 			attributes: [String:AnyObject])
 			-> Signal -> () {
 		return { signal in
-			let groupId = (attributes["groupId"] as! NSNumber).longLongValue
 			let className = (attributes["className"] as! String)
 			let classPK = (attributes["classPK"] as! NSNumber).longLongValue
 			let body = (attributes["body"] as! String)
 
 			let interactor = CommentAddInteractor(
-				groupId: groupId,
 				className: className,
 				classPK: classPK,
 				body: body)

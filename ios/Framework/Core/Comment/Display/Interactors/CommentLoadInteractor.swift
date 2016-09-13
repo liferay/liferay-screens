@@ -58,7 +58,7 @@ public class CommentLoadInteractor: ServerReadConnectorInteractor {
 
 		cacheManager.getAny(
 				collection: "CommentsScreenlet",
-				key: commentCacheKey(loadCon.groupId, loadCon.commentId)) {
+				key: "commentId-\(loadCon.commentId)") {
 			guard let comment = $0 as? Comment else {
 				result(nil)
 				return
@@ -82,16 +82,11 @@ public class CommentLoadInteractor: ServerReadConnectorInteractor {
 
 		cacheManager.setClean(
 			collection: "CommentsScreenlet",
-			key: commentCacheKey(loadCon.groupId, loadCon.commentId),
+			key: "commentId-\(loadCon.commentId)",
 			value: comment,
 			attributes: [
 				"commentId": NSNumber(longLong: loadCon.commentId)
 			])
-	}
-
-
-	private func commentCacheKey(commentId: Int64) -> String {
-		return "comment-\(commentId)"
 	}
 
 }

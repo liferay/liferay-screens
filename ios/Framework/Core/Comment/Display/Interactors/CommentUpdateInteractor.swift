@@ -22,20 +22,14 @@ public class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 	public var resultComment: Comment?
 
 	init(screenlet: CommentDisplayScreenlet, body: String) {
-		self.className = screenlet.className
-		self.classPK = screenlet.classPK
 		self.commentId = screenlet.commentId
 		self.body = body
 
 		super.init(screenlet: screenlet)
 	}
 
-	init(className: String,
-			classPK: Int64,
-			commentId: Int64,
+	init(commentId: Int64,
 			body: String) {
-		self.className = className
-		self.classPK = classPK
 		self.commentId = commentId
 		self.body = body
 
@@ -71,11 +65,9 @@ public class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 
 		cacheFunction(
 			collection: "CommentsScreenlet",
-			key: "update-commentId-\(updateCon.commentId)",
+			key: "commentId-\(updateCon.commentId)",
 			value: "",
 			attributes: [
-				"className": updateCon.className,
-				"classPK": NSNumber(longLong: updateCon.classPK),
 				"commentId": NSNumber(longLong: updateCon.commentId),
 				"body": updateCon.body,
 			],
