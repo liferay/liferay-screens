@@ -75,12 +75,10 @@ public class Liferay70CommentListPageConnector: CommentListPageLiferayConnector 
 	}
 
 	override public func doAddRowCountServiceCall(session session: LRBatchSession) {
-		let service = LRCommentmanagerjsonwsService_v70(session: session)
+		let service = LRScreenscommentService_v70(session: session)
 
 		do {
-			try service.getCommentsCountWithGroupId(groupId,
-					className: className,
-					classPK: classPK)
+			try service.getCommentsCountWithClassName(className, classPK: classPK)
 		}
 		catch _ as NSError {
 		}

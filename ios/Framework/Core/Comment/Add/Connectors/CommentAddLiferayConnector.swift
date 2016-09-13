@@ -59,11 +59,10 @@ public class CommentAddLiferayConnector: ServerConnector {
 public class Liferay70CommentAddConnector: CommentAddLiferayConnector {
 
 	override public func doRun(session session: LRSession) {
-		let service = LRCommentmanagerjsonwsService_v70(session: session)
+		let service = LRScreenscommentService_v70(session: session)
 
 		do {
-			let result = try service.addCommentWithGroupId(groupId,
-					className: className,
+			let result = try service.addCommentWithClassName(className,
 					classPK: classPK,
 					body: Comment.plainBodyToHtml(body))
 

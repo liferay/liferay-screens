@@ -48,10 +48,10 @@ public class Liferay70CommentLoadConnector: CommentLoadLiferayConnector {
 	override public func doRun(session session: LRSession) {
 		resultComment = nil
 
-		let service = LRCommentmanagerjsonwsService_v70(session: session)
+		let service = LRScreenscommentService_v70(session: session)
 
 		do {
-			let result = try service.getCommentWithGroupId(groupId, commentId: commentId)
+			let result = try service.getCommentWithCommentId(commentId)
 
 			if let result = result as? [String: AnyObject] {
 				resultComment = Comment(attributes: result)

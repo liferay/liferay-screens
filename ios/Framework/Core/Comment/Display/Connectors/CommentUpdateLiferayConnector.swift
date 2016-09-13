@@ -73,13 +73,10 @@ public class Liferay70CommentUpdateConnector: CommentUpdateLiferayConnector {
 	override public func doRun(session session: LRSession) {
 		resultComment = nil
 
-		let service = LRCommentmanagerjsonwsService_v70(session: session)
+		let service = LRScreenscommentService_v70(session: session)
 
 		do {
-			let result = try service.updateCommentWithGroupId(groupId,
-					className: className,
-					classPK: classPK,
-					commentId: commentId,
+			let result = try service.updateCommentWithCommentId(commentId,
 					body: Comment.plainBodyToHtml(body))
 
 			if let result = result as? [String: AnyObject] {
