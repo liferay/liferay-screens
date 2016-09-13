@@ -46,8 +46,7 @@ public class CommentListInteractor
   protected CommentEvent createEntity(Map<String, Object> stringObjectMap) {
     CommentEntry commentEntry = new CommentEntry(stringObjectMap);
 
-    return new CommentEvent(commentEntry.getCommentId(), commentEntry.getClassName(),
-      commentEntry.getClassPK(), commentEntry.getBody(), commentEntry);
+    return new CommentEvent(commentEntry.getCommentId(), commentEntry.getBody(), commentEntry);
   }
 
   @Override
