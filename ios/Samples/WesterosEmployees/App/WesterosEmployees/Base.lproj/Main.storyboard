@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sUr-X0-jI8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sUr-X0-jI8">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -109,6 +109,7 @@
                         <outlet property="cardDeck" destination="kjo-Hh-Kwh" id="yml-ve-rfy"/>
                         <outlet property="userNameLabel" destination="hgB-N5-DkM" id="aTb-8Y-kKa"/>
                         <outlet property="userPortraitScreenlet" destination="8ZJ-Uu-WlF" id="VJ6-ba-rKQ"/>
+                        <outlet property="userProfileButton" destination="IPM-B1-9qN" id="qea-eV-Cwm"/>
                         <outlet property="userView" destination="PxX-Vo-WhH" id="h0j-Ca-JJQ"/>
                         <segue destination="GmK-7W-ZSi" kind="show" identifier="tour" id="UMz-We-zVk"/>
                         <segue destination="Fcc-Vc-T92" kind="show" identifier="login" action="showDetailViewController:sender:" id="b2q-Sj-PM5"/>

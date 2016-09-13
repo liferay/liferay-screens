@@ -27,6 +27,7 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 	@IBOutlet weak var userPortraitScreenlet: UserPortraitScreenlet?
 	@IBOutlet weak var userNameLabel: UILabel?
 	@IBOutlet weak var assetListScreenlet: AssetListScreenlet?
+	@IBOutlet weak var userProfileButton: UIButton?
 
 	//MARK: Card ViewControllers
 
@@ -163,6 +164,11 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 	}
 
 	func cardDeck(cardDeck: CardDeckView, onPageChange position: CardPosition) {
+
+		dispatch_delayed(1.0) {
+			self.userProfileButton?.enabled = position.page == 0
+		}
+
 		switch (position.card, position.page) {
 		case (2, 1):
 			detailViewController?.fileEntryId = galleryViewController?.selectedImageEntry?.imageEntryId
