@@ -137,7 +137,7 @@ public abstract class PushScreensActivity extends AppCompatActivity
 
 	protected abstract void onPushNotificationReceived(JSONObject jsonObject);
 
-	protected abstract void onErrorRegisteringPush(final String message, final Exception e);
+	protected abstract void onErrorRegisteringPush(String message, Exception e);
 
 	protected abstract String getSenderId();
 
