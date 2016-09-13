@@ -152,8 +152,6 @@
 		0BF917AE1D76BE6900C86C85 /* CommentListPageLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9179D1D76BE6900C86C85 /* CommentListPageLiferayConnector.swift */; };
 		0BF917AF1D76BE6900C86C85 /* CommentListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9179F1D76BE6900C86C85 /* CommentListPageLoadInteractor.swift */; };
 		0BF917B11D76BE7500C86C85 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917B01D76BE7500C86C85 /* Comment.swift */; };
-		0BF917B41D76BE8D00C86C85 /* LRCommentmanagerjsonwsService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BF917B21D76BE8D00C86C85 /* LRCommentmanagerjsonwsService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0BF917B51D76BE8D00C86C85 /* LRCommentmanagerjsonwsService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917B31D76BE8D00C86C85 /* LRCommentmanagerjsonwsService_v70.m */; };
 		0BF917C41D76BEA000C86C85 /* CommentAddView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917B81D76BEA000C86C85 /* CommentAddView_default.swift */; };
 		0BF917C51D76BEA000C86C85 /* CommentAddView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BF917B91D76BEA000C86C85 /* CommentAddView_default.xib */; };
 		0BF917C61D76BEA000C86C85 /* CommentDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917BB1D76BEA000C86C85 /* CommentDisplayView_default.swift */; };
@@ -165,6 +163,8 @@
 		0BF917CC1D76BEA000C86C85 /* CommentTableViewCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917C21D76BEA000C86C85 /* CommentTableViewCell_default.swift */; };
 		0BF917CD1D76BEA000C86C85 /* CommentTableViewCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BF917C31D76BEA000C86C85 /* CommentTableViewCell_default.xib */; };
 		0BF917CF1D76BFA800C86C85 /* NSDate+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917CE1D76BFA800C86C85 /* NSDate+Screens.swift */; };
+		0BFE283A1D87E13300261A66 /* LRScreenscommentService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BFE28381D87E13300261A66 /* LRScreenscommentService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0BFE283B1D87E13300261A66 /* LRScreenscommentService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE28391D87E13300261A66 /* LRScreenscommentService_v70.m */; };
 		431250828CDCA06E95D11B8A /* Pods_LiferayScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F2FC46C9BDDDADEE705508 /* Pods_LiferayScreensTests.framework */; };
 		88019FA21B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */; };
 		88019FA31B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */; };
@@ -679,8 +679,6 @@
 		0BF9179D1D76BE6900C86C85 /* CommentListPageLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListPageLiferayConnector.swift; sourceTree = "<group>"; };
 		0BF9179F1D76BE6900C86C85 /* CommentListPageLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListPageLoadInteractor.swift; sourceTree = "<group>"; };
 		0BF917B01D76BE7500C86C85 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
-		0BF917B21D76BE8D00C86C85 /* LRCommentmanagerjsonwsService_v70.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRCommentmanagerjsonwsService_v70.h; sourceTree = "<group>"; };
-		0BF917B31D76BE8D00C86C85 /* LRCommentmanagerjsonwsService_v70.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRCommentmanagerjsonwsService_v70.m; sourceTree = "<group>"; };
 		0BF917B81D76BEA000C86C85 /* CommentAddView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentAddView_default.swift; sourceTree = "<group>"; };
 		0BF917B91D76BEA000C86C85 /* CommentAddView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentAddView_default.xib; sourceTree = "<group>"; };
 		0BF917BB1D76BEA000C86C85 /* CommentDisplayView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentDisplayView_default.swift; sourceTree = "<group>"; };
@@ -692,6 +690,8 @@
 		0BF917C21D76BEA000C86C85 /* CommentTableViewCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell_default.swift; sourceTree = "<group>"; };
 		0BF917C31D76BEA000C86C85 /* CommentTableViewCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell_default.xib; sourceTree = "<group>"; };
 		0BF917CE1D76BFA800C86C85 /* NSDate+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Screens.swift"; sourceTree = "<group>"; };
+		0BFE28381D87E13300261A66 /* LRScreenscommentService_v70.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreenscommentService_v70.h; sourceTree = "<group>"; };
+		0BFE28391D87E13300261A66 /* LRScreenscommentService_v70.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreenscommentService_v70.m; sourceTree = "<group>"; };
 		7C0B882BE724FFD745F72E9B /* Pods-LiferayScreensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.debug.xcconfig"; sourceTree = "<group>"; };
 		88019FA11B8F22EE00674B00 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/webcontentdisplay-screenlet.strings"; sourceTree = "<group>"; };
 		880459EC1CA15FA400449D55 /* DDMFieldTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDMFieldTableCell.swift; sourceTree = "<group>"; };
@@ -1967,10 +1967,10 @@
 		887E05551C6A4DF700CA3807 /* v70 */ = {
 			isa = PBXGroup;
 			children = (
-				0BF917B21D76BE8D00C86C85 /* LRCommentmanagerjsonwsService_v70.h */,
-				0BF917B31D76BE8D00C86C85 /* LRCommentmanagerjsonwsService_v70.m */,
 				887E05561C6A4DF700CA3807 /* LRScreensassetentryService_v70.h */,
 				887E05571C6A4DF700CA3807 /* LRScreensassetentryService_v70.m */,
+				0BFE28381D87E13300261A66 /* LRScreenscommentService_v70.h */,
+				0BFE28391D87E13300261A66 /* LRScreenscommentService_v70.m */,
 				0BCB4FAF1D37C08B0023E2CA /* LRScreensddlrecordService_v70.h */,
 				0BCB4FB01D37C08B0023E2CA /* LRScreensddlrecordService_v70.m */,
 				887E055A1C6A4DF700CA3807 /* LRScreensjournalarticleService_v70.h */,
@@ -2366,12 +2366,12 @@
 				0BCB4FB11D37C08B0023E2CA /* LRScreensddlrecordService_v70.h in Headers */,
 				8892C67E1ACB2E3300192232 /* LiferayScreens.h in Headers */,
 				887E054D1C6A4DB000CA3807 /* LRScreensassetentryService_v62.h in Headers */,
-				0BF917B41D76BE8D00C86C85 /* LRCommentmanagerjsonwsService_v70.h in Headers */,
 				887E069B1C6A4DF800CA3807 /* LRScreensjournalarticleService_v70.h in Headers */,
 				887E06971C6A4DF800CA3807 /* LRScreensassetentryService_v70.h in Headers */,
 				88DE2AA21AD3ED6800714701 /* LiferayScreensFrameworkConfig.h in Headers */,
 				0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */,
 				887E05511C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h in Headers */,
+				0BFE283A1D87E13300261A66 /* LRScreenscommentService_v70.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2712,6 +2712,7 @@
 				881E61871ACBEE0B00862B9E /* DDLListScreenlet.swift in Sources */,
 				881E611F1ACBE5F000862B9E /* SignUpViewModel.swift in Sources */,
 				881E617E1ACBEE0B00862B9E /* DDLFormSubmitFormInteractor.swift in Sources */,
+				0BFE283B1D87E13300261A66 /* LRScreenscommentService_v70.m in Sources */,
 				0BF917A11D76BE6900C86C85 /* CommentAddViewModel.swift in Sources */,
 				881E622E1ACBFC3400862B9E /* SignUpView_default.swift in Sources */,
 				884F926A1D58D7D3002EE6B3 /* BaseListCollectionView.swift in Sources */,
@@ -2773,7 +2774,6 @@
 				889125B21D547A10006AFA08 /* LRScreensratingsentryService_v70.m in Sources */,
 				881E624B1ACBFC3400862B9E /* DDLListView_default.swift in Sources */,
 				889125AA1D5479E6006AFA08 /* LoadRatingsInteractor.swift in Sources */,
-				0BF917B51D76BE8D00C86C85 /* LRCommentmanagerjsonwsService_v70.m in Sources */,
 				0B5B5E861D5869DB0007D4B1 /* ImageEntryUpload.swift in Sources */,
 				0B21801F1D6C500C00A23690 /* BlogsDisplayViewModel.swift in Sources */,
 				0B2180131D6C4F6F00A23690 /* DDMFieldStringWithOptions.swift in Sources */,

@@ -69,7 +69,7 @@ import Foundation
 	}
 
 	public var commentId: Int64 {
-		return (attributes["commentId"]! as! String).asLong!
+		return (attributes["commentId"]! as! NSNumber).longLongValue
 	}
 
 	public var userName: String {
@@ -77,7 +77,7 @@ import Foundation
 	}
 
 	public var userId: Int64 {
-		return (attributes["userId"]! as! String).asLong!
+		return (attributes["userId"]! as! NSNumber).longLongValue
 	}
 
 	public var createDate: NSDate {

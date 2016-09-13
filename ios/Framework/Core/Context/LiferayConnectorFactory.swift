@@ -137,31 +137,25 @@ public protocol LiferayConnectorFactory {
 	func createImageGalleryDeleteConnector(imageEntryId: Int64) -> ImageGalleryDeleteConnector?
 
 	func createCommentListPageConnector(
-		groupId groupId: Int64,
-		className: String,
+		className className: String,
 		classPK: Int64,
 		startRow: Int,
 		endRow: Int,
 		computeRowCount: Bool) -> CommentListPageLiferayConnector?
 
 	func createCommentAddConnector(
-		groupId groupId: Int64,
-		className: String,
+		className className: String,
 		classPK: Int64,
 		body: String) -> CommentAddLiferayConnector?
 
 	func createCommentLoadConnector(
-		groupId groupId: Int64,
-		commentId: Int64) -> CommentLoadLiferayConnector?
+		commentId commentId: Int64) -> CommentLoadLiferayConnector?
 
 	func createCommentDeleteConnector(
 		commentId commentId: Int64) -> CommentDeleteLiferayConnector?
 
 	func createCommentUpdateConnector(
-		groupId groupId: Int64,
-		className: String,
-		classPK: Int64,
-		commentId: Int64,
+		commentId commentId: Int64,
 		body: String) -> CommentUpdateLiferayConnector?
 
 }
@@ -400,8 +394,7 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 	
 	public func createCommentListPageConnector(
-			groupId groupId: Int64,
-			className: String,
+			className className: String,
 			classPK: Int64,
 			startRow: Int,
 			endRow: Int,
@@ -411,8 +404,7 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	public func createCommentAddConnector(
-			groupId groupId: Int64,
-			className: String,
+			className className: String,
 			classPK: Int64,
 			body: String) -> CommentAddLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: CommentAddLiferayConnector")
@@ -420,8 +412,7 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	public func createCommentLoadConnector(
-			groupId groupId: Int64,
-			commentId: Int64) -> CommentLoadLiferayConnector? {
+			commentId commentId: Int64) -> CommentLoadLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: CommentLoadLiferayConnector")
 		return nil
 	}
@@ -432,10 +423,7 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	public func createCommentUpdateConnector(
-			groupId groupId: Int64,
-			className: String,
-			classPK: Int64,
-			commentId: Int64,
+			commentId commentId: Int64,
 			body: String) -> CommentUpdateLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: CommentUpdateLiferayConnector")
 		return nil
@@ -675,14 +663,12 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	public func createCommentListPageConnector(
-			groupId groupId: Int64,
-			className: String,
+			className className: String,
 			classPK: Int64,
 			startRow: Int,
 			endRow: Int,
 			computeRowCount: Bool) -> CommentListPageLiferayConnector? {
 		return Liferay70CommentListPageConnector(
-			groupId: groupId,
 			className: className,
 			classPK: classPK,
 			startRow: startRow,
@@ -691,22 +677,18 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	public func createCommentAddConnector(
-			groupId groupId: Int64,
-			className: String,
+			className className: String,
 			classPK: Int64,
 			body: String) -> CommentAddLiferayConnector? {
 		return Liferay70CommentAddConnector(
-			groupId: groupId,
 			className: className,
 			classPK: classPK,
 			body: body)
 	}
 
 	public func createCommentLoadConnector(
-			groupId groupId: Int64,
-			commentId: Int64) -> CommentLoadLiferayConnector? {
+			commentId commentId: Int64) -> CommentLoadLiferayConnector? {
 		return Liferay70CommentLoadConnector(
-			groupId: groupId,
 			commentId: commentId)
 	}
 
@@ -716,15 +698,9 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	public func createCommentUpdateConnector(
-			groupId groupId: Int64,
-			className: String,
-			classPK: Int64,
-			commentId: Int64,
+			commentId commentId: Int64,
 			body: String) -> CommentUpdateLiferayConnector? {
 		return Liferay70CommentUpdateConnector(
-			groupId: groupId,
-			className: className,
-			classPK: classPK,
 			commentId: commentId,
 			body: body)
 	}

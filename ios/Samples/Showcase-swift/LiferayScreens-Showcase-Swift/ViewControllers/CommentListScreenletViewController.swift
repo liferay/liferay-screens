@@ -84,7 +84,6 @@ class CommentListScreenletViewController: UIViewController,
 		if let newCommentBody = body, screenlet = listScreenlet {
 			let interactor = CommentAddInteractor(
 				screenlet: nil,
-				groupId: screenlet.groupId,
 				className: screenlet.className,
 				classPK: screenlet.classPK,
 				body: newCommentBody)

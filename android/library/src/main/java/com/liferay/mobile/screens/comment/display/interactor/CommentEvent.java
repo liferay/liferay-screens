@@ -25,9 +25,18 @@ public class CommentEvent extends ListEvent<CommentEntry> {
 	}
 
 	public CommentEvent(long commentId, String className, long classPK, String body) {
-		this.commentId = commentId;
+		this(commentId, body);
 		this.className = className;
 		this.classPK = classPK;
+	}
+
+	public CommentEvent(long commentId, String body, CommentEntry commentEntry) {
+		this(commentId, body);
+		this.commentEntry = commentEntry;
+	}
+
+	public CommentEvent(long commentId, String body) {
+		this.commentId = commentId;
 		this.body = body;
 	}
 

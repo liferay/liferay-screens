@@ -27,7 +27,6 @@ import UIKit
 
 @IBDesignable public class CommentAddScreenlet: BaseScreenlet {
 
-	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var className: String = ""
 	@IBInspectable public var classPK: Int64 = 0
 
@@ -45,7 +44,6 @@ import UIKit
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		let interactor = CommentAddInteractor(
 			screenlet: self,
-			groupId: self.groupId,
 			className: self.className,
 			classPK: self.classPK,
 			body: self.viewModel.body)

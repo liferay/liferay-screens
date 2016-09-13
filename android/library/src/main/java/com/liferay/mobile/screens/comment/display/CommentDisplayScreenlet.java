@@ -30,9 +30,6 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	private CommentDisplayListener listener;
 	private CommentEntry commentEntry;
 	private long commentId;
-	private String className;
-	private long classPK;
-	private long groupId;
 	private CachePolicy cachePolicy;
 	private boolean autoLoad;
 	private boolean editable;
@@ -78,10 +75,6 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 
 		autoLoad = typedArray.getBoolean(R.styleable.CommentDisplayScreenlet_autoLoad, true);
 
-		className = typedArray.getString(R.styleable.CommentDisplayScreenlet_className);
-
-		classPK = castToLong(typedArray.getString(R.styleable.CommentDisplayScreenlet_classPK));
-
 		commentId = castToLong(typedArray.getString(R.styleable.CommentDisplayScreenlet_commentId));
 
 		editable = typedArray.getBoolean(R.styleable.CommentDisplayScreenlet_editable, true);
@@ -114,11 +107,11 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	protected void onUserAction(String actionName, Interactor interactor, Object... args) {
 		switch (actionName) {
 			case DELETE_COMMENT_ACTION:
-				((CommentDeleteInteractor) interactor).start(new CommentEvent(commentId, className, classPK, null));
+				((CommentDeleteInteractor) interactor).start(new CommentEvent(commentId, null));
 				break;
 			case UPDATE_COMMENT_ACTION:
 				String body = (String) args[0];
-				((CommentUpdateInteractor) interactor).start(new CommentEvent(commentId, className, classPK, body));
+				((CommentUpdateInteractor) interactor).start(new CommentEvent(commentId, body));
 				break;
 			case LOAD_COMMENT_ACTION:
 			default:
@@ -196,30 +189,6 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 
 	public void setCommentId(long commentId) {
 		this.commentId = commentId;
-	}
-
-	public String getClassName() {
-		return className;
-	}
-
-	public void setClassName(String className) {
-		this.className = className;
-	}
-
-	public long getClassPK() {
-		return classPK;
-	}
-
-	public void setClassPK(long classPK) {
-		this.classPK = classPK;
-	}
-
-	public long getGroupId() {
-		return groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		this.groupId = groupId;
 	}
 
 	public CachePolicy getCachePolicy() {

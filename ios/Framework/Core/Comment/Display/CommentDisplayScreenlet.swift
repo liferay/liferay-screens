@@ -44,7 +44,6 @@ import UIKit
 	public static let DeleteAction = "deleteAction"
 	public static let UpdateAction = "updateAction"
 
-	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var commentId: Int64 = 0
 	@IBInspectable public var className: String = ""
 	@IBInspectable public var classPK: Int64 = 0
@@ -123,7 +122,6 @@ import UIKit
 	private func createCommentLoadInteractor() -> Interactor {
 		let interactor = CommentLoadInteractor(
 			screenlet: self,
-			groupId: self.groupId,
 			commentId: self.commentId)
 
 		interactor.onSuccess = {
@@ -164,9 +162,6 @@ import UIKit
 	private func createCommentUpdateInteractor(body: String) -> Interactor {
 		let interactor = CommentUpdateInteractor(
 			screenlet: self,
-			groupId: groupId,
-			className: className,
-			classPK: classPK,
 			commentId: commentId,
 			body: body)
 

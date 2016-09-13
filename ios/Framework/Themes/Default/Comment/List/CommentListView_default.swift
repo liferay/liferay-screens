@@ -88,7 +88,6 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 			-> UITableViewCell {
 		let cell = super.doDequeueReusableCell(row: row, object: object)
 		if let commentCell = cell as? CommentTableViewCell_default {
-			commentCell.commentDisplayScreenlet?.groupId = commentListScreenlet.groupId
 			commentCell.commentDisplayScreenlet?.className = commentListScreenlet.className
 			commentCell.commentDisplayScreenlet?.classPK = commentListScreenlet.classPK
 			commentCell.commentDisplayScreenlet?.presentingViewController =
