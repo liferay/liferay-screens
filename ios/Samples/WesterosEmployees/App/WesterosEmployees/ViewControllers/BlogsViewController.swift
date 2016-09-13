@@ -14,10 +14,16 @@
 import UIKit
 import LiferayScreens
 
-class BlogsViewController: CardViewController {
+class BlogsViewController: CardViewController, AssetListScreenletDelegate {
 
-	@IBOutlet weak var assetListScreenlet: AssetListScreenlet?
+	var selectedBlogEntry: BlogsEntry?
 
+	@IBOutlet weak var assetListScreenlet: AssetListScreenlet? {
+		didSet {
+			assetListScreenlet?.delegate = self
+		}
+	}
+	
 	//MARK: Init methods
 
 	convenience init() {
@@ -28,5 +34,13 @@ class BlogsViewController: CardViewController {
 
 	func load() {
 		assetListScreenlet?.loadList()
+	}
+
+
+	//MARK: AssetListScreenletDelegate
+
+	func screenlet(screenlet: AssetListScreenlet, onAssetSelected asset: Asset) {
+		self.selectedBlogEntry = BlogsEntry(attributes: asset.attributes)
+		cardView?.moveRight()
 	}
 }

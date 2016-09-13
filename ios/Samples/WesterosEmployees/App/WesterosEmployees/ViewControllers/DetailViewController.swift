@@ -31,23 +31,25 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		}
 	}
 
-	var fileEntryId: Int64? {
-		didSet {
-			if let entryId = fileEntryId {
+	var className: String?
+	var classPK: Int64?
 
-				/* Load asset */
-				assetDisplayScreenlet?.className = AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
-				assetDisplayScreenlet?.classPK = entryId
-				assetDisplayScreenlet?.load()
 
-				/* Load asset rating */
-				ratingScreenlet?.className = AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
-				ratingScreenlet?.classPK = entryId
-				ratingScreenlet?.loadRatings()
-			}
-		}
+	//MARK: Public methods
+
+	func load() {
+
+		/* Load asset */
+		assetDisplayScreenlet?.className = self.className!
+		assetDisplayScreenlet?.classPK = self.classPK!
+		assetDisplayScreenlet?.load()
+
+		/* Load asset rating */
+		ratingScreenlet?.className = self.className!
+		ratingScreenlet?.classPK = self.classPK!
+		ratingScreenlet?.loadRatings()
 	}
-
+	
 
 	//MARK: UIViewController
 	

@@ -167,12 +167,20 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 			self.userProfileButton?.enabled = position.page == 0
 		}
 
-		switch (position.card, position.page) {
-		case (2, 1):
-			detailViewController?.fileEntryId = galleryViewController?.selectedImageEntry?.imageEntryId
-			cardDeck.cards[2].secondaryButton.alpha = 0.0
-		default:
-			break
+		if let vc = cardDeck.cards[position.card].presentingController as? DetailViewController {
+			switch (position.card, position.page) {
+			case (1, 1):
+				vc.className = AssetClasses.getClassName(AssetClassNameKey_BlogsEntry)!
+				vc.classPK = blogsViewController?.selectedBlogEntry?.classPK
+				vc.load()
+			case (2, 1):
+				vc.className = AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
+				vc.classPK = galleryViewController?.selectedImageEntry?.imageEntryId
+				cardDeck.cards[2].secondaryButton.alpha = 0.0
+				vc.load()
+			default:
+				break
+			}
 		}
 	}
 }
