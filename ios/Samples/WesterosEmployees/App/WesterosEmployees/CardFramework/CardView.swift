@@ -234,6 +234,10 @@ public class CardView: UIView {
 		button.addSubview(arrow)
 		button.addSubview(secondaryButton)
 
+		//Set button insets
+		button.titleEdgeInsets = UIEdgeInsetsMake(
+			0, CardView.DefaultMinimizedHeight, 0, CardView.DefaultMinimizedHeight)
+
 		//Add content view and scrollview
 		addSubview(cardContentView)
 		cardContentView.addSubview(scrollView)
