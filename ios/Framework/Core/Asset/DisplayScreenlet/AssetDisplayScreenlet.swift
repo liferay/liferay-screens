@@ -38,7 +38,7 @@ import UIKit
 
 	@IBInspectable public var autoLoad: Bool = true
 
-	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.CacheFirst.rawValue
+	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
 
 	public var assetDisplayDelegate: AssetDisplayScreenletDelegate? {
@@ -68,16 +68,21 @@ import UIKit
 				screenlet: self, className: self.className, classPK: self.classPK)
 		}
 
+		interactor.cacheStrategy = CacheStrategyType(rawValue: offlinePolicy ?? "") ?? .RemoteFirst
+
 		interactor.onSuccess = {
 			if let resultAsset = interactor.asset {
-				self.assetDisplayDelegate?.screenlet?(self, onAssetResponse: resultAsset)
-
 				if let innerScreenlet = self.createInnerScreenlet(resultAsset) {
 					self.assetDisplayViewModel?.innerScreenlet = innerScreenlet
 					self.assetDisplayViewModel?.asset = resultAsset
+
+					self.assetDisplayDelegate?.screenlet?(self, onAssetResponse: resultAsset)
 				}
 				else {
 					self.assetDisplayViewModel?.asset = nil
+
+					self.assetDisplayDelegate?.screenlet?(self,
+							onAssetError: NSError.errorWithCause(.InvalidServerResponse))
 				}
 			}
 		}
@@ -113,12 +118,15 @@ import UIKit
 		if let screenlet = innerScreenlet as? FileDisplayScreenlet {
 			screenlet.fileEntry = FileEntry(attributes: asset.attributes)
 			screenlet.autoLoad = false
+			screenlet.offlinePolicy = self.offlinePolicy
 			screenlet.presentingViewController = self.presentingViewController
 			screenlet.load()
 		}
 		else if let screenlet = innerScreenlet as? BlogsEntryDisplayScreenlet {
 			screenlet.blogsEntry = BlogsEntry(attributes: asset.attributes)
 			screenlet.autoLoad = false
+			screenlet.offlinePolicy = self.offlinePolicy
+			screenlet.load()
 		}
 
 		assetDisplayDelegate?.screenlet?(self, onConfigureScreenlet: innerScreenlet, onAsset: asset)
