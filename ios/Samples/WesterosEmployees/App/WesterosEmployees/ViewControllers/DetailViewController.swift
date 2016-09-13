@@ -110,6 +110,10 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		return DefaultResources.EvenColorBackground
 	}
 
+	func cardDeck(cardDeck: CardDeckView, buttonImageForCardIndex index: Int) -> UIImage? {
+		return UIImage(named: "icon_DOWN_W")
+	}
+
 	func cardDeck(cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
 		return "Comments"
 	}
