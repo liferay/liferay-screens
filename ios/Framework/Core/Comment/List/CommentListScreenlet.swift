@@ -93,7 +93,6 @@ import UIKit
 				screenlet: self,
 				page: page,
 				computeRowCount: computeRowCount,
-				groupId: groupId,
 				className: className,
 				classPK: classPK)
 

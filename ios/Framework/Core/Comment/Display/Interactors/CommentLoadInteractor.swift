@@ -16,13 +16,11 @@ import UIKit
 
 public class CommentLoadInteractor: ServerReadConnectorInteractor {
 
-	let groupId: Int64
 	let commentId: Int64
 
 	public var resultComment: Comment?
 
-	init(screenlet: BaseScreenlet, groupId: Int64, commentId: Int64) {
-		self.groupId = (groupId != 0) ? groupId : LiferayServerContext.groupId
+	init(screenlet: BaseScreenlet, commentId: Int64) {
 		self.commentId = commentId
 
 		super.init(screenlet: screenlet)

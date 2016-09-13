@@ -45,7 +45,6 @@ import UIKit
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		let interactor = CommentAddInteractor(
 			screenlet: self,
-			groupId: self.groupId,
 			className: self.className,
 			classPK: self.classPK,
 			body: self.viewModel.body)

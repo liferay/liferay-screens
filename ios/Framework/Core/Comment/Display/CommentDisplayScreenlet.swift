@@ -123,7 +123,6 @@ import UIKit
 	private func createCommentLoadInteractor() -> Interactor {
 		let interactor = CommentLoadInteractor(
 			screenlet: self,
-			groupId: self.groupId,
 			commentId: self.commentId)
 
 		interactor.onSuccess = {
@@ -164,7 +163,6 @@ import UIKit
 	private func createCommentUpdateInteractor(body: String) -> Interactor {
 		let interactor = CommentUpdateInteractor(
 			screenlet: self,
-			groupId: groupId,
 			className: className,
 			classPK: classPK,
 			commentId: commentId,
