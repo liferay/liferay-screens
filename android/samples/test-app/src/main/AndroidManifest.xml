@@ -39,7 +39,7 @@
 		<activity android:name=".CustomInteractorActivity"/>
 		<activity android:name=".ListBookmarksActivity"/>
 		<activity android:name=".WebContentDisplayStructuredActivity"/>
-		<activity android:name=".WebViewListActivity"/>
+		<activity android:name=".WebContentListActivity"/>
 		<activity
 			android:name=".CommentsActivity"
 			android:windowSoftInputMode="adjustPan"/>
