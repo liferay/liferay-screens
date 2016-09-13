@@ -163,8 +163,6 @@ import UIKit
 	private func createCommentUpdateInteractor(body: String) -> Interactor {
 		let interactor = CommentUpdateInteractor(
 			screenlet: self,
-			className: className,
-			classPK: classPK,
 			commentId: commentId,
 			body: body)
 

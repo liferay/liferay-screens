@@ -155,9 +155,7 @@ public protocol LiferayConnectorFactory {
 		commentId commentId: Int64) -> CommentDeleteLiferayConnector?
 
 	func createCommentUpdateConnector(
-		className className: String,
-		classPK: Int64,
-		commentId: Int64,
+		commentId commentId: Int64,
 		body: String) -> CommentUpdateLiferayConnector?
 
 }
@@ -425,9 +423,7 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	public func createCommentUpdateConnector(
-			className className: String,
-			classPK: Int64,
-			commentId: Int64,
+			commentId commentId: Int64,
 			body: String) -> CommentUpdateLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: CommentUpdateLiferayConnector")
 		return nil
@@ -702,13 +698,9 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	public func createCommentUpdateConnector(
-			className className: String,
-			classPK: Int64,
-			commentId: Int64,
+			commentId commentId: Int64,
 			body: String) -> CommentUpdateLiferayConnector? {
 		return Liferay70CommentUpdateConnector(
-			className: className,
-			classPK: classPK,
 			commentId: commentId,
 			body: body)
 	}

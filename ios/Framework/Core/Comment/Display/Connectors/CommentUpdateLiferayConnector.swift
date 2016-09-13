@@ -15,20 +15,14 @@ import UIKit
 
 public class CommentUpdateLiferayConnector: ServerConnector {
 
-	public let className: String
-	public let classPK: Int64
 	public let commentId: Int64
 	public let body: String
 
 	public var resultComment: Comment?
 
-	public init(className: String,
-	            classPK: Int64,
-	            commentId: Int64,
+	public init(commentId: Int64,
 	            body: String) {
 
-		self.className = className
-		self.classPK = classPK
 		self.commentId = commentId
 		self.body = body
 
@@ -39,14 +33,6 @@ public class CommentUpdateLiferayConnector: ServerConnector {
 		let error = super.validateData()
 
 		if error == nil {
-
-			if className.isEmpty {
-				return ValidationError("comment-display-screenlet", "undefined-className")
-			}
-
-			if classPK <= 0 {
-				return ValidationError("comment-display-screenlet", "undefined-classPK")
-			}
 
 			if commentId <= 0 {
 				return ValidationError("comment-display-screenlet", "undefined-commentId")
