@@ -15,13 +15,11 @@ import UIKit
 
 public class CommentLoadLiferayConnector: ServerConnector {
 
-	public let groupId: Int64
 	public let commentId: Int64
 
 	public var resultComment: Comment?
 
-	public init(groupId: Int64, commentId: Int64) {
-		self.groupId = groupId
+	public init(commentId: Int64) {
 		self.commentId = commentId
 		super.init()
 	}
@@ -30,10 +28,6 @@ public class CommentLoadLiferayConnector: ServerConnector {
 		let error = super.validateData()
 
 		if error == nil {
-			if groupId <= 0 {
-				return ValidationError("comment-display-screenlet", "undefined-groupId")
-			}
-
 			if commentId <= 0 {
 				return ValidationError("comment-display-screenlet", "undefined-commentId")
 			}

@@ -41,7 +41,6 @@ public class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 
 	override public func createConnector() -> CommentUpdateLiferayConnector? {
 		return LiferayServerContext.connectorFactory.createCommentUpdateConnector(
-				groupId: groupId,
 				className: className,
 				classPK: classPK,
 				commentId: commentId,

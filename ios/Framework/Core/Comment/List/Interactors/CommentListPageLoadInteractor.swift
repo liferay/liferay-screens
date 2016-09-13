@@ -37,7 +37,6 @@ public class CommentListPageLoadInteractor: BaseListPageLoadInteractor {
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
 
 		return LiferayServerContext.connectorFactory.createCommentListPageConnector(
-			groupId: groupId,
 			className: className,
 			classPK: classPK,
 			startRow: pager(self.page),

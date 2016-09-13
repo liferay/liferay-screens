@@ -15,15 +15,13 @@ import UIKit
 
 public class CommentAddLiferayConnector: ServerConnector {
 
-	public let groupId: Int64
 	public let className: String
 	public let classPK: Int64
 	public let body: String
 
 	public var resultComment: Comment?
 
-	public init(groupId: Int64, className: String, classPK: Int64, body: String) {
-		self.groupId = groupId
+	public init(className: String, classPK: Int64, body: String) {
 		self.className = className
 		self.classPK = classPK
 		self.body = body
@@ -34,9 +32,6 @@ public class CommentAddLiferayConnector: ServerConnector {
 		let error = super.validateData()
 
 		if error == nil {
-			if groupId <= 0 {
-				return ValidationError("comment-add-screenlet", "undefined-groupId")
-			}
 
 			if className.isEmpty {
 				return ValidationError("comment-add-screenlet", "undefined-className")

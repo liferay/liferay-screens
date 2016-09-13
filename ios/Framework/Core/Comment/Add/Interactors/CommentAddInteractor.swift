@@ -40,7 +40,6 @@ public class CommentAddInteractor: ServerWriteConnectorInteractor {
 
 	override public func createConnector() -> CommentAddLiferayConnector? {
 		return LiferayServerContext.connectorFactory.createCommentAddConnector(
-				groupId: groupId,
 				className: className,
 				classPK: classPK,
 				body: body)
