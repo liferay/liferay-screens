@@ -53,7 +53,7 @@ class LoadFileEntryInteractor: ServerReadConnectorInteractor {
 
 		cacheManager.getLocalFileURL(
 				collection: "load-file-entry",
-				key: fileEntry.url) {
+				key: "filEntryId-\(fileEntry.fileEntryId)") {
 			loadCon.resultUrl = $0
 			result($0)
 		}
@@ -72,7 +72,7 @@ class LoadFileEntryInteractor: ServerReadConnectorInteractor {
 
 		cacheManager.setClean(
 			collection: "load-file-entry",
-			key: fileEntry.url,
+			key: "filEntryId-\(fileEntry.fileEntryId)",
 			localFileURL: resultUrl,
 			attributes: ["fileEntry": fileEntry])
 	}
