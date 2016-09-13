@@ -99,11 +99,6 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 	//MARK: CardDeckDelegate
 
 	func cardDeck(cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
-		let image = UIImage(named: "icon_ADD")
-		if let image = image {
-			card.setSecondaryButtonImage(image)
-		}
-
 		card.normalHeight = self.view.frame.height * 1.3
 	}
 
@@ -113,10 +108,6 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 
 	func cardDeck(cardDeck: CardDeckView, colorForButtonIndex index: Int) -> UIColor? {
 		return DefaultResources.EvenColorBackground
-	}
-
-	func cardDeck(cardDeck: CardDeckView, buttonImageForCardIndex index: Int) -> UIImage? {
-		return UIImage(named: "icon_DOWN_W")
 	}
 
 	func cardDeck(cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
