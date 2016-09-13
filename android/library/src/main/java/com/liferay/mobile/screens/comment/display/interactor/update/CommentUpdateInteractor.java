@@ -25,8 +25,8 @@ public class CommentUpdateInteractor extends BaseCacheWriteInteractor<CommentDis
 
 		JSONObject jsonObject = service.updateComment(commentId, newBody);
 
-		CommentEntry commentEntry = new CommentEntry(JSONUtil.toMap(jsonObject));
-		return new CommentEvent(commentId, newBody, commentEntry);
+		event.setCommentEntry(new CommentEntry(JSONUtil.toMap(jsonObject)));
+		return event;
 	}
 
 	@Override

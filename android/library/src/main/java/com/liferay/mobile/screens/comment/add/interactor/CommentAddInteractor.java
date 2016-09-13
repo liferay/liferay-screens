@@ -23,11 +23,10 @@ public class CommentAddInteractor extends BaseCacheWriteInteractor<CommentAddLis
 
 		validate(className, classPK, body);
 
-		ScreenscommentService service = new ScreenscommentService(getSession());
+		JSONObject jsonObject = new ScreenscommentService(getSession()).addComment(className, classPK, body);
 
-		JSONObject jsonObject = service.addComment(className, classPK, body);
-		CommentEntry commentEntry = new CommentEntry(JSONUtil.toMap(jsonObject));
-		return new CommentEvent(commentEntry.getCommentId(), className, classPK, body, commentEntry);
+		event.setCommentEntry(new CommentEntry(JSONUtil.toMap(jsonObject)));
+		return event;
 	}
 
 	@Override

@@ -22,7 +22,7 @@ public class CommentDeleteInteractor extends BaseCacheWriteInteractor<CommentDis
 
 		service.deleteComment(commentId);
 
-		return new CommentEvent();
+		return event;
 	}
 
 	@Override
