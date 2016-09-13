@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GalleryViewController" customModule="WesterosEmployees" customModuleProvider="target">
             <connections>
+                <outlet property="cardDeck" destination="AIn-iI-F5x" id="fuS-fw-erK"/>
                 <outlet property="imageGalleryScreenlet" destination="D1I-cq-kto" id="sek-Ml-SYr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -16,31 +17,43 @@
             <rect key="frame" x="0.0" y="0.0" width="404" height="297"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D1I-cq-kto" customClass="ImageGalleryScreenlet" customModule="LiferayScreens">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AIn-iI-F5x" customClass="CardDeckView" customModule="WesterosEmployees" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="404" height="297"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D1I-cq-kto" customClass="ImageGalleryScreenlet" customModule="LiferayScreens">
+                            <rect key="frame" x="0.0" y="0.0" width="404" height="227"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="folderId">
+                                    <integer key="value" value="30911"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="offlinePolicy" value="remote-first"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="repositoryId">
+                                    <integer key="value" value="30853"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="folderId">
-                            <integer key="value" value="30911"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="offlinePolicy" value="remote-first"/>
-                        <userDefinedRuntimeAttribute type="number" keyPath="repositoryId">
-                            <integer key="value" value="30853"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
+                    <constraints>
+                        <constraint firstItem="D1I-cq-kto" firstAttribute="top" secondItem="AIn-iI-F5x" secondAttribute="top" id="C5c-To-cr4"/>
+                        <constraint firstItem="D1I-cq-kto" firstAttribute="leading" secondItem="AIn-iI-F5x" secondAttribute="leading" id="efl-y5-U5j"/>
+                        <constraint firstAttribute="bottom" secondItem="D1I-cq-kto" secondAttribute="bottom" constant="70" id="tpJ-b1-ik5"/>
+                        <constraint firstAttribute="trailing" secondItem="D1I-cq-kto" secondAttribute="trailing" id="y3O-bm-UBq"/>
+                    </constraints>
                 </view>
             </subviews>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="D1I-cq-kto" secondAttribute="trailing" id="WjV-WZ-qkn"/>
-                <constraint firstAttribute="bottom" secondItem="D1I-cq-kto" secondAttribute="bottom" id="bvE-SX-LEk"/>
-                <constraint firstItem="D1I-cq-kto" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="le6-3E-Sfd"/>
-                <constraint firstItem="D1I-cq-kto" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="o9Y-vm-Hqj"/>
+                <constraint firstItem="AIn-iI-F5x" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0nL-eh-0Z6"/>
+                <constraint firstAttribute="bottom" secondItem="AIn-iI-F5x" secondAttribute="bottom" id="MOk-EF-i4U"/>
+                <constraint firstAttribute="trailing" secondItem="AIn-iI-F5x" secondAttribute="trailing" id="cSZ-s8-lXJ"/>
+                <constraint firstItem="AIn-iI-F5x" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="t5r-Bv-k9Z"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="187" y="522.5"/>
+            <point key="canvasLocation" x="355" y="370.5"/>
         </view>
     </objects>
 </document>

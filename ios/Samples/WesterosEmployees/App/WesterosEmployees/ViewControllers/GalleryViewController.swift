@@ -14,7 +14,8 @@
 import UIKit
 import LiferayScreens
 
-class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate {
+class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
+		CardDeckDataSource, CardDeckDelegate {
 
 	var selectedImageEntry: ImageEntry?
 
@@ -27,6 +28,12 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate {
 		}
 	}
 
+	@IBOutlet weak var cardDeck: CardDeckView? {
+		didSet {
+			cardDeck?.delegate = self
+			cardDeck?.dataSource = self
+		}
+	}
 
 	//MARK: Init methods
 
@@ -52,7 +59,6 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate {
 		didSet {
 			cardView?.addPage(self.view)
 			cardView?.presentingController = self
-			cardView?.secondaryButton.addTarget(self, action: #selector(GalleryViewController.startGalleryUpload), forControlEvents: .TouchUpInside)
 		}
 	}
 
@@ -62,5 +68,35 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate {
 	func screenlet(screenlet: ImageGalleryScreenlet, onImageEntrySelected imageEntry: ImageEntry) {
 		self.selectedImageEntry = imageEntry
 		cardView?.moveRight()
+	}
+
+
+	//MARK: CardDeckDataSource
+
+	func numberOfCardsIn(cardDeck: CardDeckView) -> Int {
+		return 1
+	}
+
+	func cardDeck(cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
+		return "Upload image"
+	}
+
+	func cardDeck(cardDeck: CardDeckView, controllerForCard position: CardPosition) -> CardViewController? {
+		return nil
+	}
+
+
+	//MARK: CardDeckDelegate
+
+	func cardDeck(cardDeck: CardDeckView, colorForCardIndex index: Int) -> UIColor? {
+		return DefaultResources.OddColorBackground
+	}
+
+	func cardDeck(cardDeck: CardDeckView, colorForButtonIndex index: Int) -> UIColor? {
+		return DefaultResources.EvenColorBackground
+	}
+
+	func cardDeck(cardDeck: CardDeckView, buttonImageForCardIndex index: Int) -> UIImage? {
+		return UIImage(named: "ICON_DOWN_W")
 	}
 }
