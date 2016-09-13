@@ -66,9 +66,6 @@
 		0B26EAFF1D804186000201C6 /* TermsAndConditions.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 0B26EAFE1D804186000201C6 /* TermsAndConditions.rtf */; };
 		0B26EB021D805C6D000201C6 /* AssetListView_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B26EB011D805C6D000201C6 /* AssetListView_westeros.swift */; };
 		0B26EB041D805C79000201C6 /* AssetListView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B26EB031D805C79000201C6 /* AssetListView_westeros.xib */; };
-		0B26EB1A1D816303000201C6 /* icon_ADD.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B26EB171D816303000201C6 /* icon_ADD.png */; };
-		0B26EB1B1D816303000201C6 /* icon_ADD@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B26EB181D816303000201C6 /* icon_ADD@2x.png */; };
-		0B26EB1C1D816303000201C6 /* icon_ADD@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B26EB191D816303000201C6 /* icon_ADD@3x.png */; };
 		0B26EB1E1D81873C000201C6 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B26EB1D1D81873C000201C6 /* UserProfile.storyboard */; };
 		0B282F121D7ED7BE0090F800 /* DocumentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B282F101D7ED7BE0090F800 /* DocumentationViewController.swift */; };
 		0B282F131D7ED7BE0090F800 /* DocumentationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B282F111D7ED7BE0090F800 /* DocumentationViewController.xib */; };
@@ -187,9 +184,6 @@
 		0B26EAFE1D804186000201C6 /* TermsAndConditions.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = TermsAndConditions.rtf; sourceTree = "<group>"; };
 		0B26EB011D805C6D000201C6 /* AssetListView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListView_westeros.swift; sourceTree = "<group>"; };
 		0B26EB031D805C79000201C6 /* AssetListView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssetListView_westeros.xib; sourceTree = "<group>"; };
-		0B26EB171D816303000201C6 /* icon_ADD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_ADD.png; sourceTree = "<group>"; };
-		0B26EB181D816303000201C6 /* icon_ADD@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_ADD@2x.png"; sourceTree = "<group>"; };
-		0B26EB191D816303000201C6 /* icon_ADD@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_ADD@3x.png"; sourceTree = "<group>"; };
 		0B26EB1D1D81873C000201C6 /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 		0B282F101D7ED7BE0090F800 /* DocumentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentationViewController.swift; sourceTree = "<group>"; };
 		0B282F111D7ED7BE0090F800 /* DocumentationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentationViewController.xib; sourceTree = "<group>"; };
@@ -445,9 +439,6 @@
 				0B0A23751D6B22EF0061B50D /* icon_DOWN_W.png */,
 				0B0A23761D6B22EF0061B50D /* icon_DOWN_W@2x.png */,
 				0B0A23771D6B22EF0061B50D /* icon_DOWN_W@3x.png */,
-				0B26EB171D816303000201C6 /* icon_ADD.png */,
-				0B26EB181D816303000201C6 /* icon_ADD@2x.png */,
-				0B26EB191D816303000201C6 /* icon_ADD@3x.png */,
 				0B0A23781D6B22EF0061B50D /* icon_LEFT.png */,
 				0B0A23791D6B22EF0061B50D /* icon_LEFT@2x.png */,
 				0B0A237A1D6B22EF0061B50D /* icon_LEFT@3x.png */,
@@ -613,7 +604,6 @@
 				0B0A23681D6B221B0061B50D /* SignInViewController.xib in Resources */,
 				0B0A23A41D6B22EF0061B50D /* tour-step3@3x.png in Resources */,
 				0B0A238E1D6B22EF0061B50D /* icon_DOWN@2x.png in Resources */,
-				0B26EB1C1D816303000201C6 /* icon_ADD@3x.png in Resources */,
 				0BD07A271D82C4C200470A2E /* no-photo@2x.png in Resources */,
 				0B318C051D81BCBC0027C04B /* AssetListView_westeros_doc.xib in Resources */,
 				0B0A23131D6B1D840061B50D /* SignUpView_westeros.xib in Resources */,
@@ -626,7 +616,6 @@
 				0BC6BA441D8188670042156E /* file-none.png in Resources */,
 				0BC6BA431D8188670042156E /* file-music@3x.png in Resources */,
 				0B9309551D6DBE58003824D6 /* ForgotPasswordViewController.xib in Resources */,
-				0B26EB1B1D816303000201C6 /* icon_ADD@2x.png in Resources */,
 				0B0A239E1D6B22EF0061B50D /* tour-step1@3x.png in Resources */,
 				0BD07A261D82C4C200470A2E /* no-photo.png in Resources */,
 				0B35AF6D1D6C359D002E3D2F /* Auth.storyboard in Resources */,
@@ -683,7 +672,6 @@
 				0B0A23291D6B1D840061B50D /* circle_see pasword_ON@2x.png in Resources */,
 				0B0A239D1D6B22EF0061B50D /* tour-step1@2x.png in Resources */,
 				0B0A239F1D6B22EF0061B50D /* tour-step2.png in Resources */,
-				0B26EB1A1D816303000201C6 /* icon_ADD.png in Resources */,
 				0B0A229D1D6B0CDA0061B50D /* Main.storyboard in Resources */,
 				0BC6BA4E1D8188670042156E /* file-video@2x.png in Resources */,
 				0B282F131D7ED7BE0090F800 /* DocumentationViewController.xib in Resources */,
