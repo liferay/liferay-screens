@@ -23,7 +23,7 @@ import Foundation
 		return ""
 	}
 
-	public var fileEntry: [String:AnyObject]? {
-		return attributes["object"]?.firstItem as? [String:AnyObject]
+	public var fileEntry: [String:AnyObject] {
+		return attributes["object"]!["fileEntry"] as! [String:AnyObject]
 	}
 }
