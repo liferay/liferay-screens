@@ -55,6 +55,16 @@ import Foundation
 		return attributes["entryId"]!.description.asLong!
 	}
 
+	public var createDate: NSDate {
+		let milliseconds = (attributes["createDate"]! as! NSNumber).doubleValue
+		return NSDate(millisecondsSince1970: milliseconds)
+	}
+
+	public var modifiedDate: NSDate {
+		let milliseconds = (attributes["modifiedDate"]! as! NSNumber).doubleValue
+		return NSDate(millisecondsSince1970: milliseconds)
+	}
+
 	override public var debugDescription: String {
 		return attributes.debugDescription
 	}

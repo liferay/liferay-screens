@@ -67,7 +67,7 @@
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="portletItemName" value="WesterosEmployeesNews"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros_news"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latest changes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YLw-JF-ukC">
