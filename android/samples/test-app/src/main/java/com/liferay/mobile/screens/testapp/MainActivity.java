@@ -61,7 +61,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				start(SelectAssetActivity.class);
 				break;
 			case R.id.web_content_list:
-				start(WebViewListActivity.class);
+				start(WebContentListActivity.class);
 				break;
 			case R.id.sign_up:
 				start(SignUpActivity.class);
