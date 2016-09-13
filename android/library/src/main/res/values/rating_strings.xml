@@ -3,8 +3,8 @@
 	<string name="rating_total">Total: %d</string>
 
 	<plurals name="rating_count">
-		<item quantity="one">%d rating</item>
-		<item quantity="other">%d ratings</item>
+		<item quantity="one">%1$d rating</item>
+		<item quantity="other">%1$d ratings</item>
 	</plurals>
 	<string name="ratings_error">An error occurred during the requested operation</string>
 </resources>
