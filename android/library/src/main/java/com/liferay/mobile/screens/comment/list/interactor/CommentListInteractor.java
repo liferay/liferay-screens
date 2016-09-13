@@ -25,7 +25,7 @@ public class CommentListInteractor
     String className = (String) args[0];
     long classPK = (long) args[1];
 
-    validate(groupId, className, classPK);
+    validate(className, classPK);
 
     return getService(getSession()).getComments(className, classPK, query.getStartRow(),
       query.getEndRow());
@@ -37,7 +37,7 @@ public class CommentListInteractor
     String className = (String) args[0];
     long classPK = (long) args[1];
 
-    validate(groupId, className, classPK);
+    validate(className, classPK);
 
     return getService(getSession()).getCommentsCount(className, classPK);
   }
@@ -58,10 +58,8 @@ public class CommentListInteractor
     return className + SEPARATOR + classPK;
   }
 
-  protected void validate(long groupId, String className, long classPK) {
-    if (groupId <= 0) {
-      throw new IllegalArgumentException("groupId must be greater than 0");
-    } else if (className.isEmpty()) {
+  protected void validate(String className, long classPK) {
+    if (className.isEmpty()) {
       throw new IllegalArgumentException("className cannot be empty");
     } else if (classPK <= 0) {
       throw new IllegalArgumentException("classPK must be greater than 0");

@@ -20,7 +20,7 @@ public class CommentLoadInteractor
 
     long commentId = (long) args[0];
 
-    validate(groupId, commentId);
+    validate(commentId);
 
     ScreenscommentService commentService = new ScreenscommentService(getSession());
     JSONObject jsonObject = commentService.getComment(commentId);
@@ -44,10 +44,8 @@ public class CommentLoadInteractor
     return String.valueOf(commentId);
   }
 
-  private void validate(long groupId, long commentId) {
-    if (groupId <= 0) {
-      throw new IllegalArgumentException("groupId must be greater than 0");
-    } else if (commentId <= 0) {
+  private void validate(long commentId) {
+    if (commentId <= 0) {
       throw new IllegalArgumentException("commentId cannot be 0 or negative");
     }
   }

@@ -17,19 +17,17 @@ public class CommentUpdateInteractor
 
   @Override
   public CommentEvent execute(CommentEvent event) throws Exception {
-    String className = event.getClassName();
-    long classPK = event.getClassPK();
     long commentId = event.getCommentId();
     String newBody = event.getBody();
 
-    validate(event.getGroupId(), className, classPK, commentId, newBody);
+    validate(commentId, newBody);
 
     ScreenscommentService service = new ScreenscommentService(getSession());
 
     JSONObject jsonObject = service.updateComment(commentId, newBody);
 
     CommentEntry commentEntry = new CommentEntry(JSONUtil.toMap(jsonObject));
-    return new CommentEvent(commentId, className, classPK, newBody, commentEntry);
+    return new CommentEvent(commentId, newBody, commentEntry);
   }
 
   @Override
@@ -42,16 +40,10 @@ public class CommentUpdateInteractor
     getListener().error(event.getException(), CommentDisplayScreenlet.UPDATE_COMMENT_ACTION);
   }
 
-  protected void validate(long groupId, String className, long classPK, long commentId,
+  protected void validate(long commentId,
     String newBody) {
 
-    if (groupId <= 0) {
-      throw new IllegalArgumentException("groupId must be greater than 0");
-    } else if (className.isEmpty()) {
-      throw new IllegalArgumentException("className cannot be empty");
-    } else if (classPK <= 0) {
-      throw new IllegalArgumentException("classPK must be greater than 0");
-    } else if (commentId <= 0) {
+    if (commentId <= 0) {
       throw new IllegalArgumentException("commentId cannot be 0 or negative");
     } else if (newBody.isEmpty()) {
       throw new IllegalArgumentException("new body for comment cannot be empty");

@@ -22,7 +22,7 @@ public class CommentAddInteractor
     long classPK = event.getClassPK();
     String body = event.getBody();
 
-    validate(event.getGroupId(), className, classPK, body);
+    validate(className, classPK, body);
 
     ScreenscommentService service = new ScreenscommentService(getSession());
 
@@ -41,11 +41,9 @@ public class CommentAddInteractor
     getListener().error(event.getException(), CommentAddScreenlet.DEFAULT_ACTION);
   }
 
-  protected void validate(long groupId, String className, long classPK, String body) {
+  protected void validate(String className, long classPK, String body) {
     if (body.isEmpty()) {
       throw new IllegalArgumentException("comment body cannot be empty");
-    } else if (groupId <= 0) {
-      throw new IllegalArgumentException("groupId must be greater than 0");
     } else if (className.isEmpty()) {
       throw new IllegalArgumentException("className cannot be empty");
     } else if (classPK <= 0) {
