@@ -32,7 +32,7 @@ public abstract class AbstractPushService extends IntentService {
 		}
 	}
 
-	protected abstract void processJSONNotification(final JSONObject json) throws JSONException;
+	protected abstract void processJSONNotification(JSONObject json) throws JSONException;
 }
 
 
