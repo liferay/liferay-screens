@@ -56,7 +56,7 @@ public class CommentEntry implements Parcelable {
 	}
 
 	public long getUserId() {
-		return Long.parseLong((String) values.get("userId"));
+		return (long) (int) values.get("userId");
 	}
 
 	public String getUserName() {
@@ -91,7 +91,7 @@ public class CommentEntry implements Parcelable {
 	}
 
 	public long getCommentId() {
-		return Long.parseLong((String) values.get("commentId"));
+		return (long) (int) values.get("commentId");
 	}
 
 	@Override
@@ -122,13 +122,5 @@ public class CommentEntry implements Parcelable {
 
 	public void setEditable(boolean editable) {
 		this.editable = editable;
-	}
-
-	public String getClassName() {
-		return (String) values.get("className");
-	}
-
-	public long getClassPK() {
-		return (long) values.get("classPK");
 	}
 }

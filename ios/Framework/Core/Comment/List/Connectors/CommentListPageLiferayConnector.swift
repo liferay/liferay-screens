@@ -15,18 +15,15 @@ import UIKit
 
 public class CommentListPageLiferayConnector: PaginationLiferayConnector {
 
-	public let groupId: Int64
 	public let className: String
 	public let classPK: Int64
 
 	public init(
-			groupId: Int64,
 			className: String,
 			classPK: Int64,
 			startRow: Int,
 			endRow: Int,
 			computeRowCount: Bool) {
-		self.groupId = groupId
 		self.className = className
 		self.classPK = classPK
 
@@ -37,10 +34,6 @@ public class CommentListPageLiferayConnector: PaginationLiferayConnector {
 		let error = super.validateData()
 
 		if error == nil {
-			if groupId <= 0 {
-				return ValidationError("comment-list-screenlet", "undefined-groupId")
-			}
-
 			if classPK <= 0 {
 				return ValidationError("comment-list-screenlet", "undefined-classPK")
 			}
@@ -61,11 +54,10 @@ public class Liferay70CommentListPageConnector: CommentListPageLiferayConnector 
 			startRow: Int,
 			endRow: Int,
 			obc: LRJSONObjectWrapper?) {
-		let service = LRCommentmanagerjsonwsService_v70(session: session)
+		let service = LRScreenscommentService_v70(session: session)
 
 		do {
-			try service.getCommentsWithGroupId(groupId,
-					className: className,
+			try service.getCommentsWithClassName(className,
 					classPK: classPK,
 					start: Int32(startRow),
 					end: Int32(endRow))
@@ -75,12 +67,10 @@ public class Liferay70CommentListPageConnector: CommentListPageLiferayConnector 
 	}
 
 	override public func doAddRowCountServiceCall(session session: LRBatchSession) {
-		let service = LRCommentmanagerjsonwsService_v70(session: session)
+		let service = LRScreenscommentService_v70(session: session)
 
 		do {
-			try service.getCommentsCountWithGroupId(groupId,
-					className: className,
-					classPK: classPK)
+			try service.getCommentsCountWithClassName(className, classPK: classPK)
 		}
 		catch _ as NSError {
 		}

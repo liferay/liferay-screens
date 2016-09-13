@@ -60,7 +60,6 @@
 
 	<declare-styleable name="CommentAddScreenlet">
 		<attr name="layoutId"/>
-		<attr name="groupId"/>
 		<attr name="classPK"/>
 		<attr name="className"/>
 	</declare-styleable>
@@ -68,18 +67,14 @@
 	<declare-styleable name="CommentDisplayScreenlet">
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
-		<attr name="groupId"/>
 		<attr name="cachePolicy"/>
 		<attr format="string" name="commentId"/>
-		<attr name="classPK"/>
-		<attr name="className"/>
 		<attr name="editable"/>
 	</declare-styleable>
 
 	<declare-styleable name="CommentListScreenlet">
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
-		<attr name="groupId"/>
 		<attr name="cachePolicy"/>
 		<attr name="classPK"/>
 		<attr name="className"/>

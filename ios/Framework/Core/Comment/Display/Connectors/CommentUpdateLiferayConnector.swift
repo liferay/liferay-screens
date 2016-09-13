@@ -15,23 +15,14 @@ import UIKit
 
 public class CommentUpdateLiferayConnector: ServerConnector {
 
-	public let groupId: Int64
-	public let className: String
-	public let classPK: Int64
 	public let commentId: Int64
 	public let body: String
 
 	public var resultComment: Comment?
 
-	public init(groupId: Int64,
-	            className: String,
-	            classPK: Int64,
-	            commentId: Int64,
+	public init(commentId: Int64,
 	            body: String) {
 
-		self.groupId = groupId
-		self.className = className
-		self.classPK = classPK
 		self.commentId = commentId
 		self.body = body
 
@@ -42,17 +33,6 @@ public class CommentUpdateLiferayConnector: ServerConnector {
 		let error = super.validateData()
 
 		if error == nil {
-			if groupId <= 0 {
-				return ValidationError("comment-display-screenlet", "undefined-groupId")
-			}
-
-			if className.isEmpty {
-				return ValidationError("comment-display-screenlet", "undefined-className")
-			}
-
-			if classPK <= 0 {
-				return ValidationError("comment-display-screenlet", "undefined-classPK")
-			}
 
 			if commentId <= 0 {
 				return ValidationError("comment-display-screenlet", "undefined-commentId")
@@ -73,13 +53,10 @@ public class Liferay70CommentUpdateConnector: CommentUpdateLiferayConnector {
 	override public func doRun(session session: LRSession) {
 		resultComment = nil
 
-		let service = LRCommentmanagerjsonwsService_v70(session: session)
+		let service = LRScreenscommentService_v70(session: session)
 
 		do {
-			let result = try service.updateCommentWithGroupId(groupId,
-					className: className,
-					classPK: classPK,
-					commentId: commentId,
+			let result = try service.updateCommentWithCommentId(commentId,
 					body: Comment.plainBodyToHtml(body))
 
 			if let result = result as? [String: AnyObject] {

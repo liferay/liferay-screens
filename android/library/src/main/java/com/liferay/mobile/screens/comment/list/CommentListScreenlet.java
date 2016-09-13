@@ -23,7 +23,6 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Commen
 	private CachePolicy cachePolicy;
 	private String className;
 	private long classPK;
-	private long groupId;
 	private boolean editable;
 
 	public CommentListScreenlet(Context context) {
@@ -78,10 +77,6 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Commen
 		Integer cachePolicy =
 			typedArray.getInteger(R.styleable.CommentListScreenlet_cachePolicy, CachePolicy.REMOTE_ONLY.ordinal());
 		this.cachePolicy = CachePolicy.values()[cachePolicy];
-
-		long groupId = LiferayServerContext.getGroupId();
-
-		this.groupId = castToLongOrUseDefault(typedArray.getString(R.styleable.CommentListScreenlet_groupId), groupId);
 
 		typedArray.recycle();
 
@@ -149,14 +144,6 @@ public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, Commen
 
 	public void setClassPK(long classPK) {
 		this.classPK = classPK;
-	}
-
-	public long getGroupId() {
-		return groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		this.groupId = groupId;
 	}
 
 	private CommentListListener getCommentListListener() {

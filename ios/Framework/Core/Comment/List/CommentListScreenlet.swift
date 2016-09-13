@@ -45,7 +45,6 @@ import UIKit
 @IBDesignable public class CommentListScreenlet: BaseListScreenlet,
 		CommentDisplayScreenletDelegate {
 
-	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var className: String = ""
 	@IBInspectable public var classPK: Int64 = 0
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
@@ -93,7 +92,6 @@ import UIKit
 				screenlet: self,
 				page: page,
 				computeRowCount: computeRowCount,
-				groupId: groupId,
 				className: className,
 				classPK: classPK)
 

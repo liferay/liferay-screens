@@ -72,11 +72,6 @@ public class CommentListView
 
 	@Override
 	public void showFinishOperation(int startRow, int endRow, List<CommentEntry> serverEntries, int rowCount) {
-		//TODO remove this cycle
-		getAdapter().setGroupId(getCommentListScreenlet().getGroupId());
-		getAdapter().setClassPK(getCommentListScreenlet().getClassPK());
-		getAdapter().setClassName(getCommentListScreenlet().getClassName());
-
 		super.showFinishOperation(startRow, endRow, serverEntries, rowCount);
 
 		showEmptyListMessage();

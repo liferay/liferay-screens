@@ -32,7 +32,7 @@ PODS:
   - CryptoSwift (0.1.1)
   - DTPickerPresenter (0.2.0)
   - KeychainAccess (2.3.1)
-  - Kingfisher (2.5.1)
+  - Kingfisher (2.6.0)
   - Liferay-iOS-SDK (7.0.6):
     - AFNetworking (= 2.6.3)
   - Liferay-OAuth (1.2.1):
@@ -122,7 +122,7 @@ SPEC CHECKSUMS:
   CryptoSwift: c11640d3d66107efc8333e4131a5173f072b1d61
   DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
   KeychainAccess: d54b31c75745cfa595b3654590e8cb491a75d411
-  Kingfisher: 9b82e0e1f1a296f149a50bbc2214532eaa4df4f1
+  Kingfisher: d84c5fd176ea86cc7b8aac65fd55feda6f70f130
   Liferay-iOS-SDK: ea3212ee6e62c866ca38b9df7415585371c15b22
   Liferay-OAuth: a9ff190558928bec8ebc18dd326b01bddd7e2968
   LiferayScreens: 2dc2cb7eb426ddf81bbea68f8489699653ba68d8
