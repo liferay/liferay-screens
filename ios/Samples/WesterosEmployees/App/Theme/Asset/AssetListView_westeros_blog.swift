@@ -64,14 +64,14 @@ class AssetListView_westeros_blog: AssetListView_westeros {
 		let blogsEntry = BlogsEntry(attributes: entry.attributes)
 
 		blogsCell.title = blogsEntry.title
-		blogsCell.classPK = blogsEntry.coverImageFileEntryId
+		blogsCell.imageEntryId = blogsEntry.coverImageFileEntryId
 
 		if let date = blogsEntry.displayDate {
 			let dateString = dateFormatter.stringFromDate(date)
-			blogsCell.dateAuthor = "\(dateString) · \(blogsEntry.userName)"
+			blogsCell.subtitle = "\(dateString) · \(blogsEntry.userName)"
 		}
 		else {
-			blogsCell.dateAuthor = blogsEntry.userName
+			blogsCell.subtitle = blogsEntry.userName
 		}
 	}
 }

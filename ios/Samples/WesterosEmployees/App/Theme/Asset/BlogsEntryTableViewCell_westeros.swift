@@ -16,29 +16,29 @@ import LiferayScreens
 
 public class BlogsEntryTableViewCell_westeros: UITableViewCell {
 
-	@IBOutlet private weak var imageDisplayScreenlet: ImageDisplayScreenlet?
-	@IBOutlet private weak var blogTitle: UILabel?
-	@IBOutlet private weak var blogDateAuthor: UILabel?
+	@IBOutlet public weak var imageDisplayScreenlet: ImageDisplayScreenlet?
+	@IBOutlet public weak var titleLabel: UILabel?
+	@IBOutlet public weak var subtitleLabel: UILabel?
 
 	public var title: String? {
 		get {
-			return blogTitle?.text
+			return titleLabel?.text
 		}
 		set {
-			blogTitle?.text = newValue
+			titleLabel?.text = newValue
 		}
 	}
 
-	public var dateAuthor: String? {
+	public var subtitle: String? {
 		get {
-			return blogDateAuthor?.text
+			return subtitleLabel?.text
 		}
 		set {
-			blogDateAuthor?.text = newValue
+			subtitleLabel?.text = newValue
 		}
 	}
 
-	public var classPK: Int64 {
+	public var imageEntryId: Int64 {
 		get { return 0 }
 		set {
 			if newValue != 0 {
