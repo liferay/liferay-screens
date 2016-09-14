@@ -270,7 +270,6 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 
 		Intent intent = new Intent(activity, MediaStoreRequestShadowActivity.class);
 		intent.putExtra(MediaStoreRequestShadowActivity.MEDIA_STORE_TYPE, mediaStore);
-		intent.putExtra(MediaStoreRequestShadowActivity.SCREENLET_ID, getScreenletId());
 
 		activity.startActivity(intent);
 	}
