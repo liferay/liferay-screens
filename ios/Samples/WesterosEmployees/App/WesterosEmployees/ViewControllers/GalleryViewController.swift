@@ -48,20 +48,6 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 		imageGalleryScreenlet?.loadList()
 	}
 
-	func startGalleryUpload() {
-		imageGalleryScreenlet?.startMediaSelectorAndUpload()
-	}
-
-
-	//MARK: CardViewController
-
-	override var cardView: CardView? {
-		didSet {
-			cardView?.addPage(self.view)
-			cardView?.presentingController = self
-		}
-	}
-
 
 	//MARK: ImageGalleryScreenletDelegate
 

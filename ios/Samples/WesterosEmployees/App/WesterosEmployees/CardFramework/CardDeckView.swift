@@ -126,14 +126,13 @@ public class CardDeckView: UIView, CardDelegate {
 				card.minimizedHeight = initialHeight +
 					CGFloat(count - index - 1) * initialHeight
 
-				self.delegate?.cardDeck?(self, customizeCard: card, atIndex: index)
-
-				card.updateSubviewsConstraints()
-
 				addSubview(card)
-
+				
 				//Set constraints for this card
+				card.updateSubviewsConstraints()
 				setConstraintsForCard(card)
+
+				self.delegate?.cardDeck?(self, customizeCard: card, atIndex: index)
 			}
 		}
 	}
