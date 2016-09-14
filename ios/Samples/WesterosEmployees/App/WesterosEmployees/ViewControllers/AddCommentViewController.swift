@@ -14,11 +14,34 @@
 import UIKit
 import LiferayScreens
 
-class AddCommentViewController: CardViewController {
+class AddCommentViewController: CardViewController, KeyboardListener {
 
 	//MARK: Init methods
 
 	convenience init() {
 		self.init(nibName: "AddCommentViewController", bundle: nil)
+	}
+
+	
+	//MARK: CardViewController
+
+	override func cardWillAppear() {
+		registerKeyboardListener(self)
+	}
+
+	override func cardWillDisappear() {
+		unregisterKeyboardListener(self)
+		self.view.endEditing(true)
+	}
+
+
+	//MARK: KeyboardListener
+
+	func showKeyboard(notif: NSNotification) {
+		cardView?.changeToState(.Maximized)
+	}
+
+	func hideKeyboard(notif: NSNotification) {
+		cardView?.changeToState(.Normal)
 	}
 }
