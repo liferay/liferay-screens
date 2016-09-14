@@ -71,6 +71,8 @@ public class AssetDisplayView extends FrameLayout implements AssetDisplayViewMod
 
 	@Override
 	public void showFinishOperation(View view) {
+		//TODO Check the type of the child screenlet and reuse it if possible
+		container.removeAllViews();
 		container.addView(view, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
 		progressBar.setVisibility(GONE);
 		container.setVisibility(VISIBLE);
