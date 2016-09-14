@@ -29,6 +29,10 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 	var classPK: Int64?
 
 
+	//MARK: Card ViewControllers
+
+	var addCommentViewController: AddCommentViewController?
+
 
 	//MARK: Init methods
 
@@ -41,4 +45,42 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 		commentListScreenlet?.classPK = self.classPK!
 		commentListScreenlet?.loadList()
 	}
+
+	//MARK: UIViewController
+
+	override func viewDidLoad() {
+		super.viewDidLoad()
+
+		self.cardDeck?.layer.zPosition = 0
+
+		addCommentViewController = AddCommentViewController()
+	}
+
+
+	//MARK: CardDeckDataSource
+
+	func numberOfCardsIn(cardDeck: CardDeckView) -> Int {
+		return 1
+	}
+
+	func cardDeck(cardDeck: CardDeckView, controllerForCard position: CardPosition)
+		-> CardViewController? {
+			return addCommentViewController
+	}
+
+
+	//MARK: CardDeckDelegate
+
+	func cardDeck(cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
+		card.normalHeight = 250
+	}
+
+	func cardDeck(cardDeck: CardDeckView, buttonImageForCardIndex index: Int) -> UIImage? {
+		return UIImage(named: "icon_DOWN_W")
+	}
+
+	func cardDeck(cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
+		return "Add Comment"
+	}
+
 }
