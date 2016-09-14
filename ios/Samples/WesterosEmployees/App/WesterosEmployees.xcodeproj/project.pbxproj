@@ -122,6 +122,8 @@
 		0BD07A301D82EEC500470A2E /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD07A2F1D82EEC500470A2E /* DetailViewController.xib */; };
 		0BD07A331D86AEDD00470A2E /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD07A311D86AEDD00470A2E /* CommentsViewController.swift */; };
 		0BD07A341D86AEDD00470A2E /* CommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD07A321D86AEDD00470A2E /* CommentsViewController.xib */; };
+		0BD832CD1D8933AD00178AAA /* UploadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD832CC1D8933AD00178AAA /* UploadImageViewController.swift */; };
+		0BD832CF1D89345000178AAA /* UploadImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD832CE1D89345000178AAA /* UploadImageViewController.xib */; };
 		4A05F25992DBA9E39C52A44F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4E72B9B4122BAE349CEF7 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -244,6 +246,8 @@
 		0BD07A2F1D82EEC500470A2E /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		0BD07A311D86AEDD00470A2E /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		0BD07A321D86AEDD00470A2E /* CommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsViewController.xib; sourceTree = "<group>"; };
+		0BD832CC1D8933AD00178AAA /* UploadImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadImageViewController.swift; sourceTree = "<group>"; };
+		0BD832CE1D89345000178AAA /* UploadImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadImageViewController.xib; sourceTree = "<group>"; };
 		1824BD97996F1C2F00DAA278 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		67B4E72B9B4122BAE349CEF7 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1333B220C6252F61EB4CA33 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -423,6 +427,8 @@
 				0B9309541D6DBE58003824D6 /* ForgotPasswordViewController.xib */,
 				0B282F181D7ED95A0090F800 /* GalleryViewController.swift */,
 				0B282F191D7ED95A0090F800 /* GalleryViewController.xib */,
+				0BD832CC1D8933AD00178AAA /* UploadImageViewController.swift */,
+				0BD832CE1D89345000178AAA /* UploadImageViewController.xib */,
 				0B35AF6E1D6C3614002E3D2F /* HomeViewController.swift */,
 				0B0A235A1D6B221B0061B50D /* SignInViewController.swift */,
 				0B0A235B1D6B221B0061B50D /* SignInViewController.xib */,
@@ -665,6 +671,7 @@
 				0B26EAFF1D804186000201C6 /* TermsAndConditions.rtf in Resources */,
 				0B0A23961D6B22EF0061B50D /* logo_BG_grey.png in Resources */,
 				0B0A23991D6B22EF0061B50D /* Logo_BG_red.png in Resources */,
+				0BD832CF1D89345000178AAA /* UploadImageViewController.xib in Resources */,
 				0B318C0D1D81C24E0027C04B /* BlogsEntryTableViewCell_westeros.xib in Resources */,
 				0B0A229F1D6B0CDA0061B50D /* Assets.xcassets in Resources */,
 				0B0A23A21D6B22EF0061B50D /* tour-step3.png in Resources */,
@@ -753,6 +760,7 @@
 				0BD07A1C1D82BEE200470A2E /* ImageDisplayView_westeros_blog.swift in Sources */,
 				0B35AF6F1D6C3614002E3D2F /* HomeViewController.swift in Sources */,
 				0B0A23691D6B221B0061B50D /* SignUpViewController.swift in Sources */,
+				0BD832CD1D8933AD00178AAA /* UploadImageViewController.swift in Sources */,
 				0B9309481D6DAC7E003824D6 /* CardDeckView.swift in Sources */,
 				0BC6BA301D815B380042156E /* DocumentationTableViewCell_westeros.swift in Sources */,
 				0B93094C1D6DAC9A003824D6 /* CardViewController.swift in Sources */,
