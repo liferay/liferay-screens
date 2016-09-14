@@ -47,13 +47,7 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 	//MARK: CardViewController
 
 	override func cardWillDisappear() {
-		if let uploadCard = cardDeck?.cards[safe: 0] {
-			if uploadCard.pageCount > 1 {
-				uploadCard.removePageAtIndex(1)
-				uploadCard.moveLeft()
-			}
-			uploadCard.changeToState(.Minimized)
-		}
+		hideUploadCard()
 	}
 
 
@@ -85,6 +79,16 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 		self.imageGalleryScreenlet?.showDetailUploadView(imageUpload)
 	}
 
+	func hideUploadCard() {
+		if let uploadCard = cardDeck?.cards[safe: 0] {
+			if uploadCard.pageCount > 1 {
+				uploadCard.removePageAtIndex(1)
+				uploadCard.moveLeft()
+			}
+			uploadCard.changeToState(.Minimized)
+		}
+	}
+
 	//MARK: ImageGalleryScreenletDelegate
 
 	func screenlet(screenlet: ImageGalleryScreenlet, onImageEntrySelected imageEntry: ImageEntry) {
@@ -92,10 +96,14 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 		cardView?.moveRight()
 	}
 
-	func screenlet(screenlet: ImageGalleryScreenlet, onImageUploadDetailViewCreated view: ImageUploadDetailViewBase) -> Bool {
-		self.cardDeck?.cards[safe: 0]?.addPage(view)
+	func screenlet(screenlet: ImageGalleryScreenlet, onImageUploadDetailViewCreated uploadView: ImageUploadDetailViewBase) -> Bool {
+		self.cardDeck?.cards[safe: 0]?.addPage(uploadView)
 		self.cardDeck?.cards[safe: 0]?.moveRight()
 		return true
+	}
+
+	func screenlet(screenlet: ImageGalleryScreenlet, onImageUploadStart image: ImageEntryUpload) {
+		hideUploadCard()
 	}
 
 

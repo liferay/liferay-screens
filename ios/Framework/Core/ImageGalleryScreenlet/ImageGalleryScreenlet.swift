@@ -46,7 +46,7 @@ import Kingfisher
 			onImageUploaded image: ImageEntry)
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-			onImageUploadDetailViewCreated: ImageUploadDetailViewBase) -> Bool
+			onImageUploadDetailViewCreated view: ImageUploadDetailViewBase) -> Bool
 }
 
 
@@ -124,8 +124,7 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 					return
 				}
 
-				let title = "\(self.filePrefix)\(NSUUID().UUIDString).png"
-				let imageUpload = ImageEntryUpload(image: image, title: title)
+				let imageUpload = ImageEntryUpload(image: image, title: "")
 				self.showDetailUploadView(imageUpload)
 			}
 			alert.show()

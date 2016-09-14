@@ -32,6 +32,7 @@
                                 <userDefinedRuntimeAttribute type="number" keyPath="repositoryId">
                                     <integer key="value" value="30853"/>
                                 </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
                             </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
