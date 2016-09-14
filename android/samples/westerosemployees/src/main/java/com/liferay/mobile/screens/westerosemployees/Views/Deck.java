@@ -199,8 +199,9 @@ public class Deck extends FrameLayout implements CardListener {
 		}
 	}
 
+
 	protected List<Card> cards = new ArrayList<>();
 
-	private int maxWidth;
-	private int maxHeight;
+	protected int maxWidth;
+	protected int maxHeight;
 }

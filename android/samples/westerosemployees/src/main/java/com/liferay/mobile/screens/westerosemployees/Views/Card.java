@@ -170,6 +170,8 @@ public class Card extends FrameLayout {
 		ViewGroup.LayoutParams params = getLayoutParams();
 		params.height = maxHeight;
 		setLayoutParams(params);
+
+		notifyChildDecksNewHeight(params.height);
 	}
 
 	protected void setNormalModeHeight() {
@@ -182,9 +184,26 @@ public class Card extends FrameLayout {
 		}
 
 		ViewGroup.LayoutParams params = getLayoutParams();
-		params.height = maxHeight - (maxHeight - minimizedPosition - ViewUtil.pixelFromDp(getContext(), CARD_SIZE)
-			+ statusBarHeight);
+		params.height = maxHeight - (maxHeight - minimizedPosition) - normalY + ViewUtil.pixelFromDp(getContext(), CARD_SIZE);
+
+		notifyChildDecksNewHeight(params.height);
+
 		setLayoutParams(params);
+	}
+
+	private void notifyChildDecksNewHeight(int height) {
+		for(int i = 0; i < getChildCount(); i++) {
+			ViewGroup viewGroup = (ViewGroup) getChildAt(i);
+
+			for(int j = 0 ; j < viewGroup.getChildCount(); j++) {
+				View view = viewGroup.getChildAt(j);
+
+				if(view instanceof CommentDeck) {
+					CommentDeck commentDeck = (CommentDeck) view;
+					commentDeck.heightChanged(height);
+				}
+			}
+		}
 	}
 
 	protected void showArrows(boolean show) {
