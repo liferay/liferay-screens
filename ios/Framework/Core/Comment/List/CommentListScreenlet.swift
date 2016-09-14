@@ -48,7 +48,7 @@ import UIKit
 	@IBInspectable public var className: String = ""
 	@IBInspectable public var classPK: Int64 = 0
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
-	@IBInspectable public var editable: Bool = false {
+	@IBInspectable public var editable: Bool = true {
 		didSet {
 			screenletView?.editable = self.editable
 		}
