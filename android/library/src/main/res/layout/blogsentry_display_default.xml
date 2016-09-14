@@ -40,7 +40,6 @@
 				android:layout_height="100dp"
 				android:layout_below="@id/liferay_blog_image"
 				liferay:autoLoad="false"
-				liferay:editable="true"
 				liferay:cachePolicy="REMOTE_FIRST"
 				/>
 
