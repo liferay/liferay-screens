@@ -31,9 +31,21 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 
 	//MARK: Card ViewControllers
 
-	var documentationViewController: DocumentationViewController?
-	var blogsViewController: BlogsViewController?
-	var galleryViewController: GalleryViewController?
+	var documentationViewController: DocumentationViewController? {
+		didSet {
+			addChildViewController(documentationViewController!)
+		}
+	}
+	var blogsViewController: BlogsViewController? {
+		didSet {
+			addChildViewController(blogsViewController!)
+		}
+	}
+	var galleryViewController: GalleryViewController? {
+		didSet {
+			addChildViewController(galleryViewController!)
+		}
+	}
 
 
 	//MARK: View actions

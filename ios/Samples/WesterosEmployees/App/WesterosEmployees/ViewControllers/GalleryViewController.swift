@@ -19,6 +19,9 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 
 	var selectedImageEntry: ImageEntry?
 
+	var uploadImageViewController: UploadImageViewController?
+
+
 	//MARK: Outlets
 
 	@IBOutlet weak var imageGalleryScreenlet: ImageGalleryScreenlet? {
@@ -33,6 +36,14 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 			cardDeck?.delegate = self
 			cardDeck?.dataSource = self
 		}
+	}
+
+
+	//MARK: UIViewController
+
+	override func viewDidLoad() {
+		uploadImageViewController = UploadImageViewController()
+		addChildViewController(uploadImageViewController!)
 	}
 
 	//MARK: Init methods
@@ -68,11 +79,17 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 	}
 
 	func cardDeck(cardDeck: CardDeckView, controllerForCard position: CardPosition) -> CardViewController? {
-		return nil
+		return uploadImageViewController
 	}
 
 
 	//MARK: CardDeckDelegate
+
+	func cardDeck(cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
+		if let firstCardDeck = self.cardView?.superview {
+			card.normalHeight = firstCardDeck.frame.height * 0.4
+		}
+	}
 
 	func cardDeck(cardDeck: CardDeckView, colorForCardIndex index: Int) -> UIColor? {
 		return DefaultResources.OddColorBackground
