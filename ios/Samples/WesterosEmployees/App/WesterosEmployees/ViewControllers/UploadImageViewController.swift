@@ -23,6 +23,9 @@ class UploadImageViewController: CardViewController,
 		}
 	}
 
+	///Called when an user has selected an image from a picker
+	var onImageSelected: (UIImage -> ())?
+
 
 	//MARK: Outlets
 
@@ -61,8 +64,16 @@ class UploadImageViewController: CardViewController,
 	//MARK: UIImagePickerControllerDelegate
 
 	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-		if let _ = info[UIImagePickerControllerOriginalImage] as? UIImage {
+		if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+			onImageSelected?(image)
+		} else {
+			self.cardView?.changeToState(.Minimized)
 		}
+		imagePicker?.dismissViewControllerAnimated(true, completion: nil)
+	}
+
+	func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+		self.cardView?.changeToState(.Minimized)
 		imagePicker?.dismissViewControllerAnimated(true, completion: nil)
 	}
 
@@ -71,8 +82,6 @@ class UploadImageViewController: CardViewController,
 
 	private func openImagePicker(sourceType: UIImagePickerControllerSourceType) {
 		if let picker = imagePicker {
-			self.cardView?.changeToState(.Minimized)
-			
 			picker.sourceType = sourceType
 			presentViewController(picker, animated: true, completion: nil)
 		}

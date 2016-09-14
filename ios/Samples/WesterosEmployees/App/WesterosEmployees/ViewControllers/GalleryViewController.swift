@@ -22,6 +22,7 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 	var uploadImageViewController: UploadImageViewController? {
 		didSet {
 			addChildViewController(uploadImageViewController!)
+			uploadImageViewController?.onImageSelected = self.onImageSelected
 		}
 	}
 
@@ -46,7 +47,13 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 	//MARK: CardViewController
 
 	override func cardWillDisappear() {
-		cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
+		if let uploadCard = cardDeck?.cards[safe: 0] {
+			if uploadCard.pageCount > 1 {
+				uploadCard.removePageAtIndex(1)
+				uploadCard.moveLeft()
+			}
+			uploadCard.changeToState(.Minimized)
+		}
 	}
 
 
@@ -70,11 +77,25 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 	}
 
 
+	//MARK: Private methods
+
+	func onImageSelected(image: UIImage) {
+		let title = "westeros-\(NSUUID().UUIDString).png"
+		let imageUpload = ImageEntryUpload(image: image, title: title)
+		self.imageGalleryScreenlet?.showDetailUploadView(imageUpload)
+	}
+
 	//MARK: ImageGalleryScreenletDelegate
 
 	func screenlet(screenlet: ImageGalleryScreenlet, onImageEntrySelected imageEntry: ImageEntry) {
 		self.selectedImageEntry = imageEntry
 		cardView?.moveRight()
+	}
+
+	func screenlet(screenlet: ImageGalleryScreenlet, onImageUploadDetailViewCreated view: ImageUploadDetailViewBase) -> Bool {
+		self.cardDeck?.cards[safe: 0]?.addPage(view)
+		self.cardDeck?.cards[safe: 0]?.moveRight()
+		return true
 	}
 
 
