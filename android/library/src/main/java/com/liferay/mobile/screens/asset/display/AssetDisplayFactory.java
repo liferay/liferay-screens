@@ -33,6 +33,8 @@ public class AssetDisplayFactory {
 				screenlet.setFileEntry((FileEntry) assetEntry);
 				screenlet.setAutoLoad(autoLoad);
 				screenlet.render(layoutId);
+				screenlet.loadFile();
+
 				return screenlet;
 			}
 			return null;
@@ -40,8 +42,10 @@ public class AssetDisplayFactory {
 			BlogsEntryDisplayScreenlet blogsScreenlet = new BlogsEntryDisplayScreenlet(context);
 			Integer layoutId = layouts.get(blogsScreenlet.getClass().getName());
 			blogsScreenlet.setBlogsEntry((BlogsEntry) assetEntry);
-			blogsScreenlet.setAutoLoad(autoLoad);
 			blogsScreenlet.render(layoutId);
+
+			blogsScreenlet.loadBlogsEntry();
+
 			return blogsScreenlet;
 		}
 		return null;
