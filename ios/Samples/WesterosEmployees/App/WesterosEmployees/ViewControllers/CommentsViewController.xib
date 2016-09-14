@@ -21,7 +21,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="275" height="343"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wNq-cA-gcJ" customClass="CommentListScreenlet" customModule="LiferayScreens">
-                            <rect key="frame" x="0.0" y="0.0" width="275" height="263"/>
+                            <rect key="frame" x="0.0" y="0.0" width="275" height="273"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
@@ -33,7 +33,7 @@
                     <constraints>
                         <constraint firstItem="wNq-cA-gcJ" firstAttribute="leading" secondItem="MYS-4W-nVJ" secondAttribute="leading" id="2xp-dw-v2o"/>
                         <constraint firstItem="wNq-cA-gcJ" firstAttribute="top" secondItem="MYS-4W-nVJ" secondAttribute="top" id="5QY-Q2-cmw"/>
-                        <constraint firstAttribute="bottom" secondItem="wNq-cA-gcJ" secondAttribute="bottom" constant="80" id="AuS-DF-Fij"/>
+                        <constraint firstAttribute="bottom" secondItem="wNq-cA-gcJ" secondAttribute="bottom" constant="70" id="AuS-DF-Fij"/>
                         <constraint firstAttribute="trailing" secondItem="wNq-cA-gcJ" secondAttribute="trailing" id="l0d-ky-RsH"/>
                     </constraints>
                 </view>
