@@ -27,7 +27,8 @@ public class RatingUpdateInteractor extends BaseCacheWriteInteractor<RatingListe
 		JSONObject jsonObject =
 			ratingsEntryService.updateRatingsEntry(event.getClassPK(), event.getClassName(), event.getScore(),
 				event.getRatingGroupCounts());
-		return new RatingEvent(event.getClassPK(), event.getClassName(), event.getRatingGroupCounts(), jsonObject);
+		event.setJSONObject(jsonObject);
+		return event;
 	}
 
 	@Override
