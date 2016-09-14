@@ -36,7 +36,6 @@ public class User extends AssetEntry {
 	public static final String SCREEN_NAME = "screenName";
 	public static final String GREETING = "greeting";
 	public static final String JOB_TITLE = "jobTitle";
-	private final Map<String, Object> values;
 	private JSONObject jsonObject;
 
 	public User(JSONObject jsonObject) {
