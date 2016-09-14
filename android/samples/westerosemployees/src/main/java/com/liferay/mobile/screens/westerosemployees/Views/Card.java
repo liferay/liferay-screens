@@ -73,6 +73,10 @@ public class Card extends FrameLayout {
 		return index;
 	}
 
+	public void setCardListener(CardListener cardListener) {
+		this.cardListener = cardListener;
+	}
+
 	public void initPosition(int minimizedPosition, int maxHeight, int maxWidth) {
 		this.minimizedPosition = minimizedPosition;
 		this.backgroundY = ViewUtil.pixelFromDp(getContext(), BACKGROUND_Y);
@@ -216,4 +220,6 @@ public class Card extends FrameLayout {
 	protected int backgroundY;
 
 	protected CardState cardState;
+
+	protected CardListener cardListener;
 }

@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * @author Víctor Galán Grande
  */
-public class Deck extends FrameLayout {
+public class Deck extends FrameLayout implements CardListener {
 	public Deck(Context context) {
 		super(context);
 	}
@@ -40,6 +40,16 @@ public class Deck extends FrameLayout {
 		for (Card card : cards) {
 			card.setState(state);
 		}
+	}
+
+	@Override
+	public void moveCardRight(Card card) {
+		card.goRight();
+	}
+
+	@Override
+	public void moveCardLeft(Card card) {
+		card.goLeft();
 	}
 
 	@Override
@@ -109,6 +119,7 @@ public class Deck extends FrameLayout {
 			}));
 
 			card.setState(CardState.MINIMIZED).setStartDelay(200 * cards.size() - i - 1).setDuration(300);
+			card.setCardListener(this);
 		}
 	}
 
