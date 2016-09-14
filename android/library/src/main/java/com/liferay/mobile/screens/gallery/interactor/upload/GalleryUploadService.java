@@ -61,8 +61,9 @@ public class GalleryUploadService extends IntentService {
 			return;
 		}
 
-		int screenletId = intent.getIntExtra("screenletId", 0);
+		int targetScreenletId = intent.getIntExtra("targetScreenletId", 0);
 		String actionName = intent.getStringExtra("actionName");
+
 		long repositoryId = intent.getLongExtra("repositoryId", 0);
 		long folderId = intent.getLongExtra("folderId", 0);
 		String title = intent.getStringExtra("title");
@@ -78,12 +79,12 @@ public class GalleryUploadService extends IntentService {
 			imageEntry.setImage(thumbnail);
 
 			GalleryEvent event = new GalleryEvent(imageEntry);
-			event.setTargetScreenletId(screenletId);
+			event.setTargetScreenletId(targetScreenletId);
 			event.setActionName(actionName);
 			EventBusUtil.post(event);
 		} catch (Exception e) {
 			GalleryEvent event = new GalleryEvent(e);
-			event.setTargetScreenletId(screenletId);
+			event.setTargetScreenletId(targetScreenletId);
 			event.setActionName(actionName);
 			EventBusUtil.post(event);
 		}
@@ -117,7 +118,7 @@ public class GalleryUploadService extends IntentService {
 		return new UploadData(is, name, new FileProgressCallback() {
 			@Override
 			public void onProgress(int totalBytesSent) {
-				EventBusUtil.post(new GalleryEvent(fileSize, totalBytesSent));
+				EventBusUtil.post(new GalleryProgress(fileSize, totalBytesSent));
 			}
 
 			@Override
