@@ -23,6 +23,7 @@ class UploadImageViewController: CardViewController,
 		}
 	}
 
+
 	//MARK: Outlets
 
 	@IBOutlet weak var takePhotoButton: UIButton? {
@@ -61,8 +62,8 @@ class UploadImageViewController: CardViewController,
 
 	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
 		if let _ = info[UIImagePickerControllerOriginalImage] as? UIImage {
-			imagePicker?.dismissViewControllerAnimated(true, completion: nil)
 		}
+		imagePicker?.dismissViewControllerAnimated(true, completion: nil)
 	}
 
 

@@ -19,9 +19,13 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 
 	var selectedImageEntry: ImageEntry?
 
-	var uploadImageViewController: UploadImageViewController?
+	var uploadImageViewController: UploadImageViewController? {
+		didSet {
+			addChildViewController(uploadImageViewController!)
+		}
+	}
 
-
+	
 	//MARK: Outlets
 
 	@IBOutlet weak var imageGalleryScreenlet: ImageGalleryScreenlet? {
@@ -50,7 +54,6 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 
 	override func viewDidLoad() {
 		uploadImageViewController = UploadImageViewController()
-		addChildViewController(uploadImageViewController!)
 	}
 
 	//MARK: Init methods

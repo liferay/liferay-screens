@@ -73,42 +73,8 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		let isLoggedIn = SessionContext.isLoggedIn
 
-		if isLoggedIn {
-
-			//Load user profile
-			if userPortraitScreenlet?.userId != SessionContext.currentContext!.userId! {
-				userPortraitScreenlet?.load(userId: SessionContext.currentContext!.userId!)
-				let firstName = SessionContext.currentContext!.userAttribute("firstName") as! String
-				let lastName = SessionContext.currentContext!.userAttribute("lastName") as! String
-				userNameLabel?.text = "\(firstName) \(lastName)".stringByTrimmingCharactersInSet(
-					NSCharacterSet.whitespaceAndNewlineCharacterSet())
-			}
-
-			assetListScreenlet?.loadList()
-
-			self.cardDeck?.alpha = 1.0
-
-			//Load lists accross the app
-			self.documentationViewController?.load()
-			self.blogsViewController?.load()
-			self.galleryViewController?.load()
-
-			//Show second card with a small delay
-			self.cardDeck?.cards[1].currentState = .Hidden
-			self.cardDeck?.cards[1].resetToCurrentState()
-			self.cardDeck?.cards[1].nextState = .Minimized
-			self.cardDeck?.cards[1].changeToNextState(delay: 0.5)
-
-			//Show first card with a big delay
-			self.cardDeck?.cards[0].currentState = .Hidden
-			self.cardDeck?.cards[0].resetToCurrentState()
-			self.cardDeck?.cards[0].nextState = .Minimized
-			self.cardDeck?.cards[0].changeToNextState(delay: 1.0)
-		} else {
-			self.cardDeck?.alpha = 0.0
-		}
+		self.cardDeck?.alpha = SessionContext.isLoggedIn ? 1.0 : 0.0
 	}
 
 	override func viewDidAppear(animated: Bool) {
@@ -122,6 +88,48 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 			}
 			else {
 				self.performSegueWithIdentifier("login", sender: nil)
+			}
+		}
+	}
+
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if segue.identifier == "login" {
+			if let authController = segue.destinationViewController as? AuthViewController {
+				authController.onAuthDone = {
+					//Load user profile
+					let userId = SessionContext.currentContext!.userId!
+					if self.userPortraitScreenlet?.userId != userId {
+						self.userPortraitScreenlet?.load(userId: userId)
+						let firstName =
+							SessionContext.currentContext!.userAttribute("firstName") as! String
+						let lastName =
+							SessionContext.currentContext!.userAttribute("lastName") as! String
+						self.userNameLabel?.text = "\(firstName) \(lastName)"
+							.stringByTrimmingCharactersInSet(
+								NSCharacterSet.whitespaceAndNewlineCharacterSet())
+					}
+
+					self.assetListScreenlet?.loadList()
+
+					self.cardDeck?.alpha = 1.0
+
+					//Load lists accross the app
+					self.documentationViewController?.load()
+					self.blogsViewController?.load()
+					self.galleryViewController?.load()
+
+					//Show second card with a small delay
+					self.cardDeck?.cards[1].currentState = .Hidden
+					self.cardDeck?.cards[1].resetToCurrentState()
+					self.cardDeck?.cards[1].nextState = .Minimized
+					self.cardDeck?.cards[1].changeToNextState(delay: 0.5)
+
+					//Show first card with a big delay
+					self.cardDeck?.cards[0].currentState = .Hidden
+					self.cardDeck?.cards[0].resetToCurrentState()
+					self.cardDeck?.cards[0].nextState = .Minimized
+					self.cardDeck?.cards[0].changeToNextState(delay: 1.0)
+				}
 			}
 		}
 	}
