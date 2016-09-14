@@ -39,6 +39,13 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 	}
 
 
+	//MARK: CardViewController
+
+	override func cardWillDisappear() {
+		cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
+	}
+
+
 	//MARK: UIViewController
 
 	override func viewDidLoad() {

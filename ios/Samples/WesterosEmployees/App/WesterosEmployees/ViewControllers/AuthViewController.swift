@@ -50,8 +50,7 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
 
-		cardDeck?.cards[safe: 0]?.nextState = .Minimized
-		cardDeck?.cards[safe: 0]?.changeToNextState()
+		cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
 	}
 
 

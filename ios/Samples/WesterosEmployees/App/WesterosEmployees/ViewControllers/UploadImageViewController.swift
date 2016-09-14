@@ -70,6 +70,8 @@ class UploadImageViewController: CardViewController,
 
 	private func openImagePicker(sourceType: UIImagePickerControllerSourceType) {
 		if let picker = imagePicker {
+			self.cardView?.changeToState(.Minimized)
+			
 			picker.sourceType = sourceType
 			presentViewController(picker, animated: true, completion: nil)
 		}

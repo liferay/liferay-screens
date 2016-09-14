@@ -361,6 +361,12 @@ public class CardView: UIView {
 
 	//MARK: State methods
 
+	///Changes the card to a certain state
+	public func changeToState(state: ShowState) {
+		self.nextState = state
+		self.changeToNextState()
+	}
+
 	///Resets the card to the current state
 	public func resetToCurrentState() {
 		setHeightConstraintForState(currentState)

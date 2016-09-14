@@ -67,15 +67,13 @@ class SignInViewController: CardViewController, LoginScreenletDelegate, Keyboard
 
 	func showKeyboard(notif: NSNotification) {
 		if cardView?.currentState == .Normal {
-			cardView?.nextState = .Maximized
-			cardView?.changeToNextState()
+			cardView?.changeToState(.Maximized)
 		}
 	}
 
 	func hideKeyboard(notif: NSNotification) {
 		if cardView?.currentState == .Maximized {
-			cardView?.nextState = .Normal
-			cardView?.changeToNextState()
+			cardView?.changeToState(.Normal)
 		}
 	}
 
