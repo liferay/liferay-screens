@@ -257,6 +257,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 	protected void startShadowActivityForMediaStore(int mediaStore) {
 
 		GalleryUploadInteractor galleryUploadInteractor = new GalleryUploadInteractor();
+		galleryUploadInteractor.onScreenletAttached(this);
 		LiferayLogger.e("We initialize the interactor to be able to send him messages, objId:"
 			+ galleryUploadInteractor.toString());
 

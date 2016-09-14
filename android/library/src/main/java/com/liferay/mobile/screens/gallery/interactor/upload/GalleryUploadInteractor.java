@@ -54,7 +54,7 @@ public class GalleryUploadInteractor extends BaseCacheWriteInteractor<GalleryInt
 		getListener().error(event.getException(), getActionName());
 	}
 
-	public void onEvent(MediaStoreEvent event) {
+	public void onEventMainThread(MediaStoreEvent event) {
 		if (!isInvalidEvent(event)) {
 			getListener().onPicturePathReceived(event.getFilePath());
 		}
