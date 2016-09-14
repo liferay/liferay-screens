@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.viewsets.defaultviews.comment.display.CommentDisplayView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:liferay="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:paddingRight="10dp"
+	>
+
+	<ProgressBar
+		android:id="@+id/liferay_progress"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:layout_margin="15dp"
+		android:visibility="gone"
+		tools:visibility="visible"
+		/>
+
+	<RelativeLayout
+		android:id="@+id/comment_display_content"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		>
+
+		<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
+			android:id="@+id/comment_user_portrait"
+			android:layout_width="70dp"
+			android:layout_height="70dp"
+			android:layout_alignParentLeft="true"
+			liferay:cachePolicy="REMOTE_FIRST"
+			/>
+
+		<TextView
+			android:id="@+id/comment_user_name"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginRight="10dp"
+			android:layout_marginTop="10dp"
+			android:layout_toLeftOf="@+id/comment_edit_or_confirm"
+			android:layout_toRightOf="@+id/comment_user_portrait"
+			android:padding="0dp"
+			android:textColor="@android:color/white"
+			android:textStyle="bold"
+			tools:text="Android Phone Jr."
+			/>
+
+		<TextView
+			android:id="@+id/comment_create_date"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_above="@+id/comment_body_group"
+			android:layout_below="@+id/comment_user_name"
+			android:layout_marginBottom="10dp"
+			android:layout_marginRight="3dp"
+			android:layout_marginTop="5dp"
+			android:layout_toRightOf="@+id/comment_user_portrait"
+			android:padding="0dp"
+			android:textColor="@android:color/white"
+			android:textSize="12sp"
+			tools:text="15 minutes ago"
+			/>
+
+		<TextView
+			android:id="@+id/comment_edited"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_above="@+id/comment_body_group"
+			android:layout_below="@+id/comment_user_name"
+			android:layout_marginBottom="10dp"
+			android:layout_marginRight="10dp"
+			android:layout_marginTop="5dp"
+			android:layout_toLeftOf="@+id/comment_edit_or_confirm"
+			android:layout_toRightOf="@+id/comment_create_date"
+			android:padding="0dp"
+			android:text="@string/edited"
+			android:textSize="12sp"
+			android:textStyle="bold|italic"
+			android:textColor="@android:color/white"
+			android:visibility="gone"
+			tools:visibility="visible"
+			/>
+
+		<ImageButton
+			android:id="@+id/comment_edit_or_confirm"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginRight="10dp"
+			android:layout_marginTop="10dp"
+			android:layout_toLeftOf="@+id/comment_delete_or_cancel"
+			android:contentDescription="@string/edit_comment"
+			android:src="@drawable/default_comment_edit"
+			android:visibility="gone"
+			tools:visibility="visible"
+			/>
+
+		<ImageButton
+			android:id="@+id/comment_delete_or_cancel"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignRight="@+id/comment_body_group"
+			android:layout_marginTop="10dp"
+			android:contentDescription="@string/delete_comment"
+			android:src="@drawable/default_comment_delete"
+			android:visibility="gone"
+			tools:visibility="visible"
+			/>
+
+		<FrameLayout
+			android:id="@+id/comment_body_group"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentRight="true"
+			android:layout_below="@+id/comment_user_portrait"
+			android:layout_marginBottom="10dp"
+			android:layout_marginLeft="10dp"
+			>
+
+			<TextView
+				android:id="@+id/comment_body"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:labelFor="@+id/comment_edit_body"
+				android:padding="0dp"
+				android:textColor="@android:color/white"
+				/>
+
+			<EditText
+				android:id="@+id/comment_edit_body"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:focusable="true"
+				android:imeOptions="actionDone"
+				android:inputType="text"
+				android:lines="3"
+				android:textSize="15sp"
+				android:textColor="@android:color/white"
+				/>
+		</FrameLayout>
+
+	</RelativeLayout>
+
+</com.liferay.mobile.screens.viewsets.defaultviews.comment.display.CommentDisplayView>
