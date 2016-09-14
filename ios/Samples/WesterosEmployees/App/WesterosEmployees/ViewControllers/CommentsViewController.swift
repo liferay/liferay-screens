@@ -12,13 +12,33 @@
 * details.
 */
 import UIKit
+import LiferayScreens
 
-class CommentsViewController: CardViewController {
+class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckDataSource {
+
+	@IBOutlet weak var commentListScreenlet: CommentListScreenlet?
+
+	@IBOutlet weak var cardDeck: CardDeckView? {
+		didSet {
+			cardDeck?.delegate = self
+			cardDeck?.dataSource = self
+		}
+	}
+
+	var className: String?
+	var classPK: Int64?
+
 
 
 	//MARK: Init methods
 
 	convenience init() {
 		self.init(nibName: "CommentsViewController", bundle: nil)
+	}
+
+	func load () {
+		commentListScreenlet?.className = self.className!
+		commentListScreenlet?.classPK = self.classPK!
+		commentListScreenlet?.loadList()
 	}
 }
