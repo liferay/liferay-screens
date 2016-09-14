@@ -99,13 +99,18 @@ public class CardView: UIView {
 	var nextState: ShowState = .Normal
 	var beforeBackgroundState: ShowState = .Normal
 
-	//Delegate for customizing cards
+	///Delegate for customizing cards
 	var delegate: CardDelegate?
 
-	//Current page of the scroll view
+	///Current page of the scroll view
 	var currentPage: Int {
 		let width = scrollView.frame.size.width
 		return lround(Double(scrollView.contentOffset.x) / Double(width))
+	}
+
+	///Number of pages
+	var pageCount: Int {
+		return scrollContentView.subviews.count
 	}
 
 	//Controls
@@ -162,6 +167,14 @@ public class CardView: UIView {
 		}
 		
 		scrollView.layoutIfNeeded()
+	}
+
+	///Remove a page view from the card
+	/// - parameter index: index of the page
+	public func removePageAtIndex(index: Int) {
+		if scrollContentView.subviews.count > 1 {
+			scrollContentView.subviews[safe: index]?.removeFromSuperview()
+		}
 	}
 
 	///Moves the content inside the scrollview to the right. If no content found, it will try
