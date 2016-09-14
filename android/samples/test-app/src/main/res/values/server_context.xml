@@ -45,10 +45,10 @@
 	<string name="liferay_comment_asset_id">33712</string>
 
 	<!--RatingScreenlet-->
-	<string name="liferay_rating_thumb_asset_id">33712</string>
-	<string name="liferay_rating_star_asset_id">33712</string>
-	<string name="liferay_rating_like_asset_id">33712</string>
-	<string name="liferay_rating_reactions_emojis_asset_id">33712</string>
+	<string name="liferay_rating_thumb_asset_id">33713</string>
+	<string name="liferay_rating_star_asset_id">33713</string>
+	<string name="liferay_rating_like_asset_id">33713</string>
+	<string name="liferay_rating_reactions_emojis_asset_id">33713</string>
 
 	<string name="liferay_user_entryId">20169</string>
 
