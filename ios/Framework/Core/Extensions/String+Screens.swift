@@ -70,12 +70,17 @@ extension String {
 
 	public func toHtmlTextWithAttributes(attributes: [String: NSObject]) -> NSAttributedString? {
 
-		var text = self
+		var text = "<span style=\""
 
 		if let font = attributes[NSFontAttributeName] as? UIFont {
-			text = "<span style=\"font-family: \(font.fontName);font-size: \(font.pointSize)\">" +
-				"\(text)</span>"
+			text.appendContentsOf("font-family: \(font.fontName);font-size: \(font.pointSize);")
 		}
+
+		if let color = attributes[NSForegroundColorAttributeName] as? UIColor {
+			text.appendContentsOf("color: \(self.toHexString(color));")
+		}
+
+		text.appendContentsOf("\">\(self)</span>")
 
 		let encodedData = text.dataUsingEncoding(NSUTF8StringEncoding)
 
@@ -90,6 +95,19 @@ extension String {
 		}
 
 		return nil
+	}
+
+	func toHexString(color: UIColor) -> String {
+		var r:CGFloat = 0
+		var g:CGFloat = 0
+		var b:CGFloat = 0
+		var a:CGFloat = 0
+
+		color.getRed(&r, green: &g, blue: &b, alpha: &a)
+
+		let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
+
+		return NSString(format:"#%06x", rgb) as String
 	}
 
 }
