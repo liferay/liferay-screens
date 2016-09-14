@@ -27,7 +27,8 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 
 	@IBOutlet weak var cardDeck: CardDeckView? {
 		didSet {
-			self.cardDeck?.delegate = self
+			cardDeck?.delegate = self
+			cardDeck?.dataSource = self
 		}
 	}
 
@@ -48,6 +49,11 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		ratingScreenlet?.className = self.className!
 		ratingScreenlet?.classPK = self.classPK!
 		ratingScreenlet?.loadRatings()
+
+		/* Load asset comments */
+		commentsViewController?.className = self.className!
+		commentsViewController?.classPK = self.classPK
+		commentsViewController?.load()
 	}
 	
 
@@ -59,9 +65,6 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		self.cardDeck?.layer.zPosition = 0
 		
 		commentsViewController = CommentsViewController()
-
-		cardDeck?.delegate = self
-		cardDeck?.dataSource = self
 	}
 
 
@@ -99,7 +102,9 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 	//MARK: CardDeckDelegate
 
 	func cardDeck(cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
-		card.normalHeight = self.view.frame.height * 1.3
+		if let firstCardDeck = self.cardView?.superview {
+			card.normalHeight = firstCardDeck.frame.height * 0.8
+		}
 	}
 
 	func cardDeck(cardDeck: CardDeckView, colorForCardIndex index: Int) -> UIColor? {
