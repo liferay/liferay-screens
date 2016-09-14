@@ -163,24 +163,27 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 			: (I) customInteractorListener.createInteractor(actionName);
 
 		if (result != null) {
-			if (result instanceof BaseInteractor) {
-				BaseInteractor baseInteractor = (BaseInteractor) result;
-				baseInteractor.setTargetScreenletId(getScreenletId());
-				baseInteractor.setActionName(actionName);
-
-				if (baseInteractor instanceof BaseCacheReadInteractor) {
-					BaseCacheReadInteractor baseCacheReadInteractor = (BaseCacheReadInteractor) baseInteractor;
-					baseCacheReadInteractor.setCachePolicy(getCachePolicy());
-					baseCacheReadInteractor.setGroupId(getGroupId());
-					baseCacheReadInteractor.setUserId(getUserId());
-					baseCacheReadInteractor.setLocale(getLocale());
-				}
-			}
-
+			decorateInteractor(actionName, result);
 			result.onScreenletAttached(this);
-			interactors.put(actionName, result);
+			interactors.put(actionName, (I) result);
 		}
 		return result;
+	}
+
+	protected void decorateInteractor(String actionName, Interactor result) {
+		if (result instanceof BaseInteractor) {
+			BaseInteractor baseInteractor = (BaseInteractor) result;
+			baseInteractor.setTargetScreenletId(getScreenletId());
+			baseInteractor.setActionName(actionName);
+
+			if (baseInteractor instanceof BaseCacheReadInteractor) {
+				BaseCacheReadInteractor baseCacheReadInteractor = (BaseCacheReadInteractor) baseInteractor;
+				baseCacheReadInteractor.setCachePolicy(getCachePolicy());
+				baseCacheReadInteractor.setGroupId(getGroupId());
+				baseCacheReadInteractor.setUserId(getUserId());
+				baseCacheReadInteractor.setLocale(getLocale());
+			}
+		}
 	}
 
 	protected void init(Context context, AttributeSet attributes) {
