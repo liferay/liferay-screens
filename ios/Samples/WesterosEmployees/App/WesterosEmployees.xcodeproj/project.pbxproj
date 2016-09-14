@@ -124,6 +124,13 @@
 		0BD07A341D86AEDD00470A2E /* CommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD07A321D86AEDD00470A2E /* CommentsViewController.xib */; };
 		0BD832CD1D8933AD00178AAA /* UploadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD832CC1D8933AD00178AAA /* UploadImageViewController.swift */; };
 		0BD832CF1D89345000178AAA /* UploadImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD832CE1D89345000178AAA /* UploadImageViewController.xib */; };
+		0BFCB6C91D885C2A0024856F /* AddCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFCB6C71D885C2A0024856F /* AddCommentViewController.swift */; };
+		0BFCB6CA1D885C2A0024856F /* AddCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BFCB6C81D885C2A0024856F /* AddCommentViewController.xib */; };
+		0BFCB6CF1D8934E80024856F /* CommentListView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BFCB6CE1D8934E80024856F /* CommentListView_westeros.xib */; };
+		0BFCB6D11D8937570024856F /* CommentTableViewCell_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BFCB6D01D8937570024856F /* CommentTableViewCell_westeros.xib */; };
+		0BFCB6D31D8940040024856F /* CommentDisplayView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BFCB6D21D8940040024856F /* CommentDisplayView_westeros.xib */; };
+		0BFCB6D51D8943560024856F /* CommentListView_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFCB6D41D8943560024856F /* CommentListView_westeros.swift */; };
+		0BFCB6D71D895E9A0024856F /* CommentDisplayView_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFCB6D61D895E9A0024856F /* CommentDisplayView_westeros.swift */; };
 		4A05F25992DBA9E39C52A44F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B4E72B9B4122BAE349CEF7 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -248,6 +255,13 @@
 		0BD07A321D86AEDD00470A2E /* CommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsViewController.xib; sourceTree = "<group>"; };
 		0BD832CC1D8933AD00178AAA /* UploadImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadImageViewController.swift; sourceTree = "<group>"; };
 		0BD832CE1D89345000178AAA /* UploadImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadImageViewController.xib; sourceTree = "<group>"; };
+		0BFCB6C71D885C2A0024856F /* AddCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCommentViewController.swift; sourceTree = "<group>"; };
+		0BFCB6C81D885C2A0024856F /* AddCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCommentViewController.xib; sourceTree = "<group>"; };
+		0BFCB6CE1D8934E80024856F /* CommentListView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentListView_westeros.xib; sourceTree = "<group>"; };
+		0BFCB6D01D8937570024856F /* CommentTableViewCell_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell_westeros.xib; sourceTree = "<group>"; };
+		0BFCB6D21D8940040024856F /* CommentDisplayView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentDisplayView_westeros.xib; sourceTree = "<group>"; };
+		0BFCB6D41D8943560024856F /* CommentListView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListView_westeros.swift; sourceTree = "<group>"; };
+		0BFCB6D61D895E9A0024856F /* CommentDisplayView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentDisplayView_westeros.swift; sourceTree = "<group>"; };
 		1824BD97996F1C2F00DAA278 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		67B4E72B9B4122BAE349CEF7 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1333B220C6252F61EB4CA33 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -414,6 +428,8 @@
 		0B0A23521D6B221B0061B50D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0BFCB6C71D885C2A0024856F /* AddCommentViewController.swift */,
+				0BFCB6C81D885C2A0024856F /* AddCommentViewController.xib */,
 				0B35AF701D6C361C002E3D2F /* AuthViewController.swift */,
 				0B282F141D7ED9210090F800 /* BlogsViewController.swift */,
 				0B282F151D7ED9210090F800 /* BlogsViewController.xib */,
@@ -496,12 +512,17 @@
 				0B318C081D81C1E20027C04B /* AssetListView_westeros_blog.xib */,
 				0B6001A31D883B19003BDBF8 /* AssetListView_westeros_news.swift */,
 				0B6001A11D883B0E003BDBF8 /* AssetListView_westeros_news.xib */,
-				0BC6BA2E1D815B380042156E /* DocumentationTableViewCell_westeros.swift */,
-				0BC6BA2F1D815B380042156E /* DocumentationTableViewCell_westeros.xib */,
-				0B6001A91D88532C003BDBF8 /* DocumentationTableViewCell_westeros_news.xib */,
 				0B318C0A1D81C2450027C04B /* BlogsEntryTableViewCell_westeros.swift */,
 				0B318C0C1D81C24E0027C04B /* BlogsEntryTableViewCell_westeros.xib */,
 				0B6001AB1D88539E003BDBF8 /* BlogsEntryTableViewCell_westeros_news.xib */,
+				0BFCB6D61D895E9A0024856F /* CommentDisplayView_westeros.swift */,
+				0BFCB6D21D8940040024856F /* CommentDisplayView_westeros.xib */,
+				0BFCB6D41D8943560024856F /* CommentListView_westeros.swift */,
+				0BFCB6CE1D8934E80024856F /* CommentListView_westeros.xib */,
+				0BFCB6D01D8937570024856F /* CommentTableViewCell_westeros.xib */,
+				0BC6BA2E1D815B380042156E /* DocumentationTableViewCell_westeros.swift */,
+				0BC6BA2F1D815B380042156E /* DocumentationTableViewCell_westeros.xib */,
+				0B6001A91D88532C003BDBF8 /* DocumentationTableViewCell_westeros_news.xib */,
 				0BD07A1B1D82BEE200470A2E /* ImageDisplayView_westeros_blog.swift */,
 				0BD07A191D82BE3A00470A2E /* ImageDisplayView_westeros_blog.xib */,
 			);
@@ -634,6 +655,7 @@
 				0B0A232B1D6B1D840061B50D /* westeros.strings in Resources */,
 				0BC6BA441D8188670042156E /* file-none.png in Resources */,
 				0BC6BA431D8188670042156E /* file-music@3x.png in Resources */,
+				0BFCB6D11D8937570024856F /* CommentTableViewCell_westeros.xib in Resources */,
 				0B9309551D6DBE58003824D6 /* ForgotPasswordViewController.xib in Resources */,
 				0B0A239E1D6B22EF0061B50D /* tour-step1@3x.png in Resources */,
 				0BD07A261D82C4C200470A2E /* no-photo.png in Resources */,
@@ -656,6 +678,7 @@
 				0BC6BA491D8188670042156E /* file-pdf@3x.png in Resources */,
 				0BC6BA421D8188670042156E /* file-music@2x.png in Resources */,
 				0B0A23981D6B22EF0061B50D /* logo_BG_grey@3x.png in Resources */,
+				0BFCB6CF1D8934E80024856F /* CommentListView_westeros.xib in Resources */,
 				0B0A239B1D6B22EF0061B50D /* Logo_BG_red@3x.png in Resources */,
 				0B282F171D7ED9210090F800 /* BlogsViewController.xib in Resources */,
 				0B0A23301D6B1D840061B50D /* flat7-portrait-placeholder.png in Resources */,
@@ -686,12 +709,14 @@
 				0B0A236A1D6B221B0061B50D /* SignUpViewController.xib in Resources */,
 				0B0A23A31D6B22EF0061B50D /* tour-step3@2x.png in Resources */,
 				0BD07A1A1D82BE3A00470A2E /* ImageDisplayView_westeros_blog.xib in Resources */,
+				0BFCB6D31D8940040024856F /* CommentDisplayView_westeros.xib in Resources */,
 				0B0A238D1D6B22EF0061B50D /* icon_DOWN.png in Resources */,
 				0B0A23111D6B1D840061B50D /* LoginView_westeros.xib in Resources */,
 				0B0A23901D6B22EF0061B50D /* icon_DOWN_W.png in Resources */,
 				0B0A232A1D6B1D840061B50D /* circle_see pasword_ON@3x.png in Resources */,
 				0B318C091D81C1E20027C04B /* AssetListView_westeros_blog.xib in Resources */,
 				0B0A23291D6B1D840061B50D /* circle_see pasword_ON@2x.png in Resources */,
+				0BFCB6CA1D885C2A0024856F /* AddCommentViewController.xib in Resources */,
 				0B0A239D1D6B22EF0061B50D /* tour-step1@2x.png in Resources */,
 				0B0A239F1D6B22EF0061B50D /* tour-step2.png in Resources */,
 				0B0A229D1D6B0CDA0061B50D /* Main.storyboard in Resources */,
@@ -761,6 +786,7 @@
 				0B35AF6F1D6C3614002E3D2F /* HomeViewController.swift in Sources */,
 				0B0A23691D6B221B0061B50D /* SignUpViewController.swift in Sources */,
 				0BD832CD1D8933AD00178AAA /* UploadImageViewController.swift in Sources */,
+				0BFCB6D71D895E9A0024856F /* CommentDisplayView_westeros.swift in Sources */,
 				0B9309481D6DAC7E003824D6 /* CardDeckView.swift in Sources */,
 				0BC6BA301D815B380042156E /* DocumentationTableViewCell_westeros.swift in Sources */,
 				0B93094C1D6DAC9A003824D6 /* CardViewController.swift in Sources */,
@@ -774,6 +800,7 @@
 				0B0A23101D6B1D840061B50D /* LoginView_westeros.swift in Sources */,
 				0B0A23671D6B221B0061B50D /* SignInViewController.swift in Sources */,
 				0B318C031D81BC700027C04B /* AssetListView_westeros_doc.swift in Sources */,
+				0BFCB6D51D8943560024856F /* CommentListView_westeros.swift in Sources */,
 				0B282F121D7ED7BE0090F800 /* DocumentationViewController.swift in Sources */,
 				0B0A236B1D6B221B0061B50D /* TourViewController.swift in Sources */,
 				0BD07A331D86AEDD00470A2E /* CommentsViewController.swift in Sources */,
@@ -784,6 +811,7 @@
 				0B26EB021D805C6D000201C6 /* AssetListView_westeros.swift in Sources */,
 				0B93094A1D6DAC91003824D6 /* DefaultResources.swift in Sources */,
 				0B6001A41D883B19003BDBF8 /* AssetListView_westeros_news.swift in Sources */,
+				0BFCB6C91D885C2A0024856F /* AddCommentViewController.swift in Sources */,
 				0B9309511D6DB0D9003824D6 /* Westeros+CGRect.swift in Sources */,
 				0B282F161D7ED9210090F800 /* BlogsViewController.swift in Sources */,
 				0B282F1E1D7EE2570090F800 /* UserDisplayViewController.swift in Sources */,
