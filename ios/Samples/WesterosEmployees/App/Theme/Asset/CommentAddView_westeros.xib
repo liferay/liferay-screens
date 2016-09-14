@@ -13,6 +13,9 @@
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="cp5-cR-eQs">
                     <rect key="frame" x="20" y="8" width="381" height="27"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="27" id="3bb-K2-UW5"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" spellCheckingType="no" returnKeyType="done"/>
                     <connections>
@@ -49,7 +52,6 @@
                 <constraint firstItem="cp5-cR-eQs" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="N3Y-2n-M1s"/>
                 <constraint firstItem="cp5-cR-eQs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="OsD-fJ-Qsc"/>
                 <constraint firstItem="b6Z-hx-qYJ" firstAttribute="top" secondItem="cp5-cR-eQs" secondAttribute="bottom" constant="15" id="WLW-H6-Y1F"/>
-                <constraint firstAttribute="bottom" secondItem="b6Z-hx-qYJ" secondAttribute="bottom" constant="20" id="Ycb-sL-08Z"/>
                 <constraint firstAttribute="trailing" secondItem="b6Z-hx-qYJ" secondAttribute="trailing" constant="48" id="iiO-IK-fMh"/>
                 <constraint firstItem="b6Z-hx-qYJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="48" id="ppf-AS-vNs"/>
                 <constraint firstAttribute="trailing" secondItem="cp5-cR-eQs" secondAttribute="trailing" constant="20" id="sZg-Qx-jN0"/>

@@ -72,7 +72,9 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 	//MARK: CardDeckDelegate
 
 	func cardDeck(cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
-		card.normalHeight = 200
+		if let firstCardDeck = self.cardView?.superview {
+			card.normalHeight = firstCardDeck.frame.height * 0.6
+		}
 	}
 
 	func cardDeck(cardDeck: CardDeckView, buttonImageForCardIndex index: Int) -> UIImage? {
