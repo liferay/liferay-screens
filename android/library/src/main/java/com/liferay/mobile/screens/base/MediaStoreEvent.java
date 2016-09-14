@@ -1,11 +1,9 @@
 package com.liferay.mobile.screens.base;
 
-import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
-
 /**
  * @author Víctor Galán Grande
  */
-public class MediaStoreEvent extends CacheEvent {
+public class MediaStoreEvent {
 
 	private final String filePath;
 
