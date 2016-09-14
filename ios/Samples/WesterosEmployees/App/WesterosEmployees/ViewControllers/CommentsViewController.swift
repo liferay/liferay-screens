@@ -72,11 +72,11 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 	//MARK: CardDeckDelegate
 
 	func cardDeck(cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
-		card.normalHeight = 250
+		card.normalHeight = 200
 	}
 
 	func cardDeck(cardDeck: CardDeckView, buttonImageForCardIndex index: Int) -> UIImage? {
-		return UIImage(named: "icon_DOWN_W")
+		return UIImage(named: "icon_DOWN")
 	}
 
 	func cardDeck(cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
