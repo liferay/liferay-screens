@@ -44,6 +44,7 @@
 			android:layout_height="match_parent"
 			android:layout_above="@id/card_anchor_comments"
 			android:layout_below="@id/comment_title"
+			app:autoLoad="false"
 			/>
 
 		<com.liferay.mobile.screens.westerosemployees.Views.CommentDeck

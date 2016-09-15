@@ -45,6 +45,7 @@
 			android:layout_above="@id/card_anchor_comments"
 			android:layout_below="@id/comment_title"
 			app:layoutId="@layout/comment_list_westeros"
+			app:autoLoad="false"
 			/>
 
 		<com.liferay.mobile.screens.westerosemployees.Views.CommentDeck
