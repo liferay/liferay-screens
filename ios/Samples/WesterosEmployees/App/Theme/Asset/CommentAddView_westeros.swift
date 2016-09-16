@@ -12,19 +12,26 @@
 * details.
 */
 import UIKit
+import LiferayScreens
 
 
-public class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
+public class CommentAddView_westeros: CommentAddView_default, UITextViewDelegate {
 
-	@IBOutlet weak var addCommentTextField: UITextField?
+	@IBOutlet weak var addCommentTextView: UITextView? {
+		didSet {
+			self.addCommentTextView?.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).CGColor
+			self.addCommentTextView?.layer.borderWidth = 1.0
+			self.addCommentTextView?.layer.cornerRadius = 5
+		}
+	}
 	@IBOutlet weak var sendCommentButton: UIButton?
 
-	public var body: String {
+	public override var body: String {
 		get {
-			return addCommentTextField?.text ?? ""
+			return addCommentTextView?.text ?? ""
 		}
 		set {
-			addCommentTextField?.text = newValue
+			addCommentTextView?.text = newValue
 			updateButton()
 		}
 	}
@@ -32,36 +39,24 @@ public class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 
 	//MARK: Public methods
 
-	public func updateButton() {
-		sendCommentButton?.enabled = !(addCommentTextField?.text?.isEmpty ?? true)
+	override public func updateButton() {
+		sendCommentButton?.enabled = !(addCommentTextView?.text?.isEmpty ?? true)
 	}
 
 
 	//MARK: BaseScreenletView
 
 	public override func onShow() {
-		addCommentTextField?.delegate = self
+		addCommentTextView?.delegate = self
 		sendCommentButton?.replaceAttributedTitle(
 			LocalizedString("default", key: "comment-add-send", obj: self),
 			forState: .Normal)
 	}
 
-	override public func createProgressPresenter() -> ProgressPresenter {
-		return DefaultProgressPresenter()
-	}
 
+	//MARK: UITextViewDelegate
 
-	//MARK: View actions
-
-	@IBAction func editingDidChangeAction() {
+	public func textViewDidEndEditing(textView: UITextView) {
 		updateButton()
-	}
-
-
-	//MARK: UITextFieldDelegate
-
-	public override func textFieldShouldReturn(textField: UITextField) -> Bool {
-		userAction(name: "add-comment", sender: textField)
-		return super.textFieldShouldReturn(textField)
 	}
 }
