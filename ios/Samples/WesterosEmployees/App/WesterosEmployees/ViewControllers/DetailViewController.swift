@@ -36,6 +36,14 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 	}
 
 
+	//MARK: CardViewController
+
+	var commentsViewController: CommentsViewController? {
+		didSet {
+			self.addChildViewController(commentsViewController!)
+		}
+	}
+
 
 	//MARK: Public methods
 

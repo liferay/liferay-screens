@@ -35,6 +35,7 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 
 	var addCommentViewController: AddCommentViewController? {
 		didSet {
+			self.addChildViewController(addCommentViewController!)
 			self.addCommentViewController?.onCommentAdded = { comment in
 				self.cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
 				self.commentListScreenlet?.addComment(comment)
