@@ -151,7 +151,7 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 				return blogsViewController
 			case (2, 0):
 				return galleryViewController
-			case (1, 1), (2, 1):
+			case (0, 1), (1, 1), (2, 1):
 				return DetailViewController()
 			default:
 				return nil
@@ -182,6 +182,10 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 
 		if let vc = cardDeck.cards[position.card].presentingController as? DetailViewController {
 			switch (position.card, position.page) {
+			case (0, 1):
+				vc.load(
+					className: AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!,
+					classPK: (documentationViewController?.selectedFileEntry?.classPK)!)
 			case (1, 1):
 				vc.load(
 					className: AssetClasses.getClassName(AssetClassNameKey_BlogsEntry)!,

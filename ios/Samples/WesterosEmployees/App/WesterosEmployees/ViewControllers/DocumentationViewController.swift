@@ -14,11 +14,17 @@
 import UIKit
 import LiferayScreens
 
-class DocumentationViewController: CardViewController {
+class DocumentationViewController: CardViewController, AssetListScreenletDelegate {
+
+	var selectedFileEntry: FileEntry?
 
 	//MARK: Outlets
 
-	@IBOutlet weak var assetListScreenlet: AssetListScreenlet?
+	@IBOutlet weak var assetListScreenlet: AssetListScreenlet? {
+		didSet {
+			self.assetListScreenlet?.delegate = self
+		}
+	}
 
 	//MARK: Init methods
 
@@ -31,5 +37,13 @@ class DocumentationViewController: CardViewController {
 
 	func load() {
 		assetListScreenlet?.loadList()
+	}
+
+
+	//MARK: AssetListScreenletDelegate
+
+	func screenlet(screenlet: AssetListScreenlet, onAssetSelected asset: Asset) {
+		self.selectedFileEntry = FileEntry(attributes: asset.attributes)
+		cardView?.moveRight()
 	}
 }
