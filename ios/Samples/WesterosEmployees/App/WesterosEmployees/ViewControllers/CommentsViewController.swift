@@ -14,14 +14,19 @@
 import UIKit
 import LiferayScreens
 
-class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckDataSource {
+class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckDataSource,
+	CommentListScreenletDelegate {
 
 	var className: String?
 	var classPK: Int64?
 
 	//MARK: Outlets
 
-	@IBOutlet weak var commentListScreenlet: CommentListScreenlet?
+	@IBOutlet weak var commentListScreenlet: CommentListScreenlet? {
+		didSet {
+			self.commentListScreenlet?.delegate = self
+		}
+	}
 
 	@IBOutlet weak var cardDeck: CardDeckView? {
 		didSet {
@@ -39,6 +44,10 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 			self.addCommentViewController?.onCommentAdded = { comment in
 				self.cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
 				self.commentListScreenlet?.addComment(comment)
+			}
+			self.addCommentViewController?.onCommentUpdated = { comment in
+				self.cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
+				self.commentListScreenlet?.updateComment(comment)
 			}
 		}
 	}
@@ -96,6 +105,20 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 
 	func cardDeck(cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
 		return "Add Comment"
+	}
+
+
+	//MARK: CommentListScreenletDelegate
+	func screenlet(screenlet: BaseScreenlet, customInteractorForAction action: String, withSender sender: AnyObject?) -> Interactor? {
+		if action == "edit-comment" {
+			if let comment = sender as? Comment {
+				addCommentViewController?.commentAddScreenlet?.comment = comment
+				addCommentViewController?.cardView?.changeToState(.Normal)
+				addCommentViewController?.cardView?.changeButtonText("Edit Comment")
+			}
+		}
+
+		return nil
 	}
 
 }

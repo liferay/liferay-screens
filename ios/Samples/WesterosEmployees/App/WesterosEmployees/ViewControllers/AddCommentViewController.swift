@@ -17,8 +17,9 @@ import LiferayScreens
 class AddCommentViewController: CardViewController, KeyboardListener, CommentAddScreenletDelegate {
 
 	var onCommentAdded: (Comment -> ())?
+	var onCommentUpdated: (Comment -> ())?
 
-
+	
 	//MARK: Outlets
 
 	@IBOutlet weak var commentAddScreenlet: CommentAddScreenlet? {
@@ -42,6 +43,8 @@ class AddCommentViewController: CardViewController, KeyboardListener, CommentAdd
 	}
 
 	override func cardWillDisappear() {
+		self.cardView?.changeButtonText("Add Comment")
+		(self.commentAddScreenlet?.viewModel as? CommentAddView_westeros)?.body = ""
 		unregisterKeyboardListener(self)
 		self.view.endEditing(true)
 	}
@@ -62,5 +65,9 @@ class AddCommentViewController: CardViewController, KeyboardListener, CommentAdd
 
 	func screenlet(screenlet: CommentAddScreenlet, onCommentAdded comment: Comment) {
 		onCommentAdded?(comment)
+	}
+
+	func screenlet(screenlet: CommentAddScreenlet, onCommentUpdated comment: Comment) {
+		onCommentUpdated?(comment)
 	}
 }

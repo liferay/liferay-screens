@@ -39,4 +39,29 @@ public class CommentListView_westeros: CommentListView_default {
 			cell.accessoryView = nil
 		}
 	}
+
+
+	//MARK: UITableViewDelegate
+
+	override public func tableView(tableView: UITableView,
+	                      editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+		let editRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal,
+			title: "Edit", handler:{action, indexPath in
+				if let comment = self.rows[self.sections[indexPath.section]]?[indexPath.row] as? Comment {
+					self.userAction(name: "edit-comment", sender: comment)
+				}
+
+				tableView.setEditing(false, animated: true)
+		})
+
+		let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Destructive,
+			title: "Delete", handler:{action, indexPath in
+				let cell = tableView.cellForRowAtIndexPath(indexPath) as? CommentTableViewCell_default
+				cell?.commentDisplayScreenlet?.deleteComment()
+				tableView.setEditing(false, animated: true)
+		})
+		deleteRowAction.backgroundColor = DefaultResources.OddColorBackground
+
+		return [deleteRowAction, editRowAction];
+	}
 }
