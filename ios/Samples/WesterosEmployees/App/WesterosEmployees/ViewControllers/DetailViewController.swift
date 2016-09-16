@@ -17,14 +17,17 @@ import LiferayScreens
 class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 	CardDeckDelegate, CardDeckDataSource {
 
+	var className: String?
+	var classPK: Int64?
+	
+	//MARK: Outlets
+
 	@IBOutlet weak var assetDisplayScreenlet: AssetDisplayScreenlet? {
 		didSet {
 			self.assetDisplayScreenlet?.delegate = self
 		}
 	}
-
 	@IBOutlet weak var ratingScreenlet: RatingScreenlet?
-
 	@IBOutlet weak var cardDeck: CardDeckView? {
 		didSet {
 			cardDeck?.delegate = self
@@ -32,8 +35,6 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		}
 	}
 
-	var className: String?
-	var classPK: Int64?
 
 
 	//MARK: Public methods
@@ -54,6 +55,7 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		commentsViewController?.className = self.className!
 		commentsViewController?.classPK = self.classPK
 		commentsViewController?.load()
+
 	}
 	
 
@@ -66,11 +68,6 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		
 		commentsViewController = CommentsViewController()
 	}
-
-
-	//MARK: Card ViewControllers
-
-	var commentsViewController: CommentsViewController?
 
 
 	//MARK: Init methods

@@ -16,6 +16,11 @@ import LiferayScreens
 
 class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckDataSource {
 
+	var className: String?
+	var classPK: Int64?
+
+	//MARK: Outlets
+
 	@IBOutlet weak var commentListScreenlet: CommentListScreenlet?
 
 	@IBOutlet weak var cardDeck: CardDeckView? {
@@ -25,8 +30,6 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 		}
 	}
 
-	var className: String?
-	var classPK: Int64?
 
 
 	//MARK: Card ViewControllers

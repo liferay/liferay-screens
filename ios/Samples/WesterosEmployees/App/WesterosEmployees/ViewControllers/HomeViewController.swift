@@ -29,18 +29,20 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 	@IBOutlet weak var assetListScreenlet: AssetListScreenlet?
 	@IBOutlet weak var userProfileButton: UIButton?
 
-	//MARK: Card ViewControllers
+	//MARK: CardViewController
 
 	var documentationViewController: DocumentationViewController? {
 		didSet {
 			addChildViewController(documentationViewController!)
 		}
 	}
+
 	var blogsViewController: BlogsViewController? {
 		didSet {
 			addChildViewController(blogsViewController!)
 		}
 	}
+
 	var galleryViewController: GalleryViewController? {
 		didSet {
 			addChildViewController(galleryViewController!)
