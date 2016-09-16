@@ -35,6 +35,14 @@ class AddCommentViewController: CardViewController, KeyboardListener, CommentAdd
 		self.init(nibName: "AddCommentViewController", bundle: nil)
 	}
 
+
+	//MARK: Public methods
+
+	func load(className className: String, classPK: Int64) {
+		self.commentAddScreenlet?.className = className
+		self.commentAddScreenlet?.classPK = classPK
+	}
+
 	
 	//MARK: CardViewController
 

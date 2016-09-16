@@ -16,9 +16,6 @@ import LiferayScreens
 
 class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 	CardDeckDelegate, CardDeckDataSource {
-
-	var className: String?
-	var classPK: Int64?
 	
 	//MARK: Outlets
 
@@ -47,22 +44,21 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 
 	//MARK: Public methods
 
-	func load() {
+	func load(className className: String, classPK: Int64) {
 
 		/* Load asset */
-		assetDisplayScreenlet?.className = self.className!
-		assetDisplayScreenlet?.classPK = self.classPK!
+		assetDisplayScreenlet?.className = className
+		assetDisplayScreenlet?.classPK = classPK
 		assetDisplayScreenlet?.load()
 
 		/* Load asset rating */
-		ratingScreenlet?.className = self.className!
-		ratingScreenlet?.classPK = self.classPK!
+		ratingScreenlet?.className = className
+		ratingScreenlet?.classPK = classPK
 		ratingScreenlet?.loadRatings()
 
 		/* Load asset comments */
-		commentsViewController?.className = self.className!
-		commentsViewController?.classPK = self.classPK
-		commentsViewController?.load()
+		commentsViewController?.load(className: className, classPK: classPK)
+	}
 
 	}
 	

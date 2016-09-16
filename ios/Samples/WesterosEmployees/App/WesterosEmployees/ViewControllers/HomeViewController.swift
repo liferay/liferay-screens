@@ -183,14 +183,13 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 		if let vc = cardDeck.cards[position.card].presentingController as? DetailViewController {
 			switch (position.card, position.page) {
 			case (1, 1):
-				vc.className = AssetClasses.getClassName(AssetClassNameKey_BlogsEntry)!
-				vc.classPK = blogsViewController?.selectedBlogEntry?.classPK
-				vc.load()
+				vc.load(
+					className: AssetClasses.getClassName(AssetClassNameKey_BlogsEntry)!,
+					classPK: (blogsViewController?.selectedBlogEntry?.classPK)!)
 			case (2, 1):
-				vc.className = AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
-				vc.classPK = galleryViewController?.selectedImageEntry?.imageEntryId
-				cardDeck.cards[2].secondaryButton.alpha = 0.0
-				vc.load()
+				vc.load(
+					className: AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!,
+					classPK: (galleryViewController?.selectedImageEntry?.imageEntryId)!)
 			default:
 				break
 			}

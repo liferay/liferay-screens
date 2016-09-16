@@ -17,9 +17,6 @@ import LiferayScreens
 class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckDataSource,
 	CommentListScreenletDelegate {
 
-	var className: String?
-	var classPK: Int64?
-
 	//MARK: Outlets
 
 	@IBOutlet weak var commentListScreenlet: CommentListScreenlet? {
@@ -59,13 +56,12 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 		self.init(nibName: "CommentsViewController", bundle: nil)
 	}
 
-	func load () {
-		commentListScreenlet?.className = self.className!
-		commentListScreenlet?.classPK = self.classPK!
+	func load (className className: String, classPK: Int64) {
+		commentListScreenlet?.className = className
+		commentListScreenlet?.classPK = classPK
 		commentListScreenlet?.loadList()
 
-		addCommentViewController?.commentAddScreenlet?.className = self.className!
-		addCommentViewController?.commentAddScreenlet?.classPK = self.classPK!
+		addCommentViewController?.load(className: className, classPK: classPK)
 	}
 
 	//MARK: UIViewController
