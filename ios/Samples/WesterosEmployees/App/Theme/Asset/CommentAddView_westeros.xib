@@ -22,7 +22,7 @@
                         <action selector="editingDidChangeAction" destination="iN0-l3-epB" eventType="editingChanged" id="6kM-1c-Xmr"/>
                     </connections>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b6Z-hx-qYJ">
+                <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="add-comment" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b6Z-hx-qYJ">
                     <rect key="frame" x="48" y="50" width="325" height="60"/>
                     <color key="backgroundColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -62,6 +62,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="addCommentTextField" destination="cp5-cR-eQs" id="jxM-VB-Mhs"/>
+                <outlet property="sendCommentButton" destination="b6Z-hx-qYJ" id="KQw-te-H5V"/>
             </connections>
             <point key="canvasLocation" x="280.5" y="260"/>
         </view>
