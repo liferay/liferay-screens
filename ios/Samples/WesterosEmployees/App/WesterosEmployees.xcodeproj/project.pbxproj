@@ -84,6 +84,7 @@
 		0B35AF6F1D6C3614002E3D2F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35AF6E1D6C3614002E3D2F /* HomeViewController.swift */; };
 		0B35AF711D6C361C002E3D2F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35AF701D6C361C002E3D2F /* AuthViewController.swift */; };
 		0B35AF731D6C4678002E3D2F /* liferay-server-context.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B35AF721D6C4678002E3D2F /* liferay-server-context.plist */; };
+		0B5D453E1D8BE69600729A4D /* CommentAddView_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5D453D1D8BE69600729A4D /* CommentAddView_westeros.swift */; };
 		0B6001A21D883B0E003BDBF8 /* AssetListView_westeros_news.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6001A11D883B0E003BDBF8 /* AssetListView_westeros_news.xib */; };
 		0B6001A41D883B19003BDBF8 /* AssetListView_westeros_news.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6001A31D883B19003BDBF8 /* AssetListView_westeros_news.swift */; };
 		0B6001AA1D88532C003BDBF8 /* DocumentationTableViewCell_westeros_news.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6001A91D88532C003BDBF8 /* DocumentationTableViewCell_westeros_news.xib */; };
@@ -218,6 +219,7 @@
 		0B35AF6E1D6C3614002E3D2F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0B35AF701D6C361C002E3D2F /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		0B35AF721D6C4678002E3D2F /* liferay-server-context.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-server-context.plist"; sourceTree = "<group>"; };
+		0B5D453D1D8BE69600729A4D /* CommentAddView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentAddView_westeros.swift; sourceTree = "<group>"; };
 		0B6001A11D883B0E003BDBF8 /* AssetListView_westeros_news.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssetListView_westeros_news.xib; sourceTree = "<group>"; };
 		0B6001A31D883B19003BDBF8 /* AssetListView_westeros_news.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListView_westeros_news.swift; sourceTree = "<group>"; };
 		0B6001A91D88532C003BDBF8 /* DocumentationTableViewCell_westeros_news.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentationTableViewCell_westeros_news.xib; sourceTree = "<group>"; };
@@ -258,6 +260,8 @@
 		0BD07A321D86AEDD00470A2E /* CommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsViewController.xib; sourceTree = "<group>"; };
 		0BD832CC1D8933AD00178AAA /* UploadImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadImageViewController.swift; sourceTree = "<group>"; };
 		0BD832CE1D89345000178AAA /* UploadImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadImageViewController.xib; sourceTree = "<group>"; };
+		0BD832D21D898AC500178AAA /* ImageUploadDetailView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageUploadDetailView_westeros.xib; sourceTree = "<group>"; };
+		0BD832D41D89958700178AAA /* ImageUploadDetailView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploadDetailView_westeros.swift; sourceTree = "<group>"; };
 		0BFCB6C71D885C2A0024856F /* AddCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCommentViewController.swift; sourceTree = "<group>"; };
 		0BFCB6C81D885C2A0024856F /* AddCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCommentViewController.xib; sourceTree = "<group>"; };
 		0BFCB6CE1D8934E80024856F /* CommentListView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentListView_westeros.xib; sourceTree = "<group>"; };
@@ -266,8 +270,6 @@
 		0BFCB6D41D8943560024856F /* CommentListView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListView_westeros.swift; sourceTree = "<group>"; };
 		0BFCB6D61D895E9A0024856F /* CommentDisplayView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentDisplayView_westeros.swift; sourceTree = "<group>"; };
 		0BFCB6DB1D89A0930024856F /* CommentAddView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentAddView_westeros.xib; sourceTree = "<group>"; };
-		0BD832D21D898AC500178AAA /* ImageUploadDetailView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageUploadDetailView_westeros.xib; sourceTree = "<group>"; };
-		0BD832D41D89958700178AAA /* ImageUploadDetailView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploadDetailView_westeros.swift; sourceTree = "<group>"; };
 		1824BD97996F1C2F00DAA278 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		67B4E72B9B4122BAE349CEF7 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1333B220C6252F61EB4CA33 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -521,6 +523,7 @@
 				0B318C0A1D81C2450027C04B /* BlogsEntryTableViewCell_westeros.swift */,
 				0B318C0C1D81C24E0027C04B /* BlogsEntryTableViewCell_westeros.xib */,
 				0B6001AB1D88539E003BDBF8 /* BlogsEntryTableViewCell_westeros_news.xib */,
+				0B5D453D1D8BE69600729A4D /* CommentAddView_westeros.swift */,
 				0BFCB6DB1D89A0930024856F /* CommentAddView_westeros.xib */,
 				0BFCB6D61D895E9A0024856F /* CommentDisplayView_westeros.swift */,
 				0BFCB6D21D8940040024856F /* CommentDisplayView_westeros.xib */,
@@ -806,6 +809,7 @@
 				0B0A23191D6B1D840061B50D /* WesterosProgressPresenter.swift in Sources */,
 				0B318C071D81C1DC0027C04B /* AssetListView_westeros_blog.swift in Sources */,
 				0B0A230E1D6B1D840061B50D /* ForgotPasswordView_westeros.swift in Sources */,
+				0B5D453E1D8BE69600729A4D /* CommentAddView_westeros.swift in Sources */,
 				0B0A23161D6B1D840061B50D /* UserPortraitView_westeros.swift in Sources */,
 				0B0A23481D6B22100061B50D /* KeyboardListener.swift in Sources */,
 				0B0A23101D6B1D840061B50D /* LoginView_westeros.swift in Sources */,
