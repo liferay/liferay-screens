@@ -11,16 +11,24 @@
             <rect key="frame" x="0.0" y="0.0" width="115" height="116"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no-photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="ktK-FI-VDI">
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no-photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="yVz-Kd-QTR">
+                    <rect key="frame" x="8" y="8" width="99" height="100"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ktK-FI-VDI">
                     <rect key="frame" x="0.0" y="0.0" width="115" height="116"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="yVz-Kd-QTR" secondAttribute="trailing" constant="8" id="Eh5-m1-Jha"/>
                 <constraint firstItem="ktK-FI-VDI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Qcp-nC-jKM"/>
+                <constraint firstAttribute="bottom" secondItem="yVz-Kd-QTR" secondAttribute="bottom" constant="8" id="bPw-ZY-fHn"/>
                 <constraint firstAttribute="trailing" secondItem="ktK-FI-VDI" secondAttribute="trailing" id="foa-8y-qlV"/>
+                <constraint firstItem="yVz-Kd-QTR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="gjF-hc-GpW"/>
                 <constraint firstAttribute="bottom" secondItem="ktK-FI-VDI" secondAttribute="bottom" id="hAu-nN-5Ix"/>
                 <constraint firstItem="ktK-FI-VDI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hIn-aI-DhK"/>
+                <constraint firstItem="yVz-Kd-QTR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="j7D-JY-Zbz"/>
                 <constraint firstItem="ktK-FI-VDI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jbl-ep-vqW"/>
                 <constraint firstItem="ktK-FI-VDI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="m9d-iD-Ccl"/>
             </constraints>
