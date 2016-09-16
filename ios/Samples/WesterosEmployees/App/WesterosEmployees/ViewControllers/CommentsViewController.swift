@@ -50,6 +50,13 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 	}
 
 
+	//MARK: Public methods
+
+	func hideAddCommentCard() {
+		self.cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
+	}
+
+
 	//MARK: Init methods
 
 	convenience init() {

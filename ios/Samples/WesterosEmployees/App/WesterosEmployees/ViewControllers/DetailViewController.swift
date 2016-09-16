@@ -60,6 +60,9 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		commentsViewController?.load(className: className, classPK: classPK)
 	}
 
+	func hideCommentsCard() {
+		self.commentsViewController?.hideAddCommentCard()
+		self.cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
 	}
 	
 

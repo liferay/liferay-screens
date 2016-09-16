@@ -190,6 +190,8 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 				vc.load(
 					className: AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!,
 					classPK: (galleryViewController?.selectedImageEntry?.imageEntryId)!)
+			case (_, 0):
+				vc.hideCommentsCard()
 			default:
 				break
 			}
