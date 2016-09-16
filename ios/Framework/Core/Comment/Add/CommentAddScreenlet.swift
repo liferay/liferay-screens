@@ -22,6 +22,12 @@ import UIKit
 	optional func screenlet(screenlet: CommentAddScreenlet,
 			onAddCommentError error: NSError)
 
+	optional func screenlet(screenlet: CommentAddScreenlet,
+			onCommentUpdated comment: Comment)
+
+	optional func screenlet(screenlet: CommentAddScreenlet,
+			onUpdateCommentError error: NSError)
+
 }
 
 
@@ -38,10 +44,28 @@ import UIKit
 		return screenletView as! CommentAddViewModel
 	}
 
+	public var comment: Comment? {
+		didSet {
+			if let comment = self.comment {
+				viewModel.body = comment.plainBody
+			}
+		}
+	}
+
 
 	//MARK: BaseScreenlet
 
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+		if comment != nil {
+			return createUpdateCommentInteractor()
+		}
+		return createAddCommentInteractor()
+	}
+
+
+	//MARK: Interactor methods
+
+	func createAddCommentInteractor() -> Interactor {
 		let interactor = CommentAddInteractor(
 			screenlet: self,
 			className: self.className,
@@ -55,12 +79,36 @@ import UIKit
 			}
 			else {
 				self.commentAddDelegate?.screenlet?(self,
-					onAddCommentError: NSError.errorWithCause(.InvalidServerResponse))
+				                                    onAddCommentError: NSError.errorWithCause(.InvalidServerResponse))
 			}
 		}
 
 		interactor.onFailure = {
 			self.commentAddDelegate?.screenlet?(self, onAddCommentError: $0)
+		}
+		
+		return interactor
+	}
+
+	func createUpdateCommentInteractor() -> Interactor {
+		let interactor = CommentUpdateInteractor(
+			screenlet: self,
+			commentId: comment!.commentId,
+			body: self.viewModel.body)
+
+		interactor.onSuccess = {
+			if let resultComment = interactor.resultComment {
+				self.commentAddDelegate?.screenlet?(self, onCommentUpdated: resultComment)
+				self.viewModel.body = ""
+			}
+			else {
+				self.commentAddDelegate?.screenlet?(self,
+				                                    onUpdateCommentError: NSError.errorWithCause(.InvalidServerResponse))
+			}
+		}
+
+		interactor.onFailure = {
+			self.commentAddDelegate?.screenlet?(self, onUpdateCommentError: $0)
 		}
 
 		return interactor
