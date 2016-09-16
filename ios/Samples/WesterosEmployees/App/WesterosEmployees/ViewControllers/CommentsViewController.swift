@@ -30,11 +30,17 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 		}
 	}
 
+	
+	//MARK: CardViewController
 
-
-	//MARK: Card ViewControllers
-
-	var addCommentViewController: AddCommentViewController?
+	var addCommentViewController: AddCommentViewController? {
+		didSet {
+			self.addCommentViewController?.onCommentAdded = { comment in
+				self.cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
+				self.commentListScreenlet?.addComment(comment)
+			}
+		}
+	}
 
 
 	//MARK: Init methods
@@ -47,6 +53,9 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 		commentListScreenlet?.className = self.className!
 		commentListScreenlet?.classPK = self.classPK!
 		commentListScreenlet?.loadList()
+
+		addCommentViewController?.commentAddScreenlet?.className = self.className!
+		addCommentViewController?.commentAddScreenlet?.classPK = self.classPK!
 	}
 
 	//MARK: UIViewController

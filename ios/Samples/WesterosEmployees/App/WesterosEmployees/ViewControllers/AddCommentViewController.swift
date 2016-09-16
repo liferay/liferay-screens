@@ -14,7 +14,19 @@
 import UIKit
 import LiferayScreens
 
-class AddCommentViewController: CardViewController, KeyboardListener {
+class AddCommentViewController: CardViewController, KeyboardListener, CommentAddScreenletDelegate {
+
+	var onCommentAdded: (Comment -> ())?
+
+
+	//MARK: Outlets
+
+	@IBOutlet weak var commentAddScreenlet: CommentAddScreenlet? {
+		didSet {
+			self.commentAddScreenlet?.delegate = self
+		}
+	}
+
 
 	//MARK: Init methods
 
@@ -43,5 +55,12 @@ class AddCommentViewController: CardViewController, KeyboardListener {
 
 	func hideKeyboard(notif: NSNotification) {
 		cardView?.changeToState(.Normal)
+	}
+
+
+	//MARK: CommentAddScreenletDelegate
+
+	func screenlet(screenlet: CommentAddScreenlet, onCommentAdded comment: Comment) {
+		onCommentAdded?(comment)
 	}
 }

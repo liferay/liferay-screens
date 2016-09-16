@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddCommentViewController" customModule="WesterosEmployees" customModuleProvider="target">
             <connections>
+                <outlet property="commentAddScreenlet" destination="9SF-u1-T1O" id="m0W-s1-K6U"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
