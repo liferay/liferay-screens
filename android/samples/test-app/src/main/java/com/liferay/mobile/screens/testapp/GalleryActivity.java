@@ -10,7 +10,6 @@ import com.liferay.mobile.screens.gallery.GalleryListener;
 import com.liferay.mobile.screens.gallery.GalleryScreenlet;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DetailUploadDefaultActivity;
 import java.util.List;
 
 import static android.view.View.GONE;
@@ -103,8 +102,13 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 	}
 
 	@Override
-	public Class provideImageUploadDetailActivity() {
-		return DetailUploadDefaultActivity.class;
+	public boolean showUploadImageView(String actionName, String picturePath, int screenletId) {
+		return false;
+	}
+
+	@Override
+	public int provideImageUploadDetailView() {
+		return 0;
 	}
 
 	@Override
