@@ -39,7 +39,10 @@ public class GridGalleryView extends BaseGalleryView<GridGalleryAdapter.GridGall
 
 	@Override
 	public void onClick(View v) {
-		openMediaSelector();
+
+		if (v.getId() == R.id.liferay_upload_fab) {
+			openMediaSelector();
+		}
 	}
 
 	@Override
@@ -62,7 +65,9 @@ public class GridGalleryView extends BaseGalleryView<GridGalleryAdapter.GridGall
 		super.onFinishInflate();
 		recyclerView.setLayoutManager(new GridLayoutManager(getContext(), COLUMNS_SIZE));
 		FloatingActionButton uploadFAB = (FloatingActionButton) findViewById(R.id.liferay_upload_fab);
-		uploadFAB.setOnClickListener(this);
+		if (uploadFAB != null) {
+			uploadFAB.setOnClickListener(this);
+		}
 	}
 
 	@Override
