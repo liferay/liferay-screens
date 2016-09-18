@@ -1,11 +1,14 @@
 package com.liferay.mobile.screens.westerosemployees.Views;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.inputmethod.InputMethodManager;
 import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.add.CommentAddListener;
 import com.liferay.mobile.screens.comment.add.CommentAddScreenlet;
 import com.liferay.mobile.screens.comment.list.CommentListScreenlet;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.rating.RatingScreenlet;
 import com.liferay.mobile.screens.westerosemployees.R;
 import com.liferay.mobile.screens.westerosemployees.utils.CardState;
@@ -66,6 +69,7 @@ public abstract class CommentsRatingsCard extends Card implements CommentAddList
 
 	@Override
 	public void onAddCommentSuccess(CommentEntry commentEntry) {
+		hideSoftKeyBoard();
 		commentAddCard.setState(CardState.MINIMIZED);
 		commentListScreenlet.addNewCommentEntry(commentEntry);
 	}
@@ -73,5 +77,14 @@ public abstract class CommentsRatingsCard extends Card implements CommentAddList
 	@Override
 	public void error(Exception e, String userAction) {
 
+	}
+
+	private void hideSoftKeyBoard() {
+		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
+		InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+		if(imm.isAcceptingText()) {
+			imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+		}
 	}
 }
