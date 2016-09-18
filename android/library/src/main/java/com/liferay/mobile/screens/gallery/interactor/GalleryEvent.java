@@ -8,12 +8,11 @@ public class GalleryEvent extends ListEvent<ImageEntry> {
 	private String title;
 	private String description;
 	private String changeLog;
-	private int totalBytes;
-	private int totalBytesSent;
-	private boolean completed;
-	private ImageEntry imageEntry;
 	private String picturePath;
+
+	private ImageEntry imageEntry;
 	private boolean starting;
+	private long folderId;
 
 	public GalleryEvent() {
 		super();
@@ -21,19 +20,12 @@ public class GalleryEvent extends ListEvent<ImageEntry> {
 
 	public GalleryEvent(ImageEntry imageEntry) {
 		this.imageEntry = imageEntry;
-		this.completed = true;
-		this.starting = false;
-	}
-
-	public GalleryEvent(int totalBytes, int totalBytesSent) {
-		this.totalBytes = totalBytes;
-		this.totalBytesSent = totalBytesSent;
-		this.completed = false;
-		this.starting = false;
+		starting = false;
 	}
 
 	public GalleryEvent(Exception e) {
 		super(e);
+		starting = false;
 	}
 
 	public GalleryEvent(String picturePath, String title, String description, String changeLog) {
@@ -41,7 +33,7 @@ public class GalleryEvent extends ListEvent<ImageEntry> {
 		this.title = title;
 		this.description = description;
 		this.changeLog = changeLog;
-		starting = false;
+		starting = true;
 	}
 
 	@Override
@@ -52,18 +44,6 @@ public class GalleryEvent extends ListEvent<ImageEntry> {
 	@Override
 	public ImageEntry getModel() {
 		return imageEntry;
-	}
-
-	public int getTotalBytes() {
-		return totalBytes;
-	}
-
-	public int getTotalBytesSent() {
-		return totalBytesSent;
-	}
-
-	public boolean isCompleted() {
-		return completed;
 	}
 
 	public ImageEntry getImageEntry() {
@@ -96,5 +76,13 @@ public class GalleryEvent extends ListEvent<ImageEntry> {
 
 	public boolean isStarting() {
 		return starting;
+	}
+
+	public void setFolderId(long folderId) {
+		this.folderId = folderId;
+	}
+
+	public long getFolderId() {
+		return folderId;
 	}
 }

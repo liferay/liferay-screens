@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 /**
  * @author Javier Gamarra
  */
-public class WebViewListActivity extends ThemeActivity {
+public class WebContentListActivity extends ThemeActivity {
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {

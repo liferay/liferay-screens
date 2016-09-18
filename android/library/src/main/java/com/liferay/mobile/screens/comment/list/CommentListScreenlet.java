@@ -12,7 +12,6 @@ import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
 import com.liferay.mobile.screens.comment.list.interactor.CommentListInteractor;
 import com.liferay.mobile.screens.comment.list.view.CommentListViewModel;
-import com.liferay.mobile.screens.context.LiferayServerContext;
 
 /**
  * @author Alejandro Hernández

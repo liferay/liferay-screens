@@ -35,7 +35,7 @@ public class DetailUploadDefaultActivity extends BaseDetailUploadActivity implem
 	private void parseIntent() {
 		Intent intent = getIntent();
 
-		picturePath = intent.getStringExtra(PICTURE_PATH_KEY);
+		picturePath = intent.getStringExtra(PICTURE_PATH);
 	}
 
 	private void bindViews() {

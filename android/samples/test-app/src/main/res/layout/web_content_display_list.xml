@@ -15,7 +15,7 @@
 	<com.liferay.mobile.screens.webcontent.list.WebContentListScreenlet
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		app:folderId="@string/web_content_folderId"
+		app:folderId="@string/liferay_web_content_folder_id"
 		app:labelFields="Text"
 		app:cachePolicy="REMOTE_FIRST"
 		/>

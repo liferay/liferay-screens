@@ -18,7 +18,6 @@ public class MediaStoreRequestShadowActivity extends Activity {
 	public static final int TAKE_PICTURE_WITH_CAMERA = 1;
 
 	public static final String MEDIA_STORE_TYPE = "MEDIA_STORE_TYPE";
-	public static final String SCREENLET_ID = "SCREENLET_ID";
 	private int mediaStoreType;
 	private String filePath;
 

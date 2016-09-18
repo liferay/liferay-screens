@@ -16,5 +16,5 @@ public interface GalleryInteractorListener extends BaseListInteractorListener<Im
 
 	void onPictureUploadProgress(int totalBytes, int totalBytesSent);
 
-	void onPictureUploadInformationReceived(String picturePath, String title, String description);
+	void onPictureUploadInformationReceived(String picturePath, String title, String description, String changelog);
 }
