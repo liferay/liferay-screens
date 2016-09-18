@@ -1,49 +1,41 @@
-package com.liferay.mobile.screens.viewsets.westeros.asset.list.documents;
+package com.liferay.mobile.screens.viewsets.westeros.gallery;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
-import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
-import com.liferay.mobile.screens.base.list.BaseListScreenletView;
 import com.liferay.mobile.screens.viewsets.westeros.R;
 
 /**
  * @author Víctor Galán Grande
  */
-public class AssetListView
-	extends BaseListScreenletView<AssetEntry, AssetListAdapter.AssetListViewHolder, AssetListAdapter>
+public class GridGalleryView extends com.liferay.mobile.screens.viewsets.defaultviews.gallery.grid.GridGalleryView
 	implements SwipeRefreshLayout.OnRefreshListener {
 
 	private SwipeRefreshLayout swipeRefreshLayout;
 
-	public AssetListView(Context context) {
+
+	public GridGalleryView(Context context) {
 		super(context);
 	}
 
-	public AssetListView(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public GridGalleryView(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public AssetListView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public GridGalleryView(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public GridGalleryView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override
 	public void onRefresh() {
 		swipeRefreshLayout.setRefreshing(false);
 		((BaseListScreenlet) getScreenlet()).loadPage(0);
-	}
-
-	@Override
-	protected AssetListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
-		return new AssetListAdapter(itemLayoutId, itemProgressLayoutId, this);
-	}
-
-	@Override
-	protected int getItemLayoutId() {
-		return R.layout.asset_list_item_westeros_documents_item;
 	}
 
 	@Override
