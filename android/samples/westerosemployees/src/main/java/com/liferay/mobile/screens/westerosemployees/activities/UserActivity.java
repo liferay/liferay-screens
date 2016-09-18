@@ -2,8 +2,10 @@ package com.liferay.mobile.screens.westerosemployees.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
+import com.liferay.mobile.screens.asset.list.AssetListScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.westerosemployees.R;
 
@@ -18,6 +20,13 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 		setContentView(R.layout.user);
 
 		bindViews();
+
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				((AssetListScreenlet) findViewById(R.id.news_display_screenlet)).loadPage(0);
+			}
+		}, 1000);
 	}
 
 	private void bindViews() {

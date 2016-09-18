@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
 import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.asset.list.AssetListScreenlet;
@@ -11,6 +12,7 @@ import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.comment.list.CommentListScreenlet;
 import com.liferay.mobile.screens.rating.RatingScreenlet;
 import com.liferay.mobile.screens.westerosemployees.R;
+import com.liferay.mobile.screens.westerosemployees.utils.CardState;
 import com.liferay.mobile.screens.westerosemployees.utils.ViewUtil;
 import java.util.List;
 
@@ -21,6 +23,8 @@ public class DocsCard extends CommentsRatingsCard implements BaseListListener<As
 
 	private AssetListScreenlet docsListScreenlet;
 	private AssetDisplayScreenlet documentDisplayScreenlet;
+
+	private boolean loaded;
 
 	public DocsCard(Context context) {
 		super(context);
@@ -36,6 +40,16 @@ public class DocsCard extends CommentsRatingsCard implements BaseListListener<As
 
 	public DocsCard(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
+	}
+
+	@Override
+	public ViewPropertyAnimator setState(CardState state) {
+		if(!loaded && state.equals(CardState.NORMAL)) {
+			loaded = true;
+			docsListScreenlet.loadPage(0);
+		}
+
+		return super.setState(state);
 	}
 
 	@Override

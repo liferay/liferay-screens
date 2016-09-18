@@ -38,6 +38,7 @@
 			android:layout_below="@id/blogs_title"
 			app:classNameId="20011"
 			app:layoutId="@layout/asset_list_westeros_blogs"
+			app:autoLoad="false"
 			/>
 
 	</RelativeLayout>

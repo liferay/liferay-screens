@@ -37,6 +37,7 @@
 			android:layout_below="@id/documents_title"
 			app:portletItemName="DocumentationWesterosEmployees"
 			app:layoutId="@layout/asset_list_westeros_documents"
+			app:autoLoad="false"
 			/>
 
 	</RelativeLayout>

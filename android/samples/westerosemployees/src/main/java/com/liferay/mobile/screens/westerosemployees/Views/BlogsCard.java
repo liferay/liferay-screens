@@ -3,6 +3,7 @@ package com.liferay.mobile.screens.westerosemployees.Views;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewPropertyAnimator;
 import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.asset.list.AssetListScreenlet;
@@ -10,6 +11,7 @@ import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.comment.list.CommentListScreenlet;
 import com.liferay.mobile.screens.rating.RatingScreenlet;
 import com.liferay.mobile.screens.westerosemployees.R;
+import com.liferay.mobile.screens.westerosemployees.utils.CardState;
 import java.util.List;
 
 /**
@@ -19,6 +21,8 @@ public class BlogsCard extends CommentsRatingsCard implements BaseListListener<A
 
 	private AssetListScreenlet blogsListScreenlet;
 	private AssetDisplayScreenlet blogDisplayScreenlet;
+
+	private boolean loaded;
 
 	public BlogsCard(Context context) {
 		super(context);
@@ -34,6 +38,16 @@ public class BlogsCard extends CommentsRatingsCard implements BaseListListener<A
 
 	public BlogsCard(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
+	}
+
+	@Override
+	public ViewPropertyAnimator setState(CardState state) {
+		if(!loaded && state.equals(CardState.NORMAL)) {
+			loaded = true;
+			blogsListScreenlet.loadPage(0);
+		}
+
+		return super.setState(state);
 	}
 
 	@Override
