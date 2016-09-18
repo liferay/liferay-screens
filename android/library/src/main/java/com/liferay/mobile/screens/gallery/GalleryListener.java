@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.gallery;
 
+import android.support.annotation.LayoutRes;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 
@@ -16,5 +17,7 @@ public interface GalleryListener extends BaseListListener<ImageEntry> {
 
 	void onImageUploadEnd(ImageEntry entry);
 
-	Class provideImageUploadDetailActivity();
+	boolean showUploadImageView(String actionName, String picturePath, int screenletId);
+
+	@LayoutRes int provideImageUploadDetailView();
 }

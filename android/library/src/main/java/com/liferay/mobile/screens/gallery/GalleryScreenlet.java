@@ -1,11 +1,19 @@
 package com.liferay.mobile.screens.gallery;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.support.annotation.LayoutRes;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
@@ -22,8 +30,9 @@ import com.liferay.mobile.screens.gallery.interactor.upload.GalleryUploadInterac
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.gallery.view.GalleryViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
+import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DefaultUploadDetailView;
+import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DefaultUploadDialog;
 import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DetailImageActivity;
-import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DetailUploadDefaultActivity;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -123,12 +132,18 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 
 	@Override
 	public void onPicturePathReceived(String picturePath) {
-		Class activityUploadDetail = null;
+		int uploadDetailViewLayout = 0;
 		if (getListener() != null) {
-			activityUploadDetail = getListener().provideImageUploadDetailActivity();
+			boolean showed = getListener().showUploadImageView(UPLOAD_IMAGE, picturePath, getScreenletId());
+
+			if (showed) {
+				return;
+			}
+
+			uploadDetailViewLayout = getListener().provideImageUploadDetailView();
 		}
 
-		startUploadDetailActivity(activityUploadDetail, picturePath);
+		startUploadDetail(uploadDetailViewLayout, picturePath);
 	}
 
 	@Override
@@ -225,19 +240,19 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 		return mimeTypesRaw.split(",");
 	}
 
-	protected void startUploadDetailActivity(Class activityUploadDetail, String picturePath) {
+	protected void startUploadDetail(@LayoutRes int uploadDetailView, final String picturePath) {
+		BaseDetailUploadView view = null;
+		Context context = LiferayScreensContext.getContext();
 
-		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
+		if (uploadDetailView != 0) {
+			view = (BaseDetailUploadView) LayoutInflater.from(context).inflate(uploadDetailView, null, false);
+		}
+		else {
+			view = (BaseDetailUploadView) LayoutInflater.from(context).inflate(R.layout.default_upload_detail_activity, null, false);
+		}
+		view.initializeUploadView(UPLOAD_IMAGE, picturePath, getScreenletId());
 
-		Intent intent =
-			activityUploadDetail == null || activityUploadDetail.isAssignableFrom(BaseDetailUploadActivity.class)
-				? new Intent(activity, DetailUploadDefaultActivity.class) : new Intent(activity, activityUploadDetail);
-
-		intent.putExtra(BaseDetailUploadActivity.SCREENLET_ID, getScreenletId());
-		intent.putExtra(BaseDetailUploadActivity.ACTION_NAME, UPLOAD_IMAGE);
-		intent.putExtra(BaseDetailUploadActivity.PICTURE_PATH, picturePath);
-
-		activity.startActivity(intent);
+		new DefaultUploadDialog().createDialog(view, getContext()).show();
 	}
 
 	protected void startShadowActivityForMediaStore(int mediaStore) {
