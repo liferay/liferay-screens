@@ -27,6 +27,11 @@ public class CommentDeck extends Deck {
 
 	public void heightChanged(int newHeight) {
 
+		if (heightNotified) {
+			return;
+		}
+
+		heightNotified = true;
 		maxHeight = newHeight;
 
 		for (int i = 0, size = cards.size(); i < size; i++) {
@@ -39,4 +44,6 @@ public class CommentDeck extends Deck {
 			card.setState(CardState.MINIMIZED);
 		}
 	}
+
+	private boolean heightNotified;
 }
