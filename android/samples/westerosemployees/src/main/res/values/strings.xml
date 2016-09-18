@@ -58,5 +58,12 @@
 	<string name="add_comment">Add comment</string>
 	<string name="comments">Comments</string>
 	<string name="latest_changes">Latest changes</string>
+	<string name="upload_image">Upload image</string>
+	<string name="gallery_button">Gallery</string>
+	<string name="camera">Camera</string>
+	<string name="upload">Upload</string>
+	<string name="description">Description</string>
+	<string name="upload_title">Title</string>
+	<string name="upload_button">Upload</string>
 
 </resources>
