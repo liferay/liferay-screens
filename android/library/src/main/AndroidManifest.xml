@@ -4,12 +4,6 @@
 	<uses-permission android:name="android.permission.INTERNET"/>
 
 	<application>
-		<service android:name=".ddl.form.service.UploadService"/>
-
-		<service android:name=".userportrait.interactor.upload.UserPortraitService"/>
-		<service android:name=".gallery.interactor.upload.GalleryUploadService"/>
-
-		<service android:name=".dlfile.display.DownloadService"/>
 
 		<activity
 			android:name=".base.MediaStoreRequestShadowActivity"
@@ -20,5 +14,32 @@
 		<activity
 			android:name=".viewsets.defaultviews.gallery.DetailUploadDefaultActivity"
 			android:theme="@style/detail_upload_theme"/>
+
+		<provider
+			android:name=".ScreensInitProvider"
+			android:authorities="${applicationId}.screensinitprovider"
+			android:enabled="true"
+			android:exported="false"/>
+
+		<receiver
+			android:name="com.liferay.mobile.screens.cache.CacheReceiver"
+			android:exported="false">
+			<intent-filter>
+				<action android:name="com.liferay.mobile.screens.auth.login.success"/>
+				<action android:name="com.liferay.mobile.screens.cache.resync"/>
+				<action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+			</intent-filter>
+		</receiver>
+
+		<service android:name=".ddl.form.service.UploadService"/>
+
+		<service android:name=".userportrait.interactor.upload.UserPortraitService"/>
+		<service android:name=".gallery.interactor.upload.GalleryUploadService"/>
+
+		<service android:name=".dlfile.display.DownloadService"/>
+
+		<service
+			android:name="com.liferay.mobile.screens.cache.CacheSyncService"
+			android:exported="false"/>
 	</application>
 </manifest>

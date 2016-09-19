@@ -46,21 +46,6 @@
 		<activity android:name=".RatingsActivity"/>
 		<activity android:name=".AssetDisplayActivity"/>
 		<activity android:name=".GalleryActivity"/>
-
-		<receiver
-			android:name="com.liferay.mobile.screens.cache.CacheReceiver"
-			android:exported="false">
-			<intent-filter>
-				<action android:name="com.liferay.mobile.screens.auth.login.success"/>
-				<action android:name="com.liferay.mobile.screens.cache.resync"/>
-				<action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
-			</intent-filter>
-		</receiver>
-
-		<service
-			android:name="com.liferay.mobile.screens.cache.CacheSyncService"
-			android:exported="false"/>
-
 	</application>
 
 </manifest>
