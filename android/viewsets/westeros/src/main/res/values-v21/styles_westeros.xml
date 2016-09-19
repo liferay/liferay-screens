@@ -17,7 +17,7 @@
 		<item name="editTextStyle">@style/westeros_edit_text</item>
 		<item name="buttonStyle">@style/westeros_button</item>
 
-		<item name="android:typeface">serif</item>
+		<item name="android:typeface">sans</item>
 		<item name="windowActionBar">false</item>
 		<item name="android:windowContentOverlay">@null</item>
 
