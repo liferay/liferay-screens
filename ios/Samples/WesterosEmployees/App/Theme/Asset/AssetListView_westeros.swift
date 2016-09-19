@@ -20,7 +20,7 @@ class AssetListView_westeros: AssetListView_default {
 	//MARK: BaseScreenletView
 	
 	override func createProgressPresenter() -> ProgressPresenter {
-		return WesterosProgressPresenter()
+		return NetworkActivityIndicatorPresenter()
 	}
 
 	override func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
