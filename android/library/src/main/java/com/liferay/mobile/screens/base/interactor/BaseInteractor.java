@@ -51,10 +51,10 @@ public abstract class BaseInteractor<L, E extends BasicEvent> implements Interac
 
 	public void processEvent(E event) {
 		try {
-			LiferayLogger.i("event = [" + event + "]");
 			if (isInvalidEvent(event)) {
 				return;
 			}
+			LiferayLogger.i("event = [" + event + "]");
 
 			if (event.isFailed()) {
 				onFailure(event);
