@@ -26,8 +26,23 @@ public class Card extends FrameLayout {
 	public static final int DURATION_MILLIS = 300;
 	public static final int CARD_SIZE = 60;
 
-	public static final int NORMAL_Y = MARGIN * 7;
 	public static final int BACKGROUND_Y = MARGIN;
+
+	public static final int NORMAL_Y = MARGIN * 7;
+
+	protected List<View> arrows;
+	protected int index;
+
+	protected int maxWidth;
+	protected int maxHeight;
+
+	protected int minimizedPosition;
+	protected int normalY;
+	protected int backgroundY;
+
+	protected CardState cardState;
+
+	protected CardListener cardListener;
 
 	public Card(Context context) {
 		super(context);
@@ -176,13 +191,6 @@ public class Card extends FrameLayout {
 
 	protected void setNormalModeHeight() {
 		TransitionManager.beginDelayedTransition(this);
-		if (statusBarHeight == 0) {
-			Rect rectangle = new Rect();
-			Window window = ((Activity) getContext()).getWindow();
-			window.getDecorView().getWindowVisibleDisplayFrame(rectangle);
-			statusBarHeight = rectangle.top;
-		}
-
 		ViewGroup.LayoutParams params = getLayoutParams();
 		params.height = maxHeight - (maxHeight - minimizedPosition) - normalY + ViewUtil.pixelFromDp(getContext(), CARD_SIZE);
 
@@ -225,20 +233,4 @@ public class Card extends FrameLayout {
 			getChildAt(i).setX(maxWidth);
 		}
 	}
-
-	protected static int statusBarHeight;
-
-	protected List<View> arrows;
-	protected int index;
-
-	protected int maxWidth;
-	protected int maxHeight;
-
-	protected int minimizedPosition;
-	protected int normalY;
-	protected int backgroundY;
-
-	protected CardState cardState;
-
-	protected CardListener cardListener;
 }
