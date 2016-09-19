@@ -2,8 +2,8 @@ package com.liferay.mobile.screens.gallery.interactor.delete;
 
 import com.liferay.mobile.android.v7.dlapp.DLAppService;
 import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
-import com.liferay.mobile.screens.gallery.interactor.GalleryInteractorListener;
 import com.liferay.mobile.screens.gallery.interactor.GalleryEvent;
+import com.liferay.mobile.screens.gallery.interactor.GalleryInteractorListener;
 
 /**
  * @author Víctor Galán Grande
@@ -28,7 +28,7 @@ public class GalleryDeleteInteractor extends BaseCacheWriteInteractor<GalleryInt
 	}
 
 	@Override
-	protected void onFailure(GalleryEvent event) {
+	public void onFailure(GalleryEvent event) {
 		getListener().error(event.getException(), getActionName());
 	}
 

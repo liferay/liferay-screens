@@ -1,8 +1,6 @@
 package com.liferay.mobile.screens.base.interactor;
 
-import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
-import com.liferay.mobile.screens.base.interactor.event.ErrorEvent;
 import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import com.liferay.mobile.screens.base.interactor.listener.CacheListener;
 import com.liferay.mobile.screens.cache.Cache;
@@ -10,9 +8,10 @@ import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.executor.Executor;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import java.lang.reflect.ParameterizedType;
 import java.util.Locale;
 import java.util.NoSuchElementException;
+
+import static com.liferay.mobile.screens.cache.CachePolicy.REMOTE_ONLY;
 
 /**
  * @author Javier Gamarra
@@ -66,9 +65,7 @@ public abstract class BaseCacheReadInteractor<L extends BaseCacheListener, E ext
 						online(false, null, args);
 					}
 				} catch (Exception e) {
-					BasicEvent event = new ErrorEvent(e);
-					decorateBaseEvent(event);
-					EventBusUtil.post(event);
+					createErrorEvent(e);
 				}
 			}
 		});
@@ -76,26 +73,7 @@ public abstract class BaseCacheReadInteractor<L extends BaseCacheListener, E ext
 
 	@SuppressWarnings("unused")
 	public void onEventMainThread(E event) {
-		try {
-			LiferayLogger.i("event = [" + event + "]");
-
-			if (isInvalidEvent(event)) {
-				return;
-			}
-
-			if (event.isFailed()) {
-				onFailure(event.getException());
-			} else {
-
-				if (event.isOnlineRequest()) {
-					storeToCache(event);
-				}
-
-				onSuccess(event);
-			}
-		} catch (Exception e) {
-			onFailure(e);
-		}
+		processEvent(event);
 	}
 
 	protected void online(boolean triedOffline, Exception e, Object[] args) throws Exception {
@@ -106,11 +84,16 @@ public abstract class BaseCacheReadInteractor<L extends BaseCacheListener, E ext
 
 		retrievingOnline(triedOffline, e);
 
-		E newEvent = execute(args);
-		if (newEvent != null) {
-			decorateEvent(newEvent, false);
-			newEvent.setCacheKey(getIdFromArgs(args));
-			EventBusUtil.post(newEvent);
+		E event = execute(args);
+		if (event != null) {
+			decorateEvent(event, false);
+			event.setCacheKey(getIdFromArgs(args));
+
+			if (!event.isFailed() && !REMOTE_ONLY.equals(getCachePolicy())) {
+				storeToCache(event);
+			}
+
+			EventBusUtil.post(event);
 		}
 	}
 
@@ -138,16 +121,6 @@ public abstract class BaseCacheReadInteractor<L extends BaseCacheListener, E ext
 		}
 		loadingFromCache(false);
 		return false;
-	}
-
-	protected Class getEventClass() {
-
-		Class aClass = (Class) getClass();
-		while (!(aClass.getGenericSuperclass() instanceof ParameterizedType)) {
-			aClass = aClass.getSuperclass();
-		}
-
-		return (Class) ((ParameterizedType) aClass.getGenericSuperclass()).getActualTypeArguments()[1];
 	}
 
 	protected void storeToCache(E event) throws Exception {

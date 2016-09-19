@@ -41,7 +41,7 @@ public class RatingUpdateInteractor extends BaseCacheWriteInteractor<RatingListe
 	}
 
 	@Override
-	protected void onFailure(RatingEvent event) {
+	public void onFailure(RatingEvent event) {
 		getListener().error(event.getException(), RatingScreenlet.UPDATE_RATING_ACTION);
 	}
 

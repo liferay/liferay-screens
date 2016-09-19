@@ -35,7 +35,7 @@ public class CommentAddInteractor extends BaseCacheWriteInteractor<CommentAddLis
 	}
 
 	@Override
-	protected void onFailure(CommentEvent event) {
+	public void onFailure(CommentEvent event) {
 		getListener().error(event.getException(), CommentAddScreenlet.DEFAULT_ACTION);
 	}
 
