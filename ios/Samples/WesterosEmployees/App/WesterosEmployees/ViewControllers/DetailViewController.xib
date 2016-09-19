@@ -42,7 +42,7 @@
                                 <constraint firstAttribute="height" constant="90" id="9Hs-jh-Vz7"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="default-stars"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="default-stars-westeros"/>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="YES"/>
                             </userDefinedRuntimeAttributes>
