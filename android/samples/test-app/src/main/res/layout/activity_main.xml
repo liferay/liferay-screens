@@ -76,6 +76,12 @@
 				/>
 
 			<Button
+				android:id="@+id/filtered_asset"
+				android:text="@string/filtered_asset"
+				style="@style/test_app_button"
+				/>
+
+			<Button
 				android:id="@+id/web_content_list"
 				android:text="@string/webview_list"
 				style="@style/test_app_button"
@@ -94,20 +100,50 @@
 				/>
 
 			<Button
+				android:id="@+id/gallery"
+				android:text="@string/image_gallery"
+				style="@style/test_app_button"
+				/>
+
+			<Button
+				android:id="@+id/list_comments"
+				android:text="@string/list_comments"
+				style="@style/test_app_button"
+				/>
+
+			<Button
+				android:id="@+id/ratings"
+				android:text="@string/ratings"
+				style="@style/test_app_button"
+				/>
+
+			<Button
 				android:id="@+id/add_bookmark"
 				android:text="@string/add_a_bookmark"
 				style="@style/test_app_button"
 				/>
 
 			<Button
-				android:id="@+id/filtered_asset"
-				android:text="@string/filtered_asset"
+				android:id="@+id/list_bookmarks"
+				android:text="@string/list_bookmarks"
 				style="@style/test_app_button"
 				/>
 
 			<Button
 				android:id="@+id/login_full_screenlet"
 				android:text="@string/customizing_a_screenlet"
+				style="@style/test_app_button"
+				/>
+
+			<Button
+				android:id="@+id/custom_interactor"
+				android:text="@string/custom_interactor"
+				style="@style/test_app_button"
+				/>
+
+			<Button
+				android:id="@+id/relogin"
+				android:text="@string/relogin"
 				style="@style/test_app_button"
 				/>
 
@@ -126,42 +162,6 @@
 			<Button
 				android:id="@+id/sync_cache"
 				android:text="@string/sync_cache"
-				style="@style/test_app_button"
-				/>
-
-			<Button
-				android:id="@+id/custom_interactor"
-				android:text="@string/custom_interactor"
-				style="@style/test_app_button"
-				/>
-
-			<Button
-				android:id="@+id/list_bookmarks"
-				android:text="@string/list_bookmarks"
-				style="@style/test_app_button"
-				/>
-
-			<Button
-				android:id="@+id/list_comments"
-				android:text="@string/list_comments"
-				style="@style/test_app_button"
-				/>
-
-			<Button
-				android:id="@+id/relogin"
-				android:text="@string/relogin"
-				style="@style/test_app_button"
-				/>
-
-			<Button
-				android:id="@+id/ratings"
-				android:text="@string/ratings"
-				style="@style/test_app_button"
-				/>
-
-			<Button
-				android:id="@+id/gallery"
-				android:text="@string/image_gallery"
 				style="@style/test_app_button"
 				/>
 
