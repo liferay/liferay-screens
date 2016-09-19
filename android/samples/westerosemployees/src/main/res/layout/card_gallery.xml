@@ -52,7 +52,7 @@
 
 		</com.liferay.mobile.screens.gallery.GalleryScreenlet>
 
-		<com.liferay.mobile.screens.westerosemployees.Views.CommentDeck
+		<com.liferay.mobile.screens.westerosemployees.Views.InnerDeck
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:orientation="vertical"
@@ -181,7 +181,7 @@
 
 			</com.liferay.mobile.screens.westerosemployees.Views.UploadImageCard>
 
-		</com.liferay.mobile.screens.westerosemployees.Views.CommentDeck>
+		</com.liferay.mobile.screens.westerosemployees.Views.InnerDeck>
 
 	</RelativeLayout>
 	<RelativeLayout

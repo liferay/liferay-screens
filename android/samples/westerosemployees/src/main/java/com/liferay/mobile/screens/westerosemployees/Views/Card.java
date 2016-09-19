@@ -198,9 +198,9 @@ public class Card extends FrameLayout {
 			for(int j = 0 ; j < viewGroup.getChildCount(); j++) {
 				View view = viewGroup.getChildAt(j);
 
-				if(view instanceof CommentDeck) {
-					CommentDeck commentDeck = (CommentDeck) view;
-					commentDeck.heightChanged(height);
+				if(view instanceof InnerDeck) {
+					InnerDeck innerDeck = (InnerDeck) view;
+					innerDeck.heightChanged(height);
 				}
 			}
 		}

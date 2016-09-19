@@ -8,20 +8,20 @@ import com.liferay.mobile.screens.westerosemployees.utils.ViewUtil;
 /**
  * @author Víctor Galán Grande
  */
-public class CommentDeck extends Deck {
-	public CommentDeck(Context context) {
+public class InnerDeck extends Deck {
+	public InnerDeck(Context context) {
 		super(context);
 	}
 
-	public CommentDeck(Context context, AttributeSet attrs) {
+	public InnerDeck(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 
-	public CommentDeck(Context context, AttributeSet attrs, int defStyleAttr) {
+	public InnerDeck(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 	}
 
-	public CommentDeck(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+	public InnerDeck(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
