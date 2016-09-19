@@ -31,7 +31,7 @@ public class CommentDeleteInteractor extends BaseCacheWriteInteractor<CommentDis
 	}
 
 	@Override
-	protected void onFailure(CommentEvent event) {
+	public void onFailure(CommentEvent event) {
 		getListener().error(event.getException(), CommentDisplayScreenlet.DELETE_COMMENT_ACTION);
 	}
 

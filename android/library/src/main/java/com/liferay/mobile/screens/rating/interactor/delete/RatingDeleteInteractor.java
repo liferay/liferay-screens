@@ -38,7 +38,7 @@ public class RatingDeleteInteractor extends BaseCacheWriteInteractor<RatingListe
 	}
 
 	@Override
-	protected void onFailure(RatingEvent event) {
+	public void onFailure(RatingEvent event) {
 		getListener().error(event.getException(), RatingScreenlet.DELETE_RATING_ACTION);
 	}
 

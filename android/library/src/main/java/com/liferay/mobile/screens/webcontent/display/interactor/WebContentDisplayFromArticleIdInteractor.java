@@ -40,8 +40,8 @@ public class WebContentDisplayFromArticleIdInteractor extends WebContentDisplayB
 	}
 
 	@Override
-	public void onFailure(Exception e) {
-		getListener().error(e, WebContentDisplayScreenlet.WEB_CONTENT_BY_ARTICLE_ID);
+	public void onFailure(WebContentDisplayEvent event) {
+		getListener().error(event.getException(), WebContentDisplayScreenlet.WEB_CONTENT_BY_ARTICLE_ID);
 	}
 
 	private String getContent(String articleId, Long templateId) throws Exception {

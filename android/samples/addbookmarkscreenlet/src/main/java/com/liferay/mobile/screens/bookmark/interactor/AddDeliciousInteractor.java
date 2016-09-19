@@ -55,8 +55,8 @@ public class AddDeliciousInteractor extends BaseRemoteInteractor<AddBookmarkList
 	}
 
 	@Override
-	public void onFailure(Exception e) {
-		getListener().onAddBookmarkFailure(e);
+	public void onFailure(BasicEvent event) {
+		getListener().onAddBookmarkFailure(event.getException());
 	}
 
 	@Override

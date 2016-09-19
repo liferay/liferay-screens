@@ -37,8 +37,8 @@ public class WebContentDisplayFromStructureInteractor extends WebContentDisplayB
 	}
 
 	@Override
-	public void onFailure(Exception e) {
-		getListener().error(e, WebContentDisplayScreenlet.WEB_CONTENT_WITH_STRUCTURE);
+	public void onFailure(WebContentDisplayEvent event) {
+		getListener().error(event.getException(), WebContentDisplayScreenlet.WEB_CONTENT_WITH_STRUCTURE);
 	}
 
 	@Override

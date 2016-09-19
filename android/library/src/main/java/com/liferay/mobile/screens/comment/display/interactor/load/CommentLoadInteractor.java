@@ -33,8 +33,8 @@ public class CommentLoadInteractor extends BaseCacheReadInteractor<CommentDispla
 	}
 
 	@Override
-	public void onFailure(Exception e) {
-		getListener().error(e, CommentDisplayScreenlet.LOAD_COMMENT_ACTION);
+	public void onFailure(CommentEvent event) {
+		getListener().error(event.getException(), CommentDisplayScreenlet.LOAD_COMMENT_ACTION);
 	}
 
 	@Override

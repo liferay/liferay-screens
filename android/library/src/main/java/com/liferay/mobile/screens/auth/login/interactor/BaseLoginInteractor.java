@@ -30,8 +30,8 @@ public abstract class BaseLoginInteractor extends BaseRemoteInteractor<LoginList
 	}
 
 	@Override
-	public void onFailure(Exception e) {
+	public void onFailure(BasicEvent e) {
 		SessionContext.logout();
-		getListener().onLoginFailure(e);
+		getListener().onLoginFailure(e.getException());
 	}
 }

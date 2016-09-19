@@ -50,8 +50,8 @@ public class AssetDisplayInteractor extends BaseCacheReadInteractor<AssetDisplay
 	}
 
 	@Override
-	public void onFailure(Exception e) {
-		getListener().error(e, AssetDisplayScreenlet.DEFAULT_ACTION);
+	public void onFailure(AssetEvent event) {
+		getListener().error(event.getException(), AssetDisplayScreenlet.DEFAULT_ACTION);
 	}
 
 	@Override

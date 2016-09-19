@@ -64,8 +64,8 @@ public class UserPortraitLoadInteractor
 	}
 
 	@Override
-	public void onFailure(Exception e) {
-		getListener().error(e, UserPortraitScreenlet.LOAD_PORTRAIT);
+	public void onFailure(UserPortraitEvent event) {
+		getListener().error(event.getException(), UserPortraitScreenlet.LOAD_PORTRAIT);
 	}
 
 	@NonNull

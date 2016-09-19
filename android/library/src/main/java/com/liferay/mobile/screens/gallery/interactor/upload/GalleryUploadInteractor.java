@@ -45,7 +45,7 @@ public class GalleryUploadInteractor extends BaseCacheWriteInteractor<GalleryInt
 	}
 
 	@Override
-	protected void onFailure(GalleryEvent event) {
+	public void onFailure(GalleryEvent event) {
 		getListener().error(event.getException(), getActionName());
 	}
 

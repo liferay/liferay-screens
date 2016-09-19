@@ -69,11 +69,11 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 	}
 
 	@Override
-	public void onFailure(Exception e) {
+	public void onFailure(BaseListEvent<E> event) {
 
 		RequestState.getInstance().clear(getTargetScreenletId());
 
-		getListener().onListRowsFailure(0, 0, e);
+		getListener().onListRowsFailure(0, 0, event.getException());
 	}
 
 	protected void cleanRequestState(Query query) {

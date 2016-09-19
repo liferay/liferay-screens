@@ -66,7 +66,7 @@ public class UserPortraitUploadInteractor
 	}
 
 	@Override
-	protected void onFailure(UserPortraitUploadEvent event) {
+	public void onFailure(UserPortraitUploadEvent event) {
 		getListener().error(event.getException(), UserPortraitScreenlet.UPLOAD_PORTRAIT);
 	}
 
