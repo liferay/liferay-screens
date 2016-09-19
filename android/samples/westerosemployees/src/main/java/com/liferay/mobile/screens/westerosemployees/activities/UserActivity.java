@@ -21,12 +21,7 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 
 		bindViews();
 
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				((AssetListScreenlet) findViewById(R.id.news_display_screenlet)).loadPage(0);
-			}
-		}, 1000);
+		((AssetListScreenlet) findViewById(R.id.news_display_screenlet)).loadPage(0);
 	}
 
 	private void bindViews() {
