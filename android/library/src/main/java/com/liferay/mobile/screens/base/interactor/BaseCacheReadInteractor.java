@@ -73,26 +73,7 @@ public abstract class BaseCacheReadInteractor<L extends BaseCacheListener, E ext
 
 	@SuppressWarnings("unused")
 	public void onEventMainThread(E event) {
-		try {
-			LiferayLogger.i("event = [" + event + "]");
-
-			if (isInvalidEvent(event)) {
-				return;
-			}
-
-			if (event.isFailed()) {
-				onFailure(event.getException());
-			} else {
-
-				if (!REMOTE_ONLY.equals(getCachePolicy()) && event.isOnlineRequest()) {
-					storeToCache(event);
-				}
-
-				onSuccess(event);
-			}
-		} catch (Exception e) {
-			onFailure(e);
-		}
+		processEvent(event);
 	}
 
 	protected void online(boolean triedOffline, Exception e, Object[] args) throws Exception {
@@ -103,11 +84,16 @@ public abstract class BaseCacheReadInteractor<L extends BaseCacheListener, E ext
 
 		retrievingOnline(triedOffline, e);
 
-		E newEvent = execute(args);
-		if (newEvent != null) {
-			decorateEvent(newEvent, false);
-			newEvent.setCacheKey(getIdFromArgs(args));
-			EventBusUtil.post(newEvent);
+		E event = execute(args);
+		if (event != null) {
+			decorateEvent(event, false);
+			event.setCacheKey(getIdFromArgs(args));
+
+			if (!event.isFailed() && !REMOTE_ONLY.equals(getCachePolicy())) {
+				storeToCache(event);
+			}
+
+			EventBusUtil.post(event);
 		}
 	}
 
