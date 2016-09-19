@@ -11,6 +11,8 @@ import android.view.ViewGroup;
  */
 public class TourPageFragment extends Fragment {
 
+	private static final String LAYOUT_ID = "layoutId";
+
 	public static TourPageFragment newInstance(int layout) {
 
 		TourPageFragment tourPageFragment = new TourPageFragment();
@@ -28,6 +30,4 @@ public class TourPageFragment extends Fragment {
 		int layoutId = getArguments().getInt(LAYOUT_ID);
 		return inflater.inflate(layoutId, container, false);
 	}
-
-	private static final String LAYOUT_ID = "layoutId";
 }

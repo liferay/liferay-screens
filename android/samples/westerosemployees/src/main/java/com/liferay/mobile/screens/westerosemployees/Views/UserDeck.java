@@ -47,7 +47,7 @@ public class UserDeck extends Deck {
 
 	@Override
 	protected void onFling(FlingListener.Movement movement, Card card) {
-		if(card.getCardSubviewCurrentIndex() == 0) {
+		if (card.getCardSubviewCurrentIndex() == 0) {
 			super.onFling(movement, card);
 		}
 	}

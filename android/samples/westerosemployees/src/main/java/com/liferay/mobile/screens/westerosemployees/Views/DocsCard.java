@@ -40,7 +40,7 @@ public class DocsCard extends CommentsRatingsCard implements BaseListListener<As
 
 	@Override
 	public ViewPropertyAnimator setState(CardState state) {
-		if(!loaded && state.equals(CardState.NORMAL)) {
+		if (!loaded && state.equals(CardState.NORMAL)) {
 			loaded = true;
 			docsListScreenlet.loadPage(0);
 		}
@@ -54,18 +54,22 @@ public class DocsCard extends CommentsRatingsCard implements BaseListListener<As
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries,
+		int rowCount) {
 
 	}
 
 	@Override
 	public void onListItemSelected(AssetEntry element, View view) {
 
-		documentDisplayScreenlet.setClassPK(Long.parseLong((String) element.getValues().get("classPK")));
-		documentDisplayScreenlet.setClassName("com.liferay.document.library.kernel.model.DLFileEntry");
+		documentDisplayScreenlet.setClassPK(
+			Long.parseLong((String) element.getValues().get("classPK")));
+		documentDisplayScreenlet.setClassName(
+			"com.liferay.document.library.kernel.model.DLFileEntry");
 		documentDisplayScreenlet.loadAsset();
 
-		initializeRatingsAndComments("com.liferay.document.library.kernel.model.DLFileEntry", element.getClassPK());
+		initializeRatingsAndComments("com.liferay.document.library.kernel.model.DLFileEntry",
+			element.getClassPK());
 
 		cardListener.moveCardRight(this);
 	}
@@ -82,6 +86,7 @@ public class DocsCard extends CommentsRatingsCard implements BaseListListener<As
 		docsListScreenlet = (AssetListScreenlet) findViewById(R.id.asset_list_screenlet_docs);
 		docsListScreenlet.setListener(this);
 
-		documentDisplayScreenlet = (AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet_doc);
+		documentDisplayScreenlet =
+			(AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet_doc);
 	}
 }

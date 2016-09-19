@@ -21,10 +21,13 @@ import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
 import com.liferay.mobile.screens.westerosemployees.R;
-import com.liferay.mobile.screens.westerosemployees.views.Deck;
 import com.liferay.mobile.screens.westerosemployees.utils.CardState;
+import com.liferay.mobile.screens.westerosemployees.views.Deck;
 
 public class MainActivity extends WesterosActivity implements LoginListener {
+
+	private LoginScreenlet loginScreenlet;
+	private Deck deck;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +64,4 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 	public void onLoginFailure(Exception e) {
 		WesterosSnackbar.showSnackbar(this, "Login failed!", R.color.colorAccent_westeros);
 	}
-
-	private LoginScreenlet loginScreenlet;
-	private Deck deck;
 }

@@ -15,12 +15,14 @@ import static com.liferay.mobile.screens.westerosemployees.activities.TourActivi
  */
 public class SplashActivity extends Activity {
 
+	private static final int DELAY_MILLIS = 2000;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash);
 
-		final Class destination = TourActivity.class;// getDestinationActivity();
+		final Class destination = TourActivity.class;
 
 		//TODO change to back and screen orientation aware
 		new Handler().postDelayed(new Runnable() {
@@ -33,10 +35,8 @@ public class SplashActivity extends Activity {
 
 	private Class getDestinationActivity() {
 		SharedPreferences preferences = getSharedPreferences(WESTEROS_PREFERENCES, MODE_PRIVATE);
-		boolean tourVisited = preferences.contains(TOUR_VISITED) &&
-			preferences.getBoolean(TOUR_VISITED, false);
+		boolean tourVisited =
+			preferences.contains(TOUR_VISITED) && preferences.getBoolean(TOUR_VISITED, false);
 		return tourVisited ? MainActivity.class : TourActivity.class;
 	}
-
-	private static final int DELAY_MILLIS = 2000;
 }

@@ -25,7 +25,6 @@ public abstract class CommentsRatingsCard extends Card implements CommentAddList
 
 	private Card commentAddCard;
 
-
 	public CommentsRatingsCard(Context context) {
 		super(context);
 	}
@@ -38,7 +37,8 @@ public abstract class CommentsRatingsCard extends Card implements CommentAddList
 		super(context, attrs, defStyleAttr);
 	}
 
-	public CommentsRatingsCard(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+	public CommentsRatingsCard(Context context, AttributeSet attrs, int defStyleAttr,
+		int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
@@ -81,9 +81,10 @@ public abstract class CommentsRatingsCard extends Card implements CommentAddList
 
 	private void hideSoftKeyBoard() {
 		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
-		InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+		InputMethodManager imm =
+			(InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 
-		if(imm.isAcceptingText()) {
+		if (imm.isAcceptingText()) {
 			imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
 		}
 	}

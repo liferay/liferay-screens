@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.westerosemployees.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 import com.liferay.mobile.screens.asset.list.AssetListScreenlet;
@@ -13,7 +12,7 @@ import com.liferay.mobile.screens.westerosemployees.R;
  * @author Víctor Galán Grande
  */
 public class UserActivity extends WesterosActivity implements View.OnClickListener {
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

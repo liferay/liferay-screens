@@ -128,15 +128,12 @@ public class Card extends FrameLayout {
 				break;
 			case MAXIMIZED:
 				setMaximizedModeHeight();
-				animator = animate().setStartDelay(0)
-					.setDuration(DURATION_MILLIS)
-					.translationY(0);
+				animator = animate().setStartDelay(0).setDuration(DURATION_MILLIS).translationY(0);
 				break;
 
 			case HIDDEN:
-				animator = animate().setStartDelay(0)
-					.setDuration(DURATION_MILLIS)
-					.translationY(maxHeight);
+				animator =
+					animate().setStartDelay(0).setDuration(DURATION_MILLIS).translationY(maxHeight);
 				break;
 		}
 
@@ -189,7 +186,9 @@ public class Card extends FrameLayout {
 	protected void setNormalModeHeight() {
 		TransitionManager.beginDelayedTransition(this);
 		ViewGroup.LayoutParams params = getLayoutParams();
-		params.height = maxHeight - (maxHeight - minimizedPosition) - normalY + ViewUtil.pixelFromDp(getContext(), CARD_SIZE);
+		params.height =
+			maxHeight - (maxHeight - minimizedPosition) - normalY + ViewUtil.pixelFromDp(
+				getContext(), CARD_SIZE);
 
 		notifyChildDecksNewHeight(params.height);
 
@@ -197,13 +196,13 @@ public class Card extends FrameLayout {
 	}
 
 	private void notifyChildDecksNewHeight(int height) {
-		for(int i = 0; i < getChildCount(); i++) {
+		for (int i = 0; i < getChildCount(); i++) {
 			ViewGroup viewGroup = (ViewGroup) getChildAt(i);
 
-			for(int j = 0 ; j < viewGroup.getChildCount(); j++) {
+			for (int j = 0; j < viewGroup.getChildCount(); j++) {
 				View view = viewGroup.getChildAt(j);
 
-				if(view instanceof InnerDeck) {
+				if (view instanceof InnerDeck) {
 					InnerDeck innerDeck = (InnerDeck) view;
 					innerDeck.heightChanged(height);
 				}

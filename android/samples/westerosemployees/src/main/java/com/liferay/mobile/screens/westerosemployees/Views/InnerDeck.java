@@ -9,6 +9,9 @@ import com.liferay.mobile.screens.westerosemployees.utils.ViewUtil;
  * @author Víctor Galán Grande
  */
 public class InnerDeck extends Deck {
+
+	private boolean heightNotified;
+
 	public InnerDeck(Context context) {
 		super(context);
 	}
@@ -44,6 +47,4 @@ public class InnerDeck extends Deck {
 			card.setState(CardState.MINIMIZED);
 		}
 	}
-
-	private boolean heightNotified;
 }

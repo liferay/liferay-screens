@@ -22,7 +22,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 /**
  * @author Víctor Galán Grande
  */
-public class GalleryCard extends CommentsRatingsCard implements GalleryListener{
+public class GalleryCard extends CommentsRatingsCard implements GalleryListener {
 
 	private GalleryScreenlet galleryScreenlet;
 	private BaseDetailUploadView uploadDetailView;
@@ -49,7 +49,7 @@ public class GalleryCard extends CommentsRatingsCard implements GalleryListener{
 
 	@Override
 	public ViewPropertyAnimator setState(CardState state) {
-		if(!loaded && state.equals(CardState.NORMAL)) {
+		if (!loaded && state.equals(CardState.NORMAL)) {
 			loaded = true;
 			galleryScreenlet.loadPage(0);
 		}
@@ -67,7 +67,8 @@ public class GalleryCard extends CommentsRatingsCard implements GalleryListener{
 		uploadDetailView = (BaseDetailUploadView) findViewById(R.id.upload_detail_view);
 		uploadImageCard = (Card) findViewById(R.id.upload_image_card);
 
-		imageAssetDisplayScreenlet = (AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet_image);
+		imageAssetDisplayScreenlet =
+			(AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet_image);
 
 		RxPermissions rxPermissions = RxPermissions.getInstance(getContext());
 
@@ -94,7 +95,8 @@ public class GalleryCard extends CommentsRatingsCard implements GalleryListener{
 	}
 
 	@Override
-	public void onImageUploadStarted(String picturePath, String title, String description, String changelog) {
+	public void onImageUploadStarted(String picturePath, String title, String description,
+		String changelog) {
 		uploadImageCard.goLeft();
 		uploadImageCard.setState(CardState.MINIMIZED);
 	}
@@ -128,17 +130,20 @@ public class GalleryCard extends CommentsRatingsCard implements GalleryListener{
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List<ImageEntry> entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List<ImageEntry> entries,
+		int rowCount) {
 
 	}
 
 	@Override
 	public void onListItemSelected(ImageEntry element, View view) {
 		imageAssetDisplayScreenlet.setClassPK(element.getFileEntryId());
-		imageAssetDisplayScreenlet.setClassName("com.liferay.document.library.kernel.model.DLFileEntry");
+		imageAssetDisplayScreenlet.setClassName(
+			"com.liferay.document.library.kernel.model.DLFileEntry");
 		imageAssetDisplayScreenlet.loadAsset();
 
-		initializeRatingsAndComments("com.liferay.document.library.kernel.model.DLFileEntry", element.getFileEntryId());
+		initializeRatingsAndComments("com.liferay.document.library.kernel.model.DLFileEntry",
+			element.getFileEntryId());
 
 		cardListener.moveCardRight(this);
 	}
@@ -152,7 +157,7 @@ public class GalleryCard extends CommentsRatingsCard implements GalleryListener{
 		return new Action1<Boolean>() {
 			@Override
 			public void call(Boolean permissionAccepted) {
-				if(permissionAccepted) {
+				if (permissionAccepted) {
 
 					//((Card) findViewById(R.id.upload_image_card)).goRight();
 					galleryScreenlet.openGallery();
@@ -165,7 +170,7 @@ public class GalleryCard extends CommentsRatingsCard implements GalleryListener{
 		return new Action1<Boolean>() {
 			@Override
 			public void call(Boolean permissionAccepted) {
-				if(permissionAccepted) {
+				if (permissionAccepted) {
 					galleryScreenlet.openCamera();
 				}
 			}

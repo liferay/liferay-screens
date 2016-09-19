@@ -15,7 +15,8 @@ public class ViewUtil {
 
 	public static int pixelFromDp(Context context, int dp) {
 		Resources resources = context.getResources();
-		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
+		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
+			resources.getDisplayMetrics());
 	}
 
 	public static List<View> getViewsByTagPrefix(ViewGroup root, String tagPrefix) {
