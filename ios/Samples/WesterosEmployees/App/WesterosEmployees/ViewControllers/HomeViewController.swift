@@ -164,9 +164,9 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 	func cardDeck(cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
 		switch (position.card, position.page) {
 		case (0, 0):
-			return "Documentation"
+			return "Docs"
 		case (1, 0):
-			return "Blogs"
+			return "Company news"
 		case (2, 0):
 			return "Gallery"
 		default:
