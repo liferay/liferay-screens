@@ -1,8 +1,6 @@
 package com.liferay.mobile.screens.base.interactor;
 
-import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
-import com.liferay.mobile.screens.base.interactor.event.ErrorEvent;
 import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import com.liferay.mobile.screens.base.interactor.listener.CacheListener;
 import com.liferay.mobile.screens.cache.Cache;
@@ -10,7 +8,6 @@ import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.executor.Executor;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import java.lang.reflect.ParameterizedType;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 
@@ -68,9 +65,7 @@ public abstract class BaseCacheReadInteractor<L extends BaseCacheListener, E ext
 						online(false, null, args);
 					}
 				} catch (Exception e) {
-					BasicEvent event = new ErrorEvent(e);
-					decorateBaseEvent(event);
-					EventBusUtil.post(event);
+					createErrorEvent(e);
 				}
 			}
 		});
@@ -140,16 +135,6 @@ public abstract class BaseCacheReadInteractor<L extends BaseCacheListener, E ext
 		}
 		loadingFromCache(false);
 		return false;
-	}
-
-	protected Class getEventClass() {
-
-		Class aClass = (Class) getClass();
-		while (!(aClass.getGenericSuperclass() instanceof ParameterizedType)) {
-			aClass = aClass.getSuperclass();
-		}
-
-		return (Class) ((ParameterizedType) aClass.getGenericSuperclass()).getActualTypeArguments()[1];
 	}
 
 	protected void storeToCache(E event) throws Exception {

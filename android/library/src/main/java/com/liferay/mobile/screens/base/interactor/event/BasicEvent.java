@@ -21,8 +21,8 @@ public class BasicEvent implements Serializable {
 
 	private String actionName;
 	private JSONObject jsonObject;
-	private Exception exception;
 	private int targetScreenletId;
+	private Exception exception;
 
 	public BasicEvent() {
 		super();
@@ -41,16 +41,20 @@ public class BasicEvent implements Serializable {
 		return exception;
 	}
 
+	public void setException(Exception exception) {
+		this.exception = exception;
+	}
+
+	public boolean isFailed() {
+		return exception != null;
+	}
+
 	public int getTargetScreenletId() {
 		return targetScreenletId;
 	}
 
 	public void setTargetScreenletId(int targetScreenletId) {
 		this.targetScreenletId = targetScreenletId;
-	}
-
-	public boolean isFailed() {
-		return exception != null;
 	}
 
 	public JSONObject getJSONObject() {

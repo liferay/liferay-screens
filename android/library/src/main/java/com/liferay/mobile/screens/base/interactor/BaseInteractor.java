@@ -2,11 +2,11 @@ package com.liferay.mobile.screens.base.interactor;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
-import com.liferay.mobile.screens.base.interactor.event.ErrorEvent;
 import com.liferay.mobile.screens.cache.executor.Executor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
+import java.lang.reflect.ParameterizedType;
 
 /**
  * @author Javier Gamarra
@@ -32,21 +32,21 @@ public abstract class BaseInteractor<L, E extends BasicEvent> implements Interac
 						EventBusUtil.post(event);
 					}
 				} catch (Exception e) {
-					ErrorEvent errorNewEvent = new ErrorEvent(e);
-					decorateBaseEvent(errorNewEvent);
-					EventBusUtil.post(errorNewEvent);
+					createErrorEvent(e);
 				}
 			}
 		});
 	}
 
-	public void onEventMainThread(ErrorEvent event) {
-
-		if (getListener() == null || event.getTargetScreenletId() != getTargetScreenletId()) {
-			return;
+	protected void createErrorEvent(Exception e) {
+		try {
+			E event = (E) getEventClass().newInstance();
+			decorateBaseEvent(event);
+			event.setException(e);
+			EventBusUtil.post(event);
+		} catch (Exception e1) {
+			LiferayLogger.e("Event missing no-args constructor and swallowing exception", e);
 		}
-
-		onFailure(event.getException());
 	}
 
 	public void processEvent(E event) {
@@ -57,12 +57,12 @@ public abstract class BaseInteractor<L, E extends BasicEvent> implements Interac
 			}
 
 			if (event.isFailed()) {
-				onFailure(event.getException());
+				onFailure(event);
 			} else {
 				onSuccess(event);
 			}
 		} catch (Exception e) {
-			onFailure(e);
+			onFailure(event);
 		}
 	}
 
@@ -70,7 +70,7 @@ public abstract class BaseInteractor<L, E extends BasicEvent> implements Interac
 
 	public abstract void onSuccess(E event) throws Exception;
 
-	public abstract void onFailure(Exception e);
+	public abstract void onFailure(E event);
 
 	public void onScreenletAttached(L listener) {
 		this.listener = listener;
@@ -85,6 +85,21 @@ public abstract class BaseInteractor<L, E extends BasicEvent> implements Interac
 	protected boolean isInvalidEvent(BasicEvent event) {
 		return getListener() == null || event.getTargetScreenletId() != getTargetScreenletId() || (actionName != null
 			&& !actionName.equals(event.getActionName()));
+	}
+
+	protected Class getEventClass() {
+
+		Class aClass = (Class) getClass();
+		while (!(aClass.getGenericSuperclass() instanceof ParameterizedType)) {
+			aClass = aClass.getSuperclass();
+		}
+
+		return (Class) ((ParameterizedType) aClass.getGenericSuperclass()).getActualTypeArguments()[1];
+	}
+
+	protected void decorateBaseEvent(BasicEvent event) {
+		event.setTargetScreenletId(getTargetScreenletId());
+		event.setActionName(getActionName());
 	}
 
 	protected Session getSession() {
@@ -109,10 +124,5 @@ public abstract class BaseInteractor<L, E extends BasicEvent> implements Interac
 
 	public void setActionName(String actionName) {
 		this.actionName = actionName;
-	}
-
-	protected void decorateBaseEvent(BasicEvent event) {
-		event.setTargetScreenletId(getTargetScreenletId());
-		event.setActionName(getActionName());
 	}
 }
