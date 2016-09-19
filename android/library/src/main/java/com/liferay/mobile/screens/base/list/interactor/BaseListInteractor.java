@@ -14,6 +14,8 @@ import java.util.Map;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import static com.liferay.mobile.screens.cache.CachePolicy.REMOTE_ONLY;
+
 /**
  * @author Javier Gamarra
  */
@@ -160,6 +162,7 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 		this.query = query;
 	}
 
+	@Override
 	protected void online(boolean triedOffline, Exception e, Object[] args) throws Exception {
 
 		if (triedOffline) {
@@ -178,7 +181,24 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 			}
 
 			newEvent.setCacheKey(getListId(query, args));
+
+			if (!newEvent.isFailed() && !REMOTE_ONLY.equals(getCachePolicy())) {
+				storeToCache(newEvent);
+			}
+
 			EventBusUtil.post(newEvent);
+		}
+	}
+
+	@Override
+	protected void createErrorEvent(Exception e) {
+		try {
+			BaseListEvent<E> event = new BaseListEvent<E>();
+			decorateBaseEvent(event);
+			event.setException(e);
+			EventBusUtil.post(event);
+		} catch (Exception e1) {
+			LiferayLogger.e("Event missing no-args constructor and swallowing exception", e);
 		}
 	}
 
