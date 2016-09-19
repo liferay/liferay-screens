@@ -14,6 +14,8 @@ import java.lang.reflect.ParameterizedType;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 
+import static com.liferay.mobile.screens.cache.CachePolicy.REMOTE_ONLY;
+
 /**
  * @author Javier Gamarra
  */
@@ -87,7 +89,7 @@ public abstract class BaseCacheReadInteractor<L extends BaseCacheListener, E ext
 				onFailure(event.getException());
 			} else {
 
-				if (event.isOnlineRequest()) {
+				if (!REMOTE_ONLY.equals(getCachePolicy()) && event.isOnlineRequest()) {
 					storeToCache(event);
 				}
 
