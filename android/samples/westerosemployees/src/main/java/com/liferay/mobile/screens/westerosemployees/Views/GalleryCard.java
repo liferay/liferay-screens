@@ -1,10 +1,9 @@
-package com.liferay.mobile.screens.westerosemployees.Views;
+package com.liferay.mobile.screens.westerosemployees.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
-import android.widget.Button;
 import com.jakewharton.rxbinding.view.RxView;
 import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.gallery.BaseDetailUploadView;

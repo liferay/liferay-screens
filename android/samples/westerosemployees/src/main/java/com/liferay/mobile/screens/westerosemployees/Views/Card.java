@@ -1,15 +1,12 @@
-package com.liferay.mobile.screens.westerosemployees.Views;
+package com.liferay.mobile.screens.westerosemployees.views;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Rect;
 import android.transition.TransitionManager;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
-import android.view.Window;
 import android.widget.FrameLayout;
 import com.liferay.mobile.screens.westerosemployees.R;
 import com.liferay.mobile.screens.westerosemployees.utils.CardState;

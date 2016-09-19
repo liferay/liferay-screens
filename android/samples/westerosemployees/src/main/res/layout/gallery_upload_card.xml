@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.westerosemployees.Views.UploadImageCard
+<com.liferay.mobile.screens.westerosemployees.views.UploadImageCard
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:id="@+id/upload_image_card"
@@ -122,4 +122,4 @@
 
 	</com.liferay.mobile.screens.viewsets.defaultviews.gallery.DefaultUploadDetailView>
 
-</com.liferay.mobile.screens.westerosemployees.Views.UploadImageCard>
+</com.liferay.mobile.screens.westerosemployees.views.UploadImageCard>

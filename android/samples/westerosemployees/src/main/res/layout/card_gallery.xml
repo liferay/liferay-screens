@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.westerosemployees.Views.GalleryCard
+<com.liferay.mobile.screens.westerosemployees.views.GalleryCard
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
@@ -52,7 +52,7 @@
 
 		</com.liferay.mobile.screens.gallery.GalleryScreenlet>
 
-		<com.liferay.mobile.screens.westerosemployees.Views.InnerDeck
+		<com.liferay.mobile.screens.westerosemployees.views.InnerDeck
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:orientation="vertical"
@@ -60,10 +60,10 @@
 
 			<include layout="@layout/gallery_upload_card"/>
 
-		</com.liferay.mobile.screens.westerosemployees.Views.InnerDeck>
+		</com.liferay.mobile.screens.westerosemployees.views.InnerDeck>
 
 	</RelativeLayout>
 
 	<include layout="@layout/gallery_detail_subview"/>
 
-</com.liferay.mobile.screens.westerosemployees.Views.GalleryCard>
+</com.liferay.mobile.screens.westerosemployees.views.GalleryCard>

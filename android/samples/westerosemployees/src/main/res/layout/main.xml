@@ -15,13 +15,13 @@
 		android:background="@drawable/westeros_gray_logo"
 		/>
 
-	<com.liferay.mobile.screens.westerosemployees.Views.Deck
+	<com.liferay.mobile.screens.westerosemployees.views.Deck
 		android:id="@+id/deck"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		>
 
-		<com.liferay.mobile.screens.westerosemployees.Views.SignInCard
+		<com.liferay.mobile.screens.westerosemployees.views.SignInCard
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:background="@drawable/westeros_white_shape_ripple"
@@ -102,9 +102,9 @@
 			</RelativeLayout>
 
 
-		</com.liferay.mobile.screens.westerosemployees.Views.SignInCard>
+		</com.liferay.mobile.screens.westerosemployees.views.SignInCard>
 
-		<com.liferay.mobile.screens.westerosemployees.Views.SignUpCard
+		<com.liferay.mobile.screens.westerosemployees.views.SignUpCard
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:background="@drawable/westeros_button_ripple"
@@ -192,9 +192,9 @@
 
 			</RelativeLayout>
 
-		</com.liferay.mobile.screens.westerosemployees.Views.SignUpCard>
+		</com.liferay.mobile.screens.westerosemployees.views.SignUpCard>
 
-	</com.liferay.mobile.screens.westerosemployees.Views.Deck>
+	</com.liferay.mobile.screens.westerosemployees.views.Deck>
 
 	<FrameLayout
 		android:id="@+id/crouton_view_anchor"

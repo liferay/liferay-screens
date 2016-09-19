@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.westerosemployees.Views;
+package com.liferay.mobile.screens.westerosemployees.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -8,8 +8,6 @@ import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.asset.list.AssetListScreenlet;
 import com.liferay.mobile.screens.base.list.BaseListListener;
-import com.liferay.mobile.screens.comment.list.CommentListScreenlet;
-import com.liferay.mobile.screens.rating.RatingScreenlet;
 import com.liferay.mobile.screens.westerosemployees.R;
 import com.liferay.mobile.screens.westerosemployees.utils.CardState;
 import java.util.List;

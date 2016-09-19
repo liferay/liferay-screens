@@ -65,7 +65,7 @@
 		app:autoLoad="false"
 		/>
 
-	<com.liferay.mobile.screens.westerosemployees.Views.UserDeck
+	<com.liferay.mobile.screens.westerosemployees.views.UserDeck
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		>
@@ -75,7 +75,7 @@
 
 		<include layout="@layout/card_gallery"/>
 
-	</com.liferay.mobile.screens.westerosemployees.Views.UserDeck>
+	</com.liferay.mobile.screens.westerosemployees.views.UserDeck>
 
 	<FrameLayout
 		android:id="@+id/crouton_view_anchor"

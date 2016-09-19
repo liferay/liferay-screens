@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import com.liferay.mobile.screens.westerosemployees.Views.Card;
+import com.liferay.mobile.screens.westerosemployees.views.Card;
 import com.liferay.mobile.screens.westerosemployees.utils.ViewUtil;
 
 /**

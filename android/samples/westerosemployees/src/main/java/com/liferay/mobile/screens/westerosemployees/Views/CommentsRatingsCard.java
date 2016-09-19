@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.westerosemployees.Views;
+package com.liferay.mobile.screens.westerosemployees.views;
 
 import android.app.Activity;
 import android.content.Context;

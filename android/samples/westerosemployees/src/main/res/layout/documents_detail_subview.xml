@@ -61,7 +61,7 @@
 		</LinearLayout>
 	</ScrollView>
 
-	<com.liferay.mobile.screens.westerosemployees.Views.Deck
+	<com.liferay.mobile.screens.westerosemployees.views.Deck
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		>
@@ -70,6 +70,6 @@
 			layout="@layout/card_comments_red"
 			/>
 
-	</com.liferay.mobile.screens.westerosemployees.Views.Deck>
+	</com.liferay.mobile.screens.westerosemployees.views.Deck>
 
 </RelativeLayout>

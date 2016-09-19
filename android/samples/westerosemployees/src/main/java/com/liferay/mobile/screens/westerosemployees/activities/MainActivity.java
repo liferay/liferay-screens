@@ -21,7 +21,7 @@ import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
 import com.liferay.mobile.screens.westerosemployees.R;
-import com.liferay.mobile.screens.westerosemployees.Views.Deck;
+import com.liferay.mobile.screens.westerosemployees.views.Deck;
 import com.liferay.mobile.screens.westerosemployees.utils.CardState;
 
 public class MainActivity extends WesterosActivity implements LoginListener {
