@@ -20,7 +20,7 @@ import java.util.List;
  * @author Víctor Galán Grande
  */
 public class Deck extends FrameLayout implements CardListener {
-	protected List<Card> cards = new ArrayList<>();
+	protected final List<Card> cards = new ArrayList<>();
 	protected int maxWidth;
 	protected int maxHeight;
 

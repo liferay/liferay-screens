@@ -13,6 +13,10 @@ import java.util.List;
  */
 public class ViewUtil {
 
+	private ViewUtil() {
+
+	}
+
 	public static int pixelFromDp(Context context, int dp) {
 		Resources resources = context.getResources();
 		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,

@@ -26,7 +26,6 @@ import com.liferay.mobile.screens.westerosemployees.views.Deck;
 
 public class MainActivity extends WesterosActivity implements LoginListener {
 
-	private LoginScreenlet loginScreenlet;
 	private Deck deck;
 
 	@Override
@@ -38,7 +37,7 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 	}
 
 	private void findViews() {
-		loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
+		LoginScreenlet loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
 		loginScreenlet.setListener(this);
 
 		deck = (Deck) findViewById(R.id.deck);

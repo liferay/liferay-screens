@@ -19,13 +19,13 @@ import java.util.List;
 
 public class Card extends FrameLayout {
 
-	public static final int MARGIN = 5;
-	public static final int DURATION_MILLIS = 300;
+	private static final int MARGIN = 5;
+	private static final int DURATION_MILLIS = 300;
 	public static final int CARD_SIZE = 60;
 
-	public static final int BACKGROUND_Y = MARGIN;
+	private static final int BACKGROUND_Y = MARGIN;
 
-	public static final int NORMAL_Y = MARGIN * 7;
+	private static final int NORMAL_Y = MARGIN * 7;
 
 	protected List<View> arrows;
 	protected int index;

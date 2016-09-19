@@ -10,8 +10,6 @@ import com.liferay.mobile.screens.viewsets.westeros.R;
  */
 public class CommentListView extends com.liferay.mobile.screens.viewsets.defaultviews.comment.list.CommentListView {
 
-	private TextView emptyListTextView;
-
 	public CommentListView(Context context) {
 		super(context);
 	}

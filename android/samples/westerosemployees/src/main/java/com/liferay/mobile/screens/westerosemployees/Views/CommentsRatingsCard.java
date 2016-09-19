@@ -2,6 +2,7 @@ package com.liferay.mobile.screens.westerosemployees.views;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.IBinder;
 import android.util.AttributeSet;
 import android.view.inputmethod.InputMethodManager;
 import com.liferay.mobile.screens.comment.CommentEntry;
@@ -85,7 +86,11 @@ public abstract class CommentsRatingsCard extends Card implements CommentAddList
 			(InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 
 		if (imm.isAcceptingText()) {
-			imm.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
+			IBinder windowToken = activity.getCurrentFocus().getWindowToken();
+
+			if (windowToken != null) {
+				imm.hideSoftInputFromWindow(windowToken, 0);
+			}
 		}
 	}
 }

@@ -90,6 +90,7 @@
 			android:layout_below="@id/liferay_gallery_upload_image"
 			android:alpha="0"
 			android:enabled="false"
+			android:inputType="text"
 			/>
 
 		<EditText
