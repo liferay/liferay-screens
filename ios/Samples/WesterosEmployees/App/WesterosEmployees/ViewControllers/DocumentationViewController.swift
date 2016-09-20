@@ -23,6 +23,10 @@ class DocumentationViewController: CardViewController, AssetListScreenletDelegat
 	@IBOutlet weak var assetListScreenlet: AssetListScreenlet? {
 		didSet {
 			self.assetListScreenlet?.delegate = self
+			self.assetListScreenlet?.classNameId =
+				AssetClasses.getClassNameId(AssetClassNameKey_DLFileEntry)!
+			self.assetListScreenlet?.portletItemName =
+				LiferayServerContext.propertyForKey("documentationPortletItemName") as? String
 		}
 	}
 

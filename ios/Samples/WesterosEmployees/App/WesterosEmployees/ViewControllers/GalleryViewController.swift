@@ -33,6 +33,11 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 		didSet {
 			imageGalleryScreenlet?.delegate = self
 			imageGalleryScreenlet?.presentingViewController = self
+
+			imageGalleryScreenlet?.repositoryId = LiferayServerContext.groupId
+			if let folderId = LiferayServerContext.propertyForKey("galleryFolderId") as? NSNumber {
+				imageGalleryScreenlet?.folderId = folderId.longLongValue
+			}
 		}
 	}
 

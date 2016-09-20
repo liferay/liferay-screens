@@ -12,5 +12,9 @@
 	<string>anonymous@liferay.com</string>
 	<key>anonymousPassword</key>
 	<string>anonymous1</string>
+	<key>galleryFolderId</key>
+	<integer>35726</integer>
+	<key>documentationPortletItemName</key>
+	<string>DocumentationWesterosEmployees</string>
 </dict>
 </plist>

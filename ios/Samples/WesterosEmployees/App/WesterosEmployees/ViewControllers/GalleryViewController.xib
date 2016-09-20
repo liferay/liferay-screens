@@ -24,14 +24,8 @@
                             <rect key="frame" x="0.0" y="0.0" width="404" height="227"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="folderId">
-                                    <integer key="value" value="35726"/>
-                                </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
                                 <userDefinedRuntimeAttribute type="string" keyPath="offlinePolicy" value="remote-first"/>
-                                <userDefinedRuntimeAttribute type="number" keyPath="repositoryId">
-                                    <integer key="value" value="30853"/>
-                                </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
                             </userDefinedRuntimeAttributes>
                         </view>

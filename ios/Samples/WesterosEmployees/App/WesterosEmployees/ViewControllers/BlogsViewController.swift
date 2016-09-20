@@ -24,6 +24,8 @@ class BlogsViewController: CardViewController, AssetListScreenletDelegate {
 	@IBOutlet weak var assetListScreenlet: AssetListScreenlet? {
 		didSet {
 			assetListScreenlet?.delegate = self
+			assetListScreenlet?.classNameId =
+				AssetClasses.getClassNameId(AssetClassNameKey_BlogsEntry)!
 		}
 	}
 
