@@ -60,13 +60,17 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 
 	@Override
 	public void showFinishOperation(String actionName) {
-		loadView();
+		throw new AssertionError("Should not be called!");
+	}
+
+	public void showFinishOperation(String actionName, boolean editable) {
+		loadView(editable);
 	}
 
 	@Override
-	public void showFinishOperation(String loadCommentAction, CommentEntry commentEntry) {
+	public void showFinishOperation(String loadCommentAction, boolean editable, CommentEntry commentEntry) {
 		this.commentEntry = commentEntry;
-		loadView();
+		loadView(editable);
 	}
 
 	@Override
@@ -75,12 +79,12 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 		contentGroup.setVisibility(GONE);
 	}
 
-	private void loadView() {
+	private void loadView(boolean editable) {
 		progressBar.setVisibility(GONE);
 		contentGroup.setVisibility(VISIBLE);
 
 		if (commentEntry != null) {
-			enableEditionButtons(commentEntry);
+			enableEditionButtons(editable);
 			showEditionButtons();
 			userPortraitScreenlet.setUserId(commentEntry.getUserId());
 			userNameTextView.setText(commentEntry.getUserName());
@@ -91,9 +95,7 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 		}
 	}
 
-	private void enableEditionButtons(CommentEntry commentEntry) {
-		boolean editable = commentEntry.isEditable();
-
+	private void enableEditionButtons(boolean editable) {
 		editImageButton.setVisibility(editable ? VISIBLE : GONE);
 		deleteImageButton.setVisibility(editable ? VISIBLE : GONE);
 		if (editable) {

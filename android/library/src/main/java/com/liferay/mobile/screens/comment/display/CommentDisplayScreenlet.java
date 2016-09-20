@@ -2,6 +2,8 @@ package com.liferay.mobile.screens.comment.display;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +29,10 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	public static final String DELETE_COMMENT_ACTION = "DELETE_COMMENT";
 	public static final String UPDATE_COMMENT_ACTION = "UPDATE_COMMENT";
 	public static final String LOAD_COMMENT_ACTION = "LOAD_COMMENT";
+	private static final String STATE_EDITABLE = "STATE_EDITABLE";
+	public static final String STATE_AUTO_LOAD = "STATE_AUTO_LOAD";
+	public static final String STATE_COMMENT_ID = "STATE_COMMENT_ID";
+	public static final String STATE_COMMENT_ENTRY = "STATE_COMMENT_ENTRY";
 	private CommentDisplayListener listener;
 	private CommentEntry commentEntry;
 	private long commentId;
@@ -124,8 +130,7 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	public void onLoadCommentSuccess(CommentEntry commentEntry) {
 		this.commentEntry = commentEntry;
 		this.commentId = commentEntry.getCommentId();
-		commentEntry.setEditable(editable);
-		getViewModel().showFinishOperation(LOAD_COMMENT_ACTION, commentEntry);
+		getViewModel().showFinishOperation(LOAD_COMMENT_ACTION, editable, commentEntry);
 
 		if (getListener() != null) {
 			getListener().onLoadCommentSuccess(commentEntry);
@@ -135,14 +140,13 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	public void allowEdition(boolean editable) {
 		this.editable = editable;
 		if (commentEntry != null) {
-			commentEntry.setEditable(editable);
-			getViewModel().showFinishOperation(LOAD_COMMENT_ACTION, commentEntry);
+			getViewModel().showFinishOperation(LOAD_COMMENT_ACTION, editable, commentEntry);
 		}
 	}
 
 	@Override
 	public void onDeleteCommentSuccess() {
-		getViewModel().showFinishOperation(DELETE_COMMENT_ACTION);
+		getViewModel().showFinishOperation(DELETE_COMMENT_ACTION, editable);
 
 		if (getListener() != null) {
 			getListener().onDeleteCommentSuccess(commentEntry);
@@ -151,7 +155,7 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 
 	@Override
 	public void onUpdateCommentSuccess(CommentEntry commentEntry) {
-		getViewModel().showFinishOperation(UPDATE_COMMENT_ACTION, commentEntry);
+		getViewModel().showFinishOperation(UPDATE_COMMENT_ACTION, editable, commentEntry);
 
 		if (getListener() != null) {
 			getListener().onUpdateCommentSuccess(commentEntry);
@@ -165,6 +169,32 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 		if (getListener() != null) {
 			getListener().error(e, userAction);
 		}
+	}
+
+	@Override
+	protected Parcelable onSaveInstanceState() {
+		Parcelable superState = super.onSaveInstanceState();
+
+		Bundle state = new Bundle();
+		state.putParcelable(STATE_SUPER, superState);
+		state.putBoolean(STATE_EDITABLE, editable);
+		state.putBoolean(STATE_AUTO_LOAD, autoLoad);
+		state.putLong(STATE_COMMENT_ID, commentId);
+		state.putParcelable(STATE_COMMENT_ENTRY, commentEntry);
+		return state;
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Parcelable inState) {
+		Bundle state = (Bundle) inState;
+
+		editable = state.getBoolean(STATE_EDITABLE);
+		autoLoad = state.getBoolean(STATE_AUTO_LOAD);
+		commentId = state.getLong(STATE_COMMENT_ID);
+		commentEntry = state.getParcelable(STATE_COMMENT_ENTRY);
+
+		Parcelable superState = state.getParcelable(STATE_SUPER);
+		super.onRestoreInstanceState(superState);
 	}
 
 	public CommentDisplayListener getListener() {
