@@ -261,8 +261,6 @@ import QuartzCore
 			return onAction(name: name, interactor: interactor, sender: sender)
 		}
 
-		print("WARN: No interactor created for action \(name)\n")
-
 		return false
 	}
 
