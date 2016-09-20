@@ -73,6 +73,9 @@ import PureLayout
 	///Get the number of cards in this deck
 	func numberOfCardsIn(cardDeck: CardDeckView) -> Int
 
+	///Create a card object for a certain index
+	optional func doCreateCard(cardDeck: CardDeckView, index: Int) -> CardView?
+
 	///Get the CardViewController for a position
 	/// - parameter controllerForCard position: position for the controller
 	/// - returns: controller for given position
@@ -219,7 +222,8 @@ public class CardDeckView: UIView, CardDelegate {
 	/// - returns: the CardView object
 	public func createCardForIndex(index: Int) -> CardView {
 		//Create Card
-		let card = CardView.newAutoLayoutView()
+		let card = self.dataSource?.doCreateCard?(self, index: index) ??
+			CardView.newAutoLayoutView()
 		card.layer.zPosition = zPositionForIndex(index)
 
 		let cardBackgroundColor = self.delegate?.cardDeck?(self, colorForCardIndex: index)

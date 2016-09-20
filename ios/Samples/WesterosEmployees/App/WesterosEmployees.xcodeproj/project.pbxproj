@@ -89,6 +89,8 @@
 		0B6001A41D883B19003BDBF8 /* AssetListView_westeros_news.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6001A31D883B19003BDBF8 /* AssetListView_westeros_news.swift */; };
 		0B6001AA1D88532C003BDBF8 /* DocumentationTableViewCell_westeros_news.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6001A91D88532C003BDBF8 /* DocumentationTableViewCell_westeros_news.xib */; };
 		0B6001AC1D88539E003BDBF8 /* BlogsEntryTableViewCell_westeros_news.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6001AB1D88539E003BDBF8 /* BlogsEntryTableViewCell_westeros_news.xib */; };
+		0B7EFFC51D918C4D00BA23EC /* WesterosCardProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EFFC41D918C4D00BA23EC /* WesterosCardProgressPresenter.swift */; };
+		0B7EFFC71D9196A500BA23EC /* WesterosCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EFFC61D9196A500BA23EC /* WesterosCardView.swift */; };
 		0B9309471D6DAC7E003824D6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9309451D6DAC7E003824D6 /* CardView.swift */; };
 		0B9309481D6DAC7E003824D6 /* CardDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9309461D6DAC7E003824D6 /* CardDeckView.swift */; };
 		0B93094A1D6DAC91003824D6 /* DefaultResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9309491D6DAC91003824D6 /* DefaultResources.swift */; };
@@ -229,6 +231,8 @@
 		0B6001A31D883B19003BDBF8 /* AssetListView_westeros_news.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListView_westeros_news.swift; sourceTree = "<group>"; };
 		0B6001A91D88532C003BDBF8 /* DocumentationTableViewCell_westeros_news.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentationTableViewCell_westeros_news.xib; sourceTree = "<group>"; };
 		0B6001AB1D88539E003BDBF8 /* BlogsEntryTableViewCell_westeros_news.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BlogsEntryTableViewCell_westeros_news.xib; sourceTree = "<group>"; };
+		0B7EFFC41D918C4D00BA23EC /* WesterosCardProgressPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WesterosCardProgressPresenter.swift; sourceTree = "<group>"; };
+		0B7EFFC61D9196A500BA23EC /* WesterosCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WesterosCardView.swift; sourceTree = "<group>"; };
 		0B9309451D6DAC7E003824D6 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		0B9309461D6DAC7E003824D6 /* CardDeckView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDeckView.swift; sourceTree = "<group>"; };
 		0B9309491D6DAC91003824D6 /* DefaultResources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultResources.swift; sourceTree = "<group>"; };
@@ -400,6 +404,7 @@
 				0B0A22DC1D6B1D840061B50D /* BorderedTextField.swift */,
 				0B0A22DD1D6B1D840061B50D /* WesterosProgressPresenter.swift */,
 				0B0A22DE1D6B1D840061B50D /* WesterosThemeConstants.swift */,
+				0B7EFFC41D918C4D00BA23EC /* WesterosCardProgressPresenter.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -440,6 +445,7 @@
 			children = (
 				0B9309491D6DAC91003824D6 /* DefaultResources.swift */,
 				0B0A23461D6B22100061B50D /* KeyboardListener.swift */,
+				0B7EFFC61D9196A500BA23EC /* WesterosCardView.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -834,6 +840,7 @@
 				0B0A231A1D6B1D840061B50D /* WesterosThemeConstants.swift in Sources */,
 				0B0A23191D6B1D840061B50D /* WesterosProgressPresenter.swift in Sources */,
 				0B318C071D81C1DC0027C04B /* AssetListView_westeros_blog.swift in Sources */,
+				0B7EFFC71D9196A500BA23EC /* WesterosCardView.swift in Sources */,
 				0B0A230E1D6B1D840061B50D /* ForgotPasswordView_westeros.swift in Sources */,
 				0B5D453E1D8BE69600729A4D /* CommentAddView_westeros.swift in Sources */,
 				0B0A23161D6B1D840061B50D /* UserPortraitView_westeros.swift in Sources */,
@@ -857,6 +864,7 @@
 				0BFCB6C91D885C2A0024856F /* AddCommentViewController.swift in Sources */,
 				0B9309511D6DB0D9003824D6 /* Westeros+CGRect.swift in Sources */,
 				0B282F161D7ED9210090F800 /* BlogsViewController.swift in Sources */,
+				0B7EFFC51D918C4D00BA23EC /* WesterosCardProgressPresenter.swift in Sources */,
 				0B282F1E1D7EE2570090F800 /* UserDisplayViewController.swift in Sources */,
 				0BEE442C1D8FEAD0009BFAA2 /* ImageGalleryView_westeros.swift in Sources */,
 				0B93094F1D6DACD9003824D6 /* Westeros+Array.swift in Sources */,

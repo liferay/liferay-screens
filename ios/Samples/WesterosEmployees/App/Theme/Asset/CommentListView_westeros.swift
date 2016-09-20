@@ -44,7 +44,7 @@ public class CommentListView_westeros: CommentListView_default {
 	//MARK: BaseScreenletView
 
 	override public func createProgressPresenter() -> ProgressPresenter {
-		return NetworkActivityIndicatorPresenter()
+		return WesterosCardProgressPresenter(screenlet: self.screenlet)
 	}
 
 

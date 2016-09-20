@@ -145,6 +145,10 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 		return 3
 	}
 
+	func doCreateCard(cardDeck: CardDeckView, index: Int) -> CardView? {
+		return WesterosCardView.newAutoLayoutView()
+	}
+
 	func cardDeck(cardDeck: CardDeckView, controllerForCard position: CardPosition)
 		-> CardViewController? {
 			switch (position.card, position.page) {
@@ -163,6 +167,12 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 
 
 	//MARK: CardDeckDelegate
+
+	func cardDeck(cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
+		if index % 2 == 0 {
+			(card as? WesterosCardView)?.activityIndicator.color = WesterosThemeBasicRed
+		}
+	}
 
 	func cardDeck(cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
 		switch (position.card, position.page) {

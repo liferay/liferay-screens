@@ -12,14 +12,16 @@
 * details.
 */
 import UIKit
-import LiferayScreens
 
-public class ImageGalleryView_westeros: ImageGalleryView_default {
+///Card view class for westeros app
+public class WesterosCardView: CardView {
 
+	var activityIndicator: UIActivityIndicatorView {
+		return self.accesoryView as! UIActivityIndicatorView
+	}
 
-	//MARK: BaseScreenletView
-
-	override public func createProgressPresenter() -> ProgressPresenter {
-		return WesterosCardProgressPresenter(screenlet: self.screenlet)
+	public override func onCreated() {
+		self.accesoryView = UIActivityIndicatorView.newAutoLayoutView()
+		self.accesoryView?.autoSetDimensionsToSize(CGSizeMake(40, 40))
 	}
 }

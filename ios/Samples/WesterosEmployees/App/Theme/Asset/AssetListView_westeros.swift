@@ -16,11 +16,10 @@ import LiferayScreens
 
 class AssetListView_westeros: AssetListView_default {
 
-
 	//MARK: BaseScreenletView
 	
 	override func createProgressPresenter() -> ProgressPresenter {
-		return NetworkActivityIndicatorPresenter()
+		return WesterosCardProgressPresenter(screenlet: self.screenlet)
 	}
 
 	override func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
