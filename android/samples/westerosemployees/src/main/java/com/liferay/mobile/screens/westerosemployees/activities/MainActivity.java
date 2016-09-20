@@ -18,8 +18,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
+import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
+import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
 import com.liferay.mobile.screens.westerosemployees.R;
 import com.liferay.mobile.screens.westerosemployees.utils.CardState;
 import com.liferay.mobile.screens.westerosemployees.views.Deck;
@@ -27,6 +29,8 @@ import com.liferay.mobile.screens.westerosemployees.views.Deck;
 public class MainActivity extends WesterosActivity implements LoginListener {
 
 	private Deck deck;
+	private LoginScreenlet loginScreenlet;
+	private WebContentDisplayScreenlet webContentDisplayScreenlet;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +38,20 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 		setContentView(R.layout.main);
 
 		findViews();
+		loadTerms();
 	}
 
 	private void findViews() {
-		LoginScreenlet loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
-		loginScreenlet.setListener(this);
-
+		loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
+		webContentDisplayScreenlet = (WebContentDisplayScreenlet) findViewById(R.id.web_content_display_screenlet);
 		deck = (Deck) findViewById(R.id.deck);
+
+		loginScreenlet.setListener(this);
+	}
+
+	private void loadTerms() {
+		SessionContext.createBasicSession("test@liferay.com", "test");
+		webContentDisplayScreenlet.load();
 	}
 
 	@Override

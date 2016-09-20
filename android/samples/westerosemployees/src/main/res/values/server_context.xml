@@ -15,4 +15,7 @@
 	<string name="liferay_structure_id">20589</string>
 	<string name="liferay_recordset_fields">Title</string>
 
+	<!-- WebContentDisplayScreenlet values -->
+	<string name="liferay_article_id">36905</string>
+
 </resources>
