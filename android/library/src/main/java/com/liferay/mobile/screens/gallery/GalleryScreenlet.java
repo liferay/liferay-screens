@@ -1,19 +1,13 @@
 package com.liferay.mobile.screens.gallery;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.support.annotation.LayoutRes;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
@@ -30,7 +24,6 @@ import com.liferay.mobile.screens.gallery.interactor.upload.GalleryUploadInterac
 import com.liferay.mobile.screens.gallery.model.ImageEntry;
 import com.liferay.mobile.screens.gallery.view.GalleryViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DefaultUploadDetailView;
 import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DefaultUploadDialog;
 import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DetailImageActivity;
 import java.io.IOException;
@@ -60,15 +53,16 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 		super(context, attrs, defStyleAttr);
 	}
 
-	public GalleryScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+	public GalleryScreenlet(Context context, AttributeSet attrs, int defStyleAttr,
+		int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 
-		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.GalleryScreenlet, 0, 0);
+		TypedArray typedArray = context.getTheme()
+			.obtainStyledAttributes(attributes, R.styleable.GalleryScreenlet, 0, 0);
 
 		PicassoScreens.setCachePolicy(this.cachePolicy);
 
@@ -134,7 +128,8 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 	public void onPicturePathReceived(String picturePath) {
 		int uploadDetailViewLayout = 0;
 		if (getListener() != null) {
-			boolean showed = getListener().showUploadImageView(UPLOAD_IMAGE, picturePath, getScreenletId());
+			boolean showed =
+				getListener().showUploadImageView(UPLOAD_IMAGE, picturePath, getScreenletId());
 
 			if (showed) {
 				return;
@@ -177,8 +172,8 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 	}
 
 	@Override
-	public void onPictureUploadInformationReceived(String picturePath, String title, String description,
-		String changelog) {
+	public void onPictureUploadInformationReceived(String picturePath, String title,
+		String description, String changelog) {
 		getViewModel().imageUploadStart(picturePath);
 
 		GalleryUploadInteractor galleryUploadInteractor = getUploadInteractor();
@@ -246,9 +241,9 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 
 		if (uploadDetailView != 0) {
 			view = LayoutInflater.from(context).inflate(uploadDetailView, null, false);
-		}
-		else {
-			view = LayoutInflater.from(context).inflate(R.layout.default_upload_detail_activity, null, false);
+		} else {
+			view = LayoutInflater.from(context)
+				.inflate(R.layout.default_upload_detail_activity, null, false);
 		}
 
 		if (view instanceof BaseDetailUploadView) {
@@ -256,8 +251,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 
 			baseDetailUploadView.initializeUploadView(UPLOAD_IMAGE, picturePath, getScreenletId());
 			new DefaultUploadDialog().createDialog(baseDetailUploadView, getContext()).show();
-		}
-		else {
+		} else {
 			LiferayLogger.e("Detail upload view has to be a subclass of BaseDetailUploadView");
 		}
 	}
