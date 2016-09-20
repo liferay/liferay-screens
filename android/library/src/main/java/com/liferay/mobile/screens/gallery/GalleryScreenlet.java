@@ -241,18 +241,25 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 	}
 
 	protected void startUploadDetail(@LayoutRes int uploadDetailView, final String picturePath) {
-		BaseDetailUploadView view = null;
+		View view = null;
 		Context context = LiferayScreensContext.getContext();
 
 		if (uploadDetailView != 0) {
-			view = (BaseDetailUploadView) LayoutInflater.from(context).inflate(uploadDetailView, null, false);
+			view = LayoutInflater.from(context).inflate(uploadDetailView, null, false);
 		}
 		else {
-			view = (BaseDetailUploadView) LayoutInflater.from(context).inflate(R.layout.default_upload_detail_activity, null, false);
+			view = LayoutInflater.from(context).inflate(R.layout.default_upload_detail_activity, null, false);
 		}
-		view.initializeUploadView(UPLOAD_IMAGE, picturePath, getScreenletId());
 
-		new DefaultUploadDialog().createDialog(view, getContext()).show();
+		if (view instanceof BaseDetailUploadView) {
+			BaseDetailUploadView baseDetailUploadView = (BaseDetailUploadView) view;
+
+			baseDetailUploadView.initializeUploadView(UPLOAD_IMAGE, picturePath, getScreenletId());
+			new DefaultUploadDialog().createDialog(baseDetailUploadView, getContext()).show();
+		}
+		else {
+			LiferayLogger.e("Detail upload view has to be a subclass of BaseDetailUploadView");
+		}
 	}
 
 	protected void startShadowActivityForMediaStore(int mediaStore) {
