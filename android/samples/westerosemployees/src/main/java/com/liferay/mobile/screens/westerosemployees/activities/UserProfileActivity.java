@@ -8,7 +8,7 @@ import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.westerosemployees.R;
 
-public class UserProfileAcivity extends WesterosActivity implements View.OnClickListener {
+public class UserProfileActivity extends WesterosActivity implements View.OnClickListener {
 
 	private TextView userNameText;
 	private TextView jobTitleText;
