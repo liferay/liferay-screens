@@ -130,6 +130,8 @@
 		0BEE44281D8FCA51009BFAA2 /* RatingView_default-stars-westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEE44271D8FCA51009BFAA2 /* RatingView_default-stars-westeros.xib */; };
 		0BEE442C1D8FEAD0009BFAA2 /* ImageGalleryView_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEE442B1D8FEAD0009BFAA2 /* ImageGalleryView_westeros.swift */; };
 		0BEE442E1D9021BE009BFAA2 /* ImageGalleryView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEE442D1D9021BE009BFAA2 /* ImageGalleryView_westeros.xib */; };
+		0BEE44371D913944009BFAA2 /* WebContentDisplayView_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEE44351D913944009BFAA2 /* WebContentDisplayView_westeros.swift */; };
+		0BEE44381D913944009BFAA2 /* WebContentDisplayView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEE44361D913944009BFAA2 /* WebContentDisplayView_westeros.xib */; };
 		0BFCB6C91D885C2A0024856F /* AddCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFCB6C71D885C2A0024856F /* AddCommentViewController.swift */; };
 		0BFCB6CA1D885C2A0024856F /* AddCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BFCB6C81D885C2A0024856F /* AddCommentViewController.xib */; };
 		0BFCB6CF1D8934E80024856F /* CommentListView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BFCB6CE1D8934E80024856F /* CommentListView_westeros.xib */; };
@@ -268,6 +270,8 @@
 		0BEE44271D8FCA51009BFAA2 /* RatingView_default-stars-westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "RatingView_default-stars-westeros.xib"; sourceTree = "<group>"; };
 		0BEE442B1D8FEAD0009BFAA2 /* ImageGalleryView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryView_westeros.swift; sourceTree = "<group>"; };
 		0BEE442D1D9021BE009BFAA2 /* ImageGalleryView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageGalleryView_westeros.xib; sourceTree = "<group>"; };
+		0BEE44351D913944009BFAA2 /* WebContentDisplayView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayView_westeros.swift; sourceTree = "<group>"; };
+		0BEE44361D913944009BFAA2 /* WebContentDisplayView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebContentDisplayView_westeros.xib; sourceTree = "<group>"; };
 		0BFCB6C71D885C2A0024856F /* AddCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCommentViewController.swift; sourceTree = "<group>"; };
 		0BFCB6C81D885C2A0024856F /* AddCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCommentViewController.xib; sourceTree = "<group>"; };
 		0BFCB6CE1D8934E80024856F /* CommentListView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentListView_westeros.xib; sourceTree = "<group>"; };
@@ -337,6 +341,7 @@
 				0B0A22CC1D6B1D840061B50D /* Auth */,
 				0B0A22DB1D6B1D840061B50D /* Common */,
 				0B0A22EF1D6B1D840061B50D /* Resources */,
+				0BEE44341D913944009BFAA2 /* WebContent */,
 			);
 			name = WesterosTheme;
 			path = Theme;
@@ -579,6 +584,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		0BEE44341D913944009BFAA2 /* WebContent */ = {
+			isa = PBXGroup;
+			children = (
+				0BEE44351D913944009BFAA2 /* WebContentDisplayView_westeros.swift */,
+				0BEE44361D913944009BFAA2 /* WebContentDisplayView_westeros.xib */,
+			);
+			path = WebContent;
+			sourceTree = "<group>";
+		};
 		1074EBBF0286CC5E94EB3099 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -700,6 +714,7 @@
 				0BD07A301D82EEC500470A2E /* DetailViewController.xib in Resources */,
 				0B0A23951D6B22EF0061B50D /* icon_LEFT@3x.png in Resources */,
 				0BC6BA491D8188670042156E /* file-pdf@3x.png in Resources */,
+				0BEE44381D913944009BFAA2 /* WebContentDisplayView_westeros.xib in Resources */,
 				0BC6BA421D8188670042156E /* file-music@2x.png in Resources */,
 				0B0A23981D6B22EF0061B50D /* logo_BG_grey@3x.png in Resources */,
 				0BFCB6CF1D8934E80024856F /* CommentListView_westeros.xib in Resources */,
@@ -824,6 +839,7 @@
 				0B0A23161D6B1D840061B50D /* UserPortraitView_westeros.swift in Sources */,
 				0B0A23481D6B22100061B50D /* KeyboardListener.swift in Sources */,
 				0B0A23101D6B1D840061B50D /* LoginView_westeros.swift in Sources */,
+				0BEE44371D913944009BFAA2 /* WebContentDisplayView_westeros.swift in Sources */,
 				0B0A23671D6B221B0061B50D /* SignInViewController.swift in Sources */,
 				0B318C031D81BC700027C04B /* AssetListView_westeros_doc.swift in Sources */,
 				0BFCB6D51D8943560024856F /* CommentListView_westeros.swift in Sources */,

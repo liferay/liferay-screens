@@ -12,14 +12,14 @@
 * details.
 */
 import UIKit
+import LiferayScreens
 
 class TermsViewController: CardViewController {
 
 
 	//MARK: Outlets
 
-	@IBOutlet weak var textView: UITextView?
-
+	@IBOutlet weak var webContentDisplayScreenlet: WebContentDisplayScreenlet?
 
 	//MARK: Init methods
 
@@ -31,18 +31,13 @@ class TermsViewController: CardViewController {
 	//MARK: UIViewController
 
 	override func viewWillAppear(animated: Bool) {
-		if let rtfPath = NSBundle.mainBundle().URLForResource(
-				"TermsAndConditions", withExtension: "rtf") {
-			do {
-				let attributedText = try NSAttributedString(URL: rtfPath,
-					options: [NSDocumentTypeDocumentAttribute:NSRTFTextDocumentType],
-					documentAttributes: nil)
-				textView?.attributedText = attributedText
-			} catch {
-				print("No RTF content found in Terms and Conditions file")
-			}
-		} else {
-			print("Terms and conditions file not found")
-		}
+		
+		SessionContext.loginWithBasic(username: "test@liferay.com", password: "test", userAttributes: [:])
+
+		webContentDisplayScreenlet?.articleId = "36905"
+		webContentDisplayScreenlet?.groupId = 30853
+		webContentDisplayScreenlet?.templateId = 29601
+
+		webContentDisplayScreenlet?.loadWebContent()
 	}
 }
