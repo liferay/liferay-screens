@@ -32,8 +32,9 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 		super.viewDidLoad()
 
 		let onDone: () -> () = {
-			self.onAuthDone?()
-			self.dismissViewControllerAnimated(true, completion: nil)
+			self.dismissViewControllerAnimated(true) {
+				self.onAuthDone?()
+			}
 		}
 
 		signInController = SignInViewController()

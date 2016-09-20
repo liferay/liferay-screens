@@ -39,6 +39,21 @@ import PureLayout
 	
 }
 
+///Different states that a card can have
+public enum ShowState {
+	case Minimized, Normal, Maximized, Background, Hidden
+
+	///True if in this state, card is in bottom (minimized or hidden)
+	var isInBottom: Bool {
+		return (self == .Minimized || self == .Hidden)
+	}
+
+	///True if state is visible (normal or maximized)
+	var isVisible: Bool {
+		return (self == .Normal || self == .Maximized)
+	}
+}
+
 ///Custom view used to show one card in screen, this class will usually be used with a CardDeckView.
 ///
 ///To fully create a card you can do something like this:
@@ -52,21 +67,6 @@ import PureLayout
 ///To get more information about how to tweak this constraints go to the 
 ///[API Cheat Sheet](https://github.com/PureLayout/PureLayout#api-cheat-sheet)
 public class CardView: UIView {
-
-	///Different states that a card can have
-	public enum ShowState {
-		case Minimized, Normal, Maximized, Background, Hidden
-
-		///True if in this state, card is in bottom (minimized or hidden)
-		var isInBottom: Bool {
-			return (self == .Minimized || self == .Hidden)
-		}
-
-		///True if state is visible (normal or maximized)
-		var isVisible: Bool {
-			return (self == .Normal || self == .Maximized)
-		}
-	}
 
 	//Default configuration constants
 	public static let DefaultMinimizedHeight: CGFloat = 70

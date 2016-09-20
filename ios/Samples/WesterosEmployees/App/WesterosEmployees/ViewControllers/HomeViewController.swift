@@ -28,6 +28,7 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 	@IBOutlet weak var userNameLabel: UILabel?
 	@IBOutlet weak var assetListScreenlet: AssetListScreenlet?
 	@IBOutlet weak var userProfileButton: UIButton?
+	@IBOutlet weak var latestChangesLabel: UILabel?
 
 	//MARK: CardViewController
 
@@ -64,6 +65,9 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 
 		self.userView?.layer.zPosition = -1000
 		self.cardDeck?.layer.zPosition = 0
+
+		self.assetListScreenlet?.alpha = 0
+		self.latestChangesLabel?.alpha = 0
 
 		documentationViewController = DocumentationViewController()
 		blogsViewController = BlogsViewController()
@@ -123,14 +127,18 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 					//Show second card with a small delay
 					self.cardDeck?.cards[1].currentState = .Hidden
 					self.cardDeck?.cards[1].resetToCurrentState()
-					self.cardDeck?.cards[1].nextState = .Minimized
-					self.cardDeck?.cards[1].changeToNextState(delay: 0.5)
+					self.cardDeck?.cards[1].changeToState(.Minimized)
 
 					//Show first card with a big delay
 					self.cardDeck?.cards[0].currentState = .Hidden
 					self.cardDeck?.cards[0].resetToCurrentState()
 					self.cardDeck?.cards[0].nextState = .Minimized
-					self.cardDeck?.cards[0].changeToNextState(delay: 1.0)
+					self.cardDeck?.cards[0].changeToNextState(delay: 0.5, onComplete: { _ in
+						UIView.animateWithDuration(0.5) {
+							self.assetListScreenlet?.alpha = 1.0
+							self.latestChangesLabel?.alpha = 1.0
+						}
+					})
 				}
 			}
 		}
