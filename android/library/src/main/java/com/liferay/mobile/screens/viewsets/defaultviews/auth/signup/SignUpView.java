@@ -89,7 +89,9 @@ public class SignUpView extends LinearLayout implements SignUpViewModel, View.On
 
 	@Override
 	public void showStartOperation(String actionName) {
-		progressBar.startProgress();
+		if (BaseScreenlet.DEFAULT_ACTION.equals(actionName)) {
+			progressBar.startProgress();
+		}
 	}
 
 	@Override
