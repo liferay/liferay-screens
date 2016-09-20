@@ -1,11 +1,9 @@
 package com.liferay.mobile.screens.gallery.interactor.upload;
 
-import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
+public class GalleryProgress {
 
-public class GalleryProgress extends CacheEvent {
-
-	private int totalBytes;
-	private int totalBytesSent;
+	private final int totalBytes;
+	private final int totalBytesSent;
 
 	public GalleryProgress(int totalBytes, int totalBytesSent) {
 		this.totalBytes = totalBytes;
