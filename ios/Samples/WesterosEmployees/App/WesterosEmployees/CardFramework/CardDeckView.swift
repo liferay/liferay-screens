@@ -206,7 +206,7 @@ public class CardDeckView: UIView, CardDelegate {
 	/// - parameters:
 	///    - card: card to be changed
 	///    - toState: next state for the card
-	public func change(card: CardView, toState state: CardView.ShowState, animateArrow: Bool = true,
+	public func change(card: CardView, toState state: ShowState, animateArrow: Bool = true,
 			time: Double? = nil, delay: Double = 0.0, onComplete: (Bool -> Void)? = nil) {
 		card.nextState = state
 		card.changeToNextState(animateArrow, time: time, delay: delay, onComplete: onComplete)

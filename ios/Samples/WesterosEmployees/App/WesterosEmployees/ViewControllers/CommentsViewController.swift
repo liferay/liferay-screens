@@ -17,6 +17,20 @@ import LiferayScreens
 class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckDataSource,
 	CommentListScreenletDelegate {
 
+	var addCommentViewController: AddCommentViewController? {
+		didSet {
+			self.addChildViewController(addCommentViewController!)
+			self.addCommentViewController?.onCommentAdded = { comment in
+				self.cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
+				self.commentListScreenlet?.addComment(comment)
+			}
+			self.addCommentViewController?.onCommentUpdated = { comment in
+				self.cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
+				self.commentListScreenlet?.updateComment(comment)
+			}
+		}
+	}
+
 	//MARK: Outlets
 
 	@IBOutlet weak var commentListScreenlet: CommentListScreenlet? {
@@ -35,18 +49,8 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 	
 	//MARK: CardViewController
 
-	var addCommentViewController: AddCommentViewController? {
-		didSet {
-			self.addChildViewController(addCommentViewController!)
-			self.addCommentViewController?.onCommentAdded = { comment in
-				self.cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
-				self.commentListScreenlet?.addComment(comment)
-			}
-			self.addCommentViewController?.onCommentUpdated = { comment in
-				self.cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
-				self.commentListScreenlet?.updateComment(comment)
-			}
-		}
+	override func cardWillAppear() {
+		commentListScreenlet?.loadList()
 	}
 
 
@@ -63,10 +67,9 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 		self.init(nibName: "CommentsViewController", bundle: nil)
 	}
 
-	func load (className className: String, classPK: Int64) {
+	func load(className className: String, classPK: Int64) {
 		commentListScreenlet?.className = className
 		commentListScreenlet?.classPK = classPK
-		commentListScreenlet?.loadList()
 
 		addCommentViewController?.load(className: className, classPK: classPK)
 	}

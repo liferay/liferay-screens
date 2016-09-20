@@ -18,21 +18,26 @@ class BlogsViewController: CardViewController, AssetListScreenletDelegate {
 
 	var selectedBlogEntry: BlogsEntry?
 
+
+	//MARK: Outlets
+
 	@IBOutlet weak var assetListScreenlet: AssetListScreenlet? {
 		didSet {
 			assetListScreenlet?.delegate = self
 		}
 	}
-	
+
+
 	//MARK: Init methods
 
 	convenience init() {
 		self.init(nibName: "BlogsViewController", bundle: nil)
 	}
 
-	//MARK: Public methods
 
-	func load() {
+	//MARK: CardViewController
+
+	override func cardWillAppear() {
 		assetListScreenlet?.loadList()
 	}
 

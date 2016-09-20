@@ -50,6 +50,10 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 		hideUploadCard()
 	}
 
+	override func cardWillAppear() {
+		imageGalleryScreenlet?.loadList()
+	}
+
 
 	//MARK: UIViewController
 
@@ -61,13 +65,6 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 
 	convenience init() {
 		self.init(nibName: "GalleryViewController", bundle: nil)
-	}
-
-
-	//MARK: Public methods
-
-	func load() {
-		imageGalleryScreenlet?.loadList()
 	}
 
 
