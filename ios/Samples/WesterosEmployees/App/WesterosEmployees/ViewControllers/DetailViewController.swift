@@ -33,7 +33,7 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 	}
 
 
-	//MARK: CardViewController
+	//MARK: Card controllers
 
 	var commentsViewController: CommentsViewController? {
 		didSet {

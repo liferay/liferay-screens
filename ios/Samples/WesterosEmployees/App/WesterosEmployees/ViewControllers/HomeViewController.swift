@@ -30,7 +30,7 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 	@IBOutlet weak var userProfileButton: UIButton?
 	@IBOutlet weak var latestChangesLabel: UILabel?
 
-	//MARK: CardViewController
+	//MARK: Card controllers
 
 	var documentationViewController: DocumentationViewController? {
 		didSet {
