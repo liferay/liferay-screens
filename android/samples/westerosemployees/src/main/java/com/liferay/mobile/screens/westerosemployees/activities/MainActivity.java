@@ -30,7 +30,7 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 
 	private Deck deck;
 	private LoginScreenlet loginScreenlet;
-	private WebContentDisplayScreenlet webContentDisplayScreenlet;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,6 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 
 	private void findViews() {
 		loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
-		webContentDisplayScreenlet = (WebContentDisplayScreenlet) findViewById(R.id.web_content_display_screenlet);
 		deck = (Deck) findViewById(R.id.deck);
 
 		loginScreenlet.setListener(this);
@@ -51,7 +50,6 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 
 	private void loadTerms() {
 		SessionContext.createBasicSession("test@liferay.com", "test");
-		webContentDisplayScreenlet.load();
 	}
 
 	@Override
