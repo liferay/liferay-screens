@@ -27,23 +27,36 @@
 		android:layout_alignParentBottom="true"
 		/>
 
-	<com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet
-		android:id="@+id/asset_display_screenlet_image"
+	<ScrollView
 		android:layout_width="match_parent"
-		android:layout_height="300dp"
-		android:layout_below="@id/gallery_detail_title"
-		app:autoLoad="false"
-		/>
-
-	<com.liferay.mobile.screens.rating.RatingScreenlet
-		android:id="@+id/rating_screenlet"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="match_parent"
 		android:layout_above="@id/card_anchor_comments"
-		android:layout_below="@id/asset_display_screenlet_image"
-		app:autoLoad="false"
-		app:layoutId="@layout/rating_star_bar_westeros_red"
-		/>
+		android:layout_below="@id/gallery_detail_title"
+		android:orientation="vertical"
+		>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			>
+
+			<com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet
+				android:id="@+id/asset_display_screenlet_image"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				app:autoLoad="false"
+				/>
+
+			<com.liferay.mobile.screens.rating.RatingScreenlet
+				android:id="@+id/rating_screenlet"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				app:autoLoad="false"
+				app:layoutId="@layout/rating_star_bar_westeros_red"
+				/>
+		</LinearLayout>
+	</ScrollView>
 
 	<com.liferay.mobile.screens.westerosemployees.views.Deck
 		android:layout_width="match_parent"
