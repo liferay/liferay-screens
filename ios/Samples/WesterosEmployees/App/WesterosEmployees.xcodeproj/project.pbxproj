@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0B083A4E1D926D99007D7BCC /* ModalDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B083A4D1D926D99007D7BCC /* ModalDetailViewController.xib */; };
-		0B083A6A1D92964F007D7BCC /* ImageDisplayView_westeros_blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B083A551D92964F007D7BCC /* ImageDisplayView_westeros_blog.swift */; };
 		0B083A6B1D92964F007D7BCC /* ImageDisplayView_westeros_blog.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B083A561D92964F007D7BCC /* ImageDisplayView_westeros_blog.xib */; };
 		0B083A701D92964F007D7BCC /* AssetListView_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B083A5C1D92964F007D7BCC /* AssetListView_westeros.swift */; };
 		0B083A711D92964F007D7BCC /* AssetListView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B083A5D1D92964F007D7BCC /* AssetListView_westeros.xib */; };
@@ -149,7 +148,6 @@
 
 /* Begin PBXFileReference section */
 		0B083A4D1D926D99007D7BCC /* ModalDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModalDetailViewController.xib; sourceTree = "<group>"; };
-		0B083A551D92964F007D7BCC /* ImageDisplayView_westeros_blog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDisplayView_westeros_blog.swift; sourceTree = "<group>"; };
 		0B083A561D92964F007D7BCC /* ImageDisplayView_westeros_blog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageDisplayView_westeros_blog.xib; sourceTree = "<group>"; };
 		0B083A5C1D92964F007D7BCC /* AssetListView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListView_westeros.swift; sourceTree = "<group>"; };
 		0B083A5D1D92964F007D7BCC /* AssetListView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssetListView_westeros.xib; sourceTree = "<group>"; };
@@ -317,7 +315,6 @@
 		0B083A541D92964F007D7BCC /* Display */ = {
 			isa = PBXGroup;
 			children = (
-				0B083A551D92964F007D7BCC /* ImageDisplayView_westeros_blog.swift */,
 				0B083A561D92964F007D7BCC /* ImageDisplayView_westeros_blog.xib */,
 			);
 			path = Display;
@@ -915,7 +912,6 @@
 				0B282F1E1D7EE2570090F800 /* UserDisplayViewController.swift in Sources */,
 				0B93094F1D6DACD9003824D6 /* Westeros+Array.swift in Sources */,
 				0B282F1A1D7ED95A0090F800 /* GalleryViewController.swift in Sources */,
-				0B083A6A1D92964F007D7BCC /* ImageDisplayView_westeros_blog.swift in Sources */,
 				0B9309471D6DAC7E003824D6 /* CardView.swift in Sources */,
 				0B35AF711D6C361C002E3D2F /* AuthViewController.swift in Sources */,
 				0B083A721D92964F007D7BCC /* AssetListView_westeros_blog.swift in Sources */,
