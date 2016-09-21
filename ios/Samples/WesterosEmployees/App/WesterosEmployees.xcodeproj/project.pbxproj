@@ -105,6 +105,7 @@
 		0B3943FF1D92B7D600F56B32 /* ImageGalleryView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3943FB1D92B7D600F56B32 /* ImageGalleryView_westeros.xib */; };
 		0B3944001D92B7D600F56B32 /* ImageUploadDetailView_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3943FC1D92B7D600F56B32 /* ImageUploadDetailView_westeros.swift */; };
 		0B3944011D92B7D600F56B32 /* ImageUploadDetailView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3943FD1D92B7D600F56B32 /* ImageUploadDetailView_westeros.xib */; };
+		0B3944041D92B8DE00F56B32 /* UploadProgressView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B3944031D92B8DE00F56B32 /* UploadProgressView_westeros.xib */; };
 		0B7EFFC51D918C4D00BA23EC /* WesterosCardProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EFFC41D918C4D00BA23EC /* WesterosCardProgressPresenter.swift */; };
 		0B7EFFC71D9196A500BA23EC /* WesterosCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EFFC61D9196A500BA23EC /* WesterosCardView.swift */; };
 		0B9309471D6DAC7E003824D6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9309451D6DAC7E003824D6 /* CardView.swift */; };
@@ -248,6 +249,7 @@
 		0B3943FB1D92B7D600F56B32 /* ImageGalleryView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageGalleryView_westeros.xib; sourceTree = "<group>"; };
 		0B3943FC1D92B7D600F56B32 /* ImageUploadDetailView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploadDetailView_westeros.swift; sourceTree = "<group>"; };
 		0B3943FD1D92B7D600F56B32 /* ImageUploadDetailView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageUploadDetailView_westeros.xib; sourceTree = "<group>"; };
+		0B3944031D92B8DE00F56B32 /* UploadProgressView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadProgressView_westeros.xib; sourceTree = "<group>"; };
 		0B7EFFC41D918C4D00BA23EC /* WesterosCardProgressPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WesterosCardProgressPresenter.swift; sourceTree = "<group>"; };
 		0B7EFFC61D9196A500BA23EC /* WesterosCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WesterosCardView.swift; sourceTree = "<group>"; };
 		0B9309451D6DAC7E003824D6 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -610,6 +612,7 @@
 				0B3943FB1D92B7D600F56B32 /* ImageGalleryView_westeros.xib */,
 				0B3943FC1D92B7D600F56B32 /* ImageUploadDetailView_westeros.swift */,
 				0B3943FD1D92B7D600F56B32 /* ImageUploadDetailView_westeros.xib */,
+				0B3944031D92B8DE00F56B32 /* UploadProgressView_westeros.xib */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -741,6 +744,7 @@
 				0B0A239E1D6B22EF0061B50D /* tour-step1@3x.png in Resources */,
 				0BD07A261D82C4C200470A2E /* no-photo.png in Resources */,
 				0B35AF6D1D6C359D002E3D2F /* Auth.storyboard in Resources */,
+				0B3944041D92B8DE00F56B32 /* UploadProgressView_westeros.xib in Resources */,
 				0BC6BA411D8188670042156E /* file-music.png in Resources */,
 				0B083A891D92965B007D7BCC /* CommentAddView_westeros.xib in Resources */,
 				0B083A731D92964F007D7BCC /* AssetListView_westeros_blog.xib in Resources */,
