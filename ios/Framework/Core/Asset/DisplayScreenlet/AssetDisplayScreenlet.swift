@@ -112,6 +112,9 @@ import UIKit
 	}
 
 	public func configureInnerScreenlet(innerScreenlet: BaseScreenlet, asset: Asset) {
+		//Load same theme as parent screenlet
+		innerScreenlet.themeName = self.themeName
+
 		if let screenlet = innerScreenlet as? FileDisplayScreenlet {
 			screenlet.fileEntry = FileEntry(attributes: asset.attributes)
 			screenlet.autoLoad = false

@@ -25,13 +25,11 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 	@IBOutlet weak var titleLabel: UILabel?
 	@IBOutlet weak var subtitleLabel: UILabel?
 	@IBOutlet weak var contentLabel: UILabel?
-
 	@IBOutlet weak var imageHeightConstraint: NSLayoutConstraint?
 
-	public var contentStyle = "font-size:17"
 	public var headerImageHeight: CGFloat = 125.0
 
-	private let dateFormatter: NSDateFormatter = {
+	public let dateFormatter: NSDateFormatter = {
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
 		dateFormatter.locale = NSLocale(
@@ -39,28 +37,29 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 		return dateFormatter
 	}()
 
-	private var selectedBlogsEntry: BlogsEntry?
-
 	public var blogsEntry: BlogsEntry? {
 		didSet {
-			if let blogsEntry = blogsEntry {
-				self.selectedBlogsEntry = blogsEntry
-				self.setImage()
-				self.setUserInfo()
-				self.setDate()
-				self.setTitleSubtitle()
-				self.setContent()
+			if let _ = blogsEntry {
+				self.loadBlog()
 			}
 		}
 	}
 
-	private func setImage() {
-		let imageId = self.selectedBlogsEntry?.coverImageFileEntryId
+	public func loadBlog() {
+		self.loadImage()
+		self.loadUserInfo()
+		self.loadDate()
+		self.loadTitleSubtitle()
+		self.loadContent()
+	}
+
+	public func loadImage() {
+		let imageId = self.blogsEntry!.coverImageFileEntryId
 		if imageId != 0 {
 			imageHeightConstraint?.constant = self.headerImageHeight
 
 			imageDisplayScreenlet?.className = AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
-			imageDisplayScreenlet?.classPK = imageId!
+			imageDisplayScreenlet?.classPK = imageId
 			imageDisplayScreenlet?.load()
 		}
 		else {
@@ -68,13 +67,13 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 		}
 	}
 
-	private func setUserInfo() {
-		userPortraitScreenlet?.load(userId: self.selectedBlogsEntry!.userId)
-		usernameLabel?.text = self.selectedBlogsEntry?.userName
+	public func loadUserInfo() {
+		userPortraitScreenlet?.load(userId: self.blogsEntry!.userId ?? 0)
+		usernameLabel?.text = self.blogsEntry!.userName
 	}
 
-	private func setDate() {
-		if let date = self.selectedBlogsEntry?.displayDate {
+	public func loadDate() {
+		if let date = self.blogsEntry!.displayDate {
 			dateLabel?.text = dateFormatter.stringFromDate(date)
 		}
 		else {
@@ -82,19 +81,28 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 		}
 	}
 
-	private func setTitleSubtitle() {
-		titleLabel?.text = self.selectedBlogsEntry?.title
-		subtitleLabel?.text = self.selectedBlogsEntry?.subtitle
+	public func loadTitleSubtitle() {
+		titleLabel?.text = self.blogsEntry!.title
+		subtitleLabel?.text = self.blogsEntry!.subtitle
 	}
 
-	private func setContent() {
-		let content = "<span style=\"\(contentStyle)\">\(self.selectedBlogsEntry!.content)</span>"
+	public func loadContent() {
+		contentLabel?.attributedText = self.blogsEntry!.content.toHtmlTextWithAttributes(
+			self.dynamicType.defaultAttributedTextAttributes())
+	}
 
-		let encodedData = content.dataUsingEncoding(NSUTF8StringEncoding)!
-		let attributedOptions : [String: AnyObject] = [
-			NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-			NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding
-		]
-		contentLabel?.attributedText = try! NSAttributedString(data: encodedData, options: attributedOptions, documentAttributes: nil)
+	public class func defaultAttributedTextAttributes() -> [String: NSObject] {
+		let paragrahpStyle = NSMutableParagraphStyle()
+		paragrahpStyle.lineBreakMode = .ByWordWrapping
+
+		var attributes: [String: NSObject] = [NSParagraphStyleAttributeName: paragrahpStyle]
+
+		let font = UIFont(name: "HelveticaNeue", size: 17)
+
+		if let font = font {
+			attributes[NSFontAttributeName] = font
+		}
+
+		return attributes
 	}
 }

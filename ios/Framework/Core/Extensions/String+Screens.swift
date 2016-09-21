@@ -70,7 +70,9 @@ extension String {
 
 	public func toHtmlTextWithAttributes(attributes: [String: NSObject]) -> NSAttributedString? {
 
-		var text = "<span style=\""
+		//Init text with default paragraph style
+		var text = "<style>p:last-of-type{ margin-bottom: 0px; padding-bottom: 0px; }</style>"
+			+ "<div style=\""
 
 		if let font = attributes[NSFontAttributeName] as? UIFont {
 			text.appendContentsOf("font-family: \(font.fontName);font-size: \(font.pointSize);")
@@ -80,7 +82,7 @@ extension String {
 			text.appendContentsOf("color: \(self.toHexString(color));")
 		}
 
-		text.appendContentsOf("\">\(self)</span>")
+		text.appendContentsOf("\">\(self)</div>")
 
 		let encodedData = text.dataUsingEncoding(NSUTF8StringEncoding)
 
