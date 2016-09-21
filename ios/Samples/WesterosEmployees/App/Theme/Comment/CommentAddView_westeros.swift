@@ -22,9 +22,11 @@ public class CommentAddView_westeros: CommentAddView_default, UITextViewDelegate
 			self.addCommentTextView?.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).CGColor
 			self.addCommentTextView?.layer.borderWidth = 1.0
 			self.addCommentTextView?.layer.cornerRadius = 5
+			self.addCommentTextView?.delegate = self
 		}
 	}
 	@IBOutlet weak var sendCommentButton: UIButton?
+	@IBOutlet weak var placeholderLabel: UILabel?
 
 	public override var body: String {
 		get {
@@ -33,6 +35,7 @@ public class CommentAddView_westeros: CommentAddView_default, UITextViewDelegate
 		set {
 			addCommentTextView?.text = newValue
 			updateButton()
+			updateLabel()
 		}
 	}
 
@@ -43,20 +46,24 @@ public class CommentAddView_westeros: CommentAddView_default, UITextViewDelegate
 		sendCommentButton?.enabled = !(addCommentTextView?.text?.isEmpty ?? true)
 	}
 
+	public func updateLabel() {
+		placeholderLabel?.hidden = !(addCommentTextView?.text?.isEmpty ?? true)
+	}
+
 
 	//MARK: BaseScreenletView
 
 	public override func onShow() {
-		addCommentTextView?.delegate = self
-		sendCommentButton?.replaceAttributedTitle(
-			LocalizedString("default", key: "comment-add-send", obj: self),
-			forState: .Normal)
+		super.onShow()
+		let previousText = self.sendCommentButton?.titleLabel?.text
+		self.sendCommentButton?.titleLabel?.text = previousText?.uppercaseString
 	}
 
 
 	//MARK: UITextViewDelegate
 
-	public func textViewDidEndEditing(textView: UITextView) {
+	public func textViewDidChange(textView: UITextView) {
 		updateButton()
+		updateLabel()
 	}
 }

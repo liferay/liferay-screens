@@ -183,7 +183,7 @@
 	</declare-styleable>
 
 	<declare-styleable name="GalleryScreenlet">
-		<attr name="groupId"/>
+		<attr name="repositoryId"/>
 		<attr name="folderId"/>
 		<attr name="cachePolicy"/>
 		<attr name="pageSize"/>

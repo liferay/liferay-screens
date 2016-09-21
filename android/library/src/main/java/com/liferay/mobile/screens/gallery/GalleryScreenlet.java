@@ -38,6 +38,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 
 	//public static final String DELETE_IMAGE = "DELETE_IMAGE";
 	public static final String UPLOAD_IMAGE = "UPLOAD_IMAGE";
+	private long repositoryId;
 	private long folderId;
 	private String[] mimeTypes;
 
@@ -66,6 +67,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 
 		PicassoScreens.setCachePolicy(this.cachePolicy);
 
+		repositoryId = castToLong(typedArray.getString(R.styleable.GalleryScreenlet_repositoryId));
 		folderId = castToLong(typedArray.getString(R.styleable.GalleryScreenlet_folderId));
 		mimeTypes = parseMimeTypes(typedArray.getString(R.styleable.GalleryScreenlet_mimeTypes));
 
@@ -206,7 +208,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 
 	@Override
 	protected void loadRows(GalleryLoadInteractor interactor) {
-		interactor.start(folderId, mimeTypes);
+		interactor.start(repositoryId, folderId, mimeTypes);
 	}
 
 	public GalleryViewModel getViewModel() {
@@ -219,6 +221,14 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 
 	public void setFolderId(long folderId) {
 		this.folderId = folderId;
+	}
+
+	public long getRepositoryId() {
+		return repositoryId;
+	}
+
+	public void setRepositoryId(long repositoryId) {
+		this.repositoryId = repositoryId;
 	}
 
 	protected void autoLoad() {

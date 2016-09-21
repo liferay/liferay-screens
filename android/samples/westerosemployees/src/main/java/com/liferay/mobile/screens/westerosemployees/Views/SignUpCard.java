@@ -3,12 +3,18 @@ package com.liferay.mobile.screens.westerosemployees.views;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
 import com.liferay.mobile.screens.westerosemployees.R;
 
 /**
  * @author Víctor Galán Grande
  */
 public class SignUpCard extends Card implements View.OnClickListener {
+
+	private WebContentDisplayScreenlet webContentDisplayScreenlet;
+
+	private boolean isTermsAndConditiionLoaded;
+
 	public SignUpCard(Context context) {
 		super(context);
 	}
@@ -30,10 +36,16 @@ public class SignUpCard extends Card implements View.OnClickListener {
 		super.onFinishInflate();
 
 		findViewById(R.id.terms).setOnClickListener(this);
+		webContentDisplayScreenlet = (WebContentDisplayScreenlet) findViewById(R.id.web_content_display_screenlet);
 	}
 
 	@Override
 	public void onClick(View v) {
+		if (!isTermsAndConditiionLoaded) {
+			isTermsAndConditiionLoaded = true;
+			webContentDisplayScreenlet.load();
+		}
+
 		goRight();
 	}
 }

@@ -45,7 +45,7 @@
 			android:layout_below="@id/gallery_title"
 			android:layout_above="@id/card_anchor"
 			app:folderId="@string/folderId"
-			app:groupId="@string/liferay_group_id"
+			app:repositoryId="@string/liferay_group_id"
 			app:layoutId="@layout/gallery_westeros"
 			app:autoLoad="false"
 			>

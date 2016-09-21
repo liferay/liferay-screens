@@ -115,9 +115,9 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 	}
 
 	public func showUploadProgressView() {
-		_uploadView = NSBundle.viewForTheme(
+		_uploadView = NSBundle.viewForThemeOrDefault(
 				name: "UploadProgressView",
-				themeName: BaseScreenlet.DefaultThemeName,
+				themeName: self.screenlet?.themeName ?? BaseScreenlet.DefaultThemeName,
 				currentClass: self.dynamicType)
 
 		guard let uploadView = _uploadView else {

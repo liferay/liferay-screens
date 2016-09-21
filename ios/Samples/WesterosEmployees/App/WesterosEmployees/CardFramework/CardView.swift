@@ -124,7 +124,6 @@ public class CardView: UIView {
 
 	//Controls
 	var maximizeOnMove = true
-	var animateSecondaryButton = false
 
 	///This controller will be notified when the card appears/dissapears
 	weak var presentingController: CardViewController?
@@ -409,8 +408,8 @@ public class CardView: UIView {
 		}
 
 		if currentState == .Maximized {
-			self.contentBottomConstraint?.constant = self.minimizedHeight -
-				CardView.DefaultMinimizedHeight
+			self.contentBottomConstraint?.constant = (self.minimizedHeight -
+				CardView.DefaultMinimizedHeight) * -1
 		}
 
 		//Sets the height for the next state

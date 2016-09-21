@@ -50,18 +50,20 @@ extension UIImageView {
 					placeholderImage: placeholderImage,
 					optionsInfo: optionsInfoFinal,
 					completionHandler: { (image, error, cacheType, imageURL) in
-						
-						KingfisherManager.sharedManager.cache.retrieveImageForKey(
-								URL.absoluteString,
-								options: optionsInfoFinal,
-								completionHandler: { (image, cacheType) in
 
-							guard URL == self.kf_webURL else {
-								return
-							}
+						if (error != nil) {
+							KingfisherManager.sharedManager.cache.retrieveImageForKey(
+									URL.absoluteString,
+									options: optionsInfoFinal,
+									completionHandler: { (image, cacheType) in
 
-							self.image = image
-						})
+								guard URL == self.kf_webURL else {
+									return
+								}
+
+								self.image = image
+							})
+						}
 					})
 
 		case CacheStrategyType.CacheFirst.rawValue:

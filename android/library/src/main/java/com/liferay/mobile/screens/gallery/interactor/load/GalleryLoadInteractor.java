@@ -19,29 +19,30 @@ public class GalleryLoadInteractor extends BaseListInteractor<GalleryInteractorL
 
 	@Override
 	protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {
-		long folderId = (long) args[0];
-		JSONArray mimeTypes = getMimeTypes((String[]) args[1]);
+		long repositoryId = (long) args[0];
+		long folderId = (long) args[1];
+		JSONArray mimeTypes = getMimeTypes((String[]) args[2]);
 
-		validate(groupId, folderId);
+		validate(repositoryId, folderId);
 
-		return new DLAppService(getSession()).getFileEntries(groupId, folderId, mimeTypes, query.getStartRow(),
+		return new DLAppService(getSession()).getFileEntries(repositoryId, folderId, mimeTypes, query.getStartRow(),
 			query.getEndRow(), query.getComparatorJSONWrapper());
 	}
 
 	@Override
 	protected Integer getPageRowCountRequest(Object... args) throws Exception {
+		long repositoryId = (long) args[0];
+		long folderId = (long) args[1];
+		JSONArray mimeTypes = getMimeTypes((String[]) args[2]);
 
-		long folderId = (long) args[0];
-		JSONArray mimeTypes = getMimeTypes((String[]) args[1]);
+		validate(repositoryId, folderId);
 
-		validate(groupId, folderId);
-
-		return new DLAppService(getSession()).getFileEntriesCount(groupId, folderId, mimeTypes);
+		return new DLAppService(getSession()).getFileEntriesCount(repositoryId, folderId, mimeTypes);
 	}
 
 	@Override
 	protected String getIdFromArgs(Object... args) {
-		return String.valueOf((long) args[0]);
+		return String.valueOf((long) args[1]);
 	}
 
 	@Override
@@ -49,11 +50,11 @@ public class GalleryLoadInteractor extends BaseListInteractor<GalleryInteractorL
 		return new GalleryEvent(new ImageEntry(stringObjectMap));
 	}
 
-	protected void validate(long groupId, long folderId) {
-		if (groupId <= 0) {
-			throw new IllegalArgumentException("groupId cannot be 0 or negative");
+	protected void validate(long repositoryId, long folderId) {
+		if (repositoryId <= 0) {
+			throw new IllegalArgumentException("repository cannot be 0 or negative");
 		} else if (folderId < 0) {
-			throw new IllegalArgumentException("groupId cannot be negative");
+			throw new IllegalArgumentException("folderId cannot be negative");
 		}
 	}
 

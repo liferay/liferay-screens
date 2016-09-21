@@ -31,6 +31,13 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 			cardDeck?.dataSource = self
 		}
 	}
+	@IBOutlet weak var goBackButton: UIButton? {
+		didSet {
+			let height = goBackButton?.frame.size.height ?? CardView.DefaultMinimizedHeight
+			goBackButton?.titleEdgeInsets = UIEdgeInsetsMake(0, height, 0, height)
+			goBackButton?.setTitleColor(WesterosThemeBasicRed, forState: .Highlighted)
+		}
+	}
 
 
 	//MARK: Card controllers
@@ -42,21 +49,28 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 	}
 
 
+	//MARK: View methods
+
+	@IBAction func goBackButtonClicked() {
+		dismissViewControllerAnimated(true, completion: nil)
+	}
+
+
 	//MARK: Public methods
 
 	func load(className className: String, classPK: Int64) {
 
-		/* Load asset */
+		//Load asset
 		assetDisplayScreenlet?.className = className
 		assetDisplayScreenlet?.classPK = classPK
 		assetDisplayScreenlet?.load()
 
-		/* Load asset rating */
+		//Load asset rating
 		ratingScreenlet?.className = className
 		ratingScreenlet?.classPK = classPK
 		ratingScreenlet?.loadRatings()
 
-		/* Load asset comments */
+		//Load asset comments
 		commentsViewController?.load(className: className, classPK: classPK)
 	}
 
@@ -76,18 +90,34 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		commentsViewController = CommentsViewController()
 	}
 
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		//Hide all views
+		assetDisplayScreenlet?.alpha = 0
+		ratingScreenlet?.alpha = 0
+	}
+
 
 	//MARK: Init methods
 
-	convenience init() {
-		self.init(nibName: "DetailViewController", bundle: nil)
+	convenience init(nibName: String) {
+		self.init(nibName: nibName, bundle: nil)
 	}
 
 
 	//MARK: AssetDisplayScreenletDelegate
 
 	func screenlet(screenlet: AssetDisplayScreenlet, onAssetResponse asset: Asset) {
+		//Change buttons text
 		self.cardView?.changeButtonText(asset.title)
+		self.goBackButton?.setTitle(asset.title.uppercaseString, forState: .Normal)
+
+		//Show back views
+		UIView.animateWithDuration(1.0) {
+			self.assetDisplayScreenlet?.alpha = 1.0
+			self.ratingScreenlet?.alpha = 1.0
+		}
 	}
 	
 
