@@ -42,6 +42,7 @@ public class SignUpCard extends Card implements View.OnClickListener {
 	@Override
 	public void onClick(View v) {
 		if (!isTermsAndConditiionLoaded) {
+			isTermsAndConditiionLoaded = true;
 			webContentDisplayScreenlet.load();
 		}
 
