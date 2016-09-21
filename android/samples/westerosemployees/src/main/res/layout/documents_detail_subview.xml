@@ -48,6 +48,7 @@
 				android:layout_height="match_parent"
 				app:autoLoad="false"
 				app:blogsLayoutId="@layout/blogsentry_display_westeros"
+				app:videolayoutId="@layout/video_display_inside_scrollview"
 				/>
 
 			<com.liferay.mobile.screens.rating.RatingScreenlet
