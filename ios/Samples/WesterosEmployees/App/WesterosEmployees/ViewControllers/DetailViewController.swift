@@ -24,7 +24,6 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 			self.assetDisplayScreenlet?.delegate = self
 		}
 	}
-	@IBOutlet weak var ratingScreenlet: RatingScreenlet?
 	@IBOutlet weak var cardDeck: CardDeckView? {
 		didSet {
 			cardDeck?.delegate = self
@@ -65,11 +64,6 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		assetDisplayScreenlet?.classPK = classPK
 		assetDisplayScreenlet?.load()
 
-		//Load asset rating
-		ratingScreenlet?.className = className
-		ratingScreenlet?.classPK = classPK
-		ratingScreenlet?.loadRatings()
-
 		//Load asset comments
 		commentsViewController?.load(className: className, classPK: classPK)
 	}
@@ -95,7 +89,6 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		
 		//Hide all views
 		assetDisplayScreenlet?.alpha = 0
-		ratingScreenlet?.alpha = 0
 	}
 
 
@@ -116,7 +109,6 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		//Show back views
 		UIView.animateWithDuration(1.0) {
 			self.assetDisplayScreenlet?.alpha = 1.0
-			self.ratingScreenlet?.alpha = 1.0
 		}
 	}
 	

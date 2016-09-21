@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10117"/>
@@ -9,7 +9,6 @@
             <connections>
                 <outlet property="assetDisplayScreenlet" destination="d9H-mH-LSG" id="3QW-Iw-CoD"/>
                 <outlet property="cardDeck" destination="dBo-Xf-6tR" id="liy-dK-fpT"/>
-                <outlet property="ratingScreenlet" destination="Dbs-xq-G8Y" id="G55-BF-hBo"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,12 +21,13 @@
                     <rect key="frame" x="0.0" y="0.0" width="297" height="347"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9H-mH-LSG" customClass="AssetDisplayScreenlet" customModule="LiferayScreens">
-                            <rect key="frame" x="0.0" y="0.0" width="297" height="169"/>
+                            <rect key="frame" x="0.0" y="0.0" width="297" height="277"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="300" id="i0w-1y-fjK"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
                             </userDefinedRuntimeAttributes>
                             <variation key="default">
                                 <mask key="constraints">
@@ -35,28 +35,13 @@
                                 </mask>
                             </variation>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dbs-xq-G8Y" customClass="RatingScreenlet" customModule="LiferayScreens">
-                            <rect key="frame" x="10" y="177" width="277" height="90"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="90" id="9Hs-jh-Vz7"/>
-                            </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="default-stars-westeros"/>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="YES"/>
-                            </userDefinedRuntimeAttributes>
-                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="d9H-mH-LSG" firstAttribute="top" secondItem="dBo-Xf-6tR" secondAttribute="top" id="0eS-OA-o9c"/>
                         <constraint firstItem="d9H-mH-LSG" firstAttribute="leading" secondItem="dBo-Xf-6tR" secondAttribute="leading" id="47r-SW-Zpu"/>
-                        <constraint firstItem="Dbs-xq-G8Y" firstAttribute="top" secondItem="d9H-mH-LSG" secondAttribute="bottom" constant="8" id="MIr-8z-8gF"/>
                         <constraint firstAttribute="trailing" secondItem="d9H-mH-LSG" secondAttribute="trailing" id="Pcw-fg-uOm"/>
-                        <constraint firstItem="Dbs-xq-G8Y" firstAttribute="leading" secondItem="dBo-Xf-6tR" secondAttribute="leading" constant="10" id="geR-tu-DP5"/>
-                        <constraint firstAttribute="trailing" secondItem="Dbs-xq-G8Y" secondAttribute="trailing" constant="10" id="kJd-Nb-VPs"/>
-                        <constraint firstAttribute="bottom" secondItem="Dbs-xq-G8Y" secondAttribute="bottom" constant="80" id="p3h-Ub-uFc"/>
+                        <constraint firstAttribute="bottom" secondItem="d9H-mH-LSG" secondAttribute="bottom" constant="70" id="QZE-cC-ubz"/>
                     </constraints>
                 </view>
             </subviews>
@@ -69,7 +54,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="133.5" y="650.5"/>
+            <point key="canvasLocation" x="226.5" y="582.5"/>
         </view>
     </objects>
 </document>
