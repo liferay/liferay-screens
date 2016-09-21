@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B083A4E1D926D99007D7BCC /* ModalDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B083A4D1D926D99007D7BCC /* ModalDetailViewController.xib */; };
 		0B0A22981D6B0CDA0061B50D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A22971D6B0CDA0061B50D /* AppDelegate.swift */; };
 		0B0A229D1D6B0CDA0061B50D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A229B1D6B0CDA0061B50D /* Main.storyboard */; };
 		0B0A229F1D6B0CDA0061B50D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A229E1D6B0CDA0061B50D /* Assets.xcassets */; };
@@ -146,6 +147,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B083A4D1D926D99007D7BCC /* ModalDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModalDetailViewController.xib; sourceTree = "<group>"; };
 		0B0A22941D6B0CD90061B50D /* WesterosEmployees.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WesterosEmployees.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B0A22971D6B0CDA0061B50D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0B0A229C1D6B0CDA0061B50D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 				0BD07A321D86AEDD00470A2E /* CommentsViewController.xib */,
 				0BD07A2D1D82EEA100470A2E /* DetailViewController.swift */,
 				0BD07A2F1D82EEC500470A2E /* DetailViewController.xib */,
+				0B083A4D1D926D99007D7BCC /* ModalDetailViewController.xib */,
 				0B282F101D7ED7BE0090F800 /* DocumentationViewController.swift */,
 				0B282F111D7ED7BE0090F800 /* DocumentationViewController.xib */,
 				0B9309521D6DBE40003824D6 /* ForgotPaswordViewController.swift */,
@@ -731,6 +734,7 @@
 				0B6001A21D883B0E003BDBF8 /* AssetListView_westeros_news.xib in Resources */,
 				0BC6BA461D8188670042156E /* file-none@3x.png in Resources */,
 				0B0A23911D6B22EF0061B50D /* icon_DOWN_W@2x.png in Resources */,
+				0B083A4E1D926D99007D7BCC /* ModalDetailViewController.xib in Resources */,
 				0B282F1B1D7ED95A0090F800 /* GalleryViewController.xib in Resources */,
 				0B0A23A11D6B22EF0061B50D /* tour-step2@3x.png in Resources */,
 				0B0A23171D6B1D840061B50D /* UserPortraitView_westeros.xib in Resources */,

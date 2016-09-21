@@ -16,7 +16,7 @@ import LiferayScreens
 
 public var tourCompleted = false
 
-class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
+class HomeViewController: UIViewController, AssetListScreenletDelegate,
 	CardDeckDelegate, CardDeckDataSource {
 
 
@@ -26,9 +26,14 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 	@IBOutlet weak var userView: UIView?
 	@IBOutlet weak var userPortraitScreenlet: UserPortraitScreenlet?
 	@IBOutlet weak var userNameLabel: UILabel?
-	@IBOutlet weak var assetListScreenlet: AssetListScreenlet?
+	@IBOutlet weak var assetListScreenlet: AssetListScreenlet? {
+		didSet {
+			assetListScreenlet?.delegate = self
+		}
+	}
 	@IBOutlet weak var userProfileButton: UIButton?
 	@IBOutlet weak var latestChangesLabel: UILabel?
+
 
 	//MARK: Card controllers
 
@@ -159,7 +164,7 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 			case (2, 0):
 				return galleryViewController
 			case (0, 1), (1, 1), (2, 1):
-				return DetailViewController()
+				return DetailViewController(nibName: "DetailViewController")
 			default:
 				return nil
 			}
@@ -211,6 +216,18 @@ class HomeViewController: UIViewController, AssetDisplayScreenletDelegate,
 				vc.hideCommentsCard()
 			default:
 				break
+			}
+		}
+	}
+
+
+	//MARK: AssetListScreenletDelegate
+
+	func screenlet(screenlet: AssetListScreenlet, onAssetSelected asset: Asset) {
+		if let className = AssetClasses.getClassNameFromId(asset.classNameId) {
+			let detail = DetailViewController(nibName: "ModalDetailViewController")
+			self.presentViewController(detail, animated: true) {
+				detail.load(className: className, classPK: asset.classPK)
 			}
 		}
 	}

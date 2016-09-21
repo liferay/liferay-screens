@@ -124,7 +124,6 @@ public class CardView: UIView {
 
 	//Controls
 	var maximizeOnMove = true
-	var animateSecondaryButton = false
 
 	///This controller will be notified when the card appears/dissapears
 	weak var presentingController: CardViewController?
