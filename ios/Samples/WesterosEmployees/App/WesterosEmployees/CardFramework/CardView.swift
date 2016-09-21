@@ -408,8 +408,8 @@ public class CardView: UIView {
 		}
 
 		if currentState == .Maximized {
-			self.contentBottomConstraint?.constant = self.minimizedHeight -
-				CardView.DefaultMinimizedHeight
+			self.contentBottomConstraint?.constant = (self.minimizedHeight -
+				CardView.DefaultMinimizedHeight) * -1
 		}
 
 		//Sets the height for the next state
