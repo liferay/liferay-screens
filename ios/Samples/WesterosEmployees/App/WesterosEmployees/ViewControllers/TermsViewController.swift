@@ -14,12 +14,16 @@
 import UIKit
 import LiferayScreens
 
-class TermsViewController: CardViewController {
+class TermsViewController: CardViewController, WebContentDisplayScreenletDelegate {
 
 
 	//MARK: Outlets
 
-	@IBOutlet weak var webContentDisplayScreenlet: WebContentDisplayScreenlet?
+	@IBOutlet weak var webContentDisplayScreenlet: WebContentDisplayScreenlet? {
+		didSet {
+			webContentDisplayScreenlet?.delegate = self
+		}
+	}
 
 	//MARK: Init methods
 
@@ -31,13 +35,35 @@ class TermsViewController: CardViewController {
 	//MARK: UIViewController
 
 	override func viewWillAppear(animated: Bool) {
-		
-		SessionContext.loginWithBasic(username: "test@liferay.com", password: "test", userAttributes: [:])
+		func prop(key: String) -> AnyObject? {
+			return LiferayServerContext.propertyForKey(key)
+		}
 
-		webContentDisplayScreenlet?.articleId = "36905"
-		webContentDisplayScreenlet?.groupId = 30853
-		webContentDisplayScreenlet?.templateId = 29601
+		//Load terms and conditions from a web article
+		if let articleId = prop("termsAndConditionsArticleId") as? String,
+				templateId = prop("termsAndConditionsTemplateId") as? NSNumber,
+				anonymUsername = prop("anonymousUsername") as? String,
+				anonymPassword = prop("anonymousPassword") as? String {
 
-		webContentDisplayScreenlet?.loadWebContent()
+			//Login anonymous user
+			SessionContext.loginWithBasic(
+				username: anonymUsername, password: anonymPassword, userAttributes: [:])
+
+			//Load article data into screenlet
+			webContentDisplayScreenlet?.articleId = articleId
+			webContentDisplayScreenlet?.groupId = LiferayServerContext.groupId
+			webContentDisplayScreenlet?.templateId = templateId.longLongValue
+			webContentDisplayScreenlet?.loadWebContent()
+		} else {
+			print("Some of the options needed for these web content are not set. " +
+				"Review your server-context list.")
+		}
+	}
+
+
+	//MARK: WebContentDisplayScreenletDelegate
+
+	func screenlet(screenlet: WebContentDisplayScreenlet, onWebContentError error: NSError) {
+		print("Couldn't load terms and conditions. Error: \(error)")
 	}
 }

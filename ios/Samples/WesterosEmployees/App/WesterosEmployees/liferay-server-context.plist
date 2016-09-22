@@ -9,12 +9,16 @@
 	<key>groupId</key>
 	<integer>30853</integer>
 	<key>anonymousUsername</key>
-	<string>anonymous@liferay.com</string>
+	<string>anonymous1@liferay.com</string>
 	<key>anonymousPassword</key>
 	<string>anonymous1</string>
 	<key>galleryFolderId</key>
 	<integer>35726</integer>
 	<key>documentationPortletItemName</key>
 	<string>DocumentationWesterosEmployees</string>
+	<key>termsAndConditionsArticleId</key>
+	<string>36905</string>
+	<key>termsAndConditionsTemplateId</key>
+	<integer>29601</integer>
 </dict>
 </plist>
