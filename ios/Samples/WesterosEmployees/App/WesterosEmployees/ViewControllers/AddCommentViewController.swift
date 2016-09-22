@@ -41,6 +41,20 @@ class AddCommentViewController: CardViewController, KeyboardListener, CommentAdd
 	func load(className className: String, classPK: Int64) {
 		self.commentAddScreenlet?.className = className
 		self.commentAddScreenlet?.classPK = classPK
+
+		//Change color depending on asset
+		if className == AssetClasses.getClassName(AssetClassNameKey_BlogsEntry)! {
+			cardView?.backgroundColor = DefaultResources.OddColorBackground
+			cardView?.button.setTitleColor(DefaultResources.EvenColorBackground, forState: .Normal)
+			cardView?.arrow.image = UIImage(named: "icon_DOWN_W")
+			commentAddScreenlet?.themeName = "westeros-white"
+		}
+		else {
+			cardView?.backgroundColor = DefaultResources.EvenColorBackground
+			cardView?.button.setTitleColor(DefaultResources.OddColorBackground, forState: .Normal)
+			cardView?.arrow.image = UIImage(named: "icon_DOWN")
+			commentAddScreenlet?.themeName = "westeros"
+		}
 	}
 
 	

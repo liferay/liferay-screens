@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="WesterosEmployees" customModuleProvider="target">
             <connections>
+                <outlet property="arrowImageView" destination="G1n-9a-4iq" id="tLm-LK-5Zk"/>
                 <outlet property="assetDisplayScreenlet" destination="d9H-mH-LSG" id="3QW-Iw-CoD"/>
                 <outlet property="cardDeck" destination="dBo-Xf-6tR" id="liy-dK-fpT"/>
                 <outlet property="goBackButton" destination="2CH-Xr-Qet" id="fOz-KI-MM4"/>
@@ -53,7 +54,6 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="d9H-mH-LSG" firstAttribute="leading" secondItem="dBo-Xf-6tR" secondAttribute="leading" id="47r-SW-Zpu"/>
                         <constraint firstAttribute="trailing" secondItem="d9H-mH-LSG" secondAttribute="trailing" id="Pcw-fg-uOm"/>

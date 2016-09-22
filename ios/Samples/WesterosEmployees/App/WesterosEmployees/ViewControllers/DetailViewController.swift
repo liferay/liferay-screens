@@ -34,9 +34,9 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		didSet {
 			let height = goBackButton?.frame.size.height ?? CardView.DefaultMinimizedHeight
 			goBackButton?.titleEdgeInsets = UIEdgeInsetsMake(0, height, 0, height)
-			goBackButton?.setTitleColor(WesterosThemeBasicRed, forState: .Highlighted)
 		}
 	}
+	@IBOutlet weak var arrowImageView: UIImageView?
 
 
 	//MARK: Card controllers
@@ -66,6 +66,18 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 
 		//Load asset comments
 		commentsViewController?.load(className: className, classPK: classPK)
+
+		//Change color depending on asset
+		if className == AssetClasses.getClassName(AssetClassNameKey_BlogsEntry)! {
+			//Change color of modal state
+			self.arrowImageView?.image = UIImage(named: "icon_DOWN_W")
+			self.goBackButton?.setTitleColor(DefaultResources.EvenColorBackground, forState: .Normal)
+		}
+		else {
+			//Change color of modal state
+			self.arrowImageView?.image = UIImage(named: "icon_DOWN")
+			self.goBackButton?.setTitleColor(DefaultResources.OddColorBackground, forState: .Normal)
+		}
 	}
 
 	func hideCommentsCard() {
@@ -119,6 +131,10 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		return 1
 	}
 
+	func doCreateCard(cardDeck: CardDeckView, index: Int) -> CardView? {
+		return WesterosCardView.newAutoLayoutView()
+	}
+
 	func cardDeck(cardDeck: CardDeckView, controllerForCard position: CardPosition)
 		-> CardViewController? {
 			return commentsViewController
@@ -131,18 +147,6 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		if let firstCardDeck = self.cardView?.superview {
 			card.normalHeight = firstCardDeck.frame.height * 0.85
 		}
-	}
-
-	func cardDeck(cardDeck: CardDeckView, colorForCardIndex index: Int) -> UIColor? {
-		return DefaultResources.OddColorBackground
-	}
-
-	func cardDeck(cardDeck: CardDeckView, colorForButtonIndex index: Int) -> UIColor? {
-		return DefaultResources.EvenColorBackground
-	}
-
-	func cardDeck(cardDeck: CardDeckView, buttonImageForCardIndex index: Int) -> UIImage? {
-		return UIImage(named: "icon_DOWN_W")
 	}
 
 	func cardDeck(cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {

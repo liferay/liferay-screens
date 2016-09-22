@@ -72,6 +72,25 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 		commentListScreenlet?.classPK = classPK
 
 		addCommentViewController?.load(className: className, classPK: classPK)
+
+		//Change color depending on asset
+		if let card = cardView as? WesterosCardView {
+			//If loading blog...
+			if className == AssetClasses.getClassName(AssetClassNameKey_BlogsEntry)! {
+				card.backgroundColor = DefaultResources.EvenColorBackground
+				card.button.setTitleColor(DefaultResources.OddColorBackground, forState: .Normal)
+				card.arrow.image = UIImage(named: "icon_DOWN")
+				card.activityIndicator.color = DefaultResources.OddColorBackground
+				commentListScreenlet?.themeName = "westeros-white"
+			}
+			else {
+				card.backgroundColor = DefaultResources.OddColorBackground
+				card.button.setTitleColor(DefaultResources.EvenColorBackground, forState: .Normal)
+				card.arrow.image = UIImage(named: "icon_DOWN_W")
+				card.activityIndicator.color = DefaultResources.EvenColorBackground
+				commentListScreenlet?.themeName = "westeros"
+			}
+		}
 	}
 
 	//MARK: UIViewController
@@ -103,10 +122,6 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 		if let firstCardDeck = self.cardView?.superview {
 			card.normalHeight = firstCardDeck.frame.height * 0.7
 		}
-	}
-
-	func cardDeck(cardDeck: CardDeckView, buttonImageForCardIndex index: Int) -> UIImage? {
-		return UIImage(named: "icon_DOWN")
 	}
 
 	func cardDeck(cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {

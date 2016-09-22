@@ -226,6 +226,15 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 	func screenlet(screenlet: AssetListScreenlet, onAssetSelected asset: Asset) {
 		if let className = AssetClasses.getClassNameFromId(asset.classNameId) {
 			let detail = DetailViewController(nibName: "ModalDetailViewController")
+
+			//Change view controller background depending on asset
+			if className == AssetClasses.getClassName(AssetClassNameKey_BlogsEntry)! {
+				detail.view.backgroundColor = DefaultResources.OddColorBackground
+			} else {
+				detail.view.backgroundColor = DefaultResources.EvenColorBackground
+			}
+
+			//Present view controller and load content
 			self.presentViewController(detail, animated: true) {
 				detail.load(className: className, classPK: asset.classPK)
 			}
