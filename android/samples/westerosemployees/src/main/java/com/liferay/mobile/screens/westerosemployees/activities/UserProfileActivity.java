@@ -16,7 +16,6 @@ import com.liferay.mobile.screens.westerosemployees.R;
 public class UserProfileActivity extends WesterosActivity
 	implements View.OnClickListener, AssetDisplayInnerScreenletListener {
 
-	private UserPortraitScreenlet userPortraitScreenlet;
 	private TextView userNameText;
 	private TextView jobTitleText;
 	private TextView emailText;
@@ -49,7 +48,8 @@ public class UserProfileActivity extends WesterosActivity
 
 			view.findViewById(R.id.sign_out_button).setOnClickListener(this);
 
-			userPortraitScreenlet = (UserPortraitScreenlet) view.findViewById(R.id.user_portrait_screenlet);
+			UserPortraitScreenlet userPortraitScreenlet =
+				(UserPortraitScreenlet) view.findViewById(R.id.user_portrait_screenlet);
 			userNameText = (TextView) view.findViewById(R.id.user_name_text);
 			jobTitleText = (TextView) view.findViewById(R.id.user_job_title_text);
 			emailText = (TextView) view.findViewById(R.id.user_email_text);
