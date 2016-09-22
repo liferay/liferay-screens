@@ -77,7 +77,7 @@
                 <outlet property="averageRatingBar" destination="uTk-1X-Fw0" id="9OR-np-EjM"/>
                 <outlet property="userRatingBar" destination="XED-9f-V1z" id="C2D-sg-9pW"/>
             </connections>
-            <point key="canvasLocation" x="376" y="255.5"/>
+            <point key="canvasLocation" x="484" y="311.5"/>
         </view>
     </objects>
 </document>
