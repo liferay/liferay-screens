@@ -1,3 +1,17 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
 package com.liferay.mobile.screens.viewsets.westeros.webcontent;
 
 import android.content.Context;
@@ -20,7 +34,8 @@ import com.liferay.mobile.screens.webcontent.display.view.WebContentDisplayViewM
 /**
  * @author Sarai Díaz García
  */
-public class WebContentDisplayView extends FrameLayout implements WebContentDisplayViewModel, View.OnTouchListener {
+public class WebContentDisplayView extends
+	com.liferay.mobile.screens.viewsets.defaultviews.webcontent.display.WebContentDisplayView {
 
 	private static final String STYLES = "<style>"
 		+ ".MobileCSS { margin: 0 auto; width:92%; color: white;} "
@@ -31,9 +46,6 @@ public class WebContentDisplayView extends FrameLayout implements WebContentDisp
 		+ ".MobileCSS img { width: 100% !important; } "
 		+ ".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }"
 		+ "</style>";
-	protected WebView webView;
-	protected ProgressBar progressBar;
-	private BaseScreenlet screenlet;
 
 	public WebContentDisplayView(Context context) {
 		super(context);
@@ -45,21 +57,6 @@ public class WebContentDisplayView extends FrameLayout implements WebContentDisp
 
 	public WebContentDisplayView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);
-	}
-
-	@Override
-	public void showStartOperation(String actionName) {
-		if (progressBar != null) {
-			progressBar.setVisibility(View.VISIBLE);
-		}
-		if (webView != null) {
-			webView.setVisibility(View.GONE);
-		}
-	}
-
-	@Override
-	public void showFinishOperation(String actionName) {
-		throw new AssertionError();
 	}
 
 	@Override
@@ -78,57 +75,6 @@ public class WebContentDisplayView extends FrameLayout implements WebContentDisp
 			webView.loadDataWithBaseURL(LiferayServerContext.getServer(), styledHtml, "text/html", "utf-8", null);
 			webView.setBackgroundColor(Color.TRANSPARENT);
 			webView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
-		}
-	}
-
-	@Override
-	public void showFailedOperation(String actionName, Exception e) {
-		if (progressBar != null) {
-			progressBar.setVisibility(View.GONE);
-		}
-		if (webView != null) {
-			webView.setVisibility(View.VISIBLE);
-		}
-
-		LiferayLogger.e(getContext().getString(com.liferay.mobile.screens.R.string.loading_article_error), e);
-	}
-
-	@Override
-	public BaseScreenlet getScreenlet() {
-		return screenlet;
-	}
-
-	@Override
-	public void setScreenlet(BaseScreenlet screenlet) {
-		this.screenlet = screenlet;
-	}
-
-	@Override
-	public boolean onTouch(View v, MotionEvent event) {
-		WebView.HitTestResult result = webView.getHitTestResult();
-		((WebContentDisplayScreenlet) getScreenlet()).onWebContentClicked(result, event);
-		return false;
-	}
-
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
-
-		webView = (WebView) findViewById(R.id.liferay_webview);
-		progressBar = (ProgressBar) findViewById(R.id.liferay_webview_progress);
-	}
-
-	@Override
-	protected void onAttachedToWindow() {
-		super.onAttachedToWindow();
-
-		WebContentDisplayScreenlet screenlet = (WebContentDisplayScreenlet) getScreenlet();
-		if (webView != null) {
-			if (screenlet.isJavascriptEnabled()) {
-				webView.getSettings().setJavaScriptEnabled(true);
-				webView.setWebChromeClient(new WebChromeClient());
-			}
-			webView.setOnTouchListener(this);
 		}
 	}
 }
