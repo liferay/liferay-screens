@@ -87,7 +87,6 @@
 		0B0A23A41D6B22EF0061B50D /* tour-step3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A23891D6B22EF0061B50D /* tour-step3@3x.png */; };
 		0B26EAFB1D803FA4000201C6 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B26EAFA1D803FA4000201C6 /* TermsViewController.swift */; };
 		0B26EAFD1D803FB0000201C6 /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B26EAFC1D803FB0000201C6 /* TermsViewController.xib */; };
-		0B26EAFF1D804186000201C6 /* TermsAndConditions.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 0B26EAFE1D804186000201C6 /* TermsAndConditions.rtf */; };
 		0B26EB1E1D81873C000201C6 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B26EB1D1D81873C000201C6 /* UserProfile.storyboard */; };
 		0B282F121D7ED7BE0090F800 /* DocumentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B282F101D7ED7BE0090F800 /* DocumentationViewController.swift */; };
 		0B282F131D7ED7BE0090F800 /* DocumentationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B282F111D7ED7BE0090F800 /* DocumentationViewController.xib */; };
@@ -117,6 +116,8 @@
 		0B9309511D6DB0D9003824D6 /* Westeros+CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9309501D6DB0D9003824D6 /* Westeros+CGRect.swift */; };
 		0B9309531D6DBE40003824D6 /* ForgotPaswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9309521D6DBE40003824D6 /* ForgotPaswordViewController.swift */; };
 		0B9309551D6DBE58003824D6 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B9309541D6DBE58003824D6 /* ForgotPasswordViewController.xib */; };
+		0B9C6E4D1D940FA5009A564E /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9C6E4B1D940FA5009A564E /* UserProfileView.swift */; };
+		0B9C6E501D940FE7009A564E /* UserProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B9C6E4F1D940FE7009A564E /* UserProfileView.xib */; };
 		0BC6BA411D8188670042156E /* file-music.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC6BA321D8188670042156E /* file-music.png */; };
 		0BC6BA421D8188670042156E /* file-music@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC6BA331D8188670042156E /* file-music@2x.png */; };
 		0BC6BA431D8188670042156E /* file-music@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC6BA341D8188670042156E /* file-music@3x.png */; };
@@ -232,7 +233,6 @@
 		0B0A23891D6B22EF0061B50D /* tour-step3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tour-step3@3x.png"; sourceTree = "<group>"; };
 		0B26EAFA1D803FA4000201C6 /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
 		0B26EAFC1D803FB0000201C6 /* TermsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TermsViewController.xib; sourceTree = "<group>"; };
-		0B26EAFE1D804186000201C6 /* TermsAndConditions.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = TermsAndConditions.rtf; sourceTree = "<group>"; };
 		0B26EB1D1D81873C000201C6 /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 		0B282F101D7ED7BE0090F800 /* DocumentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DocumentationViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0B282F111D7ED7BE0090F800 /* DocumentationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentationViewController.xib; sourceTree = "<group>"; };
@@ -262,6 +262,8 @@
 		0B9309501D6DB0D9003824D6 /* Westeros+CGRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Westeros+CGRect.swift"; sourceTree = "<group>"; };
 		0B9309521D6DBE40003824D6 /* ForgotPaswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ForgotPaswordViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0B9309541D6DBE58003824D6 /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
+		0B9C6E4B1D940FA5009A564E /* UserProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		0B9C6E4F1D940FE7009A564E /* UserProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileView.xib; sourceTree = "<group>"; };
 		0BC6BA321D8188670042156E /* file-music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "file-music.png"; sourceTree = "<group>"; };
 		0BC6BA331D8188670042156E /* file-music@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "file-music@2x.png"; sourceTree = "<group>"; };
 		0BC6BA341D8188670042156E /* file-music@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "file-music@3x.png"; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 		0B0A22961D6B0CDA0061B50D /* WesterosEmployees */ = {
 			isa = PBXGroup;
 			children = (
+				0B9C6E4A1D940F67009A564E /* CustomViews */,
 				0B93094D1D6DACBA003824D6 /* Extensions */,
 				0B9309441D6DAC5F003824D6 /* CardFramework */,
 				0B35AF651D6C34D3002E3D2F /* StoryBoards */,
@@ -558,7 +561,6 @@
 		0B0A236D1D6B22EF0061B50D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				0B26EAFE1D804186000201C6 /* TermsAndConditions.rtf */,
 				0B0A236E1D6B22EF0061B50D /* fonts */,
 				0B0A23721D6B22EF0061B50D /* icon_DOWN.png */,
 				0B0A23731D6B22EF0061B50D /* icon_DOWN@2x.png */,
@@ -637,6 +639,15 @@
 				0B9309501D6DB0D9003824D6 /* Westeros+CGRect.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0B9C6E4A1D940F67009A564E /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				0B9C6E4B1D940FA5009A564E /* UserProfileView.swift */,
+				0B9C6E4F1D940FE7009A564E /* UserProfileView.xib */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		0BEE44341D913944009BFAA2 /* WebContent */ = {
@@ -727,6 +738,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B9C6E501D940FE7009A564E /* UserProfileView.xib in Resources */,
 				0BD07A341D86AEDD00470A2E /* CommentsViewController.xib in Resources */,
 				0BC6BA4B1D8188670042156E /* file-photo@2x.png in Resources */,
 				0B0A239A1D6B22EF0061B50D /* Logo_BG_red@2x.png in Resources */,
@@ -785,7 +797,6 @@
 				0B083A771D92964F007D7BCC /* AssetListView_westeros_news.xib in Resources */,
 				0B0A23931D6B22EF0061B50D /* icon_LEFT.png in Resources */,
 				0B083A6B1D92964F007D7BCC /* ImageDisplayView_westeros_blog.xib in Resources */,
-				0B26EAFF1D804186000201C6 /* TermsAndConditions.rtf in Resources */,
 				0B0A23961D6B22EF0061B50D /* logo_BG_grey.png in Resources */,
 				0B083A7C1D92964F007D7BCC /* DocumentationTableViewCell_westeros.xib in Resources */,
 				0B083A7D1D92964F007D7BCC /* DocumentationTableViewCell_westeros_news.xib in Resources */,
@@ -905,6 +916,7 @@
 				0B083A761D92964F007D7BCC /* AssetListView_westeros_news.swift in Sources */,
 				0B0A22981D6B0CDA0061B50D /* AppDelegate.swift in Sources */,
 				0B083A781D92964F007D7BCC /* BlogsEntryTableViewCell_westeros.swift in Sources */,
+				0B9C6E4D1D940FA5009A564E /* UserProfileView.swift in Sources */,
 				0B26EAFB1D803FA4000201C6 /* TermsViewController.swift in Sources */,
 				0B0A23181D6B1D840061B50D /* BorderedTextField.swift in Sources */,
 				0B93094A1D6DAC91003824D6 /* DefaultResources.swift in Sources */,
