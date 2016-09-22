@@ -89,4 +89,10 @@ public class DocsCard extends CommentsRatingsCard implements BaseListListener<As
 		documentDisplayScreenlet =
 			(AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet_doc);
 	}
+
+	@Override
+	public void goLeft() {
+		super.goLeft();
+		documentDisplayScreenlet.removeInnerScreenlet();
+	}
 }

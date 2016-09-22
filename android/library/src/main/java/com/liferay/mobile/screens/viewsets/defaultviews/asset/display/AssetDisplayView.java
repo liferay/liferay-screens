@@ -78,4 +78,9 @@ public class AssetDisplayView extends FrameLayout implements AssetDisplayViewMod
 		container.setVisibility(VISIBLE);
 		LiferayLogger.d("Asset display loaded successfully");
 	}
+
+	@Override
+	public void removeInnerScreenlet() {
+		container.removeAllViews();
+	}
 }

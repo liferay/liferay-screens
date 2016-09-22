@@ -91,6 +91,10 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		performUserAction();
 	}
 
+	public void removeInnerScreenlet() {
+		getViewModel().removeInnerScreenlet();
+	}
+
 	@Override
 	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
 
