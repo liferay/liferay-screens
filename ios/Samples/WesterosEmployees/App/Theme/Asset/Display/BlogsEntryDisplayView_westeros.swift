@@ -24,4 +24,20 @@ public class BlogsEntryDisplayView_westeros: BlogsEntryDisplayView_default {
 		ratingScreenlet?.className = AssetClasses.getClassName(AssetClassNameKey_BlogsEntry)!
 		ratingScreenlet?.loadRatings()
 	}
+
+	public override class func defaultAttributedTextAttributes() -> [String: NSObject] {
+		let paragrahpStyle = NSMutableParagraphStyle()
+		paragrahpStyle.lineBreakMode = .ByWordWrapping
+
+		var attributes: [String: NSObject] = [NSParagraphStyleAttributeName: paragrahpStyle]
+
+		let font = UIFont(name: "HelveticaNeue", size: 17)
+
+		if let font = font {
+			attributes[NSFontAttributeName] = font
+			attributes[NSForegroundColorAttributeName] = UIColor.whiteColor()
+		}
+
+		return attributes
+	}
 }
