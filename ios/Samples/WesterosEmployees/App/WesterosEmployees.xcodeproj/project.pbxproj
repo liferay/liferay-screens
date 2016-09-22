@@ -119,6 +119,8 @@
 		0B9309551D6DBE58003824D6 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B9309541D6DBE58003824D6 /* ForgotPasswordViewController.xib */; };
 		0B9C6E4D1D940FA5009A564E /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9C6E4B1D940FA5009A564E /* UserProfileView.swift */; };
 		0B9C6E501D940FE7009A564E /* UserProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B9C6E4F1D940FE7009A564E /* UserProfileView.xib */; };
+		0BA0752A1D941879009EEDDC /* CommentAddView_westeros-white.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA075291D941879009EEDDC /* CommentAddView_westeros-white.xib */; };
+		0BA0752E1D941AC1009EEDDC /* CommentAddView_westeros-white.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0752D1D941AC1009EEDDC /* CommentAddView_westeros-white.swift */; };
 		0B9C6E531D941876009A564E /* AssetDisplayView_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9C6E511D941876009A564E /* AssetDisplayView_westeros.swift */; };
 		0B9C6E541D941876009A564E /* AssetDisplayView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B9C6E521D941876009A564E /* AssetDisplayView_westeros.xib */; };
 		0BC6BA411D8188670042156E /* file-music.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC6BA321D8188670042156E /* file-music.png */; };
@@ -268,6 +270,8 @@
 		0B9309541D6DBE58003824D6 /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
 		0B9C6E4B1D940FA5009A564E /* UserProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		0B9C6E4F1D940FE7009A564E /* UserProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileView.xib; sourceTree = "<group>"; };
+		0BA075291D941879009EEDDC /* CommentAddView_westeros-white.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommentAddView_westeros-white.xib"; sourceTree = "<group>"; };
+		0BA0752D1D941AC1009EEDDC /* CommentAddView_westeros-white.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CommentAddView_westeros-white.swift"; sourceTree = "<group>"; };
 		0B9C6E511D941876009A564E /* AssetDisplayView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayView_westeros.swift; sourceTree = "<group>"; };
 		0B9C6E521D941876009A564E /* AssetDisplayView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssetDisplayView_westeros.xib; sourceTree = "<group>"; };
 		0BC6BA321D8188670042156E /* file-music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "file-music.png"; sourceTree = "<group>"; };
@@ -362,6 +366,8 @@
 			children = (
 				0B083A7F1D92965B007D7BCC /* CommentAddView_westeros.swift */,
 				0B083A801D92965B007D7BCC /* CommentAddView_westeros.xib */,
+				0BA0752D1D941AC1009EEDDC /* CommentAddView_westeros-white.swift */,
+				0BA075291D941879009EEDDC /* CommentAddView_westeros-white.xib */,
 				0B083A811D92965B007D7BCC /* CommentDisplayView_westeros.swift */,
 				0B083A821D92965B007D7BCC /* CommentDisplayView_westeros.xib */,
 				0B083A831D92965B007D7BCC /* CommentListView_westeros.swift */,
@@ -832,6 +838,7 @@
 				0B0A23111D6B1D840061B50D /* LoginView_westeros.xib in Resources */,
 				0B083A8D1D92965B007D7BCC /* CommentListView_westeros.xib in Resources */,
 				0B0A23901D6B22EF0061B50D /* icon_DOWN_W.png in Resources */,
+				0BA0752A1D941879009EEDDC /* CommentAddView_westeros-white.xib in Resources */,
 				0B0A232A1D6B1D840061B50D /* circle_see pasword_ON@3x.png in Resources */,
 				0B0A23291D6B1D840061B50D /* circle_see pasword_ON@2x.png in Resources */,
 				0BFCB6CA1D885C2A0024856F /* AddCommentViewController.xib in Resources */,
@@ -902,6 +909,7 @@
 			files = (
 				0BD07A2E1D82EEA100470A2E /* DetailViewController.swift in Sources */,
 				0B9309531D6DBE40003824D6 /* ForgotPaswordViewController.swift in Sources */,
+				0BA0752E1D941AC1009EEDDC /* CommentAddView_westeros-white.swift in Sources */,
 				0B35AF6F1D6C3614002E3D2F /* HomeViewController.swift in Sources */,
 				0B3944001D92B7D600F56B32 /* ImageUploadDetailView_westeros.swift in Sources */,
 				0B083A701D92964F007D7BCC /* AssetListView_westeros.swift in Sources */,
