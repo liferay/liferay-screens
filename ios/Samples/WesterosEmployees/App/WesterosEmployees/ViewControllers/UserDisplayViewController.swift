@@ -14,53 +14,47 @@
 import UIKit
 import LiferayScreens
 
-public class UserDisplayViewController: UIViewController {
+public class UserDisplayViewController: UIViewController, AssetDisplayScreenletDelegate {
 
 
 	//MARK: Outlets
 
-	@IBOutlet weak var userPortraitScreenlet: UserPortraitScreenlet?
-	@IBOutlet weak var userNameLabel: UILabel?
-	@IBOutlet weak var jobTitleLabel: UILabel?
-	@IBOutlet weak var emailLabel: UILabel?
-	@IBOutlet weak var nickNameLabel: UILabel?
-	@IBOutlet weak var signOutButton: UIButton? {
+	@IBOutlet var screenlet: AssetDisplayScreenlet? {
 		didSet {
-			signOutButton?.layer.borderWidth = 3.0
-			signOutButton?.layer.borderColor = WesterosThemeBasicRed.CGColor
+			self.screenlet?.delegate = self
+
+			self.screenlet?.className = AssetClasses.getClassName(AssetClassNameKey_User)!
+			self.screenlet?.classPK = (SessionContext.currentContext?.userId)!
 		}
-	}
-
-
-	//MARK: View actions
-
-	@IBAction func goBackButtonClick() {
-		self.dismissViewControllerAnimated(true, completion: nil)
-	}
-
-	@IBAction func signOutButtonClick() {
-		SessionContext.logout()
-		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 
 
 	//MARK: UIViewController
 
 	public override func viewDidLoad() {
-		userPortraitScreenlet?.load(userId: SessionContext.currentContext!.userId!)
-
-		let firstName = SessionContext.currentContext!.userAttribute("firstName") as! String
-		let middleName = SessionContext.currentContext!.userAttribute("middleName") as! String
-		let lastName = SessionContext.currentContext!.userAttribute("lastName") as! String
-		userNameLabel?.text = "\(firstName) \(middleName) \(lastName)"
-			.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-			.stringByReplacingOccurrencesOfString("  ", withString: " ")
-
-		jobTitleLabel?.text = SessionContext.currentContext!.userAttribute("jobTitle") as? String
-
-		emailLabel?.text = SessionContext.currentContext!.userAttribute("emailAddress") as? String
-
-		nickNameLabel?.text = SessionContext.currentContext!.userAttribute("screenName") as? String
+		super.viewDidLoad()
+		self.screenlet?.load()
 	}
 
+
+	//MARK: AssetDisplayScreenletDelegate
+
+	public func screenlet(screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView? {
+		if let type = asset.attributes["object"]?.allKeys.first as? String {
+			if type == "user" {
+				let view = NSBundle.mainBundle().loadNibNamed("UserProfileView", owner: self, options: nil)[safe: 0] as? UserProfileView
+
+				view?.user = User(attributes: asset.attributes)
+				view?.goBackButtonClicked = {
+					self.dismissViewControllerAnimated(true, completion: nil)
+				}
+				view?.signOutButtonClicked = {
+					SessionContext.logout()
+					self.dismissViewControllerAnimated(true, completion: nil)
+				}
+				return view
+			}
+		}
+		return nil
+	}
 }
