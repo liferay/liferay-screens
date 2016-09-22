@@ -17,8 +17,5 @@
 		<activity
 			android:name=".viewsets.defaultviews.gallery.DetailImageActivity"
 			android:theme="@style/gallery_theme"/>
-		<activity
-			android:name=".viewsets.defaultviews.gallery.DetailUploadDefaultActivity"
-			android:theme="@style/detail_upload_theme"/>
 	</application>
 </manifest>
