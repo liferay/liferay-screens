@@ -14,17 +14,7 @@
 import UIKit
 import LiferayScreens
 
-public class WebContentDisplayView_westeros: BaseScreenletView, WebContentDisplayViewModel {
-
-	@IBOutlet public var webView: UIWebView?
-
-	override public var progressMessages: [String:ProgressMessages] {
-		return [
-			BaseScreenlet.DefaultAction :
-				[.Working : LocalizedString("default", key: "webcontentdisplay-loading-message", obj: self),
-				.Failure : LocalizedString("default", key: "webcontentdisplay-loading-error", obj: self)]]
-	}
-
+public class WebContentDisplayView_westeros: WebContentDisplayView_default {
 
 	private let styles =
 		".MobileCSS {padding: 0% 4%; width: 92%; color: white;} " +
@@ -34,12 +24,12 @@ public class WebContentDisplayView_westeros: BaseScreenletView, WebContentDispla
 		".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }"
 
 	override public func createProgressPresenter() -> ProgressPresenter {
-		return NetworkActivityIndicatorPresenter()
+		return WesterosCardProgressPresenter(screenlet: screenlet)
 	}
 
 	//MARK: WebContentDisplayViewModel
 
-	public var htmlContent: String? {
+	public override var htmlContent: String? {
 		get {
 			return ""
 		}
@@ -49,7 +39,4 @@ public class WebContentDisplayView_westeros: BaseScreenletView, WebContentDispla
 			webView!.loadHTMLString(styledHtml, baseURL: NSURL(string:LiferayServerContext.server))
 		}
 	}
-
-	public var recordContent: DDLRecord?
-
 }

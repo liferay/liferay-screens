@@ -61,6 +61,14 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 
 	//MARK: CardDeckDataSource
 
+	func doCreateCard(cardDeck: CardDeckView, index: Int) -> CardView? {
+		if index == 1 {
+			return WesterosCardView.newAutoLayoutView()
+		}
+
+		return nil
+	}
+
 	func numberOfCardsIn(cardDeck: CardDeckView) -> Int {
 		return 2
 	}
@@ -96,6 +104,8 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 			//Start sign in card hidden
 			card.currentState = .Hidden
 			card.resetToCurrentState()
+		} else if let westerosCard = card as? WesterosCardView {
+			westerosCard.activityIndicator.color = DefaultResources.EvenColorBackground
 		}
 	}
 
