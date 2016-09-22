@@ -13,7 +13,7 @@ public class SignUpCard extends Card implements View.OnClickListener {
 
 	private WebContentDisplayScreenlet webContentDisplayScreenlet;
 
-	private boolean isTermsAndConditiionLoaded;
+	private boolean isTermsAndConditionLoaded;
 
 	public SignUpCard(Context context) {
 		super(context);
@@ -41,8 +41,8 @@ public class SignUpCard extends Card implements View.OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		if (!isTermsAndConditiionLoaded) {
-			isTermsAndConditiionLoaded = true;
+		if (!isTermsAndConditionLoaded) {
+			isTermsAndConditionLoaded = true;
 			webContentDisplayScreenlet.load();
 		}
 

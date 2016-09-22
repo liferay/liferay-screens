@@ -54,16 +54,15 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 		super(context, attrs, defStyleAttr);
 	}
 
-	public GalleryScreenlet(Context context, AttributeSet attrs, int defStyleAttr,
-		int defStyleRes) {
+	public GalleryScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 
-		TypedArray typedArray = context.getTheme()
-			.obtainStyledAttributes(attributes, R.styleable.GalleryScreenlet, 0, 0);
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.GalleryScreenlet, 0, 0);
 
 		PicassoScreens.setCachePolicy(this.cachePolicy);
 
@@ -130,8 +129,7 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 	public void onPicturePathReceived(String picturePath) {
 		int uploadDetailViewLayout = 0;
 		if (getListener() != null) {
-			boolean showed =
-				getListener().showUploadImageView(UPLOAD_IMAGE, picturePath, getScreenletId());
+			boolean showed = getListener().showUploadImageView(UPLOAD_IMAGE, picturePath, getScreenletId());
 
 			if (showed) {
 				return;
@@ -174,8 +172,8 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 	}
 
 	@Override
-	public void onPictureUploadInformationReceived(String picturePath, String title,
-		String description, String changelog) {
+	public void onPictureUploadInformationReceived(String picturePath, String title, String description,
+		String changelog) {
 		getViewModel().imageUploadStart(picturePath);
 
 		GalleryUploadInteractor galleryUploadInteractor = getUploadInteractor();
@@ -246,15 +244,9 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 	}
 
 	protected void startUploadDetail(@LayoutRes int uploadDetailView, final String picturePath) {
-		View view = null;
 		Context context = LiferayScreensContext.getContext();
 
-		if (uploadDetailView != 0) {
-			view = LayoutInflater.from(context).inflate(uploadDetailView, null, false);
-		} else {
-			view = LayoutInflater.from(context)
-				.inflate(R.layout.default_upload_detail_activity, null, false);
-		}
+		View view = inflateView(uploadDetailView, context);
 
 		if (view instanceof BaseDetailUploadView) {
 			BaseDetailUploadView baseDetailUploadView = (BaseDetailUploadView) view;
@@ -263,6 +255,14 @@ public class GalleryScreenlet extends BaseListScreenlet<ImageEntry, GalleryLoadI
 			new DefaultUploadDialog().createDialog(baseDetailUploadView, getContext()).show();
 		} else {
 			LiferayLogger.e("Detail upload view has to be a subclass of BaseDetailUploadView");
+		}
+	}
+
+	private View inflateView(@LayoutRes int uploadDetailView, Context context) {
+		if (uploadDetailView != 0) {
+			return LayoutInflater.from(context).inflate(uploadDetailView, null, false);
+		} else {
+			return LayoutInflater.from(context).inflate(R.layout.default_upload_detail_activity, null, false);
 		}
 	}
 

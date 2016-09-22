@@ -202,6 +202,7 @@ public class Deck extends FrameLayout implements CardListener {
 
 	protected void onFling(FlingListener.Movement movement, Card card) {
 		switch (movement) {
+			default:
 			case TOUCH:
 				onClick(card);
 				break;
