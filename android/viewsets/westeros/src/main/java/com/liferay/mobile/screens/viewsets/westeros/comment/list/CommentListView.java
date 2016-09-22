@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.viewsets.westeros.comment.list;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.TextView;
 import com.liferay.mobile.screens.viewsets.westeros.R;
 
 /**

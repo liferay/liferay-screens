@@ -5,11 +5,9 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.context.PicassoScreens;
 import com.liferay.mobile.screens.gallery.BaseDetailUploadView;
 import com.squareup.picasso.Picasso;
 import java.io.File;
-import org.w3c.dom.Text;
 
 /**
  * @author Víctor Galán Grande
