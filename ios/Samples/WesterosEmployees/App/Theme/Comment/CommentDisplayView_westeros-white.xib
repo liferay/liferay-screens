@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="ofk-wp-urv" customClass="CommentDisplayView_westeros" customModule="WesterosEmployees" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="ofk-wp-urv" customClass="CommentDisplayView_westeros_white" customModule="WesterosEmployees" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="472" height="121"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -27,7 +27,6 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- Edited" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bmx-bE-lyO" userLabel="Edited">
                     <rect key="frame" x="175" y="41" width="51" height="16"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K19-Wu-62Q" userLabel="Normal state buttons">
@@ -111,16 +110,15 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsA-4f-URH" userLabel="UserName">
                     <rect key="frame" x="85" y="10" width="367" height="23"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 minutes ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0O-Tl-DWI" userLabel="CreatedDate">
                     <rect key="frame" x="85" y="41" width="86" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="qsA-4f-URH" firstAttribute="leading" secondItem="BYS-C6-vuU" secondAttribute="trailing" constant="15" id="1VW-1y-TUc"/>
                 <constraint firstAttribute="trailing" secondItem="qsA-4f-URH" secondAttribute="trailing" constant="20" id="53o-gu-WIG"/>
@@ -156,7 +154,7 @@
                 <outlet property="userNameLabel" destination="qsA-4f-URH" id="Ifq-rv-7Zf"/>
                 <outlet property="userPortraitScreenlet" destination="BYS-C6-vuU" id="K1O-N7-cUk"/>
             </connections>
-            <point key="canvasLocation" x="475" y="383.5"/>
+            <point key="canvasLocation" x="298" y="348.5"/>
         </view>
     </objects>
 </document>

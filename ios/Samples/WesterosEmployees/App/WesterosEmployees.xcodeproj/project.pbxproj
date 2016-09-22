@@ -119,10 +119,15 @@
 		0B9309551D6DBE58003824D6 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B9309541D6DBE58003824D6 /* ForgotPasswordViewController.xib */; };
 		0B9C6E4D1D940FA5009A564E /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9C6E4B1D940FA5009A564E /* UserProfileView.swift */; };
 		0B9C6E501D940FE7009A564E /* UserProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B9C6E4F1D940FE7009A564E /* UserProfileView.xib */; };
-		0BA0752A1D941879009EEDDC /* CommentAddView_westeros-white.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA075291D941879009EEDDC /* CommentAddView_westeros-white.xib */; };
-		0BA0752E1D941AC1009EEDDC /* CommentAddView_westeros-white.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0752D1D941AC1009EEDDC /* CommentAddView_westeros-white.swift */; };
 		0B9C6E531D941876009A564E /* AssetDisplayView_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9C6E511D941876009A564E /* AssetDisplayView_westeros.swift */; };
 		0B9C6E541D941876009A564E /* AssetDisplayView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B9C6E521D941876009A564E /* AssetDisplayView_westeros.xib */; };
+		0BA0752A1D941879009EEDDC /* CommentAddView_westeros-white.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA075291D941879009EEDDC /* CommentAddView_westeros-white.xib */; };
+		0BA0752E1D941AC1009EEDDC /* CommentAddView_westeros-white.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA0752D1D941AC1009EEDDC /* CommentAddView_westeros-white.swift */; };
+		0BA075351D941CAC009EEDDC /* CommentDisplayView_westeros-white.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA075301D941CAC009EEDDC /* CommentDisplayView_westeros-white.xib */; };
+		0BA075361D941CAC009EEDDC /* CommentListView_westeros-white.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA075311D941CAC009EEDDC /* CommentListView_westeros-white.swift */; };
+		0BA075371D941CAC009EEDDC /* CommentListView_westeros-white.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA075321D941CAC009EEDDC /* CommentListView_westeros-white.xib */; };
+		0BA075381D941CAC009EEDDC /* CommentTableViewCell_westeros-white.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA075331D941CAC009EEDDC /* CommentTableViewCell_westeros-white.xib */; };
+		0BA0753A1D941F69009EEDDC /* CommentDisplayView_westeros-white.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA075391D941F69009EEDDC /* CommentDisplayView_westeros-white.swift */; };
 		0BC6BA411D8188670042156E /* file-music.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC6BA321D8188670042156E /* file-music.png */; };
 		0BC6BA421D8188670042156E /* file-music@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC6BA331D8188670042156E /* file-music@2x.png */; };
 		0BC6BA431D8188670042156E /* file-music@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BC6BA341D8188670042156E /* file-music@3x.png */; };
@@ -270,10 +275,15 @@
 		0B9309541D6DBE58003824D6 /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
 		0B9C6E4B1D940FA5009A564E /* UserProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		0B9C6E4F1D940FE7009A564E /* UserProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileView.xib; sourceTree = "<group>"; };
-		0BA075291D941879009EEDDC /* CommentAddView_westeros-white.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommentAddView_westeros-white.xib"; sourceTree = "<group>"; };
-		0BA0752D1D941AC1009EEDDC /* CommentAddView_westeros-white.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CommentAddView_westeros-white.swift"; sourceTree = "<group>"; };
 		0B9C6E511D941876009A564E /* AssetDisplayView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayView_westeros.swift; sourceTree = "<group>"; };
 		0B9C6E521D941876009A564E /* AssetDisplayView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssetDisplayView_westeros.xib; sourceTree = "<group>"; };
+		0BA075291D941879009EEDDC /* CommentAddView_westeros-white.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommentAddView_westeros-white.xib"; sourceTree = "<group>"; };
+		0BA0752D1D941AC1009EEDDC /* CommentAddView_westeros-white.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CommentAddView_westeros-white.swift"; sourceTree = "<group>"; };
+		0BA075301D941CAC009EEDDC /* CommentDisplayView_westeros-white.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommentDisplayView_westeros-white.xib"; sourceTree = "<group>"; };
+		0BA075311D941CAC009EEDDC /* CommentListView_westeros-white.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CommentListView_westeros-white.swift"; sourceTree = "<group>"; };
+		0BA075321D941CAC009EEDDC /* CommentListView_westeros-white.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommentListView_westeros-white.xib"; sourceTree = "<group>"; };
+		0BA075331D941CAC009EEDDC /* CommentTableViewCell_westeros-white.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "CommentTableViewCell_westeros-white.xib"; sourceTree = "<group>"; };
+		0BA075391D941F69009EEDDC /* CommentDisplayView_westeros-white.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CommentDisplayView_westeros-white.swift"; sourceTree = "<group>"; };
 		0BC6BA321D8188670042156E /* file-music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "file-music.png"; sourceTree = "<group>"; };
 		0BC6BA331D8188670042156E /* file-music@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "file-music@2x.png"; sourceTree = "<group>"; };
 		0BC6BA341D8188670042156E /* file-music@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "file-music@3x.png"; sourceTree = "<group>"; };
@@ -373,6 +383,11 @@
 				0B083A831D92965B007D7BCC /* CommentListView_westeros.swift */,
 				0B083A841D92965B007D7BCC /* CommentListView_westeros.xib */,
 				0B083A851D92965B007D7BCC /* CommentTableViewCell_westeros.xib */,
+				0BA075391D941F69009EEDDC /* CommentDisplayView_westeros-white.swift */,
+				0BA075301D941CAC009EEDDC /* CommentDisplayView_westeros-white.xib */,
+				0BA075311D941CAC009EEDDC /* CommentListView_westeros-white.swift */,
+				0BA075321D941CAC009EEDDC /* CommentListView_westeros-white.xib */,
+				0BA075331D941CAC009EEDDC /* CommentTableViewCell_westeros-white.xib */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -769,11 +784,14 @@
 				0BC6BA451D8188670042156E /* file-none@2x.png in Resources */,
 				0B0A232B1D6B1D840061B50D /* westeros.strings in Resources */,
 				0BC6BA441D8188670042156E /* file-none.png in Resources */,
+				0BA075371D941CAC009EEDDC /* CommentListView_westeros-white.xib in Resources */,
 				0BC6BA431D8188670042156E /* file-music@3x.png in Resources */,
 				0B9309551D6DBE58003824D6 /* ForgotPasswordViewController.xib in Resources */,
 				0B0A239E1D6B22EF0061B50D /* tour-step1@3x.png in Resources */,
+				0BA075381D941CAC009EEDDC /* CommentTableViewCell_westeros-white.xib in Resources */,
 				0BD07A261D82C4C200470A2E /* no-photo.png in Resources */,
 				0B35AF6D1D6C359D002E3D2F /* Auth.storyboard in Resources */,
+				0BA075351D941CAC009EEDDC /* CommentDisplayView_westeros-white.xib in Resources */,
 				0B3944041D92B8DE00F56B32 /* UploadProgressView_westeros.xib in Resources */,
 				0BC6BA411D8188670042156E /* file-music.png in Resources */,
 				0B083A891D92965B007D7BCC /* CommentAddView_westeros.xib in Resources */,
@@ -919,10 +937,12 @@
 				0B9309481D6DAC7E003824D6 /* CardDeckView.swift in Sources */,
 				0B93094C1D6DAC9A003824D6 /* CardViewController.swift in Sources */,
 				0B0A23121D6B1D840061B50D /* SignUpView_westeros.swift in Sources */,
+				0BA075361D941CAC009EEDDC /* CommentListView_westeros-white.swift in Sources */,
 				0B0A231A1D6B1D840061B50D /* WesterosThemeConstants.swift in Sources */,
 				0B0A23191D6B1D840061B50D /* WesterosProgressPresenter.swift in Sources */,
 				0B7EFFC71D9196A500BA23EC /* WesterosCardView.swift in Sources */,
 				0B0A230E1D6B1D840061B50D /* ForgotPasswordView_westeros.swift in Sources */,
+				0BA0753A1D941F69009EEDDC /* CommentDisplayView_westeros-white.swift in Sources */,
 				0B0A23161D6B1D840061B50D /* UserPortraitView_westeros.swift in Sources */,
 				0B0A23481D6B22100061B50D /* KeyboardListener.swift in Sources */,
 				0B0A23101D6B1D840061B50D /* LoginView_westeros.swift in Sources */,
