@@ -37,6 +37,11 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		}
 	}
 	@IBOutlet weak var arrowImageView: UIImageView?
+	@IBOutlet weak var ratingScreenlet: RatingScreenlet?
+
+
+	//MARK: Constraints
+	@IBOutlet weak var assetDisplayBottomConstraint: NSLayoutConstraint?
 
 
 	//MARK: Card controllers
@@ -72,12 +77,25 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 			//Change color of modal state
 			self.arrowImageView?.image = UIImage(named: "icon_DOWN_W")
 			self.goBackButton?.setTitleColor(DefaultResources.EvenColorBackground, forState: .Normal)
+
+			//Hide rating screenlet on blog view
+			ratingScreenlet?.hidden = true
+			assetDisplayBottomConstraint?.constant = 70
 		}
 		else {
 			//Change color of modal state
 			self.arrowImageView?.image = UIImage(named: "icon_DOWN")
 			self.goBackButton?.setTitleColor(DefaultResources.OddColorBackground, forState: .Normal)
+
+			//Load ratings, only in file view
+			ratingScreenlet?.hidden = false
+			assetDisplayBottomConstraint?.constant = 150
+			ratingScreenlet?.className = className
+			ratingScreenlet?.classPK = classPK
+			ratingScreenlet?.loadRatings()
 		}
+
+		assetDisplayScreenlet?.layoutIfNeeded()
 	}
 
 	func hideCommentsCard() {
@@ -100,7 +118,8 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		super.viewWillAppear(animated)
 		
 		//Hide all views
-		assetDisplayScreenlet?.alpha = 0
+		self.assetDisplayScreenlet?.alpha = 0
+		self.ratingScreenlet?.alpha = 0
 	}
 
 
@@ -121,6 +140,7 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		//Show back views
 		UIView.animateWithDuration(1.0) {
 			self.assetDisplayScreenlet?.alpha = 1.0
+			self.ratingScreenlet?.alpha = 1.0
 		}
 	}
 	
