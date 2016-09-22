@@ -33,10 +33,10 @@ public class AssetListAdapter extends BaseListAdapter<AssetEntry, AssetListAdapt
 
 	public class AssetListViewHolder extends BaseListAdapter.ViewHolder {
 
-		private TextView dateTextView;
-		private TextView titleTextView;
+		private final TextView dateTextView;
+		private final TextView titleTextView;
 
-		private ImageDisplayScreenlet imageDisplayScreenlet;
+		private final ImageDisplayScreenlet imageDisplayScreenlet;
 
 		public AssetListViewHolder(View view,
 			BaseListAdapterListener listener) {
