@@ -8,7 +8,6 @@
 	<EditText
 		android:id="@+id/liferay_login"
 		android:hint="@string/email_address"
-		android:text="test@liferay.com"
 		style="@style/westeros_edit_text"
 		/>
 
@@ -21,7 +20,6 @@
 			android:id="@+id/liferay_password"
 			android:inputType="textPassword"
 			android:labelFor="@+id/liferay_password"
-			android:text="test"
 			style="@style/westeros_edit_text"
 			/>
 
