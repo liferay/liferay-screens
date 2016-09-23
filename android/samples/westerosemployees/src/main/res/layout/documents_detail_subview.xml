@@ -10,7 +10,7 @@
 	<TextView
 		android:id="@+id/documents_detail_title"
 		android:tag="title"
-		android:text="@string/blogs"
+		android:text="@string/docs"
 		style="@style/westeros_card_title_black"
 		/>
 
