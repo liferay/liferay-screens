@@ -16,9 +16,7 @@
 	<integer>35726</integer>
 	<key>documentationPortletItemName</key>
 	<string>DocumentationWesterosEmployees</string>
-	<key>termsAndConditionsArticleId</key>
-	<string>36905</string>
-	<key>termsAndConditionsTemplateId</key>
-	<integer>29601</integer>
+	<key>termsAndConditionsAssetEntryId</key>
+	<integer>0</integer>
 </dict>
 </plist>

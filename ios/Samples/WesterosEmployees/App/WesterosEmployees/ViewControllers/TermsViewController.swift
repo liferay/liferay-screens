@@ -14,14 +14,14 @@
 import UIKit
 import LiferayScreens
 
-class TermsViewController: CardViewController, WebContentDisplayScreenletDelegate {
+class TermsViewController: CardViewController, AssetDisplayScreenletDelegate {
 
 
 	//MARK: Outlets
 
-	@IBOutlet weak var webContentDisplayScreenlet: WebContentDisplayScreenlet? {
+	@IBOutlet weak var assetDisplayScreenlet: AssetDisplayScreenlet? {
 		didSet {
-			webContentDisplayScreenlet?.delegate = self
+			assetDisplayScreenlet?.delegate = self
 		}
 	}
 
@@ -40,30 +40,27 @@ class TermsViewController: CardViewController, WebContentDisplayScreenletDelegat
 		}
 
 		//Load terms and conditions from a web article
-		if let articleId = prop("termsAndConditionsArticleId") as? String,
-				templateId = prop("termsAndConditionsTemplateId") as? NSNumber,
-				anonymUsername = prop("anonymousUsername") as? String,
-				anonymPassword = prop("anonymousPassword") as? String {
+		if let entryId = prop("termsAndConditionsAssetEntryId") as? NSNumber,
+			   anonymUsername = prop("anonymousUsername") as? String,
+			   anonymPassword = prop("anonymousPassword") as? String {
 
 			//Login anonymous user
 			SessionContext.loginWithBasic(
 				username: anonymUsername, password: anonymPassword, userAttributes: [:])
 
 			//Load article data into screenlet
-			webContentDisplayScreenlet?.articleId = articleId
-			webContentDisplayScreenlet?.groupId = LiferayServerContext.groupId
-			webContentDisplayScreenlet?.templateId = templateId.longLongValue
-			webContentDisplayScreenlet?.loadWebContent()
+			self.assetDisplayScreenlet?.assetEntryId = entryId.longLongValue
+			self.assetDisplayScreenlet?.load()
 		} else {
-			print("Some of the options needed for these web content are not set. " +
+			print("Some of the options needed for this web content are not set. " +
 				"Review your server-context list.")
 		}
 	}
 
 
-	//MARK: WebContentDisplayScreenletDelegate
+	//MARK: AssetDisplayScreenletDelegate
 
-	func screenlet(screenlet: WebContentDisplayScreenlet, onWebContentError error: NSError) {
+	func screenlet(screenlet: AssetDisplayScreenlet, onAssetError error: NSError) {
 		print("Couldn't load terms and conditions. Error: \(error)")
 	}
 }
