@@ -19,4 +19,5 @@ import UIKit
 	var asset: Asset? {get set}
 	var innerScreenlet: UIView? {get set}
 
+	func removeInnerScreenlet() -> Void
 }

@@ -130,6 +130,6 @@ import UIKit
 	}
 
 	public func removeInnerScreenlet() {
-		assetDisplayViewModel?.innerScreenlet = nil
+		assetDisplayViewModel?.removeInnerScreenlet()
 	}
 }
