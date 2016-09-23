@@ -98,7 +98,11 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		assetDisplayScreenlet?.layoutIfNeeded()
 	}
 
-	func hideCommentsCard() {
+	func closeDetail() {
+		//Remove inner screenlet to avoid infinite media loops
+		self.assetDisplayScreenlet?.removeInnerScreenlet()
+
+		//Hide comment card
 		self.commentsViewController?.hideAddCommentCard()
 		self.cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
 	}

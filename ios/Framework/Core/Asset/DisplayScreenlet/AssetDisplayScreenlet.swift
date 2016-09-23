@@ -129,4 +129,7 @@ import UIKit
 		assetDisplayDelegate?.screenlet?(self, onConfigureScreenlet: innerScreenlet, onAsset: asset)
 	}
 
+	public func removeInnerScreenlet() {
+		assetDisplayViewModel?.innerScreenlet = nil
+	}
 }
