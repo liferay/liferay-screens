@@ -16,22 +16,25 @@ import UIKit
 
 @objc public class AssetDisplayFactory: NSObject {
 
-	public func createScreenlet(frame: CGRect, asset: Asset) -> BaseScreenlet? {
-		if asset.mimeType != "" {
+	public func createScreenlet(frame: CGRect, asset: Asset, themeName: String?) -> BaseScreenlet? {
+		if asset.classNameId == AssetClasses.getClassNameId(AssetClassNameKey_JournalArticle) {
+			return WebContentDisplayScreenlet(frame: frame, themeName: themeName)
+		}
+		else if asset.mimeType != "" {
 			if asset.isAnyMimeType(ImageDisplayScreenlet.supportedMimeTypes) {
-				return ImageDisplayScreenlet(frame: frame, themeName: nil)
+				return ImageDisplayScreenlet(frame: frame, themeName: themeName)
 			}
 			else if asset.isAnyMimeType(VideoDisplayScreenlet.supportedMimeTypes) {
-				return VideoDisplayScreenlet(frame: frame, themeName: nil)
+				return VideoDisplayScreenlet(frame: frame, themeName: themeName)
 			}
 			else if asset.isAnyMimeType(AudioDisplayScreenlet.supportedMimeTypes) {
-				return AudioDisplayScreenlet(frame: frame, themeName: nil)
+				return AudioDisplayScreenlet(frame: frame, themeName: themeName)
 			}
 			else if asset.isAnyMimeType(PdfDisplayScreenlet.supportedMimeTypes) {
-				return PdfDisplayScreenlet(frame: frame, themeName: nil)
+				return PdfDisplayScreenlet(frame: frame, themeName: themeName)
 			}
 			else if asset.isAnyMimeType(BlogsEntryDisplayScreenlet.supportedMimeTypes) {
-				return BlogsEntryDisplayScreenlet(frame: frame, themeName: nil)
+				return BlogsEntryDisplayScreenlet(frame: frame, themeName: themeName)
 			}
 		}
 

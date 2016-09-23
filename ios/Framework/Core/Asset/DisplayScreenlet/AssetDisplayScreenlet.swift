@@ -102,7 +102,8 @@ import UIKit
 
 		let factory = AssetDisplayFactory()
 
-		guard let innerScreenlet = factory.createScreenlet(frame, asset: asset) else {
+		guard let innerScreenlet =
+				factory.createScreenlet(frame, asset: asset, themeName: self.themeName) else {
 			return assetDisplayDelegate?.screenlet?(self, onAsset: asset)
 		}
 
@@ -112,9 +113,6 @@ import UIKit
 	}
 
 	public func configureInnerScreenlet(innerScreenlet: BaseScreenlet, asset: Asset) {
-		//Load same theme as parent screenlet
-		innerScreenlet.themeName = self.themeName
-
 		if let screenlet = innerScreenlet as? FileDisplayScreenlet {
 			screenlet.fileEntry = FileEntry(attributes: asset.attributes)
 			screenlet.autoLoad = false
@@ -124,6 +122,12 @@ import UIKit
 		else if let screenlet = innerScreenlet as? BlogsEntryDisplayScreenlet {
 			screenlet.blogsEntry = BlogsEntry(attributes: asset.attributes)
 			screenlet.autoLoad = false
+		}
+		else if let screenlet = innerScreenlet as? WebContentDisplayScreenlet {
+			let webContent = WebContent(attributes: asset.attributes)
+			screenlet.articleId = (webContent.attributes["articleId"] as? String) ?? ""
+			screenlet.autoLoad = false
+			screenlet.loadWebContent()
 		}
 
 		assetDisplayDelegate?.screenlet?(self, onConfigureScreenlet: innerScreenlet, onAsset: asset)
