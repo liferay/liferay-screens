@@ -133,9 +133,7 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 	func screenlet(screenlet: BaseScreenlet, customInteractorForAction action: String, withSender sender: AnyObject?) -> Interactor? {
 		if action == "edit-comment" {
 			if let comment = sender as? Comment {
-				addCommentViewController?.commentAddScreenlet?.comment = comment
-				addCommentViewController?.cardView?.changeToState(.Normal)
-				addCommentViewController?.cardView?.changeButtonText("Edit Comment")
+				addCommentViewController?.editComment(comment)
 			}
 		}
 

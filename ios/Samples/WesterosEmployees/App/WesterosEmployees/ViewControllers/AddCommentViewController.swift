@@ -38,6 +38,12 @@ class AddCommentViewController: CardViewController, KeyboardListener, CommentAdd
 
 	//MARK: Public methods
 
+	func editComment(comment: Comment) {
+		self.commentAddScreenlet?.comment = comment
+		self.cardView?.changeToState(.Normal)
+		self.cardView?.changeButtonText("Edit Comment")
+	}
+
 	func load(className className: String, classPK: Int64) {
 		self.commentAddScreenlet?.className = className
 		self.commentAddScreenlet?.classPK = classPK
@@ -66,6 +72,7 @@ class AddCommentViewController: CardViewController, KeyboardListener, CommentAdd
 
 	override func cardWillDisappear() {
 		self.cardView?.changeButtonText("Add Comment")
+		self.commentAddScreenlet?.comment = nil
 		(self.commentAddScreenlet?.viewModel as? CommentAddView_westeros)?.body = ""
 		unregisterKeyboardListener(self)
 		self.view.endEditing(true)
@@ -90,6 +97,7 @@ class AddCommentViewController: CardViewController, KeyboardListener, CommentAdd
 	}
 
 	func screenlet(screenlet: CommentAddScreenlet, onCommentUpdated comment: Comment) {
+		self.commentAddScreenlet?.comment = nil
 		onCommentUpdated?(comment)
 	}
 }
