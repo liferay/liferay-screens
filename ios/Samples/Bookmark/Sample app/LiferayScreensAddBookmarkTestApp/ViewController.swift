@@ -16,8 +16,6 @@ import LiferayScreens
 
 class ViewController: UIViewController {
 
-	@IBOutlet weak var screenlet: AddBookmarkScreenlet!
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Zfs-5V-38i">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Bookmarks-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BookmarksTestApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,45 +18,92 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r2G-e0-iam" customClass="AddBookmarkScreenlet" customModule="BookmarksTestApp" customModuleProvider="target">
-                                <rect key="frame" x="40" y="28" width="240" height="211"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1Q-9N-jPT" customClass="BookmarkListScreenlet" customModule="BookmarksTestApp" customModuleProvider="target">
+                                <rect key="frame" x="10" y="64" width="300" height="484"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="folderId">
+                                        <integer key="value" value="38748"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="groupId">
+                                        <integer key="value" value="20160"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="i1Q-9N-jPT" secondAttribute="bottom" constant="20" id="Gth-lV-nT6"/>
+                            <constraint firstAttribute="trailing" secondItem="i1Q-9N-jPT" secondAttribute="trailing" constant="10" id="Ihg-Q2-kBf"/>
+                            <constraint firstItem="i1Q-9N-jPT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="ajL-KX-iap"/>
+                            <constraint firstItem="i1Q-9N-jPT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="btK-tA-yCD"/>
+                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="screenlet" destination="r2G-e0-iam" id="NMM-ae-lgA"/>
-                        <segue destination="hRW-Sb-M4e" kind="modal" identifier="list" id="3mi-T4-1jM"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Bookmarks" id="3ba-Vv-F7L">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="iBW-fm-1wB">
+                            <connections>
+                                <segue destination="bi1-cl-DN0" kind="push" id="UCF-Up-kCV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="160" y="368"/>
+            <point key="canvasLocation" x="681" y="373"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="CdL-XW-KLl">
+        <scene sceneID="poR-KC-9TE">
             <objects>
-                <viewController id="hRW-Sb-M4e" sceneMemberID="viewController">
+                <viewController id="bi1-cl-DN0" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KAk-eV-QI0"/>
-                        <viewControllerLayoutGuide type="bottom" id="1XZ-az-TH2"/>
+                        <viewControllerLayoutGuide type="top" id="3sX-fZ-nb0"/>
+                        <viewControllerLayoutGuide type="bottom" id="t5R-qd-j2m"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="caM-vv-g7M">
+                    <view key="view" contentMode="scaleToFill" id="Dzw-ha-D3F">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i1Q-9N-jPT" customClass="BookmarkListScreenlet" customModule="BookmarksTestApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="320" height="540"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r2G-e0-iam" customClass="AddBookmarkScreenlet" customModule="BookmarksTestApp" customModuleProvider="target">
+                                <rect key="frame" x="16" y="84" width="288" height="464"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="folderId">
+                                        <integer key="value" value="38748"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="r2G-e0-iam" firstAttribute="trailing" secondItem="Dzw-ha-D3F" secondAttribute="trailingMargin" id="2dR-Ov-LX9"/>
+                            <constraint firstItem="t5R-qd-j2m" firstAttribute="top" secondItem="r2G-e0-iam" secondAttribute="bottom" constant="20" id="4OY-Yc-55B"/>
+                            <constraint firstItem="r2G-e0-iam" firstAttribute="leading" secondItem="Dzw-ha-D3F" secondAttribute="leadingMargin" id="IY1-oe-EUu"/>
+                            <constraint firstItem="r2G-e0-iam" firstAttribute="top" secondItem="3sX-fZ-nb0" secondAttribute="bottom" constant="20" id="vft-8e-L70"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="sAV-ri-rqK"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2Mm-fa-kcc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Eus-9g-09x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="570" y="368"/>
+            <point key="canvasLocation" x="1087" y="373"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="95O-qX-2QN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Zfs-5V-38i" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="C9r-8s-ZWL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ciB-Zn-cGU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="esF-K8-w8l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="192" y="373"/>
         </scene>
     </scenes>
 </document>

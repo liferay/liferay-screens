@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>companyId</key>
-	<integer>20155</integer>
+	<integer>20116</integer>
 	<key>server</key>
-	<string>https://demo.liferay.com/screens</string>
+	<string>http://screens-challenge.liferay.org.es</string>
 	<key>groupId</key>
-	<real>20525</real>
+	<integer>20160</integer>
 </dict>
 </plist>
