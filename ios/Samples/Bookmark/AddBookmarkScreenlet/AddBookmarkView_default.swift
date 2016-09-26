@@ -14,43 +14,17 @@
 import UIKit
 import LiferayScreens
 
-class AddBookmarkView_default: BaseScreenletView, AddBookmarkViewModel {
+class AddBookmarkView: BaseScreenletView {
 
-	@IBOutlet weak var URLTextField: UITextField!
-	@IBOutlet weak var titleTextField: UITextField!
-
-	@IBOutlet weak var URLBackground: UIImageView!
-	@IBOutlet weak var titleBackground: UIImageView!
+	@IBOutlet weak var URLTextField: UITextField?
+	@IBOutlet weak var titleTextField: UITextField?
 
 	var URL: String? {
-		get {
-			return URLTextField.text
-		}
-		set {
-			URLTextField.text = newValue
-		}
+		return URLTextField?.text
 	}
 
 	var title: String? {
-		get {
-			return titleTextField.text
-		}
-		set {
-			titleTextField.text = newValue
-		}
+		return titleTextField?.text
 	}
-
-	override func onCreated() {
-		setFieldBackground(URLBackground)
-		setFieldBackground(titleBackground)
-	}
-
-	private func setFieldBackground(image: UIImageView) {
-		image.image = NSBundle.imageInBundles(
-				name: "default-field", currentClass: self.dynamicType)
-		image.highlightedImage = NSBundle.imageInBundles(
-				name: "default-field-focused", currentClass: self.dynamicType)
-	}
-
 
 }
