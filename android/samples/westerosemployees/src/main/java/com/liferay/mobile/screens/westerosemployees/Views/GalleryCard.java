@@ -158,8 +158,6 @@ public class GalleryCard extends CommentsRatingsCard implements GalleryListener 
 			@Override
 			public void call(Boolean permissionAccepted) {
 				if (permissionAccepted) {
-
-					//((Card) findViewById(R.id.upload_image_card)).goRight();
 					galleryScreenlet.openGallery();
 				}
 			}
