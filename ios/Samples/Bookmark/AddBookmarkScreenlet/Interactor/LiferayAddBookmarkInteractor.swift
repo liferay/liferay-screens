@@ -46,19 +46,19 @@ public class LiferayAddBookmarkInteractor: ServerWriteConnectorInteractor {
 
 	//MARK: Cache methods
 
-	override public func writeToCache(op: ServerConnector) {
-		let cacheFunction = (cacheStrategy == .CacheFirst || op.lastError != nil)
-			? SessionContext.currentContext?.cacheManager.setDirty
-			: SessionContext.currentContext?.cacheManager.setClean
+	public override func writeToCache(c: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
 
-		cacheFunction?(
+		cacheManager.setClean(
 			collection: ScreenletName(AddBookmarkScreenlet),
 			key: "url-\(self.url)",
 			value: self.title,
 			attributes: [
-					"url": self.url,
-					"folderId": NSNumber(longLong: self.folderId)
-				])
+				"url": self.url,
+				"folderId": NSNumber(longLong: self.folderId)
+			])
 	}
 
 	override public func callOnSuccess() {
@@ -68,9 +68,9 @@ public class LiferayAddBookmarkInteractor: ServerWriteConnectorInteractor {
 				collection: ScreenletName(AddBookmarkScreenlet),
 				key: "url-\(self.url)",
 				attributes: [
-						"url": self.url,
-						"folderId": NSNumber(longLong: self.folderId)
-					])
+					"url": self.url,
+					"folderId": NSNumber(longLong: self.folderId)
+				])
 		}
 
 		super.callOnSuccess()
