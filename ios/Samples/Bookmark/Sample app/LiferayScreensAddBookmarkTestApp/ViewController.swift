@@ -16,13 +16,21 @@ import LiferayScreens
 
 class ViewController: UIViewController {
 
+
+	//MARK: Outlets
+	@IBOutlet weak var listBookmarkScreenlet: BookmarkListScreenlet?
+
+	@IBOutlet weak var addBookmarkScreenlet: AddBookmarkScreenlet?
+
+
+	//MARK: UIViewController
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		SessionContext.loginWithBasic(
-			username: "test@liferay.com",
-			password: "test",
-			userAttributes: [:])
+		let folderId = (LiferayServerContext.propertyForKey("folderId") as! NSNumber).longLongValue
+		listBookmarkScreenlet?.folderId = folderId
+		addBookmarkScreenlet?.folderId = folderId
 	}
 
 }

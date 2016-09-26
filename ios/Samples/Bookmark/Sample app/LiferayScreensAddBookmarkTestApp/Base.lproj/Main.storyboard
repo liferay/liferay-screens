@@ -21,14 +21,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1Q-9N-jPT" customClass="BookmarkListScreenlet" customModule="BookmarksTestApp" customModuleProvider="target">
                                 <rect key="frame" x="10" y="64" width="300" height="484"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="folderId">
-                                        <integer key="value" value="38748"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="groupId">
-                                        <integer key="value" value="20160"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -46,6 +38,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="listBookmarkScreenlet" destination="i1Q-9N-jPT" id="B3E-4B-eYw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -54,7 +49,7 @@
         <!--View Controller-->
         <scene sceneID="poR-KC-9TE">
             <objects>
-                <viewController id="bi1-cl-DN0" sceneMemberID="viewController">
+                <viewController id="bi1-cl-DN0" customClass="ViewController" customModule="BookmarksTestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3sX-fZ-nb0"/>
                         <viewControllerLayoutGuide type="bottom" id="t5R-qd-j2m"/>
@@ -66,11 +61,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r2G-e0-iam" customClass="AddBookmarkScreenlet" customModule="BookmarksTestApp" customModuleProvider="target">
                                 <rect key="frame" x="16" y="84" width="288" height="464"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="folderId">
-                                        <integer key="value" value="38748"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -82,6 +72,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sAV-ri-rqK"/>
+                    <connections>
+                        <outlet property="addBookmarkScreenlet" destination="r2G-e0-iam" id="7da-Ao-gYS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eus-9g-09x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
