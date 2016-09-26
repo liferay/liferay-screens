@@ -33,28 +33,18 @@ public class AddBookmarkScreenlet: BaseScreenlet {
 	}
 
 	private func createAddBookmarkInteractor() -> LiferayAddBookmarkInteractor {
-		let viewModel = (self.screenletView as! AddBookmarkViewModel)
+		let view = (self.screenletView as! AddBookmarkView)
 
 		let interactor = LiferayAddBookmarkInteractor(
 			screenlet: self,
 			folderId:  self.folderId,
-			title: viewModel.title!,
-			url: viewModel.URL!)
-
-		self.showHUDWithMessage("Saving bookmark...",
-			closeMode: .Autoclose,
-			spinnerMode: .IndeterminateSpinner)
+			title: view.title!,
+			url: view.URL!)
 
 		interactor.onSuccess = {
-			self.showHUDWithMessage("Bookmark saved!",
-				closeMode: .Autoclose_TouchClosable,
-				spinnerMode: .NoSpinner)
 		}
 
 		interactor.onFailure = { e in
-			self.showHUDWithMessage("An error occurred saving the bookmark",
-				closeMode: .ManualClose_TouchClosable,
-				spinnerMode: .NoSpinner)
 		}
 
 		return interactor
