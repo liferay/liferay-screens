@@ -15,13 +15,16 @@ import UIKit
 import LiferayScreens
 
 
-public class LiferayAddBookmarkInteractor: Interactor, LRCallback {
+public class AddBookmarkInteractor: Interactor, LRCallback {
 	
 	public var resultBookmarkInfo: [String:AnyObject]?
 
+
+	//MARK: Interactor
+
 	override public func start() -> Bool {
-		let view = self.screenlet!.screenletView as! AddBookmarkView
 		let screenlet = self.screenlet as! AddBookmarkScreenlet
+		let view = screenlet.screenletView as! AddBookmarkView
 
 		if let url = view.URL {
 			let session = SessionContext.createSessionFromCurrentSession()
@@ -31,11 +34,11 @@ public class LiferayAddBookmarkInteractor: Interactor, LRCallback {
 
 			do {
 				try service.addEntryWithGroupId(LiferayServerContext.groupId,
-				                                folderId: screenlet.folderId,
-				                                name: view.title,
-				                                url: url,
-				                                description: "Added from Liferay Screens",
-				                                serviceContext: nil)
+						folderId: screenlet.folderId,
+						name: view.title,
+						url: url,
+				    	description: "Added from Liferay Screens",
+				    	serviceContext: nil)
 
 				return true
 			}
@@ -47,11 +50,15 @@ public class LiferayAddBookmarkInteractor: Interactor, LRCallback {
 		return false
 	}
 
+
+	//MARK: LRCallback
+
 	public func onFailure(error: NSError!) {
 		self.callOnFailure(error)
 	}
 
 	public func onSuccess(result: AnyObject!) {
+		//Save result bookmark info
 		resultBookmarkInfo = (result as! [String:AnyObject])
 
 		self.callOnSuccess()

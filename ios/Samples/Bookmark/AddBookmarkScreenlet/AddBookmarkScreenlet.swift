@@ -15,6 +15,7 @@ import UIKit
 import LiferayScreens
 
 
+//Screenlet used for adding bookmarks to a certain folder
 public class AddBookmarkScreenlet: BaseScreenlet {
 
 
@@ -27,12 +28,15 @@ public class AddBookmarkScreenlet: BaseScreenlet {
 
 	override public func createInteractor(name name: String?, sender: AnyObject?) -> Interactor? {
 
-		let interactor = LiferayAddBookmarkInteractor(screenlet: self)
+		let interactor = AddBookmarkInteractor(screenlet: self)
 
+		//Called when interactor finish succesfully
 		interactor.onSuccess = {
-			print("Bookmark saved!")
+			let bookmarkName = interactor.resultBookmarkInfo!["name"] as! String
+			print("Bookmark \"\(bookmarkName)\" saved!")
 		}
 
+		//Called when interactor finish with error
 		interactor.onFailure = { _ in
 			print("An error occurred saving the bookmark")
 		}
