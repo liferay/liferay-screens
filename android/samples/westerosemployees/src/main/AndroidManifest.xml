@@ -38,6 +38,8 @@
 			android:name=".activities.UserProfileActivity"
 			android:screenOrientation="portrait">
 		</activity>
+		<activity android:name=".activities.ModalDetailActivity">
+		</activity>
 	</application>
 
 </manifest>
