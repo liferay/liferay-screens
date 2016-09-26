@@ -23,8 +23,6 @@ public class AddBookmarkScreenlet: BaseScreenlet {
 
 	override public func createInteractor(name name: String?, sender: AnyObject?) -> Interactor? {
 		switch name! {
-		case "get-title":
-			return createGetTitleInteractor()
 
 		case "add-bookmark":
 			return createAddBookmarkInteractor()
@@ -32,30 +30,6 @@ public class AddBookmarkScreenlet: BaseScreenlet {
 		default:
 			return nil
 		}
-	}
-
-	private func createGetTitleInteractor() -> GetSiteTitleInteractor {
-		let interactor = GetSiteTitleInteractor(screenlet: self)
-
-		// this shows the standard activity indicator in the screen...
-		self.showHUDWithMessage("Getting site title...",
-			closeMode: .Autoclose,
-			spinnerMode: .IndeterminateSpinner)
-
-		interactor.onSuccess = {
-			self.hideHUD()
-
-			// when the interactor is finished, set the resulting title in the title text field
-			(self.screenletView as? AddBookmarkViewModel)?.title = interactor.resultTitle
-		}
-
-		interactor.onFailure = { err in
-			self.showHUDWithMessage("An error occurred retrieving the title",
-				closeMode: .ManualClose_TouchClosable,
-				spinnerMode: .NoSpinner)
-		}
-
-		return interactor
 	}
 
 	private func createAddBookmarkInteractor() -> LiferayAddBookmarkInteractor {
