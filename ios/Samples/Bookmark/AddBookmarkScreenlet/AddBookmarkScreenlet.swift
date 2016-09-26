@@ -17,22 +17,15 @@ import LiferayScreens
 
 public class AddBookmarkScreenlet: BaseScreenlet {
 
-	@IBInspectable var folderId: Int64 = 0
-	@IBInspectable var allowsBrokenURL: Bool = false
 
+	//MARK: Inspectables
+
+	@IBInspectable var folderId: Int64 = 0
+
+
+	//MARK: BaseScreenlet
 
 	override public func createInteractor(name name: String?, sender: AnyObject?) -> Interactor? {
-		switch name! {
-
-		case "add-bookmark":
-			return createAddBookmarkInteractor()
-
-		default:
-			return nil
-		}
-	}
-
-	private func createAddBookmarkInteractor() -> LiferayAddBookmarkInteractor {
 		let view = (self.screenletView as! AddBookmarkView)
 
 		let interactor = LiferayAddBookmarkInteractor(
@@ -44,7 +37,7 @@ public class AddBookmarkScreenlet: BaseScreenlet {
 		interactor.onSuccess = {
 		}
 
-		interactor.onFailure = { e in
+		interactor.onFailure = { error in
 		}
 
 		return interactor
