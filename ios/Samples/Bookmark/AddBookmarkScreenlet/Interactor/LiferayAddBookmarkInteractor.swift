@@ -15,65 +15,46 @@ import UIKit
 import LiferayScreens
 
 
-public class LiferayAddBookmarkInteractor: ServerWriteConnectorInteractor {
+public class LiferayAddBookmarkInteractor: Interactor, LRCallback {
+	
+	public var resultBookmarkInfo: [String:AnyObject]?
 
-	public var resultBookmarkInfo: [NSObject:AnyObject]?
+	override public func start() -> Bool {
+		let view = self.screenlet!.screenletView as! AddBookmarkView
+		let screenlet = self.screenlet as! AddBookmarkScreenlet
 
-	private let title: String
-	private let url: String
-	private let folderId: Int64
+		if let url = view.URL {
+			let session = SessionContext.createSessionFromCurrentSession()
+			session?.callback = self
 
+			let service = LRBookmarksEntryService_v7(session: session)
 
-	init(screenlet: BaseScreenlet?, folderId: Int64, title: String, url: String) {
-		self.folderId = folderId
-		self.title = title
-		self.url = url
+			do {
+				try service.addEntryWithGroupId(LiferayServerContext.groupId,
+				                                folderId: screenlet.folderId,
+				                                name: view.title,
+				                                url: url,
+				                                description: "Added from Liferay Screens",
+				                                serviceContext: nil)
 
-		super.init(screenlet: screenlet)
-	}
-
-	public override func createConnector() -> ServerConnector? {
-		return LiferayAddBookmarkConnector(
-			groupId: LiferayServerContext.groupId,
-			folderId: self.folderId,
-			title: self.title,
-			url: self.url)
-	}
-
-	override public func completedConnector(op: ServerConnector) {
-		self.resultBookmarkInfo = (op as! LiferayAddBookmarkConnector).resultBookmarkInfo
-	}
-
-	//MARK: Cache methods
-
-	public override func writeToCache(c: ServerConnector) {
-		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
-			return
+				return true
+			}
+			catch {
+				return false
+			}
 		}
 
-		cacheManager.setClean(
-			collection: ScreenletName(AddBookmarkScreenlet),
-			key: "url-\(self.url)",
-			value: self.title,
-			attributes: [
-				"url": self.url,
-				"folderId": NSNumber(longLong: self.folderId)
-			])
+		return false
 	}
 
-	override public func callOnSuccess() {
-		if cacheStrategy == .CacheFirst {
-			// update cache with date sent
-			SessionContext.currentContext?.cacheManager.setClean(
-				collection: ScreenletName(AddBookmarkScreenlet),
-				key: "url-\(self.url)",
-				attributes: [
-					"url": self.url,
-					"folderId": NSNumber(longLong: self.folderId)
-				])
-		}
+	public func onFailure(error: NSError!) {
+		self.callOnFailure(error)
+	}
 
-		super.callOnSuccess()
+	public func onSuccess(result: AnyObject!) {
+		resultBookmarkInfo = (result as! [String:AnyObject])
+
+		self.callOnSuccess()
 	}
 
 }

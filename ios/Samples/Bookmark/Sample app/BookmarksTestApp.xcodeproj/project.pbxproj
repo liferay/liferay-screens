@@ -17,7 +17,6 @@
 		887844FD1C1EDF41009459C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 887844FB1C1EDF41009459C8 /* LaunchScreen.storyboard */; };
 		887845161C1EE221009459C8 /* liferay-server-context.plist in Resources */ = {isa = PBXBuildFile; fileRef = 887845151C1EE221009459C8 /* liferay-server-context.plist */; };
 		88F2A6D51C89BFE10078F766 /* AddBookmarkScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2A6CB1C89BFE10078F766 /* AddBookmarkScreenlet.swift */; };
-		88F2A6DD1C89BFE10078F766 /* LiferayAddBookmarkConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2A6D31C89BFE10078F766 /* LiferayAddBookmarkConnector.swift */; };
 		88F2A6E71C89C09C0078F766 /* BookmarkCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2A6E01C89C09C0078F766 /* BookmarkCell_default.swift */; };
 		88F2A6E81C89C09C0078F766 /* BookmarkCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88F2A6E11C89C09C0078F766 /* BookmarkCell_default.xib */; };
 		88F2A6E91C89C09C0078F766 /* BookmarkListPageLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2A6E21C89C09C0078F766 /* BookmarkListPageLiferayConnector.swift */; };
@@ -41,7 +40,6 @@
 		887844FE1C1EDF41009459C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		887845151C1EE221009459C8 /* liferay-server-context.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-server-context.plist"; sourceTree = SOURCE_ROOT; };
 		88F2A6CB1C89BFE10078F766 /* AddBookmarkScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookmarkScreenlet.swift; sourceTree = "<group>"; };
-		88F2A6D31C89BFE10078F766 /* LiferayAddBookmarkConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayAddBookmarkConnector.swift; sourceTree = "<group>"; };
 		88F2A6E01C89C09C0078F766 /* BookmarkCell_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkCell_default.swift; sourceTree = "<group>"; };
 		88F2A6E11C89C09C0078F766 /* BookmarkCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookmarkCell_default.xib; sourceTree = "<group>"; };
 		88F2A6E21C89C09C0078F766 /* BookmarkListPageLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookmarkListPageLiferayConnector.swift; sourceTree = "<group>"; };
@@ -126,10 +124,9 @@
 		88F2A6CA1C89BFE10078F766 /* AddBookmarkScreenlet */ = {
 			isa = PBXGroup;
 			children = (
-				88F2A6CB1C89BFE10078F766 /* AddBookmarkScreenlet.swift */,
 				0B27EF441D9939E800A1F67A /* Interactor */,
 				0B27EF461D9939E800A1F67A /* View */,
-				88F2A6D31C89BFE10078F766 /* LiferayAddBookmarkConnector.swift */,
+				88F2A6CB1C89BFE10078F766 /* AddBookmarkScreenlet.swift */,
 			);
 			name = AddBookmarkScreenlet;
 			path = ../AddBookmarkScreenlet;
@@ -277,7 +274,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				88F2A6EC1C89C09C0078F766 /* BookmarkListView_default.swift in Sources */,
-				88F2A6DD1C89BFE10078F766 /* LiferayAddBookmarkConnector.swift in Sources */,
 				88F2A6EA1C89C09C0078F766 /* BookmarkListPageLoadInteractor.swift in Sources */,
 				0B27EF491D9939E800A1F67A /* LiferayAddBookmarkInteractor.swift in Sources */,
 				0B27EF4A1D9939E800A1F67A /* AddBookmarkView_default.swift in Sources */,

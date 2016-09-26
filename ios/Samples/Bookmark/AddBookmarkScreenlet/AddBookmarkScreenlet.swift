@@ -26,18 +26,15 @@ public class AddBookmarkScreenlet: BaseScreenlet {
 	//MARK: BaseScreenlet
 
 	override public func createInteractor(name name: String?, sender: AnyObject?) -> Interactor? {
-		let view = (self.screenletView as! AddBookmarkView)
 
-		let interactor = LiferayAddBookmarkInteractor(
-			screenlet: self,
-			folderId:  self.folderId,
-			title: view.title!,
-			url: view.URL!)
+		let interactor = LiferayAddBookmarkInteractor(screenlet: self)
 
 		interactor.onSuccess = {
+			print("Bookmark saved!")
 		}
 
-		interactor.onFailure = { error in
+		interactor.onFailure = { _ in
+			print("An error occurred saving the bookmark")
 		}
 
 		return interactor
