@@ -23,8 +23,8 @@
 	<VideoView
 		android:id="@+id/liferay_video_asset"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_centerInParent="true"
+		android:layout_height="match_parent"
+		android:background="@android:color/transparent"
 		/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display.VideoDisplayView>
