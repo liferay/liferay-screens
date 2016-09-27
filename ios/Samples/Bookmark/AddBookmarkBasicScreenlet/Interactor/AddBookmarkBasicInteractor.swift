@@ -15,7 +15,7 @@ import UIKit
 import LiferayScreens
 
 
-public class AddBookmarkInteractor: Interactor, LRCallback {
+public class AddBookmarkBasicInteractor: Interactor, LRCallback {
 	
 	public var resultBookmarkInfo: [String:AnyObject]?
 

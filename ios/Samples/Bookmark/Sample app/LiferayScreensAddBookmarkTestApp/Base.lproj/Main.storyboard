@@ -58,7 +58,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r2G-e0-iam" customClass="AddBookmarkScreenlet" customModule="BookmarksTestApp" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r2G-e0-iam" customClass="AddBookmarkBasicScreenlet" customModule="BookmarksTestApp" customModuleProvider="target">
                                 <rect key="frame" x="16" y="84" width="288" height="464"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -73,7 +73,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="sAV-ri-rqK"/>
                     <connections>
-                        <outlet property="addBookmarkScreenlet" destination="r2G-e0-iam" id="7da-Ao-gYS"/>
+                        <outlet property="addBookmarkScreenlet" destination="r2G-e0-iam" id="2ib-2k-hrl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eus-9g-09x" userLabel="First Responder" sceneMemberID="firstResponder"/>

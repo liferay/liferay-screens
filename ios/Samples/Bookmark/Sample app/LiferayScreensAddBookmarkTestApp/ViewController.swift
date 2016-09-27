@@ -20,7 +20,7 @@ class ViewController: UIViewController {
 	//MARK: Outlets
 	@IBOutlet weak var listBookmarkScreenlet: BookmarkListScreenlet?
 
-	@IBOutlet weak var addBookmarkScreenlet: AddBookmarkScreenlet?
+	@IBOutlet weak var addBookmarkScreenlet: AddBookmarkBasicScreenlet?
 
 
 	//MARK: UIViewController
