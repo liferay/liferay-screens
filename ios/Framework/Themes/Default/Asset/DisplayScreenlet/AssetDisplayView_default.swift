@@ -42,10 +42,5 @@ public class AssetDisplayView_default: BaseScreenletView, AssetDisplayViewModel 
 		}
 	}
 
-	public func removeInnerScreenlet() {
-		self._innerScreenlet?.removeFromSuperview()
-		self._innerScreenlet = nil
-	}
-
 	private var _innerScreenlet: UIView?
 }
