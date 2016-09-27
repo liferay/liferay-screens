@@ -12,19 +12,11 @@
 * details.
 */
 import UIKit
-import LiferayScreens
 
-class AddBookmarkBasicView_default: BaseScreenletView {
+@objc protocol AddBookmarkViewModel {
 
-	@IBOutlet weak var URLTextField: UITextField?
-	@IBOutlet weak var titleTextField: UITextField?
+	var URL: String? {get}
 
-	var URL: String? {
-		return URLTextField?.text
-	}
-
-	var title: String? {
-		return titleTextField?.text
-	}
+	var title: String? {get}
 
 }

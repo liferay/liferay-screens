@@ -16,7 +16,7 @@ import LiferayScreens
 
 
 //Screenlet used for adding bookmarks to a certain folder
-public class AddBookmarkBasicScreenlet: BaseScreenlet {
+public class AddBookmarkScreenlet: BaseScreenlet {
 
 
 	//MARK: Inspectables
@@ -28,9 +28,9 @@ public class AddBookmarkBasicScreenlet: BaseScreenlet {
 
 	override public func createInteractor(name name: String?, sender: AnyObject?) -> Interactor? {
 
-		let view = self.screenletView as! AddBookmarkBasicView_default
+		let view = self.screenletView as! AddBookmarkView_default
 
-		let interactor = AddBookmarkBasicInteractor(screenlet: self,
+		let interactor = AddBookmarkInteractor(screenlet: self,
 		                                       folderId: folderId,
 		                                       title: view.title!,
 		                                       url: view.URL!)

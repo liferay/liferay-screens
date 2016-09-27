@@ -14,7 +14,7 @@
 import UIKit
 import LiferayScreens
 
-class AddBookmarkAdvancedView_default: BaseScreenletView {
+class AddBookmarkView_default: BaseScreenletView {
 
 	@IBOutlet weak var URLTextField: UITextField?
 	@IBOutlet weak var titleTextField: UITextField?
