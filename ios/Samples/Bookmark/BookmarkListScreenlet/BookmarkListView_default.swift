@@ -17,6 +17,20 @@ import LiferayScreens
 
 public class BookmarkListView_default: BaseListTableView {
 
+	let BookmarkCellId = "bookmarkCell"
+
+
+	//MARK: BaseScreenletView
+
+	public override var progressMessages: [String : ProgressMessages] {
+		return [
+			BaseScreenlet.DefaultAction: [.Working: NoProgressMessage]
+		]
+	}
+
+
+	//MARK: BaseListTableView
+
 	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
 		let bookmarkCell = cell as! BookmarkCell_default
 		let bookmark = object as! Bookmark
@@ -31,10 +45,14 @@ public class BookmarkListView_default: BaseListTableView {
 		bookmarkCell.nameLabel.text = "Loading..."
 	}
 
-	override public func doRegisterCellNib(id id: String) {
+	public override func doRegisterCellNibs() {
 		let nib = UINib(nibName: "BookmarkCell_default", bundle: NSBundle.mainBundle())
 
-		tableView?.registerNib(nib, forCellReuseIdentifier: id)
+		tableView?.registerNib(nib, forCellReuseIdentifier: BookmarkCellId)
+	}
+
+	override public func doGetCellId(row row: Int, object: AnyObject?) -> String {
+		return BookmarkCellId
 	}
 
 }

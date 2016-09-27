@@ -27,14 +27,14 @@ public class BookmarkListPageLiferayConnector: PaginationLiferayConnector {
 		super.init(startRow: startRow, endRow: endRow, computeRowCount: computeRowCount)
 	}
 
-	override public func doAddPageRowsServiceCall(session session: LRBatchSession, startRow: Int, endRow: Int) {
-		let service = LRBookmarksEntryService_v62(session: session)
+	public override func doAddPageRowsServiceCall(session session: LRBatchSession, startRow: Int, endRow: Int, obc: LRJSONObjectWrapper?) {
+		let service = LRBookmarksEntryService_v7(session: session)
 
 		do {
 			try service.getEntriesWithGroupId(groupId,
-				folderId: folderId,
-				start: Int32(startRow),
-				end: Int32(endRow))
+			                                  folderId: folderId,
+			                                  start: Int32(startRow),
+			                                  end: Int32(endRow))
 		}
 		catch  {
 			// ignore error: the method returns nil (converted to an error) because
@@ -43,7 +43,7 @@ public class BookmarkListPageLiferayConnector: PaginationLiferayConnector {
 	}
 
 	override public func doAddRowCountServiceCall(session session: LRBatchSession) {
-		let service = LRBookmarksEntryService_v62(session: session)
+		let service = LRBookmarksEntryService_v7(session: session)
 
 		do {
 			try service.getEntriesCountWithGroupId(groupId, folderId: folderId)
