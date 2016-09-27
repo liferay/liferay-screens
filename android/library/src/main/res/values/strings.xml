@@ -19,6 +19,7 @@
 	<string name="GalleryScreenlet_default">gallery_default</string>
 	<string name="CommentDisplayScreenlet_default">comment_display_default</string>
 	<string name="CommentListScreenlet_default">comment_list_default</string>
+	<string name="RatingScreenlet_default">rating_star_bar_default</string>
 	<string name="asset_image">asset image</string>
 	<string name="thumbs_up">thumbs up</string>
 	<string name="very_sad_smiley">sad smiley</string>

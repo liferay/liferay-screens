@@ -67,7 +67,7 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 		TypedArray typedArray =
 			context.getTheme().obtainStyledAttributes(attributes, R.styleable.RatingScreenlet, 0, 0);
 
-		int layoutId = typedArray.getResourceId(R.styleable.RatingScreenlet_layoutId, 0);
+		int layoutId = typedArray.getResourceId(R.styleable.RatingScreenlet_layoutId, getDefaultLayoutId());
 
 		autoLoad = typedArray.getBoolean(R.styleable.RatingScreenlet_autoLoad, true);
 		editable = typedArray.getBoolean(R.styleable.RatingScreenlet_editable, true);
