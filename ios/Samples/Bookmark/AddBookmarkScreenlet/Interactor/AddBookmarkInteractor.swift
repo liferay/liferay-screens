@@ -19,35 +19,42 @@ public class AddBookmarkInteractor: Interactor, LRCallback {
 	
 	public var resultBookmarkInfo: [String:AnyObject]?
 
+	var folderId: Int64
+	var title: String
+	var url: String
+
+
+	//MARK: Initializer
+
+	public init(screenlet: BaseScreenlet, folderId: Int64, title: String, url: String) {
+		self.folderId = folderId
+		self.title = title
+		self.url = url
+		super.init(screenlet: screenlet)
+	}
+
 
 	//MARK: Interactor
 
 	override public func start() -> Bool {
-		let screenlet = self.screenlet as! AddBookmarkScreenlet
-		let view = screenlet.screenletView as! AddBookmarkView_default
+		let session = SessionContext.createSessionFromCurrentSession()
+		session?.callback = self
 
-		if let url = view.URL {
-			let session = SessionContext.createSessionFromCurrentSession()
-			session?.callback = self
+		let service = LRBookmarksEntryService_v7(session: session)
 
-			let service = LRBookmarksEntryService_v7(session: session)
-
-			do {
-				try service.addEntryWithGroupId(LiferayServerContext.groupId,
-						folderId: screenlet.folderId,
-						name: view.title,
-						url: url,
-				    	description: "Added from Liferay Screens",
-				    	serviceContext: nil)
-
-				return true
-			}
-			catch {
-				return false
-			}
+		do {
+			try service.addEntryWithGroupId(LiferayServerContext.groupId,
+			                                folderId: folderId,
+			                                name: title,
+			                                url: url,
+			                                description: "Added from Liferay Screens",
+			                                serviceContext: nil)
+			
+			return true
 		}
-
-		return false
+		catch {
+			return false
+		}
 	}
 
 

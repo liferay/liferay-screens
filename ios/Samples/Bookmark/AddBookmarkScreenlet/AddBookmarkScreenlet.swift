@@ -28,7 +28,12 @@ public class AddBookmarkScreenlet: BaseScreenlet {
 
 	override public func createInteractor(name name: String?, sender: AnyObject?) -> Interactor? {
 
-		let interactor = AddBookmarkInteractor(screenlet: self)
+		let view = self.screenletView as! AddBookmarkView_default
+
+		let interactor = AddBookmarkInteractor(screenlet: self,
+		                                       folderId: folderId,
+		                                       title: view.title!,
+		                                       url: view.URL!)
 
 		//Called when interactor finish succesfully
 		interactor.onSuccess = {
