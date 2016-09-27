@@ -24,16 +24,20 @@ public class AddBookmarkAdvancedScreenlet: BaseScreenlet {
 	@IBInspectable var folderId: Int64 = 0
 
 
+	//Screenlet ViewModel
+	var viewModel: AddBookmarkAdvancedViewModel {
+		return self.screenletView as! AddBookmarkAdvancedViewModel
+	}
+
+
 	//MARK: BaseScreenlet
 
 	override public func createInteractor(name name: String?, sender: AnyObject?) -> Interactor? {
 
-		let view = self.screenletView as! AddBookmarkAdvancedView_default
-
 		let interactor = AddBookmarkBasicInteractor(screenlet: self,
 		                                       folderId: folderId,
-		                                       title: view.title!,
-		                                       url: view.URL!)
+		                                       title: viewModel.title!,
+		                                       url: viewModel.URL!)
 
 		//Called when interactor finish succesfully
 		interactor.onSuccess = {
