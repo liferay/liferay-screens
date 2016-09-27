@@ -24,7 +24,7 @@ public class AddBookmarkInteractor: Interactor, LRCallback {
 
 	override public func start() -> Bool {
 		let screenlet = self.screenlet as! AddBookmarkScreenlet
-		let view = screenlet.screenletView as! AddBookmarkView
+		let view = screenlet.screenletView as! AddBookmarkView_default
 
 		if let url = view.URL {
 			let session = SessionContext.createSessionFromCurrentSession()
