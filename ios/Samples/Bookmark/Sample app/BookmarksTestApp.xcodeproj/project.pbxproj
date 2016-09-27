@@ -11,6 +11,10 @@
 		0B27F1371D9A7D6700A1F67A /* AddBookmarkBasicInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B27F1321D9A7D6700A1F67A /* AddBookmarkBasicInteractor.swift */; };
 		0B27F1381D9A7D6700A1F67A /* AddBookmarkBasicView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B27F1341D9A7D6700A1F67A /* AddBookmarkBasicView_default.swift */; };
 		0B27F1391D9A7D6700A1F67A /* AddBookmarkBasicView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B27F1351D9A7D6700A1F67A /* AddBookmarkBasicView_default.xib */; };
+		0B27F1411D9A8CD000A1F67A /* AddBookmarkAdvancedScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B27F13B1D9A8CD000A1F67A /* AddBookmarkAdvancedScreenlet.swift */; };
+		0B27F1421D9A8CD000A1F67A /* AddBookmarkAdvancedInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B27F13D1D9A8CD000A1F67A /* AddBookmarkAdvancedInteractor.swift */; };
+		0B27F1431D9A8CD000A1F67A /* AddBookmarkAdvancedView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B27F13F1D9A8CD000A1F67A /* AddBookmarkAdvancedView_default.swift */; };
+		0B27F1441D9A8CD000A1F67A /* AddBookmarkAdvancedView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B27F1401D9A8CD000A1F67A /* AddBookmarkAdvancedView_default.xib */; };
 		887844F31C1EDF41009459C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887844F21C1EDF41009459C8 /* AppDelegate.swift */; };
 		887844F51C1EDF41009459C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887844F41C1EDF41009459C8 /* ViewController.swift */; };
 		887844F81C1EDF41009459C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 887844F61C1EDF41009459C8 /* Main.storyboard */; };
@@ -31,6 +35,10 @@
 		0B27F1321D9A7D6700A1F67A /* AddBookmarkBasicInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookmarkBasicInteractor.swift; sourceTree = "<group>"; };
 		0B27F1341D9A7D6700A1F67A /* AddBookmarkBasicView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookmarkBasicView_default.swift; sourceTree = "<group>"; };
 		0B27F1351D9A7D6700A1F67A /* AddBookmarkBasicView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddBookmarkBasicView_default.xib; sourceTree = "<group>"; };
+		0B27F13B1D9A8CD000A1F67A /* AddBookmarkAdvancedScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookmarkAdvancedScreenlet.swift; sourceTree = "<group>"; };
+		0B27F13D1D9A8CD000A1F67A /* AddBookmarkAdvancedInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookmarkAdvancedInteractor.swift; sourceTree = "<group>"; };
+		0B27F13F1D9A8CD000A1F67A /* AddBookmarkAdvancedView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookmarkAdvancedView_default.swift; sourceTree = "<group>"; };
+		0B27F1401D9A8CD000A1F67A /* AddBookmarkAdvancedView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddBookmarkAdvancedView_default.xib; sourceTree = "<group>"; };
 		2C703CA19C379E848E033A45 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		887844EF1C1EDF41009459C8 /* BookmarksTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookmarksTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		887844F21C1EDF41009459C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,9 +106,38 @@
 			path = Themes;
 			sourceTree = "<group>";
 		};
+		0B27F13A1D9A8CD000A1F67A /* AddBookmarkAdvancedScreenlet */ = {
+			isa = PBXGroup;
+			children = (
+				0B27F13B1D9A8CD000A1F67A /* AddBookmarkAdvancedScreenlet.swift */,
+				0B27F13C1D9A8CD000A1F67A /* Interactor */,
+				0B27F13E1D9A8CD000A1F67A /* Themes */,
+			);
+			name = AddBookmarkAdvancedScreenlet;
+			path = ../AddBookmarkAdvancedScreenlet;
+			sourceTree = "<group>";
+		};
+		0B27F13C1D9A8CD000A1F67A /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				0B27F13D1D9A8CD000A1F67A /* AddBookmarkAdvancedInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		0B27F13E1D9A8CD000A1F67A /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				0B27F13F1D9A8CD000A1F67A /* AddBookmarkAdvancedView_default.swift */,
+				0B27F1401D9A8CD000A1F67A /* AddBookmarkAdvancedView_default.xib */,
+			);
+			path = Themes;
+			sourceTree = "<group>";
+		};
 		887844E61C1EDF41009459C8 = {
 			isa = PBXGroup;
 			children = (
+				0B27F13A1D9A8CD000A1F67A /* AddBookmarkAdvancedScreenlet */,
 				0B27F12F1D9A7D6700A1F67A /* AddBookmarkBasicScreenlet */,
 				88F2A6DF1C89C09C0078F766 /* BookmarkListScreenlet */,
 				887844F11C1EDF41009459C8 /* TestApp */,
@@ -208,6 +245,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B27F1441D9A8CD000A1F67A /* AddBookmarkAdvancedView_default.xib in Resources */,
 				887844FD1C1EDF41009459C8 /* LaunchScreen.storyboard in Resources */,
 				0B27F1391D9A7D6700A1F67A /* AddBookmarkBasicView_default.xib in Resources */,
 				887844FA1C1EDF41009459C8 /* Assets.xcassets in Resources */,
@@ -277,11 +315,14 @@
 				88F2A6EC1C89C09C0078F766 /* BookmarkListView_default.swift in Sources */,
 				0B27F1371D9A7D6700A1F67A /* AddBookmarkBasicInteractor.swift in Sources */,
 				0B27F1381D9A7D6700A1F67A /* AddBookmarkBasicView_default.swift in Sources */,
+				0B27F1411D9A8CD000A1F67A /* AddBookmarkAdvancedScreenlet.swift in Sources */,
+				0B27F1431D9A8CD000A1F67A /* AddBookmarkAdvancedView_default.swift in Sources */,
 				88F2A6EA1C89C09C0078F766 /* BookmarkListPageLoadInteractor.swift in Sources */,
 				88F2A6EB1C89C09C0078F766 /* BookmarkListScreenlet.swift in Sources */,
 				887844F51C1EDF41009459C8 /* ViewController.swift in Sources */,
 				88F2A6E91C89C09C0078F766 /* BookmarkListPageLiferayConnector.swift in Sources */,
 				88F2A6E71C89C09C0078F766 /* BookmarkCell_default.swift in Sources */,
+				0B27F1421D9A8CD000A1F67A /* AddBookmarkAdvancedInteractor.swift in Sources */,
 				887844F31C1EDF41009459C8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
