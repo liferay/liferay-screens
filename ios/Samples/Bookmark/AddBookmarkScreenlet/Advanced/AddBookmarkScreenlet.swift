@@ -14,6 +14,16 @@
 import UIKit
 import LiferayScreens
 
+@objc public protocol AddBookmarkScreenletDelegate: BaseScreenletDelegate {
+
+	optional func screenlet(screenlet: AddBookmarkScreenlet,
+	                        onBookmarkAdded bookmark: [String: AnyObject])
+
+	optional func screenlet(screenlet: AddBookmarkScreenlet,
+	                        onAddBookmarkError error: NSError)
+	
+}
+
 
 //Screenlet used for adding bookmarks to a certain folder
 public class AddBookmarkScreenlet: BaseScreenlet {
@@ -30,9 +40,14 @@ public class AddBookmarkScreenlet: BaseScreenlet {
 	@IBInspectable var folderId: Int64 = 0
 
 
-	//Screenlet ViewModel
+	///Screenlet ViewModel
 	var viewModel: AddBookmarkViewModel {
 		return self.screenletView as! AddBookmarkViewModel
+	}
+
+	///Screenlet Delegate
+	var addBookmarkDelegate: AddBookmarkScreenletDelegate? {
+		return self.delegate as? AddBookmarkScreenletDelegate
 	}
 
 
@@ -60,13 +75,12 @@ public class AddBookmarkScreenlet: BaseScreenlet {
 
 		//Called when interactor finish succesfully
 		interactor.onSuccess = {
-			let bookmarkName = interactor.resultBookmarkInfo!["name"] as! String
-			print("Bookmark \"\(bookmarkName)\" saved!")
+			self.addBookmarkDelegate?.screenlet?(self, onBookmarkAdded: interactor.resultBookmarkInfo)
 		}
 
 		//Called when interactor finish with error
-		interactor.onFailure = { _ in
-			print("An error occurred saving the bookmark")
+		interactor.onFailure = { error in
+			self.addBookmarkDelegate?.screenlet?(self, onAddBookmarkError: error)
 		}
 
 		return interactor

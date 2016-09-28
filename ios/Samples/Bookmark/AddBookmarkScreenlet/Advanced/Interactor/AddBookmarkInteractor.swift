@@ -17,7 +17,7 @@ import LiferayScreens
 
 public class AddBookmarkInteractor: ServerWriteConnectorInteractor {
 	
-	public var resultBookmarkInfo: [String:AnyObject]?
+	public var resultBookmarkInfo: [String:AnyObject] = [:]
 
 	public let folderId: Int64
 	public let title: String
