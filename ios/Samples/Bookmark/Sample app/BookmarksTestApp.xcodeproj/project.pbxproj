@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B7C53CC1D9BEEF3007650BB /* AddBookmarkLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7C53CB1D9BEEF3007650BB /* AddBookmarkLiferayConnector.swift */; };
 		0BCC91F41D9AB1B6000197F9 /* BookmarkListView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2A6E51C89C09C0078F766 /* BookmarkListView_default.swift */; };
 		0BCC91F61D9AB1B6000197F9 /* BookmarkListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2A6E31C89C09C0078F766 /* BookmarkListPageLoadInteractor.swift */; };
 		0BCC91F71D9AB1B6000197F9 /* BookmarkListScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2A6E41C89C09C0078F766 /* BookmarkListScreenlet.swift */; };
@@ -58,6 +59,7 @@
 		0B27F1791D9AA38F00A1F67A /* AddBookmarkView_default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookmarkView_default.swift; sourceTree = "<group>"; };
 		0B27F17A1D9AA38F00A1F67A /* AddBookmarkView_default.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddBookmarkView_default.xib; sourceTree = "<group>"; };
 		0B27F1931D9AAD7000A1F67A /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/BookmarksTestApp-hczydzjhzsihefapgsbecjmtnshj/Build/Products/Debug-iphonesimulator/Pods.framework"; sourceTree = "<group>"; };
+		0B7C53CB1D9BEEF3007650BB /* AddBookmarkLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookmarkLiferayConnector.swift; sourceTree = "<group>"; };
 		0BCC920D1D9AB1B6000197F9 /* BookmarksAdvanced.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookmarksAdvanced.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BCC921D1D9BD27C000197F9 /* GetTitleInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTitleInteractor.swift; sourceTree = "<group>"; };
 		2C703CA19C379E848E033A45 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			children = (
 				0B27F16D1D9AA38F00A1F67A /* AddBookmarkScreenlet.swift */,
 				0B27F16E1D9AA38F00A1F67A /* AddBookmarkViewModel.swift */,
+				0B7C53CA1D9BEEEA007650BB /* Connector */,
 				0B27F16F1D9AA38F00A1F67A /* Interactor */,
 				0B27F1711D9AA38F00A1F67A /* Themes */,
 			);
@@ -173,6 +176,14 @@
 				0B27F17A1D9AA38F00A1F67A /* AddBookmarkView_default.xib */,
 			);
 			path = Themes;
+			sourceTree = "<group>";
+		};
+		0B7C53CA1D9BEEEA007650BB /* Connector */ = {
+			isa = PBXGroup;
+			children = (
+				0B7C53CB1D9BEEF3007650BB /* AddBookmarkLiferayConnector.swift */,
+			);
+			path = Connector;
 			sourceTree = "<group>";
 		};
 		1C0D1839B2E15F8FBEFD2C52 /* Frameworks */ = {
@@ -446,6 +457,7 @@
 				0BCC92191D9AB247000197F9 /* AddBookmarkViewModel.swift in Sources */,
 				0BCC91F41D9AB1B6000197F9 /* BookmarkListView_default.swift in Sources */,
 				0BCC921B1D9AB247000197F9 /* AddBookmarkView_default.swift in Sources */,
+				0B7C53CC1D9BEEF3007650BB /* AddBookmarkLiferayConnector.swift in Sources */,
 				0BCC92181D9AB247000197F9 /* AddBookmarkScreenlet.swift in Sources */,
 				0BCC91F61D9AB1B6000197F9 /* BookmarkListPageLoadInteractor.swift in Sources */,
 				0BCC91F71D9AB1B6000197F9 /* BookmarkListScreenlet.swift in Sources */,

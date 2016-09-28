@@ -15,7 +15,7 @@ import UIKit
 import LiferayScreens
 
 
-public class AddBookmarkInteractor: Interactor, LRCallback {
+public class AddBookmarkInteractor: ServerWriteConnectorInteractor {
 	
 	public var resultBookmarkInfo: [String:AnyObject]?
 
@@ -34,41 +34,17 @@ public class AddBookmarkInteractor: Interactor, LRCallback {
 	}
 
 
-	//MARK: Interactor
+	//MARK: ServerConnectorInteractor
 
-	override public func start() -> Bool {
-		let session = SessionContext.createSessionFromCurrentSession()
-		session?.callback = self
-
-		let service = LRBookmarksEntryService_v7(session: session)
-
-		do {
-			try service.addEntryWithGroupId(LiferayServerContext.groupId,
-			                                folderId: folderId,
-			                                name: title,
-			                                url: url,
-			                                description: "Added from Liferay Screens",
-			                                serviceContext: nil)
-			
-			return true
-		}
-		catch {
-			return false
-		}
+	public override func createConnector() -> ServerConnector? {
+		return AddBookmarkLiferayConnector(folderId: folderId, title: title, url: url)
 	}
 
-
-	//MARK: LRCallback
-
-	public func onFailure(error: NSError!) {
-		self.callOnFailure(error)
-	}
-
-	public func onSuccess(result: AnyObject!) {
-		//Save result bookmark info
-		resultBookmarkInfo = (result as! [String:AnyObject])
-
-		self.callOnSuccess()
+	override public func completedConnector(c: ServerConnector) {
+		if let addCon = (c as? AddBookmarkLiferayConnector),
+			bookmarkInfo = addCon.resultBookmarkInfo {
+			self.resultBookmarkInfo = bookmarkInfo
+		}
 	}
 
 }
