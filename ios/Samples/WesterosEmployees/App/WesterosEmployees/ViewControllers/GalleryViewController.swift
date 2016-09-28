@@ -26,6 +26,8 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 		}
 	}
 
+	var loaded: Bool = false
+
 	
 	//MARK: Outlets
 
@@ -56,7 +58,10 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 	}
 
 	override func cardWillAppear() {
-		imageGalleryScreenlet?.loadList()
+		if !loaded {
+			imageGalleryScreenlet?.loadList()
+			loaded = true
+		}
 	}
 
 

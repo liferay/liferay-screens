@@ -18,6 +18,9 @@ class DocumentationViewController: CardViewController, AssetListScreenletDelegat
 
 	var selectedFileEntry: FileEntry?
 
+	var loaded: Bool = false
+
+	
 	//MARK: Outlets
 
 	@IBOutlet weak var assetListScreenlet: AssetListScreenlet? {
@@ -40,7 +43,10 @@ class DocumentationViewController: CardViewController, AssetListScreenletDelegat
 	//MARK: CardViewController
 
 	override func cardWillAppear() {
-		assetListScreenlet?.loadList()
+		if !loaded {
+			assetListScreenlet?.loadList()
+			loaded = true
+		}
 	}
 
 

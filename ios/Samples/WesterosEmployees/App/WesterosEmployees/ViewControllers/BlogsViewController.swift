@@ -18,6 +18,8 @@ class BlogsViewController: CardViewController, AssetListScreenletDelegate {
 
 	var selectedBlogEntry: BlogsEntry?
 
+	var loaded: Bool = false
+	
 
 	//MARK: Outlets
 
@@ -40,7 +42,10 @@ class BlogsViewController: CardViewController, AssetListScreenletDelegate {
 	//MARK: CardViewController
 
 	override func cardWillAppear() {
-		assetListScreenlet?.loadList()
+		if !loaded {
+			assetListScreenlet?.loadList()
+			loaded = true
+		}
 	}
 
 
