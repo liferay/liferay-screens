@@ -19,16 +19,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1Q-9N-jPT" customClass="BookmarkListScreenlet" customModule="BookmarksAdvanced" customModuleProvider="target">
-                                <rect key="frame" x="10" y="64" width="300" height="484"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="i1Q-9N-jPT" secondAttribute="bottom" constant="20" id="Gth-lV-nT6"/>
-                            <constraint firstAttribute="trailing" secondItem="i1Q-9N-jPT" secondAttribute="trailing" constant="10" id="Ihg-Q2-kBf"/>
-                            <constraint firstItem="i1Q-9N-jPT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="ajL-KX-iap"/>
-                            <constraint firstItem="i1Q-9N-jPT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="btK-tA-yCD"/>
+                            <constraint firstItem="i1Q-9N-jPT" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Dkb-s3-XlK"/>
+                            <constraint firstAttribute="trailing" secondItem="i1Q-9N-jPT" secondAttribute="trailing" id="Mr6-zE-O3D"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="i1Q-9N-jPT" secondAttribute="bottom" id="f2w-Yh-qeo"/>
+                            <constraint firstItem="i1Q-9N-jPT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="xMK-Vi-oE8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Bookmarks" id="3ba-Vv-F7L">
