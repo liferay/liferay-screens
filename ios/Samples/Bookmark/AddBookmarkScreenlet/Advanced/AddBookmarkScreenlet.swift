@@ -73,7 +73,7 @@ public class AddBookmarkScreenlet: BaseScreenlet {
 	}
 
 	private func createGetTitleInteractor() -> Interactor {
-		let interactor = GetSiteTitleInteractor(url: viewModel.URL!)
+		let interactor = GetWebTitleInteractor(url: viewModel.URL!)
 
 		//Called when interactor finish succesfully
 		interactor.onSuccess = {

@@ -14,7 +14,7 @@
 import UIKit
 import LiferayScreens
 
-public class GetSiteTitleInteractor: Interactor {
+public class GetWebTitleInteractor: ServerReadConnectorInteractor {
 
 	public var resultTitle: String?
 
