@@ -18,40 +18,36 @@ public class GetSiteTitleInteractor: Interactor {
 
 	public var resultTitle: String?
 
-	var url: String
+	var url: NSURL?
 
 
 	//MARK: Initializer
 
 	public init(url: String) {
-		self.url = url
+		self.url = NSURL(string: url)
 		super.init(screenlet: nil)
 	}
 
-	override public func start() -> Bool {
-		if let URL = NSURL(string: url) {
 
-			// Use the NSURLSession class to retrieve the HTML
-			NSURLSession.sharedSession().dataTaskWithURL(URL) {
-				(data, response, error) in
+	//MARK: ServerConnectorInteractor
 
-				if let errorValue = error {
-					self.callOnFailure(errorValue)
-				}
-				else {
-					if let data = data, html = NSString(data: data, encoding: NSUTF8StringEncoding) {
-						self.resultTitle = self.parseTitle(html)
-					}
-
-					self.callOnSuccess()
-				}
-			}.resume()
-
-			return true
+	public override func createConnector() -> ServerConnector? {
+		if let url = url {
+			return HttpConnector(url: url)
 		}
 
-		return false
+		return nil
 	}
+
+	override public func completedConnector(c: ServerConnector) {
+		if let httpCon = (c as? HttpConnector), data = httpCon.resultData,
+			html = NSString(data: data, encoding: NSUTF8StringEncoding) {
+			self.resultTitle = parseTitle(html)
+		}
+	}
+
+
+	//MARK: Private methods
 
 	///Parse the title from a webpage HTML
 	private func parseTitle(html: NSString) -> String {
