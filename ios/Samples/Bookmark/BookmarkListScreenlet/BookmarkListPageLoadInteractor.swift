@@ -47,6 +47,16 @@ public class BookmarkListPageLoadInteractor : BaseListPageLoadInteractor {
 		return Bookmark(attributes: serverResult)
 	}
 
+	public override func sectionForRowObject(object: AnyObject) -> String? {
+		guard let bookmark = object as? Bookmark else {
+			return nil
+		}
+
+		let host = NSURL(string: bookmark.url)?.host
+
+		return host
+	}
+
 	override public func cacheKey(op: PaginationLiferayConnector) -> String {
 		return "\(groupId)-\(folderId)"
 	}
