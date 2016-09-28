@@ -16,15 +16,44 @@ import LiferayScreens
 
 class AddBookmarkView_default: BaseScreenletView, AddBookmarkViewModel {
 
+
+	//MARK: Outlets
+
 	@IBOutlet weak var URLTextField: UITextField?
 	@IBOutlet weak var titleTextField: UITextField?
+	@IBOutlet weak var addBookmarkButton: UIButton? {
+		didSet {
+			addBookmarkButton?.restorationIdentifier = AddBookmarkScreenlet.AddBookmarkAction
+		}
+	}
+	@IBOutlet weak var getTitleButton: UIButton? {
+		didSet {
+			getTitleButton?.restorationIdentifier = AddBookmarkScreenlet.GetTitleAction
+		}
+	}
+
+
+	//MARK: AddBookmarkViewModel
 
 	var URL: String? {
 		return URLTextField?.text
 	}
 
 	var title: String? {
-		return titleTextField?.text
+		get {
+			return titleTextField?.text
+		}
+		set {
+			self.titleTextField?.text = newValue
+		}
 	}
 
+
+	//MARK: View actions
+
+	@IBAction func urlTextFieldDidChange(textField: UITextField) {
+		getTitleButton?.enabled = !(textField.text?.isEmpty ?? true)
+	}
+
+	
 }

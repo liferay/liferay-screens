@@ -19,6 +19,12 @@ import LiferayScreens
 public class AddBookmarkScreenlet: BaseScreenlet {
 
 
+	//MARK: Actions
+
+	static let AddBookmarkAction = "add-bookmark"
+	static let GetTitleAction = "get-title"
+
+
 	//MARK: Inspectables
 
 	@IBInspectable var folderId: Int64 = 0
@@ -32,8 +38,21 @@ public class AddBookmarkScreenlet: BaseScreenlet {
 
 	//MARK: BaseScreenlet
 
-	override public func createInteractor(name name: String?, sender: AnyObject?) -> Interactor? {
+	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+		switch name {
+		case AddBookmarkScreenlet.AddBookmarkAction:
+			return createAddBookmarkInteractor()
+		case AddBookmarkScreenlet.GetTitleAction:
+			return createGetTitleInteractor()
+		default:
+			return nil
+		}
+	}
 
+
+	//MARK: Private methods
+
+	private func createAddBookmarkInteractor() -> Interactor {
 		let interactor = AddBookmarkInteractor(screenlet: self,
 		                                       folderId: folderId,
 		                                       title: viewModel.title!,
@@ -53,4 +72,20 @@ public class AddBookmarkScreenlet: BaseScreenlet {
 		return interactor
 	}
 
+	private func createGetTitleInteractor() -> Interactor {
+		let interactor = GetSiteTitleInteractor(url: viewModel.URL!)
+
+		//Called when interactor finish succesfully
+		interactor.onSuccess = {
+			let title = interactor.resultTitle
+			self.viewModel.title = title
+		}
+
+		//Called when interactor finish with error
+		interactor.onFailure = { _ in
+			print("An error occurred retrieving the title")
+		}
+
+		return interactor
+	}
 }
