@@ -126,6 +126,12 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		self.ratingScreenlet?.alpha = 0
 	}
 
+	override func viewWillDisappear(animated: Bool) {
+		super.viewWillAppear(animated)
+
+		self.closeDetail()
+	}
+
 
 	//MARK: Init methods
 
