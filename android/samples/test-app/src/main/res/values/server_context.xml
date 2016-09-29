@@ -1,115 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="liferay_server">https://demo.liferay.com/screens</string>
-	<string name="liferay_company_id">20155</string>
-	<string name="liferay_group_id">20525</string>
+	<string name="liferay_server">http://screens-challenge.liferay.org.es/</string>
+	<integer name="liferay_portal_version">70</integer>
+	<string name="liferay_company_id">20116</string>
+	<string name="liferay_group_id">33475</string>
 
 	<!--SignupScreenlet values-->
 	<string name="liferay_anonymousApiUserName">anonymous1@liferay.com</string>
 	<string name="liferay_anonymousApiPassword">anonymous1</string>
 
 	<!--Default user & password-->
-	<string name="default_user_name">test@liferay.com</string>
-	<string name="default_password">test</string>
+	<string name="liferay_default_user_name">test@liferay.com</string>
+	<string name="liferay_default_password">test</string>
 
 	<!--DDLFormScreenlet values-->
-	<string name="liferay_recordset_id">20596</string>
-	<string name="liferay_structure_id">20591</string>
+	<string name="liferay_recordset_id">33574</string>
+	<string name="liferay_structure_id">33570</string>
 	<string name="liferay_recordset_fields">Title</string>
-	<string name="folder_id">20617</string>
-	<string name="repository_id">20525</string>
+	<string name="liferay_ddm_folder_id">33579</string>
+	<string name="liferay_ddm_repository_id">33475</string>
 
 	<!--AddBookmarkScreenlet values-->
-	<string name="bookmark_folder">20622</string>
+	<string name="liferay_bookmark_folder">33583</string>
 
 	<!--WebContentDisplayScreenlet values-->
-	<string name="liferay_article_id">63864</string>
-
-	<!--CommentListScreenlet values-->
-	<string name="liferay_comment_asset_className">com.liferay.blogs.kernel.model.BlogsEntry</string>
-	<string name="liferay_comment_asset_id">38699</string>
-
-	<!--RatingScreenlet-->
-	<string name="liferay_rating_thumb_asset_id">31869</string>
-	<string name="liferay_rating_star_asset_id">32049</string>
-	<string name="liferay_rating_like_asset_id">31904</string>
-	<string name="liferay_rating_reactions_emojis_asset_id">36849</string>
-
-	<string name="liferay_article_structured_structure_id">63875</string>
-	<string name="liferay_article_structured_article_id">63879</string>
+	<string name="liferay_article_id">33593</string>
+	<string name="liferay_article_structured_structure_id">33613</string>
+	<string name="liferay_article_structured_article_id">33620</string>
 	<string name="liferay_article_structured_label_fields_first_field">Text</string>
 	<string name="liferay_article_structured_label_fields">Text,TextBox</string>
+	<string name="liferay_article_id_with_template">33632</string>
+	<string name="liferay_template_id1">33617</string>
+	<string name="liferay_template_id2">33649</string>
 
-	<string name="liferay_article_id_with_template">20602</string>
-	<string name="liferay_template_id1">56432</string>
-	<string name="liferay_template_id2">56435</string>
-
-	<string name="web_content_folderId">20600</string>
+	<string name="liferay_web_content_folder_id">33591</string>
+	<string name="liferay_images_folder">33652</string>
 
 	<string name="portlet_item_name1">manual</string>
 	<string name="portlet_item_name2">dynamic</string>
 
+	<!--CommentListScreenlet values-->
+	<string name="liferay_comment_asset_className">com.liferay.blogs.kernel.model.BlogsEntry</string>
+	<string name="liferay_comment_asset_id">33712</string>
+
+	<!--RatingScreenlet-->
+	<string name="liferay_rating_thumb_asset_id">33712</string>
+	<string name="liferay_rating_star_asset_id">33712</string>
+	<string name="liferay_rating_like_asset_id">33712</string>
+	<string name="liferay_rating_reactions_emojis_asset_id">33712</string>
+
+	<string name="liferay_user_entryId">20169</string>
+
 	<!-- OAuth values -->
-	<string name="liferay_oauth_consumer_key">f4adeb99-9ddf-4c9c-a408-347ce8be340a</string>
-	<string name="liferay_oauth_consumer_secret">0176690f0fd46a4a3a839ca9bf4edd0c</string>
-
-	<string name="liferay_user_entryId">0</string>
-
-	<string name="liferay_images_folder">65757</string>
-
-	<!-- local values -->
-	<!--<string name="liferay_server">http://192.168.40.143:8080</string>-->
-	<!--<string name="liferay_company_id">20155</string>-->
-	<!--<string name="liferay_group_id">20202</string>-->
-
-	<!--<string name="default_user_name">test1@liferay.com</string>&ndash;&gt;-->
-	<!--<string name="default_password">test1</string>-->
-
-	<!-- SignupScreenlet values -->
-	<!--<string name="liferay_anonymousApiUserName">test@liferay.com</string>-->
-	<!--<string name="liferay_anonymousApiPassword">test</string>-->
-
-	<!-- DDLFormScreenlet values -->
-	<!--<string name="liferay_recordset_id">34382</string>-->
-	<!--<string name="liferay_structure_id">34375</string>-->
-	<!--<string name="liferay_recordset_fields">Title</string>-->
-	<!--<string name="folder_id">20617</string>-->
-	<!--<string name="repository_id">20525</string>-->
-
-	<!--<string name="liferay_article_id">85721</string>-->
-	<!--<string name="liferay_template_id1">47245</string>-->
-	<!--<string name="liferay_template_id2">47239</string>-->
-
-	<!--<string name="portlet_item_name1">example</string>-->
-	<!--<string name="folderId">0</string>-->
-	<!--<string name="article_id_structured">85736</string>-->
-	<!--<string name="structure_id_structured">85732</string>-->
-
-	<!--liferay 7-->
-
-	<!--<integer name="liferay_portal_version">70</integer>-->
-	<!--<string name="liferay_server">http://192.168.40.253:8080</string>-->
-	<!--<string name="liferay_company_id">20202</string>-->
-	<!--<string name="liferay_group_id">20233</string>-->
-
-	<!--<string name="liferay_article_id">31201</string>-->
-	<!--<string name="liferay_template_id1">21912</string>-->
-	<!--<string name="liferay_template_id2">21916</string>-->
-
-	<!--<string name="liferay_recordset_id">21958</string>-->
-	<!--<string name="liferay_structure_id">21953</string>-->
-	<!--<string name="liferay_recordset_fields">Title</string>-->
-	<!--<string name="folder_id">21931</string>-->
-	<!--<string name="repository_id">20246</string>-->
-
-	<!--<string name="bookmark_folder">21934</string>-->
-
-	<!--<string name="portlet_item_name1">example</string>-->
-	<!--<string name="portlet_item_name2">dynamic</string>-->
-
-	<!--<string name="folderId">31237</string>-->
-	<!--<string name="article_id_structured">31221</string>-->
-	<!--<string name="structure_id_structured">31214</string>-->
+	<string name="liferay_oauth_consumer_key"> </string>
+	<string name="liferay_oauth_consumer_secret"> </string>
 
 </resources>

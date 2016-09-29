@@ -57,9 +57,9 @@ public class LoginActivity extends ThemeActivity implements LoginListener {
 
 	private void setDefaultValues() {
 		EditText login = (EditText) loginScreenlet.findViewById(R.id.liferay_login);
-		login.setText(getString(R.string.default_user_name));
+		login.setText(getString(R.string.liferay_default_user_name));
 
 		EditText password = (EditText) loginScreenlet.findViewById(R.id.liferay_password);
-		password.setText(getString(R.string.default_password));
+		password.setText(getString(R.string.liferay_default_password));
 	}
 }
