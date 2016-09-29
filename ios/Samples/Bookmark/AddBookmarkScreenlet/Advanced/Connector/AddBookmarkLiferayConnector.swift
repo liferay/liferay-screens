@@ -20,7 +20,11 @@ public class AddBookmarkLiferayConnector: ServerConnector {
 	public let title: String
 	public let url: String
 
+	///Resulted bookmark info from the service
 	public var resultBookmarkInfo: [String:AnyObject]?
+
+
+	//MARK: Initializer
 
 	public init(folderId: Int64, title: String, url: String) {
 		self.folderId = folderId
@@ -28,6 +32,9 @@ public class AddBookmarkLiferayConnector: ServerConnector {
 		self.url = url
 		super.init()
 	}
+
+
+	//MARK: ServerConnector
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()

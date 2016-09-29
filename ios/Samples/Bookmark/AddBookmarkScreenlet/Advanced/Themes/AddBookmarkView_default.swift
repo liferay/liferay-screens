@@ -49,13 +49,16 @@ class AddBookmarkView_default: BaseScreenletView, AddBookmarkViewModel {
 	}
 
 
-	//MARK: View actions
+	//MARK: UITextFieldDelegate
 
 	func textFieldDidEndEditing(textField: UITextField) {
 		if textField == URLTextField {
 			userAction(name: AddBookmarkScreenlet.GetTitleAction)
 		}
 	}
+
+
+	//MARK: View actions
 
 	@IBAction func urlTextFieldDidChange(textField: UITextField) {
 		getTitleButton?.enabled = !(textField.text?.isEmpty ?? true)

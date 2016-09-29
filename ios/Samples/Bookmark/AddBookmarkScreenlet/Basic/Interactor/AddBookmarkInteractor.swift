@@ -16,12 +16,13 @@ import LiferayScreens
 
 
 public class AddBookmarkInteractor: Interactor, LRCallback {
-	
-	public var resultBookmarkInfo: [String:AnyObject]?
 
 	public let folderId: Int64
 	public let title: String
 	public let url: String
+
+	///Resulted bookmark info from the service
+	public var resultBookmarkInfo: [String:AnyObject]?
 
 
 	//MARK: Initializer

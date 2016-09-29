@@ -16,15 +16,16 @@ import LiferayScreens
 
 public class GetWebTitleInteractor: ServerReadConnectorInteractor {
 
-	public var resultTitle: String?
+	public let url: String?
 
-	var url: NSURL?
+	///Resulted title from the webpage
+	public var resultTitle: String?
 
 
 	//MARK: Initializer
 
 	public init(url: String) {
-		self.url = NSURL(string: url)
+		self.url = url
 		super.init(screenlet: nil)
 	}
 
@@ -32,8 +33,8 @@ public class GetWebTitleInteractor: ServerReadConnectorInteractor {
 	//MARK: ServerConnectorInteractor
 
 	public override func createConnector() -> ServerConnector? {
-		if let url = url {
-			return HttpConnector(url: url)
+		if let url = url, URL = NSURL(string: url) {
+			return HttpConnector(url: URL)
 		}
 
 		return nil
