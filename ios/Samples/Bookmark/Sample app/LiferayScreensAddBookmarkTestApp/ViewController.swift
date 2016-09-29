@@ -18,9 +18,12 @@ class ViewController: UIViewController {
 
 
 	//MARK: Outlets
+
 	@IBOutlet weak var listBookmarkScreenlet: BookmarkListScreenlet?
 
 	@IBOutlet weak var addBookmarkScreenlet: AddBookmarkScreenlet?
+
+	@IBOutlet weak var selectViewControl: UISegmentedControl!
 
 
 	//MARK: UIViewController
@@ -31,6 +34,13 @@ class ViewController: UIViewController {
 		let folderId = (LiferayServerContext.propertyForKey("folderId") as! NSNumber).longLongValue
 		listBookmarkScreenlet?.folderId = folderId
 		addBookmarkScreenlet?.folderId = folderId
+	}
+
+
+	@IBAction func controlValueChanged(sender: UISegmentedControl) {
+		listBookmarkScreenlet?.themeName =
+				selectViewControl.selectedSegmentIndex == 0 ? "default" : "default-collection"
+		listBookmarkScreenlet?.loadList()
 	}
 
 }

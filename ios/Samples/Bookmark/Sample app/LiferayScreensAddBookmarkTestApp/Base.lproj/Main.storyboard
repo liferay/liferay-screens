@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Bookmarks-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BookmarksAdvanced" customModuleProvider="target" sceneMemberID="viewController">
@@ -15,12 +15,15 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1Q-9N-jPT" customClass="BookmarkListScreenlet" customModule="BookmarksAdvanced" customModuleProvider="target">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i1Q-9N-jPT" customClass="BookmarkListScreenlet" customModule="BookmarksAdvanced" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -31,7 +34,20 @@
                             <constraint firstItem="i1Q-9N-jPT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="xMK-Vi-oE8"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Bookmarks" id="3ba-Vv-F7L">
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="3ba-Vv-F7L">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="5GO-Nw-QWc">
+                            <rect key="frame" x="84.5" y="7" width="151" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="List"/>
+                                <segment title="Collection"/>
+                            </segments>
+                            <connections>
+                                <action selector="controlValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="EuT-E5-90d"/>
+                            </connections>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="iBW-fm-1wB">
                             <connections>
                                 <segue destination="bi1-cl-DN0" kind="push" id="UCF-Up-kCV"/>
@@ -40,6 +56,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="listBookmarkScreenlet" destination="i1Q-9N-jPT" id="B3E-4B-eYw"/>
+                        <outlet property="selectViewControl" destination="5GO-Nw-QWc" id="jdj-Jo-SvD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
