@@ -80,6 +80,7 @@ public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> Signal ->
 		synchronizers[ScreenletName(DDLFormScreenlet)] =  formSynchronizer
 		synchronizers[ScreenletName(ImageGalleryScreenlet)] = imageGallerySynchronizer
 		synchronizers["CommentsScreenlet"] = commentsSynchronizer
+		synchronizers["RatingsScreenlet"] = ratingsSynchronizer
 	}
 
 	public func addSynchronizer(

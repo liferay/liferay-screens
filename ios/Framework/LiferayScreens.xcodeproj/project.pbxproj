@@ -372,6 +372,7 @@
 		887F0D161B99AABB0007AECE /* String+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D141B99AABA0007AECE /* String+Screens.swift */; };
 		887F0D181B99BD640007AECE /* CacheMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D171B99BD640007AECE /* CacheMetadata.swift */; };
 		887F0D191B99BD640007AECE /* CacheMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D171B99BD640007AECE /* CacheMetadata.swift */; };
+		887FCB3B1D9D3ABF00537C40 /* SyncManager+Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887FCB3A1D9D3ABF00537C40 /* SyncManager+Rating.swift */; };
 		888DF5B11ACC9FC200EB7DA1 /* LoginScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F11ACBE5F000862B9E /* LoginScreenlet.swift */; };
 		888DF5B21ACC9FC200EB7DA1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F21ACBE5F000862B9E /* LoginViewModel.swift */; };
 		888DF5B41ACC9FF100EB7DA1 /* LoginView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61C31ACBFC3400862B9E /* LoginView_default.swift */; };
@@ -862,6 +863,7 @@
 		887F0D111B99A79A0007AECE /* LRSession+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+Screens.swift"; sourceTree = "<group>"; };
 		887F0D141B99AABA0007AECE /* String+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Screens.swift"; sourceTree = "<group>"; };
 		887F0D171B99BD640007AECE /* CacheMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheMetadata.swift; sourceTree = "<group>"; };
+		887FCB3A1D9D3ABF00537C40 /* SyncManager+Rating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncManager+Rating.swift"; sourceTree = "<group>"; };
 		8891259A1D5479E6006AFA08 /* RatingDeleteLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingDeleteLiferayConnector.swift; sourceTree = "<group>"; };
 		8891259B1D5479E6006AFA08 /* RatingLoadByClassPKLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingLoadByClassPKLiferayConnector.swift; sourceTree = "<group>"; };
 		8891259C1D5479E6006AFA08 /* RatingLoadByEntryIdLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingLoadByEntryIdLiferayConnector.swift; sourceTree = "<group>"; };
@@ -1961,6 +1963,7 @@
 				8891259E1D5479E6006AFA08 /* Interactors */,
 				889125A31D5479E6006AFA08 /* RatingScreenlet.swift */,
 				889125A41D5479E6006AFA08 /* RatingViewModel.swift */,
+				887FCB3A1D9D3ABF00537C40 /* SyncManager+Rating.swift */,
 			);
 			path = Rating;
 			sourceTree = "<group>";
@@ -2763,6 +2766,7 @@
 				0B2180181D6C4FEF00A23690 /* BlogsEntry.swift in Sources */,
 				0BF917A31D76BE6900C86C85 /* CommentAddInteractor.swift in Sources */,
 				880459ED1CA15FA400449D55 /* DDMFieldTableCell.swift in Sources */,
+				887FCB3B1D9D3ABF00537C40 /* SyncManager+Rating.swift in Sources */,
 				8892C6AF1ACBD89400192232 /* UIButton+Screens.swift in Sources */,
 				88B844761C73D81D007A447D /* GetUserBaseLiferayConnector.swift in Sources */,
 				88B844881C73D81D007A447D /* GetUserByUserIdLiferayConnectors.swift in Sources */,
