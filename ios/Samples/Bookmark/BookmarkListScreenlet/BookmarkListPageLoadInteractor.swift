@@ -52,9 +52,9 @@ public class BookmarkListPageLoadInteractor : BaseListPageLoadInteractor {
 			return nil
 		}
 
-		let host = NSURL(string: bookmark.url)?.host
+		let host = NSURL(string: bookmark.url)?.host?.lowercaseString
 
-		return host
+		return host?.stringByReplacingOccurrencesOfString("www.", withString: "")
 	}
 
 	override public func cacheKey(op: PaginationLiferayConnector) -> String {
