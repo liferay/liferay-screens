@@ -65,7 +65,7 @@ public class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 
 		cacheFunction(
 			collection: "CommentsScreenlet",
-			key: "commentId-\(updateCon.commentId)",
+			key: "update-commentId-\(updateCon.commentId)",
 			value: "",
 			attributes: [
 				"commentId": NSNumber(longLong: updateCon.commentId),
