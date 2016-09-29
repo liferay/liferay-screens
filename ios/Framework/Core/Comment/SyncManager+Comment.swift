@@ -21,20 +21,20 @@ extension SyncManager {
 			-> Signal -> () {
 
 		if key.hasPrefix("delete-") {
-			return deleteSynchronizer(key, attributes: attributes)
+			return deleteCommentSynchronizer(key, attributes: attributes)
 		}
 		else if key.hasPrefix("update-") {
-			return updateSynchronizer(key, attributes: attributes)
+			return updateCommentSynchronizer(key, attributes: attributes)
 		}
 		else if key.hasPrefix("add-") {
-			return addSynchronizer(key, attributes: attributes)
+			return addCommentSynchronizer(key, attributes: attributes)
 		}
 
 
 		return { _ in }
 	}
 
-	func deleteSynchronizer(
+	func deleteCommentSynchronizer(
 			key: String,
 			attributes: [String:AnyObject])
 			-> Signal -> () {
@@ -60,7 +60,7 @@ extension SyncManager {
 		}
 	}
 
-	func updateSynchronizer(
+	func updateCommentSynchronizer(
 			key: String,
 			attributes: [String:AnyObject])
 			-> Signal -> () {
@@ -89,7 +89,7 @@ extension SyncManager {
 		}
 	}
 
-	func addSynchronizer(
+	func addCommentSynchronizer(
 			key: String,
 			attributes: [String:AnyObject])
 			-> Signal -> () {
