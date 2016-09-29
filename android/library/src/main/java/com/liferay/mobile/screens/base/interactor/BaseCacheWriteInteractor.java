@@ -1,8 +1,8 @@
 package com.liferay.mobile.screens.base.interactor;
 
 import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
-import com.liferay.mobile.screens.base.interactor.event.ErrorEvent;
 import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
+import com.liferay.mobile.screens.base.interactor.event.ErrorEvent;
 import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.CachePolicy;
@@ -87,7 +87,9 @@ public abstract class BaseCacheWriteInteractor<L extends BaseCacheListener, E ex
 	protected void online(E onlineEvent) throws Exception {
 		decorateEvent(onlineEvent, false);
 		E event = execute(onlineEvent);
-		EventBusUtil.post(event);
+		if (event != null) {
+			EventBusUtil.post(event);
+		}
 	}
 
 	protected void storeToCacheAndLaunchEvent(E event) throws Exception {

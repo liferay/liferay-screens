@@ -19,11 +19,6 @@ public class CommentEvent extends ListEvent<CommentEntry> {
 		super();
 	}
 
-	public CommentEvent(long commentId, String className, long classPK, String body, CommentEntry commentEntry) {
-		this(commentId, className, classPK, body);
-		this.commentEntry = commentEntry;
-	}
-
 	public CommentEvent(long commentId, String className, long classPK, String body) {
 		this(commentId, body);
 		this.className = className;
@@ -72,5 +67,9 @@ public class CommentEvent extends ListEvent<CommentEntry> {
 
 	public String getBody() {
 		return body;
+	}
+
+	public void setCommentEntry(CommentEntry commentEntry) {
+		this.commentEntry = commentEntry;
 	}
 }

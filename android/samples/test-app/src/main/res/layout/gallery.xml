@@ -54,10 +54,10 @@
 			android:id="@+id/gallery_screenlet_grid"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			app:cachePolicy="REMOTE_ONLY"
 			app:folderId="@string/liferay_images_folder"
 			app:groupId="@string/liferay_group_id"
 			app:layoutId="@layout/gallery_default"
-			app:cachePolicy="CACHE_FIRST"
 			/>
 
 		<com.liferay.mobile.screens.gallery.GalleryScreenlet
@@ -65,10 +65,10 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:visibility="gone"
+			app:cachePolicy="REMOTE_ONLY"
 			app:folderId="@string/liferay_images_folder"
 			app:groupId="@string/liferay_group_id"
 			app:layoutId="@layout/gallery_default_slideshow"
-			app:cachePolicy="CACHE_FIRST"
 			/>
 
 		<com.liferay.mobile.screens.gallery.GalleryScreenlet
@@ -76,10 +76,10 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:visibility="gone"
+			app:cachePolicy="REMOTE_ONLY"
 			app:folderId="@string/liferay_images_folder"
 			app:groupId="@string/liferay_group_id"
 			app:layoutId="@layout/gallery_default_list"
-			app:cachePolicy="CACHE_FIRST"
 			/>
 
 	</FrameLayout>

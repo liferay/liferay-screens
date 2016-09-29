@@ -1,7 +1,5 @@
 package com.liferay.mobile.screens.webcontent.list.interactor;
 
-import com.liferay.mobile.android.service.JSONObjectWrapper;
-import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
 import com.liferay.mobile.screens.base.list.interactor.Query;
@@ -11,7 +9,6 @@ import com.liferay.mobile.screens.webcontent.display.connector.JournalContentCon
 import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayEvent;
 import java.util.Map;
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
@@ -31,14 +28,10 @@ public class WebContentListInteractor
 
 		long folderId = (long) args[0];
 
-		Session session = getSession();
-
-		JSONObjectWrapper comparator = new JSONObjectWrapper(new JSONObject(query.getComparator()));
-
 		JournalContentConnector journalContentConnector =
-			ServiceProvider.getInstance().getJournalContentConnector(session);
+			ServiceProvider.getInstance().getJournalContentConnector(getSession());
 		return journalContentConnector.getJournalArticles(groupId, folderId, query.getStartRow(), query.getEndRow(),
-			comparator);
+			query.getComparatorJSONWrapper());
 	}
 
 	@Override

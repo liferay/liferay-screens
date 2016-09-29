@@ -15,11 +15,9 @@
 		android:id="@+id/bookmarklist_screenlet"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		app:folderId="20622"
-		app:groupId="20525"
-		app:layoutId="@layout/list_bookmarks"
-		app:obcClassName="com.liferay.portlet.bookmarks.util.comparator.EntryURLComparator"
 		app:cachePolicy="REMOTE_FIRST"
+		app:folderId="@string/liferay_bookmark_folder"
+		app:layoutId="@layout/list_bookmarks"
 		/>
 
 </RelativeLayout>

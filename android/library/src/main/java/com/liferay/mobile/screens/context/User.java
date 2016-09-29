@@ -36,33 +36,33 @@ public class User extends AssetEntry {
 	public static final String SCREEN_NAME = "screenName";
 	public static final String GREETING = "greeting";
 	public static final String JOB_TITLE = "jobTitle";
-	private Map<String, Object> attributes;
 	private JSONObject jsonObject;
 
 	public User(JSONObject jsonObject) {
 		this.jsonObject = jsonObject;
-		this.attributes = new HashMap<>();
+		this.values = new HashMap<>();
 		try {
-			attributes.putAll(JSONUtil.toMap(jsonObject));
+			values.putAll(JSONUtil.toMap(jsonObject));
 		} catch (JSONException e) {
 			LiferayLogger.e("Error parsing json", e);
 		}
 	}
 
 	public User(Map<String, Object> map) {
-		this.attributes = map;
+		this.values = map;
+		this.values.putAll((Map) map.get("user"));
 	}
 
 	public long getId() {
-		return JSONUtil.castToLong(attributes.get(USER_ID));
+		return JSONUtil.castToLong(values.get(USER_ID));
 	}
 
 	public String getUuid() {
-		return attributes.get(UUID).toString();
+		return values.get(UUID).toString();
 	}
 
 	public long getPortraitId() {
-		return JSONUtil.castToLong(attributes.get(PORTRAIT_ID));
+		return JSONUtil.castToLong(values.get(PORTRAIT_ID));
 	}
 
 	public String getFirstName() {
@@ -78,31 +78,27 @@ public class User extends AssetEntry {
 	}
 
 	public String getScreenName() {
-		return (String) attributes.get(SCREEN_NAME);
+		return getString(SCREEN_NAME);
 	}
 
 	public String getGreeting() {
-		return (String) attributes.get(GREETING);
+		return getString(GREETING);
 	}
 
 	public String getJobTitle() {
-		return (String) attributes.get(JOB_TITLE);
-	}
-
-	public Map<String, Object> getAttributes() {
-		return attributes;
+		return getString(JOB_TITLE);
 	}
 
 	public String getString(String key) {
-		return (String) attributes.get(key);
+		return (String) values.get(key);
 	}
 
 	public long getInt(String key) {
-		return (int) attributes.get(key);
+		return (int) values.get(key);
 	}
 
 	public long getLong(String key) {
-		return (long) attributes.get(key);
+		return (long) values.get(key);
 	}
 
 	@Override

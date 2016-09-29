@@ -51,7 +51,7 @@
 		<com.liferay.mobile.screens.comment.list.CommentListScreenlet
 			android:id="@+id/comment_list_screenlet"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
+			android:layout_height="match_parent"
 			android:layout_above="@+id/comment_display"
 			android:layout_below="@+id/comment_list_title"
 			liferay:autoLoad="false"

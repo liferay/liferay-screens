@@ -6,7 +6,6 @@ import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.gallery.interactor.GalleryEvent;
 import com.liferay.mobile.screens.gallery.interactor.GalleryInteractorListener;
-import com.liferay.mobile.screens.gallery.model.ImageEntry;
 
 /**
  * @author Víctor Galán Grande
@@ -16,16 +15,15 @@ public class GalleryUploadInteractor extends BaseCacheWriteInteractor<GalleryInt
 	@Override
 	public GalleryEvent execute(GalleryEvent event) throws Exception {
 
-		ImageEntry imageEntry = event.getImageEntry();
-		validate(imageEntry.getRepositoryId(), imageEntry.getFolderId(), imageEntry.getTitle(), event.getDescription(),
-			event.getChangeLog(), event.getPicturePath());
+		validate(groupId, event.getFolderId(), event.getTitle(), event.getDescription(), event.getChangeLog(),
+			event.getPicturePath());
 
 		Intent service = new Intent(LiferayScreensContext.getContext(), GalleryUploadService.class);
-		service.putExtra("screenletId", getTargetScreenletId());
+		service.putExtra("targetScreenletId", getTargetScreenletId());
 		service.putExtra("actionName", getActionName());
 
-		service.putExtra("repositoryId", imageEntry.getRepositoryId());
-		service.putExtra("folderId", imageEntry.getFolderId());
+		service.putExtra("repositoryId", groupId);
+		service.putExtra("folderId", event.getFolderId());
 		service.putExtra("title", event.getTitle());
 		service.putExtra("description", event.getDescription());
 		service.putExtra("changeLog", event.getChangeLog());
@@ -38,14 +36,11 @@ public class GalleryUploadInteractor extends BaseCacheWriteInteractor<GalleryInt
 
 	@Override
 	public void onSuccess(GalleryEvent event) throws Exception {
-
 		if (event.isStarting()) {
 			getListener().onPictureUploadInformationReceived(event.getPicturePath(), event.getTitle(),
-				event.getDescription());
-		} else if (event.isCompleted()) {
-			getListener().onPictureUploaded(event.getImageEntry());
+				event.getDescription(), event.getChangeLog());
 		} else {
-			getListener().onPictureUploadProgress(event.getTotalBytes(), event.getTotalBytesSent());
+			getListener().onPictureUploaded(event.getImageEntry());
 		}
 	}
 
@@ -54,10 +49,12 @@ public class GalleryUploadInteractor extends BaseCacheWriteInteractor<GalleryInt
 		getListener().error(event.getException(), getActionName());
 	}
 
-	public void onEvent(MediaStoreEvent event) {
-		if (!isInvalidEvent(event)) {
-			getListener().onPicturePathReceived(event.getFilePath());
-		}
+	public void onEventMainThread(MediaStoreEvent event) {
+		getListener().onPicturePathReceived(event.getFilePath());
+	}
+
+	public void onEventMainThread(GalleryProgress event) {
+		getListener().onPictureUploadProgress(event.getTotalBytes(), event.getTotalBytesSent());
 	}
 
 	private void validate(long repositoryId, long folderId, String title, String description, String changeLog,
