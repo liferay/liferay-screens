@@ -1,25 +1,25 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Zfs-5V-38i">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Zfs-5V-38i">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--List View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BookmarksAdvanced" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ListViewController" customModule="BookmarksAdvanced" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i1Q-9N-jPT" customClass="BookmarkListScreenlet" customModule="BookmarksAdvanced" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1Q-9N-jPT" customClass="BookmarkListScreenlet" customModule="BookmarksAdvanced" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="YES"/>
@@ -28,13 +28,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="i1Q-9N-jPT" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Dkb-s3-XlK"/>
                             <constraint firstAttribute="trailing" secondItem="i1Q-9N-jPT" secondAttribute="trailing" id="Mr6-zE-O3D"/>
+                            <constraint firstItem="i1Q-9N-jPT" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="eqS-BA-Aoa"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="i1Q-9N-jPT" secondAttribute="bottom" id="f2w-Yh-qeo"/>
                             <constraint firstItem="i1Q-9N-jPT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="xMK-Vi-oE8"/>
                         </constraints>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" id="3ba-Vv-F7L">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="5GO-Nw-QWc">
@@ -44,29 +44,31 @@
                                 <segment title="List"/>
                                 <segment title="Collection"/>
                             </segments>
+                            <color key="tintColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.86675396126760573" colorSpace="deviceRGB"/>
                             <connections>
                                 <action selector="controlValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="EuT-E5-90d"/>
                             </connections>
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="iBW-fm-1wB">
+                            <color key="tintColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87467649647887336" colorSpace="deviceRGB"/>
                             <connections>
                                 <segue destination="bi1-cl-DN0" kind="push" id="UCF-Up-kCV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <keyCommands/>
                     <connections>
                         <outlet property="listBookmarkScreenlet" destination="i1Q-9N-jPT" id="B3E-4B-eYw"/>
-                        <outlet property="selectViewControl" destination="5GO-Nw-QWc" id="jdj-Jo-SvD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="681" y="373"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Bookmark-->
         <scene sceneID="poR-KC-9TE">
             <objects>
-                <viewController id="bi1-cl-DN0" customClass="ViewController" customModule="BookmarksAdvanced" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bi1-cl-DN0" customClass="AddViewController" customModule="BookmarksAdvanced" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3sX-fZ-nb0"/>
                         <viewControllerLayoutGuide type="bottom" id="t5R-qd-j2m"/>
@@ -88,7 +90,7 @@
                             <constraint firstItem="r2G-e0-iam" firstAttribute="top" secondItem="3sX-fZ-nb0" secondAttribute="bottom" constant="20" id="vft-8e-L70"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="sAV-ri-rqK"/>
+                    <navigationItem key="navigationItem" title="Add Bookmark" id="sAV-ri-rqK"/>
                     <connections>
                         <outlet property="addBookmarkScreenlet" destination="r2G-e0-iam" id="2ib-2k-hrl"/>
                     </connections>

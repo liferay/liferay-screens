@@ -14,16 +14,16 @@
 import UIKit
 import LiferayScreens
 
-class ViewController: UIViewController {
+class AddViewController: UIViewController, AddBookmarkScreenletDelegate {
 
 
 	//MARK: Outlets
 
-	@IBOutlet weak var listBookmarkScreenlet: BookmarkListScreenlet?
-
-	@IBOutlet weak var addBookmarkScreenlet: AddBookmarkScreenlet?
-
-	@IBOutlet weak var selectViewControl: UISegmentedControl!
+    @IBOutlet weak var addBookmarkScreenlet: AddBookmarkScreenlet! {
+        didSet {
+            addBookmarkScreenlet.delegate = self
+        }
+    }
 
 
 	//MARK: UIViewController
@@ -32,16 +32,19 @@ class ViewController: UIViewController {
 		super.viewDidLoad()
 
 		let folderId = (LiferayServerContext.propertyForKey("folderId") as! NSNumber).longLongValue
-		listBookmarkScreenlet?.folderId = folderId
 		addBookmarkScreenlet?.folderId = folderId
 	}
-
-
-	@IBAction func controlValueChanged(sender: UISegmentedControl) {
-		listBookmarkScreenlet?.themeName =
-				selectViewControl.selectedSegmentIndex == 0 ? "default" : "default-collection"
-		listBookmarkScreenlet?.loadList()
-	}
+    
+    
+    //MARK: AddBookmarkScreenletDelegate
+    
+    func screenlet(screenlet: AddBookmarkScreenlet, onAddBookmarkError error: NSError) {
+        print("An error ocurred while adding the bookmark: \(error)")
+    }
+    
+    func screenlet(screenlet: AddBookmarkScreenlet, onBookmarkAdded bookmark: [String : AnyObject]) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
 
 }
 
