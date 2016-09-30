@@ -31,6 +31,7 @@ class AddBookmarkView_default: BaseScreenletView, AddBookmarkViewModel {
 			getTitleButton?.restorationIdentifier = AddBookmarkScreenlet.GetTitleAction
 		}
 	}
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView?
 
 
 	//MARK: AddBookmarkViewModel
@@ -47,6 +48,26 @@ class AddBookmarkView_default: BaseScreenletView, AddBookmarkViewModel {
 			self.titleTextField?.text = newValue
 		}
 	}
+    
+    
+    //MARK: BaseScreenletView
+    
+    override var progressMessages: [String : ProgressMessages] {
+        return [
+            AddBookmarkScreenlet.AddBookmarkAction : [
+                .Working: "Saving bookmark...",
+                .Success: "Bookmark saved!",
+                .Failure: "An error occurred saving the bookmark"
+            ],
+            AddBookmarkScreenlet.GetTitleAction : [
+                .Working: NoProgressMessage
+            ],
+        ]
+    }
+    
+    override func createProgressPresenter() -> ProgressPresenter {
+        return AddBookmarkProgressPresenter(button: getTitleButton, activityIndicator: activityIndicatorView)
+    }
 
 
 	//MARK: UITextFieldDelegate

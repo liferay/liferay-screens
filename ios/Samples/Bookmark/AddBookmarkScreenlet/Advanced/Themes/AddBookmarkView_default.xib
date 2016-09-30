@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -67,6 +67,10 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </button>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="g5c-eP-VQH">
+                    <rect key="frame" x="190" y="66" width="20" height="20"/>
+                    <color key="color" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87467649650000001" colorSpace="deviceRGB"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -77,9 +81,13 @@
                 <constraint firstItem="nJe-Po-XPY" firstAttribute="top" secondItem="L4i-Mb-cve" secondAttribute="bottom" constant="8" id="EkB-En-ens"/>
                 <constraint firstItem="L4i-Mb-cve" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Ff8-No-qfR"/>
                 <constraint firstAttribute="trailing" secondItem="nJe-Po-XPY" secondAttribute="trailing" constant="8" id="LQL-ve-IIf"/>
+                <constraint firstItem="nJe-Po-XPY" firstAttribute="top" secondItem="g5c-eP-VQH" secondAttribute="bottom" constant="18" id="MYF-pX-2jE"/>
                 <constraint firstItem="nJe-Po-XPY" firstAttribute="top" secondItem="9Zp-3I-3Vi" secondAttribute="bottom" constant="8" id="POu-tA-vgG"/>
+                <constraint firstItem="g5c-eP-VQH" firstAttribute="top" secondItem="0Hl-Ka-SFN" secondAttribute="bottom" constant="18" id="TXq-IZ-VsH"/>
+                <constraint firstItem="g5c-eP-VQH" firstAttribute="leading" secondItem="L4i-Mb-cve" secondAttribute="trailing" constant="18" id="ZOj-99-JX7"/>
                 <constraint firstItem="0Hl-Ka-SFN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="eoj-uE-Ne0"/>
                 <constraint firstItem="0Hl-Ka-SFN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="jxf-55-Lxh"/>
+                <constraint firstAttribute="trailing" secondItem="g5c-eP-VQH" secondAttribute="trailing" constant="18" id="qIz-vl-52Q"/>
                 <constraint firstItem="L4i-Mb-cve" firstAttribute="top" secondItem="0Hl-Ka-SFN" secondAttribute="bottom" constant="8" id="tQN-BN-xHT"/>
                 <constraint firstItem="9Zp-3I-3Vi" firstAttribute="top" secondItem="0Hl-Ka-SFN" secondAttribute="bottom" constant="8" id="uwj-BR-GYN"/>
             </constraints>
@@ -87,6 +95,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="URLTextField" destination="0Hl-Ka-SFN" id="zwT-kH-2Ty"/>
+                <outlet property="activityIndicatorView" destination="g5c-eP-VQH" id="oI0-qh-r2O"/>
                 <outlet property="addBookmarkButton" destination="nJe-Po-XPY" id="25y-F1-KZY"/>
                 <outlet property="getTitleButton" destination="9Zp-3I-3Vi" id="lS4-0A-MpD"/>
                 <outlet property="titleTextField" destination="L4i-Mb-cve" id="Pzl-Mb-mcN"/>

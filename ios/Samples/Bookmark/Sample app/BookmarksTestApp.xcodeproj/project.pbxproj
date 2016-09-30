@@ -23,6 +23,7 @@
 		0B6FA9621D9E4B3A007274C7 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6FA9601D9E4B34007274C7 /* ListViewController.swift */; };
 		0B6FA9631D9E4B3D007274C7 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6FA95F1D9E4B34007274C7 /* AddViewController.swift */; };
 		0B6FA9641D9E4B3F007274C7 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6FA95D1D9E4B34007274C7 /* AddViewController.swift */; };
+		0B6FA9671D9E7D80007274C7 /* AddBookmarkProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6FA9661D9E7D80007274C7 /* AddBookmarkProgressPresenter.swift */; };
 		0B7C53CC1D9BEEF3007650BB /* AddBookmarkLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7C53CB1D9BEEF3007650BB /* AddBookmarkLiferayConnector.swift */; };
 		0BCC91F41D9AB1B6000197F9 /* BookmarkListView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2A6E51C89C09C0078F766 /* BookmarkListView_default.swift */; };
 		0BCC91F61D9AB1B6000197F9 /* BookmarkListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2A6E31C89C09C0078F766 /* BookmarkListPageLoadInteractor.swift */; };
@@ -82,6 +83,7 @@
 		0B6FA95D1D9E4B34007274C7 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		0B6FA95F1D9E4B34007274C7 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		0B6FA9601D9E4B34007274C7 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		0B6FA9661D9E7D80007274C7 /* AddBookmarkProgressPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookmarkProgressPresenter.swift; sourceTree = "<group>"; };
 		0B7C53CB1D9BEEF3007650BB /* AddBookmarkLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookmarkLiferayConnector.swift; sourceTree = "<group>"; };
 		0BCC920D1D9AB1B6000197F9 /* BookmarksAdvanced.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookmarksAdvanced.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BCC921D1D9BD27C000197F9 /* GetWebTitleInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetWebTitleInteractor.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 			children = (
 				0B27F16D1D9AA38F00A1F67A /* AddBookmarkScreenlet.swift */,
 				0B27F16E1D9AA38F00A1F67A /* AddBookmarkViewModel.swift */,
+				0B6FA9651D9E7D73007274C7 /* ProgressPresenter */,
 				0B7C53CA1D9BEEEA007650BB /* Connector */,
 				0B27F16F1D9AA38F00A1F67A /* Interactor */,
 				0B27F1711D9AA38F00A1F67A /* Themes */,
@@ -237,6 +240,14 @@
 				0B6FA95F1D9E4B34007274C7 /* AddViewController.swift */,
 			);
 			path = Basic;
+			sourceTree = "<group>";
+		};
+		0B6FA9651D9E7D73007274C7 /* ProgressPresenter */ = {
+			isa = PBXGroup;
+			children = (
+				0B6FA9661D9E7D80007274C7 /* AddBookmarkProgressPresenter.swift */,
+			);
+			path = ProgressPresenter;
 			sourceTree = "<group>";
 		};
 		0B7C53CA1D9BEEEA007650BB /* Connector */ = {
@@ -535,6 +546,7 @@
 				0BCC91FB1D9AB1B6000197F9 /* BookmarkListPageLiferayConnector.swift in Sources */,
 				0BCC91FC1D9AB1B6000197F9 /* BookmarkCell_default.swift in Sources */,
 				0B4FD8001D9D3FA0009E9314 /* BookmarkListView_default-collection.swift in Sources */,
+				0B6FA9671D9E7D80007274C7 /* AddBookmarkProgressPresenter.swift in Sources */,
 				0B6FA9621D9E4B3A007274C7 /* ListViewController.swift in Sources */,
 				0BCC91FD1D9AB1B6000197F9 /* AppDelegate.swift in Sources */,
 			);
