@@ -24,9 +24,9 @@ public class GetWebTitleInteractor: ServerReadConnectorInteractor {
 
 	//MARK: Initializer
 
-	public init(url: String) {
+    public init(screenlet: BaseScreenlet, url: String) {
 		self.url = url
-		super.init(screenlet: nil)
+		super.init(screenlet: screenlet)
 	}
 
 
