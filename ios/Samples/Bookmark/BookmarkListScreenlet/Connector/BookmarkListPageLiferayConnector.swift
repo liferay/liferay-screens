@@ -19,6 +19,9 @@ public class BookmarkListPageLiferayConnector: PaginationLiferayConnector {
 
 	public let groupId: Int64
 	public let folderId: Int64
+    
+    
+    //MARK: Initializer
 
 	public init(startRow: Int, endRow: Int, computeRowCount: Bool, groupId: Int64, folderId: Int64) {
 		self.groupId = groupId
@@ -26,7 +29,25 @@ public class BookmarkListPageLiferayConnector: PaginationLiferayConnector {
 
 		super.init(startRow: startRow, endRow: endRow, computeRowCount: computeRowCount)
 	}
+    
+    
+    //MARK: ServerConnector
+    
+    override public func validateData() -> ValidationError? {
+        let error = super.validateData()
+        
+        if error == nil {
+            if folderId <= 0 {
+                return ValidationError("Undefined folderId")
+            }
+        }
+        
+        return error
+    }
 
+    
+    //MARK: PaginationLiferayConnector
+    
 	public override func doAddPageRowsServiceCall(session session: LRBatchSession, startRow: Int, endRow: Int, obc: LRJSONObjectWrapper?) {
 		let service = LRBookmarksEntryService_v7(session: session)
 
