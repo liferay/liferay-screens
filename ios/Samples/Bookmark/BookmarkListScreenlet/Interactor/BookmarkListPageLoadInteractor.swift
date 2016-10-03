@@ -17,8 +17,11 @@ import LiferayScreens
 
 public class BookmarkListPageLoadInteractor : BaseListPageLoadInteractor {
 
-	private let groupId: Int64
-	private let folderId: Int64
+	public let groupId: Int64
+	public let folderId: Int64
+    
+    
+    //MARK: Initializer
 
 	init(screenlet: BaseListScreenlet,
 			page: Int,
@@ -31,34 +34,37 @@ public class BookmarkListPageLoadInteractor : BaseListPageLoadInteractor {
 
 		super.init(screenlet: screenlet, page: page, computeRowCount: computeRowCount)
 	}
-
-	override public func createConnector() -> PaginationLiferayConnector {
-		let screnlet = self.screenlet as! BaseListScreenlet
-
-		return BookmarkListPageLiferayConnector(
-			startRow: screnlet.firstRowForPage(self.page),
-			endRow: screnlet.firstRowForPage(self.page + 1),
-			computeRowCount: self.computeRowCount,
-			groupId: groupId,
-			folderId: folderId)
-	}
+    
+    
+    //MARK: BaseListPageLoadInteractor
+    
+    public override func createListPageConnector() -> PaginationLiferayConnector {
+        let screenlet = self.screenlet as! BaseListScreenlet
+        
+        return BookmarkListPageLiferayConnector(
+            startRow: screenlet.firstRowForPage(self.page),
+            endRow: screenlet.firstRowForPage(self.page + 1),
+            computeRowCount: self.computeRowCount,
+            groupId: groupId,
+            folderId: folderId)
+    }
 
 	override public func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
 		return Bookmark(attributes: serverResult)
 	}
 
-	public override func sectionForRowObject(object: AnyObject) -> String? {
-		guard let bookmark = object as? Bookmark else {
-			return nil
-		}
-
-		let host = NSURL(string: bookmark.url)?.host?.lowercaseString
-
-		return host?.stringByReplacingOccurrencesOfString("www.", withString: "")
-	}
-
 	override public func cacheKey(op: PaginationLiferayConnector) -> String {
 		return "\(groupId)-\(folderId)"
 	}
+    
+    public override func sectionForRowObject(object: AnyObject) -> String? {
+        guard let bookmark = object as? Bookmark else {
+            return nil
+        }
+        
+        let host = NSURL(string: bookmark.url)?.host?.lowercaseString
+        
+        return host?.stringByReplacingOccurrencesOfString("www.", withString: "")
+    }
 	
 }
