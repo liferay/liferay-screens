@@ -14,13 +14,18 @@
 import UIKit
 import LiferayScreens
 
-class ListViewController: UIViewController {
+class ListViewController: UIViewController, BookmarkListScreenletDelegate {
 
     let listThemes = ["default", "default-custom", "default-collection"]
 
+    
 	//MARK: Outlets
 
-	@IBOutlet weak var listBookmarkScreenlet: BookmarkListScreenlet!
+    @IBOutlet weak var listBookmarkScreenlet: BookmarkListScreenlet! {
+        didSet {
+            listBookmarkScreenlet.delegate = self
+        }
+    }
     
 
 	//MARK: UIViewController
@@ -38,6 +43,13 @@ class ListViewController: UIViewController {
 		listBookmarkScreenlet.loadList()
         self.view.setNeedsDisplay()
 	}
+    
+    
+    //MARK: BookmarkListScreenletDelegate
+    
+    func screenlet(screenlet: BookmarkListScreenlet, onBookmarkSelected bookmark: Bookmark) {
+        UIApplication.sharedApplication().openURL(NSURL(string: bookmark.url)!)
+    }
 
 }
 

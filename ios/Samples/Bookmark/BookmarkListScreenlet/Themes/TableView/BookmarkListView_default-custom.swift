@@ -15,44 +15,33 @@ import UIKit
 import LiferayScreens
 
 
-public class BookmarkListView_default_custom: BaseListTableView {
+public class BookmarkListView_default_custom: BookmarkListView_default {
 
 	let BookmarkCellId = "bookmarkCell"
 
 
-	//MARK: BaseScreenletView
-
-	public override var progressMessages: [String : ProgressMessages] {
-		return [
-			BaseScreenlet.DefaultAction: [.Working: NoProgressMessage]
-		]
-	}
-
-
 	//MARK: BaseListTableView
 
+    public override func doRegisterCellNibs() {
+        let nib = UINib(nibName: "BookmarkCell_default-custom", bundle: NSBundle.mainBundle())
+        
+        tableView?.registerNib(nib, forCellReuseIdentifier: BookmarkCellId)
+    }
+    
 	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
-		let bookmarkCell = cell as! BookmarkCell_default_custom
-		let bookmark = object as! Bookmark
-
-		bookmarkCell.nameLabel.text = bookmark.name
-		bookmarkCell.urlLabel.text = bookmark.url
-	}
-
-	override public func doFillInProgressCell(row row: Int, cell: UITableViewCell) {
-		let bookmarkCell = cell as! BookmarkCell_default_custom
-
-		bookmarkCell.nameLabel.text = "Loading..."
-	}
-
-	public override func doRegisterCellNibs() {
-		let nib = UINib(nibName: "BookmarkCell_default-custom", bundle: NSBundle.mainBundle())
-
-		tableView?.registerNib(nib, forCellReuseIdentifier: BookmarkCellId)
-	}
+        if let bookmarkCell = cell as? BookmarkCell_default_custom, bookmark = object as? Bookmark {
+            bookmarkCell.bookmark = bookmark
+        }
+    }
 
 	override public func doGetCellId(row row: Int, object: AnyObject?) -> String {
 		return BookmarkCellId
 	}
+    
+    //MARK: UITableViewDelegate
+    
+    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 80
+    }
 
 }

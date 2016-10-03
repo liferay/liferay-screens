@@ -15,7 +15,14 @@ import UIKit
 
 class BookmarkCell_default_custom: UITableViewCell {
 
-	@IBOutlet weak var nameLabel: UILabel!
-	@IBOutlet weak var urlLabel: UILabel!
+	@IBOutlet weak var nameLabel: UILabel?
+	@IBOutlet weak var urlLabel: UILabel?
+    
+    var bookmark: Bookmark? {
+        didSet {
+            nameLabel?.text = bookmark?.name
+            urlLabel?.text = bookmark?.url
+        }
+    }
 
 }
