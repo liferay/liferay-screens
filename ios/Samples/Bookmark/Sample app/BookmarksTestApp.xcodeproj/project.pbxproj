@@ -99,7 +99,7 @@
 		0BCC920D1D9AB1B6000197F9 /* BookmarksAdvanced.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookmarksAdvanced.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BCC921D1D9BD27C000197F9 /* GetWebTitleInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetWebTitleInteractor.swift; sourceTree = "<group>"; };
 		2C703CA19C379E848E033A45 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		887844EF1C1EDF41009459C8 /* BookmarksTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookmarksTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		887844EF1C1EDF41009459C8 /* BookmarksBasic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookmarksBasic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		887844F21C1EDF41009459C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		887844F71C1EDF41009459C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		887844F91C1EDF41009459C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -352,7 +352,7 @@
 		887844F01C1EDF41009459C8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				887844EF1C1EDF41009459C8 /* BookmarksTestApp.app */,
+				887844EF1C1EDF41009459C8 /* BookmarksBasic.app */,
 				0BCC920D1D9AB1B6000197F9 /* BookmarksAdvanced.app */,
 			);
 			name = Products;
@@ -413,7 +413,7 @@
 			);
 			name = BookmarksBasic;
 			productName = LiferayScreensAddBookmarkTestApp;
-			productReference = 887844EF1C1EDF41009459C8 /* BookmarksTestApp.app */;
+			productReference = 887844EF1C1EDF41009459C8 /* BookmarksBasic.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -770,7 +770,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.liferay.LiferayScreensBookmarksBasic;
-				PRODUCT_NAME = BookmarksTestApp;
+				PRODUCT_NAME = BookmarksBasic;
 			};
 			name = Debug;
 		};
@@ -784,7 +784,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.liferay.LiferayScreensBookmarksBasic;
-				PRODUCT_NAME = BookmarksTestApp;
+				PRODUCT_NAME = BookmarksBasic;
 			};
 			name = Release;
 		};
