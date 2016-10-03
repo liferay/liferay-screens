@@ -17,18 +17,10 @@ import LiferayScreens
 
 public class BookmarkListView_default: BaseListTableView {
 
-	//MARK: BaseScreenletView
-
-	public override var progressMessages: [String : ProgressMessages] {
-		return [
-			BaseScreenlet.DefaultAction: [.Working: NoProgressMessage]
-		]
-	}
-
 
 	//MARK: BaseListTableView
 
-	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
+	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object: AnyObject) {
 		let bookmark = object as! Bookmark
 
 		cell.textLabel?.text = bookmark.name
