@@ -29,31 +29,6 @@ import LiferayScreens
 }
 
 
-@objc public class Bookmark : NSObject {
-
-	public let attributes: [String:AnyObject]
-
-	public var name: String {
-		return attributes["name"] as! String
-	}
-
-	override public var description: String {
-		return attributes["description"] as! String
-	}
-
-	public var url: String {
-		return attributes["url"] as! String
-	}
-
-	//MARK: Init
-
-	public init(attributes:[String:AnyObject]) {
-		self.attributes = attributes
-	}
-
-}
-
-
 @IBDesignable public class BookmarkListScreenlet: BaseListScreenlet {
 
 	@IBInspectable public var groupId: Int64 = 0

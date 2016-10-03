@@ -42,7 +42,7 @@ class AddViewController: UIViewController, AddBookmarkScreenletDelegate {
         print("An error ocurred while adding the bookmark: \(error)")
     }
     
-    func screenlet(screenlet: AddBookmarkScreenlet, onBookmarkAdded bookmark: [String : AnyObject]) {
+    func screenlet(screenlet: AddBookmarkScreenlet, onBookmarkAdded bookmark: Bookmark) {
         self.navigationController?.popViewControllerAnimated(true)
     }
 

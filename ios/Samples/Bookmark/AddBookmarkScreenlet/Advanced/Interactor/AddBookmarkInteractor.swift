@@ -22,7 +22,7 @@ public class AddBookmarkInteractor: ServerWriteConnectorInteractor {
 	public let url: String
 
 	///Resulted bookmark info from the connector
-	public var resultBookmarkInfo: [String:AnyObject] = [:]
+	public var resultBookmark: Bookmark?
 
 	//MARK: Initializer
 
@@ -42,8 +42,8 @@ public class AddBookmarkInteractor: ServerWriteConnectorInteractor {
 
 	override public func completedConnector(c: ServerConnector) {
 		if let addCon = (c as? AddBookmarkLiferayConnector),
-			bookmarkInfo = addCon.resultBookmarkInfo {
-			self.resultBookmarkInfo = bookmarkInfo
+			bookmark = addCon.resultBookmarkInfo {
+			self.resultBookmark = bookmark
 		}
 	}
 

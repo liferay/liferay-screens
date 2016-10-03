@@ -21,7 +21,7 @@ public class AddBookmarkLiferayConnector: ServerConnector {
 	public let url: String
 
 	///Resulted bookmark info from the service
-	public var resultBookmarkInfo: [String:AnyObject]?
+	public var resultBookmarkInfo: Bookmark?
 
 
 	//MARK: Initializer
@@ -69,7 +69,7 @@ public class AddBookmarkLiferayConnector: ServerConnector {
 			                                             serviceContext: nil)
 
 			if let result = result as? [String: AnyObject] {
-				resultBookmarkInfo = result
+				resultBookmarkInfo = Bookmark(attributes: result)
 				lastError = nil
 			}
 			else {

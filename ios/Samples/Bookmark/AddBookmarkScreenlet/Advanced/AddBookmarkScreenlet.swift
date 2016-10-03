@@ -17,7 +17,7 @@ import LiferayScreens
 @objc public protocol AddBookmarkScreenletDelegate: BaseScreenletDelegate {
 
 	optional func screenlet(screenlet: AddBookmarkScreenlet,
-	                        onBookmarkAdded bookmark: [String: AnyObject])
+	                        onBookmarkAdded bookmark: Bookmark)
 
 	optional func screenlet(screenlet: AddBookmarkScreenlet,
 	                        onAddBookmarkError error: NSError)
@@ -75,7 +75,9 @@ public class AddBookmarkScreenlet: BaseScreenlet {
 
 		//Called when interactor finish succesfully
 		interactor.onSuccess = {
-			self.addBookmarkDelegate?.screenlet?(self, onBookmarkAdded: interactor.resultBookmarkInfo)
+            if let bookmark = interactor.resultBookmark {
+                self.addBookmarkDelegate?.screenlet?(self, onBookmarkAdded: bookmark)
+            }
 		}
 
 		//Called when interactor finish with error

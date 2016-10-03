@@ -25,6 +25,8 @@
 		0B6FA9641D9E4B3F007274C7 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6FA95D1D9E4B34007274C7 /* AddViewController.swift */; };
 		0B6FA9671D9E7D80007274C7 /* AddBookmarkProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6FA9661D9E7D80007274C7 /* AddBookmarkProgressPresenter.swift */; };
 		0B7C53CC1D9BEEF3007650BB /* AddBookmarkLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7C53CB1D9BEEF3007650BB /* AddBookmarkLiferayConnector.swift */; };
+		0BA596C81DA246E6007AE418 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA596C71DA246E6007AE418 /* Bookmark.swift */; };
+		0BA596CB1DA24748007AE418 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA596CA1DA24748007AE418 /* Bookmark.swift */; };
 		0BCC91F41D9AB1B6000197F9 /* BookmarkListView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2A6E51C89C09C0078F766 /* BookmarkListView_default.swift */; };
 		0BCC91F61D9AB1B6000197F9 /* BookmarkListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2A6E31C89C09C0078F766 /* BookmarkListPageLoadInteractor.swift */; };
 		0BCC91F71D9AB1B6000197F9 /* BookmarkListScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F2A6E41C89C09C0078F766 /* BookmarkListScreenlet.swift */; };
@@ -85,6 +87,8 @@
 		0B6FA9601D9E4B34007274C7 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		0B6FA9661D9E7D80007274C7 /* AddBookmarkProgressPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookmarkProgressPresenter.swift; sourceTree = "<group>"; };
 		0B7C53CB1D9BEEF3007650BB /* AddBookmarkLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBookmarkLiferayConnector.swift; sourceTree = "<group>"; };
+		0BA596C71DA246E6007AE418 /* Bookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
+		0BA596CA1DA24748007AE418 /* Bookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
 		0BCC920D1D9AB1B6000197F9 /* BookmarksAdvanced.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookmarksAdvanced.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BCC921D1D9BD27C000197F9 /* GetWebTitleInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetWebTitleInteractor.swift; sourceTree = "<group>"; };
 		2C703CA19C379E848E033A45 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -150,9 +154,10 @@
 			children = (
 				0B27F16D1D9AA38F00A1F67A /* AddBookmarkScreenlet.swift */,
 				0B27F16E1D9AA38F00A1F67A /* AddBookmarkViewModel.swift */,
-				0B6FA9651D9E7D73007274C7 /* ProgressPresenter */,
 				0B7C53CA1D9BEEEA007650BB /* Connector */,
 				0B27F16F1D9AA38F00A1F67A /* Interactor */,
+				0BA596C61DA246D4007AE418 /* Model */,
+				0B6FA9651D9E7D73007274C7 /* ProgressPresenter */,
 				0B27F1711D9AA38F00A1F67A /* Themes */,
 			);
 			path = Advanced;
@@ -258,6 +263,22 @@
 			path = Connector;
 			sourceTree = "<group>";
 		};
+		0BA596C61DA246D4007AE418 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0BA596C71DA246E6007AE418 /* Bookmark.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0BA596C91DA24748007AE418 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0BA596CA1DA24748007AE418 /* Bookmark.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		1C0D1839B2E15F8FBEFD2C52 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,6 +327,7 @@
 		88F2A6DF1C89C09C0078F766 /* BookmarkListScreenlet */ = {
 			isa = PBXGroup;
 			children = (
+				0BA596C91DA24748007AE418 /* Model */,
 				0B4FD7EF1D9D3ED2009E9314 /* CollectionView */,
 				88F2A6E01C89C09C0078F766 /* BookmarkCell_default.swift */,
 				88F2A6E11C89C09C0078F766 /* BookmarkCell_default.xib */,
@@ -531,6 +553,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BA596C81DA246E6007AE418 /* Bookmark.swift in Sources */,
 				0BCC921F1D9BD3A3000197F9 /* GetWebTitleInteractor.swift in Sources */,
 				0BCC921A1D9AB247000197F9 /* AddBookmarkInteractor.swift in Sources */,
 				0BCC92191D9AB247000197F9 /* AddBookmarkViewModel.swift in Sources */,
@@ -561,6 +584,7 @@
 				0B6FA9631D9E4B3D007274C7 /* AddViewController.swift in Sources */,
 				88F2A6EC1C89C09C0078F766 /* BookmarkListView_default.swift in Sources */,
 				88F2A6EA1C89C09C0078F766 /* BookmarkListPageLoadInteractor.swift in Sources */,
+				0BA596CB1DA24748007AE418 /* Bookmark.swift in Sources */,
 				0B4FD7FA1D9D3ED2009E9314 /* BookmarkListView_default-collection.swift in Sources */,
 				88F2A6EB1C89C09C0078F766 /* BookmarkListScreenlet.swift in Sources */,
 				0B4FD7F81D9D3ED2009E9314 /* BookmarkHeaderView.swift in Sources */,
