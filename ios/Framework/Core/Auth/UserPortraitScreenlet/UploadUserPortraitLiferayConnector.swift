@@ -56,7 +56,8 @@ public class UploadUserPortraitLiferayConnector: ServerConnector {
 		else {
 			fileTooLarge = true
 			uploadResult = nil
-			lastError = NSError.errorWithCause(.AbortedDueToPreconditions)
+			lastError = NSError.errorWithCause(
+					.AbortedDueToPreconditions, message: "User portrait image is too large")
 		}
 	}
 
@@ -64,7 +65,7 @@ public class UploadUserPortraitLiferayConnector: ServerConnector {
 	//MARK: Private methods
 
 	private func reduceImage(src: UIImage, factor: Double) -> NSData? {
-		if factor < 0.1 {
+		if (src.size.width < 100 && src.size.height < 100) || factor < 0.1  {
 			return nil
 		}
 
