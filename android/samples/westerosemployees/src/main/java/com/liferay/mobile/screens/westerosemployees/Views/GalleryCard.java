@@ -6,10 +6,10 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import com.jakewharton.rxbinding.view.RxView;
 import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
-import com.liferay.mobile.screens.gallery.BaseDetailUploadView;
-import com.liferay.mobile.screens.gallery.GalleryListener;
-import com.liferay.mobile.screens.gallery.GalleryScreenlet;
-import com.liferay.mobile.screens.gallery.model.ImageEntry;
+import com.liferay.mobile.screens.imagegallery.BaseDetailUploadView;
+import com.liferay.mobile.screens.imagegallery.ImageGalleryListener;
+import com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet;
+import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
 import com.liferay.mobile.screens.westerosemployees.R;
 import com.liferay.mobile.screens.westerosemployees.utils.CardState;
 import com.tbruyelle.rxpermissions.RxPermissions;
@@ -22,9 +22,9 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 /**
  * @author Víctor Galán Grande
  */
-public class GalleryCard extends CommentsRatingsCard implements GalleryListener {
+public class GalleryCard extends CommentsRatingsCard implements ImageGalleryListener {
 
-	private GalleryScreenlet galleryScreenlet;
+	private ImageGalleryScreenlet imageGalleryScreenlet;
 	private BaseDetailUploadView uploadDetailView;
 	private Card uploadImageCard;
 	private AssetDisplayScreenlet imageAssetDisplayScreenlet;
@@ -51,7 +51,7 @@ public class GalleryCard extends CommentsRatingsCard implements GalleryListener 
 	public ViewPropertyAnimator setState(CardState state) {
 		if (!loaded && state.equals(CardState.NORMAL)) {
 			loaded = true;
-			galleryScreenlet.loadPage(0);
+			imageGalleryScreenlet.loadPage(0);
 		}
 
 		return super.setState(state);
@@ -61,8 +61,8 @@ public class GalleryCard extends CommentsRatingsCard implements GalleryListener 
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		galleryScreenlet = (GalleryScreenlet) findViewById(R.id.gallery_screenlet);
-		galleryScreenlet.setListener(this);
+		imageGalleryScreenlet = (ImageGalleryScreenlet) findViewById(R.id.gallery_screenlet);
+		imageGalleryScreenlet.setListener(this);
 
 		uploadDetailView = (BaseDetailUploadView) findViewById(R.id.upload_detail_view);
 		uploadImageCard = (Card) findViewById(R.id.upload_image_card);
@@ -158,7 +158,7 @@ public class GalleryCard extends CommentsRatingsCard implements GalleryListener 
 			@Override
 			public void call(Boolean permissionAccepted) {
 				if (permissionAccepted) {
-					galleryScreenlet.openGallery();
+					imageGalleryScreenlet.openGallery();
 				}
 			}
 		};
@@ -169,7 +169,7 @@ public class GalleryCard extends CommentsRatingsCard implements GalleryListener 
 			@Override
 			public void call(Boolean permissionAccepted) {
 				if (permissionAccepted) {
-					galleryScreenlet.openCamera();
+					imageGalleryScreenlet.openCamera();
 				}
 			}
 		};

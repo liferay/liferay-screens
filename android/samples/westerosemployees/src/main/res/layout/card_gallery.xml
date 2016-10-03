@@ -38,7 +38,7 @@
 			android:layout_alignParentBottom="true"
 			/>
 
-		<com.liferay.mobile.screens.gallery.GalleryScreenlet
+		<com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet
 			android:id="@+id/gallery_screenlet"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
@@ -50,7 +50,7 @@
 			app:autoLoad="false"
 			>
 
-		</com.liferay.mobile.screens.gallery.GalleryScreenlet>
+		</com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet>
 
 		<com.liferay.mobile.screens.westerosemployees.views.InnerDeck
 			android:layout_width="match_parent"

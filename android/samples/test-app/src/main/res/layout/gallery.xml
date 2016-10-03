@@ -50,7 +50,7 @@
 		android:layout_height="match_parent"
 		>
 
-		<com.liferay.mobile.screens.gallery.GalleryScreenlet
+		<com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet
 			android:id="@+id/gallery_screenlet_grid"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
 			app:layoutId="@layout/gallery_default"
 			/>
 
-		<com.liferay.mobile.screens.gallery.GalleryScreenlet
+		<com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet
 			android:id="@+id/gallery_screenlet_slideshow"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
@@ -71,7 +71,7 @@
 			app:layoutId="@layout/gallery_default_slideshow"
 			/>
 
-		<com.liferay.mobile.screens.gallery.GalleryScreenlet
+		<com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet
 			android:id="@+id/gallery_screenlet_list"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"

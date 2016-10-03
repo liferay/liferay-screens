@@ -52,7 +52,7 @@
 
 	</RelativeLayout>
 
-	<com.liferay.mobile.screens.viewsets.defaultviews.gallery.DefaultUploadDetailView
+	<com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.DefaultUploadDetailView
 		android:id="@+id/upload_detail_view"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
@@ -121,6 +121,6 @@
 			style="@style/westeros_dark_button"
 			/>
 
-	</com.liferay.mobile.screens.viewsets.defaultviews.gallery.DefaultUploadDetailView>
+	</com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.DefaultUploadDetailView>
 
 </com.liferay.mobile.screens.westerosemployees.views.UploadImageCard>
