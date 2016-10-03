@@ -29,11 +29,10 @@ import LiferayScreens
 }
 
 
-@IBDesignable public class BookmarkListScreenlet: BaseListScreenlet {
+public class BookmarkListScreenlet: BaseListScreenlet {
 
 	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var folderId: Int64 = 0
-
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
 
@@ -48,12 +47,11 @@ import LiferayScreens
 			page page: Int,
 			computeRowCount: Bool) -> BaseListPageLoadInteractor {
 
-		let interactor = BookmarkListPageLoadInteractor(
-			screenlet: self,
-			page: page,
-			computeRowCount: computeRowCount,
-			groupId: self.groupId,
-			folderId: self.folderId)
+		let interactor = BookmarkListPageLoadInteractor(screenlet: self,
+                                                        page: page,
+                                                        computeRowCount: computeRowCount,
+                                                        groupId: self.groupId,
+                                                        folderId: self.folderId)
 
 		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
