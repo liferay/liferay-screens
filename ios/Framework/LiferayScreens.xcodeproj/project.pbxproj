@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0B1063161D49E7C9001D8DE3 /* WebContentListView_default-collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1063151D49E7C9001D8DE3 /* WebContentListView_default-collection.swift */; };
 		0B1063181D49E7DE001D8DE3 /* WebContentListView_default-collection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B1063171D49E7DE001D8DE3 /* WebContentListView_default-collection.xib */; };
+		0B1F30E61DA240460053424E /* UserPortrait_connector_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F30E41DA23FB40053424E /* UserPortrait_connector_Test.swift */; };
+		0B1F30E81DA240F20053424E /* tinyImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1F30E71DA240F20053424E /* tinyImage.png */; };
 		0B217FB51D6C4E6F00A23690 /* AssetDisplayFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FA61D6C4E6F00A23690 /* AssetDisplayFactory.swift */; };
 		0B217FB61D6C4E6F00A23690 /* AssetDisplayScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FA71D6C4E6F00A23690 /* AssetDisplayScreenlet.swift */; };
 		0B217FB71D6C4E6F00A23690 /* AssetDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FA81D6C4E6F00A23690 /* AssetDisplayViewModel.swift */; };
@@ -552,6 +554,8 @@
 /* Begin PBXFileReference section */
 		0B1063151D49E7C9001D8DE3 /* WebContentListView_default-collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebContentListView_default-collection.swift"; sourceTree = "<group>"; };
 		0B1063171D49E7DE001D8DE3 /* WebContentListView_default-collection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WebContentListView_default-collection.xib"; sourceTree = "<group>"; };
+		0B1F30E41DA23FB40053424E /* UserPortrait_connector_Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortrait_connector_Test.swift; sourceTree = "<group>"; };
+		0B1F30E71DA240F20053424E /* tinyImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tinyImage.png; sourceTree = "<group>"; };
 		0B217FA61D6C4E6F00A23690 /* AssetDisplayFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayFactory.swift; sourceTree = "<group>"; };
 		0B217FA71D6C4E6F00A23690 /* AssetDisplayScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayScreenlet.swift; sourceTree = "<group>"; };
 		0B217FA81D6C4E6F00A23690 /* AssetDisplayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayViewModel.swift; sourceTree = "<group>"; };
@@ -991,6 +995,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B1F30E31DA23F7F0053424E /* UserPortrait */ = {
+			isa = PBXGroup;
+			children = (
+				0B1F30E41DA23FB40053424E /* UserPortrait_connector_Test.swift */,
+			);
+			path = UserPortrait;
+			sourceTree = "<group>";
+		};
 		0B217FA41D6C4E6F00A23690 /* Asset */ = {
 			isa = PBXGroup;
 			children = (
@@ -2095,6 +2107,7 @@
 		8892C6881ACB2E3300192232 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0B1F30E71DA240F20053424E /* tinyImage.png */,
 				881E61A61ACBF97000862B9E /* LiferayScreensTests-Bridging-Header.h */,
 				88DE24F61AD2AA6400714701 /* liferay-server-context.plist */,
 				8892C6891ACB2E3300192232 /* Info.plist */,
@@ -2326,6 +2339,7 @@
 		88DE24F81AD2AB0A00714701 /* Unit */ = {
 			isa = PBXGroup;
 			children = (
+				0B1F30E31DA23F7F0053424E /* UserPortrait */,
 				88DE24F91AD2AB0A00714701 /* Base */,
 				88DE24FC1AD2AB0A00714701 /* Context */,
 				886F4ECB1CA156710018229E /* DDL */,
@@ -2571,6 +2585,7 @@
 				881E62C41ACC016800862B9E /* default-lock-icon.png in Resources */,
 				88BCB5661B8CAD93004349F1 /* ddllist-screenlet.strings in Resources */,
 				88CA806A1B25E505004C1D59 /* OAuthWebViewController_default.xib in Resources */,
+				0B1F30E81DA240F20053424E /* tinyImage.png in Resources */,
 				880ACA8C1B0224A0007AD007 /* liferay-server-context-sample.plist in Resources */,
 				880ACA801B0224A0007AD007 /* signup-screenlet.strings in Resources */,
 				88A2B7151ACDEBB1000C2065 /* LoginView_test.xib in Resources */,
@@ -2961,6 +2976,7 @@
 				886F4EE71CA156710018229E /* DDMFieldDate_v70_Tests.swift in Sources */,
 				88DE25101AD2AB0A00714701 /* SessionContext_Basic_Tests.swift in Sources */,
 				88B844391C73D6C0007A447D /* HttpConnector.swift in Sources */,
+				0B1F30E61DA240460053424E /* UserPortrait_connector_Test.swift in Sources */,
 				88DE250F1AD2AB0A00714701 /* LiferayServerContext_Load_Tests.swift in Sources */,
 				881E62A51ACBFF4500862B9E /* UIButton+Screens.swift in Sources */,
 				0B21802D1D6C507300A23690 /* DDMField+Editor.swift in Sources */,
