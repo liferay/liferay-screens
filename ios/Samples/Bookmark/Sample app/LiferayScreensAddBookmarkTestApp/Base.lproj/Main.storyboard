@@ -38,9 +38,10 @@
                     <navigationItem key="navigationItem" id="3ba-Vv-F7L">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="5GO-Nw-QWc">
-                            <rect key="frame" x="84.5" y="7" width="151" height="30"/>
+                            <rect key="frame" x="42.5" y="7" width="227" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
+                                <segment title="Default"/>
                                 <segment title="List"/>
                                 <segment title="Collection"/>
                             </segments>
@@ -83,6 +84,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87467649650000001" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="r2G-e0-iam" firstAttribute="trailing" secondItem="Dzw-ha-D3F" secondAttribute="trailingMargin" id="2dR-Ov-LX9"/>
                             <constraint firstItem="t5R-qd-j2m" firstAttribute="top" secondItem="r2G-e0-iam" secondAttribute="bottom" constant="20" id="4OY-Yc-55B"/>

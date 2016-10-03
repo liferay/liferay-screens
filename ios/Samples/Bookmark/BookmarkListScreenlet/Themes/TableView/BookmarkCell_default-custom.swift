@@ -13,7 +13,7 @@
 */
 import UIKit
 
-class BookmarkCell_default: UITableViewCell {
+class BookmarkCell_default_custom: UITableViewCell {
 
 	@IBOutlet weak var nameLabel: UILabel!
 	@IBOutlet weak var urlLabel: UILabel!

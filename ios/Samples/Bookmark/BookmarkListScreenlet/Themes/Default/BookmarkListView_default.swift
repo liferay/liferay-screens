@@ -14,22 +14,28 @@
 import UIKit
 import LiferayScreens
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
 
-	var window: UIWindow?
+public class BookmarkListView_default: BaseListTableView {
 
-	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+	//MARK: BaseScreenletView
 
-		SessionContext.loginWithBasic(
-			username: "test@liferay.com",
-			password: "test",
-			userAttributes: [:])
-        
-        UINavigationBar.appearance().tintColor = UIColor(red: 0, green: 184/255, blue: 224/255, alpha: 0.87)
-        
-		return true
+	public override var progressMessages: [String : ProgressMessages] {
+		return [
+			BaseScreenlet.DefaultAction: [.Working: NoProgressMessage]
+		]
+	}
+
+
+	//MARK: BaseListTableView
+
+	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
+		let bookmark = object as! Bookmark
+
+		cell.textLabel?.text = bookmark.name
+	}
+
+	override public func doFillInProgressCell(row row: Int, cell: UITableViewCell) {
+		cell.textLabel?.text = "Loading..."
 	}
 
 }
-

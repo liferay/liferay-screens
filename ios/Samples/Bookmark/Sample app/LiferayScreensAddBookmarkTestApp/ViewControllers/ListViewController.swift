@@ -16,7 +16,7 @@ import LiferayScreens
 
 class ListViewController: UIViewController {
 
-    let listThemes = ["default", "default-collection"]
+    let listThemes = ["default", "default-custom", "default-collection"]
 
 	//MARK: Outlets
 
