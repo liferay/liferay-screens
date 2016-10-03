@@ -62,7 +62,7 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 
 	@IBInspectable public var filePrefix: String = "gallery-"
 
-	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.CacheFirst.rawValue {
+	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue {
 		didSet {
 			ImageCache.screensOfflinePolicy =
 				offlinePolicy ?? CacheStrategyType.RemoteFirst.rawValue
