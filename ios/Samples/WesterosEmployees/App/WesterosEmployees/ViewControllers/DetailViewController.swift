@@ -174,8 +174,11 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 	//MARK: CardDeckDelegate
 
 	func cardDeck(cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
-		if let firstCardDeck = self.cardView?.superview {
-			card.normalHeight = firstCardDeck.frame.height * 0.85
+		if let cardView = self.cardView {
+			card.normalHeight = cardView.frame.height * 0.95
+		}
+		else {
+			card.normalHeight = self.view.frame.height * 0.85
 		}
 	}
 
