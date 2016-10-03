@@ -13,7 +13,6 @@
 */
 import UIKit
 import MobileCoreServices
-import Photos
 
 @objc public enum LiferayMediaType : Int {
 	case Camera
