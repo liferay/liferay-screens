@@ -52,17 +52,13 @@ extension UIImageView {
 					completionHandler: { (image, error, cacheType, imageURL) in
 
 						if (error != nil) {
-							KingfisherManager.sharedManager.cache.retrieveImageForKey(
-									URL.absoluteString,
-									options: optionsInfoFinal,
-									completionHandler: { (image, cacheType) in
+							var optionsInfo = optionsInfo ?? []
+							optionsInfo.append(.OnlyFromCache)
 
-								guard URL == self.kf_webURL else {
-									return
-								}
-
-								self.image = image
-							})
+							self.kf_setImageWithURL(
+								URL,
+								placeholderImage: placeholderImage,
+								optionsInfo: optionsInfo)
 						}
 					})
 
@@ -70,21 +66,13 @@ extension UIImageView {
 			self.kf_setImageWithURL(URL, placeholderImage: placeholderImage, optionsInfo: optionsInfo)
 
 		case CacheStrategyType.CacheOnly.rawValue:
+			var optionsInfoFinal = optionsInfo ?? []
+			optionsInfoFinal.append(.OnlyFromCache)
 
-			lr_setWebURL(URL)
-			self.image = placeholderImage
-
-			KingfisherManager.sharedManager.cache.retrieveImageForKey(
-				URL.absoluteString,
-				options: optionsInfo,
-				completionHandler: { (image, cacheType) in
-
-					guard URL == self.lr_webURL else {
-						return
-					}
-
-					self.image = image
-			})
+			self.kf_setImageWithURL(
+				URL,
+				placeholderImage: placeholderImage,
+				optionsInfo: optionsInfoFinal)
 
 		default: break
 		}
