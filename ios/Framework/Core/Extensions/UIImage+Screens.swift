@@ -16,9 +16,9 @@ import UIKit
 extension UIImage {
 
 	public func resizeImage(toWidth width: Int, completion: (UIImage) -> Void) {
-		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+		dispatch_async {
 			let newImage = self.resizeImage(toWidth: width)
-			dispatch_async(dispatch_get_main_queue()) {
+			dispatch_main {
 				completion(newImage)
 			}
 		}
