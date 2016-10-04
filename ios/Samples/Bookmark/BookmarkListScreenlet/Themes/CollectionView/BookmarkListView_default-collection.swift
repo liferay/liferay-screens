@@ -17,43 +17,37 @@ import LiferayScreens
 public class BookmarkListView_default_collection : BaseListCollectionView {
 
 	let BookmarkCellId = "bookmarkCell"
-	let HeaderId = "header"
+	let SectionHeaderId = "bookmarkHeader"
 
+    
+    //MARK: BaseListCollectionView
+    
 	public override func doRegisterCellNibs() {
+        //Register cell view
 		let cellNib = UINib(nibName: "BookmarkCell_default-collection", bundle: nil)
-		collectionView?.registerNib(cellNib,
-				forCellWithReuseIdentifier: BookmarkCellId)
+		collectionView?.registerNib(cellNib, forCellWithReuseIdentifier: BookmarkCellId)
 
+        //Register section header view
 		let headerNib = UINib(nibName: "BookmarkHeaderView", bundle: nil)
 		collectionView?.registerNib(headerNib,
 				forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-				withReuseIdentifier: HeaderId)
+				withReuseIdentifier: SectionHeaderId)
 	}
+    
+    public override func doGetCellId(
+        indexPath indexPath: NSIndexPath,
+                  object: AnyObject?) -> String {
+        return BookmarkCellId
+    }
 
 	public override func doFillLoadedCell(
 			indexPath indexPath: NSIndexPath,
 			cell: UICollectionViewCell,
 			object: AnyObject) {
 
-		guard let cell = cell as? BookmarkCell_default_collection, bookmark = object as? Bookmark
-		else {
-			return
-		}
-		
-		cell.startLetter = String(hostFromString(bookmark.url).characters.first!)
-
-		cell.url = bookmark.url
-				.stringByReplacingOccurrencesOfString("http://", withString: "")
-				.stringByReplacingOccurrencesOfString("https://", withString: "")
-				.stringByReplacingOccurrencesOfString("www.", withString: "")
-
-	}
-
-	public override func doGetCellId(
-			indexPath indexPath: NSIndexPath,
-			object: AnyObject?) -> String {
-
-		return BookmarkCellId
+		if let cell = cell as? BookmarkCell_default_collection, bookmark = object as? Bookmark {
+            cell.bookmark = bookmark
+        }
 	}
 
 	public override func doCreateLayout() -> UICollectionViewLayout {
@@ -65,6 +59,9 @@ public class BookmarkListView_default_collection : BaseListCollectionView {
 		return layout
 	}
 
+    
+    //MARK: UICollectionViewDelegate
+    
 	public func collectionView(
 			collectionView: UICollectionView,
 			layout collectionViewLayout: UICollectionViewLayout,
@@ -74,7 +71,7 @@ public class BookmarkListView_default_collection : BaseListCollectionView {
 			return CGSize.zero
 		}
 
-		return CGSize(width: collectionView.bounds.width, height: 20)
+		return CGSize(width: collectionView.bounds.width, height: 30)
 	}
 
 	public func collectionView(
@@ -97,18 +94,14 @@ public class BookmarkListView_default_collection : BaseListCollectionView {
 
 		let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(
 				UICollectionElementKindSectionHeader,
-				withReuseIdentifier: HeaderId, forIndexPath: indexPath)
+				withReuseIdentifier: SectionHeaderId, forIndexPath: indexPath)
 
 		if let headerView = headerView as? BookmarkHeaderView {
-			headerView.sectionTitle = sections[indexPath.section]
+			headerView.title = sections[indexPath.section]
 		}
 
 		return headerView
 	}
 
-	public func hostFromString(urlString: String) -> String {
-		let host = NSURL(string: urlString)?.host ?? ""
-
-		return host.stringByReplacingOccurrencesOfString("www.", withString: "")
-	}
+	
 }

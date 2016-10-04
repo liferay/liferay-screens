@@ -11,6 +11,8 @@
 		0B1507B81DA2650300AFA602 /* BookmarkListView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1507B51DA2650300AFA602 /* BookmarkListView_default.swift */; };
 		0B1507B91DA2650300AFA602 /* BookmarkListView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B1507B61DA2650300AFA602 /* BookmarkListView_default.xib */; };
 		0B1507BA1DA2650300AFA602 /* BookmarkListView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B1507B61DA2650300AFA602 /* BookmarkListView_default.xib */; };
+		0B58D96E1DA3957E00DA3AD0 /* String+Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B58D96D1DA3957E00DA3AD0 /* String+Bookmark.swift */; };
+		0B58D96F1DA3957E00DA3AD0 /* String+Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B58D96D1DA3957E00DA3AD0 /* String+Bookmark.swift */; };
 		0B6FA9611D9E4B39007274C7 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6FA9601D9E4B34007274C7 /* ListViewController.swift */; };
 		0B6FA9621D9E4B3A007274C7 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6FA9601D9E4B34007274C7 /* ListViewController.swift */; };
 		0B6FA9631D9E4B3D007274C7 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6FA95F1D9E4B34007274C7 /* AddViewController.swift */; };
@@ -82,6 +84,7 @@
 		0B27F1791D9AA38F00A1F67A /* AddBookmarkView_default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookmarkView_default.swift; sourceTree = "<group>"; };
 		0B27F17A1D9AA38F00A1F67A /* AddBookmarkView_default.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddBookmarkView_default.xib; sourceTree = "<group>"; };
 		0B27F1931D9AAD7000A1F67A /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/BookmarksTestApp-hczydzjhzsihefapgsbecjmtnshj/Build/Products/Debug-iphonesimulator/Pods.framework"; sourceTree = "<group>"; };
+		0B58D96D1DA3957E00DA3AD0 /* String+Bookmark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Bookmark.swift"; sourceTree = "<group>"; };
 		0B6FA95D1D9E4B34007274C7 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		0B6FA95F1D9E4B34007274C7 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		0B6FA9601D9E4B34007274C7 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -221,6 +224,14 @@
 				0B27F17A1D9AA38F00A1F67A /* AddBookmarkView_default.xib */,
 			);
 			path = Themes;
+			sourceTree = "<group>";
+		};
+		0B58D96C1DA3957000DA3AD0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0B58D96D1DA3957E00DA3AD0 /* String+Bookmark.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		0B6FA95B1D9E4B34007274C7 /* ViewControllers */ = {
@@ -378,6 +389,7 @@
 		887844F11C1EDF41009459C8 /* TestApp */ = {
 			isa = PBXGroup;
 			children = (
+				0B58D96C1DA3957000DA3AD0 /* Extensions */,
 				0B6FA95B1D9E4B34007274C7 /* ViewControllers */,
 				887844F21C1EDF41009459C8 /* AppDelegate.swift */,
 				887844F61C1EDF41009459C8 /* Main.storyboard */,
@@ -612,6 +624,7 @@
 				0BCC921A1D9AB247000197F9 /* AddBookmarkInteractor.swift in Sources */,
 				0BA596E41DA25E32007AE418 /* BookmarkListPageLiferayConnector.swift in Sources */,
 				0BA596F21DA25E32007AE418 /* BookmarkListView_default-collection.swift in Sources */,
+				0B58D96F1DA3957E00DA3AD0 /* String+Bookmark.swift in Sources */,
 				0BCC92191D9AB247000197F9 /* AddBookmarkViewModel.swift in Sources */,
 				0BCC921B1D9AB247000197F9 /* AddBookmarkView_default.swift in Sources */,
 				0BA596F61DA25E32007AE418 /* BookmarkCell_default-custom.swift in Sources */,
@@ -634,6 +647,7 @@
 				0BCC92151D9AB242000197F9 /* AddBookmarkInteractor.swift in Sources */,
 				0BCC92161D9AB242000197F9 /* AddBookmarkView_default.swift in Sources */,
 				0B6FA9631D9E4B3D007274C7 /* AddViewController.swift in Sources */,
+				0B58D96E1DA3957E00DA3AD0 /* String+Bookmark.swift in Sources */,
 				0B6FA9611D9E4B39007274C7 /* ListViewController.swift in Sources */,
 				0BA596F11DA25E32007AE418 /* BookmarkListView_default-collection.swift in Sources */,
 				0BA596E51DA25E32007AE418 /* BookmarkListPageLoadInteractor.swift in Sources */,

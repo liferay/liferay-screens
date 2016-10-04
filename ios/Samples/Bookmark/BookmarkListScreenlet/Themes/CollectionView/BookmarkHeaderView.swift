@@ -15,20 +15,15 @@ import UIKit
 
 public class BookmarkHeaderView: UICollectionReusableView {
 
-	@IBOutlet private weak var sectionLabel: UILabel!
+	@IBOutlet weak var sectionLabel: UILabel?
 
-	public var sectionTitle: String {
+	public var title: String? {
 		set {
-			sectionLabel.text = newValue
+			sectionLabel?.text = newValue
 		}
 		get {
-			return sectionLabel.text ?? ""
+			return sectionLabel?.text
 		}
 	}
-
-    public override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
     
 }

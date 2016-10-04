@@ -16,41 +16,34 @@ import LiferayScreens
 
 public class BookmarkCell_default_collection: UICollectionViewCell {
 
-	@IBOutlet weak private var centerLabel: UILabel!
+    
+    //MARK: Outlets
+    
+	@IBOutlet weak var centerLabel: UILabel?
 
-	@IBOutlet weak private var urlLabel: UILabel!
-
-
-	public var startLetter: String {
-		get {
-			return centerLabel.text ?? ""
-		}
-		set {
-			centerLabel.text = newValue.capitalizedString
-		}
-	}
-
-	public var url: String? {
-		get {
-			return urlLabel.text
-		}
-		set {
-			urlLabel.text = newValue
-		}
-	}
-
-    override public func awakeFromNib() {
-        super.awakeFromNib()
-
-		backgroundColor = UIColor(red: 0.0, green: 184.0/255.0, blue: 224.0/255.0, alpha: 0.87)
-		centerLabel.textColor = .whiteColor()
-		urlLabel.textColor = .whiteColor()
+	@IBOutlet weak var urlLabel: UILabel?
+    
+    
+    //MARK: Public properties
+    
+    public var bookmark: Bookmark? {
+        didSet {
+            if let bookmark = bookmark, url = NSURL(string: bookmark.url),
+                    firstLetter = url.host?.remove("www.").characters.first {
+                self.centerLabel?.text = String(firstLetter).uppercaseString
+                
+                self.urlLabel?.text = bookmark.url.remove("http://").remove("https://").remove("www.")
+            }
+        }
     }
 
+    
+    //MARK: UICollectionViewCell
+    
 	override public func prepareForReuse() {
 		super.prepareForReuse()
 
-		centerLabel.text = ""
-		urlLabel.text = ""
+		centerLabel?.text = "..."
+		urlLabel?.text = "..."
 	}
 }
