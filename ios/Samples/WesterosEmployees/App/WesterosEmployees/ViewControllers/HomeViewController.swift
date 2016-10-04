@@ -201,17 +201,11 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 		if let vc = cardDeck.cards[position.card].presentingController as? DetailViewController {
 			switch (position.card, position.page) {
 			case (0, 1):
-				vc.load(
-					className: AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!,
-					classPK: (documentationViewController?.selectedFileEntry?.classPK)!)
+				vc.load(documentationViewController?.selectedFileEntry)
 			case (1, 1):
-				vc.load(
-					className: AssetClasses.getClassName(AssetClassNameKey_BlogsEntry)!,
-					classPK: (blogsViewController?.selectedBlogEntry?.classPK)!)
+				vc.load(blogsViewController?.selectedBlogEntry)
 			case (2, 1):
-				vc.load(
-					className: AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!,
-					classPK: (galleryViewController?.selectedImageEntry?.imageEntryId)!)
+				vc.load(galleryViewController?.selectedImageEntry)
 			case (_, 0):
 				vc.closeDetail()
 			default:
@@ -236,7 +230,7 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 
 			//Present view controller and load content
 			self.presentViewController(detail, animated: true) {
-				detail.load(className: className, classPK: asset.classPK)
+				detail.load(asset)
 			}
 		}
 	}

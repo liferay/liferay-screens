@@ -62,40 +62,58 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 
 	//MARK: Public methods
 
-	func load(className className: String, classPK: Int64) {
+	func load(assetEntry: Asset?) {
 
-		//Load asset
-		assetDisplayScreenlet?.className = className
-		assetDisplayScreenlet?.classPK = classPK
-		assetDisplayScreenlet?.load()
+		if let asset = assetEntry {
 
-		//Load asset comments
-		commentsViewController?.load(className: className, classPK: classPK)
+			var classPK: Int64 = 0
 
-		//Change color depending on asset
-		if className == AssetClasses.getClassName(AssetClassNameKey_BlogsEntry)! {
-			//Change color of modal state
-			self.arrowImageView?.image = UIImage(named: "icon_DOWN_W")
-			self.goBackButton?.setTitleColor(DefaultResources.EvenColorBackground, forState: .Normal)
+			if let image = asset as? ImageEntry {
+				let className = AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
+				classPK = image.imageEntryId
 
-			//Hide rating screenlet on blog view
-			ratingScreenlet?.hidden = true
-			assetDisplayBottomConstraint?.constant = 70
+				assetDisplayScreenlet?.className = className
+				assetDisplayScreenlet?.classPK = classPK
+				assetDisplayScreenlet?.load()
+
+				commentsViewController?.load(className: className, classPK: classPK)
+			}
+			else {
+				//Load asset
+				assetDisplayScreenlet?.assetEntry = asset
+				classPK = asset.classPK
+
+				//Load asset comments
+				commentsViewController?.load(
+					className: AssetClasses.getClassNameFromId(asset.classNameId)!,
+					classPK: classPK)
+			}
+
+			//Change color depending on asset
+			if asset.classNameId == AssetClasses.getClassNameId(AssetClassNameKey_BlogsEntry)! {
+				//Change color of modal state
+				self.arrowImageView?.image = UIImage(named: "icon_DOWN_W")
+				self.goBackButton?.setTitleColor(DefaultResources.EvenColorBackground, forState: .Normal)
+
+				//Hide rating screenlet on blog view
+				ratingScreenlet?.hidden = true
+				assetDisplayBottomConstraint?.constant = 70
+			}
+			else {
+				//Change color of modal state
+				self.arrowImageView?.image = UIImage(named: "icon_DOWN")
+				self.goBackButton?.setTitleColor(DefaultResources.OddColorBackground, forState: .Normal)
+
+				//Load ratings, only in file view
+				ratingScreenlet?.hidden = false
+				assetDisplayBottomConstraint?.constant = 150
+				ratingScreenlet?.className = AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
+				ratingScreenlet?.classPK = classPK
+				ratingScreenlet?.loadRatings()
+			}
+
+			assetDisplayScreenlet?.layoutIfNeeded()
 		}
-		else {
-			//Change color of modal state
-			self.arrowImageView?.image = UIImage(named: "icon_DOWN")
-			self.goBackButton?.setTitleColor(DefaultResources.OddColorBackground, forState: .Normal)
-
-			//Load ratings, only in file view
-			ratingScreenlet?.hidden = false
-			assetDisplayBottomConstraint?.constant = 150
-			ratingScreenlet?.className = className
-			ratingScreenlet?.classPK = classPK
-			ratingScreenlet?.loadRatings()
-		}
-
-		assetDisplayScreenlet?.layoutIfNeeded()
 	}
 
 	func closeDetail() {
