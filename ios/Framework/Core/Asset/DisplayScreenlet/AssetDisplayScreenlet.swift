@@ -40,6 +40,21 @@ import UIKit
 
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.CacheFirst.rawValue
 
+	public var assetEntry: Asset? {
+		didSet {
+			if let asset = assetEntry {
+				self.assetDisplayDelegate?.screenlet?(self, onAssetResponse: asset)
+
+				if let innerScreenlet = self.createInnerScreenlet(asset) {
+					self.assetDisplayViewModel?.innerScreenlet = innerScreenlet
+					self.assetDisplayViewModel?.asset = asset
+				}
+				else {
+					self.assetDisplayViewModel?.asset = nil
+				}
+			}
+		}
+	}
 
 	public var assetDisplayDelegate: AssetDisplayScreenletDelegate? {
 		return delegate as? AssetDisplayScreenletDelegate
@@ -69,17 +84,7 @@ import UIKit
 		}
 
 		interactor.onSuccess = {
-			if let resultAsset = interactor.asset {
-				self.assetDisplayDelegate?.screenlet?(self, onAssetResponse: resultAsset)
-
-				if let innerScreenlet = self.createInnerScreenlet(resultAsset) {
-					self.assetDisplayViewModel?.innerScreenlet = innerScreenlet
-					self.assetDisplayViewModel?.asset = resultAsset
-				}
-				else {
-					self.assetDisplayViewModel?.asset = nil
-				}
-			}
+			self.assetEntry = interactor.asset
 		}
 		
 		interactor.onFailure = {
