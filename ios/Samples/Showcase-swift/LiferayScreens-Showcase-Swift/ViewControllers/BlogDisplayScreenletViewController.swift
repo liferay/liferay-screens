@@ -11,26 +11,24 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
-import Foundation
+import UIKit
+import LiferayScreens
 
 
-public protocol MimeTypeable {
+class BlogDisplayScreenletViewController: UIViewController, BlogsEntryDisplayScreenletDelegate {
 
-	var mimeType: String? { get }
+	@IBOutlet weak var screenlet: BlogsEntryDisplayScreenlet?
+	@IBOutlet weak var assetIdText: UITextField?
 
-}
-
-
-public extension MimeTypeable {
-
-	public func isAnyMimeType(mimeTypes: [String]) -> Bool {
-		guard (self.mimeType ?? "") != "" else {
-			return false
-		}
-		guard let mimeType = self.mimeType else {
-			return false
-		}
-
-		return mimeTypes.contains(mimeType)
+	override func viewDidLoad() {
+		self.screenlet?.delegate = self
 	}
+
+	@IBAction func loadComment(sender: AnyObject) {
+		if let assetId = Int(assetIdText?.text ?? "") {
+			self.screenlet?.assetEntryId = Int64(assetId)
+			self.screenlet?.load()
+		}
+	}
+
 }

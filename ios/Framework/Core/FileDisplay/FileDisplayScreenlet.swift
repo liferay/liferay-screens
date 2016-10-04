@@ -116,32 +116,34 @@ public class FileDisplayScreenlet: BaseScreenlet {
 	}
 
 	public func createLoadFileInteractor() -> Interactor? {
-		if let fileEntry = fileEntry {
-			let interactor = LoadFileEntryInteractor(screenlet: self, fileEntry: fileEntry)
-
-			interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
-
-			interactor.onSuccess = {
-				if let resultUrl = interactor.resultUrl {
-					let title = fileEntry.title
-
-					self.fileDisplayDelegate?.screenlet?(self, onFileAssetResponse: resultUrl)
-
-					self.fileDisplayViewModel?.url = resultUrl
-					self.fileDisplayViewModel?.title = title
-				}
-				else {
-					self.fileDisplayDelegate?.screenlet?(self, onFileAssetError: NSError.errorWithCause(.InvalidServerResponse))
-				}
-			}
-
-			interactor.onFailure = {
-				self.fileDisplayDelegate?.screenlet?(self, onFileAssetError: $0)
-			}
-
-			return interactor
+		guard let fileEntry = fileEntry else {
+			return nil
 		}
-		return nil
+
+		let interactor = LoadFileEntryInteractor(screenlet: self, fileEntry: fileEntry)
+
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+
+		interactor.onSuccess = {
+			if let resultUrl = interactor.resultUrl {
+				let title = fileEntry.title
+
+				self.fileDisplayDelegate?.screenlet?(self, onFileAssetResponse: resultUrl)
+
+				self.fileDisplayViewModel?.url = resultUrl
+				self.fileDisplayViewModel?.title = title
+			}
+			else {
+				self.fileDisplayDelegate?.screenlet?(self,
+						onFileAssetError: NSError.errorWithCause(.InvalidServerResponse))
+			}
+		}
+
+		interactor.onFailure = {
+			self.fileDisplayDelegate?.screenlet?(self, onFileAssetError: $0)
+		}
+
+		return interactor
 	}
 
 }

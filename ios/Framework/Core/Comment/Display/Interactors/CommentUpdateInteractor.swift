@@ -21,13 +21,19 @@ public class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 
 	public var resultComment: Comment?
 
-	init(screenlet: BaseScreenlet,
-			commentId: Int64,
+	init(screenlet: CommentDisplayScreenlet, body: String) {
+		self.commentId = screenlet.commentId
+		self.body = body
+
+		super.init(screenlet: screenlet)
+	}
+
+	init(commentId: Int64,
 			body: String) {
 		self.commentId = commentId
 		self.body = body
 
-		super.init(screenlet: screenlet)
+		super.init(screenlet: nil)
 	}
 
 	override public func createConnector() -> CommentUpdateLiferayConnector? {
@@ -42,4 +48,30 @@ public class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 			self.resultComment = comment
 		}
 	}
+
+	//MARK: Cache methods
+
+	override public func writeToCache(c: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+		guard let updateCon = c as? CommentUpdateLiferayConnector else {
+			return
+		}
+
+		let cacheFunction = (cacheStrategy == .CacheFirst || c.lastError != nil)
+			? cacheManager.setDirty
+			: cacheManager.setClean
+
+		cacheFunction(
+			collection: "CommentsScreenlet",
+			key: "update-commentId-\(updateCon.commentId)",
+			value: "",
+			attributes: [
+				"commentId": NSNumber(longLong: updateCon.commentId),
+				"body": updateCon.body,
+			],
+			onCompletion: nil)
+	}
+
 }

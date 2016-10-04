@@ -32,6 +32,8 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable public var autoLoad: Bool = true
 
+	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+
 	public class var supportedMimeTypes: [String] {
 		return ["text/html"]
 	}
@@ -70,7 +72,9 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 		}
 		else {
 			interactor = LoadAssetInteractor(
-				screenlet: self, className: AssetClasses.getClassName(AssetClassNameKey_BlogsEntry)!, classPK: self.classPK)
+				screenlet: self,
+				className: AssetClasses.getClassName(AssetClassNameKey_BlogsEntry)!,
+				classPK: self.classPK)
 		}
 
 		interactor.onSuccess = {

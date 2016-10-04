@@ -14,9 +14,9 @@
 import UIKit
 
 
-@objc public class RatingEntry : NSObject {
+@objc public class RatingEntry : NSObject, NSCoding {
 	
-	public let attributes :[String:AnyObject]
+	public let attributes: [String:AnyObject]
 	
 	public var totalCount: Int {
 		return attributes["totalCount"]! as! Int
@@ -42,10 +42,22 @@ import UIKit
 		return attributes["ratings"]! as! [Int]
 	}
 	
+	public func encodeWithCoder(aCoder: NSCoder) {
+		aCoder.encodeObject(self.attributes, forKey:"rating-attrs")
+	}
+
 	//MARK: Init
-	
+
 	public init(attributes: [String:AnyObject]) {
 		self.attributes = attributes
+
+		super.init()
 	}
-	
+
+	public required init?(coder aDecoder: NSCoder) {
+		self.attributes = aDecoder.decodeObjectForKey("rating-attrs") as? [String:AnyObject] ?? [:]
+
+		super.init()
+	}
+
 }

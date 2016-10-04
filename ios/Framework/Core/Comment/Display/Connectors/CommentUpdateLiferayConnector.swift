@@ -20,8 +20,9 @@ public class CommentUpdateLiferayConnector: ServerConnector {
 
 	public var resultComment: Comment?
 
-	public init(commentId: Int64,
-	            body: String) {
+	public init(
+			commentId: Int64,
+			body: String) {
 
 		self.commentId = commentId
 		self.body = body
@@ -72,7 +73,6 @@ public class Liferay70CommentUpdateConnector: CommentUpdateLiferayConnector {
 			lastError = error
 			resultComment = nil
 		}
-
 	}
 
 }

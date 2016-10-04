@@ -38,19 +38,22 @@ import UIKit
 
 	@IBInspectable public var autoLoad: Bool = true
 
-	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.CacheFirst.rawValue
+	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
 	public var assetEntry: Asset? {
 		didSet {
 			if let asset = assetEntry {
-				self.assetDisplayDelegate?.screenlet?(self, onAssetResponse: asset)
-
 				if let innerScreenlet = self.createInnerScreenlet(asset) {
 					self.assetDisplayViewModel?.innerScreenlet = innerScreenlet
 					self.assetDisplayViewModel?.asset = asset
+
+					self.assetDisplayDelegate?.screenlet?(self, onAssetResponse: asset)
 				}
 				else {
 					self.assetDisplayViewModel?.asset = nil
+
+					self.assetDisplayDelegate?.screenlet?(self,
+					                                      onAssetError: NSError.errorWithCause(.InvalidServerResponse))
 				}
 			}
 		}
@@ -83,6 +86,8 @@ import UIKit
 				screenlet: self, className: self.className, classPK: self.classPK)
 		}
 
+		interactor.cacheStrategy = CacheStrategyType(rawValue: offlinePolicy ?? "") ?? .RemoteFirst
+
 		interactor.onSuccess = {
 			self.assetEntry = interactor.asset
 		}
@@ -105,10 +110,9 @@ import UIKit
 
 		let frame = CGRect(origin: CGPointZero, size: view.frame.size)
 
-		let factory = AssetDisplayFactory()
+		guard let innerScreenlet = AssetDisplayBuilder.createScreenlet(frame, asset: asset,
+				themeName: themeName) else {
 
-		guard let innerScreenlet =
-				factory.createScreenlet(frame, asset: asset, themeName: self.themeName) else {
 			return assetDisplayDelegate?.screenlet?(self, onAsset: asset)
 		}
 
@@ -121,12 +125,14 @@ import UIKit
 		if let screenlet = innerScreenlet as? FileDisplayScreenlet {
 			screenlet.fileEntry = FileEntry(attributes: asset.attributes)
 			screenlet.autoLoad = false
+			screenlet.offlinePolicy = self.offlinePolicy
 			screenlet.presentingViewController = self.presentingViewController
 			screenlet.load()
 		}
 		else if let screenlet = innerScreenlet as? BlogsEntryDisplayScreenlet {
 			screenlet.blogsEntry = BlogsEntry(attributes: asset.attributes)
 			screenlet.autoLoad = false
+			screenlet.offlinePolicy = self.offlinePolicy
 		}
 		else if let screenlet = innerScreenlet as? WebContentDisplayScreenlet {
 			let webContent = WebContent(attributes: asset.attributes)

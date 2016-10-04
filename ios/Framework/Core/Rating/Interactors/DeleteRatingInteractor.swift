@@ -21,6 +21,16 @@ public class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 
 	var resultRating: RatingEntry?
 
+	init(className: String,
+			classPK: Int64,
+			ratingsGroupCount: Int32) {
+		self.className = className
+		self.classPK = classPK
+		self.ratingsGroupCount = ratingsGroupCount
+
+		super.init(screenlet: nil)
+	}
+
 	init(screenlet: BaseScreenlet?,
 			className: String,
 			classPK: Int64,
@@ -44,5 +54,29 @@ public class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 			self.resultRating = deleteCon.resultRating
 		}
 	}
-	
+
+
+	//MARK: Cache methods
+
+	override public func writeToCache(c: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+
+		let cacheFunction = (cacheStrategy == .CacheFirst || c.lastError != nil)
+			? cacheManager.setDirty
+			: cacheManager.setClean
+
+		cacheFunction(
+			collection: "RatingScreenlet",
+			key: "delete-className=\(className)-classPK=\(classPK)",
+			value: "",
+			attributes: [
+				"className": className,
+				"classPK": NSNumber(longLong: classPK),
+				"ratingsGroupCount": Int(ratingsGroupCount)
+			],
+			onCompletion: nil)
+	}
+
 }

@@ -66,11 +66,7 @@ import UIKit
 	//MARK: Interactor methods
 
 	func createAddCommentInteractor() -> Interactor {
-		let interactor = CommentAddInteractor(
-			screenlet: self,
-			className: self.className,
-			classPK: self.classPK,
-			body: self.viewModel.body)
+		let interactor = CommentAddInteractor(screenlet: self, body: self.viewModel.body)
 
 		interactor.onSuccess = {
 			if let resultComment = interactor.resultComment {
@@ -92,7 +88,6 @@ import UIKit
 
 	func createUpdateCommentInteractor() -> Interactor {
 		let interactor = CommentUpdateInteractor(
-			screenlet: self,
 			commentId: comment!.commentId,
 			body: self.viewModel.body)
 
