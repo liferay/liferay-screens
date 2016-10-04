@@ -23,7 +23,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="297" height="485"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9H-mH-LSG" customClass="AssetDisplayScreenlet" customModule="LiferayScreens">
-                            <rect key="frame" x="0.0" y="0.0" width="297" height="335"/>
+                            <rect key="frame" x="0.0" y="0.0" width="297" height="415"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="300" id="i0w-1y-fjK"/>
                             </constraints>
@@ -54,7 +54,7 @@
                         <constraint firstItem="d9H-mH-LSG" firstAttribute="top" secondItem="dBo-Xf-6tR" secondAttribute="top" id="0eS-OA-o9c"/>
                         <constraint firstItem="d9H-mH-LSG" firstAttribute="leading" secondItem="dBo-Xf-6tR" secondAttribute="leading" id="47r-SW-Zpu"/>
                         <constraint firstAttribute="trailing" secondItem="d9H-mH-LSG" secondAttribute="trailing" id="Pcw-fg-uOm"/>
-                        <constraint firstAttribute="bottom" secondItem="d9H-mH-LSG" secondAttribute="bottom" constant="150" id="TqA-9M-ku8"/>
+                        <constraint firstAttribute="bottom" secondItem="d9H-mH-LSG" secondAttribute="bottom" constant="70" id="TqA-9M-ku8"/>
                         <constraint firstAttribute="trailing" secondItem="YTa-6t-qBX" secondAttribute="trailing" id="ULl-iy-8Sx"/>
                         <constraint firstItem="YTa-6t-qBX" firstAttribute="leading" secondItem="dBo-Xf-6tR" secondAttribute="leading" id="ivB-7e-ykN"/>
                         <constraint firstAttribute="bottom" secondItem="YTa-6t-qBX" secondAttribute="bottom" constant="70" id="yNr-wE-43K"/>

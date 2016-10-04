@@ -53,7 +53,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9H-mH-LSG" customClass="AssetDisplayScreenlet" customModule="LiferayScreens">
-                            <rect key="frame" x="0.0" y="90" width="297" height="273"/>
+                            <rect key="frame" x="0.0" y="90" width="297" height="353"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="300" id="i0w-1y-fjK"/>
                             </constraints>
@@ -80,7 +80,7 @@
                         <constraint firstItem="2CH-Xr-Qet" firstAttribute="top" secondItem="dBo-Xf-6tR" secondAttribute="top" constant="20" id="exF-1C-6Bk"/>
                         <constraint firstItem="G1n-9a-4iq" firstAttribute="leading" secondItem="dBo-Xf-6tR" secondAttribute="leading" constant="29" id="fbY-dv-6Hr"/>
                         <constraint firstItem="d9H-mH-LSG" firstAttribute="top" secondItem="2CH-Xr-Qet" secondAttribute="bottom" id="uCa-Iq-RzZ"/>
-                        <constraint firstAttribute="bottom" secondItem="d9H-mH-LSG" secondAttribute="bottom" constant="150" id="udQ-J7-Uqa"/>
+                        <constraint firstAttribute="bottom" secondItem="d9H-mH-LSG" secondAttribute="bottom" constant="70" id="udQ-J7-Uqa"/>
                     </constraints>
                 </view>
             </subviews>
