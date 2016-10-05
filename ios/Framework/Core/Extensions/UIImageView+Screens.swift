@@ -27,7 +27,7 @@ extension UIImageView {
 		objc_setAssociatedObject(self, &lr_lastURLKey, URL, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 	}
 
-	internal func lr_setImageWithURL(
+	public func lr_setImageWithURL(
 			URL: NSURL,
 			placeholderImage: Image? = nil,
 			optionsInfo: KingfisherOptionsInfo? = nil) {
