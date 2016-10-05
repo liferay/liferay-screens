@@ -91,6 +91,8 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 	override func viewDidAppear(animated: Bool) {
 		super.viewDidAppear(animated)
 
+		SessionContext.loadStoredCredentials()
+
 		if !SessionContext.isLoggedIn {
 			if !tourCompleted {
 				dispatch_delayed(0.5) {
@@ -101,44 +103,17 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 				self.performSegueWithIdentifier("login", sender: nil)
 			}
 		}
+		else {
+			tourCompleted = true
+			initializeHome()
+		}
 	}
 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if segue.identifier == "login" {
 			if let authController = segue.destinationViewController as? AuthViewController {
 				authController.onAuthDone = {
-					//Load user profile
-					let userId = SessionContext.currentContext!.userId!
-					if self.userPortraitScreenlet?.userId != userId {
-						self.userPortraitScreenlet?.load(userId: userId)
-						let firstName =
-							SessionContext.currentContext!.userAttribute("firstName") as! String
-						let lastName =
-							SessionContext.currentContext!.userAttribute("lastName") as! String
-						self.userNameLabel?.text = "\(firstName) \(lastName)"
-							.stringByTrimmingCharactersInSet(
-								NSCharacterSet.whitespaceAndNewlineCharacterSet())
-					}
-
-					self.assetListScreenlet?.loadList()
-
-					self.cardDeck?.alpha = 1.0
-
-					//Show second card with a small delay
-					self.cardDeck?.cards[1].currentState = .Hidden
-					self.cardDeck?.cards[1].resetToCurrentState()
-					self.cardDeck?.cards[1].changeToState(.Minimized)
-
-					//Show first card with a big delay
-					self.cardDeck?.cards[0].currentState = .Hidden
-					self.cardDeck?.cards[0].resetToCurrentState()
-					self.cardDeck?.cards[0].nextState = .Minimized
-					self.cardDeck?.cards[0].changeToNextState(delay: 0.5, onComplete: { _ in
-						UIView.animateWithDuration(0.5) {
-							self.assetListScreenlet?.alpha = 1.0
-							self.latestChangesLabel?.alpha = 1.0
-						}
-					})
+					self.initializeHome()
 				}
 			}
 		}
@@ -233,6 +208,44 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 				detail.load(asset)
 			}
 		}
+	}
+
+
+	//MARK: Private functions
+
+	func initializeHome() {
+		//Load user profile
+		let userId = SessionContext.currentContext!.userId!
+		if self.userPortraitScreenlet?.userId != userId {
+			self.userPortraitScreenlet?.load(userId: userId)
+			let firstName =
+				SessionContext.currentContext!.userAttribute("firstName") as! String
+			let lastName =
+				SessionContext.currentContext!.userAttribute("lastName") as! String
+			self.userNameLabel?.text = "\(firstName) \(lastName)"
+				.stringByTrimmingCharactersInSet(
+					NSCharacterSet.whitespaceAndNewlineCharacterSet())
+		}
+
+		self.assetListScreenlet?.loadList()
+
+		self.cardDeck?.alpha = 1.0
+
+		//Show second card with a small delay
+		self.cardDeck?.cards[1].currentState = .Hidden
+		self.cardDeck?.cards[1].resetToCurrentState()
+		self.cardDeck?.cards[1].changeToState(.Minimized)
+
+		//Show first card with a big delay
+		self.cardDeck?.cards[0].currentState = .Hidden
+		self.cardDeck?.cards[0].resetToCurrentState()
+		self.cardDeck?.cards[0].nextState = .Minimized
+		self.cardDeck?.cards[0].changeToNextState(delay: 0.5, onComplete: { _ in
+			UIView.animateWithDuration(0.5) {
+				self.assetListScreenlet?.alpha = 1.0
+				self.latestChangesLabel?.alpha = 1.0
+			}
+		})
 	}
 }
 

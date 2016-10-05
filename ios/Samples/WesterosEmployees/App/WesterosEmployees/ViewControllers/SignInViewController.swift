@@ -47,6 +47,7 @@ class SignInViewController: CardViewController, LoginScreenletDelegate, Keyboard
 
 	func screenlet(screenlet: BaseScreenlet,
 			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
+		SessionContext.currentContext?.storeCredentials()
 		onDone?()
 	}
 

@@ -49,6 +49,7 @@ public class UserDisplayViewController: UIViewController, AssetDisplayScreenletD
 					self.dismissViewControllerAnimated(true, completion: nil)
 				}
 				view?.signOutButtonClicked = {
+					SessionContext.currentContext?.removeStoredCredentials()
 					SessionContext.logout()
 					self.dismissViewControllerAnimated(true, completion: nil)
 				}
