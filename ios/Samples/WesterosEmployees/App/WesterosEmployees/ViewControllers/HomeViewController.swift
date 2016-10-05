@@ -12,6 +12,7 @@
 * details.
 */
 import UIKit
+import MBProgressHUD
 import LiferayScreens
 
 public var tourCompleted = false
@@ -213,7 +214,8 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 
 	//MARK: Private functions
 
-	func initializeHome() {
+	private func initializeHome() {
+
 		//Load user profile
 		let userId = SessionContext.currentContext!.userId!
 		if self.userPortraitScreenlet?.userId != userId {
@@ -244,8 +246,39 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 			UIView.animateWithDuration(0.5) {
 				self.assetListScreenlet?.alpha = 1.0
 				self.latestChangesLabel?.alpha = 1.0
+
+				SessionContext.currentContext?.cacheManager.countPendingToSync { count in
+					if count > 0 {
+						self.showSyncAlert(count)
+					}
+				}
 			}
 		})
+	}
+
+	private func showSyncAlert(syncCount: UInt) {
+
+		let message = syncCount > 1 ? "There are \(syncCount) elements to be synchronized" :
+				"There is \(syncCount) element to be synchronized"
+
+		let alert = UIAlertController(
+				title: "Pending synchronization",
+				message: message,
+				preferredStyle: .Alert)
+
+		let syncAction = UIAlertAction(title: "Start syncing", style: .Default) { _ in
+			if let cacheManager = SessionContext.currentContext?.cacheManager {
+				let sync = SyncManager(cacheManager: cacheManager)
+				sync.startSync()
+			}
+		}
+
+		let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+
+		alert.addAction(syncAction)
+		alert.addAction(cancelAction)
+
+		presentViewController(alert, animated: true, completion: nil)
 	}
 }
 
