@@ -54,5 +54,16 @@ public class CommentDeleteInteractor: ServerWriteConnectorInteractor {
 			onCompletion: nil)
 	}
 
+	public override func callOnSuccess() {
+		if cacheStrategy == .CacheFirst {
+			SessionContext.currentContext?.cacheManager.setClean(
+				collection: "CommentsScreenlet",
+				key: "delete-commentId-\(commentId)",
+				value: "",
+				attributes: ["commentId": NSNumber(longLong: commentId)],
+				onCompletion: nil)
+		}
+	}
+
 
 }

@@ -82,4 +82,21 @@ public class CommentAddInteractor: ServerWriteConnectorInteractor {
 			onCompletion: nil)
 	}
 
+	public override func callOnSuccess() {
+		if cacheStrategy == .CacheFirst {
+			SessionContext.currentContext?.cacheManager.setClean(
+				collection: "CommentsScreenlet",
+				key: cacheKeyUsed!,
+				value: "",
+				attributes: [
+					"className": className,
+					"classPK": NSNumber(longLong: classPK),
+					"body": body,
+				],
+				onCompletion: nil)
+		}
+
+		super.callOnSuccess()
+	}
+
 }

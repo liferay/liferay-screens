@@ -79,4 +79,21 @@ public class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 			onCompletion: nil)
 	}
 
+	public override func callOnSuccess() {
+		if cacheStrategy == .CacheFirst {
+			SessionContext.currentContext?.cacheManager.setClean(
+				collection: "RatingsScreenlet",
+				key: "delete-className=\(className)-classPK=\(classPK)",
+				value: "",
+				attributes: [
+					"className": className,
+					"classPK": NSNumber(longLong: classPK),
+					"ratingsGroupCount": Int(ratingsGroupCount)
+				],
+				onCompletion: nil)
+		}
+
+		super.callOnSuccess()
+	}
+
 }

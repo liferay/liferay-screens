@@ -86,4 +86,22 @@ public class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 			onCompletion: nil)
 	}
 
+	public override func callOnSuccess() {
+		if cacheStrategy == .CacheFirst {
+			SessionContext.currentContext?.cacheManager.setClean(
+				collection: "RatingsScreenlet",
+				key: "update-className=\(className)-classPK=\(classPK)",
+				value: "",
+				attributes: [
+					"className": className,
+					"classPK": NSNumber(longLong: classPK),
+					"ratingsGroupCount": Int(ratingsGroupCount),
+					"score": NSNumber(double: score),
+				],
+				onCompletion: nil)
+		}
+
+		super.callOnSuccess()
+	}
+
 }

@@ -74,4 +74,18 @@ public class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 			onCompletion: nil)
 	}
 
+	public override func callOnSuccess() {
+		if cacheStrategy == .CacheFirst {
+			SessionContext.currentContext?.cacheManager.setClean(
+				collection: "CommentsScreenlet",
+				key: "update-commentId-\(commentId)",
+				value: "",
+				attributes: [
+					"commentId": NSNumber(longLong: commentId),
+					"body": body,
+				],
+				onCompletion: nil)
+		}
+	}
+
 }
