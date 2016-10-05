@@ -12,24 +12,17 @@
 * details.
 */
 import UIKit
-import LiferayScreens
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class BookmarkCell_default_custom: UITableViewCell {
 
-	var window: UIWindow?
-
-	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
-		SessionContext.loginWithBasic(
-			username: "test@liferay.com",
-			password: "test",
-			userAttributes: [:])
-        
-        UINavigationBar.appearance().tintColor = UIColor(red: 0, green: 184/255, blue: 224/255, alpha: 0.87)
-        
-		return true
-	}
+	@IBOutlet weak var nameLabel: UILabel?
+	@IBOutlet weak var urlLabel: UILabel?
+    
+    var bookmark: Bookmark? {
+        didSet {
+            nameLabel?.text = bookmark?.name
+            urlLabel?.text = bookmark?.url
+        }
+    }
 
 }
-

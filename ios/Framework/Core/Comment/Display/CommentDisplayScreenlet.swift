@@ -46,9 +46,6 @@ import UIKit
 
 	@IBInspectable public var commentId: Int64 = 0
 
-	@IBInspectable public var className: String = ""
-	@IBInspectable public var classPK: Int64 = 0
-
 	@IBInspectable public var autoLoad: Bool = true
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 

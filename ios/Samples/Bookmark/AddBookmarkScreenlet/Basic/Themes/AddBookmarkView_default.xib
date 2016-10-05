@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AddBookmarkView_default" customModule="BookmarksBasic">
+            <rect key="frame" x="0.0" y="0.0" width="228" height="162"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Site URL" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Hl-Ka-SFN">
+                    <rect key="frame" x="8" y="8" width="212" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="5aD-gg-wRh"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L4i-Mb-cve">
+                    <rect key="frame" x="8" y="57" width="212" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="DvR-we-FWn"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="send" enablesReturnKeyAutomatically="YES"/>
+                </textField>
+                <button opaque="NO" tag="3" contentMode="scaleToFill" restorationIdentifier="add-bookmark" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nJe-Po-XPY">
+                    <rect key="frame" x="8" y="105" width="212" height="50"/>
+                    <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="KoR-np-PIP"/>
+                    </constraints>
+                    <state key="normal">
+                        <attributedString key="attributedTitle">
+                            <fragment content="ADD BOOKMARK">
+                                <attributes>
+                                    <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="0Hl-Ka-SFN" secondAttribute="trailing" constant="8" id="4Rh-Im-VvP"/>
+                <constraint firstItem="nJe-Po-XPY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="5Gj-18-h03"/>
+                <constraint firstItem="nJe-Po-XPY" firstAttribute="top" secondItem="L4i-Mb-cve" secondAttribute="bottom" constant="8" id="EkB-En-ens"/>
+                <constraint firstItem="L4i-Mb-cve" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="Ff8-No-qfR"/>
+                <constraint firstAttribute="trailing" secondItem="nJe-Po-XPY" secondAttribute="trailing" constant="8" id="LQL-ve-IIf"/>
+                <constraint firstItem="0Hl-Ka-SFN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="eoj-uE-Ne0"/>
+                <constraint firstAttribute="trailing" secondItem="L4i-Mb-cve" secondAttribute="trailing" constant="8" id="giy-vy-OAr"/>
+                <constraint firstItem="0Hl-Ka-SFN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="jxf-55-Lxh"/>
+                <constraint firstItem="L4i-Mb-cve" firstAttribute="top" secondItem="0Hl-Ka-SFN" secondAttribute="bottom" constant="9" id="tQN-BN-xHT"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="URLTextField" destination="0Hl-Ka-SFN" id="zwT-kH-2Ty"/>
+                <outlet property="titleTextField" destination="L4i-Mb-cve" id="Pzl-Mb-mcN"/>
+            </connections>
+            <point key="canvasLocation" x="396" y="294"/>
+        </view>
+    </objects>
+</document>
