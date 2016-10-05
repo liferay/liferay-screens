@@ -37,7 +37,7 @@ extension SyncManager {
 		return { signal in
 			let className = attributes["className"] as! String
 			let classPK = (attributes["classPK"] as! NSNumber).longLongValue
-			let ratingsGroupCount = Int32(attributes["classPK"] as! Int)
+			let ratingsGroupCount = Int32(attributes["ratingsGroupCount"] as! Int)
 
 			let interactor = DeleteRatingInteractor(
 					className: className,
@@ -68,8 +68,8 @@ extension SyncManager {
 		return { signal in
 			let className = attributes["className"] as! String
 			let classPK = (attributes["classPK"] as! NSNumber).longLongValue
-			let ratingsGroupCount = Int32(attributes["classPK"] as! Int)
-			let score = (attributes["classPK"] as! NSNumber).doubleValue
+			let ratingsGroupCount = Int32(attributes["ratingsGroupCount"] as! Int)
+			let score = (attributes["score"] as! NSNumber).doubleValue
 
 			let interactor = UpdateRatingInteractor(
 					className: className,
