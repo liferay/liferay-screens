@@ -74,7 +74,7 @@ public class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 			: cacheManager.setClean
 
 		cacheFunction(
-			collection: "RatingScreenlet",
+			collection: "RatingsScreenlet",
 			key: "update-className=\(className)-classPK=\(classPK)",
 			value: "",
 			attributes: [

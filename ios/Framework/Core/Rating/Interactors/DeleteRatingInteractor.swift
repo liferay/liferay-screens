@@ -68,7 +68,7 @@ public class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 			: cacheManager.setClean
 
 		cacheFunction(
-			collection: "RatingScreenlet",
+			collection: "RatingsScreenlet",
 			key: "delete-className=\(className)-classPK=\(classPK)",
 			value: "",
 			attributes: [
