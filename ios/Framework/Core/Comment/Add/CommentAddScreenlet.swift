@@ -36,6 +36,8 @@ import UIKit
 	@IBInspectable public var className: String = ""
 	@IBInspectable public var classPK: Int64 = 0
 
+	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+
 	public var commentAddDelegate: CommentAddScreenletDelegate? {
 		return delegate as? CommentAddScreenletDelegate
 	}
@@ -67,6 +69,8 @@ import UIKit
 
 	func createAddCommentInteractor() -> Interactor {
 		let interactor = CommentAddInteractor(screenlet: self, body: self.viewModel.body)
+
+		interactor.cacheStrategy = CacheStrategyType(rawValue: offlinePolicy ?? "") ?? .RemoteFirst
 
 		interactor.onSuccess = {
 			if let resultComment = interactor.resultComment {

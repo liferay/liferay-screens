@@ -112,7 +112,6 @@ import UIKit
 
 		guard let innerScreenlet = AssetDisplayBuilder.createScreenlet(frame, asset: asset,
 				themeName: themeName) else {
-
 			return assetDisplayDelegate?.screenlet?(self, onAsset: asset)
 		}
 

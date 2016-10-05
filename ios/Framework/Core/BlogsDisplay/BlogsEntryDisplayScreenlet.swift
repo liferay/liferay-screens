@@ -77,6 +77,8 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 				classPK: self.classPK)
 		}
 
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+
 		interactor.onSuccess = {
 			if let resultAsset = interactor.asset {
 				self.blogsEntry = BlogsEntry(attributes: resultAsset.attributes)
