@@ -101,7 +101,8 @@ extension SyncManager {
 			let interactor = CommentAddInteractor(
 				className: className,
 				classPK: classPK,
-				body: body)
+				body: body,
+				cacheKeyUsed: key)
 
 			self.prepareInteractorForSync(interactor,
 										  key: key,

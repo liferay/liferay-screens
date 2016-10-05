@@ -20,6 +20,8 @@ public class CommentAddInteractor: ServerWriteConnectorInteractor {
 	let classPK: Int64
 	let body: String
 
+	var cacheKeyUsed: String?
+
 	public var resultComment: Comment?
 
 	public init(screenlet: CommentAddScreenlet, body: String) {
@@ -40,6 +42,20 @@ public class CommentAddInteractor: ServerWriteConnectorInteractor {
 		self.body = body
 
 		super.init(screenlet: nil)
+	}
+
+	public convenience init(
+		className: String,
+		classPK: Int64,
+		body: String,
+		cacheKeyUsed: String) {
+
+		self.init(
+				className: className,
+				classPK: classPK,
+				body: body)
+
+		self.cacheKeyUsed = cacheKeyUsed
 	}
 
 	override public func createConnector() -> CommentAddLiferayConnector? {
@@ -70,9 +86,19 @@ public class CommentAddInteractor: ServerWriteConnectorInteractor {
 			? cacheManager.setDirty
 			: cacheManager.setClean
 
+		let cacheKey: String
+
+		if let cacheKeyUsed = cacheKeyUsed {
+			cacheKey = cacheKeyUsed
+		}
+		else {
+			cacheKey = "add-comment-\(NSUUID().UUIDString)"
+			cacheKeyUsed = cacheKey
+		}
+
 		cacheFunction(
 			collection: "CommentsScreenlet",
-			key: "add-comment-\(NSUUID().UUIDString)",
+			key: cacheKey,
 			value: "",
 			attributes: [
 				"className": addCon.className,
