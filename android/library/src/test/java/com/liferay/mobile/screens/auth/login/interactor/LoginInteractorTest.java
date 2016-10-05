@@ -20,7 +20,6 @@ import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
-import com.liferay.mobile.screens.base.interactor.event.ErrorEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.util.MockFactory;
@@ -141,7 +140,7 @@ public class LoginInteractorTest {
 		public void shouldCallListenerFailure() throws Exception {
 			LoginListener listener = MockFactory.mockLoginListener();
 			Exception e = new Exception();
-			BasicEvent event = new ErrorEvent(e);
+			BasicEvent event = new BasicEvent(e);
 
 			loginWithResponseEvent(event, listener);
 

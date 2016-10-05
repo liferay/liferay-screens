@@ -22,7 +22,7 @@ public class AssetEvent extends ListEvent<AssetEntry> {
 
 	@Override
 	public String getListKey() {
-		return assetEntry.getEntryId();
+		return String.valueOf(assetEntry.getEntryId());
 	}
 
 	@Override

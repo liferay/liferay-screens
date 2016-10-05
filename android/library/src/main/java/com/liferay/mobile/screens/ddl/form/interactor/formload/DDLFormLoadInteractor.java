@@ -56,8 +56,8 @@ public class DDLFormLoadInteractor extends BaseCacheReadInteractor<DDLFormListen
 	}
 
 	@Override
-	public void onFailure(Exception e) {
-		getListener().error(e, DDLFormScreenlet.LOAD_FORM_ACTION);
+	public void onFailure(DDLFormEvent event) {
+		getListener().error(event.getException(), DDLFormScreenlet.LOAD_FORM_ACTION);
 	}
 
 	@Override

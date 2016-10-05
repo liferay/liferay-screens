@@ -33,15 +33,23 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 		self.computeRowCount = computeRowCount
 		super.init(screenlet: screenlet)
 	}
-	
+
 	override public func createConnector() -> PaginationLiferayConnector {
-		fatalError("createConnector must be overriden")
+		let connector = createListPageConnector()
+
+		connector.obcClassName = self.obcClassName
+
+		return connector
 	}
 	
 	override public func completedConnector(c: ServerConnector) {
 		if let pageCon = c as? PaginationLiferayConnector {
 			processLoadPageResult(pageCon.resultPageContent ?? [], rowCount: pageCon.resultRowCount)
 		}
+	}
+
+	public func createListPageConnector() -> PaginationLiferayConnector {
+		fatalError("createListPageConnector must be overriden")
 	}
 	
 	public func processLoadPageResult(serverRows: [[String : AnyObject]], rowCount: Int?) {

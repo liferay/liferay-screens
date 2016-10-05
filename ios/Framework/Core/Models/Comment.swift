@@ -99,35 +99,19 @@ import Foundation
 	}
 
 	public func encodeWithCoder(aCoder: NSCoder) {
-		let keys = Array(self.attributes.keys)
-
-		aCoder.encodeObject(keys, forKey:"comment-attr-keys")
-
-		for (k,v) in self.attributes {
-			if let coderValue = v as? NSCoder {
-				aCoder.encodeObject(coderValue, forKey:"comment-attr-\(k)")
-			}
-		}
+		aCoder.encodeObject(self.attributes, forKey:"comment-attrs")
 	}
 
 	//MARK: Init
 
 	public init(attributes: [String:AnyObject]) {
 		self.attributes = attributes
+
+		super.init()
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
-		let keys = (aDecoder.decodeObjectForKey("comment-attr-keys") as? [String]) ?? [String]()
-
-		var attrs = [String:AnyObject]()
-
-		for k in keys {
-			if let v = aDecoder.decodeObjectForKey("comment-attr-\(k)") {
-				attrs[k] = v
-			}
-		}
-
-		self.attributes = attrs
+		self.attributes = aDecoder.decodeObjectForKey("comment-attrs") as? [String:AnyObject] ?? [:]
 
 		super.init()
 	}

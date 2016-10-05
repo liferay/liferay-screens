@@ -42,8 +42,8 @@ public class RatingLoadInteractor extends BaseCacheReadInteractor<RatingListener
 	}
 
 	@Override
-	public void onFailure(Exception e) {
-		getListener().error(e, RatingScreenlet.LOAD_RATINGS_ACTION);
+	public void onFailure(RatingEvent event) {
+		getListener().error(event.getException(), RatingScreenlet.LOAD_RATINGS_ACTION);
 	}
 
 	@Override

@@ -17,7 +17,7 @@
 		<item name="editTextStyle">@style/westeros_edit_text</item>
 		<item name="buttonStyle">@style/westeros_button</item>
 
-		<item name="android:typeface">serif</item>
+		<item name="android:typeface">sans</item>
 		<item name="windowActionBar">false</item>
 		<item name="android:windowContentOverlay">@null</item>
 
@@ -51,7 +51,7 @@
 
 	<style name="westeros_button" parent="android:Widget.Material.Button">
 		<item name="android:textAllCaps">true</item>
-		<item name="android:background">@drawable/westeros_button_ripple</item>
+		<item name="android:background">@drawable/westeros_button_selector</item>
 		<item name="android:textColor">@android:color/white</item>
 		<item name="android:layout_height">@dimen/westeros_block_height</item>
 		<item name="android:layout_width">match_parent</item>

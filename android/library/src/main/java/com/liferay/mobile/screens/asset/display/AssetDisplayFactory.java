@@ -12,6 +12,8 @@ import com.liferay.mobile.screens.dlfile.display.audio.AudioDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.pdf.PdfDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.video.VideoDisplayScreenlet;
+import com.liferay.mobile.screens.webcontent.WebContent;
+import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -33,15 +35,24 @@ public class AssetDisplayFactory {
 				screenlet.setFileEntry((FileEntry) assetEntry);
 				screenlet.setAutoLoad(autoLoad);
 				screenlet.render(layoutId);
+				screenlet.loadFile();
+
 				return screenlet;
 			}
-			return null;
+		} else if (assetEntry instanceof WebContent) {
+			WebContentDisplayScreenlet webContentDisplayScreenlet = new WebContentDisplayScreenlet(context);
+			Integer layoutId = layouts.get(webContentDisplayScreenlet.getClass().getName());
+			webContentDisplayScreenlet.setAutoLoad(autoLoad);
+			webContentDisplayScreenlet.render(layoutId);
+			webContentDisplayScreenlet.onWebContentReceived((WebContent) assetEntry);
+			return webContentDisplayScreenlet;
 		} else if (assetEntry instanceof BlogsEntry) {
 			BlogsEntryDisplayScreenlet blogsScreenlet = new BlogsEntryDisplayScreenlet(context);
 			Integer layoutId = layouts.get(blogsScreenlet.getClass().getName());
 			blogsScreenlet.setBlogsEntry((BlogsEntry) assetEntry);
 			blogsScreenlet.setAutoLoad(autoLoad);
 			blogsScreenlet.render(layoutId);
+			blogsScreenlet.loadBlogsEntry();
 			return blogsScreenlet;
 		}
 		return null;

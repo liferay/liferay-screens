@@ -1,0 +1,8 @@
+include 'liferay-screens'
+project(':liferay-screens').projectDir = new File(settingsDir, '../../library')
+project(':liferay-screens').name = 'liferay-screens'
+
+include 'liferay-westeros-viewset'
+project(':liferay-westeros-viewset').projectDir = new File(settingsDir, '../../viewsets/westeros')
+project(':liferay-westeros-viewset').name = 'liferay-westeros-viewset'
+

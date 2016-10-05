@@ -94,8 +94,8 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 	private void enableEditionButtons(CommentEntry commentEntry) {
 		boolean editable = commentEntry.isEditable();
 
-		editImageButton.setVisibility(editable ? VISIBLE : GONE);
-		deleteImageButton.setVisibility(editable ? VISIBLE : GONE);
+		editImageButton.setVisibility(editable && commentEntry.isUpdatable() ? VISIBLE : GONE);
+		deleteImageButton.setVisibility(editable && commentEntry.isDeletable() ? VISIBLE : GONE);
 		if (editable) {
 			editImageButton.setOnClickListener(this);
 			deleteImageButton.setOnClickListener(this);

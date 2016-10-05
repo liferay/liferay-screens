@@ -31,29 +31,35 @@ class AssetDisplayViewController: UIViewController, AssetDisplayScreenletDelegat
 		self.screenlet?.presentingViewController = self
 		self.screenlet?.load()
 	}
-	
+
 	func screenlet(screenlet: AssetDisplayScreenlet,
-	               onAssetEntryResponse assetEntry: Asset) {
-		print("DELEGATE: onAssetEntryResponse -> \(assetEntry)\n");
+			onAssetResponse asset: Asset) {
+		print("DELEGATE: onAssetEntryResponse -> \(asset)\n");
 	}
-	
+
 	func screenlet(screenlet: AssetDisplayScreenlet,
-	               onAssetEntryError error: NSError) {
-		print("DELEGATE: onAssetEntryError -> \(error)\n");
+			onAssetError error: NSError) {
+		print("DELEGATE: onAssetError -> \(error)\n");
+	}
+
+	func screenlet(screenlet: AssetDisplayScreenlet,
+			onConfigureScreenlet childScreenlet: BaseScreenlet?,
+			onAsset asset: Asset) {
+		print("DELEGATE: onConfigureScreenlet -> \(childScreenlet)\n");
 	}
 
 	func screenlet(screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView? {
-		if let type = asset.attributes["object"]?.allKeys.first as? String {
-			if type == "user" {
-				let vc = self.storyboard?.instantiateViewControllerWithIdentifier("UserDisplay") as? UserDisplayViewController
-				if let userVc = vc {
-					self.addChildViewController(userVc)
-					screenlet.addSubview(userVc.view)
-					userVc.view.frame = screenlet.bounds
-					userVc.user = User(attributes: asset.attributes)
-				}
+		let keys = asset.attributes["object"]!.allKeys
+		if keys.contains({$0 as! String == "user"}) {
+			let vc = self.storyboard?.instantiateViewControllerWithIdentifier("UserDisplay") as? UserDisplayViewController
+			if let userVc = vc {
+				self.addChildViewController(userVc)
+				screenlet.addSubview(userVc.view)
+				userVc.view.frame = screenlet.bounds
+				userVc.user = User(attributes: asset.attributes)
 			}
 		}
 		return nil
 	}
+
 }

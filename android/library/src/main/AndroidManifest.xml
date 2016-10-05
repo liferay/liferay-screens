@@ -7,7 +7,7 @@
 		<service android:name=".ddl.form.service.UploadService"/>
 
 		<service android:name=".userportrait.interactor.upload.UserPortraitService"/>
-		<service android:name=".gallery.interactor.upload.GalleryUploadService"/>
+		<service android:name=".imagegallery.interactor.upload.ImageGalleryUploadService"/>
 
 		<service android:name=".dlfile.display.DownloadService"/>
 
@@ -15,10 +15,7 @@
 			android:name=".base.MediaStoreRequestShadowActivity"
 			android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 		<activity
-			android:name=".viewsets.defaultviews.gallery.DetailImageActivity"
+			android:name=".viewsets.defaultviews.imagegallery.DetailImageActivity"
 			android:theme="@style/gallery_theme"/>
-		<activity
-			android:name=".viewsets.defaultviews.gallery.DetailUploadDefaultActivity"
-			android:theme="@style/detail_upload_theme"/>
 	</application>
 </manifest>

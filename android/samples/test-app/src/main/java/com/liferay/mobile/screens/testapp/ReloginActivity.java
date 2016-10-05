@@ -61,7 +61,7 @@ public class ReloginActivity extends ThemeActivity implements LoginListener, Vie
 	public void change() {
 		if (SessionContext.isLoggedIn()) {
 			final User user = SessionContext.getCurrentUser();
-			user.getAttributes().put("lastName", "EXAMPLE_LASTNAME");
+			user.getValues().put("lastName", "EXAMPLE_LASTNAME");
 			userName.setText(user.getLastName());
 		}
 	}

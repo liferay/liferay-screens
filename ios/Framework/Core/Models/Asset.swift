@@ -55,6 +55,16 @@ import Foundation
 		return attributes["entryId"]!.description.asLong!
 	}
 
+	public var createDate: NSDate {
+		let milliseconds = (attributes["createDate"]! as! NSNumber).doubleValue
+		return NSDate(millisecondsSince1970: milliseconds)
+	}
+
+	public var modifiedDate: NSDate {
+		let milliseconds = (attributes["modifiedDate"]! as! NSNumber).doubleValue
+		return NSDate(millisecondsSince1970: milliseconds)
+	}
+
 	override public var debugDescription: String {
 		return attributes.debugDescription
 	}
@@ -66,37 +76,21 @@ import Foundation
 
 		let xmlTitle = attributes["title"] as! String
 		title = xmlTitle.asLocalized(NSLocale(localeIdentifier: NSLocale.currentLocaleString))
+
+		super.init()
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
-		let keys = (aDecoder.decodeObjectForKey("asset-attr-keys") as? [String]) ?? [String]()
+		self.attributes = aDecoder.decodeObjectForKey("asset-attrs") as? [String:AnyObject] ?? [:]
 
-		var attrs = [String:AnyObject]()
-
-		for k in keys {
-			if let v = aDecoder.decodeObjectForKey("asset-attr-\(k)") {
-				attrs[k] = v
-			}
-		}
-
-		self.attributes = attrs
-
-		let xmlTitle = (attributes["title"] as? String) ?? ""
+		let xmlTitle = attributes["title"] as! String
 		title = xmlTitle.asLocalized(NSLocale(localeIdentifier: NSLocale.currentLocaleString))
 
 		super.init()
 	}
 
 	public func encodeWithCoder(aCoder: NSCoder) {
-		let keys = Array(self.attributes.keys)
-
-		aCoder.encodeObject(keys, forKey:"asset-attr-keys")
-
-		for (k,v) in self.attributes {
-			if let coderValue = v as? NSCoder {
-				aCoder.encodeObject(coderValue, forKey:"asset-attr-\(k)")
-			}
-		}
+		aCoder.encodeObject(attributes, forKey: "asset-attrs")
 	}
 	
 }

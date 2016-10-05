@@ -20,8 +20,10 @@ public class CommentLoadInteractor: ServerReadConnectorInteractor {
 
 	public var resultComment: Comment?
 
-	init(screenlet: BaseScreenlet, commentId: Int64) {
-		self.commentId = commentId
+	override init(screenlet: BaseScreenlet?) {
+		let commentScreenlet = screenlet as! CommentDisplayScreenlet
+
+		self.commentId = commentScreenlet.commentId
 
 		super.init(screenlet: screenlet)
 	}
@@ -32,10 +34,59 @@ public class CommentLoadInteractor: ServerReadConnectorInteractor {
 	}
 
 	override public func completedConnector(c: ServerConnector) {
-		if let loadCon = (c as? CommentLoadLiferayConnector),
-				comment = loadCon.resultComment {
-			self.resultComment = comment
+		guard let loadCon = c as? CommentLoadLiferayConnector else {
+			return
 		}
+		guard let comment = loadCon.resultComment else {
+			return
+		}
+
+		self.resultComment = comment
+	}
+
+	//MARK: Cache
+
+	override public func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			result(nil)
+			return
+		}
+		guard let loadCon = c as? CommentLoadLiferayConnector else {
+			result(nil)
+			return
+		}
+
+		cacheManager.getAny(
+				collection: "CommentsScreenlet",
+				key: "commentId-\(loadCon.commentId)") {
+			guard let comment = $0 as? Comment else {
+				result(nil)
+				return
+			}
+
+			loadCon.resultComment = comment
+			result($0)
+		}
+	}
+
+	override public func writeToCache(c: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+		guard let loadCon = c as? CommentLoadLiferayConnector else {
+			return
+		}
+		guard let comment = loadCon.resultComment else {
+			return
+		}
+
+		cacheManager.setClean(
+			collection: "CommentsScreenlet",
+			key: "commentId-\(loadCon.commentId)",
+			value: comment,
+			attributes: [
+				"commentId": NSNumber(longLong: loadCon.commentId)
+			])
 	}
 
 }

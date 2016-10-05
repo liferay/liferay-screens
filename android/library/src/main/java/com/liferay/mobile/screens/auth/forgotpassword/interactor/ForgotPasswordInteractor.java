@@ -56,8 +56,8 @@ public class ForgotPasswordInteractor extends BaseRemoteInteractor<ForgotPasswor
 	}
 
 	@Override
-	public void onFailure(Exception e) {
-		getListener().onForgotPasswordRequestFailure(e);
+	public void onFailure(ForgotPasswordEvent event) {
+		getListener().onForgotPasswordRequestFailure(event.getException());
 	}
 
 	private boolean getBasicEventNew(long companyId, String login, BasicAuthMethod basicAuthMethod,

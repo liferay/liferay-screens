@@ -12,41 +12,40 @@ import org.json.JSONObject;
 /**
  * @author Alejandro Hernández
  */
-public class CommentLoadInteractor
-  extends BaseCacheReadInteractor<CommentDisplayInteractorListener, CommentEvent> {
+public class CommentLoadInteractor extends BaseCacheReadInteractor<CommentDisplayInteractorListener, CommentEvent> {
 
-  @Override
-  public CommentEvent execute(Object... args) throws Exception {
+	@Override
+	public CommentEvent execute(Object... args) throws Exception {
 
-    long commentId = (long) args[0];
+		long commentId = (long) args[0];
 
-    validate(commentId);
+		validate(commentId);
 
-    ScreenscommentService commentService = new ScreenscommentService(getSession());
-    JSONObject jsonObject = commentService.getComment(commentId);
-    return new CommentEvent(jsonObject);
-  }
+		ScreenscommentService commentService = new ScreenscommentService(getSession());
+		JSONObject jsonObject = commentService.getComment(commentId);
+		return new CommentEvent(jsonObject);
+	}
 
-  @Override
-  public void onSuccess(CommentEvent event) throws Exception {
-    CommentEntry commentEntry = new CommentEntry(JSONUtil.toMap(event.getJSONObject()));
-    getListener().onLoadCommentSuccess(commentEntry);
-  }
+	@Override
+	public void onSuccess(CommentEvent event) throws Exception {
+		CommentEntry commentEntry = new CommentEntry(JSONUtil.toMap(event.getJSONObject()));
+		getListener().onLoadCommentSuccess(commentEntry);
+	}
 
-  @Override
-  public void onFailure(Exception e) {
-    getListener().error(e, CommentDisplayScreenlet.LOAD_COMMENT_ACTION);
-  }
+	@Override
+	public void onFailure(CommentEvent event) {
+		getListener().error(event.getException(), CommentDisplayScreenlet.LOAD_COMMENT_ACTION);
+	}
 
-  @Override
-  protected String getIdFromArgs(Object... args) {
-    long commentId = (long) args[0];
-    return String.valueOf(commentId);
-  }
+	@Override
+	protected String getIdFromArgs(Object... args) {
+		long commentId = (long) args[0];
+		return String.valueOf(commentId);
+	}
 
-  private void validate(long commentId) {
-    if (commentId <= 0) {
-      throw new IllegalArgumentException("commentId cannot be 0 or negative");
-    }
-  }
+	private void validate(long commentId) {
+		if (commentId <= 0) {
+			throw new IllegalArgumentException("commentId cannot be 0 or negative");
+		}
+	}
 }

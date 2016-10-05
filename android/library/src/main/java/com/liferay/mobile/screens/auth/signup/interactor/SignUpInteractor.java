@@ -68,8 +68,8 @@ public class SignUpInteractor extends BaseRemoteInteractor<SignUpListener, Basic
 	}
 
 	@Override
-	public void onFailure(Exception e) {
-		getListener().onSignUpFailure(e);
+	public void onFailure(BasicEvent event) {
+		getListener().onSignUpFailure(event.getException());
 	}
 
 	protected JSONObject sendSignUpRequest(UserConnector userConnector, long companyId, String firstName,

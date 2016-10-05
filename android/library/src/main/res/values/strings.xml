@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="AssetListScreenlet_default">asset_list_default</string>
+	<string name="AssetDisplayScreenlet_default">asset_display_default</string>
 	<string name="AudioDisplayScreenlet_default">audio_display_default</string>
 	<string name="BlogsEntryDisplayScreenlet_default">blogsentry_display_default</string>
 	<string name="LoginScreenlet_default">login_default</string>
@@ -18,6 +19,7 @@
 	<string name="GalleryScreenlet_default">gallery_default</string>
 	<string name="CommentDisplayScreenlet_default">comment_display_default</string>
 	<string name="CommentListScreenlet_default">comment_list_default</string>
+	<string name="RatingScreenlet_default">rating_star_bar_default</string>
 	<string name="asset_image">asset image</string>
 	<string name="thumbs_up">thumbs up</string>
 	<string name="very_sad_smiley">sad smiley</string>

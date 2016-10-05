@@ -63,4 +63,58 @@ public class LoadAssetInteractor: ServerReadConnectorInteractor {
 	override public func completedConnector(c: ServerConnector) {
 		asset = (c as? LoadAssetConnector)?.resultAsset
 	}
+
+	//MARK: Cache
+
+	override public func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			result(nil)
+			return
+		}
+		guard var loadCon = c as? LoadAssetConnector else {
+			result(nil)
+			return
+		}
+
+		cacheManager.getAny(
+				collection: "AssetsScreenlet",
+				key: self.assetCacheKey) {
+			loadCon.resultAsset = $0 as? Asset
+			result(loadCon.resultAsset)
+		}
+	}
+
+	override public func writeToCache(c: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+		guard let loadCon = c as? LoadAssetConnector else {
+			return
+		}
+		guard let asset = loadCon.resultAsset else {
+			return
+		}
+
+		cacheManager.setClean(
+			collection: "AssetsScreenlet",
+			key: self.assetCacheKey,
+			value: asset,
+			attributes: [
+				"entryId": NSNumber(longLong: assetEntryId ?? 0),
+				"className": className ?? "",
+				"classPK": NSNumber(longLong: classPK ?? 0),
+			])
+	}
+
+	private var assetCacheKey: String {
+		if let assetEntryId = self.assetEntryId {
+			return "load-asset-entryId-\(assetEntryId)"
+		}
+		else if let className = self.className, classPK = self.classPK {
+			return "load-asset-cn-\(className)-cpk-\(classPK)"
+		}
+
+		fatalError("Need either assetEntryId or className+classPK")
+	}
+
 }

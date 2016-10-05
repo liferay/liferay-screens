@@ -29,8 +29,8 @@ public class Cache {
 		});
 	}
 
-	public static <E extends CacheEvent> E getObject(final Class<E> aClass, Long groupId, Long userId,
-		final String key) throws Exception {
+	public static <E extends CacheEvent> E getObject(final Class<E> aClass, Long groupId, Long userId, final String key)
+		throws Exception {
 		return (E) doDatabaseOperation(groupId, userId, new Func1<E>() {
 			@Override
 			public E call(DB db) throws Exception {
@@ -96,7 +96,7 @@ public class Cache {
 		});
 	}
 
-	private static Object doDatabaseOperation(Long groupId, Long userId, Func1 func1) throws Exception {
+	private static synchronized Object doDatabaseOperation(Long groupId, Long userId, Func1 func1) throws Exception {
 		DB snappyDB = null;
 		try {
 			snappyDB = openDatabase(groupId, userId);

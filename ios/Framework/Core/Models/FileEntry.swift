@@ -17,13 +17,27 @@ import Foundation
 @objc public class FileEntry: Asset {
 
 	override public var url: String {
+		let obj = attributes["object"]
+		let objDict = obj as! [String:AnyObject]
+		let url = objDict["url"]
+		return url as! String
+	}
+
+	public var fileExtension: String? {
 		if let object = attributes["object"] {
-			return object["url"] as! String
+			if let fileEntry = object["fileEntry"] {
+				return fileEntry!["extension"] as? String
+			}
 		}
 		return ""
 	}
 
-	public var fileEntry: [String:AnyObject]? {
-		return attributes["object"]?.firstItem as? [String:AnyObject]
+	public var fileEntry: [String:AnyObject] {
+		return attributes["object"]!["fileEntry"] as! [String:AnyObject]
 	}
+
+	public var fileEntryId: Int64 {
+		return self.fileEntry["fileEntryId"]!.description.asLong!
+	}
+
 }

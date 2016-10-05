@@ -47,7 +47,8 @@
 "default-webcontentdisplay-loading-error"="Error loading the content";
 
 "default-rating-total"="Total: %d";
-"default-rating-ratings"="%d Ratings";
+"default-rating-ratings.one"="1 Rating";
+"default-rating-ratings.other"="%d Ratings";
 
 "default-imagegallery-uploading-one"="Uploading image...";
 "default-imagegallery-uploading-several"="Uploading image 1 from %d";

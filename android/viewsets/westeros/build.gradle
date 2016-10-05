@@ -25,6 +25,8 @@ dependencies {
 	compile project(':liferay-screens')
 	compile libraries.design
 	compile 'com.daimajia.swipelayout:library:1.2.0'
+
+	compile 'com.makeramen:roundedimageview:2.2.1'
 }
 
 apply from: '../../bintray.gradle'

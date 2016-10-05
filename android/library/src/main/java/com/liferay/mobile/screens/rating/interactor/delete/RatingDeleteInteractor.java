@@ -24,7 +24,8 @@ public class RatingDeleteInteractor extends BaseCacheWriteInteractor<RatingListe
 		JSONObject jsonObject = ratingsEntryService.deleteRatingsEntry(event.getClassPK(), event.getClassName(),
 			event.getRatingGroupCounts());
 
-		return new RatingEvent(event.getClassPK(), event.getClassName(), event.getRatingGroupCounts(), jsonObject);
+		event.setJSONObject(jsonObject);
+		return event;
 	}
 
 	@Override
@@ -37,7 +38,7 @@ public class RatingDeleteInteractor extends BaseCacheWriteInteractor<RatingListe
 	}
 
 	@Override
-	protected void onFailure(RatingEvent event) {
+	public void onFailure(RatingEvent event) {
 		getListener().error(event.getException(), RatingScreenlet.DELETE_RATING_ACTION);
 	}
 

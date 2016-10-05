@@ -50,13 +50,20 @@ public class AssetDisplayInteractor extends BaseCacheReadInteractor<AssetDisplay
 	}
 
 	@Override
-	public void onFailure(Exception e) {
-		getListener().error(e, AssetDisplayScreenlet.DEFAULT_ACTION);
+	public void onFailure(AssetEvent event) {
+		getListener().error(event.getException(), AssetDisplayScreenlet.DEFAULT_ACTION);
 	}
 
 	@Override
 	protected String getIdFromArgs(Object... args) {
-		final long entryId = (long) args[0];
-		return String.valueOf(entryId);
+		final long cacheId;
+
+		if (args.length > 1) {
+			cacheId = (long) args[1];
+		} else {
+			cacheId = (long) args[0];
+		}
+
+		return String.valueOf(cacheId);
 	}
 }

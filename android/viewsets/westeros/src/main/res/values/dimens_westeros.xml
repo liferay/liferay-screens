@@ -1,11 +1,11 @@
 <resources>
 
 	<dimen name="westeros_block_height">60dp</dimen>
-	<dimen name="westeros_side_margin">25dp</dimen>
+	<dimen name="westeros_side_margin">20dp</dimen>
 
 	<dimen name="westeros_button_bottom_margin">25dp</dimen>
 
-	<dimen name="westeros_card_title_height">80dp</dimen>
+	<dimen name="westeros_card_title_height">60dp</dimen>
 
 	<dimen name="westeros_edit_text_top_margin">10dp</dimen>
 	<dimen name="westeros_edit_text_bottom_margin">5dp</dimen>

@@ -95,7 +95,7 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 
 			if let comment = comment {
 				bodyLabel?.attributedText = comment.htmlBody.toHtmlTextWithAttributes(
-					CommentDisplayView_default.attributedTextAttributes)
+					self.dynamicType.defaultAttributedTextAttributes())
 
 				deleteButton?.enabled = comment.canDelete
 				editButton?.enabled = comment.canEdit
@@ -151,7 +151,7 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 	public class func heightForText(text: String?, width: CGFloat) -> CGFloat {
 		let realWidth = width - LabelPadding
 
-		let attributedText = text?.toHtmlTextWithAttributes(attributedTextAttributes)
+		let attributedText = text?.toHtmlTextWithAttributes(self.defaultAttributedTextAttributes())
 
 		if let attributedText = attributedText {
 			let rect = attributedText.boundingRectWithSize(
@@ -165,7 +165,7 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 		return 110
 	}
 
-	public static var attributedTextAttributes: [String: NSObject] {
+	public class func defaultAttributedTextAttributes() -> [String: NSObject] {
 		let paragrahpStyle = NSMutableParagraphStyle()
 		paragrahpStyle.lineBreakMode = .ByWordWrapping
 

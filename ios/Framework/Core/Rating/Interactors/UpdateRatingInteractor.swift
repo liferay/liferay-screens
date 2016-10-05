@@ -22,6 +22,18 @@ public class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 
 	var resultRating: RatingEntry?
 
+	init(className: String,
+			classPK: Int64,
+			score: Double?,
+			ratingsGroupCount: Int32) {
+		self.className = className
+		self.classPK = classPK
+		self.ratingsGroupCount = ratingsGroupCount
+		self.score = score ?? -1
+
+		super.init(screenlet: nil)
+	}
+
 	init(screenlet: BaseScreenlet?,
 			className: String,
 			classPK: Int64,
@@ -48,5 +60,48 @@ public class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 			self.resultRating = updateCon.resultRating
 		}
 	}
-	
+
+
+	//MARK: Cache methods
+
+	override public func writeToCache(c: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+
+		let cacheFunction = (cacheStrategy == .CacheFirst || c.lastError != nil)
+			? cacheManager.setDirty
+			: cacheManager.setClean
+
+		cacheFunction(
+			collection: "RatingsScreenlet",
+			key: "update-className=\(className)-classPK=\(classPK)",
+			value: "",
+			attributes: [
+				"className": className,
+				"classPK": NSNumber(longLong: classPK),
+				"ratingsGroupCount": Int(ratingsGroupCount),
+				"score": NSNumber(double: score),
+			],
+			onCompletion: nil)
+	}
+
+	public override func callOnSuccess() {
+		if cacheStrategy == .CacheFirst {
+			SessionContext.currentContext?.cacheManager.setClean(
+				collection: "RatingsScreenlet",
+				key: "update-className=\(className)-classPK=\(classPK)",
+				value: "",
+				attributes: [
+					"className": className,
+					"classPK": NSNumber(longLong: classPK),
+					"ratingsGroupCount": Int(ratingsGroupCount),
+					"score": NSNumber(double: score),
+				],
+				onCompletion: nil)
+		}
+
+		super.callOnSuccess()
+	}
+
 }

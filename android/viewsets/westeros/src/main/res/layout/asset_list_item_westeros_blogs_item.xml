@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:drawableEnd="@drawable/default_arrow"
+	android:drawableRight="@drawable/default_arrow"
+	android:orientation="horizontal"
+	>
+
+	<com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet
+		android:id="@+id/asset_list_document_type_image_screenlet"
+		android:layout_width="60dp"
+		android:layout_height="60dp"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentStart="true"
+		android:layout_centerVertical="true"
+		android:layout_marginLeft="20dp"
+		android:layout_marginStart="20dp"
+		app:layoutId="@layout/image_display_westeros_blog"
+		app:autoLoad="false"
+		/>
+
+	<TextView
+		android:id="@+id/liferay_list_date"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="1dp"
+		android:layout_marginTop="10dp"
+		android:layout_toRightOf="@id/asset_list_document_type_image_screenlet"
+		android:layout_toEndOf="@id/asset_list_document_type_image_screenlet"
+		android:textColor="@android:color/white"
+		android:textSize="13sp"
+		/>
+
+	<TextView
+		android:id="@+id/liferay_list_title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/liferay_list_date"
+		android:layout_marginBottom="10dp"
+		android:layout_toRightOf="@id/asset_list_document_type_image_screenlet"
+		android:layout_toEndOf="@id/asset_list_document_type_image_screenlet"
+		android:textColor="@android:color/white"
+		android:textStyle="bold"
+		android:textSize="16sp"
+		/>
+
+	<ImageView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentEnd="true"
+		android:layout_centerVertical="true"
+		android:layout_marginLeft="2dp"
+		android:layout_marginEnd="2dp"
+		android:src="@drawable/default_arrow"
+		/>
+
+</RelativeLayout>

@@ -38,8 +38,26 @@ import UIKit
 
 	@IBInspectable public var autoLoad: Bool = true
 
-	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.CacheFirst.rawValue
+	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
+	public var assetEntry: Asset? {
+		didSet {
+			if let asset = assetEntry {
+				if let innerScreenlet = self.createInnerScreenlet(asset) {
+					self.assetDisplayViewModel?.innerScreenlet = innerScreenlet
+					self.assetDisplayViewModel?.asset = asset
+
+					self.assetDisplayDelegate?.screenlet?(self, onAssetResponse: asset)
+				}
+				else {
+					self.assetDisplayViewModel?.asset = nil
+
+					self.assetDisplayDelegate?.screenlet?(self,
+					                                      onAssetError: NSError.errorWithCause(.InvalidServerResponse))
+				}
+			}
+		}
+	}
 
 	public var assetDisplayDelegate: AssetDisplayScreenletDelegate? {
 		return delegate as? AssetDisplayScreenletDelegate
@@ -68,18 +86,10 @@ import UIKit
 				screenlet: self, className: self.className, classPK: self.classPK)
 		}
 
-		interactor.onSuccess = {
-			if let resultAsset = interactor.asset {
-				self.assetDisplayDelegate?.screenlet?(self, onAssetResponse: resultAsset)
+		interactor.cacheStrategy = CacheStrategyType(rawValue: offlinePolicy ?? "") ?? .RemoteFirst
 
-				if let innerScreenlet = self.createInnerScreenlet(resultAsset) {
-					self.assetDisplayViewModel?.innerScreenlet = innerScreenlet
-					self.assetDisplayViewModel?.asset = resultAsset
-				}
-				else {
-					self.assetDisplayViewModel?.asset = nil
-				}
-			}
+		interactor.onSuccess = {
+			self.assetEntry = interactor.asset
 		}
 		
 		interactor.onFailure = {
@@ -100,9 +110,8 @@ import UIKit
 
 		let frame = CGRect(origin: CGPointZero, size: view.frame.size)
 
-		let factory = AssetDisplayFactory()
-
-		guard let innerScreenlet = factory.createScreenlet(frame, asset: asset) else {
+		guard let innerScreenlet = AssetDisplayBuilder.createScreenlet(frame, asset: asset,
+				themeName: themeName) else {
 			return assetDisplayDelegate?.screenlet?(self, onAsset: asset)
 		}
 
@@ -115,15 +124,26 @@ import UIKit
 		if let screenlet = innerScreenlet as? FileDisplayScreenlet {
 			screenlet.fileEntry = FileEntry(attributes: asset.attributes)
 			screenlet.autoLoad = false
+			screenlet.offlinePolicy = self.offlinePolicy
 			screenlet.presentingViewController = self.presentingViewController
 			screenlet.load()
 		}
 		else if let screenlet = innerScreenlet as? BlogsEntryDisplayScreenlet {
 			screenlet.blogsEntry = BlogsEntry(attributes: asset.attributes)
 			screenlet.autoLoad = false
+			screenlet.offlinePolicy = self.offlinePolicy
+		}
+		else if let screenlet = innerScreenlet as? WebContentDisplayScreenlet {
+			let webContent = WebContent(attributes: asset.attributes)
+			screenlet.articleId = (webContent.attributes["articleId"] as? String) ?? ""
+			screenlet.autoLoad = false
+			screenlet.loadWebContent()
 		}
 
 		assetDisplayDelegate?.screenlet?(self, onConfigureScreenlet: innerScreenlet, onAsset: asset)
 	}
 
+	public func removeInnerScreenlet() {
+		assetDisplayViewModel?.innerScreenlet = nil
+	}
 }

@@ -22,6 +22,12 @@ import UIKit
 	optional func screenlet(screenlet: CommentAddScreenlet,
 			onAddCommentError error: NSError)
 
+	optional func screenlet(screenlet: CommentAddScreenlet,
+			onCommentUpdated comment: Comment)
+
+	optional func screenlet(screenlet: CommentAddScreenlet,
+			onUpdateCommentError error: NSError)
+
 }
 
 
@@ -29,6 +35,8 @@ import UIKit
 
 	@IBInspectable public var className: String = ""
 	@IBInspectable public var classPK: Int64 = 0
+
+	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
 	public var commentAddDelegate: CommentAddScreenletDelegate? {
 		return delegate as? CommentAddScreenletDelegate
@@ -38,15 +46,31 @@ import UIKit
 		return screenletView as! CommentAddViewModel
 	}
 
+	public var comment: Comment? {
+		didSet {
+			if let comment = self.comment {
+				viewModel.body = comment.plainBody
+			}
+		}
+	}
+
 
 	//MARK: BaseScreenlet
 
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
-		let interactor = CommentAddInteractor(
-			screenlet: self,
-			className: self.className,
-			classPK: self.classPK,
-			body: self.viewModel.body)
+		if comment != nil {
+			return createUpdateCommentInteractor()
+		}
+		return createAddCommentInteractor()
+	}
+
+
+	//MARK: Interactor methods
+
+	func createAddCommentInteractor() -> Interactor {
+		let interactor = CommentAddInteractor(screenlet: self, body: self.viewModel.body)
+
+		interactor.cacheStrategy = CacheStrategyType(rawValue: offlinePolicy ?? "") ?? .RemoteFirst
 
 		interactor.onSuccess = {
 			if let resultComment = interactor.resultComment {
@@ -55,12 +79,35 @@ import UIKit
 			}
 			else {
 				self.commentAddDelegate?.screenlet?(self,
-					onAddCommentError: NSError.errorWithCause(.InvalidServerResponse))
+				                                    onAddCommentError: NSError.errorWithCause(.InvalidServerResponse))
 			}
 		}
 
 		interactor.onFailure = {
 			self.commentAddDelegate?.screenlet?(self, onAddCommentError: $0)
+		}
+		
+		return interactor
+	}
+
+	func createUpdateCommentInteractor() -> Interactor {
+		let interactor = CommentUpdateInteractor(
+			commentId: comment!.commentId,
+			body: self.viewModel.body)
+
+		interactor.onSuccess = {
+			if let resultComment = interactor.resultComment {
+				self.commentAddDelegate?.screenlet?(self, onCommentUpdated: resultComment)
+				self.viewModel.body = ""
+			}
+			else {
+				self.commentAddDelegate?.screenlet?(self,
+				                                    onUpdateCommentError: NSError.errorWithCause(.InvalidServerResponse))
+			}
+		}
+
+		interactor.onFailure = {
+			self.commentAddDelegate?.screenlet?(self, onUpdateCommentError: $0)
 		}
 
 		return interactor

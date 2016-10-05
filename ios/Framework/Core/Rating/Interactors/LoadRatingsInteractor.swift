@@ -79,4 +79,78 @@ public class LoadRatingsInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
+	//MARK: Cache
+
+	override public func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			result(nil)
+			return
+		}
+
+		cacheManager.getAny(
+				collection: "RatingScreenlet",
+				key: cacheKey()) {
+			guard let rating = $0 as? RatingEntry else {
+				result(nil)
+				return
+			}
+
+			if let loadCon = c as? RatingLoadByEntryIdLiferayConnector {
+				loadCon.resultRating = rating
+				result(rating)
+			}
+			else if let loadCon = c as? RatingLoadByClassPKLiferayConnector {
+				loadCon.resultRating = rating
+				result(rating)
+			}
+			else {
+				result(nil)
+				return
+			}
+		}
+	}
+
+	override public func writeToCache(c: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+
+		let result: RatingEntry?
+
+		if let loadCon = c as? RatingLoadByEntryIdLiferayConnector {
+			result = loadCon.resultRating
+		}
+		else if let loadCon = c as? RatingLoadByClassPKLiferayConnector {
+			result = loadCon.resultRating
+		}
+		else {
+			result = nil
+		}
+
+		guard let resultRating = result else {
+			return
+		}
+
+		cacheManager.setClean(
+			collection: "RatingScreenlet",
+			key: cacheKey(),
+			value: resultRating,
+			attributes: [
+				"ratingEntryId": NSNumber(longLong: self.entryId ?? 0),
+				"className": self.className ?? "",
+				"classPK": NSNumber(longLong: self.classPK ?? 0)
+			])
+	}
+
+	private func cacheKey() -> String {
+		if let entryId = self.entryId {
+			return "ratingEntryId-\(entryId)"
+		}
+		else if let classPK = self.classPK, className = self.className {
+			return "className=\(className)-classPK=\(classPK)"
+		}
+
+		return ""
+	}
+
 }
