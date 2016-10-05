@@ -30,7 +30,7 @@ public class CommentListPageLoadInteractor: BaseListPageLoadInteractor {
 		super.init(screenlet: screenlet, page: page, computeRowCount: computeRowCount)
 	}
 
-	override public func createConnector() -> CommentListPageLiferayConnector {
+	public override func createListPageConnector() -> PaginationLiferayConnector {
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
 
 		return LiferayServerContext.connectorFactory.createCommentListPageConnector(

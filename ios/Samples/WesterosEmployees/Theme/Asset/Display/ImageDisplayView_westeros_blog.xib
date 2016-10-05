@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ImageDisplayView_default" customModule="LiferayScreens">
+            <rect key="frame" x="0.0" y="0.0" width="115" height="116"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no-photo.png" translatesAutoresizingMaskIntoConstraints="NO" id="yVz-Kd-QTR">
+                    <rect key="frame" x="43" y="43" width="30" height="30"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Pyk-bY-Nb7"/>
+                        <constraint firstAttribute="width" constant="30" id="W9N-7J-iGf"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ktK-FI-VDI">
+                    <rect key="frame" x="0.0" y="0.0" width="115" height="116"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="yVz-Kd-QTR" secondAttribute="trailing" constant="15" id="Eh5-m1-Jha"/>
+                <constraint firstItem="yVz-Kd-QTR" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="GDz-UP-ur4"/>
+                <constraint firstItem="ktK-FI-VDI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Qcp-nC-jKM"/>
+                <constraint firstItem="yVz-Kd-QTR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="URY-Lw-kj2"/>
+                <constraint firstAttribute="bottom" secondItem="yVz-Kd-QTR" secondAttribute="bottom" constant="15" id="bPw-ZY-fHn"/>
+                <constraint firstAttribute="trailing" secondItem="ktK-FI-VDI" secondAttribute="trailing" id="foa-8y-qlV"/>
+                <constraint firstItem="yVz-Kd-QTR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="gjF-hc-GpW"/>
+                <constraint firstAttribute="bottom" secondItem="ktK-FI-VDI" secondAttribute="bottom" id="hAu-nN-5Ix"/>
+                <constraint firstItem="ktK-FI-VDI" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="hIn-aI-DhK"/>
+                <constraint firstItem="yVz-Kd-QTR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="j7D-JY-Zbz"/>
+                <constraint firstItem="ktK-FI-VDI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jbl-ep-vqW"/>
+                <constraint firstItem="ktK-FI-VDI" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="m9d-iD-Ccl"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Eh5-m1-Jha"/>
+                    <exclude reference="bPw-ZY-fHn"/>
+                    <exclude reference="gjF-hc-GpW"/>
+                    <exclude reference="j7D-JY-Zbz"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="imageView" destination="ktK-FI-VDI" id="hln-aN-nF5"/>
+            </connections>
+            <point key="canvasLocation" x="227.5" y="265"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="no-photo.png" width="48" height="48"/>
+    </resources>
+</document>

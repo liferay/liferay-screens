@@ -18,15 +18,52 @@ public class CommentDeleteInteractor: ServerWriteConnectorInteractor {
 
 	let commentId: Int64
 
-	init(screenlet: BaseScreenlet?, commentId: Int64) {
-		self.commentId = commentId
+	override public init(screenlet: BaseScreenlet?) {
+		self.commentId = (screenlet as! CommentDisplayScreenlet).commentId
 
 		super.init(screenlet: screenlet)
+	}
+
+	public init(commentId: Int64) {
+		self.commentId = commentId
+
+		super.init(screenlet: nil)
 	}
 
 	override public func createConnector() -> CommentDeleteLiferayConnector? {
 		return LiferayServerContext.connectorFactory.createCommentDeleteConnector(
 			commentId: commentId)
 	}
+
+	//MARK: Cache methods
+
+	override public func writeToCache(c: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+
+		let cacheFunction = (cacheStrategy == .CacheFirst || c.lastError != nil)
+			? cacheManager.setDirty
+			: cacheManager.setClean
+
+		cacheFunction(
+			collection: "CommentsScreenlet",
+			key: "delete-commentId-\(commentId)",
+			value: "",
+			attributes: ["commentId": NSNumber(longLong: commentId)],
+			onCompletion: nil)
+	}
+
+	public override func callOnSuccess() {
+		if cacheStrategy == .CacheFirst {
+			SessionContext.currentContext?.cacheManager.setClean(
+				collection: "CommentsScreenlet",
+				key: "delete-commentId-\(commentId)",
+				value: "",
+				attributes: ["commentId": NSNumber(longLong: commentId)],
+				onCompletion: nil)
+		}
+	}
+
 
 }

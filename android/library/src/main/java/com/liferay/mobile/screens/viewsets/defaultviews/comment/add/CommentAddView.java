@@ -67,7 +67,7 @@ public class CommentAddView extends RelativeLayout implements CommentAddViewMode
 
 	@Override
 	public void showFinishOperation(String actionName) {
-
+		sendButton.setEnabled(true);
 	}
 
 	@Override

@@ -6,11 +6,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import com.liferay.mobile.screens.base.interactor.listener.CacheListener;
-import com.liferay.mobile.screens.gallery.GalleryListener;
-import com.liferay.mobile.screens.gallery.GalleryScreenlet;
-import com.liferay.mobile.screens.gallery.model.ImageEntry;
+import com.liferay.mobile.screens.imagegallery.ImageGalleryListener;
+import com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet;
+import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.viewsets.defaultviews.gallery.DetailUploadDefaultActivity;
 import java.util.List;
 
 import static android.view.View.GONE;
@@ -20,26 +19,26 @@ import static android.view.View.VISIBLE;
 /**
  * * @author Víctor Galán Grande
  */
-public class GalleryActivity extends ThemeActivity implements GalleryListener, OnClickListener, CacheListener {
+public class GalleryActivity extends ThemeActivity implements ImageGalleryListener, OnClickListener, CacheListener {
 
-	private GalleryScreenlet galleryScreenletGrid;
-	private GalleryScreenlet galleryScreenletSlideShow;
-	private GalleryScreenlet galleryScreenletList;
+	private ImageGalleryScreenlet imageGalleryScreenletGrid;
+	private ImageGalleryScreenlet imageGalleryScreenletSlideShow;
+	private ImageGalleryScreenlet imageGalleryScreenletList;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.gallery);
 
-		galleryScreenletGrid = (GalleryScreenlet) findViewById(R.id.gallery_screenlet_grid);
-		galleryScreenletGrid.setListener(this);
+		imageGalleryScreenletGrid = (ImageGalleryScreenlet) findViewById(R.id.gallery_screenlet_grid);
+		imageGalleryScreenletGrid.setListener(this);
 
-		galleryScreenletSlideShow = (GalleryScreenlet) findViewById(R.id.gallery_screenlet_slideshow);
-		galleryScreenletSlideShow.setListener(this);
+		imageGalleryScreenletSlideShow = (ImageGalleryScreenlet) findViewById(R.id.gallery_screenlet_slideshow);
+		imageGalleryScreenletSlideShow.setListener(this);
 
-		galleryScreenletList = (GalleryScreenlet) findViewById(R.id.gallery_screenlet_list);
-		galleryScreenletList.setListener(this);
-		galleryScreenletList.setCacheListener(this);
+		imageGalleryScreenletList = (ImageGalleryScreenlet) findViewById(R.id.gallery_screenlet_list);
+		imageGalleryScreenletList.setListener(this);
+		imageGalleryScreenletList.setCacheListener(this);
 
 		Button changeGalleryViewGrid = (Button) findViewById(R.id.change_gallery_view_grid);
 		changeGalleryViewGrid.setOnClickListener(this);
@@ -58,13 +57,13 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 
 	@Override
 	public void onListPageReceived(int startRow, int endRow, List<ImageEntry> entries, int rowCount) {
-		Log.i(GalleryScreenlet.class.getName(), "row: " + startRow + "received with " + entries.size() + "entries");
+		Log.i(ImageGalleryScreenlet.class.getName(), "row: " + startRow + "received with " + entries.size() + "entries");
 	}
 
 	@Override
 	public void onListItemSelected(ImageEntry image, View view) {
 		LiferayLogger.i("Image selected: " + image.getImageUrl());
-		galleryScreenletGrid.showImageInFullScreenActivity(image);
+		imageGalleryScreenletGrid.showImageInFullScreenActivity(image);
 	}
 
 	@Override
@@ -110,8 +109,13 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 	}
 
 	@Override
-	public Class provideImageUploadDetailActivity() {
-		return DetailUploadDefaultActivity.class;
+	public boolean showUploadImageView(String actionName, String picturePath, int screenletId) {
+		return false;
+	}
+
+	@Override
+	public int provideImageUploadDetailView() {
+		return 0;
 	}
 
 	@Override
@@ -132,21 +136,21 @@ public class GalleryActivity extends ThemeActivity implements GalleryListener, O
 	}
 
 	private void setGridMode() {
-		galleryScreenletSlideShow.setVisibility(GONE);
-		galleryScreenletGrid.setVisibility(VISIBLE);
-		galleryScreenletList.setVisibility(GONE);
+		imageGalleryScreenletSlideShow.setVisibility(GONE);
+		imageGalleryScreenletGrid.setVisibility(VISIBLE);
+		imageGalleryScreenletList.setVisibility(GONE);
 	}
 
 	private void setSlideshowMode() {
-		galleryScreenletSlideShow.setVisibility(VISIBLE);
-		galleryScreenletGrid.setVisibility(GONE);
-		galleryScreenletList.setVisibility(GONE);
+		imageGalleryScreenletSlideShow.setVisibility(VISIBLE);
+		imageGalleryScreenletGrid.setVisibility(GONE);
+		imageGalleryScreenletList.setVisibility(GONE);
 	}
 
 	private void setListMode() {
-		galleryScreenletList.setVisibility(VISIBLE);
-		galleryScreenletSlideShow.setVisibility(GONE);
-		galleryScreenletGrid.setVisibility(GONE);
+		imageGalleryScreenletList.setVisibility(VISIBLE);
+		imageGalleryScreenletSlideShow.setVisibility(GONE);
+		imageGalleryScreenletGrid.setVisibility(GONE);
 	}
 
 	@Override

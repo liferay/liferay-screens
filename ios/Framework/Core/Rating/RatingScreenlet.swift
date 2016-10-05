@@ -49,7 +49,9 @@ import UIKit
 			screenletView?.editable = self.editable
 		}
 	}
-	
+
+	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+
 	public var ratingDisplayDelegate: RatingScreenletDelegate? {
 		return delegate as? RatingScreenletDelegate
 	}
@@ -85,7 +87,7 @@ import UIKit
 	}
 
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
-		let interactor: Interactor?
+		let interactor: ServerConnectorInteractor?
 
 		switch name {
 		case RatingScreenlet.LoadRatingsAction:
@@ -98,6 +100,8 @@ import UIKit
 		default:
 			return nil
 		}
+
+		interactor?.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
 
 		interactor?.onFailure = {
 			self.ratingDisplayDelegate?.screenlet?(self, onRatingError: $0)

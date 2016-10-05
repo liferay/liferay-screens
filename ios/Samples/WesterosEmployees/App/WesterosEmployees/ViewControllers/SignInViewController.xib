@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignInViewController" customModule="WesterosEmployees" customModuleProvider="target">
+            <connections>
+                <outlet property="loginScreenlet" destination="hZ1-eE-IBY" id="0BT-Mr-GHc"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="368"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZ1-eE-IBY" customClass="LoginScreenlet" customModule="LiferayScreens">
+                    <rect key="frame" x="25" y="20" width="325" height="225"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="225" id="mpz-TE-EEi"/>
+                        <constraint firstAttribute="width" constant="325" id="zIT-I2-k70"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cg4-y9-Lxr">
+                    <rect key="frame" x="121" y="265" width="132" height="34"/>
+                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
+                    <state key="normal" title="Forgot password?">
+                        <color key="titleColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="forgotPasswordAction" destination="-1" eventType="touchUpInside" id="cbk-Qx-U79"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Cg4-y9-Lxr" firstAttribute="top" secondItem="hZ1-eE-IBY" secondAttribute="bottom" constant="20" id="KgH-QZ-t7m"/>
+                <constraint firstItem="hZ1-eE-IBY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="Qmr-rh-eUy"/>
+                <constraint firstItem="hZ1-eE-IBY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="X3M-A5-IGF"/>
+                <constraint firstItem="Cg4-y9-Lxr" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pcb-1y-6ME"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="569.5" y="554"/>
+        </view>
+    </objects>
+</document>

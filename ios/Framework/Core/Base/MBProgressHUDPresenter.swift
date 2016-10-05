@@ -81,7 +81,7 @@ import Foundation
 
 	//MARK: PRIVATE METHODS
 	
-	private func hideHud() {
+	public func hideHud() {
 		if self.instance == nil {
 			return
 		}
@@ -92,7 +92,7 @@ import Foundation
 		}
 	}
 
-	private func configureAndShowHUD(hud: MBProgressHUD,
+	public func configureAndShowHUD(hud: MBProgressHUD,
 			message: String?,
 			closeMode: ProgressCloseMode,
 			spinnerMode: ProgressSpinnerMode) {
@@ -137,7 +137,7 @@ import Foundation
 	}
 
 
-	private func rootView(currentView:UIView) -> UIView {
+	public func rootView(currentView:UIView) -> UIView {
 		if currentView.superview == nil {
 			return currentView;
 		}
@@ -145,7 +145,7 @@ import Foundation
 		return rootView(currentView.superview!)
 	}
 
-	private func spinnerModeToProgressModeHUD(spinnerMode: ProgressSpinnerMode) -> MBProgressHUDMode {
+	public func spinnerModeToProgressModeHUD(spinnerMode: ProgressSpinnerMode) -> MBProgressHUDMode {
 		switch spinnerMode {
 		case .IndeterminateSpinner:
 			return .Indeterminate

@@ -16,22 +16,26 @@ import UIKit
 extension UIImage {
 
 	public func resizeImage(toWidth width: Int, completion: (UIImage) -> Void) {
+		dispatch_async {
+			let newImage = self.resizeImage(toWidth: width)
+			dispatch_main {
+				completion(newImage)
+			}
+		}
+	}
+
+	public func resizeImage(toWidth width: Int) -> UIImage {
 		let oldWidth = self.size.width
 		let scaleFactor = CGFloat(width) / oldWidth
 
 		let newHeight = self.size.height * scaleFactor
 		let newWidth = CGFloat(width)
 
-		dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
-			UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
-			self.drawInRect(CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
-			let newImage = UIGraphicsGetImageFromCurrentImageContext()
-			UIGraphicsEndImageContext()
+		UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+		self.drawInRect(CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+		let newImage = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
 
-			dispatch_async(dispatch_get_main_queue()) {
-				completion(newImage)
-			}
-		}
+		return newImage
 	}
-
 }

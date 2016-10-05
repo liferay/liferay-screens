@@ -182,8 +182,8 @@
 		<attr name="editable"/>
 	</declare-styleable>
 
-	<declare-styleable name="GalleryScreenlet">
-		<attr name="groupId"/>
+	<declare-styleable name="ImageGalleryScreenlet">
+		<attr name="repositoryId"/>
 		<attr name="folderId"/>
 		<attr name="cachePolicy"/>
 		<attr name="pageSize"/>
@@ -216,6 +216,7 @@
 		<attr format="reference" name="audiolayoutId"/>
 		<attr format="reference" name="pdflayoutId"/>
 		<attr format="reference" name="blogsLayoutId"/>
+		<attr format="reference" name="webDisplayLayoutId"/>
 	</declare-styleable>
 
 	<declare-styleable name="ImageDisplayScreenlet">

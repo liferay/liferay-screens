@@ -45,9 +45,13 @@ import UIKit
 	public static let UpdateAction = "updateAction"
 
 	@IBInspectable public var commentId: Int64 = 0
+
 	@IBInspectable public var className: String = ""
 	@IBInspectable public var classPK: Int64 = 0
+
 	@IBInspectable public var autoLoad: Bool = true
+	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+
 	@IBInspectable public var editable: Bool = false {
 		didSet {
 			screenletView?.editable = self.editable
@@ -120,9 +124,9 @@ import UIKit
 	//MARK: Private methods
 
 	private func createCommentLoadInteractor() -> Interactor {
-		let interactor = CommentLoadInteractor(
-			screenlet: self,
-			commentId: self.commentId)
+		let interactor = CommentLoadInteractor(screenlet: self)
+
+		interactor.cacheStrategy = CacheStrategyType(rawValue: offlinePolicy ?? "") ?? .RemoteFirst
 
 		interactor.onSuccess = {
 			if let resultComment = interactor.resultComment {
@@ -144,9 +148,7 @@ import UIKit
 	}
 
 	private func createCommentDeleteInteractor() -> Interactor {
-		let interactor = CommentDeleteInteractor(
-			screenlet: self,
-			commentId: self.commentId)
+		let interactor = CommentDeleteInteractor(screenlet: self)
 
 		interactor.onSuccess = {
 			self.commentDisplayDelegate?.screenlet?(self, onCommentDeleted: self.comment!)
@@ -160,10 +162,7 @@ import UIKit
 	}
 
 	private func createCommentUpdateInteractor(body: String) -> Interactor {
-		let interactor = CommentUpdateInteractor(
-			screenlet: self,
-			commentId: commentId,
-			body: body)
+		let interactor = CommentUpdateInteractor(screenlet: self, body: body)
 
 		interactor.onSuccess = {
 			if let resultComment = interactor.resultComment {

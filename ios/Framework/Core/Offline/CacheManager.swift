@@ -54,7 +54,6 @@ public enum CacheStrategyType: String {
 	}
 
 	public func getString(collection collection: String, key: String, result: String? -> ()) {
-
 		var value: AnyObject?
 		readConnection.asyncReadWithBlock( { transaction in
 				value = transaction.objectForKey(key, inCollection: collection)
@@ -63,8 +62,47 @@ public enum CacheStrategyType: String {
 			})
 	}
 
-	public func getImage(collection collection: String, key: String, result: UIImage? -> ()) {
+	public func getLocalFileURL(collection collection: String, key: String, result: NSURL? -> ()) {
+		var value: AnyObject?
 
+		readConnection.asyncReadWithBlock({ transaction in
+				value = transaction.objectForKey(key, inCollection: collection)
+			},
+			completionBlock: {
+				guard let localFileURL = value as? NSURL else {
+					result(nil)
+					return
+				}
+				guard let localPath = localFileURL.path else {
+					result(nil)
+					return
+				}
+
+				if isCacheFilePath(localPath) {
+					// use current cache path: may be different than the stored
+					guard let filename = localFileURL.lastPathComponent else {
+						result(nil)
+						return
+					}
+
+					let cacheDir = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .AllDomainsMask, true)[0]
+
+					let newLocalURL = NSURL(fileURLWithPath: "\(cacheDir)/\(filename)")
+
+					if newLocalURL.checkResourceIsReachableAndReturnError(nil) {
+						result(newLocalURL)
+					}
+					else {
+						result(nil)
+					}
+				}
+				else {
+					result(localFileURL)
+				}
+			})
+	}
+
+	public func getImage(collection collection: String, key: String, result: UIImage? -> ()) {
 		var value: AnyObject?
 
 		readConnection.asyncReadWithBlock({ transaction in
@@ -83,7 +121,6 @@ public enum CacheStrategyType: String {
 	}
 
 	public func getAny(collection collection: String, key: String, result: AnyObject? -> ()) {
-
 		var value: AnyObject?
 
 		readConnection.asyncReadWithBlock ({ transaction in
@@ -133,7 +170,6 @@ public enum CacheStrategyType: String {
 	}
 
 	public func getSome(collection collection: String, keys: [String], result: [AnyObject?] -> ()) {
-
 		var values = [AnyObject?]()
 
 		readConnection.asyncReadWithBlock ({ transaction in
@@ -149,7 +185,6 @@ public enum CacheStrategyType: String {
 
 
 	public func getMetadata(collection collection: String, key: String, result: CacheMetadata? -> ()) {
-
 		var value: AnyObject?
 
 		readConnection.asyncReadWithBlock ({ transaction in
@@ -179,6 +214,30 @@ public enum CacheStrategyType: String {
 
 	public func setClean(
 			collection collection: String,
+			key: String,
+			localFileURL: NSURL,
+			attributes: [String:AnyObject],
+			onCompletion: (() -> ())? = nil) {
+
+		guard localFileURL.fileURL else {
+			onCompletion?()
+			return
+		}
+		guard localFileURL.checkResourceIsReachableAndReturnError(nil) else {
+			onCompletion?()
+			return
+		}
+
+		set(collection: collection,
+			keys: [key],
+			values: [localFileURL],
+			synchronized: NSDate(),
+			attributes: attributes,
+			onCompletion: onCompletion)
+	}
+
+	public func setClean(
+			collection collection: String,
 			keys: [String],
 			values: [NSCoding],
 			attributes: [String:AnyObject],
@@ -191,7 +250,6 @@ public enum CacheStrategyType: String {
 			attributes: attributes,
 			onCompletion: onCompletion)
 	}
-
 
 	public func setDirty(
 			collection collection: String,
@@ -301,7 +359,6 @@ public enum CacheStrategyType: String {
 	}
 
 	public func countPendingToSync(result: UInt -> ()) {
-
 		var value: UInt = 0
 
 		pendingToSyncTransaction ({ transaction in

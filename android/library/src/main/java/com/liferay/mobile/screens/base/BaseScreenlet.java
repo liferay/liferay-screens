@@ -125,8 +125,8 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		I interactor = getInteractor();
 
 		if (interactor != null) {
-			getViewModel().showStartOperation(null);
-			onUserAction(null, interactor);
+			getViewModel().showStartOperation(DEFAULT_ACTION);
+			onUserAction(DEFAULT_ACTION, interactor);
 		}
 	}
 

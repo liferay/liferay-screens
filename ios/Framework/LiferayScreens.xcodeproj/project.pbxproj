@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		0B1063161D49E7C9001D8DE3 /* WebContentListView_default-collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1063151D49E7C9001D8DE3 /* WebContentListView_default-collection.swift */; };
 		0B1063181D49E7DE001D8DE3 /* WebContentListView_default-collection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B1063171D49E7DE001D8DE3 /* WebContentListView_default-collection.xib */; };
-		0B217FB51D6C4E6F00A23690 /* AssetDisplayFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FA61D6C4E6F00A23690 /* AssetDisplayFactory.swift */; };
+		0B217FB51D6C4E6F00A23690 /* AssetDisplayBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FA61D6C4E6F00A23690 /* AssetDisplayBuilder.swift */; };
+		0B1F30E61DA240460053424E /* UserPortrait_connector_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F30E41DA23FB40053424E /* UserPortrait_connector_Test.swift */; };
+		0B1F30E81DA240F20053424E /* tinyImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1F30E71DA240F20053424E /* tinyImage.png */; };
 		0B217FB61D6C4E6F00A23690 /* AssetDisplayScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FA71D6C4E6F00A23690 /* AssetDisplayScreenlet.swift */; };
 		0B217FB71D6C4E6F00A23690 /* AssetDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FA81D6C4E6F00A23690 /* AssetDisplayViewModel.swift */; };
 		0B217FB81D6C4E6F00A23690 /* AssetLoadByClassPKLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FAA1D6C4E6F00A23690 /* AssetLoadByClassPKLiferayConnector.swift */; };
@@ -165,7 +167,6 @@
 		0BF917CF1D76BFA800C86C85 /* NSDate+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917CE1D76BFA800C86C85 /* NSDate+Screens.swift */; };
 		0BFE283A1D87E13300261A66 /* LRScreenscommentService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BFE28381D87E13300261A66 /* LRScreenscommentService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0BFE283B1D87E13300261A66 /* LRScreenscommentService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE28391D87E13300261A66 /* LRScreenscommentService_v70.m */; };
-		431250828CDCA06E95D11B8A /* Pods_LiferayScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F2FC46C9BDDDADEE705508 /* Pods_LiferayScreensTests.framework */; };
 		88019FA21B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */; };
 		88019FA31B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */; };
 		880459ED1CA15FA400449D55 /* DDMFieldTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880459EC1CA15FA400449D55 /* DDMFieldTableCell.swift */; };
@@ -324,6 +325,7 @@
 		881E63071ACC06B900862B9E /* LoginScreenlet_ByScreenName_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E63031ACC06B900862B9E /* LoginScreenlet_ByScreenName_Tests.swift */; };
 		881E63081ACC06B900862B9E /* LoginScreenlet_ByUserId_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E63041ACC06B900862B9E /* LoginScreenlet_ByUserId_Tests.swift */; };
 		881E630A1ACC0CF700862B9E /* LiferayScreens.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8892C6781ACB2E3300192232 /* LiferayScreens.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		883468511D7DA896002344C4 /* SyncManager+Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883468501D7DA896002344C4 /* SyncManager+Comment.swift */; };
 		8837FA761CAEF6AE00DCB1B4 /* WebContentLoadBaseLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837FA681CAEF6AE00DCB1B4 /* WebContentLoadBaseLiferayConnector.swift */; };
 		8837FA771CAEF6AE00DCB1B4 /* WebContentLoadBaseLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837FA681CAEF6AE00DCB1B4 /* WebContentLoadBaseLiferayConnector.swift */; };
 		8837FA781CAEF6AE00DCB1B4 /* WebContentDisplayLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837FA691CAEF6AE00DCB1B4 /* WebContentDisplayLoadInteractor.swift */; };
@@ -372,6 +374,7 @@
 		887F0D161B99AABB0007AECE /* String+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D141B99AABA0007AECE /* String+Screens.swift */; };
 		887F0D181B99BD640007AECE /* CacheMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D171B99BD640007AECE /* CacheMetadata.swift */; };
 		887F0D191B99BD640007AECE /* CacheMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D171B99BD640007AECE /* CacheMetadata.swift */; };
+		887FCB3B1D9D3ABF00537C40 /* SyncManager+Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887FCB3A1D9D3ABF00537C40 /* SyncManager+Rating.swift */; };
 		888DF5B11ACC9FC200EB7DA1 /* LoginScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F11ACBE5F000862B9E /* LoginScreenlet.swift */; };
 		888DF5B21ACC9FC200EB7DA1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F21ACBE5F000862B9E /* LoginViewModel.swift */; };
 		888DF5B41ACC9FF100EB7DA1 /* LoginView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61C31ACBFC3400862B9E /* LoginView_default.swift */; };
@@ -533,7 +536,8 @@
 		88E7909E1C6CA3A700C90453 /* LiferayConnectorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E7909C1C6CA3A700C90453 /* LiferayConnectorFactory.swift */; };
 		88F888551B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */; };
 		88F888561B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */; };
-		A78C4BCA83B4105684860043 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9136B139BF9449FC75DBECA6 /* Pods.framework */; };
+		C0D791F1F5D242581537444F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9136B139BF9449FC75DBECA6 /* Pods.framework */; };
+		F9EF5387482D9B5CFA196739 /* Pods_LiferayScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4E12C7D980ECD1AF8D66C8 /* Pods_LiferayScreensTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -552,7 +556,9 @@
 /* Begin PBXFileReference section */
 		0B1063151D49E7C9001D8DE3 /* WebContentListView_default-collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebContentListView_default-collection.swift"; sourceTree = "<group>"; };
 		0B1063171D49E7DE001D8DE3 /* WebContentListView_default-collection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WebContentListView_default-collection.xib"; sourceTree = "<group>"; };
-		0B217FA61D6C4E6F00A23690 /* AssetDisplayFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayFactory.swift; sourceTree = "<group>"; };
+		0B1F30E41DA23FB40053424E /* UserPortrait_connector_Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortrait_connector_Test.swift; sourceTree = "<group>"; };
+		0B217FA61D6C4E6F00A23690 /* AssetDisplayBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayBuilder.swift; sourceTree = "<group>"; };
+		0B1F30E71DA240F20053424E /* tinyImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tinyImage.png; sourceTree = "<group>"; };
 		0B217FA71D6C4E6F00A23690 /* AssetDisplayScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayScreenlet.swift; sourceTree = "<group>"; };
 		0B217FA81D6C4E6F00A23690 /* AssetDisplayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayViewModel.swift; sourceTree = "<group>"; };
 		0B217FAA1D6C4E6F00A23690 /* AssetLoadByClassPKLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetLoadByClassPKLiferayConnector.swift; sourceTree = "<group>"; };
@@ -692,7 +698,9 @@
 		0BF917CE1D76BFA800C86C85 /* NSDate+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Screens.swift"; sourceTree = "<group>"; };
 		0BFE28381D87E13300261A66 /* LRScreenscommentService_v70.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreenscommentService_v70.h; sourceTree = "<group>"; };
 		0BFE28391D87E13300261A66 /* LRScreenscommentService_v70.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreenscommentService_v70.m; sourceTree = "<group>"; };
-		7C0B882BE724FFD745F72E9B /* Pods-LiferayScreensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2769E1271A21C4D750275F95 /* Pods-LiferayScreensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7C800E15AE76CE5D338127C5 /* Pods-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
+		7F0C9CF70455AE501CB3398E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		88019FA11B8F22EE00674B00 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/webcontentdisplay-screenlet.strings"; sourceTree = "<group>"; };
 		880459EC1CA15FA400449D55 /* DDMFieldTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDMFieldTableCell.swift; sourceTree = "<group>"; };
 		880ACA5A1B01FBF0007AD007 /* UploadUserPortraitInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadUserPortraitInteractor.swift; sourceTree = "<group>"; };
@@ -819,6 +827,7 @@
 		881E63031ACC06B900862B9E /* LoginScreenlet_ByScreenName_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenlet_ByScreenName_Tests.swift; sourceTree = "<group>"; };
 		881E63041ACC06B900862B9E /* LoginScreenlet_ByUserId_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenlet_ByUserId_Tests.swift; sourceTree = "<group>"; };
 		882CDC561C64B2C00043A9FD /* Dictionary+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Screens.swift"; sourceTree = "<group>"; };
+		883468501D7DA896002344C4 /* SyncManager+Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncManager+Comment.swift"; sourceTree = "<group>"; };
 		8837FA681CAEF6AE00DCB1B4 /* WebContentLoadBaseLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentLoadBaseLiferayConnector.swift; sourceTree = "<group>"; };
 		8837FA691CAEF6AE00DCB1B4 /* WebContentDisplayLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayLoadInteractor.swift; sourceTree = "<group>"; };
 		8837FA6A1CAEF6AE00DCB1B4 /* WebContentDisplayScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayScreenlet.swift; sourceTree = "<group>"; };
@@ -858,6 +867,7 @@
 		887F0D111B99A79A0007AECE /* LRSession+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LRSession+Screens.swift"; sourceTree = "<group>"; };
 		887F0D141B99AABA0007AECE /* String+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Screens.swift"; sourceTree = "<group>"; };
 		887F0D171B99BD640007AECE /* CacheMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheMetadata.swift; sourceTree = "<group>"; };
+		887FCB3A1D9D3ABF00537C40 /* SyncManager+Rating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncManager+Rating.swift"; sourceTree = "<group>"; };
 		8891259A1D5479E6006AFA08 /* RatingDeleteLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingDeleteLiferayConnector.swift; sourceTree = "<group>"; };
 		8891259B1D5479E6006AFA08 /* RatingLoadByClassPKLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingLoadByClassPKLiferayConnector.swift; sourceTree = "<group>"; };
 		8891259C1D5479E6006AFA08 /* RatingLoadByEntryIdLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingLoadByEntryIdLiferayConnector.swift; sourceTree = "<group>"; };
@@ -963,11 +973,9 @@
 		88DE2AA11AD3ED3B00714701 /* LiferayScreensFrameworkConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiferayScreensFrameworkConfig.h; sourceTree = "<group>"; };
 		88E7909C1C6CA3A700C90453 /* LiferayConnectorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayConnectorFactory.swift; sourceTree = "<group>"; };
 		88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCredentialsStoreKeyChain.swift; sourceTree = "<group>"; };
+		8E390339910A500862C29BD4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		9136B139BF9449FC75DBECA6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9AC17F525218297794482A65 /* Pods-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
-		CA6215A5862CA6DCC27EE0ED /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		D0F2FC46C9BDDDADEE705508 /* Pods_LiferayScreensTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiferayScreensTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE2BFCE1243B0BCB673A02C3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		9C4E12C7D980ECD1AF8D66C8 /* Pods_LiferayScreensTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiferayScreensTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -975,7 +983,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A78C4BCA83B4105684860043 /* Pods.framework in Frameworks */,
+				C0D791F1F5D242581537444F /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -984,13 +992,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				8892C6841ACB2E3300192232 /* LiferayScreens.framework in Frameworks */,
-				431250828CDCA06E95D11B8A /* Pods_LiferayScreensTests.framework in Frameworks */,
+				F9EF5387482D9B5CFA196739 /* Pods_LiferayScreensTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B1F30E31DA23F7F0053424E /* UserPortrait */ = {
+			isa = PBXGroup;
+			children = (
+				0B1F30E41DA23FB40053424E /* UserPortrait_connector_Test.swift */,
+			);
+			path = UserPortrait;
+			sourceTree = "<group>";
+		};
 		0B217FA41D6C4E6F00A23690 /* Asset */ = {
 			isa = PBXGroup;
 			children = (
@@ -1003,7 +1019,7 @@
 		0B217FA51D6C4E6F00A23690 /* DisplayScreenlet */ = {
 			isa = PBXGroup;
 			children = (
-				0B217FA61D6C4E6F00A23690 /* AssetDisplayFactory.swift */,
+				0B217FA61D6C4E6F00A23690 /* AssetDisplayBuilder.swift */,
 				0B217FA71D6C4E6F00A23690 /* AssetDisplayScreenlet.swift */,
 				0B217FA81D6C4E6F00A23690 /* AssetDisplayViewModel.swift */,
 				0B217FA91D6C4E6F00A23690 /* Connectors */,
@@ -1052,33 +1068,15 @@
 		0B217FC01D6C4E7B00A23690 /* FileDisplay */ = {
 			isa = PBXGroup;
 			children = (
-				0B217FC11D6C4E7B00A23690 /* Audio */,
 				0B217FC21D6C4E7B00A23690 /* AudioDisplayScreenlet.swift */,
 				0B217FC31D6C4E7B00A23690 /* FileDisplayScreenlet.swift */,
 				0B217FC41D6C4E7B00A23690 /* FileDisplayViewModel.swift */,
-				0B217FC51D6C4E7B00A23690 /* Image */,
 				0B217FC61D6C4E7B00A23690 /* ImageDisplayScreenlet.swift */,
 				0B217FC71D6C4E7B00A23690 /* Interactors */,
-				0B217FC91D6C4E7B00A23690 /* Pdf */,
 				0B217FCA1D6C4E7B00A23690 /* PdfDisplayScreenlet.swift */,
-				0B217FCB1D6C4E7B00A23690 /* Video */,
 				0B217FCC1D6C4E7B00A23690 /* VideoDisplayScreenlet.swift */,
 			);
 			path = FileDisplay;
-			sourceTree = "<group>";
-		};
-		0B217FC11D6C4E7B00A23690 /* Audio */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Audio;
-			sourceTree = "<group>";
-		};
-		0B217FC51D6C4E7B00A23690 /* Image */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Image;
 			sourceTree = "<group>";
 		};
 		0B217FC71D6C4E7B00A23690 /* Interactors */ = {
@@ -1087,20 +1085,6 @@
 				0B217FC81D6C4E7B00A23690 /* LoadFileEntryInteractor.swift */,
 			);
 			path = Interactors;
-			sourceTree = "<group>";
-		};
-		0B217FC91D6C4E7B00A23690 /* Pdf */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pdf;
-			sourceTree = "<group>";
-		};
-		0B217FCB1D6C4E7B00A23690 /* Video */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Video;
 			sourceTree = "<group>";
 		};
 		0B217FD61D6C4E9500A23690 /* FileDisplay */ = {
@@ -1188,16 +1172,8 @@
 			children = (
 				0B21801C1D6C500C00A23690 /* BlogsDisplayViewModel.swift */,
 				0B21801D1D6C500C00A23690 /* BlogsEntryDisplayScreenlet.swift */,
-				0B21801E1D6C500C00A23690 /* Interactors */,
 			);
 			path = BlogsDisplay;
-			sourceTree = "<group>";
-		};
-		0B21801E1D6C500C00A23690 /* Interactors */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Interactors;
 			sourceTree = "<group>";
 		};
 		0B2180211D6C502000A23690 /* BlogsDisplay */ = {
@@ -1326,6 +1302,7 @@
 				0BF917871D76BE6900C86C85 /* Add */,
 				0BF9178E1D76BE6900C86C85 /* Display */,
 				0BF917991D76BE6900C86C85 /* List */,
+				883468501D7DA896002344C4 /* SyncManager+Comment.swift */,
 			);
 			path = Comment;
 			sourceTree = "<group>";
@@ -1456,24 +1433,24 @@
 			path = List;
 			sourceTree = "<group>";
 		};
+		63DA5929E1BF4D6D0A9C013B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7F0C9CF70455AE501CB3398E /* Pods.debug.xcconfig */,
+				8E390339910A500862C29BD4 /* Pods.release.xcconfig */,
+				2769E1271A21C4D750275F95 /* Pods-LiferayScreensTests.debug.xcconfig */,
+				7C800E15AE76CE5D338127C5 /* Pods-LiferayScreensTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		64425867C18F568E2864B9C1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				9136B139BF9449FC75DBECA6 /* Pods.framework */,
-				D0F2FC46C9BDDDADEE705508 /* Pods_LiferayScreensTests.framework */,
+				9C4E12C7D980ECD1AF8D66C8 /* Pods_LiferayScreensTests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		84F01EEBCAE7724B2045717A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				7C0B882BE724FFD745F72E9B /* Pods-LiferayScreensTests.debug.xcconfig */,
-				9AC17F525218297794482A65 /* Pods-LiferayScreensTests.release.xcconfig */,
-				FE2BFCE1243B0BCB673A02C3 /* Pods.debug.xcconfig */,
-				CA6215A5862CA6DCC27EE0ED /* Pods.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		880ACA641B0224A0007AD007 /* Resources */ = {
@@ -1998,6 +1975,7 @@
 				8891259E1D5479E6006AFA08 /* Interactors */,
 				889125A31D5479E6006AFA08 /* RatingScreenlet.swift */,
 				889125A41D5479E6006AFA08 /* RatingViewModel.swift */,
+				887FCB3A1D9D3ABF00537C40 /* SyncManager+Rating.swift */,
 			);
 			path = Rating;
 			sourceTree = "<group>";
@@ -2044,8 +2022,8 @@
 				8892C67A1ACB2E3300192232 /* LiferayScreens */,
 				8892C6871ACB2E3300192232 /* Tests */,
 				8892C6791ACB2E3300192232 /* Products */,
-				84F01EEBCAE7724B2045717A /* Pods */,
 				64425867C18F568E2864B9C1 /* Frameworks */,
+				63DA5929E1BF4D6D0A9C013B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2095,6 +2073,7 @@
 		8892C6881ACB2E3300192232 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0B1F30E71DA240F20053424E /* tinyImage.png */,
 				881E61A61ACBF97000862B9E /* LiferayScreensTests-Bridging-Header.h */,
 				88DE24F61AD2AA6400714701 /* liferay-server-context.plist */,
 				8892C6891ACB2E3300192232 /* Info.plist */,
@@ -2326,6 +2305,7 @@
 		88DE24F81AD2AB0A00714701 /* Unit */ = {
 			isa = PBXGroup;
 			children = (
+				0B1F30E31DA23F7F0053424E /* UserPortrait */,
 				88DE24F91AD2AB0A00714701 /* Base */,
 				88DE24FC1AD2AB0A00714701 /* Context */,
 				886F4ECB1CA156710018229E /* DDL */,
@@ -2382,12 +2362,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8892C68E1ACB2E3300192232 /* Build configuration list for PBXNativeTarget "LiferayScreens" */;
 			buildPhases = (
-				AC9AA9C091B272B75604A204 /* Check Pods Manifest.lock */,
+				2FD1D650C71E9CB267B4C36C /* Check Pods Manifest.lock */,
 				8892C6731ACB2E3300192232 /* Sources */,
 				8892C6741ACB2E3300192232 /* Frameworks */,
 				8892C6751ACB2E3300192232 /* Headers */,
 				8892C6761ACB2E3300192232 /* Resources */,
-				8A19040985F5993BE8479D01 /* Copy Pods Resources */,
+				94A359C61FA58A8632305466 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2402,14 +2382,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8892C6911ACB2E3300192232 /* Build configuration list for PBXNativeTarget "LiferayScreensTests" */;
 			buildPhases = (
-				7CD76F22996804293E997E20 /* 📦 Check Pods Manifest.lock */,
+				67639CD144A79C26A907AA84 /* Check Pods Manifest.lock */,
 				8892C67F1ACB2E3300192232 /* Sources */,
 				8892C6801ACB2E3300192232 /* Frameworks */,
 				8892C6811ACB2E3300192232 /* Resources */,
-				6F839962AB398D94F8E904EF /* 📦 Embed Pods Frameworks */,
-				F432F4437844A929431DC153 /* 📦 Copy Pods Resources */,
 				881E63091ACC0CD400862B9E /* CopyFiles */,
-				0D53E8ECAE16273E6777CE9C /* Embed Pods Frameworks */,
+				DC9F6DC7C08946C9B23C7A9A /* Embed Pods Frameworks */,
+				AFDD9CD2EE124E9D23F01388 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2571,6 +2550,7 @@
 				881E62C41ACC016800862B9E /* default-lock-icon.png in Resources */,
 				88BCB5661B8CAD93004349F1 /* ddllist-screenlet.strings in Resources */,
 				88CA806A1B25E505004C1D59 /* OAuthWebViewController_default.xib in Resources */,
+				0B1F30E81DA240F20053424E /* tinyImage.png in Resources */,
 				880ACA8C1B0224A0007AD007 /* liferay-server-context-sample.plist in Resources */,
 				880ACA801B0224A0007AD007 /* signup-screenlet.strings in Resources */,
 				88A2B7151ACDEBB1000C2065 /* LoginView_test.xib in Resources */,
@@ -2597,67 +2577,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0D53E8ECAE16273E6777CE9C /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6F839962AB398D94F8E904EF /* 📦 Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7CD76F22996804293E997E20 /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		8A19040985F5993BE8479D01 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AC9AA9C091B272B75604A204 /* Check Pods Manifest.lock */ = {
+		2FD1D650C71E9CB267B4C36C /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2672,19 +2592,64 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		F432F4437844A929431DC153 /* 📦 Copy Pods Resources */ = {
+		67639CD144A79C26A907AA84 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		94A359C61FA58A8632305466 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AFDD9CD2EE124E9D23F01388 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC9F6DC7C08946C9B23C7A9A /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2816,6 +2781,7 @@
 				0B2180181D6C4FEF00A23690 /* BlogsEntry.swift in Sources */,
 				0BF917A31D76BE6900C86C85 /* CommentAddInteractor.swift in Sources */,
 				880459ED1CA15FA400449D55 /* DDMFieldTableCell.swift in Sources */,
+				887FCB3B1D9D3ABF00537C40 /* SyncManager+Rating.swift in Sources */,
 				8892C6AF1ACBD89400192232 /* UIButton+Screens.swift in Sources */,
 				88B844761C73D81D007A447D /* GetUserBaseLiferayConnector.swift in Sources */,
 				88B844881C73D81D007A447D /* GetUserByUserIdLiferayConnectors.swift in Sources */,
@@ -2896,6 +2862,7 @@
 				0B2180111D6C4F6F00A23690 /* DDMFieldNumber.swift in Sources */,
 				88AF683C1CBFF58700097014 /* WebContentListTableView.swift in Sources */,
 				0B5B5E931D58706E0007D4B1 /* UIImage+Screens.swift in Sources */,
+				883468511D7DA896002344C4 /* SyncManager+Comment.swift in Sources */,
 				881E622A1ACBFC3400862B9E /* ForgotPasswordView_default.swift in Sources */,
 				887E05541C6A4DB000CA3807 /* LRScreensuserService_v62.m in Sources */,
 				0BF917CA1D76BEA000C86C85 /* CommentListView_default.swift in Sources */,
@@ -2940,7 +2907,7 @@
 				0B5B5E8D1D5869DB0007D4B1 /* UploadProgressViewBase.swift in Sources */,
 				88B8443C1C73D6C0007A447D /* ServerConnectorChain.swift in Sources */,
 				889125A71D5479E6006AFA08 /* RatingLoadByEntryIdLiferayConnector.swift in Sources */,
-				0B217FB51D6C4E6F00A23690 /* AssetDisplayFactory.swift in Sources */,
+				0B217FB51D6C4E6F00A23690 /* AssetDisplayBuilder.swift in Sources */,
 				0B2180091D6C4F6F00A23690 /* DDMXSDParser.swift in Sources */,
 				881E617C1ACBEE0B00862B9E /* DDLFormLoadFormInteractor.swift in Sources */,
 				889125A61D5479E6006AFA08 /* RatingLoadByClassPKLiferayConnector.swift in Sources */,
@@ -2961,6 +2928,7 @@
 				886F4EE71CA156710018229E /* DDMFieldDate_v70_Tests.swift in Sources */,
 				88DE25101AD2AB0A00714701 /* SessionContext_Basic_Tests.swift in Sources */,
 				88B844391C73D6C0007A447D /* HttpConnector.swift in Sources */,
+				0B1F30E61DA240460053424E /* UserPortrait_connector_Test.swift in Sources */,
 				88DE250F1AD2AB0A00714701 /* LiferayServerContext_Load_Tests.swift in Sources */,
 				881E62A51ACBFF4500862B9E /* UIButton+Screens.swift in Sources */,
 				0B21802D1D6C507300A23690 /* DDMField+Editor.swift in Sources */,
@@ -3333,7 +3301,7 @@
 		};
 		8892C68F1ACB2E3300192232 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE2BFCE1243B0BCB673A02C3 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 7F0C9CF70455AE501CB3398E /* Pods.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -3353,7 +3321,7 @@
 		};
 		8892C6901ACB2E3300192232 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA6215A5862CA6DCC27EE0ED /* Pods.release.xcconfig */;
+			baseConfigurationReference = 8E390339910A500862C29BD4 /* Pods.release.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -3372,7 +3340,7 @@
 		};
 		8892C6921ACB2E3300192232 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7C0B882BE724FFD745F72E9B /* Pods-LiferayScreensTests.debug.xcconfig */;
+			baseConfigurationReference = 2769E1271A21C4D750275F95 /* Pods-LiferayScreensTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3390,7 +3358,7 @@
 		};
 		8892C6931ACB2E3300192232 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9AC17F525218297794482A65 /* Pods-LiferayScreensTests.release.xcconfig */;
+			baseConfigurationReference = 7C800E15AE76CE5D338127C5 /* Pods-LiferayScreensTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Tests/Info.plist;

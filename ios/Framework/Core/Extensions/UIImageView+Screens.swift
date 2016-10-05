@@ -27,7 +27,7 @@ extension UIImageView {
 		objc_setAssociatedObject(self, &lr_lastURLKey, URL, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 	}
 
-	internal func lr_setImageWithURL(
+	public func lr_setImageWithURL(
 			URL: NSURL,
 			placeholderImage: Image? = nil,
 			optionsInfo: KingfisherOptionsInfo? = nil) {
@@ -50,39 +50,29 @@ extension UIImageView {
 					placeholderImage: placeholderImage,
 					optionsInfo: optionsInfoFinal,
 					completionHandler: { (image, error, cacheType, imageURL) in
-						
-						KingfisherManager.sharedManager.cache.retrieveImageForKey(
-								URL.absoluteString,
-								options: optionsInfoFinal,
-								completionHandler: { (image, cacheType) in
 
-							guard URL == self.kf_webURL else {
-								return
-							}
+						if (error != nil) {
+							var optionsInfo = optionsInfo ?? []
+							optionsInfo.append(.OnlyFromCache)
 
-							self.image = image
-						})
+							self.kf_setImageWithURL(
+								URL,
+								placeholderImage: placeholderImage,
+								optionsInfo: optionsInfo)
+						}
 					})
 
 		case CacheStrategyType.CacheFirst.rawValue:
 			self.kf_setImageWithURL(URL, placeholderImage: placeholderImage, optionsInfo: optionsInfo)
 
 		case CacheStrategyType.CacheOnly.rawValue:
+			var optionsInfoFinal = optionsInfo ?? []
+			optionsInfoFinal.append(.OnlyFromCache)
 
-			lr_setWebURL(URL)
-			self.image = placeholderImage
-
-			KingfisherManager.sharedManager.cache.retrieveImageForKey(
-				URL.absoluteString,
-				options: optionsInfo,
-				completionHandler: { (image, cacheType) in
-
-					guard URL == self.lr_webURL else {
-						return
-					}
-
-					self.image = image
-			})
+			self.kf_setImageWithURL(
+				URL,
+				placeholderImage: placeholderImage,
+				optionsInfo: optionsInfoFinal)
 
 		default: break
 		}

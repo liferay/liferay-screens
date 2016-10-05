@@ -68,7 +68,7 @@
 
 	<style name="westeros_button" parent="Base.Widget.AppCompat.Button">
 		<item name="android:textAllCaps">true</item>
-		<item name="android:background">@drawable/westeros_button_ripple</item>
+		<item name="android:background">@drawable/westeros_button_selector</item>
 		<item name="android:textColor">@android:color/white</item>
 		<item name="android:layout_height">@dimen/westeros_block_height</item>
 		<item name="android:layout_width">match_parent</item>

@@ -17,4 +17,12 @@ public class FileEntry extends AssetEntry {
 		int index = url.lastIndexOf('/');
 		return url.substring(0, index);
 	}
+
+	public Map<String, Object> getFileEntry() {
+		return (Map<String, Object>) getObject().get("fileEntry");
+	}
+
+	public String getExtension() {
+		return (String) getFileEntry().get("extension");
+	}
 }

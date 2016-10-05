@@ -113,7 +113,11 @@ public class AssetEntry implements Parcelable {
 		return 0;
 	}
 
-	public String getEntryId() {
-		return String.valueOf(values.get("entryId"));
+	public long getEntryId() {
+		return Long.parseLong((String) values.get("entryId"));
+	}
+
+	public long getClassPK() {
+		return Long.parseLong((String) values.get("classPK"));
 	}
 }

@@ -32,7 +32,7 @@ public class DDLListPageLoadInteractor : BaseListPageLoadInteractor {
 		super.init(screenlet: screenlet, page: page, computeRowCount: computeRowCount)
 	}
 
-	override public func createConnector() -> DDLListPageLiferayConnector {
+	public override func createListPageConnector() -> PaginationLiferayConnector {
 		let viewModel = (self.screenlet as! DDLListScreenlet).screenletView as! DDLListViewModel
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
 
@@ -44,7 +44,6 @@ public class DDLListPageLoadInteractor : BaseListPageLoadInteractor {
 
 		connector.userId = (self.userId != 0) ? self.userId : nil
 		connector.recordSetId = self.recordSetId
-		connector.obcClassName = self.obcClassName
 
 		return connector;
 	}

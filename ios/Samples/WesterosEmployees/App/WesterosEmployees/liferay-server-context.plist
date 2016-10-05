@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>server</key>
+	<string>http://screens-challenge.liferay.org.es</string>
+	<key>companyId</key>
+	<integer>20116</integer>
+	<key>groupId</key>
+	<integer>30853</integer>
+	<key>anonymousUsername</key>
+	<string>anonymous1@liferay.com</string>
+	<key>anonymousPassword</key>
+	<string>anonymous1</string>
+	<key>galleryFolderId</key>
+	<integer>35726</integer>
+	<key>documentationPortletItemName</key>
+	<string>DocumentationWesterosEmployees</string>
+	<key>termsAndConditionsAssetEntryId</key>
+	<integer>36909</integer>
+</dict>
+</plist>

@@ -32,7 +32,7 @@ public class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 
 	//MARK: Public methods
 
-	func updateButton() {
+	public func updateButton() {
 		sendCommentButton?.enabled = !(addCommentTextField?.text?.isEmpty ?? true)
 	}
 

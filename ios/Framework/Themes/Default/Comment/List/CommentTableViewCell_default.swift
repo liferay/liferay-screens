@@ -15,5 +15,5 @@ import UIKit
 
 
 public class CommentTableViewCell_default: UITableViewCell {
-	@IBOutlet weak var commentDisplayScreenlet: CommentDisplayScreenlet?
+	@IBOutlet public weak var commentDisplayScreenlet: CommentDisplayScreenlet?
 }

@@ -73,6 +73,10 @@ public class User extends AssetEntry {
 		return getString(LAST_NAME);
 	}
 
+	public String getFullName() {
+		return String.format("%s %s", getFirstName(), getLastName());
+	}
+
 	public String getEmail() {
 		return getString(EMAIL_ADDRESS);
 	}

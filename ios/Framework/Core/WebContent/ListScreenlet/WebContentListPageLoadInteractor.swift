@@ -31,19 +31,15 @@ public class WebContentListPageLoadInteractor : BaseListPageLoadInteractor {
 		super.init(screenlet: screenlet, page: page, computeRowCount: computeRowCount)
 	}
 
-	override public func createConnector() -> WebContentListPageLiferayConnector {
+	public override func createListPageConnector() -> PaginationLiferayConnector {
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
 
-		let connector = LiferayServerContext.connectorFactory.createWebContentListPageConnector(
+		return LiferayServerContext.connectorFactory.createWebContentListPageConnector(
 			groupId: (self.groupId != 0) ? self.groupId : LiferayServerContext.groupId,
 			folderId: folderId,
 			startRow: pager(self.page),
 			endRow: pager(self.page + 1),
 			computeRowCount: self.computeRowCount)
-
-		connector.obcClassName = self.obcClassName
-
-		return connector
 	}
 
 	override public func convertResult(serverResult: [String:AnyObject]) -> AnyObject {

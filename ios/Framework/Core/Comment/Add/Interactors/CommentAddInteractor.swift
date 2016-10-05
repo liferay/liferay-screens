@@ -20,19 +20,42 @@ public class CommentAddInteractor: ServerWriteConnectorInteractor {
 	let classPK: Int64
 	let body: String
 
+	var cacheKeyUsed: String?
+
 	public var resultComment: Comment?
 
+	public init(screenlet: CommentAddScreenlet, body: String) {
+		self.className = screenlet.className
+		self.classPK = screenlet.classPK
+		self.body = body
+
+		super.init(screenlet: screenlet)
+	}
+
 	public init(
-			screenlet: BaseScreenlet?,
-			className: String,
-			classPK: Int64,
-			body: String) {
+		className: String,
+		classPK: Int64,
+		body: String) {
 
 		self.className = className
 		self.classPK = classPK
 		self.body = body
 
-		super.init(screenlet: screenlet)
+		super.init(screenlet: nil)
+	}
+
+	public convenience init(
+		className: String,
+		classPK: Int64,
+		body: String,
+		cacheKeyUsed: String) {
+
+		self.init(
+				className: className,
+				classPK: classPK,
+				body: body)
+
+		self.cacheKeyUsed = cacheKeyUsed
 	}
 
 	override public func createConnector() -> CommentAddLiferayConnector? {
@@ -48,4 +71,58 @@ public class CommentAddInteractor: ServerWriteConnectorInteractor {
 			self.resultComment = comment
 		}
 	}
+
+	//MARK: Cache methods
+
+	override public func writeToCache(c: ServerConnector) {
+		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
+			return
+		}
+		guard let addCon = c as? CommentAddLiferayConnector else {
+			return
+		}
+
+		let cacheFunction = (cacheStrategy == .CacheFirst || c.lastError != nil)
+			? cacheManager.setDirty
+			: cacheManager.setClean
+
+		let cacheKey: String
+
+		if let cacheKeyUsed = cacheKeyUsed {
+			cacheKey = cacheKeyUsed
+		}
+		else {
+			cacheKey = "add-comment-\(NSUUID().UUIDString)"
+			cacheKeyUsed = cacheKey
+		}
+
+		cacheFunction(
+			collection: "CommentsScreenlet",
+			key: cacheKey,
+			value: "",
+			attributes: [
+				"className": addCon.className,
+				"classPK": NSNumber(longLong: addCon.classPK),
+				"body": addCon.body,
+			],
+			onCompletion: nil)
+	}
+
+	public override func callOnSuccess() {
+		if cacheStrategy == .CacheFirst {
+			SessionContext.currentContext?.cacheManager.setClean(
+				collection: "CommentsScreenlet",
+				key: cacheKeyUsed!,
+				value: "",
+				attributes: [
+					"className": className,
+					"classPK": NSNumber(longLong: classPK),
+					"body": body,
+				],
+				onCompletion: nil)
+		}
+
+		super.callOnSuccess()
+	}
+
 }

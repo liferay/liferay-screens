@@ -13,7 +13,6 @@
 */
 import UIKit
 import MobileCoreServices
-import Photos
 
 @objc public enum LiferayMediaType : Int {
 	case Camera
@@ -52,7 +51,13 @@ import Photos
 		selfRetain = self
 		pickerController.delegate = self
 
-		let alert = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+		let alertMode: UIAlertControllerStyle =
+				UIDevice.currentDevice().userInterfaceIdiom == .Pad ? .Alert : .ActionSheet
+
+		let alert = UIAlertController(
+				title: nil,
+				message: nil,
+				preferredStyle: alertMode)
 
 		if types.keys.contains(.Camera) {
 			let action = UIAlertAction(title: types[.Camera], style: .Default) { (action) in
