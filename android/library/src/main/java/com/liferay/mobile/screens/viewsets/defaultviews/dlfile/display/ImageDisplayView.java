@@ -9,8 +9,8 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.dlfile.display.BaseFileDisplayViewModel;
 import com.liferay.mobile.screens.dlfile.display.FileEntry;
+import com.liferay.mobile.screens.dlfile.display.image.ImageDisplayViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso;
 /**
  * @author Sarai Díaz García
  */
-public class ImageDisplayView extends RelativeLayout implements BaseFileDisplayViewModel, Callback {
+public class ImageDisplayView extends RelativeLayout implements ImageDisplayViewModel, Callback {
 
 	private BaseScreenlet screenlet;
 	private FileEntry fileEntry;
@@ -80,7 +80,12 @@ public class ImageDisplayView extends RelativeLayout implements BaseFileDisplayV
 	@Override
 	public void showFinishOperation(FileEntry fileEntry) {
 		this.fileEntry = fileEntry;
-		loadImage();
+		this.loadImage();
+	}
+
+	@Override
+	public void setScaleType(ImageView.ScaleType scaleType) {
+		imageView.setScaleType(scaleType);
 	}
 
 	private void loadImage() {
