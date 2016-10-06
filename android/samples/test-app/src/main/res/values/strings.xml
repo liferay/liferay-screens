@@ -66,4 +66,5 @@
 	<string name="no_loaded_comment">No loaded comment</string>
 	<string name="email">Email</string>
 	<string name="nickname">Nickname</string>
+	<string name="change_image_scale_type">Change Image Scale Type</string>
 </resources>
