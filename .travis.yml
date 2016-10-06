@@ -22,6 +22,7 @@ before_script:
     elif [ "$PLATFORM" = iOS ]; then
         export LANG=en_US.UTF-8
         gem install cocoapods --version 0.39.0
+        gem install xcpretty -N --no-ri --no-rdoc
         brew update > /dev/null
         brew outdated xctool || brew upgrade xctool
         env
@@ -39,6 +40,6 @@ script:
      elif [ "$PLATFORM" = iOS ]; then
          cd ios/Framework
          pod _0.39.0_ install
+         set -o pipefail
          ./run-tests.sh
-         cd ../..
      fi

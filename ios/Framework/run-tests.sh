@@ -6,4 +6,4 @@ else
     sdk=iphonesimulator
 fi
 
-xctool clean test -workspace LiferayScreens.xcworkspace -scheme LiferayScreens -sdk ${sdk} ONLY_ACTIVE_ARCH=NO
+xcodebuild clean test -workspace LiferayScreens.xcworkspace -scheme LiferayScreens -destination "platform=iOS Simulator,name=iPhone 6 Plus" | xcpretty
