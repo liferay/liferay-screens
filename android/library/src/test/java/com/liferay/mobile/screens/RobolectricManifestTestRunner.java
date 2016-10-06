@@ -18,13 +18,12 @@ public class RobolectricManifestTestRunner extends org.robolectric.RobolectricGr
 
 		if (androidManifestFile.exists()) {
 			return appManifest;
-		}
-		else {
+		} else {
 			String moduleRoot = getModuleRootPath(config);
-			androidManifestFile = FileFsFile.from(moduleRoot, appManifest.getAndroidManifestFile().getPath().replace("full", "androidTest"));
-			FsFile resDirectory = FileFsFile.from(moduleRoot, appManifest.getResDirectory().getPath().replace("debug", "androidTest/debug"));
-			FsFile assetsDirectory = FileFsFile.from(moduleRoot, appManifest.getAssetsDirectory().getPath());
-			return new AndroidManifest(androidManifestFile, resDirectory, assetsDirectory);
+			androidManifestFile = FileFsFile.from(moduleRoot, appManifest.getAndroidManifestFile()
+				.getPath()
+				.replace("manifests/full", "manifests/aapt"));
+			return new AndroidManifest(androidManifestFile, appManifest.getResDirectory(), appManifest.getAssetsDirectory());
 		}
 	}
 
