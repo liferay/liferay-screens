@@ -28,7 +28,9 @@ public class ImageDisplayActivity extends ThemeActivity implements AssetDisplayL
 		screenlet.setListener(this);
 		screenlet.load();
 
-		((Spinner) findViewById(R.id.spinner_scale_type)).setOnItemSelectedListener(this);
+		Spinner spinner = (Spinner) findViewById(R.id.spinner_scale_type);
+		spinner.setSelection(3);
+		spinner.setOnItemSelectedListener(this);
 	}
 
 	@Override
@@ -48,6 +50,5 @@ public class ImageDisplayActivity extends ThemeActivity implements AssetDisplayL
 
 	@Override
 	public void onNothingSelected(AdapterView<?> parent) {
-
 	}
 }
