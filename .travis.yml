@@ -41,5 +41,5 @@ script:
          cd ios/Framework
          pod _0.39.0_ install
          set -o pipefail
-         ./run-tests.sh
+         xcodebuild clean test -workspace LiferayScreens.xcworkspace -scheme LiferayScreens -destination "platform=iOS Simulator,name=iPhone 6 Plus" | xcpretty
      fi
