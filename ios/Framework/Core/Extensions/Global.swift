@@ -158,6 +158,12 @@ public func LocalizedString(tableName: String, key: String, obj: AnyObject, lang
 		if let res = getString(bundle) {
 			return res
 		}
+		
+		// by default fallback to english
+		if let languageBundle = NSLocale.bundleForLanguage("en", bundle: bundle),
+			res = getString(languageBundle) {
+			return res
+		}
 	}
 
 	return namespacedKey
