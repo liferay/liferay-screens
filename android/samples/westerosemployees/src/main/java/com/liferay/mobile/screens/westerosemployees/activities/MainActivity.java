@@ -35,7 +35,6 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 		setContentView(R.layout.main);
 
 		findViews();
-		loadTerms();
 	}
 
 	private void findViews() {
@@ -43,10 +42,6 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 		deck = (Deck) findViewById(R.id.deck);
 
 		loginScreenlet.setListener(this);
-	}
-
-	private void loadTerms() {
-		SessionContext.createBasicSession("test@liferay.com", "test");
 	}
 
 	@Override
