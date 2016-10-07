@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
+import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder;
@@ -42,6 +43,7 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 
 		//Move to next activity if user is logged in
 		if (SessionContext.isLoggedIn()) {
+			Cache.resync();
 			toNextActivity();
 		}
 	}
