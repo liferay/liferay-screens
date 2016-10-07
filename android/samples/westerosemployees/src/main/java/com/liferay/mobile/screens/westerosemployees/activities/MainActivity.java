@@ -20,6 +20,7 @@ import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder;
 import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
 import com.liferay.mobile.screens.westerosemployees.R;
 import com.liferay.mobile.screens.westerosemployees.utils.CardState;
@@ -35,6 +36,14 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 		setContentView(R.layout.main);
 
 		findViews();
+
+		//Load stored credentials
+		SessionContext.loadStoredCredentials(CredentialsStorageBuilder.StorageType.AUTO);
+
+		//Move to next activity if user is logged in
+		if (SessionContext.isLoggedIn()) {
+			toNextActivity();
+		}
 	}
 
 	private void findViews() {
@@ -46,6 +55,7 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 
 	@Override
 	public void onLoginSuccess(User user) {
+		SessionContext.storeCredentials(CredentialsStorageBuilder.StorageType.AUTO);
 		toNextActivity();
 	}
 
