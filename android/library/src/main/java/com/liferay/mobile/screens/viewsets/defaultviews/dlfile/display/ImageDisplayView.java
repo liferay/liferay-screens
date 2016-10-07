@@ -3,6 +3,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -25,6 +26,9 @@ public class ImageDisplayView extends RelativeLayout implements ImageDisplayView
 	private ImageView imageView;
 	private ProgressBar progressBar;
 
+	@DrawableRes
+	private int placeholder = 0;
+
 	public ImageDisplayView(Context context) {
 		super(context);
 	}
@@ -44,6 +48,9 @@ public class ImageDisplayView extends RelativeLayout implements ImageDisplayView
 
 	@Override
 	public void showStartOperation(String actionName) {
+		if (placeholder != 0) {
+			Picasso.with(getContext()).load(placeholder).into(imageView);
+		}
 		progressBar.setVisibility(VISIBLE);
 	}
 
@@ -88,8 +95,12 @@ public class ImageDisplayView extends RelativeLayout implements ImageDisplayView
 		imageView.setScaleType(scaleType);
 	}
 
+	@Override
+	public void setPlaceholder(int placeholder) {
+		this.placeholder = placeholder;
+	}
+
 	private void loadImage() {
-		progressBar.setVisibility(VISIBLE);
 		String path = getResources().getString(R.string.liferay_server) + fileEntry.getUrl();
 		Picasso.with(getContext()).load(path).into(imageView, this);
 	}
