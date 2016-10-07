@@ -16,6 +16,7 @@ import com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display.ImageDisp
 public class ImageDisplayScreenlet extends BaseFileDisplayScreenlet<ImageDisplayViewModel> {
 
 	private ImageView.ScaleType scaleType;
+	private int placeholder;
 
 	public ImageDisplayScreenlet(Context context) {
 		super(context);
@@ -46,6 +47,8 @@ public class ImageDisplayScreenlet extends BaseFileDisplayScreenlet<ImageDisplay
 		className = typedArray.getString(R.styleable.ImageDisplayScreenlet_className);
 		classPK = typedArray.getInt(R.styleable.ImageDisplayScreenlet_classPK, 0);
 
+		placeholder = typedArray.getResourceId(R.styleable.ImageDisplayScreenlet_placeholder, 0);
+
 		Integer scaleTypeAttribute = typedArray.getInteger(R.styleable.ImageDisplayScreenlet_imageScaleType,
 			ImageView.ScaleType.FIT_CENTER.ordinal());
 		scaleType = ImageView.ScaleType.values()[scaleTypeAttribute];
@@ -53,6 +56,7 @@ public class ImageDisplayScreenlet extends BaseFileDisplayScreenlet<ImageDisplay
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
 
 		((ImageDisplayView) view).setScaleType(scaleType);
+		((ImageDisplayView) view).setPlaceholder(placeholder);
 
 		typedArray.recycle();
 
@@ -63,8 +67,17 @@ public class ImageDisplayScreenlet extends BaseFileDisplayScreenlet<ImageDisplay
 		return scaleType;
 	}
 
+	public int getPlaceholder() {
+		return placeholder;
+	}
+
 	public void setScaleType(ImageView.ScaleType scaleType) {
 		this.scaleType = scaleType;
 		getViewModel().setScaleType(scaleType);
+	}
+
+	public void setPlaceholder(int placeholder) {
+		this.placeholder = placeholder;
+		getViewModel().setPlaceholder(placeholder);
 	}
 }

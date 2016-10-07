@@ -9,4 +9,6 @@ import com.liferay.mobile.screens.dlfile.display.BaseFileDisplayViewModel;
 public interface ImageDisplayViewModel extends BaseFileDisplayViewModel {
 
 	void setScaleType(ImageView.ScaleType scaleType);
+
+	void setPlaceholder(int placeholder);
 }
