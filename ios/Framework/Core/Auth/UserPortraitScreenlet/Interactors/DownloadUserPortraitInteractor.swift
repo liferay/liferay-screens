@@ -243,9 +243,9 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		let portraitEntry = attributes?["portraitId"]
 		let userEntry = attributes?["userId"]
 		if let attributes = attributes,
-				portraitId = portraitEntry?.description.asLong,
+				portraitId = portraitEntry?.longLongValue,
 				uuid = attributes["uuid"] as? String,
-				userId = userEntry?.description.asLong {
+				userId = userEntry?.longLongValue {
 
 			resultUserId = userId
 
