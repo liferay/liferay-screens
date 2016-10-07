@@ -1,21 +1,13 @@
 package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
-import com.liferay.mobile.screens.asset.display.AssetDisplayInnerScreenletListener;
 import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
-import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
-import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet;
-import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 
 /**
  * @author Sarai Díaz García
@@ -24,7 +16,7 @@ public class ImageDisplayActivity extends ThemeActivity implements AssetDisplayL
 	AdapterView.OnItemSelectedListener {
 
 	private ImageDisplayScreenlet screenlet;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

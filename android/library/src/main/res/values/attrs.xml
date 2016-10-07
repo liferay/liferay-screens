@@ -23,14 +23,14 @@
 		<enum name="REMOTE_FIRST" value="3"/>
 	</attr>
 	<attr format="enum" name="imageScaleType">
-		<enum name="CENTER" value="0"/>
-		<enum name="CENTER_CROP" value="1"/>
-		<enum name="CENTER_INSIDE" value="2"/>
+		<enum name="MATRIX" value="0"/>
+		<enum name="FIT_XY" value="1"/>
+		<enum name="FIT_START" value="2"/>
 		<enum name="FIT_CENTER" value="3"/>
 		<enum name="FIT_END" value="4"/>
-		<enum name="FIT_START" value="5"/>
-		<enum name="FIT_XY" value="6"/>
-		<enum name="MATRIX" value="7"/>
+		<enum name="CENTER" value="5"/>
+		<enum name="CENTER_CROP" value="6"/>
+		<enum name="CENTER_INSIDE" value="7"/>
 	</attr>
 
 	<attr format="string" name="companyId"/>
@@ -236,6 +236,7 @@
 		<attr name="className"/>
 		<attr name="classPK"/>
 		<attr name="imageScaleType"/>
+		<attr format="reference" name="placeholder"/>
 	</declare-styleable>
 
 	<declare-styleable name="VideoDisplayScreenlet">
