@@ -157,7 +157,7 @@ public class DDMTypedValuesXMLParser {
 
 			resultElement = contentElements.filter {
 				let languageId = $0.attributes["language-id"]
-				if let contentLocale = languageId?.description {
+				if let contentLocale = languageId as? String {
 					return contentLocale.hasPrefix(currentLanguageCode + "_")
 				}
 
