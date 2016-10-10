@@ -107,6 +107,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B6147EC1DAB9943004FAC7C /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				88DE2A751AD3DDE600714701 /* Main.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
 		42E3A74F567940A306163A5F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,11 +171,11 @@
 		88DE2A6E1AD3DDE600714701 /* Showcase-Swift */ = {
 			isa = PBXGroup;
 			children = (
+				0B6147EC1DAB9943004FAC7C /* Storyboards */,
 				88CC3AF71CC153D900E0AEB7 /* BookTheme */,
 				88DE2A711AD3DDE600714701 /* AppDelegate.swift */,
 				88DE2A781AD3DDE600714701 /* Images.xcassets */,
 				88DE2A911AD3DF2200714701 /* liferay-server-context.plist */,
-				88DE2A751AD3DDE600714701 /* Main.storyboard */,
 				88DE2A6F1AD3DDE600714701 /* Supporting Files */,
 				88DE2AB31AD3F00B00714701 /* UIImageExtension.swift */,
 				88DE2A9E1AD3E01400714701 /* ViewControllers */,
