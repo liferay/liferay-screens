@@ -22,7 +22,7 @@ public class SplashActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash);
 
-		final Class destination = TourActivity.class;
+		final Class destination = getDestinationActivity();
 
 		//TODO change to back and screen orientation aware
 		new Handler().postDelayed(new Runnable() {

@@ -18,8 +18,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
+import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder;
 import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
 import com.liferay.mobile.screens.westerosemployees.R;
 import com.liferay.mobile.screens.westerosemployees.utils.CardState;
@@ -35,7 +37,15 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 		setContentView(R.layout.main);
 
 		findViews();
-		loadTerms();
+
+		//Load stored credentials
+		SessionContext.loadStoredCredentials(CredentialsStorageBuilder.StorageType.AUTO);
+
+		//Move to next activity if user is logged in
+		if (SessionContext.isLoggedIn()) {
+			Cache.resync();
+			toNextActivity();
+		}
 	}
 
 	private void findViews() {
@@ -43,10 +53,6 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 		deck = (Deck) findViewById(R.id.deck);
 
 		loginScreenlet.setListener(this);
-	}
-
-	private void loadTerms() {
-		SessionContext.createBasicSession("test@liferay.com", "test");
 	}
 
 	@Override
