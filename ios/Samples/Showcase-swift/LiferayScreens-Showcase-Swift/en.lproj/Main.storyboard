@@ -1049,6 +1049,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="assetEntryId">
                                         <integer key="value" value="41638"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="placeholder" value="Default-placeholder-image.png"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
@@ -1624,6 +1625,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Default-placeholder-image.png" width="96" height="96"/>
         <image name="screens-ico" width="16" height="16"/>
         <image name="user-icon" width="16" height="16"/>
     </resources>
