@@ -9,7 +9,7 @@
         <!--Login-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController title="Initial Login" id="9pv-A4-QxB" userLabel="Login" customClass="HomeLoginViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Initial Login" id="9pv-A4-QxB" userLabel="Login" customClass="LoginViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -101,6 +101,9 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="190" id="Wiv-l3-nYd"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="saveCredentials" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save credentials" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QM5-5p-DZd">
                                         <rect key="frame" x="0.0" y="198" width="223" height="21"/>
@@ -142,7 +145,7 @@
                                             <segue destination="qsM-Eb-C5l" kind="show" id="mQB-tY-hTc"/>
                                         </connections>
                                     </button>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="v3b-jG-wvU" userLabel="Credentials Switch">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v3b-jG-wvU" userLabel="Credentials Switch">
                                         <rect key="frame" x="231" y="193" width="51" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="2k2-Vh-ERm"/>

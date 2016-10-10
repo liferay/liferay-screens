@@ -15,7 +15,7 @@ import UIKit
 import LiferayScreens
 
 
-class HomeLoginViewController: UIViewController, LoginScreenletDelegate {
+class LoginViewController: UIViewController, LoginScreenletDelegate {
 
 	
 	//MARK: IBOutlets
