@@ -16,40 +16,55 @@ import UIKit
 class HomeScreenletsViewController: UITableViewController {
 
 	private let data: [Int: [String]] = [
-			0: ["DDL Module", "DDLListScreenlet", "DDLFormScreenlet"],
-			1: ["Web Content Module", "WebContentDisplayScreenlet", "WebContentListScreenlet"],
-			2: ["Assets", "AssetListScreenlet", "AssetDisplayScreenlet"],
-			3: ["Comments", "CommentListScreenlet", "CommentDisplayScreenlet"],
-			4: ["Others", "UserPortraitScreenlet", "RatingScreenlet", "ImageGalleryScreenlet", "BlogDisplayScreenlet"]
-		]
-
+		0: ["DDL Module", "DDLListScreenlet", "DDLFormScreenlet"],
+		1: ["Web Content Module", "WebContentDisplayScreenlet", "WebContentListScreenlet"],
+		2: ["Assets", "AssetListScreenlet", "AssetDisplayScreenlet"],
+		3: ["Comments", "CommentListScreenlet", "CommentDisplayScreenlet"],
+		4: ["Others", "UserPortraitScreenlet", "RatingScreenlet", "ImageGalleryScreenlet", "BlogDisplayScreenlet"]
+	]
+	
+	
+	//MARK: UIViewController
+	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		self.navigationItem.title = "Screenlets Available"
+	}
+	
+	override func viewWillDisappear(animated: Bool) {
+		super.viewWillDisappear(animated)
+		self.navigationItem.title = nil
+	}
+	
+	
+	//MARK: UITableViewDataSource
+	
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return data.count
 	}
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		let length = (data[section] ?? []).count
-		return length == 0 ? length : length - 1
+		return data[section]!.count - 1
 	}
-
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return (data[section] ?? [""])[0]
-	}
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	
+	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = UITableViewCell(style: .Default, reuseIdentifier: "default-cell");
-
-		if let record = data[indexPath.section] {
-			cell.textLabel?.text = record[indexPath.row + 1]
-		}
-
+		
+		cell.textLabel?.text = data[indexPath.section]![indexPath.row + 1]
+		
 		return cell
 	}
 
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return data[section]![0]
+	}
+	
+	
+	//MARK: UITableViewDelegate
+	
+	
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		if let record = data[indexPath.section] {
-			self.performSegueWithIdentifier(record[indexPath.row + 1], sender: self)
-		}
+		self.performSegueWithIdentifier(data[indexPath.section]![indexPath.row + 1], sender: self)
 	}
 
 }
