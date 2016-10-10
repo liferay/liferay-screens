@@ -187,9 +187,10 @@ extension NSBundle {
 				currentClass: currentClass) {_, bundle in
 
 			let objects = bundle.loadNibNamed(nibName, owner: currentClass, options: nil)
-			assert(objects.count > 0, "Malformed xib \(nibName). Without objects")
 
-			return objects[0]
+			assert(objects == nil || objects!.count > 0, "Malformed xib \(nibName). Without objects")
+
+			return objects![0]
 		}
 	}
     
