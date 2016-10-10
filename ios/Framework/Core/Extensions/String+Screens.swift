@@ -39,10 +39,6 @@ extension String {
 		return NSNumber(longLong: number)
 	}
 
-	public var asLong: Int64? {
-		return Int64(self)
-	}
-
 	public var isXml: Bool {
 		return self.hasPrefix("<?xml")
 	}
