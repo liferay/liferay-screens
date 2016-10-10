@@ -17,15 +17,26 @@ import LiferayScreens
 
 class HomeLoginViewController: UIViewController, LoginScreenletDelegate {
 
-	@IBOutlet var loggedView: UIView?
-	@IBOutlet var loggedUsername: UILabel?
-	@IBOutlet var loginScreenlet: LoginScreenlet?
+	
+	//MARK: IBOutlets
+	
+	@IBOutlet var loggedView: UIView!
+	@IBOutlet var loggedUsername: UILabel!
+	@IBOutlet var logginView: UIView!
+	@IBOutlet var loginScreenlet: LoginScreenlet! {
+		didSet {
+			self.loginScreenlet.presentingViewController = self
+			self.loginScreenlet.delegate = self
+		}
+	}
 
+	
+	//MARK: IBActions
 	@IBAction func signOutAction() {
 		SessionContext.currentContext?.removeStoredCredentials()
 		SessionContext.logout()
 
-		showLogged(animated: true);
+		showLogged(animated: true)
 	}
 
 	@IBAction func reloginAction(sender: AnyObject) {
@@ -34,63 +45,80 @@ class HomeLoginViewController: UIViewController, LoginScreenletDelegate {
 		}
 
 		ctx.relogin {
-			if let attributes = $0 {
-				print("Relogin completed: \(attributes)")
-			}
-			else {
+			guard let attributes = $0 else {
 				print("Relogin failed")
-				self.showLogged(animated: true);
+				self.showLogged(animated: true)
+				return
 			}
+			
+			print("Relogin completed: \(attributes)")
 		}
 	}
 
 	@IBAction func credentialsValueChangedAction(sender: UISwitch) {
-		loginScreenlet?.saveCredentials = sender.on
+		loginScreenlet.saveCredentials = sender.on
 	}
 
+	
+	//MARK: UIViewController
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		self.loginScreenlet?.presentingViewController = self
-		self.loginScreenlet?.delegate = self
-
-		if !SessionContext.loadStoredCredentials() {
-			self.loginScreenlet?.viewModel.userName = "test@liferay.com"
-			self.loginScreenlet?.viewModel.password = "test"
-		}
-
-		showLogged(animated: false);
+		SessionContext.loadStoredCredentials()
+		
+		showLogged(animated: false)
+	}
+	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		self.navigationItem.title = "LoginScreenlet"
+	}
+	
+	override func viewWillDisappear(animated: Bool) {
+		super.viewWillDisappear(animated)
+		self.navigationItem.title = nil
 	}
 
+	
+	//MARK: LoginScreenletDelegate
+	
 	func screenlet(screenlet: BaseScreenlet,
 			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
-		print("DELEGATE: onLoginResponse called -> \(attributes)\n");
-		showLogged(animated: true);
+		LiferayLogger.delegate(args: attributes)
+		showLogged(animated: true)
 	}
 
-	func screenlet(screenlet: BaseScreenlet,
-			onLoginError error: NSError) {
-		print("DELEGATE: onLoginError called -> \(error)\n");
+	func screenlet(screenlet: BaseScreenlet, onLoginError error: NSError) {
+		LiferayLogger.delegate(args: error)
 	}
 
 	func screenlet(screenlet: BaseScreenlet,
 			onCredentialsSavedUserAttributes attributes: [String:AnyObject]) {
-		print("DELEGATE: onCredentialsSavedUserAttributes called -> \(attributes)\n");
+		LiferayLogger.delegate(args: attributes)
 	}
 
 	func screenlet(screenlet: LoginScreenlet,
 			onCredentialsLoadedUserAttributes attributes: [String:AnyObject]) {
-		print("DELEGATE: onCredentialsLoadedUserAttributes called -> \(attributes)\n");
+		LiferayLogger.delegate(args: attributes)
 	}
 
-	private func showLogged(animated animated:Bool) {
+	
+	//MARK: Private methods
+	
+	private func showLogged(animated animated: Bool) {
 		if SessionContext.isLoggedIn {
 			loggedUsername?.text = SessionContext.currentContext?.basicAuthUsername
 		}
 
 		UIView.animateWithDuration(animated ? 0.5 : 0.0) { () -> Void in
 			self.loggedView?.alpha = SessionContext.isLoggedIn ? 1.0 : 0.0
-			self.loginScreenlet?.alpha = SessionContext.isLoggedIn ? 0.0 : 1.0
+			self.logginView?.alpha = SessionContext.isLoggedIn ? 0.0 : 1.0
+			
+			if !SessionContext.isLoggedIn {
+				self.loginScreenlet.viewModel.userName = "test@liferay.com"
+				self.loginScreenlet.viewModel.password = "test"
+			}
 		}
 	}
 
