@@ -24,10 +24,8 @@ class SignUpScreenletViewController: UIViewController, SignUpScreenletDelegate, 
 		didSet {
 			screenlet.delegate = self
 			screenlet.autoLoginDelegate = self
-			screenlet.anonymousApiUserName =
-				LiferayServerContext.propertyForKey("anonymousUsername") as? String
-			screenlet.anonymousApiPassword =
-				LiferayServerContext.propertyForKey("anonymousPassword") as? String
+			screenlet.anonymousApiUserName = LiferayServerContext.stringProperty("anonymousUsername")
+			screenlet.anonymousApiPassword = LiferayServerContext.stringProperty("anonymousPassword")
 		}
 	}
 	

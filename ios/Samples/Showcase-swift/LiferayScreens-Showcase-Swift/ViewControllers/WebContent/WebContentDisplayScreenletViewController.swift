@@ -23,10 +23,8 @@ class WebContentDisplayScreenletViewController: UIViewController, WebContentDisp
 	@IBOutlet var screenlet: WebContentDisplayScreenlet! {
 		didSet {
 			screenlet.delegate = self
-			if let articleId =
-					LiferayServerContext.propertyForKey("webContentDisplayArticleId") as? String {
-				screenlet.articleId = self.articleId ?? articleId
-			}
+			screenlet.articleId = self.articleId ??
+				LiferayServerContext.stringProperty("webContentDisplayArticleId")
 		}
 	}
 	
