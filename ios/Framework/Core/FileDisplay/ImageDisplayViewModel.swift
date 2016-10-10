@@ -17,4 +17,8 @@ import UIKit
 @objc public protocol ImageDisplayViewModel: FileDisplayViewModel {
 
 	var imageMode: UIViewContentMode {get set}
+	
+	var placeholder: UIImage? {get set}
+
+	var placeholderImageMode: UIViewContentMode {get set}
 }
