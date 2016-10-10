@@ -61,12 +61,7 @@ public class DocsCard extends CommentsRatingsCard implements BaseListListener<As
 
 	@Override
 	public void onListItemSelected(AssetEntry element, View view) {
-
-		documentDisplayScreenlet.setClassPK(
-			Long.parseLong((String) element.getValues().get("classPK")));
-		documentDisplayScreenlet.setClassName(
-			"com.liferay.document.library.kernel.model.DLFileEntry");
-		documentDisplayScreenlet.loadAsset();
+		documentDisplayScreenlet.load(element);
 
 		initializeRatingsAndComments("com.liferay.document.library.kernel.model.DLFileEntry",
 			element.getClassPK());
