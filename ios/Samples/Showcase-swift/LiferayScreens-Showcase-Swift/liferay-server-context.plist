@@ -14,5 +14,7 @@
 	<string>anonymous1@liferay.com</string>
 	<key>anonymousPassword</key>
 	<string>anonymous1</string>
+	<key>webContentDisplayArticleId</key>
+	<string>41983</string>
 </dict>
 </plist>

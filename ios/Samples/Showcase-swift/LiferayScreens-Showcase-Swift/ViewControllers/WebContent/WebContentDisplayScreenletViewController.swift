@@ -17,29 +17,36 @@ import LiferayScreens
 
 class WebContentDisplayScreenletViewController: UIViewController, WebContentDisplayScreenletDelegate {
 
-	@IBOutlet var screenlet: WebContentDisplayScreenlet?
-
-
-	override func viewDidLoad() {
-		super.viewDidLoad()
-
-		self.screenlet?.delegate = self
+	
+	//MARK: IBOutlet
+	
+	@IBOutlet var screenlet: WebContentDisplayScreenlet! {
+		didSet {
+			screenlet.delegate = self
+			if let articleId =
+					LiferayServerContext.propertyForKey("webContentDisplayArticleId") as? String {
+				screenlet.articleId = articleId
+			}
+		}
 	}
+
+
+	//MARK: WebContentDisplayScreenletDelegate
 
 	func screenlet(screenlet: WebContentDisplayScreenlet,
 			onWebContentResponse html: String ) -> String? {
-		print("DELEGATE: onWebContentResponse -> \(html)\n");
+		LiferayLogger.delegate(args: html)
 		return nil
 	}
 
 	func screenlet(screenlet: WebContentDisplayScreenlet,
 		   onRecordContentResponse record: DDLRecord) {
-		print("DELEGATE: onRecordContentResponse -> \(record.debugDescription)\n");
+		LiferayLogger.delegate(args: record)
 	}
 
 	func screenlet(screenlet: WebContentDisplayScreenlet,
 			onWebContentError error: NSError) {
-		print("DELEGATE: onWebContentError -> \(error)\n");
+		LiferayLogger.delegate(args: error)
 	}
 
 }

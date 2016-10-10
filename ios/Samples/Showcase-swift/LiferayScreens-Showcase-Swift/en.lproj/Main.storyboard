@@ -205,50 +205,12 @@
             </objects>
             <point key="canvasLocation" x="1229" y="-304"/>
         </scene>
-        <!--WebContentDisplayScreenlet-->
-        <scene sceneID="Vwd-Qg-h5f">
-            <objects>
-                <viewController title="WebContentDisplayScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="kiQ-mD-UG4" customClass="WebContentDisplayScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="KM5-sa-NhK"/>
-                        <viewControllerLayoutGuide type="bottom" id="Rya-e6-Pha"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="vro-nb-4wM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="syW-49-Rwc" customClass="WebContentDisplayScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="articleId" value="30246"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="syW-49-Rwc" firstAttribute="leading" secondItem="vro-nb-4wM" secondAttribute="leadingMargin" constant="-16" id="DWm-Qr-IXz"/>
-                            <constraint firstItem="Rya-e6-Pha" firstAttribute="top" secondItem="syW-49-Rwc" secondAttribute="bottom" id="S0g-kZ-BJU"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="syW-49-Rwc" secondAttribute="trailing" constant="-16" id="ggW-JB-X0p"/>
-                            <constraint firstItem="syW-49-Rwc" firstAttribute="top" secondItem="KM5-sa-NhK" secondAttribute="bottom" id="jMV-qv-Lb6"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="PrU-Oy-Gk7"/>
-                    <connections>
-                        <outlet property="screenlet" destination="syW-49-Rwc" id="PQF-Cu-lth"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BPI-fb-cHq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-701.25" y="838.73239436619713"/>
-        </scene>
         <!--Content Table View Controller-->
         <scene sceneID="gz0-F9-ThQ">
             <objects>
                 <tableViewController id="RHb-l5-adC" userLabel="Content Table View Controller" customClass="HomeScreenletsViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="50" sectionFooterHeight="22" id="lHs-ao-xng">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections/>
@@ -257,12 +219,12 @@
                             <outlet property="delegate" destination="RHb-l5-adC" id="mWP-ap-UKX"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Screenlets available" id="gwH-gN-4Wt"/>
+                    <navigationItem key="navigationItem" id="gwH-gN-4Wt"/>
                     <connections>
                         <segue destination="N5m-Be-zKQ" kind="show" identifier="AssetListScreenlet" id="7xV-17-sdQ"/>
                         <segue destination="MGb-m9-wGz" kind="show" identifier="DDLListScreenlet" id="jqp-Ix-DHl"/>
                         <segue destination="oOo-3A-Uui" kind="show" identifier="DDLFormScreenlet" id="WbH-nt-XHO"/>
-                        <segue destination="kiQ-mD-UG4" kind="show" identifier="WebContentDisplayScreenlet" id="yAA-vv-JOl"/>
+                        <segue destination="sKE-IF-Y4k" kind="show" identifier="WebContentDisplayScreenlet" id="yAA-vv-JOl"/>
                         <segue destination="TY4-Ql-4pF" kind="show" identifier="UserPortraitScreenlet" id="jtf-rk-w86"/>
                         <segue destination="mIJ-mJ-AmA" kind="show" identifier="WebContentListScreenlet" id="NhJ-zR-6pA"/>
                         <segue destination="N0K-Ji-ryL" kind="show" identifier="RatingScreenlet" id="mGa-c2-uxu"/>
@@ -282,7 +244,7 @@
                         <viewControllerLayoutGuide type="bottom" id="VWD-qt-e85"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="weX-kS-G4O">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vga-YL-TFF">
@@ -319,7 +281,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYU-Mh-as3" customClass="DDLFormScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="0.0" y="149" width="320" height="282"/>
+                                <rect key="frame" x="0.0" y="149" width="320" height="370"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="structureId">
@@ -366,11 +328,11 @@
                         <viewControllerLayoutGuide type="bottom" id="cTM-Oc-iFx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NHf-o4-UUq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wpq-oW-X15" customClass="DDLListScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="0.0" y="261" width="320" height="170"/>
+                                <rect key="frame" x="0.0" y="261" width="320" height="258"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
@@ -491,11 +453,11 @@
                         <viewControllerLayoutGuide type="bottom" id="cga-VN-wM8"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EwQ-rl-EvY">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0f2-xO-0CM" userLabel="Screenlet" customClass="AssetDisplayScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="-4" y="64" width="328" height="367"/>
+                                <rect key="frame" x="-4" y="64" width="328" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="assetEntryId">
@@ -531,7 +493,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Uhk-tR-XZ5"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="C5Y-w3-aut">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="blog asset Id" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Acb-0c-Ftc">
@@ -543,7 +505,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMf-N9-Z1R" customClass="BlogsEntryDisplayScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="12" y="143" width="296" height="280"/>
+                                <rect key="frame" x="12" y="143" width="296" height="368"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
@@ -605,11 +567,11 @@
                         <viewControllerLayoutGuide type="bottom" id="SCZ-oN-0s2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="UcB-oQ-PmW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8S0-OV-XFI" customClass="WebContentListScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="default-collection"/>
@@ -644,7 +606,7 @@
                         <viewControllerLayoutGuide type="bottom" id="BcC-CY-PdX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bW1-qx-aPC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VNL-Ik-kay">
@@ -743,11 +705,11 @@
                         <viewControllerLayoutGuide type="bottom" id="i1N-BA-kSy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vgu-8B-dnX">
-                        <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PvT-tM-Bkx" customClass="ImageGalleryScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="folderId">
@@ -801,18 +763,18 @@
                         <viewControllerLayoutGuide type="bottom" id="gB0-bg-czG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="jep-9y-AIa">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Miy-jz-jyL" customClass="AssetListScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="0.0" y="64" width="320" height="236"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="324"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vKJ-1q-GBo">
-                                <rect key="frame" x="16" y="379" width="288" height="44"/>
+                                <rect key="frame" x="16" y="467" width="288" height="44"/>
                                 <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="hVz-pW-P7g"/>
@@ -833,23 +795,23 @@
                                 </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="11h-6k-dtb">
-                                <rect key="frame" x="254" y="331" width="51" height="31"/>
+                                <rect key="frame" x="254" y="419" width="51" height="31"/>
                                 <color key="onTintColor" red="0.077612620909999999" green="0.63132638569999999" blue="0.80875318880000002" alpha="0.87" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="refreshControlChanged:" destination="N5m-Be-zKQ" eventType="valueChanged" id="fSl-D2-hTh"/>
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable refresh control" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6z7-20-fIV">
-                                <rect key="frame" x="19" y="336" width="188" height="21"/>
+                                <rect key="frame" x="19" y="424" width="188" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view alpha="0.97999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YFK-ML-U5n" userLabel="Choose Asset Type">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c5a-JZ-5gn">
-                                        <rect key="frame" x="16" y="374" width="288" height="44"/>
+                                        <rect key="frame" x="16" y="462" width="288" height="44"/>
                                         <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="x2h-31-54Z"/>
@@ -934,7 +896,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Snu-6a-iji"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EqH-kn-vAc">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7UY-Og-Tpf">
@@ -1187,7 +1149,7 @@
             <objects>
                 <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -1405,11 +1367,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Ebj-0l-O7f"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="t9h-bk-dC1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Cs-KB-hzY" customClass="CommentListScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="-4" y="64" width="328" height="367"/>
+                                <rect key="frame" x="-4" y="64" width="328" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
@@ -1480,6 +1442,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ohN-Ib-Tk7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="815" y="-304"/>
+        </scene>
+        <!--WebContentDisplayScreenlet-->
+        <scene sceneID="Y6G-9B-OXy">
+            <objects>
+                <viewControllerPlaceholder storyboardName="WebContentDisplayScreenlet" id="sKE-IF-Y4k" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gBy-EO-LEu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-701.25" y="838.73239436619713"/>
         </scene>
     </scenes>
     <resources>
