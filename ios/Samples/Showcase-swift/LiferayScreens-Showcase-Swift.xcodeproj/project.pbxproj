@@ -10,7 +10,8 @@
 		0B009C7E1D66E7A20085070B /* CommentListScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B009C7D1D66E7A20085070B /* CommentListScreenletViewController.swift */; };
 		0B2180381D6C53A800A23690 /* AssetDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180371D6C53A800A23690 /* AssetDisplayViewController.swift */; };
 		0B21803A1D6C53AD00A23690 /* UserDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180391D6C53AD00A23690 /* UserDisplayViewController.swift */; };
-		0B4AD15F1DABCAFC00F9A74F /* Default-placeholder-image.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B4AD15E1DABCAFC00F9A74F /* Default-placeholder-image.png */; };
+		0B6147F81DABC853004FAC7C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6147F71DABC853004FAC7C /* UIImageExtension.swift */; };
+		0B6147FA1DABC86E004FAC7C /* LiferayLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6147F91DABC86E004FAC7C /* LiferayLogger.swift */; };
 		0B7AD4361D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7AD4351D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift */; };
 		0B7F45A41DA7C0D700A3BDE3 /* ImageDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7F45A31DA7C0D700A3BDE3 /* ImageDisplayViewController.swift */; };
 		0BD612C91D36709E00CD4D76 /* RatingScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD612C81D36709E00CD4D76 /* RatingScreenletViewController.swift */; };
@@ -43,14 +44,14 @@
 		88DE2AB01AD3EFEF00714701 /* SignUpScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE2AA81AD3EFEF00714701 /* SignUpScreenletViewController.swift */; };
 		88DE2AB11AD3EFEF00714701 /* UserPortraitScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE2AA91AD3EFEF00714701 /* UserPortraitScreenletViewController.swift */; };
 		88DE2AB21AD3EFEF00714701 /* WebContentDisplayScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE2AAA1AD3EFEF00714701 /* WebContentDisplayScreenletViewController.swift */; };
-		88DE2AB41AD3F00B00714701 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE2AB31AD3F00B00714701 /* UIImageExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0B009C7D1D66E7A20085070B /* CommentListScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListScreenletViewController.swift; sourceTree = "<group>"; };
 		0B2180371D6C53A800A23690 /* AssetDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayViewController.swift; sourceTree = "<group>"; };
 		0B2180391D6C53AD00A23690 /* UserDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDisplayViewController.swift; sourceTree = "<group>"; };
-		0B4AD15E1DABCAFC00F9A74F /* Default-placeholder-image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-placeholder-image.png"; sourceTree = "<group>"; };
+		0B6147F71DABC853004FAC7C /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		0B6147F91DABC86E004FAC7C /* LiferayLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayLogger.swift; sourceTree = "<group>"; };
 		0B7AD4351D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryScreenletController.swift; sourceTree = "<group>"; };
 		0B7F45A31DA7C0D700A3BDE3 /* ImageDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDisplayViewController.swift; sourceTree = "<group>"; };
 		0BD612C81D36709E00CD4D76 /* RatingScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingScreenletViewController.swift; sourceTree = "<group>"; };
@@ -90,7 +91,6 @@
 		88DE2AA81AD3EFEF00714701 /* SignUpScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpScreenletViewController.swift; sourceTree = "<group>"; };
 		88DE2AA91AD3EFEF00714701 /* UserPortraitScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitScreenletViewController.swift; sourceTree = "<group>"; };
 		88DE2AAA1AD3EFEF00714701 /* WebContentDisplayScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayScreenletViewController.swift; sourceTree = "<group>"; };
-		88DE2AB31AD3F00B00714701 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		A04C09F218A5B0C74733F85A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B9F27EE5D1E22F881E8B3B99 /* Pods-LiferayScreens-Showcase-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreens-Showcase-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreens-Showcase-Swift/Pods-LiferayScreens-Showcase-Swift.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,6 +113,15 @@
 				88DE2A751AD3DDE600714701 /* Main.storyboard */,
 			);
 			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		0B6147F61DABC853004FAC7C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0B6147F71DABC853004FAC7C /* UIImageExtension.swift */,
+				0B6147F91DABC86E004FAC7C /* LiferayLogger.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		42E3A74F567940A306163A5F /* Pods */ = {
@@ -176,8 +185,8 @@
 				88DE2A711AD3DDE600714701 /* AppDelegate.swift */,
 				88DE2A781AD3DDE600714701 /* Images.xcassets */,
 				88DE2A911AD3DF2200714701 /* liferay-server-context.plist */,
+				0B6147F61DABC853004FAC7C /* Extensions */,
 				88DE2A6F1AD3DDE600714701 /* Supporting Files */,
-				88DE2AB31AD3F00B00714701 /* UIImageExtension.swift */,
 				88DE2A9E1AD3E01400714701 /* ViewControllers */,
 			);
 			name = "Showcase-Swift";
@@ -389,12 +398,13 @@
 				88DE2AAE1AD3EFEF00714701 /* ForgotPasswordScreenletViewController.swift in Sources */,
 				0B7AD4361D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift in Sources */,
 				88DE2AAD1AD3EFEF00714701 /* DDLListScreenletViewController.swift in Sources */,
+				0B6147FA1DABC86E004FAC7C /* LiferayLogger.swift in Sources */,
+				0B6147F81DABC853004FAC7C /* UIImageExtension.swift in Sources */,
 				88DE2AAB1AD3EFEF00714701 /* AssetListScreenletViewController.swift in Sources */,
 				88DE2A721AD3DDE600714701 /* AppDelegate.swift in Sources */,
 				88DE2AAC1AD3EFEF00714701 /* DDLFormScreenletViewController.swift in Sources */,
 				88DE2AA01AD3E01400714701 /* HomeLoginViewController.swift in Sources */,
 				88DE2AB01AD3EFEF00714701 /* SignUpScreenletViewController.swift in Sources */,
-				88DE2AB41AD3F00B00714701 /* UIImageExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
