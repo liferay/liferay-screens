@@ -62,10 +62,15 @@ class HomeScreenletsViewController: UITableViewController {
 	
 	//MARK: UITableViewDelegate
 	
-	
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		self.performSegueWithIdentifier(data[indexPath.section]![indexPath.row + 1], sender: self)
+		let storyboard = UIStoryboard(name: data[indexPath.section]![indexPath.row + 1],
+		                              bundle: NSBundle.mainBundle())
+		
+		let viewController = storyboard.instantiateInitialViewController()
+		
+		if let viewController = viewController {
+			self.navigationController?.pushViewController(viewController, animated: true)
+		}
 	}
-
 }
 
