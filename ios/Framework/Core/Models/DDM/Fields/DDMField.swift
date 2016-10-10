@@ -190,11 +190,19 @@ import Foundation
 	}
 
 	internal func convert(fromCurrentValue value:AnyObject?) -> String? {
-		return value?.description
+		if let value = value {
+			return value.description
+		}
+
+		return nil
 	}
 
 	internal func convertToLabel(fromCurrentValue value:AnyObject?) -> String? {
-		return value?.description
+		if let value = value {
+			return value.description
+		}
+
+		return nil
 	}
 
 	internal func onChangedCurrentValue() {
