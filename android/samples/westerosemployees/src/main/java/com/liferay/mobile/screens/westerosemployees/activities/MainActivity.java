@@ -57,7 +57,6 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 
 	@Override
 	public void onLoginSuccess(User user) {
-		SessionContext.storeCredentials(CredentialsStorageBuilder.StorageType.AUTO);
 		toNextActivity();
 	}
 
