@@ -18,9 +18,15 @@ public class ImageDisplayView_default: BaseScreenletView, ImageDisplayViewModel 
 
 	@IBOutlet weak var imageView: UIImageView?
 
+	public var imageMode: UIViewContentMode = .ScaleAspectFit
+
+	public var placeholderImageMode: UIViewContentMode = .Center
+	public var placeholder: UIImage?
+
 	public var url: NSURL? {
 		didSet {
 			if let url = url, imageData = NSData(contentsOfURL: url) {
+				imageView?.contentMode = self.imageMode
 				imageView?.image = UIImage(data: imageData)
 			}
 		}
@@ -32,9 +38,8 @@ public class ImageDisplayView_default: BaseScreenletView, ImageDisplayViewModel 
 		}
 	}
 
-	public var imageMode: UIViewContentMode = .ScaleAspectFit {
-		didSet {
-			imageView?.contentMode = self.imageMode
-		}
+	public override func onStartInteraction() {
+		imageView?.contentMode = placeholderImageMode
+		imageView?.image = placeholder
 	}
 }
