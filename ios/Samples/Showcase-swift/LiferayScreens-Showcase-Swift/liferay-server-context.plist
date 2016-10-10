@@ -10,5 +10,9 @@
 	<integer>20116</integer>
 	<key>groupId</key>
 	<integer>41905</integer>
+	<key>anonymousUsername</key>
+	<string>anonymous1@liferay.com</string>
+	<key>anonymousPassword</key>
+	<string>anonymous1</string>
 </dict>
 </plist>

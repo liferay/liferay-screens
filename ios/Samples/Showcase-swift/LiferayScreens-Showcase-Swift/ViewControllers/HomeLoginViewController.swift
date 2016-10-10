@@ -66,13 +66,13 @@ class HomeLoginViewController: UIViewController, LoginScreenletDelegate {
 		super.viewDidLoad()
 
 		SessionContext.loadStoredCredentials()
-		
-		showLogged(animated: false)
 	}
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		self.navigationItem.title = "LoginScreenlet"
+		
+		showLogged(animated: false)
 	}
 	
 	override func viewWillDisappear(animated: Bool) {

@@ -17,7 +17,22 @@ import LiferayScreens
 
 class SignUpScreenletViewController: UIViewController, SignUpScreenletDelegate, LoginScreenletDelegate {
 
-	@IBOutlet var screenlet: SignUpScreenlet?
+	
+	//MARK: IBOutlet
+	
+	@IBOutlet var screenlet: SignUpScreenlet! {
+		didSet {
+			screenlet.delegate = self
+			screenlet.autoLoginDelegate = self
+			screenlet.anonymousApiUserName =
+				LiferayServerContext.propertyForKey("anonymousUsername") as? String
+			screenlet.anonymousApiPassword =
+				LiferayServerContext.propertyForKey("anonymousPassword") as? String
+		}
+	}
+	
+	
+	//MARK: IBAction
 
 	@IBAction func credentialsValueChangedAction(sender: UISwitch) {
 		self.screenlet?.autoLogin = sender.on
@@ -27,39 +42,37 @@ class SignUpScreenletViewController: UIViewController, SignUpScreenletDelegate, 
 		self.screenlet?.saveCredentials = sender.on
 	}
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
 
-		self.screenlet?.delegate = self
-		self.screenlet?.autoLoginDelegate = self;
-	}
-
+	//MARK: SignUpScreenletDelegate
+	
 	func screenlet(screenlet: SignUpScreenlet,
-			onSignUpResponseUserAttributes attributes: [String:AnyObject]) {
-		print("DELEGATE: onSignUpResponse called -> \(attributes)\n");
+			onSignUpResponseUserAttributes attributes: [String: AnyObject]) {
+		LiferayLogger.delegate(args: attributes)
+		self.navigationController?.popViewControllerAnimated(true)
 	}
 
-	func screenlet(screenlet: SignUpScreenlet,
-			onSignUpError error: NSError) {
-		print("DELEGATE: onSignUpError called -> \(error)\n");
+	func screenlet(screenlet: SignUpScreenlet, onSignUpError error: NSError) {
+		LiferayLogger.delegate(args: error)
 	}
+	
+	
+	//MARK: LoginScreenletDelegate
 
 	func screenlet(screenlet: BaseScreenlet,
 			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
-		print("DELEGATE: onLoginResponse (autologin delegate) called -> \(attributes)\n");
+		LiferayLogger.delegate(args: attributes)
 	}
 
-	func screenlet(screenlet: BaseScreenlet,
-			onLoginError error: NSError) {
-		print("DELEGATE: onLoginError (autologin delegate) called -> \(error)\n");
+	func screenlet(screenlet: BaseScreenlet, onLoginError error: NSError) {
+		LiferayLogger.delegate(args: error)
 	}
 
 	func onScreenletCredentialsSaved(screenlet: BaseScreenlet) {
-		print("DELEGATE: onCredentialsSaved (autologin delegate) called\n");
+		LiferayLogger.delegate()
 	}
 
 	func onScreenletCredentialsLoaded(screenlet: BaseScreenlet) {
-		print("DELEGATE: onCredentialsLoaded (autologin delegate) called\n");
+		LiferayLogger.delegate()
 	}
 
 }

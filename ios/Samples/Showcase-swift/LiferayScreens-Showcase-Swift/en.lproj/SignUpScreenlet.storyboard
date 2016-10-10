@@ -50,8 +50,6 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autoLogin" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="saveCredentials" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="anonymousApiUserName" value="test@liferay.com"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="anonymousApiPassword" value="test"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
@@ -81,7 +79,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="da8-L1-1hz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1182" y="-371"/>
+            <point key="canvasLocation" x="939" y="-291"/>
         </scene>
     </scenes>
 </document>
