@@ -55,7 +55,7 @@ import Foundation
 	}
 
 	private func int64Value(key: String) -> Int64? {
-		return user?[key]?.description.asLong
+		return user?[key]?.longLongValue
 	}
 
 	private func stringValue(key: String) -> String? {
