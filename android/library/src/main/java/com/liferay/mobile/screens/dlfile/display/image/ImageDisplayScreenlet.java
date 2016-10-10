@@ -50,7 +50,7 @@ public class ImageDisplayScreenlet extends BaseFileDisplayScreenlet<ImageDisplay
 		placeholder = typedArray.getResourceId(R.styleable.ImageDisplayScreenlet_placeholder, 0);
 
 		Integer scaleTypeAttribute = typedArray.getInteger(R.styleable.ImageDisplayScreenlet_imageScaleType,
-			ImageView.ScaleType.FIT_CENTER.ordinal());
+			ImageView.ScaleType.CENTER_CROP.ordinal());
 		scaleType = ImageView.ScaleType.values()[scaleTypeAttribute];
 
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
