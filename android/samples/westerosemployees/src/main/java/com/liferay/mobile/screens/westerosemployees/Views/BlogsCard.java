@@ -62,8 +62,7 @@ public class BlogsCard extends CommentsRatingsCard implements BaseListListener<A
 	@Override
 	public void onListItemSelected(AssetEntry element, View view) {
 
-		blogDisplayScreenlet.setEntryId(element.getEntryId());
-		blogDisplayScreenlet.loadAsset();
+		blogDisplayScreenlet.load(element);
 
 		initializeRatingsAndComments("com.liferay.blogs.kernel.model.BlogsEntry",
 			element.getClassPK());
