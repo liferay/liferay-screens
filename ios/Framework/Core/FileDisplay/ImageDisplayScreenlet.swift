@@ -13,7 +13,18 @@
  */
 import Foundation
 
+
 public class ImageDisplayScreenlet: FileDisplayScreenlet {
+
+	public var imageDisplayViewModel: ImageDisplayViewModel? {
+		return screenletView as? ImageDisplayViewModel
+	}
+
+	public var imageMode: UIViewContentMode = .ScaleAspectFit {
+		didSet {
+			imageDisplayViewModel?.imageMode = self.imageMode
+		}
+	}
 
 	override public class var supportedMimeTypes: [String] {
 		return ["image/png", "image/jpg", "image/jpeg", "image/gif"]
