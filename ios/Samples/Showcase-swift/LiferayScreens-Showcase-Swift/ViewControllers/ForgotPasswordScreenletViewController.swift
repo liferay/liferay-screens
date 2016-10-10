@@ -17,22 +17,24 @@ import LiferayScreens
 
 class ForgotPasswordScreenletViewController: UIViewController, ForgotPasswordScreenletDelegate {
 
-	@IBOutlet var screenlet: ForgotPasswordScreenlet?
+	
+	//MARK: IBOutlet
+	
+	@IBOutlet var screenlet: ForgotPasswordScreenlet! {
+		didSet {
+			screenlet.delegate = self
+		}
+	}
+	
+	
+	//MARK: ForgotPasswordScreenletDelegate
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
-
-		self.screenlet?.delegate = self
+	func screenlet(screenlet: ForgotPasswordScreenlet, onForgotPasswordSent passwordSent: Bool) {
+		LiferayLogger.delegate(args: passwordSent)
 	}
 
-	func screenlet(screenlet: ForgotPasswordScreenlet,
-			onForgotPasswordSent passwordSent: Bool) {
-		print("DELEGATE: onForgotPasswordResponse called -> \(passwordSent)\n");
-	}
-
-	func screenlet(screenlet: ForgotPasswordScreenlet,
-			onForgotPasswordError error: NSError) {
-		print("DELEGATE: onForgotPasswordError called -> \(error)\n");
+	func screenlet(screenlet: ForgotPasswordScreenlet, onForgotPasswordError error: NSError) {
+		LiferayLogger.delegate(args: error)
 	}
 
 
