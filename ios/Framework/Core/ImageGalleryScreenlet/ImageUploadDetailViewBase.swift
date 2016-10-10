@@ -35,7 +35,7 @@ public class ImageUploadDetailViewBase: UIView {
 				? "\(self.screenlet!.filePrefix)\(NSUUID().UUIDString)"
 				: title
 
-		let actionClosure: UIImage -> Void = { thumbnailImage in
+		let actionClosure: UIImage? -> Void = { thumbnailImage in
 			let imageUpload = ImageEntryUpload(
 				image: self.image!,
 				thumbnail: thumbnailImage,

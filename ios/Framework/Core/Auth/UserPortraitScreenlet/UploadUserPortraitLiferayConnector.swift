@@ -69,12 +69,12 @@ public class UploadUserPortraitLiferayConnector: ServerConnector {
 			return nil
 		}
 
-		let imageReduced = src.resizeImage(toWidth: Int(src.size.width * CGFloat(factor)))
+		if let imageReduced = src.resizeImage(toWidth: Int(src.size.width * CGFloat(factor))),
+				imageBytes = UIImageJPEGRepresentation(imageReduced, 1) {
 
-		if let imageBytes = UIImageJPEGRepresentation(imageReduced, 1) {
-			return (imageBytes.length < maxSize)
-				? imageBytes
-				: reduceImage(src, factor: factor - 0.1)
+				return (imageBytes.length < maxSize)
+					? imageBytes
+					: reduceImage(src, factor: factor - 0.1)
 		}
 
 		return nil

@@ -15,7 +15,7 @@ import UIKit
 
 extension UIImage {
 
-	public func resizeImage(toWidth width: Int, completion: (UIImage) -> Void) {
+	public func resizeImage(toWidth width: Int, completion: (UIImage?) -> Void) {
 		dispatch_async {
 			let newImage = self.resizeImage(toWidth: width)
 			dispatch_main {
@@ -24,7 +24,7 @@ extension UIImage {
 		}
 	}
 
-	public func resizeImage(toWidth width: Int) -> UIImage {
+	public func resizeImage(toWidth width: Int) -> UIImage? {
 		let oldWidth = self.size.width
 		let scaleFactor = CGFloat(width) / oldWidth
 
