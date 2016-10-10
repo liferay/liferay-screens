@@ -224,16 +224,18 @@
                         <segue destination="N5m-Be-zKQ" kind="show" identifier="AssetListScreenlet" id="7xV-17-sdQ"/>
                         <segue destination="MGb-m9-wGz" kind="show" identifier="DDLListScreenlet" id="jqp-Ix-DHl"/>
                         <segue destination="oOo-3A-Uui" kind="show" identifier="DDLFormScreenlet" id="WbH-nt-XHO"/>
-                        <segue destination="sKE-IF-Y4k" kind="show" identifier="WebContentDisplayScreenlet" id="yAA-vv-JOl"/>
                         <segue destination="TY4-Ql-4pF" kind="show" identifier="UserPortraitScreenlet" id="jtf-rk-w86"/>
-                        <segue destination="mIJ-mJ-AmA" kind="show" identifier="WebContentListScreenlet" id="NhJ-zR-6pA"/>
                         <segue destination="N0K-Ji-ryL" kind="show" identifier="RatingScreenlet" id="mGa-c2-uxu"/>
                         <segue destination="TKo-oY-mMB" kind="show" identifier="ImageGalleryScreenlet" id="PQh-RJ-6ds"/>
                         <segue destination="iUq-9H-0mP" kind="show" identifier="AssetDisplayScreenlet" id="PqW-k4-h3V"/>
                         <segue destination="My4-vf-44F" kind="show" identifier="CommentListScreenlet" id="zPF-BA-bIW"/>
                         <segue destination="myx-wj-dMR" kind="show" identifier="CommentDisplayScreenlet" id="XI4-un-Xh8"/>
                         <segue destination="x7q-3L-OL5" kind="show" identifier="BlogDisplayScreenlet" id="i4Y-KS-eKW"/>
-            <point key="canvasLocation" x="248" y="811"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xsJ-Fx-gOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="820" y="331"/>
         </scene>
         <!--DDLFormScreenlet-->
         <scene sceneID="rsZ-56-Bs1">
@@ -557,45 +559,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zbs-wQ-GiQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2349.375" y="2423.2394366197182"/>
-        </scene>
-        <!--WebContentListScreenlet-->
-        <scene sceneID="MCN-aR-IyW">
-            <objects>
-                <viewController title="WebContentListScreenlet" id="mIJ-mJ-AmA" customClass="WebContentListScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="YHs-MM-I4k"/>
-                        <viewControllerLayoutGuide type="bottom" id="SCZ-oN-0s2"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="UcB-oQ-PmW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8S0-OV-XFI" customClass="WebContentListScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="default-collection"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="orderBy" value="Id"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="orderByClassName" value="com.liferay.portlet.journal.util.comparator.ArticleIDComparator"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="8S0-OV-XFI" firstAttribute="leading" secondItem="UcB-oQ-PmW" secondAttribute="leading" id="TjW-xe-OIK"/>
-                            <constraint firstAttribute="trailing" secondItem="8S0-OV-XFI" secondAttribute="trailing" id="Zqs-B6-KdX"/>
-                            <constraint firstItem="SCZ-oN-0s2" firstAttribute="top" secondItem="8S0-OV-XFI" secondAttribute="bottom" id="csf-ah-sKl"/>
-                            <constraint firstItem="8S0-OV-XFI" firstAttribute="top" secondItem="YHs-MM-I4k" secondAttribute="bottom" id="rHd-zO-G36"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="kuN-5L-PDx"/>
-                    <connections>
-                        <outlet property="screenlet" destination="8S0-OV-XFI" id="jcO-Zz-e6o"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Br9-uc-FlJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1485" y="2423.2394366197182"/>
         </scene>
         <!--CommentDisplayScreenlet-->
         <scene sceneID="T12-O4-Lqp">
@@ -1142,7 +1105,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GmX-C6-h5F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="248" y="179"/>
+            <point key="canvasLocation" x="248" y="331"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -1442,14 +1405,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ohN-Ib-Tk7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="815" y="-304"/>
-        </scene>
-        <!--WebContentDisplayScreenlet-->
-        <scene sceneID="Y6G-9B-OXy">
-            <objects>
-                <viewControllerPlaceholder storyboardName="WebContentDisplayScreenlet" id="sKE-IF-Y4k" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gBy-EO-LEu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-701.25" y="838.73239436619713"/>
         </scene>
     </scenes>
     <resources>

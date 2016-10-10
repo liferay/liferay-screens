@@ -25,10 +25,12 @@ class WebContentDisplayScreenletViewController: UIViewController, WebContentDisp
 			screenlet.delegate = self
 			if let articleId =
 					LiferayServerContext.propertyForKey("webContentDisplayArticleId") as? String {
-				screenlet.articleId = articleId
+				screenlet.articleId = self.articleId ?? articleId
 			}
 		}
 	}
+	
+	var articleId: String?
 
 
 	//MARK: WebContentDisplayScreenletDelegate
@@ -47,6 +49,15 @@ class WebContentDisplayScreenletViewController: UIViewController, WebContentDisp
 	func screenlet(screenlet: WebContentDisplayScreenlet,
 			onWebContentError error: NSError) {
 		LiferayLogger.delegate(args: error)
+	}
+	
+	
+	//MARK: UIViewController
+	
+	override func viewWillDisappear(animated: Bool) {
+		super.viewWillDisappear(animated)
+		
+		articleId = nil
 	}
 
 }

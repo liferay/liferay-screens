@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mIJ-mJ-AmA">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--WebContentListScreenlet-->
+        <scene sceneID="MCN-aR-IyW">
+            <objects>
+                <viewController title="WebContentListScreenlet" id="mIJ-mJ-AmA" customClass="WebContentListScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YHs-MM-I4k"/>
+                        <viewControllerLayoutGuide type="bottom" id="SCZ-oN-0s2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UcB-oQ-PmW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8S0-OV-XFI" customClass="WebContentListScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8S0-OV-XFI" firstAttribute="top" secondItem="UcB-oQ-PmW" secondAttribute="topMargin" id="Kns-2u-bng"/>
+                            <constraint firstItem="8S0-OV-XFI" firstAttribute="leading" secondItem="UcB-oQ-PmW" secondAttribute="leading" id="TjW-xe-OIK"/>
+                            <constraint firstAttribute="trailing" secondItem="8S0-OV-XFI" secondAttribute="trailing" id="Zqs-B6-KdX"/>
+                            <constraint firstItem="SCZ-oN-0s2" firstAttribute="top" secondItem="8S0-OV-XFI" secondAttribute="bottom" id="csf-ah-sKl"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="WebContentListScreenlet" id="kuN-5L-PDx"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="screenlet" destination="8S0-OV-XFI" id="jcO-Zz-e6o"/>
+                        <segue destination="1qX-RH-uPm" kind="show" identifier="WebContentDisplay" id="2gl-eT-z1f"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Br9-uc-FlJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="63" y="1881"/>
+        </scene>
+        <!--WebContentDisplayScreenlet-->
+        <scene sceneID="4SD-PL-wq2">
+            <objects>
+                <viewControllerPlaceholder storyboardName="WebContentDisplayScreenlet" id="1qX-RH-uPm" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8W0-j1-voE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="491" y="1881"/>
+        </scene>
+    </scenes>
+</document>
