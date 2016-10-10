@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class ImageDisplayView_default: BaseScreenletView, FileDisplayViewModel {
+public class ImageDisplayView_default: BaseScreenletView, ImageDisplayViewModel {
 
 	@IBOutlet weak var imageView: UIImageView?
 
@@ -29,6 +29,12 @@ public class ImageDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 	public var title: String? {
 		didSet {
 			self.presentingViewController?.title = title
+		}
+	}
+
+	public var imageMode: UIViewContentMode = .ScaleAspectFit {
+		didSet {
+			imageView?.contentMode = self.imageMode
 		}
 	}
 }
