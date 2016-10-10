@@ -24,9 +24,9 @@ import Foundation
 	}
 
 	public var fileExtension: String? {
-		if let object = attributes["object"] {
-			if let fileEntry = object["fileEntry"] {
-				return fileEntry!["extension"] as? String
+		if let assetObject = attributes["object"] {
+			if let fileEntry = assetObject["fileEntry"] as? [String : AnyObject]{
+				return fileEntry["extension"] as? String
 			}
 		}
 		return ""
