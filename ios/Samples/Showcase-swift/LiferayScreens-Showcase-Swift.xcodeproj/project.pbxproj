@@ -10,6 +10,7 @@
 		0B009C7E1D66E7A20085070B /* CommentListScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B009C7D1D66E7A20085070B /* CommentListScreenletViewController.swift */; };
 		0B2180381D6C53A800A23690 /* AssetDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180371D6C53A800A23690 /* AssetDisplayViewController.swift */; };
 		0B21803A1D6C53AD00A23690 /* UserDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180391D6C53AD00A23690 /* UserDisplayViewController.swift */; };
+		0B4AD15F1DABCAFC00F9A74F /* Default-placeholder-image.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B4AD15E1DABCAFC00F9A74F /* Default-placeholder-image.png */; };
 		0B7AD4361D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7AD4351D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift */; };
 		0B7F45A41DA7C0D700A3BDE3 /* ImageDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7F45A31DA7C0D700A3BDE3 /* ImageDisplayViewController.swift */; };
 		0BD612C91D36709E00CD4D76 /* RatingScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD612C81D36709E00CD4D76 /* RatingScreenletViewController.swift */; };
@@ -49,6 +50,7 @@
 		0B009C7D1D66E7A20085070B /* CommentListScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListScreenletViewController.swift; sourceTree = "<group>"; };
 		0B2180371D6C53A800A23690 /* AssetDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayViewController.swift; sourceTree = "<group>"; };
 		0B2180391D6C53AD00A23690 /* UserDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDisplayViewController.swift; sourceTree = "<group>"; };
+		0B4AD15E1DABCAFC00F9A74F /* Default-placeholder-image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-placeholder-image.png"; sourceTree = "<group>"; };
 		0B7AD4351D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryScreenletController.swift; sourceTree = "<group>"; };
 		0B7F45A31DA7C0D700A3BDE3 /* ImageDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDisplayViewController.swift; sourceTree = "<group>"; };
 		0BD612C81D36709E00CD4D76 /* RatingScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingScreenletViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				88DE2A7A1AD3DDE600714701 /* LaunchScreen.xib */,
 				88DE2A9B1AD3DF7600714701 /* Localizable.strings */,
 				88DE2A931AD3DF2800714701 /* Default-568h@2x.png */,
+				0B4AD15E1DABCAFC00F9A74F /* Default-placeholder-image.png */,
 				88DE2A701AD3DDE600714701 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -281,6 +284,7 @@
 				88DE2A771AD3DDE600714701 /* Main.storyboard in Resources */,
 				88CC3B071CC158E300E0AEB7 /* BookTableViewCell.xib in Resources */,
 				88DE2A7C1AD3DDE600714701 /* LaunchScreen.xib in Resources */,
+				0B4AD15F1DABCAFC00F9A74F /* Default-placeholder-image.png in Resources */,
 				88DE2A941AD3DF2800714701 /* Default-568h@2x.png in Resources */,
 				88CC3B031CC158C800E0AEB7 /* HtmlTableViewCell.xib in Resources */,
 				88CC3AFF1CC153D900E0AEB7 /* WebContentListView_book.xib in Resources */,
@@ -501,7 +505,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "LiferayScreens-Showcase-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.LiferayScreens-Showcase-Swifta";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.LiferayScreens-Showcase-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -514,7 +518,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "LiferayScreens-Showcase-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.LiferayScreens-Showcase-Swifta";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.LiferayScreens-Showcase-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
