@@ -12,6 +12,7 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.asset.display.interactor.AssetDisplayInteractor;
 import com.liferay.mobile.screens.asset.list.AssetEntry;
+import com.liferay.mobile.screens.asset.list.interactor.AssetFactory;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.blogs.BlogsEntryDisplayScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -34,8 +35,8 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	private boolean autoLoad;
 	private HashMap<String, Integer> layouts;
 	private long entryId;
-	private long classPK;
 	private String className;
+	private long classPK;
 	private AssetDisplayListener listener;
 	private AssetDisplayInnerScreenletListener configureListener;
 
@@ -95,32 +96,27 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		performUserAction();
 	}
 
-	public void removeInnerScreenlet() {
-		getViewModel().removeInnerScreenlet();
-	}
-
-	@Override
-	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
-
+	public void load(AssetEntry assetEntry) {
+		AssetEntry asset = AssetFactory.createInstance(assetEntry.getValues());
 		AssetDisplayFactory factory = new AssetDisplayFactory();
-		BaseScreenlet screenlet = factory.getScreenlet(getContext(), assetEntry, layouts, autoLoad);
+		BaseScreenlet screenlet = factory.getScreenlet(getContext(), asset, layouts, autoLoad);
 		if (screenlet != null) {
 			if (configureListener != null) {
-				configureListener.onConfigureChildScreenlet(this, screenlet, assetEntry);
+				configureListener.onConfigureChildScreenlet(this, screenlet, asset);
 			}
 			getViewModel().showFinishOperation(screenlet);
 		} else {
 
 			View customView = null;
 			if (configureListener != null) {
-				customView = configureListener.onRenderCustomAsset(assetEntry);
+				customView = configureListener.onRenderCustomAsset(asset);
 			}
 
 			if (customView != null) {
 				getViewModel().showFinishOperation(customView);
 			} else {
 				String server = getResources().getString(R.string.liferay_server);
-				String url = server + assetEntry.getUrl();
+				String url = server + asset.getUrl();
 				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 				if (intent.resolveActivity(getContext().getPackageManager()) != null) {
 					getContext().startActivity(intent);
@@ -132,6 +128,15 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 				}
 			}
 		}
+	}
+
+	public void removeInnerScreenlet() {
+		getViewModel().removeInnerScreenlet();
+	}
+
+	@Override
+	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
+		load(assetEntry);
 
 		if (listener != null) {
 			listener.onRetrieveAssetSuccess(assetEntry);
@@ -163,7 +168,8 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 
 	//TODO now the autoload is required to be able to load child screenlets
 	protected void autoLoad() {
-		if (SessionContext.isLoggedIn() && (entryId != 0 || (className != null && classPK != 0))) {
+		if (SessionContext.isLoggedIn() && (entryId != 0 || (className != null
+			&& classPK != 0))) {
 			loadAsset();
 		}
 	}
