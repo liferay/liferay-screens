@@ -144,9 +144,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				DefaultAnimation.startActivityWithAnimation(this, intent);
 				break;
 			case R.id.image_display:
-				Intent intent1 = getIntentWithTheme(ImageDisplayActivity.class);
-				intent1.putExtra("entryId", Long.valueOf(getResources().getString(R.string.liferay_image_entryId)));
-				DefaultAnimation.startActivityWithAnimation(this, intent1);
+				start(ImageDisplayActivity.class);
 				break;
 			default:
 				start(LoginActivity.class);

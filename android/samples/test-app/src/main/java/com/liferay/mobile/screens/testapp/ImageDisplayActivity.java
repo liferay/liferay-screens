@@ -22,9 +22,8 @@ public class ImageDisplayActivity extends ThemeActivity implements AssetDisplayL
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.image_display);
 
-		screenlet = ((ImageDisplayScreenlet) findViewById(R.id.image_display_screenlet));
+		screenlet = (ImageDisplayScreenlet) findViewById(R.id.image_display_screenlet);
 
-		screenlet.setEntryId(getIntent().getLongExtra("entryId", 0));
 		screenlet.setListener(this);
 		screenlet.load();
 
