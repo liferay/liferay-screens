@@ -193,7 +193,7 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 	@Override
 	protected void createErrorEvent(Exception e) {
 		try {
-			BaseListEvent<E> event = new BaseListEvent<E>();
+			BaseListEvent<E> event = new BaseListEvent<>();
 			decorateBaseEvent(event);
 			event.setException(e);
 			EventBusUtil.post(event);

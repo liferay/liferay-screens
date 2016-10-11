@@ -50,6 +50,7 @@
 	<string name="liferay_rating_like_asset_id">33713</string>
 	<string name="liferay_rating_reactions_emojis_asset_id">33713</string>
 
+	<string name="liferay_image_entryId">41638</string>
 	<string name="liferay_user_entryId">20169</string>
 
 	<!-- OAuth values -->

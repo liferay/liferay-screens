@@ -68,7 +68,7 @@ public class StringWithOptionsFieldTest {
 		return parsedData;
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenClearingOptions {
 
@@ -121,7 +121,7 @@ public class StringWithOptionsFieldTest {
 
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenCreating {
 
@@ -158,7 +158,7 @@ public class StringWithOptionsFieldTest {
 
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingToString {
 
@@ -229,7 +229,7 @@ public class StringWithOptionsFieldTest {
 	@RunWith(Enclosed.class)
 	public static class WhenConvertingFromString {
 
-		@Config(constants = BuildConfig.class)
+		//@Config(constants = BuildConfig.class)
 		@RunWith(RobolectricTestRunner.class)
 		public static class ShouldReturnNull {
 			@Test
@@ -241,7 +241,7 @@ public class StringWithOptionsFieldTest {
 			}
 		}
 
-		@Config(constants = BuildConfig.class)
+		//@Config(constants = BuildConfig.class)
 		@RunWith(RobolectricTestRunner.class)
 		public static class ShouldReturnEmptyList {
 			@Test
@@ -265,7 +265,7 @@ public class StringWithOptionsFieldTest {
 			}
 		}
 
-		@Config(constants = BuildConfig.class)
+		//@Config(constants = BuildConfig.class)
 		@RunWith(RobolectricTestRunner.class)
 		public static class ShouldReturnSingleItemList {
 
@@ -352,7 +352,7 @@ public class StringWithOptionsFieldTest {
 
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingToFormattedString {
 
@@ -383,7 +383,7 @@ public class StringWithOptionsFieldTest {
 
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingXSD {
 		@Test
@@ -469,7 +469,7 @@ public class StringWithOptionsFieldTest {
 		}
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenSelectingOption {
 
@@ -516,7 +516,7 @@ public class StringWithOptionsFieldTest {
 
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenValidating {
 
@@ -554,7 +554,7 @@ public class StringWithOptionsFieldTest {
 
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingJson {
 		@Test
