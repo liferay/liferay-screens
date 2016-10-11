@@ -66,7 +66,7 @@ class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 				record, attributes in
 
 				loadCon.resultRecord = record as? DDLRecord
-				loadCon.resultUserId = attributes?["userId"]?.description.asLong
+				loadCon.resultUserId = attributes?["userId"]?.longLongValue
 
 				result(loadCon.resultRecord)
 			}

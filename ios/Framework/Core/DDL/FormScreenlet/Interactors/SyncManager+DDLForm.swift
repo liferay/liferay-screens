@@ -75,8 +75,8 @@ extension SyncManager {
 					error: NSError.errorWithCause(.NotAvailable))
 				signal()
 			}
-			else if let localModifiedDate = localRecord.attributes["modifiedDate"]?.description.asLong,
-					remoteModifiedDate = remoteRecord!.attributes["modifiedDate"]?.description.asLong {
+			else if let localModifiedDate = localRecord.attributes["modifiedDate"]?.longLongValue,
+					remoteModifiedDate = remoteRecord!.attributes["modifiedDate"]?.longLongValue {
 
 				if remoteModifiedDate <= localModifiedDate {
 					self.sendLocalRecord(
@@ -239,9 +239,9 @@ extension SyncManager {
 				key: document.cachedKey!) { object, attributes in
 
 			if let filePrefix = attributes?["filePrefix"] as? String,
-					folderId = attributes?["folderId"]?.description.asLong,
-					repositoryId = attributes?["repositoryId"]?.description.asLong,
-					groupId = attributes?["groupId"]?.description.asLong {
+					folderId = attributes?["folderId"]?.longLongValue,
+					repositoryId = attributes?["repositoryId"]?.longLongValue,
+					groupId = attributes?["groupId"]?.longLongValue {
 
 				document.currentValue = object
 

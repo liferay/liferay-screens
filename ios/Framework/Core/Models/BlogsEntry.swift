@@ -60,7 +60,7 @@ import Foundation
 	}
 
 	private func int64Value(key: String) -> Int64? {
-		return blogsEntry?[key]?.description.asLong
+		return blogsEntry?[key]?.longLongValue
 	}
 
 	private func stringValue(key: String) -> String? {

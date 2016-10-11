@@ -32,19 +32,19 @@ import Foundation
 	}
 
 	public var classNameId: Int64 {
-		return attributes["classNameId"]!.description.asLong!
+		return attributes["classNameId"]!.longLongValue
 	}
 
 	public var classPK: Int64 {
-		return attributes["classPK"]!.description.asLong!
+		return attributes["classPK"]!.longLongValue
 	}
 
 	public var groupId: Int64 {
-		return attributes["groupId"]!.description.asLong!
+		return attributes["groupId"]!.longLongValue
 	}
 
 	public var companyId: Int64 {
-		return attributes["companyId"]!.description.asLong!
+		return attributes["companyId"]!.longLongValue
 	}
 
 	public var url: String {
@@ -52,7 +52,7 @@ import Foundation
 	}
 
 	public var entryId: Int64 {
-		return attributes["entryId"]!.description.asLong!
+		return attributes["entryId"]!.longLongValue!
 	}
 
 	public var createDate: NSDate {

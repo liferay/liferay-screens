@@ -31,7 +31,7 @@ import UIKit
 	}
 	
 	public var classPK: Int64 {
-		return (attributes["classPK"]! as! String).asLong!
+		return attributes["classPK"]!.longLongValue
 	}
 	
 	public var className: String {
