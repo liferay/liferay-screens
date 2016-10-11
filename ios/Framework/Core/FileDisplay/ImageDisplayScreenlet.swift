@@ -50,7 +50,10 @@ public class ImageDisplayScreenlet: FileDisplayScreenlet {
 
 	public override func onCreated() {
 		super.onCreated()
+		
+		imageDisplayViewModel?.imageMode = imageMode
 		imageDisplayViewModel?.placeholder = placeholder
+		imageDisplayViewModel?.placeholderImageMode = placeholderImageMode
 	}
 
 }
