@@ -6,15 +6,9 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.MediaController;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.dlfile.display.BaseFileDisplayViewModel;
-import com.liferay.mobile.screens.dlfile.display.FileEntry;
-import com.liferay.mobile.screens.util.LiferayLogger;
 
 /**
  * @author Sarai Díaz García
@@ -37,7 +31,8 @@ public class VideoDisplayView extends BaseFileDisplayView {
 	}
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	public VideoDisplayView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+	public VideoDisplayView(Context context, AttributeSet attrs, int defStyleAttr,
+		int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 

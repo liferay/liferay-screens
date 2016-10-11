@@ -5,13 +5,8 @@ import android.content.Context;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.dlfile.display.BaseFileDisplayViewModel;
-import com.liferay.mobile.screens.dlfile.display.FileEntry;
-import com.liferay.mobile.screens.util.LiferayLogger;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import java.io.File;
@@ -21,7 +16,6 @@ import java.io.File;
  */
 public class ImageDisplayView extends BaseFileDisplayView implements Callback {
 
-	private BaseScreenlet screenlet;
 	private ImageView imageView;
 
 	public ImageDisplayView(Context context) {
@@ -37,13 +31,24 @@ public class ImageDisplayView extends BaseFileDisplayView implements Callback {
 	}
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	public ImageDisplayView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+	public ImageDisplayView(Context context, AttributeSet attrs, int defStyleAttr,
+		int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override
 	public void loadFileEntry(String url) {
 		loadImage(url);
+	}
+
+	@Override
+	public void onSuccess() {
+		progressBar.setVisibility(GONE);
+	}
+
+	@Override
+	public void onError() {
+		progressBar.setVisibility(GONE);
 	}
 
 	@Override
@@ -55,15 +60,5 @@ public class ImageDisplayView extends BaseFileDisplayView implements Callback {
 
 	private void loadImage(String url) {
 		Picasso.with(getContext()).load(new File(url)).into(imageView, this);
-	}
-
-	@Override
-	public void onSuccess() {
-		progressBar.setVisibility(GONE);
-	}
-
-	@Override
-	public void onError() {
-		progressBar.setVisibility(GONE);
 	}
 }

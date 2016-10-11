@@ -22,7 +22,8 @@ import java.io.File;
  * @author Víctor Galán Grande
  */
 
-public abstract class BaseFileDisplayView  extends RelativeLayout implements BaseFileDisplayViewModel {
+public abstract class BaseFileDisplayView extends RelativeLayout
+	implements BaseFileDisplayViewModel {
 
 	protected FileEntry fileEntry;
 	protected BaseScreenlet screenlet;
@@ -42,7 +43,8 @@ public abstract class BaseFileDisplayView  extends RelativeLayout implements Bas
 	}
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	public BaseFileDisplayView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+	public BaseFileDisplayView(Context context, AttributeSet attrs, int defStyleAttr,
+		int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
@@ -57,6 +59,7 @@ public abstract class BaseFileDisplayView  extends RelativeLayout implements Bas
 			downloadFileAndStoreLocally();
 		}
 	}
+
 	@Override
 
 	public void showStartOperation(String actionName) {
@@ -65,8 +68,8 @@ public abstract class BaseFileDisplayView  extends RelativeLayout implements Bas
 
 	@Override
 	public void showFinishOperation(String actionName) {
-		throw new UnsupportedOperationException(
-			"showFinishOperation(String) is not supported." + " Use showFinishOperation(FileEntry) instead.");
+		throw new UnsupportedOperationException("showFinishOperation(String) is not supported."
+			+ " Use showFinishOperation(FileEntry) instead.");
 	}
 
 	@Override

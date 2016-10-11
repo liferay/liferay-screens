@@ -9,10 +9,7 @@ import android.graphics.Rect;
 import android.graphics.pdf.PdfRenderer;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
 import android.os.ParcelFileDescriptor;
-import android.os.ResultReceiver;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -21,13 +18,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.dlfile.display.BaseFileDisplayViewModel;
-import com.liferay.mobile.screens.dlfile.display.DownloadService;
-import com.liferay.mobile.screens.dlfile.display.FileEntry;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import java.io.File;
 import java.io.IOException;
@@ -68,6 +60,32 @@ public class PdfDisplayView extends BaseFileDisplayView implements View.OnClickL
 	}
 
 	@Override
+	public void loadFileEntry(String url) {
+		render(url);
+	}
+
+	@Override
+	public void renderDownloadProgress(int progress) {
+		progressText.setText(String.valueOf(progress).concat("%"));
+		progressBarHorizontal.setProgress(progress);
+	}
+
+	@Override
+	public void onClick(View v) {
+		if (v.getId() == R.id.liferay_previous_page) {
+			changeCurrentPage(-1);
+		} else if (v.getId() == R.id.liferay_next_page) {
+			changeCurrentPage(+1);
+		} else if (v.getId() == R.id.liferay_go_to_page_submit) {
+			String number = goToPage.getText().toString();
+			if (!number.isEmpty()) {
+				changeCurrentPage(Integer.parseInt(number) - 1 - currentPage);
+				closeKeyboard(v);
+			}
+		}
+	}
+
+	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
@@ -96,21 +114,6 @@ public class PdfDisplayView extends BaseFileDisplayView implements View.OnClickL
 		}
 	}
 
-	@Override
-	public void onClick(View v) {
-		if (v.getId() == R.id.liferay_previous_page) {
-			changeCurrentPage(-1);
-		} else if (v.getId() == R.id.liferay_next_page) {
-			changeCurrentPage(+1);
-		} else if (v.getId() == R.id.liferay_go_to_page_submit) {
-			String number = goToPage.getText().toString();
-			if (!number.isEmpty()) {
-				changeCurrentPage(Integer.parseInt(number) - 1 - currentPage);
-				closeKeyboard(v);
-			}
-		}
-	}
-
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	private void changeCurrentPage(int i) {
 		currentPage += i;
@@ -135,7 +138,8 @@ public class PdfDisplayView extends BaseFileDisplayView implements View.OnClickL
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	private void renderPdfPage(int page) {
 		PdfRenderer.Page renderedPage = renderer.openPage(page);
-		Bitmap bitmap = Bitmap.createBitmap(renderedPage.getWidth(), renderedPage.getHeight(), Bitmap.Config.ARGB_8888);
+		Bitmap bitmap = Bitmap.createBitmap(renderedPage.getWidth(), renderedPage.getHeight(),
+			Bitmap.Config.ARGB_8888);
 		Rect rect = new Rect(0, 0, renderedPage.getWidth(), renderedPage.getHeight());
 		renderedPage.render(bitmap, rect, matrix, PdfRenderer.Page.RENDER_MODE_FOR_PRINT);
 		imagePdf.setImageMatrix(matrix);
@@ -149,7 +153,8 @@ public class PdfDisplayView extends BaseFileDisplayView implements View.OnClickL
 	private void renderPdfInImageView(String url) {
 		progressBar.setVisibility(VISIBLE);
 		try {
-			renderer = new PdfRenderer(ParcelFileDescriptor.open(new File(url), ParcelFileDescriptor.MODE_READ_ONLY));
+			renderer = new PdfRenderer(
+				ParcelFileDescriptor.open(new File(url), ParcelFileDescriptor.MODE_READ_ONLY));
 			matrix = imagePdf.getImageMatrix();
 			renderPdfPage(0);
 			title.setText(fileEntry.getTitle());
@@ -174,17 +179,7 @@ public class PdfDisplayView extends BaseFileDisplayView implements View.OnClickL
 	private void closeKeyboard(View view) {
 		InputMethodManager inputManager =
 			(InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-		inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-	}
-
-	@Override
-	public void loadFileEntry(String url) {
-		render(url);
-	}
-
-	@Override
-	public void renderDownloadProgress(int progress) {
-		progressText.setText(String.valueOf(progress).concat("%"));
-		progressBarHorizontal.setProgress(progress);
+		inputManager.hideSoftInputFromWindow(view.getWindowToken(),
+			InputMethodManager.HIDE_NOT_ALWAYS);
 	}
 }
