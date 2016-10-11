@@ -39,26 +39,18 @@ public class ImageDisplayScreenlet extends BaseFileDisplayScreenlet<ImageDisplay
 		TypedArray typedArray =
 			context.getTheme().obtainStyledAttributes(attributes, R.styleable.ImageDisplayScreenlet, 0, 0);
 
-		int layoutId = typedArray.getResourceId(R.styleable.ImageDisplayScreenlet_layoutId, getDefaultLayoutId());
-
-		autoLoad = typedArray.getBoolean(R.styleable.ImageDisplayScreenlet_autoLoad, true);
-		entryId = typedArray.getInt(R.styleable.ImageDisplayScreenlet_entryId, 0);
-
-		className = typedArray.getString(R.styleable.ImageDisplayScreenlet_className);
-		classPK = typedArray.getInt(R.styleable.ImageDisplayScreenlet_classPK, 0);
-
 		placeholder = typedArray.getResourceId(R.styleable.ImageDisplayScreenlet_placeholder, 0);
 
 		Integer scaleTypeAttribute = typedArray.getInteger(R.styleable.ImageDisplayScreenlet_imageScaleType,
 			ImageView.ScaleType.CENTER_CROP.ordinal());
 		scaleType = ImageView.ScaleType.values()[scaleTypeAttribute];
 
-		View view = LayoutInflater.from(context).inflate(layoutId, null);
+		typedArray.recycle();
+
+		View view = super.createScreenletView(context, attributes);
 
 		((ImageDisplayView) view).setScaleType(scaleType);
 		((ImageDisplayView) view).setPlaceholder(placeholder);
-
-		typedArray.recycle();
 
 		return view;
 	}
