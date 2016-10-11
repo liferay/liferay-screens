@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="myx-wj-dMR">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--CommentDisplayScreenlet-->
+        <scene sceneID="T12-O4-Lqp">
+            <objects>
+                <viewController title="CommentDisplayScreenlet" id="myx-wj-dMR" customClass="CommentDisplayScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zgn-S7-hoK"/>
+                        <viewControllerLayoutGuide type="bottom" id="BcC-CY-PdX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bW1-qx-aPC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VNL-Ik-kay">
+                                <rect key="frame" x="222" y="72" width="82" height="44"/>
+                                <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="82" id="GHt-rl-7Yo"/>
+                                    <constraint firstAttribute="height" constant="44" id="UVd-Ie-BkN"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="LOAD">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="loadComment:" destination="myx-wj-dMR" eventType="touchUpInside" id="DjL-ET-1fn"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="comment id" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ixf-v5-nVE">
+                                <rect key="frame" x="16" y="79" width="198" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="3jZ-VK-exN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ebc-cC-7DS" customClass="CommentDisplayScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="16" y="136" width="288" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="d8r-Ue-d9j"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pe3-Rn-W4v">
+                                <rect key="frame" x="226" y="284" width="82" height="44"/>
+                                <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="w0w-Cg-Qnz"/>
+                                    <constraint firstAttribute="width" constant="82" id="zZ4-XY-fG6"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="DELETE">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="deleteComment:" destination="myx-wj-dMR" eventType="touchUpInside" id="zAW-43-j10"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ixf-v5-nVE" firstAttribute="leading" secondItem="bW1-qx-aPC" secondAttribute="leadingMargin" id="2ml-OA-LXe"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Pe3-Rn-W4v" secondAttribute="trailing" constant="-4" id="6Hd-Sw-NVY"/>
+                            <constraint firstItem="Ebc-cC-7DS" firstAttribute="leading" secondItem="bW1-qx-aPC" secondAttribute="leadingMargin" id="V0j-EN-Lt5"/>
+                            <constraint firstItem="Ebc-cC-7DS" firstAttribute="trailing" secondItem="bW1-qx-aPC" secondAttribute="trailingMargin" id="ZY3-Z0-2kV"/>
+                            <constraint firstItem="VNL-Ik-kay" firstAttribute="trailing" secondItem="bW1-qx-aPC" secondAttribute="trailingMargin" id="bk9-L4-IVg"/>
+                            <constraint firstItem="VNL-Ik-kay" firstAttribute="leading" secondItem="Ixf-v5-nVE" secondAttribute="trailing" constant="8" id="cwH-QJ-45y"/>
+                            <constraint firstItem="Ebc-cC-7DS" firstAttribute="top" secondItem="VNL-Ik-kay" secondAttribute="bottom" constant="20" id="fYB-jf-6QO"/>
+                            <constraint firstItem="VNL-Ik-kay" firstAttribute="top" secondItem="zgn-S7-hoK" secondAttribute="bottom" constant="8" id="tLU-Yv-soV"/>
+                            <constraint firstItem="Pe3-Rn-W4v" firstAttribute="top" secondItem="Ebc-cC-7DS" secondAttribute="bottom" constant="20" id="xMs-eW-OG1"/>
+                            <constraint firstItem="Ixf-v5-nVE" firstAttribute="top" secondItem="zgn-S7-hoK" secondAttribute="bottom" constant="15" id="zwC-N3-b50"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ttF-WX-ODC"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="commentIdText" destination="Ixf-v5-nVE" id="EAY-Rn-CZ7"/>
+                        <outlet property="screenlet" destination="Ebc-cC-7DS" id="P7U-cW-1sn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3L9-vW-8tO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2349.375" y="6.3380281690140841"/>
+        </scene>
+    </scenes>
+</document>

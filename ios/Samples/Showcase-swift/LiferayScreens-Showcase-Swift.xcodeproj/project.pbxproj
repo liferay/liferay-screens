@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B009C7E1D66E7A20085070B /* CommentListScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B009C7D1D66E7A20085070B /* CommentListScreenletViewController.swift */; };
 		0B54FB771DACC95500E0EE0C /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FB761DACC95500E0EE0C /* UserView.swift */; };
 		0B54FB791DACC97000E0EE0C /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FB781DACC97000E0EE0C /* UserView.xib */; };
 		0B54FB7D1DACCFDF00E0EE0C /* AssetTypesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FB7C1DACCFDF00E0EE0C /* AssetTypesViewController.swift */; };
 		0B54FB7F1DACD17500E0EE0C /* AssetListScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FB7E1DACD17500E0EE0C /* AssetListScreenletViewController.swift */; };
+		0B54FB891DACE91000E0EE0C /* CommentDisplayScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FB871DACE91000E0EE0C /* CommentDisplayScreenletViewController.swift */; };
+		0B54FB8A1DACE91000E0EE0C /* CommentListScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FB881DACE91000E0EE0C /* CommentListScreenletViewController.swift */; };
+		0B54FB901DACE97300E0EE0C /* CommentDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FB921DACE97300E0EE0C /* CommentDisplayScreenlet.storyboard */; };
+		0B54FB931DACE97600E0EE0C /* CommentListScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FB951DACE97600E0EE0C /* CommentListScreenlet.storyboard */; };
 		0B54FB981DACE9BF00E0EE0C /* AssetTypes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FB9A1DACE9BF00E0EE0C /* AssetTypes.storyboard */; };
 		0B54FB9D1DACE9CD00E0EE0C /* ForgotPasswordScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FB9F1DACE9CD00E0EE0C /* ForgotPasswordScreenlet.storyboard */; };
 		0B6147F81DABC853004FAC7C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6147F71DABC853004FAC7C /* UIImageExtension.swift */; };
@@ -32,7 +35,6 @@
 		4A244F934838CD2208782444 /* Pods_LiferayScreens_Showcase_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13D0A9CE1E740FFDD9D2884C /* Pods_LiferayScreens_Showcase_Swift.framework */; };
 		881B74411B9EEDED00EA64ED /* OfflineSyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B74401B9EEDED00EA64ED /* OfflineSyncViewController.swift */; };
 		882E72831D8184240097E835 /* BlogDisplayScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882E72821D8184240097E835 /* BlogDisplayScreenletViewController.swift */; };
-		8834684F1D7D9CC0002344C4 /* CommentDisplayScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8834684E1D7D9CC0002344C4 /* CommentDisplayScreenletViewController.swift */; };
 		88CC3AFC1CC153D900E0AEB7 /* WebContentDisplayView_book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC3AF81CC153D900E0AEB7 /* WebContentDisplayView_book.swift */; };
 		88CC3AFD1CC153D900E0AEB7 /* WebContentDisplayView_book.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CC3AF91CC153D900E0AEB7 /* WebContentDisplayView_book.xib */; };
 		88CC3AFE1CC153D900E0AEB7 /* WebContentListView_book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC3AFA1CC153D900E0AEB7 /* WebContentListView_book.swift */; };
@@ -55,11 +57,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0B009C7D1D66E7A20085070B /* CommentListScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListScreenletViewController.swift; sourceTree = "<group>"; };
 		0B54FB761DACC95500E0EE0C /* UserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		0B54FB781DACC97000E0EE0C /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserView.xib; sourceTree = "<group>"; };
 		0B54FB7C1DACCFDF00E0EE0C /* AssetTypesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetTypesViewController.swift; sourceTree = "<group>"; };
 		0B54FB7E1DACD17500E0EE0C /* AssetListScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListScreenletViewController.swift; sourceTree = "<group>"; };
+		0B54FB871DACE91000E0EE0C /* CommentDisplayScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentDisplayScreenletViewController.swift; sourceTree = "<group>"; };
+		0B54FB881DACE91000E0EE0C /* CommentListScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListScreenletViewController.swift; sourceTree = "<group>"; };
+		0B54FB911DACE97300E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/CommentDisplayScreenlet.storyboard; sourceTree = "<group>"; };
+		0B54FB941DACE97600E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/CommentListScreenlet.storyboard; sourceTree = "<group>"; };
 		0B54FB991DACE9BF00E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/AssetTypes.storyboard; sourceTree = "<group>"; };
 		0B54FB9E1DACE9CD00E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/ForgotPasswordScreenlet.storyboard; sourceTree = "<group>"; };
 		0B6147F71DABC853004FAC7C /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
@@ -83,7 +88,6 @@
 		869461C649CEAF0B480B4E18 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		881B74401B9EEDED00EA64ED /* OfflineSyncViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfflineSyncViewController.swift; sourceTree = "<group>"; };
 		882E72821D8184240097E835 /* BlogDisplayScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogDisplayScreenletViewController.swift; sourceTree = "<group>"; };
-		8834684E1D7D9CC0002344C4 /* CommentDisplayScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentDisplayScreenletViewController.swift; sourceTree = "<group>"; };
 		88CC3AF81CC153D900E0AEB7 /* WebContentDisplayView_book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayView_book.swift; sourceTree = "<group>"; };
 		88CC3AF91CC153D900E0AEB7 /* WebContentDisplayView_book.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebContentDisplayView_book.xib; sourceTree = "<group>"; };
 		88CC3AFA1CC153D900E0AEB7 /* WebContentListView_book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentListView_book.swift; sourceTree = "<group>"; };
@@ -132,12 +136,31 @@
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
+		0B54FB861DACE91000E0EE0C /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				0B54FB871DACE91000E0EE0C /* CommentDisplayScreenletViewController.swift */,
+				0B54FB881DACE91000E0EE0C /* CommentListScreenletViewController.swift */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
+		0B54FB8B1DACE91D00E0EE0C /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				0B54FB921DACE97300E0EE0C /* CommentDisplayScreenlet.storyboard */,
+				0B54FB951DACE97600E0EE0C /* CommentListScreenlet.storyboard */,
+			);
+			name = Comments;
+			sourceTree = "<group>";
+		};
 		0B6147EC1DAB9943004FAC7C /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				0B6148151DABF61B004FAC7C /* Asset */,
-				0B61480E1DABE8B7004FAC7C /* WebContent */,
 				0B61480D1DABE8AA004FAC7C /* Auth */,
+				0B54FB8B1DACE91D00E0EE0C /* Comments */,
+				0B61480E1DABE8B7004FAC7C /* WebContent */,
 				88DE2A751AD3DDE600714701 /* Main.storyboard */,
 			);
 			name = Storyboards;
@@ -296,10 +319,9 @@
 				88DE2AA71AD3EFEF00714701 /* HomeScreenletsViewController.swift */,
 				0B6148191DABF672004FAC7C /* Asset */,
 				0B6148011DABE2B0004FAC7C /* Auth */,
+				0B54FB861DACE91000E0EE0C /* Comments */,
 				0B6148081DABE86F004FAC7C /* WebContent */,
 				882E72821D8184240097E835 /* BlogDisplayScreenletViewController.swift */,
-				8834684E1D7D9CC0002344C4 /* CommentDisplayScreenletViewController.swift */,
-				0B009C7D1D66E7A20085070B /* CommentListScreenletViewController.swift */,
 				88DE2AA41AD3EFEF00714701 /* DDLFormScreenletViewController.swift */,
 				88DE2AA51AD3EFEF00714701 /* DDLListScreenletViewController.swift */,
 				0B7AD4351D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift */,
@@ -378,6 +400,7 @@
 				88DE2A921AD3DF2200714701 /* liferay-server-context.plist in Resources */,
 				0B6148111DABE8F2004FAC7C /* WebContentDisplayScreenlet.storyboard in Resources */,
 				0B6148181DABF643004FAC7C /* AssetDisplayScreenlet.storyboard in Resources */,
+				0B54FB931DACE97600E0EE0C /* CommentListScreenlet.storyboard in Resources */,
 				88CC3AFD1CC153D900E0AEB7 /* WebContentDisplayView_book.xib in Resources */,
 				88DE2A991AD3DF7600714701 /* Localizable.strings in Resources */,
 				88DE2A771AD3DDE600714701 /* Main.storyboard in Resources */,
@@ -389,6 +412,7 @@
 				0B4AD15F1DABCAFC00F9A74F /* Default-placeholder-image.png in Resources */,
 				88DE2A941AD3DF2800714701 /* Default-568h@2x.png in Resources */,
 				0B54FB9D1DACE9CD00E0EE0C /* ForgotPasswordScreenlet.storyboard in Resources */,
+				0B54FB901DACE97300E0EE0C /* CommentDisplayScreenlet.storyboard in Resources */,
 				88CC3B031CC158C800E0AEB7 /* HtmlTableViewCell.xib in Resources */,
 				88CC3AFF1CC153D900E0AEB7 /* WebContentListView_book.xib in Resources */,
 				88DE2A791AD3DDE600714701 /* Images.xcassets in Resources */,
@@ -473,16 +497,15 @@
 				881B74411B9EEDED00EA64ED /* OfflineSyncViewController.swift in Sources */,
 				88CC3AFE1CC153D900E0AEB7 /* WebContentListView_book.swift in Sources */,
 				0B54FB7F1DACD17500E0EE0C /* AssetListScreenletViewController.swift in Sources */,
-				8834684F1D7D9CC0002344C4 /* CommentDisplayScreenletViewController.swift in Sources */,
 				0B61480C1DABE86F004FAC7C /* WebContentListScreenletViewController.swift in Sources */,
 				88CC3AFC1CC153D900E0AEB7 /* WebContentDisplayView_book.swift in Sources */,
 				0B6148051DABE2B0004FAC7C /* ForgotPasswordScreenletViewController.swift in Sources */,
 				0B61481B1DABF672004FAC7C /* AssetDisplayViewController.swift in Sources */,
 				88DE2AAF1AD3EFEF00714701 /* HomeScreenletsViewController.swift in Sources */,
+				0B54FB8A1DACE91000E0EE0C /* CommentListScreenletViewController.swift in Sources */,
 				882E72831D8184240097E835 /* BlogDisplayScreenletViewController.swift in Sources */,
 				88CC3B021CC158C800E0AEB7 /* HtmlTableViewCell.swift in Sources */,
 				0BD612C91D36709E00CD4D76 /* RatingScreenletViewController.swift in Sources */,
-				0B009C7E1D66E7A20085070B /* CommentListScreenletViewController.swift in Sources */,
 				0B61480B1DABE86F004FAC7C /* WebContentDisplayScreenletViewController.swift in Sources */,
 				0B54FB7D1DACCFDF00E0EE0C /* AssetTypesViewController.swift in Sources */,
 				0B7AD4361D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift in Sources */,
@@ -490,6 +513,7 @@
 				0B6147FA1DABC86E004FAC7C /* LiferayLogger.swift in Sources */,
 				0B6147F81DABC853004FAC7C /* UIImageExtension.swift in Sources */,
 				88DE2A721AD3DDE600714701 /* AppDelegate.swift in Sources */,
+				0B54FB891DACE91000E0EE0C /* CommentDisplayScreenletViewController.swift in Sources */,
 				88DE2AAC1AD3EFEF00714701 /* DDLFormScreenletViewController.swift in Sources */,
 				0B54FB771DACC95500E0EE0C /* UserView.swift in Sources */,
 			);
@@ -498,9 +522,26 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		0B54FB921DACE97300E0EE0C /* CommentDisplayScreenlet.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				0B54FB911DACE97300E0EE0C /* en */,
+			);
+			name = CommentDisplayScreenlet.storyboard;
+			sourceTree = "<group>";
+		};
+		0B54FB951DACE97600E0EE0C /* CommentListScreenlet.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B54FB941DACE97600E0EE0C /* en */,
+			);
+			name = CommentListScreenlet.storyboard;
+			sourceTree = "<group>";
+		};
+		0B54FB9A1DACE9BF00E0EE0C /* AssetTypes.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B54FB991DACE9BF00E0EE0C /* en */,
 			);
 			name = AssetTypes.storyboard;
 			sourceTree = "<group>";

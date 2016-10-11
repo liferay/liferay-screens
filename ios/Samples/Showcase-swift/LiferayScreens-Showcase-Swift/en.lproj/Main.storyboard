@@ -226,8 +226,8 @@
                         <segue destination="TY4-Ql-4pF" kind="show" identifier="UserPortraitScreenlet" id="jtf-rk-w86"/>
                         <segue destination="N0K-Ji-ryL" kind="show" identifier="RatingScreenlet" id="mGa-c2-uxu"/>
                         <segue destination="TKo-oY-mMB" kind="show" identifier="ImageGalleryScreenlet" id="PQh-RJ-6ds"/>
-                        <segue destination="My4-vf-44F" kind="show" identifier="CommentListScreenlet" id="zPF-BA-bIW"/>
-                        <segue destination="myx-wj-dMR" kind="show" identifier="CommentDisplayScreenlet" id="XI4-un-Xh8"/>
+                        <segue destination="iEA-sH-cej" kind="show" identifier="CommentListScreenlet" id="zPF-BA-bIW"/>
+                        <segue destination="ARo-Zl-Iy0" kind="show" identifier="CommentDisplayScreenlet" id="XI4-un-Xh8"/>
                         <segue destination="x7q-3L-OL5" kind="show" identifier="BlogDisplayScreenlet" id="i4Y-KS-eKW"/>
                     </connections>
                 </tableViewController>
@@ -490,7 +490,6 @@
                                     </attributedString>
                                 </state>
                                 <connections>
-                                    <action selector="loadComment:" destination="myx-wj-dMR" eventType="touchUpInside" id="VCl-uP-yeG"/>
                                     <action selector="loadComment:" destination="x7q-3L-OL5" eventType="touchUpInside" id="dwM-jt-UqQ"/>
                                 </connections>
                             </button>
@@ -517,105 +516,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zbs-wQ-GiQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2349.375" y="2423.2394366197182"/>
-        </scene>
-        <!--CommentDisplayScreenlet-->
-        <scene sceneID="T12-O4-Lqp">
-            <objects>
-                <viewController title="CommentDisplayScreenlet" id="myx-wj-dMR" customClass="CommentDisplayScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zgn-S7-hoK"/>
-                        <viewControllerLayoutGuide type="bottom" id="BcC-CY-PdX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="bW1-qx-aPC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VNL-Ik-kay">
-                                <rect key="frame" x="222" y="72" width="82" height="44"/>
-                                <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="82" id="GHt-rl-7Yo"/>
-                                    <constraint firstAttribute="height" constant="44" id="UVd-Ie-BkN"/>
-                                </constraints>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="LOAD">
-                                            <attributes>
-                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <connections>
-                                    <action selector="loadComment:" destination="myx-wj-dMR" eventType="touchUpInside" id="DjL-ET-1fn"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="comment id" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ixf-v5-nVE">
-                                <rect key="frame" x="16" y="79" width="198" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="3jZ-VK-exN"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ebc-cC-7DS" customClass="CommentDisplayScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="16" y="136" width="288" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="d8r-Ue-d9j"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pe3-Rn-W4v">
-                                <rect key="frame" x="226" y="284" width="82" height="44"/>
-                                <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="w0w-Cg-Qnz"/>
-                                    <constraint firstAttribute="width" constant="82" id="zZ4-XY-fG6"/>
-                                </constraints>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="DELETE">
-                                            <attributes>
-                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <connections>
-                                    <action selector="deleteComment:" destination="myx-wj-dMR" eventType="touchUpInside" id="zAW-43-j10"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Ixf-v5-nVE" firstAttribute="leading" secondItem="bW1-qx-aPC" secondAttribute="leadingMargin" id="2ml-OA-LXe"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Pe3-Rn-W4v" secondAttribute="trailing" constant="-4" id="6Hd-Sw-NVY"/>
-                            <constraint firstItem="Ebc-cC-7DS" firstAttribute="leading" secondItem="bW1-qx-aPC" secondAttribute="leadingMargin" id="V0j-EN-Lt5"/>
-                            <constraint firstItem="Ebc-cC-7DS" firstAttribute="trailing" secondItem="bW1-qx-aPC" secondAttribute="trailingMargin" id="ZY3-Z0-2kV"/>
-                            <constraint firstItem="VNL-Ik-kay" firstAttribute="trailing" secondItem="bW1-qx-aPC" secondAttribute="trailingMargin" id="bk9-L4-IVg"/>
-                            <constraint firstItem="VNL-Ik-kay" firstAttribute="leading" secondItem="Ixf-v5-nVE" secondAttribute="trailing" constant="8" id="cwH-QJ-45y"/>
-                            <constraint firstItem="Ebc-cC-7DS" firstAttribute="top" secondItem="VNL-Ik-kay" secondAttribute="bottom" constant="20" id="fYB-jf-6QO"/>
-                            <constraint firstItem="VNL-Ik-kay" firstAttribute="top" secondItem="zgn-S7-hoK" secondAttribute="bottom" constant="8" id="tLU-Yv-soV"/>
-                            <constraint firstItem="Pe3-Rn-W4v" firstAttribute="top" secondItem="Ebc-cC-7DS" secondAttribute="bottom" constant="20" id="xMs-eW-OG1"/>
-                            <constraint firstItem="Ixf-v5-nVE" firstAttribute="top" secondItem="zgn-S7-hoK" secondAttribute="bottom" constant="15" id="zwC-N3-b50"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="ttF-WX-ODC"/>
-                    <connections>
-                        <outlet property="commentIdText" destination="Ixf-v5-nVE" id="EAY-Rn-CZ7"/>
-                        <outlet property="screenlet" destination="Ebc-cC-7DS" id="P7U-cW-1sn"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3L9-vW-8tO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2349.375" y="6.3380281690140841"/>
         </scene>
         <!--Image Gallery Screenlet Controller-->
         <scene sceneID="izp-aj-3u6">
@@ -1044,54 +944,6 @@
             </objects>
             <point key="canvasLocation" x="-1535.625" y="23.239436619718308"/>
         </scene>
-        <!--CommentListScreenlet-->
-        <scene sceneID="A79-LW-apD">
-            <objects>
-                <viewController title="CommentListScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="My4-vf-44F" customClass="CommentListScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cl2-zy-fUp"/>
-                        <viewControllerLayoutGuide type="bottom" id="Ebj-0l-O7f"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="t9h-bk-dC1">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Cs-KB-hzY" customClass="CommentListScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="-4" y="64" width="328" height="455"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="className" value="com.liferay.document.library.kernel.model.DLFileEntry"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="classPK">
-                                        <integer key="value" value="30414"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="7Cs-KB-hzY" firstAttribute="leading" secondItem="t9h-bk-dC1" secondAttribute="leadingMargin" constant="-20" id="2YC-XV-UiA"/>
-                            <constraint firstItem="7Cs-KB-hzY" firstAttribute="top" secondItem="cl2-zy-fUp" secondAttribute="bottom" id="8c1-rW-lGo"/>
-                            <constraint firstItem="Ebj-0l-O7f" firstAttribute="top" secondItem="7Cs-KB-hzY" secondAttribute="bottom" id="zEN-Qe-N4e"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="7Cs-KB-hzY" secondAttribute="trailing" constant="-20" id="zRx-fY-4Ni"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="LCk-yg-4gq">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="mBW-cM-Sfu">
-                            <connections>
-                                <action selector="insertButtonPressed:" destination="My4-vf-44F" id="PPh-Aq-7F2"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="listScreenlet" destination="7Cs-KB-hzY" id="9de-SP-F0i"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Mpb-r6-Lc5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1535.625" y="838.73239436619713"/>
-        </scene>
         <!--SignUpScreenlet-->
         <scene sceneID="ALD-j0-zyC">
             <objects>
@@ -1128,6 +980,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ohN-Ib-Tk7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="815" y="-304"/>
+        </scene>
+        <!--CommentListScreenlet-->
+        <scene sceneID="lJO-B9-gze">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CommentListScreenlet" id="iEA-sH-cej" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z5O-Li-Qcg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1535.625" y="838.73239436619713"/>
+        </scene>
+        <!--CommentDisplayScreenlet-->
+        <scene sceneID="fkU-Ht-CMi">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CommentDisplayScreenlet" id="ARo-Zl-Iy0" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yjV-TQ-93Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2349.375" y="6.3380281690140841"/>
         </scene>
     </scenes>
     <resources>
