@@ -15,12 +15,14 @@ import UIKit
 
 class HomeScreenletsViewController: UITableViewController {
 
+	//An storyboard that matches these names must be created
 	private let data: [Int: [String]] = [
 		0: ["Assets", "AssetTypes", "AssetDisplayScreenlet"],
 		1: ["Comments", "CommentListScreenlet", "CommentDisplayScreenlet", "CommentAddScreenlet"],
 		2: ["DDL Module", "DDLListScreenlet", "DDLFormScreenlet"],
-		3: ["Others", "UserPortraitScreenlet", "RatingScreenlet", "ImageGalleryScreenlet", "BlogDisplayScreenlet"],
-		4: ["Web Content Module", "WebContentDisplayScreenlet", "WebContentListScreenlet"]
+		3: ["Files", "ImageDisplayScreenlet"],
+		4: ["Others", "UserPortraitScreenlet", "RatingScreenlet", "ImageGalleryScreenlet", "BlogDisplayScreenlet"],
+		5: ["Web Content Module", "WebContentDisplayScreenlet", "WebContentListScreenlet"]
 	]
 	
 	

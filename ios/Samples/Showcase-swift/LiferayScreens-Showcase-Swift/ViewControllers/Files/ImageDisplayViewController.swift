@@ -15,20 +15,17 @@ import UIKit
 import LiferayScreens
 
 
-class ImageDisplayViewController: UIViewController {
+class ImageDisplayViewController: UIViewController, FileDisplayScreenletDelegate {
 
-	@IBOutlet var screenlet: ImageDisplayScreenlet?
-
-	var entryId: Int64?
-
-	override func viewDidLoad() {
-		super.viewDidLoad()
-
-		if let id = entryId {
-			self.screenlet?.assetEntryId = id
+	
+	//MARK: IBOutlet
+	
+	@IBOutlet var screenlet: ImageDisplayScreenlet? {
+		didSet {
+			screenlet?.delegate = self
+			screenlet?.presentingViewController = self
+			screenlet?.imageMode = .ScaleAspectFill
+			screenlet?.classPK = LiferayServerContext.longPropertyForKey("imageDisplayClassPK")
 		}
-		self.screenlet?.presentingViewController = self
-		self.screenlet?.imageMode = .ScaleAspectFill
-		self.screenlet?.load()
 	}
 }

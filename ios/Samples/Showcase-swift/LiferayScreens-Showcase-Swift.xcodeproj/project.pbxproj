@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B24399B1DAD3120009DA1E4 /* ImageDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B24399A1DAD3120009DA1E4 /* ImageDisplayViewController.swift */; };
+		0B24399C1DAD314D009DA1E4 /* BlogDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B24399E1DAD314D009DA1E4 /* BlogDisplayScreenlet.storyboard */; };
+		0B2439A21DAD318A009DA1E4 /* ImageDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B2439A41DAD318A009DA1E4 /* ImageDisplayScreenlet.storyboard */; };
 		0B54FB771DACC95500E0EE0C /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FB761DACC95500E0EE0C /* UserView.swift */; };
 		0B54FB791DACC97000E0EE0C /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FB781DACC97000E0EE0C /* UserView.xib */; };
 		0B54FB7D1DACCFDF00E0EE0C /* AssetTypesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FB7C1DACCFDF00E0EE0C /* AssetTypesViewController.swift */; };
@@ -19,7 +22,6 @@
 		0B54FB9D1DACE9CD00E0EE0C /* ForgotPasswordScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FB9F1DACE9CD00E0EE0C /* ForgotPasswordScreenlet.storyboard */; };
 		0B54FBA31DACEF7F00E0EE0C /* CommentAddScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FBA21DACEF7F00E0EE0C /* CommentAddScreenletViewController.swift */; };
 		0B54FBA41DACEF8600E0EE0C /* CommentAddScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FBA61DACEF8600E0EE0C /* CommentAddScreenlet.storyboard */; };
-		0B54FBA81DACF12300E0EE0C /* BlogDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FBA71DACF12300E0EE0C /* BlogDisplayScreenlet.storyboard */; };
 		0B54FBAC1DACF1C100E0EE0C /* BlogDisplayScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FBAB1DACF1C100E0EE0C /* BlogDisplayScreenletViewController.swift */; };
 		0B54FBAF1DACF71700E0EE0C /* RatingScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FBB11DACF71700E0EE0C /* RatingScreenlet.storyboard */; };
 		0B54FBB31DACF77B00E0EE0C /* RatingScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FBB21DACF77B00E0EE0C /* RatingScreenletViewController.swift */; };
@@ -63,6 +65,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B24399A1DAD3120009DA1E4 /* ImageDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDisplayViewController.swift; sourceTree = "<group>"; };
+		0B24399D1DAD314D009DA1E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/BlogDisplayScreenlet.storyboard; sourceTree = "<group>"; };
+		0B2439A31DAD318A009DA1E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/ImageDisplayScreenlet.storyboard; sourceTree = "<group>"; };
 		0B54FB761DACC95500E0EE0C /* UserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		0B54FB781DACC97000E0EE0C /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserView.xib; sourceTree = "<group>"; };
 		0B54FB7C1DACCFDF00E0EE0C /* AssetTypesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetTypesViewController.swift; sourceTree = "<group>"; };
@@ -75,7 +80,6 @@
 		0B54FB9E1DACE9CD00E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/ForgotPasswordScreenlet.storyboard; sourceTree = "<group>"; };
 		0B54FBA21DACEF7F00E0EE0C /* CommentAddScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentAddScreenletViewController.swift; sourceTree = "<group>"; };
 		0B54FBA51DACEF8600E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/CommentAddScreenlet.storyboard; sourceTree = "<group>"; };
-		0B54FBA71DACF12300E0EE0C /* BlogDisplayScreenlet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BlogDisplayScreenlet.storyboard; sourceTree = "<group>"; };
 		0B54FBAB1DACF1C100E0EE0C /* BlogDisplayScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogDisplayScreenletViewController.swift; sourceTree = "<group>"; };
 		0B54FBB01DACF71700E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/RatingScreenlet.storyboard; sourceTree = "<group>"; };
 		0B54FBB21DACF77B00E0EE0C /* RatingScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingScreenletViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +143,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B2439991DAD3120009DA1E4 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				0B24399A1DAD3120009DA1E4 /* ImageDisplayViewController.swift */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
+		0B24399F1DAD316F009DA1E4 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				0B2439A41DAD318A009DA1E4 /* ImageDisplayScreenlet.storyboard */,
+			);
+			name = Files;
+			sourceTree = "<group>";
+		};
 		0B54FB731DACC8F100E0EE0C /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,7 +191,7 @@
 		0B54FBA91DACF12A00E0EE0C /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				0B54FBA71DACF12300E0EE0C /* BlogDisplayScreenlet.storyboard */,
+				0B24399E1DAD314D009DA1E4 /* BlogDisplayScreenlet.storyboard */,
 				0B54FBB11DACF71700E0EE0C /* RatingScreenlet.storyboard */,
 				0B54FBB81DACFA7C00E0EE0C /* ImageGalleryScreenlet.storyboard */,
 				0B54FBBF1DAD002100E0EE0C /* UserPortraitScreenlet.storyboard */,
@@ -211,6 +231,7 @@
 		0B6147EC1DAB9943004FAC7C /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				0B24399F1DAD316F009DA1E4 /* Files */,
 				0B54FBC71DAD14A100E0EE0C /* DDL */,
 				0B54FBA91DACF12A00E0EE0C /* Others */,
 				0B6148151DABF61B004FAC7C /* Asset */,
@@ -344,6 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				88DE2A711AD3DDE600714701 /* AppDelegate.swift */,
+				88DE2A911AD3DF2200714701 /* liferay-server-context.plist */,
 				0B54FB731DACC8F100E0EE0C /* CustomViews */,
 				0B6147EC1DAB9943004FAC7C /* Storyboards */,
 				88CC3AF71CC153D900E0AEB7 /* BookTheme */,
@@ -358,7 +380,6 @@
 		88DE2A6F1AD3DDE600714701 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				88DE2A911AD3DF2200714701 /* liferay-server-context.plist */,
 				88DE2A781AD3DDE600714701 /* Images.xcassets */,
 				88DE2A7A1AD3DDE600714701 /* LaunchScreen.xib */,
 				88DE2A9B1AD3DF7600714701 /* Localizable.strings */,
@@ -376,6 +397,7 @@
 				0B6148011DABE2B0004FAC7C /* Auth */,
 				0B54FB861DACE91000E0EE0C /* Comments */,
 				0B54FBC81DAD14C500E0EE0C /* DDL */,
+				0B2439991DAD3120009DA1E4 /* Files */,
 				0B54FBAA1DACF1C100E0EE0C /* Others */,
 				0B6148081DABE86F004FAC7C /* WebContent */,
 			);
@@ -456,6 +478,7 @@
 				0B54FB931DACE97600E0EE0C /* CommentListScreenlet.storyboard in Resources */,
 				88CC3AFD1CC153D900E0AEB7 /* WebContentDisplayView_book.xib in Resources */,
 				88DE2A991AD3DF7600714701 /* Localizable.strings in Resources */,
+				0B2439A21DAD318A009DA1E4 /* ImageDisplayScreenlet.storyboard in Resources */,
 				88DE2A771AD3DDE600714701 /* Main.storyboard in Resources */,
 				0B54FB791DACC97000E0EE0C /* UserView.xib in Resources */,
 				88CC3B071CC158E300E0AEB7 /* BookTableViewCell.xib in Resources */,
@@ -467,7 +490,7 @@
 				0B54FB901DACE97300E0EE0C /* CommentDisplayScreenlet.storyboard in Resources */,
 				0B54FBB61DACFA7C00E0EE0C /* ImageGalleryScreenlet.storyboard in Resources */,
 				88CC3B031CC158C800E0AEB7 /* HtmlTableViewCell.xib in Resources */,
-				0B54FBA81DACF12300E0EE0C /* BlogDisplayScreenlet.storyboard in Resources */,
+				0B24399C1DAD314D009DA1E4 /* BlogDisplayScreenlet.storyboard in Resources */,
 				88CC3AFF1CC153D900E0AEB7 /* WebContentListView_book.xib in Resources */,
 				88DE2A791AD3DDE600714701 /* Images.xcassets in Resources */,
 				0B54FBCD1DAD1A8200E0EE0C /* DDLFormScreenlet.storyboard in Resources */,
@@ -546,6 +569,7 @@
 			files = (
 				0B6148071DABE2B0004FAC7C /* SignUpScreenletViewController.swift in Sources */,
 				0B54FBBA1DACFAAA00E0EE0C /* ImageGalleryScreenletController.swift in Sources */,
+				0B24399B1DAD3120009DA1E4 /* ImageDisplayViewController.swift in Sources */,
 				0B6148061DABE2B0004FAC7C /* LoginViewController.swift in Sources */,
 				88CC3B061CC158E300E0AEB7 /* BookTableViewCell.swift in Sources */,
 				881B74411B9EEDED00EA64ED /* OfflineSyncViewController.swift in Sources */,
@@ -577,6 +601,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		0B24399E1DAD314D009DA1E4 /* BlogDisplayScreenlet.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B24399D1DAD314D009DA1E4 /* en */,
+			);
+			name = BlogDisplayScreenlet.storyboard;
+			sourceTree = "<group>";
+		};
+		0B2439A41DAD318A009DA1E4 /* ImageDisplayScreenlet.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B2439A31DAD318A009DA1E4 /* en */,
+			);
+			name = ImageDisplayScreenlet.storyboard;
+			sourceTree = "<group>";
+		};
 		0B54FB921DACE97300E0EE0C /* CommentDisplayScreenlet.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

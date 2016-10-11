@@ -389,7 +389,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Default-placeholder-image.png" width="96" height="96"/>
         <image name="screens-ico" width="16" height="16"/>
         <image name="sync-ico" width="24" height="24"/>
         <image name="user-icon" width="16" height="16"/>
