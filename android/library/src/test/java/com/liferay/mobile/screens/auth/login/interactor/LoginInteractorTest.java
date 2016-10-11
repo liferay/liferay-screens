@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.auth.login.interactor;
 
 import com.liferay.mobile.screens.BuildConfig;
-import com.liferay.mobile.screens.RobolectricManifestTestRunner;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
@@ -49,8 +48,8 @@ public class LoginInteractorTest {
 	private static final long LOGIN_USER_ID = 10658;
 	private static final long companyId = LiferayServerContext.getCompanyId();
 
+	@RunWith(RobolectricTestRunner.class)
 	@Config(constants = BuildConfig.class, sdk = 23)
-	@RunWith(RobolectricManifestTestRunner.class)
 	public static class WhenBasicAuthMethodIsEmail {
 
 		@Test
