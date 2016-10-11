@@ -223,7 +223,7 @@
                     <connections>
                         <segue destination="MGb-m9-wGz" kind="show" identifier="DDLListScreenlet" id="jqp-Ix-DHl"/>
                         <segue destination="oOo-3A-Uui" kind="show" identifier="DDLFormScreenlet" id="WbH-nt-XHO"/>
-                        <segue destination="TY4-Ql-4pF" kind="show" identifier="UserPortraitScreenlet" id="jtf-rk-w86"/>
+                        <segue destination="uuc-uy-dhY" kind="show" identifier="UserPortraitScreenlet" id="jtf-rk-w86"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsJ-Fx-gOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -439,173 +439,6 @@
             </objects>
             <point key="canvasLocation" x="1005" y="1894.0140845070421"/>
         </scene>
-        <!--User Portrait Screenlet View Controller-->
-        <scene sceneID="HvN-Yo-cMo">
-            <objects>
-                <viewController id="TY4-Ql-4pF" customClass="UserPortraitScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="9ha-iK-R4n"/>
-                        <viewControllerLayoutGuide type="bottom" id="Snu-6a-iji"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="EqH-kn-vAc">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7UY-Og-Tpf">
-                                <rect key="frame" x="222" y="88" width="82" height="44"/>
-                                <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="33o-d9-GBJ"/>
-                                    <constraint firstAttribute="width" constant="82" id="VIR-4d-MWW"/>
-                                </constraints>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="LOAD">
-                                            <attributes>
-                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <connections>
-                                    <action selector="loadPortrait:" destination="TY4-Ql-4pF" eventType="touchUpInside" id="66v-gs-c4g"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="id, email or name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g8B-1u-S4d">
-                                <rect key="frame" x="58" y="96" width="151" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User's portrait" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2EO-gK-6EG">
-                                <rect key="frame" x="16" y="169" width="98" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Default portrait" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BxD-R4-XEe">
-                                <rect key="frame" x="186" y="169" width="107" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="dUK-mV-I2G" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="16" y="205" width="60" height="60"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="Mvx-Ec-JnR"/>
-                                    <constraint firstAttribute="height" constant="60" id="mXE-qG-BK2"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="offlinePolicy" value="remote-first"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="ELj-YS-lCR" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="186" y="205" width="60" height="60"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="YrF-FX-dTL"/>
-                                    <constraint firstAttribute="width" constant="60" id="md5-WT-QhW"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Modified portrait" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAy-4I-6tH">
-                                <rect key="frame" x="16" y="318" width="114" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Editable portrait" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dNP-XS-QZT">
-                                <rect key="frame" x="186" y="318" width="118" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="6Q4-t8-cpv" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="186" y="357" width="60" height="60"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="AJP-YN-JbN"/>
-                                    <constraint firstAttribute="height" constant="60" id="xnQ-SQ-t7X"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="offlinePolicy" value="cache-first"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="OfG-dw-9hx" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="16" y="357" width="60" height="60"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="SFn-bl-PtN"/>
-                                    <constraint firstAttribute="height" constant="60" id="Xv7-1X-Xme"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="offlinePolicy" value="cache-only"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wf5-FK-eyq">
-                                <rect key="frame" x="16" y="99" width="34" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="BxD-R4-XEe" secondAttribute="trailing" constant="11" id="2UI-Zo-0xe"/>
-                            <constraint firstItem="g8B-1u-S4d" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" constant="42" id="8eW-x3-2u9"/>
-                            <constraint firstItem="2EO-gK-6EG" firstAttribute="top" secondItem="g8B-1u-S4d" secondAttribute="bottom" constant="43" id="I5l-uC-2fb"/>
-                            <constraint firstItem="Wf5-FK-eyq" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" id="PUW-Rf-CFB"/>
-                            <constraint firstItem="2EO-gK-6EG" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" id="Q4l-zi-tLJ"/>
-                            <constraint firstItem="ELj-YS-lCR" firstAttribute="leading" secondItem="dUK-mV-I2G" secondAttribute="trailing" constant="110" id="Qc0-Te-I3p"/>
-                            <constraint firstItem="6Q4-t8-cpv" firstAttribute="top" secondItem="dNP-XS-QZT" secondAttribute="bottom" constant="18" id="RFp-7C-PND"/>
-                            <constraint firstItem="g8B-1u-S4d" firstAttribute="top" secondItem="9ha-iK-R4n" secondAttribute="bottom" constant="32" id="Rpz-ja-05Y"/>
-                            <constraint firstItem="BxD-R4-XEe" firstAttribute="leading" secondItem="2EO-gK-6EG" secondAttribute="trailing" constant="72" id="VD8-ib-ZOO"/>
-                            <constraint firstItem="dNP-XS-QZT" firstAttribute="top" secondItem="ELj-YS-lCR" secondAttribute="bottom" constant="53" id="Xs1-fu-fk5"/>
-                            <constraint firstItem="dUK-mV-I2G" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" id="a6A-0m-3ah"/>
-                            <constraint firstItem="dNP-XS-QZT" firstAttribute="trailing" secondItem="EqH-kn-vAc" secondAttribute="trailingMargin" id="afM-Iy-al2"/>
-                            <constraint firstItem="ELj-YS-lCR" firstAttribute="top" secondItem="BxD-R4-XEe" secondAttribute="bottom" constant="15" id="ajC-5d-XW5"/>
-                            <constraint firstItem="7UY-Og-Tpf" firstAttribute="top" secondItem="9ha-iK-R4n" secondAttribute="bottom" constant="24" id="by5-Jk-ddt"/>
-                            <constraint firstItem="rAy-4I-6tH" firstAttribute="top" secondItem="dUK-mV-I2G" secondAttribute="bottom" constant="53" id="dKM-Lj-SjT"/>
-                            <constraint firstItem="OfG-dw-9hx" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" id="fEQ-ql-adK"/>
-                            <constraint firstItem="Wf5-FK-eyq" firstAttribute="top" secondItem="9ha-iK-R4n" secondAttribute="bottom" constant="35" id="gR0-Hj-afg"/>
-                            <constraint firstItem="7UY-Og-Tpf" firstAttribute="leading" secondItem="g8B-1u-S4d" secondAttribute="trailing" constant="13" id="gWl-uW-h65"/>
-                            <constraint firstItem="dNP-XS-QZT" firstAttribute="leading" secondItem="rAy-4I-6tH" secondAttribute="trailing" constant="56" id="kVb-BV-xqa"/>
-                            <constraint firstItem="7UY-Og-Tpf" firstAttribute="trailing" secondItem="EqH-kn-vAc" secondAttribute="trailingMargin" id="lQB-v4-zBI"/>
-                            <constraint firstItem="dUK-mV-I2G" firstAttribute="top" secondItem="2EO-gK-6EG" secondAttribute="bottom" constant="15" id="mcF-rw-kxF"/>
-                            <constraint firstItem="6Q4-t8-cpv" firstAttribute="leading" secondItem="OfG-dw-9hx" secondAttribute="trailing" constant="110" id="p82-e9-QXS"/>
-                            <constraint firstItem="BxD-R4-XEe" firstAttribute="top" secondItem="7UY-Og-Tpf" secondAttribute="bottom" constant="37" id="s5k-bV-OJx"/>
-                            <constraint firstItem="rAy-4I-6tH" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" id="sEi-oT-56w"/>
-                            <constraint firstItem="OfG-dw-9hx" firstAttribute="top" secondItem="rAy-4I-6tH" secondAttribute="bottom" constant="18" id="vKO-Uk-bv7"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="Xgo-At-ulf"/>
-                    <connections>
-                        <outlet property="editableScreenlet" destination="6Q4-t8-cpv" id="we0-Xr-gmR"/>
-                        <outlet property="screenlet" destination="dUK-mV-I2G" id="DZF-FN-NDC"/>
-                        <outlet property="screenletWithDelegate" destination="OfG-dw-9hx" id="OGJ-bb-XTI"/>
-                        <outlet property="userIdField" destination="g8B-1u-S4d" id="6Nc-it-meo"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zEG-lu-IJl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-465" y="1894.0140845070421"/>
-        </scene>
         <!--Sync-->
         <scene sceneID="h8k-Xm-7Vm">
             <objects>
@@ -753,6 +586,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ohN-Ib-Tk7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="815" y="-304"/>
+        </scene>
+        <!--UserPortraitScreenlet-->
+        <scene sceneID="cza-eT-UiL">
+            <objects>
+                <viewControllerPlaceholder storyboardName="UserPortraitScreenlet" id="uuc-uy-dhY" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dqG-93-5c7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-465" y="1894.0140845070421"/>
         </scene>
     </scenes>
     <resources>
