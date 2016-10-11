@@ -228,7 +228,7 @@
                         <segue destination="TKo-oY-mMB" kind="show" identifier="ImageGalleryScreenlet" id="PQh-RJ-6ds"/>
                         <segue destination="iEA-sH-cej" kind="show" identifier="CommentListScreenlet" id="zPF-BA-bIW"/>
                         <segue destination="ARo-Zl-Iy0" kind="show" identifier="CommentDisplayScreenlet" id="XI4-un-Xh8"/>
-                        <segue destination="x7q-3L-OL5" kind="show" identifier="BlogDisplayScreenlet" id="i4Y-KS-eKW"/>
+                        <segue destination="Zy3-Kr-MYE" kind="show" identifier="BlogDisplayScreenlet" id="i4Y-KS-eKW"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsJ-Fx-gOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -443,79 +443,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A6g-L6-eDf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1005" y="1894.0140845070421"/>
-        </scene>
-        <!--BlogDisplayScreenlet-->
-        <scene sceneID="AI3-ek-iId">
-            <objects>
-                <viewController title="BlogDisplayScreenlet" id="x7q-3L-OL5" customClass="BlogDisplayScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="TAO-w0-iWr"/>
-                        <viewControllerLayoutGuide type="bottom" id="Uhk-tR-XZ5"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="C5Y-w3-aut">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="blog asset Id" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Acb-0c-Ftc">
-                                <rect key="frame" x="16" y="82" width="194" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="K0z-mm-yMc"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMf-N9-Z1R" customClass="BlogsEntryDisplayScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="12" y="143" width="296" height="368"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ltg-8L-Gke">
-                                <rect key="frame" x="222" y="75" width="82" height="44"/>
-                                <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="82" id="PDI-LE-PjI"/>
-                                    <constraint firstAttribute="height" constant="44" id="xaD-aK-uX9"/>
-                                </constraints>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="LOAD">
-                                            <attributes>
-                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <connections>
-                                    <action selector="loadComment:" destination="x7q-3L-OL5" eventType="touchUpInside" id="dwM-jt-UqQ"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Ltg-8L-Gke" firstAttribute="trailing" secondItem="C5Y-w3-aut" secondAttribute="trailingMargin" id="CGT-ba-cZ2"/>
-                            <constraint firstItem="Acb-0c-Ftc" firstAttribute="leading" secondItem="C5Y-w3-aut" secondAttribute="leadingMargin" id="H8o-ew-Szn"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="gMf-N9-Z1R" secondAttribute="trailing" constant="-4" id="SWt-rL-tTt"/>
-                            <constraint firstItem="Ltg-8L-Gke" firstAttribute="top" secondItem="TAO-w0-iWr" secondAttribute="bottom" constant="11" id="XD4-ae-kf3"/>
-                            <constraint firstItem="gMf-N9-Z1R" firstAttribute="leading" secondItem="C5Y-w3-aut" secondAttribute="leadingMargin" constant="-4" id="e9u-i1-PyG"/>
-                            <constraint firstItem="Acb-0c-Ftc" firstAttribute="top" secondItem="TAO-w0-iWr" secondAttribute="bottom" constant="18" id="mc7-Tq-IVV"/>
-                            <constraint firstItem="Ltg-8L-Gke" firstAttribute="leading" secondItem="Acb-0c-Ftc" secondAttribute="trailing" constant="12" id="nHc-WE-VTI"/>
-                            <constraint firstItem="Uhk-tR-XZ5" firstAttribute="top" secondItem="gMf-N9-Z1R" secondAttribute="bottom" constant="8" id="rm5-iO-Dat"/>
-                            <constraint firstItem="gMf-N9-Z1R" firstAttribute="top" secondItem="Ltg-8L-Gke" secondAttribute="bottom" constant="24" id="yhK-Gk-l7t"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="oO8-ss-bWZ"/>
-                    <connections>
-                        <outlet property="assetIdText" destination="Acb-0c-Ftc" id="2Sm-wG-L5y"/>
-                        <outlet property="screenlet" destination="gMf-N9-Z1R" id="uzh-Wg-7JF"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zbs-wQ-GiQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2349.375" y="2423.2394366197182"/>
         </scene>
         <!--Image Gallery Screenlet Controller-->
         <scene sceneID="izp-aj-3u6">
@@ -996,6 +923,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yjV-TQ-93Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2349.375" y="6.3380281690140841"/>
+        </scene>
+        <!--BlogDisplayScreenlet-->
+        <scene sceneID="NwI-Wq-pcq">
+            <objects>
+                <viewControllerPlaceholder storyboardName="BlogDisplayScreenlet" id="Zy3-Kr-MYE" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qDu-jk-qpf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2349.375" y="2423.2394366197182"/>
         </scene>
     </scenes>
     <resources>

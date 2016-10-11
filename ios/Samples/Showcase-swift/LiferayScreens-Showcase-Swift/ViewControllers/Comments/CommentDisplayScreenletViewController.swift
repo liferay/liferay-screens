@@ -33,7 +33,6 @@ class CommentDisplayScreenletViewController: UIViewController, CommentDisplayScr
 		if let commentId = Int(commentIdText?.text ?? "") {
 			screenlet?.commentId = Int64(commentId)
 			screenlet?.load()
-			screenlet?.hidden = false
 		}
 	}
 	
@@ -42,10 +41,12 @@ class CommentDisplayScreenletViewController: UIViewController, CommentDisplayScr
 
 	func screenlet(screenlet: CommentDisplayScreenlet, onCommentLoaded comment: Comment) {
 		LiferayLogger.logDelegateMessage(args: comment)
+		screenlet.hidden = false
 	}
 
 	func screenlet(screenlet: CommentDisplayScreenlet, onLoadCommentError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
+		screenlet.hidden = true
 	}
 
 	func screenlet(screenlet: CommentDisplayScreenlet, onCommentDeleted comment: Comment) {
