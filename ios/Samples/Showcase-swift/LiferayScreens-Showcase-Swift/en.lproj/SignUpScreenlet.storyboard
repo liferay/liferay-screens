@@ -69,7 +69,7 @@
                             <constraint firstItem="TCp-xh-fnI" firstAttribute="top" secondItem="MAE-d7-2Ym" secondAttribute="bottom" constant="70" id="tQD-f0-SBm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="SignUp Screenlet" id="BgR-TM-do8"/>
+                    <navigationItem key="navigationItem" title="SignUpScreenlet" id="BgR-TM-do8"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>

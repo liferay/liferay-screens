@@ -63,12 +63,13 @@ class HomeScreenletsViewController: UITableViewController {
 	//MARK: UITableViewDelegate
 	
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		let storyboard = UIStoryboard(name: data[indexPath.section]![indexPath.row + 1],
-		                              bundle: NSBundle.mainBundle())
+		let name = data[indexPath.section]![indexPath.row + 1]
+		let storyboard = UIStoryboard(name: name, bundle: NSBundle.mainBundle())
 		
 		let viewController = storyboard.instantiateInitialViewController()
 		
 		if let viewController = viewController {
+			viewController.title = name
 			self.navigationController?.pushViewController(viewController, animated: true)
 		}
 	}

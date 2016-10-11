@@ -31,7 +31,7 @@
                             <constraint firstItem="SCZ-oN-0s2" firstAttribute="top" secondItem="8S0-OV-XFI" secondAttribute="bottom" id="csf-ah-sKl"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="WebContentListScreenlet" id="kuN-5L-PDx"/>
+                    <navigationItem key="navigationItem" id="kuN-5L-PDx"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

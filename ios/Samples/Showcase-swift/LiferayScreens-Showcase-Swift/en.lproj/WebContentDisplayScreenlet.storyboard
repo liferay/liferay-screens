@@ -34,7 +34,7 @@
                             <constraint firstItem="syW-49-Rwc" firstAttribute="top" secondItem="KM5-sa-NhK" secondAttribute="bottom" id="jMV-qv-Lb6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="WebContentDisplayScreenlet" id="PrU-Oy-Gk7"/>
+                    <navigationItem key="navigationItem" id="PrU-Oy-Gk7"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
