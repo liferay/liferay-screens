@@ -45,17 +45,17 @@ class AssetDisplayViewController: UIViewController, AssetDisplayScreenletDelegat
 	//MARK: AssetDisplayScreenletDelegate
 	
 	func screenlet(screenlet: AssetDisplayScreenlet, onAssetResponse asset: Asset) {
-		LiferayLogger.delegate(args: asset)
+		LiferayLogger.logDelegateMessage(args: asset)
 	}
 
 	func screenlet(screenlet: AssetDisplayScreenlet, onAssetError error: NSError) {
-		LiferayLogger.delegate(args: error)
+		LiferayLogger.logDelegateMessage(args: error)
 	}
 
 	func screenlet(screenlet: AssetDisplayScreenlet,
 	               onConfigureScreenlet childScreenlet: BaseScreenlet?,
 	               onAsset asset: Asset) {
-		LiferayLogger.delegate(args: childScreenlet, asset)
+		LiferayLogger.logDelegateMessage(args: childScreenlet, asset)
 	}
 
 	func screenlet(screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView? {

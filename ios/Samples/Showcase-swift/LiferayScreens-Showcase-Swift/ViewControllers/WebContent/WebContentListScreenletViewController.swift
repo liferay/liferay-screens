@@ -32,15 +32,15 @@ class WebContentListScreenletViewController: UIViewController, WebContentListScr
 
 	func screenlet(screenlet: WebContentListScreenlet,
 			onWebContentListResponse entries: [WebContent]) {
-		LiferayLogger.delegate(args: entries)
+		LiferayLogger.logDelegateMessage(args: entries)
 	}
 
 	func screenlet(screenlet: WebContentListScreenlet, onWebContentListError error: NSError) {
-		LiferayLogger.delegate(args: error)
+		LiferayLogger.logDelegateMessage(args: error)
 	}
 
 	func screenlet(screenlet: WebContentListScreenlet, onWebContentSelected entry: WebContent) {
-		LiferayLogger.delegate(args: entry)
+		LiferayLogger.logDelegateMessage(args: entry)
 		selectedArticleId = entry.attributes["articleId"] as! String
 		performSegueWithIdentifier("WebContentDisplay", sender: self)
 	}

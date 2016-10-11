@@ -47,12 +47,12 @@ class SignUpScreenletViewController: UIViewController, SignUpScreenletDelegate, 
 	
 	func screenlet(screenlet: SignUpScreenlet,
 			onSignUpResponseUserAttributes attributes: [String: AnyObject]) {
-		LiferayLogger.delegate(args: attributes)
+		LiferayLogger.logDelegateMessage(args: attributes)
 		self.navigationController?.popViewControllerAnimated(true)
 	}
 
 	func screenlet(screenlet: SignUpScreenlet, onSignUpError error: NSError) {
-		LiferayLogger.delegate(args: error)
+		LiferayLogger.logDelegateMessage(args: error)
 	}
 	
 	
@@ -60,19 +60,19 @@ class SignUpScreenletViewController: UIViewController, SignUpScreenletDelegate, 
 
 	func screenlet(screenlet: BaseScreenlet,
 			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
-		LiferayLogger.delegate(args: attributes)
+		LiferayLogger.logDelegateMessage(args: attributes)
 	}
 
 	func screenlet(screenlet: BaseScreenlet, onLoginError error: NSError) {
-		LiferayLogger.delegate(args: error)
+		LiferayLogger.logDelegateMessage(args: error)
 	}
 
 	func onScreenletCredentialsSaved(screenlet: BaseScreenlet) {
-		LiferayLogger.delegate()
+		LiferayLogger.logDelegateMessage()
 	}
 
 	func onScreenletCredentialsLoaded(screenlet: BaseScreenlet) {
-		LiferayLogger.delegate()
+		LiferayLogger.logDelegateMessage()
 	}
 
 }

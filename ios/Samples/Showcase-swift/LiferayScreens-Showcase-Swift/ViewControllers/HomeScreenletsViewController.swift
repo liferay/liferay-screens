@@ -64,13 +64,19 @@ class HomeScreenletsViewController: UITableViewController {
 	
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		let name = data[indexPath.section]![indexPath.row + 1]
-		let storyboard = UIStoryboard(name: name, bundle: NSBundle.mainBundle())
-		
-		let viewController = storyboard.instantiateInitialViewController()
-		
-		if let viewController = viewController {
-			viewController.title = name
-			self.navigationController?.pushViewController(viewController, animated: true)
+		if NSBundle.mainBundle().pathForResource(name, ofType: "storyboardc") != nil {
+			let storyboard = UIStoryboard(name: name, bundle: NSBundle.mainBundle())
+			
+			let viewController = storyboard.instantiateInitialViewController()
+			
+			if let viewController = viewController {
+				viewController.title = name
+				self.navigationController?.pushViewController(viewController, animated: true)
+			}
+		} else {
+			print("//////")
+			print("ERROR: no Storyboard named \"\(name)\"")
+			print("//////")
 		}
 	}
 }

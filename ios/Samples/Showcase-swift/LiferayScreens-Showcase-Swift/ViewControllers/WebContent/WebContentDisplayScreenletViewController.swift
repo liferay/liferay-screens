@@ -35,18 +35,18 @@ class WebContentDisplayScreenletViewController: UIViewController, WebContentDisp
 
 	func screenlet(screenlet: WebContentDisplayScreenlet,
 			onWebContentResponse html: String ) -> String? {
-		LiferayLogger.delegate(args: html)
+		LiferayLogger.logDelegateMessage(args: html)
 		return nil
 	}
 
 	func screenlet(screenlet: WebContentDisplayScreenlet,
 		   onRecordContentResponse record: DDLRecord) {
-		LiferayLogger.delegate(args: record)
+		LiferayLogger.logDelegateMessage(args: record)
 	}
 
 	func screenlet(screenlet: WebContentDisplayScreenlet,
 			onWebContentError error: NSError) {
-		LiferayLogger.delegate(args: error)
+		LiferayLogger.logDelegateMessage(args: error)
 	}
 	
 	

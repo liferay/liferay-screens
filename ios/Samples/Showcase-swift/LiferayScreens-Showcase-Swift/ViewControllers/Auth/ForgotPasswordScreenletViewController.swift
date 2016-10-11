@@ -30,11 +30,11 @@ class ForgotPasswordScreenletViewController: UIViewController, ForgotPasswordScr
 	//MARK: ForgotPasswordScreenletDelegate
 
 	func screenlet(screenlet: ForgotPasswordScreenlet, onForgotPasswordSent passwordSent: Bool) {
-		LiferayLogger.delegate(args: passwordSent)
+		LiferayLogger.logDelegateMessage(args: passwordSent)
 	}
 
 	func screenlet(screenlet: ForgotPasswordScreenlet, onForgotPasswordError error: NSError) {
-		LiferayLogger.delegate(args: error)
+		LiferayLogger.logDelegateMessage(args: error)
 	}
 
 

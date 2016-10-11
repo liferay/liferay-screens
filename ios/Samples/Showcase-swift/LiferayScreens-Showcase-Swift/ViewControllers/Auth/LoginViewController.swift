@@ -85,22 +85,22 @@ class LoginViewController: UIViewController, LoginScreenletDelegate {
 	
 	func screenlet(screenlet: BaseScreenlet,
 			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
-		LiferayLogger.delegate(args: attributes)
+		LiferayLogger.logDelegateMessage(args: attributes)
 		showLogged(animated: true)
 	}
 
 	func screenlet(screenlet: BaseScreenlet, onLoginError error: NSError) {
-		LiferayLogger.delegate(args: error)
+		LiferayLogger.logDelegateMessage(args: error)
 	}
 
 	func screenlet(screenlet: BaseScreenlet,
 			onCredentialsSavedUserAttributes attributes: [String:AnyObject]) {
-		LiferayLogger.delegate(args: attributes)
+		LiferayLogger.logDelegateMessage(args: attributes)
 	}
 
 	func screenlet(screenlet: LoginScreenlet,
 			onCredentialsLoadedUserAttributes attributes: [String:AnyObject]) {
-		LiferayLogger.delegate(args: attributes)
+		LiferayLogger.logDelegateMessage(args: attributes)
 	}
 
 	

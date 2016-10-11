@@ -14,17 +14,30 @@
 import UIKit
 
 public struct LiferayLogger {
-	public static func delegate(function: String = #function, args: AnyObject?...) {
+	
+	public static func logDelegateMessage(function: String = #function, args: AnyObject?...) {
 		let message = "DELEGATE: \(function) called"
 		
 		if args.count > 0 {
 			guard let error = args[0] as? NSError else {
-				return print("\(message) -> \(args)")
+				print("\n+++++++++++++++++++++")
+				print("\(message) -> \(args)")
+				print("+++++++++++++++++++++\n")
+				return
 			}
 			
-			print("\(message). Error: \(error)")
+			self.error(message, error: error)
 		} else {
+			print("\n+++++++++++++++++++++")
 			print(message)
+			print("+++++++++++++++++++++\n")
 		}
+	}
+	
+	private static func error(message: String, error: NSError) {
+		print("\n=====================")
+		print(message)
+		print("ERROR: \(error)")
+		print("=====================\n")
 	}
 }
