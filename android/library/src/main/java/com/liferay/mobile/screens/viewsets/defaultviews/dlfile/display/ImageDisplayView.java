@@ -14,16 +14,15 @@ import com.liferay.mobile.screens.dlfile.display.FileEntry;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+import java.io.File;
 
 /**
  * @author Sarai Díaz García
  */
-public class ImageDisplayView extends RelativeLayout implements BaseFileDisplayViewModel, Callback {
+public class ImageDisplayView extends BaseFileDisplayView implements Callback {
 
 	private BaseScreenlet screenlet;
-	private FileEntry fileEntry;
 	private ImageView imageView;
-	private ProgressBar progressBar;
 
 	public ImageDisplayView(Context context) {
 		super(context);
@@ -42,22 +41,6 @@ public class ImageDisplayView extends RelativeLayout implements BaseFileDisplayV
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
-	@Override
-	public void showStartOperation(String actionName) {
-		progressBar.setVisibility(VISIBLE);
-	}
-
-	@Override
-	public void showFinishOperation(String actionName) {
-		throw new UnsupportedOperationException(
-			"showFinishOperation(String) is not supported." + " Use showFinishOperation(FileEntry) instead.");
-	}
-
-	@Override
-	public void showFailedOperation(String actionName, Exception e) {
-		progressBar.setVisibility(GONE);
-		LiferayLogger.e("Could not load file asset: " + e.getMessage());
-	}
 
 	@Override
 	public BaseScreenlet getScreenlet() {
@@ -70,6 +53,11 @@ public class ImageDisplayView extends RelativeLayout implements BaseFileDisplayV
 	}
 
 	@Override
+	public void loadFileEntry(String url) {
+		loadImage(url);
+	}
+
+	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
@@ -77,16 +65,14 @@ public class ImageDisplayView extends RelativeLayout implements BaseFileDisplayV
 		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
 	}
 
-	@Override
-	public void showFinishOperation(FileEntry fileEntry) {
-		this.fileEntry = fileEntry;
-		loadImage();
-	}
-
-	private void loadImage() {
+	private void loadImage(String url) {
 		progressBar.setVisibility(VISIBLE);
-		String path = getResources().getString(R.string.liferay_server) + fileEntry.getUrl();
-		Picasso.with(getContext()).load(path).into(imageView, this);
+
+		if(url.startsWith("/")) {
+			Picasso.with(getContext()).load(new File(url)).into(imageView, this);
+		} else {
+			Picasso.with(getContext()).load(url).into(imageView, this);
+		}
 	}
 
 	@Override

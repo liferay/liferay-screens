@@ -35,7 +35,7 @@ import java.io.IOException;
 /**
  * @author Sarai Díaz García
  */
-public class PdfDisplayView extends RelativeLayout implements BaseFileDisplayViewModel, View.OnClickListener {
+public class PdfDisplayView extends BaseFileDisplayView implements View.OnClickListener {
 
 	private int currentPage;
 	private BaseScreenlet screenlet;
@@ -44,8 +44,6 @@ public class PdfDisplayView extends RelativeLayout implements BaseFileDisplayVie
 	private Button goToPageButton;
 	private EditText goToPage;
 	private LinearLayout linearLayoutButtons;
-	private File file;
-	private FileEntry fileEntry;
 	private ImageView imagePdf;
 	private PdfRenderer renderer;
 	private ProgressBar progressBarHorizontal;
@@ -109,19 +107,12 @@ public class PdfDisplayView extends RelativeLayout implements BaseFileDisplayVie
 		LiferayLogger.e("Could not load file asset: " + e.getMessage());
 	}
 
-	@Override
-	public void showFinishOperation(FileEntry fileEntry) {
-		this.fileEntry = fileEntry;
-		render();
-	}
-
 	//TODO this should go in the screenlet class
-	private void render() {
+	private void render(String url) {
 		if (Build.VERSION.SDK_INT >= 21) {
-			renderInLollipop();
+			renderInLollipop(url);
 		} else {
-			String server = getResources().getString(R.string.liferay_server);
-			getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(server + fileEntry.getUrl())));
+			getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
 		}
 	}
 
@@ -153,22 +144,12 @@ public class PdfDisplayView extends RelativeLayout implements BaseFileDisplayVie
 		renderPdfPage(currentPage);
 	}
 
-	private void renderInLollipop() {
+	private void renderInLollipop(String url) {
 		previousPage.setOnClickListener(this);
 		nextPage.setOnClickListener(this);
 		goToPageButton.setOnClickListener(this);
 
-		String filePath = getResources().getString(R.string.liferay_server) + fileEntry.getUrl();
-		file = new File(getContext().getExternalCacheDir().getPath() + "/" + fileEntry.getTitle());
-		if (!file.exists()) {
-			Intent intent = new Intent(getContext(), DownloadService.class);
-			intent.putExtra(DownloadService.REMOTE_PATH, filePath);
-			intent.putExtra(DownloadService.LOCAL_PATH, file.getAbsolutePath());
-			intent.putExtra(DownloadService.RESULT_RECEIVER, new DownloadReceiver(new Handler()));
-			getContext().startService(intent);
-		} else {
-			renderPdfInImageView(file);
-		}
+		renderPdfInImageView(url);
 	}
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -185,10 +166,10 @@ public class PdfDisplayView extends RelativeLayout implements BaseFileDisplayVie
 	}
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	private void renderPdfInImageView(File file) {
+	private void renderPdfInImageView(String url) {
 		progressBar.setVisibility(VISIBLE);
 		try {
-			renderer = new PdfRenderer(ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY));
+			renderer = new PdfRenderer(ParcelFileDescriptor.open(new File(url), ParcelFileDescriptor.MODE_READ_ONLY));
 			matrix = imagePdf.getImageMatrix();
 			renderPdfPage(0);
 			title.setText(fileEntry.getTitle());
@@ -226,24 +207,14 @@ public class PdfDisplayView extends RelativeLayout implements BaseFileDisplayVie
 		this.screenlet = screenlet;
 	}
 
-	private class DownloadReceiver extends ResultReceiver {
+	@Override
+	public void loadFileEntry(String url) {
+		render(url);
+	}
 
-		DownloadReceiver(Handler handler) {
-			super(handler);
-		}
-
-		protected void onReceiveResult(int resultCode, Bundle resultData) {
-			super.onReceiveResult(resultCode, resultData);
-
-			if (resultCode == DownloadService.UPDATE_PROGRESS) {
-				int progress = resultData.getInt(DownloadService.FILE_DOWNLOAD_PROGRESS);
-				progressText.setText(String.valueOf(progress).concat("%"));
-				progressBarHorizontal.setProgress(progress);
-			} else if (resultCode == DownloadService.FINISHED_DOWNLOAD) {
-				renderPdfInImageView(file);
-			} else {
-				//TODO launch error
-			}
-		}
+	@Override
+	public void renderDownloadProgress(int progress) {
+		progressText.setText(String.valueOf(progress).concat("%"));
+		progressBarHorizontal.setProgress(progress);
 	}
 }

@@ -8,6 +8,7 @@ import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 import com.liferay.mobile.screens.R;
@@ -19,11 +20,10 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 /**
  * @author Sarai Díaz García
  */
-public class AudioDisplayView extends FrameLayout implements BaseFileDisplayViewModel {
+public class AudioDisplayView extends BaseFileDisplayView {
 
 	private BaseScreenlet screenlet;
 	private VideoView audioView;
-	private FileEntry fileEntry;
 	private TextView title;
 	private TextView message;
 	private ProgressBar progressBar;
@@ -74,6 +74,13 @@ public class AudioDisplayView extends FrameLayout implements BaseFileDisplayView
 	}
 
 	@Override
+	public void loadFileEntry(String url) {
+		loadAudio(url);
+		loadPrepareListener();
+		loadErrorListener();
+	}
+
+	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
@@ -83,18 +90,10 @@ public class AudioDisplayView extends FrameLayout implements BaseFileDisplayView
 		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
 	}
 
-	@Override
-	public void showFinishOperation(FileEntry fileEntry) {
-		this.fileEntry = fileEntry;
-		loadAudio();
-		loadPrepareListener();
-		loadErrorListener();
-	}
-
-	private void loadAudio() {
+	private void loadAudio(String url) {
 		progressBar.setVisibility(VISIBLE);
 		title.setText(fileEntry.getTitle());
-		audioView.setVideoPath(getResources().getString(R.string.liferay_server) + fileEntry.getUrl());
+		audioView.setVideoPath(url);
 		audioView.setMediaController(new MediaController(getContext()));
 		audioView.setZOrderOnTop(true);
 		audioView.requestFocus();

@@ -19,10 +19,9 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 /**
  * @author Sarai Díaz García
  */
-public class VideoDisplayView extends RelativeLayout implements BaseFileDisplayViewModel {
+public class VideoDisplayView extends BaseFileDisplayView {
 
 	private BaseScreenlet screenlet;
-	private FileEntry fileEntry;
 	private VideoView videoView;
 	private TextView message;
 	private ProgressBar progressBar;
@@ -73,6 +72,13 @@ public class VideoDisplayView extends RelativeLayout implements BaseFileDisplayV
 	}
 
 	@Override
+	public void loadFileEntry(String url) {
+		loadVideo(url);
+		loadPrepareListener();
+		loadErrorListener();
+	}
+
+	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
@@ -81,15 +87,7 @@ public class VideoDisplayView extends RelativeLayout implements BaseFileDisplayV
 		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
 	}
 
-	@Override
-	public void showFinishOperation(FileEntry fileEntry) {
-		this.fileEntry = fileEntry;
-		loadVideo();
-		loadPrepareListener();
-		loadErrorListener();
-	}
-
-	private void loadVideo() {
+	private void loadVideo(String url) {
 		progressBar.setVisibility(VISIBLE);
 		videoView.setVideoPath(getResources().getString(R.string.liferay_server) + fileEntry.getUrl());
 		videoView.setMediaController(new MediaController(getContext()));
