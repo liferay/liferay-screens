@@ -20,6 +20,7 @@ import com.liferay.mobile.screens.dlfile.display.audio.AudioDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.pdf.PdfDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.video.VideoDisplayScreenlet;
+import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
 import java.util.HashMap;
@@ -116,7 +117,13 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 				getViewModel().showFinishOperation(customView);
 			} else {
 				String server = getResources().getString(R.string.liferay_server);
-				String url = server + asset.getUrl();
+				String url;
+
+				if (asset instanceof ImageEntry) {
+					url = server + ((ImageEntry) asset).getImageUrl();
+				} else {
+					url = server + asset.getUrl();
+				}
 				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 				if (intent.resolveActivity(getContext().getPackageManager()) != null) {
 					getContext().startActivity(intent);
