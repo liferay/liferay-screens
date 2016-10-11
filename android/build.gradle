@@ -4,7 +4,7 @@ buildscript {
 	}
 
 	dependencies {
-		classpath 'com.android.tools.build:gradle:2.2.0'
+		classpath 'com.android.tools.build:gradle:2.2.1'
 		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.1'
 		classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
 	}
@@ -54,7 +54,7 @@ ext.libraries = [appCompat    : 'com.android.support:appcompat-v7:' + supportLib
                  rxjava       : 'io.reactivex:rxjava:1.2.0',
                  rxpermissions: 'com.tbruyelle.rxpermissions:rxpermissions:0.7.0',
                  rxbinding    : 'com.jakewharton.rxbinding:rxbinding:0.4.0',
-                 robolectric  : 'org.robolectric:robolectric:3.0',
+                 robolectric  : 'org.robolectric:robolectric:3.1.2',
                  mockito      : 'org.mockito:mockito-core:2.0.111-beta',
                  snappydb     : 'com.snappydb:snappydb-lib:0.5.2',
                  kryo         : 'com.esotericsoftware:kryo:4.0.0']

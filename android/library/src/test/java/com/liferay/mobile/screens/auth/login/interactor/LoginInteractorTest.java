@@ -49,7 +49,7 @@ public class LoginInteractorTest {
 	private static final long LOGIN_USER_ID = 10658;
 	private static final long companyId = LiferayServerContext.getCompanyId();
 
-	@Config(constants = BuildConfig.class, sdk = 18)
+	@Config(constants = BuildConfig.class, sdk = 23)
 	@RunWith(RobolectricManifestTestRunner.class)
 	public static class WhenBasicAuthMethodIsEmail {
 
@@ -68,7 +68,7 @@ public class LoginInteractorTest {
 	}
 
 	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 18)
+	@Config(constants = BuildConfig.class, sdk = 23)
 	public static class WhenBasicAuthMethodIsId {
 
 		@Test
@@ -88,7 +88,7 @@ public class LoginInteractorTest {
 	}
 
 	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 18)
+	@Config(constants = BuildConfig.class, sdk = 23)
 	public static class WhenBasicAuthMethodIsScreenName {
 
 		@Test
@@ -106,7 +106,7 @@ public class LoginInteractorTest {
 	}
 
 	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 18)
+	@Config(constants = BuildConfig.class, sdk = 23)
 	public static class WhenLoginMethodIsCalled {
 
 		@Test
@@ -122,7 +122,7 @@ public class LoginInteractorTest {
 	}
 
 	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 18)
+	@Config(constants = BuildConfig.class, sdk = 23)
 	public static class WhenLoginRequestCompletes {
 
 		@Test
@@ -172,7 +172,7 @@ public class LoginInteractorTest {
 	}
 
 	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 18)
+	@Config(constants = BuildConfig.class, sdk = 23)
 	public static class WhenValidateMethodIsCalled {
 
 		@Test(expected = IllegalArgumentException.class)
