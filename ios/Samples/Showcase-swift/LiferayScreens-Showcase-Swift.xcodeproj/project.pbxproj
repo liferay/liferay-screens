@@ -27,6 +27,8 @@
 		0B54FBBA1DACFAAA00E0EE0C /* ImageGalleryScreenletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FBB91DACFAAA00E0EE0C /* ImageGalleryScreenletController.swift */; };
 		0B54FBBD1DAD002100E0EE0C /* UserPortraitScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FBBF1DAD002100E0EE0C /* UserPortraitScreenlet.storyboard */; };
 		0B54FBC11DAD004300E0EE0C /* UserPortraitScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FBC01DAD004300E0EE0C /* UserPortraitScreenletViewController.swift */; };
+		0B54FBC41DAD149D00E0EE0C /* DDLListScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FBC61DAD149D00E0EE0C /* DDLListScreenlet.storyboard */; };
+		0B54FBCA1DAD14C500E0EE0C /* DDLListScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FBC91DAD14C500E0EE0C /* DDLListScreenletViewController.swift */; };
 		0B6147F81DABC853004FAC7C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6147F71DABC853004FAC7C /* UIImageExtension.swift */; };
 		0B6147FA1DABC86E004FAC7C /* LiferayLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6147F91DABC86E004FAC7C /* LiferayLogger.swift */; };
 		0B6147FD1DABD741004FAC7C /* SignUpScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B6147FB1DABD741004FAC7C /* SignUpScreenlet.storyboard */; };
@@ -57,7 +59,6 @@
 		88DE2A941AD3DF2800714701 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88DE2A931AD3DF2800714701 /* Default-568h@2x.png */; };
 		88DE2A991AD3DF7600714701 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88DE2A9B1AD3DF7600714701 /* Localizable.strings */; };
 		88DE2AAC1AD3EFEF00714701 /* DDLFormScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE2AA41AD3EFEF00714701 /* DDLFormScreenletViewController.swift */; };
-		88DE2AAD1AD3EFEF00714701 /* DDLListScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE2AA51AD3EFEF00714701 /* DDLListScreenletViewController.swift */; };
 		88DE2AAF1AD3EFEF00714701 /* HomeScreenletsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE2AA71AD3EFEF00714701 /* HomeScreenletsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,8 @@
 		0B54FBB91DACFAAA00E0EE0C /* ImageGalleryScreenletController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryScreenletController.swift; sourceTree = "<group>"; };
 		0B54FBBE1DAD002100E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/UserPortraitScreenlet.storyboard; sourceTree = "<group>"; };
 		0B54FBC01DAD004300E0EE0C /* UserPortraitScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitScreenletViewController.swift; sourceTree = "<group>"; };
+		0B54FBC51DAD149D00E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/DDLListScreenlet.storyboard; sourceTree = "<group>"; };
+		0B54FBC91DAD14C500E0EE0C /* DDLListScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListScreenletViewController.swift; sourceTree = "<group>"; };
 		0B6147F71DABC853004FAC7C /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		0B6147F91DABC86E004FAC7C /* LiferayLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayLogger.swift; sourceTree = "<group>"; };
 		0B6147FC1DABD741004FAC7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/SignUpScreenlet.storyboard; sourceTree = "<group>"; };
@@ -119,7 +122,6 @@
 		88DE2A9C1AD3DF8500714701 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		88DE2A9D1AD3DF8C00714701 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		88DE2AA41AD3EFEF00714701 /* DDLFormScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormScreenletViewController.swift; sourceTree = "<group>"; };
-		88DE2AA51AD3EFEF00714701 /* DDLListScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListScreenletViewController.swift; sourceTree = "<group>"; };
 		88DE2AA71AD3EFEF00714701 /* HomeScreenletsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenletsViewController.swift; sourceTree = "<group>"; };
 		A04C09F218A5B0C74733F85A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B9F27EE5D1E22F881E8B3B99 /* Pods-LiferayScreens-Showcase-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreens-Showcase-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreens-Showcase-Swift/Pods-LiferayScreens-Showcase-Swift.debug.xcconfig"; sourceTree = "<group>"; };
@@ -188,9 +190,26 @@
 			path = Others;
 			sourceTree = "<group>";
 		};
+		0B54FBC71DAD14A100E0EE0C /* DDL */ = {
+			isa = PBXGroup;
+			children = (
+				0B54FBC61DAD149D00E0EE0C /* DDLListScreenlet.storyboard */,
+			);
+			name = DDL;
+			sourceTree = "<group>";
+		};
+		0B54FBC81DAD14C500E0EE0C /* DDL */ = {
+			isa = PBXGroup;
+			children = (
+				0B54FBC91DAD14C500E0EE0C /* DDLListScreenletViewController.swift */,
+			);
+			path = DDL;
+			sourceTree = "<group>";
+		};
 		0B6147EC1DAB9943004FAC7C /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				0B54FBC71DAD14A100E0EE0C /* DDL */,
 				0B54FBA91DACF12A00E0EE0C /* Others */,
 				0B6148151DABF61B004FAC7C /* Asset */,
 				0B61480D1DABE8AA004FAC7C /* Auth */,
@@ -356,10 +375,10 @@
 				0B6148191DABF672004FAC7C /* Asset */,
 				0B6148011DABE2B0004FAC7C /* Auth */,
 				0B54FB861DACE91000E0EE0C /* Comments */,
+				0B54FBC81DAD14C500E0EE0C /* DDL */,
 				0B54FBAA1DACF1C100E0EE0C /* Others */,
 				0B6148081DABE86F004FAC7C /* WebContent */,
 				88DE2AA41AD3EFEF00714701 /* DDLFormScreenletViewController.swift */,
-				88DE2AA51AD3EFEF00714701 /* DDLListScreenletViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -434,6 +453,7 @@
 				0B54FBA41DACEF8600E0EE0C /* CommentAddScreenlet.storyboard in Resources */,
 				0B6148111DABE8F2004FAC7C /* WebContentDisplayScreenlet.storyboard in Resources */,
 				0B6148181DABF643004FAC7C /* AssetDisplayScreenlet.storyboard in Resources */,
+				0B54FBC41DAD149D00E0EE0C /* DDLListScreenlet.storyboard in Resources */,
 				0B54FB931DACE97600E0EE0C /* CommentListScreenlet.storyboard in Resources */,
 				88CC3AFD1CC153D900E0AEB7 /* WebContentDisplayView_book.xib in Resources */,
 				88DE2A991AD3DF7600714701 /* Localizable.strings in Resources */,
@@ -542,9 +562,9 @@
 				0B54FB8A1DACE91000E0EE0C /* CommentListScreenletViewController.swift in Sources */,
 				0B54FBA31DACEF7F00E0EE0C /* CommentAddScreenletViewController.swift in Sources */,
 				88CC3B021CC158C800E0AEB7 /* HtmlTableViewCell.swift in Sources */,
+				0B54FBCA1DAD14C500E0EE0C /* DDLListScreenletViewController.swift in Sources */,
 				0B61480B1DABE86F004FAC7C /* WebContentDisplayScreenletViewController.swift in Sources */,
 				0B54FB7D1DACCFDF00E0EE0C /* AssetTypesViewController.swift in Sources */,
-				88DE2AAD1AD3EFEF00714701 /* DDLListScreenletViewController.swift in Sources */,
 				0B6147FA1DABC86E004FAC7C /* LiferayLogger.swift in Sources */,
 				0B54FBC11DAD004300E0EE0C /* UserPortraitScreenletViewController.swift in Sources */,
 				0B54FBAC1DACF1C100E0EE0C /* BlogDisplayScreenletViewController.swift in Sources */,
@@ -621,6 +641,14 @@
 				0B54FBBE1DAD002100E0EE0C /* en */,
 			);
 			name = UserPortraitScreenlet.storyboard;
+			sourceTree = "<group>";
+		};
+		0B54FBC61DAD149D00E0EE0C /* DDLListScreenlet.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B54FBC51DAD149D00E0EE0C /* en */,
+			);
+			name = DDLListScreenlet.storyboard;
 			sourceTree = "<group>";
 		};
 		0B6147FB1DABD741004FAC7C /* SignUpScreenlet.storyboard */ = {

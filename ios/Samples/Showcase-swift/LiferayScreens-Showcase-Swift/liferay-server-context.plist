@@ -36,5 +36,9 @@
 	<integer>42257</integer>
 	<key>imageGalleryRepositoryId</key>
 	<real>41905</real>
+	<key>ddlRecordSetId</key>
+	<integer>42629</integer>
+	<key>ddlLabelField</key>
+	<string>Email</string>
 </dict>
 </plist>
