@@ -51,7 +51,8 @@ public abstract class BaseFileDisplayView extends RelativeLayout
 	@Override
 	public void showFinishOperation(FileEntry fileEntry) {
 		this.fileEntry = fileEntry;
-		file = new File(getContext().getExternalCacheDir().getPath() + "/" + fileEntry.getTitle());
+		file = new File(getContext().getExternalCacheDir().getPath() + "/" + fileEntry.getEntryId()
+				+ "" + fileEntry.getTitle());
 
 		if (file.exists()) {
 			loadFileEntry(file.getAbsolutePath());
