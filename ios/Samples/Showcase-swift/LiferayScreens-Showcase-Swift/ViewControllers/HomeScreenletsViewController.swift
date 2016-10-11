@@ -16,11 +16,11 @@ import UIKit
 class HomeScreenletsViewController: UITableViewController {
 
 	private let data: [Int: [String]] = [
-		0: ["DDL Module", "DDLListScreenlet", "DDLFormScreenlet"],
-		1: ["Web Content Module", "WebContentDisplayScreenlet", "WebContentListScreenlet"],
-		2: ["Assets", "AssetTypes", "AssetDisplayScreenlet"],
-		3: ["Comments", "CommentListScreenlet", "CommentDisplayScreenlet", "CommentAddScreenlet"],
-		4: ["Others", "UserPortraitScreenlet", "RatingScreenlet", "ImageGalleryScreenlet", "BlogDisplayScreenlet"]
+		0: ["Assets", "AssetTypes", "AssetDisplayScreenlet"],
+		1: ["Comments", "CommentListScreenlet", "CommentDisplayScreenlet", "CommentAddScreenlet"],
+		2: ["DDL Module", "DDLListScreenlet", "DDLFormScreenlet"],
+		3: ["Others", "UserPortraitScreenlet", "RatingScreenlet", "ImageGalleryScreenlet", "BlogDisplayScreenlet"],
+		4: ["Web Content Module", "WebContentDisplayScreenlet", "WebContentListScreenlet"]
 	]
 	
 	

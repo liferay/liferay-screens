@@ -238,13 +238,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nUA-hd-Cqq">
-                                <rect key="frame" x="16" y="80" width="288" height="343"/>
+                                <rect key="frame" x="16" y="136" width="288" height="287"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qK4-pj-E1T">
+                                <rect key="frame" x="-4" y="0.0" width="328" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="bFg-BN-Rph"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Offline Sync" id="5VT-f9-ohD"/>
+                                </items>
+                            </navigationBar>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k5C-Nu-JLj">
-                                <rect key="frame" x="16" y="28" width="288" height="44"/>
+                                <rect key="frame" x="16" y="84" width="288" height="44"/>
                                 <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="lvf-7m-h8C"/>
@@ -282,12 +291,15 @@
                             <constraint firstItem="nUA-hd-Cqq" firstAttribute="leading" secondItem="NXY-lK-ncR" secondAttribute="leadingMargin" id="8kr-Jl-tqc"/>
                             <constraint firstItem="k5C-Nu-JLj" firstAttribute="trailing" secondItem="NXY-lK-ncR" secondAttribute="trailingMargin" id="DZl-ie-UHz"/>
                             <constraint firstItem="4rX-kC-YFp" firstAttribute="top" secondItem="nUA-hd-Cqq" secondAttribute="bottom" constant="8" id="J4i-f5-Mom"/>
+                            <constraint firstItem="k5C-Nu-JLj" firstAttribute="top" secondItem="qK4-pj-E1T" secondAttribute="bottom" constant="20" id="Ram-y1-RVZ"/>
                             <constraint firstItem="k5C-Nu-JLj" firstAttribute="leading" secondItem="NXY-lK-ncR" secondAttribute="leadingMargin" id="VdM-4o-CKL"/>
+                            <constraint firstItem="qK4-pj-E1T" firstAttribute="top" secondItem="NXY-lK-ncR" secondAttribute="topMargin" id="o7G-2e-W4s"/>
                             <constraint firstItem="nUA-hd-Cqq" firstAttribute="trailing" secondItem="NXY-lK-ncR" secondAttribute="trailingMargin" id="ocF-rD-xGK"/>
-                            <constraint firstItem="k5C-Nu-JLj" firstAttribute="top" secondItem="lNb-NU-lVF" secondAttribute="bottom" constant="8" id="qBa-9A-HUe"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qK4-pj-E1T" secondAttribute="trailing" constant="-20" id="wJ6-KV-d34"/>
+                            <constraint firstItem="qK4-pj-E1T" firstAttribute="leading" secondItem="NXY-lK-ncR" secondAttribute="leadingMargin" constant="-20" id="wNC-Uc-xiQ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Offline Sync" id="aDm-PE-zTk">
+                    <tabBarItem key="tabBarItem" title="Offline Sync" image="sync-ico" id="aDm-PE-zTk">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
@@ -379,6 +391,7 @@
     <resources>
         <image name="Default-placeholder-image.png" width="96" height="96"/>
         <image name="screens-ico" width="16" height="16"/>
+        <image name="sync-ico" width="24" height="24"/>
         <image name="user-icon" width="16" height="16"/>
     </resources>
 </document>
