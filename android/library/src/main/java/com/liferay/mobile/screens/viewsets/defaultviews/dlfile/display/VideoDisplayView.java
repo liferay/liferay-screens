@@ -21,10 +21,8 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  */
 public class VideoDisplayView extends BaseFileDisplayView {
 
-	private BaseScreenlet screenlet;
 	private VideoView videoView;
 	private TextView message;
-	private ProgressBar progressBar;
 
 	public VideoDisplayView(Context context) {
 		super(context);
@@ -44,31 +42,9 @@ public class VideoDisplayView extends BaseFileDisplayView {
 	}
 
 	@Override
-	public void showStartOperation(String actionName) {
-		progressBar.setVisibility(VISIBLE);
-	}
-
-	@Override
-	public void showFinishOperation(String actionName) {
-		throw new UnsupportedOperationException(
-			"showFinishOperation(String) is not supported." + " Use showFinishOperation(FileEntry) instead.");
-	}
-
-	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-		progressBar.setVisibility(GONE);
+		super.showFailedOperation(actionName, e);
 		message.setText(R.string.video_error);
-		LiferayLogger.e("Could not load file asset: " + e.getMessage());
-	}
-
-	@Override
-	public BaseScreenlet getScreenlet() {
-		return screenlet;
-	}
-
-	@Override
-	public void setScreenlet(BaseScreenlet screenlet) {
-		this.screenlet = screenlet;
 	}
 
 	@Override
@@ -84,7 +60,6 @@ public class VideoDisplayView extends BaseFileDisplayView {
 
 		videoView = (VideoView) findViewById(R.id.liferay_video_asset);
 		message = (TextView) findViewById(R.id.liferay_video_message);
-		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
 	}
 
 	private void loadVideo(String url) {

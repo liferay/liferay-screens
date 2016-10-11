@@ -38,7 +38,6 @@ import java.io.IOException;
 public class PdfDisplayView extends BaseFileDisplayView implements View.OnClickListener {
 
 	private int currentPage;
-	private BaseScreenlet screenlet;
 	private Button nextPage;
 	private Button previousPage;
 	private Button goToPageButton;
@@ -50,7 +49,6 @@ public class PdfDisplayView extends BaseFileDisplayView implements View.OnClickL
 	private TextView progressText;
 	private TextView title;
 	private Matrix matrix;
-	private ProgressBar progressBar;
 
 	public PdfDisplayView(Context context) {
 		super(context);
@@ -76,7 +74,6 @@ public class PdfDisplayView extends BaseFileDisplayView implements View.OnClickL
 		imagePdf = (ImageView) findViewById(R.id.liferay_pdf_renderer);
 
 		progressText = (TextView) findViewById(R.id.liferay_asset_progress_number);
-		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
 		progressBarHorizontal = (ProgressBar) findViewById(R.id.liferay_asset_progress_horizontal);
 
 		goToPage = (EditText) findViewById(R.id.liferay_go_to_page);
@@ -88,23 +85,6 @@ public class PdfDisplayView extends BaseFileDisplayView implements View.OnClickL
 		linearLayoutButtons = (LinearLayout) findViewById(R.id.liferay_linear_buttons);
 
 		title = (TextView) findViewById(R.id.liferay_asset_title);
-	}
-
-	@Override
-	public void showFinishOperation(String actionName) {
-		throw new UnsupportedOperationException(
-			"showFinishOperation(String) is not supported." + " Use showFinishOperation(FileEntry) instead.");
-	}
-
-	@Override
-	public void showStartOperation(String actionName) {
-		progressBar.setVisibility(VISIBLE);
-	}
-
-	@Override
-	public void showFailedOperation(String actionName, Exception e) {
-		progressBar.setVisibility(GONE);
-		LiferayLogger.e("Could not load file asset: " + e.getMessage());
 	}
 
 	//TODO this should go in the screenlet class
@@ -195,16 +175,6 @@ public class PdfDisplayView extends BaseFileDisplayView implements View.OnClickL
 		InputMethodManager inputManager =
 			(InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 		inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-	}
-
-	@Override
-	public BaseScreenlet getScreenlet() {
-		return screenlet;
-	}
-
-	@Override
-	public void setScreenlet(BaseScreenlet screenlet) {
-		this.screenlet = screenlet;
 	}
 
 	@Override

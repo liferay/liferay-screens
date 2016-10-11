@@ -22,11 +22,9 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  */
 public class AudioDisplayView extends BaseFileDisplayView {
 
-	private BaseScreenlet screenlet;
 	private VideoView audioView;
 	private TextView title;
 	private TextView message;
-	private ProgressBar progressBar;
 
 	public AudioDisplayView(Context context) {
 		super(context);
@@ -46,31 +44,9 @@ public class AudioDisplayView extends BaseFileDisplayView {
 	}
 
 	@Override
-	public void showStartOperation(String actionName) {
-		progressBar.setVisibility(VISIBLE);
-	}
-
-	@Override
-	public void showFinishOperation(String actionName) {
-		throw new UnsupportedOperationException(
-			"showFinishOperation(String) is not supported." + " Use showFinishOperation(FileEntry) instead.");
-	}
-
-	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-		progressBar.setVisibility(GONE);
+		super.showFailedOperation(actionName, e);
 		message.setText(R.string.audio_error);
-		LiferayLogger.e("Could not load file asset: " + e.getMessage());
-	}
-
-	@Override
-	public BaseScreenlet getScreenlet() {
-		return screenlet;
-	}
-
-	@Override
-	public void setScreenlet(BaseScreenlet screenlet) {
-		this.screenlet = screenlet;
 	}
 
 	@Override
@@ -87,7 +63,6 @@ public class AudioDisplayView extends BaseFileDisplayView {
 		audioView = (VideoView) findViewById(R.id.liferay_audio_asset);
 		title = (TextView) findViewById(R.id.liferay_audio_title);
 		message = (TextView) findViewById(R.id.liferay_audio_message);
-		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
 	}
 
 	private void loadAudio(String url) {

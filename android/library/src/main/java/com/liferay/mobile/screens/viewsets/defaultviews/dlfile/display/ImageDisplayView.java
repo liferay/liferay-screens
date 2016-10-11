@@ -41,17 +41,6 @@ public class ImageDisplayView extends BaseFileDisplayView implements Callback {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
-
-	@Override
-	public BaseScreenlet getScreenlet() {
-		return screenlet;
-	}
-
-	@Override
-	public void setScreenlet(BaseScreenlet screenlet) {
-		this.screenlet = screenlet;
-	}
-
 	@Override
 	public void loadFileEntry(String url) {
 		loadImage(url);
@@ -62,17 +51,10 @@ public class ImageDisplayView extends BaseFileDisplayView implements Callback {
 		super.onFinishInflate();
 
 		imageView = (ImageView) findViewById(R.id.liferay_image_asset);
-		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
 	}
 
 	private void loadImage(String url) {
-		progressBar.setVisibility(VISIBLE);
-
-		if(url.startsWith("/")) {
-			Picasso.with(getContext()).load(new File(url)).into(imageView, this);
-		} else {
-			Picasso.with(getContext()).load(url).into(imageView, this);
-		}
+		Picasso.with(getContext()).load(new File(url)).into(imageView, this);
 	}
 
 	@Override

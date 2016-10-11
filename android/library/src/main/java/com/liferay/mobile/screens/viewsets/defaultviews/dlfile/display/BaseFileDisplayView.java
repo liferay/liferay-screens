@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
 import android.util.AttributeSet;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.dlfile.display.BaseFileDisplayViewModel;
 import com.liferay.mobile.screens.dlfile.display.DownloadService;
 import com.liferay.mobile.screens.dlfile.display.FileEntry;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import java.io.File;
 
 /**
@@ -23,6 +25,8 @@ import java.io.File;
 public abstract class BaseFileDisplayView  extends RelativeLayout implements BaseFileDisplayViewModel {
 
 	protected FileEntry fileEntry;
+	protected BaseScreenlet screenlet;
+	protected ProgressBar progressBar;
 	private File file;
 
 	public BaseFileDisplayView(Context context) {
@@ -53,21 +57,39 @@ public abstract class BaseFileDisplayView  extends RelativeLayout implements Bas
 			downloadFileAndStoreLocally();
 		}
 	}
+	@Override
+
+	public void showStartOperation(String actionName) {
+		progressBar.setVisibility(VISIBLE);
+	}
 
 	@Override
-	public abstract void showStartOperation(String actionName);
+	public void showFinishOperation(String actionName) {
+		throw new UnsupportedOperationException(
+			"showFinishOperation(String) is not supported." + " Use showFinishOperation(FileEntry) instead.");
+	}
 
 	@Override
-	public abstract void showFinishOperation(String actionName);
+	public void showFailedOperation(String actionName, Exception e) {
+		progressBar.setVisibility(GONE);
+		LiferayLogger.e("Could not load file asset: " + e.getMessage());
+	}
 
 	@Override
-	public abstract void showFailedOperation(String actionName, Exception e);
+	protected void onFinishInflate() {
+		super.onFinishInflate();
+		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
+	}
 
 	@Override
-	public abstract BaseScreenlet getScreenlet();
+	public BaseScreenlet getScreenlet() {
+		return screenlet;
+	}
 
 	@Override
-	public abstract void setScreenlet(BaseScreenlet screenlet);
+	public void setScreenlet(BaseScreenlet screenlet) {
+		this.screenlet = screenlet;
+	}
 
 	public abstract void loadFileEntry(String url);
 
