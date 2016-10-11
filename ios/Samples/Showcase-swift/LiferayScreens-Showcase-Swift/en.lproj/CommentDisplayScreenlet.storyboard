@@ -19,11 +19,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VNL-Ik-kay">
-                                <rect key="frame" x="222" y="72" width="82" height="44"/>
+                                <rect key="frame" x="224" y="84" width="80" height="44"/>
                                 <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="82" id="GHt-rl-7Yo"/>
-                                    <constraint firstAttribute="height" constant="44" id="UVd-Ie-BkN"/>
+                                    <constraint firstAttribute="width" constant="80" id="kO9-cO-zqg"/>
+                                    <constraint firstAttribute="height" constant="44" id="y7Q-vV-bVp"/>
                                 </constraints>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
@@ -40,59 +40,35 @@
                                     <action selector="loadComment:" destination="myx-wj-dMR" eventType="touchUpInside" id="DjL-ET-1fn"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="comment id" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ixf-v5-nVE">
-                                <rect key="frame" x="16" y="79" width="198" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comment ID" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ixf-v5-nVE">
+                                <rect key="frame" x="20" y="84" width="184" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="3jZ-VK-exN"/>
+                                    <constraint firstAttribute="height" constant="44" id="UbR-qa-DeM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ebc-cC-7DS" customClass="CommentDisplayScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="16" y="136" width="288" height="128"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ebc-cC-7DS" customClass="CommentDisplayScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="16" y="148" width="288" height="371"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="d8r-Ue-d9j"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pe3-Rn-W4v">
-                                <rect key="frame" x="226" y="284" width="82" height="44"/>
-                                <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="w0w-Cg-Qnz"/>
-                                    <constraint firstAttribute="width" constant="82" id="zZ4-XY-fG6"/>
-                                </constraints>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="DELETE">
-                                            <attributes>
-                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <connections>
-                                    <action selector="deleteComment:" destination="myx-wj-dMR" eventType="touchUpInside" id="zAW-43-j10"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Ixf-v5-nVE" firstAttribute="leading" secondItem="bW1-qx-aPC" secondAttribute="leadingMargin" id="2ml-OA-LXe"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Pe3-Rn-W4v" secondAttribute="trailing" constant="-4" id="6Hd-Sw-NVY"/>
-                            <constraint firstItem="Ebc-cC-7DS" firstAttribute="leading" secondItem="bW1-qx-aPC" secondAttribute="leadingMargin" id="V0j-EN-Lt5"/>
-                            <constraint firstItem="Ebc-cC-7DS" firstAttribute="trailing" secondItem="bW1-qx-aPC" secondAttribute="trailingMargin" id="ZY3-Z0-2kV"/>
-                            <constraint firstItem="VNL-Ik-kay" firstAttribute="trailing" secondItem="bW1-qx-aPC" secondAttribute="trailingMargin" id="bk9-L4-IVg"/>
-                            <constraint firstItem="VNL-Ik-kay" firstAttribute="leading" secondItem="Ixf-v5-nVE" secondAttribute="trailing" constant="8" id="cwH-QJ-45y"/>
-                            <constraint firstItem="Ebc-cC-7DS" firstAttribute="top" secondItem="VNL-Ik-kay" secondAttribute="bottom" constant="20" id="fYB-jf-6QO"/>
-                            <constraint firstItem="VNL-Ik-kay" firstAttribute="top" secondItem="zgn-S7-hoK" secondAttribute="bottom" constant="8" id="tLU-Yv-soV"/>
-                            <constraint firstItem="Pe3-Rn-W4v" firstAttribute="top" secondItem="Ebc-cC-7DS" secondAttribute="bottom" constant="20" id="xMs-eW-OG1"/>
-                            <constraint firstItem="Ixf-v5-nVE" firstAttribute="top" secondItem="zgn-S7-hoK" secondAttribute="bottom" constant="15" id="zwC-N3-b50"/>
+                            <constraint firstItem="Ixf-v5-nVE" firstAttribute="leading" secondItem="bW1-qx-aPC" secondAttribute="leading" constant="20" id="DID-TF-t6F"/>
+                            <constraint firstItem="VNL-Ik-kay" firstAttribute="leading" secondItem="Ixf-v5-nVE" secondAttribute="trailing" constant="20" id="Ems-5E-ndm"/>
+                            <constraint firstItem="VNL-Ik-kay" firstAttribute="top" secondItem="zgn-S7-hoK" secondAttribute="bottom" constant="20" id="FK9-o7-RbD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VNL-Ik-kay" secondAttribute="trailing" id="JhS-X6-Hse"/>
+                            <constraint firstItem="BcC-CY-PdX" firstAttribute="top" secondItem="Ebc-cC-7DS" secondAttribute="bottom" id="UlB-ih-WMO"/>
+                            <constraint firstItem="Ixf-v5-nVE" firstAttribute="top" secondItem="zgn-S7-hoK" secondAttribute="bottom" constant="20" id="aiP-ya-qKn"/>
+                            <constraint firstItem="Ebc-cC-7DS" firstAttribute="top" secondItem="Ixf-v5-nVE" secondAttribute="bottom" constant="20" id="aj3-5p-Xw9"/>
+                            <constraint firstItem="Ebc-cC-7DS" firstAttribute="top" secondItem="VNL-Ik-kay" secondAttribute="bottom" constant="20" id="f0v-zC-X7r"/>
+                            <constraint firstItem="Ebc-cC-7DS" firstAttribute="leading" secondItem="bW1-qx-aPC" secondAttribute="leadingMargin" id="tST-Rf-ncC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ebc-cC-7DS" secondAttribute="trailing" id="tSd-cp-C5j"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ttF-WX-ODC"/>
@@ -106,7 +82,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3L9-vW-8tO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2349.375" y="6.3380281690140841"/>
+            <point key="canvasLocation" x="-2350" y="6"/>
         </scene>
     </scenes>
 </document>

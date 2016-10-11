@@ -16,60 +16,55 @@ import LiferayScreens
 
 class CommentDisplayScreenletViewController: UIViewController, CommentDisplayScreenletDelegate {
 
-	@IBOutlet weak var screenlet: CommentDisplayScreenlet?
-	@IBOutlet weak var commentIdText: UITextField?
-
-	override func viewDidLoad() {
-		self.screenlet?.delegate = self
+	
+	//MARK: IBOutlet
+	
+	@IBOutlet weak var screenlet: CommentDisplayScreenlet? {
+		didSet {
+			screenlet?.delegate = self
+		}
 	}
+	@IBOutlet weak var commentIdText: UITextField?
+	
+	
+	//MARK: IBAction
 
 	@IBAction func loadComment(sender: AnyObject) {
 		if let commentId = Int(commentIdText?.text ?? "") {
-			self.screenlet?.commentId = Int64(commentId)
-			self.screenlet?.load()
+			screenlet?.commentId = Int64(commentId)
+			screenlet?.load()
+			screenlet?.hidden = false
 		}
 	}
+	
+	
+	//MARK: CommentDisplayScreenletDelegate
 
-	@IBAction func deleteComment(sender: AnyObject) {
-		self.screenlet?.deleteComment()
+	func screenlet(screenlet: CommentDisplayScreenlet, onCommentLoaded comment: Comment) {
+		LiferayLogger.logDelegateMessage(args: comment)
 	}
 
-	func screenlet(
-			screenlet: CommentDisplayScreenlet,
-			onCommentLoaded comment: Comment) {
-		print("DELEGATE: onCommentLoaded called -> \(comment)\n");
+	func screenlet(screenlet: CommentDisplayScreenlet, onLoadCommentError error: NSError) {
+		LiferayLogger.logDelegateMessage(args: error)
 	}
 
-	func screenlet(
-			screenlet: CommentDisplayScreenlet,
-			onLoadCommentError error: NSError) {
-		print("DELEGATE: onLoadCommentError called -> \(error)\n");
+	func screenlet(screenlet: CommentDisplayScreenlet, onCommentDeleted comment: Comment) {
+		LiferayLogger.logDelegateMessage(args: comment)
+		screenlet.hidden = true
 	}
 
-	func screenlet(
-			screenlet: CommentDisplayScreenlet,
-			onCommentDeleted comment: Comment) {
-		print("DELEGATE: onCommentDeleted called -> \(comment)\n");
-	}
-
-	func screenlet(
-			screenlet: CommentDisplayScreenlet,
-			onDeleteComment comment: Comment,
+	func screenlet(screenlet: CommentDisplayScreenlet, onDeleteComment comment: Comment,
 			onError error: NSError) {
-		print("DELEGATE: onDeleteComment onError called -> \(comment), \(error)\n");
+		LiferayLogger.logDelegateMessage(args: error)
 	}
 
-	func screenlet(
-			screenlet: CommentDisplayScreenlet,
-			onCommentUpdated comment: Comment) {
-		print("DELEGATE: onCommentUpdated called -> \(comment)\n");
+	func screenlet(screenlet: CommentDisplayScreenlet, onCommentUpdated comment: Comment) {
+		LiferayLogger.logDelegateMessage(args: comment)
 	}
 	
-	func screenlet(
-			screenlet: CommentDisplayScreenlet,
-			onUpdateComment comment: Comment,
+	func screenlet(screenlet: CommentDisplayScreenlet, onUpdateComment comment: Comment,
 			onError error: NSError) {
-		print("DELEGATE: onUpdateComment onError called -> \(comment), \(error)\n");
+		LiferayLogger.logDelegateMessage(args: error)
 	}
 
 }
