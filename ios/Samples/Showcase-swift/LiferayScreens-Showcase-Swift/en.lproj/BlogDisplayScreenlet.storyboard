@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="42183" borderStyle="roundedRect" placeholder="Blog ClassPK" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Acb-0c-Ftc">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Blog ClassPK" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Acb-0c-Ftc">
                                 <rect key="frame" x="20" y="84" width="178" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="LR2-DR-PHU"/>
@@ -85,7 +85,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zbs-wQ-GiQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2269" y="2379"/>
+            <point key="canvasLocation" x="-2070" y="2073"/>
         </scene>
     </scenes>
 </document>

@@ -25,7 +25,11 @@ class BlogDisplayScreenletViewController: UIViewController, BlogsEntryDisplayScr
 			screenlet?.delegate = self
 		}
 	}
-	@IBOutlet weak var blogClassPKLabel: UITextField?
+	@IBOutlet weak var blogClassPKLabel: UITextField? {
+		didSet {
+			blogClassPKLabel?.text = LiferayServerContext.stringPropertyForKey("blogDisplayClassPK")
+		}
+	}
 
 	
 	//MARK: IBAction
