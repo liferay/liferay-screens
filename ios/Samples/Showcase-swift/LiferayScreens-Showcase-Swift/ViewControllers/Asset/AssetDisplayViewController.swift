@@ -26,7 +26,7 @@ class AssetDisplayViewController: UIViewController, AssetDisplayScreenletDelegat
 			screenlet.presentingViewController = self
 			
 			screenlet.assetEntryId = entryId ??
-				LiferayServerContext.longProperty("assetDisplayEntryId")
+				LiferayServerContext.longPropertyForKey("assetDisplayEntryId")
 		}
 	}
 	

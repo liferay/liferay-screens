@@ -106,14 +106,59 @@ import Foundation
 
 	//MARK: Public methods
 
-	public class func propertyForKey(key: String) -> AnyObject? {
-		loadContextFile()
-		return StaticInstance.serverProperties![key]
-	}
-
 	public class func setPropertyValue(value: AnyObject, forKey key: String) {
 		loadContextFile()
 		return StaticInstance.serverProperties![key] = value
+	}
+	
+	public class func propertyForKey(key: String) -> AnyObject {
+		loadContextFile()
+		
+		guard let value = StaticInstance.serverProperties?[key] else {
+			fatalError("Missing key \(key) on liferay-server-context.plist file")
+		}
+		
+		return value
+	}
+	
+	public class func numberPropertyForKey(key: String) -> NSNumber {
+		guard let value = propertyForKey(key) as? NSNumber else {
+			fatalError("Key \(key) is not a NSNumber")
+		}
+		
+		return value
+	}
+	
+	public class func longPropertyForKey(key: String) -> Int64 {
+		return numberPropertyForKey(key).longLongValue
+	}
+	
+	public class func intPropertyForKey(key: String) -> Int {
+		return numberPropertyForKey(key).integerValue
+	}
+	
+	public class func booleanPropertyForKey(key: String) -> Bool {
+		guard let value = propertyForKey(key) as? Bool else {
+			fatalError("Key \(key) is not a Boolean")
+		}
+		
+		return value
+	}
+	
+	public class func datePropertyForKey(key: String) -> NSDate {
+		guard let value = propertyForKey(key) as? NSDate else {
+			fatalError("Key \(key) is not a NSDate")
+		}
+		
+		return value
+	}
+	
+	public class func stringPropertyForKey(key: String) -> String {
+		guard let value = propertyForKey(key) as? String else {
+			fatalError("Key \(key) is not a String")
+		}
+		
+		return value
 	}
 
 
