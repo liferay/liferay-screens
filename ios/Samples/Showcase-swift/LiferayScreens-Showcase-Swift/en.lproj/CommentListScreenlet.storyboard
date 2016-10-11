@@ -21,14 +21,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Cs-KB-hzY" customClass="CommentListScreenlet" customModule="LiferayScreens">
                                 <rect key="frame" x="-4" y="64" width="328" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="className" value="com.liferay.document.library.kernel.model.DLFileEntry"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="classPK">
-                                        <integer key="value" value="30414"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="YES"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -55,7 +47,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mpb-r6-Lc5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1535.625" y="838.73239436619713"/>
+            <point key="canvasLocation" x="-1460" y="807"/>
         </scene>
     </scenes>
 </document>
