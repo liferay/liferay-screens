@@ -9,7 +9,7 @@
 	<key>companyId</key>
 	<integer>20116</integer>
 	<key>groupId</key>
-	<integer>41905</integer>
+	<real>41905</real>
 	<key>anonymousUsername</key>
 	<string>anonymous1@liferay.com</string>
 	<key>anonymousPassword</key>
@@ -30,5 +30,11 @@
 	<integer>42232</integer>
 	<key>ratingEmojisEntryId</key>
 	<integer>42232</integer>
+	<key>imageGalleryMimeType</key>
+	<string>image/png,image/jpeg</string>
+	<key>imageGalleryFolderId</key>
+	<integer>42257</integer>
+	<key>imageGalleryRepositoryId</key>
+	<real>41905</real>
 </dict>
 </plist>

@@ -23,6 +23,8 @@
 		0B54FBAC1DACF1C100E0EE0C /* BlogDisplayScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FBAB1DACF1C100E0EE0C /* BlogDisplayScreenletViewController.swift */; };
 		0B54FBAF1DACF71700E0EE0C /* RatingScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FBB11DACF71700E0EE0C /* RatingScreenlet.storyboard */; };
 		0B54FBB31DACF77B00E0EE0C /* RatingScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FBB21DACF77B00E0EE0C /* RatingScreenletViewController.swift */; };
+		0B54FBB61DACFA7C00E0EE0C /* ImageGalleryScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FBB81DACFA7C00E0EE0C /* ImageGalleryScreenlet.storyboard */; };
+		0B54FBBA1DACFAAA00E0EE0C /* ImageGalleryScreenletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FBB91DACFAAA00E0EE0C /* ImageGalleryScreenletController.swift */; };
 		0B6147F81DABC853004FAC7C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6147F71DABC853004FAC7C /* UIImageExtension.swift */; };
 		0B6147FA1DABC86E004FAC7C /* LiferayLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6147F91DABC86E004FAC7C /* LiferayLogger.swift */; };
 		0B6147FD1DABD741004FAC7C /* SignUpScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B6147FB1DABD741004FAC7C /* SignUpScreenlet.storyboard */; };
@@ -35,7 +37,6 @@
 		0B6148141DABF0AF004FAC7C /* WebContentListScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B6148121DABF0AF004FAC7C /* WebContentListScreenlet.storyboard */; };
 		0B6148181DABF643004FAC7C /* AssetDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B6148161DABF643004FAC7C /* AssetDisplayScreenlet.storyboard */; };
 		0B61481B1DABF672004FAC7C /* AssetDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B61481A1DABF672004FAC7C /* AssetDisplayViewController.swift */; };
-		0B7AD4361D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7AD4351D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift */; };
 		4A244F934838CD2208782444 /* Pods_LiferayScreens_Showcase_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13D0A9CE1E740FFDD9D2884C /* Pods_LiferayScreens_Showcase_Swift.framework */; };
 		881B74411B9EEDED00EA64ED /* OfflineSyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B74401B9EEDED00EA64ED /* OfflineSyncViewController.swift */; };
 		88CC3AFC1CC153D900E0AEB7 /* WebContentDisplayView_book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC3AF81CC153D900E0AEB7 /* WebContentDisplayView_book.swift */; };
@@ -76,6 +77,8 @@
 		0B54FBAB1DACF1C100E0EE0C /* BlogDisplayScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogDisplayScreenletViewController.swift; sourceTree = "<group>"; };
 		0B54FBB01DACF71700E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/RatingScreenlet.storyboard; sourceTree = "<group>"; };
 		0B54FBB21DACF77B00E0EE0C /* RatingScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingScreenletViewController.swift; sourceTree = "<group>"; };
+		0B54FBB71DACFA7C00E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/ImageGalleryScreenlet.storyboard; sourceTree = "<group>"; };
+		0B54FBB91DACFAAA00E0EE0C /* ImageGalleryScreenletController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryScreenletController.swift; sourceTree = "<group>"; };
 		0B6147F71DABC853004FAC7C /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		0B6147F91DABC86E004FAC7C /* LiferayLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayLogger.swift; sourceTree = "<group>"; };
 		0B6147FC1DABD741004FAC7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/SignUpScreenlet.storyboard; sourceTree = "<group>"; };
@@ -88,7 +91,6 @@
 		0B6148131DABF0AF004FAC7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/WebContentListScreenlet.storyboard; sourceTree = "<group>"; };
 		0B6148171DABF643004FAC7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/AssetDisplayScreenlet.storyboard; sourceTree = "<group>"; };
 		0B61481A1DABF672004FAC7C /* AssetDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayViewController.swift; sourceTree = "<group>"; };
-		0B7AD4351D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryScreenletController.swift; sourceTree = "<group>"; };
 		13D0A9CE1E740FFDD9D2884C /* Pods_LiferayScreens_Showcase_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiferayScreens_Showcase_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F7AD30F6279ED703F034F12 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		2B4C45252D99EAFB09DDD12A /* Pods-LiferayScreens-Showcase-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreens-Showcase-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreens-Showcase-Swift/Pods-LiferayScreens-Showcase-Swift.release.xcconfig"; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			children = (
 				0B54FBA71DACF12300E0EE0C /* BlogDisplayScreenlet.storyboard */,
 				0B54FBB11DACF71700E0EE0C /* RatingScreenlet.storyboard */,
+				0B54FBB81DACFA7C00E0EE0C /* ImageGalleryScreenlet.storyboard */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 		0B54FBAA1DACF1C100E0EE0C /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				0B54FBB91DACFAAA00E0EE0C /* ImageGalleryScreenletController.swift */,
 				0B54FBAB1DACF1C100E0EE0C /* BlogDisplayScreenletViewController.swift */,
 				0B54FBB21DACF77B00E0EE0C /* RatingScreenletViewController.swift */,
 			);
@@ -352,7 +356,6 @@
 				0B6148081DABE86F004FAC7C /* WebContent */,
 				88DE2AA41AD3EFEF00714701 /* DDLFormScreenletViewController.swift */,
 				88DE2AA51AD3EFEF00714701 /* DDLListScreenletViewController.swift */,
-				0B7AD4351D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift */,
 				88DE2AA91AD3EFEF00714701 /* UserPortraitScreenletViewController.swift */,
 			);
 			path = ViewControllers;
@@ -441,6 +444,7 @@
 				88DE2A941AD3DF2800714701 /* Default-568h@2x.png in Resources */,
 				0B54FB9D1DACE9CD00E0EE0C /* ForgotPasswordScreenlet.storyboard in Resources */,
 				0B54FB901DACE97300E0EE0C /* CommentDisplayScreenlet.storyboard in Resources */,
+				0B54FBB61DACFA7C00E0EE0C /* ImageGalleryScreenlet.storyboard in Resources */,
 				88CC3B031CC158C800E0AEB7 /* HtmlTableViewCell.xib in Resources */,
 				0B54FBA81DACF12300E0EE0C /* BlogDisplayScreenlet.storyboard in Resources */,
 				88CC3AFF1CC153D900E0AEB7 /* WebContentListView_book.xib in Resources */,
@@ -519,6 +523,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B6148071DABE2B0004FAC7C /* SignUpScreenletViewController.swift in Sources */,
+				0B54FBBA1DACFAAA00E0EE0C /* ImageGalleryScreenletController.swift in Sources */,
 				0B6148061DABE2B0004FAC7C /* LoginViewController.swift in Sources */,
 				88CC3B061CC158E300E0AEB7 /* BookTableViewCell.swift in Sources */,
 				0B7F45A41DA7C0D700A3BDE3 /* ImageDisplayViewController.swift in Sources */,
@@ -537,7 +542,6 @@
 				88CC3B021CC158C800E0AEB7 /* HtmlTableViewCell.swift in Sources */,
 				0B61480B1DABE86F004FAC7C /* WebContentDisplayScreenletViewController.swift in Sources */,
 				0B54FB7D1DACCFDF00E0EE0C /* AssetTypesViewController.swift in Sources */,
-				0B7AD4361D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift in Sources */,
 				88DE2AAD1AD3EFEF00714701 /* DDLListScreenletViewController.swift in Sources */,
 				0B6147FA1DABC86E004FAC7C /* LiferayLogger.swift in Sources */,
 				0B54FBAC1DACF1C100E0EE0C /* BlogDisplayScreenletViewController.swift in Sources */,
@@ -598,6 +602,14 @@
 				0B54FBB01DACF71700E0EE0C /* en */,
 			);
 			name = RatingScreenlet.storyboard;
+			sourceTree = "<group>";
+		};
+		0B54FBB81DACFA7C00E0EE0C /* ImageGalleryScreenlet.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B54FBB71DACFA7C00E0EE0C /* en */,
+			);
+			name = ImageGalleryScreenlet.storyboard;
 			sourceTree = "<group>";
 		};
 		0B6147FB1DABD741004FAC7C /* SignUpScreenlet.storyboard */ = {
