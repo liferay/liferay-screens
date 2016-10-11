@@ -10,10 +10,13 @@
 		0B009C7E1D66E7A20085070B /* CommentListScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B009C7D1D66E7A20085070B /* CommentListScreenletViewController.swift */; };
 		0B54FB771DACC95500E0EE0C /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FB761DACC95500E0EE0C /* UserView.swift */; };
 		0B54FB791DACC97000E0EE0C /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FB781DACC97000E0EE0C /* UserView.xib */; };
+		0B54FB7D1DACCFDF00E0EE0C /* AssetTypesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FB7C1DACCFDF00E0EE0C /* AssetTypesViewController.swift */; };
+		0B54FB7F1DACD17500E0EE0C /* AssetListScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FB7E1DACD17500E0EE0C /* AssetListScreenletViewController.swift */; };
+		0B54FB981DACE9BF00E0EE0C /* AssetTypes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FB9A1DACE9BF00E0EE0C /* AssetTypes.storyboard */; };
+		0B54FB9D1DACE9CD00E0EE0C /* ForgotPasswordScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FB9F1DACE9CD00E0EE0C /* ForgotPasswordScreenlet.storyboard */; };
 		0B6147F81DABC853004FAC7C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6147F71DABC853004FAC7C /* UIImageExtension.swift */; };
 		0B6147FA1DABC86E004FAC7C /* LiferayLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6147F91DABC86E004FAC7C /* LiferayLogger.swift */; };
 		0B6147FD1DABD741004FAC7C /* SignUpScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B6147FB1DABD741004FAC7C /* SignUpScreenlet.storyboard */; };
-		0B6147FF1DABD7BA004FAC7C /* ForgotPasswordScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B6147FE1DABD7BA004FAC7C /* ForgotPasswordScreenlet.storyboard */; };
 		0B6148051DABE2B0004FAC7C /* ForgotPasswordScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6148021DABE2B0004FAC7C /* ForgotPasswordScreenletViewController.swift */; };
 		0B6148061DABE2B0004FAC7C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6148031DABE2B0004FAC7C /* LoginViewController.swift */; };
 		0B6148071DABE2B0004FAC7C /* SignUpScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6148041DABE2B0004FAC7C /* SignUpScreenletViewController.swift */; };
@@ -45,7 +48,6 @@
 		88DE2A921AD3DF2200714701 /* liferay-server-context.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88DE2A911AD3DF2200714701 /* liferay-server-context.plist */; };
 		88DE2A941AD3DF2800714701 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88DE2A931AD3DF2800714701 /* Default-568h@2x.png */; };
 		88DE2A991AD3DF7600714701 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88DE2A9B1AD3DF7600714701 /* Localizable.strings */; };
-		88DE2AAB1AD3EFEF00714701 /* AssetListScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE2AA31AD3EFEF00714701 /* AssetListScreenletViewController.swift */; };
 		88DE2AAC1AD3EFEF00714701 /* DDLFormScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE2AA41AD3EFEF00714701 /* DDLFormScreenletViewController.swift */; };
 		88DE2AAD1AD3EFEF00714701 /* DDLListScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE2AA51AD3EFEF00714701 /* DDLListScreenletViewController.swift */; };
 		88DE2AAF1AD3EFEF00714701 /* HomeScreenletsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE2AA71AD3EFEF00714701 /* HomeScreenletsViewController.swift */; };
@@ -56,10 +58,13 @@
 		0B009C7D1D66E7A20085070B /* CommentListScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListScreenletViewController.swift; sourceTree = "<group>"; };
 		0B54FB761DACC95500E0EE0C /* UserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		0B54FB781DACC97000E0EE0C /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserView.xib; sourceTree = "<group>"; };
+		0B54FB7C1DACCFDF00E0EE0C /* AssetTypesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetTypesViewController.swift; sourceTree = "<group>"; };
+		0B54FB7E1DACD17500E0EE0C /* AssetListScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListScreenletViewController.swift; sourceTree = "<group>"; };
+		0B54FB991DACE9BF00E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/AssetTypes.storyboard; sourceTree = "<group>"; };
+		0B54FB9E1DACE9CD00E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/ForgotPasswordScreenlet.storyboard; sourceTree = "<group>"; };
 		0B6147F71DABC853004FAC7C /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		0B6147F91DABC86E004FAC7C /* LiferayLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayLogger.swift; sourceTree = "<group>"; };
 		0B6147FC1DABD741004FAC7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/SignUpScreenlet.storyboard; sourceTree = "<group>"; };
-		0B6147FE1DABD7BA004FAC7C /* ForgotPasswordScreenlet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = ForgotPasswordScreenlet.storyboard; path = en.lproj/ForgotPasswordScreenlet.storyboard; sourceTree = "<group>"; };
 		0B6148021DABE2B0004FAC7C /* ForgotPasswordScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordScreenletViewController.swift; sourceTree = "<group>"; };
 		0B6148031DABE2B0004FAC7C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0B6148041DABE2B0004FAC7C /* SignUpScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpScreenletViewController.swift; sourceTree = "<group>"; };
@@ -98,7 +103,6 @@
 		88DE2A9A1AD3DF7600714701 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		88DE2A9C1AD3DF8500714701 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		88DE2A9D1AD3DF8C00714701 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		88DE2AA31AD3EFEF00714701 /* AssetListScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetListScreenletViewController.swift; sourceTree = "<group>"; };
 		88DE2AA41AD3EFEF00714701 /* DDLFormScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormScreenletViewController.swift; sourceTree = "<group>"; };
 		88DE2AA51AD3EFEF00714701 /* DDLListScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListScreenletViewController.swift; sourceTree = "<group>"; };
 		88DE2AA71AD3EFEF00714701 /* HomeScreenletsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenletsViewController.swift; sourceTree = "<group>"; };
@@ -170,7 +174,7 @@
 		0B61480D1DABE8AA004FAC7C /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				0B6147FE1DABD7BA004FAC7C /* ForgotPasswordScreenlet.storyboard */,
+				0B54FB9F1DACE9CD00E0EE0C /* ForgotPasswordScreenlet.storyboard */,
 				0B6147FB1DABD741004FAC7C /* SignUpScreenlet.storyboard */,
 			);
 			name = Auth;
@@ -188,6 +192,7 @@
 		0B6148151DABF61B004FAC7C /* Asset */ = {
 			isa = PBXGroup;
 			children = (
+				0B54FB9A1DACE9BF00E0EE0C /* AssetTypes.storyboard */,
 				0B6148161DABF643004FAC7C /* AssetDisplayScreenlet.storyboard */,
 			);
 			name = Asset;
@@ -196,6 +201,8 @@
 		0B6148191DABF672004FAC7C /* Asset */ = {
 			isa = PBXGroup;
 			children = (
+				0B54FB7C1DACCFDF00E0EE0C /* AssetTypesViewController.swift */,
+				0B54FB7E1DACD17500E0EE0C /* AssetListScreenletViewController.swift */,
 				0B61481A1DABF672004FAC7C /* AssetDisplayViewController.swift */,
 			);
 			path = Asset;
@@ -290,7 +297,6 @@
 				0B6148191DABF672004FAC7C /* Asset */,
 				0B6148011DABE2B0004FAC7C /* Auth */,
 				0B6148081DABE86F004FAC7C /* WebContent */,
-				88DE2AA31AD3EFEF00714701 /* AssetListScreenletViewController.swift */,
 				882E72821D8184240097E835 /* BlogDisplayScreenletViewController.swift */,
 				8834684E1D7D9CC0002344C4 /* CommentDisplayScreenletViewController.swift */,
 				0B009C7D1D66E7A20085070B /* CommentListScreenletViewController.swift */,
@@ -378,12 +384,13 @@
 				0B54FB791DACC97000E0EE0C /* UserView.xib in Resources */,
 				88CC3B071CC158E300E0AEB7 /* BookTableViewCell.xib in Resources */,
 				0B6148141DABF0AF004FAC7C /* WebContentListScreenlet.storyboard in Resources */,
+				0B54FB981DACE9BF00E0EE0C /* AssetTypes.storyboard in Resources */,
 				88DE2A7C1AD3DDE600714701 /* LaunchScreen.xib in Resources */,
 				0B4AD15F1DABCAFC00F9A74F /* Default-placeholder-image.png in Resources */,
 				88DE2A941AD3DF2800714701 /* Default-568h@2x.png in Resources */,
+				0B54FB9D1DACE9CD00E0EE0C /* ForgotPasswordScreenlet.storyboard in Resources */,
 				88CC3B031CC158C800E0AEB7 /* HtmlTableViewCell.xib in Resources */,
 				88CC3AFF1CC153D900E0AEB7 /* WebContentListView_book.xib in Resources */,
-				0B6147FF1DABD7BA004FAC7C /* ForgotPasswordScreenlet.storyboard in Resources */,
 				88DE2A791AD3DDE600714701 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,6 +472,7 @@
 				88DE2AB11AD3EFEF00714701 /* UserPortraitScreenletViewController.swift in Sources */,
 				881B74411B9EEDED00EA64ED /* OfflineSyncViewController.swift in Sources */,
 				88CC3AFE1CC153D900E0AEB7 /* WebContentListView_book.swift in Sources */,
+				0B54FB7F1DACD17500E0EE0C /* AssetListScreenletViewController.swift in Sources */,
 				8834684F1D7D9CC0002344C4 /* CommentDisplayScreenletViewController.swift in Sources */,
 				0B61480C1DABE86F004FAC7C /* WebContentListScreenletViewController.swift in Sources */,
 				88CC3AFC1CC153D900E0AEB7 /* WebContentDisplayView_book.swift in Sources */,
@@ -476,11 +484,11 @@
 				0BD612C91D36709E00CD4D76 /* RatingScreenletViewController.swift in Sources */,
 				0B009C7E1D66E7A20085070B /* CommentListScreenletViewController.swift in Sources */,
 				0B61480B1DABE86F004FAC7C /* WebContentDisplayScreenletViewController.swift in Sources */,
+				0B54FB7D1DACCFDF00E0EE0C /* AssetTypesViewController.swift in Sources */,
 				0B7AD4361D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift in Sources */,
 				88DE2AAD1AD3EFEF00714701 /* DDLListScreenletViewController.swift in Sources */,
 				0B6147FA1DABC86E004FAC7C /* LiferayLogger.swift in Sources */,
 				0B6147F81DABC853004FAC7C /* UIImageExtension.swift in Sources */,
-				88DE2AAB1AD3EFEF00714701 /* AssetListScreenletViewController.swift in Sources */,
 				88DE2A721AD3DDE600714701 /* AppDelegate.swift in Sources */,
 				88DE2AAC1AD3EFEF00714701 /* DDLFormScreenletViewController.swift in Sources */,
 				0B54FB771DACC95500E0EE0C /* UserView.swift in Sources */,
@@ -490,6 +498,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+			isa = PBXVariantGroup;
+			children = (
+				0B54FB911DACE97300E0EE0C /* en */,
+			);
+			name = AssetTypes.storyboard;
+			sourceTree = "<group>";
+		};
+		0B54FB9F1DACE9CD00E0EE0C /* ForgotPasswordScreenlet.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B54FB9E1DACE9CD00E0EE0C /* en */,
+			);
+			name = ForgotPasswordScreenlet.storyboard;
+			sourceTree = "<group>";
+		};
 		0B6147FB1DABD741004FAC7C /* SignUpScreenlet.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
