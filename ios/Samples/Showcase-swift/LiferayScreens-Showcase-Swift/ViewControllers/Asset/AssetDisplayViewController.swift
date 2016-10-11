@@ -17,47 +17,53 @@ import LiferayScreens
 
 class AssetDisplayViewController: UIViewController, AssetDisplayScreenletDelegate {
 	
-	@IBOutlet var screenlet: AssetDisplayScreenlet?
+	
+	//MARK: IBOutlet
+	
+	@IBOutlet var screenlet: AssetDisplayScreenlet! {
+		didSet {
+			screenlet.delegate = self
+			screenlet.presentingViewController = self
+			
+			screenlet.assetEntryId = entryId ??
+				LiferayServerContext.longProperty("assetDisplayEntryId")
+		}
+	}
 	
 	var entryId: Int64?
+	
+	
+	//MARK: UIViewController
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		if let id = entryId {
-			self.screenlet?.assetEntryId = id
-		}
-		self.screenlet?.delegate = self
-		self.screenlet?.presentingViewController = self
 		self.screenlet?.load()
 	}
+	
+	
+	//MARK: AssetDisplayScreenletDelegate
+	
+	func screenlet(screenlet: AssetDisplayScreenlet, onAssetResponse asset: Asset) {
+		LiferayLogger.delegate(args: asset)
+	}
 
-	func screenlet(screenlet: AssetDisplayScreenlet,
-			onAssetResponse asset: Asset) {
-		print("DELEGATE: onAssetEntryResponse -> \(asset)\n");
+	func screenlet(screenlet: AssetDisplayScreenlet, onAssetError error: NSError) {
+		LiferayLogger.delegate(args: error)
 	}
 
 	func screenlet(screenlet: AssetDisplayScreenlet,
-			onAssetError error: NSError) {
-		print("DELEGATE: onAssetError -> \(error)\n");
-	}
-
-	func screenlet(screenlet: AssetDisplayScreenlet,
-			onConfigureScreenlet childScreenlet: BaseScreenlet?,
-			onAsset asset: Asset) {
-		print("DELEGATE: onConfigureScreenlet -> \(childScreenlet)\n");
+	               onConfigureScreenlet childScreenlet: BaseScreenlet?,
+	               onAsset asset: Asset) {
+		LiferayLogger.delegate(args: childScreenlet, asset)
 	}
 
 	func screenlet(screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView? {
 		let keys = asset.attributes["object"]!.allKeys
-		if keys.contains({$0 as! String == "user"}) {
-			let vc = self.storyboard?.instantiateViewControllerWithIdentifier("UserDisplay") as? UserDisplayViewController
-			if let userVc = vc {
-				self.addChildViewController(userVc)
-				screenlet.addSubview(userVc.view)
-				userVc.view.frame = screenlet.bounds
-				userVc.user = User(attributes: asset.attributes)
-			}
+		if keys.contains({$0 as? String == "user"}) {
+			let userView = UserView()
+			userView.user = User(attributes: asset.attributes)
+			return userView
 		}
 		return nil
 	}
