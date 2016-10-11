@@ -96,7 +96,7 @@ public class ImageDisplayView extends RelativeLayout implements ImageDisplayView
 	}
 
 	@Override
-	public void setPlaceholder(int placeholder) {
+	public void setPlaceholder(@DrawableRes int placeholder) {
 		this.placeholder = placeholder;
 	}
 
