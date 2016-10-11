@@ -45,6 +45,7 @@
 			android:windowSoftInputMode="adjustPan"/>
 		<activity android:name=".RatingsActivity"/>
 		<activity android:name=".AssetDisplayActivity"/>
+		<activity android:name=".ImageDisplayActivity"/>
 		<activity android:name=".GalleryActivity"/>
 	</application>
 

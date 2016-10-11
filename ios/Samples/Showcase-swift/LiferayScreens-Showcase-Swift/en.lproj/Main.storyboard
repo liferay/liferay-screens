@@ -195,11 +195,12 @@
                         <segue destination="My4-vf-44F" kind="push" identifier="CommentListScreenlet" id="zPF-BA-bIW"/>
                         <segue destination="myx-wj-dMR" kind="push" identifier="CommentDisplayScreenlet" id="XI4-un-Xh8"/>
                         <segue destination="x7q-3L-OL5" kind="push" identifier="BlogDisplayScreenlet" id="i4Y-KS-eKW"/>
+                        <segue destination="Pwt-fV-JKr" kind="push" identifier="ImageDisplayScreenlet" id="lDa-ym-jQc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsJ-Fx-gOc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="400" y="1047"/>
+            <point key="canvasLocation" x="196" y="1057"/>
         </scene>
         <!--DDLFormScreenlet-->
         <scene sceneID="rsZ-56-Bs1">
@@ -1028,6 +1029,47 @@
             </objects>
             <point key="canvasLocation" x="947" y="938"/>
         </scene>
+        <!--Image Display View Controller-->
+        <scene sceneID="J6O-H2-Wrm">
+            <objects>
+                <viewController id="Pwt-fV-JKr" customClass="ImageDisplayViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fmW-Gf-yMK"/>
+                        <viewControllerLayoutGuide type="bottom" id="zcb-8Y-9FW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bAF-Qv-wmG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IoM-Ru-zJN" customClass="ImageDisplayScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="assetEntryId">
+                                        <integer key="value" value="41638"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="placeholder" value="Default-placeholder-image.png"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IoM-Ru-zJN" firstAttribute="bottom" secondItem="zcb-8Y-9FW" secondAttribute="top" id="0C5-ca-PaC"/>
+                            <constraint firstItem="IoM-Ru-zJN" firstAttribute="leading" secondItem="bAF-Qv-wmG" secondAttribute="leading" id="6hA-ct-3aJ"/>
+                            <constraint firstAttribute="trailing" secondItem="IoM-Ru-zJN" secondAttribute="trailing" id="GHb-WW-rZg"/>
+                            <constraint firstItem="IoM-Ru-zJN" firstAttribute="top" secondItem="fmW-Gf-yMK" secondAttribute="bottom" id="Y4N-Vs-fAM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="vID-k1-Y3r"/>
+                    <connections>
+                        <outlet property="screenlet" destination="IoM-Ru-zJN" id="83q-qg-gGA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XWY-1t-Yio" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1440" y="542"/>
+        </scene>
         <!--ForgotPasswordScreenlet-->
         <scene sceneID="p81-1L-f7Z">
             <objects>
@@ -1583,10 +1625,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Default-placeholder-image.png" width="96" height="96"/>
         <image name="screens-ico" width="16" height="16"/>
         <image name="user-icon" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZMV-Uy-XZg"/>
+        <segue reference="PqW-k4-h3V"/>
     </inferredMetricsTieBreakers>
 </document>

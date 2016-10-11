@@ -17,8 +17,8 @@ import com.liferay.mobile.screens.context.SessionContext;
 /**
  * @author Sarai Díaz García
  */
-public abstract class BaseFileDisplayScreenlet
-	extends BaseScreenlet<BaseFileDisplayViewModel, AssetDisplayInteractor> implements AssetDisplayListener {
+public abstract class BaseFileDisplayScreenlet<V extends BaseFileDisplayViewModel>
+	extends BaseScreenlet<V, AssetDisplayInteractor> implements AssetDisplayListener {
 
 	public static final String LOAD_ASSET_ACTION = "LOAD_ASSET_ACTION";
 
