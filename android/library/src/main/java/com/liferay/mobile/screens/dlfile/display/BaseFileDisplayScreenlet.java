@@ -27,7 +27,7 @@ public abstract class BaseFileDisplayScreenlet
 	protected boolean autoLoad;
 	protected long entryId;
 	protected long classPK;
-	protected String className;
+	protected String className = getResources().getString(R.string.liferay_class_dlfile);
 	protected AssetDisplayListener listener;
 	protected FileEntry fileEntry;
 

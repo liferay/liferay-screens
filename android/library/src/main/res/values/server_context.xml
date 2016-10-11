@@ -10,4 +10,6 @@
 	<integer name="liferay_portal_version">62</integer>
 	<string name="liferay_version_factory"/>
 
+	<string name="liferay_class_dlfile">com.liferay.document.library.kernel.model.DLFileEntry
+	</string>
 </resources>
