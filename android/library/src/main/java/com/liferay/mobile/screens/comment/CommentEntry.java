@@ -109,14 +109,6 @@ public class CommentEntry implements Parcelable {
 		return values != null && getCommentId() == that.getCommentId();
 	}
 
-	public boolean isEditable() {
-		return this.editable;
-	}
-
-	public void setEditable(boolean editable) {
-		this.editable = editable;
-	}
-
 	@Override
 	public int hashCode() {
 		int result = values.hashCode();

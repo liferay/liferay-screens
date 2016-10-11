@@ -14,19 +14,15 @@
 
 package com.liferay.mobile.screens.ddl.model;
 
-import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.ddl.JsonParser;
 import com.liferay.mobile.screens.ddl.XSDParser;
-
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -59,7 +55,7 @@ public class BooleanFieldTest {
 	private static final Locale spanishLocale = new Locale("es", "ES");
 	private static final Locale usLocale = new Locale("en", "US");
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingFromString {
 
@@ -85,7 +81,7 @@ public class BooleanFieldTest {
 		}
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingToString {
 
@@ -111,7 +107,7 @@ public class BooleanFieldTest {
 		}
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingToFormattedString {
 
@@ -191,22 +187,21 @@ public class BooleanFieldTest {
 		}
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingXSD {
 		@Test
 		public void shouldReturnStringFieldObject() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"boolean\" " +
-					"type=\"checkbox\" " +
-					"name=\"A_Bool\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"predefinedValue\"><![CDATA[false]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"</root>";
+			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+				"<dynamic-element " +
+				"dataType=\"boolean\" " +
+				"type=\"checkbox\" " +
+				"name=\"A_Bool\" > " +
+				"<meta-data locale=\"en_US\"> " +
+				"<entry name=\"predefinedValue\"><![CDATA[false]]></entry> " +
+				"</meta-data> " +
+				"</dynamic-element>" +
+				"</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, usLocale);
 
@@ -226,14 +221,13 @@ public class BooleanFieldTest {
 
 		@Test
 		public void shouldUseFalseAsDefaultValueWhenNoPredefinedValue() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"boolean\" " +
-					"type=\"checkbox\" " +
-					"name=\"A_Bool\" > " +
-					"</dynamic-element>" +
-					"</root>";
+			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+				"<dynamic-element " +
+				"dataType=\"boolean\" " +
+				"type=\"checkbox\" " +
+				"name=\"A_Bool\" > " +
+				"</dynamic-element>" +
+				"</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, usLocale);
 
@@ -243,7 +237,7 @@ public class BooleanFieldTest {
 		}
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingJson {
 		@Test
@@ -275,5 +269,4 @@ public class BooleanFieldTest {
 			assertFalse(booleanField.getCurrentValue());
 		}
 	}
-
 }
