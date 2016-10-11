@@ -140,7 +140,9 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="sjO-eB-wvw"/>
                                         </constraints>
-                                        <state key="normal" title="Did you forget your password?"/>
+                                        <state key="normal" title="Did you forget your password?">
+                                            <color key="titleColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                                        </state>
                                         <connections>
                                             <segue destination="qsM-Eb-C5l" kind="show" id="mQB-tY-hTc"/>
                                         </connections>
