@@ -37,7 +37,7 @@ import Foundation
 	}
 
 	public var fileEntryId: Int64 {
-		return self.fileEntry["fileEntryId"]!.description.asLong!
+		return self.fileEntry["fileEntryId"]!.longLongValue
 	}
 
 }
