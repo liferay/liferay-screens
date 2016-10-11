@@ -10,7 +10,9 @@
 		0B009C7E1D66E7A20085070B /* CommentListScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B009C7D1D66E7A20085070B /* CommentListScreenletViewController.swift */; };
 		0B2180381D6C53A800A23690 /* AssetDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180371D6C53A800A23690 /* AssetDisplayViewController.swift */; };
 		0B21803A1D6C53AD00A23690 /* UserDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180391D6C53AD00A23690 /* UserDisplayViewController.swift */; };
+		0B4AD15F1DABCAFC00F9A74F /* Default-placeholder-image.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B4AD15E1DABCAFC00F9A74F /* Default-placeholder-image.png */; };
 		0B7AD4361D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7AD4351D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift */; };
+		0B7F45A41DA7C0D700A3BDE3 /* ImageDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7F45A31DA7C0D700A3BDE3 /* ImageDisplayViewController.swift */; };
 		0BD612C91D36709E00CD4D76 /* RatingScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD612C81D36709E00CD4D76 /* RatingScreenletViewController.swift */; };
 		4A244F934838CD2208782444 /* Pods_LiferayScreens_Showcase_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13D0A9CE1E740FFDD9D2884C /* Pods_LiferayScreens_Showcase_Swift.framework */; };
 		881B74411B9EEDED00EA64ED /* OfflineSyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B74401B9EEDED00EA64ED /* OfflineSyncViewController.swift */; };
@@ -48,7 +50,9 @@
 		0B009C7D1D66E7A20085070B /* CommentListScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListScreenletViewController.swift; sourceTree = "<group>"; };
 		0B2180371D6C53A800A23690 /* AssetDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayViewController.swift; sourceTree = "<group>"; };
 		0B2180391D6C53AD00A23690 /* UserDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDisplayViewController.swift; sourceTree = "<group>"; };
+		0B4AD15E1DABCAFC00F9A74F /* Default-placeholder-image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-placeholder-image.png"; sourceTree = "<group>"; };
 		0B7AD4351D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryScreenletController.swift; sourceTree = "<group>"; };
+		0B7F45A31DA7C0D700A3BDE3 /* ImageDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDisplayViewController.swift; sourceTree = "<group>"; };
 		0BD612C81D36709E00CD4D76 /* RatingScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingScreenletViewController.swift; sourceTree = "<group>"; };
 		13D0A9CE1E740FFDD9D2884C /* Pods_LiferayScreens_Showcase_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiferayScreens_Showcase_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F7AD30F6279ED703F034F12 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -178,6 +182,7 @@
 				88DE2A7A1AD3DDE600714701 /* LaunchScreen.xib */,
 				88DE2A9B1AD3DF7600714701 /* Localizable.strings */,
 				88DE2A931AD3DF2800714701 /* Default-568h@2x.png */,
+				0B4AD15E1DABCAFC00F9A74F /* Default-placeholder-image.png */,
 				88DE2A701AD3DDE600714701 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -196,6 +201,7 @@
 				88DE2AA61AD3EFEF00714701 /* ForgotPasswordScreenletViewController.swift */,
 				88DE2A9F1AD3E01400714701 /* HomeLoginViewController.swift */,
 				88DE2AA71AD3EFEF00714701 /* HomeScreenletsViewController.swift */,
+				0B7F45A31DA7C0D700A3BDE3 /* ImageDisplayViewController.swift */,
 				0B7AD4351D2CDB3B00F4CB31 /* ImageGalleryScreenletController.swift */,
 				881B74401B9EEDED00EA64ED /* OfflineSyncViewController.swift */,
 				0BD612C81D36709E00CD4D76 /* RatingScreenletViewController.swift */,
@@ -278,6 +284,7 @@
 				88DE2A771AD3DDE600714701 /* Main.storyboard in Resources */,
 				88CC3B071CC158E300E0AEB7 /* BookTableViewCell.xib in Resources */,
 				88DE2A7C1AD3DDE600714701 /* LaunchScreen.xib in Resources */,
+				0B4AD15F1DABCAFC00F9A74F /* Default-placeholder-image.png in Resources */,
 				88DE2A941AD3DF2800714701 /* Default-568h@2x.png in Resources */,
 				88CC3B031CC158C800E0AEB7 /* HtmlTableViewCell.xib in Resources */,
 				88CC3AFF1CC153D900E0AEB7 /* WebContentListView_book.xib in Resources */,
@@ -357,6 +364,7 @@
 			files = (
 				0B2180381D6C53A800A23690 /* AssetDisplayViewController.swift in Sources */,
 				88CC3B061CC158E300E0AEB7 /* BookTableViewCell.swift in Sources */,
+				0B7F45A41DA7C0D700A3BDE3 /* ImageDisplayViewController.swift in Sources */,
 				88DE2AB11AD3EFEF00714701 /* UserPortraitScreenletViewController.swift in Sources */,
 				881B74411B9EEDED00EA64ED /* OfflineSyncViewController.swift in Sources */,
 				88CC3AFE1CC153D900E0AEB7 /* WebContentListView_book.swift in Sources */,
@@ -497,7 +505,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "LiferayScreens-Showcase-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.LiferayScreens-Showcase-Swifta";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.LiferayScreens-Showcase-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -510,7 +518,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "LiferayScreens-Showcase-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.LiferayScreens-Showcase-Swifta";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.LiferayScreens-Showcase-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
