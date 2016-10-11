@@ -10,6 +10,10 @@ public class RatingEvent extends CacheEvent {
 	private String className;
 	private int ratingGroupCounts;
 
+	public RatingEvent() {
+		super();
+	}
+
 	public RatingEvent(JSONObject jsonObject) {
 		super(jsonObject);
 	}
