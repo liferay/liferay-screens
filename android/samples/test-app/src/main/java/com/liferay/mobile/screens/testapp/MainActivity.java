@@ -45,6 +45,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.list_comments).setOnClickListener(this);
 		findViewById(R.id.ratings).setOnClickListener(this);
 		findViewById(R.id.user_display).setOnClickListener(this);
+		findViewById(R.id.image_display).setOnClickListener(this);
 		findViewById(R.id.gallery).setOnClickListener(this);
 	}
 
@@ -141,6 +142,11 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				Intent intent = getIntentWithTheme(AssetDisplayActivity.class);
 				intent.putExtra("entryId", Long.valueOf(getResources().getString(R.string.liferay_user_entryId)));
 				DefaultAnimation.startActivityWithAnimation(this, intent);
+				break;
+			case R.id.image_display:
+				Intent intent1 = getIntentWithTheme(ImageDisplayActivity.class);
+				intent1.putExtra("entryId", Long.valueOf(getResources().getString(R.string.liferay_image_entryId)));
+				DefaultAnimation.startActivityWithAnimation(this, intent1);
 				break;
 			default:
 				start(LoginActivity.class);

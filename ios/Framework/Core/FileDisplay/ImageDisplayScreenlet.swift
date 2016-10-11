@@ -13,10 +13,44 @@
  */
 import Foundation
 
+
 public class ImageDisplayScreenlet: FileDisplayScreenlet {
+
+	@IBInspectable public var placeholder: UIImage?  {
+		didSet {
+			imageDisplayViewModel?.placeholder = placeholder
+		}
+	}
+
+	public var imageDisplayViewModel: ImageDisplayViewModel? {
+		return screenletView as? ImageDisplayViewModel
+	}
+
+	public var imageMode: UIViewContentMode = .ScaleAspectFit {
+		didSet {
+			imageDisplayViewModel?.imageMode = imageMode
+		}
+	}
+
+	public var placeholderImageMode: UIViewContentMode = .Center {
+		didSet {
+			imageDisplayViewModel?.placeholderImageMode = placeholderImageMode
+		}
+	}
+
+
+	//MARK: FileDisplayScreenlet
 
 	override public class var supportedMimeTypes: [String] {
 		return ["image/png", "image/jpg", "image/jpeg", "image/gif"]
+	}
+
+
+	//MARK: BaseScreenlet
+
+	public override func onCreated() {
+		super.onCreated()
+		imageDisplayViewModel?.placeholder = placeholder
 	}
 
 }
