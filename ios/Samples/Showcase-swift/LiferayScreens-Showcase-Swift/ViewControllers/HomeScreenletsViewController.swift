@@ -17,7 +17,7 @@ class HomeScreenletsViewController: UITableViewController {
 
 	//An storyboard that matches these names must be created
 	private let data: [Int: [String]] = [
-		0: ["Assets", "AssetTypes", "AssetDisplayScreenlet"],
+		0: ["Assets", "AssetListScreenlet", "AssetDisplayScreenlet"],
 		1: ["Comments", "CommentListScreenlet", "CommentDisplayScreenlet", "CommentAddScreenlet"],
 		2: ["DDL Module", "DDLListScreenlet", "DDLFormScreenlet"],
 		3: ["Files", "ImageDisplayScreenlet"],

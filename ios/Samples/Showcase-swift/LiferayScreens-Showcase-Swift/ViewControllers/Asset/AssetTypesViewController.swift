@@ -84,6 +84,18 @@ class AssetTypesViewController: UITableViewController {
 		AssetClasses.set(AssetClassNameKey_WikiNode, newId: 27801)
 	}
 	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		self.title = "Choose an asset type"
+	}
+	
+	override func viewWillDisappear(animated: Bool) {
+		super.viewWillDisappear(animated)
+		
+		self.title = nil
+	}
+	
 	
 	//MARK: UITableViewDataSource
 	

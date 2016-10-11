@@ -18,7 +18,7 @@
 		0B54FB8A1DACE91000E0EE0C /* CommentListScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FB881DACE91000E0EE0C /* CommentListScreenletViewController.swift */; };
 		0B54FB901DACE97300E0EE0C /* CommentDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FB921DACE97300E0EE0C /* CommentDisplayScreenlet.storyboard */; };
 		0B54FB931DACE97600E0EE0C /* CommentListScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FB951DACE97600E0EE0C /* CommentListScreenlet.storyboard */; };
-		0B54FB981DACE9BF00E0EE0C /* AssetTypes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FB9A1DACE9BF00E0EE0C /* AssetTypes.storyboard */; };
+		0B54FB981DACE9BF00E0EE0C /* AssetListScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FB9A1DACE9BF00E0EE0C /* AssetListScreenlet.storyboard */; };
 		0B54FB9D1DACE9CD00E0EE0C /* ForgotPasswordScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FB9F1DACE9CD00E0EE0C /* ForgotPasswordScreenlet.storyboard */; };
 		0B54FBA31DACEF7F00E0EE0C /* CommentAddScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FBA21DACEF7F00E0EE0C /* CommentAddScreenletViewController.swift */; };
 		0B54FBA41DACEF8600E0EE0C /* CommentAddScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FBA61DACEF8600E0EE0C /* CommentAddScreenlet.storyboard */; };
@@ -76,7 +76,7 @@
 		0B54FB881DACE91000E0EE0C /* CommentListScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentListScreenletViewController.swift; sourceTree = "<group>"; };
 		0B54FB911DACE97300E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/CommentDisplayScreenlet.storyboard; sourceTree = "<group>"; };
 		0B54FB941DACE97600E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/CommentListScreenlet.storyboard; sourceTree = "<group>"; };
-		0B54FB991DACE9BF00E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/AssetTypes.storyboard; sourceTree = "<group>"; };
+		0B54FB991DACE9BF00E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/AssetListScreenlet.storyboard; sourceTree = "<group>"; };
 		0B54FB9E1DACE9CD00E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/ForgotPasswordScreenlet.storyboard; sourceTree = "<group>"; };
 		0B54FBA21DACEF7F00E0EE0C /* CommentAddScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentAddScreenletViewController.swift; sourceTree = "<group>"; };
 		0B54FBA51DACEF8600E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/CommentAddScreenlet.storyboard; sourceTree = "<group>"; };
@@ -292,7 +292,7 @@
 		0B6148151DABF61B004FAC7C /* Asset */ = {
 			isa = PBXGroup;
 			children = (
-				0B54FB9A1DACE9BF00E0EE0C /* AssetTypes.storyboard */,
+				0B54FB9A1DACE9BF00E0EE0C /* AssetListScreenlet.storyboard */,
 				0B6148161DABF643004FAC7C /* AssetDisplayScreenlet.storyboard */,
 			);
 			name = Asset;
@@ -483,7 +483,7 @@
 				0B54FB791DACC97000E0EE0C /* UserView.xib in Resources */,
 				88CC3B071CC158E300E0AEB7 /* BookTableViewCell.xib in Resources */,
 				0B6148141DABF0AF004FAC7C /* WebContentListScreenlet.storyboard in Resources */,
-				0B54FB981DACE9BF00E0EE0C /* AssetTypes.storyboard in Resources */,
+				0B54FB981DACE9BF00E0EE0C /* AssetListScreenlet.storyboard in Resources */,
 				88DE2A7C1AD3DDE600714701 /* LaunchScreen.xib in Resources */,
 				0B54FBBD1DAD002100E0EE0C /* UserPortraitScreenlet.storyboard in Resources */,
 				0B54FB9D1DACE9CD00E0EE0C /* ForgotPasswordScreenlet.storyboard in Resources */,
@@ -633,12 +633,12 @@
 			name = CommentListScreenlet.storyboard;
 			sourceTree = "<group>";
 		};
-		0B54FB9A1DACE9BF00E0EE0C /* AssetTypes.storyboard */ = {
+		0B54FB9A1DACE9BF00E0EE0C /* AssetListScreenlet.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				0B54FB991DACE9BF00E0EE0C /* en */,
 			);
-			name = AssetTypes.storyboard;
+			name = AssetListScreenlet.storyboard;
 			sourceTree = "<group>";
 		};
 		0B54FB9F1DACE9CD00E0EE0C /* ForgotPasswordScreenlet.storyboard */ = {
