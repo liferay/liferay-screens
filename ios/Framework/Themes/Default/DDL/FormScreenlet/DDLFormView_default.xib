@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,25 +11,40 @@
             <rect key="frame" x="0.0" y="0.0" width="348" height="280"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Dwh-dT-20I">
-                    <rect key="frame" x="0.0" y="5" width="348" height="273"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="default-form-gradient-top.png" translatesAutoresizingMaskIntoConstraints="NO" id="rlY-TQ-G5A">
+                    <rect key="frame" x="0.0" y="0.0" width="348" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="ygK-gQ-9fw"/>
+                    </constraints>
+                </imageView>
+                <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Dwh-dT-20I">
+                    <rect key="frame" x="0.0" y="0.0" width="348" height="280"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="iN0-l3-epB" id="YBy-fP-h2I"/>
                         <outlet property="delegate" destination="iN0-l3-epB" id="mEg-BQ-3CP"/>
                     </connections>
                 </tableView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="default-form-gradient-top.png" id="rlY-TQ-G5A">
-                    <rect key="frame" x="0.0" y="-5" width="348" height="25"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="default-form-gradient-bottom.png" id="2E9-bF-RBx">
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="default-form-gradient-bottom.png" translatesAutoresizingMaskIntoConstraints="NO" id="2E9-bF-RBx">
                     <rect key="frame" x="0.0" y="255" width="348" height="25"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="Kbd-zH-kRR"/>
+                    </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="2E9-bF-RBx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Nht-my-3l2"/>
+                <constraint firstItem="Dwh-dT-20I" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="RCb-wC-uM3"/>
+                <constraint firstAttribute="trailing" secondItem="2E9-bF-RBx" secondAttribute="trailing" id="RRo-Hu-Lgm"/>
+                <constraint firstAttribute="bottom" secondItem="2E9-bF-RBx" secondAttribute="bottom" id="Vmp-Uk-owl"/>
+                <constraint firstItem="Dwh-dT-20I" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Yk9-In-2bc"/>
+                <constraint firstAttribute="trailing" secondItem="rlY-TQ-G5A" secondAttribute="trailing" id="bJx-f8-jxs"/>
+                <constraint firstItem="rlY-TQ-G5A" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="vpr-zc-LDS"/>
+                <constraint firstAttribute="trailing" secondItem="Dwh-dT-20I" secondAttribute="trailing" id="wBv-we-4Ha"/>
+                <constraint firstAttribute="bottom" secondItem="Dwh-dT-20I" secondAttribute="bottom" id="y0O-29-3tX"/>
+                <constraint firstItem="rlY-TQ-G5A" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="yap-lX-DKy"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
@@ -43,9 +59,4 @@
         <image name="default-form-gradient-bottom.png" width="1" height="25"/>
         <image name="default-form-gradient-top.png" width="1" height="25"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>
