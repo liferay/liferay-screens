@@ -33,6 +33,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="LCk-yg-4gq">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="mBW-cM-Sfu">
+                            <color key="tintColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
                             <connections>
                                 <action selector="insertButtonPressed:" destination="My4-vf-44F" id="PPh-Aq-7F2"/>
                             </connections>

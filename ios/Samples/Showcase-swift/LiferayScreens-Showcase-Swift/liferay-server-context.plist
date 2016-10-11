@@ -22,5 +22,13 @@
 	<string>com.liferay.blogs.kernel.model.BlogsEntry</string>
 	<key>commentScreenletClassPK</key>
 	<integer>42183</integer>
+	<key>ratingLikeEntryId</key>
+	<integer>42184</integer>
+	<key>ratingThumbsEntryId</key>
+	<integer>42184</integer>
+	<key>ratingStarsEntryId</key>
+	<integer>42232</integer>
+	<key>ratingEmojisEntryId</key>
+	<integer>42232</integer>
 </dict>
 </plist>
