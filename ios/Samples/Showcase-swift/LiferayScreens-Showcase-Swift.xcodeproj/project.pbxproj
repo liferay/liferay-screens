@@ -17,6 +17,8 @@
 		0B54FB931DACE97600E0EE0C /* CommentListScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FB951DACE97600E0EE0C /* CommentListScreenlet.storyboard */; };
 		0B54FB981DACE9BF00E0EE0C /* AssetTypes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FB9A1DACE9BF00E0EE0C /* AssetTypes.storyboard */; };
 		0B54FB9D1DACE9CD00E0EE0C /* ForgotPasswordScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FB9F1DACE9CD00E0EE0C /* ForgotPasswordScreenlet.storyboard */; };
+		0B54FBA31DACEF7F00E0EE0C /* CommentAddScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FBA21DACEF7F00E0EE0C /* CommentAddScreenletViewController.swift */; };
+		0B54FBA41DACEF8600E0EE0C /* CommentAddScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FBA61DACEF8600E0EE0C /* CommentAddScreenlet.storyboard */; };
 		0B6147F81DABC853004FAC7C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6147F71DABC853004FAC7C /* UIImageExtension.swift */; };
 		0B6147FA1DABC86E004FAC7C /* LiferayLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6147F91DABC86E004FAC7C /* LiferayLogger.swift */; };
 		0B6147FD1DABD741004FAC7C /* SignUpScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B6147FB1DABD741004FAC7C /* SignUpScreenlet.storyboard */; };
@@ -67,6 +69,8 @@
 		0B54FB941DACE97600E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/CommentListScreenlet.storyboard; sourceTree = "<group>"; };
 		0B54FB991DACE9BF00E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/AssetTypes.storyboard; sourceTree = "<group>"; };
 		0B54FB9E1DACE9CD00E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/ForgotPasswordScreenlet.storyboard; sourceTree = "<group>"; };
+		0B54FBA21DACEF7F00E0EE0C /* CommentAddScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentAddScreenletViewController.swift; sourceTree = "<group>"; };
+		0B54FBA51DACEF8600E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/CommentAddScreenlet.storyboard; sourceTree = "<group>"; };
 		0B6147F71DABC853004FAC7C /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		0B6147F91DABC86E004FAC7C /* LiferayLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayLogger.swift; sourceTree = "<group>"; };
 		0B6147FC1DABD741004FAC7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/SignUpScreenlet.storyboard; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				0B54FB871DACE91000E0EE0C /* CommentDisplayScreenletViewController.swift */,
+				0B54FBA21DACEF7F00E0EE0C /* CommentAddScreenletViewController.swift */,
 				0B54FB881DACE91000E0EE0C /* CommentListScreenletViewController.swift */,
 			);
 			path = Comments;
@@ -150,6 +155,7 @@
 			children = (
 				0B54FB921DACE97300E0EE0C /* CommentDisplayScreenlet.storyboard */,
 				0B54FB951DACE97600E0EE0C /* CommentListScreenlet.storyboard */,
+				0B54FBA61DACEF8600E0EE0C /* CommentAddScreenlet.storyboard */,
 			);
 			name = Comments;
 			sourceTree = "<group>";
@@ -398,6 +404,7 @@
 			files = (
 				0B6147FD1DABD741004FAC7C /* SignUpScreenlet.storyboard in Resources */,
 				88DE2A921AD3DF2200714701 /* liferay-server-context.plist in Resources */,
+				0B54FBA41DACEF8600E0EE0C /* CommentAddScreenlet.storyboard in Resources */,
 				0B6148111DABE8F2004FAC7C /* WebContentDisplayScreenlet.storyboard in Resources */,
 				0B6148181DABF643004FAC7C /* AssetDisplayScreenlet.storyboard in Resources */,
 				0B54FB931DACE97600E0EE0C /* CommentListScreenlet.storyboard in Resources */,
@@ -504,6 +511,7 @@
 				88DE2AAF1AD3EFEF00714701 /* HomeScreenletsViewController.swift in Sources */,
 				0B54FB8A1DACE91000E0EE0C /* CommentListScreenletViewController.swift in Sources */,
 				882E72831D8184240097E835 /* BlogDisplayScreenletViewController.swift in Sources */,
+				0B54FBA31DACEF7F00E0EE0C /* CommentAddScreenletViewController.swift in Sources */,
 				88CC3B021CC158C800E0AEB7 /* HtmlTableViewCell.swift in Sources */,
 				0BD612C91D36709E00CD4D76 /* RatingScreenletViewController.swift in Sources */,
 				0B61480B1DABE86F004FAC7C /* WebContentDisplayScreenletViewController.swift in Sources */,
@@ -552,6 +560,14 @@
 				0B54FB9E1DACE9CD00E0EE0C /* en */,
 			);
 			name = ForgotPasswordScreenlet.storyboard;
+			sourceTree = "<group>";
+		};
+		0B54FBA61DACEF8600E0EE0C /* CommentAddScreenlet.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B54FBA51DACEF8600E0EE0C /* en */,
+			);
+			name = CommentAddScreenlet.storyboard;
 			sourceTree = "<group>";
 		};
 		0B6147FB1DABD741004FAC7C /* SignUpScreenlet.storyboard */ = {

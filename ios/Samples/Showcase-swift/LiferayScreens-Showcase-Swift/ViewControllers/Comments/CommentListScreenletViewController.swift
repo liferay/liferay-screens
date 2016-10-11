@@ -26,9 +26,9 @@ class CommentListScreenletViewController: UIViewController,
 			listScreenlet?.delegate = self
 			listScreenlet?.presentingViewController = self
 			listScreenlet?.className =
-				LiferayServerContext.stringPropertyForKey("commentListClassName")
+				LiferayServerContext.stringPropertyForKey("commentScreenletClassName")
 			listScreenlet?.classPK =
-				LiferayServerContext.longPropertyForKey("commentListClassPK")
+				LiferayServerContext.longPropertyForKey("commentScreenletClassPK")
 		}
 	}
 

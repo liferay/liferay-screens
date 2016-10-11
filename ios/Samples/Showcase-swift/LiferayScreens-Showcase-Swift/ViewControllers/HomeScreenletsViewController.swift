@@ -19,7 +19,7 @@ class HomeScreenletsViewController: UITableViewController {
 		0: ["DDL Module", "DDLListScreenlet", "DDLFormScreenlet"],
 		1: ["Web Content Module", "WebContentDisplayScreenlet", "WebContentListScreenlet"],
 		2: ["Assets", "AssetTypes", "AssetDisplayScreenlet"],
-		3: ["Comments", "CommentListScreenlet", "CommentDisplayScreenlet"],
+		3: ["Comments", "CommentListScreenlet", "CommentDisplayScreenlet", "CommentAddScreenlet"],
 		4: ["Others", "UserPortraitScreenlet", "RatingScreenlet", "ImageGalleryScreenlet", "BlogDisplayScreenlet"]
 	]
 	

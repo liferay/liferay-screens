@@ -18,9 +18,9 @@
 	<string>41983</string>
 	<key>assetDisplayEntryId</key>
 	<integer>20169</integer>
-	<key>commentListClassName</key>
+	<key>commentScreenletClassName</key>
 	<string>com.liferay.blogs.kernel.model.BlogsEntry</string>
-	<key>commentListClassPK</key>
+	<key>commentScreenletClassPK</key>
 	<integer>42183</integer>
 </dict>
 </plist>
