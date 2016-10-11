@@ -40,5 +40,9 @@
 	<integer>42629</integer>
 	<key>ddlLabelField</key>
 	<string>Email</string>
+	<key>ddlRecordId</key>
+	<integer>42631</integer>
+	<key>ddlStructureId</key>
+	<integer>29947</integer>
 </dict>
 </plist>

@@ -48,11 +48,11 @@ class DDLListScreenletViewController:
 	//MARK: IBAction
 	
 	@IBAction func loadList(sender: AnyObject) {
-		if let recordSetId = Int(recordSetIdTextField!.text!) {
-			screenlet!.recordSetId = Int64(recordSetId)
-			screenlet!.labelFields = labelFieldsTextField!.text
+		if let id = recordSetIdTextField?.text, recordSetId = Int64(id) {
+			screenlet?.recordSetId = recordSetId
+			screenlet?.labelFields = labelFieldsTextField?.text
 			screenlet?.obcClassName = selectedObcClassName
-			screenlet!.loadList()
+			screenlet?.loadList()
 		}
 	}
 

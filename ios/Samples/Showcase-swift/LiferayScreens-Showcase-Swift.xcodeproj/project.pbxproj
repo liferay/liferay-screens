@@ -29,6 +29,8 @@
 		0B54FBC11DAD004300E0EE0C /* UserPortraitScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FBC01DAD004300E0EE0C /* UserPortraitScreenletViewController.swift */; };
 		0B54FBC41DAD149D00E0EE0C /* DDLListScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FBC61DAD149D00E0EE0C /* DDLListScreenlet.storyboard */; };
 		0B54FBCA1DAD14C500E0EE0C /* DDLListScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FBC91DAD14C500E0EE0C /* DDLListScreenletViewController.swift */; };
+		0B54FBCD1DAD1A8200E0EE0C /* DDLFormScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FBCF1DAD1A8200E0EE0C /* DDLFormScreenlet.storyboard */; };
+		0B54FBD11DAD1A9B00E0EE0C /* DDLFormScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FBD01DAD1A9B00E0EE0C /* DDLFormScreenletViewController.swift */; };
 		0B6147F81DABC853004FAC7C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6147F71DABC853004FAC7C /* UIImageExtension.swift */; };
 		0B6147FA1DABC86E004FAC7C /* LiferayLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6147F91DABC86E004FAC7C /* LiferayLogger.swift */; };
 		0B6147FD1DABD741004FAC7C /* SignUpScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B6147FB1DABD741004FAC7C /* SignUpScreenlet.storyboard */; };
@@ -58,7 +60,6 @@
 		88DE2A921AD3DF2200714701 /* liferay-server-context.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88DE2A911AD3DF2200714701 /* liferay-server-context.plist */; };
 		88DE2A941AD3DF2800714701 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88DE2A931AD3DF2800714701 /* Default-568h@2x.png */; };
 		88DE2A991AD3DF7600714701 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88DE2A9B1AD3DF7600714701 /* Localizable.strings */; };
-		88DE2AAC1AD3EFEF00714701 /* DDLFormScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE2AA41AD3EFEF00714701 /* DDLFormScreenletViewController.swift */; };
 		88DE2AAF1AD3EFEF00714701 /* HomeScreenletsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE2AA71AD3EFEF00714701 /* HomeScreenletsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +86,8 @@
 		0B54FBC01DAD004300E0EE0C /* UserPortraitScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitScreenletViewController.swift; sourceTree = "<group>"; };
 		0B54FBC51DAD149D00E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/DDLListScreenlet.storyboard; sourceTree = "<group>"; };
 		0B54FBC91DAD14C500E0EE0C /* DDLListScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListScreenletViewController.swift; sourceTree = "<group>"; };
+		0B54FBCE1DAD1A8200E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/DDLFormScreenlet.storyboard; sourceTree = "<group>"; };
+		0B54FBD01DAD1A9B00E0EE0C /* DDLFormScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormScreenletViewController.swift; sourceTree = "<group>"; };
 		0B6147F71DABC853004FAC7C /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		0B6147F91DABC86E004FAC7C /* LiferayLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayLogger.swift; sourceTree = "<group>"; };
 		0B6147FC1DABD741004FAC7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/SignUpScreenlet.storyboard; sourceTree = "<group>"; };
@@ -121,7 +124,6 @@
 		88DE2A9A1AD3DF7600714701 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		88DE2A9C1AD3DF8500714701 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		88DE2A9D1AD3DF8C00714701 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		88DE2AA41AD3EFEF00714701 /* DDLFormScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormScreenletViewController.swift; sourceTree = "<group>"; };
 		88DE2AA71AD3EFEF00714701 /* HomeScreenletsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenletsViewController.swift; sourceTree = "<group>"; };
 		A04C09F218A5B0C74733F85A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B9F27EE5D1E22F881E8B3B99 /* Pods-LiferayScreens-Showcase-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreens-Showcase-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreens-Showcase-Swift/Pods-LiferayScreens-Showcase-Swift.debug.xcconfig"; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				0B54FBC61DAD149D00E0EE0C /* DDLListScreenlet.storyboard */,
+				0B54FBCF1DAD1A8200E0EE0C /* DDLFormScreenlet.storyboard */,
 			);
 			name = DDL;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 		0B54FBC81DAD14C500E0EE0C /* DDL */ = {
 			isa = PBXGroup;
 			children = (
+				0B54FBD01DAD1A9B00E0EE0C /* DDLFormScreenletViewController.swift */,
 				0B54FBC91DAD14C500E0EE0C /* DDLListScreenletViewController.swift */,
 			);
 			path = DDL;
@@ -378,7 +382,6 @@
 				0B54FBC81DAD14C500E0EE0C /* DDL */,
 				0B54FBAA1DACF1C100E0EE0C /* Others */,
 				0B6148081DABE86F004FAC7C /* WebContent */,
-				88DE2AA41AD3EFEF00714701 /* DDLFormScreenletViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				0B54FBA81DACF12300E0EE0C /* BlogDisplayScreenlet.storyboard in Resources */,
 				88CC3AFF1CC153D900E0AEB7 /* WebContentListView_book.xib in Resources */,
 				88DE2A791AD3DDE600714701 /* Images.xcassets in Resources */,
+				0B54FBCD1DAD1A8200E0EE0C /* DDLFormScreenlet.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,12 +570,12 @@
 				0B61480B1DABE86F004FAC7C /* WebContentDisplayScreenletViewController.swift in Sources */,
 				0B54FB7D1DACCFDF00E0EE0C /* AssetTypesViewController.swift in Sources */,
 				0B6147FA1DABC86E004FAC7C /* LiferayLogger.swift in Sources */,
+				0B54FBD11DAD1A9B00E0EE0C /* DDLFormScreenletViewController.swift in Sources */,
 				0B54FBC11DAD004300E0EE0C /* UserPortraitScreenletViewController.swift in Sources */,
 				0B54FBAC1DACF1C100E0EE0C /* BlogDisplayScreenletViewController.swift in Sources */,
 				0B6147F81DABC853004FAC7C /* UIImageExtension.swift in Sources */,
 				88DE2A721AD3DDE600714701 /* AppDelegate.swift in Sources */,
 				0B54FB891DACE91000E0EE0C /* CommentDisplayScreenletViewController.swift in Sources */,
-				88DE2AAC1AD3EFEF00714701 /* DDLFormScreenletViewController.swift in Sources */,
 				0B54FB771DACC95500E0EE0C /* UserView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,6 +653,14 @@
 				0B54FBC51DAD149D00E0EE0C /* en */,
 			);
 			name = DDLListScreenlet.storyboard;
+			sourceTree = "<group>";
+		};
+		0B54FBCF1DAD1A8200E0EE0C /* DDLFormScreenlet.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B54FBCE1DAD1A8200E0EE0C /* en */,
+			);
+			name = DDLFormScreenlet.storyboard;
 			sourceTree = "<group>";
 		};
 		0B6147FB1DABD741004FAC7C /* SignUpScreenlet.storyboard */ = {
