@@ -137,10 +137,7 @@ public class GalleryCard extends CommentsRatingsCard implements ImageGalleryList
 
 	@Override
 	public void onListItemSelected(ImageEntry element, View view) {
-		imageAssetDisplayScreenlet.setClassPK(element.getFileEntryId());
-		imageAssetDisplayScreenlet.setClassName(
-			"com.liferay.document.library.kernel.model.DLFileEntry");
-		imageAssetDisplayScreenlet.loadAsset();
+		imageAssetDisplayScreenlet.load(element);
 
 		initializeRatingsAndComments("com.liferay.document.library.kernel.model.DLFileEntry",
 			element.getFileEntryId());
