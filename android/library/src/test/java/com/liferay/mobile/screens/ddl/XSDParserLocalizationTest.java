@@ -72,7 +72,7 @@ public class XSDParserLocalizationTest {
 			"</dynamic-element>" +
 			"</root>";
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenExistingCompleteLocaleIsProvided {
 		@Test
@@ -84,7 +84,7 @@ public class XSDParserLocalizationTest {
 		}
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenNoExistingCompleteLocaleIsProvided {
 		@Test
@@ -112,7 +112,7 @@ public class XSDParserLocalizationTest {
 		}
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenExistingNeutralLanguageIsProvided {
 		@Test
@@ -124,7 +124,7 @@ public class XSDParserLocalizationTest {
 		}
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenNoExistingNeutralLanguageIsProvided {
 		@Test

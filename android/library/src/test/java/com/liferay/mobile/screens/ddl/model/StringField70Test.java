@@ -73,7 +73,7 @@ public class StringField70Test {
 		return (StringField) resultList.get(0);
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingXSD {
 		@Test
@@ -124,7 +124,7 @@ public class StringField70Test {
 		}
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenValidatingAndRequired {
 
@@ -167,7 +167,7 @@ public class StringField70Test {
 
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenValidatingAndNotRequired {
 
