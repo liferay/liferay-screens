@@ -26,16 +26,16 @@ import Kingfisher
 			onImageEntrySelected imageEntry: ImageEntry)
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-			onImageEntryDeleted: ImageEntry)
+			onImageEntryDeleted imageEntry: ImageEntry)
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-			onImageEntryDeleteError: NSError)
+			onImageEntryDeleteError error: NSError)
 
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-			onImageUploadStart image: ImageEntryUpload)
+			onImageUploadStart imageEntryUpload: ImageEntryUpload)
 							
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
-			onImageUploadProgress image: ImageEntryUpload,
+			onImageUploadProgress imageEntryUpload: ImageEntryUpload,
 			totalBytesSent: UInt64,
 			totalBytesToSend: UInt64)
 

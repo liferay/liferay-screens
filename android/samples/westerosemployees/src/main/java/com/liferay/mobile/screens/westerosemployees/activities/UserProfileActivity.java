@@ -10,6 +10,7 @@ import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.westerosemployees.R;
 
@@ -70,6 +71,9 @@ public class UserProfileActivity extends WesterosActivity
 
 	@Override
 	public void onClick(View v) {
+		SessionContext.logout();
+		SessionContext.removeStoredCredentials(CredentialsStorageBuilder.StorageType.AUTO);
+
 		Intent intent = new Intent(this, MainActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(intent);

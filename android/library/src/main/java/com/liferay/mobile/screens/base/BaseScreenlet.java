@@ -165,7 +165,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		if (result != null) {
 			decorateInteractor(actionName, result);
 			result.onScreenletAttached(this);
-			interactors.put(actionName, (I) result);
+			interactors.put(actionName, result);
 		}
 		return result;
 	}

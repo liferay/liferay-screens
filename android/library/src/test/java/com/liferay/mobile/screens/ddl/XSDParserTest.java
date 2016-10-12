@@ -42,7 +42,7 @@ public class XSDParserTest {
 	private static final Locale spanishLocale = new Locale("es", "ES");
 	private static final Locale usLocale = new Locale("en", "US");
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class ShouldRaiseException {
 
@@ -74,7 +74,7 @@ public class XSDParserTest {
 		}
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingXSD {
 

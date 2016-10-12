@@ -111,6 +111,7 @@
 		0B6463771D66EEB7007F3289 /* ImageUploadDetailView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6463761D66EEB7007F3289 /* ImageUploadDetailView_default.xib */; };
 		0B6463791D66F143007F3289 /* ImageUploadDetailView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6463781D66F143007F3289 /* ImageUploadDetailView_default.swift */; };
 		0B64637B1D66F172007F3289 /* UploadProgressView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B64637A1D66F172007F3289 /* UploadProgressView_default.swift */; };
+		0B7F45A21DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7F45A11DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift */; };
 		0B89C9951D58B01200A9EAE7 /* SyncManager+ImageGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B89C9941D58B01200A9EAE7 /* SyncManager+ImageGallery.swift */; };
 		0BB4678B1D8707280044523E /* comment-add-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BB467851D8707280044523E /* comment-add-screenlet.strings */; };
 		0BB4678C1D8707280044523E /* comment-display-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BB467871D8707280044523E /* comment-display-screenlet.strings */; };
@@ -643,6 +644,7 @@
 		0B6463761D66EEB7007F3289 /* ImageUploadDetailView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageUploadDetailView_default.xib; sourceTree = "<group>"; };
 		0B6463781D66F143007F3289 /* ImageUploadDetailView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploadDetailView_default.swift; sourceTree = "<group>"; };
 		0B64637A1D66F172007F3289 /* UploadProgressView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadProgressView_default.swift; sourceTree = "<group>"; };
+		0B7F45A11DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDisplayViewModel.swift; sourceTree = "<group>"; };
 		0B89C9941D58B01200A9EAE7 /* SyncManager+ImageGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncManager+ImageGallery.swift"; sourceTree = "<group>"; };
 		0BB467861D8707280044523E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/comment-add-screenlet.strings"; sourceTree = "<group>"; };
 		0BB467881D8707280044523E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/comment-display-screenlet.strings"; sourceTree = "<group>"; };
@@ -1076,6 +1078,7 @@
 				0B217FC71D6C4E7B00A23690 /* Interactors */,
 				0B217FCA1D6C4E7B00A23690 /* PdfDisplayScreenlet.swift */,
 				0B217FCC1D6C4E7B00A23690 /* VideoDisplayScreenlet.swift */,
+				0B7F45A11DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift */,
 			);
 			path = FileDisplay;
 			sourceTree = "<group>";
@@ -2808,6 +2811,7 @@
 				881E62441ACBFC3400862B9E /* DDLFieldTextTableCell_default.swift in Sources */,
 				881E610E1ACBE5F000862B9E /* ForgotPasswordScreenlet.swift in Sources */,
 				8892C6B01ACBD89400192232 /* UIView+Screens.swift in Sources */,
+				0B7F45A21DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift in Sources */,
 				88B844821C73D81D007A447D /* GetUserByScreenNameLiferayConnectors.swift in Sources */,
 				0BF917CF1D76BFA800C86C85 /* NSDate+Screens.swift in Sources */,
 				0BF917A01D76BE6900C86C85 /* CommentAddScreenlet.swift in Sources */,

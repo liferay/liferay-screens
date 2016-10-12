@@ -58,7 +58,7 @@ public class StringFieldTest {
 
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingXSD {
 		@Test
@@ -92,7 +92,7 @@ public class StringFieldTest {
 		}
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenValidatingAndRequired {
 
@@ -135,7 +135,7 @@ public class StringFieldTest {
 
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenValidatingAndNotRequired {
 
