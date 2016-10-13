@@ -68,25 +68,20 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 
 			var classPK: Int64 = 0
 
+			//Load asset
+			assetDisplayScreenlet?.assetEntry = asset
+
+			//Load asset comments
 			if let image = asset as? ImageEntry {
 				let className = AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
 				classPK = image.imageEntryId
 
-				assetDisplayScreenlet?.className = className
-				assetDisplayScreenlet?.classPK = classPK
-				assetDisplayScreenlet?.load()
-
 				commentsViewController?.load(className: className, classPK: classPK)
 			}
 			else {
-				//Load asset
-				assetDisplayScreenlet?.assetEntry = asset
-				classPK = asset.classPK
-
-				//Load asset comments
 				commentsViewController?.load(
 					className: AssetClasses.getClassNameFromId(asset.classNameId)!,
-					classPK: classPK)
+					classPK: asset.classPK)
 			}
 
 			//Change color depending on asset
