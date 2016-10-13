@@ -17,12 +17,14 @@ public class BookmarkListInteractor extends BaseListInteractor<BaseListInteracto
 	protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {
 		long folderId = (long) args[0];
 
+		if (args[1] != null) {
+			query.setComparator((String) args[1]);
+		}
+
 		if (LiferayServerContext.isLiferay7()) {
-			query.setComparator("com.liferay.bookmarks.util.comparator.EntryURLComparator");
 			return new BookmarksEntryService(getSession()).getEntries(groupId, folderId, query.getStartRow(),
 				query.getEndRow(), query.getComparatorJSONWrapper());
 		} else {
-			query.setComparator("com.liferay.portlet.bookmarks.util.comparator.EntryURLComparator");
 			return new com.liferay.mobile.android.v62.bookmarksentry.BookmarksEntryService(getSession()).getEntries(
 				groupId, folderId, query.getStartRow(), query.getEndRow(), query.getComparatorJSONWrapper());
 		}

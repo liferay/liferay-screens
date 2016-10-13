@@ -88,7 +88,14 @@ public class GalleryActivity extends ThemeActivity implements ImageGalleryListen
 
 	@Override
 	public void onImageUploadStarted(String picturePath, String title, String description, String changelog) {
-		LiferayLogger.i("Image upload started: " + picturePath + " title: " + title + " description: " + description);
+		LiferayLogger.i("Image upload started: "
+			+ picturePath
+			+ " title: "
+			+ title
+			+ " description: "
+			+ description
+			+ " changelog: "
+			+ changelog);
 	}
 
 	@Override

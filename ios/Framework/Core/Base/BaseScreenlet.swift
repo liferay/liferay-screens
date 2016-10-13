@@ -152,16 +152,6 @@ import QuartzCore
 		let view = createScreenletViewFromNib()
 
 		if let viewValue = view {
-			//FIXME: full-autoresize value. Extract from UIViewAutoresizing
-			let flexibleMask = UIViewAutoresizing(rawValue: 18)
-
-			if viewValue.autoresizingMask == flexibleMask {
-				viewValue.frame = self.bounds
-			}
-			else {
-				viewValue.frame = centeredRectInView(self, size: viewValue.frame.size)
-			}
-
 			viewValue.onPerformAction = { [weak self] name, sender in
 				return self!.performAction(name: name, sender: sender)
 			}
@@ -176,9 +166,23 @@ import QuartzCore
 
 			self._progressPresenter = viewValue.createProgressPresenter()
 			self.screenletView = viewValue
+			
+			viewValue.translatesAutoresizingMaskIntoConstraints = false
 
 			addSubview(viewValue)
 			sendSubviewToBack(viewValue)
+			
+			//Pin all edges from Screenlet View to the Screenlet's edges
+			let top = NSLayoutConstraint(item: viewValue, attribute: .Top, relatedBy: .Equal,
+			                             toItem: self, attribute: .Top, multiplier: 1, constant: 0)
+			let bottom = NSLayoutConstraint(item: viewValue, attribute: .Bottom, relatedBy: .Equal,
+			                                toItem: self, attribute: .Bottom, multiplier: 1, constant: 0)
+			let leading = NSLayoutConstraint(item: viewValue, attribute: .Leading, relatedBy: .Equal,
+			                                 toItem: self, attribute: .Leading, multiplier: 1, constant: 0)
+			let trailing = NSLayoutConstraint(item: viewValue, attribute: .Trailing, relatedBy: .Equal,
+			                                  toItem: self, attribute: .Trailing, multiplier: 1, constant: 0)
+			
+			NSLayoutConstraint.activateConstraints([top, bottom, leading, trailing])
 		}
 		else {
 			self._progressPresenter = nil

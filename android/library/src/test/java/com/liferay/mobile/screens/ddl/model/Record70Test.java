@@ -61,7 +61,7 @@ public class Record70Test {
 		record.parseDDMStructure(jsonObject);
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class AfterCreatingFromXSD {
 
@@ -79,7 +79,7 @@ public class Record70Test {
 		}
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenGettingValues {
 
@@ -160,7 +160,7 @@ public class Record70Test {
 		}
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenSettingValues {
 
@@ -212,7 +212,7 @@ public class Record70Test {
 		}
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenSerialize {
 

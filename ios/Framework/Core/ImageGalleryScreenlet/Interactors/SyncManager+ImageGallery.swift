@@ -21,8 +21,8 @@ extension SyncManager {
 			-> Signal -> () {
 
 		return { signal in
-			let folderId = attributes["folderId"]!.description.asLong!
-			let repositoryId = attributes["repositoryId"]!.description.asLong!
+			let folderId = attributes["folderId"]!.longLongValue
+			let repositoryId = attributes["repositoryId"]!.longLongValue
 			let page = attributes["page"]!.description.asNumber!.longValue
 
 			self.cacheManager.getAny(collection: ScreenletName(ImageGalleryScreenlet), key: key) {

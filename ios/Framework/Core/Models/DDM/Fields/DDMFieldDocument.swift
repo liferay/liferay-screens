@@ -162,7 +162,7 @@ public class DDMFieldDocument : DDMField {
 		switch uploadStatus {
 		case .Uploaded(let json):
 			let groupEntry = json["groupId"]
-			if let groupId = groupEntry?.description.asLong,
+			if let groupId = groupEntry?.longLongValue,
 					uuid = json["uuid"] as? String,
 					version = json["version"] as? String {
 				return "{\"groupId\":\(groupId)," +

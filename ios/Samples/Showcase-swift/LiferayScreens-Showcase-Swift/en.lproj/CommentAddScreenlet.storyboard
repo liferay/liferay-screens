@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="nhe-WZ-H41">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Comment Add Screenlet View Controller-->
+        <scene sceneID="b75-Jk-dvv">
+            <objects>
+                <viewController id="nhe-WZ-H41" customClass="CommentAddScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eOP-PN-Yil"/>
+                        <viewControllerLayoutGuide type="bottom" id="EbP-r3-sNm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jwb-MC-ZcP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fiw-Ip-jH9" customClass="CommentAddScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="20" y="64" width="280" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="wUZ-UV-z8x"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fiw-Ip-jH9" firstAttribute="leading" secondItem="jwb-MC-ZcP" secondAttribute="leading" constant="20" id="Lac-YG-Foe"/>
+                            <constraint firstItem="fiw-Ip-jH9" firstAttribute="top" secondItem="eOP-PN-Yil" secondAttribute="bottom" id="N54-gu-Qw1"/>
+                            <constraint firstAttribute="trailing" secondItem="fiw-Ip-jH9" secondAttribute="trailing" constant="20" id="cac-Rl-zzV"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="screenlet" destination="fiw-Ip-jH9" id="YNp-aC-a9H"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ikv-rH-a4V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="330" y="261"/>
+        </scene>
+    </scenes>
+</document>

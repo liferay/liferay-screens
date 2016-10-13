@@ -21,7 +21,7 @@ extension SyncManager {
 			-> Signal -> () {
 
 		return { signal in
-			let userId = attributes["userId"]!.description.asLong!
+			let userId = attributes["userId"]!.longLongValue
 
 			self.cacheManager.getImage(
 					collection: ScreenletName(UserPortraitScreenlet),
