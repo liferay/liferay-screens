@@ -128,7 +128,8 @@ import UIKit
 
 			if let image = asset as? ImageEntry {
 				screenlet.classPK = image.imageEntryId
-			} else {
+			}
+			else {
 				screenlet.fileEntry = FileEntry(attributes: asset.attributes)
 			}
 			
