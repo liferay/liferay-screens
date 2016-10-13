@@ -6,25 +6,20 @@ import android.os.Build;
 import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.dlfile.display.FileEntry;
 import com.liferay.mobile.screens.dlfile.display.image.ImageDisplayViewModel;
-import com.liferay.mobile.screens.util.LiferayLogger;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+import java.io.File;
 
 /**
  * @author Sarai Díaz García
  */
-public class ImageDisplayView extends RelativeLayout implements ImageDisplayViewModel, Callback {
+public class ImageDisplayView extends BaseFileDisplayView implements ImageDisplayViewModel, Callback {
 
-	private BaseScreenlet screenlet;
-	private FileEntry fileEntry;
 	private ImageView imageView;
-	private ProgressBar progressBar;
 
 	@DrawableRes
 	private int placeholder = 0;
@@ -42,67 +37,20 @@ public class ImageDisplayView extends RelativeLayout implements ImageDisplayView
 	}
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	public ImageDisplayView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+	public ImageDisplayView(Context context, AttributeSet attrs, int defStyleAttr,
+		int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override
-	public void showStartOperation(String actionName) {
-		if (placeholder != 0) {
-			Picasso.with(getContext()).load(placeholder).into(imageView);
-		}
-		progressBar.setVisibility(VISIBLE);
-	}
-
-	@Override
-	public void showFinishOperation(String actionName) {
-		throw new UnsupportedOperationException(
-			"showFinishOperation(String) is not supported." + " Use showFinishOperation(FileEntry) instead.");
-	}
-
-	@Override
-	public void showFailedOperation(String actionName, Exception e) {
-		progressBar.setVisibility(GONE);
-		LiferayLogger.e("Could not load file asset: " + e.getMessage());
-	}
-
-	@Override
-	public BaseScreenlet getScreenlet() {
-		return screenlet;
-	}
-
-	@Override
-	public void setScreenlet(BaseScreenlet screenlet) {
-		this.screenlet = screenlet;
-	}
-
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
-
-		imageView = (ImageView) findViewById(R.id.liferay_image_asset);
-		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
-	}
-
-	@Override
 	public void showFinishOperation(FileEntry fileEntry) {
-		this.fileEntry = fileEntry;
-		this.loadImage();
+		imageView.setImageResource(placeholder);
+		super.showFinishOperation(fileEntry);
 	}
 
 	@Override
-	public void setScaleType(ImageView.ScaleType scaleType) {
-		imageView.setScaleType(scaleType);
-	}
-
-	@Override
-	public void setPlaceholder(@DrawableRes int placeholder) {
-		this.placeholder = placeholder;
-	}
-
-	private void loadImage() {
-		String path = getResources().getString(R.string.liferay_server) + fileEntry.getUrl();
-		Picasso.with(getContext()).load(path).into(imageView, this);
+	public void loadFileEntry(String url) {
+		loadImage(url);
 	}
 
 	@Override
@@ -113,5 +61,26 @@ public class ImageDisplayView extends RelativeLayout implements ImageDisplayView
 	@Override
 	public void onError() {
 		progressBar.setVisibility(GONE);
+	}
+
+	@Override
+	protected void onFinishInflate() {
+		super.onFinishInflate();
+
+		imageView = (ImageView) findViewById(R.id.liferay_image_asset);
+	}
+
+	private void loadImage(String url) {
+		Picasso.with(getContext()).load(new File(url)).into(imageView, this);
+	}
+
+	@Override
+	public void setScaleType(ImageView.ScaleType scaleType) {
+		imageView.setScaleType(scaleType);
+	}
+
+	@Override
+	public void setPlaceholder(@DrawableRes int placeholder) {
+		this.placeholder = placeholder;
 	}
 }

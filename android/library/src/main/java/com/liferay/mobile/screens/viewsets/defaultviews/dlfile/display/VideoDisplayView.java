@@ -6,26 +6,17 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.MediaController;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.dlfile.display.BaseFileDisplayViewModel;
-import com.liferay.mobile.screens.dlfile.display.FileEntry;
-import com.liferay.mobile.screens.util.LiferayLogger;
 
 /**
  * @author Sarai Díaz García
  */
-public class VideoDisplayView extends RelativeLayout implements BaseFileDisplayViewModel {
+public class VideoDisplayView extends BaseFileDisplayView {
 
-	private BaseScreenlet screenlet;
-	private FileEntry fileEntry;
 	private VideoView videoView;
 	private TextView message;
-	private ProgressBar progressBar;
 
 	public VideoDisplayView(Context context) {
 		super(context);
@@ -40,36 +31,22 @@ public class VideoDisplayView extends RelativeLayout implements BaseFileDisplayV
 	}
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	public VideoDisplayView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+	public VideoDisplayView(Context context, AttributeSet attrs, int defStyleAttr,
+		int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override
-	public void showStartOperation(String actionName) {
-		progressBar.setVisibility(VISIBLE);
-	}
-
-	@Override
-	public void showFinishOperation(String actionName) {
-		throw new UnsupportedOperationException(
-			"showFinishOperation(String) is not supported." + " Use showFinishOperation(FileEntry) instead.");
-	}
-
-	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-		progressBar.setVisibility(GONE);
+		super.showFailedOperation(actionName, e);
 		message.setText(R.string.video_error);
-		LiferayLogger.e("Could not load file asset: " + e.getMessage());
 	}
 
 	@Override
-	public BaseScreenlet getScreenlet() {
-		return screenlet;
-	}
-
-	@Override
-	public void setScreenlet(BaseScreenlet screenlet) {
-		this.screenlet = screenlet;
+	public void loadFileEntry(String url) {
+		loadVideo(url);
+		loadPrepareListener();
+		loadErrorListener();
 	}
 
 	@Override
@@ -78,20 +55,11 @@ public class VideoDisplayView extends RelativeLayout implements BaseFileDisplayV
 
 		videoView = (VideoView) findViewById(R.id.liferay_video_asset);
 		message = (TextView) findViewById(R.id.liferay_video_message);
-		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
 	}
 
-	@Override
-	public void showFinishOperation(FileEntry fileEntry) {
-		this.fileEntry = fileEntry;
-		loadVideo();
-		loadPrepareListener();
-		loadErrorListener();
-	}
-
-	private void loadVideo() {
+	private void loadVideo(String url) {
 		progressBar.setVisibility(VISIBLE);
-		videoView.setVideoPath(getResources().getString(R.string.liferay_server) + fileEntry.getUrl());
+		videoView.setVideoPath(url);
 		videoView.setMediaController(new MediaController(getContext()));
 		videoView.setZOrderOnTop(true);
 		videoView.requestFocus();
