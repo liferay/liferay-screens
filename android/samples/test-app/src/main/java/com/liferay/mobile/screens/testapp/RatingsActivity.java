@@ -95,7 +95,6 @@ public class RatingsActivity extends ThemeActivity
 		ratingScreenlet = new RatingScreenlet(this);
 		ratingScreenlet.setEntryId(Long.parseLong(getResources().getString(entryId)));
 		ratingScreenlet.setAutoLoad(true);
-		ratingScreenlet.setRatingsGroupCount(ratingsGroupCount);
 		ratingScreenlet.render(layoutId);
 		ratingScreenlet.enableEdition(!readOnlySwitch.isChecked());
 
