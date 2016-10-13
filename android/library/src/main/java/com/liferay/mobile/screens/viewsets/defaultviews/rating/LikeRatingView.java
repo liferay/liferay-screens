@@ -7,16 +7,14 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.rating.AssetRating;
-import com.liferay.mobile.screens.rating.RatingScreenlet;
+
+import static com.liferay.mobile.screens.rating.RatingScreenlet.DELETE_RATING_ACTION;
+import static com.liferay.mobile.screens.rating.RatingScreenlet.UPDATE_RATING_ACTION;
 
 /**
  * @author Alejandro Hernández
  */
 public class LikeRatingView extends BaseRatingView implements View.OnClickListener {
-
-	private ImageButton likeButton;
-	private TextView likeCountLabel;
-	private boolean hasUserRate;
 
 	public LikeRatingView(Context context) {
 		super(context);
@@ -35,37 +33,18 @@ public class LikeRatingView extends BaseRatingView implements View.OnClickListen
 	}
 
 	@Override
-	public void showFinishOperation(String action, AssetRating assetRating) {
-		if (progressBar != null) {
-			progressBar.setVisibility(View.GONE);
-		}
-		if (content != null) {
-			content.setVisibility(View.VISIBLE);
-
-			hasUserRate = assetRating.getUserScore() != -1;
-			likeCountLabel.setText(getContext().getString(R.string.rating_total, assetRating.getTotalCount()));
-			likeButton.setImageResource(
-				hasUserRate ? R.drawable.default_thumb_up : R.drawable.default_thumb_up_outline);
-		}
+	protected void setButton(View textView) {
+		((ImageButton) textView).setImageResource(R.drawable.default_thumb_up);
 	}
 
 	@Override
-	public void enableEdition(boolean editable) {
-		likeButton.setOnClickListener(editable ? this : null);
-		likeButton.setEnabled(editable);
+	protected void setEmptyState(TextView textView, View view, int rating, AssetRating assetRating) {
+		textView.setText(getContext().getString(R.string.rating_total, assetRating.getTotalCount()));
+		((ImageButton) view).setImageResource(R.drawable.default_thumb_up_outline);
 	}
 
 	@Override
-	public void onClick(View v) {
-		String action = hasUserRate ? RatingScreenlet.DELETE_RATING_ACTION : RatingScreenlet.UPDATE_RATING_ACTION;
-		getScreenlet().performUserAction(action, 1.0);
-	}
-
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
-
-		likeButton = (ImageButton) findViewById(R.id.likeRatingButton);
-		likeCountLabel = (TextView) findViewById(R.id.likeCountLabel);
+	protected void clicked(double score, double userScore) {
+		getScreenlet().performUserAction(userScore != -1 ? DELETE_RATING_ACTION : UPDATE_RATING_ACTION, score);
 	}
 }
