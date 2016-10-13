@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iUq-9H-0mP">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Asset Display View Controller-->
+        <scene sceneID="XVb-7U-yT2">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="iUq-9H-0mP" customClass="AssetDisplayViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Aup-eB-DPS"/>
+                        <viewControllerLayoutGuide type="bottom" id="cga-VN-wM8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EwQ-rl-EvY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0f2-xO-0CM" userLabel="Screenlet" customClass="AssetDisplayScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="-4" y="64" width="328" height="455"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0f2-xO-0CM" firstAttribute="top" secondItem="Aup-eB-DPS" secondAttribute="bottom" id="LNc-LF-UxW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0f2-xO-0CM" secondAttribute="trailing" constant="-20" id="dTJ-4N-dIo"/>
+                            <constraint firstItem="cga-VN-wM8" firstAttribute="top" secondItem="0f2-xO-0CM" secondAttribute="bottom" id="gp5-0J-iuH"/>
+                            <constraint firstItem="0f2-xO-0CM" firstAttribute="leading" secondItem="EwQ-rl-EvY" secondAttribute="leadingMargin" constant="-20" id="y9L-pm-eYF"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="BuR-m5-dXM"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="screenlet" destination="0f2-xO-0CM" id="Um1-jm-ID6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uyq-vD-NuM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2124" y="1510"/>
+        </scene>
+    </scenes>
+</document>

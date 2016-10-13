@@ -83,6 +83,7 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 			if let resultAsset = interactor.asset {
 				self.blogsEntry = BlogsEntry(attributes: resultAsset.attributes)
 				self.blogsEntryViewModel?.blogsEntry = self.blogsEntry
+				self.blogsEntryDisplayDelegate?.screenlet?(self, onBlogEntryResponse: self.blogsEntry!)
 			}
 			else {
 				self.blogsEntryDisplayDelegate?.screenlet?(self, onBlogEntryError: NSError.errorWithCause(.InvalidServerResponse))
