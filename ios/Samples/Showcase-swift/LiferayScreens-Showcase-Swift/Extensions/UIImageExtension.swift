@@ -16,9 +16,9 @@ extension UIImage {
 		let width = Int(self.size.width)
 		let height = Int(self.size.height)
 		let context = CGBitmapContextCreate(nil, width, height, 8, 0, colorSpace, .allZeros)
-		CGContextDrawImage(context, imageRect, self.CGImage!)
+		CGContextDrawImage(context!, imageRect, self.CGImage!)
 
-		let imageRef = CGBitmapContextCreateImage(context)
+		let imageRef = CGBitmapContextCreateImage(context!)
 		return UIImage(CGImage: imageRef!)
 	}
 }

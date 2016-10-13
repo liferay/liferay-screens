@@ -411,12 +411,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 88DE2A8B1AD3DDE600714701 /* Build configuration list for PBXNativeTarget "LiferayScreens-Showcase-Swift" */;
 			buildPhases = (
-				34E497BB4BEF35281E455016 /* 📦 Check Pods Manifest.lock */,
+				34E497BB4BEF35281E455016 /* [CP] Check Pods Manifest.lock */,
 				88DE2A681AD3DDE600714701 /* Sources */,
 				88DE2A691AD3DDE600714701 /* Frameworks */,
 				88DE2A6A1AD3DDE600714701 /* Resources */,
-				CC9B893C1A360F59A614C416 /* 📦 Embed Pods Frameworks */,
-				8C35AA1FA3B3ECC035742080 /* 📦 Copy Pods Resources */,
+				CC9B893C1A360F59A614C416 /* [CP] Embed Pods Frameworks */,
+				8C35AA1FA3B3ECC035742080 /* [CP] Copy Pods Resources */,
 				7AE72E640B25C3017D6FAFE2 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -441,6 +441,7 @@
 					88DE2A6B1AD3DDE600714701 = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = JWC89658Q6;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -500,19 +501,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		34E497BB4BEF35281E455016 /* 📦 Check Pods Manifest.lock */ = {
+		34E497BB4BEF35281E455016 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		7AE72E640B25C3017D6FAFE2 /* Embed Pods Frameworks */ = {
@@ -530,14 +531,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiferayScreens-Showcase-Swift/Pods-LiferayScreens-Showcase-Swift-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8C35AA1FA3B3ECC035742080 /* 📦 Copy Pods Resources */ = {
+		8C35AA1FA3B3ECC035742080 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -545,14 +546,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiferayScreens-Showcase-Swift/Pods-LiferayScreens-Showcase-Swift-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CC9B893C1A360F59A614C416 /* 📦 Embed Pods Frameworks */ = {
+		CC9B893C1A360F59A614C416 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -844,6 +845,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.LiferayScreens-Showcase-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -859,6 +861,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.LiferayScreens-Showcase-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

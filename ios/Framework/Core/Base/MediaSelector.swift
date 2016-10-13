@@ -51,6 +51,10 @@ import MobileCoreServices
 		selfRetain = self
 		pickerController.delegate = self
 
+		if #available(iOS 10.0, *) {
+			showErrorIfAbsentKeys()
+		}
+
 		let alertMode: UIAlertControllerStyle =
 				UIDevice.currentDevice().userInterfaceIdiom == .Pad ? .Alert : .ActionSheet
 
@@ -125,6 +129,15 @@ import MobileCoreServices
 	public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
 		pickerController.dismissViewControllerAnimated(true) {
 			self.selfRetain = nil
+		}
+	}
+
+	private func showErrorIfAbsentKeys() {
+		if (NSBundle.mainBundle().objectForInfoDictionaryKey("NSPhotoLibraryUsageDescription") == nil ||
+			NSBundle.mainBundle().objectForInfoDictionaryKey("NSCameraUsageDescription") == nil) {
+
+			print(LocalizedString("core", key: "NSPhotoLibraryUsageDescription-key-not-present",
+				obj: self.dynamicType))
 		}
 	}
 }
