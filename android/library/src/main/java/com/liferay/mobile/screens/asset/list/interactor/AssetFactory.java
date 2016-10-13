@@ -5,6 +5,7 @@ import com.liferay.mobile.screens.blogs.BlogsEntry;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.dlfile.display.FileEntry;
+import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.webcontent.WebContent;
 import java.util.Locale;
@@ -43,6 +44,13 @@ public class AssetFactory {
 				}
 			}
 		}
+
+		String mimeType = (String) map.get("mimeType");
+
+		if (mimeType.contains("image")) {
+			return new ImageEntry(map);
+		}
+		
 		return new AssetEntry(map);
 	}
 }

@@ -12,6 +12,7 @@ import com.liferay.mobile.screens.dlfile.display.audio.AudioDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.pdf.PdfDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.video.VideoDisplayScreenlet;
+import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
 import com.liferay.mobile.screens.webcontent.WebContent;
 import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
 import java.util.Arrays;
@@ -25,18 +26,22 @@ public class AssetDisplayFactory {
 	public BaseScreenlet getScreenlet(Context context, AssetEntry assetEntry, Map<String, Integer> layouts,
 		boolean autoLoad) {
 
-		if (assetEntry instanceof FileEntry) {
-
+		if (assetEntry instanceof FileEntry || assetEntry instanceof ImageEntry) {
 			BaseFileDisplayScreenlet screenlet = getDLFileEntryScreenlet(context, assetEntry.getMimeType());
 
 			if (screenlet != null) {
 				Integer layoutId = layouts.get(screenlet.getClass().getName());
 
-				screenlet.setFileEntry((FileEntry) assetEntry);
 				screenlet.setAutoLoad(autoLoad);
 				screenlet.render(layoutId);
-				screenlet.loadFile();
 
+				if (assetEntry instanceof FileEntry) {
+					screenlet.setFileEntry((FileEntry) assetEntry);
+					screenlet.loadFile();
+				} else {
+					screenlet.setClassPK(((ImageEntry) assetEntry).getFileEntryId());
+					screenlet.load();
+				}
 				return screenlet;
 			}
 		} else if (assetEntry instanceof WebContent) {

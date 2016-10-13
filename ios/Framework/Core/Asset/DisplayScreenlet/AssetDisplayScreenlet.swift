@@ -122,10 +122,17 @@ import UIKit
 
 	public func configureInnerScreenlet(innerScreenlet: BaseScreenlet, asset: Asset) {
 		if let screenlet = innerScreenlet as? FileDisplayScreenlet {
-			screenlet.fileEntry = FileEntry(attributes: asset.attributes)
 			screenlet.autoLoad = false
 			screenlet.offlinePolicy = self.offlinePolicy
 			screenlet.presentingViewController = self.presentingViewController
+
+			if let image = asset as? ImageEntry {
+				screenlet.classPK = image.imageEntryId
+			}
+			else {
+				screenlet.fileEntry = FileEntry(attributes: asset.attributes)
+			}
+			
 			screenlet.load()
 		}
 		else if let screenlet = innerScreenlet as? BlogsEntryDisplayScreenlet {
