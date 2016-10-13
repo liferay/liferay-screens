@@ -286,6 +286,7 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 			if refreshControlView == nil {
 				refreshControlView = UIRefreshControl()
 				collectionView?.addSubview(refreshControlView!)
+				collectionView?.alwaysBounceVertical = true
 				refreshControlView!.addTarget(
 						self,
 						action: #selector(BaseListTableView.refreshControlBeginRefresh(_:)),
