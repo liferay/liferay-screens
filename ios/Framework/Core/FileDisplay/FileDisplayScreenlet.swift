@@ -29,7 +29,7 @@ public class FileDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable public var assetEntryId: Int64 = 0
 
-	@IBInspectable public var className: String = ""
+	@IBInspectable public var className: String = AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
 	@IBInspectable public var classPK: Int64 = 0
 
 	@IBInspectable public var autoLoad: Bool = true
