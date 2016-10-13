@@ -54,7 +54,7 @@ class UserView: UIView {
 	
 	private func setup() {
 		let nib = NSBundle.mainBundle().loadNibNamed("UserView", owner: self, options: nil)
-		if let view = nib.last as? UIView {
+		if let view = nib?.last as? UIView {
 			self.contentView = view
 			self.addSubview(view)
 			
