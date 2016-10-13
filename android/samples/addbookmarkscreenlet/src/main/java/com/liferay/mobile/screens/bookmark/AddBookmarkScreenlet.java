@@ -99,10 +99,6 @@ public class AddBookmarkScreenlet extends BaseScreenlet<AddBookmarkViewModel, Ad
 		String url = viewModel.getURL();
 		String title = viewModel.getTitle();
 
-		try {
-			interactor.start(url, title, folderId);
-		} catch (Exception e) {
-			onAddBookmarkFailure(e);
-		}
+		interactor.start(url, title, folderId);
 	}
 }
