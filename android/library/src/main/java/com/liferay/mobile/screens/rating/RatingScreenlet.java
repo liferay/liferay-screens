@@ -27,7 +27,6 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 	public static final String DELETE_RATING_ACTION = "DELETE_RATING";
 	private RatingListener listener;
 	private long entryId;
-	private int ratingsGroupCount;
 	private boolean autoLoad;
 	private boolean editable;
 	private String className;
@@ -79,8 +78,6 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 		className = typedArray.getString(R.styleable.RatingScreenlet_className);
 		classPK = castToLong(typedArray.getString(R.styleable.RatingScreenlet_classPK));
 
-		ratingsGroupCount = typedArray.getInt(R.styleable.RatingScreenlet_ratingsGroupCount, 2);
-
 		typedArray.recycle();
 
 		return (View) view;
@@ -102,18 +99,18 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 
 	@Override
 	protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
+		int count = getViewModel().getRatingsLength();
 		switch (userActionName) {
 			case LOAD_RATINGS_ACTION:
-				((RatingLoadInteractor) interactor).start(entryId, classPK, className, ratingsGroupCount);
+				((RatingLoadInteractor) interactor).start(entryId, classPK, className, count);
 				break;
 			case UPDATE_RATING_ACTION:
 				double score = (double) args[0];
-				((RatingUpdateInteractor) interactor).start(
-					new RatingEvent(classPK, className, ratingsGroupCount, score));
+				((RatingUpdateInteractor) interactor).start(new RatingEvent(classPK, className, count, score));
 				break;
 			case DELETE_RATING_ACTION:
 				((RatingDeleteInteractor) interactor).start(
-					new RatingEvent(classPK, className, ratingsGroupCount, new JSONObject()));
+					new RatingEvent(classPK, className, count, new JSONObject()));
 				break;
 			default:
 				break;
@@ -194,13 +191,5 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 
 	public boolean isEditable() {
 		return editable;
-	}
-
-	public int getRatingsGroupCount() {
-		return ratingsGroupCount;
-	}
-
-	public void setRatingsGroupCount(int ratingsGroupCount) {
-		this.ratingsGroupCount = ratingsGroupCount;
 	}
 }

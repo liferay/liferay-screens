@@ -2,6 +2,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.rating;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
@@ -37,20 +38,37 @@ public class StarsRatingView extends BaseRatingView implements RatingBar.OnRatin
 	@Override
 	public void showFinishOperation(String action, AssetRating assetRating) {
 		if (progressBar != null) {
-			progressBar.setVisibility(GONE);
+			progressBar.setVisibility(View.GONE);
 		}
-		if (content != null) {
-			content.setVisibility(VISIBLE);
 
-			userRatingBar.setRating(getRating(assetRating.getTotalScore(), userRatingBar.getNumStars()));
-			averageRatingBar.setRating(getRating(assetRating.getAverage(), averageRatingBar.getNumStars()));
-			totalCountTextView.setText(getResources().getQuantityString(R.plurals.rating_count, assetRating.getTotalCount(), assetRating.getTotalCount()));
+		if (content != null) {
+			content.setVisibility(View.VISIBLE);
 		}
+
+		userRatingBar.setRating(getRating(assetRating.getUserScore(), userRatingBar.getNumStars()));
+		averageRatingBar.setRating(getRating(assetRating.getAverage(), averageRatingBar.getNumStars()));
+		totalCountTextView.setText(getResources().getQuantityString(R.plurals.rating_count, assetRating.getTotalCount(),
+			assetRating.getTotalCount()));
 	}
 
 	@Override
 	public void enableEdition(boolean editable) {
 		userRatingBar.setEnabled(editable);
+	}
+
+	@Override
+	protected void setButton(View textView) {
+
+	}
+
+	@Override
+	protected void setEmptyState(TextView textView, View view, int rating, AssetRating assetRating) {
+
+	}
+
+	@Override
+	protected void clicked(double score, double userScore) {
+
 	}
 
 	@Override
@@ -74,5 +92,10 @@ public class StarsRatingView extends BaseRatingView implements RatingBar.OnRatin
 
 	private float getRating(double score, int numStars) {
 		return (float) score * numStars;
+	}
+
+	@Override
+	public int getRatingsLength() {
+		return 5;
 	}
 }

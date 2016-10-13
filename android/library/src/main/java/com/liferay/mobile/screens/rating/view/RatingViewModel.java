@@ -11,4 +11,6 @@ public interface RatingViewModel extends BaseViewModel {
 	void showFinishOperation(String actionName, AssetRating argument);
 
 	void enableEdition(boolean editable);
+
+	int getRatingsLength();
 }
