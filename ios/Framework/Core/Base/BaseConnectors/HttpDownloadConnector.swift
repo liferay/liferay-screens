@@ -44,7 +44,7 @@ public class HttpDownloadConnector: ServerConnector {
 				}
 				else if let localURL = _localURL {
 					do {
-						let newPathURL = try self.moveTmpToCache(localURL.absoluteString!,
+						let newPathURL = try self.moveTmpToCache(localURL.absoluteString,
 							fileExtension: self.fileExtension(response))
 						self.resultUrl = newPathURL
 						self.lastError = nil
