@@ -118,16 +118,16 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 			decorateBaseEvent(event);
 			event.setCached(true);
 
-			Class childClass = getEventClass();
+			//Class childClass = getEventClass();
+			//
+			//String[] keys = Cache.findKeys(childClass, groupId, userId, locale, event.getQuery().getStartRow(),
+			//	event.getQuery().getLimit());
 
-			String[] keys = Cache.findKeys(childClass, groupId, userId, locale, event.getQuery().getStartRow(),
-				event.getQuery().getLimit());
-
-			List<E> entries = new ArrayList<>();
-			for (String key : keys) {
-				entries.add((E) Cache.getObject(childClass, groupId, userId, key));
-			}
-			event.setEntries(entries);
+			//List<E> entries = new ArrayList<>();
+			//for (String key : keys) {
+			//	entries.add((E) Cache.getObject(childClass, groupId, userId, key));
+			//}
+			//event.setEntries(entries);
 
 			EventBusUtil.post(event);
 			loadingFromCache(true);
@@ -152,7 +152,8 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 
 		List<E> entries = event.getEntries();
 		for (int i = 0; i < entries.size(); i++) {
-			Cache.storeObject(entries.get(i), i + query.getStartRow());
+			//Cache.storeObject(entries.get(i), i + query.getStartRow());
+			Cache.storeObject(entries.get(i));
 		}
 
 		Cache.storeObject(event);
