@@ -34,6 +34,8 @@
 	<string name="placeholder_while_image_loads">placeholder while image loads</string>
 	<string name="audio_player_background">audio player background</string>
 	<string name="cancel_button">cancel button</string>
+	<string name="screenlet_rating_button_tag">screenlet_rating_button_tag</string>
+	<string name="screenlet_rating_label_tag">screenlet_rating_label_tag</string>
 
 	<string-array name="image_mime_types">
 		<item>image/png</item>

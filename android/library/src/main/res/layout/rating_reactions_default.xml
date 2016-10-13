@@ -35,6 +35,7 @@
 			android:contentDescription="@string/very_sad_smiley"
 			android:scaleType="fitXY"
 			android:src="@drawable/default_mood_very_dissatisfied"
+			android:tag="@string/screenlet_rating_button_tag"
 			/>
 
 		<ImageButton
@@ -46,6 +47,7 @@
 			android:contentDescription="@string/sad_smiley"
 			android:scaleType="fitXY"
 			android:src="@drawable/default_mood_dissatisfied"
+			android:tag="@string/screenlet_rating_button_tag"
 			/>
 
 		<ImageButton
@@ -57,6 +59,7 @@
 			android:contentDescription="@string/neutral_smiley"
 			android:scaleType="fitXY"
 			android:src="@drawable/default_mood_neutral"
+			android:tag="@string/screenlet_rating_button_tag"
 			/>
 
 		<ImageButton
@@ -68,6 +71,7 @@
 			android:contentDescription="@string/happy_smiley"
 			android:scaleType="fitXY"
 			android:src="@drawable/default_mood_satisfied"
+			android:tag="@string/screenlet_rating_button_tag"
 			/>
 
 		<ImageButton
@@ -79,6 +83,7 @@
 			android:contentDescription="@string/very_happy_smiley"
 			android:scaleType="fitXY"
 			android:src="@drawable/default_mood_very_satisfied"
+			android:tag="@string/screenlet_rating_button_tag"
 			/>
 
 		<TextView
@@ -89,6 +94,7 @@
 			android:layout_alignRight="@id/very_dissatisfied_button"
 			android:layout_below="@+id/very_dissatisfied_button"
 			android:gravity="center"
+			android:tag="@string/screenlet_rating_label_tag"
 			android:textColor="@color/textColorPrimary_default"
 			tools:text="600"
 			/>
@@ -101,6 +107,7 @@
 			android:layout_alignRight="@id/dissatisfied_button"
 			android:layout_below="@+id/dissatisfied_button"
 			android:gravity="center"
+			android:tag="@string/screenlet_rating_label_tag"
 			android:textColor="@color/textColorPrimary_default"
 			tools:text="2000"
 			/>
@@ -113,6 +120,7 @@
 			android:layout_alignRight="@id/neutral_button"
 			android:layout_below="@+id/neutral_button"
 			android:gravity="center"
+			android:tag="@string/screenlet_rating_label_tag"
 			android:textColor="@color/textColorPrimary_default"
 			tools:text="10"
 			/>
@@ -125,6 +133,7 @@
 			android:layout_alignRight="@id/satisfied_button"
 			android:layout_below="@+id/satisfied_button"
 			android:gravity="center"
+			android:tag="@string/screenlet_rating_label_tag"
 			android:textColor="@color/textColorPrimary_default"
 			tools:text="0"
 			/>
@@ -137,6 +146,7 @@
 			android:layout_alignRight="@id/very_satisfied_button"
 			android:layout_below="@+id/very_satisfied_button"
 			android:gravity="center"
+			android:tag="@string/screenlet_rating_label_tag"
 			android:textColor="@color/textColorPrimary_default"
 			tools:text="112"
 			/>

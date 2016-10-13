@@ -34,6 +34,7 @@
 			android:contentDescription="@string/thumbs_up"
 			android:scaleType="fitXY"
 			android:src="@drawable/default_thumb_up_outline"
+			android:tag="@string/screenlet_rating_button_tag"
 			android:tint="?colorPrimary"
 			/>
 
@@ -42,6 +43,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center"
+			android:tag="@string/screenlet_rating_label_tag"
 			android:textColor="@color/textColorPrimary_default"
 			tools:text="Total: 8"
 			/>
