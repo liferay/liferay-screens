@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 import com.liferay.mobile.screens.asset.display.AssetDisplayInnerScreenletListener;
 import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
-import com.liferay.mobile.screens.asset.list.AssetEntry;
+import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;

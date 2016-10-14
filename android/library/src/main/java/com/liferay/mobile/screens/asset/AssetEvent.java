@@ -1,6 +1,5 @@
 package com.liferay.mobile.screens.asset;
 
-import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.base.list.interactor.ListEvent;
 import org.json.JSONObject;
 

@@ -14,7 +14,7 @@
 
 package com.liferay.mobile.screens.context;
 
-import com.liferay.mobile.screens.asset.list.AssetEntry;
+import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import java.util.HashMap;

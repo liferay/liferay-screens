@@ -6,7 +6,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
-import com.liferay.mobile.screens.asset.list.AssetEntry;
+import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet;
 
 /**

@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.asset.display;
 
 import android.view.View;
-import com.liferay.mobile.screens.asset.list.AssetEntry;
+import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 
 /**

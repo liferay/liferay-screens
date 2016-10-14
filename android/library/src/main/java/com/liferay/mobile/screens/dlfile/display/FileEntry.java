@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.dlfile.display;
 
-import com.liferay.mobile.screens.asset.list.AssetEntry;
+import com.liferay.mobile.screens.asset.AssetEntry;
 import java.util.Map;
 
 /**

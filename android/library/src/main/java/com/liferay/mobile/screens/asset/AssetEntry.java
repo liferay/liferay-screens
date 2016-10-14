@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.asset.list;
+package com.liferay.mobile.screens.asset;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -54,7 +54,8 @@ public class AssetEntry implements Parcelable {
 		in.readMap(values, loader);
 	}
 
-	public AssetEntry(Map<String, Object> values) {
+	protected AssetEntry(Map<String, Object> values) {
+		// You should use AssetFactory.createInstance to create the right entity
 		this.values = values;
 	}
 
@@ -114,7 +115,8 @@ public class AssetEntry implements Parcelable {
 	}
 
 	public long getEntryId() {
-		return Long.parseLong((String) values.get("entryId"));
+		Object entryId = values.get("entryId");
+		return entryId instanceof String ? Long.valueOf((String) entryId) : (Integer) entryId;
 	}
 
 	public long getClassPK() {

@@ -2,7 +2,7 @@ package com.liferay.mobile.screens.asset.display;
 
 import android.content.Context;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.asset.list.AssetEntry;
+import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.blogs.BlogsEntry;
 import com.liferay.mobile.screens.blogs.BlogsEntryDisplayScreenlet;

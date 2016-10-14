@@ -19,6 +19,7 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.asset.list.interactor.AssetListInteractor;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;

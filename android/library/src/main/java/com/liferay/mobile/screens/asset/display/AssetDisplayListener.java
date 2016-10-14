@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.asset.display;
 
-import com.liferay.mobile.screens.asset.list.AssetEntry;
+import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 
 /**

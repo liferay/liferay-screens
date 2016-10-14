@@ -16,7 +16,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.asset.list;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import com.liferay.mobile.screens.asset.list.AssetEntry;
+import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.asset.list.view.AssetListViewModel;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
