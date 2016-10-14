@@ -7,16 +7,16 @@
 	<key>companyId</key>
 	<integer>20116</integer>
 	<key>groupId</key>
-	<integer>30853</integer>
+	<integer>43734</integer>
 	<key>anonymousUsername</key>
 	<string>anonymous1@liferay.com</string>
 	<key>anonymousPassword</key>
 	<string>anonymous1</string>
 	<key>galleryFolderId</key>
-	<integer>35726</integer>
+	<integer>44059</integer>
 	<key>documentationPortletItemName</key>
 	<string>DocumentationWesterosEmployees</string>
 	<key>termsAndConditionsAssetEntryId</key>
-	<integer>36909</integer>
+	<integer>44489</integer>
 </dict>
 </plist>
