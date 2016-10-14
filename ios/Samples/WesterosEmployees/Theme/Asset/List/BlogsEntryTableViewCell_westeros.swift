@@ -16,7 +16,11 @@ import LiferayScreens
 
 public class BlogsEntryTableViewCell_westeros: UITableViewCell {
 
-	@IBOutlet public weak var imageDisplayScreenlet: ImageDisplayScreenlet?
+	@IBOutlet public weak var imageDisplayScreenlet: ImageDisplayScreenlet? {
+		didSet {
+			imageDisplayScreenlet?.imageMode = .ScaleAspectFill
+		}
+	}
 	@IBOutlet public weak var titleLabel: UILabel?
 	@IBOutlet public weak var subtitleLabel: UILabel?
 

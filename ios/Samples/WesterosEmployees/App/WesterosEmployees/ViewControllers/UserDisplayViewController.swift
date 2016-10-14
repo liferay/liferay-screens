@@ -42,7 +42,7 @@ public class UserDisplayViewController: UIViewController, AssetDisplayScreenletD
 	public func screenlet(screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView? {
 		if let type = asset.attributes["object"]?.allKeys.first as? String {
 			if type == "user" {
-				let view = NSBundle.mainBundle().loadNibNamed("UserProfileView", owner: self, options: nil)[safe: 0] as? UserProfileView
+				let view = NSBundle.mainBundle().loadNibNamed("UserProfileView", owner: self, options: nil)![safe: 0] as? UserProfileView
 
 				view?.user = User(attributes: asset.attributes)
 				view?.goBackButtonClicked = {

@@ -66,7 +66,7 @@ public enum ShowState {
 ///CardView uses [PureLayout](https://github.com/PureLayout/PureLayout) to set its constraints.
 ///To get more information about how to tweak this constraints go to the 
 ///[API Cheat Sheet](https://github.com/PureLayout/PureLayout#api-cheat-sheet)
-public class CardView: UIView {
+public class CardView: UIView, CAAnimationDelegate {
 
 	//Default configuration constants
 	public static let DefaultMinimizedHeight: CGFloat = 70
@@ -499,7 +499,7 @@ public class CardView: UIView {
 
 
 	//Called when background animation finish
-	override public func animationDidStop(theAnimation: CAAnimation, finished flag: Bool) {
+	public func animationDidStop(anim: CAAnimation, finished flag: Bool) {
 		onChangeCompleted?(flag)
 		onChangeCompleted = nil
 
