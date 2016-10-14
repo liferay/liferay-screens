@@ -38,6 +38,15 @@ public class ImageGalleryCell: UITableViewCell {
         }
     }
 
+	public var img: UIImage? {
+		get {
+			return imagePreview.image
+		}
+		set {
+			imagePreview.image = newValue
+		}
+	}
+
     override public func awakeFromNib() {
         super.awakeFromNib()
         
