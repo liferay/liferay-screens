@@ -16,6 +16,7 @@ import com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display.ImageDisp
 public class ImageDisplayScreenlet extends BaseFileDisplayScreenlet<ImageDisplayViewModel> {
 
 	private ImageView.ScaleType scaleType;
+	private ImageView.ScaleType placeholderScaleType;
 	private int placeholder;
 
 	public ImageDisplayScreenlet(Context context) {
@@ -45,12 +46,17 @@ public class ImageDisplayScreenlet extends BaseFileDisplayScreenlet<ImageDisplay
 			ImageView.ScaleType.CENTER_CROP.ordinal());
 		scaleType = ImageView.ScaleType.values()[scaleTypeAttribute];
 
+		Integer placeholderScaleTypeAttribute = typedArray.getInteger(R.styleable.ImageDisplayScreenlet_placeholderScaleType,
+			ImageView.ScaleType.CENTER_INSIDE.ordinal());
+		placeholderScaleType = ImageView.ScaleType.values()[placeholderScaleTypeAttribute];
+
 		typedArray.recycle();
 
 		View view = super.createScreenletView(context, attributes);
 
-		((ImageDisplayView) view).setScaleType(scaleType);
 		((ImageDisplayView) view).setPlaceholder(placeholder);
+		((ImageDisplayView) view).setPlaceholderScaleType(placeholderScaleType);
+		((ImageDisplayView) view).setScaleType(scaleType);
 
 		return view;
 	}
@@ -61,6 +67,15 @@ public class ImageDisplayScreenlet extends BaseFileDisplayScreenlet<ImageDisplay
 
 	public int getPlaceholder() {
 		return placeholder;
+	}
+
+	public ImageView.ScaleType getPlaceholderScaleType() {
+		return placeholderScaleType;
+	}
+
+	public void setPlaceholderScaleType(ImageView.ScaleType placeholderScaleType) {
+		this.placeholderScaleType = placeholderScaleType;
+		getViewModel().setPlaceholderScaleType(placeholderScaleType);
 	}
 
 	public void setScaleType(ImageView.ScaleType scaleType) {

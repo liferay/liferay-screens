@@ -24,6 +24,9 @@ public class ImageDisplayView extends BaseFileDisplayView implements ImageDispla
 	@DrawableRes
 	private int placeholder = 0;
 
+	private ImageView.ScaleType scaleType;
+	private ImageView.ScaleType placeholderScaleType;
+
 	public ImageDisplayView(Context context) {
 		super(context);
 	}
@@ -45,6 +48,7 @@ public class ImageDisplayView extends BaseFileDisplayView implements ImageDispla
 	@Override
 	public void showFinishOperation(FileEntry fileEntry) {
 		imageView.setImageResource(placeholder);
+		imageView.setScaleType(placeholderScaleType);
 		super.showFinishOperation(fileEntry);
 	}
 
@@ -71,16 +75,23 @@ public class ImageDisplayView extends BaseFileDisplayView implements ImageDispla
 	}
 
 	private void loadImage(String url) {
+		setScaleType(scaleType);
 		Picasso.with(getContext()).load(new File(url)).into(imageView, this);
 	}
 
 	@Override
 	public void setScaleType(ImageView.ScaleType scaleType) {
+		this.scaleType = scaleType;
 		imageView.setScaleType(scaleType);
 	}
 
 	@Override
 	public void setPlaceholder(@DrawableRes int placeholder) {
 		this.placeholder = placeholder;
+	}
+
+	@Override
+	public void setPlaceholderScaleType(ImageView.ScaleType placeholderScaleType) {
+		this.placeholderScaleType = placeholderScaleType;
 	}
 }
