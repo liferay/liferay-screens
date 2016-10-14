@@ -183,6 +183,8 @@ import QuartzCore
 			                                  toItem: self, attribute: .Trailing, multiplier: 1, constant: 0)
 			
 			NSLayoutConstraint.activateConstraints([top, bottom, leading, trailing])
+			
+			viewValue.layoutIfNeeded()
 		}
 		else {
 			self._progressPresenter = nil
