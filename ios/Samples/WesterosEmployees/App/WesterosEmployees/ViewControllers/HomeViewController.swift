@@ -19,21 +19,39 @@ public var tourCompleted = false
 
 class HomeViewController: UIViewController, AssetListScreenletDelegate,
 	CardDeckDelegate, CardDeckDataSource {
+	
+	///Flag to control if the home has been initialized
+	var homeInitialized = false
 
 
 	//MARK: Outlets
 
-	@IBOutlet weak var cardDeck: CardDeckView?
-	@IBOutlet weak var userView: UIView?
+	@IBOutlet weak var cardDeck: CardDeckView? {
+		didSet {
+			cardDeck?.delegate = self
+			cardDeck?.dataSource = self
+			cardDeck?.layer.zPosition = 0
+		}
+	}
+	@IBOutlet weak var userView: UIView? {
+		didSet {
+			userView?.layer.zPosition = -1000
+		}
+	}
 	@IBOutlet weak var userPortraitScreenlet: UserPortraitScreenlet?
 	@IBOutlet weak var userNameLabel: UILabel?
 	@IBOutlet weak var assetListScreenlet: AssetListScreenlet? {
 		didSet {
 			assetListScreenlet?.delegate = self
+			assetListScreenlet?.alpha = 0
 		}
 	}
 	@IBOutlet weak var userProfileButton: UIButton?
-	@IBOutlet weak var latestChangesLabel: UILabel?
+	@IBOutlet weak var latestChangesLabel: UILabel? {
+		didSet {
+			latestChangesLabel?.alpha = 0
+		}
+	}
 
 
 	//MARK: Card controllers
@@ -69,18 +87,9 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		self.userView?.layer.zPosition = -1000
-		self.cardDeck?.layer.zPosition = 0
-
-		self.assetListScreenlet?.alpha = 0
-		self.latestChangesLabel?.alpha = 0
-
 		documentationViewController = DocumentationViewController()
 		blogsViewController = BlogsViewController()
 		galleryViewController = GalleryViewController()
-
-		cardDeck?.delegate = self
-		cardDeck?.dataSource = self
 	}
 
 	override func viewWillAppear(animated: Bool) {
@@ -93,8 +102,10 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 		super.viewDidAppear(animated)
 
 		SessionContext.loadStoredCredentials()
-
+		
 		if !SessionContext.isLoggedIn {
+			homeInitialized = false
+			
 			if !tourCompleted {
 				dispatch_delayed(0.5) {
 					self.performSegueWithIdentifier("tour", sender: nil)
@@ -104,22 +115,16 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 				self.performSegueWithIdentifier("login", sender: nil)
 			}
 		}
-		else {
+		else if !homeInitialized {
 			tourCompleted = true
+			
+			//Initialize home only once
 			initializeHome()
+			homeInitialized = true
 		}
 	}
 
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "login" {
-			if let authController = segue.destinationViewController as? AuthViewController {
-				authController.onAuthDone = {
-					self.initializeHome()
-				}
-			}
-		}
-	}
-
+	
 	//MARK: CardDeckDataSource
 
 	func numberOfCardsIn(cardDeck: CardDeckView) -> Int {
