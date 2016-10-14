@@ -191,7 +191,7 @@ import Foundation
 
 	internal func convert(fromCurrentValue value:AnyObject?) -> String? {
 		if let value = value {
-			return value.description
+			return "\(value)"
 		}
 
 		return nil
@@ -199,7 +199,7 @@ import Foundation
 
 	internal func convertToLabel(fromCurrentValue value:AnyObject?) -> String? {
 		if let value = value {
-			return value.description
+			return "\(value)"
 		}
 
 		return nil
