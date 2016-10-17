@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="N0K-Ji-ryL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="N0K-Ji-ryL">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--RatingDisplayScreenlet-->
@@ -19,36 +20,41 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VbC-bI-jPR">
-                                <rect key="frame" x="16" y="84" width="288" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="fUE-ZZ-IR5"/>
+                                </constraints>
                                 <segments>
                                     <segment title="Thumbs"/>
                                     <segment title="Like"/>
                                     <segment title="Stars"/>
                                     <segment title="Emojis"/>
                                 </segments>
-                                <color key="tintColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                                <color key="tintColor" red="0.083623558282852173" green="0.66497266292572021" blue="0.84832382202148438" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="segmentedControlChanged:" destination="N0K-Ji-ryL" eventType="valueChanged" id="Ou5-g3-b3h"/>
                                 </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAQ-sX-WyU" userLabel="Editable switch view">
-                                <rect key="frame" x="93" y="132" width="135" height="45"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Editable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvB-0o-bfZ">
-                                        <rect key="frame" x="65" y="6" width="70" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="2sc-qk-1yl"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D7x-W0-d56">
-                                        <rect key="frame" x="8" y="7" width="51" height="31"/>
-                                        <color key="onTintColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="LMU-un-ZAw"/>
+                                        </constraints>
+                                        <color key="onTintColor" red="0.083623558282852173" green="0.66497266292572021" blue="0.84832382202148438" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="switchChange:" destination="N0K-Ji-ryL" eventType="valueChanged" id="1tW-d6-8J4"/>
                                         </connections>
                                     </switch>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="QvB-0o-bfZ" secondAttribute="trailing" id="HEg-LS-WYt"/>
                                     <constraint firstItem="QvB-0o-bfZ" firstAttribute="top" secondItem="MAQ-sX-WyU" secondAttribute="top" constant="6" id="Obm-85-90d"/>
@@ -63,11 +69,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PeC-X4-KBr" customClass="RatingScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="16" y="197" width="288" height="334"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="MAQ-sX-WyU" firstAttribute="top" secondItem="VbC-bI-jPR" secondAttribute="bottom" constant="20" id="2qI-Ql-E7P"/>
                             <constraint firstItem="PeC-X4-KBr" firstAttribute="leading" secondItem="flQ-4S-EHo" secondAttribute="leadingMargin" id="3H7-FB-Ng9"/>
