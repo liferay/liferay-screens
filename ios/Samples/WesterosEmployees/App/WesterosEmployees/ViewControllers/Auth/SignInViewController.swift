@@ -54,13 +54,13 @@ class SignInViewController: CardViewController, LoginScreenletDelegate, Keyboard
 
 	//MARK: CardViewController
 
-	override func cardWillAppear() {
+	override func pageWillAppear() {
 		registerKeyboardListener(self)
 	}
 
-	override func cardWillDisappear() {
-		unregisterKeyboardListener(self)
+	override func pageWillDisappear() {
 		self.view.endEditing(true)
+		unregisterKeyboardListener(self)
 	}
 
 

@@ -42,7 +42,7 @@ class DocumentationViewController: CardViewController, AssetListScreenletDelegat
 
 	//MARK: CardViewController
 
-	override func cardWillAppear() {
+	override func pageWillAppear() {
 		if !loaded {
 			assetListScreenlet?.loadList()
 			loaded = true

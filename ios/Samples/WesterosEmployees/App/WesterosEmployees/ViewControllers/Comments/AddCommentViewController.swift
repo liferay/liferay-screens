@@ -66,11 +66,11 @@ class AddCommentViewController: CardViewController, KeyboardListener, CommentAdd
 	
 	//MARK: CardViewController
 
-	override func cardWillAppear() {
+	override func pageWillAppear() {
 		registerKeyboardListener(self)
 	}
 
-	override func cardWillDisappear() {
+	override func pageWillDisappear() {
 		self.cardView?.changeButtonText("Add Comment")
 		self.commentAddScreenlet?.comment = nil
 		(self.commentAddScreenlet?.viewModel as? CommentAddView_westeros)?.body = ""

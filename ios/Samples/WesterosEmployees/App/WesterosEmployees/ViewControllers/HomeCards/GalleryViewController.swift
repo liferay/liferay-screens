@@ -52,11 +52,11 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 
 	//MARK: CardViewController
 
-	override func cardWillDisappear() {
+	override func pageWillDisappear() {
 		hideUploadCard()
 	}
 
-	override func cardWillAppear() {
+	override func pageWillAppear() {
 		if !loaded {
 			imageGalleryScreenlet?.loadList()
 			loaded = true

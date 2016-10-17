@@ -284,7 +284,14 @@ public class CardDeckView: UIView, CardDelegate {
 			if card.pageCount <= page {
 				controller?.cardView = card
 			}
+			
+			//Notify the previous controller that its page it's going to disappear
+			card.presentingController?.pageWillDisappear()
+			
 			card.presentingController = controller
+			
+			//Notify the new presenting controller that its page it's appearing
+			card.presentingController?.pageWillAppear()
 
 			return controller != nil
 		}

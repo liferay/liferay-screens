@@ -393,10 +393,10 @@ public class CardView: UIView, CAAnimationDelegate {
 		//Notify the view controller, if any
 		if nextState.isVisible != currentState.isVisible {
 			if nextState.isVisible {
-				presentingController?.cardWillAppear()
+				presentingController?.pageWillAppear()
 			}
 			else {
-				presentingController?.cardWillDisappear()
+				presentingController?.pageWillDisappear()
 			}
 		}
 
