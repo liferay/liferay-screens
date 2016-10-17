@@ -7,22 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B083A4E1D926D99007D7BCC /* ModalDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B083A4D1D926D99007D7BCC /* ModalDetailViewController.xib */; };
 		0B0A22981D6B0CDA0061B50D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A22971D6B0CDA0061B50D /* AppDelegate.swift */; };
 		0B0A229D1D6B0CDA0061B50D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A229B1D6B0CDA0061B50D /* Main.storyboard */; };
 		0B0A229F1D6B0CDA0061B50D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A229E1D6B0CDA0061B50D /* Assets.xcassets */; };
 		0B0A22A21D6B0CDA0061B50D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A22A01D6B0CDA0061B50D /* LaunchScreen.storyboard */; };
 		0B0A23481D6B22100061B50D /* KeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A23461D6B22100061B50D /* KeyboardListener.swift */; };
-		0B0A23671D6B221B0061B50D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A235A1D6B221B0061B50D /* SignInViewController.swift */; };
-		0B0A23681D6B221B0061B50D /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A235B1D6B221B0061B50D /* SignInViewController.xib */; };
-		0B0A23691D6B221B0061B50D /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A235C1D6B221B0061B50D /* SignUpViewController.swift */; };
-		0B0A236A1D6B221B0061B50D /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A235D1D6B221B0061B50D /* SignUpViewController.xib */; };
 		0B0A236B1D6B221B0061B50D /* TourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0A235E1D6B221B0061B50D /* TourViewController.swift */; };
 		0B0A238A1D6B22EF0061B50D /* Avenir-Next-Condensed.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A236F1D6B22EF0061B50D /* Avenir-Next-Condensed.ttc */; };
 		0B0A238B1D6B22EF0061B50D /* Avenir-Next.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A23701D6B22EF0061B50D /* Avenir-Next.ttc */; };
 		0B0A238C1D6B22EF0061B50D /* Avenir.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 0B0A23711D6B22EF0061B50D /* Avenir.ttc */; };
-		0B26EAFB1D803FA4000201C6 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B26EAFA1D803FA4000201C6 /* TermsViewController.swift */; };
-		0B26EAFD1D803FB0000201C6 /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B26EAFC1D803FB0000201C6 /* TermsViewController.xib */; };
 		0B26EB1E1D81873C000201C6 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B26EB1D1D81873C000201C6 /* UserProfile.storyboard */; };
 		0B27F0F71D9A6ED300A1F67A /* AssetDisplayView_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B27F0AE1D9A6ED300A1F67A /* AssetDisplayView_westeros.swift */; };
 		0B27F0F81D9A6ED300A1F67A /* AssetDisplayView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B27F0AF1D9A6ED300A1F67A /* AssetDisplayView_westeros.xib */; };
@@ -79,18 +72,36 @@
 		0B27F12C1D9A6ED400A1F67A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B27F0F31D9A6ED300A1F67A /* Images.xcassets */; };
 		0B27F12D1D9A6ED400A1F67A /* WebContentDisplayView_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B27F0F51D9A6ED300A1F67A /* WebContentDisplayView_westeros.swift */; };
 		0B27F12E1D9A6ED400A1F67A /* WebContentDisplayView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B27F0F61D9A6ED300A1F67A /* WebContentDisplayView_westeros.xib */; };
-		0B282F121D7ED7BE0090F800 /* DocumentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B282F101D7ED7BE0090F800 /* DocumentationViewController.swift */; };
-		0B282F131D7ED7BE0090F800 /* DocumentationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B282F111D7ED7BE0090F800 /* DocumentationViewController.xib */; };
-		0B282F161D7ED9210090F800 /* BlogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B282F141D7ED9210090F800 /* BlogsViewController.swift */; };
-		0B282F171D7ED9210090F800 /* BlogsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B282F151D7ED9210090F800 /* BlogsViewController.xib */; };
-		0B282F1A1D7ED95A0090F800 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B282F181D7ED95A0090F800 /* GalleryViewController.swift */; };
-		0B282F1B1D7ED95A0090F800 /* GalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B282F191D7ED95A0090F800 /* GalleryViewController.xib */; };
 		0B282F1E1D7EE2570090F800 /* UserDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B282F1C1D7EE2570090F800 /* UserDisplayViewController.swift */; };
 		0B35AF6D1D6C359D002E3D2F /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B35AF6B1D6C359D002E3D2F /* Auth.storyboard */; };
 		0B35AF6F1D6C3614002E3D2F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35AF6E1D6C3614002E3D2F /* HomeViewController.swift */; };
-		0B35AF711D6C361C002E3D2F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35AF701D6C361C002E3D2F /* AuthViewController.swift */; };
 		0B35AF731D6C4678002E3D2F /* liferay-server-context.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B35AF721D6C4678002E3D2F /* liferay-server-context.plist */; };
-		0B61A3E61DB4B7FF007B6F9C /* ModalBlogDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B61A3E51DB4B7FF007B6F9C /* ModalBlogDetailViewController.xib */; };
+		0B61A40D1DB4E619007B6F9C /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B61A3F01DB4E619007B6F9C /* AuthViewController.swift */; };
+		0B61A40E1DB4E619007B6F9C /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B61A3F11DB4E619007B6F9C /* ForgotPasswordViewController.xib */; };
+		0B61A40F1DB4E619007B6F9C /* ForgotPaswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B61A3F21DB4E619007B6F9C /* ForgotPaswordViewController.swift */; };
+		0B61A4101DB4E619007B6F9C /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B61A3F31DB4E619007B6F9C /* SignInViewController.swift */; };
+		0B61A4111DB4E619007B6F9C /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B61A3F41DB4E619007B6F9C /* SignInViewController.xib */; };
+		0B61A4121DB4E619007B6F9C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B61A3F51DB4E619007B6F9C /* SignUpViewController.swift */; };
+		0B61A4131DB4E619007B6F9C /* SignUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B61A3F61DB4E619007B6F9C /* SignUpViewController.xib */; };
+		0B61A4141DB4E619007B6F9C /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B61A3F71DB4E619007B6F9C /* TermsViewController.swift */; };
+		0B61A4151DB4E619007B6F9C /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B61A3F81DB4E619007B6F9C /* TermsViewController.xib */; };
+		0B61A4161DB4E619007B6F9C /* AddCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B61A3FA1DB4E619007B6F9C /* AddCommentViewController.swift */; };
+		0B61A4171DB4E619007B6F9C /* AddCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B61A3FB1DB4E619007B6F9C /* AddCommentViewController.xib */; };
+		0B61A4181DB4E619007B6F9C /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B61A3FC1DB4E619007B6F9C /* CommentsViewController.swift */; };
+		0B61A4191DB4E619007B6F9C /* CommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B61A3FD1DB4E619007B6F9C /* CommentsViewController.xib */; };
+		0B61A41A1DB4E619007B6F9C /* BlogDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B61A3FF1DB4E619007B6F9C /* BlogDetailViewController.xib */; };
+		0B61A41B1DB4E619007B6F9C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B61A4001DB4E619007B6F9C /* DetailViewController.swift */; };
+		0B61A41C1DB4E619007B6F9C /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B61A4011DB4E619007B6F9C /* DetailViewController.xib */; };
+		0B61A41D1DB4E619007B6F9C /* ModalBlogDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B61A4021DB4E619007B6F9C /* ModalBlogDetailViewController.xib */; };
+		0B61A41E1DB4E619007B6F9C /* ModalDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B61A4031DB4E619007B6F9C /* ModalDetailViewController.xib */; };
+		0B61A41F1DB4E619007B6F9C /* BlogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B61A4051DB4E619007B6F9C /* BlogsViewController.swift */; };
+		0B61A4201DB4E619007B6F9C /* BlogsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B61A4061DB4E619007B6F9C /* BlogsViewController.xib */; };
+		0B61A4211DB4E619007B6F9C /* DocumentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B61A4071DB4E619007B6F9C /* DocumentationViewController.swift */; };
+		0B61A4221DB4E619007B6F9C /* DocumentationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B61A4081DB4E619007B6F9C /* DocumentationViewController.xib */; };
+		0B61A4231DB4E619007B6F9C /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B61A4091DB4E619007B6F9C /* GalleryViewController.swift */; };
+		0B61A4241DB4E619007B6F9C /* GalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B61A40A1DB4E619007B6F9C /* GalleryViewController.xib */; };
+		0B61A4251DB4E619007B6F9C /* UploadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B61A40B1DB4E619007B6F9C /* UploadImageViewController.swift */; };
+		0B61A4261DB4E619007B6F9C /* UploadImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B61A40C1DB4E619007B6F9C /* UploadImageViewController.xib */; };
 		0B7EFFC71D9196A500BA23EC /* WesterosCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EFFC61D9196A500BA23EC /* WesterosCardView.swift */; };
 		0B9309471D6DAC7E003824D6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9309451D6DAC7E003824D6 /* CardView.swift */; };
 		0B9309481D6DAC7E003824D6 /* CardDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9309461D6DAC7E003824D6 /* CardDeckView.swift */; };
@@ -98,24 +109,12 @@
 		0B93094C1D6DAC9A003824D6 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B93094B1D6DAC9A003824D6 /* CardViewController.swift */; };
 		0B93094F1D6DACD9003824D6 /* Westeros+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B93094E1D6DACD9003824D6 /* Westeros+Array.swift */; };
 		0B9309511D6DB0D9003824D6 /* Westeros+CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9309501D6DB0D9003824D6 /* Westeros+CGRect.swift */; };
-		0B9309531D6DBE40003824D6 /* ForgotPaswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9309521D6DBE40003824D6 /* ForgotPaswordViewController.swift */; };
-		0B9309551D6DBE58003824D6 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B9309541D6DBE58003824D6 /* ForgotPasswordViewController.xib */; };
 		0B9C6E4D1D940FA5009A564E /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9C6E4B1D940FA5009A564E /* UserProfileView.swift */; };
 		0B9C6E501D940FE7009A564E /* UserProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B9C6E4F1D940FE7009A564E /* UserProfileView.xib */; };
-		0BD07A2E1D82EEA100470A2E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD07A2D1D82EEA100470A2E /* DetailViewController.swift */; };
-		0BD07A301D82EEC500470A2E /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD07A2F1D82EEC500470A2E /* DetailViewController.xib */; };
-		0BD07A331D86AEDD00470A2E /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD07A311D86AEDD00470A2E /* CommentsViewController.swift */; };
-		0BD07A341D86AEDD00470A2E /* CommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD07A321D86AEDD00470A2E /* CommentsViewController.xib */; };
-		0BD67DF51DB1032100127324 /* BlogDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD67DF41DB1032100127324 /* BlogDetailViewController.xib */; };
-		0BD832CD1D8933AD00178AAA /* UploadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD832CC1D8933AD00178AAA /* UploadImageViewController.swift */; };
-		0BD832CF1D89345000178AAA /* UploadImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD832CE1D89345000178AAA /* UploadImageViewController.xib */; };
-		0BFCB6C91D885C2A0024856F /* AddCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFCB6C71D885C2A0024856F /* AddCommentViewController.swift */; };
-		0BFCB6CA1D885C2A0024856F /* AddCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BFCB6C81D885C2A0024856F /* AddCommentViewController.xib */; };
 		61750D763829BFD7EED16586 /* Pods_WesterosEmployees.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 864AB13BFEF1FAAD355492F2 /* Pods_WesterosEmployees.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0B083A4D1D926D99007D7BCC /* ModalDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModalDetailViewController.xib; sourceTree = "<group>"; };
 		0B0A22941D6B0CD90061B50D /* WesterosEmployees.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WesterosEmployees.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B0A22971D6B0CDA0061B50D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0B0A229C1D6B0CDA0061B50D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -123,16 +122,10 @@
 		0B0A22A11D6B0CDA0061B50D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0B0A22A31D6B0CDA0061B50D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B0A23461D6B22100061B50D /* KeyboardListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardListener.swift; sourceTree = "<group>"; };
-		0B0A235A1D6B221B0061B50D /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SignInViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		0B0A235B1D6B221B0061B50D /* SignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
-		0B0A235C1D6B221B0061B50D /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		0B0A235D1D6B221B0061B50D /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
 		0B0A235E1D6B221B0061B50D /* TourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TourViewController.swift; sourceTree = "<group>"; };
 		0B0A236F1D6B22EF0061B50D /* Avenir-Next-Condensed.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-Next-Condensed.ttc"; sourceTree = "<group>"; };
 		0B0A23701D6B22EF0061B50D /* Avenir-Next.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-Next.ttc"; sourceTree = "<group>"; };
 		0B0A23711D6B22EF0061B50D /* Avenir.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Avenir.ttc; sourceTree = "<group>"; };
-		0B26EAFA1D803FA4000201C6 /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
-		0B26EAFC1D803FB0000201C6 /* TermsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TermsViewController.xib; sourceTree = "<group>"; };
 		0B26EB1D1D81873C000201C6 /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 		0B27F0AE1D9A6ED300A1F67A /* AssetDisplayView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayView_westeros.swift; sourceTree = "<group>"; };
 		0B27F0AF1D9A6ED300A1F67A /* AssetDisplayView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssetDisplayView_westeros.xib; sourceTree = "<group>"; };
@@ -190,18 +183,36 @@
 		0B27F0F31D9A6ED300A1F67A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0B27F0F51D9A6ED300A1F67A /* WebContentDisplayView_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayView_westeros.swift; sourceTree = "<group>"; };
 		0B27F0F61D9A6ED300A1F67A /* WebContentDisplayView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebContentDisplayView_westeros.xib; sourceTree = "<group>"; };
-		0B282F101D7ED7BE0090F800 /* DocumentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DocumentationViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		0B282F111D7ED7BE0090F800 /* DocumentationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentationViewController.xib; sourceTree = "<group>"; };
-		0B282F141D7ED9210090F800 /* BlogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = BlogsViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		0B282F151D7ED9210090F800 /* BlogsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BlogsViewController.xib; sourceTree = "<group>"; };
-		0B282F181D7ED95A0090F800 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = GalleryViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		0B282F191D7ED95A0090F800 /* GalleryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryViewController.xib; sourceTree = "<group>"; };
 		0B282F1C1D7EE2570090F800 /* UserDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDisplayViewController.swift; sourceTree = "<group>"; };
 		0B35AF6C1D6C359D002E3D2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Auth.storyboard; sourceTree = "<group>"; };
 		0B35AF6E1D6C3614002E3D2F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HomeViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		0B35AF701D6C361C002E3D2F /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		0B35AF721D6C4678002E3D2F /* liferay-server-context.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-server-context.plist"; sourceTree = "<group>"; };
-		0B61A3E51DB4B7FF007B6F9C /* ModalBlogDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModalBlogDetailViewController.xib; sourceTree = "<group>"; };
+		0B61A3F01DB4E619007B6F9C /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		0B61A3F11DB4E619007B6F9C /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
+		0B61A3F21DB4E619007B6F9C /* ForgotPaswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPaswordViewController.swift; sourceTree = "<group>"; };
+		0B61A3F31DB4E619007B6F9C /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		0B61A3F41DB4E619007B6F9C /* SignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
+		0B61A3F51DB4E619007B6F9C /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		0B61A3F61DB4E619007B6F9C /* SignUpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignUpViewController.xib; sourceTree = "<group>"; };
+		0B61A3F71DB4E619007B6F9C /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
+		0B61A3F81DB4E619007B6F9C /* TermsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TermsViewController.xib; sourceTree = "<group>"; };
+		0B61A3FA1DB4E619007B6F9C /* AddCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCommentViewController.swift; sourceTree = "<group>"; };
+		0B61A3FB1DB4E619007B6F9C /* AddCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCommentViewController.xib; sourceTree = "<group>"; };
+		0B61A3FC1DB4E619007B6F9C /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		0B61A3FD1DB4E619007B6F9C /* CommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsViewController.xib; sourceTree = "<group>"; };
+		0B61A3FF1DB4E619007B6F9C /* BlogDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BlogDetailViewController.xib; sourceTree = "<group>"; };
+		0B61A4001DB4E619007B6F9C /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		0B61A4011DB4E619007B6F9C /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		0B61A4021DB4E619007B6F9C /* ModalBlogDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModalBlogDetailViewController.xib; sourceTree = "<group>"; };
+		0B61A4031DB4E619007B6F9C /* ModalDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModalDetailViewController.xib; sourceTree = "<group>"; };
+		0B61A4051DB4E619007B6F9C /* BlogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogsViewController.swift; sourceTree = "<group>"; };
+		0B61A4061DB4E619007B6F9C /* BlogsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BlogsViewController.xib; sourceTree = "<group>"; };
+		0B61A4071DB4E619007B6F9C /* DocumentationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentationViewController.swift; sourceTree = "<group>"; };
+		0B61A4081DB4E619007B6F9C /* DocumentationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DocumentationViewController.xib; sourceTree = "<group>"; };
+		0B61A4091DB4E619007B6F9C /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		0B61A40A1DB4E619007B6F9C /* GalleryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryViewController.xib; sourceTree = "<group>"; };
+		0B61A40B1DB4E619007B6F9C /* UploadImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadImageViewController.swift; sourceTree = "<group>"; };
+		0B61A40C1DB4E619007B6F9C /* UploadImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadImageViewController.xib; sourceTree = "<group>"; };
 		0B7EFFC61D9196A500BA23EC /* WesterosCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WesterosCardView.swift; sourceTree = "<group>"; };
 		0B9309451D6DAC7E003824D6 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		0B9309461D6DAC7E003824D6 /* CardDeckView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDeckView.swift; sourceTree = "<group>"; };
@@ -209,19 +220,8 @@
 		0B93094B1D6DAC9A003824D6 /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		0B93094E1D6DACD9003824D6 /* Westeros+Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Westeros+Array.swift"; path = "../Westeros+Array.swift"; sourceTree = "<group>"; };
 		0B9309501D6DB0D9003824D6 /* Westeros+CGRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Westeros+CGRect.swift"; sourceTree = "<group>"; };
-		0B9309521D6DBE40003824D6 /* ForgotPaswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ForgotPaswordViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		0B9309541D6DBE58003824D6 /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
 		0B9C6E4B1D940FA5009A564E /* UserProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		0B9C6E4F1D940FE7009A564E /* UserProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileView.xib; sourceTree = "<group>"; };
-		0BD07A2D1D82EEA100470A2E /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DetailViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		0BD07A2F1D82EEC500470A2E /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
-		0BD07A311D86AEDD00470A2E /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CommentsViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		0BD07A321D86AEDD00470A2E /* CommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsViewController.xib; sourceTree = "<group>"; };
-		0BD67DF41DB1032100127324 /* BlogDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BlogDetailViewController.xib; sourceTree = "<group>"; };
-		0BD832CC1D8933AD00178AAA /* UploadImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadImageViewController.swift; sourceTree = "<group>"; };
-		0BD832CE1D89345000178AAA /* UploadImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadImageViewController.xib; sourceTree = "<group>"; };
-		0BFCB6C71D885C2A0024856F /* AddCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AddCommentViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		0BFCB6C81D885C2A0024856F /* AddCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddCommentViewController.xib; sourceTree = "<group>"; };
 		2B6841133D89BECB215299C4 /* Pods-WesterosEmployees.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WesterosEmployees.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WesterosEmployees/Pods-WesterosEmployees.debug.xcconfig"; sourceTree = "<group>"; };
 		67B4E72B9B4122BAE349CEF7 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		864AB13BFEF1FAAD355492F2 /* Pods_WesterosEmployees.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WesterosEmployees.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -290,33 +290,11 @@
 		0B0A23521D6B221B0061B50D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				0BFCB6C71D885C2A0024856F /* AddCommentViewController.swift */,
-				0BFCB6C81D885C2A0024856F /* AddCommentViewController.xib */,
-				0B35AF701D6C361C002E3D2F /* AuthViewController.swift */,
-				0B282F141D7ED9210090F800 /* BlogsViewController.swift */,
-				0B282F151D7ED9210090F800 /* BlogsViewController.xib */,
-				0BD07A311D86AEDD00470A2E /* CommentsViewController.swift */,
-				0BD07A321D86AEDD00470A2E /* CommentsViewController.xib */,
-				0BD07A2D1D82EEA100470A2E /* DetailViewController.swift */,
-				0BD07A2F1D82EEC500470A2E /* DetailViewController.xib */,
-				0BD67DF41DB1032100127324 /* BlogDetailViewController.xib */,
-				0B083A4D1D926D99007D7BCC /* ModalDetailViewController.xib */,
-				0B61A3E51DB4B7FF007B6F9C /* ModalBlogDetailViewController.xib */,
-				0B282F101D7ED7BE0090F800 /* DocumentationViewController.swift */,
-				0B282F111D7ED7BE0090F800 /* DocumentationViewController.xib */,
-				0B9309521D6DBE40003824D6 /* ForgotPaswordViewController.swift */,
-				0B9309541D6DBE58003824D6 /* ForgotPasswordViewController.xib */,
-				0B282F181D7ED95A0090F800 /* GalleryViewController.swift */,
-				0B282F191D7ED95A0090F800 /* GalleryViewController.xib */,
-				0BD832CC1D8933AD00178AAA /* UploadImageViewController.swift */,
-				0BD832CE1D89345000178AAA /* UploadImageViewController.xib */,
+				0B61A3EF1DB4E619007B6F9C /* Auth */,
+				0B61A3F91DB4E619007B6F9C /* Comments */,
+				0B61A3FE1DB4E619007B6F9C /* Detail */,
+				0B61A4041DB4E619007B6F9C /* HomeCards */,
 				0B35AF6E1D6C3614002E3D2F /* HomeViewController.swift */,
-				0B0A235A1D6B221B0061B50D /* SignInViewController.swift */,
-				0B0A235B1D6B221B0061B50D /* SignInViewController.xib */,
-				0B0A235C1D6B221B0061B50D /* SignUpViewController.swift */,
-				0B0A235D1D6B221B0061B50D /* SignUpViewController.xib */,
-				0B26EAFA1D803FA4000201C6 /* TermsViewController.swift */,
-				0B26EAFC1D803FB0000201C6 /* TermsViewController.xib */,
 				0B0A235E1D6B221B0061B50D /* TourViewController.swift */,
 				0B282F1C1D7EE2570090F800 /* UserDisplayViewController.swift */,
 			);
@@ -552,6 +530,60 @@
 			name = StoryBoards;
 			sourceTree = "<group>";
 		};
+		0B61A3EF1DB4E619007B6F9C /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				0B61A3F01DB4E619007B6F9C /* AuthViewController.swift */,
+				0B61A3F11DB4E619007B6F9C /* ForgotPasswordViewController.xib */,
+				0B61A3F21DB4E619007B6F9C /* ForgotPaswordViewController.swift */,
+				0B61A3F31DB4E619007B6F9C /* SignInViewController.swift */,
+				0B61A3F41DB4E619007B6F9C /* SignInViewController.xib */,
+				0B61A3F51DB4E619007B6F9C /* SignUpViewController.swift */,
+				0B61A3F61DB4E619007B6F9C /* SignUpViewController.xib */,
+				0B61A3F71DB4E619007B6F9C /* TermsViewController.swift */,
+				0B61A3F81DB4E619007B6F9C /* TermsViewController.xib */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		0B61A3F91DB4E619007B6F9C /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				0B61A3FA1DB4E619007B6F9C /* AddCommentViewController.swift */,
+				0B61A3FB1DB4E619007B6F9C /* AddCommentViewController.xib */,
+				0B61A3FC1DB4E619007B6F9C /* CommentsViewController.swift */,
+				0B61A3FD1DB4E619007B6F9C /* CommentsViewController.xib */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
+		0B61A3FE1DB4E619007B6F9C /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				0B61A3FF1DB4E619007B6F9C /* BlogDetailViewController.xib */,
+				0B61A4001DB4E619007B6F9C /* DetailViewController.swift */,
+				0B61A4011DB4E619007B6F9C /* DetailViewController.xib */,
+				0B61A4021DB4E619007B6F9C /* ModalBlogDetailViewController.xib */,
+				0B61A4031DB4E619007B6F9C /* ModalDetailViewController.xib */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		0B61A4041DB4E619007B6F9C /* HomeCards */ = {
+			isa = PBXGroup;
+			children = (
+				0B61A4051DB4E619007B6F9C /* BlogsViewController.swift */,
+				0B61A4061DB4E619007B6F9C /* BlogsViewController.xib */,
+				0B61A4071DB4E619007B6F9C /* DocumentationViewController.swift */,
+				0B61A4081DB4E619007B6F9C /* DocumentationViewController.xib */,
+				0B61A4091DB4E619007B6F9C /* GalleryViewController.swift */,
+				0B61A40A1DB4E619007B6F9C /* GalleryViewController.xib */,
+				0B61A40B1DB4E619007B6F9C /* UploadImageViewController.swift */,
+				0B61A40C1DB4E619007B6F9C /* UploadImageViewController.xib */,
+			);
+			path = HomeCards;
+			sourceTree = "<group>";
+		};
 		0B9309441D6DAC5F003824D6 /* CardFramework */ = {
 			isa = PBXGroup;
 			children = (
@@ -662,36 +694,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B27F1081D9A6ED300A1F67A /* DocumentationTableViewCell_westeros.xib in Resources */,
+				0B61A4261DB4E619007B6F9C /* UploadImageViewController.xib in Resources */,
 				0B9C6E501D940FE7009A564E /* UserProfileView.xib in Resources */,
-				0BD07A341D86AEDD00470A2E /* CommentsViewController.xib in Resources */,
-				0B0A23681D6B221B0061B50D /* SignInViewController.xib in Resources */,
+				0B61A4151DB4E619007B6F9C /* TermsViewController.xib in Resources */,
 				0B27F0FD1D9A6ED300A1F67A /* AssetListView_westeros.xib in Resources */,
-				0B9309551D6DBE58003824D6 /* ForgotPasswordViewController.xib in Resources */,
 				0B27F1111D9A6ED400A1F67A /* UserPortraitView_westeros.xib in Resources */,
+				0B61A4111DB4E619007B6F9C /* SignInViewController.xib in Resources */,
 				0B27F1091D9A6ED300A1F67A /* DocumentationTableViewCell_westeros_news.xib in Resources */,
+				0B61A41D1DB4E619007B6F9C /* ModalBlogDetailViewController.xib in Resources */,
 				0B27F1061D9A6ED300A1F67A /* BlogsEntryTableViewCell_westeros_news.xib in Resources */,
 				0B27F10F1D9A6ED300A1F67A /* SignUpView_westeros.xib in Resources */,
 				0B35AF6D1D6C359D002E3D2F /* Auth.storyboard in Resources */,
 				0B27F1281D9A6ED400A1F67A /* UploadProgressView_westeros.xib in Resources */,
 				0B0A238B1D6B22EF0061B50D /* Avenir-Next.ttc in Resources */,
+				0B61A41A1DB4E619007B6F9C /* BlogDetailViewController.xib in Resources */,
 				0B0A238C1D6B22EF0061B50D /* Avenir.ttc in Resources */,
-				0B26EAFD1D803FB0000201C6 /* TermsViewController.xib in Resources */,
 				0B0A238A1D6B22EF0061B50D /* Avenir-Next-Condensed.ttc in Resources */,
 				0B0A22A21D6B0CDA0061B50D /* LaunchScreen.storyboard in Resources */,
-				0BD67DF51DB1032100127324 /* BlogDetailViewController.xib in Resources */,
+				0B61A4221DB4E619007B6F9C /* DocumentationViewController.xib in Resources */,
 				0B27F1051D9A6ED300A1F67A /* BlogsEntryTableViewCell_westeros.xib in Resources */,
+				0B61A4131DB4E619007B6F9C /* SignUpViewController.xib in Resources */,
 				0B27F1131D9A6ED400A1F67A /* CommentAddView_westeros-white.xib in Resources */,
 				0B26EB1E1D81873C000201C6 /* UserProfile.storyboard in Resources */,
-				0BD07A301D82EEC500470A2E /* DetailViewController.xib in Resources */,
-				0B282F171D7ED9210090F800 /* BlogsViewController.xib in Resources */,
 				0B27F1291D9A6ED400A1F67A /* RatingView_westeros-stars-white.xib in Resources */,
+				0B61A40E1DB4E619007B6F9C /* ForgotPasswordViewController.xib in Resources */,
 				0B27F10B1D9A6ED300A1F67A /* ForgotPasswordView_westeros.xib in Resources */,
-				0B61A3E61DB4B7FF007B6F9C /* ModalBlogDetailViewController.xib in Resources */,
-				0B083A4E1D926D99007D7BCC /* ModalDetailViewController.xib in Resources */,
-				0B282F1B1D7ED95A0090F800 /* GalleryViewController.xib in Resources */,
 				0B27F1171D9A6ED400A1F67A /* CommentDisplayView_westeros-white.xib in Resources */,
 				0B27F1151D9A6ED400A1F67A /* CommentAddView_westeros.xib in Resources */,
-				0BD832CF1D89345000178AAA /* UploadImageViewController.xib in Resources */,
 				0B27F0FF1D9A6ED300A1F67A /* AssetListView_westeros_blog.xib in Resources */,
 				0B27F1011D9A6ED300A1F67A /* AssetListView_westeros_doc.xib in Resources */,
 				0B0A229F1D6B0CDA0061B50D /* Assets.xcassets in Resources */,
@@ -702,19 +731,22 @@
 				0B27F12C1D9A6ED400A1F67A /* Images.xcassets in Resources */,
 				0B27F1031D9A6ED300A1F67A /* AssetListView_westeros_news.xib in Resources */,
 				0B27F11E1D9A6ED400A1F67A /* CommentTableViewCell_westeros-white.xib in Resources */,
+				0B61A4241DB4E619007B6F9C /* GalleryViewController.xib in Resources */,
+				0B61A4191DB4E619007B6F9C /* CommentsViewController.xib in Resources */,
+				0B61A4201DB4E619007B6F9C /* BlogsViewController.xib in Resources */,
 				0B35AF731D6C4678002E3D2F /* liferay-server-context.plist in Resources */,
 				0B27F11B1D9A6ED400A1F67A /* CommentListView_westeros-white.xib in Resources */,
-				0B0A236A1D6B221B0061B50D /* SignUpViewController.xib in Resources */,
+				0B61A41E1DB4E619007B6F9C /* ModalDetailViewController.xib in Resources */,
 				0B27F1191D9A6ED400A1F67A /* CommentDisplayView_westeros.xib in Resources */,
 				0B27F12A1D9A6ED400A1F67A /* RatingView_westeros-stars.xib in Resources */,
 				0B27F1271D9A6ED400A1F67A /* ImageUploadDetailView_westeros.xib in Resources */,
+				0B61A4171DB4E619007B6F9C /* AddCommentViewController.xib in Resources */,
 				0B27F0FA1D9A6ED300A1F67A /* BlogsEntryDisplayView_westeros.xib in Resources */,
-				0BFCB6CA1D885C2A0024856F /* AddCommentViewController.xib in Resources */,
+				0B61A41C1DB4E619007B6F9C /* DetailViewController.xib in Resources */,
 				0B27F10D1D9A6ED300A1F67A /* LoginView_westeros.xib in Resources */,
 				0B27F0F81D9A6ED300A1F67A /* AssetDisplayView_westeros.xib in Resources */,
 				0B27F1251D9A6ED400A1F67A /* ImageGalleryView_westeros.xib in Resources */,
 				0B0A229D1D6B0CDA0061B50D /* Main.storyboard in Resources */,
-				0B282F131D7ED7BE0090F800 /* DocumentationViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -773,56 +805,56 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BD07A2E1D82EEA100470A2E /* DetailViewController.swift in Sources */,
-				0B9309531D6DBE40003824D6 /* ForgotPaswordViewController.swift in Sources */,
+				0B61A4161DB4E619007B6F9C /* AddCommentViewController.swift in Sources */,
 				0B35AF6F1D6C3614002E3D2F /* HomeViewController.swift in Sources */,
-				0B0A23691D6B221B0061B50D /* SignUpViewController.swift in Sources */,
-				0BD832CD1D8933AD00178AAA /* UploadImageViewController.swift in Sources */,
 				0B9309481D6DAC7E003824D6 /* CardDeckView.swift in Sources */,
 				0B27F1141D9A6ED400A1F67A /* CommentAddView_westeros.swift in Sources */,
 				0B27F1221D9A6ED400A1F67A /* WesterosProgressPresenter.swift in Sources */,
 				0B27F1161D9A6ED400A1F67A /* CommentDisplayView_westeros-white.swift in Sources */,
 				0B27F1001D9A6ED300A1F67A /* AssetListView_westeros_doc.swift in Sources */,
 				0B93094C1D6DAC9A003824D6 /* CardViewController.swift in Sources */,
+				0B61A4231DB4E619007B6F9C /* GalleryViewController.swift in Sources */,
+				0B61A4181DB4E619007B6F9C /* CommentsViewController.swift in Sources */,
 				0B27F11A1D9A6ED400A1F67A /* CommentListView_westeros-white.swift in Sources */,
 				0B27F10E1D9A6ED300A1F67A /* SignUpView_westeros.swift in Sources */,
 				0B27F1071D9A6ED300A1F67A /* DocumentationTableViewCell_westeros.swift in Sources */,
 				0B27F1211D9A6ED400A1F67A /* WesterosCardProgressPresenter.swift in Sources */,
 				0B27F1041D9A6ED300A1F67A /* BlogsEntryTableViewCell_westeros.swift in Sources */,
 				0B27F1231D9A6ED400A1F67A /* WesterosThemeConstants.swift in Sources */,
+				0B61A4211DB4E619007B6F9C /* DocumentationViewController.swift in Sources */,
 				0B7EFFC71D9196A500BA23EC /* WesterosCardView.swift in Sources */,
 				0B0A23481D6B22100061B50D /* KeyboardListener.swift in Sources */,
 				0B27F1241D9A6ED400A1F67A /* ImageGalleryView_westeros.swift in Sources */,
 				0B27F0FC1D9A6ED300A1F67A /* AssetListView_westeros.swift in Sources */,
 				0B27F1121D9A6ED400A1F67A /* CommentAddView_westeros-white.swift in Sources */,
+				0B61A4141DB4E619007B6F9C /* TermsViewController.swift in Sources */,
 				0B27F1201D9A6ED400A1F67A /* BorderedTextField.swift in Sources */,
 				0B27F10C1D9A6ED300A1F67A /* LoginView_westeros.swift in Sources */,
-				0B0A23671D6B221B0061B50D /* SignInViewController.swift in Sources */,
-				0B282F121D7ED7BE0090F800 /* DocumentationViewController.swift in Sources */,
 				0B27F1101D9A6ED400A1F67A /* UserPortraitView_westeros.swift in Sources */,
 				0B27F1021D9A6ED300A1F67A /* AssetListView_westeros_news.swift in Sources */,
+				0B61A4251DB4E619007B6F9C /* UploadImageViewController.swift in Sources */,
+				0B61A41B1DB4E619007B6F9C /* DetailViewController.swift in Sources */,
 				0B27F0F91D9A6ED300A1F67A /* BlogsEntryDisplayView_westeros.swift in Sources */,
 				0B27F1261D9A6ED400A1F67A /* ImageUploadDetailView_westeros.swift in Sources */,
 				0B0A236B1D6B221B0061B50D /* TourViewController.swift in Sources */,
 				0B27F0F71D9A6ED300A1F67A /* AssetDisplayView_westeros.swift in Sources */,
-				0BD07A331D86AEDD00470A2E /* CommentsViewController.swift in Sources */,
 				0B0A22981D6B0CDA0061B50D /* AppDelegate.swift in Sources */,
 				0B27F0FE1D9A6ED300A1F67A /* AssetListView_westeros_blog.swift in Sources */,
+				0B61A40F1DB4E619007B6F9C /* ForgotPaswordViewController.swift in Sources */,
 				0B9C6E4D1D940FA5009A564E /* UserProfileView.swift in Sources */,
-				0B26EAFB1D803FA4000201C6 /* TermsViewController.swift in Sources */,
+				0B61A41F1DB4E619007B6F9C /* BlogsViewController.swift in Sources */,
 				0B93094A1D6DAC91003824D6 /* DefaultResources.swift in Sources */,
-				0BFCB6C91D885C2A0024856F /* AddCommentViewController.swift in Sources */,
 				0B9309511D6DB0D9003824D6 /* Westeros+CGRect.swift in Sources */,
 				0B27F12D1D9A6ED400A1F67A /* WebContentDisplayView_westeros.swift in Sources */,
-				0B282F161D7ED9210090F800 /* BlogsViewController.swift in Sources */,
 				0B27F10A1D9A6ED300A1F67A /* ForgotPasswordView_westeros.swift in Sources */,
 				0B282F1E1D7EE2570090F800 /* UserDisplayViewController.swift in Sources */,
+				0B61A40D1DB4E619007B6F9C /* AuthViewController.swift in Sources */,
+				0B61A4121DB4E619007B6F9C /* SignUpViewController.swift in Sources */,
+				0B61A4101DB4E619007B6F9C /* SignInViewController.swift in Sources */,
 				0B93094F1D6DACD9003824D6 /* Westeros+Array.swift in Sources */,
 				0B27F11C1D9A6ED400A1F67A /* CommentListView_westeros.swift in Sources */,
 				0B27F1181D9A6ED400A1F67A /* CommentDisplayView_westeros.swift in Sources */,
-				0B282F1A1D7ED95A0090F800 /* GalleryViewController.swift in Sources */,
 				0B9309471D6DAC7E003824D6 /* CardView.swift in Sources */,
-				0B35AF711D6C361C002E3D2F /* AuthViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
