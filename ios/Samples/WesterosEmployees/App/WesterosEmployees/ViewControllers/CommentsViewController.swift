@@ -46,13 +46,6 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 		}
 	}
 
-	
-	//MARK: CardViewController
-
-	override func cardWillAppear() {
-		commentListScreenlet?.loadList()
-	}
-
 
 	//MARK: Public methods
 
@@ -70,6 +63,8 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 	func load(className className: String, classPK: Int64) {
 		commentListScreenlet?.className = className
 		commentListScreenlet?.classPK = classPK
+		
+		commentListScreenlet?.loadList()
 
 		addCommentViewController?.load(className: className, classPK: classPK)
 

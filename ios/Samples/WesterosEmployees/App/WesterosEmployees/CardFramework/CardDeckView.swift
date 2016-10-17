@@ -277,11 +277,14 @@ public class CardDeckView: UIView, CardDelegate {
 		return nil
 	}
 
-	public func card(card: CardView, onMissingPage page: Int) -> Bool {
+	public func card(card: CardView, onWillMoveToPage page: Int) -> Bool {
 		if let index = cards.indexOf(card) {
 			let cardPosition = CardPosition(card: index, page: page)
 			let controller = dataSource?.cardDeck(self, controllerForCard: cardPosition)
-			controller?.cardView = card
+			if card.pageCount <= page {
+				controller?.cardView = card
+			}
+			card.presentingController = controller
 
 			return controller != nil
 		}
@@ -289,7 +292,7 @@ public class CardDeckView: UIView, CardDelegate {
 		return false
 	}
 
-	public func card(card: CardView, onMovingToPage page: Int, moveToRight right: Bool) {
+	public func card(card: CardView, onDidMoveToPage page: Int, moveToRight right: Bool) {
 		if card.maximizeOnMove {
 			if page == 0 {
 				let (top, bottom) = cards.splitAtIndex(cards.indexOf(card)!)
