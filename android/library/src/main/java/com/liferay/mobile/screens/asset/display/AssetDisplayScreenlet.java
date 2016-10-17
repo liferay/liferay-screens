@@ -100,7 +100,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	public void load(AssetEntry assetEntry) {
 		AssetEntry asset = AssetFactory.createInstance(assetEntry.getValues());
 		AssetDisplayFactory factory = new AssetDisplayFactory();
-		BaseScreenlet screenlet = factory.getScreenlet(getContext(), asset, layouts, autoLoad);
+		BaseScreenlet screenlet = factory.getScreenlet(getContext(), asset, layouts);
 		if (screenlet != null) {
 			if (configureListener != null) {
 				configureListener.onConfigureChildScreenlet(this, screenlet, asset);
