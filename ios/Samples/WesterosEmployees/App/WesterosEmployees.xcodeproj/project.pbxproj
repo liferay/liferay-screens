@@ -90,6 +90,7 @@
 		0B35AF6F1D6C3614002E3D2F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35AF6E1D6C3614002E3D2F /* HomeViewController.swift */; };
 		0B35AF711D6C361C002E3D2F /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B35AF701D6C361C002E3D2F /* AuthViewController.swift */; };
 		0B35AF731D6C4678002E3D2F /* liferay-server-context.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B35AF721D6C4678002E3D2F /* liferay-server-context.plist */; };
+		0B61A3E61DB4B7FF007B6F9C /* ModalBlogDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B61A3E51DB4B7FF007B6F9C /* ModalBlogDetailViewController.xib */; };
 		0B7EFFC71D9196A500BA23EC /* WesterosCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7EFFC61D9196A500BA23EC /* WesterosCardView.swift */; };
 		0B9309471D6DAC7E003824D6 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9309451D6DAC7E003824D6 /* CardView.swift */; };
 		0B9309481D6DAC7E003824D6 /* CardDeckView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9309461D6DAC7E003824D6 /* CardDeckView.swift */; };
@@ -105,6 +106,7 @@
 		0BD07A301D82EEC500470A2E /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD07A2F1D82EEC500470A2E /* DetailViewController.xib */; };
 		0BD07A331D86AEDD00470A2E /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD07A311D86AEDD00470A2E /* CommentsViewController.swift */; };
 		0BD07A341D86AEDD00470A2E /* CommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD07A321D86AEDD00470A2E /* CommentsViewController.xib */; };
+		0BD67DF51DB1032100127324 /* BlogDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD67DF41DB1032100127324 /* BlogDetailViewController.xib */; };
 		0BD832CD1D8933AD00178AAA /* UploadImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD832CC1D8933AD00178AAA /* UploadImageViewController.swift */; };
 		0BD832CF1D89345000178AAA /* UploadImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD832CE1D89345000178AAA /* UploadImageViewController.xib */; };
 		0BFCB6C91D885C2A0024856F /* AddCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFCB6C71D885C2A0024856F /* AddCommentViewController.swift */; };
@@ -199,6 +201,7 @@
 		0B35AF6E1D6C3614002E3D2F /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HomeViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0B35AF701D6C361C002E3D2F /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		0B35AF721D6C4678002E3D2F /* liferay-server-context.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "liferay-server-context.plist"; sourceTree = "<group>"; };
+		0B61A3E51DB4B7FF007B6F9C /* ModalBlogDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModalBlogDetailViewController.xib; sourceTree = "<group>"; };
 		0B7EFFC61D9196A500BA23EC /* WesterosCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WesterosCardView.swift; sourceTree = "<group>"; };
 		0B9309451D6DAC7E003824D6 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		0B9309461D6DAC7E003824D6 /* CardDeckView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardDeckView.swift; sourceTree = "<group>"; };
@@ -214,6 +217,7 @@
 		0BD07A2F1D82EEC500470A2E /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		0BD07A311D86AEDD00470A2E /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CommentsViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0BD07A321D86AEDD00470A2E /* CommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsViewController.xib; sourceTree = "<group>"; };
+		0BD67DF41DB1032100127324 /* BlogDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BlogDetailViewController.xib; sourceTree = "<group>"; };
 		0BD832CC1D8933AD00178AAA /* UploadImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadImageViewController.swift; sourceTree = "<group>"; };
 		0BD832CE1D89345000178AAA /* UploadImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadImageViewController.xib; sourceTree = "<group>"; };
 		0BFCB6C71D885C2A0024856F /* AddCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AddCommentViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -295,7 +299,9 @@
 				0BD07A321D86AEDD00470A2E /* CommentsViewController.xib */,
 				0BD07A2D1D82EEA100470A2E /* DetailViewController.swift */,
 				0BD07A2F1D82EEC500470A2E /* DetailViewController.xib */,
+				0BD67DF41DB1032100127324 /* BlogDetailViewController.xib */,
 				0B083A4D1D926D99007D7BCC /* ModalDetailViewController.xib */,
+				0B61A3E51DB4B7FF007B6F9C /* ModalBlogDetailViewController.xib */,
 				0B282F101D7ED7BE0090F800 /* DocumentationViewController.swift */,
 				0B282F111D7ED7BE0090F800 /* DocumentationViewController.xib */,
 				0B9309521D6DBE40003824D6 /* ForgotPaswordViewController.swift */,
@@ -672,6 +678,7 @@
 				0B26EAFD1D803FB0000201C6 /* TermsViewController.xib in Resources */,
 				0B0A238A1D6B22EF0061B50D /* Avenir-Next-Condensed.ttc in Resources */,
 				0B0A22A21D6B0CDA0061B50D /* LaunchScreen.storyboard in Resources */,
+				0BD67DF51DB1032100127324 /* BlogDetailViewController.xib in Resources */,
 				0B27F1051D9A6ED300A1F67A /* BlogsEntryTableViewCell_westeros.xib in Resources */,
 				0B27F1131D9A6ED400A1F67A /* CommentAddView_westeros-white.xib in Resources */,
 				0B26EB1E1D81873C000201C6 /* UserProfile.storyboard in Resources */,
@@ -679,6 +686,7 @@
 				0B282F171D7ED9210090F800 /* BlogsViewController.xib in Resources */,
 				0B27F1291D9A6ED400A1F67A /* RatingView_westeros-stars-white.xib in Resources */,
 				0B27F10B1D9A6ED300A1F67A /* ForgotPasswordView_westeros.xib in Resources */,
+				0B61A3E61DB4B7FF007B6F9C /* ModalBlogDetailViewController.xib in Resources */,
 				0B083A4E1D926D99007D7BCC /* ModalDetailViewController.xib in Resources */,
 				0B282F1B1D7ED95A0090F800 /* GalleryViewController.xib in Resources */,
 				0B27F1171D9A6ED400A1F67A /* CommentDisplayView_westeros-white.xib in Resources */,

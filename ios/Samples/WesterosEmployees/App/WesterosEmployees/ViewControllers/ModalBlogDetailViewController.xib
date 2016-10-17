@@ -2,28 +2,41 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11201"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="WesterosEmployees" customModuleProvider="target">
             <connections>
+                <outlet property="arrowImageView" destination="G1n-9a-4iq" id="tLm-LK-5Zk"/>
                 <outlet property="assetDisplayScreenlet" destination="d9H-mH-LSG" id="3QW-Iw-CoD"/>
                 <outlet property="cardDeck" destination="dBo-Xf-6tR" id="liy-dK-fpT"/>
-                <outlet property="ratingScreenlet" destination="YTa-6t-qBX" id="8VD-dN-OgO"/>
+                <outlet property="goBackButton" destination="2CH-Xr-Qet" id="fOz-KI-MM4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="297" height="485"/>
+            <rect key="frame" x="0.0" y="0.0" width="297" height="513"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBo-Xf-6tR" customClass="CardDeckView" customModule="WesterosEmployees" customModuleProvider="target">
                     <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_DOWN_W" translatesAutoresizingMaskIntoConstraints="NO" id="G1n-9a-4iq"/>
+                        <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2CH-Xr-Qet">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="70" id="rCE-Ia-63m"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
+                            <state key="normal">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="goBackButtonClicked" destination="-1" eventType="touchUpInside" id="6NP-vI-EuP"/>
+                            </connections>
+                        </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9H-mH-LSG" customClass="AssetDisplayScreenlet" customModule="LiferayScreens">
                             <constraints>
-                                <constraint firstAttribute="height" constant="339.5" id="dVk-8f-ZwQ"/>
                                 <constraint firstAttribute="height" constant="300" id="i0w-1y-fjK"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
@@ -36,28 +49,21 @@
                                 </mask>
                             </variation>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YTa-6t-qBX" customClass="RatingScreenlet" customModule="LiferayScreens">
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="80" id="K5I-0l-IKb"/>
-                            </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros-stars"/>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="YES"/>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
-                            </userDefinedRuntimeAttributes>
-                        </view>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="d9H-mH-LSG" firstAttribute="top" secondItem="dBo-Xf-6tR" secondAttribute="top" id="0eS-OA-o9c"/>
                         <constraint firstItem="d9H-mH-LSG" firstAttribute="leading" secondItem="dBo-Xf-6tR" secondAttribute="leading" id="47r-SW-Zpu"/>
                         <constraint firstAttribute="trailing" secondItem="d9H-mH-LSG" secondAttribute="trailing" id="Pcw-fg-uOm"/>
-                        <constraint firstAttribute="trailing" secondItem="YTa-6t-qBX" secondAttribute="trailing" id="ULl-iy-8Sx"/>
-                        <constraint firstItem="YTa-6t-qBX" firstAttribute="top" secondItem="d9H-mH-LSG" secondAttribute="bottom" id="efQ-Ro-6af"/>
-                        <constraint firstItem="YTa-6t-qBX" firstAttribute="leading" secondItem="dBo-Xf-6tR" secondAttribute="leading" id="ivB-7e-ykN"/>
+                        <constraint firstAttribute="trailing" secondItem="2CH-Xr-Qet" secondAttribute="trailing" id="T7u-rW-dAb"/>
+                        <constraint firstItem="2CH-Xr-Qet" firstAttribute="leading" secondItem="dBo-Xf-6tR" secondAttribute="leading" id="VMC-C3-2VY"/>
+                        <constraint firstItem="G1n-9a-4iq" firstAttribute="top" secondItem="dBo-Xf-6tR" secondAttribute="top" constant="49" id="eNE-Nh-gj9"/>
+                        <constraint firstItem="2CH-Xr-Qet" firstAttribute="top" secondItem="dBo-Xf-6tR" secondAttribute="top" constant="20" id="exF-1C-6Bk"/>
+                        <constraint firstItem="G1n-9a-4iq" firstAttribute="leading" secondItem="dBo-Xf-6tR" secondAttribute="leading" constant="29" id="fbY-dv-6Hr"/>
+                        <constraint firstItem="d9H-mH-LSG" firstAttribute="top" secondItem="2CH-Xr-Qet" secondAttribute="bottom" id="uCa-Iq-RzZ"/>
+                        <constraint firstAttribute="bottom" secondItem="d9H-mH-LSG" secondAttribute="bottom" constant="70" id="udQ-J7-Uqa"/>
                     </constraints>
                 </view>
             </subviews>
+            <color key="backgroundColor" red="0.89411764705882346" green="0.27843137254901962" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="dBo-Xf-6tR" secondAttribute="trailing" id="4ji-Io-CDB"/>
                 <constraint firstItem="dBo-Xf-6tR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gEY-P9-I3U"/>
@@ -67,7 +73,10 @@
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-91.5" y="-58.5"/>
+            <point key="canvasLocation" x="-29" y="114"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_DOWN_W" width="20" height="11"/>
+    </resources>
 </document>

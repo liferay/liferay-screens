@@ -40,10 +40,6 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 	@IBOutlet weak var ratingScreenlet: RatingScreenlet?
 
 
-	//MARK: Constraints
-	@IBOutlet weak var assetDisplayBottomConstraint: NSLayoutConstraint?
-
-
 	//MARK: Card controllers
 
 	var commentsViewController: CommentsViewController? {
@@ -83,31 +79,10 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 					className: AssetClasses.getClassNameFromId(asset.classNameId)!,
 					classPK: asset.classPK)
 			}
-
-			//Change color depending on asset
-			if asset.classNameId == AssetClasses.getClassNameId(AssetClassNameKey_BlogsEntry)! {
-				//Change color of modal state
-				self.arrowImageView?.image = UIImage(named: "icon_DOWN_W")
-				self.goBackButton?.setTitleColor(DefaultResources.EvenColorBackground, forState: .Normal)
-
-				//Hide rating screenlet on blog view
-				ratingScreenlet?.hidden = true
-				assetDisplayBottomConstraint?.constant = 70
-			}
-			else {
-				//Change color of modal state
-				self.arrowImageView?.image = UIImage(named: "icon_DOWN")
-				self.goBackButton?.setTitleColor(DefaultResources.OddColorBackground, forState: .Normal)
-
-				//Load ratings, only in file view
-				ratingScreenlet?.hidden = false
-				assetDisplayBottomConstraint?.constant = 150
-				ratingScreenlet?.className = AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
-				ratingScreenlet?.classPK = classPK
-				ratingScreenlet?.loadRatings()
-			}
-
-			assetDisplayScreenlet?.layoutIfNeeded()
+			
+			ratingScreenlet?.className = AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
+			ratingScreenlet?.classPK = classPK
+			ratingScreenlet?.loadRatings()
 		}
 	}
 

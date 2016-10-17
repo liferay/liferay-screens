@@ -144,8 +144,10 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 				return blogsViewController
 			case (2, 0):
 				return galleryViewController
-			case (0, 1), (1, 1), (2, 1):
+			case (0, 1), (2, 1):
 				return DetailViewController(nibName: "DetailViewController")
+			case (1, 1):
+				return DetailViewController(nibName: "BlogDetailViewController")
 			default:
 				return nil
 			}
@@ -200,18 +202,18 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 
 	func screenlet(screenlet: AssetListScreenlet, onAssetSelected asset: Asset) {
 		if let className = AssetClasses.getClassNameFromId(asset.classNameId) {
-			let detail = DetailViewController(nibName: "ModalDetailViewController")
+			var detail: DetailViewController?
 
 			//Change view controller background depending on asset
 			if className == AssetClasses.getClassName(AssetClassNameKey_BlogsEntry)! {
-				detail.view.backgroundColor = DefaultResources.OddColorBackground
+				detail = DetailViewController(nibName: "ModalBlogDetailViewController")
 			} else {
-				detail.view.backgroundColor = DefaultResources.EvenColorBackground
+				detail = DetailViewController(nibName: "ModalDetailViewController")
 			}
 
 			//Present view controller and load content
-			self.presentViewController(detail, animated: true) {
-				detail.load(asset)
+			self.presentViewController(detail!, animated: true) {
+				detail?.load(asset)
 			}
 		}
 	}

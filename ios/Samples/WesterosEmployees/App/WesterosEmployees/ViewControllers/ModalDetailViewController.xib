@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="WesterosEmployees" customModuleProvider="target">
             <connections>
                 <outlet property="arrowImageView" destination="G1n-9a-4iq" id="tLm-LK-5Zk"/>
-                <outlet property="assetDisplayBottomConstraint" destination="udQ-J7-Uqa" id="mSQ-1G-ajR"/>
                 <outlet property="assetDisplayScreenlet" destination="d9H-mH-LSG" id="3QW-Iw-CoD"/>
                 <outlet property="cardDeck" destination="dBo-Xf-6tR" id="liy-dK-fpT"/>
                 <outlet property="goBackButton" destination="2CH-Xr-Qet" id="fOz-KI-MM4"/>
@@ -22,27 +22,22 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBo-Xf-6tR" customClass="CardDeckView" customModule="WesterosEmployees" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="297" height="513"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_DOWN.png" translatesAutoresizingMaskIntoConstraints="NO" id="G1n-9a-4iq">
-                            <rect key="frame" x="29" y="49" width="20" height="11"/>
-                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_DOWN" translatesAutoresizingMaskIntoConstraints="NO" id="G1n-9a-4iq"/>
                         <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2CH-Xr-Qet">
-                            <rect key="frame" x="0.0" y="20" width="297" height="70"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="70" id="rCE-Ia-63m"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
                             <state key="normal">
-                                <color key="titleColor" red="0.89411764705882346" green="0.27843137254901962" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.89411764705882346" green="0.27843137254901962" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
                                 <action selector="goBackButtonClicked" destination="-1" eventType="touchUpInside" id="6NP-vI-EuP"/>
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DqH-VY-ksk" customClass="RatingScreenlet" customModule="LiferayScreens">
-                            <rect key="frame" x="0.0" y="363" width="297" height="80"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="80" id="FHi-CG-vy5"/>
                             </constraints>
@@ -53,7 +48,6 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9H-mH-LSG" customClass="AssetDisplayScreenlet" customModule="LiferayScreens">
-                            <rect key="frame" x="0.0" y="90" width="297" height="353"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="300" id="i0w-1y-fjK"/>
                             </constraints>
@@ -79,11 +73,12 @@
                         <constraint firstItem="G1n-9a-4iq" firstAttribute="top" secondItem="dBo-Xf-6tR" secondAttribute="top" constant="49" id="eNE-Nh-gj9"/>
                         <constraint firstItem="2CH-Xr-Qet" firstAttribute="top" secondItem="dBo-Xf-6tR" secondAttribute="top" constant="20" id="exF-1C-6Bk"/>
                         <constraint firstItem="G1n-9a-4iq" firstAttribute="leading" secondItem="dBo-Xf-6tR" secondAttribute="leading" constant="29" id="fbY-dv-6Hr"/>
+                        <constraint firstItem="DqH-VY-ksk" firstAttribute="top" secondItem="d9H-mH-LSG" secondAttribute="bottom" id="i2F-yV-cpj"/>
                         <constraint firstItem="d9H-mH-LSG" firstAttribute="top" secondItem="2CH-Xr-Qet" secondAttribute="bottom" id="uCa-Iq-RzZ"/>
-                        <constraint firstAttribute="bottom" secondItem="d9H-mH-LSG" secondAttribute="bottom" constant="70" id="udQ-J7-Uqa"/>
                     </constraints>
                 </view>
             </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="dBo-Xf-6tR" secondAttribute="trailing" id="4ji-Io-CDB"/>
                 <constraint firstItem="dBo-Xf-6tR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gEY-P9-I3U"/>
@@ -93,10 +88,10 @@
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="295.5" y="362.5"/>
+            <point key="canvasLocation" x="-171" y="53"/>
         </view>
     </objects>
     <resources>
-        <image name="icon_DOWN.png" width="20" height="11"/>
+        <image name="icon_DOWN" width="20" height="11"/>
     </resources>
 </document>
