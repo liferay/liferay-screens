@@ -67,6 +67,8 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 	//MARK: UIViewController
 
 	override func viewDidLoad() {
+		super.viewDidLoad()
+		
 		uploadImageViewController = UploadImageViewController()
 	}
 

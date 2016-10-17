@@ -111,6 +111,10 @@ public class CardDeckView: UIView, CardDelegate {
 	//MARK: UIView
 
 	public override func willMoveToWindow(newWindow: UIWindow?) {
+		super.willMoveToWindow(newWindow)
+		
+		self.layoutIfNeeded()
+		
 		if cards.isEmpty {
 			guard let source = dataSource else { return }
 			let count = source.numberOfCardsIn(self)

@@ -16,7 +16,7 @@ import UIKit
 
 public class ImageDisplayView_default: BaseScreenletView, ImageDisplayViewModel {
 
-	@IBOutlet weak var imageView: UIImageView?
+	@IBOutlet public weak var imageView: UIImageView?
 
 	public var imageMode: UIViewContentMode = .ScaleAspectFit
 

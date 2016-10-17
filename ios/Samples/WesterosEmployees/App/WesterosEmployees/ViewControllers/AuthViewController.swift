@@ -43,8 +43,6 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 
 		cardDeck?.delegate = self
 		cardDeck?.dataSource = self
-
-		self.cardDeck?.layoutIfNeeded()
 	}
 
 	override func viewDidAppear(animated: Bool) {
