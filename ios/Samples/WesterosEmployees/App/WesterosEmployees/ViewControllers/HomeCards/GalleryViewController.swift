@@ -147,6 +147,6 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 	}
 
 	func cardDeck(cardDeck: CardDeckView, buttonImageForCardIndex index: Int) -> UIImage? {
-		return UIImage(named: "ICON_DOWN_W")
+		return UIImage(named: "icon_DOWN_W")
 	}
 }
