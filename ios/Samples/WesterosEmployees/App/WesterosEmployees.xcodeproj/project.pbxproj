@@ -560,8 +560,8 @@
 		0B61A3FE1DB4E619007B6F9C /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				0B61A3FF1DB4E619007B6F9C /* BlogDetailViewController.xib */,
 				0B61A4001DB4E619007B6F9C /* DetailViewController.swift */,
+				0B61A3FF1DB4E619007B6F9C /* BlogDetailViewController.xib */,
 				0B61A4011DB4E619007B6F9C /* DetailViewController.xib */,
 				0B61A4021DB4E619007B6F9C /* ModalBlogDetailViewController.xib */,
 				0B61A4031DB4E619007B6F9C /* ModalDetailViewController.xib */,

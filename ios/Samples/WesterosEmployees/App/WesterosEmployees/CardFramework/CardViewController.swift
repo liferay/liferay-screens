@@ -23,8 +23,7 @@ public class CardViewController: UIViewController {
 	///Card which holds the controlled view of this controller
 	public var cardView: CardView? {
 		didSet {
-			cardView?.addPage(self.view)
-			cardView?.presentingController = self
+			cardView?.addPageFromController(self)
 		}
 	}
 

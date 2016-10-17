@@ -85,11 +85,14 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 			ratingScreenlet?.loadRatings()
 		}
 	}
-
-	func closeDetail() {
+	
+	
+	//MARK: CardViewController
+	
+	override func pageWillDisappear() {
 		//Remove inner screenlet to avoid infinite media loops
 		self.assetDisplayScreenlet?.removeInnerScreenlet()
-
+		
 		//Hide comment card
 		self.commentsViewController?.hideAddCommentCard()
 		self.cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
@@ -110,12 +113,6 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		//Hide all views
 		self.assetDisplayScreenlet?.alpha = 0
 		self.ratingScreenlet?.alpha = 0
-	}
-
-	override func viewWillDisappear(animated: Bool) {
-		super.viewWillAppear(animated)
-
-		self.closeDetail()
 	}
 
 

@@ -181,7 +181,8 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 			self.userProfileButton?.enabled = position.page == 0
 		}
 
-		if let vc = cardDeck.cards[position.card].presentingController as? DetailViewController {
+		if let vc = cardDeck.cards[position.card].presentingControllers[safe: position.page]
+				as? DetailViewController {
 			switch (position.card, position.page) {
 			case (0, 1):
 				vc.load(documentationViewController?.selectedFileEntry)
@@ -189,8 +190,6 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 				vc.load(blogsViewController?.selectedBlogEntry)
 			case (2, 1):
 				vc.load(galleryViewController?.selectedImageEntry)
-			case (_, 0):
-				vc.closeDetail()
 			default:
 				break
 			}

@@ -277,23 +277,25 @@ public class CardDeckView: UIView, CardDelegate {
 		return nil
 	}
 
-	public func card(card: CardView, onWillMoveToPage page: Int) -> Bool {
+	public func card(card: CardView, onWillMoveToPage page: Int, fromPage previousPage: Int) -> Bool {
 		if let index = cards.indexOf(card) {
-			let cardPosition = CardPosition(card: index, page: page)
-			let controller = dataSource?.cardDeck(self, controllerForCard: cardPosition)
-			if card.pageCount <= page {
-				controller?.cardView = card
-			}
 			
 			//Notify the previous controller that its page it's going to disappear
-			card.presentingController?.pageWillDisappear()
+			card.presentingControllers[safe: previousPage]?.pageWillDisappear()
 			
-			card.presentingController = controller
+			if card.pageCount <= page {
+				let cardPosition = CardPosition(card: index, page: page)
+				let controller = dataSource?.cardDeck(self, controllerForCard: cardPosition)
+				
+				controller?.cardView = card
+				
+				return controller != nil
+			}
 			
 			//Notify the new presenting controller that its page it's appearing
-			card.presentingController?.pageWillAppear()
+			card.presentingControllers[safe: page]?.pageWillAppear()
 
-			return controller != nil
+			return true
 		}
 
 		return false

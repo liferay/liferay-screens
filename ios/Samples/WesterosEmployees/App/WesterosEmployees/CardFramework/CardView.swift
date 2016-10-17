@@ -27,7 +27,8 @@ import PureLayout
 	/// - parameter onWillMoveToPage page: index of the page
 	/// - returns: true, if a view for the page has been added, false otherwise
 	optional func card(card: CardView,
-	                   onWillMoveToPage page: Int) -> Bool
+	                   onWillMoveToPage page: Int,
+	                   fromPage previousPage: Int) -> Bool
 
 	///Called when a card scroll content has move to another page
 	/// - parameters:
@@ -126,7 +127,7 @@ public class CardView: UIView, CAAnimationDelegate {
 	var maximizeOnMove = true
 
 	///This controller will be notified when the card appears/dissapears
-	weak var presentingController: CardViewController?
+	var presentingControllers = [CardViewController]()
 
 	private var onChangeCompleted: (Bool -> Void)?
 
@@ -145,9 +146,19 @@ public class CardView: UIView, CAAnimationDelegate {
 
 	//MARK: Public methods
 
-	///Adds a subview to the contentview of this card. This should be the entry point for all
-	///subviews of a card.
-	/// - parameter view: view to be added
+	///Adds a controller's subview to the contentview of this card. This should be the entry point
+	///for all subviews of a card.
+	/// - parameter controller: controller which view is going to be added as page
+	public func addPageFromController(controller: CardViewController) {
+		
+		presentingControllers.append(controller)
+		
+		addPage(controller.view)
+	}
+	
+	///Adds a view to the contentview of this card. This should be the entry point for all subviews
+	///of a card.
+	/// - parameter view: view that is going to be added as page
 	public func addPage(view: UIView) {
 		view.translatesAutoresizingMaskIntoConstraints = false
 
@@ -199,21 +210,21 @@ public class CardView: UIView, CAAnimationDelegate {
 	///to add it via delegate
 	public func moveRight() {
 		let nextPage = currentPage + 1
-		moveToPage(nextPage)
+		moveToPage(nextPage, fromPage: currentPage)
 	}
 
 	///Moves the content inside the scrollview to the left.
 	public func moveLeft() {
 		if currentPage != 0 {
 			let nextPage = currentPage - 1
-			moveToPage(nextPage)
+			moveToPage(nextPage, fromPage: currentPage)
 		}
 	}
 
 	///Moves the content inside the scrollview to a page
 	/// - parameter page: index of the page to move to
-	public func moveToPage(page: Int) {
-		if delegate?.card?(self, onWillMoveToPage: page) ?? false {
+	public func moveToPage(page: Int, fromPage previousPage: Int) {
+		if delegate?.card?(self, onWillMoveToPage: page, fromPage: previousPage) ?? false {
 			let rect = CGRectMake(scrollView.frame.size.width * CGFloat(page),
 			                      y: 0, size: scrollView.frame.size)
 			
@@ -393,10 +404,10 @@ public class CardView: UIView, CAAnimationDelegate {
 		//Notify the view controller, if any
 		if nextState.isVisible != currentState.isVisible {
 			if nextState.isVisible {
-				presentingController?.pageWillAppear()
+				presentingControllers[safe: currentPage]?.pageWillAppear()
 			}
 			else {
-				presentingController?.pageWillDisappear()
+				presentingControllers[safe: currentPage]?.pageWillDisappear()
 			}
 		}
 
