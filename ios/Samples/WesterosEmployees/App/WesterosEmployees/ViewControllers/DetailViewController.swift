@@ -28,12 +28,12 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		didSet {
 			cardDeck?.delegate = self
 			cardDeck?.dataSource = self
+			cardDeck?.layer.zPosition = 0
 		}
 	}
 	@IBOutlet weak var goBackButton: UIButton? {
 		didSet {
-			let height = goBackButton?.frame.size.height ?? CardView.DefaultMinimizedHeight
-			goBackButton?.titleEdgeInsets = UIEdgeInsetsMake(0, height, 0, height)
+			goBackButton?.titleEdgeInsets = UIEdgeInsetsMake(0, 70, 0, 70)
 		}
 	}
 	@IBOutlet weak var arrowImageView: UIImageView?
@@ -100,8 +100,6 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-		self.cardDeck?.layer.zPosition = 0
 		
 		commentsViewController = CommentsViewController()
 	}
