@@ -24,8 +24,8 @@ public class ImageDisplayView extends BaseFileDisplayView implements ImageDispla
 	@DrawableRes
 	private int placeholder = 0;
 
-	private ImageView.ScaleType scaleType;
-	private ImageView.ScaleType placeholderScaleType;
+	private ImageView.ScaleType scaleType = ImageView.ScaleType.FIT_CENTER;
+	private ImageView.ScaleType placeholderScaleType = ImageView.ScaleType.FIT_CENTER;
 
 	public ImageDisplayView(Context context) {
 		super(context);

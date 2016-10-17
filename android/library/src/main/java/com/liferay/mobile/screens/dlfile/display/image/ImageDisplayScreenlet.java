@@ -43,11 +43,11 @@ public class ImageDisplayScreenlet extends BaseFileDisplayScreenlet<ImageDisplay
 		placeholder = typedArray.getResourceId(R.styleable.ImageDisplayScreenlet_placeholder, 0);
 
 		Integer scaleTypeAttribute = typedArray.getInteger(R.styleable.ImageDisplayScreenlet_imageScaleType,
-			ImageView.ScaleType.CENTER_CROP.ordinal());
+			ImageView.ScaleType.FIT_CENTER.ordinal());
 		scaleType = ImageView.ScaleType.values()[scaleTypeAttribute];
 
 		Integer placeholderScaleTypeAttribute = typedArray.getInteger(R.styleable.ImageDisplayScreenlet_placeholderScaleType,
-			ImageView.ScaleType.CENTER_INSIDE.ordinal());
+			ImageView.ScaleType.FIT_CENTER.ordinal());
 		placeholderScaleType = ImageView.ScaleType.values()[placeholderScaleTypeAttribute];
 
 		typedArray.recycle();
