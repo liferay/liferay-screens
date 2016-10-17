@@ -63,6 +63,8 @@ public class CommentDeleteInteractor: ServerWriteConnectorInteractor {
 				attributes: ["commentId": NSNumber(longLong: commentId)],
 				onCompletion: nil)
 		}
+		
+		super.callOnSuccess()
 	}
 
 
