@@ -46,7 +46,7 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 
 	public var state: CommentDisplayState_default = .Normal {
 		didSet {
-			normalStateButtonsContainer?.hidden = state != .Normal || !editable
+			normalStateButtonsContainer?.hidden = state == .Deleting || !editable
 			deletingStateButtonsContainer?.hidden = state != .Deleting || !editable
 
 			if state == .Editing {
