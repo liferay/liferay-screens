@@ -15,8 +15,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XED-9f-V1z" userLabel="User Rating Bar" customClass="CosmosView" customModule="Cosmos">
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="ANK-7G-dWL"/>
-                        <constraint firstAttribute="width" constant="220" id="hHA-Cb-4eB"/>
+                        <constraint firstAttribute="height" constant="40" id="GhA-Qb-4AA"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -42,8 +41,7 @@
                         <accessibilityTraits key="traits" notEnabled="YES"/>
                     </accessibility>
                     <constraints>
-                        <constraint firstAttribute="height" constant="20" id="1SO-5f-44L"/>
-                        <constraint firstAttribute="width" constant="220" id="5NK-C6-QHM"/>
+                        <constraint firstAttribute="height" constant="20" id="AT9-Zm-F3X"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="rating">
@@ -67,13 +65,13 @@
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="XED-9f-V1z" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="HHP-nK-k4H"/>
-                <constraint firstItem="XED-9f-V1z" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="KJu-Mr-aQS"/>
-                <constraint firstItem="uTk-1X-Fw0" firstAttribute="top" secondItem="XED-9f-V1z" secondAttribute="bottom" constant="8" id="TLu-kV-vhC"/>
-                <constraint firstAttribute="trailing" secondItem="uTk-1X-Fw0" secondAttribute="trailing" constant="10" id="ezg-1F-xA6"/>
-                <constraint firstAttribute="trailing" secondItem="XED-9f-V1z" secondAttribute="trailing" constant="10" id="f1z-2k-LZ2"/>
-                <constraint firstItem="uTk-1X-Fw0" firstAttribute="top" secondItem="XED-9f-V1z" secondAttribute="bottom" constant="8" id="hn7-u1-Kwd"/>
-                <constraint firstItem="uTk-1X-Fw0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="owH-vY-9Qc"/>
+                <constraint firstItem="uTk-1X-Fw0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="BcB-Zh-vqU"/>
+                <constraint firstAttribute="trailing" secondItem="uTk-1X-Fw0" secondAttribute="trailing" constant="8" id="Ckp-fH-qFs"/>
+                <constraint firstItem="uTk-1X-Fw0" firstAttribute="top" secondItem="XED-9f-V1z" secondAttribute="bottom" constant="8" id="LBv-nH-aEq"/>
+                <constraint firstAttribute="trailing" secondItem="XED-9f-V1z" secondAttribute="trailing" constant="8" id="LLg-Ht-iLL"/>
+                <constraint firstItem="XED-9f-V1z" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="NDp-TK-Via"/>
+                <constraint firstItem="uTk-1X-Fw0" firstAttribute="top" secondItem="XED-9f-V1z" secondAttribute="bottom" constant="8" id="Nfv-tx-nEV"/>
+                <constraint firstItem="XED-9f-V1z" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="SGC-ak-8nt"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -81,7 +79,7 @@
                 <outlet property="averageRatingBar" destination="uTk-1X-Fw0" id="9OR-np-EjM"/>
                 <outlet property="userRatingBar" destination="XED-9f-V1z" id="C2D-sg-9pW"/>
             </connections>
-            <point key="canvasLocation" x="-120" y="11"/>
+            <point key="canvasLocation" x="-131" y="90"/>
         </view>
     </objects>
 </document>
