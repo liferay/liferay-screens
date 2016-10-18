@@ -3,7 +3,6 @@ package com.liferay.mobile.screens.listbookmark;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
-
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
 
@@ -29,18 +28,16 @@ public class BookmarkAdapter extends BaseListAdapter<Bookmark, BookmarkAdapter.B
 
 	public class BookmarkViewHolder extends BaseListAdapter.ViewHolder {
 
+		private final TextView url;
+
 		public BookmarkViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
-			_url = (TextView) view.findViewById(R.id.bookmark_url);
+			url = (TextView) view.findViewById(R.id.bookmark_url);
 		}
 
 		public void bind(Bookmark entry) {
-			_url.setText(entry.getUrl());
+			url.setText(entry.getUrl());
 		}
-
-		private final TextView _url;
 	}
-
-
 }

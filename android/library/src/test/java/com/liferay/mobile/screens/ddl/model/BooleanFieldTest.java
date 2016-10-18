@@ -14,19 +14,15 @@
 
 package com.liferay.mobile.screens.ddl.model;
 
-import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.ddl.JsonParser;
 import com.liferay.mobile.screens.ddl.XSDParser;
-
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -56,82 +52,82 @@ public class BooleanFieldTest {
 		"\"required\": false, " +
 		"\"showLabel\": true, " +
 		"\"type\": \"checkbox\"}]}";
-	private static final Locale _spanishLocale = new Locale("es", "ES");
-	private static final Locale _usLocale = new Locale("en", "US");
+	private static final Locale spanishLocale = new Locale("es", "ES");
+	private static final Locale usLocale = new Locale("en", "US");
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingFromString {
 
 		@Test
 		public void shouldReturnNullWhenNullStringIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 			assertNull(field.convertFromString(null));
 		}
 
 		@Test
 		public void shouldReturnBooleanWhenTrueStringIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 			assertTrue(field.convertFromString("True"));
 		}
 
 		@Test
 		public void shouldReturnBooleanWhenFalseStringIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 			assertFalse(field.convertFromString("false"));
 		}
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingToString {
 
 		@Test
 		public void shouldReturnNullWhenNullBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 			assertNull(field.convertToData(null));
 		}
 
 		@Test
 		public void shouldReturnTrueStringWhenTrueBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 			assertEquals("true", field.convertToData(true));
 		}
 
 		@Test
 		public void shouldReturnFalseStringWhenFalseBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 			assertEquals("false", field.convertToData(false));
 		}
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingToFormattedString {
 
 		@Test
 		public void shouldReturnNullWhenNullBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale, _usLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), usLocale, usLocale);
 
 			assertNull(field.convertToFormattedString(null));
 		}
 
 		@Test
 		public void shouldReturnTrueStringWhenTrueBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale, _usLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), usLocale, usLocale);
 
 			assertEquals("Yes", field.convertToFormattedString(true));
 		}
 
 		@Test
 		public void shouldReturnFalseStringWhenFalseBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale, _usLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), usLocale, usLocale);
 
 			assertEquals("No", field.convertToFormattedString(false));
 		}
@@ -141,7 +137,7 @@ public class BooleanFieldTest {
 
 		@Test
 		public void shouldReturnNullWhenNullBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), spanishLocale, usLocale);
 			field.setCurrentValue(null);
 
 			assertNull(field.toData());
@@ -149,7 +145,7 @@ public class BooleanFieldTest {
 
 		@Test
 		public void shouldReturnTrueStringWhenTrueBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), spanishLocale, usLocale);
 			field.setCurrentValue(true);
 
 			assertEquals("true", field.toData());
@@ -157,7 +153,7 @@ public class BooleanFieldTest {
 
 		@Test
 		public void shouldReturnFalseStringWhenFalseBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), spanishLocale, usLocale);
 			field.setCurrentValue(false);
 
 			assertEquals("false", field.toData());
@@ -168,7 +164,7 @@ public class BooleanFieldTest {
 
 		@Test
 		public void shouldReturnNullWhenNullBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale, _usLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), usLocale, usLocale);
 			field.setCurrentValue(null);
 
 			assertNull(field.toFormattedString());
@@ -176,7 +172,7 @@ public class BooleanFieldTest {
 
 		@Test
 		public void shouldReturnTrueStringWhenTrueBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale, _usLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), usLocale, usLocale);
 			field.setCurrentValue(true);
 
 			assertEquals("Yes", field.toFormattedString());
@@ -184,31 +180,30 @@ public class BooleanFieldTest {
 
 		@Test
 		public void shouldReturnFalseStringWhenFalseBooleanIsSupplied() throws Exception {
-			BooleanField field = new BooleanField(new HashMap<String, Object>(), _usLocale, _usLocale);
+			BooleanField field = new BooleanField(new HashMap<String, Object>(), usLocale, usLocale);
 			field.setCurrentValue(false);
 
 			assertEquals("No", field.toFormattedString());
 		}
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingXSD {
 		@Test
 		public void shouldReturnStringFieldObject() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"boolean\" " +
-					"type=\"checkbox\" " +
-					"name=\"A_Bool\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"predefinedValue\"><![CDATA[false]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"</root>";
+			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+				"<dynamic-element " +
+				"dataType=\"boolean\" " +
+				"type=\"checkbox\" " +
+				"name=\"A_Bool\" > " +
+				"<meta-data locale=\"en_US\"> " +
+				"<entry name=\"predefinedValue\"><![CDATA[false]]></entry> " +
+				"</meta-data> " +
+				"</dynamic-element>" +
+				"</root>";
 
-			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
+			List<Field> resultList = new XSDParser().parse(xsd, usLocale);
 
 			assertNotNull(resultList);
 			assertEquals(1, resultList.size());
@@ -226,16 +221,15 @@ public class BooleanFieldTest {
 
 		@Test
 		public void shouldUseFalseAsDefaultValueWhenNoPredefinedValue() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"boolean\" " +
-					"type=\"checkbox\" " +
-					"name=\"A_Bool\" > " +
-					"</dynamic-element>" +
-					"</root>";
+			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
+				"<dynamic-element " +
+				"dataType=\"boolean\" " +
+				"type=\"checkbox\" " +
+				"name=\"A_Bool\" > " +
+				"</dynamic-element>" +
+				"</root>";
 
-			List<Field> resultList = new XSDParser().parse(xsd, _usLocale);
+			List<Field> resultList = new XSDParser().parse(xsd, usLocale);
 
 			BooleanField booleanField = (BooleanField) resultList.get(0);
 
@@ -243,13 +237,13 @@ public class BooleanFieldTest {
 		}
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingJson {
 		@Test
 		public void shouldReturnStringFieldObject() throws Exception {
 
-			List<Field> resultList = new JsonParser().parse(JSON_BOOLEAN, _usLocale);
+			List<Field> resultList = new JsonParser().parse(JSON_BOOLEAN, usLocale);
 
 			assertNotNull(resultList);
 			assertEquals(1, resultList.size());
@@ -268,12 +262,11 @@ public class BooleanFieldTest {
 		@Test
 		public void shouldUseFalseAsDefaultValueWhenNoPredefinedValue() throws Exception {
 
-			List<Field> resultList = new JsonParser().parse(JSON_BOOLEAN, _usLocale);
+			List<Field> resultList = new JsonParser().parse(JSON_BOOLEAN, usLocale);
 
 			BooleanField booleanField = (BooleanField) resultList.get(0);
 
 			assertFalse(booleanField.getCurrentValue());
 		}
 	}
-
 }

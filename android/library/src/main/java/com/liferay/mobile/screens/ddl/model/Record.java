@@ -16,53 +16,65 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import com.liferay.mobile.screens.assetlist.AssetEntry;
+import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.util.JSONUtil;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * @author Jose Manuel Navarro
  */
 public class Record extends AssetEntry implements WithDDM, Parcelable {
 
-	public static final Parcelable.ClassLoaderCreator<Record> CREATOR =
-		new ClassLoaderCreator<Record>() {
+	public static final Parcelable.ClassLoaderCreator<Record> CREATOR = new ClassLoaderCreator<Record>() {
 
-			@Override
-			public Record createFromParcel(Parcel parcel, ClassLoader classLoader) {
-				return new Record(parcel, classLoader);
-			}
+		@Override
+		public Record createFromParcel(Parcel parcel, ClassLoader classLoader) {
+			return new Record(parcel, classLoader);
+		}
 
-			public Record createFromParcel(Parcel in) {
-				throw new AssertionError();
-			}
+		public Record createFromParcel(Parcel in) {
+			throw new AssertionError();
+		}
 
-			public Record[] newArray(int size) {
-				return new Record[size];
-			}
-		};
-
+		public Record[] newArray(int size) {
+			return new Record[size];
+		}
+	};
 	public static final String MODEL_VALUES = "modelValues";
 	public static final String MODEL_ATTRIBUTES = "modelAttributes";
+	private DDMStructure ddmStructure;
+	private Long creatorUserId;
+	private Long structureId;
+	private Long recordSetId;
+	private Long recordId;
+
+	public Record() {
+		super();
+	}
 
 	public Record(Map<String, Object> valuesAndAttributes, Locale locale) {
 		super(valuesAndAttributes);
 
-		_ddmStructure = new DDMStructure(locale);
+		ddmStructure = new DDMStructure(locale);
 		parseServerValues();
 	}
 
 	public Record(Locale locale) {
 		this(new HashMap<String, Object>(), locale);
+	}
+
+	private Record(Parcel in, ClassLoader loader) {
+		super(in, loader);
+		ddmStructure = in.readParcelable(DDMStructure.class.getClassLoader());
+		creatorUserId = (Long) in.readValue(Long.class.getClassLoader());
+		structureId = (Long) in.readValue(Long.class.getClassLoader());
+		recordSetId = (Long) in.readValue(Long.class.getClassLoader());
+		recordId = (Long) in.readValue(Long.class.getClassLoader());
 	}
 
 	public void refresh() {
@@ -82,43 +94,43 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 	@Override
 	public void writeToParcel(Parcel destination, int flags) {
 		super.writeToParcel(destination, flags);
-		destination.writeParcelable(_ddmStructure, flags);
-		destination.writeValue(_creatorUserId);
-		destination.writeValue(_structureId);
-		destination.writeValue(_recordSetId);
-		destination.writeValue(_recordId);
+		destination.writeParcelable(ddmStructure, flags);
+		destination.writeValue(creatorUserId);
+		destination.writeValue(structureId);
+		destination.writeValue(recordSetId);
+		destination.writeValue(recordId);
 	}
 
 	public long getRecordSetId() {
-		return _recordSetId;
+		return recordSetId;
 	}
 
 	public void setRecordSetId(long recordSetId) {
-		_recordSetId = recordSetId;
+		this.recordSetId = recordSetId;
 	}
 
 	public long getRecordId() {
-		return _recordId;
+		return recordId;
 	}
 
 	public void setRecordId(long recordId) {
-		_recordId = recordId;
+		this.recordId = recordId;
 	}
 
 	public long getStructureId() {
-		return _structureId;
+		return structureId;
 	}
 
 	public void setStructureId(long structureId) {
-		_structureId = structureId;
+		this.structureId = structureId;
 	}
 
 	public long getCreatorUserId() {
-		return _creatorUserId;
+		return creatorUserId;
 	}
 
 	public void setCreatorUserId(long value) {
-		_creatorUserId = value;
+		creatorUserId = value;
 	}
 
 	public Map<String, String> getData() {
@@ -173,79 +185,64 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 	}
 
 	public Map<String, Object> getValuesAndAttributes() {
-		return _values;
+		return values;
 	}
 
 	public void setValuesAndAttributes(Map<String, Object> valuesAndAttributes) {
-		_values = valuesAndAttributes;
+		values = valuesAndAttributes;
 		parseServerValues();
 	}
 
-	public HashMap<String, Object> getModelValues() {
-		return (HashMap<String, Object>) _values.get(MODEL_VALUES);
+	public Map<String, Object> getModelValues() {
+		return (HashMap<String, Object>) values.get(MODEL_VALUES);
 	}
 
-	public HashMap<String, Object> getModelAttributes() {
-		return (HashMap<String, Object>) _values.get(MODEL_ATTRIBUTES);
+	public Map<String, Object> getModelAttributes() {
+		return (Map<String, Object>) values.get(MODEL_ATTRIBUTES);
 	}
 
 	@Override
 	public DDMStructure getDDMStructure() {
-		return _ddmStructure;
+		return ddmStructure;
 	}
 
 	public List<Field> getFields() {
-		return _ddmStructure.getFields();
+		return ddmStructure.getFields();
 	}
 
 	public int getFieldCount() {
-		return _ddmStructure.getFieldCount();
+		return ddmStructure.getFieldCount();
 	}
 
 	public Field getField(int i) {
-		return _ddmStructure.getField(i);
+		return ddmStructure.getField(i);
 	}
 
 	public Locale getLocale() {
-		return _ddmStructure.getLocale();
+		return ddmStructure.getLocale();
 	}
 
 	public Field getFieldByName(String name) {
-		return _ddmStructure.getFieldByName(name);
+		return ddmStructure.getFieldByName(name);
 	}
 
 	public void parseDDMStructure(JSONObject jsonObject) throws JSONException {
-		_ddmStructure.parse(jsonObject);
-	}
-
-	private Record(Parcel in, ClassLoader loader) {
-		super(in, loader);
-		_ddmStructure = in.readParcelable(DDMStructure.class.getClassLoader());
-		_creatorUserId = (Long) in.readValue(Long.class.getClassLoader());
-		_structureId = (Long) in.readValue(Long.class.getClassLoader());
-		_recordSetId = (Long) in.readValue(Long.class.getClassLoader());
-		_recordId = (Long) in.readValue(Long.class.getClassLoader());
+		ddmStructure.parse(jsonObject);
 	}
 
 	private void parseServerValues() {
 		//TODO refactor
 		Long recordId = JSONUtil.castToLong(getServerAttribute("recordId"));
 		if (recordId != null) {
-			_recordId = recordId;
+			this.recordId = recordId;
 		}
 		Long recordSetId = JSONUtil.castToLong(getServerAttribute("recordSetId"));
 		if (recordSetId != null) {
-			_recordSetId = recordSetId;
+			this.recordSetId = recordSetId;
 		}
 		Long userId = JSONUtil.castToLong(getServerAttribute("userId"));
 		if (userId != null) {
-			_creatorUserId = userId;
+			creatorUserId = userId;
 		}
 	}
-
-	private DDMStructure _ddmStructure;
-	private Long _creatorUserId;
-	private Long _structureId;
-	private Long _recordSetId;
-	private Long _recordId;
 }

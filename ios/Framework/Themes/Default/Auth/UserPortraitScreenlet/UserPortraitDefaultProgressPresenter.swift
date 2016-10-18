@@ -23,30 +23,27 @@ import Foundation
 
 		super.init()
 	}
-
-	override public func hideHUD() {
-		super.hideHUD()
-		showSpinner(false)
-	}
-
-	override public func showHUDInView(view: UIView,
-			message: String?,
-			closeMode: ProgressCloseMode,
-			spinnerMode: ProgressSpinnerMode) {
-
-		if closeMode == .ManualClose_TouchClosable {
+	
+	override public func hideHUDFromView(view: UIView?, message: String?, forInteractor interactor: Interactor, withError error: NSError?) {
+		
+		if error != nil {
 			showSpinner(false)
-
-			super.showHUDInView(view,
-				message: message,
-				closeMode: .ManualClose_TouchClosable,
-				spinnerMode: .NoSpinner)
+			super.hideHUDFromView(view, message: message, forInteractor: interactor, withError: error)
 		}
 		else {
-			showSpinner(true)
+			if message != nil {
+				showSpinner(true)
+			}
+			else {
+				super.hideHUDFromView(view, message: message, forInteractor: interactor, withError: error)
+				showSpinner(false)
+			}
 		}
 	}
-
+	
+	public override func showHUDInView(view: UIView, message: String?, forInteractor interactor: Interactor) {
+		showSpinner(true)
+	}
 
 	private func showSpinner(show: Bool) {
 		if self.spinner != nil && self.spinner!.isAnimating() != show {

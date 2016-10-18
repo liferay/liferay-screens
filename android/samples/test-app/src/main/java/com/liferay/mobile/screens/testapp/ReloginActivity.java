@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
-
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
@@ -12,7 +11,9 @@ import com.liferay.mobile.screens.context.User;
 /**
  * @author Javier Gamarra
  */
-public class ReloginActivity extends ThemeActivity implements LoginListener {
+public class ReloginActivity extends ThemeActivity implements LoginListener, View.OnClickListener {
+
+	private TextView userName;
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -20,12 +21,24 @@ public class ReloginActivity extends ThemeActivity implements LoginListener {
 		setContentView(R.layout.relogin);
 
 		if (SessionContext.isLoggedIn()) {
-			_userName = (TextView) findViewById(R.id.user_name);
-			_userName.setText(SessionContext.getCurrentUser().getLastName());
+			userName = (TextView) findViewById(R.id.user_name);
+			userName.setText(SessionContext.getCurrentUser().getLastName());
+		}
+
+		findViewById(R.id.update_user).setOnClickListener(this);
+		findViewById(R.id.relogin_button).setOnClickListener(this);
+	}
+
+	@Override
+	public void onClick(View v) {
+		if (v.getId() == R.id.update_user) {
+			change();
+		} else {
+			relogin();
 		}
 	}
 
-	public void relogin(View view) {
+	public void relogin() {
 		SessionContext.relogin(this);
 	}
 
@@ -34,7 +47,7 @@ public class ReloginActivity extends ThemeActivity implements LoginListener {
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				_userName.setText(user.getLastName());
+				userName.setText(user.getLastName());
 				info("Relogin successful!");
 			}
 		});
@@ -45,13 +58,11 @@ public class ReloginActivity extends ThemeActivity implements LoginListener {
 		error("Error relogin", e);
 	}
 
-	public void change(View view) {
+	public void change() {
 		if (SessionContext.isLoggedIn()) {
 			final User user = SessionContext.getCurrentUser();
-			user.getAttributes().put("lastName", "EXAMPLE_LASTNAME");
-			_userName.setText(user.getLastName());
+			user.getValues().put("lastName", "EXAMPLE_LASTNAME");
+			userName.setText(user.getLastName());
 		}
 	}
-
-	private TextView _userName;
 }

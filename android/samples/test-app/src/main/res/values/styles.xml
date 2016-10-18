@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+	<style name="ToolBarStyle" parent="ThemeOverlay.AppCompat.ActionBar">
+		<item name="android:textColorPrimary">@android:color/white</item>
+		<item name="android:textColorSecondary">@android:color/white</item>
+		<item name="actionMenuTextColor">@android:color/white</item>
+	</style>
+
 	<style name="label">
-		<item name="android:background">?attr/colorPrimary</item>
+		<item name="android:background">?colorPrimary</item>
 		<item name="android:padding">20dp</item>
 		<item name="android:textColor">@android:color/white</item>
 		<item name="android:layout_width">match_parent</item>

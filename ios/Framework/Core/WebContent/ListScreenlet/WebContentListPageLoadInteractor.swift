@@ -31,7 +31,7 @@ public class WebContentListPageLoadInteractor : BaseListPageLoadInteractor {
 		super.init(screenlet: screenlet, page: page, computeRowCount: computeRowCount)
 	}
 
-	override public func createConnector() -> WebContentListPageLiferayConnector {
+	public override func createListPageConnector() -> PaginationLiferayConnector {
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
 
 		return LiferayServerContext.connectorFactory.createWebContentListPageConnector(
@@ -46,7 +46,7 @@ public class WebContentListPageLoadInteractor : BaseListPageLoadInteractor {
 		return WebContent(attributes: serverResult)
 	}
 
-	override public func cacheKey(op: PaginationLiferayConnector) -> String {
+	override public func cacheKey(c: PaginationLiferayConnector) -> String {
 		return "\((groupId != 0) ? groupId : LiferayServerContext.groupId)-\(folderId)"
 	}
 

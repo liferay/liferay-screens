@@ -23,14 +23,19 @@ import android.content.ContextWrapper;
  */
 public class LiferayScreensContext {
 
+	private static Context context;
+
+	private LiferayScreensContext() {
+	}
+
 	public static void init(Context context) {
-		_context = context.getApplicationContext();
+		LiferayScreensContext.context = context.getApplicationContext();
 
 		LiferayServerContext.loadFromResources(context.getResources(), context.getPackageName());
 	}
 
 	public static void reinit(Context context) {
-		_context = context.getApplicationContext();
+		LiferayScreensContext.context = context.getApplicationContext();
 
 		LiferayServerContext.reloadFromResources(context.getResources(), context.getPackageName());
 	}
@@ -39,25 +44,18 @@ public class LiferayScreensContext {
 	 * Only to be used in unit tests
 	 */
 	public static void deinit() {
-		_context = null;
+		context = null;
 	}
 
 	public static Context getContext() {
-		return _context;
+		return context;
 	}
 
 	public static Activity getActivityFromContext(Context context) {
 		if (context instanceof Activity) {
 			return (Activity) context;
-		}
-		else {
-			Context baseContext = ((ContextWrapper) context).getBaseContext();
-			return (Activity) baseContext;
+		} else {
+			return (Activity) ((ContextWrapper) context).getBaseContext();
 		}
 	}
-
-	private LiferayScreensContext() {
-	}
-
-	private static Context _context;
 }

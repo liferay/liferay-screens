@@ -18,100 +18,62 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
-
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
+import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
 import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractor;
-import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorImpl;
-import com.liferay.mobile.screens.ddl.list.interactor.DDLListInteractorListener;
 import com.liferay.mobile.screens.ddl.model.Record;
-
-import java.util.Locale;
 
 /**
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListScreenlet
-	extends BaseListScreenlet<Record, DDLListInteractor>
-	implements DDLListInteractorListener {
+public class DDLListScreenlet extends BaseListScreenlet<Record, DDLListInteractor>
+	implements BaseListInteractorListener<Record> {
+
+	private long recordSetId;
 
 	public DDLListScreenlet(Context context) {
 		super(context);
 	}
 
-	public DDLListScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public DDLListScreenlet(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public DDLListScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public DDLListScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public DDLListScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	public long getRecordSetId() {
-		return _recordSetId;
+		return recordSetId;
 	}
 
 	public void setRecordSetId(long recordSetId) {
-		_recordSetId = recordSetId;
-	}
-
-	public long getUserId() {
-		return _userId;
-	}
-
-	public void setUserId(long userId) {
-		_userId = userId;
-	}
-
-	public OfflinePolicy getOfflinePolicy() {
-		return _offlinePolicy;
-	}
-
-	public void setOfflinePolicy(OfflinePolicy offlinePolicy) {
-		_offlinePolicy = offlinePolicy;
+		this.recordSetId = recordSetId;
 	}
 
 	@Override
-	public void loadingFromCache(boolean success) {
+	public void error(Exception e, String userAction) {
 		if (getListener() != null) {
-			getListener().loadingFromCache(success);
+			getListener().error(e, userAction);
 		}
 	}
 
 	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
-		if (getListener() != null) {
-			getListener().retrievingOnline(triedInCache, e);
-		}
-	}
-
-	@Override
-	public void storingToCache(Object object) {
-		if (getListener() != null) {
-			getListener().storingToCache(object);
-		}
-	}
-
-	@Override
-	protected void loadRows(DDLListInteractor interactor, int startRow, int endRow, Locale locale) throws Exception {
-		interactor.loadRows(_recordSetId, _userId, startRow, endRow, locale);
+	protected void loadRows(DDLListInteractor interactor) {
+		interactor.start(recordSetId, userId);
 	}
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray = context.getTheme().obtainStyledAttributes(
-			attributes, R.styleable.DDLListScreenlet, 0, 0);
-
-		int offlinePolicy = typedArray.getInt(R.styleable.DDLListScreenlet_offlinePolicy,
-			OfflinePolicy.REMOTE_ONLY.ordinal());
-		_offlinePolicy = OfflinePolicy.values()[offlinePolicy];
-
-		_recordSetId = castToLong(typedArray.getString(
-			R.styleable.DDLListScreenlet_recordSetId));
-		_userId = castToLong(typedArray.getString(
-			R.styleable.DDLListScreenlet_userId));
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.DDLListScreenlet, 0, 0);
+		recordSetId = castToLong(typedArray.getString(R.styleable.DDLListScreenlet_recordSetId));
 		typedArray.recycle();
 
 		return super.createScreenletView(context, attributes);
@@ -119,10 +81,6 @@ public class DDLListScreenlet
 
 	@Override
 	protected DDLListInteractor createInteractor(String actionName) {
-		return new DDLListInteractorImpl(getScreenletId(), _offlinePolicy);
+		return new DDLListInteractor();
 	}
-
-	private long _recordSetId;
-	private long _userId;
-	private OfflinePolicy _offlinePolicy;
 }

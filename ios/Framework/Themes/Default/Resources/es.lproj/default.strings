@@ -45,3 +45,12 @@
 
 "default-webcontentdisplay-loading-message"="Cargando...\nEspere unos segundos...";
 "default-webcontentdisplay-loading-error"="Error cargando el contenido";
+
+"default-imagegallery-uploading-one"="Subiendo imagen...";
+"default-imagegallery-uploading-several"="Subiendo imagen 1 de %d";
+
+"default-imagegallery-upload"="Subir";
+"default-imagegallery-cancel"="Cancelar";
+"default-imagegallery-title"="Título";
+"default-imagegallery-description"="Descripción";
+"default-blog-unknown-date"="Fecha desconocida";

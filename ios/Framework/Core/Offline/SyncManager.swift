@@ -78,12 +78,21 @@ public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> Signal ->
 
 		synchronizers[ScreenletName(UserPortraitScreenlet)] =  userPortraitSynchronizer
 		synchronizers[ScreenletName(DDLFormScreenlet)] =  formSynchronizer
+		synchronizers[ScreenletName(ImageGalleryScreenlet)] = imageGallerySynchronizer
+		synchronizers["CommentsScreenlet"] = commentsSynchronizer
+		synchronizers["RatingsScreenlet"] = ratingsSynchronizer
 	}
 
 	public func addSynchronizer(
 			screenletClass: AnyClass,
 			synchronizer: OfflineSynchronizer) {
-		synchronizers[ScreenletName(screenletClass)] = synchronizer
+		addSynchronizerWithName(ScreenletName(screenletClass), synchronizer: synchronizer)
+	}
+
+	public func addSynchronizerWithName(
+			screenletClassName: String,
+			synchronizer: OfflineSynchronizer) {
+		synchronizers[screenletClassName] = synchronizer
 	}
 
 	public func clear() {
@@ -95,7 +104,7 @@ public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> Signal ->
 			self.delegate?.syncManager?(self, itemsCount: count)
 
 			if count > 0 {
-				self.cacheManager.pendingToSync { (screenlet, key, attributes) -> Bool in
+				self.cacheManager.pendingToSync({ (screenlet, key, attributes) -> Bool in
 					self.delegate?.syncManager?(self,
 						onItemSyncScreenlet: screenlet,
 						startKey: key,
@@ -104,7 +113,7 @@ public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> Signal ->
 					self.enqueueSyncForScreenlet(screenlet, key, attributes)
 
 					return true
-				}
+				})
 			}
 		}
 	}

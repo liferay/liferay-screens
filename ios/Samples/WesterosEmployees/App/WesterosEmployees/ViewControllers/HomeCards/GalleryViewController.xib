@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10117"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GalleryViewController" customModule="WesterosEmployees" customModuleProvider="target">
+            <connections>
+                <outlet property="cardDeck" destination="AIn-iI-F5x" id="fuS-fw-erK"/>
+                <outlet property="imageGalleryScreenlet" destination="D1I-cq-kto" id="sek-Ml-SYr"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="404" height="297"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AIn-iI-F5x" customClass="CardDeckView" customModule="WesterosEmployees" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="404" height="297"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D1I-cq-kto" customClass="ImageGalleryScreenlet" customModule="LiferayScreens">
+                            <rect key="frame" x="0.0" y="0.0" width="404" height="227"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="offlinePolicy" value="remote-first"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="D1I-cq-kto" firstAttribute="top" secondItem="AIn-iI-F5x" secondAttribute="top" id="C5c-To-cr4"/>
+                        <constraint firstItem="D1I-cq-kto" firstAttribute="leading" secondItem="AIn-iI-F5x" secondAttribute="leading" id="efl-y5-U5j"/>
+                        <constraint firstAttribute="bottom" secondItem="D1I-cq-kto" secondAttribute="bottom" constant="70" id="tpJ-b1-ik5"/>
+                        <constraint firstAttribute="trailing" secondItem="D1I-cq-kto" secondAttribute="trailing" id="y3O-bm-UBq"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="AIn-iI-F5x" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0nL-eh-0Z6"/>
+                <constraint firstAttribute="bottom" secondItem="AIn-iI-F5x" secondAttribute="bottom" id="MOk-EF-i4U"/>
+                <constraint firstAttribute="trailing" secondItem="AIn-iI-F5x" secondAttribute="trailing" id="cSZ-s8-lXJ"/>
+                <constraint firstItem="AIn-iI-F5x" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="t5r-Bv-k9Z"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="355" y="370.5"/>
+        </view>
+    </objects>
+</document>

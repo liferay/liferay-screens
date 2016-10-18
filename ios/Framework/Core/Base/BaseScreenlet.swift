@@ -15,7 +15,7 @@ import UIKit
 import QuartzCore
 
 
-@objc public protocol BaseScreenletDelegate {
+@objc public protocol BaseScreenletDelegate: NSObjectProtocol {
 
 	optional func screenlet(screenlet: BaseScreenlet,
 		customInteractorForAction: String,
@@ -31,15 +31,21 @@ import QuartzCore
 @IBDesignable public class BaseScreenlet: UIView {
 
 	public static let DefaultAction = "defaultAction"
+	public static let DefaultThemeName = "default"
 
 	@IBOutlet public weak var delegate: BaseScreenletDelegate?
 
 	@IBInspectable public var themeName: String? {
 		set {
-			_themeName = (newValue ?? "default").lowercaseString
+			_themeName = (newValue ?? BaseScreenlet.DefaultThemeName).lowercaseString
 
 			if _runningOnInterfaceBuilder {
 				_themeName = updateCurrentPreviewImage()
+			}
+			else {
+				onPreCreate()
+				loadScreenletView()
+				onCreated()
 			}
 
 			screenletView?.themeName = _themeName
@@ -61,7 +67,7 @@ import QuartzCore
 		return _runningOnInterfaceBuilder
 	}
 
-	private var _themeName = "default"
+	private var _themeName = BaseScreenlet.DefaultThemeName
 	private var _runningOnInterfaceBuilder = false
 	private var _currentPreviewImage: UIImage?
 	private var _previewLayer: CALayer?
@@ -69,22 +75,46 @@ import QuartzCore
 	private var _runningInteractors = [String:[Interactor]]()
 
 	private var _progressPresenter: ProgressPresenter?
+	
+	
+	//MARK: Initializers
+	
+	/**
+		Initializer for instantiate screenlets from code
 
+		- parameters:
+			- themeName: name of the theme to be used. If nil, default theme will be used
+	*/
+	public init(frame: CGRect, themeName: String?) {
+		super.init(frame: frame)
+		
+		clipsToBounds = true
+		
+		self.themeName = themeName
+	}
+
+	override convenience init(frame: CGRect) {
+		self.init(frame: frame, themeName: nil)
+	}
+	
+	required public init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+	}
 
 	//MARK: UIView
 
 	override public func awakeFromNib() {
 		super.awakeFromNib()
 
-		onPreCreate()
-
 		clipsToBounds = true
 
-		screenletView = loadScreenletView()
+		if themeName == BaseScreenlet.DefaultThemeName {
+			onPreCreate()
+			loadScreenletView()
+		presentingViewController = UIApplication.sharedApplication().keyWindow?.rootViewController
 
-		_progressPresenter = screenletView?.createProgressPresenter()
-
-		onCreated()
+			onCreated()
+		}
 	}
 
 	override public func becomeFirstResponder() -> Bool {
@@ -92,7 +122,7 @@ import QuartzCore
 	}
 
 	override public func didMoveToWindow() {
-		if (window != nil) {
+		if window != nil {
 			onShow()
 		}
 		else {
@@ -118,20 +148,10 @@ import QuartzCore
 
 	//MARK: Internal methods
 
-	internal func loadScreenletView() -> BaseScreenletView? {
+	internal func loadScreenletView() {
 		let view = createScreenletViewFromNib()
 
 		if let viewValue = view {
-			//FIXME: full-autoresize value. Extract from UIViewAutoresizing
-			let flexibleMask = UIViewAutoresizing(rawValue: 18)
-
-			if viewValue.autoresizingMask == flexibleMask {
-				viewValue.frame = self.bounds
-			}
-			else {
-				viewValue.frame = centeredRectInView(self, size: viewValue.frame.size)
-			}
-
 			viewValue.onPerformAction = { [weak self] name, sender in
 				return self!.performAction(name: name, sender: sender)
 			}
@@ -139,14 +159,37 @@ import QuartzCore
 			viewValue.screenlet = self
 			viewValue.presentingViewController = self.presentingViewController
 			viewValue.themeName = _themeName
+			
+			if let oldView = self.screenletView {
+				oldView.removeFromSuperview()
+			}
+
+			self._progressPresenter = viewValue.createProgressPresenter()
+			self.screenletView = viewValue
+			
+			viewValue.translatesAutoresizingMaskIntoConstraints = false
 
 			addSubview(viewValue)
 			sendSubviewToBack(viewValue)
-
-			return viewValue
+			
+			//Pin all edges from Screenlet View to the Screenlet's edges
+			let top = NSLayoutConstraint(item: viewValue, attribute: .Top, relatedBy: .Equal,
+			                             toItem: self, attribute: .Top, multiplier: 1, constant: 0)
+			let bottom = NSLayoutConstraint(item: viewValue, attribute: .Bottom, relatedBy: .Equal,
+			                                toItem: self, attribute: .Bottom, multiplier: 1, constant: 0)
+			let leading = NSLayoutConstraint(item: viewValue, attribute: .Leading, relatedBy: .Equal,
+			                                 toItem: self, attribute: .Leading, multiplier: 1, constant: 0)
+			let trailing = NSLayoutConstraint(item: viewValue, attribute: .Trailing, relatedBy: .Equal,
+			                                  toItem: self, attribute: .Trailing, multiplier: 1, constant: 0)
+			
+			NSLayoutConstraint.activateConstraints([top, bottom, leading, trailing])
+			
+			viewValue.layoutIfNeeded()
 		}
-
-		return nil
+		else {
+			self._progressPresenter = nil
+			self.screenletView = nil
+		}
 	}
 
 	internal func previewImageForTheme(themeName:String) -> UIImage? {
@@ -202,7 +245,9 @@ import QuartzCore
 	 * start the interaction programatically.
 	 */
 	public func performAction(name name: String, sender: AnyObject? = nil) -> Bool {
-		let result: Bool
+		guard !isRunningOnInterfaceBuilder else {
+			return false
+		}
 
 		let customInteractor = self.delegate?.screenlet?(self,
 				customInteractorForAction: name,
@@ -216,19 +261,13 @@ import QuartzCore
 			trackInteractor(interactor, withName: name)
 
 			if let message = screenletView?.progressMessageForAction(name, messageType: .Working) {
-				showHUDWithMessage(message,
-					closeMode: .ManualClose,
-					spinnerMode: .IndeterminateSpinner)
+				showHUDWithMessage(message, forInteractor: interactor)
 			}
 
-			result = onAction(name: name, interactor: interactor, sender: sender)
-		}
-		else {
-			print("WARN: No interactor created for action \(name)\n")
-			result = false
+			return onAction(name: name, interactor: interactor, sender: sender)
 		}
 
-		return result
+		return false
 	}
 
 	public func performDefaultAction() -> Bool {
@@ -269,38 +308,14 @@ import QuartzCore
 
 	public func endInteractor(interactor: Interactor, error: NSError?) {
 
-		func hideInteractorHUD(error: NSError?) {
-			let messageType: ProgressMessageType
-			let closeMode: ProgressCloseMode?
-			var msg: String?
-
-			if let error = error {
-				messageType = .Failure
-				closeMode = .ManualClose_TouchClosable
-
-				if error is ValidationError {
-					msg = error.localizedDescription
-				}
-			}
-			else {
-				messageType = .Success
-				closeMode = .Autoclose_TouchClosable
+		func getMessage() -> String? {
+			if let error = error as? ValidationError {
+				return error.localizedDescription
 			}
 
-			if msg == nil {
-				msg = screenletView?.progressMessageForAction(
+			return screenletView?.progressMessageForAction(
 					interactor.actionName ?? BaseScreenlet.DefaultAction,
-					messageType: messageType)
-			}
-
-			if let msg = msg, closeMode = closeMode {
-				showHUDWithMessage(msg,
-					closeMode: closeMode,
-					spinnerMode: .NoSpinner)
-			}
-			else {
-				hideHUD()
-			}
+					messageType: error == nil ? .Success : .Failure)
 		}
 
 		untrackInteractor(interactor)
@@ -308,8 +323,7 @@ import QuartzCore
 		let result: AnyObject? = interactor.interactionResult()
 		onFinishInteraction(result, error: error)
 		screenletView?.onFinishInteraction(result, error: error)
-
-		hideInteractorHUD(error)
+		hideHUDWithMessage(getMessage(), forInteractor: interactor, withError: error)
 	}
 
 	/**
@@ -328,24 +342,21 @@ import QuartzCore
 	//MARK: HUD methods
 
 	public func showHUDWithMessage(message: String?,
-			closeMode: ProgressCloseMode,
-			spinnerMode: ProgressSpinnerMode) {
-
+			forInteractor interactor: Interactor) {
+		
 		_progressPresenter?.showHUDInView(rootView(self),
 			message: message,
-			closeMode: closeMode,
-			spinnerMode: spinnerMode)
+			forInteractor: interactor)
 	}
 
-	public func showHUDAlert(message message: String) {
-		_progressPresenter?.showHUDInView(rootView(self),
+	public func hideHUDWithMessage(message: String?,
+			forInteractor interactor: Interactor,
+			withError error: NSError?) {
+		
+		_progressPresenter?.hideHUDFromView(rootView(self),
 			message: message,
-			closeMode: .ManualClose_TouchClosable,
-			spinnerMode: .NoSpinner)
-	}
-
-	public func hideHUD() {
-		_progressPresenter?.hideHUD()
+			forInteractor: interactor,
+			withError: error)
 	}
 
 
@@ -353,33 +364,13 @@ import QuartzCore
 
 	private func createScreenletViewFromNib() -> BaseScreenletView? {
 
-		func tryLoadForTheme(themeName: String, inBundles bundles: [NSBundle]) -> BaseScreenletView? {
-			for bundle in bundles {
-				let viewName = "\(ScreenletName(self.dynamicType))View"
-				let nibName = "\(viewName)_\(themeName)"
-				let nibPath = bundle.pathForResource(nibName, ofType:"nib")
+		let viewName = "\(ScreenletName(self.dynamicType))View"
 
-				if nibPath != nil {
-					let views = bundle.loadNibNamed(nibName,
-						owner:self,
-						options:nil)
+		if let foundView = NSBundle.viewForThemeOrDefault(
+				name: viewName,
+				themeName: _themeName,
+				currentClass: self.dynamicType) as? BaseScreenletView {
 
-					assert(views.count > 0, "Malformed xib \(nibName). Without views")
-
-					return (views[0] as? BaseScreenletView)
-				}
-			}
-
-			return nil;
-		}
-
-		let bundles = NSBundle.allBundles(self.dynamicType);
-
-		if let foundView = tryLoadForTheme(_themeName, inBundles: bundles) {
-			return foundView
-		}
-
-		if let foundView = tryLoadForTheme("default", inBundles: bundles) {
 			return foundView
 		}
 
@@ -393,9 +384,9 @@ import QuartzCore
 
 		_currentPreviewImage = previewImageForTheme(_themeName)
 		if _currentPreviewImage == nil {
-			if let previewImage = previewImageForTheme("default") {
+			if let previewImage = previewImageForTheme(BaseScreenlet.DefaultThemeName) {
 				_currentPreviewImage = previewImage
-				appliedTheme = "default"
+				appliedTheme = BaseScreenlet.DefaultThemeName
 			}
 		}
 
@@ -412,7 +403,7 @@ import QuartzCore
 			}
 		}
 		else {
-			screenletView = loadScreenletView()
+			loadScreenletView()
 		}
 
 		setNeedsLayout()

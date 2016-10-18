@@ -15,13 +15,18 @@
 package com.liferay.mobile.screens.util;
 
 import android.util.Log;
-
 import com.liferay.mobile.screens.BuildConfig;
 
 /**
  * @author Javier Gamarra
  */
 public class LiferayLogger {
+
+	private static final boolean LOGGING_ENABLED = true;
+	private static final String TAG = "LiferayScreens";
+	private LiferayLogger() {
+		super();
+	}
 
 	public static void d(String message) {
 		if (loggingEnabled()) {
@@ -50,7 +55,4 @@ public class LiferayLogger {
 	private static boolean loggingEnabled() {
 		return BuildConfig.DEBUG || LOGGING_ENABLED;
 	}
-
-	private static final boolean LOGGING_ENABLED = true;
-	private static final String TAG = "LiferayScreens";
 }

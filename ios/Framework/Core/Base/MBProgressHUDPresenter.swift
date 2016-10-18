@@ -17,6 +17,20 @@ import Foundation
 	import MBProgressHUD
 #endif
 
+@objc public enum ProgressCloseMode: Int {
+	case ManualClose
+	case ManualClose_TouchClosable
+	case Autoclose
+	case Autoclose_TouchClosable
+}
+
+
+@objc public enum ProgressSpinnerMode: Int {
+	case IndeterminateSpinner
+	case DeterminateSpinner
+	case NoSpinner
+}
+
 
 @objc public class MBProgressHUDPresenter: NSObject, ProgressPresenter {
 
@@ -32,39 +46,53 @@ import Foundation
 			instance = nil
 		}
 	}
+	
+	public func hideHUDFromView(view: UIView?, message: String?, forInteractor interactor: Interactor, withError error: NSError?) {
+		if message != nil {
+			dispatch_main {
+				if self.instance == nil {
+					self.instance = MBProgressHUD.showHUDAddedTo(view, animated:true)
+				}
+				
+				self.configureAndShowHUD(self.instance!,
+					message: message,
+					closeMode: error == nil ? .Autoclose_TouchClosable : .ManualClose_TouchClosable,
+					spinnerMode: .NoSpinner)
+			}
+		}
+		else {
+			hideHud()
+		}
+	}
+	
+	public func showHUDInView(view: UIView, message: String?, forInteractor interactor: Interactor) {
+		dispatch_main {
+			if self.instance == nil {
+				self.instance = MBProgressHUD.showHUDAddedTo(view, animated:true)
+			}
+			
+			self.configureAndShowHUD(self.instance!,
+				message: message,
+				closeMode: .ManualClose,
+				spinnerMode: .IndeterminateSpinner)
+		}
+	}
 
-	public func hideHUD() {
+
+	//MARK: PRIVATE METHODS
+	
+	public func hideHud() {
 		if self.instance == nil {
 			return
 		}
-
+		
 		dispatch_main {
 			self.instance!.hide(true)
 			self.instance = nil
 		}
 	}
 
-	public func showHUDInView(view: UIView,
-			message: String?,
-			closeMode: ProgressCloseMode,
-			spinnerMode: ProgressSpinnerMode) {
-
-		dispatch_main {
-			if self.instance == nil {
-				self.instance = MBProgressHUD.showHUDAddedTo(view, animated:true)
-			}
-
-			self.configureAndShowHUD(self.instance!,
-				message: message,
-				closeMode: closeMode,
-				spinnerMode: spinnerMode)
-		}
-	}
-
-
-	//MARK: PRIVATE METHODS
-
-	private func configureAndShowHUD(hud: MBProgressHUD,
+	public func configureAndShowHUD(hud: MBProgressHUD,
 			message: String?,
 			closeMode: ProgressCloseMode,
 			spinnerMode: ProgressSpinnerMode) {
@@ -109,7 +137,7 @@ import Foundation
 	}
 
 
-	private func rootView(currentView:UIView) -> UIView {
+	public func rootView(currentView:UIView) -> UIView {
 		if currentView.superview == nil {
 			return currentView;
 		}
@@ -117,7 +145,7 @@ import Foundation
 		return rootView(currentView.superview!)
 	}
 
-	private func spinnerModeToProgressModeHUD(spinnerMode: ProgressSpinnerMode) -> MBProgressHUDMode {
+	public func spinnerModeToProgressModeHUD(spinnerMode: ProgressSpinnerMode) -> MBProgressHUDMode {
 		switch spinnerMode {
 		case .IndeterminateSpinner:
 			return .Indeterminate

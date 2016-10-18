@@ -1,26 +1,98 @@
-/**
- * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
- */
-
 package com.liferay.mobile.screens.userportrait.interactor.upload;
 
-import com.liferay.mobile.screens.userportrait.interactor.BaseUserPortraitInteractor;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import com.liferay.mobile.screens.base.MediaStoreEvent;
+import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
+import com.liferay.mobile.screens.context.LiferayServerContext;
+import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
+import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
+import com.liferay.mobile.screens.userportrait.interactor.UserPortraitUriBuilder;
+import com.liferay.mobile.screens.util.LiferayLogger;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.picasso.Picasso;
+import java.io.IOException;
+import java.util.Iterator;
 
 /**
  * @author Javier Gamarra
  */
-public interface UserPortraitUploadInteractor extends BaseUserPortraitInteractor {
+public class UserPortraitUploadInteractor
+	extends BaseCacheWriteInteractor<UserPortraitInteractorListener, UserPortraitUploadEvent> {
 
-	void upload(Long userId, String path) throws Exception;
+	@Override
+	public void online(UserPortraitUploadEvent event) throws Exception {
+		decorateEvent(event, false);
+		execute(event);
+	}
 
+	@Override
+	public UserPortraitUploadEvent execute(UserPortraitUploadEvent event) {
+
+		Context context = LiferayScreensContext.getContext();
+		Intent intent = new Intent(context, UserPortraitService.class);
+		intent.putExtra("picturePath", event.getPicturePath());
+		intent.putExtra("actionName", event.getActionName());
+		intent.putExtra("userId", event.getUserId());
+		intent.putExtra("groupId", event.getGroupId());
+		intent.putExtra("locale", event.getLocale());
+		intent.putExtra("targetScreenletId", getTargetScreenletId());
+		intent.putExtra("actionName", getActionName());
+
+		context.startService(intent);
+		return null;
+	}
+
+	@Override
+	public void onSuccess(UserPortraitUploadEvent event) throws Exception {
+
+		User oldLoggedUser = SessionContext.getCurrentUser();
+
+		User user = new User(event.getJSONObject());
+
+		if (oldLoggedUser != null && user.getId() == oldLoggedUser.getId()) {
+			SessionContext.setCurrentUser(user);
+		}
+
+		Uri userPortraitUri = new UserPortraitUriBuilder().getUserPortraitUri(LiferayServerContext.getServer(), true,
+			user.getPortraitId(), user.getUuid());
+		invalidateUrl(userPortraitUri);
+
+		getListener().onUserPortraitUploaded(oldLoggedUser == null ? null : oldLoggedUser.getId());
+	}
+
+	@Override
+	public void onFailure(UserPortraitUploadEvent event) {
+		getListener().error(event.getException(), UserPortraitScreenlet.UPLOAD_PORTRAIT);
+	}
+
+	private void invalidateUrl(Uri userPortraitURL) {
+		try {
+			Context context = LiferayScreensContext.getContext();
+
+			UserPortraitUriBuilder userPortraitUriBuilder = new UserPortraitUriBuilder();
+			OkHttpClient okHttpClient = userPortraitUriBuilder.getUserPortraitClient(context);
+
+			com.squareup.okhttp.Cache cache = okHttpClient.getCache();
+			Iterator<String> urls = cache.urls();
+			while (urls.hasNext()) {
+				String url = urls.next();
+				if (url.equals(userPortraitURL.toString())) {
+					urls.remove();
+				}
+			}
+
+			Picasso.with(context).invalidate(userPortraitURL);
+		} catch (IOException e) {
+			LiferayLogger.e("Error invalidating cache", e);
+		}
+	}
+
+	public void onEvent(MediaStoreEvent event) {
+		getListener().onPicturePathReceived(event.getFilePath());
+	}
 }

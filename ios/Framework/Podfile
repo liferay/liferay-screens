@@ -1,31 +1,48 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '8.0'
-use_frameworks!
 
 
-# Core
-pod 'Liferay-iOS-SDK', '~> 7.0.4'
-pod 'Liferay-OAuth', '~> 1.2.0'
-pod 'MBProgressHUD', '0.9.1'
-pod 'SMXMLDocument', '1.1'
-pod 'ODRefreshControl', '1.2'
-pod 'YapDatabase/SQLCipher', '2.8.2'
+def corePods
+	# Core
+	pod 'Liferay-iOS-SDK', '~> 7.0.4'
+	pod 'Liferay-OAuth', '~> 1.2.0'
+	pod 'MBProgressHUD', '0.9.1'
+	pod 'SMXMLDocument', '1.1'
+	pod 'ODRefreshControl', '1.2'
+	pod 'YapDatabase/SQLCipher', '2.9.2'
+	pod 'Kingfisher', '~> 2.4'
 
-# Login & signup: save credentials
-pod 'KeychainAccess', '2.3.1'
+	# Login & signup: save credentials
+	pod 'KeychainAccess', '~> 2.4'
 
-# UserPortrait
-pod 'CryptoSwift', '0.1.1'
+	# UserPortrait
+	pod 'CryptoSwift', '~> 0.5.2'
 
-# DDLForm
-pod 'DTPickerPresenter', '0.2.0'
-pod 'TNRadioButtonGroup', '0.4'
-pod 'MDRadialProgress', '1.3.2'
+	# DDLForm
+	pod 'DTPickerPresenter', '0.2.0'
+	pod 'TNRadioButtonGroup', '0.4'
+	pod 'MDRadialProgress', '1.3.2'
 
-
-
-target :LiferayScreensTests do
-	pod 'Nocilla'
+	# RatingBar
+	pod 'Cosmos', '0.0.1'
 end
 
+
+target :LiferayScreens do
+	corePods
+	use_frameworks!
+end
+target :LiferayScreensTests do
+	corePods
+	pod 'Nocilla'
+	use_frameworks!
+end
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['SWIFT_VERSION'] = '2.3'
+        end
+    end
+end

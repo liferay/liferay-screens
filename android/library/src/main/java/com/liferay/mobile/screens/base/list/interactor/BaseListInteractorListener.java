@@ -14,18 +14,16 @@
 
 package com.liferay.mobile.screens.base.list.interactor;
 
-import com.liferay.mobile.screens.cache.CacheListener;
-
+import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import java.util.List;
 
 /**
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public interface BaseListInteractorListener<E> extends CacheListener {
+public interface BaseListInteractorListener<E> extends BaseCacheListener {
 
 	void onListRowsFailure(int startRow, int endRow, Exception e);
 
 	void onListRowsReceived(int startRow, int endRow, List<E> entries, int rowCount);
-
 }

@@ -1,6 +1,6 @@
 <manifest
-	package="com.liferay.mobile.screens.bookmark"
-	xmlns:android="http://schemas.android.com/apk/res/android">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.liferay.mobile.screens.bookmark">
 
 	<application
 		android:allowBackup="true"

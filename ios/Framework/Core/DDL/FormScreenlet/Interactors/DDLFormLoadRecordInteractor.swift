@@ -37,19 +37,19 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 	override func createConnector() -> ServerConnector {
 		let connector: ServerConnector
 
-		let loadRecordOp = LiferayServerContext.connectorFactory.createDDLFormRecordLoadConnector(recordId)
+		let loadRecordCon = LiferayServerContext.connectorFactory.createDDLFormRecordLoadConnector(recordId)
 
 		if let structureId = structureId {
-			let loadFormOp = LiferayServerContext.connectorFactory.createDDLFormLoadConnector(structureId)
+			let loadFormCon = LiferayServerContext.connectorFactory.createDDLFormLoadConnector(structureId)
 
-			let connectorChain = ServerConnectorChain(head: loadFormOp)
+			let connectorChain = ServerConnectorChain(head: loadFormCon)
 
-			connectorChain.onNextStep = { (op, seq) -> ServerConnector? in
-				if let loadFormOp = op as? DDLFormLoadLiferayConnector {
-					self.resultFormRecord = loadFormOp.resultRecord
-					self.resultFormUserId = loadFormOp.resultUserId
+			connectorChain.onNextStep = { (c, seq) -> ServerConnector? in
+				if let loadFormCon = c as? DDLFormLoadLiferayConnector {
+					self.resultFormRecord = loadFormCon.resultRecord
+					self.resultFormUserId = loadFormCon.resultUserId
 
-					return loadRecordOp
+					return loadRecordCon
 				}
 
 				return nil
@@ -58,18 +58,18 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 			connector = connectorChain
 		}
 		else {
-			connector = loadRecordOp
+			connector = loadRecordCon
 		}
 
 		return connector
 	}
 
-	override func completedConnector(op: ServerConnector) {
+	override func completedConnector(c: ServerConnector) {
 		let recordData: [String:AnyObject]?
 		let recordAttributes: [String:AnyObject]?
 		let recordId: Int64?
 
-		if let chain = op as? ServerConnectorChain,
+		if let chain = c as? ServerConnectorChain,
 				loadFormOp = chain.headConnector as? DDLFormLoadLiferayConnector,
 				loadRecordOp = chain.currentConnector as? DDLFormRecordLoadLiferayConnector,
 				recordForm = loadFormOp.resultRecord,
@@ -82,10 +82,10 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 			self.resultFormRecord = recordForm
 			self.resultFormUserId = formUserId
 		}
-		else if let loadRecordOp = op as? DDLFormRecordLoadLiferayConnector {
-			recordData = loadRecordOp.resultRecordData
-			recordAttributes = loadRecordOp.resultRecordAttributes
-			recordId = loadRecordOp.resultRecordId
+		else if let loadRecordCon = c as? DDLFormRecordLoadLiferayConnector {
+			recordData = loadRecordCon.resultRecordData
+			recordAttributes = loadRecordCon.resultRecordAttributes
+			recordId = loadRecordCon.resultRecordId
 		}
 		else {
 			recordData = nil
@@ -107,12 +107,12 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 
 	//MARK: Cache methods
 
-	override func writeToCache(op: ServerConnector) {
+	override func writeToCache(c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
 
-		if let chain = op as? ServerConnectorChain,
+		if let chain = c as? ServerConnectorChain,
 				loadFormOp = chain.headConnector as? DDLFormLoadLiferayConnector,
 				recordForm = loadFormOp.resultRecord,
 				formUserId = loadFormOp.resultUserId,
@@ -137,9 +137,9 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 				value: recordData,
 				attributes: ["record": record])
 		}
-		else if let loadRecordOp = op as? DDLFormRecordLoadLiferayConnector,
-					recordData = loadRecordOp.resultRecordData,
-					recordAttributes = loadRecordOp.resultRecordAttributes {
+		else if let loadRecordCon = c as? DDLFormRecordLoadLiferayConnector,
+					recordData = loadRecordCon.resultRecordData,
+					recordAttributes = loadRecordCon.resultRecordAttributes {
 
 			let record = DDLRecord(
 				data: recordData,
@@ -148,19 +148,19 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 			// save just record data
 			cacheManager.setClean(
 				collection: ScreenletName(DDLFormScreenlet),
-				key: "recordId-\(loadRecordOp.recordId)",
+				key: "recordId-\(loadRecordCon.recordId)",
 				value: recordData,
 				attributes: ["record": record])
 		}
 	}
 
-	override func readFromCache(op: ServerConnector, result: AnyObject? -> ()) {
+	override func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
 		}
 
-		if let chain = op as? ServerConnectorChain,
+		if let chain = c as? ServerConnectorChain,
 				loadFormOp = chain.headConnector as? DDLFormLoadLiferayConnector
 				where structureId != nil {
 
@@ -172,7 +172,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 				objects, attributes in
 
 				if let recordForm = objects[0] as? DDLRecord,
-						recordUserId = attributes[0]?["userId"]?.description.asLong,
+						recordUserId = attributes[0]?["userId"]?.longLongValue,
 						recordData = objects[1] as? [String:AnyObject],
 						recordAttributes = attributes[1] {
 
@@ -197,22 +197,22 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 				}
 			}
 		}
-		else if let loadRecordOp = op as? DDLFormRecordLoadLiferayConnector {
+		else if let loadRecordCon = c as? DDLFormRecordLoadLiferayConnector {
 			// load just record
 			cacheManager.getAnyWithAttributes(
 					collection: ScreenletName(DDLFormScreenlet),
-					key: "recordId-\(loadRecordOp.recordId)") {
+					key: "recordId-\(loadRecordCon.recordId)") {
 				object, attributes in
 
 				let record = attributes?["record"] as! DDLRecord
 
 				precondition(self.recordId == record.recordId, "RecordId is not consistent")
 
-				loadRecordOp.resultRecordData = object as? [String:AnyObject]
-				loadRecordOp.resultRecordAttributes = record.attributes
-				loadRecordOp.resultRecordId = loadRecordOp.recordId
+				loadRecordCon.resultRecordData = object as? [String:AnyObject]
+				loadRecordCon.resultRecordAttributes = record.attributes
+				loadRecordCon.resultRecordId = loadRecordCon.recordId
 
-				result(loadRecordOp.resultRecordData)
+				result(loadRecordCon.resultRecordData)
 			}
 		}
 		else {

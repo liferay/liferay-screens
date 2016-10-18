@@ -122,6 +122,16 @@ public func LocalizedString(tableName: String, key: String, obj: AnyObject) -> S
 	return LocalizedString(tableName, key: key, obj: obj, lang: NSLocale.currentLanguageString)
 }
 
+public func LocalizedPlural(tableName: String, keySingular key1: String, keyPlural key2: String,
+		obj: AnyObject, count: NSNumber) -> String {
+	if count == 1 {
+		return LocalizedString(tableName, key: key1, obj: obj)
+	}
+
+	return NSString.localizedStringWithFormat(
+		LocalizedString(tableName, key: key2, obj: obj), count.integerValue) as String
+}
+
 public func LocalizedString(tableName: String, key: String, obj: AnyObject, lang: String) -> String {
 	let namespacedKey = "\(tableName)-\(key)"
 
@@ -146,6 +156,12 @@ public func LocalizedString(tableName: String, key: String, obj: AnyObject, lang
 
 		// try with outer bundle
 		if let res = getString(bundle) {
+			return res
+		}
+		
+		// by default fallback to english
+		if let languageBundle = NSLocale.bundleForLanguage("en", bundle: bundle),
+			res = getString(languageBundle) {
 			return res
 		}
 	}
@@ -198,4 +214,19 @@ public func centeredRectInView(view: UIView, size: CGSize) -> CGRect {
 			(view.frame.size.height - size.height) / 2,
 			size.width,
 			size.height)
+}
+
+public func cacheFilePath() -> String {
+	let cache = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .AllDomainsMask, true)[0]
+
+	var cachePath = ""
+	repeat {
+		cachePath = "\(cache)/\(NSUUID().UUIDString)"
+	} while (NSFileManager.defaultManager().fileExistsAtPath(cachePath))
+
+	return cachePath
+}
+
+public func isCacheFilePath(path: String) -> Bool {
+	return path.containsString("/Library/Caches/")
 }

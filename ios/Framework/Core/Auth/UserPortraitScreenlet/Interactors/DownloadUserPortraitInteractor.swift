@@ -114,8 +114,8 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-	override func completedConnector(op: ServerConnector) {
-		if let httpOp = toHttpConnector(op),
+	override func completedConnector(c: ServerConnector) {
+		if let httpOp = toHttpConnector(c),
 				resultData = httpOp.resultData {
 			resultImage = UIImage(data: resultData)
 		}
@@ -124,12 +124,12 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 	//MARK: Cache methods
 
-	override func writeToCache(op: ServerConnector) {
+	override func writeToCache(c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
 
-		if let httpOp = toHttpConnector(op),
+		if let httpOp = toHttpConnector(c),
 				resultData = httpOp.resultData {
 
 			cacheManager.setClean(
@@ -140,7 +140,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-	override func readFromCache(op: ServerConnector, result: AnyObject? -> ()) {
+	override func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
@@ -164,7 +164,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		}
 
 
-		if (op as? ServerConnectorChain)?.currentConnector is GetUserBaseLiferayConnector {
+		if (c as? ServerConnectorChain)?.currentConnector is GetUserBaseLiferayConnector {
 			// asking for user attributes. if the image is cached, we'd need to skip this step
 
 			cacheManager.getAny(
@@ -181,7 +181,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 					let dummyConnector = HttpConnector(url: NSURL(string: "http://dummy")!)
 
 					// set this dummy connector to allow "completedConnector" method retrieve the result
-					(op as? ServerConnectorChain)?.currentConnector = dummyConnector
+					(c as? ServerConnectorChain)?.currentConnector = dummyConnector
 
 					dispatch_async {
 						loadImageFromCache(output: dummyConnector)
@@ -189,7 +189,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 				}
 			}
 		}
-		else if let httpOp = toHttpConnector(op) {
+		else if let httpOp = toHttpConnector(c) {
 			cacheManager.getAny(
 					collection: ScreenletName(UserPortraitScreenlet),
 					key: mode.cacheKey) {
@@ -220,30 +220,32 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 	//MARK: Private methods
 
-	private func toHttpConnector(op: ServerConnector) -> HttpConnector? {
-		return ((op as? ServerConnectorChain)?.currentConnector as? HttpConnector)
-			?? (op as? HttpConnector)
+	private func toHttpConnector(c: ServerConnector) -> HttpConnector? {
+		return ((c as? ServerConnectorChain)?.currentConnector as? HttpConnector)
+			?? (c as? HttpConnector)
 	}
 
-	private func createConnectorFor(loadUserOp: GetUserBaseLiferayConnector) -> ServerConnector? {
-		let chain = ServerConnectorChain(head: loadUserOp)
+	private func createConnectorFor(loadUserCon: GetUserBaseLiferayConnector) -> ServerConnector? {
+		let chain = ServerConnectorChain(head: loadUserCon)
 
-		chain.onNextStep = { (op, seq) -> ServerConnector? in
-			guard let loadUserOp = op as? GetUserBaseLiferayConnector else {
+		chain.onNextStep = { (c, seq) -> ServerConnector? in
+			guard let loadUserCon = c as? GetUserBaseLiferayConnector else {
 				return nil
 			}
 
-			return self.createConnectorFor(attributes: loadUserOp.resultUserAttributes)
+			return self.createConnectorFor(attributes: loadUserCon.resultUserAttributes)
 		}
 
 		return chain
 	}
 
 	private func createConnectorFor(attributes attributes: [String:AnyObject]?) -> ServerConnector? {
+		let portraitEntry = attributes?["portraitId"]
+		let userEntry = attributes?["userId"]
 		if let attributes = attributes,
-				portraitId = attributes["portraitId"]?.description.asLong,
+				portraitId = portraitEntry?.longLongValue,
 				uuid = attributes["uuid"] as? String,
-				userId = attributes["userId"]?.description.asLong {
+				userId = userEntry?.longLongValue {
 
 			resultUserId = userId
 

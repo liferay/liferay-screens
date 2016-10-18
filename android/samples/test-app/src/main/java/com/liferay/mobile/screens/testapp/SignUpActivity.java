@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
-
 import com.liferay.mobile.screens.auth.signup.SignUpListener;
 import com.liferay.mobile.screens.auth.signup.SignUpScreenlet;
 import com.liferay.mobile.screens.context.User;

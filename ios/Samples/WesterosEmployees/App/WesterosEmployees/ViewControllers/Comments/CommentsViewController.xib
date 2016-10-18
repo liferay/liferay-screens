@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10117"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommentsViewController" customModule="WesterosEmployees" customModuleProvider="target">
+            <connections>
+                <outlet property="cardDeck" destination="MYS-4W-nVJ" id="tf5-km-Fwu"/>
+                <outlet property="commentListScreenlet" destination="wNq-cA-gcJ" id="ZBj-XT-c0B"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="275" height="343"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MYS-4W-nVJ" customClass="CardDeckView" customModule="WesterosEmployees" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="275" height="343"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wNq-cA-gcJ" customClass="CommentListScreenlet" customModule="LiferayScreens">
+                            <rect key="frame" x="0.0" y="0.0" width="275" height="273"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="wNq-cA-gcJ" firstAttribute="leading" secondItem="MYS-4W-nVJ" secondAttribute="leading" id="2xp-dw-v2o"/>
+                        <constraint firstItem="wNq-cA-gcJ" firstAttribute="top" secondItem="MYS-4W-nVJ" secondAttribute="top" id="5QY-Q2-cmw"/>
+                        <constraint firstAttribute="bottom" secondItem="wNq-cA-gcJ" secondAttribute="bottom" constant="70" id="AuS-DF-Fij"/>
+                        <constraint firstAttribute="trailing" secondItem="wNq-cA-gcJ" secondAttribute="trailing" id="l0d-ky-RsH"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="MYS-4W-nVJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="2yO-Ac-5dC"/>
+                <constraint firstItem="MYS-4W-nVJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="D0a-od-Ie4"/>
+                <constraint firstAttribute="trailing" secondItem="MYS-4W-nVJ" secondAttribute="trailing" id="F87-mw-hzh"/>
+                <constraint firstAttribute="bottom" secondItem="MYS-4W-nVJ" secondAttribute="bottom" id="vsb-RT-A8R"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="307.5" y="685.5"/>
+        </view>
+    </objects>
+</document>

@@ -18,7 +18,6 @@ import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.oauth.OAuth;
 import com.liferay.mobile.screens.context.AuthenticationType;
 
-
 /**
  * @author Jose Manuel Navarro
  */
@@ -34,8 +33,7 @@ public class OAuthCredentialsStorageSharedPreferences extends BaseCredentialsSto
 	protected void storeAuth(Authentication auth) {
 		OAuth oauth = (OAuth) auth;
 
-		getSharedPref()
-			.edit()
+		getSharedPref().edit()
 			.putString(AUTH, AuthenticationType.OAUTH.name())
 			.putString(OAUTH_CONSUMER_KEY, oauth.getConfig().getConsumerKey())
 			.putString(OAUTH_CONSUMER_SECRET, oauth.getConfig().getConsumerSecret())
@@ -57,5 +55,4 @@ public class OAuthCredentialsStorageSharedPreferences extends BaseCredentialsSto
 
 		return new OAuth(consumerKey, consumerSecret, token, tokenSecret);
 	}
-
 }

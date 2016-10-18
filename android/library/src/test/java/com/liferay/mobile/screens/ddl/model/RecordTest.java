@@ -47,12 +47,12 @@ public class RecordTest {
 		record.parseDDMStructure(jsonObject);
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class AfterCreatingFromXSD {
 
 		@Test
-		public void shouldReturnTheFiedsByIndex() throws Exception {
+		public void shouldReturnTheFieldsByIndex() throws Exception {
 			String xsd =
 				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 					"<dynamic-element " +
@@ -77,7 +77,7 @@ public class RecordTest {
 
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenGettingValues {
 
@@ -150,7 +150,7 @@ public class RecordTest {
 
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenSettingValues {
 
@@ -187,7 +187,7 @@ public class RecordTest {
 
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenSerialize {
 

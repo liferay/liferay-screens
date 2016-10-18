@@ -38,7 +38,7 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class StringField70Test {
 
-	private static StringField _createStringField(Boolean required) {
+	private static StringField createStringField(Boolean required) {
 
 		String json = "{\"availableLanguageIds\": [ \"en_US\"], " +
 			"\"defaultLanguageId\": \"en_US\", " +
@@ -73,7 +73,7 @@ public class StringField70Test {
 		return (StringField) resultList.get(0);
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingXSD {
 		@Test
@@ -124,13 +124,13 @@ public class StringField70Test {
 		}
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenValidatingAndRequired {
 
 		@Test
 		public void shouldReturnFalseWhenHasOnlyBlankSpaces() throws SAXException {
-			StringField field = _createStringField(true);
+			StringField field = createStringField(true);
 
 			field.setCurrentValue("   ");
 
@@ -139,7 +139,7 @@ public class StringField70Test {
 
 		@Test
 		public void shouldReturnFalseWhenValueIsNull() throws SAXException {
-			StringField field = _createStringField(true);
+			StringField field = createStringField(true);
 
 			field.setCurrentValue(null);
 
@@ -149,7 +149,7 @@ public class StringField70Test {
 
 		@Test
 		public void shouldReturnFalseWhenValueIsEmpty() throws SAXException {
-			StringField field = _createStringField(true);
+			StringField field = createStringField(true);
 
 			field.setCurrentValue("");
 
@@ -158,7 +158,7 @@ public class StringField70Test {
 
 		@Test
 		public void shouldReturnTrueWhenValueIsSet() throws SAXException {
-			StringField field = _createStringField(true);
+			StringField field = createStringField(true);
 
 			field.setCurrentValue("abc");
 
@@ -167,13 +167,13 @@ public class StringField70Test {
 
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenValidatingAndNotRequired {
 
 		@Test
 		public void shouldReturnTrueWhenHasOnlyBlankSpaces() throws SAXException {
-			StringField field = _createStringField(false);
+			StringField field = createStringField(false);
 
 			field.setCurrentValue("   ");
 
@@ -182,7 +182,7 @@ public class StringField70Test {
 
 		@Test
 		public void shouldReturnTrueWhenValueIsNull() throws SAXException {
-			StringField field = _createStringField(false);
+			StringField field = createStringField(false);
 
 			field.setCurrentValue(null);
 
@@ -191,7 +191,7 @@ public class StringField70Test {
 
 		@Test
 		public void shouldReturnTrueWhenValueIsEmpty() throws SAXException {
-			StringField field = _createStringField(false);
+			StringField field = createStringField(false);
 
 			field.setCurrentValue("");
 
@@ -200,7 +200,7 @@ public class StringField70Test {
 
 		@Test
 		public void shouldReturnTrueWhenValueIsSet() throws SAXException {
-			StringField field = _createStringField(false);
+			StringField field = createStringField(false);
 
 			field.setCurrentValue("abc");
 

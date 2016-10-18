@@ -32,7 +32,7 @@ public class DDLListPageLoadInteractor : BaseListPageLoadInteractor {
 		super.init(screenlet: screenlet, page: page, computeRowCount: computeRowCount)
 	}
 
-	override public func createConnector() -> DDLListPageLiferayConnector {
+	public override func createListPageConnector() -> PaginationLiferayConnector {
 		let viewModel = (self.screenlet as! DDLListScreenlet).screenletView as! DDLListViewModel
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
 
@@ -52,7 +52,7 @@ public class DDLListPageLoadInteractor : BaseListPageLoadInteractor {
 		return DDLRecord(dataAndAttributes: serverResult)
 	}
 
-	override public func cacheKey(op: PaginationLiferayConnector) -> String {
+	override public func cacheKey(c: PaginationLiferayConnector) -> String {
 		return "\(recordSetId)"
 	}
 

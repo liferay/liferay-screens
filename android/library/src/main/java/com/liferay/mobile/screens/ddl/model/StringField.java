@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import java.util.Locale;
 import java.util.Map;
 
@@ -42,6 +41,9 @@ public class StringField extends Field<String> {
 			}
 		};
 
+	public StringField() {
+		super();
+	}
 
 	public StringField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
@@ -60,7 +62,7 @@ public class StringField extends Field<String> {
 		if (currentValue != null && isRequired()) {
 			String trimmedString = currentValue.trim();
 
-			valid = !trimmedString.equals("");
+			valid = !trimmedString.isEmpty();
 		}
 
 		return valid;
@@ -80,5 +82,4 @@ public class StringField extends Field<String> {
 	protected String convertToFormattedString(String value) {
 		return value;
 	}
-
 }

@@ -17,15 +17,13 @@ package com.liferay.mobile.screens.bankofwesteros.list;
 import android.content.Context;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
-
 import com.liferay.mobile.screens.ddl.list.view.DDLListViewModel;
 
 /**
  * @author Javier Gamarra
  * @author Silvio Santos
  */
-public class DDLListView
-	extends com.liferay.mobile.screens.viewsets.westeros.ddl.list.DDLListView
+public class DDLListView extends com.liferay.mobile.screens.viewsets.westeros.ddl.list.DDLListView
 	implements DDLListViewModel, SwipeRefreshLayout.OnRefreshListener {
 
 	public DDLListView(Context context) {
@@ -44,5 +42,4 @@ public class DDLListView
 	protected DDLListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
 		return new DDLListAdapter(itemLayoutId, itemProgressLayoutId, this);
 	}
-
 }

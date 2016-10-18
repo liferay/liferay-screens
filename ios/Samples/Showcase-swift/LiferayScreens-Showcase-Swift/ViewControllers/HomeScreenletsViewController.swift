@@ -15,42 +15,71 @@ import UIKit
 
 class HomeScreenletsViewController: UITableViewController {
 
-	private let data: [Int:[String]] = [
-			0 : ["Auth Module", "LoginScreenlet", "SignUpScreenlet", "ForgotPasswordScreenlet"],
-			1 : ["DDL Module", "DDLListScreenlet", "DDLFormScreenlet"],
-			2 : ["Web Content Module", "WebContentDisplayScreenlet", "WebContentListScreenlet"],
-			3 : ["Others", "AssetListScreenlet", "UserPortraitScreenlet"]
-		]
-
+	//An storyboard that matches these names must be created
+	private let data: [Int: [String]] = [
+		0: ["Assets", "AssetListScreenlet", "AssetDisplayScreenlet"],
+		1: ["Comments", "CommentListScreenlet", "CommentDisplayScreenlet", "CommentAddScreenlet"],
+		2: ["DDL Module", "DDLListScreenlet", "DDLFormScreenlet"],
+		3: ["Files", "ImageDisplayScreenlet"],
+		4: ["Others", "UserPortraitScreenlet", "RatingScreenlet", "ImageGalleryScreenlet", "BlogDisplayScreenlet"],
+		5: ["Web Content Module", "WebContentDisplayScreenlet", "WebContentListScreenlet"]
+	]
+	
+	
+	//MARK: UIViewController
+	
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		self.navigationItem.title = "Screenlets Available"
+	}
+	
+	override func viewWillDisappear(animated: Bool) {
+		super.viewWillDisappear(animated)
+		self.navigationItem.title = nil
+	}
+	
+	
+	//MARK: UITableViewDataSource
+	
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		return data.count
 	}
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		let length = (data[section] ?? []).count
-		return length == 0 ? length : length - 1
+		return data[section]!.count - 1
 	}
-
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-		return (data[section] ?? [""])[0]
-	}
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	
+	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = UITableViewCell(style: .Default, reuseIdentifier: "default-cell");
-
-		if let record = data[indexPath.section] {
-			cell.textLabel?.text = record[indexPath.row + 1]
-		}
-
+		
+		cell.textLabel?.text = data[indexPath.section]![indexPath.row + 1]
+		
 		return cell
 	}
 
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		return data[section]![0]
+	}
+	
+	
+	//MARK: UITableViewDelegate
+	
 	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
-		if let record = data[indexPath.section] {
-			self.performSegueWithIdentifier(record[indexPath.row + 1], sender: self)
+		let name = data[indexPath.section]![indexPath.row + 1]
+		if NSBundle.mainBundle().pathForResource(name, ofType: "storyboardc") != nil {
+			let storyboard = UIStoryboard(name: name, bundle: NSBundle.mainBundle())
+			
+			let viewController = storyboard.instantiateInitialViewController()
+			
+			if let viewController = viewController {
+				viewController.title = name
+				self.navigationController?.pushViewController(viewController, animated: true)
+			}
+		} else {
+			print("//////")
+			print("ERROR: no Storyboard named \"\(name)\"")
+			print("//////")
 		}
 	}
-
 }
 

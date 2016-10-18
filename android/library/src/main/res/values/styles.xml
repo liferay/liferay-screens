@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="default_theme" parent="Theme.AppCompat.Light">
+	<style name="default_theme" parent="default_theme.base"/>
+
+	<style name="default_theme.base" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="colorPrimary">@color/colorPrimary_default</item>
 		<item name="colorAccent">@color/colorPrimaryLight_default</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryLight_default</item>
 		<item name="android:textColorPrimary">@color/textColorPrimary_default</item>
 		<item name="android:textColorSecondary">@color/textColorSecondary_default</item>
+
+		<item name="colorControlNormal">@color/colorPrimary_default</item>
+		<item name="colorControlHighlight">@color/colorAccent_default</item>
+		<item name="colorControlActivated">@color/colorPrimary_default</item>
 
 		<item name="android:textViewStyle">@style/default_text_view</item>
 		<item name="android:editTextStyle">@style/default_edit_text</item>
@@ -15,6 +22,10 @@
 		<item name="buttonStyle">@style/default_button</item>
 
 		<item name="themeName">default_theme</item>
+	</style>
+
+	<style name="gallery_theme" parent="Theme.AppCompat.NoActionBar">
+		<item name="android:background">@android:color/black</item>
 	</style>
 
 	<style name="white_theme" parent="Theme.AppCompat.Light">
@@ -104,6 +115,20 @@
 
 	<style name="default_font">
 		<item name="android:typeface">normal</item>
+	</style>
+
+	<style name="detail_upload_theme" parent="Theme.AppCompat.Light.NoActionBar">
+		<item name="android:windowBackground">@android:color/transparent</item>
+		<item name="android:background">@android:color/white</item>
+		<item name="android:windowIsFloating">true</item>
+		<item name="android:windowNoTitle">true</item>
+	</style>
+
+	<style name="TextLabel" parent="Theme.AppCompat">
+		<item name="android:textColorHint">@color/colorPrimary_default</item>
+		<item name="colorAccent">@color/colorPrimary_default</item>
+		<item name="colorControlNormal">@color/colorPrimary_default</item>
+		<item name="colorControlActivated">@color/colorPrimary_default</item>
 	</style>
 
 </resources>

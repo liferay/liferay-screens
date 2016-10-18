@@ -20,7 +20,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.BooleanField;
@@ -30,6 +29,10 @@ import com.liferay.mobile.screens.ddl.model.BooleanField;
  */
 public class DDLFieldCheckboxView extends LinearLayout
 	implements DDLFieldViewModel<BooleanField>, CompoundButton.OnCheckedChangeListener {
+
+	protected BooleanField field;
+	protected SwitchCompat switchCompat;
+	protected View parentView;
 
 	public DDLFieldCheckboxView(Context context) {
 		super(context);
@@ -45,20 +48,19 @@ public class DDLFieldCheckboxView extends LinearLayout
 
 	@Override
 	public BooleanField getField() {
-		return _field;
+		return field;
 	}
 
 	@Override
 	public void setField(BooleanField field) {
-		_field = field;
+		this.field = field;
 
-		if (_field.isShowLabel()) {
-			_switch.setHint("");
-			_switch.setText(_field.getLabel());
-		}
-		else {
-			_switch.setHint(_field.getLabel());
-			_switch.setText("");
+		if (this.field.isShowLabel()) {
+			switchCompat.setHint("");
+			switchCompat.setText(this.field.getLabel());
+		} else {
+			switchCompat.setHint(this.field.getLabel());
+			switchCompat.setText("");
 		}
 
 		refresh();
@@ -66,7 +68,7 @@ public class DDLFieldCheckboxView extends LinearLayout
 
 	@Override
 	public void refresh() {
-		_switch.setChecked(_field.getCurrentValue());
+		switchCompat.setChecked(field.getCurrentValue());
 	}
 
 	@Override
@@ -76,12 +78,12 @@ public class DDLFieldCheckboxView extends LinearLayout
 
 	@Override
 	public View getParentView() {
-		return _parentView;
+		return parentView;
 	}
 
 	@Override
 	public void setParentView(View view) {
-		_parentView = view;
+		parentView = view;
 	}
 
 	@Override
@@ -91,7 +93,7 @@ public class DDLFieldCheckboxView extends LinearLayout
 
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		_field.setCurrentValue(isChecked);
+		field.setCurrentValue(isChecked);
 	}
 
 	@Override
@@ -100,13 +102,8 @@ public class DDLFieldCheckboxView extends LinearLayout
 
 		setSaveEnabled(false);
 
-		_switch = (SwitchCompat) findViewById(R.id.liferay_ddl_switch);
+		switchCompat = (SwitchCompat) findViewById(R.id.liferay_ddl_switch);
 
-		_switch.setOnCheckedChangeListener(this);
+		switchCompat.setOnCheckedChangeListener(this);
 	}
-
-	protected BooleanField _field;
-	protected SwitchCompat _switch;
-	protected View _parentView;
-
 }

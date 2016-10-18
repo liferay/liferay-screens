@@ -39,10 +39,6 @@ extension String {
 		return NSNumber(longLong: number)
 	}
 
-	public var asLong: Int64? {
-		return Int64(self)
-	}
-
 	public var isXml: Bool {
 		return self.hasPrefix("<?xml")
 	}
@@ -66,6 +62,50 @@ extension String {
 			document.deepChildWithAttribute("language-id", value: defaultLocale)
 
 		return found?.value ?? self
+	}
+
+	public func toHtmlTextWithAttributes(attributes: [String: NSObject]) -> NSAttributedString? {
+
+		//Init text with default paragraph style
+		var text = "<style>p:last-of-type{ margin-bottom: 0px; padding-bottom: 0px; }</style>"
+			+ "<div style=\""
+
+		if let font = attributes[NSFontAttributeName] as? UIFont {
+			text.appendContentsOf("font-family: \(font.fontName);font-size: \(font.pointSize);")
+		}
+
+		if let color = attributes[NSForegroundColorAttributeName] as? UIColor {
+			text.appendContentsOf("color: \(self.toHexString(color));")
+		}
+
+		text.appendContentsOf("\">\(self)</div>")
+
+		let encodedData = text.dataUsingEncoding(NSUTF8StringEncoding)
+
+		if let data = encodedData {
+
+			let attributes = attributes.copyAndMerge([
+				NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+				NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding,
+			])
+
+			return try! NSAttributedString(data: data, options: attributes, documentAttributes: nil)
+		}
+
+		return nil
+	}
+
+	func toHexString(color: UIColor) -> String {
+		var r:CGFloat = 0
+		var g:CGFloat = 0
+		var b:CGFloat = 0
+		var a:CGFloat = 0
+
+		color.getRed(&r, green: &g, blue: &b, alpha: &a)
+
+		let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
+
+		return NSString(format:"#%06x", rgb) as String
 	}
 
 }

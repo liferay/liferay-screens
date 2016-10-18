@@ -4,15 +4,16 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="horizontal"
-	tools:context="com.liferay.mobile.screens.testapp.FilteredAssetActivity">
+	tools:context="com.liferay.mobile.screens.testapp.FilteredAssetActivity"
+	>
 
-	<com.liferay.mobile.screens.assetlist.AssetListScreenlet
+	<com.liferay.mobile.screens.asset.list.AssetListScreenlet
 		android:id="@+id/filtered_asset_list"
 		android:layout_width="0dp"
 		android:layout_height="wrap_content"
 		android:layout_weight="1"
 		liferay:groupId="@string/liferay_group_id"
-		liferay:portletItemName="@string/portlet_item_name1" />
-
+		liferay:portletItemName="@string/portlet_item_name1"
+		/>
 
 </LinearLayout>

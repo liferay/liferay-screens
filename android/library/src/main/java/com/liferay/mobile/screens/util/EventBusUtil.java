@@ -21,6 +21,12 @@ import de.greenrobot.event.EventBus;
  */
 public class EventBusUtil {
 
+	private static EventBus bus;
+
+	private EventBusUtil() {
+		super();
+	}
+
 	public static void post(Object event) {
 		getInstance().post(event);
 	}
@@ -36,13 +42,10 @@ public class EventBusUtil {
 	}
 
 	protected static EventBus getInstance() {
-		if (_bus == null) {
-			_bus = new EventBus();
+		if (bus == null) {
+			bus = new EventBus();
 		}
 
-		return _bus;
+		return bus;
 	}
-
-	private static EventBus _bus;
-
 }

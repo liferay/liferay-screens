@@ -16,65 +16,54 @@ package com.liferay.mobile.screens.viewsets.westeros.auth.signup;
 
 import android.content.Context;
 import android.util.AttributeSet;
-
 import com.liferay.mobile.screens.auth.signup.interactor.SignUpInteractor;
-import com.liferay.mobile.screens.context.User;
 
 /**
  * @author Silvio Santos
  */
-public class SignUpScreenlet
-	extends com.liferay.mobile.screens.auth.signup.SignUpScreenlet
+public class SignUpScreenlet extends com.liferay.mobile.screens.auth.signup.SignUpScreenlet
 	implements com.liferay.mobile.screens.viewsets.westeros.auth.signup.SignUpListener {
 
 	public static final String TERMS_AND_CONDITIONS = "TERMS_AND_CONDITIONS";
+	private SignUpListener listener;
 
 	public SignUpScreenlet(Context context) {
 		super(context);
 	}
 
-	public SignUpScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public SignUpScreenlet(Context context, AttributeSet attrs) {
+		super(context, attrs);
 	}
 
-	public SignUpScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public SignUpScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+	}
+
+	public SignUpScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	public SignUpListener getListener() {
-		return _listener;
+		return listener;
 	}
 
 	public void setListener(SignUpListener value) {
-		_listener = value;
+		listener = value;
 	}
 
 	@Override
 	public void onClickOnTermsAndConditions() {
-		if (_listener != null) {
-			_listener.onClickOnTermsAndConditions();
+		if (listener != null) {
+			listener.onClickOnTermsAndConditions();
 		}
-	}
-
-	@Override
-	public void onSignUpFailure(Exception e) {
-		super.onSignUpFailure(e);
-	}
-
-	@Override
-	public void onSignUpSuccess(User user) {
-		super.onSignUpSuccess(user);
 	}
 
 	@Override
 	protected void onUserAction(String userActionName, SignUpInteractor interactor, Object... args) {
 		if (TERMS_AND_CONDITIONS.equals(userActionName)) {
 			onClickOnTermsAndConditions();
-		}
-		else {
+		} else {
 			super.onUserAction(userActionName, interactor, args);
 		}
 	}
-
-	private SignUpListener _listener;
 }

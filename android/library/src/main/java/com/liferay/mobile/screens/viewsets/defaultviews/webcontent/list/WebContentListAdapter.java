@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.viewsets.defaultviews.webcontent.list;
 
 import android.support.annotation.NonNull;
 import android.view.View;
-
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
 import com.liferay.mobile.screens.webcontent.WebContent;
@@ -24,24 +23,24 @@ public class WebContentListAdapter extends BaseListAdapter<WebContent, WebConten
 
 	@Override
 	protected void fillHolder(WebContent entry, ViewHolder holder) {
-		holder.textView.setText(calculateValue(entry, holder));
+		holder.textView.setText(calculateValue(entry));
 	}
 
-	protected String calculateValue(WebContent entry, ViewHolder holder) {
+	protected String calculateValue(WebContent entry) {
 		if (getLabelFields().isEmpty()) {
 			return entry.getTitle();
-		}
-		else {
-			String value = "";
+		} else {
+			StringBuilder stringBuilder = new StringBuilder();
 
 			for (String label : getLabelFields()) {
 				String localized = entry.getLocalized(label);
 				if (localized == null) {
 					localized = entry.getTitle();
 				}
-				value += localized + "\r\n";
+				stringBuilder.append(localized);
+				stringBuilder.append("\r\n");
 			}
-			return value;
+			return stringBuilder.toString();
 		}
 	}
 

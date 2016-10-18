@@ -7,6 +7,10 @@
 		<item name="android:textColorPrimary">@color/textColorPrimary_westeros</item>
 		<item name="android:textColorSecondary">@color/light_gray_westeros</item>
 
+		<item name="colorControlNormal">@color/colorPrimary_westeros</item>
+		<item name="colorControlHighlight">@color/colorAccent_westeros</item>
+		<item name="colorControlActivated">@color/colorPrimary_westeros</item>
+
 		<item name="android:textViewStyle">@style/westeros_text_view</item>
 		<item name="android:editTextStyle">@style/westeros_edit_text</item>
 		<item name="android:buttonStyle">@style/westeros_button</item>
@@ -64,7 +68,7 @@
 
 	<style name="westeros_button" parent="Base.Widget.AppCompat.Button">
 		<item name="android:textAllCaps">true</item>
-		<item name="android:background">@drawable/westeros_button_ripple</item>
+		<item name="android:background">@drawable/westeros_button_selector</item>
 		<item name="android:textColor">@android:color/white</item>
 		<item name="android:layout_height">@dimen/westeros_block_height</item>
 		<item name="android:layout_width">match_parent</item>

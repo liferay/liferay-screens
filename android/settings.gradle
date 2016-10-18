@@ -25,3 +25,6 @@ project(':bankofwesteros').projectDir = new File(settingsDir, '/samples/bankofwe
 include ':pushnotifications'
 project(':pushnotifications').projectDir = new File(settingsDir, '/samples/pushnotifications')
 
+include ':westerosemployees'
+project(':westerosemployees').projectDir = new File(settingsDir, '/samples/westerosemployees')
+

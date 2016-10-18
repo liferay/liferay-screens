@@ -16,13 +16,11 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
 
 /**
  * @author Jose Manuel Navarro
@@ -45,29 +43,32 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 				return new StringWithOptionsField[size];
 			}
 		};
+	private ArrayList<Option> availableOptions;
+	private boolean multiple;
+
+	public StringWithOptionsField() {
+		super();
+	}
 
 	public StringWithOptionsField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
 
-		List<Map<String, String>> availableOptions =
-			(List<Map<String, String>>) attributes.get("options");
+		List<Map<String, String>> availableOptions = (List<Map<String, String>>) attributes.get("options");
 
 		if (availableOptions == null) {
-			_availableOptions = new ArrayList<>();
-		}
-		else {
-			_availableOptions = new ArrayList<>(availableOptions.size());
+			this.availableOptions = new ArrayList<>();
+		} else {
+			this.availableOptions = new ArrayList<>(availableOptions.size());
 
 			for (Map<String, String> optionMap : availableOptions) {
-				_availableOptions.add(new Option(optionMap));
+				this.availableOptions.add(new Option(optionMap));
 			}
 		}
 
 		Object multipleValue = attributes.get("multiple");
-		_multiple = (multipleValue != null) ? Boolean.valueOf(multipleValue.toString()) : false;
+		multiple = (multipleValue != null) ? Boolean.valueOf(multipleValue.toString()) : false;
 
-		ArrayList<Option> predefinedOptions =
-			convertFromString(getAttributeStringValue(attributes, "predefinedValue"));
+		ArrayList<Option> predefinedOptions = convertFromString(getAttributeStringValue(attributes, "predefinedValue"));
 
 		setPredefinedValue(predefinedOptions);
 		setCurrentValue(predefinedOptions);
@@ -76,12 +77,12 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 	protected StringWithOptionsField(Parcel in, ClassLoader loader) {
 		super(in, loader);
 
-		_availableOptions = (ArrayList<Option>) in.readSerializable();
-		_multiple = (in.readInt() == 1);
+		availableOptions = (ArrayList<Option>) in.readSerializable();
+		multiple = in.readInt() == 1;
 	}
 
 	public List<Option> getAvailableOptions() {
-		return _availableOptions;
+		return availableOptions;
 	}
 
 	@Override
@@ -98,11 +99,16 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 	public void clearOption(Option option) {
 		List<Option> options = getCurrentValue();
 
-		if (options == null) {
+		if (options.isEmpty()) {
 			return;
 		}
 
 		options.remove(option);
+	}
+
+	public boolean isSelected(Option availableOption) {
+		List<Option> options = getCurrentValue();
+		return options.contains(availableOption);
 	}
 
 	public void selectOption(Option option) {
@@ -112,13 +118,8 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			options.add(option);
 
 			setCurrentValue(options);
-		}
-		else {
+		} else {
 			ArrayList<Option> options = getCurrentValue();
-
-			if (options == null) {
-				options = new ArrayList<>();
-			}
 
 			if (!options.contains(option)) {
 				options.add(option);
@@ -130,17 +131,18 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 	public void writeToParcel(Parcel destination, int flags) {
 		super.writeToParcel(destination, flags);
 
-		destination.writeSerializable(_availableOptions);
-		destination.writeInt(_multiple ? 1 : 0);
+		destination.writeSerializable(availableOptions);
+		destination.writeInt(multiple ? 1 : 0);
 	}
 
 	public boolean isMultiple() {
-		// Multiple selection is not supported yet
-		return false;
+		// Multiple selection is supported on select fields
+		return multiple;
 	}
 
 	@Override
 	protected boolean doValidate() {
+
 		List<Option> options = getCurrentValue();
 
 		return (options != null && !options.isEmpty());
@@ -159,26 +161,25 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			stringValue = stringValue.substring(1, stringValue.length() - 1);
 		}
 
-		//TODO only works with one option
+		ArrayList<Option> results = new ArrayList<>();
+
 		String[] values = stringValue.split(",");
-		String fistOptionString = values[0];
+		for (String value : values) {
 
-		if (fistOptionString.startsWith("\"")) {
-			fistOptionString = fistOptionString.substring(1, fistOptionString.length() - 1);
+			if (value.startsWith("\"")) {
+				value = value.substring(1, value.length() - 1);
+			}
+
+			Option foundOption = findOptionByLabel(value);
+			if (foundOption == null) {
+				foundOption = findOptionByValue(value);
+			}
+
+			if (foundOption != null) {
+				results.add(foundOption);
+			}
 		}
-
-		Option foundOption = findOptionByLabel(fistOptionString);
-		if (foundOption == null) {
-			foundOption = findOptionByValue(fistOptionString);
-		}
-
-		ArrayList<Option> result = new ArrayList<>(1);
-
-		if (foundOption != null) {
-			result.add(foundOption);
-		}
-
-		return result;
+		return results;
 	}
 
 	@Override
@@ -196,8 +197,7 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			if (isFirst) {
 				result.append('"');
 				isFirst = false;
-			}
-			else {
+			} else {
 				result.append(", \"");
 			}
 
@@ -212,22 +212,29 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 	}
 
 	@Override
-	protected String convertToFormattedString(ArrayList<Option> value) {
-		if (value == null || value.isEmpty()) {
+	protected String convertToFormattedString(ArrayList<Option> values) {
+		if (values == null || values.isEmpty()) {
 			return "";
 		}
 
-		return value.get(0).label;
+		StringBuilder stringBuilder = new StringBuilder(values.get(0).label);
+
+		for (int i = 1; i < values.size(); i++) {
+			stringBuilder.append(" - ");
+			stringBuilder.append(values.get(i).label);
+		}
+
+		return stringBuilder.toString();
 	}
 
 	protected Option findOptionByValue(String value) {
-		if (_availableOptions == null) {
+		if (availableOptions == null) {
 			return null;
 		}
 
-		for (Option o : _availableOptions) {
-			if (o.value.equals(value)) {
-				return o;
+		for (Option option : availableOptions) {
+			if (option.value.equals(value)) {
+				return option;
 			}
 		}
 
@@ -235,27 +242,28 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 	}
 
 	protected Option findOptionByLabel(String label) {
-		if (_availableOptions == null) {
+		if (availableOptions == null) {
 			return null;
 		}
 
-		for (Option o : _availableOptions) {
-			if (o.label.equals(label)) {
-				return o;
+		for (Option option : availableOptions) {
+			if (option.label.equals(label)) {
+				return option;
 			}
 		}
 
 		return null;
 	}
 
-	private ArrayList<Option> _availableOptions;
-	private boolean _multiple;
-
 	public static class Option implements Serializable {
 
 		public String label;
 		public String name;
 		public String value;
+
+		public Option() {
+			super();
+		}
 
 		public Option(Map<String, String> optionMap) {
 			this(optionMap.get("label"), optionMap.get("name"), optionMap.get("value"));
@@ -265,6 +273,14 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			this.label = label;
 			this.name = name;
 			this.value = value;
+		}
+
+		@Override
+		public int hashCode() {
+			int result = label != null ? label.hashCode() : 0;
+			result = 31 * result + (name != null ? name.hashCode() : 0);
+			result = 31 * result + (value != null ? value.hashCode() : 0);
+			return result;
 		}
 
 		@Override
@@ -278,8 +294,7 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 
 				if (name != null) {
 					return label.equals(opt.label) && value.equals(opt.value) && name.equals(opt.name);
-				}
-				else {
+				} else {
 					return label.equals(opt.label) && value.equals(opt.value);
 				}
 			}
@@ -287,5 +302,4 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			return super.equals(obj);
 		}
 	}
-
 }

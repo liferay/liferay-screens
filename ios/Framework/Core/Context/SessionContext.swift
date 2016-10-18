@@ -34,9 +34,11 @@ import Foundation
 		self.session = session
 		self.userAttributes = attributes
 
+		let userId = userAttributes["userId"]
+
 		cacheManager = LiferayServerContext.factory.createCacheManager(
 			session: session,
-			userId: userAttributes["userId"]?.description?.asLong ?? 0)
+			userId: userId?.longLongValue ?? 0)
 
 		credentialsStorage = CredentialsStorage(store: store)
 
@@ -67,7 +69,7 @@ import Foundation
 	}
 
 	public var userId: Int64? {
-		return userAttributes["userId"]?.description?.asLong
+		return userAttributes["userId"]?.longLongValue
 	}
 
 

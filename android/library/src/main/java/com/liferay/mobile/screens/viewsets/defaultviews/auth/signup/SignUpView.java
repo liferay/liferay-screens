@@ -20,7 +20,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.auth.signup.SignUpScreenlet;
 import com.liferay.mobile.screens.auth.signup.view.SignUpViewModel;
@@ -32,8 +31,14 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 /**
  * @author Silvio Santos
  */
-public class SignUpView extends LinearLayout
-	implements SignUpViewModel, View.OnClickListener {
+public class SignUpView extends LinearLayout implements SignUpViewModel, View.OnClickListener {
+
+	protected EditText emailAddress;
+	protected EditText firstName;
+	protected EditText lastName;
+	protected EditText password;
+	protected ModalProgressBar progressBar;
+	private BaseScreenlet screenlet;
 
 	public SignUpView(Context context) {
 		super(context);
@@ -49,22 +54,22 @@ public class SignUpView extends LinearLayout
 
 	@Override
 	public String getEmailAddress() {
-		return _emailAddress.getText().toString();
+		return emailAddress.getText().toString();
 	}
 
 	@Override
 	public String getFirstName() {
-		return _firstName.getText().toString();
-	}
-
-	@Override
-	public String getJobTitle() {
-		return null;
+		return firstName.getText().toString();
 	}
 
 	@Override
 	public String getLastName() {
-		return _lastName.getText().toString();
+		return lastName.getText().toString();
+	}
+
+	@Override
+	public String getPassword() {
+		return password.getText().toString();
 	}
 
 	@Override
@@ -73,18 +78,20 @@ public class SignUpView extends LinearLayout
 	}
 
 	@Override
-	public String getPassword() {
-		return _password.getText().toString();
-	}
-
-	@Override
 	public String getScreenName() {
 		return null;
 	}
 
 	@Override
+	public String getJobTitle() {
+		return null;
+	}
+
+	@Override
 	public void showStartOperation(String actionName) {
-		_progressBar.startProgress();
+		if (BaseScreenlet.DEFAULT_ACTION.equals(actionName)) {
+			progressBar.startProgress();
+		}
 	}
 
 	@Override
@@ -94,26 +101,26 @@ public class SignUpView extends LinearLayout
 
 	@Override
 	public void showFinishOperation(User user) {
-		_progressBar.finishProgress();
+		progressBar.finishProgress();
 
 		LiferayLogger.i("Sign-up successful: " + user.getId());
 	}
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
-		_progressBar.finishProgress();
+		progressBar.finishProgress();
 
 		LiferayLogger.e("Could not sign up", e);
 	}
 
 	@Override
 	public BaseScreenlet getScreenlet() {
-		return _screenlet;
+		return screenlet;
 	}
 
 	@Override
 	public void setScreenlet(BaseScreenlet screenlet) {
-		_screenlet = screenlet;
+		this.screenlet = screenlet;
 	}
 
 	@Override
@@ -128,21 +135,13 @@ public class SignUpView extends LinearLayout
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_firstName = (EditText) findViewById(R.id.liferay_first_name);
-		_lastName = (EditText) findViewById(R.id.liferay_last_name);
-		_emailAddress = (EditText) findViewById(R.id.liferay_email_address);
-		_password = (EditText) findViewById(R.id.liferay_password);
-		_progressBar = (ModalProgressBar) findViewById(R.id.liferay_progress);
+		firstName = (EditText) findViewById(R.id.liferay_first_name);
+		lastName = (EditText) findViewById(R.id.liferay_last_name);
+		emailAddress = (EditText) findViewById(R.id.liferay_email_address);
+		password = (EditText) findViewById(R.id.liferay_password);
+		progressBar = (ModalProgressBar) findViewById(R.id.liferay_progress);
 
 		Button signUpButton = (Button) findViewById(R.id.liferay_sign_up_button);
 		signUpButton.setOnClickListener(this);
 	}
-
-	protected EditText _emailAddress;
-	protected EditText _firstName;
-	protected EditText _lastName;
-	protected EditText _password;
-	protected ModalProgressBar _progressBar;
-
-	private BaseScreenlet _screenlet;
 }

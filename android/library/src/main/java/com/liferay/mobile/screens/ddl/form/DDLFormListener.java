@@ -14,35 +14,26 @@
 
 package com.liferay.mobile.screens.ddl.form;
 
-import com.liferay.mobile.screens.cache.CacheListener;
+import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
-
+import java.util.Map;
 import org.json.JSONObject;
 
 /**
  * @author Jose Manuel Navarro
  */
-public interface DDLFormListener extends CacheListener {
+public interface DDLFormListener extends BaseCacheListener {
 
 	void onDDLFormLoaded(Record record);
 
-	void onDDLFormRecordLoaded(Record record);
+	void onDDLFormRecordLoaded(Record record, Map<String, Object> valuesAndAttributes);
 
 	void onDDLFormRecordAdded(Record record);
 
 	void onDDLFormRecordUpdated(Record record);
 
-	void onDDLFormLoadFailed(Exception e);
-
-	void onDDLFormRecordLoadFailed(Exception e);
-
-	void onDDLFormRecordAddFailed(Exception e);
-
-	void onDDLFormUpdateRecordFailed(Exception e);
-
 	void onDDLFormDocumentUploaded(DocumentField documentField, JSONObject jsonObject);
 
 	void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e);
-
 }

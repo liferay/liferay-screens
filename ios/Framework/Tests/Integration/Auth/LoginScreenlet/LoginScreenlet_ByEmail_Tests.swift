@@ -162,7 +162,8 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 
 					let error = result as! NSError
 
-					XCTAssertEqual("Authenticated access required", error.localizedDescription)
+					XCTAssertEqual("The operation couldn’t be completed. Authenticated access required"
+							, error.localizedDescription)
 
 				}
 				assertThat ("the session should not be established") {

@@ -25,50 +25,50 @@ class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 		return LiferayServerContext.connectorFactory.createDDLFormLoadConnector(screenlet.structureId)
 	}
 
-	override func completedConnector(op: ServerConnector) {
-		if let loadOp = op as? DDLFormLoadLiferayConnector {
-			self.resultRecord = loadOp.resultRecord
-			self.resultUserId = loadOp.resultUserId
+	override func completedConnector(c: ServerConnector) {
+		if let loadCon = c as? DDLFormLoadLiferayConnector {
+			self.resultRecord = loadCon.resultRecord
+			self.resultUserId = loadCon.resultUserId
 		}
 	}
 
 
 	//MARK: Cache methods
 
-	override func writeToCache(op: ServerConnector) {
+	override func writeToCache(c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
 
-		if let loadOp = op as? DDLFormLoadLiferayConnector,
-				record = loadOp.resultRecord,
-				userId = loadOp.resultUserId {
+		if let loadCon = c as? DDLFormLoadLiferayConnector,
+				record = loadCon.resultRecord,
+				userId = loadCon.resultUserId {
 
 			cacheManager.setClean(
 				collection: ScreenletName(DDLFormScreenlet),
-				key: "structureId-\(loadOp.structureId)",
+				key: "structureId-\(loadCon.structureId)",
 				value: record,
 				attributes: [
 					"userId": userId.description])
 		}
 	}
 
-	override func readFromCache(op: ServerConnector, result: AnyObject? -> ()) {
+	override func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
 		}
 
-		if let loadOp = op as? DDLFormLoadLiferayConnector {
+		if let loadCon = c as? DDLFormLoadLiferayConnector {
 			cacheManager.getAnyWithAttributes(
 					collection: ScreenletName(DDLFormScreenlet),
-					key: "structureId-\(loadOp.structureId)") {
+					key: "structureId-\(loadCon.structureId)") {
 				record, attributes in
 
-				loadOp.resultRecord = record as? DDLRecord
-				loadOp.resultUserId = attributes?["userId"]?.description.asLong
+				loadCon.resultRecord = record as? DDLRecord
+				loadCon.resultUserId = attributes?["userId"]?.longLongValue
 
-				result(loadOp.resultRecord)
+				result(loadCon.resultRecord)
 			}
 		}
 		else {

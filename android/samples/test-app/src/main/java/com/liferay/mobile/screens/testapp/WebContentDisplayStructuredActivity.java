@@ -12,5 +12,4 @@ public class WebContentDisplayStructuredActivity extends ThemeActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.web_content_display_structured);
 	}
-
 }

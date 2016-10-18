@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.DefaultUploadDetailView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	>
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="10dp"
+			android:orientation="vertical"
+			>
+
+			<com.liferay.mobile.screens.util.SquareRelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_marginEnd="40dp"
+				android:layout_marginStart="40dp"
+				android:layout_marginTop="10dp"
+				>
+
+				<ImageView
+					android:id="@+id/liferay_gallery_upload_image"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:contentDescription="@string/gallery_image"
+					android:src="@drawable/default_gallery_cancel"
+					/>
+
+			</com.liferay.mobile.screens.util.SquareRelativeLayout>
+
+			<android.support.design.widget.TextInputLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="10dp"
+				android:theme="@style/TextLabel"
+				>
+
+				<android.support.design.widget.TextInputEditText
+					android:id="@+id/liferay_gallery_upload_title"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:hint="@string/detail_upload_title"
+					android:textColor="@android:color/black"
+					/>
+
+			</android.support.design.widget.TextInputLayout>
+
+			<android.support.design.widget.TextInputLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="10dp"
+				android:theme="@style/TextLabel"
+				>
+
+				<android.support.design.widget.TextInputEditText
+					android:id="@+id/liferay_gallery_upload_description"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:hint="@string/detail_upload_description"
+					android:textColor="@android:color/black"
+					/>
+
+			</android.support.design.widget.TextInputLayout>
+
+		</LinearLayout>
+
+	</ScrollView>
+
+</com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.DefaultUploadDetailView>

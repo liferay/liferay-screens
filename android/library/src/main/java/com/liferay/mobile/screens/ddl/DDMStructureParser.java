@@ -1,7 +1,6 @@
 package com.liferay.mobile.screens.ddl;
 
 import com.liferay.mobile.screens.ddl.model.Field;
-
 import java.util.List;
 import java.util.Locale;
 

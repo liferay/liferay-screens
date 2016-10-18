@@ -16,39 +16,22 @@ package com.liferay.mobile.screens.auth.login.interactor;
 
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
-import com.liferay.mobile.screens.base.interactor.JSONObjectEvent;
+import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
-import com.liferay.mobile.screens.util.LiferayLogger;
 
+public abstract class BaseLoginInteractor extends BaseRemoteInteractor<LoginListener, BasicEvent> {
 
-public abstract class BaseLoginInteractor
-	extends BaseRemoteInteractor<LoginListener>
-	implements LoginInteractor {
-
-	public BaseLoginInteractor(int targetScreenletId) {
-		super(targetScreenletId);
+	@Override
+	public void onSuccess(BasicEvent event) throws Exception {
+		User user = new User(event.getJSONObject());
+		SessionContext.setCurrentUser(user);
+		getListener().onLoginSuccess(user);
 	}
 
-	public void onEvent(JSONObjectEvent event) {
-
-		LiferayLogger.i("event = [" + event + "]");
-
-		if (!isValidEvent(event)) {
-			return;
-		}
-
-		if (event.isFailed()) {
-			SessionContext.logout();
-			getListener().onLoginFailure(event.getException());
-		}
-		else {
-			User user = new User(event.getJSONObject());
-			SessionContext.setCurrentUser(user);
-			getListener().onLoginSuccess(user);
-		}
+	@Override
+	public void onFailure(BasicEvent e) {
+		SessionContext.logout();
+		getListener().onLoginFailure(e.getException());
 	}
-
-	public abstract void login() throws Exception;
-
 }

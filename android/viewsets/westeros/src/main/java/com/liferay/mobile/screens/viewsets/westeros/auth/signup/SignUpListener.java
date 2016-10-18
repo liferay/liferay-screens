@@ -20,5 +20,4 @@ package com.liferay.mobile.screens.viewsets.westeros.auth.signup;
 public interface SignUpListener extends com.liferay.mobile.screens.auth.signup.SignUpListener {
 
 	void onClickOnTermsAndConditions();
-
 }

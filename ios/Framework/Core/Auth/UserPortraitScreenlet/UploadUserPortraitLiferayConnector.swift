@@ -49,14 +49,15 @@ public class UploadUserPortraitLiferayConnector: ServerConnector {
 	}
 
 	override public func doRun(session session: LRSession) {
-		if let imageBytes = reduceImage(self.image!, factor: 0.95) {
+		if let imageBytes = reduceImage(self.image!, factor: 1) {
 			self.image = nil
 			uploadBytes(imageBytes, withSession: session)
 		}
 		else {
 			fileTooLarge = true
 			uploadResult = nil
-			lastError = NSError.errorWithCause(.AbortedDueToPreconditions)
+			lastError = NSError.errorWithCause(
+					.AbortedDueToPreconditions, message: "User portrait image is too large")
 		}
 	}
 
@@ -64,14 +65,16 @@ public class UploadUserPortraitLiferayConnector: ServerConnector {
 	//MARK: Private methods
 
 	private func reduceImage(src: UIImage, factor: Double) -> NSData? {
-		if factor < 0.8 {
+		if (src.size.width < 100 && src.size.height < 100) || factor < 0.1  {
 			return nil
 		}
 
-		if let imageBytes = UIImageJPEGRepresentation(src, CGFloat(factor)) {
-			return (imageBytes.length < maxSize)
-				? imageBytes
-				: reduceImage(src, factor: factor - 0.05)
+		if let imageReduced = src.resizeImage(toWidth: Int(src.size.width * CGFloat(factor))),
+				imageBytes = UIImageJPEGRepresentation(imageReduced, 1) {
+
+				return (imageBytes.length < maxSize)
+					? imageBytes
+					: reduceImage(src, factor: factor - 0.1)
 		}
 
 		return nil

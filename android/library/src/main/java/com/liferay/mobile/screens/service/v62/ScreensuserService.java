@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.service.v62;
 
 import com.liferay.mobile.android.service.BaseService;
 import com.liferay.mobile.android.service.Session;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,8 +36,7 @@ public class ScreensuserService extends BaseService {
 			JSONObject _params = new JSONObject();
 
 			_command.put("/screens-web.screensuser/get-current-user", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -61,8 +59,7 @@ public class ScreensuserService extends BaseService {
 			_params.put("emailAddress", checkNull(emailAddress));
 
 			_command.put("/screens-web.screensuser/send-password-by-email-address", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -85,8 +82,7 @@ public class ScreensuserService extends BaseService {
 			_params.put("screenName", checkNull(screenName));
 
 			_command.put("/screens-web.screensuser/send-password-by-screen-name", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -108,8 +104,7 @@ public class ScreensuserService extends BaseService {
 			_params.put("userId", userId);
 
 			_command.put("/screens-web.screensuser/send-password-by-user-id", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -121,5 +116,4 @@ public class ScreensuserService extends BaseService {
 
 		return _result.getBoolean(0);
 	}
-
 }

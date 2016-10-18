@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.ddl.model.Field;
@@ -15,8 +14,10 @@ import com.liferay.mobile.screens.webcontent.display.view.WebContentDisplayViewM
 /**
  * @author Javier Gamarra
  */
-public class WebContentStructuredDisplayView extends LinearLayout
-	implements WebContentDisplayViewModel {
+public class WebContentStructuredDisplayView extends LinearLayout implements WebContentDisplayViewModel {
+
+	private BaseScreenlet screenlet;
+	private TextView contentField;
 
 	public WebContentStructuredDisplayView(Context context) {
 		super(context);
@@ -34,8 +35,8 @@ public class WebContentStructuredDisplayView extends LinearLayout
 	public void showFinishOperation(WebContent webContent) {
 		String value = getValueFromLabelFields(webContent);
 
-		if (_contentField != null) {
-			_contentField.setText(value);
+		if (contentField != null) {
+			contentField.setText(value);
 		}
 	}
 
@@ -56,32 +57,33 @@ public class WebContentStructuredDisplayView extends LinearLayout
 
 	@Override
 	public BaseScreenlet getScreenlet() {
-		return _screenlet;
+		return screenlet;
 	}
 
 	@Override
 	public void setScreenlet(BaseScreenlet screenlet) {
-		_screenlet = screenlet;
+		this.screenlet = screenlet;
 	}
 
 	protected String getValueFromLabelFields(WebContent webContent) {
 		WebContentDisplayScreenlet screenlet = (WebContentDisplayScreenlet) getScreenlet();
 		String labelFields = screenlet.getLabelFields();
 
-		String value = "";
-
 		if (labelFields.isEmpty()) {
 			return (String) webContent.getDDMStructure().getField(0).getCurrentValue();
 		}
 
+		StringBuilder stringBuilder = new StringBuilder("");
+
 		for (String label : labelFields.split(",")) {
 			Field field = webContent.getDDMStructure().getFieldByName(label);
 			if (field != null) {
-				value += field.getCurrentValue() + "\r\n";
+				stringBuilder.append(field.getCurrentValue());
+				stringBuilder.append("\r\n");
 			}
 		}
 
-		return value;
+		return stringBuilder.toString();
 	}
 
 	@Override
@@ -90,9 +92,6 @@ public class WebContentStructuredDisplayView extends LinearLayout
 
 		setOrientation(LinearLayout.VERTICAL);
 
-		_contentField = (TextView) findViewById(R.id.web_content_field);
+		contentField = (TextView) findViewById(R.id.web_content_field);
 	}
-
-	private BaseScreenlet _screenlet;
-	private TextView _contentField;
 }

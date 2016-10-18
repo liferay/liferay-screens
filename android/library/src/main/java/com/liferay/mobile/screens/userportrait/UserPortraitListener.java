@@ -15,21 +15,15 @@
 package com.liferay.mobile.screens.userportrait;
 
 import android.graphics.Bitmap;
-
-import com.liferay.mobile.screens.cache.CacheListener;
+import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 
 /**
  * @author Javier Gamarra
  * @author Jose Manuel Navarro
  */
-public interface UserPortraitListener extends CacheListener {
+public interface UserPortraitListener extends BaseCacheListener {
 
-	Bitmap onUserPortraitLoadReceived(UserPortraitScreenlet source, Bitmap bitmap);
+	Bitmap onUserPortraitLoadReceived(Bitmap bitmap);
 
-	void onUserPortraitLoadFailure(UserPortraitScreenlet source, Exception e);
-
-	void onUserPortraitUploaded(UserPortraitScreenlet source);
-
-	void onUserPortraitUploadFailure(UserPortraitScreenlet source, Exception e);
-
+	void onUserPortraitUploaded();
 }

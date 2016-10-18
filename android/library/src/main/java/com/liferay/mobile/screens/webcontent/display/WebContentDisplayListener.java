@@ -16,19 +16,15 @@ package com.liferay.mobile.screens.webcontent.display;
 
 import android.view.MotionEvent;
 import android.webkit.WebView;
-
-import com.liferay.mobile.screens.cache.CacheListener;
+import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import com.liferay.mobile.screens.webcontent.WebContent;
 
 /**
  * @author Jose Manuel Navarro
  */
-public interface WebContentDisplayListener extends CacheListener {
+public interface WebContentDisplayListener extends BaseCacheListener {
 
-	WebContent onWebContentReceived(WebContentDisplayScreenlet source, WebContent html);
-
-	void onWebContentFailure(WebContentDisplayScreenlet source, Exception e);
+	WebContent onWebContentReceived(WebContent html);
 
 	void onWebContentClicked(WebView.HitTestResult result, MotionEvent event);
-
 }

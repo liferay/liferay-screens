@@ -27,5 +27,4 @@ public interface BaseViewModel {
 	BaseScreenlet getScreenlet();
 
 	void setScreenlet(BaseScreenlet screenlet);
-
 }

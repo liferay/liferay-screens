@@ -57,8 +57,6 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 		super.onCreated()
 
 		setButtonDefaultStyle(signUpButton)
-
-		scrollView?.contentSize = scrollView!.frame.size
 	}
 
 	override public func onSetTranslations() {

@@ -17,7 +17,6 @@ package com.liferay.mobile.screens.service.v70;
 import com.liferay.mobile.android.service.BaseService;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,7 +30,55 @@ public class ScreensassetentryService extends BaseService {
 		super(session);
 	}
 
-	public JSONArray getAssetEntries(long companyId, long groupId, String portletItemName, String locale, int max) throws Exception {
+	public JSONObject getAssetEntry(String className, long classPK, String locale) throws Exception {
+		JSONObject _command = new JSONObject();
+
+		try {
+			JSONObject _params = new JSONObject();
+
+			_params.put("className", checkNull(className));
+			_params.put("classPK", classPK);
+			_params.put("locale", checkNull(locale));
+
+			_command.put("/screens.screensassetentry/get-asset-entry", _params);
+		} catch (JSONException _je) {
+			throw new Exception(_je);
+		}
+
+		JSONArray _result = session.invoke(_command);
+
+		if (_result == null) {
+			return null;
+		}
+
+		return _result.getJSONObject(0);
+	}
+
+	public JSONObject getAssetEntry(long entryId, String locale) throws Exception {
+		JSONObject _command = new JSONObject();
+
+		try {
+			JSONObject _params = new JSONObject();
+
+			_params.put("entryId", entryId);
+			_params.put("locale", checkNull(locale));
+
+			_command.put("/screens.screensassetentry/get-asset-entry", _params);
+		} catch (JSONException _je) {
+			throw new Exception(_je);
+		}
+
+		JSONArray _result = session.invoke(_command);
+
+		if (_result == null) {
+			return null;
+		}
+
+		return _result.getJSONObject(0);
+	}
+
+	public JSONArray getAssetEntries(long companyId, long groupId, String portletItemName, String locale, int max)
+		throws Exception {
 		JSONObject _command = new JSONObject();
 
 		try {
@@ -44,8 +91,7 @@ public class ScreensassetentryService extends BaseService {
 			_params.put("max", max);
 
 			_command.put("/screens.screensassetentry/get-asset-entries", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -64,12 +110,12 @@ public class ScreensassetentryService extends BaseService {
 		try {
 			JSONObject _params = new JSONObject();
 
-			mangleWrapper(_params, "assetEntryQuery", "com.liferay.asset.kernel.service.persistence.AssetEntryQuery", assetEntryQuery);
+			mangleWrapper(_params, "assetEntryQuery", "com.liferay.asset.kernel.service.persistence.AssetEntryQuery",
+				assetEntryQuery);
 			_params.put("locale", checkNull(locale));
 
 			_command.put("/screens.screensassetentry/get-asset-entries", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -81,5 +127,4 @@ public class ScreensassetentryService extends BaseService {
 
 		return _result.getJSONArray(0);
 	}
-
 }

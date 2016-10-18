@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import java.util.Locale;
 import java.util.Map;
 
@@ -42,6 +41,9 @@ public class BooleanField extends Field<Boolean> {
 			}
 		};
 
+	public BooleanField() {
+		super();
+	}
 
 	public BooleanField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
@@ -77,5 +79,4 @@ public class BooleanField extends Field<Boolean> {
 
 		return (value) ? "Yes" : "No";
 	}
-
 }

@@ -23,5 +23,4 @@ import com.liferay.mobile.screens.webcontent.WebContent;
 public interface WebContentDisplayViewModel extends BaseViewModel {
 
 	void showFinishOperation(WebContent html);
-
 }

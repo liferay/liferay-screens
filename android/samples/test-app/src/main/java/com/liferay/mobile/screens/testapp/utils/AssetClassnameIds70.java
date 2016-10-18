@@ -5,60 +5,30 @@ package com.liferay.mobile.screens.testapp.utils;
  */
 public enum AssetClassnameIds70 {
 
-	// Users and sites
-	GROUP(20001),
-	LAYOUT(20002),
-	ORGANIZATION(20003),
-	USER(20005),
-	USER_GROUP(20006),
+	//USER(29204, "com.liferay.portal.kernel.model.User"),
+	BLOGS_ENTRY(20011, "com.liferay.blogs.kernel.model.BlogsEntry"),
+	BOOKMARKS_ENTRY(27301, "com.liferay.bookmarks.model.BookmarksEntry"),
+	BOOKMARKS_FOLDER(27302, "com.liferay.bookmarks.model.BookmarksFolder"),
+	DL_FILE_ENTRY(20015, "com.liferay.document.library.kernel.model.DLFileEntry"),
+	DL_FOLDER_ENTRY(20021, "com.liferay.document.library.kernel.model.DLFolder"),
+	//DDLRECORD(29101, "com.liferay.dynamic.data.lists.model.DDLRecord"),
+	//DDLRECORD_SET(29102, "com.liferay.dynamic.data.lists.model.DDLRecordSet"),
+	JOURNAL_ARTICLE(29591, "com.liferay.journal.model.JournalArticle"),
+	JOURNAL_FOLDER(29596, "com.liferay.journal.model.JournalFolder");
 
-	// Blogs
-	BLOGS_ENTRY(20007),
+	private final long value;
+	private final String className;
 
-	// Bookmarks
-	BOOKMARKS_ENTRY(20382),
-	BOOKMARKS_FOLDER(20383),
-
-	// Calendar
-	CALENDAR_EVENT(20084),
-
-	// Document Library
-	DLFILE_ENTRY(20008),
-	DLFILE_ENTRY_METADATA(20086),
-	DLFILE_ENTRY_TYPE(20087),
-	DLFILE_RANK(20088),
-	DLFILE_SHORTCUT(20089),
-	DLFILE_VERSION(20090),
-
-	// DDL
-	DDLRECORD(20413),
-	DDLRECORD_SET(20414),
-
-	// Journal
-
-	JOURNAL_ARTICLE(20453),
-	JOURNAL_FOLDER(20458),
-
-	// MessageBoard
-	MBMESSAGE(20010),
-	MBTHREAD(20011),
-	MBCATEGORY(20098),
-	MBDISCUSSION(20099),
-	MBMAILING_LIST(20100),
-
-	// Wiki
-	WIKI_PAGE(20375),
-	WIKI_PAGE_RESOURCE(20376),
-	WIKI_NODE(20374);
+	AssetClassnameIds70(long value, String className) {
+		this.value = value;
+		this.className = className;
+	}
 
 	public long getValue() {
-		return _value;
+		return value;
 	}
 
-	AssetClassnameIds70(long value) {
-		_value = value;
+	public String getClassName() {
+		return className;
 	}
-
-	private long _value;
-
 }

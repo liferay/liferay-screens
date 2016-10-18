@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	>
+
+	<TextView
+		android:text="@string/image_gallery_label"
+		style="@style/label"
+		/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		>
+
+		<Button
+			android:id="@+id/change_gallery_view_slideshow"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="2dp"
+			android:layout_weight="1"
+			android:text="@string/slideshow"
+			/>
+		<Button
+			android:id="@+id/change_gallery_view_grid"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="2dp"
+			android:layout_weight="1"
+			android:text="@string/grid"
+			/>
+
+		<Button
+			android:id="@+id/change_gallery_view_list"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_margin="2dp"
+			android:layout_weight="1"
+			android:text="@string/list"
+			/>
+
+	</LinearLayout>
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		>
+
+		<com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet
+			android:id="@+id/gallery_screenlet_grid"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			app:cachePolicy="REMOTE_ONLY"
+			app:folderId="@string/liferay_images_folder"
+			app:repositoryId="@string/liferay_group_id"
+			app:layoutId="@layout/gallery_default"
+			/>
+
+		<com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet
+			android:id="@+id/gallery_screenlet_slideshow"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:visibility="gone"
+			app:cachePolicy="REMOTE_ONLY"
+			app:folderId="@string/liferay_images_folder"
+			app:repositoryId="@string/liferay_group_id"
+			app:layoutId="@layout/gallery_default_slideshow"
+			/>
+
+		<com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet
+			android:id="@+id/gallery_screenlet_list"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:visibility="gone"
+			app:cachePolicy="REMOTE_ONLY"
+			app:folderId="@string/liferay_images_folder"
+			app:repositoryId="@string/liferay_group_id"
+			app:layoutId="@layout/gallery_default_list"
+			/>
+
+	</FrameLayout>
+
+</LinearLayout>

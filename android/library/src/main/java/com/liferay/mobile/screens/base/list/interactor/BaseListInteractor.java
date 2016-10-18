@@ -1,196 +1,211 @@
 package com.liferay.mobile.screens.base.list.interactor;
 
 import android.support.annotation.NonNull;
-import android.util.Pair;
-
-import com.liferay.mobile.android.service.BatchSessionImpl;
-import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.context.RequestState;
-import com.liferay.mobile.screens.base.interactor.BaseCachedRemoteInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.cache.Cache;
-import com.liferay.mobile.screens.cache.CachedType;
-import com.liferay.mobile.screens.cache.OfflinePolicy;
-import com.liferay.mobile.screens.cache.sql.CacheSQL;
-import com.liferay.mobile.screens.cache.tablecache.TableCache;
-import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
-import com.liferay.mobile.screens.util.LiferayLocale;
-
-import org.json.JSONException;
-
+import com.liferay.mobile.screens.util.JSONUtil;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import static com.liferay.mobile.screens.cache.CachePolicy.REMOTE_ONLY;
 
 /**
  * @author Javier Gamarra
  */
-public abstract class BaseListInteractor<E, L extends BaseListInteractorListener>
-	extends BaseCachedRemoteInteractor<L, BaseListEvent> {
+public abstract class BaseListInteractor<L extends BaseListInteractorListener, E extends ListEvent>
+	extends BaseCacheReadInteractor<L, BaseListEvent<E>> {
 
-	public BaseListInteractor(int targetScreenletId, OfflinePolicy offlinePolicy) {
-		super(targetScreenletId, offlinePolicy);
-	}
+	protected Query query;
 
-	public void loadRows(
-		int startRow, int endRow, Locale locale)
-		throws Exception {
+	public BaseListEvent<E> execute(Query query, Object... args) throws Exception {
+		int startRow = query.getStartRow();
+		int endRow = query.getEndRow();
 
 		validate(startRow, endRow, locale);
 
-		Pair<Integer, Integer> rowsRange = new Pair<>(startRow, endRow);
+		if (notRequestingRightNow(query)) {
 
-		RequestState requestState = RequestState.getInstance();
-
-		// check if this page is already being loaded
-		if (requestState.contains(getTargetScreenletId(), rowsRange)) {
-			return;
-		}
-
-		BatchSessionImpl session = getSession(rowsRange, locale);
-
-		getPageRowsRequest(session, startRow, endRow, locale);
-		getPageRowCountRequest(session);
-
-		session.invoke();
-
-		requestState.put(getTargetScreenletId(), rowsRange);
-	}
-
-	public void onEventMainThread(BaseListEvent event) {
-		if (!isValidEvent(event)) {
-			return;
-		}
-
-		onEventWithCache(event, event.getStartRow(), event.getEndRow(), event.getLocale());
-
-		if (!event.isFailed()) {
-			List entries = event.getEntries();
-			int rowCount = event.getRowCount();
-
-			getListener().onListRowsReceived(
-				event.getStartRow(), event.getEndRow(), entries, rowCount);
-		}
-	}
-
-	@Override
-	protected void online(Object[] args) throws Exception {
-
-		final int startRow = (int) args[0];
-		final int endRow = (int) args[1];
-		final Locale locale = (Locale) args[2];
-
-		loadRows(startRow, endRow, locale);
-	}
-
-	@Override
-	protected void notifyError(BaseListEvent event) {
-		getListener().onListRowsFailure(
-			event.getStartRow(), event.getEndRow(), event.getException());
-	}
-
-	protected boolean recoverRows(String id, CachedType type, CachedType typeCount, Long groupId, Long userId,
-								  Locale locale, int startRow, int endRow)
-		throws JSONException {
-
-		String query = " AND "
-			+ TableCache.ID + " >= ? AND "
-			+ TableCache.ID + " < ? AND "
-			+ TableCache.USER_ID + " = ? AND "
-			+ TableCache.GROUP_ID + " = ? AND "
-			+ TableCache.LOCALE + " = ? ";
-
-		String startId = createId(id, startRow);
-		String endId = createId(id, endRow);
-
-		Long defaultGroupId = groupId == null ? LiferayServerContext.getGroupId() : groupId;
-		Long defaultUserId = userId == null ? SessionContext.getUserId() : userId;
-		String defaultLocale = locale == null ? LiferayLocale.getDefaultSupportedLocale() :
-			LiferayLocale.getSupportedLocale(locale.getLanguage());
-
-		Cache cache = CacheSQL.getInstance();
-		List<TableCache> elements = (List<TableCache>) cache.get(type, query, startId, endId, defaultUserId, defaultGroupId, defaultLocale);
-
-		if (elements != null && !elements.isEmpty()) {
+			JSONArray jsonArray = getPageRowsRequest(query, args);
+			int rowCount = getPageRowCountRequest(args);
 
 			List<E> entries = new ArrayList<>();
 
-			for (TableCache tableCache : elements) {
-				entries.add(getElement(tableCache));
+			for (int i = 0; i < jsonArray.length(); i++) {
+				JSONObject jsonObject = jsonArray.getJSONObject(i);
+				entries.add(createEntity(JSONUtil.toMap(jsonObject)));
 			}
 
-			TableCache tableCache = (TableCache) cache.getById(typeCount, id, groupId, userId, locale);
-
-			Integer rowCount = Integer.valueOf(tableCache.getContent());
-
-			BaseListEvent event = new BaseListEvent(getTargetScreenletId(), startRow, endRow, locale, entries, rowCount);
-			EventBusUtil.post(event);
-
-			return true;
+			return new BaseListEvent<>(query, entries, rowCount);
 		}
-		return false;
+
+		return null;
 	}
 
-	@NonNull
-	protected abstract E getElement(TableCache tableCache) throws JSONException;
+	@Override
+	public void onSuccess(BaseListEvent event) throws Exception {
 
-	protected String createId(String recordSetId, Integer row) {
-		return String.format(Locale.US, "%s_%05d", recordSetId, row);
+		List<E> entries = event.getEntries();
+		int rowCount = event.getRowCount();
+
+		List list = new ArrayList();
+
+		for (E element : entries) {
+			list.add(element.getModel());
+		}
+
+		cleanRequestState(event.getQuery());
+
+		getListener().onListRowsReceived(event.getStartRow(), event.getEndRow(), list, rowCount);
 	}
 
-	protected void storeRows(String id, CachedType cachedType, CachedType cachedTypeCount, Long groupId, Long userId, BaseListEvent event) {
-		Cache cache = CacheSQL.getInstance();
+	@Override
+	public BaseListEvent<E> execute(Object... args) throws Exception {
+		throw new AssertionError("Should not be called!");
+	}
 
-		cache.set(new TableCache(id, cachedTypeCount, String.valueOf(event.getRowCount()),
-			groupId, userId, event.getLocale()));
+	@Override
+	public void onFailure(BaseListEvent<E> event) {
 
-		for (int i = 0; i < event.getEntries().size(); i++) {
+		RequestState.getInstance().clear(getTargetScreenletId());
 
-			int range = i + event.getStartRow();
+		getListener().onListRowsFailure(0, 0, event.getException());
+	}
 
-			String content = getContent((E) event.getEntries().get(i));
-
-			cache.set(new TableCache(createId(id, range), cachedType, content, groupId, userId, event.getLocale()));
+	protected void cleanRequestState(Query query) {
+		synchronized (this) {
+			RequestState.getInstance().remove(getTargetScreenletId(), query.getRowRange());
 		}
 	}
 
-	protected abstract String getContent(E object);
-
-	protected BatchSessionImpl getSession(Pair<Integer, Integer> rowsRange, Locale locale) {
-		Session currentSession = SessionContext.createSessionFromCurrentSession();
-
-		BatchSessionImpl batchSession = new BatchSessionImpl(currentSession);
-
-		batchSession.setCallback(getCallback(rowsRange, locale));
-
-		return batchSession;
+	protected boolean notRequestingRightNow(Query query) {
+		synchronized (this) {
+			if (!RequestState.getInstance().contains(getTargetScreenletId(), query.getRowRange())) {
+				RequestState.getInstance().put(getTargetScreenletId(), query.getRowRange());
+				return true;
+			}
+			return false;
+		}
 	}
 
-	protected void validate(
-		int startRow, int endRow, Locale locale) {
-
+	protected void validate(int startRow, int endRow, Locale locale) {
 		if (startRow < 0) {
 			throw new IllegalArgumentException("Start row cannot be negative");
-		}
-
-		if (endRow < 0) {
+		} else if (endRow < 0) {
 			throw new IllegalArgumentException("End row cannot be negative");
-		}
-
-		if (startRow >= endRow) {
+		} else if (startRow >= endRow) {
 			throw new IllegalArgumentException("Start row cannot be greater or equals than end row");
-		}
-
-		if (locale == null) {
+		} else if (locale == null) {
 			throw new IllegalArgumentException("Locale cannot be empty");
 		}
 	}
 
-	protected abstract BaseListCallback<E> getCallback(Pair<Integer, Integer> rowsRange, Locale locale);
+	protected boolean cached(Object... args) throws Exception {
 
-	protected abstract void getPageRowsRequest(Session session, int startRow, int endRow, Locale locale) throws Exception;
+		String cacheKey = getListId(query, args);
+		Class aClass = BaseListEvent.class;
 
-	protected abstract void getPageRowCountRequest(Session session) throws Exception;
+		BaseListEvent event = (BaseListEvent) Cache.getObject(aClass, groupId, userId, locale, cacheKey);
 
+		if (event != null) {
+
+			decorateBaseEvent(event);
+			event.setCached(true);
+
+			//Class childClass = getEventClass();
+			//
+			//String[] keys = Cache.findKeys(childClass, groupId, userId, locale, event.getQuery().getStartRow(),
+			//	event.getQuery().getLimit());
+
+			//List<E> entries = new ArrayList<>();
+			//for (String key : keys) {
+			//	entries.add((E) Cache.getObject(childClass, groupId, userId, key));
+			//}
+			//event.setEntries(entries);
+
+			EventBusUtil.post(event);
+			loadingFromCache(true);
+			return true;
+		}
+		loadingFromCache(false);
+		return false;
+	}
+
+	@NonNull
+	private String getListId(Query query, Object... args) {
+		return getIdFromArgs(args)
+			+ Cache.SEPARATOR
+			+ query.getStartRowFormatted()
+			+ Cache.SEPARATOR
+			+ query.getEndRowFormatted();
+	}
+
+	protected void storeToCache(BaseListEvent event) throws Exception {
+
+		storingToCache(event);
+
+		List<E> entries = event.getEntries();
+		for (int i = 0; i < entries.size(); i++) {
+			//Cache.storeObject(entries.get(i), i + query.getStartRow());
+			Cache.storeObject(entries.get(i));
+		}
+
+		Cache.storeObject(event);
+	}
+
+	public void setQuery(Query query) {
+		this.query = query;
+	}
+
+	@Override
+	protected void online(boolean triedOffline, Exception e, Object[] args) throws Exception {
+
+		if (triedOffline) {
+			LiferayLogger.i("Retrieve from cache first failed, trying online");
+		}
+
+		retrievingOnline(triedOffline, e);
+
+		BaseListEvent<E> newEvent = execute(query, args);
+		if (newEvent != null) {
+			decorateEvent(newEvent, false);
+
+			for (E event : newEvent.getEntries()) {
+				decorateEvent(event, false);
+				event.setCacheKey(event.getListKey());
+			}
+
+			newEvent.setCacheKey(getListId(query, args));
+
+			if (!newEvent.isFailed() && !REMOTE_ONLY.equals(getCachePolicy())) {
+				storeToCache(newEvent);
+			}
+
+			EventBusUtil.post(newEvent);
+		}
+	}
+
+	@Override
+	protected void createErrorEvent(Exception e) {
+		try {
+			BaseListEvent<E> event = new BaseListEvent<>();
+			decorateBaseEvent(event);
+			event.setException(e);
+			EventBusUtil.post(event);
+		} catch (Exception e1) {
+			LiferayLogger.e("Event missing no-args constructor and swallowing exception", e);
+		}
+	}
+
+	protected abstract JSONArray getPageRowsRequest(Query query, Object... args) throws Exception;
+
+	protected abstract Integer getPageRowCountRequest(Object... args) throws Exception;
+
+	protected abstract E createEntity(Map<String, Object> stringObjectMap);
 }

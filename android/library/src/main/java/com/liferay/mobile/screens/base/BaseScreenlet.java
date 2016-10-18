@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
+ * <p>
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
  * any later version.
- *
+ * <p>
  * This library is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
@@ -14,65 +14,119 @@
 
 package com.liferay.mobile.screens.base;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.TypedArray;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
-
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
+import com.liferay.mobile.screens.base.interactor.BaseInteractor;
 import com.liferay.mobile.screens.base.interactor.CustomInteractorListener;
 import com.liferay.mobile.screens.base.interactor.Interactor;
+import com.liferay.mobile.screens.base.interactor.listener.CacheListener;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
+import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
+import com.liferay.mobile.screens.context.LiferayServerContext;
+import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;
-
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author Silvio Santos
  */
-public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interactor>
-	extends FrameLayout {
+public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interactor> extends FrameLayout
+	implements CacheListener {
+
+	public static final String DEFAULT_ACTION = "default_action";
+	public static final String STATE_CACHE_POLICY = "STATE_CACHE_POLICY";
+	public static final String STATE_GROUP_ID = "STATE_GROUP_ID";
+	public static final String STATE_USER_ID = "STATE_USER_ID";
+	public static final String STATE_LOCALE = "STATE_LOCALE";
+	protected static final String STATE_SUPER = "basescreenlet-super";
+	private static final String STATE_SCREENLET_ID = "basescreenlet-screenletId";
+	private static final String STATE_INTERACTORS = "basescreenlet-interactors";
+	private static final AtomicInteger NEXT_ID = new AtomicInteger(1);
+	private final Map<String, I> interactors = new HashMap<>();
+	protected CachePolicy cachePolicy;
+	protected long groupId;
+	protected long userId;
+	protected Locale locale;
+	protected CacheListener cacheListener;
+	private int screenletId;
+	private View screenletView;
+	private CustomInteractorListener customInteractorListener;
 
 	public BaseScreenlet(Context context) {
 		super(context);
 
-		init(context, null);
+		//		init(context, null);
 	}
 
-	public BaseScreenlet(Context context, AttributeSet attributes) {
-		super(context, attributes);
+	public BaseScreenlet(Context context, AttributeSet attrs) {
+		super(context, attrs);
 
-		init(context, attributes);
+		init(context, attrs);
 	}
 
-	public BaseScreenlet(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+	public BaseScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
 
-		init(context, attributes);
+		init(context, attrs);
+	}
+
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
+	public BaseScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
+
+		init(context, attrs);
+	}
+
+	private static int generateScreenletId() {
+
+		// This implementation is copied from View.generateViewId() method We
+		// cannot rely on that method because it's introduced in API Level 17
+
+		while (true) {
+			final int result = NEXT_ID.get();
+			int newValue = result + 1;
+			if (newValue > 0x00FFFFFF) {
+				newValue = 1;
+			}
+			if (NEXT_ID.compareAndSet(result, newValue)) {
+				return result;
+			}
+		}
 	}
 
 	public int getScreenletId() {
-		if (_screenletId == 0) {
-			_screenletId = _generateScreenletId();
+		if (screenletId == 0) {
+			screenletId = generateScreenletId();
 		}
 
-		return _screenletId;
+		return screenletId;
 	}
 
 	public void performUserAction() {
 		I interactor = getInteractor();
 
 		if (interactor != null) {
-			onUserAction(null, interactor);
+			getViewModel().showStartOperation(DEFAULT_ACTION);
+			onUserAction(DEFAULT_ACTION, interactor);
 		}
 	}
 
@@ -80,16 +134,17 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		I interactor = getInteractor(userActionName);
 
 		if (interactor != null) {
+			getViewModel().showStartOperation(userActionName);
 			onUserAction(userActionName, interactor, args);
 		}
 	}
 
 	public I getInteractor() {
-		return getInteractor("soleInteractor");
+		return getInteractor(DEFAULT_ACTION);
 	}
 
 	public I getInteractor(String actionName) {
-		I result = _interactors.get(actionName);
+		I result = interactors.get(actionName);
 
 		if (result == null) {
 			result = prepareInteractor(actionName);
@@ -99,34 +154,78 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	}
 
 	public void setCustomInteractorListener(CustomInteractorListener customInteractorListener) {
-		_customInteractorListener = customInteractorListener;
+		this.customInteractorListener = customInteractorListener;
 	}
 
 	protected I prepareInteractor(String actionName) {
 
-		I result = _customInteractorListener == null ?
-			createInteractor(actionName) :
-			(I) _customInteractorListener.createInteractor(actionName);
+		I result = customInteractorListener == null ? createInteractor(actionName)
+			: (I) customInteractorListener.createInteractor(actionName);
 
 		if (result != null) {
+			decorateInteractor(actionName, result);
 			result.onScreenletAttached(this);
-			_interactors.put(actionName, result);
+			interactors.put(actionName, result);
 		}
 		return result;
+	}
+
+	protected void decorateInteractor(String actionName, Interactor result) {
+		if (result instanceof BaseInteractor) {
+			BaseInteractor baseInteractor = (BaseInteractor) result;
+			baseInteractor.setTargetScreenletId(getScreenletId());
+			baseInteractor.setActionName(actionName);
+
+			if (baseInteractor instanceof BaseCacheReadInteractor) {
+				BaseCacheReadInteractor baseCacheReadInteractor = (BaseCacheReadInteractor) baseInteractor;
+				baseCacheReadInteractor.setCachePolicy(getCachePolicy());
+				baseCacheReadInteractor.setGroupId(getGroupId());
+				baseCacheReadInteractor.setUserId(getUserId());
+				baseCacheReadInteractor.setLocale(getLocale());
+			}
+		}
 	}
 
 	protected void init(Context context, AttributeSet attributes) {
 		LiferayScreensContext.init(context);
 
-		_screenletView = createScreenletView(context, attributes);
+		TypedArray typedArray = context.getTheme().obtainStyledAttributes(attributes, R.styleable.CacheScreenlet, 0, 0);
 
-		getViewModel().setScreenlet(this);
+		groupId = castToLongOrUseDefault(typedArray.getString(R.styleable.CacheScreenlet_groupId),
+			LiferayServerContext.getGroupId());
 
-		addView(_screenletView);
+		Long userAttribute = castToLong(typedArray.getString(R.styleable.CacheScreenlet_userId));
+		Long userId = SessionContext.getUserId();
+		this.userId = (userAttribute == 0 ? (userId == null ? 0 : userId) : userAttribute);
+
+		String localeAttribute = typedArray.getString(R.styleable.CacheScreenlet_locale);
+		locale = locale == null ? LiferayLocale.getDefaultLocale() : new Locale(localeAttribute);
+
+		Integer cachePolicyAttribute =
+			typedArray.getInteger(R.styleable.CacheScreenlet_cachePolicy, CachePolicy.REMOTE_ONLY.ordinal());
+		cachePolicy = CachePolicy.values()[cachePolicyAttribute];
+
+		assignView(createScreenletView(context, attributes));
+	}
+
+	public void render(int layoutId) {
+		LiferayScreensContext.init(getContext());
+
+		assignView(LayoutInflater.from(getContext()).inflate(layoutId, null));
+	}
+
+	protected void assignView(View view) {
+		if (!isInEditMode()) {
+			screenletView = view;
+
+			getViewModel().setScreenlet(this);
+
+			addView(screenletView);
+		}
 	}
 
 	protected V getViewModel() {
-		return (V) _screenletView;
+		return (V) screenletView;
 	}
 
 	protected int getDefaultLayoutId() {
@@ -136,20 +235,18 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 			// first, get the identifier of the string key
 			String layoutNameKeyName = getClass().getSimpleName() + "_" + getLayoutTheme();
-			int layoutNameKeyId = ctx.getResources().getIdentifier(
-				layoutNameKeyName, "string", packageName);
+			int layoutNameKeyId = ctx.getResources().getIdentifier(layoutNameKeyName, "string", packageName);
 
 			if (layoutNameKeyId == 0) {
-				layoutNameKeyId = ctx.getResources().getIdentifier(
-					getClass().getSimpleName() + "_default", "string", packageName);
+				layoutNameKeyId =
+					ctx.getResources().getIdentifier(getClass().getSimpleName() + "_default", "string", packageName);
 			}
 
 			// second, get the identifier of the layout specified in key layoutNameKeyId
 
 			String layoutName = ctx.getString(layoutNameKeyId);
 			return ctx.getResources().getIdentifier(layoutName, "layout", packageName);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			//We don't want to crash if the user creates a custom screenlet without adding a
 			// default layout to it
 			return 0;
@@ -161,7 +258,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		super.onAttachedToWindow();
 
 		if (!isInEditMode()) {
-			for (I interactor : _interactors.values()) {
+			for (I interactor : interactors.values()) {
 				interactor.onScreenletAttached(this);
 			}
 		}
@@ -176,7 +273,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		onScreenletDetached();
 
 		if (!isInEditMode()) {
-			for (I interactor : _interactors.values()) {
+			for (I interactor : interactors.values()) {
 				interactor.onScreenletDetached(this);
 			}
 		}
@@ -185,9 +282,14 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	@Override
 	protected void onRestoreInstanceState(Parcelable inState) {
 		Bundle state = (Bundle) inState;
-		Parcelable superState = state.getParcelable(_STATE_SUPER);
+		Parcelable superState = state.getParcelable(STATE_SUPER);
 
 		super.onRestoreInstanceState(superState);
+
+		cachePolicy = CachePolicy.values()[state.getInt(STATE_CACHE_POLICY)];
+		groupId = state.getLong(STATE_GROUP_ID);
+		userId = state.getLong(STATE_USER_ID);
+		locale = (Locale) state.getSerializable(STATE_LOCALE);
 
 		// The screenletId is restored only if it was not generated yet. If the
 		// screenletId already exists at this point, it means that an interactor
@@ -198,11 +300,11 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		// onRestoreInstanceState was already called.
 		// TODO: Create restore method?
 
-		if (_screenletId == 0) {
-			_screenletId = state.getInt(_STATE_SCREENLET_ID);
+		if (screenletId == 0) {
+			screenletId = state.getInt(STATE_SCREENLET_ID);
 		}
 
-		String[] stateInteractors = state.getStringArray(_STATE_INTERACTORS);
+		String[] stateInteractors = state.getStringArray(STATE_INTERACTORS);
 		if (stateInteractors != null) {
 			for (String actionName : stateInteractors) {
 				prepareInteractor(actionName);
@@ -215,10 +317,13 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		Parcelable superState = super.onSaveInstanceState();
 
 		Bundle state = new Bundle();
-		state.putParcelable(_STATE_SUPER, superState);
-		state.putInt(_STATE_SCREENLET_ID, _screenletId);
-		state.putStringArray(
-			_STATE_INTERACTORS, _interactors.keySet().toArray(new String[_interactors.size()]));
+		state.putParcelable(STATE_SUPER, superState);
+		state.putInt(STATE_SCREENLET_ID, screenletId);
+		state.putStringArray(STATE_INTERACTORS, interactors.keySet().toArray(new String[interactors.size()]));
+		state.putInt(STATE_CACHE_POLICY, cachePolicy.ordinal());
+		state.putLong(STATE_GROUP_ID, groupId);
+		state.putLong(STATE_USER_ID, userId);
+		state.putSerializable(STATE_LOCALE, locale);
 
 		return state;
 	}
@@ -244,9 +349,8 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 			return defaultValue;
 		}
 		try {
-			return Long.valueOf(value);
-		}
-		catch (NumberFormatException e) {
+			return Long.parseLong(value);
+		} catch (NumberFormatException e) {
 			LiferayLogger.e("You have supplied a string and we expected a long number", e);
 			throw e;
 		}
@@ -265,10 +369,11 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	private String getActivityTheme() {
 		try {
 			TypedValue outValue = new TypedValue();
-			LiferayScreensContext.getActivityFromContext(getContext()).getTheme().resolveAttribute(R.attr.themeName, outValue, true);
+			LiferayScreensContext.getActivityFromContext(getContext())
+				.getTheme()
+				.resolveAttribute(R.attr.themeName, outValue, true);
 			return (String) outValue.string;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			LiferayLogger.d("Screens theme not found");
 		}
 		return null;
@@ -281,8 +386,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 			PackageInfo packageInfo = ctx.getPackageManager().getPackageInfo(packageName, PackageManager.GET_META_DATA);
 			int applicationThemeId = packageInfo.applicationInfo.theme;
 			return getResources().getResourceEntryName(applicationThemeId);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			LiferayLogger.d("Screens theme not found");
 		}
 		return null;
@@ -295,32 +399,64 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		return null;
 	}
 
-	private static int _generateScreenletId() {
-
-		// This implementation is copied from View.generateViewId() method We
-		// cannot rely on that method because it's introduced in API Level 17
-
-		while (true) {
-			final int result = sNextId.get();
-			int newValue = result + 1;
-			if (newValue > 0x00FFFFFF) {
-				newValue = 1;
-			}
-			if (sNextId.compareAndSet(result, newValue)) {
-				return result;
-			}
+	@Override
+	public void loadingFromCache(boolean success) {
+		if (cacheListener != null) {
+			cacheListener.loadingFromCache(success);
 		}
 	}
 
-	private static final String _STATE_SCREENLET_ID = "basescreenlet-screenletId";
-	private static final String _STATE_SUPER = "basescreenlet-super";
-	private static final String _STATE_INTERACTORS = "basescreenlet-interactors";
-	private static final AtomicInteger sNextId = new AtomicInteger(1);
+	@Override
+	public void retrievingOnline(boolean triedInCache, Exception e) {
+		if (cacheListener != null) {
+			cacheListener.retrievingOnline(triedInCache, e);
+		}
+	}
 
-	private Map<String, I> _interactors = new HashMap<>();
-	private int _screenletId;
-	private View _screenletView;
+	@Override
+	public void storingToCache(Object object) {
+		if (cacheListener != null) {
+			cacheListener.storingToCache(object);
+		}
+	}
 
-	private CustomInteractorListener _customInteractorListener;
+	public long getGroupId() {
+		return groupId;
+	}
 
+	public void setGroupId(long groupId) {
+		this.groupId = groupId;
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
+	public Locale getLocale() {
+		return locale;
+	}
+
+	public void setLocale(Locale locale) {
+		this.locale = locale;
+	}
+
+	public CachePolicy getCachePolicy() {
+		return cachePolicy;
+	}
+
+	public void setCachePolicy(CachePolicy cachePolicy) {
+		this.cachePolicy = cachePolicy;
+	}
+
+	public CacheListener getCacheListener() {
+		return cacheListener;
+	}
+
+	public void setCacheListener(CacheListener cacheListener) {
+		this.cacheListener = cacheListener;
+	}
 }

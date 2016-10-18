@@ -22,7 +22,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
-
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
@@ -33,15 +32,36 @@ import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
-
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @author Silvio Santos
  */
-public class DDLFormView
-	extends ScrollView implements DDLFormViewModel, View.OnClickListener {
+public class DDLFormView extends ScrollView implements DDLFormViewModel, View.OnClickListener {
+
+	private static final Map<Field.EditorType, Integer> DEFAULT_LAYOUT_IDS = new HashMap<>(16);
+
+	static {
+		DEFAULT_LAYOUT_IDS.put(Field.EditorType.CHECKBOX, R.layout.ddlfield_checkbox_default);
+		DEFAULT_LAYOUT_IDS.put(Field.EditorType.DATE, R.layout.ddlfield_date_default);
+		DEFAULT_LAYOUT_IDS.put(Field.EditorType.NUMBER, R.layout.ddlfield_number_default);
+		DEFAULT_LAYOUT_IDS.put(Field.EditorType.INTEGER, R.layout.ddlfield_number_default);
+		DEFAULT_LAYOUT_IDS.put(Field.EditorType.DECIMAL, R.layout.ddlfield_number_default);
+		DEFAULT_LAYOUT_IDS.put(Field.EditorType.RADIO, R.layout.ddlfield_radio_default);
+		DEFAULT_LAYOUT_IDS.put(Field.EditorType.SELECT, R.layout.ddlfield_select_default);
+		DEFAULT_LAYOUT_IDS.put(Field.EditorType.TEXT, R.layout.ddlfield_text_default);
+		DEFAULT_LAYOUT_IDS.put(Field.EditorType.TEXT_AREA, R.layout.ddlfield_text_area_default);
+		DEFAULT_LAYOUT_IDS.put(Field.EditorType.DOCUMENT, R.layout.ddlfield_document_default);
+	}
+
+	private final Map<Field.EditorType, Integer> layoutIds = new HashMap<>();
+	private final Map<String, Integer> customLayoutIds = new HashMap<>();
+	protected ProgressBar progressBar;
+	protected ProgressBar loadingFormProgressBar;
+	protected ViewGroup fieldsContainerView;
+	protected Button submitButton;
+	private BaseScreenlet screenlet;
 
 	public DDLFormView(Context context) {
 		super(context);
@@ -57,41 +77,40 @@ public class DDLFormView
 
 	@Override
 	public int getFieldLayoutId(Field.EditorType editorType) {
-		return _layoutIds.get(editorType);
+		return layoutIds.get(editorType);
 	}
-
 
 	@Override
 	public void setFieldLayoutId(Field.EditorType editorType, int layoutId) {
-		_layoutIds.put(editorType, layoutId);
+		layoutIds.put(editorType, layoutId);
 	}
 
 	@Override
 	public void resetFieldLayoutId(Field.EditorType editorType) {
-		_layoutIds.put(editorType, _defaultLayoutIds.get(editorType));
+		layoutIds.put(editorType, DEFAULT_LAYOUT_IDS.get(editorType));
 	}
 
 	@Override
 	public int getCustomFieldLayoutId(String fieldName) {
-		return _customLayoutIds.get(fieldName);
+		return customLayoutIds.get(fieldName);
 	}
 
 	@Override
 	public void setCustomFieldLayoutId(String fieldName, int layoutId) {
-		_customLayoutIds.put(fieldName, layoutId);
+		customLayoutIds.put(fieldName, layoutId);
 	}
 
 	@Override
 	public void resetCustomFieldLayoutId(String fieldName) {
-		_customLayoutIds.remove(fieldName);
+		customLayoutIds.remove(fieldName);
 	}
 
 	@Override
 	public void showValidationResults(Map<Field, Boolean> fieldResults, boolean autoscroll) {
 		boolean scrolled = false;
 
-		for (int i = 0; i < _fieldsContainerView.getChildCount(); i++) {
-			View fieldView = _fieldsContainerView.getChildAt(i);
+		for (int i = 0; i < fieldsContainerView.getChildCount(); i++) {
+			View fieldView = fieldsContainerView.getChildAt(i);
 			DDLFieldViewModel fieldViewModel = (DDLFieldViewModel) fieldView;
 			boolean isFieldValid = fieldResults.get(fieldViewModel.getField());
 
@@ -109,19 +128,23 @@ public class DDLFormView
 
 	@Override
 	public void showStartOperation(String actionName) {
-		throw new AssertionError("Use showStartOperation(actionName, argument) instead");
 	}
 
 	@Override
 	public void showStartOperation(String actionName, Object argument) {
-		if (actionName.equals(DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION)) {
-			DocumentField documentField = (DocumentField) argument;
+		switch (actionName) {
+			case DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION:
+				DocumentField documentField = (DocumentField) argument;
 
-			findFieldView(documentField).refresh();
-		}
-		else {
-			LiferayLogger.i("loading DDLForm");
-			showProgressBar(actionName);
+				findFieldView(documentField).refresh();
+				break;
+			case DDLFormScreenlet.LOAD_FORM_ACTION:
+				LiferayLogger.i("loading DDLForm");
+				loadingFormProgressBar.setVisibility(VISIBLE);
+				break;
+			default:
+				progressBar.setVisibility(VISIBLE);
+				break;
 		}
 	}
 
@@ -134,12 +157,6 @@ public class DDLFormView
 	public void showFinishOperation(String actionName, Object argument) {
 		hideProgressBar(actionName);
 		switch (actionName) {
-			case DDLFormScreenlet.LOAD_FORM_ACTION:
-				LiferayLogger.i("loaded form");
-				Record record = (Record) argument;
-
-				showFormFields(record);
-				break;
 			case DDLFormScreenlet.LOAD_RECORD_ACTION:
 				LiferayLogger.i("loaded record");
 				showRecordValues();
@@ -149,6 +166,13 @@ public class DDLFormView
 				DocumentField documentField = (DocumentField) argument;
 
 				findFieldView(documentField).refresh();
+				break;
+			case DDLFormScreenlet.LOAD_FORM_ACTION:
+			default:
+				LiferayLogger.i("loaded form");
+				Record record = (Record) argument;
+
+				showFormFields(record);
 				break;
 		}
 	}
@@ -160,12 +184,12 @@ public class DDLFormView
 
 	@Override
 	public BaseScreenlet getScreenlet() {
-		return _screenlet;
+		return screenlet;
 	}
 
 	@Override
 	public void setScreenlet(BaseScreenlet screenlet) {
-		_screenlet = screenlet;
+		this.screenlet = screenlet;
 	}
 
 	@Override
@@ -175,8 +199,7 @@ public class DDLFormView
 			LiferayLogger.e("error loading DDLForm", e);
 
 			clearFormFields();
-		}
-		else if (actionName.equals(DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION)) {
+		} else if (actionName.equals(DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION)) {
 			LiferayLogger.e("error uploading", e);
 
 			DocumentField documentField = (DocumentField) argument;
@@ -187,21 +210,20 @@ public class DDLFormView
 
 	@Override
 	public void showFormFields(Record record) {
-		_fieldsContainerView.removeAllViews();
-		_fieldsContainerView.setVisibility(INVISIBLE);
+		fieldsContainerView.removeAllViews();
+		fieldsContainerView.setVisibility(INVISIBLE);
 
 		for (int i = 0; i < record.getFieldCount(); ++i) {
 			addFieldView(record.getField(i), i);
 		}
 
 		if (getDDLFormScreenlet().isShowSubmitButton()) {
-			_submitButton.setVisibility(VISIBLE);
-		}
-		else {
-			_submitButton.setVisibility(INVISIBLE);
+			submitButton.setVisibility(VISIBLE);
+		} else {
+			submitButton.setVisibility(INVISIBLE);
 		}
 
-		DefaultAnimation.showViewWithReveal(_fieldsContainerView);
+		DefaultAnimation.showViewWithReveal(fieldsContainerView);
 	}
 
 	@Override
@@ -210,38 +232,27 @@ public class DDLFormView
 			if (getDDLFormScreenlet().validateForm()) {
 				getDDLFormScreenlet().submitForm();
 			}
-		}
-		else {
+		} else {
 			getDDLFormScreenlet().startUpload((DocumentField) view.getTag());
 		}
 	}
 
 	protected void clearFormFields() {
-		_fieldsContainerView.removeAllViews();
-		_submitButton.setVisibility(INVISIBLE);
-	}
-
-	protected void showProgressBar(String actionName) {
-		if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
-			_loadingFormProgressBar.setVisibility(VISIBLE);
-		}
-		else {
-			_progressBar.setVisibility(VISIBLE);
-		}
+		fieldsContainerView.removeAllViews();
+		submitButton.setVisibility(INVISIBLE);
 	}
 
 	protected void hideProgressBar(String actionName) {
 		if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
-			_loadingFormProgressBar.setVisibility(INVISIBLE);
-		}
-		else {
-			_progressBar.setVisibility(INVISIBLE);
+			loadingFormProgressBar.setVisibility(INVISIBLE);
+		} else {
+			progressBar.setVisibility(INVISIBLE);
 		}
 	}
 
 	protected void showRecordValues() {
-		for (int i = 0; i < _fieldsContainerView.getChildCount(); i++) {
-			DDLFieldViewModel viewModel = (DDLFieldViewModel) _fieldsContainerView.getChildAt(i);
+		for (int i = 0; i < fieldsContainerView.getChildCount(); i++) {
+			DDLFieldViewModel viewModel = (DDLFieldViewModel) fieldsContainerView.getChildAt(i);
 			viewModel.refresh();
 		}
 	}
@@ -253,10 +264,9 @@ public class DDLFormView
 	protected void addFieldView(Field field, int position) {
 		int layoutId;
 
-		if (_customLayoutIds.containsKey(field.getName())) {
+		if (customLayoutIds.containsKey(field.getName())) {
 			layoutId = getCustomFieldLayoutId(field.getName());
-		}
-		else {
+		} else {
 			layoutId = getFieldLayoutId(field.getEditorType());
 		}
 
@@ -267,53 +277,29 @@ public class DDLFormView
 		viewModel.setParentView(this);
 		viewModel.setPositionInParent(position);
 
-		_fieldsContainerView.addView(view);
+		fieldsContainerView.addView(view);
 	}
 
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_fieldsContainerView = (ViewGroup) findViewById(R.id.ddlfields_container);
+		fieldsContainerView = (ViewGroup) findViewById(R.id.ddlfields_container);
 
-		_submitButton = (Button) findViewById(R.id.liferay_form_submit);
-		_submitButton.setOnClickListener(this);
+		submitButton = (Button) findViewById(R.id.liferay_form_submit);
+		submitButton.setOnClickListener(this);
 
-		_progressBar = (ProgressBar) findViewById(R.id.ddlform_progress_bar);
-		_loadingFormProgressBar = (ProgressBar) findViewById(R.id.ddlform_loading_screen_progress_bar);
+		progressBar = (ProgressBar) findViewById(R.id.ddlform_progress_bar);
+		loadingFormProgressBar = (ProgressBar) findViewById(R.id.ddlform_loading_screen_progress_bar);
 	}
 
 	private DDLFieldViewModel findFieldView(Field field) {
-		for (int i = 0; i < _fieldsContainerView.getChildCount(); i++) {
-			DDLFieldViewModel viewModel = (DDLFieldViewModel) _fieldsContainerView.getChildAt(i);
+		for (int i = 0; i < fieldsContainerView.getChildCount(); i++) {
+			DDLFieldViewModel viewModel = (DDLFieldViewModel) fieldsContainerView.getChildAt(i);
 			if (field.equals(viewModel.getField())) {
 				return viewModel;
 			}
 		}
 		return null;
 	}
-
-	protected ProgressBar _progressBar;
-	protected ProgressBar _loadingFormProgressBar;
-	protected ViewGroup _fieldsContainerView;
-	protected Button _submitButton;
-
-	private static Map<Field.EditorType, Integer> _defaultLayoutIds = new HashMap<>(16);
-	private Map<Field.EditorType, Integer> _layoutIds = new HashMap<>();
-	private Map<String, Integer> _customLayoutIds = new HashMap<>();
-	private BaseScreenlet _screenlet;
-
-	static {
-		_defaultLayoutIds.put(Field.EditorType.CHECKBOX, R.layout.ddlfield_checkbox_default);
-		_defaultLayoutIds.put(Field.EditorType.DATE, R.layout.ddlfield_date_default);
-		_defaultLayoutIds.put(Field.EditorType.NUMBER, R.layout.ddlfield_number_default);
-		_defaultLayoutIds.put(Field.EditorType.INTEGER, R.layout.ddlfield_number_default);
-		_defaultLayoutIds.put(Field.EditorType.DECIMAL, R.layout.ddlfield_number_default);
-		_defaultLayoutIds.put(Field.EditorType.RADIO, R.layout.ddlfield_radio_default);
-		_defaultLayoutIds.put(Field.EditorType.SELECT, R.layout.ddlfield_select_default);
-		_defaultLayoutIds.put(Field.EditorType.TEXT, R.layout.ddlfield_text_default);
-		_defaultLayoutIds.put(Field.EditorType.TEXT_AREA, R.layout.ddlfield_text_area_default);
-		_defaultLayoutIds.put(Field.EditorType.DOCUMENT, R.layout.ddlfield_document_default);
-	}
-
 }

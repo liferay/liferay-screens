@@ -41,7 +41,7 @@ public class Liferay62DDLFormLoadConnector: DDLFormLoadLiferayConnector {
 			let structureDataDictionary = try service.getStructureWithStructureId(structureId)
 
 			if let xsd = structureDataDictionary["xsd"]! as? String {
-				if let userIdValue = structureDataDictionary["userId"]?.description.asLong {
+				if let userIdValue = structureDataDictionary["userId"]?.longLongValue {
 					resultUserId = userIdValue
 				}
 
@@ -75,7 +75,7 @@ public class Liferay70DDLFormLoadConnector: DDLFormLoadLiferayConnector {
 			let structureDataDictionary = try service.getStructureWithStructureId(structureId)
 
 			if let json = structureDataDictionary["definition"]! as? String {
-				if let userIdValue = structureDataDictionary["userId"]?.description.asLong {
+				if let userIdValue = structureDataDictionary["userId"]?.longLongValue {
 					resultUserId = userIdValue
 				}
 

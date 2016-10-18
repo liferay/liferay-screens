@@ -75,8 +75,8 @@ extension SyncManager {
 					error: NSError.errorWithCause(.NotAvailable))
 				signal()
 			}
-			else if let localModifiedDate = localRecord.attributes["modifiedDate"]?.description.asLong,
-					remoteModifiedDate = remoteRecord!.attributes["modifiedDate"]?.description.asLong {
+			else if let localModifiedDate = localRecord.attributes["modifiedDate"]?.longLongValue,
+					remoteModifiedDate = remoteRecord!.attributes["modifiedDate"]?.longLongValue {
 
 				if remoteModifiedDate <= localModifiedDate {
 					self.sendLocalRecord(
@@ -157,12 +157,12 @@ extension SyncManager {
 	}
 
 	private func loadRecord(recordId: Int64, result: DDLRecord? -> ()) {
-		let op = LiferayServerContext.connectorFactory.createDDLFormRecordLoadConnector(recordId)
+		let c = LiferayServerContext.connectorFactory.createDDLFormRecordLoadConnector(recordId)
 
-		op.validateAndEnqueue {
-			if let op = $0 as? DDLFormRecordLoadLiferayConnector,
-					recordData = op.resultRecordData,
-					recordAttributes = op.resultRecordAttributes {
+		c.validateAndEnqueue {
+			if let c = $0 as? DDLFormRecordLoadLiferayConnector,
+					recordData = c.resultRecordData,
+					recordAttributes = c.resultRecordAttributes {
 
 				let remoteRecord = DDLRecord(
 					data: recordData,
@@ -239,9 +239,9 @@ extension SyncManager {
 				key: document.cachedKey!) { object, attributes in
 
 			if let filePrefix = attributes?["filePrefix"] as? String,
-					folderId = attributes?["folderId"]?.description.asLong,
-					repositoryId = attributes?["repositoryId"]?.description.asLong,
-					groupId = attributes?["groupId"]?.description.asLong {
+					folderId = attributes?["folderId"]?.longLongValue,
+					repositoryId = attributes?["repositoryId"]?.longLongValue,
+					groupId = attributes?["groupId"]?.longLongValue {
 
 				document.currentValue = object
 

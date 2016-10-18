@@ -62,7 +62,8 @@ public class BaseListView: BaseScreenletView {
 		
 		if streamMode {
 			onAddedRows(oldRows)
-		} else {
+		}
+		else {
 			onChangedRows(oldRows)
 		}
 	}
@@ -72,7 +73,7 @@ public class BaseListView: BaseScreenletView {
 		_rows = [String : [AnyObject?]]()
 		_rows[BaseListView.DefaultSection] = [AnyObject?]()
 		_rowCount = 0
-		_sections = [String]()
+		_sections = [BaseListView.DefaultSection]
 		
 		onClearRows(oldRows)
 	}
@@ -87,7 +88,20 @@ public class BaseListView: BaseScreenletView {
 	public func onClearRows(oldRows:[String : [AnyObject?]]) {
 		
 	}
+
+	public func deleteRow(section: String, row: Int) {
+		_rows[section]?.removeAtIndex(row)
+	}
+
+	public func addRow(section: String, element: AnyObject) {
+		_rows[section]?.append(element)
+	}
 	
+
+	public func updateRow(section: String, row: Int, element: AnyObject) {
+		_rows[section]?[row] = element
+	}
+
 	public func rowsForSectionIndex(index: Int) -> [AnyObject?] {
 		let key = sections[index]
 		

@@ -1,8 +1,8 @@
 # Liferay Screens
 
-[![License](http://img.shields.io/badge/license-LGPL_2.1-red.svg?style=flat-square)](http://opensource.org/licenses/LGPL-2.1) [![Release](http://img.shields.io/badge/release-Beta_3-orange.svg?style=flat-square)](https://github.com/liferay/liferay-screens/releases/) [![Tag](http://img.shields.io/github/tag/liferay/liferay-screens.svg?style=flat-square)](https://github.com/liferay/liferay-screens/tags/)
+[![License](http://img.shields.io/badge/license-LGPL_2.1-red.svg?style=flat-square)](http://opensource.org/licenses/LGPL-2.1) [![Release](http://img.shields.io/badge/release-2.0.0-orange.svg?style=flat-square)](https://github.com/liferay/liferay-screens/releases/) [![Tag](http://img.shields.io/github/tag/liferay/liferay-screens.svg?style=flat-square)](https://github.com/liferay/liferay-screens/tags/)
 
-[![iOS Platform](http://img.shields.io/badge/platform-iOS_7+-blue.svg?style=flat-square)](https://github.com/liferay/liferay-screens/tree/master/ios) [![Build Status](http://img.shields.io/travis/liferay/liferay-screens.svg?style=flat-square)](https://travis-ci.org/liferay/liferay-screens/)
+[![iOS Platform](http://img.shields.io/badge/platform-iOS_8+-blue.svg?style=flat-square)](https://github.com/liferay/liferay-screens/tree/master/ios) [![Build Status](http://img.shields.io/travis/liferay/liferay-screens.svg?style=flat-square)](https://travis-ci.org/liferay/liferay-screens/)
 
 [![Android Platform](http://img.shields.io/badge/platform-Android_4.0-green.svg?style=flat-square)](https://github.com/liferay/liferay-screens/tree/master/android) [![Build Status](http://img.shields.io/travis/liferay/liferay-screens.svg?style=flat-square)](https://travis-ci.org/liferay/liferay-screens/)
 

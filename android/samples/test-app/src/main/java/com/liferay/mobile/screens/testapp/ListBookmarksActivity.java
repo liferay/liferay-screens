@@ -3,7 +3,6 @@ package com.liferay.mobile.screens.testapp;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.listbookmark.Bookmark;
 import com.liferay.mobile.screens.listbookmark.BookmarkListListener;
 import com.liferay.mobile.screens.listbookmark.BookmarkListScreenlet;
@@ -21,13 +20,12 @@ public class ListBookmarksActivity extends AppCompatActivity implements Bookmark
 	}
 
 	@Override
-	public void onListPageFailed(BaseListScreenlet source, int startRow, int endRow, Exception e) {
+	public void onListPageFailed(int startRow, Exception e) {
 
 	}
 
 	@Override
-	public void onListPageReceived(BaseListScreenlet source, int startRow, int endRow, List<Bookmark> entries,
-		int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List<Bookmark> entries, int rowCount) {
 
 	}
 
@@ -37,17 +35,7 @@ public class ListBookmarksActivity extends AppCompatActivity implements Bookmark
 	}
 
 	@Override
-	public void loadingFromCache(boolean success) {
-
-	}
-
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
-
-	}
-
-	@Override
-	public void storingToCache(Object object) {
+	public void error(Exception e, String userAction) {
 
 	}
 

@@ -3,6 +3,8 @@
 	<declare-styleable name="BookmarkListScreenlet">
 		<attr name="groupId"/>
 		<attr name="folderId"/>
-		<attr name="offlinePolicy"/>
+		<attr format="string" name="comparator"/>
+		<attr name="cachePolicy"/>
+		<attr name="obcClassName"/>
 	</declare-styleable>
 </resources>

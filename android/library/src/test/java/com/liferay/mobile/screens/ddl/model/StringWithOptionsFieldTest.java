@@ -42,7 +42,10 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class StringWithOptionsFieldTest {
 
-	private static Map<String, Object> _createParsedData() {
+	private static final Locale spanishLocale = new Locale("es", "ES");
+	private static final Locale usLocale = new Locale("en", "US");
+
+	private static Map<String, Object> createParsedData() {
 		Map<String, String> optionData1 = new HashMap<>();
 		optionData1.put("label", "Option 1");
 		optionData1.put("name", "option987");
@@ -65,16 +68,13 @@ public class StringWithOptionsFieldTest {
 		return parsedData;
 	}
 
-	private static final Locale _spanishLocale = new Locale("es", "ES");
-	private static final Locale _usLocale = new Locale("en", "US");
-
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenClearingOptions {
 
 		@Test
 		public void shouldClearOptionWhenOptionWasSelected() {
-			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale, _usLocale);
+			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
 			List<StringWithOptionsField.Option> availableOptions =
 				field.getAvailableOptions();
@@ -90,7 +90,7 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldDoNothingWhenNoOptionsWasSelected() {
-			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale, _usLocale);
+			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
 			List<StringWithOptionsField.Option> availableOptions =
 				field.getAvailableOptions();
@@ -105,7 +105,7 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldDoNothingOptionWhenThatOptionWasNotSelected() {
-			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale, _usLocale);
+			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
 			List<StringWithOptionsField.Option> availableOptions =
 				field.getAvailableOptions();
@@ -121,13 +121,14 @@ public class StringWithOptionsFieldTest {
 
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenCreating {
 
 		@Test
 		public void shouldStoreEmptyArrayWhenNoAvailableOptions() {
-			StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale,
+				usLocale);
 
 			List<StringWithOptionsField.Option> result = field.getAvailableOptions();
 
@@ -137,7 +138,7 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldStoreTheAvailableOptions() {
-			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale, _usLocale);
+			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
 			List<StringWithOptionsField.Option> result = field.getAvailableOptions();
 
@@ -157,13 +158,14 @@ public class StringWithOptionsFieldTest {
 
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingToString {
 
 		@Test
 		public void shouldReturnEmptyListWhenSelectedOptionsIsNull() {
-			StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale,
+				usLocale);
 
 			String result = field.convertToData(null);
 
@@ -173,7 +175,8 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldReturnEmptyListWhenSelectedOptionsIsEmpty() {
-			StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale,
+				usLocale);
 			ArrayList<StringWithOptionsField.Option> selected = new ArrayList<>();
 
 			String result = field.convertToData(selected);
@@ -184,7 +187,8 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldReturnSingleItemListWhenThereIsOnlyOneSelectedOption() {
-			StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale,
+				usLocale);
 
 			StringWithOptionsField.Option option1 =
 				new StringWithOptionsField.Option("Option 1", "option987", "option1");
@@ -201,7 +205,8 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldReturnItemListWhenThereAreSelectedOptions() {
-			StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+			StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale,
+				usLocale);
 
 			StringWithOptionsField.Option option1 =
 				new StringWithOptionsField.Option("Option 1", "option987", "option1");
@@ -224,23 +229,24 @@ public class StringWithOptionsFieldTest {
 	@RunWith(Enclosed.class)
 	public static class WhenConvertingFromString {
 
-		@Config(constants = BuildConfig.class)
+		//@Config(constants = BuildConfig.class)
 		@RunWith(RobolectricTestRunner.class)
 		public static class ShouldReturnNull {
 			@Test
 			public void whenNullStringIsSupplied() {
-				StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), _spanishLocale, _usLocale);
+				StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale,
+					usLocale);
 
 				assertNull(field.convertFromString(null));
 			}
 		}
 
-		@Config(constants = BuildConfig.class)
+		//@Config(constants = BuildConfig.class)
 		@RunWith(RobolectricTestRunner.class)
 		public static class ShouldReturnEmptyList {
 			@Test
 			public void whenEmptyStringIsSupplied() {
-				StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale, _usLocale);
+				StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
 				List<StringWithOptionsField.Option> result = field.convertFromString("");
 
@@ -250,7 +256,7 @@ public class StringWithOptionsFieldTest {
 
 			@Test
 			public void whenEmptyListStringIsSupplied() {
-				StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale, _usLocale);
+				StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
 				List<StringWithOptionsField.Option> result = field.convertFromString("[]");
 
@@ -259,13 +265,13 @@ public class StringWithOptionsFieldTest {
 			}
 		}
 
-		@Config(constants = BuildConfig.class)
+		//@Config(constants = BuildConfig.class)
 		@RunWith(RobolectricTestRunner.class)
 		public static class ShouldReturnSingleItemList {
 
 			@Test
 			public void whenOneOptionValueIsSupplied() {
-				StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale, _usLocale);
+				StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
 				List<StringWithOptionsField.Option> result = field.convertFromString("option1");
 
@@ -281,7 +287,7 @@ public class StringWithOptionsFieldTest {
 
 			@Test
 			public void whenOneOptionLabelIsSupplied() {
-				StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale, _usLocale);
+				StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
 				List<StringWithOptionsField.Option> result = field.convertFromString("Option 1");
 
@@ -297,7 +303,7 @@ public class StringWithOptionsFieldTest {
 
 			@Test
 			public void whenOneOptionValueListIsSupplied() {
-				StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale, _usLocale);
+				StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
 				List<StringWithOptionsField.Option> result = field.convertFromString("[option1]");
 
@@ -313,7 +319,7 @@ public class StringWithOptionsFieldTest {
 
 			@Test
 			public void whenOneOptionLabelListIsSupplied() {
-				StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale, _usLocale);
+				StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
 				List<StringWithOptionsField.Option> result = field.convertFromString("[Option 1]");
 
@@ -329,7 +335,7 @@ public class StringWithOptionsFieldTest {
 
 			@Test
 			public void whenOneQuotedOptionLabelListIsSupplied() {
-				StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale, _usLocale);
+				StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
 				List<StringWithOptionsField.Option> result = field.convertFromString("[\"Option 1]\"");
 
@@ -346,27 +352,27 @@ public class StringWithOptionsFieldTest {
 
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenConvertingToFormattedString {
 
 		@Test
 		public void shouldReturnEmptyWhenNullSelectedOptions() {
-			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale, _usLocale);
+			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
 			assertEquals("", field.convertToFormattedString(null));
 		}
 
 		@Test
 		public void shouldReturnEmptyWhenEmptySelectedOptions() {
-			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale, _usLocale);
+			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
 			assertEquals("", field.convertToFormattedString(new ArrayList<StringWithOptionsField.Option>()));
 		}
 
 		@Test
 		public void shouldReturnTheOptionLabelWhenSelectedOption() {
-			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale, _usLocale);
+			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
 			ArrayList<StringWithOptionsField.Option> selectedOptions = new ArrayList<>();
 
@@ -377,7 +383,7 @@ public class StringWithOptionsFieldTest {
 
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingXSD {
 		@Test
@@ -459,18 +465,17 @@ public class StringWithOptionsFieldTest {
 			assertEquals("option_3", option.name);
 			assertEquals("value 3", option.value);
 
-			// Multiple is not supported yet
-			assertFalse(optionsField.isMultiple());
+			assertTrue(optionsField.isMultiple());
 		}
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenSelectingOption {
 
 		@Test
 		public void shouldStoreOptionWhenOptionIsSelected() {
-			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale, _usLocale);
+			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
 			List<StringWithOptionsField.Option> availableOptions =
 				field.getAvailableOptions();
@@ -485,7 +490,7 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldStoreOnlyOneOptionWhenMultipleOptionsAreSelected() {
-			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale, _usLocale);
+			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
 			List<StringWithOptionsField.Option> availableOptions =
 				field.getAvailableOptions();
@@ -501,7 +506,7 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldReturnEmptyListWhenNoOptionsWereSelected() {
-			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale, _usLocale);
+			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
 			List<StringWithOptionsField.Option> selectedOptions =
 				field.getCurrentValue();
@@ -511,20 +516,20 @@ public class StringWithOptionsFieldTest {
 
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenValidating {
 
 		@Test
 		public void shouldReturnFalseWhenNoOptionWasSelected() {
-			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale, _usLocale);
+			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
 			assertFalse(field.isValid());
 		}
 
 		@Test
 		public void shouldReturnFalseWhenSelectionIsCleared() {
-			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale, _usLocale);
+			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
 			List<StringWithOptionsField.Option> availableOptions =
 				field.getAvailableOptions();
@@ -537,7 +542,7 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldReturnTrueWhenOptionIsSelected() {
-			StringWithOptionsField field = new StringWithOptionsField(_createParsedData(), _spanishLocale, _usLocale);
+			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
 			List<StringWithOptionsField.Option> availableOptions =
 				field.getAvailableOptions();
@@ -549,7 +554,7 @@ public class StringWithOptionsFieldTest {
 
 	}
 
-	@Config(constants = BuildConfig.class)
+	//@Config(constants = BuildConfig.class)
 	@RunWith(RobolectricTestRunner.class)
 	public static class WhenParsingJson {
 		@Test

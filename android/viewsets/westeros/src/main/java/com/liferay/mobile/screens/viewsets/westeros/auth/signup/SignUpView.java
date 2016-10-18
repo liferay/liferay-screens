@@ -27,7 +27,6 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.viewsets.westeros.R;
 import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
@@ -36,6 +35,11 @@ import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
  * @author Silvio Santos
  */
 public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews.auth.signup.SignUpView {
+
+	private TextView firstNameValidation;
+	private TextView lastNameValidation;
+	private TextView emailAddressValidation;
+	private TextView passwordValidation;
 
 	public SignUpView(Context context) {
 		super(context);
@@ -63,13 +67,13 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 
 		initClickableTermsAndConditions();
 
-		_firstNameValidation = (TextView) findViewById(R.id.first_name_validation);
-		_lastNameValidation = (TextView) findViewById(R.id.last_name_validation);
-		_lastNameValidation.setText(R.string.last_name_cant_be_empty);
-		_emailAddressValidation = (TextView) findViewById(R.id.email_address_validation);
-		_emailAddressValidation.setText(R.string.email_address_cant_be_empty);
-		_passwordValidation = (TextView) findViewById(R.id.password_validation);
-		_passwordValidation.setText(R.string.password_cant_be_empty);
+		firstNameValidation = (TextView) findViewById(R.id.first_name_validation);
+		lastNameValidation = (TextView) findViewById(R.id.last_name_validation);
+		lastNameValidation.setText(R.string.last_name_cant_be_empty);
+		emailAddressValidation = (TextView) findViewById(R.id.email_address_validation);
+		emailAddressValidation.setText(R.string.email_address_cant_be_empty);
+		passwordValidation = (TextView) findViewById(R.id.password_validation);
+		passwordValidation.setText(R.string.password_cant_be_empty);
 	}
 
 	private SignUpScreenlet getSignUpScreenlet() {
@@ -84,22 +88,15 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 			WesterosSnackbar.showSnackbar(LiferayScreensContext.getActivityFromContext(getContext()),
 				"You must accept the terms & conditions", R.color.colorAccent_westeros);
 			return false;
-		}
-
-		if (!checkField(_firstName, _firstNameValidation)) {
+		} else if (!checkField(firstName, firstNameValidation)) {
+			return false;
+		} else if (!checkField(lastName, lastNameValidation)) {
+			return false;
+		} else if (!checkField(emailAddress, emailAddressValidation)) {
 			return false;
 		}
 
-		if (!checkField(_lastName, _lastNameValidation)) {
-			return false;
-		}
-
-		if (!checkField(_emailAddress, _emailAddressValidation)) {
-			return false;
-		}
-
-		return checkField(_password, _passwordValidation);
-
+		return checkField(password, passwordValidation);
 	}
 
 	private boolean checkField(EditText field, View validationView) {
@@ -110,7 +107,8 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 	}
 
 	private void changeBackgroundAndIcon(EditText editText, boolean valid) {
-		editText.setBackgroundResource(valid ? R.drawable.westeros_dark_edit_text_drawable : R.drawable.westeros_warning_edit_text_drawable);
+		editText.setBackgroundResource(
+			valid ? R.drawable.westeros_dark_edit_text_drawable : R.drawable.westeros_warning_edit_text_drawable);
 		editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, valid ? 0 : R.drawable.westeros_icon_warning_white, 0);
 	}
 
@@ -129,14 +127,9 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 		}, 13, ssb.length(), 0);
 
 		ssb.setSpan(new StyleSpan(Typeface.BOLD), 13, ssb.length(), 0);
-		ssb.setSpan(new ForegroundColorSpan(
-			ContextCompat.getColor(getContext(), android.R.color.white)), 13, ssb.length(), 0);
+		ssb.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getContext(), android.R.color.white)), 13,
+			ssb.length(), 0);
 
 		textView.setText(ssb, TextView.BufferType.SPANNABLE);
 	}
-
-	private TextView _firstNameValidation;
-	private TextView _lastNameValidation;
-	private TextView _emailAddressValidation;
-	private TextView _passwordValidation;
 }

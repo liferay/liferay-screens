@@ -16,12 +16,11 @@ package com.liferay.mobile.screens.testapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
-
+import java.util.Map;
 import org.json.JSONObject;
 
 /**
@@ -29,14 +28,18 @@ import org.json.JSONObject;
  */
 public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 
+	private static final String STATE_LOADED = "STATE_LOADED";
+	private DDLFormScreenlet screenlet;
+	private boolean loaded;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.ddl_form);
 
-		_screenlet = (DDLFormScreenlet) findViewById(R.id.ddl_form_screenlet);
-		_screenlet.setListener(this);
+		screenlet = (DDLFormScreenlet) findViewById(R.id.ddl_form_screenlet);
+		screenlet.setListener(this);
 
 		initScreenletFromIntent(getIntent());
 	}
@@ -45,19 +48,19 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 	protected void onResume() {
 		super.onResume();
 
-		if (!_loaded) {
-			_screenlet.load();
+		if (!loaded) {
+			screenlet.load();
 		}
 	}
 
 	@Override
 	public void onDDLFormLoaded(Record record) {
-		_loaded = true;
+		loaded = true;
 		info("Form loaded!");
 	}
 
 	@Override
-	public void onDDLFormRecordLoaded(Record record) {
+	public void onDDLFormRecordLoaded(Record record, Map<String, Object> valuesAndAttributes) {
 		info("Record loaded!");
 	}
 
@@ -72,26 +75,6 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 	}
 
 	@Override
-	public void onDDLFormLoadFailed(Exception e) {
-		error("Form load failed", e);
-	}
-
-	@Override
-	public void onDDLFormRecordLoadFailed(Exception e) {
-		error("Record load failed", e);
-	}
-
-	@Override
-	public void onDDLFormRecordAddFailed(Exception e) {
-		error("Add failed", e);
-	}
-
-	@Override
-	public void onDDLFormUpdateRecordFailed(Exception e) {
-		error("Update failed", e);
-	}
-
-	@Override
 	public void onDDLFormDocumentUploaded(DocumentField documentField, JSONObject jsonObject) {
 		info("Document uploaded!");
 	}
@@ -102,18 +85,8 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 	}
 
 	@Override
-	public void loadingFromCache(boolean success) {
-
-	}
-
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
-
-	}
-
-	@Override
-	public void storingToCache(Object object) {
-
+	public void error(Exception e, String userAction) {
+		error(userAction + " failed", e);
 	}
 
 	@Override
@@ -121,32 +94,27 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 		super.onActivityResult(requestCode, resultCode, data);
 
 		if (resultCode == RESULT_OK) {
-			_screenlet.startUploadByPosition(requestCode);
+			screenlet.startUploadByPosition(requestCode);
 		}
 	}
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		outState.putBoolean(STATE_LOADED, _loaded);
+		outState.putBoolean(STATE_LOADED, loaded);
 	}
 
 	@Override
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
-		_loaded = savedInstanceState.getBoolean(STATE_LOADED);
+		loaded = savedInstanceState.getBoolean(STATE_LOADED);
 	}
 
 	private void initScreenletFromIntent(Intent intent) {
 		if (intent.hasExtra("recordId")) {
-			_screenlet.setRecordId(intent.getLongExtra("recordId", 0));
-			_screenlet.setRecordSetId(intent.getLongExtra("recordSetId", 0));
-			_screenlet.setStructureId(intent.getLongExtra("structureId", 0));
+			screenlet.setRecordId(intent.getLongExtra("recordId", 0));
+			screenlet.setRecordSetId(intent.getLongExtra("recordSetId", 0));
+			screenlet.setStructureId(intent.getLongExtra("structureId", 0));
 		}
 	}
-
-	private DDLFormScreenlet _screenlet;
-	private boolean _loaded;
-
-	private static final String STATE_LOADED = "STATE_LOADED";
 }

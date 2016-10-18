@@ -1,8 +1,8 @@
 package com.liferay.mobile.screens.util;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.assetlist.connector.AssetEntryConnector;
-import com.liferay.mobile.screens.assetlist.connector.ScreensAssetEntryConnector;
+import com.liferay.mobile.screens.asset.list.connector.AssetEntryConnector;
+import com.liferay.mobile.screens.asset.list.connector.ScreensAssetEntryConnector;
 import com.liferay.mobile.screens.auth.forgotpassword.connector.ForgotPasswordConnector;
 import com.liferay.mobile.screens.auth.login.connector.CurrentUserConnector;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
@@ -42,5 +42,4 @@ public interface ServiceVersionFactory {
 	JournalContentConnector getJournalContentConnector(Session session);
 
 	ScreensJournalContentConnector getScreensJournalContentConnector(Session session);
-
 }

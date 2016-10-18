@@ -14,20 +14,18 @@
 
 package com.liferay.mobile.screens.context;
 
+import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
-
+import java.util.HashMap;
+import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 /**
  * @author Silvio Santos
  */
-public class User {
+public class User extends AssetEntry {
 
 	public static final String EMAIL_ADDRESS = "emailAddress";
 	public static final String USER_ID = "userId";
@@ -36,35 +34,35 @@ public class User {
 	public static final String FIRST_NAME = "firstName";
 	public static final String LAST_NAME = "lastName";
 	public static final String SCREEN_NAME = "screenName";
+	public static final String GREETING = "greeting";
+	public static final String JOB_TITLE = "jobTitle";
+	private JSONObject jsonObject;
 
 	public User(JSONObject jsonObject) {
-		_jsonObject = jsonObject;
-		_attributes = new HashMap<>(jsonObject.length());
-
-		Iterator<String> it = jsonObject.keys();
-
-		while (it.hasNext()) {
-			String key = it.next();
-
-			try {
-				_attributes.put(key, jsonObject.get(key));
-			}
-			catch (JSONException e) {
-				LiferayLogger.e("Error parsing json", e);
-			}
+		this.jsonObject = jsonObject;
+		this.values = new HashMap<>();
+		try {
+			values.putAll(JSONUtil.toMap(jsonObject));
+		} catch (JSONException e) {
+			LiferayLogger.e("Error parsing json", e);
 		}
 	}
 
+	public User(Map<String, Object> map) {
+		this.values = map;
+		this.values.putAll((Map) map.get("user"));
+	}
+
 	public long getId() {
-		return JSONUtil.castToLong(_attributes.get(USER_ID));
+		return JSONUtil.castToLong(values.get(USER_ID));
 	}
 
 	public String getUuid() {
-		return _attributes.get(UUID).toString();
+		return values.get(UUID).toString();
 	}
 
 	public long getPortraitId() {
-		return JSONUtil.castToLong(_attributes.get(PORTRAIT_ID));
+		return JSONUtil.castToLong(values.get(PORTRAIT_ID));
 	}
 
 	public String getFirstName() {
@@ -75,36 +73,40 @@ public class User {
 		return getString(LAST_NAME);
 	}
 
+	public String getFullName() {
+		return String.format("%s %s", getFirstName(), getLastName());
+	}
+
 	public String getEmail() {
 		return getString(EMAIL_ADDRESS);
 	}
 
 	public String getScreenName() {
-		return (String) _attributes.get(SCREEN_NAME);
+		return getString(SCREEN_NAME);
 	}
 
-	public Map<String, Object> getAttributes() {
-		return _attributes;
+	public String getGreeting() {
+		return getString(GREETING);
+	}
+
+	public String getJobTitle() {
+		return getString(JOB_TITLE);
 	}
 
 	public String getString(String key) {
-		return (String) _attributes.get(key);
+		return (String) values.get(key);
 	}
 
 	public long getInt(String key) {
-		return (int) _attributes.get(key);
+		return (int) values.get(key);
 	}
 
 	public long getLong(String key) {
-		return (long) _attributes.get(key);
+		return (long) values.get(key);
 	}
 
 	@Override
 	public String toString() {
-		return _jsonObject.toString();
+		return jsonObject.toString();
 	}
-
-	private Map<String, Object> _attributes;
-	private JSONObject _jsonObject;
-
 }

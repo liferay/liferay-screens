@@ -14,7 +14,6 @@
 
 package com.liferay.mobile.screens.viewsets.defaultviews.userportrait;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -26,21 +25,17 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-
-import com.jakewharton.rxbinding.view.RxView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.base.MediaStoreSelectorDialog;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.tbruyelle.rxpermissions.RxPermissions;
-
 import rx.functions.Action1;
 
 /**
@@ -49,12 +44,17 @@ import rx.functions.Action1;
  */
 public class UserPortraitView extends FrameLayout implements UserPortraitViewModel, View.OnClickListener {
 
+	protected ImageView portraitImage;
+	protected ImageButton portraitAddButton;
+	protected ProgressBar portraitProgress;
+	protected AlertDialog choseOriginDialog;
+	private BaseScreenlet screenlet;
+
 	public UserPortraitView(Context context) {
 		super(context);
 	}
 
-	public UserPortraitView(
-		Context context, AttributeSet attributes) {
+	public UserPortraitView(Context context, AttributeSet attributes) {
 		super(context, attributes);
 	}
 
@@ -64,19 +64,19 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 
 	@Override
 	public void showStartOperation(String actionName) {
-		_portraitProgress.setVisibility(VISIBLE);
+		portraitProgress.setVisibility(VISIBLE);
 	}
 
 	@Override
 	public void showFinishOperation(String actionName) {
-		_portraitProgress.setVisibility(INVISIBLE);
+		portraitProgress.setVisibility(INVISIBLE);
 	}
 
 	@Override
 	public void showFinishOperation(Bitmap bitmap) {
 		LiferayLogger.i("portrait loaded");
-		_portraitProgress.setVisibility(INVISIBLE);
-		_portraitImage.setImageBitmap(transformBitmap(bitmap));
+		portraitProgress.setVisibility(INVISIBLE);
+		portraitImage.setImageBitmap(transformBitmap(bitmap));
 	}
 
 	@Override
@@ -84,86 +84,67 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 		if (UserPortraitScreenlet.LOAD_PORTRAIT.equals(actionName)) {
 			LiferayLogger.e("portrait failed to load", e);
 			setDefaultImagePlaceholder();
-		}
-		else {
+		} else {
 			LiferayLogger.e("portrait failed to upload", e);
 		}
-		_portraitProgress.setVisibility(INVISIBLE);
+		portraitProgress.setVisibility(INVISIBLE);
 	}
 
 	@Override
 	public BaseScreenlet getScreenlet() {
-		return _screenlet;
+		return screenlet;
 	}
 
 	@Override
 	public void setScreenlet(BaseScreenlet screenlet) {
-		_screenlet = screenlet;
+		this.screenlet = screenlet;
 	}
 
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.liferay_replace_image) {
-			_choseOriginDialog = createOriginDialog();
-			_choseOriginDialog.show();
+			choseOriginDialog =
+				new MediaStoreSelectorDialog().createOriginDialog(getContext(), openCamera(), openGallery(), null);
+			choseOriginDialog.show();
 		}
 	}
 
-	public Action1 openCamera() {
+	public Action1<Boolean> openCamera() {
 		return new Action1<Boolean>() {
 			@Override
 			public void call(Boolean result) {
 				if (result) {
 					((UserPortraitScreenlet) getScreenlet()).openCamera();
 				}
-				_choseOriginDialog.dismiss();
+				choseOriginDialog.dismiss();
 			}
 		};
 	}
 
-	public Action1 openGallery() {
+	public Action1<Boolean> openGallery() {
 		return new Action1<Boolean>() {
 			@Override
 			public void call(Boolean result) {
 				if (result) {
 					((UserPortraitScreenlet) getScreenlet()).openGallery();
 				}
-				_choseOriginDialog.dismiss();
+				choseOriginDialog.dismiss();
 			}
 		};
-	}
-
-	protected AlertDialog createOriginDialog() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-
-		LayoutInflater factory = LayoutInflater.from(getContext());
-		final View customDialogView = factory.inflate(
-			R.layout.user_portrait_chose_origin_default, null);
-		builder.setView(customDialogView);
-
-		View takePhoto = customDialogView.findViewById(R.id.liferay_dialog_take_photo);
-		RxPermissions.getInstance(getContext())
-			.request(RxView.clicks(takePhoto),
-				Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-			.subscribe(openCamera());
-
-		View selectFile = customDialogView.findViewById(R.id.liferay_dialog_select_file);
-		RxPermissions.getInstance(getContext())
-			.request(RxView.clicks(selectFile), Manifest.permission.WRITE_EXTERNAL_STORAGE)
-			.subscribe(openGallery());
-
-		return builder.create();
 	}
 
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		_portraitImage = (ImageView) findViewById(R.id.liferay_portrait);
-		_portraitProgress = (ProgressBar) findViewById(R.id.liferay_portrait_progress);
-		_portraitAddButton = (ImageButton) findViewById(R.id.liferay_replace_image);
+		portraitImage = (ImageView) findViewById(R.id.liferay_portrait);
+		portraitProgress = (ProgressBar) findViewById(R.id.liferay_portrait_progress);
+		portraitAddButton = (ImageButton) findViewById(R.id.liferay_replace_image);
 
 		setDefaultImagePlaceholder();
+
+		choseOriginDialog =
+			new MediaStoreSelectorDialog().createOriginDialog(getContext(), openCamera(), openGallery(), null);
 	}
 
 	@Override
@@ -172,8 +153,8 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 
 		UserPortraitScreenlet screenlet = getUserPortraitScreenlet();
 		if (screenlet.getEditable()) {
-			_portraitAddButton.setOnClickListener(this);
-			_portraitAddButton.setVisibility(View.VISIBLE);
+			portraitAddButton.setOnClickListener(this);
+			portraitAddButton.setVisibility(View.VISIBLE);
 		}
 	}
 
@@ -182,9 +163,9 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 		super.onDetachedFromWindow();
 
 		// Avoid WindowLeak error on orientation changes
-		if (_choseOriginDialog != null) {
-			_choseOriginDialog.dismiss();
-			_choseOriginDialog = null;
+		if (choseOriginDialog != null) {
+			choseOriginDialog.dismiss();
+			choseOriginDialog = null;
 		}
 	}
 
@@ -202,8 +183,7 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 
 		RectF rect = getRectF(bitmap, borderWidth);
 
-		Bitmap finalBitmap = Bitmap.createBitmap(
-			bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+		Bitmap finalBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
 
 		Canvas canvas = new Canvas(finalBitmap);
 
@@ -245,15 +225,7 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 	}
 
 	private void setDefaultImagePlaceholder() {
-		Bitmap defaultBitmap = BitmapFactory.decodeResource(
-			getResources(), R.drawable.default_portrait_placeholder);
-		_portraitImage.setImageBitmap(transformBitmap(defaultBitmap));
+		Bitmap defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.default_portrait_placeholder);
+		portraitImage.setImageBitmap(transformBitmap(defaultBitmap));
 	}
-
-	protected ImageView _portraitImage;
-	protected ImageButton _portraitAddButton;
-	protected ProgressBar _portraitProgress;
-	protected AlertDialog _choseOriginDialog;
-
-	private BaseScreenlet _screenlet;
 }

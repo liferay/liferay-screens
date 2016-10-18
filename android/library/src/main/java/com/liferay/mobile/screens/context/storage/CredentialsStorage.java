@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.context.storage;
 
 import android.content.Context;
-
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.screens.context.User;
 
@@ -39,5 +38,4 @@ public interface CredentialsStorage {
 	void setUser(User user);
 
 	void setContext(Context ctx);
-
 }

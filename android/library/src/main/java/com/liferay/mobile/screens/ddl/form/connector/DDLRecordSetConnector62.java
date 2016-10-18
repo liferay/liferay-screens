@@ -7,14 +7,15 @@ import com.liferay.mobile.android.v62.ddlrecordset.DDLRecordSetService;
  * @author Javier Gamarra
  */
 public class DDLRecordSetConnector62 implements DDLRecordSetConnector {
+
+	private final DDLRecordSetService ddlRecordSetService;
+
 	public DDLRecordSetConnector62(Session session) {
-		_ddlRecordSetService = new DDLRecordSetService(session);
+		ddlRecordSetService = new DDLRecordSetService(session);
 	}
 
 	@Override
 	public void getRecordSet(long recordSetId) throws Exception {
-		_ddlRecordSetService.getRecordSet(recordSetId);
+		ddlRecordSetService.getRecordSet(recordSetId);
 	}
-
-	private final DDLRecordSetService _ddlRecordSetService;
 }

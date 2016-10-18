@@ -15,83 +15,60 @@
 package com.liferay.mobile.screens.auth.login.interactor;
 
 import android.text.TextUtils;
-
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
-import com.liferay.mobile.screens.base.interactor.JSONObjectCallback;
+import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.ServiceProvider;
-
+import org.json.JSONObject;
 
 public class LoginBasicInteractor extends BaseLoginInteractor {
 
-	public LoginBasicInteractor(int targetScreenletId) {
-		super(targetScreenletId);
-	}
-
 	@Override
-	public void login() throws Exception {
-		validate(_login, _password, _basicAuthMethod);
+	public BasicEvent execute(Object... args) throws Exception {
 
-		UserConnector userConnector = getUserConnector(_login, _password);
+		String login = (String) args[0];
+		String password = (String) args[1];
+		BasicAuthMethod basicAuthMethod = (BasicAuthMethod) args[2];
 
-		switch (_basicAuthMethod) {
-			case EMAIL:
-				userConnector.getUserByEmailAddress(LiferayServerContext.getCompanyId(), _login);
-				break;
+		validate(login, password, basicAuthMethod);
 
+		UserConnector userConnector = getUserConnector(login, password);
+
+		JSONObject jsonObject = getUser(login, basicAuthMethod, userConnector);
+
+		return new BasicEvent(jsonObject);
+	}
+
+	protected JSONObject getUser(String login, BasicAuthMethod basicAuthMethod, UserConnector userConnector)
+		throws Exception {
+		switch (basicAuthMethod) {
 			case USER_ID:
-				userConnector.getUserById(Long.parseLong(_login));
-				break;
-
+				return userConnector.getUserById(Long.parseLong(login));
 			case SCREEN_NAME:
-				userConnector.getUserByScreenName(LiferayServerContext.getCompanyId(), _login);
-				break;
+				return userConnector.getUserByScreenName(LiferayServerContext.getCompanyId(), login);
+			case EMAIL:
+			default:
+				return userConnector.getUserByEmailAddress(LiferayServerContext.getCompanyId(), login);
 		}
-	}
-
-	public void setLogin(String login) {
-		_login = login;
-	}
-
-	public void setPassword(String password) {
-		_password = password;
-	}
-
-	public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
-		_basicAuthMethod = basicAuthMethod;
-	}
-
-	protected UserConnector getUserConnector(String login, String password) {
-		Session session = SessionContext.createBasicSession(login, password);
-		session.setCallback(new JSONObjectCallback(getTargetScreenletId()));
-		return ServiceProvider.getInstance().getUserConnector(session);
 	}
 
 	protected void validate(String login, String password, BasicAuthMethod basicAuthMethod) {
 		if (login == null) {
 			throw new IllegalArgumentException("Login cannot be empty");
-		}
-
-		if (password == null) {
+		} else if (password == null) {
 			throw new IllegalArgumentException("Password cannot be empty");
-		}
-
-		if (basicAuthMethod == null) {
+		} else if (basicAuthMethod == null) {
 			throw new IllegalArgumentException("BasicAuthMethod cannot be empty");
-		}
-
-		if (basicAuthMethod == BasicAuthMethod.USER_ID && !TextUtils.isDigitsOnly(login)) {
+		} else if (basicAuthMethod == BasicAuthMethod.USER_ID && !TextUtils.isDigitsOnly(login)) {
 			throw new IllegalArgumentException("UserId has to be a number");
 		}
 	}
 
-	// NOTE: this interactor can store state because these attributes
-	// aren't used after the request is fired.
-	protected String _login;
-	protected String _password;
-	protected BasicAuthMethod _basicAuthMethod;
-
+	public UserConnector getUserConnector(String login, String password) {
+		Session session = SessionContext.createBasicSession(login, password);
+		return ServiceProvider.getInstance().getUserConnector(session);
+	}
 }
