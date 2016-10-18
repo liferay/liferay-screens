@@ -1,6 +1,5 @@
-package com.liferay.mobile.screens.asset.list.interactor;
+package com.liferay.mobile.screens.asset;
 
-import com.liferay.mobile.screens.asset.list.AssetEntry;
 import com.liferay.mobile.screens.blogs.BlogsEntry;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.ddl.model.Record;

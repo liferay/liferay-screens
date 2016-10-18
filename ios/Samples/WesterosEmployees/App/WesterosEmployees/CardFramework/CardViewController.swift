@@ -23,21 +23,20 @@ public class CardViewController: UIViewController {
 	///Card which holds the controlled view of this controller
 	public var cardView: CardView? {
 		didSet {
-			cardView?.addPage(self.view)
-			cardView?.presentingController = self
+			cardView?.addPageFromController(self)
 		}
 	}
 
 	//MARK: card view state methods
 
-	///Method triggered when the card is going to appear on screen (maximized and normal states).
-	///You should override this method.
-	public func cardWillAppear() {
+	///Method triggered when the card page is going to appear on screen (maximized and normal
+	///states). You should override this method.
+	public func pageWillAppear() {
 	}
 
-	///Method triggered when the card is going to disappear of screen (background and minimized
+	///Method triggered when the card page is going to disappear of screen (background and minimized
 	///states). You should override this method.
-	public func cardWillDisappear() {
+	public func pageWillDisappear() {
 	}
 
 }

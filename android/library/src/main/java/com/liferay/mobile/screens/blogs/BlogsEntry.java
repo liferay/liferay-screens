@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.blogs;
 
-import com.liferay.mobile.screens.asset.list.AssetEntry;
+import com.liferay.mobile.screens.asset.AssetEntry;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

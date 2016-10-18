@@ -86,6 +86,8 @@ public class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 				],
 				onCompletion: nil)
 		}
+		
+		super.callOnSuccess()
 	}
 
 }

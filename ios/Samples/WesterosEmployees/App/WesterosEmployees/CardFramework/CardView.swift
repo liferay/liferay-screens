@@ -23,18 +23,19 @@ import PureLayout
 	optional func card(card: CardView,
 					   titleForPage page: Int) -> String?
 
-	///Called when trying to move right to a page that doesn't exist
-	/// - parameter onMissingPage page: index of the page
-	/// - returns: true, if a view for the missing page has been added, false otherwise
+	///Called when trying to move to a page
+	/// - parameter onWillMoveToPage page: index of the page
+	/// - returns: true, if a view for the page has been added, false otherwise
 	optional func card(card: CardView,
-	                   onMissingPage page: Int) -> Bool
+	                   onWillMoveToPage page: Int,
+	                   fromPage previousPage: Int) -> Bool
 
 	///Called when a card scroll content has move to another page
 	/// - parameters:
-	///    - onMovingToPage page: number of the page the card has moved to
+	///    - onDidMoveToPage page: number of the page the card has moved to
 	///    - moveToRight right: true if content move to the right
 	optional func card(card: CardView,
-	                   onMovingToPage page: Int,
+	                   onDidMoveToPage page: Int,
 	                   moveToRight right: Bool)
 	
 }
@@ -66,7 +67,7 @@ public enum ShowState {
 ///CardView uses [PureLayout](https://github.com/PureLayout/PureLayout) to set its constraints.
 ///To get more information about how to tweak this constraints go to the 
 ///[API Cheat Sheet](https://github.com/PureLayout/PureLayout#api-cheat-sheet)
-public class CardView: UIView {
+public class CardView: UIView, CAAnimationDelegate {
 
 	//Default configuration constants
 	public static let DefaultMinimizedHeight: CGFloat = 70
@@ -126,7 +127,7 @@ public class CardView: UIView {
 	var maximizeOnMove = true
 
 	///This controller will be notified when the card appears/dissapears
-	weak var presentingController: CardViewController?
+	var presentingControllers = [CardViewController]()
 
 	private var onChangeCompleted: (Bool -> Void)?
 
@@ -145,9 +146,19 @@ public class CardView: UIView {
 
 	//MARK: Public methods
 
-	///Adds a subview to the contentview of this card. This should be the entry point for all
-	///subviews of a card.
-	/// - parameter view: view to be added
+	///Adds a controller's subview to the contentview of this card. This should be the entry point
+	///for all subviews of a card.
+	/// - parameter controller: controller which view is going to be added as page
+	public func addPageFromController(controller: CardViewController) {
+		
+		presentingControllers.append(controller)
+		
+		addPage(controller.view)
+	}
+	
+	///Adds a view to the contentview of this card. This should be the entry point for all subviews
+	///of a card.
+	/// - parameter view: view that is going to be added as page
 	public func addPage(view: UIView) {
 		view.translatesAutoresizingMaskIntoConstraints = false
 
@@ -199,45 +210,38 @@ public class CardView: UIView {
 	///to add it via delegate
 	public func moveRight() {
 		let nextPage = currentPage + 1
-
-		if nextPage < scrollContentView.subviews.count ||
-			delegate?.card?(self, onMissingPage: nextPage) ?? false {
-			moveToPage(nextPage)
-
-			//Notify the delegate that the scroll has changed
-			self.delegate?.card?(self, onMovingToPage: nextPage, moveToRight: true)
-		}
+		moveToPage(nextPage, fromPage: currentPage)
 	}
 
 	///Moves the content inside the scrollview to the left.
 	public func moveLeft() {
 		if currentPage != 0 {
 			let nextPage = currentPage - 1
-			moveToPage(nextPage)
-
-			//Notify the delegate that the scroll has changed
-			self.delegate?.card?(self, onMovingToPage: nextPage, moveToRight: false)
+			moveToPage(nextPage, fromPage: currentPage)
 		}
 	}
 
 	///Moves the content inside the scrollview to a page
 	/// - parameter page: index of the page to move to
-	public func moveToPage(page: Int) {
-		let rect = CGRectMake(scrollView.frame.size.width * CGFloat(page),
-			y: 0, size: scrollView.frame.size)
-
-		scrollView.scrollRectToVisible(rect, animated: true)
-
-		//If it's one of the first views, rotate arrow accordingly
-		if page < 2 {
-			UIView.animateWithDuration(0.3, animations: {
-				self.arrow.transform = page == 0 ?
-					CGAffineTransformIdentity :
-					CGAffineTransformMakeRotation(CGFloat(M_PI_2))
-				}, completion: { _ in
-
-				self.changeButtonText(self.delegate?.card?(self, titleForPage: page))
-			})
+	public func moveToPage(page: Int, fromPage previousPage: Int) {
+		if delegate?.card?(self, onWillMoveToPage: page, fromPage: previousPage) ?? false {
+			let rect = CGRectMake(scrollView.frame.size.width * CGFloat(page),
+			                      y: 0, size: scrollView.frame.size)
+			
+			scrollView.scrollRectToVisible(rect, animated: true)
+			
+			//If it's one of the first views, rotate arrow accordingly
+			if page < 2 {
+				UIView.animateWithDuration(0.3, animations: {
+					self.arrow.transform = page == 0 ?
+						CGAffineTransformIdentity :
+						CGAffineTransformMakeRotation(CGFloat(M_PI_2))
+					}, completion: { _ in
+						self.changeButtonText(self.delegate?.card?(self, titleForPage: page))
+				})
+			}
+			//Notify the delegate that the scroll has changed
+			self.delegate?.card?(self, onDidMoveToPage: page, moveToRight: false)
 		}
 	}
 
@@ -400,10 +404,10 @@ public class CardView: UIView {
 		//Notify the view controller, if any
 		if nextState.isVisible != currentState.isVisible {
 			if nextState.isVisible {
-				presentingController?.cardWillAppear()
+				presentingControllers[safe: currentPage]?.pageWillAppear()
 			}
 			else {
-				presentingController?.cardWillDisappear()
+				presentingControllers[safe: currentPage]?.pageWillDisappear()
 			}
 		}
 
@@ -499,7 +503,7 @@ public class CardView: UIView {
 
 
 	//Called when background animation finish
-	override public func animationDidStop(theAnimation: CAAnimation, finished flag: Bool) {
+	public func animationDidStop(anim: CAAnimation, finished flag: Bool) {
 		onChangeCompleted?(flag)
 		onChangeCompleted = nil
 

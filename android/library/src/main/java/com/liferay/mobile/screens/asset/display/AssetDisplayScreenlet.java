@@ -11,8 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.asset.display.interactor.AssetDisplayInteractor;
-import com.liferay.mobile.screens.asset.list.AssetEntry;
-import com.liferay.mobile.screens.asset.list.interactor.AssetFactory;
+import com.liferay.mobile.screens.asset.AssetEntry;
+import com.liferay.mobile.screens.asset.AssetFactory;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.blogs.BlogsEntryDisplayScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -100,7 +100,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	public void load(AssetEntry assetEntry) {
 		AssetEntry asset = AssetFactory.createInstance(assetEntry.getValues());
 		AssetDisplayFactory factory = new AssetDisplayFactory();
-		BaseScreenlet screenlet = factory.getScreenlet(getContext(), asset, layouts, autoLoad);
+		BaseScreenlet screenlet = factory.getScreenlet(getContext(), asset, layouts);
 		if (screenlet != null) {
 			if (configureListener != null) {
 				configureListener.onConfigureChildScreenlet(this, screenlet, asset);

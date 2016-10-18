@@ -66,5 +66,18 @@ public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase 
 
 		return super.doGetCellId(indexPath: indexPath, object: object)
 	}
-	
+
+	public func collectionView(collectionView: UICollectionView,
+	                           layout collectionViewLayout: UICollectionViewLayout,
+	                                  insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+
+		if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
+			let margin = collectionView.bounds.width / 2 - layout.itemSize.width / 2
+
+			return UIEdgeInsets(top: 10, left: margin, bottom: 10, right: margin)
+		}
+
+		return UIEdgeInsetsZero
+	}
+
 }

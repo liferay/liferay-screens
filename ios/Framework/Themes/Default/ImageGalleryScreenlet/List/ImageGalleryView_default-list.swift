@@ -170,7 +170,7 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
         }
 
 		if let image = entry.image {
-			imageCell.imageView?.image = image
+			imageCell.img = image
 		}
 		else {
         	imageCell.imageUrl = entry.thumbnailUrl

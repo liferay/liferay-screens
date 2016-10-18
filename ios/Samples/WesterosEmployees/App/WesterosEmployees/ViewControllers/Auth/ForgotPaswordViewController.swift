@@ -38,9 +38,9 @@ class ForgotPasswordViewController: CardViewController,
 	override func viewDidLoad() {
 		self.forgotPasswordScreenlet?.delegate = self
 		self.forgotPasswordScreenlet?.anonymousApiUserName =
-				LiferayServerContext.propertyForKey("anonymousUsername") as? String
+				LiferayServerContext.stringPropertyForKey("anonymousUsername")
 		self.forgotPasswordScreenlet?.anonymousApiPassword =
-				LiferayServerContext.propertyForKey("anonymousPassword") as? String
+				LiferayServerContext.stringPropertyForKey("anonymousPassword")
 	}
 
 
@@ -54,13 +54,13 @@ class ForgotPasswordViewController: CardViewController,
 
 	//MARK: CardViewController
 
-	override func cardWillAppear() {
+	override func pageWillAppear() {
 		registerKeyboardListener(self)
 	}
 
-	override func cardWillDisappear() {
-		unregisterKeyboardListener(self)
+	override func pageWillDisappear() {
 		self.view.endEditing(true)
+		unregisterKeyboardListener(self)
 	}
 
 

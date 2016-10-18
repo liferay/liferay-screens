@@ -23,18 +23,13 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 	var forgotPasswordController: ForgotPasswordViewController?
 	var termsController: TermsViewController?
 
-	///Method call when view controller is going to be dismissed
-	var onAuthDone: (() -> ())?
-
 
 	//MARK: UIViewController
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		let onDone: () -> () = {
-			self.dismissViewControllerAnimated(true) {
-				self.onAuthDone?()
-			}
+			self.dismissViewControllerAnimated(true, completion: nil)
 		}
 
 		signInController = SignInViewController()
@@ -48,8 +43,6 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 
 		cardDeck?.delegate = self
 		cardDeck?.dataSource = self
-
-		self.cardDeck?.layoutIfNeeded()
 	}
 
 	override func viewDidAppear(animated: Bool) {

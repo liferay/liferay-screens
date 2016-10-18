@@ -28,20 +28,16 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		didSet {
 			cardDeck?.delegate = self
 			cardDeck?.dataSource = self
+			cardDeck?.layer.zPosition = 0
 		}
 	}
 	@IBOutlet weak var goBackButton: UIButton? {
 		didSet {
-			let height = goBackButton?.frame.size.height ?? CardView.DefaultMinimizedHeight
-			goBackButton?.titleEdgeInsets = UIEdgeInsetsMake(0, height, 0, height)
+			goBackButton?.titleEdgeInsets = UIEdgeInsetsMake(0, 70, 0, 70)
 		}
 	}
 	@IBOutlet weak var arrowImageView: UIImageView?
 	@IBOutlet weak var ratingScreenlet: RatingScreenlet?
-
-
-	//MARK: Constraints
-	@IBOutlet weak var assetDisplayBottomConstraint: NSLayoutConstraint?
 
 
 	//MARK: Card controllers
@@ -83,38 +79,20 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 					className: AssetClasses.getClassNameFromId(asset.classNameId)!,
 					classPK: asset.classPK)
 			}
-
-			//Change color depending on asset
-			if asset.classNameId == AssetClasses.getClassNameId(AssetClassNameKey_BlogsEntry)! {
-				//Change color of modal state
-				self.arrowImageView?.image = UIImage(named: "icon_DOWN_W")
-				self.goBackButton?.setTitleColor(DefaultResources.EvenColorBackground, forState: .Normal)
-
-				//Hide rating screenlet on blog view
-				ratingScreenlet?.hidden = true
-				assetDisplayBottomConstraint?.constant = 70
-			}
-			else {
-				//Change color of modal state
-				self.arrowImageView?.image = UIImage(named: "icon_DOWN")
-				self.goBackButton?.setTitleColor(DefaultResources.OddColorBackground, forState: .Normal)
-
-				//Load ratings, only in file view
-				ratingScreenlet?.hidden = false
-				assetDisplayBottomConstraint?.constant = 150
-				ratingScreenlet?.className = AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
-				ratingScreenlet?.classPK = classPK
-				ratingScreenlet?.loadRatings()
-			}
-
-			assetDisplayScreenlet?.layoutIfNeeded()
+			
+			ratingScreenlet?.className = AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
+			ratingScreenlet?.classPK = classPK
+			ratingScreenlet?.loadRatings()
 		}
 	}
-
-	func closeDetail() {
+	
+	
+	//MARK: CardViewController
+	
+	override func pageWillDisappear() {
 		//Remove inner screenlet to avoid infinite media loops
 		self.assetDisplayScreenlet?.removeInnerScreenlet()
-
+		
 		//Hide comment card
 		self.commentsViewController?.hideAddCommentCard()
 		self.cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
@@ -125,8 +103,6 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-		self.cardDeck?.layer.zPosition = 0
 		
 		commentsViewController = CommentsViewController()
 	}
@@ -137,12 +113,6 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		//Hide all views
 		self.assetDisplayScreenlet?.alpha = 0
 		self.ratingScreenlet?.alpha = 0
-	}
-
-	override func viewWillDisappear(animated: Bool) {
-		super.viewWillAppear(animated)
-
-		self.closeDetail()
 	}
 
 

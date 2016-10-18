@@ -29,7 +29,7 @@ class DocumentationViewController: CardViewController, AssetListScreenletDelegat
 			self.assetListScreenlet?.classNameId =
 				AssetClasses.getClassNameId(AssetClassNameKey_DLFileEntry)!
 			self.assetListScreenlet?.portletItemName =
-				LiferayServerContext.propertyForKey("documentationPortletItemName") as? String
+				LiferayServerContext.stringPropertyForKey("documentationPortletItemName")
 		}
 	}
 
@@ -42,7 +42,7 @@ class DocumentationViewController: CardViewController, AssetListScreenletDelegat
 
 	//MARK: CardViewController
 
-	override func cardWillAppear() {
+	override func pageWillAppear() {
 		if !loaded {
 			assetListScreenlet?.loadList()
 			loaded = true

@@ -16,7 +16,8 @@ package com.liferay.mobile.screens.asset.list.interactor;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.screens.asset.AssetEvent;
-import com.liferay.mobile.screens.asset.list.AssetEntry;
+import com.liferay.mobile.screens.asset.AssetEntry;
+import com.liferay.mobile.screens.asset.AssetFactory;
 import com.liferay.mobile.screens.asset.list.connector.AssetEntryConnector;
 import com.liferay.mobile.screens.asset.list.connector.ScreensAssetEntryConnector;
 import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
@@ -109,7 +110,7 @@ public class AssetListInteractor extends BaseListInteractor<BaseListInteractorLi
 
 	@Override
 	protected AssetEvent createEntity(Map<String, Object> stringObjectMap) {
-		return new AssetEvent(new AssetEntry(stringObjectMap));
+		return new AssetEvent(AssetFactory.createInstance(stringObjectMap));
 	}
 
 	@Override

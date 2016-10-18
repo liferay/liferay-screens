@@ -46,18 +46,18 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 		}
 	}
 
-	
-	//MARK: CardViewController
-
-	override func cardWillAppear() {
-		commentListScreenlet?.loadList()
-	}
-
 
 	//MARK: Public methods
 
 	func hideAddCommentCard() {
 		self.cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
+	}
+	
+	
+	//MARK: CardViewController
+	
+	override func pageWillAppear() {
+		commentListScreenlet?.loadList()
 	}
 
 
@@ -70,7 +70,7 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 	func load(className className: String, classPK: Int64) {
 		commentListScreenlet?.className = className
 		commentListScreenlet?.classPK = classPK
-
+		
 		addCommentViewController?.load(className: className, classPK: classPK)
 
 		//Change color depending on asset
@@ -119,9 +119,7 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 	//MARK: CardDeckDelegate
 
 	func cardDeck(cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
-		if let firstCardDeck = self.cardView?.superview {
-			card.normalHeight = firstCardDeck.frame.height * 0.7
-		}
+		card.normalHeight = UIScreen.mainScreen().bounds.height * 0.7
 	}
 
 	func cardDeck(cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {

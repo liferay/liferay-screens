@@ -78,7 +78,10 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 	}
 
 	public override func doCreateLayout() -> UICollectionViewLayout {
-
+		// When the theme is changed dinamically the collection view hasn't the correct bounds at
+		// this time so we use the screenlet (which is also a view) to calculate the itemSize
+		screenlet?.layoutIfNeeded()
+		
 		return createCustomLayout()
 	}
 
@@ -134,7 +137,7 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 	internal func cellWidthForNumberOfColumns(numCols: Int) -> CGFloat {
 
 		let horizontalMargins: CGFloat = 40
-		let viewWidth = collectionView!.bounds.width
+		let viewWidth = screenlet!.bounds.width
 
 		let cellWidth =  (viewWidth - horizontalMargins) / CGFloat(numCols) - CGFloat(spacing)
 

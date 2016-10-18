@@ -11,4 +11,6 @@ public interface ImageDisplayViewModel extends BaseFileDisplayViewModel {
 	void setScaleType(ImageView.ScaleType scaleType);
 
 	void setPlaceholder(int placeholder);
+
+	void setPlaceholderScaleType(ImageView.ScaleType placeholderScaleType);
 }

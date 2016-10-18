@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,76 +12,118 @@
             <rect key="frame" x="0.0" y="0.0" width="249" height="221"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0sL-ub-ZWS" userLabel="Emoji 1">
-                    <rect key="frame" x="8" y="8" width="40" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0sL-ub-ZWS" userLabel="Emoji 1">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="Hpo-dd-JfM"/>
+                        <constraint firstAttribute="height" constant="40" id="goC-gR-Bfb"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="40"/>
                     <state key="normal" title="😀"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="avC-82-vFw" userLabel="Emoji 2">
-                    <rect key="frame" x="56" y="-2" width="40" height="60"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avC-82-vFw" userLabel="Emoji 2">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="I83-W9-Dhf"/>
+                        <constraint firstAttribute="height" constant="40" id="w35-iu-hF7"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="40"/>
                     <state key="normal" title="😎"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1xY-bu-tFl" userLabel="Emoji 3">
-                    <rect key="frame" x="104" y="-2" width="40" height="60"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1xY-bu-tFl" userLabel="Emoji 3">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="0Aw-LY-vCd"/>
+                        <constraint firstAttribute="height" constant="40" id="S2P-8R-eJG"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="40"/>
                     <state key="normal" title="☺️"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="w9x-NR-bPz" userLabel="Emoji 4">
-                    <rect key="frame" x="152" y="-2" width="40" height="60"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9x-NR-bPz" userLabel="Emoji 4">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="hwX-18-e3T"/>
+                        <constraint firstAttribute="width" constant="40" id="o0D-SG-XJc"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="40"/>
                     <state key="normal" title="😱"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3DY-Wb-Le4" userLabel="Emoji 5">
-                    <rect key="frame" x="200" y="-2" width="40" height="60"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3DY-Wb-Le4" userLabel="Emoji 5">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="FA7-tz-Bjv"/>
+                        <constraint firstAttribute="width" constant="40" id="bzF-Q5-IJv"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="40"/>
                     <state key="normal" title="😍"/>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😀 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HSd-47-Fga" userLabel="Label 1">
-                    <rect key="frame" x="8" y="74" width="232" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😀 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSd-47-Fga" userLabel="Label 1">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="x2V-NU-XbK"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😎 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cHO-us-lVL" userLabel="Label 2">
-                    <rect key="frame" x="8" y="103" width="232" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😎 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHO-us-lVL" userLabel="Label 2">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="9Qg-7j-jgK"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☺️ 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qgi-ZC-tRw" userLabel="Label 3">
-                    <rect key="frame" x="8" y="132" width="233" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☺️ 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgi-ZC-tRw" userLabel="Label 3">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="CzR-6G-7ew"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😱 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8cp-Yi-Hmr" userLabel="Label 4">
-                    <rect key="frame" x="8" y="161" width="233" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😱 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cp-Yi-Hmr" userLabel="Label 4">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="oCc-ZN-FTf"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😍 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AaN-9N-ghQ" userLabel="Label 5">
-                    <rect key="frame" x="8" y="190" width="233" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😍 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AaN-9N-ghQ" userLabel="Label 5">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="Hed-af-j60"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="avC-82-vFw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="3ja-7R-leC"/>
+                <constraint firstItem="qgi-ZC-tRw" firstAttribute="top" secondItem="cHO-us-lVL" secondAttribute="bottom" constant="8" id="4F6-dn-7Bu"/>
+                <constraint firstAttribute="trailing" secondItem="qgi-ZC-tRw" secondAttribute="trailing" constant="8" id="4Ld-PA-Fv0"/>
+                <constraint firstAttribute="trailing" secondItem="8cp-Yi-Hmr" secondAttribute="trailing" constant="8" id="4eN-sW-tSc"/>
+                <constraint firstItem="1xY-bu-tFl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="AZb-O7-4JF"/>
+                <constraint firstItem="cHO-us-lVL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="EZV-yp-AVO"/>
+                <constraint firstItem="AaN-9N-ghQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="FIf-i5-saH"/>
+                <constraint firstItem="HSd-47-Fga" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="H9d-8p-4fD"/>
+                <constraint firstAttribute="trailing" secondItem="cHO-us-lVL" secondAttribute="trailing" constant="8" id="NRO-Vx-SHu"/>
+                <constraint firstAttribute="trailing" secondItem="AaN-9N-ghQ" secondAttribute="trailing" constant="8" id="PI5-pw-ddN"/>
+                <constraint firstItem="3DY-Wb-Le4" firstAttribute="leading" secondItem="w9x-NR-bPz" secondAttribute="trailing" constant="8" id="Qdf-Ib-WRW"/>
+                <constraint firstItem="HSd-47-Fga" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="70" id="RQJ-GW-79u"/>
+                <constraint firstAttribute="trailing" secondItem="HSd-47-Fga" secondAttribute="trailing" constant="8" id="VIr-i5-7Hz"/>
+                <constraint firstItem="AaN-9N-ghQ" firstAttribute="top" secondItem="8cp-Yi-Hmr" secondAttribute="bottom" constant="8" id="WGH-cn-3kf"/>
+                <constraint firstItem="qgi-ZC-tRw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="bXN-hD-Qjj"/>
+                <constraint firstItem="w9x-NR-bPz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="cLR-SB-gjJ"/>
+                <constraint firstItem="cHO-us-lVL" firstAttribute="top" secondItem="HSd-47-Fga" secondAttribute="bottom" constant="8" id="fW1-fh-95q"/>
+                <constraint firstItem="3DY-Wb-Le4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="g8Y-xt-1G4"/>
+                <constraint firstItem="8cp-Yi-Hmr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="nEn-V7-eo9"/>
+                <constraint firstItem="1xY-bu-tFl" firstAttribute="leading" secondItem="avC-82-vFw" secondAttribute="trailing" constant="8" id="nhW-Af-3tB"/>
+                <constraint firstItem="w9x-NR-bPz" firstAttribute="leading" secondItem="1xY-bu-tFl" secondAttribute="trailing" constant="8" id="tQg-FO-C5i"/>
+                <constraint firstItem="0sL-ub-ZWS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="ttE-sW-wCY"/>
+                <constraint firstItem="0sL-ub-ZWS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="tw8-HA-RDU"/>
+                <constraint firstItem="avC-82-vFw" firstAttribute="leading" secondItem="0sL-ub-ZWS" secondAttribute="trailing" constant="8" id="uVd-yq-Zau"/>
+                <constraint firstItem="8cp-Yi-Hmr" firstAttribute="top" secondItem="qgi-ZC-tRw" secondAttribute="bottom" constant="8" id="vei-sR-gXq"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="294.5" y="218.5"/>
+            <point key="canvasLocation" x="-125" y="56"/>
         </view>
     </objects>
 </document>

@@ -2,7 +2,7 @@ package com.liferay.mobile.screens.asset.display;
 
 import android.content.Context;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.asset.list.AssetEntry;
+import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.blogs.BlogsEntry;
 import com.liferay.mobile.screens.blogs.BlogsEntryDisplayScreenlet;
@@ -23,8 +23,7 @@ import java.util.Map;
  */
 public class AssetDisplayFactory {
 
-	public BaseScreenlet getScreenlet(Context context, AssetEntry assetEntry, Map<String, Integer> layouts,
-		boolean autoLoad) {
+	public BaseScreenlet getScreenlet(Context context, AssetEntry assetEntry, Map<String, Integer> layouts) {
 
 		if (assetEntry instanceof FileEntry || assetEntry instanceof ImageEntry) {
 			BaseFileDisplayScreenlet screenlet = getDLFileEntryScreenlet(context, assetEntry.getMimeType());
@@ -32,7 +31,6 @@ public class AssetDisplayFactory {
 			if (screenlet != null) {
 				Integer layoutId = layouts.get(screenlet.getClass().getName());
 
-				screenlet.setAutoLoad(autoLoad);
 				screenlet.render(layoutId);
 
 				if (assetEntry instanceof FileEntry) {
@@ -46,18 +44,23 @@ public class AssetDisplayFactory {
 			}
 		} else if (assetEntry instanceof WebContent) {
 			WebContentDisplayScreenlet webContentDisplayScreenlet = new WebContentDisplayScreenlet(context);
+
 			Integer layoutId = layouts.get(webContentDisplayScreenlet.getClass().getName());
-			webContentDisplayScreenlet.setAutoLoad(autoLoad);
+
 			webContentDisplayScreenlet.render(layoutId);
 			webContentDisplayScreenlet.onWebContentReceived((WebContent) assetEntry);
+
 			return webContentDisplayScreenlet;
+
 		} else if (assetEntry instanceof BlogsEntry) {
 			BlogsEntryDisplayScreenlet blogsScreenlet = new BlogsEntryDisplayScreenlet(context);
+
 			Integer layoutId = layouts.get(blogsScreenlet.getClass().getName());
+
 			blogsScreenlet.setBlogsEntry((BlogsEntry) assetEntry);
-			blogsScreenlet.setAutoLoad(autoLoad);
 			blogsScreenlet.render(layoutId);
 			blogsScreenlet.loadBlogsEntry();
+
 			return blogsScreenlet;
 		}
 		return null;

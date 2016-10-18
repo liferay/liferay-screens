@@ -18,6 +18,7 @@
 		android:layout_marginLeft="20dp"
 		android:layout_marginStart="20dp"
 		app:layoutId="@layout/image_display_westeros_blog"
+		app:imageScaleType="CENTER_CROP"
 		app:autoLoad="false"
 		/>
 

@@ -111,6 +111,10 @@ public class CardDeckView: UIView, CardDelegate {
 	//MARK: UIView
 
 	public override func willMoveToWindow(newWindow: UIWindow?) {
+		super.willMoveToWindow(newWindow)
+		
+		self.layoutIfNeeded()
+		
 		if cards.isEmpty {
 			guard let source = dataSource else { return }
 			let count = source.numberOfCardsIn(self)
@@ -273,19 +277,31 @@ public class CardDeckView: UIView, CardDelegate {
 		return nil
 	}
 
-	public func card(card: CardView, onMissingPage page: Int) -> Bool {
+	public func card(card: CardView, onWillMoveToPage page: Int, fromPage previousPage: Int) -> Bool {
 		if let index = cards.indexOf(card) {
-			let cardPosition = CardPosition(card: index, page: page)
-			let controller = dataSource?.cardDeck(self, controllerForCard: cardPosition)
-			controller?.cardView = card
+			
+			//Notify the previous controller that its page it's going to disappear
+			card.presentingControllers[safe: previousPage]?.pageWillDisappear()
+			
+			if card.pageCount <= page {
+				let cardPosition = CardPosition(card: index, page: page)
+				let controller = dataSource?.cardDeck(self, controllerForCard: cardPosition)
+				
+				controller?.cardView = card
+				
+				return controller != nil
+			}
+			
+			//Notify the new presenting controller that its page it's appearing
+			card.presentingControllers[safe: page]?.pageWillAppear()
 
-			return controller != nil
+			return true
 		}
 
 		return false
 	}
 
-	public func card(card: CardView, onMovingToPage page: Int, moveToRight right: Bool) {
+	public func card(card: CardView, onDidMoveToPage page: Int, moveToRight right: Bool) {
 		if card.maximizeOnMove {
 			if page == 0 {
 				let (top, bottom) = cards.splitAtIndex(cards.indexOf(card)!)

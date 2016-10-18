@@ -37,9 +37,8 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 			imageGalleryScreenlet?.presentingViewController = self
 
 			imageGalleryScreenlet?.repositoryId = LiferayServerContext.groupId
-			if let folderId = LiferayServerContext.propertyForKey("galleryFolderId") as? NSNumber {
-				imageGalleryScreenlet?.folderId = folderId.longLongValue
-			}
+			imageGalleryScreenlet?.folderId =
+				LiferayServerContext.longPropertyForKey("galleryFolderId")
 		}
 	}
 
@@ -53,11 +52,11 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 
 	//MARK: CardViewController
 
-	override func cardWillDisappear() {
+	override func pageWillDisappear() {
 		hideUploadCard()
 	}
 
-	override func cardWillAppear() {
+	override func pageWillAppear() {
 		if !loaded {
 			imageGalleryScreenlet?.loadList()
 			loaded = true
@@ -68,6 +67,8 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 	//MARK: UIViewController
 
 	override func viewDidLoad() {
+		super.viewDidLoad()
+		
 		uploadImageViewController = UploadImageViewController()
 	}
 
@@ -146,6 +147,6 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 	}
 
 	func cardDeck(cardDeck: CardDeckView, buttonImageForCardIndex index: Int) -> UIImage? {
-		return UIImage(named: "ICON_DOWN_W")
+		return UIImage(named: "icon_DOWN_W")
 	}
 }

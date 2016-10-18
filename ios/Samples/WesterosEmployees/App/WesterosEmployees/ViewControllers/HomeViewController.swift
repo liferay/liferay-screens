@@ -19,21 +19,39 @@ public var tourCompleted = false
 
 class HomeViewController: UIViewController, AssetListScreenletDelegate,
 	CardDeckDelegate, CardDeckDataSource {
+	
+	///Flag to control if the home has been initialized
+	var homeInitialized = false
 
 
 	//MARK: Outlets
 
-	@IBOutlet weak var cardDeck: CardDeckView?
-	@IBOutlet weak var userView: UIView?
+	@IBOutlet weak var cardDeck: CardDeckView? {
+		didSet {
+			cardDeck?.delegate = self
+			cardDeck?.dataSource = self
+			cardDeck?.layer.zPosition = 0
+		}
+	}
+	@IBOutlet weak var userView: UIView? {
+		didSet {
+			userView?.layer.zPosition = -1000
+		}
+	}
 	@IBOutlet weak var userPortraitScreenlet: UserPortraitScreenlet?
 	@IBOutlet weak var userNameLabel: UILabel?
 	@IBOutlet weak var assetListScreenlet: AssetListScreenlet? {
 		didSet {
 			assetListScreenlet?.delegate = self
+			assetListScreenlet?.alpha = 0
 		}
 	}
 	@IBOutlet weak var userProfileButton: UIButton?
-	@IBOutlet weak var latestChangesLabel: UILabel?
+	@IBOutlet weak var latestChangesLabel: UILabel? {
+		didSet {
+			latestChangesLabel?.alpha = 0
+		}
+	}
 
 
 	//MARK: Card controllers
@@ -69,18 +87,9 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		self.userView?.layer.zPosition = -1000
-		self.cardDeck?.layer.zPosition = 0
-
-		self.assetListScreenlet?.alpha = 0
-		self.latestChangesLabel?.alpha = 0
-
 		documentationViewController = DocumentationViewController()
 		blogsViewController = BlogsViewController()
 		galleryViewController = GalleryViewController()
-
-		cardDeck?.delegate = self
-		cardDeck?.dataSource = self
 	}
 
 	override func viewWillAppear(animated: Bool) {
@@ -93,8 +102,10 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 		super.viewDidAppear(animated)
 
 		SessionContext.loadStoredCredentials()
-
+		
 		if !SessionContext.isLoggedIn {
+			homeInitialized = false
+			
 			if !tourCompleted {
 				dispatch_delayed(0.5) {
 					self.performSegueWithIdentifier("tour", sender: nil)
@@ -104,22 +115,16 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 				self.performSegueWithIdentifier("login", sender: nil)
 			}
 		}
-		else {
+		else if !homeInitialized {
 			tourCompleted = true
+			
+			//Initialize home only once
 			initializeHome()
+			homeInitialized = true
 		}
 	}
 
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if segue.identifier == "login" {
-			if let authController = segue.destinationViewController as? AuthViewController {
-				authController.onAuthDone = {
-					self.initializeHome()
-				}
-			}
-		}
-	}
-
+	
 	//MARK: CardDeckDataSource
 
 	func numberOfCardsIn(cardDeck: CardDeckView) -> Int {
@@ -139,8 +144,10 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 				return blogsViewController
 			case (2, 0):
 				return galleryViewController
-			case (0, 1), (1, 1), (2, 1):
+			case (0, 1), (2, 1):
 				return DetailViewController(nibName: "DetailViewController")
+			case (1, 1):
+				return DetailViewController(nibName: "BlogDetailViewController")
 			default:
 				return nil
 			}
@@ -174,7 +181,8 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 			self.userProfileButton?.enabled = position.page == 0
 		}
 
-		if let vc = cardDeck.cards[position.card].presentingController as? DetailViewController {
+		if let vc = cardDeck.cards[position.card].presentingControllers[safe: position.page]
+				as? DetailViewController {
 			switch (position.card, position.page) {
 			case (0, 1):
 				vc.load(documentationViewController?.selectedFileEntry)
@@ -182,8 +190,6 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 				vc.load(blogsViewController?.selectedBlogEntry)
 			case (2, 1):
 				vc.load(galleryViewController?.selectedImageEntry)
-			case (_, 0):
-				vc.closeDetail()
 			default:
 				break
 			}
@@ -195,18 +201,18 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 
 	func screenlet(screenlet: AssetListScreenlet, onAssetSelected asset: Asset) {
 		if let className = AssetClasses.getClassNameFromId(asset.classNameId) {
-			let detail = DetailViewController(nibName: "ModalDetailViewController")
+			var detail: DetailViewController?
 
 			//Change view controller background depending on asset
 			if className == AssetClasses.getClassName(AssetClassNameKey_BlogsEntry)! {
-				detail.view.backgroundColor = DefaultResources.OddColorBackground
+				detail = DetailViewController(nibName: "ModalBlogDetailViewController")
 			} else {
-				detail.view.backgroundColor = DefaultResources.EvenColorBackground
+				detail = DetailViewController(nibName: "ModalDetailViewController")
 			}
 
 			//Present view controller and load content
-			self.presentViewController(detail, animated: true) {
-				detail.load(asset)
+			self.presentViewController(detail!, animated: true) {
+				detail?.load(asset)
 			}
 		}
 	}

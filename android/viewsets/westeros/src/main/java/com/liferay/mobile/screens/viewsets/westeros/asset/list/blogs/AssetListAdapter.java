@@ -3,7 +3,7 @@ package com.liferay.mobile.screens.viewsets.westeros.asset.list.blogs;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
-import com.liferay.mobile.screens.asset.list.AssetEntry;
+import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
 import com.liferay.mobile.screens.blogs.BlogsEntry;

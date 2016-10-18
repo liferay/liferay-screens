@@ -35,26 +35,17 @@ class TermsViewController: CardViewController, AssetDisplayScreenletDelegate {
 	//MARK: UIViewController
 
 	override func viewWillAppear(animated: Bool) {
-		func prop(key: String) -> AnyObject? {
-			return LiferayServerContext.propertyForKey(key)
-		}
-
-		//Load terms and conditions from a web article
-		if let entryId = prop("termsAndConditionsAssetEntryId") as? NSNumber,
-			   anonymUsername = prop("anonymousUsername") as? String,
-			   anonymPassword = prop("anonymousPassword") as? String {
-
-			//Login anonymous user
-			SessionContext.loginWithBasic(
-				username: anonymUsername, password: anonymPassword, userAttributes: [:])
-
-			//Load article data into screenlet
-			self.assetDisplayScreenlet?.assetEntryId = entryId.longLongValue
-			self.assetDisplayScreenlet?.load()
-		} else {
-			print("Some of the options needed for this web content are not set. " +
-				"Review your server-context list.")
-		}
+		
+		//Login anonymous user
+		SessionContext.loginWithBasic(
+			username: LiferayServerContext.stringPropertyForKey("anonymousUsername"),
+			password: LiferayServerContext.stringPropertyForKey("anonymousPassword"),
+			userAttributes: [:])
+		
+		//Load article data into screenlet
+		self.assetDisplayScreenlet?.assetEntryId =
+			LiferayServerContext.longPropertyForKey("termsAndConditionsAssetEntryId")
+		self.assetDisplayScreenlet?.load()
 	}
 
 

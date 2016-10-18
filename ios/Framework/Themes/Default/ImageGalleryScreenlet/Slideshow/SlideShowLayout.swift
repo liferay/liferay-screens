@@ -107,7 +107,6 @@ public class SlideShowLayout : UICollectionViewFlowLayout {
 		scrollDirection = .Horizontal
 		minimumLineSpacing = 50
 		minimumInteritemSpacing = 1000;
-		sectionInset = UIEdgeInsets(top: 10, left: 30, bottom: 10, right: 30)
 	}
 
 	internal func setAttributes(attributes attributes: UICollectionViewLayoutAttributes, visibleRect: CGRect) {

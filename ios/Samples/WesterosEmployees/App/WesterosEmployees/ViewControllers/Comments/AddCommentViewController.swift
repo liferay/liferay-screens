@@ -14,7 +14,7 @@
 import UIKit
 import LiferayScreens
 
-class AddCommentViewController: CardViewController, KeyboardListener, CommentAddScreenletDelegate {
+class AddCommentViewController: CardViewController, CommentAddScreenletDelegate {
 
 	var onCommentAdded: (Comment -> ())?
 	var onCommentUpdated: (Comment -> ())?
@@ -66,27 +66,11 @@ class AddCommentViewController: CardViewController, KeyboardListener, CommentAdd
 	
 	//MARK: CardViewController
 
-	override func cardWillAppear() {
-		registerKeyboardListener(self)
-	}
-
-	override func cardWillDisappear() {
+	override func pageWillDisappear() {
 		self.cardView?.changeButtonText("Add Comment")
 		self.commentAddScreenlet?.comment = nil
 		(self.commentAddScreenlet?.viewModel as? CommentAddView_westeros)?.body = ""
-		unregisterKeyboardListener(self)
 		self.view.endEditing(true)
-	}
-
-
-	//MARK: KeyboardListener
-
-	func showKeyboard(notif: NSNotification) {
-		cardView?.changeToState(.Maximized)
-	}
-
-	func hideKeyboard(notif: NSNotification) {
-		cardView?.changeToState(.Normal)
 	}
 
 
