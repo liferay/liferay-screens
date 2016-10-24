@@ -16,10 +16,10 @@ import UIKit
 
 public class LoginView_default: BaseScreenletView, LoginViewModel {
 
-	@IBOutlet public weak var userNameField: DefaultTextField!
-	@IBOutlet public weak var passwordField: DefaultTextField!
-	@IBOutlet public weak var loginButton: UIButton!
-	@IBOutlet public weak var authorizeButton: UIButton!
+	@IBOutlet public weak var userNameField: DefaultTextField?
+	@IBOutlet public weak var passwordField: DefaultTextField?
+	@IBOutlet public weak var loginButton: UIButton?
+	@IBOutlet public weak var authorizeButton: UIButton?
 
 	override public var progressMessages: [String:ProgressMessages] {
 		return [
@@ -51,7 +51,7 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 
 	public var userName: String? {
 		get {
-			return nullIfEmpty(userNameField.text)
+			return nullIfEmpty(userNameField?.text)
 		}
 		set {
 			userNameField?.text = newValue
@@ -60,7 +60,7 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 
 	public var password: String? {
 		get {
-			return nullIfEmpty(passwordField.text)
+			return nullIfEmpty(passwordField?.text)
 		}
 		set {
 			passwordField?.text = newValue
