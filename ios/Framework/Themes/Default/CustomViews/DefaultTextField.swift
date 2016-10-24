@@ -14,6 +14,8 @@
 import UIKit
 
 public class DefaultTextField: UITextField {
+
+	public var buttonMargin: CGFloat = 10
 	
 	//MARK: IBInspectable
 	
@@ -28,12 +30,30 @@ public class DefaultTextField: UITextField {
 			if let image = leftImage {
 				
 				let icon = UIImageView(image: image)
-				
-				icon.frame = CGRectMake(0, 0, self.frame.height, image.size.height)
+
 				icon.contentMode = .Center
 				
 				self.leftViewMode = .Always
 				self.leftView = icon
+			}
+		}
+	}
+
+	@IBInspectable public var rightButtonImage: UIImage? {
+		didSet {
+			if let image = rightButtonImage {
+
+				let button = UIButton()
+
+				button.setImage(image, forState: .Normal)
+				button.backgroundColor = highlightColor
+				button.tintColor = .whiteColor()
+				button.adjustsImageWhenHighlighted = false
+
+				setButtonDefaultStyle(button)
+
+				self.rightViewMode = .Always
+				self.rightView = button
 			}
 		}
 	}
@@ -95,5 +115,21 @@ public class DefaultTextField: UITextField {
 		}
 
 		return textRectForBounds(bounds)
+	}
+
+	public override func leftViewRectForBounds(bounds: CGRect) -> CGRect {
+		return CGRect(origin: CGPointZero, size: CGSize(width: bounds.height, height: bounds.height))
+	}
+
+	public override func rightViewRectForBounds(bounds: CGRect) -> CGRect {
+		let boundsCalculated = super.rightViewRectForBounds(bounds)
+
+		let origin = CGPoint(x: boundsCalculated.origin.x - buttonMargin/2,
+				 y: boundsCalculated.minY)
+
+		let size = CGSize(width: bounds.height - buttonMargin,
+				height: bounds.height - buttonMargin)
+
+		return CGRect(origin: origin, size: size)
 	}
 }
