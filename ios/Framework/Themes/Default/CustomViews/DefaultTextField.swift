@@ -22,6 +22,7 @@ public class DefaultTextField: UITextField {
 
 	public var onRightButtonClick: (() -> ())?
 	
+	
 	//MARK: IBInspectable
 	
 	@IBInspectable public var defaultColor: UIColor = UIColor.lightGrayColor()
@@ -48,21 +49,22 @@ public class DefaultTextField: UITextField {
 		didSet {
 			if let image = rightButtonImage {
 
-				let button = UIButton()
-
-				button.setImage(image, forState: .Normal)
-				button.backgroundColor = highlightColor
-				button.tintColor = .whiteColor()
-				button.adjustsImageWhenHighlighted = false
-
-				setButtonDefaultStyle(button)
-
 				self.rightViewMode = .Always
-				self.rightView = button
+				self.rightView = createButton(withImage: image)
 			}
 		}
 	}
-	
+
+	@IBInspectable public var rightButtonTitle: String? {
+		didSet {
+			if let title = rightButtonTitle {
+
+				self.rightViewMode = .Always
+				self.rightView = createButton(withTitle: title)
+			}
+		}
+	}
+
 	
 	//MARK: Initializers
 	
@@ -95,6 +97,24 @@ public class DefaultTextField: UITextField {
 		onRightButtonClick?()
 	}
 
+	internal func createButton(withImage image: UIImage? = nil,
+			withTitle title: String? = nil) -> UIButton {
+
+		let button = UIButton()
+
+		button.setImage(image, forState: .Normal)
+		button.backgroundColor = highlightColor
+		button.tintColor = .whiteColor()
+		button.setTitle(title, forState: .Normal)
+		button.adjustsImageWhenHighlighted = false
+		button.addTarget(self,
+		                 action: #selector(rightButtonClick),
+		                 forControlEvents: .TouchUpInside)
+
+		setButtonDefaultStyle(button)
+
+		return button
+	}
 	
 	//MARK: UITextField
 	
