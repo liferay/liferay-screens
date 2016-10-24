@@ -20,6 +20,8 @@ public class DefaultTextField: UITextField {
 	@IBInspectable public var defaultColor: UIColor = UIColor.lightGrayColor()
 	
 	@IBInspectable public var highlightColor: UIColor = DefaultThemeBasicBlue
+
+	@IBInspectable public var padding: CGFloat = 15
 	
 	@IBInspectable public var leftImage: UIImage? {
 		didSet {
@@ -77,5 +79,21 @@ public class DefaultTextField: UITextField {
 		self.layer.borderColor = highlightColor.CGColor
 		
 		return super.becomeFirstResponder()
+	}
+
+	public override func textRectForBounds(bounds: CGRect) -> CGRect {
+		if let _ = leftView {
+			return super.textRectForBounds(bounds)
+		}
+
+		return CGRect(x: padding, y: 0, width: bounds.width - padding, height: bounds.height)
+	}
+
+	public override func editingRectForBounds(bounds: CGRect) -> CGRect {
+		if let _ = leftView {
+			return super.editingRectForBounds(bounds)
+		}
+
+		return textRectForBounds(bounds)
 	}
 }
