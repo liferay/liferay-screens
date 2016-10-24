@@ -15,7 +15,12 @@ import UIKit
 
 public class DefaultTextField: UITextField {
 
+
+	//MARK: Public variables
+
 	public var buttonMargin: CGFloat = 10
+
+	public var onRightButtonClick: (() -> ())?
 	
 	//MARK: IBInspectable
 	
@@ -85,7 +90,11 @@ public class DefaultTextField: UITextField {
 		self.layer.borderWidth = 1.0
 		self.layer.borderColor = defaultColor.CGColor
 	}
-	
+
+	internal func rightButtonClick() {
+		onRightButtonClick?()
+	}
+
 	
 	//MARK: UITextField
 	
