@@ -16,12 +16,9 @@ import UIKit
 
 public class LoginView_default: BaseScreenletView, LoginViewModel {
 
-	@IBOutlet public weak var userNameIcon: UIImageView!
-	@IBOutlet public weak var userNameField: UITextField!
-	@IBOutlet public weak var passwordField: UITextField!
+	@IBOutlet public weak var userNameField: DefaultTextField!
+	@IBOutlet public weak var passwordField: DefaultTextField!
 	@IBOutlet public weak var loginButton: UIButton!
-	@IBOutlet public weak var userNameBackground: UIImageView!
-	@IBOutlet public weak var passwordBackground: UIImageView!
 	@IBOutlet public weak var authorizeButton: UIButton!
 
 	override public var progressMessages: [String:ProgressMessages] {
@@ -39,8 +36,7 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 			setBasicAuthMethodStyles(
 					view: self,
 					basicAuthMethod: BasicAuthMethod.create(basicAuthMethod),
-					userNameField: userNameField,
-					userNameIcon: userNameIcon)
+					userNameField: userNameField)
 		}
 	}
 
@@ -108,16 +104,6 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 
 	override public func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
-	}
-
-
-	//MARK: UITextFieldDelegate
-
-	internal func textFieldShouldBeginEditing(textField: UITextField!) -> Bool {
-		userNameBackground?.highlighted = (textField == userNameField);
-		passwordBackground?.highlighted = (textField == passwordField);
-
-		return true
 	}
 
 	public func configureAuthType() {
