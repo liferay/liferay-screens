@@ -29,7 +29,9 @@ public class DefaultTextField: UITextField {
 	
 	@IBInspectable public var highlightColor: UIColor = DefaultThemeBasicBlue
 
-	@IBInspectable public var padding: CGFloat = 15
+	@IBInspectable public var paddingLeft: CGFloat = 15
+
+	@IBInspectable public var paddingRight: CGFloat = 15
 	
 	@IBInspectable public var leftImage: UIImage? {
 		didSet {
@@ -135,7 +137,7 @@ public class DefaultTextField: UITextField {
 			return super.textRectForBounds(bounds)
 		}
 
-		return CGRect(x: padding, y: 0, width: bounds.width - padding, height: bounds.height)
+		return CGRect(x: paddingLeft, y: 0, width: bounds.width - paddingRight, height: bounds.height)
 	}
 
 	public override func editingRectForBounds(bounds: CGRect) -> CGRect {
