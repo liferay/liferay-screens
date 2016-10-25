@@ -37,6 +37,10 @@ public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase 
 		return SlideShowLayout()
 	}
 
+	override func updateRefreshControl() {
+		//No refresh control in slideshow mode
+	}
+
 	override public func doFillLoadedCell(
 			indexPath indexPath: NSIndexPath,
 			cell: UICollectionViewCell, object:AnyObject) {
