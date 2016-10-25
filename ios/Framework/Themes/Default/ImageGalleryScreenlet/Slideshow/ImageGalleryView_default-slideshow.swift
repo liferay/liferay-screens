@@ -37,7 +37,7 @@ public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase 
 		return SlideShowLayout()
 	}
 
-	override func updateRefreshControl() {
+	override public func updateRefreshControl() {
 		//No refresh control in slideshow mode
 	}
 
