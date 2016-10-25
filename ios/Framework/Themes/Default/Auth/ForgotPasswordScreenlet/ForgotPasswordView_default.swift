@@ -43,7 +43,7 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 	}
 
 
-	//MARK: AuthBasedViewModel
+	//MARK: BasicAuthBasedType
 
 	public var basicAuthMethod: String? = BasicAuthMethod.Email.rawValue {
 		didSet {
