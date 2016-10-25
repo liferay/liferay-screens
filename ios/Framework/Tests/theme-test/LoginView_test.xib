@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,80 +12,73 @@
             <rect key="frame" x="0.0" y="0.0" width="228" height="235"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="default-field.png" highlightedImage="default-field-focused.png" id="89h-kX-BJz" userLabel="bg-email.png">
-                    <rect key="frame" x="0.0" y="0.0" width="228" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <rect key="contentStretch" x="0.5" y="0.5" width="0.013157894999999999" height="0.068181818000000005"/>
-                </imageView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="default-field.png" highlightedImage="default-field-focused.png" id="c9N-IO-KZH" userLabel="bg-password.png">
-                    <rect key="frame" x="0.0" y="56" width="228" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <rect key="contentStretch" x="0.5" y="0.5" width="0.013157894999999999" height="0.068181818000000005"/>
-                </imageView>
-                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" minimumFontSize="17" id="lQM-e9-Lbg">
-                    <rect key="frame" x="42" y="0.0" width="186" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lQM-e9-Lbg" customClass="DefaultTextField" customModule="LiferayScreens">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="Pxs-d8-raY"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
                     <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="default-user-icon.png"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="delegate" destination="iN0-l3-epB" id="Ljx-cw-S27"/>
                     </connections>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" id="XBk-dU-LXI">
-                    <rect key="frame" x="42" y="56" width="186" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XBk-dU-LXI" customClass="DefaultTextField" customModule="LiferayScreens">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="Nmj-Ac-1Pt"/>
+                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
                     <textInputTraits key="textInputTraits" returnKeyType="send" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="default-lock-icon.png"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="delegate" destination="iN0-l3-epB" id="YVX-sf-eSF"/>
                     </connections>
                 </textField>
-                <button opaque="NO" tag="3" contentMode="scaleToFill" restorationIdentifier="login-action" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="kq3-Yb-Mpp">
-                    <rect key="frame" x="0.0" y="183" width="228" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.0" green="0.72156862749999995" blue="0.87843137250000003" alpha="0.87" colorSpace="deviceRGB"/>
+                <button opaque="NO" tag="3" contentMode="scaleToFill" restorationIdentifier="login-action" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kq3-Yb-Mpp">
+                    <color key="backgroundColor" red="0.083623558282852173" green="0.66497266292572021" blue="0.84832382202148438" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="4dK-ZV-gKw"/>
+                    </constraints>
                     <state key="normal">
                         <attributedString key="attributedTitle">
                             <fragment content="SIGN IN">
                                 <attributes>
-                                    <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <font key="NSFont" size="16" name="HelveticaNeue"/>
                                 </attributes>
                             </fragment>
                         </attributedString>
                     </state>
                 </button>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="default-lock-icon.png" id="hYc-ZQ-knx">
-                    <rect key="frame" x="16" y="70" width="16" height="16"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="default-mail-icon.png" id="cQm-Dk-rcd">
-                    <rect key="frame" x="16" y="14" width="16" height="16"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
             </subviews>
+            <constraints>
+                <constraint firstItem="XBk-dU-LXI" firstAttribute="top" secondItem="lQM-e9-Lbg" secondAttribute="bottom" constant="12" id="06q-cN-pg8"/>
+                <constraint firstItem="lQM-e9-Lbg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="11v-qm-q5V"/>
+                <constraint firstAttribute="bottom" secondItem="kq3-Yb-Mpp" secondAttribute="bottom" constant="8" id="Pro-f8-89g"/>
+                <constraint firstAttribute="trailing" secondItem="kq3-Yb-Mpp" secondAttribute="trailing" id="Qyj-Gm-eXf"/>
+                <constraint firstItem="kq3-Yb-Mpp" firstAttribute="top" secondItem="XBk-dU-LXI" secondAttribute="bottom" constant="83" id="UCs-Rx-9Mj"/>
+                <constraint firstAttribute="trailing" secondItem="XBk-dU-LXI" secondAttribute="trailing" id="bvZ-Ob-a8h"/>
+                <constraint firstItem="XBk-dU-LXI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cGK-Ud-CUJ"/>
+                <constraint firstItem="kq3-Yb-Mpp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="niu-ec-3FS"/>
+                <constraint firstAttribute="trailing" secondItem="lQM-e9-Lbg" secondAttribute="trailing" id="osl-cA-iBL"/>
+                <constraint firstItem="lQM-e9-Lbg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="wAF-u3-d8Y"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="loginButton" destination="kq3-Yb-Mpp" id="XwX-Qs-mrT"/>
-                <outlet property="passwordBackground" destination="c9N-IO-KZH" id="agA-os-ykP"/>
                 <outlet property="passwordField" destination="XBk-dU-LXI" id="oRJ-4O-E9H"/>
-                <outlet property="userNameBackground" destination="89h-kX-BJz" id="QTR-3a-gEp"/>
                 <outlet property="userNameField" destination="lQM-e9-Lbg" id="HV9-wo-yIO"/>
-                <outlet property="userNameIcon" destination="cQm-Dk-rcd" id="U51-Ib-PmT"/>
             </connections>
             <point key="canvasLocation" x="144" y="154.5"/>
         </view>
     </objects>
     <resources>
-        <image name="default-field-focused.png" width="228" height="44"/>
-        <image name="default-field.png" width="228" height="44"/>
         <image name="default-lock-icon.png" width="12" height="16"/>
-        <image name="default-mail-icon.png" width="16" height="16"/>
+        <image name="default-user-icon.png" width="16" height="16"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>
