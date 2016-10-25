@@ -25,9 +25,11 @@ public class DefaultTextField: UITextField {
 	
 	//MARK: IBInspectable
 	
-	@IBInspectable public var defaultColor: UIColor = UIColor.lightGrayColor()
+	@IBInspectable public var defaultColor: UIColor = .lightGrayColor()
 	
 	@IBInspectable public var highlightColor: UIColor = DefaultThemeBasicBlue
+
+	@IBInspectable public var errorColor: UIColor = .redColor()
 
 	@IBInspectable public var paddingLeft: CGFloat = 15
 
@@ -85,7 +87,17 @@ public class DefaultTextField: UITextField {
 	public override func prepareForInterfaceBuilder() {
 		setup()
 	}
-	
+
+
+	//MARK: Public methods
+
+	public func setDefaultState() {
+		self.layer.borderColor = defaultColor.CGColor
+	}
+
+	public func setErrorState() {
+		self.layer.borderColor = errorColor.CGColor
+	}
 	
 	//MARK: Internal methods
 	
