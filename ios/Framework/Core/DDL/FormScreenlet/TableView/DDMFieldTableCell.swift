@@ -149,7 +149,7 @@ public class DDMFieldTableCell: UITableViewCell {
 	}
 
 	internal func simpleTapDetected() {
-		formView!.resignFirstResponder()
+		formView!.endEditing(true)
 	}
 
 	internal func moveSubviewsVertically(offsetY:CGFloat) {
