@@ -29,7 +29,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	public var editable: Bool = true {
 		didSet {
-			userInteractionEnabled = editable
+			changeEditable(editable)
 		}
 	}
 
@@ -260,6 +260,10 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 		for subview:UIView in view.subviews {
 			setUpView(subview)
 		}
+	}
+
+	public func changeEditable(editable: Bool) {
+		userInteractionEnabled = editable
 	}
 
 }
