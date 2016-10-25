@@ -37,7 +37,7 @@ PODS:
     - AFNetworking (= 2.6.3)
   - Liferay-OAuth (1.2.1):
     - Liferay-iOS-SDK (~> 7.0.4)
-  - LiferayScreens (1.4.1):
+  - LiferayScreens (2.0.0):
     - Cosmos (= 0.0.1)
     - CryptoSwift (~> 0.5.2)
     - DTPickerPresenter (= 0.2.0)
@@ -115,7 +115,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   LiferayScreens:
-    :path: "../../.."
+    :path: ../../..
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -127,7 +127,7 @@ SPEC CHECKSUMS:
   Kingfisher: d84c5fd176ea86cc7b8aac65fd55feda6f70f130
   Liferay-iOS-SDK: ea3212ee6e62c866ca38b9df7415585371c15b22
   Liferay-OAuth: a9ff190558928bec8ebc18dd326b01bddd7e2968
-  LiferayScreens: 92b61ba84cff076a1646b899e86c085f032aea46
+  LiferayScreens: 438804394064728815d95286ac6d58c0c2dada77
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MDRadialProgress: 1068574b9b4b870f64b605b07f734385bde5104d
   ODRefreshControl: 907e6149d72dde488d5917ccfabee5bd8d711a20
@@ -139,4 +139,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: d26ca19381d6db0360742d45b8b014a7ad5ea2f7
 
-COCOAPODS: 1.1.0.rc.3
+COCOAPODS: 1.1.1
