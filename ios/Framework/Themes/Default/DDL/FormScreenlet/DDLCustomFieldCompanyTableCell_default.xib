@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,11 +13,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="151"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WWD-jz-pJ6" id="h6C-76-TvA">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="151"/>
+                <frame key="frameInset" width="320" height="150"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JT4-5T-4gp">
-                        <rect key="frame" x="8" y="5" width="304" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="NV6-dO-gxA"/>
                         </constraints>
@@ -24,30 +24,23 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-field.png" highlightedImage="default-field-focused.png" translatesAutoresizingMaskIntoConstraints="NO" id="ohg-xl-HdE">
-                        <rect key="frame" x="8" y="33" width="304" height="44"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="44" id="kCq-0Z-XXM"/>
-                        </constraints>
-                    </imageView>
-                    <view contentMode="TopLeft" translatesAutoresizingMaskIntoConstraints="NO" id="0Cg-Uy-Tyo" userLabel="Separator">
-                        <rect key="frame" x="10" y="143" width="300" height="1"/>
+                    <view contentMode="TopLeft" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Cg-Uy-Tyo" userLabel="Separator">
+                        <frame key="frameInset" minX="10" minY="143" width="300" height="1"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="4Ob-aO-Goa"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zL-FQ-f10">
-                        <rect key="frame" x="8" y="85" width="304" height="50"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zL-FQ-f10">
+                        <frame key="frameInset" minX="8" minY="85" width="304" height="50"/>
                         <string key="text">This is a custom cell, just for demo purposes. This cell would be used for a field called "Company" in the Dynamic Data List defined in the portal</string>
                         <fontDescription key="fontDescription" name="HelveticaNeue-ThinItalic" family="Helvetica Neue" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fus-kx-qK3">
-                        <rect key="frame" x="16" y="39" width="288" height="33"/>
+                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fus-kx-qK3" customClass="DefaultTextField" customModule="LiferayScreens">
                         <constraints>
-                            <constraint firstAttribute="height" constant="33" id="bOC-Dy-XD1"/>
+                            <constraint firstAttribute="height" constant="44" id="CGV-2h-pe2"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
@@ -57,34 +50,25 @@
                     </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailingMargin" secondItem="fus-kx-qK3" secondAttribute="trailing" constant="8" id="0Vs-SW-PEG"/>
-                    <constraint firstAttribute="trailing" secondItem="ohg-xl-HdE" secondAttribute="trailing" constant="8" id="15U-jg-FDP"/>
-                    <constraint firstItem="2zL-FQ-f10" firstAttribute="top" secondItem="ohg-xl-HdE" secondAttribute="bottom" constant="8" id="3hj-CN-s60"/>
                     <constraint firstItem="JT4-5T-4gp" firstAttribute="top" secondItem="h6C-76-TvA" secondAttribute="top" constant="5" id="435-BQ-Pdb"/>
+                    <constraint firstItem="fus-kx-qK3" firstAttribute="leading" secondItem="h6C-76-TvA" secondAttribute="leading" constant="8" id="4S2-aW-M12"/>
                     <constraint firstItem="0Cg-Uy-Tyo" firstAttribute="top" secondItem="2zL-FQ-f10" secondAttribute="bottom" constant="8" id="Cgb-hj-3eX"/>
                     <constraint firstItem="JT4-5T-4gp" firstAttribute="leading" secondItem="h6C-76-TvA" secondAttribute="leading" constant="8" id="D0h-dm-x4x"/>
-                    <constraint firstItem="2zL-FQ-f10" firstAttribute="top" secondItem="ohg-xl-HdE" secondAttribute="bottom" constant="8" id="HeE-lN-Oox"/>
-                    <constraint firstItem="fus-kx-qK3" firstAttribute="centerY" secondItem="ohg-xl-HdE" secondAttribute="centerY" id="Pyr-Xg-mrs"/>
-                    <constraint firstItem="ohg-xl-HdE" firstAttribute="leading" secondItem="h6C-76-TvA" secondAttribute="leading" constant="8" id="bHB-7H-XKm"/>
+                    <constraint firstItem="2zL-FQ-f10" firstAttribute="top" secondItem="fus-kx-qK3" secondAttribute="bottom" constant="8" id="JnX-Km-0Jj"/>
                     <constraint firstAttribute="trailing" secondItem="JT4-5T-4gp" secondAttribute="trailing" constant="8" id="buA-Y4-S9T"/>
                     <constraint firstAttribute="trailing" secondItem="2zL-FQ-f10" secondAttribute="trailing" constant="8" id="ca8-uK-zAv"/>
+                    <constraint firstAttribute="trailing" secondItem="fus-kx-qK3" secondAttribute="trailing" constant="8" id="edF-V0-Jmv"/>
                     <constraint firstItem="2zL-FQ-f10" firstAttribute="leading" secondItem="h6C-76-TvA" secondAttribute="leading" constant="8" id="giz-sq-QP7"/>
+                    <constraint firstItem="fus-kx-qK3" firstAttribute="top" secondItem="JT4-5T-4gp" secondAttribute="bottom" constant="5" id="hzo-Jz-V4w"/>
                     <constraint firstAttribute="trailingMargin" secondItem="0Cg-Uy-Tyo" secondAttribute="trailing" constant="2" id="kdG-XM-weZ"/>
                     <constraint firstItem="0Cg-Uy-Tyo" firstAttribute="leading" secondItem="h6C-76-TvA" secondAttribute="leadingMargin" constant="2" id="l6b-VR-to3"/>
-                    <constraint firstItem="fus-kx-qK3" firstAttribute="leading" secondItem="h6C-76-TvA" secondAttribute="leadingMargin" constant="8" id="svQ-LM-hGc"/>
-                    <constraint firstItem="ohg-xl-HdE" firstAttribute="top" secondItem="JT4-5T-4gp" secondAttribute="bottom" constant="8" id="yhv-hs-cZ2"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="label" destination="JT4-5T-4gp" id="f5q-Ow-3uC"/>
                 <outlet property="textField" destination="fus-kx-qK3" id="YV1-ZC-nBh"/>
-                <outlet property="textFieldBackground" destination="ohg-xl-HdE" id="bhZ-pI-I05"/>
             </connections>
             <point key="canvasLocation" x="198" y="380.5"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="default-field-focused.png" width="228" height="44"/>
-        <image name="default-field.png" width="228" height="44"/>
-    </resources>
 </document>
