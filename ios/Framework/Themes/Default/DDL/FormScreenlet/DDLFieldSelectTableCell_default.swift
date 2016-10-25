@@ -20,17 +20,15 @@ import UIKit
 
 public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_default {
 
-	@IBOutlet public var chooseButton: UIButton? {
-		didSet {
-			setButtonDefaultStyle(chooseButton)
+
+	//MARK: UITableViewCell
+
+	public override func  awakeFromNib() {
+		super.awakeFromNib()
+
+		textField?.onRightButtonClick = { [weak self] in
+			self?.textField?.becomeFirstResponder()
 		}
-	}
-
-
-	//MARK: Actions
-
-	@IBAction private func chooseButtonAction(sender: AnyObject) {
-		textField!.becomeFirstResponder()
 	}
 
 
@@ -75,7 +73,7 @@ public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_defau
 			(selectedComponents:[AnyObject]!, selectedIndexPath:NSIndexPath!) -> Void in
 
 			if let text = selectedComponents.first?.description {
-				self.textField!.text = text
+				self.textField?.text = text
 				field.currentValue = text
 
 				let fullRange = NSMakeRange(0, text.characters.count)
