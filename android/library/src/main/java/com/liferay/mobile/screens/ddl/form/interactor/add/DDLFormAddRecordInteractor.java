@@ -66,7 +66,7 @@ public class DDLFormAddRecordInteractor extends BaseCacheWriteInteractor<DDLForm
 
 	@Override
 	public void onFailure(DDLFormEvent event) {
-		getListener().error(event.getException(), DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION);
+		getListener().error(event.getException(), DDLFormScreenlet.ADD_RECORD_ACTION);
 	}
 
 	protected void validate(long groupId, Record record) {
