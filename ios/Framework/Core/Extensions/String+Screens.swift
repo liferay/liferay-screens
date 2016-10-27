@@ -116,4 +116,10 @@ extension String {
 
 		return self
 	}
+
+	func trim() -> String {
+		return stringByTrimmingCharactersInSet(
+			NSCharacterSet.whitespaceAndNewlineCharacterSet())
+	}
+
 }
