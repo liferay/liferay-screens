@@ -178,15 +178,6 @@ public class DDMFieldStringWithOptions : DDMField {
 
 	private func extractFirstOption(options: String) -> String? {
 
-		func removeFirstAndLastChars(value: String) -> String {
-			if value.characters.count >= 2 {
-				let range = value.startIndex.successor()..<value.endIndex.predecessor()
-				return value.substringWithRange(range)
-			}
-
-			return value
-		}
-
 		let optionsArray = removeFirstAndLastChars(options).componentsSeparatedByString(",")
 
 		if let firstOption = optionsArray.first {

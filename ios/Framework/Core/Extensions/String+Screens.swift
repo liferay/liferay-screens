@@ -108,4 +108,12 @@ extension String {
 		return NSString(format:"#%06x", rgb) as String
 	}
 
+	func removeFirstAndLastChars() -> String {
+		if characters.count >= 2 {
+			let range = startIndex.successor()..<endIndex.predecessor()
+			return substringWithRange(range)
+		}
+
+		return self
+	}
 }
