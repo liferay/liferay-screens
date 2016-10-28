@@ -23,9 +23,10 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 
 	override public var progressMessages: [String:ProgressMessages] {
 		return [
-			BaseScreenlet.DefaultAction :
-				[.Working : LocalizedString("default", key: "login-loading-message", obj: self),
-				.Failure : LocalizedString("default", key: "login-loading-error", obj: self)]]
+			BaseScreenlet.DefaultAction : [
+				.Working : LocalizedString("default", key: "login-loading-message", obj: self),
+				.Failure : LocalizedString("default", key: "login-loading-error", obj: self)]
+		]
 	}
 
 

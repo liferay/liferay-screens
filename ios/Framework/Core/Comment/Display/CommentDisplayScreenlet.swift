@@ -103,17 +103,17 @@ import UIKit
 
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		switch name {
-		case BaseScreenlet.DefaultAction:
-			return createCommentLoadInteractor()
-		case CommentDisplayScreenlet.DeleteAction:
-			return createCommentDeleteInteractor()
-		case CommentDisplayScreenlet.UpdateAction:
-			guard let body = sender as? String else {
+			case BaseScreenlet.DefaultAction:
+				return createCommentLoadInteractor()
+			case CommentDisplayScreenlet.DeleteAction:
+				return createCommentDeleteInteractor()
+			case CommentDisplayScreenlet.UpdateAction:
+				guard let body = sender as? String else {
+					return nil
+				}
+				return createCommentUpdateInteractor(body)
+			default:
 				return nil
-			}
-			return createCommentUpdateInteractor(body)
-		default:
-			return nil
 		}
 	}
 

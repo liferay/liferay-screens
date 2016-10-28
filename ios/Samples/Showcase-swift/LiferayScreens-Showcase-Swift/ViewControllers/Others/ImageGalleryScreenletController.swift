@@ -37,14 +37,14 @@ public class ImageGalleryScreenletController : UIViewController, ImageGalleryScr
 	@IBAction func segmentedControlValueChanged(sender: UISegmentedControl) {
 
 		switch sender.selectedSegmentIndex {
-		case 0:
-			screenlet?.themeName = "default"
-		case 1:
-			screenlet?.themeName = "default-slideshow"
-		case 2:
-			screenlet?.themeName = "default-list"
-		default:
-			break
+			case 0:
+				screenlet?.themeName = "default"
+			case 1:
+				screenlet?.themeName = "default-slideshow"
+			case 2:
+				screenlet?.themeName = "default-list"
+			default:
+				break
 		}
 
 		screenlet?.loadList()

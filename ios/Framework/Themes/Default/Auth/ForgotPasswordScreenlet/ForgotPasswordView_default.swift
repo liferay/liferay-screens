@@ -22,10 +22,11 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 
 	override public var progressMessages: [String:ProgressMessages] {
 		return [
-			BaseScreenlet.DefaultAction :
-				[.Working : LocalizedString("default", key: "forgotpassword-loading-message", obj: self),
+			BaseScreenlet.DefaultAction : [
+				.Working : LocalizedString("default", key: "forgotpassword-loading-message", obj: self),
 				.Failure : LocalizedString("default", key: "forgotpassword-loading-error", obj: self),
-				.Success : LocalizedString("default", key: "forgotpassword-\(successMessageKey)", obj: self)]
+				.Success : LocalizedString("default", key: "forgotpassword-\(successMessageKey)", obj: self)
+			]
 		]
 	}
 
@@ -47,10 +48,9 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 
 	public var basicAuthMethod: String? = BasicAuthMethod.Email.rawValue {
 		didSet {
-			setBasicAuthMethodStyles(
-					view: self,
-					basicAuthMethod: BasicAuthMethod.create(basicAuthMethod),
-					userNameField: userNameField)
+			setBasicAuthMethodStyles(view: self,
+			                         basicAuthMethod: BasicAuthMethod.create(basicAuthMethod),
+			                         userNameField: userNameField)
 		}
 	}
 

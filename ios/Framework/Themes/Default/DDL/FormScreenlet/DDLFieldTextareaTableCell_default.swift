@@ -102,11 +102,11 @@ public class DDLFieldTextareaTableCell_default: DDMFieldTableCell, UITextViewDel
 	//MARK: UITextViewDelegate
 
 	public func textViewShouldBeginEditing(textView: UITextView) -> Bool {
-		let heightLabelOffset:CGFloat =
-				DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel
+		let heightLabelOffset: CGFloat =
+			DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel
 
 		let newCellHeight = DDLFieldTextareaExpandedCellHeight +
-				(field!.showLabel ? heightLabelOffset : 0.0)
+			(field!.showLabel ? heightLabelOffset : 0.0)
 
 		setCellHeight(newCellHeight)
 
@@ -134,7 +134,7 @@ public class DDLFieldTextareaTableCell_default: DDMFieldTableCell, UITextViewDel
 		textView.frame = originalTextViewRect
 
 		let heightLabelOffset: CGFloat =
-				DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel
+			DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel
 
 		let height = resetCellHeight()
 
@@ -146,8 +146,8 @@ public class DDLFieldTextareaTableCell_default: DDMFieldTableCell, UITextViewDel
 	}
 
 	public func textView(textView: UITextView,
-			shouldChangeTextInRange range: NSRange,
-			replacementText text: String) -> Bool {
+	                     shouldChangeTextInRange range: NSRange,
+	                     replacementText text: String) -> Bool {
 
 		var result = false
 
@@ -159,8 +159,8 @@ public class DDLFieldTextareaTableCell_default: DDMFieldTableCell, UITextViewDel
 		else {
 			result = true
 
-			let newText = (textView.text as NSString).stringByReplacingCharactersInRange(range,
-					withString:text)
+			let oriText = textView.text as NSString
+			let newText = oriText.stringByReplacingCharactersInRange(range, withString: text)
 
 			placeholder!.changeVisibility(visible: newText != "")
 

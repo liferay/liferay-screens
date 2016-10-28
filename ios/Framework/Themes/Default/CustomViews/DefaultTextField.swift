@@ -112,7 +112,7 @@ public class DefaultTextField: UITextField {
 	}
 
 	internal func createButton(withImage image: UIImage? = nil,
-			withTitle title: String? = nil) -> UIButton {
+								withTitle title: String? = nil) -> UIButton {
 
 		let button = UIButton()
 
@@ -168,11 +168,11 @@ public class DefaultTextField: UITextField {
 		let boundsCalculated = super.rightViewRectForBounds(bounds)
 
 		let origin = CGPoint(x: boundsCalculated.origin.x - buttonMargin/2,
-				 y: boundsCalculated.minY)
+		                     y: boundsCalculated.minY)
 
 		let size = CGSize(width: bounds.height - buttonMargin,
-				height: bounds.height - buttonMargin)
-
+		                  height: bounds.height - buttonMargin)
+		
 		return CGRect(origin: origin, size: size)
 	}
 }

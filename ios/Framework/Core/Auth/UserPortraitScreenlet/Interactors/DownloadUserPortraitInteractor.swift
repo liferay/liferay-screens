@@ -28,14 +28,14 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 		var cacheKey: String {
 			switch self {
-			case .Attributes(let portraitId, _, _):
-				return "portraitId-\(portraitId)"
-			case .UserId(let userId):
-				return "userId-\(userId)"
-			case .EmailAddress(let companyId, let emailAddress):
-				return "emailAddress-\(companyId)-\(emailAddress)"
-			case .ScreenName(let companyId, let screenName):
-				return "screenName-\(companyId)-\(screenName)"
+				case .Attributes(let portraitId, _, _):
+					return "portraitId-\(portraitId)"
+				case .UserId(let userId):
+					return "userId-\(userId)"
+				case .EmailAddress(let companyId, let emailAddress):
+					return "emailAddress-\(companyId)-\(emailAddress)"
+				case .ScreenName(let companyId, let screenName):
+					return "screenName-\(companyId)-\(screenName)"
 			}
 		}
 
