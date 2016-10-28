@@ -114,12 +114,14 @@ public class DDMFieldStringWithOptions : DDMField {
 	override internal func convert(fromString value: String?) -> AnyObject? {
 		var result = [Option]()
 
-		if let firstOptionValue = extractOption(value) {
-			if let foundOption = findOptionByLabel(firstOptionValue) {
-				result = [foundOption]
+		let optionsValue = extractOptions(value)
+
+		for option in optionsValue {
+			if let foundOption = findOptionByLabel(option) {
+				result.append(foundOption)
 			}
-			else if let foundOption = findOptionByValue(firstOptionValue) {
-				result = [foundOption]
+			else if let foundOption = findOptionByValue(option) {
+				result.append(foundOption)
 			}
 		}
 
@@ -127,13 +129,17 @@ public class DDMFieldStringWithOptions : DDMField {
 	}
 
 	override func convert(fromLabel labels: String?) -> AnyObject? {
-		if let label = extractOption(labels) {
-			if let foundOption = findOptionByLabel(label) {
-				return [foundOption]
+		var options =  [Option]()
+
+		let optionsString = extractOptions(labels)
+
+		for option in optionsString {
+			if let foundOption = findOptionByLabel(option) {
+				options.append(foundOption)
 			}
 		}
 
-		return [Option]()
+		return options
 	}
 
 
@@ -164,29 +170,29 @@ public class DDMFieldStringWithOptions : DDMField {
 
 	//MARK: Private methods
 
-	private func extractOption(options: String?) -> String? {
-		if let optionsValue = options {
+	private func extractOptions(optionsString: String?) -> [String] {
+		var options = [String]()
+
+		if let optionsValue = optionsString {
+			var parsedOptions = optionsValue
 			if optionsValue.hasPrefix("[") {
-				return extractFirstOption(optionsValue)
+				parsedOptions = parsedOptions.removeFirstAndLastChars()
 			}
 
-			return optionsValue
+			options = parsedOptions.componentsSeparatedByString(",")
+					.map (extractOption)
+					.map { $0.trim() }
 		}
 
-		return nil
+		return options
 	}
 
-	private func extractFirstOption(options: String) -> String? {
-
-		let optionsArray = removeFirstAndLastChars(options).componentsSeparatedByString(",")
-
-		if let firstOption = optionsArray.first {
-			return firstOption.hasPrefix("\"")
-					? removeFirstAndLastChars(firstOption)
-					: firstOption
+	private func extractOption(option: String) -> String {
+		if option.hasPrefix("\"") {
+			return option.removeFirstAndLastChars()
 		}
 
-		return nil
+		return option
 	}
 
 	private func findOptionByValue(value: String) -> Option? {
