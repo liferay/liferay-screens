@@ -78,8 +78,8 @@ public class DDMFieldTableCell: UITableViewCell {
 	}
 
 	public func setCellHeight(height: CGFloat) {
-		formView!.setCellHeight(height, forField: field!)
-		
+		formView?.setCellHeight(height, forField: field!)
+
 		//FIXME Hack to fire the repaint of the cells
 		tableView!.beginUpdates()
 		tableView!.endUpdates()
@@ -149,7 +149,7 @@ public class DDMFieldTableCell: UITableViewCell {
 	}
 
 	internal func simpleTapDetected() {
-		formView!.endEditing(true)
+		formView?.endEditing(true)
 	}
 
 	internal func moveSubviewsVertically(offsetY:CGFloat) {
