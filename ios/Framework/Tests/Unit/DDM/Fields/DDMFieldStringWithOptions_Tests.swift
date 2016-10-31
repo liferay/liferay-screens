@@ -76,13 +76,18 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 		let predefinedOptions = stringField.predefinedValue as! [DDMFieldStringWithOptions.Option]
 
 		//FIXME only support one predefined value
-		XCTAssertEqual(1, predefinedOptions.count)
+		XCTAssertEqual(2, predefinedOptions.count)
 
-		let predefinedOption = predefinedOptions[0]
+		let firstPredefinedOption = predefinedOptions[0]
+		let secondPredefinedOption = predefinedOptions[1]
 
-		XCTAssertEqual("option_1", predefinedOption.name)
-		XCTAssertEqual("value 1", predefinedOption.value)
-		XCTAssertEqual("Option 1", predefinedOption.label)
+		XCTAssertEqual("option_1", firstPredefinedOption.name)
+		XCTAssertEqual("value 1", firstPredefinedOption.value)
+		XCTAssertEqual("Option 1", firstPredefinedOption.label)
+
+		XCTAssertEqual("option_2", secondPredefinedOption.name)
+		XCTAssertEqual("value 2", secondPredefinedOption.value)
+		XCTAssertEqual("Option 2", secondPredefinedOption.label)
 	}
 
 	func test_JSONParse_ShouldExtractValues() {
@@ -328,6 +333,45 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 		stringField.currentValue = "Option 3"
 
 		XCTAssertTrue(stringField.validate())
+	}
+
+	func test_ShouldDetectMultiple_WhenSelectHasMultipleProperty() {
+		let fields = DDMJSONParser().parse(selectWithPredefinedValuesJSON, locale: spanishLocale)
+
+		let stringField = fields![0] as! DDMFieldStringWithOptions
+
+		XCTAssertTrue(stringField.multiple)
+	}
+
+	func test_ShouldParseMultipleOptions_SeparatedByComma() {
+		let fields = DDMXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
+
+		let stringField = fields![0] as! DDMFieldStringWithOptions
+
+		stringField.currentValue = "Option 3,Option 1"
+
+		XCTAssertTrue(stringField.currentValue is [DDMFieldStringWithOptions.Option])
+		let currentOptions = stringField.currentValue as! [DDMFieldStringWithOptions.Option]
+
+		XCTAssertEqual(2, currentOptions.count)
+
+		XCTAssertEqual("Option 3", currentOptions.first!.label)
+		XCTAssertEqual("option_3", currentOptions.first!.name)
+		XCTAssertEqual("value 3", currentOptions.first!.value)
+
+		XCTAssertEqual("Option 1", currentOptions.last!.label)
+		XCTAssertEqual("option_1", currentOptions.last!.name)
+		XCTAssertEqual("value 1", currentOptions.last!.value)
+	}
+
+	func test_ShouldRenderMultipleOptions() {
+		let fields = DDMXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
+
+		let stringField = fields![0] as! DDMFieldStringWithOptions
+
+		stringField.currentValue = "Option 3, Option 1"
+
+		XCTAssertEqual("[\"value 3\", \"value 1\"]", stringField.currentValueAsString)
 	}
 
 

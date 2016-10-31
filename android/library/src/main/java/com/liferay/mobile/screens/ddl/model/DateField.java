@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -81,6 +82,7 @@ public class DateField extends Field<Date> {
 			} else {
 				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy", getCurrentLocale());
 				simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+
 				return simpleDateFormat.parse(stringValue);
 			}
 		} catch (ParseException e) {
@@ -91,7 +93,18 @@ public class DateField extends Field<Date> {
 
 	@Override
 	protected String convertToData(Date value) {
-		return (value == null) ? null : Long.valueOf(value.getTime()).toString();
+		if (value == null) {
+			return null;
+		}
+
+		if(LiferayServerContext.isLiferay7()) {
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", getCurrentLocale());
+			simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+
+			return simpleDateFormat.format(value);
+		}
+
+		return Long.valueOf(value.getTime()).toString();
 	}
 
 	@Override

@@ -27,6 +27,7 @@ public class DDLFormDocumentUploadInteractor
 		service.putExtra("file", event.getDocumentField());
 		service.putExtra("userId", event.getUserId());
 		service.putExtra("folderId", event.getFolderId());
+		service.putExtra("repositoryId", event.getRepositoryId());
 		service.putExtra("filePrefix", event.getFilePrefix());
 		service.putExtra("targetScreenletId", getTargetScreenletId());
 		service.putExtra("actionName", getActionName());
