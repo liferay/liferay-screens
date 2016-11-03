@@ -29,6 +29,11 @@ public class LoginByScreenNameLiferay62Connector: GetUserByScreenNameLiferay62Co
 		}
 	}
 
+	override public func createSession() -> LRSession? {
+		SessionContext.logout()
+		return super.createSession()
+	}
+
 }
 
 
@@ -45,6 +50,11 @@ public class LoginByScreenNameLiferay70Connector: GetUserByScreenNameLiferay70Co
 		if lastError == nil {
 			loginWithResult()
 		}
+	}
+
+	override public func createSession() -> LRSession? {
+		SessionContext.logout()
+		return super.createSession()
 	}
 	
 }
