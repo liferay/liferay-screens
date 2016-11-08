@@ -20,6 +20,7 @@ public class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 	@IBOutlet weak var sendCommentButton: UIButton? {
 		didSet {
 			setButtonDefaultStyle(sendCommentButton)
+			updateButton()
 		}
 	}
 
@@ -37,7 +38,13 @@ public class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 	//MARK: Public methods
 
 	public func updateButton() {
-		sendCommentButton?.enabled = !(addCommentTextField?.text?.isEmpty ?? true)
+		sendCommentButton?.enabled = !(addCommentTextField?.text?.isEmpty ?? false)
+
+		if let sendCommentButton = sendCommentButton {
+			sendCommentButton.backgroundColor =
+				sendCommentButton.enabled ? DefaultThemeBasicBlue :
+						DefaultThemeBasicBlue.colorWithAlphaComponent(0.5)
+		}
 	}
 
 
