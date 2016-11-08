@@ -36,9 +36,9 @@ public class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextVi
 	}
 
 	public func initialize() {
-		descripText?.layer.borderColor = UIColor.grayColor().colorWithAlphaComponent(0.4).CGColor
-		descripText?.layer.borderWidth = 0.5
-		descripText?.layer.cornerRadius = 7
+		descripText?.layer.borderColor = UIColor.lightGrayColor().CGColor
+		descripText?.layer.borderWidth = 1.0
+		descripText?.layer.cornerRadius = 4.0
 		descripText?.delegate = self
 
 		hintLabel?.text = LocalizedString("default",key: "imagegallery-description", obj: self)
@@ -80,12 +80,15 @@ public class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextVi
 
 	public func textViewDidBeginEditing(textView: UITextView) {
 		hintLabel.alpha = 0
+		textView.layer.borderColor = DefaultThemeBasicBlue.CGColor
 	}
 
 	public func textViewDidEndEditing(textView: UITextView) {
 		if textView.text.isEmpty {
 			hintLabel.alpha = 0.5
 		}
+
+		textView.layer.borderColor = UIColor.lightGrayColor().CGColor
 	}
 
 	public func dismissKeyboard() {
