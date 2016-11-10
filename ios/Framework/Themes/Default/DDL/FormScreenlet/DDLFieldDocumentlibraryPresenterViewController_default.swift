@@ -78,6 +78,9 @@ public class DDMFieldDocumentlibraryPresenterViewController_default:
 	@IBAction private func selectPhotosAction(sender: AnyObject) {
 		imagePicker.sourceType = .SavedPhotosAlbum
 
+		// Reset media types to default
+		imagePicker.mediaTypes = [kUTTypeImage as String]
+
 		presentViewController(imagePicker, animated: true) {}
 	}
 
