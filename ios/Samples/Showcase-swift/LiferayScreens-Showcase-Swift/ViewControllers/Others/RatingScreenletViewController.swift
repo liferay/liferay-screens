@@ -32,22 +32,22 @@ class RatingScreenletViewController: UIViewController, RatingScreenletDelegate {
 	
 	@IBAction func segmentedControlChanged(sender: UISegmentedControl) {
 		switch sender.selectedSegmentIndex {
-		case 1:
-			screenlet?.entryId = LiferayServerContext.longPropertyForKey("ratingLikeEntryId")
-			screenlet?.themeName = "default-like"
-			screenlet?.ratingsGroupCount = 1
-		case 2:
-			screenlet?.entryId = LiferayServerContext.longPropertyForKey("ratingStarsEntryId")
-			screenlet?.themeName = "default-stars"
-			screenlet?.ratingsGroupCount = 5
-		case 3:
-			screenlet?.entryId = LiferayServerContext.longPropertyForKey("ratingEmojisEntryId")
-			screenlet?.themeName = "default-emojis"
-			screenlet?.ratingsGroupCount = 5
-		default:
-			screenlet?.entryId = LiferayServerContext.longPropertyForKey("ratingThumbsEntryId")
-			screenlet?.themeName = "default-thumbs"
-			screenlet?.ratingsGroupCount = 2
+			case 1:
+				screenlet?.entryId = LiferayServerContext.longPropertyForKey("ratingLikeEntryId")
+				screenlet?.themeName = "default-like"
+				screenlet?.ratingsGroupCount = 1
+			case 2:
+				screenlet?.entryId = LiferayServerContext.longPropertyForKey("ratingStarsEntryId")
+				screenlet?.themeName = "default-stars"
+				screenlet?.ratingsGroupCount = 5
+			case 3:
+				screenlet?.entryId = LiferayServerContext.longPropertyForKey("ratingEmojisEntryId")
+				screenlet?.themeName = "default-emojis"
+				screenlet?.ratingsGroupCount = 5
+			default:
+				screenlet?.entryId = LiferayServerContext.longPropertyForKey("ratingThumbsEntryId")
+				screenlet?.themeName = "default-thumbs"
+				screenlet?.ratingsGroupCount = 2
 		}
 
 		screenlet?.loadRatings()

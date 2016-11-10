@@ -53,7 +53,7 @@ import UIKit
 }
 
 
-@IBDesignable public class DDLFormScreenlet: BaseScreenlet {
+public class DDLFormScreenlet: BaseScreenlet {
 
 	private enum UploadStatus {
 		case Idle

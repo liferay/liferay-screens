@@ -15,17 +15,17 @@ import UIKit
 
 public class ImageGalleryCell: UITableViewCell {
 
-	@IBOutlet private weak var imagePreview: UIImageView!
-	@IBOutlet private weak var imageTitle: UILabel!
+	@IBOutlet private weak var imagePreview: UIImageView?
+	@IBOutlet private weak var imageTitle: UILabel?
 
 	private var placeholderImage: UIImage?
 	
     public var title: String? {
         get {
-            return imageTitle.text
+            return imageTitle?.text
         }
         set {
-            imageTitle.text = newValue
+            imageTitle?.text = newValue
         }
     }
     
@@ -34,23 +34,23 @@ public class ImageGalleryCell: UITableViewCell {
             return ""
         }
         set {
-            imagePreview.lr_setImageWithURL(NSURL(string: newValue ?? "")!)
+            imagePreview?.lr_setImageWithURL(NSURL(string: newValue ?? "")!)
         }
     }
 
 	public var img: UIImage? {
 		get {
-			return imagePreview.image
+			return imagePreview?.image
 		}
 		set {
-			imagePreview.image = newValue
+			imagePreview?.image = newValue
 		}
 	}
 
     override public func awakeFromNib() {
         super.awakeFromNib()
         
-		imagePreview.kf_showIndicatorWhenLoading = true
+		imagePreview?.kf_showIndicatorWhenLoading = true
 
 		placeholderImage = NSBundle.imageInBundles(
 			name: "default-placeholder-image",
@@ -61,6 +61,6 @@ public class ImageGalleryCell: UITableViewCell {
 	public override func prepareForReuse() {
 		super.prepareForReuse()
 		
-		imagePreview.image = placeholderImage
+		imagePreview?.image = placeholderImage
 	}
 }

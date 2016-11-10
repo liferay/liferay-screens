@@ -33,10 +33,10 @@ public class WebContentListView_book: WebContentListView_default {
 
 	override public func doCreateCell(cellId: String) -> UITableViewCell {
 		switch cellId {
-		case "bookCell":
-			return BookTableViewCell(style: .Default, reuseIdentifier: cellId)
-		default:
-			return HtmlTableViewCell(style: .Default, reuseIdentifier: cellId)
+			case "bookCell":
+				return BookTableViewCell(style: .Default, reuseIdentifier: cellId)
+			default:
+				return HtmlTableViewCell(style: .Default, reuseIdentifier: cellId)
 		}
 	}
 

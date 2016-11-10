@@ -29,17 +29,15 @@ public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_defau
 		return field?.currentValue as? [DDMFieldStringWithOptions.Option] ?? []
 	}
 
-	@IBOutlet public var chooseButton: UIButton? {
-		didSet {
-			setButtonDefaultStyle(chooseButton)
+
+	//MARK: UITableViewCell
+
+	public override func  awakeFromNib() {
+		super.awakeFromNib()
+
+		textField?.onRightButtonClick = { [weak self] in
+			self?.textField?.becomeFirstResponder()
 		}
-	}
-
-
-	//MARK: Actions
-
-	@IBAction private func chooseButtonAction(sender: AnyObject) {
-		textField!.becomeFirstResponder()
 	}
 
 

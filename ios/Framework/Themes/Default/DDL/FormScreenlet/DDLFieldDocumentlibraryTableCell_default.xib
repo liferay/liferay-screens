@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,11 +13,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WWD-jz-pJ6" id="h6C-76-TvA">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="90.5"/>
+                <frame key="frameInset" width="320" height="90"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kk5-HE-t64">
-                        <rect key="frame" x="8" y="5" width="304" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="ezz-bJ-9Gy"/>
                         </constraints>
@@ -24,93 +24,53 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-field.png" highlightedImage="default-field-focused.png" translatesAutoresizingMaskIntoConstraints="NO" id="ohg-xl-HdE">
-                        <rect key="frame" x="8" y="30" width="304" height="44"/>
+                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VAu-ld-FYJ" customClass="DefaultTextField" customModule="LiferayScreens">
                         <constraints>
-                            <constraint firstAttribute="height" constant="44" id="jsW-VU-aae"/>
-                        </constraints>
-                    </imageView>
-                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VAu-ld-FYJ">
-                        <rect key="frame" x="15" y="37" width="247" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="30" id="nO4-H2-K5n"/>
+                            <constraint firstAttribute="height" constant="44" id="580-M5-JeD"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="rightButtonTitle" value="..."/>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="delegate" destination="WWD-jz-pJ6" id="QP8-JL-LUQ"/>
                         </connections>
                     </textField>
-                    <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="submit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sFo-9S-vne">
-                        <rect key="frame" x="271" y="34" width="36" height="36"/>
-                        <color key="backgroundColor" red="0.0" green="0.72156862745098038" blue="0.8784313725490196" alpha="0.87" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="36" id="NAw-lR-roZ"/>
-                            <constraint firstAttribute="height" constant="36" id="uox-bc-oWj"/>
-                        </constraints>
-                        <state key="normal">
-                            <attributedString key="attributedTitle">
-                                <fragment content="...">
-                                    <attributes>
-                                        <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <font key="NSFont" size="16" name="HelveticaNeue"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
-                        </state>
-                        <connections>
-                            <action selector="chooseButtonAction:" destination="WWD-jz-pJ6" eventType="touchUpInside" id="yq6-JD-H6P"/>
-                        </connections>
-                    </button>
                     <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J5E-9Y-8f7" userLabel="progress" customClass="MDRadialProgressView">
-                        <rect key="frame" x="271" y="34" width="36" height="36"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="36" id="6qD-uB-p7F"/>
                             <constraint firstAttribute="height" constant="36" id="8nw-gU-D0N"/>
                         </constraints>
                     </view>
                     <view contentMode="TopLeft" translatesAutoresizingMaskIntoConstraints="NO" id="0Cg-Uy-Tyo" userLabel="Separator">
-                        <rect key="frame" x="10" y="82" width="300" height="1"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="8oo-B1-Tda"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="sFo-9S-vne" firstAttribute="leading" secondItem="VAu-ld-FYJ" secondAttribute="trailing" constant="9" id="1g8-d0-hb2"/>
-                    <constraint firstItem="ohg-xl-HdE" firstAttribute="leading" secondItem="h6C-76-TvA" secondAttribute="leading" constant="8" id="6zX-Ve-5xN"/>
-                    <constraint firstItem="VAu-ld-FYJ" firstAttribute="centerY" secondItem="ohg-xl-HdE" secondAttribute="centerY" id="7cO-T2-o83"/>
+                    <constraint firstItem="0Cg-Uy-Tyo" firstAttribute="top" secondItem="VAu-ld-FYJ" secondAttribute="bottom" constant="8" id="0kg-wp-Ff6"/>
+                    <constraint firstItem="J5E-9Y-8f7" firstAttribute="centerY" secondItem="VAu-ld-FYJ" secondAttribute="centerY" id="H1D-pA-ebi"/>
                     <constraint firstItem="Kk5-HE-t64" firstAttribute="top" secondItem="h6C-76-TvA" secondAttribute="top" constant="5" id="Int-4j-TDP"/>
-                    <constraint firstAttribute="trailing" secondItem="ohg-xl-HdE" secondAttribute="trailing" constant="8" id="KMj-f6-beA"/>
-                    <constraint firstItem="0Cg-Uy-Tyo" firstAttribute="top" secondItem="ohg-xl-HdE" secondAttribute="bottom" constant="8" id="KRX-5m-HPd"/>
-                    <constraint firstItem="VAu-ld-FYJ" firstAttribute="leading" secondItem="h6C-76-TvA" secondAttribute="leadingMargin" constant="7" id="Rq6-1G-Uqv"/>
-                    <constraint firstItem="J5E-9Y-8f7" firstAttribute="leading" secondItem="VAu-ld-FYJ" secondAttribute="trailing" constant="9" id="d0L-af-yiz"/>
+                    <constraint firstAttribute="trailing" secondItem="VAu-ld-FYJ" secondAttribute="trailing" constant="8" id="Lln-c2-vpA"/>
+                    <constraint firstItem="VAu-ld-FYJ" firstAttribute="top" secondItem="Kk5-HE-t64" secondAttribute="bottom" constant="5" id="cKv-5B-heH"/>
                     <constraint firstItem="0Cg-Uy-Tyo" firstAttribute="leading" secondItem="h6C-76-TvA" secondAttribute="leading" constant="10" id="ksU-RU-FBj"/>
-                    <constraint firstItem="sFo-9S-vne" firstAttribute="centerY" secondItem="ohg-xl-HdE" secondAttribute="centerY" id="luq-h6-QKz"/>
-                    <constraint firstItem="J5E-9Y-8f7" firstAttribute="centerY" secondItem="ohg-xl-HdE" secondAttribute="centerY" id="ocC-dS-o6n"/>
+                    <constraint firstItem="VAu-ld-FYJ" firstAttribute="leading" secondItem="h6C-76-TvA" secondAttribute="leading" constant="8" id="li7-1g-gtv"/>
                     <constraint firstItem="Kk5-HE-t64" firstAttribute="leading" secondItem="h6C-76-TvA" secondAttribute="leading" constant="8" id="pOb-Q6-BeI"/>
                     <constraint firstAttribute="trailingMargin" secondItem="J5E-9Y-8f7" secondAttribute="trailing" constant="5" id="rWK-vS-p31"/>
                     <constraint firstAttribute="trailing" secondItem="0Cg-Uy-Tyo" secondAttribute="trailing" constant="10" id="u0x-f6-CHG"/>
-                    <constraint firstItem="ohg-xl-HdE" firstAttribute="top" secondItem="Kk5-HE-t64" secondAttribute="bottom" constant="5" id="w5D-sn-wYd"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="sFo-9S-vne" secondAttribute="trailing" constant="5" id="xd6-XX-DPv"/>
                     <constraint firstAttribute="trailing" secondItem="Kk5-HE-t64" secondAttribute="trailing" constant="8" id="yEG-a5-bPe"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="chooseButton" destination="sFo-9S-vne" id="yvp-RX-zb5"/>
                 <outlet property="label" destination="Kk5-HE-t64" id="aWg-l5-R1k"/>
                 <outlet property="progress" destination="J5E-9Y-8f7" id="vA3-iB-0CU"/>
                 <outlet property="textField" destination="VAu-ld-FYJ" id="n3x-pa-fiI"/>
-                <outlet property="textFieldBackground" destination="ohg-xl-HdE" id="bhZ-pI-I05"/>
             </connections>
             <point key="canvasLocation" x="315" y="382.5"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="default-field-focused.png" width="228" height="44"/>
-        <image name="default-field.png" width="228" height="44"/>
-    </resources>
 </document>

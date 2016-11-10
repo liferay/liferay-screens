@@ -21,13 +21,8 @@ import UIKit
 
 public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableCell_default {
 
-	//MARK: Outlets
 
-	@IBOutlet public var chooseButton: UIButton? {
-		didSet {
-			setButtonDefaultStyle(chooseButton)
-		}
-	}
+	//MARK: Outlets
 
 	@IBOutlet public var progress: MDRadialProgressView?
 
@@ -155,7 +150,7 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 	private func changeProgressVisilibity(show show: Bool, delay: Double = 0.0) {
 		UIView.animateWithDuration(0.3, delay: delay, options: [], animations: {
 			self.progress!.alpha = show ? 1.0 : 0.0
-			self.chooseButton!.alpha = show ? 0.0 : 1.0
+			self.textField?.rightView?.alpha = show ? 0.0 : 1.0
 		}, completion: nil)
 	}
 
@@ -170,7 +165,7 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 	}
 
 	private func selectedDocumentClosure(image: UIImage?, url: NSURL?) {
-		textField!.resignFirstResponder()
+		textField?.resignFirstResponder()
 
 		if image != nil || url != nil {
 			field!.currentValue = image ?? url

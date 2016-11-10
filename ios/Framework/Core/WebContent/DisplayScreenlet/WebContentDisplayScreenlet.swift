@@ -28,7 +28,7 @@ import UIKit
 }
 
 
-@IBDesignable public class WebContentDisplayScreenlet: BaseScreenlet {
+public class WebContentDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable public var groupId: Int64 = 0
 

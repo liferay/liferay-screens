@@ -10,7 +10,7 @@ import UIKit
 
 public class ImageGalleryGridCell: UICollectionViewCell {
 
-	@IBOutlet private weak var previewImage: UIImageView!
+	@IBOutlet private weak var previewImage: UIImageView?
 
 	private var placeholderImage: UIImage?
 
@@ -19,7 +19,7 @@ public class ImageGalleryGridCell: UICollectionViewCell {
 			return ""
 		}
 		set {
-			previewImage.lr_setImageWithURL(
+			previewImage?.lr_setImageWithURL(
 					NSURL(string: newValue)!,
 					placeholderImage:  placeholderImage,
 					optionsInfo: [.BackgroundDecode])
@@ -31,15 +31,15 @@ public class ImageGalleryGridCell: UICollectionViewCell {
 			return UIImage()
 		}
 		set {
-			previewImage.image = newValue
+			previewImage?.image = newValue
 		}
 	}
 
 	public override func awakeFromNib() {
 		super.awakeFromNib()
 		
-		previewImage.clipsToBounds = true
-		previewImage.kf_showIndicatorWhenLoading = true
+		previewImage?.clipsToBounds = true
+		previewImage?.kf_showIndicatorWhenLoading = true
 
 		placeholderImage = NSBundle.imageInBundles(
 			name: "default-placeholder-image",
@@ -49,6 +49,6 @@ public class ImageGalleryGridCell: UICollectionViewCell {
 	public override func prepareForReuse() {
 		super.prepareForReuse()
 
-		previewImage.image = placeholderImage
+		previewImage?.image = placeholderImage
 	}
 }

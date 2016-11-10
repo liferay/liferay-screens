@@ -28,7 +28,8 @@ public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase 
 			name: "ImageGallerySlideshowCell",
 			currentClass: self.dynamicType) {
 
-			collectionView?.registerNib(imageGalleryGridCellNib, forCellWithReuseIdentifier: imageCellId)
+			collectionView?.registerNib(imageGalleryGridCellNib,
+			                            forCellWithReuseIdentifier: imageCellId)
 		}
 	}
 
@@ -37,11 +38,16 @@ public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase 
 		return SlideShowLayout()
 	}
 
-	override public func doFillLoadedCell(
-			indexPath indexPath: NSIndexPath,
-			cell: UICollectionViewCell, object:AnyObject) {
+	override public func updateRefreshControl() {
+		//No refresh control in slideshow mode
+	}
 
-		guard let imageCell = cell as? ImageGallerySlideshowCell, entry = object as? ImageEntry else {
+	override public func doFillLoadedCell(indexPath indexPath: NSIndexPath,
+	                                                cell: UICollectionViewCell,
+	                                                object:AnyObject) {
+
+		guard let imageCell = cell as? ImageGallerySlideshowCell,
+					entry = object as? ImageEntry else {
 			return
 		}
 		if let image = entry.image {
@@ -52,14 +58,14 @@ public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase 
 		}
 	}
 
-	public override func doFillInProgressCell(
-			indexPath indexPath: NSIndexPath,
-			cell: UICollectionViewCell) {
+	public override func doFillInProgressCell(indexPath indexPath: NSIndexPath,
+	                                                    cell: UICollectionViewCell) {
 
 		cell.backgroundColor = .grayColor()
 	}
 
-	public override func doGetCellId(indexPath indexPath: NSIndexPath, object: AnyObject?) -> String {
+	public override func doGetCellId(indexPath indexPath: NSIndexPath,
+	                                           object: AnyObject?) -> String {
 		if let _ = object {
 			return imageCellId
 		}

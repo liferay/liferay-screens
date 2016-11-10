@@ -16,17 +16,17 @@ import UIKit
 
 public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewModel {
 
-	@IBOutlet public var userNameIcon: UIImageView?
-	@IBOutlet public var userNameField: UITextField?
+	@IBOutlet public var userNameField: DefaultTextField?
 	@IBOutlet public var requestPasswordButton: UIButton?
 
 
 	override public var progressMessages: [String:ProgressMessages] {
 		return [
-			BaseScreenlet.DefaultAction :
-				[.Working : LocalizedString("default", key: "forgotpassword-loading-message", obj: self),
+			BaseScreenlet.DefaultAction : [
+				.Working : LocalizedString("default", key: "forgotpassword-loading-message", obj: self),
 				.Failure : LocalizedString("default", key: "forgotpassword-loading-error", obj: self),
-				.Success : LocalizedString("default", key: "forgotpassword-\(successMessageKey)", obj: self)]
+				.Success : LocalizedString("default", key: "forgotpassword-\(successMessageKey)", obj: self)
+			]
 		]
 	}
 
@@ -36,23 +36,21 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 
 	public var userName: String? {
 		get {
-			return nullIfEmpty(userNameField!.text)
+			return nullIfEmpty(userNameField?.text)
 		}
 		set {
-			userNameField!.text = newValue
+			userNameField?.text = newValue
 		}
 	}
 
 
-	//MARK: AuthBasedViewModel
+	//MARK: BasicAuthBasedType
 
 	public var basicAuthMethod: String? = BasicAuthMethod.Email.rawValue {
 		didSet {
-			setBasicAuthMethodStyles(
-					view: self,
-					basicAuthMethod: BasicAuthMethod.create(basicAuthMethod),
-					userNameField: userNameField,
-					userNameIcon: userNameIcon)
+			setBasicAuthMethodStyles(view: self,
+			                         basicAuthMethod: BasicAuthMethod.create(basicAuthMethod),
+			                         userNameField: userNameField)
 		}
 	}
 
@@ -80,11 +78,11 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 	}
 
 	override public func onStartInteraction() {
-		requestPasswordButton!.enabled = false
+		requestPasswordButton?.enabled = false
 	}
 
 	override public func onFinishInteraction(result: AnyObject?, error: NSError?) {
-		requestPasswordButton!.enabled = true
+		requestPasswordButton?.enabled = true
 
 		if let resultPasswordSent = result as? Bool {
 			successMessageKey = resultPasswordSent ? "password-sent" : "reset-sent"
@@ -93,13 +91,6 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 
 	override public func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
-	}
-
-
-	//MARK: UITextFieldDelegate
-
-	internal func textFieldDidBeginEditing(textField: UITextField!) {
-		userNameField!.highlighted = (textField == userNameField)
 	}
 
 }

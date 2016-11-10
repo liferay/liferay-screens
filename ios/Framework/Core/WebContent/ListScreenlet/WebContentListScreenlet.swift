@@ -27,7 +27,7 @@ import UIKit
 
 }
 
-@IBDesignable public class WebContentListScreenlet: BaseListScreenlet {
+public class WebContentListScreenlet: BaseListScreenlet {
 
 	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var folderId: Int64 = 0

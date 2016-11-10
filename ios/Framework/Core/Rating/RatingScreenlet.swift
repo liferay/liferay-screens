@@ -29,7 +29,7 @@ import UIKit
 	
 }
 
-@IBDesignable public class RatingScreenlet: BaseScreenlet {
+public class RatingScreenlet: BaseScreenlet {
 	
 	public static let DeleteRatingAction = "deleteRating"
 	public static let UpdateRatingAction = "updateRating"
