@@ -55,7 +55,6 @@ Pod::Spec.new do |s|
 	s.dependency 'Liferay-OAuth', '~> 1.2.0'
 	s.dependency 'MBProgressHUD', '0.9.1'
 	s.dependency 'SMXMLDocument', '1.1'
-	s.dependency 'ODRefreshControl', '1.2'
 	s.dependency 'YapDatabase/SQLCipher', '2.9.2'
 	s.dependency 'Kingfisher', '~> 2.4'
 
