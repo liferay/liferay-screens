@@ -29,6 +29,11 @@ public class LoginByUserIdLiferay62Connector: GetUserByUserIdLiferay62Connector 
 		}
 	}
 
+	override public func createSession() -> LRSession? {
+		SessionContext.logout()
+		return super.createSession()
+	}
+
 }
 
 
@@ -46,5 +51,10 @@ public class LoginByUserIdLiferay70Connector: GetUserByUserIdLiferay70Connector 
 			loginWithResult()
 		}
 	}
-	
+
+	override public func createSession() -> LRSession? {
+		SessionContext.logout()
+		return super.createSession()
+	}
+
 }
