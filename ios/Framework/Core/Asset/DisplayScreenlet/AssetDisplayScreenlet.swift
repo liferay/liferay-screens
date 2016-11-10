@@ -29,7 +29,7 @@ import UIKit
 	optional func screenlet(screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView?
 }
 
-@IBDesignable public class AssetDisplayScreenlet: BaseScreenlet {
+public class AssetDisplayScreenlet: BaseScreenlet {
 	
 	@IBInspectable public var assetEntryId: Int64 = 0
 

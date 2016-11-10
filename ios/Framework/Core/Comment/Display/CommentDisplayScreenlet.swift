@@ -39,7 +39,7 @@ import UIKit
 }
 
 
-@IBDesignable public class CommentDisplayScreenlet: BaseScreenlet {
+public class CommentDisplayScreenlet: BaseScreenlet {
 
 	public static let DeleteAction = "deleteAction"
 	public static let UpdateAction = "updateAction"

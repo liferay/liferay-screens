@@ -42,7 +42,7 @@ import UIKit
 }
 
 
-@IBDesignable public class CommentListScreenlet: BaseListScreenlet,
+public class CommentListScreenlet: BaseListScreenlet,
 		CommentDisplayScreenletDelegate {
 
 	@IBInspectable public var className: String = ""
