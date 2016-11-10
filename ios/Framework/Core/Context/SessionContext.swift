@@ -217,7 +217,6 @@ import Foundation
 	}
 
 	public class func logout() {
-		SessionContext.currentContext?.removeStoredCredentials()
 		SessionContext.currentContext = nil
 	}
 
