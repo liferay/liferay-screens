@@ -213,6 +213,10 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		
 		return progressView
 	}
+
+	public override func changeEditable(editable: Bool) {
+		tableView?.subviews.forEach { $0.userInteractionEnabled = editable }
+	}
 	
 	
 	//MARK: Internal methods
