@@ -35,7 +35,7 @@ public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_defau
 	public override func  awakeFromNib() {
 		super.awakeFromNib()
 
-		textField?.onRightButtonClick = { [weak self] in
+		defaultTextField?.onRightButtonClick = { [weak self] in
 			self?.textField?.becomeFirstResponder()
 		}
 	}

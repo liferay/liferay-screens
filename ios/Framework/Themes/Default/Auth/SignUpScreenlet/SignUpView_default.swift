@@ -16,10 +16,10 @@ import UIKit
 
 public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 
-	@IBOutlet public var emailAddressField: DefaultTextField?
-	@IBOutlet public var passwordField: DefaultTextField?
-	@IBOutlet public var firstNameField: DefaultTextField?
-	@IBOutlet public var lastNameField: DefaultTextField?
+	@IBOutlet public var emailAddressField: UITextField?
+	@IBOutlet public var passwordField: UITextField?
+	@IBOutlet public var firstNameField: UITextField?
+	@IBOutlet public var lastNameField: UITextField?
 	@IBOutlet public var signUpButton: UIButton?
 
 	@IBOutlet public var scrollView: UIScrollView?

@@ -26,7 +26,7 @@ public class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default
 	public override func  awakeFromNib() {
 		super.awakeFromNib()
 
-		textField?.onRightButtonClick = { [weak self] in
+		defaultTextField?.onRightButtonClick = { [weak self] in
 			self?.textField?.becomeFirstResponder()
 		}
 	}

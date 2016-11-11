@@ -16,8 +16,13 @@ import UIKit
 
 public class DDLBaseFieldTextboxTableCell_default: DDMFieldTableCell, UITextFieldDelegate {
 
-	@IBOutlet public var textField: DefaultTextField?
+	@IBOutlet public var textField: UITextField?
 	@IBOutlet public var label: UILabel?
+
+
+	public var defaultTextField: DefaultTextField? {
+		return textField as? DefaultTextField
+	}
 
 
 	//MARK: DDMFieldTableCell
@@ -61,10 +66,10 @@ public class DDLBaseFieldTextboxTableCell_default: DDMFieldTableCell, UITextFiel
 		super.onPostValidation(valid)
 
 		if valid {
-			textField?.setDefaultState()
+			defaultTextField?.setDefaultState()
 		}
 		else {
-			textField?.setErrorState()
+			defaultTextField?.setErrorState()
 		}
 
 	}

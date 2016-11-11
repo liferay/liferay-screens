@@ -16,7 +16,7 @@ import UIKit
 
 public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewModel {
 
-	@IBOutlet public var userNameField: DefaultTextField?
+	@IBOutlet public var userNameField: UITextField?
 	@IBOutlet public var requestPasswordButton: UIButton?
 
 
