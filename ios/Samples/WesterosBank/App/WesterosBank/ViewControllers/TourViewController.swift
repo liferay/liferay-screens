@@ -34,7 +34,7 @@ class TourViewController: UIViewController, UIScrollViewDelegate {
 			self.dismissViewControllerAnimated(true, completion: nil)
 		}
 		else {
-			let newX = CGFloat((pageControl.currentPage + 1) * Int(scrollView.frame.size.width.native))
+			let newX = CGFloat((pageControl.currentPage + 1) * Int(scrollView.frame.width))
 			let newRect = CGRectMake(newX, y: scrollView.contentOffset.y, size: scrollView.frame.size)
 			scrollView.scrollRectToVisible(newRect, animated: true)
 		}
