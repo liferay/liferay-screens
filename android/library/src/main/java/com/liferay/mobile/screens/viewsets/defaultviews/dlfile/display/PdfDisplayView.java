@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.dlfile.display.pdf.OnSwipeTouchListener;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import java.io.File;
 import java.io.IOException;
@@ -144,6 +145,17 @@ public class PdfDisplayView extends BaseFileDisplayView implements View.OnClickL
 		renderedPage.render(bitmap, rect, matrix, PdfRenderer.Page.RENDER_MODE_FOR_PRINT);
 		imagePdf.setImageMatrix(matrix);
 		imagePdf.setImageBitmap(bitmap);
+		imagePdf.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
+			@Override
+			public void onSwipeLeft() {
+				changeCurrentPage(+1);
+			}
+
+			@Override
+			public void onSwipeRight() {
+				changeCurrentPage(-1);
+			}
+		});
 		renderedPage.close();
 
 		hideProgressBar();
