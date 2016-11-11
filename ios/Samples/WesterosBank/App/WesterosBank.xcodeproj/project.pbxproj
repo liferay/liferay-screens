@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D3BD6FCCD95D4FE972F06AC /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6370C6082E034E1BCF5D2D54 /* Pods.framework */; };
+		0BAF05291DD5E19300A4F67F /* DDLCustomFieldSeverityTableCell_westeros.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAF05281DD5E19300A4F67F /* DDLCustomFieldSeverityTableCell_westeros.swift */; };
 		8820EEF61AE79C2D00FA79A6 /* IssuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820EEF41AE79C2D00FA79A6 /* IssuesViewController.swift */; };
 		8820EEF71AE79C2D00FA79A6 /* IssuesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8820EEF51AE79C2D00FA79A6 /* IssuesViewController.xib */; };
 		8820EEFA1AE79C9000FA79A6 /* ReportIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8820EEF81AE79C9000FA79A6 /* ReportIssueViewController.swift */; };
@@ -113,10 +113,14 @@
 		88EDE3CB1AEF859C00D61C91 /* Avenir-Next.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 88EDE3C91AEF859C00D61C91 /* Avenir-Next.ttc */; };
 		88EDE3CD1AEF85AB00D61C91 /* Avenir.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 88EDE3CC1AEF85AB00D61C91 /* Avenir.ttc */; };
 		88FB9B1B1AE7A42500C427AA /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FB9B1A1AE7A42500C427AA /* CardViewController.swift */; };
+		FA97C3537707CA5AF848CCB5 /* Pods_WesterosBank.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C7D0311A94E3E77891E294F /* Pods_WesterosBank.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0BAF05281DD5E19300A4F67F /* DDLCustomFieldSeverityTableCell_westeros.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLCustomFieldSeverityTableCell_westeros.swift; sourceTree = "<group>"; };
 		6370C6082E034E1BCF5D2D54 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B2E67B93FD31E3E56EEE6AD /* Pods-WesterosBank.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WesterosBank.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WesterosBank/Pods-WesterosBank.debug.xcconfig"; sourceTree = "<group>"; };
+		6C7D0311A94E3E77891E294F /* Pods_WesterosBank.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WesterosBank.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8820EEF41AE79C2D00FA79A6 /* IssuesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssuesViewController.swift; sourceTree = "<group>"; };
 		8820EEF51AE79C2D00FA79A6 /* IssuesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IssuesViewController.xib; sourceTree = "<group>"; };
 		8820EEF81AE79C9000FA79A6 /* ReportIssueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportIssueViewController.swift; sourceTree = "<group>"; };
@@ -225,8 +229,7 @@
 		88EDE3C91AEF859C00D61C91 /* Avenir-Next.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir-Next.ttc"; sourceTree = "<group>"; };
 		88EDE3CC1AEF85AB00D61C91 /* Avenir.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Avenir.ttc; sourceTree = "<group>"; };
 		88FB9B1A1AE7A42500C427AA /* CardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
-		8B041B2636CB91FFB7773179 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		F2F4F265F639A9CBBACD5765 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		EB310B0AFFC2EACDE2CF912E /* Pods-WesterosBank.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WesterosBank.release.xcconfig"; path = "Pods/Target Support Files/Pods-WesterosBank/Pods-WesterosBank.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,7 +237,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D3BD6FCCD95D4FE972F06AC /* Pods.framework in Frameworks */,
+				FA97C3537707CA5AF848CCB5 /* Pods_WesterosBank.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,8 +248,18 @@
 			isa = PBXGroup;
 			children = (
 				6370C6082E034E1BCF5D2D54 /* Pods.framework */,
+				6C7D0311A94E3E77891E294F /* Pods_WesterosBank.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7F0B235B7EE4CC082FCC5C04 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6B2E67B93FD31E3E56EEE6AD /* Pods-WesterosBank.debug.xcconfig */,
+				EB310B0AFFC2EACDE2CF912E /* Pods-WesterosBank.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		88735F811AEA4077000D35F9 /* Resources */ = {
@@ -287,8 +300,8 @@
 				889F4D781AF26846002E233D /* WesterosTheme */,
 				88855A2F1AE6537000D352D5 /* WesterosBank */,
 				88855A2E1AE6537000D352D5 /* Products */,
-				9C0B8E5D9A18E3D4A366A294 /* Pods */,
 				1A736749DB9828BEC5C1A95A /* Frameworks */,
+				7F0B235B7EE4CC082FCC5C04 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -494,6 +507,7 @@
 				888540BD1B0368AD00B8D193 /* DDLCustomFieldSeverityTableCell_westeros_view.xib */,
 				888540BE1B0368AD00B8D193 /* DDLCustomFieldTitleTableCell_westeros_view.xib */,
 				888540BF1B0368AD00B8D193 /* DDLFormView_westeros_view.xib */,
+				0BAF05281DD5E19300A4F67F /* DDLCustomFieldSeverityTableCell_westeros.swift */,
 			);
 			path = FormScreenlet;
 			sourceTree = "<group>";
@@ -517,15 +531,6 @@
 			path = fonts;
 			sourceTree = "<group>";
 		};
-		9C0B8E5D9A18E3D4A366A294 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F2F4F265F639A9CBBACD5765 /* Pods.debug.xcconfig */,
-				8B041B2636CB91FFB7773179 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -533,12 +538,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 88855A4C1AE6537000D352D5 /* Build configuration list for PBXNativeTarget "WesterosBank" */;
 			buildPhases = (
-				22DC74DD78ED6C521B13501E /* Check Pods Manifest.lock */,
+				D720E3A86241626BEEA42E5E /* [CP] Check Pods Manifest.lock */,
 				88855A291AE6537000D352D5 /* Sources */,
 				88855A2A1AE6537000D352D5 /* Frameworks */,
 				88855A2B1AE6537000D352D5 /* Resources */,
-				ACE20F7F57004C7F7177E7A5 /* Embed Pods Frameworks */,
-				C108D2787FE54FFE83D9001D /* Copy Pods Resources */,
+				4D60439964A7579B807D5590 /* [CP] Embed Pods Frameworks */,
+				ACA49D06153A9442F06F9F61 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -673,49 +678,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		22DC74DD78ED6C521B13501E /* Check Pods Manifest.lock */ = {
+		4D60439964A7579B807D5590 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WesterosBank/Pods-WesterosBank-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		ACE20F7F57004C7F7177E7A5 /* Embed Pods Frameworks */ = {
+		ACA49D06153A9442F06F9F61 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WesterosBank/Pods-WesterosBank-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C108D2787FE54FFE83D9001D /* Copy Pods Resources */ = {
+		D720E3A86241626BEEA42E5E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -743,6 +748,7 @@
 				88897D8F1AF57D330051DEF2 /* SignUpView_westeros_edit.swift in Sources */,
 				88897D941AF57FCE0051DEF2 /* DDLListView_westeros.swift in Sources */,
 				88855A671AE6A5B700D352D5 /* CardView.swift in Sources */,
+				0BAF05291DD5E19300A4F67F /* DDLCustomFieldSeverityTableCell_westeros.swift in Sources */,
 				889F4D921AF26846002E233D /* ForgotPasswordView_westeros.swift in Sources */,
 				889F4D961AF26846002E233D /* SignUpView_westeros.swift in Sources */,
 				88FB9B1B1AE7A42500C427AA /* CardViewController.swift in Sources */,
@@ -870,7 +876,7 @@
 		};
 		88855A4D1AE6537000D352D5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F2F4F265F639A9CBBACD5765 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 6B2E67B93FD31E3E56EEE6AD /* Pods-WesterosBank.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -880,12 +886,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = westerosbank;
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
 		88855A4E1AE6537000D352D5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B041B2636CB91FFB7773179 /* Pods.release.xcconfig */;
+			baseConfigurationReference = EB310B0AFFC2EACDE2CF912E /* Pods-WesterosBank.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -895,6 +902,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = westerosbank;
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
