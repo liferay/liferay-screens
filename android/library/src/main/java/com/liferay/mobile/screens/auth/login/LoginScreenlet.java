@@ -88,6 +88,7 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 		getContext().sendBroadcast(new Intent(LOGIN_SUCCESSFUL));
 
+		SessionContext.removeStoredCredentials(credentialsStorage);
 		SessionContext.storeCredentials(credentialsStorage);
 	}
 
