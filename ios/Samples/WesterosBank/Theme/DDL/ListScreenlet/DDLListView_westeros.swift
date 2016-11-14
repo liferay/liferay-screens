@@ -69,7 +69,7 @@ public class DDLListView_westeros: DDLListView_default, MGSwipeTableCellDelegate
 	}
 
 	public func swipeTableCell(
-			cell: MGSwipeTableCell!,
+			cell: MGSwipeTableCell,
 			tappedButtonAtIndex index: Int,
 			direction: MGSwipeDirection,
 			fromExpansion: Bool)
