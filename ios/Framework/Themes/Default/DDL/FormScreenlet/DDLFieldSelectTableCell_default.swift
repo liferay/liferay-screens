@@ -20,8 +20,10 @@ import UIKit
 
 public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_default,
 		UITableViewDataSource, UITableViewDelegate {
-
+		
 	let rowHeight: CGFloat = 50
+
+	public var cellBackgroundColor: UIColor = DefaultThemeBasicBlue
 
 	public var options: [DDMFieldStringWithOptions.Option] = []
 
@@ -35,7 +37,7 @@ public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_defau
 	public override func  awakeFromNib() {
 		super.awakeFromNib()
 
-		textField?.onRightButtonClick = { [weak self] in
+		defaultTextField?.onRightButtonClick = { [weak self] in
 			self?.textField?.becomeFirstResponder()
 		}
 	}
@@ -106,7 +108,7 @@ public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_defau
 		let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
 
 		let backgroundView = UIView()
-		backgroundView.backgroundColor = DefaultThemeBasicBlue
+		backgroundView.backgroundColor = cellBackgroundColor
 
 		cell.selectedBackgroundView = backgroundView
 

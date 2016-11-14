@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>version</key>
+	<string>62</string>
 	<key>companyId</key>
-	<integer>20155</integer>
+	<real>20155</real>
 	<key>server</key>
 	<string>https://demo.liferay.com/screens</string>
 	<key>groupId</key>

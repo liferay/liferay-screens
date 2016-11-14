@@ -16,8 +16,8 @@ import UIKit
 
 public class LoginView_default: BaseScreenletView, LoginViewModel {
 
-	@IBOutlet public weak var userNameField: DefaultTextField?
-	@IBOutlet public weak var passwordField: DefaultTextField?
+	@IBOutlet public weak var userNameField: UITextField?
+	@IBOutlet public weak var passwordField: UITextField?
 	@IBOutlet public weak var loginButton: UIButton?
 	@IBOutlet public weak var authorizeButton: UIButton?
 
