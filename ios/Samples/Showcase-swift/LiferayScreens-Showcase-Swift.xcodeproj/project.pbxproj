@@ -45,6 +45,12 @@
 		0B6148141DABF0AF004FAC7C /* WebContentListScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B6148121DABF0AF004FAC7C /* WebContentListScreenlet.storyboard */; };
 		0B6148181DABF643004FAC7C /* AssetDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B6148161DABF643004FAC7C /* AssetDisplayScreenlet.storyboard */; };
 		0B61481B1DABF672004FAC7C /* AssetDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B61481A1DABF672004FAC7C /* AssetDisplayViewController.swift */; };
+		0BCAD3C21DD5F42200BB89EA /* VideoDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BCAD3C01DD5F42200BB89EA /* VideoDisplayScreenlet.storyboard */; };
+		0BCAD3C51DD5F42D00BB89EA /* AudioDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BCAD3C31DD5F42D00BB89EA /* AudioDisplayScreenlet.storyboard */; };
+		0BCAD3C81DD5F43B00BB89EA /* PdfDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BCAD3C61DD5F43B00BB89EA /* PdfDisplayScreenlet.storyboard */; };
+		0BCAD3CA1DD5F51B00BB89EA /* AudioDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCAD3C91DD5F51B00BB89EA /* AudioDisplayViewController.swift */; };
+		0BCAD3CC1DD5F57A00BB89EA /* VideoDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCAD3CB1DD5F57A00BB89EA /* VideoDisplayViewController.swift */; };
+		0BCAD3CE1DD5F59D00BB89EA /* PdfDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCAD3CD1DD5F59D00BB89EA /* PdfDisplayViewController.swift */; };
 		4A244F934838CD2208782444 /* Pods_LiferayScreens_Showcase_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13D0A9CE1E740FFDD9D2884C /* Pods_LiferayScreens_Showcase_Swift.framework */; };
 		881B74411B9EEDED00EA64ED /* OfflineSyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B74401B9EEDED00EA64ED /* OfflineSyncViewController.swift */; };
 		88CC3AFC1CC153D900E0AEB7 /* WebContentDisplayView_book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC3AF81CC153D900E0AEB7 /* WebContentDisplayView_book.swift */; };
@@ -103,6 +109,12 @@
 		0B6148131DABF0AF004FAC7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/WebContentListScreenlet.storyboard; sourceTree = "<group>"; };
 		0B6148171DABF643004FAC7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/AssetDisplayScreenlet.storyboard; sourceTree = "<group>"; };
 		0B61481A1DABF672004FAC7C /* AssetDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayViewController.swift; sourceTree = "<group>"; };
+		0BCAD3C11DD5F42200BB89EA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/VideoDisplayScreenlet.storyboard; sourceTree = "<group>"; };
+		0BCAD3C41DD5F42D00BB89EA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/AudioDisplayScreenlet.storyboard; sourceTree = "<group>"; };
+		0BCAD3C71DD5F43B00BB89EA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/PdfDisplayScreenlet.storyboard; sourceTree = "<group>"; };
+		0BCAD3C91DD5F51B00BB89EA /* AudioDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioDisplayViewController.swift; sourceTree = "<group>"; };
+		0BCAD3CB1DD5F57A00BB89EA /* VideoDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDisplayViewController.swift; sourceTree = "<group>"; };
+		0BCAD3CD1DD5F59D00BB89EA /* PdfDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PdfDisplayViewController.swift; sourceTree = "<group>"; };
 		13D0A9CE1E740FFDD9D2884C /* Pods_LiferayScreens_Showcase_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiferayScreens_Showcase_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F7AD30F6279ED703F034F12 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		2B4C45252D99EAFB09DDD12A /* Pods-LiferayScreens-Showcase-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreens-Showcase-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreens-Showcase-Swift/Pods-LiferayScreens-Showcase-Swift.release.xcconfig"; sourceTree = "<group>"; };
@@ -146,7 +158,10 @@
 		0B2439991DAD3120009DA1E4 /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				0BCAD3C91DD5F51B00BB89EA /* AudioDisplayViewController.swift */,
 				0B24399A1DAD3120009DA1E4 /* ImageDisplayViewController.swift */,
+				0BCAD3CD1DD5F59D00BB89EA /* PdfDisplayViewController.swift */,
+				0BCAD3CB1DD5F57A00BB89EA /* VideoDisplayViewController.swift */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -154,7 +169,10 @@
 		0B24399F1DAD316F009DA1E4 /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				0BCAD3C31DD5F42D00BB89EA /* AudioDisplayScreenlet.storyboard */,
 				0B2439A41DAD318A009DA1E4 /* ImageDisplayScreenlet.storyboard */,
+				0BCAD3C61DD5F43B00BB89EA /* PdfDisplayScreenlet.storyboard */,
+				0BCAD3C01DD5F42200BB89EA /* VideoDisplayScreenlet.storyboard */,
 			);
 			name = Files;
 			sourceTree = "<group>";
@@ -485,8 +503,11 @@
 				88CC3B071CC158E300E0AEB7 /* BookTableViewCell.xib in Resources */,
 				0B6148141DABF0AF004FAC7C /* WebContentListScreenlet.storyboard in Resources */,
 				0B54FB981DACE9BF00E0EE0C /* AssetListScreenlet.storyboard in Resources */,
+				0BCAD3C81DD5F43B00BB89EA /* PdfDisplayScreenlet.storyboard in Resources */,
+				0BCAD3C51DD5F42D00BB89EA /* AudioDisplayScreenlet.storyboard in Resources */,
 				88DE2A7C1AD3DDE600714701 /* LaunchScreen.xib in Resources */,
 				0B54FBBD1DAD002100E0EE0C /* UserPortraitScreenlet.storyboard in Resources */,
+				0BCAD3C21DD5F42200BB89EA /* VideoDisplayScreenlet.storyboard in Resources */,
 				0B54FB9D1DACE9CD00E0EE0C /* ForgotPasswordScreenlet.storyboard in Resources */,
 				0B54FB901DACE97300E0EE0C /* CommentDisplayScreenlet.storyboard in Resources */,
 				0B54FBB61DACFA7C00E0EE0C /* ImageGalleryScreenlet.storyboard in Resources */,
@@ -592,6 +613,9 @@
 				0B54FBD11DAD1A9B00E0EE0C /* DDLFormScreenletViewController.swift in Sources */,
 				0B54FBC11DAD004300E0EE0C /* UserPortraitScreenletViewController.swift in Sources */,
 				0B54FBAC1DACF1C100E0EE0C /* BlogDisplayScreenletViewController.swift in Sources */,
+				0BCAD3CE1DD5F59D00BB89EA /* PdfDisplayViewController.swift in Sources */,
+				0BCAD3CC1DD5F57A00BB89EA /* VideoDisplayViewController.swift in Sources */,
+				0BCAD3CA1DD5F51B00BB89EA /* AudioDisplayViewController.swift in Sources */,
 				0B6147F81DABC853004FAC7C /* UIImageExtension.swift in Sources */,
 				88DE2A721AD3DDE600714701 /* AppDelegate.swift in Sources */,
 				0B54FB891DACE91000E0EE0C /* CommentDisplayScreenletViewController.swift in Sources */,
@@ -728,6 +752,30 @@
 				0B6148171DABF643004FAC7C /* en */,
 			);
 			name = AssetDisplayScreenlet.storyboard;
+			sourceTree = "<group>";
+		};
+		0BCAD3C01DD5F42200BB89EA /* VideoDisplayScreenlet.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0BCAD3C11DD5F42200BB89EA /* en */,
+			);
+			name = VideoDisplayScreenlet.storyboard;
+			sourceTree = "<group>";
+		};
+		0BCAD3C31DD5F42D00BB89EA /* AudioDisplayScreenlet.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0BCAD3C41DD5F42D00BB89EA /* en */,
+			);
+			name = AudioDisplayScreenlet.storyboard;
+			sourceTree = "<group>";
+		};
+		0BCAD3C61DD5F43B00BB89EA /* PdfDisplayScreenlet.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0BCAD3C71DD5F43B00BB89EA /* en */,
+			);
+			name = PdfDisplayScreenlet.storyboard;
 			sourceTree = "<group>";
 		};
 		88DE2A751AD3DDE600714701 /* Main.storyboard */ = {
