@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import com.liferay.mobile.screens.util.LiferayLogger;
 
 /**
  * @author Sarai Díaz García
@@ -51,6 +52,7 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
 				result = true;
 			} catch (Exception exception) {
 				exception.printStackTrace();
+				LiferayLogger.e("Error onFling " + exception);
 			}
 			return result;
 		}
