@@ -28,7 +28,7 @@ import UIKit
 }
 
 
-@IBDesignable public class DDLListScreenlet: BaseListScreenlet {
+public class DDLListScreenlet: BaseListScreenlet {
 
 	@IBInspectable public var userId: Int64 = 0
 	@IBInspectable public var recordSetId: Int64 = 0

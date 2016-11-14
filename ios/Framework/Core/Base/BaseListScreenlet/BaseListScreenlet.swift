@@ -14,7 +14,7 @@
 import UIKit
 
 
-@IBDesignable public class BaseListScreenlet: BaseScreenlet {
+public class BaseListScreenlet: BaseScreenlet {
 	
 	public class var LoadInitialPageAction: String { return "load-initial-page" }
 	public class var LoadPageAction: String { return "load-page" }

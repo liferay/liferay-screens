@@ -63,7 +63,7 @@ class HomeViewController: UIViewController {
 
 		goBackCard.createButton(UIColor.whiteColor())
 				.addTarget(self,
-					action: Selector("goBackAction:"),
+					action: #selector(HomeViewController.goBackAction(_:)),
 					forControlEvents: UIControlEvents.TouchUpInside)
 
 		issuesDeck.onButtonTouched = { card in

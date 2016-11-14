@@ -21,10 +21,6 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 	@IBOutlet public var firstNameField: UITextField?
 	@IBOutlet public var lastNameField: UITextField?
 	@IBOutlet public var signUpButton: UIButton?
-	@IBOutlet public var emailAddressBackground: UIImageView?
-	@IBOutlet public var passwordBackground: UIImageView?
-	@IBOutlet public var firstNameBackground: UIImageView?
-	@IBOutlet public var lastNameBackground: UIImageView?
 
 	@IBOutlet public var scrollView: UIScrollView?
 
@@ -43,11 +39,11 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 	}
 
 	override public func onStartInteraction() {
-		signUpButton!.enabled = false
+		signUpButton?.enabled = false
 	}
 
 	override public func onFinishInteraction(result: AnyObject?, error: NSError?) {
-		signUpButton!.enabled = true
+		signUpButton?.enabled = true
 	}
 
 
@@ -88,28 +84,28 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 
 	public var password: String? {
 		get {
-			return nullIfEmpty(passwordField!.text)
+			return nullIfEmpty(passwordField?.text)
 		}
 		set {
-			passwordField!.text = newValue
+			passwordField?.text = newValue
 		}
 	}
 
 	public var firstName: String? {
 		get {
-			return nullIfEmpty(firstNameField!.text)
+			return nullIfEmpty(firstNameField?.text)
 		}
 		set {
-			firstNameField!.text = newValue
+			firstNameField?.text = newValue
 		}
 	}
 
 	public var lastName: String? {
 		get {
-			return nullIfEmpty(lastNameField!.text)
+			return nullIfEmpty(lastNameField?.text)
 		}
 		set {
-			lastNameField!.text = newValue
+			lastNameField?.text = newValue
 		}
 	}
 
@@ -160,16 +156,6 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 	public var jobTitle: String? {
 		get { return nil }
 		set {}
-	}
-
-
-	//MARK: UITextFieldDelegate
-
-	public func textFieldDidBeginEditing(textField: UITextField!) {
-		emailAddressBackground?.highlighted = (textField == emailAddressField)
-		passwordBackground?.highlighted = (textField == passwordField)
-		firstNameBackground?.highlighted = (textField == firstNameField)
-		lastNameBackground?.highlighted = (textField == lastNameField)
 	}
 
 }

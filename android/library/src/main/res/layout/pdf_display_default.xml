@@ -35,32 +35,11 @@
 		android:visibility="invisible"
 		/>
 
-	<ImageView
-		android:id="@+id/liferay_pdf_renderer"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_below="@+id/liferay_progress"
-		android:adjustViewBounds="true"
-		android:contentDescription="@string/pdf_content"
-		android:scaleType="fitCenter"
-		/>
-
-	<TextView
-		android:id="@+id/liferay_asset_title"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_below="@+id/liferay_pdf_renderer"
-		android:gravity="center"
-		android:visibility="gone"
-		tools:text="Demo-file.pdf"
-		tools:visibility="visible"
-		/>
-
 	<LinearLayout
 		android:id="@+id/liferay_linear_buttons"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_below="@+id/liferay_asset_title"
+		android:layout_marginBottom="5dp"
 		android:visibility="gone"
 		tools:visibility="visible"
 		>
@@ -108,5 +87,26 @@
 			/>
 
 	</LinearLayout>
+
+	<ImageView
+		android:id="@+id/liferay_pdf_renderer"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/liferay_linear_buttons"
+		android:adjustViewBounds="true"
+		android:contentDescription="@string/pdf_content"
+		android:scaleType="fitCenter"
+	/>
+
+	<TextView
+		android:id="@+id/liferay_asset_title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/liferay_pdf_renderer"
+		android:gravity="center"
+		android:visibility="gone"
+		tools:text="Demo-file.pdf"
+		tools:visibility="visible"
+	/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display.PdfDisplayView>

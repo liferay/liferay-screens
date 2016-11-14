@@ -28,6 +28,7 @@ public class HttpDownloadConnector: ServerConnector {
 	//MARK: ServerConnector
 
 	override public func doRun(session session: LRSession) {
+
 		let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
 
 		let requestSemaphore = dispatch_semaphore_create(0)
@@ -62,6 +63,7 @@ public class HttpDownloadConnector: ServerConnector {
 	}
 
 	override public func createSession() -> LRSession? {
+
 		// dummy session: won't be used
 		let port = (url.port == nil) ? "" : ":\(url.port!)"
 		return LRSession(server: "http://\(url.host!)\(port)")
@@ -69,15 +71,18 @@ public class HttpDownloadConnector: ServerConnector {
 
 
 	private func moveTmpToCache(localPath: String, fileExtension: String) throws -> NSURL {
+
 		let cachePath = cacheFilePath()
 		let cachePathUrl = NSURL(fileURLWithPath: cachePath + "." + fileExtension)
 
-		try NSFileManager.defaultManager().moveItemAtURL(NSURL(string: localPath)!, toURL: cachePathUrl)
+		try NSFileManager.defaultManager().moveItemAtURL(NSURL(string: localPath)!,
+		                                                 toURL: cachePathUrl)
 
 		return cachePathUrl
 	}
 
 	private func fileExtension(response: NSURLResponse?) -> String {
+
 		if let ext = response?.MIMEType?.characters.split("/").map(String.init)[1] {
 			return ext
 		}

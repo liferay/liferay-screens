@@ -27,14 +27,12 @@ func setButtonDefaultStyle(button: UIButton?) {
 public func setBasicAuthMethodStyles(
 		view view: UIView,
 		basicAuthMethod: BasicAuthMethod,
-		userNameField: UITextField!,
-		userNameIcon: UIImageView!) {
+		userNameField: UITextField?) {
 
-	userNameField!.placeholder = LocalizedString("default", key: basicAuthMethod.description, obj: view)
-	userNameField!.keyboardType = basicAuthMethod.keyboardType
-
-	userNameIcon?.image = NSBundle.imageInBundles(
-			name: "default-\(basicAuthMethod.iconType)-icon",
-			currentClass: view.dynamicType)
+	userNameField?.placeholder = LocalizedString("default", key: basicAuthMethod.description, obj: view)
+	userNameField?.keyboardType = basicAuthMethod.keyboardType
+	(userNameField as? DefaultTextField)?.leftImage = NSBundle.imageInBundles(
+		name: "default-\(basicAuthMethod.iconType)-icon",
+		currentClass: view.dynamicType)
 }
 

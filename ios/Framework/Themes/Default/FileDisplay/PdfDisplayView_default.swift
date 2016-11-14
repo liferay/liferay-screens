@@ -16,12 +16,12 @@ import UIKit
 
 public class PdfDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
-	@IBOutlet weak var webView: UIWebView!
+	@IBOutlet weak var webView: UIWebView?
 
 	public var url: NSURL? {
 		didSet {
 			if let url = url {
-				webView.loadRequest(NSURLRequest(URL: url))
+				webView?.loadRequest(NSURLRequest(URL: url))
 			}
 		}
 	}

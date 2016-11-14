@@ -279,9 +279,7 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 		return CGSize(width: 30, height: layout.itemSize.height)
 	}
 
-	//MARK: Internal methods
-
-	internal func updateRefreshControl() {
+	public func updateRefreshControl() {
 		if refreshClosure != nil {
 			if refreshControlView == nil {
 				refreshControlView = UIRefreshControl()
@@ -299,6 +297,9 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 			refreshControlView = nil
 		}
 	}
+
+
+	//MARK: Internal methods
 
 	internal func refreshControlBeginRefresh(sender:AnyObject?) {
 		dispatch_delayed(0.3) {

@@ -31,6 +31,7 @@ public abstract class BaseCacheWriteInteractor<L extends BaseCacheListener, E ex
 						try {
 							online(event);
 						} catch (Exception e) {
+							event.setException(e);
 							storeToCacheAndLaunchEvent(event);
 							LiferayLogger.i("Store online first failed, trying to store locally version");
 						}
@@ -55,7 +56,7 @@ public abstract class BaseCacheWriteInteractor<L extends BaseCacheListener, E ex
 			if (event.isFailed()) {
 				event.setDirty(true);
 				store(event);
-				onSuccess(event);
+				onFailure(event);
 			} else {
 				if (event.isOnlineRequest()) {
 					store(event);

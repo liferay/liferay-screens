@@ -31,7 +31,7 @@ import UIKit
 }
 
 
-@IBDesignable public class CommentAddScreenlet: BaseScreenlet {
+public class CommentAddScreenlet: BaseScreenlet {
 
 	@IBInspectable public var className: String = ""
 	@IBInspectable public var classPK: Int64 = 0

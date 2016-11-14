@@ -29,7 +29,7 @@ import UIKit
 	optional func screenlet(screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView?
 }
 
-@IBDesignable public class AssetDisplayScreenlet: BaseScreenlet {
+public class AssetDisplayScreenlet: BaseScreenlet {
 	
 	@IBInspectable public var assetEntryId: Int64 = 0
 
@@ -110,8 +110,10 @@ import UIKit
 
 		let frame = CGRect(origin: CGPointZero, size: view.frame.size)
 
-		guard let innerScreenlet = AssetDisplayBuilder.createScreenlet(frame, asset: asset,
-				themeName: themeName) else {
+		guard let innerScreenlet = AssetDisplayBuilder.createScreenlet(frame,
+		                                                               asset: asset,
+		                                                               themeName: themeName) else {
+
 			return assetDisplayDelegate?.screenlet?(self, onAsset: asset)
 		}
 

@@ -20,19 +20,16 @@ import UIKit
 
 public class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default {
 
-	@IBOutlet public var chooseButton: UIButton? {
-		didSet {
-			setButtonDefaultStyle(chooseButton)
+
+	//MARK: UITableViewCell
+
+	public override func  awakeFromNib() {
+		super.awakeFromNib()
+
+		defaultTextField?.onRightButtonClick = { [weak self] in
+			self?.textField?.becomeFirstResponder()
 		}
 	}
-
-
-	//MARK: Actions
-
-	@IBAction private func chooseButtonAction(sender: AnyObject) {
-		textField!.becomeFirstResponder()
-	}
-
 
 	//MARK: DDLBaseFieldTextboxTableCell
 

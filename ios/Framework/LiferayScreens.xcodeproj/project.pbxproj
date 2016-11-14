@@ -81,6 +81,9 @@
 		0B2180351D6C508200A23690 /* DDMFieldStringWithOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180041D6C4F6F00A23690 /* DDMFieldStringWithOptions.swift */; };
 		0B2180361D6C508200A23690 /* DDMFieldUntyped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180051D6C4F6F00A23690 /* DDMFieldUntyped.swift */; };
 		0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
+		0B2BBE731DC3670800010F30 /* default-preview-imagegallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2BBE721DC3670800010F30 /* default-preview-imagegallery@2x.png */; };
+		0B2BBE761DC3699C00010F30 /* default-list-preview-imagegallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2BBE741DC3699C00010F30 /* default-list-preview-imagegallery@2x.png */; };
+		0B2BBE771DC3699C00010F30 /* default-slideshow-preview-imagegallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2BBE751DC3699C00010F30 /* default-slideshow-preview-imagegallery@2x.png */; };
 		0B2C41541D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C41421D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift */; };
 		0B2C415F1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C414D1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift */; };
 		0B2C41631D5A3C7C00764326 /* UploadProgressView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C41511D5A3C7C00764326 /* UploadProgressView_default.xib */; };
@@ -108,9 +111,12 @@
 		0B5B5EC11D5873F70007D4B1 /* default-cancel-upload@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5B5EBE1D5873F70007D4B1 /* default-cancel-upload@3x.png */; };
 		0B5B5EC41D58742B0007D4B1 /* imagegallery-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B5B5EC21D58742B0007D4B1 /* imagegallery-screenlet.strings */; };
 		0B5B5EC81D5876A10007D4B1 /* default-placeholder-image.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5B5EC71D5876A10007D4B1 /* default-placeholder-image.png */; };
+		0B5F58C51DCC8C0500E3598A /* default-preview-assetdisplay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5F58C31DCC8C0500E3598A /* default-preview-assetdisplay@2x.png */; };
+		0B5F58C61DCC8C0500E3598A /* default-preview-commentlist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5F58C41DCC8C0500E3598A /* default-preview-commentlist@2x.png */; };
 		0B6463771D66EEB7007F3289 /* ImageUploadDetailView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6463761D66EEB7007F3289 /* ImageUploadDetailView_default.xib */; };
 		0B6463791D66F143007F3289 /* ImageUploadDetailView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6463781D66F143007F3289 /* ImageUploadDetailView_default.swift */; };
 		0B64637B1D66F172007F3289 /* UploadProgressView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B64637A1D66F172007F3289 /* UploadProgressView_default.swift */; };
+		0B66FFCE1DAF83E900963DEB /* DefaultTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B66FFCD1DAF83E900963DEB /* DefaultTextField.swift */; };
 		0B7F45A21DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7F45A11DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift */; };
 		0B89C9951D58B01200A9EAE7 /* SyncManager+ImageGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B89C9941D58B01200A9EAE7 /* SyncManager+ImageGallery.swift */; };
 		0BB4678B1D8707280044523E /* comment-add-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BB467851D8707280044523E /* comment-add-screenlet.strings */; };
@@ -613,6 +619,9 @@
 		0B2180221D6C502000A23690 /* BlogsEntryDisplayView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogsEntryDisplayView_default.swift; sourceTree = "<group>"; };
 		0B2180231D6C502000A23690 /* BlogsEntryDisplayView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BlogsEntryDisplayView_default.xib; sourceTree = "<group>"; };
 		0B2180261D6C504300A23690 /* HttpDownloadConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpDownloadConnector.swift; sourceTree = "<group>"; };
+		0B2BBE721DC3670800010F30 /* default-preview-imagegallery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-imagegallery@2x.png"; sourceTree = "<group>"; };
+		0B2BBE741DC3699C00010F30 /* default-list-preview-imagegallery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-list-preview-imagegallery@2x.png"; sourceTree = "<group>"; };
+		0B2BBE751DC3699C00010F30 /* default-slideshow-preview-imagegallery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-slideshow-preview-imagegallery@2x.png"; sourceTree = "<group>"; };
 		0B2C41421D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryCollectionViewBase.swift; sourceTree = "<group>"; };
 		0B2C414D1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploadDetailViewController_default.swift; sourceTree = "<group>"; };
 		0B2C41511D5A3C7C00764326 /* UploadProgressView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadProgressView_default.xib; sourceTree = "<group>"; };
@@ -641,9 +650,12 @@
 		0B5B5EC31D58742B0007D4B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/imagegallery-screenlet.strings"; sourceTree = "<group>"; };
 		0B5B5EC51D5874330007D4B1 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/imagegallery-screenlet.strings"; sourceTree = "<group>"; };
 		0B5B5EC71D5876A10007D4B1 /* default-placeholder-image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-placeholder-image.png"; sourceTree = "<group>"; };
+		0B5F58C31DCC8C0500E3598A /* default-preview-assetdisplay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-assetdisplay@2x.png"; sourceTree = "<group>"; };
+		0B5F58C41DCC8C0500E3598A /* default-preview-commentlist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-commentlist@2x.png"; sourceTree = "<group>"; };
 		0B6463761D66EEB7007F3289 /* ImageUploadDetailView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageUploadDetailView_default.xib; sourceTree = "<group>"; };
 		0B6463781D66F143007F3289 /* ImageUploadDetailView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploadDetailView_default.swift; sourceTree = "<group>"; };
 		0B64637A1D66F172007F3289 /* UploadProgressView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadProgressView_default.swift; sourceTree = "<group>"; };
+		0B66FFCD1DAF83E900963DEB /* DefaultTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTextField.swift; sourceTree = "<group>"; };
 		0B7F45A11DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDisplayViewModel.swift; sourceTree = "<group>"; };
 		0B89C9941D58B01200A9EAE7 /* SyncManager+ImageGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncManager+ImageGallery.swift"; sourceTree = "<group>"; };
 		0BB467861D8707280044523E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/comment-add-screenlet.strings"; sourceTree = "<group>"; };
@@ -1248,6 +1260,14 @@
 			path = Interactors;
 			sourceTree = "<group>";
 		};
+		0B66FFCC1DAF83D900963DEB /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				0B66FFCD1DAF83E900963DEB /* DefaultTextField.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
 		0BB503171D37C04A00ABD6B3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1654,6 +1674,9 @@
 		881E61BA1ACBFC3400862B9E /* Default */ = {
 			isa = PBXGroup;
 			children = (
+				88B273111B7109C300477E5E /* DefaultProgressPresenter.swift */,
+				881E61E91ACBFC3400862B9E /* DefaultThemeConstants.swift */,
+				0B66FFCC1DAF83D900963DEB /* CustomViews */,
 				0B217FE71D6C4F0100A23690 /* Asset */,
 				881E61BE1ACBFC3400862B9E /* Auth */,
 				0B2180211D6C502000A23690 /* BlogsDisplay */,
@@ -1661,8 +1684,6 @@
 				0B2C413F1D5A3C7C00764326 /* ImageGalleryScreenlet */,
 				881E61CB1ACBFC3400862B9E /* DDL */,
 				0B217FD61D6C4E9500A23690 /* FileDisplay */,
-				88B273111B7109C300477E5E /* DefaultProgressPresenter.swift */,
-				881E61E91ACBFC3400862B9E /* DefaultThemeConstants.swift */,
 				889125B91D549757006AFA08 /* Rating */,
 				881E61EA1ACBFC3400862B9E /* Resources */,
 				88CC3AEC1CC12C2600E0AEB7 /* WebContent */,
@@ -1780,6 +1801,8 @@
 				881E61EE1ACBFC3400862B9E /* default-calendar@2x.png */,
 				881E61EF1ACBFC3400862B9E /* default-field-failed.png */,
 				881E61F01ACBFC3400862B9E /* default-field-failed@2x.png */,
+				0B5F58C31DCC8C0500E3598A /* default-preview-assetdisplay@2x.png */,
+				0B5F58C41DCC8C0500E3598A /* default-preview-commentlist@2x.png */,
 				881E61F11ACBFC3400862B9E /* default-field-focused.png */,
 				0B5B5EC71D5876A10007D4B1 /* default-placeholder-image.png */,
 				881E61F21ACBFC3400862B9E /* default-field-focused@2x.png */,
@@ -1793,8 +1816,11 @@
 				881E61FA1ACBFC3400862B9E /* default-hourglass@2x.png */,
 				881E61FB1ACBFC3400862B9E /* default-lock-icon.png */,
 				881E61FC1ACBFC3400862B9E /* default-lock-icon@2x.png */,
+				0B2BBE721DC3670800010F30 /* default-preview-imagegallery@2x.png */,
 				881E61FD1ACBFC3400862B9E /* default-mail-icon.png */,
 				881E61FE1ACBFC3400862B9E /* default-mail-icon@2x.png */,
+				0B2BBE741DC3699C00010F30 /* default-list-preview-imagegallery@2x.png */,
+				0B2BBE751DC3699C00010F30 /* default-slideshow-preview-imagegallery@2x.png */,
 				881E61FF1ACBFC3400862B9E /* default-multiline-field.png */,
 				881E62001ACBFC3400862B9E /* default-multiline-field@2x.png */,
 				881E62011ACBFC3400862B9E /* default-portrait-placeholder.png */,
@@ -2460,10 +2486,12 @@
 				881E62651ACBFC3400862B9E /* default-preview-assetlist@2x.png in Resources */,
 				88CA80691B25E505004C1D59 /* OAuthWebViewController_default.xib in Resources */,
 				881E625C1ACBFC3400862B9E /* default-hourglass@2x.png in Resources */,
+				0B2BBE731DC3670800010F30 /* default-preview-imagegallery@2x.png in Resources */,
 				0B5B5EC11D5873F70007D4B1 /* default-cancel-upload@3x.png in Resources */,
 				0BB4678C1D8707280044523E /* comment-display-screenlet.strings in Resources */,
 				881E625F1ACBFC3400862B9E /* default-mail-icon.png in Resources */,
 				881E62511ACBFC3400862B9E /* default-field-failed.png in Resources */,
+				0B5F58C61DCC8C0500E3598A /* default-preview-commentlist@2x.png in Resources */,
 				0BBEDA1D1D5B22FF00F8CB31 /* ImageGalleryView_default-slideshow.xib in Resources */,
 				88BCB5611B8CAC22004349F1 /* assetlist-screenlet.strings in Resources */,
 				881E62521ACBFC3400862B9E /* default-field-failed@2x.png in Resources */,
@@ -2479,6 +2507,7 @@
 				881E625B1ACBFC3400862B9E /* default-hourglass.png in Resources */,
 				881E62431ACBFC3400862B9E /* DDLFieldTextareaTableCell_default.xib in Resources */,
 				881E625E1ACBFC3400862B9E /* default-lock-icon@2x.png in Resources */,
+				0B5F58C51DCC8C0500E3598A /* default-preview-assetdisplay@2x.png in Resources */,
 				881E62351ACBFC3400862B9E /* DDLFieldCheckboxTableCell_default.xib in Resources */,
 				881E623B1ACBFC3400862B9E /* DDLFieldDocumentlibraryTableCell_default.xib in Resources */,
 				0B2C41631D5A3C7C00764326 /* UploadProgressView_default.xib in Resources */,
@@ -2534,6 +2563,7 @@
 				0B5B5EC81D5876A10007D4B1 /* default-placeholder-image.png in Resources */,
 				880ACA7F1B0224A0007AD007 /* signup-screenlet.strings in Resources */,
 				881E62371ACBFC3400862B9E /* DDLFieldDateTableCell_default.xib in Resources */,
+				0B2BBE761DC3699C00010F30 /* default-list-preview-imagegallery@2x.png in Resources */,
 				881E62571ACBFC3400862B9E /* default-form-gradient-bottom.png in Resources */,
 				881E62551ACBFC3400862B9E /* default-field.png in Resources */,
 				881E623F1ACBFC3400862B9E /* DDLFieldRadioTableCell_default.xib in Resources */,
@@ -2541,6 +2571,7 @@
 				0BBEDA251D5B230700F8CB31 /* ImageGalleryCell.xib in Resources */,
 				881E624A1ACBFC3400862B9E /* DDLSubmitButtonTableCell_default.xib in Resources */,
 				889125C31D549757006AFA08 /* RatingView_default-emojis.xib in Resources */,
+				0B2BBE771DC3699C00010F30 /* default-slideshow-preview-imagegallery@2x.png in Resources */,
 				0BBEDA2E1D5B230E00F8CB31 /* ImageGalleryGridCell.xib in Resources */,
 				881E624C1ACBFC3400862B9E /* DDLListView_default.xib in Resources */,
 			);
@@ -2893,6 +2924,7 @@
 				0BB5032D1D37C04A00ABD6B3 /* DDLRecord.swift in Sources */,
 				0B5B5E8C1D5869DB0007D4B1 /* ImageGalleryUploadInteractor.swift in Sources */,
 				88B844B61C73D8A3007A447D /* SignUpLiferayConnector.swift in Sources */,
+				0B66FFCE1DAF83E900963DEB /* DefaultTextField.swift in Sources */,
 				881E62321ACBFC3400862B9E /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */,
 				881E61881ACBEE0B00862B9E /* DDLListViewModel.swift in Sources */,
 				889125C61D549757006AFA08 /* RatingView_default-stars.swift in Sources */,

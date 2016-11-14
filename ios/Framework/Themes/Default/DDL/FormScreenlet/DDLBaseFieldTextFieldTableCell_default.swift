@@ -17,8 +17,12 @@ import UIKit
 public class DDLBaseFieldTextboxTableCell_default: DDMFieldTableCell, UITextFieldDelegate {
 
 	@IBOutlet public var textField: UITextField?
-	@IBOutlet public var textFieldBackground: UIImageView?
 	@IBOutlet public var label: UILabel?
+
+
+	public var defaultTextField: DefaultTextField? {
+		return textField as? DefaultTextField
+	}
 
 
 	//MARK: DDMFieldTableCell
@@ -62,46 +66,16 @@ public class DDLBaseFieldTextboxTableCell_default: DDMFieldTableCell, UITextFiel
 		super.onPostValidation(valid)
 
 		if valid {
-			textFieldBackground?.image = NSBundle.imageInBundles(
-					name: "default-field",
-					currentClass: self.dynamicType)
-
-			textFieldBackground?.highlightedImage = NSBundle.imageInBundles(
-					name: "default-field-focused",
-					currentClass: self.dynamicType)
+			defaultTextField?.setDefaultState()
 		}
 		else {
-			let image = NSBundle.imageInBundles(
-					name: "default-field-failed",
-					currentClass: self.dynamicType)
-
-			textFieldBackground?.image = image
-			textFieldBackground?.highlightedImage = image
+			defaultTextField?.setErrorState()
 		}
-	}
 
-	override public func canBecomeFirstResponder() -> Bool {
-		return textField!.canBecomeFirstResponder()
-	}
-
-	override public func becomeFirstResponder() -> Bool {
-		return textField!.becomeFirstResponder()
 	}
 
 
 	//MARK: UITextFieldDelegate
-
-	public func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-		textFieldBackground?.highlighted = true
-
-		formView!.firstCellResponder = textField
-
-		return true
-	}
-
-	public func textFieldDidEndEditing(textField: UITextField) {
-		textFieldBackground?.highlighted = false
-	}
 
 	public func textField(textField: UITextField,
 			shouldChangeCharactersInRange range: NSRange,
@@ -110,13 +84,6 @@ public class DDLBaseFieldTextboxTableCell_default: DDMFieldTableCell, UITextFiel
 		if field!.lastValidationResult != nil && !field!.lastValidationResult! {
 			field!.lastValidationResult = true
 			onPostValidation(true)
-
-			//FIXME!
-			// This hack is the only way I found to repaint the text field while it's in
-			// edition mode. It doesn't produce flickering nor nasty effects.
-
-			textFieldBackground?.highlighted = false
-			textFieldBackground?.highlighted = true
 		}
 
 		return true

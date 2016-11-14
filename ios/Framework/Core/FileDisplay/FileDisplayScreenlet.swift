@@ -67,12 +67,12 @@ public class FileDisplayScreenlet: BaseScreenlet {
 		}
 
 		switch name {
-		case BaseScreenlet.DefaultAction:
-			return createLoadAssetInteractor()
-		case FileDisplayScreenlet.LoadFileAction:
-			return createLoadFileInteractor()
-		default:
-			return nil
+			case BaseScreenlet.DefaultAction:
+				return createLoadAssetInteractor()
+			case FileDisplayScreenlet.LoadFileAction:
+				return createLoadFileInteractor()
+			default:
+				return nil
 		}
 	}
 

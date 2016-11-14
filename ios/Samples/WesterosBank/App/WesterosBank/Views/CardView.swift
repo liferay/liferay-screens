@@ -19,7 +19,7 @@ func CGRectMake(x: CGFloat, y: CGFloat, size: CGSize) -> CGRect {
 }
 
 
-class CardView: UIView {
+class CardView: UIView, CAAnimationDelegate {
 
 	enum ShowState: CustomDebugStringConvertible {
 		case Hidden
@@ -240,7 +240,7 @@ class CardView: UIView {
 		return group;
 	}
 
-	override func animationDidStop(theAnimation: CAAnimation, finished flag: Bool) {
+	func animationDidStop(theAnimation: CAAnimation, finished flag: Bool) {
 		onChangeCompleted?(flag)
 		onChangeCompleted = nil
 	}

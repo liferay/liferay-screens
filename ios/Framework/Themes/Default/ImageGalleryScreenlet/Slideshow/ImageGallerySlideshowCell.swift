@@ -10,7 +10,7 @@ import UIKit
 
 public class ImageGallerySlideshowCell: UICollectionViewCell {
 
-	@IBOutlet private weak var slideshowImage: UIImageView!
+	@IBOutlet private weak var slideshowImage: UIImageView?
 
 	private var placeholderImage: UIImage?
 
@@ -19,7 +19,7 @@ public class ImageGallerySlideshowCell: UICollectionViewCell {
 			return ""
 		}
 		set {
-			slideshowImage.lr_setImageWithURL(NSURL(string: newValue)!,
+			slideshowImage?.lr_setImageWithURL(NSURL(string: newValue)!,
 					placeholderImage: placeholderImage,
 					optionsInfo: [.BackgroundDecode])
 		}
@@ -30,13 +30,13 @@ public class ImageGallerySlideshowCell: UICollectionViewCell {
 			return UIImage()
 		}
 		set {
-			slideshowImage.image = newValue
+			slideshowImage?.image = newValue
 		}
 	}
 
 	public override func awakeFromNib() {
 		super.awakeFromNib()
-		slideshowImage.kf_showIndicatorWhenLoading = true
+		slideshowImage?.kf_showIndicatorWhenLoading = true
 		
 		placeholderImage = NSBundle.imageInBundles(
 			name: "default-placeholder-image",
@@ -45,6 +45,6 @@ public class ImageGallerySlideshowCell: UICollectionViewCell {
 
 	public override func prepareForReuse() {
 		super.prepareForReuse()
-		slideshowImage.image = placeholderImage
+		slideshowImage?.image = placeholderImage
 	}
 }

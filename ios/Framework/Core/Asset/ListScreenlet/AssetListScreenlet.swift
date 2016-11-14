@@ -27,7 +27,7 @@ import UIKit
 
 }
 
-@IBDesignable public class AssetListScreenlet: BaseListScreenlet {
+public class AssetListScreenlet: BaseListScreenlet {
 
 	@IBInspectable public var groupId: Int64 = 0
 	@IBInspectable public var classNameId: Int64 = 0

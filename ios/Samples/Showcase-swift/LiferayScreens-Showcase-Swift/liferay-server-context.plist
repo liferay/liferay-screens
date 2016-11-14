@@ -32,6 +32,12 @@
 	<integer>29947</integer>
 	<key>imageDisplayClassPK</key>
 	<integer>42369</integer>
+	<key>audioDisplayClassPK</key>
+	<integer>72269</integer>
+	<key>videoDisplayClassPK</key>
+	<real>72049</real>
+	<key>pdfDisplayClassPK</key>
+	<real>42656</real>
 	<key>imageGalleryFolderId</key>
 	<integer>42257</integer>
 	<key>imageGalleryMimeType</key>

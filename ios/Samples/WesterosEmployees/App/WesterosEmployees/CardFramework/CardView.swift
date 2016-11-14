@@ -385,7 +385,7 @@ public class CardView: UIView, CAAnimationDelegate {
 	///Resets the card to the current state
 	public func resetToCurrentState() {
 		setHeightConstraintForState(currentState)
-		self.layoutIfNeeded()
+		self.superview?.layoutIfNeeded()
 	}
 
 	///Changes the card to the following state
@@ -460,7 +460,7 @@ public class CardView: UIView, CAAnimationDelegate {
 				initialSpringVelocity: 0.0,
 				options: [.BeginFromCurrentState, .CurveEaseIn],
 				animations: {
-					self.layoutIfNeeded()
+					self.superview?.layoutIfNeeded()
 
 					if self.currentState.isInBottom || self.nextState == .Maximized {
 						self.setNeedsDisplay()

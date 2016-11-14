@@ -32,6 +32,7 @@ public class CredentialsStorageBuilder {
 	private Authentication auth;
 	private User user;
 	private Context context;
+	private StorageType storageType;
 
 	public CredentialsStorageBuilder setAuthentication(Authentication auth) {
 		if (auth == null) {
@@ -68,6 +69,8 @@ public class CredentialsStorageBuilder {
 			throw new IllegalStateException("You must set the context before storageType");
 		}
 
+		this.storageType = storageType;
+
 		//TODO implement other storage mechanisms
 		LiferayLogger.d("We currently support only one type of storage: " + storageType.value);
 		return this;
@@ -96,6 +99,10 @@ public class CredentialsStorageBuilder {
 	protected CredentialsStorage createStore() {
 
 		AbstractFactory instance = FactoryProvider.getInstance();
+
+		if (storageType == StorageType.NONE) {
+			return new CredentialsStorageVoid();
+		}
 
 		if (auth == null) {
 			// figure out the type from stored value

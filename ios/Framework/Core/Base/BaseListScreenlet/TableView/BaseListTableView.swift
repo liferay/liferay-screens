@@ -13,16 +13,13 @@
 */
 import UIKit
 
-#if LIFERAY_SCREENS_FRAMEWORK
-	import ODRefreshControl
-#endif
 
 
 public class BaseListTableView: BaseListView, UITableViewDataSource, UITableViewDelegate {
 	
 	@IBOutlet public var tableView: UITableView?
 	
-	internal var refreshControlView: ODRefreshControl?
+	internal var refreshControlView: UIRefreshControl?
 	
 	internal var refreshClosure: (Void -> Bool)? {
 		didSet {
@@ -213,6 +210,10 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		
 		return progressView
 	}
+
+	public override func changeEditable(editable: Bool) {
+		tableView?.subviews.forEach { $0.userInteractionEnabled = editable }
+	}
 	
 	
 	//MARK: Internal methods
@@ -220,8 +221,9 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	internal func updateRefreshControl() {
 		if refreshClosure != nil {
 			if refreshControlView == nil {
-				refreshControlView = ODRefreshControl(
-					inScrollView: self.tableView)
+				refreshControlView = UIRefreshControl()
+				tableView?.addSubview(refreshControlView!)
+				
 				refreshControlView!.addTarget(self,
 				                              action: #selector(BaseListTableView.refreshControlBeginRefresh(_:)),
 				                              forControlEvents: .ValueChanged)

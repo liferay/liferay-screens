@@ -19,12 +19,12 @@ import UIKit
 
 func registerKeyboardListener(listener: KeyboardListener) {
 	NSNotificationCenter.defaultCenter().addObserver(listener,
-			selector: "showKeyboard:",
+			selector: #selector(KeyboardListener.showKeyboard(_:)),
 			name: UIKeyboardWillChangeFrameNotification,
 			object: nil)
 
 	NSNotificationCenter.defaultCenter().addObserver(listener,
-			selector: "hideKeyboard:",
+			selector: #selector(KeyboardListener.hideKeyboard(_:)),
 			name: UIKeyboardWillHideNotification,
 			object: nil)
 }

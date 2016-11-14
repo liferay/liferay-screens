@@ -83,6 +83,8 @@ public class GetUserBaseLiferayConnector: ServerConnector {
 			return false
 		}
 
+		SessionContext.currentContext?.removeStoredCredentials()
+
 		SessionContext.loginWithBasic(
 			username: userName,
 			password: password,
