@@ -43,7 +43,6 @@ class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 		screenlet.editable = editable
 		saveButton.hidden = !editable
 
-		saveButton.frame.origin.y = saveButton.superview!.frame.size.height - saveButton.frame.size.height - 25
 
 		if let recordValue = issueRecord {
 			screenlet.recordId = recordValue.recordId!
@@ -64,6 +63,10 @@ class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 	func screenlet(screenlet: DDLFormScreenlet,
 			onFormSubmitted record: DDLRecord) {
 		onDone?()
+	}
+
+	@IBAction func saveButtonClick(sender: UIButton) {
+		screenlet.performAction(name: sender.restorationIdentifier!)
 	}
 
 }
