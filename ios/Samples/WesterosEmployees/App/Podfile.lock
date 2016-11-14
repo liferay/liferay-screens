@@ -37,7 +37,7 @@ PODS:
     - AFNetworking (= 2.6.3)
   - Liferay-OAuth (1.2.1):
     - Liferay-iOS-SDK (~> 7.0.4)
-  - LiferayScreens (1.4.1):
+  - LiferayScreens (2.0.0):
     - Cosmos (= 0.0.1)
     - CryptoSwift (~> 0.5.2)
     - DTPickerPresenter (= 0.2.0)
@@ -47,14 +47,12 @@ PODS:
     - Liferay-OAuth (~> 1.2.0)
     - MBProgressHUD (= 0.9.1)
     - MDRadialProgress (= 1.3.2)
-    - ODRefreshControl (= 1.2)
     - SMXMLDocument (= 1.1)
     - TNRadioButtonGroup (= 0.4)
     - YapDatabase/SQLCipher (= 2.9.2)
   - MBProgressHUD (0.9.1)
   - MDRadialProgress (1.3.2)
   - MGSwipeTableCell (1.5.6)
-  - ODRefreshControl (1.2)
   - PureLayout (3.0.2)
   - Reachability (3.2)
   - SMXMLDocument (1.1)
@@ -133,11 +131,10 @@ SPEC CHECKSUMS:
   Kingfisher: d84c5fd176ea86cc7b8aac65fd55feda6f70f130
   Liferay-iOS-SDK: ea3212ee6e62c866ca38b9df7415585371c15b22
   Liferay-OAuth: a9ff190558928bec8ebc18dd326b01bddd7e2968
-  LiferayScreens: 92b61ba84cff076a1646b899e86c085f032aea46
+  LiferayScreens: ce4ce985f316fd0390b021fef8c7dc000037bd54
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MDRadialProgress: 1068574b9b4b870f64b605b07f734385bde5104d
   MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
-  ODRefreshControl: 907e6149d72dde488d5917ccfabee5bd8d711a20
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SMXMLDocument: e0d9fbf726a2a0921871b492966458acb3ad9689
@@ -148,4 +145,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 8958b2722a56b44f2eeb9104c6b6d7254ab6ad7d
 
-COCOAPODS: 1.1.0.rc.3
+COCOAPODS: 1.1.1

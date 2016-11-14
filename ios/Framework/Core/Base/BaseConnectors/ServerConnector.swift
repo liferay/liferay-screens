@@ -23,7 +23,7 @@ import UIKit
 		static func addConnector(connector: ServerConnector) {
 			if queue == nil {
 				queue = NSOperationQueue()
-				queue!.maxConcurrentOperationCount = 4
+				queue!.maxConcurrentOperationCount = 1
 			}
 
 			queue!.addOperation(connector)
