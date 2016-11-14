@@ -13,9 +13,11 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 public class OnSwipeTouchListener implements View.OnTouchListener {
 
 	private final GestureDetector gestureDetector;
+	private final SwipeListener swipeListener;
 
-	protected OnSwipeTouchListener(Context ctx) {
+	public OnSwipeTouchListener(Context ctx, SwipeListener swipeListener) {
 		gestureDetector = new GestureDetector(ctx, new GestureListener());
+		this.swipeListener = swipeListener;
 	}
 
 	@Override
@@ -42,25 +44,18 @@ public class OnSwipeTouchListener implements View.OnTouchListener {
 				if (Math.abs(diffX) > Math.abs(diffY)) {
 					if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY) {
 						if (diffX > 0) {
-							onSwipeRight();
+							swipeListener.onSwipeRight();
 						} else {
-							onSwipeLeft();
+							swipeListener.onSwipeLeft();
 						}
 					}
 					result = true;
 				}
 				result = true;
 			} catch (Exception exception) {
-				exception.printStackTrace();
 				LiferayLogger.e("Error onFling " + exception);
 			}
 			return result;
 		}
-	}
-
-	public void onSwipeRight() {
-	}
-
-	public void onSwipeLeft() {
 	}
 }
