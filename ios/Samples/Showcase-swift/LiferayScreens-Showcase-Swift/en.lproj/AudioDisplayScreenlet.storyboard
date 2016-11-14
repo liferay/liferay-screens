@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CN3-Wv-chp">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Audio Display View Controller-->
+        <scene sceneID="3Dy-ph-zOR">
+            <objects>
+                <viewController id="CN3-Wv-chp" customClass="AudioDisplayViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="07W-Jz-UGJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="xU7-zs-PP1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pqb-hS-kSh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i7c-zG-nYg" customClass="AudioDisplayScreenlet" customModule="LiferayScreens">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="fAX-Jn-RBk"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="i7c-zG-nYg" firstAttribute="width" secondItem="pqb-hS-kSh" secondAttribute="width" id="6eD-Xe-oQC"/>
+                            <constraint firstItem="i7c-zG-nYg" firstAttribute="centerY" secondItem="pqb-hS-kSh" secondAttribute="centerY" id="H0L-KH-Mc2"/>
+                            <constraint firstItem="i7c-zG-nYg" firstAttribute="centerX" secondItem="pqb-hS-kSh" secondAttribute="centerX" id="uYR-yk-Qa6"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="screenlet" destination="i7c-zG-nYg" id="L0B-Eo-Lib"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hHG-d2-xUk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-74.400000000000006" y="151.57421289355324"/>
+        </scene>
+    </scenes>
+</document>
