@@ -81,6 +81,9 @@
 		0B2180351D6C508200A23690 /* DDMFieldStringWithOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180041D6C4F6F00A23690 /* DDMFieldStringWithOptions.swift */; };
 		0B2180361D6C508200A23690 /* DDMFieldUntyped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180051D6C4F6F00A23690 /* DDMFieldUntyped.swift */; };
 		0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
+		0B2BBE731DC3670800010F30 /* default-preview-imagegallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2BBE721DC3670800010F30 /* default-preview-imagegallery@2x.png */; };
+		0B2BBE761DC3699C00010F30 /* default-list-preview-imagegallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2BBE741DC3699C00010F30 /* default-list-preview-imagegallery@2x.png */; };
+		0B2BBE771DC3699C00010F30 /* default-slideshow-preview-imagegallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2BBE751DC3699C00010F30 /* default-slideshow-preview-imagegallery@2x.png */; };
 		0B2C41541D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C41421D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift */; };
 		0B2C415F1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C414D1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift */; };
 		0B2C41631D5A3C7C00764326 /* UploadProgressView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C41511D5A3C7C00764326 /* UploadProgressView_default.xib */; };
@@ -616,6 +619,9 @@
 		0B2180221D6C502000A23690 /* BlogsEntryDisplayView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogsEntryDisplayView_default.swift; sourceTree = "<group>"; };
 		0B2180231D6C502000A23690 /* BlogsEntryDisplayView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BlogsEntryDisplayView_default.xib; sourceTree = "<group>"; };
 		0B2180261D6C504300A23690 /* HttpDownloadConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpDownloadConnector.swift; sourceTree = "<group>"; };
+		0B2BBE721DC3670800010F30 /* default-preview-imagegallery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-imagegallery@2x.png"; sourceTree = "<group>"; };
+		0B2BBE741DC3699C00010F30 /* default-list-preview-imagegallery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-list-preview-imagegallery@2x.png"; sourceTree = "<group>"; };
+		0B2BBE751DC3699C00010F30 /* default-slideshow-preview-imagegallery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-slideshow-preview-imagegallery@2x.png"; sourceTree = "<group>"; };
 		0B2C41421D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryCollectionViewBase.swift; sourceTree = "<group>"; };
 		0B2C414D1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploadDetailViewController_default.swift; sourceTree = "<group>"; };
 		0B2C41511D5A3C7C00764326 /* UploadProgressView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadProgressView_default.xib; sourceTree = "<group>"; };
@@ -1810,8 +1816,11 @@
 				881E61FA1ACBFC3400862B9E /* default-hourglass@2x.png */,
 				881E61FB1ACBFC3400862B9E /* default-lock-icon.png */,
 				881E61FC1ACBFC3400862B9E /* default-lock-icon@2x.png */,
+				0B2BBE721DC3670800010F30 /* default-preview-imagegallery@2x.png */,
 				881E61FD1ACBFC3400862B9E /* default-mail-icon.png */,
 				881E61FE1ACBFC3400862B9E /* default-mail-icon@2x.png */,
+				0B2BBE741DC3699C00010F30 /* default-list-preview-imagegallery@2x.png */,
+				0B2BBE751DC3699C00010F30 /* default-slideshow-preview-imagegallery@2x.png */,
 				881E61FF1ACBFC3400862B9E /* default-multiline-field.png */,
 				881E62001ACBFC3400862B9E /* default-multiline-field@2x.png */,
 				881E62011ACBFC3400862B9E /* default-portrait-placeholder.png */,
@@ -2477,6 +2486,7 @@
 				881E62651ACBFC3400862B9E /* default-preview-assetlist@2x.png in Resources */,
 				88CA80691B25E505004C1D59 /* OAuthWebViewController_default.xib in Resources */,
 				881E625C1ACBFC3400862B9E /* default-hourglass@2x.png in Resources */,
+				0B2BBE731DC3670800010F30 /* default-preview-imagegallery@2x.png in Resources */,
 				0B5B5EC11D5873F70007D4B1 /* default-cancel-upload@3x.png in Resources */,
 				0BB4678C1D8707280044523E /* comment-display-screenlet.strings in Resources */,
 				881E625F1ACBFC3400862B9E /* default-mail-icon.png in Resources */,
@@ -2553,6 +2563,7 @@
 				0B5B5EC81D5876A10007D4B1 /* default-placeholder-image.png in Resources */,
 				880ACA7F1B0224A0007AD007 /* signup-screenlet.strings in Resources */,
 				881E62371ACBFC3400862B9E /* DDLFieldDateTableCell_default.xib in Resources */,
+				0B2BBE761DC3699C00010F30 /* default-list-preview-imagegallery@2x.png in Resources */,
 				881E62571ACBFC3400862B9E /* default-form-gradient-bottom.png in Resources */,
 				881E62551ACBFC3400862B9E /* default-field.png in Resources */,
 				881E623F1ACBFC3400862B9E /* DDLFieldRadioTableCell_default.xib in Resources */,
@@ -2560,6 +2571,7 @@
 				0BBEDA251D5B230700F8CB31 /* ImageGalleryCell.xib in Resources */,
 				881E624A1ACBFC3400862B9E /* DDLSubmitButtonTableCell_default.xib in Resources */,
 				889125C31D549757006AFA08 /* RatingView_default-emojis.xib in Resources */,
+				0B2BBE771DC3699C00010F30 /* default-slideshow-preview-imagegallery@2x.png in Resources */,
 				0BBEDA2E1D5B230E00F8CB31 /* ImageGalleryGridCell.xib in Resources */,
 				881E624C1ACBFC3400862B9E /* DDLListView_default.xib in Resources */,
 			);
