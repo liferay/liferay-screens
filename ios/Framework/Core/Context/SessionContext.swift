@@ -24,7 +24,7 @@ import Foundation
 	public static var currentContext: SessionContext?
 
 	public let session: LRSession
-	public let userAttributes: [String:AnyObject]
+	public let user: User
 
 	public let cacheManager: CacheManager
 	public var credentialsStorage: CredentialsStorage
@@ -32,13 +32,13 @@ import Foundation
 
 	public init(session: LRSession, attributes: [String: AnyObject], store: CredentialsStore) {
 		self.session = session
-		self.userAttributes = attributes
+		self.user = User(attributes: attributes)
 
-		let userId = userAttributes["userId"]
+		let userId = user.userId
 
 		cacheManager = LiferayServerContext.factory.createCacheManager(
 			session: session,
-			userId: userId?.longLongValue ?? 0)
+			userId: userId)
 
 		credentialsStorage = CredentialsStorage(store: store)
 
@@ -223,7 +223,7 @@ import Foundation
 	public func storeCredentials() -> Bool {
 		return credentialsStorage.store(
 				session: session,
-				userAttributes: userAttributes)
+				userAttributes: user.attributes)
 	}
 
 	public func removeStoredCredentials() -> Bool {
