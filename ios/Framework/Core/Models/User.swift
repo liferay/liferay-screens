@@ -14,11 +14,9 @@
 import Foundation
 
 
-//TODO if we have an User model, we have to use in the SessionContext object 
-// (instead of "userAttributes" property)
 @objc public class User: NSObject, NSCoding {
 
-	public let attributes :[String:AnyObject]
+	public let attributes: [String:AnyObject]
 	
 	public var firstName: String {
 		return stringValue("firstName") ?? ""
