@@ -24,7 +24,7 @@ public class UserDisplayViewController: UIViewController, AssetDisplayScreenletD
 			self.screenlet?.delegate = self
 
 			self.screenlet?.className = AssetClasses.getClassName(AssetClassNameKey_User)!
-			self.screenlet?.classPK = (SessionContext.currentContext?.userId)!
+			self.screenlet?.classPK = (SessionContext.currentContext?.user.userId)!
 		}
 	}
 
@@ -44,7 +44,9 @@ public class UserDisplayViewController: UIViewController, AssetDisplayScreenletD
 			if type == "user" {
 				let view = NSBundle.mainBundle().loadNibNamed("UserProfileView", owner: self, options: nil)![safe: 0] as? UserProfileView
 
-				view?.user = User(attributes: asset.attributes)
+				let object = asset.attributes["object"] as! [String : AnyObject]
+
+				view?.user = User(attributes: object["user"] as! [String : AnyObject])
 				view?.goBackButtonClicked = {
 					self.dismissViewControllerAnimated(true, completion: nil)
 				}
