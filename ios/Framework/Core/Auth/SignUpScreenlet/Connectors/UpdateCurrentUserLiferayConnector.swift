@@ -48,11 +48,11 @@ public class UpdateCurrentUserLiferayConnector: ServerConnector {
 	}
 
 	public func attributeAsString(key: String) -> String {
-		return SessionContext.currentContext?.userAttribute(key) as! String
+		return SessionContext.currentContext?.user.attributes[key] as! String
 	}
 
 	public func attributeAsId(key: String) -> Int64 {
-		return Int64(SessionContext.currentContext?.userAttribute(key) as! Int)
+		return Int64(SessionContext.currentContext?.user.attributes[key] as! Int)
 	}
 
 }
