@@ -110,8 +110,6 @@ public class AssetListPageLiferayConnector: PaginationLiferayConnector {
 	public func doGetRowCount(session session: LRBatchSession, entryQuery: LRJSONObjectWrapper) {
 	}
 
-	//MARK: Private methods
-
 	public func configureEntryQuery() -> [String:AnyObject] {
 		var entryQuery = (customEntryQuery != nil)
 			? customEntryQuery!
@@ -123,7 +121,9 @@ public class AssetListPageLiferayConnector: PaginationLiferayConnector {
 			"visible" : "true"
 		]
 
-		for (k,v) in defaultValues {
+		let finalValues = self.handleUserVisibleFlag(defaultValues)
+
+		for (k,v) in finalValues {
 			if entryQuery[k] == nil {
 				entryQuery[k] = v
 			}
@@ -132,6 +132,20 @@ public class AssetListPageLiferayConnector: PaginationLiferayConnector {
 		return entryQuery
 	}
 
+
+	//MARK: Private methods
+
+	private func handleUserVisibleFlag(values: [String : AnyObject]) -> [String : AnyObject] {
+		if (classNameId == AssetClasses.getClassNameId(AssetClassNameKey_User)) {
+			var newValues = values
+
+			newValues.updateValue("false", forKey: "visible")
+			newValues.updateValue("", forKey: "groupIds")
+
+			return newValues
+		}
+		return values
+	}
 }
 
 public class Liferay62AssetListPageConnector: AssetListPageLiferayConnector {
