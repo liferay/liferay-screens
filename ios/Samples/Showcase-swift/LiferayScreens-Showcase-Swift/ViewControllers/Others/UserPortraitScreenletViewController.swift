@@ -21,7 +21,7 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 	
 	@IBOutlet weak var userIdField: UITextField! {
 		didSet {
-			if let userId = SessionContext.currentContext?.userAttribute("userId")?.description {
+			if let userId = SessionContext.currentContext?.user.userId.description {
 				userIdField.text = userId
 			}
 		}
