@@ -68,10 +68,6 @@ import Foundation
 		return auth.password
 	}
 
-	public var userId: Int64? {
-		return userAttributes["userId"]?.longLongValue
-	}
-
 
 	//MARK Public methods
 
@@ -126,10 +122,6 @@ import Foundation
 				store: store)
 
 		return session
-	}
-
-	public func userAttribute(key: String) -> AnyObject? {
-		return userAttributes[key]
 	}
 
 	public func createRequestSession() -> LRSession {
