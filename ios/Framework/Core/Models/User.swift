@@ -16,12 +16,10 @@ import Foundation
 
 //TODO if we have an User model, we have to use in the SessionContext object 
 // (instead of "userAttributes" property)
-@objc public class User: Asset {
+@objc public class User: NSObject, NSCoding {
 
-	public var user: [String:AnyObject]? {
-		return attributes["object"]?["user"] as? [String:AnyObject]
-	}
-
+	public let attributes :[String:AnyObject]
+	
 	public var firstName: String {
 		return stringValue("firstName") ?? ""
 	}
@@ -54,11 +52,27 @@ import Foundation
 		return int64Value("userId") ?? 0
 	}
 
+	public init(attributes: [String : AnyObject]) {
+		self.attributes = attributes
+
+		super.init()
+	}
+
 	private func int64Value(key: String) -> Int64? {
-		return user?[key]?.longLongValue
+		return attributes[key]?.longLongValue
 	}
 
 	private func stringValue(key: String) -> String? {
-		return user?[key]?.description
+		return attributes[key]?.description
+	}
+
+	public required init?(coder aDecoder: NSCoder) {
+		self.attributes = aDecoder.decodeObjectForKey("asset-attrs") as? [String:AnyObject] ?? [:]
+
+		super.init()
+	}
+
+	public func encodeWithCoder(aCoder: NSCoder) {
+		aCoder.encodeObject(attributes, forKey: "asset-attrs")
 	}
 }
