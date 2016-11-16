@@ -53,7 +53,8 @@ public class AssetDisplayScreenlet: BaseScreenlet {
 					self.assetDisplayViewModel?.asset = nil
 
 					self.assetDisplayDelegate?.screenlet?(self,
-					                                      onAssetError: NSError.errorWithCause(.InvalidServerResponse))
+							onAssetError: NSError.errorWithCause(.InvalidServerResponse,
+									message: "Could not create inner screenlet."))
 				}
 			}
 		}

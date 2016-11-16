@@ -55,7 +55,8 @@ public class AssetListPageLiferayConnector: PaginationLiferayConnector {
 						lastError = nil
 					}
 					else {
-						lastError = NSError.errorWithCause(.InvalidServerResponse)
+						lastError = NSError.errorWithCause(.InvalidServerResponse,
+						                                   message: "No entries found.")
 						resultPageContent = nil
 					}
 				}
