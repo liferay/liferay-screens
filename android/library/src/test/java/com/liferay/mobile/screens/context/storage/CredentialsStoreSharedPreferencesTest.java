@@ -110,7 +110,12 @@ public class CredentialsStoreSharedPreferencesTest {
 			assertEquals(LiferayServerContext.getServer(), sharedPref.getString("server", "not-present"));
 			assertEquals(LiferayServerContext.getGroupId(), sharedPref.getLong("groupId", 0));
 			assertEquals(LiferayServerContext.getCompanyId(), sharedPref.getLong("companyId", 0));
-			assertEquals("{\"userId\":123}", sharedPref.getString("attributes", "not-present"));
+
+			JSONObject userAttributes = new JSONObject();
+			userAttributes.put("userId", 123);
+			User user = new User(userAttributes);
+
+			assertEquals(user.toString(), sharedPref.getString("attributes", "not-present"));
 		}
 	}
 
