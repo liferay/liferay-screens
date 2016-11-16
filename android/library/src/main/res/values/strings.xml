@@ -64,4 +64,6 @@
 	<string-array name="pdf_mime_types">
 		<item>application/pdf</item>
 	</string-array>
+
+	<string name="default_class_name_id_user">20087</string>
 </resources>
