@@ -8,6 +8,7 @@ import com.liferay.mobile.screens.rating.RatingScreenlet;
 import com.liferay.mobile.screens.rating.interactor.RatingEvent;
 import com.liferay.mobile.screens.service.v70.ScreensratingsentryService;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -21,19 +22,28 @@ public class RatingDeleteInteractor extends BaseCacheWriteInteractor<RatingListe
 		ScreensratingsentryService ratingsEntryService =
 			new ScreensratingsentryService(SessionContext.createSessionFromCurrentSession());
 
-		JSONObject jsonObject = ratingsEntryService.deleteRatingsEntry(event.getClassPK(), event.getClassName(),
-			event.getRatingGroupCounts());
+		JSONObject jsonObject =
+			ratingsEntryService.deleteRatingsEntry(event.getClassPK(), event.getClassName(),
+				event.getRatingGroupCounts());
 
 		event.setJSONObject(jsonObject);
 		return event;
 	}
 
 	@Override
-	public void onSuccess(RatingEvent event) throws Exception {
+	public void onSuccess(RatingEvent event) {
 		JSONObject result = event.getJSONObject();
-		AssetRating assetRating = new AssetRating(result.getLong("classPK"), result.getString("className"),
-			toIntArray(result.getJSONArray("ratings")), result.getDouble("average"), result.getDouble("userScore"),
-			result.getDouble("totalScore"), result.getInt("totalCount"));
+		AssetRating assetRating;
+		try {
+			assetRating = new AssetRating(result.getLong("classPK"), result.getString("className"),
+				toIntArray(result.getJSONArray("ratings")), result.getDouble("average"),
+				result.getDouble("userScore"), result.getDouble("totalScore"),
+				result.getInt("totalCount"));
+		} catch (JSONException e) {
+			event.setException(e);
+			onFailure(event);
+			return;
+		}
 		getListener().onRatingOperationSuccess(assetRating);
 	}
 

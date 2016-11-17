@@ -9,6 +9,7 @@ import com.liferay.mobile.screens.rating.interactor.RatingEvent;
 import com.liferay.mobile.screens.service.v70.ScreensratingsentryService;
 import java.security.InvalidParameterException;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -25,18 +26,26 @@ public class RatingUpdateInteractor extends BaseCacheWriteInteractor<RatingListe
 			new ScreensratingsentryService(SessionContext.createSessionFromCurrentSession());
 
 		JSONObject jsonObject =
-			ratingsEntryService.updateRatingsEntry(event.getClassPK(), event.getClassName(), event.getScore(),
-				event.getRatingGroupCounts());
+			ratingsEntryService.updateRatingsEntry(event.getClassPK(), event.getClassName(),
+				event.getScore(), event.getRatingGroupCounts());
 		event.setJSONObject(jsonObject);
 		return event;
 	}
 
 	@Override
-	public void onSuccess(RatingEvent event) throws Exception {
+	public void onSuccess(RatingEvent event) {
 		JSONObject result = event.getJSONObject();
-		AssetRating assetRating = new AssetRating(result.getLong("classPK"), result.getString("className"),
-			toIntArray(result.getJSONArray("ratings")), result.getDouble("average"), result.getDouble("userScore"),
-			result.getDouble("totalScore"), result.getInt("totalCount"));
+		AssetRating assetRating;
+		try {
+			assetRating = new AssetRating(result.getLong("classPK"), result.getString("className"),
+				toIntArray(result.getJSONArray("ratings")), result.getDouble("average"),
+				result.getDouble("userScore"), result.getDouble("totalScore"),
+				result.getInt("totalCount"));
+		} catch (JSONException e) {
+			event.setException(e);
+			onFailure(event);
+			return;
+		}
 		getListener().onRatingOperationSuccess(assetRating);
 	}
 
@@ -47,7 +56,8 @@ public class RatingUpdateInteractor extends BaseCacheWriteInteractor<RatingListe
 
 	protected void validate(double score) throws InvalidParameterException {
 		if ((score > 1) || (score < 0)) {
-			throw new InvalidParameterException("Score " + score + " is not a double value between 0 and 1");
+			throw new InvalidParameterException(
+				"Score " + score + " is not a double value between 0 and 1");
 		}
 	}
 
