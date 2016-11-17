@@ -7,6 +7,8 @@ import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInter
 import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
 import com.liferay.mobile.screens.service.v70.ScreenscommentService;
 import com.liferay.mobile.screens.util.JSONUtil;
+import java.util.Map;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -27,8 +29,18 @@ public class CommentLoadInteractor extends BaseCacheReadInteractor<CommentDispla
 	}
 
 	@Override
-	public void onSuccess(CommentEvent event) throws Exception {
-		CommentEntry commentEntry = new CommentEntry(JSONUtil.toMap(event.getJSONObject()));
+	public void onSuccess(CommentEvent event) {
+		Map<String, Object> map;
+
+		try {
+			map = JSONUtil.toMap(event.getJSONObject());
+		} catch (JSONException e) {
+			event.setException(e);
+			onFailure(event);
+			return;
+		}
+
+		CommentEntry commentEntry = new CommentEntry(map);
 		getListener().onLoadCommentSuccess(commentEntry);
 	}
 
