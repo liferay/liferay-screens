@@ -55,7 +55,8 @@ extension SyncManager {
 						onItemSyncScreenlet: "RatingsScreenlet",
 						failedKey: key,
 						attributes: attributes,
-						error: NSError.errorWithCause(.NotAvailable))
+						error: NSError.errorWithCause(.NotAvailable,
+								message: "Synchronizer for delete rating not available."))
 				signal()
 			}
 		}
@@ -88,7 +89,8 @@ extension SyncManager {
 						onItemSyncScreenlet: "RatingsScreenlet",
 						failedKey: key,
 						attributes: attributes,
-						error: NSError.errorWithCause(.NotAvailable))
+						error: NSError.errorWithCause(.NotAvailable,
+								message: "Synchronizer for update rating not available."))
 				signal()
 			}
 		}

@@ -54,7 +54,8 @@ extension SyncManager {
 							onItemSyncScreenlet: ScreenletName(ImageGalleryScreenlet),
 							failedKey: key,
 							attributes: attributes,
-							error: NSError.errorWithCause(.NotAvailable))
+							error: NSError.errorWithCause(.NotAvailable,
+									message: "Synchronizer for image gallery not available."))
 					
 					signal()
 				}

@@ -54,7 +54,8 @@ extension SyncManager {
 						onItemSyncScreenlet: "CommentsScreenlet",
 						failedKey: key,
 						attributes: attributes,
-						error: NSError.errorWithCause(.NotAvailable))
+						error: NSError.errorWithCause(.NotAvailable,
+								message: "Synchronizer for delete comment not available."))
 				signal()
 			}
 		}
@@ -83,7 +84,8 @@ extension SyncManager {
 						onItemSyncScreenlet: "CommentsScreenlet",
 						failedKey: key,
 						attributes: attributes,
-						error: NSError.errorWithCause(.NotAvailable))
+						error: NSError.errorWithCause(.NotAvailable,
+								message: "Synchronizer for update comment not available."))
 				signal()
 			}
 		}
@@ -105,17 +107,18 @@ extension SyncManager {
 				cacheKeyUsed: key)
 
 			self.prepareInteractorForSync(interactor,
-										  key: key,
-										  attributes: attributes,
-										  signal: signal,
-										  screenletClassName: "CommentsScreenlet")
+					key: key,
+					attributes: attributes,
+					signal: signal,
+					screenletClassName: "CommentsScreenlet")
 
 			if !interactor.start() {
 				self.delegate?.syncManager?(self,
-											onItemSyncScreenlet: "CommentsScreenlet",
-											failedKey: key,
-											attributes: attributes,
-											error: NSError.errorWithCause(.NotAvailable))
+						onItemSyncScreenlet: "CommentsScreenlet",
+						failedKey: key,
+						attributes: attributes,
+						error: NSError.errorWithCause(.NotAvailable,
+								message: "Synchronizer for add comment not available."))
 				signal()
 			}
 		}
