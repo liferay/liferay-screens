@@ -55,7 +55,7 @@ public class WebContentDisplayFromArticleIdInteractor extends WebContentDisplayB
 	}
 
 	@Override
-	public void onSuccess(WebContentDisplayEvent event) throws Exception {
+	public void onSuccess(WebContentDisplayEvent event) {
 		getListener().onWebContentReceived(event.getWebContent());
 	}
 
