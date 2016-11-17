@@ -66,7 +66,8 @@ public class Liferay70CommentAddConnector: CommentAddLiferayConnector {
 				lastError = nil
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				                                   message: "Could not add comment.")
 				resultComment = nil
 			}
 		}
