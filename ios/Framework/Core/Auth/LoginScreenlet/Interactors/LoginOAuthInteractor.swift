@@ -62,8 +62,8 @@ class LoginOAuthInteractor: Interactor, LRCallback {
 						self.showWebView(URL)
 					}
 					else {
-						print("ERROR: OAuth's authorizeTokenURL is not valid: \($0.authorizeTokenURL)\n")
-						let err = NSError.errorWithCause(.InvalidServerResponse)
+						let err = NSError.errorWithCause(.InvalidServerResponse,
+								message: "OAuth's authorizeTokenURL is not valid: \($0.authorizeTokenURL)\n")
 						self.onFailure?(err)
 					}
 				},
