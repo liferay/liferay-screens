@@ -40,7 +40,8 @@ public class HttpDownloadConnector: ServerConnector {
 					self.resultUrl = nil
 				}
 				else if _localURL == nil {
-					self.lastError = NSError.errorWithCause(.InvalidServerResponse)
+					self.lastError = NSError.errorWithCause(.InvalidServerResponse,
+							message: "Could not download because local URL not found.")
 					self.resultUrl = nil
 				}
 				else if let localURL = _localURL {
