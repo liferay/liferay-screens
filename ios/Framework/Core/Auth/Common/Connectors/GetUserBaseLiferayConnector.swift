@@ -58,7 +58,8 @@ public class GetUserBaseLiferayConnector: ServerConnector {
 			let result = try sendGetUserRequest(session)
 
 			if result["userId"] == nil {
-				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				                                   message: "No user found.")
 				resultUserAttributes = nil
 			}
 			else {
