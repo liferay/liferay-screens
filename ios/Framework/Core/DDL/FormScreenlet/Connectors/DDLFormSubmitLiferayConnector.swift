@@ -101,7 +101,8 @@ public class Liferay62DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
 				lastError = nil
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				                                   message: "Could not submit ddl form.")
 			}
 		}
 		catch let error as NSError {
@@ -149,7 +150,8 @@ public class Liferay70DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
 				lastError = nil
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				                                   message: "Could not submit ddl form.")
 			}
 		}
 		catch let error as NSError {

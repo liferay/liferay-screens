@@ -254,7 +254,9 @@ public class DDLFormScreenlet: BaseScreenlet {
 			}
 			else {
 				self.ddlFormDelegate?.screenlet?(self,
-						onRecordLoadError: interactor.lastError ?? NSError.errorWithCause(.InvalidServerResponse))
+						onRecordLoadError: interactor.lastError
+								?? NSError.errorWithCause(.InvalidServerResponse,
+										message: "Could not load record data."))
 			}
 		}
 
