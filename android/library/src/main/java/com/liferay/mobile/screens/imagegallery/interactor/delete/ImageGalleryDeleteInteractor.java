@@ -23,7 +23,7 @@ public class ImageGalleryDeleteInteractor extends BaseCacheWriteInteractor<Image
 	}
 
 	@Override
-	public void onSuccess(ImageGalleryEvent event) throws Exception {
+	public void onSuccess(ImageGalleryEvent event) {
 		getListener().onImageEntryDeleted(event.getImageEntry().getFileEntryId());
 	}
 
