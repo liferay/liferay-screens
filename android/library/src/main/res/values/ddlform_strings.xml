@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="submit">SUBMIT</string>
+	<string name="submit">Submit</string>
 	<string name="required_value">Required value</string>
 	<string name="invalid">Invalid value</string>
 	<string name="open">Open:</string>
