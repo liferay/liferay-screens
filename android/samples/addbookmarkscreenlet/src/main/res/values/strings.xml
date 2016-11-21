@@ -1,5 +1,5 @@
 <resources>
-	<string name="app_name">AddBookmarkScreenlet</string>
+	<string name="app_name">Add Bookmark Screenlet</string>
 	<string name="url_address">URL Address</string>
 	<string name="title">Title</string>
 	<string name="add_bookmark">Add Bookmark</string>
