@@ -64,14 +64,6 @@ import Foundation
 		return result
 	}
 
-	public override var debugDescription: String {
-		return "DDLRecord[" +
-			" id=\( recordId?.description ?? "" )" +
-			" attributes=\( attributes )" +
-			" structure=\( structure?.debugDescription )" +
-			" untypedValues=\( untypedValues )]"
-	}
-
 
 	//MARK: Init
 
