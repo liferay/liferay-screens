@@ -25,6 +25,7 @@ import com.liferay.mobile.screens.auth.login.connector.CurrentUserConnector;
 import com.liferay.mobile.screens.cache.executor.Executor;
 import com.liferay.mobile.screens.context.storage.CredentialsStorage;
 import com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import java.security.AccessControlException;
 import org.json.JSONObject;
@@ -71,7 +72,11 @@ public class SessionContext {
 	}
 
 	public static boolean isLoggedIn() {
-		return currentUserSession != null;
+		if (currentUserSession == null) {
+			LiferayLogger.e("You need to be logged to view the content!");
+			return false;
+		}
+		return true;
 	}
 
 	public static boolean hasUserInfo() {
