@@ -49,8 +49,9 @@ import UIKit
 					postRun()
 				}
 				else {
-					lastError = NSError.errorWithCause(.NotAvailable,
-					                                   message: "There is no session created.")
+					if lastError == nil {
+						lastError = NSError.errorWithCause(.NotAvailable, message: "Could not create session")
+					}
 				}
 			}
 			else {
