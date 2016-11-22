@@ -1,1 +1,5 @@
-
+choose-asset-type="Choose an asset type";
+screenlets-available="Screenlets Available";
+comment-screenlets="Comments";
+files-screenlets="Files";
+others-screenlets="Othes";
