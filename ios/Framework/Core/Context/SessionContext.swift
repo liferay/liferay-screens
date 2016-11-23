@@ -29,6 +29,15 @@ import Foundation
 	public let cacheManager: CacheManager
 	public var credentialsStorage: CredentialsStorage
 
+	@available(*, deprecated=2.0.1, message="Use public property user")
+	public var userId: Int64 {
+		return user.userId
+	}
+
+	@available(*, deprecated=2.0.1, message="Access it throught user.attributes")
+	public var userAttributes: [String : AnyObject] {
+		return user.attributes
+	}
 
 	public init(session: LRSession, attributes: [String: AnyObject], store: CredentialsStore) {
 		self.session = session
