@@ -657,6 +657,14 @@
 		0B64637A1D66F172007F3289 /* UploadProgressView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadProgressView_default.swift; sourceTree = "<group>"; };
 		0B66FFCD1DAF83E900963DEB /* DefaultTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTextField.swift; sourceTree = "<group>"; };
 		0B7F45A11DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDisplayViewModel.swift; sourceTree = "<group>"; };
+		0B85DF921DDE19450015EDCF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/assetdisplay-screenlet.strings"; sourceTree = "<group>"; };
+		0B85DF931DDE1D9E0015EDCF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/assetlist-screenlet.strings"; sourceTree = "<group>"; };
+		0B85DF941DDE1DFA0015EDCF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/comment-add-screenlet.strings"; sourceTree = "<group>"; };
+		0B85DF951DDE1E2F0015EDCF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/comment-display-screenlet.strings"; sourceTree = "<group>"; };
+		0B85DF961DDE1EDA0015EDCF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/comment-list-screenlet.strings"; sourceTree = "<group>"; };
+		0B85DF971DDE225B0015EDCF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/ddllist-screenlet.strings"; sourceTree = "<group>"; };
+		0B85DF981DDE24B40015EDCF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/rating-screenlet.strings"; sourceTree = "<group>"; };
+		0B85DF991DDE25D90015EDCF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/webcontentdisplay-screenlet.strings"; sourceTree = "<group>"; };
 		0B89C9941D58B01200A9EAE7 /* SyncManager+ImageGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncManager+ImageGallery.swift"; sourceTree = "<group>"; };
 		0BB467861D8707280044523E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/comment-add-screenlet.strings"; sourceTree = "<group>"; };
 		0BB467881D8707280044523E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/comment-display-screenlet.strings"; sourceTree = "<group>"; };
@@ -3119,6 +3127,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				0BB467861D8707280044523E /* en */,
+				0B85DF941DDE1DFA0015EDCF /* es */,
 			);
 			name = "comment-add-screenlet.strings";
 			sourceTree = "<group>";
@@ -3127,6 +3136,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				0BB467881D8707280044523E /* en */,
+				0B85DF951DDE1E2F0015EDCF /* es */,
 			);
 			name = "comment-display-screenlet.strings";
 			sourceTree = "<group>";
@@ -3135,6 +3145,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				0BB4678A1D8707280044523E /* en */,
+				0B85DF961DDE1EDA0015EDCF /* es */,
 			);
 			name = "comment-list-screenlet.strings";
 			sourceTree = "<group>";
@@ -3143,6 +3154,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				0BB4678F1D8707430044523E /* en */,
+				0B85DF981DDE24B40015EDCF /* es */,
 			);
 			name = "rating-screenlet.strings";
 			sourceTree = "<group>";
@@ -3151,6 +3163,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				0BB467921D8707720044523E /* en */,
+				0B85DF921DDE19450015EDCF /* es */,
 			);
 			name = "assetdisplay-screenlet.strings";
 			sourceTree = "<group>";
@@ -3159,6 +3172,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				88019FA11B8F22EE00674B00 /* en */,
+				0B85DF991DDE25D90015EDCF /* es */,
 			);
 			name = "webcontentdisplay-screenlet.strings";
 			sourceTree = "<group>";
@@ -3233,6 +3247,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				88BCB5601B8CAC22004349F1 /* en */,
+				0B85DF931DDE1D9E0015EDCF /* es */,
 			);
 			name = "assetlist-screenlet.strings";
 			sourceTree = "<group>";
@@ -3241,6 +3256,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				88BCB5641B8CAD93004349F1 /* en */,
+				0B85DF971DDE225B0015EDCF /* es */,
 			);
 			name = "ddllist-screenlet.strings";
 			sourceTree = "<group>";
