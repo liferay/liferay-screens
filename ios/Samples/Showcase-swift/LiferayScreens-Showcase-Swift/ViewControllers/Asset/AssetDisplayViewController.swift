@@ -62,7 +62,9 @@ class AssetDisplayViewController: UIViewController, AssetDisplayScreenletDelegat
 		let keys = asset.attributes["object"]!.allKeys
 		if keys.contains({$0 as? String == "user"}) {
 			let userView = UserView()
-			userView.user = User(attributes: asset.attributes)
+			let object = asset.attributes["object"] as! [String : AnyObject]
+
+			userView.user = User(attributes: object["user"] as! [String : AnyObject])
 			return userView
 		}
 		return nil
