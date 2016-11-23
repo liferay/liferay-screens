@@ -16,8 +16,9 @@ import LROAuth
 
 class OAuthWebViewController: UIViewController, UIWebViewDelegate {
 
-	@IBOutlet weak var webView: UIWebView!
-	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+	@IBOutlet weak var webView: UIWebView?
+	@IBOutlet weak var activityIndicator: UIActivityIndicatorView?
+	@IBOutlet weak var closeButton: UIButton?
 
 	var onAuthorized: (String -> Void)?
 
@@ -45,13 +46,14 @@ class OAuthWebViewController: UIViewController, UIWebViewDelegate {
 	}
 
 	override func viewWillAppear(animated: Bool) {
-		activityIndicator.startAnimating()
-		webView.delegate = self
-		webView.loadRequest(NSURLRequest(URL: URL))
+		activityIndicator?.startAnimating()
+		webView?.delegate = self
+		webView?.loadRequest(NSURLRequest(URL: URL))
+		closeButton?.titleLabel?.text = NSLocalizedString("default-oath-close", comment: "Close")
 	}
 
 	@IBAction func closeAction(sender: AnyObject) {
-		activityIndicator.stopAnimating()
+		activityIndicator?.stopAnimating()
 
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
@@ -74,7 +76,7 @@ class OAuthWebViewController: UIViewController, UIWebViewDelegate {
 	}
 
 	func webViewDidFinishLoad(webView: UIWebView) {
-		activityIndicator.stopAnimating()
+		activityIndicator?.stopAnimating()
 	}
 
 

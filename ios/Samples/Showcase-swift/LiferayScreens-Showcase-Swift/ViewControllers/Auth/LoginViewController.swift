@@ -29,7 +29,12 @@ class LoginViewController: UIViewController, LoginScreenletDelegate {
 			self.loginScreenlet.delegate = self
 		}
 	}
-
+	@IBOutlet weak var saveCredentialsLabel: UILabel!
+	@IBOutlet weak var forgetPasswordButton: UIButton!
+	@IBOutlet weak var signUpButton: UIButton!
+	@IBOutlet weak var loggedLabel: UILabel!
+	@IBOutlet weak var signOutButton: UIButton!
+	@IBOutlet weak var reloginButton: UIButton!
 	
 	//MARK: IBActions
 	@IBAction func signOutAction() {
@@ -66,6 +71,8 @@ class LoginViewController: UIViewController, LoginScreenletDelegate {
 		super.viewDidLoad()
 
 		SessionContext.loadStoredCredentials()
+
+		setTranslations()
 	}
 	
 	override func viewWillAppear(animated: Bool) {
@@ -120,6 +127,19 @@ class LoginViewController: UIViewController, LoginScreenletDelegate {
 				self.loginScreenlet.viewModel.password = "test"
 			}
 		}
+	}
+
+	private func setTranslations() {
+		saveCredentialsLabel.text = NSLocalizedString("login-save-credentials", comment: "Save credentials")
+		forgetPasswordButton.replaceAttributedTitle(NSLocalizedString("login-forgot-password",
+				comment: "Did you forget your password?"), forState: .Normal)
+		signUpButton.replaceAttributedTitle(NSLocalizedString("login-sign-up", comment: "SIGN UP"),
+		                                    forState: .Normal)
+		signOutButton.replaceAttributedTitle(NSLocalizedString("login-sign-out", comment: "SIGN OUT"),
+		                                    forState: .Normal)
+		loggedLabel.text = NSLocalizedString("login-logged", comment: "You are logged as...")
+		reloginButton.replaceAttributedTitle(NSLocalizedString("login-relogin", comment: "RELOGIN"),
+		                                    forState: .Normal)
 	}
 
 }
