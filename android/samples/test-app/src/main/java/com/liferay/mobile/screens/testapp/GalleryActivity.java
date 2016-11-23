@@ -155,6 +155,6 @@ public class GalleryActivity extends ThemeActivity implements ImageGalleryListen
 
 	@Override
 	public void error(Exception e, String userAction) {
-		error(getString(R.string.error_when) + userAction, e);
+		error(getString(R.string.error_when) + " " + userAction, e);
 	}
 }

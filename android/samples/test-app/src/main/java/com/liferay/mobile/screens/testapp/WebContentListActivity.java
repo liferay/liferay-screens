@@ -29,7 +29,7 @@ public class WebContentListActivity extends ThemeActivity implements BaseListLis
 
 	@Override
 	public void onListPageFailed(int startRow, Exception e) {
-		error("Page request failed", e);
+		error(getString(R.string.page_error), e);
 	}
 
 	@Override

@@ -85,7 +85,7 @@ public class CommentsActivity extends ThemeActivity
 
 	@Override
 	public void onListPageFailed(int startRow, Exception e) {
-		error(String.format(LiferayLocale.getDefaultLocale(), "Error receiving page: %d", startRow), e);
+		error(getString(R.string.page_error), e);
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class CommentsActivity extends ThemeActivity
 
 	@Override
 	public void error(Exception e, String userAction) {
-		error(getString(R.string.comment_error) + userAction, e);
+		error(getString(R.string.comment_error) + " " + userAction, e);
 	}
 
 	@Override

@@ -86,7 +86,7 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 
 	@Override
 	public void error(Exception e, String userAction) {
-		error(userAction + " failed", e);
+		error(userAction + getString(R.string.failed), e);
 	}
 
 	@Override
