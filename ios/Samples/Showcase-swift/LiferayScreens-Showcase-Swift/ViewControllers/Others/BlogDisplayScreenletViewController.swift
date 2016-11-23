@@ -30,6 +30,12 @@ class BlogDisplayScreenletViewController: UIViewController, BlogsEntryDisplayScr
 			blogClassPKLabel?.text = LiferayServerContext.stringPropertyForKey("blogDisplayClassPK")
 		}
 	}
+	@IBOutlet weak var loadButton: UIButton? {
+		didSet {
+			loadButton?.replaceAttributedTitle(NSLocalizedString("load-button", comment: "LOAD"),
+			                                   forState: .Normal)
+		}
+	}
 
 	
 	//MARK: IBAction
