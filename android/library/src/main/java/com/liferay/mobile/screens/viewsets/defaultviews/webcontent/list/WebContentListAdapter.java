@@ -9,7 +9,7 @@ import com.liferay.mobile.screens.webcontent.WebContent;
 /**
  * @author Javier Gamarra
  */
-public class WebContentListAdapter extends BaseListAdapter<WebContent, WebContentListAdapter.ViewHolder> {
+public class WebContentListAdapter extends BaseListAdapter<WebContent, BaseListAdapter.ViewHolder> {
 
 	public WebContentListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 		super(layoutId, progressLayoutId, listener);
@@ -26,7 +26,7 @@ public class WebContentListAdapter extends BaseListAdapter<WebContent, WebConten
 		holder.textView.setText(calculateValue(entry));
 	}
 
-	protected String calculateValue(WebContent entry) {
+	private String calculateValue(WebContent entry) {
 		if (getLabelFields().isEmpty()) {
 			return entry.getTitle();
 		} else {
@@ -38,15 +38,8 @@ public class WebContentListAdapter extends BaseListAdapter<WebContent, WebConten
 					localized = entry.getTitle();
 				}
 				stringBuilder.append(localized);
-				stringBuilder.append("\r\n");
 			}
 			return stringBuilder.toString();
-		}
-	}
-
-	public class ViewHolder extends BaseListAdapter.ViewHolder {
-		public ViewHolder(View view, BaseListAdapterListener listener) {
-			super(view, listener);
 		}
 	}
 }

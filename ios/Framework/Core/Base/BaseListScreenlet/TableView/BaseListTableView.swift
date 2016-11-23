@@ -144,13 +144,14 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	}
 	
 	public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		tableView.deselectRowAtIndexPath(indexPath, animated: false)
 		
 		let rowsForSection = rowsForSectionIndex(indexPath.section)
 		
 		if let row:AnyObject = rowsForSection[indexPath.row] {
 			onSelectedRowClosure?(row)
 		}
+
+		tableView.deselectRowAtIndexPath(indexPath, animated: false)
 	}
 
 	
