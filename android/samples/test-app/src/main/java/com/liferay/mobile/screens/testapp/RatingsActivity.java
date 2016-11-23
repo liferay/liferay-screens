@@ -83,7 +83,7 @@ public class RatingsActivity extends ThemeActivity
 
 	@Override
 	public void error(Exception exception, String userAction) {
-		error("There was an error loading screenlet", exception);
+		error(getString(R.string.screenlet_error), exception);
 	}
 
 	@Override

@@ -52,7 +52,7 @@ public class GalleryActivity extends ThemeActivity implements ImageGalleryListen
 
 	@Override
 	public void onListPageFailed(int startRow, Exception e) {
-		error("Error loading page", e);
+		error(getString(R.string.page_error), e);
 	}
 
 	@Override
@@ -155,6 +155,6 @@ public class GalleryActivity extends ThemeActivity implements ImageGalleryListen
 
 	@Override
 	public void error(Exception e, String userAction) {
-		error("Error when " + userAction, e);
+		error(getString(R.string.error_when) + userAction, e);
 	}
 }

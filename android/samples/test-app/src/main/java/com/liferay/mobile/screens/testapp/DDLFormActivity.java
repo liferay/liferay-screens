@@ -81,7 +81,7 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 
 	@Override
 	public void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e) {
-		error("Document could not be uploaded", e);
+		error(getString(R.string.document_error), e);
 	}
 
 	@Override

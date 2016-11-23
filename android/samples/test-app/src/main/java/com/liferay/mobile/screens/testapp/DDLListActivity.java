@@ -57,7 +57,7 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 
 	@Override
 	public void onListPageFailed(int startRow, Exception e) {
-		error("Page request failed", e);
+		error(getString(R.string.page_error), e);
 	}
 
 	@Override
@@ -101,7 +101,7 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 
 			ServiceProvider.getInstance().getDDLRecordSetConnector(session).getRecordSet(recordSetId);
 		} catch (Exception e) {
-			error("error loading structure id", e);
+			error(getString(R.string.structureId_error), e);
 		}
 	}
 
@@ -118,13 +118,13 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 
 					DefaultAnimation.startActivityWithAnimation(DDLListActivity.this, intent);
 				} catch (JSONException e) {
-					error("error parsing JSON", e);
+					error(getString(R.string.parse_json_error), e);
 				}
 			}
 
 			@Override
 			public void onFailure(Exception e) {
-				error("error loading structure id", e);
+				error(getString(R.string.structureId_error), e);
 			}
 		};
 	}

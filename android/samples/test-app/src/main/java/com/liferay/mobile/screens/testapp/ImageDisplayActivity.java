@@ -34,7 +34,7 @@ public class ImageDisplayActivity extends ThemeActivity implements AssetDisplayL
 
 	@Override
 	public void error(Exception e, String userAction) {
-		error("Could not receive asset entry", e);
+		error(getString(R.string.asset_error), e);
 	}
 
 	@Override

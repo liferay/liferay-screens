@@ -105,7 +105,7 @@ public class CommentsActivity extends ThemeActivity
 
 	@Override
 	public void error(Exception e, String userAction) {
-		error("Error " + userAction + " comment", e);
+		error(getString(R.string.comment_error) + userAction, e);
 	}
 
 	@Override

@@ -55,7 +55,7 @@ public class ReloginActivity extends ThemeActivity implements LoginListener, Vie
 
 	@Override
 	public void onLoginFailure(Exception e) {
-		error("Error relogin", e);
+		error(getString(R.string.relogin_error), e);
 	}
 
 	public void change() {

@@ -50,6 +50,6 @@ public class WebContentDisplayActivity extends ThemeActivity implements WebConte
 
 	@Override
 	public void error(Exception e, String userAction) {
-		error("Could not receive web content information", e);
+		error(getString(R.string.webcontent_error), e);
 	}
 }

@@ -52,7 +52,7 @@ public class LoginActivity extends ThemeActivity implements LoginListener {
 
 	@Override
 	public void onLoginFailure(Exception e) {
-		error("Login failed", e);
+		error(getString(R.string.login_screenlet_error), e);
 	}
 
 	private void setDefaultValues() {
