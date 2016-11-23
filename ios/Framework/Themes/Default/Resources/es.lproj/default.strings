@@ -2,6 +2,8 @@
 "default-auth-method-screenname"="Nombre corto";
 "default-auth-method-userid"="ID de usuario";
 
+"default-oath-close"="Cerrar";
+
 "default-login-loading-message"="Enviando petición...\nEspere unos segundos...";
 "default-login-loading-error"="Error intentando entrar.";
 
@@ -15,6 +17,7 @@
 "default-save-button"="GUARDAR";
 "default-authorize-button"="AUTORIZAR";
 
+"default-forgotpassword-username"="Nombre de usuario";
 "default-forgotpassword-button"="SOLICITAR";
 "default-forgotpassword-loading-message"="Enviando solicitud...\nEspere unos segundos...";
 "default-forgotpassword-loading-error"="Error solicitando nueva contraseña";
@@ -59,14 +62,17 @@
 
 "default-blog-unknown-date"="Fecha desconocida";
 
-"default-comment-add-send"="Send";
+"default-comment-add-placeholder"="Introduce tu comentario...";
+"default-comment-add-send"="Enviar";
 
 "default-comment-display-edited"="- Editado";
 "default-comment-display-warning"="Cuidado";
 "default-comment-display-styled"="Este comentario tiene contenido con estilo, que será perdido si lo editas";
 "default-comment-display-dismiss"="Descartar";
-"default-comment-display-cancel"="Cancelar";
+"default-comment-display-edit-button"="Editar";
+"default-comment-display-delete-button"="Borrar";
 "default-comment-display-confirm"="Confirmar";
+"default-comment-display-cancel"="Cancelar";
 "default-comment-display-type"="Escribe tu comentario...";
 
 "default-time-ago-seconds" = "Hace %d seguntos";
