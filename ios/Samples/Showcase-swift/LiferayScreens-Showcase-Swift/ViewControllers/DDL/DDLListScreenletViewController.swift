@@ -20,7 +20,7 @@ class DDLListScreenletViewController:
 
 	
 	//MARK: IBOutlet
-	
+
 	@IBOutlet weak var pickerView: UIPickerView? {
 		didSet {
 			pickerView?.delegate = self
@@ -41,6 +41,12 @@ class DDLListScreenletViewController:
 	@IBOutlet weak var labelFieldsTextField: UITextField? {
 		didSet {
 			labelFieldsTextField?.text = LiferayServerContext.stringPropertyForKey("ddlLabelField")
+		}
+	}
+	@IBOutlet weak var loadButton: UIButton? {
+		didSet {
+			loadButton?.replaceAttributedTitle(NSLocalizedString("load-button", comment: "LOAD"),
+			                                   forState: .Normal)
 		}
 	}
 	
