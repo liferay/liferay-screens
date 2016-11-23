@@ -186,10 +186,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="hSe-OR-d7h"/>
                     <connections>
+                        <outlet property="forgetPasswordButton" destination="4az-yV-1Uz" id="yel-Ho-npy"/>
                         <outlet property="loggedUsername" destination="SD8-wp-12w" id="pyX-cM-Qn5"/>
                         <outlet property="loggedView" destination="Ifh-gR-hEQ" id="eX4-j1-7XZ"/>
                         <outlet property="logginView" destination="Bb2-2j-5CI" id="Slx-XJ-o3l"/>
                         <outlet property="loginScreenlet" destination="gdc-z9-1zl" id="FBH-8F-zVS"/>
+                        <outlet property="saveCredentialsLabel" destination="QM5-5p-DZd" id="hK8-s1-j4h"/>
+                        <outlet property="signUpButton" destination="ktq-xs-nBm" id="7Bs-mv-qcB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
