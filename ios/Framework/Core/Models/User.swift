@@ -58,10 +58,12 @@ import Foundation
 
 	private func int64Value(key: String) -> Int64? {
 		return attributes[key]?.longLongValue
+	public func int64Attribute(key: String) -> Int64 {
 	}
 
 	private func stringValue(key: String) -> String? {
 		return attributes[key]?.description
+	public func stringAttribute(key: String) -> String {
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
