@@ -41,6 +41,6 @@ public class SignUpActivity extends ThemeActivity implements SignUpListener {
 
 	@Override
 	public void onSignUpSuccess(User user) {
-		info("Signup successful, userId: " + user.getId());
+		info(getString(R.string.sign_up_success_info) + " " + user.getId());
 	}
 }

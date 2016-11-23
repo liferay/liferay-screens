@@ -27,7 +27,7 @@ public class FilteredAssetActivity extends ThemeActivity implements BaseListList
 
 	@Override
 	public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries, int rowCount) {
-		info("Row " + startRow + " received!");
+		info(rowCount + " " + getString(R.string.rows_received_info) + " " + startRow);
 	}
 
 	@Override

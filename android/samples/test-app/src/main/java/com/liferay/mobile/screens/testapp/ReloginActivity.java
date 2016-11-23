@@ -48,7 +48,7 @@ public class ReloginActivity extends ThemeActivity implements LoginListener, Vie
 			@Override
 			public void run() {
 				userName.setText(user.getLastName());
-				info("Relogin successful!");
+				info(getString(R.string.relogin_info));
 			}
 		});
 	}

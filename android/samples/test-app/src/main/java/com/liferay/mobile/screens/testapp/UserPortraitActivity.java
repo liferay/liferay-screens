@@ -50,7 +50,7 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 
 	@Override
 	public Bitmap onUserPortraitLoadReceived(Bitmap bitmap) {
-		info("User portrait received!");
+		info(getString(R.string.user_portrait_info));
 		LiferayLogger.i("Bitmap received with width " + bitmap.getWidth() + " and height " + bitmap.getHeight());
 		return null;
 	}

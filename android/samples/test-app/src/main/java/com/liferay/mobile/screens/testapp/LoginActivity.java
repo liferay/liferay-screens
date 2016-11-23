@@ -47,7 +47,7 @@ public class LoginActivity extends ThemeActivity implements LoginListener {
 
 	@Override
 	public void onLoginSuccess(User user) {
-		info("Login successful!");
+		info(getString(R.string.login_success_info));
 	}
 
 	@Override

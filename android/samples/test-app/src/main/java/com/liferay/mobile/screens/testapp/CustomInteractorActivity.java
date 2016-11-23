@@ -26,7 +26,7 @@ public class CustomInteractorActivity extends ThemeActivity
 
 	@Override
 	public void onLoginSuccess(User user) {
-		info("Login successful!");
+		info(getString(R.string.login_success_info));
 	}
 
 	@Override

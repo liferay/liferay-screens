@@ -29,7 +29,7 @@ public class AddBookmarkActivity extends ThemeActivity implements AddBookmarkLis
 
 	@Override
 	public void onAddBookmarkSuccess() {
-		info("Bookmark added!");
+		info(getString(R.string.bookmark_added_info));
 	}
 
 	@Override

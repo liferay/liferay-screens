@@ -55,7 +55,7 @@ public class AssetListActivity extends ThemeActivity implements BaseListListener
 
 	@Override
 	public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries, int rowCount) {
-		info("Row " + startRow + " received!");
+		info(rowCount + " " + getString(R.string.rows_received_info) + " " + startRow);
 	}
 
 	@Override

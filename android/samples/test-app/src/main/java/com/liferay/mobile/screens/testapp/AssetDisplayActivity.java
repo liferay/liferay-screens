@@ -37,7 +37,7 @@ public class AssetDisplayActivity extends ThemeActivity
 
 	@Override
 	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
-		info("Asset entry received! -> " + assetEntry.getTitle());
+		info(getString(R.string.asset_received_info) + " " + assetEntry.getTitle());
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class AssetDisplayActivity extends ThemeActivity
 		if ("blogsEntry".equals(assetEntry.getObjectType())) {
 			innerScreenlet.setBackgroundColor(ContextCompat.getColor(this, R.color.light_gray_westeros));
 		}
-		info("Configure your screenlet here! -> " + assetEntry.getTitle());
+		info(getString(R.string.configure_screenlet_info) + assetEntry.getTitle());
 	}
 
 	@Override

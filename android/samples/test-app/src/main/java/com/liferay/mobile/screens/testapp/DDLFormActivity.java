@@ -56,27 +56,27 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 	@Override
 	public void onDDLFormLoaded(Record record) {
 		loaded = true;
-		info("Form loaded!");
+		info(getString(R.string.form_loaded_info));
 	}
 
 	@Override
 	public void onDDLFormRecordLoaded(Record record, Map<String, Object> valuesAndAttributes) {
-		info("Record loaded!");
+		info(getString(R.string.record_loaded_info));
 	}
 
 	@Override
 	public void onDDLFormRecordAdded(Record record) {
-		info("Record added!");
+		info(getString(R.string.record_added_info));
 	}
 
 	@Override
 	public void onDDLFormRecordUpdated(Record record) {
-		info("Record updated!");
+		info(getString(R.string.record_updated_info));
 	}
 
 	@Override
 	public void onDDLFormDocumentUploaded(DocumentField documentField, JSONObject jsonObject) {
-		info("Document uploaded!");
+		info(getString(R.string.document_uploaded_info));
 	}
 
 	@Override

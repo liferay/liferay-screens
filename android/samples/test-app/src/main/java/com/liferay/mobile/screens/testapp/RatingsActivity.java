@@ -88,7 +88,7 @@ public class RatingsActivity extends ThemeActivity
 
 	@Override
 	public void onRatingOperationSuccess(AssetRating assetRating) {
-		info("Screenlet loaded successfully");
+		info(getString(R.string.screenlet_info));
 	}
 
 	private void displayScreenlet(int layoutId, int entryId, int ratingsGroupCount) {
