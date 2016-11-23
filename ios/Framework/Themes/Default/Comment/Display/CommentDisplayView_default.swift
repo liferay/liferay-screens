@@ -41,6 +41,9 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 	@IBOutlet weak var deletingStateButtonsContainer: UIView?
 	@IBOutlet weak var deleteButton: UIButton?
 	@IBOutlet weak var editButton: UIButton?
+	@IBOutlet weak var confirmButton: UIButton?
+	@IBOutlet weak var cancelButton: UIButton?
+
 
 	var editViewController: CommentEditViewController_default?
 
@@ -115,9 +118,12 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 
 	//MARK: BaseScreenletView
 
-	public override func onShow() {
-		super.onShow()
+	public override func onSetTranslations() {
 		editedLabel?.text = LocalizedString("default", key: "comment-display-edited", obj: self)
+		editButton?.titleLabel?.text = LocalizedString("default", key: "comment-display-edit-button", obj: self)
+		deleteButton?.titleLabel?.text = LocalizedString("default", key: "comment-display-delete-button", obj: self)
+		confirmButton?.titleLabel?.text = LocalizedString("default", key: "comment-display-confirm-button", obj: self)
+		cancelButton?.titleLabel?.text = LocalizedString("default", key: "comment-display-cancel-button", obj: self)
 	}
 
 	public override var editable: Bool {
