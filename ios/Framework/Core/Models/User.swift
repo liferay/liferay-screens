@@ -19,35 +19,35 @@ import Foundation
 	public let attributes: [String:AnyObject]
 	
 	public var firstName: String {
-		return stringValue("firstName") ?? ""
+		return stringAttribute("firstName")
 	}
 
 	public var lastName: String {
-		return stringValue("lastName") ?? ""
+		return stringAttribute("lastName")
 	}
 
 	public var middleName: String {
-		return stringValue("middleName") ?? ""
+		return stringAttribute("middleName")
 	}
 
 	public var screenName: String {
-		return stringValue("screenName") ?? ""
+		return stringAttribute("screenName")
 	}
 
 	public var greeting: String {
-		return stringValue("greeting") ?? ""
+		return stringAttribute("greeting")
 	}
 
 	public var jobTitle: String {
-		return stringValue("jobTitle") ?? ""
+		return stringAttribute("jobTitle")
 	}
 
 	public var email: String {
-		return stringValue("emailAddress") ?? ""
+		return stringAttribute("emailAddress")
 	}
 
 	public var userId: Int64 {
-		return int64Value("userId") ?? 0
+		return int64Attribute("userId")
 	}
 
 	public init(attributes: [String : AnyObject]) {
@@ -56,14 +56,12 @@ import Foundation
 		super.init()
 	}
 
-	private func int64Value(key: String) -> Int64? {
-		return attributes[key]?.longLongValue
 	public func int64Attribute(key: String) -> Int64 {
+		return attributes[key]?.longLongValue ?? 0
 	}
 
-	private func stringValue(key: String) -> String? {
-		return attributes[key]?.description
 	public func stringAttribute(key: String) -> String {
+		return attributes[key]?.description ?? ""
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
