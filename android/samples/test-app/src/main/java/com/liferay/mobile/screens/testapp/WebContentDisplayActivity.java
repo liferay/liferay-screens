@@ -35,6 +35,10 @@ public class WebContentDisplayActivity extends ThemeActivity implements WebConte
 		WebContentDisplayScreenlet screenlet =
 			(WebContentDisplayScreenlet) findViewById(R.id.web_content_display_screenlet);
 		screenlet.setListener(this);
+
+		if (getIntent().hasExtra("articleId")) {
+			screenlet.setArticleId(getIntent().getStringExtra("articleId"));
+		}
 	}
 
 	@Override
