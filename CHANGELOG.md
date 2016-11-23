@@ -8,4 +8,13 @@ All notable changes to this project will be documented in this file.
 <!---
 Possible categories for the changes: Updated, Fixed, Features, Deprecated
 --->
+###Android 
 
+####   Features
+* Spanish translations
+
+
+###iOS 
+ 
+####   Features
+* Spanish translations
