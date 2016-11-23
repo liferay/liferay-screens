@@ -37,7 +37,11 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 			editableScreenlet.presentingViewController = self
 		}
 	}
-
+	@IBOutlet weak var loadButton: UIButton! {
+		didSet {
+			loadButton.replaceAttributedTitle(NSLocalizedString("load-button", comment: "LOAD"), forState: .Normal)
+		}
+	}
 
 	//MARK: IBAction
 
