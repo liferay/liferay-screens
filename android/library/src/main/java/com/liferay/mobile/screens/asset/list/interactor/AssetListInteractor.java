@@ -135,7 +135,7 @@ public class AssetListInteractor extends BaseListInteractor<BaseListInteractorLi
 			entryQueryParams.put("groupIds", groupId);
 		}
 		if (!entryQueryParams.has("visible")) {
-			entryQueryParams.put("visible", "true");
+			entryQueryParams.put("visible", true);
 		}
 
 		handleUserVisibleFlag(classNameId, entryQueryParams);
@@ -154,12 +154,20 @@ public class AssetListInteractor extends BaseListInteractor<BaseListInteractorLi
 		super.validate(startRow, endRow, locale);
 	}
 
+	/**
+	 * AssetListScreenlet only list Asset with visible attribute set to true. But User objects have it by
+	 * default in false. So this method update this attribute of entryQuery values to list
+	 * all users.
+	 * @param classNameId identifier of the asset’s class name.
+	 * @param entryQueryParams initial entryQuery parameters.
+	 * @return final entryQuery parameters.
+	 * @throws JSONException
+	 */
 	private JSONObject handleUserVisibleFlag(long classNameId, JSONObject entryQueryParams) throws JSONException {
 		if (classNameId == Long.parseLong(
 			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_user))) {
 
-			entryQueryParams.put("groupIds", "");
-			entryQueryParams.put("visible", "false");
+			entryQueryParams.put("visible", false);
 
 			return entryQueryParams;
 		}
