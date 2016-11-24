@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="loading_list_error">Error cargando lista</string>
+	<string name="add_icon_user_portrait_content_description">Añadir icono para reemplazar el retrato del usuario</string>
+</resources>

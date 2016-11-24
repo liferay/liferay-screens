@@ -72,7 +72,7 @@ public class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 			viewModel.userName = SessionContext.currentContext?.basicAuthUsername
 			viewModel.password = SessionContext.currentContext?.basicAuthPassword
 
-			let userAttributes = SessionContext.currentContext!.userAttributes
+			let userAttributes = SessionContext.currentContext!.user.attributes
 
 			// we don't want the session to be automatically created. Clear it.
 			// User can recreate it again in the delegate method.

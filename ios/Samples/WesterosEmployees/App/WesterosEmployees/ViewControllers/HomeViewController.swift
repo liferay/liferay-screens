@@ -223,13 +223,13 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 	private func initializeHome() {
 
 		//Load user profile
-		let userId = SessionContext.currentContext!.userId!
+		let userId = SessionContext.currentContext!.user.userId
 		if self.userPortraitScreenlet?.userId != userId {
 			self.userPortraitScreenlet?.load(userId: userId)
 			let firstName =
-				SessionContext.currentContext!.userAttribute("firstName") as! String
+				SessionContext.currentContext!.user.firstName
 			let lastName =
-				SessionContext.currentContext!.userAttribute("lastName") as! String
+				SessionContext.currentContext!.user.lastName
 			self.userNameLabel?.text = "\(firstName) \(lastName)"
 				.stringByTrimmingCharactersInSet(
 					NSCharacterSet.whitespaceAndNewlineCharacterSet())

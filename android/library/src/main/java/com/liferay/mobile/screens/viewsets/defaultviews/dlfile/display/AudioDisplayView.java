@@ -40,7 +40,7 @@ public class AudioDisplayView extends BaseFileDisplayView {
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
 		super.showFailedOperation(actionName, e);
-		message.setText(R.string.audio_error);
+		message.setText(R.string.file_error);
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class AudioDisplayView extends BaseFileDisplayView {
 			@Override
 			public boolean onError(MediaPlayer mp, int what, int extra) {
 				progressBar.setVisibility(GONE);
-				message.setText(R.string.audio_error);
+				message.setText(R.string.file_error);
 				return false;
 			}
 		});

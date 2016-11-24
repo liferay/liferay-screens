@@ -42,7 +42,7 @@ class SessionContext_Basic_Tests: XCTestCase {
 				password: "password",
 				userAttributes: ["key":"value"])
 
-		XCTAssertEqual("value", (SessionContext.currentContext?.userAttribute("key") ?? "") as? String)
+		XCTAssertEqual("value", (SessionContext.currentContext?.user.attributes["key"] ?? "") as? String)
 	}
 
 	func test_BasicAuthUsername_ShouldReturnTheUserName_WhenSessionIsCreated() {
@@ -101,7 +101,7 @@ class SessionContext_Basic_Tests: XCTestCase {
 
 		XCTAssertNil(SessionContext.currentContext?.basicAuthUsername)
 		XCTAssertNil(SessionContext.currentContext?.basicAuthPassword)
-		XCTAssertNil(SessionContext.currentContext?.userAttribute("k"))
+		XCTAssertNil(SessionContext.currentContext?.user.attributes["k"])
 	}
 
 }

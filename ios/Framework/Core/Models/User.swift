@@ -14,51 +14,63 @@
 import Foundation
 
 
-//TODO if we have an User model, we have to use in the SessionContext object 
-// (instead of "userAttributes" property)
-@objc public class User: Asset {
+@objc public class User: NSObject, NSCoding {
 
-	public var user: [String:AnyObject]? {
-		return attributes["object"]?["user"] as? [String:AnyObject]
-	}
-
+	public let attributes: [String:AnyObject]
+	
 	public var firstName: String {
-		return stringValue("firstName") ?? ""
+		return stringAttribute("firstName")
 	}
 
 	public var lastName: String {
-		return stringValue("lastName") ?? ""
+		return stringAttribute("lastName")
 	}
 
 	public var middleName: String {
-		return stringValue("middleName") ?? ""
+		return stringAttribute("middleName")
 	}
 
 	public var screenName: String {
-		return stringValue("screenName") ?? ""
+		return stringAttribute("screenName")
 	}
 
 	public var greeting: String {
-		return stringValue("greeting") ?? ""
+		return stringAttribute("greeting")
 	}
 
 	public var jobTitle: String {
-		return stringValue("jobTitle") ?? ""
+		return stringAttribute("jobTitle")
 	}
 
 	public var email: String {
-		return stringValue("emailAddress") ?? ""
+		return stringAttribute("emailAddress")
 	}
 
 	public var userId: Int64 {
-		return int64Value("userId") ?? 0
+		return int64Attribute("userId")
 	}
 
-	private func int64Value(key: String) -> Int64? {
-		return user?[key]?.longLongValue
+	public init(attributes: [String : AnyObject]) {
+		self.attributes = attributes
+
+		super.init()
 	}
 
-	private func stringValue(key: String) -> String? {
-		return user?[key]?.description
+	public func int64Attribute(key: String) -> Int64 {
+		return attributes[key]?.longLongValue ?? 0
+	}
+
+	public func stringAttribute(key: String) -> String {
+		return attributes[key]?.description ?? ""
+	}
+
+	public required init?(coder aDecoder: NSCoder) {
+		self.attributes = aDecoder.decodeObjectForKey("asset-attrs") as? [String:AnyObject] ?? [:]
+
+		super.init()
+	}
+
+	public func encodeWithCoder(aCoder: NSCoder) {
+		aCoder.encodeObject(attributes, forKey: "asset-attrs")
 	}
 }

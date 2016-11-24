@@ -18,13 +18,13 @@ class HomeScreenletsViewController: UITableViewController {
 	//An storyboard that matches these names must be created
 	private let data: [Int: [String]] = [
 		0: ["Assets", "AssetListScreenlet", "AssetDisplayScreenlet"],
-		1: ["Comments", "CommentListScreenlet", "CommentDisplayScreenlet", "CommentAddScreenlet"],
-		2: ["DDL Module", "DDLListScreenlet", "DDLFormScreenlet"],
-		3: ["Files", "AudioDisplayScreenlet", "ImageDisplayScreenlet", "PdfDisplayScreenlet",
+		1: [NSLocalizedString("comment-screenlets", comment: "Comments"), "CommentListScreenlet", "CommentDisplayScreenlet", "CommentAddScreenlet"],
+		2: ["DDL", "DDLListScreenlet", "DDLFormScreenlet"],
+		3: [NSLocalizedString("files-screenlets", comment: "Files"), "AudioDisplayScreenlet", "ImageDisplayScreenlet", "PdfDisplayScreenlet",
 			"VideoDisplayScreenlet"],
-		4: ["Others", "UserPortraitScreenlet", "RatingScreenlet", "ImageGalleryScreenlet",
+		4: [NSLocalizedString("others-screenlets", comment: "Others"), "UserPortraitScreenlet", "RatingScreenlet", "ImageGalleryScreenlet",
 			"BlogDisplayScreenlet"],
-		5: ["Web Content Module", "WebContentDisplayScreenlet", "WebContentListScreenlet"]
+		5: ["WebContent", "WebContentDisplayScreenlet", "WebContentListScreenlet"]
 	]
 	
 	
@@ -32,7 +32,7 @@ class HomeScreenletsViewController: UITableViewController {
 	
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
-		self.navigationItem.title = "Screenlets Available"
+		self.navigationItem.title = NSLocalizedString("screenlets-available", comment: "Screenlets Available")
 	}
 	
 	override func viewWillDisappear(animated: Bool) {
