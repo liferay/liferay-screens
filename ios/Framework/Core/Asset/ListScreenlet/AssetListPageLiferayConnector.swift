@@ -135,6 +135,13 @@ public class AssetListPageLiferayConnector: PaginationLiferayConnector {
 
 	//MARK: Private methods
 
+	/// AssetListScreenlet only list Asset with visible attribute set to true. But User objects have it by
+	/// default in false. So this method update this attribute of entryQuery values to list
+	/// all users.
+	///
+	/// - parameter values: initial entryQuery values.
+	///
+	/// - returns: final values for entryQuery.
 	private func handleUserVisibleFlag(values: [String : AnyObject]) -> [String : AnyObject] {
 		if (classNameId == AssetClasses.getClassNameId(AssetClassNameKey_User)) {
 			var newValues = values
