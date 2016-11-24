@@ -118,7 +118,7 @@ public class AssetListPageLiferayConnector: PaginationLiferayConnector {
 		let defaultValues = [
 			"classNameIds" : NSNumber(longLong: classNameId!),
 			"groupIds" : NSNumber(longLong: groupId!),
-			"visible" : "true"
+			"visible" : true
 		]
 
 		let finalValues = self.handleUserVisibleFlag(defaultValues)
@@ -139,8 +139,7 @@ public class AssetListPageLiferayConnector: PaginationLiferayConnector {
 		if (classNameId == AssetClasses.getClassNameId(AssetClassNameKey_User)) {
 			var newValues = values
 
-			newValues.updateValue("false", forKey: "visible")
-			newValues.updateValue("", forKey: "groupIds")
+			newValues["visible"] = false
 
 			return newValues
 		}
