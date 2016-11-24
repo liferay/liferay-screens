@@ -161,8 +161,6 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 	public func collectionView(
 			collectionView: UICollectionView,
 			didSelectItemAtIndexPath indexPath: NSIndexPath) {
-			
-		collectionView.deselectItemAtIndexPath(indexPath, animated: false)
 
 		let rowsForSection = rowsForSectionIndex(indexPath.section)
 
@@ -170,6 +168,7 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 			onSelectedRowClosure?(row)
 		}
 
+		collectionView.deselectItemAtIndexPath(indexPath, animated: false)
 	}
 
 	public func collectionView(

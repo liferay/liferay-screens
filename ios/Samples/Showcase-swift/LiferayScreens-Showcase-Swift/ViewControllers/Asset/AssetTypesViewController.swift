@@ -87,7 +87,7 @@ class AssetTypesViewController: UITableViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		
-		self.title = "Choose an asset type"
+		self.title = NSLocalizedString("choose-asset-type", comment: "Choose an asset type")
 	}
 	
 	override func viewWillDisappear(animated: Bool) {

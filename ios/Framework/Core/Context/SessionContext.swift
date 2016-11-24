@@ -24,21 +24,30 @@ import Foundation
 	public static var currentContext: SessionContext?
 
 	public let session: LRSession
-	public let userAttributes: [String:AnyObject]
+	public let user: User
 
 	public let cacheManager: CacheManager
 	public var credentialsStorage: CredentialsStorage
 
+	@available(*, deprecated=2.0.1, message="Use public property user")
+	public var userId: Int64 {
+		return user.userId
+	}
+
+	@available(*, deprecated=2.0.1, message="Access it throught user.attributes")
+	public var userAttributes: [String : AnyObject] {
+		return user.attributes
+	}
 
 	public init(session: LRSession, attributes: [String: AnyObject], store: CredentialsStore) {
 		self.session = session
-		self.userAttributes = attributes
+		self.user = User(attributes: attributes)
 
-		let userId = userAttributes["userId"]
+		let userId = user.userId
 
 		cacheManager = LiferayServerContext.factory.createCacheManager(
 			session: session,
-			userId: userId?.longLongValue ?? 0)
+			userId: userId)
 
 		credentialsStorage = CredentialsStorage(store: store)
 
@@ -66,10 +75,6 @@ import Foundation
 		}
 
 		return auth.password
-	}
-
-	public var userId: Int64? {
-		return userAttributes["userId"]?.longLongValue
 	}
 
 
@@ -126,10 +131,6 @@ import Foundation
 				store: store)
 
 		return session
-	}
-
-	public func userAttribute(key: String) -> AnyObject? {
-		return userAttributes[key]
 	}
 
 	public func createRequestSession() -> LRSession {
@@ -223,7 +224,7 @@ import Foundation
 	public func storeCredentials() -> Bool {
 		return credentialsStorage.store(
 				session: session,
-				userAttributes: userAttributes)
+				userAttributes: user.attributes)
 	}
 
 	public func removeStoredCredentials() -> Bool {

@@ -51,7 +51,7 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 
 		self.userId = (formScreenlet.userId != 0)
 			? formScreenlet.userId
-			: SessionContext.currentContext?.userId
+			: SessionContext.currentContext?.user.userId
 
 		self.recordSetId = formScreenlet.recordSetId
 		self.record = record
@@ -64,7 +64,7 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 			?? LiferayServerContext.groupId
 
 		self.userId = record.attributes["userId"]?.longLongValue
-			?? SessionContext.currentContext?.userId
+			?? SessionContext.currentContext?.user.userId
 
 		self.recordSetId = record.attributes["recordSetId"]!.longLongValue
 		self.record = record

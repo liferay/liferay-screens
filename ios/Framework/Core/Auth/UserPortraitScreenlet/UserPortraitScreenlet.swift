@@ -79,7 +79,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	}
 
 	public func loadLoggedUserPortrait() -> Bool {
-		guard let userId = SessionContext.currentContext?.userId else {
+		guard let userId = SessionContext.currentContext?.user.userId else {
 			return false
 		}
 
