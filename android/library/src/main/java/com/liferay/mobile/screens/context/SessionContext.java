@@ -72,11 +72,7 @@ public class SessionContext {
 	}
 
 	public static boolean isLoggedIn() {
-		if (currentUserSession == null) {
-			LiferayLogger.e("You need to be logged to view the content!");
-			return false;
-		}
-		return true;
+		return currentUserSession != null;
 	}
 
 	public static boolean hasUserInfo() {
