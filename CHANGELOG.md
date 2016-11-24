@@ -17,3 +17,4 @@ Possible categories for the changes: Updated, Fixed, Features, Deprecated
 
 #### Updated
 * Expose user object in Session context instead of raw attributtes
+* Detailed error messages
