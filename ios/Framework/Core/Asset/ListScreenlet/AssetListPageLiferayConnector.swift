@@ -110,8 +110,6 @@ public class AssetListPageLiferayConnector: PaginationLiferayConnector {
 	public func doGetRowCount(session session: LRBatchSession, entryQuery: LRJSONObjectWrapper) {
 	}
 
-	//MARK: Private methods
-
 	public func configureEntryQuery() -> [String:AnyObject] {
 		var entryQuery = (customEntryQuery != nil)
 			? customEntryQuery!
@@ -120,10 +118,12 @@ public class AssetListPageLiferayConnector: PaginationLiferayConnector {
 		let defaultValues = [
 			"classNameIds" : NSNumber(longLong: classNameId!),
 			"groupIds" : NSNumber(longLong: groupId!),
-			"visible" : "true"
+			"visible" : true
 		]
 
-		for (k,v) in defaultValues {
+		let finalValues = self.handleUserVisibleFlag(defaultValues)
+
+		for (k,v) in finalValues {
 			if entryQuery[k] == nil {
 				entryQuery[k] = v
 			}
@@ -132,6 +132,26 @@ public class AssetListPageLiferayConnector: PaginationLiferayConnector {
 		return entryQuery
 	}
 
+
+	//MARK: Private methods
+
+	/// AssetListScreenlet only list Asset with visible attribute set to true. But User objects have it by
+	/// default in false. So this method update this attribute of entryQuery values to list
+	/// all users.
+	///
+	/// - parameter values: initial entryQuery values.
+	///
+	/// - returns: final values for entryQuery.
+	private func handleUserVisibleFlag(values: [String : AnyObject]) -> [String : AnyObject] {
+		if (classNameId == AssetClasses.getClassNameId(AssetClassNameKey_User)) {
+			var newValues = values
+
+			newValues["visible"] = false
+
+			return newValues
+		}
+		return values
+	}
 }
 
 public class Liferay62AssetListPageConnector: AssetListPageLiferayConnector {
