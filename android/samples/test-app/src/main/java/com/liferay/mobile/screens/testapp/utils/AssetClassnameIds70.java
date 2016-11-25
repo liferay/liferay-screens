@@ -5,7 +5,7 @@ package com.liferay.mobile.screens.testapp.utils;
  */
 public enum AssetClassnameIds70 {
 
-	//USER(29204, "com.liferay.portal.kernel.model.User"),
+	USER(20087, "com.liferay.portal.kernel.model.User"),
 	BLOGS_ENTRY(20011, "com.liferay.blogs.kernel.model.BlogsEntry"),
 	BOOKMARKS_ENTRY(27301, "com.liferay.bookmarks.model.BookmarksEntry"),
 	BOOKMARKS_FOLDER(27302, "com.liferay.bookmarks.model.BookmarksFolder"),

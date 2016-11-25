@@ -35,11 +35,11 @@ public class ForgotPasswordActivity extends ThemeActivity implements ForgotPassw
 
 	@Override
 	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
-		info("Request completed!");
+		info(getString(R.string.forgot_password_info));
 	}
 
 	@Override
 	public void onForgotPasswordRequestFailure(Exception e) {
-		error("Request failed", e);
+		error(getString(R.string.forgot_password_error), e);
 	}
 }

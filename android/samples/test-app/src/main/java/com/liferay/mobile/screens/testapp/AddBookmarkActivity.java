@@ -24,12 +24,12 @@ public class AddBookmarkActivity extends ThemeActivity implements AddBookmarkLis
 
 	@Override
 	public void onAddBookmarkFailure(Exception exception) {
-		error("Error adding bookmark", exception);
+		error(getString(R.string.add_bookmark_error), exception);
 	}
 
 	@Override
 	public void onAddBookmarkSuccess() {
-		info("Bookmark added!");
+		info(getString(R.string.bookmark_added_info));
 	}
 
 	@Override

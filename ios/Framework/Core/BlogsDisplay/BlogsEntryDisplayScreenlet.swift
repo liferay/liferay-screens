@@ -82,7 +82,8 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 				self.blogsEntryDisplayDelegate?.screenlet?(self, onBlogEntryResponse: self.blogsEntry!)
 			}
 			else {
-				self.blogsEntryDisplayDelegate?.screenlet?(self, onBlogEntryError: NSError.errorWithCause(.InvalidServerResponse))
+				self.blogsEntryDisplayDelegate?.screenlet?(self, onBlogEntryError:
+					NSError.errorWithCause(.InvalidServerResponse, message: "No blog entry found."))
 			}
 		}
 

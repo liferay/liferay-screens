@@ -36,10 +36,8 @@ public class User extends AssetEntry {
 	public static final String SCREEN_NAME = "screenName";
 	public static final String GREETING = "greeting";
 	public static final String JOB_TITLE = "jobTitle";
-	private JSONObject jsonObject;
 
 	public User(JSONObject jsonObject) {
-		this.jsonObject = jsonObject;
 		this.values = new HashMap<>();
 		try {
 			values.putAll(JSONUtil.toMap(jsonObject));
@@ -107,6 +105,6 @@ public class User extends AssetEntry {
 
 	@Override
 	public String toString() {
-		return jsonObject.toString();
+		return values.toString();
 	}
 }

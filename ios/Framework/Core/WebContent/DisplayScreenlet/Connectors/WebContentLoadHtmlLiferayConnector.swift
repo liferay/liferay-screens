@@ -39,7 +39,8 @@ public class WebContentLoadHtmlLiferayConnector: WebContentLoadBaseLiferayConnec
 				resultHTML = replaceHTMLPlaceholders(result)
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse,
+						message: "Could not get journal article with the given template.")
 			}
 		}
 	}

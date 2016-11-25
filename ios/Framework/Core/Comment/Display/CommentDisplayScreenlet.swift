@@ -133,7 +133,8 @@ public class CommentDisplayScreenlet: BaseScreenlet {
 			}
 			else {
 				self.commentDisplayDelegate?.screenlet?(self,
-					onLoadCommentError: NSError.errorWithCause(.InvalidServerResponse))
+					onLoadCommentError: NSError.errorWithCause(.InvalidServerResponse,
+							message: "Could not load comment."))
 			}
 		}
 
@@ -170,7 +171,8 @@ public class CommentDisplayScreenlet: BaseScreenlet {
 			else {
 				self.commentDisplayDelegate?.screenlet?(self,
 					onUpdateComment: self.comment!,
-					onError: NSError.errorWithCause(.InvalidServerResponse))
+					onError: NSError.errorWithCause(.InvalidServerResponse,
+							message: "Could not update comment."))
 			}
 		}
 

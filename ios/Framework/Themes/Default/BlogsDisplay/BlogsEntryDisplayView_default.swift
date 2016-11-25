@@ -37,6 +37,9 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 		return dateFormatter
 	}()
 
+	
+	//MARK: BlogsDisplayViewModel
+
 	public var blogsEntry: BlogsEntry? {
 		didSet {
 			if let _ = blogsEntry {
@@ -44,6 +47,16 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 			}
 		}
 	}
+
+
+	//MARK: BaseScreenletView
+
+	override public func onSetTranslations() {
+		dateLabel?.text = LocalizedString("default", key: "blog-unknown-date", obj: self)
+	}
+
+
+	//MARK: Public methods
 
 	public func loadBlog() {
 		self.loadImage()
@@ -76,9 +89,6 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 		if let date = self.blogsEntry!.displayDate {
 			dateLabel?.text = dateFormatter.stringFromDate(date)
 		}
-		else {
-			dateLabel?.text = LocalizedString("default", key: "blog-unknown-date", obj: self)
-		}
 	}
 
 	public func loadTitleSubtitle() {
@@ -87,8 +97,7 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 	}
 
 	public func loadContent() {
-		contentLabel?.attributedText = self.blogsEntry!.content.toHtmlTextWithAttributes(
-			self.dynamicType.defaultAttributedTextAttributes())
+		contentLabel?.attributedText = self.blogsEntry!.content.toHtmlTextWithAttributes(self.dynamicType.defaultAttributedTextAttributes())
 	}
 
 	public class func defaultAttributedTextAttributes() -> [String: NSObject] {

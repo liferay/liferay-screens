@@ -75,7 +75,8 @@ public class PaginationLiferayConnector: ServerConnector {
 				resultRowCount = serverRowCount
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				                                   message: "No entries found.")
 			}
 		}
 		catch let error as NSError {

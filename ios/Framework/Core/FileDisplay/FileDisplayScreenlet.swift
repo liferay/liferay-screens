@@ -106,7 +106,9 @@ public class FileDisplayScreenlet: BaseScreenlet {
 				self.load()
 			}
 			else {
-				self.fileDisplayDelegate?.screenlet?(self, onFileAssetError: NSError.errorWithCause(.InvalidServerResponse))
+				self.fileDisplayDelegate?.screenlet?(self,
+						onFileAssetError: NSError.errorWithCause(.InvalidServerResponse,
+								message: "No file entry found."))
 			}
 		}
 
@@ -137,7 +139,8 @@ public class FileDisplayScreenlet: BaseScreenlet {
 			}
 			else {
 				self.fileDisplayDelegate?.screenlet?(self,
-						onFileAssetError: NSError.errorWithCause(.InvalidServerResponse))
+						onFileAssetError: NSError.errorWithCause(.InvalidServerResponse,
+								message: "No file entry found."))
 			}
 		}
 

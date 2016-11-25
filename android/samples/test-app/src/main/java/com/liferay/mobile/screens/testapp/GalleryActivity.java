@@ -52,12 +52,12 @@ public class GalleryActivity extends ThemeActivity implements ImageGalleryListen
 
 	@Override
 	public void onListPageFailed(int startRow, Exception e) {
-		error("Error loading page", e);
+		error(getString(R.string.page_error), e);
 	}
 
 	@Override
 	public void onListPageReceived(int startRow, int endRow, List<ImageEntry> entries, int rowCount) {
-		Log.i(ImageGalleryScreenlet.class.getName(), "row: " + startRow + "received with " + entries.size() + "entries");
+		info(rowCount + " " + getString(R.string.rows_received_info) + " " + startRow);
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class GalleryActivity extends ThemeActivity implements ImageGalleryListen
 
 	@Override
 	public void onImageEntryDeleted(long imageEntryId) {
-		info("Image deleted: " + imageEntryId);
+		info(getString(R.string.image_deleted_info) + " " + imageEntryId);
 	}
 
 	@Override
@@ -105,7 +105,7 @@ public class GalleryActivity extends ThemeActivity implements ImageGalleryListen
 
 	@Override
 	public void onImageUploadEnd(ImageEntry entry) {
-		info("Image upload end " + entry.getImageUrl());
+		info(getString(R.string.image_upload_end_info) + " " + entry.getImageUrl());
 	}
 
 	@Override
@@ -155,6 +155,6 @@ public class GalleryActivity extends ThemeActivity implements ImageGalleryListen
 
 	@Override
 	public void error(Exception e, String userAction) {
-		error("Error when " + userAction, e);
+		error(getString(R.string.error_when) + " " + userAction, e);
 	}
 }

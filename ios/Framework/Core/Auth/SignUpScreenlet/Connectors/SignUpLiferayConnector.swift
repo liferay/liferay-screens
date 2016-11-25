@@ -102,7 +102,8 @@ public class Liferay62SignUpConnector: SignUpLiferayConnector {
 				serviceContext: nil)
 
 			if result?["userId"] == nil {
-				lastError = NSError.errorWithCause(.InvalidServerResponse, userInfo: nil)
+				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				                                   message: "Could not add user.")
 				resultUserAttributes = nil
 			}
 			else {
@@ -166,7 +167,8 @@ public class Liferay70SignUpConnector: SignUpLiferayConnector {
 				serviceContext: nil)
 
 			if result?["userId"] == nil {
-				lastError = NSError.errorWithCause(.InvalidServerResponse, userInfo: nil)
+				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				                                   message: "Could not add user.")
 				resultUserAttributes = nil
 			}
 			else {

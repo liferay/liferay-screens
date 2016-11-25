@@ -65,7 +65,8 @@ public class Liferay70CommentUpdateConnector: CommentUpdateLiferayConnector {
 				lastError = nil
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				                                   message: "Could not update comment with this commentId.")
 				resultComment = nil
 			}
 		}

@@ -50,7 +50,7 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 
 	@Override
 	public Bitmap onUserPortraitLoadReceived(Bitmap bitmap) {
-		info("User portrait received!");
+		info(getString(R.string.user_portrait_info));
 		LiferayLogger.i("Bitmap received with width " + bitmap.getWidth() + " and height " + bitmap.getHeight());
 		return null;
 	}
@@ -63,7 +63,7 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 	@Override
 	public void loadingFromCache(boolean success) {
 		View content = findViewById(android.R.id.content);
-		Snackbar.make(content, "Trying to load from cache: " + success, Snackbar.LENGTH_SHORT).show();
+		Snackbar.make(content, getString(R.string.loading_cache_info) + " " + success, Snackbar.LENGTH_SHORT).show();
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 	@Override
 	public void storingToCache(Object object) {
 		View content = findViewById(android.R.id.content);
-		Snackbar.make(content, "Storing to cache...", Snackbar.LENGTH_SHORT).show();
+		Snackbar.make(content, getString(R.string.storing_cache_info), Snackbar.LENGTH_SHORT).show();
 	}
 
 	@Override

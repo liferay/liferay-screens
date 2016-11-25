@@ -101,7 +101,8 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 					Long groupId = LiferayServerContext.getGroupId();
 					Long userId = SessionContext.getUserId();
 					boolean destroyed = Cache.destroy(groupId, userId, DDLFormEvent.class.getSimpleName());
-					info("Deleted DDLFormEvent cache entries: " + (destroyed ? "successfully" : "failed"));
+					info(getString(R.string.ddlform_delete_cache_entries_info) + " " +
+						(destroyed ? getString(R.string.successfuly) : getString(R.string.failed)));
 				} catch (Exception e) {
 					LiferayLogger.e("Error clearing cache", e);
 				}
@@ -111,14 +112,15 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 					Long groupId = LiferayServerContext.getGroupId();
 					Long userId = SessionContext.getUserId();
 					boolean success = Cache.destroy(groupId, userId);
-					info("Cache cleared: " + (success ? "successfully" : "failed"));
+					info(getString(R.string.ddlform_cache_cleared_info) + " " +
+						(success ? getString(R.string.successfuly) : getString(R.string.failed)));
 				} catch (Exception e) {
 					LiferayLogger.e("Error clearing cache", e);
 				}
 				break;
 			case R.id.sync_cache:
 				Cache.resync();
-				info("Launched resync process");
+				info(getString(R.string.resync_cache_info));
 				break;
 			case R.id.custom_interactor:
 				start(CustomInteractorActivity.class);

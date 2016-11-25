@@ -72,7 +72,8 @@ extension SyncManager {
 					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
 					failedKey: key,
 					attributes: attributes,
-					error: NSError.errorWithCause(.NotAvailable))
+					error: NSError.errorWithCause(.NotAvailable,
+							message: "Synchronizer for check remote record not available."))
 				signal()
 			}
 			else if let localModifiedDate = localRecord.attributes["modifiedDate"]?.longLongValue,
@@ -99,7 +100,8 @@ extension SyncManager {
 					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
 					failedKey: key,
 					attributes: attributes,
-					error: NSError.errorWithCause(.InvalidServerResponse))
+					error: NSError.errorWithCause(.InvalidServerResponse,
+							message: "Synchronizer for send local record not available."))
 				signal()
 			}
 		}
@@ -150,7 +152,8 @@ extension SyncManager {
 					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
 					failedKey: key,
 					attributes: attributes,
-					error: NSError.errorWithCause(.AbortedDueToPreconditions))
+					error: NSError.errorWithCause(.AbortedDueToPreconditions,
+							message: "Ignoring conflicts between records."))
 				signal()
 			}
 		}
@@ -216,7 +219,8 @@ extension SyncManager {
 					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
 					failedKey: key,
 					attributes: attributes,
-					error: NSError.errorWithCause(.ValidationFailed))
+					error: NSError.errorWithCause(.ValidationFailed,
+							message: "Validation failed during send local record."))
 
 				signal()
 			}
@@ -282,7 +286,8 @@ extension SyncManager {
 							onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
 							failedKey: recordKey,
 							attributes: recordAttributes,
-							error: NSError.errorWithCause(.ValidationFailed))
+							error: NSError.errorWithCause(.ValidationFailed,
+									message: "Validation failed during send local document."))
 						signal()
 					}
 				}
@@ -293,7 +298,8 @@ extension SyncManager {
 						onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
 						failedKey: recordKey,
 						attributes: recordAttributes,
-						error: NSError.errorWithCause(.NotAvailable))
+						error: NSError.errorWithCause(.NotAvailable,
+								message: "An error ocurred when sending local document."))
 
 					signal()
 				}

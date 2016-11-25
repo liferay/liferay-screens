@@ -78,8 +78,8 @@ public class CommentAddScreenlet: BaseScreenlet {
 				self.viewModel.body = ""
 			}
 			else {
-				self.commentAddDelegate?.screenlet?(self,
-				                                    onAddCommentError: NSError.errorWithCause(.InvalidServerResponse))
+				self.commentAddDelegate?.screenlet?(self, onAddCommentError: NSError.errorWithCause(
+						.InvalidServerResponse, message: "Could not add comment."))
 			}
 		}
 
@@ -102,7 +102,9 @@ public class CommentAddScreenlet: BaseScreenlet {
 			}
 			else {
 				self.commentAddDelegate?.screenlet?(self,
-				                                    onUpdateCommentError: NSError.errorWithCause(.InvalidServerResponse))
+				                                    onUpdateCommentError: NSError.errorWithCause(
+														.InvalidServerResponse,
+														message: "Could not update comment."))
 			}
 		}
 

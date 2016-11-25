@@ -15,8 +15,9 @@
 package com.liferay.mobile.screens.asset.list.interactor;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
-import com.liferay.mobile.screens.asset.AssetEvent;
+import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.asset.AssetEntry;
+import com.liferay.mobile.screens.asset.AssetEvent;
 import com.liferay.mobile.screens.asset.AssetFactory;
 import com.liferay.mobile.screens.asset.list.connector.AssetEntryConnector;
 import com.liferay.mobile.screens.asset.list.connector.ScreensAssetEntryConnector;
@@ -24,6 +25,7 @@ import com.liferay.mobile.screens.base.list.interactor.BaseListEvent;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
 import com.liferay.mobile.screens.base.list.interactor.Query;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.ServiceProvider;
@@ -133,8 +135,11 @@ public class AssetListInteractor extends BaseListInteractor<BaseListInteractorLi
 			entryQueryParams.put("groupIds", groupId);
 		}
 		if (!entryQueryParams.has("visible")) {
-			entryQueryParams.put("visible", "true");
+			entryQueryParams.put("visible", true);
 		}
+
+		handleUserVisibleFlag(classNameId, entryQueryParams);
+
 		return entryQueryParams;
 	}
 
@@ -147,5 +152,26 @@ public class AssetListInteractor extends BaseListInteractor<BaseListInteractorLi
 		}
 
 		super.validate(startRow, endRow, locale);
+	}
+
+	/**
+	 * AssetListScreenlet only list Asset with visible attribute set to true. But User objects have it by
+	 * default in false. So this method update this attribute of entryQuery values to list
+	 * all users.
+	 * @param classNameId identifier of the asset’s class name.
+	 * @param entryQueryParams initial entryQuery parameters.
+	 * @return final entryQuery parameters.
+	 * @throws JSONException
+	 */
+	private JSONObject handleUserVisibleFlag(long classNameId, JSONObject entryQueryParams) throws JSONException {
+		if (classNameId == Long.parseLong(
+			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_user))) {
+
+			entryQueryParams.put("visible", false);
+
+			return entryQueryParams;
+		}
+
+		return entryQueryParams;
 	}
 }
