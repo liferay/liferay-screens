@@ -17,6 +17,12 @@ import LiferayScreens
 
 class DDLFormScreenletViewController: UIViewController, DDLFormScreenletDelegate {
 
+	@IBOutlet weak var loadButton: UIButton? {
+		didSet {
+			loadButton?.replaceAttributedTitle(NSLocalizedString("load-button", comment: "LOAD"),
+			                                   forState: .Normal)
+		}
+	}
 	@IBOutlet var screenlet: DDLFormScreenlet? {
 		didSet {
 			screenlet?.delegate = self

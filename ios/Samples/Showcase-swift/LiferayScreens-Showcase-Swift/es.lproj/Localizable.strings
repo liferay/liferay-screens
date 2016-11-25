@@ -1,5 +1,12 @@
-choose-asset-type="Eliga un tipo de Asset";
 screenlets-available="Screenlets Disponibles";
 comment-screenlets="Commentarios";
 files-screenlets="Ficheros";
 others-screenlets="Otros";
+login-save-credentials="Guardar credenciales";
+login-forgot-password="¿Olvidaste tu contraseña?";
+login-sign-up="REGISTRARSE";
+login-sign-out="SALIR";
+login-logged="Has iniciado sesión como...";
+login-relogin="VOLVER A INICIAR SESIÓN";
+assetlist-choose-asset-type="Elija un tipo de Asset";
+load-button="CARGAR";

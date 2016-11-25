@@ -81,7 +81,7 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 			bodyTextView?.becomeFirstResponder()
 		}
 	}
-
+	
 
 	//MARK: Keyboard action
 

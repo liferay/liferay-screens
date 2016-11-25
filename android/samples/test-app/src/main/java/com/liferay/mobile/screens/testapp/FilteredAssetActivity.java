@@ -22,12 +22,12 @@ public class FilteredAssetActivity extends ThemeActivity implements BaseListList
 
 	@Override
 	public void onListPageFailed(int startRow, Exception e) {
-		error("Page request failed", e);
+		error(getString(R.string.page_error), e);
 	}
 
 	@Override
 	public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries, int rowCount) {
-		info("Row " + startRow + " received!");
+		info(rowCount + " " + getString(R.string.rows_received_info) + " " + startRow);
 	}
 
 	@Override

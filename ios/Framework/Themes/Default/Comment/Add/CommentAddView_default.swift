@@ -52,9 +52,11 @@ public class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 
 	public override func onShow() {
 		addCommentTextField?.delegate = self
-		sendCommentButton?.replaceAttributedTitle(
-			LocalizedString("default", key: "comment-add-send", obj: self),
-			forState: .Normal)
+	}
+
+	public override func onSetTranslations() {
+		addCommentTextField?.placeholder = LocalizedString("default", key: "comment-add-placeholder", obj: self)
+		sendCommentButton?.titleLabel?.text = LocalizedString("default", key: "comment-add-send", obj: self)
 	}
 
 	override public func createProgressPresenter() -> ProgressPresenter {

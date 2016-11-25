@@ -8,7 +8,7 @@ import com.liferay.mobile.screens.listbookmark.BookmarkListListener;
 import com.liferay.mobile.screens.listbookmark.BookmarkListScreenlet;
 import java.util.List;
 
-public class ListBookmarksActivity extends AppCompatActivity implements BookmarkListListener {
+public class ListBookmarksActivity extends ThemeActivity implements BookmarkListListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class ListBookmarksActivity extends AppCompatActivity implements Bookmark
 
 	@Override
 	public void onListPageReceived(int startRow, int endRow, List<Bookmark> entries, int rowCount) {
-
+		info(rowCount + " " + getString(R.string.rows_received_info) + " " + startRow);
 	}
 
 	@Override

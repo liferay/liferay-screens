@@ -82,12 +82,8 @@ class AssetTypesViewController: UITableViewController {
 		AssetClasses.set(AssetClassNameKey_WikiPage, newId: 27802)
 		AssetClasses.set(AssetClassNameKey_WikiPageResource, newId: 27803)
 		AssetClasses.set(AssetClassNameKey_WikiNode, newId: 27801)
-	}
-	
-	override func viewWillAppear(animated: Bool) {
-		super.viewWillAppear(animated)
-		
-		self.title = NSLocalizedString("choose-asset-type", comment: "Choose an asset type")
+
+		setTranslations()
 	}
 	
 	override func viewWillDisappear(animated: Bool) {
@@ -131,5 +127,12 @@ class AssetTypesViewController: UITableViewController {
 			let viewController = segue.destinationViewController as? AssetListScreenletViewController
 			viewController?.assetType = selectedAssetType
 		}
+	}
+
+
+	//MARK: Private methods
+
+	private func setTranslations() {
+		self.title = NSLocalizedString("assetlist-choose-asset-type", comment: "Choose an Asset type")
 	}
 }
