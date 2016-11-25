@@ -26,7 +26,7 @@ public class AddBookmarkInteractor extends BaseRemoteInteractor<AddBookmarkListe
 	}
 
 	@Override
-	public void onSuccess(BasicEvent event) throws Exception {
+	public void onSuccess(BasicEvent event) {
 		getListener().onAddBookmarkSuccess();
 	}
 

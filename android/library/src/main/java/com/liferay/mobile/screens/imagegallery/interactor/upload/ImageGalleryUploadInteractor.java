@@ -35,7 +35,7 @@ public class ImageGalleryUploadInteractor extends BaseCacheWriteInteractor<Image
 	}
 
 	@Override
-	public void onSuccess(ImageGalleryEvent event) throws Exception {
+	public void onSuccess(ImageGalleryEvent event) {
 		if (event.isStarting()) {
 			getListener().onPictureUploadInformationReceived(event.getPicturePath(), event.getTitle(),
 				event.getDescription(), event.getChangeLog());

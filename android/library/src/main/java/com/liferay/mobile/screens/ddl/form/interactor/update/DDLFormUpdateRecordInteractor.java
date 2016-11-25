@@ -55,7 +55,7 @@ public class DDLFormUpdateRecordInteractor extends BaseCacheWriteInteractor<DDLF
 	}
 
 	@Override
-	public void onSuccess(DDLFormEvent event) throws Exception {
+	public void onSuccess(DDLFormEvent event) {
 		getListener().onDDLFormRecordUpdated(event.getRecord());
 	}
 

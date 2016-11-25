@@ -83,27 +83,34 @@ public class UserPortraitLoadInteractor
 	}
 
 	@Override
-	public void onSuccess(UserPortraitEvent event) throws Exception {
+	public void onSuccess(UserPortraitEvent event) {
 
-		JSONObject userAttributes = event.getJSONObject();
-		long portraitId = userAttributes.getLong("portraitId");
-		String uuid = userAttributes.getString("uuid");
+		try {
+			JSONObject userAttributes = event.getJSONObject();
+			long portraitId = userAttributes.getLong("portraitId");
+			String uuid = userAttributes.getString("uuid");
 
-		validate(uuid);
+			validate(uuid);
 
-		UserPortraitUriBuilder userPortraitUriBuilder = new UserPortraitUriBuilder();
-		Uri uri = userPortraitUriBuilder.getUserPortraitUri(LiferayServerContext.getServer(), true, portraitId, uuid);
+			UserPortraitUriBuilder userPortraitUriBuilder = new UserPortraitUriBuilder();
+			Uri uri =
+				userPortraitUriBuilder.getUserPortraitUri(LiferayServerContext.getServer(), true,
+					portraitId, uuid);
 
-		Context context = LiferayScreensContext.getContext();
-		Downloader downloader = new OkHttpDownloader(userPortraitUriBuilder.getUserPortraitClient(context));
-		Picasso picasso = new Picasso.Builder(context).downloader(downloader).build();
-		RequestCreator requestCreator = picasso.load(uri);
+			Context context = LiferayScreensContext.getContext();
+			Downloader downloader = new OkHttpDownloader(userPortraitUriBuilder.getUserPortraitClient(context));
+			Picasso picasso = new Picasso.Builder(context).downloader(downloader).build();
+			RequestCreator requestCreator = picasso.load(uri);
 
-		if (CachePolicy.REMOTE_ONLY.equals(getCachePolicy())) {
-			requestCreator = requestCreator.memoryPolicy(MemoryPolicy.NO_CACHE).networkPolicy(NetworkPolicy.NO_CACHE);
+			if (CachePolicy.REMOTE_ONLY.equals(getCachePolicy())) {
+				requestCreator = requestCreator.memoryPolicy(MemoryPolicy.NO_CACHE).networkPolicy(NetworkPolicy.NO_CACHE);
+			}
+
+			requestCreator.into(this);
+		}   catch (JSONException ex) {
+			event.setException(ex);
+			onFailure(event);
 		}
-
-		requestCreator.into(this);
 	}
 
 	@Override

@@ -49,7 +49,7 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 	}
 
 	@Override
-	public void onSuccess(BaseListEvent event) throws Exception {
+	public void onSuccess(BaseListEvent event) {
 
 		List<E> entries = event.getEntries();
 		int rowCount = event.getRowCount();

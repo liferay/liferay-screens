@@ -11,6 +11,7 @@ Possible categories for the changes: Updated, Fixed, Features, Deprecated
 ###Android
 
 ####	 Updated
+
 * Base interactor not handling exceptions outside its domain anymore
 * List users with AssetListScreenlet
 
@@ -26,3 +27,4 @@ Possible categories for the changes: Updated, Fixed, Features, Deprecated
 
 ####   Features
 * Spanish translations
+

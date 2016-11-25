@@ -10,8 +10,10 @@ import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.service.v70.ScreensassetentryService;
 import com.liferay.mobile.screens.util.JSONUtil;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -43,8 +45,17 @@ public class AssetDisplayInteractor extends BaseCacheReadInteractor<AssetDisplay
 	}
 
 	@Override
-	public void onSuccess(AssetEvent event) throws Exception {
-		Map<String, Object> map = JSONUtil.toMap(event.getJSONObject());
+	public void onSuccess(AssetEvent event) {
+		Map<String, Object> map;
+
+		try {
+			map = JSONUtil.toMap(event.getJSONObject());
+		} catch (JSONException ex) {
+			event.setException(ex);
+			onFailure(event);
+			return;
+		}
+
 		AssetEntry assetEntry = AssetFactory.createInstance(map);
 		getListener().onRetrieveAssetSuccess(assetEntry);
 	}

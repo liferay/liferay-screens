@@ -53,9 +53,16 @@ public class DDLFormLoadRecordInteractor extends BaseCacheReadInteractor<DDLForm
 	}
 
 	@Override
-	public void onSuccess(DDLFormEvent event) throws Exception {
+	public void onSuccess(DDLFormEvent event) {
 
-		Map<String, Object> valuesAndAttributes = getStringObjectMap(event.getJSONObject());
+		Map<String, Object> valuesAndAttributes;
+		try {
+			valuesAndAttributes = getStringObjectMap(event.getJSONObject());
+		} catch (JSONException e) {
+			event.setException(e);
+			onFailure(event);
+			return;
+		}
 
 		getListener().onDDLFormRecordLoaded(event.getRecord(), valuesAndAttributes);
 	}
