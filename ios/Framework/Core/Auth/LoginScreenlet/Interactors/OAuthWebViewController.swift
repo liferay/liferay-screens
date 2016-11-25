@@ -49,7 +49,7 @@ class OAuthWebViewController: UIViewController, UIWebViewDelegate {
 		activityIndicator?.startAnimating()
 		webView?.delegate = self
 		webView?.loadRequest(NSURLRequest(URL: URL))
-		closeButton?.titleLabel?.text = NSLocalizedString("default-oath-close", comment: "Close")
+		closeButton?.titleLabel?.text = NSLocalizedString("default-oauth-close", comment: "Close")
 	}
 
 	@IBAction func closeAction(sender: AnyObject) {
