@@ -100,7 +100,8 @@ public class Liferay62UploadUserPortraitConnector: UploadUserPortraitLiferayConn
 				lastError = nil
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse,
+						message: "Could not upload user portrait.")
 			}
 		}
 		catch let error as NSError {
@@ -124,7 +125,8 @@ public class Liferay70UploadUserPortraitConnector: UploadUserPortraitLiferayConn
 				lastError = nil
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse,
+						message: "Could not upload user portrait.")
 			}
 		}
 		catch let error as NSError {

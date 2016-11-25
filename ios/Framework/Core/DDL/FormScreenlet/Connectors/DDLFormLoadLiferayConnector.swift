@@ -51,7 +51,8 @@ public class Liferay62DDLFormLoadConnector: DDLFormLoadLiferayConnector {
 				lastError = nil
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				                                   message: "Could not load ddl form with this structureId.")
 				resultRecord = nil
 				resultUserId = nil
 			}
@@ -85,7 +86,8 @@ public class Liferay70DDLFormLoadConnector: DDLFormLoadLiferayConnector {
 				lastError = nil
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				                                   message: "Could not load ddl form with this structureId.")
 				resultRecord = nil
 				resultUserId = nil
 			}

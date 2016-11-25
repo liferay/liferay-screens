@@ -46,7 +46,8 @@ public class ServerConnectorInteractor: Interactor {
 			return true
 		}
 
-		self.callOnFailure(NSError.errorWithCause(.AbortedDueToPreconditions))
+		self.callOnFailure(NSError.errorWithCause(.AbortedDueToPreconditions,
+				message: "An error ocurred when creating the connector."))
 
 		return false
 	}
@@ -96,7 +97,8 @@ public class ServerConnectorInteractor: Interactor {
 		let validationError = connector.validateAndEnqueue() {
 			if let error = $0.lastError {
 				if error.domain == "NSURLErrorDomain" {
-					$0.lastError = NSError.errorWithCause(.NotAvailable)
+					$0.lastError = NSError.errorWithCause(.NotAvailable,
+							message: "URL error domain.")
 				}
 				whenFailure($0.lastError!)
 			}
@@ -119,7 +121,8 @@ public class ServerConnectorInteractor: Interactor {
 				whenSuccess()
 			}
 			else {
-				whenFailure(NSError.errorWithCause(.NotAvailable))
+				whenFailure(NSError.errorWithCause(.NotAvailable,
+						message: "Could not read from cache."))
 			}
 		}
 	}

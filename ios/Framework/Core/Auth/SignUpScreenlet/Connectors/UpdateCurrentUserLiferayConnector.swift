@@ -110,7 +110,8 @@ public class Liferay62UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnec
 				serviceContext: nil)
 
 			if result["userId"] == nil {
-				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse,
+						message: "Could not update user with this userId.")
 				resultUserAttributes = nil
 			}
 			else {
@@ -174,7 +175,8 @@ public class Liferay70UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnec
 				serviceContext: nil)
 
 			if result["userId"] == nil {
-				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse,
+						message: "Could not update user with this userId.")
 				resultUserAttributes = nil
 			}
 			else {

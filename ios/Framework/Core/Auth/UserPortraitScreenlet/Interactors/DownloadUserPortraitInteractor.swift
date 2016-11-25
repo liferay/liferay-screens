@@ -157,7 +157,8 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 				}
 				else {
 					outputConnector.resultData = nil
-					outputConnector.lastError = NSError.errorWithCause(.NotAvailable)
+					outputConnector.lastError = NSError.errorWithCause(.NotAvailable,
+					                                                   message: "Image from cache not available.")
 					result(nil)
 				}
 			}
@@ -195,7 +196,8 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 					key: mode.cacheKey) {
 				guard let cachedObject = $0 else {
 					httpOp.resultData = nil
-					httpOp.lastError = NSError.errorWithCause(.NotAvailable)
+					httpOp.lastError = NSError.errorWithCause(.NotAvailable,
+					                                          message: "Image from cache not available.")
 					result(nil)
 					return
 				}
