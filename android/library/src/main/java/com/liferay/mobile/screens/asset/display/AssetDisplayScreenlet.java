@@ -1,3 +1,17 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
 package com.liferay.mobile.screens.asset.display;
 
 import android.content.Context;
@@ -10,9 +24,9 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.asset.display.interactor.AssetDisplayInteractor;
 import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.asset.AssetFactory;
+import com.liferay.mobile.screens.asset.display.interactor.AssetDisplayInteractor;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.blogs.BlogsEntryDisplayScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -93,10 +107,21 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		return view;
 	}
 
+	/**
+	 * Searches the {@link AssetEntry} with the given attributes ({@link #entryId} or {@link #className}
+	 * and {@link #classPK}) and loads it in the screenlet.
+	 */
 	public void loadAsset() {
 		performUserAction();
 	}
 
+	/**
+	 * Loads the given {@link AssetEntry} in the screenlet. If there is no inner screenlet created,
+	 * the method tries to load it based on custom asset listener method. If this return null,
+	 * a new Intent is called to display it.
+	 *
+	 * @param assetEntry decorated AssetEntry.
+	 */
 	public void load(AssetEntry assetEntry) {
 		AssetEntry asset = AssetFactory.createInstance(assetEntry.getValues());
 		AssetDisplayFactory factory = new AssetDisplayFactory();
@@ -137,6 +162,9 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		}
 	}
 
+	/**
+	 * Removes the created screenlet inside {@link AssetDisplayScreenlet}.
+	 */
 	public void removeInnerScreenlet() {
 		getViewModel().removeInnerScreenlet();
 	}
@@ -173,6 +201,10 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		}
 	}
 
+	/**
+	 * Checks if there is a session created and if exists {@link #entryId} or {@link #className}
+	 * and {@link #classPK} attributes and then calls {@link #loadAsset()} method.
+	 */
 	//TODO now the autoload is required to be able to load child screenlets
 	protected void autoLoad() {
 		if (SessionContext.isLoggedIn() && (entryId != 0 || (className != null

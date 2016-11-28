@@ -1,3 +1,17 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ * <p>
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ * <p>
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
 package com.liferay.mobile.screens.imagegallery;
 
 import android.app.Activity;
@@ -80,20 +94,39 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 		return new ImageGalleryLoadInteractor();
 	}
 
+	/**
+	 * Loads the first page of images.
+	 */
 	public void load() {
 		loadPage(0);
 	}
 
+	/**
+	 * Retrieves the `fileEntryId` of the image and calls {@link #deleteEntry(long)}
+	 * to delete the selected image.
+	 *
+	 * @param entry image to be deleted.
+	 */
 	public void deleteEntry(ImageEntry entry) {
 		deleteEntry(entry.getFileEntryId());
 	}
 
+	/**
+	 * Deletes the image associated with the given `fileEntryId`.
+	 *
+	 * @param fileEntryId
+	 */
 	public void deleteEntry(long fileEntryId) {
 		ImageGalleryDeleteInteractor
 			imageGalleryDeleteInteractor = new ImageGalleryDeleteInteractor();
 		imageGalleryDeleteInteractor.start(new ImageGalleryEvent(new ImageEntry(fileEntryId)));
 	}
 
+	/**
+	 * Tries to delete all values stored in the cache.
+	 *
+	 * @throws IOException
+	 */
 	public void deleteCaches() throws IOException {
 		LiferayServerContext.getOkHttpClient().getCache().evictAll();
 		try {
@@ -103,14 +136,26 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 		}
 	}
 
+	/**
+	 * Opens the device camera to upload a new photo.
+	 */
 	public void openCamera() {
 		startShadowActivityForMediaStore(MediaStoreRequestShadowActivity.TAKE_PICTURE_WITH_CAMERA);
 	}
 
+	/**
+	 * Opens the device image gallery to upload a new photo.
+	 */
 	public void openGallery() {
 		startShadowActivityForMediaStore(MediaStoreRequestShadowActivity.SELECT_IMAGE_FROM_GALLERY);
 	}
 
+	/**
+	 * Called when an image is clicked.
+	 *
+	 * @param image
+	 * @param view
+	 */
 	public void onImageClicked(ImageEntry image, View view) {
 		if (getListener() != null) {
 			getListener().onListItemSelected(image, view);
@@ -187,6 +232,11 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 		}
 	}
 
+	/**
+	 * Starts an activity which shows the image in full screen.
+	 *
+	 * @param image
+	 */
 	public void showImageInFullScreenActivity(ImageEntry image) {
 		Intent intent = new Intent(getContext(), DetailImageActivity.class);
 		intent.putExtra(DetailImageActivity.GALLERY_SCREENLET_IMAGE_DETAILED, image);
@@ -230,12 +280,22 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 		this.repositoryId = repositoryId;
 	}
 
+	/**
+	 * Checks if there is a session created and if exists {@link #groupId} attribute
+	 * and then calls {@link #load()} method.
+	 */
 	protected void autoLoad() {
 		if (SessionContext.isLoggedIn() && groupId > 0) {
 			load();
 		}
 	}
 
+	/**
+	 * Parse the given mime types.
+	 *
+	 * @param mimeTypesRaw
+	 * @return array with all the mime types.
+	 */
 	protected String[] parseMimeTypes(String mimeTypesRaw) {
 		if (mimeTypesRaw == null) {
 			return null;
@@ -244,6 +304,12 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 		return mimeTypesRaw.split(",");
 	}
 
+	/**
+	 * Starts a dialog for uploading the new selected image.
+	 *
+	 * @param uploadDetailView detail layout.
+	 * @param picturePath image path.
+	 */
 	protected void startUploadDetail(@LayoutRes int uploadDetailView, final String picturePath) {
 		Context context = LiferayScreensContext.getContext();
 
@@ -267,6 +333,11 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 		}
 	}
 
+	/**
+	 * Starts the activity to select where the image is from.
+	 *
+	 * @param mediaStore
+	 */
 	protected void startShadowActivityForMediaStore(int mediaStore) {
 
 		ImageGalleryUploadInteractor imageGalleryUploadInteractor = getUploadInteractor();

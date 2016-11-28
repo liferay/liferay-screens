@@ -61,6 +61,9 @@ public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
+	/**
+	 * Loads the associate page from given row.
+	 */
 	public void loadPageForRow(int row) {
 		loadPage(getPageFromRow(row));
 	}
@@ -83,6 +86,12 @@ public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends
 		}
 	}
 
+	/**
+	 * Returns first row of the given page.
+	 *
+	 * @param page chosen page.
+	 * @return first row.
+	 */
 	public int getFirstRowForPage(int page) {
 		if (page == 0) {
 			return 0;
@@ -91,6 +100,11 @@ public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends
 		return (firstPageSize + (page - 1) * pageSize);
 	}
 
+	/**
+	 * Returns the page where the row is from.
+	 *
+	 * @return row page.
+	 */
 	public int getPageFromRow(int row) {
 		if (row < firstPageSize) {
 			return 0;
@@ -99,6 +113,9 @@ public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends
 		return ((row - firstPageSize) / pageSize) + 1;
 	}
 
+	/**
+	 * Loads the given page. If the page is 0, it loads the initial page.
+	 */
 	public void loadPage(int page) {
 		if (page == 0) {
 			getViewModel().showStartOperation(LOAD_INITIAL_PAGE_ACTION);

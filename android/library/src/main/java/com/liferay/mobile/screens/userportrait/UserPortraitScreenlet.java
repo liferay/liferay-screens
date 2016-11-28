@@ -72,14 +72,24 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
+	/**
+	 * Searches the user portrait with the given attributes ({@link #portraitId}
+	 * and {@link #uuid} or {@link #userId}) and loads it in the screenlet.
+	 */
 	public void load() {
 		performUserAction(LOAD_PORTRAIT);
 	}
 
+	/**
+	 * Selects a new user portrait from the device camera.
+	 */
 	public void openCamera() {
 		startShadowActivityForMediaStore(MediaStoreRequestShadowActivity.TAKE_PICTURE_WITH_CAMERA);
 	}
 
+	/**
+	 * Selects a new user portrait from the device image gallery.
+	 */
 	public void openGallery() {
 		startShadowActivityForMediaStore(MediaStoreRequestShadowActivity.SELECT_IMAGE_FROM_GALLERY);
 	}
@@ -182,6 +192,10 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 		this.editable = editable;
 	}
 
+	/**
+	 * Checks if exists {@link #portraitId} and {@link #uuid} or {@link #userId} attributes
+	 * and then calls {@link #load()} method. It's not necessary to be logged in.
+	 */
 	protected void autoLoad() {
 		if (((portraitId != 0) && (uuid != null)) || (userId != 0)) {
 			try {
