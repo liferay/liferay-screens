@@ -206,13 +206,15 @@ public class LoginView extends LinearLayout implements LoginViewModel, View.OnCl
 	}
 
 	private int getLabelResourceForAuthMode() {
-		switch (basicAuthMethod) {
-			case SCREEN_NAME:
-				return R.string.screen_name;
-			case USER_ID:
-				return R.string.user_id;
-			default:
-				return R.string.email_address;
+		if(basicAuthMethod != null) {
+			switch (basicAuthMethod) {
+				case SCREEN_NAME:
+					return R.string.screen_name;
+				case USER_ID:
+					return R.string.user_id;
+				default:
+					return R.string.email_address;
+			}
 		}
 	}
 }
