@@ -23,9 +23,25 @@ import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
  */
 public interface UserPortraitInteractorListener extends BaseCacheListener {
 
+	/**
+	 * Called when the user portrait has been successfully loaded.
+	 *
+	 * @param bitmap original user portrait
+	 * @return modified or not user portrait
+	 */
 	Bitmap onEndUserPortraitLoadRequest(Bitmap bitmap);
 
+	/**
+	 * Called when the user portrait upload service finishes.
+	 *
+	 * @param userId
+	 */
 	void onUserPortraitUploaded(Long userId);
 
+	/**
+	 * Called when an user portrait was chosen and it's ready for upload.
+	 *
+	 * @param picturePath
+	 */
 	void onPicturePathReceived(String picturePath);
 }
