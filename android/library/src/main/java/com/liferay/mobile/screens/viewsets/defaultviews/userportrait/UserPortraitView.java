@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.viewsets.defaultviews.userportrait;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -104,7 +105,8 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 	public void onClick(View v) {
 		if (v.getId() == R.id.liferay_replace_image) {
 			choseOriginDialog =
-				new MediaStoreSelectorDialog().createOriginDialog(getContext(), openCamera(), openGallery(), null);
+				new MediaStoreSelectorDialog().createOriginDialog((Activity) getContext(), openCamera(), openGallery(),
+					null);
 			choseOriginDialog.show();
 		}
 	}
@@ -144,7 +146,7 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 		setDefaultImagePlaceholder();
 
 		choseOriginDialog =
-			new MediaStoreSelectorDialog().createOriginDialog(getContext(), openCamera(), openGallery(), null);
+			new MediaStoreSelectorDialog().createOriginDialog((Activity) getContext(), openCamera(), openGallery(), null);
 	}
 
 	@Override

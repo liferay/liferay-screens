@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.base;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -17,15 +18,15 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
  */
 public class MediaStoreSelectorDialog {
 
-	public AlertDialog createOriginDialog(Context context, Action1<Boolean> openCamera, Action1<Boolean> openGallery,
+	public AlertDialog createOriginDialog(Activity activity, Action1<Boolean> openCamera, Action1<Boolean> openGallery,
 		Action1<Boolean> openVideoCamera) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
-		LayoutInflater factory = LayoutInflater.from(context);
+		LayoutInflater factory = LayoutInflater.from(activity);
 		final View customDialogView = factory.inflate(R.layout.chose_origin_dialog_default, null);
 		builder.setView(customDialogView);
 
-		RxPermissions rxPermissions = RxPermissions.getInstance(context);
+		RxPermissions rxPermissions = new RxPermissions(activity);
 
 		if (openCamera != null) {
 			View takePhoto = customDialogView.findViewById(R.id.liferay_dialog_take_photo);
