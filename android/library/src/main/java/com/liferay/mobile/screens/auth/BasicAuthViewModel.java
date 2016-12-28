@@ -21,7 +21,20 @@ import com.liferay.mobile.screens.base.view.BaseViewModel;
  */
 public interface BasicAuthViewModel extends BaseViewModel {
 
+	/**
+	 * Gets the {@link BasicAuthMethod}.
+	 *  - {@link BasicAuthMethod#EMAIL}
+	 *  - {@link BasicAuthMethod#SCREEN_NAME}
+	 *  - {@link BasicAuthMethod#USER_ID}
+	 *
+	 * @return basic auth method
+	 */
 	BasicAuthMethod getBasicAuthMethod();
 
+	/**
+	 * Sets the {@link BasicAuthMethod}.
+	 *
+	 * @param basicAuthMethod
+	 */
 	void setBasicAuthMethod(BasicAuthMethod basicAuthMethod);
 }

@@ -22,5 +22,10 @@ import com.liferay.mobile.screens.base.view.BaseViewModel;
  */
 public interface UserPortraitViewModel extends BaseViewModel {
 
+	/**
+	 * Called when the user portrait has been successfully loaded.
+	 *
+	 * @param bitmap user portrait image
+	 */
 	void showFinishOperation(Bitmap bitmap);
 }
