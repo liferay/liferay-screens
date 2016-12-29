@@ -1,4 +1,4 @@
-package main.java.com.liferay.mobile.screens.user;
+package com.liferay.mobile.screens.user;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,8 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
-import main.java.com.liferay.mobile.screens.user.interactor.GetUserInteractor;
-import main.java.com.liferay.mobile.screens.user.view.GetUserViewModel;
+import com.liferay.mobile.screens.user.interactor.GetUserInteractor;
+import com.liferay.mobile.screens.user.view.GetUserViewModel;
+import com.liferay.mobile.screens.user.GetUserListener;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.R;

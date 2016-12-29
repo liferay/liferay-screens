@@ -1,4 +1,4 @@
-package main.java.com.liferay.mobile.screens.user;
+package com.liferay.mobile.screens.user;
 
 import com.liferay.mobile.screens.context.User;
 

@@ -1,8 +1,8 @@
-package main.java.com.liferay.mobile.screens.user.interactor;
+package com.liferay.mobile.screens.user.interactor;
 
 import android.support.annotation.NonNull;
 
-import main.java.com.liferay.mobile.screens.user.GetUserListener;
+import com.liferay.mobile.screens.user.GetUserListener;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.base.interactor.event.BasicEvent;

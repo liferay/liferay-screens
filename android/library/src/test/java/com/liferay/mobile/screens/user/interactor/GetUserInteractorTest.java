@@ -1,7 +1,8 @@
-package test.java.com.liferay.mobile.screens.user.interactor;
+package com.liferay.mobile.screens.user.interactor;
 
 import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
+import com.liferay.mobile.screens.user.interactor.GetUserInteractor;
 
 import org.junit.Before;
 import org.junit.Test;
