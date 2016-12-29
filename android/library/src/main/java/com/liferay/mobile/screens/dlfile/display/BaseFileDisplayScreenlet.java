@@ -146,7 +146,7 @@ public abstract class BaseFileDisplayScreenlet<V extends BaseFileDisplayViewMode
 	protected void autoLoad() {
 		if (SessionContext.isLoggedIn() && (entryId != 0 || (className != null && classPK != 0))) {
 			load();
-		} else {
+		} else if (fileEntry != null) {
 			loadFile();
 		}
 	}
