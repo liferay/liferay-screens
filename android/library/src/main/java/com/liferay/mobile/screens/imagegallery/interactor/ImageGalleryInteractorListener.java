@@ -53,7 +53,7 @@ public interface ImageGalleryInteractorListener extends BaseListInteractorListen
 	void onPictureUploadProgress(int totalBytes, int totalBytesSent);
 
 	/**
-	 * Retrieves constantly information until the picture is successfully uploaded.
+	 * Called only once when user fill the upload form.
 	 * This method retrieves the picture path, title, description and changelog.
 	 *
 	 * @param picturePath
