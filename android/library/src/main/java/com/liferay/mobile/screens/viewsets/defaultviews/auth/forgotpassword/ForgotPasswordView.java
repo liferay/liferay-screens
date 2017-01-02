@@ -130,7 +130,9 @@ public class ForgotPasswordView extends LinearLayout implements ForgotPasswordVi
 	}
 
 	protected void refreshLoginEditTextStyle() {
-		loginEditText.setInputType(basicAuthMethod.getInputType());
+		if (basicAuthMethod != null) {
+			loginEditText.setInputType(basicAuthMethod.getInputType());
+		}
 		loginEditText.setCompoundDrawablesWithIntrinsicBounds(
 			ContextCompat.getDrawable(getContext(), getLoginEditTextDrawableId()), null, null, null);
 		loginEditText.setHint(getLoginEditTextLabel());
