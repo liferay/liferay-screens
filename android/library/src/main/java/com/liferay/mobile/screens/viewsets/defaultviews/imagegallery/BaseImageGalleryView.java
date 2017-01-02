@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.imagegallery;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.util.AttributeSet;
@@ -44,7 +45,8 @@ public abstract class BaseImageGalleryView<H extends BaseListAdapter.ViewHolder,
 
 	public void openMediaSelector() {
 		choseOriginDialog =
-			new MediaStoreSelectorDialog().createOriginDialog(getContext(), openCamera(), openGallery(), null);
+			new MediaStoreSelectorDialog().createOriginDialog((Activity) getContext(), openCamera(), openGallery(),
+				null);
 		choseOriginDialog.show();
 	}
 

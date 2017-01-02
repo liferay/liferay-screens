@@ -315,7 +315,7 @@ public class IssuesActivity extends CardActivity
 
 	private void tryToCall(final View button) {
 		RxView.clicks(button)
-			.compose(RxPermissions.getInstance(this).ensure(Manifest.permission.CALL_PHONE))
+			.compose(new RxPermissions(this).ensure(Manifest.permission.CALL_PHONE))
 			.subscribe(new Action1<Boolean>() {
 				@Override
 				public void call(Boolean result) {
