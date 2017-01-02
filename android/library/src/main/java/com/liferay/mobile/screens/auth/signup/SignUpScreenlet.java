@@ -74,10 +74,6 @@ public class SignUpScreenlet extends BaseScreenlet<SignUpViewModel, SignUpIntera
 	public void onSignUpSuccess(User user) {
 		getViewModel().showFinishOperation(user);
 
-		if (getListener() != null) {
-			getListener().onSignUpSuccess(user);
-		}
-
 		if (autoLogin) {
 			SignUpViewModel viewModel = getViewModel();
 
@@ -92,6 +88,10 @@ public class SignUpScreenlet extends BaseScreenlet<SignUpViewModel, SignUpIntera
 			}
 
 			SessionContext.storeCredentials(credentialsStorage);
+		}
+
+		if (getListener() != null) {
+			getListener().onSignUpSuccess(user);
 		}
 	}
 
