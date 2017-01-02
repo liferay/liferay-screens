@@ -258,7 +258,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	/**
 	 * Add the screenlet view.
 	 */
-	protected void assignView(View view) {
+	public void assignView(View view) {
 		if (!isInEditMode()) {
 			screenletView = view;
 
