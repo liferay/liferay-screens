@@ -17,6 +17,7 @@ package com.liferay.mobile.screens.webcontent.display;
 import android.view.MotionEvent;
 import android.webkit.WebView;
 import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
+import com.liferay.mobile.screens.ddl.model.DDMStructure;
 import com.liferay.mobile.screens.webcontent.WebContent;
 
 /**
@@ -24,7 +25,22 @@ import com.liferay.mobile.screens.webcontent.WebContent;
  */
 public interface WebContentDisplayListener extends BaseCacheListener {
 
+	/**
+	 * Called when the web content’s HTML or {@link DDMStructure} is received.
+	 * The HTML is available by calling the {@link WebContent#getHtml} method.
+	 * To make some adaptations, the listener may return a modified version
+	 * of the HTML. The original HTML is rendered if the listener returns `null`.
+	 *
+	 * @param html original {@link WebContent}
+	 * @return modified or not {@link WebContent}
+	 */
 	WebContent onWebContentReceived(WebContent html);
 
+	/**
+	 * Called when something is clicked in the WebContent.
+	 *
+	 * @param result
+	 * @param event
+	 */
 	void onWebContentClicked(WebView.HitTestResult result, MotionEvent event);
 }

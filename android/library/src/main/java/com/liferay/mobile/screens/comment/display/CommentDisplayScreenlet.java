@@ -1,3 +1,17 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
 package com.liferay.mobile.screens.comment.display;
 
 import android.content.Context;
@@ -63,14 +77,34 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 		}
 	}
 
+	/**
+	 * Checks if there is a session created and if exists {@link #commentId} attribute
+	 * and then calls {@link #load()} method.
+	 */
 	protected void autoLoad() {
-		if (commentId != 0 && SessionContext.isLoggedIn()) {
+		if (SessionContext.isLoggedIn() && commentId != 0) {
 			load();
 		}
 	}
 
+	/**
+	 * Searches the {@link CommentEntry} with the given attribute ({@link #commentId}
+	 * and loads it in the screenlet.
+	 */
 	public void load() {
 		performUserAction(BaseScreenlet.DEFAULT_ACTION);
+	}
+
+	/**
+	 * Allows or disallows the comment edition.
+	 *
+	 * @param editable
+	 */
+	public void allowEdition(boolean editable) {
+		this.editable = editable;
+		if (commentEntry != null) {
+			getViewModel().showFinishOperation(LOAD_COMMENT_ACTION, editable, commentEntry);
+		}
 	}
 
 	@Override
@@ -134,13 +168,6 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 
 		if (getListener() != null) {
 			getListener().onLoadCommentSuccess(commentEntry);
-		}
-	}
-
-	public void allowEdition(boolean editable) {
-		this.editable = editable;
-		if (commentEntry != null) {
-			getViewModel().showFinishOperation(LOAD_COMMENT_ACTION, editable, commentEntry);
 		}
 	}
 

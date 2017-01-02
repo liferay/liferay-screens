@@ -22,7 +22,19 @@ import android.view.View;
  */
 public interface BaseListAdapterListener {
 
+	/**
+	 * Called when row is null and it's necessary load another list page.
+	 *
+	 * @param row
+	 */
 	void onPageNotFound(int row);
 
+	/**
+	 * Called this methid when you want to implement some behavior
+	 * when an item is clicked.
+	 *
+	 * @param position
+	 * @param view
+	 */
 	void onItemClick(int position, View view);
 }

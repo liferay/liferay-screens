@@ -90,6 +90,10 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
+	/**
+	 * Loads the form if the record doesn't have `recordId`. In other case,
+	 * loads the {@link Record}.
+	 */
 	public void load() {
 		if (record.getRecordId() == 0) {
 			loadForm();
@@ -98,14 +102,24 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 		}
 	}
 
+	/**
+	 * Loads the form.
+	 */
 	public void loadForm() {
 		performUserAction(LOAD_FORM_ACTION);
 	}
 
+	/**
+	 * Loads the {@link Record}.
+	 */
 	public void loadRecord() {
 		performUserAction(LOAD_RECORD_ACTION);
 	}
 
+	/**
+	 * Adds new record if the record doesn't have `recordId`. In other case,
+	 * the record is updated.
+	 */
 	public void submitForm() {
 		if (record.getRecordId() == 0) {
 			performUserAction(ADD_RECORD_ACTION);
@@ -114,6 +128,11 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 		}
 	}
 
+	/**
+	 * Validates all the fields of the form.
+	 *
+	 * @return if the form validates or not.
+	 */
 	public boolean validateForm() {
 		Map<Field, Boolean> fieldResults = new HashMap<>(record.getFieldCount());
 		boolean result = true;
@@ -133,10 +152,20 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 		return result;
 	}
 
+	/**
+	 * Starts uploading document from position.
+	 *
+	 * @param position
+	 */
 	public void startUploadByPosition(int position) {
 		startUpload((DocumentField) record.getField(position));
 	}
 
+	/**
+	 * Starts uploading document from field.
+	 *
+	 * @param field
+	 */
 	public void startUpload(DocumentField field) {
 		performUserAction(UPLOAD_DOCUMENT_ACTION, field);
 	}
@@ -207,6 +236,12 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 		}
 	}
 
+	/**
+	 * Called when the document has been uploaded successfully.
+	 *
+	 * @param documentField form document field.
+	 * @param jsonObject event data.
+	 */
 	public void onDDLFormDocumentUploaded(DocumentField documentField, JSONObject jsonObject) {
 		//TODO this is confusing. Why can't I use the argument? Change to receive only the name
 		DocumentField originalField = (DocumentField) record.getFieldByName(documentField.getName());

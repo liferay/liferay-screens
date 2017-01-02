@@ -1,3 +1,17 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
 package com.liferay.mobile.screens.blogs;
 
 import android.content.Context;
@@ -6,9 +20,9 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
 import com.liferay.mobile.screens.asset.display.interactor.AssetDisplayInteractor;
-import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
 
@@ -43,10 +57,17 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
+	/**
+	 * Searches the {@link BlogsEntry} with the given attributes ({@link #entryId} or {@link #className}
+	 * and {@link #classPK}) and loads it in the screenlet.
+	 */
 	public void load() {
 		performUserAction(LOAD_BLOGS_ACTION);
 	}
 
+	/**
+	 * Loads the {@link BlogsEntry} directly in the screenlet.
+	 */
 	public void loadBlogsEntry() {
 		onRetrieveAssetSuccess(blogsEntry);
 	}
@@ -114,13 +135,16 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 		}
 	}
 
+	/**
+	 * Checks if there is a session created and if exists {@link #entryId} or {@link #className}
+	 * and {@link #classPK} attributes and then calls {@link #load()} method. If the previous condition
+	 * is not true, {@link #loadBlogsEntry()} is called.
+	 */
 	protected void autoLoad() {
-		if (SessionContext.isLoggedIn()) {
-			if (blogsEntry == null || (className != null && classPK != 0)) {
-				load();
-			} else {
-				loadBlogsEntry();
-			}
+		if (SessionContext.isLoggedIn() && (entryId != 0 || (className != null && classPK != 0))) {
+			load();
+		} else if (blogsEntry != null) {
+			loadBlogsEntry();
 		}
 	}
 

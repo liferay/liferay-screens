@@ -1,3 +1,17 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
 package com.liferay.mobile.screens.dlfile.display;
 
 import android.content.Context;
@@ -8,9 +22,9 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
 import com.liferay.mobile.screens.asset.display.interactor.AssetDisplayInteractor;
-import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
 
@@ -47,10 +61,17 @@ public abstract class BaseFileDisplayScreenlet<V extends BaseFileDisplayViewMode
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
+	/**
+	 * Searches the {@link FileEntry} with the given attributes ({@link #entryId} or {@link #className}
+	 * and {@link #classPK}) and loads it in the screenlet.
+	 */
 	public void load() {
 		performUserAction(LOAD_ASSET_ACTION);
 	}
 
+	/**
+	 * Loads the {@link FileEntry} directly in the screenlet.
+	 */
 	public void loadFile() {
 		onRetrieveAssetSuccess(fileEntry);
 	}
@@ -117,13 +138,16 @@ public abstract class BaseFileDisplayScreenlet<V extends BaseFileDisplayViewMode
 		}
 	}
 
+	/**
+	 * Checks if there is a session created and if exists {@link #entryId} or {@link #className}
+	 * and {@link #classPK} attributes and then calls {@link #load()} method. If the previous condition
+	 * is not true, {@link #loadFile()} is called.
+	 */
 	protected void autoLoad() {
-		if (SessionContext.isLoggedIn()) {
-			if (fileEntry == null || (className != null && classPK != 0)) {
-				load();
-			} else {
-				loadFile();
-			}
+		if (SessionContext.isLoggedIn() && (entryId != 0 || (className != null && classPK != 0))) {
+			load();
+		} else if (fileEntry != null) {
+			loadFile();
 		}
 	}
 

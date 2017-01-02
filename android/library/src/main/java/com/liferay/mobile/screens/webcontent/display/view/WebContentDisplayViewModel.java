@@ -22,5 +22,10 @@ import com.liferay.mobile.screens.webcontent.WebContent;
  */
 public interface WebContentDisplayViewModel extends BaseViewModel {
 
+	/**
+	 * Called when the {@link WebContent} content is successfully received.
+	 *
+	 * @param html {@link WebContent} content
+	 */
 	void showFinishOperation(WebContent html);
 }

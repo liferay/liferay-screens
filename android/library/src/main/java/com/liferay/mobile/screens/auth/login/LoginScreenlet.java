@@ -92,6 +92,12 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 		SessionContext.storeCredentials(credentialsStorage);
 	}
 
+	/**
+	 * Sends the login result depending on the result and intent.
+	 *
+	 * @param result activity result code.
+	 * @param intent activity intent with the result data.
+	 */
 	public void sendOAuthResult(int result, Intent intent) {
 		if (result == Activity.RESULT_OK) {
 			try {
