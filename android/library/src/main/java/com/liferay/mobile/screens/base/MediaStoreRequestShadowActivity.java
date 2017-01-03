@@ -75,7 +75,7 @@ public class MediaStoreRequestShadowActivity extends Activity {
 
 		if (cameraIntent.resolveActivity(getPackageManager()) != null) {
 			File imageFile = FileUtil.createImageFile();
-			Uri photoURI = FileProvider.getUriForFile(this, "com.liferay.mobile.screens.fileprovider", imageFile);
+			Uri photoURI = FileProvider.getUriForFile(this, getPackageName() + ".screensfileprovider", imageFile);
 			filePath = photoURI.getPath();
 			cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 			startActivityForResult(cameraIntent, mediaStoreType);
