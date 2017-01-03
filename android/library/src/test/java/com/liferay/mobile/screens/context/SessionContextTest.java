@@ -201,7 +201,7 @@ public class SessionContextTest {
 			assertEquals(LiferayServerContext.getServer(), sharedPref.getString("server", "not-present"));
 			assertEquals(LiferayServerContext.getGroupId(), sharedPref.getLong("groupId", 0));
 			assertEquals(LiferayServerContext.getCompanyId(), sharedPref.getLong("companyId", 0));
-			assertEquals(user.toString(), sharedPref.getString("attributes", "not-present"));
+			assertEquals("{\"userId\":123}", sharedPref.getString("attributes", "not-present"));
 
 			assertEquals("user123", sharedPref.getString("username", "not-present"));
 			assertEquals("pass123", sharedPref.getString("password", "not-present"));
@@ -229,7 +229,7 @@ public class SessionContextTest {
 			assertEquals(LiferayServerContext.getServer(), sharedPref.getString("server", "not-present"));
 			assertEquals(LiferayServerContext.getGroupId(), sharedPref.getLong("groupId", 0));
 			assertEquals(LiferayServerContext.getCompanyId(), sharedPref.getLong("companyId", 0));
-			assertEquals(user.toString(), sharedPref.getString("attributes", "not-present"));
+			assertEquals("{\"userId\":123}", sharedPref.getString("attributes", "not-present"));
 
 			assertEquals("my_consumerKey", sharedPref.getString("oauth_consumerKey", "not-present"));
 			assertEquals("my_consumerSecret", sharedPref.getString("oauth_consumerSecret", "not-present"));
@@ -259,7 +259,7 @@ public class SessionContextTest {
 			assertEquals(sharedPref.getString("server", "not-present"), LiferayServerContext.getServer());
 			assertEquals(sharedPref.getLong("groupId", 0), LiferayServerContext.getGroupId());
 			assertEquals(sharedPref.getLong("companyId", 0), LiferayServerContext.getCompanyId());
-			assertEquals(sharedPref.getString("attributes", "not-present"), user.toString());
+			assertEquals("{\"userId\":123}", sharedPref.getString("attributes", "not-present"));
 
 			BasicAuthentication auth = (BasicAuthentication) SessionContext.getAuthentication();
 
@@ -289,7 +289,7 @@ public class SessionContextTest {
 			assertEquals(sharedPref.getString("server", "not-present"), LiferayServerContext.getServer());
 			assertEquals(sharedPref.getLong("groupId", 0), LiferayServerContext.getGroupId());
 			assertEquals(sharedPref.getLong("companyId", 0), LiferayServerContext.getCompanyId());
-			assertEquals(sharedPref.getString("attributes", "not-present"), user.toString());
+			assertEquals(sharedPref.getString("attributes", "not-present"), "{\"userId\":123}");
 
 			OAuth oauth = (OAuth) SessionContext.getAuthentication();
 
