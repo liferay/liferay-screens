@@ -30,7 +30,7 @@ android {
 			minSdkVersion 21
 		}
 		vanilla {
-			minSdkVersion rootProject.ext.targetSdkVersion
+			minSdkVersion rootProject.ext.minSdkVersion
 		}
 	}
 }
