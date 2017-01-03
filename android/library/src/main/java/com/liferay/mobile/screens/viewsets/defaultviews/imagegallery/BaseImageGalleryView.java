@@ -10,6 +10,7 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.MediaStoreSelectorDialog;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet;
 import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
 import com.liferay.mobile.screens.imagegallery.view.ImageGalleryViewModel;
@@ -44,9 +45,9 @@ public abstract class BaseImageGalleryView<H extends BaseListAdapter.ViewHolder,
 	}
 
 	public void openMediaSelector() {
+		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
 		choseOriginDialog =
-			new MediaStoreSelectorDialog().createOriginDialog((Activity) getContext(), openCamera(), openGallery(),
-				null);
+			new MediaStoreSelectorDialog().createOriginDialog(activity, openCamera(), openGallery(), null);
 		choseOriginDialog.show();
 	}
 

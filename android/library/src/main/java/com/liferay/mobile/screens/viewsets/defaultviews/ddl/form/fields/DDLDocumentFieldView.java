@@ -122,7 +122,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 	}
 
 	protected AlertDialog createOriginDialog() {
-		Activity activity = (Activity) getContext();
+		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
 		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
 		LayoutInflater factory = LayoutInflater.from(activity);

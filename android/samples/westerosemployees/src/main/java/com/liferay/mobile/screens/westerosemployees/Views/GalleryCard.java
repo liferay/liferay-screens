@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import com.jakewharton.rxbinding.view.RxView;
 import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.imagegallery.BaseDetailUploadView;
 import com.liferay.mobile.screens.imagegallery.ImageGalleryListener;
 import com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet;
@@ -70,7 +71,8 @@ public class GalleryCard extends CommentsRatingsCard implements ImageGalleryList
 
 		imageAssetDisplayScreenlet = (AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet_image);
 
-		RxPermissions rxPermissions = new RxPermissions((Activity) getContext());
+		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
+		RxPermissions rxPermissions = new RxPermissions(activity);
 
 		RxView.clicks(findViewById(R.id.gallery_button))
 			.compose(rxPermissions.ensure(WRITE_EXTERNAL_STORAGE))
