@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v4.content.FileProvider;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -193,7 +194,8 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 
 					if (file != null) {
 						getField().createLocalFile(file.getAbsolutePath());
-						cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+						Uri photoURI = FileProvider.getUriForFile(getContext(), "com.liferay.mobile.screens.fileprovider", file);
+						cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 
 						Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
 						activity.startActivityForResult(cameraIntent, positionInForm);
