@@ -111,11 +111,7 @@ public class CredentialsStoreSharedPreferencesTest {
 			assertEquals(LiferayServerContext.getGroupId(), sharedPref.getLong("groupId", 0));
 			assertEquals(LiferayServerContext.getCompanyId(), sharedPref.getLong("companyId", 0));
 
-			JSONObject userAttributes = new JSONObject();
-			userAttributes.put("userId", 123);
-			User user = new User(userAttributes);
-
-			assertEquals(user.toString(), sharedPref.getString("attributes", "not-present"));
+			assertEquals("{\"userId\":123}", sharedPref.getString("attributes", "not-present"));
 		}
 	}
 
@@ -161,7 +157,7 @@ public class CredentialsStoreSharedPreferencesTest {
 			assertFalse(store.loadStoredCredentials());
 		}
 
-		@Test(expected = IllegalStateException.class)
+		@Test
 		public void shouldRaiseExceptionIfStoredCredentialsAreNotConsistent() throws Exception {
 			BasicCredentialsStorageSharedPreferences store = new BasicCredentialsStorageSharedPreferences();
 			setBasicTestDataInStore(store);
@@ -172,7 +168,7 @@ public class CredentialsStoreSharedPreferencesTest {
 
 			LiferayServerContext.setServer("http://otherhost.com");
 
-			store.loadStoredCredentials();
+			assertFalse(store.loadStoredCredentials());
 		}
 
 		@Test

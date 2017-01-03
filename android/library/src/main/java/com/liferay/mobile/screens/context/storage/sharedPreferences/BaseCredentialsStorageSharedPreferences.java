@@ -113,6 +113,7 @@ public abstract class BaseCredentialsStorageSharedPreferences implements Credent
 
 			LiferayLogger.e("Stored credential values are not consistent with current ones");
 			removeStoredCredentials();
+			return false;
 		}
 
 		try {
