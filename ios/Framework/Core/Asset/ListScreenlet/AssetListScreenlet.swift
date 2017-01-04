@@ -16,24 +16,47 @@ import UIKit
 
 @objc public protocol AssetListScreenletDelegate : BaseScreenletDelegate {
 
+	/// Called when a page of assets is received. Note that this method may be called 
+	/// more than once; one call for each page received.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - assets: list of assets.
 	optional func screenlet(screenlet: AssetListScreenlet,
 			onAssetListResponse assets: [Asset])
 
+	/// Called when an error occurs in the process.
+	/// The NSError object describes the error.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - error: error loading asset list.
 	optional func screenlet(screenlet: AssetListScreenlet,
 			onAssetListError error: NSError)
 
+	/// Called when an item in the list is selected.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - asset: selected asset.
 	optional func screenlet(screenlet: AssetListScreenlet,
 			onAssetSelected asset: Asset)
 
 }
 
+
 public class AssetListScreenlet: BaseListScreenlet {
 
-	@IBInspectable public var groupId: Int64 = 0
-	@IBInspectable public var classNameId: Int64 = 0
-	@IBInspectable public var portletItemName: String?
-	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
+	//MARK: Inspectables
+
+	@IBInspectable public var groupId: Int64 = 0
+
+	@IBInspectable public var classNameId: Int64 = 0
+
+	@IBInspectable public var portletItemName: String?
+
+	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
 	public var assetListDelegate: AssetListScreenletDelegate? {
 		return delegate as? AssetListScreenletDelegate
@@ -80,5 +103,4 @@ public class AssetListScreenlet: BaseListScreenlet {
 	override public func onSelectedRow(row: AnyObject) {
 		assetListDelegate?.screenlet?(self, onAssetSelected: row as! Asset)
 	}
-
 }
