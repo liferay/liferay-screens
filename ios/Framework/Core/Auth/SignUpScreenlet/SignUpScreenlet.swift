@@ -16,9 +16,21 @@ import UIKit
 
 @objc public protocol SignUpScreenletDelegate : BaseScreenletDelegate {
 
+	/// Called when sign up successfully completes.
+	/// The user attributes are passed as a dictionary of keys (String or NSStrings)
+	/// and values (AnyObject or NSObject).
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - attributes: user attributes.
 	optional func screenlet(screenlet: SignUpScreenlet,
 			onSignUpResponseUserAttributes attributes: [String:AnyObject])
 
+	/// Called when an error occurs in the process. The NSError object describes the error.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - error: error in sign up.
 	optional func screenlet(screenlet: SignUpScreenlet,
 			onSignUpError error: NSError)
 
@@ -30,6 +42,7 @@ public class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 	//MARK: Inspectables
 
 	@IBInspectable public var anonymousApiUserName: String? = "test@liferay.com"
+
 	@IBInspectable public var anonymousApiPassword: String? = "test"
 
 	@IBInspectable public var autoLogin: Bool = true
@@ -49,15 +62,6 @@ public class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 		return screenletView as! SignUpViewModel
 	}
 
-	public func loadCurrentUser() -> Bool {
-		if SessionContext.isLoggedIn {
-			self.viewModel.editCurrentUser = true
-			return true
-		}
-		return false
-	}
-
-
 	//MARK: BaseScreenlet
 
 	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
@@ -71,6 +75,23 @@ public class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 			return nil
 		}
 	}
+
+
+	//MARK: Public methods
+
+	/// Loads the current user throught editCurrentUser property.
+	///
+	/// - Returns: if there is a session created, returns true, if not, false.
+	public func loadCurrentUser() -> Bool {
+		if SessionContext.isLoggedIn {
+			self.viewModel.editCurrentUser = true
+			return true
+		}
+		return false
+	}
+	
+
+	//MARK: Private methods
 
 	private func createSignUpConnectorInteractor() -> SignUpInteractor {
 		let interactor = SignUpInteractor(screenlet: self)
