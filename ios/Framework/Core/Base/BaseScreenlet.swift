@@ -17,6 +17,14 @@ import QuartzCore
 
 @objc public protocol BaseScreenletDelegate: NSObjectProtocol {
 
+
+	/// Called when we want to return a custom interactor (use case) with the given action name.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - customInteractorForAction: action name.
+	///   - withSender: source of the event.
+	/// - Returns: custom interactor.
 	optional func screenlet(screenlet: BaseScreenlet,
 		customInteractorForAction: String,
 		withSender: AnyObject?) -> Interactor?
@@ -24,10 +32,8 @@ import QuartzCore
 }
 
 
-/*!
- * BaseScreenlet is the base class from which all Screenlet classes must inherit.
- * A screenlet is the container for a screenlet view.
- */
+/// BaseScreenlet is the base class from which all Screenlet classes must inherit.
+/// A screenlet is the container for a screenlet view.
 @IBDesignable public class BaseScreenlet: UIView {
 
 	public static let DefaultAction = "defaultAction"
@@ -78,13 +84,12 @@ import QuartzCore
 	
 	
 	//MARK: Initializers
-	
-	/**
-		Initializer for instantiate screenlets from code
 
-		- parameters:
-			- themeName: name of the theme to be used. If nil, default theme will be used
-	*/
+	/// Initializer for instantiate screenlets from code with its frame and theme name.
+	///
+	/// - Parameters:
+	///   - frame: size and position of the screenlet view.
+	///   - themeName: name of the theme to be used. If nil, default theme will be used.
 	public init(frame: CGRect, themeName: String?) {
 		super.init(frame: frame)
 		
@@ -96,10 +101,11 @@ import QuartzCore
 	override convenience init(frame: CGRect) {
 		self.init(frame: frame, themeName: nil)
 	}
-	
+
 	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
+
 
 	//MARK: UIView
 
@@ -131,11 +137,6 @@ import QuartzCore
 	}
 
 
-	public func refreshTranslations() {
-		screenletView?.onSetTranslations()
-	}
-
-
 	//MARK: Interface Builder management methods
 
 	override public func prepareForInterfaceBuilder() {
@@ -145,6 +146,7 @@ import QuartzCore
 
 		updateCurrentPreviewImage()
 	}
+
 
 	//MARK: Internal methods
 
@@ -192,6 +194,10 @@ import QuartzCore
 		}
 	}
 
+	/// previewImageForTheme loads the preview image for the screenlet with the given theme.
+	///
+	/// - Parameter themeName: screenlet theme.
+	/// - Returns: preview image.
 	internal func previewImageForTheme(themeName:String) -> UIImage? {
 		let bundles = NSBundle.allBundles(self.dynamicType)
 
@@ -211,39 +217,33 @@ import QuartzCore
 
 	//MARK: Templated/event methods: intended to be overwritten by children classes
 
-	/*
-	 * onCreated is invoked after the screenlet is created. 
-	 * Override this method to set custom values for the screenlet properties.
-	 */
+	/// onCreated is invoked after the screenlet is created.
+	/// Override this method to set custom values for the screenlet properties.
 	public func onCreated() {
 	}
 
-	/*
-	 * onPreCreate is invoked before the screenlet is created.
-	 * Override this method to set create new UI components programatically.
-	 *
-	 */
+	/// onPreCreate is invoked before the screenlet is created.
+	/// Override this method to set create new UI components programatically.
 	public func onPreCreate() {
 	}
 
-	/*
-	 * onHide is invoked when the screenlet is hidden from the app window.
-	 */
+	/// onHide is invoked when the screenlet is hidden from the app window.
 	public func onHide() {
 	}
 
-	/*
-	 * onShow is invoked when the screenlet is displayed on the app window. 
-	 * Override this method for example to reset values when the screenlet is shown.
-	 */
+	/// onShow is invoked when the screenlet is displayed on the app window.
+	/// Override this method for example to reset values when the screenlet is shown.
 	public func onShow() {
 	}
 
-	/*
-	 * performAction is invoked when a we want to start an interaction (use case)
-	 * Typically, it's called from TouchUpInside UI event or when the programmer wants to
-	 * start the interaction programatically.
-	 */
+	/// performAction is invoked when we want to start an interaction (use case)
+	/// Typically, it's called from TouchUpInside UI event or when the programmer wants to
+	/// start the interaction programatically.
+	///
+	/// - Parameters:
+	///   - name: action name.
+	///   - sender: source of the event.
+	/// - Returns: false interactor ready to be started.
 	public func performAction(name name: String, sender: AnyObject? = nil) -> Bool {
 		guard !isRunningOnInterfaceBuilder else {
 			return false
@@ -270,13 +270,21 @@ import QuartzCore
 		return false
 	}
 
+	/// performDefaultAction is invoked when we want to start the default use case.
+	///
+	/// - Returns: call to performAction with the default action.
 	public func performDefaultAction() -> Bool {
 		return performAction(name: BaseScreenlet.DefaultAction, sender: nil)
 	}
 
-	/*
-	 * onAction is invoked when an interaction should be started
-	 */
+
+	/// onAction is invoked when an interaction should be started.
+	///
+	/// - Parameters:
+	///   - name: action name.
+	///   - interactor: custom or standard interactor.
+	///   - sender: source of the event.
+	/// - Returns: call for starting the interactor.
 	public func onAction(name name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
 		onStartInteraction()
 		screenletView?.onStartInteraction()
@@ -284,6 +292,10 @@ import QuartzCore
 		return interactor.start()
 	}
 
+	/// isActionRunnung checks if there is another action running at the same time.
+	///
+	/// - Parameter name: action name.
+	/// - Returns: true if there is another one running.
 	public func isActionRunning(name: String) -> Bool {
 		var firstInteractor: Interactor? = nil
 
@@ -294,6 +306,9 @@ import QuartzCore
 		return firstInteractor != nil
 	}
 
+	/// cancelInteractorsForAction cancels all the interactors with the given action name.
+	///
+	/// - Parameter name: action name.
 	public func cancelInteractorsForAction(name: String) {
 		let interactors = _runningInteractors[name] ?? []
 
@@ -302,10 +317,21 @@ import QuartzCore
 		}
 	}
 
+	/// createInteractor creates the proper interactor with the given action name.
+	///
+	/// - Parameters:
+	///   - name: action name.
+	///   - sender: source of the event.
+	/// - Returns: interactor.
 	public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		return nil
 	}
 
+	/// endInteractor is invoked when an interaction should be ended.
+	///
+	/// - Parameters:
+	///   - interactor: a started interactor.
+	///   - error: nil if there is no error.
 	public func endInteractor(interactor: Interactor, error: NSError?) {
 
 		func getMessage() -> String? {
@@ -326,21 +352,22 @@ import QuartzCore
 		hideHUDWithMessage(getMessage(), forInteractor: interactor, withError: error)
 	}
 
-	/**
-	 * onStartInteraction is called just before a screenlet request is sent to server
-	 */
+	/// onStartInteraction is called just before a screenlet request is sent to server.
 	public func onStartInteraction() {
 	}
 
-	/**
-	 * onFinishInteraction is called when the server response arrives
-	 */
+	/// onFinishInteraction is called when the server response arrives
 	public func onFinishInteraction(result: AnyObject?, error: NSError?) {
 	}
 
 
 	//MARK: HUD methods
 
+	/// showHUDWithMessage shows a HUD with the given message for the given use case.
+	///
+	/// - Parameters:
+	///   - message: HUD message.
+	///   - interactor: interaction (use case).
 	public func showHUDWithMessage(message: String?,
 			forInteractor interactor: Interactor) {
 		
@@ -349,6 +376,12 @@ import QuartzCore
 			forInteractor: interactor)
 	}
 
+	/// hideHUDWithMessage hides a HUD with the given message for the given use case with an error.
+	///
+	/// - Parameters:
+	///   - message: HUD message.
+	///   - interactor: interaction (use case).
+	///   - error: interaction error.
 	public func hideHUDWithMessage(message: String?,
 			forInteractor interactor: Interactor,
 			withError error: NSError?) {
@@ -360,7 +393,15 @@ import QuartzCore
 	}
 
 
-	//MARK: Private
+	//MARK: Public methods
+
+	/// refreshTranslations refreshes all translations of the screenlet view.
+	public func refreshTranslations() {
+		screenletView?.onSetTranslations()
+	}
+
+
+	//MARK: Private methods
 
 	private func createScreenletViewFromNib() -> BaseScreenletView? {
 
