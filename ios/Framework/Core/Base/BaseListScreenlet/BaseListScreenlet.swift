@@ -18,7 +18,9 @@ public class BaseListScreenlet: BaseScreenlet {
 	
 	public class var LoadInitialPageAction: String { return "load-initial-page" }
 	public class var LoadPageAction: String { return "load-page" }
-	
+
+
+	//MARK: Inspectables
 	
 	@IBInspectable public var autoLoad: Bool = true
 	
@@ -29,7 +31,9 @@ public class BaseListScreenlet: BaseScreenlet {
 	}
 	
 	@IBInspectable public var firstPageSize: Int = 50
+
 	@IBInspectable public var pageSize: Int = 25
+
 	@IBInspectable public var obcClassName: String = ""
 	
 	public var baseListView: BaseListView {
@@ -105,12 +109,19 @@ public class BaseListScreenlet: BaseScreenlet {
 	
 	//MARK: Public methods
 	
+	/// Starts the request to load the list of records.
+	/// The list is shown when the response is received.
+	///
+	/// - Returns: true if the request is sent.
 	public func loadList() -> Bool {
 		//by default we start in fluent mode
 		streamMode = false
 		return performAction(name: BaseListScreenlet.LoadInitialPageAction, sender: nil)
 	}
 	
+	/// Start the request to load the proper page for the given row.
+	///
+	/// - Parameter row: item row.
 	public func loadPageForRow(row: Int) {
 		let page = pageFromRow(row)
 		
@@ -123,6 +134,10 @@ public class BaseListScreenlet: BaseScreenlet {
 		}
 	}
 	
+	/// Gets the page from the given row.
+	///
+	/// - Parameter row: item row.
+	/// - Returns: item page.
 	public func pageFromRow(row: Int) -> Int {
 		if row < firstPageSize {
 			return 0
@@ -131,6 +146,10 @@ public class BaseListScreenlet: BaseScreenlet {
 		return ((row - firstPageSize) / pageSize) + 1
 	}
 	
+	/// Gets the first row for the given page.
+	///
+	/// - Parameter page: page number.
+	/// - Returns: item row.
 	public func firstRowForPage(page: Int) -> Int {
 		if page == 0 {
 			return 0
@@ -140,6 +159,13 @@ public class BaseListScreenlet: BaseScreenlet {
 	}
 	
 	
+	/// Prepares the page to be loaded in the list.
+	/// This method is intended to be overwritten by children classes.
+	///
+	/// - Parameters:
+	///   - page: page number.
+	///   - computeRowCount: true if we want to compute row count.
+	/// - Returns: proper interactor.
 	public func createPageLoadInteractor(
 			page page: Int,
 			computeRowCount: Bool) -> BaseListPageLoadInteractor {
@@ -147,15 +173,35 @@ public class BaseListScreenlet: BaseScreenlet {
 		fatalError("createPageLoadInteractor must be overriden")
 	}
 	
+	/// Shows the error during page loading.
+	/// This method is intended to be overwritten by children classes.
+	///
+	/// - Parameters:
+	///   - page: page number.
+	///   - error: error on loading.
 	public func onLoadPageError(page page: Int, error: NSError) {
 		print("ERROR: Load page error \(page) -> \(error)\n")
 	}
 	
+	/// Gets the information about one page results.
+	/// Call this method if you want to render the results.
+	///
+	/// - Parameters:
+	///   - page: page number.
+	///   - rows: page items.
+	///   - rowCount: row count.
 	public func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
 	}
 	
+	/// Gets the information about one row.
+	/// Call this method if you want to know what item list was selected.
+	///
+	/// - Parameter row: selected row.
 	public func onSelectedRow(row:AnyObject) {
 	}
+
+
+	//MARK: Internal methods
 
 	internal func updateRefreshClosure() {
 
