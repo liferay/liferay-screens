@@ -30,7 +30,11 @@ import UIKit
 
 public class DDLListScreenlet: BaseListScreenlet {
 
+
+	//MARK: Inspectables
+	
 	@IBInspectable public var userId: Int64 = 0
+
 	@IBInspectable public var recordSetId: Int64 = 0
 
 	@IBInspectable public var labelFields: String? {
