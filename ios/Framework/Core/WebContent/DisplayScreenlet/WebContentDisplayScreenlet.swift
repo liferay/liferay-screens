@@ -16,12 +16,29 @@ import UIKit
 
 @objc public protocol WebContentDisplayScreenletDelegate : BaseScreenletDelegate {
 
+	///  Called when the web content’s HTML is received.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - html: web content html.
+	/// - Returns: original or modify html.
 	optional func screenlet(screenlet: WebContentDisplayScreenlet,
 			onWebContentResponse html: String) -> String?
 
+	/// Called when a web content record is received.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - record: web content record.
 	optional func screenlet(screenlet: WebContentDisplayScreenlet,
 		onRecordContentResponse record: DDLRecord)
 
+	/// Called when an error occurs in the process.
+	/// The NSError object describes the error.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - error: error while retrieving web content or record.
 	optional func screenlet(screenlet: WebContentDisplayScreenlet,
 			onWebContentError error: NSError)
 
@@ -29,6 +46,9 @@ import UIKit
 
 
 public class WebContentDisplayScreenlet: BaseScreenlet {
+
+
+	//MARK: Inspectables
 
 	@IBInspectable public var groupId: Int64 = 0
 
@@ -40,17 +60,16 @@ public class WebContentDisplayScreenlet: BaseScreenlet {
 	// only for structured web contents
 	@IBInspectable public var structureId: Int64 = 0
 
-
 	@IBInspectable public var autoLoad: Bool = true
-	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
+	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
 	public var webContentDisplayDelegate: WebContentDisplayScreenletDelegate? {
 		return delegate as? WebContentDisplayScreenletDelegate
 	}
 
 
-	//MARK: Public methods
+	//MARK: BaseScreenlet
 
 	override public func onShow() {
 		if autoLoad && articleId != "" {
@@ -91,6 +110,12 @@ public class WebContentDisplayScreenlet: BaseScreenlet {
 		return interactor
 	}
 
+
+	//MARK: Public methods
+
+	/// Loads a web content in the screenlet.
+	///
+	/// - Returns: true if default use case has been perform, false otherwise.
 	public func loadWebContent() -> Bool {
 		return self.performDefaultAction()
 	}
