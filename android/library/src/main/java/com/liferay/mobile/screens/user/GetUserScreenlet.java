@@ -5,8 +5,11 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.liferay.mobile.screens.viewsets.defaultviews.user.GetUserAdapter;
 import com.liferay.mobile.screens.user.interactor.GetUserInteractor;
 import com.liferay.mobile.screens.user.view.GetUserViewModel;
 import com.liferay.mobile.screens.user.GetUserListener;
@@ -47,6 +50,8 @@ public class GetUserScreenlet extends
             listener.onGetUserFailure(exception);
         }
         Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
+
+        setListViewAdapter(null);
     }
 
     @Override
@@ -57,7 +62,8 @@ public class GetUserScreenlet extends
         if (listener != null) {
             listener.onGetUserSuccess(user);
         }
-        Toast.makeText(getContext(), "Exists = " + user.getEmail(), Toast.LENGTH_LONG).show(); // TODO WIP : Display Liferay user informations
+
+        setListViewAdapter(new GetUserAdapter(user.getValues()));
     }
 
     @Override
@@ -85,6 +91,12 @@ public class GetUserScreenlet extends
         String textValue = getViewModel().getTextValue();
 
         interactor.start(textValue, getUserByAttribute);
+    }
+
+    private void setListViewAdapter(BaseAdapter adapter)
+    {
+        ListView listView = (ListView) findViewById(R.id.listView);
+        listView.setAdapter(adapter);
     }
 
     public GetUserListener getListener()
