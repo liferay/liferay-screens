@@ -16,9 +16,21 @@ import UIKit
 
 @objc public protocol ForgotPasswordScreenletDelegate : BaseScreenletDelegate {
 
+	/// Called when a password reset email is successfully sent.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - passwordSent: indicates whether the email contains the new password
+	/// or a password reset link.
 	optional func screenlet(screenlet: ForgotPasswordScreenlet,
 			onForgotPasswordSent passwordSent: Bool)
 
+	/// Called when an error occurs in the process.
+	/// The NSError object describes the error.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - error: error while requesting password.
 	optional func screenlet(screenlet: ForgotPasswordScreenlet,
 			onForgotPasswordError error: NSError)
 
@@ -28,9 +40,11 @@ import UIKit
 public class ForgotPasswordScreenlet: BaseScreenlet, BasicAuthBasedType,
 		AnonymousBasicAuthType {
 
+
 	//MARK: Inspectables
 
 	@IBInspectable public var anonymousApiUserName: String? = "test@liferay.com"
+
 	@IBInspectable public var anonymousApiPassword: String? = "test"
 
 	@IBInspectable public var basicAuthMethod: String? = BasicAuthMethod.Email.rawValue {
