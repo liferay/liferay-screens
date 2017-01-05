@@ -13,6 +13,7 @@
 */
 import Foundation
 
+
 public class AudioDisplayScreenlet: FileDisplayScreenlet {
 
 	override public class var supportedMimeTypes: [String] {
