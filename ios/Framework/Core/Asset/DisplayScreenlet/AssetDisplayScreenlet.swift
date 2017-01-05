@@ -16,24 +16,54 @@ import UIKit
 
 @objc public protocol AssetDisplayScreenletDelegate : BaseScreenletDelegate {
 	
+	///  Called when the screenlet receives the asset.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - asset: asset object.
 	optional func screenlet(screenlet: AssetDisplayScreenlet,
 	                        onAssetResponse asset: Asset)
 	
+	/// Called when an error occurs in the process.
+	/// The NSError object describes the error.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - error: error while retrieving the asset.
 	optional func screenlet(screenlet: AssetDisplayScreenlet,
 	                        onAssetError error: NSError)
 
+	/// Called when the child Screenlet (the Screenlet rendered inside Asset Display Screenlet) 
+	/// has been successfully initialized.
+	/// Use this method to configure or customize it.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - childScreenlet: AssetDisplayScreenlet inner screenlet.
+	///   - asset: asset object.
 	optional func screenlet(screenlet: AssetDisplayScreenlet,
 	                        onConfigureScreenlet childScreenlet: BaseScreenlet?,
 							onAsset asset: Asset)
 
+	/// Called to render a custom asset.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - asset: custom asset.
+	/// - Returns: custom view.
 	optional func screenlet(screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView?
 }
 
+
 public class AssetDisplayScreenlet: BaseScreenlet {
+
+
+	//MARK: Inspectables
 	
 	@IBInspectable public var assetEntryId: Int64 = 0
 
 	@IBInspectable public var className: String = ""
+
 	@IBInspectable public var classPK: Int64 = 0
 
 	@IBInspectable public var autoLoad: Bool = true
@@ -68,7 +98,7 @@ public class AssetDisplayScreenlet: BaseScreenlet {
 		return screenletView as? AssetDisplayViewModel
 	}
 	
-	//MARK: Public methods
+	//MARK: BaseScreenlet
 	
 	override public func onShow() {
 		if autoLoad {
@@ -99,11 +129,21 @@ public class AssetDisplayScreenlet: BaseScreenlet {
 		
 		return interactor
 	}
-	
+
+
+	//MARK: Public methods
+
+	/// Call this method to load the asset.
+	///
+	/// - Returns: true if default use case has been perform, false otherwise.
 	public func load() -> Bool {
 		return self.performDefaultAction()
 	}
 
+	/// Creates AssetDisplayScreenlet inner screenlet.
+	///
+	/// - Parameter asset: asset object.
+	/// - Returns: inner screenlet (UIView)
 	public func createInnerScreenlet(asset: Asset) -> UIView? {
 		guard let view = screenletView else {
 			return nil
@@ -112,8 +152,7 @@ public class AssetDisplayScreenlet: BaseScreenlet {
 		let frame = CGRect(origin: CGPointZero, size: view.frame.size)
 
 		guard let innerScreenlet = AssetDisplayBuilder.createScreenlet(frame,
-		                                                               asset: asset,
-		                                                               themeName: themeName) else {
+				asset: asset, themeName: themeName) else {
 
 			return assetDisplayDelegate?.screenlet?(self, onAsset: asset)
 		}
@@ -123,6 +162,11 @@ public class AssetDisplayScreenlet: BaseScreenlet {
 		return innerScreenlet
 	}
 
+	/// Configures AssetDisplayScreenlet inner screenlet.
+	///
+	/// - Parameters:
+	///   - innerScreenlet: AssetDisplayScreenlet inner screenlet (UIView).
+	///   - asset: asset object.
 	public func configureInnerScreenlet(innerScreenlet: BaseScreenlet, asset: Asset) {
 		if let screenlet = innerScreenlet as? FileDisplayScreenlet {
 			screenlet.autoLoad = false
@@ -153,6 +197,7 @@ public class AssetDisplayScreenlet: BaseScreenlet {
 		assetDisplayDelegate?.screenlet?(self, onConfigureScreenlet: innerScreenlet, onAsset: asset)
 	}
 
+	/// Removes AssetDisplayScreenlet inner screenlet.
 	public func removeInnerScreenlet() {
 		assetDisplayViewModel?.innerScreenlet = nil
 	}
