@@ -14,37 +14,98 @@
 import Foundation
 import Kingfisher
 
+
 @objc public protocol ImageGalleryScreenletDelegate : BaseScreenletDelegate {
 
+	/// Called when a page of contents is received.
+	/// Note that this method may be called more than once: one call for each page received.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - imageEntries: image gallery entries.
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
 			onImageEntriesResponse imageEntries: [ImageEntry])
 
+	/// Called when an error occurs in the process.
+	/// The NSError object describes the error.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - error: error while retrieving image gallery entries.
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
 			onImageEntriesError error: NSError)
 
+	/// Called when an item in the list is selected.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - imageEntry: selected image entry.
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
 			onImageEntrySelected imageEntry: ImageEntry)
 
+	/// Called when an image in the list is deleted.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - imageEntry: deleted image entry.
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
 			onImageEntryDeleted imageEntry: ImageEntry)
 
+	/// Called when an error occurs during image file deletion.
+	/// The NSError object describes the error.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - error: error while deleting image entry.
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
 			onImageEntryDeleteError error: NSError)
 
+	/// Called when an image is prepared for upload.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - imageEntryUpload: image entry to be uploaded.
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
 			onImageUploadStart imageEntryUpload: ImageEntryUpload)
 							
+	/// Called when the image upload progress changes.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - imageEntryUpload: the image entry being uploaded.
+	///   - totalBytesSent: image entry bytes sent.
+	///   - totalBytesToSend: image entry bytes to send.
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
 			onImageUploadProgress imageEntryUpload: ImageEntryUpload,
 			totalBytesSent: UInt64,
 			totalBytesToSend: UInt64)
 
+	/// Called when an error occurs in the image upload process.
+	/// The NSError object describes the error.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - error: error while uploading the image entry.
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
 			onImageUploadError error: NSError)
 
+	/// Called when the image upload finishes.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - image: uploaded image entry.
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
 			onImageUploaded image: ImageEntry)
 
+	/// Called when the image upload View is instantiated.
+	/// By default, the screenlet uses a modal view controller to present this View.
+	/// You only need to implement this method if you want to override this behavior.
+	/// This method should present the View, passed as parameter, and then return true.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - view: custom detail view to upload an image entry.
+	/// - Returns: true
 	optional func screenlet(screenlet: ImageGalleryScreenlet,
 			onImageUploadDetailViewCreated view: ImageUploadDetailViewBase) -> Bool
 }
@@ -56,8 +117,13 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 	public static let UploadImageAction = "upload-image-action"
 	public static let EnqueueUploadAction = "enqueue-upload-action"
 
+
+	//MARK: Inspectables
+
     @IBInspectable public var repositoryId: Int64 = -1
+
     @IBInspectable public var folderId: Int64 = -1
+
 	@IBInspectable public var mimeTypes: String = ""
 
 	@IBInspectable public var filePrefix: String = "gallery-"
@@ -74,6 +140,7 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 	public let DefaultMimeTypes = ["image/png", "image/jpeg", "image/gif"]
 
 	internal var uploadsQueue = [ImageEntryUpload]()
+
 	internal var loadedOnce = false
 
 	public var imageGalleryDelegate: ImageGalleryScreenletDelegate? {
@@ -87,11 +154,13 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 
 	// MARK: Public methods
 
+	/// Cancels all the uploads to the image gallery.
 	public func cancelUploads() {
 		uploadsQueue.removeAll()
 		cancelInteractorsForAction(ImageGalleryScreenlet.UploadImageAction)
 	}
 
+	/// Clears image gallery cache.
 	public func deleteImageCache() {
 		KingfisherManager.sharedManager.cache.clearMemoryCache()
 		KingfisherManager.sharedManager.cache.clearDiskCache()
@@ -100,6 +169,7 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 			collection: ScreenletName(self.dynamicType))
 	}
 
+	/// Shows an alert to choose the source of the image and then shows the custom detail view.
 	public func startMediaSelectorAndUpload() {
 		if let viewController = presentingViewController {
 
@@ -131,6 +201,9 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 		}
 	}
 
+	/// Shows the detail upload view to fill the image entry information.
+	///
+	/// - Parameter imageUpload: image entry to upload.
 	public func showDetailUploadView(imageUpload: ImageEntryUpload) {
 		let detailUploadView = createImageUploadDetailViewFromNib()
 
@@ -151,6 +224,9 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 		}
 	}
 
+	/// Call this method to delete an image entry.
+	///
+	/// - Parameter imageEntry: image entry to be deleted.
 	public func deleteImageEntry(imageEntry: ImageEntry) {
 		if offlinePolicy == CacheStrategyType.RemoteOnly.rawValue ||
 				offlinePolicy == CacheStrategyType.RemoteFirst.rawValue {
@@ -161,34 +237,16 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 			print("Error, delete only works on RemoteOnly or RemoteFirst mode")
 		}
 	}
-	
-
-	// MARK: BaseListScreenlet
-
-	public override func onLoadPageError(page page: Int, error: NSError) {
-		super.onLoadPageError(page: page, error: error)
-		imageGalleryDelegate?.screenlet?(self, onImageEntriesError: error)
-	}
-
-	public override func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
-		super.onLoadPageResult(page: page, rows: rows, rowCount: rowCount)
-		imageGalleryDelegate?.screenlet?(self, onImageEntriesResponse: rows as! [ImageEntry])
-	}
-
-	public override func onSelectedRow(row: AnyObject) {
-		super.onSelectedRow(row)
-		imageGalleryDelegate?.screenlet?(self, onImageEntrySelected: row as! ImageEntry)
-	}
 
 
 	// MARK: BaseScreenlet
 
-	public override func onCreated() {
+	override public func onCreated() {
 		super.onCreated()
 		ImageCache.screensOfflinePolicy = offlinePolicy ?? CacheStrategyType.RemoteFirst.rawValue
 	}
 
-	public override func onShow() {
+	override public func onShow() {
 		// Don't reload the view if the picker is presented
 		if !loadedOnce {
 			loadedOnce = true
@@ -196,7 +254,7 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 		}
 	}
 
-	public override func performAction(name name: String, sender: AnyObject?) -> Bool {
+	override public func performAction(name name: String, sender: AnyObject?) -> Bool {
 		if name == ImageGalleryScreenlet.EnqueueUploadAction {
 			guard let uploadEntry = sender as? ImageEntryUpload else {
 				return false
@@ -219,7 +277,7 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 		return super.performAction(name: name, sender: sender)
 	}
 
-	public override func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
 		switch name {
 		case BaseListScreenlet.LoadInitialPageAction, BaseListScreenlet.LoadPageAction:
 			return super.createInteractor(name: name, sender: sender)
@@ -238,7 +296,45 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 	}
 
 
-	// MARK: Private methods
+	// MARK: BaseListScreenlet
+
+	override public  func onLoadPageError(page page: Int, error: NSError) {
+		super.onLoadPageError(page: page, error: error)
+		imageGalleryDelegate?.screenlet?(self, onImageEntriesError: error)
+	}
+
+	override public func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
+		super.onLoadPageResult(page: page, rows: rows, rowCount: rowCount)
+		imageGalleryDelegate?.screenlet?(self, onImageEntriesResponse: rows as! [ImageEntry])
+	}
+
+	override public func onSelectedRow(row: AnyObject) {
+		super.onSelectedRow(row)
+		imageGalleryDelegate?.screenlet?(self, onImageEntrySelected: row as! ImageEntry)
+	}
+
+	override public func createPageLoadInteractor(
+		page page: Int,
+		     computeRowCount: Bool) -> BaseListPageLoadInteractor {
+
+		let finalMimeTypes = mimeTypes.isEmpty ? DefaultMimeTypes : parseMimeTypes(mimeTypes)
+
+		let interactor = ImageGalleryLoadInteractor(
+			screenlet: self,
+			page: page,
+			computeRowCount: computeRowCount,
+			repositoryId: repositoryId,
+			folderId: folderId,
+			mimeTypes: finalMimeTypes)
+
+		interactor.cacheStrategy =
+			CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+
+		return interactor
+	}
+
+
+	// MARK: Internal methods
 
 	internal func createImageGalleryDeleteInteractor(
 			imageEntry: ImageEntry) -> ImageGalleryDeleteInteractor? {
@@ -273,26 +369,6 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 
 			return nil
 		}
-	}
-
-	public override func createPageLoadInteractor(
-			page page: Int,
-			computeRowCount: Bool) -> BaseListPageLoadInteractor {
-
-		let finalMimeTypes = mimeTypes.isEmpty ? DefaultMimeTypes : parseMimeTypes(mimeTypes)
-
-		let interactor = ImageGalleryLoadInteractor(
-				screenlet: self,
-				page: page,
-				computeRowCount: computeRowCount,
-				repositoryId: repositoryId,
-				folderId: folderId,
-				mimeTypes: finalMimeTypes)
-
-		interactor.cacheStrategy =
-			CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
-		
-		return interactor
 	}
 
 	internal func createImageUploadInteractor(
