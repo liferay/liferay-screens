@@ -16,21 +16,44 @@ import UIKit
 
 @objc public protocol WebContentListScreenletDelegate : BaseScreenletDelegate {
 
+	/// Called when a page of contents is received.
+	/// Note that this method may be called more than once: one call for each page received.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - contents: list of web contents.
 	optional func screenlet(screenlet: WebContentListScreenlet,
 			onWebContentListResponse contents: [WebContent])
 
+	/// Called when an error occurs in the process.
+	/// The NSError object describes the error.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - error: error while retrieving web content list.
 	optional func screenlet(screenlet: WebContentListScreenlet,
 			onWebContentListError error: NSError)
 
+	/// Called when an item in the list is selected.
+	///
+	/// - Parameters:
+	///   - screenlet:
+	///   - content: selected web content.
 	optional func screenlet(screenlet: WebContentListScreenlet,
 			onWebContentSelected content: WebContent)
 
 }
 
+
 public class WebContentListScreenlet: BaseListScreenlet {
 
+
+	//MARK: Inspectables
+
 	@IBInspectable public var groupId: Int64 = 0
+
 	@IBInspectable public var folderId: Int64 = 0
+
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
 
