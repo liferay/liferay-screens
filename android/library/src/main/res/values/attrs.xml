@@ -281,4 +281,8 @@
 		<attr name="className"/>
 		<attr name="classPK"/>
 	</declare-styleable>
+
+	<declare-styleable name="GetUserScreenlet">
+		<attr name="getUserBy" format="string"/>
+	</declare-styleable>
 </resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.viewsets.defaultviews.user.GetUserView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/default_screenlet">
+
+    <TextView
+        android:text="@string/textViewValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewValue"
+        android:textSize="20sp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/textValue" />
+
+    <Button
+        android:text="@string/getUserButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/getUserButton" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:dividerHeight="0dp"/>
+
+</com.liferay.mobile.screens.viewsets.defaultviews.user.GetUserView>
