@@ -16,25 +16,63 @@ import UIKit
 
 @objc public protocol CommentListScreenletDelegate : BaseScreenletDelegate {
 
+	/// Called when the screenlet receives the comments.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - comments: asset's comments.
 	optional func screenlet(screenlet: CommentListScreenlet,
 			onListResponseComments comments: [Comment])
 
+	/// Called when an error occurs in the process.
+	/// The NSError object describes the error.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - error: error while retrieving comments.
 	optional func screenlet(screenlet: CommentListScreenlet,
 			onCommentListError error: NSError)
 
+	/// Called when a comment is selected.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - comment: selected comment.
 	optional func screenlet(screenlet: CommentListScreenlet,
 			onSelectedComment comment: Comment)
 
+	/// Called when a comment is deleted.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - comment: deleted comment.
 	optional func screenlet(screenlet: CommentListScreenlet,
 			onDeletedComment comment: Comment)
 
+	/// Called when the screenlet prepares a comment for deletion.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - comment: deleted comment.
+	///   - error: error while deleting comment.
 	optional func screenlet(screenlet: CommentListScreenlet,
 			onCommentDelete comment: Comment,
 			onError error: NSError)
 
+	/// Called when a comment is updated.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - comment: updated comment.
 	optional func screenlet(screenlet: CommentListScreenlet,
 			onUpdatedComment comment: Comment)
 
+	/// Called when the screenlet prepares a comment for update.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - comment: updated comment.
+	///   - error: error while updating comment.
 	optional func screenlet(screenlet: CommentListScreenlet,
 			onCommentUpdate comment: Comment,
 			onError error: NSError)
@@ -45,9 +83,15 @@ import UIKit
 public class CommentListScreenlet: BaseListScreenlet,
 		CommentDisplayScreenletDelegate {
 
+
+	//MARK: Inspectables
+
 	@IBInspectable public var className: String = ""
+
 	@IBInspectable public var classPK: Int64 = 0
+
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+
 	@IBInspectable public var editable: Bool = true {
 		didSet {
 			screenletView?.editable = self.editable
@@ -65,14 +109,23 @@ public class CommentListScreenlet: BaseListScreenlet,
 
 	//MARK: Public methods
 
+	/// Call this method to add a new asset comment.
+	///
+	/// - Parameter comment: asset comment.
 	public func addComment(comment: Comment) {
 		viewModel?.addComment(comment)
 	}
 
+	/// Call this method to delete an asset comment.
+	///
+	/// - Parameter comment: asset comment.
 	public func deleteComment(comment: Comment) {
 		viewModel?.deleteComment(comment)
 	}
 
+	/// Call this method to update an asset comment.
+	///
+	/// - Parameter comment: asset comment.
 	public func updateComment(comment: Comment) {
 		viewModel?.updateComment(comment)
 	}
@@ -80,7 +133,7 @@ public class CommentListScreenlet: BaseListScreenlet,
 
 	//MARK: BaseListScreenlet
 
-	public override func onCreated() {
+	override public func onCreated() {
 		super.onCreated()
 		screenletView?.editable = self.editable
 	}
