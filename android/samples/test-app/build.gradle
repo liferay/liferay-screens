@@ -40,6 +40,7 @@ dependencies {
 	compile project(':liferay-material-viewset')
 	compile project(':liferay-westeros-viewset')
 	compile project(':listbookmarkscreenlet')
+	compile project(':getuserscreenlet')
 
 	compile libraries.design
 
