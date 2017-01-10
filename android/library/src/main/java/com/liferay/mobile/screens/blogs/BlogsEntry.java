@@ -13,6 +13,10 @@ import java.util.Map;
 
 public class BlogsEntry extends AssetEntry {
 
+	public BlogsEntry() {
+		super();
+	}
+
 	public BlogsEntry(Map<String, Object> map) {
 		super(map);
 	}

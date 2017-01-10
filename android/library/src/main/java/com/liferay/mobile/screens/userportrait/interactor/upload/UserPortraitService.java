@@ -19,7 +19,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.media.ExifInterface;
+import android.net.Uri;
+import android.support.media.ExifInterface;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
@@ -28,6 +29,7 @@ import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Locale;
 import org.json.JSONObject;
 
@@ -69,26 +71,28 @@ public class UserPortraitService extends IntentService {
 		return inSampleSize;
 	}
 
-	private static byte[] decodeSampledBitmapFromResource(String path, int reqWidth, int reqHeight) throws IOException {
-
+	private byte[] decodeSampledBitmapFromResource(Uri pictureUri, int reqWidth, int reqHeight) throws IOException {
 		// First decode with inJustDecodeBounds=true to check dimensions
 		final BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inJustDecodeBounds = true;
-		BitmapFactory.decodeFile(path, options);
+		InputStream inputStream = getContentResolver().openInputStream(pictureUri);
+		BitmapFactory.decodeStream(inputStream, null, options);
 
 		options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
 		options.inJustDecodeBounds = false;
 
-		Bitmap bitmap = checkOrientationAndRotate(path, BitmapFactory.decodeFile(path, options));
+		inputStream = getContentResolver().openInputStream(pictureUri);
+		Bitmap bitmap = checkOrientationAndRotate(inputStream, BitmapFactory.decodeStream(inputStream, null, options));
 
 		ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
 		bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayBitmapStream);
 		return byteArrayBitmapStream.toByteArray();
 	}
 
-	private static Bitmap checkOrientationAndRotate(String filePath, Bitmap bitmap) throws IOException {
-		ExifInterface ei = new ExifInterface(filePath);
-		int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+	private static Bitmap checkOrientationAndRotate(InputStream inputStream, Bitmap bitmap) throws IOException {
+		int orientation =
+			new android.support.media.ExifInterface(inputStream).getAttributeInt(ExifInterface.TAG_ORIENTATION,
+				ExifInterface.ORIENTATION_NORMAL);
 
 		switch (orientation) {
 			case ExifInterface.ORIENTATION_ROTATE_90:
@@ -106,7 +110,7 @@ public class UserPortraitService extends IntentService {
 	}
 
 	public void uploadFromIntent(Intent intent) {
-		String picturePath = intent.getStringExtra("picturePath");
+		Uri pictureUri = intent.getParcelableExtra("pictureUri");
 		long groupId = intent.getLongExtra("groupId", 0L);
 		long userId = intent.getLongExtra("userId", 0L);
 		Locale locale = (Locale) intent.getSerializableExtra("locale");
@@ -114,25 +118,27 @@ public class UserPortraitService extends IntentService {
 		String actionName = intent.getStringExtra("actionName");
 
 		try {
-			JSONObject jsonObject = uploadUserPortrait(userId, picturePath);
-			UserPortraitUploadEvent event = new UserPortraitUploadEvent(picturePath, jsonObject);
-			event.setPicturePath(picturePath);
+			JSONObject jsonObject = uploadUserPortrait(userId, pictureUri);
+			UserPortraitUploadEvent event = new UserPortraitUploadEvent(pictureUri, jsonObject);
+			event.setUriPath(pictureUri);
 			decorateEvent(event, groupId, userId, locale, targetScreenletId, actionName);
 			EventBusUtil.post(event);
 		} catch (Exception e) {
 			UserPortraitUploadEvent event = new UserPortraitUploadEvent(e);
-			event.setPicturePath(picturePath);
+			event.setUriPath(pictureUri);
 			decorateEvent(event, groupId, userId, locale, targetScreenletId, actionName);
 			EventBusUtil.post(event);
 		}
 	}
 
-	public JSONObject uploadUserPortrait(long userId, String picturePath) throws Exception {
+	public JSONObject uploadUserPortrait(long userId, Uri pictureUri) throws Exception {
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setConnectionTimeout(CONNECTION_TIMEOUT);
 		UserConnector userService = ServiceProvider.getInstance().getUserConnector(session);
+
 		byte[] decodeSampledBitmapFromResource =
-			decodeSampledBitmapFromResource(picturePath, PORTRAIT_SIZE, PORTRAIT_SIZE);
+			decodeSampledBitmapFromResource(pictureUri, PORTRAIT_SIZE, PORTRAIT_SIZE);
+
 		return userService.updatePortrait(userId, decodeSampledBitmapFromResource);
 	}
 

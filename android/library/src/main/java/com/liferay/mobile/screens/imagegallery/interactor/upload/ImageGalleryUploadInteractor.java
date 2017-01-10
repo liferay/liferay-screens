@@ -1,6 +1,7 @@
 package com.liferay.mobile.screens.imagegallery.interactor.upload;
 
 import android.content.Intent;
+import android.net.Uri;
 import com.liferay.mobile.screens.base.MediaStoreEvent;
 import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
@@ -16,7 +17,7 @@ public class ImageGalleryUploadInteractor extends BaseCacheWriteInteractor<Image
 	public ImageGalleryEvent execute(ImageGalleryEvent event) throws Exception {
 
 		validate(groupId, event.getFolderId(), event.getTitle(), event.getDescription(), event.getChangeLog(),
-			event.getPicturePath());
+			event.getPictureUri());
 
 		Intent service = new Intent(LiferayScreensContext.getContext(), ImageGalleryUploadService.class);
 		service.putExtra("targetScreenletId", getTargetScreenletId());
@@ -27,7 +28,7 @@ public class ImageGalleryUploadInteractor extends BaseCacheWriteInteractor<Image
 		service.putExtra("title", event.getTitle());
 		service.putExtra("description", event.getDescription());
 		service.putExtra("changeLog", event.getChangeLog());
-		service.putExtra("picturePath", event.getPicturePath());
+		service.putExtra("pictureUri", event.getPictureUri());
 
 		LiferayScreensContext.getContext().startService(service);
 
@@ -37,7 +38,7 @@ public class ImageGalleryUploadInteractor extends BaseCacheWriteInteractor<Image
 	@Override
 	public void onSuccess(ImageGalleryEvent event) {
 		if (event.isStarting()) {
-			getListener().onPictureUploadInformationReceived(event.getPicturePath(), event.getTitle(),
+			getListener().onPictureUploadInformationReceived(event.getPictureUri(), event.getTitle(),
 				event.getDescription(), event.getChangeLog());
 		} else {
 			getListener().onPictureUploaded(event.getImageEntry());
@@ -50,7 +51,7 @@ public class ImageGalleryUploadInteractor extends BaseCacheWriteInteractor<Image
 	}
 
 	public void onEventMainThread(MediaStoreEvent event) {
-		getListener().onPicturePathReceived(event.getFilePath());
+		getListener().onPictureUriReceived(event.getFileUri());
 	}
 
 	public void onEventMainThread(ImageGalleryProgress event) {
@@ -58,7 +59,7 @@ public class ImageGalleryUploadInteractor extends BaseCacheWriteInteractor<Image
 	}
 
 	private void validate(long repositoryId, long folderId, String title, String description, String changeLog,
-		String picturePath) {
+		Uri pictureUri) {
 
 		if (repositoryId <= 0) {
 			throw new IllegalArgumentException("Repository Id has to be greater than 0");
@@ -70,7 +71,7 @@ public class ImageGalleryUploadInteractor extends BaseCacheWriteInteractor<Image
 			throw new IllegalArgumentException("Description can not be null");
 		} else if (changeLog == null) {
 			throw new IllegalArgumentException("Changelog can not be null");
-		} else if (picturePath == null) {
+		} else if (pictureUri == null) {
 			throw new IllegalArgumentException("Picture path can not be null");
 		}
 	}

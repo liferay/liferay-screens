@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.imagegallery.interactor;
 
+import android.net.Uri;
 import com.liferay.mobile.screens.base.list.interactor.ListEvent;
 import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
 
@@ -8,7 +9,7 @@ public class ImageGalleryEvent extends ListEvent<ImageEntry> {
 	private String title;
 	private String description;
 	private String changeLog;
-	private String picturePath;
+	private String pictureUri;
 
 	private ImageEntry imageEntry;
 	private boolean starting;
@@ -28,8 +29,8 @@ public class ImageGalleryEvent extends ListEvent<ImageEntry> {
 		starting = false;
 	}
 
-	public ImageGalleryEvent(String picturePath, String title, String description, String changeLog) {
-		this.picturePath = picturePath;
+	public ImageGalleryEvent(Uri pictureUri, String title, String description, String changeLog) {
+		this.pictureUri = pictureUri.toString();
 		this.title = title;
 		this.description = description;
 		this.changeLog = changeLog;
@@ -54,8 +55,8 @@ public class ImageGalleryEvent extends ListEvent<ImageEntry> {
 		this.imageEntry = imageEntry;
 	}
 
-	public String getPicturePath() {
-		return picturePath;
+	public Uri getPictureUri() {
+		return Uri.parse(pictureUri);
 	}
 
 	public String getTitle() {

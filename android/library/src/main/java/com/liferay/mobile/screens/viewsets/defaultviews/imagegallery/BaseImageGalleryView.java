@@ -3,6 +3,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.imagegallery;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,6 +60,13 @@ public abstract class BaseImageGalleryView<H extends BaseListAdapter.ViewHolder,
 	}
 
 	@Override
+	public void showFailedOperation(String actionName, Exception e) {
+		if (uploadProgressView != null) {
+			uploadProgressView.uploadCompleteOrError();
+		}
+	}
+
+	@Override
 	public void onItemClick(int position, View view) {
 		List<ImageEntry> entries = getAdapter().getEntries();
 
@@ -96,13 +104,13 @@ public abstract class BaseImageGalleryView<H extends BaseListAdapter.ViewHolder,
 	}
 
 	@Override
-	public void imageUploadStart(String picturePath) {
+	public void imageUploadStart(Uri pictureUri) {
 		if (uploadProgressView == null) {
 			createProgressView();
 		}
 
 		uploadProgressView.setVisibility(VISIBLE);
-		uploadProgressView.addUpload(picturePath);
+		uploadProgressView.addUpload(pictureUri);
 	}
 
 	private void createProgressView() {
