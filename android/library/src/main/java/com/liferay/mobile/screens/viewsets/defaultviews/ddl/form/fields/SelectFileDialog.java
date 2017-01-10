@@ -36,7 +36,7 @@ public class SelectFileDialog {
 	public AlertDialog createDialog(final Context context, final SimpleFileDialogListener listener) {
 		currentDir = calculateDefaultPath();
 
-		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
+		AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context, R.style.default_theme_dialog);
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
 		View view = inflater.inflate(R.layout.select_file_default, null);

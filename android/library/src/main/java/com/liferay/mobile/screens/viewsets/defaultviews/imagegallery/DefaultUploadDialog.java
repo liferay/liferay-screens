@@ -13,7 +13,7 @@ public class DefaultUploadDialog {
 
 	public AlertDialog createDialog(final BaseDetailUploadView view, Context context) {
 
-		final AlertDialog.Builder alert = new AlertDialog.Builder(context);
+		final AlertDialog.Builder alert = new AlertDialog.Builder(context, R.style.default_theme_dialog);
 		alert.setView(view);
 		alert.setCancelable(false);
 

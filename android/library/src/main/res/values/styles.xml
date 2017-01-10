@@ -124,11 +124,8 @@
 		<item name="android:windowNoTitle">true</item>
 	</style>
 
-	<style name="TextLabel" parent="Theme.AppCompat">
-		<item name="android:textColorHint">@color/colorPrimary_default</item>
-		<item name="colorAccent">@color/colorPrimary_default</item>
-		<item name="colorControlNormal">@color/colorPrimary_default</item>
-		<item name="colorControlActivated">@color/colorPrimary_default</item>
+	<style name="default_theme_dialog" parent="Theme.AppCompat.Light.Dialog">
+		<item name="android:textColor">?colorPrimaryDark</item>
 	</style>
 
 </resources>
