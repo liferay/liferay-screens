@@ -58,9 +58,8 @@ public class CacheSyncService extends IntentService {
 				@Override
 				public DDLFormEvent getCacheEvent(DDLFormEvent event) throws Exception {
 					Record record = event.getRecord();
-					BaseCacheWriteInteractor interactor =
-						record.getRecordId() == 0 ? new DDLFormAddRecordInteractor()
-							: new DDLFormUpdateRecordInteractor();
+					BaseCacheWriteInteractor interactor = record.getRecordId() == 0 ? new DDLFormAddRecordInteractor()
+						: new DDLFormUpdateRecordInteractor();
 					event = (DDLFormEvent) interactor.execute(event);
 					event.setCacheKey(record.getStructureId() + SEPARATOR + record.getRecordId());
 					return event;
@@ -103,23 +102,34 @@ public class CacheSyncService extends IntentService {
 			});
 
 			sync(UserPortraitUploadEvent.class, new SyncProvider<UserPortraitUploadEvent>() {
+
+				UserPortraitUploadInteractor interactor = new UserPortraitUploadInteractor();
+
 				@Override
 				public UserPortraitUploadEvent getCacheEvent(UserPortraitUploadEvent event) throws Exception {
-					UserPortraitUploadInteractor interactor = new UserPortraitUploadInteractor();
 					EventBusUtil.register(this);
 					interactor.execute(event);
 					return null;
+				}
+
+				public void onEventMainThread(UserPortraitUploadEvent event) {
+					//event.setCacheKey(String.valueOf(event.getUserId()));
+					storeEvent(event);
 				}
 			});
 
 			sync(DDLFormDocumentUploadEvent.class, new SyncProvider<DDLFormDocumentUploadEvent>() {
 				@Override
-				public DDLFormDocumentUploadEvent getCacheEvent(DDLFormDocumentUploadEvent event)
-					throws Exception {
+				public DDLFormDocumentUploadEvent getCacheEvent(DDLFormDocumentUploadEvent event) throws Exception {
 					DDLFormDocumentUploadInteractor interactor = new DDLFormDocumentUploadInteractor();
 					EventBusUtil.register(this);
 					interactor.execute(event);
 					return null;
+				}
+
+				public void onEventMainThread(DDLFormDocumentUploadEvent event) {
+					//event.setCacheKey(event.getDocumentField());
+					storeEvent(event);
 				}
 			});
 		}
@@ -153,16 +163,6 @@ public class CacheSyncService extends IntentService {
 		} catch (Exception e) {
 			LiferayLogger.e("Error syncing " + aClass.getSimpleName() + " resources", e);
 		}
-	}
-
-	public void onEventMainThread(UserPortraitUploadEvent event) {
-		event.setCacheKey(String.valueOf(event.getUserId()));
-		storeEvent(event);
-	}
-
-	public void onEventMainThread(DDLFormDocumentUploadEvent event) {
-		//event.setCacheKey(event.getDocumentField());
-		storeEvent(event);
 	}
 
 	private void storeEvent(CacheEvent event) {

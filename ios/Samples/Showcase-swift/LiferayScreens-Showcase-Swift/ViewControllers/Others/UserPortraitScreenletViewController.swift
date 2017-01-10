@@ -21,7 +21,7 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 	
 	@IBOutlet weak var userIdField: UITextField! {
 		didSet {
-			if let userId = SessionContext.currentContext?.userAttribute("userId")?.description {
+			if let userId = SessionContext.currentContext?.user.userId.description {
 				userIdField.text = userId
 			}
 		}
@@ -37,7 +37,11 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 			editableScreenlet.presentingViewController = self
 		}
 	}
-
+	@IBOutlet weak var loadButton: UIButton! {
+		didSet {
+			loadButton.replaceAttributedTitle(NSLocalizedString("load-button", comment: "LOAD"), forState: .Normal)
+		}
+	}
 
 	//MARK: IBAction
 

@@ -37,7 +37,7 @@ public class DDLFormDocumentUploadInteractor
 	}
 
 	@Override
-	public void onSuccess(DDLFormDocumentUploadEvent event) throws Exception {
+	public void onSuccess(DDLFormDocumentUploadEvent event) {
 		getListener().onDDLFormDocumentUploaded(event.getDocumentField(), event.getJSONObject());
 	}
 

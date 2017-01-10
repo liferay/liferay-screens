@@ -61,39 +61,36 @@ public class CommentsActivity extends ThemeActivity
 
 	@Override
 	public void onLoadCommentSuccess(CommentEntry commentEntry) {
-		info(String.format(LiferayLocale.getDefaultLocale(), "Comment with id: %d successfully loaded",
-			commentEntry.getCommentId()));
+		info(getString(R.string.comment_loaded_success) + " " + commentEntry.getCommentId());
 	}
 
 	@Override
 	public void onDeleteCommentSuccess(CommentEntry commentEntry) {
-		info(String.format(LiferayLocale.getDefaultLocale(), "Comment with id: %d successfully deleted",
-			commentEntry.getCommentId()));
+		info(getString(R.string.comment_deleted_success) + " " + commentEntry.getCommentId());
 		showDisplayScreenlet(false);
 	}
 
 	@Override
 	public void onUpdateCommentSuccess(CommentEntry commentEntry) {
-		info(String.format(LiferayLocale.getDefaultLocale(), "Comment with id: %d successfully updated",
-			commentEntry.getCommentId()));
+		info(getString(R.string.comment_updated_success) + " " + commentEntry.getCommentId());
 		showDisplayScreenlet(false);
 	}
 
 	@Override
 	public void onAddCommentSuccess(CommentEntry commentEntry) {
-		info(String.format(LiferayLocale.getDefaultLocale(), "Comment successfully added, new id: %d",
-			commentEntry.getCommentId()));
+		info(getString(R.string.comment_added_success) + " " + commentEntry.getCommentId());
 		dialog.cancel();
 		listScreenlet.addNewCommentEntry(commentEntry);
 	}
 
 	@Override
 	public void onListPageFailed(int startRow, Exception e) {
-		error(String.format(LiferayLocale.getDefaultLocale(), "Error receiving page: %d", startRow), e);
+		error(getString(R.string.page_error), e);
 	}
 
 	@Override
 	public void onListPageReceived(int startRow, int endRow, List<CommentEntry> entries, int rowCount) {
+		info(rowCount + " " + getString(R.string.rows_received_info) + " " + startRow);
 	}
 
 	@Override
@@ -105,7 +102,7 @@ public class CommentsActivity extends ThemeActivity
 
 	@Override
 	public void error(Exception e, String userAction) {
-		error("Error " + userAction + " comment", e);
+		error(getString(R.string.comment_error) + " " + userAction, e);
 	}
 
 	@Override
@@ -127,7 +124,7 @@ public class CommentsActivity extends ThemeActivity
 
 	private AlertDialog createDialog() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("Type your comment and press 'Send'").setTitle("Add new comment");
+		builder.setMessage(getString(R.string.type_comment_send)).setTitle(getString(R.string.add_new_comment));
 
 		View dialogView = getLayoutInflater().inflate(R.layout.add_comment_dialog, null);
 		builder.setView(dialogView);

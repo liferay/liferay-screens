@@ -16,23 +16,56 @@ package com.liferay.mobile.screens.ddl.form.view;
 
 import android.view.View;
 import com.liferay.mobile.screens.ddl.model.Field;
+import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldRadioView;
 
 /**
  * @author Silvio Santos
  */
 public interface DDLFieldViewModel<T extends Field> {
 
+	/**
+	 * Returns the DDL field.
+	 */
 	T getField();
 
+	/**
+	 * Sets a DDL field.
+	 *
+	 * @param field
+	 */
 	void setField(T field);
 
+	/**
+	 * Call this method for refreshing the DDL field.
+	 */
 	void refresh();
 
+	/**
+	 * Called with the validation result.
+	 * For example, see {@link DDLFieldRadioView#onPostValidation(boolean)}
+	 *
+	 * @param valid
+	 */
 	void onPostValidation(boolean valid);
 
+	/**
+	 * Gets the parent view.
+	 *
+	 * @return
+	 */
 	View getParentView();
 
+	/**
+	 * Sets the parent view.
+	 *
+	 * @param view
+	 */
 	void setParentView(View view);
 
+	/**
+	 * Sets the DDL field position in parent view.
+	 *
+	 * @param position
+	 */
 	void setPositionInParent(int position);
 }

@@ -161,7 +161,8 @@ public class RatingScreenlet: BaseScreenlet {
 			}
 			else {
 				self.ratingDisplayDelegate?.screenlet?(self,
-						onRatingError: NSError.errorWithCause(.InvalidServerResponse))
+						onRatingError: NSError.errorWithCause(.InvalidServerResponse,
+								message: "Could not load ratings."))
 			}
 		}
 
@@ -183,7 +184,8 @@ public class RatingScreenlet: BaseScreenlet {
 			}
 			else {
 				self.ratingDisplayDelegate?.screenlet?(self,
-						onRatingError: NSError.errorWithCause(.InvalidServerResponse))
+						onRatingError: NSError.errorWithCause(.InvalidServerResponse,
+								message: "Could not delete the rating."))
 			}
 		}
 
@@ -206,7 +208,8 @@ public class RatingScreenlet: BaseScreenlet {
 			}
 			else {
 				self.ratingDisplayDelegate?.screenlet?(self,
-						onRatingError: NSError.errorWithCause(.InvalidServerResponse))
+						onRatingError: NSError.errorWithCause(.InvalidServerResponse,
+								message: "Could not update the rating."))
 			}
 		}
 

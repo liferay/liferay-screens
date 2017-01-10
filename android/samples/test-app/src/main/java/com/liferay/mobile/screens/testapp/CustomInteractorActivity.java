@@ -26,12 +26,12 @@ public class CustomInteractorActivity extends ThemeActivity
 
 	@Override
 	public void onLoginSuccess(User user) {
-		info("Login successful!");
+		info(getString(R.string.login_success_info));
 	}
 
 	@Override
 	public void onLoginFailure(Exception e) {
-		error("Error logging in, try with test/test", null);
+		error(getString(R.string.custom_interactor_login_error), null);
 	}
 
 	@Override

@@ -74,10 +74,6 @@ public class SignUpScreenlet extends BaseScreenlet<SignUpViewModel, SignUpIntera
 	public void onSignUpSuccess(User user) {
 		getViewModel().showFinishOperation(user);
 
-		if (getListener() != null) {
-			getListener().onSignUpSuccess(user);
-		}
-
 		if (autoLogin) {
 			SignUpViewModel viewModel = getViewModel();
 
@@ -93,8 +89,19 @@ public class SignUpScreenlet extends BaseScreenlet<SignUpViewModel, SignUpIntera
 
 			SessionContext.storeCredentials(credentialsStorage);
 		}
+
+		if (getListener() != null) {
+			getListener().onSignUpSuccess(user);
+		}
 	}
 
+	/**
+	 * Returns the username depending on its basic auth method.
+	 *
+	 * @param user
+	 * @return screen name, userId or email depending on the chosen
+	 * basic auth method.
+	 */
 	public String getAuthUsernameFromUser(User user) {
 		switch (basicAuthMethod) {
 			case SCREEN_NAME:

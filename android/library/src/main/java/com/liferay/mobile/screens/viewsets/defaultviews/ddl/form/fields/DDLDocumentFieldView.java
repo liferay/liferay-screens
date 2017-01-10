@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v4.content.FileProvider;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -121,14 +122,15 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 	}
 
 	protected AlertDialog createOriginDialog() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
+		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
-		LayoutInflater factory = LayoutInflater.from(getContext());
+		LayoutInflater factory = LayoutInflater.from(activity);
 		final View customDialogView = factory.inflate(R.layout.ddlfield_document_chose_option_default, null);
 
 		View takeVideoButton = customDialogView.findViewById(R.id.liferay_dialog_take_video_form);
 
-		RxPermissions rxPermissions = RxPermissions.getInstance(getContext());
+		RxPermissions rxPermissions = new RxPermissions(activity);
 		RxView.clicks(takeVideoButton)
 			.compose(rxPermissions.ensure(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE))
 			.subscribe(launchCamera(MediaStore.ACTION_VIDEO_CAPTURE));
@@ -192,7 +194,9 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 
 					if (file != null) {
 						getField().createLocalFile(file.getAbsolutePath());
-						cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+						Uri photoURI = FileProvider.getUriForFile(getContext(),
+							getContext().getPackageName() + ".screensfileprovider", file);
+						cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 
 						Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
 						activity.startActivityForResult(cameraIntent, positionInForm);

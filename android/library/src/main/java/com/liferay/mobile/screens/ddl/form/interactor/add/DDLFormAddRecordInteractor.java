@@ -56,9 +56,10 @@ public class DDLFormAddRecordInteractor extends BaseCacheWriteInteractor<DDLForm
 	}
 
 	@Override
-	public void onSuccess(DDLFormEvent event) throws Exception {
+	public void onSuccess(DDLFormEvent event) {
 		if (event.getJSONObject().has("recordId")) {
-			long recordId = event.getJSONObject().getLong("recordId");
+			//This is opt long because we check that this key exists
+			long recordId = event.getJSONObject().optLong("recordId");
 			event.getRecord().setRecordId(recordId);
 		}
 		getListener().onDDLFormRecordAdded(event.getRecord());

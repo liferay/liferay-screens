@@ -19,7 +19,18 @@ package com.liferay.mobile.screens.auth.forgotpassword;
  */
 public interface ForgotPasswordListener {
 
+	/**
+	 * Called when a password reset email is successfully sent.
+	 * The boolean parameter determines whether the email contains the new password or a password reset link.
+	 *
+	 * @param passwordSent
+	 */
 	void onForgotPasswordRequestSuccess(boolean passwordSent);
 
+	/**
+	 * Called when an error occurs in the process.
+	 *
+	 * @param e exception
+	 */
 	void onForgotPasswordRequestFailure(Exception e);
 }

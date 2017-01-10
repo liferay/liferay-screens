@@ -35,21 +35,25 @@ public class WebContentDisplayActivity extends ThemeActivity implements WebConte
 		WebContentDisplayScreenlet screenlet =
 			(WebContentDisplayScreenlet) findViewById(R.id.web_content_display_screenlet);
 		screenlet.setListener(this);
+
+		if (getIntent().hasExtra("articleId")) {
+			screenlet.setArticleId(getIntent().getStringExtra("articleId"));
+		}
 	}
 
 	@Override
 	public WebContent onWebContentReceived(WebContent html) {
-		info("Web Content received!");
+		info(getString(R.string.webcontent_received_info));
 		return null;
 	}
 
 	@Override
 	public void onWebContentClicked(WebView.HitTestResult result, MotionEvent event) {
-		info("Web Content clicked!");
+		info(getString(R.string.webcontent_clicked_info));
 	}
 
 	@Override
 	public void error(Exception e, String userAction) {
-		error("Could not receive web content information", e);
+		error(getString(R.string.webcontent_error), e);
 	}
 }

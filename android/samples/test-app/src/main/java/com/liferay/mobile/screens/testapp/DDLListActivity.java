@@ -57,33 +57,32 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 
 	@Override
 	public void onListPageFailed(int startRow, Exception e) {
-		error("Page request failed", e);
+		error(getString(R.string.page_error), e);
 	}
 
 	@Override
 	public void onListPageReceived(int startRow, int endRow, List<Record> entries, int rowCount) {
-		info("Row " + startRow + " received!");
+		info(rowCount + " " + getString(R.string.rows_received_info) + " " + startRow);
 	}
 
 	@Override
 	public void onListItemSelected(Record element, View view) {
-		//		info("Item selected: " + element);
 		loadDDLForm(element);
 	}
 
 	@Override
 	public void loadingFromCache(boolean success) {
-		info("Loading from cache: " + success);
+		info(getString(R.string.loading_cache_info) + " " + success);
 	}
 
 	@Override
 	public void retrievingOnline(boolean triedInCache, Exception e) {
-		info("Retrieving online... and tried in cache: " + triedInCache);
+		info(getString(R.string.retrieving_online_info) + " " + triedInCache);
 	}
 
 	@Override
 	public void storingToCache(Object object) {
-		info("Storing to cache...");
+		info(getString(R.string.storing_cache_info));
 	}
 
 	@Override
@@ -101,7 +100,7 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 
 			ServiceProvider.getInstance().getDDLRecordSetConnector(session).getRecordSet(recordSetId);
 		} catch (Exception e) {
-			error("error loading structure id", e);
+			error(getString(R.string.structureId_error), e);
 		}
 	}
 
@@ -118,13 +117,13 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 
 					DefaultAnimation.startActivityWithAnimation(DDLListActivity.this, intent);
 				} catch (JSONException e) {
-					error("error parsing JSON", e);
+					error(getString(R.string.parse_json_error), e);
 				}
 			}
 
 			@Override
 			public void onFailure(Exception e) {
-				error("error loading structure id", e);
+				error(getString(R.string.structureId_error), e);
 			}
 		};
 	}

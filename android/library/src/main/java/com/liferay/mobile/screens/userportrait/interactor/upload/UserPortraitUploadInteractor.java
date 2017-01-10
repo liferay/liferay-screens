@@ -48,7 +48,7 @@ public class UserPortraitUploadInteractor
 	}
 
 	@Override
-	public void onSuccess(UserPortraitUploadEvent event) throws Exception {
+	public void onSuccess(UserPortraitUploadEvent event) {
 
 		User oldLoggedUser = SessionContext.getCurrentUser();
 

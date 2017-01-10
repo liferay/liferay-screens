@@ -63,7 +63,7 @@ public class SignUpInteractor extends BaseRemoteInteractor<SignUpListener, Basic
 	}
 
 	@Override
-	public void onSuccess(BasicEvent event) throws Exception {
+	public void onSuccess(BasicEvent event) {
 		getListener().onSignUpSuccess(new User(event.getJSONObject()));
 	}
 

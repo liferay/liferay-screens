@@ -47,12 +47,12 @@ public class LoginActivity extends ThemeActivity implements LoginListener {
 
 	@Override
 	public void onLoginSuccess(User user) {
-		info("Login successful!");
+		info(getString(R.string.login_success_info));
 	}
 
 	@Override
 	public void onLoginFailure(Exception e) {
-		error("Login failed", e);
+		error(getString(R.string.login_screenlet_error), e);
 	}
 
 	private void setDefaultValues() {

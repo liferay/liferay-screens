@@ -51,7 +51,7 @@ public class ForgotPasswordInteractor extends BaseRemoteInteractor<ForgotPasswor
 	}
 
 	@Override
-	public void onSuccess(ForgotPasswordEvent event) throws Exception {
+	public void onSuccess(ForgotPasswordEvent event) {
 		getListener().onForgotPasswordRequestSuccess(event.isPasswordSent());
 	}
 

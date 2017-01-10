@@ -63,6 +63,10 @@ public class WebContentDisplayScreenlet
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
+	/**
+	 * Searches the {@link WebContent} through {@link #structureId}) and loads it
+	 * in the screenlet depending on its value.
+	 */
 	public void load() {
 		performUserAction(structureId != 0 ? WEB_CONTENT_WITH_STRUCTURE : WEB_CONTENT_BY_ARTICLE_ID);
 	}
@@ -152,8 +156,12 @@ public class WebContentDisplayScreenlet
 		this.structureId = structureId;
 	}
 
+	/**
+	 * Checks if there is a session created and if exists {@link #articleId} attribute.
+	 * Then calls {@link #load()} method.
+	 */
 	protected void autoLoad() {
-		if (articleId != null && SessionContext.isLoggedIn()) {
+		if (SessionContext.isLoggedIn() && articleId != null ) {
 			load();
 		}
 	}

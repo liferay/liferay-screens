@@ -50,25 +50,21 @@ public abstract class BaseInteractor<L, E extends BasicEvent> implements Interac
 	}
 
 	public void processEvent(E event) {
-		try {
-			if (isInvalidEvent(event)) {
-				return;
-			}
-			LiferayLogger.i("event = [" + event + "]");
+		if (isInvalidEvent(event)) {
+			return;
+		}
+		LiferayLogger.i("event = [" + event + "]");
 
-			if (event.isFailed()) {
-				onFailure(event);
-			} else {
-				onSuccess(event);
-			}
-		} catch (Exception e) {
+		if (event.isFailed()) {
 			onFailure(event);
+		} else {
+			onSuccess(event);
 		}
 	}
 
 	public abstract E execute(Object... args) throws Exception;
 
-	public abstract void onSuccess(E event) throws Exception;
+	public abstract void onSuccess(E event);
 
 	public abstract void onFailure(E event);
 
@@ -83,8 +79,9 @@ public abstract class BaseInteractor<L, E extends BasicEvent> implements Interac
 	}
 
 	protected boolean isInvalidEvent(BasicEvent event) {
-		return getListener() == null || event.getTargetScreenletId() != getTargetScreenletId() || (actionName != null
-			&& !actionName.equals(event.getActionName()));
+		return getListener() == null || event.getTargetScreenletId() != getTargetScreenletId() || (
+			actionName != null
+				&& !actionName.equals(event.getActionName()));
 	}
 
 	protected Class getEventClass() {

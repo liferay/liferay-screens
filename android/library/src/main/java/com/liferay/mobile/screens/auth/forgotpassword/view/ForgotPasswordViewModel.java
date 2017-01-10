@@ -21,7 +21,17 @@ import com.liferay.mobile.screens.auth.BasicAuthViewModel;
  */
 public interface ForgotPasswordViewModel extends BasicAuthViewModel {
 
+	/**
+	 * Gets the login information: email, screen name or user ID.
+	 *
+	 * @return login
+	 */
 	String getLogin();
 
+	/**
+	 * Called when the password request is successfully finished.
+	 *
+	 * @param passwordSent
+	 */
 	void showFinishOperation(boolean passwordSent);
 }

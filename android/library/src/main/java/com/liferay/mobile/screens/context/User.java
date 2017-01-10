@@ -43,7 +43,6 @@ public class User extends AssetEntry {
 	private JSONObject jsonObject;
 
 	public User(JSONObject jsonObject) {
-		this.jsonObject = jsonObject;
 		this.values = new HashMap<>();
 		try {
 			values.putAll(JSONUtil.toMap(jsonObject));
@@ -111,6 +110,6 @@ public class User extends AssetEntry {
 
 	@Override
 	public String toString() {
-		return jsonObject.toString();
+		return values.toString();
 	}
 }

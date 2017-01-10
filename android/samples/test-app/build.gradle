@@ -30,7 +30,7 @@ android {
 			minSdkVersion 21
 		}
 		vanilla {
-			minSdkVersion rootProject.ext.targetSdkVersion
+			minSdkVersion rootProject.ext.minSdkVersion
 		}
 	}
 }
@@ -43,9 +43,9 @@ dependencies {
 
 	compile libraries.design
 
-	debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3.1'
-	releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3.1'
-	testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3.1'
+	debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
+	releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+	testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
 
 	androidTestCompile libraries.design
 

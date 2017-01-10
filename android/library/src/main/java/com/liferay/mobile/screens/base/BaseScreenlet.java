@@ -113,6 +113,11 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		}
 	}
 
+	/**
+	 * If the screenlet doesn't have {@link #screenletId}, this method generates and returns it.
+	 *
+	 * @return {@link #screenletId}
+	 */
 	public int getScreenletId() {
 		if (screenletId == 0) {
 			screenletId = generateScreenletId();
@@ -121,6 +126,9 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		return screenletId;
 	}
 
+	/**
+	 * Starts the default user action.
+	 */
 	public void performUserAction() {
 		I interactor = getInteractor();
 
@@ -130,6 +138,11 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		}
 	}
 
+	/**
+	 * Starts the user action depending on the `userActionName` parameter.
+	 *
+	 * @param args several arguments to use in the action.
+	 */
 	public void performUserAction(String userActionName, Object... args) {
 		I interactor = getInteractor(userActionName);
 
@@ -139,10 +152,18 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		}
 	}
 
+	/**
+	 * Returns the interactor based on the default action.
+	 */
 	public I getInteractor() {
 		return getInteractor(DEFAULT_ACTION);
 	}
 
+	/**
+	 * Returns the interactor based on the `actionName` parameter.
+	 *
+	 * @return interactor.
+	 */
 	public I getInteractor(String actionName) {
 		I result = interactors.get(actionName);
 
@@ -153,10 +174,12 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		return result;
 	}
 
-	public void setCustomInteractorListener(CustomInteractorListener customInteractorListener) {
-		this.customInteractorListener = customInteractorListener;
-	}
-
+	/**
+	 * This method creates and decorate the interactor depending on the `actionName`.
+	 *
+	 * @param actionName
+	 * @return result interactor.
+	 */
 	protected I prepareInteractor(String actionName) {
 
 		I result = customInteractorListener == null ? createInteractor(actionName)
@@ -170,6 +193,14 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		return result;
 	}
 
+	/**
+	 * Decorates the interactor if it's instance of {@link BaseInteractor}.
+	 * Also, if the previous condition is true, prepares the interactor if it's
+	 * instance of {@link BaseCacheReadInteractor}.
+	 *
+	 * @param actionName
+	 * @param result interactor.
+	 */
 	protected void decorateInteractor(String actionName, Interactor result) {
 		if (result instanceof BaseInteractor) {
 			BaseInteractor baseInteractor = (BaseInteractor) result;
@@ -186,6 +217,12 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		}
 	}
 
+	/**
+	 * Initializes the screenlet with the given attributes or the default ones.
+	 *
+	 * @param context
+	 * @param attributes
+	 */
 	protected void init(Context context, AttributeSet attributes) {
 		LiferayScreensContext.init(context);
 
@@ -208,13 +245,20 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		assignView(createScreenletView(context, attributes));
 	}
 
+	/**
+	 * Inflates and assigns the view through the given `layoutId`. This method is used usually when
+	 * we are creating screenlets dynamically and we have to associate a layout.
+	 */
 	public void render(int layoutId) {
 		LiferayScreensContext.init(getContext());
 
 		assignView(LayoutInflater.from(getContext()).inflate(layoutId, null));
 	}
 
-	protected void assignView(View view) {
+	/**
+	 * Add the screenlet view.
+	 */
+	public void assignView(View view) {
 		if (!isInEditMode()) {
 			screenletView = view;
 
@@ -224,16 +268,23 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		}
 	}
 
+	/**
+	 * Returns the screenlet view.
+	 */
 	protected V getViewModel() {
 		return (V) screenletView;
 	}
 
+	/**
+	 * Searches the default layout id through screenlet name.
+	 * If there is no layout, returns zero.
+	 */
 	protected int getDefaultLayoutId() {
 		try {
 			Context ctx = getContext().getApplicationContext();
 			String packageName = ctx.getPackageName();
 
-			// first, get the identifier of the string key
+			// First, get the identifier of the string key
 			String layoutNameKeyName = getClass().getSimpleName() + "_" + getLayoutTheme();
 			int layoutNameKeyId = ctx.getResources().getIdentifier(layoutNameKeyName, "string", packageName);
 
@@ -242,12 +293,12 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 					ctx.getResources().getIdentifier(getClass().getSimpleName() + "_default", "string", packageName);
 			}
 
-			// second, get the identifier of the layout specified in key layoutNameKeyId
+			// Second, get the identifier of the layout specified in key layoutNameKeyId
 
 			String layoutName = ctx.getString(layoutNameKeyId);
 			return ctx.getResources().getIdentifier(layoutName, "layout", packageName);
 		} catch (Exception e) {
-			//We don't want to crash if the user creates a custom screenlet without adding a
+			// We don't want to crash if the user creates a custom screenlet without adding a
 			// default layout to it
 			return 0;
 		}
@@ -328,22 +379,60 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		return state;
 	}
 
+	/**
+	 * Calls when the screenlet has been attached to the view.
+	 */
 	protected void onScreenletAttached() {
 	}
 
+	/**
+	 * Calls when the screenlet has been detached to the view.
+	 */
 	protected void onScreenletDetached() {
 	}
 
+	/**
+	 * Creates screenlet view based on its different attributes. If there is some non optional
+	 * attribute that it doesn't have value, it takes the default one.
+	 *
+	 * @param attributes screenlet attributes.
+	 * @return screenlet view.
+	 */
 	protected abstract View createScreenletView(Context context, AttributeSet attributes);
 
+	/**
+	 * Creates a new listener object depending on the `actionName` parameter.
+	 *
+	 * @return interactor.
+	 */
 	protected abstract I createInteractor(String actionName);
 
+	/**
+	 * Starts an interactor action depending on `userActionName` parameter.
+	 * Also, you can pass several arguments to use in the different actions.
+	 */
 	protected abstract void onUserAction(String userActionName, I interactor, Object... args);
 
+	/**
+	 * Cast a value to long or use zero by default.
+	 * This method is used in {@link #createScreenletView(Context, AttributeSet)}
+	 * method for taking the screenlet attributes.
+	 *
+	 * @param value value to cast.
+	 * @return value casted or zero.
+	 */
 	protected long castToLong(String value) {
 		return castToLongOrUseDefault(value, 0);
 	}
 
+	/**
+	 * Cast a value to long or use default.
+	 * This method is used in {@link #createScreenletView(Context, AttributeSet)}
+	 * method for taking the screenlet attributes.
+	 *
+	 * @param value value to cast.
+	 * @return value casted or default one.
+	 */
 	protected long castToLongOrUseDefault(String value, long defaultValue) {
 		if (value == null) {
 			return defaultValue;
@@ -458,5 +547,9 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 	public void setCacheListener(CacheListener cacheListener) {
 		this.cacheListener = cacheListener;
+	}
+
+	public void setCustomInteractorListener(CustomInteractorListener customInteractorListener) {
+		this.customInteractorListener = customInteractorListener;
 	}
 }

@@ -6,6 +6,11 @@ public class ForgotPasswordEvent extends BasicEvent {
 
 	private final Boolean sent;
 
+	public ForgotPasswordEvent() {
+		super();
+		sent = false;
+	}
+
 	public ForgotPasswordEvent(Boolean sent) {
 		this.sent = sent;
 	}

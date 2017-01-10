@@ -1,11 +1,13 @@
 package com.liferay.mobile.screens.westerosemployees.views;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
 import com.jakewharton.rxbinding.view.RxView;
 import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.imagegallery.BaseDetailUploadView;
 import com.liferay.mobile.screens.imagegallery.ImageGalleryListener;
 import com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet;
@@ -67,10 +69,10 @@ public class GalleryCard extends CommentsRatingsCard implements ImageGalleryList
 		uploadDetailView = (BaseDetailUploadView) findViewById(R.id.upload_detail_view);
 		uploadImageCard = (Card) findViewById(R.id.upload_image_card);
 
-		imageAssetDisplayScreenlet =
-			(AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet_image);
+		imageAssetDisplayScreenlet = (AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet_image);
 
-		RxPermissions rxPermissions = RxPermissions.getInstance(getContext());
+		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
+		RxPermissions rxPermissions = new RxPermissions(activity);
 
 		RxView.clicks(findViewById(R.id.gallery_button))
 			.compose(rxPermissions.ensure(WRITE_EXTERNAL_STORAGE))
@@ -95,8 +97,7 @@ public class GalleryCard extends CommentsRatingsCard implements ImageGalleryList
 	}
 
 	@Override
-	public void onImageUploadStarted(String picturePath, String title, String description,
-		String changelog) {
+	public void onImageUploadStarted(String picturePath, String title, String description, String changelog) {
 		uploadImageCard.goLeft();
 		uploadImageCard.setState(CardState.MINIMIZED);
 	}
@@ -130,8 +131,7 @@ public class GalleryCard extends CommentsRatingsCard implements ImageGalleryList
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List<ImageEntry> entries,
-		int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List<ImageEntry> entries, int rowCount) {
 
 	}
 
@@ -139,8 +139,7 @@ public class GalleryCard extends CommentsRatingsCard implements ImageGalleryList
 	public void onListItemSelected(ImageEntry element, View view) {
 		imageAssetDisplayScreenlet.load(element);
 
-		initializeRatingsAndComments("com.liferay.document.library.kernel.model.DLFileEntry",
-			element.getFileEntryId());
+		initializeRatingsAndComments("com.liferay.document.library.kernel.model.DLFileEntry", element.getFileEntryId());
 
 		cardListener.moveCardRight(this);
 	}

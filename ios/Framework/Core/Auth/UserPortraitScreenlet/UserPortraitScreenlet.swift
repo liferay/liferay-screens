@@ -79,7 +79,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	}
 
 	public func loadLoggedUserPortrait() -> Bool {
-		guard let userId = SessionContext.currentContext?.userId else {
+		guard let userId = SessionContext.currentContext?.user.userId else {
 			return false
 		}
 
@@ -162,7 +162,9 @@ public class UserPortraitScreenlet: BaseScreenlet {
 					self.setPortraitImage(finalImage ?? imageValue)
 				}
 				else {
-					self.userPortraitDelegate?.screenlet?(self, onUserPortraitError: NSError.errorWithCause(.InvalidServerResponse))
+					self.userPortraitDelegate?.screenlet?(self,
+							onUserPortraitError: NSError.errorWithCause(.InvalidServerResponse,
+									message: "Could not load user portrait image."))
 
 					self.loadedUserId = nil
 					self.setPortraitImage(nil)
@@ -222,7 +224,8 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		viewModel.image = image
 
 		if image == nil {
-			let error = NSError.errorWithCause(.AbortedDueToPreconditions)
+			let error = NSError.errorWithCause(.AbortedDueToPreconditions,
+					message: "Could not set user portrait image.")
 			userPortraitDelegate?.screenlet?(self, onUserPortraitError: error)
 		}
 	}

@@ -1,13 +1,15 @@
 language: objective-c
 osx_image: xcode8
-sudo: false
 
 env:
+  global:
+   - ADB_INSTALL_TIMEOUT=10
+   - LICENSES="android-sdk-license-5be876d5|mips-android-sysimage-license-15de68cc|intel-android-sysimage-license-1ea702d1|android-sdk-license-ed0d0a5b|android-sdk-license-c81a61d9"
+   - COMPONENTS=build-tools-25.0.1,android-25,extra-android-m2repository,extra-google-m2repository
   matrix:
     - PLATFORM=iOS
     - PLATFORM=Android
-  global:
-    - ADB_INSTALL_TIMEOUT=10
+
 cache:
   directories:
     - $HOME/android/library/.gradle/
@@ -16,13 +18,8 @@ podfile: ios/Framework
 before_script:
  - |
    if [ "$PLATFORM" = Android ]; then
-        export LICENSES="android-sdk-license-5be876d5|mips-android-sysimage-license-15de68cc|intel-android-sysimage-license-1ea702d1|android-sdk-license-ed0d0a5b|android-sdk-license-c81a61d9"
-        export COMPONENTS=build-tools-23.0.3,android-23,extra-android-m2repository,extra-google-m2repository
         curl -L https://raw.github.com/embarkmobile/android-sdk-installer/version-2/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS --accept=$LICENSES && source ~/.android-sdk-installer/env
-    elif [ "$PLATFORM" = iOS ]; then
-        gem install cocoapods --version 1.1.0.rc.3
-        pod repo update > /dev/null
-    fi
+   fi
  
 script:
 - |
@@ -33,7 +30,7 @@ script:
         sh gradlew test
      elif [ "$PLATFORM" = iOS ]; then
          cd ios/Framework
-         pod  install
+         pod install
          set -o pipefail
-         xcodebuild clean test -workspace LiferayScreens.xcworkspace -scheme LiferayScreens -destination "platform=iOS Simulator,name=iPhone SE" | xcpretty
+         travis_retry xcodebuild clean test -workspace LiferayScreens.xcworkspace -scheme LiferayScreens -destination "platform=iOS Simulator,name=iPhone SE" | xcpretty
     fi

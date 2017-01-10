@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.viewsets.defaultviews.userportrait;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -33,6 +34,7 @@ import android.widget.ProgressBar;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.MediaStoreSelectorDialog;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -103,8 +105,9 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.liferay_replace_image) {
+			Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
 			choseOriginDialog =
-				new MediaStoreSelectorDialog().createOriginDialog(getContext(), openCamera(), openGallery(), null);
+				new MediaStoreSelectorDialog().createOriginDialog(activity, openCamera(), openGallery(), null);
 			choseOriginDialog.show();
 		}
 	}
@@ -143,8 +146,9 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 
 		setDefaultImagePlaceholder();
 
+		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
 		choseOriginDialog =
-			new MediaStoreSelectorDialog().createOriginDialog(getContext(), openCamera(), openGallery(), null);
+			new MediaStoreSelectorDialog().createOriginDialog(activity, openCamera(), openGallery(), null);
 	}
 
 	@Override

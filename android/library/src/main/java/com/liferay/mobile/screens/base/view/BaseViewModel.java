@@ -18,13 +18,39 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 
 public interface BaseViewModel {
 
+	/**
+	 * Called when the operation is going to started.
+	 *
+	 * @param actionName
+	 */
 	void showStartOperation(String actionName);
 
+	/**
+	 * Called when the operation has been finished.
+	 *
+	 * @param actionName
+	 */
 	void showFinishOperation(String actionName);
 
+	/**
+	 * Called when the operation has been failed.
+	 *
+	 * @param actionName
+	 * @param e exception
+	 */
 	void showFailedOperation(String actionName, Exception e);
 
+	/**
+	 * Gets the screenlet.
+	 *
+	 * @return screenlet
+	 */
 	BaseScreenlet getScreenlet();
 
+	/**
+	 * Sets the screenlet.
+	 *
+	 * @param screenlet
+	 */
 	void setScreenlet(BaseScreenlet screenlet);
 }

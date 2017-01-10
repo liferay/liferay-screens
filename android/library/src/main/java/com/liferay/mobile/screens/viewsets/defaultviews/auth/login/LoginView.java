@@ -171,7 +171,9 @@ public class LoginView extends LinearLayout implements LoginViewModel, View.OnCl
 				AuthenticationType.BASIC.equals(authenticationType) ? VISIBLE : GONE);
 		}
 
-		loginEditText.setHint(getResources().getString(getLabelResourceForAuthMode()));
+		if (basicAuthMethod != null) {
+			loginEditText.setHint(getResources().getString(getLabelResourceForAuthMode()));
+		}
 
 		refreshLoginEditTextStyle();
 	}
@@ -206,13 +208,16 @@ public class LoginView extends LinearLayout implements LoginViewModel, View.OnCl
 	}
 
 	private int getLabelResourceForAuthMode() {
-		switch (basicAuthMethod) {
-			case SCREEN_NAME:
-				return R.string.screen_name;
-			case USER_ID:
-				return R.string.user_id;
-			default:
-				return R.string.email_address;
+		if (basicAuthMethod != null) {
+			switch (basicAuthMethod) {
+				case SCREEN_NAME:
+					return R.string.screen_name;
+				case USER_ID:
+					return R.string.user_id;
+				default:
+					return R.string.email_address;
+			}
 		}
+		return R.string.email_address;
 	}
 }

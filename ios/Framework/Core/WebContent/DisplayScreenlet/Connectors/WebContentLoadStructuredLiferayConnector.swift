@@ -36,7 +36,8 @@ public class WebContentLoadStructuredLiferayConnector: WebContentLoadBaseLiferay
 		}
 		else {
 			if lastError == nil {
-				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse,
+						message: "Could not get journal article with the given structure.")
 			}
 			self.resultRecord = nil
 		}

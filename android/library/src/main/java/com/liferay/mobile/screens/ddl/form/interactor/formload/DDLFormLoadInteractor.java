@@ -21,6 +21,7 @@ import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.ServiceProvider;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -42,15 +43,22 @@ public class DDLFormLoadInteractor extends BaseCacheReadInteractor<DDLFormListen
 	}
 
 	@Override
-	public void onSuccess(DDLFormEvent event) throws Exception {
+	public void onSuccess(DDLFormEvent event) {
 		Record formRecord = event.getRecord();
 
-		formRecord.parseDDMStructure(event.getJSONObject());
+		try {
+			formRecord.parseDDMStructure(event.getJSONObject());
 
-		if (formRecord.getCreatorUserId() == 0) {
-			long userId = event.getJSONObject().getLong("userId");
-			formRecord.setCreatorUserId(userId);
+			if (formRecord.getCreatorUserId() == 0) {
+				long userId = event.getJSONObject().getLong("userId");
+				formRecord.setCreatorUserId(userId);
+			}
+		} catch (JSONException e) {
+			event.setException(e);
+			onFailure(event);
+			return;
 		}
+
 
 		getListener().onDDLFormLoaded(formRecord);
 	}

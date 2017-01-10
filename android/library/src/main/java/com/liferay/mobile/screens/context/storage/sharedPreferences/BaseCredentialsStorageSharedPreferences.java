@@ -65,7 +65,7 @@ public abstract class BaseCredentialsStorageSharedPreferences implements Credent
 		}
 
 		sharedPreferences.edit()
-			.putString("attributes", user.toString())
+			.putString("attributes", new JSONObject(user.getValues()).toString())
 			.putString("server", LiferayServerContext.getServer())
 			.putLong("groupId", LiferayServerContext.getGroupId())
 			.putLong("companyId", LiferayServerContext.getCompanyId())
@@ -111,13 +111,17 @@ public abstract class BaseCredentialsStorageSharedPreferences implements Credent
 			auth = null;
 			user = null;
 
-			throw new IllegalStateException("Stored credential values are not consistent with current ones");
+			LiferayLogger.e("Stored credential values are not consistent with current ones");
+			removeStoredCredentials();
+			return false;
 		}
 
 		try {
 			user = new User(new JSONObject(userAttributes));
 		} catch (JSONException e) {
-			throw new IllegalStateException("Stored user attributes are corrupted", e);
+			LiferayLogger.e("Stored user attributes are corrupted");
+			removeStoredCredentials();
+			return false;
 		}
 
 		return true;

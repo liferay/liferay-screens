@@ -52,7 +52,8 @@ public class Liferay70CommentLoadConnector: CommentLoadLiferayConnector {
 				lastError = nil
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				                                   message: "Could not load comment with this commentId.")
 				resultComment = nil
 			}
 		}

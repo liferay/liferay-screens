@@ -2,6 +2,8 @@
 "default-auth-method-screenname"="Screen Name";
 "default-auth-method-userid"="User ID";
 
+"default-oauth-close"="Close";
+
 "default-login-loading-message"="Signing in...\nWait few seconds...";
 "default-login-loading-error"="Error signing in.";
 
@@ -15,6 +17,7 @@
 "default-save-button"="SAVE";
 "default-authorize-button"="AUTHORIZE";
 
+"default-forgotpassword-username"="Username";
 "default-forgotpassword-button"="REQUEST";
 "default-forgotpassword-loading-message"="Sending password request...\nWait few seconds...";
 "default-forgotpassword-loading-error"="Error requesting the password";
@@ -52,23 +55,25 @@
 
 "default-imagegallery-uploading-one"="Uploading image...";
 "default-imagegallery-uploading-several"="Uploading image 1 from %d";
-
 "default-imagegallery-upload"="Upload";
 "default-imagegallery-cancel"="Cancel";
-"default-imagegallery-title"="Título";
+"default-imagegallery-title"="Title";
 "default-imagegallery-description"="Description";
 
-
-
 "default-blog-unknown-date"="Unknown date";
+
+"default-comment-add-translate"="Introduce your comment...";
 "default-comment-add-send"="Send";
 
 "default-comment-display-edited"="- Edited";
 "default-comment-display-warning"="Warning";
 "default-comment-display-styled"="This comment has styled content, which will be lost if you edit it";
 "default-comment-display-dismiss"="Dismiss";
-"default-comment-display-cancel"="Cancel";
+"default-comment-display-edit-button"="Edit";
+"default-comment-display-delete-button"="Delete";
 "default-comment-display-confirm"="Confirm";
+"default-comment-display-cancel"="Cancel";
+
 "default-comment-display-type"="Type your comment...";
 
 "default-time-ago-seconds" = "%d seconds ago";

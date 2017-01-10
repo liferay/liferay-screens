@@ -29,14 +29,14 @@ android {
 			minSdkVersion 21
 		}
 		vanilla {
-			minSdkVersion rootProject.ext.targetSdkVersion
+			minSdkVersion rootProject.ext.minSdkVersion
 		}
 	}
 }
 
 dependencies {
 	compile fileTree(dir: 'libs', include: ['*.jar'])
-	compile "com.daimajia.swipelayout:library:1.2.0"
+	compile 'com.daimajia.swipelayout:library:1.2.0'
 
 	compile project(':liferay-westeros-viewset')
 }

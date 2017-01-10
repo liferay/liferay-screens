@@ -30,7 +30,7 @@ public class CommentUpdateInteractor extends BaseCacheWriteInteractor<CommentDis
 	}
 
 	@Override
-	public void onSuccess(CommentEvent event) throws Exception {
+	public void onSuccess(CommentEvent event) {
 		getListener().onUpdateCommentSuccess(event.getCommentEntry());
 	}
 

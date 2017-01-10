@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.FileUtil;
 import java.io.File;
@@ -71,10 +72,13 @@ public class MediaStoreRequestShadowActivity extends Activity {
 
 	private void openCamera() {
 		Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		File imageFile = FileUtil.createImageFile();
-		filePath = imageFile.getPath();
-		cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
 
-		startActivityForResult(cameraIntent, mediaStoreType);
+		if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+			File imageFile = FileUtil.createImageFile();
+			Uri photoURI = FileProvider.getUriForFile(this, getPackageName() + ".screensfileprovider", imageFile);
+			filePath = photoURI.getPath();
+			cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+			startActivityForResult(cameraIntent, mediaStoreType);
+		}
 	}
 }

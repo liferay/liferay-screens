@@ -51,7 +51,8 @@ public class DDLFormRecordLoadLiferayConnector: ServerConnector {
 				resultRecordAttributes = nil
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse)
+				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				                                   message: "Could not load record with this recordId.")
 				resultRecordData = nil
 				resultRecordId = nil
 				resultRecordAttributes = nil

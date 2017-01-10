@@ -8,6 +8,7 @@ import com.liferay.mobile.screens.rating.RatingScreenlet;
 import com.liferay.mobile.screens.rating.interactor.RatingEvent;
 import com.liferay.mobile.screens.service.v70.ScreensratingsentryService;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import static com.liferay.mobile.screens.cache.Cache.SEPARATOR;
@@ -33,11 +34,21 @@ public class RatingLoadInteractor extends BaseCacheReadInteractor<RatingListener
 	}
 
 	@Override
-	public void onSuccess(RatingEvent event) throws Exception {
+	public void onSuccess(RatingEvent event) {
 		JSONObject result = event.getJSONObject();
-		AssetRating assetRating = new AssetRating(result.getLong("classPK"), result.getString("className"),
-			toIntArray(result.getJSONArray("ratings")), result.getDouble("average"), result.getDouble("userScore"),
-			result.getDouble("totalScore"), result.getInt("totalCount"));
+		AssetRating assetRating;
+
+		try {
+			assetRating =
+				new AssetRating(result.getLong("classPK"), result.getString("className"),
+					toIntArray(result.getJSONArray("ratings")), result.getDouble("average"),
+					result.getDouble("userScore"), result.getDouble("totalScore"),
+					result.getInt("totalCount"));
+		} catch (JSONException e) {
+			event.setException(e);
+			onFailure(event);
+			return;
+		}
 		getListener().onRatingOperationSuccess(assetRating);
 	}
 
@@ -66,8 +77,8 @@ public class RatingLoadInteractor extends BaseCacheReadInteractor<RatingListener
 		return intArray;
 	}
 
-	private JSONObject getRatingsEntries(long entryId, long classPK, String className, int ratingGroupCounts)
-		throws Exception {
+	private JSONObject getRatingsEntries(long entryId, long classPK, String className,
+		int ratingGroupCounts) throws Exception {
 		ScreensratingsentryService service =
 			new ScreensratingsentryService(SessionContext.createSessionFromCurrentSession());
 		if (entryId != 0) {
@@ -79,7 +90,8 @@ public class RatingLoadInteractor extends BaseCacheReadInteractor<RatingListener
 
 	private void validate(long entryId, String className, long classPK) {
 		if (entryId == 0 && (className == null || classPK == 0)) {
-			throw new IllegalArgumentException("Either entryId or className & classPK cannot" + "be empty");
+			throw new IllegalArgumentException(
+				"Either entryId or className & classPK cannot" + "be empty");
 		}
 	}
 }

@@ -48,7 +48,8 @@ extension SyncManager {
 						onItemSyncScreenlet: ScreenletName(UserPortraitScreenlet),
 						failedKey: key,
 						attributes: attributes,
-						error: NSError.errorWithCause(.NotAvailable))
+						error: NSError.errorWithCause(.NotAvailable,
+								message: "Synchronizer for user portrait not available."))
 
 					signal()
 				}

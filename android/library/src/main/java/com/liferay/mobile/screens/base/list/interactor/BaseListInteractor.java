@@ -49,7 +49,7 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 	}
 
 	@Override
-	public void onSuccess(BaseListEvent event) throws Exception {
+	public void onSuccess(BaseListEvent event) {
 
 		List<E> entries = event.getEntries();
 		int rowCount = event.getRowCount();
@@ -118,17 +118,6 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 			decorateBaseEvent(event);
 			event.setCached(true);
 
-			//Class childClass = getEventClass();
-			//
-			//String[] keys = Cache.findKeys(childClass, groupId, userId, locale, event.getQuery().getStartRow(),
-			//	event.getQuery().getLimit());
-
-			//List<E> entries = new ArrayList<>();
-			//for (String key : keys) {
-			//	entries.add((E) Cache.getObject(childClass, groupId, userId, key));
-			//}
-			//event.setEntries(entries);
-
 			EventBusUtil.post(event);
 			loadingFromCache(true);
 			return true;
@@ -152,7 +141,6 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 
 		List<E> entries = event.getEntries();
 		for (int i = 0; i < entries.size(); i++) {
-			//Cache.storeObject(entries.get(i), i + query.getStartRow());
 			Cache.storeObject(entries.get(i));
 		}
 
@@ -191,16 +179,8 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 		}
 	}
 
-	@Override
-	protected void createErrorEvent(Exception e) {
-		try {
-			BaseListEvent<E> event = new BaseListEvent<>();
-			decorateBaseEvent(event);
-			event.setException(e);
-			EventBusUtil.post(event);
-		} catch (Exception e1) {
-			LiferayLogger.e("Event missing no-args constructor and swallowing exception", e);
-		}
+	protected Class getEventClass() {
+		return BaseListEvent.class;
 	}
 
 	protected abstract JSONArray getPageRowsRequest(Query query, Object... args) throws Exception;
