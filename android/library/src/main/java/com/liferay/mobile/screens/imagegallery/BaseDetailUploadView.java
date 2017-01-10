@@ -1,6 +1,7 @@
 package com.liferay.mobile.screens.imagegallery;
 
 import android.content.Context;
+import android.net.Uri;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 import com.liferay.mobile.screens.imagegallery.interactor.ImageGalleryEvent;
@@ -12,7 +13,7 @@ import com.liferay.mobile.screens.util.EventBusUtil;
 public abstract class BaseDetailUploadView extends RelativeLayout {
 
 	protected String actionName;
-	protected String picturePath;
+	protected Uri pictureUri;
 	protected int screenletId;
 
 	public BaseDetailUploadView(Context context) {
@@ -31,18 +32,18 @@ public abstract class BaseDetailUploadView extends RelativeLayout {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
-	public void initializeUploadView(String actionName, String picturePath, int screenletId) {
+	public void initializeUploadView(String actionName, Uri pictureUri, int screenletId) {
 		this.actionName = actionName;
-		this.picturePath = picturePath;
+		this.pictureUri = pictureUri;
 		this.screenletId = screenletId;
 	}
 
 	public void finishActivityAndStartUpload(String title, String description, String changelog) {
-		finishActivityAndStartUpload(picturePath, title, description, changelog);
+		finishActivityAndStartUpload(pictureUri, title, description, changelog);
 	}
 
-	public void finishActivityAndStartUpload(String picturePath, String title, String description, String changelog) {
-		ImageGalleryEvent event = new ImageGalleryEvent(picturePath, title, description, changelog);
+	public void finishActivityAndStartUpload(Uri pictureUri, String title, String description, String changelog) {
+		ImageGalleryEvent event = new ImageGalleryEvent(pictureUri, title, description, changelog);
 		event.setActionName(actionName);
 		event.setTargetScreenletId(screenletId);
 		EventBusUtil.post(event);

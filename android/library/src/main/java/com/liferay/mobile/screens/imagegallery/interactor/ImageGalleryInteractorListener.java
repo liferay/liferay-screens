@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.imagegallery.interactor;
 
+import android.net.Uri;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
 import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
 
@@ -32,9 +33,9 @@ public interface ImageGalleryInteractorListener extends BaseListInteractorListen
 	/**
 	 * Called when an item in the list was chosen and it's ready for upload.
 	 *
-	 * @param picturePath
+	 * @param pictureUri
 	 */
-	void onPicturePathReceived(String picturePath);
+	void onPictureUriReceived(Uri pictureUri);
 
 	/**
 	 * Called when the item was successfully uploaded.
@@ -56,10 +57,10 @@ public interface ImageGalleryInteractorListener extends BaseListInteractorListen
 	 * Called only once when user fill the upload form.
 	 * This method retrieves the picture path, title, description and changelog.
 	 *
-	 * @param picturePath
+	 * @param pictureUri
 	 * @param title
 	 * @param description
 	 * @param changelog
 	 */
-	void onPictureUploadInformationReceived(String picturePath, String title, String description, String changelog);
+	void onPictureUploadInformationReceived(Uri pictureUri, String title, String description, String changelog);
 }

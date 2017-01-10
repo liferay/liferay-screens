@@ -2,6 +2,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.imagegallery;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
@@ -23,7 +24,7 @@ import java.util.Queue;
  * @author Víctor Galán Grande
  */
 public class UploadProgressView extends RelativeLayout implements View.OnClickListener {
-	private final Queue<String> images = new PriorityQueue<>();
+	private final Queue<Uri> images = new PriorityQueue<>();
 	private int uploadCount = 0;
 	private ProgressBar progressBar;
 	private TextView uploadText;
@@ -46,7 +47,7 @@ public class UploadProgressView extends RelativeLayout implements View.OnClickLi
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
-	public void addUpload(String imagePath) {
+	public void addUpload(Uri imagePath) {
 		uploadCount++;
 		images.add(imagePath);
 
@@ -74,8 +75,8 @@ public class UploadProgressView extends RelativeLayout implements View.OnClickLi
 		progressBar.setProgress(progress);
 	}
 
-	public void setImage(String path) {
-		Picasso.with(getContext()).load(new File(path)).fit().into(image);
+	public void setImage(Uri path) {
+		Picasso.with(getContext()).load(path).fit().into(image);
 		LiferayLogger.d("Image set " + path);
 	}
 

@@ -2,6 +2,7 @@ package com.liferay.mobile.screens.westerosemployees.views;
 
 import android.app.Activity;
 import android.content.Context;
+import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
@@ -97,7 +98,7 @@ public class GalleryCard extends CommentsRatingsCard implements ImageGalleryList
 	}
 
 	@Override
-	public void onImageUploadStarted(String picturePath, String title, String description, String changelog) {
+	public void onImageUploadStarted(Uri pictureUri, String title, String description, String changelog) {
 		uploadImageCard.goLeft();
 		uploadImageCard.setState(CardState.MINIMIZED);
 	}
@@ -113,8 +114,8 @@ public class GalleryCard extends CommentsRatingsCard implements ImageGalleryList
 	}
 
 	@Override
-	public boolean showUploadImageView(String actionName, String picturePath, int screenletId) {
-		uploadDetailView.initializeUploadView(actionName, picturePath, screenletId);
+	public boolean showUploadImageView(String actionName, Uri pictureUri, int screenletId) {
+		uploadDetailView.initializeUploadView(actionName, pictureUri, screenletId);
 		uploadImageCard.goRight();
 
 		return true;

@@ -18,6 +18,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.net.Uri;
 import android.support.annotation.LayoutRes;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -172,10 +173,10 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	}
 
 	@Override
-	public void onPicturePathReceived(String picturePath) {
+	public void onPictureUriReceived(Uri pictureUri) {
 		int uploadDetailViewLayout = 0;
 		if (getListener() != null) {
-			boolean showed = getListener().showUploadImageView(UPLOAD_IMAGE, picturePath, getScreenletId());
+			boolean showed = getListener().showUploadImageView(UPLOAD_IMAGE, pictureUri, getScreenletId());
 
 			if (showed) {
 				return;
@@ -184,7 +185,7 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 			uploadDetailViewLayout = getListener().provideImageUploadDetailView();
 		}
 
-		startUploadDetail(uploadDetailViewLayout, picturePath);
+		startUploadDetail(uploadDetailViewLayout, pictureUri);
 	}
 
 	@Override
@@ -212,23 +213,25 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 
 	@Override
 	public void error(Exception e, String userAction) {
+		getViewModel().showFailedOperation(userAction, e);
+
 		if (getListener() != null) {
 			getListener().error(e, userAction);
 		}
 	}
 
 	@Override
-	public void onPictureUploadInformationReceived(String picturePath, String title, String description,
+	public void onPictureUploadInformationReceived(Uri pictureUri, String title, String description,
 		String changelog) {
-		getViewModel().imageUploadStart(picturePath);
+		getViewModel().imageUploadStart(pictureUri);
 
 		ImageGalleryUploadInteractor imageGalleryUploadInteractor = getUploadInteractor();
-		ImageGalleryEvent event = new ImageGalleryEvent(picturePath, title, description, changelog);
+		ImageGalleryEvent event = new ImageGalleryEvent(pictureUri, title, description, changelog);
 		event.setFolderId(folderId);
 		imageGalleryUploadInteractor.start(event);
 
 		if (getListener() != null) {
-			getListener().onImageUploadStarted(picturePath, title, description, changelog);
+			getListener().onImageUploadStarted(pictureUri, title, description, changelog);
 		}
 	}
 
@@ -308,9 +311,9 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	 * Starts a dialog for uploading the new selected image.
 	 *
 	 * @param uploadDetailView detail layout.
-	 * @param picturePath image path.
+	 * @param pictureUri image Uri.
 	 */
-	protected void startUploadDetail(@LayoutRes int uploadDetailView, final String picturePath) {
+	protected void startUploadDetail(@LayoutRes int uploadDetailView, final Uri pictureUri) {
 		Context context = LiferayScreensContext.getContext();
 
 		View view = inflateView(uploadDetailView, context);
@@ -318,7 +321,7 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 		if (view instanceof BaseDetailUploadView) {
 			BaseDetailUploadView baseDetailUploadView = (BaseDetailUploadView) view;
 
-			baseDetailUploadView.initializeUploadView(UPLOAD_IMAGE, picturePath, getScreenletId());
+			baseDetailUploadView.initializeUploadView(UPLOAD_IMAGE, pictureUri, getScreenletId());
 			new DefaultUploadDialog().createDialog(baseDetailUploadView, getContext()).show();
 		} else {
 			LiferayLogger.e("Detail upload view has to be a subclass of BaseDetailUploadView");
@@ -326,11 +329,8 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	}
 
 	private View inflateView(@LayoutRes int uploadDetailView, Context context) {
-		if (uploadDetailView != 0) {
-			return LayoutInflater.from(context).inflate(uploadDetailView, null, false);
-		} else {
-			return LayoutInflater.from(context).inflate(R.layout.default_upload_detail_activity, null, false);
-		}
+		int view = uploadDetailView == 0 ? R.layout.default_upload_detail_activity : uploadDetailView;
+		return LayoutInflater.from(context).inflate(view, null, false);
 	}
 
 	/**

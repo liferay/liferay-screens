@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.userportrait.interactor;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 
 /**
@@ -41,7 +42,7 @@ public interface UserPortraitInteractorListener extends BaseCacheListener {
 	/**
 	 * Called when an user portrait was chosen and it's ready for upload.
 	 *
-	 * @param picturePath
+	 * @param pictureUri
 	 */
-	void onPicturePathReceived(String picturePath);
+	void onPictureUriReceived(Uri pictureUri);
 }
