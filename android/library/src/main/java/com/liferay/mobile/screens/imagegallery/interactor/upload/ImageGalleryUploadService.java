@@ -3,6 +3,7 @@ package com.liferay.mobile.screens.imagegallery.interactor.upload;
 import android.app.IntentService;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import com.liferay.mobile.android.callback.file.FileProgressCallback;
 import com.liferay.mobile.android.http.file.UploadData;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
@@ -69,13 +70,13 @@ public class ImageGalleryUploadService extends IntentService {
 		String title = intent.getStringExtra("title");
 		String description = intent.getStringExtra("description");
 		String changeLog = intent.getStringExtra("changeLog");
-		String picturePath = intent.getStringExtra("picturePath");
+		Uri pictureUri = intent.getParcelableExtra("pictureUri");
 
 		try {
 			JSONObject jsonObject =
-				uploadImageEntry(repositoryId, folderId, title, description, changeLog, picturePath);
+				uploadImageEntry(repositoryId, folderId, title, description, changeLog, pictureUri);
 			ImageEntry imageEntry = new ImageEntry(JSONUtil.toMap(jsonObject));
-			Bitmap thumbnail = Picasso.with(this).load(new File(picturePath)).get();
+			Bitmap thumbnail = Picasso.with(this).load(pictureUri).get();
 			imageEntry.setImage(thumbnail);
 
 			ImageGalleryEvent event = new ImageGalleryEvent(imageEntry);
@@ -91,17 +92,17 @@ public class ImageGalleryUploadService extends IntentService {
 	}
 
 	private JSONObject uploadImageEntry(long repositoryId, long folderId, String title, String description,
-		String changeLog, String picturePath) throws Exception {
+		String changeLog, Uri pictureUri) throws Exception {
 
-		String sourceName = picturePath.substring(picturePath.lastIndexOf('/') + 1);
+		String sourceName = pictureUri.getLastPathSegment();
 		if (title.isEmpty()) {
 			title = System.nanoTime() + sourceName;
 		}
 
-		UploadData uploadData = createUploadData(picturePath, sourceName);
+		UploadData uploadData = createUploadData(pictureUri, sourceName);
 
 		Session session = SessionContext.createSessionFromCurrentSession();
-		String mimeType = FileUtil.getMimeType(picturePath);
+		String mimeType = FileUtil.getMimeType(sourceName);
 		long groupId = LiferayServerContext.getGroupId();
 		JSONObjectWrapper serviceContext = getJsonObjectWrapper(SessionContext.getUserId(), groupId);
 
@@ -109,16 +110,14 @@ public class ImageGalleryUploadService extends IntentService {
 			changeLog, uploadData, serviceContext);
 	}
 
-	private UploadData createUploadData(String path, String name) throws IOException {
-
-		File file = new File(path);
-		InputStream is = new FileInputStream(file);
-		final int fileSize = (int) file.length();
+	private UploadData createUploadData(Uri pictureUri, String name) throws IOException {
+		InputStream is = getContentResolver().openInputStream(pictureUri);
+		final int available = is.available();
 
 		return new UploadData(is, name, new FileProgressCallback() {
 			@Override
 			public void onProgress(int totalBytesSent) {
-				EventBusUtil.post(new ImageGalleryProgress(fileSize, totalBytesSent));
+				EventBusUtil.post(new ImageGalleryProgress(available, totalBytesSent));
 			}
 
 			@Override
