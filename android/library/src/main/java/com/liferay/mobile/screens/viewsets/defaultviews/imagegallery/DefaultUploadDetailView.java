@@ -1,6 +1,8 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.imagegallery;
 
 import android.content.Context;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,7 +19,6 @@ public class DefaultUploadDetailView extends BaseDetailUploadView {
 	private TextView titleText;
 	private TextView descriptionText;
 
-
 	public DefaultUploadDetailView(Context context) {
 		super(context);
 	}
@@ -30,6 +31,7 @@ public class DefaultUploadDetailView extends BaseDetailUploadView {
 		super(context, attrs, defStyleAttr);
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 	public DefaultUploadDetailView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}

@@ -1,6 +1,8 @@
 package com.liferay.mobile.screens.imagegallery;
 
 import android.content.Context;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 import com.liferay.mobile.screens.imagegallery.interactor.ImageGalleryEvent;
@@ -27,6 +29,7 @@ public abstract class BaseDetailUploadView extends RelativeLayout {
 		super(context, attrs, defStyleAttr);
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 	public BaseDetailUploadView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
