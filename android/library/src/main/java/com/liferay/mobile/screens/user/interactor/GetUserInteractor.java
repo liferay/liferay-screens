@@ -31,7 +31,7 @@ public class GetUserInteractor extends BaseRemoteInteractor<GetUserListener, Bas
     }
 
     @Override
-    public void onSuccess(BasicEvent event) throws Exception
+    public void onSuccess(BasicEvent event)
     {
         getListener().onGetUserSuccess(new User(event.getJSONObject()));
     }
