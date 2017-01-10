@@ -10,7 +10,7 @@
 
 		<activity
 			android:name=".base.MediaStoreRequestShadowActivity"
-			android:theme="@style/detail_upload_theme"/>
+			android:theme="@style/default_transparent_theme"/>
 		<activity
 			android:name=".viewsets.defaultviews.imagegallery.DetailImageActivity"
 			android:theme="@style/gallery_theme"/>
