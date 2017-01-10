@@ -3,6 +3,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.rating;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -36,11 +37,14 @@ public class ReactionsRatingView extends BaseRatingView implements View.OnClickL
 
 	@Override
 	protected void setButton(View textView) {
+		int colorId = ContextCompat.getColor(getContext(), android.R.color.darker_gray);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			TypedValue typedValue = new TypedValue();
 			getContext().getTheme().resolveAttribute(android.R.attr.colorPrimary, typedValue, true);
-			((ImageButton) textView).getDrawable().setColorFilter(typedValue.data, PorterDuff.Mode.SRC_ATOP);
+			colorId = typedValue.data;
 		}
+
+		((ImageButton) textView).getDrawable().setColorFilter(colorId, PorterDuff.Mode.SRC_ATOP);
 	}
 
 	@Override
