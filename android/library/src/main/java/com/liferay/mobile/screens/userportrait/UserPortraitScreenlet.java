@@ -48,8 +48,6 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 	public static final String UPLOAD_PORTRAIT = "UPLOAD_PORTRAIT";
 	public static final String LOAD_PORTRAIT = "LOAD_PORTRAIT";
 	private static final String STATE_SUPER = "userportrait-super";
-	private static final String STATE_FILE_PATH = "userportrait-filePath";
-	private String filePath;
 	private boolean autoLoad;
 	private boolean male;
 	private long portraitId;
@@ -169,14 +167,6 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 		return editable;
 	}
 
-	public String getFilePath() {
-		return filePath;
-	}
-
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
-	}
-
 	public boolean isAutoLoad() {
 		return autoLoad;
 	}
@@ -266,14 +256,12 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 	protected void onRestoreInstanceState(Parcelable inState) {
 		Bundle bundle = (Bundle) inState;
 		super.onRestoreInstanceState(bundle.getParcelable(STATE_SUPER));
-		filePath = bundle.getString(STATE_FILE_PATH);
 	}
 
 	@Override
 	protected Parcelable onSaveInstanceState() {
 		Bundle bundle = new Bundle();
 		bundle.putParcelable(STATE_SUPER, super.onSaveInstanceState());
-		bundle.putString(STATE_FILE_PATH, filePath);
 		return bundle;
 	}
 
