@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
+import android.support.v7.app.AppCompatActivity;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.FileUtil;
 import java.io.File;
@@ -13,7 +14,7 @@ import java.io.File;
 /**
  * @author Víctor Galán Grande
  */
-public class MediaStoreRequestShadowActivity extends Activity {
+public class MediaStoreRequestShadowActivity extends AppCompatActivity {
 
 	public static final int SELECT_IMAGE_FROM_GALLERY = 0;
 	public static final int TAKE_PICTURE_WITH_CAMERA = 1;
