@@ -19,6 +19,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
@@ -123,8 +124,8 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 	}
 
 	@Override
-	public void onPicturePathReceived(String picturePath) {
-		performUserAction(UPLOAD_PORTRAIT, picturePath);
+	public void onPictureUriReceived(Uri pictureUri) {
+		performUserAction(UPLOAD_PORTRAIT, pictureUri);
 	}
 
 	@Override
@@ -238,7 +239,7 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 		if (UPLOAD_PORTRAIT.equals(userActionName)) {
 			UserPortraitUploadInteractor userPortraitInteractor =
 				(UserPortraitUploadInteractor) getInteractor(userActionName);
-			String path = (String) args[0];
+			Uri path = (Uri) args[0];
 			if (userId != 0) {
 				userPortraitInteractor.start(new UserPortraitUploadEvent(path));
 			}

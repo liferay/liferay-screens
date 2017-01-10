@@ -35,7 +35,7 @@ public class UserPortraitUploadInteractor
 
 		Context context = LiferayScreensContext.getContext();
 		Intent intent = new Intent(context, UserPortraitService.class);
-		intent.putExtra("picturePath", event.getPicturePath());
+		intent.putExtra("pictureUri", event.getUriPath());
 		intent.putExtra("actionName", event.getActionName());
 		intent.putExtra("userId", event.getUserId());
 		intent.putExtra("groupId", event.getGroupId());
@@ -93,6 +93,6 @@ public class UserPortraitUploadInteractor
 	}
 
 	public void onEvent(MediaStoreEvent event) {
-		getListener().onPicturePathReceived(event.getFilePath());
+		getListener().onPictureUriReceived(event.getFilePath());
 	}
 }
