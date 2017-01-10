@@ -13,7 +13,7 @@ import com.liferay.mobile.screens.user.view.GetUserViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
 public class GetUserView extends LinearLayout implements GetUserViewModel, View.OnClickListener {
-	
+
 	private EditText textValue;
 	private BaseScreenlet screenlet;
 

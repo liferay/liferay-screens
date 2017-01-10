@@ -39,6 +39,7 @@ public class GetUserScreenlet extends BaseScreenlet<GetUserViewModel, GetUserInt
 		if (listener != null) {
 			listener.onGetUserFailure(exception);
 		}
+
 		Toast.makeText(getContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
 
 		setListViewAdapter(null);

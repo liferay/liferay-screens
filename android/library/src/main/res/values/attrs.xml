@@ -283,6 +283,6 @@
 	</declare-styleable>
 
 	<declare-styleable name="GetUserScreenlet">
-		<attr name="getUserBy" format="string"/>
+		<attr format="string" name="getUserBy"/>
 	</declare-styleable>
 </resources>

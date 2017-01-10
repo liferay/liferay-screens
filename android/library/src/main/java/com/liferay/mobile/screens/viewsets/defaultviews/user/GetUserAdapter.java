@@ -15,8 +15,7 @@ public class GetUserAdapter extends BaseAdapter {
 
 	private String[] keysToDisplay = {
 		User.USER_ID, User.SCREEN_NAME, User.FIRST_NAME, User.LAST_NAME, User.EMAIL_ADDRESS, User.LANGUAGE_ID,
-		User.EMAIL_ADDRESS_VERIFIED,
-		User.LOCKOUT, User.AGREED_TERMS_USE
+		User.EMAIL_ADDRESS_VERIFIED, User.LOCKOUT, User.AGREED_TERMS_USE
 	};
 
 	public GetUserAdapter(Map<String, Object> map) {
