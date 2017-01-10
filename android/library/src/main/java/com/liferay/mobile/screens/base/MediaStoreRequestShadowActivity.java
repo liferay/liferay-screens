@@ -43,9 +43,8 @@ public class MediaStoreRequestShadowActivity extends Activity {
 	}
 
 	private void sendEvent(Intent intentData) {
-		Uri path = mediaStoreType == SELECT_IMAGE_FROM_GALLERY ? intentData.getData() : fileUri;
-		MediaStoreEvent event = new MediaStoreEvent(path);
-		EventBusUtil.post(event);
+		Uri uri = mediaStoreType == SELECT_IMAGE_FROM_GALLERY ? intentData.getData() : fileUri;
+		EventBusUtil.post(new MediaStoreEvent(uri));
 	}
 
 	private void sendIntent() {
