@@ -1,6 +1,8 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.imagegallery;
 
 import android.content.Context;
+import android.net.Uri;
+import android.support.v4.content.FileProvider;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,11 +45,12 @@ public class DefaultUploadDetailView extends BaseDetailUploadView {
 	}
 
 	@Override
-	public void initializeUploadView(String actionName, String picturePath, int screenletId) {
-		super.initializeUploadView(actionName, picturePath, screenletId);
+	public void initializeUploadView(String actionName, Uri pictureUri, int screenletId) {
+		super.initializeUploadView(actionName, pictureUri, screenletId);
+
 
 		ImageView imageView = (ImageView) findViewById(R.id.liferay_gallery_upload_image);
-		Picasso.with(getContext().getApplicationContext()).load(new File(picturePath)).fit().into(imageView);
+		Picasso.with(getContext().getApplicationContext()).load(pictureUri).fit().into(imageView);
 	}
 
 	public String getTitle() {

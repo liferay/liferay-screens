@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.imagegallery;
 
+import android.net.Uri;
 import android.support.annotation.LayoutRes;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
@@ -34,12 +35,12 @@ public interface ImageGalleryListener extends BaseListListener<ImageEntry> {
 	/**
 	 * Called when an item is prepared for upload.
 	 *
-	 * @param picturePath
+	 * @param pictureUri
 	 * @param title
 	 * @param description
 	 * @param changelog
 	 */
-	void onImageUploadStarted(String picturePath, String title, String description, String changelog);
+	void onImageUploadStarted(Uri pictureUri, String title, String description, String changelog);
 
 	/**
 	 * Called when an item is uploading.
@@ -65,11 +66,11 @@ public interface ImageGalleryListener extends BaseListListener<ImageEntry> {
 	 * Then return `true` to prevent the screenlet from executing the default behavior.
 	 *
 	 * @param actionName
-	 * @param picturePath
+	 * @param pictureUri
 	 * @param screenletId
 	 * @return boolean
 	 */
-	boolean showUploadImageView(String actionName, String picturePath, int screenletId);
+	boolean showUploadImageView(String actionName, Uri pictureUri, int screenletId);
 
 	/**
 	 * Called when the screenlet provides the image upload View.
