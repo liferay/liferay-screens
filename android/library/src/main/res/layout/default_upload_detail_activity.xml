@@ -47,7 +47,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:hint="@string/detail_upload_title"
-					android:textColor="@android:color/black"
+					android:textColor="?colorPrimary"
 					/>
 
 			</android.support.design.widget.TextInputLayout>
@@ -64,7 +64,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:hint="@string/detail_upload_description"
-					android:textColor="@android:color/black"
+					android:textColor="?colorPrimary"
 					/>
 
 			</android.support.design.widget.TextInputLayout>

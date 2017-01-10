@@ -49,7 +49,7 @@
 				android:layout_height="wrap_content"
 				android:isIndicator="true"
 				android:progressBackgroundTint="@android:color/darker_gray"
-				android:progressTint="@color/colorPrimary_default"
+				android:progressTint="?colorPrimary"
 				android:stepSize="1"
 				tools:rating="3"
 				style="@style/Widget.AppCompat.RatingBar.Small"
