@@ -47,6 +47,7 @@
 		<activity android:name=".AssetDisplayActivity"/>
 		<activity android:name=".ImageDisplayActivity"/>
 		<activity android:name=".GalleryActivity"/>
+		<activity android:name=".GetUserActivity"/>
 	</application>
 
 </manifest>

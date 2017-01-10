@@ -24,6 +24,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.ddl_form).setOnClickListener(this);
 		findViewById(R.id.ddl_list).setOnClickListener(this);
 		findViewById(R.id.asset_list).setOnClickListener(this);
+		findViewById(R.id.get_user).setOnClickListener(this);
 		findViewById(R.id.web_content_list).setOnClickListener(this);
 		findViewById(R.id.sign_up).setOnClickListener(this);
 		findViewById(R.id.forgot_password).setOnClickListener(this);
@@ -60,6 +61,9 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				break;
 			case R.id.asset_list:
 				start(SelectAssetActivity.class);
+				break;
+			case R.id.get_user:
+				start(GetUserActivity.class);
 				break;
 			case R.id.web_content_list:
 				start(WebContentListActivity.class);
