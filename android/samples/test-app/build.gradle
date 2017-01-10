@@ -26,11 +26,11 @@ android {
 	}
 
 	productFlavors {
-		travisci {
-			minSdkVersion 21
-		}
 		vanilla {
 			minSdkVersion rootProject.ext.minSdkVersion
+		}
+		travisci {
+			minSdkVersion 21
 		}
 	}
 }
