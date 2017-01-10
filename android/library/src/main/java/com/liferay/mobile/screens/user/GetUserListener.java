@@ -2,9 +2,9 @@ package com.liferay.mobile.screens.user;
 
 import com.liferay.mobile.screens.context.User;
 
-public interface GetUserListener
-{
-    void onGetUserSuccess(User user);
+public interface GetUserListener {
 
-    void onGetUserFailure(Exception exception);
+	void onGetUserSuccess(User user);
+
+	void onGetUserFailure(Exception exception);
 }
