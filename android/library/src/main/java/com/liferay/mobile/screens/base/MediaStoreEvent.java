@@ -7,13 +7,13 @@ import android.net.Uri;
  */
 public class MediaStoreEvent {
 
-	private final Uri filePath;
+	private final Uri fileUri;
 
-	public MediaStoreEvent(Uri filePath) {
-		this.filePath = filePath;
+	public MediaStoreEvent(Uri fileUri) {
+		this.fileUri = fileUri;
 	}
 
-	public Uri getFilePath() {
-		return filePath;
+	public Uri getFileUri() {
+		return fileUri;
 	}
 }

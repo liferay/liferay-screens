@@ -93,6 +93,6 @@ public class UserPortraitUploadInteractor
 	}
 
 	public void onEvent(MediaStoreEvent event) {
-		getListener().onPictureUriReceived(event.getFilePath());
+		getListener().onPictureUriReceived(event.getFileUri());
 	}
 }

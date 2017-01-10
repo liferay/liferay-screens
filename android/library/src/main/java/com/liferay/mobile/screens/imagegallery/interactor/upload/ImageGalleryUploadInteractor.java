@@ -51,7 +51,7 @@ public class ImageGalleryUploadInteractor extends BaseCacheWriteInteractor<Image
 	}
 
 	public void onEventMainThread(MediaStoreEvent event) {
-		getListener().onPictureUriReceived(event.getFilePath());
+		getListener().onPictureUriReceived(event.getFileUri());
 	}
 
 	public void onEventMainThread(ImageGalleryProgress event) {

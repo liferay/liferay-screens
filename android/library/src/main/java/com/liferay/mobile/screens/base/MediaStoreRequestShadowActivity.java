@@ -20,7 +20,7 @@ public class MediaStoreRequestShadowActivity extends Activity {
 
 	public static final String MEDIA_STORE_TYPE = "MEDIA_STORE_TYPE";
 	private int mediaStoreType;
-	private Uri filePath;
+	private Uri fileUri;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class MediaStoreRequestShadowActivity extends Activity {
 	}
 
 	private void sendEvent(Intent intentData) {
-		Uri path = mediaStoreType == SELECT_IMAGE_FROM_GALLERY ? intentData.getData() : filePath;
+		Uri path = mediaStoreType == SELECT_IMAGE_FROM_GALLERY ? intentData.getData() : fileUri;
 		MediaStoreEvent event = new MediaStoreEvent(path);
 		EventBusUtil.post(event);
 	}
@@ -66,8 +66,8 @@ public class MediaStoreRequestShadowActivity extends Activity {
 
 		if (cameraIntent.resolveActivity(getPackageManager()) != null) {
 			File imageFile = FileUtil.createImageFile();
-			filePath = FileProvider.getUriForFile(this, getPackageName() + ".screensfileprovider", imageFile);
-			cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, filePath);
+			fileUri = FileProvider.getUriForFile(this, getPackageName() + ".screensfileprovider", imageFile);
+			cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
 			startActivityForResult(cameraIntent, mediaStoreType);
 		}
 	}
