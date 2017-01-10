@@ -1,33 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.user.GetUserView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/default_screenlet">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	style="@style/default_screenlet"
+	>
 
-    <TextView
-        android:text="@string/textViewValue"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewValue"
-        android:textSize="20sp" />
+	<TextView
+		android:id="@+id/textViewValue"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/textViewValue"
+		/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/textValue" />
+	<EditText
+		android:id="@+id/textValue"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="10sp"
+		android:inputType="textPersonName"
+		/>
 
-    <Button
-        android:text="@string/getUserButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/getUserButton" />
+	<Button
+		android:id="@+id/getUserButton"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="10sp"
+		android:text="@string/getUserButton"
+		/>
 
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@null"
-        android:dividerHeight="0dp"/>
+	<ListView
+		android:id="@+id/listView"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:divider="@null"
+		android:dividerHeight="0dp"
+		/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.user.GetUserView>
