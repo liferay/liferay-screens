@@ -1,16 +1,16 @@
-package com.liferay.mobile.screens.viewsets.defaultviews.user;
+package com.liferay.mobile.screens.user;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.context.User;
 import java.util.ArrayList;
 import java.util.Map;
 
 public class GetUserAdapter extends BaseAdapter {
+
 	private final ArrayList jsonValues;
 
 	private String[] keysToDisplay = {
@@ -54,9 +54,8 @@ public class GetUserAdapter extends BaseAdapter {
 				keyValue.setText(item.getValue().toString());
 			}
 			return customView;
-		} else {
-			return new View(parent.getContext());
 		}
+		return new View(parent.getContext());
 	}
 
 	private boolean hasToBeDisplayed(String key) {

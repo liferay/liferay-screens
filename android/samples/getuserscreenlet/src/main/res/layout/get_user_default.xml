@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.defaultviews.user.GetUserView
+<com.liferay.mobile.screens.user.view.GetUserView
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical"
 	style="@style/default_screenlet"
@@ -36,4 +36,4 @@
 		android:dividerHeight="0dp"
 		/>
 
-</com.liferay.mobile.screens.viewsets.defaultviews.user.GetUserView>
+</com.liferay.mobile.screens.user.view.GetUserView>

@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.viewsets.defaultviews.user;
+package com.liferay.mobile.screens.user.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -6,10 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.user.GetUserScreenlet;
-import com.liferay.mobile.screens.user.view.GetUserViewModel;
+import com.liferay.mobile.screens.user.R;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
 public class GetUserView extends LinearLayout implements GetUserViewModel, View.OnClickListener {

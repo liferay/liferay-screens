@@ -8,12 +8,10 @@ import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.user.interactor.GetUserInteractor;
 import com.liferay.mobile.screens.user.view.GetUserViewModel;
-import com.liferay.mobile.screens.viewsets.defaultviews.user.GetUserAdapter;
 
 public class GetUserScreenlet extends BaseScreenlet<GetUserViewModel, GetUserInteractor> implements GetUserListener {
 
