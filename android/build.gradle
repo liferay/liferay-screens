@@ -44,6 +44,7 @@ def supportLibsVersion = '25.1.0'
 ext.libraries = [appCompat    : 'com.android.support:appcompat-v7:' + supportLibsVersion,
                  recyclerView : 'com.android.support:recyclerview-v7:' + supportLibsVersion,
                  design       : 'com.android.support:design:' + supportLibsVersion,
+                 exif         : 'com.android.support:exifinterface:' + supportLibsVersion,
                  junit        : 'junit:junit:4.12',
                  gms          : 'com.google.android.gms:play-services-gcm:7.0.0',
                  sdk          : 'com.liferay.mobile:liferay-android-sdk:7.0.3',
