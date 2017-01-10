@@ -327,7 +327,7 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	}
 
 	private View inflateView(@LayoutRes int uploadDetailView, Context context) {
-		ContextThemeWrapper ctx = new ContextThemeWrapper(context, R.style.detail_upload_theme);
+		ContextThemeWrapper ctx = new ContextThemeWrapper(context, R.style.default_transparent_theme);
 		int view = uploadDetailView == 0 ? R.layout.default_upload_detail_activity : uploadDetailView;
 		return LayoutInflater.from(ctx).inflate(view, null, false);
 	}
