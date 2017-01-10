@@ -118,10 +118,14 @@
 	</style>
 
 	<style name="detail_upload_theme" parent="Theme.AppCompat.Light.NoActionBar">
-		<item name="android:windowBackground">@android:color/transparent</item>
-		<item name="android:background">@android:color/white</item>
 		<item name="android:windowIsFloating">true</item>
+
+		<item name="android:background">#33000000</item>
 		<item name="android:windowNoTitle">true</item>
+		<item name="android:windowBackground">@android:color/transparent</item>
+		<item name="android:colorBackgroundCacheHint">@null</item>
+		<item name="android:windowIsTranslucent">true</item>
+		<item name="android:windowAnimationStyle">@android:style/Animation</item>
 	</style>
 
 	<style name="default_theme_dialog" parent="Theme.AppCompat.Light.Dialog">
