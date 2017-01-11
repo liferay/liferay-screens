@@ -16,6 +16,7 @@ import UIKit
 
 @objc public protocol DDLListViewModel {
 
+	/// Gets all the labels of the different fields of the form.
 	var labelFields: [String] { get set }
 
 }

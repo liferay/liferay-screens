@@ -16,6 +16,7 @@ import UIKit
 
 @objc public protocol ForgotPasswordViewModel: BasicAuthBasedType {
 
+	/// Login username: can be email address, userId or screen name.
 	var userName: String? { get set }
 
 }

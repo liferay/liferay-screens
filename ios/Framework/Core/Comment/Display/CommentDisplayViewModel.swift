@@ -16,7 +16,9 @@ import UIKit
 
 @objc public protocol CommentDisplayViewModel {
 
+	/// Comment entry to be displayed.
 	var comment: Comment? { get set }
 
+	/// Call this method to edit the comment entry.
 	func editComment()
 }

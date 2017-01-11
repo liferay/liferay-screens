@@ -16,8 +16,19 @@ import UIKit
 
 @objc public protocol CommentListViewModel {
 
+	/// Call this method to add a new asset comment.
+	///
+	/// - Parameter comment: asset's comment.
 	func addComment(comment: Comment)
+
+	/// Call this method to delete an asset comment.
+	///
+	/// - Parameter comment: asset's comment.
 	func deleteComment(comment: Comment)
+
+	/// Call this method to update an asset comment.
+	///
+	/// - Parameter comment: asset's comment.
 	func updateComment(comment: Comment)
 
 }

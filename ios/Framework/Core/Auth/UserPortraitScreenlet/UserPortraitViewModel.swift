@@ -16,9 +16,13 @@ import UIKit
 
 @objc public protocol UserPortraitViewModel {
 
-	var image: UIImage? {get set}
+	/// User portrait image to be displayed.
+	var image: UIImage? { get set }
 
-	var borderWidth: CGFloat {get set}
-	var borderColor: UIColor? {get set}
+	/// Custom border width for the user portrait.
+	var borderWidth: CGFloat { get set }
+
+	/// Custom border color for the user portrait.
+	var borderColor: UIColor? { get set }
 
 }

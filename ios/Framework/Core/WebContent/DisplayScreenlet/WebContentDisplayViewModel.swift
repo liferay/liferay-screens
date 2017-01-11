@@ -16,8 +16,10 @@ import UIKit
 
 @objc public protocol WebContentDisplayViewModel {
 
+	/// WebContent html to be displayed.
 	var htmlContent: String? { get set }
 
+	/// DDLRecord receive to be displayed.
 	var recordContent: DDLRecord? { get set }
 
 }

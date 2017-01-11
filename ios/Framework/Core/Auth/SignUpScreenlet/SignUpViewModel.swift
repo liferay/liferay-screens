@@ -16,14 +16,28 @@ import UIKit
 
 @objc public protocol SignUpViewModel {
 
+	/// User email address.
 	var emailAddress: String? { get set }
+
+	// User screen name.
 	var screenName: String? { get set }
+
+	/// User password.
 	var password: String? { get set }
+
+	/// User first name.
 	var firstName: String? { get set }
+
+	/// User middle name.
 	var middleName: String? { get set }
+
+	/// User last name.
 	var lastName: String? { get set }
+
+	/// User job title.
 	var jobTitle: String? { get set }
 
+	/// Edit current session user.
 	var editCurrentUser: Bool { get set }
 
 }
