@@ -19,8 +19,7 @@ public class GetUserAdapter extends BaseAdapter {
 	};
 
 	public GetUserAdapter(Map<String, Object> map) {
-		jsonValues = new ArrayList();
-		jsonValues.addAll(map.entrySet());
+		jsonValues = new ArrayList(map.entrySet());
 	}
 
 	@Override
