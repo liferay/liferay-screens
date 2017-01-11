@@ -1,9 +1,11 @@
 package com.liferay.mobile.screens.user.view;
 
 import android.content.Context;
+import android.os.Build;
+import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import com.liferay.mobile.screens.base.BaseScreenlet;
@@ -20,12 +22,17 @@ public class GetUserView extends LinearLayout implements GetUserViewModel, View.
 		super(context);
 	}
 
-	public GetUserView(Context context, AttributeSet attrs) {
+	public GetUserView(Context context, @Nullable AttributeSet attrs) {
 		super(context, attrs);
 	}
 
-	public GetUserView(Context context, AttributeSet attrs, int defStyleAttr) {
+	public GetUserView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
+	}
+
+	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+	public GetUserView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override
@@ -47,14 +54,13 @@ public class GetUserView extends LinearLayout implements GetUserViewModel, View.
 
 		textValue = (EditText) findViewById(R.id.textValue);
 
-		Button getUserButton = (Button) findViewById(R.id.getUserButton);
+		View getUserButton = findViewById(R.id.getUserButton);
 		getUserButton.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v) {
 		GetUserScreenlet screenlet = (GetUserScreenlet) getParent();
-
 		screenlet.performUserAction();
 	}
 
