@@ -12,18 +12,19 @@ import org.json.JSONObject;
 
 public class GetUserInteractor extends BaseRemoteInteractor<GetUserListener, BasicEvent> {
 
-	private String textValue;
-	private String getUserByAttribute;
-
 	@Override
 	public BasicEvent execute(Object... args) throws Exception {
-		textValue = (String) args[0];
-		getUserByAttribute = (String) args[1];
+		String textValue = (String) args[0];
+		String getUserBy = (String) args[1];
 
-		validate();
+		if (null == textValue || textValue.isEmpty()) {
+			throw new IllegalArgumentException("Text value cannot be empty");
+		}
+		if (null == getUserBy || getUserBy.isEmpty()) {
+			getUserBy = "emailAddress";
+		}
 
-		JSONObject jsonObject = getJSONObject();
-		return new BasicEvent(jsonObject);
+		return new BasicEvent(getJSONObject(textValue, getUserBy));
 	}
 
 	@Override
@@ -36,19 +37,9 @@ public class GetUserInteractor extends BaseRemoteInteractor<GetUserListener, Bas
 		getListener().onGetUserFailure(event.getException());
 	}
 
-	private void validate() {
-		if (null == textValue || textValue.isEmpty()) {
-			throw new IllegalArgumentException("Text value cannot be empty");
-		}
-		if (null == getUserByAttribute || getUserByAttribute.isEmpty()) {
-			getUserByAttribute = "emailAddress";
-		}
-	}
-
 	@NonNull
-	private JSONObject getJSONObject() throws Exception {
+	private JSONObject getJSONObject(String textValue, String getUserByAttribute) throws Exception {
 		long companyId = LiferayServerContext.getCompanyId();
-
 		UserConnector connector = getUserConnector();
 
 		switch (getUserByAttribute) {
@@ -62,7 +53,7 @@ public class GetUserInteractor extends BaseRemoteInteractor<GetUserListener, Bas
 		}
 	}
 
-	public UserConnector getUserConnector() {
+	protected UserConnector getUserConnector() {
 		return ServiceProvider.getInstance().getUserConnector(getSession());
 	}
 }
