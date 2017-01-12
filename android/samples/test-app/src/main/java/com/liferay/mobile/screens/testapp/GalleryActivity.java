@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.testapp;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -87,9 +88,9 @@ public class GalleryActivity extends ThemeActivity implements ImageGalleryListen
 	}
 
 	@Override
-	public void onImageUploadStarted(String picturePath, String title, String description, String changelog) {
+	public void onImageUploadStarted(Uri pictureUri, String title, String description, String changelog) {
 		LiferayLogger.i("Image upload started: "
-			+ picturePath
+			+ pictureUri
 			+ " title: "
 			+ title
 			+ " description: "
@@ -109,7 +110,7 @@ public class GalleryActivity extends ThemeActivity implements ImageGalleryListen
 	}
 
 	@Override
-	public boolean showUploadImageView(String actionName, String picturePath, int screenletId) {
+	public boolean showUploadImageView(String actionName, Uri pictureUri, int screenletId) {
 		return false;
 	}
 

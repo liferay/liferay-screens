@@ -1,17 +1,19 @@
 package com.liferay.mobile.screens.base;
 
+import android.net.Uri;
+
 /**
  * @author Víctor Galán Grande
  */
 public class MediaStoreEvent {
 
-	private final String filePath;
+	private final Uri fileUri;
 
-	public MediaStoreEvent(String filePath) {
-		this.filePath = filePath;
+	public MediaStoreEvent(Uri fileUri) {
+		this.fileUri = fileUri;
 	}
 
-	public String getFilePath() {
-		return filePath;
+	public Uri getFileUri() {
+		return fileUri;
 	}
 }

@@ -21,7 +21,7 @@ public class MediaStoreRequestShadowActivity extends AppCompatActivity {
 
 	public static final String MEDIA_STORE_TYPE = "MEDIA_STORE_TYPE";
 	private int mediaStoreType;
-	private String filePath;
+	private Uri fileUri;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,18 +44,8 @@ public class MediaStoreRequestShadowActivity extends AppCompatActivity {
 	}
 
 	private void sendEvent(Intent intentData) {
-
-		String path = "";
-
-		if (mediaStoreType == SELECT_IMAGE_FROM_GALLERY) {
-			path = FileUtil.getPath(this, intentData.getData());
-		} else if (mediaStoreType == TAKE_PICTURE_WITH_CAMERA) {
-			path = filePath;
-		}
-
-		MediaStoreEvent event = new MediaStoreEvent(path);
-
-		EventBusUtil.post(event);
+		Uri uri = mediaStoreType == SELECT_IMAGE_FROM_GALLERY ? intentData.getData() : fileUri;
+		EventBusUtil.post(new MediaStoreEvent(uri));
 	}
 
 	private void sendIntent() {
@@ -76,9 +66,8 @@ public class MediaStoreRequestShadowActivity extends AppCompatActivity {
 
 		if (cameraIntent.resolveActivity(getPackageManager()) != null) {
 			File imageFile = FileUtil.createImageFile();
-			Uri photoURI = FileProvider.getUriForFile(this, getPackageName() + ".screensfileprovider", imageFile);
-			filePath = photoURI.getPath();
-			cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+			fileUri = FileProvider.getUriForFile(this, getPackageName() + ".screensfileprovider", imageFile);
+			cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
 			startActivityForResult(cameraIntent, mediaStoreType);
 		}
 	}

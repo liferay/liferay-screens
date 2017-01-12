@@ -29,6 +29,7 @@ dependencies {
 
 	compile libraries.appCompat
 	compile libraries.design
+	compile libraries.exif
 	compile libraries.recyclerView
 	compile libraries.sdk
 	compile(libraries.push) {

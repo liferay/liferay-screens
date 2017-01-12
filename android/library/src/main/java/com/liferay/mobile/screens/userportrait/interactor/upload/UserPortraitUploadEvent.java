@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.userportrait.interactor.upload;
 
+import android.net.Uri;
 import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
 import org.json.JSONObject;
 
@@ -8,31 +9,31 @@ import org.json.JSONObject;
  */
 public class UserPortraitUploadEvent extends CacheEvent {
 
-	private String picturePath;
+	private String uriPath;
 
 	public UserPortraitUploadEvent() {
 		super();
 	}
 
-	public UserPortraitUploadEvent(String picturePath) {
-		this(picturePath, new JSONObject());
+	public UserPortraitUploadEvent(Uri uriPath) {
+		this(uriPath, new JSONObject());
 	}
 
-	public UserPortraitUploadEvent(String picturePath, JSONObject jsonObject) {
+	public UserPortraitUploadEvent(Uri uriPath, JSONObject jsonObject) {
 		super(jsonObject);
 
-		this.picturePath = picturePath;
+		this.uriPath = uriPath.toString();
 	}
 
 	public UserPortraitUploadEvent(Exception exception) {
 		super(exception);
 	}
 
-	public String getPicturePath() {
-		return picturePath;
+	public Uri getUriPath() {
+		return Uri.parse(uriPath);
 	}
 
-	public void setPicturePath(String picturePath) {
-		this.picturePath = picturePath;
+	public void setUriPath(Uri uriPath) {
+		this.uriPath = uriPath.toString();
 	}
 }

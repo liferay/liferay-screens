@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.imagegallery.view;
 
+import android.net.Uri;
 import com.liferay.mobile.screens.base.list.view.BaseListViewModel;
 import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
 
@@ -35,9 +36,9 @@ public interface ImageGalleryViewModel extends BaseListViewModel<ImageEntry> {
 	/**
 	 * Called when an {@link ImageEntry} is prepared for upload.
 	 *
-	 * @param picturePath
+	 * @param pictureUri
 	 */
-	void imageUploadStart(String picturePath);
+	void imageUploadStart(Uri pictureUri);
 
 	/**
 	 * Retrieves constantly the progress until the picture is successfully uploaded.
