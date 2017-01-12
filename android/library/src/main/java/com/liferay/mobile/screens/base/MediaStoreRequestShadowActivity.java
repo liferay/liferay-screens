@@ -14,7 +14,7 @@ import java.io.File;
 /**
  * @author Víctor Galán Grande
  */
-public class MediaStoreRequestShadowActivity extends AppCompatActivity {
+public class MediaStoreRequestShadowActivity extends Activity {
 
 	public static final int SELECT_IMAGE_FROM_GALLERY = 0;
 	public static final int TAKE_PICTURE_WITH_CAMERA = 1;
