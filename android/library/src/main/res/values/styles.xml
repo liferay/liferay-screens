@@ -120,7 +120,7 @@
 	<style name="default_transparent_theme" parent="Theme.AppCompat.Light.NoActionBar">
 		<item name="android:windowIsFloating">true</item>
 
-		<item name="android:background">#33000000</item>
+		<item name="android:background">@android:color/transparent</item>
 		<item name="android:windowNoTitle">true</item>
 		<item name="android:windowBackground">@android:color/transparent</item>
 		<item name="android:colorBackgroundCacheHint">@null</item>
