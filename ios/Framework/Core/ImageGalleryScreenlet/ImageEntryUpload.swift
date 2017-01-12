@@ -29,7 +29,7 @@ import Foundation
 	}
 
 
-	// MARK: NSCoding
+	//MARK: NSCoding
 	
 	public required init?(coder aDecoder: NSCoder) {
 		image = (aDecoder.decodeObjectForKey("image") as? UIImage)!

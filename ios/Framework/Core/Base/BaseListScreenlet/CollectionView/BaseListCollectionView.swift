@@ -37,7 +37,7 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 		]
 	}
 
-	// MARK: BaseListView
+	//MARK: BaseListView
 	
 	public override func onCreated() {
 		super.onCreated()

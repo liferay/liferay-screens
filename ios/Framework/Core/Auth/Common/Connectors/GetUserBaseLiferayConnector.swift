@@ -118,7 +118,7 @@ public class GetUserBaseLiferayConnector: ServerConnector {
 	}
 
 
-	// MARK: Template methods
+	//MARK: Template methods
 
 	public func sendGetUserRequest(session: LRSession)
 			throws -> NSDictionary {

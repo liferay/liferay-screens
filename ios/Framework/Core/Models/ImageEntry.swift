@@ -71,7 +71,7 @@ public class ImageEntry : Asset {
 }
 
 
-// MARK: Equatable
+//MARK: Equatable
 
 public func ==(lhs: ImageEntry, rhs: ImageEntry) -> Bool {
 	return lhs.imageEntryId == rhs.imageEntryId

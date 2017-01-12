@@ -37,7 +37,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	}
 	
 	
-	// MARK: BaseListView
+	//MARK: BaseListView
 	
 	public override func onCreated() {
 		super.onCreated()

@@ -152,7 +152,7 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 	}
 
 
-	// MARK: Public methods
+	//MARK: Public methods
 
 	/// Cancels all the uploads to the image gallery.
 	public func cancelUploads() {
@@ -239,7 +239,7 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 	}
 
 
-	// MARK: BaseScreenlet
+	//MARK: BaseScreenlet
 
 	override public func onCreated() {
 		super.onCreated()
@@ -296,7 +296,7 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 	}
 
 
-	// MARK: BaseListScreenlet
+	//MARK: BaseListScreenlet
 
 	override public  func onLoadPageError(page page: Int, error: NSError) {
 		super.onLoadPageError(page: page, error: error)
@@ -334,7 +334,7 @@ public class ImageGalleryScreenlet : BaseListScreenlet {
 	}
 
 
-	// MARK: Internal methods
+	//MARK: Internal methods
 
 	internal func createImageGalleryDeleteInteractor(
 			imageEntry: ImageEntry) -> ImageGalleryDeleteInteractor? {

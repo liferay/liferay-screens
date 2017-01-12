@@ -21,7 +21,7 @@ import Foundation
 	public let title: String
 
 
-	// MARK: MimeTypeable
+	//MARK: MimeTypeable
 
 	public var mimeType: String? {
 		return attributes["mimeType"]?.description
