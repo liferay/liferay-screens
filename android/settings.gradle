@@ -28,3 +28,5 @@ project(':pushnotifications').projectDir = new File(settingsDir, '/samples/pushn
 include ':westerosemployees'
 project(':westerosemployees').projectDir = new File(settingsDir, '/samples/westerosemployees')
 
+include ':getuserscreenlet'
+project(':getuserscreenlet').projectDir = new File(settingsDir, '/samples/getuserscreenlet')

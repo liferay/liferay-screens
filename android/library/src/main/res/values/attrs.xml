@@ -281,4 +281,5 @@
 		<attr name="className"/>
 		<attr name="classPK"/>
 	</declare-styleable>
+
 </resources>

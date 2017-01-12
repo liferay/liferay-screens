@@ -35,6 +35,8 @@
 	<string name="cancel_button">cancel button</string>
 	<string name="screenlet_rating_button_tag">screenlet_rating_button_tag</string>
 	<string name="screenlet_rating_label_tag">screenlet_rating_label_tag</string>
+	<string name="textViewValue">Enter a value</string>
+	<string name="getUserButton">Get User</string>
 
 	<string-array name="image_mime_types">
 		<item>image/png</item>

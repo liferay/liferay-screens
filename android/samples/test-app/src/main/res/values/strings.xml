@@ -8,6 +8,7 @@
 	<string name="webview_structured">WebContent with DDMStructure</string>
 	<string name="webview_list">WebContent List</string>
 	<string name="asset_list">Asset List</string>
+	<string name="get_user">Get User</string>
 	<string name="user_display">User Display</string>
 	<string name="image_display">Image Display</string>
 	<string name="ddl_form">DDL Form</string>
@@ -17,6 +18,7 @@
 	<string name="sync_cache">Sync Cache</string>
 	<string name="change_theme">Change Theme</string>
 	<string name="image_gallery">Image Gallery</string>
+	<string name="getuser_label">Get User Screenlet: Shows the user info given its userId, screenName or emailAddress.</string>
 	<string name="webview_label">Web Content Display Screenlet: Shows the HTML of a web content given its articleId.</string>
 	<string name="ratings_label">Ratings Screenlet: Shows the ratings for one asset entry given its id and allows to establish new ones.</string>
 	<string name="webview_structured_label">Web Content Display Screenlet with Structure: Shows the content of same fields based on a DDMStructure.</string>

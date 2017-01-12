@@ -36,6 +36,11 @@ public class User extends AssetEntry {
 	public static final String SCREEN_NAME = "screenName";
 	public static final String GREETING = "greeting";
 	public static final String JOB_TITLE = "jobTitle";
+	public static final String LANGUAGE_ID = "languageId";
+	public static final String EMAIL_ADDRESS_VERIFIED = "emailAddressVerified";
+	public static final String LOCKOUT = "lockout";
+	public static final String AGREED_TERMS_USE = "agreedToTermsOfUse";
+	private JSONObject jsonObject;
 
 	public User(JSONObject jsonObject) {
 		this.values = new HashMap<>();
