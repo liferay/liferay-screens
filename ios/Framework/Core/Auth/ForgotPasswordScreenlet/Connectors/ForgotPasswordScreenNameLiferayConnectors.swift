@@ -17,6 +17,9 @@ import LRMobileSDK
 
 public class ForgotPasswordScreenNameLiferay62Connector: ForgotPasswordBaseLiferayConnector {
 
+
+	//MARK: ForgotPasswordBaseLiferayConnector
+
 	override public func sendForgotPasswordRequest(session: LRSession) throws -> Bool {
 
 		let service = LRScreensuserService_v62(session: session)
@@ -31,6 +34,9 @@ public class ForgotPasswordScreenNameLiferay62Connector: ForgotPasswordBaseLifer
 
 
 public class ForgotPasswordScreenNameLiferay70Connector: ForgotPasswordBaseLiferayConnector {
+
+
+	//MARK: ForgotPasswordBaseLiferayConnector
 
 	override public func sendForgotPasswordRequest(session: LRSession) throws -> Bool {
 

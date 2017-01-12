@@ -101,6 +101,9 @@ public class AssetListPageLiferayConnector: PaginationLiferayConnector {
 		doGetRowCount(session: session, entryQuery: entryQueryWrapper)
 	}
 
+
+	//MARK: Public methods
+
 	public func doGetEntries(session: LRSession, rowCount: Int32) throws -> [[String:AnyObject]]? {
 		return nil
 	}
@@ -157,6 +160,9 @@ public class AssetListPageLiferayConnector: PaginationLiferayConnector {
 
 public class Liferay62AssetListPageConnector: AssetListPageLiferayConnector {
 
+
+	//MARK: AssetListPageLiferayConnector
+
 	override public func doGetEntries(session: LRSession, rowCount: Int32) throws -> [[String:AnyObject]]? {
 		let service = LRScreensassetentryService_v62(session: session)
 
@@ -192,6 +198,9 @@ public class Liferay62AssetListPageConnector: AssetListPageLiferayConnector {
 
 public class Liferay70AssetListPageConnector: AssetListPageLiferayConnector {
 
+
+	//MARK: AssetListPageLiferayConnector
+	
 	override public func doGetEntries(session: LRSession, rowCount: Int32) throws -> [[String:AnyObject]]? {
 		let service = LRScreensassetentryService_v70(session: session)
 

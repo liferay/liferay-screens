@@ -26,6 +26,8 @@ public class ForgotPasswordBaseLiferayConnector: ServerConnector {
 	private let anonymousPassword: String
 
 
+	//MARK: Initializers
+
 	public init(viewModel: ForgotPasswordViewModel, anonymousUsername: String, anonymousPassword: String) {
 		self.viewModel = viewModel
 		self.anonymousUsername = anonymousUsername

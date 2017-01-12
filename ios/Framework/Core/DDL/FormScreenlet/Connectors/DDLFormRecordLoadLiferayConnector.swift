@@ -23,6 +23,8 @@ public class DDLFormRecordLoadLiferayConnector: ServerConnector {
 	public var resultRecordId: Int64?
 
 
+	//MARK: Initializers
+
 	public init(recordId: Int64) {
 		self.recordId = recordId
 
@@ -66,6 +68,9 @@ public class DDLFormRecordLoadLiferayConnector: ServerConnector {
 		}
 	}
 
+
+	//MARK: Public methods
+
 	public func getRecord(session: LRSession, recordId: Int64, locale: String) throws -> [NSObject:AnyObject] {
 		return [:]
 	}
@@ -74,6 +79,9 @@ public class DDLFormRecordLoadLiferayConnector: ServerConnector {
 
 
 public class Liferay62DDLFormRecordLoadConnector: DDLFormRecordLoadLiferayConnector {
+
+
+	//MARK: DDLFormRecordLoadLiferayConnector
 
 	override public func getRecord(session: LRSession, recordId: Int64, locale: String) throws -> [NSObject:AnyObject] {
 		let service = LRScreensddlrecordService_v62(session: session)
@@ -87,6 +95,9 @@ public class Liferay62DDLFormRecordLoadConnector: DDLFormRecordLoadLiferayConnec
 
 public class Liferay70DDLFormRecordLoadConnector: DDLFormRecordLoadLiferayConnector {
 
+
+	//MARK: DDLFormRecordLoadLiferayConnector
+	
 	override public func getRecord(session: LRSession, recordId: Int64, locale: String) throws -> [NSObject:AnyObject] {
 		let service = LRScreensddlrecordService_v70(session: session)
 

@@ -23,6 +23,9 @@ public class ImageGalleryUploadConnector : UploadFileConnector<String> {
 	private let descrip: String
 	private let changeLog: String
 
+
+	//MARK: Initializers
+
 	public init(repositoryId: Int64,
 			folderId: Int64,
 			sourceFileName: String,
@@ -48,7 +51,10 @@ public class ImageGalleryUploadConnector : UploadFileConnector<String> {
 			onUploadedBytes: onUploadBytes)
 	}
 
-	public override func validateData() -> ValidationError? {
+
+	//MARK: ServerConnector
+
+	override public func validateData() -> ValidationError? {
 		var error = super.validateData()
 
 		if error == nil {
@@ -63,7 +69,10 @@ public class ImageGalleryUploadConnector : UploadFileConnector<String> {
 		return error
 	}
 
-	public override func doSendFile(session: LRSession, data: LRUploadData) throws {
+
+	//MARK: UploadFileConnector
+
+	override public func doSendFile(session: LRSession, data: LRUploadData) throws {
 		let service = LRDLAppService_v7(session: session)
 
 		let serviceContext = LRJSONObjectWrapper(JSONObject: ["addGuestPermissions":true])

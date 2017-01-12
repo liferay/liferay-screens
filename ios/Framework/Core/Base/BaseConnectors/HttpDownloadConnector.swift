@@ -17,7 +17,11 @@ import UIKit
 public class HttpDownloadConnector: ServerConnector {
 
 	public var url: NSURL
+
 	public var resultUrl: NSURL?
+
+
+	//MARK: Initializers
 
 	public init(url: NSURL) {
 		self.url = url
@@ -70,6 +74,8 @@ public class HttpDownloadConnector: ServerConnector {
 		return LRSession(server: "http://\(url.host!)\(port)")
 	}
 
+
+	//MARK: Private methods
 
 	private func moveTmpToCache(localPath: String, fileExtension: String) throws -> NSURL {
 

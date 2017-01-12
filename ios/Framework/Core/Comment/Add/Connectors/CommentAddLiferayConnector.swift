@@ -21,12 +21,18 @@ public class CommentAddLiferayConnector: ServerConnector {
 
 	public var resultComment: Comment?
 
+
+	//MARK: Initializers
+
 	public init(className: String, classPK: Int64, body: String) {
 		self.className = className
 		self.classPK = classPK
 		self.body = body
 		super.init()
 	}
+
+
+	//MARK: ServerConnector
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -52,6 +58,9 @@ public class CommentAddLiferayConnector: ServerConnector {
 }
 
 public class Liferay70CommentAddConnector: CommentAddLiferayConnector {
+
+	
+	//MARK: ServerConnector
 
 	override public func doRun(session session: LRSession) {
 		let service = LRScreenscommentService_v70(session: session)

@@ -16,12 +16,18 @@ import UIKit
 
 public class LoginByScreenNameLiferay62Connector: GetUserByScreenNameLiferay62Connector {
 
+
+	//MARK: Initializers
+
 	public init(companyId: Int64, screenName: String, password: String) {
 		super.init(companyId: companyId, screenName: screenName)
 
 		self.userName = screenName
 		self.password = password
 	}
+
+
+	//MARK: ServerConnector
 
 	override public func postRun() {
 		if lastError == nil {
@@ -39,12 +45,18 @@ public class LoginByScreenNameLiferay62Connector: GetUserByScreenNameLiferay62Co
 
 public class LoginByScreenNameLiferay70Connector: GetUserByScreenNameLiferay70Connector {
 
+
+	//MARK: Initializers
+
 	public init(companyId: Int64, screenName: String, password: String) {
 		super.init(companyId: companyId, screenName: screenName)
 
 		self.userName = screenName
 		self.password = password
 	}
+
+
+	//MARK: ServerConnector
 
 	override public func postRun() {
 		if lastError == nil {

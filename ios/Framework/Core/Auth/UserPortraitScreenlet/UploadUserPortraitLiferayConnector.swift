@@ -26,6 +26,8 @@ public class UploadUserPortraitLiferayConnector: ServerConnector {
 	private var fileTooLarge = false
 
 
+	//MARK: Initializers
+
 	public init(userId: Int64, image: UIImage) {
 		self.userId = userId
 		self.image = image
@@ -80,6 +82,9 @@ public class UploadUserPortraitLiferayConnector: ServerConnector {
 		return nil
 	}
 
+
+	//MARK: Public methods
+
 	public func uploadBytes(imageBytes: NSData, withSession session: LRSession) {
 	}
 
@@ -87,6 +92,9 @@ public class UploadUserPortraitLiferayConnector: ServerConnector {
 
 
 public class Liferay62UploadUserPortraitConnector: UploadUserPortraitLiferayConnector {
+
+
+	//MARK: UploadUserPortraitLiferayConnector
 
 	override public func uploadBytes(imageBytes: NSData, withSession session: LRSession) {
 		let service = LRUserService_v62(session: session)
@@ -112,6 +120,9 @@ public class Liferay62UploadUserPortraitConnector: UploadUserPortraitLiferayConn
 }
 
 public class Liferay70UploadUserPortraitConnector: UploadUserPortraitLiferayConnector {
+
+
+	//MARK: UploadUserPortraitLiferayConnector
 
 	override public func uploadBytes(imageBytes: NSData, withSession session: LRSession) {
 		let service = LRUserService_v7(session: session)

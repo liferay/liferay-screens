@@ -17,6 +17,9 @@ import LRMobileSDK
 
 public class ForgotPasswordEmailLiferay62Connector: ForgotPasswordBaseLiferayConnector {
 
+
+	//MARK: ForgotPasswordBaseLiferayConnector
+	
 	override public func sendForgotPasswordRequest(session: LRSession) throws -> Bool {
 
 		let companyId = (self.companyId != 0) ? self.companyId : LiferayServerContext.companyId
@@ -36,6 +39,9 @@ public class ForgotPasswordEmailLiferay62Connector: ForgotPasswordBaseLiferayCon
 
 
 public class ForgotPasswordEmailLiferay70Connector: ForgotPasswordBaseLiferayConnector {
+
+
+	//MARK: ForgotPasswordBaseLiferayConnector
 
 	override public func sendForgotPasswordRequest(session: LRSession) throws -> Bool {
 

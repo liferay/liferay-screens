@@ -17,10 +17,16 @@ public class CommentDeleteLiferayConnector: ServerConnector {
 
 	public let commentId: Int64
 
+
+	//MARK: Initializers
+
 	public init(commentId: Int64) {
 		self.commentId = commentId
 		super.init()
 	}
+
+
+	//MARK: ServerConnector
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -38,6 +44,9 @@ public class CommentDeleteLiferayConnector: ServerConnector {
 
 public class Liferay70CommentDeleteConnector: CommentDeleteLiferayConnector {
 
+
+	//MARK: ServerConnector
+	
 	override public func doRun(session session: LRSession) {
 		let service = LRCommentmanagerjsonwsService_v7(session: session)
 

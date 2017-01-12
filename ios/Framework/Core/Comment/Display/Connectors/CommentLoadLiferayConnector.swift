@@ -19,10 +19,16 @@ public class CommentLoadLiferayConnector: ServerConnector {
 
 	public var resultComment: Comment?
 
+
+	//MARK: Initializers
+
 	public init(commentId: Int64) {
 		self.commentId = commentId
 		super.init()
 	}
+
+
+	//MARK: ServerConnector
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -39,6 +45,9 @@ public class CommentLoadLiferayConnector: ServerConnector {
 
 public class Liferay70CommentLoadConnector: CommentLoadLiferayConnector {
 
+
+	//MARK: ServerConnector
+	
 	override public func doRun(session session: LRSession) {
 		resultComment = nil
 

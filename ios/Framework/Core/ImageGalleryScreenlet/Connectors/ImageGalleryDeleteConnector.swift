@@ -18,10 +18,16 @@ public class ImageGalleryDeleteConnector : ServerConnector {
 
 	private let imageEntryId: Int64
 
+
+	//MARK: Initializers
+
 	public init(imageEntryId: Int64) {
 		self.imageEntryId = imageEntryId
 		super.init()
 	}
+
+
+	//MARK: ServerConnector
 
 	public override func validateData() -> ValidationError? {
 		let error = super.validateData()

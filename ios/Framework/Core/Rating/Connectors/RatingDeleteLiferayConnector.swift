@@ -22,6 +22,9 @@ public class RatingDeleteLiferayConnector: ServerConnector {
 
 	var resultRating: RatingEntry?
 
+
+	//MARK: Initializers
+
 	public init(classPK: Int64, className: String, ratingsGroupCount: Int32) {
 		self.ratingsGroupCount = ratingsGroupCount
 		self.className = className
@@ -29,7 +32,9 @@ public class RatingDeleteLiferayConnector: ServerConnector {
 		super.init()
 	}
 
-	public override func validateData() -> ValidationError? {
+	//MARK: ServerConnector
+
+	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -51,6 +56,9 @@ public class RatingDeleteLiferayConnector: ServerConnector {
 
 public class Liferay70RatingDeleteConnector: RatingDeleteLiferayConnector {
 
+
+	//MARK: ServerConnector
+	
 	override public func doRun(session session: LRSession) {
 		let service = LRScreensratingsentryService_v70(session: session)
 

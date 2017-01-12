@@ -14,11 +14,14 @@
 import UIKit
 
 
-
 public class HttpConnector: ServerConnector {
 
 	public var url: NSURL
+
 	public var resultData: NSData?
+
+
+	//MARK: Initializers
 
 	public init(url: NSURL) {
 		self.url = url

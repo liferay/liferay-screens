@@ -17,6 +17,9 @@ import LRMobileSDK
 
 public class ForgotPasswordUserIdLiferay62Connector: ForgotPasswordBaseLiferayConnector {
 
+
+	//MARK: ForgotPasswordBaseLiferayConnector
+
 	override public func sendForgotPasswordRequest(session: LRSession) throws -> Bool {
 
 		let userId = viewModel.userName!.asNumber!.longLongValue
@@ -34,6 +37,9 @@ public class ForgotPasswordUserIdLiferay62Connector: ForgotPasswordBaseLiferayCo
 
 
 public class ForgotPasswordUserIdLiferay70Connector: ForgotPasswordBaseLiferayConnector {
+
+
+	//MARK: ForgotPasswordBaseLiferayConnector
 
 	override public func sendForgotPasswordRequest(session: LRSession) throws -> Bool {
 

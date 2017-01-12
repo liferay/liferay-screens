@@ -33,6 +33,9 @@ public class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFileP
 
 	private var bytesToSend: Int64 = 0
 
+
+	//MARK: Initializers
+
 	public init(
 			document: DDMFieldDocument,
 			filePrefix: String,
@@ -130,6 +133,9 @@ public class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFileP
 
 public class Liferay62DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 
+
+	//MARK: DDLFormUploadLiferayConnector
+
 	override public func doSendFile(session: LRSession, name: String, data: LRUploadData) throws {
 		let service = LRDLAppService_v62(session: session)
 
@@ -148,6 +154,9 @@ public class Liferay62DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 
 
 public class Liferay70DDLFormUploadConnector: DDLFormUploadLiferayConnector {
+
+
+	//MARK: DDLFormUploadLiferayConnector
 
 	override public func doSendFile(session: LRSession, name: String, data: LRUploadData) throws {
 		let service = LRDLAppService_v7(session: session)

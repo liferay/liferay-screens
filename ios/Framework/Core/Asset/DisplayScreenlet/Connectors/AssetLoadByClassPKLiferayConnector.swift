@@ -21,6 +21,9 @@ public class AssetLoadByClassPKLiferayConnector: ServerConnector, LoadAssetConne
 
 	public var resultAsset: Asset?
 
+
+	//MARK: Initializers
+
 	public init(className: String, classPK: Int64) {
 		self.className = className
 		self.classPK = classPK
@@ -47,6 +50,9 @@ public class AssetLoadByClassPKLiferayConnector: ServerConnector, LoadAssetConne
 }
 
 public class Liferay70AssetLoadByClassPKConnector: AssetLoadByClassPKLiferayConnector {
+
+
+	//MARK: ServerConnector
 
 	override public func doRun(session session: LRSession) {
 		resultAsset = nil

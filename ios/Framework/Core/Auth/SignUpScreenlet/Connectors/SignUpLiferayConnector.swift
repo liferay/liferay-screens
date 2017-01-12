@@ -26,6 +26,8 @@ public class SignUpLiferayConnector: ServerConnector {
 	public let anonymousPassword: String
 
 
+	//MARK: Initializers
+
 	public init(viewModel: SignUpViewModel, anonymousUsername: String, anonymousPassword: String) {
 		self.viewModel = viewModel
 		self.anonymousUsername = anonymousUsername
@@ -56,6 +58,9 @@ public class SignUpLiferayConnector: ServerConnector {
 }
 
 public class Liferay62SignUpConnector: SignUpLiferayConnector {
+
+
+	//MARK: ServerConnector
 
 	override public func doRun(session session: LRSession) {
 		let result: [NSObject:AnyObject]?
@@ -122,6 +127,9 @@ public class Liferay62SignUpConnector: SignUpLiferayConnector {
 
 public class Liferay70SignUpConnector: SignUpLiferayConnector {
 
+
+	//MARK: ServerConnector
+	
 	override public func doRun(session session: LRSession) {
 		let result: [NSObject:AnyObject]?
 		let service = LRUserService_v7(session: session)

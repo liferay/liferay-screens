@@ -22,12 +22,16 @@ public class DDLListPageLiferayConnector: PaginationLiferayConnector {
 	internal let viewModel: DDLListViewModel
 
 
+	//MARK: Initializers
+
 	public init(viewModel: DDLListViewModel, startRow: Int, endRow: Int, computeRowCount: Bool) {
 		self.viewModel = viewModel
 
 		super.init(startRow: startRow, endRow: endRow, computeRowCount: computeRowCount)
 	}
 
+
+	//MARK: ServerConnector
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -49,6 +53,9 @@ public class DDLListPageLiferayConnector: PaginationLiferayConnector {
 
 
 public class Liferay62DDLListPageConnector: DDLListPageLiferayConnector {
+
+
+	//MARK: PaginationLiferayConnector
 
 	override public func doAddPageRowsServiceCall(
 			session session: LRBatchSession,
@@ -99,6 +106,9 @@ public class Liferay62DDLListPageConnector: DDLListPageLiferayConnector {
 
 
 public class Liferay70DDLListPageConnector: DDLListPageLiferayConnector {
+
+
+	//MARK: PaginationLiferayConnector
 
 	override public func doAddPageRowsServiceCall(
 			session session: LRBatchSession,

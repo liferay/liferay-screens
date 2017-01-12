@@ -20,12 +20,18 @@ public class GetUserByEmailLiferayConnector: GetUserBaseLiferayConnector {
 	public let companyId: Int64
 	public let emailAddress: String
 
+
+	//MARK: Initializers
+
 	public init(companyId: Int64, emailAddress: String) {
 		self.companyId = companyId
 		self.emailAddress = emailAddress
 
 		super.init()
 	}
+
+
+	//MARK: ServerConnector
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -44,9 +50,15 @@ public class GetUserByEmailLiferayConnector: GetUserBaseLiferayConnector {
 
 public class GetUserByEmailLiferay62Connector: GetUserByEmailLiferayConnector {
 
+
+	//MARK: GetUserByEmailLiferayConnector
+
 	override public init(companyId: Int64, emailAddress: String) {
 		super.init(companyId: companyId, emailAddress: emailAddress)
 	}
+
+
+	//MARK: GetUserBaseLiferayConnector
 
 	override public func sendGetUserRequest(session: LRSession)
 		throws -> NSDictionary {
@@ -64,9 +76,15 @@ public class GetUserByEmailLiferay62Connector: GetUserByEmailLiferayConnector {
 
 public class GetUserByEmailLiferay70Connector: GetUserByEmailLiferayConnector {
 
+
+	//MARK: GetUserByEmailLiferayConnector
+
 	override public init(companyId: Int64, emailAddress: String) {
 		super.init(companyId: companyId, emailAddress: emailAddress)
 	}
+
+
+	//MARK: GetUserBaseLiferayConnector
 
 	override public func sendGetUserRequest(session: LRSession)
 		throws -> NSDictionary {

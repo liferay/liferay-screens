@@ -31,6 +31,8 @@ public class DDLFormSubmitLiferayConnector: ServerConnector {
 	private let viewModel: DDLFormViewModel?
 
 
+	//MARK: Initializers
+
 	public init(values: [String:AnyObject], viewModel: DDLFormViewModel?) {
 		self.values = values
 		self.viewModel = viewModel
@@ -67,6 +69,9 @@ public class DDLFormSubmitLiferayConnector: ServerConnector {
 
 
 public class Liferay62DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
+
+
+	//MARK: ServerConnector
 
 	override public func doRun(session session: LRSession) {
 		let service = LRDDLRecordService_v62(session: session)
@@ -117,6 +122,9 @@ public class Liferay62DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
 
 public class Liferay70DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
 
+
+	//MARK: ServerConnector
+	
 	override public func doRun(session session: LRSession) {
 		let service = LRDDLRecordService_v7(session: session)
 

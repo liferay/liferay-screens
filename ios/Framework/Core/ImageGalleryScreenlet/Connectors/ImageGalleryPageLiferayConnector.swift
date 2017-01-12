@@ -20,6 +20,9 @@ public class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
     private let folderId: Int64
 	private let mimeTypes: [String]
 
+
+	//MARK: Initializers
+
 	public init(
 			startRow: Int,
 			endRow:Int,
@@ -35,6 +38,9 @@ public class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
         super.init(startRow: startRow, endRow: endRow, computeRowCount: computeRowCount)
     }
 
+
+	//MARK: ServerConnector
+
 	public override func validateData() -> ValidationError? {
 		var error = super.validateData()
 
@@ -49,6 +55,9 @@ public class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
 
 		return error
 	}
+
+	
+	//MARK: PaginationLiferayConnector
     
     override public func doAddPageRowsServiceCall(
 			session session: LRBatchSession,

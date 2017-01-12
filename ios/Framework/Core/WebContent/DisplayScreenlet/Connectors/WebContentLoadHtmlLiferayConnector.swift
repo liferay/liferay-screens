@@ -57,6 +57,9 @@ public class WebContentLoadHtmlLiferayConnector: WebContentLoadBaseLiferayConnec
 		return error
 	}
 
+
+	//MARK: Internal methods
+
 	internal func replaceHTMLPlaceholders(html: String) -> String {
 		return html
 			.stringByReplacingOccurrencesOfString(
@@ -79,6 +82,9 @@ public class WebContentLoadHtmlLiferayConnector: WebContentLoadBaseLiferayConnec
 
 
 public class Liferay62WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConnector {
+
+
+	//MARK: WebContentLoadHtmlLiferayConnector
 
 	override internal func doGetJournalArticleWithTemplate(
 			templateId: Int64,
@@ -126,6 +132,9 @@ public class Liferay62WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConn
 
 
 public class Liferay70WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConnector {
+
+
+	//MARK: WebContentLoadHtmlLiferayConnector
 
 	override internal func doGetJournalArticleWithTemplate(
 			templateId: Int64,

@@ -20,6 +20,9 @@ public class WebContentLoadStructuredLiferayConnector: WebContentLoadBaseLiferay
 
 	public var resultRecord: DDLRecord?
 
+
+	//MARK: Initializers
+
 	public init(groupId: Int64, articleId: String, structureId: Int64) {
 		self.structureId = structureId
 
@@ -43,6 +46,9 @@ public class WebContentLoadStructuredLiferayConnector: WebContentLoadBaseLiferay
 		}
 	}
 
+
+	//MARK: Internal methods
+
 	internal func doGetJournalArticleStructure(session: LRSession) -> DDLRecord? {
 		fatalError("doGetJournalArticle method must be overwritten")
 	}
@@ -51,6 +57,9 @@ public class WebContentLoadStructuredLiferayConnector: WebContentLoadBaseLiferay
 
 
 public class Liferay62WebContentLoadStructuredConnector: WebContentLoadStructuredLiferayConnector {
+
+
+	//MARK: WebContentLoadStructuredLiferayConnector
 
 	override internal func doGetJournalArticleStructure(session: LRSession) -> DDLRecord? {
 		let batchSession = LRBatchSession(session: session)
@@ -110,6 +119,9 @@ public class Liferay62WebContentLoadStructuredConnector: WebContentLoadStructure
 
 
 public class Liferay70WebContentLoadStructuredConnector: WebContentLoadStructuredLiferayConnector {
+
+
+	//MARK: WebContentLoadStructuredLiferayConnector
 
 	override internal func doGetJournalArticleStructure(session: LRSession) -> DDLRecord? {
 		let batchSession = LRBatchSession(session: session)

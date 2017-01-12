@@ -20,6 +20,7 @@ public class GetUserBaseLiferayConnector: ServerConnector {
 	public var userName: String?
 	public var password: String?
 
+
 	//MARK: ServerConnector
 
 	override public func validateData() -> ValidationError? {
@@ -72,6 +73,9 @@ public class GetUserBaseLiferayConnector: ServerConnector {
 			resultUserAttributes = nil
 		}
 	}
+
+
+	//MARK: Internal methods
 
 	internal func loginWithResult() -> Bool {
 		guard let userAttributes = resultUserAttributes else {

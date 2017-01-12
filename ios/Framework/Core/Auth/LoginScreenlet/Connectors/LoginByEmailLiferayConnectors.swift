@@ -16,12 +16,18 @@ import UIKit
 
 public class LoginByEmailLiferay62Connector: GetUserByEmailLiferay62Connector {
 
+
+	//MARK: Initializers
+
 	public init(companyId: Int64, emailAddress: String, password: String) {
 		super.init(companyId: companyId, emailAddress: emailAddress)
 
 		self.userName = emailAddress
 		self.password = password
 	}
+
+
+	//MARK: ServerConnector
 
 	override public func postRun() {
 		if lastError == nil {
@@ -39,12 +45,18 @@ public class LoginByEmailLiferay62Connector: GetUserByEmailLiferay62Connector {
 
 public class LoginByEmailLiferay70Connector: GetUserByEmailLiferay70Connector {
 
+
+	//MARK: Initializers
+
 	public init(companyId: Int64, emailAddress: String, password: String) {
 		super.init(companyId: companyId, emailAddress: emailAddress)
 
 		self.userName = emailAddress
 		self.password = password
 	}
+
+
+	//MARK: ServerConnector
 
 	override public func postRun() {
 		if lastError == nil {

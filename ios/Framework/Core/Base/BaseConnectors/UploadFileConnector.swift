@@ -31,6 +31,9 @@ public class UploadFileConnector<T> : ServerConnector, LRCallback, LRFileProgres
 
 	var uploadResult: [String:AnyObject]?
 
+
+	//MARK: Initializers
+
 	public init(
 		inputStream: NSInputStream,
 		bytesToSend: Int64,
@@ -65,7 +68,10 @@ public class UploadFileConnector<T> : ServerConnector, LRCallback, LRFileProgres
 		super.init()
 	}
 
-	public override func doRun(session session: LRSession) {
+
+	//MARK: ServerConnector
+
+	override public func doRun(session session: LRSession) {
 		if inputStream == nil {
 			if let imageData = UIImagePNGRepresentation(image!) {
 				bytesToSend = Int64(imageData.length)
@@ -95,6 +101,9 @@ public class UploadFileConnector<T> : ServerConnector, LRCallback, LRFileProgres
 
 		dispatch_semaphore_wait(requestSemaphore!, DISPATCH_TIME_FOREVER)
 	}
+
+
+	//MARK: Public methods
 
 	public func onProgress(data: NSData!, totalBytes: Int64) {
 		let totalBytesSent = UInt64(totalBytes)

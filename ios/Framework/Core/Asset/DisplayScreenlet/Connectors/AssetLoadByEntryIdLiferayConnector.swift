@@ -20,6 +20,9 @@ public class AssetLoadByEntryIdLiferayConnector: ServerConnector, LoadAssetConne
 
 	public var resultAsset: Asset?
 
+
+	//MARK: Initializers
+
 	public init(entryId: Int64) {
 		self.entryId = entryId
 
@@ -42,6 +45,9 @@ public class AssetLoadByEntryIdLiferayConnector: ServerConnector, LoadAssetConne
 }
 
 public class Liferay70AssetLoadByEntryIdConnector: AssetLoadByEntryIdLiferayConnector {
+
+
+	//MARK: ServerConnector
 
 	override public func doRun(session session: LRSession) {
 		resultAsset = nil

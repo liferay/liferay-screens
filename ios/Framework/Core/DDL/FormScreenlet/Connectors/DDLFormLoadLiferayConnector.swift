@@ -23,6 +23,8 @@ public class DDLFormLoadLiferayConnector: ServerConnector {
 	public var resultUserId: Int64?
 
 
+	//MARK: Initializers
+
 	public init(structureId: Int64) {
 		self.structureId = structureId
 
@@ -33,6 +35,9 @@ public class DDLFormLoadLiferayConnector: ServerConnector {
 
 
 public class Liferay62DDLFormLoadConnector: DDLFormLoadLiferayConnector {
+
+
+	//MARK: ServerConnector
 
 	override public func doRun(session session: LRSession) {
 		let service = LRDDMStructureService_v62(session: session)
@@ -69,6 +74,9 @@ public class Liferay62DDLFormLoadConnector: DDLFormLoadLiferayConnector {
 
 public class Liferay70DDLFormLoadConnector: DDLFormLoadLiferayConnector {
 
+
+	//MARK: ServerConnector
+	
 	override public func doRun(session session: LRSession) {
 		let service = LRDDMStructureService_v7(session: session)
 

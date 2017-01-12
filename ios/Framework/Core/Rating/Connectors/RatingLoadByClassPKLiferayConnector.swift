@@ -21,13 +21,19 @@ public class RatingLoadByClassPKLiferayConnector: ServerConnector {
 	let ratingsGroupCount: Int32
 	
 	var resultRating: RatingEntry?
-	
+
+
+	//MARK: Initializers
+
 	public init(classPK: Int64, className: String, ratingsGroupCount: Int32) {
 		self.ratingsGroupCount = ratingsGroupCount
 		self.className = className
 		self.classPK = classPK
 		super.init()
 	}
+
+
+	//MARK: ServerConnector
 	
 	public override func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -50,6 +56,9 @@ public class RatingLoadByClassPKLiferayConnector: ServerConnector {
 }
 
 public class Liferay70RatingLoadByClassPKConnector: RatingLoadByClassPKLiferayConnector {
+
+
+	//MARK: ServerConnector
 	
 	override public func doRun(session session: LRSession) {
 		let service = LRScreensratingsentryService_v70(session: session)

@@ -19,6 +19,9 @@ public class WebContentLoadBaseLiferayConnector: ServerConnector {
 	public let groupId: Int64
 	public let articleId: String
 
+
+	//MARK: Initializers
+
 	public init(groupId: Int64, articleId: String) {
 		self.groupId = groupId
 		self.articleId = articleId

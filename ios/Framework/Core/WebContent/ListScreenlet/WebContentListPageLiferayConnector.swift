@@ -21,6 +21,8 @@ public class WebContentListPageLiferayConnector: PaginationLiferayConnector {
 	public let folderId: Int64
 
 
+	//MARK: Initializers
+
 	init(startRow: Int, endRow: Int, computeRowCount: Bool, groupId: Int64, folderId: Int64) {
 		self.groupId = groupId
 		self.folderId = folderId
@@ -31,6 +33,9 @@ public class WebContentListPageLiferayConnector: PaginationLiferayConnector {
 }
 
 public class Liferay62WebContentListPageConnector: WebContentListPageLiferayConnector {
+
+
+	//MARK: PaginationLiferayConnector
 
 	override public func doAddPageRowsServiceCall(
 			session session: LRBatchSession,
@@ -65,6 +70,9 @@ public class Liferay62WebContentListPageConnector: WebContentListPageLiferayConn
 
 public class Liferay70WebContentListPageConnector: WebContentListPageLiferayConnector {
 
+
+	//MARK: PaginationLiferayConnector
+	
 	override public func doAddPageRowsServiceCall(
 			session session: LRBatchSession,
 			startRow: Int,

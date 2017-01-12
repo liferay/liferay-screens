@@ -26,6 +26,8 @@ public class PaginationLiferayConnector: ServerConnector {
 	public var resultRowCount: Int?
 
 
+	//MARK: Initializers
+
 	public init(startRow: Int, endRow: Int, computeRowCount: Bool) {
 		self.startRow = startRow
 		self.endRow = endRow
@@ -83,6 +85,9 @@ public class PaginationLiferayConnector: ServerConnector {
 			lastError = error
 		}
 	}
+
+
+	//MARK: Public methods
 	
 	public func doAddPageRowsServiceCall(session session: LRBatchSession,
 			startRow: Int,

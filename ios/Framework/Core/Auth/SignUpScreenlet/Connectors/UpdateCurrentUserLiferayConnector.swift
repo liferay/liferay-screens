@@ -22,6 +22,8 @@ public class UpdateCurrentUserLiferayConnector: ServerConnector {
 	private let viewModel: SignUpViewModel
 
 
+	//MARK: Initializers
+
 	public init(viewModel: SignUpViewModel) {
 		self.viewModel = viewModel
 
@@ -47,6 +49,9 @@ public class UpdateCurrentUserLiferayConnector: ServerConnector {
 		return error
 	}
 
+
+	//MARK: Public methods
+
 	public func attributeAsString(key: String) -> String {
 		return SessionContext.currentContext?.user.stringAttribute(key) ?? ""
 	}
@@ -59,6 +64,9 @@ public class UpdateCurrentUserLiferayConnector: ServerConnector {
 
 
 public class Liferay62UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnector {
+
+
+	//MARK: ServerConnector
 
 	override public func doRun(session session: LRSession) {
 		let service = LRUserService_v62(session: session)
@@ -130,6 +138,9 @@ public class Liferay62UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnec
 
 public class Liferay70UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnector {
 
+
+	//MARK: ServerConnector
+	
 	override public func doRun(session session: LRSession) {
 		let service = LRUserService_v7(session: session)
 

@@ -20,15 +20,18 @@ public class CommentUpdateLiferayConnector: ServerConnector {
 
 	public var resultComment: Comment?
 
-	public init(
-			commentId: Int64,
-			body: String) {
 
+	//MARK: Initializers
+
+	public init(commentId: Int64, body: String) {
 		self.commentId = commentId
 		self.body = body
 
 		super.init()
 	}
+
+
+	//MARK: ServerConnector
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -50,6 +53,9 @@ public class CommentUpdateLiferayConnector: ServerConnector {
 }
 
 public class Liferay70CommentUpdateConnector: CommentUpdateLiferayConnector {
+
+
+	//MARK: ServerConnector
 
 	override public func doRun(session session: LRSession) {
 		resultComment = nil

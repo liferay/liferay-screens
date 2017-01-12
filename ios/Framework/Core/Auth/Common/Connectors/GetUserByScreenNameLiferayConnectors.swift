@@ -20,12 +20,18 @@ public class GetUserByScreenNameLiferayConnector: GetUserBaseLiferayConnector {
 	public let companyId: Int64
 	public let screenName: String
 
+
+	//MARK: Initializers
+
 	public init(companyId: Int64, screenName: String) {
 		self.companyId = companyId
 		self.screenName = screenName
 
 		super.init()
 	}
+
+
+	//MARK: ServerConnector
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -44,9 +50,15 @@ public class GetUserByScreenNameLiferayConnector: GetUserBaseLiferayConnector {
 
 public class GetUserByScreenNameLiferay62Connector: GetUserByScreenNameLiferayConnector {
 
+
+	//MARK: GetUserByScreenNameLiferayConnector
+
 	override public init(companyId: Int64, screenName: String) {
 		super.init(companyId: companyId, screenName: screenName)
 	}
+
+
+	//MARK: GetUserBaseLiferayConnector
 
 	override public func sendGetUserRequest(session: LRSession)
 		throws -> NSDictionary {
@@ -64,9 +76,15 @@ public class GetUserByScreenNameLiferay62Connector: GetUserByScreenNameLiferayCo
 
 public class GetUserByScreenNameLiferay70Connector: GetUserByScreenNameLiferayConnector {
 
+
+	//MARK: GetUserByScreenNameLiferayConnector
+
 	override public init(companyId: Int64, screenName: String) {
 		super.init(companyId: companyId, screenName: screenName)
 	}
+
+
+	//MARK: GetUserBaseLiferayConnector
 
 	override public func sendGetUserRequest(session: LRSession)
 		throws -> NSDictionary {

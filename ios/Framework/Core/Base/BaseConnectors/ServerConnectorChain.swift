@@ -37,6 +37,8 @@ import UIKit
 	public var currentConnector: ServerConnector
 
 
+	//MARK: Initializers
+
 	public init(head: ServerConnector) {
 		headConnector = head
 		currentConnector = head
@@ -45,7 +47,7 @@ import UIKit
 	}
 
 
-	//MARK: ServerConnector methods
+	//MARK: ServerConnector
 
 	override public func createSession() -> LRSession? {
 		return headConnector.createSession()
@@ -59,10 +61,31 @@ import UIKit
 		StreamConnectorsQueue.addConnector(self)
 	}
 
+	override public func doRun(session session: LRSession) {
+		let waitGroup = dispatch_group_create()
+
+		dispatch_group_enter(waitGroup)
+
+		if let validationError = doStep(0, headConnector, waitGroup) {
+			self.lastError = validationError
+		}
+
+		dispatch_group_wait(waitGroup, DISPATCH_TIME_FOREVER)
+	}
+
+	override public func callOnComplete() {
+		super.callOnComplete()
+
+		self.onNextStep = nil
+	}
+
+	
+	//MARK: Private methods
+
 	private func doStep(
-			number: Int,
-			_ c: ServerConnector,
-			_ waitGroup: dispatch_group_t) -> ValidationError? {
+		number: Int,
+		_ c: ServerConnector,
+		  _ waitGroup: dispatch_group_t) -> ValidationError? {
 
 		let originalCallback = c.onComplete
 
@@ -87,23 +110,4 @@ import UIKit
 			}
 		}
 	}
-
-	override public func doRun(session session: LRSession) {
-		let waitGroup = dispatch_group_create()
-
-		dispatch_group_enter(waitGroup)
-
-		if let validationError = doStep(0, headConnector, waitGroup) {
-			self.lastError = validationError
-		}
-
-		dispatch_group_wait(waitGroup, DISPATCH_TIME_FOREVER)
-	}
-
-	override public func callOnComplete() {
-		super.callOnComplete()
-
-		self.onNextStep = nil
-	}
-
 }
