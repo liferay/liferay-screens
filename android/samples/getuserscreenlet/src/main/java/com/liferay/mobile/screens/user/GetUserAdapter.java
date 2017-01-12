@@ -7,16 +7,12 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import com.liferay.mobile.screens.context.User;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class GetUserAdapter extends BaseAdapter {
 
-	private final ArrayList jsonValues;
-
-	private String[] keysToDisplay = {
-		User.USER_ID, User.SCREEN_NAME, User.FIRST_NAME, User.LAST_NAME, User.EMAIL_ADDRESS, User.LANGUAGE_ID,
-		User.EMAIL_ADDRESS_VERIFIED, User.LOCKOUT, User.AGREED_TERMS_USE
-	};
+	private final List jsonValues;
 
 	public GetUserAdapter(Map<String, Object> map) {
 		jsonValues = new ArrayList(map.entrySet());
@@ -39,30 +35,19 @@ public class GetUserAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+
+		if (convertView == null) {
+			convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_get_user_row, parent, false);
+		}
+
 		Map.Entry<String, Object> item = getItem(position);
-
-		if (hasToBeDisplayed(item.getKey())) {
-			LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-			View customView = inflater.inflate(R.layout.custom_get_user_row, parent, false);
-
-			TextView keyLabel = (TextView) customView.findViewById(R.id.keyLabel);
-			TextView keyValue = (TextView) customView.findViewById(R.id.keyValue);
-
-			keyLabel.setText(item.getKey());
-			if (item.getValue() != null) {
-				keyValue.setText(item.getValue().toString());
-			}
-			return customView;
+		TextView keyLabel = (TextView) convertView.findViewById(R.id.keyLabel);
+		keyLabel.setText(item.getKey());
+		if (item.getValue() != null) {
+			TextView keyValue = (TextView) convertView.findViewById(R.id.keyValue);
+			keyValue.setText(item.getValue().toString());
 		}
-		return new View(parent.getContext());
+		return convertView;
 	}
 
-	private boolean hasToBeDisplayed(String key) {
-		for (String keyToDisplay : keysToDisplay) {
-			if (key.equalsIgnoreCase(keyToDisplay)) {
-				return true;
-			}
-		}
-		return false;
-	}
 }

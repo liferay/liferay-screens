@@ -11,11 +11,17 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.user.interactor.GetUserInteractor;
 import com.liferay.mobile.screens.user.view.GetUserViewModel;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GetUserScreenlet extends BaseScreenlet<GetUserViewModel, GetUserInteractor> implements GetUserListener {
 
 	private GetUserListener listener;
 	private String getUserBy;
+	protected String[] keysToDisplay = {
+		User.USER_ID, User.SCREEN_NAME, User.FIRST_NAME, User.LAST_NAME, User.EMAIL_ADDRESS, User.LANGUAGE_ID,
+		User.EMAIL_ADDRESS_VERIFIED, User.LOCKOUT, User.AGREED_TERMS_USE
+	};
 
 	public GetUserScreenlet(Context context) {
 		super(context);
@@ -48,7 +54,8 @@ public class GetUserScreenlet extends BaseScreenlet<GetUserViewModel, GetUserInt
 	public void onGetUserSuccess(User user) {
 
 		getViewModel().showFinishOperation(null);
-		setListViewAdapter(new GetUserAdapter(user.getValues()));
+		Map<String, Object> values = filter(user.getValues(), keysToDisplay);
+		setListViewAdapter(new GetUserAdapter(values));
 
 		if (listener != null) {
 			listener.onGetUserSuccess(user);
@@ -79,6 +86,14 @@ public class GetUserScreenlet extends BaseScreenlet<GetUserViewModel, GetUserInt
 
 		String textValue = getViewModel().getTextValue();
 		interactor.start(textValue, getUserBy);
+	}
+
+	private Map<String, Object> filter(Map<String, Object> values, String[] keysToDisplay) {
+		Map<String, Object> filteredValues = new HashMap<>();
+		for (String key : keysToDisplay) {
+			filteredValues.put(key, values.get(key));
+		}
+		return filteredValues;
 	}
 
 	private void setListViewAdapter(BaseAdapter adapter) {
