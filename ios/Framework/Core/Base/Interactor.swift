@@ -19,6 +19,7 @@ import UIKit
 	public var actionName: String?
 
 	public var onSuccess: (Void -> Void)?
+
 	public var onFailure: (NSError -> Void)?
 
 	public var lastError: NSError?
@@ -27,6 +28,8 @@ import UIKit
 
 	internal var cancelled = false
 
+
+	//MARK: Initializers
 
 	public init(screenlet: BaseScreenlet?) {
 		self.screenlet = screenlet
@@ -37,6 +40,9 @@ import UIKit
 	override public convenience init() {
 		self.init(screenlet: nil)
 	}
+
+
+	//MARK: Public methods
 
 	public func callOnSuccess() {
 		if !cancelled {
@@ -69,6 +75,9 @@ import UIKit
 	public func interactionResult() -> AnyObject? {
 		return nil
 	}
+
+
+	//MARK: Private methods
 
 	private func finishWithError(error: NSError?) {
 		screenlet?.endInteractor(self, error: error)

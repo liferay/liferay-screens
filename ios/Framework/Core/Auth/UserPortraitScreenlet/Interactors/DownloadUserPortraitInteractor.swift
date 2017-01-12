@@ -13,6 +13,7 @@
 */
 import UIKit
 
+
 #if LIFERAY_SCREENS_FRAMEWORK
 	import CryptoSwift
 #endif
@@ -58,10 +59,13 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 	}
 
 	var resultImage: UIImage?
+
 	var resultUserId: Int64?
 
 	private let mode: DownloadMode
 
+
+	//MARK: Initializers
 
 	init(screenlet: BaseScreenlet?, portraitId: Int64, uuid: String, male: Bool) {
 		mode = DownloadMode.Attributes(portraitId: portraitId, uuid: uuid, male: male)
@@ -86,6 +90,9 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 		super.init(screenlet: screenlet)
 	}
+
+
+	//MARK: ServerConnectorInteractor
 
 	override func createConnector() -> ServerConnector? {
 		switch mode {

@@ -19,9 +19,13 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 	typealias OnProgress = DDLFormUploadLiferayConnector.OnProgress
 
 	let filePrefix: String
+
 	let repositoryId: Int64
+
 	let groupId: Int64
+
 	let folderId: Int64
+
 	let document: DDMFieldDocument
 
 	let onProgressClosure: OnProgress?
@@ -30,6 +34,8 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 
 	var lastCacheKey: String?
 
+
+	//MARK: Initializers
 
 	init(screenlet: BaseScreenlet?,
 			document: DDMFieldDocument,
@@ -75,6 +81,9 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 
 		super.init(screenlet: nil)
 	}
+
+
+	//MARK: ServerConnectorInteractor
 
 	override func createConnector() -> DDLFormUploadLiferayConnector {
 		return LiferayServerContext.connectorFactory.createDDLFormUploadConnector(
@@ -124,6 +133,9 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 				onCompletion: nil)
 		}
 	}
+
+
+	//MARK: Interactor
 
 	override func callOnSuccess() {
 		if cacheStrategy == .CacheFirst {

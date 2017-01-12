@@ -17,12 +17,17 @@ import UIKit
 public class CommentAddInteractor: ServerWriteConnectorInteractor {
 
 	let className: String
+
 	let classPK: Int64
+
 	let body: String
 
 	var cacheKeyUsed: String?
 
 	public var resultComment: Comment?
+
+
+	//MARK: Initializers
 
 	public init(screenlet: CommentAddScreenlet, body: String) {
 		self.className = screenlet.className
@@ -57,6 +62,9 @@ public class CommentAddInteractor: ServerWriteConnectorInteractor {
 
 		self.cacheKeyUsed = cacheKeyUsed
 	}
+
+
+	//MARK: ServerConnectorInteractor
 
 	override public func createConnector() -> CommentAddLiferayConnector? {
 		return LiferayServerContext.connectorFactory.createCommentAddConnector(
@@ -108,7 +116,7 @@ public class CommentAddInteractor: ServerWriteConnectorInteractor {
 			onCompletion: nil)
 	}
 
-	public override func callOnSuccess() {
+	override public func callOnSuccess() {
 		if cacheStrategy == .CacheFirst {
 			SessionContext.currentContext?.cacheManager.setClean(
 				collection: "CommentsScreenlet",

@@ -18,6 +18,9 @@ class SignUpInteractor: ServerConnectorInteractor {
 
 	var resultUserAttributes: [String:AnyObject]?
 
+
+	//MARK: ServerConnectorInteractor
+
 	override func createConnector() -> ServerConnector? {
 		let screenlet = self.screenlet as! SignUpScreenlet
 

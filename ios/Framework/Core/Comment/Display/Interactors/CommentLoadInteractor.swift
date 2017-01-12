@@ -20,6 +20,9 @@ public class CommentLoadInteractor: ServerReadConnectorInteractor {
 
 	public var resultComment: Comment?
 
+
+	//MARK: Initializers
+
 	override init(screenlet: BaseScreenlet?) {
 		let commentScreenlet = screenlet as! CommentDisplayScreenlet
 
@@ -27,6 +30,9 @@ public class CommentLoadInteractor: ServerReadConnectorInteractor {
 
 		super.init(screenlet: screenlet)
 	}
+
+
+	//MARK: ServerConnectorInteractor
 
 	override public func createConnector() -> CommentLoadLiferayConnector? {
 		return LiferayServerContext.connectorFactory.createCommentLoadConnector(
@@ -44,7 +50,7 @@ public class CommentLoadInteractor: ServerReadConnectorInteractor {
 		self.resultComment = comment
 	}
 
-	//MARK: Cache
+	//MARK: Cache methods
 
 	override public func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {

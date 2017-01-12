@@ -18,6 +18,9 @@ public class CommentDeleteInteractor: ServerWriteConnectorInteractor {
 
 	let commentId: Int64
 
+
+	//MARK: Initializers
+
 	override public init(screenlet: BaseScreenlet?) {
 		self.commentId = (screenlet as! CommentDisplayScreenlet).commentId
 
@@ -29,6 +32,8 @@ public class CommentDeleteInteractor: ServerWriteConnectorInteractor {
 
 		super.init(screenlet: nil)
 	}
+
+	//MARK: ServerConnectorInteractor
 
 	override public func createConnector() -> CommentDeleteLiferayConnector? {
 		return LiferayServerContext.connectorFactory.createCommentDeleteConnector(
@@ -54,7 +59,10 @@ public class CommentDeleteInteractor: ServerWriteConnectorInteractor {
 			onCompletion: nil)
 	}
 
-	public override func callOnSuccess() {
+
+	//MARK: Interactor
+
+	override public func callOnSuccess() {
 		if cacheStrategy == .CacheFirst {
 			SessionContext.currentContext?.cacheManager.setClean(
 				collection: "CommentsScreenlet",

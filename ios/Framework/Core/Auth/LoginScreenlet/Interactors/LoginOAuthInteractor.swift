@@ -21,12 +21,17 @@ class LoginOAuthInteractor: Interactor, LRCallback {
 	var resultUserAttributes: [String:AnyObject]?
 
 	let consumerKey: String
+
 	let consumerSecret: String
 
 	var webViewController: OAuthWebViewController?
 
 	var OAuthConfig: LROAuthConfig?
+
 	var OAuthSession: LRSession?
+
+
+	//MARK: Initializers
 
 	init(screenlet: BaseScreenlet?,
 			consumerKey: String,
@@ -37,6 +42,9 @@ class LoginOAuthInteractor: Interactor, LRCallback {
 
 		super.init(screenlet: screenlet)
 	}
+
+
+	//MARK: Interactor
 
 	override func start() -> Bool {
 		if screenlet?.presentingViewController == nil {
@@ -53,6 +61,9 @@ class LoginOAuthInteractor: Interactor, LRCallback {
 
 		return requestToken()
 	}
+
+
+	//MARK: Private methods
 
 	private func requestToken() -> Bool {
 		LRRequestToken.requestTokenWithConfig(

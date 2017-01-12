@@ -20,11 +20,17 @@ class LoadFileEntryInteractor: ServerReadConnectorInteractor {
 
 	var resultUrl: NSURL?
 
+
+	//MARK: Initializers
+
 	init(screenlet: BaseScreenlet, fileEntry: FileEntry) {
 		self.fileEntry = fileEntry
 
 		super.init(screenlet: screenlet)
 	}
+
+
+	//MARK: ServerConnectorInteractor
 
 	override func createConnector() -> ServerConnector? {
 		guard let url = NSURL(string: LiferayServerContext.server + fileEntry.url) else {
@@ -39,7 +45,7 @@ class LoadFileEntryInteractor: ServerReadConnectorInteractor {
 	}
 
 
-	//MARK: Cache
+	//MARK: Cache methods
 
 	override func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {

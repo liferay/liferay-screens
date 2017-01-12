@@ -17,15 +17,21 @@ import UIKit
 class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 
 	let recordId: Int64
+
 	let structureId: Int64?
 
 	var resultRecordData: [String:AnyObject]?
+
 	var resultRecordAttributes: [String:AnyObject]?
+
 	var resultRecordId: Int64?
 
 	var resultFormRecord: DDLRecord?
+
 	var resultFormUserId: Int64?
 
+
+	//MARK: Initializers
 
 	init(screenlet: BaseScreenlet?, recordId: Int64, structureId: Int64?) {
 		self.recordId = recordId
@@ -33,6 +39,9 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 
 		super.init(screenlet: screenlet)
 	}
+
+
+	//MARK: ServerConnectorInteractor
 
 	override func createConnector() -> ServerConnector {
 		let connector: ServerConnector

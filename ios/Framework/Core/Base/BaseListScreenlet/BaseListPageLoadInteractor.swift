@@ -17,22 +17,30 @@ import UIKit
 public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 	
 	public let page: Int
+
 	public let computeRowCount: Bool
 
 	public var obcClassName: String?
 	
 	public var resultAllPagesContent: [String : [AnyObject?]]?
+
 	public var resultPageContent: [String : [AnyObject]]?
+
 	public var resultRowCount: Int?
+
 	public var sections: [String]?
 	
-	
+
+	//MARK: Initializers
 	
 	public init(screenlet: BaseListScreenlet, page: Int, computeRowCount: Bool) {
 		self.page = page
 		self.computeRowCount = computeRowCount
 		super.init(screenlet: screenlet)
 	}
+
+
+	//MARK: ServerConnectorInteractor
 
 	override public func createConnector() -> PaginationLiferayConnector {
 		let connector = createListPageConnector()
@@ -47,6 +55,9 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 			processLoadPageResult(pageCon.resultPageContent ?? [], rowCount: pageCon.resultRowCount)
 		}
 	}
+
+
+	//MARK: Public methods
 
 	public func createListPageConnector() -> PaginationLiferayConnector {
 		fatalError("createListPageConnector must be overriden")
@@ -173,8 +184,12 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 	public func sectionForRowObject(object: AnyObject) -> String? {
 		return nil
 	}
+
+	public func cacheKey(c: PaginationLiferayConnector) -> String {
+		fatalError("cacheKey must be overriden")
+	}
 	
-	//MARK: Cache
+	//MARK: Cache methods
 	
 	override public func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
@@ -226,10 +241,6 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 					attributes: [:])
 			}
 		}
-	}
-	
-	public func cacheKey(c: PaginationLiferayConnector) -> String {
-		fatalError("cacheKey must be overriden")
 	}
 	
 }

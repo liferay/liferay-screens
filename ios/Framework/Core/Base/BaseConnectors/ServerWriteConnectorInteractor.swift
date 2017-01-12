@@ -16,6 +16,9 @@ import UIKit
 
 public class ServerWriteConnectorInteractor: ServerConnectorInteractor {
 
+
+	//MARK: ServerConnectorInteractor
+	
 	override public func getCacheStrategyImpl(strategyType: CacheStrategyType) -> CacheStrategy {
 		switch strategyType {
 		case .RemoteOnly:

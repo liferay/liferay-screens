@@ -19,7 +19,11 @@ class UploadUserPortraitInteractor: ServerWriteConnectorInteractor {
 	var uploadResult: [String:AnyObject]?
 
 	let userId: Int64
+
 	let image: UIImage
+
+
+	//MARK: Initializers
 
 	init(screenlet: BaseScreenlet?, userId: Int64, image: UIImage) {
 		self.userId = userId
@@ -27,6 +31,9 @@ class UploadUserPortraitInteractor: ServerWriteConnectorInteractor {
 
 		super.init(screenlet: screenlet)
 	}
+
+
+	//MARK: ServerConnectorInteractor
 
 	override func createConnector() -> UploadUserPortraitLiferayConnector {
 		return LiferayServerContext.connectorFactory.createUploadUserPortraitConnector(
@@ -57,6 +64,9 @@ class UploadUserPortraitInteractor: ServerWriteConnectorInteractor {
 			attributes: ["userId": userId.description],
 			onCompletion: nil)
 	}
+
+
+	//MARK: Interactor
 
 	override func callOnSuccess() {
 		if cacheStrategy == .CacheFirst {

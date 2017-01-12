@@ -15,17 +15,23 @@ import UIKit
 
 
 public protocol LoadAssetConnector {
+
 	var resultAsset: Asset? { get set }
 }
+
 
 public class LoadAssetInteractor: ServerReadConnectorInteractor {
 
 	public let assetEntryId: Int64?
 
 	public let className: String?
+
 	public let classPK: Int64?
 
 	public var asset: Asset?
+
+
+	//MARK: Initializers
 
 	public convenience init(screenlet: BaseScreenlet, assetEntryId: Int64) {
 		self.init(screenlet: screenlet,
@@ -49,6 +55,9 @@ public class LoadAssetInteractor: ServerReadConnectorInteractor {
 		super.init(screenlet: screenlet)
 	}
 
+	
+	//MARK: ServerConnectorInteractor
+
 	override public func createConnector() -> ServerConnector? {
 		if let assetEntryId = self.assetEntryId {
 			return LiferayServerContext.connectorFactory.createAssetLoadByEntryIdConnector(assetEntryId)
@@ -64,7 +73,7 @@ public class LoadAssetInteractor: ServerReadConnectorInteractor {
 		asset = (c as? LoadAssetConnector)?.resultAsset
 	}
 
-	//MARK: Cache
+	//MARK: Cache methods
 
 	override public func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {

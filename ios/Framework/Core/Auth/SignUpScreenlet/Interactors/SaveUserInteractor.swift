@@ -18,6 +18,9 @@ public class SaveUserInteractor: ServerConnectorInteractor {
 
 	public var resultUserAttributes: [String:AnyObject]?
 
+
+	//MARK: ServerConnectorInteractor
+
 	override public func createConnector() -> UpdateCurrentUserLiferayConnector {
 		let screenlet = self.screenlet as! SignUpScreenlet
 

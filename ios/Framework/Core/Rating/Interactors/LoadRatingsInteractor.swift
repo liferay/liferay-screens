@@ -16,8 +16,11 @@ import UIKit
 public class LoadRatingsInteractor: ServerReadConnectorInteractor {
 	
 	let entryId: Int64?
+
 	let className: String?
+
 	let classPK: Int64?
+
 	let ratingsGroupCount: Int32
 
 	var resultRating: RatingEntry?
@@ -56,6 +59,9 @@ public class LoadRatingsInteractor: ServerReadConnectorInteractor {
 		          ratingsGroupCount: ratingsGroupCount)
 	}
 
+
+	//MARK: ServerConnectorInteractor
+
 	override public func createConnector() -> ServerConnector? {
 		if let entryId = self.entryId {
 			return LiferayServerContext.connectorFactory.createRatingLoadByEntryIdConnector(
@@ -79,7 +85,7 @@ public class LoadRatingsInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-	//MARK: Cache
+	//MARK: Cache methods
 
 	override public func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
@@ -141,6 +147,9 @@ public class LoadRatingsInteractor: ServerReadConnectorInteractor {
 				"classPK": NSNumber(longLong: self.classPK ?? 0)
 			])
 	}
+
+
+	//MARK: Private methods
 
 	private func cacheKey() -> String {
 		if let entryId = self.entryId {

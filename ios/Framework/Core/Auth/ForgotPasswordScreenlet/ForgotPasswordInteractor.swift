@@ -18,6 +18,9 @@ class ForgotPasswordInteractor: ServerConnectorInteractor {
 
 	var resultPasswordSent: Bool?
 
+
+	//MARK: ServerConnectorInteractor
+
 	override func createConnector() -> ForgotPasswordBaseLiferayConnector? {
 		let screenlet = self.screenlet as! ForgotPasswordScreenlet
 
@@ -54,6 +57,9 @@ class ForgotPasswordInteractor: ServerConnectorInteractor {
 	override func completedConnector(c: ServerConnector) {
 		self.resultPasswordSent = (c as! ForgotPasswordBaseLiferayConnector).resultPasswordSent
 	}
+
+
+	//MARK: Interactor
 
 	override func interactionResult() -> AnyObject? {
 		return resultPasswordSent

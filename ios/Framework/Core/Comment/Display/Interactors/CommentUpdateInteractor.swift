@@ -17,9 +17,13 @@ import UIKit
 public class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 
 	let commentId: Int64
+
 	let body: String
 
 	public var resultComment: Comment?
+
+
+	//MARK: Initializers
 
 	init(screenlet: CommentDisplayScreenlet, body: String) {
 		self.commentId = screenlet.commentId
@@ -28,13 +32,15 @@ public class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 		super.init(screenlet: screenlet)
 	}
 
-	init(commentId: Int64,
-			body: String) {
+	init(commentId: Int64, body: String) {
 		self.commentId = commentId
 		self.body = body
 
 		super.init(screenlet: nil)
 	}
+
+
+	//MARK: ServerConnectorInteractor
 
 	override public func createConnector() -> CommentUpdateLiferayConnector? {
 		return LiferayServerContext.connectorFactory.createCommentUpdateConnector(
@@ -74,7 +80,10 @@ public class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 			onCompletion: nil)
 	}
 
-	public override func callOnSuccess() {
+
+	//MARK: Interactor
+
+	override public func callOnSuccess() {
 		if cacheStrategy == .CacheFirst {
 			SessionContext.currentContext?.cacheManager.setClean(
 				collection: "CommentsScreenlet",

@@ -17,12 +17,19 @@ import UIKit
 class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 
 	let groupId: Int64
+
 	let articleId: String
+
 	let structureId: Int64?
+
 	let templateId: Int64?
 
 	var resultHTML: String?
+
 	var resultRecord: DDLRecord?
+
+
+	//MARK: Interactor
 
 	init(screenlet: BaseScreenlet, groupId: Int64, articleId: String, structureId: Int64?, templateId: Int64?) {
 		self.groupId = (groupId != 0) ? groupId : LiferayServerContext.groupId
@@ -32,6 +39,9 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 
 		super.init(screenlet: screenlet)
 	}
+
+
+	//MARK: ServerConnectorInteractor
 
 	override func createConnector() -> WebContentLoadBaseLiferayConnector? {
 		if let structureId = self.structureId where structureId != 0 {
@@ -62,6 +72,9 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 			self.resultRecord = nil
 		}
 	}
+
+
+	//MARK: Cache methods
 
 	override func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
@@ -116,6 +129,9 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 				"groupId": NSNumber(longLong: groupId),
 				"articleId": loadCon.articleId])
 	}
+
+
+	//MARK: Private methods
 
 	private func articleCacheKey(groupId: Int64, _ articleId: String) -> String {
 		return "\((groupId != 0) ? groupId : LiferayServerContext.groupId)-articleId-\(articleId)"

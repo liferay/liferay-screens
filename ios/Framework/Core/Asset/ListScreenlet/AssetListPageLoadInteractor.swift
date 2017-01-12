@@ -19,7 +19,9 @@ public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 	public var customEntryQuery: [String:AnyObject]?
 
 	private let groupId: Int64
+
 	private let classNameId: Int64
+
 	private let portletItemName: String?
 
 	init(screenlet: BaseListScreenlet,
@@ -36,7 +38,10 @@ public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 		super.init(screenlet: screenlet, page: page, computeRowCount: computeRowCount)
 	}
 
-	public override func createListPageConnector() -> PaginationLiferayConnector {
+
+	//MARK: BaseListPageLoadInteractor
+
+	override public func createListPageConnector() -> PaginationLiferayConnector {
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
 
 		let connector = LiferayServerContext.connectorFactory.createAssetListPageConnector(

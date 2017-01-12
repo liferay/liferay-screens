@@ -17,7 +17,11 @@ import UIKit
 class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 
 	var resultRecord: DDLRecord?
+
 	var resultUserId: Int64?
+
+
+	//MARK: ServerConnectorInteractor
 
 	override func createConnector() -> ServerConnector {
 		let screenlet = self.screenlet as! DDLFormScreenlet

@@ -17,15 +17,21 @@ import UIKit
 public class LoginBasicInteractor: ServerConnectorInteractor {
 
 	public let companyId: Int64
+
 	public let screenName: String?
+
 	public let emailAddress: String?
+
 	public let userId: Int64?
+
 	public let password: String
 
 	public let authMethod: BasicAuthMethod
 
 	public var resultUserAttributes: [String:AnyObject]?
 
+
+	//MARK: Initializers
 
 	public init(loginScreenlet: LoginScreenlet) {
 		companyId = (loginScreenlet.companyId ?? 0) != 0
@@ -85,6 +91,9 @@ public class LoginBasicInteractor: ServerConnectorInteractor {
 
 		super.init(screenlet: nil)
 	}
+
+	
+	//MARK: ServerConnectorInteractor
 
 	override public func createConnector() -> GetUserBaseLiferayConnector? {
 		let connector: GetUserBaseLiferayConnector?

@@ -17,6 +17,7 @@ import UIKit
 public class DDLListPageLoadInteractor : BaseListPageLoadInteractor {
 
 	public let userId: Int64
+
 	public let recordSetId: Int64
 
 	public init(
@@ -32,7 +33,10 @@ public class DDLListPageLoadInteractor : BaseListPageLoadInteractor {
 		super.init(screenlet: screenlet, page: page, computeRowCount: computeRowCount)
 	}
 
-	public override func createListPageConnector() -> PaginationLiferayConnector {
+
+	//MARK: BaseListPageLoadInteractor
+
+	override public func createListPageConnector() -> PaginationLiferayConnector {
 		let viewModel = (self.screenlet as! DDLListScreenlet).screenletView as! DDLListViewModel
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
 

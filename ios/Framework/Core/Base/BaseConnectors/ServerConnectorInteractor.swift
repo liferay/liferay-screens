@@ -27,6 +27,8 @@ public class ServerConnectorInteractor: Interactor {
 	public var currentConnector: ServerConnector?
 
 
+	//MARK: Interactor
+
 	override public func start() -> Bool {
 		self.currentConnector = createConnector()
 
@@ -58,12 +60,7 @@ public class ServerConnectorInteractor: Interactor {
 	}
 
 
-	public func createConnector() -> ServerConnector? {
-		return nil
-	}
-
-	public func completedConnector(c: ServerConnector) {
-	}
+	//MARK: Interactor
 
 	override public func callOnSuccess() {
 		super.callOnSuccess()
@@ -73,6 +70,16 @@ public class ServerConnectorInteractor: Interactor {
 	override public func callOnFailure(error: NSError) {
 		super.callOnFailure(error)
 		currentConnector = nil
+	}
+
+
+	//MARK: Public methods
+
+	public func createConnector() -> ServerConnector? {
+		return nil
+	}
+
+	public func completedConnector(c: ServerConnector) {
 	}
 
 	public func readFromCache(c: ServerConnector, result: AnyObject? -> Void) {

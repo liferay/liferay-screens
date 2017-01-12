@@ -17,12 +17,15 @@ import UIKit
 class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 
 	let groupId: Int64
+
 	let recordSetId: Int64
+
 	let userId: Int64?
 
 	let record: DDLRecord
 
 	var resultRecordId: Int64?
+
 	var resultAttributes: NSDictionary?
 
 	private var lastCacheKeyUsed: String?
@@ -40,7 +43,7 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 	}
 
 
-	//MARK: Inits
+	//MARK: Initializers
 
 	init(screenlet: BaseScreenlet?, record: DDLRecord) {
 		let formScreenlet = screenlet as! DDLFormScreenlet
@@ -72,6 +75,9 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 
 		super.init(screenlet: nil)
 	}
+
+
+	//MARK: ServerConnectorInteractor
 
 	override func createConnector() -> DDLFormSubmitLiferayConnector {
 
@@ -134,6 +140,9 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 			onCompletion: nil)
 	}
 
+
+	//MARK: Interactor
+
 	override func callOnSuccess() {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
@@ -170,6 +179,9 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 
 		super.callOnSuccess()
 	}
+
+
+	//MARK: Private methods
 
 	private func cacheAttributes() -> [String:AnyObject] {
 		let attrs = ["record": record]
