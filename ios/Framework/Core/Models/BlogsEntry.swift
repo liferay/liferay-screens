@@ -53,11 +53,13 @@ import Foundation
 		return int64Value("coverImageFileEntryId") ?? 0
 	}
 
-	// MARK: MimeTypeable
+	//MARK: MimeTypeable
 
 	override public var mimeType: String? {
 		return "text/html"
 	}
+
+	//MARK: Private methods
 
 	private func int64Value(key: String) -> Int64? {
 		return blogsEntry?[key]?.longLongValue

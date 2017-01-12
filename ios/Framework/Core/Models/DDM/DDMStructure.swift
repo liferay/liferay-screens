@@ -32,7 +32,7 @@ import Foundation
 	}
 
 
-	//MARK: Init
+	//MARK: Initializers
 
 	public init(fields: [DDMField], locale: NSLocale, attributes: [String:AnyObject]) {
 		self.fields = fields
@@ -90,15 +90,14 @@ import Foundation
 		super.init()
 	}
 
+
+	//MARK: Public methods
+
 	public func encodeWithCoder(aCoder: NSCoder) {
 		aCoder.encodeObject(fields, forKey:"fields")
 		aCoder.encodeObject(attributes, forKey:"attributes")
 		aCoder.encodeObject(locale, forKey:"locale")
 	}
-
-
-
-	//MARK: Public methods
 
 	public func fieldBy(name name: String) -> DDMField? {
 		return fields.filter {

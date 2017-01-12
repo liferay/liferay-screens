@@ -69,7 +69,7 @@ import Foundation
 		return attributes.debugDescription
 	}
 
-	//MARK: Init
+	//MARK: Initializers
 
 	public init(attributes: [String:AnyObject]) {
 		self.attributes = attributes
@@ -88,6 +88,9 @@ import Foundation
 
 		super.init()
 	}
+
+
+	//MARK: Public methods
 
 	public func encodeWithCoder(aCoder: NSCoder) {
 		aCoder.encodeObject(attributes, forKey: "asset-attrs")

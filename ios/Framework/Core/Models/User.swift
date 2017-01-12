@@ -50,11 +50,23 @@ import Foundation
 		return int64Attribute("userId")
 	}
 
+
+	//MARK: Initializers
+
 	public init(attributes: [String : AnyObject]) {
 		self.attributes = attributes
 
 		super.init()
 	}
+
+	public required init?(coder aDecoder: NSCoder) {
+		self.attributes = aDecoder.decodeObjectForKey("asset-attrs") as? [String:AnyObject] ?? [:]
+
+		super.init()
+	}
+
+
+	//MARK: Public methods
 
 	public func int64Attribute(key: String) -> Int64 {
 		return attributes[key]?.longLongValue ?? 0
@@ -62,12 +74,6 @@ import Foundation
 
 	public func stringAttribute(key: String) -> String {
 		return attributes[key]?.description ?? ""
-	}
-
-	public required init?(coder aDecoder: NSCoder) {
-		self.attributes = aDecoder.decodeObjectForKey("asset-attrs") as? [String:AnyObject] ?? [:]
-
-		super.init()
 	}
 
 	public func encodeWithCoder(aCoder: NSCoder) {

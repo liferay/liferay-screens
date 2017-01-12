@@ -65,7 +65,7 @@ import Foundation
 	}
 
 
-	//MARK: Init
+	//MARK: Initializers
 
 	public init(structure: DDMStructure) {
 		self.structure = structure
@@ -135,6 +135,9 @@ import Foundation
 		super.init()
 	}
 
+
+	//MARK: Public methods
+
 	public func encodeWithCoder(aCoder: NSCoder) {
 		if let structure = structure {
 			aCoder.encodeObject(structure, forKey: "structure")
@@ -144,9 +147,6 @@ import Foundation
 		}
 		aCoder.encodeObject(attributes, forKey:"attributes")
 	}
-
-
-	//MARK: Public methods
 
 	public func fieldBy(name name: String) -> DDMField? {
 		return structure?.fieldBy(name: name)

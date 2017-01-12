@@ -29,7 +29,10 @@ public class ImageEntry : Asset {
 	public var imageEntryId: Int64 {
 		return attributes["fileEntryId"]?.longLongValue ?? 0
 	}
-    
+
+
+	//MARK: Initializers
+
     override public init(attributes: [String:AnyObject]) {
         super.init(attributes: attributes)
 		image = attributes["image"] as? UIImage
@@ -38,7 +41,10 @@ public class ImageEntry : Asset {
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
+
+	//MARK: Private methods
+
     private func createThumbnailUrl() -> String {
 		guard let version = attributes["version"]
 		else {

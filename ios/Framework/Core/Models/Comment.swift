@@ -102,7 +102,7 @@ import Foundation
 		aCoder.encodeObject(self.attributes, forKey:"comment-attrs")
 	}
 
-	//MARK: Init
+	//MARK: Initializers
 
 	public init(attributes: [String:AnyObject]) {
 		self.attributes = attributes

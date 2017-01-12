@@ -20,6 +20,7 @@ import Foundation
 
 public class DDMXSDParser {
 
+	
 	//MARK: Public methods
 	
 	public func parse(xsd: String, locale: NSLocale) -> [DDMField]? {

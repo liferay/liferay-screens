@@ -31,10 +31,15 @@ import Foundation
 		return super.debugDescription
 	}
 
+
+	//MARK: Public methods
+
 	public class func isWebContentClassName(className: String) -> Bool {
 		return className.hasPrefix("com.liferay.") && className.hasSuffix(".JournalArticle")
 	}
 
+
+	//MARK: Initializers
 
 	override public init(attributes: [String:AnyObject]) {
 		func loadStructuredRecord(content: String, _ attributes: [String:AnyObject]) -> DDLRecord? {
@@ -117,7 +122,10 @@ import Foundation
 		super.init(coder: aDecoder)
 	}
 
-	public override func encodeWithCoder(aCoder: NSCoder) {
+
+	//MARK: Asset
+
+	override public func encodeWithCoder(aCoder: NSCoder) {
 		if let structure = self.structure {
 			aCoder.encodeObject(structure, forKey:"webcontent-structure")
 		}
