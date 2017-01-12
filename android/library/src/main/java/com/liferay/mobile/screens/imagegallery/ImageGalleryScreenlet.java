@@ -21,6 +21,7 @@ import android.content.res.TypedArray;
 import android.net.Uri;
 import android.support.annotation.LayoutRes;
 import android.util.AttributeSet;
+import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
@@ -329,8 +330,9 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	}
 
 	private View inflateView(@LayoutRes int uploadDetailView, Context context) {
+		ContextThemeWrapper ctx = new ContextThemeWrapper(context, R.style.default_transparent_theme);
 		int view = uploadDetailView == 0 ? R.layout.default_upload_detail_activity : uploadDetailView;
-		return LayoutInflater.from(context).inflate(view, null, false);
+		return LayoutInflater.from(ctx).inflate(view, null, false);
 	}
 
 	/**

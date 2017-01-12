@@ -7,7 +7,7 @@
 
 	<ScrollView
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
+		android:layout_height="wrap_content"
 		>
 
 		<LinearLayout
@@ -39,7 +39,6 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_margin="10dp"
-				android:theme="@style/TextLabel"
 				>
 
 				<android.support.design.widget.TextInputEditText
@@ -47,7 +46,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:hint="@string/detail_upload_title"
-					android:textColor="@android:color/black"
+					android:textColor="@color/textColorPrimary"
 					/>
 
 			</android.support.design.widget.TextInputLayout>
@@ -56,7 +55,6 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_margin="10dp"
-				android:theme="@style/TextLabel"
 				>
 
 				<android.support.design.widget.TextInputEditText
@@ -64,7 +62,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:hint="@string/detail_upload_description"
-					android:textColor="@android:color/black"
+					android:textColor="@color/textColorPrimary"
 					/>
 
 			</android.support.design.widget.TextInputLayout>
