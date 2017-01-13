@@ -16,6 +16,9 @@ import UIKit
 
 public class WebContentListTableView: BaseListTableView {
 
+
+	//MARK: BaseListTableView
+
 	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
 		// Apply cell style in the theme
 	}

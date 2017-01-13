@@ -18,6 +18,9 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 
 	let defaultCellId = "liferay-screns-loadingMoreCellId"
 
+
+	//MARK: Outlets
+
 	@IBOutlet public var collectionView: UICollectionView?
 
 	internal var refreshControlView: UIRefreshControl?
@@ -39,7 +42,7 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 
 	//MARK: BaseListView
 	
-	public override func onCreated() {
+	override public func onCreated() {
 		super.onCreated()
 		
 		collectionView?.delegate = self
@@ -50,7 +53,7 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 		doRegisterLoadMoreCell()
 	}
 
-	public override func onShow() {
+	override public func onShow() {
 		super.onShow()
 
 		// Force layout
@@ -102,7 +105,7 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 		}
 	}
 
-	//MARK: UITableViewDataSource
+	//MARK: UICollectionViewDataSource
 
 	public func collectionView(
 			collectionView: UICollectionView,
@@ -205,6 +208,9 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 
 		return layout.itemSize
 	}
+
+
+	//MARK: Public methods
 
 	public func doConfigureCollectionView(collectionView: UICollectionView) {
 		collectionView.backgroundColor = .whiteColor()

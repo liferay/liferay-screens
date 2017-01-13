@@ -26,6 +26,9 @@ public class DDLFormView: BaseScreenletView, DDLFormViewModel {
 		return (record == nil) ? true : record!.fields.isEmpty
 	}
 
+
+	//MARK: Public methods
+
 	public func refresh() {
 	}
 
@@ -52,9 +55,6 @@ public class DDLFormView: BaseScreenletView, DDLFormViewModel {
 
 		return firstError
 	}
-
-
-	//MARK: Public methods
 
 	public func getField(index: Int) -> DDMField? {
 		return (record == nil) ? nil : record!.fields[index]

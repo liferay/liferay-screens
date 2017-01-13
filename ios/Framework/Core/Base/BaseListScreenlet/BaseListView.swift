@@ -14,7 +14,6 @@
 import UIKit
 
 
-
 public class BaseListView: BaseScreenletView {
 	
 	public static let DefaultSection = ""
@@ -43,6 +42,9 @@ public class BaseListView: BaseScreenletView {
 	
 	//True when there are more rows in the server
 	public var moreRows = true
+
+
+	//MARK: Public methods
 	
 	public func setRows(allRows: [String : [AnyObject?]], newRows: [String : [AnyObject]], rowCount: Int,
 	                    sections: [String]) {
@@ -107,7 +109,10 @@ public class BaseListView: BaseScreenletView {
 		
 		return rows[key]!
 	}
-	
+
+
+	//MARK: Internal methods
+
 	internal func hasMoreRows(newRows: [String : [AnyObject]]) -> Bool {
 		if newRows.count == 0 {
 			return false

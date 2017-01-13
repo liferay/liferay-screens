@@ -17,6 +17,9 @@ import UIKit
 public class DDLFormTableView: DDLFormView,
 		UITableViewDataSource, UITableViewDelegate, KeyboardLayoutable {
 
+
+	//MARK: Outlets
+
 	@IBOutlet public var tableView: UITableView?
 
 	override public var record: DDLRecord? {
@@ -188,6 +191,9 @@ public class DDLFormTableView: DDLFormView,
 			scrollClosure(true)
 		}
 	}
+
+
+	//MARK: Public methods
 
 	public func layoutWhenKeyboardHidden() {
 		if let originalFrameValue = originalFrame {

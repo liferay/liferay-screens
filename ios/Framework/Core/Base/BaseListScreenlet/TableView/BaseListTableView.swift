@@ -14,7 +14,6 @@
 import UIKit
 
 
-
 public class BaseListTableView: BaseListView, UITableViewDataSource, UITableViewDelegate {
 	
 	@IBOutlet public var tableView: UITableView?
@@ -91,7 +90,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		tableView?.reloadData()
 	}
 	
-	public override func onClearRows(oldRows: [String : [AnyObject?]]) {
+	override public func onClearRows(oldRows: [String : [AnyObject?]]) {
 		clearAllRows(oldRows)
 	}
 	

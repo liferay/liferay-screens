@@ -37,7 +37,6 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	internal var onPerformAction: ((String, AnyObject?) -> Bool)?
 
-
 	deinit {
 		onDestroy()
 	}
@@ -261,6 +260,9 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 			setUpView(subview)
 		}
 	}
+
+
+	//MARK: Public methods
 
 	public func changeEditable(editable: Bool) {
 		userInteractionEnabled = editable
