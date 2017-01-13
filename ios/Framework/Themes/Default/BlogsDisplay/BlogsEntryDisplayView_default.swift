@@ -16,15 +16,23 @@ import UIKit
 
 public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewModel {
 
+
+	//MARK: Outlets
+
 	@IBOutlet weak var imageDisplayScreenlet: ImageDisplayScreenlet?
+
 	@IBOutlet weak var userPortraitScreenlet: UserPortraitScreenlet?
 
 	@IBOutlet weak var usernameLabel: UILabel?
+
 	@IBOutlet weak var dateLabel: UILabel?
 
 	@IBOutlet weak var titleLabel: UILabel?
+
 	@IBOutlet weak var subtitleLabel: UILabel?
+
 	@IBOutlet weak var contentLabel: UILabel?
+	
 	@IBOutlet weak var imageHeightConstraint: NSLayoutConstraint?
 
 	public var headerImageHeight: CGFloat = 125.0

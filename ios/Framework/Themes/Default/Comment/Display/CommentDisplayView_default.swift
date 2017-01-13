@@ -31,19 +31,32 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 	//Top/bottom UILabel insets
 	private static let LabelInsets: CGFloat = 16
 
-	@IBOutlet weak var userPortraitScreenlet: UserPortraitScreenlet?
-	@IBOutlet weak var userNameLabel: UILabel?
-	@IBOutlet weak var createdDateLabel: UILabel?
-	@IBOutlet weak var editedLabel: UILabel?
-	@IBOutlet weak var bodyLabel: UILabel?
-	@IBOutlet weak var bodyLabelBottomMarginConstraint: NSLayoutConstraint?
-	@IBOutlet weak var normalStateButtonsContainer: UIView?
-	@IBOutlet weak var deletingStateButtonsContainer: UIView?
-	@IBOutlet weak var deleteButton: UIButton?
-	@IBOutlet weak var editButton: UIButton?
-	@IBOutlet weak var confirmButton: UIButton?
-	@IBOutlet weak var cancelButton: UIButton?
 
+	//MARK: Outlets
+
+	@IBOutlet weak var userPortraitScreenlet: UserPortraitScreenlet?
+
+	@IBOutlet weak var userNameLabel: UILabel?
+
+	@IBOutlet weak var createdDateLabel: UILabel?
+
+	@IBOutlet weak var editedLabel: UILabel?
+
+	@IBOutlet weak var bodyLabel: UILabel?
+
+	@IBOutlet weak var bodyLabelBottomMarginConstraint: NSLayoutConstraint?
+
+	@IBOutlet weak var normalStateButtonsContainer: UIView?
+
+	@IBOutlet weak var deletingStateButtonsContainer: UIView?
+
+	@IBOutlet weak var deleteButton: UIButton?
+
+	@IBOutlet weak var editButton: UIButton?
+
+	@IBOutlet weak var confirmButton: UIButton?
+
+	@IBOutlet weak var cancelButton: UIButton?
 
 	var editViewController: CommentEditViewController_default?
 
@@ -118,7 +131,7 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 
 	//MARK: BaseScreenletView
 
-	public override func onSetTranslations() {
+	override public func onSetTranslations() {
 		editedLabel?.text = LocalizedString("default", key: "comment-display-edited", obj: self)
 		editButton?.titleLabel?.text = LocalizedString("default", key: "comment-display-edit-button", obj: self)
 		deleteButton?.titleLabel?.text = LocalizedString("default", key: "comment-display-delete-button", obj: self)
@@ -126,7 +139,7 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 		cancelButton?.titleLabel?.text = LocalizedString("default", key: "comment-display-cancel-button", obj: self)
 	}
 
-	public override var editable: Bool {
+	override public var editable: Bool {
 		didSet {
 			normalStateButtonsContainer?.hidden = !editable
 		}
@@ -136,7 +149,7 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 		return DefaultProgressPresenter()
 	}
 
-	public override var progressMessages: [String : ProgressMessages] {
+	override public var progressMessages: [String : ProgressMessages] {
 		return [
 			CommentDisplayScreenlet.DeleteAction: [.Working: NoProgressMessage],
 			CommentDisplayScreenlet.UpdateAction: [.Working: NoProgressMessage]
@@ -187,7 +200,7 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 	}
 
 
-	//MARK: View actions
+	//MARK: Actions
 
 	@IBAction func deleteButtonClicked() {
 		self.state = .Deleting

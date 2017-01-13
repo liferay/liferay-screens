@@ -14,6 +14,7 @@
 import UIKit
 import Cosmos
 
+
 public class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 
 	public var defaultRatingsGroupCount: Int32 {
@@ -25,12 +26,12 @@ public class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 
 	//MARK: BaseScreenletView
 
-	public override func onCreated() {
+	override public func onCreated() {
 		emojis = subviews.map({$0 as? UIButton}).flatMap({$0})
 		labels = subviews.map({$0 as? UILabel}).flatMap({$0})
 	}
 
-	public override func createProgressPresenter() -> ProgressPresenter {
+	override public func createProgressPresenter() -> ProgressPresenter {
 		return NetworkActivityIndicatorPresenter()
 	}
 
@@ -41,6 +42,9 @@ public class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 			RatingScreenlet.DeleteRatingAction : [.Working : ""],
 		]
 	}
+
+
+	//MARK: RatingViewModel
 
 	public var ratingEntry: RatingEntry? {
 		didSet {
@@ -63,6 +67,9 @@ public class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 			}
 		}
 	}
+
+
+	//MARK: Internal methods
 
 	func emojiClicked(sender: UIButton) {
 		userAction(

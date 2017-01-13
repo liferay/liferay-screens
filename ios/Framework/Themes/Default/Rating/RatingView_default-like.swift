@@ -13,7 +13,11 @@
  */
 import UIKit
 
+
 public class RatingView_default_like: BaseScreenletView, RatingViewModel {
+
+
+	//MARK: Outlets
 
 	@IBOutlet weak var likeButton: UIButton? {
 		didSet {
@@ -30,7 +34,7 @@ public class RatingView_default_like: BaseScreenletView, RatingViewModel {
 	
 	//MARK: BaseScreenletView
 	
-	public override func createProgressPresenter() -> ProgressPresenter {
+	override public func createProgressPresenter() -> ProgressPresenter {
 		return NetworkActivityIndicatorPresenter()
 	}
 	
@@ -41,6 +45,9 @@ public class RatingView_default_like: BaseScreenletView, RatingViewModel {
 			RatingScreenlet.DeleteRatingAction : [.Working : ""],
 		]
 	}
+
+
+	//MARK: RatingViewModel
 
 	public var ratingEntry: RatingEntry? {
 		didSet {
@@ -58,6 +65,9 @@ public class RatingView_default_like: BaseScreenletView, RatingViewModel {
 			}
 		}
 	}
+
+
+	//MARK: Actions
 	
 	@IBAction func likeButtonClicked(sender: AnyObject) {
 		self.userAction(

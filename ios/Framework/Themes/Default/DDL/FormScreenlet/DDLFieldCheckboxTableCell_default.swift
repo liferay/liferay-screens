@@ -16,7 +16,11 @@ import UIKit
 
 public class DDLFieldCheckboxTableCell_default: DDMFieldTableCell {
 
+
+	//MARK: Outlets
+
 	@IBOutlet public var switchView: UISwitch?
+	
 	@IBOutlet public var label: UILabel?
 
 

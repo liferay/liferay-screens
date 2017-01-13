@@ -16,9 +16,12 @@ import UIKit
 
 public class DDLBaseFieldTextboxTableCell_default: DDMFieldTableCell, UITextFieldDelegate {
 
-	@IBOutlet public var textField: UITextField?
-	@IBOutlet public var label: UILabel?
 
+	//MARK: Outlets
+
+	@IBOutlet public var textField: UITextField?
+
+	@IBOutlet public var label: UILabel?
 
 	public var defaultTextField: DefaultTextField? {
 		return textField as? DefaultTextField

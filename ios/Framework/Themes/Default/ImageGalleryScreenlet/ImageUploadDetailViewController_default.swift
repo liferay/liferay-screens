@@ -17,7 +17,7 @@ public class ImageUploadDetailViewController_default: UIViewController {
 
 	public var imageUploadDetailview: ImageUploadDetailViewBase?
 
-	// MARK: UIViewController
+	//MARK: Initializers
 
 	public init(imageUploadDetailview: ImageUploadDetailViewBase) {
 		super.init(nibName: nil, bundle: nil)
@@ -27,6 +27,8 @@ public class ImageUploadDetailViewController_default: UIViewController {
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
+
+	//MARK: UIViewController
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +41,7 @@ public class ImageUploadDetailViewController_default: UIViewController {
     }
 
 
-	// MARK: Private methods
+	//MARK: Public methods
 
 	public func addNavBarButtons() {
 		let uploadButton = UIBarButtonItem(
@@ -64,9 +66,6 @@ public class ImageUploadDetailViewController_default: UIViewController {
 
 		imageUploadDetailview!.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
 	}
-
-
-	// MARK: Actions
 
 	public func startUploadClick() {
 		dismissViewControllerAnimated(true) {

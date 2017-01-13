@@ -16,7 +16,8 @@ import UIKit
 
 public class DDLListView_default: BaseListTableView, DDLListViewModel {
 
-	// DDLListViewModel
+
+	//MARK: DDLListViewModel
 
 	public var labelFields: [String] = []
 
@@ -40,6 +41,16 @@ public class DDLListView_default: BaseListTableView, DDLListViewModel {
 		}
 	}
 
+
+	//MARK: DDLFormTableView
+
+	override public func createProgressPresenter() -> ProgressPresenter {
+		return DefaultProgressPresenter()
+	}
+
+
+	//MARK: Public methods
+
 	public func composeLabel(record: DDLRecord) -> String {
 		var result: String = ""
 
@@ -62,13 +73,6 @@ public class DDLListView_default: BaseListTableView, DDLListViewModel {
 		}
 
 		return result
-	}
-
-
-	//MARK: DDLFormTableView
-
-	override public func createProgressPresenter() -> ProgressPresenter {
-		return DefaultProgressPresenter()
 	}
 
 }

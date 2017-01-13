@@ -16,9 +16,12 @@ import UIKit
 
 public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewModel {
 
-	@IBOutlet public var userNameField: UITextField?
-	@IBOutlet public var requestPasswordButton: UIButton?
 
+	//MARK: Outlets
+
+	@IBOutlet public var userNameField: UITextField?
+
+	@IBOutlet public var requestPasswordButton: UIButton?
 
 	override public var progressMessages: [String:ProgressMessages] {
 		return [

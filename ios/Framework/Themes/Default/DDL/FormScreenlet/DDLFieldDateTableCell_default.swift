@@ -23,7 +23,7 @@ public class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default
 
 	//MARK: UITableViewCell
 
-	public override func  awakeFromNib() {
+	override public func  awakeFromNib() {
 		super.awakeFromNib()
 
 		defaultTextField?.onRightButtonClick = { [weak self] in

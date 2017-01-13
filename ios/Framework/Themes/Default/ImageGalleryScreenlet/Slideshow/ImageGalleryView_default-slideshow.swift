@@ -14,16 +14,17 @@
 */
 import UIKit
 
+
 public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase {
 
 
 	// MARK: BaseListCollectionView
 
-	public override func doConfigureCollectionView(collectionView: UICollectionView) {
+	override public func doConfigureCollectionView(collectionView: UICollectionView) {
 		collectionView.backgroundColor = .blackColor()
 	}
 
-	public override func doRegisterCellNibs() {
+	override public func doRegisterCellNibs() {
 		if let imageGalleryGridCellNib = NSBundle.nibInBundles(
 			name: "ImageGallerySlideshowCell",
 			currentClass: self.dynamicType) {
@@ -33,7 +34,7 @@ public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase 
 		}
 	}
 
-	public override func doCreateLayout() -> UICollectionViewLayout {
+	override public func doCreateLayout() -> UICollectionViewLayout {
 
 		return SlideShowLayout()
 	}
@@ -58,13 +59,13 @@ public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase 
 		}
 	}
 
-	public override func doFillInProgressCell(indexPath indexPath: NSIndexPath,
+	override public func doFillInProgressCell(indexPath indexPath: NSIndexPath,
 	                                                    cell: UICollectionViewCell) {
 
 		cell.backgroundColor = .grayColor()
 	}
 
-	public override func doGetCellId(indexPath indexPath: NSIndexPath,
+	override public func doGetCellId(indexPath indexPath: NSIndexPath,
 	                                           object: AnyObject?) -> String {
 		if let _ = object {
 			return imageCellId
@@ -72,6 +73,9 @@ public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase 
 
 		return super.doGetCellId(indexPath: indexPath, object: object)
 	}
+
+
+	//MARK: UICollectionViewDataSource
 
 	public func collectionView(collectionView: UICollectionView,
 	                           layout collectionViewLayout: UICollectionViewLayout,

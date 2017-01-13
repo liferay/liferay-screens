@@ -16,13 +16,22 @@ import UIKit
 public class ImageUploadDetailViewBase: UIView {
 
 	public var image: UIImage?
+
 	public var imageTitle: String?
 
 	public weak var screenlet: ImageGalleryScreenlet?
 
+
+	//MARK: Outlets
+
 	@IBOutlet public weak var imagePreview: UIImageView?
+
 	@IBOutlet public weak var titleText: UITextField?
+
 	@IBOutlet public weak var descripText: UITextView?
+
+
+	//MARK: Public methods
 
 	public func startUpload() {
 		self.startUpload(

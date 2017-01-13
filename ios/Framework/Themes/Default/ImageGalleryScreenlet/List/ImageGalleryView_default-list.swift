@@ -152,7 +152,7 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
 
 	// MARK: BaseScreenletView
 
-    public override func onCreated() {
+    override public func onCreated() {
         super.onCreated()
         tableView?.rowHeight = 110
     }
@@ -191,7 +191,7 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
         }
     }
     
-    public override func doGetCellId(row row: Int, object: AnyObject?) -> String {
+    override public func doGetCellId(row row: Int, object: AnyObject?) -> String {
         if let _ = object {
             return imageCellId
         }
@@ -199,7 +199,7 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
         return super.doGetCellId(row: row, object: object)
     }
     
-    public override func doRegisterCellNibs() {
+    override public func doRegisterCellNibs() {
         if let imageGalleryCellNib = NSBundle.nibInBundles(
             name: "ImageGalleryCell",
             currentClass: self.dynamicType) {

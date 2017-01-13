@@ -29,9 +29,9 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 	internal var lastOffset: CGPoint?
 	internal var currentOrientation: UIInterfaceOrientation?
 
-	// MARK: UIView
+	//MARK: UIView
 
-	public override func layoutSubviews() {
+	override public func layoutSubviews() {
 		super.layoutSubviews()
 
 		if let orientation = currentOrientation {
@@ -44,9 +44,9 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 		}
 	}
 
-	// MARK: BaseScreenletView
+	//MARK: BaseScreenletView
 	
-	public override func onShow() {
+	override public func onShow() {
 		super.onShow()
 
 		currentOrientation = UIApplication.sharedApplication().statusBarOrientation
@@ -56,17 +56,17 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 		}
 	}
 
-	public override func onHide() {
+	override public func onHide() {
 		lastOffset = collectionView?.contentOffset
 	}
 
-	// MARK: BaseListCollectionView
+	//MARK: BaseListCollectionView
 
-	public override func doConfigureCollectionView(collectionView: UICollectionView) {
+	override public func doConfigureCollectionView(collectionView: UICollectionView) {
 		collectionView.backgroundColor = .whiteColor()
 	}
 
-	public override func doRegisterCellNibs() {
+	override public func doRegisterCellNibs() {
 		if let imageGalleryGridCellNib = NSBundle.nibInBundles(
 			name: "ImageGalleryGridCell",
 			currentClass: self.dynamicType) {
@@ -77,7 +77,7 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 		}
 	}
 
-	public override func doCreateLayout() -> UICollectionViewLayout {
+	override public func doCreateLayout() -> UICollectionViewLayout {
 		// When the theme is changed dinamically the collection view hasn't the correct bounds at
 		// this time so we use the screenlet (which is also a view) to calculate the itemSize
 		screenlet?.layoutIfNeeded()
@@ -102,17 +102,17 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 		}
 	}
 
-	public override func doFillInProgressCell(indexPath indexPath: NSIndexPath, cell: UICollectionViewCell) {
+	override public func doFillInProgressCell(indexPath indexPath: NSIndexPath, cell: UICollectionViewCell) {
 
 		cell.backgroundColor = .grayColor()
 	}
 
-	public override func doGetCellId(indexPath indexPath: NSIndexPath, object: AnyObject?) -> String {
+	override public func doGetCellId(indexPath indexPath: NSIndexPath, object: AnyObject?) -> String {
 		return imageCellId
 	}
 
 
-	// MARK: Private methods
+	//MARK: Public methods
 
 	public func changeLayout() {
 		if let collectionView = collectionView {
@@ -120,6 +120,9 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 			collectionView.setCollectionViewLayout(newLayout, animated: true)
 		}
 	}
+
+
+	//MARK: Internal methods
 
 	internal func createCustomLayout() -> UICollectionViewLayout {
 		let layout = UICollectionViewFlowLayout()

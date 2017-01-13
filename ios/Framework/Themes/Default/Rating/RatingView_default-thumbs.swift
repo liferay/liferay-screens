@@ -13,8 +13,12 @@
  */
 import UIKit
 
+
 public class RatingView_default_thumbs: BaseScreenletView, RatingViewModel {
-	
+
+
+	//MARK: Outlets
+
 	@IBOutlet weak var negativeButton: UIButton? {
 		didSet {
 			let image = NSBundle.imageInBundles(
@@ -34,13 +38,15 @@ public class RatingView_default_thumbs: BaseScreenletView, RatingViewModel {
 	}
 	
 	@IBOutlet weak var negativeCountLabel: UILabel?
+
 	@IBOutlet weak var possitiveCountLabel: UILabel?
 	
 	public var defaultRatingsGroupCount: Int32 = 2
-	
+
+
 	//MARK: BaseScreenletView
 	
-	public override func createProgressPresenter() -> ProgressPresenter {
+	override public func createProgressPresenter() -> ProgressPresenter {
 		return NetworkActivityIndicatorPresenter()
 	}
 	
@@ -89,6 +95,9 @@ public class RatingView_default_thumbs: BaseScreenletView, RatingViewModel {
 			}
 		}
 	}
+
+
+	//MARK: Actions
 	
 	@IBAction func possitiveButtonClicked(sender: UIButton) {
 		self.userAction(name: sender.restorationIdentifier, sender: 1)

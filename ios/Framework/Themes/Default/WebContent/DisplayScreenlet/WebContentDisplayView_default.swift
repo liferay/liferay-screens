@@ -16,6 +16,9 @@ import UIKit
 
 public class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayViewModel {
 
+
+	//MARK: Outlets
+
 	@IBOutlet public var webView: UIWebView?
 
 	override public var progressMessages: [String:ProgressMessages] {
@@ -24,7 +27,6 @@ public class WebContentDisplayView_default: BaseScreenletView, WebContentDisplay
 				[.Working : LocalizedString("default", key: "webcontentdisplay-loading-message", obj: self),
 				.Failure : LocalizedString("default", key: "webcontentdisplay-loading-error", obj: self)]]
 	}
-
 
 	private let styles =
 		".MobileCSS {padding: 4%; width: 92%;} " +

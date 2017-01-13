@@ -21,9 +21,15 @@ private let xibName = "DDLFieldDocumentlibraryPresenterViewController_default"
 public class DDMFieldDocumentlibraryPresenterViewController_default:
 		UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+
+	//MARK: Outlets
+
 	@IBOutlet public var takeNewButton: UIButton?
+
 	@IBOutlet public var selectPhotoButton: UIButton?
+
 	@IBOutlet public var selectVideoButton: UIButton?
+
 	@IBOutlet public var cancelButton: UIButton?
 
 	public var selectedDocumentClosure: ((UIImage?, NSURL?) -> Void)?
@@ -31,7 +37,9 @@ public class DDMFieldDocumentlibraryPresenterViewController_default:
 	private let imagePicker = UIImagePickerController()
 
 
-	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+	//MARK: Initializers
+
+	override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 	}
 

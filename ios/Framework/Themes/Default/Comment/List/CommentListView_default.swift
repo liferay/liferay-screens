@@ -129,7 +129,7 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 	}
 
 
-	//UITableViewDelegate
+	//MARK: UITableViewDelegate
 
 	public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath)
 			-> CGFloat {

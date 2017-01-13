@@ -20,12 +20,16 @@ import UIKit
 
 public class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 
+
+	//MARK: Outlets
+
 	@IBOutlet public var label: UILabel?
+
 	@IBOutlet public var radioReferenceLabel: UILabel?
+
 	@IBOutlet public var separator: UIView?
 
 	public var radioGroup: TNRadioButtonGroup?
-
 
 	public var radioColor : UIColor {
 		return DefaultThemeBasicBlue
@@ -97,6 +101,8 @@ public class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 	}
 
 
+	//MARK: Public methods
+	
 	public func createRadioButtons(field: DDMFieldStringWithOptions) {
 		var radioButtons:[AnyObject] = []
 

@@ -18,9 +18,15 @@ import AVKit
 
 public class VideoDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
+
+	//MARK: Outlets
+
 	@IBOutlet weak var view: UIView?
 
 	public var playerController: AVPlayerViewController?
+
+
+	//MARK: FileDisplayViewModel
 
 	public var url: NSURL? {
 		didSet {

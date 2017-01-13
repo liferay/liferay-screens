@@ -16,6 +16,9 @@ import UIKit
 
 public class DDLFieldTextareaTableCell_default: DDMFieldTableCell, UITextViewDelegate {
 
+
+	//MARK: Outlets
+
 	@IBOutlet public var textView: UITextView? {
 		didSet {
 			textView?.layer.cornerRadius = 4.0
@@ -23,8 +26,11 @@ public class DDLFieldTextareaTableCell_default: DDMFieldTableCell, UITextViewDel
 			textView?.layer.borderColor = UIColor.lightGrayColor().CGColor
 		}
 	}
+
 	@IBOutlet public var placeholder: UILabel?
+
 	@IBOutlet public var label: UILabel?
+
 	@IBOutlet public var separator: UIView?
 
 	private var originalTextViewRect = CGRectZero

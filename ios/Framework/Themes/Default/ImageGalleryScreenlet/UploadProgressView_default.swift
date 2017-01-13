@@ -15,19 +15,27 @@ import UIKit
 
 public class UploadProgressView_default: UIView, UploadProgressViewBase {
 
-	@IBOutlet weak private var previewImage: UIImageView!
-	@IBOutlet weak private var progressView: UIProgressView!
-	@IBOutlet weak private var informationText: UILabel!
+
+	//MARK: Outlets
+
+	@IBOutlet weak private var previewImage: UIImageView?
+
+	@IBOutlet weak private var progressView: UIProgressView?
+
+	@IBOutlet weak private var informationText: UILabel?
 
 	public var cancelClosure: (Void -> Void)?
 
 	private var images: [UIImage] = []
 	private var uploadsCount = 0
 
-	public override func awakeFromNib() {
-		progressView.progress = 0
+	override public func awakeFromNib() {
+		progressView?.progress = 0
 		addShadow()
 	}
+
+
+	//MARK: Public methods
 
 	public func addShadow() {
 		layer.masksToBounds = false;
@@ -36,16 +44,19 @@ public class UploadProgressView_default: UIView, UploadProgressViewBase {
 		layer.shadowOpacity = 0.3;
 	}
 
+
+	//MARK: Actions
+
 	@IBAction func cancelButton() {
 		cancelClosure?()
 		hide()
 	}
 
 
-	// MARK: UploadProgressViewBase
+	//MARK: UploadProgressViewBase
 
 	public func setProgress(progress: Float) {
-		progressView.progress = progress
+		progressView?.progress = progress
 	}
 
 	public func addUpload(thumbnail: UIImage? = nil) {
@@ -56,7 +67,7 @@ public class UploadProgressView_default: UIView, UploadProgressViewBase {
 		}
 
 		if uploadsCount == 1 {
-			previewImage.image = images.popLast()
+			previewImage?.image = images.popLast()
 		}
 
 		updateInformationText()
@@ -68,8 +79,8 @@ public class UploadProgressView_default: UIView, UploadProgressViewBase {
 		}
 		else {
 			uploadsCount -= 1
-			progressView.progress = 0
-			previewImage.image = images.popLast()
+			progressView?.progress = 0
+			previewImage?.image = images.popLast()
 			updateInformationText()
 		}
 	}
@@ -88,9 +99,12 @@ public class UploadProgressView_default: UIView, UploadProgressViewBase {
 		})
 	}
 
+
+	//MARK: Private methods
+
 	private func updateInformationText() {
 		if uploadsCount == 1 {
-			informationText.text = LocalizedString(
+			informationText?.text = LocalizedString(
 					"default",
 					key: "imagegallery-uploading-one",
 					obj: self)
@@ -102,7 +116,7 @@ public class UploadProgressView_default: UIView, UploadProgressViewBase {
 					key: "imagegallery-uploading-several",
 					obj: self)
 
-			informationText.text = String(format: message, uploadsCount)
+			informationText?.text = String(format: message, uploadsCount)
 		}
 	}
 }

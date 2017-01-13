@@ -16,22 +16,31 @@ import UIKit
 
 public class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextViewDelegate {
 
+
+	//MARK: Outlets
+
 	@IBOutlet weak var scrollView: UIScrollView!
+
 	@IBOutlet weak var hintLabel: UILabel!
 
-	public override var image: UIImage? {
+
+	//MARK ImageUploadDetailVeiewBase
+
+	override public var image: UIImage? {
 		didSet {
 			imagePreview?.image = image
 		}
 	}
 
-	public override var imageTitle: String? {
+	override public var imageTitle: String? {
 		didSet {
 			titleText?.text = imageTitle
 		}
 	}
 
-	public override func awakeFromNib() {
+	//MARK: UIView
+
+	override public func awakeFromNib() {
 		initialize()
 	}
 
@@ -52,7 +61,7 @@ public class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextVi
 		scrollView?.addGestureRecognizer(dismissKeyboardGesture)
 	}
 
-	public override func didMoveToWindow() {
+	override public func didMoveToWindow() {
 		if window != nil {
 
 			NSNotificationCenter.defaultCenter().addObserver(
@@ -70,13 +79,16 @@ public class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextVi
 		}
 	}
 
-	public override func willMoveToWindow(newWindow: UIWindow?) {
+	override public func willMoveToWindow(newWindow: UIWindow?) {
 
 		NSNotificationCenter.defaultCenter().removeObserver(
 				self, name: UIKeyboardWillShowNotification, object: nil)
 		NSNotificationCenter.defaultCenter().removeObserver(
 				self, name: UIKeyboardWillHideNotification, object: nil)
 	}
+
+
+	//MARK: Public methods
 
 	public func textViewDidBeginEditing(textView: UITextView) {
 		hintLabel.alpha = 0

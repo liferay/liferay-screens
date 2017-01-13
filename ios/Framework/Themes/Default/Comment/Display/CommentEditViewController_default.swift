@@ -17,9 +17,15 @@ private let xibName = "CommentEditViewController_default"
 
 public class CommentEditViewController_default: UIViewController, UITextViewDelegate {
 
+
+	//MARK: Outlets
+
 	@IBOutlet public var bodyTextView: UITextView?
+
 	@IBOutlet public var confirmButton: UIButton?
+
 	@IBOutlet public var cancelButton: UIButton?
+
 	@IBOutlet public var scrollView: UIScrollView?
 
 	public var confirmBodyClosure: (String? -> Void)?
@@ -49,7 +55,7 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 
 	//MARK: UIViewController
 
-	public override func viewDidLoad() {
+	override public func viewDidLoad() {
 		confirmButton?.replaceAttributedTitle(
 			LocalizedString("default", key: "comment-display-confirm", obj: self),
 			forState: .Normal)
@@ -112,7 +118,7 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 	}
 
 
-	//MARK: View actions
+	//MARK: Actions
 
 	@IBAction public func cancelButtonAction() {
 		bodyTextView?.resignFirstResponder()

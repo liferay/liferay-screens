@@ -16,9 +16,15 @@ import UIKit
 
 public class LoginView_default: BaseScreenletView, LoginViewModel {
 
+
+	//MARK: Outlets
+
 	@IBOutlet public weak var userNameField: UITextField?
+
 	@IBOutlet public weak var passwordField: UITextField?
+
 	@IBOutlet public weak var loginButton: UIButton?
+
 	@IBOutlet public weak var authorizeButton: UIButton?
 
 	override public var progressMessages: [String:ProgressMessages] {
@@ -106,6 +112,9 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 	override public func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
 	}
+
+
+	//MARK: Public methods
 
 	public func configureAuthType() {
 		let auth = AuthTypeFromString(authType ?? "") ?? .Basic

@@ -34,7 +34,7 @@ public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_defau
 
 	//MARK: UITableViewCell
 
-	public override func  awakeFromNib() {
+	override public func  awakeFromNib() {
 		super.awakeFromNib()
 
 		defaultTextField?.onRightButtonClick = { [weak self] in

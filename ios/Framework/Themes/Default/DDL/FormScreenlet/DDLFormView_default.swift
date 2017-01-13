@@ -58,7 +58,7 @@ public class DDLFormView_default: DDLFormTableView {
 		return DefaultProgressPresenter()
 	}
 
-	public override func changeEditable(editable: Bool) {
+	override public func changeEditable(editable: Bool) {
 		tableView?.subviews.forEach { $0.userInteractionEnabled = editable }
 	}
 

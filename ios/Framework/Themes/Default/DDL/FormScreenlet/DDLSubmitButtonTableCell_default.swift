@@ -16,6 +16,9 @@ import UIKit
 
 public class DDLSubmitButtonTableCell_default: DDMFieldTableCell {
 
+
+	//MARK: Outlets
+
 	@IBOutlet public var submitButton: UIButton?
 
 	//MARK: Actions

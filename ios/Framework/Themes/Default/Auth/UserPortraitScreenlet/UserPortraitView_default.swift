@@ -46,39 +46,20 @@ public class UserPortraitView_default: BaseScreenletView,
 
 	public static var defaultPlaceholder: UIImage? = loadPlaceholderCache()
 
-	@IBOutlet weak public var activityIndicator: UIActivityIndicatorView?
-	@IBOutlet weak public var portraitImage: UIImageView?
-	@IBOutlet weak var editButton: UIButton!
 
-	public var borderWidth: CGFloat = 1.0 {
-		didSet {
-			portraitImage?.layer.borderWidth = borderWidth
-		}
-	}
-	public var borderColor: UIColor? {
-		didSet {
-			portraitImage?.layer.borderColor = (borderColor ?? DefaultThemeBasicBlue).CGColor
-		}
-	}
+	//MARK: Outlets
+
+	@IBOutlet weak public var activityIndicator: UIActivityIndicatorView?
+
+	@IBOutlet weak public var portraitImage: UIImageView?
+
+	@IBOutlet weak var editButton: UIButton?
+
 	override public var editable: Bool {
 		didSet {
-			self.editButton.hidden = !editable
+			self.editButton?.hidden = !editable
 			if editable {
 				self.superview?.clipsToBounds = false
-			}
-		}
-	}
-
-	public var image: UIImage? {
-		get {
-			return portraitImage?.image
-		}
-		set {
-			if let image = newValue {
-				portraitImage?.image = image
-			}
-			else {
-				loadPlaceholder()
 			}
 		}
 	}
@@ -95,6 +76,34 @@ public class UserPortraitView_default: BaseScreenletView,
 	}
 
 	private let imagePicker = UIImagePickerController()
+
+	//MARK: SignUpViewModel
+
+	public var image: UIImage? {
+		get {
+			return portraitImage?.image
+		}
+		set {
+			if let image = newValue {
+				portraitImage?.image = image
+			}
+			else {
+				loadPlaceholder()
+			}
+		}
+	}
+
+	public var borderWidth: CGFloat = 1.0 {
+		didSet {
+			portraitImage?.layer.borderWidth = borderWidth
+		}
+	}
+
+	public var borderColor: UIColor? {
+		didSet {
+			portraitImage?.layer.borderColor = (borderColor ?? DefaultThemeBasicBlue).CGColor
+		}
+	}
 
 
 	//MARK: BaseScreenletView
@@ -138,6 +147,9 @@ public class UserPortraitView_default: BaseScreenletView,
 
 		return true
 	}
+
+
+	//MARK: Public methods
 
 	public func loadPlaceholder() {
 		dispatch_main() {

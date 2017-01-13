@@ -18,14 +18,20 @@ import AVFoundation
 public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
 	public var volume: Float = 0.5
+	
 	public var numberOfLoops = -1
+
+
+	//MARK: Outlets
 
 	@IBOutlet weak var view: UIView?
 
 	@IBOutlet weak var playButton: UIButton?
+
 	@IBOutlet weak var pauseButton: UIButton?
 
 	@IBOutlet weak var rewindButton: UIButton?
+
 	@IBOutlet weak var forwardButton: UIButton?
 
 	@IBOutlet weak var sliderDuration: UISlider? {
@@ -49,9 +55,13 @@ public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 	}
 
 	@IBOutlet weak var audioProgressLabel: UILabel?
+
 	@IBOutlet weak var audioDurationLabel: UILabel?
 
 	@IBOutlet weak var titleLabel: UILabel?
+
+
+	//MARK: FileDisplayViewModel
 
 	public var url: NSURL? {
 		didSet {
@@ -86,11 +96,18 @@ public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 	public var audio: AVAudioPlayer?
 
 	public var timer: NSTimer?
+
 	public var duration: NSTimer?
+
+
+	//MARK: BaseScreenletView
 
 	override public func onHide() {
 		audio?.stop()
 	}
+
+
+	//MARK: Actions
 
 	@IBAction func pauseAction() {
 		audio?.pause()
@@ -134,6 +151,9 @@ public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 		changeCurrentTime(5, slider: false)
 	}
 
+
+	//MARK: Private methods
+
 	private func updateView(play: Bool) {
 		self.pauseButton?.hidden = !play
 		self.playButton?.hidden = play
@@ -165,6 +185,9 @@ public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 		sliderVolume?.enabled = false
 		pauseButton?.hidden = true
 	}
+
+
+	//MARK: Internal methods
 
 	func updateProgress() {
 		self.sliderDuration?.setValue(Float(audio!.currentTime), animated: true)
