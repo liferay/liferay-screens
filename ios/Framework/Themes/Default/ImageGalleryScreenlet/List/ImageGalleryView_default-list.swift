@@ -31,7 +31,7 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
     internal let imageCellId = "ImageCellId"
 
 
-	// MARK: ImageGalleryViewModel
+	//MARK: ImageGalleryViewModel
 
 	public var totalEntries: Int {
 		return rowCount
@@ -150,7 +150,7 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
 		return index
 	}
 
-	// MARK: BaseScreenletView
+	//MARK: BaseScreenletView
 
     override public func onCreated() {
         super.onCreated()
@@ -162,7 +162,7 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
     }
 
 
-	// MARK: BaseListTableView
+	//MARK: BaseListTableView
 
     override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
         guard let imageCell = cell as? ImageGalleryCell, entry = object as? ImageEntry else {

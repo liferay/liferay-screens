@@ -1,4 +1,3 @@
-
 /**
 * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
 *
@@ -18,7 +17,7 @@ import UIKit
 public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase {
 
 
-	// MARK: BaseListCollectionView
+	//MARK: BaseListCollectionView
 
 	override public func doConfigureCollectionView(collectionView: UICollectionView) {
 		collectionView.backgroundColor = .blackColor()

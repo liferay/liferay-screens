@@ -29,7 +29,7 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 	internal let imageCellId = "ImageCellId"
 
 
-	// MARK: ImageGalleryViewModel
+	//MARK: ImageGalleryViewModel
 
 	public var totalEntries: Int {
 		return rowCount
@@ -108,7 +108,7 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 	}
 
 
-	// MARK: BaseScreenletView
+	//MARK: BaseScreenletView
 
 	public override func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
