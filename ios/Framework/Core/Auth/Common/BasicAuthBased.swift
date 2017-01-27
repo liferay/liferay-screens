@@ -31,55 +31,55 @@ import UIKit
 
 public enum BasicAuthMethod: String {
 
-	case Email = "email"
-	case ScreenName = "screenName"
-	case UserId = "userId"
+	case email = "email"
+	case screenName = "screenName"
+	case userId = "userId"
 
 	public static func all() -> [BasicAuthMethod] {
-		return [.Email, .ScreenName, .UserId]
+		return [.email, .screenName, .userId]
 	}
 
-	public static func create(text: String?) -> BasicAuthMethod {
+	public static func create(_ text: String?) -> BasicAuthMethod {
 		return all().filter {
-				$0.rawValue.lowercaseString == text?.lowercaseString
-			}.first ?? .Email
+				$0.rawValue.lowercased() == text?.lowercased()
+			}.first ?? .email
 	}
 
-	public static func fromUserName(userName: String) -> BasicAuthMethod {
-		if userName.characters.indexOf("@") != nil {
-			return .Email
+	public static func fromUserName(_ userName: String) -> BasicAuthMethod {
+		if userName.characters.index(of: "@") != nil {
+			return .email
 		}
 
 		if Int(userName) != nil {
-			return .UserId
+			return .userId
 		}
 
-		return .ScreenName
+		return .screenName
 	}
 
 	public var iconType: String {
 		let iconTypes: [BasicAuthMethod:String] = [
-				.Email: "mail",
-				.ScreenName: "user",
-				.UserId: "user"]
+				.email: "mail",
+				.screenName: "user",
+				.userId: "user"]
 
 		return iconTypes[self] ?? ""
 	}
 
 	public var keyboardType: UIKeyboardType {
 		let keyboardTypes: [BasicAuthMethod:UIKeyboardType] = [
-				.Email: UIKeyboardType.EmailAddress,
-				.ScreenName: UIKeyboardType.ASCIICapable,
-				.UserId: UIKeyboardType.NumberPad]
+				.email: .emailAddress,
+				.screenName: .asciiCapable,
+				.userId: .numberPad]
 
-		return keyboardTypes[self] ?? .Default
+		return keyboardTypes[self] ?? .default
 	}
 
 	public var description: String {
-		let descriptions: [BasicAuthMethod:String] = [
-			.Email: "auth-method-email",
-			.ScreenName: "auth-method-screenname",
-			.UserId: "auth-method-userid"]
+		let descriptions: [BasicAuthMethod : String] = [
+			.email: "auth-method-email",
+			.screenName: "auth-method-screenname",
+			.userId: "auth-method-userid"]
 
 		return descriptions[self] ?? ""
 	}

@@ -15,10 +15,10 @@ import UIKit
 import LRMobileSDK
 
 
-public class GetUserByScreenNameLiferayConnector: GetUserBaseLiferayConnector {
+open class GetUserByScreenNameLiferayConnector: GetUserBaseLiferayConnector {
 
-	public let companyId: Int64
-	public let screenName: String
+	open let companyId: Int64
+	open let screenName: String
 
 
 	//MARK: Initializers
@@ -33,7 +33,7 @@ public class GetUserByScreenNameLiferayConnector: GetUserBaseLiferayConnector {
 
 	//MARK: ServerConnector
 
-	override public func validateData() -> ValidationError? {
+	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -48,7 +48,7 @@ public class GetUserByScreenNameLiferayConnector: GetUserBaseLiferayConnector {
 }
 
 
-public class GetUserByScreenNameLiferay62Connector: GetUserByScreenNameLiferayConnector {
+open class GetUserByScreenNameLiferay62Connector: GetUserByScreenNameLiferayConnector {
 
 
 	//MARK: GetUserByScreenNameLiferayConnector
@@ -60,21 +60,21 @@ public class GetUserByScreenNameLiferay62Connector: GetUserByScreenNameLiferayCo
 
 	//MARK: GetUserBaseLiferayConnector
 
-	override public func sendGetUserRequest(session: LRSession)
+	override open func sendGetUserRequest(_ session: LRSession)
 		throws -> NSDictionary {
 
 			let companyId = (self.companyId != 0) ? self.companyId : LiferayServerContext.companyId
 
 			let service = LRUserService_v62(session: session)
 
-			return try service.getUserByScreenNameWithCompanyId(companyId,
-				screenName: screenName) ?? [:]
+			return try service?.getUserByScreenName(withCompanyId: companyId,
+				screenName: screenName) as NSDictionary? ?? [:]
 	}
 	
 }
 
 
-public class GetUserByScreenNameLiferay70Connector: GetUserByScreenNameLiferayConnector {
+open class GetUserByScreenNameLiferay70Connector: GetUserByScreenNameLiferayConnector {
 
 
 	//MARK: GetUserByScreenNameLiferayConnector
@@ -86,15 +86,15 @@ public class GetUserByScreenNameLiferay70Connector: GetUserByScreenNameLiferayCo
 
 	//MARK: GetUserBaseLiferayConnector
 
-	override public func sendGetUserRequest(session: LRSession)
+	override open func sendGetUserRequest(_ session: LRSession)
 		throws -> NSDictionary {
 
 			let companyId = (self.companyId != 0) ? self.companyId : LiferayServerContext.companyId
 
 			let service = LRUserService_v7(session: session)
 
-			return try service.getUserByScreenNameWithCompanyId(companyId,
-				screenName: screenName) ?? [:]
+			return try service?.getUserByScreenName(withCompanyId: companyId,
+				screenName: screenName) as NSDictionary? ?? [:]
 	}
 	
 }

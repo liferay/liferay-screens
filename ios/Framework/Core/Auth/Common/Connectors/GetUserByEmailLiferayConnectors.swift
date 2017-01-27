@@ -15,10 +15,10 @@ import UIKit
 import LRMobileSDK
 
 
-public class GetUserByEmailLiferayConnector: GetUserBaseLiferayConnector {
+open class GetUserByEmailLiferayConnector: GetUserBaseLiferayConnector {
 
-	public let companyId: Int64
-	public let emailAddress: String
+	open let companyId: Int64
+	open let emailAddress: String
 
 
 	//MARK: Initializers
@@ -33,7 +33,7 @@ public class GetUserByEmailLiferayConnector: GetUserBaseLiferayConnector {
 
 	//MARK: ServerConnector
 
-	override public func validateData() -> ValidationError? {
+	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -48,7 +48,7 @@ public class GetUserByEmailLiferayConnector: GetUserBaseLiferayConnector {
 }
 
 
-public class GetUserByEmailLiferay62Connector: GetUserByEmailLiferayConnector {
+open class GetUserByEmailLiferay62Connector: GetUserByEmailLiferayConnector {
 
 
 	//MARK: GetUserByEmailLiferayConnector
@@ -60,21 +60,21 @@ public class GetUserByEmailLiferay62Connector: GetUserByEmailLiferayConnector {
 
 	//MARK: GetUserBaseLiferayConnector
 
-	override public func sendGetUserRequest(session: LRSession)
+	override open func sendGetUserRequest(_ session: LRSession)
 		throws -> NSDictionary {
 
 			let companyId = (self.companyId != 0) ? self.companyId : LiferayServerContext.companyId
 
 			let service = LRUserService_v62(session: session)
 
-			return try service.getUserByEmailAddressWithCompanyId(companyId,
-				emailAddress: emailAddress) ?? [:]
+			return try service?.getUserByEmailAddress(withCompanyId: companyId,
+				emailAddress: emailAddress) as NSDictionary? ?? [:]
 	}
 	
 }
 
 
-public class GetUserByEmailLiferay70Connector: GetUserByEmailLiferayConnector {
+open class GetUserByEmailLiferay70Connector: GetUserByEmailLiferayConnector {
 
 
 	//MARK: GetUserByEmailLiferayConnector
@@ -86,15 +86,15 @@ public class GetUserByEmailLiferay70Connector: GetUserByEmailLiferayConnector {
 
 	//MARK: GetUserBaseLiferayConnector
 
-	override public func sendGetUserRequest(session: LRSession)
+	override open func sendGetUserRequest(_ session: LRSession)
 		throws -> NSDictionary {
 
 			let companyId = (self.companyId != 0) ? self.companyId : LiferayServerContext.companyId
 
 			let service = LRUserService_v7(session: session)
 
-			return try service.getUserByEmailAddressWithCompanyId(companyId,
-				emailAddress: emailAddress) ?? [:]
+			return try service?.getUserByEmailAddress(withCompanyId: companyId,
+				emailAddress: emailAddress) as NSDictionary? ?? [:]
 	}
 	
 }

@@ -15,9 +15,9 @@ import UIKit
 import LRMobileSDK
 
 
-public class GetUserByUserIdLiferayConnector: GetUserBaseLiferayConnector {
+open class GetUserByUserIdLiferayConnector: GetUserBaseLiferayConnector {
 
-	public let userId: Int64
+	open let userId: Int64
 
 
 	//MARK: Initializers
@@ -31,7 +31,7 @@ public class GetUserByUserIdLiferayConnector: GetUserBaseLiferayConnector {
 
 	//MARK: ServerConnector
 
-	override public func validateData() -> ValidationError? {
+	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -46,7 +46,7 @@ public class GetUserByUserIdLiferayConnector: GetUserBaseLiferayConnector {
 }
 
 
-public class GetUserByUserIdLiferay62Connector: GetUserByUserIdLiferayConnector {
+open class GetUserByUserIdLiferay62Connector: GetUserByUserIdLiferayConnector {
 
 
 	//MARK: GetUserByUserIdLiferayConnector
@@ -58,18 +58,18 @@ public class GetUserByUserIdLiferay62Connector: GetUserByUserIdLiferayConnector 
 
 	//MARK: GetUserBaseLiferayConnector
 
-	override public func sendGetUserRequest(session: LRSession)
+	override open func sendGetUserRequest(_ session: LRSession)
 		throws -> NSDictionary {
 
 			let service = LRUserService_v62(session: session)
 
-			return try service.getUserByIdWithUserId(userId) ?? [:]
+			return try service?.getUserById(withUserId: userId) as NSDictionary? ?? [:]
 	}
 	
 }
 
 
-public class GetUserByUserIdLiferay70Connector: GetUserByUserIdLiferayConnector {
+open class GetUserByUserIdLiferay70Connector: GetUserByUserIdLiferayConnector {
 
 
 	//MARK: GetUserByUserIdLiferayConnector
@@ -81,12 +81,12 @@ public class GetUserByUserIdLiferay70Connector: GetUserByUserIdLiferayConnector 
 
 	//MARK: GetUserBaseLiferayConnector
 	
-	override public func sendGetUserRequest(session: LRSession)
+	override open func sendGetUserRequest(_ session: LRSession)
 		throws -> NSDictionary {
 
 			let service = LRUserService_v7(session: session)
 
-			return try service.getUserByIdWithUserId(userId) ?? [:]
+			return try service?.getUserById(withUserId: userId) as NSDictionary? ?? [:]
 	}
 	
 }

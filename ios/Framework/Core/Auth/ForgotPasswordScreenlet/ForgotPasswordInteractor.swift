@@ -32,17 +32,17 @@ class ForgotPasswordInteractor: ServerConnectorInteractor {
 		let connector: ForgotPasswordBaseLiferayConnector?
 
 		switch BasicAuthMethod.create(screenlet.basicAuthMethod) {
-			case .ScreenName:
+			case .screenName:
 				connector = LiferayServerContext.connectorFactory.createForgotPasswordByScreenNameConnector(
 					viewModel: screenlet.viewModel,
 					anonymousUsername: screenlet.anonymousApiUserName!,
 					anonymousPassword: screenlet.anonymousApiPassword!)
-			case .UserId:
+			case .userId:
 				connector = LiferayServerContext.connectorFactory.createForgotPasswordByUserIdConnector(
 					viewModel: screenlet.viewModel,
 					anonymousUsername: screenlet.anonymousApiUserName!,
 					anonymousPassword: screenlet.anonymousApiPassword!)
-			case .Email:
+			case .email:
 				connector = LiferayServerContext.connectorFactory.createForgotPasswordByEmailConnector(
 					viewModel: screenlet.viewModel,
 					anonymousUsername: screenlet.anonymousApiUserName!,
