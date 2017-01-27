@@ -15,15 +15,15 @@ import UIKit
 import LRMobileSDK
 
 
-public class SignUpLiferayConnector: ServerConnector {
+open class SignUpLiferayConnector: ServerConnector {
 
-	public var companyId: Int64 = 0
+	open var companyId: Int64 = 0
 
-	public var resultUserAttributes: [String:AnyObject]?
+	open var resultUserAttributes: [String:AnyObject]?
 
-	public let viewModel: SignUpViewModel
-	public let anonymousUsername: String
-	public let anonymousPassword: String
+	open let viewModel: SignUpViewModel
+	open let anonymousUsername: String
+	open let anonymousPassword: String
 
 
 	//MARK: Initializers
@@ -39,7 +39,7 @@ public class SignUpLiferayConnector: ServerConnector {
 
 	//MARK: ServerConnector
 
-	override public func validateData() -> ValidationError? {
+	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -51,19 +51,19 @@ public class SignUpLiferayConnector: ServerConnector {
 		return error
 	}
 
-	override public func createSession() -> LRSession? {
+	override open func createSession() -> LRSession? {
 		return SessionContext.createEphemeralBasicSession(anonymousUsername, anonymousPassword)
 	}
 
 }
 
-public class Liferay62SignUpConnector: SignUpLiferayConnector {
+open class Liferay62SignUpConnector: SignUpLiferayConnector {
 
 
 	//MARK: ServerConnector
 
-	override public func doRun(session session: LRSession) {
-		let result: [NSObject:AnyObject]?
+	override open func doRun(session: LRSession) {
+		let result: [String:AnyObject]?
 		let service = LRUserService_v62(session: session)
 		let emptyDict = [AnyObject]()
 		let password = viewModel.password ?? ""
@@ -72,7 +72,7 @@ public class Liferay62SignUpConnector: SignUpLiferayConnector {
 				: LiferayServerContext.companyId
 
 		do {
-			result = try service.addUserWithCompanyId(companyId,
+			result = try service?.addUser(withCompanyId: companyId,
 				autoPassword: (password == ""),
 				password1: password,
 				password2: password,
@@ -93,7 +93,7 @@ public class Liferay62SignUpConnector: SignUpLiferayConnector {
 				birthdayYear: 1970,
 				jobTitle: viewModel.jobTitle ?? "",
 				groupIds: [
-					NSNumber(longLong: LiferayServerContext.groupId)
+					NSNumber(value: LiferayServerContext.groupId as Int64)
 				],
 				organizationIds: emptyDict,
 				roleIds: emptyDict,
@@ -104,16 +104,16 @@ public class Liferay62SignUpConnector: SignUpLiferayConnector {
 				websites: emptyDict,
 				announcementsDelivers: emptyDict,
 				sendEmail: true,
-				serviceContext: nil)
+				serviceContext: nil) as? [String : AnyObject]
 
 			if result?["userId"] == nil {
-				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				lastError = NSError.errorWithCause(.invalidServerResponse,
 				                                   message: "Could not add user.")
 				resultUserAttributes = nil
 			}
 			else {
 				lastError = nil
-				resultUserAttributes = result as? [String:AnyObject]
+				resultUserAttributes = result 
 			}
 		}
 		catch let error as NSError {
@@ -125,13 +125,13 @@ public class Liferay62SignUpConnector: SignUpLiferayConnector {
 }
 
 
-public class Liferay70SignUpConnector: SignUpLiferayConnector {
+open class Liferay70SignUpConnector: SignUpLiferayConnector {
 
 
 	//MARK: ServerConnector
 	
-	override public func doRun(session session: LRSession) {
-		let result: [NSObject:AnyObject]?
+	override open func doRun(session: LRSession) {
+		let result: [AnyHashable: Any]?
 		let service = LRUserService_v7(session: session)
 		let emptyDict = [AnyObject]()
 		let password = viewModel.password ?? ""
@@ -140,7 +140,7 @@ public class Liferay70SignUpConnector: SignUpLiferayConnector {
 			: LiferayServerContext.companyId
 
 		do {
-			result = try service.addUserWithCompanyId(companyId,
+			result = try service?.addUser(withCompanyId: companyId,
 				autoPassword: (password == ""),
 				password1: password,
 				password2: password,
@@ -161,7 +161,7 @@ public class Liferay70SignUpConnector: SignUpLiferayConnector {
 				birthdayYear: 1970,
 				jobTitle: viewModel.jobTitle ?? "",
 				groupIds: [
-					NSNumber(longLong: LiferayServerContext.groupId)
+					NSNumber(value: LiferayServerContext.groupId as Int64)
 				],
 				organizationIds: emptyDict,
 				roleIds: emptyDict,
@@ -175,7 +175,7 @@ public class Liferay70SignUpConnector: SignUpLiferayConnector {
 				serviceContext: nil)
 
 			if result?["userId"] == nil {
-				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				lastError = NSError.errorWithCause(.invalidServerResponse,
 				                                   message: "Could not add user.")
 				resultUserAttributes = nil
 			}

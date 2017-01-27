@@ -14,21 +14,21 @@
 import UIKit
 
 
-public class SaveUserInteractor: ServerConnectorInteractor {
+open class SaveUserInteractor: ServerConnectorInteractor {
 
-	public var resultUserAttributes: [String:AnyObject]?
+	open var resultUserAttributes: [String:AnyObject]?
 
 
 	//MARK: ServerConnectorInteractor
 
-	override public func createConnector() -> UpdateCurrentUserLiferayConnector {
+	override open func createConnector() -> UpdateCurrentUserLiferayConnector {
 		let screenlet = self.screenlet as! SignUpScreenlet
 
 		return LiferayServerContext.connectorFactory.createUpdateCurrentUserConnector(
 			viewModel: screenlet.viewModel)
 	}
 
-	override public func completedConnector(c: ServerConnector) {
+	override open func completedConnector(_ c: ServerConnector) {
 		self.resultUserAttributes = (c as! UpdateCurrentUserLiferayConnector).resultUserAttributes
 	}
 
