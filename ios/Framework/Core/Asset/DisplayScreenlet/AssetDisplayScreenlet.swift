@@ -21,7 +21,7 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - asset: asset object.
-	optional func screenlet(screenlet: AssetDisplayScreenlet,
+	@objc optional func screenlet(_ screenlet: AssetDisplayScreenlet,
 	                        onAssetResponse asset: Asset)
 	
 	/// Called when an error occurs in the process.
@@ -30,7 +30,7 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - error: error while retrieving the asset.
-	optional func screenlet(screenlet: AssetDisplayScreenlet,
+	@objc optional func screenlet(_ screenlet: AssetDisplayScreenlet,
 	                        onAssetError error: NSError)
 
 	/// Called when the child Screenlet (the Screenlet rendered inside Asset Display Screenlet) 
@@ -41,7 +41,7 @@ import UIKit
 	///   - screenlet
 	///   - childScreenlet: AssetDisplayScreenlet inner screenlet.
 	///   - asset: asset object.
-	optional func screenlet(screenlet: AssetDisplayScreenlet,
+	@objc optional func screenlet(_ screenlet: AssetDisplayScreenlet,
 	                        onConfigureScreenlet childScreenlet: BaseScreenlet?,
 							onAsset asset: Asset)
 
@@ -51,26 +51,26 @@ import UIKit
 	///   - screenlet
 	///   - asset: custom asset.
 	/// - Returns: custom view.
-	optional func screenlet(screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView?
+	@objc optional func screenlet(_ screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView?
 }
 
 
-public class AssetDisplayScreenlet: BaseScreenlet {
+open class AssetDisplayScreenlet: BaseScreenlet {
 
 
 	//MARK: Inspectables
 	
-	@IBInspectable public var assetEntryId: Int64 = 0
+	@IBInspectable open var assetEntryId: Int64 = 0
 
-	@IBInspectable public var className: String = ""
+	@IBInspectable open var className: String = ""
 
-	@IBInspectable public var classPK: Int64 = 0
+	@IBInspectable open var classPK: Int64 = 0
 
-	@IBInspectable public var autoLoad: Bool = true
+	@IBInspectable open var autoLoad: Bool = true
 
-	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-	public var assetEntry: Asset? {
+	open var assetEntry: Asset? {
 		didSet {
 			if let asset = assetEntry {
 				if let innerScreenlet = self.createInnerScreenlet(asset) {
@@ -83,30 +83,30 @@ public class AssetDisplayScreenlet: BaseScreenlet {
 					self.assetDisplayViewModel?.asset = nil
 
 					self.assetDisplayDelegate?.screenlet?(self,
-							onAssetError: NSError.errorWithCause(.InvalidServerResponse,
+							onAssetError: NSError.errorWithCause(.invalidServerResponse,
 									message: "Could not create inner screenlet."))
 				}
 			}
 		}
 	}
 
-	public var assetDisplayDelegate: AssetDisplayScreenletDelegate? {
+	open var assetDisplayDelegate: AssetDisplayScreenletDelegate? {
 		return delegate as? AssetDisplayScreenletDelegate
 	}
 
-	public var assetDisplayViewModel: AssetDisplayViewModel? {
+	open var assetDisplayViewModel: AssetDisplayViewModel? {
 		return screenletView as? AssetDisplayViewModel
 	}
 	
 	//MARK: BaseScreenlet
 	
-	override public func onShow() {
+	override open func onShow() {
 		if autoLoad {
 			load()
 		}
 	}
 	
-	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
 		let interactor: LoadAssetInteractor
 
 		if assetEntryId != 0 {
@@ -117,7 +117,7 @@ public class AssetDisplayScreenlet: BaseScreenlet {
 				screenlet: self, className: self.className, classPK: self.classPK)
 		}
 
-		interactor.cacheStrategy = CacheStrategyType(rawValue: offlinePolicy ?? "") ?? .RemoteFirst
+		interactor.cacheStrategy = CacheStrategyType(rawValue: offlinePolicy ?? "") ?? .remoteFirst
 
 		interactor.onSuccess = {
 			self.assetEntry = interactor.asset
@@ -136,7 +136,8 @@ public class AssetDisplayScreenlet: BaseScreenlet {
 	/// Call this method to load the asset.
 	///
 	/// - Returns: true if default use case has been perform, false otherwise.
-	public func load() -> Bool {
+	@discardableResult
+	open func load() -> Bool {
 		return self.performDefaultAction()
 	}
 
@@ -144,12 +145,12 @@ public class AssetDisplayScreenlet: BaseScreenlet {
 	///
 	/// - Parameter asset: asset object.
 	/// - Returns: inner screenlet (UIView)
-	public func createInnerScreenlet(asset: Asset) -> UIView? {
+	open func createInnerScreenlet(_ asset: Asset) -> UIView? {
 		guard let view = screenletView else {
 			return nil
 		}
 
-		let frame = CGRect(origin: CGPointZero, size: view.frame.size)
+		let frame = CGRect(origin: CGPoint.zero, size: view.frame.size)
 
 		guard let innerScreenlet = AssetDisplayBuilder.createScreenlet(frame,
 				asset: asset, themeName: themeName) else {
@@ -167,7 +168,7 @@ public class AssetDisplayScreenlet: BaseScreenlet {
 	/// - Parameters:
 	///   - innerScreenlet: AssetDisplayScreenlet inner screenlet (UIView).
 	///   - asset: asset object.
-	public func configureInnerScreenlet(innerScreenlet: BaseScreenlet, asset: Asset) {
+	open func configureInnerScreenlet(_ innerScreenlet: BaseScreenlet, asset: Asset) {
 		if let screenlet = innerScreenlet as? FileDisplayScreenlet {
 			screenlet.autoLoad = false
 			screenlet.offlinePolicy = self.offlinePolicy
@@ -198,7 +199,7 @@ public class AssetDisplayScreenlet: BaseScreenlet {
 	}
 
 	/// Removes AssetDisplayScreenlet inner screenlet.
-	public func removeInnerScreenlet() {
+	open func removeInnerScreenlet() {
 		assetDisplayViewModel?.innerScreenlet = nil
 	}
 }

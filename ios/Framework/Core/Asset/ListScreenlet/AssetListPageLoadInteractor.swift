@@ -14,15 +14,15 @@
 import UIKit
 
 
-public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
+open class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 
-	public var customEntryQuery: [String:AnyObject]?
+	open var customEntryQuery: [String:AnyObject]?
 
-	private let groupId: Int64
+	fileprivate let groupId: Int64
 
-	private let classNameId: Int64
+	fileprivate let classNameId: Int64
 
-	private let portletItemName: String?
+	fileprivate let portletItemName: String?
 
 	init(screenlet: BaseListScreenlet,
 			page: Int,
@@ -41,7 +41,7 @@ public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 
 	//MARK: BaseListPageLoadInteractor
 
-	override public func createListPageConnector() -> PaginationLiferayConnector {
+	override open func createListPageConnector() -> PaginationLiferayConnector {
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
 
 		let connector = LiferayServerContext.connectorFactory.createAssetListPageConnector(
@@ -59,7 +59,7 @@ public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 		return connector;
 	}
 
-	override public func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
+	override open func convertResult(_ serverResult: [String:AnyObject]) -> AnyObject {
 		guard let className = serverResult["className"] as? String else {
 			return Asset(attributes: serverResult)
 		}
@@ -72,7 +72,7 @@ public class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 		}
 	}
 
-	override public func cacheKey(c: PaginationLiferayConnector) -> String {
+	override open func cacheKey(_ c: PaginationLiferayConnector) -> String {
 		return "\((groupId != 0) ? groupId : LiferayServerContext.groupId)-\(classNameId)"
 	}
 
