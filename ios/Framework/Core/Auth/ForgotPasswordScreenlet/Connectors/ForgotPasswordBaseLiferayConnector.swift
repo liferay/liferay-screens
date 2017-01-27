@@ -14,16 +14,16 @@
 import UIKit
 
 
-public class ForgotPasswordBaseLiferayConnector: ServerConnector {
+open class ForgotPasswordBaseLiferayConnector: ServerConnector {
 
-	public var companyId: Int64 = 0
+	open var companyId: Int64 = 0
 
-	public var resultPasswordSent: Bool?
+	open var resultPasswordSent: Bool?
 
 	internal let viewModel: ForgotPasswordViewModel
 
-	private let anonymousUsername: String
-	private let anonymousPassword: String
+	fileprivate let anonymousUsername: String
+	fileprivate let anonymousPassword: String
 
 
 	//MARK: Initializers
@@ -39,7 +39,7 @@ public class ForgotPasswordBaseLiferayConnector: ServerConnector {
 
 	//MARK ServerConnector
 
-	override public func validateData() -> ValidationError? {
+	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -51,7 +51,7 @@ public class ForgotPasswordBaseLiferayConnector: ServerConnector {
 		return error
 	}
 
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 		do {
 			resultPasswordSent = try sendForgotPasswordRequest(session)
 			lastError = nil
@@ -62,13 +62,13 @@ public class ForgotPasswordBaseLiferayConnector: ServerConnector {
 		}
 	}
 
-	override public func createSession() -> LRSession? {
+	override open func createSession() -> LRSession? {
 		return SessionContext.createEphemeralBasicSession(anonymousUsername, anonymousPassword)
 	}
 
 	//MARK: Template Methods
 	
-	public func sendForgotPasswordRequest(session: LRSession) throws -> Bool {
+	open func sendForgotPasswordRequest(_ session: LRSession) throws -> Bool {
 		fatalError("sendForgotPasswordRequest must be overriden")
 	}
 
