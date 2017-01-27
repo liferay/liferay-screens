@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LoginByScreenNameLiferay62Connector: GetUserByScreenNameLiferay62Connector {
+open class LoginByScreenNameLiferay62Connector: GetUserByScreenNameLiferay62Connector {
 
 
 	//MARK: Initializers
@@ -29,13 +29,13 @@ public class LoginByScreenNameLiferay62Connector: GetUserByScreenNameLiferay62Co
 
 	//MARK: ServerConnector
 
-	override public func postRun() {
+	override open func postRun() {
 		if lastError == nil {
 			loginWithResult()
 		}
 	}
 
-	override public func createSession() -> LRSession? {
+	override open func createSession() -> LRSession? {
 		SessionContext.logout()
 		return super.createSession()
 	}
@@ -43,7 +43,7 @@ public class LoginByScreenNameLiferay62Connector: GetUserByScreenNameLiferay62Co
 }
 
 
-public class LoginByScreenNameLiferay70Connector: GetUserByScreenNameLiferay70Connector {
+open class LoginByScreenNameLiferay70Connector: GetUserByScreenNameLiferay70Connector {
 
 
 	//MARK: Initializers
@@ -58,13 +58,13 @@ public class LoginByScreenNameLiferay70Connector: GetUserByScreenNameLiferay70Co
 
 	//MARK: ServerConnector
 
-	override public func postRun() {
+	override open func postRun() {
 		if lastError == nil {
 			loginWithResult()
 		}
 	}
 
-	override public func createSession() -> LRSession? {
+	override open func createSession() -> LRSession? {
 		SessionContext.logout()
 		return super.createSession()
 	}

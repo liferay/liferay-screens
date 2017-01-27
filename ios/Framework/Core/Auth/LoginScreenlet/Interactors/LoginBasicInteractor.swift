@@ -14,38 +14,38 @@
 import UIKit
 
 
-public class LoginBasicInteractor: ServerConnectorInteractor {
+open class LoginBasicInteractor: ServerConnectorInteractor {
 
-	public let companyId: Int64
+	open let companyId: Int64
 
-	public let screenName: String?
+	open let screenName: String?
 
-	public let emailAddress: String?
+	open let emailAddress: String?
 
-	public let userId: Int64?
+	open let userId: Int64?
 
-	public let password: String
+	open let password: String
 
-	public let authMethod: BasicAuthMethod
+	open let authMethod: BasicAuthMethod
 
-	public var resultUserAttributes: [String:AnyObject]?
+	open var resultUserAttributes: [String:AnyObject]?
 
 
 	//MARK: Initializers
 
 	public init(loginScreenlet: LoginScreenlet) {
-		companyId = (loginScreenlet.companyId ?? 0) != 0
+		companyId = loginScreenlet.companyId != 0
 			? loginScreenlet.companyId : LiferayServerContext.companyId
 
 		authMethod = BasicAuthMethod.create(loginScreenlet.basicAuthMethod)
 
 		switch authMethod {
-		case .ScreenName:
+		case .screenName:
 			screenName = loginScreenlet.viewModel.userName ?? ""
 			emailAddress = nil
 			userId = nil
-		case .UserId:
-			userId = loginScreenlet.viewModel.userName?.asNumber?.longLongValue ?? 0
+		case .userId:
+			userId = loginScreenlet.viewModel.userName?.asNumber?.int64Value ?? 0
 			emailAddress = nil
 			screenName = nil
 		default:
@@ -60,7 +60,7 @@ public class LoginBasicInteractor: ServerConnectorInteractor {
 	}
 
 	public init(companyId: Int64, screenName: String, password: String) {
-		self.authMethod = BasicAuthMethod.ScreenName
+		self.authMethod = BasicAuthMethod.screenName
 		self.companyId = (companyId != 0) ? companyId : LiferayServerContext.companyId
 		self.screenName = screenName
 		self.password = password
@@ -71,7 +71,7 @@ public class LoginBasicInteractor: ServerConnectorInteractor {
 	}
 
 	public init(companyId: Int64, emailAddress: String, password: String) {
-		self.authMethod = BasicAuthMethod.Email
+		self.authMethod = BasicAuthMethod.email
 		self.companyId = (companyId != 0) ? companyId : LiferayServerContext.companyId
 		self.emailAddress = emailAddress
 		self.password = password
@@ -82,7 +82,7 @@ public class LoginBasicInteractor: ServerConnectorInteractor {
 	}
 
 	public init(userId: Int64, password: String) {
-		self.authMethod = BasicAuthMethod.UserId
+		self.authMethod = BasicAuthMethod.userId
 		self.companyId = 0
 		self.userId = userId
 		self.password = password
@@ -95,7 +95,7 @@ public class LoginBasicInteractor: ServerConnectorInteractor {
 	
 	//MARK: ServerConnectorInteractor
 
-	override public func createConnector() -> GetUserBaseLiferayConnector? {
+	override open func createConnector() -> GetUserBaseLiferayConnector? {
 		let connector: GetUserBaseLiferayConnector?
 
 		if let screenName = self.screenName {
@@ -122,7 +122,7 @@ public class LoginBasicInteractor: ServerConnectorInteractor {
 		return connector
 	}
 
-	override public func completedConnector(c: ServerConnector) {
+	override open func completedConnector(_ c: ServerConnector) {
 		self.resultUserAttributes = (c as! GetUserBaseLiferayConnector).resultUserAttributes
 	}
 
