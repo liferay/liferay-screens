@@ -42,8 +42,8 @@ public class SignUpCard extends Card implements View.OnClickListener, WebContent
 	}
 
 	@Override
-	public void onWebContentClicked(WebView.HitTestResult result, MotionEvent event) {
-
+	public boolean onWebContentClicked(WebView.HitTestResult result, MotionEvent event) {
+		return false;
 	}
 
 	@Override
