@@ -52,6 +52,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	private long entryId;
 	private String className;
 	private long classPK;
+	private String portletItemName;
 	private AssetDisplayListener listener;
 	private AssetDisplayInnerScreenletListener configureListener;
 
@@ -83,6 +84,8 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 
 		className = typedArray.getString(R.styleable.AssetDisplayScreenlet_className);
 		classPK = typedArray.getInt(R.styleable.AssetDisplayScreenlet_classPK, 0);
+
+		portletItemName = typedArray.getString(R.styleable.AssetDisplayScreenlet_portletItemName);
 
 		layouts = new HashMap<>();
 		layouts.put(ImageDisplayScreenlet.class.getName(),
@@ -260,6 +263,14 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 
 	public void setClassPK(long classPK) {
 		this.classPK = classPK;
+	}
+
+	public String getPortletItemName() {
+		return portletItemName;
+	}
+
+	public void setPortletItemName(String portletItemName) {
+		this.portletItemName = portletItemName;
 	}
 
 	public void setListener(AssetDisplayListener listener) {
