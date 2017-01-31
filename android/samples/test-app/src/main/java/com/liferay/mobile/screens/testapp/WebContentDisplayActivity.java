@@ -49,7 +49,7 @@ public class WebContentDisplayActivity extends ThemeActivity implements WebConte
 
 	@Override
 	public boolean onWebContentClicked(WebView.HitTestResult result, MotionEvent event) {
-		info(getString(R.string.webcontent_clicked_info));
+		info(getString(R.string.webcontent_clicked_info) + " -> " + result.getExtra());
 		return true;
 	}
 
