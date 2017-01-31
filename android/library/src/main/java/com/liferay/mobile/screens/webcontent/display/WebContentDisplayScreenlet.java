@@ -81,10 +81,11 @@ public class WebContentDisplayScreenlet
 	}
 
 	@Override
-	public void onWebContentClicked(WebView.HitTestResult result, MotionEvent event) {
+	public boolean onWebContentClicked(WebView.HitTestResult result, MotionEvent event) {
 		if (listener != null) {
-			listener.onWebContentClicked(result, event);
+			return listener.onWebContentClicked(result, event);
 		}
+		return false;
 	}
 
 	@Override
