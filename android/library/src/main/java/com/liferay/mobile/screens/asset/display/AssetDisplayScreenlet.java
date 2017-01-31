@@ -216,8 +216,10 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	protected void onUserAction(String userActionName, AssetDisplayInteractor interactor, Object... args) {
 		if (entryId != 0) {
 			interactor.start(entryId);
-		} else {
+		} else if (className != null && !className.equals("") && classPK != 0) {
 			interactor.start(className, classPK);
+		} else {
+			interactor.start(portletItemName);
 		}
 	}
 
