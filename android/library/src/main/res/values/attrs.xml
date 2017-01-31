@@ -62,6 +62,7 @@
 	<attr format="boolean" name="editable"/>
 	<attr format="string" name="obcClassName"/>
 	<attr format="string" name="entryId"/>
+	<attr format="string" name="portletItemName"/>
 
 	<declare-styleable name="CacheScreenlet">
 		<attr name="groupId"/>
@@ -75,7 +76,7 @@
 		<attr name="autoLoad"/>
 		<attr name="groupId"/>
 		<attr name="cachePolicy"/>
-		<attr format="string" name="portletItemName"/>
+		<attr name="portletItemName"/>
 		<attr format="string" name="classNameId"/>
 		<attr name="firstPageSize"/>
 		<attr name="pageSize"/>
@@ -237,6 +238,7 @@
 		<attr name="entryId"/>
 		<attr name="className"/>
 		<attr name="classPK"/>
+		<attr name="portletItemName"/>
 		<attr format="reference" name="imagelayoutId"/>
 		<attr format="reference" name="videolayoutId"/>
 		<attr format="reference" name="audiolayoutId"/>
