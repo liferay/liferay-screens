@@ -25,7 +25,17 @@ public class AssetDisplayActivity extends ThemeActivity
 
 		AssetDisplayScreenlet screenlet = ((AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet));
 
-		screenlet.setEntryId(getIntent().getLongExtra("entryId", 0));
+		long entryId = getIntent().getLongExtra("entryId", 0);
+		String portletItemName = getIntent().getStringExtra("portletItemName");
+
+		if (entryId != 0) {
+			screenlet.setEntryId(entryId);
+		}
+
+		if (portletItemName != null && !portletItemName.equals("")) {
+			screenlet.setPortletItemName(portletItemName);
+		}
+
 		screenlet.setListener(this);
 		screenlet.setInnerListener(this);
 	}
