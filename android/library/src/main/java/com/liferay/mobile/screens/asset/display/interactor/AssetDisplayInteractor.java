@@ -11,6 +11,7 @@ import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import java.util.Locale;
 import java.util.Map;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,9 +34,18 @@ public class AssetDisplayInteractor extends BaseCacheReadInteractor<AssetDisplay
 			String className = (String) args[0];
 			long classPK = (long) args[1];
 			return connector.getAssetEntry(className, classPK, Locale.getDefault().getLanguage());
-		} else {
+		} else if (args[0] instanceof Long) {
 			long entryId = (long) args[0];
 			return connector.getAssetEntry(entryId, Locale.getDefault().getLanguage());
+		} else {
+			String portletItemName = (String) args[0];
+
+			ScreensAssetEntryConnector connector =
+				ServiceProvider.getInstance().getScreensAssetEntryConnector(getSession());
+			JSONArray assetEntry =
+				connector.getAssetEntries(LiferayServerContext.getCompanyId(), groupId, portletItemName,
+					locale.toString(), 1);
+			return assetEntry.getJSONObject(0);
 		}
 	}
 
