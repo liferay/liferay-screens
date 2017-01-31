@@ -36,8 +36,8 @@ public class JournalArticleWithTemplateActivity extends ThemeActivity implements
 	}
 
 	@Override
-	public void onWebContentClicked(WebView.HitTestResult result, MotionEvent event) {
-
+	public boolean onWebContentClicked(WebView.HitTestResult result, MotionEvent event) {
+		return false;
 	}
 
 	@Override
