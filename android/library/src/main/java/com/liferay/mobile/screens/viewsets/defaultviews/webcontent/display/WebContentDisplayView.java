@@ -127,8 +127,19 @@ public class WebContentDisplayView extends FrameLayout
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
 		WebView.HitTestResult result = webView.getHitTestResult();
-		((WebContentDisplayScreenlet) getScreenlet()).onWebContentClicked(result, event);
-		return false;
+
+		boolean openUrl = false;
+
+		//The 'event' parameter performs two actions: ACTION_DOWN and ACTION_UP.
+		if (event.getAction() == MotionEvent.ACTION_UP) {
+			LiferayLogger.i("Event: " + event.toString());
+			LiferayLogger.i("Extra: " + result.getExtra());
+
+			openUrl = ((WebContentDisplayScreenlet) getScreenlet()).onWebContentClicked(result, event);
+
+			LiferayLogger.i("Open in browser: " + (openUrl ? "Yes" : "No"));
+		}
+		return openUrl;
 	}
 
 	@Override
