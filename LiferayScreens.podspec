@@ -56,13 +56,13 @@ Pod::Spec.new do |s|
 	s.dependency 'MBProgressHUD', '~> 0.9.1'
 	s.dependency 'SMXMLDocument', '~> 1.1'
 	s.dependency 'YapDatabase/SQLCipher', '2.9.2'
-	s.dependency 'Kingfisher', '~> 2.4'
+	s.dependency 'Kingfisher', '~> 3.0'
 
 	# Login & signup: save credentials
-	s.dependency 'KeychainAccess', '~> 2.4'
+	s.dependency 'KeychainAccess', '~> 3.0'
 
 	# UserPortrait
-	s.dependency 'CryptoSwift', '~> 0.5.2'
+	s.dependency 'CryptoSwift', '~> 0.6.0'
 
 	# DDLForm
 	s.dependency 'DTPickerPresenter', '~> 0.2.0'
@@ -70,6 +70,6 @@ Pod::Spec.new do |s|
 	s.dependency 'MDRadialProgress', '~> 1.3.2'
 
 	# RatingBar
-	s.dependency 'Cosmos', '0.0.1'
+	s.dependency 'Cosmos', '~> 8.0'
 
 end
