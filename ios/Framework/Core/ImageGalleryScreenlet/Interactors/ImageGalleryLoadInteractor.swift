@@ -14,15 +14,15 @@
 import Foundation
 
 
-public class ImageGalleryLoadInteractor : BaseListPageLoadInteractor {
+open class ImageGalleryLoadInteractor : BaseListPageLoadInteractor {
 
-	public static let CacheKey = "image-gallery"
+	open static let CacheKey = "image-gallery"
 
-	public let repositoryId: Int64
+	open let repositoryId: Int64
 
-    public let folderId: Int64
+    open let folderId: Int64
 
-	public let mimeTypes: [String]
+	open let mimeTypes: [String]
 
     public init(
 			screenlet: BaseListScreenlet,
@@ -41,7 +41,7 @@ public class ImageGalleryLoadInteractor : BaseListPageLoadInteractor {
 
 	//MARK: ServerConnectorInteractor
     
-    override public func createConnector() -> PaginationLiferayConnector {
+    override open func createConnector() -> PaginationLiferayConnector {
         let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
         
         return ImageGalleryPageLiferayConnector(
@@ -56,11 +56,11 @@ public class ImageGalleryLoadInteractor : BaseListPageLoadInteractor {
 
 	//MARK: BaseListPageLoadInteractor
 
-    override public func convertResult(serverResult: [String : AnyObject]) -> AnyObject {
+    override open func convertResult(_ serverResult: [String : AnyObject]) -> AnyObject {
         return ImageEntry(attributes:serverResult)
     }
     
-    override public func cacheKey(c: PaginationLiferayConnector) -> String {
+    override open func cacheKey(_ c: PaginationLiferayConnector) -> String {
         return "\(ImageGalleryLoadInteractor.CacheKey)-\(repositoryId)-\(folderId)"
     }
 }

@@ -14,13 +14,13 @@
 import Foundation
 
 
-@objc public class ImageEntryUpload: NSObject, NSCoding {
+@objc open class ImageEntryUpload: NSObject, NSCoding {
 
-	public let image: UIImage
-	public let thumbnail: UIImage?
+	open let image: UIImage
+	open let thumbnail: UIImage?
 
-	public let title: String
-	public let notes: String
+	open let title: String
+	open let notes: String
 
 	public init(image: UIImage, thumbnail: UIImage? = nil, title: String, notes: String = "") {
 		self.image = image
@@ -33,22 +33,22 @@ import Foundation
 	//MARK: NSCoding
 	
 	public required init?(coder aDecoder: NSCoder) {
-		image = (aDecoder.decodeObjectForKey("image") as? UIImage)!
-		thumbnail = aDecoder.decodeObjectForKey("thumbnail") as? UIImage
-		title = aDecoder.decodeObjectForKey("title") as! String
-		notes = aDecoder.decodeObjectForKey("notes") as! String
+		image = (aDecoder.decodeObject(forKey: "image") as? UIImage)!
+		thumbnail = aDecoder.decodeObject(forKey: "thumbnail") as? UIImage
+		title = aDecoder.decodeObject(forKey: "title") as! String
+		notes = aDecoder.decodeObject(forKey: "notes") as! String
 		super.init()
 	}
 
-	public func encodeWithCoder(aCoder: NSCoder) {
-		aCoder.encodeObject(image, forKey: "image")
+	open func encode(with aCoder: NSCoder) {
+		aCoder.encode(image, forKey: "image")
 
 		if let thumbnail = thumbnail {
-			aCoder.encodeObject(thumbnail, forKey: "thumbnail")
+			aCoder.encode(thumbnail, forKey: "thumbnail")
 		}
 
-		aCoder.encodeObject(title, forKey: "title")
-		aCoder.encodeObject(notes, forKey: "notes")
+		aCoder.encode(title, forKey: "title")
+		aCoder.encode(notes, forKey: "notes")
 	}
 	
 }
