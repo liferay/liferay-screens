@@ -17,7 +17,7 @@ import UIKit
 @objc public protocol FileDisplayViewModel {
 
 	/// File URL to be displayed.
-	var url: NSURL? { get set }
+	var url: URL? { get set }
 
 	/// File title to be displayed.
 	var title: String? { get set }

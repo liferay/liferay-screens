@@ -18,7 +18,7 @@ class LoadFileEntryInteractor: ServerReadConnectorInteractor {
 
 	let fileEntry: FileEntry
 
-	var resultUrl: NSURL?
+	var resultUrl: URL?
 
 
 	//MARK: Initializers
@@ -33,21 +33,21 @@ class LoadFileEntryInteractor: ServerReadConnectorInteractor {
 	//MARK: ServerConnectorInteractor
 
 	override func createConnector() -> ServerConnector? {
-		guard let url = NSURL(string: LiferayServerContext.server + fileEntry.url) else {
+		guard let url = URL(string: LiferayServerContext.server + fileEntry.url) else {
 			return nil
 		}
 
 		return HttpDownloadConnector(url: url)
 	}
 
-	override func completedConnector(op: ServerConnector) {
-		resultUrl = (op as? HttpDownloadConnector)?.resultUrl
+	override func completedConnector(_ op: ServerConnector) {
+		resultUrl = (op as? HttpDownloadConnector)?.resultUrl as URL?
 	}
 
 
 	//MARK: Cache methods
 
-	override func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
+	override func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> ()) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
@@ -61,11 +61,11 @@ class LoadFileEntryInteractor: ServerReadConnectorInteractor {
 				collection: "load-file-entry",
 				key: "filEntryId-\(fileEntry.fileEntryId)") {
 			loadCon.resultUrl = $0
-			result($0)
+			result($0 as AnyObject?)
 		}
 	}
 
-	override func writeToCache(c: ServerConnector) {
+	override func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}

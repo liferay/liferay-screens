@@ -21,7 +21,7 @@ import Foundation
 	/// - Parameters:
 	///   - screenlet
 	///   - url: file URL.
-	optional func screenlet(screenlet: FileDisplayScreenlet, onFileAssetResponse url: NSURL)
+	@objc optional func screenlet(_ screenlet: FileDisplayScreenlet, onFileAssetResponse url: URL)
 
 	/// Called when an error occurs in the process.
 	/// The NSError object describes the error.
@@ -29,52 +29,52 @@ import Foundation
 	/// - Parameters:
 	///   - screenlet
 	///   - error: error while retrieving the file.
-	optional func screenlet(screenlet: FileDisplayScreenlet, onFileAssetError error: NSError)
+	@objc optional func screenlet(_ screenlet: FileDisplayScreenlet, onFileAssetError error: NSError)
 }
 
 
-public class FileDisplayScreenlet: BaseScreenlet {
+open class FileDisplayScreenlet: BaseScreenlet {
 
-	public static let LoadFileAction = "LoadFileAction"
+	open static let LoadFileAction = "LoadFileAction"
 
 
 	//MARK: Inspectables
 
-	@IBInspectable public var assetEntryId: Int64 = 0
+	@IBInspectable open var assetEntryId: Int64 = 0
 
-	@IBInspectable public var className: String =
+	@IBInspectable open var className: String =
 		AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
 	
-	@IBInspectable public var classPK: Int64 = 0
+	@IBInspectable open var classPK: Int64 = 0
 
-	@IBInspectable public var autoLoad: Bool = true
+	@IBInspectable open var autoLoad: Bool = true
 
-	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-	public class var supportedMimeTypes: [String] {
+	open class var supportedMimeTypes: [String] {
 		return []
 	}
 
-	public var fileEntry: FileEntry?
+	open var fileEntry: FileEntry?
 
-	public var fileDisplayViewModel: FileDisplayViewModel? {
+	open var fileDisplayViewModel: FileDisplayViewModel? {
 		return screenletView as? FileDisplayViewModel
 	}
 
-	public var fileDisplayDelegate: FileDisplayScreenletDelegate? {
+	open var fileDisplayDelegate: FileDisplayScreenletDelegate? {
 		return delegate as? FileDisplayScreenletDelegate
 	}
 
 
 	//MARK: BaseScreenlet
 
-	override public func onShow() {
+	override open func onShow() {
 		if autoLoad {
 			load()
 		}
 	}
 
-	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
 		if isActionRunning(name) {
 			cancelInteractorsForAction(name)
 		}
@@ -94,7 +94,8 @@ public class FileDisplayScreenlet: BaseScreenlet {
 	/// Call this method to load the file.
 	///
 	/// - Returns: true if default use case has been perform, false otherwise.
-	public func load() -> Bool {
+	@discardableResult
+	open func load() -> Bool {
 		if fileEntry == nil {
 			return performDefaultAction()
 		}
@@ -106,7 +107,7 @@ public class FileDisplayScreenlet: BaseScreenlet {
 
 	//MARK: Private methods
 
-	private func createLoadAssetInteractor() -> Interactor? {
+	fileprivate func createLoadAssetInteractor() -> Interactor? {
 		let interactor: LoadAssetInteractor
 
 		if assetEntryId != 0 {
@@ -117,7 +118,7 @@ public class FileDisplayScreenlet: BaseScreenlet {
 				screenlet: self, className: self.className, classPK: self.classPK)
 		}
 
-		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .remoteFirst
 
 		interactor.onSuccess = {
 			if let resultAsset = interactor.asset {
@@ -126,7 +127,7 @@ public class FileDisplayScreenlet: BaseScreenlet {
 			}
 			else {
 				self.fileDisplayDelegate?.screenlet?(self,
-						onFileAssetError: NSError.errorWithCause(.InvalidServerResponse,
+						onFileAssetError: NSError.errorWithCause(.invalidServerResponse,
 								message: "No file entry found."))
 			}
 		}
@@ -138,27 +139,27 @@ public class FileDisplayScreenlet: BaseScreenlet {
 		return interactor
 	}
 
-	private func createLoadFileInteractor() -> Interactor? {
+	fileprivate func createLoadFileInteractor() -> Interactor? {
 		guard let fileEntry = fileEntry else {
 			return nil
 		}
 
 		let interactor = LoadFileEntryInteractor(screenlet: self, fileEntry: fileEntry)
 
-		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .remoteFirst
 
 		interactor.onSuccess = {
 			if let resultUrl = interactor.resultUrl {
 				let title = fileEntry.title
 
-				self.fileDisplayDelegate?.screenlet?(self, onFileAssetResponse: resultUrl)
+				self.fileDisplayDelegate?.screenlet?(self, onFileAssetResponse: resultUrl as URL)
 
 				self.fileDisplayViewModel?.url = resultUrl
 				self.fileDisplayViewModel?.title = title
 			}
 			else {
 				self.fileDisplayDelegate?.screenlet?(self,
-						onFileAssetError: NSError.errorWithCause(.InvalidServerResponse,
+						onFileAssetError: NSError.errorWithCause(.invalidServerResponse,
 								message: "No file entry found."))
 			}
 		}
