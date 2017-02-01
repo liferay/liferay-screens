@@ -15,6 +15,7 @@ import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet;
 import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
 import com.liferay.mobile.screens.imagegallery.view.ImageGalleryViewModel;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import java.util.List;
 import rx.functions.Action1;
 
@@ -61,6 +62,7 @@ public abstract class BaseImageGalleryView<H extends BaseListAdapter.ViewHolder,
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e) {
+		LiferayLogger.e("Error with image", e);
 		if (uploadProgressView != null) {
 			uploadProgressView.uploadCompleteOrError();
 		}
