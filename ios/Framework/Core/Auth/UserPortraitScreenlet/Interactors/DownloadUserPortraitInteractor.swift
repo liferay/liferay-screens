@@ -21,39 +21,39 @@ import UIKit
 
 class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
-	private enum DownloadMode {
-		case Attributes(portraitId: Int64, uuid: String, male: Bool)
-		case EmailAddress(companyId: Int64, emailAddress: String)
-		case ScreenName(companyId: Int64, screenName: String)
-		case UserId(userId: Int64)
+	fileprivate enum DownloadMode {
+		case attributes(portraitId: Int64, uuid: String, male: Bool)
+		case emailAddress(companyId: Int64, emailAddress: String)
+		case screenName(companyId: Int64, screenName: String)
+		case userId(userId: Int64)
 
 		var cacheKey: String {
 			switch self {
-				case .Attributes(let portraitId, _, _):
+				case .attributes(let portraitId, _, _):
 					return "portraitId-\(portraitId)"
-				case .UserId(let userId):
+				case .userId(let userId):
 					return "userId-\(userId)"
-				case .EmailAddress(let companyId, let emailAddress):
+				case .emailAddress(let companyId, let emailAddress):
 					return "emailAddress-\(companyId)-\(emailAddress)"
-				case .ScreenName(let companyId, let screenName):
+				case .screenName(let companyId, let screenName):
 					return "screenName-\(companyId)-\(screenName)"
 			}
 		}
 
 		var cacheAttributes: [String:AnyObject] {
 			switch self {
-			case .Attributes(let portraitId, _, _):
-				return ["portraitId": NSNumber(longLong: portraitId)]
-			case .UserId(let userId):
-				return ["userId": NSNumber(longLong: userId)]
-			case .EmailAddress(let companyId, let emailAddress):
+			case .attributes(let portraitId, _, _):
+				return ["portraitId": NSNumber(value: portraitId as Int64)]
+			case .userId(let userId):
+				return ["userId": NSNumber(value: userId as Int64)]
+			case .emailAddress(let companyId, let emailAddress):
 				return [
-					"companyId": NSNumber(longLong: companyId),
-					"emailAddress": emailAddress]
-			case .ScreenName(let companyId, let screenName):
+					"companyId": NSNumber(value: companyId as Int64),
+					"emailAddress": emailAddress as AnyObject]
+			case .screenName(let companyId, let screenName):
 				return [
-					"companyId": NSNumber(longLong: companyId),
-					"screenName": screenName]
+					"companyId": NSNumber(value: companyId as Int64),
+					"screenName": screenName as AnyObject]
 			}
 		}
 	}
@@ -62,31 +62,31 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 	var resultUserId: Int64?
 
-	private let mode: DownloadMode
+	fileprivate let mode: DownloadMode
 
 
 	//MARK: Initializers
 
 	init(screenlet: BaseScreenlet?, portraitId: Int64, uuid: String, male: Bool) {
-		mode = DownloadMode.Attributes(portraitId: portraitId, uuid: uuid, male: male)
+		mode = DownloadMode.attributes(portraitId: portraitId, uuid: uuid, male: male)
 
 		super.init(screenlet: screenlet)
 	}
 
 	init(screenlet: BaseScreenlet?, userId: Int64) {
-		mode = DownloadMode.UserId(userId: userId)
+		mode = DownloadMode.userId(userId: userId)
 
 		super.init(screenlet: screenlet)
 	}
 
 	init(screenlet: BaseScreenlet?, companyId: Int64, emailAddress: String) {
-		mode = DownloadMode.EmailAddress(companyId: companyId, emailAddress: emailAddress)
+		mode = DownloadMode.emailAddress(companyId: companyId, emailAddress: emailAddress)
 
 		super.init(screenlet: screenlet)
 	}
 
 	init(screenlet: BaseScreenlet?, companyId: Int64, screenName: String) {
-		mode = DownloadMode.ScreenName(companyId: companyId, screenName: screenName)
+		mode = DownloadMode.screenName(companyId: companyId, screenName: screenName)
 
 		super.init(screenlet: screenlet)
 	}
@@ -96,24 +96,24 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 	override func createConnector() -> ServerConnector? {
 		switch mode {
-		case .Attributes(let portraitId, let uuid, let male):
+		case .attributes(let portraitId, let uuid, let male):
 			return createConnectorFor(
 				portraitId: portraitId,
 				uuid: uuid,
 				male: male)
 
-		case .UserId(let userId):
+		case .userId(let userId):
 			return createConnectorFor(
 				LiferayServerContext.connectorFactory.createGetUserByUserIdConnector(
 					userId: userId))
 
-		case .EmailAddress(let companyId, let emailAddress):
+		case .emailAddress(let companyId, let emailAddress):
 			return createConnectorFor(
 				LiferayServerContext.connectorFactory.createGetUserByEmailConnector(
 					companyId: companyId,
 					emailAddress: emailAddress))
 
-		case .ScreenName(let companyId, let screenName):
+		case .screenName(let companyId, let screenName):
 			return createConnectorFor(
 				LiferayServerContext.connectorFactory.createGetUserByScreenNameConnector(
 					companyId: companyId,
@@ -121,9 +121,9 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-	override func completedConnector(c: ServerConnector) {
+	override func completedConnector(_ c: ServerConnector) {
 		if let httpOp = toHttpConnector(c),
-				resultData = httpOp.resultData {
+				let resultData = httpOp.resultData {
 			resultImage = UIImage(data: resultData)
 		}
 	}
@@ -131,23 +131,23 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 	//MARK: Cache methods
 
-	override func writeToCache(c: ServerConnector) {
+	override func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
 
 		if let httpOp = toHttpConnector(c),
-				resultData = httpOp.resultData {
+				let resultData = httpOp.resultData {
 
 			cacheManager.setClean(
-				collection: ScreenletName(UserPortraitScreenlet),
+				collection: ScreenletName(UserPortraitScreenlet.self),
 				key: mode.cacheKey,
-				value: resultData,
+				value: resultData as NSData,
 				attributes: mode.cacheAttributes)
 		}
 	}
 
-	override func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
+	override func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> ()) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
@@ -155,7 +155,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 		func loadImageFromCache(output outputConnector: HttpConnector) {
 			cacheManager.getImage(
-					collection: ScreenletName(UserPortraitScreenlet),
+					collection: ScreenletName(UserPortraitScreenlet.self),
 					key: self.mode.cacheKey) {
 				if let image = $0 {
 					outputConnector.resultData = UIImagePNGRepresentation(image)
@@ -164,19 +164,18 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 				}
 				else {
 					outputConnector.resultData = nil
-					outputConnector.lastError = NSError.errorWithCause(.NotAvailable,
+					outputConnector.lastError = NSError.errorWithCause(.notAvailable,
 					                                                   message: "Image from cache not available.")
 					result(nil)
 				}
 			}
 		}
 
-
 		if (c as? ServerConnectorChain)?.currentConnector is GetUserBaseLiferayConnector {
 			// asking for user attributes. if the image is cached, we'd need to skip this step
 
 			cacheManager.getAny(
-					collection: ScreenletName(UserPortraitScreenlet),
+					collection: ScreenletName(UserPortraitScreenlet.self),
 					key: mode.cacheKey) {
 				if $0 == nil {
 					// not cached: continue
@@ -186,7 +185,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 					// cached. Skip!
 
 					// create a dummy HttpConnector to store the result
-					let dummyConnector = HttpConnector(url: NSURL(string: "http://dummy")!)
+					let dummyConnector = HttpConnector(url: URL(string: "http://dummy")!)
 
 					// set this dummy connector to allow "completedConnector" method retrieve the result
 					(c as? ServerConnectorChain)?.currentConnector = dummyConnector
@@ -199,17 +198,17 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		}
 		else if let httpOp = toHttpConnector(c) {
 			cacheManager.getAny(
-					collection: ScreenletName(UserPortraitScreenlet),
+					collection: ScreenletName(UserPortraitScreenlet.self),
 					key: mode.cacheKey) {
 				guard let cachedObject = $0 else {
 					httpOp.resultData = nil
-					httpOp.lastError = NSError.errorWithCause(.NotAvailable,
+					httpOp.lastError = NSError.errorWithCause(.notAvailable,
 					                                          message: "Image from cache not available.")
 					result(nil)
 					return
 				}
 
-				if let data = cachedObject as? NSData {
+				if let data = cachedObject as? Data {
 					httpOp.resultData = data
 					httpOp.lastError = nil
 					result(httpOp)
@@ -229,12 +228,12 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 	//MARK: Private methods
 
-	private func toHttpConnector(c: ServerConnector) -> HttpConnector? {
+	fileprivate func toHttpConnector(_ c: ServerConnector) -> HttpConnector? {
 		return ((c as? ServerConnectorChain)?.currentConnector as? HttpConnector)
 			?? (c as? HttpConnector)
 	}
 
-	private func createConnectorFor(loadUserCon: GetUserBaseLiferayConnector) -> ServerConnector? {
+	fileprivate func createConnectorFor(_ loadUserCon: GetUserBaseLiferayConnector) -> ServerConnector? {
 		let chain = ServerConnectorChain(head: loadUserCon)
 
 		chain.onNextStep = { (c, seq) -> ServerConnector? in
@@ -248,13 +247,13 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		return chain
 	}
 
-	private func createConnectorFor(attributes attributes: [String:AnyObject]?) -> ServerConnector? {
+	fileprivate func createConnectorFor(attributes: [String:AnyObject]?) -> ServerConnector? {
 		let portraitEntry = attributes?["portraitId"]
 		let userEntry = attributes?["userId"]
 		if let attributes = attributes,
-				portraitId = portraitEntry?.longLongValue,
-				uuid = attributes["uuid"] as? String,
-				userId = userEntry?.longLongValue {
+				let portraitId = portraitEntry?.int64Value,
+				let uuid = attributes["uuid"] as? String,
+				let userId = userEntry?.int64Value {
 
 			resultUserId = userId
 
@@ -267,7 +266,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		return nil
 	}
 
-	private func createConnectorFor(portraitId portraitId: Int64, uuid: String, male: Bool) -> ServerConnector? {
+	fileprivate func createConnectorFor(portraitId: Int64, uuid: String, male: Bool) -> ServerConnector? {
 		if let url = URLForAttributes(
 				portraitId: portraitId,
 				uuid: uuid,
@@ -278,24 +277,24 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		return nil
 	}
 
-	private func URLForAttributes(portraitId portraitId: Int64, uuid: String, male: Bool) -> NSURL? {
+	fileprivate func URLForAttributes(portraitId: Int64, uuid: String, male: Bool) -> URL? {
 
-		func encodedSHA1(input: String) -> String? {
+		func encodedSHA1(_ input: String) -> String? {
 			var result: String?
 #if LIFERAY_SCREENS_FRAMEWORK
-			if let inputData = input.dataUsingEncoding(NSUTF8StringEncoding,
+			if let inputData = input.data(using: .utf8,
 					allowLossyConversion: false) {
 
-				let resultBytes = CryptoSwift.Hash.sha1(inputData.arrayOfBytes()).calculate()
-				let resultData = NSData(bytes: resultBytes)
-				result = LRHttpUtil.encodeURL(resultData.base64EncodedStringWithOptions([]))
+				let resultBytes = CryptoSwift.Digest.sha1(inputData.bytes)
+				let resultData = Data(bytes: resultBytes)
+				result = LRHttpUtil.encodeURL(resultData.base64EncodedString())
 			}
 #else
 			var buffer = [UInt8](count: Int(CC_SHA1_DIGEST_LENGTH), repeatedValue: 0)
 
 			CC_SHA1(input, CC_LONG(count(input)), &buffer)
-			let data = NSData(bytes: buffer, length: buffer.count)
-			let encodedString = data.base64EncodedStringWithOptions(NSDataBase64EncodingOptions(0))
+			let data = Data(bytes: buffer, length: buffer.count)
+			let encodedString = data.base64EncodedString(options: .init(rawValue: 0))
 
 			result = LRHttpUtil.encodeURL(encodedString)
 #endif
@@ -308,9 +307,9 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 			let url = "\(LiferayServerContext.server)/image/user_\(maleString)_portrait" +
 				"?img_id=\(portraitId)" +
 				"&img_id_token=\(hashedUUID)" +
-				"&t=\(NSDate.timeIntervalSinceReferenceDate())"
+				"&t=\(Date.timeIntervalSinceReferenceDate)"
 
-			return NSURL(string: url)
+			return URL(string: url)
 		}
 		
 		return nil

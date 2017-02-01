@@ -24,7 +24,7 @@ import UIKit
 	///   - screenlet
 	///   - image: user portrait image.
 	/// - Returns: original or modify image.
-	optional func screenlet(screenlet: UserPortraitScreenlet,
+	@objc optional func screenlet(_ screenlet: UserPortraitScreenlet,
 			onUserPortraitResponseImage image: UIImage) -> UIImage
 
 	/// Called when an error occurs in the process.
@@ -33,7 +33,7 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - error: error while retrieving user portrait image.
-	optional func screenlet(screenlet: UserPortraitScreenlet,
+	@objc optional func screenlet(_ screenlet: UserPortraitScreenlet,
 			onUserPortraitError error: NSError)
 
 	/// Called when a new portrait is uploaded to the server. You receive the user 
@@ -42,7 +42,7 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - attributes: user portrait attributes.
-	optional func screenlet(screenlet: UserPortraitScreenlet,
+	@objc optional func screenlet(_ screenlet: UserPortraitScreenlet,
 			onUserPortraitUploaded attributes: [String:AnyObject])
 
 	/// Called when an error occurs in the upload process.
@@ -51,55 +51,55 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - error: error while uploading the user portrait image.
-	optional func screenlet(screenlet: UserPortraitScreenlet,
+	@objc optional func screenlet(_ screenlet: UserPortraitScreenlet,
 			onUserPortraitUploadError error: NSError)
 }
 
 
-public class UserPortraitScreenlet: BaseScreenlet {
+open class UserPortraitScreenlet: BaseScreenlet {
 
 
 	//MARK: Inspectables
 
-	@IBInspectable public var borderWidth: CGFloat = 1.0 {
+	@IBInspectable open var borderWidth: CGFloat = 1.0 {
 		didSet {
 			(screenletView as? UserPortraitViewModel)?.borderWidth = self.borderWidth
 		}
 	}
 
-	@IBInspectable public var borderColor: UIColor? {
+	@IBInspectable open var borderColor: UIColor? {
 		didSet {
 			(screenletView as? UserPortraitViewModel)?.borderColor = self.borderColor
 		}
 	}
 
-	@IBInspectable public var editable: Bool = false {
+	@IBInspectable open var editable: Bool = false {
 		didSet {
 			screenletView?.editable = self.editable
 		}
 	}
 
-	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
 
-	public var userPortraitDelegate: UserPortraitScreenletDelegate? {
+	open var userPortraitDelegate: UserPortraitScreenletDelegate? {
 		return self.delegate as? UserPortraitScreenletDelegate
 	}
 
-	public var viewModel: UserPortraitViewModel {
+	open var viewModel: UserPortraitViewModel {
 		return screenletView as! UserPortraitViewModel
 	}
 
-	public var userId: Int64? {
+	open var userId: Int64? {
 		return loadedUserId
 	}
 
-	private var loadedUserId: Int64?
+	fileprivate var loadedUserId: Int64?
 
 
 	//MARK: BaseScreenlet
 
-	override public func onCreated() {
+	override open func onCreated() {
 		super.onCreated()
 
 		viewModel.borderWidth = self.borderWidth
@@ -107,7 +107,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 		screenletView?.editable = self.editable
 	}
 
-	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
 		let interactor: Interactor?
 
 		if isActionRunning(name) {
@@ -119,18 +119,18 @@ public class UserPortraitScreenlet: BaseScreenlet {
 			let loadInteractor = sender as! DownloadUserPortraitInteractor
 			interactor = loadInteractor
 
-			loadInteractor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+			loadInteractor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .remoteFirst
 
 			loadInteractor.onSuccess = {
 				if let imageValue = loadInteractor.resultImage {
 					let finalImage = self.userPortraitDelegate?.screenlet?(self, onUserPortraitResponseImage: imageValue)
 
-					self.loadedUserId = loadInteractor.resultUserId
+					self.loadedUserId = loadInteractor.resultUserId ?? self.loadedUserId
 					self.setPortraitImage(finalImage ?? imageValue)
 				}
 				else {
 					self.userPortraitDelegate?.screenlet?(self,
-					                                      onUserPortraitError: NSError.errorWithCause(.InvalidServerResponse,
+					                                      onUserPortraitError: NSError.errorWithCause(.invalidServerResponse,
 															message: "Could not load user portrait image."))
 
 					self.loadedUserId = nil
@@ -164,7 +164,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 				image: image)
 			interactor = uploadInteractor
 
-			uploadInteractor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+			uploadInteractor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .remoteFirst
 
 			uploadInteractor.onSuccess = {
 				self.userPortraitDelegate?.screenlet?(self, onUserPortraitUploaded: uploadInteractor.uploadResult!)
@@ -190,7 +190,7 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	/// Loads the user portrait that correspond to the user logged.
 	///
 	/// - Returns: true if suceed, false otherwise.
-	public func loadLoggedUserPortrait() -> Bool {
+	open func loadLoggedUserPortrait() -> Bool {
 		guard let userId = SessionContext.currentContext?.user.userId else {
 			return false
 		}
@@ -211,7 +211,8 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	///   - uuid: user portrait unique identifier.
 	///   - male: true if the user is male, false otherwise.
 	/// - Returns: true if succeed, false otherwise.
-	public func load(portraitId portraitId: Int64, uuid: String, male: Bool = true) -> Bool {
+	@discardableResult
+	open func load(portraitId: Int64, uuid: String, male: Bool = true) -> Bool {
 		let interactor = DownloadUserPortraitInteractor(
 				screenlet: self,
 				portraitId: portraitId,
@@ -227,7 +228,8 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	///
 	/// - Parameter userId: user identifier.
 	/// - Returns: true if succeed, false otherwise.
-	public func load(userId userId: Int64) -> Bool {
+	@discardableResult
+	open func load(userId: Int64) -> Bool {
 		let interactor = DownloadUserPortraitInteractor(
 				screenlet: self,
 				userId: userId)
@@ -243,7 +245,8 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	///   - companyId: company identifier.
 	///   - emailAddress: user email.
 	/// - Returns: true if succeed, false otherwise.
-	public func load(companyId companyId: Int64, emailAddress: String) -> Bool {
+	@discardableResult
+	open func load(companyId: Int64, emailAddress: String) -> Bool {
 		let interactor = DownloadUserPortraitInteractor(
 				screenlet: self,
 				companyId: companyId,
@@ -260,7 +263,8 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	///   - companyId: company identifier.
 	///   - screenName: user screen name.
 	/// - Returns: <#return value description#>
-	public func load(companyId companyId: Int64, screenName: String) -> Bool {
+	@discardableResult
+	open func load(companyId: Int64, screenName: String) -> Bool {
 		let interactor = DownloadUserPortraitInteractor(
 				screenlet: self,
 				companyId: companyId,
@@ -272,18 +276,18 @@ public class UserPortraitScreenlet: BaseScreenlet {
 	}
 
 	/// Loads the user portrait placeholder when the user portrait is empty.
-	public func loadPlaceholder() {
+	open func loadPlaceholder() {
 		viewModel.image = nil
 	}
 
 
 	//MARK: Private methods
 
-	private func setPortraitImage(image: UIImage?) {
+	fileprivate func setPortraitImage(_ image: UIImage?) {
 		viewModel.image = image
 
 		if image == nil {
-			let error = NSError.errorWithCause(.AbortedDueToPreconditions,
+			let error = NSError.errorWithCause(.abortedDueToPreconditions,
 					message: "Could not set user portrait image.")
 			userPortraitDelegate?.screenlet?(self, onUserPortraitError: error)
 		}
