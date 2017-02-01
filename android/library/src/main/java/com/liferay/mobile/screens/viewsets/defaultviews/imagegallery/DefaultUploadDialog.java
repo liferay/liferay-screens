@@ -34,8 +34,6 @@ public class DefaultUploadDialog {
 			}
 		});
 
-		AlertDialog alertDialog = alert.create();
-		alertDialog.show();
-		return alertDialog;
+		return alert.create();
 	}
 }
