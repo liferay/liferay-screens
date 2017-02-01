@@ -13,7 +13,7 @@
  */
 import UIKit
 
-public func nullIfEmpty(string: String?) -> String? {
+public func nullIfEmpty(_ string: String?) -> String? {
 	if string == nil {
 		return nil
 	}
@@ -24,73 +24,72 @@ public func nullIfEmpty(string: String?) -> String? {
 	return string
 }
 
-public func synchronized(lock: AnyObject, closure: Void -> Void) {
+public func synchronized(_ lock: AnyObject, closure: (Void) -> Void) {
 	objc_sync_enter(lock)
 	closure()
 	objc_sync_exit(lock)
 }
 
 
-public func dispatch_delayed(delay: NSTimeInterval, block: dispatch_block_t) {
-    let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
-    dispatch_after(time, dispatch_get_main_queue(), block)
+public func dispatch_delayed(_ delay: TimeInterval, block: @escaping ()->()) {
+    let time = DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+    DispatchQueue.main.asyncAfter(deadline: time, execute: block)
 }
 
-public func dispatch_async(block: dispatch_block_t) {
-	let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
-	dispatch_async(queue) {
+public func dispatch_async(_ block: @escaping ()->()) {
+	let queue = DispatchQueue.global(qos: .background)
+	queue.async {
 		block()
 	}
 }
 
 
-public func dispatch_async(block: dispatch_block_t, thenMain mainBlock: dispatch_block_t) {
-	let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
-
-	dispatch_async(queue) {
+public func dispatch_async(_ block: @escaping ()->(), thenMain mainBlock: @escaping ()->()) {
+	let queue = DispatchQueue.global(qos: .background)
+	queue.async {
 		block()
 
-		dispatch_async(dispatch_get_main_queue()) {
+		DispatchQueue.main.async {
 			mainBlock()
 		}
 	}
 }
 
 
-public typealias Signal = () -> ()
+public typealias Signal = (() -> ())
 
-public func dispatch_sync(block: Signal -> ()) {
-	let waitGroup = dispatch_group_create()
-	dispatch_group_enter(waitGroup)
+public func dispatch_sync(_ block: (@escaping Signal) -> ()) {
+	let waitGroup = DispatchGroup()
+	waitGroup.enter()
 	block {
-		dispatch_group_leave(waitGroup)
+		waitGroup.leave()
 	}
-	dispatch_group_wait(waitGroup, DISPATCH_TIME_FOREVER)
+	_ = waitGroup.wait(timeout: DispatchTime.distantFuture)
 }
 
-public func to_sync(function: Signal -> ()) -> () -> () {
+public func to_sync(_ function: @escaping (@escaping Signal) -> ()) -> () -> () {
 	return {
 		dispatch_sync(function)
 	}
 }
 
-public func dispatch_main(block: dispatch_block_t) {
-	if NSThread.isMainThread() {
+public func dispatch_main(_ block: @escaping ()->()) {
+	if Thread.isMainThread {
 		block()
 	}
 	else {
-		dispatch_async(dispatch_get_main_queue()) {
+		DispatchQueue.main.async {
 			block()
 		}
 	}
 }
 
-public func dispatch_main(forceDispatch: Bool, block: dispatch_block_t) {
-	if !forceDispatch && NSThread.isMainThread() {
+public func dispatch_main(_ forceDispatch: Bool, block: @escaping ()->()) {
+	if !forceDispatch && Thread.isMainThread {
 		block()
 	}
 	else {
-		dispatch_async(dispatch_get_main_queue()) {
+		DispatchQueue.main.async {
 			block()
 		}
 	}
@@ -98,17 +97,17 @@ public func dispatch_main(forceDispatch: Bool, block: dispatch_block_t) {
 
 
 
-public func ScreenletName(klass: AnyClass) -> String {
+public func ScreenletName(_ klass: AnyClass) -> String {
 	var className = NSStringFromClass(klass)
 
-	if className.characters.indexOf(".") != nil {
-		className = className.componentsSeparatedByString(".")[1]
+	if className.characters.index(of: ".") != nil {
+		className = className.components(separatedBy: ".")[1]
 	}
 
-	return className.componentsSeparatedByString("Screenlet")[0]
+	return className.components(separatedBy: "Screenlet")[0]
 }
 
-public func dynamicInit(className: String) -> NSObject? {
+public func dynamicInit(_ className: String) -> NSObject? {
 	guard let klass = NSClassFromString(className) else {
 		return nil
 	}
@@ -118,39 +117,39 @@ public func dynamicInit(className: String) -> NSObject? {
 	return type.init()
 }
 
-public func LocalizedString(tableName: String, key: String, obj: AnyObject) -> String {
+public func LocalizedString(_ tableName: String, key: String, obj: AnyObject) -> String {
 	return LocalizedString(tableName, key: key, obj: obj, lang: NSLocale.currentLanguageString)
 }
 
-public func LocalizedPlural(tableName: String, keySingular key1: String, keyPlural key2: String,
+public func LocalizedPlural(_ tableName: String, keySingular key1: String, keyPlural key2: String,
 		obj: AnyObject, count: NSNumber) -> String {
 	if count == 1 {
 		return LocalizedString(tableName, key: key1, obj: obj)
 	}
 
 	return NSString.localizedStringWithFormat(
-		LocalizedString(tableName, key: key2, obj: obj), count.integerValue) as String
+		LocalizedString(tableName, key: key2, obj: obj) as NSString, count.int32Value) as String
 }
 
-public func LocalizedString(tableName: String, key: String, obj: AnyObject, lang: String) -> String {
+public func LocalizedString(_ tableName: String, key: String, obj: AnyObject, lang: String) -> String {
 	let namespacedKey = "\(tableName)-\(key)"
 
-	func getString(bundle: NSBundle) -> String? {
+	func getString(_ bundle: Bundle) -> String? {
 		let res = NSLocalizedString(namespacedKey,
 			tableName: tableName,
 			bundle: bundle,
 			value: namespacedKey,
 			comment: "");
 
-		return (res.lowercaseString != namespacedKey.lowercaseString) ? res : nil
+		return (res.lowercased() != namespacedKey.lowercased()) ? res : nil
 	}
 
-	let bundles = NSBundle.allBundles(obj.dynamicType)
+	let bundles = Bundle.allBundles(type(of: obj))
 
 	for bundle in bundles {
 		// use forced language bundle
 		if let languageBundle = NSLocale.bundleForLanguage(lang, bundle: bundle),
-				res = getString(languageBundle) {
+				let res = getString(languageBundle) {
 			return res
 		}
 
@@ -161,7 +160,7 @@ public func LocalizedString(tableName: String, key: String, obj: AnyObject, lang
 		
 		// by default fallback to english
 		if let languageBundle = NSLocale.bundleForLanguage("en", bundle: bundle),
-			res = getString(languageBundle) {
+			let res = getString(languageBundle) {
 			return res
 		}
 	}
@@ -170,13 +169,13 @@ public func LocalizedString(tableName: String, key: String, obj: AnyObject, lang
 }
 
 
-public func isOSAtLeastVersion(version: String) -> Bool {
-	let currentVersion = UIDevice.currentDevice().systemVersion
+public func isOSAtLeastVersion(_ version: String) -> Bool {
+	let currentVersion = UIDevice.current.systemVersion
 
 	if currentVersion.compare(version,
-			options: .NumericSearch,
+			options: .numeric,
 			range: nil,
-			locale: nil) != NSComparisonResult.OrderedAscending {
+			locale: nil) != .orderedAscending {
 
 		return true
 	}
@@ -185,22 +184,22 @@ public func isOSAtLeastVersion(version: String) -> Bool {
 }
 
 
-public func isOSEarlierThanVersion(version: String) -> Bool {
+public func isOSEarlierThanVersion(_ version: String) -> Bool {
 	return !isOSAtLeastVersion(version)
 }
 
 
-public func adjustRectForCurrentOrientation(rect: CGRect) -> CGRect {
+public func adjustRectForCurrentOrientation(_ rect: CGRect) -> CGRect {
 	var adjustedRect = rect
 
 	if isOSEarlierThanVersion("8.0") {
 		// For 7.x and earlier, the width and height are reversed when
 		// the device is landscaped
-		switch UIDevice.currentDevice().orientation {
-			case .LandscapeLeft, .LandscapeRight:
-				adjustedRect = CGRectMake(
-						rect.origin.y, rect.origin.x,
-						rect.size.height, rect.size.width)
+		switch UIDevice.current.orientation {
+			case .landscapeLeft, .landscapeRight:
+				adjustedRect = CGRect(
+						x: rect.origin.y, y: rect.origin.x,
+						width: rect.size.height, height: rect.size.width)
 			default: ()
 		}
 	}
@@ -208,25 +207,38 @@ public func adjustRectForCurrentOrientation(rect: CGRect) -> CGRect {
 	return adjustedRect
 }
 
-public func centeredRectInView(view: UIView, size: CGSize) -> CGRect {
-	return CGRectMake(
-			(view.frame.size.width - size.width) / 2,
-			(view.frame.size.height - size.height) / 2,
-			size.width,
-			size.height)
+public func centeredRectInView(_ view: UIView, size: CGSize) -> CGRect {
+	return CGRect(
+			x: (view.frame.size.width - size.width) / 2,
+			y: (view.frame.size.height - size.height) / 2,
+			width: size.width,
+			height: size.height)
 }
 
 public func cacheFilePath() -> String {
-	let cache = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .AllDomainsMask, true)[0]
+	let cache = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .allDomainsMask, true)[0]
 
 	var cachePath = ""
 	repeat {
-		cachePath = "\(cache)/\(NSUUID().UUIDString)"
-	} while (NSFileManager.defaultManager().fileExistsAtPath(cachePath))
+		cachePath = "\(cache)/\(UUID().uuidString)"
+	} while (FileManager.default.fileExists(atPath: cachePath))
 
 	return cachePath
 }
 
-public func isCacheFilePath(path: String) -> Bool {
-	return path.containsString("/Library/Caches/")
+public func isCacheFilePath(_ path: String) -> Bool {
+	return path.contains("/Library/Caches/")
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+	switch (lhs, rhs) {
+	case let (l?, r?):
+		return l < r
+	case (nil, _?):
+		return true
+	default:
+		return false
+	}
 }

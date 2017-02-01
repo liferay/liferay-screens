@@ -20,7 +20,7 @@ import UIKit
 public extension SMXMLElement {
 
 	public func deepChildWithAttribute(
-			attributeName: String,
+			_ attributeName: String,
 			value attributeValue: String) -> SMXMLElement? {
 
 		if self.attributeNamed(attributeName) ?? "" == attributeValue {
@@ -49,7 +49,7 @@ public extension SMXMLElement {
 public extension SMXMLDocument {
 
 	override public func deepChildWithAttribute(
-			attributeName: String,
+			_ attributeName: String,
 			value attributeValue: String) -> SMXMLElement? {
 
 		guard let children = self.children as? [SMXMLElement] else {

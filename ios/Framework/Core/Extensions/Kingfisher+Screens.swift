@@ -14,7 +14,7 @@
 import Kingfisher
 
 extension ImageCache {
-	internal static var screensOfflinePolicy = CacheStrategyType.RemoteOnly.rawValue
+	internal static var screensOfflinePolicy = CacheStrategyType.remoteOnly.rawValue
 }
 
 

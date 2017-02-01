@@ -25,7 +25,7 @@ extension String {
 			pattern: "[^a-zA-Z0-9_]+",
 			options: [])
 
-		return regex.stringByReplacingMatchesInString(self,
+		return regex.stringByReplacingMatches(in: self,
 			options: [],
 			range: NSMakeRange(0, self.characters.count),
 			withTemplate: "-")
@@ -36,19 +36,19 @@ extension String {
 			return nil
 		}
 
-		return NSNumber(longLong: number)
+		return NSNumber(value: number)
 	}
 
 	public var isXml: Bool {
 		return self.hasPrefix("<?xml")
 	}
 
-	public func asLocalized(locale: NSLocale) -> String {
+	public func asLocalized(_ locale: Locale) -> String {
 		guard self.isXml else {
 			return self
 		}
 
-		let data = self.dataUsingEncoding(NSUTF8StringEncoding)
+		let data = self.data(using: .utf8)
 
 		guard let document = try? SMXMLDocument(data: data) else {
 			return self
@@ -57,36 +57,36 @@ extension String {
 		let defaultLocale = document.attributeNamed("default-locale") ?? "en_US"
 
 		let found =
-			document.deepChildWithAttribute("language-id", value: locale.localeIdentifier)
+			document.deepChildWithAttribute("language-id", value: locale.identifier)
 			??
 			document.deepChildWithAttribute("language-id", value: defaultLocale)
 
 		return found?.value ?? self
 	}
 
-	public func toHtmlTextWithAttributes(attributes: [String: NSObject]) -> NSAttributedString? {
+	public func toHtmlTextWithAttributes(_ attributes: [String: Any]) -> NSAttributedString? {
 
 		//Init text with default paragraph style
 		var text = "<style>p:last-of-type{ margin-bottom: 0px; padding-bottom: 0px; }</style>"
 			+ "<div style=\""
 
 		if let font = attributes[NSFontAttributeName] as? UIFont {
-			text.appendContentsOf("font-family: \(font.fontName);font-size: \(font.pointSize);")
+			text.append("font-family: \(font.fontName);font-size: \(font.pointSize);")
 		}
 
 		if let color = attributes[NSForegroundColorAttributeName] as? UIColor {
-			text.appendContentsOf("color: \(self.toHexString(color));")
+			text.append("color: \(self.toHexString(color));")
 		}
 
-		text.appendContentsOf("\">\(self)</div>")
+		text.append("\">\(self)</div>")
 
-		let encodedData = text.dataUsingEncoding(NSUTF8StringEncoding)
+		let encodedData = text.data(using: .utf8)
 
 		if let data = encodedData {
 
 			let attributes = attributes.copyAndMerge([
 				NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-				NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding,
+				NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue,
 			])
 
 			return try! NSAttributedString(data: data, options: attributes, documentAttributes: nil)
@@ -95,7 +95,7 @@ extension String {
 		return nil
 	}
 
-	func toHexString(color: UIColor) -> String {
+	func toHexString(_ color: UIColor) -> String {
 		var r:CGFloat = 0
 		var g:CGFloat = 0
 		var b:CGFloat = 0
@@ -110,16 +110,16 @@ extension String {
 
 	func removeFirstAndLastChars() -> String {
 		if characters.count >= 2 {
-			let range = startIndex.successor()..<endIndex.predecessor()
-			return substringWithRange(range)
+			let range = characters.index(after: startIndex)..<characters.index(before: endIndex)
+			return substring(with: range)
 		}
 
 		return self
 	}
 
 	func trim() -> String {
-		return stringByTrimmingCharactersInSet(
-			NSCharacterSet.whitespaceAndNewlineCharacterSet())
+		return trimmingCharacters(
+			in: .whitespacesAndNewlines)
 	}
 
 }

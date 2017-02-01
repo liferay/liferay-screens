@@ -15,7 +15,7 @@ import Foundation
 
 public extension Dictionary {
 
-	public func copyAndAdd(key: Key, value: Value) -> Dictionary<Key,Value> {
+	public func copyAndAdd(_ key: Key, value: Value) -> Dictionary<Key,Value> {
 		var result = self
 
 		result.updateValue(value, forKey: key)
@@ -23,15 +23,15 @@ public extension Dictionary {
 		return result
 	}
 
-	public func copyAndRemove(key: Key) -> Dictionary<Key,Value> {
+	public func copyAndRemove(_ key: Key) -> Dictionary<Key,Value> {
 		var result = self
 
-		result.removeValueForKey(key)
+		result.removeValue(forKey: key)
 
 		return result
 	}
 
-	public func copyAndRemove(keys: [Key]) -> Dictionary<Key,Value> {
+	public func copyAndRemove(_ keys: [Key]) -> Dictionary<Key,Value> {
 		var result = self
 
 		result.removeValueForKeys(keys)
@@ -39,7 +39,7 @@ public extension Dictionary {
 		return result
 	}
 
-	public func copyAndMerge(otherDict: Dictionary<Key,Value>) -> Dictionary<Key,Value> {
+	public func copyAndMerge(_ otherDict: Dictionary<Key,Value>) -> Dictionary<Key,Value> {
 		var result = self
 
 		result.merge(otherDict)
@@ -47,15 +47,15 @@ public extension Dictionary {
 		return result
 	}
 
-	public mutating func merge(otherDict: Dictionary<Key,Value>) {
+	public mutating func merge(_ otherDict: Dictionary<Key,Value>) {
 		for (k,v) in otherDict {
 			self.updateValue(v, forKey: k)
 		}
 	}
 
-	public mutating func removeValueForKeys(keys: [Key]) {
+	public mutating func removeValueForKeys(_ keys: [Key]) {
 		for (k,_) in self {
-			self.removeValueForKey(k)
+			self.removeValue(forKey: k)
 		}
 	}
 

@@ -19,60 +19,60 @@ private var lr_lastURLKey: Void?
 
 extension UIImageView {
 
-	public var lr_webURL: NSURL? {
-		return objc_getAssociatedObject(self, &lr_lastURLKey) as? NSURL
+	public var lr_webURL: URL? {
+		return objc_getAssociatedObject(self, &lr_lastURLKey) as? URL
 	}
 
-	private func lr_setWebURL(URL: NSURL) {
+	fileprivate func lr_setWebURL(_ URL: Foundation.URL) {
 		objc_setAssociatedObject(self, &lr_lastURLKey, URL, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 	}
 
 	public func lr_setImageWithURL(
-			URL: NSURL,
+			_ URL: Foundation.URL,
 			placeholderImage: Image? = nil,
 			optionsInfo: KingfisherOptionsInfo? = nil) {
 
 		switch(ImageCache.screensOfflinePolicy) {
 
-		case CacheStrategyType.RemoteOnly.rawValue:
+		case CacheStrategyType.remoteOnly.rawValue:
 			var optionsInfoFinal = optionsInfo ?? []
-			optionsInfoFinal.append(.ForceRefresh)
-			optionsInfoFinal.append(.Transition(.Fade(0.2)))
+			optionsInfoFinal.append(.forceRefresh)
+			optionsInfoFinal.append(.transition(.fade(0.2)))
 
-			self.kf_setImageWithURL(URL, placeholderImage: placeholderImage, optionsInfo: optionsInfoFinal)
+			self.kf.setImage(with: URL, placeholder: placeholderImage, options: optionsInfoFinal)
 
-		case CacheStrategyType.RemoteFirst.rawValue:
+		case CacheStrategyType.remoteFirst.rawValue:
 			var optionsInfoFinal = optionsInfo ?? []
-			optionsInfoFinal.append(.ForceRefresh)
+			optionsInfoFinal.append(.forceRefresh)
 
-			self.kf_setImageWithURL(
+			self.kf.setImage(with:
 					URL,
-					placeholderImage: placeholderImage,
-					optionsInfo: optionsInfoFinal,
+					placeholder: placeholderImage,
+					options: optionsInfoFinal,
 					completionHandler: { (image, error, cacheType, imageURL) in
 
 						if (error != nil) {
 							var optionsInfo = optionsInfo ?? []
-							optionsInfo.append(.OnlyFromCache)
+							optionsInfo.append(.onlyFromCache)
 
-							self.kf_setImageWithURL(
+							self.kf.setImage(with:
 								URL,
-								placeholderImage: placeholderImage,
-								optionsInfo: optionsInfo)
+								placeholder: placeholderImage,
+								options: optionsInfo)
 						}
 					})
 
-		case CacheStrategyType.CacheFirst.rawValue:
-			self.kf_setImageWithURL(URL, placeholderImage: placeholderImage, optionsInfo: optionsInfo)
+		case CacheStrategyType.cacheFirst.rawValue:
+			self.kf.setImage(with:URL, placeholder: placeholderImage, options: optionsInfo)
 
-		case CacheStrategyType.CacheOnly.rawValue:
+		case CacheStrategyType.cacheOnly.rawValue:
 			var optionsInfoFinal = optionsInfo ?? []
-			optionsInfoFinal.append(.OnlyFromCache)
+			optionsInfoFinal.append(.onlyFromCache)
 
-			self.kf_setImageWithURL(
+			self.kf.setImage(with:
 				URL,
-				placeholderImage: placeholderImage,
-				optionsInfo: optionsInfoFinal)
+				placeholder: placeholderImage,
+				options: optionsInfoFinal)
 
 		default: break
 		}

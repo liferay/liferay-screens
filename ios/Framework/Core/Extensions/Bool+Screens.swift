@@ -16,8 +16,8 @@ import Foundation
 extension Bool {
 
 	public static func from(string value:String) -> Bool {
-		let boolValue = value.lowercaseString.stringByTrimmingCharactersInSet(
-				NSCharacterSet.whitespaceCharacterSet())
+		let boolValue = value.lowercased().trimmingCharacters(
+				in: .whitespaces)
 
 		return (boolValue == "true" || boolValue == "1")
 	}
