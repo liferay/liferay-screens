@@ -15,11 +15,11 @@ import Foundation
 import LRMobileSDK
 
 
-public class UploadFileConnector<T> : ServerConnector, LRCallback, LRFileProgressDelegate {
+open class UploadFileConnector<T> : ServerConnector, LRCallback, LRFileProgressDelegate {
 
 	public typealias OnProgress = (T?, UInt64, UInt64) -> Void
 
-	var inputStream: NSInputStream?
+	var inputStream: InputStream?
 	var bytesToSend: Int64?
 	var image: UIImage?
 	let fileName: String
@@ -27,7 +27,7 @@ public class UploadFileConnector<T> : ServerConnector, LRCallback, LRFileProgres
 	let parameter: T?
 	let onUploadedBytes: OnProgress?
 
-	var requestSemaphore: dispatch_semaphore_t?
+	var requestSemaphore: DispatchSemaphore?
 
 	var uploadResult: [String:AnyObject]?
 
@@ -35,7 +35,7 @@ public class UploadFileConnector<T> : ServerConnector, LRCallback, LRFileProgres
 	//MARK: Initializers
 
 	public init(
-		inputStream: NSInputStream,
+		inputStream: InputStream,
 		bytesToSend: Int64,
 		fileName: String,
 		mimeType: String,
@@ -71,11 +71,11 @@ public class UploadFileConnector<T> : ServerConnector, LRCallback, LRFileProgres
 
 	//MARK: ServerConnector
 
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 		if inputStream == nil {
 			if let imageData = UIImagePNGRepresentation(image!) {
-				bytesToSend = Int64(imageData.length)
-				inputStream = NSInputStream(data: imageData)
+				bytesToSend = Int64(imageData.count)
+				inputStream = InputStream(data: imageData)
 			}
 			else {
 				print("ERROR: could not create inputstream from image")
@@ -89,43 +89,43 @@ public class UploadFileConnector<T> : ServerConnector, LRCallback, LRFileProgres
 			fileName: fileName,
 			mimeType: mimeType,
 			progressDelegate: self)
-		uploadData.progressDelegate = self
+		uploadData?.progressDelegate = self
 
-		requestSemaphore = dispatch_semaphore_create(0)
+		requestSemaphore = DispatchSemaphore(value: 0)
 
 		do {
-			try doSendFile(session, data: uploadData)
+			try doSendFile(session, data: uploadData!)
 		} catch {
 
 		}
 
-		dispatch_semaphore_wait(requestSemaphore!, DISPATCH_TIME_FOREVER)
+		_ = requestSemaphore!.wait(timeout: .distantFuture)
 	}
 
 
 	//MARK: Public methods
 
-	public func onProgress(data: NSData!, totalBytes: Int64) {
+	open func onProgress(_ data: Data!, totalBytes: Int64) {
 		let totalBytesSent = UInt64(totalBytes)
 		let totalBytesToSend = UInt64(self.bytesToSend ?? 0)
 
 		onUploadedBytes?(parameter, totalBytesSent, totalBytesToSend)
 	}
 
-	public func onFailure(error: NSError!) {
-		lastError = error
-		dispatch_semaphore_signal(requestSemaphore!)
+	open func onFailure(_ error: Error!) {
+		lastError = error as NSError
+		requestSemaphore!.signal()
 	}
 
-	public func doSendFile(session: LRSession, data: LRUploadData) throws {
+	open func doSendFile(_ session: LRSession, data: LRUploadData) throws {
 		fatalError("Override doSendFile method")
 	}
 
-	public func onSuccess(result: AnyObject!) {
+	open func onSuccess(_ result: Any!) {
 		lastError = nil
 
 		uploadResult = result as? [String:AnyObject]
-		dispatch_semaphore_signal(requestSemaphore!)
+		requestSemaphore!.signal()
 	}
 
 }

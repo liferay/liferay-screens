@@ -17,23 +17,23 @@ import UIKit
 /*!
  * BaseScreenletView is the base class from which all Screenlet's View classes must inherit.
  */
-public class BaseScreenletView: UIView, UITextFieldDelegate {
+open class BaseScreenletView: UIView, UITextFieldDelegate {
 
-	public weak var screenlet: BaseScreenlet?
+	open weak var screenlet: BaseScreenlet?
 
-	public weak var presentingViewController: UIViewController?
+	open weak var presentingViewController: UIViewController?
 
-	public var progressMessages: [String:ProgressMessages] { return [:] }
+	open var progressMessages: [String:ProgressMessages] { return [:] }
 
-	public let NoProgressMessage = ""
+	open let NoProgressMessage = ""
 
-	public var editable: Bool = true {
+	open var editable: Bool = true {
 		didSet {
 			changeEditable(editable)
 		}
 	}
 
-	public var themeName = "default"
+	open var themeName = "default"
 
 	internal var onPerformAction: ((String, AnyObject?) -> Bool)?
 
@@ -44,14 +44,14 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	//MARK: UIView
 
-	override public func awakeFromNib() {
+	override open func awakeFromNib() {
 		onPreCreate()
 		setUpView(self)
 		onSetTranslations()
 		onCreated()
 	}
 
-	override public func becomeFirstResponder() -> Bool {
+	override open func becomeFirstResponder() -> Bool {
 		var result:Bool
 
 		if let firstView = viewWithTag(1) {
@@ -64,7 +64,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 		return result
 	}
 
-	override public func didMoveToWindow() {
+	override open func didMoveToWindow() {
 		if (window != nil) {
 			onShow();
 		}
@@ -76,18 +76,18 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	//MARK: UITextFieldDelegate
 
-	public func textFieldShouldReturn(textField: UITextField) -> Bool {
+	open func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		let nextResponder = nextResponderForView(textField)
 
 		if nextResponder != textField {
 
 			switch textField.returnKeyType {
-				case .Next
+				case .next
 				where nextResponder is UITextInputTraits:
-					if textField.canResignFirstResponder() {
+					if textField.canResignFirstResponder {
 						textField.resignFirstResponder()
 
-						if nextResponder.canBecomeFirstResponder() {
+						if nextResponder.canBecomeFirstResponder {
 							nextResponder.becomeFirstResponder()
 						}
 					}
@@ -111,27 +111,27 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	 * Override this method to perform actions such as setting colors, sizes, 
 	 * positioning, etc to the component's subviews.
 	*/
-	public func onCreated() {
+	open func onCreated() {
 	}
 
 	/*
 	 * onDestroy is fired before the destruction of the screenlet view.
 	 * Override this method to perform cleanup actions.
 	*/
-	public func onDestroy() {
+	open func onDestroy() {
 	}
 
 	/*
 	 * onPreCreate is fired before the initialization of the screenlet view. 
 	 * Override this method to create UI components programatically.
 	*/
-	public func onPreCreate() {
+	open func onPreCreate() {
 	}
 
 	/*
 	 * onHide is invoked when the screenlet's view is hidden
 	 */
-	public func onHide() {
+	open func onHide() {
 	}
 
 	/*
@@ -139,7 +139,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	 * Override this method for example to reset values when the screenlet's 
 	 * view is shown.
 	 */
-	public func onShow() {
+	open func onShow() {
 	}
 
 	/*
@@ -148,7 +148,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	 * Override this method to decide whether or not the handler should be 
 	 * associated to the control.
 	 */
-	public func onSetUserActionForControl(control: UIControl) -> Bool {
+	open func onSetUserActionForControl(_ control: UIControl) -> Bool {
 		return true
 	}
 
@@ -156,28 +156,28 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 	 * onPreAction is invoked just before any user action is invoked.
 	 * Override this method to decide whether or not the user action should be fired.
 	 */
-	public func onPreAction(name name: String, sender: AnyObject?) -> Bool {
+	open func onPreAction(name: String, sender: AnyObject?) -> Bool {
 		return true
 	}
 
-	public func onSetDefaultDelegate(delegate: AnyObject, view: UIView) -> Bool {
+	open func onSetDefaultDelegate(_ delegate: AnyObject, view: UIView) -> Bool {
 		return true
 	}
 
-	public func onSetTranslations() {
+	open func onSetTranslations() {
 	}
 
-	public func onStartInteraction() {
+	open func onStartInteraction() {
 	}
 
-	public func onFinishInteraction(result: AnyObject?, error: NSError?) {
+	open func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
 	}
 
-	public func createProgressPresenter() -> ProgressPresenter {
+	open func createProgressPresenter() -> ProgressPresenter {
 		return MBProgressHUDPresenter()
 	}
 
-	public func progressMessageForAction(actionName: String,
+	open func progressMessageForAction(_ actionName: String,
 			messageType: ProgressMessageType) -> String? {
 
 		let messages = progressMessages[actionName] ?? progressMessages[BaseScreenlet.DefaultAction]
@@ -191,7 +191,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 		return nil
 	}
 
-	public func userActionWithSender(sender: AnyObject?) {
+	open func userActionWithSender(_ sender: AnyObject?) {
 		if let controlSender = sender as? UIControl {
 			userAction(name: controlSender.restorationIdentifier, sender: sender)
 		}
@@ -200,24 +200,24 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 		}
 	}
 
-	public func userAction(name name: String?) {
+	open func userAction(name: String?) {
 		userAction(name: name, sender: nil)
 	}
 	
-	public func userAction(name name: String?, sender: AnyObject?) {
+	open func userAction(name: String?, sender: AnyObject?) {
 		let actionName = name ?? BaseScreenlet.DefaultAction
 
 		if onPreAction(name: actionName, sender: sender) {
 			endEditing(true)
 		
-			onPerformAction?(actionName, sender)
+			_ = onPerformAction?(actionName, sender)
 		}
 	}
 
 
 	//MARK: Private methods
 
-	private func nextResponderForView(view:UIView) -> UIResponder {
+	fileprivate func nextResponderForView(_ view:UIView) -> UIResponder {
 		if view.tag > 0 {
 			if let nextView = viewWithTag(view.tag + 1) {
 				return nextView
@@ -226,22 +226,22 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 		return view
 	}
 
-	private func addUserActionForControl(control: UIControl) {
+	fileprivate func addUserActionForControl(_ control: UIControl) {
 		let hasIdentifier = (control.restorationIdentifier != nil)
 
-		let userDefinedActions = control.actionsForTarget(self,
-			forControlEvent: .TouchUpInside)
+		let userDefinedActions = control.actions(forTarget: self,
+			forControlEvent: .touchUpInside)
 		let hasUserDefinedActions = (userDefinedActions?.count ?? 0) > 0
 
 		if hasIdentifier && !hasUserDefinedActions
 				&& onSetUserActionForControl(control) {
 			control.addTarget(self,
 					action: #selector(BaseScreenletView.userActionWithSender(_:)),
-					forControlEvents: .TouchUpInside)
+					for: .touchUpInside)
 		}
 	}
 
-	private func addDefaultDelegatesForView(view:UIView) {
+	fileprivate func addDefaultDelegatesForView(_ view:UIView) {
 		if let textField = view as? UITextField {
 			if onSetDefaultDelegate(self, view:textField) {
 				textField.delegate = self
@@ -249,7 +249,7 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 		}
 	}
 
-	private func setUpView(view: UIView) {
+	fileprivate func setUpView(_ view: UIView) {
 		if let control = view as? UIControl {
 			addUserActionForControl(control)
 		}
@@ -264,8 +264,8 @@ public class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	//MARK: Public methods
 
-	public func changeEditable(editable: Bool) {
-		userInteractionEnabled = editable
+	open func changeEditable(_ editable: Bool) {
+		isUserInteractionEnabled = editable
 	}
 
 }

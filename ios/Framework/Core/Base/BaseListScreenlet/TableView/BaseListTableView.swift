@@ -14,23 +14,23 @@
 import UIKit
 
 
-public class BaseListTableView: BaseListView, UITableViewDataSource, UITableViewDelegate {
+open class BaseListTableView: BaseListView, UITableViewDataSource, UITableViewDelegate {
 	
-	@IBOutlet public var tableView: UITableView?
+	@IBOutlet open var tableView: UITableView?
 	
 	internal var refreshControlView: UIRefreshControl?
 	
-	internal var refreshClosure: (Void -> Bool)? {
+	internal var refreshClosure: ((Void) -> Bool)? {
 		didSet {
 			updateRefreshControl()
 		}
 	}
 	
-	override public var progressMessages: [String:ProgressMessages] {
+	override open var progressMessages: [String:ProgressMessages] {
 		return [
 			BaseListScreenlet.LoadInitialPageAction : [
-				.Working : LocalizedString("core", key: "base-list-loading-message", obj: self),
-				.Failure : LocalizedString("core", key: "base-list-loading-error", obj: self)
+				.working : LocalizedString("core", key: "base-list-loading-message", obj: self),
+				.failure : LocalizedString("core", key: "base-list-loading-error", obj: self)
 			]
 		]
 	}
@@ -38,7 +38,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	
 	//MARK: BaseListView
 	
-	public override func onCreated() {
+	open override func onCreated() {
 		super.onCreated()
 		
 		tableView?.delegate = self
@@ -47,7 +47,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		doRegisterCellNibs()
 	}
 	
-	override public func onChangedRows(oldRows: [String : [AnyObject?]]) {
+	override open func onChangedRows(_ oldRows: [String : [AnyObject?]]) {
 		super.onChangedRows(oldRows)
 
 		if oldRows[BaseListView.DefaultSection]!.isEmpty {
@@ -79,7 +79,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		}
 	}
 	
-	override public func onAddedRows(oldRows: [String : [AnyObject?]]) {
+	override open func onAddedRows(_ oldRows: [String : [AnyObject?]]) {
 		if moreRows {
 			showProgressFooter()
 		}
@@ -90,11 +90,11 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		tableView?.reloadData()
 	}
 	
-	override public func onClearRows(oldRows: [String : [AnyObject?]]) {
+	override open func onClearRows(_ oldRows: [String : [AnyObject?]]) {
 		clearAllRows(oldRows)
 	}
 	
-	override public func onFinishInteraction(result: AnyObject?, error: NSError?) {
+	override open func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
 		if let currentRefreshControl = refreshControlView {
 			dispatch_delayed(0.3) {
 				currentRefreshControl.endRefreshing()
@@ -105,21 +105,21 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 	
 	//MARK: UITableViewDataSource
 	
-	public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return rowsForSectionIndex(section).count
 	}
 	
-	public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	open func numberOfSections(in tableView: UITableView) -> Int {
 		return sections.count
 	}
 	
-	public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+	open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 		return sections[section]
 	}
 	
-	public func tableView(tableView: UITableView,
-	                      cellForRowAtIndexPath
-		indexPath: NSIndexPath)
+	open func tableView(_ tableView: UITableView,
+	                      cellForRowAt
+		indexPath: IndexPath)
 		-> UITableViewCell {
 			let rowsForSection = rowsForSectionIndex(indexPath.section)
 			
@@ -142,7 +142,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 			return cell
 	}
 	
-	public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+	open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		
 		let rowsForSection = rowsForSectionIndex(indexPath.section)
 		
@@ -150,12 +150,12 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 			onSelectedRowClosure?(row)
 		}
 
-		tableView.deselectRowAtIndexPath(indexPath, animated: false)
+		tableView.deselectRow(at: indexPath, animated: false)
 	}
 
 	
-	public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell,
-	                      forRowAtIndexPath indexPath: NSIndexPath) {
+	open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
+	                      forRowAt indexPath: IndexPath) {
 		
 		let streamMode = (screenlet as! BaseListScreenlet).streamMode
 		
@@ -172,37 +172,37 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		}
 	}
 	
-	public func doDequeueReusableCell(row row: Int, object: AnyObject?) -> UITableViewCell {
+	open func doDequeueReusableCell(row: Int, object: AnyObject?) -> UITableViewCell {
 		let cellId = doGetCellId(row: row, object: object)
 		
-		guard let result = tableView!.dequeueReusableCellWithIdentifier(cellId) else {
+		guard let result = tableView!.dequeueReusableCell(withIdentifier: cellId) else {
 			return doCreateCell(cellId)
 		}
 		
 		return result
 	}
 	
-	public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
+	open func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
 	}
 	
-	public func doFillInProgressCell(row row: Int, cell: UITableViewCell) {
+	open func doFillInProgressCell(row: Int, cell: UITableViewCell) {
 	}
 	
-	public func doRegisterCellNibs() {
+	open func doRegisterCellNibs() {
 	}
 	
-	public func doGetCellId(row row: Int, object: AnyObject?) -> String {
+	open func doGetCellId(row: Int, object: AnyObject?) -> String {
 		return "defaultCellId"
 	}
 	
-	public func doCreateCell(cellId: String) -> UITableViewCell {
-		return UITableViewCell(style: .Default, reuseIdentifier: cellId)
+	open func doCreateCell(_ cellId: String) -> UITableViewCell {
+		return UITableViewCell(style: .default, reuseIdentifier: cellId)
 	}
 	
-	public func createLoadingMoreView() -> UIView? {
+	open func createLoadingMoreView() -> UIView? {
 		let progressView = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: 30))
 		
-		let indicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+		let indicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 		indicatorView.center = CGPoint(x: frame.width/2, y: indicatorView.center.y)
 		indicatorView.startAnimating()
 		
@@ -211,8 +211,8 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		return progressView
 	}
 
-	public override func changeEditable(editable: Bool) {
-		tableView?.subviews.forEach { $0.userInteractionEnabled = editable }
+	open override func changeEditable(_ editable: Bool) {
+		tableView?.subviews.forEach { $0.isUserInteractionEnabled = editable }
 	}
 	
 	
@@ -226,7 +226,7 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 				
 				refreshControlView!.addTarget(self,
 				                              action: #selector(BaseListTableView.refreshControlBeginRefresh(_:)),
-				                              forControlEvents: .ValueChanged)
+				                              for: .valueChanged)
 			}
 		}
 		else if let currentControl = refreshControlView {
@@ -236,11 +236,11 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		}
 	}
 	
-	internal func refreshControlBeginRefresh(sender:AnyObject?) {
+	internal func refreshControlBeginRefresh(_ sender:AnyObject?) {
 		dispatch_delayed(0.3) {
 			self.moreRows = true
 			self.hideProgressFooter()
-			self.refreshClosure?()
+			_ = self.refreshClosure?()
 		}
 	}
 	
@@ -248,31 +248,31 @@ public class BaseListTableView: BaseListView, UITableViewDataSource, UITableView
 		tableView?.reloadData()
 	}
 	
-	internal func insertRows(from from: Int, to: Int, section: Int) {
+	internal func insertRows(from: Int, to: Int, section: Int) {
 		let indexPaths = (from..<to).map {
-			NSIndexPath(forRow: $0, inSection: section)
+			IndexPath(row: $0, section: section)
 		}
 		tableView!.beginUpdates()
-		tableView!.insertRowsAtIndexPaths(indexPaths, withRowAnimation:.Top)
+		tableView!.insertRows(at: indexPaths, with:.top)
 		tableView!.endUpdates()
 	}
 	
-	internal func clearAllRows(currentRows: [String : [AnyObject?]]) {
+	internal func clearAllRows(_ currentRows: [String : [AnyObject?]]) {
 		tableView?.reloadData()
 	}
 	
-	internal func deleteRows(from from: Int, to: Int, section: Int) {
+	internal func deleteRows(from: Int, to: Int, section: Int) {
 		let indexPaths = (from..<to).map {
-			NSIndexPath(forRow: $0, inSection: section)
+			IndexPath(row: $0, section: section)
 		}
 		tableView!.beginUpdates()
-		tableView!.deleteRowsAtIndexPaths(indexPaths, withRowAnimation: .Fade)
+		tableView!.deleteRows(at: indexPaths, with: .fade)
 		tableView!.endUpdates()
 	}
 	
-	internal func updateVisibleRows(visibleRows: [NSIndexPath]) {
+	internal func updateVisibleRows(_ visibleRows: [IndexPath]) {
 		if visibleRows.count > 0 {
-			tableView!.reloadRowsAtIndexPaths(visibleRows, withRowAnimation:.None)
+			tableView!.reloadRows(at: visibleRows, with:.none)
 		}
 		else {
 			tableView!.reloadData()

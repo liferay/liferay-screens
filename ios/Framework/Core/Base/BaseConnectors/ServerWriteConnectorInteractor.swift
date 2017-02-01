@@ -14,25 +14,25 @@
 import UIKit
 
 
-public class ServerWriteConnectorInteractor: ServerConnectorInteractor {
+open class ServerWriteConnectorInteractor: ServerConnectorInteractor {
 
 
 	//MARK: ServerConnectorInteractor
 	
-	override public func getCacheStrategyImpl(strategyType: CacheStrategyType) -> CacheStrategy {
+	override open func getCacheStrategyImpl(_ strategyType: CacheStrategyType) -> CacheStrategy {
 		switch strategyType {
-		case .RemoteOnly:
+		case .remoteOnly:
 			return defaultStrategyRemote
 
-		case .CacheOnly:
+		case .cacheOnly:
 			return defaultStrategyWriteToCache
 
-		case .RemoteFirst:
+		case .remoteFirst:
 			return createStrategy(
 				defaultStrategyRemote,
 				andThen: defaultStrategyWriteToCache)
 
-		case .CacheFirst:
+		case .cacheFirst:
 			return createStrategy(
 				defaultStrategyWriteToCache,
 				andThen: defaultStrategyRemote)

@@ -14,25 +14,25 @@
 import UIKit
 
 
-public class ServerReadConnectorInteractor: ServerConnectorInteractor {
+open class ServerReadConnectorInteractor: ServerConnectorInteractor {
 
 
 	//MARK: ServerConnectorInteractor
 
-	override public func getCacheStrategyImpl(strategyType: CacheStrategyType) -> CacheStrategy {
+	override open func getCacheStrategyImpl(_ strategyType: CacheStrategyType) -> CacheStrategy {
 		switch strategyType {
-		case .RemoteOnly:
+		case .remoteOnly:
 			return createStrategyReadRemoteOnly()
 
-		case .CacheOnly:
+		case .cacheOnly:
 			return defaultStrategyReadFromCache
 
-		case .RemoteFirst:
+		case .remoteFirst:
 			return createStrategy(
 				whenFails: createStrategyReadRemoteOnly(),
 				then: defaultStrategyReadFromCache)
 
-		case .CacheFirst:
+		case .cacheFirst:
 			return createStrategy(
 				whenFails: defaultStrategyReadFromCache,
 				then: createStrategyReadRemoteOnly())
@@ -42,7 +42,7 @@ public class ServerReadConnectorInteractor: ServerConnectorInteractor {
 
 	//MARK: Private methods
 
-	private func createStrategyReadRemoteOnly() -> CacheStrategy {
+	fileprivate func createStrategyReadRemoteOnly() -> CacheStrategy {
 		return createStrategy(
 			whenSucceeds: defaultStrategyRemote,
 			then: defaultStrategyWriteToCache)
