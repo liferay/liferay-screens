@@ -25,10 +25,10 @@ class UserPortrait_connector_Test: XCTestCase {
 	func test_shouldNotUploadImageWithSizeLessThan100x100px() {
 		let imageToUpload = UIImage(
 				named: "tinyImage.png",
-				inBundle: NSBundle(forClass: self.dynamicType),
-				compatibleWithTraitCollection: nil)!
+				in: Bundle(for: type(of: self)),
+				compatibleWith: nil)!
 
-		let expectation = expectationWithDescription("Should throw fileToolarge error")
+		let expectation = self.expectation(description: "Should throw fileToolarge error")
 		
 		let connector = Liferay70UploadUserPortraitConnector(userId: 1000, image: imageToUpload)
 
@@ -44,6 +44,6 @@ class UserPortrait_connector_Test: XCTestCase {
 
 		connector.start()
 
-		waitForExpectationsWithTimeout(5, handler: nil)
+		waitForExpectations(timeout: 5, handler: nil)
 	}
 }

@@ -20,7 +20,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 		scenario ("LoginScreenlet by email should work") {
 			given ("a configured login screenlet") {
 				with ("auth method set to email") {
-					self.screenlet!.basicAuthMethod = BasicAuthMethod.Email.rawValue
+					self.screenlet!.basicAuthMethod = BasicAuthMethod.email.rawValue
 				}
 				and ("email and password entered by the user") {
 					self.screenlet!.viewModel.userName = "test@liferay.com"
@@ -66,7 +66,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 					XCTAssertEqual("test", SessionContext.currentContext!.basicAuthPassword!)
 				}
 			},
-			.TestAndWaitFor("login response received", self))
+			.testAndWaitFor("login response received", self))
 		}
 	}
 
@@ -78,7 +78,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 		scenario ("LoginScreenlet by email store credentials") {
 			given ("a configured login screenlet") {
 				with ("auth method set to email") {
-					self.screenlet!.basicAuthMethod = BasicAuthMethod.Email.rawValue
+					self.screenlet!.basicAuthMethod = BasicAuthMethod.email.rawValue
 				}
 				and ("email and password entered by the user") {
 					self.screenlet!.viewModel.userName = "test@liferay.com"
@@ -128,7 +128,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 					XCTAssertTrue((self.screenlet!.delegate as! TestLoginScreenletDelegate).credentialsSavedCalled)
 				}
 			},
-			.TestAndWaitFor("login response received", self))
+			.testAndWaitFor("login response received", self))
 		}
 	}
 
@@ -136,7 +136,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 		scenario ("LoginScreenlet by email should fail when credentials are wrong") {
 			given ("a configured login screenlet") {
 				with ("auth method set to email") {
-					self.screenlet!.basicAuthMethod = BasicAuthMethod.Email.rawValue
+					self.screenlet!.basicAuthMethod = BasicAuthMethod.email.rawValue
 				}
 				and ("email and password entered by the user") {
 					self.screenlet!.viewModel.userName = "test@liferay.com"
@@ -171,7 +171,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 					XCTAssertNil(SessionContext.currentContext)
 				}
 			},
-			.TestAndWaitFor("login response received", self))
+			.testAndWaitFor("login response received", self))
 		}
 	}
 

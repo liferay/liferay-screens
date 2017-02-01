@@ -32,7 +32,7 @@ class SessionContext_Storage_Tests: XCTestCase {
 		SessionContext.loginWithBasic(
 				username: "username",
 				password: "password",
-				userAttributes: ["k":"v"])
+				userAttributes: ["k":"v" as AnyObject])
 
 		withCredentialsStoreMockedSession { mock in
 			XCTAssertTrue(SessionContext.currentContext!.storeCredentials())
@@ -44,7 +44,7 @@ class SessionContext_Storage_Tests: XCTestCase {
 		SessionContext.loginWithBasic(
 				username: "username123",
 				password: "password456",
-				userAttributes: ["k":"v"])
+				userAttributes: ["k":"v" as AnyObject])
 
 		withCredentialsStoreMockedSession { mock in
 			let storage = CredentialsStorage(store: mock)
@@ -64,7 +64,7 @@ class SessionContext_Storage_Tests: XCTestCase {
 		SessionContext.loginWithBasic(
 			username: "username",
 			password: "password",
-			userAttributes: ["k":"v"])
+			userAttributes: ["k":"v" as AnyObject])
 
 		withCredentialsStoreMockedSession { mock in
 			SessionContext.currentContext!.removeStoredCredentials()

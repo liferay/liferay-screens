@@ -14,6 +14,6 @@
 import UIKit
 
 
-public class DDLListView_test: DDLListView_default {
+open class DDLListView_test: DDLListView_default {
 
 }

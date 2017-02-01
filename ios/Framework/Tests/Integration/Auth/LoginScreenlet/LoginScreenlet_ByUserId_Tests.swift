@@ -20,7 +20,7 @@ class LoginScreenlet_ByUserId_Tests: BaseLoginScreenletTestCase {
 		scenario("LoginScreenlet by userId should work") {
 			given("a configured login screenlet") {
 				with("auth method set to userId") {
-					self.screenlet!.basicAuthMethod = BasicAuthMethod.UserId.rawValue
+					self.screenlet!.basicAuthMethod = BasicAuthMethod.userId.rawValue
 				}
 				and("screenName and password entered by the user") {
 					self.screenlet!.viewModel.userName = "123456"
@@ -63,7 +63,7 @@ class LoginScreenlet_ByUserId_Tests: BaseLoginScreenletTestCase {
 					XCTAssertEqual("test", SessionContext.currentContext?.basicAuthPassword!)
 				}
 			},
-			.TestAndWaitFor("login response received", self))
+			.testAndWaitFor("login response received", self))
 		}
 	}
 

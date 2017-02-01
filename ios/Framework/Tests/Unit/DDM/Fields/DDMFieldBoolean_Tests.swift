@@ -16,8 +16,8 @@ import XCTest
 
 class DDMFieldBoolean_Tests: XCTestCase {
 
-	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
-	private let usLocale = NSLocale(localeIdentifier: "en_US")
+	fileprivate let spanishLocale = Locale(identifier: "es_ES")
+	fileprivate let usLocale = Locale(identifier: "en_US")
 
 
 	//MARK: ConvertFromString
@@ -60,7 +60,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_ConvertFromCurrentValue_ShouldReturnTrueString_WhenTrueIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		let convertedValue = boolField.convert(fromCurrentValue: true)
+		let convertedValue = boolField.convert(fromCurrentValue: true as AnyObject?)
 
 		XCTAssertNotNil(convertedValue)
 		XCTAssertEqual("true", convertedValue!)
@@ -69,7 +69,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_ConvertFromCurrentValue_ShouldReturnFalseString_WhenFalseIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		let convertedValue = boolField.convert(fromCurrentValue: false)
+		let convertedValue = boolField.convert(fromCurrentValue: false as AnyObject?)
 
 		XCTAssertNotNil(convertedValue)
 		XCTAssertEqual("false", convertedValue!)
@@ -87,7 +87,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_CurrentValueAsString_ShouldReturnTrueString_WhenTrueIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		boolField.currentValue = true
+		boolField.currentValue = true as AnyObject?
 
 		XCTAssertNotNil(boolField.currentValueAsString)
 		XCTAssertEqual("true", boolField.currentValueAsString!)
@@ -96,7 +96,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_CurrentValueAsString_ShouldReturnFalseString_WhenFalseIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		boolField.currentValue = false
+		boolField.currentValue = false as AnyObject?
 
 		XCTAssertNotNil(boolField.currentValueAsString)
 		XCTAssertEqual("false", boolField.currentValueAsString!)
@@ -114,7 +114,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_CurrentValueAsLabel_ShouldReturnTrueString_WhenTrueIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		boolField.currentValue = true
+		boolField.currentValue = true as AnyObject?
 
 		XCTAssertNotNil(boolField.currentValueAsLabel)
 
@@ -125,7 +125,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_CurrentValueAsLabel_ShouldReturnFalseString_WhenFalseIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		boolField.currentValue = false
+		boolField.currentValue = false as AnyObject?
 
 		XCTAssertNotNil(boolField.currentValueAsLabel)
 		XCTAssertEqual("No", boolField.currentValueAsLabel!)

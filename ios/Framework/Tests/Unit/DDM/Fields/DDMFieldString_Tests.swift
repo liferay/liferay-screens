@@ -16,7 +16,7 @@ import XCTest
 
 class DDMFieldString_Tests: XCTestCase {
 
-	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
+	fileprivate let spanishLocale = Locale(identifier: "es_ES")
 
 	func test_XSDParse_ShouldExtractValues() {
 		let xsd =
@@ -109,7 +109,7 @@ class DDMFieldString_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldString
 
-		stringField.currentValue = ""
+		stringField.currentValue = "" as AnyObject?
 
 		XCTAssertFalse(stringField.validate())
 	}
@@ -119,12 +119,12 @@ class DDMFieldString_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldString
 
-		stringField.currentValue = "  "
+		stringField.currentValue = "  " as AnyObject?
 
 		XCTAssertFalse(stringField.validate())
 	}
 
-	private let requiredTextXSD =
+	fileprivate let requiredTextXSD =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 				"<dynamic-element dataType=\"string\" " +
 						"name=\"A_Text\" " +

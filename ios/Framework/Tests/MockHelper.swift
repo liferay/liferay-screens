@@ -26,17 +26,17 @@ protocol StubResponses {
 
 class MockServer  {
 
-	private let host: String
+	fileprivate let host: String
 
 	init(host: String) {
 		self.host = host
 	}
 
-	func stubService(service: NSString, withResult jsonResult: String) {
-		stubRequest("POST", "http://\(host)/api/jsonws/invoke")
-				.withBody(service.regex())
-				.andReturn(200)
-				.withBody(jsonResult)
+	func stubService(_ service: NSString, withResult jsonResult: String) {
+		stubRequest("POST", "http://\(host)/api/jsonws/invoke" as LSMatcheable!)
+				.withBody(service.regex())?
+				.andReturn(200)?
+				.withBody?(jsonResult as LSHTTPBody?)
 	}
 
 }
@@ -78,7 +78,7 @@ class Liferay62MockServer : MockServer, StubResponses {
 
 	var hasData = true
 
-	func storeCredentials(session: LRSession?, userAttributes: [String:AnyObject]?) -> Bool {
+	func storeCredentials(_ session: LRSession?, userAttributes: [String:AnyObject]?) -> Bool {
 		calledStoreCredential = true
 
 		// after the credentials are saved, the data is present
@@ -105,7 +105,7 @@ class Liferay62MockServer : MockServer, StubResponses {
 
 
 // Syntactic sugar
-func withCredentialsStoreMockedSession(block: (CredentialStoreMock) -> ()) {
+func withCredentialsStoreMockedSession(_ block: (CredentialStoreMock) -> ()) {
 	let mock = CredentialStoreMock()
 	SessionContext.currentContext?.credentialsStorage = CredentialsStorage(store: mock)
 	block(mock)

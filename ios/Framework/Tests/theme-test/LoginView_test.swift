@@ -14,6 +14,6 @@
 import UIKit
 
 
-public class LoginView_test: LoginView_default {
+open class LoginView_test: LoginView_default {
 
 }

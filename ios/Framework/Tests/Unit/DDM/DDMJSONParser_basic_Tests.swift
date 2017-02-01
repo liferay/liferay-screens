@@ -16,7 +16,7 @@ import XCTest
 
 class DDMJSONParser_Basic_Tests: XCTestCase {
 
-	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
+	fileprivate let spanishLocale = Locale(identifier: "es_ES")
 
 	func test_Parse_ShouldReturnNil_WhenMalformedXML() {
 		let xsd = "#root available-locales=\"en_US\" default-locale=\"en_US\"> "

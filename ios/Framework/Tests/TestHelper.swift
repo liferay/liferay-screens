@@ -15,7 +15,7 @@ import Foundation
 import XCTest
 
 
-func XCTAssertOptional(@autoclosure expression:  () -> AnyObject?, _ message: String? = nil) {
+func XCTAssertOptional(_ expression:  @autoclosure () -> AnyObject?, _ message: String? = nil) {
 	let evaluatedExpression:AnyObject? = expression()
 
 	if evaluatedExpression == nil {
@@ -29,9 +29,9 @@ func XCTAssertOptional(@autoclosure expression:  () -> AnyObject?, _ message: St
 }
 
 
-func testResourcePath(name: String, ext: String) -> String {
-	let bundle = NSBundle(forClass:IntegrationTestCase.self)
-	let path = bundle.pathForResource(name, ofType:ext)
+func testResourcePath(_ name: String, ext: String) -> String {
+	let bundle = Bundle(for:IntegrationTestCase.self)
+	let path = bundle.path(forResource: name, ofType:ext)
 
 	if let pathValue = path {
 		return pathValue

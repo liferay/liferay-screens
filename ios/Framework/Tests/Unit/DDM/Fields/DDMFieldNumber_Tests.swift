@@ -16,7 +16,7 @@ import XCTest
 
 class DDMFieldNumber_Tests: XCTestCase {
 
-	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
+	fileprivate let spanishLocale = Locale(identifier: "es_ES")
 
 
 	//MARK: parse
@@ -121,8 +121,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(integerXSD, locale: spanishLocale)
 		let numberField = fields![0] as! DDMFieldNumber
 
-		numberField.currentValue = 1.1
-
+		numberField.currentValue = 1.1 as AnyObject?
 		XCTAssertTrue(numberField.currentValue is NSInteger)
 		XCTAssertEqual(NSInteger(1), numberField.currentValue as? NSInteger)
 	}
@@ -134,7 +133,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(integerXSD, locale: spanishLocale)
 		let numberField = fields![0] as! DDMFieldNumber
 
-		numberField.currentValue = 99
+		numberField.currentValue = 99 as AnyObject?
 
 		XCTAssertEqual("99", numberField.currentValueAsString!)
 	}
@@ -143,7 +142,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(decimalXSD, locale: spanishLocale)
 		let numberField = fields![0] as! DDMFieldNumber
 
-		numberField.currentValue = 16.0599
+		numberField.currentValue = 16.0599 as AnyObject?
 
 		XCTAssertEqual("16.06", numberField.currentValueAsString!)
 	}
@@ -152,7 +151,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(decimalXSD, locale: spanishLocale)
 		let numberField = fields![0] as! DDMFieldNumber
 
-		numberField.currentValue = 16
+		numberField.currentValue = 16 as AnyObject?
 
 		XCTAssertEqual("16.00", numberField.currentValueAsString!)
 	}
@@ -200,7 +199,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(decimalXSD, locale: spanishLocale)
 		let numberField = fields![0] as! DDMFieldNumber
 
-		numberField.currentValue = 16.0599
+		numberField.currentValue = 16.0599 as AnyObject?
 
 		XCTAssertEqual("16,06", numberField.currentValueAsLabel!)
 	}
@@ -209,8 +208,8 @@ class DDMFieldNumber_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(decimalXSD, locale: spanishLocale)
 		let numberField = fields![0] as! DDMFieldNumber
 
-		numberField.currentLocale = NSLocale(localeIdentifier: "en_US")
-		numberField.currentValue = 16.0599
+		numberField.currentLocale = Locale(identifier: "en_US")
+		numberField.currentValue = 16.0599 as AnyObject?
 
 		XCTAssertEqual("16.06", numberField.currentValueAsLabel!)
 	}
@@ -257,7 +256,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 	}
 
 
-	private let decimalXSD =
+	fileprivate let decimalXSD =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"double\" " +
 				"indexType=\"keyword\" " +
@@ -278,7 +277,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-	private let integerXSD =
+	fileprivate let integerXSD =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"integer\" " +
 				"indexType=\"keyword\" " +
@@ -299,7 +298,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-	private let numberXSD =
+	fileprivate let numberXSD =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"number\" " +
 				"indexType=\"keyword\" " +
@@ -320,7 +319,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 					"</meta-data> " +
 			"</dynamic-element> </root>"
 
-	private let decimalJSON = "{\"availableLanguageIds\": [\"en_US\"]," +
+	fileprivate let decimalJSON = "{\"availableLanguageIds\": [\"en_US\"]," +
 		"\"defaultLanguageId\": \"en_US\"," +
 		"\"fields\": [{" +
 		"\"label\": {\"en_US\": \"A Number\"}," +
@@ -336,7 +335,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 		"\"fieldNamespace\": \"ddm\"," +
 		"\"type\": \"ddm-decimal\"}]}"
 
-	private let integerJSON = "{\"availableLanguageIds\": [\"en_US\"]," +
+	fileprivate let integerJSON = "{\"availableLanguageIds\": [\"en_US\"]," +
 		"\"defaultLanguageId\": \"en_US\"," +
 		"\"fields\": [{" +
 		"\"label\": {\"en_US\": \"A Number\"}," +
@@ -352,7 +351,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 		"\"fieldNamespace\": \"ddm\"," +
 		"\"type\": \"ddm-integer\"}]}"
 
-	private let numberJSON = "{\"availableLanguageIds\": [\"en_US\"]," +
+	fileprivate let numberJSON = "{\"availableLanguageIds\": [\"en_US\"]," +
 		"\"defaultLanguageId\": \"en_US\"," +
 		"\"fields\": [{" +
 		"\"label\": {\"en_US\": \"A Number\"}," +

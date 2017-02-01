@@ -16,7 +16,7 @@ import XCTest
 
 class DDMFieldStringWithOptions_Tests: XCTestCase {
 
-	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
+	fileprivate let spanishLocale = Locale(identifier: "es_ES")
 
 
 	//MARK: Parse
@@ -141,13 +141,13 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 		XCTAssertTrue(stringField.predefinedValue is [DDMFieldStringWithOptions.Option])
 		let predefinedOptions = stringField.predefinedValue as! [DDMFieldStringWithOptions.Option]
 
-		//FIXME only support one predefined value
-		XCTAssertEqual(1, predefinedOptions.count)
+		XCTAssertEqual(2, predefinedOptions.count)
 
-		let predefinedOption = predefinedOptions[0]
+		XCTAssertEqual("value 1", predefinedOptions[0].value)
+		XCTAssertEqual("Option 1", predefinedOptions[0].label)
 
-		XCTAssertEqual("value 1", predefinedOption.value)
-		XCTAssertEqual("Option 1", predefinedOption.label)
+		XCTAssertEqual("value 2", predefinedOptions[1].value)
+		XCTAssertEqual("Option 2", predefinedOptions[1].label)
 	}
 
 	//MARK: CurrentValue
@@ -165,7 +165,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		XCTAssertEqual(currentOptions.count, predefinedOptions.count)
 
-		for (index,option) in currentOptions.enumerate() {
+		for (index,option) in currentOptions.enumerated() {
 			let predefinedOption = predefinedOptions[index]
 
 			XCTAssertEqual(option.label, predefinedOption.label)
@@ -179,7 +179,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldStringWithOptions
 
-		stringField.currentValue = "Option 3"
+		stringField.currentValue = "Option 3" as AnyObject?
 
 		XCTAssertTrue(stringField.currentValue is [DDMFieldStringWithOptions.Option])
 		let currentOptions = stringField.currentValue as! [DDMFieldStringWithOptions.Option]
@@ -196,7 +196,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldStringWithOptions
 
-		stringField.currentValue = "this is not a valid option label"
+		stringField.currentValue = "this is not a valid option label" as AnyObject?
 
 		XCTAssertTrue(stringField.currentValue is [DDMFieldStringWithOptions.Option])
 		XCTAssertTrue((stringField.currentValue as! [DDMFieldStringWithOptions.Option]).isEmpty)
@@ -210,7 +210,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldStringWithOptions
 
-		stringField.currentValue = "Option 3"
+		stringField.currentValue = "Option 3" as AnyObject?
 
 		XCTAssertEqual("[\"value 3\"]", stringField.currentValueAsString!)
 	}
@@ -287,7 +287,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldStringWithOptions
 
-		stringField.currentValue = "Option 3"
+		stringField.currentValue = "Option 3" as AnyObject?
 
 		XCTAssertEqual("Option 3", stringField.currentValueAsLabel!)
 	}
@@ -330,7 +330,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldStringWithOptions
 
-		stringField.currentValue = "Option 3"
+		stringField.currentValue = "Option 3" as AnyObject?
 
 		XCTAssertTrue(stringField.validate())
 	}
@@ -348,7 +348,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldStringWithOptions
 
-		stringField.currentValue = "Option 3,Option 1"
+		stringField.currentValue = "Option 3,Option 1" as AnyObject?
 
 		XCTAssertTrue(stringField.currentValue is [DDMFieldStringWithOptions.Option])
 		let currentOptions = stringField.currentValue as! [DDMFieldStringWithOptions.Option]
@@ -369,13 +369,13 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldStringWithOptions
 
-		stringField.currentValue = "Option 3, Option 1"
+		stringField.currentValue = "Option 3, Option 1" as AnyObject?
 
 		XCTAssertEqual("[\"value 3\", \"value 1\"]", stringField.currentValueAsString)
 	}
 
 
-	private let selectWithPredefinedValuesXSD =
+	fileprivate let selectWithPredefinedValuesXSD =
 		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"string\" " +
 					"indexType=\"keyword\" " +
@@ -409,7 +409,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 				"</dynamic-element> " +
 			"</dynamic-element> </root>"
 
-	private let selectWithPredefinedValuesJSON =
+	fileprivate let selectWithPredefinedValuesJSON =
 	"{\"availableLanguageIds\": [\"en_US\"]," +
 		"\"defaultLanguageId\": \"en_US\"," +
 		"\"fields\": [{" +

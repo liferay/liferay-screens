@@ -16,14 +16,14 @@ import XCTest
 
 class DDMField_Validation_XSD_Tests: XCTestCase {
 
-	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
+	fileprivate let spanishLocale = Locale(identifier: "es_ES")
 
 	func test_Validate_ShoulTriggerOnPostValidation_WhenValidationFails() {
 		let fields = DDMXSDParser().parse(requiredBooleanFormDefinitionXSD, locale: spanishLocale)
 
 		let booleanField = fields![0] as! DDMFieldBoolean
 
-		let expectation = expectationWithDescription("OnPostValidation must be called")
+		let expectation = self.expectation(description: "OnPostValidation must be called")
 
 		booleanField.onPostValidation = {
 			XCTAssertFalse($0)
@@ -31,7 +31,7 @@ class DDMField_Validation_XSD_Tests: XCTestCase {
 		}
 
 		XCTAssertFalse(booleanField.validate())
-		waitForExpectationsWithTimeout(0, handler: nil)
+		waitForExpectations(timeout: 0, handler: nil)
 	}
 
 	func test_Validate_ShoulTriggerOnPostValidation_WhenValidationSucceeds() {
@@ -39,9 +39,9 @@ class DDMField_Validation_XSD_Tests: XCTestCase {
 
 		let booleanField = fields![0] as! DDMFieldBoolean
 
-		booleanField.currentValue = true
+		booleanField.currentValue = true as AnyObject?
 
-		let expectation = expectationWithDescription("OnPostValidation must be called")
+		let expectation = self.expectation(description: "OnPostValidation must be called")
 
 		booleanField.onPostValidation = {
 			XCTAssertTrue($0)
@@ -49,7 +49,7 @@ class DDMField_Validation_XSD_Tests: XCTestCase {
 		}
 
 		XCTAssertTrue(booleanField.validate())
-		waitForExpectationsWithTimeout(0, handler: nil)
+		waitForExpectations(timeout: 0, handler: nil)
 	}
 
 	func test_ValidateOnBooleanField_ShouldFail_WhenRequiredValueIsNil() {
@@ -70,17 +70,17 @@ class DDMField_Validation_XSD_Tests: XCTestCase {
 		validateOnStringField_ShouldFail_WhenRequiredValueIs("  ");
 	}
 
-	private func validateOnStringField_ShouldFail_WhenRequiredValueIs(value: String) {
+	fileprivate func validateOnStringField_ShouldFail_WhenRequiredValueIs(_ value: String) {
 		let fields = DDMXSDParser().parse(requiredTextFormDefinitionXSD, locale: spanishLocale)
 
 		let stringField = fields![0] as! DDMFieldString
 
-		stringField.currentValue = value
+		stringField.currentValue = value as AnyObject?
 
 		XCTAssertFalse(stringField.validate())
 	}
 
-	private let requiredBooleanFormDefinitionXSD =
+	fileprivate let requiredBooleanFormDefinitionXSD =
 		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"boolean\" " +
 					"name=\"A_Boolean\" " +
@@ -96,7 +96,7 @@ class DDMField_Validation_XSD_Tests: XCTestCase {
 				"</meta-data> " +
 			"</dynamic-element> </root>"
 
-	private let requiredTextFormDefinitionXSD =
+	fileprivate let requiredTextFormDefinitionXSD =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 				"<dynamic-element dataType=\"string\" " +
 						"name=\"A_Text\" " +

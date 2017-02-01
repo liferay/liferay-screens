@@ -16,7 +16,7 @@ import XCTest
 
 class DDMJSONParser_i18n_Tests: XCTestCase {
 
-	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
+	fileprivate let spanishLocale = Locale(identifier: "es_ES")
 
 
 	//MARK: Checking full perfect match
@@ -38,13 +38,13 @@ class DDMJSONParser_i18n_Tests: XCTestCase {
 	//MARK: Checking locale match providing language and country locales
 
 	func test_ParseElement_ShouldFindNeutralLanguageMatch_WhenNoExistingCompleteLocaleIsProvided() {
-		let fields = DDMJSONParser().parse(booleanFieldWithTranslationsJSON, locale: NSLocale(localeIdentifier: "es_MX"))
+		let fields = DDMJSONParser().parse(booleanFieldWithTranslationsJSON, locale: Locale(identifier: "es_MX"))
 
 		XCTAssertEqual("Un Booleano neutro para 'es'", fields![0].label)
 	}
 
 	func test_ParseElement_ShouldFindAnyLanguageMatch_WhenNoExistingCompleteLocaleIsProvided() {
-		let fields = DDMJSONParser().parse(booleanFieldWithTranslationsJSON, locale: NSLocale(localeIdentifier: "en_GB"))
+		let fields = DDMJSONParser().parse(booleanFieldWithTranslationsJSON, locale: Locale(identifier: "en_GB"))
 
 		XCTAssertTrue(
 			(fields![0].label == "A Boolean for 'en_US'") ||
@@ -52,7 +52,7 @@ class DDMJSONParser_i18n_Tests: XCTestCase {
 	}
 
 	func test_ParseOption_ShouldFindNeutralLanguageMatch_WhenNoExistingCompleteLocaleIsProvided() {
-		let fields = DDMJSONParser().parse(selectWithTranslatedOptionsJSON, locale: NSLocale(localeIdentifier: "es_MX"))
+		let fields = DDMJSONParser().parse(selectWithTranslatedOptionsJSON, locale: Locale(identifier: "es_MX"))
 
 		let stringField = fields![0] as! DDMFieldStringWithOptions
 
@@ -60,13 +60,13 @@ class DDMJSONParser_i18n_Tests: XCTestCase {
 	}
 
 	func test_ParseElement_ShouldFindDefault_WhenNoExistingCompleteLocaleIsProvided() {
-		let fields = DDMJSONParser().parse(booleanFieldWithTranslationsJSON, locale: NSLocale(localeIdentifier: "fr_FR"))
+		let fields = DDMJSONParser().parse(booleanFieldWithTranslationsJSON, locale: Locale(identifier: "fr_FR"))
 
 		XCTAssertEqual("Un Booleano para 'es_ES'", fields![0].label)
 	}
 
 	func test_ParseOption_ShouldFindDefault_WhenNoExistingCompleteLocaleIsProvided() {
-		let fields = DDMJSONParser().parse(selectWithTranslatedOptionsJSON, locale: NSLocale(localeIdentifier: "fr_FR"))
+		let fields = DDMJSONParser().parse(selectWithTranslatedOptionsJSON, locale: Locale(identifier: "fr_FR"))
 
 		let stringField = fields![0] as! DDMFieldStringWithOptions
 
@@ -77,13 +77,13 @@ class DDMJSONParser_i18n_Tests: XCTestCase {
 	//MARK: Checking locale match providing neutral language locale
 
 	func test_ParseElement_ShouldFindNeutralLanguageMatch_WhenExistingNeutralLanguageIsProvided() {
-		let fields = DDMJSONParser().parse(booleanFieldWithTranslationsJSON, locale: NSLocale(localeIdentifier: "es"))
+		let fields = DDMJSONParser().parse(booleanFieldWithTranslationsJSON, locale: Locale(identifier: "es"))
 
 		XCTAssertEqual("Un Booleano neutro para 'es'", fields![0].label)
 	}
 
 	func test_ParseOption_ShouldFindNeutralLanguageMatch_WhenExistingNeutralLanguageIsProvided() {
-		let fields = DDMJSONParser().parse(selectWithTranslatedOptionsJSON, locale: NSLocale(localeIdentifier: "es"))
+		let fields = DDMJSONParser().parse(selectWithTranslatedOptionsJSON, locale: Locale(identifier: "es"))
 
 		let stringField = fields![0] as! DDMFieldStringWithOptions
 
@@ -91,13 +91,13 @@ class DDMJSONParser_i18n_Tests: XCTestCase {
 	}
 
 	func test_ParseElement_ShouldFindDefault_WhenNoExistingNeutralLanguageIsProvided() {
-		let fields = DDMJSONParser().parse(booleanFieldWithTranslationsJSON, locale: NSLocale(localeIdentifier: "fr"))
+		let fields = DDMJSONParser().parse(booleanFieldWithTranslationsJSON, locale: Locale(identifier: "fr"))
 
 		XCTAssertEqual("Un Booleano para 'es_ES'", fields![0].label)
 	}
 
 	func test_ParseOption_ShouldFindDefault_WhenNoExistingNeutralLanguageIsProvided() {
-		let fields = DDMJSONParser().parse(selectWithTranslatedOptionsJSON, locale: NSLocale(localeIdentifier: "fr"))
+		let fields = DDMJSONParser().parse(selectWithTranslatedOptionsJSON, locale: Locale(identifier: "fr"))
 
 		let stringField = fields![0] as! DDMFieldStringWithOptions
 
@@ -105,7 +105,7 @@ class DDMJSONParser_i18n_Tests: XCTestCase {
 	}
 
 	func test_ParseElement_ShouldFindAnyLanguageMatch_WhenNoExistingNeutralLanguageIsProvided() {
-		let fields = DDMJSONParser().parse(booleanFieldWithTranslationsJSON, locale: NSLocale(localeIdentifier: "en"))
+		let fields = DDMJSONParser().parse(booleanFieldWithTranslationsJSON, locale: Locale(identifier: "en"))
 
 		// Both en_US and en_AU are correct
 
@@ -115,7 +115,7 @@ class DDMJSONParser_i18n_Tests: XCTestCase {
 	}
 
 	func test_ParseOption_ShouldFindAnyLanguageMatch_WhenNoExistingNeutralLanguageIsProvided() {
-		let fields = DDMJSONParser().parse(selectWithTranslatedOptionsJSON, locale: NSLocale(localeIdentifier: "en"))
+		let fields = DDMJSONParser().parse(selectWithTranslatedOptionsJSON, locale: Locale(identifier: "en"))
 
 		let stringField = fields![0] as! DDMFieldStringWithOptions
 
@@ -126,7 +126,7 @@ class DDMJSONParser_i18n_Tests: XCTestCase {
 
 
 
-	private let booleanFieldWithTranslationsJSON =
+	fileprivate let booleanFieldWithTranslationsJSON =
 		"{\"availableLanguageIds\": [\"es_ES\", \"es_AR\", \"es\", \"en_US\", \"en_AU\"]," +
 		"\"defaultLanguageId\": \"es_ES\"," +
 		"\"fields\": [{" +
@@ -148,7 +148,7 @@ class DDMJSONParser_i18n_Tests: XCTestCase {
 		"\"width\": \"small\"," +
 		"\"type\": \"checkbox\"}]}"
 
-	private let selectWithTranslatedOptionsJSON =
+	fileprivate let selectWithTranslatedOptionsJSON =
 		"{\"availableLanguageIds\": [\"en_US\", \"es_ES\", \"es_AR\"], " +
 		"\"defaultLanguageId\": \"es_ES\", " +
 		"\"fields\": [{" +
