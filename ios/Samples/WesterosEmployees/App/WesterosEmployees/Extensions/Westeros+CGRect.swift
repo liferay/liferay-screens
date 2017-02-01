@@ -13,6 +13,10 @@
 */
 import UIKit
 
-func CGRectMake(x: CGFloat, y: CGFloat, size: CGSize) -> CGRect {
-	return CGRectMake(x, y, size.width, size.height)
+
+extension CGRect {
+
+	init(x: CGFloat, y: CGFloat, size: CGSize){
+		self.init(x: x, y: y, width: size.width, height: size.height)
+	}
 }

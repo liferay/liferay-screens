@@ -36,7 +36,7 @@ class SignUpViewController: CardViewController, SignUpScreenletDelegate {
 	}
 
 	@IBAction func signUpButtonClicked() {
-		signUpButton?.enabled = false
+		signUpButton?.isEnabled = false
 		screenlet?.performAction(name: "signup-action")
 	}
 
@@ -55,14 +55,14 @@ class SignUpViewController: CardViewController, SignUpScreenletDelegate {
 
 	//MARK: SignUpScreenletDelegate
 
-	func screenlet(screenlet: SignUpScreenlet,
+	func screenlet(_ screenlet: SignUpScreenlet,
 			onSignUpResponseUserAttributes attributes: [String:AnyObject]) {
-		signUpButton?.enabled = true
+		signUpButton?.isEnabled = true
 		onDone?()
 	}
 
-	func screenlet(screenlet: SignUpScreenlet, onSignUpError error: NSError) {
-		signUpButton?.enabled = true
+	func screenlet(_ screenlet: SignUpScreenlet, onSignUpError error: NSError) {
+		signUpButton?.isEnabled = true
 	}
 	
 

@@ -81,8 +81,8 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 
 	//MARK: Private methods
 
-	func onImageSelected(image: UIImage) {
-		let title = "westeros-\(NSUUID().UUIDString).png"
+	func onImageSelected(_ image: UIImage) {
+		let title = "westeros-\(UUID().uuidString).png"
 		let imageUpload = ImageEntryUpload(image: image, title: title)
 		self.imageGalleryScreenlet?.showDetailUploadView(imageUpload)
 	}
@@ -93,60 +93,60 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 				uploadCard.removePageAtIndex(1)
 				uploadCard.moveLeft()
 			}
-			uploadCard.changeToState(.Minimized)
+			uploadCard.changeToState(.minimized)
 		}
 	}
 
 	//MARK: ImageGalleryScreenletDelegate
 
-	func screenlet(screenlet: ImageGalleryScreenlet, onImageEntrySelected imageEntry: ImageEntry) {
+	func screenlet(_ screenlet: ImageGalleryScreenlet, onImageEntrySelected imageEntry: ImageEntry) {
 		self.selectedImageEntry = imageEntry
 		cardView?.moveRight()
 	}
 
-	func screenlet(screenlet: ImageGalleryScreenlet, onImageUploadDetailViewCreated uploadView: ImageUploadDetailViewBase) -> Bool {
+	func screenlet(_ screenlet: ImageGalleryScreenlet, onImageUploadDetailViewCreated uploadView: ImageUploadDetailViewBase) -> Bool {
 		self.cardDeck?.cards[safe: 0]?.addPage(uploadView)
 		self.cardDeck?.cards[safe: 0]?.moveRight()
 		return true
 	}
 
-	func screenlet(screenlet: ImageGalleryScreenlet, onImageUploadStart image: ImageEntryUpload) {
+	func screenlet(_ screenlet: ImageGalleryScreenlet, onImageUploadStart image: ImageEntryUpload) {
 		hideUploadCard()
 	}
 
 
 	//MARK: CardDeckDataSource
 
-	func numberOfCardsIn(cardDeck: CardDeckView) -> Int {
+	func numberOfCardsIn(_ cardDeck: CardDeckView) -> Int {
 		return 1
 	}
 
-	func cardDeck(cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
+	func cardDeck(_ cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
 		return "Upload image"
 	}
 
-	func cardDeck(cardDeck: CardDeckView, controllerForCard position: CardPosition) -> CardViewController? {
+	func cardDeck(_ cardDeck: CardDeckView, controllerForCard position: CardPosition) -> CardViewController? {
 		return uploadImageViewController
 	}
 
 
 	//MARK: CardDeckDelegate
 
-	func cardDeck(cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
+	func cardDeck(_ cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
 		if let firstCardDeck = self.cardView?.superview {
 			card.normalHeight = firstCardDeck.frame.height * 0.4
 		}
 	}
 
-	func cardDeck(cardDeck: CardDeckView, colorForCardIndex index: Int) -> UIColor? {
+	func cardDeck(_ cardDeck: CardDeckView, colorForCardIndex index: Int) -> UIColor? {
 		return DefaultResources.OddColorBackground
 	}
 
-	func cardDeck(cardDeck: CardDeckView, colorForButtonIndex index: Int) -> UIColor? {
+	func cardDeck(_ cardDeck: CardDeckView, colorForButtonIndex index: Int) -> UIColor? {
 		return DefaultResources.EvenColorBackground
 	}
 
-	func cardDeck(cardDeck: CardDeckView, buttonImageForCardIndex index: Int) -> UIImage? {
+	func cardDeck(_ cardDeck: CardDeckView, buttonImageForCardIndex index: Int) -> UIImage? {
 		return UIImage(named: "icon_DOWN_W")
 	}
 }

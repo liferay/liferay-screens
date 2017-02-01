@@ -24,7 +24,7 @@ class UploadImageViewController: CardViewController,
 	}
 
 	///Called when an user has selected an image from a picker
-	var onImageSelected: (UIImage -> ())?
+	var onImageSelected: ((UIImage) -> ())?
 
 
 	//MARK: Outlets
@@ -32,7 +32,7 @@ class UploadImageViewController: CardViewController,
 	@IBOutlet weak var takePhotoButton: UIButton? {
 		didSet {
 			takePhotoButton?.layer.borderWidth = 3.0
-			takePhotoButton?.layer.borderColor = DefaultResources.EvenColorBackground.CGColor
+			takePhotoButton?.layer.borderColor = DefaultResources.EvenColorBackground.cgColor
 		}
 	}
 
@@ -40,11 +40,11 @@ class UploadImageViewController: CardViewController,
 	//MARK: View methods
 
 	@IBAction func selectImageButtonClicked() {
-		openImagePicker(.PhotoLibrary)
+		openImagePicker(.photoLibrary)
 	}
 
 	@IBAction func takePhotoButtonClicked() {
-		openImagePicker(.Camera)
+		openImagePicker(.camera)
 	}
 
 	//MARK: Init methods
@@ -63,27 +63,27 @@ class UploadImageViewController: CardViewController,
 
 	//MARK: UIImagePickerControllerDelegate
 
-	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 		if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
 			onImageSelected?(image)
 		} else {
-			self.cardView?.changeToState(.Minimized)
+			self.cardView?.changeToState(.minimized)
 		}
-		imagePicker?.dismissViewControllerAnimated(true, completion: nil)
+		imagePicker?.dismiss(animated: true, completion: nil)
 	}
 
-	func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-		self.cardView?.changeToState(.Minimized)
-		imagePicker?.dismissViewControllerAnimated(true, completion: nil)
+	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+		self.cardView?.changeToState(.minimized)
+		imagePicker?.dismiss(animated: true, completion: nil)
 	}
 
 
 	//MARK: Private methods
 
-	private func openImagePicker(sourceType: UIImagePickerControllerSourceType) {
+	fileprivate func openImagePicker(_ sourceType: UIImagePickerControllerSourceType) {
 		if let picker = imagePicker {
 			picker.sourceType = sourceType
-			presentViewController(picker, animated: true, completion: nil)
+			present(picker, animated: true, completion: nil)
 		}
 	}
 }

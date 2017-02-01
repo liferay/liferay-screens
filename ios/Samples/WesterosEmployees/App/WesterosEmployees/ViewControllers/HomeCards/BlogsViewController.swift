@@ -51,7 +51,7 @@ class BlogsViewController: CardViewController, AssetListScreenletDelegate {
 
 	//MARK: AssetListScreenletDelegate
 
-	func screenlet(screenlet: AssetListScreenlet, onAssetSelected asset: Asset) {
+	func screenlet(_ screenlet: AssetListScreenlet, onAssetSelected asset: Asset) {
 		self.selectedBlogEntry = BlogsEntry(attributes: asset.attributes)
 		cardView?.moveRight()
 	}

@@ -16,12 +16,12 @@ import PureLayout
 
 ///Base view controller class for view controllers that work inside a card.
 ///Override this class
-public class CardViewController: UIViewController {
+open class CardViewController: UIViewController {
 
-	public var onDone: (Void -> Void)?
+	open var onDone: ((Void) -> Void)?
 
 	///Card which holds the controlled view of this controller
-	public var cardView: CardView? {
+	open var cardView: CardView? {
 		didSet {
 			cardView?.addPageFromController(self)
 		}
@@ -31,12 +31,12 @@ public class CardViewController: UIViewController {
 
 	///Method triggered when the card page is going to appear on screen (maximized and normal
 	///states). You should override this method.
-	public func pageWillAppear() {
+	open func pageWillAppear() {
 	}
 
 	///Method triggered when the card page is going to disappear of screen (background and minimized
 	///states). You should override this method.
-	public func pageWillDisappear() {
+	open func pageWillDisappear() {
 	}
 
 }

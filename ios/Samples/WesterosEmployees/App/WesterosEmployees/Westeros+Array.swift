@@ -16,7 +16,7 @@ extension Array {
 	///Splits an array into two halves, using as midpoint the index parameter
 	/// - parameter index: index to split the array
 	/// - returns: a tuple with the two array halves
-	func splitAtIndex(index: Int) -> ([Element], [Element]) {
+	func splitAtIndex(_ index: Int) -> ([Element], [Element]) {
 		let leftSplit  = self[0 ..< index]
 		let rightSplit = self[(index + 1) ..< self.count]
 
@@ -24,7 +24,7 @@ extension Array {
 	}
 
 	///Returns the element at the specified index if it exist, otherwise return nil
-	subscript (safe index: Index) -> Generator.Element? {
+	subscript (safe index: Index) -> Iterator.Element? {
 		return indices.contains(index) ? self[index] : nil
 	}
 }

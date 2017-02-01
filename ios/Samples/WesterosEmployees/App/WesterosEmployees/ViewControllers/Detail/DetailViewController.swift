@@ -52,13 +52,13 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 	//MARK: View methods
 
 	@IBAction func goBackButtonClicked() {
-		dismissViewControllerAnimated(true, completion: nil)
+		dismiss(animated: true, completion: nil)
 	}
 
 
 	//MARK: Public methods
 
-	func load(assetEntry: Asset?) {
+	func load(_ assetEntry: Asset?) {
 
 		if let asset = assetEntry {
 
@@ -95,7 +95,7 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		
 		//Hide comment card
 		self.commentsViewController?.hideAddCommentCard()
-		self.cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
+		self.cardDeck?.cards[safe: 0]?.changeToState(.minimized)
 	}
 	
 
@@ -107,7 +107,7 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		commentsViewController = CommentsViewController()
 	}
 
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		
 		//Hide all views
@@ -125,30 +125,30 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 
 	//MARK: AssetDisplayScreenletDelegate
 
-	func screenlet(screenlet: AssetDisplayScreenlet, onAssetResponse asset: Asset) {
+	func screenlet(_ screenlet: AssetDisplayScreenlet, onAssetResponse asset: Asset) {
 		//Change buttons text
 		self.cardView?.changeButtonText(asset.title)
-		self.goBackButton?.setTitle(asset.title.uppercaseString, forState: .Normal)
+		self.goBackButton?.setTitle(asset.title.uppercased(), for: .normal)
 
 		//Show back views
-		UIView.animateWithDuration(1.0) {
+		UIView.animate(withDuration: 1.0, animations: {
 			self.assetDisplayScreenlet?.alpha = 1.0
 			self.ratingScreenlet?.alpha = 1.0
-		}
+		}) 
 	}
 	
 
 	//MARK: CardDeckDataSource
 
-	func numberOfCardsIn(cardDeck: CardDeckView) -> Int {
+	func numberOfCardsIn(_ cardDeck: CardDeckView) -> Int {
 		return 1
 	}
 
-	func doCreateCard(cardDeck: CardDeckView, index: Int) -> CardView? {
-		return WesterosCardView.newAutoLayoutView()
+	func doCreateCard(_ cardDeck: CardDeckView, index: Int) -> CardView? {
+		return WesterosCardView.newAutoLayout()
 	}
 
-	func cardDeck(cardDeck: CardDeckView, controllerForCard position: CardPosition)
+	func cardDeck(_ cardDeck: CardDeckView, controllerForCard position: CardPosition)
 		-> CardViewController? {
 			return commentsViewController
 	}
@@ -156,7 +156,7 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 
 	//MARK: CardDeckDelegate
 
-	func cardDeck(cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
+	func cardDeck(_ cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
 		if let cardView = self.cardView {
 			card.normalHeight = cardView.frame.height * 0.95
 		}
@@ -165,7 +165,7 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		}
 	}
 
-	func cardDeck(cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
+	func cardDeck(_ cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
 		return "Comments"
 	}
 }

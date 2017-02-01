@@ -46,7 +46,7 @@ class ForgotPasswordViewController: CardViewController,
 
 	//MARK: ForgotPasswordScreenletDelegate
 
-	func screenlet(screenlet: ForgotPasswordScreenlet,
+	func screenlet(_ screenlet: ForgotPasswordScreenlet,
 			onForgotPasswordSent passwordSent: Bool) {
 		cardView?.moveLeft()
 	}
@@ -66,15 +66,15 @@ class ForgotPasswordViewController: CardViewController,
 
 	//MARK: KeyboardListener
 
-	func showKeyboard(notif: NSNotification) {
-		if cardView?.currentState == .Normal {
-			cardView?.changeToState(.Maximized)
+	func showKeyboard(_ notif: Notification) {
+		if cardView?.currentState == .normal {
+			cardView?.changeToState(.maximized)
 		}
 	}
 
-	func hideKeyboard(notif: NSNotification) {
-		if cardView?.currentState == .Maximized {
-			cardView?.changeToState(.Normal)
+	func hideKeyboard(_ notif: Notification) {
+		if cardView?.currentState == .maximized {
+			cardView?.changeToState(.normal)
 		}
 	}
 

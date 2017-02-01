@@ -34,7 +34,7 @@ class TermsViewController: CardViewController, AssetDisplayScreenletDelegate {
 
 	//MARK: UIViewController
 
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		
 		//Login anonymous user
 		SessionContext.loginWithBasic(
@@ -51,7 +51,7 @@ class TermsViewController: CardViewController, AssetDisplayScreenletDelegate {
 
 	//MARK: AssetDisplayScreenletDelegate
 
-	func screenlet(screenlet: AssetDisplayScreenlet, onAssetError error: NSError) {
+	func screenlet(_ screenlet: AssetDisplayScreenlet, onAssetError error: NSError) {
 		print("Couldn't load terms and conditions. Error: \(error)")
 	}
 }

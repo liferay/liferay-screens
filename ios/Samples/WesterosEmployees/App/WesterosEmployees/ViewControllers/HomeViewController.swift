@@ -78,7 +78,7 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 	//MARK: View actions
 
 	@IBAction func userButtonClicked() {
-		performSegueWithIdentifier("user_profile", sender: self)
+		performSegue(withIdentifier: "user_profile", sender: self)
 	}
 
 
@@ -92,13 +92,13 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 		galleryViewController = GalleryViewController()
 	}
 
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 
 		self.cardDeck?.alpha = SessionContext.isLoggedIn ? 1.0 : 0.0
 	}
 
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 
 		SessionContext.loadStoredCredentials()
@@ -108,11 +108,11 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 			
 			if !tourCompleted {
 				dispatch_delayed(0.5) {
-					self.performSegueWithIdentifier("tour", sender: nil)
+					self.performSegue(withIdentifier: "tour", sender: nil)
 				}
 			}
 			else {
-				self.performSegueWithIdentifier("login", sender: nil)
+				self.performSegue(withIdentifier: "login", sender: nil)
 			}
 		}
 		else if !homeInitialized {
@@ -127,15 +127,15 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 	
 	//MARK: CardDeckDataSource
 
-	func numberOfCardsIn(cardDeck: CardDeckView) -> Int {
+	func numberOfCardsIn(_ cardDeck: CardDeckView) -> Int {
 		return 3
 	}
 
-	func doCreateCard(cardDeck: CardDeckView, index: Int) -> CardView? {
-		return WesterosCardView.newAutoLayoutView()
+	func doCreateCard(_ cardDeck: CardDeckView, index: Int) -> CardView? {
+		return WesterosCardView.newAutoLayout()
 	}
 
-	func cardDeck(cardDeck: CardDeckView, controllerForCard position: CardPosition)
+	func cardDeck(_ cardDeck: CardDeckView, controllerForCard position: CardPosition)
 		-> CardViewController? {
 			switch (position.card, position.page) {
 			case (0, 0):
@@ -156,13 +156,13 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 
 	//MARK: CardDeckDelegate
 
-	func cardDeck(cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
+	func cardDeck(_ cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
 		if index % 2 == 0 {
 			(card as? WesterosCardView)?.activityIndicator.color = WesterosThemeBasicRed
 		}
 	}
 
-	func cardDeck(cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
+	func cardDeck(_ cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
 		switch (position.card, position.page) {
 		case (0, 0):
 			return "Docs"
@@ -175,10 +175,10 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 		}
 	}
 
-	func cardDeck(cardDeck: CardDeckView, onPageChange position: CardPosition) {
+	func cardDeck(_ cardDeck: CardDeckView, onPageChange position: CardPosition) {
 
 		dispatch_delayed(1.0) {
-			self.userProfileButton?.enabled = position.page == 0
+			self.userProfileButton?.isEnabled = position.page == 0
 		}
 
 		if let vc = cardDeck.cards[position.card].presentingControllers[safe: position.page]
@@ -199,7 +199,7 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 
 	//MARK: AssetListScreenletDelegate
 
-	func screenlet(screenlet: AssetListScreenlet, onAssetSelected asset: Asset) {
+	func screenlet(_ screenlet: AssetListScreenlet, onAssetSelected asset: Asset) {
 		if let className = AssetClasses.getClassNameFromId(asset.classNameId) {
 			var detail: DetailViewController?
 
@@ -211,7 +211,7 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 			}
 
 			//Present view controller and load content
-			self.presentViewController(detail!, animated: true) {
+			self.present(detail!, animated: true) {
 				detail?.load(asset)
 			}
 		}
@@ -220,7 +220,7 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 
 	//MARK: Private functions
 
-	private func initializeHome() {
+	fileprivate func initializeHome() {
 
 		//Load user profile
 		let userId = SessionContext.currentContext!.user.userId
@@ -231,8 +231,8 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 			let lastName =
 				SessionContext.currentContext!.user.lastName
 			self.userNameLabel?.text = "\(firstName) \(lastName)"
-				.stringByTrimmingCharactersInSet(
-					NSCharacterSet.whitespaceAndNewlineCharacterSet())
+					.trimmingCharacters(in: .whitespacesAndNewlines)
+
 		}
 
 		self.assetListScreenlet?.loadList()
@@ -240,16 +240,16 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 		self.cardDeck?.alpha = 1.0
 
 		//Show second card with a small delay
-		self.cardDeck?.cards[1].currentState = .Hidden
+		self.cardDeck?.cards[1].currentState = .hidden
 		self.cardDeck?.cards[1].resetToCurrentState()
-		self.cardDeck?.cards[1].changeToState(.Minimized)
+		self.cardDeck?.cards[1].changeToState(.minimized)
 
 		//Show first card with a big delay
-		self.cardDeck?.cards[0].currentState = .Hidden
+		self.cardDeck?.cards[0].currentState = .hidden
 		self.cardDeck?.cards[0].resetToCurrentState()
-		self.cardDeck?.cards[0].nextState = .Minimized
+		self.cardDeck?.cards[0].nextState = .minimized
 		self.cardDeck?.cards[0].changeToNextState(delay: 0.5, onComplete: { _ in
-			UIView.animateWithDuration(0.5) {
+			UIView.animate(withDuration: 0.5, animations: {
 				self.assetListScreenlet?.alpha = 1.0
 				self.latestChangesLabel?.alpha = 1.0
 
@@ -258,11 +258,11 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 						self.showSyncAlert(count)
 					}
 				}
-			}
+			}) 
 		})
 	}
 
-	private func showSyncAlert(syncCount: UInt) {
+	fileprivate func showSyncAlert(_ syncCount: UInt) {
 
 		let message = syncCount > 1 ? "There are \(syncCount) elements to be synchronized" :
 				"There is \(syncCount) element to be synchronized"
@@ -270,21 +270,21 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 		let alert = UIAlertController(
 				title: "Pending synchronization",
 				message: message,
-				preferredStyle: .Alert)
+				preferredStyle: .alert)
 
-		let syncAction = UIAlertAction(title: "Start syncing", style: .Default) { _ in
+		let syncAction = UIAlertAction(title: "Start syncing", style: .default) { _ in
 			if let cacheManager = SessionContext.currentContext?.cacheManager {
 				let sync = SyncManager(cacheManager: cacheManager)
 				sync.startSync()
 			}
 		}
 
-		let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+		let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
 		alert.addAction(syncAction)
 		alert.addAction(cancelAction)
 
-		presentViewController(alert, animated: true, completion: nil)
+		present(alert, animated: true, completion: nil)
 	}
 }
 

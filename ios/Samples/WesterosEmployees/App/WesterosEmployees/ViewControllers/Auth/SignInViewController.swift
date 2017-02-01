@@ -45,7 +45,7 @@ class SignInViewController: CardViewController, LoginScreenletDelegate, Keyboard
 
 	//MARK: LoginScreenletDelegate
 
-	func screenlet(screenlet: BaseScreenlet,
+	func screenlet(_ screenlet: BaseScreenlet,
 			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
 		SessionContext.currentContext?.storeCredentials()
 		onDone?()
@@ -66,15 +66,15 @@ class SignInViewController: CardViewController, LoginScreenletDelegate, Keyboard
 
 	//MARK: KeyboardListener
 
-	func showKeyboard(notif: NSNotification) {
-		if cardView?.currentState == .Normal {
-			cardView?.changeToState(.Maximized)
+	func showKeyboard(_ notif: Notification) {
+		if cardView?.currentState == .normal {
+			cardView?.changeToState(.maximized)
 		}
 	}
 
-	func hideKeyboard(notif: NSNotification) {
-		if cardView?.currentState == .Maximized {
-			cardView?.changeToState(.Normal)
+	func hideKeyboard(_ notif: Notification) {
+		if cardView?.currentState == .maximized {
+			cardView?.changeToState(.normal)
 		}
 	}
 

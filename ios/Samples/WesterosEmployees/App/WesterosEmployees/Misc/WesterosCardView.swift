@@ -14,14 +14,14 @@
 import UIKit
 
 ///Card view class for westeros app
-public class WesterosCardView: CardView {
+open class WesterosCardView: CardView {
 
 	var activityIndicator: UIActivityIndicatorView {
 		return self.accesoryView as! UIActivityIndicatorView
 	}
 
-	public override func onCreated() {
-		self.accesoryView = UIActivityIndicatorView.newAutoLayoutView()
-		self.accesoryView?.autoSetDimensionsToSize(CGSizeMake(40, 40))
+	open override func onCreated() {
+		self.accesoryView = UIActivityIndicatorView.newAutoLayout()
+		self.accesoryView?.autoSetDimensions(to: CGSize(width: 40, height: 40))
 	}
 }
