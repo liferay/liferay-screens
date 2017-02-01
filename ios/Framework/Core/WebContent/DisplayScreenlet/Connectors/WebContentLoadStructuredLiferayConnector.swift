@@ -14,11 +14,11 @@
 import UIKit
 
 
-public class WebContentLoadStructuredLiferayConnector: WebContentLoadBaseLiferayConnector {
+open class WebContentLoadStructuredLiferayConnector: WebContentLoadBaseLiferayConnector {
 
-	public let structureId: Int64
+	open let structureId: Int64
 
-	public var resultRecord: DDLRecord?
+	open var resultRecord: DDLRecord?
 
 
 	//MARK: Initializers
@@ -32,14 +32,14 @@ public class WebContentLoadStructuredLiferayConnector: WebContentLoadBaseLiferay
 
 	//MARK: ServerConnector
 
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 		if let resultRecord = doGetJournalArticleStructure(session) {
 			self.resultRecord = resultRecord
 			lastError = nil
 		}
 		else {
 			if lastError == nil {
-				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				lastError = NSError.errorWithCause(.invalidServerResponse,
 						message: "Could not get journal article with the given structure.")
 			}
 			self.resultRecord = nil
@@ -49,55 +49,55 @@ public class WebContentLoadStructuredLiferayConnector: WebContentLoadBaseLiferay
 
 	//MARK: Internal methods
 
-	internal func doGetJournalArticleStructure(session: LRSession) -> DDLRecord? {
+	internal func doGetJournalArticleStructure(_ session: LRSession) -> DDLRecord? {
 		fatalError("doGetJournalArticle method must be overwritten")
 	}
 
 }
 
 
-public class Liferay62WebContentLoadStructuredConnector: WebContentLoadStructuredLiferayConnector {
+open class Liferay62WebContentLoadStructuredConnector: WebContentLoadStructuredLiferayConnector {
 
 
 	//MARK: WebContentLoadStructuredLiferayConnector
 
-	override internal func doGetJournalArticleStructure(session: LRSession) -> DDLRecord? {
+	override internal func doGetJournalArticleStructure(_ session: LRSession) -> DDLRecord? {
 		let batchSession = LRBatchSession(session: session)
 
 		let structureSrv = LRDDMStructureService_v62(session: batchSession)
-		_ = try? structureSrv.getStructureWithStructureId(self.structureId)
+		_ = try? structureSrv?.getStructureWithStructureId(self.structureId)
 
 		let journalArticleSrv = LRJournalArticleService_v62(session: batchSession)
-		_ = try? journalArticleSrv.getArticleWithGroupId(self.groupId, articleId: self.articleId)
+		_ = try? journalArticleSrv?.getArticleWithGroupId(self.groupId, articleId: self.articleId)
 
-		guard batchSession.commands.count == 2 else {
+		guard batchSession?.commands.count == 2 else {
 			return nil
 		}
 
 		do {
-			let results = try batchSession.invoke()
-			guard results.count == 2 else {
+			let results = try batchSession?.invoke()
+			guard results?.count == 2 else {
 				return nil
 			}
-			guard var structureResult = results[0] as? [String:AnyObject] else {
+			guard var structureResult = results?[0] as? [String:AnyObject] else {
 				return nil
 			}
 			guard let xsd = structureResult["xsd"] as? String else {
 				return nil
 			}
-			guard var articleResult = results[1] as? [String:AnyObject] else {
+			guard var articleResult = results?[1] as? [String:AnyObject] else {
 				return nil
 			}
 			guard let xmlContent = articleResult["content"] as? String else {
 				return nil
 			}
 
-			structureResult.removeValueForKey("xsd")
-			articleResult.removeValueForKey("content")
+			structureResult.removeValue(forKey: "xsd")
+			articleResult.removeValue(forKey: "content")
 
 			guard let structure = DDMStructure(
 					xsd: xsd,
-					locale: NSLocale(localeIdentifier: NSLocale.currentLocaleString),
+					locale: Locale(identifier: NSLocale.currentLocaleString),
 					attributes: structureResult) else {
 				return nil
 			}
@@ -118,48 +118,48 @@ public class Liferay62WebContentLoadStructuredConnector: WebContentLoadStructure
 }
 
 
-public class Liferay70WebContentLoadStructuredConnector: WebContentLoadStructuredLiferayConnector {
+open class Liferay70WebContentLoadStructuredConnector: WebContentLoadStructuredLiferayConnector {
 
 
 	//MARK: WebContentLoadStructuredLiferayConnector
 
-	override internal func doGetJournalArticleStructure(session: LRSession) -> DDLRecord? {
+	override internal func doGetJournalArticleStructure(_ session: LRSession) -> DDLRecord? {
 		let batchSession = LRBatchSession(session: session)
 
 		let structureSrv = LRDDMStructureService_v7(session: batchSession)
-		_ = try? structureSrv.getStructureWithStructureId(self.structureId)
+		_ = try? structureSrv?.getStructureWithStructureId(self.structureId)
 
 		let journalArticleSrv = LRJournalArticleService_v7(session: batchSession)
-		_ = try? journalArticleSrv.getArticleWithGroupId(self.groupId, articleId: self.articleId)
+		_ = try? journalArticleSrv?.getArticleWithGroupId(self.groupId, articleId: self.articleId)
 
-		guard batchSession.commands.count == 2 else {
+		guard batchSession?.commands.count == 2 else {
 			return nil
 		}
 
 		do {
-			let results = try batchSession.invoke()
-			guard results.count == 2 else {
+			let results = try batchSession?.invoke()
+			guard results?.count == 2 else {
 				return nil
 			}
-			guard var structureResult = results[0] as? [String:AnyObject] else {
+			guard var structureResult = results?[0] as? [String:AnyObject] else {
 				return nil
 			}
 			guard let json = structureResult["definition"] as? String else {
 				return nil
 			}
-			guard var articleResult = results[1] as? [String:AnyObject] else {
+			guard var articleResult = results?[1] as? [String:AnyObject] else {
 				return nil
 			}
 			guard let xmlContent = articleResult["content"] as? String else {
 				return nil
 			}
 
-			structureResult.removeValueForKey("definition")
-			articleResult.removeValueForKey("content")
+			structureResult.removeValue(forKey: "definition")
+			articleResult.removeValue(forKey: "content")
 
 			guard let structure = DDMStructure(
 					json: json,
-					locale: NSLocale(localeIdentifier: NSLocale.currentLocaleString),
+					locale: Locale(identifier: NSLocale.currentLocaleString),
 					attributes: structureResult) else {
 				return nil
 			}

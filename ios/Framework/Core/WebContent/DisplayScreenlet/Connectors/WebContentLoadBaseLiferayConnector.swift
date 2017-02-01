@@ -14,10 +14,10 @@
 import UIKit
 
 
-public class WebContentLoadBaseLiferayConnector: ServerConnector {
+open class WebContentLoadBaseLiferayConnector: ServerConnector {
 
-	public let groupId: Int64
-	public let articleId: String
+	open let groupId: Int64
+	open let articleId: String
 
 
 	//MARK: Initializers
@@ -32,7 +32,7 @@ public class WebContentLoadBaseLiferayConnector: ServerConnector {
 
 	//MARK: ServerConnector
 
-	override public func validateData() -> ValidationError? {
+	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {

@@ -22,7 +22,7 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - contents: list of web contents.
-	optional func screenlet(screenlet: WebContentListScreenlet,
+	@objc optional func screenlet(_ screenlet: WebContentListScreenlet,
 			onWebContentListResponse contents: [WebContent])
 
 	/// Called when an error occurs in the process.
@@ -31,7 +31,7 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - error: error while retrieving web content list.
-	optional func screenlet(screenlet: WebContentListScreenlet,
+	@objc optional func screenlet(_ screenlet: WebContentListScreenlet,
 			onWebContentListError error: NSError)
 
 	/// Called when an item in the list is selected.
@@ -39,33 +39,33 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet:
 	///   - content: selected web content.
-	optional func screenlet(screenlet: WebContentListScreenlet,
+	@objc optional func screenlet(_ screenlet: WebContentListScreenlet,
 			onWebContentSelected content: WebContent)
 
 }
 
 
-public class WebContentListScreenlet: BaseListScreenlet {
+open class WebContentListScreenlet: BaseListScreenlet {
 
 
 	//MARK: Inspectables
 
-	@IBInspectable public var groupId: Int64 = 0
+	@IBInspectable open var groupId: Int64 = 0
 
-	@IBInspectable public var folderId: Int64 = 0
+	@IBInspectable open var folderId: Int64 = 0
 
-	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
 
-	public var webContentListDelegate: WebContentListScreenletDelegate? {
+	open var webContentListDelegate: WebContentListScreenletDelegate? {
 		return delegate as? WebContentListScreenletDelegate
 	}
 
 
 	//MARK: BaseListScreenlet
 
-	override public func createPageLoadInteractor(
-			page page: Int,
+	override open func createPageLoadInteractor(
+			page: Int,
 			computeRowCount: Bool)
 			-> BaseListPageLoadInteractor {
 
@@ -76,18 +76,18 @@ public class WebContentListScreenlet: BaseListScreenlet {
 			groupId: self.groupId,
 			folderId: self.folderId)
 
-		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .remoteFirst
 
 		return interactor
 	}
 
-	override public func onLoadPageError(page page: Int, error: NSError) {
+	override open func onLoadPageError(page: Int, error: NSError) {
 		super.onLoadPageError(page: page, error: error)
 
 		webContentListDelegate?.screenlet?(self, onWebContentListError: error)
 	}
 
-	override public func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
+	override open func onLoadPageResult(page: Int, rows: [AnyObject], rowCount: Int) {
 		super.onLoadPageResult(page: page, rows: rows, rowCount: rowCount)
 
 		let webContentEntries = rows as! [WebContent]
@@ -95,7 +95,7 @@ public class WebContentListScreenlet: BaseListScreenlet {
 		webContentListDelegate?.screenlet?(self, onWebContentListResponse: webContentEntries)
 	}
 
-	override public func onSelectedRow(row: AnyObject) {
+	override open func onSelectedRow(_ row: AnyObject) {
 		webContentListDelegate?.screenlet?(self, onWebContentSelected: row as! WebContent)
 	}
 

@@ -22,7 +22,7 @@ import UIKit
 	///   - screenlet
 	///   - html: web content html.
 	/// - Returns: original or modified html.
-	optional func screenlet(screenlet: WebContentDisplayScreenlet,
+	@objc optional func screenlet(_ screenlet: WebContentDisplayScreenlet,
 			onWebContentResponse html: String) -> String?
 
 	/// Called when a web content record is received.
@@ -30,7 +30,7 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - record: web content record.
-	optional func screenlet(screenlet: WebContentDisplayScreenlet,
+	@objc optional func screenlet(_ screenlet: WebContentDisplayScreenlet,
 		onRecordContentResponse record: DDLRecord)
 
 	/// Called when an error occurs in the process.
@@ -39,45 +39,45 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - error: error while retrieving web content or record.
-	optional func screenlet(screenlet: WebContentDisplayScreenlet,
+	@objc optional func screenlet(_ screenlet: WebContentDisplayScreenlet,
 			onWebContentError error: NSError)
 
 }
 
 
-public class WebContentDisplayScreenlet: BaseScreenlet {
+open class WebContentDisplayScreenlet: BaseScreenlet {
 
 
 	//MARK: Inspectables
 
-	@IBInspectable public var groupId: Int64 = 0
+	@IBInspectable open var groupId: Int64 = 0
 
-	@IBInspectable public var articleId: String = ""
+	@IBInspectable open var articleId: String = ""
 
 	// only for html web contents
-	@IBInspectable public var templateId: Int64 = 0
+	@IBInspectable open var templateId: Int64 = 0
 
 	// only for structured web contents
-	@IBInspectable public var structureId: Int64 = 0
+	@IBInspectable open var structureId: Int64 = 0
 
-	@IBInspectable public var autoLoad: Bool = true
+	@IBInspectable open var autoLoad: Bool = true
 
-	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-	public var webContentDisplayDelegate: WebContentDisplayScreenletDelegate? {
+	open var webContentDisplayDelegate: WebContentDisplayScreenletDelegate? {
 		return delegate as? WebContentDisplayScreenletDelegate
 	}
 
 
 	//MARK: BaseScreenlet
 
-	override public func onShow() {
+	override open func onShow() {
 		if autoLoad && articleId != "" {
 			loadWebContent()
 		}
 	}
 
-	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
 		let interactor = WebContentDisplayLoadInteractor(
 			screenlet: self,
 			groupId: self.groupId,
@@ -85,7 +85,7 @@ public class WebContentDisplayScreenlet: BaseScreenlet {
 			structureId: self.structureId,
 			templateId: self.templateId)
 
-		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .remoteFirst
 
 		interactor.onSuccess = {
 			if let resultHtml = interactor.resultHTML {
@@ -116,7 +116,8 @@ public class WebContentDisplayScreenlet: BaseScreenlet {
 	/// Loads a web content in the screenlet.
 	///
 	/// - Returns: true if default use case has been perform, false otherwise.
-	public func loadWebContent() -> Bool {
+	@discardableResult
+	open func loadWebContent() -> Bool {
 		return self.performDefaultAction()
 	}
 
