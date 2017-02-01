@@ -14,7 +14,7 @@
 import Foundation
 
 
-@objc public class DefaultProgressPresenter: MBProgressHUDPresenter {
+@objc open class DefaultProgressPresenter: MBProgressHUDPresenter {
 
 	override public init() {
 		super.init()

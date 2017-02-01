@@ -14,44 +14,44 @@
 import UIKit
 
 
-public class DDLListView_default: BaseListTableView, DDLListViewModel {
+open class DDLListView_default: BaseListTableView, DDLListViewModel {
 
 
 	//MARK: DDLListViewModel
 
-	public var labelFields: [String] = []
+	open var labelFields: [String] = []
 
-	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
+	override open func doFillLoadedCell( row: Int, cell: UITableViewCell, object:AnyObject) {
 		if let record = object as? DDLRecord {
 			cell.textLabel?.text = composeLabel(record)
-			cell.accessoryType = .DisclosureIndicator
+			cell.accessoryType = .disclosureIndicator
 			cell.accessoryView = nil
 		}
 	}
 
-	override public func doFillInProgressCell(row row: Int, cell: UITableViewCell) {
+	override open func doFillInProgressCell(row: Int, cell: UITableViewCell) {
 		cell.textLabel?.text = "..."
-		cell.accessoryType = .None
+		cell.accessoryType = .none
 
-		if let image = NSBundle.imageInBundles(
+		if let image = Bundle.imageInBundles(
 				name: "default-hourglass",
-				currentClass: self.dynamicType) {
+				currentClass: type(of: self)) {
 			cell.accessoryView = UIImageView(image: image)
-			cell.accessoryView!.frame = CGRectMake(0, 0, image.size.width, image.size.height)
+			cell.accessoryView!.frame = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
 		}
 	}
 
 
 	//MARK: DDLFormTableView
 
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
 	}
 
 
 	//MARK: Public methods
 
-	public func composeLabel(record: DDLRecord) -> String {
+	open func composeLabel(_ record: DDLRecord) -> String {
 		var result: String = ""
 
 		for labelField in labelFields {
@@ -69,7 +69,7 @@ public class DDLListView_default: BaseListTableView, DDLListViewModel {
 			print("[ERROR] Can't compose the label for record. It seems the fields specified are not valid\n")
 		}
 		else {
-			result.removeAtIndex(result.endIndex.predecessor())
+			result.remove(at: result.characters.index(before: result.endIndex))
 		}
 
 		return result

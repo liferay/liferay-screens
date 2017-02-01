@@ -14,22 +14,22 @@
 import UIKit
 
 public enum CommentDisplayState_default {
-	case Normal
-	case Deleting
-	case Editing
+	case normal
+	case deleting
+	case editing
 }
 
-public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewModel {
+open class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewModel {
 
 	//Left/right UILabel padding
-	private static let LabelPadding: CGFloat = 16
+	fileprivate static let LabelPadding: CGFloat = 16
 
 	//This fixed height equals the sum of UserPortraitScreenlet height, plus UILabel insets,
 	//plus margin between user portrait - text view, plus one pixel for rounding
-	private static let FixedHeight: CGFloat = 50 + 8 + 8 + 8 + 1
+	fileprivate static let FixedHeight: CGFloat = 50 + 8 + 8 + 8 + 1
 
 	//Top/bottom UILabel insets
-	private static let LabelInsets: CGFloat = 16
+	fileprivate static let LabelInsets: CGFloat = 16
 
 
 	//MARK: Outlets
@@ -60,18 +60,18 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 
 	var editViewController: CommentEditViewController_default?
 
-	public var state: CommentDisplayState_default = .Normal {
+	open var state: CommentDisplayState_default = .normal {
 		didSet {
-			normalStateButtonsContainer?.hidden = state == .Deleting || !editable
-			deletingStateButtonsContainer?.hidden = state != .Deleting || !editable
+			normalStateButtonsContainer?.isHidden = state == .deleting || !editable
+			deletingStateButtonsContainer?.isHidden = state != .deleting || !editable
 
-			if state == .Editing {
+			if state == .editing {
 				editViewController = CommentEditViewController_default(body: comment?.plainBody)
-				editViewController?.modalPresentationStyle = .OverCurrentContext
+				editViewController?.modalPresentationStyle = .overCurrentContext
 				editViewController!.confirmBodyClosure = confirmBodyClosure
 
 				if let vc = self.presentingViewController {
-					vc.presentViewController(editViewController!, animated: true, completion: {})
+					vc.present(editViewController!, animated: true, completion: {})
 				}
 				else {
 					print("ERROR: You neet to set the presentingViewController " +
@@ -84,37 +84,36 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 
 	//MARK: CommentDisplayViewModel
 
-	public func editComment() {
-		if let viewController = self.presentingViewController, editedComment = self.comment
-			where editedComment.isStyled {
+	open func editComment() {
+		if let viewController = self.presentingViewController, let editedComment = self.comment, editedComment.isStyled {
 			let alertController = UIAlertController(
 				title: LocalizedString("default", key: "comment-display-warning", obj: self),
 				message: LocalizedString("default", key: "comment-display-styled", obj: self),
-				preferredStyle: UIAlertControllerStyle.Alert)
+				preferredStyle: UIAlertControllerStyle.alert)
 
 			let dismissAction = UIAlertAction(
 				title: LocalizedString("default", key: "comment-display-dismiss", obj: self),
-				style: UIAlertActionStyle.Default) { _ in
-					self.state = .Editing
+				style: UIAlertActionStyle.default) { _ in
+					self.state = .editing
 			}
 			alertController.addAction(dismissAction)
 
-			viewController.presentViewController(alertController, animated: true, completion: nil)
+			viewController.present(alertController, animated: true, completion: nil)
 		} else {
-			self.state = .Editing
+			self.state = .editing
 		}
 	}
 
-	public var comment: Comment? {
+	open var comment: Comment? {
 		didSet {
-			self.state = .Normal
+			self.state = .normal
 
 			if let comment = comment {
 				bodyLabel?.attributedText = comment.htmlBody.toHtmlTextWithAttributes(
-					self.dynamicType.defaultAttributedTextAttributes())
+					type(of: self).defaultAttributedTextAttributes())
 
-				deleteButton?.enabled = comment.canDelete
-				editButton?.enabled = comment.canEdit
+				deleteButton?.isEnabled = comment.canDelete
+				editButton?.isEnabled = comment.canEdit
 
 				let loadedUserId = userPortraitScreenlet?.userId
 				if loadedUserId == nil || loadedUserId != comment.userId {
@@ -123,7 +122,7 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 
 				userNameLabel?.text = comment.userName
 				createdDateLabel?.text = comment.createDate.timeAgo
-				editedLabel?.hidden = comment.createDate.equalToDate(comment.modifiedDate)
+				editedLabel?.isHidden = comment.createDate.equalToDate(comment.modifiedDate)
 			}
 		}
 	}
@@ -131,7 +130,7 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 
 	//MARK: BaseScreenletView
 
-	override public func onSetTranslations() {
+	override open func onSetTranslations() {
 		editedLabel?.text = LocalizedString("default", key: "comment-display-edited", obj: self)
 		editButton?.titleLabel?.text = LocalizedString("default", key: "comment-display-edit-button", obj: self)
 		deleteButton?.titleLabel?.text = LocalizedString("default", key: "comment-display-delete-button", obj: self)
@@ -139,43 +138,43 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 		cancelButton?.titleLabel?.text = LocalizedString("default", key: "comment-display-cancel-button", obj: self)
 	}
 
-	override public var editable: Bool {
+	override open var editable: Bool {
 		didSet {
-			normalStateButtonsContainer?.hidden = !editable
+			normalStateButtonsContainer?.isHidden = !editable
 		}
 	}
 
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
 	}
 
-	override public var progressMessages: [String : ProgressMessages] {
+	override open var progressMessages: [String : ProgressMessages] {
 		return [
-			CommentDisplayScreenlet.DeleteAction: [.Working: NoProgressMessage],
-			CommentDisplayScreenlet.UpdateAction: [.Working: NoProgressMessage]
+			CommentDisplayScreenlet.DeleteAction: [.working: NoProgressMessage],
+			CommentDisplayScreenlet.UpdateAction: [.working: NoProgressMessage]
 		]
 	}
 
 
 	//MARK: Public methods
 
-	public func confirmBodyClosure(body: String?) {
-		editViewController?.dismissViewControllerAnimated(true, completion: nil)
+	open func confirmBodyClosure(_ body: String?) {
+		editViewController?.dismiss(animated: true, completion: nil)
 
-		if let updatedBody = body where updatedBody != comment?.plainBody {
-			userAction(name: CommentDisplayScreenlet.UpdateAction, sender: updatedBody)
+		if let updatedBody = body, updatedBody != comment?.plainBody {
+			userAction(name: CommentDisplayScreenlet.UpdateAction, sender: updatedBody as AnyObject?)
 		}
 	}
 
-	public class func heightForText(text: String?, width: CGFloat) -> CGFloat {
+	open class func heightForText(_ text: String?, width: CGFloat) -> CGFloat {
 		let realWidth = width - LabelPadding
 
 		let attributedText = text?.toHtmlTextWithAttributes(self.defaultAttributedTextAttributes())
 
 		if let attributedText = attributedText {
-			let rect = attributedText.boundingRectWithSize(
-				CGSizeMake(realWidth, CGFloat.max),
-				options: [.UsesLineFragmentOrigin, .UsesFontLeading],
+			let rect = attributedText.boundingRect(
+				with: CGSize(width: realWidth, height: CGFloat.greatestFiniteMagnitude),
+				options: [.usesLineFragmentOrigin, .usesFontLeading],
 				context: nil)
 
 			return rect.height + FixedHeight + LabelInsets
@@ -184,9 +183,9 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 		return 110
 	}
 
-	public class func defaultAttributedTextAttributes() -> [String: NSObject] {
+	open class func defaultAttributedTextAttributes() -> [String: NSObject] {
 		let paragrahpStyle = NSMutableParagraphStyle()
-		paragrahpStyle.lineBreakMode = .ByWordWrapping
+		paragrahpStyle.lineBreakMode = .byWordWrapping
 
 		var attributes: [String: NSObject] = [NSParagraphStyleAttributeName: paragrahpStyle]
 
@@ -203,7 +202,7 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 	//MARK: Actions
 
 	@IBAction func deleteButtonClicked() {
-		self.state = .Deleting
+		self.state = .deleting
 	}
 
 	@IBAction func editButtonClicked() {
@@ -211,11 +210,11 @@ public class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMo
 	}
 
 	@IBAction func cancelDeletionButtonClicked() {
-		self.state = .Normal
+		self.state = .normal
 	}
 
 	@IBAction func confirmDeletionButtonClicked() {
 		userAction(name: CommentDisplayScreenlet.DeleteAction)
-		self.state = .Normal
+		self.state = .normal
 	}
 }

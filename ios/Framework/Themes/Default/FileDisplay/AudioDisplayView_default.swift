@@ -15,11 +15,11 @@ import UIKit
 import AVFoundation
 
 
-public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
+open class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
-	public var volume: Float = 0.5
+	open var volume: Float = 0.5
 	
-	public var numberOfLoops = -1
+	open var numberOfLoops = -1
 
 
 	//MARK: Outlets
@@ -37,20 +37,20 @@ public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 	@IBOutlet weak var sliderDuration: UISlider? {
 		didSet {
 			sliderDuration?.setThumbImage(
-				NSBundle.imageInBundles(
+				Bundle.imageInBundles(
 					name: "default-point",
-					currentClass: self.dynamicType),
-				forState: UIControlState.Normal)
+					currentClass: type(of: self)),
+				for: .normal)
 		}
 	}
 	
 	@IBOutlet weak var sliderVolume: UISlider? {
 		didSet {
 			sliderVolume?.setThumbImage(
-				NSBundle.imageInBundles(
+				Bundle.imageInBundles(
 					name: "default-point",
-					currentClass: self.dynamicType),
-				forState: UIControlState.Normal)
+					currentClass: type(of: self)),
+				for: .normal)
 		}
 	}
 
@@ -63,11 +63,11 @@ public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
 	//MARK: FileDisplayViewModel
 
-	public var url: NSURL? {
+	open var url: URL? {
 		didSet {
 			if let url = url {
 				do {
-					self.audio = try AVAudioPlayer(contentsOfURL: url)
+					self.audio = try AVAudioPlayer(contentsOf: url)
 					if let audio = audio {
 						audio.volume = self.volume
 						audio.numberOfLoops = self.numberOfLoops
@@ -86,23 +86,23 @@ public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 		}
 	}
 
-	public var title: String? {
+	open var title: String? {
 		didSet {
 			self.presentingViewController?.title = title
 			self.titleLabel?.text = title
 		}
 	}
 
-	public var audio: AVAudioPlayer?
+	open var audio: AVAudioPlayer?
 
-	public var timer: NSTimer?
+	open var timer: Timer?
 
-	public var duration: NSTimer?
+	open var duration: Timer?
 
 
 	//MARK: BaseScreenletView
 
-	override public func onHide() {
+	override open func onHide() {
 		audio?.stop()
 	}
 
@@ -119,13 +119,13 @@ public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 	@IBAction func playAction() {
 		audio?.play()
 
-		timer = NSTimer.scheduledTimerWithTimeInterval(0.01,
+		timer = Timer.scheduledTimer(timeInterval: 0.01,
 				target: self,
 				selector: #selector(AudioDisplayView_default.updateProgress),
 				userInfo: nil,
 				repeats: true)
 
-		duration = NSTimer.scheduledTimerWithTimeInterval(0.01,
+		duration = Timer.scheduledTimer(timeInterval: 0.01,
 				target: self,
 				selector: #selector(AudioDisplayView_default.updateDurationLabel),
 				userInfo: nil,
@@ -134,11 +134,11 @@ public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 		self.updateView(true)
 	}
 
-	@IBAction func sliderDurationChanged(sender: UISlider) {
+	@IBAction func sliderDurationChanged(_ sender: UISlider) {
 		changeCurrentTime(sender.value, slider: true)
 	}
 
-	@IBAction func sliderVolumeChanged(sender: UISlider) {
+	@IBAction func sliderVolumeChanged(_ sender: UISlider) {
 		let selectedValue = sender.value
 		audio?.volume = selectedValue
 	}
@@ -154,36 +154,36 @@ public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
 	//MARK: Private methods
 
-	private func updateView(play: Bool) {
-		self.pauseButton?.hidden = !play
-		self.playButton?.hidden = play
+	fileprivate func updateView(_ play: Bool) {
+		self.pauseButton?.isHidden = !play
+		self.playButton?.isHidden = play
 	}
 
-	private func updateAudioDurationLabel(interval: Float) -> String {
+	fileprivate func updateAudioDurationLabel(_ interval: Float) -> String {
 		let interval = Int(interval)
 		let seconds = interval % 60
 		let minutes = (interval / 60) % 60
 		return String(format: "%02d:%02d", minutes, seconds)
 	}
 
-	private func changeCurrentTime(time: Float, slider: Bool) {
+	fileprivate func changeCurrentTime(_ time: Float, slider: Bool) {
 		if slider {
-			audio?.currentTime = NSTimeInterval(time)
+			audio?.currentTime = TimeInterval(time)
 		}
 		else {
-			audio?.currentTime += NSTimeInterval(time)
+			audio?.currentTime += TimeInterval(time)
 		}
 		updateProgress()
 		updateDurationLabel()
 	}
 
-	private func disableComponents() {
-		playButton?.enabled = false
-		rewindButton?.enabled = false
-		forwardButton?.enabled = false
-		sliderDuration?.enabled = false
-		sliderVolume?.enabled = false
-		pauseButton?.hidden = true
+	fileprivate func disableComponents() {
+		playButton?.isEnabled = false
+		rewindButton?.isEnabled = false
+		forwardButton?.isEnabled = false
+		sliderDuration?.isEnabled = false
+		sliderVolume?.isEnabled = false
+		pauseButton?.isHidden = true
 	}
 
 
@@ -195,7 +195,7 @@ public class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
 	func updateDurationLabel() {
 		let currentTime = audio!.currentTime
-		if audio!.playing && currentTime == audio!.duration {
+		if audio!.isPlaying && currentTime == audio!.duration {
 			self.updateView(false)
 			self.audioProgressLabel?.text = updateAudioDurationLabel(0)
 		}

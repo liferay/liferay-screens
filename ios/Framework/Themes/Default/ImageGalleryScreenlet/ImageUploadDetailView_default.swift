@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextViewDelegate {
+open class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextViewDelegate {
 
 
 	//MARK: Outlets
@@ -26,13 +26,13 @@ public class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextVi
 
 	//MARK ImageUploadDetailVeiewBase
 
-	override public var image: UIImage? {
+	override open var image: UIImage? {
 		didSet {
 			imagePreview?.image = image
 		}
 	}
 
-	override public var imageTitle: String? {
+	override open var imageTitle: String? {
 		didSet {
 			titleText?.text = imageTitle
 		}
@@ -40,12 +40,12 @@ public class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextVi
 
 	//MARK: UIView
 
-	override public func awakeFromNib() {
+	override open func awakeFromNib() {
 		initialize()
 	}
 
-	public func initialize() {
-		descripText?.layer.borderColor = UIColor.lightGrayColor().CGColor
+	open func initialize() {
+		descripText?.layer.borderColor = UIColor.lightGray.cgColor
 		descripText?.layer.borderWidth = 1.0
 		descripText?.layer.cornerRadius = 4.0
 		descripText?.delegate = self
@@ -61,56 +61,56 @@ public class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextVi
 		scrollView?.addGestureRecognizer(dismissKeyboardGesture)
 	}
 
-	override public func didMoveToWindow() {
+	override open func didMoveToWindow() {
 		if window != nil {
 
-			NSNotificationCenter.defaultCenter().addObserver(
+			NotificationCenter.default.addObserver(
 					self,
 					selector: #selector(keyboardWillShow(_:)),
-					name: UIKeyboardWillShowNotification,
+					name: NSNotification.Name.UIKeyboardWillShow,
 					object: nil)
 
-			NSNotificationCenter.defaultCenter().addObserver(
+			NotificationCenter.default.addObserver(
 					self,
 					selector: #selector(keyboardWillHide(_:)),
-					name: UIKeyboardWillHideNotification,
+					name: NSNotification.Name.UIKeyboardWillHide,
 					object: nil)
 
 		}
 	}
 
-	override public func willMoveToWindow(newWindow: UIWindow?) {
+	override open func willMove(toWindow newWindow: UIWindow?) {
 
-		NSNotificationCenter.defaultCenter().removeObserver(
-				self, name: UIKeyboardWillShowNotification, object: nil)
-		NSNotificationCenter.defaultCenter().removeObserver(
-				self, name: UIKeyboardWillHideNotification, object: nil)
+		NotificationCenter.default.removeObserver(
+				self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+		NotificationCenter.default.removeObserver(
+				self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 	}
 
 
 	//MARK: Public methods
 
-	public func textViewDidBeginEditing(textView: UITextView) {
+	open func textViewDidBeginEditing(_ textView: UITextView) {
 		hintLabel.alpha = 0
-		textView.layer.borderColor = DefaultThemeBasicBlue.CGColor
+		textView.layer.borderColor = DefaultThemeBasicBlue.cgColor
 	}
 
-	public func textViewDidEndEditing(textView: UITextView) {
+	open func textViewDidEndEditing(_ textView: UITextView) {
 		if textView.text.isEmpty {
 			hintLabel.alpha = 0.5
 		}
 
-		textView.layer.borderColor = UIColor.lightGrayColor().CGColor
+		textView.layer.borderColor = UIColor.lightGray.cgColor
 	}
 
-	public func dismissKeyboard() {
-		guard let descripText = descripText, titleText = titleText else {
+	open func dismissKeyboard() {
+		guard let descripText = descripText, let titleText = titleText else {
 			return
 		}
-		if descripText.isFirstResponder() {
+		if descripText.isFirstResponder {
 			descripText.resignFirstResponder()
 		}
-		else if titleText.isFirstResponder() {
+		else if titleText.isFirstResponder {
 			titleText.resignFirstResponder()
 		}
 	}
@@ -118,10 +118,10 @@ public class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextVi
 
 	//MARK: Notifications
 
-	public func keyboardWillShow(notification: NSNotification) {
+	open func keyboardWillShow(_ notification: Notification) {
 
 		let keyboardHeight =
-			notification.userInfo![UIKeyboardFrameBeginUserInfoKey]!.CGRectValue().height
+			(notification.userInfo![UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.height
 
 		var scrollNewFrame = scrollView.frame
 		scrollNewFrame.size.height = frame.height - keyboardHeight
@@ -132,9 +132,9 @@ public class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextVi
 		scrollView.setContentOffset(bottomOffset, animated: true)
 	}
 
-	public func keyboardWillHide(notification: NSNotification) {
+	open func keyboardWillHide(_ notification: Notification) {
 		let keyboardHeight =
-			notification.userInfo![UIKeyboardFrameBeginUserInfoKey]!.CGRectValue().height
+			(notification.userInfo![UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.height
 
 		var scrollNewFrame = scrollView.frame
 		scrollNewFrame.size.height = frame.height + keyboardHeight

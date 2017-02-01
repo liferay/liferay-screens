@@ -8,25 +8,25 @@
 
 import UIKit
 
-public class ImageGalleryGridCell: UICollectionViewCell {
+open class ImageGalleryGridCell: UICollectionViewCell {
 
-	@IBOutlet private weak var previewImage: UIImageView?
+	@IBOutlet fileprivate weak var previewImage: UIImageView?
 
-	private var placeholderImage: UIImage?
+	fileprivate var placeholderImage: UIImage?
 
-	public var imageUrl: String  {
+	open var imageUrl: String  {
 		get {
 			return ""
 		}
 		set {
 			previewImage?.lr_setImageWithURL(
-					NSURL(string: newValue)!,
+					URL(string: newValue)!,
 					placeholderImage:  placeholderImage,
-					optionsInfo: [.BackgroundDecode])
+					optionsInfo: [.backgroundDecode])
 		}
 	}
 
-	public var image: UIImage {
+	open var image: UIImage {
 		get {
 			return UIImage()
 		}
@@ -35,18 +35,18 @@ public class ImageGalleryGridCell: UICollectionViewCell {
 		}
 	}
 
-	public override func awakeFromNib() {
+	open override func awakeFromNib() {
 		super.awakeFromNib()
 		
 		previewImage?.clipsToBounds = true
-		previewImage?.kf_showIndicatorWhenLoading = true
+		previewImage?.kf.indicatorType = .activity
 
-		placeholderImage = NSBundle.imageInBundles(
+		placeholderImage = Bundle.imageInBundles(
 			name: "default-placeholder-image",
-			currentClass: self.dynamicType)
+			currentClass: type(of: self))
 	}
 
-	public override func prepareForReuse() {
+	open override func prepareForReuse() {
 		super.prepareForReuse()
 
 		previewImage?.image = placeholderImage

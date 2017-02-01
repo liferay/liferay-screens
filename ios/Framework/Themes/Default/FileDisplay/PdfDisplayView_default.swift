@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class PdfDisplayView_default: BaseScreenletView, FileDisplayViewModel {
+open class PdfDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
 
 	//MARK: Outlets
@@ -24,15 +24,15 @@ public class PdfDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
 	//MARK: FileDisplayViewModel
 
-	public var url: NSURL? {
+	open var url: URL? {
 		didSet {
 			if let url = url {
-				webView?.loadRequest(NSURLRequest(URL: url))
+				webView?.loadRequest(URLRequest(url: url))
 			}
 		}
 	}
 
-	public var title: String? {
+	open var title: String? {
 		didSet {
 			self.presentingViewController?.title = title
 		}

@@ -14,33 +14,33 @@
 import UIKit
 
 
-public class DDLSubmitButtonTableCell_default: DDMFieldTableCell {
+open class DDLSubmitButtonTableCell_default: DDMFieldTableCell {
 
 
 	//MARK: Outlets
 
-	@IBOutlet public var submitButton: UIButton?
+	@IBOutlet open var submitButton: UIButton?
 
 	//MARK: Actions
 
-	@IBAction private func submitButtonAction(sender: AnyObject) {
+	@IBAction fileprivate func submitButtonAction(_ sender: AnyObject) {
 		formView!.userActionWithSender(sender)
 	}
 
 
 	//MARK: DDMFieldTableCell
 
-	override public func awakeFromNib() {
+	override open func awakeFromNib() {
 		super.awakeFromNib()
 
 		setButtonDefaultStyle(submitButton)
 
 		submitButton?.replaceAttributedTitle(
 				LocalizedString("default", key: "ddlform-submit-button", obj: self),
-				forState: .Normal)
+				forState: .normal)
 	}
 
-	override public func canBecomeFirstResponder() -> Bool {
+	override open var canBecomeFirstResponder : Bool {
 		return false
 	}
 

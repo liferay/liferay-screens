@@ -14,17 +14,17 @@
 import UIKit
 
 
-public class ImageGalleryCell: UITableViewCell {
+open class ImageGalleryCell: UITableViewCell {
 
 	//MARK: Outlets
 
-	@IBOutlet private weak var imagePreview: UIImageView?
+	@IBOutlet fileprivate weak var imagePreview: UIImageView?
 	
-	@IBOutlet private weak var imageTitle: UILabel?
+	@IBOutlet fileprivate weak var imageTitle: UILabel?
 
-	private var placeholderImage: UIImage?
+	fileprivate var placeholderImage: UIImage?
 	
-    public var title: String? {
+    open var title: String? {
         get {
             return imageTitle?.text
         }
@@ -33,16 +33,16 @@ public class ImageGalleryCell: UITableViewCell {
         }
     }
     
-    public var imageUrl: String? {
+    open var imageUrl: String? {
         get {
             return ""
         }
         set {
-            imagePreview?.lr_setImageWithURL(NSURL(string: newValue ?? "")!)
+            imagePreview?.lr_setImageWithURL(URL(string: newValue ?? "")!)
         }
     }
 
-	public var img: UIImage? {
+	open var img: UIImage? {
 		get {
 			return imagePreview?.image
 		}
@@ -51,18 +51,18 @@ public class ImageGalleryCell: UITableViewCell {
 		}
 	}
 
-    override public func awakeFromNib() {
+    override open func awakeFromNib() {
         super.awakeFromNib()
         
-		imagePreview?.kf_showIndicatorWhenLoading = true
+		imagePreview?.kf.indicatorType = .activity
 
-		placeholderImage = NSBundle.imageInBundles(
+		placeholderImage = Bundle.imageInBundles(
 			name: "default-placeholder-image",
-			currentClass: self.dynamicType)
+			currentClass: type(of: self))
 
     }
 
-	override public func prepareForReuse() {
+	override open func prepareForReuse() {
 		super.prepareForReuse()
 		
 		imagePreview?.image = placeholderImage

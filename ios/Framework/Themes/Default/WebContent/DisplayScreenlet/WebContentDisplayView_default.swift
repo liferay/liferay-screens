@@ -14,21 +14,21 @@
 import UIKit
 
 
-public class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayViewModel {
+open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayViewModel {
 
 
 	//MARK: Outlets
 
-	@IBOutlet public var webView: UIWebView?
+	@IBOutlet open var webView: UIWebView?
 
-	override public var progressMessages: [String:ProgressMessages] {
+	override open var progressMessages: [String:ProgressMessages] {
 		return [
 			BaseScreenlet.DefaultAction :
-				[.Working : LocalizedString("default", key: "webcontentdisplay-loading-message", obj: self),
-				.Failure : LocalizedString("default", key: "webcontentdisplay-loading-error", obj: self)]]
+				[.working : LocalizedString("default", key: "webcontentdisplay-loading-message", obj: self),
+				.failure : LocalizedString("default", key: "webcontentdisplay-loading-error", obj: self)]]
 	}
 
-	private let styles =
+	fileprivate let styles =
 		".MobileCSS {padding: 4%; width: 92%;} " +
 		".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, .MobileCSS h2, .MobileCSS h3 { " +
 			"font-size: 110%; font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-weight: 200; } " +
@@ -36,23 +36,23 @@ public class WebContentDisplayView_default: BaseScreenletView, WebContentDisplay
 		".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }"
 
 
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
 	}
 
 	//MARK: WebContentDisplayViewModel
 
-	public var htmlContent: String? {
+	open var htmlContent: String? {
 		get {
 			return ""
 		}
 		set {
 			let styledHtml = "<style>\(styles)</style><div class=\"MobileCSS\">\(newValue ?? "")</div>"
 
-			webView!.loadHTMLString(styledHtml, baseURL: NSURL(string:LiferayServerContext.server))
+			webView!.loadHTMLString(styledHtml, baseURL: URL(string:LiferayServerContext.server))
 		}
 	}
 
-	public var recordContent: DDLRecord?
+	open var recordContent: DDLRecord?
 
 }

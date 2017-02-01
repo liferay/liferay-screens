@@ -14,35 +14,35 @@
 import UIKit
 
 
-public class ImageDisplayView_default: BaseScreenletView, ImageDisplayViewModel {
+open class ImageDisplayView_default: BaseScreenletView, ImageDisplayViewModel {
 
 
 	//MARK: Outlets
 
-	@IBOutlet public weak var imageView: UIImageView?
+	@IBOutlet open weak var imageView: UIImageView?
 
 
 	//MARK: ImageDisplayViewModel
 
-	public var imageMode: UIViewContentMode = .ScaleAspectFit
+	open var imageMode: UIViewContentMode = .scaleAspectFit
 
-	public var placeholderImageMode: UIViewContentMode = .Center
+	open var placeholderImageMode: UIViewContentMode = .center
 
-	public var placeholder: UIImage?
+	open var placeholder: UIImage?
 
 
 	//MARK: FileDisplayViewModel
 
-	public var url: NSURL? {
+	open var url: URL? {
 		didSet {
-			if let url = url, imageData = NSData(contentsOfURL: url) {
+			if let url = url, let imageData = try? Data(contentsOf: url) {
 				imageView?.contentMode = self.imageMode
 				imageView?.image = UIImage(data: imageData)
 			}
 		}
 	}
 
-	public var title: String? {
+	open var title: String? {
 		didSet {
 			self.presentingViewController?.title = title
 		}
@@ -51,7 +51,7 @@ public class ImageDisplayView_default: BaseScreenletView, ImageDisplayViewModel 
 
 	//MARK: BaseScreenletView
 
-	override public func onStartInteraction() {
+	override open func onStartInteraction() {
 		imageView?.contentMode = placeholderImageMode
 		imageView?.image = placeholder
 	}

@@ -15,9 +15,9 @@ import UIKit
 import Cosmos
 
 
-public class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
+open class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 
-	public var defaultRatingsGroupCount: Int32 {
+	open var defaultRatingsGroupCount: Int32 {
 		return Int32(self.emojis.count)
 	}
 
@@ -26,33 +26,33 @@ public class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 
 	//MARK: BaseScreenletView
 
-	override public func onCreated() {
+	override open func onCreated() {
 		emojis = subviews.map({$0 as? UIButton}).flatMap({$0})
 		labels = subviews.map({$0 as? UILabel}).flatMap({$0})
 	}
 
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return NetworkActivityIndicatorPresenter()
 	}
 
-	override public var progressMessages: [String:ProgressMessages] {
+	override open var progressMessages: [String:ProgressMessages] {
 		return [
-			RatingScreenlet.LoadRatingsAction : [.Working : ""],
-			RatingScreenlet.UpdateRatingAction : [.Working : ""],
-			RatingScreenlet.DeleteRatingAction : [.Working : ""],
+			RatingScreenlet.LoadRatingsAction : [.working : ""],
+			RatingScreenlet.UpdateRatingAction : [.working : ""],
+			RatingScreenlet.DeleteRatingAction : [.working : ""],
 		]
 	}
 
 
 	//MARK: RatingViewModel
 
-	public var ratingEntry: RatingEntry? {
+	open var ratingEntry: RatingEntry? {
 		didSet {
 			if let rating = ratingEntry {
 				emojis.forEach({
 					$0.alpha = 0.5
 					$0.restorationIdentifier = RatingScreenlet.UpdateRatingAction
-					$0.addTarget(self, action: #selector(emojiClicked), forControlEvents: .TouchUpInside)
+					$0.addTarget(self, action: #selector(emojiClicked), for: .touchUpInside)
 				})
 
 				for i in 0 ..< emojis.count {
@@ -71,9 +71,9 @@ public class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 
 	//MARK: Internal methods
 
-	func emojiClicked(sender: UIButton) {
+	func emojiClicked(_ sender: UIButton) {
 		userAction(
 			name: sender.restorationIdentifier,
-			sender: Double(emojis.indexOf(sender)!) / Double(emojis.count))
+			sender: (Double(emojis.index(of: sender)!) / Double(emojis.count)) as AnyObject?)
 	}
 }

@@ -14,9 +14,9 @@
 import UIKit
 
 
-public class ImageUploadDetailViewController_default: UIViewController {
+open class ImageUploadDetailViewController_default: UIViewController {
 
-	public var imageUploadDetailview: ImageUploadDetailViewBase?
+	open var imageUploadDetailview: ImageUploadDetailViewBase?
 
 	//MARK: Initializers
 
@@ -31,10 +31,10 @@ public class ImageUploadDetailViewController_default: UIViewController {
 
 	//MARK: UIViewController
 
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
 
-		edgesForExtendedLayout = .None
+		edgesForExtendedLayout = UIRectEdge()
 
 		addNavBarButtons()
 
@@ -44,16 +44,16 @@ public class ImageUploadDetailViewController_default: UIViewController {
 
 	//MARK: Public methods
 
-	public func addNavBarButtons() {
+	open func addNavBarButtons() {
 		let uploadButton = UIBarButtonItem(
 				title: LocalizedString("default",key: "imagegallery-upload", obj: self),
-				style: .Plain,
+				style: .plain,
 				target: self,
 				action: #selector(startUploadClick))
 
 		let cancelButton = UIBarButtonItem(
 				title: LocalizedString("default",key: "imagegallery-cancel", obj: self),
-				style: .Plain,
+				style: .plain,
 				target: self,
 				action: #selector(cancelClick))
 
@@ -61,20 +61,20 @@ public class ImageUploadDetailViewController_default: UIViewController {
 		navigationItem.leftBarButtonItem = cancelButton
 	}
 
-	public func addImageUploadView() {
+	open func addImageUploadView() {
 		imageUploadDetailview?.frame = view.frame
 		view.addSubview(imageUploadDetailview!)
 
-		imageUploadDetailview!.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+		imageUploadDetailview!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 	}
 
-	public func startUploadClick() {
-		dismissViewControllerAnimated(true) {
+	open func startUploadClick() {
+		dismiss(animated: true) {
 			self.imageUploadDetailview?.startUpload()
 		}
 	}
 
-	public func cancelClick() {
-		dismissViewControllerAnimated(true) {}
+	open func cancelClick() {
+		dismiss(animated: true) {}
 	}
 }

@@ -14,31 +14,31 @@
 import UIKit
 
 
-public class LoginView_default: BaseScreenletView, LoginViewModel {
+open class LoginView_default: BaseScreenletView, LoginViewModel {
 
 
 	//MARK: Outlets
 
-	@IBOutlet public weak var userNameField: UITextField?
+	@IBOutlet open weak var userNameField: UITextField?
 
-	@IBOutlet public weak var passwordField: UITextField?
+	@IBOutlet open weak var passwordField: UITextField?
 
-	@IBOutlet public weak var loginButton: UIButton?
+	@IBOutlet open weak var loginButton: UIButton?
 
-	@IBOutlet public weak var authorizeButton: UIButton?
+	@IBOutlet open weak var authorizeButton: UIButton?
 
-	override public var progressMessages: [String:ProgressMessages] {
+	override open var progressMessages: [String:ProgressMessages] {
 		return [
 			BaseScreenlet.DefaultAction : [
-				.Working : LocalizedString("default", key: "login-loading-message", obj: self),
-				.Failure : LocalizedString("default", key: "login-loading-error", obj: self)]
+				.working : LocalizedString("default", key: "login-loading-message", obj: self),
+				.failure : LocalizedString("default", key: "login-loading-error", obj: self)]
 		]
 	}
 
 
 	//MARK: AuthBasedViewModel
 
-	public var basicAuthMethod: String? = BasicAuthMethod.Email.rawValue {
+	open var basicAuthMethod: String? = BasicAuthMethod.email.rawValue {
 		didSet {
 			setBasicAuthMethodStyles(
 					view: self,
@@ -47,7 +47,7 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 		}
 	}
 
-	public var authType: String? = StringFromAuthType(AuthType.Basic) {
+	open var authType: String? = StringFromAuthType(AuthType.basic) {
 		didSet {
 			configureAuthType()
 		}
@@ -56,7 +56,7 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 
 	//MARK: LoginViewModel
 
-	public var userName: String? {
+	open var userName: String? {
 		get {
 			return nullIfEmpty(userNameField?.text)
 		}
@@ -65,7 +65,7 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 		}
 	}
 
-	public var password: String? {
+	open var password: String? {
 		get {
 			return nullIfEmpty(passwordField?.text)
 		}
@@ -77,7 +77,7 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 
 	//MARK: BaseScreenletView
 
-	override public func onCreated() {
+	override open func onCreated() {
 		super.onCreated()
 
 		setButtonDefaultStyle(loginButton)
@@ -86,41 +86,41 @@ public class LoginView_default: BaseScreenletView, LoginViewModel {
 		configureAuthType()
 	}
 
-	override public func onSetTranslations() {
+	override open func onSetTranslations() {
 		userNameField?.placeholder = LocalizedString("default",
 			key: BasicAuthMethod.create(basicAuthMethod).description, obj: self)
 
 		passwordField?.placeholder = LocalizedString("default", key: "password-placeholder", obj: self)
 
 		loginButton?.replaceAttributedTitle(LocalizedString("default", key: "signin-button", obj: self),
-				forState: .Normal)
+				forState: .normal)
 
 		authorizeButton?.replaceAttributedTitle(LocalizedString("default", key: "authorize-button", obj: self),
-				forState: .Normal)
+				forState: .normal)
 	}
 
-	override public func onStartInteraction() {
-		loginButton?.enabled = false
-		authorizeButton?.enabled = false
+	override open func onStartInteraction() {
+		loginButton?.isEnabled = false
+		authorizeButton?.isEnabled = false
 	}
 
-	override public func onFinishInteraction(result: AnyObject?, error: NSError?) {
-		loginButton?.enabled = true
-		authorizeButton?.enabled = true
+	override open func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
+		loginButton?.isEnabled = true
+		authorizeButton?.isEnabled = true
 	}
 
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
 	}
 
 
 	//MARK: Public methods
 
-	public func configureAuthType() {
-		let auth = AuthTypeFromString(authType ?? "") ?? .Basic
+	open func configureAuthType() {
+		let auth = AuthTypeFromString(authType ?? "") ?? .basic
 
-		authorizeButton?.hidden = (auth != .OAuth)
-		loginButton?.superview?.hidden = (auth != .Basic)
+		authorizeButton?.isHidden = (auth != .oAuth)
+		loginButton?.superview?.isHidden = (auth != .basic)
 	}
 
 }

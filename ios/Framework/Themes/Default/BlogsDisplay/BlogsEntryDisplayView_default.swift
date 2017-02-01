@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewModel {
+open class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewModel {
 
 
 	//MARK: Outlets
@@ -35,20 +35,20 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 	
 	@IBOutlet weak var imageHeightConstraint: NSLayoutConstraint?
 
-	public var headerImageHeight: CGFloat = 125.0
+	open var headerImageHeight: CGFloat = 125.0
 
-	public let dateFormatter: NSDateFormatter = {
-		let dateFormatter = NSDateFormatter()
-		dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
-		dateFormatter.locale = NSLocale(
-			localeIdentifier: NSLocale.currentLocaleString)
+	open let dateFormatter: DateFormatter = {
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateStyle = DateFormatter.Style.long
+		dateFormatter.locale = Locale(
+			identifier: NSLocale.currentLocaleString)
 		return dateFormatter
 	}()
 
 	
 	//MARK: BlogsDisplayViewModel
 
-	public var blogsEntry: BlogsEntry? {
+	open var blogsEntry: BlogsEntry? {
 		didSet {
 			if let _ = blogsEntry {
 				self.loadBlog()
@@ -59,14 +59,14 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 
 	//MARK: BaseScreenletView
 
-	override public func onSetTranslations() {
+	override open func onSetTranslations() {
 		dateLabel?.text = LocalizedString("default", key: "blog-unknown-date", obj: self)
 	}
 
 
 	//MARK: Public methods
 
-	public func loadBlog() {
+	open func loadBlog() {
 		self.loadImage()
 		self.loadUserInfo()
 		self.loadDate()
@@ -74,7 +74,7 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 		self.loadContent()
 	}
 
-	public func loadImage() {
+	open func loadImage() {
 		let imageId = self.blogsEntry!.coverImageFileEntryId
 		if imageId != 0 {
 			imageHeightConstraint?.constant = self.headerImageHeight
@@ -88,29 +88,29 @@ public class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewM
 		}
 	}
 
-	public func loadUserInfo() {
-		userPortraitScreenlet?.load(userId: self.blogsEntry!.userId ?? 0)
+	open func loadUserInfo() {
+		userPortraitScreenlet?.load(userId: self.blogsEntry!.userId)
 		usernameLabel?.text = self.blogsEntry!.userName
 	}
 
-	public func loadDate() {
+	open func loadDate() {
 		if let date = self.blogsEntry!.displayDate {
-			dateLabel?.text = dateFormatter.stringFromDate(date)
+			dateLabel?.text = dateFormatter.string(from: date as Date)
 		}
 	}
 
-	public func loadTitleSubtitle() {
+	open func loadTitleSubtitle() {
 		titleLabel?.text = self.blogsEntry!.title
 		subtitleLabel?.text = self.blogsEntry!.subtitle
 	}
 
-	public func loadContent() {
-		contentLabel?.attributedText = self.blogsEntry!.content.toHtmlTextWithAttributes(self.dynamicType.defaultAttributedTextAttributes())
+	open func loadContent() {
+		contentLabel?.attributedText = self.blogsEntry!.content.toHtmlTextWithAttributes(type(of: self).defaultAttributedTextAttributes())
 	}
 
-	public class func defaultAttributedTextAttributes() -> [String: NSObject] {
+	open class func defaultAttributedTextAttributes() -> [String: NSObject] {
 		let paragrahpStyle = NSMutableParagraphStyle()
-		paragrahpStyle.lineBreakMode = .ByWordWrapping
+		paragrahpStyle.lineBreakMode = .byWordWrapping
 
 		var attributes: [String: NSObject] = [NSParagraphStyleAttributeName: paragrahpStyle]
 

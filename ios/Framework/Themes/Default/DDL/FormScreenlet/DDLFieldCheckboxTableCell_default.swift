@@ -14,20 +14,20 @@
 import UIKit
 
 
-public class DDLFieldCheckboxTableCell_default: DDMFieldTableCell {
+open class DDLFieldCheckboxTableCell_default: DDMFieldTableCell {
 
 
 	//MARK: Outlets
 
-	@IBOutlet public var switchView: UISwitch?
+	@IBOutlet open var switchView: UISwitch?
 	
-	@IBOutlet public var label: UILabel?
+	@IBOutlet open var label: UILabel?
 
 
 	//MARK: Actions
 
-	@IBAction private func switchValueChanged(sender: AnyObject) {
-		field?.currentValue = switchView?.on
+	@IBAction fileprivate func switchValueChanged(_ sender: AnyObject) {
+		field?.currentValue = switchView?.isOn as AnyObject?
 
 		if field!.lastValidationResult != nil && !field!.lastValidationResult! {
 			field!.lastValidationResult = true
@@ -38,13 +38,13 @@ public class DDLFieldCheckboxTableCell_default: DDMFieldTableCell {
 
 	//MARK: DDMFieldTableCell
 
-	override public func canBecomeFirstResponder() -> Bool {
+	override open var canBecomeFirstResponder : Bool {
 		return false
 	}
 
-	override public func onChangedField() {
+	override open func onChangedField() {
 		if let boolField = field as? DDMFieldBoolean {
-			switchView?.on = boolField.currentValue as! Bool
+			switchView?.isOn = boolField.currentValue as! Bool
 			label?.text = boolField.label
 
 			if boolField.lastValidationResult != nil {
@@ -53,10 +53,10 @@ public class DDLFieldCheckboxTableCell_default: DDMFieldTableCell {
 		}
 	}
 
-	override public func onPostValidation(valid: Bool) {
+	override open func onPostValidation(_ valid: Bool) {
 		super.onPostValidation(valid)
 
-		label?.textColor = valid ? UIColor.blackColor() : UIColor.redColor()
+		label?.textColor = valid ? UIColor.black : UIColor.red
 	}
 
 }

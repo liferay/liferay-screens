@@ -18,23 +18,23 @@ import UIKit
 #endif
 
 
-public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_default,
+open class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_default,
 		UITableViewDataSource, UITableViewDelegate {
 		
 	let rowHeight: CGFloat = 50
 
-	public var cellBackgroundColor: UIColor = DefaultThemeBasicBlue
+	open var cellBackgroundColor: UIColor = DefaultThemeBasicBlue
 
-	public var options: [DDMFieldStringWithOptions.Option] = []
+	open var options: [DDMFieldStringWithOptions.Option] = []
 
-	public var selectedOptions: [DDMFieldStringWithOptions.Option] {
+	open var selectedOptions: [DDMFieldStringWithOptions.Option] {
 		return field?.currentValue as? [DDMFieldStringWithOptions.Option] ?? []
 	}
 
 
 	//MARK: UITableViewCell
 
-	override public func  awakeFromNib() {
+	override open func  awakeFromNib() {
 		super.awakeFromNib()
 
 		defaultTextField?.onRightButtonClick = { [weak self] in
@@ -45,7 +45,7 @@ public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_defau
 
 	//MARK: DDLBaseFieldTextboxTableCell
 
-	override public func onChangedField() {
+	override open func onChangedField() {
 		super.onChangedField()
 
 		if let stringField = field as? DDMFieldStringWithOptions {
@@ -58,28 +58,28 @@ public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_defau
 
 	//MARK: Private methods
 
-	private func setFieldPresenter(field:DDMFieldStringWithOptions) {
+	fileprivate func setFieldPresenter(_ field:DDMFieldStringWithOptions) {
 
 		options = field.options
 
 		//Fill the textfield with the selected options (If we are editing an existing record)
 		textField?.text = selectedOptions.map { $0.label }
-					.sort()
-					.reduce("", combine:{ $0 + " " + $1})
+					.sorted()
+					.reduce("", { $0 + " " + $1})
 					.trim()
 
 		let tableView = createPresenterTableView(multipleSelection: field.multiple)
 
-		let optionsPresenter = DTViewPresenter(view: tableView)
+		let optionsPresenter = DTViewPresenter(view: tableView)!
 
-		optionsPresenter.presenterView.backgroundColor = UIColor.whiteColor()
-		optionsPresenter.presenterView.layer.borderColor = UIColor.lightGrayColor().CGColor
+		optionsPresenter.presenterView.backgroundColor = UIColor.white
+		optionsPresenter.presenterView.layer.borderColor = UIColor.lightGray.cgColor
 		optionsPresenter.presenterView.layer.borderWidth = 1.5
 
 		textField?.dt_setPresenter(optionsPresenter)
 	}
 
-	public func createPresenterTableView(multipleSelection multiple: Bool) -> UITableView {
+	open func createPresenterTableView(multipleSelection multiple: Bool) -> UITableView {
 
 		let tableView = UITableView(
 			frame: CGRect(x: 0, y: 0, width: 0,
@@ -88,24 +88,24 @@ public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_defau
 		tableView.dataSource = self
 		tableView.delegate = self
 		tableView.rowHeight = rowHeight
-		tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+		tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
 		tableView.allowsMultipleSelection = multiple
 
 		return tableView
 	}
 
-	public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return options.count
 	}
 
 
 	//MARK: UITableViewDataSource
 
-	public func tableView(
-			tableView: UITableView,
-			cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+	open func tableView(
+			_ tableView: UITableView,
+			cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-		let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
 		let backgroundView = UIView()
 		backgroundView.backgroundColor = cellBackgroundColor
@@ -113,12 +113,12 @@ public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_defau
 		cell.selectedBackgroundView = backgroundView
 
 		cell.textLabel?.text = options[indexPath.row].label
-		cell.textLabel?.textAlignment = .Center
-		cell.textLabel?.highlightedTextColor = .whiteColor()
+		cell.textLabel?.textAlignment = .center
+		cell.textLabel?.highlightedTextColor = .white
 
 		//Select cells from current selected options
 		if selectedOptions.contains(options[indexPath.row]) {
-			tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .Middle)
+			tableView.selectRow(at: indexPath, animated: false, scrollPosition: .middle)
 		}
 
 		return cell
@@ -127,25 +127,25 @@ public class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_defau
 
 	//MARK: UITableViewDelegate
 
-	public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+	open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let selectedIndexPaths = tableView.indexPathsForSelectedRows
 		updateFieldCurrentValue(selectedIndexPaths)
 	}
 
-	public func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+	open func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
 		let selectedIndexPaths = tableView.indexPathsForSelectedRows
 		updateFieldCurrentValue(selectedIndexPaths)
 	}
 
-	public func updateFieldCurrentValue(selectedIndexPaths: [NSIndexPath]?) {
+	open func updateFieldCurrentValue(_ selectedIndexPaths: [IndexPath]?) {
 		let currentValue = selectedIndexPaths?
 			.map { self.options[$0.row].label }
-			.sort()
-			.reduce("", combine: { $0 + "," + $1 }) ?? ""
+			.sorted()
+			.reduce("", { $0 + "," + $1 }) ?? ""
 
-		field?.currentValue = currentValue
+		field?.currentValue = currentValue as AnyObject?
 		textField?.text = currentValue
-				.stringByReplacingOccurrencesOfString(",", withString: " ")
+				.replacingOccurrences(of: ",", with: " ")
 				.trim()
 	}
 

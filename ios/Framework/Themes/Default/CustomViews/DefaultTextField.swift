@@ -14,57 +14,57 @@
 import UIKit
 
 
-public class DefaultTextField: UITextField {
+open class DefaultTextField: UITextField {
 
 
 	//MARK: Public variables
 
-	public var buttonMargin: CGFloat = 10
+	open var buttonMargin: CGFloat = 10
 
-	public var onRightButtonClick: (() -> ())?
+	open var onRightButtonClick: (() -> ())?
 	
 	
 	//MARK: IBInspectable
 	
-	@IBInspectable public var defaultColor: UIColor = .lightGrayColor()
+	@IBInspectable open var defaultColor: UIColor = .lightGray
 	
-	@IBInspectable public var highlightColor: UIColor = DefaultThemeBasicBlue
+	@IBInspectable open var highlightColor: UIColor = DefaultThemeBasicBlue
 
-	@IBInspectable public var errorColor: UIColor = .redColor()
+	@IBInspectable open var errorColor: UIColor = .red
 
-	@IBInspectable public var paddingLeft: CGFloat = 15
+	@IBInspectable open var paddingLeft: CGFloat = 15
 
-	@IBInspectable public var paddingRight: CGFloat = 15
+	@IBInspectable open var paddingRight: CGFloat = 15
 	
-	@IBInspectable public var leftImage: UIImage? {
+	@IBInspectable open var leftImage: UIImage? {
 		didSet {
 			if let image = leftImage {
 				
 				let icon = UIImageView(image: image)
 
-				icon.contentMode = .Center
+				icon.contentMode = .center
 				
-				self.leftViewMode = .Always
+				self.leftViewMode = .always
 				self.leftView = icon
 			}
 		}
 	}
 
-	@IBInspectable public var rightButtonImage: UIImage? {
+	@IBInspectable open var rightButtonImage: UIImage? {
 		didSet {
 			if let image = rightButtonImage {
 
-				self.rightViewMode = .Always
+				self.rightViewMode = .always
 				self.rightView = createButton(withImage: image)
 			}
 		}
 	}
 
-	@IBInspectable public var rightButtonTitle: String? {
+	@IBInspectable open var rightButtonTitle: String? {
 		didSet {
 			if let title = rightButtonTitle {
 
-				self.rightViewMode = .Always
+				self.rightViewMode = .always
 				self.rightView = createButton(withTitle: title)
 			}
 		}
@@ -85,19 +85,19 @@ public class DefaultTextField: UITextField {
 		setup()
 	}
 	
-	public override func prepareForInterfaceBuilder() {
+	open override func prepareForInterfaceBuilder() {
 		setup()
 	}
 
 
 	//MARK: Public methods
 
-	public func setDefaultState() {
-		self.layer.borderColor = defaultColor.CGColor
+	open func setDefaultState() {
+		self.layer.borderColor = defaultColor.cgColor
 	}
 
-	public func setErrorState() {
-		self.layer.borderColor = errorColor.CGColor
+	open func setErrorState() {
+		self.layer.borderColor = errorColor.cgColor
 	}
 	
 	//MARK: Internal methods
@@ -105,7 +105,7 @@ public class DefaultTextField: UITextField {
 	internal func setup() {
 		self.layer.cornerRadius = 4.0
 		self.layer.borderWidth = 1.0
-		self.layer.borderColor = defaultColor.CGColor
+		self.layer.borderColor = defaultColor.cgColor
 	}
 
 	internal func rightButtonClick() {
@@ -117,14 +117,14 @@ public class DefaultTextField: UITextField {
 
 		let button = UIButton()
 
-		button.setImage(image, forState: .Normal)
+		button.setImage(image, for: .normal)
 		button.backgroundColor = highlightColor
-		button.tintColor = .whiteColor()
-		button.setTitle(title, forState: .Normal)
+		button.tintColor = .white
+		button.setTitle(title, for: .normal)
 		button.adjustsImageWhenHighlighted = false
 		button.addTarget(self,
 		                 action: #selector(rightButtonClick),
-		                 forControlEvents: .TouchUpInside)
+		                 for: .touchUpInside)
 
 		setButtonDefaultStyle(button)
 
@@ -133,40 +133,40 @@ public class DefaultTextField: UITextField {
 	
 	//MARK: UITextField
 	
-	public override func resignFirstResponder() -> Bool {
-		self.layer.borderColor = defaultColor.CGColor
+	open override func resignFirstResponder() -> Bool {
+		self.layer.borderColor = defaultColor.cgColor
 		
 		return super.resignFirstResponder()
 	}
 	
-	public override func becomeFirstResponder() -> Bool {
-		self.layer.borderColor = highlightColor.CGColor
+	open override func becomeFirstResponder() -> Bool {
+		self.layer.borderColor = highlightColor.cgColor
 		
 		return super.becomeFirstResponder()
 	}
 
-	public override func textRectForBounds(bounds: CGRect) -> CGRect {
+	open override func textRect(forBounds bounds: CGRect) -> CGRect {
 		if let _ = leftView {
-			return super.textRectForBounds(bounds)
+			return super.textRect(forBounds: bounds)
 		}
 
 		return CGRect(x: paddingLeft, y: 0, width: bounds.width - paddingRight, height: bounds.height)
 	}
 
-	public override func editingRectForBounds(bounds: CGRect) -> CGRect {
+	open override func editingRect(forBounds bounds: CGRect) -> CGRect {
 		if let _ = leftView {
-			return super.editingRectForBounds(bounds)
+			return super.editingRect(forBounds: bounds)
 		}
 
-		return textRectForBounds(bounds)
+		return textRect(forBounds: bounds)
 	}
 
-	public override func leftViewRectForBounds(bounds: CGRect) -> CGRect {
-		return CGRect(origin: CGPointZero, size: CGSize(width: bounds.height, height: bounds.height))
+	open override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
+		return CGRect(origin: CGPoint.zero, size: CGSize(width: bounds.height, height: bounds.height))
 	}
 
-	public override func rightViewRectForBounds(bounds: CGRect) -> CGRect {
-		let boundsCalculated = super.rightViewRectForBounds(bounds)
+	open override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+		let boundsCalculated = super.rightViewRect(forBounds: bounds)
 
 		let origin = CGPoint(x: boundsCalculated.origin.x - buttonMargin/2,
 		                     y: boundsCalculated.minY)

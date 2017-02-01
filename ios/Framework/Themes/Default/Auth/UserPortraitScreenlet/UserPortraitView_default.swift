@@ -19,11 +19,11 @@ import UIKit
 
 
 // Global initial load
-private func loadPlaceholderCache(done: (UIImage? -> ())? = nil) -> UIImage? {
+private func loadPlaceholderCache(_ done: ((UIImage?) -> ())? = nil) {
 	var image: UIImage?
 
 	dispatch_async {
-		image = NSBundle.imageInBundles(
+		image = Bundle.imageInBundles(
 			name: "default-portrait-placeholder",
 			currentClass: UserPortraitView_default.self)
 
@@ -33,53 +33,50 @@ private func loadPlaceholderCache(done: (UIImage? -> ())? = nil) -> UIImage? {
 			done?(image)
 		}
 	}
-
-	// returns nil because the loading is asynchronous
-	return nil
 }
 
 
-public class UserPortraitView_default: BaseScreenletView,
+open class UserPortraitView_default: BaseScreenletView,
 	UserPortraitViewModel,
 	UIActionSheetDelegate,
 	UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-	public static var defaultPlaceholder: UIImage? = loadPlaceholderCache()
+	open static var defaultPlaceholder: UIImage?
 
 
 	//MARK: Outlets
 
-	@IBOutlet weak public var activityIndicator: UIActivityIndicatorView?
+	@IBOutlet weak open var activityIndicator: UIActivityIndicatorView?
 
-	@IBOutlet weak public var portraitImage: UIImageView?
+	@IBOutlet weak open var portraitImage: UIImageView?
 
 	@IBOutlet weak var editButton: UIButton?
 
-	override public var editable: Bool {
+	override open var editable: Bool {
 		didSet {
-			self.editButton?.hidden = !editable
+			self.editButton?.isHidden = !editable
 			if editable {
 				self.superview?.clipsToBounds = false
 			}
 		}
 	}
 
-	override public var progressMessages: [String:ProgressMessages] {
+	override open var progressMessages: [String:ProgressMessages] {
 		return [
 			"load-portrait" : [
-				.Working : ""
+				.working : ""
 			],
 			"upload-portrait" : [
-				.Working : "",
-				.Failure : LocalizedString("default", key: "userportrait-uploading-error", obj: self)
+				.working : "",
+				.failure : LocalizedString("default", key: "userportrait-uploading-error", obj: self)
 			]]
 	}
 
-	private let imagePicker = UIImagePickerController()
+	fileprivate let imagePicker = UIImagePickerController()
 
 	//MARK: SignUpViewModel
 
-	public var image: UIImage? {
+	open var image: UIImage? {
 		get {
 			return portraitImage?.image
 		}
@@ -93,47 +90,47 @@ public class UserPortraitView_default: BaseScreenletView,
 		}
 	}
 
-	public var borderWidth: CGFloat = 1.0 {
+	open var borderWidth: CGFloat = 1.0 {
 		didSet {
 			portraitImage?.layer.borderWidth = borderWidth
 		}
 	}
 
-	public var borderColor: UIColor? {
+	open var borderColor: UIColor? {
 		didSet {
-			portraitImage?.layer.borderColor = (borderColor ?? DefaultThemeBasicBlue).CGColor
+			portraitImage?.layer.borderColor = (borderColor ?? DefaultThemeBasicBlue).cgColor
 		}
 	}
 
 
 	//MARK: BaseScreenletView
 
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return UserPortraitDefaultProgressPresenter(spinner: activityIndicator!)
 	}
 
-	override public func onCreated() {
+	override open func onCreated() {
 		super.onCreated()
 
 		imagePicker.delegate = self
 		imagePicker.allowsEditing = true
-		imagePicker.modalPresentationStyle = .FullScreen
+		imagePicker.modalPresentationStyle = .fullScreen
 	}
 
-	override public func onShow() {
+	override open func onShow() {
 		portraitImage?.layer.borderWidth = borderWidth
-		portraitImage?.layer.borderColor = (borderColor ?? DefaultThemeBasicBlue).CGColor
+		portraitImage?.layer.borderColor = (borderColor ?? DefaultThemeBasicBlue).cgColor
 		portraitImage?.layer.cornerRadius = DefaultThemeButtonCornerRadius
 	}
 
-	override public func onPreAction(name name: String, sender: AnyObject?) -> Bool {
+	override open func onPreAction(name: String, sender: AnyObject?) -> Bool {
 		if name == "edit-portrait" {
 			let takeNewPicture = LocalizedString("default", key: "userportrait-take-new-picture", obj: self)
 			let chooseExisting = LocalizedString("default", key: "userportrait-choose-existing-picture", obj: self)
 
 			let alert = MediaSelector(
 					viewController: self.presentingViewController!,
-					types: [.ImageEdited : chooseExisting, .Camera : takeNewPicture],
+					types: [.imageEdited : chooseExisting, .camera : takeNewPicture],
 					cancelMessage: "Cancel",
 					alertTitle: "Change portrait") { (image, _) in
 
@@ -151,7 +148,7 @@ public class UserPortraitView_default: BaseScreenletView,
 
 	//MARK: Public methods
 
-	public func loadPlaceholder() {
+	open func loadPlaceholder() {
 		dispatch_main() {
 			if let placeholder = UserPortraitView_default.defaultPlaceholder {
 				self.portraitImage?.image = placeholder

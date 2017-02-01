@@ -18,12 +18,12 @@ import UIKit
 #endif
 
 
-public class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default {
+open class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default {
 
 
 	//MARK: UITableViewCell
 
-	override public func  awakeFromNib() {
+	override open func awakeFromNib() {
 		super.awakeFromNib()
 
 		defaultTextField?.onRightButtonClick = { [weak self] in
@@ -33,7 +33,7 @@ public class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default
 
 	//MARK: DDLBaseFieldTextboxTableCell
 
-	override public func onChangedField() {
+	override open func onChangedField() {
 		super.onChangedField()
 
 		if let fieldValue = field {
@@ -48,28 +48,28 @@ public class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default
 
 	//MARK: Private methods
 
-	private func setFieldPresenter(field: DDMField) {
+	fileprivate func setFieldPresenter(_ field: DDMField) {
 
-		func onChange(selectedDate:NSDate!) {
-			field.currentValue = selectedDate
+		func onChange(_ selectedDate:Date?) {
+			field.currentValue = selectedDate as AnyObject?
 			textField!.text = field.currentValueAsLabel
 
 			let fullRange = NSMakeRange(0, (textField!.text!).characters.count)
 
-			textField(textField!,
-				shouldChangeCharactersInRange: fullRange,
+			_ = textField(textField!,
+				shouldChangeCharactersIn: fullRange,
 				replacementString: textField!.text!)
 		}
 
-		let presenter = DTDatePickerPresenter(changeBlock:onChange)
+		let presenter = DTDatePickerPresenter(change: onChange)!
 
-		presenter.datePicker.datePickerMode = .Date
-		presenter.datePicker.timeZone = NSTimeZone(abbreviation: "GMT")
-		presenter.datePicker.backgroundColor = UIColor.whiteColor()
-		presenter.datePicker.layer.borderColor = UIColor.lightGrayColor().CGColor
+		presenter.datePicker.datePickerMode = .date
+		presenter.datePicker.timeZone = TimeZone(abbreviation: "GMT")
+		presenter.datePicker.backgroundColor = .white
+		presenter.datePicker.layer.borderColor = UIColor.lightGray.cgColor
 		presenter.datePicker.layer.borderWidth = 1.5
 
-		if let currentDate = field.currentValue as? NSDate {
+		if let currentDate = field.currentValue as? Date {
 			presenter.datePicker.setDate(currentDate, animated: false)
 		}
 

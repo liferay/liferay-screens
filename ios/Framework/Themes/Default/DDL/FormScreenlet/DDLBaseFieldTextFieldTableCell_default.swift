@@ -14,29 +14,29 @@
 import UIKit
 
 
-public class DDLBaseFieldTextboxTableCell_default: DDMFieldTableCell, UITextFieldDelegate {
+open class DDLBaseFieldTextboxTableCell_default: DDMFieldTableCell, UITextFieldDelegate {
 
 
 	//MARK: Outlets
 
-	@IBOutlet public var textField: UITextField?
+	@IBOutlet open var textField: UITextField?
 
-	@IBOutlet public var label: UILabel?
+	@IBOutlet open var label: UILabel?
 
-	public var defaultTextField: DefaultTextField? {
+	open var defaultTextField: DefaultTextField? {
 		return textField as? DefaultTextField
 	}
 
 
 	//MARK: DDMFieldTableCell
 
-	override public func onChangedField() {
+	override open func onChangedField() {
 		if field!.showLabel {
 			textField?.placeholder = ""
 
 			if let labelValue = label {
 				labelValue.text = field!.label
-				labelValue.hidden = false
+				labelValue.isHidden = false
 
 				moveSubviewsVertically(0.0)
 			}
@@ -45,7 +45,7 @@ public class DDLBaseFieldTextboxTableCell_default: DDMFieldTableCell, UITextFiel
 			textField?.placeholder = field!.label
 
 			if let labelValue = label {
-				labelValue.hidden = true
+				labelValue.isHidden = true
 
 				moveSubviewsVertically(
 					-(DDLFieldTextFieldHeightWithLabel - DDLFieldTextFieldHeightWithoutLabel))
@@ -54,7 +54,7 @@ public class DDLBaseFieldTextboxTableCell_default: DDMFieldTableCell, UITextFiel
 			}
 		}
 
-		textField?.returnKeyType = isLastCell ? .Send : .Next
+		textField?.returnKeyType = isLastCell ? .send : .next
 
 		if field!.lastValidationResult != nil {
 			onPostValidation(field!.lastValidationResult!)
@@ -65,7 +65,7 @@ public class DDLBaseFieldTextboxTableCell_default: DDMFieldTableCell, UITextFiel
 		}
 	}
 
-	override public func onPostValidation(valid: Bool) {
+	override open func onPostValidation(_ valid: Bool) {
 		super.onPostValidation(valid)
 
 		if valid {
@@ -80,8 +80,8 @@ public class DDLBaseFieldTextboxTableCell_default: DDMFieldTableCell, UITextFiel
 
 	//MARK: UITextFieldDelegate
 
-	public func textField(textField: UITextField,
-			shouldChangeCharactersInRange range: NSRange,
+	open func textField(_ textField: UITextField,
+			shouldChangeCharactersIn range: NSRange,
 			replacementString string: String) -> Bool {
 
 		if field!.lastValidationResult != nil && !field!.lastValidationResult! {
