@@ -46,56 +46,56 @@ class CommentListScreenletViewController: UIViewController,
 	
 	//MARK: IBAction
 
-	@IBAction func insertButtonPressed(sender: AnyObject) {
+	@IBAction func insertButtonPressed(_ sender: AnyObject) {
 		if editViewController == nil {
 			editViewController = CommentEditViewController_default(body: "")
-			editViewController!.modalPresentationStyle = .OverCurrentContext
+			editViewController!.modalPresentationStyle = .overCurrentContext
 			editViewController!.confirmButton?.titleLabel?.text = "Add comment"
 			editViewController!.confirmBodyClosure = addComment
-			presentViewController(editViewController!, animated: true, completion: nil)
+			present(editViewController!, animated: true, completion: nil)
 		}
 	}
 
 	//MARK: CommentListScreenletDelegate
 
-	func screenlet(screenlet: CommentListScreenlet, onCommentListError error: NSError) {
+	func screenlet(_ screenlet: CommentListScreenlet, onCommentListError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 
-	func screenlet(screenlet: CommentListScreenlet, onSelectedComment comment: Comment) {
+	func screenlet(_ screenlet: CommentListScreenlet, onSelectedComment comment: Comment) {
 		LiferayLogger.logDelegateMessage(args: comment)
 	}
 
-	func screenlet(screenlet: CommentListScreenlet, onListResponseComments comments: [Comment]) {
-		LiferayLogger.logDelegateMessage(args: comments)
+	func screenlet(_ screenlet: CommentListScreenlet, onListResponseComments comments: [Comment]) {
+		LiferayLogger.logDelegateMessage(args: comments as AnyObject?)
 	}
 
-	func screenlet(screenlet: CommentListScreenlet, onDeletedComment comment: Comment) {
+	func screenlet(_ screenlet: CommentListScreenlet, onDeletedComment comment: Comment) {
 		LiferayLogger.logDelegateMessage(args: comment)
 	}
 
-	func screenlet(screenlet: CommentListScreenlet, onCommentDelete comment: Comment,
+	func screenlet(_ screenlet: CommentListScreenlet, onCommentDelete comment: Comment,
 	               onError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 
-	func screenlet(screenlet: CommentListScreenlet, onUpdatedComment comment: Comment) {
+	func screenlet(_ screenlet: CommentListScreenlet, onUpdatedComment comment: Comment) {
 		LiferayLogger.logDelegateMessage(args: comment)
 	}
 
-	func screenlet(screenlet: CommentListScreenlet, onCommentUpdate comment: Comment,
+	func screenlet(_ screenlet: CommentListScreenlet, onCommentUpdate comment: Comment,
 	               onError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 
 	//MARK: Private methods
 
-	private func addComment(body: String?) {
-		editViewController?.dismissViewControllerAnimated(true) {
+	fileprivate func addComment(_ body: String?) {
+		editViewController?.dismiss(animated: true) {
 			self.editViewController = nil
 		}
 
-		if let newCommentBody = body, screenlet = listScreenlet {
+		if let newCommentBody = body, let screenlet = listScreenlet {
 			let interactor = CommentAddInteractor(
 				className: screenlet.className,
 				classPK: screenlet.classPK,

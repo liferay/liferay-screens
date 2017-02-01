@@ -41,26 +41,26 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 	
 	//MARK: AssetListScreenletDelegate
 	
-	func screenlet(screenlet: AssetListScreenlet, onAssetListResponse assets: [Asset]) {
-		LiferayLogger.logDelegateMessage(args: assets)
+	func screenlet(_ screenlet: AssetListScreenlet, onAssetListResponse assets: [Asset]) {
+		LiferayLogger.logDelegateMessage(args: assets as AnyObject?)
 	}
 	
-	func screenlet(screenlet: AssetListScreenlet, onAssetListError error: NSError) {
+	func screenlet(_ screenlet: AssetListScreenlet, onAssetListError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 	
-	func screenlet(screenlet: AssetListScreenlet, onAssetSelected asset: Asset) {
+	func screenlet(_ screenlet: AssetListScreenlet, onAssetSelected asset: Asset) {
 		LiferayLogger.logDelegateMessage(args: asset)
 		selectAssetEntry = asset
-		performSegueWithIdentifier(AssetDisplaySegue, sender: self)
+		performSegue(withIdentifier: AssetDisplaySegue, sender: self)
 	}
 	
 	
 	//MARK: UIViewController
 	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == AssetDisplaySegue {
-			let viewController = segue.destinationViewController as? AssetDisplayViewController
+			let viewController = segue.destination as? AssetDisplayViewController
 			viewController?.entryId = selectAssetEntry!.entryId
 		}
 	}

@@ -15,32 +15,32 @@ import UIKit
 import LiferayScreens
 
 
-public class WebContentListView_book: WebContentListView_default {
+open class WebContentListView_book: WebContentListView_default {
 
 	//MARK: BaseScreenletView
 
-	override public func doRegisterCellNibs() {
+	override open func doRegisterCellNibs() {
 		// register html cell
 		let htmlNib = UINib(nibName: "HtmlTableViewCell", bundle: nil)
 
-		tableView?.registerNib(htmlNib, forCellReuseIdentifier: "htmlCell")
+		tableView?.register(htmlNib, forCellReuseIdentifier: "htmlCell")
 
 		// register book cell
 		let bookNib = UINib(nibName: "BookTableViewCell", bundle: nil)
 
-		tableView?.registerNib(bookNib, forCellReuseIdentifier: "bookCell")
+		tableView?.register(bookNib, forCellReuseIdentifier: "bookCell")
 	}
 
-	override public func doCreateCell(cellId: String) -> UITableViewCell {
+	override open func doCreateCell(_ cellId: String) -> UITableViewCell {
 		switch cellId {
 			case "bookCell":
-				return BookTableViewCell(style: .Default, reuseIdentifier: cellId)
+				return BookTableViewCell(style: .default, reuseIdentifier: cellId)
 			default:
-				return HtmlTableViewCell(style: .Default, reuseIdentifier: cellId)
+				return HtmlTableViewCell(style: .default, reuseIdentifier: cellId)
 		}
 	}
 
-	override public func doGetCellId(row row: Int, object: AnyObject?) -> String {
+	override open func doGetCellId(row: Int, object: AnyObject?) -> String {
 		if let entry = object as? WebContent {
 			return (entry.structuredRecord == nil) ? "htmlCell" : "bookCell"
 		}
@@ -48,24 +48,24 @@ public class WebContentListView_book: WebContentListView_default {
 		return super.doGetCellId(row: row, object: object)
 	}
 
-	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
+	override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
 		if let entry = object as? WebContent {
 			if let record = entry.structuredRecord,
-					bookCell = cell as? BookTableViewCell {
+					let bookCell = cell as? BookTableViewCell {
 				let title = entry.title
 				let author = record.fieldBy(name: "author")?.currentValueAsLabel ?? ""
 				bookCell.loadData(title, author: author)
 			}
 			else if let htmlCell = cell as? HtmlTableViewCell,
-						html = entry.html {
+						let html = entry.html {
 				htmlCell.loadData(html)
 			}
-			cell.accessoryType = .None
+			cell.accessoryType = .none
 			cell.accessoryView = nil
 		}
 	}
 
-	public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+	open func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
 
 		let rows = rowsForSectionIndex(indexPath.section)
 		

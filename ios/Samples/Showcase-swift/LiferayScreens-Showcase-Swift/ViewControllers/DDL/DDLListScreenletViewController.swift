@@ -46,15 +46,15 @@ class DDLListScreenletViewController:
 	@IBOutlet weak var loadButton: UIButton? {
 		didSet {
 			loadButton?.replaceAttributedTitle(NSLocalizedString("load-button", comment: "LOAD"),
-			                                   forState: .Normal)
+			                                   forState: .normal)
 		}
 	}
 	
 	
 	//MARK: IBAction
 	
-	@IBAction func loadList(sender: AnyObject) {
-		if let id = recordSetIdTextField?.text, recordSetId = Int64(id) {
+	@IBAction func loadList(_ sender: AnyObject) {
+		if let id = recordSetIdTextField?.text, let recordSetId = Int64(id) {
 			screenlet?.recordSetId = recordSetId
 			screenlet?.labelFields = labelFieldsTextField?.text
 			screenlet?.obcClassName = selectedObcClassName
@@ -74,38 +74,38 @@ class DDLListScreenletViewController:
 	
 	//MARK: DDLListScreenletDelegate
 
-	func screenlet(screenlet: DDLListScreenlet, onDDLListError error: NSError) {
+	func screenlet(_ screenlet: DDLListScreenlet, onDDLListError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 	
-	func screenlet(screenlet: DDLListScreenlet, onDDLSelectedRecord record: DDLRecord) {
+	func screenlet(_ screenlet: DDLListScreenlet, onDDLSelectedRecord record: DDLRecord) {
 		LiferayLogger.logDelegateMessage(args: record)
 	}
 	
-	func screenlet(screenlet: DDLListScreenlet, onDDLListResponseRecords records: [DDLRecord]) {
-		LiferayLogger.logDelegateMessage(args: records)
+	func screenlet(_ screenlet: DDLListScreenlet, onDDLListResponseRecords records: [DDLRecord]) {
+		LiferayLogger.logDelegateMessage(args: records as AnyObject?)
 	}
 
 	
 	// MARK: UIPickerViewDataSource
 
-	func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+	func numberOfComponents(in pickerView: UIPickerView) -> Int {
 		return 1
 	}
 
-	func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+	func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
 		return pickerData.count
 	}
 	
 	
 	//MARK: UIPickerViewDelegate
 
-	func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 		selectedObcClassName = pickerData[row].className
 	}
 
-	func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-		let attrs = [NSFontAttributeName : UIFont.systemFontOfSize(3)]
+	func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+		let attrs = [NSFontAttributeName : UIFont.systemFont(ofSize: 3)]
 
 		return NSAttributedString(string: pickerData[row].name, attributes: attrs)
 	}

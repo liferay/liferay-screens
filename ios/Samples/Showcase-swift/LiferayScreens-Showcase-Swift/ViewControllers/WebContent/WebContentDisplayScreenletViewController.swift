@@ -33,18 +33,18 @@ class WebContentDisplayScreenletViewController: UIViewController, WebContentDisp
 
 	//MARK: WebContentDisplayScreenletDelegate
 
-	func screenlet(screenlet: WebContentDisplayScreenlet,
+	func screenlet(_ screenlet: WebContentDisplayScreenlet,
 			onWebContentResponse html: String ) -> String? {
-		LiferayLogger.logDelegateMessage(args: html)
+		LiferayLogger.logDelegateMessage(args: html as AnyObject?)
 		return nil
 	}
 
-	func screenlet(screenlet: WebContentDisplayScreenlet,
+	func screenlet(_ screenlet: WebContentDisplayScreenlet,
 		   onRecordContentResponse record: DDLRecord) {
 		LiferayLogger.logDelegateMessage(args: record)
 	}
 
-	func screenlet(screenlet: WebContentDisplayScreenlet,
+	func screenlet(_ screenlet: WebContentDisplayScreenlet,
 			onWebContentError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
@@ -52,7 +52,7 @@ class WebContentDisplayScreenletViewController: UIViewController, WebContentDisp
 	
 	//MARK: UIViewController
 	
-	override func viewWillDisappear(animated: Bool) {
+	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		
 		articleId = nil

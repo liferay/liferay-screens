@@ -33,14 +33,14 @@ class BlogDisplayScreenletViewController: UIViewController, BlogsEntryDisplayScr
 	@IBOutlet weak var loadButton: UIButton? {
 		didSet {
 			loadButton?.replaceAttributedTitle(NSLocalizedString("load-button", comment: "LOAD"),
-			                                   forState: .Normal)
+			                                   forState: .normal)
 		}
 	}
 
 	
 	//MARK: IBAction
 	
-	@IBAction func loadBlog(sender: AnyObject) {
+	@IBAction func loadBlog(_ sender: AnyObject) {
 		if let classPK = Int(blogClassPKLabel?.text ?? "") {
 			screenlet?.classPK = Int64(classPK)
 			screenlet?.load()
@@ -50,13 +50,13 @@ class BlogDisplayScreenletViewController: UIViewController, BlogsEntryDisplayScr
 	
 	//MARK: BlogsEntryDisplayScreenletDelegate
 	
-	func screenlet(screenlet: BlogsEntryDisplayScreenlet, onBlogEntryError error: NSError) {
+	func screenlet(_ screenlet: BlogsEntryDisplayScreenlet, onBlogEntryError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
-		screenlet.hidden = true
+		screenlet.isHidden = true
 	}
 	
-	func screenlet(screenlet: BlogsEntryDisplayScreenlet, onBlogEntryResponse blogEntry: BlogsEntry) {
+	func screenlet(_ screenlet: BlogsEntryDisplayScreenlet, onBlogEntryResponse blogEntry: BlogsEntry) {
 		LiferayLogger.logDelegateMessage(args: blogEntry)
-		screenlet.hidden = false
+		screenlet.isHidden = false
 	}
 }

@@ -32,11 +32,11 @@ class CommentAddScreenletViewController: UIViewController, CommentAddScreenletDe
 	
 	//MARK: CommentAddScreenletDelegate
 
-	func screenlet(screenlet: CommentAddScreenlet, onCommentAdded comment: Comment) {
+	func screenlet(_ screenlet: CommentAddScreenlet, onCommentAdded comment: Comment) {
 		LiferayLogger.logDelegateMessage(args: comment)
 	}
 	
-	func screenlet(screenlet: CommentAddScreenlet, onAddCommentError error: NSError) {
+	func screenlet(_ screenlet: CommentAddScreenlet, onAddCommentError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 

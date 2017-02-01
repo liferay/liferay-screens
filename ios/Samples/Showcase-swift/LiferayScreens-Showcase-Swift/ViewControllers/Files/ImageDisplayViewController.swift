@@ -24,7 +24,7 @@ class ImageDisplayViewController: UIViewController, FileDisplayScreenletDelegate
 		didSet {
 			screenlet?.delegate = self
 			screenlet?.presentingViewController = self
-			screenlet?.imageMode = .ScaleAspectFill
+			screenlet?.imageMode = .scaleAspectFill
 			screenlet?.classPK = LiferayServerContext.longPropertyForKey("imageDisplayClassPK")
 		}
 	}

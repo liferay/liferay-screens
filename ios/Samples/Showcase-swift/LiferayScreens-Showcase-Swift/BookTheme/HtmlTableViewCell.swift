@@ -16,10 +16,10 @@ import LiferayScreens
 
 class HtmlTableViewCell: UITableViewCell {
 
-	@IBOutlet private weak var webView: UIWebView!
+	@IBOutlet fileprivate weak var webView: UIWebView!
 
-	func loadData(html: String) {
-		webView.loadHTMLString(html, baseURL: NSURL(string: LiferayServerContext.server))
+	func loadData(_ html: String) {
+		webView.loadHTMLString(html, baseURL: URL(string: LiferayServerContext.server))
 	}
 
 }

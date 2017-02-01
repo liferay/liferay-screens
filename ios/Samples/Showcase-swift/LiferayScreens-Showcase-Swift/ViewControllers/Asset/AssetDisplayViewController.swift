@@ -44,23 +44,23 @@ class AssetDisplayViewController: UIViewController, AssetDisplayScreenletDelegat
 	
 	//MARK: AssetDisplayScreenletDelegate
 	
-	func screenlet(screenlet: AssetDisplayScreenlet, onAssetResponse asset: Asset) {
+	func screenlet(_ screenlet: AssetDisplayScreenlet, onAssetResponse asset: Asset) {
 		LiferayLogger.logDelegateMessage(args: asset)
 	}
 
-	func screenlet(screenlet: AssetDisplayScreenlet, onAssetError error: NSError) {
+	func screenlet(_ screenlet: AssetDisplayScreenlet, onAssetError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 
-	func screenlet(screenlet: AssetDisplayScreenlet,
+	func screenlet(_ screenlet: AssetDisplayScreenlet,
 	               onConfigureScreenlet childScreenlet: BaseScreenlet?,
 	               onAsset asset: Asset) {
 		LiferayLogger.logDelegateMessage(args: childScreenlet, asset)
 	}
 
-	func screenlet(screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView? {
+	func screenlet(_ screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView? {
 		let keys = asset.attributes["object"]!.allKeys
-		if keys.contains({$0 as? String == "user"}) {
+		if keys!.contains(where: {$0 as? String == "user"}) {
 			let userView = UserView()
 			let object = asset.attributes["object"] as! [String : AnyObject]
 

@@ -15,10 +15,10 @@ import UIKit
 
 class BookTableViewCell: UITableViewCell {
 
-	@IBOutlet private weak var titleLabel: UILabel!
-	@IBOutlet private weak var authorLabel: UILabel!
+	@IBOutlet fileprivate weak var titleLabel: UILabel!
+	@IBOutlet fileprivate weak var authorLabel: UILabel!
 
-	func loadData(title: String, author: String) {
+	func loadData(_ title: String, author: String) {
 		titleLabel.text = title
 		authorLabel.text = author
 	}

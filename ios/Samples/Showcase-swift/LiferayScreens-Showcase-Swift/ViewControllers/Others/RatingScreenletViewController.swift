@@ -30,7 +30,7 @@ class RatingScreenletViewController: UIViewController, RatingScreenletDelegate {
 	
 	//MARK: IBAction
 	
-	@IBAction func segmentedControlChanged(sender: UISegmentedControl) {
+	@IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
 		switch sender.selectedSegmentIndex {
 			case 1:
 				screenlet?.entryId = LiferayServerContext.longPropertyForKey("ratingLikeEntryId")
@@ -53,26 +53,26 @@ class RatingScreenletViewController: UIViewController, RatingScreenletDelegate {
 		screenlet?.loadRatings()
 	}
 
-    @IBAction func switchChange(sender: UISwitch) {
-		screenlet?.editable = sender.on
+    @IBAction func switchChange(_ sender: UISwitch) {
+		screenlet?.editable = sender.isOn
     }
 	
 	
 	//MARK: RatingScreenletDelegate
 	
-	func screenlet(screenlet: RatingScreenlet, onRatingRetrieve rating: RatingEntry) {
+	func screenlet(_ screenlet: RatingScreenlet, onRatingRetrieve rating: RatingEntry) {
 		LiferayLogger.logDelegateMessage(args: rating)
 	}
 	
-	func screenlet(screenlet: RatingScreenlet, onRatingDeleted rating: RatingEntry) {
+	func screenlet(_ screenlet: RatingScreenlet, onRatingDeleted rating: RatingEntry) {
 		LiferayLogger.logDelegateMessage(args: rating)
 	}
 	
-	func screenlet(screenlet: RatingScreenlet, onRatingUpdated rating: RatingEntry) {
+	func screenlet(_ screenlet: RatingScreenlet, onRatingUpdated rating: RatingEntry) {
 		LiferayLogger.logDelegateMessage(args: rating)
 	}
 	
-	func screenlet(screenlet: RatingScreenlet, onRatingError error: NSError) {
+	func screenlet(_ screenlet: RatingScreenlet, onRatingError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 }

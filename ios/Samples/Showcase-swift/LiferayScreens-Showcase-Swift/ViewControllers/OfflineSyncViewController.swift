@@ -19,25 +19,25 @@ class OfflineSyncViewController: UIViewController, SyncManagerDelegate {
 	@IBOutlet weak var button: UIButton!
 	@IBOutlet weak var log: UITextView!
 
-	private var syncManager: SyncManager?
+	fileprivate var syncManager: SyncManager?
 
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 		if let cacheManager = SessionContext.currentContext?.cacheManager {
 			syncManager = SyncManager(cacheManager: cacheManager)
 			syncManager?.delegate = self
-			button.enabled = true
+			button.isEnabled = true
 		}
 		else {
-			button.enabled = false
+			button.isEnabled = false
 		}
 	}
 
-	@IBAction func startSync(sender: AnyObject) {
+	@IBAction func startSync(_ sender: AnyObject) {
 		log.text = ""
 		syncManager?.startSync()
 	}
 
-	@IBAction func clear(sender: AnyObject) {
+	@IBAction func clear(_ sender: AnyObject) {
 		syncManager?.clear()
 		log.text = log.text + "Cleared!\n\n"
 	}
@@ -45,70 +45,70 @@ class OfflineSyncViewController: UIViewController, SyncManagerDelegate {
 	
 	//MARK: SyncManagerDelegate
 
-	func syncManager(manager: SyncManager, itemsCount: UInt) {
-		log.text.appendContentsOf("Start sync...  \(itemsCount) items\n\n")
+	func syncManager(_ manager: SyncManager, itemsCount: UInt) {
+		log.text.append("Start sync...  \(itemsCount) items\n\n")
 	}
 
-	func syncManager(manager: SyncManager,
+	func syncManager(_ manager: SyncManager,
 			onItemSyncScreenlet screenlet: String,
 			startKey: String,
 			attributes: [String:AnyObject]) {
-		log.text.appendContentsOf("[o] Start item. screenlet=\(screenlet) " +
+		log.text.append("[o] Start item. screenlet=\(screenlet) " +
 			"key=\(startKey) attrs=\(attributes)\n\n")
 	}
 
-	func syncManager(manager: SyncManager,
+	func syncManager(_ manager: SyncManager,
 			onItemSyncScreenlet screenlet: String,
 			completedKey: String,
 			attributes: [String:AnyObject]) {
-		log.text.appendContentsOf("[o] Item completed. screenlet=\(screenlet) " +
+		log.text.append("[o] Item completed. screenlet=\(screenlet) " +
 			"key=\(completedKey) attrs=\(attributes)\n\n")
 	}
 
-	func syncManager(manager: SyncManager,
+	func syncManager(_ manager: SyncManager,
 			onItemSyncScreenlet screenlet: String,
 			failedKey: String,
 			attributes: [String:AnyObject],
 			error: NSError) {
-		log.text.appendContentsOf("[o] Item failed. screenlet=\(screenlet) " +
+		log.text.append("[o] Item failed. screenlet=\(screenlet) " +
 			"key=\(failedKey) attrs=\(attributes) error=\(error)\n\n")
 	}
 
-	func syncManager(manager: SyncManager,
+	func syncManager(_ manager: SyncManager,
 		onItemSyncScreenlet screenlet: String,
 		conflictedKey: String,
 		remoteValue: AnyObject,
 		localValue: AnyObject,
-		resolve: SyncConflictResolution -> ()) {
+		resolve: @escaping (SyncConflictResolution) -> ()) {
 
-		log.text.appendContentsOf("[o] Item conflicted. screenlet=\(screenlet) " +
+		log.text.append("[o] Item conflicted. screenlet=\(screenlet) " +
 			"key=\(conflictedKey) remote=\(remoteValue) local=\(localValue)\nProcessing... ")
 
 		let alert = UIAlertController(title: "Conflicted", message: "Choose resolve action",
-		                              preferredStyle: .ActionSheet)
+		                              preferredStyle: .actionSheet)
 
 		alert.addAction(
-			UIAlertAction(title: "Use local", style: .Default) { action in
-				self.log.text.appendContentsOf("using local version\n\n")
-				resolve(.UseLocal)
+			UIAlertAction(title: "Use local", style: .default) { action in
+				self.log.text.append("using local version\n\n")
+				resolve(.useLocal)
 			})
 		alert.addAction(
-			UIAlertAction(title: "Use remote", style: .Default) { action in
-				self.log.text.appendContentsOf("using remote version\n\n")
-				resolve(.UseRemote)
+			UIAlertAction(title: "Use remote", style: .default) { action in
+				self.log.text.append("using remote version\n\n")
+				resolve(.useRemote)
 			})
 		alert.addAction(
-			UIAlertAction(title: "Discard", style: .Destructive) { action in
-				self.log.text.appendContentsOf("conflict discarded\n\n")
-				resolve(.Discard)
+			UIAlertAction(title: "Discard", style: .destructive) { action in
+				self.log.text.append("conflict discarded\n\n")
+				resolve(.discard)
 			})
 		alert.addAction(
-			UIAlertAction(title: "Ignore", style: .Cancel) { action in
-				self.log.text.appendContentsOf("conflict ignored\n\n")
-				resolve(.Ignore)
+			UIAlertAction(title: "Ignore", style: .cancel) { action in
+				self.log.text.append("conflict ignored\n\n")
+				resolve(.ignore)
 			})
 
-		self.presentViewController(alert, animated: true, completion: nil)
+		self.present(alert, animated: true, completion: nil)
 	}
 
 }

@@ -10,15 +10,15 @@ import UIKit
 
 extension UIImage {
 	func grayScaleImage() -> UIImage {
-		let imageRect = CGRectMake(0, 0, self.size.width, self.size.height)
+		let imageRect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
 		let colorSpace = CGColorSpaceCreateDeviceGray()
 
 		let width = Int(self.size.width)
 		let height = Int(self.size.height)
-		let context = CGBitmapContextCreate(nil, width, height, 8, 0, colorSpace, .allZeros)
-		CGContextDrawImage(context!, imageRect, self.CGImage!)
+		let context = CGContext(data: nil, width: width, height: height, bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: .allZeros)
+		context!.draw(self.cgImage!, in: imageRect)
 
-		let imageRef = CGBitmapContextCreateImage(context!)
-		return UIImage(CGImage: imageRef!)
+		let imageRef = context!.makeImage()
+		return UIImage(cgImage: imageRef!)
 	}
 }
