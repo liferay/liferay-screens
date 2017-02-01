@@ -13,10 +13,10 @@
  */
 import UIKit
 
-public class CommentListPageLiferayConnector: PaginationLiferayConnector {
+open class CommentListPageLiferayConnector: PaginationLiferayConnector {
 
-	public let className: String
-	public let classPK: Int64
+	open let className: String
+	open let classPK: Int64
 
 
 	//MARK: Initializers
@@ -36,7 +36,7 @@ public class CommentListPageLiferayConnector: PaginationLiferayConnector {
 
 	//MARK: ServerConnector
 
-	override public func validateData() -> ValidationError? {
+	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -53,20 +53,20 @@ public class CommentListPageLiferayConnector: PaginationLiferayConnector {
 	}
 }
 
-public class Liferay70CommentListPageConnector: CommentListPageLiferayConnector {
+open class Liferay70CommentListPageConnector: CommentListPageLiferayConnector {
 
 
 	//MARK: PaginationLiferayConnector
 
-	public override func doAddPageRowsServiceCall(
-			session session: LRBatchSession,
+	open override func doAddPageRowsServiceCall(
+			session: LRBatchSession,
 			startRow: Int,
 			endRow: Int,
 			obc: LRJSONObjectWrapper?) {
 		let service = LRScreenscommentService_v70(session: session)
 
 		do {
-			try service.getCommentsWithClassName(className,
+			try service?.getCommentsWithClassName(className,
 					classPK: classPK,
 					start: Int32(startRow),
 					end: Int32(endRow))
@@ -75,11 +75,11 @@ public class Liferay70CommentListPageConnector: CommentListPageLiferayConnector 
 		}
 	}
 
-	override public func doAddRowCountServiceCall(session session: LRBatchSession) {
+	override open func doAddRowCountServiceCall(session: LRBatchSession) {
 		let service = LRScreenscommentService_v70(session: session)
 
 		do {
-			try service.getCommentsCountWithClassName(className, classPK: classPK)
+			try service?.getCommentsCount(withClassName: className, classPK: classPK)
 		}
 		catch _ as NSError {
 		}

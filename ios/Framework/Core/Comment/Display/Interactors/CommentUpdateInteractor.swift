@@ -14,13 +14,13 @@
 import UIKit
 
 
-public class CommentUpdateInteractor: ServerWriteConnectorInteractor {
+open class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 
 	let commentId: Int64
 
 	let body: String
 
-	public var resultComment: Comment?
+	open var resultComment: Comment?
 
 
 	//MARK: Initializers
@@ -42,22 +42,22 @@ public class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 
 	//MARK: ServerConnectorInteractor
 
-	override public func createConnector() -> CommentUpdateLiferayConnector? {
+	override open func createConnector() -> CommentUpdateLiferayConnector? {
 		return LiferayServerContext.connectorFactory.createCommentUpdateConnector(
 				commentId: commentId,
 				body: body)
 	}
 
-	public override func completedConnector(c: ServerConnector) {
+	open override func completedConnector(_ c: ServerConnector) {
 		if let updateCon = (c as? CommentUpdateLiferayConnector),
-				comment = updateCon.resultComment {
+				let comment = updateCon.resultComment {
 			self.resultComment = comment
 		}
 	}
 
 	//MARK: Cache methods
 
-	override public func writeToCache(c: ServerConnector) {
+	override open func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
@@ -65,33 +65,33 @@ public class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 			return
 		}
 
-		let cacheFunction = (cacheStrategy == .CacheFirst || c.lastError != nil)
+		let cacheFunction = (cacheStrategy == .cacheFirst || c.lastError != nil)
 			? cacheManager.setDirty
 			: cacheManager.setClean
 
 		cacheFunction(
-			collection: "CommentsScreenlet",
-			key: "update-commentId-\(updateCon.commentId)",
-			value: "",
-			attributes: [
-				"commentId": NSNumber(longLong: updateCon.commentId),
-				"body": updateCon.body,
+			"CommentsScreenlet",
+			"update-commentId-\(updateCon.commentId)",
+			"" as NSCoding,
+			[
+				"commentId": NSNumber(value: updateCon.commentId),
+				"body": updateCon.body as AnyObject,
 			],
-			onCompletion: nil)
+			nil)
 	}
 
 
 	//MARK: Interactor
 
-	override public func callOnSuccess() {
-		if cacheStrategy == .CacheFirst {
+	override open func callOnSuccess() {
+		if cacheStrategy == .cacheFirst {
 			SessionContext.currentContext?.cacheManager.setClean(
 				collection: "CommentsScreenlet",
 				key: "update-commentId-\(commentId)",
-				value: "",
+				value: "" as NSCoding,
 				attributes: [
-					"commentId": NSNumber(longLong: commentId),
-					"body": body,
+					"commentId": NSNumber(value: commentId),
+					"body": body as AnyObject,
 				],
 				onCompletion: nil)
 		}

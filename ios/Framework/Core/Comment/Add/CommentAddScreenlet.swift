@@ -21,7 +21,7 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - comment: asset's comment.
-	optional func screenlet(screenlet: CommentAddScreenlet,
+	@objc optional func screenlet(_ screenlet: CommentAddScreenlet,
 			onCommentAdded comment: Comment)
 
 	/// Called when an error occurs while adding a comment.
@@ -30,7 +30,7 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - error: error while adding comment.
-	optional func screenlet(screenlet: CommentAddScreenlet,
+	@objc optional func screenlet(_ screenlet: CommentAddScreenlet,
 			onAddCommentError error: NSError)
 
 	/// Called when the screenlet prepares a comment for update.
@@ -38,7 +38,7 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - comment: asset's comment.
-	optional func screenlet(screenlet: CommentAddScreenlet,
+	@objc optional func screenlet(_ screenlet: CommentAddScreenlet,
 			onCommentUpdated comment: Comment)
 
 	/// Called when an error occurs while updating a comment.
@@ -47,32 +47,32 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - error: error while updating comment.
-	optional func screenlet(screenlet: CommentAddScreenlet,
+	@objc optional func screenlet(_ screenlet: CommentAddScreenlet,
 			onUpdateCommentError error: NSError)
 
 }
 
 
-public class CommentAddScreenlet: BaseScreenlet {
+open class CommentAddScreenlet: BaseScreenlet {
 
 
 	//MARK: Inspectables
 
-	@IBInspectable public var className: String = ""
+	@IBInspectable open var className: String = ""
 
-	@IBInspectable public var classPK: Int64 = 0
+	@IBInspectable open var classPK: Int64 = 0
 
-	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-	public var commentAddDelegate: CommentAddScreenletDelegate? {
+	open var commentAddDelegate: CommentAddScreenletDelegate? {
 		return delegate as? CommentAddScreenletDelegate
 	}
 
-	public var viewModel: CommentAddViewModel {
+	open var viewModel: CommentAddViewModel {
 		return screenletView as! CommentAddViewModel
 	}
 
-	public var comment: Comment? {
+	open var comment: Comment? {
 		didSet {
 			if let comment = self.comment {
 				viewModel.body = comment.plainBody
@@ -83,7 +83,7 @@ public class CommentAddScreenlet: BaseScreenlet {
 
 	//MARK: BaseScreenlet
 
-	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
 		if comment != nil {
 			return createUpdateCommentInteractor()
 		}
@@ -93,10 +93,10 @@ public class CommentAddScreenlet: BaseScreenlet {
 
 	//MARK: Private methods
 
-	private func createAddCommentInteractor() -> Interactor {
+	fileprivate func createAddCommentInteractor() -> Interactor {
 		let interactor = CommentAddInteractor(screenlet: self, body: self.viewModel.body)
 
-		interactor.cacheStrategy = CacheStrategyType(rawValue: offlinePolicy ?? "") ?? .RemoteFirst
+		interactor.cacheStrategy = CacheStrategyType(rawValue: offlinePolicy ?? "") ?? .remoteFirst
 
 		interactor.onSuccess = {
 			if let resultComment = interactor.resultComment {
@@ -105,7 +105,7 @@ public class CommentAddScreenlet: BaseScreenlet {
 			}
 			else {
 				self.commentAddDelegate?.screenlet?(self, onAddCommentError: NSError.errorWithCause(
-						.InvalidServerResponse, message: "Could not add comment."))
+						.invalidServerResponse, message: "Could not add comment."))
 			}
 		}
 
@@ -116,7 +116,7 @@ public class CommentAddScreenlet: BaseScreenlet {
 		return interactor
 	}
 
-	private func createUpdateCommentInteractor() -> Interactor {
+	fileprivate func createUpdateCommentInteractor() -> Interactor {
 		let interactor = CommentUpdateInteractor(
 			commentId: comment!.commentId,
 			body: self.viewModel.body)
@@ -129,7 +129,7 @@ public class CommentAddScreenlet: BaseScreenlet {
 			else {
 				self.commentAddDelegate?.screenlet?(self,
 				                                    onUpdateCommentError: NSError.errorWithCause(
-														.InvalidServerResponse,
+														.invalidServerResponse,
 														message: "Could not update comment."))
 			}
 		}

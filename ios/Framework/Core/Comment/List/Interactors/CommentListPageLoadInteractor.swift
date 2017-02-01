@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class CommentListPageLoadInteractor: BaseListPageLoadInteractor {
+open class CommentListPageLoadInteractor: BaseListPageLoadInteractor {
 
 	let className: String
 
@@ -38,7 +38,7 @@ public class CommentListPageLoadInteractor: BaseListPageLoadInteractor {
 
 	//MARK: BaseListPageLoadInteractor
 
-	override public func createListPageConnector() -> PaginationLiferayConnector {
+	override open func createListPageConnector() -> PaginationLiferayConnector {
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
 
 		return LiferayServerContext.connectorFactory.createCommentListPageConnector(
@@ -49,11 +49,11 @@ public class CommentListPageLoadInteractor: BaseListPageLoadInteractor {
 			computeRowCount: self.computeRowCount)!
 	}
 
-	override public func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
+	override open func convertResult(_ serverResult: [String:AnyObject]) -> AnyObject {
 		return Comment(attributes: serverResult)
 	}
 
-	override public func cacheKey(op: PaginationLiferayConnector) -> String {
+	override open func cacheKey(_ op: PaginationLiferayConnector) -> String {
 		return "COMMENTS_\(classPK)_\(className)"
 	}
 

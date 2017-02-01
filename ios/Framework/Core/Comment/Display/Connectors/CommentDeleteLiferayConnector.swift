@@ -13,9 +13,9 @@
  */
 import UIKit
 
-public class CommentDeleteLiferayConnector: ServerConnector {
+open class CommentDeleteLiferayConnector: ServerConnector {
 
-	public let commentId: Int64
+	open let commentId: Int64
 
 
 	//MARK: Initializers
@@ -28,7 +28,7 @@ public class CommentDeleteLiferayConnector: ServerConnector {
 
 	//MARK: ServerConnector
 
-	override public func validateData() -> ValidationError? {
+	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -42,17 +42,17 @@ public class CommentDeleteLiferayConnector: ServerConnector {
 
 }
 
-public class Liferay70CommentDeleteConnector: CommentDeleteLiferayConnector {
+open class Liferay70CommentDeleteConnector: CommentDeleteLiferayConnector {
 
 
 	//MARK: ServerConnector
 	
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 		let service = LRCommentmanagerjsonwsService_v7(session: session)
 
 		var error: NSError? = nil
 
-		service.deleteCommentWithCommentId(commentId, error: &error)
+		service?.deleteComment(withCommentId: commentId, error: &error)
 
 		lastError = error
 	}

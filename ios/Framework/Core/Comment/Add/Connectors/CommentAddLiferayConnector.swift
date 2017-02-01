@@ -13,13 +13,13 @@
  */
 import UIKit
 
-public class CommentAddLiferayConnector: ServerConnector {
+open class CommentAddLiferayConnector: ServerConnector {
 
-	public let className: String
-	public let classPK: Int64
-	public let body: String
+	open let className: String
+	open let classPK: Int64
+	open let body: String
 
-	public var resultComment: Comment?
+	open var resultComment: Comment?
 
 
 	//MARK: Initializers
@@ -34,7 +34,7 @@ public class CommentAddLiferayConnector: ServerConnector {
 
 	//MARK: ServerConnector
 
-	override public func validateData() -> ValidationError? {
+	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -57,16 +57,16 @@ public class CommentAddLiferayConnector: ServerConnector {
 
 }
 
-public class Liferay70CommentAddConnector: CommentAddLiferayConnector {
+open class Liferay70CommentAddConnector: CommentAddLiferayConnector {
 
 	
 	//MARK: ServerConnector
 
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 		let service = LRScreenscommentService_v70(session: session)
 
 		do {
-			let result = try service.addCommentWithClassName(className,
+			let result = try service?.addComment(withClassName: className,
 					classPK: classPK,
 					body: Comment.plainBodyToHtml(body))
 
@@ -75,7 +75,7 @@ public class Liferay70CommentAddConnector: CommentAddLiferayConnector {
 				lastError = nil
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				lastError = NSError.errorWithCause(.invalidServerResponse,
 				                                   message: "Could not add comment.")
 				resultComment = nil
 			}

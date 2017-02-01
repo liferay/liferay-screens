@@ -13,12 +13,12 @@
  */
 import UIKit
 
-public class CommentUpdateLiferayConnector: ServerConnector {
+open class CommentUpdateLiferayConnector: ServerConnector {
 
-	public let commentId: Int64
-	public let body: String
+	open let commentId: Int64
+	open let body: String
 
-	public var resultComment: Comment?
+	open var resultComment: Comment?
 
 
 	//MARK: Initializers
@@ -33,7 +33,7 @@ public class CommentUpdateLiferayConnector: ServerConnector {
 
 	//MARK: ServerConnector
 
-	override public func validateData() -> ValidationError? {
+	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -52,18 +52,18 @@ public class CommentUpdateLiferayConnector: ServerConnector {
 
 }
 
-public class Liferay70CommentUpdateConnector: CommentUpdateLiferayConnector {
+open class Liferay70CommentUpdateConnector: CommentUpdateLiferayConnector {
 
 
 	//MARK: ServerConnector
 
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 		resultComment = nil
 
 		let service = LRScreenscommentService_v70(session: session)
 
 		do {
-			let result = try service.updateCommentWithCommentId(commentId,
+			let result = try service?.updateComment(withCommentId: commentId,
 					body: Comment.plainBodyToHtml(body))
 
 			if let result = result as? [String: AnyObject] {
@@ -71,7 +71,7 @@ public class Liferay70CommentUpdateConnector: CommentUpdateLiferayConnector {
 				lastError = nil
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				lastError = NSError.errorWithCause(.invalidServerResponse,
 				                                   message: "Could not update comment with this commentId.")
 				resultComment = nil
 			}

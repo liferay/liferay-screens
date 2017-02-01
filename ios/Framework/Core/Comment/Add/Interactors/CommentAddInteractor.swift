@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class CommentAddInteractor: ServerWriteConnectorInteractor {
+open class CommentAddInteractor: ServerWriteConnectorInteractor {
 
 	let className: String
 
@@ -24,7 +24,7 @@ public class CommentAddInteractor: ServerWriteConnectorInteractor {
 
 	var cacheKeyUsed: String?
 
-	public var resultComment: Comment?
+	open var resultComment: Comment?
 
 
 	//MARK: Initializers
@@ -66,23 +66,23 @@ public class CommentAddInteractor: ServerWriteConnectorInteractor {
 
 	//MARK: ServerConnectorInteractor
 
-	override public func createConnector() -> CommentAddLiferayConnector? {
+	override open func createConnector() -> CommentAddLiferayConnector? {
 		return LiferayServerContext.connectorFactory.createCommentAddConnector(
 				className: className,
 				classPK: classPK,
 				body: body)
 	}
 
-	override public func completedConnector(c: ServerConnector) {
+	override open func completedConnector(_ c: ServerConnector) {
 		if let addCon = (c as? CommentAddLiferayConnector),
-				comment = addCon.resultComment {
+				let comment = addCon.resultComment {
 			self.resultComment = comment
 		}
 	}
 
 	//MARK: Cache methods
 
-	override public func writeToCache(c: ServerConnector) {
+	override open func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
@@ -90,7 +90,7 @@ public class CommentAddInteractor: ServerWriteConnectorInteractor {
 			return
 		}
 
-		let cacheFunction = (cacheStrategy == .CacheFirst || c.lastError != nil)
+		let cacheFunction = (cacheStrategy == .cacheFirst || c.lastError != nil)
 			? cacheManager.setDirty
 			: cacheManager.setClean
 
@@ -100,32 +100,32 @@ public class CommentAddInteractor: ServerWriteConnectorInteractor {
 			cacheKey = cacheKeyUsed
 		}
 		else {
-			cacheKey = "add-comment-\(NSUUID().UUIDString)"
+			cacheKey = "add-comment-\(UUID().uuidString)"
 			cacheKeyUsed = cacheKey
 		}
 
 		cacheFunction(
-			collection: "CommentsScreenlet",
-			key: cacheKey,
-			value: "",
-			attributes: [
-				"className": addCon.className,
-				"classPK": NSNumber(longLong: addCon.classPK),
-				"body": addCon.body,
+			"CommentsScreenlet",
+			cacheKey,
+			"" as NSCoding,
+			[
+				"className": addCon.className as AnyObject,
+				"classPK": NSNumber(value: addCon.classPK as Int64),
+				"body": addCon.body as AnyObject,
 			],
-			onCompletion: nil)
+			nil)
 	}
 
-	override public func callOnSuccess() {
-		if cacheStrategy == .CacheFirst {
+	override open func callOnSuccess() {
+		if cacheStrategy == .cacheFirst {
 			SessionContext.currentContext?.cacheManager.setClean(
 				collection: "CommentsScreenlet",
 				key: cacheKeyUsed!,
-				value: "",
+				value: "" as NSCoding,
 				attributes: [
-					"className": className,
-					"classPK": NSNumber(longLong: classPK),
-					"body": body,
+					"className": className as AnyObject,
+					"classPK": NSNumber(value: classPK as Int64),
+					"body": body as AnyObject,
 				],
 				onCompletion: nil)
 		}
