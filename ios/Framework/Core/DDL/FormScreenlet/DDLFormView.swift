@@ -14,25 +14,25 @@
 import UIKit
 
 
-public class DDLFormView: BaseScreenletView, DDLFormViewModel {
+open class DDLFormView: BaseScreenletView, DDLFormViewModel {
 
 	//MARK: DDLFormViewModel
 
-	public var showSubmitButton = true
+	open var showSubmitButton = true
 
-	public var record: DDLRecord?
+	open var record: DDLRecord?
 
-	public var isRecordEmpty: Bool {
+	open var isRecordEmpty: Bool {
 		return (record == nil) ? true : record!.fields.isEmpty
 	}
 
 
 	//MARK: Public methods
 
-	public func refresh() {
+	open func refresh() {
 	}
 
-	public func validateForm(autoscroll autoscroll: Bool) -> ValidationError? {
+	open func validateForm(autoscroll: Bool) -> ValidationError? {
 		var firstError: ValidationError?
 		var firstFailedField: DDMField?
 
@@ -43,7 +43,7 @@ public class DDLFormView: BaseScreenletView, DDLFormViewModel {
 				}
 				if firstError == nil {
 					let fmt = LocalizedString("ddlform-screenlet", key: "validation-field", obj: self)
-					let msg = NSString(format: fmt, $0.label).description
+					let msg = NSString(format: fmt as NSString, $0.label).description
 					firstError = ValidationError(msg)
 				}
 			}
@@ -56,21 +56,21 @@ public class DDLFormView: BaseScreenletView, DDLFormViewModel {
 		return firstError
 	}
 
-	public func getField(index: Int) -> DDMField? {
+	open func getField(_ index: Int) -> DDMField? {
 		return (record == nil) ? nil : record!.fields[index]
 	}
 
-	public func getFieldIndex(field: DDMField) -> Int? {
-		return (record == nil) ? nil : record!.fields.indexOf(field)
+	open func getFieldIndex(_ field: DDMField) -> Int? {
+		return (record == nil) ? nil : record!.fields.index(of: field)
 	}
 
 
 	//MARK: Internal methods
 
-	internal func changeDocumentUploadStatus(field:DDMFieldDocument) {
+	internal func changeDocumentUploadStatus(_ field:DDMFieldDocument) {
 	}
 
-	internal func forEachField(body:DDMField -> Void) {
+	internal func forEachField(_ body:(DDMField) -> Void) {
 		if let recordValue = record {
 			for field in recordValue.fields {
 				body(field)
@@ -78,7 +78,7 @@ public class DDLFormView: BaseScreenletView, DDLFormViewModel {
 		}
 	}
 
-	internal func showField(field:DDMField) {
+	internal func showField(_ field:DDMField) {
 	}
 
 }

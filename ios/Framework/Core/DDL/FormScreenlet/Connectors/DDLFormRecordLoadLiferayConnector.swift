@@ -14,13 +14,13 @@
 import UIKit
 
 
-public class DDLFormRecordLoadLiferayConnector: ServerConnector {
+open class DDLFormRecordLoadLiferayConnector: ServerConnector {
 
-	public let recordId: Int64
+	open let recordId: Int64
 
-	public var resultRecordData: [String:AnyObject]?
-	public var resultRecordAttributes: [String:AnyObject]?
-	public var resultRecordId: Int64?
+	open var resultRecordData: [String:AnyObject]?
+	open var resultRecordAttributes: [String:AnyObject]?
+	open var resultRecordId: Int64?
 
 
 	//MARK: Initializers
@@ -34,14 +34,14 @@ public class DDLFormRecordLoadLiferayConnector: ServerConnector {
 
 	//MARK: ServerConnector
 
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 		do {
 			let recordDic = try getRecord(session,
 					recordId: recordId,
 					locale: NSLocale.currentLocaleString)
 
-			if let resultData = recordDic["modelValues"] as? [String:AnyObject],
-					resultAttributes = recordDic["modelAttributes"] as? [String:AnyObject] {
+			if let resultData = recordDic["modelValues" as NSObject] as? [String:AnyObject],
+					let resultAttributes = recordDic["modelAttributes" as NSObject] as? [String:AnyObject] {
 				resultRecordData = resultData
 				resultRecordId = recordId
 				resultRecordAttributes = resultAttributes
@@ -53,7 +53,7 @@ public class DDLFormRecordLoadLiferayConnector: ServerConnector {
 				resultRecordAttributes = nil
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				lastError = NSError.errorWithCause(.invalidServerResponse,
 				                                   message: "Could not load record with this recordId.")
 				resultRecordData = nil
 				resultRecordId = nil
@@ -71,38 +71,38 @@ public class DDLFormRecordLoadLiferayConnector: ServerConnector {
 
 	//MARK: Public methods
 
-	public func getRecord(session: LRSession, recordId: Int64, locale: String) throws -> [NSObject:AnyObject] {
+	open func getRecord(_ session: LRSession, recordId: Int64, locale: String) throws -> [NSObject: AnyObject] {
 		return [:]
 	}
 
 }
 
 
-public class Liferay62DDLFormRecordLoadConnector: DDLFormRecordLoadLiferayConnector {
+open class Liferay62DDLFormRecordLoadConnector: DDLFormRecordLoadLiferayConnector {
 
 
 	//MARK: DDLFormRecordLoadLiferayConnector
 
-	override public func getRecord(session: LRSession, recordId: Int64, locale: String) throws -> [NSObject:AnyObject] {
+	override open func getRecord(_ session: LRSession, recordId: Int64, locale: String) throws -> [NSObject: AnyObject] {
 		let service = LRScreensddlrecordService_v62(session: session)
 
-		return try service.getDdlRecordWithDdlRecordId(recordId,
-			locale: NSLocale.currentLocaleString)
+		return try service?.getDdlRecord(withDdlRecordId: recordId,
+		locale: NSLocale.currentLocaleString) as! [NSObject : AnyObject]
 	}
 
 }
 
 
-public class Liferay70DDLFormRecordLoadConnector: DDLFormRecordLoadLiferayConnector {
+open class Liferay70DDLFormRecordLoadConnector: DDLFormRecordLoadLiferayConnector {
 
 
 	//MARK: DDLFormRecordLoadLiferayConnector
 	
-	override public func getRecord(session: LRSession, recordId: Int64, locale: String) throws -> [NSObject:AnyObject] {
+	override open func getRecord(_ session: LRSession, recordId: Int64, locale: String) throws ->  [NSObject : AnyObject] {
 		let service = LRScreensddlrecordService_v70(session: session)
 
-		return try service.getDdlRecordWithDdlRecordId(recordId,
-			locale: NSLocale.currentLocaleString)
+		return try service!.getDdlRecord(withDdlRecordId: recordId,
+			locale: NSLocale.currentLocaleString) as [NSObject: AnyObject]
 	}
 	
 }

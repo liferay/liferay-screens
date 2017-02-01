@@ -18,9 +18,9 @@ extension SyncManager {
 	func formSynchronizer(
 			key: String,
 			attributes: [String:AnyObject])
-			-> Signal -> () {
+			-> (@escaping Signal) -> () {
 
-		let recordSynchronizer = { (signal: Signal) -> () in
+		let recordSynchronizer = { (signal: @escaping Signal) -> () in
 			let record = attributes["record"] as! DDLRecord
 
 			if record.recordId != nil {
@@ -41,13 +41,13 @@ extension SyncManager {
 			}
 		}
 
-		let documentSynchronizer = { (signal: Signal) -> () in
+		let documentSynchronizer = { (signal: @escaping Signal) -> () in
 			// Do nothing. 
 			// When the record is sync-ed the documents will be sync-ed too
 			// Notify as this entry is finished
 			dispatch_main() {
 				self.delegate?.syncManager?(self,
-					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet.self),
 					completedKey: key, attributes: attributes)
 				signal()
 			}
@@ -60,7 +60,7 @@ extension SyncManager {
 			record localRecord: DDLRecord,
 			key: String,
 			attributes: [String:AnyObject],
-			signal: Signal) {
+			signal: @escaping Signal) {
 
 		precondition(localRecord.recordId != nil, "RecordId must be defined")
 
@@ -69,15 +69,15 @@ extension SyncManager {
 
 			if remoteRecord == nil {
 				self.delegate?.syncManager?(self,
-					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet.self),
 					failedKey: key,
 					attributes: attributes,
-					error: NSError.errorWithCause(.NotAvailable,
+					error: NSError.errorWithCause(.notAvailable,
 							message: "Synchronizer for check remote record not available."))
 				signal()
 			}
 			else if let localModifiedDate = localRecord.attributes["modifiedDate"]?.longLongValue,
-					remoteModifiedDate = remoteRecord!.attributes["modifiedDate"]?.longLongValue {
+					let remoteModifiedDate = remoteRecord!.attributes["modifiedDate"]?.longLongValue {
 
 				if remoteModifiedDate <= localModifiedDate {
 					self.sendLocalRecord(
@@ -97,10 +97,10 @@ extension SyncManager {
 			}
 			else {
 				self.delegate?.syncManager?(self,
-					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet.self),
 					failedKey: key,
 					attributes: attributes,
-					error: NSError.errorWithCause(.InvalidServerResponse,
+					error: NSError.errorWithCause(.invalidServerResponse,
 							message: "Synchronizer for send local record not available."))
 				signal()
 			}
@@ -108,20 +108,20 @@ extension SyncManager {
 	}
 
 	private func resolveConflict(
-			remoteRecord remoteRecord: DDLRecord,
+			remoteRecord: DDLRecord,
 			localRecord: DDLRecord,
 			key: String,
 			attributes: [String:AnyObject],
-			signal: Signal) {
+			signal: @escaping Signal) {
 
 		self.delegate?.syncManager?(self,
-				onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+				onItemSyncScreenlet: ScreenletName(DDLFormScreenlet.self),
 				conflictedKey: key,
 				remoteValue: remoteRecord,
 				localValue: localRecord) { resolution in
 
 			switch resolution {
-			case .UseLocal:
+			case .useLocal:
 				// send local to server
 				self.sendLocalRecord(
 					record: localRecord,
@@ -129,47 +129,48 @@ extension SyncManager {
 					attributes: attributes,
 					signal: signal)
 
-			case .UseRemote:
+			case .useRemote:
 				// overwrite cache with remote record
 				var newAttrs = attributes
 				newAttrs["record"] = remoteRecord
 
 				self.cacheManager.setClean(
-					collection: ScreenletName(DDLFormScreenlet),
+					collection: ScreenletName(DDLFormScreenlet.self),
 					key: DDLFormSubmitFormInteractor.cacheKey(localRecord.recordId),
-					value: remoteRecord.values,
+					value: remoteRecord.values as NSCoding,
 					attributes: newAttrs)
 
-			case .Discard:
+			case .discard:
 				// clear cache
 				self.cacheManager.remove(
-					collection: ScreenletName(DDLFormScreenlet),
+					collection: ScreenletName(DDLFormScreenlet.self),
 					key: key)
 
-			case .Ignore:
+			case .ignore:
 				// notify but keep cache
 				self.delegate?.syncManager?(self,
-					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet.self),
 					failedKey: key,
 					attributes: attributes,
-					error: NSError.errorWithCause(.AbortedDueToPreconditions,
+					error: NSError.errorWithCause(.abortedDueToPreconditions,
 							message: "Ignoring conflicts between records."))
 				signal()
 			}
 		}
 	}
 
-	private func loadRecord(recordId: Int64, result: DDLRecord? -> ()) {
+	private func loadRecord(_ recordId: Int64, result: @escaping (DDLRecord?) -> ()) {
 		let c = LiferayServerContext.connectorFactory.createDDLFormRecordLoadConnector(recordId)
 
 		c.validateAndEnqueue {
 			if let c = $0 as? DDLFormRecordLoadLiferayConnector,
-					recordData = c.resultRecordData,
-					recordAttributes = c.resultRecordAttributes {
+					let recordData = c.resultRecordData,
+					let recordAttributes = c.resultRecordAttributes {
 
 				let remoteRecord = DDLRecord(
 					data: recordData,
 					attributes: recordAttributes)
+
 
 				result(remoteRecord)
 			}
@@ -183,7 +184,7 @@ extension SyncManager {
 			record localRecord: DDLRecord,
 			key: String,
 			attributes: [String:AnyObject],
-			signal: Signal) {
+			signal: @escaping Signal) {
 
 		let cachedDocument = localRecord.fieldsBy(type: DDMFieldDocument.self)
 			.map {
@@ -193,7 +194,7 @@ extension SyncManager {
 			}.first
 
 		if let cachedDocument = cachedDocument {
-			sendLocalDocument(cachedDocument,
+			sendLocalDocument(document: cachedDocument,
 				record: localRecord,
 				recordKey: key,
 				recordAttributes: attributes,
@@ -209,17 +210,17 @@ extension SyncManager {
 			key: key,
 			attributes: attributes,
 			signal: signal,
-			screenletClassName: ScreenletName(DDLFormScreenlet))
+			screenletClassName: ScreenletName(DDLFormScreenlet.self))
 
-		interactor.cacheStrategy = .RemoteFirst
+		interactor.cacheStrategy = .remoteFirst
 
 		if !interactor.start() {
 			dispatch_main() {
 				self.delegate?.syncManager?(self,
-					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet.self),
 					failedKey: key,
 					attributes: attributes,
-					error: NSError.errorWithCause(.ValidationFailed,
+					error: NSError.errorWithCause(.validationFailed,
 							message: "Validation failed during send local record."))
 
 				signal()
@@ -232,20 +233,20 @@ extension SyncManager {
 			record: DDLRecord,
 			recordKey: String,
 			recordAttributes: [String:AnyObject],
-			signal: Signal) {
+			signal: @escaping Signal) {
 
 		precondition(
 			document.cachedKey != nil,
 			"Cached key is missing on local document")
 
 		self.cacheManager.getAnyWithAttributes(
-				collection: ScreenletName(DDLFormScreenlet),
+				collection: ScreenletName(DDLFormScreenlet.self),
 				key: document.cachedKey!) { object, attributes in
 
 			if let filePrefix = attributes?["filePrefix"] as? String,
-					folderId = attributes?["folderId"]?.longLongValue,
-					repositoryId = attributes?["repositoryId"]?.longLongValue,
-					groupId = attributes?["groupId"]?.longLongValue {
+					let folderId = attributes?["folderId"]?.longLongValue,
+					let repositoryId = attributes?["repositoryId"]?.longLongValue,
+					let groupId = attributes?["groupId"]?.longLongValue {
 
 				document.currentValue = object
 
@@ -256,10 +257,10 @@ extension SyncManager {
 					folderId: folderId,
 					document: document)
 
-				interactor.cacheStrategy = .CacheFirst
+				interactor.cacheStrategy = .cacheFirst
 
 				interactor.onSuccess = {
-					document.uploadStatus = .Uploaded(interactor.resultResponse!)
+					document.uploadStatus = .uploaded(interactor.resultResponse!)
 
 					// go on with record recursively
 					self.sendLocalRecord(
@@ -271,7 +272,7 @@ extension SyncManager {
 
 				interactor.onFailure = { err in
 					self.delegate?.syncManager?(self,
-						onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+						onItemSyncScreenlet: ScreenletName(DDLFormScreenlet.self),
 						failedKey: recordKey,
 						attributes: recordAttributes,
 						error: err)
@@ -283,10 +284,10 @@ extension SyncManager {
 				if !interactor.start() {
 					dispatch_main() {
 						self.delegate?.syncManager?(self,
-							onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+							onItemSyncScreenlet: ScreenletName(DDLFormScreenlet.self),
 							failedKey: recordKey,
 							attributes: recordAttributes,
-							error: NSError.errorWithCause(.ValidationFailed,
+							error: NSError.errorWithCause(.validationFailed,
 									message: "Validation failed during send local document."))
 						signal()
 					}
@@ -295,10 +296,10 @@ extension SyncManager {
 			else {
 				dispatch_main() {
 					self.delegate?.syncManager?(self,
-						onItemSyncScreenlet: ScreenletName(DDLFormScreenlet),
+						onItemSyncScreenlet: ScreenletName(DDLFormScreenlet.self),
 						failedKey: recordKey,
 						attributes: recordAttributes,
-						error: NSError.errorWithCause(.NotAvailable,
+						error: NSError.errorWithCause(.notAvailable,
 								message: "An error ocurred when sending local document."))
 
 					signal()

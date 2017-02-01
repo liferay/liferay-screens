@@ -16,55 +16,55 @@ import UIKit
 
 @objc public protocol DDLListScreenletDelegate : BaseScreenletDelegate {
 
-	optional func screenlet(screenlet: DDLListScreenlet,
+	@objc optional func screenlet(_ screenlet: DDLListScreenlet,
 			onDDLListResponseRecords records: [DDLRecord])
 
-	optional func screenlet(screenlet: DDLListScreenlet,
+	@objc optional func screenlet(_ screenlet: DDLListScreenlet,
 			onDDLListError error: NSError)
 
-	optional func screenlet(screenlet: DDLListScreenlet,
+	@objc optional func screenlet(_ screenlet: DDLListScreenlet,
 			onDDLSelectedRecord record: DDLRecord)
 
 }
 
 
-public class DDLListScreenlet: BaseListScreenlet {
+open class DDLListScreenlet: BaseListScreenlet {
 
 
 	//MARK: Inspectables
 	
-	@IBInspectable public var userId: Int64 = 0
+	@IBInspectable open var userId: Int64 = 0
 
-	@IBInspectable public var recordSetId: Int64 = 0
+	@IBInspectable open var recordSetId: Int64 = 0
 
-	@IBInspectable public var labelFields: String? {
+	@IBInspectable open var labelFields: String? {
 		didSet {
 			(screenletView as? DDLListViewModel)?.labelFields = parseFields(labelFields)
 		}
 	}
 
-	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
 
-	public var ddlListDelegate: DDLListScreenletDelegate? {
+	open var ddlListDelegate: DDLListScreenletDelegate? {
 		return delegate as? DDLListScreenletDelegate
 	}
 
-	public var viewModel: DDLListViewModel {
+	open var viewModel: DDLListViewModel {
 		return screenletView as! DDLListViewModel
 	}
 
 
 	//MARK: BaseListScreenlet
 
-	override public func onCreated() {
+	override open func onCreated() {
 		super.onCreated()
 
 		viewModel.labelFields = parseFields(self.labelFields)
 	}
 
-	override public func createPageLoadInteractor(
-			page page: Int,
+	override open func createPageLoadInteractor(
+			page: Int,
 			computeRowCount: Bool)
 			-> BaseListPageLoadInteractor {
 
@@ -75,25 +75,25 @@ public class DDLListScreenlet: BaseListScreenlet {
 				userId: self.userId,
 				recordSetId: self.recordSetId)
 
-		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .remoteFirst
 
 		return interactor
 	}
 
-	override public func onLoadPageError(page page: Int, error: NSError) {
+	override open func onLoadPageError(page: Int, error: NSError) {
 		super.onLoadPageError(page: page, error: error)
 
 		ddlListDelegate?.screenlet?(self, onDDLListError: error)
 	}
 
-	override public func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
+	override open func onLoadPageResult(page: Int, rows: [AnyObject], rowCount: Int) {
 		super.onLoadPageResult(page: page, rows: rows, rowCount: rowCount)
 
 		ddlListDelegate?.screenlet?(self,
 				onDDLListResponseRecords: rows as! [DDLRecord])
 	}
 
-	override public func onSelectedRow(row: AnyObject) {
+	override open func onSelectedRow(_ row: AnyObject) {
 		ddlListDelegate?.screenlet?(self,
 				onDDLSelectedRecord: row as! DDLRecord)
 	}
@@ -101,13 +101,13 @@ public class DDLListScreenlet: BaseListScreenlet {
 
 	//MARK: Private methods
 
-	private func parseFields(fields: String?) -> [String] {
+	fileprivate func parseFields(_ fields: String?) -> [String] {
 		var result: [String] = []
 
 		if let fieldsValue = fields {
-			let dirtyFields = (fieldsValue as NSString).componentsSeparatedByString(",")
+			let dirtyFields = (fieldsValue as NSString).components(separatedBy: ",")
 			result = dirtyFields.map() {
-				$0.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+				$0.trimmingCharacters(in: .whitespaces)
 			}
 			result = result.filter() { return $0 != "" }
 		}

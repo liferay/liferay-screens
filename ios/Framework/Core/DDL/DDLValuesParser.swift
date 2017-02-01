@@ -16,15 +16,15 @@ import Foundation
 
 //TODO unit tests
 
-public class DDLUntypedValuesParser {
+open class DDLUntypedValuesParser {
 
 	public init() {
 	}
 
-	public func parse(values: [String:AnyObject]) -> [DDMField] {
+	open func parse(_ values: [String:AnyObject]) -> [DDMField] {
 		var result:[DDMField] = []
 
-		let locale = NSLocale(localeIdentifier: NSLocale.currentLocaleString)
+		let locale = Locale(identifier: NSLocale.currentLocaleString)
 
 		for (fieldName, fieldValue) in values {
 			let field = DDMFieldUntyped(

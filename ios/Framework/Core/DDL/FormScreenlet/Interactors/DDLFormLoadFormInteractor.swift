@@ -29,7 +29,7 @@ class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 		return LiferayServerContext.connectorFactory.createDDLFormLoadConnector(screenlet.structureId)
 	}
 
-	override func completedConnector(c: ServerConnector) {
+	override func completedConnector(_ c: ServerConnector) {
 		if let loadCon = c as? DDLFormLoadLiferayConnector {
 			self.resultRecord = loadCon.resultRecord
 			self.resultUserId = loadCon.resultUserId
@@ -39,25 +39,25 @@ class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 
 	//MARK: Cache methods
 
-	override func writeToCache(c: ServerConnector) {
+	override func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
 
 		if let loadCon = c as? DDLFormLoadLiferayConnector,
-				record = loadCon.resultRecord,
-				userId = loadCon.resultUserId {
+				let record = loadCon.resultRecord,
+				let userId = loadCon.resultUserId {
 
 			cacheManager.setClean(
-				collection: ScreenletName(DDLFormScreenlet),
+				collection: ScreenletName(DDLFormScreenlet.self),
 				key: "structureId-\(loadCon.structureId)",
 				value: record,
 				attributes: [
-					"userId": userId.description])
+					"userId": userId.description as AnyObject])
 		}
 	}
 
-	override func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
+	override func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> ()) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
@@ -65,12 +65,12 @@ class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 
 		if let loadCon = c as? DDLFormLoadLiferayConnector {
 			cacheManager.getAnyWithAttributes(
-					collection: ScreenletName(DDLFormScreenlet),
+					collection: ScreenletName(DDLFormScreenlet.self),
 					key: "structureId-\(loadCon.structureId)") {
 				record, attributes in
 
 				loadCon.resultRecord = record as? DDLRecord
-				loadCon.resultUserId = attributes?["userId"]?.longLongValue
+				loadCon.resultUserId = attributes?["userId"]?.int64Value
 
 				result(loadCon.resultRecord)
 			}

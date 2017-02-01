@@ -28,17 +28,17 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 
 	var resultAttributes: NSDictionary?
 
-	private var lastCacheKeyUsed: String?
+	fileprivate var lastCacheKeyUsed: String?
 
 
 	//MARK: Class functions
 
-	class func cacheKey(recordId: Int64?) -> String {
+	class func cacheKey(_ recordId: Int64?) -> String {
 		if let recordId = recordId {
 			return "recordId-\(recordId)"
 		}
 		else {
-			return "draft-\(NSDate().timeIntervalSince1970)"
+			return "draft-\(Date().timeIntervalSince1970)"
 		}
 	}
 
@@ -63,13 +63,13 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 	}
 
 	init(cacheKey: String, record: DDLRecord) {
-		self.groupId = record.attributes["groupId"]?.longLongValue
+		self.groupId = record.attributes["groupId"]?.int64Value
 			?? LiferayServerContext.groupId
 
-		self.userId = record.attributes["userId"]?.longLongValue
+		self.userId = record.attributes["userId"]?.int64Value
 			?? SessionContext.currentContext?.user.userId
 
-		self.recordSetId = record.attributes["recordSetId"]!.longLongValue
+		self.recordSetId = record.attributes["recordSetId"]!.int64Value
 		self.record = record
 		self.lastCacheKeyUsed = cacheKey
 
@@ -104,7 +104,7 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 		return connector
 	}
 
-	override func completedConnector(c: ServerConnector) {
+	override func completedConnector(_ c: ServerConnector) {
 		if let loadCon = c as? DDLFormSubmitLiferayConnector {
 				self.resultRecordId = loadCon.resultRecordId
 				self.resultAttributes = loadCon.resultAttributes
@@ -118,14 +118,14 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 
 	//MARK: Cache methods
 
-	override func writeToCache(c: ServerConnector) {
+	override func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
 
 		let submitOp = c as! DDLFormSubmitLiferayConnector
 
-		let cacheFunction = (cacheStrategy == .CacheFirst || c.lastError != nil)
+		let cacheFunction = (cacheStrategy == .cacheFirst || c.lastError != nil)
 			? cacheManager.setDirty
 			: cacheManager.setClean
 
@@ -133,11 +133,11 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 			?? DDLFormSubmitFormInteractor.cacheKey(submitOp.recordId)
 
 		cacheFunction(
-			collection: ScreenletName(DDLFormScreenlet),
-			key: lastCacheKeyUsed!,
-			value: record.values,
-			attributes: cacheAttributes(),
-			onCompletion: nil)
+			ScreenletName(DDLFormScreenlet.self),
+			lastCacheKeyUsed!,
+			record.values as NSCoding,
+			cacheAttributes(),
+			nil)
 	}
 
 
@@ -148,7 +148,7 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 			return
 		}
 
-		if cacheStrategy == .CacheFirst {
+		if cacheStrategy == .cacheFirst {
 			precondition(
 				lastCacheKeyUsed != nil,
 				"CacheKey is expected on CacheFirst strategy")
@@ -158,19 +158,19 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 				if lastCacheKeyUsed!.hasPrefix("draft-")
 						&& record.recordId == nil {
 					cacheManager.remove(
-						collection: ScreenletName(DDLFormScreenlet),
+						collection: ScreenletName(DDLFormScreenlet.self),
 						key: lastCacheKeyUsed!)
 				}
 
 				cacheManager.setClean(
-					collection: ScreenletName(DDLFormScreenlet),
+					collection: ScreenletName(DDLFormScreenlet.self),
 					key: DDLFormSubmitFormInteractor.cacheKey(resultRecordId),
 					attributes: cacheAttributes())
 			}
 			else {
 				// update current cache entry with date sent
 				cacheManager.setClean(
-					collection: ScreenletName(DDLFormScreenlet),
+					collection: ScreenletName(DDLFormScreenlet.self),
 					key: lastCacheKeyUsed
 						?? DDLFormSubmitFormInteractor.cacheKey(record.recordId),
 					attributes: cacheAttributes())
@@ -183,14 +183,14 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 
 	//MARK: Private methods
 
-	private func cacheAttributes() -> [String:AnyObject] {
+	fileprivate func cacheAttributes() -> [String:AnyObject] {
 		let attrs = ["record": record]
 
 		if record.recordId == nil {
-			record.attributes["groupId"] = NSNumber(longLong: self.groupId)
-			record.attributes["recordSetId"] = NSNumber(longLong: self.recordSetId)
+			record.attributes["groupId"] = NSNumber(value: self.groupId)
+			record.attributes["recordSetId"] = NSNumber(value: self.recordSetId)
 			if let userId = self.userId {
-				record.attributes["userId"] = NSNumber(longLong: userId)
+				record.attributes["userId"] = NSNumber(value: userId)
 			}
 		}
 

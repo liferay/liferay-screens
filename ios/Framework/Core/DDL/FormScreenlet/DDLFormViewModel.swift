@@ -29,6 +29,6 @@ import UIKit
 	///
 	/// - Parameter autoscroll
 	/// - Returns: error if exists.
-	func validateForm(autoscroll autoscroll: Bool) -> ValidationError?
+	func validateForm(autoscroll: Bool) -> ValidationError?
 
 }

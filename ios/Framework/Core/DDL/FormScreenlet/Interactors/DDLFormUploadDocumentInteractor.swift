@@ -39,7 +39,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 
 	init(screenlet: BaseScreenlet?,
 			document: DDMFieldDocument,
-			onProgressClosure: OnProgress) {
+			onProgressClosure: @escaping OnProgress) {
 
 		let formScreenlet = screenlet as! DDLFormScreenlet
 
@@ -94,43 +94,43 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 			onProgress: self.onProgressClosure)
 	}
 
-	override func completedConnector(c: ServerConnector) {
+	override func completedConnector(_ c: ServerConnector) {
 		if let lastErrorValue = c.lastError {
-			if lastErrorValue.code == ScreensErrorCause.NotAvailable.rawValue {
+			if lastErrorValue.code == ScreensErrorCause.notAvailable.rawValue {
 				let cacheResult = DDMFieldDocument.UploadStatus.CachedStatusData(cacheKey())
 				self.resultResponse = cacheResult
-				document.uploadStatus = .Uploaded(cacheResult)
+				document.uploadStatus = .uploaded(cacheResult)
 			}
 			else {
-				document.uploadStatus = .Failed(lastErrorValue)
+				document.uploadStatus = .failed(lastErrorValue)
 			}
 		}
 		else if let uploadCon = c as? DDLFormUploadLiferayConnector {
 			self.resultResponse = uploadCon.uploadResult
-			document.uploadStatus = .Uploaded(uploadCon.uploadResult!)
+			document.uploadStatus = .uploaded(uploadCon.uploadResult!)
 		}
 	}
 
 
 	//MARK: Cache methods
 
-	override func writeToCache(c: ServerConnector) {
+	override func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
 
 		// cache only supports images (right now)
 		if let image = document.currentValue as? UIImage {
-			let cacheFunction = (cacheStrategy == .CacheFirst || c.lastError != nil)
+			let cacheFunction = (cacheStrategy == .cacheFirst || c.lastError != nil)
 				? cacheManager.setDirty
 				: cacheManager.setClean
 
 			cacheFunction(
-				collection: ScreenletName(DDLFormScreenlet),
-				key: cacheKey(),
-				value: image,
-				attributes: cacheAttributes(),
-				onCompletion: nil)
+				ScreenletName(DDLFormScreenlet.self),
+				cacheKey(),
+				image,
+				cacheAttributes(),
+				nil)
 		}
 	}
 
@@ -138,9 +138,9 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 	//MARK: Interactor
 
 	override func callOnSuccess() {
-		if cacheStrategy == .CacheFirst {
+		if cacheStrategy == .cacheFirst {
 			SessionContext.currentContext?.cacheManager.setClean(
-				collection: ScreenletName(DDLFormScreenlet),
+				collection: ScreenletName(DDLFormScreenlet.self),
 				key: cacheKey(),
 				attributes: cacheAttributes())
 		}
@@ -151,18 +151,18 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 
 	//MARK: Private methods
 
-	private func cacheKey() -> String {
-		lastCacheKey = lastCacheKey ?? "document-\(NSDate().timeIntervalSince1970)"
+	fileprivate func cacheKey() -> String {
+		lastCacheKey = lastCacheKey ?? "document-\(Date().timeIntervalSince1970)"
 		return lastCacheKey!
 	}
 
-	private func cacheAttributes() -> [String:AnyObject] {
+	fileprivate func cacheAttributes() -> [String:AnyObject] {
 		return [
 			"document": self.document,
-			"filePrefix": self.filePrefix,
-			"folderId": self.folderId.description,
-			"groupId": self.groupId.description,
-			"repositoryId": self.repositoryId.description
+			"filePrefix": self.filePrefix as AnyObject,
+			"folderId": self.folderId.description as AnyObject,
+			"groupId": self.groupId.description as AnyObject,
+			"repositoryId": self.repositoryId.description as AnyObject
 		]
 	}
 
