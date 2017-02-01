@@ -18,174 +18,174 @@ import Foundation
 public protocol LiferayConnectorFactory {
 
 	func createGetUserByEmailConnector(
-			companyId companyId: Int64,
+			companyId: Int64,
 			emailAddress: String) -> GetUserByEmailLiferayConnector
 
 	func createGetUserByScreenNameConnector(
-			companyId companyId: Int64,
+			companyId: Int64,
 			screenName: String) -> GetUserByScreenNameLiferayConnector
 
-	func createGetUserByUserIdConnector(userId userId: Int64) -> GetUserByUserIdLiferayConnector
+	func createGetUserByUserIdConnector(userId: Int64) -> GetUserByUserIdLiferayConnector
 
 	func createLoginByEmailConnector(
-		companyId companyId: Int64,
+		companyId: Int64,
 		emailAddress: String,
 		password: String) -> GetUserByEmailLiferayConnector
 
 	func createLoginByScreenNameConnector(
-		companyId companyId: Int64,
+		companyId: Int64,
 		screenName: String,
 		password: String) -> GetUserByScreenNameLiferayConnector
 
 	func createLoginByUserIdConnector(
-		userId userId: Int64,
+		userId: Int64,
 		password: String) -> GetUserByUserIdLiferayConnector
 
 	func createForgotPasswordByEmailConnector(
-		viewModel viewModel: ForgotPasswordViewModel,
+		viewModel: ForgotPasswordViewModel,
 		anonymousUsername: String,
 		anonymousPassword: String) -> ForgotPasswordBaseLiferayConnector
 
 	func createForgotPasswordByScreenNameConnector(
-		viewModel viewModel: ForgotPasswordViewModel,
+		viewModel: ForgotPasswordViewModel,
 		anonymousUsername: String,
 		anonymousPassword: String) -> ForgotPasswordBaseLiferayConnector
 
 	func createForgotPasswordByUserIdConnector(
-		viewModel viewModel: ForgotPasswordViewModel,
+		viewModel: ForgotPasswordViewModel,
 		anonymousUsername: String,
 		anonymousPassword: String) -> ForgotPasswordBaseLiferayConnector
 
 	func createSignUpConnector(
-		viewModel viewModel: SignUpViewModel,
+		viewModel: SignUpViewModel,
 		anonymousUsername: String,
 		anonymousPassword: String) -> SignUpLiferayConnector
 
 	func createUpdateCurrentUserConnector(
-		viewModel viewModel: SignUpViewModel) -> UpdateCurrentUserLiferayConnector
+		viewModel: SignUpViewModel) -> UpdateCurrentUserLiferayConnector
 
 	func createUploadUserPortraitConnector(
-		userId userId: Int64,
+		userId: Int64,
 		image: UIImage) -> UploadUserPortraitLiferayConnector
 
 	func createAssetListPageConnector(
-		startRow startRow: Int,
+		startRow: Int,
 		endRow: Int,
 		computeRowCount: Bool) -> AssetListPageLiferayConnector
 
 	func createWebContentListPageConnector(
-		groupId groupId: Int64,
+		groupId: Int64,
 		folderId: Int64,
 		startRow: Int,
 		endRow: Int,
 		computeRowCount: Bool) -> WebContentListPageLiferayConnector
 
 	func createDDLListPageConnector(
-		viewModel viewModel: DDLListViewModel,
+		viewModel: DDLListViewModel,
 		startRow: Int,
 		endRow: Int,
 		computeRowCount: Bool) -> DDLListPageLiferayConnector
 
 	func createWebContentLoadHtmlConnector(
-		groupId groupId: Int64,
+		groupId: Int64,
 		articleId: String) -> WebContentLoadHtmlLiferayConnector
 
 	func createWebContentLoadStructuredConnector(
-		groupId groupId: Int64,
+		groupId: Int64,
 		articleId: String,
 		structureId: Int64) -> WebContentLoadStructuredLiferayConnector
 
-	func createDDLFormLoadConnector(structureId: Int64) -> DDLFormLoadLiferayConnector
+	func createDDLFormLoadConnector(_ structureId: Int64) -> DDLFormLoadLiferayConnector
 
-	func createDDLFormRecordLoadConnector(recordId: Int64) -> DDLFormRecordLoadLiferayConnector
+	func createDDLFormRecordLoadConnector(_ recordId: Int64) -> DDLFormRecordLoadLiferayConnector
 
 	func createDDLFormSubmitConnector(
-		values values: [String:AnyObject],
+		values: [String:AnyObject],
 		viewModel: DDLFormViewModel?) -> DDLFormSubmitLiferayConnector
 
 	func createDDLFormUploadConnector(
-		document document: DDMFieldDocument,
+		document: DDMFieldDocument,
 		filePrefix: String,
 		repositoryId: Int64,
 		folderId: Int64,
 		onProgress: DDLFormUploadLiferayConnector.OnProgress?) -> DDLFormUploadLiferayConnector
 	
-	func createAssetLoadByEntryIdConnector(entryId: Int64) -> AssetLoadByEntryIdLiferayConnector?
+	func createAssetLoadByEntryIdConnector(_ entryId: Int64) -> AssetLoadByEntryIdLiferayConnector?
 
-	func createAssetLoadByClassPKConnector(className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector?
+	func createAssetLoadByClassPKConnector(_ className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector?
 
 	func createRatingLoadByEntryIdConnector(
-		entryId entryId: Int64,
+		entryId: Int64,
 		ratingsGroupCount: Int32) -> RatingLoadByEntryIdLiferayConnector?
 	
 	func createRatingLoadByClassPKConnector(
-		classPK: Int64,
+		_ classPK: Int64,
 		className: String,
 		ratingsGroupCount: Int32) -> RatingLoadByClassPKLiferayConnector?
 	
 	func createRatingUpdateConnector(
-		classPK classPK: Int64,
+		classPK: Int64,
 		className: String,
 		score: Double,
 		ratingsGroupCount: Int32) -> RatingUpdateLiferayConnector?
 	
 	func createRatingDeleteConnector(
-		classPK classPK: Int64,
+		classPK: Int64,
 		className: String,
 		ratingsGroupCount: Int32) -> RatingDeleteLiferayConnector?
 
-	func createImageGalleryDeleteConnector(imageEntryId: Int64) -> ImageGalleryDeleteConnector?
+	func createImageGalleryDeleteConnector(_ imageEntryId: Int64) -> ImageGalleryDeleteConnector?
 
 	func createCommentListPageConnector(
-		className className: String,
+		className: String,
 		classPK: Int64,
 		startRow: Int,
 		endRow: Int,
 		computeRowCount: Bool) -> CommentListPageLiferayConnector?
 
 	func createCommentAddConnector(
-		className className: String,
+		className: String,
 		classPK: Int64,
 		body: String) -> CommentAddLiferayConnector?
 
 	func createCommentLoadConnector(
-		commentId commentId: Int64) -> CommentLoadLiferayConnector?
+		commentId: Int64) -> CommentLoadLiferayConnector?
 
 	func createCommentDeleteConnector(
-		commentId commentId: Int64) -> CommentDeleteLiferayConnector?
+		commentId: Int64) -> CommentDeleteLiferayConnector?
 
 	func createCommentUpdateConnector(
-		commentId commentId: Int64,
+		commentId: Int64,
 		body: String) -> CommentUpdateLiferayConnector?
 
 }
 
 
 @objc(Liferay62ConnectorFactory)
-public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
+open class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 
-	public func createGetUserByEmailConnector(
-			companyId companyId: Int64,
+	open func createGetUserByEmailConnector(
+			companyId: Int64,
 			emailAddress: String) -> GetUserByEmailLiferayConnector {
 		return GetUserByEmailLiferay62Connector(
 			companyId: companyId,
 			emailAddress: emailAddress)
 	}
 
-	public func createGetUserByScreenNameConnector(
-			companyId companyId: Int64,
+	open func createGetUserByScreenNameConnector(
+			companyId: Int64,
 			screenName: String) -> GetUserByScreenNameLiferayConnector {
 		return GetUserByScreenNameLiferay62Connector(
 			companyId: companyId,
 			screenName: screenName)
 	}
 
-	public func createGetUserByUserIdConnector(userId userId: Int64) -> GetUserByUserIdLiferayConnector {
+	open func createGetUserByUserIdConnector(userId: Int64) -> GetUserByUserIdLiferayConnector {
 		return GetUserByUserIdLiferay62Connector(userId: userId)
 	}
 
-	public func createLoginByEmailConnector(
-			companyId companyId: Int64,
+	open func createLoginByEmailConnector(
+			companyId: Int64,
 			emailAddress: String,
 			password: String) -> GetUserByEmailLiferayConnector {
 		return LoginByEmailLiferay62Connector(
@@ -194,8 +194,8 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			password: password)
 	}
 
-	public func createLoginByScreenNameConnector(
-			companyId companyId: Int64,
+	open func createLoginByScreenNameConnector(
+			companyId: Int64,
 			screenName: String,
 			password: String) -> GetUserByScreenNameLiferayConnector {
 		return LoginByScreenNameLiferay62Connector(
@@ -204,14 +204,14 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			password: password)
 	}
 
-	public func createLoginByUserIdConnector(
-			userId userId: Int64,
+	open func createLoginByUserIdConnector(
+			userId: Int64,
 			password: String) -> GetUserByUserIdLiferayConnector {
 		return LoginByUserIdLiferay62Connector(userId: userId, password: password)
 	}
 
-	public func createForgotPasswordByEmailConnector(
-			viewModel viewModel: ForgotPasswordViewModel,
+	open func createForgotPasswordByEmailConnector(
+			viewModel: ForgotPasswordViewModel,
 			anonymousUsername: String,
 			anonymousPassword: String) -> ForgotPasswordBaseLiferayConnector {
 		return ForgotPasswordEmailLiferay62Connector(
@@ -220,8 +220,8 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			anonymousPassword: anonymousPassword)
 	}
 
-	public func createForgotPasswordByScreenNameConnector(
-			viewModel viewModel: ForgotPasswordViewModel,
+	open func createForgotPasswordByScreenNameConnector(
+			viewModel: ForgotPasswordViewModel,
 			anonymousUsername: String,
 			anonymousPassword: String) -> ForgotPasswordBaseLiferayConnector {
 		return ForgotPasswordScreenNameLiferay62Connector(
@@ -230,8 +230,8 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			anonymousPassword: anonymousPassword)
 	}
 
-	public func createForgotPasswordByUserIdConnector(
-			viewModel viewModel: ForgotPasswordViewModel,
+	open func createForgotPasswordByUserIdConnector(
+			viewModel: ForgotPasswordViewModel,
 			anonymousUsername: String,
 			anonymousPassword: String) -> ForgotPasswordBaseLiferayConnector {
 		return ForgotPasswordUserIdLiferay62Connector(
@@ -240,8 +240,8 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			anonymousPassword: anonymousPassword)
 	}
 
-	public func createSignUpConnector(
-			viewModel viewModel: SignUpViewModel,
+	open func createSignUpConnector(
+			viewModel: SignUpViewModel,
 			anonymousUsername: String,
 			anonymousPassword: String) -> SignUpLiferayConnector {
 		return Liferay62SignUpConnector(
@@ -250,21 +250,21 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			anonymousPassword: anonymousPassword)
 	}
 
-	public func createUpdateCurrentUserConnector(
-		viewModel viewModel: SignUpViewModel) -> UpdateCurrentUserLiferayConnector {
+	open func createUpdateCurrentUserConnector(
+		viewModel: SignUpViewModel) -> UpdateCurrentUserLiferayConnector {
 		return Liferay62UpdateCurrentUserConnector(viewModel: viewModel)
 	}
 
-	public func createUploadUserPortraitConnector(
-			userId userId: Int64,
+	open func createUploadUserPortraitConnector(
+			userId: Int64,
 			image: UIImage) -> UploadUserPortraitLiferayConnector {
 		return Liferay62UploadUserPortraitConnector(
 			userId: userId,
 			image: image)
 	}
 
-	public func createAssetListPageConnector(
-			startRow startRow: Int,
+	open func createAssetListPageConnector(
+			startRow: Int,
 			endRow: Int,
 			computeRowCount: Bool) -> AssetListPageLiferayConnector {
 		return Liferay62AssetListPageConnector(
@@ -273,8 +273,8 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			computeRowCount: computeRowCount)
 	}
 
-	public func createWebContentListPageConnector(
-			groupId groupId: Int64,
+	open func createWebContentListPageConnector(
+			groupId: Int64,
 			folderId: Int64,
 			startRow: Int,
 			endRow: Int,
@@ -287,8 +287,8 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			folderId: folderId)
 	}
 
-	public func createDDLListPageConnector(
-			viewModel viewModel: DDLListViewModel,
+	open func createDDLListPageConnector(
+			viewModel: DDLListViewModel,
 			startRow: Int,
 			endRow: Int,
 			computeRowCount: Bool) -> DDLListPageLiferayConnector {
@@ -299,16 +299,16 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			computeRowCount: computeRowCount)
 	}
 
-	public func createWebContentLoadHtmlConnector(
-			groupId groupId: Int64,
+	open func createWebContentLoadHtmlConnector(
+			groupId: Int64,
 			articleId: String) -> WebContentLoadHtmlLiferayConnector {
 		return Liferay62WebContentLoadHtmlConnector(
 			groupId: groupId,
 			articleId: articleId)
 	}
 
-	public func createWebContentLoadStructuredConnector(
-			groupId groupId: Int64,
+	open func createWebContentLoadStructuredConnector(
+			groupId: Int64,
 			articleId: String,
 			structureId: Int64) -> WebContentLoadStructuredLiferayConnector {
 		return Liferay62WebContentLoadStructuredConnector(
@@ -317,24 +317,24 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			structureId: structureId)
 	}
 
-	public func createDDLFormLoadConnector(structureId: Int64) -> DDLFormLoadLiferayConnector {
+	open func createDDLFormLoadConnector(_ structureId: Int64) -> DDLFormLoadLiferayConnector {
 		return Liferay62DDLFormLoadConnector(structureId: structureId)
 	}
 
-	public func createDDLFormRecordLoadConnector(recordId: Int64) -> DDLFormRecordLoadLiferayConnector {
+	open func createDDLFormRecordLoadConnector(_ recordId: Int64) -> DDLFormRecordLoadLiferayConnector {
 		return Liferay62DDLFormRecordLoadConnector(recordId: recordId)
 	}
 
-	public func createDDLFormSubmitConnector(
-			values values: [String:AnyObject],
+	open func createDDLFormSubmitConnector(
+			values: [String:AnyObject],
 			viewModel: DDLFormViewModel?) -> DDLFormSubmitLiferayConnector {
 		return Liferay62DDLFormSubmitConnector(
 			values: values,
 			viewModel: viewModel)
 	}
 
-	public func createDDLFormUploadConnector(
-			document document: DDMFieldDocument,
+	open func createDDLFormUploadConnector(
+			document: DDMFieldDocument,
 			filePrefix: String,
 			repositoryId: Int64,
 			folderId: Int64,
@@ -347,33 +347,33 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			onProgress: onProgress)
 	}
 	
-	public func createRatingLoadByEntryIdConnector(
-			entryId entryId: Int64,
+	open func createRatingLoadByEntryIdConnector(
+			entryId: Int64,
 			ratingsGroupCount: Int32) -> RatingLoadByEntryIdLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: AssetLoadByEntryIdLiferayConnector")
 		return nil
 	}
 
-	public func createAssetLoadByEntryIdConnector(entryId: Int64) -> AssetLoadByEntryIdLiferayConnector? {
+	open func createAssetLoadByEntryIdConnector(_ entryId: Int64) -> AssetLoadByEntryIdLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: RatingLoadByEntryIdLiferayConnector")
 		return nil
 	}
 	
-	public func createRatingLoadByClassPKConnector(
-			classPK: Int64,
+	open func createRatingLoadByClassPKConnector(
+			_ classPK: Int64,
 			className: String,
 			ratingsGroupCount: Int32) -> RatingLoadByClassPKLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: RatingLoadByClassPKLiferayConnector")
 		return nil
 	}
 
-	public func createAssetLoadByClassPKConnector(className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector? {
+	open func createAssetLoadByClassPKConnector(_ className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: AssetLoadByClassPKLiferayConnector")
 		return nil
 	}
 	
-	public func createRatingUpdateConnector(
-			classPK classPK: Int64,
+	open func createRatingUpdateConnector(
+			classPK: Int64,
 			className: String,
 			score: Double,
 			ratingsGroupCount: Int32) -> RatingUpdateLiferayConnector? {
@@ -381,20 +381,20 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 		return nil
 	}
 	
-	public func createRatingDeleteConnector(
-			classPK classPK: Int64,
+	open func createRatingDeleteConnector(
+			classPK: Int64,
 			className: String,
 			ratingsGroupCount: Int32) -> RatingDeleteLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: RatingDeleteLiferayConnector")
 		return nil
 	}
 
-	public func createImageGalleryDeleteConnector(imageEntryId: Int64) -> ImageGalleryDeleteConnector? {
+	open func createImageGalleryDeleteConnector(_ imageEntryId: Int64) -> ImageGalleryDeleteConnector? {
 		return nil
 	}
 	
-	public func createCommentListPageConnector(
-			className className: String,
+	open func createCommentListPageConnector(
+			className: String,
 			classPK: Int64,
 			startRow: Int,
 			endRow: Int,
@@ -403,27 +403,27 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 		return nil
 	}
 
-	public func createCommentAddConnector(
-			className className: String,
+	open func createCommentAddConnector(
+			className: String,
 			classPK: Int64,
 			body: String) -> CommentAddLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: CommentAddLiferayConnector")
 		return nil
 	}
 
-	public func createCommentLoadConnector(
-			commentId commentId: Int64) -> CommentLoadLiferayConnector? {
+	open func createCommentLoadConnector(
+			commentId: Int64) -> CommentLoadLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: CommentLoadLiferayConnector")
 		return nil
 	}
 
-	public func createCommentDeleteConnector(commentId commentId: Int64) -> CommentDeleteLiferayConnector? {
+	open func createCommentDeleteConnector(commentId: Int64) -> CommentDeleteLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: CommentDeleteLiferayConnector")
 		return nil
 	}
 
-	public func createCommentUpdateConnector(
-			commentId commentId: Int64,
+	open func createCommentUpdateConnector(
+			commentId: Int64,
 			body: String) -> CommentUpdateLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: CommentUpdateLiferayConnector")
 		return nil
@@ -433,30 +433,30 @@ public class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 
 
 @objc(Liferay70ConnectorFactory)
-public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
+open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 
-	public func createGetUserByEmailConnector(
-			companyId companyId: Int64,
+	open func createGetUserByEmailConnector(
+			companyId: Int64,
 			emailAddress: String) -> GetUserByEmailLiferayConnector {
 		return GetUserByEmailLiferay70Connector(
 			companyId: companyId,
 			emailAddress: emailAddress)
 	}
 
-	public func createGetUserByScreenNameConnector(
-			companyId companyId: Int64,
+	open func createGetUserByScreenNameConnector(
+			companyId: Int64,
 			screenName: String) -> GetUserByScreenNameLiferayConnector {
 		return GetUserByScreenNameLiferay70Connector(
 			companyId: companyId,
 			screenName: screenName)
 	}
 
-	public func createGetUserByUserIdConnector(userId userId: Int64) -> GetUserByUserIdLiferayConnector {
+	open func createGetUserByUserIdConnector(userId: Int64) -> GetUserByUserIdLiferayConnector {
 		return GetUserByUserIdLiferay70Connector(userId: userId)
 	}
 
-	public func createLoginByEmailConnector(
-			companyId companyId: Int64,
+	open func createLoginByEmailConnector(
+			companyId: Int64,
 			emailAddress: String,
 			password: String) -> GetUserByEmailLiferayConnector {
 		return LoginByEmailLiferay70Connector(
@@ -465,8 +465,8 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			password: password)
 	}
 
-	public func createLoginByScreenNameConnector(
-			companyId companyId: Int64,
+	open func createLoginByScreenNameConnector(
+			companyId: Int64,
 			screenName: String,
 			password: String) -> GetUserByScreenNameLiferayConnector {
 		return LoginByScreenNameLiferay70Connector(
@@ -475,14 +475,14 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			password: password)
 	}
 
-	public func createLoginByUserIdConnector(
-			userId userId: Int64,
+	open func createLoginByUserIdConnector(
+			userId: Int64,
 			password: String) -> GetUserByUserIdLiferayConnector {
 		return LoginByUserIdLiferay70Connector(userId: userId, password: password)
 	}
 
-	public func createForgotPasswordByEmailConnector(
-			viewModel viewModel: ForgotPasswordViewModel,
+	open func createForgotPasswordByEmailConnector(
+			viewModel: ForgotPasswordViewModel,
 			anonymousUsername: String,
 			anonymousPassword: String) -> ForgotPasswordBaseLiferayConnector {
 		return ForgotPasswordEmailLiferay70Connector(
@@ -491,8 +491,8 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			anonymousPassword: anonymousPassword)
 	}
 
-	public func createForgotPasswordByScreenNameConnector(
-			viewModel viewModel: ForgotPasswordViewModel,
+	open func createForgotPasswordByScreenNameConnector(
+			viewModel: ForgotPasswordViewModel,
 			anonymousUsername: String,
 			anonymousPassword: String) -> ForgotPasswordBaseLiferayConnector {
 		return ForgotPasswordScreenNameLiferay70Connector(
@@ -501,8 +501,8 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			anonymousPassword: anonymousPassword)
 	}
 
-	public func createForgotPasswordByUserIdConnector(
-			viewModel viewModel: ForgotPasswordViewModel,
+	open func createForgotPasswordByUserIdConnector(
+			viewModel: ForgotPasswordViewModel,
 			anonymousUsername: String,
 			anonymousPassword: String) -> ForgotPasswordBaseLiferayConnector {
 		return ForgotPasswordUserIdLiferay70Connector(
@@ -511,8 +511,8 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			anonymousPassword: anonymousPassword)
 	}
 
-	public func createSignUpConnector(
-			viewModel viewModel: SignUpViewModel,
+	open func createSignUpConnector(
+			viewModel: SignUpViewModel,
 			anonymousUsername: String,
 			anonymousPassword: String) -> SignUpLiferayConnector {
 		return Liferay70SignUpConnector(
@@ -521,21 +521,21 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			anonymousPassword: anonymousPassword)
 	}
 
-	public func createUpdateCurrentUserConnector(
-			viewModel viewModel: SignUpViewModel) -> UpdateCurrentUserLiferayConnector {
+	open func createUpdateCurrentUserConnector(
+			viewModel: SignUpViewModel) -> UpdateCurrentUserLiferayConnector {
 		return Liferay70UpdateCurrentUserConnector(viewModel: viewModel)
 	}
 
-	public func createUploadUserPortraitConnector(
-			userId userId: Int64,
+	open func createUploadUserPortraitConnector(
+			userId: Int64,
 			image: UIImage) -> UploadUserPortraitLiferayConnector {
 		return Liferay70UploadUserPortraitConnector(
 			userId: userId,
 			image: image)
 	}
 
-	public func createAssetListPageConnector(
-			startRow startRow: Int,
+	open func createAssetListPageConnector(
+			startRow: Int,
 			endRow: Int,
 			computeRowCount: Bool) -> AssetListPageLiferayConnector {
 		return Liferay70AssetListPageConnector(
@@ -544,8 +544,8 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			computeRowCount: computeRowCount)
 	}
 
-	public func createWebContentListPageConnector(
-			groupId groupId: Int64,
+	open func createWebContentListPageConnector(
+			groupId: Int64,
 			folderId: Int64,
 			startRow: Int,
 			endRow: Int,
@@ -558,8 +558,8 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			folderId: folderId)
 	}
 
-	public func createDDLListPageConnector(
-			viewModel viewModel: DDLListViewModel,
+	open func createDDLListPageConnector(
+			viewModel: DDLListViewModel,
 			startRow: Int,
 			endRow: Int,
 			computeRowCount: Bool) -> DDLListPageLiferayConnector {
@@ -570,16 +570,16 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			computeRowCount: computeRowCount)
 	}
 
-	public func createWebContentLoadHtmlConnector(
-			groupId groupId: Int64,
+	open func createWebContentLoadHtmlConnector(
+			groupId: Int64,
 			articleId: String) -> WebContentLoadHtmlLiferayConnector {
 		return Liferay70WebContentLoadHtmlConnector(
 			groupId: groupId,
 			articleId: articleId)
 	}
 
-	public func createWebContentLoadStructuredConnector(
-			groupId groupId: Int64,
+	open func createWebContentLoadStructuredConnector(
+			groupId: Int64,
 			articleId: String,
 			structureId: Int64) -> WebContentLoadStructuredLiferayConnector {
 		return Liferay70WebContentLoadStructuredConnector(
@@ -588,24 +588,24 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			structureId: structureId)
 	}
 
-	public func createDDLFormLoadConnector(structureId: Int64) -> DDLFormLoadLiferayConnector {
+	open func createDDLFormLoadConnector(_ structureId: Int64) -> DDLFormLoadLiferayConnector {
 		return Liferay70DDLFormLoadConnector(structureId: structureId)
 	}
 
-	public func createDDLFormRecordLoadConnector(recordId: Int64) -> DDLFormRecordLoadLiferayConnector {
+	open func createDDLFormRecordLoadConnector(_ recordId: Int64) -> DDLFormRecordLoadLiferayConnector {
 		return Liferay70DDLFormRecordLoadConnector(recordId: recordId)
 	}
 
-	public func createDDLFormSubmitConnector(
-			values values: [String:AnyObject],
+	open func createDDLFormSubmitConnector(
+			values: [String:AnyObject],
 			viewModel: DDLFormViewModel?) -> DDLFormSubmitLiferayConnector {
 		return Liferay70DDLFormSubmitConnector(
 			values: values,
 			viewModel: viewModel)
 	}
 
-	public func createDDLFormUploadConnector(
-			document document: DDMFieldDocument,
+	open func createDDLFormUploadConnector(
+			document: DDMFieldDocument,
 			filePrefix: String,
 			repositoryId: Int64,
 			folderId: Int64,
@@ -618,16 +618,16 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			onProgress: onProgress)
 	}
 	
-	public func createRatingLoadByEntryIdConnector(
-			entryId entryId: Int64,
+	open func createRatingLoadByEntryIdConnector(
+			entryId: Int64,
 			ratingsGroupCount: Int32) -> RatingLoadByEntryIdLiferayConnector? {
 		return Liferay70RatingLoadByEntryIdConnector(
 			entryId: entryId,
 			ratingsGroupCount: ratingsGroupCount)
 	}
 	
-	public func createRatingLoadByClassPKConnector(
-			classPK: Int64,
+	open func createRatingLoadByClassPKConnector(
+			_ classPK: Int64,
 			className: String,
 			ratingsGroupCount: Int32) -> RatingLoadByClassPKLiferayConnector? {
 		return Liferay70RatingLoadByClassPKConnector(
@@ -636,8 +636,8 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			ratingsGroupCount: ratingsGroupCount)
 	}
 	
-	public func createRatingUpdateConnector(
-			classPK classPK: Int64,
+	open func createRatingUpdateConnector(
+			classPK: Int64,
 			className: String,
 			score: Double,
 			ratingsGroupCount: Int32) -> RatingUpdateLiferayConnector? {
@@ -648,8 +648,8 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			ratingsGroupCount: ratingsGroupCount)
 	}
 	
-	public func createRatingDeleteConnector(
-			classPK classPK: Int64,
+	open func createRatingDeleteConnector(
+			classPK: Int64,
 			className: String,
 			ratingsGroupCount: Int32) -> RatingDeleteLiferayConnector? {
 		return Liferay70RatingDeleteConnector(
@@ -658,12 +658,12 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			ratingsGroupCount: ratingsGroupCount)
 	}
 
-	public func createImageGalleryDeleteConnector(imageEntryId: Int64) -> ImageGalleryDeleteConnector? {
+	open func createImageGalleryDeleteConnector(_ imageEntryId: Int64) -> ImageGalleryDeleteConnector? {
 		return ImageGalleryDeleteConnector(imageEntryId: imageEntryId)
 	}
 
-	public func createCommentListPageConnector(
-			className className: String,
+	open func createCommentListPageConnector(
+			className: String,
 			classPK: Int64,
 			startRow: Int,
 			endRow: Int,
@@ -676,8 +676,8 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			computeRowCount: computeRowCount)
 	}
 
-	public func createCommentAddConnector(
-			className className: String,
+	open func createCommentAddConnector(
+			className: String,
 			classPK: Int64,
 			body: String) -> CommentAddLiferayConnector? {
 		return Liferay70CommentAddConnector(
@@ -686,30 +686,30 @@ public class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			body: body)
 	}
 
-	public func createCommentLoadConnector(
-			commentId commentId: Int64) -> CommentLoadLiferayConnector? {
+	open func createCommentLoadConnector(
+			commentId: Int64) -> CommentLoadLiferayConnector? {
 		return Liferay70CommentLoadConnector(
 			commentId: commentId)
 	}
 
-	public func createCommentDeleteConnector(commentId commentId: Int64) -> CommentDeleteLiferayConnector? {
+	open func createCommentDeleteConnector(commentId: Int64) -> CommentDeleteLiferayConnector? {
 		return Liferay70CommentDeleteConnector(
 			commentId: commentId)
 	}
 
-	public func createCommentUpdateConnector(
-			commentId commentId: Int64,
+	open func createCommentUpdateConnector(
+			commentId: Int64,
 			body: String) -> CommentUpdateLiferayConnector? {
 		return Liferay70CommentUpdateConnector(
 			commentId: commentId,
 			body: body)
 	}
 
-	public func createAssetLoadByEntryIdConnector(entryId: Int64) -> AssetLoadByEntryIdLiferayConnector? {
+	open func createAssetLoadByEntryIdConnector(_ entryId: Int64) -> AssetLoadByEntryIdLiferayConnector? {
 		return Liferay70AssetLoadByEntryIdConnector(entryId: entryId)
 	}
 
-	public func createAssetLoadByClassPKConnector(className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector? {
+	open func createAssetLoadByClassPKConnector(_ className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector? {
 		return Liferay70AssetLoadByClassPKConnector(className: className, classPK: classPK)
 	}
 

@@ -22,18 +22,18 @@ import Foundation
 }
 
 
-@objc public class LiferayServerContext: NSObject {
+@objc open class LiferayServerContext: NSObject {
 
 	//MARK: Singleton type
 
-	private struct StaticInstance {
+	fileprivate struct StaticInstance {
 		static var serverProperties: NSMutableDictionary?
 	}
 
 
 	//MARK: Public properties
 
-	public class var server: String {
+	open class var server: String {
 		get {
 			loadContextFile()
 			return StaticInstance.serverProperties!["server"] as! String
@@ -44,7 +44,7 @@ import Foundation
 		}
 	}
 
-	public class var serverVersion: LiferayServerVersion {
+	open class var serverVersion: LiferayServerVersion {
 		get {
 			loadContextFile()
 			let value = StaticInstance.serverProperties?["version"]
@@ -59,29 +59,29 @@ import Foundation
 		}
 	}
 
-	public class var companyId: Int64 {
+	open class var companyId: Int64 {
 		get {
 			loadContextFile()
-			return (StaticInstance.serverProperties!["companyId"] as! NSNumber).longLongValue
+			return (StaticInstance.serverProperties!["companyId"] as! NSNumber).int64Value
 		}
 		set {
 			loadContextFile()
-			StaticInstance.serverProperties!["companyId"] = NSNumber(longLong: newValue)
+			StaticInstance.serverProperties!["companyId"] = NSNumber(value: newValue)
 		}
 	}
 
-	public class var groupId: Int64 {
+	open class var groupId: Int64 {
 		get {
 			loadContextFile()
-			return (StaticInstance.serverProperties!["groupId"] as! NSNumber).longLongValue
+			return (StaticInstance.serverProperties!["groupId"] as! NSNumber).int64Value
 		}
 		set {
 			loadContextFile()
-			StaticInstance.serverProperties!["groupId"] = NSNumber(longLong: newValue)
+			StaticInstance.serverProperties!["groupId"] = NSNumber(value: newValue)
 		}
 	}
 
-	public class var factory: ScreensFactory {
+	open class var factory: ScreensFactory {
 		get {
 			loadContextFile()
 			return StaticInstance.serverProperties!["factory"] as! ScreensFactory
@@ -92,7 +92,7 @@ import Foundation
 		}
 	}
 
-	public class var connectorFactory: LiferayConnectorFactory {
+	open class var connectorFactory: LiferayConnectorFactory {
 		get {
 			loadContextFile()
 			return StaticInstance.serverProperties!["connectorFactory"] as! LiferayConnectorFactory
@@ -106,22 +106,22 @@ import Foundation
 
 	//MARK: Public methods
 
-	public class func setPropertyValue(value: AnyObject, forKey key: String) {
+	open class func setPropertyValue(_ value: AnyObject, forKey key: String) {
 		loadContextFile()
 		return StaticInstance.serverProperties![key] = value
 	}
 	
-	public class func propertyForKey(key: String) -> AnyObject {
+	open class func propertyForKey(_ key: String) -> AnyObject {
 		loadContextFile()
 		
 		guard let value = StaticInstance.serverProperties?[key] else {
 			fatalError("Missing key \(key) on liferay-server-context.plist file")
 		}
 		
-		return value
+		return value as AnyObject
 	}
 	
-	public class func numberPropertyForKey(key: String) -> NSNumber {
+	open class func numberPropertyForKey(_ key: String) -> NSNumber {
 		guard let value = propertyForKey(key) as? NSNumber else {
 			fatalError("Key \(key) is not a NSNumber")
 		}
@@ -129,15 +129,15 @@ import Foundation
 		return value
 	}
 	
-	public class func longPropertyForKey(key: String) -> Int64 {
-		return numberPropertyForKey(key).longLongValue
+	open class func longPropertyForKey(_ key: String) -> Int64 {
+		return numberPropertyForKey(key).int64Value
 	}
 	
-	public class func intPropertyForKey(key: String) -> Int {
-		return numberPropertyForKey(key).integerValue
+	open class func intPropertyForKey(_ key: String) -> Int {
+		return numberPropertyForKey(key).intValue
 	}
 	
-	public class func booleanPropertyForKey(key: String) -> Bool {
+	open class func booleanPropertyForKey(_ key: String) -> Bool {
 		guard let value = propertyForKey(key) as? Bool else {
 			fatalError("Key \(key) is not a Boolean")
 		}
@@ -145,15 +145,15 @@ import Foundation
 		return value
 	}
 	
-	public class func datePropertyForKey(key: String) -> NSDate {
-		guard let value = propertyForKey(key) as? NSDate else {
+	open class func datePropertyForKey(_ key: String) -> Date {
+		guard let value = propertyForKey(key) as? Date else {
 			fatalError("Key \(key) is not a NSDate")
 		}
 		
 		return value
 	}
 	
-	public class func stringPropertyForKey(key: String) -> String {
+	open class func stringPropertyForKey(_ key: String) -> String {
 		guard let value = propertyForKey(key) as? String else {
 			fatalError("Key \(key) is not a String")
 		}
@@ -164,7 +164,7 @@ import Foundation
 
 	//MARK: Private methods
 
-	private class func loadContextFile() {
+	fileprivate class func loadContextFile() {
 
 		func createFactory() {
 			guard let className = StaticInstance.serverProperties?["factory"] as? String else {
@@ -206,7 +206,7 @@ import Foundation
 			return
 		}
 
-		let bundles = Array(NSBundle.allBundles(self).reverse())
+		let bundles = Array(Bundle.allBundles(self).reversed())
 
 		var found = false
 		var foundFallback = false
@@ -218,14 +218,14 @@ import Foundation
 			let bundle = bundles[i]
 			i += 1
 
-			if let path = bundle.pathForResource(PlistFile, ofType:"plist") {
+			if let path = bundle.path(forResource: PlistFile, ofType:"plist") {
 				StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: path)
 				createFactory()
 				createConnectorFactory()
 				found = true
 			}
 			else {
-				if let path = bundle.pathForResource(PlistFileSample, ofType:"plist") {
+				if let path = bundle.path(forResource: PlistFileSample, ofType:"plist") {
 					StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: path)
 					createFactory()
 					createConnectorFactory()

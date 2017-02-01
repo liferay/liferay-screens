@@ -19,13 +19,13 @@ import UIKit
 #endif
 
 
-@objc public class BaseCredentialsStoreKeyChain : NSObject, CredentialsStore {
+@objc open class BaseCredentialsStoreKeyChain : NSObject, CredentialsStore {
 
-	public var authentication: LRAuthentication?
-	public var userAttributes: [String:AnyObject]?
+	open var authentication: LRAuthentication?
+	open var userAttributes: [String:AnyObject]?
 
-	public func storeCredentials(
-			session: LRSession?,
+	open func storeCredentials(
+			_ session: LRSession?,
 			userAttributes: [String:AnyObject]?) -> Bool {
 
 		guard let auth = session?.authentication else {
@@ -43,8 +43,8 @@ import UIKit
 			try keychain.set(String(LiferayServerContext.groupId),
 				key: "groupId")
 
-			let userData = try? NSJSONSerialization.dataWithJSONObject(userAttributes!,
-				options: NSJSONWritingOptions())
+			let userData = try? JSONSerialization.data(withJSONObject: userAttributes!,
+				options: [])
 			if let userData = userData {
 				try keychain.set(userData, key: "user_attributes")
 
@@ -66,7 +66,7 @@ import UIKit
 		return false
 	}
 
-	public func removeStoredCredentials() -> Bool {
+	open func removeStoredCredentials() -> Bool {
 		let keychain = BaseCredentialsStoreKeyChain.keychain()
 
 		do {
@@ -79,7 +79,7 @@ import UIKit
 		return true
 	}
 
-	public func loadStoredCredentials() -> Bool {
+	open func loadStoredCredentials() -> Bool {
 		let keychain = BaseCredentialsStoreKeyChain.keychain()
 
 		let companyId = try? keychain.get("companyId")
@@ -100,8 +100,7 @@ import UIKit
 		}
 
 		if let userData = userData {
-			let json = try? NSJSONSerialization.JSONObjectWithData(userData,
-					options: [])
+			let json = try? JSONSerialization.jsonObject(with: userData, options: [])
 
 			userAttributes = json as? [String:AnyObject]
 			authentication = loadAuth(keychain: keychain)
@@ -112,15 +111,15 @@ import UIKit
 		return false
 	}
 
-	public func storeAuth(keychain keychain: Keychain, auth: LRAuthentication) {
+	open func storeAuth(keychain: Keychain, auth: LRAuthentication) {
 		fatalError("This method must be overriden")
 	}
 
-	public func loadAuth(keychain keychain: Keychain) -> LRAuthentication? {
+	open func loadAuth(keychain: Keychain) -> LRAuthentication? {
 		fatalError("This method must be overriden")
 	}
 
-	public class func storedAuthType() -> AuthType? {
+	open class func storedAuthType() -> AuthType? {
 		guard let authType = try? keychain().get("auth_type") else {
 			return nil
 		}
@@ -131,9 +130,9 @@ import UIKit
 		return AuthTypeFromString(authTypeValue)
 	}
 
-	public class func keychain() -> Keychain {
-		let url = NSURL(string: LiferayServerContext.server)!
-		return Keychain(server: url, protocolType: .HTTPS)
+	open class func keychain() -> Keychain {
+		let url = URL(string: LiferayServerContext.server)!
+		return Keychain(server: url, protocolType: .https)
 	}
 
 }

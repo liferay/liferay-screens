@@ -14,18 +14,18 @@
 import UIKit
 
 
-@objc public class CredentialsStorage: NSObject {
+@objc open class CredentialsStorage: NSObject {
 
 	public typealias LoadResult = (session: LRSession, userAttributes: [String:AnyObject])
 
-	public let credentialsStore: CredentialsStore
+	open let credentialsStore: CredentialsStore
 
 	public init(store: CredentialsStore) {
 		credentialsStore = store
 		super.init()
 	}
 
-	public static func createFromStoredAuthType() -> CredentialsStorage? {
+	open static func createFromStoredAuthType() -> CredentialsStorage? {
 		guard let authType = BaseCredentialsStoreKeyChain.storedAuthType() else {
 			return nil
 		}
@@ -35,7 +35,7 @@ import UIKit
 		return CredentialsStorage(store: store)
 	}
 
-	public func store(session session: LRSession?, userAttributes: [String:AnyObject]) -> Bool {
+	open func store(session: LRSession?, userAttributes: [String:AnyObject]) -> Bool {
 		if session == nil || userAttributes.isEmpty {
 			return false
 		}
@@ -44,11 +44,11 @@ import UIKit
 				userAttributes: userAttributes)
 	}
 
-	public func remove() -> Bool {
+	open func remove() -> Bool {
 		return credentialsStore.removeStoredCredentials()
 	}
 
-	public func load() -> LoadResult? {
+	open func load() -> LoadResult? {
 		guard credentialsStore.loadStoredCredentials() else {
 			return nil
 		}
@@ -63,7 +63,7 @@ import UIKit
 				server: LiferayServerContext.server,
 				authentication: loadedAuth)
 
-		return (loadedSession, loadedUserAttributes)
+		return (loadedSession!, loadedUserAttributes)
 	}
 
 }

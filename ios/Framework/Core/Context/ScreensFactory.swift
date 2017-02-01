@@ -21,22 +21,22 @@ import Foundation
 @objc public protocol ScreensFactory {
 
 	func createSessionContext(
-		session session: LRSession,
+		session: LRSession,
 		attributes: [String: AnyObject],
 		store: CredentialsStore) -> SessionContext
 
-	func createCacheManager(session session: LRSession, userId: Int64) -> CacheManager
+	func createCacheManager(session: LRSession, userId: Int64) -> CacheManager
 
-	func createCredentialsStore(authType: AuthType) -> CredentialsStore
+	func createCredentialsStore(_ authType: AuthType) -> CredentialsStore
 
 }
 
 
 
-@objc public class ScreensFactoryImpl: NSObject, ScreensFactory {
+@objc open class ScreensFactoryImpl: NSObject, ScreensFactory {
 
-	public func createSessionContext(
-			session session: LRSession,
+	open func createSessionContext(
+			session: LRSession,
 			attributes: [String: AnyObject],
 			store: CredentialsStore) -> SessionContext {
 		return SessionContext(
@@ -45,15 +45,15 @@ import Foundation
 			store: store)
 	}
 
-	public func createCacheManager(session session: LRSession, userId: Int64) -> CacheManager {
+	open func createCacheManager(session: LRSession, userId: Int64) -> CacheManager {
 		return CacheManager(session: session, userId: userId)
 	}
 
-	public func createCredentialsStore(authType: AuthType) -> CredentialsStore {
+	open func createCredentialsStore(_ authType: AuthType) -> CredentialsStore {
 		switch authType {
-		case .Basic:
+		case .basic:
 			return BasicCredentialsStoreKeyChain()
-		case .OAuth:
+		case .oAuth:
 			return OAuthCredentialsStoreKeyChain()
 		}
 	}

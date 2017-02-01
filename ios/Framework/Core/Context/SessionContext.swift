@@ -19,23 +19,23 @@ import Foundation
 #endif
 
 
-@objc public class SessionContext: NSObject {
+@objc open class SessionContext: NSObject {
 
-	public static var currentContext: SessionContext?
+	open static var currentContext: SessionContext?
 
-	public let session: LRSession
-	public let user: User
+	open let session: LRSession
+	open let user: User
 
-	public let cacheManager: CacheManager
-	public var credentialsStorage: CredentialsStorage
+	open let cacheManager: CacheManager
+	open var credentialsStorage: CredentialsStorage
 
-	@available(*, deprecated=2.0.1, message="Use public property user")
-	public var userId: Int64 {
+	@available(*, deprecated: 2.0.1, message: "Use public property user")
+	open var userId: Int64 {
 		return user.userId
 	}
 
-	@available(*, deprecated=2.0.1, message="Access it throught user.attributes")
-	public var userAttributes: [String : AnyObject] {
+	@available(*, deprecated: 2.0.1, message: "Access it throught user.attributes")
+	open var userAttributes: [String : AnyObject] {
 		return user.attributes
 	}
 
@@ -57,11 +57,11 @@ import Foundation
 
 	//MARK: Public properties
 
-	public class var isLoggedIn: Bool {
+	open class var isLoggedIn: Bool {
 		return currentContext?.session != nil
 	}
 
-	public var basicAuthUsername: String? {
+	open var basicAuthUsername: String? {
 		guard let auth = session.authentication as? LRBasicAuthentication else {
 			return nil
 		}
@@ -69,7 +69,7 @@ import Foundation
 		return auth.username
 	}
 
-	public var basicAuthPassword: String? {
+	open var basicAuthPassword: String? {
 		guard let auth = session.authentication as? LRBasicAuthentication else {
 			return nil
 		}
@@ -80,8 +80,8 @@ import Foundation
 
 	//MARK Public methods
 
-	public class func createEphemeralBasicSession(
-			userName: String,
+	open class func createEphemeralBasicSession(
+			_ userName: String,
 			_ password: String) -> LRSession {
 		return LRSession(
 			server: LiferayServerContext.server,
@@ -90,8 +90,9 @@ import Foundation
 				password: password))
 	}
 
-	public class func loginWithBasic(
-			username username: String,
+	@discardableResult
+	open class func loginWithBasic(
+			username: String,
 			password: String,
 			userAttributes: [String:AnyObject]) -> LRSession {
 
@@ -103,41 +104,42 @@ import Foundation
 			server: LiferayServerContext.server,
 			authentication: authentication)
 
-		let store = LiferayServerContext.factory.createCredentialsStore(AuthType.Basic)
+		let store = LiferayServerContext.factory.createCredentialsStore(AuthType.basic)
 
 		SessionContext.currentContext =
 			LiferayServerContext.factory.createSessionContext(
-				session: session,
+				session: session!,
 				attributes: userAttributes,
 				store: store)
 
-		return session
+		return session!
 	}
 
-	public class func loginWithOAuth(
-			authentication authentication: LROAuth,
+	@discardableResult
+	open class func loginWithOAuth(
+			authentication: LROAuth,
 			userAttributes: [String:AnyObject]) -> LRSession {
 
 		let session = LRSession(
 			server: LiferayServerContext.server,
 			authentication: authentication)
 
-		let store = LiferayServerContext.factory.createCredentialsStore(AuthType.OAuth)
+		let store = LiferayServerContext.factory.createCredentialsStore(AuthType.oAuth)
 
 		SessionContext.currentContext =
 			LiferayServerContext.factory.createSessionContext(
-				session: session,
+				session: session!,
 				attributes: userAttributes,
 				store: store)
 
-		return session
+		return session!
 	}
 
-	public func createRequestSession() -> LRSession {
+	open func createRequestSession() -> LRSession {
 		return LRSession(session: session)
 	}
 
-	public func relogin(completed: ([String:AnyObject]? -> ())?) -> Bool {
+	open func relogin(_ completed: (([String:AnyObject]?) -> ())?) -> Bool {
 		if session.authentication is LRBasicAuthentication {
 			return reloginBasic(completed)
 		}
@@ -148,9 +150,9 @@ import Foundation
 		return false
 	}
 
-	public func reloginBasic(completed: ([String:AnyObject]? -> ())?) -> Bool {
+	open func reloginBasic(_ completed: (([String:AnyObject]?) -> ())?) -> Bool {
 		guard let userName = self.basicAuthUsername,
-				password = self.basicAuthPassword else {
+				let password = self.basicAuthPassword else {
 			completed?(nil)
 			return false
 		}
@@ -167,7 +169,7 @@ import Foundation
 		}
 	}
 
-	public func reloginOAuth(completed: ([String:AnyObject]? -> ())?) -> Bool {
+	open func reloginOAuth(_ completed: (([String:AnyObject]?) -> ())?) -> Bool {
 		guard let auth = self.session.authentication as? LROAuth else {
 			completed?(nil)
 			return false
@@ -185,7 +187,7 @@ import Foundation
 		}
 	}
 
-	public func refreshUserAttributes(completed: ([String:AnyObject]? -> ())?) -> Bool {
+	open func refreshUserAttributes(_ completed: (([String:AnyObject]?) -> ())?) -> Bool {
 		let session = self.createRequestSession()
 
 		session.callback = LRBlockCallback(
@@ -206,32 +208,35 @@ import Foundation
 		case .v62:
 			let srv = LRScreensuserService_v62(session: session)
 
-			_ = try? srv.getCurrentUser()
+			_ = try? srv?.getCurrentUser()
 
 		case .v70:
 			let srv = LRUserService_v7(session: session)
 
-			_ = try? srv.getCurrentUser()
+			_ = try? srv?.getCurrentUser()
 		}
 		
 		return true
 	}
 
-	public class func logout() {
+	open class func logout() {
 		SessionContext.currentContext = nil
 	}
 
-	public func storeCredentials() -> Bool {
+	@discardableResult
+	open func storeCredentials() -> Bool {
 		return credentialsStorage.store(
 				session: session,
 				userAttributes: user.attributes)
 	}
 
-	public func removeStoredCredentials() -> Bool {
+	@discardableResult
+	open func removeStoredCredentials() -> Bool {
 		return credentialsStorage.remove()
 	}
 
-	public class func loadStoredCredentials() -> Bool {
+	@discardableResult
+	open class func loadStoredCredentials() -> Bool {
 		guard let storage = CredentialsStorage.createFromStoredAuthType() else {
 			return false
 		}
@@ -239,7 +244,7 @@ import Foundation
 		return loadStoredCredentials(storage)
 	}
 
-	public class func loadStoredCredentials(storage: CredentialsStorage) -> Bool {
+	open class func loadStoredCredentials(_ storage: CredentialsStorage) -> Bool {
 		guard let result = storage.load() else {
 			return false
 		}
@@ -258,7 +263,7 @@ import Foundation
 
 
 	// Deprecated. Will be removed in next version
-	public class func createSessionFromCurrentSession() -> LRSession? {
+	open class func createSessionFromCurrentSession() -> LRSession? {
 		return SessionContext.currentContext?.createRequestSession()
 	}
 
