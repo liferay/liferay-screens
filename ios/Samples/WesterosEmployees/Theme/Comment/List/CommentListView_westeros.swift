@@ -15,27 +15,27 @@ import UIKit
 import LiferayScreens
 
 
-public class CommentListView_westeros: CommentListView_default {
+open class CommentListView_westeros: CommentListView_default {
 
 	let CommentCellId = "commentCell"
 
 	//MARK: BaseListTableView
 
-	override public func doRegisterCellNibs() {
-		let nib = NSBundle.nibInBundles(
-			name: "CommentTableViewCell_westeros", currentClass: self.dynamicType)
+	override open func doRegisterCellNibs() {
+		let nib = Bundle.nibInBundles(
+			name: "CommentTableViewCell_westeros", currentClass: type(of: self))
 
 		if let commentNib = nib {
-			tableView?.registerNib(commentNib, forCellReuseIdentifier: CommentCellId)
+			tableView?.register(commentNib, forCellReuseIdentifier: CommentCellId)
 		}
 	}
 
-	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
-		if let comment = object as? Comment, commentCell = cell as? CommentTableViewCell_default {
+	override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
+		if let comment = object as? Comment, let commentCell = cell as? CommentTableViewCell_default {
 			commentCell.commentDisplayScreenlet?.comment = comment
 
-			cell.backgroundColor = UIColor.clearColor()
-			cell.accessoryType = .None
+			cell.backgroundColor = UIColor.clear
+			cell.accessoryType = .none
 			cell.accessoryView = nil
 		}
 	}
@@ -43,16 +43,16 @@ public class CommentListView_westeros: CommentListView_default {
 
 	//MARK: BaseScreenletView
 
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return WesterosCardProgressPresenter(screenlet: self.screenlet)
 	}
 
 
 	//MARK: UITableViewDelegate
 
-	override public func tableView(tableView: UITableView,
-	                      editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
-		let editRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal,
+	override open func tableView(_ tableView: UITableView,
+	                      editActionsForRowAtIndexPath indexPath: IndexPath) -> [AnyObject]? {
+		let editRowAction = UITableViewRowAction(style: .normal,
 			title: "Edit", handler:{action, indexPath in
 				if let comment = self.rows[self.sections[indexPath.section]]?[indexPath.row] as? Comment {
 					self.userAction(name: "edit-comment", sender: comment)
@@ -61,9 +61,9 @@ public class CommentListView_westeros: CommentListView_default {
 				tableView.setEditing(false, animated: true)
 		})
 
-		let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Destructive,
+		let deleteRowAction = UITableViewRowAction(style: .destructive,
 			title: "Delete", handler:{action, indexPath in
-				let cell = tableView.cellForRowAtIndexPath(indexPath) as? CommentTableViewCell_default
+				let cell = tableView.cellForRow(at: indexPath) as? CommentTableViewCell_default
 				cell?.commentDisplayScreenlet?.deleteComment()
 				tableView.setEditing(false, animated: true)
 		})

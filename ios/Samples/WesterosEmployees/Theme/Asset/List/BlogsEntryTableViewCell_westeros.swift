@@ -14,17 +14,17 @@
 import UIKit
 import LiferayScreens
 
-public class BlogsEntryTableViewCell_westeros: UITableViewCell {
+open class BlogsEntryTableViewCell_westeros: UITableViewCell {
 
-	@IBOutlet public weak var imageDisplayScreenlet: ImageDisplayScreenlet? {
+	@IBOutlet open weak var imageDisplayScreenlet: ImageDisplayScreenlet? {
 		didSet {
-			imageDisplayScreenlet?.imageMode = .ScaleAspectFill
+			imageDisplayScreenlet?.imageMode = .scaleAspectFill
 		}
 	}
-	@IBOutlet public weak var titleLabel: UILabel?
-	@IBOutlet public weak var subtitleLabel: UILabel?
+	@IBOutlet open weak var titleLabel: UILabel?
+	@IBOutlet open weak var subtitleLabel: UILabel?
 
-	public var title: String? {
+	open var title: String? {
 		get {
 			return titleLabel?.text
 		}
@@ -33,7 +33,7 @@ public class BlogsEntryTableViewCell_westeros: UITableViewCell {
 		}
 	}
 
-	public var subtitle: String? {
+	open var subtitle: String? {
 		get {
 			return subtitleLabel?.text
 		}
@@ -42,7 +42,7 @@ public class BlogsEntryTableViewCell_westeros: UITableViewCell {
 		}
 	}
 
-	public var imageEntryId: Int64 {
+	open var imageEntryId: Int64 {
 		get { return 0 }
 		set {
 			if newValue != 0 {

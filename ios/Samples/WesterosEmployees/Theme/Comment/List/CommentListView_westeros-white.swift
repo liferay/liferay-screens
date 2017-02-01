@@ -15,16 +15,16 @@ import UIKit
 import LiferayScreens
 
 
-public class CommentListView_westeros_white: CommentListView_westeros {
+open class CommentListView_westeros_white: CommentListView_westeros {
 
 	//MARK: BaseListTableView
 
-	override public func doRegisterCellNibs() {
-		let nib = NSBundle.nibInBundles(
-			name: "CommentTableViewCell_westeros-white", currentClass: self.dynamicType)
+	override open func doRegisterCellNibs() {
+		let nib = Bundle.nibInBundles(
+			name: "CommentTableViewCell_westeros-white", currentClass: type(of: self))
 
 		if let commentNib = nib {
-			tableView?.registerNib(commentNib, forCellReuseIdentifier: CommentCellId)
+			tableView?.register(commentNib, forCellReuseIdentifier: CommentCellId)
 		}
 	}
 }

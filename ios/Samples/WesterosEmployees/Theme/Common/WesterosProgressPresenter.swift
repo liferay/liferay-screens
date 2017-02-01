@@ -15,7 +15,7 @@ import Foundation
 import LiferayScreens
 
 
-public class WesterosProgressPresenter: MBProgressHUDPresenter {
+open class WesterosProgressPresenter: MBProgressHUDPresenter {
 
 	override public init() {
 		super.init()

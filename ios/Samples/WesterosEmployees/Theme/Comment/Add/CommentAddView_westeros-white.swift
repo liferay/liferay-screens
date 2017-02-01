@@ -15,12 +15,12 @@ import UIKit
 import LiferayScreens
 
 
-public class CommentAddView_westeros_white: CommentAddView_westeros {
+open class CommentAddView_westeros_white: CommentAddView_westeros {
 
 	@IBOutlet weak var sendButton: UIButton? {
 		didSet {
 			sendButton?.layer.borderWidth = 3.0
-			sendButton?.layer.borderColor = DefaultResources.EvenColorBackground.CGColor
+			sendButton?.layer.borderColor = DefaultResources.EvenColorBackground.cgColor
 		}
 	}
 }

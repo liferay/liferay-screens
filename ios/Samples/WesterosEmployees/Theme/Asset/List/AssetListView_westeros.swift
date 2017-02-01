@@ -22,25 +22,25 @@ class AssetListView_westeros: AssetListView_default {
 		return WesterosCardProgressPresenter(screenlet: self.screenlet)
 	}
 
-	override func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
+	override func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
 		if let entry = object as? Asset {
-			cell.backgroundColor = UIColor.clearColor()
+			cell.backgroundColor = .clear
 			cell.textLabel?.text = entry.title
-			cell.accessoryType = .DisclosureIndicator
+			cell.accessoryType = .disclosureIndicator
 			cell.accessoryView = nil
 		}
 	}
 
-	override func doFillInProgressCell(row row: Int, cell: UITableViewCell) {
+	override func doFillInProgressCell(row: Int, cell: UITableViewCell) {
 		cell.textLabel?.text = "..."
-		cell.accessoryType = .None
+		cell.accessoryType = .none
 
-		if let image = NSBundle.imageInBundles(
+		if let image = Bundle.imageInBundles(
 			name: "default-hourglass",
-			currentClass: self.dynamicType) {
+			currentClass: type(of: self)) {
 
 			cell.accessoryView = UIImageView(image: image)
-			cell.accessoryView?.frame = CGRectMake(0, 0, image.size.width, image.size.height)
+			cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
 		}
 	}
 }

@@ -14,12 +14,12 @@
 import UIKit
 import LiferayScreens
 
-public class ImageGalleryView_westeros: ImageGalleryView_default {
+open class ImageGalleryView_westeros: ImageGalleryView_default {
 
 
 	//MARK: BaseScreenletView
 
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return WesterosCardProgressPresenter(screenlet: self.screenlet)
 	}
 }

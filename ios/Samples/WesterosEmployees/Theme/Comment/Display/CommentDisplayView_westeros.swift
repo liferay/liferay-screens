@@ -15,22 +15,22 @@ import UIKit
 import LiferayScreens
 
 
-public class CommentDisplayView_westeros: CommentDisplayView_default {
+open class CommentDisplayView_westeros: CommentDisplayView_default {
 
-	public override func createProgressPresenter() -> ProgressPresenter {
+	open override func createProgressPresenter() -> ProgressPresenter {
 		return WesterosCardProgressPresenter(screenlet: self.screenlet)
 	}
 
-	override public class func defaultAttributedTextAttributes() -> [String: NSObject] {
+	override open class func defaultAttributedTextAttributes() -> [String: NSObject] {
 		let paragrahpStyle = NSMutableParagraphStyle()
-		paragrahpStyle.lineBreakMode = .ByWordWrapping
+		paragrahpStyle.lineBreakMode = .byWordWrapping
 
 		var attributes: [String: NSObject] = [NSParagraphStyleAttributeName: paragrahpStyle]
 
 		let font = UIFont(name: "HelveticaNeue", size: 17)
  
 		if let font = font {
-			attributes[NSForegroundColorAttributeName] = UIColor.whiteColor()
+			attributes[NSForegroundColorAttributeName] = UIColor.white
 			attributes[NSFontAttributeName] = font
 		}
 

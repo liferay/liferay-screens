@@ -15,31 +15,31 @@ import UIKit
 import LiferayScreens
 
 
-public class LoginView_westeros: LoginView_default {
+open class LoginView_westeros: LoginView_default {
 
-	@IBAction func showPassword(sender: AnyObject) {
-		passwordField!.secureTextEntry = !passwordField!.secureTextEntry
+	@IBAction func showPassword(_ sender: AnyObject) {
+		passwordField!.isSecureTextEntry = !passwordField!.isSecureTextEntry
 	}
 
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return WesterosProgressPresenter()
 	}
 
-	override public func onShow() {
+	override open func onShow() {
 		userNameField!.attributedPlaceholder = NSAttributedString(
 				string: userNameField!.placeholder!,
-				attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
+				attributes: [NSForegroundColorAttributeName : UIColor.white])
 
 		passwordField!.attributedPlaceholder = NSAttributedString(
 				string: passwordField!.placeholder!,
-				attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
+				attributes: [NSForegroundColorAttributeName : UIColor.white])
 	}
 
-	override public func onSetDefaultDelegate(delegate:AnyObject, view:UIView) -> Bool {
+	override open func onSetDefaultDelegate(_ delegate:AnyObject, view:UIView) -> Bool {
 		return false
 	}
 
-	override public func onSetUserActionForControl(control: UIControl) -> Bool {
+	override open func onSetUserActionForControl(_ control: UIControl) -> Bool {
 		return control == self.loginButton
 	}
 

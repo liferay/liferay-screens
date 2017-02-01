@@ -18,17 +18,17 @@ class AssetListView_westeros_blog: AssetListView_westeros {
 
 	let BlogCellId = "blogsEntryCell"
 
-	private let dateFormatter: NSDateFormatter = {
-		let dateFormatter = NSDateFormatter()
-		dateFormatter.dateStyle = NSDateFormatterStyle.LongStyle
-		dateFormatter.locale = NSLocale(
-			localeIdentifier: NSLocale.currentLocaleString)
+	fileprivate let dateFormatter: DateFormatter = {
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateStyle = DateFormatter.Style.long
+		dateFormatter.locale = Locale(
+			identifier: NSLocale.currentLocaleString)
 		return dateFormatter
 	}()
 
 	//MARK: BaseScreenletView
 
-	override func doGetCellId(row row: Int, object: AnyObject?) -> String {
+	override func doGetCellId(row: Int, object: AnyObject?) -> String {
 		if let _ = object {
 			return BlogCellId
 		}
@@ -44,21 +44,21 @@ class AssetListView_westeros_blog: AssetListView_westeros {
 	}
 
 	override func doRegisterCellNibs() {
-		let nib = NSBundle.nibInBundles(
-			name: "BlogsEntryTableViewCell_westeros", currentClass: self.dynamicType)
+		let nib = Bundle.nibInBundles(
+			name: "BlogsEntryTableViewCell_westeros", currentClass: type(of: self))
 
 		if let blogsEntryNib = nib {
-			tableView?.registerNib(blogsEntryNib, forCellReuseIdentifier: BlogCellId)
+			tableView?.register(blogsEntryNib, forCellReuseIdentifier: BlogCellId)
 		}
 	}
 
-	override func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
-		guard let blogsCell = cell as? BlogsEntryTableViewCell_westeros, entry = object as? Asset else {
+	override func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
+		guard let blogsCell = cell as? BlogsEntryTableViewCell_westeros, let entry = object as? Asset else {
 			return
 		}
 
-		blogsCell.backgroundColor = UIColor.clearColor()
-		blogsCell.accessoryType = .DisclosureIndicator
+		blogsCell.backgroundColor = UIColor.clear
+		blogsCell.accessoryType = .disclosureIndicator
 		blogsCell.accessoryView = nil
 
 		let blogsEntry = BlogsEntry(attributes: entry.attributes)
@@ -67,7 +67,7 @@ class AssetListView_westeros_blog: AssetListView_westeros {
 		blogsCell.imageEntryId = blogsEntry.coverImageFileEntryId
 
 		if let date = blogsEntry.displayDate {
-			let dateString = dateFormatter.stringFromDate(date)
+			let dateString = dateFormatter.string(from: date)
 			blogsCell.subtitle = "\(dateString) · \(blogsEntry.userName)"
 		}
 		else {

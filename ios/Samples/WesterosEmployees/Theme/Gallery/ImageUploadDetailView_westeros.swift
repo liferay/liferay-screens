@@ -15,9 +15,9 @@ import UIKit
 import LiferayScreens
 
 
-public class ImageUploadDetailView_westeros: ImageUploadDetailViewBase {
+open class ImageUploadDetailView_westeros: ImageUploadDetailViewBase {
 
-	public override var image: UIImage? {
+	open override var image: UIImage? {
 		didSet {
 			self.imagePreview?.image = image
 		}
@@ -29,14 +29,14 @@ public class ImageUploadDetailView_westeros: ImageUploadDetailViewBase {
 	@IBOutlet weak var uploadButton: UIButton? {
 		didSet {
 			uploadButton?.layer.borderWidth = 3.0
-			uploadButton?.layer.borderColor = DefaultResources.EvenColorBackground.CGColor
+			uploadButton?.layer.borderColor = DefaultResources.EvenColorBackground.cgColor
 		}
 	}
 
 
 	//MARK: View actions
 
-	@IBAction func uploadButtonClicked(sender: AnyObject) {
+	@IBAction func uploadButtonClicked(_ sender: AnyObject) {
 		startUpload()
 	}
 }

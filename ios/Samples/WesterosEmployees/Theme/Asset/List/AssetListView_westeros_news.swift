@@ -27,20 +27,20 @@ class AssetListView_westeros_news: AssetListView_default {
 		return NetworkActivityIndicatorPresenter()
 	}
 
-	override func doFillInProgressCell(row row: Int, cell: UITableViewCell) {
+	override func doFillInProgressCell(row: Int, cell: UITableViewCell) {
 		cell.textLabel?.text = "..."
-		cell.accessoryType = .None
+		cell.accessoryType = .none
 
-		if let image = NSBundle.imageInBundles(
+		if let image = Bundle.imageInBundles(
 			name: "default-hourglass",
-			currentClass: self.dynamicType) {
+			currentClass: type(of: self)) {
 
 			cell.accessoryView = UIImageView(image: image)
-			cell.accessoryView?.frame = CGRectMake(0, 0, image.size.width, image.size.height)
+			cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
 		}
 	}
 
-	override func doGetCellId(row row: Int, object: AnyObject?) -> String {
+	override func doGetCellId(row: Int, object: AnyObject?) -> String {
 		if let asset = object as? Asset {
 			if asset.classNameId == AssetClasses.getClassNameId(AssetClassNameKey_BlogsEntry) {
 				return BlogCellId
@@ -59,26 +59,26 @@ class AssetListView_westeros_news: AssetListView_default {
 	}
 
 	override func doRegisterCellNibs() {
-		let docNib = NSBundle.nibInBundles(
-			name: "DocumentationTableViewCell_westeros_news", currentClass: self.dynamicType)
+		let docNib = Bundle.nibInBundles(
+			name: "DocumentationTableViewCell_westeros_news", currentClass: type(of: self))
 
 		if let docNib = docNib {
-			tableView?.registerNib(docNib, forCellReuseIdentifier: DocumentCellId)
+			tableView?.register(docNib, forCellReuseIdentifier: DocumentCellId)
 		}
 
-		let blogNib = NSBundle.nibInBundles(
-			name: "BlogsEntryTableViewCell_westeros_news", currentClass: self.dynamicType)
+		let blogNib = Bundle.nibInBundles(
+			name: "BlogsEntryTableViewCell_westeros_news", currentClass: type(of: self))
 
 		if let blogNib = blogNib {
-			tableView?.registerNib(blogNib, forCellReuseIdentifier: BlogCellId)
+			tableView?.register(blogNib, forCellReuseIdentifier: BlogCellId)
 		}
 	}
 
-	override func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
+	override func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
 		if let asset = object as? Asset {
 
-			cell.backgroundColor = UIColor.clearColor()
-			cell.accessoryType = .DisclosureIndicator
+			cell.backgroundColor = .clear
+			cell.accessoryType = .disclosureIndicator
 			cell.accessoryView = nil
 
 			if asset.classNameId == AssetClasses.getClassNameId(AssetClassNameKey_BlogsEntry) {
@@ -88,14 +88,14 @@ class AssetListView_westeros_news: AssetListView_default {
 				let blog = BlogsEntry(attributes: asset.attributes)
 				blogCell.imageEntryId = blog.coverImageFileEntryId
 				blogCell.title = blog.title
-				blogCell.subtitle = blog.modifiedDate.timeIntervalSinceDate(blog.createDate)
+				blogCell.subtitle = blog.modifiedDate.timeIntervalSince(blog.createDate)
 					< AssetListView_westeros_news.MinimumTimeDifference ? "New blog" : "Updated blog"
 			} else {
 				guard let docCell = cell as? DocumentationTableViewCell_westeros else { return }
 
 				//Load blog information
 				let document = FileEntry(attributes: asset.attributes)
-				docCell.title = document.modifiedDate.timeIntervalSinceDate(document.createDate)
+				docCell.title = document.modifiedDate.timeIntervalSince(document.createDate)
 					< AssetListView_westeros_news.MinimumTimeDifference ? "New file" : "Updated file"
 				docCell.fileDescription = document.title
 				docCell.fileExtension = document.fileExtension!

@@ -14,20 +14,20 @@
 import UIKit
 import LiferayScreens
 
-public class BlogsEntryDisplayView_westeros: BlogsEntryDisplayView_default {
+open class BlogsEntryDisplayView_westeros: BlogsEntryDisplayView_default {
 
 	@IBOutlet weak var ratingScreenlet: RatingScreenlet?
 	
-	public override func loadBlog() {
+	open override func loadBlog() {
 		super.loadBlog()
 		ratingScreenlet?.classPK = blogsEntry!.classPK
 		ratingScreenlet?.className = AssetClasses.getClassName(AssetClassNameKey_BlogsEntry)!
 		ratingScreenlet?.loadRatings()
 	}
 
-	public override class func defaultAttributedTextAttributes() -> [String: NSObject] {
+	open override class func defaultAttributedTextAttributes() -> [String: NSObject] {
 		let paragrahpStyle = NSMutableParagraphStyle()
-		paragrahpStyle.lineBreakMode = .ByWordWrapping
+		paragrahpStyle.lineBreakMode = .byWordWrapping
 
 		var attributes: [String: NSObject] = [NSParagraphStyleAttributeName: paragrahpStyle]
 
@@ -35,7 +35,7 @@ public class BlogsEntryDisplayView_westeros: BlogsEntryDisplayView_default {
 
 		if let font = font {
 			attributes[NSFontAttributeName] = font
-			attributes[NSForegroundColorAttributeName] = UIColor.whiteColor()
+			attributes[NSForegroundColorAttributeName] = UIColor.white
 		}
 
 		return attributes
