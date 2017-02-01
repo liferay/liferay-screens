@@ -14,13 +14,13 @@
 import Foundation
 
 
-@objc public class WebContent : Asset {
+@objc open class WebContent : Asset {
 
-	public let structure: DDMStructure?
-	public let structuredRecord: DDLRecord?
-	public let html: String?
+	open let structure: DDMStructure?
+	open let structuredRecord: DDLRecord?
+	open let html: String?
 
-	override public var debugDescription: String {
+	override open var debugDescription: String {
 		if let structuredRecord = structuredRecord {
 			return "structuredRecord(\(structuredRecord.debugDescription))"
 		}
@@ -34,7 +34,7 @@ import Foundation
 
 	//MARK: Public methods
 
-	public class func isWebContentClassName(className: String) -> Bool {
+	open class func isWebContentClassName(_ className: String) -> Bool {
 		return className.hasPrefix("com.liferay.") && className.hasSuffix(".JournalArticle")
 	}
 
@@ -42,24 +42,23 @@ import Foundation
 	//MARK: Initializers
 
 	override public init(attributes: [String:AnyObject]) {
-		func loadStructuredRecord(content: String, _ attributes: [String:AnyObject]) -> DDLRecord? {
+		func loadStructuredRecord(_ content: String, _ attributes: [String:AnyObject]) -> DDLRecord? {
 			let record = DDLRecord(data: [:], attributes: attributes)
 			record.updateCurrentValues(xmlValues: content)
 
 			return record.structure == nil ? nil : record
 		}
 
-		func loadHtml(content: String) -> String? {
-			return content.asLocalized(NSLocale(localeIdentifier: NSLocale.currentLocaleString))
+		func loadHtml(_ content: String) -> String? {
+			return content.asLocalized(Locale(identifier: NSLocale.currentLocaleString))
 		}
 
 		let newAttributes: [String:AnyObject]
 
 		if let className = attributes["className"] as? String,
-			object = attributes["object"] as? [String:AnyObject],
-			modelAttributes = object["modelAttributes"] as? [String:AnyObject],
-			modelValues = object["modelValues"] as? String
-			where WebContent.isWebContentClassName(className) {
+			let object = attributes["object"] as? [String:AnyObject],
+			let modelAttributes = object["modelAttributes"] as? [String:AnyObject],
+			let modelValues = object["modelValues"] as? String, WebContent.isWebContentClassName(className) {
 			newAttributes = attributes.copyAndMerge(modelAttributes).copyAndRemove("object")
 
 			if let structureData = object["DDMStructure"] as? [String:AnyObject] {
@@ -68,7 +67,7 @@ import Foundation
 
 				self.structure = DDMStructure(
 					structureData: structureData,
-					locale: NSLocale(localeIdentifier: NSLocale.currentLocaleString))
+					locale: Locale(identifier: NSLocale.currentLocaleString))
 
 				if let structure = self.structure {
 					structuredRecord = DDLRecord(structure: structure)
@@ -115,9 +114,9 @@ import Foundation
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
-		self.structure = aDecoder.decodeObjectForKey("webcontent-structure") as? DDMStructure
-		self.structuredRecord = aDecoder.decodeObjectForKey("webcontent-structuredRecord") as? DDLRecord
-		self.html = aDecoder.decodeObjectForKey("webcontent-html") as? String
+		self.structure = aDecoder.decodeObject(forKey: "webcontent-structure") as? DDMStructure
+		self.structuredRecord = aDecoder.decodeObject(forKey: "webcontent-structuredRecord") as? DDLRecord
+		self.html = aDecoder.decodeObject(forKey: "webcontent-html") as? String
 
 		super.init(coder: aDecoder)
 	}
@@ -125,15 +124,15 @@ import Foundation
 
 	//MARK: Asset
 
-	override public func encodeWithCoder(aCoder: NSCoder) {
+	override open func encode(with aCoder: NSCoder) {
 		if let structure = self.structure {
-			aCoder.encodeObject(structure, forKey:"webcontent-structure")
+			aCoder.encode(structure, forKey:"webcontent-structure")
 		}
 		if let structuredRecord = self.structuredRecord {
-			aCoder.encodeObject(structuredRecord, forKey:"webcontent-structuredRecord")
+			aCoder.encode(structuredRecord, forKey:"webcontent-structuredRecord")
 		}
 		if let html = self.html {
-			aCoder.encodeObject(html, forKey:"webcontent-html")
+			aCoder.encode(html, forKey:"webcontent-html")
 		}
 	}
 	

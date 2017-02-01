@@ -17,24 +17,24 @@ import Foundation
 //TODO: Unit test
 
 
-@objc public class DDMStructure: NSObject, NSCoding {
+@objc open class DDMStructure: NSObject, NSCoding {
 
-	public var fields = [DDMField]()
-	public let attributes: [String:AnyObject]
-	public let locale: NSLocale
+	open var fields = [DDMField]()
+	open let attributes: [String:AnyObject]
+	open let locale: Locale
 
-	public subscript(fieldName: String) -> DDMField? {
+	open subscript(fieldName: String) -> DDMField? {
 		return fieldBy(name: fieldName)
 	}
 
-	public override var debugDescription: String {
+	open override var debugDescription: String {
 		return "DDMStructure[fields=\(fields)]"
 	}
 
 
 	//MARK: Initializers
 
-	public init(fields: [DDMField], locale: NSLocale, attributes: [String:AnyObject]) {
+	public init(fields: [DDMField], locale: Locale, attributes: [String:AnyObject]) {
 		self.fields = fields
 		self.locale = locale
 		self.attributes = attributes
@@ -42,7 +42,7 @@ import Foundation
 		super.init()
 	}
 	
-	public convenience init?(xsd: String, locale: NSLocale, attributes: [String:AnyObject] = [:]) {
+	public convenience init?(xsd: String, locale: Locale, attributes: [String:AnyObject] = [:]) {
 		guard let parsedFields = DDMXSDParser().parse(xsd, locale: locale) else {
 			return nil
 		}
@@ -53,7 +53,7 @@ import Foundation
 		self.init(fields: parsedFields, locale: locale, attributes: attributes)
 	}
 
-	public convenience init?(json: String, locale: NSLocale, attributes: [String:AnyObject] = [:]) {
+	public convenience init?(json: String, locale: Locale, attributes: [String:AnyObject] = [:]) {
 		guard let parsedFields = DDMJSONParser().parse(json, locale: locale) else {
 			return nil
 		}
@@ -64,17 +64,17 @@ import Foundation
 		self.init(fields: parsedFields, locale: locale, attributes: attributes)
 	}
 
-	public convenience init?(structureData: [String:AnyObject], locale: NSLocale) {
+	public convenience init?(structureData: [String:AnyObject], locale: Locale) {
 		var newData = structureData
 
 		if let xsd = structureData["xsd"] as? String {
 			// v6.2: xml based structure
-			newData.removeValueForKey("xsd")
+			newData.removeValue(forKey: "xsd")
 			self.init(xsd: xsd, locale: locale, attributes: newData)
 		}
 		else if let json = structureData["definition"] as? String {
 			// v7.0+: json based structure
-			newData.removeValueForKey("definition")
+			newData.removeValue(forKey: "definition")
 			self.init(json: json, locale: locale, attributes: newData)
 		}
 		else {
@@ -83,9 +83,9 @@ import Foundation
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
-		fields = aDecoder.decodeObjectForKey("fields") as! [DDMField]
-		attributes = aDecoder.decodeObjectForKey("attributes") as! [String:AnyObject]
-		locale = aDecoder.decodeObjectForKey("locale") as! NSLocale
+		fields = aDecoder.decodeObject(forKey: "fields") as! [DDMField]
+		attributes = aDecoder.decodeObject(forKey: "attributes") as! [String:AnyObject]
+		locale = aDecoder.decodeObject(forKey: "locale") as! Locale
 
 		super.init()
 	}
@@ -93,23 +93,23 @@ import Foundation
 
 	//MARK: Public methods
 
-	public func encodeWithCoder(aCoder: NSCoder) {
-		aCoder.encodeObject(fields, forKey:"fields")
-		aCoder.encodeObject(attributes, forKey:"attributes")
-		aCoder.encodeObject(locale, forKey:"locale")
+	open func encode(with aCoder: NSCoder) {
+		aCoder.encode(fields, forKey:"fields")
+		aCoder.encode(attributes, forKey:"attributes")
+		aCoder.encode(locale, forKey:"locale")
 	}
 
-	public func fieldBy(name name: String) -> DDMField? {
+	open func fieldBy(name: String) -> DDMField? {
 		return fields.filter {
-			$0.name.lowercaseString == name.lowercaseString
+			$0.name.lowercased() == name.lowercased()
 		}.first
 	}
 
-	public func fieldsBy(type type: AnyClass) -> [DDMField] {
+	open func fieldsBy(type: AnyClass) -> [DDMField] {
 		let typeName = NSStringFromClass(type)
 
 		return fields.filter {
-			NSStringFromClass($0.dynamicType) == typeName
+			NSStringFromClass(type(of: $0)) == typeName
 		}
 	}
 

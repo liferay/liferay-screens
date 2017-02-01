@@ -14,20 +14,20 @@
 import Foundation
 
 
-public class ImageEntry : Asset {
+open class ImageEntry : Asset {
 
-	public var image: UIImage?
+	open var image: UIImage?
     
-    public var thumbnailUrl: String {
+    open var thumbnailUrl: String {
         return createThumbnailUrl()
     }
 
-	public var imageUrl: String {
+	open var imageUrl: String {
 		return createImageUrl()
 	}
 
-	public var imageEntryId: Int64 {
-		return attributes["fileEntryId"]?.longLongValue ?? 0
+	open var imageEntryId: Int64 {
+		return attributes["fileEntryId"]?.int64Value ?? 0
 	}
 
 
@@ -45,7 +45,7 @@ public class ImageEntry : Asset {
 
 	//MARK: Private methods
 
-    private func createThumbnailUrl() -> String {
+    fileprivate func createThumbnailUrl() -> String {
 		guard let version = attributes["version"]
 		else {
 			return ""
@@ -53,9 +53,9 @@ public class ImageEntry : Asset {
         return "\(createImageUrl())?version=\(version)&imageThumbnail=1"
     }
     
-    private func createImageUrl() -> String {
-		guard let groupId = attributes["groupId"], folderId = attributes["folderId"],
-				uuid = attributes["uuid"]
+    fileprivate func createImageUrl() -> String {
+		guard let groupId = attributes["groupId"], let folderId = attributes["folderId"],
+				let uuid = attributes["uuid"]
 		else {
 			return ""
 		}
@@ -63,9 +63,9 @@ public class ImageEntry : Asset {
             "\(folderId)/\(encodeUrlString(title))/\(uuid)"
     }
     
-    private func encodeUrlString(originalString: String) -> String {
-        return originalString.stringByAddingPercentEncodingWithAllowedCharacters(
-            .URLHostAllowedCharacterSet()) ?? ""
+    fileprivate func encodeUrlString(_ originalString: String) -> String {
+        return originalString.addingPercentEncoding(
+            withAllowedCharacters: .urlHostAllowed) ?? ""
     }
 	
 }

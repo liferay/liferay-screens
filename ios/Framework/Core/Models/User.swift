@@ -14,39 +14,39 @@
 import Foundation
 
 
-@objc public class User: NSObject, NSCoding {
+@objc open class User: NSObject, NSCoding {
 
-	public let attributes: [String:AnyObject]
+	open let attributes: [String:AnyObject]
 	
-	public var firstName: String {
+	open var firstName: String {
 		return stringAttribute("firstName")
 	}
 
-	public var lastName: String {
+	open var lastName: String {
 		return stringAttribute("lastName")
 	}
 
-	public var middleName: String {
+	open var middleName: String {
 		return stringAttribute("middleName")
 	}
 
-	public var screenName: String {
+	open var screenName: String {
 		return stringAttribute("screenName")
 	}
 
-	public var greeting: String {
+	open var greeting: String {
 		return stringAttribute("greeting")
 	}
 
-	public var jobTitle: String {
+	open var jobTitle: String {
 		return stringAttribute("jobTitle")
 	}
 
-	public var email: String {
+	open var email: String {
 		return stringAttribute("emailAddress")
 	}
 
-	public var userId: Int64 {
+	open var userId: Int64 {
 		return int64Attribute("userId")
 	}
 
@@ -60,7 +60,7 @@ import Foundation
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
-		self.attributes = aDecoder.decodeObjectForKey("asset-attrs") as? [String:AnyObject] ?? [:]
+		self.attributes = aDecoder.decodeObject(forKey: "asset-attrs") as? [String:AnyObject] ?? [:]
 
 		super.init()
 	}
@@ -68,15 +68,15 @@ import Foundation
 
 	//MARK: Public methods
 
-	public func int64Attribute(key: String) -> Int64 {
-		return attributes[key]?.longLongValue ?? 0
+	open func int64Attribute(_ key: String) -> Int64 {
+		return attributes[key]?.int64Value ?? 0
 	}
 
-	public func stringAttribute(key: String) -> String {
+	open func stringAttribute(_ key: String) -> String {
 		return attributes[key]?.description ?? ""
 	}
 
-	public func encodeWithCoder(aCoder: NSCoder) {
-		aCoder.encodeObject(attributes, forKey: "asset-attrs")
+	open func encode(with aCoder: NSCoder) {
+		aCoder.encode(attributes, forKey: "asset-attrs")
 	}
 }

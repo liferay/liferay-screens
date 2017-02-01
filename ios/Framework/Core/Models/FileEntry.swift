@@ -14,16 +14,16 @@
 import Foundation
 
 
-@objc public class FileEntry: Asset {
+@objc open class FileEntry: Asset {
 
-	override public var url: String {
+	override open var url: String {
 		let obj = attributes["object"]
 		let objDict = obj as! [String:AnyObject]
 		let url = objDict["url"]
 		return url as! String
 	}
 
-	public var fileExtension: String? {
+	open var fileExtension: String? {
 		if let assetObject = attributes["object"] {
 			if let fileEntry = assetObject["fileEntry"] as? [String : AnyObject]{
 				return fileEntry["extension"] as? String
@@ -32,12 +32,12 @@ import Foundation
 		return ""
 	}
 
-	public var fileEntry: [String:AnyObject] {
+	open var fileEntry: [String:AnyObject] {
 		return attributes["object"]!["fileEntry"] as! [String:AnyObject]
 	}
 
-	public var fileEntryId: Int64 {
-		return self.fileEntry["fileEntryId"]!.longLongValue
+	open var fileEntryId: Int64 {
+		return self.fileEntry["fileEntryId"]!.int64Value
 	}
 
 }

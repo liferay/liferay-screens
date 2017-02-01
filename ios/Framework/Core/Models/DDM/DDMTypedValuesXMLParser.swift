@@ -18,14 +18,14 @@ import Foundation
 #endif
 
 
-public class DDMTypedValuesXMLParser {
+open class DDMTypedValuesXMLParser {
 
-	public var createdStructure: DDMStructure?
+	open var createdStructure: DDMStructure?
 
 	//MARK: Public methods
 	
-	public func parse(xml: String, structure: DDMStructure?) -> Int {
-		let data = xml.dataUsingEncoding(NSUTF8StringEncoding)
+	open func parse(_ xml: String, structure: DDMStructure?) -> Int {
+		let data = xml.data(using: .utf8)
 
 		guard let document = try? SMXMLDocument(data: data) else {
 			return -1
@@ -33,24 +33,24 @@ public class DDMTypedValuesXMLParser {
 
 		return processDocument(document,
 		   locale: structure?.locale
-				?? NSLocale(localeIdentifier: NSLocale.currentLocaleString),
+				?? Locale(identifier: NSLocale.currentLocaleString),
 		   structure: structure)
 	}
 
 
 	//MARK: Private methods
 
-	private func processDocument(document: SMXMLDocument, locale: NSLocale, structure: DDMStructure?) -> Int {
+	fileprivate func processDocument(_ document: SMXMLDocument, locale: Locale, structure: DDMStructure?) -> Int {
 		var count = 0
 		var createdFields = [DDMField]()
 
 		if let elements = document.childrenNamed("dynamic-element") {
-			let defaultLocale = NSLocale(
-				localeIdentifier:document.attributeNamed("default-locale") ?? "en_US")
+			let defaultLocale = Locale(
+				identifier:document.attributeNamed("default-locale") ?? "en_US")
 
 			for element in (elements as! [SMXMLElement]) {
 				if let fieldName = element.attributeNamed("name"),
-						value = getFieldValue(element, locale: locale, defaultLocale: defaultLocale) {
+						let value = getFieldValue(element, locale: locale, defaultLocale: defaultLocale) {
 
 					if let field = structure?.fieldBy(name: fieldName) {
 						field.currentValueAsString = value
@@ -80,9 +80,9 @@ public class DDMTypedValuesXMLParser {
 		return count
 	}
 
-	private func createFormField(xmlElement: SMXMLElement,
-			locale: NSLocale,
-	        defaultLocale: NSLocale) -> DDMField? {
+	fileprivate func createFormField(_ xmlElement: SMXMLElement,
+			locale: Locale,
+	        defaultLocale: Locale) -> DDMField? {
 
 		let editor = DDMField.Editor.from(
 			attributes: xmlElement.attributes as! [String:AnyObject])
@@ -94,9 +94,9 @@ public class DDMTypedValuesXMLParser {
 	}
 
 
-	private func getFieldValue(xmlElement: SMXMLElement,
-			locale: NSLocale,
-			defaultLocale: NSLocale) -> String? {
+	fileprivate func getFieldValue(_ xmlElement: SMXMLElement,
+			locale: Locale,
+			defaultLocale: Locale) -> String? {
 
 		let localizedContent = findContentElement(xmlElement,
 				locale: locale,
@@ -105,8 +105,8 @@ public class DDMTypedValuesXMLParser {
 		return localizedContent?.value
 	}
 
-	private func findContentElement(dynamicElement: SMXMLElement,
-			locale: NSLocale, defaultLocale: NSLocale)
+	fileprivate func findContentElement(_ dynamicElement: SMXMLElement,
+			locale: Locale, defaultLocale: Locale)
 			-> SMXMLElement? {
 
 		// Locale matching fallback mechanism: it's designed in such a way to return
@@ -129,13 +129,13 @@ public class DDMTypedValuesXMLParser {
 			return nil
 		}
 
-		let currentLanguageCode = locale.objectForKey(NSLocaleLanguageCode) as! String
-		let currentCountryCode = locale.objectForKey(NSLocaleCountryCode) as? String
+		let currentLanguageCode = (locale as NSLocale).object(forKey: NSLocale.Key.languageCode) as! String
+		let currentCountryCode = (locale as NSLocale).object(forKey: NSLocale.Key.countryCode) as? String
 
 		var resultElement: SMXMLElement?
 
 		if let metadataElement = findElementWithAttribute("language-id",
-				value: locale.localeIdentifier, elements: contentElements) {
+				value: locale.identifier, elements: contentElements) {
 			// cases 'a1' and 'b1'
 
 			resultElement = metadataElement
@@ -169,13 +169,13 @@ public class DDMTypedValuesXMLParser {
 			// Final fallback (a4, b3): find default metadata
 
 			resultElement = findElementWithAttribute("language-id",
-				value: defaultLocale.localeIdentifier, elements: contentElements)
+				value: defaultLocale.identifier, elements: contentElements)
 		}
 
 		return resultElement
 	}
 
-	private func childrenWithAttribute(attribute:String, value:String, parent:SMXMLElement) ->
+	fileprivate func childrenWithAttribute(_ attribute:String, value:String, parent:SMXMLElement) ->
 			[SMXMLElement] {
 
 		var result: [SMXMLElement] = []
@@ -191,7 +191,7 @@ public class DDMTypedValuesXMLParser {
 		return result
 	}
 
-	private func findElementWithAttribute(attribute:String, value:String, elements:[SMXMLElement])
+	fileprivate func findElementWithAttribute(_ attribute:String, value:String, elements:[SMXMLElement])
 			-> SMXMLElement? {
 		return elements.filter {
 			let attrValue = $0.attributeNamed(attribute)

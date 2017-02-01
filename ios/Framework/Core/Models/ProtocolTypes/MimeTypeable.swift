@@ -23,7 +23,7 @@ public protocol MimeTypeable {
 
 public extension MimeTypeable {
 
-	public func isAnyMimeType(mimeTypes: [String]) -> Bool {
+	public func isAnyMimeType(_ mimeTypes: [String]) -> Bool {
 		guard (self.mimeType ?? "") != "" else {
 			return false
 		}

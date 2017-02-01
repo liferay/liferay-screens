@@ -14,14 +14,14 @@
 import Foundation
 
 
-public class DDMFieldString : DDMField {
+open class DDMFieldString : DDMField {
 
 	override internal func doValidate() -> Bool {
 		var result = super.doValidate()
 
 		if result && currentValueAsString != nil && required {
-			let trimmedString = currentValueAsString?.stringByTrimmingCharactersInSet(
-					NSCharacterSet.whitespaceCharacterSet())
+			let trimmedString = currentValueAsString?.trimmingCharacters(
+					in: .whitespaces)
 
 			result = (trimmedString != "")
 		}

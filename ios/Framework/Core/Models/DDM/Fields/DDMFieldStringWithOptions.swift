@@ -14,13 +14,13 @@
 import Foundation
 
 
-public class DDMFieldStringWithOptions : DDMField {
+open class DDMFieldStringWithOptions : DDMField {
 
-	public class Option: NSObject, NSCoding {
+	open class Option: NSObject, NSCoding {
 
-		public var label: String
-		public var name: String?
-		public var value: String
+		open var label: String
+		open var name: String?
+		open var value: String
 
 		public init(label: String, name: String?, value: String) {
 			self.label = label
@@ -29,22 +29,22 @@ public class DDMFieldStringWithOptions : DDMField {
 		}
 
 		public required convenience init?(coder aDecoder: NSCoder) {
-			let label = aDecoder.decodeObjectForKey("label") as! String
-			let name = aDecoder.decodeObjectForKey("name") as? String
-			let value = aDecoder.decodeObjectForKey("value") as! String
+			let label = aDecoder.decodeObject(forKey: "label") as! String
+			let name = aDecoder.decodeObject(forKey: "name") as? String
+			let value = aDecoder.decodeObject(forKey: "value") as! String
 
 			self.init(label: label, name: name, value: value)
 		}
 
-		public func encodeWithCoder(aCoder: NSCoder) {
-			aCoder.encodeObject(label, forKey: "label")
+		open func encode(with aCoder: NSCoder) {
+			aCoder.encode(label, forKey: "label")
 			if let name = name {
-				aCoder.encodeObject(name, forKey: "name")
+				aCoder.encode(name, forKey: "name")
 			}
-			aCoder.encodeObject(value, forKey: "value")
+			aCoder.encode(value, forKey: "value")
 		}
 
-		override public var description: String {
+		override open var description: String {
 			return self.value
 		}
 
@@ -52,18 +52,18 @@ public class DDMFieldStringWithOptions : DDMField {
 
 
 	//FIXME: Multiple selection not supported yet
-	private(set) var multiple: Bool
+	fileprivate(set) var multiple: Bool
 
-	private(set) var options: [Option] = []
+	fileprivate(set) var options: [Option] = []
 
-	override public init(attributes: [String:AnyObject], locale: NSLocale) {
-		multiple = Bool.from(any: attributes["multiple"] ?? "false")
+	override public init(attributes: [String:AnyObject], locale: Locale) {
+		multiple = Bool.from(any: attributes["multiple"] ?? "false" as AnyObject)
 
 		if let optionsArray = (attributes["options"] ?? nil) as? [[String:AnyObject]] {
 			for optionDict in optionsArray {
-				let label = (optionDict["label"] ?? "") as! String
+				let label = optionDict["label"] as? String ?? ""
 				let name = optionDict["name"] as? String
-				let value = (optionDict["value"] ?? "") as! String
+				let value = optionDict["value"] as? String ?? ""
 
 				let option = Option(label: label, name: name, value: value)
 
@@ -75,17 +75,17 @@ public class DDMFieldStringWithOptions : DDMField {
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
-		multiple = aDecoder.decodeBoolForKey("multiple")
-		options = aDecoder.decodeObjectForKey("options") as! [Option]
+		multiple = aDecoder.decodeBool(forKey: "multiple")
+		options = aDecoder.decodeObject(forKey: "options") as! [Option]
 
 		super.init(coder: aDecoder)
 	}
 
-	public override func encodeWithCoder(aCoder: NSCoder) {
-		super.encodeWithCoder(aCoder)
+	open override func encode(with aCoder: NSCoder) {
+		super.encode(with: aCoder)
 
-		aCoder.encodeBool(multiple, forKey: "multiple")
-		aCoder.encodeObject(options, forKey: "options")
+		aCoder.encode(multiple, forKey: "multiple")
+		aCoder.encode(options, forKey: "options")
 	}
 
 
@@ -125,7 +125,7 @@ public class DDMFieldStringWithOptions : DDMField {
 			}
 		}
 
-		return result
+		return result as AnyObject?
 	}
 
 	override func convert(fromLabel labels: String?) -> AnyObject? {
@@ -139,7 +139,7 @@ public class DDMFieldStringWithOptions : DDMField {
 			}
 		}
 
-		return options
+		return options as AnyObject?
 	}
 
 
@@ -170,7 +170,7 @@ public class DDMFieldStringWithOptions : DDMField {
 
 	//MARK: Private methods
 
-	private func extractOptions(optionsString: String?) -> [String] {
+	fileprivate func extractOptions(_ optionsString: String?) -> [String] {
 		var options = [String]()
 
 		if let optionsValue = optionsString {
@@ -179,15 +179,15 @@ public class DDMFieldStringWithOptions : DDMField {
 				parsedOptions = parsedOptions.removeFirstAndLastChars()
 			}
 
-			options = parsedOptions.componentsSeparatedByString(",")
-					.map (extractOption)
+			options = parsedOptions.components(separatedBy: ",")
 					.map { $0.trim() }
+					.map (extractOption)
 		}
 
 		return options
 	}
 
-	private func extractOption(option: String) -> String {
+	fileprivate func extractOption(_ option: String) -> String {
 		if option.hasPrefix("\"") {
 			return option.removeFirstAndLastChars()
 		}
@@ -195,13 +195,13 @@ public class DDMFieldStringWithOptions : DDMField {
 		return option
 	}
 
-	private func findOptionByValue(value: String) -> Option? {
+	fileprivate func findOptionByValue(_ value: String) -> Option? {
 		return options.filter {
 				$0.value == value
 			}.first
 	}
 
-	private func findOptionByLabel(label: String) -> Option? {
+	fileprivate func findOptionByLabel(_ label: String) -> Option? {
 		return options.filter {
 				$0.label == label
 			}.first

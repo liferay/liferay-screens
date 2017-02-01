@@ -18,17 +18,17 @@ import Foundation
 #endif
 
 
-public class DDMXSDParser {
+open class DDMXSDParser {
 
 	
 	//MARK: Public methods
 	
-	public func parse(xsd: String, locale: NSLocale) -> [DDMField]? {
+	open func parse(_ xsd: String, locale: Locale) -> [DDMField]? {
 		let result: [DDMField]?
 
 		let xmlValue = xsd as NSString
 
-		let data = xmlValue.dataUsingEncoding(NSUTF8StringEncoding)
+		let data = xmlValue.data(using: String.Encoding.utf8.rawValue)
 
 		do {
 			let document = try SMXMLDocument(data: data)
@@ -44,12 +44,12 @@ public class DDMXSDParser {
 
 	//MARK: Private methods
 
-	private func processDocument(document:SMXMLDocument, locale: NSLocale) -> [DDMField]? {
+	fileprivate func processDocument(_ document:SMXMLDocument, locale: Locale) -> [DDMField]? {
 		var result: [DDMField]?
 
 		if let elements = document.childrenNamed("dynamic-element") {
-			let defaultLocale = NSLocale(
-				localeIdentifier:document.attributeNamed("default-locale") ?? "en_US")
+			let defaultLocale = Locale(
+				identifier:document.attributeNamed("default-locale") ?? "en_US")
 
 			result = []
 
@@ -66,9 +66,9 @@ public class DDMXSDParser {
 		return result
 	}
 
-	private func createFormField(xmlElement:SMXMLElement,
-			locale: NSLocale,
-			defaultLocale: NSLocale)
+	fileprivate func createFormField(_ xmlElement:SMXMLElement,
+			locale: Locale,
+			defaultLocale: Locale)
 			-> DDMField? {
 
 		let dataType = DDMField.DataType.from(xmlElement:xmlElement)
@@ -87,8 +87,8 @@ public class DDMXSDParser {
 			version: LiferayServerVersion.v62)
 	}
 
-	private func mergeDictionaries(
-			dict1 dict1:[String:AnyObject],
+	fileprivate func mergeDictionaries(
+			dict1:[String:AnyObject],
 			dict2:[String:AnyObject])
 			-> [String:AnyObject] {
 
@@ -105,9 +105,9 @@ public class DDMXSDParser {
 		return result
 	}
 
-	private func processLocalizedMetadata(dynamicElement:SMXMLElement,
-			locale: NSLocale,
-			defaultLocale: NSLocale)
+	fileprivate func processLocalizedMetadata(_ dynamicElement:SMXMLElement,
+			locale: Locale,
+			defaultLocale: Locale)
 			-> [String:AnyObject] {
 
 		var result:[String:AnyObject] = [:]
@@ -115,17 +115,17 @@ public class DDMXSDParser {
 		func addElement(
 				name elementName: String,
 				metadata: SMXMLElement,
-				inout result: [String:AnyObject]) {
+				result: inout [String:AnyObject]) {
 
-			if let element = metadata.childWithAttribute("name", value: elementName) {
-				result[elementName] = element.value
+			if let element = metadata.child(withAttribute: "name", value: elementName) {
+				result[elementName] = element.value as AnyObject
 			}
 		}
 
 		func findOptions(
-				dynamicElement dynamicElement:SMXMLElement,
-				locale: NSLocale,
-				defaultLocale: NSLocale)
+				dynamicElement:SMXMLElement,
+				locale: Locale,
+				defaultLocale: Locale)
 				-> [[String:AnyObject]]? {
 
 			var options:[[String:AnyObject]] = []
@@ -137,13 +137,13 @@ public class DDMXSDParser {
 			for optionElement in optionElements {
 				var option:[String:AnyObject] = [:]
 
-				option["name"] = optionElement.attributeNamed("name")
-				option["value"] = optionElement.attributeNamed("value")
+				option["name"] = optionElement.attributeNamed("name") as AnyObject
+				option["value"] = optionElement.attributeNamed("value") as AnyObject
 
 				if let localizedMetadata = findMetadataElement(optionElement,
 						locale: locale, defaultLocale: defaultLocale) {
-					if let element = localizedMetadata.childWithAttribute("name", value: "label") {
-						option["label"] = element.value
+					if let element = localizedMetadata.child(withAttribute: "name", value: "label") {
+						option["label"] = element.value as AnyObject?
 					}
 				}
 
@@ -167,14 +167,14 @@ public class DDMXSDParser {
 				locale: locale,
 				defaultLocale: defaultLocale) {
 
-			result["options"] = options
+			result["options"] = options as AnyObject?
 		}
 
 		return result
 	}
 
-	private func findMetadataElement(dynamicElement:SMXMLElement,
-			locale: NSLocale, defaultLocale: NSLocale)
+	fileprivate func findMetadataElement(_ dynamicElement:SMXMLElement,
+			locale: Locale, defaultLocale: Locale)
 			-> SMXMLElement? {
 
 		// Locale matching fallback mechanism: it's designed in such a way to return
@@ -199,13 +199,13 @@ public class DDMXSDParser {
 			return nil
 		}
 
-		let currentLanguageCode = locale.objectForKey(NSLocaleLanguageCode) as! String
-		let currentCountryCode = locale.objectForKey(NSLocaleCountryCode) as? String
+		let currentLanguageCode = (locale as NSLocale).object(forKey: NSLocale.Key.languageCode) as! String
+		let currentCountryCode = (locale as NSLocale).object(forKey: NSLocale.Key.countryCode) as? String
 
 		var resultElement:SMXMLElement?
 
 		if let metadataElement = findElementWithAttribute("locale",
-				value:locale.localeIdentifier, elements:metadataElements!) {
+				value:locale.identifier, elements:metadataElements!) {
 			// cases 'a1' and 'b1'
 
 			resultElement = metadataElement
@@ -242,13 +242,13 @@ public class DDMXSDParser {
 			// Final fallback (a4, b3): find default metadata
 
 			resultElement = findElementWithAttribute("locale",
-				value:defaultLocale.localeIdentifier, elements:metadataElements!)
+				value:defaultLocale.identifier, elements:metadataElements!)
 		}
 
 		return resultElement
 	}
 
-	private func childrenWithAttribute(attribute:String, value:String, parent:SMXMLElement) ->
+	fileprivate func childrenWithAttribute(_ attribute:String, value:String, parent:SMXMLElement) ->
 			[SMXMLElement] {
 
 		var result:[SMXMLElement] = []
@@ -264,7 +264,7 @@ public class DDMXSDParser {
 		return result
 	}
 
-	private func findElementWithAttribute(attribute:String, value:String, elements:[SMXMLElement])
+	fileprivate func findElementWithAttribute(_ attribute:String, value:String, elements:[SMXMLElement])
 			-> SMXMLElement? {
 
 		for element in elements {
