@@ -275,6 +275,10 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		return (V) screenletView;
 	}
 
+	public void setViewModel(View viewModel) {
+		this.screenletView = viewModel;
+	}
+
 	/**
 	 * Searches the default layout id through screenlet name.
 	 * If there is no layout, returns zero.
