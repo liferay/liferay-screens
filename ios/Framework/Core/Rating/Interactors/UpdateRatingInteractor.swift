@@ -13,7 +13,7 @@
  */
 import UIKit
 
-public class UpdateRatingInteractor: ServerWriteConnectorInteractor {
+open class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 	
 	let className: String
 
@@ -53,7 +53,7 @@ public class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 
 	//MARK: ServerConnectorInteractor
 	
-	override public func createConnector() -> ServerConnector? {
+	override open func createConnector() -> ServerConnector? {
 		return LiferayServerContext.connectorFactory.createRatingUpdateConnector(
 			classPK: classPK,
 			className: className,
@@ -61,7 +61,7 @@ public class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 			ratingsGroupCount: ratingsGroupCount)
 	}
 	
-	override public func completedConnector(c: ServerConnector) {
+	override open func completedConnector(_ c: ServerConnector) {
 		if let updateCon = c as? RatingUpdateLiferayConnector {
 			self.resultRating = updateCon.resultRating
 		}
@@ -70,42 +70,42 @@ public class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 
 	//MARK: Cache methods
 
-	override public func writeToCache(c: ServerConnector) {
+	override open func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
 
-		let cacheFunction = (cacheStrategy == .CacheFirst || c.lastError != nil)
+		let cacheFunction = (cacheStrategy == .cacheFirst || c.lastError != nil)
 			? cacheManager.setDirty
 			: cacheManager.setClean
 
 		cacheFunction(
-			collection: "RatingsScreenlet",
-			key: "update-className=\(className)-classPK=\(classPK)",
-			value: "",
-			attributes: [
-				"className": className,
-				"classPK": NSNumber(longLong: classPK),
-				"ratingsGroupCount": Int(ratingsGroupCount),
-				"score": NSNumber(double: score),
+			"RatingsScreenlet",
+			"update-className=\(className)-classPK=\(classPK)",
+			"" as NSCoding,
+			[
+				"className": className as AnyObject,
+				"classPK": NSNumber(value: classPK as Int64),
+				"ratingsGroupCount": Int(ratingsGroupCount) as AnyObject,
+				"score": NSNumber(value: score as Double),
 			],
-			onCompletion: nil)
+			nil)
 	}
 
 
 	//MARK: Interactor
 
-	override public func callOnSuccess() {
-		if cacheStrategy == .CacheFirst {
+	override open func callOnSuccess() {
+		if cacheStrategy == .cacheFirst {
 			SessionContext.currentContext?.cacheManager.setClean(
 				collection: "RatingsScreenlet",
 				key: "update-className=\(className)-classPK=\(classPK)",
-				value: "",
+				value: "" as NSCoding,
 				attributes: [
-					"className": className,
-					"classPK": NSNumber(longLong: classPK),
-					"ratingsGroupCount": Int(ratingsGroupCount),
-					"score": NSNumber(double: score),
+					"className": className as AnyObject,
+					"classPK": NSNumber(value: classPK as Int64),
+					"ratingsGroupCount": Int(ratingsGroupCount) as AnyObject,
+					"score": NSNumber(value: score as Double),
 				],
 				onCompletion: nil)
 		}

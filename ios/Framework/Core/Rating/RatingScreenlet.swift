@@ -21,7 +21,7 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - rating: asset's rating.
-	optional func screenlet(screenlet: RatingScreenlet,
+	@objc optional func screenlet(_ screenlet: RatingScreenlet,
 	                        onRatingRetrieve rating: RatingEntry)
 
 	/// Called when a rating is deleted.
@@ -29,7 +29,7 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - rating: asset's rating.
-	optional func screenlet(screenlet: RatingScreenlet,
+	@objc optional func screenlet(_ screenlet: RatingScreenlet,
 	                        onRatingDeleted rating: RatingEntry)
 
 	/// Called when a rating is updated.
@@ -37,7 +37,7 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - rating: asset's rating.
-	optional func screenlet(screenlet: RatingScreenlet,
+	@objc optional func screenlet(_ screenlet: RatingScreenlet,
 	                        onRatingUpdated rating: RatingEntry)
 
 	/// Called when an error occurs in the process. The NSError object describes the error.
@@ -45,74 +45,73 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - error: error retrieving, updating or deleting asset's rating.
-	optional func screenlet(screenlet: RatingScreenlet,
+	@objc optional func screenlet(_ screenlet: RatingScreenlet,
 	                        onRatingError error: NSError)
 	
 }
 
 
-public class RatingScreenlet: BaseScreenlet {
+open class RatingScreenlet: BaseScreenlet {
 	
-	public static let DeleteRatingAction = "deleteRating"
-	public static let UpdateRatingAction = "updateRating"
-	public static let LoadRatingsAction = "loadRatings"
+	open static let DeleteRatingAction = "deleteRating"
+	open static let UpdateRatingAction = "updateRating"
+	open static let LoadRatingsAction = "loadRatings"
 
 
 	//MARK: Inspectables
 
-	@IBInspectable public var entryId: Int64 = 0
+	@IBInspectable open var entryId: Int64 = 0
 	
-	@IBInspectable public var className: String = ""
+	@IBInspectable open var className: String = ""
 
-	@IBInspectable public var classPK: Int64 = 0
+	@IBInspectable open var classPK: Int64 = 0
 
-	@IBInspectable public var ratingsGroupCount: Int32 = -1
+	@IBInspectable open var ratingsGroupCount: Int32 = -1
 	
-	@IBInspectable public var autoLoad: Bool = true
+	@IBInspectable open var autoLoad: Bool = true
 	
-	@IBInspectable public var editable: Bool = false {
+	@IBInspectable open var editable: Bool = false {
 		didSet {
 			screenletView?.editable = self.editable
 		}
 	}
 
-	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-	public var ratingDisplayDelegate: RatingScreenletDelegate? {
+	open var ratingDisplayDelegate: RatingScreenletDelegate? {
 		return delegate as? RatingScreenletDelegate
 	}
 	
-	public var viewModel: RatingViewModel? {
+	open var viewModel: RatingViewModel? {
 		return screenletView as? RatingViewModel
 	}
 
 
 	//MARK: BaseScreenlet
 
-	override public func prepareForInterfaceBuilder() {
+	override open func prepareForInterfaceBuilder() {
 		setCustomDefaultThemeName()
 		super.prepareForInterfaceBuilder()
 	}
 	
-	override public func onPreCreate() {
+	override open func onPreCreate() {
 		setCustomDefaultThemeName()
 	}
 	
-	override public func onCreated() {
-		if let defaultRatingsGroupCount = viewModel?.defaultRatingsGroupCount
-				where ratingsGroupCount == -1 {
+	override open func onCreated() {
+		if let defaultRatingsGroupCount = viewModel?.defaultRatingsGroupCount, ratingsGroupCount == -1 {
 			ratingsGroupCount = defaultRatingsGroupCount
 		}
 		screenletView?.editable = self.editable
 	}
 	
-	override public func onShow() {
+	override open func onShow() {
 		if autoLoad {
 			loadRatings()
 		}
 	}
 
-	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
 		let interactor: ServerConnectorInteractor?
 
 		switch name {
@@ -121,13 +120,13 @@ public class RatingScreenlet: BaseScreenlet {
 		case RatingScreenlet.DeleteRatingAction:
 			interactor = createDeleteRatingInteractor()
 		case RatingScreenlet.UpdateRatingAction:
-			let selectedScore = sender as! Double
+			let selectedScore = sender!.doubleValue!
 			interactor = createUpdateRatingInteractor(selectedScore)
 		default:
 			return nil
 		}
 
-		interactor?.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+		interactor?.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .remoteFirst
 
 		interactor?.onFailure = {
 			self.ratingDisplayDelegate?.screenlet?(self, onRatingError: $0)
@@ -136,7 +135,7 @@ public class RatingScreenlet: BaseScreenlet {
 		return interactor
 	}
 
-	override public func performDefaultAction() -> Bool {
+	override open func performDefaultAction() -> Bool {
 		return performAction(name: RatingScreenlet.LoadRatingsAction, sender: nil)
 	}
 
@@ -146,20 +145,21 @@ public class RatingScreenlet: BaseScreenlet {
 	/// Starts the request to load the asset's ratings.
 	///
 	/// - Returns: true if succeed, false if not.
-	public func loadRatings() -> Bool {
+	@discardableResult
+	open func loadRatings() -> Bool {
 		return self.performDefaultAction()
 	}
 
 
 	//MARK: Private methods
 
-	private func setCustomDefaultThemeName() {
+	fileprivate func setCustomDefaultThemeName() {
 		if themeName == BaseScreenlet.DefaultThemeName {
 			themeName = "default-thumbs"
 		}
 	}
 
-	private func createLoadRatingsInteractor() -> LoadRatingsInteractor? {
+	fileprivate func createLoadRatingsInteractor() -> LoadRatingsInteractor? {
 		let interactor: LoadRatingsInteractor?
 
 		if entryId != 0 {
@@ -190,7 +190,7 @@ public class RatingScreenlet: BaseScreenlet {
 			}
 			else {
 				self.ratingDisplayDelegate?.screenlet?(self,
-						onRatingError: NSError.errorWithCause(.InvalidServerResponse,
+						onRatingError: NSError.errorWithCause(.invalidServerResponse,
 								message: "Could not load ratings."))
 			}
 		}
@@ -198,7 +198,7 @@ public class RatingScreenlet: BaseScreenlet {
 		return interactor
 	}
 
-	private func createDeleteRatingInteractor() -> DeleteRatingInteractor {
+	fileprivate func createDeleteRatingInteractor() -> DeleteRatingInteractor {
 		let interactor = DeleteRatingInteractor(
 				screenlet: self,
 				className: className,
@@ -213,7 +213,7 @@ public class RatingScreenlet: BaseScreenlet {
 			}
 			else {
 				self.ratingDisplayDelegate?.screenlet?(self,
-						onRatingError: NSError.errorWithCause(.InvalidServerResponse,
+						onRatingError: NSError.errorWithCause(.invalidServerResponse,
 								message: "Could not delete the rating."))
 			}
 		}
@@ -221,7 +221,7 @@ public class RatingScreenlet: BaseScreenlet {
 		return interactor
 	}
 
-	private func createUpdateRatingInteractor(selectedScore: Double) -> UpdateRatingInteractor {
+	fileprivate func createUpdateRatingInteractor(_ selectedScore: Double) -> UpdateRatingInteractor {
 		let interactor = UpdateRatingInteractor(
 				screenlet: self,
 				className: className,
@@ -237,7 +237,7 @@ public class RatingScreenlet: BaseScreenlet {
 			}
 			else {
 				self.ratingDisplayDelegate?.screenlet?(self,
-						onRatingError: NSError.errorWithCause(.InvalidServerResponse,
+						onRatingError: NSError.errorWithCause(.invalidServerResponse,
 								message: "Could not update the rating."))
 			}
 		}

@@ -13,7 +13,7 @@
  */
 import UIKit
 
-public class DeleteRatingInteractor: ServerWriteConnectorInteractor {
+open class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 	
 	let className: String
 
@@ -45,14 +45,14 @@ public class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 
 	//MARK: ServerConnectorInteractor
 
-	override public func createConnector() -> ServerConnector? {
+	override open func createConnector() -> ServerConnector? {
 		return LiferayServerContext.connectorFactory.createRatingDeleteConnector(
 			classPK: classPK,
 			className: className,
 			ratingsGroupCount: ratingsGroupCount)
 	}
 	
-	override public func completedConnector(c: ServerConnector) {
+	override open func completedConnector(_ c: ServerConnector) {
 		if let deleteCon = c as? RatingDeleteLiferayConnector {
 			self.resultRating = deleteCon.resultRating
 		}
@@ -61,40 +61,40 @@ public class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 
 	//MARK: Cache methods
 
-	override public func writeToCache(c: ServerConnector) {
+	override open func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
 
-		let cacheFunction = (cacheStrategy == .CacheFirst || c.lastError != nil)
+		let cacheFunction = (cacheStrategy == .cacheFirst || c.lastError != nil)
 			? cacheManager.setDirty
 			: cacheManager.setClean
 
 		cacheFunction(
-			collection: "RatingsScreenlet",
-			key: "delete-className=\(className)-classPK=\(classPK)",
-			value: "",
-			attributes: [
-				"className": className,
-				"classPK": NSNumber(longLong: classPK),
-				"ratingsGroupCount": Int(ratingsGroupCount)
+			"RatingsScreenlet",
+			"delete-className=\(className)-classPK=\(classPK)",
+			"" as NSCoding,
+			[
+				"className": className as AnyObject,
+				"classPK": NSNumber(value: classPK),
+				"ratingsGroupCount": Int(ratingsGroupCount) as AnyObject
 			],
-			onCompletion: nil)
+			nil)
 	}
 
 
 	//MARK: Interactor
 
-	override public func callOnSuccess() {
-		if cacheStrategy == .CacheFirst {
+	override open func callOnSuccess() {
+		if cacheStrategy == .cacheFirst {
 			SessionContext.currentContext?.cacheManager.setClean(
 				collection: "RatingsScreenlet",
 				key: "delete-className=\(className)-classPK=\(classPK)",
-				value: "",
+				value: "" as NSCoding,
 				attributes: [
-					"className": className,
-					"classPK": NSNumber(longLong: classPK),
-					"ratingsGroupCount": Int(ratingsGroupCount)
+					"className": className as AnyObject,
+					"classPK": NSNumber(value: classPK),
+					"ratingsGroupCount": Int(ratingsGroupCount) as AnyObject
 				],
 				onCompletion: nil)
 		}

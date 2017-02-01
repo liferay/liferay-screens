@@ -14,7 +14,7 @@
 import UIKit
 import LRMobileSDK
 
-public class RatingDeleteLiferayConnector: ServerConnector {
+open class RatingDeleteLiferayConnector: ServerConnector {
 
 	let classPK: Int64
 	let className: String
@@ -34,7 +34,7 @@ public class RatingDeleteLiferayConnector: ServerConnector {
 
 	//MARK: ServerConnector
 
-	override public func validateData() -> ValidationError? {
+	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -54,17 +54,17 @@ public class RatingDeleteLiferayConnector: ServerConnector {
 
 }
 
-public class Liferay70RatingDeleteConnector: RatingDeleteLiferayConnector {
+open class Liferay70RatingDeleteConnector: RatingDeleteLiferayConnector {
 
 
 	//MARK: ServerConnector
 	
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 		let service = LRScreensratingsentryService_v70(session: session)
 
 		do {
-			let result = try service.deleteRatingsEntryWithClassPK(
-				classPK, className: className, ratingsLength: ratingsGroupCount)
+			let result = try service?.deleteRatingsEntry(
+				withClassPK: classPK, className: className, ratingsLength: ratingsGroupCount)
 			lastError = nil
 			resultRating = RatingEntry(attributes: result as! [String: AnyObject])
 		}
