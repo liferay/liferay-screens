@@ -16,90 +16,90 @@ import Foundation
 
 @objc public enum SyncConflictResolution: Int {
 
-	case UseRemote
-	case UseLocal
-	case Discard
-	case Ignore
+	case useRemote
+	case useLocal
+	case discard
+	case ignore
 
 }
 
 
 @objc public protocol SyncManagerDelegate {
 
-	optional func syncManager(manager: SyncManager,
+	@objc optional func syncManager(_ manager: SyncManager,
 		itemsCount: UInt)
 
-	optional func syncManager(manager: SyncManager,
+	@objc optional func syncManager(_ manager: SyncManager,
 		onItemSyncScreenlet screenlet: String,
 		startKey: String,
 		attributes: [String:AnyObject])
 
-	optional func syncManager(manager: SyncManager,
+	@objc optional func syncManager(_ manager: SyncManager,
 		onItemSyncScreenlet screenlet: String,
 		completedKey: String,
 		attributes: [String:AnyObject])
 
-	optional func syncManager(manager: SyncManager,
+	@objc optional func syncManager(_ manager: SyncManager,
 		onItemSyncScreenlet screenlet: String,
 		failedKey: String,
 		attributes: [String:AnyObject],
 		error: NSError)
 
-	optional func syncManager(manager: SyncManager,
+	@objc optional func syncManager(_ manager: SyncManager,
 		onItemSyncScreenlet screenlet: String,
 		conflictedKey: String,
 		remoteValue: AnyObject,
 		localValue: AnyObject,
-		resolve: SyncConflictResolution -> ())
+		resolve: (SyncConflictResolution) -> ())
 
 }
 
 
-public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> Signal -> ()
+public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> (@escaping Signal) -> ()
 
 
-@objc public class SyncManager: NSObject {
+@objc open class SyncManager: NSObject {
 
-	public weak var delegate: SyncManagerDelegate?
+	open weak var delegate: SyncManagerDelegate?
 
-	public let cacheManager: CacheManager
+	open let cacheManager: CacheManager
 
-	private let syncQueue: NSOperationQueue
-	private var synchronizers: [String:OfflineSynchronizer] = [:]
+	fileprivate let syncQueue: OperationQueue
+	fileprivate var synchronizers: [String:OfflineSynchronizer] = [:]
 
 
 	public init(cacheManager: CacheManager) {
 		self.cacheManager = cacheManager
 
-		self.syncQueue = NSOperationQueue()
+		self.syncQueue = OperationQueue()
 		self.syncQueue.maxConcurrentOperationCount = 1
 
 		super.init()
 
-		synchronizers[ScreenletName(UserPortraitScreenlet)] =  userPortraitSynchronizer
-		synchronizers[ScreenletName(DDLFormScreenlet)] =  formSynchronizer
-		synchronizers[ScreenletName(ImageGalleryScreenlet)] = imageGallerySynchronizer
+		synchronizers[ScreenletName(UserPortraitScreenlet.self)] =  userPortraitSynchronizer
+		synchronizers[ScreenletName(DDLFormScreenlet.self)] =  formSynchronizer
+		synchronizers[ScreenletName(ImageGalleryScreenlet.self)] = imageGallerySynchronizer
 		synchronizers["CommentsScreenlet"] = commentsSynchronizer
 		synchronizers["RatingsScreenlet"] = ratingsSynchronizer
 	}
 
-	public func addSynchronizer(
-			screenletClass: AnyClass,
-			synchronizer: OfflineSynchronizer) {
+	open func addSynchronizer(
+			_ screenletClass: AnyClass,
+			synchronizer: @escaping OfflineSynchronizer) {
 		addSynchronizerWithName(ScreenletName(screenletClass), synchronizer: synchronizer)
 	}
 
-	public func addSynchronizerWithName(
-			screenletClassName: String,
-			synchronizer: OfflineSynchronizer) {
+	open func addSynchronizerWithName(
+			_ screenletClassName: String,
+			synchronizer: @escaping OfflineSynchronizer) {
 		synchronizers[screenletClassName] = synchronizer
 	}
 
-	public func clear() {
+	open func clear() {
 		self.cacheManager.removeAll()
 	}
 
-	public func startSync() {
+	open func startSync() {
 		cacheManager.countPendingToSync { count in
 			self.delegate?.syncManager?(self, itemsCount: count)
 
@@ -118,15 +118,15 @@ public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> Signal ->
 		}
 	}
 
-	public func prepareInteractorForSync(
-			interactor: ServerConnectorInteractor,
+	open func prepareInteractorForSync(
+			_ interactor: ServerConnectorInteractor,
 			key: String,
 			attributes: [String:AnyObject],
-			signal: Signal,
+			signal: @escaping Signal,
 			screenletClassName: String) {
 
 		// this strategy saves the send date after the connector
-		interactor.cacheStrategy = .CacheFirst
+		interactor.cacheStrategy = .cacheFirst
 
 		interactor.onSuccess = {
 			self.delegate?.syncManager?(self,
@@ -149,14 +149,14 @@ public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> Signal ->
 		}
 	}
 
-	private func enqueueSyncForScreenlet(
-			screenletName: String,
+	fileprivate func enqueueSyncForScreenlet(
+			_ screenletName: String,
 			_ key: String,
 			_ attributes: [String:AnyObject]) {
 
 		if let syncBuilder = synchronizers[screenletName] {
 			let synchronizer = syncBuilder(key, attributes)
-			syncQueue.addOperationWithBlock(to_sync(synchronizer))
+			syncQueue.addOperation(to_sync(synchronizer))
 		}
 	}
 

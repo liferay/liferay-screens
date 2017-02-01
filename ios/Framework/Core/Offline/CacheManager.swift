@@ -18,20 +18,20 @@ import YapDatabase.YapDatabaseFilteredView
 
 
 public enum CacheStrategyType: String {
-	case RemoteOnly = "remote-only"
-	case RemoteFirst = "remote-first"
-	case CacheOnly = "cache-only"
-	case CacheFirst = "cache-first"
+	case remoteOnly = "remote-only"
+	case remoteFirst = "remote-first"
+	case cacheOnly = "cache-only"
+	case cacheFirst = "cache-first"
 }
 
 
-@objc public class CacheManager: NSObject {
+@objc open class CacheManager: NSObject {
 
-	private static let tableSchemaDatabase = "lr_cache_"
+	fileprivate static let tableSchemaDatabase = "lr_cache_"
 
-	public let database: YapDatabase
-	public let readConnection: YapDatabaseConnection
-	public let writeConnection: YapDatabaseConnection
+	open let database: YapDatabase
+	open let readConnection: YapDatabaseConnection
+	open let writeConnection: YapDatabaseConnection
 
 	public init(database: YapDatabase) {
 		self.database = database
@@ -53,43 +53,35 @@ public enum CacheStrategyType: String {
 		self.init(name: "\(session.serverName!)-\(userId)")
 	}
 
-	public func getString(collection collection: String, key: String, result: String? -> ()) {
+	open func getString(collection: String, key: String, result: @escaping (String?) -> ()) {
 		var value: AnyObject?
-		readConnection.asyncReadWithBlock( { transaction in
-				value = transaction.objectForKey(key, inCollection: collection)
+		readConnection.asyncRead( { transaction in
+				value = transaction.object(forKey: key, inCollection: collection) as AnyObject?
 			}, completionBlock: {
 				result((value as? NSObject)?.description)
 			})
 	}
 
-	public func getLocalFileURL(collection collection: String, key: String, result: NSURL? -> ()) {
+	open func getLocalFileURL(collection: String, key: String, result: @escaping (URL?) -> ()) {
 		var value: AnyObject?
 
-		readConnection.asyncReadWithBlock({ transaction in
-				value = transaction.objectForKey(key, inCollection: collection)
+		readConnection.asyncRead({ transaction in
+				value = transaction.object(forKey: key, inCollection: collection) as AnyObject?
 			},
 			completionBlock: {
-				guard let localFileURL = value as? NSURL else {
-					result(nil)
-					return
-				}
-				guard let localPath = localFileURL.path else {
+				guard let localFileURL = value as? URL else {
 					result(nil)
 					return
 				}
 
-				if isCacheFilePath(localPath) {
+				if isCacheFilePath(localFileURL.path) {
 					// use current cache path: may be different than the stored
-					guard let filename = localFileURL.lastPathComponent else {
-						result(nil)
-						return
-					}
+					let filename = localFileURL.lastPathComponent
+					let cacheDir = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .allDomainsMask, true)[0]
 
-					let cacheDir = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .AllDomainsMask, true)[0]
+					let newLocalURL = URL(fileURLWithPath: "\(cacheDir)/\(filename)")
 
-					let newLocalURL = NSURL(fileURLWithPath: "\(cacheDir)/\(filename)")
-
-					if newLocalURL.checkResourceIsReachableAndReturnError(nil) {
+					if (newLocalURL as NSURL).checkResourceIsReachableAndReturnError(nil) {
 						result(newLocalURL)
 					}
 					else {
@@ -102,16 +94,16 @@ public enum CacheStrategyType: String {
 			})
 	}
 
-	public func getImage(collection collection: String, key: String, result: UIImage? -> ()) {
+	open func getImage(collection: String, key: String, result: @escaping (UIImage?) -> ()) {
 		var value: AnyObject?
 
-		readConnection.asyncReadWithBlock({ transaction in
-				value = transaction.objectForKey(key, inCollection: collection)
+		readConnection.asyncRead({ transaction in
+				value = transaction.object(forKey: key, inCollection: collection) as AnyObject?
 			}, completionBlock: {
 				if let image = value as? UIImage {
 					result(image)
 				}
-				else if let data = value as? NSData {
+				else if let data = value as? Data {
 					result(UIImage(data: data))
 				}
 				else {
@@ -120,20 +112,20 @@ public enum CacheStrategyType: String {
 		})
 	}
 
-	public func getAny(collection collection: String, key: String, result: AnyObject? -> ()) {
+	open func getAny(collection: String, key: String, result: @escaping (AnyObject?) -> ()) {
 		var value: AnyObject?
 
-		readConnection.asyncReadWithBlock ({ transaction in
-			value = transaction.objectForKey(key, inCollection: collection)
+		readConnection.asyncRead ({ transaction in
+			value = transaction.object(forKey: key, inCollection: collection) as AnyObject?
 			}, completionBlock: {
 				result(value)
 		})
 	}
 
-	public func getAnyWithAttributes(
-			collection collection: String,
+	open func getAnyWithAttributes(
+			collection: String,
 			key: String,
-			result: (AnyObject?, [String:AnyObject]?) -> ()) {
+			result: @escaping (AnyObject?, [String:AnyObject]?) -> ()) {
 
 		getSomeWithAttributes(
 				collection: collection,
@@ -143,24 +135,24 @@ public enum CacheStrategyType: String {
 		}
 	}
 
-	public func getSomeWithAttributes(
-			collection collection: String,
+	open func getSomeWithAttributes(
+			collection: String,
 			keys: [String],
-			result: ([AnyObject?], [[String:AnyObject]?]) -> ()) {
+			result: @escaping ([AnyObject?], [[String:AnyObject]?]) -> ()) {
 
 		var objects = [AnyObject?]()
 		var attributes = [[String:AnyObject]?]()
 
-		readConnection.asyncReadWithBlock ({ transaction in
+		readConnection.asyncRead ({ transaction in
 			let keyCount = keys.count
 
-			objects = [AnyObject?](count: keyCount, repeatedValue: nil)
-			attributes = [[String:AnyObject]?](count: keyCount, repeatedValue: nil)
+			objects = [AnyObject?](repeating: nil, count: keyCount)
+			attributes = [[String:AnyObject]?](repeating: nil, count: keyCount)
 
-			for (i,k) in keys.enumerate() {
-				objects[i] = transaction.objectForKey(k, inCollection: collection)
+			for (i,k) in keys.enumerated() {
+				objects[i] = transaction.object(forKey: k, inCollection: collection) as AnyObject?
 
-				let metadata = transaction.metadataForKey(k, inCollection: collection) as? CacheMetadata
+				let metadata = transaction.metadata(forKey: k, inCollection: collection) as? CacheMetadata
 				attributes[i] = metadata?.attributes
 			}
 
@@ -169,13 +161,13 @@ public enum CacheStrategyType: String {
 		})
 	}
 
-	public func getSome(collection collection: String, keys: [String], result: [AnyObject?] -> ()) {
+	open func getSome(collection: String, keys: [String], result: @escaping ([AnyObject?]) -> ()) {
 		var values = [AnyObject?]()
 
-		readConnection.asyncReadWithBlock ({ transaction in
+		readConnection.asyncRead ({ transaction in
 			for k in keys {
-				values.append(transaction.objectForKey(k,
-					inCollection: collection))
+				values.append(transaction.object(forKey: k,
+					inCollection: collection) as AnyObject?)
 			}
 
 		}, completionBlock: {
@@ -184,18 +176,18 @@ public enum CacheStrategyType: String {
 	}
 
 
-	public func getMetadata(collection collection: String, key: String, result: CacheMetadata? -> ()) {
+	open func getMetadata(collection: String, key: String, result: @escaping (CacheMetadata?) -> ()) {
 		var value: AnyObject?
 
-		readConnection.asyncReadWithBlock ({ transaction in
-			value = transaction.metadataForKey(key, inCollection: collection)
+		readConnection.asyncRead ({ transaction in
+			value = transaction.metadata(forKey: key, inCollection: collection) as AnyObject?
 		}, completionBlock: {
 			result(value as? CacheMetadata)
 		})
 	}
 
-	public func setClean(
-			collection collection: String,
+	open func setClean(
+			collection: String,
 			key: String,
 			value: NSCoding,
 			attributes: [String:AnyObject],
@@ -207,37 +199,37 @@ public enum CacheStrategyType: String {
 		set(collection: collection,
 			keys: [key],
 			values: [value],
-			synchronized: NSDate(),
+			synchronized: Date(),
 			attributes: attributes,
 			onCompletion: onCompletion)
 	}
 
-	public func setClean(
-			collection collection: String,
+	open func setClean(
+			collection: String,
 			key: String,
-			localFileURL: NSURL,
+			localFileURL: URL,
 			attributes: [String:AnyObject],
 			onCompletion: (() -> ())? = nil) {
 
-		guard localFileURL.fileURL else {
+		guard localFileURL.isFileURL else {
 			onCompletion?()
 			return
 		}
-		guard localFileURL.checkResourceIsReachableAndReturnError(nil) else {
+		guard (localFileURL as NSURL).checkResourceIsReachableAndReturnError(nil) else {
 			onCompletion?()
 			return
 		}
 
 		set(collection: collection,
 			keys: [key],
-			values: [localFileURL],
-			synchronized: NSDate(),
+			values: [localFileURL as NSCoding],
+			synchronized: Date(),
 			attributes: attributes,
 			onCompletion: onCompletion)
 	}
 
-	public func setClean(
-			collection collection: String,
+	open func setClean(
+			collection: String,
 			keys: [String],
 			values: [NSCoding],
 			attributes: [String:AnyObject],
@@ -246,13 +238,13 @@ public enum CacheStrategyType: String {
 		set(collection: collection,
 			keys: keys,
 			values: values,
-			synchronized: NSDate(),
+			synchronized: Date(),
 			attributes: attributes,
 			onCompletion: onCompletion)
 	}
 
-	public func setDirty(
-			collection collection: String,
+	open func setDirty(
+			collection: String,
 			key: String,
 			value: NSCoding,
 			attributes: [String:AnyObject],
@@ -267,11 +259,11 @@ public enum CacheStrategyType: String {
 			onCompletion: onCompletion)
 	}
 
-	private func set(
-			collection collection: String,
+	fileprivate func set(
+			collection: String,
 			keys: [String],
 			values: [NSCoding],
-			synchronized: NSDate?,
+			synchronized: Date?,
 			attributes: [String:AnyObject],
 			onCompletion: (() -> ())? = nil) {
 
@@ -279,12 +271,12 @@ public enum CacheStrategyType: String {
 			"Keys and values must have same number of elements")
 
 
-		writeConnection.asyncReadWriteWithBlock ({ transaction in
+		writeConnection.asyncReadWrite ({ transaction in
 			let metadata = CacheMetadata(
 				synchronized: synchronized,
 				attributes: attributes)
 
-			for (i,k) in keys.enumerate() {
+			for (i,k) in keys.enumerated() {
 				transaction.setObject(values[i],
 					forKey: k,
 					inCollection: collection,
@@ -295,28 +287,28 @@ public enum CacheStrategyType: String {
 		})
 	}
 
-	public func setClean(
-			collection collection: String,
+	open func setClean(
+			collection: String,
 			key: String,
 			attributes: [String:AnyObject],
 			onCompletion: (() -> ())? = nil) {
 
 		setMetadata(collection: collection,
 			key: key,
-			synchronized: NSDate(),
+			synchronized: Date(),
 			attributes: attributes,
 			onCompletion: onCompletion)
 	}
 
-	private func setMetadata(
-			collection collection: String,
+	fileprivate func setMetadata(
+			collection: String,
 			key: String,
-			synchronized: NSDate?,
+			synchronized: Date?,
 			attributes: [String:AnyObject],
 			onCompletion: (() -> ())? = nil) {
 
-		writeConnection.asyncReadWriteWithBlock ({ transaction in
-			if transaction.hasObjectForKey(key, inCollection: collection) {
+		writeConnection.asyncReadWrite ({ transaction in
+			if transaction.hasObject(forKey: key, inCollection: collection) {
 				let newMetadata = CacheMetadata(
 					synchronized: synchronized,
 					attributes: attributes)
@@ -330,35 +322,35 @@ public enum CacheStrategyType: String {
 		})
 	}
 
-	public func remove(
-			collection collection: String,
+	open func remove(
+			collection: String,
 			key: String,
 			onCompletion: (() -> ())? = nil) {
 
-		writeConnection.asyncReadWriteWithBlock ({ transaction in
-			transaction.removeObjectForKey(key, inCollection: collection)
+		writeConnection.asyncReadWrite ({ transaction in
+			transaction.removeObject(forKey: key, inCollection: collection)
 		}, completionBlock: {
 			onCompletion?()
 		})
 	}
 
-	public func remove(collection collection: String, onCompletion: (() -> ())? = nil) {
-		writeConnection.asyncReadWriteWithBlock ({ transaction in
-			transaction.removeAllObjectsInCollection(collection)
+	open func remove(collection: String, onCompletion: (() -> ())? = nil) {
+		writeConnection.asyncReadWrite ({ transaction in
+			transaction.removeAllObjects(inCollection: collection)
 		}, completionBlock:{
 			onCompletion?()
 		})
 	}
 
-	public func removeAll(onCompletion: (() -> ())? = nil) {
-		writeConnection.asyncReadWriteWithBlock ({ transaction in
+	open func removeAll(_ onCompletion: (() -> ())? = nil) {
+		writeConnection.asyncReadWrite ({ transaction in
 			transaction.removeAllObjectsInAllCollections()
 		}, completionBlock: {
 			onCompletion?()
 		})
 	}
 
-	public func countPendingToSync(result: UInt -> ()) {
+	open func countPendingToSync(_ result: @escaping (UInt) -> ()) {
 		var value: UInt = 0
 
 		pendingToSyncTransaction ({ transaction in
@@ -368,26 +360,26 @@ public enum CacheStrategyType: String {
 		})
 	}
 
-	public func pendingToSync(
-			result: (String, String, [String:AnyObject]) -> Bool,
+	open func pendingToSync(
+			_ result: @escaping (String, String, [String:AnyObject]) -> Bool,
 			onCompletion: (() -> ())? = nil) {
 
 		pendingToSyncTransaction ({ transaction in
 			let groups = transaction?.allGroups() ?? [String]()
 			for group in groups {
-				transaction?.enumerateKeysAndMetadataInGroup(group) {
-						(collection, key, metadata, index, stop) in
+				transaction?.enumerateKeysAndMetadata(inGroup: group, with: [], using: {
+					(collection: String, key: String, metadata: Any, index: UInt, stop: UnsafeMutablePointer<ObjCBool>) in
 
 					dispatch_main(true) {
 						let cacheMetadata = metadata as! CacheMetadata
-						if result(collection, key, cacheMetadata.attributes ?? [:]) {
-							stop.memory = false
+						if result(collection, key, cacheMetadata.attributes) {
+							stop.pointee = false
 						}
 						else {
-							stop.memory = true
+							stop.pointee = true
 						}
 					}
-				}
+				})
 			}
 		}, onCompletion: {
 			onCompletion?()
@@ -396,9 +388,9 @@ public enum CacheStrategyType: String {
 
 	//MARK "protected" methods
 
-	public class func databasePath(name: String) -> String {
-		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)[0]
-		let path = (cacheFolderPath as NSString).stringByAppendingPathComponent(tableSchemaDatabase)
+	open class func databasePath(_ name: String) -> String {
+		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
+		let path = (cacheFolderPath as NSString).appendingPathComponent(tableSchemaDatabase)
 
 		let filename = name.toSafeFilename()
 		let dbPath = "\(path)_\(filename)"
@@ -408,7 +400,7 @@ public enum CacheStrategyType: String {
 		return dbPath
 	}
 
-	public func registerPendingToSyncView(result: (Bool -> ())?) {
+	open func registerPendingToSyncView(_ result: ((Bool) -> ())?) {
 		let grouping = YapDatabaseViewGrouping.withKeyBlock { (_, collection, key) in
 			return collection
 		}
@@ -426,7 +418,7 @@ public enum CacheStrategyType: String {
 
 		let parentView = YapDatabaseView(grouping: grouping, sorting: sorting)
 
-		database.asyncRegisterExtension(parentView,
+		database.asyncRegister(parentView,
 			withName: "allEntries",
 			connection: writeConnection,
 			completionQueue: nil) { success in
@@ -435,7 +427,7 @@ public enum CacheStrategyType: String {
 						parentViewName: "allEntries",
 						filtering: filtering)
 
-					self.database.asyncRegisterExtension(filterView,
+					self.database.asyncRegister(filterView,
 						withName: "pendingToSync",
 						connection: self.writeConnection,
 						completionQueue: nil) { success in
@@ -451,12 +443,12 @@ public enum CacheStrategyType: String {
 
 	//MARK: Private methods
 
-	private func pendingToSyncTransaction(
-			result: YapDatabaseViewTransaction? -> (),
-			onCompletion: () -> ()) {
+	fileprivate func pendingToSyncTransaction(
+			_ result: @escaping (YapDatabaseViewTransaction?) -> (),
+			onCompletion: @escaping () -> ()) {
 
 		if database.registeredExtension("pendingToSync") != nil {
-			readConnection.asyncReadWithBlock ({ transaction in
+			readConnection.asyncRead ({ transaction in
 				result(transaction.ext("pendingToSync") as? YapDatabaseViewTransaction)
 			}, completionBlock: {
 				onCompletion()
@@ -465,7 +457,7 @@ public enum CacheStrategyType: String {
 		else {
 			registerPendingToSyncView { success in
 				if success {
-					self.readConnection.asyncReadWithBlock ({ transaction in
+					self.readConnection.asyncRead ({ transaction in
 						result(transaction.ext("pendingToSync") as? YapDatabaseViewTransaction)
 					}, completionBlock: {
 						onCompletion()
@@ -479,15 +471,15 @@ public enum CacheStrategyType: String {
 		}
 	}
 
-	private class func fixWrongDatabaseFilename(filename: String, path: String) {
+	fileprivate class func fixWrongDatabaseFilename(_ filename: String, path: String) {
 		// Typo in file name in Screens 1.2
 		let rightDbPath = "\(path)_\(filename)"
 		let wrongDbPath = "\(path)_\(filename))"
 
 		// Use the right filename but rename wrong name first
-		if NSFileManager.defaultManager().fileExistsAtPath(wrongDbPath) {
+		if FileManager.default.fileExists(atPath: wrongDbPath) {
 			do {
-				try NSFileManager.defaultManager().moveItemAtPath(wrongDbPath, toPath: rightDbPath)
+				try FileManager.default.moveItem(atPath: wrongDbPath, toPath: rightDbPath)
 			}
 			catch {
 			}
