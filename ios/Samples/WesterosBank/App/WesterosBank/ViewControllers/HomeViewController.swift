@@ -52,19 +52,19 @@ class HomeViewController: UIViewController {
 		self.issuesDeck.layer.zPosition = 0
 		self.reportIssueCard.layer.zPosition = 1000
 
-		issuesCard.currentState = .Hidden
-		reportIssueCard.currentState = .Hidden
+		issuesCard.currentState = .hidden
+		reportIssueCard.currentState = .hidden
 
 		issuesCard.resetToCurrentState()
 		reportIssueCard.resetToCurrentState()
 
-		issuesCard.hidden = true
-		reportIssueCard.hidden = true
+		issuesCard.isHidden = true
+		reportIssueCard.isHidden = true
 
-		goBackCard.createButton(UIColor.whiteColor())
+		goBackCard.createButton(UIColor.white)
 				.addTarget(self,
 					action: #selector(HomeViewController.goBackAction(_:)),
-					forControlEvents: UIControlEvents.TouchUpInside)
+					for: UIControlEvents.touchUpInside)
 
 		issuesDeck.onButtonTouched = { card in
 			if card === self.reportIssueCard && !card.currentState.isVisible {
@@ -74,55 +74,55 @@ class HomeViewController: UIViewController {
 		}
     }
 
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		if SessionContext.isLoggedIn {
-			issuesCard.nextState = .Maximized
-			reportIssueCard.nextState = .Minimized
+			issuesCard.nextState = .maximized
+			reportIssueCard.nextState = .minimized
 
-			issuesCard.hidden = false
+			issuesCard.isHidden = false
 
 			issuesCard.changeToNextState() { Bool -> Void in
-				self.reportIssueCard.currentState = .Hidden
+				self.reportIssueCard.currentState = .hidden
 				self.reportIssueCard.resetToCurrentState()
-				self.reportIssueCard.hidden = false
+				self.reportIssueCard.isHidden = false
 				self.reportIssueCard.changeToNextState(nil, delay: 0.5)
 			}
 
-			UIView.animateWithDuration(1.5) {
+			UIView.animate(withDuration: 1.5, animations: {
 				self.settingsView.alpha = 1.0
-			}
+			}) 
 		}
 	}
 
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 		if !SessionContext.isLoggedIn {
 			if tourCompleted {
-				self.performSegueWithIdentifier("onboarding", sender: nil)
+				self.performSegue(withIdentifier: "onboarding", sender: nil)
 			}
 			else {
-				self.performSegueWithIdentifier("tour", sender: nil)
+				self.performSegue(withIdentifier: "tour", sender: nil)
 			}
 		}
 	}
 
-	@IBAction func accountSettingsAction(sender: AnyObject) {
-		self.performSegueWithIdentifier("account", sender: nil)
+	@IBAction func accountSettingsAction(_ sender: AnyObject) {
+		self.performSegue(withIdentifier: "account", sender: nil)
 	}
 
-	@IBAction func callAction(sender: AnyObject) {
+	@IBAction func callAction(_ sender: AnyObject) {
 	}
 
-	@IBAction func sendMessageAction(sender: AnyObject) {
+	@IBAction func sendMessageAction(_ sender: AnyObject) {
 	}
 
-	@IBAction func signOutAction(sender: AnyObject) {
+	@IBAction func signOutAction(_ sender: AnyObject) {
 		SessionContext.logout()
-		self.performSegueWithIdentifier("onboarding", sender: nil)
+		self.performSegue(withIdentifier: "onboarding", sender: nil)
 	}
 
-	private func onEditIssue(record: DDLRecord) {
-		issuesCard.nextState = .Background
-		reportIssueCard.nextState = .Normal // .Maximized
+	fileprivate func onEditIssue(_ record: DDLRecord) {
+		issuesCard.nextState = .background
+		reportIssueCard.nextState = .normal // .Maximized
 
 		reportIssueController?.issueRecord = record
 		reportIssueController?.editable = true
@@ -131,26 +131,26 @@ class HomeViewController: UIViewController {
 		reportIssueCard.changeToNextState()
 	}
 
-	private func onViewIssue(record: DDLRecord) {
+	fileprivate func onViewIssue(_ record: DDLRecord) {
 		issuesController?.scrollToShowRecord(record)
 
-		reportIssueCard.nextState = .Hidden
+		reportIssueCard.nextState = .hidden
 
 		reportIssueCard.changeToNextState() { Bool -> Void in
-			self.goBackCard.currentState = .Hidden
+			self.goBackCard.currentState = .hidden
 			self.goBackCard.resetToCurrentState()
-			self.goBackCard.nextState = .Minimized
+			self.goBackCard.nextState = .minimized
 			self.goBackCard.changeToNextState(nil, delay: 0.3)
 		}
 
 		issuesCard.enabledButton(false)
 	}
 
-	func goBackAction(sender: AnyObject?) {
+	func goBackAction(_ sender: AnyObject?) {
 		issuesController?.scrollToShowList()
 
-		goBackCard.nextState = .Hidden
-		reportIssueCard.nextState = .Minimized
+		goBackCard.nextState = .hidden
+		reportIssueCard.nextState = .minimized
 
 		goBackCard.changeToNextState()
 		reportIssueCard.changeToNextState()

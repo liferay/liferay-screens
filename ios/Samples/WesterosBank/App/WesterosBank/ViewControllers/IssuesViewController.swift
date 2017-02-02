@@ -21,7 +21,7 @@ class IssuesViewController: CardViewController,
 	@IBOutlet weak var formScreenlet: DDLFormScreenlet!
 	@IBOutlet weak var scroll: UIScrollView!
 
-	var onEditIssue: (DDLRecord -> Void)? {
+	var onEditIssue: ((DDLRecord) -> Void)? {
 		didSet {
 			let view = listScreenlet.viewModel as! DDLListView_westeros
 
@@ -29,7 +29,7 @@ class IssuesViewController: CardViewController,
 		}
 	}
 
-	var onViewIssue: (DDLRecord -> Void)? {
+	var onViewIssue: ((DDLRecord) -> Void)? {
 		didSet {
 			let view = listScreenlet.viewModel as! DDLListView_westeros
 
@@ -53,21 +53,21 @@ class IssuesViewController: CardViewController,
 		listScreenlet.delegate = self
 		formScreenlet.delegate = self
 
-		scroll.contentSize = CGSizeMake(scroll.frame.size.width * 2, scroll.frame.size.height)
+		scroll.contentSize = CGSize(width: scroll.frame.size.width * 2, height: scroll.frame.size.height)
 
-		scroll.contentSize = CGSizeMake(scroll.frame.size.width * 2, scroll.frame.size.height)
+		scroll.contentSize = CGSize(width: scroll.frame.size.width * 2, height: scroll.frame.size.height)
 
 		listScreenlet.frame = scroll.frame
 		formScreenlet.frame = CGRectMake(scroll.frame.size.width, y: scroll.frame.origin.y, size: scroll.frame.size)
 	}
 
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		if SessionContext.isLoggedIn {
 			listScreenlet.loadList()
 		}
 	}
 
-	func screenlet(screenlet: DDLListScreenlet,
+	func screenlet(_ screenlet: DDLListScreenlet,
 			onDDLSelectedRecord record: DDLRecord) {
 		onEditIssue?(record)
 	}
@@ -77,7 +77,7 @@ class IssuesViewController: CardViewController,
 		scroll.scrollRectToVisible(newRect, animated: true)
 	}
 
-	func scrollToShowRecord(record: DDLRecord) {
+	func scrollToShowRecord(_ record: DDLRecord) {
 		formScreenlet.recordId = record.recordId!
 		formScreenlet.loadRecord()
 

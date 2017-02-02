@@ -14,35 +14,35 @@
 import UIKit
 
 
-func CGRectMake(x: CGFloat, y: CGFloat, size: CGSize) -> CGRect {
-	return CGRectMake(x, y, size.width, size.height)
+func CGRectMake(_ x: CGFloat, y: CGFloat, size: CGSize) -> CGRect {
+	return CGRect(x: x, y: y, width: size.width, height: size.height)
 }
 
 
 class CardView: UIView, CAAnimationDelegate {
 
 	enum ShowState: CustomDebugStringConvertible {
-		case Hidden
-		case Minimized
-		case Normal
-		case Maximized
-		case Background
+		case hidden
+		case minimized
+		case normal
+		case maximized
+		case background
 
 		var isVisible: Bool {
-			return (self == .Normal || self == .Maximized)
+			return (self == .normal || self == .maximized)
 		}
 
 	    var debugDescription: String {
 			switch self {
-			case Hidden:
+			case .hidden:
 				return "Hidden"
-			case Minimized:
+			case .minimized:
 				return "Minimized"
-			case Normal:
+			case .normal:
 				return "Normal"
-			case Maximized:
+			case .maximized:
 				return "Maximized"
-			case Background:
+			case .background:
 				return "Background"
 			}
 		}
@@ -60,16 +60,16 @@ class CardView: UIView, CAAnimationDelegate {
 
 	let animationTime = 0.5
 
-	var currentState: ShowState = .Hidden
-	var nextState: ShowState = .Normal
-	var beforeBackgroundState: ShowState = .Normal
+	var currentState: ShowState = .hidden
+	var nextState: ShowState = .normal
+	var beforeBackgroundState: ShowState = .normal
 
 	weak var presentingController: CardViewController?
 
-	private var onChangeCompleted: (Bool -> Void)?
+	fileprivate var onChangeCompleted: ((Bool) -> Void)?
 
-	func createArrow(color: UIColor) {
-		let arrowName = (color == UIColor.whiteColor()) ? "icon_DOWN_W" : "icon_DOWN"
+	func createArrow(_ color: UIColor) {
+		let arrowName = (color == UIColor.white) ? "icon_DOWN_W" : "icon_DOWN"
 		let arrowImage = UIImage(named: arrowName)!
 
 		self.arrow = UIImageView(image: arrowImage)
@@ -83,10 +83,10 @@ class CardView: UIView, CAAnimationDelegate {
 		self.addSubview(self.arrow!)
 	}
 
-	func createButton(fontColor: UIColor) -> UIButton {
-		button = UIButton(frame: CGRectMake(0, 0, self.frame.width, self.minimizedHeight))
-		button!.setTitle(self.title, forState: .Normal)
-		button!.setTitleColor(fontColor, forState: .Normal)
+	func createButton(_ fontColor: UIColor) -> UIButton {
+		button = UIButton(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.minimizedHeight))
+		button!.setTitle(self.title, for: UIControlState())
+		button!.setTitleColor(fontColor, for: UIControlState())
 		button!.titleLabel?.font = UIFont(name: "AvenirNext-DemiBold", size: 18)
 
 		self.addSubview(button!)
@@ -100,13 +100,13 @@ class CardView: UIView, CAAnimationDelegate {
 		self.frame = CGRectMake(0, y: pos, size: self.frame.size)
 	}
 
-	func changeToNextState(time: Double? = nil, delay: Double = 0.0, onComplete: (Bool -> Void)? = nil) {
+	func changeToNextState(_ time: Double? = nil, delay: Double = 0.0, onComplete: ((Bool) -> Void)? = nil) {
 		func showArrow() {
-			UIView.animateWithDuration(time ?? animationTime,
+			UIView.animate(withDuration: time ?? animationTime,
 				delay: delay,
-				options: UIViewAnimationOptions.CurveEaseIn,
+				options: UIViewAnimationOptions.curveEaseIn,
 				animations: {
-					if self.nextState == .Normal || self.nextState == .Maximized {
+					if self.nextState == .normal || self.nextState == .maximized {
 						self.arrow?.alpha = 1.0
 					}
 					else {
@@ -119,7 +119,7 @@ class CardView: UIView, CAAnimationDelegate {
 			return
 		}
 
-		if currentState == .Background {
+		if currentState == .background {
 			// go to previous
 			nextState = beforeBackgroundState
 		}
@@ -135,22 +135,22 @@ class CardView: UIView, CAAnimationDelegate {
 
 		let nextPosition = positionForState(nextState)
 
-		if nextState == .Background {
+		if nextState == .background {
 			beforeBackgroundState = currentState
 			onChangeCompleted = onComplete
-			self.layer.addAnimation(backgroundAnimation(time ?? animationTime), forKey: "pushBackAnimation")
+			self.layer.add(backgroundAnimation(time ?? animationTime), forKey: "pushBackAnimation")
 		}
-		else if currentState == .Background {
+		else if currentState == .background {
 			onChangeCompleted = onComplete
-			self.layer.addAnimation(resetBackgroundAnimation(time ?? animationTime), forKey: "popBackAnimation")
+			self.layer.add(resetBackgroundAnimation(time ?? animationTime), forKey: "popBackAnimation")
 		}
 		else {
 			onChangeCompleted = nil
-			UIView.animateWithDuration((time ?? animationTime)*1.30,
+			UIView.animate(withDuration: (time ?? animationTime)*1.30,
 				delay: delay,
 				usingSpringWithDamping: 1.0,
 				initialSpringVelocity: 0.0,
-				options: [.BeginFromCurrentState, .CurveEaseIn],
+				options: [.beginFromCurrentState, .curveEaseIn],
 				animations: {
 					self.frame = CGRectMake(0, y: nextPosition, size: self.frame.size)
 				}, completion: onComplete)
@@ -161,12 +161,12 @@ class CardView: UIView, CAAnimationDelegate {
 		self.currentState = self.nextState
 	}
 
-	func enabledButton(enable: Bool) {
-		button?.enabled = enable
+	func enabledButton(_ enable: Bool) {
+		button?.isEnabled = enable
 
-		UIView.animateWithDuration(animationTime,
+		UIView.animate(withDuration: animationTime,
 				delay: 0,
-				options: UIViewAnimationOptions.CurveEaseIn,
+				options: UIViewAnimationOptions.curveEaseIn,
 				animations: {
 					if enable {
 						self.arrow?.alpha = 1.0
@@ -178,28 +178,28 @@ class CardView: UIView, CAAnimationDelegate {
 
 	}
 
-	private func resetBackgroundAnimation(animationTime: Double) -> CAAnimation {
+	fileprivate func resetBackgroundAnimation(_ animationTime: Double) -> CAAnimation {
 		let animation = CABasicAnimation(keyPath: "transform")
-		animation.toValue = NSValue(CATransform3D: CATransform3DIdentity)
+		animation.toValue = NSValue(caTransform3D: CATransform3DIdentity)
 		animation.duration = animationTime
 		animation.fillMode = kCAFillModeForwards
-		animation.removedOnCompletion = false
+		animation.isRemovedOnCompletion = false
 		animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
 
 		return animation;
 	}
 
-	private func backgroundAnimation(animationTime: Double) -> CAAnimation {
+	fileprivate func backgroundAnimation(_ animationTime: Double) -> CAAnimation {
 		var t0 = CATransform3DIdentity
 		let animation0 = CABasicAnimation(keyPath: "transform")
 
 		t0.m34 = CGFloat(1.0)/CGFloat(-900)
 		t0 = CATransform3DTranslate(t0, 0, maximizedMargin - self.frame.origin.y, 0)
 
-		animation0.toValue = NSValue(CATransform3D: t0)
+		animation0.toValue = NSValue(caTransform3D: t0)
 		animation0.duration = animationTime
 		animation0.fillMode = kCAFillModeForwards
-		animation0.removedOnCompletion = false
+		animation0.isRemovedOnCompletion = false
 		animation0.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
 
 		var t1 = t0
@@ -208,10 +208,10 @@ class CardView: UIView, CAAnimationDelegate {
 		t1 = CATransform3DRotate(t1, CGFloat(10.0 * M_PI/180.0), 1, 0, 0)
 
 		let animation1 = CABasicAnimation(keyPath: "transform")
-		animation1.toValue = NSValue(CATransform3D: t1)
+		animation1.toValue = NSValue(caTransform3D: t1)
 		animation1.duration = animationTime*3.0/4.0
 		animation1.fillMode = kCAFillModeForwards
-		animation1.removedOnCompletion = false
+		animation1.isRemovedOnCompletion = false
 		animation1.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
 
 		var t2 = t0
@@ -220,16 +220,16 @@ class CardView: UIView, CAAnimationDelegate {
 		t2 = CATransform3DScale(t2, 0.95, 0.90, 1)
 
 		let animation2 = CABasicAnimation(keyPath: "transform")
-		animation2.toValue = NSValue(CATransform3D: t2)
+		animation2.toValue = NSValue(caTransform3D: t2)
 		animation2.beginTime = animation1.duration
 		animation2.duration = animationTime*1.0/4.0
 		animation2.fillMode = kCAFillModeForwards
-		animation2.removedOnCompletion = false
+		animation2.isRemovedOnCompletion = false
 		animation2.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn/*EaseOut*/)
 
 		let group = CAAnimationGroup()
 		group.fillMode = kCAFillModeForwards
-		group.removedOnCompletion = false
+		group.isRemovedOnCompletion = false
 
 		group.duration = animationTime
 
@@ -240,22 +240,22 @@ class CardView: UIView, CAAnimationDelegate {
 		return group;
 	}
 
-	func animationDidStop(theAnimation: CAAnimation, finished flag: Bool) {
+	func animationDidStop(_ theAnimation: CAAnimation, finished flag: Bool) {
 		onChangeCompleted?(flag)
 		onChangeCompleted = nil
 	}
 
-	private func positionForState(state: ShowState) -> CGFloat {
+	fileprivate func positionForState(_ state: ShowState) -> CGFloat {
 		let result: CGFloat
 
 		switch state {
-		case .Hidden:
+		case .hidden:
 			result = self.superview!.frame.size.height
-		case .Minimized:
+		case .minimized:
 			result = self.superview!.frame.size.height - minimizedHeight
-		case .Normal:
+		case .normal:
 			result = self.superview!.frame.size.height - normalHeight
-		case .Maximized, .Background:
+		case .maximized, .background:
 			result = maximizedMargin
 		}
 

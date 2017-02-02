@@ -15,11 +15,11 @@ import UIKit
 import LiferayScreens
 
 
-public class SignUpView_westeros_edit: SignUpView_westeros {
+open class SignUpView_westeros_edit: SignUpView_westeros {
 
-	public override func onSetTranslations() {
+	open override func onSetTranslations() {
 		super.onSetTranslations()
 		
-		signUpButton?.replaceAttributedTitle("SAVE", forState: .Normal)
+		signUpButton?.replaceAttributedTitle("SAVE", forState: .normal)
 	}
 }

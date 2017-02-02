@@ -28,10 +28,10 @@ class TourViewController: UIViewController, UIScrollViewDelegate {
 		page3.frame = CGRectMake(scrollView.frame.size.width * 2, y: scrollView.frame.origin.y, size: scrollView.frame.size)
     }
 
-	@IBAction func nextAction(sender: AnyObject) {
+	@IBAction func nextAction(_ sender: AnyObject) {
 		if pageControl.currentPage + 1 == pageControl.numberOfPages {
 			tourCompleted = true
-			self.dismissViewControllerAnimated(true, completion: nil)
+			self.dismiss(animated: true, completion: nil)
 		}
 		else {
 			let newX = CGFloat((pageControl.currentPage + 1) * Int(scrollView.frame.width))
@@ -40,7 +40,7 @@ class TourViewController: UIViewController, UIScrollViewDelegate {
 		}
 	}
 
-	func scrollViewDidScroll(scrollView: UIScrollView) {
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		let width = scrollView.frame.size.width
 		let xPos = scrollView.contentOffset.x + 10
 

@@ -15,9 +15,9 @@ import UIKit
 import LiferayScreens
 
 
-public class DDLFormView_westeros: DDLFormView_default {
+open class DDLFormView_westeros: DDLFormView_default {
 
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return WesterosProgressPresenter()
 	}
 

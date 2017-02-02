@@ -34,39 +34,39 @@ class CardDeckView: UIView {
 
 				topCard?.minimizedHeight += cardValue.minimizedHeight
 
-				addButton(cardValue, fontColor: UIColor.whiteColor())
+				addButton(cardValue, fontColor: .white)
 			}
 		}
 	}
 
-	var onButtonTouched: (CardView -> Void)?
+	var onButtonTouched: ((CardView) -> Void)?
 
 
-	func setUpCard(card: CardView) {
-		card.currentState = .Minimized
-		card.nextState = .Normal
+	func setUpCard(_ card: CardView) {
+		card.currentState = .minimized
+		card.nextState = .normal
 
 		card.layer.cornerRadius = 4.0
 	}
 
-	func addButton(card: CardView, fontColor: UIColor) {
+	func addButton(_ card: CardView, fontColor: UIColor) {
 		let actionName = card === topCard
 				? "topCardTouchUpInside:" : "bottomCardTouchUpInside:"
 
 		card.createButton(fontColor)
 				.addTarget(self,
 					action: Selector(actionName),
-					forControlEvents: UIControlEvents.TouchUpInside)
+					for: .touchUpInside)
 
 		card.createArrow(fontColor)
 	}
 
 
-	func topCardTouchUpInside(sender: UIButton) {
+	func topCardTouchUpInside(_ sender: UIButton) {
 		onButtonTouched?(topCard!)
 	}
 
-	func bottomCardTouchUpInside(sender: UIButton) {
+	func bottomCardTouchUpInside(_ sender: UIButton) {
 		onButtonTouched?(bottomCard!)
 	}
 

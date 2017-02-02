@@ -18,10 +18,10 @@ class AccountSettingsViewController: UIViewController,
 	@IBOutlet weak var portraitScreenlet: UserPortraitScreenlet!
 	@IBOutlet weak var signUpScreenlet: SignUpScreenlet!
 
-	private var initialSignUpPosition: CGFloat?
+	fileprivate var initialSignUpPosition: CGFloat?
 
-	@IBAction func closeAction(sender: AnyObject) {
-		self.dismissViewControllerAnimated(true, completion: nil)
+	@IBAction func closeAction(_ sender: AnyObject) {
+		self.dismiss(animated: true, completion: nil)
 	}
 
 	override func viewDidLoad() {
@@ -33,19 +33,19 @@ class AccountSettingsViewController: UIViewController,
 		initialSignUpPosition = signUpScreenlet.frame.origin.y
 	}
 
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		portraitScreenlet.loadLoggedUserPortrait()
 		signUpScreenlet.loadCurrentUser()
 
 		registerKeyboardListener(self)
 	}
 
-	override func viewWillDisappear(animated: Bool) {
+	override func viewWillDisappear(_ animated: Bool) {
 		unregisterKeyboardListener(self)
 	}
 
-	func showKeyboard(notif: NSNotification) {
-		UIView.animateWithDuration(1.0) {
+	func showKeyboard(_ notif: Notification) {
+		UIView.animate(withDuration: 1.0) {
 			self.signUpScreenlet.frame = CGRectMake(
 				self.signUpScreenlet.frame.origin.x,
 				y: 0,
@@ -53,8 +53,8 @@ class AccountSettingsViewController: UIViewController,
 		}
 	}
 
-	func hideKeyboard(notif: NSNotification) {
-		UIView.animateWithDuration(1.0) {
+	func hideKeyboard(_ notif: Notification) {
+		UIView.animate(withDuration: 1.0) {
 			self.signUpScreenlet.frame = CGRectMake(
 				self.signUpScreenlet.frame.origin.x,
 				y: self.initialSignUpPosition!,
@@ -62,7 +62,7 @@ class AccountSettingsViewController: UIViewController,
 		}
 	}
 
-	func screenlet(screenlet: SignUpScreenlet,
+	func screenlet(_ screenlet: SignUpScreenlet,
 			onSignUpResponseUserAttributes attributes: [String:AnyObject]) {
 		closeAction(screenlet)
 	}

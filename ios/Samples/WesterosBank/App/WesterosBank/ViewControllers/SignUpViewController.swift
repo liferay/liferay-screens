@@ -39,7 +39,7 @@ class SignUpViewController: CardViewController, SignUpScreenletDelegate {
 				LiferayServerContext.propertyForKey("anonymousPassword") as? String
 	}
 
-	func screenlet(screenlet: SignUpScreenlet,
+	func screenlet(_ screenlet: SignUpScreenlet,
 			onSignUpResponseUserAttributes attributes: [String:AnyObject]) {
 		onDone?()
 	}

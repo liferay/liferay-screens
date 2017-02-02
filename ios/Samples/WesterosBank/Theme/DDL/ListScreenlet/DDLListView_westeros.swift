@@ -16,32 +16,32 @@ import LiferayScreens
 import MGSwipeTableCell
 
 
-public class DDLListView_westeros: DDLListView_default, MGSwipeTableCellDelegate {
+open class DDLListView_westeros: DDLListView_default, MGSwipeTableCellDelegate {
 
 	let cellId = "cell"
 
-	var onViewAction: (DDLRecord -> Void)?
-	var onEditAction: (DDLRecord -> Void)?
+	var onViewAction: ((DDLRecord) -> Void)?
+	var onEditAction: ((DDLRecord) -> Void)?
 
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return WesterosProgressPresenter()
 	}
 
-	public override func doGetCellId(row row: Int, object: AnyObject?) -> String {
+	open override func doGetCellId(row: Int, object: AnyObject?) -> String {
 		return cellId
 	}
 
-	override public func doRegisterCellNibs() {
+	override open func doRegisterCellNibs() {
 		let nib = UINib(
 				nibName: "DDLListViewCell_westeros",
-				bundle: NSBundle(forClass: self.dynamicType))
+				bundle: Bundle(for: type(of: self)))
 
-		self.tableView!.registerNib(nib, forCellReuseIdentifier: cellId)
+		self.tableView!.register(nib, forCellReuseIdentifier: cellId)
 	}
 
-	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
+	override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
 		if let record = object as? DDLRecord,
-			issueCell = cell as? DDLListViewCell_westeros {
+			let issueCell = cell as? DDLListViewCell_westeros {
 
 			issueCell.record = record
 
@@ -62,15 +62,15 @@ public class DDLListView_westeros: DDLListView_default, MGSwipeTableCellDelegate
 							alpha: 1.0))
 
 			issueCell.rightButtons = [viewButton, editButton]
-			issueCell.rightSwipeSettings.transition = MGSwipeTransition.Rotate3D
+			issueCell.rightSwipeSettings.transition = MGSwipeTransition.rotate3D
 
 			issueCell.delegate = self
 		}
 	}
 
-	public func swipeTableCell(
-			cell: MGSwipeTableCell,
-			tappedButtonAtIndex index: Int,
+	open func swipeTableCell(
+			_ cell: MGSwipeTableCell,
+			tappedButtonAt index: Int,
 			direction: MGSwipeDirection,
 			fromExpansion: Bool)
 			-> Bool {
