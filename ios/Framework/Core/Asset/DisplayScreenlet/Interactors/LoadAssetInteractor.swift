@@ -79,7 +79,7 @@ open class LoadAssetInteractor: ServerReadConnectorInteractor {
 		else if let className = self.className, let classPK = self.classPK {
 			return LiferayServerContext.connectorFactory.createAssetLoadByClassPKConnector(className, classPK: classPK)
 		} else if let portletItemName = self.portletItemName {
-			return LiferayServerContext.connectorFactory.createAssetLoadByPortletItemNameConnector(portletItemName)
+			return LiferayServerContext.connectorFactory.createAssetLoadByPortletItemNameConnector(portletItemName: portletItemName)
 		}
 
 		return nil
@@ -125,10 +125,10 @@ open class LoadAssetInteractor: ServerReadConnectorInteractor {
 			key: self.assetCacheKey,
 			value: asset,
 			attributes: [
-				"entryId": NSNumber(longLong: assetEntryId ?? 0),
-				"className": className ?? "",
-				"classPK": NSNumber(longLong: classPK ?? 0),
-				"portletItemName": portletItemName ?? ""
+				"entryId": NSNumber(value: assetEntryId ?? 0),
+				"className": className as AnyObject? ?? "" as AnyObject,
+				"classPK": NSNumber(value: classPK ?? 0),
+				"portletItemName": portletItemName as AnyObject? ?? ""  as AnyObject
 			])
 	}
 

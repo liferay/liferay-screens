@@ -49,13 +49,13 @@ public class Liferay70AssetLoadByPortletItemNameConnector: AssetLoadByPortletIte
 		let service = LRScreensassetentryService_v70(session: session)
 
 		do {
-			let result = try service.getAssetEntriesWithCompanyId(LiferayServerContext.companyId,
+			let result = try service?.getAssetEntries(withCompanyId: LiferayServerContext.companyId,
 					groupId: LiferayServerContext.groupId,
 					portletItemName: portletItemName!, locale: NSLocale.currentLocaleString,
 			max: 1) as? [[String: AnyObject]]
 			
-			guard let assets = result where assets.count > 0 , let asset = assets[0] as? [String: AnyObject] else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse,
+			guard let assets = result, assets.count > 0 , let asset = assets[0] as? [String: AnyObject] else {
+				lastError = NSError.errorWithCause(.invalidServerResponse,
 				                                   message: "There was an error retrieving the asset.")
 				return
 			}
@@ -65,7 +65,7 @@ public class Liferay70AssetLoadByPortletItemNameConnector: AssetLoadByPortletIte
 			lastError = nil
 		}
 		catch {
-			lastError = NSError.errorWithCause(.InvalidServerResponse,
+			lastError = NSError.errorWithCause(.invalidServerResponse,
 					message: "There was an error retrieving the asset.")
 		}
 	}
