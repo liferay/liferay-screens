@@ -19,7 +19,7 @@ import UIKit
 	/// WebContent html to be displayed.
 	var htmlContent: String? { get set }
 
-	/// DDLRecord receive to be displayed.
+	/// DDLRecord content.
 	var recordContent: DDLRecord? { get set }
 
 }

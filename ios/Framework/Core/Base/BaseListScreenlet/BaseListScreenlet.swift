@@ -160,7 +160,7 @@ public class BaseListScreenlet: BaseScreenlet {
 	
 	
 	/// Prepares the page to be loaded in the list.
-	/// This method is intended to be overwritten by children classes.
+	/// This method is intended to be overridden by children classes.
 	///
 	/// - Parameters:
 	///   - page: page number.
@@ -174,7 +174,7 @@ public class BaseListScreenlet: BaseScreenlet {
 	}
 	
 	/// Shows the error during page loading.
-	/// This method is intended to be overwritten by children classes.
+	/// This method is intended to be overridden by children classes.
 	///
 	/// - Parameters:
 	///   - page: page number.

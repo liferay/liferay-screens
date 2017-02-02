@@ -327,7 +327,7 @@ import QuartzCore
 		return nil
 	}
 
-	/// endInteractor is invoked when an interaction should be ended.
+	/// endInteractor is invoked when an interaction ends.
 	///
 	/// - Parameters:
 	///   - interactor: a started interactor.

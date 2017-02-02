@@ -21,7 +21,7 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - html: web content html.
-	/// - Returns: original or modify html.
+	/// - Returns: original or modified html.
 	optional func screenlet(screenlet: WebContentDisplayScreenlet,
 			onWebContentResponse html: String) -> String?
 
