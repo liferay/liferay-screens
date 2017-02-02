@@ -16,22 +16,22 @@ import Foundation
 
 extension NSLocale {
 
-	public class var currentLanguageString: String {
+	public static var currentLanguageString: String {
 		get {
-			var preferredLanguage = NSLocale.preferredLanguages()[0] 
+			var preferredLanguage = Locale.preferredLanguages[0] 
 
-			preferredLanguage = preferredLanguage.substringToIndex(
-				preferredLanguage.startIndex.advancedBy(2))
+			preferredLanguage = preferredLanguage.substring(
+				to: preferredLanguage.characters.index(preferredLanguage.startIndex, offsetBy: 2))
 
 			return preferredLanguage
 		}
 		set {
-			NSUserDefaults.standardUserDefaults().setObject([newValue], forKey: "AppleLanguages")
-			NSUserDefaults.standardUserDefaults().synchronize()
+			UserDefaults.standard.set([newValue], forKey: "AppleLanguages")
+			UserDefaults.standard.synchronize()
 		}
 	}
 
-	public class var currentLocaleString: String {
+	public static var currentLocaleString: String {
 		//FIXME Portal doesn't support any country, just few predefined ones
 		let language = NSLocale.currentLanguageString
 
@@ -60,12 +60,12 @@ extension NSLocale {
 		return "en_US"
 	}
 
-	public class func bundleForLanguage(language: String, bundle: NSBundle) -> NSBundle? {
-		guard let path = bundle.pathForResource(language, ofType: "lproj") else {
+	public static func bundleForLanguage(_ language: String, bundle: Bundle) -> Bundle? {
+		guard let path = bundle.path(forResource: language, ofType: "lproj") else {
 			return nil
 		}
 
-		return NSBundle(path: path)
+		return Bundle(path: path)
 	}
 
 

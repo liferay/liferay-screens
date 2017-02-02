@@ -16,8 +16,8 @@ import LiferayScreens
 
 class AddCommentViewController: CardViewController, CommentAddScreenletDelegate {
 
-	var onCommentAdded: (Comment -> ())?
-	var onCommentUpdated: (Comment -> ())?
+	var onCommentAdded: ((Comment) -> ())?
+	var onCommentUpdated: ((Comment) -> ())?
 
 	
 	//MARK: Outlets
@@ -38,26 +38,26 @@ class AddCommentViewController: CardViewController, CommentAddScreenletDelegate 
 
 	//MARK: Public methods
 
-	func editComment(comment: Comment) {
+	func editComment(_ comment: Comment) {
 		self.commentAddScreenlet?.comment = comment
-		self.cardView?.changeToState(.Normal)
+		self.cardView?.changeToState(.normal)
 		self.cardView?.changeButtonText("Edit Comment")
 	}
 
-	func load(className className: String, classPK: Int64) {
+	func load(className: String, classPK: Int64) {
 		self.commentAddScreenlet?.className = className
 		self.commentAddScreenlet?.classPK = classPK
 
 		//Change color depending on asset
 		if className == AssetClasses.getClassName(AssetClassNameKey_BlogsEntry)! {
 			cardView?.backgroundColor = DefaultResources.OddColorBackground
-			cardView?.button.setTitleColor(DefaultResources.EvenColorBackground, forState: .Normal)
+			cardView?.button.setTitleColor(DefaultResources.EvenColorBackground, for: .normal)
 			cardView?.arrow.image = UIImage(named: "icon_DOWN_W")
 			commentAddScreenlet?.themeName = "westeros-white"
 		}
 		else {
 			cardView?.backgroundColor = DefaultResources.EvenColorBackground
-			cardView?.button.setTitleColor(DefaultResources.OddColorBackground, forState: .Normal)
+			cardView?.button.setTitleColor(DefaultResources.OddColorBackground, for: .normal)
 			cardView?.arrow.image = UIImage(named: "icon_DOWN")
 			commentAddScreenlet?.themeName = "westeros"
 		}
@@ -76,11 +76,11 @@ class AddCommentViewController: CardViewController, CommentAddScreenletDelegate 
 
 	//MARK: CommentAddScreenletDelegate
 
-	func screenlet(screenlet: CommentAddScreenlet, onCommentAdded comment: Comment) {
+	func screenlet(_ screenlet: CommentAddScreenlet, onCommentAdded comment: Comment) {
 		onCommentAdded?(comment)
 	}
 
-	func screenlet(screenlet: CommentAddScreenlet, onCommentUpdated comment: Comment) {
+	func screenlet(_ screenlet: CommentAddScreenlet, onCommentUpdated comment: Comment) {
 		self.commentAddScreenlet?.comment = nil
 		onCommentUpdated?(comment)
 	}

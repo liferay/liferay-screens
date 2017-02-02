@@ -19,20 +19,20 @@ let DefaultThemeButtonCornerRadius:CGFloat = 4
 let DefaultThemeBasicBlue = UIColor(red: 0.0, green: 184.0/255.0, blue: 224.0/255.0, alpha: 0.87)
 
 
-func setButtonDefaultStyle(button: UIButton?) {
+func setButtonDefaultStyle(_ button: UIButton?) {
 	button?.layer.masksToBounds = true
 	button?.layer.cornerRadius = DefaultThemeButtonCornerRadius
 }
 
 public func setBasicAuthMethodStyles(
-		view view: UIView,
+		view: UIView,
 		basicAuthMethod: BasicAuthMethod,
 		userNameField: UITextField?) {
 
 	userNameField?.placeholder = LocalizedString("default", key: basicAuthMethod.description, obj: view)
 	userNameField?.keyboardType = basicAuthMethod.keyboardType
-	(userNameField as? DefaultTextField)?.leftImage = NSBundle.imageInBundles(
+	(userNameField as? DefaultTextField)?.leftImage = Bundle.imageInBundles(
 		name: "default-\(basicAuthMethod.iconType)-icon",
-		currentClass: view.dynamicType)
+		currentClass: type(of: view))
 }
 

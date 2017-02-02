@@ -29,7 +29,7 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 		super.viewDidLoad()
 
 		let onDone: () -> () = {
-			self.dismissViewControllerAnimated(true, completion: nil)
+			self.dismiss(animated: true, completion: nil)
 		}
 
 		signInController = SignInViewController()
@@ -45,28 +45,28 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 		cardDeck?.dataSource = self
 	}
 
-	override func viewDidAppear(animated: Bool) {
+	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 
-		cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
+		cardDeck?.cards[safe: 0]?.changeToState(.minimized)
 	}
 
 
 	//MARK: CardDeckDataSource
 
-	func doCreateCard(cardDeck: CardDeckView, index: Int) -> CardView? {
+	func doCreateCard(_ cardDeck: CardDeckView, index: Int) -> CardView? {
 		if index == 1 {
-			return WesterosCardView.newAutoLayoutView()
+			return WesterosCardView.newAutoLayout()
 		}
 
 		return nil
 	}
 
-	func numberOfCardsIn(cardDeck: CardDeckView) -> Int {
+	func numberOfCardsIn(_ cardDeck: CardDeckView) -> Int {
 		return 2
 	}
 
-	func cardDeck(cardDeck: CardDeckView, controllerForCard position: CardPosition)
+	func cardDeck(_ cardDeck: CardDeckView, controllerForCard position: CardPosition)
 			-> CardViewController? {
 		switch (position.card, position.page) {
     	case (0, 0):
@@ -85,7 +85,7 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 
 	//MARK: CardDeckDelegate
 
-	func cardDeck(cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
+	func cardDeck(_ cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
 		//SignIn card
 		if index == 0 {
 			//Make login only expand to half of the page on normal height
@@ -95,14 +95,14 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 			card.maximizeOnMove = false
 
 			//Start sign in card hidden
-			card.currentState = .Hidden
+			card.currentState = .hidden
 			card.resetToCurrentState()
 		} else if let westerosCard = card as? WesterosCardView {
 			westerosCard.activityIndicator.color = DefaultResources.EvenColorBackground
 		}
 	}
 
-	func cardDeck(cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
+	func cardDeck(_ cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
 		switch (position.card, position.page) {
 		case (0, 0):
 			return "Sign In"

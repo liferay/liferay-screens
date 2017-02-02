@@ -20,7 +20,7 @@ class AssetListView_westeros_doc: AssetListView_westeros {
 
 	//MARK: BaseScreenletView
 
-	override func doGetCellId(row row: Int, object: AnyObject?) -> String {
+	override func doGetCellId(row: Int, object: AnyObject?) -> String {
 		if let _ = object {
 			return DocumentCellId
 		}
@@ -36,21 +36,21 @@ class AssetListView_westeros_doc: AssetListView_westeros {
 	}
 
 	override func doRegisterCellNibs() {
-		let nib = NSBundle.nibInBundles(
-			name: "DocumentationTableViewCell_westeros", currentClass: self.dynamicType)
+		let nib = Bundle.nibInBundles(
+			name: "DocumentationTableViewCell_westeros", currentClass: type(of: self))
 
 		if let documentNib = nib {
-			tableView?.registerNib(documentNib, forCellReuseIdentifier: DocumentCellId)
+			tableView?.register(documentNib, forCellReuseIdentifier: DocumentCellId)
 		}
 	}
 
-	override func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
-		guard let docCell = cell as? DocumentationTableViewCell_westeros, entry = object as? Asset else {
+	override func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
+		guard let docCell = cell as? DocumentationTableViewCell_westeros, let entry = object as? Asset else {
 			return
 		}
 
-		docCell.backgroundColor = UIColor.clearColor()
-		docCell.accessoryType = .DisclosureIndicator
+		docCell.backgroundColor = .clear
+		docCell.accessoryType = .disclosureIndicator
 		docCell.accessoryView = nil
 
 		docCell.title = entry.title

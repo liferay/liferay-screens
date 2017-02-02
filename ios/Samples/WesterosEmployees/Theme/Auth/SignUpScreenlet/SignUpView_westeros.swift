@@ -15,9 +15,9 @@ import UIKit
 import LiferayScreens
 
 
-public class SignUpView_westeros: SignUpView_default {
+open class SignUpView_westeros: SignUpView_default {
 
-	override public func onCreated() {
+	override open func onCreated() {
 		super.onCreated()
 
 		let color = (firstNameField as! BorderedTextField).focusedColor!
@@ -39,18 +39,18 @@ public class SignUpView_westeros: SignUpView_default {
 				attributes: [NSForegroundColorAttributeName : color])
 	}
 
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return WesterosProgressPresenter()
 	}
 
-	override public func onSetDefaultDelegate(delegate:AnyObject, view:UIView) -> Bool {
+	override open func onSetDefaultDelegate(_ delegate:AnyObject, view:UIView) -> Bool {
 		return false
 	}
 
-	public override func onStartInteraction() {
+	open override func onStartInteraction() {
 	}
 
-	public override func onFinishInteraction(result: AnyObject?, error: NSError?) {
+	open override func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
 	}
 
 }

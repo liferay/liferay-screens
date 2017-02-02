@@ -14,15 +14,15 @@
 import UIKit
 
 
-public class WebContentLoadHtmlLiferayConnector: WebContentLoadBaseLiferayConnector {
+open class WebContentLoadHtmlLiferayConnector: WebContentLoadBaseLiferayConnector {
 
-	public var templateId: Int64?
+	open var templateId: Int64?
 
-	public var resultHTML: String?
+	open var resultHTML: String?
 
 	//MARK: ServerConnector
 
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 		resultHTML = nil
 
 		var result: String?
@@ -39,13 +39,13 @@ public class WebContentLoadHtmlLiferayConnector: WebContentLoadBaseLiferayConnec
 				resultHTML = replaceHTMLPlaceholders(result)
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				lastError = NSError.errorWithCause(.invalidServerResponse,
 						message: "Could not get journal article with the given template.")
 			}
 		}
 	}
 
-	override public func validateData() -> ValidationError? {
+	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -60,39 +60,39 @@ public class WebContentLoadHtmlLiferayConnector: WebContentLoadBaseLiferayConnec
 
 	//MARK: Internal methods
 
-	internal func replaceHTMLPlaceholders(html: String) -> String {
+	internal func replaceHTMLPlaceholders(_ html: String) -> String {
 		return html
-			.stringByReplacingOccurrencesOfString(
-				"@cdn_host@", withString: "")
-			.stringByReplacingOccurrencesOfString(
-				"@root_path@", withString: LiferayServerContext.server)
+			.replacingOccurrences(
+				of: "@cdn_host@", with: "")
+			.replacingOccurrences(
+				of: "@root_path@", with: LiferayServerContext.server)
 	}
 
 	internal func doGetJournalArticleWithTemplate(
-			templateId: Int64,
+			_ templateId: Int64,
 			session: LRSession) -> String? {
 		fatalError("doGetJournalArticleWithTemplate method must be overwritten")
 	}
 
-	internal func doGetJournalArticle(session: LRSession) -> String? {
+	internal func doGetJournalArticle(_ session: LRSession) -> String? {
 		fatalError("doGetJournalArticle method must be overwritten")
 	}
 
 }
 
 
-public class Liferay62WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConnector {
+open class Liferay62WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConnector {
 
 
 	//MARK: WebContentLoadHtmlLiferayConnector
 
 	override internal func doGetJournalArticleWithTemplate(
-			templateId: Int64,
+			_ templateId: Int64,
 			session: LRSession) -> String? {
 		let service = LRScreensjournalarticleService_v62(session: session)
 
 		do {
-			let result = try service.getJournalArticleContentWithGroupId(groupId,
+			let result = try service?.getJournalArticleContent(withGroupId: groupId,
 				articleId: articleId,
 			    ddmTemplateId: templateId,
 			    locale: NSLocale.currentLocaleString)
@@ -108,11 +108,11 @@ public class Liferay62WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConn
 		return nil
 	}
 
-	override internal func doGetJournalArticle(session: LRSession) -> String? {
+	override internal func doGetJournalArticle(_ session: LRSession) -> String? {
 		let service = LRJournalArticleService_v62(session: session)
 
 		do {
-			let result = try service.getArticleContentWithGroupId(groupId,
+			let result = try service?.getArticleContent(withGroupId: groupId,
 				articleId: articleId,
 			    languageId: NSLocale.currentLocaleString,
 			    themeDisplay: nil)
@@ -131,18 +131,18 @@ public class Liferay62WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConn
 }
 
 
-public class Liferay70WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConnector {
+open class Liferay70WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConnector {
 
 
 	//MARK: WebContentLoadHtmlLiferayConnector
 
 	override internal func doGetJournalArticleWithTemplate(
-			templateId: Int64,
+			_ templateId: Int64,
 			session: LRSession) -> String? {
 		let service = LRScreensjournalarticleService_v70(session: session)
 
 		do {
-			let result = try service.getJournalArticleContentWithGroupId(groupId,
+			let result = try service?.getJournalArticleContent(withGroupId: groupId,
 				articleId: articleId,
 				ddmTemplateId: templateId,
 				locale: NSLocale.currentLocaleString)
@@ -158,11 +158,11 @@ public class Liferay70WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConn
 		return nil
 	}
 	
-	override internal func doGetJournalArticle(session: LRSession) -> String? {
+	override internal func doGetJournalArticle(_ session: LRSession) -> String? {
 		let service = LRJournalArticleService_v7(session: session)
 		
 		do {
-			let result = try service.getArticleContentWithGroupId(groupId,
+			let result = try service?.getArticleContent(withGroupId: groupId,
 				articleId: articleId,
 			    languageId: NSLocale.currentLocaleString,
 				themeDisplay: nil)

@@ -15,7 +15,7 @@ import UIKit
 import LRMobileSDK
 
 
-public class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFileProgressDelegate {
+open class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFileProgressDelegate {
 
 	public typealias OnProgress = (DDMFieldDocument, UInt64, UInt64) -> Void
 
@@ -29,9 +29,9 @@ public class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFileP
 
 	var uploadResult: [String:AnyObject]?
 
-	private var requestSemaphore: dispatch_semaphore_t?
+	fileprivate var requestSemaphore: DispatchSemaphore?
 
-	private var bytesToSend: Int64 = 0
+	fileprivate var bytesToSend: Int64 = 0
 
 
 	//MARK: Initializers
@@ -54,7 +54,7 @@ public class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFileP
 
 	//MARK: ServerConnector
 
-	override public func validateData() -> ValidationError? {
+	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -62,7 +62,7 @@ public class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFileP
 				return ValidationError("ddlform-screenlet", "undefined-current-value")
 			}
 
-			if (filePrefix ?? "") == "" {
+			if filePrefix == "" {
 				return ValidationError("ddlform-screenlet", "undefined-fileprefix")
 			}
 		}
@@ -70,10 +70,10 @@ public class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFileP
 		return error
 	}
 
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 		session.callback = self
 
-		let fileName = "\(filePrefix)\(NSUUID().UUIDString)"
+		let fileName = "\(filePrefix)\(UUID().uuidString)"
 		let stream = document.getStream(&bytesToSend)
 		let uploadData = LRUploadData(
 			inputStream: stream,
@@ -81,65 +81,65 @@ public class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFileP
 			fileName: fileName,
 			mimeType: document.mimeType,
 			progressDelegate: self)
-		uploadData.progressDelegate = self
+		uploadData?.progressDelegate = self
 
-		requestSemaphore = dispatch_semaphore_create(0)
+		requestSemaphore = DispatchSemaphore(value: 0)
 
 		do {
-			try doSendFile(session, name: fileName, data: uploadData)
+			try doSendFile(session, name: fileName, data: uploadData!)
 		}
 		catch {
 			// ignore the error because this is an async call
 			// (the ObjC-Swift bridge is not working well in this scenario)
 		}
 
-		dispatch_semaphore_wait(requestSemaphore!, DISPATCH_TIME_FOREVER)
+		_ = requestSemaphore!.wait(timeout: .distantFuture)
 	}
 
-	public func doSendFile(session: LRSession, name: String, data: LRUploadData) throws {
+	open func doSendFile(_ session: LRSession, name: String, data: LRUploadData) throws {
 		fatalError("Override doSendFile method")
 	}
 
 
 	//MARK: LRFileProgressDelegate
 
-	public func onProgress(data: NSData!, totalBytes: Int64) {
+	open func onProgress(_ data: Data!, totalBytes: Int64) {
 		let totalBytesSent = UInt64(totalBytes)
 		let totalBytesToSend = UInt64(self.bytesToSend)
 
-		document.uploadStatus = .Uploading(totalBytesSent, totalBytesToSend)
+		document.uploadStatus = .uploading(totalBytesSent, totalBytesToSend)
 		onUploadedBytes?(document, totalBytesSent, totalBytesToSend)
 	}
 
 
 	//MARK: LRCallback
 
-	public func onFailure(error: NSError!) {
-		lastError = error
+	open func onFailure(_ error: Error!) {
+		lastError = error as NSError
 		uploadResult = nil
 
-		dispatch_semaphore_signal(requestSemaphore!)
+		requestSemaphore!.signal()
 	}
 
-	public func onSuccess(result: AnyObject!) {
+	open func onSuccess(_ result: Any!) {
 		lastError = nil
 		uploadResult = result as? [String:AnyObject]
 
-		dispatch_semaphore_signal(requestSemaphore!)
+		requestSemaphore!.signal()
 	}
 
 }
 
 
-public class Liferay62DDLFormUploadConnector: DDLFormUploadLiferayConnector {
+open class Liferay62DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 
 
 	//MARK: DDLFormUploadLiferayConnector
 
-	override public func doSendFile(session: LRSession, name: String, data: LRUploadData) throws {
+	override open func doSendFile(_ session: LRSession, name: String, data: LRUploadData) throws {
 		let service = LRDLAppService_v62(session: session)
 
-		try service.addFileEntryWithRepositoryId(repositoryId,
+		try service?.addFileEntry(withRepositoryId: repositoryId,
 			folderId: folderId,
 			sourceFileName: name,
 			mimeType: document.mimeType,
@@ -153,15 +153,15 @@ public class Liferay62DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 }
 
 
-public class Liferay70DDLFormUploadConnector: DDLFormUploadLiferayConnector {
+open class Liferay70DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 
 
 	//MARK: DDLFormUploadLiferayConnector
 
-	override public func doSendFile(session: LRSession, name: String, data: LRUploadData) throws {
+	override open func doSendFile(_ session: LRSession, name: String, data: LRUploadData) throws {
 		let service = LRDLAppService_v7(session: session)
 
-		try service.addFileEntryWithRepositoryId(repositoryId,
+		try service?.addFileEntry(withRepositoryId: repositoryId,
 			folderId: folderId,
 			sourceFileName: name,
 			mimeType: document.mimeType,

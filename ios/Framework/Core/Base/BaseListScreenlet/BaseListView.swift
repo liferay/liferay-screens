@@ -14,39 +14,39 @@
 import UIKit
 
 
-public class BaseListView: BaseScreenletView {
+open class BaseListView: BaseScreenletView {
 	
-	public static let DefaultSection = ""
+	open static let DefaultSection = ""
 	
-	public var rowCount: Int {
+	open var rowCount: Int {
 		return _rowCount
 	}
 	
-	public var rows: [String : [AnyObject?]] {
+	open var rows: [String : [AnyObject?]] {
 		return _rows
 	}
 	
-	public var sections: [String] {
+	open var sections: [String] {
 		return _sections
 	}
 	
-	public var onSelectedRowClosure: (AnyObject -> Void)?
-	public var fetchPageForRow: (Int -> Void)?
+	open var onSelectedRowClosure: ((AnyObject) -> Void)?
+	open var fetchPageForRow: ((Int) -> Void)?
 	
-	private var _rows = [String : [AnyObject?]]()
-	private var _sections = [String]()
-	private var _rowCount = 0
+	fileprivate var _rows = [String : [AnyObject?]]()
+	fileprivate var _sections = [String]()
+	fileprivate var _rowCount = 0
 	
 	//True when a request for more rows is being processed
-	public var loadingRows = false
+	open var loadingRows = false
 	
 	//True when there are more rows in the server
-	public var moreRows = true
+	open var moreRows = true
 
 
 	//MARK: Public methods
 	
-	public func setRows(allRows: [String : [AnyObject?]], newRows: [String : [AnyObject]], rowCount: Int,
+	open func setRows(_ allRows: [String : [AnyObject?]], newRows: [String : [AnyObject]], rowCount: Int,
 	                    sections: [String]) {
 		
 		let streamMode = (screenlet as! BaseListScreenlet).streamMode
@@ -70,7 +70,7 @@ public class BaseListView: BaseScreenletView {
 		}
 	}
 	
-	public func clearRows() {
+	open func clearRows() {
 		let oldRows = _rows
 		_rows = [String : [AnyObject?]]()
 		_rows[BaseListView.DefaultSection] = [AnyObject?]()
@@ -80,31 +80,31 @@ public class BaseListView: BaseScreenletView {
 		onClearRows(oldRows)
 	}
 	
-	public func onChangedRows(oldRows:[String : [AnyObject?]]) {
+	open func onChangedRows(_ oldRows:[String : [AnyObject?]]) {
 	}
 	
-	public func onAddedRows(oldRows: [String : [AnyObject?]]) {
+	open func onAddedRows(_ oldRows: [String : [AnyObject?]]) {
 		
 	}
 	
-	public func onClearRows(oldRows:[String : [AnyObject?]]) {
+	open func onClearRows(_ oldRows:[String : [AnyObject?]]) {
 		
 	}
 
-	public func deleteRow(section: String, row: Int) {
-		_rows[section]?.removeAtIndex(row)
+	open func deleteRow(_ section: String, row: Int) {
+		_ = _rows[section]?.remove(at: row)
 	}
 
-	public func addRow(section: String, element: AnyObject) {
+	open func addRow(_ section: String, element: AnyObject) {
 		_rows[section]?.append(element)
 	}
 	
 
-	public func updateRow(section: String, row: Int, element: AnyObject) {
+	open func updateRow(_ section: String, row: Int, element: AnyObject) {
 		_rows[section]?[row] = element
 	}
 
-	public func rowsForSectionIndex(index: Int) -> [AnyObject?] {
+	open func rowsForSectionIndex(_ index: Int) -> [AnyObject?] {
 		let key = sections[index]
 		
 		return rows[key]!
@@ -113,7 +113,7 @@ public class BaseListView: BaseScreenletView {
 
 	//MARK: Internal methods
 
-	internal func hasMoreRows(newRows: [String : [AnyObject]]) -> Bool {
+	internal func hasMoreRows(_ newRows: [String : [AnyObject]]) -> Bool {
 		if newRows.count == 0 {
 			return false
 		}

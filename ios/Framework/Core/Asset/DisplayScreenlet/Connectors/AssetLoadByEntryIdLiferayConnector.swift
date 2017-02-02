@@ -14,11 +14,11 @@
 import UIKit
 
 
-public class AssetLoadByEntryIdLiferayConnector: ServerConnector, LoadAssetConnector {
+open class AssetLoadByEntryIdLiferayConnector: ServerConnector, LoadAssetConnector {
 
-	public let entryId: Int64
+	open let entryId: Int64
 
-	public var resultAsset: Asset?
+	open var resultAsset: Asset?
 
 
 	//MARK: Initializers
@@ -31,7 +31,7 @@ public class AssetLoadByEntryIdLiferayConnector: ServerConnector, LoadAssetConne
 
 	//MARK: ServerConnector
 
-	override public func validateData() -> ValidationError? {
+	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -44,18 +44,18 @@ public class AssetLoadByEntryIdLiferayConnector: ServerConnector, LoadAssetConne
 	}
 }
 
-public class Liferay70AssetLoadByEntryIdConnector: AssetLoadByEntryIdLiferayConnector {
+open class Liferay70AssetLoadByEntryIdConnector: AssetLoadByEntryIdLiferayConnector {
 
 
 	//MARK: ServerConnector
 
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 		resultAsset = nil
 
 		let service = LRScreensassetentryService_v70(session: session)
 
 		do {
-			let result = try service.getAssetEntryWithEntryId(entryId, locale: NSLocale.currentLocaleString)
+			let result = try service?.getAssetEntry(withEntryId: entryId, locale: NSLocale.currentLocaleString)
 
 			resultAsset = Asset(attributes: result as! [String:AnyObject])
 			lastError = nil

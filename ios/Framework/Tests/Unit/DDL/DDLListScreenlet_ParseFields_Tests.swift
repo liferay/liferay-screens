@@ -22,7 +22,7 @@ class DDLListScreenlet_ParseFields_Tests: XCTestCase {
 	override func setUp() {
 		super.setUp()
 
-		screenlet = DDLListScreenlet(frame: CGRectZero, themeName: "test")
+		screenlet = DDLListScreenlet(frame: CGRect.zero, themeName: "test")
 	}
 
 	func test_LabelFields_ShouldParse_SingleField() {

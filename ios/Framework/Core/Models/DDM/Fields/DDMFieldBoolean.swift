@@ -14,23 +14,23 @@
 import Foundation
 
 
-public class DDMFieldBoolean : DDMField {
+open class DDMFieldBoolean : DDMField {
 
 	override internal func convert(fromString value:String?) -> AnyObject? {
 		return value.map {
-				Bool.from(string: $0)
+				Bool.from(string: $0) as AnyObject
 			}
 	}
 
 	override func convert(fromLabel label: String?) -> AnyObject? {
-		let trueLabel = LocalizedString("core", key: "yes", obj: self).lowercaseString
-		let falseLabel = LocalizedString("core", key: "no", obj: self).lowercaseString
+		let trueLabel = LocalizedString("core", key: "yes", obj: self).lowercased()
+		let falseLabel = LocalizedString("core", key: "no", obj: self).lowercased()
 
-		if label?.lowercaseString == trueLabel {
-			return true
+		if label?.lowercased() == trueLabel {
+			return true as AnyObject?
 		}
-		else if label?.lowercaseString == falseLabel {
-			return false
+		else if label?.lowercased() == falseLabel {
+			return false as AnyObject?
 		}
 
 		return nil

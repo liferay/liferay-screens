@@ -18,52 +18,52 @@ import MobileCoreServices
 private let xibName = "DDLFieldDocumentlibraryPresenterViewController_default"
 
 
-public class DDMFieldDocumentlibraryPresenterViewController_default:
+open class DDMFieldDocumentlibraryPresenterViewController_default:
 		UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
 
 	//MARK: Outlets
 
-	@IBOutlet public var takeNewButton: UIButton?
+	@IBOutlet open var takeNewButton: UIButton?
 
-	@IBOutlet public var selectPhotoButton: UIButton?
+	@IBOutlet open var selectPhotoButton: UIButton?
 
-	@IBOutlet public var selectVideoButton: UIButton?
+	@IBOutlet open var selectVideoButton: UIButton?
 
-	@IBOutlet public var cancelButton: UIButton?
+	@IBOutlet open var cancelButton: UIButton?
 
-	public var selectedDocumentClosure: ((UIImage?, NSURL?) -> Void)?
+	open var selectedDocumentClosure: ((UIImage?, URL?) -> Void)?
 
-	private let imagePicker = UIImagePickerController()
+	fileprivate let imagePicker = UIImagePickerController()
 
 
 	//MARK: Initializers
 
-	override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+	override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 	}
 
 	public convenience init() {
 		self.init(
 			nibName: xibName,
-			bundle: NSBundle.bundleForNibName(xibName, currentClass: self.dynamicType))
+			bundle: Bundle.bundleForNibName(xibName, currentClass: type(of: self)))
 
 		imagePicker.delegate = self
 		imagePicker.allowsEditing = false
-		imagePicker.modalPresentationStyle = .CurrentContext
+		imagePicker.modalPresentationStyle = .currentContext
 
 		takeNewButton?.replaceAttributedTitle(
 				LocalizedString("default", key: "ddlform-upload-picker-take-new", obj: self),
-				forState: .Normal)
+				forState: .normal)
 		selectPhotoButton?.replaceAttributedTitle(
 				LocalizedString("default", key: "ddlform-upload-picker-select-photo", obj: self),
-				forState: .Normal)
+				forState: .normal)
 		selectVideoButton?.replaceAttributedTitle(
 				LocalizedString("default", key: "ddlform-upload-picker-select-video", obj: self),
-				forState: .Normal)
+				forState: .normal)
 		cancelButton?.replaceAttributedTitle(
 				LocalizedString("default", key: "ddlform-upload-picker-cancel", obj: self),
-				forState: .Normal)
+				forState: .normal)
 	}
 
 	required public init?(coder aDecoder: NSCoder) {
@@ -73,51 +73,51 @@ public class DDMFieldDocumentlibraryPresenterViewController_default:
 
 	//MARK: Actions
 
-	@IBAction private func cancelButtonAction(sender: AnyObject) {
+	@IBAction fileprivate func cancelButtonAction(_ sender: AnyObject) {
 		selectedDocumentClosure?(nil, nil)
 	}
 
-	@IBAction private func takePhotoAction(sender: AnyObject) {
-		imagePicker.sourceType = .Camera
+	@IBAction fileprivate func takePhotoAction(_ sender: AnyObject) {
+		imagePicker.sourceType = .camera
 
-		presentViewController(imagePicker, animated: true) {}
+		present(imagePicker, animated: true) {}
 	}
 
-	@IBAction private func selectPhotosAction(sender: AnyObject) {
-		imagePicker.sourceType = .SavedPhotosAlbum
+	@IBAction fileprivate func selectPhotosAction(_ sender: AnyObject) {
+		imagePicker.sourceType = .savedPhotosAlbum
 
 		// Reset media types to default
 		imagePicker.mediaTypes = [kUTTypeImage as String]
 
-		presentViewController(imagePicker, animated: true) {}
+		present(imagePicker, animated: true) {}
 	}
 
-	@IBAction private func selectVideosAction(sender: AnyObject) {
+	@IBAction fileprivate func selectVideosAction(_ sender: AnyObject) {
 
-		imagePicker.sourceType = .SavedPhotosAlbum
+		imagePicker.sourceType = .savedPhotosAlbum
 		imagePicker.mediaTypes = [kUTTypeMovie as NSString as String]
 
-		presentViewController(imagePicker, animated: true) {}
+		present(imagePicker, animated: true) {}
 	}
 
 
 	//MARK: UIImagePickerControllerDelegate
 
-    public func imagePickerController(
-			picker: UIImagePickerController,
-			didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    open func imagePickerController(
+			_ picker: UIImagePickerController,
+			didFinishPickingMediaWithInfo info: [String : Any]) {
 
 		let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
-		let selectedURL = info[UIImagePickerControllerMediaURL] as? NSURL
+		let selectedURL = info[UIImagePickerControllerMediaURL] as? URL
 
 		selectedDocumentClosure?(selectedImage, selectedURL)
 
-		imagePicker.dismissViewControllerAnimated(true) {}
+		imagePicker.dismiss(animated: true) {}
 	}
 
-    public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+    open func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
 		cancelButtonAction(picker)
-		imagePicker.dismissViewControllerAnimated(true) {}
+		imagePicker.dismiss(animated: true) {}
 	}
 
 }

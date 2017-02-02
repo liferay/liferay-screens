@@ -16,11 +16,11 @@ import Foundation
 private let dummyObject = MBProgressHUDPresenter()
 
 
-public class ValidationError : NSError {
+open class ValidationError : NSError {
 
 	public init(_ message: String) {
 		super.init(domain: "LiferayScreens",
-			code: ScreensErrorCause.ValidationFailed.rawValue,
+			code: ScreensErrorCause.validationFailed.rawValue,
 			userInfo: [NSLocalizedDescriptionKey: message])
 	}
 
@@ -41,19 +41,19 @@ public class ValidationError : NSError {
 
 public enum ScreensErrorCause: Int {
 
-	case AbortedDueToPreconditions = -2
-	case InvalidServerResponse = -3
-	case ValidationFailed = -4
-	case NotAvailable = -5
-	case Cancelled = -6
+	case abortedDueToPreconditions = -2
+	case invalidServerResponse = -3
+	case validationFailed = -4
+	case notAvailable = -5
+	case cancelled = -6
 
 }
 
 public extension NSError {
 
 	public class func errorWithCause(
-			cause: ScreensErrorCause,
-			userInfo: [NSObject : AnyObject]? = nil)
+			_ cause: ScreensErrorCause,
+			userInfo: [AnyHashable: Any]? = nil)
 			-> NSError {
 
 		return NSError(
@@ -63,7 +63,7 @@ public extension NSError {
 }
 
 	public class func errorWithCause(
-			cause: ScreensErrorCause,
+			_ cause: ScreensErrorCause,
 			message: String)
 			-> NSError {
 

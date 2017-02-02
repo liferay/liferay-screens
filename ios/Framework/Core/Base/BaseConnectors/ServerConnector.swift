@@ -14,15 +14,15 @@
 import UIKit
 
 
-@objc public class ServerConnector: NSOperation {
+@objc open class ServerConnector: Operation {
 
-	private struct ConnectorsQueue {
+	fileprivate struct ConnectorsQueue {
 
-		static private var queue: NSOperationQueue?
+		static fileprivate var queue: OperationQueue?
 
-		static func addConnector(connector: ServerConnector) {
+		static func addConnector(_ connector: ServerConnector) {
 			if queue == nil {
-				queue = NSOperationQueue()
+				queue = OperationQueue()
 				queue!.maxConcurrentOperationCount = 1
 			}
 
@@ -31,16 +31,16 @@ import UIKit
 
 	}
 
-	public var lastError: NSError?
+	open var lastError: NSError?
 
-	internal var onComplete: (ServerConnector -> Void)?
+	internal var onComplete: ((ServerConnector) -> Void)?
 
 
 	//MARK: NSOperation
 
-	public override func main() {
-		if self.cancelled {
-			lastError = NSError.errorWithCause(.Cancelled)
+	open override func main() {
+		if self.isCancelled {
+			lastError = NSError.errorWithCause(.cancelled)
 		}
 		else {
 			if preRun() {
@@ -50,12 +50,12 @@ import UIKit
 				}
 				else {
 					if lastError == nil {
-						lastError = NSError.errorWithCause(.NotAvailable, message: "Could not create session")
+						lastError = NSError.errorWithCause(.notAvailable, message: "Could not create session")
 					}
 				}
 			}
 			else {
-				lastError = NSError.errorWithCause(.AbortedDueToPreconditions)
+				lastError = NSError.errorWithCause(.abortedDueToPreconditions)
 			}
 		}
 
@@ -64,8 +64,8 @@ import UIKit
 
 
 	//MARK: Public methods
-
-	public func validateAndEnqueue(onComplete: (ServerConnector -> Void)? = nil) -> ValidationError? {
+	@discardableResult
+	open func validateAndEnqueue(_ onComplete: ((ServerConnector) -> Void)? = nil) -> ValidationError? {
 		let error = validateData()
 
 		if error == nil {
@@ -75,7 +75,7 @@ import UIKit
 		return error
 	}
 
-	public func enqueue(onComplete: (ServerConnector -> Void)? = nil) {
+	open func enqueue(_ onComplete: ((ServerConnector) -> Void)? = nil) {
 		if onComplete != nil {
 			self.onComplete = onComplete
 		}
@@ -86,27 +86,27 @@ import UIKit
 
 	//MARK: Template methods
 
-	public func validateData() -> ValidationError? {
+	open func validateData() -> ValidationError? {
 		// Do not add any code here. Children classes may not call super
 		return nil
 	}
 
-	public func preRun() -> Bool {
+	open func preRun() -> Bool {
 		// Do not add any code here. Children classes may not call super
 		return true
 	}
 
-	public func doRun(session session: LRSession) {
+	open func doRun(session: LRSession) {
 		// Do not add any code here. Children classes may not call super
 	}
 
-	public func postRun() {
+	open func postRun() {
 		// Do not add any code here. Children classes may not call super
 	}
 
-	public func createSession() -> LRSession? {
+	open func createSession() -> LRSession? {
 		guard SessionContext.isLoggedIn else {
-			lastError = NSError.errorWithCause(.AbortedDueToPreconditions,
+			lastError = NSError.errorWithCause(.abortedDueToPreconditions,
 					message: "Login required to use this connector")
 
 			return nil
@@ -115,7 +115,7 @@ import UIKit
 		return SessionContext.currentContext?.createRequestSession()
 	}
 
-	public func callOnComplete() {
+	open func callOnComplete() {
 		if self.onComplete != nil {
 			dispatch_main {
 				self.onComplete!(self)

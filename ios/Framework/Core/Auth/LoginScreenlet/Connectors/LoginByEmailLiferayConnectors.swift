@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class LoginByEmailLiferay62Connector: GetUserByEmailLiferay62Connector {
+open class LoginByEmailLiferay62Connector: GetUserByEmailLiferay62Connector {
 
 
 	//MARK: Initializers
@@ -29,13 +29,13 @@ public class LoginByEmailLiferay62Connector: GetUserByEmailLiferay62Connector {
 
 	//MARK: ServerConnector
 
-	override public func postRun() {
+	override open func postRun() {
 		if lastError == nil {
 			loginWithResult()
 		}
 	}
 
-	override public func createSession() -> LRSession? {
+	override open func createSession() -> LRSession? {
 		SessionContext.logout()
 		return super.createSession()
 	}
@@ -43,7 +43,7 @@ public class LoginByEmailLiferay62Connector: GetUserByEmailLiferay62Connector {
 }
 
 
-public class LoginByEmailLiferay70Connector: GetUserByEmailLiferay70Connector {
+open class LoginByEmailLiferay70Connector: GetUserByEmailLiferay70Connector {
 
 
 	//MARK: Initializers
@@ -58,13 +58,13 @@ public class LoginByEmailLiferay70Connector: GetUserByEmailLiferay70Connector {
 
 	//MARK: ServerConnector
 
-	override public func postRun() {
+	override open func postRun() {
 		if lastError == nil {
 			loginWithResult()
 		}
 	}
 
-	override public func createSession() -> LRSession? {
+	override open func createSession() -> LRSession? {
 		SessionContext.logout()
 		return super.createSession()
 	}

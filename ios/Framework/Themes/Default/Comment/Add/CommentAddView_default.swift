@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
+open class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 
 
 	//MARK: Outlets
@@ -28,7 +28,7 @@ public class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 		}
 	}
 
-	public var body: String {
+	open var body: String {
 		get {
 			return addCommentTextField?.text ?? ""
 		}
@@ -41,29 +41,29 @@ public class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 
 	//MARK: Public methods
 
-	public func updateButton() {
-		sendCommentButton?.enabled = !(addCommentTextField?.text?.isEmpty ?? false)
+	open func updateButton() {
+		sendCommentButton?.isEnabled = !(addCommentTextField?.text?.isEmpty ?? false)
 
 		if let sendCommentButton = sendCommentButton {
 			sendCommentButton.backgroundColor =
-				sendCommentButton.enabled ? DefaultThemeBasicBlue :
-						DefaultThemeBasicBlue.colorWithAlphaComponent(0.5)
+				sendCommentButton.isEnabled ? DefaultThemeBasicBlue :
+						DefaultThemeBasicBlue.withAlphaComponent(0.5)
 		}
 	}
 
 
 	//MARK: BaseScreenletView
 
-	override public func onShow() {
+	override open func onShow() {
 		addCommentTextField?.delegate = self
 	}
 
-	override public func onSetTranslations() {
+	override open func onSetTranslations() {
 		addCommentTextField?.placeholder = LocalizedString("default", key: "comment-add-placeholder", obj: self)
 		sendCommentButton?.titleLabel?.text = LocalizedString("default", key: "comment-add-send", obj: self)
 	}
 
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
 	}
 
@@ -77,7 +77,7 @@ public class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 
 	//MARK: UITextFieldDelegate
 
-	override public func textFieldShouldReturn(textField: UITextField) -> Bool {
+	override open func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		userAction(name: "add-comment", sender: textField)
 		return super.textFieldShouldReturn(textField)
 	}

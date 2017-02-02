@@ -14,12 +14,12 @@
 import Foundation
 
 
-public class DDMFieldUntyped: DDMField {
+open class DDMFieldUntyped: DDMField {
 
-	public init(name: String, value: AnyObject, locale: NSLocale) {
-		let attributes = ["name": name, "predefinedValue": value]
+	public init(name: String, value: AnyObject, locale: Locale) {
+		let attributes = ["name": name, "predefinedValue": value] as [String : Any]
 
-		super.init(attributes: attributes, locale: locale)
+		super.init(attributes: attributes as [String : AnyObject], locale: locale)
 	}
 
 	public required init?(coder aDecoder: NSCoder) {

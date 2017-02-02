@@ -11,38 +11,38 @@ import LiferayScreens
 import MGSwipeTableCell
 
 
-public class DDLListViewCell_westeros: MGSwipeTableCell {
+open class DDLListViewCell_westeros: MGSwipeTableCell {
 
 	@IBOutlet weak var statusIcon: UIImageView!
 	@IBOutlet weak var issueLabel: UILabel!
 	@IBOutlet weak var dateLabel: UILabel!
 
-	private let dateFormatter = NSDateFormatter()
+	fileprivate let dateFormatter = DateFormatter()
 
-	public var record: DDLRecord? {
+	open var record: DDLRecord? {
 		didSet {
 			if let titleField = record?.fieldBy(name: "Title") {
 				issueLabel.text = titleField.currentValueAsString
 			}
 
 			if let created = record?.attributes["createDate"] as? NSNumber {
-				let date = NSDate(timeIntervalSince1970: created.doubleValue/1000)
-				dateLabel.text = "Created on \(dateFormatter.stringFromDate(date))"
+				let date = Date(timeIntervalSince1970: created.doubleValue/1000)
+				dateLabel.text = "Created on \(dateFormatter.string(from: date))"
 			}
 
 			let icons = ["DONE", "FREEZE", "OPEN", "REJECT", "WAITING"]
 			let currentIcon = icons[(issueLabel.text ?? "").characters.count % 5]
 
-			statusIcon.image = NSBundle.imageInBundles(
+			statusIcon.image = Bundle.imageInBundles(
 					name: "status_\(currentIcon)",
-					currentClass: self.dynamicType)
+					currentClass: type(of: self))
 		}
 	}
 
-	public override func awakeFromNib() {
-		dateFormatter.dateStyle = .LongStyle
-		dateFormatter.timeStyle = .NoStyle
-		dateFormatter.locale = NSLocale.currentLocale()
+	open override func awakeFromNib() {
+		dateFormatter.dateStyle = .long
+		dateFormatter.timeStyle = .none
+		dateFormatter.locale = Locale.current
 	}
 
 }

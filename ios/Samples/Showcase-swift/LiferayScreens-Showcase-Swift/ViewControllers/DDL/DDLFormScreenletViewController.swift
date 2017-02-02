@@ -20,7 +20,7 @@ class DDLFormScreenletViewController: UIViewController, DDLFormScreenletDelegate
 	@IBOutlet weak var loadButton: UIButton? {
 		didSet {
 			loadButton?.replaceAttributedTitle(NSLocalizedString("load-button", comment: "LOAD"),
-			                                   forState: .Normal)
+			                                   forState: .normal)
 		}
 	}
 	@IBOutlet var screenlet: DDLFormScreenlet? {
@@ -37,8 +37,8 @@ class DDLFormScreenletViewController: UIViewController, DDLFormScreenletDelegate
 		}
 	}
 
-	@IBAction func loadForm(sender: AnyObject) {
-		if let id = recordIdTextField?.text, recordId = Int64(id) {
+	@IBAction func loadForm(_ sender: AnyObject) {
+		if let id = recordIdTextField?.text, let recordId = Int64(id) {
 			screenlet?.recordId = recordId
 			recordIdTextField?.resignFirstResponder()
 			screenlet?.loadRecord()
@@ -51,48 +51,48 @@ class DDLFormScreenletViewController: UIViewController, DDLFormScreenletDelegate
 
 	//MARK: DDLFormScreenletDelegate
 
-	func screenlet(screenlet: DDLFormScreenlet, onFormLoaded record: DDLRecord) {
+	func screenlet(_ screenlet: DDLFormScreenlet, onFormLoaded record: DDLRecord) {
 		LiferayLogger.logDelegateMessage(args: record)
 	}
 	
-	func screenlet(screenlet: DDLFormScreenlet, onFormLoadError error: NSError) {
+	func screenlet(_ screenlet: DDLFormScreenlet, onFormLoadError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 	
-	func screenlet(screenlet: DDLFormScreenlet, onFormSubmitError error: NSError) {
+	func screenlet(_ screenlet: DDLFormScreenlet, onFormSubmitError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 	
-	func screenlet(screenlet: DDLFormScreenlet, onRecordLoaded record: DDLRecord) {
+	func screenlet(_ screenlet: DDLFormScreenlet, onRecordLoaded record: DDLRecord) {
 		LiferayLogger.logDelegateMessage(args: record)
 	}
 	
-	func screenlet(screenlet: DDLFormScreenlet, onRecordLoadError error: NSError) {
+	func screenlet(_ screenlet: DDLFormScreenlet, onRecordLoadError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 	
-	func screenlet(screenlet: DDLFormScreenlet, onFormSubmitted record: DDLRecord) {
+	func screenlet(_ screenlet: DDLFormScreenlet, onFormSubmitted record: DDLRecord) {
 		LiferayLogger.logDelegateMessage(args: record)
 	}
 	
-	func screenlet(screenlet: DDLFormScreenlet,
+	func screenlet(_ screenlet: DDLFormScreenlet,
 	               onDocumentFieldUploadStarted field: DDMFieldDocument) {
 		LiferayLogger.logDelegateMessage(args: field)
 	}
 	
-	func screenlet(screenlet: DDLFormScreenlet,
+	func screenlet(_ screenlet: DDLFormScreenlet,
 	               onDocumentField field: DDMFieldDocument,
 	               uploadError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 	
-	func screenlet(screenlet: DDLFormScreenlet,
+	func screenlet(_ screenlet: DDLFormScreenlet,
 	               onDocumentField field: DDMFieldDocument,
 	               uploadResult result: [String : AnyObject]) {
-		LiferayLogger.logDelegateMessage(args: field, result)
+		LiferayLogger.logDelegateMessage(args: field, result as AnyObject?)
 	}
 	
-	func screenlet(screenlet: DDLFormScreenlet,
+	func screenlet(_ screenlet: DDLFormScreenlet,
 	               onDocumentField field: DDMFieldDocument,
 				   uploadedBytes bytes: UInt64,
 				   totalBytes total: UInt64) {

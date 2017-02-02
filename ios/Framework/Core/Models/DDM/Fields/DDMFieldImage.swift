@@ -14,11 +14,11 @@
 import UIKit
 
 
-public class DDMFieldImage : DDMField {
+open class DDMFieldImage : DDMField {
 
 	//MARK: DDMField
 
-	public override init(attributes: [String:AnyObject], locale: NSLocale) {
+	public override init(attributes: [String:AnyObject], locale: Locale) {
 		super.init(attributes: attributes, locale: locale)
 	}
 
@@ -26,8 +26,8 @@ public class DDMFieldImage : DDMField {
 		super.init(coder: aDecoder)
 	}
 
-	public override func encodeWithCoder(aCoder: NSCoder) {
-		super.encodeWithCoder(aCoder)
+	open override func encode(with aCoder: NSCoder) {
+		super.encode(with: aCoder)
 	}
 
 }

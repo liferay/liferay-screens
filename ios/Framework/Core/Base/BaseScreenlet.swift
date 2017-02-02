@@ -25,7 +25,7 @@ import QuartzCore
 	///   - customInteractorForAction: action name.
 	///   - withSender: source of the event.
 	/// - Returns: custom interactor.
-	optional func screenlet(screenlet: BaseScreenlet,
+	@objc optional func screenlet(_ screenlet: BaseScreenlet,
 		customInteractorForAction: String,
 		withSender: AnyObject?) -> Interactor?
 
@@ -34,16 +34,16 @@ import QuartzCore
 
 /// BaseScreenlet is the base class from which all Screenlet classes must inherit.
 /// A screenlet is the container for a screenlet view.
-@IBDesignable public class BaseScreenlet: UIView {
+@IBDesignable open class BaseScreenlet: UIView {
 
-	public static let DefaultAction = "defaultAction"
-	public static let DefaultThemeName = "default"
+	open static let DefaultAction = "defaultAction"
+	open static let DefaultThemeName = "default"
 
-	@IBOutlet public weak var delegate: BaseScreenletDelegate?
+	@IBOutlet open weak var delegate: BaseScreenletDelegate?
 
-	@IBInspectable public var themeName: String? {
+	@IBInspectable open var themeName: String? {
 		set {
-			_themeName = (newValue ?? BaseScreenlet.DefaultThemeName).lowercaseString
+			_themeName = (newValue ?? BaseScreenlet.DefaultThemeName).lowercased()
 
 			if _runningOnInterfaceBuilder {
 				_themeName = updateCurrentPreviewImage()
@@ -61,9 +61,9 @@ import QuartzCore
 		}
 	}
 
-	public weak var screenletView: BaseScreenletView?
+	open weak var screenletView: BaseScreenletView?
 
-	public weak var presentingViewController: UIViewController? {
+	open weak var presentingViewController: UIViewController? {
 		didSet {
 			screenletView?.presentingViewController = self.presentingViewController
 		}
@@ -73,14 +73,14 @@ import QuartzCore
 		return _runningOnInterfaceBuilder
 	}
 
-	private var _themeName = BaseScreenlet.DefaultThemeName
-	private var _runningOnInterfaceBuilder = false
-	private var _currentPreviewImage: UIImage?
-	private var _previewLayer: CALayer?
+	fileprivate var _themeName = BaseScreenlet.DefaultThemeName
+	fileprivate var _runningOnInterfaceBuilder = false
+	fileprivate var _currentPreviewImage: UIImage?
+	fileprivate var _previewLayer: CALayer?
 
-	private var _runningInteractors = [String:[Interactor]]()
+	fileprivate var _runningInteractors = [String:[Interactor]]()
 
-	private var _progressPresenter: ProgressPresenter?
+	fileprivate var _progressPresenter: ProgressPresenter?
 	
 	
 	//MARK: Initializers
@@ -109,7 +109,7 @@ import QuartzCore
 
 	//MARK: UIView
 
-	override public func awakeFromNib() {
+	override open func awakeFromNib() {
 		super.awakeFromNib()
 
 		clipsToBounds = true
@@ -117,17 +117,17 @@ import QuartzCore
 		if themeName == BaseScreenlet.DefaultThemeName {
 			onPreCreate()
 			loadScreenletView()
-		presentingViewController = UIApplication.sharedApplication().keyWindow?.rootViewController
+		presentingViewController = UIApplication.shared.keyWindow?.rootViewController
 
 			onCreated()
 		}
 	}
 
-	override public func becomeFirstResponder() -> Bool {
+	override open func becomeFirstResponder() -> Bool {
 		return screenletView!.becomeFirstResponder()
 	}
 
-	override public func didMoveToWindow() {
+	override open func didMoveToWindow() {
 		if window != nil {
 			onShow()
 		}
@@ -139,7 +139,7 @@ import QuartzCore
 
 	//MARK: Interface Builder management methods
 
-	override public func prepareForInterfaceBuilder() {
+	override open func prepareForInterfaceBuilder() {
 		_runningOnInterfaceBuilder = true
 
 		_previewLayer = CALayer()
@@ -172,19 +172,19 @@ import QuartzCore
 			viewValue.translatesAutoresizingMaskIntoConstraints = false
 
 			addSubview(viewValue)
-			sendSubviewToBack(viewValue)
+			sendSubview(toBack: viewValue)
 			
 			//Pin all edges from Screenlet View to the Screenlet's edges
-			let top = NSLayoutConstraint(item: viewValue, attribute: .Top, relatedBy: .Equal,
-			                             toItem: self, attribute: .Top, multiplier: 1, constant: 0)
-			let bottom = NSLayoutConstraint(item: viewValue, attribute: .Bottom, relatedBy: .Equal,
-			                                toItem: self, attribute: .Bottom, multiplier: 1, constant: 0)
-			let leading = NSLayoutConstraint(item: viewValue, attribute: .Leading, relatedBy: .Equal,
-			                                 toItem: self, attribute: .Leading, multiplier: 1, constant: 0)
-			let trailing = NSLayoutConstraint(item: viewValue, attribute: .Trailing, relatedBy: .Equal,
-			                                  toItem: self, attribute: .Trailing, multiplier: 1, constant: 0)
+			let top = NSLayoutConstraint(item: viewValue, attribute: .top, relatedBy: .equal,
+			                             toItem: self, attribute: .top, multiplier: 1, constant: 0)
+			let bottom = NSLayoutConstraint(item: viewValue, attribute: .bottom, relatedBy: .equal,
+			                                toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
+			let leading = NSLayoutConstraint(item: viewValue, attribute: .leading, relatedBy: .equal,
+			                                 toItem: self, attribute: .leading, multiplier: 1, constant: 0)
+			let trailing = NSLayoutConstraint(item: viewValue, attribute: .trailing, relatedBy: .equal,
+			                                  toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
 			
-			NSLayoutConstraint.activateConstraints([top, bottom, leading, trailing])
+			NSLayoutConstraint.activate([top, bottom, leading, trailing])
 			
 			viewValue.layoutIfNeeded()
 		}
@@ -198,14 +198,14 @@ import QuartzCore
 	///
 	/// - Parameter themeName: screenlet theme.
 	/// - Returns: preview image.
-	internal func previewImageForTheme(themeName:String) -> UIImage? {
-		let bundles = NSBundle.allBundles(self.dynamicType)
+	internal func previewImageForTheme(_ themeName:String) -> UIImage? {
+		let bundles = Bundle.allBundles(type(of: self))
 
 		for b in bundles {
-			let imageName = "\(themeName)-preview-\(ScreenletName(self.dynamicType).lowercaseString)@2x"
+			let imageName = "\(themeName)-preview-\(ScreenletName(type(of: self)).lowercased())@2x"
 
-			if let imagePath = b.pathForResource(imageName, ofType: "png") {
-				if let imageData = NSData(contentsOfFile: imagePath) {
+			if let imagePath = b.path(forResource: imageName, ofType: "png") {
+				if let imageData = try? Data(contentsOf: URL(fileURLWithPath: imagePath)) {
 					return UIImage(data: imageData, scale: 2.0)
 				}
 			}
@@ -219,21 +219,21 @@ import QuartzCore
 
 	/// onCreated is invoked after the screenlet is created.
 	/// Override this method to set custom values for the screenlet properties.
-	public func onCreated() {
+	open func onCreated() {
 	}
 
 	/// onPreCreate is invoked before the screenlet is created.
 	/// Override this method to set create new UI components programatically.
-	public func onPreCreate() {
+	open func onPreCreate() {
 	}
 
 	/// onHide is invoked when the screenlet is hidden from the app window.
-	public func onHide() {
+	open func onHide() {
 	}
 
 	/// onShow is invoked when the screenlet is displayed on the app window.
 	/// Override this method for example to reset values when the screenlet is shown.
-	public func onShow() {
+	open func onShow() {
 	}
 
 	/// performAction is invoked when we want to start an interaction (use case)
@@ -244,7 +244,8 @@ import QuartzCore
 	///   - name: action name.
 	///   - sender: source of the event.
 	/// - Returns: false interactor ready to be started.
-	public func performAction(name name: String, sender: AnyObject? = nil) -> Bool {
+	@discardableResult
+	open func performAction(name: String, sender: AnyObject? = nil) -> Bool {
 		guard !isRunningOnInterfaceBuilder else {
 			return false
 		}
@@ -260,7 +261,7 @@ import QuartzCore
 		if let interactor = customInteractor ?? standardInteractor {
 			trackInteractor(interactor, withName: name)
 
-			if let message = screenletView?.progressMessageForAction(name, messageType: .Working) {
+			if let message = screenletView?.progressMessageForAction(name, messageType: .working) {
 				showHUDWithMessage(message, forInteractor: interactor)
 			}
 
@@ -273,7 +274,8 @@ import QuartzCore
 	/// performDefaultAction is invoked when we want to start the default use case.
 	///
 	/// - Returns: call to performAction with the default action.
-	public func performDefaultAction() -> Bool {
+	@discardableResult
+	open func performDefaultAction() -> Bool {
 		return performAction(name: BaseScreenlet.DefaultAction, sender: nil)
 	}
 
@@ -285,7 +287,8 @@ import QuartzCore
 	///   - interactor: custom or standard interactor.
 	///   - sender: source of the event.
 	/// - Returns: call for starting the interactor.
-	public func onAction(name name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
+	@discardableResult
+	open func onAction(name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
 		onStartInteraction()
 		screenletView?.onStartInteraction()
 
@@ -296,10 +299,10 @@ import QuartzCore
 	///
 	/// - Parameter name: action name.
 	/// - Returns: true if there is another one running.
-	public func isActionRunning(name: String) -> Bool {
+	open func isActionRunning(_ name: String) -> Bool {
 		var firstInteractor: Interactor? = nil
 
-		synchronized(_runningInteractors) {
+		synchronized(_runningInteractors as AnyObject) {
 			firstInteractor = self._runningInteractors[name]?.first
 		}
 
@@ -309,7 +312,7 @@ import QuartzCore
 	/// cancelInteractorsForAction cancels all the interactors with the given action name.
 	///
 	/// - Parameter name: action name.
-	public func cancelInteractorsForAction(name: String) {
+	open func cancelInteractorsForAction(_ name: String) {
 		let interactors = _runningInteractors[name] ?? []
 
 		for interactor in interactors {
@@ -323,7 +326,7 @@ import QuartzCore
 	///   - name: action name.
 	///   - sender: source of the event.
 	/// - Returns: interactor.
-	public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+	open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
 		return nil
 	}
 
@@ -332,7 +335,7 @@ import QuartzCore
 	/// - Parameters:
 	///   - interactor: a started interactor.
 	///   - error: nil if there is no error.
-	public func endInteractor(interactor: Interactor, error: NSError?) {
+	open func endInteractor(_ interactor: Interactor, error: NSError?) {
 
 		func getMessage() -> String? {
 			if let error = error as? ValidationError {
@@ -341,7 +344,7 @@ import QuartzCore
 
 			return screenletView?.progressMessageForAction(
 					interactor.actionName ?? BaseScreenlet.DefaultAction,
-					messageType: error == nil ? .Success : .Failure)
+					messageType: error == nil ? .success : .failure)
 		}
 
 		untrackInteractor(interactor)
@@ -353,11 +356,11 @@ import QuartzCore
 	}
 
 	/// onStartInteraction is called just before a screenlet request is sent to server.
-	public func onStartInteraction() {
+	open func onStartInteraction() {
 	}
 
 	/// onFinishInteraction is called when the server response arrives
-	public func onFinishInteraction(result: AnyObject?, error: NSError?) {
+	open func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
 	}
 
 
@@ -368,7 +371,7 @@ import QuartzCore
 	/// - Parameters:
 	///   - message: HUD message.
 	///   - interactor: interaction (use case).
-	public func showHUDWithMessage(message: String?,
+	open func showHUDWithMessage(_ message: String?,
 			forInteractor interactor: Interactor) {
 		
 		_progressPresenter?.showHUDInView(rootView(self),
@@ -382,7 +385,7 @@ import QuartzCore
 	///   - message: HUD message.
 	///   - interactor: interaction (use case).
 	///   - error: interaction error.
-	public func hideHUDWithMessage(message: String?,
+	open func hideHUDWithMessage(_ message: String?,
 			forInteractor interactor: Interactor,
 			withError error: NSError?) {
 		
@@ -396,31 +399,32 @@ import QuartzCore
 	//MARK: Public methods
 
 	/// refreshTranslations refreshes all translations of the screenlet view.
-	public func refreshTranslations() {
+	open func refreshTranslations() {
 		screenletView?.onSetTranslations()
 	}
 
 
 	//MARK: Private methods
 
-	private func createScreenletViewFromNib() -> BaseScreenletView? {
+	fileprivate func createScreenletViewFromNib() -> BaseScreenletView? {
 
-		let viewName = "\(ScreenletName(self.dynamicType))View"
+		let viewName = "\(ScreenletName(type(of: self)))View"
 
-		if let foundView = NSBundle.viewForThemeOrDefault(
+		if let foundView = Bundle.viewForThemeOrDefault(
 				name: viewName,
 				themeName: _themeName,
-				currentClass: self.dynamicType) as? BaseScreenletView {
+				currentClass: type(of: self)) as? BaseScreenletView {
 
 			return foundView
 		}
 
-		print("ERROR: Xib file doesn't found for screenlet '\(ScreenletName(self.dynamicType))' and theme '\(_themeName)'\n")
+		print("ERROR: Xib file doesn't found for screenlet '\(ScreenletName(type(of: self)))' and theme '\(_themeName)'\n")
 
 		return nil
 	}
 
-	private func updateCurrentPreviewImage() -> String {
+	@discardableResult
+	fileprivate func updateCurrentPreviewImage() -> String {
 		var appliedTheme = _themeName
 
 		_currentPreviewImage = previewImageForTheme(_themeName)
@@ -437,7 +441,7 @@ import QuartzCore
 
 		if let currentPreviewImageValue = _currentPreviewImage {
 			_previewLayer!.frame = centeredRectInView(self, size: currentPreviewImageValue.size)
-			_previewLayer!.contents = currentPreviewImageValue.CGImage
+			_previewLayer!.contents = currentPreviewImageValue.cgImage
 
 			if _previewLayer!.superlayer != layer {
 				layer.addSublayer(_previewLayer!)
@@ -452,7 +456,7 @@ import QuartzCore
 		return appliedTheme
 	}
 
-	private func rootView(currentView:UIView) -> UIView {
+	fileprivate func rootView(_ currentView:UIView) -> UIView {
 		if currentView.superview == nil {
 			return currentView;
 		}
@@ -460,8 +464,8 @@ import QuartzCore
 		return rootView(currentView.superview!)
 	}
 
-	private func trackInteractor(interactor: Interactor, withName name: String) {
-		synchronized(_runningInteractors) {
+	fileprivate func trackInteractor(_ interactor: Interactor, withName name: String) {
+		synchronized(_runningInteractors as AnyObject) {
 			var interactors = self._runningInteractors[name]
 			if interactors?.count ?? 0 == 0 {
 				interactors = [Interactor]()
@@ -474,13 +478,13 @@ import QuartzCore
 		}
 	}
 
-	private func untrackInteractor(interactor: Interactor) {
-		synchronized(_runningInteractors) {
+	fileprivate func untrackInteractor(_ interactor: Interactor) {
+		synchronized(_runningInteractors as AnyObject) {
 			let name = interactor.actionName!
 			let interactors = self._runningInteractors[name] ?? []
 
-			if let foundIndex = interactors.indexOf(interactor) {
-				self._runningInteractors[name]?.removeAtIndex(foundIndex)
+			if let foundIndex = interactors.index(of: interactor) {
+				self._runningInteractors[name]?.remove(at: foundIndex)
 			}
 			else {
 				print("ERROR: There's no interactors tracked for name \(interactor.actionName!)\n")

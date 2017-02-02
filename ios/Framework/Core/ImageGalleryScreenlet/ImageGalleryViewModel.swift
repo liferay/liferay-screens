@@ -22,17 +22,17 @@ import Foundation
 	/// Call this method when an image in the list are going to be deleted.
 	///
 	/// - Parameters imageEntry: deleted image entry.
-	optional func onImageEntryDeleted(imageEntry: ImageEntry)
+	@objc optional func onImageEntryDeleted(_ imageEntry: ImageEntry)
 
 	/// Call this method when the image upload finishes.
 	///
 	/// - Parameters image: uploaded image entry.
-	optional func onImageUploaded(imageEntry: ImageEntry)
+	@objc optional func onImageUploaded(_ imageEntry: ImageEntry)
 
 	/// Call this method when an image is enqueued to be uploaded.
 	///
 	/// - Parameter imageEntryUpload: image to be uploaded.
-	optional func onImageUploadEnqueued(imageEntryUpload: ImageEntryUpload)
+	@objc optional func onImageUploadEnqueued(_ imageEntryUpload: ImageEntryUpload)
 
 	/// Call this method when the image upload progress changes.
 	///
@@ -40,7 +40,7 @@ import Foundation
 	///   - bytesSent: image entry bytes sent.
 	///   - bytesToSend: image entry bytes to send.
 	///   - imageEntryUpload: the image entry being uploaded.
-	optional func onImageUploadProgress(bytesSent: UInt64, bytesToSend: UInt64,
+	@objc optional func onImageUploadProgress(_ bytesSent: UInt64, bytesToSend: UInt64,
 	                                    imageEntryUpload: ImageEntryUpload)
 
 	/// Call this method when an error occurs in the image upload process.
@@ -49,9 +49,9 @@ import Foundation
 	/// - Parameters:
 	///   - imageEntryUpload: the image entry where the error is.
 	///   - error: error while uploading the image entry.
-	optional func onImageUploadError(imageEntryUpload: ImageEntryUpload, error: NSError)
+	@objc optional func onImageUploadError(_ imageEntryUpload: ImageEntryUpload, error: NSError)
 
 	/// Returns the position of the first occurrence of a specified image entry.
-	optional func indexOf(imageEntry imageEntry: ImageEntry) -> Int
+	@objc optional func indexOf(imageEntry: ImageEntry) -> Int
 			
 }

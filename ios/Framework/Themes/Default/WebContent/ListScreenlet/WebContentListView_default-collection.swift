@@ -14,56 +14,56 @@
 import UIKit
 
 
-public class WebContentListView_default_collection: BaseListCollectionView {
+open class WebContentListView_default_collection: BaseListCollectionView {
 
 	//MARK: BaseScreenletView
 
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
 	}
 
-	override public func doConfigureCollectionView(collectionView: UICollectionView) {
-		collectionView.backgroundColor = .whiteColor()
+	override open func doConfigureCollectionView(_ collectionView: UICollectionView) {
+		collectionView.backgroundColor = .white
 	}
 
-	override public func doCreateLayout() -> UICollectionViewLayout {
+	override open func doCreateLayout() -> UICollectionViewLayout {
 		let layout = UICollectionViewFlowLayout()
 		layout.itemSize = CGSize(width: 300, height: 500)
 		layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-		layout.scrollDirection = .Horizontal
+		layout.scrollDirection = .horizontal
 
 
 		return layout
 	}
 
-	override public func doRegisterCellNibs() {
-		collectionView?.registerClass(WebViewCell.self, forCellWithReuseIdentifier: "cell")
-		collectionView?.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "progress")
+	override open func doRegisterCellNibs() {
+		collectionView?.register(WebViewCell.self, forCellWithReuseIdentifier: "cell")
+		collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "progress")
 	}
 
-	override public func doFillLoadedCell(
-			indexPath indexPath: NSIndexPath,
+	override open func doFillLoadedCell(
+			indexPath: IndexPath,
 			cell: UICollectionViewCell,
 			object:AnyObject) {
 			
-		guard let cell = cell as? WebViewCell, object = object as? WebContent
+		guard let cell = cell as? WebViewCell, let object = object as? WebContent
 			else {
 				return
 		}
 
 		cell.html = object.html ?? "No html available"
 		cell.layer.borderWidth = 1;
-		cell.layer.borderColor = UIColor.blackColor().CGColor
+		cell.layer.borderColor = UIColor.black.cgColor
 	}
 
-	override public func doFillInProgressCell(
-			indexPath indexPath: NSIndexPath,
+	override open func doFillInProgressCell(
+			indexPath: IndexPath,
 			cell: UICollectionViewCell) {
 
-		cell.backgroundColor = .blackColor()
+		cell.backgroundColor = .black
 	}
 
-	override public func doGetCellId(indexPath indexPath: NSIndexPath, object: AnyObject?) -> String {
+	override open func doGetCellId(indexPath: IndexPath, object: AnyObject?) -> String {
 		if let _ = object {
 			return "cell"
 		}
@@ -73,25 +73,25 @@ public class WebContentListView_default_collection: BaseListCollectionView {
 }
 
 
-public class WebViewCell : UICollectionViewCell {
+open class WebViewCell : UICollectionViewCell {
 
-	private var webView: UIWebView
+	fileprivate var webView: UIWebView
 
-	private let styles =
+	fileprivate let styles =
 		".MobileCSS {padding: 4%; width: 92%;} " +
 		".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, .MobileCSS h2, .MobileCSS h3 { " +
 		"font-size: 110%; font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-weight: 200; } " +
 		".MobileCSS img { width: 100% !important; } " +
 		".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }"
 
-	public var html: String {
+	open var html: String {
 		get {
 			return ""
 		}
 		set {
-			let styledHtml = "<style>\(styles)</style><div class=\"MobileCSS\">\(newValue ?? "")</div>"
+			let styledHtml = "<style>\(styles)</style><div class=\"MobileCSS\">\(newValue)</div>"
 
-			webView.loadHTMLString(styledHtml, baseURL: NSURL(string:LiferayServerContext.server))
+			webView.loadHTMLString(styledHtml, baseURL: URL(string:LiferayServerContext.server))
 		}
 	}
 

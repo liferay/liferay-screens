@@ -20,13 +20,13 @@ import PureLayout
 	///Get the title for a page of the card
 	/// - parameter titleForPage page: index of the page
 	/// - returns: title for the page
-	optional func card(card: CardView,
+	@objc optional func card(_ card: CardView,
 					   titleForPage page: Int) -> String?
 
 	///Called when trying to move to a page
 	/// - parameter onWillMoveToPage page: index of the page
 	/// - returns: true, if a view for the page has been added, false otherwise
-	optional func card(card: CardView,
+	@objc optional func card(_ card: CardView,
 	                   onWillMoveToPage page: Int,
 	                   fromPage previousPage: Int) -> Bool
 
@@ -34,7 +34,7 @@ import PureLayout
 	/// - parameters:
 	///    - onDidMoveToPage page: number of the page the card has moved to
 	///    - moveToRight right: true if content move to the right
-	optional func card(card: CardView,
+	@objc optional func card(_ card: CardView,
 	                   onDidMoveToPage page: Int,
 	                   moveToRight right: Bool)
 	
@@ -42,16 +42,16 @@ import PureLayout
 
 ///Different states that a card can have
 public enum ShowState {
-	case Minimized, Normal, Maximized, Background, Hidden
+	case minimized, normal, maximized, background, hidden
 
 	///True if in this state, card is in bottom (minimized or hidden)
 	var isInBottom: Bool {
-		return (self == .Minimized || self == .Hidden)
+		return (self == .minimized || self == .hidden)
 	}
 
 	///True if state is visible (normal or maximized)
 	var isVisible: Bool {
-		return (self == .Normal || self == .Maximized)
+		return (self == .normal || self == .maximized)
 	}
 }
 
@@ -67,47 +67,47 @@ public enum ShowState {
 ///CardView uses [PureLayout](https://github.com/PureLayout/PureLayout) to set its constraints.
 ///To get more information about how to tweak this constraints go to the 
 ///[API Cheat Sheet](https://github.com/PureLayout/PureLayout#api-cheat-sheet)
-public class CardView: UIView, CAAnimationDelegate {
+open class CardView: UIView, CAAnimationDelegate {
 
 	//Default configuration constants
-	public static let DefaultMinimizedHeight: CGFloat = 70
-	public static let DefaultAnimationTime: Double = 0.7
-	public static let DefaultFontName = "AvenirNext-DemiBold"
-	public static let DefaultFontSize: CGFloat = 18
-	public static let DefaultCornerRadius: CGFloat = 4.0
+	open static let DefaultMinimizedHeight: CGFloat = 70
+	open static let DefaultAnimationTime: Double = 0.7
+	open static let DefaultFontName = "AvenirNext-DemiBold"
+	open static let DefaultFontSize: CGFloat = 18
+	open static let DefaultCornerRadius: CGFloat = 4.0
 
 	//Initialization variables
-	public var minimizedHeight: CGFloat = CardView.DefaultMinimizedHeight
-	public var normalHeight: CGFloat = 0
-	public var maximizedMargin: CGFloat = 30
+	open var minimizedHeight: CGFloat = CardView.DefaultMinimizedHeight
+	open var normalHeight: CGFloat = 0
+	open var maximizedMargin: CGFloat = 30
 
 	//Subviews
-	public var arrow: UIImageView = UIImageView.newAutoLayoutView()
-	public var button: UIButton = UIButton.newAutoLayoutView()
-	public var accesoryView: UIView? {
+	open var arrow: UIImageView = UIImageView.newAutoLayout()
+	open var button: UIButton = UIButton.newAutoLayout()
+	open var accesoryView: UIView? {
 		didSet {
 			if let accesory = accesoryView {
 				self.button.addSubview(accesory)
-				self.accesoryView?.autoAlignAxisToSuperviewAxis(.Horizontal)
-				self.accesoryView?.autoPinEdgeToSuperviewEdge(
-					.Right, withInset: CardView.DefaultMinimizedHeight / 2)
+				self.accesoryView?.autoAlignAxis(toSuperviewAxis: .horizontal)
+				self.accesoryView?.autoPinEdge(
+					toSuperviewEdge: .right, withInset: CardView.DefaultMinimizedHeight / 2)
 			}
 		}
 	}
-	public var scrollView: UIScrollView = UIScrollView.newAutoLayoutView()
-	public var cardContentView = UIView.newAutoLayoutView()
-	public var scrollContentView: UIView = UIView.newAutoLayoutView()
+	open var scrollView: UIScrollView = UIScrollView.newAutoLayout()
+	open var cardContentView = UIView.newAutoLayout()
+	open var scrollContentView: UIView = UIView.newAutoLayout()
 
 	//Constraints
-	private var didSetupConstraints = false
-	private var heightConstraint: NSLayoutConstraint?
-	private var contentBottomConstraint: NSLayoutConstraint?
-	private var scrollContentWidthConstraint: NSLayoutConstraint?
+	fileprivate var didSetupConstraints = false
+	fileprivate var heightConstraint: NSLayoutConstraint?
+	fileprivate var contentBottomConstraint: NSLayoutConstraint?
+	fileprivate var scrollContentWidthConstraint: NSLayoutConstraint?
 
 	//States
-	var currentState: ShowState = .Minimized
-	var nextState: ShowState = .Normal
-	var beforeBackgroundState: ShowState = .Normal
+	var currentState: ShowState = .minimized
+	var nextState: ShowState = .normal
+	var beforeBackgroundState: ShowState = .normal
 
 	///Delegate for customizing cards
 	var delegate: CardDelegate?
@@ -129,19 +129,19 @@ public class CardView: UIView, CAAnimationDelegate {
 	///This controller will be notified when the card appears/dissapears
 	var presentingControllers = [CardViewController]()
 
-	private var onChangeCompleted: (Bool -> Void)?
+	fileprivate var onChangeCompleted: ((Bool) -> Void)?
 
-	private var backgroundTransform: CGAffineTransform?
+	fileprivate var backgroundTransform: CGAffineTransform?
 
 
 	//MARK: Lifecycle methods
 
 	///Called when card view is going to be initialized, this should be override.
-	public func onPreCreate() {
+	open func onPreCreate() {
 	}
 
 	///Called when card view is initialized, this should be override.
-	public func onCreated() {
+	open func onCreated() {
 	}
 
 	//MARK: Public methods
@@ -149,7 +149,7 @@ public class CardView: UIView, CAAnimationDelegate {
 	///Adds a controller's subview to the contentview of this card. This should be the entry point
 	///for all subviews of a card.
 	/// - parameter controller: controller which view is going to be added as page
-	public func addPageFromController(controller: CardViewController) {
+	open func addPageFromController(_ controller: CardViewController) {
 		
 		presentingControllers.append(controller)
 		
@@ -159,7 +159,7 @@ public class CardView: UIView, CAAnimationDelegate {
 	///Adds a view to the contentview of this card. This should be the entry point for all subviews
 	///of a card.
 	/// - parameter view: view that is going to be added as page
-	public func addPage(view: UIView) {
+	open func addPage(_ view: UIView) {
 		view.translatesAutoresizingMaskIntoConstraints = false
 
 		let lastView = scrollContentView.subviews.last
@@ -168,30 +168,30 @@ public class CardView: UIView, CAAnimationDelegate {
 
 		let viewCount = scrollContentView.subviews.count
 
-		view.autoPinEdgeToSuperviewEdge(.Top)
+		view.autoPinEdge(toSuperviewEdge: .top)
 
 		if (viewCount == 1) {
 			//Set dimensions constraints
-			view.autoMatchDimension(.Height, toDimension: .Height, ofView: cardContentView)
-			view.autoMatchDimension(.Width, toDimension: .Width, ofView: cardContentView)
+			view.autoMatch(.height, to: .height, of: cardContentView)
+			view.autoMatch(.width, to: .width, of: cardContentView)
 
 			//Pin left edge to left edge of scroll content view
-			view.autoPinEdgeToSuperviewEdge(.Left)
+			view.autoPinEdge(toSuperviewEdge: .left)
 		}
 		else {
 			//Update scroll content view width
 			cardContentView.removeConstraint(scrollContentWidthConstraint!)
 
-			scrollContentWidthConstraint = scrollContentView.autoMatchDimension(.Width,
-				toDimension: .Width, ofView: cardContentView, withMultiplier: CGFloat(viewCount))
+			scrollContentWidthConstraint = scrollContentView.autoMatch(.width,
+				to: .width, of: cardContentView, withMultiplier: CGFloat(viewCount))
 
 			if let last = lastView {
 				//Set dimensions constraints
-				view.autoMatchDimension(.Height, toDimension: .Height, ofView: last)
-				view.autoMatchDimension(.Width, toDimension: .Width, ofView: last)
+				view.autoMatch(.height, to: .height, of: last)
+				view.autoMatch(.width, to: .width, of: last)
 
 				//Pin left edge to right edge of previous view
-				view.autoPinEdge(.Left, toEdge: .Right, ofView: last)
+				view.autoPinEdge(.left, to: .right, of: last)
 			}
 		}
 		
@@ -200,7 +200,7 @@ public class CardView: UIView, CAAnimationDelegate {
 
 	///Remove a page view from the card
 	/// - parameter index: index of the page
-	public func removePageAtIndex(index: Int) {
+	open func removePageAtIndex(_ index: Int) {
 		if scrollContentView.subviews.count > 1 {
 			scrollContentView.subviews[safe: index]?.removeFromSuperview()
 		}
@@ -208,13 +208,13 @@ public class CardView: UIView, CAAnimationDelegate {
 
 	///Moves the content inside the scrollview to the right. If no content found, it will try
 	///to add it via delegate
-	public func moveRight() {
+	open func moveRight() {
 		let nextPage = currentPage + 1
 		moveToPage(nextPage, fromPage: currentPage)
 	}
 
 	///Moves the content inside the scrollview to the left.
-	public func moveLeft() {
+	open func moveLeft() {
 		if currentPage != 0 {
 			let nextPage = currentPage - 1
 			moveToPage(nextPage, fromPage: currentPage)
@@ -223,19 +223,19 @@ public class CardView: UIView, CAAnimationDelegate {
 
 	///Moves the content inside the scrollview to a page
 	/// - parameter page: index of the page to move to
-	public func moveToPage(page: Int, fromPage previousPage: Int) {
+	open func moveToPage(_ page: Int, fromPage previousPage: Int) {
 		if delegate?.card?(self, onWillMoveToPage: page, fromPage: previousPage) ?? false {
-			let rect = CGRectMake(scrollView.frame.size.width * CGFloat(page),
+			let rect = CGRect(x: scrollView.frame.size.width * CGFloat(page),
 			                      y: 0, size: scrollView.frame.size)
 			
 			scrollView.scrollRectToVisible(rect, animated: true)
 			
 			//If it's one of the first views, rotate arrow accordingly
 			if page < 2 {
-				UIView.animateWithDuration(0.3, animations: {
+				UIView.animate(withDuration: 0.3, animations: {
 					self.arrow.transform = page == 0 ?
-						CGAffineTransformIdentity :
-						CGAffineTransformMakeRotation(CGFloat(M_PI_2))
+						CGAffineTransform.identity :
+						CGAffineTransform(rotationAngle: CGFloat(M_PI_2))
 					}, completion: { _ in
 						self.changeButtonText(self.delegate?.card?(self, titleForPage: page))
 				})
@@ -247,9 +247,9 @@ public class CardView: UIView, CAAnimationDelegate {
 
 	///Change card button text title
 	/// - parameter text: new text for the button
-	public func changeButtonText(text: String?) {
+	open func changeButtonText(_ text: String?) {
 		if let text = text {
-			button.setTitle(text.uppercaseString, forState: .Normal)
+			button.setTitle(text.uppercased(), for: .normal)
 		}
 	}
 
@@ -262,7 +262,7 @@ public class CardView: UIView, CAAnimationDelegate {
 	///    - title: title for the card
 	///    - buttonFontColor: color for the button text
 	///    - arrowImage: image to be used as "indicator" arrow
-	public func initializeView(backgroundColor backgroundColor: UIColor,
+	open func initializeView(backgroundColor: UIColor,
 			buttonTitle: String?, buttonFontColor fontColor: UIColor, buttonImage image: UIImage) {
 		onPreCreate()
 
@@ -283,8 +283,8 @@ public class CardView: UIView, CAAnimationDelegate {
 
 		//Initialize scroll view
 		scrollView.bounces = true
-		scrollView.scrollEnabled = false
-		scrollView.pagingEnabled = false
+		scrollView.isScrollEnabled = false
+		scrollView.isPagingEnabled = false
 
 		setButton(buttonTitle, fontColor: fontColor)
 		setArrowImage(image)
@@ -294,21 +294,21 @@ public class CardView: UIView, CAAnimationDelegate {
 
 	///Sets the constant value for the height constraint for a given state.
 	/// - parameter state: next state of the card
-	public func setHeightConstraintForState(state: ShowState) {
+	open func setHeightConstraintForState(_ state: ShowState) {
 		switch state {
-		case .Minimized:
+		case .minimized:
 			self.heightConstraint?.constant = self.minimizedHeight
 			break
-		case .Normal:
+		case .normal:
 			self.heightConstraint?.constant = self.normalHeight
 			break
-		case .Maximized:
+		case .maximized:
 			if let superView = self.superview {
 				self.heightConstraint?.constant = superView.frame.height - self.maximizedMargin
 				self.contentBottomConstraint?.constant = 0
 			}
 			break
-		case .Hidden:
+		case .hidden:
 			self.heightConstraint?.constant = 0
 			break
 		default:
@@ -318,7 +318,7 @@ public class CardView: UIView, CAAnimationDelegate {
 
 	///Sets the arrow image
 	/// - parameter image: UIImage for the arrow UIImageView
-	public func setArrowImage(image: UIImage) {
+	open func setArrowImage(_ image: UIImage) {
 		//Set arrow properties
 		self.arrow.image = image
 		self.arrow.alpha = 0.0
@@ -328,37 +328,37 @@ public class CardView: UIView, CAAnimationDelegate {
 	/// - parameters:
 	///    - title: title for the button
 	///    - fontColor: color for the title
-	public func setButton(title: String?, fontColor: UIColor) {
+	open func setButton(_ title: String?, fontColor: UIColor) {
 		changeButtonText(title)
 		self.button.titleLabel?.font = UIFont(name: CardView.DefaultFontName,
 		                                      size: CardView.DefaultFontSize)
-		self.button.setTitleColor(fontColor, forState: .Normal)
+		self.button.setTitleColor(fontColor, for: .normal)
 	}
 
 	///Sets the constraints for all subviews. This method must be called from outside the card,
 	///when all properties have been set.
-	public func updateSubviewsConstraints() {
+	open func updateSubviewsConstraints() {
 		//Arrow constraints
 		if let image = self.arrow.image {
-			self.arrow.autoSetDimension(.Height, toSize: image.size.height)
-			self.arrow.autoSetDimension(.Width, toSize: image.size.width)
+			self.arrow.autoSetDimension(.height, toSize: image.size.height)
+			self.arrow.autoSetDimension(.width, toSize: image.size.width)
 		}
-		self.arrow.autoAlignAxisToSuperviewAxis(.Horizontal)
-		self.arrow.autoPinEdgeToSuperviewEdge(.Left, withInset: CardView.DefaultMinimizedHeight / 2)
+		self.arrow.autoAlignAxis(toSuperviewAxis: .horizontal)
+		self.arrow.autoPinEdge(toSuperviewEdge: .left, withInset: CardView.DefaultMinimizedHeight / 2)
 
 		//Button constraints
-		self.button.autoPinEdgeToSuperviewEdge(.Left)
-		self.button.autoPinEdgeToSuperviewEdge(.Right)
-		self.button.autoPinEdgeToSuperviewEdge(.Top)
-		self.button.autoSetDimension(.Height, toSize: CardView.DefaultMinimizedHeight)
+		self.button.autoPinEdge(toSuperviewEdge: .left)
+		self.button.autoPinEdge(toSuperviewEdge: .right)
+		self.button.autoPinEdge(toSuperviewEdge: .top)
+		self.button.autoSetDimension(.height, toSize: CardView.DefaultMinimizedHeight)
 
 		//Card content view constraints
-		self.cardContentView.autoPinEdge(.Top, toEdge: .Bottom, ofView: button)
-		self.cardContentView.autoPinEdgeToSuperviewEdge(.Left)
-		self.cardContentView.autoPinEdgeToSuperviewEdge(.Right)
-		contentBottomConstraint = self.cardContentView.autoPinEdgeToSuperviewEdge(
-			.Bottom, withInset: self.minimizedHeight - CardView.DefaultMinimizedHeight,
-			relation: .LessThanOrEqual)
+		self.cardContentView.autoPinEdge(.top, to: .bottom, of: button)
+		self.cardContentView.autoPinEdge(toSuperviewEdge: .left)
+		self.cardContentView.autoPinEdge(toSuperviewEdge: .right)
+		contentBottomConstraint = self.cardContentView.autoPinEdge(
+			toSuperviewEdge: .bottom, withInset: self.minimizedHeight - CardView.DefaultMinimizedHeight,
+			relation: .lessThanOrEqual)
 
 		//Scrollview constraints
 		self.scrollView.autoPinEdgesToSuperviewEdges()
@@ -366,24 +366,24 @@ public class CardView: UIView, CAAnimationDelegate {
 		//ScrollView content view constraints
 		self.scrollContentView.autoPinEdgesToSuperviewEdges()
 
-		self.scrollContentView.autoMatchDimension(.Height, toDimension: .Height,
-			ofView: cardContentView)
+		self.scrollContentView.autoMatch(.height, to: .height,
+			of: cardContentView)
 		self.scrollContentWidthConstraint =
-			self.scrollContentView.autoMatchDimension(.Width, toDimension: .Width,
-				ofView: cardContentView)
+			self.scrollContentView.autoMatch(.width, to: .width,
+				of: cardContentView)
 	}
 
 
 	//MARK: State methods
 
 	///Changes the card to a certain state
-	public func changeToState(state: ShowState) {
+	open func changeToState(_ state: ShowState) {
 		self.nextState = state
 		self.changeToNextState()
 	}
 
 	///Resets the card to the current state
-	public func resetToCurrentState() {
+	open func resetToCurrentState() {
 		setHeightConstraintForState(currentState)
 		self.superview?.layoutIfNeeded()
 	}
@@ -393,8 +393,8 @@ public class CardView: UIView, CAAnimationDelegate {
 	///    - time: how much time will take up the animation
 	///    - delay: delay for the animation start
 	///    - onComplete: closure to be executed when the animation finishes
-	public func changeToNextState(animateArrow: Bool = true, time: Double? = nil,
-	    	delay: Double = 0.0, animateContent: Bool = true, onComplete: (Bool -> Void)? = nil) {
+	open func changeToNextState(_ animateArrow: Bool = true, time: Double? = nil,
+	    	delay: Double = 0.0, animateContent: Bool = true, onComplete: ((Bool) -> Void)? = nil) {
 
 		//Exit if we are asked to change to our current state
 		if nextState == currentState {
@@ -411,7 +411,7 @@ public class CardView: UIView, CAAnimationDelegate {
 			}
 		}
 
-		if currentState == .Maximized {
+		if currentState == .maximized {
 			self.contentBottomConstraint?.constant = (self.minimizedHeight -
 				CardView.DefaultMinimizedHeight) * -1
 		}
@@ -420,24 +420,24 @@ public class CardView: UIView, CAAnimationDelegate {
 		setHeightConstraintForState(nextState)
 
 		//If the state is background, change using CATransform3D
-		if nextState == .Background {
+		if nextState == .background {
 			beforeBackgroundState = currentState
 			onChangeCompleted = onComplete
-			self.layer.addAnimation(backgroundAnimation(
+			self.layer.add(backgroundAnimation(
 				time ?? CardView.DefaultAnimationTime), forKey: "pushBackAnimation")
 		}
 		else {
 			//If we are in background right now, first restore the matrix
-			if currentState == .Background {
-				transform = CGAffineTransformIdentity
-				self.layer.addAnimation(resetBackgroundAnimation(
+			if currentState == .background {
+				transform = CGAffineTransform.identity
+				self.layer.add(resetBackgroundAnimation(
 					time ?? CardView.DefaultAnimationTime), forKey: "popBackAnimation")
 			}
 
 			onChangeCompleted = nil
 
-			let completion: (Bool -> ()) = { flag in
-				if self.currentState.isInBottom || self.currentState == .Maximized {
+			let completion: ((Bool) -> ()) = { flag in
+				if self.currentState.isInBottom || self.currentState == .maximized {
 					self.setNeedsDisplay()
 				}
 				onComplete?(flag)
@@ -448,27 +448,27 @@ public class CardView: UIView, CAAnimationDelegate {
 			if animateCardContent {
 				self.cardContentView.alpha = 0
 			} else if animateContent && nextState.isInBottom {
-				UIView.animateWithDuration(0.3, animations: {self.cardContentView.alpha = 0})
+				UIView.animate(withDuration: 0.3, animations: {self.cardContentView.alpha = 0})
 			}
 
 			let time = (time ?? CardView.DefaultAnimationTime) * 1.30
 
 			//Animate the constraint change
-			UIView.animateWithDuration(time,
+			UIView.animate(withDuration: time,
 				delay: delay,
 				usingSpringWithDamping: 1.0,
 				initialSpringVelocity: 0.0,
-				options: [.BeginFromCurrentState, .CurveEaseIn],
+				options: [.beginFromCurrentState, .curveEaseIn],
 				animations: {
 					self.superview?.layoutIfNeeded()
 
-					if self.currentState.isInBottom || self.nextState == .Maximized {
+					if self.currentState.isInBottom || self.nextState == .maximized {
 						self.setNeedsDisplay()
 					}
 				}, completion: completion)
 
 			if animateCardContent {
-				UIView.animateWithDuration(0.5,
+				UIView.animate(withDuration: 0.5,
 					delay: (delay + time) * 0.3,
 					options: [],
 					animations: {
@@ -489,9 +489,9 @@ public class CardView: UIView, CAAnimationDelegate {
 	/// - parameters:
 	///    - time: how much time will take up the animation
 	///    - delay: delay for the animation start
-	public func toggleArrow(time: Double? = nil, delay: Double = 0.0) {
-		UIView.animateWithDuration(time ?? CardView.DefaultAnimationTime, delay: delay,
-			options: UIViewAnimationOptions.CurveEaseIn,
+	open func toggleArrow(_ time: Double? = nil, delay: Double = 0.0) {
+		UIView.animate(withDuration: time ?? CardView.DefaultAnimationTime, delay: delay,
+			options: UIViewAnimationOptions.curveEaseIn,
 		    animations: {
 				self.arrow.alpha =
 					self.nextState.isVisible ? 1.0 : 0.0
@@ -503,7 +503,7 @@ public class CardView: UIView, CAAnimationDelegate {
 
 
 	//Called when background animation finish
-	public func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+	open func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
 		onChangeCompleted?(flag)
 		onChangeCompleted = nil
 
@@ -519,12 +519,12 @@ public class CardView: UIView, CAAnimationDelegate {
 	///Returns the animated change from background to previous state
 	/// - parameter animationTime: duration for the reset animation
 	/// - returns: reset state animation
-	public func resetBackgroundAnimation(animationTime: Double) -> CAAnimation {
+	open func resetBackgroundAnimation(_ animationTime: Double) -> CAAnimation {
 		let animation = CABasicAnimation(keyPath: "transform")
-		animation.toValue = NSValue(CATransform3D: CATransform3DIdentity)
+		animation.toValue = NSValue(caTransform3D: CATransform3DIdentity)
 		animation.duration = animationTime
 		animation.fillMode = kCAFillModeForwards
-		animation.removedOnCompletion = false
+		animation.isRemovedOnCompletion = false
 		animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
 
 		return animation;
@@ -533,17 +533,17 @@ public class CardView: UIView, CAAnimationDelegate {
 	///Returns the animated change from previous state to background
 	/// - parameter animationTime: duration for the background animation
 	/// - returns: background state animation
-	public func backgroundAnimation(animationTime: Double) -> CAAnimation {
+	open func backgroundAnimation(_ animationTime: Double) -> CAAnimation {
 		var t0 = CATransform3DIdentity
 		let animation0 = CABasicAnimation(keyPath: "transform")
 
 		t0.m34 = CGFloat(1.0)/CGFloat(-900)
 		t0 = CATransform3DTranslate(t0, 0, maximizedMargin - self.frame.origin.y, 0)
 
-		animation0.toValue = NSValue(CATransform3D: t0)
+		animation0.toValue = NSValue(caTransform3D: t0)
 		animation0.duration = animationTime
 		animation0.fillMode = kCAFillModeForwards
-		animation0.removedOnCompletion = false
+		animation0.isRemovedOnCompletion = false
 		animation0.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
 
 		var t1 = t0
@@ -552,10 +552,10 @@ public class CardView: UIView, CAAnimationDelegate {
 		t1 = CATransform3DRotate(t1, CGFloat(10.0 * M_PI/180.0), 1, 0, 0)
 
 		let animation1 = CABasicAnimation(keyPath: "transform")
-		animation1.toValue = NSValue(CATransform3D: t1)
+		animation1.toValue = NSValue(caTransform3D: t1)
 		animation1.duration = animationTime*3.0/4.0
 		animation1.fillMode = kCAFillModeForwards
-		animation1.removedOnCompletion = false
+		animation1.isRemovedOnCompletion = false
 		animation1.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
 
 		var t2 = t0
@@ -564,16 +564,16 @@ public class CardView: UIView, CAAnimationDelegate {
 		t2 = CATransform3DScale(t2, 0.95, 0.90, 1)
 
 		let animation2 = CABasicAnimation(keyPath: "transform")
-		animation2.toValue = NSValue(CATransform3D: t2)
+		animation2.toValue = NSValue(caTransform3D: t2)
 		animation2.beginTime = animation1.duration
 		animation2.duration = animationTime*1.0/4.0
 		animation2.fillMode = kCAFillModeForwards
-		animation2.removedOnCompletion = false
+		animation2.isRemovedOnCompletion = false
 		animation2.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn/*EaseOut*/)
 
 		let group = CAAnimationGroup()
 		group.fillMode = kCAFillModeForwards
-		group.removedOnCompletion = false
+		group.isRemovedOnCompletion = false
 
 		group.duration = animationTime
 
@@ -589,30 +589,30 @@ public class CardView: UIView, CAAnimationDelegate {
 
 	//MARK: UIView
 
-	override public func drawRect(rect: CGRect) {
-		super.drawRect(rect)
+	override open func draw(_ rect: CGRect) {
+		super.draw(rect)
 
 		//Create mask path with top rounding corners
 		let maskPath = UIBezierPath(
 				roundedRect: self.bounds,
-				byRoundingCorners: [.TopLeft, .TopRight],
+				byRoundingCorners: [.topLeft, .topRight],
 				cornerRadii: CGSize(width: CardView.DefaultCornerRadius,
 					height: CardView.DefaultCornerRadius))
 
 		//Create mask layer, with card bounds and previously mask
 		let maskLayer = CAShapeLayer()
 		maskLayer.frame = self.bounds
-		maskLayer.path  = maskPath.CGPath
+		maskLayer.path  = maskPath.cgPath
 
 		//Apply layer to card mask
 		self.layer.mask = maskLayer
 	}
 
-	public override func updateConstraints() {
+	open override func updateConstraints() {
 		super.updateConstraints()
 
 		if !self.didSetupConstraints {
-			heightConstraint = autoSetDimension(.Height, toSize: minimizedHeight)
+			heightConstraint = autoSetDimension(.height, toSize: minimizedHeight)
 
 			self.didSetupConstraints = true
 		}

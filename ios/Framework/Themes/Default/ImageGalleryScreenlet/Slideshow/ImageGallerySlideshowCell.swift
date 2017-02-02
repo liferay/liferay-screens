@@ -8,24 +8,24 @@
 
 import UIKit
 
-public class ImageGallerySlideshowCell: UICollectionViewCell {
+open class ImageGallerySlideshowCell: UICollectionViewCell {
 
-	@IBOutlet private weak var slideshowImage: UIImageView?
+	@IBOutlet fileprivate weak var slideshowImage: UIImageView?
 
-	private var placeholderImage: UIImage?
+	fileprivate var placeholderImage: UIImage?
 
-	public var imageUrl: String  {
+	open var imageUrl: String  {
 		get {
 			return ""
 		}
 		set {
-			slideshowImage?.lr_setImageWithURL(NSURL(string: newValue)!,
+			slideshowImage?.lr_setImageWithURL(URL(string: newValue)!,
 					placeholderImage: placeholderImage,
-					optionsInfo: [.BackgroundDecode])
+					optionsInfo: [.backgroundDecode])
 		}
 	}
 
-	public var image: UIImage {
+	open var image: UIImage {
 		get {
 			return UIImage()
 		}
@@ -34,16 +34,16 @@ public class ImageGallerySlideshowCell: UICollectionViewCell {
 		}
 	}
 
-	public override func awakeFromNib() {
+	open override func awakeFromNib() {
 		super.awakeFromNib()
-		slideshowImage?.kf_showIndicatorWhenLoading = true
+		slideshowImage?.kf.indicatorType = .activity
 		
-		placeholderImage = NSBundle.imageInBundles(
+		placeholderImage = Bundle.imageInBundles(
 			name: "default-placeholder-image",
-			currentClass: self.dynamicType)
+			currentClass: type(of: self))
 	}
 
-	public override func prepareForReuse() {
+	open override func prepareForReuse() {
 		super.prepareForReuse()
 		slideshowImage?.image = placeholderImage
 	}

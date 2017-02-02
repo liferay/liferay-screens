@@ -16,7 +16,7 @@ import XCTest
 
 class DDMTypedValuesXMLParser_Basic_Tests: XCTestCase {
 
-	private let defaultLocale = NSLocale(localeIdentifier: "en_US")
+	fileprivate let defaultLocale = Locale(identifier: "en_US")
 
 
 	func test_Parse_ShouldReturnNil_WhenStructureIsInvalid() {
@@ -38,7 +38,7 @@ class DDMTypedValuesXMLParser_Basic_Tests: XCTestCase {
 		XCTAssertEqual("A Text", field?.currentValueAsString)
 	}
 
-	private let textXSD =
+	fileprivate let textXSD =
 		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"string\" " +
 				"name=\"A_Text\" " +
@@ -52,7 +52,7 @@ class DDMTypedValuesXMLParser_Basic_Tests: XCTestCase {
 					"</meta-data> " +
 		"</dynamic-element> </root>"
 
-	private let textValues =
+	fileprivate let textValues =
 		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element " +
 				"name=\"A_Text\" " +

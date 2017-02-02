@@ -14,36 +14,36 @@
 import UIKit
 
 
-@objc public class RatingEntry : NSObject, NSCoding {
+@objc open class RatingEntry : NSObject, NSCoding {
 	
-	public let attributes: [String:AnyObject]
+	open let attributes: [String:AnyObject]
 	
-	public var totalCount: Int {
+	open var totalCount: Int {
 		return attributes["totalCount"]! as! Int
 	}
 	
-	public var average: Double {
+	open var average: Double {
 		return attributes["average"]! as! Double
 	}
 	
-	public var userScore: Double {
+	open var userScore: Double {
 		return attributes["userScore"]! as! Double
 	}
 	
-	public var classPK: Int64 {
-		return attributes["classPK"]!.longLongValue
+	open var classPK: Int64 {
+		return attributes["classPK"]!.int64Value
 	}
 	
-	public var className: String {
+	open var className: String {
 		return attributes["className"]! as! String
 	}
 	
-	public var ratings: [Int] {
+	open var ratings: [Int] {
 		return attributes["ratings"]! as! [Int]
 	}
 	
-	public func encodeWithCoder(aCoder: NSCoder) {
-		aCoder.encodeObject(self.attributes, forKey:"rating-attrs")
+	open func encode(with aCoder: NSCoder) {
+		aCoder.encode(self.attributes, forKey:"rating-attrs")
 	}
 
 	//MARK: Initializers
@@ -55,7 +55,7 @@ import UIKit
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
-		self.attributes = aDecoder.decodeObjectForKey("rating-attrs") as? [String:AnyObject] ?? [:]
+		self.attributes = aDecoder.decodeObject(forKey: "rating-attrs") as? [String:AnyObject] ?? [:]
 
 		super.init()
 	}

@@ -16,9 +16,9 @@ import Foundation
 extension SyncManager {
 
 	func commentsSynchronizer(
-			key: String,
+			_ key: String,
 			attributes: [String:AnyObject])
-			-> Signal -> () {
+			-> (@escaping Signal) -> () {
 
 		if key.hasPrefix("delete-") {
 			return deleteCommentSynchronizer(key, attributes: attributes)
@@ -35,11 +35,11 @@ extension SyncManager {
 	}
 
 	func deleteCommentSynchronizer(
-			key: String,
+			_ key: String,
 			attributes: [String:AnyObject])
-			-> Signal -> () {
+			-> (@escaping Signal) -> () {
 		return { signal in
-			let commentId = (attributes["commentId"] as! NSNumber).longLongValue
+			let commentId = (attributes["commentId"] as! NSNumber).int64Value
 
 			let interactor = CommentDeleteInteractor(commentId: commentId);
 
@@ -54,7 +54,7 @@ extension SyncManager {
 						onItemSyncScreenlet: "CommentsScreenlet",
 						failedKey: key,
 						attributes: attributes,
-						error: NSError.errorWithCause(.NotAvailable,
+						error: NSError.errorWithCause(.notAvailable,
 								message: "Synchronizer for delete comment not available."))
 				signal()
 			}
@@ -62,11 +62,11 @@ extension SyncManager {
 	}
 
 	func updateCommentSynchronizer(
-			key: String,
+			_ key: String,
 			attributes: [String:AnyObject])
-			-> Signal -> () {
+			-> (@escaping Signal) -> () {
 		return { signal in
-			let commentId = (attributes["commentId"] as! NSNumber).longLongValue
+			let commentId = (attributes["commentId"] as! NSNumber).int64Value
 			let body = (attributes["body"] as! String)
 
 			let interactor = CommentUpdateInteractor(
@@ -84,7 +84,7 @@ extension SyncManager {
 						onItemSyncScreenlet: "CommentsScreenlet",
 						failedKey: key,
 						attributes: attributes,
-						error: NSError.errorWithCause(.NotAvailable,
+						error: NSError.errorWithCause(.notAvailable,
 								message: "Synchronizer for update comment not available."))
 				signal()
 			}
@@ -92,12 +92,12 @@ extension SyncManager {
 	}
 
 	func addCommentSynchronizer(
-			key: String,
+			_ key: String,
 			attributes: [String:AnyObject])
-			-> Signal -> () {
+			-> (@escaping Signal) -> () {
 		return { signal in
 			let className = (attributes["className"] as! String)
-			let classPK = (attributes["classPK"] as! NSNumber).longLongValue
+			let classPK = (attributes["classPK"] as! NSNumber).int64Value
 			let body = (attributes["body"] as! String)
 
 			let interactor = CommentAddInteractor(
@@ -117,7 +117,7 @@ extension SyncManager {
 						onItemSyncScreenlet: "CommentsScreenlet",
 						failedKey: key,
 						attributes: attributes,
-						error: NSError.errorWithCause(.NotAvailable,
+						error: NSError.errorWithCause(.notAvailable,
 								message: "Synchronizer for add comment not available."))
 				signal()
 			}

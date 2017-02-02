@@ -14,16 +14,16 @@
 import UIKit
 
 
-public class PaginationLiferayConnector: ServerConnector {
+open class PaginationLiferayConnector: ServerConnector {
 
-	public let startRow: Int
-	public let endRow: Int
-	public let computeRowCount: Bool
+	open let startRow: Int
+	open let endRow: Int
+	open let computeRowCount: Bool
 
-	public var obcClassName: String? = nil
+	open var obcClassName: String? = nil
 
-	public var resultPageContent: [[String:AnyObject]]?
-	public var resultRowCount: Int?
+	open var resultPageContent: [[String:AnyObject]]?
+	open var resultRowCount: Int?
 
 
 	//MARK: Initializers
@@ -38,8 +38,8 @@ public class PaginationLiferayConnector: ServerConnector {
 	
 	//MARK: ServerConnector
 
-	override public func doRun(session session: LRSession) {
-		let batchSession = LRBatchSession(session: session)
+	override open func doRun(session: LRSession) {
+		let batchSession = LRBatchSession(session: session)!
 
 		resultPageContent = nil
 		resultRowCount = nil
@@ -52,7 +52,7 @@ public class PaginationLiferayConnector: ServerConnector {
 		doAddPageRowsServiceCall(session: batchSession, startRow: startRow, endRow: endRow, obc: obc)
 
 		if batchSession.commands.count < 1 {
-			lastError = NSError.errorWithCause(.AbortedDueToPreconditions, userInfo: nil)
+			lastError = NSError.errorWithCause(.abortedDueToPreconditions, userInfo: nil)
 			return
 		}
 
@@ -68,8 +68,8 @@ public class PaginationLiferayConnector: ServerConnector {
 				var serverRowCount: Int?
 
 				if responses.count > 1 {
-					if let countResponse = responses[1] as? NSNumber {
-						serverRowCount = countResponse.integerValue
+					if let countResponse = responses[1] as? Int {
+						serverRowCount = countResponse
 					}
 				}
 
@@ -77,7 +77,7 @@ public class PaginationLiferayConnector: ServerConnector {
 				resultRowCount = serverRowCount
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				lastError = NSError.errorWithCause(.invalidServerResponse,
 				                                   message: "No entries found.")
 			}
 		}
@@ -89,7 +89,7 @@ public class PaginationLiferayConnector: ServerConnector {
 
 	//MARK: Public methods
 	
-	public func doAddPageRowsServiceCall(session session: LRBatchSession,
+	open func doAddPageRowsServiceCall(session: LRBatchSession,
 			startRow: Int,
 			endRow: Int,
 			obc: LRJSONObjectWrapper?) {
@@ -97,7 +97,7 @@ public class PaginationLiferayConnector: ServerConnector {
 		fatalError("doGetPageRowsConnector must be overriden")
 	}
 
-	public func doAddRowCountServiceCall(session session: LRBatchSession) {
+	open func doAddRowCountServiceCall(session: LRBatchSession) {
 		fatalError("doGetRowCountConnector must be overriden")
 	}
 

@@ -16,7 +16,7 @@ import XCTest
 
 class DDMFieldDate_v70_Tests: XCTestCase {
 
-	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
+	fileprivate let spanishLocale = Locale(identifier: "es_ES")
 
 	func test_Parse_ShouldExtractValues() {
 		let json = "{\"availableLanguageIds\": [\"en_US\"]," +
@@ -56,16 +56,16 @@ class DDMFieldDate_v70_Tests: XCTestCase {
 		XCTAssertNotNil(dateField.predefinedValue)
 		XCTAssertTrue(dateField.predefinedValue is NSDate)
 
-		let dateFormatter = NSDateFormatter()
-		dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
+		let dateFormatter = DateFormatter()
+		dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
 		dateFormatter.dateFormat = "dd'/'MM'/'yyyy"
 
-		let dateValue = dateField.predefinedValue as! NSDate
+		let dateValue = dateField.predefinedValue as! Date
 		XCTAssertEqual(
 				"29/02/2016",
-				dateFormatter.stringFromDate(dateValue))
+				dateFormatter.string(from: dateValue))
 		XCTAssertEqual(
-				dateField.currentValue as? NSDate,
+				dateField.currentValue as? Date,
 				dateValue)
 	}
 
@@ -82,11 +82,11 @@ class DDMFieldDate_v70_Tests: XCTestCase {
 		let fields = DDMJSONParser().parse(requiredDateFieldJSON, locale: spanishLocale)
 		let dateField = fields![0] as! DDMFieldDate
 
-		let dateFormatter = NSDateFormatter()
+		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
-		dateFormatter.timeZone = NSTimeZone(abbreviation: "GMT")
+		dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
 
-		dateField.currentValue = dateFormatter.dateFromString("19/06/2004")
+		dateField.currentValue = dateFormatter.date(from: "19/06/2004") as AnyObject?
 
 		XCTAssertEqual("2004-06-19", dateField.currentValueAsString!)
 	}
@@ -95,14 +95,14 @@ class DDMFieldDate_v70_Tests: XCTestCase {
 		let fields = DDMJSONParser().parse(requiredDateFieldJSON, locale: spanishLocale)
 		let dateField = fields![0] as! DDMFieldDate
 
-		let dateFormatter = NSDateFormatter()
+		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
 		dateField.currentValueAsString = "2004-6-19"
 
 		XCTAssertEqual(
 				"19/06/2004",
-				dateFormatter.stringFromDate(dateField.currentValue as! NSDate))
+				dateFormatter.string(from: dateField.currentValue as! Date))
 	}
 
 	//MARK: CurrentValueAsLabel
@@ -111,11 +111,11 @@ class DDMFieldDate_v70_Tests: XCTestCase {
 		let fields = DDMJSONParser().parse(requiredDateFieldJSON, locale: spanishLocale)
 		let dateField = fields![0] as! DDMFieldDate
 
-		let dateFormatter = NSDateFormatter()
+		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
-		dateField.currentLocale = NSLocale(localeIdentifier: "en_US")
-		dateField.currentValue = dateFormatter.dateFromString("19/06/2004")
+		dateField.currentLocale = Locale(identifier: "en_US")
+		dateField.currentValue = dateFormatter.date(from: "19/06/2004") as AnyObject?
 
 		XCTAssertEqual("June 19, 2004", dateField.currentValueAsLabel!)
 	}
@@ -124,10 +124,10 @@ class DDMFieldDate_v70_Tests: XCTestCase {
 		let fields = DDMJSONParser().parse(requiredDateFieldJSON, locale: spanishLocale)
 		let dateField = fields![0] as! DDMFieldDate
 
-		let dateFormatter = NSDateFormatter()
+		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
-		dateField.currentValue = dateFormatter.dateFromString("19/06/2004")
+		dateField.currentValue = dateFormatter.date(from: "19/06/2004") as AnyObject?
 
 		XCTAssertEqual("19 de junio de 2004", dateField.currentValueAsLabel!)
 	}
@@ -138,12 +138,12 @@ class DDMFieldDate_v70_Tests: XCTestCase {
 
 		dateField.currentValueAsLabel = "19 de junio de 2004"
 
-		let date = dateField.currentValue as! NSDate
+		let date = dateField.currentValue as! Date
 
-		let dateFormatter = NSDateFormatter()
+		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
-		XCTAssertEqual("19/06/2004", dateFormatter.stringFromDate(date))
+		XCTAssertEqual("19/06/2004", dateFormatter.string(from: date))
 	}
 
 	let requiredDateFieldJSON = "{\"availableLanguageIds\": [\"en_US\"]," +

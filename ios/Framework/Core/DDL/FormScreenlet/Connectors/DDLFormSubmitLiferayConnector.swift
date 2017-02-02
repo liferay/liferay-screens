@@ -15,20 +15,20 @@ import UIKit
 import LRMobileSDK
 
 
-public class DDLFormSubmitLiferayConnector: ServerConnector {
+open class DDLFormSubmitLiferayConnector: ServerConnector {
 
-	public var groupId: Int64?
-	public var userId: Int64?
-	public var recordId: Int64?
-	public var recordSetId: Int64?
+	open var groupId: Int64?
+	open var userId: Int64?
+	open var recordId: Int64?
+	open var recordSetId: Int64?
 
-	public var autoscrollOnValidation = true
+	open var autoscrollOnValidation = true
 
-	public var resultRecordId: Int64?
-	public var resultAttributes: NSDictionary?
+	open var resultRecordId: Int64?
+	open var resultAttributes: NSDictionary?
 
-	private let values: [String:AnyObject]
-	private let viewModel: DDLFormViewModel?
+	fileprivate let values: [String:AnyObject]
+	fileprivate let viewModel: DDLFormViewModel?
 
 
 	//MARK: Initializers
@@ -43,7 +43,7 @@ public class DDLFormSubmitLiferayConnector: ServerConnector {
 
 	//MARK: ServerConnector
 
-	override public func validateData() -> ValidationError? {
+	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		guard error == nil else {
@@ -68,45 +68,45 @@ public class DDLFormSubmitLiferayConnector: ServerConnector {
 }
 
 
-public class Liferay62DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
+open class Liferay62DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
 
 
 	//MARK: ServerConnector
 
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 		let service = LRDDLRecordService_v62(session: session)
 
 		let serviceContextAttributes = [
-			"userId": NSNumber(longLong: userId!),
-			"scopeGroupId": NSNumber(longLong: groupId!)]
+			"userId": NSNumber(value: userId!),
+			"scopeGroupId": NSNumber(value: groupId!)]
 
-		let serviceContextWrapper = LRJSONObjectWrapper(JSONObject: serviceContextAttributes)
+		let serviceContextWrapper = LRJSONObjectWrapper(jsonObject: serviceContextAttributes)
 
 		do {
-			let recordDictionary: [NSObject : AnyObject]?
+			let recordDictionary: [AnyHashable: Any]?
 
 			if recordId == nil {
-				recordDictionary = try service.addRecordWithGroupId(groupId!,
+				recordDictionary = try service?.addRecord(withGroupId: groupId!,
 					recordSetId: recordSetId!,
-					displayIndex: 0,
+					display: 0,
 					fieldsMap: values,
 					serviceContext: serviceContextWrapper)
 			}
 			else {
-				recordDictionary = try service.updateRecordWithRecordId(recordId!,
-					displayIndex: 0,
+				recordDictionary = try service?.updateRecord(withRecordId: recordId!,
+					display: 0,
 					fieldsMap: values,
 					mergeFields: true,
 					serviceContext: serviceContextWrapper)
 			}
 
-			if let recordIdValue = recordDictionary?["recordId"]?.longLongValue {
+			if let recordIdValue = (recordDictionary?["recordId"] as AnyObject).int64Value {
 				resultRecordId = recordIdValue
-				resultAttributes = recordDictionary
+				resultAttributes = recordDictionary as NSDictionary?
 				lastError = nil
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				lastError = NSError.errorWithCause(.invalidServerResponse,
 				                                   message: "Could not submit ddl form.")
 			}
 		}
@@ -120,45 +120,45 @@ public class Liferay62DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
 }
 
 
-public class Liferay70DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
+open class Liferay70DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
 
 
 	//MARK: ServerConnector
 	
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 		let service = LRDDLRecordService_v7(session: session)
 
 		let serviceContextAttributes = [
-			"userId": NSNumber(longLong: userId!),
-			"scopeGroupId": NSNumber(longLong: groupId!)]
+			"userId": NSNumber(value: userId!),
+			"scopeGroupId": NSNumber(value: groupId!)]
 
-		let serviceContextWrapper = LRJSONObjectWrapper(JSONObject: serviceContextAttributes)
+		let serviceContextWrapper = LRJSONObjectWrapper(jsonObject: serviceContextAttributes)
 
 		do {
-			let recordDictionary: [NSObject : AnyObject]?
+			let recordDictionary: [AnyHashable: Any]?
 
 			if recordId == nil {
-				recordDictionary = try service.addRecordWithGroupId(groupId!,
+				recordDictionary = try service?.addRecord(withGroupId: groupId!,
 					recordSetId: recordSetId!,
-					displayIndex: 0,
+					display: 0,
 					fieldsMap: values,
 					serviceContext: serviceContextWrapper)
 			}
 			else {
-				recordDictionary = try service.updateRecordWithRecordId(recordId!,
-					displayIndex: 0,
+				recordDictionary = try service?.updateRecord(withRecordId: recordId!,
+					display: 0,
 					fieldsMap: values,
 					mergeFields: false,
 					serviceContext: serviceContextWrapper)
 			}
 
-			if let recordIdValue = recordDictionary?["recordId"]?.longLongValue {
+			if let recordIdValue = (recordDictionary?["recordId"] as AnyObject).int64Value {
 				resultRecordId = recordIdValue
-				resultAttributes = recordDictionary
+				resultAttributes = recordDictionary as NSDictionary?
 				lastError = nil
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				lastError = NSError.errorWithCause(.invalidServerResponse,
 				                                   message: "Could not submit ddl form.")
 			}
 		}

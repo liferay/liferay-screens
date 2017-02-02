@@ -17,7 +17,7 @@ import UIKit
 
 class DDMFieldDocument_Tests: XCTestCase {
 
-	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
+	fileprivate let spanishLocale = Locale(identifier: "es_ES")
 
 
 	//MARK: Parse
@@ -98,7 +98,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 		let docField = fields![0] as! DDMFieldDocument
 
 		docField.currentValue = UIImage(contentsOfFile: testResourcePath("default-field", ext: "png"))
-		docField.uploadStatus = .Failed(NSError(domain: "", code: 0, userInfo:nil))
+		docField.uploadStatus = .failed(NSError(domain: "", code: 0, userInfo:nil))
 
 		XCTAssertFalse(docField.validate())
 	}
@@ -127,7 +127,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 		let docField = fields![0] as! DDMFieldDocument
 
 		docField.currentValue =
-				NSURL(fileURLWithPath: "/this/is/a/path/to/video.mpg", isDirectory: false)
+				URL(fileURLWithPath: "/this/is/a/path/to/video.mpg", isDirectory: false) as AnyObject?
 
 		XCTAssertEqual("video/mpeg", docField.mimeType ?? "nil mimeType")
 	}
@@ -150,7 +150,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 
 		let image = UIImage(contentsOfFile: testResourcePath("default-field", ext: "png"))
 		let imageBytes = UIImagePNGRepresentation(image!)
-		let imageLength = Int64(imageBytes!.length)
+		let imageLength = Int64(imageBytes!.count)
 
 		docField.currentValue = image
 
@@ -164,18 +164,18 @@ class DDMFieldDocument_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as! DDMFieldDocument
 
-		let url = NSBundle(forClass: self.dynamicType).URLForResource("default-field",
+		let url = Bundle(for: type(of: self)).url(forResource: "default-field",
 				withExtension: "png")
 		let attributes =
-				try? NSFileManager.defaultManager().attributesOfItemAtPath(url!.path!)
-		let imageLength = attributes![NSFileSize] as! NSNumber
+				try? FileManager.default.attributesOfItem(atPath: url!.path)
+		let imageLength = attributes![FileAttributeKey.size] as! NSNumber
 
-		docField.currentValue = url
+		docField.currentValue = url as AnyObject?
 
 		var size:Int64 = 0
 		let stream = docField.getStream(&size)
 		XCTAssertNotNil(stream)
-		XCTAssertEqual(imageLength.longLongValue, size)
+		XCTAssertEqual(imageLength.int64Value, size)
 	}
 
 
@@ -202,7 +202,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 		let docField = fields![0] as! DDMFieldDocument
 
 		docField.currentValue =
-				NSURL(fileURLWithPath: "/this/is/a/path/to/video.mpg", isDirectory: false)
+				URL(fileURLWithPath: "/this/is/a/path/to/video.mpg", isDirectory: false) as AnyObject?
 
 		XCTAssertEqual("A video has been selected", docField.currentValueAsLabel!)
 	}
@@ -214,7 +214,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as! DDMFieldDocument
 
-		docField.uploadStatus = .Pending
+		docField.uploadStatus = .pending
 
 		XCTAssertNil(docField.currentValueAsString)
 	}
@@ -223,7 +223,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as! DDMFieldDocument
 
-		docField.uploadStatus = .Uploading(1,10)
+		docField.uploadStatus = .uploading(1,10)
 
 		XCTAssertNil(docField.currentValueAsString)
 	}
@@ -232,7 +232,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as! DDMFieldDocument
 
-		docField.uploadStatus = .Failed(nil)
+		docField.uploadStatus = .failed(nil)
 
 		XCTAssertNil(docField.currentValueAsString)
 	}
@@ -242,12 +242,12 @@ class DDMFieldDocument_Tests: XCTestCase {
 		let docField = fields![0] as! DDMFieldDocument
 
 		let json:[String:AnyObject] = [
-			"groupId": 1234,
-			"uuid": "abcd",
-			"version": "1.0",
-			"blablabla": "blebleble"]
+			"groupId": 1234 as AnyObject,
+			"uuid": "abcd" as AnyObject,
+			"version": "1.0" as AnyObject,
+			"blablabla": "blebleble" as AnyObject]
 
-		docField.uploadStatus = .Uploaded(json)
+		docField.uploadStatus = .uploaded(json)
 
 		let expectedResult = "{\"groupId\":1234,\"uuid\":\"abcd\",\"version\":\"1.0\"}"
 		XCTAssertEqual(expectedResult, docField.currentValueAsString!)
@@ -265,11 +265,11 @@ class DDMFieldDocument_Tests: XCTestCase {
 		docField.currentValueAsString = json
 
 		switch docField.uploadStatus {
-			case .Uploaded(let uploadedAttributes):
+			case .uploaded(let uploadedAttributes):
 				let expectedJson:[String:AnyObject] = [
-						"groupId": 1234,
-						"uuid": "abcd",
-						"version": "1.0"]
+						"groupId": 1234 as AnyObject,
+						"uuid": "abcd" as AnyObject,
+						"version": "1.0" as AnyObject]
 				for (k,v) in expectedJson {
 					XCTAssertEqual("\(v)", "\(uploadedAttributes[k]!)")
 				}
@@ -279,7 +279,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 		}
 	}
 
-	private let requiredDocumentElementXSD =
+	fileprivate let requiredDocumentElementXSD =
 		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"document-library\" " +
 				"indexType=\"keyword\" " +

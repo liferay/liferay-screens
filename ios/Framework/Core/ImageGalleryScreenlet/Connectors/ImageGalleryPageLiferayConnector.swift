@@ -14,11 +14,11 @@
 import Foundation
 
 
-public class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
+open class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
     
-	private let repositoryId: Int64
-    private let folderId: Int64
-	private let mimeTypes: [String]
+	fileprivate let repositoryId: Int64
+    fileprivate let folderId: Int64
+	fileprivate let mimeTypes: [String]
 
 
 	//MARK: Initializers
@@ -41,7 +41,7 @@ public class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
 
 	//MARK: ServerConnector
 
-	public override func validateData() -> ValidationError? {
+	open override func validateData() -> ValidationError? {
 		var error = super.validateData()
 
 		if error == nil {
@@ -59,8 +59,8 @@ public class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
 	
 	//MARK: PaginationLiferayConnector
     
-    override public func doAddPageRowsServiceCall(
-			session session: LRBatchSession,
+    override open func doAddPageRowsServiceCall(
+			session: LRBatchSession,
 			startRow: Int,
 			endRow: Int,
 			obc: LRJSONObjectWrapper?) {
@@ -68,7 +68,7 @@ public class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
         let service = LRDLAppService_v7(session: session)
         
         do {
-            try service.getFileEntriesWithRepositoryId(repositoryId,
+            try service?.getFileEntries(withRepositoryId: repositoryId,
 					folderId: folderId,
 					mimeTypes: mimeTypes,
 					start: Int32(startRow),
@@ -79,11 +79,11 @@ public class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
 		}
     }
     
-    override public func doAddRowCountServiceCall(session session: LRBatchSession) {
+    override open func doAddRowCountServiceCall(session: LRBatchSession) {
         let service = LRDLAppService_v7(session: session)
         
         do {
-            try service.getFileEntriesCountWithRepositoryId(repositoryId,
+            try service?.getFileEntriesCount(withRepositoryId: repositoryId,
 					folderId: folderId,
 					mimeTypes: mimeTypes)
         } catch {

@@ -14,11 +14,11 @@
 import UIKit
 
 
-public class DDLListPageLoadInteractor : BaseListPageLoadInteractor {
+open class DDLListPageLoadInteractor : BaseListPageLoadInteractor {
 
-	public let userId: Int64
+	open let userId: Int64
 
-	public let recordSetId: Int64
+	open let recordSetId: Int64
 
 	public init(
 			screenlet: BaseListScreenlet,
@@ -36,7 +36,7 @@ public class DDLListPageLoadInteractor : BaseListPageLoadInteractor {
 
 	//MARK: BaseListPageLoadInteractor
 
-	override public func createListPageConnector() -> PaginationLiferayConnector {
+	override open func createListPageConnector() -> PaginationLiferayConnector {
 		let viewModel = (self.screenlet as! DDLListScreenlet).screenletView as! DDLListViewModel
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
 
@@ -52,11 +52,11 @@ public class DDLListPageLoadInteractor : BaseListPageLoadInteractor {
 		return connector;
 	}
 
-	override public func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
+	override open func convertResult(_ serverResult: [String:AnyObject]) -> AnyObject {
 		return DDLRecord(dataAndAttributes: serverResult)
 	}
 
-	override public func cacheKey(c: PaginationLiferayConnector) -> String {
+	override open func cacheKey(_ c: PaginationLiferayConnector) -> String {
 		return "\(recordSetId)"
 	}
 

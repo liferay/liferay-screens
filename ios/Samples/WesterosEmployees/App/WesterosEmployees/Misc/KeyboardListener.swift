@@ -11,30 +11,30 @@ import UIKit
 
 @objc protocol KeyboardListener {
 
-	func showKeyboard(notif: NSNotification)
+	func showKeyboard(_ notif: Notification)
 
-	func hideKeyboard(notif: NSNotification)
+	func hideKeyboard(_ notif: Notification)
 
 }
 
-func registerKeyboardListener(listener: KeyboardListener) {
-	NSNotificationCenter.defaultCenter().addObserver(listener,
+func registerKeyboardListener(_ listener: KeyboardListener) {
+	NotificationCenter.default.addObserver(listener,
 			selector: #selector(KeyboardListener.showKeyboard(_:)),
-			name: UIKeyboardWillChangeFrameNotification,
+			name: .UIKeyboardWillChangeFrame,
 			object: nil)
 
-	NSNotificationCenter.defaultCenter().addObserver(listener,
+	NotificationCenter.default.addObserver(listener,
 			selector: #selector(KeyboardListener.hideKeyboard(_:)),
-			name: UIKeyboardWillHideNotification,
+			name: .UIKeyboardWillHide,
 			object: nil)
 }
 
-func unregisterKeyboardListener(listener: KeyboardListener) {
-	NSNotificationCenter.defaultCenter().removeObserver(listener,
-			name: UIKeyboardWillHideNotification,
+func unregisterKeyboardListener(_ listener: KeyboardListener) {
+	NotificationCenter.default.removeObserver(listener,
+			name: .UIKeyboardWillHide,
 			object: nil)
 
-	NSNotificationCenter.defaultCenter().removeObserver(listener,
-			name: UIKeyboardWillChangeFrameNotification,
+	NotificationCenter.default.removeObserver(listener,
+			name: .UIKeyboardWillChangeFrame,
 			object: nil)
 }

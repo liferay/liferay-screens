@@ -19,13 +19,13 @@ import UIKit
 #endif
 
 
-public class BasicCredentialsStoreKeyChain : BaseCredentialsStoreKeyChain {
+open class BasicCredentialsStoreKeyChain : BaseCredentialsStoreKeyChain {
 
-	override public func storeAuth(keychain keychain: Keychain, auth: LRAuthentication) {
+	override open func storeAuth(keychain: Keychain, auth: LRAuthentication) {
 		let basicAuth = auth as! LRBasicAuthentication
 
 		do {
-			try keychain.set(StringFromAuthType(AuthType.Basic), key: "auth_type")
+			try keychain.set(StringFromAuthType(AuthType.basic), key: "auth_type")
 			try keychain.set(basicAuth.username, key: "basicauth_username")
 			try keychain.set(basicAuth.password, key: "basicauth_password")
 		}
@@ -33,12 +33,12 @@ public class BasicCredentialsStoreKeyChain : BaseCredentialsStoreKeyChain {
 		}
 	}
 
-	override public func loadAuth(keychain keychain: Keychain) -> LRAuthentication? {
+	override open func loadAuth(keychain: Keychain) -> LRAuthentication? {
 		let username = try? keychain.get("basicauth_username")
 		let password = try? keychain.get("basicauth_password")
 
 		if let username = username,
-				password = password {
+				let password = password {
 
 			return LRBasicAuthentication(
 					username: username,

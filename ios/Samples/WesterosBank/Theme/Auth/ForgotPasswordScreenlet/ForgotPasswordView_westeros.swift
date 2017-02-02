@@ -15,19 +15,19 @@ import UIKit
 import LiferayScreens
 
 
-public class ForgotPasswordView_westeros: ForgotPasswordView_default {
+open class ForgotPasswordView_westeros: ForgotPasswordView_default {
 
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return WesterosProgressPresenter()
 	}
 
-	override public func onShow() {
+	override open func onShow() {
 		userNameField!.attributedPlaceholder = NSAttributedString(
 				string: userNameField!.placeholder!,
-				attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
+				attributes: [NSForegroundColorAttributeName : UIColor.white])
 	}
 
-	override public func onSetDefaultDelegate(delegate:AnyObject, view:UIView) -> Bool {
+	override open func onSetDefaultDelegate(_ delegate:AnyObject, view:UIView) -> Bool {
 		return false
 	}
 

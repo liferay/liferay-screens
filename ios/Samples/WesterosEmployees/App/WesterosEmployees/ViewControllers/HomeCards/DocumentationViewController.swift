@@ -52,7 +52,7 @@ class DocumentationViewController: CardViewController, AssetListScreenletDelegat
 
 	//MARK: AssetListScreenletDelegate
 
-	func screenlet(screenlet: AssetListScreenlet, onAssetSelected asset: Asset) {
+	func screenlet(_ screenlet: AssetListScreenlet, onAssetSelected asset: Asset) {
 		self.selectedFileEntry = FileEntry(attributes: asset.attributes)
 		cardView?.moveRight()
 	}

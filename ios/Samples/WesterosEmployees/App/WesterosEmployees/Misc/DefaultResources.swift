@@ -17,24 +17,24 @@ struct DefaultResources {
 
 	static let OddColorBackground = UIColor(red: 228.0/255.0, green: 71.0/255.0, blue: 64.0/255.0, alpha: 1)
 
-	static let EvenColorBackground = UIColor.whiteColor()
+	static let EvenColorBackground = UIColor.white
 
 	static let background = UIColor(red: 214.0/255.0, green: 214.0/255.0, blue: 214.0/255.0, alpha: 1)
 
 	///Gets the background color for an index
-	static func backgroundColorForIndex(index: Int) -> UIColor {
+	static func backgroundColorForIndex(_ index: Int) -> UIColor {
 		return index % 2 == 1 ?
 			DefaultResources.OddColorBackground : DefaultResources.EvenColorBackground
 	}
 
 	///Gets the text color for an index
-	static func textColorForIndex(index: Int) -> UIColor {
+	static func textColorForIndex(_ index: Int) -> UIColor {
 		return index % 2 == 0 ?
 			DefaultResources.OddColorBackground : DefaultResources.EvenColorBackground
 	}
 
 	///Gets the arrow image for an index
-	static func arrowImageForIndex(index: Int) -> UIImage {
+	static func arrowImageForIndex(_ index: Int) -> UIImage {
 		let imageName = index % 2 == 0 ? "icon_DOWN" : "icon_DOWN_W"
 		return UIImage(named: imageName)!
 	}

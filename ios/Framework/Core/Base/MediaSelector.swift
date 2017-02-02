@@ -15,15 +15,15 @@ import UIKit
 import MobileCoreServices
 
 @objc public enum LiferayMediaType : Int {
-	case Camera
-	case Video
-	case Image
-	case ImageEdited
+	case camera
+	case video
+	case image
+	case imageEdited
 }
 
-@objc public class MediaSelector: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+@objc open class MediaSelector: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-	public typealias SelectedMediaClosure = ((UIImage?, NSURL?) -> Void)?
+	public typealias SelectedMediaClosure = ((UIImage?, URL?) -> Void)?
 
 	let pickerController = UIImagePickerController()
 	let viewController: UIViewController?
@@ -47,7 +47,7 @@ import MobileCoreServices
 		self.alertTitle = alertTitle
 	}
 
-	public func show() {
+	open func show() {
 		selfRetain = self
 		pickerController.delegate = self
 
@@ -56,52 +56,52 @@ import MobileCoreServices
 		}
 
 		let alertMode: UIAlertControllerStyle =
-				UIDevice.currentDevice().userInterfaceIdiom == .Pad ? .Alert : .ActionSheet
+				UIDevice.current.userInterfaceIdiom == .pad ? .alert : .actionSheet
 
 		let alert = UIAlertController(
 				title: nil,
 				message: nil,
 				preferredStyle: alertMode)
 
-		if types.keys.contains(.Camera) {
-			let action = UIAlertAction(title: types[.Camera], style: .Default) { (action) in
-				self.pickerController.sourceType = .Camera
-				self.viewController?.presentViewController(self.pickerController, animated: true) {}
+		if types.keys.contains(.camera) {
+			let action = UIAlertAction(title: types[.camera], style: .default) { (action) in
+				self.pickerController.sourceType = .camera
+				self.viewController?.present(self.pickerController, animated: true) {}
 			}
 
 			alert.addAction(action)
 		}
 
-		if types.keys.contains(.Video) {
-			let action = UIAlertAction(title: types[.Video], style: .Default) { (action) in
-				self.pickerController.sourceType = .SavedPhotosAlbum
+		if types.keys.contains(.video) {
+			let action = UIAlertAction(title: types[.video], style: .default) { (action) in
+				self.pickerController.sourceType = .savedPhotosAlbum
 				self.pickerController.mediaTypes = [kUTTypeMovie as NSString as String]
-				self.viewController?.presentViewController(self.pickerController, animated: true) {}
+				self.viewController?.present(self.pickerController, animated: true) {}
 			}
 
 			alert.addAction(action)
 		}
 
-		if types.keys.contains(.Image) {
-			let action = UIAlertAction(title: types[.Image], style: .Default) { (action) in
-				self.pickerController.sourceType = .SavedPhotosAlbum
-				self.viewController?.presentViewController(self.pickerController, animated: true) {}
+		if types.keys.contains(.image) {
+			let action = UIAlertAction(title: types[.image], style: .default) { (action) in
+				self.pickerController.sourceType = .savedPhotosAlbum
+				self.viewController?.present(self.pickerController, animated: true) {}
 			}
 
 			alert.addAction(action)
 		}
 
-		if types.keys.contains(.ImageEdited) {
-			let action = UIAlertAction(title: types[.ImageEdited], style: .Default) { (action) in
-				self.pickerController.sourceType = .SavedPhotosAlbum
+		if types.keys.contains(.imageEdited) {
+			let action = UIAlertAction(title: types[.imageEdited], style: .default) { (action) in
+				self.pickerController.sourceType = .savedPhotosAlbum
 				self.pickerController.allowsEditing = true
-				self.viewController?.presentViewController(self.pickerController, animated: true) {}
+				self.viewController?.present(self.pickerController, animated: true) {}
 			}
 
 			alert.addAction(action)
 		}
 
-		let cancelAction = UIAlertAction(title: cancelMessage, style: .Cancel, handler: nil)
+		let cancelAction = UIAlertAction(title: cancelMessage, style: .cancel, handler: nil)
 
 		alert.addAction(cancelAction)
 
@@ -109,35 +109,35 @@ import MobileCoreServices
 			alert.title = title
 		}
 
-		viewController?.presentViewController(alert, animated: true) {}
+		viewController?.present(alert, animated: true) {}
 	}
 
 
-	public func imagePickerController(
-		picker: UIImagePickerController,
-		didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+	open func imagePickerController(
+		_ picker: UIImagePickerController,
+		didFinishPickingMediaWithInfo info: [String : Any]) {
 
 		let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
-		let selectedURL = info[UIImagePickerControllerMediaURL] as? NSURL
+		let selectedURL = info[UIImagePickerControllerMediaURL] as? URL
 
-		pickerController.dismissViewControllerAnimated(true) {
+		pickerController.dismiss(animated: true) {
 			self.selectedMediaClosure?(selectedImage, selectedURL)
 			self.selfRetain = nil
 		}
 	}
 
-	public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-		pickerController.dismissViewControllerAnimated(true) {
+	open func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+		pickerController.dismiss(animated: true) {
 			self.selfRetain = nil
 		}
 	}
 
-	private func showErrorIfAbsentKeys() {
-		if (NSBundle.mainBundle().objectForInfoDictionaryKey("NSPhotoLibraryUsageDescription") == nil ||
-			NSBundle.mainBundle().objectForInfoDictionaryKey("NSCameraUsageDescription") == nil) {
+	fileprivate func showErrorIfAbsentKeys() {
+		if (Bundle.main.object(forInfoDictionaryKey: "NSPhotoLibraryUsageDescription") == nil ||
+			Bundle.main.object(forInfoDictionaryKey: "NSCameraUsageDescription") == nil) {
 
 			print(LocalizedString("core", key: "NSPhotoLibraryUsageDescription-key-not-present",
-				obj: self.dynamicType))
+				obj: type(of: self)))
 		}
 	}
 }

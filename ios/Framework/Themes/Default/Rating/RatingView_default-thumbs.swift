@@ -14,26 +14,26 @@
 import UIKit
 
 
-public class RatingView_default_thumbs: BaseScreenletView, RatingViewModel {
+open class RatingView_default_thumbs: BaseScreenletView, RatingViewModel {
 
 
 	//MARK: Outlets
 
 	@IBOutlet weak var negativeButton: UIButton? {
 		didSet {
-			let image = NSBundle.imageInBundles(
+			let image = Bundle.imageInBundles(
 				name: "default-thumb-down",
-				currentClass: RatingView_default_thumbs.self)?.imageWithRenderingMode(.AlwaysTemplate)
-			self.negativeButton?.setBackgroundImage(image, forState: .Normal)
+				currentClass: RatingView_default_thumbs.self)?.withRenderingMode(.alwaysTemplate)
+			self.negativeButton?.setBackgroundImage(image, for: .normal)
 		}
 	}
 	
 	@IBOutlet weak var possitiveButton: UIButton? {
 		didSet {
-			let image = NSBundle.imageInBundles(
+			let image = Bundle.imageInBundles(
 				name: "default-thumb-up",
-				currentClass: RatingView_default_thumbs.self)?.imageWithRenderingMode(.AlwaysTemplate)
-			self.possitiveButton?.setBackgroundImage(image, forState: .Normal)
+				currentClass: RatingView_default_thumbs.self)?.withRenderingMode(.alwaysTemplate)
+			self.possitiveButton?.setBackgroundImage(image, for: .normal)
 		}
 	}
 	
@@ -41,36 +41,36 @@ public class RatingView_default_thumbs: BaseScreenletView, RatingViewModel {
 
 	@IBOutlet weak var possitiveCountLabel: UILabel?
 	
-	public var defaultRatingsGroupCount: Int32 = 2
+	open var defaultRatingsGroupCount: Int32 = 2
 
 
 	//MARK: BaseScreenletView
 	
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return NetworkActivityIndicatorPresenter()
 	}
 	
-	override public var progressMessages: [String:ProgressMessages] {
+	override open var progressMessages: [String:ProgressMessages] {
 		return [
-			RatingScreenlet.LoadRatingsAction : [.Working : ""],
-			RatingScreenlet.UpdateRatingAction : [.Working : ""],
-			RatingScreenlet.DeleteRatingAction : [.Working : ""],
+			RatingScreenlet.LoadRatingsAction : [.working : ""],
+			RatingScreenlet.UpdateRatingAction : [.working : ""],
+			RatingScreenlet.DeleteRatingAction : [.working : ""],
 		]
 	}
 	
 	//MARK: RatingViewModel
 	
-	public var ratingEntry: RatingEntry? {
+	open var ratingEntry: RatingEntry? {
 		didSet {
 			if let rating = ratingEntry {
-				self.negativeCountLabel?.text = NSString.localizedStringWithFormat(LocalizedString("default", key: "rating-total", obj: self), rating.ratings[0]) as String
-				self.possitiveCountLabel?.text = NSString.localizedStringWithFormat(LocalizedString("default", key: "rating-total", obj: self), rating.ratings[1]) as String
+				self.negativeCountLabel?.text = NSString.localizedStringWithFormat(LocalizedString("default", key: "rating-total", obj: self) as NSString, rating.ratings[0]) as String
+				self.possitiveCountLabel?.text = NSString.localizedStringWithFormat(LocalizedString("default", key: "rating-total", obj: self) as NSString, rating.ratings[1]) as String
 				
 				let score = rating.userScore
 				
 				if score == 0 {
 					// thumbs down
-					self.possitiveButton?.tintColor = UIColor.grayColor()
+					self.possitiveButton?.tintColor = UIColor.gray
 					self.negativeButton?.tintColor = DefaultThemeBasicBlue
 					
 					self.possitiveButton?.restorationIdentifier = RatingScreenlet.UpdateRatingAction
@@ -79,15 +79,15 @@ public class RatingView_default_thumbs: BaseScreenletView, RatingViewModel {
 				else if score > 0 {
 					// thumbs up
 					self.possitiveButton?.tintColor = DefaultThemeBasicBlue
-					self.negativeButton?.tintColor = UIColor.grayColor()
+					self.negativeButton?.tintColor = UIColor.gray
 					
 					self.possitiveButton?.restorationIdentifier = RatingScreenlet.DeleteRatingAction
 					self.negativeButton?.restorationIdentifier = RatingScreenlet.UpdateRatingAction
 				}
 				else if score == -1 {
 					// no rating yet
-					self.possitiveButton?.tintColor = UIColor.grayColor()
-					self.negativeButton?.tintColor = UIColor.grayColor()
+					self.possitiveButton?.tintColor = UIColor.gray
+					self.negativeButton?.tintColor = UIColor.gray
 					
 					self.possitiveButton?.restorationIdentifier = RatingScreenlet.UpdateRatingAction
 					self.negativeButton?.restorationIdentifier = RatingScreenlet.UpdateRatingAction
@@ -99,10 +99,10 @@ public class RatingView_default_thumbs: BaseScreenletView, RatingViewModel {
 
 	//MARK: Actions
 	
-	@IBAction func possitiveButtonClicked(sender: UIButton) {
-		self.userAction(name: sender.restorationIdentifier, sender: 1)
+	@IBAction func possitiveButtonClicked(_ sender: UIButton) {
+		self.userAction(name: sender.restorationIdentifier, sender: 1 as AnyObject?)
 	}
-	@IBAction func negativeButtonClicked(sender: UIButton) {
-		self.userAction(name: sender.restorationIdentifier, sender: 0)
+	@IBAction func negativeButtonClicked(_ sender: UIButton) {
+		self.userAction(name: sender.restorationIdentifier, sender: 0 as AnyObject?)
 	}
 }

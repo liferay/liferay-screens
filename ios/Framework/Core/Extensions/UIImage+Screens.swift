@@ -15,7 +15,7 @@ import UIKit
 
 extension UIImage {
 
-	public func resizeImage(toWidth width: Int, completion: (UIImage?) -> Void) {
+	public func resizeImage(toWidth width: Int, completion: @escaping (UIImage?) -> Void) {
 		dispatch_async {
 			let newImage = self.resizeImage(toWidth: width)
 			dispatch_main {
@@ -32,7 +32,7 @@ extension UIImage {
 		let newWidth = CGFloat(width)
 
 		UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
-		self.drawInRect(CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+		self.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
 		let newImage = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
 

@@ -14,7 +14,7 @@
 import UIKit
 import LRMobileSDK
 
-public class RatingLoadByEntryIdLiferayConnector: ServerConnector {
+open class RatingLoadByEntryIdLiferayConnector: ServerConnector {
 	
 	let entryId: Int64
 	let ratingsGroupCount: Int32
@@ -33,7 +33,7 @@ public class RatingLoadByEntryIdLiferayConnector: ServerConnector {
 
 	//MARK: ServerConnector
 	
-	public override func validateData() -> ValidationError? {
+	open override func validateData() -> ValidationError? {
 		let error = super.validateData()
 		
 		if error == nil {
@@ -50,16 +50,16 @@ public class RatingLoadByEntryIdLiferayConnector: ServerConnector {
 	
 }
 
-public class Liferay70RatingLoadByEntryIdConnector: RatingLoadByEntryIdLiferayConnector {
+open class Liferay70RatingLoadByEntryIdConnector: RatingLoadByEntryIdLiferayConnector {
 
 	
 	//MARK: ServerConnector
 
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 		let service = LRScreensratingsentryService_v70(session: session)
 		
 		do {
-			let result = try service.getRatingsEntriesWithAssetEntryId(entryId, ratingsLength: ratingsGroupCount)
+			let result = try service?.getRatingsEntries(withAssetEntryId: entryId, ratingsLength: ratingsGroupCount)
 			lastError = nil
 			resultRating = RatingEntry(attributes: result as! [String: AnyObject])
 		}

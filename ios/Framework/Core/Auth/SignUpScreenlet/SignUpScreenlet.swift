@@ -23,7 +23,7 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - attributes: user attributes.
-	optional func screenlet(screenlet: SignUpScreenlet,
+	@objc optional func screenlet(_ screenlet: SignUpScreenlet,
 			onSignUpResponseUserAttributes attributes: [String:AnyObject])
 
 	/// Called when an error occurs in the process. The NSError object describes the error.
@@ -31,40 +31,40 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - error: error in sign up.
-	optional func screenlet(screenlet: SignUpScreenlet,
+	@objc optional func screenlet(_ screenlet: SignUpScreenlet,
 			onSignUpError error: NSError)
 
 }
 
 
-public class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
+open class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 
 	//MARK: Inspectables
 
-	@IBInspectable public var anonymousApiUserName: String? = "test@liferay.com"
+	@IBInspectable open var anonymousApiUserName: String? = "test@liferay.com"
 
-	@IBInspectable public var anonymousApiPassword: String? = "test"
+	@IBInspectable open var anonymousApiPassword: String? = "test"
 
-	@IBInspectable public var autoLogin: Bool = true
+	@IBInspectable open var autoLogin: Bool = true
 
-	@IBInspectable public var saveCredentials: Bool = true
+	@IBInspectable open var saveCredentials: Bool = true
 
-	@IBInspectable public var companyId: Int64 = 0
+	@IBInspectable open var companyId: Int64 = 0
 
-	@IBOutlet public weak var autoLoginDelegate: LoginScreenletDelegate?
+	@IBOutlet open weak var autoLoginDelegate: LoginScreenletDelegate?
 
 
-	public var signUpDelegate: SignUpScreenletDelegate? {
+	open var signUpDelegate: SignUpScreenletDelegate? {
 		return delegate as? SignUpScreenletDelegate
 	}
 
-	public var viewModel: SignUpViewModel {
+	open var viewModel: SignUpViewModel {
 		return screenletView as! SignUpViewModel
 	}
 
 	//MARK: BaseScreenlet
 
-	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
 
 		switch name {
 		case "signup-action":
@@ -82,7 +82,7 @@ public class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 	/// Loads the current user throught editCurrentUser property.
 	///
 	/// - Returns: if there is a session created, returns true, if not, false.
-	public func loadCurrentUser() -> Bool {
+	open func loadCurrentUser() -> Bool {
 		if SessionContext.isLoggedIn {
 			self.viewModel.editCurrentUser = true
 			return true
@@ -93,7 +93,7 @@ public class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 
 	//MARK: Private methods
 
-	private func createSignUpConnectorInteractor() -> SignUpInteractor {
+	fileprivate func createSignUpConnectorInteractor() -> SignUpInteractor {
 		let interactor = SignUpInteractor(screenlet: self)
 
 		interactor.onSuccess = {
@@ -103,7 +103,7 @@ public class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 			if self.autoLogin {
 				self.doAutoLogin(interactor.resultUserAttributes!)
 
-				if let ctx = SessionContext.currentContext where self.saveCredentials {
+				if let ctx = SessionContext.currentContext, self.saveCredentials {
 					ctx.removeStoredCredentials()
 
 					if ctx.storeCredentials() {
@@ -122,7 +122,7 @@ public class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 		return interactor
 	}
 
-	private func createSaveInteractor() -> SaveUserInteractor {
+	fileprivate func createSaveInteractor() -> SaveUserInteractor {
 		let interactor = SaveUserInteractor(screenlet: self)
 
 		interactor.onSuccess = {
@@ -142,17 +142,17 @@ public class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 		return interactor
 	}
 
-	private func doAutoLogin(userAttributes: [String:AnyObject]) {
+	fileprivate func doAutoLogin(_ userAttributes: [String:AnyObject]) {
 		let userNameKeys : [BasicAuthMethod:String] = [
-			.Email : "emailAddress",
-			.ScreenName : "screenName",
-			.UserId: "userId"
+			.email : "emailAddress",
+			.screenName : "screenName",
+			.userId: "userId"
 		]
 
 		let currentAuth = BasicAuthMethod.fromUserName(anonymousApiUserName!)
 
 		if let currentKey = userNameKeys[currentAuth],
-				userName = userAttributes[currentKey] as? String {
+				let userName = userAttributes[currentKey] as? String {
 
 			SessionContext.loginWithBasic(
 				username: userName,

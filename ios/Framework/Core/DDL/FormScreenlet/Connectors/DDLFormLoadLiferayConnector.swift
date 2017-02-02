@@ -15,12 +15,12 @@ import UIKit
 import LRMobileSDK
 
 
-public class DDLFormLoadLiferayConnector: ServerConnector {
+open class DDLFormLoadLiferayConnector: ServerConnector {
 
-	public let structureId: Int64
+	open let structureId: Int64
 
-	public var resultRecord: DDLRecord?
-	public var resultUserId: Int64?
+	open var resultRecord: DDLRecord?
+	open var resultUserId: Int64?
 
 
 	//MARK: Initializers
@@ -34,29 +34,29 @@ public class DDLFormLoadLiferayConnector: ServerConnector {
 }
 
 
-public class Liferay62DDLFormLoadConnector: DDLFormLoadLiferayConnector {
+open class Liferay62DDLFormLoadConnector: DDLFormLoadLiferayConnector {
 
 
 	//MARK: ServerConnector
 
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 		let service = LRDDMStructureService_v62(session: session)
 
 		do {
-			let structureDataDictionary = try service.getStructureWithStructureId(structureId)
+			let structureDataDictionary = try service?.getStructureWithStructureId(structureId)
 
-			if let xsd = structureDataDictionary["xsd"]! as? String {
-				if let userIdValue = structureDataDictionary["userId"]?.longLongValue {
+			if let xsd = structureDataDictionary?["xsd"]! as? String {
+				if let userIdValue = (structureDataDictionary?["userId"] as AnyObject).int64Value {
 					resultUserId = userIdValue
 				}
 
 				resultRecord = DDLRecord(
 					xsd: xsd,
-					locale: NSLocale(localeIdentifier: NSLocale.currentLocaleString))
+					locale: Locale(identifier: NSLocale.currentLocaleString))
 				lastError = nil
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				lastError = NSError.errorWithCause(.invalidServerResponse,
 				                                   message: "Could not load ddl form with this structureId.")
 				resultRecord = nil
 				resultUserId = nil
@@ -72,29 +72,29 @@ public class Liferay62DDLFormLoadConnector: DDLFormLoadLiferayConnector {
 }
 
 
-public class Liferay70DDLFormLoadConnector: DDLFormLoadLiferayConnector {
+open class Liferay70DDLFormLoadConnector: DDLFormLoadLiferayConnector {
 
 
 	//MARK: ServerConnector
 	
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 		let service = LRDDMStructureService_v7(session: session)
 
 		do {
-			let structureDataDictionary = try service.getStructureWithStructureId(structureId)
+			let structureDataDictionary = try service?.getStructureWithStructureId(structureId)
 
-			if let json = structureDataDictionary["definition"]! as? String {
-				if let userIdValue = structureDataDictionary["userId"]?.longLongValue {
+			if let json = structureDataDictionary?["definition"]! as? String {
+				if let userIdValue = (structureDataDictionary?["userId"] as AnyObject).int64Value {
 					resultUserId = userIdValue
 				}
 
 				resultRecord = DDLRecord(
 					json: json,
-					locale: NSLocale(localeIdentifier: NSLocale.currentLocaleString))
+					locale: Locale(identifier: NSLocale.currentLocaleString))
 				lastError = nil
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				lastError = NSError.errorWithCause(.invalidServerResponse,
 				                                   message: "Could not load ddl form with this structureId.")
 				resultRecord = nil
 				resultUserId = nil

@@ -14,21 +14,21 @@
 import UIKit
 
 
-public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
+open class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 	
-	public let page: Int
+	open let page: Int
 
-	public let computeRowCount: Bool
+	open let computeRowCount: Bool
 
-	public var obcClassName: String?
+	open var obcClassName: String?
 	
-	public var resultAllPagesContent: [String : [AnyObject?]]?
+	open var resultAllPagesContent: [String : [AnyObject?]]?
 
-	public var resultPageContent: [String : [AnyObject]]?
+	open var resultPageContent: [String : [AnyObject]]?
 
-	public var resultRowCount: Int?
+	open var resultRowCount: Int?
 
-	public var sections: [String]?
+	open var sections: [String]?
 	
 
 	//MARK: Initializers
@@ -42,7 +42,7 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 
 	//MARK: ServerConnectorInteractor
 
-	override public func createConnector() -> PaginationLiferayConnector {
+	override open func createConnector() -> PaginationLiferayConnector {
 		let connector = createListPageConnector()
 
 		connector.obcClassName = self.obcClassName
@@ -50,7 +50,7 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 		return connector
 	}
 	
-	override public func completedConnector(c: ServerConnector) {
+	override open func completedConnector(_ c: ServerConnector) {
 		if let pageCon = c as? PaginationLiferayConnector {
 			processLoadPageResult(pageCon.resultPageContent ?? [], rowCount: pageCon.resultRowCount)
 		}
@@ -59,11 +59,11 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 
 	//MARK: Public methods
 
-	public func createListPageConnector() -> PaginationLiferayConnector {
+	open func createListPageConnector() -> PaginationLiferayConnector {
 		fatalError("createListPageConnector must be overriden")
 	}
 	
-	public func processLoadPageResult(serverRows: [[String : AnyObject]], rowCount: Int?) {
+	open func processLoadPageResult(_ serverRows: [[String : AnyObject]], rowCount: Int?) {
 		let screenlet = self.screenlet as! BaseListScreenlet
 		let baseListView = screenlet.screenletView as! BaseListView
 		
@@ -89,7 +89,7 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 			for obj in convertedRows {
 				let sectionName = sectionForRowObject(obj) ?? BaseListView.DefaultSection
 				
-				if convertedRowsWithSection.indexForKey(sectionName) == nil {
+				if convertedRowsWithSection.index(forKey: sectionName) == nil {
 					convertedRowsWithSection[sectionName] = [AnyObject]()
 					
 					if !sections.contains(sectionName) {
@@ -124,7 +124,7 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 			allRows = baseListView.rows
 		
 			for section in convertedRowsWithSection.keys {
-				if allRows.indexForKey(section) == nil {
+				if allRows.index(forKey: section) == nil {
 					allRows[section] = [AnyObject?]()
 				}
 				
@@ -137,10 +137,10 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 		}
 		else {
 			//If we reach this point we will have only one section with key ""
-			allRows[BaseListView.DefaultSection] = Array<AnyObject?>(count: actualRowCount, repeatedValue: nil)
+			allRows[BaseListView.DefaultSection] = [AnyObject?](repeating: nil, count: actualRowCount)
 			
 			//Insert existing elements in the list
-			for (index, row) in baseListView.rows[BaseListView.DefaultSection]!.enumerate() {
+			for (index, row) in baseListView.rows[BaseListView.DefaultSection]!.enumerated() {
 				allRows[BaseListView.DefaultSection]![index] = row
 			}
 			
@@ -148,7 +148,7 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 			var lastIndexInserted = 0
 			
 			//Insert new elements
-			for (index, row) in convertedRows.enumerate() {
+			for (index, row) in convertedRows.enumerated() {
 				if index + offset < actualRowCount {
 					allRows[BaseListView.DefaultSection]![index + offset] = row
 					lastIndexInserted = index + offset
@@ -166,7 +166,7 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 			//Deleted elements since row count computation
 			if lessItemsThanExpected && !streamMode && incompleteMiddlePage {
 				for _ in lastIndexInserted+1..<actualRowCount {
-					allRows[BaseListView.DefaultSection]!.popLast()
+					_ = allRows[BaseListView.DefaultSection]!.popLast()
 				}
 			}
 		}
@@ -177,21 +177,21 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 		self.sections = sections
 	}
 	
-	public func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
+	open func convertResult(_ serverResult: [String:AnyObject]) -> AnyObject {
 		fatalError("convert(serverResult) must be overriden")
 	}
 	
-	public func sectionForRowObject(object: AnyObject) -> String? {
+	open func sectionForRowObject(_ object: AnyObject) -> String? {
 		return nil
 	}
 
-	public func cacheKey(c: PaginationLiferayConnector) -> String {
+	open func cacheKey(_ c: PaginationLiferayConnector) -> String {
 		fatalError("cacheKey must be overriden")
 	}
 	
 	//MARK: Cache methods
 	
-	override public func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
+	override open func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> ()) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
@@ -200,7 +200,7 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 		if let loadCon = c as? PaginationLiferayConnector {
 			let key = cacheKey(loadCon)
 			cacheManager.getSome(
-				collection: ScreenletName(screenlet!.dynamicType),
+				collection: ScreenletName(type(of: screenlet!)),
 				keys: ["\(key)-\(page)", "\(key)-count"]) {
 					
 					loadCon.resultPageContent = $0.first as? [[String:AnyObject]]
@@ -208,7 +208,7 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 						loadCon.resultRowCount = $0.last as? Int
 					}
 					
-					result(loadCon.resultPageContent)
+					result(loadCon.resultPageContent as AnyObject?)
 			}
 		}
 		else {
@@ -216,28 +216,27 @@ public class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 		}
 	}
 	
-	override public func writeToCache(c: ServerConnector) {
+	override open func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
 		
 		if let loadCon = c as? PaginationLiferayConnector,
-			pageContent = loadCon.resultPageContent
-			where !pageContent.isEmpty {
+			let pageContent = loadCon.resultPageContent, !pageContent.isEmpty {
 			
 			let key = cacheKey(loadCon)
 			
 			cacheManager.setClean(
-				collection: ScreenletName(screenlet!.dynamicType),
+				collection: ScreenletName(type(of: screenlet!)),
 				key: "\(key)-\(page)",
-				value: pageContent,
+				value: pageContent as NSCoding,
 				attributes: [:])
 			
 			if let rowCount = loadCon.resultRowCount {
 				cacheManager.setClean(
-					collection: ScreenletName(screenlet!.dynamicType),
+					collection: ScreenletName(type(of: screenlet!)),
 					key: "\(key)-count",
-					value: rowCount,
+					value: rowCount as NSCoding,
 					attributes: [:])
 			}
 		}

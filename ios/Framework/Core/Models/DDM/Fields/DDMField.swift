@@ -14,18 +14,18 @@
 import Foundation
 
 
-@objc public class DDMField: NSObject, NSCoding {
+@objc open class DDMField: NSObject, NSCoding {
 
-	public var onPostValidation: (Bool -> Void)?
-	public var lastValidationResult: Bool?
+	open var onPostValidation: ((Bool) -> Void)?
+	open var lastValidationResult: Bool?
 
-	public var currentValue: AnyObject? {
+	open var currentValue: AnyObject? {
 		didSet {
 			onChangedCurrentValue()
 		}
 	}
 
-	public var currentValueAsString:String? {
+	open var currentValueAsString:String? {
 		get {
 			return convert(fromCurrentValue: currentValue)
 		}
@@ -34,7 +34,7 @@ import Foundation
 		}
 	}
 
-	public var currentValueAsLabel: String? {
+	open var currentValueAsLabel: String? {
 		get {
 			return convertToLabel(fromCurrentValue: currentValue)
 		}
@@ -43,7 +43,7 @@ import Foundation
 		}
 	}
 
-	public override var debugDescription: String {
+	open override var debugDescription: String {
 		let currentValue = self.currentValueAsString
 		var str = "DDMField[" +
 			" name=\( self.name )" +
@@ -64,11 +64,11 @@ import Foundation
 		return str
 	}
 
-	public override var description: String {
+	open override var description: String {
 		return currentValueAsLabel ?? super.description
 	}
 
-	public var currentLocale: NSLocale
+	open var currentLocale: Locale
 
 
 	internal(set) var dataType: DataType
@@ -86,7 +86,7 @@ import Foundation
 	internal(set) var showLabel: Bool
 
 
-	public init(attributes: [String:AnyObject], locale: NSLocale) {
+	public init(attributes: [String:AnyObject], locale: Locale) {
 		dataType = DataType(rawValue: valueAsString(attributes, key:"dataType")) ?? .Unsupported
 		editorType = Editor.from(attributes: attributes)
 
@@ -94,10 +94,10 @@ import Foundation
 		label = valueAsString(attributes, key:"label")
 		tip = valueAsString(attributes, key:"tip")
 
-		readOnly = Bool.from(any: attributes["readOnly"] ?? "false")
-		repeatable = Bool.from(any: attributes["repeatable"] ?? "false")
-		required = Bool.from(any: attributes["required"] ?? "true")
-		showLabel = Bool.from(any: attributes["showLabel"] ?? "false")
+		readOnly = Bool.from(any: attributes["readOnly"] ?? "false" as AnyObject)
+		repeatable = Bool.from(any: attributes["repeatable"] ?? "false" as AnyObject)
+		required = Bool.from(any: attributes["required"] ?? "true" as AnyObject)
+		showLabel = Bool.from(any: attributes["showLabel"] ?? "false" as AnyObject)
 
 		currentLocale = locale
 
@@ -120,48 +120,48 @@ import Foundation
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
-		let dataTypeValue = aDecoder.decodeObjectForKey("dataType") as? String
+		let dataTypeValue = aDecoder.decodeObject(forKey: "dataType") as? String
 		dataType = DataType(rawValue: dataTypeValue ?? "") ?? .Unsupported
 
-		let editorTypeValue = aDecoder.decodeObjectForKey("editorType") as? String
+		let editorTypeValue = aDecoder.decodeObject(forKey: "editorType") as? String
 		editorType = Editor(rawValue: editorTypeValue ?? "") ?? .Unsupported
 
-		name = aDecoder.decodeObjectForKey("name") as! String
-		label = aDecoder.decodeObjectForKey("label") as! String
-		tip = aDecoder.decodeObjectForKey("tip") as! String
+		name = aDecoder.decodeObject(forKey: "name") as! String
+		label = aDecoder.decodeObject(forKey: "label") as! String
+		tip = aDecoder.decodeObject(forKey: "tip") as! String
 
-		readOnly = aDecoder.decodeBoolForKey("readOnly")
-		repeatable = aDecoder.decodeBoolForKey("repeatable")
-		required = aDecoder.decodeBoolForKey("required")
-		showLabel = aDecoder.decodeBoolForKey("showLabel")
+		readOnly = aDecoder.decodeBool(forKey: "readOnly")
+		repeatable = aDecoder.decodeBool(forKey: "repeatable")
+		required = aDecoder.decodeBool(forKey: "required")
+		showLabel = aDecoder.decodeBool(forKey: "showLabel")
 
-		currentLocale = aDecoder.decodeObjectForKey("currentLocale") as! NSLocale
+		currentLocale = aDecoder.decodeObject(forKey: "currentLocale") as! Locale
 
 		super.init()
 
-		let predefinedValueString = aDecoder.decodeObjectForKey("predefinedValue") as? String
+		let predefinedValueString = aDecoder.decodeObject(forKey: "predefinedValue") as? String
 		predefinedValue = convert(fromString: predefinedValueString)
 
-		let currentValueString = aDecoder.decodeObjectForKey("currentValue") as? String
+		let currentValueString = aDecoder.decodeObject(forKey: "currentValue") as? String
 		currentValue = convert(fromString: currentValueString)
 	}
 
-	public func encodeWithCoder(aCoder: NSCoder) {
-		aCoder.encodeObject(currentLocale, forKey:"currentLocale")
-		aCoder.encodeObject(dataType.rawValue, forKey:"dataType")
-		aCoder.encodeObject(editorType.rawValue, forKey:"editorType")
-		aCoder.encodeObject(name, forKey:"name")
-		aCoder.encodeObject(label, forKey:"label")
-		aCoder.encodeObject(tip, forKey:"tip")
-		aCoder.encodeBool(readOnly, forKey:"readOnly")
-		aCoder.encodeBool(repeatable, forKey:"repeatable")
-		aCoder.encodeBool(required, forKey:"required")
-		aCoder.encodeBool(showLabel, forKey:"showLabel")
-		aCoder.encodeObject(convert(fromCurrentValue: currentValue), forKey:"currentValue")
-		aCoder.encodeObject(convert(fromCurrentValue: predefinedValue), forKey:"predefinedValue")
+	open func encode(with aCoder: NSCoder) {
+		aCoder.encode(currentLocale, forKey:"currentLocale")
+		aCoder.encode(dataType.rawValue, forKey:"dataType")
+		aCoder.encode(editorType.rawValue, forKey:"editorType")
+		aCoder.encode(name, forKey:"name")
+		aCoder.encode(label, forKey:"label")
+		aCoder.encode(tip, forKey:"tip")
+		aCoder.encode(readOnly, forKey:"readOnly")
+		aCoder.encode(repeatable, forKey:"repeatable")
+		aCoder.encode(required, forKey:"required")
+		aCoder.encode(showLabel, forKey:"showLabel")
+		aCoder.encode(convert(fromCurrentValue: currentValue), forKey:"currentValue")
+		aCoder.encode(convert(fromCurrentValue: predefinedValue), forKey:"predefinedValue")
 	}
 
-	public func validate() -> Bool {
+	open func validate() -> Bool {
 		var valid = !(currentValue == nil && required)
 
 		if valid {
@@ -182,11 +182,11 @@ import Foundation
 	}
 
 	internal func convert(fromString value:String?) -> AnyObject? {
-		return value
+		return value as AnyObject?
 	}
 
 	internal func convert(fromLabel value:String?) -> AnyObject? {
-		return value
+		return value as AnyObject?
 	}
 
 	internal func convert(fromCurrentValue value:AnyObject?) -> String? {
@@ -220,6 +220,6 @@ public func ==(left: DDMField, right: DDMField) -> Bool {
 
 //MARK: Util func
 
-private func valueAsString(dict: [String:AnyObject], key: String) -> String {
-	return (dict[key] ?? "") as! String
+private func valueAsString(_ dict: [String:AnyObject], key: String) -> String {
+	return dict[key] as? String ?? ""
 }

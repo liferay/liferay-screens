@@ -18,16 +18,16 @@ public typealias JSONObject = [String:AnyObject]
 public typealias JSONArray = [AnyObject]
 
 
-public class DDMJSONParser {
+open class DDMJSONParser {
 
 	//MARK: Public methods
 
-	public func parse(json: String, locale: NSLocale) -> [DDMField]? {
-		guard let data = json.dataUsingEncoding(NSUTF8StringEncoding) else {
+	open func parse(_ json: String, locale: Locale) -> [DDMField]? {
+		guard let data = json.data(using: String.Encoding.utf8) else {
 			return nil
 		}
 
-		guard let object = try? NSJSONSerialization.JSONObjectWithData(data, options: []) else {
+		guard let object = try? JSONSerialization.jsonObject(with: data, options: []) else {
 			return nil
 		}
 
@@ -41,13 +41,13 @@ public class DDMJSONParser {
 
 	//MARK: Private methods
 
-	private func processDocument(json: JSONObject, locale: NSLocale) -> [DDMField]? {
+	fileprivate func processDocument(_ json: JSONObject, locale: Locale) -> [DDMField]? {
 		guard let fields = json["fields"] as? [JSONObject] else {
 			return []
 		}
 
 		let defaultLocaleId = (json["defaultLanguageId"] as? String) ?? "en_US"
-		let defaultLocale = NSLocale(localeIdentifier: defaultLocaleId)
+		let defaultLocale = Locale(identifier: defaultLocaleId)
 
 		var result = [DDMField]()
 
@@ -64,9 +64,9 @@ public class DDMJSONParser {
 		return result
 	}
 
-	private func createFormField(jsonField: JSONObject,
-			locale: NSLocale,
-			defaultLocale: NSLocale)
+	fileprivate func createFormField(_ jsonField: JSONObject,
+			locale: Locale,
+			defaultLocale: Locale)
 			-> DDMField? {
 
 		let dataType = DDMField.DataType.from(json: jsonField)
@@ -83,9 +83,9 @@ public class DDMJSONParser {
 			version: LiferayServerVersion.v70)
 	}
 
-	private func processLocalized(jsonField: JSONObject,
-			locale: NSLocale,
-			defaultLocale: NSLocale)
+	fileprivate func processLocalized(_ jsonField: JSONObject,
+			locale: Locale,
+			defaultLocale: Locale)
 			-> JSONObject {
 
 		var result = JSONObject()
@@ -97,7 +97,7 @@ public class DDMJSONParser {
 					result[key] = innerObject[localeFound]
 				}
 				else {
-					result[key] = innerObject
+					result[key] = innerObject as AnyObject?
 				}
 			}
 			else if let innerArray = value as? [JSONObject] {
@@ -105,7 +105,7 @@ public class DDMJSONParser {
 				result[key] = innerArray.map {
 					processLocalized($0,
 						locale: locale, defaultLocale: defaultLocale)
-				}
+				} as AnyObject
 			}
 			else {
 				result[key] = value
@@ -115,8 +115,8 @@ public class DDMJSONParser {
 		return result
 	}
 
-	private func findLocale(localizedObject: JSONObject,
-			locale: NSLocale, defaultLocale: NSLocale)
+	fileprivate func findLocale(_ localizedObject: JSONObject,
+			locale: Locale, defaultLocale: Locale)
 			-> String? {
 
 		// Locale matching fallback mechanism: it's designed in such a way to return
@@ -135,10 +135,10 @@ public class DDMJSONParser {
 		//  b2. Matches elements for any country: "es_ES", "es_AR"...
 		//  b3. Matches elements for default locale
 
-		let localeId = locale.localeIdentifier
-		let defaultLocaleId = defaultLocale.localeIdentifier
-		let currentLanguageCode = locale.objectForKey(NSLocaleLanguageCode) as! String
-		let currentCountryCode = locale.objectForKey(NSLocaleCountryCode) as? String
+		let localeId = locale.identifier
+		let defaultLocaleId = defaultLocale.identifier
+		let currentLanguageCode = (locale as NSLocale).object(forKey: NSLocale.Key.languageCode) as! String
+		let currentCountryCode = (locale as NSLocale).object(forKey: NSLocale.Key.countryCode) as? String
 
 		// cases 'a1' and 'b1'
 		func findFullMatch() -> String? {
@@ -161,8 +161,8 @@ public class DDMJSONParser {
 		// Pre-final fallback (a3, b2): match language with any country
 		func findLanguageAndAnyCountryMatch() -> String? {
 			return localizedObject.filter { entry in
-					let entryLocale = NSLocale(localeIdentifier: entry.0)
-					let entryLanguage = entryLocale.objectForKey(NSLocaleLanguageCode) as! String
+					let entryLocale = Locale(identifier: entry.0)
+					let entryLanguage = (entryLocale as NSLocale).object(forKey: NSLocale.Key.languageCode) as! String
 					return entryLanguage == currentLanguageCode
 				}
 				.first?

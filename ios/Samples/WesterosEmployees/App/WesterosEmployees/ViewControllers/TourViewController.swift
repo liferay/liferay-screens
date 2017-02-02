@@ -26,21 +26,21 @@ class TourViewController: UIViewController, UIScrollViewDelegate {
 		}
 	}
 
-	@IBAction func nextAction(sender: AnyObject) {
-		if let control = pageControl, scroll = scrollView {
+	@IBAction func nextAction(_ sender: AnyObject) {
+		if let control = pageControl, let scroll = scrollView {
 			if control.currentPage + 1 == control.numberOfPages {
 				tourCompleted = true
-				self.dismissViewControllerAnimated(true, completion: nil)
+				self.dismiss(animated: true, completion: nil)
 			}
 			else {
 				let newX = CGFloat((control.currentPage + 1) * Int(scroll.frame.size.width))
-				let newRect = CGRectMake(newX, y: scroll.contentOffset.y, size: scroll.frame.size)
+				let newRect = CGRect(x: newX, y: scroll.contentOffset.y, size: scroll.frame.size)
 				scroll.scrollRectToVisible(newRect, animated: true)
 			}
 		}
 	}
 
-	func scrollViewDidScroll(scrollView: UIScrollView) {
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		let width = scrollView.frame.size.width
 		let xPos = scrollView.contentOffset.x + 10
 

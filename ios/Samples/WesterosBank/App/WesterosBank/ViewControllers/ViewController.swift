@@ -29,7 +29,7 @@ class ViewController: UIViewController {
 		super.viewDidLoad()
 
 		let onDone: () -> () = {
-			self.dismissViewControllerAnimated(true, completion: nil)
+			self.dismiss(animated: true, completion: nil)
 		}
 
 		signInCard.frame.size.height = signInCard.normalHeight - signInCard.minimizedHeight
@@ -48,14 +48,14 @@ class ViewController: UIViewController {
 
 		cardDeck.bottomCard = signUpCard
 
-		signUpCard.currentState = .Minimized
+		signUpCard.currentState = .minimized
 
-		signInCard.currentState = .Hidden
+		signInCard.currentState = .hidden
 		signInCard.resetToCurrentState()
 	}
 
-	override func viewWillAppear(animated: Bool) {
-		self.signInCard.nextState = .Minimized
+	override func viewWillAppear(_ animated: Bool) {
+		self.signInCard.nextState = .minimized
 		self.signInCard.changeToNextState(nil, delay: 0.5)
 	}
 

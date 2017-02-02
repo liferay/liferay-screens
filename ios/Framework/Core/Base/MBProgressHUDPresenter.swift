@@ -18,46 +18,46 @@ import Foundation
 #endif
 
 @objc public enum ProgressCloseMode: Int {
-	case ManualClose
-	case ManualClose_TouchClosable
-	case Autoclose
-	case Autoclose_TouchClosable
+	case manualClose
+	case manualClose_TouchClosable
+	case autoclose
+	case autoclose_TouchClosable
 }
 
 
 @objc public enum ProgressSpinnerMode: Int {
-	case IndeterminateSpinner
-	case DeterminateSpinner
-	case NoSpinner
+	case indeterminateSpinner
+	case determinateSpinner
+	case noSpinner
 }
 
 
-@objc public class MBProgressHUDPresenter: NSObject, ProgressPresenter {
+@objc open class MBProgressHUDPresenter: NSObject, ProgressPresenter {
 
-	public var instance: MBProgressHUD?
+	open var instance: MBProgressHUD?
 
-	public var customView: UIView?
-	public var customColor: UIColor?
-	public var customOpacity = Float(0.8)
+	open var customView: UIView?
+	open var customColor: UIColor?
+	open var customOpacity = Float(0.8)
 
-	internal dynamic func simpleTapDetected(recognizer: UIGestureRecognizer!) {
+	internal dynamic func simpleTapDetected(_ recognizer: UIGestureRecognizer!) {
 		if let hud = recognizer.view as? MBProgressHUD {
 			hud.hide(true)
 			instance = nil
 		}
 	}
 	
-	public func hideHUDFromView(view: UIView?, message: String?, forInteractor interactor: Interactor, withError error: NSError?) {
+	open func hideHUDFromView(_ view: UIView?, message: String?, forInteractor interactor: Interactor, withError error: NSError?) {
 		if message != nil {
 			dispatch_main {
 				if self.instance == nil {
-					self.instance = MBProgressHUD.showHUDAddedTo(view, animated:true)
+					self.instance = MBProgressHUD.showAdded(to: view, animated:true)
 				}
 				
 				self.configureAndShowHUD(self.instance!,
 					message: message,
-					closeMode: error == nil ? .Autoclose_TouchClosable : .ManualClose_TouchClosable,
-					spinnerMode: .NoSpinner)
+					closeMode: error == nil ? .autoclose_TouchClosable : .manualClose_TouchClosable,
+					spinnerMode: .noSpinner)
 			}
 		}
 		else {
@@ -65,23 +65,23 @@ import Foundation
 		}
 	}
 	
-	public func showHUDInView(view: UIView, message: String?, forInteractor interactor: Interactor) {
+	open func showHUDInView(_ view: UIView, message: String?, forInteractor interactor: Interactor) {
 		dispatch_main {
 			if self.instance == nil {
-				self.instance = MBProgressHUD.showHUDAddedTo(view, animated:true)
+				self.instance = MBProgressHUD.showAdded(to: view, animated:true)
 			}
 			
 			self.configureAndShowHUD(self.instance!,
 				message: message,
-				closeMode: .ManualClose,
-				spinnerMode: .IndeterminateSpinner)
+				closeMode: .manualClose,
+				spinnerMode: .indeterminateSpinner)
 		}
 	}
 
 
 	//MARK: PRIVATE METHODS
 	
-	public func hideHud() {
+	open func hideHud() {
 		if self.instance == nil {
 			return
 		}
@@ -92,7 +92,7 @@ import Foundation
 		}
 	}
 
-	public func configureAndShowHUD(hud: MBProgressHUD,
+	open func configureAndShowHUD(_ hud: MBProgressHUD,
 			message: String?,
 			closeMode: ProgressCloseMode,
 			spinnerMode: ProgressSpinnerMode) {
@@ -106,15 +106,15 @@ import Foundation
 		hud.mode = spinnerModeToProgressModeHUD(spinnerMode)
 		hud.minShowTime = 0.5
 
-		if closeMode == .ManualClose_TouchClosable
-				|| closeMode == .Autoclose_TouchClosable {
+		if closeMode == .manualClose_TouchClosable
+				|| closeMode == .autoclose_TouchClosable {
 			hud.addGestureRecognizer(
 				UITapGestureRecognizer(
 					target: self,
 					action: #selector(MBProgressHUDPresenter.simpleTapDetected(_:))))
 		}
 
-		let components = message?.componentsSeparatedByCharactersInSet(NSCharacterSet.newlineCharacterSet())
+		let components = message?.components(separatedBy: .newlines)
 
 		if let components = components {
 			hud.labelText = components[0]
@@ -123,7 +123,7 @@ import Foundation
 
 		hud.show(true)
 
-		if closeMode == .Autoclose_TouchClosable {
+		if closeMode == .autoclose_TouchClosable {
 			// compute autodelay based on text's length
 			let len = (hud.labelText ?? "").characters.count
 				+ (hud.detailsLabelText ?? "").characters.count
@@ -137,7 +137,7 @@ import Foundation
 	}
 
 
-	public func rootView(currentView:UIView) -> UIView {
+	open func rootView(_ currentView:UIView) -> UIView {
 		if currentView.superview == nil {
 			return currentView;
 		}
@@ -145,14 +145,14 @@ import Foundation
 		return rootView(currentView.superview!)
 	}
 
-	public func spinnerModeToProgressModeHUD(spinnerMode: ProgressSpinnerMode) -> MBProgressHUDMode {
+	open func spinnerModeToProgressModeHUD(_ spinnerMode: ProgressSpinnerMode) -> MBProgressHUDMode {
 		switch spinnerMode {
-		case .IndeterminateSpinner:
-			return .Indeterminate
-		case .DeterminateSpinner:
-			return .Determinate
-		case .NoSpinner:
-			return .Text
+		case .indeterminateSpinner:
+			return .indeterminate
+		case .determinateSpinner:
+			return .determinate
+		case .noSpinner:
+			return .text
 		}
 	}
 

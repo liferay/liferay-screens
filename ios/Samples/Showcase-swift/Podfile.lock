@@ -28,21 +28,21 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.4.0):
     - CocoaLumberjack/Default
-  - Cosmos (0.0.1)
-  - CryptoSwift (0.5.2)
+  - Cosmos (8.0.2)
+  - CryptoSwift (0.6.7)
   - DTPickerPresenter (0.2.0)
-  - KeychainAccess (2.4.0)
-  - Kingfisher (2.6.1)
-  - Liferay-iOS-SDK (7.0.6):
+  - KeychainAccess (3.0.1)
+  - Kingfisher (3.3.2)
+  - Liferay-iOS-SDK (7.0.7):
     - AFNetworking (= 2.6.3)
   - Liferay-OAuth (1.2.1):
     - Liferay-iOS-SDK (~> 7.0.4)
   - LiferayScreens (2.0.1):
-    - Cosmos (= 0.0.1)
-    - CryptoSwift (~> 0.5.2)
+    - Cosmos (~> 8.0)
+    - CryptoSwift (~> 0.6.0)
     - DTPickerPresenter (~> 0.2.0)
-    - KeychainAccess (~> 2.4)
-    - Kingfisher (~> 2.4)
+    - KeychainAccess (~> 3.0)
+    - Kingfisher (~> 3.0)
     - Liferay-iOS-SDK (~> 7.0.4)
     - Liferay-OAuth (~> 1.2.0)
     - MBProgressHUD (~> 0.9.1)
@@ -118,14 +118,14 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   CocoaLumberjack: aa9dcab71bdf9eaf2a63bbd9ddc87863efe45457
-  Cosmos: b08ddd200d0ac337231f6c94fc5abce5d27bc312
-  CryptoSwift: c1ef79f901b86099a6fe8b3c7524cf9f3f3c8c40
+  Cosmos: 007c0b8e33a85e5363911bdd933571bbe221f7ef
+  CryptoSwift: 685ae257941e5447474348a2b545583e1a16b573
   DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
-  KeychainAccess: c2a71459af5bddf720a51806046a598500976c04
-  Kingfisher: 7e5515bf6c4f2acad91f6400955d2257549cab7b
-  Liferay-iOS-SDK: ea3212ee6e62c866ca38b9df7415585371c15b22
+  KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
+  Kingfisher: 8e60094454aeb4746eb588eb57f794d891c6ea88
+  Liferay-iOS-SDK: 92e7f46371f3588fdd38a0cee64903b669d6877f
   Liferay-OAuth: a9ff190558928bec8ebc18dd326b01bddd7e2968
-  LiferayScreens: b1113e42b54a6472c1f5579baaf8cf3d01540258
+  LiferayScreens: b8c401dba8fd0e54a0eddc7805ce5e1790221858
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MDRadialProgress: 1068574b9b4b870f64b605b07f734385bde5104d
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
@@ -134,6 +134,6 @@ SPEC CHECKSUMS:
   TNRadioButtonGroup: f5fb9b545d8913bbabe6a72ea1fa6fba4d833bb6
   YapDatabase: b1e43555a34a5298e23a045be96817a5ef0da58f
 
-PODFILE CHECKSUM: d26ca19381d6db0360742d45b8b014a7ad5ea2f7
+PODFILE CHECKSUM: 531024e0034ddac1afec403674a2483498b4f64d
 
 COCOAPODS: 1.1.1

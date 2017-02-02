@@ -21,11 +21,11 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 		didSet {
 			self.addChildViewController(addCommentViewController!)
 			self.addCommentViewController?.onCommentAdded = { comment in
-				self.cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
+				self.cardDeck?.cards[safe: 0]?.changeToState(.minimized)
 				self.commentListScreenlet?.addComment(comment)
 			}
 			self.addCommentViewController?.onCommentUpdated = { comment in
-				self.cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
+				self.cardDeck?.cards[safe: 0]?.changeToState(.minimized)
 				self.commentListScreenlet?.updateComment(comment)
 			}
 		}
@@ -50,7 +50,7 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 	//MARK: Public methods
 
 	func hideAddCommentCard() {
-		self.cardDeck?.cards[safe: 0]?.changeToState(.Minimized)
+		self.cardDeck?.cards[safe: 0]?.changeToState(.minimized)
 	}
 	
 	
@@ -67,7 +67,7 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 		self.init(nibName: "CommentsViewController", bundle: nil)
 	}
 
-	func load(className className: String, classPK: Int64) {
+	func load(className: String, classPK: Int64) {
 		commentListScreenlet?.className = className
 		commentListScreenlet?.classPK = classPK
 		
@@ -78,14 +78,14 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 			//If loading blog...
 			if className == AssetClasses.getClassName(AssetClassNameKey_BlogsEntry)! {
 				card.backgroundColor = DefaultResources.EvenColorBackground
-				card.button.setTitleColor(DefaultResources.OddColorBackground, forState: .Normal)
+				card.button.setTitleColor(DefaultResources.OddColorBackground, for: .normal)
 				card.arrow.image = UIImage(named: "icon_DOWN")
 				card.activityIndicator.color = DefaultResources.OddColorBackground
 				commentListScreenlet?.themeName = "westeros-white"
 			}
 			else {
 				card.backgroundColor = DefaultResources.OddColorBackground
-				card.button.setTitleColor(DefaultResources.EvenColorBackground, forState: .Normal)
+				card.button.setTitleColor(DefaultResources.EvenColorBackground, for: .normal)
 				card.arrow.image = UIImage(named: "icon_DOWN_W")
 				card.activityIndicator.color = DefaultResources.EvenColorBackground
 				commentListScreenlet?.themeName = "westeros"
@@ -106,11 +106,11 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 
 	//MARK: CardDeckDataSource
 
-	func numberOfCardsIn(cardDeck: CardDeckView) -> Int {
+	func numberOfCardsIn(_ cardDeck: CardDeckView) -> Int {
 		return 1
 	}
 
-	func cardDeck(cardDeck: CardDeckView, controllerForCard position: CardPosition)
+	func cardDeck(_ cardDeck: CardDeckView, controllerForCard position: CardPosition)
 		-> CardViewController? {
 			return addCommentViewController
 	}
@@ -118,17 +118,17 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 
 	//MARK: CardDeckDelegate
 
-	func cardDeck(cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
-		card.normalHeight = UIScreen.mainScreen().bounds.height * 0.7
+	func cardDeck(_ cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
+		card.normalHeight = UIScreen.main.bounds.height * 0.7
 	}
 
-	func cardDeck(cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
+	func cardDeck(_ cardDeck: CardDeckView, titleForCard position: CardPosition) -> String? {
 		return "Add Comment"
 	}
 
 
 	//MARK: CommentListScreenletDelegate
-	func screenlet(screenlet: BaseScreenlet, customInteractorForAction action: String, withSender sender: AnyObject?) -> Interactor? {
+	func screenlet(_ screenlet: BaseScreenlet, customInteractorForAction action: String, withSender sender: AnyObject?) -> Interactor? {
 		if action == "edit-comment" {
 			if let comment = sender as? Comment {
 				addCommentViewController?.editComment(comment)

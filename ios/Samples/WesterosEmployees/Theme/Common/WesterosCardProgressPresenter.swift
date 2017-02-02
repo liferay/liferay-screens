@@ -15,7 +15,7 @@ import Foundation
 import LiferayScreens
 
 
-public class WesterosCardProgressPresenter: ProgressPresenter {
+open class WesterosCardProgressPresenter: ProgressPresenter {
 
 	let screenlet: BaseScreenlet?
 
@@ -27,15 +27,15 @@ public class WesterosCardProgressPresenter: ProgressPresenter {
 		self.screenlet = screenlet
 	}
 
-	@objc public func showHUDInView(view: UIView, message: String?, forInteractor interactor: Interactor) {
+	@objc open func showHUDInView(_ view: UIView, message: String?, forInteractor interactor: Interactor) {
 		cardView?.activityIndicator.startAnimating()
 	}
 
-	@objc public func hideHUDFromView(view: UIView?, message: String?, forInteractor interactor: Interactor, withError error: NSError?) {
+	@objc open func hideHUDFromView(_ view: UIView?, message: String?, forInteractor interactor: Interactor, withError error: NSError?) {
 		cardView?.activityIndicator.stopAnimating()
 	}
 
-	func firstCardView(view: UIView?) -> CardView? {
+	func firstCardView(_ view: UIView?) -> CardView? {
 		if let superview = view?.superview {
 			if let cardView = superview as? CardView {
 				return cardView

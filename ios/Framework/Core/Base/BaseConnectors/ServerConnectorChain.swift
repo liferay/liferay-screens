@@ -14,15 +14,15 @@
 import UIKit
 
 
-@objc public class ServerConnectorChain: ServerConnector {
+@objc open class ServerConnectorChain: ServerConnector {
 
-	private struct StreamConnectorsQueue {
+	fileprivate struct StreamConnectorsQueue {
 
-		static private var queue: NSOperationQueue?
+		static fileprivate var queue: OperationQueue?
 
-		static func addConnector(connector: NSOperation) {
+		static func addConnector(_ connector: Operation) {
 			if queue == nil {
-				queue = NSOperationQueue()
+				queue = OperationQueue()
 				queue!.maxConcurrentOperationCount = 1
 			}
 
@@ -31,10 +31,10 @@ import UIKit
 
 	}
 
-	public var onNextStep: ((ServerConnector, Int) -> ServerConnector?)?
+	open var onNextStep: ((ServerConnector, Int) -> ServerConnector?)?
 
-	public let headConnector: ServerConnector
-	public var currentConnector: ServerConnector
+	open let headConnector: ServerConnector
+	open var currentConnector: ServerConnector
 
 
 	//MARK: Initializers
@@ -49,11 +49,11 @@ import UIKit
 
 	//MARK: ServerConnector
 
-	override public func createSession() -> LRSession? {
+	override open func createSession() -> LRSession? {
 		return headConnector.createSession()
 	}
 
-	override public func enqueue(onComplete: (ServerConnector -> Void)?) {
+	override open func enqueue(_ onComplete: ((ServerConnector) -> Void)?) {
 		if onComplete != nil {
 			self.onComplete = onComplete
 		}
@@ -61,19 +61,19 @@ import UIKit
 		StreamConnectorsQueue.addConnector(self)
 	}
 
-	override public func doRun(session session: LRSession) {
-		let waitGroup = dispatch_group_create()
+	override open func doRun(session: LRSession) {
+		let waitGroup = DispatchGroup()
 
-		dispatch_group_enter(waitGroup)
+		waitGroup.enter()
 
 		if let validationError = doStep(0, headConnector, waitGroup) {
 			self.lastError = validationError
 		}
 
-		dispatch_group_wait(waitGroup, DISPATCH_TIME_FOREVER)
+		_ = waitGroup.wait(timeout: .distantFuture)
 	}
 
-	override public func callOnComplete() {
+	override open func callOnComplete() {
 		super.callOnComplete()
 
 		self.onNextStep = nil
@@ -82,10 +82,10 @@ import UIKit
 	
 	//MARK: Private methods
 
-	private func doStep(
-		number: Int,
+	fileprivate func doStep(
+		_ number: Int,
 		_ c: ServerConnector,
-		  _ waitGroup: dispatch_group_t) -> ValidationError? {
+		  _ waitGroup: DispatchGroup) -> ValidationError? {
 
 		let originalCallback = c.onComplete
 
@@ -99,14 +99,14 @@ import UIKit
 
 				if let validationError = validationError {
 					self.lastError = validationError
-					dispatch_group_leave(waitGroup)
+					waitGroup.leave()
 				}
 				else {
 					self.currentConnector = nextOp
 				}
 			}
 			else {
-				dispatch_group_leave(waitGroup)
+				waitGroup.leave()
 			}
 		}
 	}

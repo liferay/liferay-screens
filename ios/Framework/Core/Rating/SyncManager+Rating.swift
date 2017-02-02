@@ -16,9 +16,9 @@ import Foundation
 extension SyncManager {
 
 	func ratingsSynchronizer(
-			key: String,
+			_ key: String,
 			attributes: [String:AnyObject])
-			-> Signal -> () {
+			-> (@escaping Signal) -> () {
 
 		if key.hasPrefix("delete-") {
 			return deleteRatingSynchronizer(key, attributes: attributes)
@@ -31,12 +31,12 @@ extension SyncManager {
 	}
 
 	func deleteRatingSynchronizer(
-			key: String,
+			_ key: String,
 			attributes: [String:AnyObject])
-			-> Signal -> () {
+			-> (@escaping Signal) -> () {
 		return { signal in
 			let className = attributes["className"] as! String
-			let classPK = (attributes["classPK"] as! NSNumber).longLongValue
+			let classPK = (attributes["classPK"] as! NSNumber).int64Value
 			let ratingsGroupCount = Int32(attributes["ratingsGroupCount"] as! Int)
 
 			let interactor = DeleteRatingInteractor(
@@ -55,7 +55,7 @@ extension SyncManager {
 						onItemSyncScreenlet: "RatingsScreenlet",
 						failedKey: key,
 						attributes: attributes,
-						error: NSError.errorWithCause(.NotAvailable,
+						error: NSError.errorWithCause(.notAvailable,
 								message: "Synchronizer for delete rating not available."))
 				signal()
 			}
@@ -63,12 +63,12 @@ extension SyncManager {
 	}
 
 	func updateRatingSynchronizer(
-			key: String,
+			_ key: String,
 			attributes: [String:AnyObject])
-			-> Signal -> () {
+			-> (@escaping Signal) -> () {
 		return { signal in
 			let className = attributes["className"] as! String
-			let classPK = (attributes["classPK"] as! NSNumber).longLongValue
+			let classPK = (attributes["classPK"] as! NSNumber).int64Value
 			let ratingsGroupCount = Int32(attributes["ratingsGroupCount"] as! Int)
 			let score = (attributes["score"] as! NSNumber).doubleValue
 
@@ -89,7 +89,7 @@ extension SyncManager {
 						onItemSyncScreenlet: "RatingsScreenlet",
 						failedKey: key,
 						attributes: attributes,
-						error: NSError.errorWithCause(.NotAvailable,
+						error: NSError.errorWithCause(.notAvailable,
 								message: "Synchronizer for update rating not available."))
 				signal()
 			}

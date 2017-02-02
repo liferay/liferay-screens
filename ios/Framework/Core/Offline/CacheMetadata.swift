@@ -15,12 +15,12 @@ import Foundation
 import YapDatabase
 
 
-@objc public class CacheMetadata : NSObject, NSCoding {
+@objc open class CacheMetadata : NSObject, NSCoding {
 
-	public let synchronized: NSDate?
-	public let attributes: [String:AnyObject]
+	open let synchronized: Date?
+	open let attributes: [String:AnyObject]
 
-	public init(synchronized: NSDate?, attributes: [String:AnyObject]) {
+	public init(synchronized: Date?, attributes: [String:AnyObject]) {
 		self.synchronized = synchronized
 		self.attributes = attributes
 
@@ -28,15 +28,15 @@ import YapDatabase
 	}
 
 	public required convenience init?(coder aDecoder: NSCoder) {
-		let synchronized = aDecoder.decodeObjectForKey("sync_date") as? NSDate
-		let attributes = (aDecoder.decodeObjectForKey("attributes") as? [String:AnyObject]) ?? [:]
+		let synchronized = aDecoder.decodeObject(forKey: "sync_date") as? Date
+		let attributes = (aDecoder.decodeObject(forKey: "attributes") as? [String:AnyObject]) ?? [:]
 
 		self.init(synchronized: synchronized, attributes: attributes)
 	}
 
-	public func encodeWithCoder(aCoder: NSCoder) {
-		aCoder.encodeObject(synchronized, forKey:"sync_date")
-		aCoder.encodeObject(attributes, forKey:"attributes")
+	open func encode(with aCoder: NSCoder) {
+		aCoder.encode(synchronized, forKey:"sync_date")
+		aCoder.encode(attributes, forKey:"attributes")
 	}
 
 }

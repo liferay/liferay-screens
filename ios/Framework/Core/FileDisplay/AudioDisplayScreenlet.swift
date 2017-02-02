@@ -14,9 +14,9 @@
 import Foundation
 
 
-public class AudioDisplayScreenlet: FileDisplayScreenlet {
+open class AudioDisplayScreenlet: FileDisplayScreenlet {
 
-	override public class var supportedMimeTypes: [String] {
+	override open class var supportedMimeTypes: [String] {
 		return ["audio/mpeg", "audio/mpeg3", "audio/wav"]
 	}
 

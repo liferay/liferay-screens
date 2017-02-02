@@ -14,7 +14,7 @@
 import UIKit
 import LiferayScreens
 
-public class UserProfileView: UIView {
+open class UserProfileView: UIView {
 
 	var goBackButtonClicked: (() -> ())?
 	var signOutButtonClicked: (() -> ())?
@@ -29,12 +29,12 @@ public class UserProfileView: UIView {
 	@IBOutlet weak var signOutButton: UIButton? {
 		didSet {
 			signOutButton?.layer.borderWidth = 3.0
-			signOutButton?.layer.borderColor = WesterosThemeBasicRed.CGColor
+			signOutButton?.layer.borderColor = WesterosThemeBasicRed.cgColor
 		}
 	}
 
 
-	public var user: User? {
+	open var user: User? {
 		didSet {
 			userPortraitScreenlet?.load(userId: user!.userId)
 			userNameLabel?.text = "\(user!.firstName) \(user!.lastName)"

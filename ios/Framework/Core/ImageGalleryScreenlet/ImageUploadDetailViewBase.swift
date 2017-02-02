@@ -14,38 +14,38 @@
 import UIKit
 
 
-public class ImageUploadDetailViewBase: UIView {
+open class ImageUploadDetailViewBase: UIView {
 
-	public var image: UIImage?
+	open var image: UIImage?
 
-	public var imageTitle: String?
+	open var imageTitle: String?
 
-	public weak var screenlet: ImageGalleryScreenlet?
+	open weak var screenlet: ImageGalleryScreenlet?
 
 
 	//MARK: Outlets
 
-	@IBOutlet public weak var imagePreview: UIImageView?
+	@IBOutlet open weak var imagePreview: UIImageView?
 
-	@IBOutlet public weak var titleText: UITextField?
+	@IBOutlet open weak var titleText: UITextField?
 
-	@IBOutlet public weak var descripText: UITextView?
+	@IBOutlet open weak var descripText: UITextView?
 
 
 	//MARK: Public methods
 
-	public func startUpload() {
+	open func startUpload() {
 		self.startUpload(
 			self.titleText?.text ?? "",
 			notes: self.descripText?.text ?? "")
 	}
 
-	public func startUpload(title: String, notes: String, thumbnail: UIImage? = nil) {
+	open func startUpload(_ title: String, notes: String, thumbnail: UIImage? = nil) {
 		let nonEmptyTitle = title.isEmpty
-				? "\(self.screenlet!.filePrefix)\(NSUUID().UUIDString)"
+				? "\(self.screenlet!.filePrefix)\(UUID().uuidString)"
 				: title
 
-		let actionClosure: UIImage? -> Void = { thumbnailImage in
+		let actionClosure: (UIImage?) -> Void = { thumbnailImage in
 			let imageUpload = ImageEntryUpload(
 				image: self.image!,
 				thumbnail: thumbnailImage,

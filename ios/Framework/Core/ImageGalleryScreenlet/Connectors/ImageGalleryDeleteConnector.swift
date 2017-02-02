@@ -14,9 +14,9 @@
 import Foundation
 import LRMobileSDK
 
-public class ImageGalleryDeleteConnector : ServerConnector {
+open class ImageGalleryDeleteConnector : ServerConnector {
 
-	private let imageEntryId: Int64
+	fileprivate let imageEntryId: Int64
 
 
 	//MARK: Initializers
@@ -29,7 +29,7 @@ public class ImageGalleryDeleteConnector : ServerConnector {
 
 	//MARK: ServerConnector
 
-	public override func validateData() -> ValidationError? {
+	open override func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -41,12 +41,12 @@ public class ImageGalleryDeleteConnector : ServerConnector {
 		return error
 	}
 
-	public override func doRun(session session: LRSession) {
+	open override func doRun(session: LRSession) {
 		let service = LRDLAppService_v7(session: session)
 
 		var error: NSError?
 
-		service.deleteFileEntryWithFileEntryId(imageEntryId, error: &error)
+		service?.deleteFileEntry(withFileEntryId: imageEntryId, error: &error)
 
 		lastError = error
 	}

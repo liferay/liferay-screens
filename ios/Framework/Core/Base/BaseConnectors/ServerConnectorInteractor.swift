@@ -16,30 +16,30 @@ import UIKit
 
 public typealias CacheStrategy = (
 	ServerConnector,
-	whenSuccess: () -> (),
-	whenFailure: NSError -> ()) -> ()
+	_ whenSuccess: @escaping () -> (),
+	_ whenFailure: @escaping (NSError) -> ()) -> ()
 
 
-public class ServerConnectorInteractor: Interactor {
+open class ServerConnectorInteractor: Interactor {
 
-	public var cacheStrategy = CacheStrategyType.RemoteFirst
+	open var cacheStrategy = CacheStrategyType.remoteFirst
 
-	public var currentConnector: ServerConnector?
+	open var currentConnector: ServerConnector?
 
 
 	//MARK: Interactor
 
-	override public func start() -> Bool {
+	override open func start() -> Bool {
 		self.currentConnector = createConnector()
 
 		if let currentConnector = self.currentConnector {
 			getCacheStrategyImpl(cacheStrategy)(
 				currentConnector,
-				whenSuccess: {
+				{
 					self.completedConnector(currentConnector)
 					self.callOnSuccess()
 				},
-				whenFailure: { err in
+				{ err in
 					currentConnector.lastError = err
 					self.completedConnector(currentConnector)
 					self.callOnFailure(err)
@@ -48,13 +48,13 @@ public class ServerConnectorInteractor: Interactor {
 			return true
 		}
 
-		self.callOnFailure(NSError.errorWithCause(.AbortedDueToPreconditions,
+		self.callOnFailure(NSError.errorWithCause(.abortedDueToPreconditions,
 				message: "An error ocurred when creating the connector."))
 
 		return false
 	}
 
-	override public func cancel() {
+	override open func cancel() {
 		currentConnector?.cancel()
 		super.cancel()
 	}
@@ -62,12 +62,12 @@ public class ServerConnectorInteractor: Interactor {
 
 	//MARK: Interactor
 
-	override public func callOnSuccess() {
+	override open func callOnSuccess() {
 		super.callOnSuccess()
 		currentConnector = nil
 	}
 
-	override public func callOnFailure(error: NSError) {
+	override open func callOnFailure(_ error: NSError) {
 		super.callOnFailure(error)
 		currentConnector = nil
 	}
@@ -75,36 +75,36 @@ public class ServerConnectorInteractor: Interactor {
 
 	//MARK: Public methods
 
-	public func createConnector() -> ServerConnector? {
+	open func createConnector() -> ServerConnector? {
 		return nil
 	}
 
-	public func completedConnector(c: ServerConnector) {
+	open func completedConnector(_ c: ServerConnector) {
 	}
 
-	public func readFromCache(c: ServerConnector, result: AnyObject? -> Void) {
+	open func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> Void) {
 		result(nil)
 	}
 
-	public func writeToCache(c: ServerConnector) {
+	open func writeToCache(_ c: ServerConnector) {
 	}
 
-	public func getCacheStrategyImpl(strategyType: CacheStrategyType) -> CacheStrategy {
-		return defaultStrategyRemote
+	open func getCacheStrategyImpl(_ strategyType: CacheStrategyType) -> CacheStrategy {
+		return defaultStrategyRemote 
 	}
 
 
 	//MARK: Default strategy implementations
 
-	public func defaultStrategyRemote(
-			connector: ServerConnector,
-			whenSuccess: () -> (),
-			whenFailure: NSError -> ()) {
+	open func defaultStrategyRemote(
+			_ connector: ServerConnector,
+			whenSuccess: @escaping () -> (),
+			whenFailure: @escaping (NSError) -> ()) {
 
 		let validationError = connector.validateAndEnqueue() {
 			if let error = $0.lastError {
 				if error.domain == "NSURLErrorDomain" {
-					$0.lastError = NSError.errorWithCause(.NotAvailable,
+					$0.lastError = NSError.errorWithCause(.notAvailable,
 							message: "URL error domain.")
 				}
 				whenFailure($0.lastError!)
@@ -119,25 +119,25 @@ public class ServerConnectorInteractor: Interactor {
 		}
 	}
 
-	public func defaultStrategyReadFromCache(
-			connector: ServerConnector,
-			whenSuccess: () -> (),
-			whenFailure: NSError -> ()) {
+	open func defaultStrategyReadFromCache(
+			_ connector: ServerConnector,
+			whenSuccess: @escaping () -> (),
+			whenFailure: @escaping (NSError) -> ()) {
 		self.readFromCache(connector) {
 			if $0 != nil {
 				whenSuccess()
 			}
 			else {
-				whenFailure(NSError.errorWithCause(.NotAvailable,
+				whenFailure(NSError.errorWithCause(.notAvailable,
 						message: "Could not read from cache."))
 			}
 		}
 	}
 
-	public func defaultStrategyWriteToCache(
-			connector: ServerConnector,
+	open func defaultStrategyWriteToCache(
+			_ connector: ServerConnector,
 			whenSuccess: () -> (),
-			whenFailure: NSError -> ()) {
+			whenFailure: (NSError) -> ()) {
 
 		// the closure is called before because it fires the 
 		// "completedConnector" method and it should be run
@@ -149,20 +149,20 @@ public class ServerConnectorInteractor: Interactor {
 
 	//MARK: Strategy builders
 
-	public func createStrategy(
-			whenFails mainStrategy: CacheStrategy,
-			then onFailStrategy: CacheStrategy) -> CacheStrategy {
+	open func createStrategy(
+			whenFails mainStrategy: @escaping CacheStrategy,
+			then onFailStrategy: @escaping CacheStrategy) -> CacheStrategy {
 
 		return { (connector: ServerConnector,
-				whenSuccess: () -> (),
-				whenFailure: NSError -> ()) -> () in
+				whenSuccess: @escaping () -> (),
+				whenFailure: @escaping (NSError) -> ()) -> () in
 			mainStrategy(connector,
-				whenSuccess: whenSuccess,
-				whenFailure: { err -> () in
-					if err.code == ScreensErrorCause.NotAvailable.rawValue {
+				whenSuccess,
+				{ err -> () in
+					if err.code == ScreensErrorCause.notAvailable.rawValue {
 						onFailStrategy(connector,
-							whenSuccess: whenSuccess,
-							whenFailure: whenFailure)
+							whenSuccess,
+							whenFailure)
 					}
 					else {
 						whenFailure(err)
@@ -171,41 +171,41 @@ public class ServerConnectorInteractor: Interactor {
 		}
 	}
 
-	public func createStrategy(
-			whenSucceeds mainStrategy: CacheStrategy,
-			then onSuccessStrategy: CacheStrategy) -> CacheStrategy {
+	open func createStrategy(
+			whenSucceeds mainStrategy: @escaping CacheStrategy,
+			then onSuccessStrategy: @escaping CacheStrategy) -> CacheStrategy {
 
 		return { (connector: ServerConnector,
-				whenSuccess: () -> (),
-				whenFailure: NSError -> ()) -> () in
+				whenSuccess: @escaping () -> (),
+				whenFailure: @escaping (NSError) -> ()) -> () in
 			mainStrategy(connector,
-				whenSuccess: {
+				{
 					onSuccessStrategy(connector,
-						whenSuccess: whenSuccess,
-						whenFailure: whenFailure)
+						whenSuccess,
+						whenFailure)
 				},
-				whenFailure: whenFailure)
+				whenFailure)
 		}
 	}
 
-	public func createStrategy(
-			firstStrategy: CacheStrategy,
-			andThen secondStrategy: CacheStrategy) -> CacheStrategy {
+	open func createStrategy(
+			_ firstStrategy: @escaping CacheStrategy,
+			andThen secondStrategy: @escaping CacheStrategy) -> CacheStrategy {
 
 		return { (connector: ServerConnector,
-				whenSuccess: () -> (),
-				whenFailure: NSError -> ()) -> () in
+				whenSuccess: @escaping () -> (),
+				whenFailure: @escaping (NSError) -> ()) -> () in
 			firstStrategy(connector,
-				whenSuccess: {
+				{
 					secondStrategy(connector,
-						whenSuccess: whenSuccess,
-						whenFailure: whenFailure)
+						whenSuccess,
+						whenFailure)
 				},
-				whenFailure: { err -> () in
-					if err.code == ScreensErrorCause.NotAvailable.rawValue {
+				{ err -> () in
+					if err.code == ScreensErrorCause.notAvailable.rawValue {
 						secondStrategy(connector,
-							whenSuccess: whenSuccess,
-							whenFailure: whenFailure)
+							whenSuccess,
+							whenFailure)
 					}
 					else {
 						whenFailure(err)

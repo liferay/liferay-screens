@@ -16,21 +16,21 @@ import UIKit
 
 public protocol KeyboardLayoutable {
 
-	func layoutWhenKeyboardShown(keyboardHeight: CGFloat, animation:(time: NSNumber, curve: NSNumber))
+	func layoutWhenKeyboardShown(_ keyboardHeight: CGFloat, animation:(time: NSNumber, curve: NSNumber))
 
 	func layoutWhenKeyboardHidden()
 }
 
 
-public class KeyboardManager {
+open class KeyboardManager {
 
-	private struct StaticData {
+	fileprivate struct StaticData {
 		static var currentHeight: CGFloat?
 		static var visible = false
 	}
 
 
-	public class var currentHeight: CGFloat? {
+	open class var currentHeight: CGFloat? {
 		get {
 			return StaticData.currentHeight
 		}
@@ -39,16 +39,16 @@ public class KeyboardManager {
 		}
 	}
 
-	public class var isVisible: Bool {
+	open class var isVisible: Bool {
 		return StaticData.visible
 	}
 
 	//FIXME
-	public class var defaultHeight: CGFloat { return 253 }
-	public class var defaultAutocorrectionBarHeight: CGFloat { return 38 }
+	open class var defaultHeight: CGFloat { return 253 }
+	open class var defaultAutocorrectionBarHeight: CGFloat { return 38 }
 
 
-	private var layoutable: KeyboardLayoutable?
+	fileprivate var layoutable: KeyboardLayoutable?
 
 
 	public init() {
@@ -58,38 +58,38 @@ public class KeyboardManager {
 		unregisterObserver()
 	}
 
-	public func registerObserver(layoutable: KeyboardLayoutable) {
+	open func registerObserver(_ layoutable: KeyboardLayoutable) {
 		self.layoutable = layoutable
 
-		NSNotificationCenter.defaultCenter().addObserver(self,
+		NotificationCenter.default.addObserver(self,
 				selector: #selector(KeyboardManager.keyboardShown(_:)),
-				name: UIKeyboardWillShowNotification,
+				name: .UIKeyboardWillShow,
 				object: nil)
 
-		NSNotificationCenter.defaultCenter().addObserver(self,
+		NotificationCenter.default.addObserver(self,
 				selector: #selector(KeyboardManager.keyboardHidden(_:)),
-				name: UIKeyboardWillHideNotification,
+				name: .UIKeyboardWillHide,
 				object: nil)
 	}
 
-	public func unregisterObserver() {
+	open func unregisterObserver() {
 		self.layoutable = nil
 
-		NSNotificationCenter.defaultCenter().removeObserver(self,
-				name: UIKeyboardDidShowNotification,
+		NotificationCenter.default.removeObserver(self,
+				name: .UIKeyboardDidShow,
 				object: nil)
 
-		NSNotificationCenter.defaultCenter().removeObserver(self,
-				name: UIKeyboardDidHideNotification,
+		NotificationCenter.default.removeObserver(self,
+				name: .UIKeyboardDidHide,
 				object: nil)
 	}
 
 
 	//MARK: Private methods
 
-	private dynamic func keyboardShown(notification: NSNotification?) {
+	fileprivate dynamic func keyboardShown(_ notification: Notification?) {
 		let value = notification!.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
-		let frame = adjustRectForCurrentOrientation(value.CGRectValue())
+		let frame = adjustRectForCurrentOrientation(value.cgRectValue)
 
 		StaticData.currentHeight = frame.size.height
 		StaticData.visible = true
@@ -103,7 +103,7 @@ public class KeyboardManager {
 				animation: (time: animationDuration, curve: animationCurve))
 	}
 
-	private dynamic func keyboardHidden(notification: NSNotification?) {
+	fileprivate dynamic func keyboardHidden(_ notification: Notification?) {
 		StaticData.visible = false
 
 		layoutable?.layoutWhenKeyboardHidden()

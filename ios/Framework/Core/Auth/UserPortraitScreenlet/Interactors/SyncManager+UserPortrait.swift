@@ -16,28 +16,28 @@ import Foundation
 extension SyncManager {
 
 	func userPortraitSynchronizer(
-			key: String,
+			_ key: String,
 			attributes: [String:AnyObject])
-			-> Signal -> () {
+			-> (@escaping Signal) -> () {
 
 		return { signal in
-			let userId = attributes["userId"]!.longLongValue
+			let userId = attributes["userId"]!.int64Value
 
 			self.cacheManager.getImage(
-					collection: ScreenletName(UserPortraitScreenlet),
+					collection: ScreenletName(UserPortraitScreenlet.self),
 					key: key) {
 
 				if let image = $0 {
 					let interactor = UploadUserPortraitInteractor(
 						screenlet: nil,
-						userId: userId,
+						userId: userId!,
 						image: image)
 					
 					self.prepareInteractorForSync(interactor,
 						key: key,
 						attributes: attributes,
 						signal: signal,
-						screenletClassName: ScreenletName(UserPortraitScreenlet))
+						screenletClassName: ScreenletName(UserPortraitScreenlet.self))
 
 					if !interactor.start() {
 						signal()
@@ -45,10 +45,10 @@ extension SyncManager {
 				}
 				else {
 					self.delegate?.syncManager?(self,
-						onItemSyncScreenlet: ScreenletName(UserPortraitScreenlet),
+						onItemSyncScreenlet: ScreenletName(UserPortraitScreenlet.self),
 						failedKey: key,
 						attributes: attributes,
-						error: NSError.errorWithCause(.NotAvailable,
+						error: NSError.errorWithCause(.notAvailable,
 								message: "Synchronizer for user portrait not available."))
 
 					signal()

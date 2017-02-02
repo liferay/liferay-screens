@@ -14,30 +14,30 @@
 import UIKit
 
 
-public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewModel {
+open class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewModel {
 
 
 	//MARK: Outlets
 
-	@IBOutlet public var userNameField: UITextField?
+	@IBOutlet open var userNameField: UITextField?
 
-	@IBOutlet public var requestPasswordButton: UIButton?
+	@IBOutlet open var requestPasswordButton: UIButton?
 
-	override public var progressMessages: [String:ProgressMessages] {
+	override open var progressMessages: [String:ProgressMessages] {
 		return [
 			BaseScreenlet.DefaultAction : [
-				.Working : LocalizedString("default", key: "forgotpassword-loading-message", obj: self),
-				.Failure : LocalizedString("default", key: "forgotpassword-loading-error", obj: self),
-				.Success : LocalizedString("default", key: "forgotpassword-\(successMessageKey)", obj: self)
+				.working : LocalizedString("default", key: "forgotpassword-loading-message", obj: self),
+				.failure : LocalizedString("default", key: "forgotpassword-loading-error", obj: self),
+				.success : LocalizedString("default", key: "forgotpassword-\(successMessageKey)", obj: self)
 			]
 		]
 	}
 
-	private var successMessageKey = "password-sent"
+	fileprivate var successMessageKey = "password-sent"
 
 	//MARK: ForgotPasswordViewModel
 
-	public var userName: String? {
+	open var userName: String? {
 		get {
 			return nullIfEmpty(userNameField?.text)
 		}
@@ -49,7 +49,7 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 
 	//MARK: BasicAuthBasedType
 
-	public var basicAuthMethod: String? = BasicAuthMethod.Email.rawValue {
+	open var basicAuthMethod: String? = BasicAuthMethod.email.rawValue {
 		didSet {
 			setBasicAuthMethodStyles(view: self,
 			                         basicAuthMethod: BasicAuthMethod.create(basicAuthMethod),
@@ -57,7 +57,7 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 		}
 	}
 
-	public var saveCredentials: Bool {
+	open var saveCredentials: Bool {
 		get {
 			return false
 		}
@@ -67,33 +67,33 @@ public class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMo
 
 	//MARK: BaseScreenletView
 
-	override public func onCreated() {
+	override open func onCreated() {
 		super.onCreated()
 
 		setButtonDefaultStyle(requestPasswordButton)
 	}
 
-	override public func onSetTranslations() {
+	override open func onSetTranslations() {
 		userNameField?.placeholder = LocalizedString("default", key: "forgotpassword-username", obj: self)
 		requestPasswordButton?.replaceAttributedTitle(
 				LocalizedString("default", key: "forgotpassword-button", obj: self),
-				forState: .Normal)
+				forState: .normal)
 
 	}
 
-	override public func onStartInteraction() {
-		requestPasswordButton?.enabled = false
+	override open func onStartInteraction() {
+		requestPasswordButton?.isEnabled = false
 	}
 
-	override public func onFinishInteraction(result: AnyObject?, error: NSError?) {
-		requestPasswordButton?.enabled = true
+	override open func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
+		requestPasswordButton?.isEnabled = true
 
 		if let resultPasswordSent = result as? Bool {
 			successMessageKey = resultPasswordSent ? "password-sent" : "reset-sent"
 		}
 	}
 
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
 	}
 

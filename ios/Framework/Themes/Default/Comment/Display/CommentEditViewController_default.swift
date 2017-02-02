@@ -15,35 +15,35 @@ import UIKit
 
 private let xibName = "CommentEditViewController_default"
 
-public class CommentEditViewController_default: UIViewController, UITextViewDelegate {
+open class CommentEditViewController_default: UIViewController, UITextViewDelegate {
 
 
 	//MARK: Outlets
 
-	@IBOutlet public var bodyTextView: UITextView?
+	@IBOutlet open var bodyTextView: UITextView?
 
-	@IBOutlet public var confirmButton: UIButton?
+	@IBOutlet open var confirmButton: UIButton?
 
-	@IBOutlet public var cancelButton: UIButton?
+	@IBOutlet open var cancelButton: UIButton?
 
-	@IBOutlet public var scrollView: UIScrollView?
+	@IBOutlet open var scrollView: UIScrollView?
 
-	public var confirmBodyClosure: (String? -> Void)?
+	open var confirmBodyClosure: ((String?) -> Void)?
 
-	private var placeholderLabel : UILabel!
+	fileprivate var placeholderLabel : UILabel!
 
-	private var initialBody: String?
+	fileprivate var initialBody: String?
 
 
 	//MARK: Initializers
 
-	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 	}
 
 	public convenience init(body: String?) {
 		self.init(nibName: xibName,
-				bundle: NSBundle.bundleForNibName(xibName, currentClass: self.dynamicType))
+				bundle: Bundle.bundleForNibName(xibName, currentClass: type(of: self)))
 
 		self.initialBody = body
 	}
@@ -55,21 +55,21 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 
 	//MARK: UIViewController
 
-	override public func viewDidLoad() {
+	override open func viewDidLoad() {
 		confirmButton?.replaceAttributedTitle(
 			LocalizedString("default", key: "comment-display-confirm", obj: self),
-			forState: .Normal)
+			forState: .normal)
 		cancelButton?.replaceAttributedTitle(
 			LocalizedString("default", key: "comment-display-cancel", obj: self),
-			forState: .Normal)
+			forState: .normal)
 
-		let notificationCenter = NSNotificationCenter.defaultCenter()
+		let notificationCenter = NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard),
-			name: UIKeyboardWillHideNotification, object: nil)
+			name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard),
-			name: UIKeyboardWillChangeFrameNotification, object: nil)
+			name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
 
-		if let textView = bodyTextView, font = textView.font {
+		if let textView = bodyTextView, let font = textView.font {
 			textView.text = initialBody
 			textView.delegate = self
 
@@ -77,11 +77,11 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 			placeholderLabel = UILabel()
 			placeholderLabel.text = LocalizedString(
 				"default", key: "comment-display-type", obj: self)
-			placeholderLabel.font = UIFont.italicSystemFontOfSize(font.pointSize)
+			placeholderLabel.font = UIFont.italicSystemFont(ofSize: font.pointSize)
 			placeholderLabel.sizeToFit()
-			placeholderLabel.frame.origin = CGPointMake(5, font.pointSize / 2)
+			placeholderLabel.frame.origin = CGPoint(x: 5, y: font.pointSize / 2)
 			placeholderLabel.textColor = UIColor(white: 0, alpha: 0.3)
-			placeholderLabel.hidden = !textView.text.isEmpty
+			placeholderLabel.isHidden = !textView.text.isEmpty
 			textView.addSubview(placeholderLabel)
 
 			bodyTextView?.becomeFirstResponder()
@@ -91,16 +91,16 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 
 	//MARK: Keyboard action
 
-	func adjustForKeyboard(notification: NSNotification) {
+	func adjustForKeyboard(_ notification: Notification) {
 		if let keyboardScreenEndFrame =
-				(notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.CGRectValue(),
-				scroll = scrollView {
+				(notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+				let scroll = scrollView {
 
 			let keyboardViewEndFrame =
-				view.convertRect(keyboardScreenEndFrame, fromView: view.window)
+				view.convert(keyboardScreenEndFrame, from: view.window)
 
-			if notification.name == UIKeyboardWillHideNotification {
-				scroll.contentInset = UIEdgeInsetsZero
+			if notification.name == NSNotification.Name.UIKeyboardWillHide {
+				scroll.contentInset = UIEdgeInsets.zero
 			} else {
 				scroll.contentInset =
 					UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
@@ -113,19 +113,19 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 
 	//MARK: UITextViewDelegate
 
-	public func textViewDidChange(textView: UITextView) {
-		placeholderLabel.hidden = !textView.text.isEmpty
+	open func textViewDidChange(_ textView: UITextView) {
+		placeholderLabel.isHidden = !textView.text.isEmpty
 	}
 
 
 	//MARK: Actions
 
-	@IBAction public func cancelButtonAction() {
+	@IBAction open func cancelButtonAction() {
 		bodyTextView?.resignFirstResponder()
 		confirmBodyClosure?(nil)
 	}
 
-	@IBAction public func confirmButtonAction() {
+	@IBAction open func confirmButtonAction() {
 		bodyTextView?.resignFirstResponder()
 		confirmBodyClosure?(bodyTextView?.text)
 	}

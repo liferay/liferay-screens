@@ -14,10 +14,10 @@
 import UIKit
 
 
-public class DDLListPageLiferayConnector: PaginationLiferayConnector {
+open class DDLListPageLiferayConnector: PaginationLiferayConnector {
 
-	public var userId: Int64?
-	public var recordSetId: Int64?
+	open var userId: Int64?
+	open var recordSetId: Int64?
 
 	internal let viewModel: DDLListViewModel
 
@@ -33,7 +33,7 @@ public class DDLListPageLiferayConnector: PaginationLiferayConnector {
 
 	//MARK: ServerConnector
 
-	override public func validateData() -> ValidationError? {
+	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -52,13 +52,13 @@ public class DDLListPageLiferayConnector: PaginationLiferayConnector {
 }
 
 
-public class Liferay62DDLListPageConnector: DDLListPageLiferayConnector {
+open class Liferay62DDLListPageConnector: DDLListPageLiferayConnector {
 
 
 	//MARK: PaginationLiferayConnector
 
-	override public func doAddPageRowsServiceCall(
-			session session: LRBatchSession,
+	override open func doAddPageRowsServiceCall(
+			session: LRBatchSession,
 			startRow: Int,
 			endRow: Int,
 			obc: LRJSONObjectWrapper?) {
@@ -67,14 +67,14 @@ public class Liferay62DDLListPageConnector: DDLListPageLiferayConnector {
 
 		do {
 			if userId == nil {
-				try service.getDdlRecordsWithDdlRecordSetId(recordSetId!,
+				try service?.getDdlRecords(withDdlRecordSetId: recordSetId!,
 					locale: NSLocale.currentLocaleString,
 					start: Int32(startRow),
 					end: Int32(endRow),
 					obc: obc)
 			}
 			else {
-				try service.getDdlRecordsWithDdlRecordSetId(recordSetId!,
+				try service?.getDdlRecords(withDdlRecordSetId: recordSetId!,
 					userId: userId!,
 					locale: NSLocale.currentLocaleString,
 					start: Int32(startRow),
@@ -86,15 +86,15 @@ public class Liferay62DDLListPageConnector: DDLListPageLiferayConnector {
 		}
 	}
 
-	override public func doAddRowCountServiceCall(session session: LRBatchSession) {
+	override open func doAddRowCountServiceCall(session: LRBatchSession) {
 		let service = LRScreensddlrecordService_v62(session: session)
 
 		do {
 			if userId == nil {
-				try service.getDdlRecordsCountWithDdlRecordSetId(recordSetId!)
+				try service?.getDdlRecordsCount(withDdlRecordSetId: recordSetId!)
 			}
 			else {
-				try service.getDdlRecordsCountWithDdlRecordSetId(recordSetId!,
+				try service?.getDdlRecordsCount(withDdlRecordSetId: recordSetId!,
 					userId: userId!)
 			}
 		}
@@ -105,13 +105,13 @@ public class Liferay62DDLListPageConnector: DDLListPageLiferayConnector {
 }
 
 
-public class Liferay70DDLListPageConnector: DDLListPageLiferayConnector {
+open class Liferay70DDLListPageConnector: DDLListPageLiferayConnector {
 
 
 	//MARK: PaginationLiferayConnector
 
-	override public func doAddPageRowsServiceCall(
-			session session: LRBatchSession,
+	override open func doAddPageRowsServiceCall(
+			session: LRBatchSession,
 			startRow: Int,
 			endRow: Int,
 			obc: LRJSONObjectWrapper?) {
@@ -120,14 +120,14 @@ public class Liferay70DDLListPageConnector: DDLListPageLiferayConnector {
 
 		do {
 			if userId == nil {
-				try service.getDdlRecordsWithDdlRecordSetId(recordSetId!,
+				try service?.getDdlRecords(withDdlRecordSetId: recordSetId!,
 					locale: NSLocale.currentLocaleString,
 					start: Int32(startRow),
 					end: Int32(endRow),
 					obc: obc)
 			}
 			else {
-				try service.getDdlRecordsWithDdlRecordSetId(recordSetId!,
+				try service?.getDdlRecords(withDdlRecordSetId: recordSetId!,
 					userId: userId!,
 					locale: NSLocale.currentLocaleString,
 					start: Int32(startRow),
@@ -139,15 +139,15 @@ public class Liferay70DDLListPageConnector: DDLListPageLiferayConnector {
 		}
 	}
 
-	override public func doAddRowCountServiceCall(session session: LRBatchSession) {
+	override open func doAddRowCountServiceCall(session: LRBatchSession) {
 		let service = LRScreensddlrecordService_v70(session: session)
 
 		do {
 			if userId == nil {
-				try service.getDdlRecordsCountWithDdlRecordSetId(recordSetId!)
+				try service?.getDdlRecordsCount(withDdlRecordSetId: recordSetId!)
 			}
 			else {
-				try service.getDdlRecordsCountWithDdlRecordSetId(recordSetId!,
+				try service?.getDdlRecordsCount(withDdlRecordSetId: recordSetId!,
 					userId: userId!)
 			}
 		}

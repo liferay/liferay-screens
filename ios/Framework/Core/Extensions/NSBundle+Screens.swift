@@ -14,16 +14,16 @@
 import Foundation
 
 
-extension NSBundle {
+extension Bundle {
 
-	public class func allBundles(currentClass: AnyClass) -> [NSBundle] {
+	public class func allBundles(_ currentClass: AnyClass) -> [Bundle] {
 		let bundles =
 			[
 				discoverBundles(),
 				bundlesForDefaultTheme(),
 				bundlesForCore(),
 				bundlesForApp(),
-				[NSBundle(forClass: currentClass)]
+				[Bundle(for: currentClass)]
 			]
 			.flatMap { $0 }
 
@@ -32,8 +32,8 @@ extension NSBundle {
 		}
 	}
 
-	public class func discoverBundles() -> [NSBundle] {
-		let allBundles = NSBundle.allFrameworks() 
+	public class func discoverBundles() -> [Bundle] {
+		let allBundles = Bundle.allFrameworks 
 
 		return allBundles.filter {
 			let screensPrefix = "LiferayScreens"
@@ -46,55 +46,55 @@ extension NSBundle {
 
 	//MARK: bundlesForX methods
 
-	public class func bundlesForDefaultTheme() -> [NSBundle] {
+	public class func bundlesForDefaultTheme() -> [Bundle] {
 		return [bundleForName("LiferayScreens-default"), bundleForName("LiferayScreens-ee-default")]
 	}
 
-	public class func bundlesForCore() -> [NSBundle] {
+	public class func bundlesForCore() -> [Bundle] {
 		return [bundleForName("LiferayScreens-core"), bundleForName("LiferayScreens-ee-core")]
 	}
 
-	public class func bundleForName(name: String) -> NSBundle {
-		let frameworkBundle = NSBundle(forClass: BaseScreenlet.self)
+	public class func bundleForName(_ name: String) -> Bundle {
+		let frameworkBundle = Bundle(for: BaseScreenlet.self)
 
-		let bundlePath = frameworkBundle.pathForResource(name, ofType: "bundle")
+		let bundlePath = frameworkBundle.path(forResource: name, ofType: "bundle")
 
 		// In test environment, separated bundles don't exist.
 		// In such case, the frameworkBundle is used
-		return (bundlePath != nil) ? NSBundle(path: bundlePath!)! : frameworkBundle
+		return (bundlePath != nil) ? Bundle(path: bundlePath!)! : frameworkBundle
 	}
 
-	public class func bundlesForApp() -> [NSBundle] {
+	public class func bundlesForApp() -> [Bundle] {
 
-		func appFile(path: String) -> String? {
-			let files = try? NSFileManager.defaultManager().contentsOfDirectoryAtPath(path)
+		func appFile(_ path: String) -> String? {
+			let files = try? FileManager.default.contentsOfDirectory(atPath: path)
 			return (files ?? []).filter {
 					($0 as NSString).pathExtension == "app"
 				}
 				.first
 		}
 
-		let components = ((NSBundle.mainBundle().resourcePath ?? "") as NSString).pathComponents ?? []
+		let components = ((Bundle.main.resourcePath ?? "") as NSString).pathComponents 
 
 		if components.last == "Overlays" {
 			// running into IB
 			let coreBundle = bundlesForCore()[0]
 
-			if let range = coreBundle.resourcePath?.rangeOfString("Debug-iphonesimulator"),
-					path = coreBundle.resourcePath?.substringToIndex(range.endIndex),
-					appName = appFile(path),
-					appBundle = NSBundle(path: (path as NSString).stringByAppendingPathComponent(appName)) {
-				return [NSBundle.mainBundle(), appBundle]
+			if let range = coreBundle.resourcePath?.range(of: "Debug-iphonesimulator"),
+					let path = coreBundle.resourcePath?.substring(to: range.upperBound),
+					let appName = appFile(path),
+					let appBundle = Bundle(path: (path as NSString).appendingPathComponent(appName)) {
+				return [Bundle.main, appBundle]
 			}
 		}
 
-		return [NSBundle.mainBundle()]
+		return [Bundle.main]
 	}
 
-	public class func bundleForNibName(name: String, currentClass: AnyClass) -> NSBundle? {
-		return NSBundle.allBundles(currentClass)
+	public class func bundleForNibName(_ name: String, currentClass: AnyClass) -> Bundle? {
+		return Bundle.allBundles(currentClass)
 			.filter{
-				$0.pathForResource(name, ofType:"nib") != nil
+				$0.path(forResource: name, ofType:"nib") != nil
 			}
 			.first
 	}
@@ -103,9 +103,9 @@ extension NSBundle {
 
 	//MARK: xInBundles methods
 
-	public class func imageInBundles(name name: String, currentClass: AnyClass) -> UIImage? {
+	public class func imageInBundles(name: String, currentClass: AnyClass) -> UIImage? {
 		for bundle in allBundles(currentClass) {
-			if let path = bundle.pathForResource(name, ofType: "png") {
+			if let path = bundle.path(forResource: name, ofType: "png") {
 				return UIImage(contentsOfFile: path)
 			}
 		}
@@ -113,7 +113,7 @@ extension NSBundle {
 		return nil
 	}
     
-    public class func nibInBundles(name name: String, currentClass: AnyClass) -> UINib? {
+    public class func nibInBundles(name: String, currentClass: AnyClass) -> UINib? {
         return resourceInBundle(
             	name: name,
             	ofType: "nib",
@@ -126,7 +126,7 @@ extension NSBundle {
 	//MARK: xforTheme methods
 
 	public class func viewForThemeOrDefault(
-			name name: String,
+			name: String,
 			themeName: String,
 			currentClass: AnyClass) -> UIView? {
 
@@ -137,7 +137,7 @@ extension NSBundle {
 	}
 
 	public class func viewForTheme(
-			name name: String,
+			name: String,
 			themeName: String,
 			currentClass: AnyClass) -> UIView? {
 
@@ -148,11 +148,11 @@ extension NSBundle {
 	}
 
 	public class func rootNibObjectForThemeOrDefault(
-			name name: String,
+			name: String,
 			themeName: String,
 			currentClass: AnyClass) -> AnyObject? {
 
-		if let foundObject = NSBundle.rootNibObjectForTheme(
+		if let foundObject = Bundle.rootNibObjectForTheme(
 				name: name,
 				themeName: themeName,
 				currentClass: currentClass) {
@@ -164,7 +164,7 @@ extension NSBundle {
 			return nil
 		}
 
-		if let foundObject = NSBundle.rootNibObjectForTheme(
+		if let foundObject = Bundle.rootNibObjectForTheme(
 				name: name,
 				themeName: BaseScreenlet.DefaultThemeName,
 				currentClass: currentClass) {
@@ -176,7 +176,7 @@ extension NSBundle {
 	}
 
 	public class func rootNibObjectForTheme(
-			name name: String,
+			name: String,
 			themeName: String,
 			currentClass: AnyClass) -> AnyObject? {
 
@@ -190,18 +190,18 @@ extension NSBundle {
 
 			assert(objects == nil || objects!.count > 0, "Malformed xib \(nibName). Without objects")
 
-			return objects![0]
+			return objects![0] as AnyObject?
 		}
 	}
     
     public class func resourceInBundle<T>(
-			name name: String,
+			name: String,
 			ofType type: String,
 			currentClass: AnyClass,
-			@noescape resourceInit: (String , NSBundle) -> T?) -> T? {
+			resourceInit: (String , Bundle) -> T?) -> T? {
 
         for bundle in allBundles(currentClass) {
-            if let path = bundle.pathForResource(name, ofType: type) {
+            if let path = bundle.path(forResource: name, ofType: type) {
                 return resourceInit(path, bundle)
             }
         }

@@ -29,7 +29,7 @@ class CommentDisplayScreenletViewController: UIViewController, CommentDisplayScr
 	
 	//MARK: IBAction
 
-	@IBAction func loadComment(sender: AnyObject) {
+	@IBAction func loadComment(_ sender: AnyObject) {
 		if let commentId = Int(commentIdText?.text ?? "") {
 			screenlet?.commentId = Int64(commentId)
 			screenlet?.load()
@@ -39,31 +39,31 @@ class CommentDisplayScreenletViewController: UIViewController, CommentDisplayScr
 	
 	//MARK: CommentDisplayScreenletDelegate
 
-	func screenlet(screenlet: CommentDisplayScreenlet, onCommentLoaded comment: Comment) {
+	func screenlet(_ screenlet: CommentDisplayScreenlet, onCommentLoaded comment: Comment) {
 		LiferayLogger.logDelegateMessage(args: comment)
-		screenlet.hidden = false
+		screenlet.isHidden = false
 	}
 
-	func screenlet(screenlet: CommentDisplayScreenlet, onLoadCommentError error: NSError) {
+	func screenlet(_ screenlet: CommentDisplayScreenlet, onLoadCommentError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
-		screenlet.hidden = true
+		screenlet.isHidden = true
 	}
 
-	func screenlet(screenlet: CommentDisplayScreenlet, onCommentDeleted comment: Comment) {
+	func screenlet(_ screenlet: CommentDisplayScreenlet, onCommentDeleted comment: Comment) {
 		LiferayLogger.logDelegateMessage(args: comment)
-		screenlet.hidden = true
+		screenlet.isHidden = true
 	}
 
-	func screenlet(screenlet: CommentDisplayScreenlet, onDeleteComment comment: Comment,
+	func screenlet(_ screenlet: CommentDisplayScreenlet, onDeleteComment comment: Comment,
 			onError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 
-	func screenlet(screenlet: CommentDisplayScreenlet, onCommentUpdated comment: Comment) {
+	func screenlet(_ screenlet: CommentDisplayScreenlet, onCommentUpdated comment: Comment) {
 		LiferayLogger.logDelegateMessage(args: comment)
 	}
 	
-	func screenlet(screenlet: CommentDisplayScreenlet, onUpdateComment comment: Comment,
+	func screenlet(_ screenlet: CommentDisplayScreenlet, onUpdateComment comment: Comment,
 			onError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}

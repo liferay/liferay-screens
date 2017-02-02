@@ -14,20 +14,20 @@
 import UIKit
 
 
-public class AssetDisplayView_default: BaseScreenletView, AssetDisplayViewModel {
+open class AssetDisplayView_default: BaseScreenletView, AssetDisplayViewModel {
 
-	public override var progressMessages: [String : ProgressMessages] {
+	open override var progressMessages: [String : ProgressMessages] {
 		return [
-			BaseScreenlet.DefaultAction: [.Working: NoProgressMessage]
+			BaseScreenlet.DefaultAction: [.working: NoProgressMessage]
 		]
 	}
 
 
 	//MARK: AssetDisplayViewModel
 
-	public var asset: Asset?
+	open var asset: Asset?
 
-	public var innerScreenlet: UIView? {
+	open var innerScreenlet: UIView? {
 		set {
 			if let oldScreenlet = _innerScreenlet {
 				oldScreenlet.removeFromSuperview()
@@ -41,16 +41,16 @@ public class AssetDisplayView_default: BaseScreenletView, AssetDisplayViewModel 
 				newScreenlet.translatesAutoresizingMaskIntoConstraints = false
 				
 				//Pin all edges from inner Screenlets to view edges
-				let top = NSLayoutConstraint(item: newScreenlet, attribute: .Top, relatedBy: .Equal,
-				                             toItem: self, attribute: .Top, multiplier: 1, constant: 0)
-				let bottom = NSLayoutConstraint(item: newScreenlet, attribute: .Bottom, relatedBy: .Equal,
-				                                toItem: self, attribute: .Bottom, multiplier: 1, constant: 0)
-				let leading = NSLayoutConstraint(item: newScreenlet, attribute: .Leading, relatedBy: .Equal,
-				                                 toItem: self, attribute: .Leading, multiplier: 1, constant: 0)
-				let trailing = NSLayoutConstraint(item: newScreenlet, attribute: .Trailing, relatedBy: .Equal,
-				                                  toItem: self, attribute: .Trailing, multiplier: 1, constant: 0)
+				let top = NSLayoutConstraint(item: newScreenlet, attribute: .top, relatedBy: .equal,
+				                             toItem: self, attribute: .top, multiplier: 1, constant: 0)
+				let bottom = NSLayoutConstraint(item: newScreenlet, attribute: .bottom, relatedBy: .equal,
+				                                toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
+				let leading = NSLayoutConstraint(item: newScreenlet, attribute: .leading, relatedBy: .equal,
+				                                 toItem: self, attribute: .leading, multiplier: 1, constant: 0)
+				let trailing = NSLayoutConstraint(item: newScreenlet, attribute: .trailing, relatedBy: .equal,
+				                                  toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
 				
-				NSLayoutConstraint.activateConstraints([top, bottom, leading, trailing])
+				NSLayoutConstraint.activate([top, bottom, leading, trailing])
 				
 				newScreenlet.layoutIfNeeded()
 			}
@@ -60,5 +60,5 @@ public class AssetDisplayView_default: BaseScreenletView, AssetDisplayViewModel 
 		}
 	}
 
-	private var _innerScreenlet: UIView?
+	fileprivate var _innerScreenlet: UIView?
 }

@@ -22,7 +22,7 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - assets: list of assets.
-	optional func screenlet(screenlet: AssetListScreenlet,
+	@objc optional func screenlet(_ screenlet: AssetListScreenlet,
 			onAssetListResponse assets: [Asset])
 
 	/// Called when an error occurs in the process.
@@ -31,7 +31,7 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - error: error loading asset list.
-	optional func screenlet(screenlet: AssetListScreenlet,
+	@objc optional func screenlet(_ screenlet: AssetListScreenlet,
 			onAssetListError error: NSError)
 
 	/// Called when an item in the list is selected.
@@ -39,36 +39,36 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - asset: selected asset.
-	optional func screenlet(screenlet: AssetListScreenlet,
+	@objc optional func screenlet(_ screenlet: AssetListScreenlet,
 			onAssetSelected asset: Asset)
 
 }
 
 
-public class AssetListScreenlet: BaseListScreenlet {
+open class AssetListScreenlet: BaseListScreenlet {
 
 
 	//MARK: Inspectables
 
-	@IBInspectable public var groupId: Int64 = 0
+	@IBInspectable open var groupId: Int64 = 0
 
-	@IBInspectable public var classNameId: Int64 = 0
+	@IBInspectable open var classNameId: Int64 = 0
 
-	@IBInspectable public var portletItemName: String?
+	@IBInspectable open var portletItemName: String?
 
-	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-	public var assetListDelegate: AssetListScreenletDelegate? {
+	open var assetListDelegate: AssetListScreenletDelegate? {
 		return delegate as? AssetListScreenletDelegate
 	}
 
-	public var customEntryQuery: [String:AnyObject]?
+	open var customEntryQuery: [String:AnyObject]?
 
 
 	//MARK: BaseListScreenlet
 
-	override public func createPageLoadInteractor(
-			page page: Int,
+	override open func createPageLoadInteractor(
+			page: Int,
 			computeRowCount: Bool)
 			-> BaseListPageLoadInteractor {
 
@@ -80,19 +80,19 @@ public class AssetListScreenlet: BaseListScreenlet {
 			classNameId: self.classNameId,
 			portletItemName: self.portletItemName)
 
-		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .remoteFirst
 		interactor.customEntryQuery = self.customEntryQuery
 
 		return interactor
 	}
 
-	override public func onLoadPageError(page page: Int, error: NSError) {
+	override open func onLoadPageError(page: Int, error: NSError) {
 		super.onLoadPageError(page: page, error: error)
 
 		assetListDelegate?.screenlet?(self, onAssetListError: error)
 	}
 
-	override public func onLoadPageResult(page page: Int, rows: [AnyObject], rowCount: Int) {
+	override open func onLoadPageResult(page: Int, rows: [AnyObject], rowCount: Int) {
 		super.onLoadPageResult(page: page, rows: rows, rowCount: rowCount)
 
 		let assets = rows as! [Asset]
@@ -100,7 +100,7 @@ public class AssetListScreenlet: BaseListScreenlet {
 		assetListDelegate?.screenlet?(self, onAssetListResponse: assets)
 	}
 
-	override public func onSelectedRow(row: AnyObject) {
+	override open func onSelectedRow(_ row: AnyObject) {
 		assetListDelegate?.screenlet?(self, onAssetSelected: row as! Asset)
 	}
 }

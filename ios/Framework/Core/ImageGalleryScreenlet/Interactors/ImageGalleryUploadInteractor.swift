@@ -14,7 +14,7 @@
 import Foundation
 
 
-public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
+open class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 
 	public typealias OnProgress = ImageGalleryUploadConnector.OnProgress
 
@@ -73,7 +73,7 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 
 	//MARK: ServerConnectorInteractor
 
-	override public func createConnector() -> ServerConnector? {
+	override open func createConnector() -> ServerConnector? {
 		return ImageGalleryUploadConnector(
 				repositoryId: repositoryId,
 				folderId: folderId,
@@ -86,21 +86,21 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 				onUploadBytes:  onUploadedBytes)
 	}
 
-	override public func completedConnector(c: ServerConnector) {
-		if let c = c as? ImageGalleryUploadConnector, uploadResult = c.uploadResult {
+	override open func completedConnector(_ c: ServerConnector) {
+		if let c = c as? ImageGalleryUploadConnector, let uploadResult = c.uploadResult {
 			result = uploadResult
 		}
-		else if cacheStrategy == .CacheOnly {
+		else if cacheStrategy == .cacheOnly {
 			createModelFromUploadData()
 		}
 	}
 
 	//MARK: Cache methods
 
-	override public func writeToCache(c: ServerConnector) {
+	override open func writeToCache(_ c: ServerConnector) {
 		let uploadFailed = (c.lastError != nil)
 
-		if cacheStrategy == .CacheFirst || uploadFailed {
+		if cacheStrategy == .cacheFirst || uploadFailed {
 			storeParatemetersToResyncLater()
 		}
 		else {
@@ -112,8 +112,8 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 
 	//MARK: Interactor
 
-	override public func callOnSuccess() {
-		if cacheStrategy == .CacheFirst {
+	override open func callOnSuccess() {
+		if cacheStrategy == .cacheFirst {
 			deleteSyncParameters()
 			saveResultAndCountOnCache()
 		}
@@ -124,14 +124,14 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 
 	//MARK: Private methods
 
-	private func createModelFromUploadData() {
+	fileprivate func createModelFromUploadData() {
 		// Construct an object with the uploadEntry data
-		result = ["title": imageUpload.title,
-		          "fileEntryId": NSNumber(longLong: Int64(CFAbsoluteTimeGetCurrent())),
+		result = ["title": imageUpload.title as AnyObject,
+		          "fileEntryId": NSNumber(value: Int64(CFAbsoluteTimeGetCurrent()) as Int64),
 		          "image": imageUpload.thumbnail!]
 	}
 
-	private func saveResultAndCountOnCache() {
+	fileprivate func saveResultAndCountOnCache() {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
@@ -142,13 +142,13 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 			let cacheKeyCount = "\(cacheKey)-count"
 
 			cacheManager.getSome(
-					collection: ScreenletName(ImageGalleryScreenlet),
+					collection: ScreenletName(ImageGalleryScreenlet.self),
 					keys: [cacheKeyList, cacheKeyCount], result: {
 
 				var newPage = [[String:AnyObject]]()
 
 				if let oldPage = $0.first as? [[String:AnyObject]] {
-					newPage.appendContentsOf(oldPage)
+					newPage.append(contentsOf: oldPage)
 				}
 
 				newPage.append(entry)
@@ -162,47 +162,47 @@ public class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 		}
 	}
 
-	private func storeParatemetersToResyncLater() {
+	fileprivate func storeParatemetersToResyncLater() {
 		if cacheKeyUsed == nil {
 			// Not stored yet
-			cacheKeyUsed = NSUUID().UUIDString
+			cacheKeyUsed = UUID().uuidString
 
 			SessionContext.currentContext?.cacheManager.setDirty(
-					collection: ScreenletName(ImageGalleryScreenlet),
+					collection: ScreenletName(ImageGalleryScreenlet.self),
 					key: cacheKeyUsed!,
 					value: imageUpload,
 					attributes: [
-						"folderId": NSNumber(longLong: folderId),
-						"repositoryId": NSNumber(longLong: repositoryId),
-						"page": NSNumber(long: page)
+						"folderId": NSNumber(value: folderId),
+						"repositoryId": NSNumber(value: repositoryId),
+						"page": NSNumber(value: page)
 					])
 		}
 	}
 
-	private func deleteSyncParameters() {
+	fileprivate func deleteSyncParameters() {
 		// Exists if the parameters have been saved
 		if let cacheKeyUsed = self.cacheKeyUsed {
 			SessionContext.currentContext?.cacheManager.remove(
-				collection: ScreenletName(ImageGalleryScreenlet),
+				collection: ScreenletName(ImageGalleryScreenlet.self),
 				key: cacheKeyUsed)
 		}
 	}
 
-	private func storeNewImageEntry(page: [[String:AnyObject]], cacheKey: String) {
+	fileprivate func storeNewImageEntry(_ page: [[String:AnyObject]], cacheKey: String) {
 		SessionContext.currentContext?.cacheManager.setClean(
-				collection: ScreenletName(ImageGalleryScreenlet),
+				collection: ScreenletName(ImageGalleryScreenlet.self),
 				key: cacheKey,
-				value: page,
+				value: page as NSCoding,
 				attributes: [:])
 	}
 
-	private func incrementAndStoreImageEntriesCount(count: Int, cacheKey: String) {
+	fileprivate func incrementAndStoreImageEntriesCount(_ count: Int, cacheKey: String) {
 		let newCount = count + 1
 
 		SessionContext.currentContext?.cacheManager.setClean(
-				collection: ScreenletName(ImageGalleryScreenlet),
+				collection: ScreenletName(ImageGalleryScreenlet.self),
 				key: cacheKey,
-				value: newCount,
+				value: newCount as NSCoding,
 				attributes: [:])
 	}
 }

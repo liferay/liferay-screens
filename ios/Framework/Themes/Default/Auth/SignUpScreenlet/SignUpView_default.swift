@@ -14,55 +14,55 @@
 import UIKit
 
 
-public class SignUpView_default: BaseScreenletView, SignUpViewModel {
+open class SignUpView_default: BaseScreenletView, SignUpViewModel {
 
 
 	//MARK: Outlets
 
-	@IBOutlet public var emailAddressField: UITextField?
+	@IBOutlet open var emailAddressField: UITextField?
 
-	@IBOutlet public var passwordField: UITextField?
+	@IBOutlet open var passwordField: UITextField?
 
-	@IBOutlet public var firstNameField: UITextField?
+	@IBOutlet open var firstNameField: UITextField?
 
-	@IBOutlet public var lastNameField: UITextField?
+	@IBOutlet open var lastNameField: UITextField?
 	
-	@IBOutlet public var signUpButton: UIButton?
+	@IBOutlet open var signUpButton: UIButton?
 
-	@IBOutlet public var scrollView: UIScrollView?
+	@IBOutlet open var scrollView: UIScrollView?
 
 
 	//MARK: BaseScreenletView
 
-	override public var progressMessages: [String:ProgressMessages] {
+	override open var progressMessages: [String:ProgressMessages] {
 		return [
 			"signup-action" :
-				[.Working : LocalizedString("default", key: "signup-loading-message", obj: self),
-				.Failure : LocalizedString("default", key: "signup-loading-error", obj: self)],
+				[.working : LocalizedString("default", key: "signup-loading-message", obj: self),
+				.failure : LocalizedString("default", key: "signup-loading-error", obj: self)],
 			"save-action" :
-				[.Working : LocalizedString("default", key: "signup-saving-message", obj: self),
-				.Failure : LocalizedString("default", key: "signup-saving-error", obj: self)],
+				[.working : LocalizedString("default", key: "signup-saving-message", obj: self),
+				.failure : LocalizedString("default", key: "signup-saving-error", obj: self)],
 		]
 	}
 
-	override public func onStartInteraction() {
-		signUpButton?.enabled = false
+	override open func onStartInteraction() {
+		signUpButton?.isEnabled = false
 	}
 
-	override public func onFinishInteraction(result: AnyObject?, error: NSError?) {
-		signUpButton?.enabled = true
+	override open func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
+		signUpButton?.isEnabled = true
 	}
 
 
 	//MARK: BaseScreenletView
 
-	override public func onCreated() {
+	override open func onCreated() {
 		super.onCreated()
 
 		setButtonDefaultStyle(signUpButton)
 	}
 
-	override public func onSetTranslations() {
+	override open func onSetTranslations() {
 		firstNameField?.placeholder = LocalizedString("default", key: "first-name-placeholder", obj: self)
 		lastNameField?.placeholder = LocalizedString("default", key: "last-name-placeholder", obj: self)
 		emailAddressField?.placeholder = LocalizedString("default", key: "auth-method-email", obj: self)
@@ -70,17 +70,17 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 
 		signUpButton?.replaceAttributedTitle(
 				LocalizedString("default", key: "signup-button", obj: self),
-				forState: .Normal)
+				forState: .normal)
 	}
 
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
 	}
 
 
 	//MARK: SignUpViewModel
 
-	public var emailAddress: String? {
+	open var emailAddress: String? {
 		get {
 			return nullIfEmpty(emailAddressField!.text)
 		}
@@ -89,7 +89,7 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 		}
 	}
 
-	public var password: String? {
+	open var password: String? {
 		get {
 			return nullIfEmpty(passwordField?.text)
 		}
@@ -98,7 +98,7 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 		}
 	}
 
-	public var firstName: String? {
+	open var firstName: String? {
 		get {
 			return nullIfEmpty(firstNameField?.text)
 		}
@@ -107,7 +107,7 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 		}
 	}
 
-	public var lastName: String? {
+	open var lastName: String? {
 		get {
 			return nullIfEmpty(lastNameField?.text)
 		}
@@ -116,7 +116,7 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 		}
 	}
 
-	public var editCurrentUser: Bool = false {
+	open var editCurrentUser: Bool = false {
 		didSet {
 			let key: String
 			let actionName: String
@@ -140,7 +140,7 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 
 			self.signUpButton?.replaceAttributedTitle(
 					LocalizedString("default", key: key, obj: self),
-					forState: .Normal)
+					forState: .normal)
 
 			self.signUpButton?.restorationIdentifier = actionName
 		}
@@ -150,17 +150,17 @@ public class SignUpView_default: BaseScreenletView, SignUpViewModel {
 	// The following properties are not supported in this theme but
 	// may be supported in a child theme
 
-	public var screenName: String? {
+	open var screenName: String? {
 		get { return nil }
 		set {}
 	}
 
-	public var middleName: String? {
+	open var middleName: String? {
 		get { return nil }
 		set {}
 	}
 
-	public var jobTitle: String? {
+	open var jobTitle: String? {
 		get { return nil }
 		set {}
 	}

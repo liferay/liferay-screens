@@ -15,10 +15,10 @@ import UIKit
 import LRMobileSDK
 
 
-public class WebContentListPageLiferayConnector: PaginationLiferayConnector {
+open class WebContentListPageLiferayConnector: PaginationLiferayConnector {
 
-	public let groupId: Int64
-	public let folderId: Int64
+	open let groupId: Int64
+	open let folderId: Int64
 
 
 	//MARK: Initializers
@@ -32,13 +32,13 @@ public class WebContentListPageLiferayConnector: PaginationLiferayConnector {
 
 }
 
-public class Liferay62WebContentListPageConnector: WebContentListPageLiferayConnector {
+open class Liferay62WebContentListPageConnector: WebContentListPageLiferayConnector {
 
 
 	//MARK: PaginationLiferayConnector
 
-	override public func doAddPageRowsServiceCall(
-			session session: LRBatchSession,
+	override open func doAddPageRowsServiceCall(
+			session: LRBatchSession,
 			startRow: Int,
 			endRow: Int,
 			obc: LRJSONObjectWrapper?) {
@@ -46,7 +46,7 @@ public class Liferay62WebContentListPageConnector: WebContentListPageLiferayConn
 		do {
 			let service = LRJournalArticleService_v62(session: session)
 
-			try service.getArticlesWithGroupId(groupId,
+			try service?.getArticlesWithGroupId(groupId,
 				folderId: folderId,
 				start: Int32(startRow),
 				end: Int32(endRow),
@@ -56,10 +56,10 @@ public class Liferay62WebContentListPageConnector: WebContentListPageLiferayConn
 		}
 	}
 
-	override public func doAddRowCountServiceCall(session session: LRBatchSession) {
+	override open func doAddRowCountServiceCall(session: LRBatchSession) {
 		do {
 			let service = LRJournalArticleService_v62(session: session)
-			try service.getArticlesCountWithGroupId(groupId, folderId: folderId)
+			try service?.getArticlesCount(withGroupId: groupId, folderId: folderId)
 		}
 		catch _ as NSError {
 		}
@@ -68,20 +68,20 @@ public class Liferay62WebContentListPageConnector: WebContentListPageLiferayConn
 }
 
 
-public class Liferay70WebContentListPageConnector: WebContentListPageLiferayConnector {
+open class Liferay70WebContentListPageConnector: WebContentListPageLiferayConnector {
 
 
 	//MARK: PaginationLiferayConnector
 	
-	override public func doAddPageRowsServiceCall(
-			session session: LRBatchSession,
+	override open func doAddPageRowsServiceCall(
+			session: LRBatchSession,
 			startRow: Int,
 			endRow: Int,
 			obc: LRJSONObjectWrapper?) {
 			
 		do {
 			let service = LRJournalArticleService_v7(session: session)
-			try service.getArticlesWithGroupId(groupId,
+			try service?.getArticlesWithGroupId(groupId,
 			                                   folderId: folderId,
 			                                   start: Int32(startRow),
 			                                   end: Int32(endRow),
@@ -91,10 +91,10 @@ public class Liferay70WebContentListPageConnector: WebContentListPageLiferayConn
 		}
 	}
 
-	override public func doAddRowCountServiceCall(session session: LRBatchSession) {
+	override open func doAddRowCountServiceCall(session: LRBatchSession) {
 		do {
 			let service = LRJournalArticleService_v7(session: session)
-			try service.getArticlesCountWithGroupId(groupId, folderId: folderId)
+			try service?.getArticlesCount(withGroupId: groupId, folderId: folderId)
 		}
 		catch _ as NSError {
 		}

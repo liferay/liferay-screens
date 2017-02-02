@@ -15,7 +15,7 @@ import UIKit
 import Cosmos
 
 
-public class RatingView_default_stars: BaseScreenletView, RatingViewModel {
+open class RatingView_default_stars: BaseScreenletView, RatingViewModel {
 
 
 	//MARK: Outlets
@@ -25,11 +25,11 @@ public class RatingView_default_stars: BaseScreenletView, RatingViewModel {
 			userRatingBar?.didFinishTouchingCosmos = {
 				let score = $0 / Double(self.userRatingBar!.settings.totalStars)
 				
-				if (self.selectedUserScore != score) {
-					self.selectedUserScore = score
+				if (self.selectedUserScore != NSNumber(value: score)) {
+					self.selectedUserScore = score as NSNumber?
 					self.userAction(
 						name: RatingScreenlet.UpdateRatingAction,
-						sender: score)
+						sender: score as AnyObject?)
 				}
 			}
 		}
@@ -37,38 +37,38 @@ public class RatingView_default_stars: BaseScreenletView, RatingViewModel {
 	
 	@IBOutlet weak var averageRatingBar: CosmosView?
 	
-	public var defaultRatingsGroupCount: Int32 = 1
+	open var defaultRatingsGroupCount: Int32 = 1
 
-	private var selectedUserScore: NSNumber?
+	fileprivate var selectedUserScore: NSNumber?
 
 
 	//MARK: BaseScreenletView
 	
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return NetworkActivityIndicatorPresenter()
 	}
 	
-	override public var progressMessages: [String:ProgressMessages] {
+	override open var progressMessages: [String:ProgressMessages] {
 		return [
-			RatingScreenlet.LoadRatingsAction : [.Working : ""],
-			RatingScreenlet.UpdateRatingAction : [.Working : ""],
-			RatingScreenlet.DeleteRatingAction : [.Working : ""],
+			RatingScreenlet.LoadRatingsAction : [.working : ""],
+			RatingScreenlet.UpdateRatingAction : [.working : ""],
+			RatingScreenlet.DeleteRatingAction : [.working : ""],
 		]
 	}
 
 
 	//MARK: RatingViewModel
 	
-	public var ratingEntry: RatingEntry? {
+	open var ratingEntry: RatingEntry? {
 		didSet {
 			if let rating = ratingEntry {
 				averageRatingBar?.rating =
 					rating.average * Double(self.averageRatingBar!.settings.totalStars)
 				averageRatingBar?.text = LocalizedPlural("default",
 					keySingular: "rating-ratings.one", keyPlural: "rating-ratings.other",
-					obj: self, count: rating.totalCount)
+					obj: self, count: NSNumber(value: rating.totalCount))
 				userRatingBar?.rating = rating.userScore * Double(self.userRatingBar!.settings.totalStars)
-				selectedUserScore = rating.userScore
+				selectedUserScore = rating.userScore as NSNumber?
 			}
 		}
 	}

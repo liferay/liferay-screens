@@ -14,10 +14,10 @@
 import UIKit
 
 
-public class CommentTableViewCell_default: UITableViewCell {
+open class CommentTableViewCell_default: UITableViewCell {
 
 
 	//MARK: Outlets
 	
-	@IBOutlet public weak var commentDisplayScreenlet: CommentDisplayScreenlet?
+	@IBOutlet open weak var commentDisplayScreenlet: CommentDisplayScreenlet?
 }

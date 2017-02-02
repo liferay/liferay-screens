@@ -14,58 +14,58 @@
 import Foundation
 
 
-@objc public class BlogsEntry: Asset {
+@objc open class BlogsEntry: Asset {
 
-	public var blogsEntry: [String:AnyObject]? {
+	open var blogsEntry: [String:AnyObject]? {
 		return attributes["object"]?["blogsEntry"] as? [String:AnyObject]
 	}
 
-	public var blogId: Int64 {
+	open var blogId: Int64 {
 		return int64Value("blogId") ?? 0
 	}
 
-	public var subtitle: String {
+	open var subtitle: String {
 		return stringValue("subtitle") ?? ""
 	}
 
-	public var userName: String {
+	open var userName: String {
 		return stringValue("userName") ?? ""
 	}
 
-	public var displayDate: NSDate? {
+	open var displayDate: Date? {
 		guard let value = int64Value("displayDate") else {
 			return nil
 		}
 
-		let timeStamp = NSTimeInterval(value)/1000.0
-		return NSDate(timeIntervalSince1970: timeStamp)
+		let timeStamp = TimeInterval(value)/1000.0
+		return Date(timeIntervalSince1970: timeStamp)
 	}
 
-	public var content: String {
+	open var content: String {
 		return stringValue("content") ?? ""
 	}
 
-	public var userId: Int64 {
+	open var userId: Int64 {
 		return int64Value("userId") ?? 0
 	}
 
-	public var coverImageFileEntryId: Int64 {
+	open var coverImageFileEntryId: Int64 {
 		return int64Value("coverImageFileEntryId") ?? 0
 	}
 
 	//MARK: MimeTypeable
 
-	override public var mimeType: String? {
+	override open var mimeType: String? {
 		return "text/html"
 	}
 
 	//MARK: Private methods
 
-	private func int64Value(key: String) -> Int64? {
-		return blogsEntry?[key]?.longLongValue
+	fileprivate func int64Value(_ key: String) -> Int64? {
+		return blogsEntry?[key]?.int64Value
 	}
 
-	private func stringValue(key: String) -> String? {
+	fileprivate func stringValue(_ key: String) -> String? {
 		return blogsEntry?[key]?.description
 	}
 

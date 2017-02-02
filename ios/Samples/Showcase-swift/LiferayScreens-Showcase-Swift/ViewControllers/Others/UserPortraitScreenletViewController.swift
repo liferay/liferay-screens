@@ -39,22 +39,22 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 	}
 	@IBOutlet weak var loadButton: UIButton! {
 		didSet {
-			loadButton.replaceAttributedTitle(NSLocalizedString("load-button", comment: "LOAD"), forState: .Normal)
+			loadButton.replaceAttributedTitle(NSLocalizedString("load-button", comment: "LOAD"), forState: .normal)
 		}
 	}
 
 	//MARK: IBAction
 
-	@IBAction func loadPortrait(sender: AnyObject) {
-		if let id = userIdField.text, userId = Int64(id) {
+	@IBAction func loadPortrait(_ sender: AnyObject) {
+		if let id = userIdField.text, let userId = Int64(id) {
 			screenlet.load(userId: userId)
 			screenletWithDelegate.load(userId: userId)
 			editableScreenlet.load(userId: userId)
 		}
-		else if let text = userIdField.text where text != "" {
+		else if let text = userIdField.text, text != "" {
 			let company = LiferayServerContext.companyId
 
-			if text.characters.indexOf("@") != nil {
+			if text.characters.index(of: "@") != nil {
 				screenlet.load(companyId: company, emailAddress: text)
 				screenletWithDelegate.load(companyId: company, emailAddress: text)
 				editableScreenlet.load(companyId: company, emailAddress: text)
@@ -74,22 +74,22 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 
 	//MARK: UserPortraitScreenletDelegate
 
-	func screenlet(screenlet: UserPortraitScreenlet, onUserPortraitResponseImage image: UIImage) -> UIImage {
+	func screenlet(_ screenlet: UserPortraitScreenlet, onUserPortraitResponseImage image: UIImage) -> UIImage {
 		LiferayLogger.logDelegateMessage(args: image)
 		
 		return image.grayScaleImage()
 	}
 	
-	func screenlet(screenlet: UserPortraitScreenlet, onUserPortraitError error: NSError) {
+	func screenlet(_ screenlet: UserPortraitScreenlet, onUserPortraitError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 	
-	func screenlet(screenlet: UserPortraitScreenlet, onUserPortraitUploadError error: NSError) {
+	func screenlet(_ screenlet: UserPortraitScreenlet, onUserPortraitUploadError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 	
-	func screenlet(screenlet: UserPortraitScreenlet, onUserPortraitUploaded attributes: [String : AnyObject]) {
-		LiferayLogger.logDelegateMessage(args: attributes)
+	func screenlet(_ screenlet: UserPortraitScreenlet, onUserPortraitUploaded attributes: [String : AnyObject]) {
+		LiferayLogger.logDelegateMessage(args: attributes as AnyObject?)
 	}
 
 }

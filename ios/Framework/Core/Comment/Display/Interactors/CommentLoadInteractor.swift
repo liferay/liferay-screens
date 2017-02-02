@@ -14,11 +14,11 @@
 import UIKit
 
 
-public class CommentLoadInteractor: ServerReadConnectorInteractor {
+open class CommentLoadInteractor: ServerReadConnectorInteractor {
 
 	let commentId: Int64
 
-	public var resultComment: Comment?
+	open var resultComment: Comment?
 
 
 	//MARK: Initializers
@@ -34,12 +34,12 @@ public class CommentLoadInteractor: ServerReadConnectorInteractor {
 
 	//MARK: ServerConnectorInteractor
 
-	override public func createConnector() -> CommentLoadLiferayConnector? {
+	override open func createConnector() -> CommentLoadLiferayConnector? {
 		return LiferayServerContext.connectorFactory.createCommentLoadConnector(
 			commentId: commentId)
 	}
 
-	override public func completedConnector(c: ServerConnector) {
+	override open func completedConnector(_ c: ServerConnector) {
 		guard let loadCon = c as? CommentLoadLiferayConnector else {
 			return
 		}
@@ -52,7 +52,7 @@ public class CommentLoadInteractor: ServerReadConnectorInteractor {
 
 	//MARK: Cache methods
 
-	override public func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
+	override open func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> ()) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
@@ -75,7 +75,7 @@ public class CommentLoadInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-	override public func writeToCache(c: ServerConnector) {
+	override open func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
@@ -91,7 +91,7 @@ public class CommentLoadInteractor: ServerReadConnectorInteractor {
 			key: "commentId-\(loadCon.commentId)",
 			value: comment,
 			attributes: [
-				"commentId": NSNumber(longLong: loadCon.commentId)
+				"commentId": NSNumber(value: loadCon.commentId)
 			])
 	}
 

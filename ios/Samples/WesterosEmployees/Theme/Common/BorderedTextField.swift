@@ -10,11 +10,11 @@ import UIKit
 
 class BorderedTextField: UITextField, UITextFieldDelegate {
 
-	@IBInspectable var borderColor: UIColor? = UIColor.clearColor()
-	@IBInspectable var focusedColor: UIColor? = UIColor.clearColor()
-	@IBInspectable var unfocusedColor: UIColor? = UIColor.clearColor()
+	@IBInspectable var borderColor: UIColor? = .clear
+	@IBInspectable var focusedColor: UIColor? = .clear
+	@IBInspectable var unfocusedColor: UIColor? = .clear
 
-	private var revertTextColor = false
+	fileprivate var revertTextColor = false
 
 
 	required init?(coder aDecoder: NSCoder) {
@@ -27,9 +27,9 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 		textFieldDidEndEditing(self)
 	}
 
-	func textFieldDidBeginEditing(textField: UITextField) {
+	func textFieldDidBeginEditing(_ textField: UITextField) {
 		superview?.layer.borderWidth = 1.0
-		superview?.layer.borderColor = self.borderColor?.CGColor
+		superview?.layer.borderColor = self.borderColor?.cgColor
 		superview?.backgroundColor = self.focusedColor!
 
 		self.attributedPlaceholder = NSAttributedString(
@@ -37,14 +37,14 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 				attributes: [NSForegroundColorAttributeName : self.unfocusedColor!])
 
 		if self.textColor == self.focusedColor! {
-			self.textColor = UIColor.blackColor()
+			self.textColor = .black
 			revertTextColor = true
 		}
 	}
 
-	func textFieldDidEndEditing(textField: UITextField) {
+	func textFieldDidEndEditing(_ textField: UITextField) {
 		superview?.layer.borderWidth = 0.0
-		superview?.layer.borderColor = UIColor.clearColor().CGColor
+		superview?.layer.borderColor = UIColor.clear.cgColor
 		superview?.backgroundColor = self.unfocusedColor!
 
 		self.attributedPlaceholder = NSAttributedString(
@@ -57,11 +57,11 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 		}
 	}
 
-	func textFieldShouldReturn(textField: UITextField) -> Bool {
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		return parentDelegate(self.superview)?.textFieldShouldReturn?(self) ?? true
 	}
 
-	private func parentDelegate(view:UIView?) -> UITextFieldDelegate? {
+	fileprivate func parentDelegate(_ view:UIView?) -> UITextFieldDelegate? {
 		if view == nil {
 			return nil
 		}

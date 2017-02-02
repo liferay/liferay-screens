@@ -15,11 +15,11 @@ import Foundation
 
 @objc public protocol ProgressPresenter {
 
-	func showHUDInView(view: UIView,
+	func showHUDInView(_ view: UIView,
 		message: String?,
 		forInteractor interactor: Interactor)
 	
-	func hideHUDFromView(view: UIView?,
+	func hideHUDFromView(_ view: UIView?,
 		message: String?,
 		forInteractor interactor: Interactor,
 		withError error: NSError?)
@@ -28,9 +28,9 @@ import Foundation
 
 
 @objc public enum ProgressMessageType: Int {
-	case Working
-	case Failure
-	case Success
+	case working
+	case failure
+	case success
 }
 
 public typealias ProgressMessages = [ProgressMessageType:String]

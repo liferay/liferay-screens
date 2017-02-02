@@ -13,7 +13,7 @@
  */
 import UIKit
 
-public class LoadRatingsInteractor: ServerReadConnectorInteractor {
+open class LoadRatingsInteractor: ServerReadConnectorInteractor {
 	
 	let entryId: Int64?
 
@@ -25,7 +25,7 @@ public class LoadRatingsInteractor: ServerReadConnectorInteractor {
 
 	var resultRating: RatingEntry?
 
-	private init(screenlet: BaseScreenlet?,
+	fileprivate init(screenlet: BaseScreenlet?,
 	     	entryId: Int64?,
 	     	className: String?,
 	     	classPK: Int64?,
@@ -62,12 +62,12 @@ public class LoadRatingsInteractor: ServerReadConnectorInteractor {
 
 	//MARK: ServerConnectorInteractor
 
-	override public func createConnector() -> ServerConnector? {
+	override open func createConnector() -> ServerConnector? {
 		if let entryId = self.entryId {
 			return LiferayServerContext.connectorFactory.createRatingLoadByEntryIdConnector(
 				entryId: entryId, ratingsGroupCount: ratingsGroupCount)
 		}
-		else if let classPK = self.classPK, className = self.className {
+		else if let classPK = self.classPK, let className = self.className {
 			return LiferayServerContext.connectorFactory.createRatingLoadByClassPKConnector(classPK,
 					className: className,
 					ratingsGroupCount: ratingsGroupCount)
@@ -76,7 +76,7 @@ public class LoadRatingsInteractor: ServerReadConnectorInteractor {
 		return nil
 	}
 	
-	override public func completedConnector(c: ServerConnector) {
+	override open func completedConnector(_ c: ServerConnector) {
 		if let loadCon = c as? RatingLoadByEntryIdLiferayConnector {
 			self.resultRating = loadCon.resultRating
 		}
@@ -87,7 +87,7 @@ public class LoadRatingsInteractor: ServerReadConnectorInteractor {
 
 	//MARK: Cache methods
 
-	override public func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
+	override open func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> ()) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
@@ -116,7 +116,7 @@ public class LoadRatingsInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-	override public func writeToCache(c: ServerConnector) {
+	override open func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
@@ -142,20 +142,20 @@ public class LoadRatingsInteractor: ServerReadConnectorInteractor {
 			key: cacheKey(),
 			value: resultRating,
 			attributes: [
-				"ratingEntryId": NSNumber(longLong: self.entryId ?? 0),
-				"className": self.className ?? "",
-				"classPK": NSNumber(longLong: self.classPK ?? 0)
+				"ratingEntryId": NSNumber(value: self.entryId ?? 0),
+				"className": self.className as AnyObject? ?? "" as AnyObject,
+				"classPK": NSNumber(value: self.classPK ?? 0)
 			])
 	}
 
 
 	//MARK: Private methods
 
-	private func cacheKey() -> String {
+	fileprivate func cacheKey() -> String {
 		if let entryId = self.entryId {
 			return "ratingEntryId-\(entryId)"
 		}
-		else if let classPK = self.classPK, className = self.className {
+		else if let classPK = self.classPK, let className = self.className {
 			return "className=\(className)-classPK=\(classPK)"
 		}
 

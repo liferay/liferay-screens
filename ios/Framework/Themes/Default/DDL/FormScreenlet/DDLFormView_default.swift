@@ -14,25 +14,25 @@
 import UIKit
 
 
-public class DDLFormView_default: DDLFormTableView {
+open class DDLFormView_default: DDLFormTableView {
 
-	override public var progressMessages: [String:ProgressMessages] {
+	override open var progressMessages: [String:ProgressMessages] {
 		return [
 			DDLFormScreenlet.LoadFormAction : [
-				.Working : LocalizedString("default", key: "ddlform-loading-message", obj: self),
-				.Failure : LocalizedString("default", key: "ddlform-loading-error", obj: self)
+				.working : LocalizedString("default", key: "ddlform-loading-message", obj: self),
+				.failure : LocalizedString("default", key: "ddlform-loading-error", obj: self)
 			],
 			DDLFormScreenlet.LoadRecordAction : [
-				.Working : LocalizedString("default", key: "ddlform-loading-record-message", obj: self),
-				.Failure : LocalizedString("default", key: "ddlform-loading-record-error", obj: self)
+				.working : LocalizedString("default", key: "ddlform-loading-record-message", obj: self),
+				.failure : LocalizedString("default", key: "ddlform-loading-record-error", obj: self)
 			],
 			DDLFormScreenlet.SubmitFormAction : [
-				.Working : LocalizedString("default", key: "ddlform-submitting-message", obj: self),
-				.Failure : LocalizedString("default", key: "ddlform-submitting-error", obj: self),
-				.Success : LocalizedString("default", key: "ddlform-submitted", obj: self)
+				.working : LocalizedString("default", key: "ddlform-submitting-message", obj: self),
+				.failure : LocalizedString("default", key: "ddlform-submitting-error", obj: self),
+				.success : LocalizedString("default", key: "ddlform-submitted", obj: self)
 			],
 			DDLFormScreenlet.UploadDocumentAction : [
-				.Failure : LocalizedString("default", key: "ddlform-uploading-error", obj: self)
+				.failure : LocalizedString("default", key: "ddlform-uploading-error", obj: self)
 			]
 		]
 	}
@@ -40,26 +40,26 @@ public class DDLFormView_default: DDLFormTableView {
 
 	//MARK: DDLFormTableView 
 
-	override public func onCreated() {
+	override open func onCreated() {
 		super.onCreated()
 
 		self.tableView?.alpha = 0.0
 	}
 
-	override public func onFinishInteraction(result: AnyObject?, error: NSError?) {
+	override open func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
 		if self.tableView?.alpha == 0 {
-			UIView.animateWithDuration(0.3, animations: {
+			UIView.animate(withDuration: 0.3, animations: {
 				self.tableView!.alpha = 1.0
 			})
 		}
 	}
 
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
 	}
 
-	override public func changeEditable(editable: Bool) {
-		tableView?.subviews.forEach { $0.userInteractionEnabled = editable }
+	override open func changeEditable(_ editable: Bool) {
+		tableView?.subviews.forEach { $0.isUserInteractionEnabled = editable }
 	}
 
 }

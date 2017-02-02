@@ -14,40 +14,40 @@
 import UIKit
 
 
-public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase {
+open class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase {
 
 
 	//MARK: BaseListCollectionView
 
-	override public func doConfigureCollectionView(collectionView: UICollectionView) {
-		collectionView.backgroundColor = .blackColor()
+	override open func doConfigureCollectionView(_ collectionView: UICollectionView) {
+		collectionView.backgroundColor = .black
 	}
 
-	override public func doRegisterCellNibs() {
-		if let imageGalleryGridCellNib = NSBundle.nibInBundles(
+	override open func doRegisterCellNibs() {
+		if let imageGalleryGridCellNib = Bundle.nibInBundles(
 			name: "ImageGallerySlideshowCell",
-			currentClass: self.dynamicType) {
+			currentClass: type(of: self)) {
 
-			collectionView?.registerNib(imageGalleryGridCellNib,
+			collectionView?.register(imageGalleryGridCellNib,
 			                            forCellWithReuseIdentifier: imageCellId)
 		}
 	}
 
-	override public func doCreateLayout() -> UICollectionViewLayout {
+	override open func doCreateLayout() -> UICollectionViewLayout {
 
 		return SlideShowLayout()
 	}
 
-	override public func updateRefreshControl() {
+	override open func updateRefreshControl() {
 		//No refresh control in slideshow mode
 	}
 
-	override public func doFillLoadedCell(indexPath indexPath: NSIndexPath,
+	override open func doFillLoadedCell(indexPath: IndexPath,
 	                                                cell: UICollectionViewCell,
 	                                                object:AnyObject) {
 
 		guard let imageCell = cell as? ImageGallerySlideshowCell,
-					entry = object as? ImageEntry else {
+					let entry = object as? ImageEntry else {
 			return
 		}
 		if let image = entry.image {
@@ -58,13 +58,13 @@ public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase 
 		}
 	}
 
-	override public func doFillInProgressCell(indexPath indexPath: NSIndexPath,
+	override open func doFillInProgressCell(indexPath: IndexPath,
 	                                                    cell: UICollectionViewCell) {
 
-		cell.backgroundColor = .grayColor()
+		cell.backgroundColor = .gray
 	}
 
-	override public func doGetCellId(indexPath indexPath: NSIndexPath,
+	override open func doGetCellId(indexPath: IndexPath,
 	                                           object: AnyObject?) -> String {
 		if let _ = object {
 			return imageCellId
@@ -76,7 +76,7 @@ public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase 
 
 	//MARK: UICollectionViewDataSource
 
-	public func collectionView(collectionView: UICollectionView,
+	open func collectionView(_ collectionView: UICollectionView,
 	                           layout collectionViewLayout: UICollectionViewLayout,
 	                                  insetForSectionAtIndex section: Int) -> UIEdgeInsets {
 
@@ -86,7 +86,7 @@ public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase 
 			return UIEdgeInsets(top: 10, left: margin, bottom: 10, right: margin)
 		}
 
-		return UIEdgeInsetsZero
+		return UIEdgeInsets.zero
 	}
 
 }

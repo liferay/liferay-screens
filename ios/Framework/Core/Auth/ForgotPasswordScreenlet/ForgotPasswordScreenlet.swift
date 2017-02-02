@@ -22,7 +22,7 @@ import UIKit
 	///   - screenlet
 	///   - passwordSent: indicates whether the email contains the new password
 	/// or a password reset link.
-	optional func screenlet(screenlet: ForgotPasswordScreenlet,
+	@objc optional func screenlet(_ screenlet: ForgotPasswordScreenlet,
 			onForgotPasswordSent passwordSent: Bool)
 
 	/// Called when an error occurs in the process.
@@ -31,23 +31,23 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - error: error while requesting password.
-	optional func screenlet(screenlet: ForgotPasswordScreenlet,
+	@objc optional func screenlet(_ screenlet: ForgotPasswordScreenlet,
 			onForgotPasswordError error: NSError)
 
 }
 
 
-public class ForgotPasswordScreenlet: BaseScreenlet, BasicAuthBasedType,
+open class ForgotPasswordScreenlet: BaseScreenlet, BasicAuthBasedType,
 		AnonymousBasicAuthType {
 
 
 	//MARK: Inspectables
 
-	@IBInspectable public var anonymousApiUserName: String? = "test@liferay.com"
+	@IBInspectable open var anonymousApiUserName: String? = "test@liferay.com"
 
-	@IBInspectable public var anonymousApiPassword: String? = "test"
+	@IBInspectable open var anonymousApiPassword: String? = "test"
 
-	@IBInspectable public var basicAuthMethod: String? = BasicAuthMethod.Email.rawValue {
+	@IBInspectable open var basicAuthMethod: String? = BasicAuthMethod.email.rawValue {
 		didSet {
 			(screenletView as? BasicAuthBasedType)?.basicAuthMethod = basicAuthMethod
 		}
@@ -56,24 +56,24 @@ public class ForgotPasswordScreenlet: BaseScreenlet, BasicAuthBasedType,
 	@IBInspectable var companyId: Int64 = 0
 
 
-	public var forgotPasswordDelegate: ForgotPasswordScreenletDelegate? {
+	open var forgotPasswordDelegate: ForgotPasswordScreenletDelegate? {
 		return delegate as? ForgotPasswordScreenletDelegate
 	}
 
 
-	public var saveCredentials: Bool {
+	open var saveCredentials: Bool {
 		get { return false }
 		set {}
 	}
 
-	public var viewModel: ForgotPasswordViewModel {
+	open var viewModel: ForgotPasswordViewModel {
 		return screenletView as! ForgotPasswordViewModel
 	}
 
 
 	//MARK: BaseScreenlet
 
-	override public func onCreated() {
+	override open func onCreated() {
 		super.onCreated()
 
 		(screenletView as? BasicAuthBasedType)?.basicAuthMethod = basicAuthMethod
@@ -83,7 +83,7 @@ public class ForgotPasswordScreenlet: BaseScreenlet, BasicAuthBasedType,
 		}
 	}
 
-	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
 		let interactor = ForgotPasswordInteractor(screenlet: self)
 
 		interactor.onSuccess = {

@@ -14,9 +14,9 @@
 import UIKit
 
 
-public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGalleryViewModel {
+open class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGalleryViewModel {
 
-	public var uploadProgressView: UploadProgressViewBase? {
+	open var uploadProgressView: UploadProgressViewBase? {
 		get {
 			return _uploadView as? UploadProgressViewBase
 		}
@@ -25,25 +25,25 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 		}
 	}
 
-	public weak var _uploadView: UIView?
+	open weak var _uploadView: UIView?
 
 	internal let imageCellId = "ImageCellId"
 
 
 	//MARK: ImageGalleryViewModel
 
-	public var totalEntries: Int {
+	open var totalEntries: Int {
 		return rowCount
 	}
 
-	public func onImageEntryDeleted(imageEntry: ImageEntry) {
+	open func onImageEntryDeleted(_ imageEntry: ImageEntry) {
 
 		var section: Int?
 		var sectionKey: String?
 		var rowIndex: Int?
 
-		for (keyIndex, key) in rows.keys.enumerate() {
-			for (index, row) in rows[key]!.enumerate() {
+		for (keyIndex, key) in rows.keys.enumerated() {
+			for (index, row) in rows[key]!.enumerated() {
 				if let row = row as? ImageEntry {
 					if imageEntry == row {
 						section = keyIndex
@@ -54,29 +54,29 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 			}
 		}
 
-		guard let finalSection = section, finalRowIndex = rowIndex, finalSectionKey = sectionKey
+		guard let finalSection = section, let finalRowIndex = rowIndex, let finalSectionKey = sectionKey
 		else {
 			return
 		}
 
 		deleteRow(finalSectionKey, row: finalRowIndex)
 
-		let indexPath = NSIndexPath(forRow: finalRowIndex, inSection: finalSection)
-		collectionView?.deleteItemsAtIndexPaths([indexPath])
+		let indexPath = IndexPath(row: finalRowIndex, section: finalSection)
+		collectionView?.deleteItems(at: [indexPath])
 	}
 
-	public func onImageUploaded(imageEntry: ImageEntry) {
+	open func onImageUploaded(_ imageEntry: ImageEntry) {
 		uploadProgressView?.uploadComplete()
 		if let lastSection = self.sections.last {
 			self.addRow(lastSection, element: imageEntry)
 
 			let lastRow = self.rows[lastSection]!.count - 1
-			let indexPath = NSIndexPath(forRow: lastRow, inSection: self.sections.count - 1)
-			self.collectionView?.insertItemsAtIndexPaths([indexPath])
+			let indexPath = IndexPath(row: lastRow, section: self.sections.count - 1)
+			self.collectionView?.insertItems(at: [indexPath])
 		}
 	}
 
-	public func onImageUploadEnqueued(imageEntryUpload: ImageEntryUpload) {
+	open func onImageUploadEnqueued(_ imageEntryUpload: ImageEntryUpload) {
 		if uploadProgressView == nil {
 			showUploadProgressView()
 		}
@@ -84,8 +84,8 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 		uploadProgressView?.addUpload(imageEntryUpload.image)
 	}
 
-	public func onImageUploadProgress(
-		bytesSent: UInt64,
+	open func onImageUploadProgress(
+		_ bytesSent: UInt64,
 		bytesToSend: UInt64,
 		imageEntryUpload: ImageEntryUpload) {
 
@@ -94,13 +94,13 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 		uploadProgressView?.setProgress(progress)
 	}
 
-	public func onImageUploadError(imageEntryUpload: ImageEntryUpload, error: NSError) {
+	open func onImageUploadError(_ imageEntryUpload: ImageEntryUpload, error: NSError) {
 		uploadProgressView?.uploadError()
 	}
 
-	public func indexOf(imageEntry imageEntry: ImageEntry) -> Int {
+	open func indexOf(imageEntry: ImageEntry) -> Int {
 		for (_, sectionEntries) in rows {
-			if let idx = sectionEntries.indexOf({$0 as! ImageEntry == imageEntry}) {
+			if let idx = sectionEntries.index(where: {$0 as! ImageEntry == imageEntry}) {
 				return idx;
 			}
 		}
@@ -111,15 +111,15 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 
 	//MARK: BaseScreenletView
 
-	public override func createProgressPresenter() -> ProgressPresenter {
+	open override func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
 	}
 
-	public func showUploadProgressView() {
-		_uploadView = NSBundle.viewForThemeOrDefault(
+	open func showUploadProgressView() {
+		_uploadView = Bundle.viewForThemeOrDefault(
 				name: "UploadProgressView",
 				themeName: self.screenlet?.themeName ?? BaseScreenlet.DefaultThemeName,
-				currentClass: self.dynamicType)
+				currentClass: type(of: self))
 
 		guard let uploadView = _uploadView else {
 			return
@@ -132,14 +132,14 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 
 		let views = ["view" : self, "uploadView" : uploadView]
 
-		let constraintH = NSLayoutConstraint.constraintsWithVisualFormat(
-				"H:|-(5)-[uploadView]-(5)-|",
+		let constraintH = NSLayoutConstraint.constraints(
+				withVisualFormat: "H:|-(5)-[uploadView]-(5)-|",
 				options: [],
 				metrics: nil,
 				views: views)
 
-		let constraintV = NSLayoutConstraint.constraintsWithVisualFormat(
-				"V:[uploadView(55)]-(3)-|",
+		let constraintV = NSLayoutConstraint.constraints(
+				withVisualFormat: "V:[uploadView(55)]-(3)-|",
 				options: [],
 				metrics: nil,
 				views: views)
@@ -147,9 +147,9 @@ public class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGaller
 		addConstraints(constraintH)
 		addConstraints(constraintV)
 
-		UIView.animateWithDuration(0.2) {
+		UIView.animate(withDuration: 0.2, animations: {
 			uploadView.alpha = 1
-		}
+		}) 
 
 		uploadProgressView?.cancelClosure = { [weak self] in
 			(self?.screenlet as? ImageGalleryScreenlet)?.cancelUploads()

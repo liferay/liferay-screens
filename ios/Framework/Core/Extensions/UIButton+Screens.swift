@@ -16,19 +16,19 @@ import UIKit
 
 extension UIButton {
 
-	public func replaceAttributedTitle(title: String, forState state: UIControlState) {
-		if let attributedTitle = self.attributedTitleForState(state) {
+	public func replaceAttributedTitle(_ title: String, forState state: UIControlState) {
+		if let attributedTitle = self.attributedTitle(for: state) {
 			let formattedString = NSMutableAttributedString(
 					attributedString: attributedTitle)
 
-			formattedString.replaceCharactersInRange(
-					NSMakeRange(0, formattedString.length),
-					withString: title)
+			formattedString.replaceCharacters(
+					in: NSMakeRange(0, formattedString.length),
+					with: title)
 
-			self.setAttributedTitle(formattedString, forState: state)
+			self.setAttributedTitle(formattedString, for: state)
 		}
 		else {
-			self.setAttributedTitle(NSAttributedString(string: title), forState: state)
+			self.setAttributedTitle(NSAttributedString(string: title), for: state)
 		}
 
 	}

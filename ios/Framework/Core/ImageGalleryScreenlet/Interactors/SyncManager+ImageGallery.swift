@@ -16,24 +16,24 @@ import Foundation
 extension SyncManager {
 
 	func imageGallerySynchronizer(
-			key: String,
+			_ key: String,
 			attributes: [String : AnyObject])
-			-> Signal -> () {
+			-> (@escaping Signal) -> () {
 
 		return { signal in
-			let folderId = attributes["folderId"]!.longLongValue
-			let repositoryId = attributes["repositoryId"]!.longLongValue
-			let page = attributes["page"]!.description.asNumber!.longValue
+			let folderId = attributes["folderId"]!.int64Value
+			let repositoryId = attributes["repositoryId"]!.int64Value
+			let page = attributes["page"]!.description.asNumber!.intValue
 
-			self.cacheManager.getAny(collection: ScreenletName(ImageGalleryScreenlet), key: key) {
+			self.cacheManager.getAny(collection: ScreenletName(ImageGalleryScreenlet.self), key: key) {
 			
 				if let imageEntryUpload = $0 as? ImageEntryUpload {
 
 					let interactor = ImageGalleryUploadInteractor(
 							screenlet: nil,
 							imageUpload: imageEntryUpload,
-							repositoryId: repositoryId,
-							folderId: folderId,
+							repositoryId: repositoryId!,
+							folderId: folderId!,
 							page: page,
 							onUploadedBytes: nil,
 							cacheKeyUsed: key)
@@ -42,7 +42,7 @@ extension SyncManager {
 							interactor, key: key,
 							attributes: attributes,
 							signal: signal,
-							screenletClassName: ScreenletName(ImageGalleryScreenlet))
+							screenletClassName: ScreenletName(ImageGalleryScreenlet.self))
 
 					if !interactor.start() {
 						signal()
@@ -51,10 +51,10 @@ extension SyncManager {
 				else {
 
 					self.delegate?.syncManager?(self,
-							onItemSyncScreenlet: ScreenletName(ImageGalleryScreenlet),
+							onItemSyncScreenlet: ScreenletName(ImageGalleryScreenlet.self),
 							failedKey: key,
 							attributes: attributes,
-							error: NSError.errorWithCause(.NotAvailable,
+							error: NSError.errorWithCause(.notAvailable,
 									message: "Synchronizer for image gallery not available."))
 					
 					signal()

@@ -86,7 +86,7 @@ class AssetTypesViewController: UITableViewController {
 		setTranslations()
 	}
 	
-	override func viewWillDisappear(animated: Bool) {
+	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		
 		self.title = nil
@@ -95,16 +95,16 @@ class AssetTypesViewController: UITableViewController {
 	
 	//MARK: UITableViewDataSource
 	
-	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+	override func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
 	}
 	
-	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return assetClasses.count
 	}
 	
-	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = UITableViewCell(style: .Default, reuseIdentifier: "default-cell");
+	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = UITableViewCell(style: .default, reuseIdentifier: "default-cell");
 		
 		cell.textLabel?.text = assetClasses[indexPath.row]
 		
@@ -114,17 +114,17 @@ class AssetTypesViewController: UITableViewController {
 	
 	//MARK: UITableViewDelegate
 	
-	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		selectedAssetType = assetClasses[indexPath.row]
-		performSegueWithIdentifier(AssetListSegue, sender: self)
+		performSegue(withIdentifier: AssetListSegue, sender: self)
 	}
 	
 	
 	//MARK: UIViewController
 	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == AssetListSegue {
-			let viewController = segue.destinationViewController as? AssetListScreenletViewController
+			let viewController = segue.destination as? AssetListScreenletViewController
 			viewController?.assetType = selectedAssetType
 		}
 	}
@@ -132,7 +132,7 @@ class AssetTypesViewController: UITableViewController {
 
 	//MARK: Private methods
 
-	private func setTranslations() {
+	fileprivate func setTranslations() {
 		self.title = NSLocalizedString("assetlist-choose-asset-type", comment: "Choose an Asset type")
 	}
 }

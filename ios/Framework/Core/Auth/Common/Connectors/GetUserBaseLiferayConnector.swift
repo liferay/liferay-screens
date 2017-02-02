@@ -13,17 +13,17 @@
  */
 import UIKit
 
-public class GetUserBaseLiferayConnector: ServerConnector {
+open class GetUserBaseLiferayConnector: ServerConnector {
 
-	public var resultUserAttributes: [String:AnyObject]?
+	open var resultUserAttributes: [String:AnyObject]?
 
-	public var userName: String?
-	public var password: String?
+	open var userName: String?
+	open var password: String?
 
 
 	//MARK: ServerConnector
 
-	override public func validateData() -> ValidationError? {
+	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
 		
 		if !SessionContext.isLoggedIn {
@@ -39,11 +39,11 @@ public class GetUserBaseLiferayConnector: ServerConnector {
 		return error
 	}
 
-	override public func createSession() -> LRSession? {
+	override open func createSession() -> LRSession? {
 		if SessionContext.isLoggedIn {
 			return SessionContext.currentContext?.createRequestSession()
 		}
-		guard let userName = userName, password = password else {
+		guard let userName = userName, let password = password else {
 			return nil
 		}
 
@@ -54,12 +54,12 @@ public class GetUserBaseLiferayConnector: ServerConnector {
 						password: password))
 	}
 
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 		do {
 			let result = try sendGetUserRequest(session)
 
 			if result["userId"] == nil {
-				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				lastError = NSError.errorWithCause(.invalidServerResponse,
 				                                   message: "No user found.")
 				resultUserAttributes = nil
 			}
@@ -77,6 +77,7 @@ public class GetUserBaseLiferayConnector: ServerConnector {
 
 	//MARK: Internal methods
 
+	@discardableResult
 	internal func loginWithResult() -> Bool {
 		guard let userAttributes = resultUserAttributes else {
 			return false
@@ -98,7 +99,7 @@ public class GetUserBaseLiferayConnector: ServerConnector {
 		return true
 	}
 
-	internal func extractUserAttributes(result: NSDictionary?) -> [String: AnyObject]? {
+	internal func extractUserAttributes(_ result: NSDictionary?) -> [String: AnyObject]? {
 		guard var userAttributes = result as? [String: AnyObject] else {
 			return nil
 		}
@@ -120,7 +121,7 @@ public class GetUserBaseLiferayConnector: ServerConnector {
 
 	//MARK: Template methods
 
-	public func sendGetUserRequest(session: LRSession)
+	open func sendGetUserRequest(_ session: LRSession)
 			throws -> NSDictionary {
 		fatalError("sendGetUserRequest must be overriden")
 	}

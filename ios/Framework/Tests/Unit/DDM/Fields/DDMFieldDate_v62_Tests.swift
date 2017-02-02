@@ -16,7 +16,7 @@ import XCTest
 
 class DDMFieldDate_v62_Tests: XCTestCase {
 
-	private let spanishLocale = NSLocale(localeIdentifier: "es_ES")
+	fileprivate let spanishLocale = Locale(identifier: "es_ES")
 
 	func test_Parse_ShouldExtractValues() {
 		let xsd =
@@ -58,15 +58,15 @@ class DDMFieldDate_v62_Tests: XCTestCase {
 		XCTAssertNotNil(dateField.predefinedValue)
 		XCTAssertTrue(dateField.predefinedValue is NSDate)
 
-		let dateFormatter = NSDateFormatter()
+		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
-		let dateValue = dateField.predefinedValue as! NSDate
+		let dateValue = dateField.predefinedValue as! Date
 		XCTAssertEqual(
 				"31/12/2001",
-				dateFormatter.stringFromDate(dateValue))
+				dateFormatter.string(from: dateValue))
 		XCTAssertEqual(
-				dateField.currentValue as? NSDate,
+				dateField.currentValue as? Date,
 				dateValue)
 	}
 
@@ -83,11 +83,11 @@ class DDMFieldDate_v62_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as! DDMFieldDate
 
-		let dateFormatter = NSDateFormatter()
+		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
-		dateFormatter.timeZone = NSTimeZone(abbreviation: "GMT")
+		dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
 
-		dateField.currentValue = dateFormatter.dateFromString("19/06/2004")
+		dateField.currentValue = dateFormatter.date(from: "19/06/2004") as AnyObject?
 
 		// converted with http://www.epochconverter.com/
 		XCTAssertEqual("1087603200000", dateField.currentValueAsString!)
@@ -97,28 +97,28 @@ class DDMFieldDate_v62_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as! DDMFieldDate
 
-		let dateFormatter = NSDateFormatter()
+		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
 		dateField.currentValueAsString = "6/19/2004"
 
 		XCTAssertEqual(
 				"19/06/2004",
-				dateFormatter.stringFromDate(dateField.currentValue as! NSDate))
+				dateFormatter.string(from: dateField.currentValue as! Date))
 	}
 
 	func test_currentValueAsString_ShouldSupportFourDigitsYear_WhenSettingTheStringValue() {
 		let fields = DDMXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as! DDMFieldDate
 
-		let dateFormatter = NSDateFormatter()
+		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
 		dateField.currentValueAsString = "6/19/2004"
 
 		XCTAssertEqual(
 				"19/06/2004",
-				dateFormatter.stringFromDate(dateField.currentValue as! NSDate))
+				dateFormatter.string(from: dateField.currentValue as! Date))
 	}
 
 
@@ -128,11 +128,11 @@ class DDMFieldDate_v62_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as! DDMFieldDate
 
-		let dateFormatter = NSDateFormatter()
+		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
-		dateField.currentLocale = NSLocale(localeIdentifier: "en_US")
-		dateField.currentValue = dateFormatter.dateFromString("19/06/2004")
+		dateField.currentLocale = Locale(identifier: "en_US")
+		dateField.currentValue = dateFormatter.date(from: "19/06/2004") as AnyObject?
 
 		XCTAssertEqual("June 19, 2004", dateField.currentValueAsLabel!)
 	}
@@ -141,10 +141,10 @@ class DDMFieldDate_v62_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)
 		let dateField = fields![0] as! DDMFieldDate
 
-		let dateFormatter = NSDateFormatter()
+		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
-		dateField.currentValue = dateFormatter.dateFromString("19/06/2004")
+		dateField.currentValue = dateFormatter.date(from: "19/06/2004") as AnyObject?
 
 		XCTAssertEqual("19 de junio de 2004", dateField.currentValueAsLabel!)
 	}
@@ -155,15 +155,15 @@ class DDMFieldDate_v62_Tests: XCTestCase {
 
 		dateField.currentValueAsLabel = "19 de junio de 2004"
 
-		let date = dateField.currentValue as! NSDate
+		let date = dateField.currentValue as! Date
 
-		let dateFormatter = NSDateFormatter()
+		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
-		XCTAssertEqual("19/06/2004", dateFormatter.stringFromDate(date))
+		XCTAssertEqual("19/06/2004", dateFormatter.string(from: date))
 	}
 
-	private let requiredDateFieldXSD =
+	fileprivate let requiredDateFieldXSD =
 		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
 			"<dynamic-element dataType=\"date\" " +
 				"fieldNamespace=\"ddm\" " +

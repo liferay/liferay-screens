@@ -22,11 +22,11 @@ class BaseScreenlet_Basic_Tests: XCTestCase {
 	override func setUp() {
 		super.setUp()
 
-		screenlet = SignUpScreenlet(frame: CGRectMake(0, 0, 100, 100))
+		screenlet = SignUpScreenlet(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
 	}
 
 	func test_ScreenletName_ShouldReturnTheCorrectName() {
-		XCTAssertEqual("SignUp", ScreenletName(screenlet!.dynamicType))
+		XCTAssertEqual("SignUp", ScreenletName(type(of: screenlet!)))
 	}
 
 }

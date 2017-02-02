@@ -21,7 +21,7 @@ import Foundation
 	/// - Parameters:
 	///   - screenlet
 	///   - blogEntry: blog entry object.
-	optional func screenlet(screenlet: BlogsEntryDisplayScreenlet,
+	@objc optional func screenlet(_ screenlet: BlogsEntryDisplayScreenlet,
 			onBlogEntryResponse blogEntry: BlogsEntry)
 
 	/// Called when an error occurs in the process.
@@ -30,47 +30,47 @@ import Foundation
 	/// - Parameters:
 	///   - screenlet
 	///   - error: error while retrieving blog entry.
-	optional func screenlet(screenlet: BlogsEntryDisplayScreenlet,
+	@objc optional func screenlet(_ screenlet: BlogsEntryDisplayScreenlet,
 			onBlogEntryError error: NSError)
 }
 
 
-public class BlogsEntryDisplayScreenlet: BaseScreenlet {
+open class BlogsEntryDisplayScreenlet: BaseScreenlet {
 
 
 	//MARK: Inspectables
 
-	@IBInspectable public var assetEntryId: Int64 = 0
+	@IBInspectable open var assetEntryId: Int64 = 0
 
-	@IBInspectable public var classPK: Int64 = 0
+	@IBInspectable open var classPK: Int64 = 0
 
-	@IBInspectable public var autoLoad: Bool = true
+	@IBInspectable open var autoLoad: Bool = true
 
-	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-	public var blogsEntry: BlogsEntry? {
+	open var blogsEntry: BlogsEntry? {
 		didSet {
 			blogsEntryViewModel?.blogsEntry = self.blogsEntry
 		}
 	}
 	
-	public var blogsEntryDisplayDelegate: BlogsEntryDisplayScreenletDelegate? {
+	open var blogsEntryDisplayDelegate: BlogsEntryDisplayScreenletDelegate? {
 		return delegate as? BlogsEntryDisplayScreenletDelegate
 	}
 
-	public var blogsEntryViewModel: BlogsDisplayViewModel? {
+	open var blogsEntryViewModel: BlogsDisplayViewModel? {
 		return screenletView as? BlogsDisplayViewModel
 	}
 
 	//MARK: BaseScreenlet
 
-	override public func onShow() {
+	override open func onShow() {
 		if autoLoad {
 			load()
 		}
 	}
 
-	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
 		if isActionRunning(name) {
 			cancelInteractorsForAction(name)
 		}
@@ -87,7 +87,7 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 				classPK: self.classPK)
 		}
 
-		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .RemoteFirst
+		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .remoteFirst
 
 		interactor.onSuccess = {
 			if let resultAsset = interactor.asset {
@@ -97,7 +97,7 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 			}
 			else {
 				self.blogsEntryDisplayDelegate?.screenlet?(self, onBlogEntryError:
-					NSError.errorWithCause(.InvalidServerResponse, message: "No blog entry found."))
+					NSError.errorWithCause(.invalidServerResponse, message: "No blog entry found."))
 			}
 		}
 
@@ -114,7 +114,8 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 	/// Loads a blog entry in the screenlet.
 	///
 	/// - Returns: true if default use case has been perform, false otherwise.
-	public func load() -> Bool {
+	@discardableResult
+	open func load() -> Bool {
 		return self.performDefaultAction()
 	}
 }

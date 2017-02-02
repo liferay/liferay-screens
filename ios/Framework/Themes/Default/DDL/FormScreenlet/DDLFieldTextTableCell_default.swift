@@ -14,28 +14,28 @@
 import UIKit
 
 
-public class DDLFieldTextTableCell_default: DDLBaseFieldTextboxTableCell_default {
+open class DDLFieldTextTableCell_default: DDLBaseFieldTextboxTableCell_default {
 
 	//MARK: DDLBaseFieldTextboxTableCell
 
-	override public func textField(textField: UITextField,
-			shouldChangeCharactersInRange range: NSRange,
+	override open func textField(_ textField: UITextField,
+			shouldChangeCharactersIn range: NSRange,
 			replacementString string: String)
 			-> Bool {
 
-		let newText = (textField.text! as NSString).stringByReplacingCharactersInRange(range,
-				withString:string)
+		let newText = (textField.text! as NSString).replacingCharacters(in: range,
+				with:string)
 
-		field!.currentValue = newText
+		field!.currentValue = newText as AnyObject?
 
-		return super.textField(textField, shouldChangeCharactersInRange: range,
+		return super.textField(textField, shouldChangeCharactersIn: range,
 				replacementString: string)
 	}
 
 
 	//MARK: UITextFieldDelegate
 
-	public func textFieldShouldReturn(textField: UITextField) -> Bool {
+	open func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		return nextCellResponder(textField)
 	}
 

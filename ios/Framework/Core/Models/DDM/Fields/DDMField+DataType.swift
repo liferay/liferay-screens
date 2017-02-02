@@ -32,17 +32,17 @@ extension DDMField {
 		case DDMImage = "image"
 		case Unsupported = ""
 
-		public static func from(xmlElement xmlElement:SMXMLElement) -> DataType {
+		public static func from(xmlElement:SMXMLElement) -> DataType {
 			return DataType(rawValue: xmlElement.attributeNamed("dataType") ?? "") ?? .Unsupported
 		}
 
-		public static func from(json json: JSONObject) -> DataType {
+		public static func from(json: JSONObject) -> DataType {
 			return DataType(rawValue: (json["dataType"] as? String) ?? "") ?? .Unsupported
 		}
 
 		public func createField(
-				attributes attributes:[String:AnyObject],
-				locale: NSLocale,
+				attributes:[String:AnyObject],
+				locale: Locale,
 				version: LiferayServerVersion)
 				-> DDMField? {
 

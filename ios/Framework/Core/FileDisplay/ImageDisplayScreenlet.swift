@@ -14,28 +14,28 @@
 import Foundation
 
 
-public class ImageDisplayScreenlet: FileDisplayScreenlet {
+open class ImageDisplayScreenlet: FileDisplayScreenlet {
 
 
 	//MARK: Inspectables
 
-	@IBInspectable public var placeholder: UIImage?  {
+	@IBInspectable open var placeholder: UIImage?  {
 		didSet {
 			imageDisplayViewModel?.placeholder = placeholder
 		}
 	}
 
-	public var imageDisplayViewModel: ImageDisplayViewModel? {
+	open var imageDisplayViewModel: ImageDisplayViewModel? {
 		return screenletView as? ImageDisplayViewModel
 	}
 
-	public var imageMode: UIViewContentMode = .ScaleAspectFit {
+	open var imageMode: UIViewContentMode = .scaleAspectFit {
 		didSet {
 			imageDisplayViewModel?.imageMode = imageMode
 		}
 	}
 
-	public var placeholderImageMode: UIViewContentMode = .Center {
+	open var placeholderImageMode: UIViewContentMode = .center {
 		didSet {
 			imageDisplayViewModel?.placeholderImageMode = placeholderImageMode
 		}
@@ -44,14 +44,14 @@ public class ImageDisplayScreenlet: FileDisplayScreenlet {
 
 	//MARK: FileDisplayScreenlet
 
-	override public class var supportedMimeTypes: [String] {
+	override open class var supportedMimeTypes: [String] {
 		return ["image/png", "image/jpg", "image/jpeg", "image/gif"]
 	}
 
 
 	//MARK: BaseScreenlet
 
-	override public func onCreated() {
+	override open func onCreated() {
 		super.onCreated()
 		
 		imageDisplayViewModel?.imageMode = imageMode

@@ -14,23 +14,23 @@
 import UIKit
 
 
-public class UploadProgressView_default: UIView, UploadProgressViewBase {
+open class UploadProgressView_default: UIView, UploadProgressViewBase {
 
 
 	//MARK: Outlets
 
-	@IBOutlet weak private var previewImage: UIImageView?
+	@IBOutlet weak fileprivate var previewImage: UIImageView?
 
-	@IBOutlet weak private var progressView: UIProgressView?
+	@IBOutlet weak fileprivate var progressView: UIProgressView?
 
-	@IBOutlet weak private var informationText: UILabel?
+	@IBOutlet weak fileprivate var informationText: UILabel?
 
-	public var cancelClosure: (Void -> Void)?
+	open var cancelClosure: ((Void) -> Void)?
 
-	private var images: [UIImage] = []
-	private var uploadsCount = 0
+	fileprivate var images: [UIImage] = []
+	fileprivate var uploadsCount = 0
 
-	override public func awakeFromNib() {
+	override open func awakeFromNib() {
 		progressView?.progress = 0
 		addShadow()
 	}
@@ -38,7 +38,7 @@ public class UploadProgressView_default: UIView, UploadProgressViewBase {
 
 	//MARK: Public methods
 
-	public func addShadow() {
+	open func addShadow() {
 		layer.masksToBounds = false;
 		layer.shadowOffset = CGSize(width: 0, height: 0);
 		layer.shadowRadius = 5;
@@ -56,11 +56,11 @@ public class UploadProgressView_default: UIView, UploadProgressViewBase {
 
 	//MARK: UploadProgressViewBase
 
-	public func setProgress(progress: Float) {
+	open func setProgress(_ progress: Float) {
 		progressView?.progress = progress
 	}
 
-	public func addUpload(thumbnail: UIImage? = nil) {
+	open func addUpload(_ thumbnail: UIImage? = nil) {
 		uploadsCount += 1
 
 		if let thumbnail = thumbnail {
@@ -74,7 +74,7 @@ public class UploadProgressView_default: UIView, UploadProgressViewBase {
 		updateInformationText()
 	}
 
-	public func uploadComplete() {
+	open func uploadComplete() {
 		if uploadsCount == 1 {
 			hide()
 		}
@@ -86,14 +86,14 @@ public class UploadProgressView_default: UIView, UploadProgressViewBase {
 		}
 	}
 
-	public func uploadError() {
+	open func uploadError() {
 		if uploadsCount == 1 {
 			hide()
 		}
 	}
 
-	public func hide() {
-		UIView.animateWithDuration(0.5 , animations: {
+	open func hide() {
+		UIView.animate(withDuration: 0.5 , animations: {
 			self.alpha = 0
 		}, completion: { _ in
 			self.removeFromSuperview()
@@ -103,7 +103,7 @@ public class UploadProgressView_default: UIView, UploadProgressViewBase {
 
 	//MARK: Private methods
 
-	private func updateInformationText() {
+	fileprivate func updateInformationText() {
 		if uploadsCount == 1 {
 			informationText?.text = LocalizedString(
 					"default",

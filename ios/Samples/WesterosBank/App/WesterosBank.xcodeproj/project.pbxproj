@@ -567,6 +567,7 @@
 					88855A2C1AE6537000D352D5 = {
 						CreatedOnToolsVersion = 6.3;
 						DevelopmentTeam = 7H3SPU5TB9;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -886,7 +887,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = westerosbank;
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -902,7 +903,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = westerosbank;
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

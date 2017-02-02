@@ -52,12 +52,12 @@ extension DDMField {
 			}
 		}
 
-		public static func from(attributes attributes: [String:AnyObject]) -> Editor {
-			return from(attributeValue:((attributes["type"] ?? "") as! String))
+		public static func from(attributes: [String:AnyObject]) -> Editor {
+			return from(attributeValue:((attributes["type"] as? String ?? "") ))
 		}
 
-		public static func from(attributeValue attributeValue: String) -> Editor {
-			let value = attributeValue.stringByReplacingOccurrencesOfString("ddm-", withString: "")
+		public static func from(attributeValue: String) -> Editor {
+			let value = attributeValue.replacingOccurrences(of: "ddm-", with: "")
 
 			switch value {
 			case "integer", "decimal":
@@ -78,20 +78,16 @@ extension DDMField {
 
 			// hack for names prefixed with ddm
 			if typeName.hasPrefix("ddm-") {
-				let wholeRange = typeName.startIndex..<typeName.endIndex
-
-				typeName = typeName.stringByReplacingOccurrencesOfString("ddm-",
-						withString: "",
-						options: .CaseInsensitiveSearch,
-						range: wholeRange)
+				typeName = typeName.replacingOccurrences(of: "ddm-",
+						with: "")
 			}
 
 			// Capitalize first char
 
-			let secondCharIndex = typeName.startIndex.successor()
+			let secondCharIndex = typeName.characters.index(after: typeName.startIndex)
 
-			return typeName.substringToIndex(secondCharIndex).uppercaseString +
-					typeName.substringFromIndex(secondCharIndex)
+			return typeName.substring(to: secondCharIndex).uppercased() +
+					typeName.substring(from: secondCharIndex)
 		}
 
 	}

@@ -28,12 +28,12 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.4.0):
     - CocoaLumberjack/Default
-  - Cosmos (0.0.1)
-  - CryptoSwift (0.5.2)
+  - Cosmos (8.0.1)
+  - CryptoSwift (0.6.7)
   - DTPickerPresenter (0.2.0)
-  - KeychainAccess (2.4.0)
-  - Kingfisher (2.6.1)
-  - Liferay-iOS-SDK (7.0.6):
+  - KeychainAccess (3.0.1)
+  - Kingfisher (3.3.2)
+  - Liferay-iOS-SDK (7.0.7):
     - AFNetworking (= 2.6.3)
   - Liferay-OAuth (1.2.1):
     - Liferay-iOS-SDK (~> 7.0.4)
@@ -97,11 +97,11 @@ PODS:
     - YapDatabase/SQLCipher/Core
 
 DEPENDENCIES:
-  - Cosmos (= 0.0.1)
-  - CryptoSwift (~> 0.5.2)
+  - Cosmos (~> 8.0)
+  - CryptoSwift (~> 0.6.0)
   - DTPickerPresenter (~> 0.2.0)
-  - KeychainAccess (~> 2.4)
-  - Kingfisher (~> 2.4)
+  - KeychainAccess (~> 3.0)
+  - Kingfisher (~> 3.0)
   - Liferay-iOS-SDK (~> 7.0.4)
   - Liferay-OAuth (~> 1.2.0)
   - MBProgressHUD (~> 0.9.1)
@@ -114,12 +114,12 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   CocoaLumberjack: aa9dcab71bdf9eaf2a63bbd9ddc87863efe45457
-  Cosmos: b08ddd200d0ac337231f6c94fc5abce5d27bc312
-  CryptoSwift: c1ef79f901b86099a6fe8b3c7524cf9f3f3c8c40
+  Cosmos: 7e4615ae6a3af8109e242b34cfddfaba1c25bfbe
+  CryptoSwift: 685ae257941e5447474348a2b545583e1a16b573
   DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
-  KeychainAccess: c2a71459af5bddf720a51806046a598500976c04
-  Kingfisher: 7e5515bf6c4f2acad91f6400955d2257549cab7b
-  Liferay-iOS-SDK: ea3212ee6e62c866ca38b9df7415585371c15b22
+  KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
+  Kingfisher: 8e60094454aeb4746eb588eb57f794d891c6ea88
+  Liferay-iOS-SDK: 92e7f46371f3588fdd38a0cee64903b669d6877f
   Liferay-OAuth: a9ff190558928bec8ebc18dd326b01bddd7e2968
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MDRadialProgress: 1068574b9b4b870f64b605b07f734385bde5104d
@@ -130,6 +130,6 @@ SPEC CHECKSUMS:
   TNRadioButtonGroup: f5fb9b545d8913bbabe6a72ea1fa6fba4d833bb6
   YapDatabase: b1e43555a34a5298e23a045be96817a5ef0da58f
 
-PODFILE CHECKSUM: f3ce9c141f74a768c184231e43ac13f6ffb549ad
+PODFILE CHECKSUM: c358bd1a53ae71a9c74c90da0c2b12382a5faceb
 
 COCOAPODS: 1.1.1

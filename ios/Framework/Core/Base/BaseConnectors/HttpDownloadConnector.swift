@@ -14,16 +14,16 @@
 import UIKit
 
 
-public class HttpDownloadConnector: ServerConnector {
+open class HttpDownloadConnector: ServerConnector {
 
-	public var url: NSURL
+	open var url: URL
 
-	public var resultUrl: NSURL?
+	open var resultUrl: URL?
 
 
 	//MARK: Initializers
 
-	public init(url: NSURL) {
+	public init(url: URL) {
 		self.url = url
 
 		super.init()
@@ -31,26 +31,26 @@ public class HttpDownloadConnector: ServerConnector {
 
 	//MARK: ServerConnector
 
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 
-		let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+		let session = URLSession(configuration: .default)
 
-		let requestSemaphore = dispatch_semaphore_create(0)
+		let requestSemaphore = DispatchSemaphore(value: 0)
 
-		session.downloadTaskWithURL(self.url, completionHandler:
+		session.downloadTask(with: self.url, completionHandler:
 			{ (_localURL, response, error) in
 				if let error = error {
-					self.lastError = error
+					self.lastError = error as NSError?
 					self.resultUrl = nil
 				}
 				else if _localURL == nil {
-					self.lastError = NSError.errorWithCause(.InvalidServerResponse,
+					self.lastError = NSError.errorWithCause(.invalidServerResponse,
 							message: "Could not download because local URL not found.")
 					self.resultUrl = nil
 				}
 				else if let localURL = _localURL {
 					do {
-						let newPathURL = try self.moveTmpToCache(localURL.absoluteString!,
+						let newPathURL = try self.moveTmpToCache(localURL.absoluteString,
 							fileExtension: self.fileExtension(response))
 						self.resultUrl = newPathURL
 						self.lastError = nil
@@ -60,14 +60,14 @@ public class HttpDownloadConnector: ServerConnector {
 						self.resultUrl = nil
 					}
 				}
-				dispatch_semaphore_signal(requestSemaphore)
+				requestSemaphore.signal()
 
 		}).resume()
 
-		dispatch_semaphore_wait(requestSemaphore, DISPATCH_TIME_FOREVER)
+		_ = requestSemaphore.wait(timeout: .distantFuture)
 	}
 
-	override public func createSession() -> LRSession? {
+	override open func createSession() -> LRSession? {
 
 		// dummy session: won't be used
 		let port = (url.port == nil) ? "" : ":\(url.port!)"
@@ -77,24 +77,24 @@ public class HttpDownloadConnector: ServerConnector {
 
 	//MARK: Private methods
 
-	private func moveTmpToCache(localPath: String, fileExtension: String) throws -> NSURL {
+	fileprivate func moveTmpToCache(_ localPath: String, fileExtension: String) throws -> URL {
 
 		let cachePath = cacheFilePath()
-		let cachePathUrl = NSURL(fileURLWithPath: cachePath + "." + fileExtension)
+		let cachePathUrl = URL(fileURLWithPath: cachePath + "." + fileExtension)
 
-		try NSFileManager.defaultManager().moveItemAtURL(NSURL(string: localPath)!,
-		                                                 toURL: cachePathUrl)
+		try FileManager.default.moveItem(at: URL(string: localPath)!,
+		                                                 to: cachePathUrl)
 
 		return cachePathUrl
 	}
 
-	private func fileExtension(response: NSURLResponse?) -> String {
+	fileprivate func fileExtension(_ response: URLResponse?) -> String {
 
-		if let ext = response?.MIMEType?.characters.split("/").map(String.init)[1] {
+		if let ext = response?.mimeType?.characters.split(separator: "/").map(String.init)[1] {
 			return ext
 		}
 
-		if let ext = response?.suggestedFilename?.characters.split(".").map(String.init).last {
+		if let ext = response?.suggestedFilename?.characters.split(separator: ".").map(String.init).last {
 			return ext
 		}
 

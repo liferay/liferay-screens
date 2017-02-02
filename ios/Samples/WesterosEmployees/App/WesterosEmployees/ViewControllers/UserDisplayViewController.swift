@@ -14,7 +14,7 @@
 import UIKit
 import LiferayScreens
 
-public class UserDisplayViewController: UIViewController, AssetDisplayScreenletDelegate {
+open class UserDisplayViewController: UIViewController, AssetDisplayScreenletDelegate {
 
 
 	//MARK: Outlets
@@ -31,7 +31,7 @@ public class UserDisplayViewController: UIViewController, AssetDisplayScreenletD
 
 	//MARK: UIViewController
 
-	public override func viewDidLoad() {
+	open override func viewDidLoad() {
 		super.viewDidLoad()
 		self.screenlet?.load()
 	}
@@ -39,21 +39,21 @@ public class UserDisplayViewController: UIViewController, AssetDisplayScreenletD
 
 	//MARK: AssetDisplayScreenletDelegate
 
-	public func screenlet(screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView? {
+	open func screenlet(_ screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView? {
 		if let type = asset.attributes["object"]?.allKeys.first as? String {
 			if type == "user" {
-				let view = NSBundle.mainBundle().loadNibNamed("UserProfileView", owner: self, options: nil)![safe: 0] as? UserProfileView
+				let view = Bundle.main.loadNibNamed("UserProfileView", owner: self, options: nil)![safe: 0] as? UserProfileView
 
 				let object = asset.attributes["object"] as! [String : AnyObject]
 
 				view?.user = User(attributes: object["user"] as! [String : AnyObject])
 				view?.goBackButtonClicked = {
-					self.dismissViewControllerAnimated(true, completion: nil)
+					self.dismiss(animated: true, completion: nil)
 				}
 				view?.signOutButtonClicked = {
 					SessionContext.currentContext?.removeStoredCredentials()
 					SessionContext.logout()
-					self.dismissViewControllerAnimated(true, completion: nil)
+					self.dismiss(animated: true, completion: nil)
 				}
 				return view
 			}

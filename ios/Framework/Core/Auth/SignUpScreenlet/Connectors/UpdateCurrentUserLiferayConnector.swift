@@ -15,11 +15,11 @@ import UIKit
 import LRMobileSDK
 
 
-public class UpdateCurrentUserLiferayConnector: ServerConnector {
+open class UpdateCurrentUserLiferayConnector: ServerConnector {
 
-	public var resultUserAttributes: [String:AnyObject]?
+	open var resultUserAttributes: [String:AnyObject]?
 
-	private let viewModel: SignUpViewModel
+	fileprivate let viewModel: SignUpViewModel
 
 
 	//MARK: Initializers
@@ -33,7 +33,7 @@ public class UpdateCurrentUserLiferayConnector: ServerConnector {
 
 	//MARK: ServerConnector
 
-	override public func validateData() -> ValidationError? {
+	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -52,30 +52,30 @@ public class UpdateCurrentUserLiferayConnector: ServerConnector {
 
 	//MARK: Public methods
 
-	public func attributeAsString(key: String) -> String {
+	open func attributeAsString(_ key: String) -> String {
 		return SessionContext.currentContext?.user.stringAttribute(key) ?? ""
 	}
 
-	public func attributeAsId(key: String) -> Int64 {
+	open func attributeAsId(_ key: String) -> Int64 {
 		return SessionContext.currentContext?.user.int64Attribute(key) ?? 0
 	}
 
 }
 
 
-public class Liferay62UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnector {
+open class Liferay62UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnector {
 
 
 	//MARK: ServerConnector
 
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 		let service = LRUserService_v62(session: session)
 
 		do {
 			//FIXME
 			// Values marked with (!!) will be overwritten in the server
 			// The JSON WS API isn't able to handle this scenario correctly
-			let result = try service.updateUserWithUserId(attributeAsId("userId"),
+			let result = try service?.updateUser(withUserId: attributeAsId("userId"),
 				oldPassword: SessionContext.currentContext?.basicAuthPassword,
 				newPassword1: viewModel.password ?? "",
 				newPassword2: viewModel.password ?? "",
@@ -110,15 +110,15 @@ public class Liferay62UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnec
 				twitterSn: "", 		// (!!)
 				ymSn: "", 			// (!!)
 				jobTitle: viewModel.jobTitle ?? "",
-				groupIds: [NSNumber(longLong: LiferayServerContext.groupId)],
+				groupIds: [NSNumber(value: LiferayServerContext.groupId as Int64)],
 				organizationIds: [AnyObject](),
 				roleIds: [AnyObject](),
 				userGroupRoles: [AnyObject](),
 				userGroupIds: [AnyObject](),
 				serviceContext: nil)
 
-			if result["userId"] == nil {
-				lastError = NSError.errorWithCause(.InvalidServerResponse,
+			if result?["userId"] == nil {
+				lastError = NSError.errorWithCause(.invalidServerResponse,
 						message: "Could not update user with this userId.")
 				resultUserAttributes = nil
 			}
@@ -136,19 +136,19 @@ public class Liferay62UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnec
 }
 
 
-public class Liferay70UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnector {
+open class Liferay70UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnector {
 
 
 	//MARK: ServerConnector
 	
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 		let service = LRUserService_v7(session: session)
 
 		do {
 			//FIXME
 			// Values marked with (!!) will be overwritten in the server
 			// The JSON WS API isn't able to handle this scenario correctly
-			let result = try service.updateUserWithUserId(attributeAsId("userId"),
+			let result = try service?.updateUser(withUserId: attributeAsId("userId"),
 				oldPassword: SessionContext.currentContext?.basicAuthPassword,
 				newPassword1: viewModel.password ?? "",
 				newPassword2: viewModel.password ?? "",
@@ -178,15 +178,15 @@ public class Liferay70UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnec
 				skypeSn: "", 		// (!!)
 				twitterSn: "", 		// (!!)
 				jobTitle: viewModel.jobTitle ?? "",
-				groupIds: [NSNumber(longLong: LiferayServerContext.groupId)],
+				groupIds: [NSNumber(value: LiferayServerContext.groupId as Int64)],
 				organizationIds: [AnyObject](),
 				roleIds: [AnyObject](),
 				userGroupRoles: [AnyObject](),
 				userGroupIds: [AnyObject](),
 				serviceContext: nil)
 
-			if result["userId"] == nil {
-				lastError = NSError.errorWithCause(.InvalidServerResponse,
+			if result?["userId"] == nil {
+				lastError = NSError.errorWithCause(.invalidServerResponse,
 						message: "Could not update user with this userId.")
 				resultUserAttributes = nil
 			}

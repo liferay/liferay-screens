@@ -14,12 +14,12 @@
 import Foundation
 
 
-public class DDMFieldNumber : DDMField {
+open class DDMFieldNumber : DDMField {
 
-	public var maximumDecimalDigits = 2
-	public var minimumDecimalDigits = 2
+	open var maximumDecimalDigits = 2
+	open var minimumDecimalDigits = 2
 
-	public var isDecimal: Bool {
+	open var isDecimal: Bool {
 		return dataType != DataType.DDMInteger
 	}
 
@@ -29,19 +29,23 @@ public class DDMFieldNumber : DDMField {
 	override internal func convert(fromString value: String?) -> AnyObject? {
 		if let value = value {
 			// server may return the number is one format that uses , as decimal separator
-			let number = value.stringByReplacingOccurrencesOfString(",", withString: ".")
+			let number = value.replacingOccurrences(of: ",", with: ".").trim()
 
-			let enFormatter = NSNumberFormatter()
-			enFormatter.locale = NSLocale(localeIdentifier: "en_US")
+			if !isDecimal {
+				return Int(round(Double(number) ?? 0)) as AnyObject?
+			}
 
-			if let result = enFormatter.numberFromString(number) {
-				switch CFNumberGetType(result as CFNumberRef) {
-				case .Float32Type, .Float64Type, .FloatType, .CGFloatType:
-					return NSDecimalNumber(float: result.floatValue)
-				case .DoubleType:
-					return NSDecimalNumber(double: result.doubleValue)
+			let enFormatter = NumberFormatter()
+			enFormatter.locale = Locale(identifier: "en_US")
+
+			if let result = enFormatter.number(from: number) {
+				switch CFNumberGetType(result as CFNumber) {
+				case .float32Type, .float64Type, .floatType, .cgFloatType:
+					return NSDecimalNumber(value: result.floatValue as Float)
+				case .doubleType:
+					return NSDecimalNumber(value: result.doubleValue as Double)
 				default:
-					return NSInteger(result.integerValue)
+					return NSInteger(result.intValue) as AnyObject?
 				}
 			}
 		}
@@ -51,18 +55,18 @@ public class DDMFieldNumber : DDMField {
 
 	override internal func convert(fromLabel label: String?) -> AnyObject? {
 		if label != nil {
-			let formatter = NSNumberFormatter()
+			let formatter = NumberFormatter()
 
 			formatter.locale = self.currentLocale
 
 			if isDecimal {
-				formatter.numberStyle = .DecimalStyle
-				formatter.roundingMode = .RoundHalfUp
+				formatter.numberStyle = .decimal
+				formatter.roundingMode = .halfUp
 				formatter.maximumFractionDigits = maximumDecimalDigits
 				formatter.minimumFractionDigits = minimumDecimalDigits
 			}
 
-			return formatter.numberFromString(label!)
+			return formatter.number(from: label!)
 		}
 
 		return nil
@@ -70,7 +74,7 @@ public class DDMFieldNumber : DDMField {
 
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
 		return formatNumber(value as? NSNumber,
-				locale: NSLocale(localeIdentifier: "en_US"))
+				locale: Locale(identifier: "en_US"))
 	}
 
 	override internal func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
@@ -78,32 +82,32 @@ public class DDMFieldNumber : DDMField {
 	}
 
 	override internal func onChangedCurrentValue() {
-		if !isDecimal && currentValue is NSDecimalNumber {
-			let decimal = (currentValue as! NSDecimalNumber).doubleValue
-			currentValue = NSNumber(double: decimal + 0.5).integerValue
+		if !isDecimal && currentValue is NSInteger == false {
+			let decimal = (currentValue as! NSNumber).doubleValue 
+			currentValue = NSNumber(value: decimal + 0.5 as Double).intValue as AnyObject?
 		}
 	}
 
 
 	//MARK: Private methods
 
-	private func formatNumber(number: NSNumber?, locale: NSLocale) -> String? {
+	fileprivate func formatNumber(_ number: NSNumber?, locale: Locale) -> String? {
 		if number == nil {
 			return nil
 		}
 
-		let formatter = NSNumberFormatter()
+		let formatter = NumberFormatter()
 
 		formatter.locale = locale
 
 		if isDecimal {
-			formatter.numberStyle = .DecimalStyle
-			formatter.roundingMode = .RoundHalfUp
+			formatter.numberStyle = .decimal
+			formatter.roundingMode = .halfUp
 			formatter.maximumFractionDigits = maximumDecimalDigits
 			formatter.minimumFractionDigits = minimumDecimalDigits
 		}
 
-		return formatter.stringFromNumber(number!)
+		return formatter.string(from: number!)
 	}
 
 }

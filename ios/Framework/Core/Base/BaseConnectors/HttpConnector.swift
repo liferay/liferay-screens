@@ -14,16 +14,16 @@
 import UIKit
 
 
-public class HttpConnector: ServerConnector {
+open class HttpConnector: ServerConnector {
 
-	public var url: NSURL
+	open var url: URL
 
-	public var resultData: NSData?
+	open var resultData: Data?
 
 
 	//MARK: Initializers
 
-	public init(url: NSURL) {
+	public init(url: URL) {
 		self.url = url
 
 		super.init()
@@ -32,29 +32,29 @@ public class HttpConnector: ServerConnector {
 
 	//MARK: ServerConnector
 
-	override public func doRun(session session: LRSession) {
-		let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+	override open func doRun(session: LRSession) {
+		let session = URLSession(configuration: .default)
 
-		let requestSemaphore = dispatch_semaphore_create(0)
+		let requestSemaphore = DispatchSemaphore(value: 0)
 
-		session.dataTaskWithURL(self.url, completionHandler:
+		session.dataTask(with: self.url, completionHandler:
 		{ (data, response, error) -> Void in
 			if let error = error {
-				self.lastError = error
+				self.lastError = error as NSError?
 				self.resultData = nil
 			}
 			else {
 				self.resultData = data
 				self.lastError = nil
 			}
-			dispatch_semaphore_signal(requestSemaphore)
+			requestSemaphore.signal()
 
 		}).resume()
 
-		dispatch_semaphore_wait(requestSemaphore, DISPATCH_TIME_FOREVER)
+		_ = requestSemaphore.wait(timeout: .distantFuture)
 	}
 
-	override public func createSession() -> LRSession? {
+	override open func createSession() -> LRSession? {
 		// dummy session: won't be used
 		let port = (url.port == nil) ? "" : ":\(url.port!)"
 		return LRSession(server: "http://\(url.host!)\(port)")

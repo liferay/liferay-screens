@@ -14,58 +14,58 @@
 import Foundation
 
 
-@objc public class Asset : NSObject, NSCoding, MimeTypeable {
+@objc open class Asset : NSObject, NSCoding, MimeTypeable {
 
-	public let attributes :[String:AnyObject]
+	open let attributes :[String:AnyObject]
 
-	public let title: String
+	open let title: String
 
 
 	//MARK: MimeTypeable
 
-	public var mimeType: String? {
+	open var mimeType: String? {
 		return attributes["mimeType"]?.description
 	}
 
-	override public var description: String {
+	override open var description: String {
 		return attributes["description"] as! String
 	}
 
-	public var classNameId: Int64 {
-		return attributes["classNameId"]!.longLongValue
+	open var classNameId: Int64 {
+		return attributes["classNameId"]!.int64Value
 	}
 
-	public var classPK: Int64 {
-		return attributes["classPK"]!.longLongValue
+	open var classPK: Int64 {
+		return attributes["classPK"]!.int64Value
 	}
 
-	public var groupId: Int64 {
-		return attributes["groupId"]!.longLongValue
+	open var groupId: Int64 {
+		return attributes["groupId"]!.int64Value
 	}
 
-	public var companyId: Int64 {
-		return attributes["companyId"]!.longLongValue
+	open var companyId: Int64 {
+		return attributes["companyId"]!.int64Value
 	}
 
-	public var url: String {
+	open var url: String {
 		return attributes["url"]!.description!
 	}
 
-	public var entryId: Int64 {
-		return attributes["entryId"]!.longLongValue!
+	open var entryId: Int64 {
+		return attributes["entryId"]!.int64Value!
 	}
 
-	public var createDate: NSDate {
+	open var createDate: Date {
 		let milliseconds = (attributes["createDate"]! as! NSNumber).doubleValue
-		return NSDate(millisecondsSince1970: milliseconds)
+		return Date(millisecondsSince1970: milliseconds)
 	}
 
-	public var modifiedDate: NSDate {
+	open var modifiedDate: Date {
 		let milliseconds = (attributes["modifiedDate"]! as! NSNumber).doubleValue
-		return NSDate(millisecondsSince1970: milliseconds)
+		return Date(millisecondsSince1970: milliseconds)
 	}
 
-	override public var debugDescription: String {
+	override open var debugDescription: String {
 		return attributes.debugDescription
 	}
 
@@ -75,16 +75,16 @@ import Foundation
 		self.attributes = attributes
 
 		let xmlTitle = attributes["title"] as! String
-		title = xmlTitle.asLocalized(NSLocale(localeIdentifier: NSLocale.currentLocaleString))
+		title = xmlTitle.asLocalized(Locale(identifier: NSLocale.currentLocaleString))
 
 		super.init()
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
-		self.attributes = aDecoder.decodeObjectForKey("asset-attrs") as? [String:AnyObject] ?? [:]
+		self.attributes = aDecoder.decodeObject(forKey: "asset-attrs") as? [String:AnyObject] ?? [:]
 
 		let xmlTitle = attributes["title"] as! String
-		title = xmlTitle.asLocalized(NSLocale(localeIdentifier: NSLocale.currentLocaleString))
+		title = xmlTitle.asLocalized(Locale(identifier: NSLocale.currentLocaleString))
 
 		super.init()
 	}
@@ -92,8 +92,8 @@ import Foundation
 
 	//MARK: Public methods
 
-	public func encodeWithCoder(aCoder: NSCoder) {
-		aCoder.encodeObject(attributes, forKey: "asset-attrs")
+	open func encode(with aCoder: NSCoder) {
+		aCoder.encode(attributes, forKey: "asset-attrs")
 	}
 	
 }

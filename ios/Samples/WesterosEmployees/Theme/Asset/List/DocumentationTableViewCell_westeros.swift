@@ -13,13 +13,13 @@
 */
 import UIKit
 
-public class DocumentationTableViewCell_westeros: UITableViewCell {
+open class DocumentationTableViewCell_westeros: UITableViewCell {
 
-	@IBOutlet private weak var docImage: UIImageView?
-	@IBOutlet private weak var docTitle: UILabel?
-	@IBOutlet private weak var docDescription: UILabel?
+	@IBOutlet fileprivate weak var docImage: UIImageView?
+	@IBOutlet fileprivate weak var docTitle: UILabel?
+	@IBOutlet fileprivate weak var docDescription: UILabel?
 
-	public var title: String? {
+	open var title: String? {
 		get {
 			return docTitle?.text
 		}
@@ -28,7 +28,7 @@ public class DocumentationTableViewCell_westeros: UITableViewCell {
 		}
 	}
 
-	public var fileDescription: String? {
+	open var fileDescription: String? {
 		get {
 			return docDescription?.text
 		}
@@ -37,7 +37,7 @@ public class DocumentationTableViewCell_westeros: UITableViewCell {
 		}
 	}
 
-	public var fileExtension: String {
+	open var fileExtension: String {
 		get {
 			return ""
 		}

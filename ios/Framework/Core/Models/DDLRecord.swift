@@ -17,36 +17,36 @@ import Foundation
 //TODO: Unit test
 
 
-@objc public class DDLRecord: NSObject, NSCoding {
+@objc open class DDLRecord: NSObject, NSCoding {
 
-	public var structure: DDMStructure?
-	public let untypedValues: [DDMField]?
+	open var structure: DDMStructure?
+	open let untypedValues: [DDMField]?
 
-	public var attributes: [String:AnyObject] = [:]
+	open var attributes: [String:AnyObject] = [:]
 
-	public var recordId: Int64? {
+	open var recordId: Int64? {
 		get {
-			return attributes["recordId"]?.longLongValue
+			return attributes["recordId"]?.int64Value
 		}
 		set {
 			if let newValue = newValue {
-				attributes["recordId"] = NSNumber(longLong: newValue)
+				attributes["recordId"] = NSNumber(value: newValue as Int64)
 			}
 			else {
-				attributes.removeValueForKey("recordId")
+				attributes.removeValue(forKey: "recordId")
 			}
 		}
 	}
 
-	public var fields: [DDMField] {
+	open var fields: [DDMField] {
 		return structure?.fields ?? untypedValues ?? []
 	}
 
-	public subscript(fieldName: String) -> DDMField? {
+	open subscript(fieldName: String) -> DDMField? {
 		return fieldBy(name: fieldName)
 	}
 
-	public var values: [String:AnyObject] {
+	open var values: [String:AnyObject] {
 		var result = [String:AnyObject]()
 
 		for field in self.fields {
@@ -56,7 +56,7 @@ import Foundation
 				// This way we workaround the problem but a field can't be
 				// emptied when you're editing an existing row.
 				if value != "" {
-					result[field.name] = value
+					result[field.name] = value as AnyObject?
 				}
 			}
 		}
@@ -74,14 +74,14 @@ import Foundation
 		super.init()
 	}
 
-	public init(xsd: String, locale: NSLocale) {
+	public init(xsd: String, locale: Locale) {
 		structure = DDMStructure(xsd: xsd, locale: locale)
 		untypedValues = nil
 
 		super.init()
 	}
 
-	public init(json: String, locale: NSLocale) {
+	public init(json: String, locale: Locale) {
 		structure = DDMStructure(json: json, locale: locale)
 		untypedValues = nil
 
@@ -128,9 +128,9 @@ import Foundation
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
-		structure = aDecoder.decodeObjectForKey("structure") as? DDMStructure
-		untypedValues = aDecoder.decodeObjectForKey("untypedValues") as? [DDMField]
-		attributes = aDecoder.decodeObjectForKey("attributes") as! [String:AnyObject]
+		structure = aDecoder.decodeObject(forKey: "structure") as? DDMStructure
+		untypedValues = aDecoder.decodeObject(forKey: "untypedValues") as? [DDMField]
+		attributes = aDecoder.decodeObject(forKey: "attributes") as! [String:AnyObject]
 
 		super.init()
 	}
@@ -138,37 +138,37 @@ import Foundation
 
 	//MARK: Public methods
 
-	public func encodeWithCoder(aCoder: NSCoder) {
+	open func encode(with aCoder: NSCoder) {
 		if let structure = structure {
-			aCoder.encodeObject(structure, forKey: "structure")
+			aCoder.encode(structure, forKey: "structure")
 		}
 		if let untypedValues = untypedValues {
-			aCoder.encodeObject(untypedValues, forKey: "untypedValues")
+			aCoder.encode(untypedValues, forKey: "untypedValues")
 		}
-		aCoder.encodeObject(attributes, forKey:"attributes")
+		aCoder.encode(attributes, forKey:"attributes")
 	}
 
-	public func fieldBy(name name: String) -> DDMField? {
+	open func fieldBy(name: String) -> DDMField? {
 		return structure?.fieldBy(name: name)
 					??
 				untypedValues?.filter {
-					$0.name.lowercaseString == name.lowercaseString
+					$0.name.lowercased() == name.lowercased()
 				}.first
 	}
 
-	public func fieldsBy(type type: AnyClass) -> [DDMField] {
+	open func fieldsBy(type: AnyClass) -> [DDMField] {
 		let typeName = NSStringFromClass(type)
 
 		return structure?.fieldsBy(type: type)
 					??
 				untypedValues?.filter {
-					NSStringFromClass($0.dynamicType) == typeName
+					NSStringFromClass(type(of: $0)) == typeName
 				}
 					??
 				[]
 	}
 
-	public func updateCurrentValues(values values: [String:AnyObject]) {
+	open func updateCurrentValues(values: [String:AnyObject]) {
 		self.fields.forEach {
 			if let fieldValue = values[$0.name] {
 				if let fieldStringValue = fieldValue as? String {
@@ -181,20 +181,20 @@ import Foundation
 		}
 	}
 
-	public func updateCurrentValues(xmlValues xmlValues: String) -> Int {
+	@discardableResult
+	open func updateCurrentValues(xmlValues: String) -> Int {
 		let parser = DDMTypedValuesXMLParser()
 
 		let count = parser.parse(xmlValues, structure: self.structure)
 
-		if let createdStructure = parser.createdStructure
-				where self.structure == nil {
+		if let createdStructure = parser.createdStructure, self.structure == nil {
 			self.structure = createdStructure
 		}
 
 		return count
 	}
 
-	public func clearValues() {
+	open func clearValues() {
 		self.fields.forEach {
 			$0.currentValue = $0.predefinedValue
 		}

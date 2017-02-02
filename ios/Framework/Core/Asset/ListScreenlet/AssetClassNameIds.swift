@@ -59,10 +59,10 @@ public let AssetClassNameKey_WikiPageResource = "WikiPageResource"
 public let AssetClassNameKey_WikiNode = "WikiNode"
 
 
-@objc public class AssetClassEntry: NSObject {
+@objc open class AssetClassEntry: NSObject {
 
-	public let classNameId: Int64
-	public let className: String
+	open let classNameId: Int64
+	open let className: String
 
 	public init(_ classNameId: Int64, _ className: String) {
 		self.classNameId = classNameId
@@ -73,9 +73,9 @@ public let AssetClassNameKey_WikiNode = "WikiNode"
 
 }
 
-@objc public class AssetClasses: NSObject {
+@objc open class AssetClasses: NSObject {
 
-	private static var classNameEntries: [String:AssetClassEntry] = {
+	fileprivate static var classNameEntries: [String:AssetClassEntry] = {
 
 		// These are the default values for a Liferay Portal 7.0 GA3
 		// installation.
@@ -130,28 +130,28 @@ public let AssetClassNameKey_WikiNode = "WikiNode"
 		]
 	}()
 
-	public class func getClassNameId(key: String) -> Int64? {
+	open class func getClassNameId(_ key: String) -> Int64? {
 		return classNameEntries[key]?.classNameId
 	}
 
-	public class func getClassName(key: String) -> String? {
+	open class func getClassName(_ key: String) -> String? {
 		return classNameEntries[key]?.className
 	}
 
-	public class func getClassNameFromId(classNameId: Int64) -> String? {
+	open class func getClassNameFromId(_ classNameId: Int64) -> String? {
 		return classNameEntries.filter {
 				$0.1.classNameId == classNameId
 			}
 			.first?.1.className
 	}
 
-	public class func set(key: String, newId: Int64) {
+	open class func set(_ key: String, newId: Int64) {
 		if let currentEntry = classNameEntries[key] {
 			classNameEntries[key] = AssetClassEntry(newId, currentEntry.className)
 		}
 	}
 
-	public class func set(key: String, newClassName: String) {
+	open class func set(_ key: String, newClassName: String) {
 		if let currentEntry = classNameEntries[key] {
 			classNameEntries[key] = AssetClassEntry(currentEntry.classNameId, newClassName)
 		}

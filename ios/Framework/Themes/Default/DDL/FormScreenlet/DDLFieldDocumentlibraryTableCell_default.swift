@@ -19,64 +19,64 @@ import UIKit
 #endif
 
 
-public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableCell_default {
+open class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableCell_default {
 
 
 	//MARK: Outlets
 
-	@IBOutlet public var progress: MDRadialProgressView?
+	@IBOutlet open var progress: MDRadialProgressView?
 
 
 	//MARK: Constants
 
-	private let presenterViewController =
+	fileprivate let presenterViewController =
 		DDMFieldDocumentlibraryPresenterViewController_default()
 
-	private let completedColor = [
-			DDMFieldDocument.UploadStatus.Uploading(0,0) :
+	fileprivate let completedColor = [
+			DDMFieldDocument.UploadStatus.uploading(0,0) :
 					DefaultThemeBasicBlue,
-			DDMFieldDocument.UploadStatus.Uploaded([:]) :
+			DDMFieldDocument.UploadStatus.uploaded([:]) :
 					UIColor(red:90/255.0, green:212/255.0, blue:39/255.0, alpha:1),
-			DDMFieldDocument.UploadStatus.Failed(nil) :
+			DDMFieldDocument.UploadStatus.failed(nil) :
 					UIColor(red:1, green:0, blue:0, alpha:1)
 		]
 
-	private let incompletedColor = [
-			DDMFieldDocument.UploadStatus.Uploading(0,0) :
+	fileprivate let incompletedColor = [
+			DDMFieldDocument.UploadStatus.uploading(0,0) :
 					UIColor(red:176/255.0, green:238/255.0, blue:1.0, alpha:0.87),
-			DDMFieldDocument.UploadStatus.Failed(nil) :
+			DDMFieldDocument.UploadStatus.failed(nil) :
 					UIColor(red:1, green:0, blue:0, alpha:1)
 		]
 
-	private let centerColor = [
-			DDMFieldDocument.UploadStatus.Uploading(0,0) :
+	fileprivate let centerColor = [
+			DDMFieldDocument.UploadStatus.uploading(0,0) :
 					UIColor(red:240/255.0, green:1, blue:1.0, alpha:0.87),
-			DDMFieldDocument.UploadStatus.Uploaded([:]) :
+			DDMFieldDocument.UploadStatus.uploaded([:]) :
 					UIColor(red:240/255.0, green:1, blue:1, alpha:1),
-			DDMFieldDocument.UploadStatus.Failed(nil) :
+			DDMFieldDocument.UploadStatus.failed(nil) :
 					UIColor(red:1, green:220/255.0, blue:200/255.0, alpha:1)
 		]
 
-	private let labelColor = [
-			DDMFieldDocument.UploadStatus.Uploading(0,0) :
+	fileprivate let labelColor = [
+			DDMFieldDocument.UploadStatus.uploading(0,0) :
 					DefaultThemeBasicBlue,
-			DDMFieldDocument.UploadStatus.Uploaded([:]) :
-					UIColor.clearColor(),
-			DDMFieldDocument.UploadStatus.Failed(nil) :
-					UIColor.clearColor()
+			DDMFieldDocument.UploadStatus.uploaded([:]) :
+					UIColor.clear,
+			DDMFieldDocument.UploadStatus.failed(nil) :
+					UIColor.clear
 		]
 
 
 	//MARK: Actions
 
-	@IBAction private func chooseButtonAction(sender: AnyObject) {
+	@IBAction fileprivate func chooseButtonAction(_ sender: AnyObject) {
 		textField!.becomeFirstResponder()
 	}
 
 
 	//MARK: DDLBaseFieldTextboxTableCell
 
-	override public func onChangedField() {
+	override open func onChangedField() {
 		super.onChangedField()
 
 		if let docField = field as? DDMFieldDocument {
@@ -93,8 +93,8 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 		}
 	}
 
-	override internal func changeDocumentUploadStatus(field: DDMFieldDocument) {
-		let theme = progress!.theme
+	override internal func changeDocumentUploadStatus(_ field: DDMFieldDocument) {
+		let theme = progress!.theme!
 
 		theme.completedColor = completedColor[field.uploadStatus]
 		theme.incompletedColor = incompletedColor[field.uploadStatus]
@@ -102,7 +102,7 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 		theme.labelColor = labelColor[field.uploadStatus]
 
 		switch field.uploadStatus {
-			case .Uploading(let current, let max):
+			case .uploading(let current, let max):
 				if current >= max {
 					progress!.progressCounter = 1
 					progress!.progressTotal = 1
@@ -115,12 +115,12 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 				if progress!.alpha == 0 {
 					changeProgressVisilibity(show: true)
 				}
-			case .Failed(_):
+			case .failed(_):
 				changeProgressVisilibity(show: false, delay: 2.0)
 
-			case .Uploaded(_):
+			case .uploaded(_):
 				if field.lastValidationResult != nil {
-					field.validate()
+					_ = field.validate()
 				}
 
 			default: ()
@@ -134,10 +134,10 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 
 	//MARK: Private methods
 
-	private func setProgress(field: DDMFieldDocument) {
-		let theme = progress!.theme
+	fileprivate func setProgress(_ field: DDMFieldDocument) {
+		let theme = progress!.theme!
 
-		theme.font = UIFont(descriptor: textField!.font!.fontDescriptor(), size: 30.0)
+		theme.font = UIFont(descriptor: textField!.font!.fontDescriptor, size: 30.0)
 
 		theme.sliceDividerHidden = true
 		theme.thickness = 10.0
@@ -147,28 +147,28 @@ public class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableC
 		changeDocumentUploadStatus(field)
 	}
 
-	private func changeProgressVisilibity(show show: Bool, delay: Double = 0.0) {
-		UIView.animateWithDuration(0.3, delay: delay, options: [], animations: {
+	fileprivate func changeProgressVisilibity(show: Bool, delay: Double = 0.0) {
+		UIView.animate(withDuration: 0.3, delay: delay, options: [], animations: {
 			self.progress!.alpha = show ? 1.0 : 0.0
 			self.textField?.rightView?.alpha = show ? 0.0 : 1.0
 		}, completion: nil)
 	}
 
-	private func setFieldPresenter(field: DDMFieldDocument) {
-		let presenter = DTViewPresenter(view:presenterViewController.view)
+	fileprivate func setFieldPresenter(_ field: DDMFieldDocument) {
+		let presenter = DTViewPresenter(view:presenterViewController.view)!
 
-		presenter.presenterView.backgroundColor = UIColor.whiteColor()
-		presenter.presenterView.layer.borderColor = UIColor.lightGrayColor().CGColor
+		presenter.presenterView.backgroundColor = UIColor.white
+		presenter.presenterView.layer.borderColor = UIColor.lightGray.cgColor
 		presenter.presenterView.layer.borderWidth = 1.5
 
 		textField?.dt_setPresenter(presenter)
 	}
 
-	private func selectedDocumentClosure(image: UIImage?, url: NSURL?) {
+	fileprivate func selectedDocumentClosure(_ image: UIImage?, url: URL?) {
 		textField?.resignFirstResponder()
 
 		if image != nil || url != nil {
-			field!.currentValue = image ?? url
+			field!.currentValue = image ?? url as AnyObject?
 			
 			textField?.text = field?.currentValueAsLabel
 

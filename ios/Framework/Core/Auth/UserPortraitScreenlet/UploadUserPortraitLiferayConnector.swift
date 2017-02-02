@@ -15,15 +15,15 @@ import UIKit
 import LRMobileSDK
 
 
-public class UploadUserPortraitLiferayConnector: ServerConnector {
+open class UploadUserPortraitLiferayConnector: ServerConnector {
 
-	private let userId: Int64
-	private var image: UIImage?
+	fileprivate let userId: Int64
+	fileprivate var image: UIImage?
 
 	var uploadResult: [String:AnyObject]?
 
-	private let maxSize = 300 * 1024
-	private var fileTooLarge = false
+	fileprivate let maxSize = 300 * 1024
+	fileprivate var fileTooLarge = false
 
 
 	//MARK: Initializers
@@ -38,7 +38,7 @@ public class UploadUserPortraitLiferayConnector: ServerConnector {
 
 	//MARK: ServerConnector
 
-	override public func validateData() -> ValidationError? {
+	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -50,7 +50,7 @@ public class UploadUserPortraitLiferayConnector: ServerConnector {
 		return error
 	}
 
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 		if let imageBytes = reduceImage(self.image!, factor: 1) {
 			self.image = nil
 			uploadBytes(imageBytes, withSession: session)
@@ -59,22 +59,22 @@ public class UploadUserPortraitLiferayConnector: ServerConnector {
 			fileTooLarge = true
 			uploadResult = nil
 			lastError = NSError.errorWithCause(
-					.AbortedDueToPreconditions, message: "User portrait image is too large")
+					.abortedDueToPreconditions, message: "User portrait image is too large")
 		}
 	}
 
 
 	//MARK: Private methods
 
-	private func reduceImage(src: UIImage, factor: Double) -> NSData? {
+	fileprivate func reduceImage(_ src: UIImage, factor: Double) -> Data? {
 		if (src.size.width < 100 && src.size.height < 100) || factor < 0.1  {
 			return nil
 		}
 
 		if let imageReduced = src.resizeImage(toWidth: Int(src.size.width * CGFloat(factor))),
-				imageBytes = UIImageJPEGRepresentation(imageReduced, 1) {
+				let imageBytes = UIImageJPEGRepresentation(imageReduced, 1) {
 
-				return (imageBytes.length < maxSize)
+				return (imageBytes.count < maxSize)
 					? imageBytes
 					: reduceImage(src, factor: factor - 0.1)
 		}
@@ -85,22 +85,22 @@ public class UploadUserPortraitLiferayConnector: ServerConnector {
 
 	//MARK: Public methods
 
-	public func uploadBytes(imageBytes: NSData, withSession session: LRSession) {
+	open func uploadBytes(_ imageBytes: Data, withSession session: LRSession) {
 	}
 
 }
 
 
-public class Liferay62UploadUserPortraitConnector: UploadUserPortraitLiferayConnector {
+open class Liferay62UploadUserPortraitConnector: UploadUserPortraitLiferayConnector {
 
 
 	//MARK: UploadUserPortraitLiferayConnector
 
-	override public func uploadBytes(imageBytes: NSData, withSession session: LRSession) {
+	override open func uploadBytes(_ imageBytes: Data, withSession session: LRSession) {
 		let service = LRUserService_v62(session: session)
 
 		do {
-			let result = try service.updatePortraitWithUserId(self.userId,
+			let result = try service?.updatePortrait(withUserId: self.userId,
 				bytes: imageBytes)
 
 			if let result = result as? [String:AnyObject] {
@@ -108,7 +108,7 @@ public class Liferay62UploadUserPortraitConnector: UploadUserPortraitLiferayConn
 				lastError = nil
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				lastError = NSError.errorWithCause(.invalidServerResponse,
 						message: "Could not upload user portrait.")
 			}
 		}
@@ -119,16 +119,16 @@ public class Liferay62UploadUserPortraitConnector: UploadUserPortraitLiferayConn
 	
 }
 
-public class Liferay70UploadUserPortraitConnector: UploadUserPortraitLiferayConnector {
+open class Liferay70UploadUserPortraitConnector: UploadUserPortraitLiferayConnector {
 
 
 	//MARK: UploadUserPortraitLiferayConnector
 
-	override public func uploadBytes(imageBytes: NSData, withSession session: LRSession) {
+	override open func uploadBytes(_ imageBytes: Data, withSession session: LRSession) {
 		let service = LRUserService_v7(session: session)
 
 		do {
-			let result = try service.updatePortraitWithUserId(self.userId,
+			let result = try service?.updatePortrait(withUserId: self.userId,
 				bytes: imageBytes)
 
 			if let result = result as? [String:AnyObject] {
@@ -136,7 +136,7 @@ public class Liferay70UploadUserPortraitConnector: UploadUserPortraitLiferayConn
 				lastError = nil
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				lastError = NSError.errorWithCause(.invalidServerResponse,
 						message: "Could not upload user portrait.")
 			}
 		}

@@ -15,9 +15,9 @@ import UIKit
 import LiferayScreens
 
 
-public class UserPortraitView_westeros: UserPortraitView_default {
+open class UserPortraitView_westeros: UserPortraitView_default {
 
-	override public func onShow() {
+	override open func onShow() {
 		super.onShow()
 
 		self.borderColor = WesterosThemeBasicRed
@@ -25,10 +25,10 @@ public class UserPortraitView_westeros: UserPortraitView_default {
 		portraitImage?.layer.cornerRadius = min(frame.size.width, frame.size.height) / 2
 	}
 
-	override public func loadPlaceholder() {
-		self.portraitImage?.image = NSBundle.imageInBundles(
+	override open func loadPlaceholder() {
+		self.portraitImage?.image = Bundle.imageInBundles(
 				name: "flat7-portrait-placeholder",
-				currentClass: self.dynamicType)
+				currentClass: type(of: self))
 	}
 
 }

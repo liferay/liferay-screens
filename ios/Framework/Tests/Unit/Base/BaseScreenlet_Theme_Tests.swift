@@ -22,7 +22,7 @@ class BaseScreenlet_Theme_Tests: XCTestCase {
 	override func setUp() {
 		super.setUp()
 
-		loginScreenlet = LoginScreenlet(frame: CGRectMake(0, 0, 100, 100))
+		loginScreenlet = LoginScreenlet(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
 	}
 
 	func test_CurrentThemeName_ShouldReturnDefault_WhenNoThemeIsSelected() {

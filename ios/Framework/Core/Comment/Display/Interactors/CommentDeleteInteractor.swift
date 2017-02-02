@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class CommentDeleteInteractor: ServerWriteConnectorInteractor {
+open class CommentDeleteInteractor: ServerWriteConnectorInteractor {
 
 	let commentId: Int64
 
@@ -35,40 +35,40 @@ public class CommentDeleteInteractor: ServerWriteConnectorInteractor {
 
 	//MARK: ServerConnectorInteractor
 
-	override public func createConnector() -> CommentDeleteLiferayConnector? {
+	override open func createConnector() -> CommentDeleteLiferayConnector? {
 		return LiferayServerContext.connectorFactory.createCommentDeleteConnector(
 			commentId: commentId)
 	}
 
 	//MARK: Cache methods
 
-	override public func writeToCache(c: ServerConnector) {
+	override open func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
 
-		let cacheFunction = (cacheStrategy == .CacheFirst || c.lastError != nil)
+		let cacheFunction = (cacheStrategy == .cacheFirst || c.lastError != nil)
 			? cacheManager.setDirty
 			: cacheManager.setClean
 
 		cacheFunction(
-			collection: "CommentsScreenlet",
-			key: "delete-commentId-\(commentId)",
-			value: "",
-			attributes: ["commentId": NSNumber(longLong: commentId)],
-			onCompletion: nil)
+			"CommentsScreenlet",
+			"delete-commentId-\(commentId)",
+			"" as NSCoding,
+			["commentId": NSNumber(value: commentId)],
+			nil)
 	}
 
 
 	//MARK: Interactor
 
-	override public func callOnSuccess() {
-		if cacheStrategy == .CacheFirst {
+	override open func callOnSuccess() {
+		if cacheStrategy == .cacheFirst {
 			SessionContext.currentContext?.cacheManager.setClean(
 				collection: "CommentsScreenlet",
 				key: "delete-commentId-\(commentId)",
-				value: "",
-				attributes: ["commentId": NSNumber(longLong: commentId)],
+				value: "" as NSCoding,
+				attributes: ["commentId": NSNumber(value: commentId)],
 				onCompletion: nil)
 		}
 		

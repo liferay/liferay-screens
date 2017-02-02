@@ -14,13 +14,13 @@
 import UIKit
 
 
-public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
+open class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 
-	public static let DefaultColumns = 4
+	open static let DefaultColumns = 4
 
-	public var spacing: CGFloat = 1.0
+	open var spacing: CGFloat = 1.0
 
-	public var columnNumber = ImageGalleryView_default.DefaultColumns {
+	open var columnNumber = ImageGalleryView_default.DefaultColumns {
 		didSet {
 			changeLayout()
 		}
@@ -31,11 +31,11 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 
 	//MARK: UIView
 
-	override public func layoutSubviews() {
+	override open func layoutSubviews() {
 		super.layoutSubviews()
 
 		if let orientation = currentOrientation {
-			let actualOrientation = UIApplication.sharedApplication().statusBarOrientation
+			let actualOrientation = UIApplication.shared.statusBarOrientation
 
 			if orientation != actualOrientation {
 				changeLayout()
@@ -46,38 +46,38 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 
 	//MARK: BaseScreenletView
 	
-	override public func onShow() {
+	override open func onShow() {
 		super.onShow()
 
-		currentOrientation = UIApplication.sharedApplication().statusBarOrientation
+		currentOrientation = UIApplication.shared.statusBarOrientation
 
 		if let lastOffset = lastOffset {
 			collectionView?.contentOffset = lastOffset
 		}
 	}
 
-	override public func onHide() {
+	override open func onHide() {
 		lastOffset = collectionView?.contentOffset
 	}
 
 	//MARK: BaseListCollectionView
 
-	override public func doConfigureCollectionView(collectionView: UICollectionView) {
-		collectionView.backgroundColor = .whiteColor()
+	override open func doConfigureCollectionView(_ collectionView: UICollectionView) {
+		collectionView.backgroundColor = .white
 	}
 
-	override public func doRegisterCellNibs() {
-		if let imageGalleryGridCellNib = NSBundle.nibInBundles(
+	override open func doRegisterCellNibs() {
+		if let imageGalleryGridCellNib = Bundle.nibInBundles(
 			name: "ImageGalleryGridCell",
-			currentClass: self.dynamicType) {
+			currentClass: type(of: self)) {
 
-			collectionView?.registerNib(
+			collectionView?.register(
 					imageGalleryGridCellNib,
 					forCellWithReuseIdentifier: imageCellId)
 		}
 	}
 
-	override public func doCreateLayout() -> UICollectionViewLayout {
+	override open func doCreateLayout() -> UICollectionViewLayout {
 		// When the theme is changed dinamically the collection view hasn't the correct bounds at
 		// this time so we use the screenlet (which is also a view) to calculate the itemSize
 		screenlet?.layoutIfNeeded()
@@ -85,12 +85,12 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 		return createCustomLayout()
 	}
 
-	override public func doFillLoadedCell(
-			indexPath indexPath: NSIndexPath,
+	override open func doFillLoadedCell(
+			indexPath: IndexPath,
 			cell: UICollectionViewCell,
 			object:AnyObject) {
 
-		guard let imageCell = cell as? ImageGalleryGridCell, entry = object as? ImageEntry else {
+		guard let imageCell = cell as? ImageGalleryGridCell, let entry = object as? ImageEntry else {
 			return
 		}
 
@@ -102,19 +102,19 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 		}
 	}
 
-	override public func doFillInProgressCell(indexPath indexPath: NSIndexPath, cell: UICollectionViewCell) {
+	override open func doFillInProgressCell(indexPath: IndexPath, cell: UICollectionViewCell) {
 
-		cell.backgroundColor = .grayColor()
+		cell.backgroundColor = .gray
 	}
 
-	override public func doGetCellId(indexPath indexPath: NSIndexPath, object: AnyObject?) -> String {
+	override open func doGetCellId(indexPath: IndexPath, object: AnyObject?) -> String {
 		return imageCellId
 	}
 
 
 	//MARK: Public methods
 
-	public func changeLayout() {
+	open func changeLayout() {
 		if let collectionView = collectionView {
 			let newLayout = createCustomLayout()
 			collectionView.setCollectionViewLayout(newLayout, animated: true)
@@ -137,7 +137,7 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 		return layout
 	}
 
-	internal func cellWidthForNumberOfColumns(numCols: Int) -> CGFloat {
+	internal func cellWidthForNumberOfColumns(_ numCols: Int) -> CGFloat {
 
 		let horizontalMargins: CGFloat = 40
 		let viewWidth = screenlet!.bounds.width

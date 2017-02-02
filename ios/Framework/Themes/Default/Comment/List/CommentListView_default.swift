@@ -14,7 +14,7 @@
 import UIKit
 
 
-public class CommentListView_default: BaseListTableView, CommentListViewModel {
+open class CommentListView_default: BaseListTableView, CommentListViewModel {
 
 	let CommentCellId = "commentCell"
 
@@ -25,49 +25,49 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 
 	//MARK: BaseScreenletView
 
-	override public func onShow() {
+	override open func onShow() {
 		super.onShow()
 		self.tableView?.tableFooterView = UIView()
 	}
 
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
 	}
 
 
 	//MARK: CommentListViewModel
 
-	public func addComment(comment: Comment) {
+	open func addComment(_ comment: Comment) {
 		addRow(BaseListView.DefaultSection, element: comment)
-		let indexPath = NSIndexPath(forRow: (rows[BaseListView.DefaultSection]?.count)! - 1,
-			inSection: 0)
+		let indexPath = IndexPath(row: (rows[BaseListView.DefaultSection]?.count)! - 1,
+			section: 0)
 		tableView?.beginUpdates()
-		tableView?.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+		tableView?.insertRows(at: [indexPath], with: .automatic)
 		tableView?.endUpdates()
-		tableView?.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
+		tableView?.scrollToRow(at: indexPath, at: .bottom, animated: true)
 	}
 
-	public func deleteComment(comment: Comment) {
-		let row = rows[BaseListView.DefaultSection]?.indexOf({
+	open func deleteComment(_ comment: Comment) {
+		let row = rows[BaseListView.DefaultSection]?.index(where: {
 			(($0 as? Comment)?.commentId ?? 0) == comment.commentId})
 		if let row = row {
 			deleteRow(BaseListView.DefaultSection, row: row)
-			let indexPath = NSIndexPath(forRow: row, inSection: 0)
+			let indexPath = IndexPath(row: row, section: 0)
 			tableView?.beginUpdates()
-			tableView?.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+			tableView?.deleteRows(at: [indexPath], with: .automatic)
 			tableView?.endUpdates()
 		}
 	}
 
-	public func updateComment(comment: Comment) {
-		let row = rows[BaseListView.DefaultSection]?.indexOf({
+	open func updateComment(_ comment: Comment) {
+		let row = rows[BaseListView.DefaultSection]?.index(where: {
 			(($0 as? Comment)?.commentId ?? 0) == comment.commentId})
 		if let row = row {
 			updateRow(BaseListView.DefaultSection, row: row, element: comment)
-			let indexPath = NSIndexPath(forRow: row, inSection: 0)
-			tableView?.scrollToRowAtIndexPath(indexPath, atScrollPosition: .None, animated: true)
+			let indexPath = IndexPath(row: row, section: 0)
+			tableView?.scrollToRow(at: indexPath, at: .none, animated: true)
 			tableView?.beginUpdates()
-			tableView?.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+			tableView?.reloadRows(at: [indexPath], with: .automatic)
 			tableView?.endUpdates()
 		}
 	}
@@ -75,16 +75,16 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 
 	//MARK: BaseListTableView
 
-	override public func doRegisterCellNibs() {
-		let nib = NSBundle.nibInBundles(
-			name: "CommentTableViewCell_default", currentClass: self.dynamicType)
+	override open func doRegisterCellNibs() {
+		let nib = Bundle.nibInBundles(
+			name: "CommentTableViewCell_default", currentClass: type(of: self))
 
 		if let commentNib = nib {
-			tableView?.registerNib(commentNib, forCellReuseIdentifier: CommentCellId)
+			tableView?.register(commentNib, forCellReuseIdentifier: CommentCellId)
 		}
 	}
 
-	override public func doDequeueReusableCell(row row: Int, object: AnyObject?)
+	override open func doDequeueReusableCell(row: Int, object: AnyObject?)
 			-> UITableViewCell {
 		let cell = super.doDequeueReusableCell(row: row, object: object)
 		if let commentCell = cell as? CommentTableViewCell_default {
@@ -96,34 +96,34 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 		return cell
 	}
 
-	override public func doGetCellId(row row: Int, object: AnyObject?) -> String {
+	override open func doGetCellId(row: Int, object: AnyObject?) -> String {
 		return CommentCellId
 	}
 
-	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
-		if let comment = object as? Comment, commentCell = cell as? CommentTableViewCell_default {
+	override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
+		if let comment = object as? Comment, let commentCell = cell as? CommentTableViewCell_default {
 			commentCell.commentDisplayScreenlet?.comment = comment
-			cell.accessoryType = .None
+			cell.accessoryType = .none
 			cell.accessoryView = nil
 		}
 	}
 
-	override public func doFillInProgressCell(row row: Int, cell: UITableViewCell) {
+	override open func doFillInProgressCell(row: Int, cell: UITableViewCell) {
 		cell.textLabel?.text = "..."
-		cell.accessoryType = .None
+		cell.accessoryType = .none
 
-		if let image = NSBundle.imageInBundles(
+		if let image = Bundle.imageInBundles(
 				name: "default-hourglass",
-				currentClass: self.dynamicType) {
+				currentClass: type(of: self)) {
 			cell.accessoryView = UIImageView(image: image)
-			cell.accessoryView!.frame = CGRectMake(0, 0, image.size.width, image.size.height)
+			cell.accessoryView!.frame = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
 		}
 	}
 
 
 	//MARK: BaseListView
 
-	public override func onClearRows(oldRows: [String : [AnyObject?]]) {
+	open override func onClearRows(_ oldRows: [String : [AnyObject?]]) {
 		super.onClearRows(oldRows)
 		self.tableView?.tableFooterView = UIView()
 	}
@@ -131,14 +131,14 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 
 	//MARK: UITableViewDelegate
 
-	public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath)
+	open func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath)
 			-> CGFloat {
 		let comment = rows[BaseListView.DefaultSection]?[indexPath.row] as? Comment
 		return CommentDisplayView_default.heightForText(comment?.htmlBody,
 			width: tableView.frame.width)
 	}
 
-	public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath)
+	open func tableView(_ tableView: UITableView, canEditRowAtIndexPath indexPath: IndexPath)
 			-> Bool {
 		if let comment = rows[BaseListView.DefaultSection]?[indexPath.row] as? Comment {
 			return comment.canEdit || comment.canDelete
@@ -147,19 +147,19 @@ public class CommentListView_default: BaseListTableView, CommentListViewModel {
 		return false
 	}
 
-	public func tableView(tableView: UITableView,
-			editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
-		let editRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default,
+	open func tableView(_ tableView: UITableView,
+			editActionsForRowAtIndexPath indexPath: IndexPath) -> [AnyObject]? {
+		let editRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default,
 				title: "Edit", handler:{action, indexPath in
-			let cell = tableView.cellForRowAtIndexPath(indexPath) as? CommentTableViewCell_default
+			let cell = tableView.cellForRow(at: indexPath) as? CommentTableViewCell_default
 			cell?.commentDisplayScreenlet?.editComment()
 			tableView.setEditing(false, animated: true)
 		})
 		editRowAction.backgroundColor = UIColor(red: 0, green: 0.7216, blue: 0.8784, alpha: 1.0)
 
-		let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default,
+		let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default,
 				title: "Delete", handler:{action, indexPath in
-			let cell = tableView.cellForRowAtIndexPath(indexPath) as? CommentTableViewCell_default
+			let cell = tableView.cellForRow(at: indexPath) as? CommentTableViewCell_default
 			cell?.commentDisplayScreenlet?.deleteComment()
 			tableView.setEditing(false, animated: true)
 		})

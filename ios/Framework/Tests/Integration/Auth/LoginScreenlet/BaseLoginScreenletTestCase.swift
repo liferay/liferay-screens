@@ -15,7 +15,7 @@ import XCTest
 
 
 @objc class TestLoginScreenletDelegate : NSObject, LoginScreenletDelegate {
-	var onCompleted: (AnyObject -> ())?
+	var onCompleted: ((AnyObject) -> ())?
 	var onCredentialsStored: (() -> ())?
 
 	var credentialsSavedCalled = false
@@ -23,7 +23,7 @@ import XCTest
 
 	var strongLoop: TestLoginScreenletDelegate?
 
-	init(completed: (AnyObject -> Void)? = nil) {
+	init(completed: ((AnyObject) -> Void)? = nil) {
 		self.onCompleted = completed
 
 		super.init()
@@ -31,25 +31,25 @@ import XCTest
 		self.strongLoop = self
 	}
 
-	func screenlet(screenlet: BaseScreenlet,
+	func screenlet(_ screenlet: BaseScreenlet,
 			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
-		onCompleted?(attributes)
+		onCompleted?(attributes as AnyObject)
 		self.strongLoop = nil
 	}
 
-	func screenlet(screenlet: BaseScreenlet,
+	func screenlet(_ screenlet: BaseScreenlet,
 			onLoginError error: NSError) {
 		onCompleted?(error)
 		self.strongLoop = nil
 	}
 
-	func screenlet(screenlet: BaseScreenlet,
+	func screenlet(_ screenlet: BaseScreenlet,
 			onCredentialsSavedUserAttributes attributes: [String:AnyObject]) {
 		credentialsSavedCalled = true
 		onCredentialsStored?()
 	}
 
-	func screenlet(screenlet: LoginScreenlet,
+	func screenlet(_ screenlet: LoginScreenlet,
 			onCredentialsLoadedUserAttributes attributes: [String:AnyObject]) {
 		credentialsLoadedCalled = true
 	}
@@ -63,7 +63,7 @@ class BaseLoginScreenletTestCase: IntegrationTestCase {
 	override func setUp() {
 		super.setUp()
 
-		screenlet = LoginScreenlet(frame: CGRectZero)
+		screenlet = LoginScreenlet(frame: CGRect.zero)
 		screenlet!.themeName = "test"
 		screenlet!.loadScreenletView()
 	}

@@ -20,16 +20,16 @@ class OAuthWebViewController: UIViewController, UIWebViewDelegate {
 	@IBOutlet weak var activityIndicator: UIActivityIndicatorView?
 	@IBOutlet weak var closeButton: UIButton?
 
-	var onAuthorized: (String -> Void)?
+	var onAuthorized: ((String) -> Void)?
 
-	private let URL: NSURL
+	fileprivate let URL: Foundation.URL
 
-	init(URL: NSURL, themeName: String) {
+	init(URL: Foundation.URL, themeName: String) {
 		var nibName = "OAuthWebViewController_\(themeName)"
-		var bundle = NSBundle.bundleForNibName(nibName, currentClass: self.dynamicType)
+		var bundle = Bundle.bundleForNibName(nibName, currentClass: type(of: self))
 		if bundle == nil {
 			nibName = "OAuthWebViewController_default"
-			bundle = NSBundle.bundleForNibName(nibName, currentClass: self.dynamicType)
+			bundle = Bundle.bundleForNibName(nibName, currentClass: type(of: self))
 		}
 
 		self.URL = URL
@@ -40,42 +40,41 @@ class OAuthWebViewController: UIViewController, UIWebViewDelegate {
 	}
 
 	required init?(coder aDecoder: NSCoder) {
-		URL = NSURL()
-
+		URL = Foundation.URL(string: "")!
 		super.init(coder: aDecoder)
 	}
 
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		activityIndicator?.startAnimating()
 		webView?.delegate = self
-		webView?.loadRequest(NSURLRequest(URL: URL))
+		webView?.loadRequest(URLRequest(url: URL))
 		closeButton?.titleLabel?.text = NSLocalizedString("default-oauth-close", comment: "Close")
 	}
 
-	@IBAction func closeAction(sender: AnyObject) {
+	@IBAction func closeAction(_ sender: AnyObject) {
 		activityIndicator?.stopAnimating()
 
-		self.dismissViewControllerAnimated(true, completion: nil)
+		self.dismiss(animated: true, completion: nil)
 	}
 
-	func webView(webView: UIWebView,
-			shouldStartLoadWithRequest request: NSURLRequest,
+	func webView(_ webView: UIWebView,
+			shouldStartLoadWith request: URLRequest,
 			navigationType: UIWebViewNavigationType) -> Bool {
 
-		let URL = request.URL?.absoluteString
+		let URL = request.url?.absoluteString
 
-		if request.URL?.scheme == "screens"
-				&& URL?.rangeOfString("oauth_verifier=") != nil {
+		if request.url?.scheme == "screens"
+				&& URL?.range(of: "oauth_verifier=") != nil {
 
-			let params = LROAuth.extractRequestParams(URL!) as [NSObject:AnyObject]
-			onAuthorized?(params["oauth_verifier"] as! String)
+			let params = LROAuth.extractRequestParams(URL!)
+			onAuthorized?(params!["oauth_verifier"] as! String)
 			return false
 		}
 
 		return true
 	}
 
-	func webViewDidFinishLoad(webView: UIWebView) {
+	func webViewDidFinishLoad(_ webView: UIWebView) {
 		activityIndicator?.stopAnimating()
 	}
 

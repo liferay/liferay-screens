@@ -15,26 +15,26 @@ import UIKit
 import LiferayScreens
 
 
-@objc public class WebContentDisplayView_book: BaseScreenletView, WebContentDisplayViewModel {
+open class WebContentDisplayView_book: BaseScreenletView, WebContentDisplayViewModel {
 
 	@IBOutlet weak var authorLabel: UILabel!
 	@IBOutlet weak var nameLabel: UILabel!
 
-	override public var progressMessages: [String:ProgressMessages] {
+	override open var progressMessages: [String:ProgressMessages] {
 		return [
 			BaseScreenlet.DefaultAction :
-				[.Working : LocalizedString("default", key: "webcontentdisplay-loading-message", obj: self),
-				.Failure : LocalizedString("default", key: "webcontentdisplay-loading-error", obj: self)]]
+				[.working : LocalizedString("default", key: "webcontentdisplay-loading-message", obj: self),
+				.failure : LocalizedString("default", key: "webcontentdisplay-loading-error", obj: self)]]
 	}
 
 
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
 	}
 
 	//MARK: WebContentDisplayViewModel
 
-	public var htmlContent: String? {
+	open var htmlContent: String? {
 		get {
 			return nil
 		}
@@ -42,7 +42,7 @@ import LiferayScreens
 		}
 	}
 
-	public var recordContent: DDLRecord? {
+	open var recordContent: DDLRecord? {
 		didSet {
 			nameLabel.text = recordContent?["title"]?.description
 			authorLabel.text = recordContent?["author"]?.description

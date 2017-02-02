@@ -14,16 +14,16 @@
 import UIKit
 
 
-public class AssetListTableView: BaseListTableView {
+open class AssetListTableView: BaseListTableView {
 
 
 	//MARK: BaseListTableView
 
-	override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
+	override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
 		// Apply cell style in the theme
 	}
 
-	override public func doFillInProgressCell(row row: Int, cell: UITableViewCell) {
+	override open func doFillInProgressCell(row: Int, cell: UITableViewCell) {
 		// Apply cell style in the theme
 	}
 

@@ -15,11 +15,11 @@ import UIKit
 import LiferayScreens
 
 
-public class CommentAddView_westeros: CommentAddView_default, UITextViewDelegate {
+open class CommentAddView_westeros: CommentAddView_default, UITextViewDelegate {
 
 	@IBOutlet weak var addCommentTextView: UITextView? {
 		didSet {
-			self.addCommentTextView?.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).CGColor
+			self.addCommentTextView?.layer.borderColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0).cgColor
 			self.addCommentTextView?.layer.borderWidth = 1.0
 			self.addCommentTextView?.layer.cornerRadius = 5
 			self.addCommentTextView?.delegate = self
@@ -28,7 +28,7 @@ public class CommentAddView_westeros: CommentAddView_default, UITextViewDelegate
 	@IBOutlet weak var sendCommentButton: UIButton?
 	@IBOutlet weak var placeholderLabel: UILabel?
 
-	public override var body: String {
+	open override var body: String {
 		get {
 			return addCommentTextView?.text ?? ""
 		}
@@ -42,27 +42,27 @@ public class CommentAddView_westeros: CommentAddView_default, UITextViewDelegate
 
 	//MARK: Public methods
 
-	override public func updateButton() {
-		sendCommentButton?.enabled = !(addCommentTextView?.text?.isEmpty ?? true)
+	override open func updateButton() {
+		sendCommentButton?.isEnabled = !(addCommentTextView?.text?.isEmpty ?? true)
 	}
 
-	public func updateLabel() {
-		placeholderLabel?.hidden = !(addCommentTextView?.text?.isEmpty ?? true)
+	open func updateLabel() {
+		placeholderLabel?.isHidden = !(addCommentTextView?.text?.isEmpty ?? true)
 	}
 
 
 	//MARK: BaseScreenletView
 
-	public override func onShow() {
+	open override func onShow() {
 		super.onShow()
 		let previousText = self.sendCommentButton?.titleLabel?.text
-		self.sendCommentButton?.titleLabel?.text = previousText?.uppercaseString
+		self.sendCommentButton?.titleLabel?.text = previousText?.uppercased()
 	}
 
 
 	//MARK: UITextViewDelegate
 
-	public func textViewDidChange(textView: UITextView) {
+	open func textViewDidChange(_ textView: UITextView) {
 		updateButton()
 		updateLabel()
 	}

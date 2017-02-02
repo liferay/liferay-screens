@@ -30,26 +30,26 @@ class WebContentListScreenletViewController: UIViewController, WebContentListScr
 
 	//MARK: WebContentListScreenletDelegate
 
-	func screenlet(screenlet: WebContentListScreenlet,
+	func screenlet(_ screenlet: WebContentListScreenlet,
 			onWebContentListResponse entries: [WebContent]) {
-		LiferayLogger.logDelegateMessage(args: entries)
+		LiferayLogger.logDelegateMessage(args: entries as AnyObject?)
 	}
 
-	func screenlet(screenlet: WebContentListScreenlet, onWebContentListError error: NSError) {
+	func screenlet(_ screenlet: WebContentListScreenlet, onWebContentListError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 
-	func screenlet(screenlet: WebContentListScreenlet, onWebContentSelected entry: WebContent) {
+	func screenlet(_ screenlet: WebContentListScreenlet, onWebContentSelected entry: WebContent) {
 		LiferayLogger.logDelegateMessage(args: entry)
 		selectedArticleId = entry.attributes["articleId"] as! String
-		performSegueWithIdentifier("WebContentDisplay", sender: self)
+		performSegue(withIdentifier: "WebContentDisplay", sender: self)
 	}
 	
 	
 	//MARK: UIViewController
 	
-	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-		if let vc = segue.destinationViewController as? WebContentDisplayScreenletViewController {
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if let vc = segue.destination as? WebContentDisplayScreenletViewController {
 			vc.articleId = selectedArticleId
 		}
 		

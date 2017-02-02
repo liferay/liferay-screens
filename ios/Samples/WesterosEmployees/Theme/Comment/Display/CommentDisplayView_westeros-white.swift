@@ -15,9 +15,9 @@ import UIKit
 import LiferayScreens
 
 
-public class CommentDisplayView_westeros_white: CommentDisplayView_default {
+open class CommentDisplayView_westeros_white: CommentDisplayView_default {
 
-	public override func createProgressPresenter() -> ProgressPresenter {
+	open override func createProgressPresenter() -> ProgressPresenter {
 		return WesterosCardProgressPresenter(screenlet: self.screenlet)
 	}
 }

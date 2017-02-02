@@ -23,7 +23,7 @@ import UIKit
 	var authentication: LRAuthentication? { get }
 	var userAttributes: [String:AnyObject]? { get }
 
-	func storeCredentials(session: LRSession?, userAttributes: [String:AnyObject]?) -> Bool
+	func storeCredentials(_ session: LRSession?, userAttributes: [String:AnyObject]?) -> Bool
 	func removeStoredCredentials() -> Bool
 	func loadStoredCredentials() -> Bool
 

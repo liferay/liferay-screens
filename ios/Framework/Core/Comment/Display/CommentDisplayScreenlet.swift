@@ -21,7 +21,7 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - comment: loaded comment.
-	optional func screenlet(screenlet: CommentDisplayScreenlet,
+	@objc optional func screenlet(_ screenlet: CommentDisplayScreenlet,
 			onCommentLoaded comment: Comment)
 
 	/// Called when an error occurs in the process.
@@ -30,7 +30,7 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - error: error while loading the comment.
-	optional func screenlet(screenlet: CommentDisplayScreenlet,
+	@objc optional func screenlet(_ screenlet: CommentDisplayScreenlet,
 			onLoadCommentError error: NSError)
 
 	/// Called when the screenlet prepares the comment for deletion.
@@ -38,7 +38,7 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - comment: comment to be deleted.
-	optional func screenlet(screenlet: CommentDisplayScreenlet,
+	@objc optional func screenlet(_ screenlet: CommentDisplayScreenlet,
 			onCommentDeleted comment: Comment)
 
 	///  Called when a comment is deleted.
@@ -47,7 +47,7 @@ import UIKit
 	///   - screenlet
 	///   - comment: deleted comment.
 	///   - error: error while deleting the comment.
-	optional func screenlet(screenlet: CommentDisplayScreenlet,
+	@objc optional func screenlet(_ screenlet: CommentDisplayScreenlet,
 			onDeleteComment comment: Comment,
 			onError error: NSError)
 
@@ -56,7 +56,7 @@ import UIKit
 	/// - Parameters:
 	///   - screenlet
 	///   - comment: comment to be updated.
-	optional func screenlet(screenlet: CommentDisplayScreenlet,
+	@objc optional func screenlet(_ screenlet: CommentDisplayScreenlet,
 			onCommentUpdated comment: Comment)
 
 	/// Called when a comment is updated.
@@ -65,42 +65,42 @@ import UIKit
 	///   - screenlet
 	///   - comment: updated comment.
 	///   - error: error while updating the comment.
-	optional func screenlet(screenlet: CommentDisplayScreenlet,
+	@objc optional func screenlet(_ screenlet: CommentDisplayScreenlet,
 			onUpdateComment comment: Comment,
 			onError error: NSError)
 
 }
 
 
-public class CommentDisplayScreenlet: BaseScreenlet {
+open class CommentDisplayScreenlet: BaseScreenlet {
 
-	public static let DeleteAction = "deleteAction"
-	public static let UpdateAction = "updateAction"
+	open static let DeleteAction = "deleteAction"
+	open static let UpdateAction = "updateAction"
 
 
 	//MARK: Inspectables
 
-	@IBInspectable public var commentId: Int64 = 0
+	@IBInspectable open var commentId: Int64 = 0
 
-	@IBInspectable public var autoLoad: Bool = true
+	@IBInspectable open var autoLoad: Bool = true
 
-	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
+	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-	@IBInspectable public var editable: Bool = false {
+	@IBInspectable open var editable: Bool = false {
 		didSet {
 			screenletView?.editable = self.editable
 		}
 	}
 
-	public var commentDisplayDelegate: CommentDisplayScreenletDelegate? {
+	open var commentDisplayDelegate: CommentDisplayScreenletDelegate? {
 		return delegate as? CommentDisplayScreenletDelegate
 	}
 
-	public var viewModel: CommentDisplayViewModel {
+	open var viewModel: CommentDisplayViewModel {
 		return screenletView as! CommentDisplayViewModel
 	}
 
-	public var comment: Comment? {
+	open var comment: Comment? {
 		didSet {
 			if let comment = comment {
 				commentId = comment.commentId
@@ -113,35 +113,35 @@ public class CommentDisplayScreenlet: BaseScreenlet {
 	//MARK: Public methods
 
 	/// Loads the comment in the screenlet.
-	public func load() {
+	open func load() {
 		performDefaultAction()
 	}
 
 	/// Call this method to delete one comment.
-	public func deleteComment() {
+	open func deleteComment() {
 		performAction(name: CommentDisplayScreenlet.DeleteAction)
 	}
 
 	/// Call this method to edit the comment.
-	public func editComment() {
+	open func editComment() {
 		viewModel.editComment()
 	}
 
 
 	//MARK: BaseScreenlet
 
-	override public func onCreated() {
+	override open func onCreated() {
 		super.onCreated()
 		screenletView?.editable = self.editable
 	}
 
-	override public func onShow() {
+	override open func onShow() {
 		if autoLoad {
 			load()
 		}
 	}
 
-	override public func createInteractor(name name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
 		switch name {
 			case BaseScreenlet.DefaultAction:
 				return createCommentLoadInteractor()
@@ -160,10 +160,10 @@ public class CommentDisplayScreenlet: BaseScreenlet {
 
 	//MARK: Private methods
 
-	private func createCommentLoadInteractor() -> Interactor {
+	fileprivate func createCommentLoadInteractor() -> Interactor {
 		let interactor = CommentLoadInteractor(screenlet: self)
 
-		interactor.cacheStrategy = CacheStrategyType(rawValue: offlinePolicy ?? "") ?? .RemoteFirst
+		interactor.cacheStrategy = CacheStrategyType(rawValue: offlinePolicy ?? "") ?? .remoteFirst
 
 		interactor.onSuccess = {
 			if let resultComment = interactor.resultComment {
@@ -173,7 +173,7 @@ public class CommentDisplayScreenlet: BaseScreenlet {
 			}
 			else {
 				self.commentDisplayDelegate?.screenlet?(self,
-					onLoadCommentError: NSError.errorWithCause(.InvalidServerResponse,
+					onLoadCommentError: NSError.errorWithCause(.invalidServerResponse,
 							message: "Could not load comment."))
 			}
 		}
@@ -185,7 +185,7 @@ public class CommentDisplayScreenlet: BaseScreenlet {
 		return interactor
 	}
 
-	private func createCommentDeleteInteractor() -> Interactor {
+	fileprivate func createCommentDeleteInteractor() -> Interactor {
 		let interactor = CommentDeleteInteractor(screenlet: self)
 
 		interactor.onSuccess = {
@@ -199,7 +199,7 @@ public class CommentDisplayScreenlet: BaseScreenlet {
 		return interactor
 	}
 
-	private func createCommentUpdateInteractor(body: String) -> Interactor {
+	fileprivate func createCommentUpdateInteractor(_ body: String) -> Interactor {
 		let interactor = CommentUpdateInteractor(screenlet: self, body: body)
 
 		interactor.onSuccess = {
@@ -211,7 +211,7 @@ public class CommentDisplayScreenlet: BaseScreenlet {
 			else {
 				self.commentDisplayDelegate?.screenlet?(self,
 					onUpdateComment: self.comment!,
-					onError: NSError.errorWithCause(.InvalidServerResponse,
+					onError: NSError.errorWithCause(.invalidServerResponse,
 							message: "Could not update comment."))
 			}
 		}

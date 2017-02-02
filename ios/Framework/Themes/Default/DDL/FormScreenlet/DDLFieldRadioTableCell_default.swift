@@ -18,36 +18,36 @@ import UIKit
 #endif
 
 
-public class DDLFieldRadioTableCell_default: DDMFieldTableCell {
+open class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 
 
 	//MARK: Outlets
 
-	@IBOutlet public var label: UILabel?
+	@IBOutlet open var label: UILabel?
 
-	@IBOutlet public var radioReferenceLabel: UILabel?
+	@IBOutlet open var radioReferenceLabel: UILabel?
 
-	@IBOutlet public var separator: UIView?
+	@IBOutlet open var separator: UIView?
 
-	public var radioGroup: TNRadioButtonGroup?
+	open var radioGroup: TNRadioButtonGroup?
 
-	public var radioColor : UIColor {
+	open var radioColor : UIColor {
 		return DefaultThemeBasicBlue
 	}
 
-	public var radioTextColor : UIColor {
-		return UIColor.blackColor()
+	open var radioTextColor : UIColor {
+		return UIColor.black
 	}
 
-	public var invalidRadioColor : UIColor {
-		return UIColor.redColor()
+	open var invalidRadioColor : UIColor {
+		return UIColor.red
 	}
 
-	public var invalidRadioTextColor : UIColor {
-		return UIColor.redColor()
+	open var invalidRadioTextColor : UIColor {
+		return UIColor.red
 	}
 
-	public var radioButtonWidth: Int {
+	open var radioButtonWidth: Int {
 		return 8
 	}
 
@@ -60,11 +60,11 @@ public class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 
 	//MARK: DDMFieldTableCell
 
-	override public func canBecomeFirstResponder() -> Bool {
+	override open var canBecomeFirstResponder : Bool {
 		return false
 	}
 
-	override public func onChangedField() {
+	override open func onChangedField() {
 		if let stringField = field as? DDMFieldStringWithOptions {
 			label!.text = stringField.label
 
@@ -85,7 +85,7 @@ public class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 		}
 	}
 
-	override public func onPostValidation(valid: Bool) {
+	override open func onPostValidation(_ valid: Bool) {
 		super.onPostValidation(valid)
 
 		label?.textColor = valid ? self.radioTextColor : self.invalidRadioTextColor
@@ -103,7 +103,7 @@ public class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 
 	//MARK: Public methods
 	
-	public func createRadioButtons(field: DDMFieldStringWithOptions) {
+	open func createRadioButtons(_ field: DDMFieldStringWithOptions) {
 		var radioButtons:[AnyObject] = []
 
 		for option in field.options {
@@ -121,18 +121,18 @@ public class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 		radioGroup!.identifier = field.name
 		radioGroup!.marginBetweenItems = Int(DDLFieldRadioButtonMargin)
 		radioGroup!.create()
-		radioGroup!.position = CGPointMake(25.0,
-				DDLFieldRadioGroupMarginTop + label!.frame.origin.y + label!.frame.size.height)
+		radioGroup!.position = CGPoint(x: 25.0,
+				y: DDLFieldRadioGroupMarginTop + label!.frame.origin.y + label!.frame.size.height)
 
 		addSubview(radioGroup!)
 
-		NSNotificationCenter.defaultCenter().addObserver(self,
+		NotificationCenter.default.addObserver(self,
 				selector: #selector(DDLFieldRadioTableCell_default.radioButtonSelected(_:)),
-				name: SELECTED_RADIO_BUTTON_CHANGED,
+				name: NSNotification.Name(rawValue: SELECTED_RADIO_BUTTON_CHANGED),
 				object: radioGroup)
 	}
 
-	public func createRadioButtonData(field: DDMFieldStringWithOptions, option: DDMFieldStringWithOptions.Option)
+	open func createRadioButtonData(_ field: DDMFieldStringWithOptions, option: DDMFieldStringWithOptions.Option)
 			-> TNRectangularRadioButtonData {
 
 		let data = TNRectangularRadioButtonData()
@@ -157,9 +157,9 @@ public class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 		return data
 	}
 
-	public dynamic func radioButtonSelected(notification:NSNotification) {
+	open dynamic func radioButtonSelected(_ notification:Notification) {
 		if let stringField = field as? DDMFieldStringWithOptions {
-			stringField.currentValue = radioGroup!.selectedRadioButton!.data.labelText
+			stringField.currentValue = radioGroup!.selectedRadioButton!.data.labelText as AnyObject?
 
 			if stringField.lastValidationResult != nil && !stringField.lastValidationResult! {
 				stringField.lastValidationResult = true
@@ -168,10 +168,10 @@ public class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 		}
 	}
 
-	public func clearObserver() {
+	open func clearObserver() {
 		if radioGroup != nil {
-			NSNotificationCenter.defaultCenter().removeObserver(self,
-					name: SELECTED_RADIO_BUTTON_CHANGED,
+			NotificationCenter.default.removeObserver(self,
+					name: NSNotification.Name(rawValue: SELECTED_RADIO_BUTTON_CHANGED),
 					object: radioGroup!)
 		}
 	}

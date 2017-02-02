@@ -15,48 +15,48 @@ import UIKit
 
 class IssuesCardDeck: CardDeckView {
 
-	override func topCardTouchUpInside(sender: UIButton) {
+	override func topCardTouchUpInside(_ sender: UIButton) {
 		super.topCardTouchUpInside(sender)
 
 		switch topCard!.currentState {
-		case .Minimized:
+		case .minimized:
 			topCard!.minimizedHeight *= 2
-			topCard!.nextState = .Maximized
+			topCard!.nextState = .maximized
 
-			bottomCard!.nextState = .Minimized
+			bottomCard!.nextState = .minimized
 			bottomCard!.changeToNextState()
 
-		case .Maximized:
+		case .maximized:
 			topCard!.minimizedHeight /= 2
-			topCard!.nextState = .Minimized
+			topCard!.nextState = .minimized
 
-			bottomCard!.nextState = .Hidden
+			bottomCard!.nextState = .hidden
 			bottomCard!.changeToNextState()
 
-		case .Background:
-			topCard!.nextState = (bottomCard!.currentState == .Normal)
-					? .Maximized : .Minimized
+		case .background:
+			topCard!.nextState = (bottomCard!.currentState == .normal)
+					? .maximized : .minimized
 
-			bottomCard!.nextState = .Minimized
+			bottomCard!.nextState = .minimized
 			bottomCard!.changeToNextState()
 
 		default:
-			topCard!.nextState = .Minimized
+			topCard!.nextState = .minimized
 		}
 
 		topCard!.changeToNextState()
 	}
 
-	override func bottomCardTouchUpInside(sender: UIButton) {
+	override func bottomCardTouchUpInside(_ sender: UIButton) {
 		super.bottomCardTouchUpInside(sender)
 
-		if bottomCard!.currentState == .Minimized {
-			bottomCard!.nextState = .Normal
-			topCard!.nextState = .Background//.Maximized
+		if bottomCard!.currentState == .minimized {
+			bottomCard!.nextState = .normal
+			topCard!.nextState = .background//.Maximized
 		}
 		else {
-			bottomCard!.nextState = .Minimized
-			topCard!.nextState = .Maximized
+			bottomCard!.nextState = .minimized
+			topCard!.nextState = .maximized
 		}
 
 		bottomCard!.changeToNextState()

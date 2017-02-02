@@ -13,10 +13,9 @@
  */
 import UIKit
 
+open class DDMFieldTableCell: UITableViewCell {
 
-public class DDMFieldTableCell: UITableViewCell {
-
-	public class func viewAsFieldCell(view: UIView?) -> DDMFieldTableCell? {
+	open class func viewAsFieldCell(_ view: UIView?) -> DDMFieldTableCell? {
 		if view == nil {
 			return nil
 		}
@@ -27,22 +26,22 @@ public class DDMFieldTableCell: UITableViewCell {
 		return viewAsFieldCell(view!.superview)
 	}
 
-	public var tableView: UITableView?
-	public var indexPath: NSIndexPath?
-	public var formView: DDLFormTableView?
+	open var tableView: UITableView?
+	open var indexPath: IndexPath?
+	open var formView: DDLFormTableView?
 
-	public var field: DDMField? {
+	open var field: DDMField? {
 		didSet {
 			field?.onPostValidation = onPostValidation
 			onChangedField()
 		}
 	}
 
-	public var isLastCell:Bool {
+	open var isLastCell:Bool {
 		var result = false
 
 		if let indexPathValue = indexPath {
-			if let rowCount = tableView?.numberOfRowsInSection(indexPathValue.section) {
+			if let rowCount = tableView?.numberOfRows(inSection: indexPathValue.section) {
 				if formView!.showSubmitButton {
 					result = (indexPathValue.row == rowCount - 2)
 				}
@@ -55,15 +54,15 @@ public class DDMFieldTableCell: UITableViewCell {
 		return result
 	}
 
-	public var isFullyVisible: Bool {
-		let cellRect = tableView!.convertRect(self.frame, toView: tableView!.superview)
-		return CGRectContainsRect(tableView!.frame, cellRect)
+	open var isFullyVisible: Bool {
+		let cellRect = tableView!.convert(self.frame, to: tableView!.superview)
+		return tableView!.frame.contains(cellRect)
 	}
 
 
 	//MARK: UITableViewCell
 
-	override public func awakeFromNib() {
+	override open func awakeFromNib() {
 		let simpleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(DDMFieldTableCell.simpleTapDetected))
 		addGestureRecognizer(simpleTapRecognizer)
 	}
@@ -71,13 +70,13 @@ public class DDMFieldTableCell: UITableViewCell {
 
 	//MARK: Internal methods
 
-	public func onChangedField() {
+	open func onChangedField() {
 	}
 
-	public func onPostValidation(valid: Bool) {
+	open func onPostValidation(_ valid: Bool) {
 	}
 
-	public func setCellHeight(height: CGFloat) {
+	open func setCellHeight(_ height: CGFloat) {
 		formView?.setCellHeight(height, forField: field!)
 
 		//FIXME Hack to fire the repaint of the cells
@@ -85,7 +84,7 @@ public class DDMFieldTableCell: UITableViewCell {
 		tableView!.endUpdates()
 	}
 
-	public func resetCellHeight() -> CGFloat {
+	open func resetCellHeight() -> CGFloat {
 		let height = formView!.resetCellHeightForField(field!)
 
 		//FIXME Hack to fire the repaint of the cells
@@ -95,18 +94,18 @@ public class DDMFieldTableCell: UITableViewCell {
 		return height
 	}
 
-	internal func nextCell(indexPath:NSIndexPath) -> UITableViewCell? {
+	internal func nextCell(_ indexPath:IndexPath) -> UITableViewCell? {
 		var result:UITableViewCell?
 
 		var row = indexPath.row
 		let section = indexPath.section
-		let rowCount = tableView?.numberOfRowsInSection(section)
+		let rowCount = tableView?.numberOfRows(inSection: section)
 
 		while row < rowCount {
 			row += 1
-			let currentPath = NSIndexPath(forRow: row, inSection: section)
-			if let rowCell = tableView?.cellForRowAtIndexPath(currentPath) {
-				if rowCell.canBecomeFirstResponder() {
+			let currentPath = IndexPath(row: row, section: section)
+			if let rowCell = tableView?.cellForRow(at: currentPath) {
+				if rowCell.canBecomeFirstResponder {
 					result = rowCell
 					break
 				}
@@ -116,25 +115,25 @@ public class DDMFieldTableCell: UITableViewCell {
 		return result
 	}
 
-	internal func nextCellResponder(currentView:UIView) -> Bool {
+	internal func nextCellResponder(_ currentView:UIView) -> Bool {
 		var result = false
 
 		if let currentTextInput = currentView as? UITextInput {
 			switch currentTextInput.returnKeyType! {
 
-				case .Next:
+				case .next:
 					if let nextCell = nextCell(indexPath!) {
-						if currentView.canResignFirstResponder() {
+						if currentView.canResignFirstResponder {
 							currentView.resignFirstResponder()
 
-							if nextCell.canBecomeFirstResponder() {
+							if nextCell.canBecomeFirstResponder {
 								result = nextCell.becomeFirstResponder()
 							}
 
 						}
 					}
 
-				case .Send:
+				case .send:
 					formView?.userAction(name: DDLFormScreenlet.SubmitFormAction)
 					result = true
 
@@ -145,21 +144,20 @@ public class DDMFieldTableCell: UITableViewCell {
 		return result
 	}
 
-	internal func changeDocumentUploadStatus(field: DDMFieldDocument) {
+	internal func changeDocumentUploadStatus(_ field: DDMFieldDocument) {
 	}
 
 	internal func simpleTapDetected() {
 		formView?.endEditing(true)
 	}
 
-	internal func moveSubviewsVertically(offsetY:CGFloat) {
+	internal func moveSubviewsVertically(_ offsetY:CGFloat) {
 		for subview in contentView.subviews {
 			if offsetY == 0.0 {
-				subview.transform = CGAffineTransformIdentity
+				subview.transform = CGAffineTransform.identity
 			}
 			else {
-				subview.transform = CGAffineTransformTranslate(
-					CGAffineTransformIdentity, 0.0, offsetY)
+				subview.transform = CGAffineTransform.identity.translatedBy(x: 0.0, y: offsetY)
 			}
 		}
 	}

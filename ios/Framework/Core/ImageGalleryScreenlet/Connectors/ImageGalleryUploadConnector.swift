@@ -14,14 +14,14 @@
 import Foundation
 import LRMobileSDK
 
-public class ImageGalleryUploadConnector : UploadFileConnector<String> {
+open class ImageGalleryUploadConnector : UploadFileConnector<String> {
 
-	private let repositoryId: Int64
-	private let folderId: Int64
-	private let sourceFileName: String
-	private let title: String
-	private let descrip: String
-	private let changeLog: String
+	fileprivate let repositoryId: Int64
+	fileprivate let folderId: Int64
+	fileprivate let sourceFileName: String
+	fileprivate let title: String
+	fileprivate let descrip: String
+	fileprivate let changeLog: String
 
 
 	//MARK: Initializers
@@ -54,7 +54,7 @@ public class ImageGalleryUploadConnector : UploadFileConnector<String> {
 
 	//MARK: ServerConnector
 
-	override public func validateData() -> ValidationError? {
+	override open func validateData() -> ValidationError? {
 		var error = super.validateData()
 
 		if error == nil {
@@ -72,11 +72,11 @@ public class ImageGalleryUploadConnector : UploadFileConnector<String> {
 
 	//MARK: UploadFileConnector
 
-	override public func doSendFile(session: LRSession, data: LRUploadData) throws {
+	override open func doSendFile(_ session: LRSession, data: LRUploadData) throws {
 		let service = LRDLAppService_v7(session: session)
 
-		let serviceContext = LRJSONObjectWrapper(JSONObject: ["addGuestPermissions":true])
-		try service.addFileEntryWithRepositoryId(repositoryId,
+		let serviceContext = LRJSONObjectWrapper(jsonObject: ["addGuestPermissions":true])
+		try service?.addFileEntry(withRepositoryId: repositoryId,
 				folderId: folderId,
 			 	sourceFileName: fileName,
 			 	mimeType: mimeType,

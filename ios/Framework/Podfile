@@ -10,13 +10,13 @@ def corePods
 	pod 'MBProgressHUD', '~> 0.9.1'
 	pod 'SMXMLDocument', '~> 1.1'
 	pod 'YapDatabase/SQLCipher', '2.9.2'
-	pod 'Kingfisher', '~> 2.4'
+	pod 'Kingfisher', '~> 3.0'
 
 	# Login & signup: save credentials
-	pod 'KeychainAccess', '~> 2.4'
+	pod 'KeychainAccess', '~> 3.0'
 
 	# UserPortrait
-	pod 'CryptoSwift', '~> 0.5.2'
+	pod 'CryptoSwift', '~> 0.6.0'
 
 	# DDLForm
 	pod 'DTPickerPresenter', '~> 0.2.0'
@@ -24,7 +24,7 @@ def corePods
 	pod 'MDRadialProgress', '~> 1.3.2'
 
 	# RatingBar
-	pod 'Cosmos', '0.0.1'
+	pod 'Cosmos', '~> 8.0'
 end
 
 
@@ -38,10 +38,3 @@ target :LiferayScreensTests do
 	use_frameworks!
 end
 
-post_install do |installer|
-    installer.pods_project.targets.each do |target|
-        target.build_configurations.each do |config|
-            config.build_settings['SWIFT_VERSION'] = '2.3'
-        end
-    end
-end

@@ -41,7 +41,7 @@ class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 
 	override func cardWillAppear() {
 		screenlet.editable = editable
-		saveButton.hidden = !editable
+		saveButton.isHidden = !editable
 
 
 		if let recordValue = issueRecord {
@@ -60,12 +60,12 @@ class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 		}
 	}
 
-	func screenlet(screenlet: DDLFormScreenlet,
+	func screenlet(_ screenlet: DDLFormScreenlet,
 			onFormSubmitted record: DDLRecord) {
 		onDone?()
 	}
 
-	@IBAction func saveButtonClick(sender: UIButton) {
+	@IBAction func saveButtonClick(_ sender: UIButton) {
 		screenlet.performAction(name: sender.restorationIdentifier!)
 	}
 

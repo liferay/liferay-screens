@@ -14,12 +14,12 @@
 import Foundation
 
 
-extension SequenceType {
-	public func stoppableReduce<T>(initial: T, @noescape combine: (T, Self.Generator.Element,
+extension Sequence {
+	public func stoppableReduce<T>(_ initial: T, combine: (T, Self.Iterator.Element,
 		inout Bool) -> T) -> T {
 
 		var hasToStop = false
-		var generator = self.generate()
+		var generator = self.makeIterator()
 		var currentValue = initial
 
 		while (!hasToStop) {

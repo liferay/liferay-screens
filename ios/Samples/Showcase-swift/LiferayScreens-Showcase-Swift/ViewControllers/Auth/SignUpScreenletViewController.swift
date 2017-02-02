@@ -34,44 +34,44 @@ class SignUpScreenletViewController: UIViewController, SignUpScreenletDelegate, 
 	
 	//MARK: IBAction
 
-	@IBAction func credentialsValueChangedAction(sender: UISwitch) {
-		self.screenlet?.autoLogin = sender.on
+	@IBAction func credentialsValueChangedAction(_ sender: UISwitch) {
+		self.screenlet?.autoLogin = sender.isOn
 	}
 
-	@IBAction func loginValueChangedAction(sender: UISwitch) {
-		self.screenlet?.saveCredentials = sender.on
+	@IBAction func loginValueChangedAction(_ sender: UISwitch) {
+		self.screenlet?.saveCredentials = sender.isOn
 	}
 
 
 	//MARK: SignUpScreenletDelegate
 	
-	func screenlet(screenlet: SignUpScreenlet,
+	func screenlet(_ screenlet: SignUpScreenlet,
 			onSignUpResponseUserAttributes attributes: [String: AnyObject]) {
-		LiferayLogger.logDelegateMessage(args: attributes)
-		self.navigationController?.popViewControllerAnimated(true)
+		LiferayLogger.logDelegateMessage(args: attributes as AnyObject?)
+		self.navigationController?.popViewController(animated: true)
 	}
 
-	func screenlet(screenlet: SignUpScreenlet, onSignUpError error: NSError) {
+	func screenlet(_ screenlet: SignUpScreenlet, onSignUpError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 	
 	
 	//MARK: LoginScreenletDelegate
 
-	func screenlet(screenlet: BaseScreenlet,
+	func screenlet(_ screenlet: BaseScreenlet,
 			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
-		LiferayLogger.logDelegateMessage(args: attributes)
+		LiferayLogger.logDelegateMessage(args: attributes as AnyObject?)
 	}
 
-	func screenlet(screenlet: BaseScreenlet, onLoginError error: NSError) {
+	func screenlet(_ screenlet: BaseScreenlet, onLoginError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 
-	func onScreenletCredentialsSaved(screenlet: BaseScreenlet) {
+	func onScreenletCredentialsSaved(_ screenlet: BaseScreenlet) {
 		LiferayLogger.logDelegateMessage()
 	}
 
-	func onScreenletCredentialsLoaded(screenlet: BaseScreenlet) {
+	func onScreenletCredentialsLoaded(_ screenlet: BaseScreenlet) {
 		LiferayLogger.logDelegateMessage()
 	}
 

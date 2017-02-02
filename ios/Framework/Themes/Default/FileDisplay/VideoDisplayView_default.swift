@@ -16,19 +16,19 @@ import AVFoundation
 import AVKit
 
 
-public class VideoDisplayView_default: BaseScreenletView, FileDisplayViewModel {
+open class VideoDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
 
 	//MARK: Outlets
 
 	@IBOutlet weak var view: UIView?
 
-	public var playerController: AVPlayerViewController?
+	open var playerController: AVPlayerViewController?
 
 
 	//MARK: FileDisplayViewModel
 
-	public var url: NSURL? {
+	open var url: URL? {
 		didSet {
 			if let playerController = self.playerController {
 				playerController.view.removeFromSuperview()
@@ -38,7 +38,7 @@ public class VideoDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 			if let url = url {
 				self.playerController = AVPlayerViewController()
 
-				let video = AVPlayer(URL: url)
+				let video = AVPlayer(url: url)
 				playerController!.player = video
 				playerController!.view.frame = self.bounds
 
@@ -49,7 +49,7 @@ public class VideoDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 		}
 	}
 
-	public var title: String? {
+	open var title: String? {
 		didSet {
 			self.presentingViewController?.title = title
 		}

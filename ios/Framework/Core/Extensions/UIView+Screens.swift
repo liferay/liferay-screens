@@ -19,18 +19,18 @@ import UIKit
  */
 extension UIView {
 
-	private var defaultHideDelay:Double {
+	fileprivate var defaultHideDelay:Double {
 		return 0.3
 	}
 
 
 	//MARK: Public methods
 
-	public func changeVisibility(visible visible:Bool) {
+	public func changeVisibility(visible: Bool) {
 		changeVisibility(visible: visible, delay: defaultHideDelay)
 	}
 
-	public func changeVisibility(visible visible:Bool, delay: Double) {
+	public func changeVisibility(visible: Bool, delay: Double) {
 		let targetAlpha: CGFloat = visible ? 0.0 : 1.0
 
 		if self.alpha != targetAlpha {
@@ -38,7 +38,7 @@ extension UIView {
 				self.alpha = targetAlpha
 			}
 			else {
-				UIView.animateWithDuration(delay, animations: {
+				UIView.animate(withDuration: delay, animations: {
 					self.alpha = targetAlpha
 				})
 			}

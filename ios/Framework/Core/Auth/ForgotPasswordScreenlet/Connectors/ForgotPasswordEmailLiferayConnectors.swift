@@ -15,12 +15,12 @@ import UIKit
 import LRMobileSDK
 
 
-public class ForgotPasswordEmailLiferay62Connector: ForgotPasswordBaseLiferayConnector {
+open class ForgotPasswordEmailLiferay62Connector: ForgotPasswordBaseLiferayConnector {
 
 
 	//MARK: ForgotPasswordBaseLiferayConnector
 	
-	override public func sendForgotPasswordRequest(session: LRSession) throws -> Bool {
+	override open func sendForgotPasswordRequest(_ session: LRSession) throws -> Bool {
 
 		let companyId = (self.companyId != 0) ? self.companyId : LiferayServerContext.companyId
 
@@ -29,7 +29,7 @@ public class ForgotPasswordEmailLiferay62Connector: ForgotPasswordBaseLiferayCon
 		// TODO change plugin service to return integer code instead of boolean.
 		// Xcode transpiler is messing it up.
 
-		try service.sendPasswordByEmailAddressWithCompanyId(companyId,
+		try service?.sendPasswordByEmailAddress(withCompanyId: companyId,
 			emailAddress: viewModel.userName!)
 
 		return true
@@ -38,12 +38,12 @@ public class ForgotPasswordEmailLiferay62Connector: ForgotPasswordBaseLiferayCon
 }
 
 
-public class ForgotPasswordEmailLiferay70Connector: ForgotPasswordBaseLiferayConnector {
+open class ForgotPasswordEmailLiferay70Connector: ForgotPasswordBaseLiferayConnector {
 
 
 	//MARK: ForgotPasswordBaseLiferayConnector
 
-	override public func sendForgotPasswordRequest(session: LRSession) throws -> Bool {
+	override open func sendForgotPasswordRequest(_ session: LRSession) throws -> Bool {
 
 		let companyId = (self.companyId != 0) ? self.companyId : LiferayServerContext.companyId
 
@@ -52,7 +52,7 @@ public class ForgotPasswordEmailLiferay70Connector: ForgotPasswordBaseLiferayCon
 		// TODO change plugin service to return integer code instead of boolean.
 		// Xcode transpiler is messing it up.
 
-		try service.sendPasswordByEmailAddressWithCompanyId(companyId,
+		try service?.sendPasswordByEmailAddress(withCompanyId: companyId,
 			emailAddress: viewModel.userName!)
 
 		return true

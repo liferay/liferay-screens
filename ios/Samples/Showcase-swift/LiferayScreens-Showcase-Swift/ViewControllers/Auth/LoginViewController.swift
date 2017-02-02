@@ -44,7 +44,7 @@ class LoginViewController: UIViewController, LoginScreenletDelegate {
 		showLogged(animated: true)
 	}
 
-	@IBAction func reloginAction(sender: AnyObject) {
+	@IBAction func reloginAction(_ sender: AnyObject) {
 		guard let ctx = SessionContext.currentContext else {
 			return print("Session doesn't exist")
 		}
@@ -60,8 +60,8 @@ class LoginViewController: UIViewController, LoginScreenletDelegate {
 		}
 	}
 
-	@IBAction func credentialsValueChangedAction(sender: UISwitch) {
-		loginScreenlet.saveCredentials = sender.on
+	@IBAction func credentialsValueChangedAction(_ sender: UISwitch) {
+		loginScreenlet.saveCredentials = sender.isOn
 	}
 
 	
@@ -75,14 +75,14 @@ class LoginViewController: UIViewController, LoginScreenletDelegate {
 		setTranslations()
 	}
 	
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		self.navigationItem.title = "LoginScreenlet"
 		
 		showLogged(animated: false)
 	}
 	
-	override func viewWillDisappear(animated: Bool) {
+	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		self.navigationItem.title = nil
 	}
@@ -90,35 +90,35 @@ class LoginViewController: UIViewController, LoginScreenletDelegate {
 	
 	//MARK: LoginScreenletDelegate
 	
-	func screenlet(screenlet: BaseScreenlet,
+	func screenlet(_ screenlet: BaseScreenlet,
 			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
-		LiferayLogger.logDelegateMessage(args: attributes)
+		LiferayLogger.logDelegateMessage(args: attributes as AnyObject?)
 		showLogged(animated: true)
 	}
 
-	func screenlet(screenlet: BaseScreenlet, onLoginError error: NSError) {
+	func screenlet(_ screenlet: BaseScreenlet, onLoginError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 
-	func screenlet(screenlet: BaseScreenlet,
+	func screenlet(_ screenlet: BaseScreenlet,
 			onCredentialsSavedUserAttributes attributes: [String:AnyObject]) {
-		LiferayLogger.logDelegateMessage(args: attributes)
+		LiferayLogger.logDelegateMessage(args: attributes as AnyObject?)
 	}
 
-	func screenlet(screenlet: LoginScreenlet,
+	func screenlet(_ screenlet: LoginScreenlet,
 			onCredentialsLoadedUserAttributes attributes: [String:AnyObject]) {
-		LiferayLogger.logDelegateMessage(args: attributes)
+		LiferayLogger.logDelegateMessage(args: attributes as AnyObject?)
 	}
 
 	
 	//MARK: Private methods
 	
-	private func showLogged(animated animated: Bool) {
+	fileprivate func showLogged(animated: Bool) {
 		if SessionContext.isLoggedIn {
 			loggedUsername?.text = SessionContext.currentContext?.basicAuthUsername
 		}
 
-		UIView.animateWithDuration(animated ? 0.5 : 0.0) { () -> Void in
+		UIView.animate(withDuration: animated ? 0.5 : 0.0, animations: { () -> Void in
 			self.loggedView?.alpha = SessionContext.isLoggedIn ? 1.0 : 0.0
 			self.logginView?.alpha = SessionContext.isLoggedIn ? 0.0 : 1.0
 			
@@ -126,20 +126,20 @@ class LoginViewController: UIViewController, LoginScreenletDelegate {
 				self.loginScreenlet.viewModel.userName = "test@liferay.com"
 				self.loginScreenlet.viewModel.password = "test"
 			}
-		}
+		}) 
 	}
 
-	private func setTranslations() {
+	fileprivate func setTranslations() {
 		saveCredentialsLabel.text = NSLocalizedString("login-save-credentials", comment: "Save credentials")
 		forgetPasswordButton.replaceAttributedTitle(NSLocalizedString("login-forgot-password",
-				comment: "Did you forget your password?"), forState: .Normal)
+				comment: "Did you forget your password?"), forState: .normal)
 		signUpButton.replaceAttributedTitle(NSLocalizedString("login-sign-up", comment: "SIGN UP"),
-		                                    forState: .Normal)
+		                                    forState: .normal)
 		signOutButton.replaceAttributedTitle(NSLocalizedString("login-sign-out", comment: "SIGN OUT"),
-		                                    forState: .Normal)
+		                                    forState: .normal)
 		loggedLabel.text = NSLocalizedString("login-logged", comment: "You are logged as...")
 		reloginButton.replaceAttributedTitle(NSLocalizedString("login-relogin", comment: "RELOGIN"),
-		                                    forState: .Normal)
+		                                    forState: .normal)
 	}
 
 }

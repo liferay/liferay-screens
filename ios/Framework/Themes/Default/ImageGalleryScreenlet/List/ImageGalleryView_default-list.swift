@@ -15,9 +15,9 @@ import Foundation
 import AFNetworking
 
 
-public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryViewModel {
+open class ImageGalleryView_default_list : BaseListTableView, ImageGalleryViewModel {
 
-	public var uploadProgressView: UploadProgressViewBase? {
+	open var uploadProgressView: UploadProgressViewBase? {
 		get {
 			return _uploadView as? UploadProgressViewBase
 		}
@@ -26,25 +26,25 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
 		}
 	}
 
-	public weak var _uploadView: UIView?
+	open weak var _uploadView: UIView?
     
     internal let imageCellId = "ImageCellId"
 
 
 	//MARK: ImageGalleryViewModel
 
-	public var totalEntries: Int {
+	open var totalEntries: Int {
 		return rowCount
 	}
 
-	public func onImageEntryDeleted(imageEntry: ImageEntry) {
+	open func onImageEntryDeleted(_ imageEntry: ImageEntry) {
 
 		var section: Int?
 		var sectionKey: String?
 		var rowIndex: Int?
 
-		for (keyIndex, key) in rows.keys.enumerate() {
-			for (index, row) in rows[key]!.enumerate() {
+		for (keyIndex, key) in rows.keys.enumerated() {
+			for (index, row) in rows[key]!.enumerated() {
 				if let row = row as? ImageEntry {
 					if imageEntry == row {
 						section = keyIndex
@@ -55,29 +55,29 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
 			}
 		}
 
-		guard let finalSection = section, finalRowIndex = rowIndex, finalSectionKey = sectionKey
+		guard let finalSection = section, let finalRowIndex = rowIndex, let finalSectionKey = sectionKey
 			else {
 				return
 		}
 
 		deleteRow(finalSectionKey, row: finalRowIndex)
 
-		let indexPath = NSIndexPath(forRow: finalRowIndex, inSection: finalSection)
-		tableView?.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+		let indexPath = IndexPath(row: finalRowIndex, section: finalSection)
+		tableView?.deleteRows(at: [indexPath], with: .fade)
 	}
 
-	public func onImageUploaded(imageEntry: ImageEntry) {
+	open func onImageUploaded(_ imageEntry: ImageEntry) {
 		uploadProgressView?.uploadComplete()
 		if let lastSection = self.sections.last {
 			self.addRow(lastSection, element: imageEntry)
 
 			let lastRow = self.rows[lastSection]!.count - 1
-			let indexPath = NSIndexPath(forRow: lastRow, inSection: self.sections.count - 1)
-			self.tableView?.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
+			let indexPath = IndexPath(row: lastRow, section: self.sections.count - 1)
+			self.tableView?.insertRows(at: [indexPath], with: .top)
 		}
 	}
 
-	public func onImageUploadEnqueued(imageEntry: ImageEntryUpload) {
+	open func onImageUploadEnqueued(_ imageEntry: ImageEntryUpload) {
 		if uploadProgressView == nil {
 			showUploadProgressView()
 		}
@@ -85,11 +85,11 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
 		uploadProgressView?.addUpload(imageEntry.image)
 	}
 
-	public func showUploadProgressView() {
-		uploadProgressView = NSBundle.viewForTheme(
+	open func showUploadProgressView() {
+		uploadProgressView = Bundle.viewForTheme(
 			name: "UploadProgressView",
 			themeName: BaseScreenlet.DefaultThemeName,
-			currentClass: self.dynamicType) as? UploadProgressView_default
+			currentClass: type(of: self)) as? UploadProgressView_default
 
 		_uploadView?.translatesAutoresizingMaskIntoConstraints = false
 		_uploadView?.alpha = 0
@@ -98,14 +98,14 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
 
 		let views = ["view" : self, "uploadView" : _uploadView!]
 
-		let constraintH = NSLayoutConstraint.constraintsWithVisualFormat(
-			"H:|-(5)-[uploadView]-(5)-|",
+		let constraintH = NSLayoutConstraint.constraints(
+			withVisualFormat: "H:|-(5)-[uploadView]-(5)-|",
 			options: [],
 			metrics: nil,
 			views: views)
 
-		let constraintV = NSLayoutConstraint.constraintsWithVisualFormat(
-			"V:[uploadView(55)]-(3)-|",
+		let constraintV = NSLayoutConstraint.constraints(
+			withVisualFormat: "V:[uploadView(55)]-(3)-|",
 			options: [],
 			metrics: nil,
 			views: views)
@@ -113,17 +113,17 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
 		addConstraints(constraintH)
 		addConstraints(constraintV)
 
-		UIView.animateWithDuration(0.5) {
+		UIView.animate(withDuration: 0.5, animations: {
 			self._uploadView?.alpha = 1
-		}
+		}) 
 
 		uploadProgressView?.cancelClosure = { [weak self] in
 			(self?.screenlet as? ImageGalleryScreenlet)?.cancelUploads()
 		}
 	}
 
-	public func onImageUploadProgress(
-			bytesSent: UInt64,
+	open func onImageUploadProgress(
+			_ bytesSent: UInt64,
 			bytesToSend: UInt64,
 			imageEntryUpload: ImageEntryUpload) {
 
@@ -132,40 +132,36 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
 		uploadProgressView?.setProgress(progress)
 	}
 
-	public func onImageUploadError(imageEntryUpload: ImageEntryUpload, error: NSError) {
+	open func onImageUploadError(_ imageEntryUpload: ImageEntryUpload, error: NSError) {
 		uploadProgressView?.uploadError()
 	}
 
-	public func indexFor(imageEntry imageEntry: ImageEntry) -> NSNumber? {
-
-		var index: Int? = nil
-
+	open func indexOf(imageEntry: ImageEntry) -> Int {
 		for (_, sectionEntries) in rows {
-			if let idx = sectionEntries.indexOf({$0 as! ImageEntry == imageEntry}) {
-				index = idx
-				break
+			if let idx = sectionEntries.index(where: {$0 as! ImageEntry == imageEntry}) {
+				return idx;
 			}
 		}
 
-		return index
+		return -1
 	}
 
 	//MARK: BaseScreenletView
 
-    override public func onCreated() {
+    override open func onCreated() {
         super.onCreated()
         tableView?.rowHeight = 110
     }
     
-    override public func createProgressPresenter() -> ProgressPresenter {
+    override open func createProgressPresenter() -> ProgressPresenter {
         return DefaultProgressPresenter()
     }
 
 
 	//MARK: BaseListTableView
 
-    override public func doFillLoadedCell(row row: Int, cell: UITableViewCell, object:AnyObject) {
-        guard let imageCell = cell as? ImageGalleryCell, entry = object as? ImageEntry else {
+    override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
+        guard let imageCell = cell as? ImageGalleryCell, let entry = object as? ImageEntry else {
             return
         }
 
@@ -178,20 +174,20 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
         imageCell.title = entry.title
     }
     
-    override public func doFillInProgressCell(row row: Int, cell: UITableViewCell) {
+    override open func doFillInProgressCell(row: Int, cell: UITableViewCell) {
         cell.textLabel?.text = "..."
-        cell.accessoryType = .None
+        cell.accessoryType = .none
         
-        if let image = NSBundle.imageInBundles(
+        if let image = Bundle.imageInBundles(
             name: "default-hourglass",
-            currentClass: self.dynamicType) {
+            currentClass: type(of: self)) {
             
             cell.accessoryView = UIImageView(image: image)
-            cell.accessoryView?.frame = CGRectMake(0, 0, image.size.width, image.size.height)
+            cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
         }
     }
     
-    override public func doGetCellId(row row: Int, object: AnyObject?) -> String {
+    override open func doGetCellId(row: Int, object: AnyObject?) -> String {
         if let _ = object {
             return imageCellId
         }
@@ -199,12 +195,12 @@ public class ImageGalleryView_default_list : BaseListTableView, ImageGalleryView
         return super.doGetCellId(row: row, object: object)
     }
     
-    override public func doRegisterCellNibs() {
-        if let imageGalleryCellNib = NSBundle.nibInBundles(
+    override open func doRegisterCellNibs() {
+        if let imageGalleryCellNib = Bundle.nibInBundles(
             name: "ImageGalleryCell",
-            currentClass: self.dynamicType) {
+            currentClass: type(of: self)) {
             
-            tableView?.registerNib(imageGalleryCellNib, forCellReuseIdentifier: imageCellId)
+            tableView?.register(imageGalleryCellNib, forCellReuseIdentifier: imageCellId)
         }
     }
 }

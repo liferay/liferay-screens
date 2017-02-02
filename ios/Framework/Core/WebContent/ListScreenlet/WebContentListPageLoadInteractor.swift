@@ -14,11 +14,11 @@
 import UIKit
 
 
-public class WebContentListPageLoadInteractor : BaseListPageLoadInteractor {
+open class WebContentListPageLoadInteractor : BaseListPageLoadInteractor {
 
-	private let groupId: Int64
+	fileprivate let groupId: Int64
 
-	private let folderId: Int64
+	fileprivate let folderId: Int64
 
 
 	//MARK: Initializers
@@ -38,7 +38,7 @@ public class WebContentListPageLoadInteractor : BaseListPageLoadInteractor {
 
 	//MARK: BaseListPageLoadInteractor
 
-	public override func createListPageConnector() -> PaginationLiferayConnector {
+	open override func createListPageConnector() -> PaginationLiferayConnector {
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
 
 		return LiferayServerContext.connectorFactory.createWebContentListPageConnector(
@@ -49,11 +49,11 @@ public class WebContentListPageLoadInteractor : BaseListPageLoadInteractor {
 			computeRowCount: self.computeRowCount)
 	}
 
-	override public func convertResult(serverResult: [String:AnyObject]) -> AnyObject {
+	override open func convertResult(_ serverResult: [String:AnyObject]) -> AnyObject {
 		return WebContent(attributes: serverResult)
 	}
 
-	override public func cacheKey(c: PaginationLiferayConnector) -> String {
+	override open func cacheKey(_ c: PaginationLiferayConnector) -> String {
 		return "\((groupId != 0) ? groupId : LiferayServerContext.groupId)-\(folderId)"
 	}
 

@@ -47,7 +47,7 @@ class SignInViewController: CardViewController,
 	}
 
 	override func viewDidLoad() {
-		scroll.contentSize = CGSizeMake(scroll.frame.size.width * 2, scroll.frame.size.height)
+		scroll.contentSize = CGSize(width: scroll.frame.size.width * 2, height: scroll.frame.size.height)
 
 		signInPage.frame = scroll.frame
 		forgotPage.frame = CGRectMake(scroll.frame.size.width,
@@ -63,15 +63,15 @@ class SignInViewController: CardViewController,
 				LiferayServerContext.propertyForKey("anonymousPassword") as? String
 	}
 
-	override func viewWillAppear(animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		if cardView!.button!.superview !== scroll {
 			cardView!.button!.removeFromSuperview()
 			scroll.addSubview(cardView!.button!)
 		}
 	}
 
-	@IBAction func backAction(sender: AnyObject) {
-		UIView.animateWithDuration(0.3,
+	@IBAction func backAction(_ sender: AnyObject) {
+		UIView.animate(withDuration: 0.3,
 				animations: {
 					self.forgotTitle.alpha = 0.0
 					self.backArrow.alpha = 0.0
@@ -83,11 +83,11 @@ class SignInViewController: CardViewController,
 		scroll.scrollRectToVisible(newRect, animated: true)
 	}
 
-	@IBAction func forgotPasswordAction(sender: AnyObject) {
+	@IBAction func forgotPasswordAction(_ sender: AnyObject) {
 		self.forgotTitle.alpha = 0.0
 		self.backArrow.alpha = 0.0
 
-		UIView.animateWithDuration(0.5,
+		UIView.animate(withDuration: 0.5,
 				animations: {
 					self.forgotTitle.alpha = 1.0
 					self.backArrow.alpha = 1.0
@@ -99,12 +99,12 @@ class SignInViewController: CardViewController,
 		scroll.scrollRectToVisible(newRect, animated: true)
 	}
 
-	func screenlet(screenlet: BaseScreenlet,
+	func screenlet(_ screenlet: BaseScreenlet,
 			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
 		onDone?()
 	}
 
-	func screenlet(screenlet: ForgotPasswordScreenlet,
+	func screenlet(_ screenlet: ForgotPasswordScreenlet,
 			onForgotPasswordSent passwordSent: Bool) {
 		backAction(self)
 	}
@@ -117,16 +117,16 @@ class SignInViewController: CardViewController,
 		unregisterKeyboardListener(self)
 	}
 
-	func showKeyboard(notif: NSNotification) {
-		if cardView?.currentState == .Normal {
-			cardView?.nextState = .Maximized
+	func showKeyboard(_ notif: Notification) {
+		if cardView?.currentState == .normal {
+			cardView?.nextState = .maximized
 			cardView?.changeToNextState()
 		}
 	}
 
-	func hideKeyboard(notif: NSNotification) {
-		if cardView?.currentState == .Maximized {
-			cardView?.nextState = .Normal
+	func hideKeyboard(_ notif: Notification) {
+		if cardView?.currentState == .maximized {
+			cardView?.nextState = .normal
 			cardView?.changeToNextState()
 		}
 	}

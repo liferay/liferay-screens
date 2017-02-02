@@ -14,29 +14,29 @@
 import UIKit
 import LiferayScreens
 
-public class WebContentDisplayView_westeros: WebContentDisplayView_default {
+open class WebContentDisplayView_westeros: WebContentDisplayView_default {
 
-	private let styles =
+	fileprivate let styles =
 		".MobileCSS {padding: 0% 4%; width: 92%; color: white;} " +
 		".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, .MobileCSS h2, .MobileCSS h3 { " +
 			"font-size: 110%; font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-weight: 200; } " +
 		".MobileCSS img { width: 100% !important; } " +
 		".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }"
 
-	override public func createProgressPresenter() -> ProgressPresenter {
+	override open func createProgressPresenter() -> ProgressPresenter {
 		return WesterosCardProgressPresenter(screenlet: screenlet)
 	}
 
 	//MARK: WebContentDisplayViewModel
 
-	public override var htmlContent: String? {
+	open override var htmlContent: String? {
 		get {
 			return ""
 		}
 		set {
 			let styledHtml = "<style>\(styles)</style><div class=\"MobileCSS\">\(newValue ?? "")</div>"
 
-			webView!.loadHTMLString(styledHtml, baseURL: NSURL(string:LiferayServerContext.server))
+			webView!.loadHTMLString(styledHtml, baseURL: URL(string:LiferayServerContext.server))
 		}
 	}
 }

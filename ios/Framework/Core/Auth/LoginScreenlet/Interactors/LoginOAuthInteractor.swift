@@ -65,35 +65,35 @@ class LoginOAuthInteractor: Interactor, LRCallback {
 
 	//MARK: Private methods
 
-	private func requestToken() -> Bool {
-		LRRequestToken.requestTokenWithConfig(
-				OAuthConfig,
+	fileprivate func requestToken() -> Bool {
+		LRRequestToken.requestToken(
+				with: OAuthConfig,
 				onSuccess: {
-					if let URL = NSURL(string: $0.authorizeTokenURL) {
+					if let URL = URL(string: ($0?.authorizeTokenURL)!) {
 						self.showWebView(URL)
 					}
 					else {
-						let err = NSError.errorWithCause(.InvalidServerResponse,
-								message: "OAuth's authorizeTokenURL is not valid: \($0.authorizeTokenURL)\n")
+						let err = NSError.errorWithCause(.invalidServerResponse,
+								message: "OAuth's authorizeTokenURL is not valid: \($0?.authorizeTokenURL)\n")
 						self.onFailure?(err)
 					}
 				},
 				onFailure: { err in
 					print("ERROR: Cannot get request token\n")
-					self.onFailure?(err)
+					self.onFailure?(err as! NSError)
 				}
 		)
 
 		return true
 	}
 
-	private func showWebView(URL: NSURL) {
+	fileprivate func showWebView(_ URL: Foundation.URL) {
 		webViewController = OAuthWebViewController(
 				URL: URL,
 				themeName: screenlet?.themeName ?? "default")
 
 		webViewController!.onAuthorized = { [weak webViewController] OAuthVerifier in
-			webViewController?.dismissViewControllerAnimated(true, completion: nil)
+			webViewController?.dismiss(animated: true, completion: nil)
 
 			self.OAuthConfig?.verifier = OAuthVerifier
 
@@ -101,24 +101,24 @@ class LoginOAuthInteractor: Interactor, LRCallback {
 		}
 
 		if let vc = screenlet?.presentingViewController {
-			vc.presentViewController(webViewController!, animated: true, completion: nil)
+			vc.present(webViewController!, animated: true, completion: nil)
 		}
 	}
 
-	private func requestAccessToken() {
-		LRAccessToken.accessTokenWithConfig(
-				OAuthConfig,
+	fileprivate func requestAccessToken() {
+		LRAccessToken.accessToken(
+				with: OAuthConfig,
 				onSuccess: { config in
-					self.requestUserAttributes(config)
+					self.requestUserAttributes(config!)
 				},
 				onFailure: { err in
 					print("ERROR: Cannot get access token\n")
-					self.onFailure?(err)
+					self.onFailure?(err as! NSError)
 				}
 		)
 	}
 
-	private func requestUserAttributes(config: LROAuthConfig) {
+	fileprivate func requestUserAttributes(_ config: LROAuthConfig) {
 		OAuthSession = LRSession(
 				server: LiferayServerContext.server,
 				authentication: LROAuth(config: config))
@@ -128,21 +128,21 @@ class LoginOAuthInteractor: Interactor, LRCallback {
 		case .v62:
 			let srv = LRScreensuserService_v62(session: OAuthSession!)
 
-			_ = try? srv.getCurrentUser()
+			_ = try? srv?.getCurrentUser()
 
 		case .v70:
 			let srv = LRUserService_v7(session: OAuthSession!)
 
-			_ = try? srv.getCurrentUser()
+			_ = try? srv?.getCurrentUser()
 		}
 
 	}
 
-	func onFailure(error: NSError!) {
-		onFailure?(error)
+	func onFailure(_ error: Error!) {
+		onFailure?(error as NSError)
 	}
 
-	func onSuccess(result: AnyObject!) {
+	func onSuccess(_ result: Any!) {
 		if let resultValue = result as? [String:AnyObject] {
 			resultUserAttributes = resultValue
 

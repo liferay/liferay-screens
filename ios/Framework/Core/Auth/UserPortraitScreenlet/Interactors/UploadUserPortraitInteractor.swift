@@ -41,41 +41,41 @@ class UploadUserPortraitInteractor: ServerWriteConnectorInteractor {
 				image: self.image)
 	}
 
-	override func completedConnector(c: ServerConnector) {
+	override func completedConnector(_ c: ServerConnector) {
 		self.uploadResult = (c as! UploadUserPortraitLiferayConnector).uploadResult
 	}
 
 
 	//MARK: Cache methods
 
-	override func writeToCache(c: ServerConnector) {
+	override func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
 
-		let cacheFunction = (cacheStrategy == .CacheFirst || c.lastError != nil)
+		let cacheFunction = (cacheStrategy == .cacheFirst || c.lastError != nil)
 			? cacheManager.setDirty
 			: cacheManager.setClean
 
 		cacheFunction(
-			collection: ScreenletName(UserPortraitScreenlet),
-			key: "userId-\(userId)",
-			value: image,
-			attributes: ["userId": userId.description],
-			onCompletion: nil)
+			ScreenletName(UserPortraitScreenlet.self),
+			"userId-\(userId)",
+			image,
+			["userId": userId.description as AnyObject],
+			nil)
 	}
 
 
 	//MARK: Interactor
 
 	override func callOnSuccess() {
-		if cacheStrategy == .CacheFirst {
+		if cacheStrategy == .cacheFirst {
 			// update cache with date sent
 			SessionContext.currentContext?.cacheManager.setClean(
-				collection: ScreenletName(UserPortraitScreenlet),
+				collection: ScreenletName(UserPortraitScreenlet.self),
 				key: "userId-\(userId)",
 				attributes: [
-					"userId": userId.description])
+					"userId": userId.description as AnyObject])
 		}
 
 		super.callOnSuccess()

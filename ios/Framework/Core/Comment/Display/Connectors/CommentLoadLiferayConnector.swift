@@ -13,11 +13,11 @@
  */
 import UIKit
 
-public class CommentLoadLiferayConnector: ServerConnector {
+open class CommentLoadLiferayConnector: ServerConnector {
 
-	public let commentId: Int64
+	open let commentId: Int64
 
-	public var resultComment: Comment?
+	open var resultComment: Comment?
 
 
 	//MARK: Initializers
@@ -30,7 +30,7 @@ public class CommentLoadLiferayConnector: ServerConnector {
 
 	//MARK: ServerConnector
 
-	override public func validateData() -> ValidationError? {
+	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
@@ -43,25 +43,25 @@ public class CommentLoadLiferayConnector: ServerConnector {
 	}
 }
 
-public class Liferay70CommentLoadConnector: CommentLoadLiferayConnector {
+open class Liferay70CommentLoadConnector: CommentLoadLiferayConnector {
 
 
 	//MARK: ServerConnector
 	
-	override public func doRun(session session: LRSession) {
+	override open func doRun(session: LRSession) {
 		resultComment = nil
 
 		let service = LRScreenscommentService_v70(session: session)
 
 		do {
-			let result = try service.getCommentWithCommentId(commentId)
+			let result = try service?.getCommentWithCommentId(commentId)
 
 			if let result = result as? [String: AnyObject] {
 				resultComment = Comment(attributes: result)
 				lastError = nil
 			}
 			else {
-				lastError = NSError.errorWithCause(.InvalidServerResponse,
+				lastError = NSError.errorWithCause(.invalidServerResponse,
 				                                   message: "Could not load comment with this commentId.")
 				resultComment = nil
 			}

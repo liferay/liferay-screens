@@ -14,17 +14,17 @@
 import UIKit
 
 
-@objc public class Interactor: NSObject {
+@objc open class Interactor: NSObject {
 
-	public var actionName: String?
+	open var actionName: String?
 
-	public var onSuccess: (Void -> Void)?
+	open var onSuccess: ((Void) -> Void)?
 
-	public var onFailure: (NSError -> Void)?
+	open var onFailure: ((NSError) -> Void)?
 
-	public var lastError: NSError?
+	open var lastError: NSError?
 
-	public let screenlet: BaseScreenlet?
+	open let screenlet: BaseScreenlet?
 
 	internal var cancelled = false
 
@@ -44,7 +44,7 @@ import UIKit
 
 	//MARK: Public methods
 
-	public func callOnSuccess() {
+	open func callOnSuccess() {
 		if !cancelled {
 			dispatch_main {
 				self.onSuccess?()
@@ -53,7 +53,7 @@ import UIKit
 		}
 	}
 
-	public func callOnFailure(error: NSError) {
+	open func callOnFailure(_ error: NSError) {
 		if !cancelled {
 			dispatch_main {
 				self.onFailure?(error)
@@ -62,24 +62,24 @@ import UIKit
 		}
 	}
 
-	public func start() -> Bool {
+	open func start() -> Bool {
 		cancelled = false
 		return false
 	}
 
-	public func cancel() {
-		callOnFailure(NSError.errorWithCause(.Cancelled))
+	open func cancel() {
+		callOnFailure(NSError.errorWithCause(.cancelled))
 		cancelled = true
 	}
 
-	public func interactionResult() -> AnyObject? {
+	open func interactionResult() -> AnyObject? {
 		return nil
 	}
 
 
 	//MARK: Private methods
 
-	private func finishWithError(error: NSError?) {
+	fileprivate func finishWithError(_ error: NSError?) {
 		screenlet?.endInteractor(self, error: error)
 
 		// break retain cycle

@@ -14,92 +14,92 @@
 import Foundation
 
 
-@objc public class Comment: NSObject, NSCoding {
+@objc open class Comment: NSObject, NSCoding {
 
-	public static func plainBodyToHtml(plainBody: String) -> String {
+	open static func plainBodyToHtml(_ plainBody: String) -> String {
 		return plainBody
-			.stringByReplacingOccurrencesOfString("<", withString: "&lt;")
-			.stringByReplacingOccurrencesOfString(">", withString: "&gt;")
+			.replacingOccurrences(of: "<", with: "&lt;")
+			.replacingOccurrences(of: ">", with: "&gt;")
 			.characters
-			.split("\n")
+			.split(separator: "\n")
 			.map(String.init)
 			.map { "<p>\($0)</p>" }
-			.joinWithSeparator("")
+			.joined(separator: "")
 	}
 
-	private let AllowedTags = ["strong", "i", "b", "a"]
+	fileprivate let AllowedTags = ["strong", "i", "b", "a"]
 
-	public let attributes: [String:AnyObject]
+	open let attributes: [String:AnyObject]
 
-	public var originalBody: String {
+	open var originalBody: String {
 		return attributes["body"]!.description
-			.stringByReplacingOccurrencesOfString("\n ", withString: "")
-			.stringByReplacingOccurrencesOfString("\n", withString: "")
-			.stringByReplacingOccurrencesOfString("</p><p>", withString: "\n")
-			.stringByReplacingOccurrencesOfString("<p>", withString: "")
-			.stringByReplacingOccurrencesOfString("</p>", withString: "")
+			.replacingOccurrences(of: "\n ", with: "")
+			.replacingOccurrences(of: "\n", with: "")
+			.replacingOccurrences(of: "</p><p>", with: "\n")
+			.replacingOccurrences(of: "<p>", with: "")
+			.replacingOccurrences(of: "</p>", with: "")
 	}
 
-	public var plainBody: String {
+	open var plainBody: String {
 		return originalBody
-			.stringByReplacingOccurrencesOfString(
-				"<[^>]+>",
-				withString: "",
-				options: .RegularExpressionSearch,
+			.replacingOccurrences(
+				of: "<[^>]+>",
+				with: "",
+				options: .regularExpression,
 				range: nil)
-			.stringByReplacingOccurrencesOfString("&lt;", withString: "<")
-			.stringByReplacingOccurrencesOfString("&gt;", withString: ">")
+			.replacingOccurrences(of: "&lt;", with: "<")
+			.replacingOccurrences(of: "&gt;", with: ">")
 	}
 
-	public var htmlBody: String {
+	open var htmlBody: String {
 		let closeTags = AllowedTags.map { "/\($0)" }
 		let allTags = closeTags + AllowedTags
 
 		return originalBody
-			.stringByReplacingOccurrencesOfString(
-				"(?i)<(?!\(allTags.joinWithSeparator("|"))).*?>",
-				withString: "",
-				options: .RegularExpressionSearch,
+			.replacingOccurrences(
+				of: "(?i)<(?!\(allTags.joined(separator: "|"))).*?>",
+				with: "",
+				options: .regularExpression,
 				range: nil)
-			.stringByReplacingOccurrencesOfString("\n", withString: "</br>")
+			.replacingOccurrences(of: "\n", with: "</br>")
 	}
 
-	public var isStyled: Bool {
-		return originalBody.containsString("<")
+	open var isStyled: Bool {
+		return originalBody.contains("<")
 	}
 
-	public var commentId: Int64 {
-		return (attributes["commentId"]! as! NSNumber).longLongValue
+	open var commentId: Int64 {
+		return (attributes["commentId"]! as! NSNumber).int64Value
 	}
 
-	public var userName: String {
+	open var userName: String {
 		return attributes["userName"]!.description
 	}
 
-	public var userId: Int64 {
-		return (attributes["userId"]! as! NSNumber).longLongValue
+	open var userId: Int64 {
+		return (attributes["userId"]! as! NSNumber).int64Value
 	}
 
-	public var createDate: NSDate {
+	open var createDate: Date {
 		let milliseconds = (attributes["createDate"]! as! NSNumber).doubleValue
-		return NSDate(millisecondsSince1970: milliseconds)
+		return Date(millisecondsSince1970: milliseconds)
 	}
 
-	public var modifiedDate: NSDate {
+	open var modifiedDate: Date {
 		let milliseconds = (attributes["modifiedDate"]! as! NSNumber).doubleValue
-		return NSDate(millisecondsSince1970: milliseconds)
+		return Date(millisecondsSince1970: milliseconds)
 	}
 
-	public var canDelete: Bool {
+	open var canDelete: Bool {
 		return attributes["deletePermission"] as? Bool ?? false
 	}
 
-	public var canEdit: Bool {
+	open var canEdit: Bool {
 		return attributes["updatePermission"] as? Bool ?? false
 	}
 
-	public func encodeWithCoder(aCoder: NSCoder) {
-		aCoder.encodeObject(self.attributes, forKey:"comment-attrs")
+	open func encode(with aCoder: NSCoder) {
+		aCoder.encode(self.attributes, forKey:"comment-attrs")
 	}
 
 	//MARK: Initializers
@@ -111,7 +111,7 @@ import Foundation
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
-		self.attributes = aDecoder.decodeObjectForKey("comment-attrs") as? [String:AnyObject] ?? [:]
+		self.attributes = aDecoder.decodeObject(forKey: "comment-attrs") as? [String:AnyObject] ?? [:]
 
 		super.init()
 	}

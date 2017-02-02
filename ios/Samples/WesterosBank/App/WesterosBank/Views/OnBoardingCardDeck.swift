@@ -15,36 +15,36 @@ import UIKit
 
 class OnBoardingCardDeck: CardDeckView {
 
-	override func topCardTouchUpInside(sender: UIButton) {
+	override func topCardTouchUpInside(_ sender: UIButton) {
 		super.topCardTouchUpInside(sender)
 
 		switch topCard!.currentState {
-		case .Minimized:
-			topCard!.nextState = .Normal
+		case .minimized:
+			topCard!.nextState = .normal
 
-		case .Maximized:
-			topCard!.nextState = .Normal
+		case .maximized:
+			topCard!.nextState = .normal
 
-			bottomCard!.nextState = .Minimized
+			bottomCard!.nextState = .minimized
 			bottomCard!.changeToNextState()
 
 		default:
-			topCard!.nextState = .Minimized
+			topCard!.nextState = .minimized
 		}
 
 		topCard!.changeToNextState()
 	}
 
-	override func bottomCardTouchUpInside(sender: UIButton) {
+	override func bottomCardTouchUpInside(_ sender: UIButton) {
 		super.bottomCardTouchUpInside(sender)
 
-		if bottomCard!.currentState == .Minimized {
-			bottomCard!.nextState = .Normal
-			topCard!.nextState = .Background
+		if bottomCard!.currentState == .minimized {
+			bottomCard!.nextState = .normal
+			topCard!.nextState = .background
 		}
 		else {
-			bottomCard!.nextState = .Minimized
-			topCard!.nextState = .Minimized
+			bottomCard!.nextState = .minimized
+			topCard!.nextState = .minimized
 		}
 
 		bottomCard!.changeToNextState()

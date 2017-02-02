@@ -14,66 +14,66 @@
 import UIKit
 
 
-public class DDLFieldNumberTableCell_default: DDLBaseFieldTextboxTableCell_default {
+open class DDLFieldNumberTableCell_default: DDLBaseFieldTextboxTableCell_default {
 
 
 	//MARK: Outlets
 
-	@IBOutlet public var stepper: UIStepper?
+	@IBOutlet open var stepper: UIStepper?
 
 
 	//MARK: Actions
 	
-	@IBAction private func stepperChanged(sender: AnyObject) {
-		field!.currentValue = NSDecimalNumber(double: stepper!.value)
+	@IBAction fileprivate func stepperChanged(_ sender: AnyObject) {
+		field!.currentValue = NSDecimalNumber(value: stepper!.value as Double)
 		textField?.text = field!.currentValueAsString
 	}
 
 
 	//MARK: DDLBaseFieldTextboxTableCell
 
-	override public func awakeFromNib() {
+	override open func awakeFromNib() {
 		super.awakeFromNib()
 
 		stepper?.maximumValue = Double(UInt16.max)
 	}
 
-	override public func onChangedField() {
+	override open func onChangedField() {
 		super.onChangedField()
 
 		if let numberField = field as? DDMFieldNumber {
 			if let currentValue = numberField.currentValue as? NSNumber {
 				stepper?.value = currentValue.doubleValue
 			}
-			textField!.keyboardType = (numberField.isDecimal) ? .DecimalPad : .NumberPad
+			textField!.keyboardType = (numberField.isDecimal) ? .decimalPad : .numberPad
 		}
 	}
 
-	override public func textField(textField: UITextField,
-			shouldChangeCharactersInRange range: NSRange,
+	override open func textField(_ textField: UITextField,
+			shouldChangeCharactersIn range: NSRange,
 			replacementString string: String) -> Bool {
 
-		let newText = (textField.text! as NSString).stringByReplacingCharactersInRange(range,
-				withString:string)
+		let newText = (textField.text! as NSString).replacingCharacters(in: range,
+				with:string)
 
 		if newText != "" {
 			field!.currentValueAsString = newText
 		}
 		else {
-			field!.currentValue = NSDecimalNumber(double: 0)
+			field!.currentValue = NSDecimalNumber(value: 0 as Double)
 		}
 
 		stepper?.value = Double(field!.currentValue as! NSNumber)
 
 		return super.textField(textField,
-				shouldChangeCharactersInRange: range,
+				shouldChangeCharactersIn: range,
 				replacementString: string)
 	}
 
 
 	//MARK: UITextFieldDelegate
 
-	public func textFieldShouldReturn(textField: UITextField) -> Bool {
+	open func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		return nextCellResponder(textField)
 	}
 

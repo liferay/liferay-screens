@@ -20,15 +20,15 @@ public protocol LoadAssetConnector {
 }
 
 
-public class LoadAssetInteractor: ServerReadConnectorInteractor {
+open class LoadAssetInteractor: ServerReadConnectorInteractor {
 
-	public let assetEntryId: Int64?
+	open let assetEntryId: Int64?
 
-	public let className: String?
+	open let className: String?
 
-	public let classPK: Int64?
+	open let classPK: Int64?
 
-	public var asset: Asset?
+	open var asset: Asset?
 
 
 	//MARK: Initializers
@@ -47,7 +47,7 @@ public class LoadAssetInteractor: ServerReadConnectorInteractor {
 		          classPK: classPK)
 	}
 
-	private init(screenlet: BaseScreenlet, assetEntryId: Int64?, className: String?, classPK: Int64?) {
+	fileprivate init(screenlet: BaseScreenlet, assetEntryId: Int64?, className: String?, classPK: Int64?) {
 		self.assetEntryId = assetEntryId
 		self.className = className
 		self.classPK = classPK
@@ -58,24 +58,24 @@ public class LoadAssetInteractor: ServerReadConnectorInteractor {
 	
 	//MARK: ServerConnectorInteractor
 
-	override public func createConnector() -> ServerConnector? {
+	override open func createConnector() -> ServerConnector? {
 		if let assetEntryId = self.assetEntryId {
 			return LiferayServerContext.connectorFactory.createAssetLoadByEntryIdConnector(assetEntryId)
 		}
-		else if let className = self.className, classPK = self.classPK {
+		else if let className = self.className, let classPK = self.classPK {
 			return LiferayServerContext.connectorFactory.createAssetLoadByClassPKConnector(className, classPK: classPK)
 		}
 
 		return nil
 	}
 
-	override public func completedConnector(c: ServerConnector) {
+	override open func completedConnector(_ c: ServerConnector) {
 		asset = (c as? LoadAssetConnector)?.resultAsset
 	}
 
 	//MARK: Cache methods
 
-	override public func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
+	override open func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> ()) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
@@ -93,7 +93,7 @@ public class LoadAssetInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-	override public func writeToCache(c: ServerConnector) {
+	override open func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			return
 		}
@@ -109,17 +109,17 @@ public class LoadAssetInteractor: ServerReadConnectorInteractor {
 			key: self.assetCacheKey,
 			value: asset,
 			attributes: [
-				"entryId": NSNumber(longLong: assetEntryId ?? 0),
-				"className": className ?? "",
-				"classPK": NSNumber(longLong: classPK ?? 0),
+				"entryId": NSNumber(value: assetEntryId ?? 0),
+				"className": (className ?? "") as AnyObject,
+				"classPK": NSNumber(value: classPK ?? 0),
 			])
 	}
 
-	private var assetCacheKey: String {
+	fileprivate var assetCacheKey: String {
 		if let assetEntryId = self.assetEntryId {
 			return "load-asset-entryId-\(assetEntryId)"
 		}
-		else if let className = self.className, classPK = self.classPK {
+		else if let className = self.className, let classPK = self.classPK {
 			return "load-asset-cn-\(className)-cpk-\(classPK)"
 		}
 
