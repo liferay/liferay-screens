@@ -28,7 +28,9 @@ open class LoadAssetInteractor: ServerReadConnectorInteractor {
 
 	open let classPK: Int64?
 
-	open var asset: Asset?
+	public let portletItemName: String?
+
+	public var asset: Asset?
 
 
 	//MARK: Initializers
@@ -37,20 +39,32 @@ open class LoadAssetInteractor: ServerReadConnectorInteractor {
 		self.init(screenlet: screenlet,
 				assetEntryId: assetEntryId,
 				className: nil,
-				classPK: nil)
+				classPK: nil,
+				portletItemName: nil)
 	}
 
 	public convenience init(screenlet: BaseScreenlet, className: String, classPK: Int64) {
 		self.init(screenlet: screenlet,
 		          assetEntryId: nil,
 		          className: className,
-		          classPK: classPK)
+		          classPK: classPK,
+		          portletItemName: nil)
 	}
 
-	fileprivate init(screenlet: BaseScreenlet, assetEntryId: Int64?, className: String?, classPK: Int64?) {
+	public convenience init(screenlet: BaseScreenlet, portletItemName: String) {
+		self.init(screenlet: screenlet,
+		          assetEntryId: nil,
+		          className: nil,
+		          classPK: nil,
+		          portletItemName: portletItemName)
+	}
+
+	private init(screenlet: BaseScreenlet, assetEntryId: Int64?, className: String?,
+	             classPK: Int64?, portletItemName: String?) {
 		self.assetEntryId = assetEntryId
 		self.className = className
 		self.classPK = classPK
+		self.portletItemName = portletItemName
 
 		super.init(screenlet: screenlet)
 	}
@@ -64,6 +78,8 @@ open class LoadAssetInteractor: ServerReadConnectorInteractor {
 		}
 		else if let className = self.className, let classPK = self.classPK {
 			return LiferayServerContext.connectorFactory.createAssetLoadByClassPKConnector(className, classPK: classPK)
+		} else if let portletItemName = self.portletItemName {
+			return LiferayServerContext.connectorFactory.createAssetLoadByPortletItemNameConnector(portletItemName)
 		}
 
 		return nil
@@ -109,9 +125,10 @@ open class LoadAssetInteractor: ServerReadConnectorInteractor {
 			key: self.assetCacheKey,
 			value: asset,
 			attributes: [
-				"entryId": NSNumber(value: assetEntryId ?? 0),
-				"className": (className ?? "") as AnyObject,
-				"classPK": NSNumber(value: classPK ?? 0),
+				"entryId": NSNumber(longLong: assetEntryId ?? 0),
+				"className": className ?? "",
+				"classPK": NSNumber(longLong: classPK ?? 0),
+				"portletItemName": portletItemName ?? ""
 			])
 	}
 
@@ -122,8 +139,11 @@ open class LoadAssetInteractor: ServerReadConnectorInteractor {
 		else if let className = self.className, let classPK = self.classPK {
 			return "load-asset-cn-\(className)-cpk-\(classPK)"
 		}
+		else {
+			return "load-asset-pin-\(portletItemName)"
+		}
 
-		fatalError("Need either assetEntryId or className+classPK")
+		fatalError("Need either assetEntryId, className+classPK or portletItemName")
 	}
 
 }
