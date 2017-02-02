@@ -1,16 +1,16 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 import LRMobileSDK
 
@@ -30,6 +30,8 @@ public class DDLFormSubmitLiferayConnector: ServerConnector {
 	private let values: [String:AnyObject]
 	private let viewModel: DDLFormViewModel?
 
+
+	//MARK: Initializers
 
 	public init(values: [String:AnyObject], viewModel: DDLFormViewModel?) {
 		self.values = values
@@ -67,6 +69,9 @@ public class DDLFormSubmitLiferayConnector: ServerConnector {
 
 
 public class Liferay62DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
+
+
+	//MARK: ServerConnector
 
 	override public func doRun(session session: LRSession) {
 		let service = LRDDLRecordService_v62(session: session)
@@ -117,6 +122,9 @@ public class Liferay62DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
 
 public class Liferay70DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
 
+
+	//MARK: ServerConnector
+	
 	override public func doRun(session session: LRSession) {
 		let service = LRDDLRecordService_v7(session: session)
 

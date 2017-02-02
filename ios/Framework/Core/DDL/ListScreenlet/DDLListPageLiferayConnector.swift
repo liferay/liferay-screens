@@ -1,16 +1,16 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 
 
@@ -22,12 +22,16 @@ public class DDLListPageLiferayConnector: PaginationLiferayConnector {
 	internal let viewModel: DDLListViewModel
 
 
+	//MARK: Initializers
+
 	public init(viewModel: DDLListViewModel, startRow: Int, endRow: Int, computeRowCount: Bool) {
 		self.viewModel = viewModel
 
 		super.init(startRow: startRow, endRow: endRow, computeRowCount: computeRowCount)
 	}
 
+
+	//MARK: ServerConnector
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -49,6 +53,9 @@ public class DDLListPageLiferayConnector: PaginationLiferayConnector {
 
 
 public class Liferay62DDLListPageConnector: DDLListPageLiferayConnector {
+
+
+	//MARK: PaginationLiferayConnector
 
 	override public func doAddPageRowsServiceCall(
 			session session: LRBatchSession,
@@ -99,6 +106,9 @@ public class Liferay62DDLListPageConnector: DDLListPageLiferayConnector {
 
 
 public class Liferay70DDLListPageConnector: DDLListPageLiferayConnector {
+
+
+	//MARK: PaginationLiferayConnector
 
 	override public func doAddPageRowsServiceCall(
 			session session: LRBatchSession,

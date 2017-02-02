@@ -1,20 +1,23 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 
 
 public class LoginByScreenNameLiferay62Connector: GetUserByScreenNameLiferay62Connector {
+
+
+	//MARK: Initializers
 
 	public init(companyId: Int64, screenName: String, password: String) {
 		super.init(companyId: companyId, screenName: screenName)
@@ -22,6 +25,9 @@ public class LoginByScreenNameLiferay62Connector: GetUserByScreenNameLiferay62Co
 		self.userName = screenName
 		self.password = password
 	}
+
+
+	//MARK: ServerConnector
 
 	override public func postRun() {
 		if lastError == nil {
@@ -39,12 +45,18 @@ public class LoginByScreenNameLiferay62Connector: GetUserByScreenNameLiferay62Co
 
 public class LoginByScreenNameLiferay70Connector: GetUserByScreenNameLiferay70Connector {
 
+
+	//MARK: Initializers
+
 	public init(companyId: Int64, screenName: String, password: String) {
 		super.init(companyId: companyId, screenName: screenName)
 
 		self.userName = screenName
 		self.password = password
 	}
+
+
+	//MARK: ServerConnector
 
 	override public func postRun() {
 		if lastError == nil {

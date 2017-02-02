@@ -1,17 +1,18 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
+
 
 #if LIFERAY_SCREENS_FRAMEWORK
 	import CryptoSwift
@@ -58,10 +59,13 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 	}
 
 	var resultImage: UIImage?
+
 	var resultUserId: Int64?
 
 	private let mode: DownloadMode
 
+
+	//MARK: Initializers
 
 	init(screenlet: BaseScreenlet?, portraitId: Int64, uuid: String, male: Bool) {
 		mode = DownloadMode.Attributes(portraitId: portraitId, uuid: uuid, male: male)
@@ -86,6 +90,9 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 		super.init(screenlet: screenlet)
 	}
+
+
+	//MARK: ServerConnectorInteractor
 
 	override func createConnector() -> ServerConnector? {
 		switch mode {

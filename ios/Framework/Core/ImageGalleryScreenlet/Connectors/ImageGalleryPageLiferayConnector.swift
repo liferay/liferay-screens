@@ -1,16 +1,16 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import Foundation
 
 
@@ -19,6 +19,9 @@ public class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
 	private let repositoryId: Int64
     private let folderId: Int64
 	private let mimeTypes: [String]
+
+
+	//MARK: Initializers
 
 	public init(
 			startRow: Int,
@@ -35,6 +38,9 @@ public class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
         super.init(startRow: startRow, endRow: endRow, computeRowCount: computeRowCount)
     }
 
+
+	//MARK: ServerConnector
+
 	public override func validateData() -> ValidationError? {
 		var error = super.validateData()
 
@@ -49,6 +55,9 @@ public class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
 
 		return error
 	}
+
+	
+	//MARK: PaginationLiferayConnector
     
     override public func doAddPageRowsServiceCall(
 			session session: LRBatchSession,

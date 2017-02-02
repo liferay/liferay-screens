@@ -1,30 +1,52 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 
 
 @objc public protocol CommentAddScreenletDelegate : BaseScreenletDelegate {
 
+	/// Called when the screenlet adds a comment.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - comment: asset's comment.
 	optional func screenlet(screenlet: CommentAddScreenlet,
 			onCommentAdded comment: Comment)
 
+	/// Called when an error occurs while adding a comment.
+	/// The NSError object describes the error.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - error: error while adding comment.
 	optional func screenlet(screenlet: CommentAddScreenlet,
 			onAddCommentError error: NSError)
 
+	/// Called when the screenlet prepares a comment for update.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - comment: asset's comment.
 	optional func screenlet(screenlet: CommentAddScreenlet,
 			onCommentUpdated comment: Comment)
 
+	/// Called when an error occurs while updating a comment.
+	/// The NSError object describes the error.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - error: error while updating comment.
 	optional func screenlet(screenlet: CommentAddScreenlet,
 			onUpdateCommentError error: NSError)
 
@@ -33,7 +55,11 @@ import UIKit
 
 public class CommentAddScreenlet: BaseScreenlet {
 
+
+	//MARK: Inspectables
+
 	@IBInspectable public var className: String = ""
+
 	@IBInspectable public var classPK: Int64 = 0
 
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
@@ -65,9 +91,9 @@ public class CommentAddScreenlet: BaseScreenlet {
 	}
 
 
-	//MARK: Interactor methods
+	//MARK: Private methods
 
-	func createAddCommentInteractor() -> Interactor {
+	private func createAddCommentInteractor() -> Interactor {
 		let interactor = CommentAddInteractor(screenlet: self, body: self.viewModel.body)
 
 		interactor.cacheStrategy = CacheStrategyType(rawValue: offlinePolicy ?? "") ?? .RemoteFirst
@@ -90,7 +116,7 @@ public class CommentAddScreenlet: BaseScreenlet {
 		return interactor
 	}
 
-	func createUpdateCommentInteractor() -> Interactor {
+	private func createUpdateCommentInteractor() -> Interactor {
 		let interactor = CommentUpdateInteractor(
 			commentId: comment!.commentId,
 			body: self.viewModel.body)

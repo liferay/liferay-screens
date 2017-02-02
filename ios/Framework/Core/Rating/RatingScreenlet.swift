@@ -13,31 +13,57 @@
  */
 import UIKit
 
+
 @objc public protocol RatingScreenletDelegate : BaseScreenletDelegate {
 	
+	/// Called when the ratings are received.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - rating: asset's rating.
 	optional func screenlet(screenlet: RatingScreenlet,
 	                        onRatingRetrieve rating: RatingEntry)
 
+	/// Called when a rating is deleted.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - rating: asset's rating.
 	optional func screenlet(screenlet: RatingScreenlet,
 	                        onRatingDeleted rating: RatingEntry)
 
+	/// Called when a rating is updated.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - rating: asset's rating.
 	optional func screenlet(screenlet: RatingScreenlet,
 	                        onRatingUpdated rating: RatingEntry)
 
+	/// Called when an error occurs in the process. The NSError object describes the error.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - error: error retrieving, updating or deleting asset's rating.
 	optional func screenlet(screenlet: RatingScreenlet,
 	                        onRatingError error: NSError)
 	
 }
+
 
 public class RatingScreenlet: BaseScreenlet {
 	
 	public static let DeleteRatingAction = "deleteRating"
 	public static let UpdateRatingAction = "updateRating"
 	public static let LoadRatingsAction = "loadRatings"
-	
+
+
+	//MARK: Inspectables
+
 	@IBInspectable public var entryId: Int64 = 0
 	
 	@IBInspectable public var className: String = ""
+
 	@IBInspectable public var classPK: Int64 = 0
 
 	@IBInspectable public var ratingsGroupCount: Int32 = -1
@@ -61,18 +87,18 @@ public class RatingScreenlet: BaseScreenlet {
 	}
 
 
-	//MARK: BaseScreenlet methods
+	//MARK: BaseScreenlet
 
 	override public func prepareForInterfaceBuilder() {
 		setCustomDefaultThemeName()
 		super.prepareForInterfaceBuilder()
 	}
 	
-	public override func onPreCreate() {
+	override public func onPreCreate() {
 		setCustomDefaultThemeName()
 	}
 	
-	public override func onCreated() {
+	override public func onCreated() {
 		if let defaultRatingsGroupCount = viewModel?.defaultRatingsGroupCount
 				where ratingsGroupCount == -1 {
 			ratingsGroupCount = defaultRatingsGroupCount
@@ -80,7 +106,7 @@ public class RatingScreenlet: BaseScreenlet {
 		screenletView?.editable = self.editable
 	}
 	
-	public override func onShow() {
+	override public func onShow() {
 		if autoLoad {
 			loadRatings()
 		}
@@ -110,13 +136,16 @@ public class RatingScreenlet: BaseScreenlet {
 		return interactor
 	}
 
-	public override func performDefaultAction() -> Bool {
+	override public func performDefaultAction() -> Bool {
 		return performAction(name: RatingScreenlet.LoadRatingsAction, sender: nil)
 	}
 
 
 	//MARK: Public methods
 
+	/// Starts the request to load the asset's ratings.
+	///
+	/// - Returns: true if succeed, false if not.
 	public func loadRatings() -> Bool {
 		return self.performDefaultAction()
 	}

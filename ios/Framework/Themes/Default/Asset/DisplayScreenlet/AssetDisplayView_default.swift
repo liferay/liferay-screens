@@ -22,6 +22,9 @@ public class AssetDisplayView_default: BaseScreenletView, AssetDisplayViewModel 
 		]
 	}
 
+
+	//MARK: AssetDisplayViewModel
+
 	public var asset: Asset?
 
 	public var innerScreenlet: UIView? {

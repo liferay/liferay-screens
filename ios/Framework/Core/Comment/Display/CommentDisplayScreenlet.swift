@@ -1,37 +1,70 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 
 
 @objc public protocol CommentDisplayScreenletDelegate : BaseScreenletDelegate {
 
+	/// Called when the screenlet loads the comment.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - comment: loaded comment.
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
 			onCommentLoaded comment: Comment)
 
+	/// Called when an error occurs in the process.
+	/// The NSError object describes the error.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - error: error while loading the comment.
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
 			onLoadCommentError error: NSError)
 
+	/// Called when the screenlet prepares the comment for deletion.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - comment: comment to be deleted.
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
 			onCommentDeleted comment: Comment)
 
+	///  Called when a comment is deleted.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - comment: deleted comment.
+	///   - error: error while deleting the comment.
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
 			onDeleteComment comment: Comment,
 			onError error: NSError)
 
+	/// Called when the screenlet prepares the comment for update.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - comment: comment to be updated.
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
 			onCommentUpdated comment: Comment)
 
+	/// Called when a comment is updated.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - comment: updated comment.
+	///   - error: error while updating the comment.
 	optional func screenlet(screenlet: CommentDisplayScreenlet,
 			onUpdateComment comment: Comment,
 			onError error: NSError)
@@ -44,9 +77,13 @@ public class CommentDisplayScreenlet: BaseScreenlet {
 	public static let DeleteAction = "deleteAction"
 	public static let UpdateAction = "updateAction"
 
+
+	//MARK: Inspectables
+
 	@IBInspectable public var commentId: Int64 = 0
 
 	@IBInspectable public var autoLoad: Bool = true
+
 	@IBInspectable public var offlinePolicy: String? = CacheStrategyType.RemoteFirst.rawValue
 
 	@IBInspectable public var editable: Bool = false {
@@ -75,14 +112,17 @@ public class CommentDisplayScreenlet: BaseScreenlet {
 
 	//MARK: Public methods
 
+	/// Loads the comment in the screenlet.
 	public func load() {
 		performDefaultAction()
 	}
 
+	/// Call this method to delete one comment.
 	public func deleteComment() {
 		performAction(name: CommentDisplayScreenlet.DeleteAction)
 	}
 
+	/// Call this method to edit the comment.
 	public func editComment() {
 		viewModel.editComment()
 	}
@@ -90,7 +130,7 @@ public class CommentDisplayScreenlet: BaseScreenlet {
 
 	//MARK: BaseScreenlet
 
-	public override func onCreated() {
+	override public func onCreated() {
 		super.onCreated()
 		screenletView?.editable = self.editable
 	}

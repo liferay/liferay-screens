@@ -1,31 +1,44 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import Foundation
 
 
 @objc public protocol FileDisplayScreenletDelegate : BaseScreenletDelegate {
 
+	/// Called when the screenlet receives the file.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - url: file URL.
 	optional func screenlet(screenlet: FileDisplayScreenlet, onFileAssetResponse url: NSURL)
 
+	/// Called when an error occurs in the process.
+	/// The NSError object describes the error.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - error: error while retrieving the file.
 	optional func screenlet(screenlet: FileDisplayScreenlet, onFileAssetError error: NSError)
 }
-
 
 
 public class FileDisplayScreenlet: BaseScreenlet {
 
 	public static let LoadFileAction = "LoadFileAction"
+
+
+	//MARK: Inspectables
 
 	@IBInspectable public var assetEntryId: Int64 = 0
 
@@ -78,6 +91,9 @@ public class FileDisplayScreenlet: BaseScreenlet {
 
 	//MARK: Public methods
 
+	/// Call this method to load the file.
+	///
+	/// - Returns: true if default use case has been perform, false otherwise.
 	public func load() -> Bool {
 		if fileEntry == nil {
 			return performDefaultAction()
@@ -87,7 +103,10 @@ public class FileDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
-	public func createLoadAssetInteractor() -> Interactor? {
+
+	//MARK: Private methods
+
+	private func createLoadAssetInteractor() -> Interactor? {
 		let interactor: LoadAssetInteractor
 
 		if assetEntryId != 0 {
@@ -119,7 +138,7 @@ public class FileDisplayScreenlet: BaseScreenlet {
 		return interactor
 	}
 
-	public func createLoadFileInteractor() -> Interactor? {
+	private func createLoadFileInteractor() -> Interactor? {
 		guard let fileEntry = fileEntry else {
 			return nil
 		}

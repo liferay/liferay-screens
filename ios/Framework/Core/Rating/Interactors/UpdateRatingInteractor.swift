@@ -16,16 +16,19 @@ import UIKit
 public class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 	
 	let className: String
+
 	let classPK: Int64
+
 	let score: Double
+
 	let ratingsGroupCount: Int32
 
 	var resultRating: RatingEntry?
 
-	init(className: String,
-			classPK: Int64,
-			score: Double?,
-			ratingsGroupCount: Int32) {
+
+	//MARK: Initializers
+
+	init(className: String, classPK: Int64, score: Double?, ratingsGroupCount: Int32) {
 		self.className = className
 		self.classPK = classPK
 		self.ratingsGroupCount = ratingsGroupCount
@@ -46,6 +49,9 @@ public class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 
 		super.init(screenlet: screenlet)
 	}
+
+
+	//MARK: ServerConnectorInteractor
 	
 	override public func createConnector() -> ServerConnector? {
 		return LiferayServerContext.connectorFactory.createRatingUpdateConnector(
@@ -86,7 +92,10 @@ public class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 			onCompletion: nil)
 	}
 
-	public override func callOnSuccess() {
+
+	//MARK: Interactor
+
+	override public func callOnSuccess() {
 		if cacheStrategy == .CacheFirst {
 			SessionContext.currentContext?.cacheManager.setClean(
 				collection: "RatingsScreenlet",

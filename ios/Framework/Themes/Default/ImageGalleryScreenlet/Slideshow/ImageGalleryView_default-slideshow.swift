@@ -1,29 +1,29 @@
-
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
+
 
 public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase {
 
 
-	// MARK: BaseListCollectionView
+	//MARK: BaseListCollectionView
 
-	public override func doConfigureCollectionView(collectionView: UICollectionView) {
+	override public func doConfigureCollectionView(collectionView: UICollectionView) {
 		collectionView.backgroundColor = .blackColor()
 	}
 
-	public override func doRegisterCellNibs() {
+	override public func doRegisterCellNibs() {
 		if let imageGalleryGridCellNib = NSBundle.nibInBundles(
 			name: "ImageGallerySlideshowCell",
 			currentClass: self.dynamicType) {
@@ -33,7 +33,7 @@ public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase 
 		}
 	}
 
-	public override func doCreateLayout() -> UICollectionViewLayout {
+	override public func doCreateLayout() -> UICollectionViewLayout {
 
 		return SlideShowLayout()
 	}
@@ -58,13 +58,13 @@ public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase 
 		}
 	}
 
-	public override func doFillInProgressCell(indexPath indexPath: NSIndexPath,
+	override public func doFillInProgressCell(indexPath indexPath: NSIndexPath,
 	                                                    cell: UICollectionViewCell) {
 
 		cell.backgroundColor = .grayColor()
 	}
 
-	public override func doGetCellId(indexPath indexPath: NSIndexPath,
+	override public func doGetCellId(indexPath indexPath: NSIndexPath,
 	                                           object: AnyObject?) -> String {
 		if let _ = object {
 			return imageCellId
@@ -72,6 +72,9 @@ public class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase 
 
 		return super.doGetCellId(indexPath: indexPath, object: object)
 	}
+
+
+	//MARK: UICollectionViewDataSource
 
 	public func collectionView(collectionView: UICollectionView,
 	                           layout collectionViewLayout: UICollectionViewLayout,

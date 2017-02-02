@@ -1,16 +1,16 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 import LRMobileSDK
 
@@ -32,6 +32,9 @@ public class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFileP
 	private var requestSemaphore: dispatch_semaphore_t?
 
 	private var bytesToSend: Int64 = 0
+
+
+	//MARK: Initializers
 
 	public init(
 			document: DDMFieldDocument,
@@ -130,6 +133,9 @@ public class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFileP
 
 public class Liferay62DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 
+
+	//MARK: DDLFormUploadLiferayConnector
+
 	override public func doSendFile(session: LRSession, name: String, data: LRUploadData) throws {
 		let service = LRDLAppService_v62(session: session)
 
@@ -148,6 +154,9 @@ public class Liferay62DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 
 
 public class Liferay70DDLFormUploadConnector: DDLFormUploadLiferayConnector {
+
+
+	//MARK: DDLFormUploadLiferayConnector
 
 	override public func doSendFile(session: LRSession, name: String, data: LRUploadData) throws {
 		let service = LRDLAppService_v7(session: session)

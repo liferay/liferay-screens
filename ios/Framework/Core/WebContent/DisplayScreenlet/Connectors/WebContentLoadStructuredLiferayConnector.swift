@@ -1,16 +1,16 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 
 
@@ -19,6 +19,9 @@ public class WebContentLoadStructuredLiferayConnector: WebContentLoadBaseLiferay
 	public let structureId: Int64
 
 	public var resultRecord: DDLRecord?
+
+
+	//MARK: Initializers
 
 	public init(groupId: Int64, articleId: String, structureId: Int64) {
 		self.structureId = structureId
@@ -43,6 +46,9 @@ public class WebContentLoadStructuredLiferayConnector: WebContentLoadBaseLiferay
 		}
 	}
 
+
+	//MARK: Internal methods
+
 	internal func doGetJournalArticleStructure(session: LRSession) -> DDLRecord? {
 		fatalError("doGetJournalArticle method must be overwritten")
 	}
@@ -51,6 +57,9 @@ public class WebContentLoadStructuredLiferayConnector: WebContentLoadBaseLiferay
 
 
 public class Liferay62WebContentLoadStructuredConnector: WebContentLoadStructuredLiferayConnector {
+
+
+	//MARK: WebContentLoadStructuredLiferayConnector
 
 	override internal func doGetJournalArticleStructure(session: LRSession) -> DDLRecord? {
 		let batchSession = LRBatchSession(session: session)
@@ -110,6 +119,9 @@ public class Liferay62WebContentLoadStructuredConnector: WebContentLoadStructure
 
 
 public class Liferay70WebContentLoadStructuredConnector: WebContentLoadStructuredLiferayConnector {
+
+
+	//MARK: WebContentLoadStructuredLiferayConnector
 
 	override internal func doGetJournalArticleStructure(session: LRSession) -> DDLRecord? {
 		let batchSession = LRBatchSession(session: session)

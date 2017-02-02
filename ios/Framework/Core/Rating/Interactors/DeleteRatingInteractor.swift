@@ -16,14 +16,17 @@ import UIKit
 public class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 	
 	let className: String
+
 	let classPK: Int64
+
 	let ratingsGroupCount: Int32
 
 	var resultRating: RatingEntry?
 
-	init(className: String,
-			classPK: Int64,
-			ratingsGroupCount: Int32) {
+
+	//MARK: Initializers
+
+	init(className: String, classPK: Int64, ratingsGroupCount: Int32) {
 		self.className = className
 		self.classPK = classPK
 		self.ratingsGroupCount = ratingsGroupCount
@@ -31,17 +34,17 @@ public class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 		super.init(screenlet: nil)
 	}
 
-	init(screenlet: BaseScreenlet?,
-			className: String,
-			classPK: Int64,
-			ratingsGroupCount: Int32) {
+	init(screenlet: BaseScreenlet?, className: String, classPK: Int64, ratingsGroupCount: Int32) {
 		self.className = className
 		self.classPK = classPK
 		self.ratingsGroupCount = ratingsGroupCount
 
 		super.init(screenlet: screenlet)
 	}
-	
+
+
+	//MARK: ServerConnectorInteractor
+
 	override public func createConnector() -> ServerConnector? {
 		return LiferayServerContext.connectorFactory.createRatingDeleteConnector(
 			classPK: classPK,
@@ -79,7 +82,10 @@ public class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 			onCompletion: nil)
 	}
 
-	public override func callOnSuccess() {
+
+	//MARK: Interactor
+
+	override public func callOnSuccess() {
 		if cacheStrategy == .CacheFirst {
 			SessionContext.currentContext?.cacheManager.setClean(
 				collection: "RatingsScreenlet",

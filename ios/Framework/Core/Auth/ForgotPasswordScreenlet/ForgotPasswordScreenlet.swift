@@ -1,24 +1,36 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 
 
 @objc public protocol ForgotPasswordScreenletDelegate : BaseScreenletDelegate {
 
+	/// Called when a password reset email is successfully sent.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - passwordSent: indicates whether the email contains the new password
+	/// or a password reset link.
 	optional func screenlet(screenlet: ForgotPasswordScreenlet,
 			onForgotPasswordSent passwordSent: Bool)
 
+	/// Called when an error occurs in the process.
+	/// The NSError object describes the error.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - error: error while requesting password.
 	optional func screenlet(screenlet: ForgotPasswordScreenlet,
 			onForgotPasswordError error: NSError)
 
@@ -28,9 +40,11 @@ import UIKit
 public class ForgotPasswordScreenlet: BaseScreenlet, BasicAuthBasedType,
 		AnonymousBasicAuthType {
 
+
 	//MARK: Inspectables
 
 	@IBInspectable public var anonymousApiUserName: String? = "test@liferay.com"
+
 	@IBInspectable public var anonymousApiPassword: String? = "test"
 
 	@IBInspectable public var basicAuthMethod: String? = BasicAuthMethod.Email.rawValue {

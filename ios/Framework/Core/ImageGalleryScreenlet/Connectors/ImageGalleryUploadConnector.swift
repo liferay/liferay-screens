@@ -1,16 +1,16 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import Foundation
 import LRMobileSDK
 
@@ -22,6 +22,9 @@ public class ImageGalleryUploadConnector : UploadFileConnector<String> {
 	private let title: String
 	private let descrip: String
 	private let changeLog: String
+
+
+	//MARK: Initializers
 
 	public init(repositoryId: Int64,
 			folderId: Int64,
@@ -48,7 +51,10 @@ public class ImageGalleryUploadConnector : UploadFileConnector<String> {
 			onUploadedBytes: onUploadBytes)
 	}
 
-	public override func validateData() -> ValidationError? {
+
+	//MARK: ServerConnector
+
+	override public func validateData() -> ValidationError? {
 		var error = super.validateData()
 
 		if error == nil {
@@ -63,7 +69,10 @@ public class ImageGalleryUploadConnector : UploadFileConnector<String> {
 		return error
 	}
 
-	public override func doSendFile(session: LRSession, data: LRUploadData) throws {
+
+	//MARK: UploadFileConnector
+
+	override public func doSendFile(session: LRSession, data: LRUploadData) throws {
 		let service = LRDLAppService_v7(session: session)
 
 		let serviceContext = LRJSONObjectWrapper(JSONObject: ["addGuestPermissions":true])

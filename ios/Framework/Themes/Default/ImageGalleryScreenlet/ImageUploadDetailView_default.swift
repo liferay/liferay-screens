@@ -1,37 +1,46 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 
 
 public class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextViewDelegate {
 
+
+	//MARK: Outlets
+
 	@IBOutlet weak var scrollView: UIScrollView!
+
 	@IBOutlet weak var hintLabel: UILabel!
 
-	public override var image: UIImage? {
+
+	//MARK ImageUploadDetailVeiewBase
+
+	override public var image: UIImage? {
 		didSet {
 			imagePreview?.image = image
 		}
 	}
 
-	public override var imageTitle: String? {
+	override public var imageTitle: String? {
 		didSet {
 			titleText?.text = imageTitle
 		}
 	}
 
-	public override func awakeFromNib() {
+	//MARK: UIView
+
+	override public func awakeFromNib() {
 		initialize()
 	}
 
@@ -52,7 +61,7 @@ public class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextVi
 		scrollView?.addGestureRecognizer(dismissKeyboardGesture)
 	}
 
-	public override func didMoveToWindow() {
+	override public func didMoveToWindow() {
 		if window != nil {
 
 			NSNotificationCenter.defaultCenter().addObserver(
@@ -70,13 +79,16 @@ public class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextVi
 		}
 	}
 
-	public override func willMoveToWindow(newWindow: UIWindow?) {
+	override public func willMoveToWindow(newWindow: UIWindow?) {
 
 		NSNotificationCenter.defaultCenter().removeObserver(
 				self, name: UIKeyboardWillShowNotification, object: nil)
 		NSNotificationCenter.defaultCenter().removeObserver(
 				self, name: UIKeyboardWillHideNotification, object: nil)
 	}
+
+
+	//MARK: Public methods
 
 	public func textViewDidBeginEditing(textView: UITextView) {
 		hintLabel.alpha = 0

@@ -1,22 +1,25 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 
 
 public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, UICollectionViewDelegate {
 
 	let defaultCellId = "liferay-screns-loadingMoreCellId"
+
+
+	//MARK: Outlets
 
 	@IBOutlet public var collectionView: UICollectionView?
 
@@ -37,9 +40,9 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 		]
 	}
 
-	// MARK: BaseListView
+	//MARK: BaseListView
 	
-	public override func onCreated() {
+	override public func onCreated() {
 		super.onCreated()
 		
 		collectionView?.delegate = self
@@ -50,7 +53,7 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 		doRegisterLoadMoreCell()
 	}
 
-	public override func onShow() {
+	override public func onShow() {
 		super.onShow()
 
 		// Force layout
@@ -102,7 +105,7 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 		}
 	}
 
-	//MARK: UITableViewDataSource
+	//MARK: UICollectionViewDataSource
 
 	public func collectionView(
 			collectionView: UICollectionView,
@@ -205,6 +208,9 @@ public class BaseListCollectionView : BaseListView, UICollectionViewDataSource, 
 
 		return layout.itemSize
 	}
+
+
+	//MARK: Public methods
 
 	public func doConfigureCollectionView(collectionView: UICollectionView) {
 		collectionView.backgroundColor = .whiteColor()

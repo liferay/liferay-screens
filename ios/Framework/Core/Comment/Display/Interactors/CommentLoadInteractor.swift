@@ -1,16 +1,16 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 
 
@@ -20,6 +20,9 @@ public class CommentLoadInteractor: ServerReadConnectorInteractor {
 
 	public var resultComment: Comment?
 
+
+	//MARK: Initializers
+
 	override init(screenlet: BaseScreenlet?) {
 		let commentScreenlet = screenlet as! CommentDisplayScreenlet
 
@@ -27,6 +30,9 @@ public class CommentLoadInteractor: ServerReadConnectorInteractor {
 
 		super.init(screenlet: screenlet)
 	}
+
+
+	//MARK: ServerConnectorInteractor
 
 	override public func createConnector() -> CommentLoadLiferayConnector? {
 		return LiferayServerContext.connectorFactory.createCommentLoadConnector(
@@ -44,7 +50,7 @@ public class CommentLoadInteractor: ServerReadConnectorInteractor {
 		self.resultComment = comment
 	}
 
-	//MARK: Cache
+	//MARK: Cache methods
 
 	override public func readFromCache(c: ServerConnector, result: AnyObject? -> ()) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {

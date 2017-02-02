@@ -16,6 +16,9 @@ import Foundation
 
 public class ImageDisplayScreenlet: FileDisplayScreenlet {
 
+
+	//MARK: Inspectables
+
 	@IBInspectable public var placeholder: UIImage?  {
 		didSet {
 			imageDisplayViewModel?.placeholder = placeholder
@@ -48,7 +51,7 @@ public class ImageDisplayScreenlet: FileDisplayScreenlet {
 
 	//MARK: BaseScreenlet
 
-	public override func onCreated() {
+	override public func onCreated() {
 		super.onCreated()
 		
 		imageDisplayViewModel?.imageMode = imageMode

@@ -1,16 +1,16 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 
 
@@ -22,11 +22,11 @@ public class WebContentListView_default_collection: BaseListCollectionView {
 		return DefaultProgressPresenter()
 	}
 
-	public override func doConfigureCollectionView(collectionView: UICollectionView) {
+	override public func doConfigureCollectionView(collectionView: UICollectionView) {
 		collectionView.backgroundColor = .whiteColor()
 	}
 
-	public override func doCreateLayout() -> UICollectionViewLayout {
+	override public func doCreateLayout() -> UICollectionViewLayout {
 		let layout = UICollectionViewFlowLayout()
 		layout.itemSize = CGSize(width: 300, height: 500)
 		layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
@@ -36,7 +36,7 @@ public class WebContentListView_default_collection: BaseListCollectionView {
 		return layout
 	}
 
-	public override func doRegisterCellNibs() {
+	override public func doRegisterCellNibs() {
 		collectionView?.registerClass(WebViewCell.self, forCellWithReuseIdentifier: "cell")
 		collectionView?.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "progress")
 	}
@@ -63,7 +63,7 @@ public class WebContentListView_default_collection: BaseListCollectionView {
 		cell.backgroundColor = .blackColor()
 	}
 
-	public override func doGetCellId(indexPath indexPath: NSIndexPath, object: AnyObject?) -> String {
+	override public func doGetCellId(indexPath indexPath: NSIndexPath, object: AnyObject?) -> String {
 		if let _ = object {
 			return "cell"
 		}

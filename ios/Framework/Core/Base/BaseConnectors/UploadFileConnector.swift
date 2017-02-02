@@ -1,16 +1,16 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import Foundation
 import LRMobileSDK
 
@@ -30,6 +30,9 @@ public class UploadFileConnector<T> : ServerConnector, LRCallback, LRFileProgres
 	var requestSemaphore: dispatch_semaphore_t?
 
 	var uploadResult: [String:AnyObject]?
+
+
+	//MARK: Initializers
 
 	public init(
 		inputStream: NSInputStream,
@@ -65,7 +68,10 @@ public class UploadFileConnector<T> : ServerConnector, LRCallback, LRFileProgres
 		super.init()
 	}
 
-	public override func doRun(session session: LRSession) {
+
+	//MARK: ServerConnector
+
+	override public func doRun(session session: LRSession) {
 		if inputStream == nil {
 			if let imageData = UIImagePNGRepresentation(image!) {
 				bytesToSend = Int64(imageData.length)
@@ -95,6 +101,9 @@ public class UploadFileConnector<T> : ServerConnector, LRCallback, LRFileProgres
 
 		dispatch_semaphore_wait(requestSemaphore!, DISPATCH_TIME_FOREVER)
 	}
+
+
+	//MARK: Public methods
 
 	public func onProgress(data: NSData!, totalBytes: Int64) {
 		let totalBytesSent = UInt64(totalBytes)

@@ -1,25 +1,31 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 
 private let xibName = "CommentEditViewController_default"
 
 public class CommentEditViewController_default: UIViewController, UITextViewDelegate {
 
+
+	//MARK: Outlets
+
 	@IBOutlet public var bodyTextView: UITextView?
+
 	@IBOutlet public var confirmButton: UIButton?
+
 	@IBOutlet public var cancelButton: UIButton?
+
 	@IBOutlet public var scrollView: UIScrollView?
 
 	public var confirmBodyClosure: (String? -> Void)?
@@ -49,7 +55,7 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 
 	//MARK: UIViewController
 
-	public override func viewDidLoad() {
+	override public func viewDidLoad() {
 		confirmButton?.replaceAttributedTitle(
 			LocalizedString("default", key: "comment-display-confirm", obj: self),
 			forState: .Normal)
@@ -112,7 +118,7 @@ public class CommentEditViewController_default: UIViewController, UITextViewDele
 	}
 
 
-	//MARK: View actions
+	//MARK: Actions
 
 	@IBAction public func cancelButtonAction() {
 		bodyTextView?.resignFirstResponder()

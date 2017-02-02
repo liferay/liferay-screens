@@ -1,16 +1,16 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 import MobileCoreServices
 
@@ -21,9 +21,15 @@ private let xibName = "DDLFieldDocumentlibraryPresenterViewController_default"
 public class DDMFieldDocumentlibraryPresenterViewController_default:
 		UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+
+	//MARK: Outlets
+
 	@IBOutlet public var takeNewButton: UIButton?
+
 	@IBOutlet public var selectPhotoButton: UIButton?
+
 	@IBOutlet public var selectVideoButton: UIButton?
+
 	@IBOutlet public var cancelButton: UIButton?
 
 	public var selectedDocumentClosure: ((UIImage?, NSURL?) -> Void)?
@@ -31,7 +37,9 @@ public class DDMFieldDocumentlibraryPresenterViewController_default:
 	private let imagePicker = UIImagePickerController()
 
 
-	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+	//MARK: Initializers
+
+	override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 	}
 

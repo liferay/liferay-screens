@@ -1,18 +1,18 @@
-
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
+
 
 public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 
@@ -29,9 +29,9 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 	internal var lastOffset: CGPoint?
 	internal var currentOrientation: UIInterfaceOrientation?
 
-	// MARK: UIView
+	//MARK: UIView
 
-	public override func layoutSubviews() {
+	override public func layoutSubviews() {
 		super.layoutSubviews()
 
 		if let orientation = currentOrientation {
@@ -44,9 +44,9 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 		}
 	}
 
-	// MARK: BaseScreenletView
+	//MARK: BaseScreenletView
 	
-	public override func onShow() {
+	override public func onShow() {
 		super.onShow()
 
 		currentOrientation = UIApplication.sharedApplication().statusBarOrientation
@@ -56,17 +56,17 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 		}
 	}
 
-	public override func onHide() {
+	override public func onHide() {
 		lastOffset = collectionView?.contentOffset
 	}
 
-	// MARK: BaseListCollectionView
+	//MARK: BaseListCollectionView
 
-	public override func doConfigureCollectionView(collectionView: UICollectionView) {
+	override public func doConfigureCollectionView(collectionView: UICollectionView) {
 		collectionView.backgroundColor = .whiteColor()
 	}
 
-	public override func doRegisterCellNibs() {
+	override public func doRegisterCellNibs() {
 		if let imageGalleryGridCellNib = NSBundle.nibInBundles(
 			name: "ImageGalleryGridCell",
 			currentClass: self.dynamicType) {
@@ -77,7 +77,7 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 		}
 	}
 
-	public override func doCreateLayout() -> UICollectionViewLayout {
+	override public func doCreateLayout() -> UICollectionViewLayout {
 		// When the theme is changed dinamically the collection view hasn't the correct bounds at
 		// this time so we use the screenlet (which is also a view) to calculate the itemSize
 		screenlet?.layoutIfNeeded()
@@ -102,17 +102,17 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 		}
 	}
 
-	public override func doFillInProgressCell(indexPath indexPath: NSIndexPath, cell: UICollectionViewCell) {
+	override public func doFillInProgressCell(indexPath indexPath: NSIndexPath, cell: UICollectionViewCell) {
 
 		cell.backgroundColor = .grayColor()
 	}
 
-	public override func doGetCellId(indexPath indexPath: NSIndexPath, object: AnyObject?) -> String {
+	override public func doGetCellId(indexPath indexPath: NSIndexPath, object: AnyObject?) -> String {
 		return imageCellId
 	}
 
 
-	// MARK: Private methods
+	//MARK: Public methods
 
 	public func changeLayout() {
 		if let collectionView = collectionView {
@@ -120,6 +120,9 @@ public class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 			collectionView.setCollectionViewLayout(newLayout, animated: true)
 		}
 	}
+
+
+	//MARK: Internal methods
 
 	internal func createCustomLayout() -> UICollectionViewLayout {
 		let layout = UICollectionViewFlowLayout()

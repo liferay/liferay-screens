@@ -1,16 +1,16 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 
 
@@ -19,7 +19,11 @@ class UploadUserPortraitInteractor: ServerWriteConnectorInteractor {
 	var uploadResult: [String:AnyObject]?
 
 	let userId: Int64
+
 	let image: UIImage
+
+
+	//MARK: Initializers
 
 	init(screenlet: BaseScreenlet?, userId: Int64, image: UIImage) {
 		self.userId = userId
@@ -27,6 +31,9 @@ class UploadUserPortraitInteractor: ServerWriteConnectorInteractor {
 
 		super.init(screenlet: screenlet)
 	}
+
+
+	//MARK: ServerConnectorInteractor
 
 	override func createConnector() -> UploadUserPortraitLiferayConnector {
 		return LiferayServerContext.connectorFactory.createUploadUserPortraitConnector(
@@ -57,6 +64,9 @@ class UploadUserPortraitInteractor: ServerWriteConnectorInteractor {
 			attributes: ["userId": userId.description],
 			onCompletion: nil)
 	}
+
+
+	//MARK: Interactor
 
 	override func callOnSuccess() {
 		if cacheStrategy == .CacheFirst {

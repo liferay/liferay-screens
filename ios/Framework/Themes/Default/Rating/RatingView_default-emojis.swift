@@ -1,18 +1,19 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 import Cosmos
+
 
 public class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 
@@ -25,12 +26,12 @@ public class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 
 	//MARK: BaseScreenletView
 
-	public override func onCreated() {
+	override public func onCreated() {
 		emojis = subviews.map({$0 as? UIButton}).flatMap({$0})
 		labels = subviews.map({$0 as? UILabel}).flatMap({$0})
 	}
 
-	public override func createProgressPresenter() -> ProgressPresenter {
+	override public func createProgressPresenter() -> ProgressPresenter {
 		return NetworkActivityIndicatorPresenter()
 	}
 
@@ -41,6 +42,9 @@ public class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 			RatingScreenlet.DeleteRatingAction : [.Working : ""],
 		]
 	}
+
+
+	//MARK: RatingViewModel
 
 	public var ratingEntry: RatingEntry? {
 		didSet {
@@ -63,6 +67,9 @@ public class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 			}
 		}
 	}
+
+
+	//MARK: Internal methods
 
 	func emojiClicked(sender: UIButton) {
 		userAction(

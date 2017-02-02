@@ -1,51 +1,113 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 
 
 @objc public protocol DDLFormScreenletDelegate : BaseScreenletDelegate {
 
+	/// Called when the form is loaded. The second parameter (record) 
+	/// contains only field definitions.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - record: record definitions.
 	optional func screenlet(screenlet: DDLFormScreenlet,
 			onFormLoaded record: DDLRecord)
 
+	/// Called when an error occurs while loading the form.
+	/// The NSError object describes the error.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - error: error when loading the form.
 	optional func screenlet(screenlet: DDLFormScreenlet,
 			onFormLoadError error: NSError)
 
+	/// Called when a form with values loads. The second parameter (record) 
+	/// contains field definitions and values. The method onFormLoadResult 
+	/// is called before onRecordLoaded.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - record: record definitions.
 	optional func screenlet(screenlet: DDLFormScreenlet,
 			onRecordLoaded record: DDLRecord)
 
+	/// Called when an error occurs while loading a record.
+	/// The NSError object describes the error.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - error: error when loading the record.
 	optional func screenlet(screenlet: DDLFormScreenlet,
 			onRecordLoadError error: NSError)
 
+	/// Called when the form values are successfully submitted to the server.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - record: record definitions.
 	optional func screenlet(screenlet: DDLFormScreenlet,
 			onFormSubmitted record: DDLRecord)
 
+	/// Called when an error occurs while submitting the form.
+	/// The NSError object describes the error.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - error: error when submitting the form.
 	optional func screenlet(screenlet: DDLFormScreenlet,
 			onFormSubmitError error: NSError)
 
+	/// Called when the upload of a Documents and Media field begins.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - field: document field of the form.
 	optional func screenlet(screenlet: DDLFormScreenlet,
 			onDocumentFieldUploadStarted field: DDMFieldDocument)
 
+	/// Called when a block of bytes in a Documents and Media field is uploaded.
+	/// This method is intended to track progress of the uploads.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - field: document field of the form.
+	///   - bytes: uploaded bytes.
+	///   - total: total bytes.
 	optional func screenlet(screenlet: DDLFormScreenlet,
 			onDocumentField field: DDMFieldDocument,
 			uploadedBytes bytes: UInt64,
 			totalBytes total: UInt64)
 
+	/// Called when a Documents and Media field upload is completed.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - field: document field of the form.
+	///   - result: document data attributes.
 	optional func screenlet(screenlet: DDLFormScreenlet,
 			onDocumentField field: DDMFieldDocument,
 			uploadResult result: [String:AnyObject])
 
+	/// Called when an error occurs in the Documents and Media upload process.
+	/// The NSError object describes the error.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - field: document field of the form.
+	///   - error: error when uploading the document.
 	optional func screenlet(screenlet: DDLFormScreenlet,
 			onDocumentField field: DDMFieldDocument,
 			uploadError error: NSError)
@@ -67,23 +129,34 @@ public class DDLFormScreenlet: BaseScreenlet {
 	public class var UploadDocumentAction: String { return "upload-document" }
 
 
+	//MARK: Inspectables
+
 	@IBInspectable public var structureId: Int64 = 0
+
 	@IBInspectable public var groupId: Int64 = 0
+
 	@IBInspectable public var recordSetId: Int64 = 0
+
 	@IBInspectable public var recordId: Int64 = 0
+
 	@IBInspectable public var userId: Int64 = 0
 
 	@IBInspectable public var repositoryId: Int64 = 0
+
 	@IBInspectable public var folderId: Int64 = 0
+
 	@IBInspectable public var filePrefix: String = "form-file-"
 
 	@IBInspectable public var autoLoad: Bool = true
+
 	@IBInspectable public var autoscrollOnValidation: Bool = true
+
 	@IBInspectable public var showSubmitButton: Bool = true {
 		didSet {
 			(screenletView as? DDLFormView)?.showSubmitButton = showSubmitButton
 		}
 	}
+
 	@IBInspectable public var editable: Bool = true {
 		didSet {
 			screenletView?.editable = editable
@@ -169,6 +242,9 @@ public class DDLFormScreenlet: BaseScreenlet {
 
 		return result
 	}
+
+
+	//MARK: Internal methods
 
 	internal func createLoadFormInteractor() -> DDLFormLoadFormInteractor {
 		let interactor = DDLFormLoadFormInteractor(screenlet: self)
@@ -339,19 +415,23 @@ public class DDLFormScreenlet: BaseScreenlet {
 
 	//MARK: Public methods
 
+	/// Performs LoadFormAction
 	public func loadForm() -> Bool {
 		return performAction(name: DDLFormScreenlet.LoadFormAction)
 	}
 
+	/// Clears record definitions and refresh the form.
 	public func clearForm() {
 		formView.record?.clearValues()
 		formView.refresh()
 	}
 
+	/// Performs LoadRecordAction.
 	public func loadRecord() -> Bool {
 		return performAction(name: DDLFormScreenlet.LoadRecordAction)
 	}
 
+	/// Performs SubmitFormAction.
 	public func submitForm() -> Bool {
 		return performAction(name: DDLFormScreenlet.SubmitFormAction)
 	}

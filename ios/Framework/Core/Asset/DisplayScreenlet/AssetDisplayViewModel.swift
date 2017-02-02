@@ -15,8 +15,11 @@ import UIKit
 
 
 @objc public protocol AssetDisplayViewModel {
-	
-	var asset: Asset? {get set}
-	var innerScreenlet: UIView? {get set}
+
+	/// Asset to be displayed.
+	var asset: Asset? { get set }
+
+	/// Inner screenlet to be displayed inside AssetDisplayScreenlet.
+	var innerScreenlet: UIView? { get set }
 
 }

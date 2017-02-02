@@ -1,16 +1,16 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import Foundation
 
 
@@ -65,7 +65,7 @@ import Foundation
 	}
 
 
-	//MARK: Init
+	//MARK: Initializers
 
 	public init(structure: DDMStructure) {
 		self.structure = structure
@@ -135,6 +135,9 @@ import Foundation
 		super.init()
 	}
 
+
+	//MARK: Public methods
+
 	public func encodeWithCoder(aCoder: NSCoder) {
 		if let structure = structure {
 			aCoder.encodeObject(structure, forKey: "structure")
@@ -144,9 +147,6 @@ import Foundation
 		}
 		aCoder.encodeObject(attributes, forKey:"attributes")
 	}
-
-
-	//MARK: Public methods
 
 	public func fieldBy(name name: String) -> DDMField? {
 		return structure?.fieldBy(name: name)

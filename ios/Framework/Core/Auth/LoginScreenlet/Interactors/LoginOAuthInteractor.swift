@@ -1,16 +1,16 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 import LROAuth
 import LRMobileSDK
@@ -21,12 +21,17 @@ class LoginOAuthInteractor: Interactor, LRCallback {
 	var resultUserAttributes: [String:AnyObject]?
 
 	let consumerKey: String
+
 	let consumerSecret: String
 
 	var webViewController: OAuthWebViewController?
 
 	var OAuthConfig: LROAuthConfig?
+
 	var OAuthSession: LRSession?
+
+
+	//MARK: Initializers
 
 	init(screenlet: BaseScreenlet?,
 			consumerKey: String,
@@ -37,6 +42,9 @@ class LoginOAuthInteractor: Interactor, LRCallback {
 
 		super.init(screenlet: screenlet)
 	}
+
+
+	//MARK: Interactor
 
 	override func start() -> Bool {
 		if screenlet?.presentingViewController == nil {
@@ -53,6 +61,9 @@ class LoginOAuthInteractor: Interactor, LRCallback {
 
 		return requestToken()
 	}
+
+
+	//MARK: Private methods
 
 	private func requestToken() -> Bool {
 		LRRequestToken.requestTokenWithConfig(

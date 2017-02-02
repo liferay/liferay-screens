@@ -1,16 +1,16 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 import LRMobileSDK
 
@@ -25,6 +25,8 @@ public class SignUpLiferayConnector: ServerConnector {
 	public let anonymousUsername: String
 	public let anonymousPassword: String
 
+
+	//MARK: Initializers
 
 	public init(viewModel: SignUpViewModel, anonymousUsername: String, anonymousPassword: String) {
 		self.viewModel = viewModel
@@ -56,6 +58,9 @@ public class SignUpLiferayConnector: ServerConnector {
 }
 
 public class Liferay62SignUpConnector: SignUpLiferayConnector {
+
+
+	//MARK: ServerConnector
 
 	override public func doRun(session session: LRSession) {
 		let result: [NSObject:AnyObject]?
@@ -122,6 +127,9 @@ public class Liferay62SignUpConnector: SignUpLiferayConnector {
 
 public class Liferay70SignUpConnector: SignUpLiferayConnector {
 
+
+	//MARK: ServerConnector
+	
 	override public func doRun(session session: LRSession) {
 		let result: [NSObject:AnyObject]?
 		let service = LRUserService_v7(session: session)

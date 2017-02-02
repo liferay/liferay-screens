@@ -1,16 +1,16 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 
 public class GetUserBaseLiferayConnector: ServerConnector {
@@ -19,6 +19,7 @@ public class GetUserBaseLiferayConnector: ServerConnector {
 
 	public var userName: String?
 	public var password: String?
+
 
 	//MARK: ServerConnector
 
@@ -73,6 +74,9 @@ public class GetUserBaseLiferayConnector: ServerConnector {
 		}
 	}
 
+
+	//MARK: Internal methods
+
 	internal func loginWithResult() -> Bool {
 		guard let userAttributes = resultUserAttributes else {
 			return false
@@ -114,7 +118,7 @@ public class GetUserBaseLiferayConnector: ServerConnector {
 	}
 
 
-	// MARK: Template methods
+	//MARK: Template methods
 
 	public func sendGetUserRequest(session: LRSession)
 			throws -> NSDictionary {

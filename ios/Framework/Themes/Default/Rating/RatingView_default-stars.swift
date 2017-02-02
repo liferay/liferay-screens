@@ -14,8 +14,12 @@
 import UIKit
 import Cosmos
 
+
 public class RatingView_default_stars: BaseScreenletView, RatingViewModel {
-	
+
+
+	//MARK: Outlets
+
 	@IBOutlet weak var userRatingBar: CosmosView? {
 		didSet {
 			userRatingBar?.didFinishTouchingCosmos = {
@@ -40,7 +44,7 @@ public class RatingView_default_stars: BaseScreenletView, RatingViewModel {
 
 	//MARK: BaseScreenletView
 	
-	public override func createProgressPresenter() -> ProgressPresenter {
+	override public func createProgressPresenter() -> ProgressPresenter {
 		return NetworkActivityIndicatorPresenter()
 	}
 	
@@ -51,6 +55,9 @@ public class RatingView_default_stars: BaseScreenletView, RatingViewModel {
 			RatingScreenlet.DeleteRatingAction : [.Working : ""],
 		]
 	}
+
+
+	//MARK: RatingViewModel
 	
 	public var ratingEntry: RatingEntry? {
 		didSet {

@@ -46,7 +46,7 @@ import UIKit
 		aCoder.encodeObject(self.attributes, forKey:"rating-attrs")
 	}
 
-	//MARK: Init
+	//MARK: Initializers
 
 	public init(attributes: [String:AnyObject]) {
 		self.attributes = attributes

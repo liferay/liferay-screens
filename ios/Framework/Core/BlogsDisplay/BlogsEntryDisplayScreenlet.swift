@@ -1,30 +1,44 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import Foundation
 
 
 @objc public protocol BlogsEntryDisplayScreenletDelegate : BaseScreenletDelegate {
 
+	/// Called when the Screenlet receives the BlogsEntry object.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - blogEntry: blog entry object.
 	optional func screenlet(screenlet: BlogsEntryDisplayScreenlet,
 			onBlogEntryResponse blogEntry: BlogsEntry)
 
+	/// Called when an error occurs in the process.
+	/// The NSError object describes the error.
+	///
+	/// - Parameters:
+	///   - screenlet
+	///   - error: error while retrieving blog entry.
 	optional func screenlet(screenlet: BlogsEntryDisplayScreenlet,
 			onBlogEntryError error: NSError)
 }
 
 
 public class BlogsEntryDisplayScreenlet: BaseScreenlet {
+
+
+	//MARK: Inspectables
 
 	@IBInspectable public var assetEntryId: Int64 = 0
 
@@ -48,7 +62,7 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 		return screenletView as? BlogsDisplayViewModel
 	}
 
-	//MARK: Public methods
+	//MARK: BaseScreenlet
 
 	override public func onShow() {
 		if autoLoad {
@@ -94,6 +108,12 @@ public class BlogsEntryDisplayScreenlet: BaseScreenlet {
 		return interactor
 	}
 
+
+	//MARK: Public methods
+
+	/// Loads a blog entry in the screenlet.
+	///
+	/// - Returns: true if default use case has been perform, false otherwise.
 	public func load() -> Bool {
 		return self.performDefaultAction()
 	}

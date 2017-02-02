@@ -1,22 +1,23 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 
 
 public class DDLListPageLoadInteractor : BaseListPageLoadInteractor {
 
 	public let userId: Int64
+
 	public let recordSetId: Int64
 
 	public init(
@@ -32,7 +33,10 @@ public class DDLListPageLoadInteractor : BaseListPageLoadInteractor {
 		super.init(screenlet: screenlet, page: page, computeRowCount: computeRowCount)
 	}
 
-	public override func createListPageConnector() -> PaginationLiferayConnector {
+
+	//MARK: BaseListPageLoadInteractor
+
+	override public func createListPageConnector() -> PaginationLiferayConnector {
 		let viewModel = (self.screenlet as! DDLListScreenlet).screenletView as! DDLListViewModel
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
 

@@ -1,16 +1,16 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 import LRMobileSDK
 
@@ -20,12 +20,18 @@ public class GetUserByEmailLiferayConnector: GetUserBaseLiferayConnector {
 	public let companyId: Int64
 	public let emailAddress: String
 
+
+	//MARK: Initializers
+
 	public init(companyId: Int64, emailAddress: String) {
 		self.companyId = companyId
 		self.emailAddress = emailAddress
 
 		super.init()
 	}
+
+
+	//MARK: ServerConnector
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -44,9 +50,15 @@ public class GetUserByEmailLiferayConnector: GetUserBaseLiferayConnector {
 
 public class GetUserByEmailLiferay62Connector: GetUserByEmailLiferayConnector {
 
+
+	//MARK: GetUserByEmailLiferayConnector
+
 	override public init(companyId: Int64, emailAddress: String) {
 		super.init(companyId: companyId, emailAddress: emailAddress)
 	}
+
+
+	//MARK: GetUserBaseLiferayConnector
 
 	override public func sendGetUserRequest(session: LRSession)
 		throws -> NSDictionary {
@@ -64,9 +76,15 @@ public class GetUserByEmailLiferay62Connector: GetUserByEmailLiferayConnector {
 
 public class GetUserByEmailLiferay70Connector: GetUserByEmailLiferayConnector {
 
+
+	//MARK: GetUserByEmailLiferayConnector
+
 	override public init(companyId: Int64, emailAddress: String) {
 		super.init(companyId: companyId, emailAddress: emailAddress)
 	}
+
+
+	//MARK: GetUserBaseLiferayConnector
 
 	override public func sendGetUserRequest(session: LRSession)
 		throws -> NSDictionary {

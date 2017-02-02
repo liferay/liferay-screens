@@ -1,16 +1,16 @@
 /**
-* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
-*
-* This library is free software; you can redistribute it and/or modify it under
-* the terms of the GNU Lesser General Public License as published by the Free
-* Software Foundation; either version 2.1 of the License, or (at your option)
-* any later version.
-*
-* This library is distributed in the hope that it will be useful, but WITHOUT
-* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
-* details.
-*/
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 import LRMobileSDK
 
@@ -19,11 +19,17 @@ public class GetUserByUserIdLiferayConnector: GetUserBaseLiferayConnector {
 
 	public let userId: Int64
 
+
+	//MARK: Initializers
+
 	public init(userId: Int64) {
 		self.userId = userId
 
 		super.init()
 	}
+
+
+	//MARK: ServerConnector
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -42,9 +48,15 @@ public class GetUserByUserIdLiferayConnector: GetUserBaseLiferayConnector {
 
 public class GetUserByUserIdLiferay62Connector: GetUserByUserIdLiferayConnector {
 
+
+	//MARK: GetUserByUserIdLiferayConnector
+
 	override public init(userId: Int64) {
 		super.init(userId: userId)
 	}
+
+
+	//MARK: GetUserBaseLiferayConnector
 
 	override public func sendGetUserRequest(session: LRSession)
 		throws -> NSDictionary {
@@ -59,10 +71,16 @@ public class GetUserByUserIdLiferay62Connector: GetUserByUserIdLiferayConnector 
 
 public class GetUserByUserIdLiferay70Connector: GetUserByUserIdLiferayConnector {
 
+
+	//MARK: GetUserByUserIdLiferayConnector
+
 	override public init(userId: Int64) {
 		super.init(userId: userId)
 	}
 
+
+	//MARK: GetUserBaseLiferayConnector
+	
 	override public func sendGetUserRequest(session: LRSession)
 		throws -> NSDictionary {
 
