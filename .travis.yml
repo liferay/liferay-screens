@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode8
+osx_image: xcode8.2
 
 env:
   global:
@@ -30,7 +30,8 @@ script:
         sh gradlew test
      elif [ "$PLATFORM" = iOS ]; then
          cd ios/Framework
-         pod install
+         pod install --repo-update
          set -o pipefail
-         travis_retry xcodebuild clean test -workspace LiferayScreens.xcworkspace -scheme LiferayScreens -destination "platform=iOS Simulator,name=iPhone SE" | xcpretty
+         xcodebuild clean build build-for-testing -workspace LiferayScreens.xcworkspace -scheme LiferayScreens -destination "id=E40727B3-41FB-4D6E-B4CB-BFA87109EB12" | xcpretty
+         xcodebuild test-without-building -workspace LiferayScreens.xcworkspace -scheme LiferayScreens -destination "id=E40727B3-41FB-4D6E-B4CB-BFA87109EB12" | xcpretty
     fi
