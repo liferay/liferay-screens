@@ -256,14 +256,12 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	}
 
 	/**
-	 * Add the screenlet view.
+	 * Add the screenlet screenletView.
 	 */
-	public void assignView(View view) {
+	public void assignView(View screenletView) {
 		if (!isInEditMode()) {
-			screenletView = view;
-
+			setViewModel(screenletView);
 			getViewModel().setScreenlet(this);
-
 			addView(screenletView);
 		}
 	}
@@ -273,6 +271,10 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	 */
 	protected V getViewModel() {
 		return (V) screenletView;
+	}
+
+	public void setViewModel(View viewModel) {
+		this.screenletView = viewModel;
 	}
 
 	/**
