@@ -84,6 +84,89 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B21AEC21E4471DA0037F00D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				0B313D111E438A9800D02CB8 /* Main.storyboard */,
+				0B21AEC91E4472210037F00D /* WebContent */,
+				0B21AEC81E44721B0037F00D /* Others */,
+				0B21AEC71E4472160037F00D /* Files */,
+				0B21AEC61E44720F0037F00D /* DDL */,
+				0B21AEC51E4472080037F00D /* Comments */,
+				0B21AEC41E4472010037F00D /* Auth */,
+				0B21AEC31E4471FB0037F00D /* Asset */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		0B21AEC31E4471FB0037F00D /* Asset */ = {
+			isa = PBXGroup;
+			children = (
+				0B313D211E438B5E00D02CB8 /* AssetDisplayScreenlet.storyboard */,
+				0B313D221E438B5E00D02CB8 /* AssetListScreenlet.storyboard */,
+			);
+			name = Asset;
+			sourceTree = "<group>";
+		};
+		0B21AEC41E4472010037F00D /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				0B313D2A1E438B5E00D02CB8 /* ForgotPasswordScreenlet.storyboard */,
+				0B313D151E438B5400D02CB8 /* SignUpScreenlet.storyboard */,
+			);
+			name = Auth;
+			sourceTree = "<group>";
+		};
+		0B21AEC51E4472080037F00D /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				0B313D251E438B5E00D02CB8 /* CommentAddScreenlet.storyboard */,
+				0B313D261E438B5E00D02CB8 /* CommentDisplayScreenlet.storyboard */,
+				0B313D271E438B5E00D02CB8 /* CommentListScreenlet.storyboard */,
+			);
+			name = Comments;
+			sourceTree = "<group>";
+		};
+		0B21AEC61E44720F0037F00D /* DDL */ = {
+			isa = PBXGroup;
+			children = (
+				0B313D281E438B5E00D02CB8 /* DDLFormScreenlet.storyboard */,
+				0B313D291E438B5E00D02CB8 /* DDLListScreenlet.storyboard */,
+			);
+			name = DDL;
+			sourceTree = "<group>";
+		};
+		0B21AEC71E4472160037F00D /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				0B313D231E438B5E00D02CB8 /* AudioDisplayScreenlet.storyboard */,
+				0B313D2B1E438B5E00D02CB8 /* ImageDisplayScreenlet.storyboard */,
+				0B313D131E438B5400D02CB8 /* PdfDisplayScreenlet.storyboard */,
+				0B313D171E438B5400D02CB8 /* VideoDisplayScreenlet.storyboard */,
+			);
+			name = Files;
+			sourceTree = "<group>";
+		};
+		0B21AEC81E44721B0037F00D /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				0B313D241E438B5E00D02CB8 /* BlogDisplayScreenlet.storyboard */,
+				0B313D2C1E438B5E00D02CB8 /* ImageGalleryScreenlet.storyboard */,
+				0B313D141E438B5400D02CB8 /* RatingScreenlet.storyboard */,
+				0B313D161E438B5400D02CB8 /* UserPortraitScreenlet.storyboard */,
+			);
+			name = Others;
+			sourceTree = "<group>";
+		};
+		0B21AEC91E4472210037F00D /* WebContent */ = {
+			isa = PBXGroup;
+			children = (
+				0B313D181E438B5400D02CB8 /* WebContentDisplayScreenlet.storyboard */,
+				0B313D191E438B5400D02CB8 /* WebContentListScreenlet.storyboard */,
+			);
+			name = WebContent;
+			sourceTree = "<group>";
+		};
 		0B313C931E43526500D02CB8 = {
 			isa = PBXGroup;
 			children = (
@@ -105,29 +188,10 @@
 		0B313C9E1E43526500D02CB8 /* Showcase-ObjectiveC */ = {
 			isa = PBXGroup;
 			children = (
+				0B21AEC21E4471DA0037F00D /* Storyboards */,
 				0B313CFA1E435D2800D02CB8 /* liferay-server-context.plist */,
-				0B313D211E438B5E00D02CB8 /* AssetDisplayScreenlet.storyboard */,
-				0B313D221E438B5E00D02CB8 /* AssetListScreenlet.storyboard */,
-				0B313D231E438B5E00D02CB8 /* AudioDisplayScreenlet.storyboard */,
-				0B313D241E438B5E00D02CB8 /* BlogDisplayScreenlet.storyboard */,
-				0B313D251E438B5E00D02CB8 /* CommentAddScreenlet.storyboard */,
-				0B313D261E438B5E00D02CB8 /* CommentDisplayScreenlet.storyboard */,
-				0B313D271E438B5E00D02CB8 /* CommentListScreenlet.storyboard */,
-				0B313D281E438B5E00D02CB8 /* DDLFormScreenlet.storyboard */,
-				0B313D291E438B5E00D02CB8 /* DDLListScreenlet.storyboard */,
-				0B313D2A1E438B5E00D02CB8 /* ForgotPasswordScreenlet.storyboard */,
-				0B313D2B1E438B5E00D02CB8 /* ImageDisplayScreenlet.storyboard */,
-				0B313D2C1E438B5E00D02CB8 /* ImageGalleryScreenlet.storyboard */,
 				0B313CA21E43526500D02CB8 /* AppDelegate.h */,
 				0B313CA31E43526500D02CB8 /* AppDelegate.m */,
-				0B313D131E438B5400D02CB8 /* PdfDisplayScreenlet.storyboard */,
-				0B313D141E438B5400D02CB8 /* RatingScreenlet.storyboard */,
-				0B313D151E438B5400D02CB8 /* SignUpScreenlet.storyboard */,
-				0B313D161E438B5400D02CB8 /* UserPortraitScreenlet.storyboard */,
-				0B313D171E438B5400D02CB8 /* VideoDisplayScreenlet.storyboard */,
-				0B313D181E438B5400D02CB8 /* WebContentDisplayScreenlet.storyboard */,
-				0B313D191E438B5400D02CB8 /* WebContentListScreenlet.storyboard */,
-				0B313D111E438A9800D02CB8 /* Main.storyboard */,
 				0B313CA51E43526500D02CB8 /* LoginViewController.h */,
 				0B313CA61E43526500D02CB8 /* LoginViewController.m */,
 				0B313CAB1E43526500D02CB8 /* Assets.xcassets */,

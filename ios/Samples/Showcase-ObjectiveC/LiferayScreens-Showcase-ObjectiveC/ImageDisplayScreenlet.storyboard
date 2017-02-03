@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6Md-6K-l5a">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Image Display View Controller-->
+        <scene sceneID="H07-48-fiW">
+            <objects>
+                <viewController id="6Md-6K-l5a" customClass="ImageDisplayViewController" customModule="LiferayScreens_Showcase_ObjectiveC" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="C9g-59-kez"/>
+                        <viewControllerLayoutGuide type="bottom" id="wp5-TE-kgd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="z6u-FI-AcG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grP-4O-Chu" customClass="ImageDisplayScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="-4" y="64" width="328" height="504"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="placeholder" value="default-placeholder"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wp5-TE-kgd" firstAttribute="top" secondItem="grP-4O-Chu" secondAttribute="bottom" id="Xbb-5I-Bab"/>
+                            <constraint firstItem="grP-4O-Chu" firstAttribute="leading" secondItem="z6u-FI-AcG" secondAttribute="leadingMargin" constant="-20" id="ZkY-l7-nPW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="grP-4O-Chu" secondAttribute="trailing" constant="-20" id="l33-50-oXz"/>
+                            <constraint firstItem="grP-4O-Chu" firstAttribute="top" secondItem="C9g-59-kez" secondAttribute="bottom" id="yuZ-Dp-Uig"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="screenlet" destination="grP-4O-Chu" id="a19-cx-xqL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QWQ-j7-DVz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="454" y="508"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="default-placeholder" width="48" height="48"/>
+    </resources>
+</document>

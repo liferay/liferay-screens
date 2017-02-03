@@ -13,7 +13,7 @@
         <!--Login-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController title="Initial Login" id="9pv-A4-QxB" userLabel="Login" customClass="LoginViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Initial Login" id="9pv-A4-QxB" userLabel="Login" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -200,16 +200,16 @@
                     </view>
                     <navigationItem key="navigationItem" id="hSe-OR-d7h"/>
                     <connections>
-                        <outlet property="forgetPasswordButton" destination="4az-yV-1Uz" id="yel-Ho-npy"/>
-                        <outlet property="loggedLabel" destination="Bqb-Wh-9Fp" id="ob1-q8-oQO"/>
-                        <outlet property="loggedUsername" destination="SD8-wp-12w" id="pyX-cM-Qn5"/>
-                        <outlet property="loggedView" destination="Ifh-gR-hEQ" id="eX4-j1-7XZ"/>
-                        <outlet property="logginView" destination="Bb2-2j-5CI" id="Slx-XJ-o3l"/>
-                        <outlet property="loginScreenlet" destination="gdc-z9-1zl" id="FBH-8F-zVS"/>
-                        <outlet property="reloginButton" destination="24N-En-7ZQ" id="NJd-cj-4d5"/>
-                        <outlet property="saveCredentialsLabel" destination="QM5-5p-DZd" id="hK8-s1-j4h"/>
-                        <outlet property="signOutButton" destination="Gpq-Db-Zcu" id="9KC-O6-pmL"/>
-                        <outlet property="signUpButton" destination="ktq-xs-nBm" id="7Bs-mv-qcB"/>
+                        <outlet property="forgetPasswordButton" destination="4az-yV-1Uz" id="x2o-ji-fNp"/>
+                        <outlet property="loggedLabel" destination="Bqb-Wh-9Fp" id="t6U-5M-eH4"/>
+                        <outlet property="loggedUsername" destination="SD8-wp-12w" id="BK9-nu-sAy"/>
+                        <outlet property="loggedView" destination="Ifh-gR-hEQ" id="aiG-aF-56O"/>
+                        <outlet property="loginScreenlet" destination="gdc-z9-1zl" id="Ap3-rp-Svv"/>
+                        <outlet property="loginView" destination="Bb2-2j-5CI" id="3PT-jW-Htw"/>
+                        <outlet property="reloginButton" destination="24N-En-7ZQ" id="DhV-YS-ePn"/>
+                        <outlet property="saveCredentialsLabel" destination="QM5-5p-DZd" id="3Lv-4a-nlX"/>
+                        <outlet property="signOutButton" destination="Gpq-Db-Zcu" id="9jH-DU-SUN"/>
+                        <outlet property="signUpButton" destination="ktq-xs-nBm" id="LEb-Nk-usz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -219,7 +219,7 @@
         <!--Content Table View Controller-->
         <scene sceneID="gz0-F9-ThQ">
             <objects>
-                <tableViewController id="RHb-l5-adC" userLabel="Content Table View Controller" customClass="HomeScreenletsViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="RHb-l5-adC" userLabel="Content Table View Controller" customClass="HomeScreenletsViewController" customModule="LiferayScreens_Showcase_ObjectiveC" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="50" sectionFooterHeight="22" id="lHs-ao-xng">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -239,7 +239,7 @@
         <!--Sync-->
         <scene sceneID="h8k-Xm-7Vm">
             <objects>
-                <viewController title="Sync" id="AYT-Nq-QGp" customClass="OfflineSyncViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Sync" id="AYT-Nq-QGp" customClass="OfflineSyncViewController" customModule="LiferayScreens_Showcase_ObjectiveC" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lNb-NU-lVF"/>
                         <viewControllerLayoutGuide type="bottom" id="4rX-kC-YFp"/>

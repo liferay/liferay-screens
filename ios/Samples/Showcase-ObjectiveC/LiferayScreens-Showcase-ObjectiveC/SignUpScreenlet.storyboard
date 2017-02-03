@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5mf-Js-LTU">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--SignUpScreenlet-->
+        <scene sceneID="cuM-yl-xjj">
+            <objects>
+                <viewController title="SignUpScreenlet" id="5mf-Js-LTU" customClass="SignUpScreenletViewController" customModule="LiferayScreens_Showcase_ObjectiveC" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zoG-n4-4Vn"/>
+                        <viewControllerLayoutGuide type="bottom" id="TCp-xh-fnI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BFH-xq-LvH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gYy-sn-04U">
+                                <rect key="frame" x="255" y="335" width="51" height="31"/>
+                                <color key="onTintColor" red="0.077612620909999999" green="0.63132638569999999" blue="0.80875318880000002" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="loginValueChangedAction:" destination="5mf-Js-LTU" eventType="valueChanged" id="gMO-a5-btz"/>
+                                </connections>
+                            </switch>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4zs-7r-ZBh">
+                                <rect key="frame" x="255" y="380" width="51" height="31"/>
+                                <color key="onTintColor" red="0.077612620909999999" green="0.63132638569999999" blue="0.80875318880000002" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="credentialsValueChangedAction:" destination="5mf-Js-LTU" eventType="valueChanged" id="ABV-I3-lrw"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable autologin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAE-d7-2Ym">
+                                <rect key="frame" x="16" y="340" width="117" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save credentials" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtm-5D-L8a">
+                                <rect key="frame" x="16" y="385" width="117" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jc5-Qq-jbg" customClass="SignUpScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="16" y="64" width="288" height="263"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoLogin" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="saveCredentials" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="mtm-5D-L8a" firstAttribute="leading" secondItem="BFH-xq-LvH" secondAttribute="leadingMargin" id="805-U5-ULn"/>
+                            <constraint firstItem="4zs-7r-ZBh" firstAttribute="trailing" secondItem="BFH-xq-LvH" secondAttribute="trailingMargin" id="Avb-xP-SZO"/>
+                            <constraint firstItem="MAE-d7-2Ym" firstAttribute="leading" secondItem="BFH-xq-LvH" secondAttribute="leadingMargin" id="EBe-hA-uDY"/>
+                            <constraint firstItem="TCp-xh-fnI" firstAttribute="top" secondItem="jc5-Qq-jbg" secondAttribute="bottom" constant="104" id="Hg0-HU-HFK"/>
+                            <constraint firstItem="jc5-Qq-jbg" firstAttribute="top" secondItem="zoG-n4-4Vn" secondAttribute="bottom" id="OWG-VY-bLl"/>
+                            <constraint firstItem="TCp-xh-fnI" firstAttribute="top" secondItem="mtm-5D-L8a" secondAttribute="bottom" constant="25" id="T9c-JU-Iv6"/>
+                            <constraint firstItem="jc5-Qq-jbg" firstAttribute="trailing" secondItem="BFH-xq-LvH" secondAttribute="trailingMargin" id="fx2-qP-qSv"/>
+                            <constraint firstItem="TCp-xh-fnI" firstAttribute="top" secondItem="gYy-sn-04U" secondAttribute="bottom" constant="65" id="h8l-h5-Hli"/>
+                            <constraint firstItem="jc5-Qq-jbg" firstAttribute="leading" secondItem="BFH-xq-LvH" secondAttribute="leadingMargin" id="iVS-t7-4g9"/>
+                            <constraint firstItem="gYy-sn-04U" firstAttribute="trailing" secondItem="BFH-xq-LvH" secondAttribute="trailingMargin" id="nii-R0-a4H"/>
+                            <constraint firstItem="TCp-xh-fnI" firstAttribute="top" secondItem="4zs-7r-ZBh" secondAttribute="bottom" constant="20" id="qrb-VD-GLW"/>
+                            <constraint firstItem="TCp-xh-fnI" firstAttribute="top" secondItem="MAE-d7-2Ym" secondAttribute="bottom" constant="70" id="tQD-f0-SBm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="SignUpScreenlet" id="BgR-TM-do8"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="screenlet" destination="jc5-Qq-jbg" id="3BZ-rr-ero"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="da8-L1-1hz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="939" y="-291"/>
+        </scene>
+    </scenes>
+</document>

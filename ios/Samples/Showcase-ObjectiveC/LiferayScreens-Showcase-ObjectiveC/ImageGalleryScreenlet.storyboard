@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="TKo-oY-mMB">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Image Gallery Screenlet Controller-->
+        <scene sceneID="izp-aj-3u6">
+            <objects>
+                <viewController storyboardIdentifier="image-gallery" id="TKo-oY-mMB" customClass="ImageGalleryScreenletController" customModule="LiferayScreens_Showcase_ObjectiveC" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EEh-bY-4Z4"/>
+                        <viewControllerLayoutGuide type="bottom" id="i1N-BA-kSy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vgu-8B-dnX">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PvT-tM-Bkx" customClass="ImageGalleryScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="PvT-tM-Bkx" secondAttribute="trailing" id="A69-rd-R1u"/>
+                            <constraint firstItem="PvT-tM-Bkx" firstAttribute="leading" secondItem="vgu-8B-dnX" secondAttribute="leading" id="SSr-An-Ltm"/>
+                            <constraint firstItem="PvT-tM-Bkx" firstAttribute="top" secondItem="vgu-8B-dnX" secondAttribute="topMargin" id="TpE-Q5-AmP"/>
+                            <constraint firstItem="PvT-tM-Bkx" firstAttribute="bottom" secondItem="vgu-8B-dnX" secondAttribute="bottomMargin" id="vek-6E-FBp"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <navigationItem key="navigationItem" id="eCz-Es-CbX">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="U0B-lD-wJf">
+                            <rect key="frame" x="39.5" y="7" width="230" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Grid"/>
+                                <segment title="Slideshow"/>
+                                <segment title="List"/>
+                            </segments>
+                            <color key="tintColor" red="0.083623558282852173" green="0.66497266292572021" blue="0.84832382202148438" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="segmentedControlValueChanged:" destination="TKo-oY-mMB" eventType="valueChanged" id="d2o-Gv-cJl"/>
+                            </connections>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="66s-uX-C7N">
+                            <color key="tintColor" red="0.083623558282852173" green="0.66497266292572021" blue="0.84832382202148438" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="startUpload" destination="TKo-oY-mMB" id="6Ba-fr-dg3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="screenlet" destination="PvT-tM-Bkx" id="npj-Vw-Cg6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XTO-eU-HbY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1472" y="2559"/>
+        </scene>
+    </scenes>
+</document>
