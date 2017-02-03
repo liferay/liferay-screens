@@ -13,7 +13,7 @@
         <!--CommentListScreenlet-->
         <scene sceneID="A79-LW-apD">
             <objects>
-                <viewController title="CommentListScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="My4-vf-44F" customClass="CommentListScreenletViewController" customModule="LiferayScreens_Showcase_ObjectiveC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="CommentListScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="My4-vf-44F" customClass="CommentListScreenletViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cl2-zy-fUp"/>
                         <viewControllerLayoutGuide type="bottom" id="Ebj-0l-O7f"/>
