@@ -7,10 +7,9 @@
 //
 @import LiferayScreens;
 #import "LoginViewController.h"
+#import "LiferayLogger.h"
 
-@interface LoginViewController ()
-
-<LoginScreenletDelegate>
+@interface LoginViewController () <LoginScreenletDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *loggedView;
 @property (weak, nonatomic) IBOutlet UIView *loginView;
@@ -34,12 +33,42 @@
     self.loginScreenlet.delegate = self;
 
     [SessionContext loadStoredCredentials];
+}
+
+- (IBAction)credentialsValueChangedAction:(UISwitch *)sender {
+    self.loginScreenlet.saveCredentials = [sender isOn];
+}
+
+- (IBAction)signOutAction {
+    [SessionContext.currentContext removeStoredCredentials];
+    [SessionContext logout];
+
     [self showLogged:YES];
+}
+
+- (IBAction)reloginAction {
+    if (SessionContext.currentContext == nil) {
+        NSLog(@"Session doesn't exist");
+        return;
+    }
+
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+
+    [SessionContext.currentContext relogin:^(NSDictionary<NSString *,id> * _Nullable userAttributes) {
+        if (userAttributes == nil) {
+            NSLog(@"Relogin failed");
+            [self showLogged:YES];
+            return;
+        }
+
+        NSLog(@"Relogin completed: %@", userAttributes);
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationItem.title = @"LoginScreenlet";
+    [self showLogged:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -64,12 +93,20 @@
 }
 
 - (void)screenlet:(BaseScreenlet *)screenlet onLoginResponseUserAttributes:(NSDictionary<NSString *,id> *)attributes {
-    NSLog(@"Login correct %@", attributes);
+	LiferayLog(attributes);
     [self showLogged:YES];
 }
 
 - (void)screenlet:(BaseScreenlet *)screenlet onLoginError:(NSError *)error {
-	NSLog(@"Login error %@", error);
+    LiferayLog(error);
+}
+
+- (void)screenlet:(BaseScreenlet *)screenlet onCredentialsSavedUserAttributes:(NSDictionary<NSString *,id> *)attributes {
+	LiferayLog(attributes);
+}
+
+- (void)screenlet:(LoginScreenlet *)screenlet onCredentialsLoadedUserAttributes:(NSDictionary<NSString *,id> *)attributes {
+    LiferayLog(attributes);
 }
 
 
