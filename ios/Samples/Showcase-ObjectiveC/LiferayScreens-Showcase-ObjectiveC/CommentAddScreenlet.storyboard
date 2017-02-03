@@ -12,7 +12,7 @@
         <!--Comment Add Screenlet View Controller-->
         <scene sceneID="b75-Jk-dvv">
             <objects>
-                <viewController id="nhe-WZ-H41" customClass="CommentAddScreenletViewController" customModule="LiferayScreens_Showcase_ObjectiveC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="nhe-WZ-H41" customClass="CommentAddScreenletViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eOP-PN-Yil"/>
                         <viewControllerLayoutGuide type="bottom" id="EbP-r3-sNm"/>
