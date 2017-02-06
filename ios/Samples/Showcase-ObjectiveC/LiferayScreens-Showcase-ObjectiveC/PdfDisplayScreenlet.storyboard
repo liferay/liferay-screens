@@ -12,7 +12,7 @@
         <!--Pdf Display View Controller-->
         <scene sceneID="0VH-dk-eeq">
             <objects>
-                <viewController id="0x2-x2-eMM" customClass="PdfDisplayViewController" customModule="LiferayScreens_Showcase_ObjectiveC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0x2-x2-eMM" customClass="PdfDisplayViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pcI-mf-oVM"/>
                         <viewControllerLayoutGuide type="bottom" id="KnN-fK-t40"/>
