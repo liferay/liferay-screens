@@ -7,6 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B21AECC1E4484C50037F00D /* LiferayLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21AECB1E4484C50037F00D /* LiferayLogger.m */; };
+		0B21AECF1E4491000037F00D /* ForgotPasswordScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21AECE1E4491000037F00D /* ForgotPasswordScreenletViewController.m */; };
+		0B21AED21E4492370037F00D /* SignUpScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21AED11E4492370037F00D /* SignUpScreenletViewController.m */; };
+		0B21AED51E449FB00037F00D /* HomeScreenletsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21AED41E449FB00037F00D /* HomeScreenletsTableViewController.m */; };
+		0B21AED81E44A4AD0037F00D /* AssetDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21AED71E44A4AD0037F00D /* AssetDisplayViewController.m */; };
+		0B21AEDA1E44A6330037F00D /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B21AED91E44A6330037F00D /* UserView.xib */; };
+		0B21AEDD1E44A64A0037F00D /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21AEDC1E44A64A0037F00D /* UserView.m */; };
+		0B21AEE01E44AB5D0037F00D /* CommentAddScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21AEDF1E44AB5D0037F00D /* CommentAddScreenletViewController.m */; };
+		0B21AEE31E44AC8B0037F00D /* CommentListScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21AEE21E44AC8B0037F00D /* CommentListScreenletViewController.m */; };
+		0B21AEE61E462A2D0037F00D /* CommentDisplayScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21AEE51E462A2D0037F00D /* CommentDisplayScreenletViewController.m */; };
+		0B21AEE91E462C9F0037F00D /* DDLFormScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21AEE81E462C9F0037F00D /* DDLFormScreenletViewController.m */; };
+		0B21AEEC1E4633120037F00D /* AudioDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21AEEB1E4633120037F00D /* AudioDisplayViewController.m */; };
+		0B21AEEF1E4634400037F00D /* ImageDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21AEEE1E4634400037F00D /* ImageDisplayViewController.m */; };
+		0B21AEF21E4634780037F00D /* PdfDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21AEF11E4634780037F00D /* PdfDisplayViewController.m */; };
+		0B21AEF51E4634C60037F00D /* VideoDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21AEF41E4634C60037F00D /* VideoDisplayViewController.m */; };
+		0B21AEF81E46378C0037F00D /* WebContentDisplayScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21AEF71E46378C0037F00D /* WebContentDisplayScreenletViewController.m */; };
+		0B21AEFB1E463BA20037F00D /* WebContentListScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21AEFA1E463BA20037F00D /* WebContentListScreenletViewController.m */; };
+		0B21AEFE1E463EC80037F00D /* RatingScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21AEFD1E463EC80037F00D /* RatingScreenletViewController.m */; };
+		0B21AF011E46489D0037F00D /* ImageGalleryScreenletController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21AF001E46489D0037F00D /* ImageGalleryScreenletController.m */; };
+		0B2993EC1E4859130028F5F2 /* BlogDisplayScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2993EB1E4859130028F5F2 /* BlogDisplayScreenletViewController.m */; };
+		0B2993EF1E485D490028F5F2 /* UserPortraitScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2993EE1E485D490028F5F2 /* UserPortraitScreenletViewController.m */; };
+		0B2993F21E486AEB0028F5F2 /* UIImage+GrayScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2993F11E486AEB0028F5F2 /* UIImage+GrayScale.m */; };
+		0B2993F51E486F240028F5F2 /* DDLListScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2993F41E486F240028F5F2 /* DDLListScreenletViewController.m */; };
+		0B2993F81E4873A00028F5F2 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2993F71E4873A00028F5F2 /* NSString+Utils.m */; };
+		0B2993FB1E487AA20028F5F2 /* AssetTypesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2993FA1E487AA20028F5F2 /* AssetTypesViewController.m */; };
+		0B2993FE1E487FE10028F5F2 /* AssetListScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2993FD1E487FE10028F5F2 /* AssetListScreenletViewController.m */; };
+		0B2994011E4893BF0028F5F2 /* OfflineSyncViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2994001E4893BF0028F5F2 /* OfflineSyncViewController.m */; };
 		0B313CA11E43526500D02CB8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B313CA01E43526500D02CB8 /* main.m */; };
 		0B313CA41E43526500D02CB8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B313CA31E43526500D02CB8 /* AppDelegate.m */; };
 		0B313CA71E43526500D02CB8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B313CA61E43526500D02CB8 /* LoginViewController.m */; };
@@ -37,6 +64,59 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B21AECA1E4484C50037F00D /* LiferayLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiferayLogger.h; sourceTree = "<group>"; };
+		0B21AECB1E4484C50037F00D /* LiferayLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiferayLogger.m; sourceTree = "<group>"; };
+		0B21AECD1E4491000037F00D /* ForgotPasswordScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordScreenletViewController.h; sourceTree = "<group>"; };
+		0B21AECE1E4491000037F00D /* ForgotPasswordScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordScreenletViewController.m; sourceTree = "<group>"; };
+		0B21AED01E4492370037F00D /* SignUpScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpScreenletViewController.h; sourceTree = "<group>"; };
+		0B21AED11E4492370037F00D /* SignUpScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpScreenletViewController.m; sourceTree = "<group>"; };
+		0B21AED31E449FB00037F00D /* HomeScreenletsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScreenletsTableViewController.h; sourceTree = "<group>"; };
+		0B21AED41E449FB00037F00D /* HomeScreenletsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScreenletsTableViewController.m; sourceTree = "<group>"; };
+		0B21AED61E44A4AD0037F00D /* AssetDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetDisplayViewController.h; sourceTree = "<group>"; };
+		0B21AED71E44A4AD0037F00D /* AssetDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetDisplayViewController.m; sourceTree = "<group>"; };
+		0B21AED91E44A6330037F00D /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserView.xib; sourceTree = "<group>"; };
+		0B21AEDB1E44A64A0037F00D /* UserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserView.h; sourceTree = "<group>"; };
+		0B21AEDC1E44A64A0037F00D /* UserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserView.m; sourceTree = "<group>"; };
+		0B21AEDE1E44AB5D0037F00D /* CommentAddScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentAddScreenletViewController.h; sourceTree = "<group>"; };
+		0B21AEDF1E44AB5D0037F00D /* CommentAddScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentAddScreenletViewController.m; sourceTree = "<group>"; };
+		0B21AEE11E44AC8B0037F00D /* CommentListScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentListScreenletViewController.h; sourceTree = "<group>"; };
+		0B21AEE21E44AC8B0037F00D /* CommentListScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentListScreenletViewController.m; sourceTree = "<group>"; };
+		0B21AEE41E462A2D0037F00D /* CommentDisplayScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentDisplayScreenletViewController.h; sourceTree = "<group>"; };
+		0B21AEE51E462A2D0037F00D /* CommentDisplayScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentDisplayScreenletViewController.m; sourceTree = "<group>"; };
+		0B21AEE71E462C9F0037F00D /* DDLFormScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLFormScreenletViewController.h; sourceTree = "<group>"; };
+		0B21AEE81E462C9F0037F00D /* DDLFormScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLFormScreenletViewController.m; sourceTree = "<group>"; };
+		0B21AEEA1E4633120037F00D /* AudioDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioDisplayViewController.h; sourceTree = "<group>"; };
+		0B21AEEB1E4633120037F00D /* AudioDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioDisplayViewController.m; sourceTree = "<group>"; };
+		0B21AEED1E4634400037F00D /* ImageDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDisplayViewController.h; sourceTree = "<group>"; };
+		0B21AEEE1E4634400037F00D /* ImageDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDisplayViewController.m; sourceTree = "<group>"; };
+		0B21AEF01E4634780037F00D /* PdfDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PdfDisplayViewController.h; sourceTree = "<group>"; };
+		0B21AEF11E4634780037F00D /* PdfDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PdfDisplayViewController.m; sourceTree = "<group>"; };
+		0B21AEF31E4634C60037F00D /* VideoDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoDisplayViewController.h; sourceTree = "<group>"; };
+		0B21AEF41E4634C60037F00D /* VideoDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoDisplayViewController.m; sourceTree = "<group>"; };
+		0B21AEF61E46378C0037F00D /* WebContentDisplayScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebContentDisplayScreenletViewController.h; sourceTree = "<group>"; };
+		0B21AEF71E46378C0037F00D /* WebContentDisplayScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebContentDisplayScreenletViewController.m; sourceTree = "<group>"; };
+		0B21AEF91E463BA20037F00D /* WebContentListScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebContentListScreenletViewController.h; sourceTree = "<group>"; };
+		0B21AEFA1E463BA20037F00D /* WebContentListScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebContentListScreenletViewController.m; sourceTree = "<group>"; };
+		0B21AEFC1E463EC80037F00D /* RatingScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingScreenletViewController.h; sourceTree = "<group>"; };
+		0B21AEFD1E463EC80037F00D /* RatingScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingScreenletViewController.m; sourceTree = "<group>"; };
+		0B21AEFF1E46489D0037F00D /* ImageGalleryScreenletController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageGalleryScreenletController.h; sourceTree = "<group>"; };
+		0B21AF001E46489D0037F00D /* ImageGalleryScreenletController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageGalleryScreenletController.m; sourceTree = "<group>"; };
+		0B2993EA1E4859130028F5F2 /* BlogDisplayScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogDisplayScreenletViewController.h; sourceTree = "<group>"; };
+		0B2993EB1E4859130028F5F2 /* BlogDisplayScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogDisplayScreenletViewController.m; sourceTree = "<group>"; };
+		0B2993ED1E485D490028F5F2 /* UserPortraitScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPortraitScreenletViewController.h; sourceTree = "<group>"; };
+		0B2993EE1E485D490028F5F2 /* UserPortraitScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPortraitScreenletViewController.m; sourceTree = "<group>"; };
+		0B2993F01E486AEB0028F5F2 /* UIImage+GrayScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GrayScale.h"; sourceTree = "<group>"; };
+		0B2993F11E486AEB0028F5F2 /* UIImage+GrayScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GrayScale.m"; sourceTree = "<group>"; };
+		0B2993F31E486F240028F5F2 /* DDLListScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLListScreenletViewController.h; sourceTree = "<group>"; };
+		0B2993F41E486F240028F5F2 /* DDLListScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLListScreenletViewController.m; sourceTree = "<group>"; };
+		0B2993F61E4873A00028F5F2 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utils.h"; sourceTree = "<group>"; };
+		0B2993F71E4873A00028F5F2 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utils.m"; sourceTree = "<group>"; };
+		0B2993F91E487AA20028F5F2 /* AssetTypesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetTypesViewController.h; sourceTree = "<group>"; };
+		0B2993FA1E487AA20028F5F2 /* AssetTypesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetTypesViewController.m; sourceTree = "<group>"; };
+		0B2993FC1E487FE10028F5F2 /* AssetListScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetListScreenletViewController.h; sourceTree = "<group>"; };
+		0B2993FD1E487FE10028F5F2 /* AssetListScreenletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetListScreenletViewController.m; sourceTree = "<group>"; };
+		0B2993FF1E4893BF0028F5F2 /* OfflineSyncViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfflineSyncViewController.h; sourceTree = "<group>"; };
+		0B2994001E4893BF0028F5F2 /* OfflineSyncViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfflineSyncViewController.m; sourceTree = "<group>"; };
 		0B313C9C1E43526500D02CB8 /* LiferayScreens-Showcase-ObjectiveC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LiferayScreens-Showcase-ObjectiveC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B313CA01E43526500D02CB8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0B313CA21E43526500D02CB8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -198,6 +278,59 @@
 				0B313CAD1E43526500D02CB8 /* LaunchScreen.storyboard */,
 				0B313CB01E43526500D02CB8 /* Info.plist */,
 				0B313C9F1E43526500D02CB8 /* Supporting Files */,
+				0B21AECA1E4484C50037F00D /* LiferayLogger.h */,
+				0B21AECB1E4484C50037F00D /* LiferayLogger.m */,
+				0B21AECD1E4491000037F00D /* ForgotPasswordScreenletViewController.h */,
+				0B21AECE1E4491000037F00D /* ForgotPasswordScreenletViewController.m */,
+				0B21AED01E4492370037F00D /* SignUpScreenletViewController.h */,
+				0B21AED11E4492370037F00D /* SignUpScreenletViewController.m */,
+				0B21AED31E449FB00037F00D /* HomeScreenletsTableViewController.h */,
+				0B21AED41E449FB00037F00D /* HomeScreenletsTableViewController.m */,
+				0B21AED61E44A4AD0037F00D /* AssetDisplayViewController.h */,
+				0B21AED71E44A4AD0037F00D /* AssetDisplayViewController.m */,
+				0B21AED91E44A6330037F00D /* UserView.xib */,
+				0B21AEDB1E44A64A0037F00D /* UserView.h */,
+				0B21AEDC1E44A64A0037F00D /* UserView.m */,
+				0B21AEDE1E44AB5D0037F00D /* CommentAddScreenletViewController.h */,
+				0B21AEDF1E44AB5D0037F00D /* CommentAddScreenletViewController.m */,
+				0B21AEE11E44AC8B0037F00D /* CommentListScreenletViewController.h */,
+				0B21AEE21E44AC8B0037F00D /* CommentListScreenletViewController.m */,
+				0B21AEE41E462A2D0037F00D /* CommentDisplayScreenletViewController.h */,
+				0B21AEE51E462A2D0037F00D /* CommentDisplayScreenletViewController.m */,
+				0B21AEE71E462C9F0037F00D /* DDLFormScreenletViewController.h */,
+				0B21AEE81E462C9F0037F00D /* DDLFormScreenletViewController.m */,
+				0B21AEEA1E4633120037F00D /* AudioDisplayViewController.h */,
+				0B21AEEB1E4633120037F00D /* AudioDisplayViewController.m */,
+				0B21AEED1E4634400037F00D /* ImageDisplayViewController.h */,
+				0B21AEEE1E4634400037F00D /* ImageDisplayViewController.m */,
+				0B21AEF01E4634780037F00D /* PdfDisplayViewController.h */,
+				0B21AEF11E4634780037F00D /* PdfDisplayViewController.m */,
+				0B21AEF31E4634C60037F00D /* VideoDisplayViewController.h */,
+				0B21AEF41E4634C60037F00D /* VideoDisplayViewController.m */,
+				0B21AEF61E46378C0037F00D /* WebContentDisplayScreenletViewController.h */,
+				0B21AEF71E46378C0037F00D /* WebContentDisplayScreenletViewController.m */,
+				0B21AEF91E463BA20037F00D /* WebContentListScreenletViewController.h */,
+				0B21AEFA1E463BA20037F00D /* WebContentListScreenletViewController.m */,
+				0B21AEFC1E463EC80037F00D /* RatingScreenletViewController.h */,
+				0B21AEFD1E463EC80037F00D /* RatingScreenletViewController.m */,
+				0B21AEFF1E46489D0037F00D /* ImageGalleryScreenletController.h */,
+				0B21AF001E46489D0037F00D /* ImageGalleryScreenletController.m */,
+				0B2993EA1E4859130028F5F2 /* BlogDisplayScreenletViewController.h */,
+				0B2993EB1E4859130028F5F2 /* BlogDisplayScreenletViewController.m */,
+				0B2993ED1E485D490028F5F2 /* UserPortraitScreenletViewController.h */,
+				0B2993EE1E485D490028F5F2 /* UserPortraitScreenletViewController.m */,
+				0B2993F01E486AEB0028F5F2 /* UIImage+GrayScale.h */,
+				0B2993F11E486AEB0028F5F2 /* UIImage+GrayScale.m */,
+				0B2993F31E486F240028F5F2 /* DDLListScreenletViewController.h */,
+				0B2993F41E486F240028F5F2 /* DDLListScreenletViewController.m */,
+				0B2993F61E4873A00028F5F2 /* NSString+Utils.h */,
+				0B2993F71E4873A00028F5F2 /* NSString+Utils.m */,
+				0B2993F91E487AA20028F5F2 /* AssetTypesViewController.h */,
+				0B2993FA1E487AA20028F5F2 /* AssetTypesViewController.m */,
+				0B2993FC1E487FE10028F5F2 /* AssetListScreenletViewController.h */,
+				0B2993FD1E487FE10028F5F2 /* AssetListScreenletViewController.m */,
+				0B2993FF1E4893BF0028F5F2 /* OfflineSyncViewController.h */,
+				0B2994001E4893BF0028F5F2 /* OfflineSyncViewController.m */,
 			);
 			name = "Showcase-ObjectiveC";
 			path = "LiferayScreens-Showcase-ObjectiveC";
@@ -305,6 +438,7 @@
 				0B313D351E438B5E00D02CB8 /* DDLListScreenlet.storyboard in Resources */,
 				0B313D341E438B5E00D02CB8 /* DDLFormScreenlet.storyboard in Resources */,
 				0B313D1A1E438B5400D02CB8 /* PdfDisplayScreenlet.storyboard in Resources */,
+				0B21AEDA1E44A6330037F00D /* UserView.xib in Resources */,
 				0B313CFB1E435D2800D02CB8 /* liferay-server-context.plist in Resources */,
 				0B313CAC1E43526500D02CB8 /* Assets.xcassets in Resources */,
 				0B313D121E438A9800D02CB8 /* Main.storyboard in Resources */,
@@ -371,9 +505,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B21AEEC1E4633120037F00D /* AudioDisplayViewController.m in Sources */,
+				0B2993EF1E485D490028F5F2 /* UserPortraitScreenletViewController.m in Sources */,
+				0B2993EC1E4859130028F5F2 /* BlogDisplayScreenletViewController.m in Sources */,
+				0B2993F51E486F240028F5F2 /* DDLListScreenletViewController.m in Sources */,
+				0B21AEF51E4634C60037F00D /* VideoDisplayViewController.m in Sources */,
+				0B21AED51E449FB00037F00D /* HomeScreenletsTableViewController.m in Sources */,
+				0B21AEFE1E463EC80037F00D /* RatingScreenletViewController.m in Sources */,
+				0B21AEFB1E463BA20037F00D /* WebContentListScreenletViewController.m in Sources */,
+				0B21AEDD1E44A64A0037F00D /* UserView.m in Sources */,
+				0B21AED21E4492370037F00D /* SignUpScreenletViewController.m in Sources */,
+				0B21AEF21E4634780037F00D /* PdfDisplayViewController.m in Sources */,
+				0B2993F81E4873A00028F5F2 /* NSString+Utils.m in Sources */,
+				0B21AEE61E462A2D0037F00D /* CommentDisplayScreenletViewController.m in Sources */,
+				0B21AEEF1E4634400037F00D /* ImageDisplayViewController.m in Sources */,
+				0B2994011E4893BF0028F5F2 /* OfflineSyncViewController.m in Sources */,
+				0B21AEF81E46378C0037F00D /* WebContentDisplayScreenletViewController.m in Sources */,
+				0B2993F21E486AEB0028F5F2 /* UIImage+GrayScale.m in Sources */,
 				0B313CA71E43526500D02CB8 /* LoginViewController.m in Sources */,
+				0B21AEE91E462C9F0037F00D /* DDLFormScreenletViewController.m in Sources */,
 				0B313CA41E43526500D02CB8 /* AppDelegate.m in Sources */,
+				0B21AED81E44A4AD0037F00D /* AssetDisplayViewController.m in Sources */,
+				0B2993FB1E487AA20028F5F2 /* AssetTypesViewController.m in Sources */,
+				0B21AECF1E4491000037F00D /* ForgotPasswordScreenletViewController.m in Sources */,
+				0B21AECC1E4484C50037F00D /* LiferayLogger.m in Sources */,
+				0B21AEE01E44AB5D0037F00D /* CommentAddScreenletViewController.m in Sources */,
 				0B313CA11E43526500D02CB8 /* main.m in Sources */,
+				0B2993FE1E487FE10028F5F2 /* AssetListScreenletViewController.m in Sources */,
+				0B21AF011E46489D0037F00D /* ImageGalleryScreenletController.m in Sources */,
+				0B21AEE31E44AC8B0037F00D /* CommentListScreenletViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
