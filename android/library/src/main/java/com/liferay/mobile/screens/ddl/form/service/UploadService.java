@@ -63,9 +63,11 @@ public class UploadService extends IntentService {
 		Long folderId = intent.getLongExtra("folderId", 0);
 		String filePrefix = intent.getStringExtra("filePrefix");
 		int targetScreenletId = intent.getIntExtra("screenletId", 0);
+		Integer connectionTimeout = intent.getIntExtra("connectionTimeout", CONNECTION_TIMEOUT);
 
 		try {
-			JSONObject jsonObject = uploadFile(file, userId, groupId, repositoryId, folderId, filePrefix);
+			JSONObject jsonObject =
+				uploadFile(file, userId, groupId, repositoryId, folderId, filePrefix, connectionTimeout);
 
 			DDLFormDocumentUploadEvent event = new DDLFormDocumentUploadEvent(targetScreenletId, file, userId, groupId, repositoryId,
 				folderId, filePrefix, jsonObject);
@@ -78,13 +80,13 @@ public class UploadService extends IntentService {
 	}
 
 	public JSONObject uploadFile(DocumentField file, Long userId, Long groupId, Long repositoryId,
-								 Long folderId, String filePrefix) throws Exception {
+								 Long folderId, String filePrefix, Integer connectionTimeout) throws Exception {
 		String path = file.getCurrentValue().toString();
 		String name = path.substring(path.lastIndexOf("/") + 1);
 		String date = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
 
 		Session session = SessionContext.createSessionFromCurrentSession();
-		session.setConnectionTimeout(CONNECTION_TIMEOUT);
+		session.setConnectionTimeout(connectionTimeout);
 
 		DLAppConnector dlAppConnector = ServiceProvider.getInstance().getDLAppConnector(session);
 

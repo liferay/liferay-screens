@@ -26,7 +26,7 @@ public class DDLFormDocumentUploadInteractorImpl
 
 	@Override
 	public void upload(final long groupId, final long userId, final long repositoryId, final long folderId,
-					   final String filePrefix, final DocumentField file) throws Exception {
+					   final String filePrefix, final DocumentField file, Integer connectionTimeout) throws Exception {
 
 		long repository = (repositoryId != 0) ? repositoryId : groupId;
 
@@ -67,6 +67,7 @@ public class DDLFormDocumentUploadInteractorImpl
 		service.putExtra("folderId", (long) args[4]);
 		service.putExtra("screenletId", getTargetScreenletId());
 		service.putExtra("filePrefix", (String) args[5]);
+		service.putExtra("connectionTimeout", (Integer) args[6]);
 
 		LiferayScreensContext.getContext().startService(service);
 	}
@@ -80,6 +81,7 @@ public class DDLFormDocumentUploadInteractorImpl
 		long repositoryId = (long) args[3];
 		long folderId = (long) args[4];
 		String filePrefix = (String) args[5];
+		Integer connectionTimeout = (Integer) args[6];
 
 		store(false, file, userId, groupId, repositoryId, folderId, filePrefix);
 
