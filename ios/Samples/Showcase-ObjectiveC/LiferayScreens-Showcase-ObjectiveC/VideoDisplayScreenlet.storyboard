@@ -12,7 +12,7 @@
         <!--Video Display View Controller-->
         <scene sceneID="dct-yx-qe3">
             <objects>
-                <viewController id="1tZ-zy-nGu" customClass="VideoDisplayViewController" customModule="LiferayScreens_Showcase_ObjectiveC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1tZ-zy-nGu" customClass="VideoDisplayViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LPf-Zu-dnP"/>
                         <viewControllerLayoutGuide type="bottom" id="lLy-gq-dJh"/>
