@@ -12,7 +12,7 @@
         <!--DDLFormScreenlet-->
         <scene sceneID="rsZ-56-Bs1">
             <objects>
-                <viewController title="DDLFormScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="oOo-3A-Uui" customClass="DDLFormScreenletViewController" customModule="LiferayScreens_Showcase_ObjectiveC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="DDLFormScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="oOo-3A-Uui" customClass="DDLFormScreenletViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KHz-PM-1Ly"/>
                         <viewControllerLayoutGuide type="bottom" id="VWD-qt-e85"/>
