@@ -13,7 +13,7 @@
         <!--Image Gallery Screenlet Controller-->
         <scene sceneID="izp-aj-3u6">
             <objects>
-                <viewController storyboardIdentifier="image-gallery" id="TKo-oY-mMB" customClass="ImageGalleryScreenletController" customModule="LiferayScreens_Showcase_ObjectiveC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="image-gallery" id="TKo-oY-mMB" customClass="ImageGalleryScreenletController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EEh-bY-4Z4"/>
                         <viewControllerLayoutGuide type="bottom" id="i1N-BA-kSy"/>
@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PvT-tM-Bkx" customClass="ImageGalleryScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
@@ -39,7 +39,7 @@
                     <navigationItem key="navigationItem" id="eCz-Es-CbX">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="U0B-lD-wJf">
-                            <rect key="frame" x="39.5" y="7" width="230" height="30"/>
+                            <rect key="frame" x="73" y="7" width="230" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Grid"/>
