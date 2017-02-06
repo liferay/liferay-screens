@@ -73,6 +73,7 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 	private Record record;
 	private DDLFormListener listener;
 	private boolean loadRecordAfterForm;
+	private Integer connectionTimeout;
 
 	public DDLFormScreenlet(Context context) {
 		super(context);
@@ -154,8 +155,6 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 
 	/**
 	 * Starts uploading document from position.
-	 *
-	 * @param position
 	 */
 	public void startUploadByPosition(int position) {
 		startUpload((DocumentField) record.getField(position));
@@ -163,8 +162,6 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 
 	/**
 	 * Starts uploading document from field.
-	 *
-	 * @param field
 	 */
 	public void startUpload(DocumentField field) {
 		performUserAction(UPLOAD_DOCUMENT_ACTION, field);
@@ -356,6 +353,14 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 		this.record = record;
 	}
 
+	public Integer getConnectionTimeout() {
+		return connectionTimeout;
+	}
+
+	public void setConnectionTimeout(Integer connectionTimeout) {
+		this.connectionTimeout = connectionTimeout;
+	}
+
 	public DDLFormListener getListener() {
 		return listener;
 	}
@@ -501,7 +506,8 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 				getViewModel().showStartOperation(UPLOAD_DOCUMENT_ACTION, documentField);
 
 				((DDLFormDocumentUploadInteractor) interactor).start(
-					new DDLFormDocumentUploadEvent(documentField, repositoryId, folderId, filePrefix));
+					new DDLFormDocumentUploadEvent(documentField, repositoryId, folderId, filePrefix,
+						connectionTimeout));
 				break;
 		}
 	}

@@ -13,18 +13,19 @@ public class DDLFormDocumentUploadEvent extends CacheEvent {
 	private Long repositoryId;
 	private Long folderId;
 	private String filePrefix;
+	private Integer connectionTimeout;
 
 	public DDLFormDocumentUploadEvent() {
 		super();
 	}
 
-	public DDLFormDocumentUploadEvent(DocumentField documentField, Long repositoryId, Long folderId,
-		String filePrefix) {
-		this(documentField, repositoryId, folderId, filePrefix, new JSONObject());
+	public DDLFormDocumentUploadEvent(DocumentField documentField, Long repositoryId, Long folderId, String filePrefix,
+		Integer connectionTimeout) {
+		this(documentField, repositoryId, folderId, filePrefix, connectionTimeout, new JSONObject());
 	}
 
 	public DDLFormDocumentUploadEvent(DocumentField documentField, Long repositoryId, Long folderId, String filePrefix,
-		JSONObject jsonObject) {
+		Integer connectionTimeout, JSONObject jsonObject) {
 		super(jsonObject);
 		this.documentField = documentField;
 		this.repositoryId = repositoryId;
@@ -50,5 +51,13 @@ public class DDLFormDocumentUploadEvent extends CacheEvent {
 
 	public DocumentField getDocumentField() {
 		return documentField;
+	}
+
+	public Integer getConnectionTimeout() {
+		return connectionTimeout;
+	}
+
+	public void setConnectionTimeout(Integer connectionTimeout) {
+		this.connectionTimeout = connectionTimeout;
 	}
 }
