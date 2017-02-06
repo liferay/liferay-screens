@@ -20,7 +20,7 @@
     [super viewDidLoad];
 
     self.data = @[
-		@[@"Assets", @"AssetListScrenlet", @"AssetDisplayScreenlet"],
+		@[@"Assets", @"AssetListScreenlet", @"AssetDisplayScreenlet"],
         @[@"Comments", @"CommentListScreenlet", @"CommentDisplayScreenlet", @"CommentAddScreenlet"],
         @[@"DDL", @"DDLListScreenlet", @"DDLFormScreenlet"],
         @[@"Files", @"AudioDisplayScreenlet", @"ImageDisplayScreenlet", @"PdfDisplayScreenlet",

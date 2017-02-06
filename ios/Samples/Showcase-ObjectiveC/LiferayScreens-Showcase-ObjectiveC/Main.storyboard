@@ -239,7 +239,7 @@
         <!--Sync-->
         <scene sceneID="h8k-Xm-7Vm">
             <objects>
-                <viewController title="Sync" id="AYT-Nq-QGp" customClass="OfflineSyncViewController" customModule="LiferayScreens_Showcase_ObjectiveC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Sync" id="AYT-Nq-QGp" customClass="OfflineSyncViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lNb-NU-lVF"/>
                         <viewControllerLayoutGuide type="bottom" id="4rX-kC-YFp"/>

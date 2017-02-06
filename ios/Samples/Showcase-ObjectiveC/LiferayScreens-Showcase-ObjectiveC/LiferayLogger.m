@@ -26,7 +26,7 @@
 
             for (NSObject *arg = firstArg; arg != nil; arg = va_arg(args, NSObject*))
             {
-                logMessage = [logMessage stringByAppendingString:[NSString stringWithFormat:@"%@", arg]];
+                logMessage = [logMessage stringByAppendingString:[NSString stringWithFormat:@" %@ ", arg]];
             }
 
             va_end(args);
