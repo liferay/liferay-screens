@@ -167,16 +167,16 @@
 		0B21AEC21E4471DA0037F00D /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				0B313D111E438A9800D02CB8 /* Main.storyboard */,
-				0B21AEC91E4472210037F00D /* WebContent */,
-				0B21AEC81E44721B0037F00D /* Others */,
-				0B21AEC71E4472160037F00D /* Files */,
-				0B21AEC61E44720F0037F00D /* DDL */,
-				0B21AEC51E4472080037F00D /* Comments */,
-				0B21AEC41E4472010037F00D /* Auth */,
 				0B21AEC31E4471FB0037F00D /* Asset */,
+				0B21AEC41E4472010037F00D /* Auth */,
+				0B21AEC51E4472080037F00D /* Comments */,
+				0B21AEC61E44720F0037F00D /* DDL */,
+				0B21AEC71E4472160037F00D /* Files */,
+				0B21AEC81E44721B0037F00D /* Others */,
+				0B21AEC91E4472210037F00D /* WebContent */,
+				0B313D111E438A9800D02CB8 /* Main.storyboard */,
 			);
-			name = Storyboards;
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		0B21AEC31E4471FB0037F00D /* Asset */ = {
@@ -185,7 +185,7 @@
 				0B313D211E438B5E00D02CB8 /* AssetDisplayScreenlet.storyboard */,
 				0B313D221E438B5E00D02CB8 /* AssetListScreenlet.storyboard */,
 			);
-			name = Asset;
+			path = Asset;
 			sourceTree = "<group>";
 		};
 		0B21AEC41E4472010037F00D /* Auth */ = {
@@ -194,7 +194,7 @@
 				0B313D2A1E438B5E00D02CB8 /* ForgotPasswordScreenlet.storyboard */,
 				0B313D151E438B5400D02CB8 /* SignUpScreenlet.storyboard */,
 			);
-			name = Auth;
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		0B21AEC51E4472080037F00D /* Comments */ = {
@@ -204,7 +204,7 @@
 				0B313D261E438B5E00D02CB8 /* CommentDisplayScreenlet.storyboard */,
 				0B313D271E438B5E00D02CB8 /* CommentListScreenlet.storyboard */,
 			);
-			name = Comments;
+			path = Comments;
 			sourceTree = "<group>";
 		};
 		0B21AEC61E44720F0037F00D /* DDL */ = {
@@ -213,7 +213,7 @@
 				0B313D281E438B5E00D02CB8 /* DDLFormScreenlet.storyboard */,
 				0B313D291E438B5E00D02CB8 /* DDLListScreenlet.storyboard */,
 			);
-			name = DDL;
+			path = DDL;
 			sourceTree = "<group>";
 		};
 		0B21AEC71E4472160037F00D /* Files */ = {
@@ -224,7 +224,7 @@
 				0B313D131E438B5400D02CB8 /* PdfDisplayScreenlet.storyboard */,
 				0B313D171E438B5400D02CB8 /* VideoDisplayScreenlet.storyboard */,
 			);
-			name = Files;
+			path = Files;
 			sourceTree = "<group>";
 		};
 		0B21AEC81E44721B0037F00D /* Others */ = {
@@ -235,7 +235,7 @@
 				0B313D141E438B5400D02CB8 /* RatingScreenlet.storyboard */,
 				0B313D161E438B5400D02CB8 /* UserPortraitScreenlet.storyboard */,
 			);
-			name = Others;
+			path = Others;
 			sourceTree = "<group>";
 		};
 		0B21AEC91E4472210037F00D /* WebContent */ = {
@@ -244,16 +244,146 @@
 				0B313D181E438B5400D02CB8 /* WebContentDisplayScreenlet.storyboard */,
 				0B313D191E438B5400D02CB8 /* WebContentListScreenlet.storyboard */,
 			);
-			name = WebContent;
+			path = WebContent;
+			sourceTree = "<group>";
+		};
+		0B2994021E48C4A80028F5F2 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				0B2993F61E4873A00028F5F2 /* NSString+Utils.h */,
+				0B2993F71E4873A00028F5F2 /* NSString+Utils.m */,
+				0B2993F01E486AEB0028F5F2 /* UIImage+GrayScale.h */,
+				0B2993F11E486AEB0028F5F2 /* UIImage+GrayScale.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		0B2994031E48C4BC0028F5F2 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0B2994041E48C4D50028F5F2 /* Asset */,
+				0B2994051E48C4F20028F5F2 /* Auth */,
+				0B2994061E48C53B0028F5F2 /* Comments */,
+				0B2994071E48C54E0028F5F2 /* DDL */,
+				0B2994081E48C55E0028F5F2 /* Files */,
+				0B29940A1E48C58B0028F5F2 /* Others */,
+				0B2994091E48C5730028F5F2 /* WebContent */,
+				0B21AED31E449FB00037F00D /* HomeScreenletsTableViewController.h */,
+				0B21AED41E449FB00037F00D /* HomeScreenletsTableViewController.m */,
+				0B2993FF1E4893BF0028F5F2 /* OfflineSyncViewController.h */,
+				0B2994001E4893BF0028F5F2 /* OfflineSyncViewController.m */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0B2994041E48C4D50028F5F2 /* Asset */ = {
+			isa = PBXGroup;
+			children = (
+				0B21AED61E44A4AD0037F00D /* AssetDisplayViewController.h */,
+				0B21AED71E44A4AD0037F00D /* AssetDisplayViewController.m */,
+				0B2993FC1E487FE10028F5F2 /* AssetListScreenletViewController.h */,
+				0B2993FD1E487FE10028F5F2 /* AssetListScreenletViewController.m */,
+				0B2993F91E487AA20028F5F2 /* AssetTypesViewController.h */,
+				0B2993FA1E487AA20028F5F2 /* AssetTypesViewController.m */,
+			);
+			path = Asset;
+			sourceTree = "<group>";
+		};
+		0B2994051E48C4F20028F5F2 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				0B21AECD1E4491000037F00D /* ForgotPasswordScreenletViewController.h */,
+				0B21AECE1E4491000037F00D /* ForgotPasswordScreenletViewController.m */,
+				0B313CA51E43526500D02CB8 /* LoginViewController.h */,
+				0B313CA61E43526500D02CB8 /* LoginViewController.m */,
+				0B21AED01E4492370037F00D /* SignUpScreenletViewController.h */,
+				0B21AED11E4492370037F00D /* SignUpScreenletViewController.m */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		0B2994061E48C53B0028F5F2 /* Comments */ = {
+			isa = PBXGroup;
+			children = (
+				0B21AEDE1E44AB5D0037F00D /* CommentAddScreenletViewController.h */,
+				0B21AEDF1E44AB5D0037F00D /* CommentAddScreenletViewController.m */,
+				0B21AEE41E462A2D0037F00D /* CommentDisplayScreenletViewController.h */,
+				0B21AEE51E462A2D0037F00D /* CommentDisplayScreenletViewController.m */,
+				0B21AEE11E44AC8B0037F00D /* CommentListScreenletViewController.h */,
+				0B21AEE21E44AC8B0037F00D /* CommentListScreenletViewController.m */,
+			);
+			path = Comments;
+			sourceTree = "<group>";
+		};
+		0B2994071E48C54E0028F5F2 /* DDL */ = {
+			isa = PBXGroup;
+			children = (
+				0B21AEE71E462C9F0037F00D /* DDLFormScreenletViewController.h */,
+				0B21AEE81E462C9F0037F00D /* DDLFormScreenletViewController.m */,
+				0B2993F31E486F240028F5F2 /* DDLListScreenletViewController.h */,
+				0B2993F41E486F240028F5F2 /* DDLListScreenletViewController.m */,
+			);
+			path = DDL;
+			sourceTree = "<group>";
+		};
+		0B2994081E48C55E0028F5F2 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				0B21AEEA1E4633120037F00D /* AudioDisplayViewController.h */,
+				0B21AEEB1E4633120037F00D /* AudioDisplayViewController.m */,
+				0B21AEED1E4634400037F00D /* ImageDisplayViewController.h */,
+				0B21AEEE1E4634400037F00D /* ImageDisplayViewController.m */,
+				0B21AEF01E4634780037F00D /* PdfDisplayViewController.h */,
+				0B21AEF11E4634780037F00D /* PdfDisplayViewController.m */,
+				0B21AEF31E4634C60037F00D /* VideoDisplayViewController.h */,
+				0B21AEF41E4634C60037F00D /* VideoDisplayViewController.m */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
+		0B2994091E48C5730028F5F2 /* WebContent */ = {
+			isa = PBXGroup;
+			children = (
+				0B21AEF61E46378C0037F00D /* WebContentDisplayScreenletViewController.h */,
+				0B21AEF71E46378C0037F00D /* WebContentDisplayScreenletViewController.m */,
+				0B21AEF91E463BA20037F00D /* WebContentListScreenletViewController.h */,
+				0B21AEFA1E463BA20037F00D /* WebContentListScreenletViewController.m */,
+			);
+			path = WebContent;
+			sourceTree = "<group>";
+		};
+		0B29940A1E48C58B0028F5F2 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				0B2993EA1E4859130028F5F2 /* BlogDisplayScreenletViewController.h */,
+				0B2993EB1E4859130028F5F2 /* BlogDisplayScreenletViewController.m */,
+				0B21AEFF1E46489D0037F00D /* ImageGalleryScreenletController.h */,
+				0B21AF001E46489D0037F00D /* ImageGalleryScreenletController.m */,
+				0B21AEFC1E463EC80037F00D /* RatingScreenletViewController.h */,
+				0B21AEFD1E463EC80037F00D /* RatingScreenletViewController.m */,
+				0B2993ED1E485D490028F5F2 /* UserPortraitScreenletViewController.h */,
+				0B2993EE1E485D490028F5F2 /* UserPortraitScreenletViewController.m */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
+		0B29940B1E48C59E0028F5F2 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				0B21AEDB1E44A64A0037F00D /* UserView.h */,
+				0B21AEDC1E44A64A0037F00D /* UserView.m */,
+				0B21AED91E44A6330037F00D /* UserView.xib */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		0B313C931E43526500D02CB8 = {
 			isa = PBXGroup;
 			children = (
 				0B313C9E1E43526500D02CB8 /* Showcase-ObjectiveC */,
-				0B313C9D1E43526500D02CB8 /* Products */,
-				6B03B5E5E259F5EC23467A31 /* Pods */,
 				9541B7738292BB9D64C67ADF /* Frameworks */,
+				6B03B5E5E259F5EC23467A31 /* Pods */,
+				0B313C9D1E43526500D02CB8 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -268,80 +398,29 @@
 		0B313C9E1E43526500D02CB8 /* Showcase-ObjectiveC */ = {
 			isa = PBXGroup;
 			children = (
+				0B2994021E48C4A80028F5F2 /* Categories */,
+				0B29940B1E48C59E0028F5F2 /* CustomViews */,
 				0B21AEC21E4471DA0037F00D /* Storyboards */,
-				0B313CFA1E435D2800D02CB8 /* liferay-server-context.plist */,
+				0B313C9F1E43526500D02CB8 /* Supporting Files */,
+				0B2994031E48C4BC0028F5F2 /* ViewControllers */,
 				0B313CA21E43526500D02CB8 /* AppDelegate.h */,
 				0B313CA31E43526500D02CB8 /* AppDelegate.m */,
-				0B313CA51E43526500D02CB8 /* LoginViewController.h */,
-				0B313CA61E43526500D02CB8 /* LoginViewController.m */,
-				0B313CAB1E43526500D02CB8 /* Assets.xcassets */,
-				0B313CAD1E43526500D02CB8 /* LaunchScreen.storyboard */,
-				0B313CB01E43526500D02CB8 /* Info.plist */,
-				0B313C9F1E43526500D02CB8 /* Supporting Files */,
 				0B21AECA1E4484C50037F00D /* LiferayLogger.h */,
 				0B21AECB1E4484C50037F00D /* LiferayLogger.m */,
-				0B21AECD1E4491000037F00D /* ForgotPasswordScreenletViewController.h */,
-				0B21AECE1E4491000037F00D /* ForgotPasswordScreenletViewController.m */,
-				0B21AED01E4492370037F00D /* SignUpScreenletViewController.h */,
-				0B21AED11E4492370037F00D /* SignUpScreenletViewController.m */,
-				0B21AED31E449FB00037F00D /* HomeScreenletsTableViewController.h */,
-				0B21AED41E449FB00037F00D /* HomeScreenletsTableViewController.m */,
-				0B21AED61E44A4AD0037F00D /* AssetDisplayViewController.h */,
-				0B21AED71E44A4AD0037F00D /* AssetDisplayViewController.m */,
-				0B21AED91E44A6330037F00D /* UserView.xib */,
-				0B21AEDB1E44A64A0037F00D /* UserView.h */,
-				0B21AEDC1E44A64A0037F00D /* UserView.m */,
-				0B21AEDE1E44AB5D0037F00D /* CommentAddScreenletViewController.h */,
-				0B21AEDF1E44AB5D0037F00D /* CommentAddScreenletViewController.m */,
-				0B21AEE11E44AC8B0037F00D /* CommentListScreenletViewController.h */,
-				0B21AEE21E44AC8B0037F00D /* CommentListScreenletViewController.m */,
-				0B21AEE41E462A2D0037F00D /* CommentDisplayScreenletViewController.h */,
-				0B21AEE51E462A2D0037F00D /* CommentDisplayScreenletViewController.m */,
-				0B21AEE71E462C9F0037F00D /* DDLFormScreenletViewController.h */,
-				0B21AEE81E462C9F0037F00D /* DDLFormScreenletViewController.m */,
-				0B21AEEA1E4633120037F00D /* AudioDisplayViewController.h */,
-				0B21AEEB1E4633120037F00D /* AudioDisplayViewController.m */,
-				0B21AEED1E4634400037F00D /* ImageDisplayViewController.h */,
-				0B21AEEE1E4634400037F00D /* ImageDisplayViewController.m */,
-				0B21AEF01E4634780037F00D /* PdfDisplayViewController.h */,
-				0B21AEF11E4634780037F00D /* PdfDisplayViewController.m */,
-				0B21AEF31E4634C60037F00D /* VideoDisplayViewController.h */,
-				0B21AEF41E4634C60037F00D /* VideoDisplayViewController.m */,
-				0B21AEF61E46378C0037F00D /* WebContentDisplayScreenletViewController.h */,
-				0B21AEF71E46378C0037F00D /* WebContentDisplayScreenletViewController.m */,
-				0B21AEF91E463BA20037F00D /* WebContentListScreenletViewController.h */,
-				0B21AEFA1E463BA20037F00D /* WebContentListScreenletViewController.m */,
-				0B21AEFC1E463EC80037F00D /* RatingScreenletViewController.h */,
-				0B21AEFD1E463EC80037F00D /* RatingScreenletViewController.m */,
-				0B21AEFF1E46489D0037F00D /* ImageGalleryScreenletController.h */,
-				0B21AF001E46489D0037F00D /* ImageGalleryScreenletController.m */,
-				0B2993EA1E4859130028F5F2 /* BlogDisplayScreenletViewController.h */,
-				0B2993EB1E4859130028F5F2 /* BlogDisplayScreenletViewController.m */,
-				0B2993ED1E485D490028F5F2 /* UserPortraitScreenletViewController.h */,
-				0B2993EE1E485D490028F5F2 /* UserPortraitScreenletViewController.m */,
-				0B2993F01E486AEB0028F5F2 /* UIImage+GrayScale.h */,
-				0B2993F11E486AEB0028F5F2 /* UIImage+GrayScale.m */,
-				0B2993F31E486F240028F5F2 /* DDLListScreenletViewController.h */,
-				0B2993F41E486F240028F5F2 /* DDLListScreenletViewController.m */,
-				0B2993F61E4873A00028F5F2 /* NSString+Utils.h */,
-				0B2993F71E4873A00028F5F2 /* NSString+Utils.m */,
-				0B2993F91E487AA20028F5F2 /* AssetTypesViewController.h */,
-				0B2993FA1E487AA20028F5F2 /* AssetTypesViewController.m */,
-				0B2993FC1E487FE10028F5F2 /* AssetListScreenletViewController.h */,
-				0B2993FD1E487FE10028F5F2 /* AssetListScreenletViewController.m */,
-				0B2993FF1E4893BF0028F5F2 /* OfflineSyncViewController.h */,
-				0B2994001E4893BF0028F5F2 /* OfflineSyncViewController.m */,
 			);
-			name = "Showcase-ObjectiveC";
-			path = "LiferayScreens-Showcase-ObjectiveC";
+			path = "Showcase-ObjectiveC";
 			sourceTree = "<group>";
 		};
 		0B313C9F1E43526500D02CB8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0B313CAB1E43526500D02CB8 /* Assets.xcassets */,
+				0B313CB01E43526500D02CB8 /* Info.plist */,
+				0B313CAD1E43526500D02CB8 /* LaunchScreen.storyboard */,
+				0B313CFA1E435D2800D02CB8 /* liferay-server-context.plist */,
 				0B313CA01E43526500D02CB8 /* main.m */,
 			);
-			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		6B03B5E5E259F5EC23467A31 /* Pods */ = {
@@ -546,6 +625,7 @@
 				0B313CAE1E43526500D02CB8 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -644,7 +724,7 @@
 			baseConfigurationReference = A13BB7BE9A9298F2F9373648 /* Pods-LiferayScreens-Showcase-ObjectiveC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "LiferayScreens-Showcase-ObjectiveC/Info.plist";
+				INFOPLIST_FILE = "Showcase-ObjectiveC/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.LiferayScreens-Showcase-ObjectiveC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -657,7 +737,7 @@
 			baseConfigurationReference = 9A2BB752B1DBFD56137CF2B2 /* Pods-LiferayScreens-Showcase-ObjectiveC.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "LiferayScreens-Showcase-ObjectiveC/Info.plist";
+				INFOPLIST_FILE = "Showcase-ObjectiveC/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.LiferayScreens-Showcase-ObjectiveC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
