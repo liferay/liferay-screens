@@ -13,7 +13,7 @@
         <!--Choose a type-->
         <scene sceneID="mZA-lY-MDo">
             <objects>
-                <tableViewController title="Choose a type" id="Mc3-eq-fOJ" customClass="AssetTypesViewController" customModule="LiferayScreens_Showcase_ObjectiveC" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Choose a type" id="Mc3-eq-fOJ" customClass="AssetTypesViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="fOq-Fr-69x">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,7 +34,7 @@
         <!--AssetListScreenlet-->
         <scene sceneID="iw6-Jo-TvM">
             <objects>
-                <viewController title="AssetListScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="1r7-Pt-kdu" customClass="AssetListScreenletViewController" customModule="LiferayScreens_Showcase_ObjectiveC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="AssetListScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="1r7-Pt-kdu" customClass="AssetListScreenletViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="O8F-WV-nww"/>
                         <viewControllerLayoutGuide type="bottom" id="6Xe-6s-Q9X"/>
