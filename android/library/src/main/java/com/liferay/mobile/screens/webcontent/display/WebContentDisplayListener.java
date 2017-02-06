@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.webcontent.display;
 
 import android.view.MotionEvent;
+import android.view.View;
 import android.webkit.WebView;
 import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import com.liferay.mobile.screens.ddl.model.DDMStructure;
@@ -39,5 +40,5 @@ public interface WebContentDisplayListener extends BaseCacheListener {
 	/**
 	 * Called when something is clicked in the WebContent.
 	 */
-	boolean onWebContentClicked(WebView.HitTestResult result, MotionEvent event);
+	boolean onWebContentTouched(View view, MotionEvent event);
 }
