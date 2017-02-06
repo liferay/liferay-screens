@@ -13,7 +13,7 @@
         <!--WebContentDisplayScreenlet-->
         <scene sceneID="Vwd-Qg-h5f">
             <objects>
-                <viewController title="WebContentDisplayScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="kiQ-mD-UG4" customClass="WebContentDisplayScreenletViewController" customModule="LiferayScreens_Showcase_ObjectiveC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="WebContentDisplayScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="kiQ-mD-UG4" customClass="WebContentDisplayScreenletViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KM5-sa-NhK"/>
                         <viewControllerLayoutGuide type="bottom" id="Rya-e6-Pha"/>
