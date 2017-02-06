@@ -24,7 +24,13 @@
 
     self.screenlet.delegate = self;
     self.screenlet.presentingViewController = self;
-    self.screenlet.assetEntryId = [LiferayServerContext longPropertyForKey:@"assetDisplayEntryId"];
+
+    if (self.entryId) {
+        self.screenlet.assetEntryId = self.entryId;
+    }
+    else {
+        self.screenlet.assetEntryId = [LiferayServerContext longPropertyForKey:@"assetDisplayEntryId"];
+    }
 
     [self.screenlet load];
 }

@@ -10,4 +10,6 @@
 
 @interface AssetDisplayViewController : UIViewController
 
+@property (nonatomic) long entryId;
+
 @end
