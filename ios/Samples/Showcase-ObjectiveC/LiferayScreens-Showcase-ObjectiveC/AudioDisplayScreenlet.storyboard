@@ -12,7 +12,7 @@
         <!--Audio Display View Controller-->
         <scene sceneID="3Dy-ph-zOR">
             <objects>
-                <viewController id="CN3-Wv-chp" customClass="AudioDisplayViewController" customModule="LiferayScreens_Showcase_ObjectiveC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="CN3-Wv-chp" customClass="AudioDisplayViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="07W-Jz-UGJ"/>
                         <viewControllerLayoutGuide type="bottom" id="xU7-zs-PP1"/>
