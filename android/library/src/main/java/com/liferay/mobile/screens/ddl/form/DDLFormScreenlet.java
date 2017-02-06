@@ -318,6 +318,14 @@ public class DDLFormScreenlet
 		_record.setRecordId(value);
 	}
 
+	public Integer getConnectionTimeout() {
+		return _connectionTimeout;
+	}
+
+	public void setConnectionTimeout(Integer connectionTimeout) {
+		_connectionTimeout = connectionTimeout;
+	}
+
 	public long getUserId() {
 		return _userId;
 	}
@@ -569,7 +577,7 @@ public class DDLFormScreenlet
 						(DDLFormDocumentUploadInteractor) interactor;
 
 					uploadInteractor.upload(
-						_groupId, _userId, _repositoryId, _folderId, _filePrefix, documentToUpload);
+						_groupId, _userId, _repositoryId, _folderId, _filePrefix, documentToUpload, _connectionTimeout);
 				}
 				catch (Exception e) {
 					onDDLFormDocumentUploadFailed(documentToUpload, e);
@@ -685,6 +693,7 @@ public class DDLFormScreenlet
 	private long _repositoryId;
 	private long _folderId;
 	private String _filePrefix;
+	private Integer _connectionTimeout;
 
 	private Record _record;
 

@@ -109,7 +109,7 @@ public class CacheSyncService extends IntentService {
 
 				UploadService uploadService = new UploadService();
 				JSONObject jsonObject = uploadService.uploadFile(documentField, document.getUserId(), document.getGroupId(),
-					document.getRepositoryId(), document.getFolderId(), document.getFilePrefix());
+					document.getRepositoryId(), document.getFolderId(), document.getFilePrefix(), null);
 				LiferayLogger.i(jsonObject.toString());
 
 				document.setDirty(false);
