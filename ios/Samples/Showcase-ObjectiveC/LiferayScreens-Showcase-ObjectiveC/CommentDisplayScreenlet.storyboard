@@ -13,7 +13,7 @@
         <!--CommentDisplayScreenlet-->
         <scene sceneID="T12-O4-Lqp">
             <objects>
-                <viewController title="CommentDisplayScreenlet" id="myx-wj-dMR" customClass="CommentDisplayScreenletViewController" customModule="LiferayScreens_Showcase_ObjectiveC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="CommentDisplayScreenlet" id="myx-wj-dMR" customClass="CommentDisplayScreenletViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zgn-S7-hoK"/>
                         <viewControllerLayoutGuide type="bottom" id="BcC-CY-PdX"/>
