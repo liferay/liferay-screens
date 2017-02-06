@@ -1,32 +1,38 @@
-//
-//  UIImage+UIImage_GrayScale.m
-//  LiferayScreens-Showcase-ObjectiveC
-//
-//  Created by Victor Galán on 06/02/2017.
-//  Copyright © 2017 liferay. All rights reserved.
-//
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 
 #import "UIImage+GrayScale.h"
 
 @implementation UIImage (GrayScale)
 
 - (UIImage *)grayScaleImage {
-    CGRect imageRect = CGRectMake(0, 0, self.size.width, self.size.height);
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
+	CGRect imageRect = CGRectMake(0, 0, self.size.width, self.size.height);
+	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
 
-    CGContextRef context = CGBitmapContextCreate(nil, self.size.width,
-    		self.size.height, 8, 0, colorSpace, kCGImageAlphaNone);
+	CGContextRef context = CGBitmapContextCreate(nil, self.size.width,
+												 self.size.height, 8, 0, colorSpace, kCGImageAlphaNone);
 
-    CGContextDrawImage(context, imageRect, [self CGImage]);
-    CGImageRef imageRef = CGBitmapContextCreateImage(context);
+	CGContextDrawImage(context, imageRect, [self CGImage]);
+	CGImageRef imageRef = CGBitmapContextCreateImage(context);
 
-    UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+	UIImage *newImage = [UIImage imageWithCGImage:imageRef];
 
-    CGColorSpaceRelease(colorSpace);
-    CGContextRelease(context);
-    CFRelease(imageRef);
+	CGColorSpaceRelease(colorSpace);
+	CGContextRelease(context);
+	CFRelease(imageRef);
 
-    return newImage;
+	return newImage;
 }
 
 @end
