@@ -31,6 +31,7 @@ public class DDLFormDocumentUploadInteractor
 		service.putExtra("filePrefix", event.getFilePrefix());
 		service.putExtra("targetScreenletId", getTargetScreenletId());
 		service.putExtra("actionName", getActionName());
+		service.putExtra("connectionTimeout", event.getConnectionTimeout());
 
 		context.startService(service);
 		return null;
