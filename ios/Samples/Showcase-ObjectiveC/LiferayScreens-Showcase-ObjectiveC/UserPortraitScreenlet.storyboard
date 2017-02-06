@@ -14,7 +14,7 @@
         <!--User Portrait Screenlet View Controller-->
         <scene sceneID="HvN-Yo-cMo">
             <objects>
-                <viewController id="TY4-Ql-4pF" customClass="UserPortraitScreenletViewController" customModule="LiferayScreens_Showcase_ObjectiveC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="TY4-Ql-4pF" customClass="UserPortraitScreenletViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9ha-iK-R4n"/>
                         <viewControllerLayoutGuide type="bottom" id="Snu-6a-iji"/>
