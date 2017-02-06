@@ -13,7 +13,7 @@
         <!--DDLListScreenlet-->
         <scene sceneID="N7w-1Z-GsW">
             <objects>
-                <viewController title="DDLListScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="MGb-m9-wGz" customClass="DDLListScreenletViewController" customModule="LiferayScreens_Showcase_ObjectiveC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="DDLListScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="MGb-m9-wGz" customClass="DDLListScreenletViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iaB-gN-3UH"/>
                         <viewControllerLayoutGuide type="bottom" id="cTM-Oc-iFx"/>
