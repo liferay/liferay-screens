@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="N0K-Ji-ryL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="N0K-Ji-ryL">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -10,7 +13,7 @@
         <!--RatingDisplayScreenlet-->
         <scene sceneID="U3d-fZ-IXQ">
             <objects>
-                <viewController title="RatingDisplayScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="N0K-Ji-ryL" customClass="RatingScreenletViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="RatingDisplayScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="N0K-Ji-ryL" customClass="RatingScreenletViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="s8Q-dv-O3o"/>
                         <viewControllerLayoutGuide type="bottom" id="7f1-30-j8U"/>
@@ -20,6 +23,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VbC-bI-jPR">
+                                <rect key="frame" x="16" y="84" width="288" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="fUE-ZZ-IR5"/>
                                 </constraints>
@@ -35,8 +39,10 @@
                                 </connections>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MAQ-sX-WyU" userLabel="Editable switch view">
+                                <rect key="frame" x="92.5" y="132" width="135" height="45"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Editable" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvB-0o-bfZ">
+                                        <rect key="frame" x="65" y="6" width="70" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="2sc-qk-1yl"/>
                                         </constraints>
@@ -45,6 +51,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D7x-W0-d56">
+                                        <rect key="frame" x="8" y="7" width="51" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="LMU-un-ZAw"/>
                                         </constraints>
@@ -69,6 +76,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PeC-X4-KBr" customClass="RatingScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="16" y="197" width="288" height="334"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="YES"/>
