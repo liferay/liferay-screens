@@ -79,11 +79,11 @@ public class ImageGalleryEvent extends ListEvent<ImageEntry> {
 		return starting;
 	}
 
-	public void setFolderId(long folderId) {
-		this.folderId = folderId;
-	}
-
 	public long getFolderId() {
 		return folderId;
+	}
+
+	public void setFolderId(long folderId) {
+		this.folderId = folderId;
 	}
 }

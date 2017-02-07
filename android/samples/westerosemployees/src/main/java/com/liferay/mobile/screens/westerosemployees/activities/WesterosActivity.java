@@ -30,7 +30,6 @@ public abstract class WesterosActivity extends Activity {
 	private void setStatusBar() {
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-		getWindow().setStatusBarColor(
-			ContextCompat.getColor(this, R.color.background_gray_westeros));
+		getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.background_gray_westeros));
 	}
 }

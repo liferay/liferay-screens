@@ -30,8 +30,6 @@ public interface DDLFieldViewModel<T extends Field> {
 
 	/**
 	 * Sets a DDL field.
-	 *
-	 * @param field
 	 */
 	void setField(T field);
 
@@ -43,29 +41,21 @@ public interface DDLFieldViewModel<T extends Field> {
 	/**
 	 * Called with the validation result.
 	 * For example, see {@link DDLFieldRadioView#onPostValidation(boolean)}
-	 *
-	 * @param valid
 	 */
 	void onPostValidation(boolean valid);
 
 	/**
 	 * Gets the parent view.
-	 *
-	 * @return
 	 */
 	View getParentView();
 
 	/**
 	 * Sets the parent view.
-	 *
-	 * @param view
 	 */
 	void setParentView(View view);
 
 	/**
 	 * Sets the DDL field position in parent view.
-	 *
-	 * @param position
 	 */
 	void setPositionInParent(int position);
 }

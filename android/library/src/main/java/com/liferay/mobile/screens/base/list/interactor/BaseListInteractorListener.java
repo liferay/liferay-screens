@@ -26,19 +26,12 @@ public interface BaseListInteractorListener<E> extends BaseCacheListener {
 	/**
 	 * Called when the server call to retrieve a page of items fails.
 	 *
-	 * @param startRow
-	 * @param endRow
 	 * @param e exception
 	 */
 	void onListRowsFailure(int startRow, int endRow, Exception e);
 
 	/**
 	 * Called when the server call to retrieve a page of items succeed.
-	 *
-	 * @param startRow
-	 * @param endRow
-	 * @param entries
-	 * @param rowCount
 	 */
 	void onListRowsReceived(int startRow, int endRow, List<E> entries, int rowCount);
 }

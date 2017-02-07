@@ -13,7 +13,8 @@ import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
 /**
  * @author Víctor Galán Grande
  */
-public class GridImageGalleryAdapter extends BaseListAdapter<ImageEntry, GridImageGalleryAdapter.GridGalleryViewHolder> {
+public class GridImageGalleryAdapter
+	extends BaseListAdapter<ImageEntry, GridImageGalleryAdapter.GridGalleryViewHolder> {
 
 	public GridImageGalleryAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 		super(layoutId, progressLayoutId, listener);

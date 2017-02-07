@@ -62,8 +62,10 @@ public class ModalDetailActivity extends AppCompatActivity implements CommentAdd
 	}
 
 	private void loadScreenlets(String className, long classPK) {
-		if (assetDisplayScreenlet != null && ratingScreenlet != null
-			&& commentListScreenlet != null && commentAddScreenlet != null) {
+		if (assetDisplayScreenlet != null
+			&& ratingScreenlet != null
+			&& commentListScreenlet != null
+			&& commentAddScreenlet != null) {
 			assetDisplayScreenlet.setClassName(className);
 			assetDisplayScreenlet.setClassPK(classPK);
 			assetDisplayScreenlet.loadAsset();
@@ -97,8 +99,7 @@ public class ModalDetailActivity extends AppCompatActivity implements CommentAdd
 
 	private void hideSoftKeyBoard() {
 		Activity activity = LiferayScreensContext.getActivityFromContext(this);
-		InputMethodManager imm =
-			(InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+		InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
 
 		if (imm.isAcceptingText()) {
 			IBinder windowToken = activity.getCurrentFocus().getWindowToken();

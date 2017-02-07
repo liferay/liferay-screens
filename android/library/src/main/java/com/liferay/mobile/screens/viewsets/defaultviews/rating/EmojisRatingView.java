@@ -51,5 +51,4 @@ public class EmojisRatingView extends BaseRatingView implements View.OnClickList
 		String action = score == userScore ? DELETE_RATING_ACTION : UPDATE_RATING_ACTION;
 		getScreenlet().performUserAction(action, score);
 	}
-
 }

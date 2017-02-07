@@ -73,7 +73,7 @@
 				android:id="@+id/get_user"
 				android:text="@string/get_user"
 				style="@style/test_app_button"
-			/>
+				/>
 
 			<Button
 				android:id="@+id/user_display"

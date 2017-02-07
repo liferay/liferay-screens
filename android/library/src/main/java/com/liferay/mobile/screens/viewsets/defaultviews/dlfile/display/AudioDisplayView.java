@@ -32,8 +32,7 @@ public class AudioDisplayView extends BaseFileDisplayView {
 	}
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	public AudioDisplayView(Context context, AttributeSet attrs, int defStyleAttr,
-		int defStyleRes) {
+	public AudioDisplayView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 

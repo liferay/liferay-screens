@@ -54,6 +54,7 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 
 	//public static final String DELETE_IMAGE = "DELETE_IMAGE";
 	public static final String UPLOAD_IMAGE = "UPLOAD_IMAGE";
+	private final Map<String, ImageGalleryUploadInteractor> uploadInteractors = new HashMap<>();
 	private long repositoryId;
 	private long folderId;
 	private String[] mimeTypes;
@@ -115,19 +116,16 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 
 	/**
 	 * Deletes the image associated with the given `fileEntryId`.
-	 *
-	 * @param fileEntryId
 	 */
 	public void deleteEntry(long fileEntryId) {
-		ImageGalleryDeleteInteractor
-			imageGalleryDeleteInteractor = new ImageGalleryDeleteInteractor();
+		ImageGalleryDeleteInteractor imageGalleryDeleteInteractor = new ImageGalleryDeleteInteractor();
 		imageGalleryDeleteInteractor.start(new ImageGalleryEvent(new ImageEntry(fileEntryId)));
 	}
 
 	/**
 	 * Tries to delete all values stored in the cache.
 	 *
-	 * @throws IOException
+	 * @throws IOException when can't delete the cache
 	 */
 	public void deleteCaches() throws IOException {
 		LiferayServerContext.getOkHttpClient().getCache().evictAll();
@@ -154,9 +152,6 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 
 	/**
 	 * Called when an image is clicked.
-	 *
-	 * @param image
-	 * @param view
 	 */
 	public void onImageClicked(ImageEntry image, View view) {
 		if (getListener() != null) {
@@ -222,8 +217,7 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	}
 
 	@Override
-	public void onPictureUploadInformationReceived(Uri pictureUri, String title, String description,
-		String changelog) {
+	public void onPictureUploadInformationReceived(Uri pictureUri, String title, String description, String changelog) {
 		getViewModel().imageUploadStart(pictureUri);
 
 		ImageGalleryUploadInteractor imageGalleryUploadInteractor = getUploadInteractor();
@@ -238,8 +232,6 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 
 	/**
 	 * Starts an activity which shows the image in full screen.
-	 *
-	 * @param image
 	 */
 	public void showImageInFullScreenActivity(ImageEntry image) {
 		Intent intent = new Intent(getContext(), DetailImageActivity.class);
@@ -297,7 +289,6 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	/**
 	 * Parse the given mime types.
 	 *
-	 * @param mimeTypesRaw
 	 * @return array with all the mime types.
 	 */
 	protected String[] parseMimeTypes(String mimeTypesRaw) {
@@ -337,8 +328,6 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 
 	/**
 	 * Starts the activity to select where the image is from.
-	 *
-	 * @param mediaStore
 	 */
 	protected void startShadowActivityForMediaStore(int mediaStore) {
 
@@ -358,13 +347,10 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 		if (uploadInteractors.containsKey(UPLOAD_IMAGE)) {
 			return uploadInteractors.get(UPLOAD_IMAGE);
 		}
-		ImageGalleryUploadInteractor
-			imageGalleryUploadInteractor = new ImageGalleryUploadInteractor();
+		ImageGalleryUploadInteractor imageGalleryUploadInteractor = new ImageGalleryUploadInteractor();
 		decorateInteractor(UPLOAD_IMAGE, imageGalleryUploadInteractor);
 		uploadInteractors.put(UPLOAD_IMAGE, imageGalleryUploadInteractor);
 		imageGalleryUploadInteractor.onScreenletAttached(this);
 		return imageGalleryUploadInteractor;
 	}
-
-	private final Map<String, ImageGalleryUploadInteractor> uploadInteractors = new HashMap<>();
 }

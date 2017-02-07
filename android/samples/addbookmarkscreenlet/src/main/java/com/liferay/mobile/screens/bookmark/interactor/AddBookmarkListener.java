@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  * <p>
  * This library is free software; you can redistribute it and/or modify it under
@@ -21,8 +21,6 @@ public interface AddBookmarkListener {
 
 	/**
 	 * Called when the bookmark didn't add correctly.
-	 *
-	 * @param exception
 	 */
 	void onAddBookmarkFailure(Exception exception);
 

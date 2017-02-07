@@ -34,15 +34,11 @@ public interface UserPortraitInteractorListener extends BaseCacheListener {
 
 	/**
 	 * Called when the user portrait upload service finishes.
-	 *
-	 * @param userId
 	 */
 	void onUserPortraitUploaded(Long userId);
 
 	/**
 	 * Called when an user portrait was chosen and it's ready for upload.
-	 *
-	 * @param pictureUri
 	 */
 	void onPictureUriReceived(Uri pictureUri);
 }

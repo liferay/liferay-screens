@@ -24,22 +24,16 @@ public interface ImageDisplayViewModel extends BaseFileDisplayViewModel {
 
 	/**
 	 * Sets the {@link ImageView.ScaleType} for the image.
-	 *
-	 * @param scaleType
 	 */
 	void setScaleType(ImageView.ScaleType scaleType);
 
 	/**
 	 * Sets the placeholder image resource.
-	 *
-	 * @param placeholder
 	 */
 	void setPlaceholder(int placeholder);
 
 	/**
 	 * Sets the placeholder image {@link ImageView.ScaleType}.
-	 *
-	 * @param placeholderScaleType
 	 */
 	void setPlaceholderScaleType(ImageView.ScaleType placeholderScaleType);
 }

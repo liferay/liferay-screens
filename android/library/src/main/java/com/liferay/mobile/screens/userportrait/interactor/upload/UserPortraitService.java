@@ -71,6 +71,21 @@ public class UserPortraitService extends IntentService {
 		return inSampleSize;
 	}
 
+	private static Bitmap checkOrientationAndRotate(InputStream inputStream, Bitmap bitmap) throws IOException {
+		int orientation =
+			new android.support.media.ExifInterface(inputStream).getAttributeInt(ExifInterface.TAG_ORIENTATION,
+				ExifInterface.ORIENTATION_NORMAL);
+
+		switch (orientation) {
+			case ExifInterface.ORIENTATION_ROTATE_90:
+				return rotateImage(bitmap, 90);
+			case ExifInterface.ORIENTATION_ROTATE_180:
+				return rotateImage(bitmap, 180);
+			default:
+				return bitmap;
+		}
+	}
+
 	private byte[] decodeSampledBitmapFromResource(Uri pictureUri, int reqWidth, int reqHeight) throws IOException {
 		// First decode with inJustDecodeBounds=true to check dimensions
 		final BitmapFactory.Options options = new BitmapFactory.Options();
@@ -87,21 +102,6 @@ public class UserPortraitService extends IntentService {
 		ByteArrayOutputStream byteArrayBitmapStream = new ByteArrayOutputStream();
 		bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayBitmapStream);
 		return byteArrayBitmapStream.toByteArray();
-	}
-
-	private static Bitmap checkOrientationAndRotate(InputStream inputStream, Bitmap bitmap) throws IOException {
-		int orientation =
-			new android.support.media.ExifInterface(inputStream).getAttributeInt(ExifInterface.TAG_ORIENTATION,
-				ExifInterface.ORIENTATION_NORMAL);
-
-		switch (orientation) {
-			case ExifInterface.ORIENTATION_ROTATE_90:
-				return rotateImage(bitmap, 90);
-			case ExifInterface.ORIENTATION_ROTATE_180:
-				return rotateImage(bitmap, 180);
-			default:
-				return bitmap;
-		}
 	}
 
 	@Override

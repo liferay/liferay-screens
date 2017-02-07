@@ -97,7 +97,7 @@ public class DateField extends Field<Date> {
 			return null;
 		}
 
-		if(LiferayServerContext.isLiferay7()) {
+		if (LiferayServerContext.isLiferay7()) {
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", getCurrentLocale());
 			simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
 

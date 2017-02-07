@@ -22,8 +22,7 @@ import java.io.File;
  * @author Víctor Galán Grande
  */
 
-public abstract class BaseFileDisplayView extends RelativeLayout
-	implements BaseFileDisplayViewModel {
+public abstract class BaseFileDisplayView extends RelativeLayout implements BaseFileDisplayViewModel {
 
 	protected FileEntry fileEntry;
 	protected BaseScreenlet screenlet;
@@ -43,16 +42,15 @@ public abstract class BaseFileDisplayView extends RelativeLayout
 	}
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	public BaseFileDisplayView(Context context, AttributeSet attrs, int defStyleAttr,
-		int defStyleRes) {
+	public BaseFileDisplayView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override
 	public void showFinishOperation(FileEntry fileEntry) {
 		this.fileEntry = fileEntry;
-		file = new File(getContext().getExternalCacheDir().getPath() + "/" + fileEntry.getEntryId()
-				+ "" + fileEntry.getTitle());
+		file = new File(
+			getContext().getExternalCacheDir().getPath() + "/" + fileEntry.getEntryId() + "" + fileEntry.getTitle());
 
 		if (file.exists()) {
 			loadFileEntry(file.getAbsolutePath());
@@ -69,8 +67,8 @@ public abstract class BaseFileDisplayView extends RelativeLayout
 
 	@Override
 	public void showFinishOperation(String actionName) {
-		throw new UnsupportedOperationException("showFinishOperation(String) is not supported."
-			+ " Use showFinishOperation(FileEntry) instead.");
+		throw new UnsupportedOperationException(
+			"showFinishOperation(String) is not supported." + " Use showFinishOperation(FileEntry) instead.");
 	}
 
 	@Override

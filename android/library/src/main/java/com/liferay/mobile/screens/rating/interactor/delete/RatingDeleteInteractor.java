@@ -4,8 +4,8 @@ import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.rating.AssetRating;
 import com.liferay.mobile.screens.rating.RatingListener;
 import com.liferay.mobile.screens.rating.RatingScreenlet;
-import com.liferay.mobile.screens.rating.interactor.RatingEvent;
 import com.liferay.mobile.screens.rating.connector.ScreensRatingsConnector;
+import com.liferay.mobile.screens.rating.interactor.RatingEvent;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,8 +21,8 @@ public class RatingDeleteInteractor extends BaseCacheWriteInteractor<RatingListe
 
 		ScreensRatingsConnector connector = ServiceProvider.getInstance().getScreensRatingsConnector(getSession());
 
-		JSONObject jsonObject = connector.deleteRatingsEntry(event.getClassPK(), event.getClassName(),
-			event.getRatingGroupCounts());
+		JSONObject jsonObject =
+			connector.deleteRatingsEntry(event.getClassPK(), event.getClassName(), event.getRatingGroupCounts());
 
 		event.setJSONObject(jsonObject);
 		return event;

@@ -35,17 +35,12 @@ public interface ImageGalleryViewModel extends BaseListViewModel<ImageEntry> {
 
 	/**
 	 * Called when an {@link ImageEntry} is prepared for upload.
-	 *
-	 * @param pictureUri
 	 */
 	void imageUploadStart(Uri pictureUri);
 
 	/**
 	 * Retrieves constantly the progress until the picture is successfully uploaded.
 	 * This method retrieves the bytes sent and the total.
-	 *
-	 * @param bytesSent
-	 * @param totalBytes
 	 */
 	void imageUploadProgress(int bytesSent, int totalBytes);
 

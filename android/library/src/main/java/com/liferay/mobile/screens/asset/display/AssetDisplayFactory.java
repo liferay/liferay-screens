@@ -51,7 +51,6 @@ public class AssetDisplayFactory {
 			webContentDisplayScreenlet.onWebContentReceived((WebContent) assetEntry);
 
 			return webContentDisplayScreenlet;
-
 		} else if (assetEntry instanceof BlogsEntry) {
 			BlogsEntryDisplayScreenlet blogsScreenlet = new BlogsEntryDisplayScreenlet(context);
 

@@ -15,9 +15,9 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		liferay:articleId="@string/liferay_article_structured_article_id"
+		liferay:cachePolicy="REMOTE_FIRST"
 		liferay:labelFields="@string/liferay_article_structured_label_fields"
 		liferay:layoutId="@layout/webcontentdisplay_structured_default"
-		liferay:cachePolicy="REMOTE_FIRST"
 		liferay:structureId="@string/liferay_article_structured_structure_id"
 		/>
 
@@ -30,9 +30,9 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		liferay:articleId="@string/liferay_article_structured_article_id"
+		liferay:cachePolicy="REMOTE_FIRST"
 		liferay:labelFields="@string/liferay_article_structured_label_fields_first_field"
 		liferay:layoutId="@layout/webcontentdisplay_structured_default"
-		liferay:cachePolicy="REMOTE_FIRST"
 		liferay:structureId="@string/liferay_article_structured_structure_id"
 		/>
 
@@ -45,9 +45,9 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		liferay:articleId="@string/liferay_article_structured_article_id"
+		liferay:cachePolicy="REMOTE_FIRST"
 		liferay:labelFields="@string/liferay_article_structured_label_fields_first_field"
 		liferay:layoutId="@layout/webcontentdisplaystructured_example"
-		liferay:cachePolicy="REMOTE_FIRST"
 		liferay:structureId="@string/liferay_article_structured_structure_id"
 		/>
 

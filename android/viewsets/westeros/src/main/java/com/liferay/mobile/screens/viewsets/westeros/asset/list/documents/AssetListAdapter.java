@@ -19,8 +19,7 @@ import com.liferay.mobile.screens.viewsets.westeros.R;
  */
 public class AssetListAdapter extends BaseListAdapter<AssetEntry, AssetListAdapter.AssetListViewHolder> {
 
-	public AssetListAdapter(int layoutId, int progressLayoutId,
-		BaseListAdapterListener listener) {
+	public AssetListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 		super(layoutId, progressLayoutId, listener);
 	}
 
@@ -42,14 +41,12 @@ public class AssetListAdapter extends BaseListAdapter<AssetEntry, AssetListAdapt
 
 		private final ImageView documentExtensionImage;
 
-		public AssetListViewHolder(View view,
-			BaseListAdapterListener listener) {
+		public AssetListViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
 			titleTextView = (TextView) view.findViewById(R.id.liferay_list_title);
 			descriptionTextView = (TextView) view.findViewById(R.id.liferay_list_description);
-			documentExtensionImage =
-				(ImageView) view.findViewById(R.id.asset_list_document_type_image);
+			documentExtensionImage = (ImageView) view.findViewById(R.id.asset_list_document_type_image);
 		}
 
 		public void bind(AssetEntry entry) {

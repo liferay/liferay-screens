@@ -14,18 +14,14 @@
 
 package com.liferay.mobile.screens.ddl.model;
 
-import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.ddl.XSDParser;
-
+import java.util.List;
+import java.util.Locale;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 import org.xml.sax.SAXException;
-
-import java.util.List;
-import java.util.Locale;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -39,23 +35,23 @@ import static junit.framework.Assert.assertTrue;
 public class StringFieldTest {
 
 	private static StringField createStringField(Boolean required) throws SAXException {
-		String xsd =
-			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-				"<dynamic-element " +
-				"dataType=\"string\" " +
-				"type=\"text\" " +
-				"required=\"" + required.toString() + "\" " +
-				"name=\"A_Text\" > " +
-				"<meta-data locale=\"en_US\"> " +
-				"<entry name=\"predefinedValue\"><![CDATA[default text]]></entry> " +
-				"</meta-data> " +
-				"</dynamic-element>" +
-				"</root>";
+		String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> "
+			+ "<dynamic-element "
+			+ "dataType=\"string\" "
+			+ "type=\"text\" "
+			+ "required=\""
+			+ required.toString()
+			+ "\" "
+			+ "name=\"A_Text\" > "
+			+ "<meta-data locale=\"en_US\"> "
+			+ "<entry name=\"predefinedValue\"><![CDATA[default text]]></entry> "
+			+ "</meta-data> "
+			+ "</dynamic-element>"
+			+ "</root>";
 
 		List<Field> resultList = new XSDParser().parse(xsd, new Locale("en", "US"));
 
 		return (StringField) resultList.get(0);
-
 	}
 
 	//@Config(constants = BuildConfig.class)
@@ -63,17 +59,16 @@ public class StringFieldTest {
 	public static class WhenParsingXSD {
 		@Test
 		public void shouldReturnStringFieldObject() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"string\" " +
-					"type=\"text\" " +
-					"name=\"A_Text\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"predefinedValue\"><![CDATA[default text]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"</root>";
+			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> "
+				+ "<dynamic-element "
+				+ "dataType=\"string\" "
+				+ "type=\"text\" "
+				+ "name=\"A_Text\" > "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"predefinedValue\"><![CDATA[default text]]></entry> "
+				+ "</meta-data> "
+				+ "</dynamic-element>"
+				+ "</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, new Locale("en", "US"));
 
@@ -114,7 +109,6 @@ public class StringFieldTest {
 			assertFalse(field.isValid());
 		}
 
-
 		@Test
 		public void shouldReturnFalseWhenValueIsEmpty() throws SAXException {
 			StringField field = createStringField(true);
@@ -132,7 +126,6 @@ public class StringFieldTest {
 
 			assertTrue(field.isValid());
 		}
-
 	}
 
 	//@Config(constants = BuildConfig.class)
@@ -174,7 +167,5 @@ public class StringFieldTest {
 
 			assertTrue(field.isValid());
 		}
-
 	}
-
 }

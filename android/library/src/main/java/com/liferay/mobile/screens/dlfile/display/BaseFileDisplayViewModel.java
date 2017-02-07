@@ -23,8 +23,6 @@ public interface BaseFileDisplayViewModel extends BaseViewModel {
 
 	/**
 	 * Called when the file is ready to be displayed.
-	 *
-	 * @param fileEntry
 	 */
 	void showFinishOperation(FileEntry fileEntry);
 }

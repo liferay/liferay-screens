@@ -12,7 +12,8 @@ import com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.BaseImageGa
 /**
  * @author Víctor Galán Grande
  */
-public class GridImageGalleryView extends BaseImageGalleryView<GridImageGalleryAdapter.GridGalleryViewHolder, GridImageGalleryAdapter>
+public class GridImageGalleryView
+	extends BaseImageGalleryView<GridImageGalleryAdapter.GridGalleryViewHolder, GridImageGalleryAdapter>
 	implements View.OnClickListener {
 
 	public static final int COLUMNS_SIZE = 3;

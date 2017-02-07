@@ -15,16 +15,15 @@ import com.liferay.mobile.screens.viewsets.westeros.R;
 public class AssetListView
 	extends BaseListScreenletView<AssetEntry, AssetListAdapter.AssetListViewHolder, AssetListAdapter>
 	implements SwipeRefreshLayout.OnRefreshListener {
+	private SwipeRefreshLayout swipeRefreshLayout;
+
 	public AssetListView(Context context) {
 		super(context);
 	}
 
-	private SwipeRefreshLayout swipeRefreshLayout;
-
 	public AssetListView(Context context, AttributeSet attributes) {
 		super(context, attributes);
 	}
-
 
 	public AssetListView(Context context, AttributeSet attributes, int defaultStyle) {
 		super(context, attributes, defaultStyle);

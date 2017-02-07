@@ -10,11 +10,11 @@ import com.liferay.mobile.screens.viewsets.westeros.R;
 /**
  * @author Víctor Galán Grande
  */
-public class GridGalleryView extends com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.grid.GridImageGalleryView
+public class GridGalleryView
+	extends com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.grid.GridImageGalleryView
 	implements SwipeRefreshLayout.OnRefreshListener {
 
 	private SwipeRefreshLayout swipeRefreshLayout;
-
 
 	public GridGalleryView(Context context) {
 		super(context);

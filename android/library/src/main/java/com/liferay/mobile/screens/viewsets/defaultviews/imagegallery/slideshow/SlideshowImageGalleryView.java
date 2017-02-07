@@ -11,8 +11,8 @@ import com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.BaseImageGa
 /**
  * @author Víctor Galán Grande
  */
-public class SlideshowImageGalleryView
-	extends BaseImageGalleryView<SlideshowImageGalleryAdapter.SlideshowGalleryViewHolder, SlideshowImageGalleryAdapter> {
+public class SlideshowImageGalleryView extends
+	BaseImageGalleryView<SlideshowImageGalleryAdapter.SlideshowGalleryViewHolder, SlideshowImageGalleryAdapter> {
 
 	public SlideshowImageGalleryView(Context context) {
 		super(context);

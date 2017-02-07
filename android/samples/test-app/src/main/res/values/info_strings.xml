@@ -26,7 +26,10 @@
 	<string name="user_portrait_info">User portrait received!</string>
 	<string name="configure_screenlet_info">Configure your screenlet here!</string>
 	<string name="successfuly">successfuly</string>
-	<string name="comment_loaded_success">Comment with id: %d successfully loaded:</string>
+	<string name="comment_loaded_success">Comment with id: %d successfully loaded</string>
 	<string name="add_new_comment">Add new comment</string>
 	<string name="type_comment_send">Type your comment and press Send</string>
+	<string name="comment_deleted_success">Comment not deleted</string>
+	<string name="comment_updated_success">Comment not updated</string>
+	<string name="comment_added_success">Comment added successfully!</string>
 </resources>

@@ -1,14 +1,12 @@
 package com.liferay.mobile.screens.asset.display.interactor;
 
-import com.liferay.mobile.android.service.Session;
+import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.asset.AssetEvent;
+import com.liferay.mobile.screens.asset.AssetFactory;
 import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
 import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
-import com.liferay.mobile.screens.asset.AssetEntry;
-import com.liferay.mobile.screens.asset.AssetFactory;
 import com.liferay.mobile.screens.asset.list.connector.ScreensAssetEntryConnector;
 import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
-import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import java.util.Locale;
@@ -29,8 +27,8 @@ public class AssetDisplayInteractor extends BaseCacheReadInteractor<AssetDisplay
 	}
 
 	private JSONObject getAsset(Object... args) throws Exception {
-		Session session = SessionContext.createSessionFromCurrentSession();
-		ScreensAssetEntryConnector connector = ServiceProvider.getInstance().getScreensAssetEntryConnector(getSession());
+		ScreensAssetEntryConnector connector =
+			ServiceProvider.getInstance().getScreensAssetEntryConnector(getSession());
 		if (args.length > 1) {
 			String className = (String) args[0];
 			long classPK = (long) args[1];

@@ -14,7 +14,6 @@
 
 package com.liferay.mobile.screens.ddl.model;
 
-import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.ddl.JsonParser;
 import com.liferay.mobile.screens.ddl.XSDParser;
 import java.util.Calendar;
@@ -27,7 +26,6 @@ import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 import org.xml.sax.SAXException;
 
 import static junit.framework.Assert.assertEquals;
@@ -194,17 +192,17 @@ public class DateFieldTest {
 
 		@Test
 		public void shouldReturnDateFieldObject() throws SAXException {
-			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-				"<dynamic-element " +
-				"dataType=\"date\" " +
-				"fieldNamespace=\"ddm\" " +
-				"type=\"ddm-date\" " +
-				"name=\"A_Date\" > " +
-				"<meta-data locale=\"en_US\"> " +
-				"<entry name=\"predefinedValue\"><![CDATA[06/19/2004]]></entry> " +
-				"</meta-data> " +
-				"</dynamic-element>" +
-				"</root>";
+			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> "
+				+ "<dynamic-element "
+				+ "dataType=\"date\" "
+				+ "fieldNamespace=\"ddm\" "
+				+ "type=\"ddm-date\" "
+				+ "name=\"A_Date\" > "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"predefinedValue\"><![CDATA[06/19/2004]]></entry> "
+				+ "</meta-data> "
+				+ "</dynamic-element>"
+				+ "</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, US_LOCALE);
 
@@ -234,24 +232,24 @@ public class DateFieldTest {
 		@Test
 		public void shouldReturnDateFieldObject() {
 
-			String JSON_DATE = "{\"availableLanguageIds\": [ \"en_US\"], " +
-				"\"defaultLanguageId\": \"en_US\", " +
-				"\"fields\": [ " +
-				"{ \"label\": { \"en_US\": \"Date\"}, " +
-				"\"predefinedValue\": { \"en_US\": \"06/19/2004\"}, " +
-				"\"style\": { \"en_US\": \"\"}, " +
-				"\"tip\": { \"en_US\": \"\"}, " +
-				"\"dataType\": \"date\", " +
-				"\"fieldNamespace\": \"ddm\", " +
-				"\"indexType\": \"keyword\", " +
-				"\"localizable\": true, " +
-				"\"name\": \"A_Date\", " +
-				"\"readOnly\": false, " +
-				"\"repeatable\": false, " +
-				"\"required\": false, " +
-				"\"showLabel\": true, " +
-				"\"type\": \"ddm-date\"}" +
-				"]}";
+			String JSON_DATE = "{\"availableLanguageIds\": [ \"en_US\"], "
+				+ "\"defaultLanguageId\": \"en_US\", "
+				+ "\"fields\": [ "
+				+ "{ \"label\": { \"en_US\": \"Date\"}, "
+				+ "\"predefinedValue\": { \"en_US\": \"06/19/2004\"}, "
+				+ "\"style\": { \"en_US\": \"\"}, "
+				+ "\"tip\": { \"en_US\": \"\"}, "
+				+ "\"dataType\": \"date\", "
+				+ "\"fieldNamespace\": \"ddm\", "
+				+ "\"indexType\": \"keyword\", "
+				+ "\"localizable\": true, "
+				+ "\"name\": \"A_Date\", "
+				+ "\"readOnly\": false, "
+				+ "\"repeatable\": false, "
+				+ "\"required\": false, "
+				+ "\"showLabel\": true, "
+				+ "\"type\": \"ddm-date\"}"
+				+ "]}";
 
 			List<Field> resultList = new JsonParser().parse(JSON_DATE, US_LOCALE);
 			assertNotNull(resultList);

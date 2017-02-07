@@ -21,5 +21,4 @@ public interface DLAppConnector {
 	Integer getFileEntriesCount(long repositoryId, long folderId, JSONArray mimeTypes) throws Exception;
 
 	void deleteFileEntry(long fileEntryId) throws Exception;
-
 }

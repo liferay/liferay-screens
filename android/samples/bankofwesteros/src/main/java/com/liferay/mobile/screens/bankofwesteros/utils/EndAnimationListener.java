@@ -24,15 +24,11 @@ public abstract class EndAnimationListener implements Animator.AnimatorListener 
 	/**
 	 * Notifies the end of the animation. This callback is not invoked
 	 * for animations with repeat count set to INFINITE.
-	 *
-	 * @param animator
 	 */
 	public abstract void onAnimationEnd(Animator animator);
 
 	/**
 	 * Notifies the start of the animation.
-	 *
-	 * @param animation
 	 */
 	public void onAnimationStart(Animator animation) {
 
@@ -41,8 +37,6 @@ public abstract class EndAnimationListener implements Animator.AnimatorListener 
 	/**
 	 * Notifies the cancellation of the animation. This callback is not invoked
 	 * for animations with repeat count set to INFINITE.
-	 *
-	 * @param animation
 	 */
 	public void onAnimationCancel(Animator animation) {
 
@@ -50,8 +44,6 @@ public abstract class EndAnimationListener implements Animator.AnimatorListener 
 
 	/**
 	 * Notifies the repetition of the animation.
-	 *
-	 * @param animation
 	 */
 	public void onAnimationRepeat(Animator animation) {
 

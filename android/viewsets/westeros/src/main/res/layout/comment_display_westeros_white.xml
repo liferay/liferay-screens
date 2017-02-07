@@ -74,9 +74,9 @@
 			android:layout_toRightOf="@+id/comment_create_date"
 			android:padding="0dp"
 			android:text="@string/edited"
+			android:textColor="@android:color/white"
 			android:textSize="12sp"
 			android:textStyle="bold|italic"
-			android:textColor="@android:color/white"
 			android:visibility="gone"
 			tools:visibility="visible"
 			/>
@@ -134,8 +134,8 @@
 				android:imeOptions="actionDone"
 				android:inputType="text"
 				android:lines="3"
-				android:textSize="15sp"
 				android:textColor="@android:color/white"
+				android:textSize="15sp"
 				/>
 		</FrameLayout>
 

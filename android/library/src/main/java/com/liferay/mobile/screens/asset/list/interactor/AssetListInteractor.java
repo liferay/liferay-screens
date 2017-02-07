@@ -158,10 +158,11 @@ public class AssetListInteractor extends BaseListInteractor<BaseListInteractorLi
 	 * AssetListScreenlet only list Asset with visible attribute set to true. But User objects have it by
 	 * default in false. So this method update this attribute of entryQuery values to list
 	 * all users.
+	 *
 	 * @param classNameId identifier of the asset’s class name.
 	 * @param entryQueryParams initial entryQuery parameters.
 	 * @return final entryQuery parameters.
-	 * @throws JSONException
+	 * @throws JSONException when can't parse the result
 	 */
 	private JSONObject handleUserVisibleFlag(long classNameId, JSONObject entryQueryParams) throws JSONException {
 		if (classNameId == Long.parseLong(

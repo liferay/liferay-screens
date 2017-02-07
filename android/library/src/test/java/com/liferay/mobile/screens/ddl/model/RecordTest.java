@@ -15,20 +15,15 @@
 package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
-
-import com.liferay.mobile.screens.BuildConfig;
-
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
-
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
@@ -53,17 +48,16 @@ public class RecordTest {
 
 		@Test
 		public void shouldReturnTheFieldsByIndex() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"boolean\" " +
-					"type=\"checkbox\" " +
-					"name=\"A_Bool\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"predefinedValue\"><![CDATA[false]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"</root>";
+			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> "
+				+ "<dynamic-element "
+				+ "dataType=\"boolean\" "
+				+ "type=\"checkbox\" "
+				+ "name=\"A_Bool\" > "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"predefinedValue\"><![CDATA[false]]></entry> "
+				+ "</meta-data> "
+				+ "</dynamic-element>"
+				+ "</root>";
 
 			Record record = new Record(new Locale("en", "US"));
 			parse(record, xsd);
@@ -74,7 +68,6 @@ public class RecordTest {
 
 			assertEquals("A_Bool", field.getName());
 		}
-
 	}
 
 	//@Config(constants = BuildConfig.class)
@@ -83,17 +76,16 @@ public class RecordTest {
 
 		@Test
 		public void shouldReturnTheValueAsString() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"boolean\" " +
-					"type=\"checkbox\" " +
-					"name=\"A_Bool\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"predefinedValue\"><![CDATA[false]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"</root>";
+			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> "
+				+ "<dynamic-element "
+				+ "dataType=\"boolean\" "
+				+ "type=\"checkbox\" "
+				+ "name=\"A_Bool\" > "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"predefinedValue\"><![CDATA[false]]></entry> "
+				+ "</meta-data> "
+				+ "</dynamic-element>"
+				+ "</root>";
 
 			Record record = new Record(new Locale("en", "US"));
 			parse(record, xsd);
@@ -112,25 +104,24 @@ public class RecordTest {
 
 		@Test
 		public void shouldIgnoreOneValueIfItIsEmpty() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"boolean\" " +
-					"type=\"checkbox\" " +
-					"name=\"A_Bool\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"predefinedValue\"><![CDATA[false]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"<dynamic-element " +
-					"dataType=\"string\" " +
-					"type=\"text\" " +
-					"name=\"A_Text\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"predefinedValue\"><![CDATA[abc]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"</root>";
+			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> "
+				+ "<dynamic-element "
+				+ "dataType=\"boolean\" "
+				+ "type=\"checkbox\" "
+				+ "name=\"A_Bool\" > "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"predefinedValue\"><![CDATA[false]]></entry> "
+				+ "</meta-data> "
+				+ "</dynamic-element>"
+				+ "<dynamic-element "
+				+ "dataType=\"string\" "
+				+ "type=\"text\" "
+				+ "name=\"A_Text\" > "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"predefinedValue\"><![CDATA[abc]]></entry> "
+				+ "</meta-data> "
+				+ "</dynamic-element>"
+				+ "</root>";
 
 			Record record = new Record(new Locale("en", "US"));
 			parse(record, xsd);
@@ -147,7 +138,6 @@ public class RecordTest {
 			assertNotNull(values.get("A_Bool"));
 			assertNull(values.get("A_Text"));
 		}
-
 	}
 
 	//@Config(constants = BuildConfig.class)
@@ -156,17 +146,16 @@ public class RecordTest {
 
 		@Test
 		public void shouldChangeTheFieldsCurrentValue() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"string\" " +
-					"type=\"text\" " +
-					"name=\"A_Text\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"predefinedValue\"><![CDATA[abc]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"</root>";
+			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> "
+				+ "<dynamic-element "
+				+ "dataType=\"string\" "
+				+ "type=\"text\" "
+				+ "name=\"A_Text\" > "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"predefinedValue\"><![CDATA[abc]]></entry> "
+				+ "</meta-data> "
+				+ "</dynamic-element>"
+				+ "</root>";
 
 			Record record = new Record(new Locale("en", "US"));
 			parse(record, xsd);
@@ -184,7 +173,6 @@ public class RecordTest {
 
 			assertEquals("xyz", field.getCurrentValue());
 		}
-
 	}
 
 	//@Config(constants = BuildConfig.class)
@@ -193,69 +181,68 @@ public class RecordTest {
 
 		@Test
 		public void shouldSerializeAndDeserializeTheObject() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"string\" " +
-					"type=\"text\" " +
-					"name=\"A_Text\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"predefinedValue\"><![CDATA[abc]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"<dynamic-element " +
-					"dataType=\"boolean\" " +
-					"type=\"checkbox\" " +
-					"name=\"A_Bool\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"predefinedValue\"><![CDATA[false]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"<dynamic-element " +
-					"dataType=\"date\" " +
-					"fieldNamespace=\"ddm\" " +
-					"type=\"ddm-date\" " +
-					"name=\"A_Date\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"predefinedValue\"><![CDATA[06/19/2004]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"<dynamic-element " +
-					"dataType=\"number\" " +
-					"fieldNamespace=\"ddm\" " +
-					"type=\"ddm-number\" " +
-					"name=\"A_Number\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"predefinedValue\"><![CDATA[123]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"<dynamic-element dataType=\"string\" " +
-					"multiple=\"true\" " +
-					"name=\"A_Select\" " +
-					"type=\"select\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\"><![CDATA[A Select]]></entry> " +
-					"<entry name=\"predefinedValue\">" +
-					"<![CDATA[[\"value 1\",\"value 2\"]]]>" +
-					"</entry>" +
-					"</meta-data> " +
-					"<dynamic-element name=\"option_1\" type=\"option\" value=\"value 1\"> " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\"><![CDATA[Option 1]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element> " +
-					"<dynamic-element name=\"option_2\" type=\"option\" value=\"value 2\"> " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\"><![CDATA[Option 2]]></entry> " +
-					"</meta-data>" +
-					"</dynamic-element> " +
-					"<dynamic-element name=\"option_3\" type=\"option\" value=\"value 3\"> " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\"><![CDATA[Option 3]]></entry> " +
-					"</meta-data>" +
-					"</dynamic-element> " +
-					"</dynamic-element>" +
-					"</root>";
+			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> "
+				+ "<dynamic-element "
+				+ "dataType=\"string\" "
+				+ "type=\"text\" "
+				+ "name=\"A_Text\" > "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"predefinedValue\"><![CDATA[abc]]></entry> "
+				+ "</meta-data> "
+				+ "</dynamic-element>"
+				+ "<dynamic-element "
+				+ "dataType=\"boolean\" "
+				+ "type=\"checkbox\" "
+				+ "name=\"A_Bool\" > "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"predefinedValue\"><![CDATA[false]]></entry> "
+				+ "</meta-data> "
+				+ "</dynamic-element>"
+				+ "<dynamic-element "
+				+ "dataType=\"date\" "
+				+ "fieldNamespace=\"ddm\" "
+				+ "type=\"ddm-date\" "
+				+ "name=\"A_Date\" > "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"predefinedValue\"><![CDATA[06/19/2004]]></entry> "
+				+ "</meta-data> "
+				+ "</dynamic-element>"
+				+ "<dynamic-element "
+				+ "dataType=\"number\" "
+				+ "fieldNamespace=\"ddm\" "
+				+ "type=\"ddm-number\" "
+				+ "name=\"A_Number\" > "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"predefinedValue\"><![CDATA[123]]></entry> "
+				+ "</meta-data> "
+				+ "</dynamic-element>"
+				+ "<dynamic-element dataType=\"string\" "
+				+ "multiple=\"true\" "
+				+ "name=\"A_Select\" "
+				+ "type=\"select\" > "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"label\"><![CDATA[A Select]]></entry> "
+				+ "<entry name=\"predefinedValue\">"
+				+ "<![CDATA[[\"value 1\",\"value 2\"]]]>"
+				+ "</entry>"
+				+ "</meta-data> "
+				+ "<dynamic-element name=\"option_1\" type=\"option\" value=\"value 1\"> "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"label\"><![CDATA[Option 1]]></entry> "
+				+ "</meta-data> "
+				+ "</dynamic-element> "
+				+ "<dynamic-element name=\"option_2\" type=\"option\" value=\"value 2\"> "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"label\"><![CDATA[Option 2]]></entry> "
+				+ "</meta-data>"
+				+ "</dynamic-element> "
+				+ "<dynamic-element name=\"option_3\" type=\"option\" value=\"value 3\"> "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"label\"><![CDATA[Option 3]]></entry> "
+				+ "</meta-data>"
+				+ "</dynamic-element> "
+				+ "</dynamic-element>"
+				+ "</root>";
 
 			Record record = new Record(new Locale("en", "US"));
 			parse(record, xsd);
@@ -288,7 +275,6 @@ public class RecordTest {
 
 			parcel.setDataPosition(0);
 
-
 			Record deserializedRecord = parcel.readParcelable(record.getClass().getClassLoader());
 
 			assertEquals(record.getFieldCount(), deserializedRecord.getFieldCount());
@@ -307,7 +293,5 @@ public class RecordTest {
 			}
 			parcel.recycle();
 		}
-
 	}
-
 }

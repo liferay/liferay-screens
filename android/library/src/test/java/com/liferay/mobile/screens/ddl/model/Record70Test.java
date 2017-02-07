@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
-import com.liferay.mobile.screens.BuildConfig;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -25,7 +24,6 @@ import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
@@ -38,22 +36,22 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class Record70Test {
 
-	public static final String JSON_BOOLEAN = "{\"availableLanguageIds\": [ \"en_US\"], " +
-		"\"defaultLanguageId\": \"en_US\", " +
-		"\"fields\": [ " +
-		"{ \"label\": { \"en_US\": \"Boolean\"}, " +
-		"\"predefinedValue\": { \"en_US\": false}, " +
-		"\"style\": { \"en_US\": \"\"}, " +
-		"\"tip\": { \"en_US\": \"\"}, " +
-		"\"dataType\": \"boolean\", " +
-		"\"indexType\": \"keyword\", " +
-		"\"localizable\": true, " +
-		"\"name\": \"A_Bool\", " +
-		"\"readOnly\": false, " +
-		"\"repeatable\": false, " +
-		"\"required\": false, " +
-		"\"showLabel\": true, " +
-		"\"type\": \"checkbox\"}]}";
+	public static final String JSON_BOOLEAN = "{\"availableLanguageIds\": [ \"en_US\"], "
+		+ "\"defaultLanguageId\": \"en_US\", "
+		+ "\"fields\": [ "
+		+ "{ \"label\": { \"en_US\": \"Boolean\"}, "
+		+ "\"predefinedValue\": { \"en_US\": false}, "
+		+ "\"style\": { \"en_US\": \"\"}, "
+		+ "\"tip\": { \"en_US\": \"\"}, "
+		+ "\"dataType\": \"boolean\", "
+		+ "\"indexType\": \"keyword\", "
+		+ "\"localizable\": true, "
+		+ "\"name\": \"A_Bool\", "
+		+ "\"readOnly\": false, "
+		+ "\"repeatable\": false, "
+		+ "\"required\": false, "
+		+ "\"showLabel\": true, "
+		+ "\"type\": \"checkbox\"}]}";
 
 	private static void parse(Record record, String content) throws JSONException {
 		JSONObject jsonObject = new JSONObject();
@@ -104,44 +102,46 @@ public class Record70Test {
 		@Test
 		public void shouldIgnoreOneValueIfItIsEmpty() throws Exception {
 
-			String json = "{\"availableLanguageIds\": [ \"en_US\"], " +
-				"\"defaultLanguageId\": \"en_US\", " +
-				"\"fields\": [ " + "{ \"label\": { \"en_US\": \"Boolean\"}, " +
-				"\"predefinedValue\": { \"en_US\": false}, " +
-				"\"style\": { \"en_US\": \"\"}, " +
-				"\"tip\": { \"en_US\": \"\"}, " +
-				"\"dataType\": \"boolean\", " +
-				"\"indexType\": \"keyword\", " +
-				"\"localizable\": true, " +
-				"\"name\": \"A_Bool\", " +
-				"\"readOnly\": false, " +
-				"\"repeatable\": false, " +
-				"\"required\": false, " +
-				"\"showLabel\": true, " +
-				"\"type\": \"checkbox\"}," + "{" +
-				"            \"label\": {" +
-				"                \"en_US\": \"Title\"" +
-				"            }," +
-				"            \"predefinedValue\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"style\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"tip\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"dataType\": \"string\"," +
-				"            \"indexType\": \"keyword\"," +
-				"            \"localizable\": true," +
-				"            \"name\": \"Title\"," +
-				"            \"readOnly\": false," +
-				"            \"repeatable\": false," +
-				"            \"required\": \"false\"," +
-				"            \"showLabel\": true," +
-				"            \"type\": \"text\"" +
-				"        }" +
-				"]}";
+			String json = "{\"availableLanguageIds\": [ \"en_US\"], "
+				+ "\"defaultLanguageId\": \"en_US\", "
+				+ "\"fields\": [ "
+				+ "{ \"label\": { \"en_US\": \"Boolean\"}, "
+				+ "\"predefinedValue\": { \"en_US\": false}, "
+				+ "\"style\": { \"en_US\": \"\"}, "
+				+ "\"tip\": { \"en_US\": \"\"}, "
+				+ "\"dataType\": \"boolean\", "
+				+ "\"indexType\": \"keyword\", "
+				+ "\"localizable\": true, "
+				+ "\"name\": \"A_Bool\", "
+				+ "\"readOnly\": false, "
+				+ "\"repeatable\": false, "
+				+ "\"required\": false, "
+				+ "\"showLabel\": true, "
+				+ "\"type\": \"checkbox\"},"
+				+ "{"
+				+ "            \"label\": {"
+				+ "                \"en_US\": \"Title\""
+				+ "            },"
+				+ "            \"predefinedValue\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"style\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"tip\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"dataType\": \"string\","
+				+ "            \"indexType\": \"keyword\","
+				+ "            \"localizable\": true,"
+				+ "            \"name\": \"Title\","
+				+ "            \"readOnly\": false,"
+				+ "            \"repeatable\": false,"
+				+ "            \"required\": \"false\","
+				+ "            \"showLabel\": true,"
+				+ "            \"type\": \"text\""
+				+ "        }"
+				+ "]}";
 
 			Record record = new Record(new Locale("en", "US"));
 			parse(record, json);
@@ -167,32 +167,33 @@ public class Record70Test {
 		@Test
 		public void shouldChangeTheFieldsCurrentValue() throws Exception {
 
-			String json = "{\"availableLanguageIds\": [ \"en_US\"], " +
-				"\"defaultLanguageId\": \"en_US\", " +
-				"\"fields\": [ " + "{" +
-				"            \"label\": {" +
-				"                \"en_US\": \"Title\"" +
-				"            }," +
-				"            \"predefinedValue\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"style\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"tip\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"dataType\": \"string\"," +
-				"            \"indexType\": \"keyword\"," +
-				"            \"localizable\": true," +
-				"            \"name\": \"A_Text\"," +
-				"            \"readOnly\": false," +
-				"            \"repeatable\": false," +
-				"            \"required\": \"false\"," +
-				"            \"showLabel\": true," +
-				"            \"type\": \"text\"" +
-				"        }" +
-				"]}";
+			String json = "{\"availableLanguageIds\": [ \"en_US\"], "
+				+ "\"defaultLanguageId\": \"en_US\", "
+				+ "\"fields\": [ "
+				+ "{"
+				+ "            \"label\": {"
+				+ "                \"en_US\": \"Title\""
+				+ "            },"
+				+ "            \"predefinedValue\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"style\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"tip\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"dataType\": \"string\","
+				+ "            \"indexType\": \"keyword\","
+				+ "            \"localizable\": true,"
+				+ "            \"name\": \"A_Text\","
+				+ "            \"readOnly\": false,"
+				+ "            \"repeatable\": false,"
+				+ "            \"required\": \"false\","
+				+ "            \"showLabel\": true,"
+				+ "            \"type\": \"text\""
+				+ "        }"
+				+ "]}";
 
 			Record record = new Record(new Locale("en", "US"));
 			parse(record, json);
@@ -219,294 +220,294 @@ public class Record70Test {
 		@Test
 		public void shouldSerializeAndDeserializeTheObject() throws Exception {
 
-			String json = "{" +
-				"    \"availableLanguageIds\": [" +
-				"        \"en_US\"" +
-				"    ]," +
-				"    \"defaultLanguageId\": \"en_US\"," +
-				"    \"fields\": [" +
-				"        {" +
-				"            \"label\": {" +
-				"                \"en_US\": \"Title\"" +
-				"            }," +
-				"            \"predefinedValue\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"style\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"tip\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"dataType\": \"string\"," +
-				"            \"indexType\": \"keyword\"," +
-				"            \"localizable\": true," +
-				"            \"name\": \"Title\"," +
-				"            \"readOnly\": false," +
-				"            \"repeatable\": false," +
-				"            \"required\": false," +
-				"            \"showLabel\": true," +
-				"            \"type\": \"text\"" +
-				"        }," +
-				"        {" +
-				"            \"label\": {" +
-				"                \"en_US\": \"Boolean\"" +
-				"            }," +
-				"            \"predefinedValue\": {" +
-				"                \"en_US\": false" +
-				"            }," +
-				"            \"style\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"tip\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"dataType\": \"boolean\"," +
-				"            \"indexType\": \"keyword\"," +
-				"            \"localizable\": true," +
-				"            \"name\": \"Boolean88ug\"," +
-				"            \"readOnly\": false," +
-				"            \"repeatable\": false," +
-				"            \"required\": false," +
-				"            \"showLabel\": true," +
-				"            \"type\": \"checkbox\"" +
-				"        }," +
-				"        {" +
-				"            \"label\": {" +
-				"                \"en_US\": \"Date\"" +
-				"            }," +
-				"            \"predefinedValue\": {" +
-				"                \"en_US\": \"02/26/2016\"" +
-				"            }," +
-				"            \"style\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"tip\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"dataType\": \"date\"," +
-				"            \"fieldNamespace\": \"ddm\"," +
-				"            \"indexType\": \"keyword\"," +
-				"            \"localizable\": true," +
-				"            \"name\": \"Date2klr\"," +
-				"            \"readOnly\": false," +
-				"            \"repeatable\": false," +
-				"            \"required\": false," +
-				"            \"showLabel\": true," +
-				"            \"type\": \"ddm-date\"" +
-				"        }," +
-				"        {" +
-				"            \"label\": {" +
-				"                \"en_US\": \"Decimal\"" +
-				"            }," +
-				"            \"predefinedValue\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"style\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"tip\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"dataType\": \"double\"," +
-				"            \"fieldNamespace\": \"ddm\"," +
-				"            \"indexType\": \"keyword\"," +
-				"            \"localizable\": true," +
-				"            \"name\": \"Decimal75fb\"," +
-				"            \"readOnly\": false," +
-				"            \"repeatable\": false," +
-				"            \"required\": false," +
-				"            \"showLabel\": true," +
-				"            \"type\": \"ddm-decimal\"" +
-				"        }," +
-				"        {" +
-				"            \"label\": {" +
-				"                \"en_US\": \"Text Box\"" +
-				"            }," +
-				"            \"predefinedValue\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"style\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"tip\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"dataType\": \"string\"," +
-				"            \"indexType\": \"keyword\"," +
-				"            \"localizable\": true," +
-				"            \"name\": \"TextBoxe2h4\"," +
-				"            \"readOnly\": false," +
-				"            \"repeatable\": false," +
-				"            \"required\": false," +
-				"            \"showLabel\": true," +
-				"            \"type\": \"textarea\"" +
-				"        }," +
-				"        {" +
-				"            \"label\": {" +
-				"                \"en_US\": \"Number\"" +
-				"            }," +
-				"            \"predefinedValue\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"style\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"tip\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"dataType\": \"number\"," +
-				"            \"fieldNamespace\": \"ddm\"," +
-				"            \"indexType\": \"keyword\"," +
-				"            \"localizable\": true," +
-				"            \"name\": \"Number6zw6\"," +
-				"            \"readOnly\": false," +
-				"            \"repeatable\": false," +
-				"            \"required\": false," +
-				"            \"showLabel\": true," +
-				"            \"type\": \"ddm-number\"" +
-				"        }," +
-				"        {" +
-				"            \"label\": {" +
-				"                \"en_US\": \"Integer\"" +
-				"            }," +
-				"            \"predefinedValue\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"style\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"tip\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"dataType\": \"integer\"," +
-				"            \"fieldNamespace\": \"ddm\"," +
-				"            \"indexType\": \"keyword\"," +
-				"            \"localizable\": true," +
-				"            \"name\": \"Integer2si7\"," +
-				"            \"readOnly\": false," +
-				"            \"repeatable\": false," +
-				"            \"required\": false," +
-				"            \"showLabel\": true," +
-				"            \"type\": \"ddm-integer\"" +
-				"        }," +
-				"        {" +
-				"            \"label\": {" +
-				"                \"en_US\": \"Documents and Media\"" +
-				"            }," +
-				"            \"predefinedValue\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"style\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"tip\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"dataType\": \"document-library\"," +
-				"            \"fieldNamespace\": \"ddm\"," +
-				"            \"indexType\": \"keyword\"," +
-				"            \"localizable\": true," +
-				"            \"name\": \"DocumentsAndMediadlq5\"," +
-				"            \"readOnly\": false," +
-				"            \"repeatable\": false," +
-				"            \"required\": false," +
-				"            \"showLabel\": true," +
-				"            \"type\": \"ddm-documentlibrary\"" +
-				"        }," +
-				"        {" +
-				"            \"label\": {" +
-				"                \"en_US\": \"Select\"" +
-				"            }," +
-				"            \"options\": [" +
-				"                {" +
-				"                    \"value\": \"value 1\"," +
-				"                    \"label\": {" +
-				"                        \"en_US\": \"option 1\"" +
-				"                    }" +
-				"                }," +
-				"                {" +
-				"                    \"value\": \"value 2\"," +
-				"                    \"label\": {" +
-				"                        \"en_US\": \"option 2\"" +
-				"                    }" +
-				"                }," +
-				"                {" +
-				"                    \"value\": \"value 3\"," +
-				"                    \"label\": {" +
-				"                        \"en_US\": \"option 3\"" +
-				"                    }" +
-				"                }" +
-				"            ]," +
-				"            \"predefinedValue\": {" +
-				"                \"en_US\": [" +
-				"                    \"value 1\"" +
-				"                ]" +
-				"            }," +
-				"            \"style\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"tip\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"dataType\": \"string\"," +
-				"            \"indexType\": \"keyword\"," +
-				"            \"localizable\": true," +
-				"            \"multiple\": false," +
-				"            \"name\": \"Select54e6\"," +
-				"            \"readOnly\": false," +
-				"            \"repeatable\": false," +
-				"            \"required\": false," +
-				"            \"showLabel\": true," +
-				"            \"type\": \"select\"" +
-				"        }," +
-				"        {" +
-				"            \"label\": {" +
-				"                \"en_US\": \"Radio\"" +
-				"            }," +
-				"            \"options\": [" +
-				"                {" +
-				"                    \"value\": \"value 1\"," +
-				"                    \"label\": {" +
-				"                        \"en_US\": \"option 1\"" +
-				"                    }" +
-				"                }," +
-				"                {" +
-				"                    \"value\": \"value 2\"," +
-				"                    \"label\": {" +
-				"                        \"en_US\": \"option 2\"" +
-				"                    }" +
-				"                }," +
-				"                {" +
-				"                    \"value\": \"value 3\"," +
-				"                    \"label\": {" +
-				"                        \"en_US\": \"option 3\"" +
-				"                    }" +
-				"                }" +
-				"            ]," +
-				"            \"predefinedValue\": {" +
-				"                \"en_US\": [" +
-				"                    \"\"" +
-				"                ]" +
-				"            }," +
-				"            \"style\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"tip\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"dataType\": \"string\"," +
-				"            \"indexType\": \"keyword\"," +
-				"            \"localizable\": true," +
-				"            \"name\": \"Radio6zup\"," +
-				"            \"readOnly\": false," +
-				"            \"repeatable\": false," +
-				"            \"required\": false," +
-				"            \"showLabel\": true," +
-				"            \"type\": \"radio\"" +
-				"        }" +
-				"    ]" +
-				"}";
+			String json = "{"
+				+ "    \"availableLanguageIds\": ["
+				+ "        \"en_US\""
+				+ "    ],"
+				+ "    \"defaultLanguageId\": \"en_US\","
+				+ "    \"fields\": ["
+				+ "        {"
+				+ "            \"label\": {"
+				+ "                \"en_US\": \"Title\""
+				+ "            },"
+				+ "            \"predefinedValue\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"style\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"tip\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"dataType\": \"string\","
+				+ "            \"indexType\": \"keyword\","
+				+ "            \"localizable\": true,"
+				+ "            \"name\": \"Title\","
+				+ "            \"readOnly\": false,"
+				+ "            \"repeatable\": false,"
+				+ "            \"required\": false,"
+				+ "            \"showLabel\": true,"
+				+ "            \"type\": \"text\""
+				+ "        },"
+				+ "        {"
+				+ "            \"label\": {"
+				+ "                \"en_US\": \"Boolean\""
+				+ "            },"
+				+ "            \"predefinedValue\": {"
+				+ "                \"en_US\": false"
+				+ "            },"
+				+ "            \"style\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"tip\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"dataType\": \"boolean\","
+				+ "            \"indexType\": \"keyword\","
+				+ "            \"localizable\": true,"
+				+ "            \"name\": \"Boolean88ug\","
+				+ "            \"readOnly\": false,"
+				+ "            \"repeatable\": false,"
+				+ "            \"required\": false,"
+				+ "            \"showLabel\": true,"
+				+ "            \"type\": \"checkbox\""
+				+ "        },"
+				+ "        {"
+				+ "            \"label\": {"
+				+ "                \"en_US\": \"Date\""
+				+ "            },"
+				+ "            \"predefinedValue\": {"
+				+ "                \"en_US\": \"02/26/2016\""
+				+ "            },"
+				+ "            \"style\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"tip\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"dataType\": \"date\","
+				+ "            \"fieldNamespace\": \"ddm\","
+				+ "            \"indexType\": \"keyword\","
+				+ "            \"localizable\": true,"
+				+ "            \"name\": \"Date2klr\","
+				+ "            \"readOnly\": false,"
+				+ "            \"repeatable\": false,"
+				+ "            \"required\": false,"
+				+ "            \"showLabel\": true,"
+				+ "            \"type\": \"ddm-date\""
+				+ "        },"
+				+ "        {"
+				+ "            \"label\": {"
+				+ "                \"en_US\": \"Decimal\""
+				+ "            },"
+				+ "            \"predefinedValue\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"style\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"tip\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"dataType\": \"double\","
+				+ "            \"fieldNamespace\": \"ddm\","
+				+ "            \"indexType\": \"keyword\","
+				+ "            \"localizable\": true,"
+				+ "            \"name\": \"Decimal75fb\","
+				+ "            \"readOnly\": false,"
+				+ "            \"repeatable\": false,"
+				+ "            \"required\": false,"
+				+ "            \"showLabel\": true,"
+				+ "            \"type\": \"ddm-decimal\""
+				+ "        },"
+				+ "        {"
+				+ "            \"label\": {"
+				+ "                \"en_US\": \"Text Box\""
+				+ "            },"
+				+ "            \"predefinedValue\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"style\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"tip\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"dataType\": \"string\","
+				+ "            \"indexType\": \"keyword\","
+				+ "            \"localizable\": true,"
+				+ "            \"name\": \"TextBoxe2h4\","
+				+ "            \"readOnly\": false,"
+				+ "            \"repeatable\": false,"
+				+ "            \"required\": false,"
+				+ "            \"showLabel\": true,"
+				+ "            \"type\": \"textarea\""
+				+ "        },"
+				+ "        {"
+				+ "            \"label\": {"
+				+ "                \"en_US\": \"Number\""
+				+ "            },"
+				+ "            \"predefinedValue\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"style\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"tip\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"dataType\": \"number\","
+				+ "            \"fieldNamespace\": \"ddm\","
+				+ "            \"indexType\": \"keyword\","
+				+ "            \"localizable\": true,"
+				+ "            \"name\": \"Number6zw6\","
+				+ "            \"readOnly\": false,"
+				+ "            \"repeatable\": false,"
+				+ "            \"required\": false,"
+				+ "            \"showLabel\": true,"
+				+ "            \"type\": \"ddm-number\""
+				+ "        },"
+				+ "        {"
+				+ "            \"label\": {"
+				+ "                \"en_US\": \"Integer\""
+				+ "            },"
+				+ "            \"predefinedValue\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"style\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"tip\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"dataType\": \"integer\","
+				+ "            \"fieldNamespace\": \"ddm\","
+				+ "            \"indexType\": \"keyword\","
+				+ "            \"localizable\": true,"
+				+ "            \"name\": \"Integer2si7\","
+				+ "            \"readOnly\": false,"
+				+ "            \"repeatable\": false,"
+				+ "            \"required\": false,"
+				+ "            \"showLabel\": true,"
+				+ "            \"type\": \"ddm-integer\""
+				+ "        },"
+				+ "        {"
+				+ "            \"label\": {"
+				+ "                \"en_US\": \"Documents and Media\""
+				+ "            },"
+				+ "            \"predefinedValue\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"style\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"tip\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"dataType\": \"document-library\","
+				+ "            \"fieldNamespace\": \"ddm\","
+				+ "            \"indexType\": \"keyword\","
+				+ "            \"localizable\": true,"
+				+ "            \"name\": \"DocumentsAndMediadlq5\","
+				+ "            \"readOnly\": false,"
+				+ "            \"repeatable\": false,"
+				+ "            \"required\": false,"
+				+ "            \"showLabel\": true,"
+				+ "            \"type\": \"ddm-documentlibrary\""
+				+ "        },"
+				+ "        {"
+				+ "            \"label\": {"
+				+ "                \"en_US\": \"Select\""
+				+ "            },"
+				+ "            \"options\": ["
+				+ "                {"
+				+ "                    \"value\": \"value 1\","
+				+ "                    \"label\": {"
+				+ "                        \"en_US\": \"option 1\""
+				+ "                    }"
+				+ "                },"
+				+ "                {"
+				+ "                    \"value\": \"value 2\","
+				+ "                    \"label\": {"
+				+ "                        \"en_US\": \"option 2\""
+				+ "                    }"
+				+ "                },"
+				+ "                {"
+				+ "                    \"value\": \"value 3\","
+				+ "                    \"label\": {"
+				+ "                        \"en_US\": \"option 3\""
+				+ "                    }"
+				+ "                }"
+				+ "            ],"
+				+ "            \"predefinedValue\": {"
+				+ "                \"en_US\": ["
+				+ "                    \"value 1\""
+				+ "                ]"
+				+ "            },"
+				+ "            \"style\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"tip\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"dataType\": \"string\","
+				+ "            \"indexType\": \"keyword\","
+				+ "            \"localizable\": true,"
+				+ "            \"multiple\": false,"
+				+ "            \"name\": \"Select54e6\","
+				+ "            \"readOnly\": false,"
+				+ "            \"repeatable\": false,"
+				+ "            \"required\": false,"
+				+ "            \"showLabel\": true,"
+				+ "            \"type\": \"select\""
+				+ "        },"
+				+ "        {"
+				+ "            \"label\": {"
+				+ "                \"en_US\": \"Radio\""
+				+ "            },"
+				+ "            \"options\": ["
+				+ "                {"
+				+ "                    \"value\": \"value 1\","
+				+ "                    \"label\": {"
+				+ "                        \"en_US\": \"option 1\""
+				+ "                    }"
+				+ "                },"
+				+ "                {"
+				+ "                    \"value\": \"value 2\","
+				+ "                    \"label\": {"
+				+ "                        \"en_US\": \"option 2\""
+				+ "                    }"
+				+ "                },"
+				+ "                {"
+				+ "                    \"value\": \"value 3\","
+				+ "                    \"label\": {"
+				+ "                        \"en_US\": \"option 3\""
+				+ "                    }"
+				+ "                }"
+				+ "            ],"
+				+ "            \"predefinedValue\": {"
+				+ "                \"en_US\": ["
+				+ "                    \"\""
+				+ "                ]"
+				+ "            },"
+				+ "            \"style\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"tip\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"dataType\": \"string\","
+				+ "            \"indexType\": \"keyword\","
+				+ "            \"localizable\": true,"
+				+ "            \"name\": \"Radio6zup\","
+				+ "            \"readOnly\": false,"
+				+ "            \"repeatable\": false,"
+				+ "            \"required\": false,"
+				+ "            \"showLabel\": true,"
+				+ "            \"type\": \"radio\""
+				+ "        }"
+				+ "    ]"
+				+ "}";
 
 			Record record = new Record(new Locale("en", "US"));
 			parse(record, json);

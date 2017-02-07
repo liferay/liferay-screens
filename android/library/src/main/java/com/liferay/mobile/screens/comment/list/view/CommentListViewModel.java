@@ -24,22 +24,16 @@ public interface CommentListViewModel extends BaseListViewModel<CommentEntry> {
 
 	/**
 	 * Allows the edition mode in comment list.
-	 *
-	 * @param editable
 	 */
 	void allowEdition(boolean editable);
 
 	/**
 	 * Adds a new comment to the list.
-	 *
-	 * @param commentEntry
 	 */
 	void addNewCommentEntry(CommentEntry commentEntry);
 
 	/**
 	 * Removes one comment from the list.
-	 *
-	 * @param commentEntry
 	 */
 	void removeCommentEntry(CommentEntry commentEntry);
 }

@@ -59,9 +59,9 @@
 				android:id="@+id/totalCountTextView"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:paddingTop="0dp"
 				android:paddingBottom="0dp"
 				android:paddingLeft="10dp"
+				android:paddingTop="0dp"
 				android:textColor="@color/textColorPrimary_default"
 				tools:text="8 Ratings"
 				/>

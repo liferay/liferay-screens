@@ -24,8 +24,6 @@ public interface AssetDisplayListener extends BaseCacheListener {
 
 	/**
 	 * Called when the screenlet loads the asset correctly.
-	 *
-	 * @param assetEntry
 	 */
 	void onRetrieveAssetSuccess(AssetEntry assetEntry);
 }

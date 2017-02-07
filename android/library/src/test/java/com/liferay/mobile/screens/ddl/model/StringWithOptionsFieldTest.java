@@ -14,21 +14,17 @@
 
 package com.liferay.mobile.screens.ddl.model;
 
-import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.ddl.JsonParser;
 import com.liferay.mobile.screens.ddl.XSDParser;
-
-import org.junit.Test;
-import org.junit.experimental.runners.Enclosed;
-import org.junit.runner.RunWith;
-import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import org.junit.Test;
+import org.junit.experimental.runners.Enclosed;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -76,14 +72,12 @@ public class StringWithOptionsFieldTest {
 		public void shouldClearOptionWhenOptionWasSelected() {
 			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
-			List<StringWithOptionsField.Option> availableOptions =
-				field.getAvailableOptions();
+			List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
 
 			field.selectOption(availableOptions.get(0));
 			field.clearOption(availableOptions.get(0));
 
-			List<StringWithOptionsField.Option> selectedOptions =
-				field.getCurrentValue();
+			List<StringWithOptionsField.Option> selectedOptions = field.getCurrentValue();
 
 			assertTrue(selectedOptions.isEmpty());
 		}
@@ -92,13 +86,11 @@ public class StringWithOptionsFieldTest {
 		public void shouldDoNothingWhenNoOptionsWasSelected() {
 			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
-			List<StringWithOptionsField.Option> availableOptions =
-				field.getAvailableOptions();
+			List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
 
 			field.clearOption(availableOptions.get(0));
 
-			List<StringWithOptionsField.Option> selectedOptions =
-				field.getCurrentValue();
+			List<StringWithOptionsField.Option> selectedOptions = field.getCurrentValue();
 
 			assertTrue(selectedOptions.isEmpty());
 		}
@@ -107,18 +99,15 @@ public class StringWithOptionsFieldTest {
 		public void shouldDoNothingOptionWhenThatOptionWasNotSelected() {
 			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
-			List<StringWithOptionsField.Option> availableOptions =
-				field.getAvailableOptions();
+			List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
 
 			field.selectOption(availableOptions.get(0));
 			field.clearOption(availableOptions.get(1));
 
-			List<StringWithOptionsField.Option> selectedOptions =
-				field.getCurrentValue();
+			List<StringWithOptionsField.Option> selectedOptions = field.getCurrentValue();
 
 			assertEquals(1, selectedOptions.size());
 		}
-
 	}
 
 	//@Config(constants = BuildConfig.class)
@@ -127,8 +116,8 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldStoreEmptyArrayWhenNoAvailableOptions() {
-			StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale,
-				usLocale);
+			StringWithOptionsField field =
+				new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 			List<StringWithOptionsField.Option> result = field.getAvailableOptions();
 
@@ -155,7 +144,6 @@ public class StringWithOptionsFieldTest {
 			assertEquals("option989", option2.name);
 			assertEquals("option2", option2.value);
 		}
-
 	}
 
 	//@Config(constants = BuildConfig.class)
@@ -164,8 +152,8 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldReturnEmptyListWhenSelectedOptionsIsNull() {
-			StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale,
-				usLocale);
+			StringWithOptionsField field =
+				new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 			String result = field.convertToData(null);
 
@@ -175,8 +163,8 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldReturnEmptyListWhenSelectedOptionsIsEmpty() {
-			StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale,
-				usLocale);
+			StringWithOptionsField field =
+				new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale, usLocale);
 			ArrayList<StringWithOptionsField.Option> selected = new ArrayList<>();
 
 			String result = field.convertToData(selected);
@@ -187,8 +175,8 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldReturnSingleItemListWhenThereIsOnlyOneSelectedOption() {
-			StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale,
-				usLocale);
+			StringWithOptionsField field =
+				new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 			StringWithOptionsField.Option option1 =
 				new StringWithOptionsField.Option("Option 1", "option987", "option1");
@@ -205,8 +193,8 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldReturnItemListWhenThereAreSelectedOptions() {
-			StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale,
-				usLocale);
+			StringWithOptionsField field =
+				new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 			StringWithOptionsField.Option option1 =
 				new StringWithOptionsField.Option("Option 1", "option987", "option1");
@@ -223,7 +211,6 @@ public class StringWithOptionsFieldTest {
 			assertNotNull(result);
 			assertEquals("[\"option1\", \"option2\"]", result);
 		}
-
 	}
 
 	@RunWith(Enclosed.class)
@@ -234,8 +221,8 @@ public class StringWithOptionsFieldTest {
 		public static class ShouldReturnNull {
 			@Test
 			public void whenNullStringIsSupplied() {
-				StringWithOptionsField field = new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale,
-					usLocale);
+				StringWithOptionsField field =
+					new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 				assertNull(field.convertFromString(null));
 			}
@@ -349,7 +336,6 @@ public class StringWithOptionsFieldTest {
 				assertEquals("option1", option.value);
 			}
 		}
-
 	}
 
 	//@Config(constants = BuildConfig.class)
@@ -380,7 +366,6 @@ public class StringWithOptionsFieldTest {
 
 			assertEquals("Option 1", field.convertToFormattedString(selectedOptions));
 		}
-
 	}
 
 	//@Config(constants = BuildConfig.class)
@@ -388,35 +373,34 @@ public class StringWithOptionsFieldTest {
 	public static class WhenParsingXSD {
 		@Test
 		public void shouldReturnStringWithOptionsFieldObject() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element dataType=\"string\" " +
-					"multiple=\"true\" " +
-					"name=\"A_Select\" " +
-					"type=\"select\" > " +
-					"<dynamic-element name=\"option_1\" type=\"option\" value=\"value 1\"> " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\"><![CDATA[Option 1]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element> " +
-					"<dynamic-element name=\"option_2\" type=\"option\" value=\"value 2\"> " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\"><![CDATA[Option 2]]></entry> " +
-					"</meta-data>" +
-					"</dynamic-element> " +
-					"<dynamic-element name=\"option_3\" type=\"option\" value=\"value 3\"> " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\"><![CDATA[Option 3]]></entry> " +
-					"</meta-data>" +
-					"</dynamic-element> " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\"><![CDATA[A Select]]></entry> " +
-					"<entry name=\"predefinedValue\">" +
-					"<![CDATA[[\"value 2\"]]]>" +
-					"</entry>" +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"</root>";
+			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> "
+				+ "<dynamic-element dataType=\"string\" "
+				+ "multiple=\"true\" "
+				+ "name=\"A_Select\" "
+				+ "type=\"select\" > "
+				+ "<dynamic-element name=\"option_1\" type=\"option\" value=\"value 1\"> "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"label\"><![CDATA[Option 1]]></entry> "
+				+ "</meta-data> "
+				+ "</dynamic-element> "
+				+ "<dynamic-element name=\"option_2\" type=\"option\" value=\"value 2\"> "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"label\"><![CDATA[Option 2]]></entry> "
+				+ "</meta-data>"
+				+ "</dynamic-element> "
+				+ "<dynamic-element name=\"option_3\" type=\"option\" value=\"value 3\"> "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"label\"><![CDATA[Option 3]]></entry> "
+				+ "</meta-data>"
+				+ "</dynamic-element> "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"label\"><![CDATA[A Select]]></entry> "
+				+ "<entry name=\"predefinedValue\">"
+				+ "<![CDATA[[\"value 2\"]]]>"
+				+ "</entry>"
+				+ "</meta-data> "
+				+ "</dynamic-element>"
+				+ "</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, new Locale("en", "US"));
 
@@ -477,13 +461,11 @@ public class StringWithOptionsFieldTest {
 		public void shouldStoreOptionWhenOptionIsSelected() {
 			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
-			List<StringWithOptionsField.Option> availableOptions =
-				field.getAvailableOptions();
+			List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
 
 			field.selectOption(availableOptions.get(0));
 
-			List<StringWithOptionsField.Option> selectedOptions =
-				field.getCurrentValue();
+			List<StringWithOptionsField.Option> selectedOptions = field.getCurrentValue();
 
 			assertEquals(1, selectedOptions.size());
 		}
@@ -492,14 +474,12 @@ public class StringWithOptionsFieldTest {
 		public void shouldStoreOnlyOneOptionWhenMultipleOptionsAreSelected() {
 			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
-			List<StringWithOptionsField.Option> availableOptions =
-				field.getAvailableOptions();
+			List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
 
 			field.selectOption(availableOptions.get(0));
 			field.selectOption(availableOptions.get(1));
 
-			List<StringWithOptionsField.Option> selectedOptions =
-				field.getCurrentValue();
+			List<StringWithOptionsField.Option> selectedOptions = field.getCurrentValue();
 
 			assertEquals(1, selectedOptions.size());
 		}
@@ -508,12 +488,10 @@ public class StringWithOptionsFieldTest {
 		public void shouldReturnEmptyListWhenNoOptionsWereSelected() {
 			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
-			List<StringWithOptionsField.Option> selectedOptions =
-				field.getCurrentValue();
+			List<StringWithOptionsField.Option> selectedOptions = field.getCurrentValue();
 
 			assertTrue(selectedOptions.isEmpty());
 		}
-
 	}
 
 	//@Config(constants = BuildConfig.class)
@@ -531,8 +509,7 @@ public class StringWithOptionsFieldTest {
 		public void shouldReturnFalseWhenSelectionIsCleared() {
 			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
-			List<StringWithOptionsField.Option> availableOptions =
-				field.getAvailableOptions();
+			List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
 
 			field.selectOption(availableOptions.get(0));
 			field.clearOption(availableOptions.get(0));
@@ -544,14 +521,12 @@ public class StringWithOptionsFieldTest {
 		public void shouldReturnTrueWhenOptionIsSelected() {
 			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
 
-			List<StringWithOptionsField.Option> availableOptions =
-				field.getAvailableOptions();
+			List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
 
 			field.selectOption(availableOptions.get(0));
 
 			assertTrue(field.isValid());
 		}
-
 	}
 
 	//@Config(constants = BuildConfig.class)
@@ -560,56 +535,56 @@ public class StringWithOptionsFieldTest {
 		@Test
 		public void shouldReturnStringWithOptionsFieldObject() throws Exception {
 
-			String json = "{\"availableLanguageIds\": [ \"en_US\"], " +
-				"\"defaultLanguageId\": \"en_US\", " +
-				"\"fields\": [ " +
-				"{\n" +
-				"            \"label\": {" +
-				"                \"en_US\": \"Select\"" +
-				"            }," +
-				"            \"options\": [" +
-				"                {" +
-				"                    \"value\": \"value 1\"," +
-				"                    \"label\": {" +
-				"                        \"en_US\": \"Option 1\"" +
-				"                    }" +
-				"                }," +
-				"                {" +
-				"                    \"value\": \"value 2\"," +
-				"                    \"label\": {" +
-				"                        \"en_US\": \"Option 2\"" +
-				"                    }" +
-				"                }," +
-				"                {" +
-				"                    \"value\": \"value 3\"," +
-				"                    \"label\": {" +
-				"                        \"en_US\": \"Option 3\"" +
-				"                    }" +
-				"                }" +
-				"            ]," +
-				"            \"predefinedValue\": {" +
-				"                \"en_US\": [" +
-				"                    \"value 2\"" +
-				"                ]" +
-				"            }," +
-				"            \"style\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"tip\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"dataType\": \"string\"," +
-				"            \"indexType\": \"keyword\"," +
-				"            \"localizable\": true," +
-				"            \"multiple\": false," +
-				"            \"name\": \"Select54e6\"," +
-				"            \"readOnly\": false," +
-				"            \"repeatable\": false," +
-				"            \"required\": false," +
-				"            \"showLabel\": true," +
-				"            \"type\": \"select\"" +
-				"        }" +
-				"]}";
+			String json = "{\"availableLanguageIds\": [ \"en_US\"], "
+				+ "\"defaultLanguageId\": \"en_US\", "
+				+ "\"fields\": [ "
+				+ "{\n"
+				+ "            \"label\": {"
+				+ "                \"en_US\": \"Select\""
+				+ "            },"
+				+ "            \"options\": ["
+				+ "                {"
+				+ "                    \"value\": \"value 1\","
+				+ "                    \"label\": {"
+				+ "                        \"en_US\": \"Option 1\""
+				+ "                    }"
+				+ "                },"
+				+ "                {"
+				+ "                    \"value\": \"value 2\","
+				+ "                    \"label\": {"
+				+ "                        \"en_US\": \"Option 2\""
+				+ "                    }"
+				+ "                },"
+				+ "                {"
+				+ "                    \"value\": \"value 3\","
+				+ "                    \"label\": {"
+				+ "                        \"en_US\": \"Option 3\""
+				+ "                    }"
+				+ "                }"
+				+ "            ],"
+				+ "            \"predefinedValue\": {"
+				+ "                \"en_US\": ["
+				+ "                    \"value 2\""
+				+ "                ]"
+				+ "            },"
+				+ "            \"style\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"tip\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"dataType\": \"string\","
+				+ "            \"indexType\": \"keyword\","
+				+ "            \"localizable\": true,"
+				+ "            \"multiple\": false,"
+				+ "            \"name\": \"Select54e6\","
+				+ "            \"readOnly\": false,"
+				+ "            \"repeatable\": false,"
+				+ "            \"required\": false,"
+				+ "            \"showLabel\": true,"
+				+ "            \"type\": \"select\""
+				+ "        }"
+				+ "]}";
 
 			List<Field> resultList = new JsonParser().parse(json, new Locale("en", "US"));
 
@@ -658,5 +633,4 @@ public class StringWithOptionsFieldTest {
 			assertFalse(optionsField.isMultiple());
 		}
 	}
-
 }

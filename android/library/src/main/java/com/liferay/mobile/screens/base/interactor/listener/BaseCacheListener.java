@@ -23,7 +23,6 @@ public interface BaseCacheListener {
 	 * Catch the exception and the user action if there was an error.
 	 *
 	 * @param e exception
-	 * @param userAction
 	 */
 	//TODO Error propagating event instead of the exception
 	void error(Exception e, String userAction);
