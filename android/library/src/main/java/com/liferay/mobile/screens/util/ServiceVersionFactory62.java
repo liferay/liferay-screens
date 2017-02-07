@@ -77,4 +77,14 @@ public class ServiceVersionFactory62 implements ServiceVersionFactory {
 	public ScreensJournalContentConnector getScreensJournalContentConnector(Session session) {
 		return new ScreensJournalContentConnector62(session);
 	}
+
+	@Override
+	public ScreensCommentConnector getScreensCommentConnector(Session session) {
+		return null;
+	}
+
+	@Override
+	public ScreensRatingsConnector getScreensRatingsConnector(Session session) {
+		return null;
+	}
 }

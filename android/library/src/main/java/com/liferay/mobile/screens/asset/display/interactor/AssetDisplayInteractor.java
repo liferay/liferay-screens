@@ -6,10 +6,12 @@ import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
 import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.asset.AssetFactory;
+import com.liferay.mobile.screens.asset.list.connector.ScreensAssetEntryConnector;
 import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.service.v70.ScreensassetentryService;
 import com.liferay.mobile.screens.util.JSONUtil;
+import com.liferay.mobile.screens.util.ScreensCommentConnector;
+import com.liferay.mobile.screens.util.ServiceProvider;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -30,17 +32,15 @@ public class AssetDisplayInteractor extends BaseCacheReadInteractor<AssetDisplay
 
 	private JSONObject getAsset(Object... args) throws Exception {
 		Session session = SessionContext.createSessionFromCurrentSession();
+		ScreensAssetEntryConnector connector = ServiceProvider.getInstance().getScreensAssetEntryConnector(getSession());
 		if (args.length > 1) {
 			String className = (String) args[0];
 			long classPK = (long) args[1];
 
-			ScreensassetentryService service = new ScreensassetentryService(session);
-			return service.getAssetEntry(className, classPK, Locale.getDefault().getLanguage());
+			return connector.getAssetEntry(className, classPK, Locale.getDefault().getLanguage());
 		} else {
 			long entryId = (long) args[0];
-
-			ScreensassetentryService service = new ScreensassetentryService(getSession());
-			return service.getAssetEntry(entryId, Locale.getDefault().getLanguage());
+			return connector.getAssetEntry(entryId, Locale.getDefault().getLanguage());
 		}
 	}
 

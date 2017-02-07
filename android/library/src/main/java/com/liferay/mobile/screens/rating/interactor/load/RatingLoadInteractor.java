@@ -6,7 +6,8 @@ import com.liferay.mobile.screens.rating.AssetRating;
 import com.liferay.mobile.screens.rating.RatingListener;
 import com.liferay.mobile.screens.rating.RatingScreenlet;
 import com.liferay.mobile.screens.rating.interactor.RatingEvent;
-import com.liferay.mobile.screens.service.v70.ScreensratingsentryService;
+import com.liferay.mobile.screens.util.ScreensRatingsConnector;
+import com.liferay.mobile.screens.util.ServiceProvider;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -79,12 +80,12 @@ public class RatingLoadInteractor extends BaseCacheReadInteractor<RatingListener
 
 	private JSONObject getRatingsEntries(long entryId, long classPK, String className,
 		int ratingGroupCounts) throws Exception {
-		ScreensratingsentryService service =
-			new ScreensratingsentryService(SessionContext.createSessionFromCurrentSession());
+
+		ScreensRatingsConnector connector = ServiceProvider.getInstance().getScreensRatingsConnector(getSession());
 		if (entryId != 0) {
-			return service.getRatingsEntries(entryId, ratingGroupCounts);
+			return connector.getRatingsEntries(entryId, ratingGroupCounts);
 		} else {
-			return service.getRatingsEntries(classPK, className, ratingGroupCounts);
+			return connector.getRatingsEntries(classPK, className, ratingGroupCounts);
 		}
 	}
 

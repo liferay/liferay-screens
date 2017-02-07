@@ -42,4 +42,8 @@ public interface ServiceVersionFactory {
 	JournalContentConnector getJournalContentConnector(Session session);
 
 	ScreensJournalContentConnector getScreensJournalContentConnector(Session session);
+
+	ScreensCommentConnector getScreensCommentConnector(Session session);
+
+	ScreensRatingsConnector getScreensRatingsConnector(Session session);
 }

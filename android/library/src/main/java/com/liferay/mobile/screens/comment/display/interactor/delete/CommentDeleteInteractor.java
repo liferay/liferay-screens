@@ -5,6 +5,8 @@ import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
 import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
+import com.liferay.mobile.screens.util.ScreensCommentConnector;
+import com.liferay.mobile.screens.util.ServiceProvider;
 
 /**
  * @author Alejandro Hernández
@@ -18,9 +20,8 @@ public class CommentDeleteInteractor extends BaseCacheWriteInteractor<CommentDis
 
 		validate(commentId);
 
-		CommentmanagerjsonwsService service = new CommentmanagerjsonwsService(getSession());
-
-		service.deleteComment(commentId);
+		ScreensCommentConnector connector = ServiceProvider.getInstance().getScreensCommentConnector(getSession());
+		connector.deleteComment(commentId);
 
 		return event;
 	}
