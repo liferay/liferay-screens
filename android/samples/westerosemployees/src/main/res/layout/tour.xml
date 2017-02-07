@@ -3,7 +3,8 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="@color/background_gray_westeros"
-	android:orientation="vertical">
+	android:orientation="vertical"
+	>
 
 	<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
 		android:id="@+id/pager"
@@ -12,19 +13,22 @@
 		android:layout_marginLeft="@dimen/westeros_side_margin"
 		android:layout_marginRight="@dimen/westeros_side_margin"
 		android:layout_weight="1"
-		android:padding="@dimen/westeros_side_margin">
+		android:padding="@dimen/westeros_side_margin"
+		>
 
 		<android.support.v4.view.PagerTabStrip
 			android:id="@+id/pager_tab_strip"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="bottom"
-			android:textColor="@color/background_gray_westeros" />
+			android:textColor="@color/background_gray_westeros"
+			/>
 	</android.support.v4.view.ViewPager>
 
 	<Button
 		android:id="@+id/tour_button"
+		android:text="@string/next"
 		style="@style/westeros_button"
-		android:text="@string/next" />
+		/>
 
 </LinearLayout>

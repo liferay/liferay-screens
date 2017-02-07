@@ -4,8 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
-import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.asset.AssetEntry;
+import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.asset.list.AssetListScreenlet;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.westerosemployees.R;
@@ -54,8 +54,7 @@ public class BlogsCard extends CommentsRatingsCard implements BaseListListener<A
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries,
-		int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries, int rowCount) {
 
 	}
 
@@ -64,8 +63,7 @@ public class BlogsCard extends CommentsRatingsCard implements BaseListListener<A
 
 		blogDisplayScreenlet.load(element);
 
-		initializeRatingsAndComments("com.liferay.blogs.kernel.model.BlogsEntry",
-			element.getClassPK());
+		initializeRatingsAndComments("com.liferay.blogs.kernel.model.BlogsEntry", element.getClassPK());
 
 		cardListener.moveCardRight(this);
 	}
@@ -82,7 +80,6 @@ public class BlogsCard extends CommentsRatingsCard implements BaseListListener<A
 		blogsListScreenlet = (AssetListScreenlet) findViewById(R.id.asset_list_screenlet_blogs);
 		blogsListScreenlet.setListener(this);
 
-		blogDisplayScreenlet =
-			(AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet_blog);
+		blogDisplayScreenlet = (AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet_blog);
 	}
 }

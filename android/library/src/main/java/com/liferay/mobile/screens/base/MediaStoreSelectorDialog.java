@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.base;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import com.jakewharton.rxbinding.view.RxView;

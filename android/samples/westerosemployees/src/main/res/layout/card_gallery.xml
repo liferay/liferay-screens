@@ -42,12 +42,12 @@
 			android:id="@+id/gallery_screenlet"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:layout_below="@id/gallery_title"
 			android:layout_above="@id/card_anchor"
-			app:folderId="@string/folderId"
-			app:repositoryId="@string/liferay_group_id"
-			app:layoutId="@layout/gallery_westeros"
+			android:layout_below="@id/gallery_title"
 			app:autoLoad="false"
+			app:folderId="@string/folderId"
+			app:layoutId="@layout/gallery_westeros"
+			app:repositoryId="@string/liferay_group_id"
 			>
 
 		</com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet>

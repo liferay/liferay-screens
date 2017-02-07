@@ -21,8 +21,7 @@ import com.liferay.mobile.screens.westerosemployees.fragments.TourPageFragment;
 /**
  * @author Javier Gamarra
  */
-public class TourActivity extends FragmentActivity
-	implements View.OnClickListener, ViewPager.OnPageChangeListener {
+public class TourActivity extends FragmentActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {
 
 	public static final String TOUR_VISITED = "TOUR_VISITED";
 	public static final String WESTEROS_PREFERENCES = "WESTEROS_PREFERENCES";
@@ -50,8 +49,7 @@ public class TourActivity extends FragmentActivity
 		boolean lastPage = viewPager.getCurrentItem() == NUM_PAGES - 1;
 
 		if (lastPage) {
-			SharedPreferences preferences =
-				getSharedPreferences(WESTEROS_PREFERENCES, MODE_PRIVATE);
+			SharedPreferences preferences = getSharedPreferences(WESTEROS_PREFERENCES, MODE_PRIVATE);
 			preferences.edit().putBoolean(TOUR_VISITED, true).apply();
 
 			startActivity(new Intent(this, MainActivity.class));
@@ -105,8 +103,8 @@ public class TourActivity extends FragmentActivity
 		@Override
 		public CharSequence getPageTitle(int position) {
 
-			int drawableId = viewPager.getCurrentItem() == position ? R.drawable.pagination_on
-				: R.drawable.pagination_off;
+			int drawableId =
+				viewPager.getCurrentItem() == position ? R.drawable.pagination_on : R.drawable.pagination_off;
 			Drawable drawable = ResourcesCompat.getDrawable(getResources(), drawableId, getTheme());
 			drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
 			ImageSpan imageSpan = new ImageSpan(drawable, ImageSpan.ALIGN_BOTTOM);

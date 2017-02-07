@@ -21,15 +21,11 @@ public interface CardListener {
 
 	/**
 	 * This method move the {@link Card} to the right (x+1 coordinate).
-	 *
-	 * @param card
 	 */
 	void moveCardRight(Card card);
 
 	/**
 	 * This method move the {@link Card} to the left (x-1 coordinate).
-	 *
-	 * @param card
 	 */
 	void moveCardLeft(Card card);
 }

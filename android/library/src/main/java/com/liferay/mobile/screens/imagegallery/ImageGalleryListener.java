@@ -27,33 +27,21 @@ public interface ImageGalleryListener extends BaseListListener<ImageEntry> {
 
 	/**
 	 * Called when an item in the list is deleted.
-	 *
-	 * @param imageEntryId
 	 */
 	void onImageEntryDeleted(long imageEntryId);
 
 	/**
 	 * Called when an item is prepared for upload.
-	 *
-	 * @param pictureUri
-	 * @param title
-	 * @param description
-	 * @param changelog
 	 */
 	void onImageUploadStarted(Uri pictureUri, String title, String description, String changelog);
 
 	/**
 	 * Called when an item is uploading.
-	 *
-	 * @param totalBytes
-	 * @param totalBytesSent
 	 */
 	void onImageUploadProgress(int totalBytes, int totalBytesSent);
 
 	/**
 	 * Called when an item finishes uploading.
-	 *
-	 * @param entry
 	 */
 	void onImageUploadEnd(ImageEntry entry);
 
@@ -65,9 +53,6 @@ public interface ImageGalleryListener extends BaseListListener<ImageEntry> {
 	 * method to initialize a custom View that extends {@link BaseDetailUploadView}.
 	 * Then return `true` to prevent the screenlet from executing the default behavior.
 	 *
-	 * @param actionName
-	 * @param pictureUri
-	 * @param screenletId
 	 * @return boolean
 	 */
 	boolean showUploadImageView(String actionName, Uri pictureUri, int screenletId);
@@ -80,5 +65,6 @@ public interface ImageGalleryListener extends BaseListListener<ImageEntry> {
 	 *
 	 * @return layout ID or `0` to inflate the default view.
 	 */
-	@LayoutRes int provideImageUploadDetailView();
+	@LayoutRes
+	int provideImageUploadDetailView();
 }

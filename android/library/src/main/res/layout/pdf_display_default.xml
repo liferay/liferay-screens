@@ -96,7 +96,7 @@
 		android:adjustViewBounds="true"
 		android:contentDescription="@string/pdf_content"
 		android:scaleType="fitCenter"
-	/>
+		/>
 
 	<TextView
 		android:id="@+id/liferay_asset_title"
@@ -107,6 +107,6 @@
 		android:visibility="gone"
 		tools:text="Demo-file.pdf"
 		tools:visibility="visible"
-	/>
+		/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display.PdfDisplayView>

@@ -14,18 +14,14 @@
 
 package com.liferay.mobile.screens.ddl.model;
 
-import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.ddl.JsonParser;
-
+import java.util.List;
+import java.util.Locale;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 import org.xml.sax.SAXException;
-
-import java.util.List;
-import java.util.Locale;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -40,33 +36,35 @@ public class StringField70Test {
 
 	private static StringField createStringField(Boolean required) {
 
-		String json = "{\"availableLanguageIds\": [ \"en_US\"], " +
-			"\"defaultLanguageId\": \"en_US\", " +
-			"\"fields\": [ " +
-			"{" +
-			"            \"label\": {" +
-			"                \"en_US\": \"Title\"" +
-			"            }," +
-			"            \"predefinedValue\": {" +
-			"                \"en_US\": \"\"" +
-			"            }," +
-			"            \"style\": {" +
-			"                \"en_US\": \"\"" +
-			"            }," +
-			"            \"tip\": {" +
-			"                \"en_US\": \"\"" +
-			"            }," +
-			"            \"dataType\": \"string\"," +
-			"            \"indexType\": \"keyword\"," +
-			"            \"localizable\": true," +
-			"            \"name\": \"Title\"," +
-			"            \"readOnly\": false," +
-			"            \"repeatable\": false," +
-			"            \"required\": " + required + "," +
-			"            \"showLabel\": true," +
-			"            \"type\": \"text\"" +
-			"        }" +
-			"]}";
+		String json = "{\"availableLanguageIds\": [ \"en_US\"], "
+			+ "\"defaultLanguageId\": \"en_US\", "
+			+ "\"fields\": [ "
+			+ "{"
+			+ "            \"label\": {"
+			+ "                \"en_US\": \"Title\""
+			+ "            },"
+			+ "            \"predefinedValue\": {"
+			+ "                \"en_US\": \"\""
+			+ "            },"
+			+ "            \"style\": {"
+			+ "                \"en_US\": \"\""
+			+ "            },"
+			+ "            \"tip\": {"
+			+ "                \"en_US\": \"\""
+			+ "            },"
+			+ "            \"dataType\": \"string\","
+			+ "            \"indexType\": \"keyword\","
+			+ "            \"localizable\": true,"
+			+ "            \"name\": \"Title\","
+			+ "            \"readOnly\": false,"
+			+ "            \"repeatable\": false,"
+			+ "            \"required\": "
+			+ required
+			+ ","
+			+ "            \"showLabel\": true,"
+			+ "            \"type\": \"text\""
+			+ "        }"
+			+ "]}";
 
 		List<Field> resultList = new JsonParser().parse(json, new Locale("en", "US"));
 
@@ -79,33 +77,33 @@ public class StringField70Test {
 		@Test
 		public void shouldReturnStringFieldObject() throws Exception {
 
-			String json = "{\"availableLanguageIds\": [ \"en_US\"], " +
-				"\"defaultLanguageId\": \"en_US\", " +
-				"\"fields\": [ " +
-				"{" +
-				"            \"label\": {" +
-				"                \"en_US\": \"Title\"" +
-				"            }," +
-				"            \"predefinedValue\": {" +
-				"                \"en_US\": \"default text\"" +
-				"            }," +
-				"            \"style\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"tip\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"dataType\": \"string\"," +
-				"            \"indexType\": \"keyword\"," +
-				"            \"localizable\": true," +
-				"            \"name\": \"A_Text\"," +
-				"            \"readOnly\": false," +
-				"            \"repeatable\": false," +
-				"            \"required\": true," +
-				"            \"showLabel\": true," +
-				"            \"type\": \"text\"" +
-				"        }" +
-				"]}";
+			String json = "{\"availableLanguageIds\": [ \"en_US\"], "
+				+ "\"defaultLanguageId\": \"en_US\", "
+				+ "\"fields\": [ "
+				+ "{"
+				+ "            \"label\": {"
+				+ "                \"en_US\": \"Title\""
+				+ "            },"
+				+ "            \"predefinedValue\": {"
+				+ "                \"en_US\": \"default text\""
+				+ "            },"
+				+ "            \"style\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"tip\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"dataType\": \"string\","
+				+ "            \"indexType\": \"keyword\","
+				+ "            \"localizable\": true,"
+				+ "            \"name\": \"A_Text\","
+				+ "            \"readOnly\": false,"
+				+ "            \"repeatable\": false,"
+				+ "            \"required\": true,"
+				+ "            \"showLabel\": true,"
+				+ "            \"type\": \"text\""
+				+ "        }"
+				+ "]}";
 
 			List<Field> resultList = new JsonParser().parse(json, new Locale("en", "US"));
 
@@ -146,7 +144,6 @@ public class StringField70Test {
 			assertFalse(field.isValid());
 		}
 
-
 		@Test
 		public void shouldReturnFalseWhenValueIsEmpty() throws SAXException {
 			StringField field = createStringField(true);
@@ -164,7 +161,6 @@ public class StringField70Test {
 
 			assertTrue(field.isValid());
 		}
-
 	}
 
 	//@Config(constants = BuildConfig.class)
@@ -206,7 +202,5 @@ public class StringField70Test {
 
 			assertTrue(field.isValid());
 		}
-
 	}
-
 }

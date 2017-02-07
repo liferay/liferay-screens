@@ -17,7 +17,6 @@ package com.liferay.mobile.screens.dlfile.display.image;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import com.liferay.mobile.screens.R;
@@ -60,8 +59,9 @@ public class ImageDisplayScreenlet extends BaseFileDisplayScreenlet<ImageDisplay
 			ImageView.ScaleType.FIT_CENTER.ordinal());
 		scaleType = ImageView.ScaleType.values()[scaleTypeAttribute];
 
-		Integer placeholderScaleTypeAttribute = typedArray.getInteger(R.styleable.ImageDisplayScreenlet_placeholderScaleType,
-			ImageView.ScaleType.FIT_CENTER.ordinal());
+		Integer placeholderScaleTypeAttribute =
+			typedArray.getInteger(R.styleable.ImageDisplayScreenlet_placeholderScaleType,
+				ImageView.ScaleType.FIT_CENTER.ordinal());
 		placeholderScaleType = ImageView.ScaleType.values()[placeholderScaleTypeAttribute];
 
 		typedArray.recycle();
@@ -79,8 +79,18 @@ public class ImageDisplayScreenlet extends BaseFileDisplayScreenlet<ImageDisplay
 		return scaleType;
 	}
 
+	public void setScaleType(ImageView.ScaleType scaleType) {
+		this.scaleType = scaleType;
+		getViewModel().setScaleType(scaleType);
+	}
+
 	public int getPlaceholder() {
 		return placeholder;
+	}
+
+	public void setPlaceholder(int placeholder) {
+		this.placeholder = placeholder;
+		getViewModel().setPlaceholder(placeholder);
 	}
 
 	public ImageView.ScaleType getPlaceholderScaleType() {
@@ -90,15 +100,5 @@ public class ImageDisplayScreenlet extends BaseFileDisplayScreenlet<ImageDisplay
 	public void setPlaceholderScaleType(ImageView.ScaleType placeholderScaleType) {
 		this.placeholderScaleType = placeholderScaleType;
 		getViewModel().setPlaceholderScaleType(placeholderScaleType);
-	}
-
-	public void setScaleType(ImageView.ScaleType scaleType) {
-		this.scaleType = scaleType;
-		getViewModel().setScaleType(scaleType);
-	}
-
-	public void setPlaceholder(int placeholder) {
-		this.placeholder = placeholder;
-		getViewModel().setPlaceholder(placeholder);
 	}
 }

@@ -28,9 +28,7 @@ public interface AssetDisplayInnerScreenletListener {
 	 * Configure or customize the child screenlet which
 	 * has been initialized correctly.
 	 *
-	 * @param screenlet
 	 * @param innerScreenlet child screenlet
-	 * @param assetEntry
 	 */
 	void onConfigureChildScreenlet(AssetDisplayScreenlet screenlet, BaseScreenlet innerScreenlet,
 		AssetEntry assetEntry);
@@ -38,7 +36,6 @@ public interface AssetDisplayInnerScreenletListener {
 	/**
 	 * Render a custom asset.
 	 *
-	 * @param assetEntry
 	 * @return custom view for the custom asset.
 	 */
 	View onRenderCustomAsset(AssetEntry assetEntry);

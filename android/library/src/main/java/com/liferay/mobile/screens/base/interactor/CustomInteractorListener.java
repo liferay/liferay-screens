@@ -22,7 +22,6 @@ public interface CustomInteractorListener<I extends Interactor> {
 	/**
 	 * Create interactor with the given `actionName`.
 	 *
-	 * @param actionName
 	 * @return interactor class
 	 */
 	I createInteractor(String actionName);

@@ -14,19 +14,15 @@
 
 package com.liferay.mobile.screens.ddl.model;
 
-import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.ddl.JsonParser;
 import com.liferay.mobile.screens.ddl.XSDParser;
-
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
@@ -159,7 +155,6 @@ public class NumberFieldTest {
 			assertEquals("123.4", field.convertToData(123.4d));
 			assertEquals("123.4", field.convertToData(123.4f));
 		}
-
 	}
 
 	//@Config(constants = BuildConfig.class)
@@ -168,18 +163,17 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnFieldObjectWhenFieldIsNumber() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"number\" " +
-					"fieldNamespace=\"ddm\" " +
-					"type=\"ddm-number\" " +
-					"name=\"A_Number\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"predefinedValue\"><![CDATA[123]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"</root>";
+			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> "
+				+ "<dynamic-element "
+				+ "dataType=\"number\" "
+				+ "fieldNamespace=\"ddm\" "
+				+ "type=\"ddm-number\" "
+				+ "name=\"A_Number\" > "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"predefinedValue\"><![CDATA[123]]></entry> "
+				+ "</meta-data> "
+				+ "</dynamic-element>"
+				+ "</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, usLocale);
 
@@ -203,18 +197,17 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnFieldObjectWhenFieldIsInteger() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"integer\" " +
-					"fieldNamespace=\"ddm\" " +
-					"type=\"ddm-integer\" " +
-					"name=\"An_Integer\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"predefinedValue\"><![CDATA[123]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"</root>";
+			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> "
+				+ "<dynamic-element "
+				+ "dataType=\"integer\" "
+				+ "fieldNamespace=\"ddm\" "
+				+ "type=\"ddm-integer\" "
+				+ "name=\"An_Integer\" > "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"predefinedValue\"><![CDATA[123]]></entry> "
+				+ "</meta-data> "
+				+ "</dynamic-element>"
+				+ "</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, usLocale);
 
@@ -238,18 +231,17 @@ public class NumberFieldTest {
 
 		@Test
 		public void shouldReturnFieldObjectWhenFieldIsDecimal() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"double\" " +
-					"fieldNamespace=\"ddm\" " +
-					"type=\"ddm-decimal\" " +
-					"name=\"A_Decimal\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"predefinedValue\"><![CDATA[123.4]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"</root>";
+			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> "
+				+ "<dynamic-element "
+				+ "dataType=\"double\" "
+				+ "fieldNamespace=\"ddm\" "
+				+ "type=\"ddm-decimal\" "
+				+ "name=\"A_Decimal\" > "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"predefinedValue\"><![CDATA[123.4]]></entry> "
+				+ "</meta-data> "
+				+ "</dynamic-element>"
+				+ "</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, usLocale);
 
@@ -270,7 +262,6 @@ public class NumberFieldTest {
 
 			assertSame(numberField.getCurrentValue(), numberField.getPredefinedValue());
 		}
-
 	}
 
 	//@Config(constants = BuildConfig.class)
@@ -280,34 +271,34 @@ public class NumberFieldTest {
 		@Test
 		public void shouldReturnFieldObjectWhenFieldIsNumber() throws Exception {
 
-			String JSON_NUMBER = "{\"availableLanguageIds\": [ \"en_US\"], " +
-				"\"defaultLanguageId\": \"en_US\", " +
-				"\"fields\": [ " +
-				"{ " +
-				"            \"label\": {" +
-				"                \"en_US\": \"Number\"" +
-				"            }," +
-				"            \"predefinedValue\": {" +
-				"                \"en_US\": \"123\"" +
-				"            }," +
-				"            \"style\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"tip\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"dataType\": \"number\"," +
-				"            \"fieldNamespace\": \"ddm\"," +
-				"            \"indexType\": \"keyword\"," +
-				"            \"localizable\": true," +
-				"            \"name\": \"A_Number\"," +
-				"            \"readOnly\": false," +
-				"            \"repeatable\": false," +
-				"            \"required\": false," +
-				"            \"showLabel\": true," +
-				"            \"type\": \"ddm-number\"" +
-				"        }" +
-				"]}";
+			String JSON_NUMBER = "{\"availableLanguageIds\": [ \"en_US\"], "
+				+ "\"defaultLanguageId\": \"en_US\", "
+				+ "\"fields\": [ "
+				+ "{ "
+				+ "            \"label\": {"
+				+ "                \"en_US\": \"Number\""
+				+ "            },"
+				+ "            \"predefinedValue\": {"
+				+ "                \"en_US\": \"123\""
+				+ "            },"
+				+ "            \"style\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"tip\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"dataType\": \"number\","
+				+ "            \"fieldNamespace\": \"ddm\","
+				+ "            \"indexType\": \"keyword\","
+				+ "            \"localizable\": true,"
+				+ "            \"name\": \"A_Number\","
+				+ "            \"readOnly\": false,"
+				+ "            \"repeatable\": false,"
+				+ "            \"required\": false,"
+				+ "            \"showLabel\": true,"
+				+ "            \"type\": \"ddm-number\""
+				+ "        }"
+				+ "]}";
 
 			List<Field> resultList = new JsonParser().parse(JSON_NUMBER, usLocale);
 
@@ -332,34 +323,34 @@ public class NumberFieldTest {
 		@Test
 		public void shouldReturnFieldObjectWhenFieldIsInteger() throws Exception {
 
-			String JSON_NUMBER = "{\"availableLanguageIds\": [ \"en_US\"], " +
-				"\"defaultLanguageId\": \"en_US\", " +
-				"\"fields\": [ " +
-				"{ " +
-				"            \"label\": {" +
-				"                \"en_US\": \"Number\"" +
-				"            }," +
-				"            \"predefinedValue\": {" +
-				"                \"en_US\": \"123\"" +
-				"            }," +
-				"            \"style\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"tip\": {" +
-				"                \"en_US\": \"\"" +
-				"            }," +
-				"            \"dataType\": \"number\"," +
-				"            \"fieldNamespace\": \"ddm\"," +
-				"            \"indexType\": \"keyword\"," +
-				"            \"localizable\": true," +
-				"            \"name\": \"An_Integer\"," +
-				"            \"readOnly\": false," +
-				"            \"repeatable\": false," +
-				"            \"required\": false," +
-				"            \"showLabel\": true," +
-				"            \"type\": \"ddm-integer\"" +
-				"        }" +
-				"]}";
+			String JSON_NUMBER = "{\"availableLanguageIds\": [ \"en_US\"], "
+				+ "\"defaultLanguageId\": \"en_US\", "
+				+ "\"fields\": [ "
+				+ "{ "
+				+ "            \"label\": {"
+				+ "                \"en_US\": \"Number\""
+				+ "            },"
+				+ "            \"predefinedValue\": {"
+				+ "                \"en_US\": \"123\""
+				+ "            },"
+				+ "            \"style\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"tip\": {"
+				+ "                \"en_US\": \"\""
+				+ "            },"
+				+ "            \"dataType\": \"number\","
+				+ "            \"fieldNamespace\": \"ddm\","
+				+ "            \"indexType\": \"keyword\","
+				+ "            \"localizable\": true,"
+				+ "            \"name\": \"An_Integer\","
+				+ "            \"readOnly\": false,"
+				+ "            \"repeatable\": false,"
+				+ "            \"required\": false,"
+				+ "            \"showLabel\": true,"
+				+ "            \"type\": \"ddm-integer\""
+				+ "        }"
+				+ "]}";
 
 			List<Field> resultList = new JsonParser().parse(JSON_NUMBER, usLocale);
 
@@ -384,35 +375,34 @@ public class NumberFieldTest {
 		@Test
 		public void shouldReturnFieldObjectWhenFieldIsDecimal() throws Exception {
 
-			String JSON_NUMBER = "{\"availableLanguageIds\": [ \"en_US\"], " +
-				"\"defaultLanguageId\": \"en_US\", " +
-				"\"fields\": [ " +
-				"{ " +
-				"\"label\": {\n" +
-				"                \"en_US\": \"Decimal\"\n" +
-				"            },\n" +
-				"            \"predefinedValue\": {\n" +
-				"                \"en_US\": \"123.4\"\n" +
-				"            },\n" +
-				"            \"style\": {\n" +
-				"                \"en_US\": \"\"\n" +
-				"            },\n" +
-				"            \"tip\": {\n" +
-				"                \"en_US\": \"\"\n" +
-				"            },\n" +
-				"            \"dataType\": \"double\",\n" +
-				"            \"fieldNamespace\": \"ddm\",\n" +
-				"            \"indexType\": \"keyword\",\n" +
-				"            \"localizable\": true,\n" +
-				"            \"name\": \"A_Decimal\",\n" +
-				"            \"readOnly\": false,\n" +
-				"            \"repeatable\": false,\n" +
-				"            \"required\": false,\n" +
-				"            \"showLabel\": true,\n" +
-				"            \"type\": \"ddm-decimal\"" +
-				"        }" +
-				"]}";
-
+			String JSON_NUMBER = "{\"availableLanguageIds\": [ \"en_US\"], "
+				+ "\"defaultLanguageId\": \"en_US\", "
+				+ "\"fields\": [ "
+				+ "{ "
+				+ "\"label\": {\n"
+				+ "                \"en_US\": \"Decimal\"\n"
+				+ "            },\n"
+				+ "            \"predefinedValue\": {\n"
+				+ "                \"en_US\": \"123.4\"\n"
+				+ "            },\n"
+				+ "            \"style\": {\n"
+				+ "                \"en_US\": \"\"\n"
+				+ "            },\n"
+				+ "            \"tip\": {\n"
+				+ "                \"en_US\": \"\"\n"
+				+ "            },\n"
+				+ "            \"dataType\": \"double\",\n"
+				+ "            \"fieldNamespace\": \"ddm\",\n"
+				+ "            \"indexType\": \"keyword\",\n"
+				+ "            \"localizable\": true,\n"
+				+ "            \"name\": \"A_Decimal\",\n"
+				+ "            \"readOnly\": false,\n"
+				+ "            \"repeatable\": false,\n"
+				+ "            \"required\": false,\n"
+				+ "            \"showLabel\": true,\n"
+				+ "            \"type\": \"ddm-decimal\""
+				+ "        }"
+				+ "]}";
 
 			List<Field> resultList = new JsonParser().parse(JSON_NUMBER, usLocale);
 
@@ -433,7 +423,5 @@ public class NumberFieldTest {
 
 			assertSame(numberField.getCurrentValue(), numberField.getPredefinedValue());
 		}
-
 	}
-
 }

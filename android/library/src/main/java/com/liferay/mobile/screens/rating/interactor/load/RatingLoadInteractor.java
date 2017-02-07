@@ -4,8 +4,8 @@ import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.rating.AssetRating;
 import com.liferay.mobile.screens.rating.RatingListener;
 import com.liferay.mobile.screens.rating.RatingScreenlet;
-import com.liferay.mobile.screens.rating.interactor.RatingEvent;
 import com.liferay.mobile.screens.rating.connector.ScreensRatingsConnector;
+import com.liferay.mobile.screens.rating.interactor.RatingEvent;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,11 +39,9 @@ public class RatingLoadInteractor extends BaseCacheReadInteractor<RatingListener
 		AssetRating assetRating;
 
 		try {
-			assetRating =
-				new AssetRating(result.getLong("classPK"), result.getString("className"),
-					toIntArray(result.getJSONArray("ratings")), result.getDouble("average"),
-					result.getDouble("userScore"), result.getDouble("totalScore"),
-					result.getInt("totalCount"));
+			assetRating = new AssetRating(result.getLong("classPK"), result.getString("className"),
+				toIntArray(result.getJSONArray("ratings")), result.getDouble("average"), result.getDouble("userScore"),
+				result.getDouble("totalScore"), result.getInt("totalCount"));
 		} catch (JSONException e) {
 			event.setException(e);
 			onFailure(event);
@@ -77,8 +75,8 @@ public class RatingLoadInteractor extends BaseCacheReadInteractor<RatingListener
 		return intArray;
 	}
 
-	private JSONObject getRatingsEntries(long entryId, long classPK, String className,
-		int ratingGroupCounts) throws Exception {
+	private JSONObject getRatingsEntries(long entryId, long classPK, String className, int ratingGroupCounts)
+		throws Exception {
 
 		ScreensRatingsConnector connector = ServiceProvider.getInstance().getScreensRatingsConnector(getSession());
 		if (entryId != 0) {
@@ -90,8 +88,7 @@ public class RatingLoadInteractor extends BaseCacheReadInteractor<RatingListener
 
 	private void validate(long entryId, String className, long classPK) {
 		if (entryId == 0 && (className == null || classPK == 0)) {
-			throw new IllegalArgumentException(
-				"Either entryId or className & classPK cannot" + "be empty");
+			throw new IllegalArgumentException("Either entryId or className & classPK cannot" + "be empty");
 		}
 	}
 }

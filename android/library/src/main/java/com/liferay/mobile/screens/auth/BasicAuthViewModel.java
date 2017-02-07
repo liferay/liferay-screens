@@ -23,9 +23,9 @@ public interface BasicAuthViewModel extends BaseViewModel {
 
 	/**
 	 * Gets the {@link BasicAuthMethod}.
-	 *  - {@link BasicAuthMethod#EMAIL}
-	 *  - {@link BasicAuthMethod#SCREEN_NAME}
-	 *  - {@link BasicAuthMethod#USER_ID}
+	 * - {@link BasicAuthMethod#EMAIL}
+	 * - {@link BasicAuthMethod#SCREEN_NAME}
+	 * - {@link BasicAuthMethod#USER_ID}
 	 *
 	 * @return basic auth method
 	 */
@@ -33,8 +33,6 @@ public interface BasicAuthViewModel extends BaseViewModel {
 
 	/**
 	 * Sets the {@link BasicAuthMethod}.
-	 *
-	 * @param basicAuthMethod
 	 */
 	void setBasicAuthMethod(BasicAuthMethod basicAuthMethod);
 }

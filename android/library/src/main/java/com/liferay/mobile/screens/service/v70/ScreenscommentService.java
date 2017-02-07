@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.service.v70;
 
 import com.liferay.mobile.android.service.BaseService;
 import com.liferay.mobile.android.service.Session;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,8 +41,7 @@ public class ScreenscommentService extends BaseService {
 			_params.put("end", end);
 
 			_command.put("/screens.screenscomment/get-comments", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -67,8 +65,7 @@ public class ScreenscommentService extends BaseService {
 			_params.put("body", checkNull(body));
 
 			_command.put("/screens.screenscomment/add-comment", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -90,8 +87,7 @@ public class ScreenscommentService extends BaseService {
 			_params.put("commentId", commentId);
 
 			_command.put("/screens.screenscomment/get-comment", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -114,8 +110,7 @@ public class ScreenscommentService extends BaseService {
 			_params.put("body", checkNull(body));
 
 			_command.put("/screens.screenscomment/update-comment", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -138,8 +133,7 @@ public class ScreenscommentService extends BaseService {
 			_params.put("classPK", classPK);
 
 			_command.put("/screens.screenscomment/get-comments-count", _params);
-		}
-		catch (JSONException _je) {
+		} catch (JSONException _je) {
 			throw new Exception(_je);
 		}
 
@@ -151,5 +145,4 @@ public class ScreenscommentService extends BaseService {
 
 		return _result.getInt(0);
 	}
-
 }

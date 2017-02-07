@@ -10,7 +10,8 @@ import com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.BaseImageGa
 /**
  * @author Víctor Galán Grande
  */
-public class ListImageGalleryView extends BaseImageGalleryView<ListImageGalleryAdapter.ListGalleryViewHolder, ListImageGalleryAdapter>
+public class ListImageGalleryView
+	extends BaseImageGalleryView<ListImageGalleryAdapter.ListGalleryViewHolder, ListImageGalleryAdapter>
 	implements View.OnClickListener {
 
 	public ListImageGalleryView(Context context) {

@@ -20,8 +20,8 @@
 		android:layout_toLeftOf="@+id/comment_send"
 		android:layout_toStartOf="@+id/comment_send"
 		android:hint="@string/type_your_comment"
-		style="@style/westeros_dark_edit_text"
 		android:inputType="text"
+		style="@style/westeros_dark_edit_text"
 		/>
 
 	<Button

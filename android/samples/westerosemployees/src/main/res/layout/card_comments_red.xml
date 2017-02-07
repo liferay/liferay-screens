@@ -44,8 +44,8 @@
 			android:layout_height="match_parent"
 			android:layout_above="@id/card_anchor_comments"
 			android:layout_below="@id/comment_title"
-			app:layoutId="@layout/comment_list_westeros"
 			app:autoLoad="false"
+			app:layoutId="@layout/comment_list_westeros"
 			/>
 
 		<com.liferay.mobile.screens.westerosemployees.views.InnerDeck

@@ -19,10 +19,9 @@ import java.util.List;
 
 public class Card extends FrameLayout {
 
+	public static final int CARD_SIZE = 60;
 	private static final int MARGIN = 5;
 	private static final int DURATION_MILLIS = 300;
-	public static final int CARD_SIZE = 60;
-
 	private static final int BACKGROUND_Y = MARGIN;
 
 	private static final int NORMAL_Y = MARGIN * 7;
@@ -64,8 +63,8 @@ public class Card extends FrameLayout {
 
 		TypedArray array = context.obtainStyledAttributes(attributeSet, R.styleable.Card);
 
-		normalY = array.getDimensionPixelSize(R.styleable.Card_normalMarginTop,
-			ViewUtil.pixelFromDp(getContext(), NORMAL_Y));
+		normalY =
+			array.getDimensionPixelSize(R.styleable.Card_normalMarginTop, ViewUtil.pixelFromDp(getContext(), NORMAL_Y));
 
 		array.recycle();
 	}
@@ -106,25 +105,18 @@ public class Card extends FrameLayout {
 
 		switch (state) {
 			case BACKGROUND:
-				animator = animate().setStartDelay(0)
-					.setDuration(DURATION_MILLIS)
-					.scaleX(0.95f)
-					.translationY(backgroundY);
+				animator =
+					animate().setStartDelay(0).setDuration(DURATION_MILLIS).scaleX(0.95f).translationY(backgroundY);
 				break;
 			case NORMAL:
 				showArrows(true);
 				setNormalModeHeight();
-				animator = animate().setStartDelay(0)
-					.setDuration(DURATION_MILLIS)
-					.scaleX(1f)
-					.translationY(normalY);
+				animator = animate().setStartDelay(0).setDuration(DURATION_MILLIS).scaleX(1f).translationY(normalY);
 				break;
 			case MINIMIZED:
 				showArrows(false);
-				animator = animate().setStartDelay(0)
-					.setDuration(DURATION_MILLIS)
-					.scaleX(1f)
-					.translationY(minimizedPosition);
+				animator =
+					animate().setStartDelay(0).setDuration(DURATION_MILLIS).scaleX(1f).translationY(minimizedPosition);
 				break;
 			case MAXIMIZED:
 				setMaximizedModeHeight();
@@ -132,8 +124,7 @@ public class Card extends FrameLayout {
 				break;
 
 			case HIDDEN:
-				animator =
-					animate().setStartDelay(0).setDuration(DURATION_MILLIS).translationY(maxHeight);
+				animator = animate().setStartDelay(0).setDuration(DURATION_MILLIS).translationY(maxHeight);
 				break;
 		}
 
@@ -187,8 +178,7 @@ public class Card extends FrameLayout {
 		TransitionManager.beginDelayedTransition(this);
 		ViewGroup.LayoutParams params = getLayoutParams();
 		params.height =
-			maxHeight - (maxHeight - minimizedPosition) - normalY + ViewUtil.pixelFromDp(
-				getContext(), CARD_SIZE);
+			maxHeight - (maxHeight - minimizedPosition) - normalY + ViewUtil.pixelFromDp(getContext(), CARD_SIZE);
 
 		notifyChildDecksNewHeight(params.height);
 

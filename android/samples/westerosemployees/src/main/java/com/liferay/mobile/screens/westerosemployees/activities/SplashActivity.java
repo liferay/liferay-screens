@@ -35,8 +35,7 @@ public class SplashActivity extends Activity {
 
 	private Class getDestinationActivity() {
 		SharedPreferences preferences = getSharedPreferences(WESTEROS_PREFERENCES, MODE_PRIVATE);
-		boolean tourVisited =
-			preferences.contains(TOUR_VISITED) && preferences.getBoolean(TOUR_VISITED, false);
+		boolean tourVisited = preferences.contains(TOUR_VISITED) && preferences.getBoolean(TOUR_VISITED, false);
 		return tourVisited ? MainActivity.class : TourActivity.class;
 	}
 }

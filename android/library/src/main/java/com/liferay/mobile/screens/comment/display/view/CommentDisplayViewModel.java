@@ -29,7 +29,6 @@ public interface CommentDisplayViewModel extends BaseViewModel {
 	 * See {@link CommentDisplayScreenlet#onDeleteCommentSuccess()}
 	 *
 	 * @param loadCommentAction comment action
-	 * @param editable
 	 */
 	void showFinishOperation(String loadCommentAction, boolean editable);
 
@@ -38,8 +37,6 @@ public interface CommentDisplayViewModel extends BaseViewModel {
 	 * See {@link CommentDisplayScreenlet#onUpdateCommentSuccess(CommentEntry)}
 	 *
 	 * @param loadCommentAction comment action
-	 * @param editable
-	 * @param commentEntry
 	 */
 	void showFinishOperation(String loadCommentAction, boolean editable, CommentEntry commentEntry);
 }

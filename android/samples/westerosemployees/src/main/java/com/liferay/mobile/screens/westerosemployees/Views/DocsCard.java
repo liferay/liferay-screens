@@ -4,8 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
-import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.asset.AssetEntry;
+import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.asset.list.AssetListScreenlet;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.westerosemployees.R;
@@ -54,8 +54,7 @@ public class DocsCard extends CommentsRatingsCard implements BaseListListener<As
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries,
-		int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries, int rowCount) {
 
 	}
 
@@ -63,8 +62,7 @@ public class DocsCard extends CommentsRatingsCard implements BaseListListener<As
 	public void onListItemSelected(AssetEntry element, View view) {
 		documentDisplayScreenlet.load(element);
 
-		initializeRatingsAndComments("com.liferay.document.library.kernel.model.DLFileEntry",
-			element.getClassPK());
+		initializeRatingsAndComments("com.liferay.document.library.kernel.model.DLFileEntry", element.getClassPK());
 
 		cardListener.moveCardRight(this);
 	}
@@ -81,8 +79,7 @@ public class DocsCard extends CommentsRatingsCard implements BaseListListener<As
 		docsListScreenlet = (AssetListScreenlet) findViewById(R.id.asset_list_screenlet_docs);
 		docsListScreenlet.setListener(this);
 
-		documentDisplayScreenlet =
-			(AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet_doc);
+		documentDisplayScreenlet = (AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet_doc);
 	}
 
 	@Override

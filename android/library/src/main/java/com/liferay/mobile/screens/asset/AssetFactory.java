@@ -49,7 +49,7 @@ public class AssetFactory {
 		if (mimeType.contains("image")) {
 			return new ImageEntry(map);
 		}
-		
+
 		return new AssetEntry(map);
 	}
 }

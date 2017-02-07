@@ -261,14 +261,8 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	}
 
 	public enum DataType {
-		BOOLEAN("boolean"),
-		STRING("string"),
-		HTML("html"),
-		DATE("date"),
-		NUMBER("number"),
-		IMAGE("image"),
-		DOCUMENT("document-library"),
-		UNSUPPORTED("");
+		BOOLEAN("boolean"), STRING("string"), HTML("html"), DATE("date"), NUMBER("number"), IMAGE("image"), DOCUMENT(
+			"document-library"), UNSUPPORTED("");
 
 		private final String value;
 
@@ -346,17 +340,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	}
 
 	public enum EditorType {
-		CHECKBOX("checkbox"),
-		TEXT("text"),
-		TEXT_AREA("textarea", "paragraph", "ddm-text-html"),
-		DATE("ddm-date", "date"),
-		NUMBER("ddm-number", "number"),
-		INTEGER("ddm-integer", "integer"),
-		DECIMAL("ddm-decimal", "decimal"),
-		SELECT("select"),
-		RADIO("radio"),
-		DOCUMENT("ddm-documentlibrary", "documentlibrary", "wcm-image"),
-		UNSUPPORTED("");
+		CHECKBOX("checkbox"), TEXT("text"), TEXT_AREA("textarea", "paragraph", "ddm-text-html"), DATE("ddm-date",
+			"date"), NUMBER("ddm-number", "number"), INTEGER("ddm-integer", "integer"), DECIMAL("ddm-decimal",
+			"decimal"), SELECT("select"), RADIO("radio"), DOCUMENT("ddm-documentlibrary", "documentlibrary",
+			"wcm-image"), UNSUPPORTED("");
 
 		private final String[] values;
 

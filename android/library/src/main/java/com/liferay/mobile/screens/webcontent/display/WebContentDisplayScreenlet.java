@@ -161,7 +161,7 @@ public class WebContentDisplayScreenlet
 	 * Then calls {@link #load()} method.
 	 */
 	protected void autoLoad() {
-		if (SessionContext.isLoggedIn() && articleId != null ) {
+		if (SessionContext.isLoggedIn() && articleId != null) {
 			load();
 		}
 	}

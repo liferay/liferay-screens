@@ -1,7 +1,6 @@
 package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import com.liferay.mobile.screens.listbookmark.Bookmark;
 import com.liferay.mobile.screens.listbookmark.BookmarkListListener;

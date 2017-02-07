@@ -24,14 +24,11 @@ public interface CommentListListener extends BaseListListener<CommentEntry> {
 
 	/**
 	 * Called when the screenlet successfully deletes the comment.
-	 * @param commentEntry
 	 */
 	void onDeleteCommentSuccess(CommentEntry commentEntry);
 
 	/**
 	 * Called when the screenlet successfully updates the comment.
-	 *
-	 * @param commentEntry
 	 */
 	void onUpdateCommentSuccess(CommentEntry commentEntry);
 }

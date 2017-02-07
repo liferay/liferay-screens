@@ -17,8 +17,8 @@
 		android:layout_width="100dp"
 		android:layout_height="100dp"
 		liferay:autoLoad="false"
-		liferay:editable="true"
 		liferay:cachePolicy="REMOTE_FIRST"
+		liferay:editable="true"
 		/>
 
 </LinearLayout>

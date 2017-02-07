@@ -30,8 +30,6 @@ public interface ForgotPasswordViewModel extends BasicAuthViewModel {
 
 	/**
 	 * Called when the password request is successfully finished.
-	 *
-	 * @param passwordSent
 	 */
 	void showFinishOperation(boolean passwordSent);
 }

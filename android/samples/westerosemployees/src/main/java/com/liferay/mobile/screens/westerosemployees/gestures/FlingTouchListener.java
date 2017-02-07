@@ -68,8 +68,7 @@ public class FlingTouchListener implements View.OnTouchListener {
 			}
 			float swipeY = e2.getY() - e1.getY();
 			float swipeX = e2.getX() - e1.getX();
-			if (Math.abs(swipeY) > SWIPE_MOVEMENT_THRESHOLD
-				&& Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
+			if (Math.abs(swipeY) > SWIPE_MOVEMENT_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
 				if (swipeY > 0) {
 					flingListener.onFling(FlingListener.Movement.DOWN);
 				} else {

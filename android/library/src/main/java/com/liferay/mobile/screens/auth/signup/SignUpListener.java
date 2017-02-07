@@ -32,8 +32,6 @@ public interface SignUpListener {
 	 * Called when sign up successfully completes. The `user` parameter
 	 * contains a set of the created user’s attributes. The supported
 	 * keys are the same as those in the portal’s  {@link User} entity.
-	 *
-	 * @param user
 	 */
 	void onSignUpSuccess(User user);
 }

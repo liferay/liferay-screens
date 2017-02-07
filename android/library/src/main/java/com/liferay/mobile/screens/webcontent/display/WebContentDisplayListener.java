@@ -38,9 +38,6 @@ public interface WebContentDisplayListener extends BaseCacheListener {
 
 	/**
 	 * Called when something is clicked in the WebContent.
-	 *
-	 * @param result
-	 * @param event
 	 */
 	void onWebContentClicked(WebView.HitTestResult result, MotionEvent event);
 }

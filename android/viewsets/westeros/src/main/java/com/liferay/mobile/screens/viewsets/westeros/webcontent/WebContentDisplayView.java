@@ -17,25 +17,17 @@ package com.liferay.mobile.screens.viewsets.westeros.webcontent;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
-import android.webkit.WebChromeClient;
 import android.webkit.WebView;
-import android.widget.FrameLayout;
-import android.widget.ProgressBar;
-import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.viewsets.westeros.R;
 import com.liferay.mobile.screens.webcontent.WebContent;
-import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
-import com.liferay.mobile.screens.webcontent.display.view.WebContentDisplayViewModel;
 
 /**
  * @author Sarai Díaz García
  */
-public class WebContentDisplayView extends
-	com.liferay.mobile.screens.viewsets.defaultviews.webcontent.display.WebContentDisplayView {
+public class WebContentDisplayView
+	extends com.liferay.mobile.screens.viewsets.defaultviews.webcontent.display.WebContentDisplayView {
 
 	private static final String STYLES = "<style>"
 		+ ".MobileCSS { margin: 0 auto; width:92%; color: white;} "

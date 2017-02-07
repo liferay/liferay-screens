@@ -26,25 +26,17 @@ public interface BaseListListener<E> extends BaseCacheListener {
 	/**
 	 * Called when the call to retrieve a page of items fails.
 	 *
-	 * @param startRow
 	 * @param e exception
 	 */
 	void onListPageFailed(int startRow, Exception e);
 
 	/**
 	 * Called when the call to retrieve a page of items succeed.
-	 *
-	 * @param startRow
-	 * @param endRow
-	 * @param entries
-	 * @param rowCount
 	 */
 	void onListPageReceived(int startRow, int endRow, List<E> entries, int rowCount);
 
 	/**
 	 * Called when a list item is selected.
-	 * @param element
-	 * @param view
 	 */
 	void onListItemSelected(E element, View view);
 }
