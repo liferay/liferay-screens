@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,46 +16,52 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0sL-ub-ZWS" userLabel="Emoji 1">
+                    <rect key="frame" x="8" y="8" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="Hpo-dd-JfM"/>
                         <constraint firstAttribute="height" constant="40" id="goC-gR-Bfb"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="34"/>
                     <state key="normal" title="😀"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="avC-82-vFw" userLabel="Emoji 2">
+                    <rect key="frame" x="56" y="8" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="I83-W9-Dhf"/>
                         <constraint firstAttribute="height" constant="40" id="w35-iu-hF7"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="34"/>
                     <state key="normal" title="😎"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1xY-bu-tFl" userLabel="Emoji 3">
+                    <rect key="frame" x="104" y="8" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="0Aw-LY-vCd"/>
                         <constraint firstAttribute="height" constant="40" id="S2P-8R-eJG"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="34"/>
                     <state key="normal" title="☺️"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9x-NR-bPz" userLabel="Emoji 4">
+                    <rect key="frame" x="152" y="8" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="hwX-18-e3T"/>
                         <constraint firstAttribute="width" constant="40" id="o0D-SG-XJc"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="34"/>
                     <state key="normal" title="😱"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3DY-Wb-Le4" userLabel="Emoji 5">
+                    <rect key="frame" x="200" y="8" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="FA7-tz-Bjv"/>
                         <constraint firstAttribute="width" constant="40" id="bzF-Q5-IJv"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="34"/>
                     <state key="normal" title="😍"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😀 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSd-47-Fga" userLabel="Label 1">
+                    <rect key="frame" x="8" y="70" width="233" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="x2V-NU-XbK"/>
                     </constraints>
@@ -61,6 +70,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😎 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHO-us-lVL" userLabel="Label 2">
+                    <rect key="frame" x="8" y="99" width="233" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="9Qg-7j-jgK"/>
                     </constraints>
@@ -69,6 +79,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="☺️ 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgi-ZC-tRw" userLabel="Label 3">
+                    <rect key="frame" x="8" y="128" width="233" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="CzR-6G-7ew"/>
                     </constraints>
@@ -77,6 +88,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😱 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cp-Yi-Hmr" userLabel="Label 4">
+                    <rect key="frame" x="8" y="157" width="233" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="oCc-ZN-FTf"/>
                     </constraints>
@@ -85,6 +97,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😍 4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AaN-9N-ghQ" userLabel="Label 5">
+                    <rect key="frame" x="8" y="186" width="233" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="Hed-af-j60"/>
                     </constraints>
