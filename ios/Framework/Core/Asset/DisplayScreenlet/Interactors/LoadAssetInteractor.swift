@@ -28,9 +28,9 @@ open class LoadAssetInteractor: ServerReadConnectorInteractor {
 
 	open let classPK: Int64?
 
-	public let portletItemName: String?
+	open let portletItemName: String?
 
-	public var asset: Asset?
+	open var asset: Asset?
 
 
 	//MARK: Initializers
