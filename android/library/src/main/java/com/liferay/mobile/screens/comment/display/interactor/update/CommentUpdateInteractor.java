@@ -6,7 +6,7 @@ import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
 import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
 import com.liferay.mobile.screens.util.JSONUtil;
-import com.liferay.mobile.screens.util.ScreensCommentConnector;
+import com.liferay.mobile.screens.comment.connector.ScreensCommentConnector;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import org.json.JSONObject;
 

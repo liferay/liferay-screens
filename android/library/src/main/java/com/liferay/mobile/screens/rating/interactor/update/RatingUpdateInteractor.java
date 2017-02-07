@@ -5,7 +5,7 @@ import com.liferay.mobile.screens.rating.AssetRating;
 import com.liferay.mobile.screens.rating.RatingListener;
 import com.liferay.mobile.screens.rating.RatingScreenlet;
 import com.liferay.mobile.screens.rating.interactor.RatingEvent;
-import com.liferay.mobile.screens.util.ScreensRatingsConnector;
+import com.liferay.mobile.screens.rating.connector.ScreensRatingsConnector;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import java.security.InvalidParameterException;
 import org.json.JSONArray;

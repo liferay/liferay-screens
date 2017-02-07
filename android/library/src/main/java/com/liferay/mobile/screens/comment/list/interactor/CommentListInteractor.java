@@ -5,7 +5,7 @@ import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListene
 import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
-import com.liferay.mobile.screens.util.ScreensCommentConnector;
+import com.liferay.mobile.screens.comment.connector.ScreensCommentConnector;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import java.util.Map;
 import org.json.JSONArray;

@@ -10,9 +10,7 @@ import com.liferay.mobile.screens.asset.list.connector.ScreensAssetEntryConnecto
 import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.JSONUtil;
-import com.liferay.mobile.screens.util.ScreensCommentConnector;
 import com.liferay.mobile.screens.util.ServiceProvider;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import org.json.JSONException;
