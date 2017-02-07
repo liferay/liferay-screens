@@ -8,17 +8,16 @@ import com.liferay.mobile.android.callback.file.FileProgressCallback;
 import com.liferay.mobile.android.http.file.UploadData;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v7.dlapp.DLAppService;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.imagegallery.interactor.ImageGalleryEvent;
 import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.FileUtil;
 import com.liferay.mobile.screens.util.JSONUtil;
+import com.liferay.mobile.screens.util.ServiceProvider;
 import com.squareup.picasso.Picasso;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import org.json.JSONException;
@@ -73,8 +72,7 @@ public class ImageGalleryUploadService extends IntentService {
 		Uri pictureUri = intent.getParcelableExtra("pictureUri");
 
 		try {
-			JSONObject jsonObject =
-				uploadImageEntry(repositoryId, folderId, title, description, changeLog, pictureUri);
+			JSONObject jsonObject = uploadImageEntry(repositoryId, folderId, title, description, changeLog, pictureUri);
 			ImageEntry imageEntry = new ImageEntry(JSONUtil.toMap(jsonObject));
 			Bitmap thumbnail = Picasso.with(this).load(pictureUri).get();
 			imageEntry.setImage(thumbnail);
@@ -106,8 +104,9 @@ public class ImageGalleryUploadService extends IntentService {
 		long groupId = LiferayServerContext.getGroupId();
 		JSONObjectWrapper serviceContext = getJsonObjectWrapper(SessionContext.getUserId(), groupId);
 
-		return new DLAppService(session).addFileEntry(repositoryId, folderId, sourceName, mimeType, title, description,
-			changeLog, uploadData, serviceContext);
+		DLAppConnector connector = ServiceProvider.getInstance().getDLAppConnector(session);
+		return connector.addFileEntry(repositoryId, folderId, sourceName, mimeType, title, description, changeLog,
+			uploadData, serviceContext);
 	}
 
 	private UploadData createUploadData(Uri pictureUri, String name) throws IOException {

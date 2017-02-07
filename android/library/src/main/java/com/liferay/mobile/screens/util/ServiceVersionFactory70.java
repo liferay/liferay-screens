@@ -9,6 +9,8 @@ import com.liferay.mobile.screens.auth.forgotpassword.connector.ForgotPasswordCo
 import com.liferay.mobile.screens.auth.login.connector.CurrentUserConnector;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector70;
+import com.liferay.mobile.screens.comment.connector.ScreensCommentConnector;
+import com.liferay.mobile.screens.comment.connector.ScreensCommentConnector70;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordConnector70;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordSetConnector;
@@ -19,6 +21,8 @@ import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector70;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector70;
+import com.liferay.mobile.screens.rating.connector.ScreensRatingsConnector70;
+import com.liferay.mobile.screens.rating.connector.ScreensRatingsConnector;
 import com.liferay.mobile.screens.webcontent.display.connector.JournalContentConnector;
 import com.liferay.mobile.screens.webcontent.display.connector.JournalContentConnector70;
 import com.liferay.mobile.screens.webcontent.display.connector.ScreensJournalContentConnector;
@@ -75,5 +79,15 @@ public class ServiceVersionFactory70 implements ServiceVersionFactory {
 
 	public ScreensJournalContentConnector getScreensJournalContentConnector(Session session) {
 		return new ScreensJournalContentConnector70(session);
+	}
+
+	@Override
+	public ScreensCommentConnector getScreensCommentConnector(Session session) {
+		return new ScreensCommentConnector70(session);
+	}
+
+	@Override
+	public ScreensRatingsConnector getScreensRatingsConnector(Session session) {
+		return new ScreensRatingsConnector70(session);
 	}
 }

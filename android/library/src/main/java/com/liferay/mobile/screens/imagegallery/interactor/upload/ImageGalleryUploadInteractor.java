@@ -11,7 +11,8 @@ import com.liferay.mobile.screens.imagegallery.interactor.ImageGalleryInteractor
 /**
  * @author Víctor Galán Grande
  */
-public class ImageGalleryUploadInteractor extends BaseCacheWriteInteractor<ImageGalleryInteractorListener, ImageGalleryEvent> {
+public class ImageGalleryUploadInteractor
+	extends BaseCacheWriteInteractor<ImageGalleryInteractorListener, ImageGalleryEvent> {
 
 	@Override
 	public ImageGalleryEvent execute(ImageGalleryEvent event) throws Exception {

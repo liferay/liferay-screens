@@ -4,6 +4,7 @@ import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.service.v70.ScreensassetentryService;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
@@ -25,5 +26,15 @@ public class ScreensAssetEntryConnector70 implements ScreensAssetEntryConnector 
 	public JSONArray getAssetEntries(long companyId, long groupId, String portletItemName, String s, int endRow)
 		throws Exception {
 		return screensassetentryService.getAssetEntries(companyId, groupId, portletItemName, s, endRow);
+	}
+
+	@Override
+	public JSONObject getAssetEntry(long entryId, String language) throws Exception {
+		return screensassetentryService.getAssetEntry(entryId, language);
+	}
+
+	@Override
+	public JSONObject getAssetEntry(String className, long classPK, String language) throws Exception {
+		return screensassetentryService.getAssetEntry(className, classPK, language);
 	}
 }
