@@ -2,11 +2,11 @@ package com.liferay.mobile.screens.comment.display.interactor.update;
 
 import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.comment.CommentEntry;
+import com.liferay.mobile.screens.comment.connector.ScreensCommentConnector;
 import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
 import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
 import com.liferay.mobile.screens.util.JSONUtil;
-import com.liferay.mobile.screens.comment.connector.ScreensCommentConnector;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import org.json.JSONObject;
 
