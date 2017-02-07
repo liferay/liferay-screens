@@ -207,7 +207,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	//TODO now the autoload is required to be able to load child screenlets
 	protected void autoLoad() {
 		boolean hasClassName = className != null && classPK != 0;
-		boolean hasPortletItemName = !"".equals(portletItemName);
+		boolean hasPortletItemName = portletItemName != null && !"".equals(portletItemName);
 
 		if (SessionContext.isLoggedIn() && (entryId != 0 || hasClassName || hasPortletItemName)) {
 			loadAsset();
