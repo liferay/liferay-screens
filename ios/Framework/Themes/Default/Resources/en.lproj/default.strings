@@ -62,7 +62,7 @@
 
 "default-blog-unknown-date"="Unknown date";
 
-"default-comment-add-translate"="Introduce your comment...";
+"default-comment-add-placeholder"="Introduce your comment...";
 "default-comment-add-send"="Send";
 
 "default-comment-display-edited"="- Edited";
