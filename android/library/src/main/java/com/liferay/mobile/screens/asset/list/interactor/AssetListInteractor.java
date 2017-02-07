@@ -162,7 +162,7 @@ public class AssetListInteractor extends BaseListInteractor<BaseListInteractorLi
 	 * @param classNameId identifier of the asset’s class name.
 	 * @param entryQueryParams initial entryQuery parameters.
 	 * @return final entryQuery parameters.
-	 * @throws JSONException
+	 * @throws JSONException when can't parse the result
 	 */
 	private JSONObject handleUserVisibleFlag(long classNameId, JSONObject entryQueryParams) throws JSONException {
 		if (classNameId == Long.parseLong(

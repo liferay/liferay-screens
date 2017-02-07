@@ -26,7 +26,7 @@
 	<string name="user_portrait_info">Imagen de usuario recibida!</string>
 	<string name="configure_screenlet_info">Configura tu screenlet aquí!</string>
 	<string name="successfuly">con éxito</string>
-	<string name="comment_loaded_success">Comentario cargado con éxito:</string>
+	<string name="comment_loaded_success">Comentario %d cargado con éxito:</string>
 	<string name="comment_deleted_success">Comentario borrado con éxito:</string>
 	<string name="comment_updated_success">Comentario actualizado con éxito:</string>
 	<string name="comment_added_success">Comentario añadido con éxito:</string>

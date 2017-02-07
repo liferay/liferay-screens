@@ -373,7 +373,6 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		}
 
 		public static EditorType valueOfString(String name) {
-			EditorType result = UNSUPPORTED;
 
 			if (name != null) {
 				for (EditorType editorType : values()) {
@@ -385,7 +384,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 				}
 			}
 
-			return result;
+			return UNSUPPORTED;
 		}
 
 		public String[] getValues() {

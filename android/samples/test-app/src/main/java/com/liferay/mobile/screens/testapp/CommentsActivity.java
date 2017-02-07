@@ -60,7 +60,7 @@ public class CommentsActivity extends ThemeActivity
 
 	@Override
 	public void onLoadCommentSuccess(CommentEntry commentEntry) {
-		info(getString(R.string.comment_loaded_success) + " " + commentEntry.getCommentId());
+		info(getString(R.string.comment_loaded_success, commentEntry.getCommentId()));
 	}
 
 	@Override

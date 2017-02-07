@@ -103,7 +103,7 @@ public class CacheSyncService extends IntentService {
 
 			sync(UserPortraitUploadEvent.class, new SyncProvider<UserPortraitUploadEvent>() {
 
-				UserPortraitUploadInteractor interactor = new UserPortraitUploadInteractor();
+				final UserPortraitUploadInteractor interactor = new UserPortraitUploadInteractor();
 
 				@Override
 				public UserPortraitUploadEvent getCacheEvent(UserPortraitUploadEvent event) throws Exception {

@@ -125,7 +125,7 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	/**
 	 * Tries to delete all values stored in the cache.
 	 *
-	 * @throws IOException
+	 * @throws IOException when can't delete the cache
 	 */
 	public void deleteCaches() throws IOException {
 		LiferayServerContext.getOkHttpClient().getCache().evictAll();
