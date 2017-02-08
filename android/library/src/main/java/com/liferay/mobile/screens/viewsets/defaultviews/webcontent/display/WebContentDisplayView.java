@@ -137,9 +137,7 @@ public class WebContentDisplayView extends FrameLayout
 			LiferayLogger.i("Event: " + event.toString());
 			LiferayLogger.i("Extra: " + result.getExtra());
 
-			((WebContentDisplayScreenlet) getScreenlet()).onWebContentClicked(result);
-
-			return true;
+			return ((WebContentDisplayScreenlet) getScreenlet()).onWebContentClicked(result);
 		}
 
 		LiferayLogger.i("Open in browser: " + (openUrl ? "Yes" : "No"));
