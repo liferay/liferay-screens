@@ -8,8 +8,6 @@ public interface ScreensCommentConnector {
 
 	JSONArray getComments(String className, long classPK, int startRow, int endRow) throws Exception;
 
-	void deleteComment(long commentId) throws Exception;
-
 	Integer getCommentsCount(String className, long classPK) throws Exception;
 
 	JSONObject getComment(long commentId) throws Exception;

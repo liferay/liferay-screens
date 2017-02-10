@@ -19,7 +19,7 @@ public class CommentDeleteInteractor extends BaseCacheWriteInteractor<CommentDis
 
 		validate(commentId);
 
-		ScreensCommentConnector connector = ServiceProvider.getInstance().getScreensCommentConnector(getSession());
+		CommentConnector connector = ServiceProvider.getInstance().getCommentConnector(getSession());
 		connector.deleteComment(commentId);
 
 		return event;
