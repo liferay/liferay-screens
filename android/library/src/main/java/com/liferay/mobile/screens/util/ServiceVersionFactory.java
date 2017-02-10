@@ -7,6 +7,7 @@ import com.liferay.mobile.screens.auth.forgotpassword.connector.ForgotPasswordCo
 import com.liferay.mobile.screens.auth.login.connector.CurrentUserConnector;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.comment.connector.ScreensCommentConnector;
+import com.liferay.mobile.screens.comment.display.interactor.delete.CommentConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordSetConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
@@ -48,4 +49,6 @@ public interface ServiceVersionFactory {
 	ScreensCommentConnector getScreensCommentConnector(Session session);
 
 	ScreensRatingsConnector getScreensRatingsConnector(Session session);
+
+	CommentConnector getCommentConnector(Session session);
 }

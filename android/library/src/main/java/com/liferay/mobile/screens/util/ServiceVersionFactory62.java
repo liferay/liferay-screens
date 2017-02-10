@@ -11,6 +11,7 @@ import com.liferay.mobile.screens.auth.login.connector.ScreensUserConnector62;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector62;
 import com.liferay.mobile.screens.comment.connector.ScreensCommentConnector;
+import com.liferay.mobile.screens.comment.display.interactor.delete.CommentConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordConnector62;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordSetConnector;
@@ -87,6 +88,11 @@ public class ServiceVersionFactory62 implements ServiceVersionFactory {
 
 	@Override
 	public ScreensRatingsConnector getScreensRatingsConnector(Session session) {
+		return null;
+	}
+
+	@Override
+	public CommentConnector getCommentConnector(Session session) {
 		return null;
 	}
 }

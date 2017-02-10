@@ -29,12 +29,12 @@ public class ScreensAssetEntryConnector62 implements ScreensAssetEntryConnector 
 	}
 
 	@Override
-	public JSONObject getAssetEntry(long entryId, String language) {
+	public JSONObject getAssetEntry(long entryId, String language) throws Exception {
 		return null;
 	}
 
 	@Override
-	public JSONObject getAssetEntry(String className, long classPK, String language) {
+	public JSONObject getAssetEntry(String className, long classPK, String language) throws Exception {
 		return null;
 	}
 }
