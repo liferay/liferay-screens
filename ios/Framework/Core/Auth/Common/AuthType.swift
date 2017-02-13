@@ -18,6 +18,7 @@ import UIKit
 
 	case basic = 1
 	case oAuth = 2
+	case cookie = 3
 
 }
 
@@ -27,6 +28,8 @@ public func StringFromAuthType(_ authType: AuthType) -> String {
 		return "basic"
 	case .oAuth:
 		return "oauth"
+	case .cookie:
+		return "cookie"
 	}
 }
 
@@ -36,6 +39,8 @@ public func AuthTypeFromString(_ str: String) -> AuthType? {
 		return .basic
 	case "oauth":
 		return .oAuth
+	case "cookie":
+		return .cookie
 	default:
 		return nil
 	}
