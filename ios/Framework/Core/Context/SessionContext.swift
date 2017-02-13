@@ -135,6 +135,26 @@ import Foundation
 		return session!
 	}
 
+	@discardableResult
+	open class func loginWithCookie(
+		authentication: LRCookieAuthentication,
+		userAttributes: [String:AnyObject]) -> LRSession {
+
+		let session = LRSession(
+			server: LiferayServerContext.server,
+			authentication: authentication)
+
+		let store = LiferayServerContext.factory.createCredentialsStore(AuthType.cookie)
+
+		SessionContext.currentContext =
+			LiferayServerContext.factory.createSessionContext(
+				session: session!,
+				attributes: userAttributes,
+				store: store)
+
+		return session!
+	}
+
 	open func createRequestSession() -> LRSession {
 		return LRSession(session: session)
 	}
