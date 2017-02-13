@@ -120,7 +120,7 @@ open class LoginView_default: BaseScreenletView, LoginViewModel {
 		let auth = AuthTypeFromString(authType ?? "") ?? .basic
 
 		authorizeButton?.isHidden = (auth != .oAuth)
-		loginButton?.superview?.isHidden = (auth != .basic)
+		loginButton?.superview?.isHidden = (auth == .oAuth)
 	}
 
 }
