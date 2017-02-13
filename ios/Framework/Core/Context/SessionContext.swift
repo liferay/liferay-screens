@@ -155,6 +155,23 @@ import Foundation
 		return session!
 	}
 
+	open class func reloadCookieAuth(session: LRSession? = nil, callback: LRCookieBlockCallback) {
+		var session = session
+		if session == nil {
+			session = SessionContext.currentContext?.createRequestSession()
+		}
+
+		LRCookieSignIn.signIn(with: session, callback: LRCookieBlockCallback { session, error in
+			if let session = session {
+				SessionContext.loginWithCookie(authentication: session.authentication as! LRCookieAuthentication, userAttributes: [:])
+				callback.callback(session, nil)
+			}
+			else {
+				callback.callback(nil, error)
+			}
+		})
+	}
+
 	open func createRequestSession() -> LRSession {
 		return LRSession(session: session)
 	}
