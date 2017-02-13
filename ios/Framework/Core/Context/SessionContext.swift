@@ -257,6 +257,9 @@ import Foundation
 	}
 
 	open class func logout() {
+		if let _ = SessionContext.currentContext?.session.authentication as? LRCookieAuthentication {
+			HTTPCookieStorage.shared.removeCookies(since: .distantPast)
+		}
 		SessionContext.currentContext = nil
 	}
 
