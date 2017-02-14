@@ -223,6 +223,7 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 		ImageGalleryUploadInteractor imageGalleryUploadInteractor = getUploadInteractor();
 		ImageGalleryEvent event = new ImageGalleryEvent(pictureUri, title, description, changelog);
 		event.setFolderId(folderId);
+		event.setRepositoryId(repositoryId);
 		imageGalleryUploadInteractor.start(event);
 
 		if (getListener() != null) {
