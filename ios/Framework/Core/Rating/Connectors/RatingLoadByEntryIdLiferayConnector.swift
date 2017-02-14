@@ -19,7 +19,7 @@ open class RatingLoadByEntryIdLiferayConnector: ServerConnector {
 	open let entryId: Int64
 	open let ratingsGroupCount: Int32
 	
-	var resultRating: RatingEntry?
+	open var resultRating: RatingEntry?
 
 
 	//MARK: Initializers

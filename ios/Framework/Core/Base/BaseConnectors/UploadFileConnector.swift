@@ -22,8 +22,8 @@ open class UploadFileConnector : ServerConnector, LRCallback, LRFileProgressDele
 	var inputStream: InputStream?
 	var bytesToSend: Int64?
 	var image: UIImage?
-	let fileName: String
-	let mimeType: String
+	open let fileName: String
+	open let mimeType: String
 	let parameter: Any?
 	let onUploadedBytes: OnProgress?
 
