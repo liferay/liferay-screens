@@ -32,7 +32,6 @@ public class AssetDisplayInteractor extends BaseCacheReadInteractor<AssetDisplay
 		if (args.length > 1) {
 			String className = (String) args[0];
 			long classPK = (long) args[1];
-
 			return connector.getAssetEntry(className, classPK, Locale.getDefault().getLanguage());
 		} else {
 			long entryId = (long) args[0];
@@ -42,17 +41,15 @@ public class AssetDisplayInteractor extends BaseCacheReadInteractor<AssetDisplay
 
 	@Override
 	public void onSuccess(AssetEvent event) {
-		Map<String, Object> map;
-
+		AssetEntry assetEntry = null;
 		try {
-			map = JSONUtil.toMap(event.getJSONObject());
+			Map<String, Object> map = JSONUtil.toMap(event.getJSONObject());
+			assetEntry = AssetFactory.createInstance(map);
 		} catch (JSONException ex) {
 			event.setException(ex);
 			onFailure(event);
 			return;
 		}
-
-		AssetEntry assetEntry = AssetFactory.createInstance(map);
 		getListener().onRetrieveAssetSuccess(assetEntry);
 	}
 
@@ -63,14 +60,7 @@ public class AssetDisplayInteractor extends BaseCacheReadInteractor<AssetDisplay
 
 	@Override
 	protected String getIdFromArgs(Object... args) {
-		final long cacheId;
-
-		if (args.length > 1) {
-			cacheId = (long) args[1];
-		} else {
-			cacheId = (long) args[0];
-		}
-
+		long cacheId = args.length > 1 ? (long) args[1] : (long) args[0];
 		return String.valueOf(cacheId);
 	}
 }

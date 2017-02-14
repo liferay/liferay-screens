@@ -68,9 +68,10 @@ public class ImageDisplayScreenlet extends BaseFileDisplayScreenlet<ImageDisplay
 
 		View view = super.createScreenletView(context, attributes);
 
-		((ImageDisplayView) view).setPlaceholder(placeholder);
-		((ImageDisplayView) view).setPlaceholderScaleType(placeholderScaleType);
-		((ImageDisplayView) view).setScaleType(scaleType);
+		ImageDisplayView imageDisplayView = (ImageDisplayView) view;
+		imageDisplayView.setPlaceholder(placeholder);
+		imageDisplayView.setPlaceholderScaleType(placeholderScaleType);
+		imageDisplayView.setScaleType(scaleType);
 
 		return view;
 	}
