@@ -363,29 +363,30 @@ open class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			folderId: folderId,
 			onProgress: onProgress)
 	}
-	
-	open func createRatingLoadByEntryIdConnector(
-			entryId: Int64,
-			ratingsGroupCount: Int32) -> RatingLoadByEntryIdLiferayConnector? {
-		print("Unsupported connector in Liferay 6.2: AssetLoadByEntryIdLiferayConnector")
-		return nil
-	}
 
 	open func createAssetLoadByEntryIdConnector(_ entryId: Int64) -> AssetLoadByEntryIdLiferayConnector? {
-		print("Unsupported connector in Liferay 6.2: RatingLoadByEntryIdLiferayConnector")
-		return nil
-	}
-	
-	open func createRatingLoadByClassPKConnector(
-			_ classPK: Int64,
-			className: String,
-			ratingsGroupCount: Int32) -> RatingLoadByClassPKLiferayConnector? {
-		print("Unsupported connector in Liferay 6.2: RatingLoadByClassPKLiferayConnector")
+		print("Unsupported connector in Liferay 6.2: AssetLoadByEntryIdLiferayConnector")
 		return nil
 	}
 
 	open func createAssetLoadByClassPKConnector(_ className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: AssetLoadByClassPKLiferayConnector")
+		return nil
+	}
+
+	open func createRatingLoadByEntryIdConnector(
+			entryId: Int64,
+			ratingsGroupCount: Int32) -> RatingLoadByEntryIdLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: createRatingLoadByEntryIdConnector")
+		return nil
+	}
+
+
+	open func createRatingLoadByClassPKConnector(
+			_ classPK: Int64,
+			className: String,
+			ratingsGroupCount: Int32) -> RatingLoadByClassPKLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: RatingLoadByClassPKLiferayConnector")
 		return nil
 	}
 	

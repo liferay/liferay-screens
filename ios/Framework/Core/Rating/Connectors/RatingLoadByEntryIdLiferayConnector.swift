@@ -16,8 +16,8 @@ import LRMobileSDK
 
 open class RatingLoadByEntryIdLiferayConnector: ServerConnector {
 	
-	let entryId: Int64
-	let ratingsGroupCount: Int32
+	open let entryId: Int64
+	open let ratingsGroupCount: Int32
 	
 	var resultRating: RatingEntry?
 
@@ -70,3 +70,4 @@ open class Liferay70RatingLoadByEntryIdConnector: RatingLoadByEntryIdLiferayConn
 	}
 	
 }
+

@@ -16,12 +16,12 @@ import LRMobileSDK
 
 open class RatingUpdateLiferayConnector: ServerConnector {
 	
-	let classPK: Int64
-	let className: String
-	let score: Double
-	let ratingsGroupCount: Int32
+	open let classPK: Int64
+	open let className: String
+	open let score: Double
+	open let ratingsGroupCount: Int32
 	
-	var resultRating: RatingEntry?
+	open var resultRating: RatingEntry?
 
 
 	//MARK: Initializers
@@ -80,3 +80,5 @@ open class Liferay70RatingUpdateConnector: RatingUpdateLiferayConnector {
 	}
 	
 }
+
+
