@@ -43,15 +43,15 @@ open class ImageGalleryLoadInteractor : BaseListPageLoadInteractor {
     
     override open func createConnector() -> PaginationLiferayConnector {
         let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
-        
-        return ImageGalleryPageLiferayConnector(
+
+		return LiferayServerContext.connectorFactory.createImageGalleryPageConnector(
 				startRow: pager(self.page),
 				endRow: pager(self.page + 1),
 				computeRowCount: self.computeRowCount,
 				repositoryId: repositoryId,
 				folderId: folderId,
-				mimeTypes: mimeTypes)
-    }
+				mimeTypes: mimeTypes)!
+	}
 
 
 	//MARK: BaseListPageLoadInteractor

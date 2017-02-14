@@ -136,6 +136,23 @@ public protocol LiferayConnectorFactory {
 
 	func createImageGalleryDeleteConnector(_ imageEntryId: Int64) -> ImageGalleryDeleteConnector?
 
+	func createImageGalleryPageConnector(startRow: Int,
+			endRow:Int,
+			computeRowCount:Bool,
+			repositoryId: Int64,
+			folderId: Int64,
+			mimeTypes: [String]) -> ImageGalleryPageLiferayConnector?
+
+	func createImageGalleryUploadConnector(repositoryId: Int64,
+			folderId: Int64,
+			sourceFileName: String,
+			mimeType: String,
+			title: String,
+			descrip: String,
+			changeLog: String,
+			image: UIImage,
+			onUploadBytes: ImageGalleryUploadConnector.OnProgress?) -> ImageGalleryUploadConnector?
+
 	func createCommentListPageConnector(
 		className: String,
 		classPK: Int64,
@@ -390,6 +407,30 @@ open class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	open func createImageGalleryDeleteConnector(_ imageEntryId: Int64) -> ImageGalleryDeleteConnector? {
+		print("Unsupported connector in Liferay 6.2: ImageGalleryDeleteConnector")
+		return nil
+	}
+
+	open func createImageGalleryPageConnector(startRow: Int,
+			endRow:Int,
+			computeRowCount:Bool,
+			repositoryId: Int64,
+			folderId: Int64,
+			mimeTypes: [String]) -> ImageGalleryPageLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: ImageGalleryPageLiferayConnector")
+		return nil
+	}
+
+	open func createImageGalleryUploadConnector(repositoryId: Int64,
+			folderId: Int64,
+			sourceFileName: String,
+			mimeType: String,
+			title: String,
+			descrip: String,
+			changeLog: String,
+			image: UIImage,
+			onUploadBytes: ImageGalleryUploadConnector.OnProgress?) -> ImageGalleryUploadConnector? {
+		print("Unsupported connector in Liferay 6.2: ImageGalleryUploadConnector")
 		return nil
 	}
 	
@@ -659,7 +700,42 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	open func createImageGalleryDeleteConnector(_ imageEntryId: Int64) -> ImageGalleryDeleteConnector? {
-		return ImageGalleryDeleteConnector(imageEntryId: imageEntryId)
+		return Liferay70ImageGalleryDeleteConnector(imageEntryId: imageEntryId)
+	}
+
+	open func createImageGalleryPageConnector(startRow: Int,
+			endRow:Int,
+			computeRowCount:Bool,
+			repositoryId: Int64,
+			folderId: Int64,
+			mimeTypes: [String]) -> ImageGalleryPageLiferayConnector {
+		return Liferay70ImageGalleryPageLiferayConnector(startRow: startRow,
+			endRow:endRow,
+			computeRowCount:computeRowCount,
+			repositoryId: repositoryId,
+			folderId: folderId,
+			mimeTypes: mimeTypes
+		)
+	}
+
+	open func createImageGalleryUploadConnector(repositoryId: Int64,
+			folderId: Int64,
+			sourceFileName: String,
+			mimeType: String,
+			title: String,
+			descrip: String,
+			changeLog: String,
+			image: UIImage,
+			onUploadBytes: ImageGalleryUploadConnector.OnProgress?) -> ImageGalleryUploadConnector {
+
+		return Liferay70ImageGalleryUploadConnector(repositoryId: repositoryId, folderId: folderId,
+			sourceFileName: sourceFileName,
+			mimeType: mimeType,
+			title: title,
+			descrip: descrip,
+			changeLog: changeLog,
+			image: image,
+			onUploadBytes: onUploadBytes)
 	}
 
 	open func createCommentListPageConnector(

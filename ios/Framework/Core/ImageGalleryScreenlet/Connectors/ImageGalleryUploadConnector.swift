@@ -16,12 +16,12 @@ import LRMobileSDK
 
 open class ImageGalleryUploadConnector : UploadFileConnector {
 
-	fileprivate let repositoryId: Int64
-	fileprivate let folderId: Int64
-	fileprivate let sourceFileName: String
-	fileprivate let title: String
-	fileprivate let descrip: String
-	fileprivate let changeLog: String
+	open let repositoryId: Int64
+	open let folderId: Int64
+	open let sourceFileName: String
+	open let title: String
+	open let descrip: String
+	open let changeLog: String
 
 
 	//MARK: Initializers
@@ -68,9 +68,10 @@ open class ImageGalleryUploadConnector : UploadFileConnector {
 
 		return error
 	}
+	
+}
 
-
-	//MARK: UploadFileConnector
+open class Liferay70ImageGalleryUploadConnector: ImageGalleryUploadConnector {
 
 	override open func doSendFile(_ session: LRSession, data: LRUploadData) throws {
 		let service = LRDLAppService_v7(session: session)
@@ -86,5 +87,5 @@ open class ImageGalleryUploadConnector : UploadFileConnector {
 			 	file: data,
 			 	serviceContext: serviceContext)
 	}
-	
+
 }
