@@ -14,7 +14,7 @@
 import Foundation
 import LRMobileSDK
 
-open class ImageGalleryUploadConnector : UploadFileConnector<String> {
+open class ImageGalleryUploadConnector : UploadFileConnector {
 
 	fileprivate let repositoryId: Int64
 	fileprivate let folderId: Int64
