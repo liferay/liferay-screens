@@ -1,11 +1,15 @@
 package com.liferay.mobile.screens.base.interactor;
 
+import com.liferay.mobile.android.auth.CookieSignIn;
+import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
 import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import com.liferay.mobile.screens.base.interactor.listener.CacheListener;
+import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.executor.Executor;
+import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import java.util.Locale;
@@ -30,45 +34,68 @@ public abstract class BaseCacheReadInteractor<L extends BaseCacheListener, E ext
 		Executor.execute(new Runnable() {
 			@Override
 			public void run() {
-				try {
-					if (cachePolicy == CachePolicy.CACHE_FIRST) {
-						try {
-							boolean retrievedFromCache = cached(args);
-
-							if (!retrievedFromCache) {
-								online(true, null, args);
-							}
-						} catch (Exception e) {
-							online(true, e, args);
-						}
-					} else if (cachePolicy == CachePolicy.CACHE_ONLY) {
-						LiferayLogger.i("Trying to retrieve object from cache");
-
-						boolean retrievedFromCache = cached(args);
-
-						if (!retrievedFromCache) {
-							throw new NoSuchElementException();
-						}
-					} else if (cachePolicy == CachePolicy.REMOTE_FIRST) {
-						try {
-							online(false, null, args);
-						} catch (Exception e) {
-							LiferayLogger.e("Retrieve online first failed, trying cached version", e);
-
-							boolean retrievedFromCache = cached(args);
-
-							if (!retrievedFromCache) {
-								throw new RuntimeException("Not found in cache", e);
-							}
-						}
-					} else {
-						online(false, null, args);
-					}
-				} catch (Exception e) {
-					createErrorEvent(e);
-				}
+				doInBackground(args);
 			}
 		});
+	}
+
+	@Override
+	protected void doInBackground(Object... args) {
+		try {
+			if (cachePolicy == CachePolicy.CACHE_FIRST) {
+				boolean retrievedFromCache;
+				try {
+					retrievedFromCache = cached(args);
+				} catch (Exception e) {
+					online(true, e, args);
+					return;
+				}
+				if (!retrievedFromCache) {
+					online(true, null, args);
+				}
+			} else if (cachePolicy == CachePolicy.CACHE_ONLY) {
+				LiferayLogger.i("Trying to retrieve object from cache");
+
+				boolean retrievedFromCache = cached(args);
+
+				if (!retrievedFromCache) {
+					throw new NoSuchElementException();
+				}
+			} else if (cachePolicy == CachePolicy.REMOTE_FIRST) {
+				try {
+					online(false, null, args);
+				} catch (Exception e) {
+					if (isCookieSessionAndAuthenticationError(e)) {
+						throw e;
+					}
+					LiferayLogger.e("Retrieve online first failed, trying cached version", e);
+
+					boolean retrievedFromCache = cached(args);
+
+					if (!retrievedFromCache) {
+						throw new RuntimeException("Not found in cache", e);
+					}
+				}
+			} else {
+				online(false, null, args);
+			}
+		} catch (Exception e) {
+			if (!retried && isCookieSessionAndAuthenticationError(e)) {
+				retried = true;
+				try {
+					Session session = CookieSignIn.signIn(getSession());
+					SessionContext.createCookieSession(session);
+				} catch (Exception ex) {
+					createErrorEvent(ex);
+					return;
+				}
+				Object[] newArgs = addRetryingVarArg(args);
+				doInBackground(newArgs);
+			} else {
+				createErrorEvent(e);
+			}
+		}
+	}
 	}
 
 	@SuppressWarnings("unused")
