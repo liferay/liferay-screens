@@ -96,6 +96,17 @@ public abstract class BaseCacheReadInteractor<L extends BaseCacheListener, E ext
 			}
 		}
 	}
+
+	protected Object[] addRetryingVarArg(Object... args) {
+		if (this instanceof BaseListInteractor) {
+			Object[] newArgs = new Object[args.length + 1];
+			newArgs[args.length] = true;
+
+			System.arraycopy(args, 0, newArgs, 0, args.length);
+
+			return newArgs;
+		}
+		return args;
 	}
 
 	@SuppressWarnings("unused")

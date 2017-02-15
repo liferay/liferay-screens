@@ -30,7 +30,7 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 
 		validate(startRow, endRow, locale);
 
-		if (notRequestingRightNow(query)) {
+		if (notRequestingRightNow(query) || retrying(args) ) {
 
 			JSONArray jsonArray = getPageRowsRequest(query, args);
 			int rowCount = getPageRowCountRequest(args);
@@ -92,6 +92,16 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 			}
 			return false;
 		}
+	}
+
+	protected boolean retrying(Object... args) {
+		Object last = args[args.length - 1];
+
+		if (last instanceof Boolean) {
+			return (boolean) last;
+		}
+
+		return false;
 	}
 
 	protected void validate(int startRow, int endRow, Locale locale) {
