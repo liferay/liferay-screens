@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.context;
 
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
+import com.liferay.mobile.android.auth.basic.CookieAuthentication;
 import com.liferay.mobile.android.oauth.OAuth;
 import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.service.Session;
@@ -58,6 +59,14 @@ public class SessionContext {
 		OAuth oAuth = new OAuthAuthentication(config);
 
 		currentUserSession = new SessionImpl(LiferayServerContext.getServer(), oAuth);
+
+		return currentUserSession;
+	}
+
+	public static Session createCookieSession(Session session) {
+		Authentication cookieAuthentication = session.getAuthentication();
+
+		currentUserSession = new SessionImpl(LiferayServerContext.getServer(), cookieAuthentication);
 
 		return currentUserSession;
 	}
