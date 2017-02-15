@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="x7q-3L-OL5">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--BlogDisplayScreenlet-->
+        <scene sceneID="AI3-ek-iId">
+            <objects>
+                <viewController title="BlogDisplayScreenlet" id="x7q-3L-OL5" customClass="BlogDisplayScreenletViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TAO-w0-iWr"/>
+                        <viewControllerLayoutGuide type="bottom" id="Uhk-tR-XZ5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="C5Y-w3-aut">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Blog ClassPK" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Acb-0c-Ftc">
+                                <rect key="frame" x="20" y="84" width="233" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="LR2-DR-PHU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="LR2-DR-PHU"/>
+                                    </mask>
+                                </variation>
+                            </textField>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ltg-8L-Gke">
+                                <rect key="frame" x="273" y="84" width="82" height="44"/>
+                                <color key="backgroundColor" red="0.083623558282852173" green="0.66497266292572021" blue="0.84832382202148438" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="82" id="GQC-JC-1KE"/>
+                                    <constraint firstAttribute="height" constant="44" id="Qzl-dU-aeK"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="LOAD">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="loadBlog:" destination="x7q-3L-OL5" eventType="touchUpInside" id="1Hd-da-x5b"/>
+                                </connections>
+                            </button>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMf-N9-Z1R" customClass="BlogsEntryDisplayScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="20" y="145" width="335" height="453"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Ltg-8L-Gke" secondAttribute="trailing" constant="20" id="8qX-0W-IA0"/>
+                            <constraint firstItem="gMf-N9-Z1R" firstAttribute="top" secondItem="Acb-0c-Ftc" secondAttribute="bottom" constant="20" id="9HQ-p9-hhC"/>
+                            <constraint firstItem="Acb-0c-Ftc" firstAttribute="top" secondItem="TAO-w0-iWr" secondAttribute="bottom" constant="20" id="Dqt-ua-wGQ"/>
+                            <constraint firstItem="Acb-0c-Ftc" firstAttribute="leading" secondItem="C5Y-w3-aut" secondAttribute="leading" constant="20" id="MwA-Qw-g0o"/>
+                            <constraint firstAttribute="trailing" secondItem="gMf-N9-Z1R" secondAttribute="trailing" constant="20" id="N5n-Ae-EWG"/>
+                            <constraint firstItem="Ltg-8L-Gke" firstAttribute="top" secondItem="TAO-w0-iWr" secondAttribute="bottom" constant="20" id="NPS-cX-GW2"/>
+                            <constraint firstItem="gMf-N9-Z1R" firstAttribute="top" secondItem="Ltg-8L-Gke" secondAttribute="bottom" constant="17" id="Pnd-Vy-e9E"/>
+                            <constraint firstItem="Uhk-tR-XZ5" firstAttribute="top" secondItem="gMf-N9-Z1R" secondAttribute="bottom" constant="20" id="UwI-7J-wfR"/>
+                            <constraint firstItem="Ltg-8L-Gke" firstAttribute="leading" secondItem="Acb-0c-Ftc" secondAttribute="trailing" constant="20" id="d5T-KW-yqZ"/>
+                            <constraint firstItem="gMf-N9-Z1R" firstAttribute="leading" secondItem="C5Y-w3-aut" secondAttribute="leading" constant="20" id="dkY-qY-AuA"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="oO8-ss-bWZ"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="blogClassPKLabel" destination="Acb-0c-Ftc" id="4Rd-2W-wUU"/>
+                        <outlet property="loadButton" destination="Ltg-8L-Gke" id="ggi-B9-za8"/>
+                        <outlet property="screenlet" destination="gMf-N9-Z1R" id="V9N-3d-Dh9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zbs-wQ-GiQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2070" y="2073"/>
+        </scene>
+    </scenes>
+</document>

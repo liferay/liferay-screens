@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="My4-vf-44F">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--CommentListScreenlet-->
+        <scene sceneID="A79-LW-apD">
+            <objects>
+                <viewController title="CommentListScreenlet" automaticallyAdjustsScrollViewInsets="NO" id="My4-vf-44F" customClass="CommentListScreenletViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cl2-zy-fUp"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ebj-0l-O7f"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="t9h-bk-dC1">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Cs-KB-hzY" customClass="CommentListScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="-4" y="64" width="383" height="554"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="7Cs-KB-hzY" firstAttribute="leading" secondItem="t9h-bk-dC1" secondAttribute="leadingMargin" constant="-20" id="2YC-XV-UiA"/>
+                            <constraint firstItem="7Cs-KB-hzY" firstAttribute="top" secondItem="cl2-zy-fUp" secondAttribute="bottom" id="8c1-rW-lGo"/>
+                            <constraint firstItem="Ebj-0l-O7f" firstAttribute="top" secondItem="7Cs-KB-hzY" secondAttribute="bottom" id="zEN-Qe-N4e"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7Cs-KB-hzY" secondAttribute="trailing" constant="-20" id="zRx-fY-4Ni"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="LCk-yg-4gq">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="mBW-cM-Sfu">
+                            <color key="tintColor" red="0.083623558282852173" green="0.66497266292572021" blue="0.84832382202148438" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="insertButtonPressed:" destination="My4-vf-44F" id="PPh-Aq-7F2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="listScreenlet" destination="7Cs-KB-hzY" id="9de-SP-F0i"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mpb-r6-Lc5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1460" y="807"/>
+        </scene>
+    </scenes>
+</document>

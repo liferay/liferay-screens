@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="TY4-Ql-4pF">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--User Portrait Screenlet View Controller-->
+        <scene sceneID="HvN-Yo-cMo">
+            <objects>
+                <viewController id="TY4-Ql-4pF" customClass="UserPortraitScreenletViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9ha-iK-R4n"/>
+                        <viewControllerLayoutGuide type="bottom" id="Snu-6a-iji"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EqH-kn-vAc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7UY-Og-Tpf" userLabel="Load Button">
+                                <rect key="frame" x="275" y="84" width="80" height="44"/>
+                                <color key="backgroundColor" red="0.083623558282852173" green="0.66497266292572021" blue="0.84832382202148438" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="0tT-tG-PIL"/>
+                                    <constraint firstAttribute="width" constant="80" id="nod-K1-atf"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="LOAD">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <action selector="loadPortrait:" destination="TY4-Ql-4pF" eventType="touchUpInside" id="66v-gs-c4g"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User Id, Email or Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g8B-1u-S4d">
+                                <rect key="frame" x="16" y="84" width="251" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Ew3-qK-kDL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8S-vx-tNG">
+                                <rect key="frame" x="20" y="148" width="335" height="450"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Default portrait" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BxD-R4-XEe">
+                                        <rect key="frame" x="167.5" y="0.0" width="167.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="dUK-mV-I2G" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
+                                        <rect key="frame" x="54" y="40.5" width="60" height="60"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="IBi-tj-0xd"/>
+                                            <constraint firstAttribute="width" constant="60" id="cZv-Wa-yfA"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="offlinePolicy" value="remote-first"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="ELj-YS-lCR" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
+                                        <rect key="frame" x="221.5" y="40.5" width="60" height="60"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="dgl-qb-Ea8"/>
+                                            <constraint firstAttribute="width" constant="60" id="fLe-Mt-B1a"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Modified portrait" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAy-4I-6tH">
+                                        <rect key="frame" x="0.0" y="140.5" width="167.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="6Q4-t8-cpv" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
+                                        <rect key="frame" x="221.5" y="181" width="60" height="60"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="Lxu-CN-3wK"/>
+                                            <constraint firstAttribute="height" constant="60" id="fzc-PE-HOp"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="offlinePolicy" value="cache-first"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="OfG-dw-9hx" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
+                                        <rect key="frame" x="54" y="181" width="60" height="60"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="O21-TI-shI"/>
+                                            <constraint firstAttribute="width" constant="60" id="qbZ-eM-lBd"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="offlinePolicy" value="cache-only"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User's portrait" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2EO-gK-6EG">
+                                        <rect key="frame" x="0.0" y="0.0" width="167.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Editable portrait" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dNP-XS-QZT">
+                                        <rect key="frame" x="167.5" y="140.5" width="167.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="6Q4-t8-cpv" firstAttribute="centerX" secondItem="BxD-R4-XEe" secondAttribute="centerX" id="1L1-yl-2oU"/>
+                                    <constraint firstItem="dNP-XS-QZT" firstAttribute="leading" secondItem="rAy-4I-6tH" secondAttribute="trailing" id="3Is-CW-LhV"/>
+                                    <constraint firstItem="BxD-R4-XEe" firstAttribute="width" secondItem="S8S-vx-tNG" secondAttribute="width" multiplier="0.5" id="5Uy-4c-kzO"/>
+                                    <constraint firstItem="2EO-gK-6EG" firstAttribute="top" secondItem="S8S-vx-tNG" secondAttribute="top" id="8CN-7L-oz2"/>
+                                    <constraint firstItem="2EO-gK-6EG" firstAttribute="leading" secondItem="S8S-vx-tNG" secondAttribute="leading" id="DC2-sV-JAv"/>
+                                    <constraint firstItem="6Q4-t8-cpv" firstAttribute="top" secondItem="dNP-XS-QZT" secondAttribute="bottom" constant="20" id="JGR-13-Umk"/>
+                                    <constraint firstItem="dUK-mV-I2G" firstAttribute="centerX" secondItem="2EO-gK-6EG" secondAttribute="centerX" id="JHr-6n-Dpt"/>
+                                    <constraint firstItem="dNP-XS-QZT" firstAttribute="width" secondItem="S8S-vx-tNG" secondAttribute="width" multiplier="0.5" id="Ja4-98-TwA"/>
+                                    <constraint firstItem="dNP-XS-QZT" firstAttribute="leading" secondItem="rAy-4I-6tH" secondAttribute="trailing" id="OxP-Nx-Jpg"/>
+                                    <constraint firstItem="rAy-4I-6tH" firstAttribute="width" secondItem="S8S-vx-tNG" secondAttribute="width" multiplier="0.5" id="U7n-wJ-2fJ"/>
+                                    <constraint firstItem="rAy-4I-6tH" firstAttribute="centerX" secondItem="2EO-gK-6EG" secondAttribute="centerX" id="Vtv-bJ-6Mv"/>
+                                    <constraint firstItem="OfG-dw-9hx" firstAttribute="centerX" secondItem="2EO-gK-6EG" secondAttribute="centerX" id="W8W-lx-DS7"/>
+                                    <constraint firstItem="ELj-YS-lCR" firstAttribute="top" secondItem="BxD-R4-XEe" secondAttribute="bottom" constant="20" id="Y4j-ec-4Ky"/>
+                                    <constraint firstItem="dNP-XS-QZT" firstAttribute="top" secondItem="ELj-YS-lCR" secondAttribute="bottom" constant="40" id="Zci-sf-x8y"/>
+                                    <constraint firstItem="ELj-YS-lCR" firstAttribute="centerX" secondItem="BxD-R4-XEe" secondAttribute="centerX" id="aXU-qP-ewR"/>
+                                    <constraint firstAttribute="trailing" secondItem="dNP-XS-QZT" secondAttribute="trailing" id="bS6-eR-rPW"/>
+                                    <constraint firstItem="OfG-dw-9hx" firstAttribute="top" secondItem="rAy-4I-6tH" secondAttribute="bottom" constant="20" id="gZK-0Q-Vob"/>
+                                    <constraint firstItem="rAy-4I-6tH" firstAttribute="leading" secondItem="S8S-vx-tNG" secondAttribute="leading" id="jCO-h0-I8n"/>
+                                    <constraint firstItem="dUK-mV-I2G" firstAttribute="top" secondItem="2EO-gK-6EG" secondAttribute="bottom" constant="20" id="jEF-mH-L3s"/>
+                                    <constraint firstItem="2EO-gK-6EG" firstAttribute="width" secondItem="S8S-vx-tNG" secondAttribute="width" multiplier="0.5" id="nIh-Uh-kc1"/>
+                                    <constraint firstAttribute="trailing" secondItem="BxD-R4-XEe" secondAttribute="trailing" id="oM1-JG-1vT"/>
+                                    <constraint firstItem="dNP-XS-QZT" firstAttribute="centerX" secondItem="BxD-R4-XEe" secondAttribute="centerX" id="sWw-P6-9R3"/>
+                                    <constraint firstItem="rAy-4I-6tH" firstAttribute="top" secondItem="dUK-mV-I2G" secondAttribute="bottom" constant="40" id="y6E-NP-EuK"/>
+                                    <constraint firstItem="BxD-R4-XEe" firstAttribute="top" secondItem="S8S-vx-tNG" secondAttribute="top" id="yjw-Wr-DlO"/>
+                                    <constraint firstItem="BxD-R4-XEe" firstAttribute="leading" secondItem="2EO-gK-6EG" secondAttribute="trailing" id="ynM-3i-bGA"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="S8S-vx-tNG" secondAttribute="trailing" constant="20" id="34Z-si-VXS"/>
+                            <constraint firstItem="g8B-1u-S4d" firstAttribute="top" secondItem="9ha-iK-R4n" secondAttribute="bottom" constant="20" id="I9Z-n0-WOD"/>
+                            <constraint firstItem="S8S-vx-tNG" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leading" constant="20" id="IT3-wk-YLd"/>
+                            <constraint firstItem="S8S-vx-tNG" firstAttribute="top" secondItem="g8B-1u-S4d" secondAttribute="bottom" constant="20" id="ODQ-rT-kUk"/>
+                            <constraint firstItem="S8S-vx-tNG" firstAttribute="top" secondItem="7UY-Og-Tpf" secondAttribute="bottom" constant="20" id="dDO-PJ-3Na"/>
+                            <constraint firstItem="Snu-6a-iji" firstAttribute="top" secondItem="S8S-vx-tNG" secondAttribute="bottom" constant="20" id="fer-5z-vXW"/>
+                            <constraint firstAttribute="trailing" secondItem="7UY-Og-Tpf" secondAttribute="trailing" constant="20" id="jdT-AS-4Hk"/>
+                            <constraint firstItem="7UY-Og-Tpf" firstAttribute="leading" secondItem="g8B-1u-S4d" secondAttribute="trailing" constant="8" id="kko-CY-CNv"/>
+                            <constraint firstItem="7UY-Og-Tpf" firstAttribute="top" secondItem="9ha-iK-R4n" secondAttribute="bottom" constant="20" id="tA6-Zp-R5h"/>
+                            <constraint firstItem="g8B-1u-S4d" firstAttribute="leading" secondItem="EqH-kn-vAc" secondAttribute="leadingMargin" id="u2j-ig-5iY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Xgo-At-ulf"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="editableScreenlet" destination="6Q4-t8-cpv" id="we0-Xr-gmR"/>
+                        <outlet property="loadButton" destination="7UY-Og-Tpf" id="JCb-2K-SsE"/>
+                        <outlet property="screenlet" destination="dUK-mV-I2G" id="DZF-FN-NDC"/>
+                        <outlet property="screenletWithDelegate" destination="OfG-dw-9hx" id="OGJ-bb-XTI"/>
+                        <outlet property="userIdField" destination="g8B-1u-S4d" id="6Nc-it-meo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zEG-lu-IJl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-320" y="1868"/>
+        </scene>
+    </scenes>
+</document>

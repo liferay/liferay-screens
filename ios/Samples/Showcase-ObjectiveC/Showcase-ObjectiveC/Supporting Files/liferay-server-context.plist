@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>server</key>
+	<string>http://screens-challenge.liferay.org.es/</string>
+	<key>version</key>
+	<integer>70</integer>
+	<key>companyId</key>
+	<integer>20116</integer>
+	<key>groupId</key>
+	<real>41905</real>
+	<key>anonymousUsername</key>
+	<string>anonymous1@liferay.com</string>
+	<key>anonymousPassword</key>
+	<string>anonymous1</string>
+	<key>assetDisplayEntryId</key>
+	<integer>20169</integer>
+	<key>blogDisplayClassPK</key>
+	<string>42183</string>
+	<key>commentScreenletClassName</key>
+	<string>com.liferay.blogs.kernel.model.BlogsEntry</string>
+	<key>commentScreenletClassPK</key>
+	<integer>42183</integer>
+	<key>ddlLabelField</key>
+	<string>Email</string>
+	<key>ddlRecordId</key>
+	<integer>42631</integer>
+	<key>ddlRecordSetId</key>
+	<integer>42629</integer>
+	<key>ddlStructureId</key>
+	<integer>29947</integer>
+	<key>imageDisplayClassPK</key>
+	<integer>42369</integer>
+	<key>audioDisplayClassPK</key>
+	<integer>72269</integer>
+	<key>videoDisplayClassPK</key>
+	<real>72049</real>
+	<key>pdfDisplayClassPK</key>
+	<real>42656</real>
+	<key>imageGalleryFolderId</key>
+	<integer>42257</integer>
+	<key>imageGalleryMimeType</key>
+	<string>image/png,image/jpeg</string>
+	<key>imageGalleryRepositoryId</key>
+	<real>41905</real>
+	<key>ratingEmojisEntryId</key>
+	<integer>42232</integer>
+	<key>ratingLikeEntryId</key>
+	<integer>42184</integer>
+	<key>ratingStarsEntryId</key>
+	<integer>42232</integer>
+	<key>ratingThumbsEntryId</key>
+	<integer>42184</integer>
+	<key>webContentDisplayArticleId</key>
+	<string>41983</string>
+</dict>
+</plist>
