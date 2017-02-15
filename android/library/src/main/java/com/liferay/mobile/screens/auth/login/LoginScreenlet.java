@@ -27,6 +27,7 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.login.interactor.BaseLoginInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginBasicInteractor;
+import com.liferay.mobile.screens.auth.login.interactor.LoginCookieInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginOAuthInteractor;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
@@ -49,6 +50,7 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 	public static final String LOGIN_SUCCESSFUL = "com.liferay.mobile.screens.auth.login.success";
 	private LoginListener listener;
 	private BasicAuthMethod basicAuthMethod;
+	private AuthenticationType authenticationType;
 	private StorageType credentialsStorage;
 	private String oauthConsumerKey;
 	private String oauthConsumerSecret;
@@ -189,15 +191,16 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 		LoginViewModel loginViewModel = (LoginViewModel) view;
 
-		if (oauthConsumerKey != null && oauthConsumerSecret != null) {
-			loginViewModel.setAuthenticationType(AuthenticationType.OAUTH);
-		} else {
-			int authMethodId = typedArray.getInt(R.styleable.LoginScreenlet_basicAuthMethod, 0);
+		int authMethodId = typedArray.getInt(R.styleable.LoginScreenlet_loginMode, 0);
+		authenticationType = AuthenticationType.getValue(authMethodId);
 
-			basicAuthMethod = BasicAuthMethod.getValue(authMethodId);
+		loginViewModel.setAuthenticationType(authenticationType);
+
+		if (authenticationType.equals(AuthenticationType.BASIC)) {
+			int basicAuthMethodId = typedArray.getInt(R.styleable.LoginScreenlet_basicAuthMethod, 0);
+
+			basicAuthMethod = BasicAuthMethod.getValue(basicAuthMethodId);
 			loginViewModel.setBasicAuthMethod(basicAuthMethod);
-
-			loginViewModel.setAuthenticationType(AuthenticationType.BASIC);
 		}
 
 		typedArray.recycle();
@@ -207,7 +210,10 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 	@Override
 	protected BaseLoginInteractor createInteractor(String actionName) {
-		if (BASIC_AUTH.equals(actionName)) {
+		if (authenticationType.equals(AuthenticationType.COOKIE)) {
+			return new LoginCookieInteractor();
+		}
+		else if (BASIC_AUTH.equals(actionName)) {
 			return new LoginBasicInteractor();
 		} else {
 			LoginOAuthInteractor oauthInteractor = new LoginOAuthInteractor();
@@ -223,12 +229,13 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 	@Override
 	protected void onUserAction(String userActionName, BaseLoginInteractor interactor, Object... args) {
-		if (BASIC_AUTH.equals(userActionName)) {
-
+		if (authenticationType.equals(AuthenticationType.COOKIE)) {
+			LoginViewModel viewModel = getViewModel();
+			interactor.start(viewModel.getLogin(), viewModel.getPassword());
+		} else if (BASIC_AUTH.equals(userActionName)) {
 			LoginViewModel viewModel = getViewModel();
 			interactor.start(viewModel.getLogin(), viewModel.getPassword(), viewModel.getBasicAuthMethod());
-		} else {
-
+		} else if(OAUTH.equals(userActionName)) {
 			LoginOAuthInteractor oauthInteractor = (LoginOAuthInteractor) interactor;
 			Intent intent = new Intent(getContext(), OAuthActivity.class);
 			intent.putExtra(OAuthActivity.EXTRA_OAUTH_CONFIG, oauthInteractor.getOAuthConfig());
