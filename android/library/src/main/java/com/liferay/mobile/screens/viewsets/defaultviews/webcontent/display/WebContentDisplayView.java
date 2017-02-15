@@ -15,11 +15,16 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.webcontent.display;
 
 import android.content.Context;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import com.liferay.mobile.screens.R;
@@ -29,11 +34,14 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.webcontent.WebContent;
 import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
 import com.liferay.mobile.screens.webcontent.display.view.WebContentDisplayViewModel;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
 
 /**
  * @author Silvio Santos
  */
-public class WebContentDisplayView extends FrameLayout implements WebContentDisplayViewModel, View.OnTouchListener {
+public class WebContentDisplayView extends FrameLayout
+	implements WebContentDisplayViewModel, View.OnTouchListener {
 
 	private static final String STYLES = "<style>"
 		+ ".MobileCSS {padding: 4%; width: 92%;} "
@@ -85,10 +93,12 @@ public class WebContentDisplayView extends FrameLayout implements WebContentDisp
 
 			LiferayLogger.i("article loaded: " + webContent);
 
-			String styledHtml = STYLES + "<div class=\"MobileCSS\">" + webContent.getHtml() + "</div>";
+			String styledHtml =
+				STYLES + "<div class=\"MobileCSS\">" + webContent.getHtml() + "</div>";
 
 			//TODO check encoding
-			webView.loadDataWithBaseURL(LiferayServerContext.getServer(), styledHtml, "text/html", "utf-8", null);
+			webView.loadDataWithBaseURL(LiferayServerContext.getServer(), styledHtml, "text/html",
+				"utf-8", null);
 		}
 	}
 
@@ -139,7 +149,43 @@ public class WebContentDisplayView extends FrameLayout implements WebContentDisp
 				webView.getSettings().setJavaScriptEnabled(true);
 				webView.setWebChromeClient(new WebChromeClient());
 			}
+			webView.setWebViewClient(getWebViewClientWithCustomHeader());
 			webView.setOnTouchListener(this);
 		}
+	}
+
+	public WebViewClient getWebViewClientWithCustomHeader() {
+		return new WebViewClient() {
+
+			@Override
+			public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+				return getResource(url.trim());
+			}
+
+			@Override
+			@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+			public WebResourceResponse shouldInterceptRequest(WebView view,
+				WebResourceRequest request) {
+
+				return getResource(request.getUrl().toString());
+			}
+
+			private WebResourceResponse getResource(String url) {
+				try {
+					OkHttpClient httpClient = LiferayServerContext.getOkHttpClientNoCache();
+					com.squareup.okhttp.Request.Builder builder =
+						new com.squareup.okhttp.Request.Builder().url(url);
+
+					Request request = builder.build();
+					com.squareup.okhttp.Response response = httpClient.newCall(request).execute();
+
+					return new WebResourceResponse(
+						response.header("content-type", response.body().contentType().type()),
+						response.header("content-encoding", "utf-8"), response.body().byteStream());
+				} catch (Exception e) {
+					return null;
+				}
+			}
+		};
 	}
 }
