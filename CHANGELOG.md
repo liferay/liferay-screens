@@ -10,23 +10,22 @@ All notable changes to this project will be documented in this file.
 
 * BaseInteractor is not handling exceptions outside its domain anymore
 * List users with AssetListScreenlet
-* Fixed connection timeout in DDLFormScreenlet for upload files in hotfix/1.4.2
-* Propagated connection timeout in DDLFormScreenlet for upload files for Liferay 7.0
+* Fixed connection timeout in DDLFormScreenlet when uploading files in hotfix/1.4.2
+* Propagating connection timeout in DDLFormScreenlet when uploading files for Liferay 7.0
 * Changed wrong colors in buttons and dialogs
 * Used URIs instead of paths to support newer SDKs
-* Cache fails when storing blogs or uploading portraits
+* Fixed cache error when storing blogs or uploading portraits
 * Fixed corrupted credentials in LoginScreenlet stored in SharedPreferences
 * Fixed bug with camera and Android N
-* Changed minimun SDK because it has wrong target
+* Fixed minimum SDK in test application
 
 ### New features
-* Created connectors for support Liferay 6.2
 * Added Spanish translations
 * Prevent NullPointerException in login
 * Improvements to test-app
 * Added workaround to list Users with AssetListScreenlet
 * Improvements to PdfDisplayScreenlet: you can swipe between pages now
-* Exposed some methods to use in the POC of Nativescript
+* Exposed some methods to use them in the POC of Nativescript
 * Allow displaying AssetPublisher with portletItemName attribute in AssetDisplayScreenlet
 * Allow developers to process the result when a WebContent is clicked
 
@@ -45,13 +44,11 @@ All notable changes to this project will be documented in this file.
 ## iOS
 
 ### Bugs
-* Expose user object in Session context instead of raw attributtes
 * List users with AssetListScreenlet
 
 ### New features
 * Migrated Core, Showcase-Swift and Westeros demo apps to Swift 3
 * Added Cookie authentication
-* Created connectors for support Liferay 6.2
 * Added Spanish translations
 * Detailed error messages
 * Added workaround to list Users with AssetListScreenlet
