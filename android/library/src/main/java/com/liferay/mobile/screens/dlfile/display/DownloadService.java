@@ -4,6 +4,7 @@ import android.app.IntentService;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.ResultReceiver;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import java.io.BufferedInputStream;
 import java.io.FileOutputStream;
@@ -12,6 +13,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Map;
 
 /**
  * @author Sarai Díaz García
@@ -49,6 +51,11 @@ public class DownloadService extends IntentService {
 		try {
 			URL url = new URL(remotePath);
 			URLConnection connection = url.openConnection();
+			Map<String, String> headers = LiferayServerContext.getAuthHeaders();
+
+			for (Map.Entry<String, String> entry : headers.entrySet()) {
+				connection.setRequestProperty(entry.getKey(), entry.getValue());
+			}
 			connection.connect();
 
 			int fileLength = connection.getContentLength();
@@ -69,7 +76,7 @@ public class DownloadService extends IntentService {
 
 			output.flush();
 			receiver.send(FINISHED_DOWNLOAD, null);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			sendException(receiver, e);
 		} finally {
 			try {
@@ -93,7 +100,7 @@ public class DownloadService extends IntentService {
 		LiferayLogger.i("Progress downloading file: " + progress);
 	}
 
-	private void sendException(ResultReceiver receiver, IOException e) {
+	private void sendException(ResultReceiver receiver, Exception e) {
 		Bundle bundle = new Bundle();
 		bundle.putSerializable(EXCEPTION, e);
 		receiver.send(ERROR_DOWNLOADING, bundle);
