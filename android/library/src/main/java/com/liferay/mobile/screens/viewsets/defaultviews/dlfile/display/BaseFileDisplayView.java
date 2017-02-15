@@ -96,7 +96,6 @@ public abstract class BaseFileDisplayView extends RelativeLayout implements Base
 	public abstract void loadFileEntry(String url);
 
 	public void renderDownloadProgress(int progress) {
-
 	}
 
 	private void downloadFileAndStoreLocally() {

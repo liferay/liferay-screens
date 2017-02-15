@@ -15,16 +15,16 @@ import Foundation
 import LRMobileSDK
 
 
-open class UploadFileConnector<T> : ServerConnector, LRCallback, LRFileProgressDelegate {
+open class UploadFileConnector : ServerConnector, LRCallback, LRFileProgressDelegate {
 
-	public typealias OnProgress = (T?, UInt64, UInt64) -> Void
+	public typealias OnProgress = (Any?, UInt64, UInt64) -> Void
 
 	var inputStream: InputStream?
 	var bytesToSend: Int64?
 	var image: UIImage?
-	let fileName: String
-	let mimeType: String
-	let parameter: T?
+	open let fileName: String
+	open let mimeType: String
+	let parameter: Any?
 	let onUploadedBytes: OnProgress?
 
 	var requestSemaphore: DispatchSemaphore?
@@ -39,7 +39,7 @@ open class UploadFileConnector<T> : ServerConnector, LRCallback, LRFileProgressD
 		bytesToSend: Int64,
 		fileName: String,
 		mimeType: String,
-		parameter: T? = nil,
+		parameter: Any? = nil,
 		onUploadedBytes: OnProgress?) {
 
 		self.inputStream = inputStream
@@ -56,7 +56,7 @@ open class UploadFileConnector<T> : ServerConnector, LRCallback, LRFileProgressD
 		image: UIImage,
 		fileName: String,
 		mimeType: String,
-		parameter: T? = nil,
+		parameter: Any? = nil,
 		onUploadedBytes: OnProgress?) {
 
 		self.image = image

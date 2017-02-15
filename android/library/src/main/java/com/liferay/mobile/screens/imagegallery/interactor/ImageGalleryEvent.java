@@ -15,6 +15,8 @@ public class ImageGalleryEvent extends ListEvent<ImageEntry> {
 	private boolean starting;
 	private long folderId;
 
+	private long repositoryId;
+
 	public ImageGalleryEvent() {
 		super();
 	}
@@ -85,5 +87,13 @@ public class ImageGalleryEvent extends ListEvent<ImageEntry> {
 
 	public void setFolderId(long folderId) {
 		this.folderId = folderId;
+	}
+
+	public long getRepositoryId() {
+		return repositoryId;
+	}
+
+	public void setRepositoryId(long repositoryId) {
+		this.repositoryId = repositoryId;
 	}
 }

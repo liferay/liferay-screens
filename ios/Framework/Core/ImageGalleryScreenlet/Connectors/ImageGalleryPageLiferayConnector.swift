@@ -16,9 +16,9 @@ import Foundation
 
 open class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
     
-	fileprivate let repositoryId: Int64
-    fileprivate let folderId: Int64
-	fileprivate let mimeTypes: [String]
+	open let repositoryId: Int64
+    open let folderId: Int64
+	open let mimeTypes: [String]
 
 
 	//MARK: Initializers
@@ -55,11 +55,13 @@ open class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
 
 		return error
 	}
-
-	
-	//MARK: PaginationLiferayConnector
     
-    override open func doAddPageRowsServiceCall(
+}
+
+open class Liferay70ImageGalleryPageLiferayConnector: ImageGalleryPageLiferayConnector {
+
+
+	override open func doAddPageRowsServiceCall(
 			session: LRBatchSession,
 			startRow: Int,
 			endRow: Int,
@@ -89,4 +91,5 @@ open class ImageGalleryPageLiferayConnector : PaginationLiferayConnector {
         } catch {
 		}
     }
+
 }

@@ -74,7 +74,8 @@ open class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 	//MARK: ServerConnectorInteractor
 
 	override open func createConnector() -> ServerConnector? {
-		return ImageGalleryUploadConnector(
+
+		return LiferayServerContext.connectorFactory.createImageGalleryUploadConnector(
 				repositoryId: repositoryId,
 				folderId: folderId,
 				sourceFileName: imageUpload.title,

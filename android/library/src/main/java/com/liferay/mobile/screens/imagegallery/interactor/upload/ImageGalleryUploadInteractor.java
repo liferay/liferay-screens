@@ -23,8 +23,7 @@ public class ImageGalleryUploadInteractor
 		Intent service = new Intent(LiferayScreensContext.getContext(), ImageGalleryUploadService.class);
 		service.putExtra("targetScreenletId", getTargetScreenletId());
 		service.putExtra("actionName", getActionName());
-
-		service.putExtra("repositoryId", groupId);
+		service.putExtra("repositoryId", event.getRepositoryId() == 0 ? groupId : event.getRepositoryId());
 		service.putExtra("folderId", event.getFolderId());
 		service.putExtra("title", event.getTitle());
 		service.putExtra("description", event.getDescription());

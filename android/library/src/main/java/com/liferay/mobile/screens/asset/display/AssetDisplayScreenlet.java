@@ -142,13 +142,9 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 				getViewModel().showFinishOperation(customView);
 			} else {
 				String server = getResources().getString(R.string.liferay_server);
-				String url;
 
-				if (asset instanceof ImageEntry) {
-					url = server + ((ImageEntry) asset).getImageUrl();
-				} else {
-					url = server + asset.getUrl();
-				}
+				String url =
+					server + (asset instanceof ImageEntry ? ((ImageEntry) asset).getImageUrl() : asset.getUrl());
 				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 				if (intent.resolveActivity(getContext().getPackageManager()) != null) {
 					getContext().startActivity(intent);

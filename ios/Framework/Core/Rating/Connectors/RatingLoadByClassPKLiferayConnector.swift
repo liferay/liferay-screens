@@ -16,11 +16,11 @@ import LRMobileSDK
 
 open class RatingLoadByClassPKLiferayConnector: ServerConnector {
 	
-	let classPK: Int64
-	let className: String
-	let ratingsGroupCount: Int32
+	open let classPK: Int64
+	open let className: String
+	open let ratingsGroupCount: Int32
 	
-	var resultRating: RatingEntry?
+	open var resultRating: RatingEntry?
 
 
 	//MARK: Initializers
@@ -75,3 +75,5 @@ open class Liferay70RatingLoadByClassPKConnector: RatingLoadByClassPKLiferayConn
 	}
 	
 }
+
+
