@@ -19,5 +19,21 @@ package com.liferay.mobile.screens.context;
  */
 public enum AuthenticationType {
 
-	BASIC, OAUTH, VOID
+	BASIC(0), OAUTH(1), COOKIE(2), VOID(3);
+
+	private final int value;
+
+	AuthenticationType(int value) {
+		this.value = value;
+	}
+
+	public static AuthenticationType getValue(int value) {
+		for (AuthenticationType method : AuthenticationType.values()) {
+			if (method.value == value) {
+				return method;
+			}
+		}
+
+		return VOID;
+	}
 }
