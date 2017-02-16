@@ -37,7 +37,15 @@ open class HttpDownloadConnector: ServerConnector {
 
 		let requestSemaphore = DispatchSemaphore(value: 0)
 
-		session.downloadTask(with: self.url, completionHandler:
+		let urlRequest = NSMutableURLRequest(url: self.url)
+
+		if let auth
+			= SessionContext.currentContext?.session.authentication as? LRCookieAuthentication {
+
+			auth.authenticate(urlRequest)
+		}
+
+		session.downloadTask(with: urlRequest as URLRequest, completionHandler:
 			{ (_localURL, response, error) in
 				if let error = error {
 					self.lastError = error as NSError?
