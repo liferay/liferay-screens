@@ -161,7 +161,7 @@ import Foundation
 			session = SessionContext.currentContext?.createRequestSession()
 		}
 
-		LRCookieSignIn.signIn(with: session, callback: LRCookieBlockCallback { session, error in
+		LRCookieSignIn().signIn(with: session, callback: LRCookieBlockCallback { session, error in
 			if let session = session {
 				SessionContext.loginWithCookie(authentication: session.authentication as! LRCookieAuthentication, userAttributes: [:])
 				callback.callback(session, nil)

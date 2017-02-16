@@ -48,7 +48,7 @@ open class LoginCookieInteractor: Interactor, LRCallback {
 			}
 		}
 
-		LRCookieSignIn.signIn(with: session, callback: callback)
+		LRCookieSignIn().signIn(with: session, callback: callback)
 		return true
 	}
 
