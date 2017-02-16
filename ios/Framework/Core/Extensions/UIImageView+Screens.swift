@@ -32,25 +32,27 @@ extension UIImageView {
 			placeholderImage: Image? = nil,
 			optionsInfo: KingfisherOptionsInfo? = nil) {
 
+		var optionsInfo = optionsInfo ?? []
+		optionsInfo.append(.requestModifier(AnyModifier(modify: {
+			request -> URLRequest? in
+			guard let auth = SessionContext.currentContext?.session.authentication,
+				auth is LRCookieAuthentication else {
+
+					return request
+			}
+			let mutableRequest = (request as NSURLRequest).mutableCopy() as! NSMutableURLRequest
+
+			auth.authenticate(mutableRequest)
+
+			return mutableRequest as URLRequest
+		})))
+
 		switch(ImageCache.screensOfflinePolicy) {
 
 		case CacheStrategyType.remoteOnly.rawValue:
 			var optionsInfoFinal = optionsInfo ?? []
 			optionsInfoFinal.append(.forceRefresh)
 			optionsInfoFinal.append(.transition(.fade(0.2)))
-			optionsInfoFinal.append(.requestModifier(AnyModifier(modify: {
-					request -> URLRequest? in
-				guard let auth = SessionContext.currentContext?.session.authentication,
-					auth is LRCookieAuthentication else {
-
-					return request
-				}
-				let mutableRequest = (request as NSURLRequest).mutableCopy() as! NSMutableURLRequest
-
-				auth.authenticate(mutableRequest)
-
-				return mutableRequest as URLRequest
-			})))
 
 			self.kf.setImage(with: URL, placeholder: placeholderImage, options: optionsInfoFinal)
 
