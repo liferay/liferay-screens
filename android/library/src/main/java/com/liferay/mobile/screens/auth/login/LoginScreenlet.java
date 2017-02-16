@@ -213,9 +213,7 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 		if (authenticationType.equals(AuthenticationType.COOKIE)) {
 			return new LoginCookieInteractor();
 		}
-		else if (BASIC_AUTH.equals(actionName)) {
-			return new LoginBasicInteractor();
-		} else {
+		else if (authenticationType.equals(AuthenticationType.OAUTH)) {
 			LoginOAuthInteractor oauthInteractor = new LoginOAuthInteractor();
 
 			OAuthConfig config =
@@ -225,6 +223,9 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 			return oauthInteractor;
 		}
+		else {
+			return new LoginBasicInteractor();
+		}
 	}
 
 	@Override
@@ -232,10 +233,10 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 		if (authenticationType.equals(AuthenticationType.COOKIE)) {
 			LoginViewModel viewModel = getViewModel();
 			interactor.start(viewModel.getLogin(), viewModel.getPassword());
-		} else if (BASIC_AUTH.equals(userActionName)) {
+		} else if (authenticationType.equals(AuthenticationType.BASIC)) {
 			LoginViewModel viewModel = getViewModel();
 			interactor.start(viewModel.getLogin(), viewModel.getPassword(), viewModel.getBasicAuthMethod());
-		} else if(OAUTH.equals(userActionName)) {
+		} else if(authenticationType.equals(AuthenticationType.OAUTH)) {
 			LoginOAuthInteractor oauthInteractor = (LoginOAuthInteractor) interactor;
 			Intent intent = new Intent(getContext(), OAuthActivity.class);
 			intent.putExtra(OAuthActivity.EXTRA_OAUTH_CONFIG, oauthInteractor.getOAuthConfig());
