@@ -146,14 +146,14 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				start(GalleryActivity.class);
 				break;
 			case R.id.asset_display:
-				Intent intent1 = getIntentWithTheme(AssetDisplayActivity.class);
-				intent1.putExtra("portletItemName", getResources().getString(R.string.liferay_portlet_item_name));
-				DefaultAnimation.startActivityWithAnimation(this, intent1);
+				Intent intentAsset = getIntentWithTheme(AssetDisplayActivity.class);
+				intentAsset.putExtra("portletItemName", getResources().getString(R.string.liferay_portlet_item_name));
+				DefaultAnimation.startActivityWithAnimation(this, intentAsset);
 				break;
 			case R.id.user_display:
-				Intent intent2 = getIntentWithTheme(AssetDisplayActivity.class);
-				intent2.putExtra("entryId", Long.valueOf(getResources().getString(R.string.liferay_user_entryId)));
-				DefaultAnimation.startActivityWithAnimation(this, intent2);
+				Intent intentUser = getIntentWithTheme(AssetDisplayActivity.class);
+				intentUser.putExtra("entryId", Long.valueOf(getResources().getString(R.string.liferay_user_entryId)));
+				DefaultAnimation.startActivityWithAnimation(this, intentUser);
 				break;
 			case R.id.image_display:
 				start(ImageDisplayActivity.class);
