@@ -192,7 +192,7 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 		LoginViewModel loginViewModel = (LoginViewModel) view;
 
 		int authMethodId = typedArray.getInt(R.styleable.LoginScreenlet_loginMode, 0);
-		authenticationType = AuthenticationType.getValue(authMethodId);
+		authenticationType = AuthenticationType.values()[authMethodId];
 
 		loginViewModel.setAuthenticationType(authenticationType);
 
