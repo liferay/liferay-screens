@@ -54,6 +54,7 @@ All notable changes to this project will be documented in this file.
 * Added workaround to list Users with AssetListScreenlet
 * Deselect row after delegate call in BaseListTableView and BaseListCollectionView
 * Allow displaying AssetPublisher with portletItemName attribute in AssetDisplayScreenlet
+* Integrate cookie authentication
 
 ### Refactor
 * Exposed User object in SessionContext: User doesn't extend anymore from Asset
