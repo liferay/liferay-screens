@@ -51,7 +51,7 @@ import UIKit
 				if let session = createSession() {
 					doRun(session: session)
 
-					if canBeCookieExpiredError(session: session) && !retried {
+					if !retried && canBeCookieExpiredError(session: session) {
 						retried = true
 						self.semaphore = DispatchSemaphore(value: 0)
 						SessionContext.reloadCookieAuth(session: session, callback: LRCookieBlockCallback { (session, error) in
