@@ -218,7 +218,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	protected void onUserAction(String userActionName, AssetDisplayInteractor interactor, Object... args) {
 		if (entryId != 0) {
 			interactor.start(entryId);
-		} else if (className != null && !className.equals("") && classPK != 0) {
+		} else if (className != null && !"".equals(className) && classPK != 0) {
 			interactor.start(className, classPK);
 		} else {
 			interactor.start(portletItemName);
