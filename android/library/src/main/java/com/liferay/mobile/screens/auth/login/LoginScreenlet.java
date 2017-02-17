@@ -230,13 +230,13 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 	@Override
 	protected void onUserAction(String userActionName, BaseLoginInteractor interactor, Object... args) {
-		if (authenticationType.equals(AuthenticationType.COOKIE)) {
+		if (AuthenticationType.COOKIE.equals(authenticationType)) {
 			LoginViewModel viewModel = getViewModel();
 			interactor.start(viewModel.getLogin(), viewModel.getPassword());
-		} else if (authenticationType.equals(AuthenticationType.BASIC)) {
+		} else if (AuthenticationType.BASIC.equals(authenticationType)) {
 			LoginViewModel viewModel = getViewModel();
 			interactor.start(viewModel.getLogin(), viewModel.getPassword(), viewModel.getBasicAuthMethod());
-		} else if(authenticationType.equals(AuthenticationType.OAUTH)) {
+		} else if(AuthenticationType.OAUTH.equals(authenticationType)) {
 			LoginOAuthInteractor oauthInteractor = (LoginOAuthInteractor) interactor;
 			Intent intent = new Intent(getContext(), OAuthActivity.class);
 			intent.putExtra(OAuthActivity.EXTRA_OAUTH_CONFIG, oauthInteractor.getOAuthConfig());
