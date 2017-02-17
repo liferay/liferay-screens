@@ -168,7 +168,7 @@ public class LoginView extends LinearLayout implements LoginViewModel, View.OnCl
 
 		if (basicAuthenticationLayout != null) {
 			basicAuthenticationLayout.setVisibility(
-				AuthenticationType.BASIC.equals(authenticationType) ? VISIBLE : GONE);
+				AuthenticationType.OAUTH.equals(authenticationType) ? GONE : VISIBLE);
 		}
 
 		if (basicAuthMethod != null) {

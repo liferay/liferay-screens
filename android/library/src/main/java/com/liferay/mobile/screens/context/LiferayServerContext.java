@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.context;
 
 import android.content.res.Resources;
+import com.liferay.mobile.android.auth.basic.CookieAuthentication;
 import com.liferay.mobile.screens.R;
 import com.squareup.okhttp.Cache;
 import com.squareup.okhttp.CacheControl;
@@ -23,6 +24,8 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Silvio Santos
@@ -119,6 +122,19 @@ public class LiferayServerContext {
 			if (okHttpClient == null) {
 				okHttpClient = new OkHttpClient();
 				okHttpClient.setCache(new Cache(LiferayScreensContext.getContext().getCacheDir(), MAX_SIZE));
+				okHttpClient.interceptors().add(new Interceptor() {
+					@Override
+					public Response intercept(Chain chain) throws IOException {
+						Request originalRequest = chain.request();
+
+						Request.Builder newRequestBuilder
+							= originalRequest.newBuilder();
+
+						Request newRequest = authenticateRequestIfNeeded(newRequestBuilder);
+
+						return chain.proceed(newRequest);
+					}
+				});
 			}
 		}
 		return okHttpClient;
@@ -131,7 +147,10 @@ public class LiferayServerContext {
 			public Response intercept(Chain chain) throws IOException {
 				Request originalRequest = chain.request();
 
-				Request newRequest = originalRequest.newBuilder().cacheControl(CacheControl.FORCE_NETWORK).build();
+				Request.Builder newRequestBuilder
+					= originalRequest.newBuilder().cacheControl(CacheControl.FORCE_NETWORK);
+
+				Request newRequest = authenticateRequestIfNeeded(newRequestBuilder);
 
 				return chain.proceed(newRequest);
 			}
@@ -142,5 +161,31 @@ public class LiferayServerContext {
 
 	private static long getValueFromIntegerOrString(final Resources resources, final int stringId, int integerId) {
 		return integerId == 0 ? Long.parseLong(resources.getString(stringId)) : resources.getInteger(integerId);
+	}
+
+	public static Request authenticateRequestIfNeeded(Request.Builder builder) {
+		if (SessionContext.getAuthentication() instanceof CookieAuthentication) {
+
+			Map<String, String> headers = getAuthHeaders();
+			for (Map.Entry<String, String> entry : headers.entrySet()) {
+				builder.addHeader(entry.getKey(), entry.getValue());
+			}
+		}
+
+		return builder.build();
+	}
+
+	public static Map<String, String> getAuthHeaders() {
+		try {
+			com.liferay.mobile.android.http.Request authRequest =
+				new com.liferay.mobile.android.http.Request(null, null, null, null, 0);
+
+			SessionContext.getAuthentication().authenticate(authRequest);
+
+			return authRequest.getHeaders();
+		}
+		catch (Exception e) {
+			return new HashMap<>();
+		}
 	}
 }
