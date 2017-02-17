@@ -16,7 +16,6 @@ import com.liferay.mobile.screens.imagegallery.interactor.upload.CancelUploadEve
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.squareup.picasso.Picasso;
-import java.io.File;
 import java.util.PriorityQueue;
 import java.util.Queue;
 

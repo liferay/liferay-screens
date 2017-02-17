@@ -2,11 +2,12 @@ package com.liferay.mobile.screens.comment.display.interactor.update;
 
 import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.comment.CommentEntry;
+import com.liferay.mobile.screens.comment.connector.ScreensCommentConnector;
 import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
 import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
-import com.liferay.mobile.screens.service.v70.ScreenscommentService;
 import com.liferay.mobile.screens.util.JSONUtil;
+import com.liferay.mobile.screens.util.ServiceProvider;
 import org.json.JSONObject;
 
 /**
@@ -21,9 +22,9 @@ public class CommentUpdateInteractor extends BaseCacheWriteInteractor<CommentDis
 
 		validate(commentId, newBody);
 
-		ScreenscommentService service = new ScreenscommentService(getSession());
+		ScreensCommentConnector connector = ServiceProvider.getInstance().getScreensCommentConnector(getSession());
 
-		JSONObject jsonObject = service.updateComment(commentId, newBody);
+		JSONObject jsonObject = connector.updateComment(commentId, newBody);
 
 		event.setCommentEntry(new CommentEntry(JSONUtil.toMap(jsonObject)));
 		return event;

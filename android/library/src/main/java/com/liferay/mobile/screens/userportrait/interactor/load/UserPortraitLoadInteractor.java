@@ -94,8 +94,7 @@ public class UserPortraitLoadInteractor
 
 			UserPortraitUriBuilder userPortraitUriBuilder = new UserPortraitUriBuilder();
 			Uri uri =
-				userPortraitUriBuilder.getUserPortraitUri(LiferayServerContext.getServer(), true,
-					portraitId, uuid);
+				userPortraitUriBuilder.getUserPortraitUri(LiferayServerContext.getServer(), true, portraitId, uuid);
 
 			Context context = LiferayScreensContext.getContext();
 			Downloader downloader = new OkHttpDownloader(userPortraitUriBuilder.getUserPortraitClient(context));
@@ -103,11 +102,12 @@ public class UserPortraitLoadInteractor
 			RequestCreator requestCreator = picasso.load(uri);
 
 			if (CachePolicy.REMOTE_ONLY.equals(getCachePolicy())) {
-				requestCreator = requestCreator.memoryPolicy(MemoryPolicy.NO_CACHE).networkPolicy(NetworkPolicy.NO_CACHE);
+				requestCreator =
+					requestCreator.memoryPolicy(MemoryPolicy.NO_CACHE).networkPolicy(NetworkPolicy.NO_CACHE);
 			}
 
 			requestCreator.into(this);
-		}   catch (JSONException ex) {
+		} catch (JSONException ex) {
 			event.setException(ex);
 			onFailure(event);
 		}

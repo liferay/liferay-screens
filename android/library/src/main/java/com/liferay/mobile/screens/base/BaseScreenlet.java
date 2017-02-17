@@ -177,7 +177,6 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	/**
 	 * This method creates and decorate the interactor depending on the `actionName`.
 	 *
-	 * @param actionName
 	 * @return result interactor.
 	 */
 	protected I prepareInteractor(String actionName) {
@@ -198,7 +197,6 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	 * Also, if the previous condition is true, prepares the interactor if it's
 	 * instance of {@link BaseCacheReadInteractor}.
 	 *
-	 * @param actionName
 	 * @param result interactor.
 	 */
 	protected void decorateInteractor(String actionName, Interactor result) {
@@ -219,9 +217,6 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 
 	/**
 	 * Initializes the screenlet with the given attributes or the default ones.
-	 *
-	 * @param context
-	 * @param attributes
 	 */
 	protected void init(Context context, AttributeSet attributes) {
 		LiferayScreensContext.init(context);

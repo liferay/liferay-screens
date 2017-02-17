@@ -43,10 +43,10 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 	public static final String DELETE_COMMENT_ACTION = "DELETE_COMMENT";
 	public static final String UPDATE_COMMENT_ACTION = "UPDATE_COMMENT";
 	public static final String LOAD_COMMENT_ACTION = "LOAD_COMMENT";
-	private static final String STATE_EDITABLE = "STATE_EDITABLE";
 	public static final String STATE_AUTO_LOAD = "STATE_AUTO_LOAD";
 	public static final String STATE_COMMENT_ID = "STATE_COMMENT_ID";
 	public static final String STATE_COMMENT_ENTRY = "STATE_COMMENT_ENTRY";
+	private static final String STATE_EDITABLE = "STATE_EDITABLE";
 	private CommentDisplayListener listener;
 	private CommentEntry commentEntry;
 	private long commentId;
@@ -97,8 +97,6 @@ public class CommentDisplayScreenlet extends BaseScreenlet<CommentDisplayViewMod
 
 	/**
 	 * Allows or disallows the comment edition.
-	 *
-	 * @param editable
 	 */
 	public void allowEdition(boolean editable) {
 		this.editable = editable;

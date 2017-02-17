@@ -35,8 +35,11 @@ public class BlogsEntry extends AssetEntry {
 	}
 
 	public long getCoverImage() {
-		String cover = getBlogsEntry().get("coverImageFileEntryId").toString();
-		return Long.parseLong(cover);
+		if (getBlogsEntry().get("coverImageFileEntryId") != null) {
+			String cover = getBlogsEntry().get("coverImageFileEntryId").toString();
+			return Long.parseLong(cover);
+		}
+		return 0;
 	}
 
 	public long getUserId() {

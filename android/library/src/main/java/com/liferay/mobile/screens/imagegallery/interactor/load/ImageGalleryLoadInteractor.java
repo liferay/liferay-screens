@@ -1,11 +1,12 @@
 package com.liferay.mobile.screens.imagegallery.interactor.load;
 
-import com.liferay.mobile.android.v7.dlapp.DLAppService;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.base.list.interactor.Query;
+import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.imagegallery.interactor.ImageGalleryEvent;
 import com.liferay.mobile.screens.imagegallery.interactor.ImageGalleryInteractorListener;
 import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
+import com.liferay.mobile.screens.util.ServiceProvider;
 import java.util.Map;
 import org.json.JSONArray;
 
@@ -25,8 +26,10 @@ public class ImageGalleryLoadInteractor extends BaseListInteractor<ImageGalleryI
 
 		validate(repositoryId, folderId);
 
-		return new DLAppService(getSession()).getFileEntries(repositoryId, folderId, mimeTypes, query.getStartRow(),
-			query.getEndRow(), query.getComparatorJSONWrapper());
+		DLAppConnector connector = ServiceProvider.getInstance().getDLAppConnector(getSession());
+
+		return connector.getFileEntries(repositoryId, folderId, mimeTypes, query.getStartRow(), query.getEndRow(),
+			query.getComparatorJSONWrapper());
 	}
 
 	@Override
@@ -37,7 +40,9 @@ public class ImageGalleryLoadInteractor extends BaseListInteractor<ImageGalleryI
 
 		validate(repositoryId, folderId);
 
-		return new DLAppService(getSession()).getFileEntriesCount(repositoryId, folderId, mimeTypes);
+		DLAppConnector connector = ServiceProvider.getInstance().getDLAppConnector(getSession());
+
+		return connector.getFileEntriesCount(repositoryId, folderId, mimeTypes);
 	}
 
 	@Override

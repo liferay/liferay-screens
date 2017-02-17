@@ -128,9 +128,7 @@ public class CredentialsStorageBuilder {
 	public enum StorageType {
 
 		// These values are synced with 'credentialStore' attr
-		NONE(0),
-		AUTO(1),
-		SHARED_PREFERENCES(2);
+		NONE(0), AUTO(1), SHARED_PREFERENCES(2);
 
 		private final int value;
 

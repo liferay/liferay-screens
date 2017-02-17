@@ -4,9 +4,10 @@ import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.add.CommentAddListener;
 import com.liferay.mobile.screens.comment.add.CommentAddScreenlet;
+import com.liferay.mobile.screens.comment.connector.ScreensCommentConnector;
 import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
-import com.liferay.mobile.screens.service.v70.ScreenscommentService;
 import com.liferay.mobile.screens.util.JSONUtil;
+import com.liferay.mobile.screens.util.ServiceProvider;
 import org.json.JSONObject;
 
 /**
@@ -23,7 +24,9 @@ public class CommentAddInteractor extends BaseCacheWriteInteractor<CommentAddLis
 
 		validate(className, classPK, body);
 
-		JSONObject jsonObject = new ScreenscommentService(getSession()).addComment(className, classPK, body);
+		ScreensCommentConnector connector = ServiceProvider.getInstance().getScreensCommentConnector(getSession());
+
+		JSONObject jsonObject = connector.addComment(className, classPK, body);
 
 		event.setCommentEntry(new CommentEntry(JSONUtil.toMap(jsonObject)));
 		return event;

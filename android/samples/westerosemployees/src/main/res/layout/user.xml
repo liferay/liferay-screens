@@ -55,14 +55,14 @@
 
 	<com.liferay.mobile.screens.asset.list.AssetListScreenlet
 		android:id="@+id/news_display_screenlet"
-		android:layout_marginTop="10dp"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:layout_above="@id/bottom_anchor"
 		android:layout_below="@id/last_changes_text"
+		android:layout_marginTop="10dp"
+		app:autoLoad="false"
 		app:layoutId="@layout/asset_list_westeros_last_changes"
 		app:portletItemName="WesterosEmployeesNews"
-		app:autoLoad="false"
 		/>
 
 	<com.liferay.mobile.screens.westerosemployees.views.UserDeck

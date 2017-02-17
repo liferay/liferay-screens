@@ -1,16 +1,14 @@
 package com.liferay.mobile.screens.asset.display.interactor;
 
-import com.liferay.mobile.android.service.Session;
+import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.asset.AssetEvent;
+import com.liferay.mobile.screens.asset.AssetFactory;
 import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
 import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
-import com.liferay.mobile.screens.asset.AssetEntry;
-import com.liferay.mobile.screens.asset.AssetFactory;
+import com.liferay.mobile.screens.asset.list.connector.ScreensAssetEntryConnector;
 import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
-import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.service.v70.ScreensassetentryService;
 import com.liferay.mobile.screens.util.JSONUtil;
-import java.util.HashMap;
+import com.liferay.mobile.screens.util.ServiceProvider;
 import java.util.Locale;
 import java.util.Map;
 import org.json.JSONException;
@@ -29,34 +27,29 @@ public class AssetDisplayInteractor extends BaseCacheReadInteractor<AssetDisplay
 	}
 
 	private JSONObject getAsset(Object... args) throws Exception {
-		Session session = SessionContext.createSessionFromCurrentSession();
+		ScreensAssetEntryConnector connector =
+			ServiceProvider.getInstance().getScreensAssetEntryConnector(getSession());
 		if (args.length > 1) {
 			String className = (String) args[0];
 			long classPK = (long) args[1];
-
-			ScreensassetentryService service = new ScreensassetentryService(session);
-			return service.getAssetEntry(className, classPK, Locale.getDefault().getLanguage());
+			return connector.getAssetEntry(className, classPK, Locale.getDefault().getLanguage());
 		} else {
 			long entryId = (long) args[0];
-
-			ScreensassetentryService service = new ScreensassetentryService(getSession());
-			return service.getAssetEntry(entryId, Locale.getDefault().getLanguage());
+			return connector.getAssetEntry(entryId, Locale.getDefault().getLanguage());
 		}
 	}
 
 	@Override
 	public void onSuccess(AssetEvent event) {
-		Map<String, Object> map;
-
+		AssetEntry assetEntry = null;
 		try {
-			map = JSONUtil.toMap(event.getJSONObject());
+			Map<String, Object> map = JSONUtil.toMap(event.getJSONObject());
+			assetEntry = AssetFactory.createInstance(map);
 		} catch (JSONException ex) {
 			event.setException(ex);
 			onFailure(event);
 			return;
 		}
-
-		AssetEntry assetEntry = AssetFactory.createInstance(map);
 		getListener().onRetrieveAssetSuccess(assetEntry);
 	}
 
@@ -67,14 +60,7 @@ public class AssetDisplayInteractor extends BaseCacheReadInteractor<AssetDisplay
 
 	@Override
 	protected String getIdFromArgs(Object... args) {
-		final long cacheId;
-
-		if (args.length > 1) {
-			cacheId = (long) args[1];
-		} else {
-			cacheId = (long) args[0];
-		}
-
+		long cacheId = args.length > 1 ? (long) args[1] : (long) args[0];
 		return String.valueOf(cacheId);
 	}
 }

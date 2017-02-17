@@ -32,12 +32,12 @@ import java.util.Map;
  */
 public class GetUserScreenlet extends BaseScreenlet<GetUserViewModel, GetUserInteractor> implements GetUserListener {
 
-	private GetUserListener listener;
-	private String getUserBy;
-	protected String[] keysToDisplay = {
+	protected final String[] keysToDisplay = {
 		User.USER_ID, User.SCREEN_NAME, User.FIRST_NAME, User.LAST_NAME, User.EMAIL_ADDRESS, User.LANGUAGE_ID,
 		User.EMAIL_ADDRESS_VERIFIED, User.LOCKOUT, User.AGREED_TERMS_USE
 	};
+	private GetUserListener listener;
+	private String getUserBy;
 
 	public GetUserScreenlet(Context context) {
 		super(context);

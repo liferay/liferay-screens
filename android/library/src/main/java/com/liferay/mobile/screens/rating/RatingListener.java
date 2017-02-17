@@ -23,8 +23,6 @@ public interface RatingListener extends BaseCacheListener {
 
 	/**
 	 * Called when the operation finishes successfully and the rating is loaded.
-	 *
-	 * @param assetRating
 	 */
 	void onRatingOperationSuccess(AssetRating assetRating);
 }

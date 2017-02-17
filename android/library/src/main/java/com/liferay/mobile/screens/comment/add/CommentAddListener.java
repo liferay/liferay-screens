@@ -25,8 +25,6 @@ public interface CommentAddListener extends BaseCacheListener {
 
 	/**
 	 * Called when the Screenlet successfully adds a comment to the {@link AssetEntry}.
-	 *
-	 * @param commentEntry
 	 */
 	void onAddCommentSuccess(CommentEntry commentEntry);
 }

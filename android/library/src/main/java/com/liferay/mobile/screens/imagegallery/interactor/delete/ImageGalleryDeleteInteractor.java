@@ -1,14 +1,16 @@
 package com.liferay.mobile.screens.imagegallery.interactor.delete;
 
-import com.liferay.mobile.android.v7.dlapp.DLAppService;
 import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
+import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.imagegallery.interactor.ImageGalleryEvent;
 import com.liferay.mobile.screens.imagegallery.interactor.ImageGalleryInteractorListener;
+import com.liferay.mobile.screens.util.ServiceProvider;
 
 /**
  * @author Víctor Galán Grande
  */
-public class ImageGalleryDeleteInteractor extends BaseCacheWriteInteractor<ImageGalleryInteractorListener, ImageGalleryEvent> {
+public class ImageGalleryDeleteInteractor
+	extends BaseCacheWriteInteractor<ImageGalleryInteractorListener, ImageGalleryEvent> {
 
 	@Override
 	public ImageGalleryEvent execute(ImageGalleryEvent event) throws Exception {
@@ -16,8 +18,8 @@ public class ImageGalleryDeleteInteractor extends BaseCacheWriteInteractor<Image
 		long fileEntryId = event.getImageEntry().getFileEntryId();
 		validate(fileEntryId);
 
-		DLAppService dlAppService = new DLAppService(getSession());
-		dlAppService.deleteFileEntry(fileEntryId);
+		DLAppConnector connector = ServiceProvider.getInstance().getDLAppConnector(getSession());
+		connector.deleteFileEntry(fileEntryId);
 
 		return event;
 	}

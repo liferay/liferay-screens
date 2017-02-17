@@ -26,10 +26,9 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 
 	protected ProgressBar progressBar;
 	protected ViewGroup content;
-	private BaseScreenlet screenlet;
-
 	protected List<View> views;
 	protected List<TextView> labels;
+	private BaseScreenlet screenlet;
 	private double userScore;
 
 	public BaseRatingView(Context context) {
@@ -47,6 +46,23 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	public BaseRatingView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
+	}
+
+	private static List viewsByTag(ViewGroup root, String tag) {
+		List views = new ArrayList<>();
+		final int childCount = root.getChildCount();
+		for (int i = 0; i < childCount; i++) {
+			final View child = root.getChildAt(i);
+			if (child instanceof ViewGroup) {
+				views.addAll(viewsByTag((ViewGroup) child, tag));
+			}
+
+			final Object tagObj = child.getTag();
+			if (tagObj != null && tag.equals(tagObj)) {
+				views.add(child);
+			}
+		}
+		return views;
 	}
 
 	@Override
@@ -142,23 +158,6 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 			textView.setOnClickListener(editable ? this : null);
 			textView.setEnabled(editable);
 		}
-	}
-
-	private static List viewsByTag(ViewGroup root, String tag) {
-		List views = new ArrayList<>();
-		final int childCount = root.getChildCount();
-		for (int i = 0; i < childCount; i++) {
-			final View child = root.getChildAt(i);
-			if (child instanceof ViewGroup) {
-				views.addAll(viewsByTag((ViewGroup) child, tag));
-			}
-
-			final Object tagObj = child.getTag();
-			if (tagObj != null && tag.equals(tagObj)) {
-				views.add(child);
-			}
-		}
-		return views;
 	}
 
 	protected abstract void setButton(View textView);

@@ -119,7 +119,7 @@ public class BlogsEntryView extends RelativeLayout implements BlogsEntryDisplayV
 
 		title.setText(blogsEntry.getTitle());
 
-		if (!blogsEntry.getSubtitle().equals("")) {
+		if (blogsEntry.getSubtitle() != null && !"".equals(blogsEntry.getSubtitle())) {
 			subtitle.setVisibility(VISIBLE);
 			subtitle.setText(blogsEntry.getSubtitle());
 		}

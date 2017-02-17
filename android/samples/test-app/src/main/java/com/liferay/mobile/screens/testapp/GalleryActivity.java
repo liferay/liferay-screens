@@ -3,7 +3,6 @@ package com.liferay.mobile.screens.testapp;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import com.liferay.mobile.screens.base.interactor.listener.CacheListener;

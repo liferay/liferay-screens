@@ -25,42 +25,28 @@ public interface ImageGalleryInteractorListener extends BaseListInteractorListen
 
 	/**
 	 * Called when an item in the list is deleted.
-	 *
-	 * @param imageEntryId
 	 */
 	void onImageEntryDeleted(long imageEntryId);
 
 	/**
 	 * Called when an item in the list was chosen and it's ready for upload.
-	 *
-	 * @param pictureUri
 	 */
 	void onPictureUriReceived(Uri pictureUri);
 
 	/**
 	 * Called when the item was successfully uploaded.
-	 *
-	 * @param entry
 	 */
 	void onPictureUploaded(ImageEntry entry);
 
 	/**
 	 * Retrieves constantly the progress until the picture is successfully uploaded.
 	 * This method retrieves the bytes sent and the total.
-	 *
-	 * @param totalBytes
-	 * @param totalBytesSent
 	 */
 	void onPictureUploadProgress(int totalBytes, int totalBytesSent);
 
 	/**
 	 * Called only once when user fill the upload form.
 	 * This method retrieves the picture path, title, description and changelog.
-	 *
-	 * @param pictureUri
-	 * @param title
-	 * @param description
-	 * @param changelog
 	 */
 	void onPictureUploadInformationReceived(Uri pictureUri, String title, String description, String changelog);
 }

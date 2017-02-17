@@ -14,19 +14,15 @@
 
 package com.liferay.mobile.screens.ddl;
 
-import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.StringField;
-
+import java.util.List;
+import java.util.Locale;
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.annotation.Config;
 import org.xml.sax.SAXParseException;
-
-import java.util.List;
-import java.util.Locale;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -80,23 +76,22 @@ public class XSDParserTest {
 
 		@Test
 		public void shouldReturnStringFieldObject() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"string\" " +
-					"type=\"text\" " +
-					"name=\"A_Text\" " +
-					"readOnly=\"false\" " +
-					"repeatable=\"true\" " +
-					"required=\"false\" " +
-					"showLabel=\"true\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\"><![CDATA[A Text]]></entry> " +
-					"<entry name=\"predefinedValue\"><![CDATA[default text]]></entry> " +
-					"<entry name=\"tip\"><![CDATA[The tip]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"</root>";
+			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> "
+				+ "<dynamic-element "
+				+ "dataType=\"string\" "
+				+ "type=\"text\" "
+				+ "name=\"A_Text\" "
+				+ "readOnly=\"false\" "
+				+ "repeatable=\"true\" "
+				+ "required=\"false\" "
+				+ "showLabel=\"true\" > "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"label\"><![CDATA[A Text]]></entry> "
+				+ "<entry name=\"predefinedValue\"><![CDATA[default text]]></entry> "
+				+ "<entry name=\"tip\"><![CDATA[The tip]]></entry> "
+				+ "</meta-data> "
+				+ "</dynamic-element>"
+				+ "</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, usLocale);
 
@@ -122,19 +117,18 @@ public class XSDParserTest {
 
 		@Test
 		public void shouldUseEmptyStringWhenCDATAIsEmpty() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"string\" " +
-					"type=\"text\" " +
-					"name=\"A_Text\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\"><![CDATA[A Text]]></entry> " +
-					"<entry name=\"predefinedValue\"><![CDATA[]]></entry> " +
-					"<entry name=\"tip\"><![CDATA[]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"</root>";
+			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> "
+				+ "<dynamic-element "
+				+ "dataType=\"string\" "
+				+ "type=\"text\" "
+				+ "name=\"A_Text\" > "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"label\"><![CDATA[A Text]]></entry> "
+				+ "<entry name=\"predefinedValue\"><![CDATA[]]></entry> "
+				+ "<entry name=\"tip\"><![CDATA[]]></entry> "
+				+ "</meta-data> "
+				+ "</dynamic-element>"
+				+ "</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, usLocale);
 			Field resultField = resultList.get(0);
@@ -144,19 +138,18 @@ public class XSDParserTest {
 
 		@Test
 		public void shouldUseEmptyStringWhenEntryIsEmpty() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"string\" " +
-					"type=\"text\" " +
-					"name=\"A_Text\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\"><![CDATA[A Text]]></entry> " +
-					"<entry name=\"predefinedValue\"></entry> " +
-					"<entry name=\"tip\"></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"</root>";
+			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> "
+				+ "<dynamic-element "
+				+ "dataType=\"string\" "
+				+ "type=\"text\" "
+				+ "name=\"A_Text\" > "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"label\"><![CDATA[A Text]]></entry> "
+				+ "<entry name=\"predefinedValue\"></entry> "
+				+ "<entry name=\"tip\"></entry> "
+				+ "</meta-data> "
+				+ "</dynamic-element>"
+				+ "</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, usLocale);
 			Field resultField = resultList.get(0);
@@ -166,17 +159,16 @@ public class XSDParserTest {
 
 		@Test
 		public void shouldUseEmptyStringWhenEntryIsNotPresent() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"string\" " +
-					"type=\"text\" " +
-					"name=\"A_Text\" > " +
-					"<meta-data locale=\"en_US\"> " +
-					"<entry name=\"label\"><![CDATA[A Text]]></entry> " +
-					"</meta-data> " +
-					"</dynamic-element>" +
-					"</root>";
+			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> "
+				+ "<dynamic-element "
+				+ "dataType=\"string\" "
+				+ "type=\"text\" "
+				+ "name=\"A_Text\" > "
+				+ "<meta-data locale=\"en_US\"> "
+				+ "<entry name=\"label\"><![CDATA[A Text]]></entry> "
+				+ "</meta-data> "
+				+ "</dynamic-element>"
+				+ "</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, usLocale);
 			Field resultField = resultList.get(0);
@@ -186,21 +178,18 @@ public class XSDParserTest {
 
 		@Test
 		public void shouldUseEmptyStringWhenMetaDataIsNotPresent() throws Exception {
-			String xsd =
-				"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +
-					"<dynamic-element " +
-					"dataType=\"string\" " +
-					"type=\"text\" " +
-					"name=\"A_Text\" > " +
-					"</dynamic-element>" +
-					"</root>";
+			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> "
+				+ "<dynamic-element "
+				+ "dataType=\"string\" "
+				+ "type=\"text\" "
+				+ "name=\"A_Text\" > "
+				+ "</dynamic-element>"
+				+ "</root>";
 
 			List<Field> resultList = new XSDParser().parse(xsd, usLocale);
 			Field resultField = resultList.get(0);
 
 			assertEquals("", resultField.getTip());
 		}
-
 	}
-
 }

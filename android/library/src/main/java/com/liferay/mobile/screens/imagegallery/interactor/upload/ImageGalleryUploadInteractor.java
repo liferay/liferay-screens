@@ -11,7 +11,8 @@ import com.liferay.mobile.screens.imagegallery.interactor.ImageGalleryInteractor
 /**
  * @author Víctor Galán Grande
  */
-public class ImageGalleryUploadInteractor extends BaseCacheWriteInteractor<ImageGalleryInteractorListener, ImageGalleryEvent> {
+public class ImageGalleryUploadInteractor
+	extends BaseCacheWriteInteractor<ImageGalleryInteractorListener, ImageGalleryEvent> {
 
 	@Override
 	public ImageGalleryEvent execute(ImageGalleryEvent event) throws Exception {
@@ -22,8 +23,7 @@ public class ImageGalleryUploadInteractor extends BaseCacheWriteInteractor<Image
 		Intent service = new Intent(LiferayScreensContext.getContext(), ImageGalleryUploadService.class);
 		service.putExtra("targetScreenletId", getTargetScreenletId());
 		service.putExtra("actionName", getActionName());
-
-		service.putExtra("repositoryId", groupId);
+		service.putExtra("repositoryId", event.getRepositoryId() == 0 ? groupId : event.getRepositoryId());
 		service.putExtra("folderId", event.getFolderId());
 		service.putExtra("title", event.getTitle());
 		service.putExtra("description", event.getDescription());

@@ -16,9 +16,9 @@
 		android:id="@+id/web_content_list_screenlet"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		app:cachePolicy="REMOTE_FIRST"
 		app:folderId="@string/liferay_web_content_folder_id"
 		app:labelFields="Text"
-		app:cachePolicy="REMOTE_FIRST"
 		/>
 
 </LinearLayout>

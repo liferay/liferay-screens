@@ -34,8 +34,8 @@
 			android:layout_height="100dp"
 			android:layout_gravity="center"
 			liferay:autoLoad="false"
-			liferay:editable="false"
 			liferay:cachePolicy="REMOTE_FIRST"
+			liferay:editable="false"
 			/>
 
 		<TextView

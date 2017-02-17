@@ -24,8 +24,6 @@ public interface CommentDisplayInteractorListener extends BaseCacheListener {
 
 	/**
 	 * Called when the screenlet successfully loads the comment.
-	 *
-	 * @param commentEntry
 	 */
 	void onLoadCommentSuccess(CommentEntry commentEntry);
 
@@ -36,8 +34,6 @@ public interface CommentDisplayInteractorListener extends BaseCacheListener {
 
 	/**
 	 * Called when the screenlet successfully updates the comment.
-	 *
-	 * @param commentEntry
 	 */
 	void onUpdateCommentSuccess(CommentEntry commentEntry);
 }

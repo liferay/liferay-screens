@@ -1,5 +1,6 @@
 language: objective-c
 osx_image: xcode8.2
+rvm: 2.0.0
 
 env:
   global:
@@ -9,6 +10,7 @@ env:
   matrix:
     - PLATFORM=iOS
     - PLATFORM=Android
+    - DANGER=1
 
 cache:
   directories:
@@ -34,4 +36,6 @@ script:
          set -o pipefail
          xcodebuild clean build build-for-testing -workspace LiferayScreens.xcworkspace -scheme LiferayScreens -destination "id=E40727B3-41FB-4D6E-B4CB-BFA87109EB12" | xcpretty
          xcodebuild test-without-building -workspace LiferayScreens.xcworkspace -scheme LiferayScreens -destination "id=E40727B3-41FB-4D6E-B4CB-BFA87109EB12" | xcpretty
+    elif [ "${DANGER}" -eq 1 ]; then
+         gem install danger --version '~> 4.0' && danger
     fi

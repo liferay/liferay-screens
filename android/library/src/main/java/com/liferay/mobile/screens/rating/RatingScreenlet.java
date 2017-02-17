@@ -64,8 +64,6 @@ public class RatingScreenlet extends BaseScreenlet<RatingViewModel, Interactor> 
 
 	/**
 	 * Allows or disallows the rating edition.
-	 *
-	 * @param editable
 	 */
 	public void enableEdition(boolean editable) {
 		getViewModel().enableEdition(editable);

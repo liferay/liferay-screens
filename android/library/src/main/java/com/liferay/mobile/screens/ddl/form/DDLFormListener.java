@@ -27,46 +27,31 @@ public interface DDLFormListener extends BaseCacheListener {
 
 	/**
 	 * Called when the form definition successfully loads.
-	 *
-	 * @param record
 	 */
 	void onDDLFormLoaded(Record record);
 
 	/**
 	 * Called when the form record data successfully loads.
-	 *
-	 * @param record
-	 * @param valuesAndAttributes
 	 */
 	void onDDLFormRecordLoaded(Record record, Map<String, Object> valuesAndAttributes);
 
 	/**
 	 * Called when the form record is successfully added.
-	 *
-	 * @param record
 	 */
 	void onDDLFormRecordAdded(Record record);
 
 	/**
 	 * Called when the form record data successfully updates.
-	 *
-	 * @param record
 	 */
 	void onDDLFormRecordUpdated(Record record);
 
 	/**
 	 * Called when a specified document field’s upload completes.
-	 *
-	 * @param documentField
-	 * @param jsonObject
 	 */
 	void onDDLFormDocumentUploaded(DocumentField documentField, JSONObject jsonObject);
 
 	/**
 	 * Called when a specified document field’s upload fails.
-	 *
-	 * @param documentField
-	 * @param e
 	 */
 	void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e);
 }

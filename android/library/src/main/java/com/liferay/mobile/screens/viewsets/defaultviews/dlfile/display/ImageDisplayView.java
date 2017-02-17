@@ -2,12 +2,13 @@ package com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.DrawableRes;
+import android.support.v4.content.FileProvider;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.dlfile.display.FileEntry;
 import com.liferay.mobile.screens.dlfile.display.image.ImageDisplayViewModel;
 import com.squareup.picasso.Callback;
@@ -21,8 +22,7 @@ public class ImageDisplayView extends BaseFileDisplayView implements ImageDispla
 
 	private ImageView imageView;
 
-	@DrawableRes
-	private int placeholder = 0;
+	@DrawableRes private int placeholder = 0;
 
 	private ImageView.ScaleType scaleType = ImageView.ScaleType.FIT_CENTER;
 	private ImageView.ScaleType placeholderScaleType = ImageView.ScaleType.FIT_CENTER;
@@ -40,8 +40,7 @@ public class ImageDisplayView extends BaseFileDisplayView implements ImageDispla
 	}
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	public ImageDisplayView(Context context, AttributeSet attrs, int defStyleAttr,
-		int defStyleRes) {
+	public ImageDisplayView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
@@ -76,7 +75,11 @@ public class ImageDisplayView extends BaseFileDisplayView implements ImageDispla
 
 	private void loadImage(String url) {
 		setScaleType(scaleType);
-		Picasso.with(getContext()).load(new File(url)).into(imageView, this);
+
+		Uri photoURI = FileProvider.getUriForFile(getContext(), getContext().getPackageName() + ".screensfileprovider",
+			new File(url));
+
+		Picasso.with(getContext()).load(photoURI).into(imageView, this);
 	}
 
 	@Override

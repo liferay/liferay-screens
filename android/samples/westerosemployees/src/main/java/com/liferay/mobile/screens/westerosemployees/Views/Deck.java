@@ -67,27 +67,26 @@ public class Deck extends FrameLayout implements CardListener {
 		if (maxWidth != 0 && maxHeight != 0) {
 			initializeDeckAndCards();
 		} else {
-			getViewTreeObserver().addOnGlobalLayoutListener(
-				new ViewTreeObserver.OnGlobalLayoutListener() {
-					@Override
-					public void onGlobalLayout() {
-						if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-							removeObserver();
-						} else {
-							getViewTreeObserver().removeGlobalOnLayoutListener(this);
-						}
-
-						maxWidth = getWidth();
-						maxHeight = getHeight();
-
-						initializeDeckAndCards();
+			getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+				@Override
+				public void onGlobalLayout() {
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+						removeObserver();
+					} else {
+						getViewTreeObserver().removeGlobalOnLayoutListener(this);
 					}
 
-					@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-					private void removeObserver() {
-						getViewTreeObserver().removeOnGlobalLayoutListener(this);
-					}
-				});
+					maxWidth = getWidth();
+					maxHeight = getHeight();
+
+					initializeDeckAndCards();
+				}
+
+				@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+				private void removeObserver() {
+					getViewTreeObserver().removeOnGlobalLayoutListener(this);
+				}
+			});
 		}
 	}
 
@@ -116,24 +115,20 @@ public class Deck extends FrameLayout implements CardListener {
 			int minimizedPosition = maxHeight - (size - i) * cardSize;
 
 			card.initPosition(minimizedPosition, maxHeight, maxWidth);
-			card.setOnTouchListener(
-				new FlingTouchListener(getContext().getApplicationContext(), new FlingListener() {
-					@Override
-					public void onFling(FlingListener.Movement movement) {
-						Deck.this.onFling(movement, card);
-					}
-				}));
+			card.setOnTouchListener(new FlingTouchListener(getContext().getApplicationContext(), new FlingListener() {
+				@Override
+				public void onFling(FlingListener.Movement movement) {
+					Deck.this.onFling(movement, card);
+				}
+			}));
 
-			card.setState(CardState.MINIMIZED)
-				.setStartDelay(200 * cards.size() - i - 1)
-				.setDuration(300);
+			card.setState(CardState.MINIMIZED).setStartDelay(200 * cards.size() - i - 1).setDuration(300);
 			card.setCardListener(this);
 		}
 	}
 
 	protected void initBackArrows() {
-		List<View> backArrows =
-			ViewUtil.getViewsByTagPrefix(this, getContext().getString(R.string.arrow_back_tag));
+		List<View> backArrows = ViewUtil.getViewsByTagPrefix(this, getContext().getString(R.string.arrow_back_tag));
 
 		for (View backArrow : backArrows) {
 			backArrow.setOnClickListener(new OnClickListener() {

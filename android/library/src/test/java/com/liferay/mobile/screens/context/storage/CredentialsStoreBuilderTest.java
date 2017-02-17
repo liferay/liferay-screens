@@ -32,7 +32,7 @@ public class CredentialsStoreBuilderTest {
 	@Test
 	public void shouldCreateAVoidStorageWithNONEType() {
 		Context context = RuntimeEnvironment.application.getApplicationContext();
-		
+
 		CredentialsStorage storage = new CredentialsStorageBuilder().setContext(context)
 			.setStorageType(CredentialsStorageBuilder.StorageType.NONE)
 			.build();

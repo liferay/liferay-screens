@@ -5,15 +5,15 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
 import com.liferay.mobile.screens.asset.AssetEntry;
+import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
 import com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet;
 
 /**
  * @author Sarai Díaz García
  */
-public class ImageDisplayActivity extends ThemeActivity implements AssetDisplayListener,
-	AdapterView.OnItemSelectedListener {
+public class ImageDisplayActivity extends ThemeActivity
+	implements AssetDisplayListener, AdapterView.OnItemSelectedListener {
 
 	private ImageDisplayScreenlet screenlet;
 

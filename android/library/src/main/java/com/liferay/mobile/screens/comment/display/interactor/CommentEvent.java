@@ -53,6 +53,10 @@ public class CommentEvent extends ListEvent<CommentEntry> {
 		return commentEntry;
 	}
 
+	public void setCommentEntry(CommentEntry commentEntry) {
+		this.commentEntry = commentEntry;
+	}
+
 	public String getClassName() {
 		return className;
 	}
@@ -67,9 +71,5 @@ public class CommentEvent extends ListEvent<CommentEntry> {
 
 	public String getBody() {
 		return body;
-	}
-
-	public void setCommentEntry(CommentEntry commentEntry) {
-		this.commentEntry = commentEntry;
 	}
 }

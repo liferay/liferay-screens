@@ -1,17 +1,15 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.imagegallery;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.net.Uri;
-import android.support.v4.content.FileProvider;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.imagegallery.BaseDetailUploadView;
 import com.squareup.picasso.Picasso;
-import java.io.File;
 
 /**
  * @author Víctor Galán Grande
@@ -49,7 +47,6 @@ public class DefaultUploadDetailView extends BaseDetailUploadView {
 	@Override
 	public void initializeUploadView(String actionName, Uri pictureUri, int screenletId) {
 		super.initializeUploadView(actionName, pictureUri, screenletId);
-
 
 		ImageView imageView = (ImageView) findViewById(R.id.liferay_gallery_upload_image);
 		Picasso.with(getContext().getApplicationContext()).load(pictureUri).fit().into(imageView);

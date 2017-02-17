@@ -24,8 +24,6 @@ public interface BlogsEntryDisplayViewModel extends BaseViewModel {
 
 	/**
 	 * Called when the file is ready to be displayed.
-	 *
-	 * @param blogsEntry
 	 */
 	void showFinishOperation(BlogsEntry blogsEntry);
 }

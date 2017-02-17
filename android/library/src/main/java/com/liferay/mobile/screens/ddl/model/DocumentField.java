@@ -142,9 +142,6 @@ public class DocumentField extends Field<DocumentFile> {
 	}
 
 	private enum State {
-		IDLE,
-		UPLOADING,
-		UPLOADED,
-		FAILED
+		IDLE, UPLOADING, UPLOADED, FAILED
 	}
 }

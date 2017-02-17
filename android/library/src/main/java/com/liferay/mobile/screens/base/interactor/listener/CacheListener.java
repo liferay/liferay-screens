@@ -18,13 +18,10 @@ public interface CacheListener {
 
 	/**
 	 * Called when a resource is being loaded from cache.
-	 *
-	 * @param success
 	 */
 	void loadingFromCache(boolean success);
 
 	/**
-	 *
 	 * Called when it's trying to retrieve the resource throught internet conection.
 	 *
 	 * @param triedInCache true if before trying it from server, it has been tried from cache
@@ -34,8 +31,6 @@ public interface CacheListener {
 
 	/**
 	 * Called when a resource is being stored from cache.
-	 *
-	 * @param object
 	 */
 	void storingToCache(Object object);
 }

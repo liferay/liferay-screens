@@ -12,7 +12,6 @@ import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
 import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.list.CommentListListener;
 import com.liferay.mobile.screens.comment.list.CommentListScreenlet;
-import com.liferay.mobile.screens.util.LiferayLocale;
 import java.util.List;
 
 import static android.view.View.GONE;
@@ -61,7 +60,7 @@ public class CommentsActivity extends ThemeActivity
 
 	@Override
 	public void onLoadCommentSuccess(CommentEntry commentEntry) {
-		info(getString(R.string.comment_loaded_success) + " " + commentEntry.getCommentId());
+		info(getString(R.string.comment_loaded_success, commentEntry.getCommentId()));
 	}
 
 	@Override

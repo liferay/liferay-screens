@@ -25,7 +25,6 @@ import com.liferay.mobile.screens.auth.login.connector.CurrentUserConnector;
 import com.liferay.mobile.screens.cache.executor.Executor;
 import com.liferay.mobile.screens.context.storage.CredentialsStorage;
 import com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder;
-import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import java.security.AccessControlException;
 import org.json.JSONObject;

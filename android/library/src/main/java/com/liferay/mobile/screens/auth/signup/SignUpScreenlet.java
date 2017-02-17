@@ -98,7 +98,6 @@ public class SignUpScreenlet extends BaseScreenlet<SignUpViewModel, SignUpIntera
 	/**
 	 * Returns the username depending on its basic auth method.
 	 *
-	 * @param user
 	 * @return screen name, userId or email depending on the chosen
 	 * basic auth method.
 	 */

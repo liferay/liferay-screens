@@ -1,12 +1,12 @@
 package com.liferay.mobile.screens.comment.list.interactor;
 
-import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
 import com.liferay.mobile.screens.base.list.interactor.Query;
 import com.liferay.mobile.screens.comment.CommentEntry;
+import com.liferay.mobile.screens.comment.connector.ScreensCommentConnector;
 import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
-import com.liferay.mobile.screens.service.v70.ScreenscommentService;
+import com.liferay.mobile.screens.util.ServiceProvider;
 import java.util.Map;
 import org.json.JSONArray;
 
@@ -25,7 +25,8 @@ public class CommentListInteractor extends BaseListInteractor<BaseListInteractor
 
 		validate(className, classPK);
 
-		return getService(getSession()).getComments(className, classPK, query.getStartRow(), query.getEndRow());
+		ScreensCommentConnector connector = ServiceProvider.getInstance().getScreensCommentConnector(getSession());
+		return connector.getComments(className, classPK, query.getStartRow(), query.getEndRow());
 	}
 
 	@Override
@@ -36,7 +37,8 @@ public class CommentListInteractor extends BaseListInteractor<BaseListInteractor
 
 		validate(className, classPK);
 
-		return getService(getSession()).getCommentsCount(className, classPK);
+		ScreensCommentConnector connector = ServiceProvider.getInstance().getScreensCommentConnector(getSession());
+		return connector.getCommentsCount(className, classPK);
 	}
 
 	@Override
@@ -60,9 +62,5 @@ public class CommentListInteractor extends BaseListInteractor<BaseListInteractor
 		} else if (classPK <= 0) {
 			throw new IllegalArgumentException("classPK must be greater than 0");
 		}
-	}
-
-	private ScreenscommentService getService(Session session) {
-		return new ScreenscommentService(session);
 	}
 }

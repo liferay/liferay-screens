@@ -7,11 +7,11 @@
 	>
 
 	<ProgressBar
-		android:indeterminateTint="@android:color/white"
 		android:id="@+id/liferay_progress"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
+		android:indeterminateTint="@android:color/white"
 		android:visibility="gone"
 		/>
 

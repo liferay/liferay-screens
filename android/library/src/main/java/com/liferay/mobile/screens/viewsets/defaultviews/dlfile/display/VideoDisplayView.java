@@ -31,8 +31,7 @@ public class VideoDisplayView extends BaseFileDisplayView {
 	}
 
 	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	public VideoDisplayView(Context context, AttributeSet attrs, int defStyleAttr,
-		int defStyleRes) {
+	public VideoDisplayView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 

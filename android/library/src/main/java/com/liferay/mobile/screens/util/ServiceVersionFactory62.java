@@ -10,6 +10,8 @@ import com.liferay.mobile.screens.auth.login.connector.CurrentUserConnector;
 import com.liferay.mobile.screens.auth.login.connector.ScreensUserConnector62;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector62;
+import com.liferay.mobile.screens.comment.connector.ScreensCommentConnector;
+import com.liferay.mobile.screens.comment.display.interactor.delete.CommentConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordConnector62;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordSetConnector;
@@ -20,6 +22,7 @@ import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector62;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector62;
+import com.liferay.mobile.screens.rating.connector.ScreensRatingsConnector;
 import com.liferay.mobile.screens.webcontent.display.connector.JournalContentConnector;
 import com.liferay.mobile.screens.webcontent.display.connector.JournalContentConnector62;
 import com.liferay.mobile.screens.webcontent.display.connector.ScreensJournalContentConnector;
@@ -76,5 +79,20 @@ public class ServiceVersionFactory62 implements ServiceVersionFactory {
 
 	public ScreensJournalContentConnector getScreensJournalContentConnector(Session session) {
 		return new ScreensJournalContentConnector62(session);
+	}
+
+	@Override
+	public ScreensCommentConnector getScreensCommentConnector(Session session) {
+		return null;
+	}
+
+	@Override
+	public ScreensRatingsConnector getScreensRatingsConnector(Session session) {
+		return null;
+	}
+
+	@Override
+	public CommentConnector getCommentConnector(Session session) {
+		return null;
 	}
 }

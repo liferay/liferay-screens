@@ -6,11 +6,14 @@ import com.liferay.mobile.screens.asset.list.connector.ScreensAssetEntryConnecto
 import com.liferay.mobile.screens.auth.forgotpassword.connector.ForgotPasswordConnector;
 import com.liferay.mobile.screens.auth.login.connector.CurrentUserConnector;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
+import com.liferay.mobile.screens.comment.connector.ScreensCommentConnector;
+import com.liferay.mobile.screens.comment.display.interactor.delete.CommentConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordSetConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector;
+import com.liferay.mobile.screens.rating.connector.ScreensRatingsConnector;
 import com.liferay.mobile.screens.webcontent.display.connector.JournalContentConnector;
 import com.liferay.mobile.screens.webcontent.display.connector.ScreensJournalContentConnector;
 
@@ -42,4 +45,10 @@ public interface ServiceVersionFactory {
 	JournalContentConnector getJournalContentConnector(Session session);
 
 	ScreensJournalContentConnector getScreensJournalContentConnector(Session session);
+
+	ScreensCommentConnector getScreensCommentConnector(Session session);
+
+	ScreensRatingsConnector getScreensRatingsConnector(Session session);
+
+	CommentConnector getCommentConnector(Session session);
 }

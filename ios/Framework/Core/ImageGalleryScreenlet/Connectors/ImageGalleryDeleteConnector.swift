@@ -16,7 +16,7 @@ import LRMobileSDK
 
 open class ImageGalleryDeleteConnector : ServerConnector {
 
-	fileprivate let imageEntryId: Int64
+	open let imageEntryId: Int64
 
 
 	//MARK: Initializers
@@ -40,7 +40,14 @@ open class ImageGalleryDeleteConnector : ServerConnector {
 
 		return error
 	}
+	
+}
 
+open class Liferay70ImageGalleryDeleteConnector: ImageGalleryDeleteConnector {
+
+
+	//MARK: ServerConnector
+	
 	open override func doRun(session: LRSession) {
 		let service = LRDLAppService_v7(session: session)
 
@@ -50,5 +57,7 @@ open class ImageGalleryDeleteConnector : ServerConnector {
 
 		lastError = error
 	}
-	
+
 }
+
+

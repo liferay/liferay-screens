@@ -18,7 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import com.liferay.mobile.screens.context.User;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -65,5 +64,4 @@ public class GetUserAdapter extends BaseAdapter {
 		}
 		return convertView;
 	}
-
 }

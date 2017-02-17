@@ -59,7 +59,6 @@ public class DDLFormLoadInteractor extends BaseCacheReadInteractor<DDLFormListen
 			return;
 		}
 
-
 		getListener().onDDLFormLoaded(formRecord);
 	}
 
