@@ -177,6 +177,10 @@
 		0BF917CF1D76BFA800C86C85 /* NSDate+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917CE1D76BFA800C86C85 /* NSDate+Screens.swift */; };
 		0BFE283A1D87E13300261A66 /* LRScreenscommentService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BFE28381D87E13300261A66 /* LRScreenscommentService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0BFE283B1D87E13300261A66 /* LRScreenscommentService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE28391D87E13300261A66 /* LRScreenscommentService_v70.m */; };
+		57CFF6061E5A495700CB808E /* LRCookieBlockCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF8CFA91E51A7B6009B1581 /* LRCookieBlockCallback.swift */; };
+		57CFF6071E5A495D00CB808E /* CookieCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76FE8D1E4DADA80002D27F /* CookieCredentialsStoreKeyChain.swift */; };
+		57CFF6081E5A498000CB808E /* LoginCookieInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3699E81E4C929900B82F81 /* LoginCookieInteractor.swift */; };
+		6630AB738FDEDE310379D76F /* Pods_Screens_LiferayScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBA54E7ECC69FF0A41CD302E /* Pods_Screens_LiferayScreensTests.framework */; };
 		7842760F009C2E11071EEA7E /* Pods_LiferayScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D98CB80D86BDDD451A17E91 /* Pods_LiferayScreensTests.framework */; };
 		88019FA21B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */; };
 		88019FA31B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */; };
@@ -547,6 +551,7 @@
 		88E7909E1C6CA3A700C90453 /* LiferayConnectorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E7909C1C6CA3A700C90453 /* LiferayConnectorFactory.swift */; };
 		88F888551B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */; };
 		88F888561B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */; };
+		8A44691337DD75E219C358F7 /* Pods_Screens_LiferayScreens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 318FC635D36C518091792BE2 /* Pods_Screens_LiferayScreens.framework */; };
 		A18112D902E8D9943B9A5303 /* Pods_LiferayScreens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415D4AB620941705EDDF3786 /* Pods_LiferayScreens.framework */; };
 /* End PBXBuildFile section */
 
@@ -726,7 +731,9 @@
 		0BF917CE1D76BFA800C86C85 /* NSDate+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Screens.swift"; sourceTree = "<group>"; };
 		0BFE28381D87E13300261A66 /* LRScreenscommentService_v70.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreenscommentService_v70.h; sourceTree = "<group>"; };
 		0BFE28391D87E13300261A66 /* LRScreenscommentService_v70.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreenscommentService_v70.m; sourceTree = "<group>"; };
+		183425A0F0AD0E832FDDACA7 /* Pods-Screens-LiferayScreens.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreens.release.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreens/Pods-Screens-LiferayScreens.release.xcconfig"; sourceTree = "<group>"; };
 		306D2AAEC9CF124C93214432 /* Pods-LiferayScreensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.debug.xcconfig"; sourceTree = "<group>"; };
+		318FC635D36C518091792BE2 /* Pods_Screens_LiferayScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Screens_LiferayScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		415D4AB620941705EDDF3786 /* Pods_LiferayScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiferayScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DF10AF9D092F7909E1B280F /* Pods-LiferayScreens.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreens.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreens/Pods-LiferayScreens.debug.xcconfig"; sourceTree = "<group>"; };
 		626FA988876E81DB94DEC6D2 /* Pods-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -1003,7 +1010,11 @@
 		88E7909C1C6CA3A700C90453 /* LiferayConnectorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayConnectorFactory.swift; sourceTree = "<group>"; };
 		88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCredentialsStoreKeyChain.swift; sourceTree = "<group>"; };
 		9136B139BF9449FC75DBECA6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		950DA7DC0539A0588F1E672D /* Pods-Screens-LiferayScreensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9D98CB80D86BDDD451A17E91 /* Pods_LiferayScreensTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiferayScreensTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2215678B2EBE0DF1FF679A9 /* Pods-Screens-LiferayScreens.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreens.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreens/Pods-Screens-LiferayScreens.debug.xcconfig"; sourceTree = "<group>"; };
+		B7E6EE0FEA7DB1437264CFE4 /* Pods-Screens-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
+		CBA54E7ECC69FF0A41CD302E /* Pods_Screens_LiferayScreensTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Screens_LiferayScreensTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFBDCB107D988C626455115F /* Pods-LiferayScreens.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreens.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreens/Pods-LiferayScreens.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1013,6 +1024,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A18112D902E8D9943B9A5303 /* Pods_LiferayScreens.framework in Frameworks */,
+				8A44691337DD75E219C358F7 /* Pods_Screens_LiferayScreens.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1022,6 +1034,7 @@
 			files = (
 				8892C6841ACB2E3300192232 /* LiferayScreens.framework in Frameworks */,
 				7842760F009C2E11071EEA7E /* Pods_LiferayScreensTests.framework in Frameworks */,
+				6630AB738FDEDE310379D76F /* Pods_Screens_LiferayScreensTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1477,6 +1490,8 @@
 				9136B139BF9449FC75DBECA6 /* Pods.framework */,
 				415D4AB620941705EDDF3786 /* Pods_LiferayScreens.framework */,
 				9D98CB80D86BDDD451A17E91 /* Pods_LiferayScreensTests.framework */,
+				318FC635D36C518091792BE2 /* Pods_Screens_LiferayScreens.framework */,
+				CBA54E7ECC69FF0A41CD302E /* Pods_Screens_LiferayScreensTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2377,6 +2392,10 @@
 				DFBDCB107D988C626455115F /* Pods-LiferayScreens.release.xcconfig */,
 				306D2AAEC9CF124C93214432 /* Pods-LiferayScreensTests.debug.xcconfig */,
 				626FA988876E81DB94DEC6D2 /* Pods-LiferayScreensTests.release.xcconfig */,
+				A2215678B2EBE0DF1FF679A9 /* Pods-Screens-LiferayScreens.debug.xcconfig */,
+				183425A0F0AD0E832FDDACA7 /* Pods-Screens-LiferayScreens.release.xcconfig */,
+				950DA7DC0539A0588F1E672D /* Pods-Screens-LiferayScreensTests.debug.xcconfig */,
+				B7E6EE0FEA7DB1437264CFE4 /* Pods-Screens-LiferayScreensTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -2644,7 +2663,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		42C4A862824FD3F7D6E7833E /* [CP] Check Pods Manifest.lock */ = {
@@ -2674,7 +2693,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiferayScreens/Pods-LiferayScreens-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Screens-LiferayScreens/Pods-Screens-LiferayScreens-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8E5D6CE4D156AD50C569A76A /* [CP] Embed Pods Frameworks */ = {
@@ -2689,7 +2708,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AF9FDF70E6AD77D33EA825E7 /* [CP] Check Pods Manifest.lock */ = {
@@ -3023,6 +3042,7 @@
 				88CA80641B25D6EA004C1D59 /* BasicAuthBased.swift in Sources */,
 				88B844831C73D81D007A447D /* GetUserByScreenNameLiferayConnectors.swift in Sources */,
 				88CA805E1B25AF48004C1D59 /* LoginOAuthInteractor.swift in Sources */,
+				57CFF6081E5A498000CB808E /* LoginCookieInteractor.swift in Sources */,
 				88CA80751B25F868004C1D59 /* OAuthCredentialsStoreKeyChain.swift in Sources */,
 				88CA91B91B8DE3AD000B92F2 /* UserPortraitDefaultProgressPresenter.swift in Sources */,
 				88B844771C73D81D007A447D /* GetUserBaseLiferayConnector.swift in Sources */,
@@ -3049,6 +3069,7 @@
 				0B21802B1D6C506D00A23690 /* DDMXSDParser.swift in Sources */,
 				88B844A81C73D888007A447D /* LoginByEmailLiferayConnectors.swift in Sources */,
 				881E61A81ACBF97000862B9E /* uBDD.swift in Sources */,
+				57CFF6071E5A495D00CB808E /* CookieCredentialsStoreKeyChain.swift in Sources */,
 				0B5B5EBB1D5871900007D4B1 /* BaseListCollectionView.swift in Sources */,
 				88B844B91C73D8A3007A447D /* UpdateCurrentUserLiferayConnector.swift in Sources */,
 				88AF68391CBFF58700097014 /* WebContentListPageLoadInteractor.swift in Sources */,
@@ -3067,6 +3088,7 @@
 				88B844991C73D856007A447D /* ForgotPasswordScreenNameLiferayConnectors.swift in Sources */,
 				88B844431C73D6C0007A447D /* ServerWriteConnectorInteractor.swift in Sources */,
 				88B844B71C73D8A3007A447D /* SignUpLiferayConnector.swift in Sources */,
+				57CFF6061E5A495700CB808E /* LRCookieBlockCallback.swift in Sources */,
 				0B2180301D6C507B00A23690 /* DDMFieldDate.swift in Sources */,
 				0B2180291D6C506800A23690 /* DDMStructure.swift in Sources */,
 				881E62941ACBFEFC00862B9E /* BaseListPageLoadInteractor.swift in Sources */,
@@ -3369,7 +3391,7 @@
 		};
 		8892C68F1ACB2E3300192232 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5DF10AF9D092F7909E1B280F /* Pods-LiferayScreens.debug.xcconfig */;
+			baseConfigurationReference = A2215678B2EBE0DF1FF679A9 /* Pods-Screens-LiferayScreens.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -3390,7 +3412,7 @@
 		};
 		8892C6901ACB2E3300192232 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFBDCB107D988C626455115F /* Pods-LiferayScreens.release.xcconfig */;
+			baseConfigurationReference = 183425A0F0AD0E832FDDACA7 /* Pods-Screens-LiferayScreens.release.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -3410,7 +3432,7 @@
 		};
 		8892C6921ACB2E3300192232 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 306D2AAEC9CF124C93214432 /* Pods-LiferayScreensTests.debug.xcconfig */;
+			baseConfigurationReference = 950DA7DC0539A0588F1E672D /* Pods-Screens-LiferayScreensTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3429,7 +3451,7 @@
 		};
 		8892C6931ACB2E3300192232 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 626FA988876E81DB94DEC6D2 /* Pods-LiferayScreensTests.release.xcconfig */;
+			baseConfigurationReference = B7E6EE0FEA7DB1437264CFE4 /* Pods-Screens-LiferayScreensTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
