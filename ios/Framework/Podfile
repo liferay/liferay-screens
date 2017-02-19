@@ -2,39 +2,12 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '8.0'
 
-
-def corePods
-	# Core
-	pod 'Liferay-iOS-SDK', '~> 7.0.4'
-	pod 'Liferay-OAuth', '~> 1.2.0'
-	pod 'MBProgressHUD', '~> 0.9.1'
-	pod 'SMXMLDocument', '~> 1.1'
-	pod 'YapDatabase/SQLCipher', '2.9.2'
-	pod 'Kingfisher', '~> 3.0'
-
-	# Login & signup: save credentials
-	pod 'KeychainAccess', '~> 3.0'
-
-	# UserPortrait
-	pod 'CryptoSwift', '~> 0.6.0'
-
-	# DDLForm
-	pod 'DTPickerPresenter', '~> 0.2.0'
-	pod 'TNRadioButtonGroup', '~> 0.4'
-	pod 'MDRadialProgress', '~> 1.3.2'
-
-	# RatingBar
-	pod 'Cosmos', '~> 8.0'
-end
-
-
-target :LiferayScreens do
-	corePods
+abstract_target "Screens" do 
 	use_frameworks!
-end
-target :LiferayScreensTests do
-	corePods
-	pod 'Nocilla'
-	use_frameworks!
-end
+	podspec :path => '../../LiferayScreens.podspec'
 
+	target 'LiferayScreens'
+	target 'LiferayScreensTests' do 
+		pod 'Nocilla'
+	end
+end
