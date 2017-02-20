@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.View;
 import android.webkit.WebView;
 import com.liferay.mobile.screens.webcontent.WebContent;
 import com.liferay.mobile.screens.webcontent.display.WebContentDisplayListener;
@@ -48,8 +49,14 @@ public class WebContentDisplayActivity extends ThemeActivity implements WebConte
 	}
 
 	@Override
-	public void onWebContentClicked(WebView.HitTestResult result, MotionEvent event) {
-		info(getString(R.string.webcontent_clicked_info));
+	public boolean onUrlClicked(String url) {
+		info(getString(R.string.webcontent_clicked_info) + " -> " + url);
+		return false;
+	}
+
+	@Override
+	public boolean onWebContentTouched(View view, MotionEvent event) {
+		return false;
 	}
 
 	@Override

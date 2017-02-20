@@ -46,6 +46,7 @@ public class WebContentDisplayScreenlet
 	private boolean javascriptEnabled;
 	private String labelFields;
 	private WebContentDisplayListener listener;
+	public WebView.HitTestResult result;
 
 	public WebContentDisplayScreenlet(Context context) {
 		super(context);
@@ -81,10 +82,13 @@ public class WebContentDisplayScreenlet
 	}
 
 	@Override
-	public void onWebContentClicked(WebView.HitTestResult result, MotionEvent event) {
-		if (listener != null) {
-			listener.onWebContentClicked(result, event);
-		}
+	public boolean onUrlClicked(String url) {
+		return listener != null && listener.onUrlClicked(url);
+	}
+
+	@Override
+	public boolean onWebContentTouched(View view, MotionEvent event) {
+		return listener != null && listener.onWebContentTouched(view, event);
 	}
 
 	@Override

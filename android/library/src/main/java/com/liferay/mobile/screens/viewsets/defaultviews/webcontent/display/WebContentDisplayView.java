@@ -126,9 +126,7 @@ public class WebContentDisplayView extends FrameLayout
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
-		WebView.HitTestResult result = webView.getHitTestResult();
-		((WebContentDisplayScreenlet) getScreenlet()).onWebContentClicked(result, event);
-		return false;
+		return ((WebContentDisplayScreenlet) getScreenlet()).onWebContentTouched(webView, event);
 	}
 
 	@Override
@@ -151,6 +149,12 @@ public class WebContentDisplayView extends FrameLayout
 			}
 			webView.setWebViewClient(getWebViewClientWithCustomHeader());
 			webView.setOnTouchListener(this);
+			webView.setWebViewClient(new WebViewClient() {
+				@Override
+				public boolean shouldOverrideUrlLoading(WebView view, String url) {
+					return ((WebContentDisplayScreenlet) getScreenlet()).onUrlClicked(url);
+				}
+			});
 		}
 	}
 

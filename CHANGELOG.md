@@ -20,16 +20,17 @@ All notable changes to this project will be documented in this file.
 * Fixed minimum SDK in test application
 
 ### New features
+* Integrate **Cookie** authentication
+* Allow displaying AssetPublisher with portletItemName attribute in AssetDisplayScreenlet
+* Allow developers to process the result when a WebContent is clicked
 * Added Spanish translations
+
+#### Other features
 * Prevent NullPointerException in login
 * Improvements to test-app
 * Added workaround to list Users with AssetListScreenlet
 * Improvements to PdfDisplayScreenlet: you can swipe between pages now
 * Exposed some methods to use them in the POC of Nativescript
-* Allow displaying AssetPublisher with portletItemName attribute in AssetDisplayScreenlet
-* Allow developers to process the result when a WebContent is clicked
-* Integrate cookie authentication
-* Allow displaying Asset Publisher with porletItemName attribute in AssetDisplayScreenlet
 
 ### Refactor
 * Separated login between screens plugin and portal code
@@ -49,14 +50,16 @@ All notable changes to this project will be documented in this file.
 * List users with AssetListScreenlet
 
 ### New features
-* Migrated Core, Showcase-Swift and Westeros demo apps to Swift 3
-* Added Cookie authentication
+* Migrated Core, Showcase-Swift and Westeros demo apps to **Swift 3**
+* Integrate **Cookie** authentication
 * Added Spanish translations
 * Detailed error messages
+* Allow displaying AssetPublisher with portletItemName attribute in AssetDisplayScreenlet
+
+
+#### Other features
 * Added workaround to list Users with AssetListScreenlet
 * Deselect row after delegate call in BaseListTableView and BaseListCollectionView
-* Allow displaying AssetPublisher with portletItemName attribute in AssetDisplayScreenlet
-* Integrate cookie authentication
 
 ### Refactor
 * Exposed User object in SessionContext: User doesn't extend anymore from Asset
