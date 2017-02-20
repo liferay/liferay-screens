@@ -52,6 +52,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	private long entryId;
 	private String className;
 	private long classPK;
+	private String portletItemName;
 	private AssetDisplayListener listener;
 	private AssetDisplayInnerScreenletListener configureListener;
 
@@ -83,6 +84,8 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 
 		className = typedArray.getString(R.styleable.AssetDisplayScreenlet_className);
 		classPK = typedArray.getInt(R.styleable.AssetDisplayScreenlet_classPK, 0);
+
+		portletItemName = typedArray.getString(R.styleable.AssetDisplayScreenlet_portletItemName);
 
 		layouts = new HashMap<>();
 		layouts.put(ImageDisplayScreenlet.class.getName(),
@@ -203,7 +206,10 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	 */
 	//TODO now the autoload is required to be able to load child screenlets
 	protected void autoLoad() {
-		if (SessionContext.isLoggedIn() && (entryId != 0 || (className != null && classPK != 0))) {
+		boolean hasClassName = className != null && classPK != 0;
+		boolean hasPortletItemName = portletItemName != null && !"".equals(portletItemName);
+
+		if (SessionContext.isLoggedIn() && (entryId != 0 || hasClassName || hasPortletItemName)) {
 			loadAsset();
 		}
 	}
@@ -212,8 +218,10 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	protected void onUserAction(String userActionName, AssetDisplayInteractor interactor, Object... args) {
 		if (entryId != 0) {
 			interactor.start(entryId);
-		} else {
+		} else if (className != null && !"".equals(className) && classPK != 0) {
 			interactor.start(className, classPK);
+		} else {
+			interactor.start(portletItemName);
 		}
 	}
 
@@ -260,6 +268,14 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 
 	public void setClassPK(long classPK) {
 		this.classPK = classPK;
+	}
+
+	public String getPortletItemName() {
+		return portletItemName;
+	}
+
+	public void setPortletItemName(String portletItemName) {
+		this.portletItemName = portletItemName;
 	}
 
 	public void setListener(AssetDisplayListener listener) {

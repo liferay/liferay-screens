@@ -66,7 +66,9 @@ open class AssetDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable open var classPK: Int64 = 0
 
-	@IBInspectable open var autoLoad: Bool = true
+	@IBInspectable public var portletItemName: String?
+
+	@IBInspectable public var autoLoad: Bool = true
 
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
@@ -112,9 +114,12 @@ open class AssetDisplayScreenlet: BaseScreenlet {
 		if assetEntryId != 0 {
 			interactor = LoadAssetInteractor(screenlet: self, assetEntryId: assetEntryId)
 		}
-		else {
+		else if className != "" && classPK != 0 {
 			interactor = LoadAssetInteractor(
 				screenlet: self, className: self.className, classPK: self.classPK)
+		}
+		else {
+			interactor = LoadAssetInteractor(screenlet: self, portletItemName: self.portletItemName!)
 		}
 
 		interactor.cacheStrategy = CacheStrategyType(rawValue: offlinePolicy ?? "") ?? .remoteFirst

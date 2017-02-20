@@ -7,10 +7,13 @@ import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
 import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.asset.list.connector.ScreensAssetEntryConnector;
 import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.util.JSONUtil;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import java.util.Locale;
 import java.util.Map;
+import java.util.NoSuchElementException;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,9 +36,22 @@ public class AssetDisplayInteractor extends BaseCacheReadInteractor<AssetDisplay
 			String className = (String) args[0];
 			long classPK = (long) args[1];
 			return connector.getAssetEntry(className, classPK, Locale.getDefault().getLanguage());
-		} else {
+		} else if (args[0] instanceof Long) {
 			long entryId = (long) args[0];
+
 			return connector.getAssetEntry(entryId, Locale.getDefault().getLanguage());
+		} else {
+			String portletItemName = (String) args[0];
+
+			JSONArray assetEntry =
+				connector.getAssetEntries(LiferayServerContext.getCompanyId(), groupId, portletItemName,
+					locale.toString(), 1);
+
+			if (assetEntry.length() == 0) {
+				throw new NoSuchElementException();
+			}
+
+			return assetEntry.getJSONObject(0);
 		}
 	}
 

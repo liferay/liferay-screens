@@ -10,6 +10,8 @@
 		0B24399B1DAD3120009DA1E4 /* ImageDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B24399A1DAD3120009DA1E4 /* ImageDisplayViewController.swift */; };
 		0B24399C1DAD314D009DA1E4 /* BlogDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B24399E1DAD314D009DA1E4 /* BlogDisplayScreenlet.storyboard */; };
 		0B2439A21DAD318A009DA1E4 /* ImageDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B2439A41DAD318A009DA1E4 /* ImageDisplayScreenlet.storyboard */; };
+		0B4C27571E41FF9700F6B01D /* AssetDisplayScreenletWithPortletItemName.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B4C27551E41FF9700F6B01D /* AssetDisplayScreenletWithPortletItemName.storyboard */; };
+		0B4C27591E42007E00F6B01D /* AssetDisplayWithPortletItemNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C27581E42007E00F6B01D /* AssetDisplayWithPortletItemNameViewController.swift */; };
 		0B54FB771DACC95500E0EE0C /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FB761DACC95500E0EE0C /* UserView.swift */; };
 		0B54FB791DACC97000E0EE0C /* UserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FB781DACC97000E0EE0C /* UserView.xib */; };
 		0B54FB7D1DACCFDF00E0EE0C /* AssetTypesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FB7C1DACCFDF00E0EE0C /* AssetTypesViewController.swift */; };
@@ -74,6 +76,8 @@
 		0B24399A1DAD3120009DA1E4 /* ImageDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDisplayViewController.swift; sourceTree = "<group>"; };
 		0B24399D1DAD314D009DA1E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/BlogDisplayScreenlet.storyboard; sourceTree = "<group>"; };
 		0B2439A31DAD318A009DA1E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/ImageDisplayScreenlet.storyboard; sourceTree = "<group>"; };
+		0B4C27561E41FF9700F6B01D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/AssetDisplayScreenletWithPortletItemName.storyboard; sourceTree = "<group>"; };
+		0B4C27581E42007E00F6B01D /* AssetDisplayWithPortletItemNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayWithPortletItemNameViewController.swift; sourceTree = "<group>"; };
 		0B54FB761DACC95500E0EE0C /* UserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		0B54FB781DACC97000E0EE0C /* UserView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserView.xib; sourceTree = "<group>"; };
 		0B54FB7C1DACCFDF00E0EE0C /* AssetTypesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetTypesViewController.swift; sourceTree = "<group>"; };
@@ -311,6 +315,7 @@
 			children = (
 				0B54FB9A1DACE9BF00E0EE0C /* AssetListScreenlet.storyboard */,
 				0B6148161DABF643004FAC7C /* AssetDisplayScreenlet.storyboard */,
+				0B4C27551E41FF9700F6B01D /* AssetDisplayScreenletWithPortletItemName.storyboard */,
 			);
 			name = Asset;
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 				0B54FB7C1DACCFDF00E0EE0C /* AssetTypesViewController.swift */,
 				0B54FB7E1DACD17500E0EE0C /* AssetListScreenletViewController.swift */,
 				0B61481A1DABF672004FAC7C /* AssetDisplayViewController.swift */,
+				0B4C27581E42007E00F6B01D /* AssetDisplayWithPortletItemNameViewController.swift */,
 			);
 			path = Asset;
 			sourceTree = "<group>";
@@ -509,6 +515,7 @@
 				0BCAD3C21DD5F42200BB89EA /* VideoDisplayScreenlet.storyboard in Resources */,
 				0B54FB9D1DACE9CD00E0EE0C /* ForgotPasswordScreenlet.storyboard in Resources */,
 				0B54FB901DACE97300E0EE0C /* CommentDisplayScreenlet.storyboard in Resources */,
+				0B4C27571E41FF9700F6B01D /* AssetDisplayScreenletWithPortletItemName.storyboard in Resources */,
 				0B54FBB61DACFA7C00E0EE0C /* ImageGalleryScreenlet.storyboard in Resources */,
 				88CC3B031CC158C800E0AEB7 /* HtmlTableViewCell.xib in Resources */,
 				0B24399C1DAD314D009DA1E4 /* BlogDisplayScreenlet.storyboard in Resources */,
@@ -613,6 +620,7 @@
 				0B54FBC11DAD004300E0EE0C /* UserPortraitScreenletViewController.swift in Sources */,
 				0B54FBAC1DACF1C100E0EE0C /* BlogDisplayScreenletViewController.swift in Sources */,
 				0BCAD3CE1DD5F59D00BB89EA /* PdfDisplayViewController.swift in Sources */,
+				0B4C27591E42007E00F6B01D /* AssetDisplayWithPortletItemNameViewController.swift in Sources */,
 				0BCAD3CC1DD5F57A00BB89EA /* VideoDisplayViewController.swift in Sources */,
 				0BCAD3CA1DD5F51B00BB89EA /* AudioDisplayViewController.swift in Sources */,
 				0B6147F81DABC853004FAC7C /* UIImageExtension.swift in Sources */,
@@ -639,6 +647,14 @@
 				0B2439A31DAD318A009DA1E4 /* en */,
 			);
 			name = ImageDisplayScreenlet.storyboard;
+			sourceTree = "<group>";
+		};
+		0B4C27551E41FF9700F6B01D /* AssetDisplayScreenletWithPortletItemName.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B4C27561E41FF9700F6B01D /* en */,
+			);
+			name = AssetDisplayScreenletWithPortletItemName.storyboard;
 			sourceTree = "<group>";
 		};
 		0B54FB921DACE97300E0EE0C /* CommentDisplayScreenlet.storyboard */ = {

@@ -29,6 +29,7 @@ All notable changes to this project will be documented in this file.
 * Allow displaying AssetPublisher with portletItemName attribute in AssetDisplayScreenlet
 * Allow developers to process the result when a WebContent is clicked
 * Integrate cookie authentication
+* Allow displaying Asset Publisher with porletItemName attribute in AssetDisplayScreenlet
 
 ### Refactor
 * Separated login between screens plugin and portal code

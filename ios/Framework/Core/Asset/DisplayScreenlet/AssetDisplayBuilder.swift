@@ -35,7 +35,8 @@ import UIKit
 			if asset.classNameId == AssetClasses.getClassNameId(AssetClassNameKey_BlogsEntry)! {
 				return BlogsEntryDisplayScreenlet(frame: frame, themeName: themeName)
 			}
-			else {
+			else if asset.classNameId ==
+				AssetClasses.getClassNameId(AssetClassNameKey_JournalArticle) {
 				return WebContentDisplayScreenlet(frame: frame, themeName: themeName)
 			}
 		}
