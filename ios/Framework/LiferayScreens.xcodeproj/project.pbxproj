@@ -80,7 +80,7 @@
 		0B2180341D6C508200A23690 /* DDMFieldString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180031D6C4F6F00A23690 /* DDMFieldString.swift */; };
 		0B2180351D6C508200A23690 /* DDMFieldStringWithOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180041D6C4F6F00A23690 /* DDMFieldStringWithOptions.swift */; };
 		0B2180361D6C508200A23690 /* DDMFieldUntyped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180051D6C4F6F00A23690 /* DDMFieldUntyped.swift */; };
-		0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
+		0B2677DE1D3D1E5700FDFC5B /* BuildFile in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		0B2BBE731DC3670800010F30 /* default-preview-imagegallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2BBE721DC3670800010F30 /* default-preview-imagegallery@2x.png */; };
 		0B2BBE761DC3699C00010F30 /* default-list-preview-imagegallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2BBE741DC3699C00010F30 /* default-list-preview-imagegallery@2x.png */; };
 		0B2BBE771DC3699C00010F30 /* default-slideshow-preview-imagegallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2BBE751DC3699C00010F30 /* default-slideshow-preview-imagegallery@2x.png */; };
@@ -89,6 +89,7 @@
 		0B2C41631D5A3C7C00764326 /* UploadProgressView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C41511D5A3C7C00764326 /* UploadProgressView_default.xib */; };
 		0B2C41661D5A3CF400764326 /* LRScreensddlrecordService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B2C41641D5A3CF400764326 /* LRScreensddlrecordService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B2C41671D5A3CF400764326 /* LRScreensddlrecordService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C41651D5A3CF400764326 /* LRScreensddlrecordService_v62.m */; };
+		0B3699E91E4C929900B82F81 /* LoginCookieInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3699E81E4C929900B82F81 /* LoginCookieInteractor.swift */; };
 		0B4C27521E40F83300F6B01D /* AssetLoadByPortletItemNameLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C27511E40F83300F6B01D /* AssetLoadByPortletItemNameLiferayConnector.swift */; };
 		0B5B5E571D5869BB0007D4B1 /* MediaSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E561D5869BB0007D4B1 /* MediaSelector.swift */; };
 		0B5B5E821D5869DB0007D4B1 /* ImageGalleryDeleteConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E751D5869DB0007D4B1 /* ImageGalleryDeleteConnector.swift */; };
@@ -118,6 +119,7 @@
 		0B6463791D66F143007F3289 /* ImageUploadDetailView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6463781D66F143007F3289 /* ImageUploadDetailView_default.swift */; };
 		0B64637B1D66F172007F3289 /* UploadProgressView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B64637A1D66F172007F3289 /* UploadProgressView_default.swift */; };
 		0B66FFCE1DAF83E900963DEB /* DefaultTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B66FFCD1DAF83E900963DEB /* DefaultTextField.swift */; };
+		0B76FE8E1E4DADA80002D27F /* CookieCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76FE8D1E4DADA80002D27F /* CookieCredentialsStoreKeyChain.swift */; };
 		0B7F45A21DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7F45A11DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift */; };
 		0B89C9951D58B01200A9EAE7 /* SyncManager+ImageGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B89C9941D58B01200A9EAE7 /* SyncManager+ImageGallery.swift */; };
 		0BB4678B1D8707280044523E /* comment-add-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BB467851D8707280044523E /* comment-add-screenlet.strings */; };
@@ -145,6 +147,7 @@
 		0BCB4FB11D37C08B0023E2CA /* LRScreensddlrecordService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BCB4FAF1D37C08B0023E2CA /* LRScreensddlrecordService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0BCB4FB21D37C08B0023E2CA /* LRScreensddlrecordService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB4FB01D37C08B0023E2CA /* LRScreensddlrecordService_v70.m */; };
 		0BE1E0F31D364E96000A2678 /* SequenceType+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1E0F21D364E96000A2678 /* SequenceType+Screens.swift */; };
+		0BF8CFAA1E51A7B6009B1581 /* LRCookieBlockCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF8CFA91E51A7B6009B1581 /* LRCookieBlockCallback.swift */; };
 		0BF917A01D76BE6900C86C85 /* CommentAddScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917881D76BE6900C86C85 /* CommentAddScreenlet.swift */; };
 		0BF917A11D76BE6900C86C85 /* CommentAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917891D76BE6900C86C85 /* CommentAddViewModel.swift */; };
 		0BF917A21D76BE6900C86C85 /* CommentAddLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9178B1D76BE6900C86C85 /* CommentAddLiferayConnector.swift */; };
@@ -175,7 +178,10 @@
 		0BF917CF1D76BFA800C86C85 /* NSDate+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917CE1D76BFA800C86C85 /* NSDate+Screens.swift */; };
 		0BFE283A1D87E13300261A66 /* LRScreenscommentService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BFE28381D87E13300261A66 /* LRScreenscommentService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0BFE283B1D87E13300261A66 /* LRScreenscommentService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE28391D87E13300261A66 /* LRScreenscommentService_v70.m */; };
-		7842760F009C2E11071EEA7E /* Pods_LiferayScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D98CB80D86BDDD451A17E91 /* Pods_LiferayScreensTests.framework */; };
+		57CFF6061E5A495700CB808E /* LRCookieBlockCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF8CFA91E51A7B6009B1581 /* LRCookieBlockCallback.swift */; };
+		57CFF6071E5A495D00CB808E /* CookieCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76FE8D1E4DADA80002D27F /* CookieCredentialsStoreKeyChain.swift */; };
+		57CFF6081E5A498000CB808E /* LoginCookieInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3699E81E4C929900B82F81 /* LoginCookieInteractor.swift */; };
+		5828D41A87AB2C8662D6FBB8 /* Pods_Screens_LiferayScreens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 039C3B21F16B559B9C196029 /* Pods_Screens_LiferayScreens.framework */; };
 		88019FA21B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */; };
 		88019FA31B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */; };
 		880459ED1CA15FA400449D55 /* DDMFieldTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880459EC1CA15FA400449D55 /* DDMFieldTableCell.swift */; };
@@ -545,7 +551,7 @@
 		88E7909E1C6CA3A700C90453 /* LiferayConnectorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E7909C1C6CA3A700C90453 /* LiferayConnectorFactory.swift */; };
 		88F888551B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */; };
 		88F888561B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */; };
-		A18112D902E8D9943B9A5303 /* Pods_LiferayScreens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415D4AB620941705EDDF3786 /* Pods_LiferayScreens.framework */; };
+		9408E484873051DBA2FC5F89 /* Pods_Screens_LiferayScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76277052A489CACA834992A8 /* Pods_Screens_LiferayScreensTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -562,6 +568,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		039C3B21F16B559B9C196029 /* Pods_Screens_LiferayScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Screens_LiferayScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B1063151D49E7C9001D8DE3 /* WebContentListView_default-collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebContentListView_default-collection.swift"; sourceTree = "<group>"; };
 		0B1063171D49E7DE001D8DE3 /* WebContentListView_default-collection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WebContentListView_default-collection.xib"; sourceTree = "<group>"; };
 		0B1F30E41DA23FB40053424E /* UserPortrait_connector_Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortrait_connector_Test.swift; sourceTree = "<group>"; };
@@ -628,6 +635,7 @@
 		0B2C41511D5A3C7C00764326 /* UploadProgressView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadProgressView_default.xib; sourceTree = "<group>"; };
 		0B2C41641D5A3CF400764326 /* LRScreensddlrecordService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensddlrecordService_v62.h; sourceTree = "<group>"; };
 		0B2C41651D5A3CF400764326 /* LRScreensddlrecordService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensddlrecordService_v62.m; sourceTree = "<group>"; };
+		0B3699E81E4C929900B82F81 /* LoginCookieInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCookieInteractor.swift; sourceTree = "<group>"; };
 		0B4C27511E40F83300F6B01D /* AssetLoadByPortletItemNameLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetLoadByPortletItemNameLiferayConnector.swift; sourceTree = "<group>"; };
 		0B5B5E541D5868B80007D4B1 /* BaseListCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListCollectionView.swift; sourceTree = "<group>"; };
 		0B5B5E561D5869BB0007D4B1 /* MediaSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaSelector.swift; sourceTree = "<group>"; };
@@ -658,6 +666,7 @@
 		0B6463781D66F143007F3289 /* ImageUploadDetailView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploadDetailView_default.swift; sourceTree = "<group>"; };
 		0B64637A1D66F172007F3289 /* UploadProgressView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadProgressView_default.swift; sourceTree = "<group>"; };
 		0B66FFCD1DAF83E900963DEB /* DefaultTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTextField.swift; sourceTree = "<group>"; };
+		0B76FE8D1E4DADA80002D27F /* CookieCredentialsStoreKeyChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CookieCredentialsStoreKeyChain.swift; sourceTree = "<group>"; };
 		0B7F45A11DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDisplayViewModel.swift; sourceTree = "<group>"; };
 		0B85DF921DDE19450015EDCF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/assetdisplay-screenlet.strings"; sourceTree = "<group>"; };
 		0B85DF931DDE1D9E0015EDCF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/assetlist-screenlet.strings"; sourceTree = "<group>"; };
@@ -692,6 +701,7 @@
 		0BCB4FAF1D37C08B0023E2CA /* LRScreensddlrecordService_v70.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensddlrecordService_v70.h; sourceTree = "<group>"; };
 		0BCB4FB01D37C08B0023E2CA /* LRScreensddlrecordService_v70.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensddlrecordService_v70.m; sourceTree = "<group>"; };
 		0BE1E0F21D364E96000A2678 /* SequenceType+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SequenceType+Screens.swift"; sourceTree = "<group>"; };
+		0BF8CFA91E51A7B6009B1581 /* LRCookieBlockCallback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LRCookieBlockCallback.swift; sourceTree = "<group>"; };
 		0BF917881D76BE6900C86C85 /* CommentAddScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentAddScreenlet.swift; sourceTree = "<group>"; };
 		0BF917891D76BE6900C86C85 /* CommentAddViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentAddViewModel.swift; sourceTree = "<group>"; };
 		0BF9178B1D76BE6900C86C85 /* CommentAddLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentAddLiferayConnector.swift; sourceTree = "<group>"; };
@@ -722,10 +732,7 @@
 		0BF917CE1D76BFA800C86C85 /* NSDate+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Screens.swift"; sourceTree = "<group>"; };
 		0BFE28381D87E13300261A66 /* LRScreenscommentService_v70.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreenscommentService_v70.h; sourceTree = "<group>"; };
 		0BFE28391D87E13300261A66 /* LRScreenscommentService_v70.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreenscommentService_v70.m; sourceTree = "<group>"; };
-		306D2AAEC9CF124C93214432 /* Pods-LiferayScreensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.debug.xcconfig"; sourceTree = "<group>"; };
-		415D4AB620941705EDDF3786 /* Pods_LiferayScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiferayScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5DF10AF9D092F7909E1B280F /* Pods-LiferayScreens.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreens.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreens/Pods-LiferayScreens.debug.xcconfig"; sourceTree = "<group>"; };
-		626FA988876E81DB94DEC6D2 /* Pods-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
+		76277052A489CACA834992A8 /* Pods_Screens_LiferayScreensTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Screens_LiferayScreensTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88019FA11B8F22EE00674B00 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/webcontentdisplay-screenlet.strings"; sourceTree = "<group>"; };
 		880459EC1CA15FA400449D55 /* DDMFieldTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDMFieldTableCell.swift; sourceTree = "<group>"; };
 		880ACA5A1B01FBF0007AD007 /* UploadUserPortraitInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadUserPortraitInteractor.swift; sourceTree = "<group>"; };
@@ -999,8 +1006,10 @@
 		88E7909C1C6CA3A700C90453 /* LiferayConnectorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayConnectorFactory.swift; sourceTree = "<group>"; };
 		88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCredentialsStoreKeyChain.swift; sourceTree = "<group>"; };
 		9136B139BF9449FC75DBECA6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D98CB80D86BDDD451A17E91 /* Pods_LiferayScreensTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiferayScreensTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DFBDCB107D988C626455115F /* Pods-LiferayScreens.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreens.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreens/Pods-LiferayScreens.release.xcconfig"; sourceTree = "<group>"; };
+		A6822BE408CFC178464795BE /* Pods-Screens-LiferayScreens.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreens.release.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreens/Pods-Screens-LiferayScreens.release.xcconfig"; sourceTree = "<group>"; };
+		A8B45C06052D105C65EF5C83 /* Pods-Screens-LiferayScreens.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreens.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreens/Pods-Screens-LiferayScreens.debug.xcconfig"; sourceTree = "<group>"; };
+		AD76E36E85BE8E49BD3D8E53 /* Pods-Screens-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
+		ADC21DB5DD46A1A28344B494 /* Pods-Screens-LiferayScreensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1008,7 +1017,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A18112D902E8D9943B9A5303 /* Pods_LiferayScreens.framework in Frameworks */,
+				5828D41A87AB2C8662D6FBB8 /* Pods_Screens_LiferayScreens.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1017,13 +1026,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				8892C6841ACB2E3300192232 /* LiferayScreens.framework in Frameworks */,
-				7842760F009C2E11071EEA7E /* Pods_LiferayScreensTests.framework in Frameworks */,
+				9408E484873051DBA2FC5F89 /* Pods_Screens_LiferayScreensTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03DFDB3C8DEB7E99041772F5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A8B45C06052D105C65EF5C83 /* Pods-Screens-LiferayScreens.debug.xcconfig */,
+				A6822BE408CFC178464795BE /* Pods-Screens-LiferayScreens.release.xcconfig */,
+				ADC21DB5DD46A1A28344B494 /* Pods-Screens-LiferayScreensTests.debug.xcconfig */,
+				AD76E36E85BE8E49BD3D8E53 /* Pods-Screens-LiferayScreensTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		0B1F30E31DA23F7F0053424E /* UserPortrait */ = {
 			isa = PBXGroup;
 			children = (
@@ -1472,8 +1492,8 @@
 			isa = PBXGroup;
 			children = (
 				9136B139BF9449FC75DBECA6 /* Pods.framework */,
-				415D4AB620941705EDDF3786 /* Pods_LiferayScreens.framework */,
-				9D98CB80D86BDDD451A17E91 /* Pods_LiferayScreensTests.framework */,
+				039C3B21F16B559B9C196029 /* Pods_Screens_LiferayScreens.framework */,
+				76277052A489CACA834992A8 /* Pods_Screens_LiferayScreensTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2054,7 +2074,7 @@
 				8892C6871ACB2E3300192232 /* Tests */,
 				8892C6791ACB2E3300192232 /* Products */,
 				64425867C18F568E2864B9C1 /* Frameworks */,
-				E620F10B946DBB051A094684 /* Pods */,
+				03DFDB3C8DEB7E99041772F5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2180,6 +2200,7 @@
 				88E7909C1C6CA3A700C90453 /* LiferayConnectorFactory.swift */,
 				88AA42CA1C624A6E00AA97FB /* ScreensFactory.swift */,
 				8892C6B31ACBD95400192232 /* SessionContext.swift */,
+				0BF8CFA91E51A7B6009B1581 /* LRCookieBlockCallback.swift */,
 				88CA806C1B25EDE4004C1D59 /* Storage */,
 			);
 			name = Context;
@@ -2289,6 +2310,7 @@
 				88CA80581B25AF48004C1D59 /* LoginBasicInteractor.swift */,
 				88CA80591B25AF48004C1D59 /* LoginOAuthInteractor.swift */,
 				88CA805A1B25AF48004C1D59 /* OAuthWebViewController.swift */,
+				0B3699E81E4C929900B82F81 /* LoginCookieInteractor.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -2300,6 +2322,7 @@
 				88CA80701B25EF69004C1D59 /* BaseCredentialsStoreKeyChain.swift */,
 				88CA80731B25F868004C1D59 /* OAuthCredentialsStoreKeyChain.swift */,
 				88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */,
+				0B76FE8D1E4DADA80002D27F /* CookieCredentialsStoreKeyChain.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -2364,17 +2387,6 @@
 			path = Context;
 			sourceTree = "<group>";
 		};
-		E620F10B946DBB051A094684 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				5DF10AF9D092F7909E1B280F /* Pods-LiferayScreens.debug.xcconfig */,
-				DFBDCB107D988C626455115F /* Pods-LiferayScreens.release.xcconfig */,
-				306D2AAEC9CF124C93214432 /* Pods-LiferayScreensTests.debug.xcconfig */,
-				626FA988876E81DB94DEC6D2 /* Pods-LiferayScreensTests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -2391,7 +2403,7 @@
 				887E069B1C6A4DF800CA3807 /* LRScreensjournalarticleService_v70.h in Headers */,
 				887E06971C6A4DF800CA3807 /* LRScreensassetentryService_v70.h in Headers */,
 				88DE2AA21AD3ED6800714701 /* LiferayScreensFrameworkConfig.h in Headers */,
-				0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */,
+				0B2677DE1D3D1E5700FDFC5B /* BuildFile in Headers */,
 				887E05511C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h in Headers */,
 				0BFE283A1D87E13300261A66 /* LRScreenscommentService_v70.h in Headers */,
 			);
@@ -2404,12 +2416,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8892C68E1ACB2E3300192232 /* Build configuration list for PBXNativeTarget "LiferayScreens" */;
 			buildPhases = (
-				AF9FDF70E6AD77D33EA825E7 /* [CP] Check Pods Manifest.lock */,
+				F76A9525B63A50BF5E7724D4 /* [CP] Check Pods Manifest.lock */,
 				8892C6731ACB2E3300192232 /* Sources */,
 				8892C6741ACB2E3300192232 /* Frameworks */,
 				8892C6751ACB2E3300192232 /* Headers */,
 				8892C6761ACB2E3300192232 /* Resources */,
-				8336DA748071CD06AF4FD1E9 /* [CP] Copy Pods Resources */,
+				B146147EA81C5DE8F28EACDF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2424,13 +2436,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8892C6911ACB2E3300192232 /* Build configuration list for PBXNativeTarget "LiferayScreensTests" */;
 			buildPhases = (
-				42C4A862824FD3F7D6E7833E /* [CP] Check Pods Manifest.lock */,
+				9BC8FF704693618D1408AF49 /* [CP] Check Pods Manifest.lock */,
 				8892C67F1ACB2E3300192232 /* Sources */,
 				8892C6801ACB2E3300192232 /* Frameworks */,
 				8892C6811ACB2E3300192232 /* Resources */,
 				881E63091ACC0CD400862B9E /* CopyFiles */,
-				8E5D6CE4D156AD50C569A76A /* [CP] Embed Pods Frameworks */,
-				33632A359BE973AE610BDC6E /* [CP] Copy Pods Resources */,
+				C5A1D2F2DB497FD3C35FDB02 /* [CP] Embed Pods Frameworks */,
+				2CF526B5C36F45B4AFA262D1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2626,7 +2638,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		33632A359BE973AE610BDC6E /* [CP] Copy Pods Resources */ = {
+		2CF526B5C36F45B4AFA262D1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2638,10 +2650,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		42C4A862824FD3F7D6E7833E /* [CP] Check Pods Manifest.lock */ = {
+		9BC8FF704693618D1408AF49 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2656,7 +2668,7 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		8336DA748071CD06AF4FD1E9 /* [CP] Copy Pods Resources */ = {
+		B146147EA81C5DE8F28EACDF /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2668,10 +2680,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiferayScreens/Pods-LiferayScreens-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Screens-LiferayScreens/Pods-Screens-LiferayScreens-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8E5D6CE4D156AD50C569A76A /* [CP] Embed Pods Frameworks */ = {
+		C5A1D2F2DB497FD3C35FDB02 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2683,10 +2695,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiferayScreensTests/Pods-LiferayScreensTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AF9FDF70E6AD77D33EA825E7 /* [CP] Check Pods Manifest.lock */ = {
+		F76A9525B63A50BF5E7724D4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2721,6 +2733,7 @@
 				881E61281ACBE5F000862B9E /* UserPortraitViewModel.swift in Sources */,
 				889125A81D5479E6006AFA08 /* RatingUpdateLiferayConnector.swift in Sources */,
 				0B217FF41D6C4F4E00A23690 /* MimeTypeable.swift in Sources */,
+				0B76FE8E1E4DADA80002D27F /* CookieCredentialsStoreKeyChain.swift in Sources */,
 				889125A51D5479E6006AFA08 /* RatingDeleteLiferayConnector.swift in Sources */,
 				88B844421C73D6C0007A447D /* ServerWriteConnectorInteractor.swift in Sources */,
 				881E61871ACBEE0B00862B9E /* DDLListScreenlet.swift in Sources */,
@@ -2728,6 +2741,7 @@
 				881E617E1ACBEE0B00862B9E /* DDLFormSubmitFormInteractor.swift in Sources */,
 				0BFE283B1D87E13300261A66 /* LRScreenscommentService_v70.m in Sources */,
 				0BF917A11D76BE6900C86C85 /* CommentAddViewModel.swift in Sources */,
+				0B3699E91E4C929900B82F81 /* LoginCookieInteractor.swift in Sources */,
 				881E622E1ACBFC3400862B9E /* SignUpView_default.swift in Sources */,
 				884F926A1D58D7D3002EE6B3 /* BaseListCollectionView.swift in Sources */,
 				0B5B5E871D5869DB0007D4B1 /* ImageGalleryScreenlet.swift in Sources */,
@@ -2875,6 +2889,7 @@
 				8837FA7A1CAEF6AE00DCB1B4 /* WebContentDisplayScreenlet.swift in Sources */,
 				889125A91D5479E6006AFA08 /* DeleteRatingInteractor.swift in Sources */,
 				881E61851ACBEE0B00862B9E /* DDLFormTableView.swift in Sources */,
+				0BF8CFAA1E51A7B6009B1581 /* LRCookieBlockCallback.swift in Sources */,
 				0BBEDA1A1D5B22FF00F8CB31 /* ImageGallerySlideshowCell.swift in Sources */,
 				881E617F1ACBEE0B00862B9E /* DDLFormUploadDocumentInteractor.swift in Sources */,
 				881E623A1ACBFC3400862B9E /* DDLFieldDocumentlibraryTableCell_default.swift in Sources */,
@@ -3015,6 +3030,7 @@
 				88CA80641B25D6EA004C1D59 /* BasicAuthBased.swift in Sources */,
 				88B844831C73D81D007A447D /* GetUserByScreenNameLiferayConnectors.swift in Sources */,
 				88CA805E1B25AF48004C1D59 /* LoginOAuthInteractor.swift in Sources */,
+				57CFF6081E5A498000CB808E /* LoginCookieInteractor.swift in Sources */,
 				88CA80751B25F868004C1D59 /* OAuthCredentialsStoreKeyChain.swift in Sources */,
 				88CA91B91B8DE3AD000B92F2 /* UserPortraitDefaultProgressPresenter.swift in Sources */,
 				88B844771C73D81D007A447D /* GetUserBaseLiferayConnector.swift in Sources */,
@@ -3041,6 +3057,7 @@
 				0B21802B1D6C506D00A23690 /* DDMXSDParser.swift in Sources */,
 				88B844A81C73D888007A447D /* LoginByEmailLiferayConnectors.swift in Sources */,
 				881E61A81ACBF97000862B9E /* uBDD.swift in Sources */,
+				57CFF6071E5A495D00CB808E /* CookieCredentialsStoreKeyChain.swift in Sources */,
 				0B5B5EBB1D5871900007D4B1 /* BaseListCollectionView.swift in Sources */,
 				88B844B91C73D8A3007A447D /* UpdateCurrentUserLiferayConnector.swift in Sources */,
 				88AF68391CBFF58700097014 /* WebContentListPageLoadInteractor.swift in Sources */,
@@ -3059,6 +3076,7 @@
 				88B844991C73D856007A447D /* ForgotPasswordScreenNameLiferayConnectors.swift in Sources */,
 				88B844431C73D6C0007A447D /* ServerWriteConnectorInteractor.swift in Sources */,
 				88B844B71C73D8A3007A447D /* SignUpLiferayConnector.swift in Sources */,
+				57CFF6061E5A495700CB808E /* LRCookieBlockCallback.swift in Sources */,
 				0B2180301D6C507B00A23690 /* DDMFieldDate.swift in Sources */,
 				0B2180291D6C506800A23690 /* DDMStructure.swift in Sources */,
 				881E62941ACBFEFC00862B9E /* BaseListPageLoadInteractor.swift in Sources */,
@@ -3361,7 +3379,7 @@
 		};
 		8892C68F1ACB2E3300192232 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5DF10AF9D092F7909E1B280F /* Pods-LiferayScreens.debug.xcconfig */;
+			baseConfigurationReference = A8B45C06052D105C65EF5C83 /* Pods-Screens-LiferayScreens.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -3382,7 +3400,7 @@
 		};
 		8892C6901ACB2E3300192232 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFBDCB107D988C626455115F /* Pods-LiferayScreens.release.xcconfig */;
+			baseConfigurationReference = A6822BE408CFC178464795BE /* Pods-Screens-LiferayScreens.release.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -3402,7 +3420,7 @@
 		};
 		8892C6921ACB2E3300192232 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 306D2AAEC9CF124C93214432 /* Pods-LiferayScreensTests.debug.xcconfig */;
+			baseConfigurationReference = ADC21DB5DD46A1A28344B494 /* Pods-Screens-LiferayScreensTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3421,7 +3439,7 @@
 		};
 		8892C6931ACB2E3300192232 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 626FA988876E81DB94DEC6D2 /* Pods-LiferayScreensTests.release.xcconfig */;
+			baseConfigurationReference = AD76E36E85BE8E49BD3D8E53 /* Pods-Screens-LiferayScreensTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Tests/Info.plist;

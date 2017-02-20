@@ -55,6 +55,8 @@ import Foundation
 			return BasicCredentialsStoreKeyChain()
 		case .oAuth:
 			return OAuthCredentialsStoreKeyChain()
+		case .cookie:
+			return CookieCredentialsStoreKeyChain()
 		}
 	}
 

@@ -37,7 +37,15 @@ open class HttpConnector: ServerConnector {
 
 		let requestSemaphore = DispatchSemaphore(value: 0)
 
-		session.dataTask(with: self.url, completionHandler:
+		let urlRequest = NSMutableURLRequest(url: self.url)
+
+		if let auth
+			= SessionContext.currentContext?.session.authentication as? LRCookieAuthentication {
+
+			auth.authenticate(urlRequest)
+		}
+
+		session.dataTask(with: urlRequest as URLRequest, completionHandler:
 		{ (data, response, error) -> Void in
 			if let error = error {
 				self.lastError = error as NSError?

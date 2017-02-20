@@ -11,37 +11,23 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-import UIKit
 
+import Foundation
 
-@objc public enum AuthType: Int {
+@objc public class LRCookieBlockCallback : NSObject, LRCookieCallback {
 
-	case basic = 1
-	case oAuth = 2
-	case cookie = 3
-
-}
-
-public func StringFromAuthType(_ authType: AuthType) -> String {
-	switch authType {
-	case .basic:
-		return "basic"
-	case .oAuth:
-		return "oauth"
-	case .cookie:
-		return "cookie"
+	public func onSuccess(_ session: LRSession!) {
+		callback(session, nil)
 	}
-}
 
-public func AuthTypeFromString(_ str: String) -> AuthType? {
-	switch str.lowercased() {
-	case "basic":
-		return .basic
-	case "oauth":
-		return .oAuth
-	case "cookie":
-		return .cookie
-	default:
-		return nil
+	public func onFailure(_ error: Error!) {
+		callback(nil, error)
 	}
+
+	let callback: (LRSession?, Error?) -> Void
+
+	init(callback: @escaping (LRSession?, Error?) -> Void) {
+		self.callback = callback
+	}
+	
 }

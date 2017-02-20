@@ -135,6 +135,43 @@ import Foundation
 		return session!
 	}
 
+	@discardableResult
+	open class func loginWithCookie(
+		authentication: LRCookieAuthentication,
+		userAttributes: [String:AnyObject]) -> LRSession {
+
+		let session = LRSession(
+			server: LiferayServerContext.server,
+			authentication: authentication)
+
+		let store = LiferayServerContext.factory.createCredentialsStore(AuthType.cookie)
+
+		SessionContext.currentContext =
+			LiferayServerContext.factory.createSessionContext(
+				session: session!,
+				attributes: userAttributes,
+				store: store)
+
+		return session!
+	}
+
+	open class func reloadCookieAuth(session: LRSession? = nil, callback: LRCookieBlockCallback) {
+		var session = session
+		if session == nil {
+			session = SessionContext.currentContext?.createRequestSession()
+		}
+
+		LRCookieSignIn.signIn(with: session, callback: LRCookieBlockCallback { session, error in
+			if let session = session {
+				SessionContext.loginWithCookie(authentication: session.authentication as! LRCookieAuthentication, userAttributes: [:])
+				callback.callback(session, nil)
+			}
+			else {
+				callback.callback(nil, error)
+			}
+		})
+	}
+
 	open func createRequestSession() -> LRSession {
 		return LRSession(session: session)
 	}
@@ -220,6 +257,9 @@ import Foundation
 	}
 
 	open class func logout() {
+		if let _ = SessionContext.currentContext?.session.authentication as? LRCookieAuthentication {
+			HTTPCookieStorage.shared.removeCookies(since: .distantPast)
+		}
 		SessionContext.currentContext = nil
 	}
 

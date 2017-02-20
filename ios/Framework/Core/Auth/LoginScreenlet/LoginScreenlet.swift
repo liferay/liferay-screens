@@ -68,17 +68,18 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 	@IBInspectable open var companyId: Int64 = 0
 
-	@IBInspectable open var OAuthConsumerKey: String = "" {
+	@IBInspectable open var OAuthConsumerKey: String = ""
+	
+	@IBInspectable open var OAuthConsumerSecret: String = ""
+	
+	@IBInspectable open var loginMode: String = "login" {
 		didSet {
+			authType = AuthTypeFromString(loginMode) ?? .basic
 			copyAuthType()
 		}
 	}
 
-	@IBInspectable open var OAuthConsumerSecret: String = "" {
-		didSet {
-			copyAuthType()
-		}
-	}
+	open var authType: AuthType = .basic
 
 	open var loginDelegate: LoginScreenletDelegate? {
 		return self.delegate as? LoginScreenletDelegate
@@ -101,14 +102,14 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 	}
 
 	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
-
-		switch name {
-		case "login-action", BaseScreenlet.DefaultAction:
+		
+		switch authType {
+		case .basic:
 			return createLoginBasicInteractor()
-		case "oauth-action":
+		case .cookie:
+			return createLoginCookieInteractor()
+		case.oAuth:
 			return createLoginOAuthInteractor()
-		default:
-			return nil
 		}
 	}
 
@@ -189,11 +190,31 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 		return interactor
 	}
 
+	fileprivate func createLoginCookieInteractor() -> LoginCookieInteractor {
+		let interactor = LoginCookieInteractor(screenlet: self, emailAddress: viewModel.userName!, password: viewModel.password!)
+
+		interactor.onSuccess = {
+			self.loginDelegate?.screenlet?(self,
+			                               onLoginResponseUserAttributes: interactor.resultUserAttributes!)
+
+			if let ctx = SessionContext.currentContext, self.saveCredentials {
+				if ctx.storeCredentials() {
+					self.loginDelegate?.screenlet?(self,
+					                               onCredentialsSavedUserAttributes: interactor.resultUserAttributes!)
+				}
+			}
+		}
+
+		interactor.onFailure = {
+			self.loginDelegate?.screenlet?(self, onLoginError: $0)
+		}
+		
+		return interactor
+	}
+
 
 	fileprivate func copyAuthType() {
-		(screenletView as? LoginViewModel)?.authType = StringFromAuthType(
-			(OAuthConsumerKey != "" && OAuthConsumerSecret != "")
-				? AuthType.oAuth : AuthType.basic)
+		(screenletView as? LoginViewModel)?.authType = StringFromAuthType(authType)
 	}
 
 }
