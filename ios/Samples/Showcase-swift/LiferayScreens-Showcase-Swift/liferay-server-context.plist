@@ -16,6 +16,8 @@
 	<string>anonymous1</string>
 	<key>assetDisplayEntryId</key>
 	<integer>20169</integer>
+	<key>assetDisplayPortletItemName</key>
+	<string>image</string>
 	<key>blogDisplayClassPK</key>
 	<string>42183</string>
 	<key>commentScreenletClassName</key>

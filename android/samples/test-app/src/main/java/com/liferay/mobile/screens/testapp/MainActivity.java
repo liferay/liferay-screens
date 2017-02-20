@@ -45,6 +45,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.relogin).setOnClickListener(this);
 		findViewById(R.id.list_comments).setOnClickListener(this);
 		findViewById(R.id.ratings).setOnClickListener(this);
+		findViewById(R.id.asset_display).setOnClickListener(this);
 		findViewById(R.id.user_display).setOnClickListener(this);
 		findViewById(R.id.image_display).setOnClickListener(this);
 		findViewById(R.id.gallery).setOnClickListener(this);
@@ -144,10 +145,15 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 			case R.id.gallery:
 				start(GalleryActivity.class);
 				break;
+			case R.id.asset_display:
+				Intent intentAsset = getIntentWithTheme(AssetDisplayActivity.class);
+				intentAsset.putExtra("portletItemName", getResources().getString(R.string.liferay_portlet_item_name));
+				DefaultAnimation.startActivityWithAnimation(this, intentAsset);
+				break;
 			case R.id.user_display:
-				Intent intent = getIntentWithTheme(AssetDisplayActivity.class);
-				intent.putExtra("entryId", Long.valueOf(getResources().getString(R.string.liferay_user_entryId)));
-				DefaultAnimation.startActivityWithAnimation(this, intent);
+				Intent intentUser = getIntentWithTheme(AssetDisplayActivity.class);
+				intentUser.putExtra("entryId", Long.valueOf(getResources().getString(R.string.liferay_user_entryId)));
+				DefaultAnimation.startActivityWithAnimation(this, intentUser);
 				break;
 			case R.id.image_display:
 				start(ImageDisplayActivity.class);

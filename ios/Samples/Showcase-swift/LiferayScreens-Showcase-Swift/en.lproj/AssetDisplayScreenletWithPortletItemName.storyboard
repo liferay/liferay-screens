@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Sva-6O-FT0">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Asset Display With Portlet Item Name View Controller-->
+        <scene sceneID="9PS-4O-eUk">
+            <objects>
+                <viewController id="Sva-6O-FT0" customClass="AssetDisplayWithPortletItemNameViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ND3-JA-qZF"/>
+                        <viewControllerLayoutGuide type="bottom" id="kdA-Zb-ZyD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9Os-dO-qY7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="11N-Fi-fFz" userLabel="Screenlet" customClass="AssetDisplayScreenlet" customModule="LiferayScreens">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="11N-Fi-fFz" secondAttribute="trailing" id="3S2-oa-upR"/>
+                            <constraint firstItem="kdA-Zb-ZyD" firstAttribute="top" secondItem="11N-Fi-fFz" secondAttribute="bottom" id="Iqc-xQ-GBv"/>
+                            <constraint firstItem="11N-Fi-fFz" firstAttribute="top" secondItem="9Os-dO-qY7" secondAttribute="top" id="a3i-Lh-fMT"/>
+                            <constraint firstItem="11N-Fi-fFz" firstAttribute="leading" secondItem="9Os-dO-qY7" secondAttribute="leading" id="p1c-ga-zig"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="screenlet" destination="11N-Fi-fFz" id="uuJ-YN-PM2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OPL-gV-cqU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-180" y="155.17241379310346"/>
+        </scene>
+    </scenes>
+</document>

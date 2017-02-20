@@ -90,6 +90,7 @@
 		0B2C41661D5A3CF400764326 /* LRScreensddlrecordService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B2C41641D5A3CF400764326 /* LRScreensddlrecordService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B2C41671D5A3CF400764326 /* LRScreensddlrecordService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C41651D5A3CF400764326 /* LRScreensddlrecordService_v62.m */; };
 		0B3699E91E4C929900B82F81 /* LoginCookieInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3699E81E4C929900B82F81 /* LoginCookieInteractor.swift */; };
+		0B4C27521E40F83300F6B01D /* AssetLoadByPortletItemNameLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C27511E40F83300F6B01D /* AssetLoadByPortletItemNameLiferayConnector.swift */; };
 		0B5B5E571D5869BB0007D4B1 /* MediaSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E561D5869BB0007D4B1 /* MediaSelector.swift */; };
 		0B5B5E821D5869DB0007D4B1 /* ImageGalleryDeleteConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E751D5869DB0007D4B1 /* ImageGalleryDeleteConnector.swift */; };
 		0B5B5E831D5869DB0007D4B1 /* ImageGalleryPageLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E761D5869DB0007D4B1 /* ImageGalleryPageLiferayConnector.swift */; };
@@ -635,6 +636,7 @@
 		0B2C41641D5A3CF400764326 /* LRScreensddlrecordService_v62.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensddlrecordService_v62.h; sourceTree = "<group>"; };
 		0B2C41651D5A3CF400764326 /* LRScreensddlrecordService_v62.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensddlrecordService_v62.m; sourceTree = "<group>"; };
 		0B3699E81E4C929900B82F81 /* LoginCookieInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCookieInteractor.swift; sourceTree = "<group>"; };
+		0B4C27511E40F83300F6B01D /* AssetLoadByPortletItemNameLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetLoadByPortletItemNameLiferayConnector.swift; sourceTree = "<group>"; };
 		0B5B5E541D5868B80007D4B1 /* BaseListCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListCollectionView.swift; sourceTree = "<group>"; };
 		0B5B5E561D5869BB0007D4B1 /* MediaSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaSelector.swift; sourceTree = "<group>"; };
 		0B5B5E751D5869DB0007D4B1 /* ImageGalleryDeleteConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryDeleteConnector.swift; sourceTree = "<group>"; };
@@ -1076,6 +1078,7 @@
 			children = (
 				0B217FAA1D6C4E6F00A23690 /* AssetLoadByClassPKLiferayConnector.swift */,
 				0B217FAB1D6C4E6F00A23690 /* AssetLoadByEntryIdLiferayConnector.swift */,
+				0B4C27511E40F83300F6B01D /* AssetLoadByPortletItemNameLiferayConnector.swift */,
 			);
 			path = Connectors;
 			sourceTree = "<group>";
@@ -2778,6 +2781,7 @@
 				881E62361ACBFC3400862B9E /* DDLFieldDateTableCell_default.swift in Sources */,
 				889125C81D549757006AFA08 /* RatingView_default-thumbs.swift in Sources */,
 				0B6463791D66F143007F3289 /* ImageUploadDetailView_default.swift in Sources */,
+				0B4C27521E40F83300F6B01D /* AssetLoadByPortletItemNameLiferayConnector.swift in Sources */,
 				0BBEDA1C1D5B22FF00F8CB31 /* ImageGalleryView_default-slideshow.swift in Sources */,
 				888DF5B11ACC9FC200EB7DA1 /* LoginScreenlet.swift in Sources */,
 				0B2C41671D5A3CF400764326 /* LRScreensddlrecordService_v62.m in Sources */,

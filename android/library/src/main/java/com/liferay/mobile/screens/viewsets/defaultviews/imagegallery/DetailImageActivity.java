@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.context.PicassoScreens;
 import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
 import com.squareup.picasso.Picasso;
 
@@ -27,7 +28,7 @@ public class DetailImageActivity extends AppCompatActivity {
 			ImageEntry imageEntry = (ImageEntry) intent.getExtras().get(GALLERY_SCREENLET_IMAGE_DETAILED);
 
 			ImageView detailedImageView = (ImageView) findViewById(R.id.detailed_image);
-			Picasso.with(this).load(imageEntry.getImageUrl()).into(detailedImageView);
+			PicassoScreens.load(imageEntry.getImageUrl()).into(detailedImageView);
 		}
 	}
 }

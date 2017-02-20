@@ -1,5 +1,7 @@
 package com.liferay.mobile.screens.base.interactor;
 
+import com.liferay.mobile.android.auth.CookieSignIn;
+import com.liferay.mobile.android.auth.basic.CookieAuthentication;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 import com.liferay.mobile.screens.cache.executor.Executor;
@@ -14,6 +16,7 @@ import java.lang.reflect.ParameterizedType;
 public abstract class BaseInteractor<L, E extends BasicEvent> implements Interactor<L> {
 
 	protected L listener;
+	protected boolean retried;
 	private int targetScreenletId;
 	private String actionName;
 
@@ -25,17 +28,35 @@ public abstract class BaseInteractor<L, E extends BasicEvent> implements Interac
 		Executor.execute(new Runnable() {
 			@Override
 			public void run() {
-				try {
-					E event = execute(args);
-					if (event != null) {
-						decorateBaseEvent(event);
-						EventBusUtil.post(event);
-					}
-				} catch (Exception e) {
-					createErrorEvent(e);
-				}
+				doInBackground(args);
 			}
 		});
+	}
+
+	protected void doInBackground(Object... args) {
+		try {
+			E event = execute(args);
+			if (event != null) {
+				decorateBaseEvent(event);
+				EventBusUtil.post(event);
+			}
+		} catch (Exception e) {
+			if(!retried && isCookieSessionAndAuthenticationError(e)) {
+				retried = true;
+				try {
+					Session session = CookieSignIn.signIn(getSession());
+					SessionContext.createCookieSession(session);
+				}
+				catch (Exception ex) {
+					createErrorEvent(ex);
+					return;
+				}
+				doInBackground(args);
+			}
+			else {
+				createErrorEvent(e);
+			}
+		}
 	}
 
 	protected void createErrorEvent(Exception e) {
@@ -96,6 +117,11 @@ public abstract class BaseInteractor<L, E extends BasicEvent> implements Interac
 	protected void decorateBaseEvent(BasicEvent event) {
 		event.setTargetScreenletId(getTargetScreenletId());
 		event.setActionName(getActionName());
+	}
+
+	protected boolean isCookieSessionAndAuthenticationError(Exception e) {
+		return e.getMessage().contains("Response code: 403")
+			&& getSession().getAuthentication() instanceof CookieAuthentication;
 	}
 
 	protected Session getSession() {

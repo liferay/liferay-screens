@@ -16,8 +16,8 @@ import UIKit
 class HomeScreenletsViewController: UITableViewController {
 
 	//An storyboard that matches these names must be created
-	fileprivate let data: [Int: [String]] = [
-		0: ["Assets", "AssetListScreenlet", "AssetDisplayScreenlet"],
+	private let data: [Int: [String]] = [
+		0: ["Assets", "AssetListScreenlet", "AssetDisplayScreenlet", "AssetDisplayScreenletWithPortletItemName"],
 		1: [NSLocalizedString("comment-screenlets", comment: "Comments"), "CommentListScreenlet", "CommentDisplayScreenlet", "CommentAddScreenlet"],
 		2: ["DDL", "DDLListScreenlet", "DDLFormScreenlet"],
 		3: [NSLocalizedString("files-screenlets", comment: "Files"), "AudioDisplayScreenlet", "ImageDisplayScreenlet", "PdfDisplayScreenlet",

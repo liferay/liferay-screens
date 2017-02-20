@@ -11,4 +11,6 @@ public interface AbstractFactory {
 	BasicCredentialsStorageSharedPreferences getBasicCredentialsStorageSharedPreferences();
 
 	CredentialsStorage getOAuthCredentialsStorageSharedPreferences();
+
+	CredentialsStorage getCookieCredentialsStorageSharedPreferences();
 }
