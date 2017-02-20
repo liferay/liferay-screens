@@ -395,6 +395,16 @@ open class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 		print("Unsupported connector in Liferay 6.2: RatingLoadByClassPKLiferayConnector")
 		return nil
 	}
+
+	open func createAssetLoadByClassPKConnector(_ className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: AssetLoadByClassPKLiferayConnector")
+		return nil
+	}
+
+	public func createAssetLoadByPortletItemNameConnector(portletItemName: String) -> AssetLoadByPortletItemNameLiferayConnector? {
+		print("Unsupported connector in Liferay 6.2: AssetLoadByPortletItemNameLiferayConnector")
+		return nil
+	}
 	
 	open func createRatingUpdateConnector(
 			classPK: Int64,
