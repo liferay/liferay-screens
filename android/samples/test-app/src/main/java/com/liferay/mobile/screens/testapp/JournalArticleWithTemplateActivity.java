@@ -37,7 +37,7 @@ public class JournalArticleWithTemplateActivity extends ThemeActivity implements
 	}
 
 	@Override
-	public boolean onWebContentClicked(WebView.HitTestResult result) {
+	public boolean onUrlClicked(String url) {
 		return true;
 	}
 

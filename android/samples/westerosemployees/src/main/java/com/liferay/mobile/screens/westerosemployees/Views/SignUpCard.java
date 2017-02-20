@@ -42,7 +42,7 @@ public class SignUpCard extends Card implements View.OnClickListener, WebContent
 	}
 
 	@Override
-	public boolean onWebContentClicked(WebView.HitTestResult result) {
+	public boolean onUrlClicked(String url) {
 		return true;
 	}
 

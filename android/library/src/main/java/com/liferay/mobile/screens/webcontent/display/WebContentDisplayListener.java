@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.webcontent.display;
 
 import android.view.MotionEvent;
 import android.view.View;
-import android.webkit.WebView;
 import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import com.liferay.mobile.screens.ddl.model.DDMStructure;
 import com.liferay.mobile.screens.webcontent.WebContent;
@@ -38,12 +37,14 @@ public interface WebContentDisplayListener extends BaseCacheListener {
 	WebContent onWebContentReceived(WebContent html);
 
 	/**
-	 * Called when something is clicked in the WebContent.
+	 * Called when an url is clicked in the browser, return true to replace the default behaviour, false to allow the
+	 * browser to load the url
 	 */
-	boolean onWebContentClicked(WebView.HitTestResult result);
+	boolean onUrlClicked(String url);
 
 	/**
-	 * Called when something is touched in the WebContent.
+	 * Called when something is touched in the WebContent, return true to replace the default behaviour,
+	 * false to allow the browser to keep processing the event
 	 */
 	boolean onWebContentTouched(View view, MotionEvent event);
 }

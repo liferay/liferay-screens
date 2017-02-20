@@ -82,8 +82,8 @@ public class WebContentDisplayScreenlet
 	}
 
 	@Override
-	public boolean onWebContentClicked(WebView.HitTestResult result) {
-		return listener != null && listener.onWebContentClicked(result);
+	public boolean onUrlClicked(String url) {
+		return listener != null && listener.onUrlClicked(url);
 	}
 
 	@Override
