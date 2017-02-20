@@ -142,7 +142,7 @@ public class WebContentDisplayView extends FrameLayout
 
 		LiferayLogger.i("Open in browser: " + (openUrl ? "Yes" : "No"));
 
-		return false;
+		return !openUrl;
 	}
 
 	@Override
