@@ -45,9 +45,13 @@ open class ImageDisplayScreenlet: FileDisplayScreenlet {
 	//MARK: FileDisplayScreenlet
 
 	override open class var supportedMimeTypes: [String] {
-		return ["image/png", "image/jpg", "image/jpeg", "image/gif"]
-	}
 
+		let defaultMimeTypes = ["image/png", "image/jpeg", "image/gif"]
+		let mimeTypes = LiferayServerContext.stringPropertyForKey("imageDisplayMimeType")
+
+		return (mimeTypes.isEmpty) ? defaultMimeTypes : mimeTypes.characters.split(separator: ",")
+			.map(String.init)
+	}
 
 	//MARK: BaseScreenlet
 

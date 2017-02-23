@@ -16,8 +16,15 @@ import Foundation
 
 open class AudioDisplayScreenlet: FileDisplayScreenlet {
 
+	//MARK: FileDisplayScreenlet
+
 	override open class var supportedMimeTypes: [String] {
-		return ["audio/mpeg", "audio/mpeg3", "audio/wav"]
+
+		let defaultMimeTypes = ["audio/mpeg", "audio/mpeg3", "audio/wav"]
+		let mimeTypes = LiferayServerContext.stringPropertyForKey("audioDisplayMimeType")
+
+		return (mimeTypes.isEmpty) ? defaultMimeTypes : mimeTypes.characters.split(separator: ",")
+			.map(String.init)
 	}
 
 }
