@@ -56,5 +56,11 @@
 	<integer>42184</integer>
 	<key>webContentDisplayArticleId</key>
 	<string>41983</string>
+	<key>imageDisplayMimeType</key>
+	<string>image/jpeg</string>
+	<key>videoDisplayMimeType</key>
+	<string>video/mp4,video/3gp,video/quicktime</string>
+	<key>audioDisplayMimeType</key>
+	<string>audio/mpeg,audio/mpeg3,audio/wav</string>
 </dict>
 </plist>
