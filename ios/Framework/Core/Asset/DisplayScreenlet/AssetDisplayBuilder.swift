@@ -19,16 +19,16 @@ import UIKit
 	open class func createScreenlet(_ frame: CGRect, asset: Asset, themeName: String? = nil)
 			-> BaseScreenlet? {
 
-		if asset.isAnyMimeType(ImageDisplayScreenlet.supportedMimeTypes) {
+		if asset.isAnyMimeType(ImageDisplayScreenlet().supportedMimeTypes) {
 			return ImageDisplayScreenlet(frame: frame, themeName: themeName)
 		}
-		else if asset.isAnyMimeType(VideoDisplayScreenlet.supportedMimeTypes) {
+		else if asset.isAnyMimeType(VideoDisplayScreenlet().supportedMimeTypes) {
 			return VideoDisplayScreenlet(frame: frame, themeName: themeName)
 		}
-		else if asset.isAnyMimeType(AudioDisplayScreenlet.supportedMimeTypes) {
+		else if asset.isAnyMimeType(AudioDisplayScreenlet().supportedMimeTypes) {
 			return AudioDisplayScreenlet(frame: frame, themeName: themeName)
 		}
-		else if asset.isAnyMimeType(PdfDisplayScreenlet.supportedMimeTypes) {
+		else if asset.isAnyMimeType(PdfDisplayScreenlet().supportedMimeTypes) {
 			return PdfDisplayScreenlet(frame: frame, themeName: themeName)
 		}
 		else if asset.mimeType == "text/html" {
