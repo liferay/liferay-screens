@@ -51,7 +51,7 @@ open class FileDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-	open class var supportedMimeTypes: [String] {
+	open var supportedMimeTypes: [String] {
 		return []
 	}
 
@@ -121,7 +121,8 @@ open class FileDisplayScreenlet: BaseScreenlet {
 		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .remoteFirst
 
 		interactor.onSuccess = {
-			if let resultAsset = interactor.asset {
+			if let resultAsset = interactor.asset, let assetMimeType = resultAsset.mimeType,
+					self.supportedMimeTypes.contains(assetMimeType) {
 				self.fileEntry = FileEntry(attributes: resultAsset.attributes)
 				self.load()
 			}
