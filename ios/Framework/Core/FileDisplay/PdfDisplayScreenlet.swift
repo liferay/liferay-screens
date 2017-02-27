@@ -16,8 +16,16 @@ import Foundation
 
 open class PdfDisplayScreenlet: FileDisplayScreenlet {
 
-	override open class var supportedMimeTypes: [String] {
-		return ["application/pdf"]
+	@IBInspectable open var mimeTypes: String = ""
+
+	let DefaultMimeTypes = ["application/pdf"]
+
+	//MARK: FileDisplayScreenlet
+
+	override open var supportedMimeTypes: [String] {
+
+		return (mimeTypes.isEmpty) ? DefaultMimeTypes :
+				mimeTypes.characters.split(separator: ",").map(String.init)
 	}
 
 }

@@ -16,15 +16,15 @@ import Foundation
 
 open class VideoDisplayScreenlet: FileDisplayScreenlet {
 
+	@IBInspectable open var mimeTypes: String = ""
+
+	let DefaultMimeTypes = ["video/mp4", "video/3gp", "video/quicktime"]
 
 	//MARK: FileDisplayScreenlet
 
-	override open class var supportedMimeTypes: [String] {
+	override open var supportedMimeTypes: [String] {
 
-		let defaultMimeTypes = ["video/mp4", "video/3gp", "video/quicktime"]
-		let mimeTypes = LiferayServerContext.stringPropertyForKey("videoDisplayMimeType")
-
-		return (mimeTypes.isEmpty) ? defaultMimeTypes : mimeTypes.characters.split(separator: ",")
+		return (mimeTypes.isEmpty) ? DefaultMimeTypes : mimeTypes.characters.split(separator: ",")
 			.map(String.init)
 	}
 
