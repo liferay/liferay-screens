@@ -28,4 +28,12 @@ class ImageDisplayViewController: UIViewController, FileDisplayScreenletDelegate
 			screenlet?.classPK = LiferayServerContext.longPropertyForKey("imageDisplayClassPK")
 		}
 	}
+
+	func screenlet(_ screenlet: FileDisplayScreenlet, onFileAssetError error: NSError) {
+		LiferayLogger.logDelegateMessage(args: error)
+	}
+
+	func screenlet(_ screenlet: FileDisplayScreenlet, onFileAssetResponse url: URL) {
+		LiferayLogger.logDelegateMessage(args: url as AnyObject?)
+	}
 }
