@@ -121,8 +121,17 @@ open class FileDisplayScreenlet: BaseScreenlet {
 		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .remoteFirst
 
 		interactor.onSuccess = {
-			if let resultAsset = interactor.asset, let assetMimeType = resultAsset.mimeType,
-					self.supportedMimeTypes.contains(assetMimeType) {
+			if let resultAsset = interactor.asset {
+
+				guard let assetMimeType = resultAsset.mimeType,
+						self.supportedMimeTypes.contains(assetMimeType) else {
+
+						self.fileDisplayDelegate?.screenlet?(self,
+						        onFileAssetError: NSError.errorWithCause(.invalidServerResponse,
+						                message: "Asset mimeType is not supported."))
+						return
+				}
+
 				self.fileEntry = FileEntry(attributes: resultAsset.attributes)
 				self.load()
 			}
