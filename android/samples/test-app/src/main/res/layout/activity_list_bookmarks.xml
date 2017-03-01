@@ -16,7 +16,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		app:cachePolicy="REMOTE_FIRST"
-		app:comparator="com.liferay.bookmarks.util.comparator.EntryURLComparator"
+		app:obcClassName="com.liferay.bookmarks.util.comparator.EntryURLComparator"
 		app:folderId="@string/liferay_bookmark_folder"
 		app:layoutId="@layout/list_bookmarks"
 		/>
