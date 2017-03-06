@@ -75,13 +75,6 @@ open class HttpDownloadConnector: ServerConnector {
 		_ = requestSemaphore.wait(timeout: .distantFuture)
 	}
 
-	override open func createSession() -> LRSession? {
-
-		// dummy session: won't be used
-		let port = (url.port == nil) ? "" : ":\(url.port!)"
-		return LRSession(server: "http://\(url.host!)\(port)")
-	}
-
 
 	//MARK: Private methods
 
