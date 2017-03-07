@@ -256,11 +256,20 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		let chain = ServerConnectorChain(head: loadUserCon)
 
 		chain.onNextStep = { (c, seq) -> ServerConnector? in
-			guard let loadUserCon = c as? GetUserBaseLiferayConnector else {
+			guard let loadUserCon = c as? GetUserBaseLiferayConnector,
+				let userAttrs = loadUserCon.resultUserAttributes else {
 				return nil
 			}
 
-			return self.createConnectorFor(attributes: loadUserCon.resultUserAttributes)
+			self.resultUser = User(attributes: userAttrs)
+
+			// If the user has portrait image (portraitId != 0) continue the chain, 
+			// otherwise stop the chain
+			if self.userHasPortrait(userAttrs) {
+				return self.createConnectorFor(attributes: userAttrs)
+			}
+
+			return nil
 		}
 
 		return chain
@@ -273,8 +282,6 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 				let portraitId = portraitEntry?.int64Value,
 				let uuid = attributes["uuid"] as? String,
 				let userId = userEntry?.int64Value {
-
-			resultUserId = userId
 
 			return createConnectorFor(
 				portraitId: portraitId,
@@ -296,6 +303,13 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		return nil
 	}
 
+	open func userHasPortrait(_ userAttrs: [String : AnyObject]?) -> Bool {
+		if let portraitId = userAttrs?["portraitId"]?.int64Value, portraitId == 0 {
+			return false
+		}
+
+		return true
+	}
 
 	open func selectUserAttrsToSave(attrs: [String : AnyObject]) -> [String : AnyObject] {
 		return attrs
