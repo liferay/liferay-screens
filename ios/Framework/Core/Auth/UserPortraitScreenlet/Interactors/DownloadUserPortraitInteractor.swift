@@ -43,16 +43,16 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		var cacheAttributes: [String:AnyObject] {
 			switch self {
 			case .attributes(let portraitId, _, _):
-				return ["portraitId": NSNumber(value: portraitId as Int64)]
+				return ["portraitId": NSNumber(value: portraitId)]
 			case .userId(let userId):
-				return ["userId": NSNumber(value: userId as Int64)]
+				return ["userId": NSNumber(value: userId)]
 			case .emailAddress(let companyId, let emailAddress):
 				return [
-					"companyId": NSNumber(value: companyId as Int64),
+					"companyId": NSNumber(value: companyId),
 					"emailAddress": emailAddress as AnyObject]
 			case .screenName(let companyId, let screenName):
 				return [
-					"companyId": NSNumber(value: companyId as Int64),
+					"companyId": NSNumber(value: companyId),
 					"screenName": screenName as AnyObject]
 			}
 		}
