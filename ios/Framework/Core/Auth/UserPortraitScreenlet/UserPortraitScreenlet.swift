@@ -122,10 +122,13 @@ open class UserPortraitScreenlet: BaseScreenlet {
 			loadInteractor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .remoteFirst
 
 			loadInteractor.onSuccess = {
-				if let imageValue = loadInteractor.resultImage {
+				if loadInteractor.userHasDefaultPortrait, let user = loadInteractor.resultUser {
+					self.viewModel.loadPlaceholder(for: user)
+				}
+				else if let imageValue = loadInteractor.resultImage {
 					let finalImage = self.userPortraitDelegate?.screenlet?(self, onUserPortraitResponseImage: imageValue)
 
-					self.loadedUserId = loadInteractor.resultUserId ?? self.loadedUserId
+					self.loadedUserId = loadInteractor.resultUser?.userId ?? self.loadedUserId
 					self.setPortraitImage(finalImage ?? imageValue)
 				}
 				else {
@@ -277,7 +280,7 @@ open class UserPortraitScreenlet: BaseScreenlet {
 
 	/// Loads the user portrait placeholder when the user portrait is empty.
 	open func loadPlaceholder() {
-		viewModel.image = nil
+		setPortraitImage(nil)
 	}
 
 
