@@ -60,7 +60,9 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 	var resultImage: UIImage?
 
-	var resultUserId: Int64?
+	var resultUser: User?
+
+	var userHasDefaultPortrait = false
 
 	fileprivate let mode: DownloadMode
 
@@ -125,6 +127,16 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		if let httpOp = toHttpConnector(c),
 				let resultData = httpOp.resultData {
 			resultImage = UIImage(data: resultData)
+			userHasDefaultPortrait = false
+		}
+		else if c.lastError == nil,
+			let getUserConnector =
+				(c as? ServerConnectorChain)?.currentConnector as? GetUserBaseLiferayConnector {
+
+			// If the current connector is not a HttpConnector and its not errored
+			// we are in the case that the user doesn't have a custom portrait
+			userHasDefaultPortrait = true
+			resultImage = nil
 		}
 	}
 
