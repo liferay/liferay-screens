@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.userportrait.view;
 
 import android.graphics.Bitmap;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
+import com.liferay.mobile.screens.context.User;
 
 /**
  * @author Jose Manuel Navarro
@@ -28,4 +29,12 @@ public interface UserPortraitViewModel extends BaseViewModel {
 	 * @param bitmap user portrait image
 	 */
 	void showFinishOperation(Bitmap bitmap);
+
+	/**
+	 * Called when the placeholder has to be shown
+	 *
+	 * @param user user information to customize the placeholder
+	 */
+	void showPlaceholder(User user);
 }
+

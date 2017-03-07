@@ -17,6 +17,7 @@ package com.liferay.mobile.screens.userportrait.interactor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
+import com.liferay.mobile.screens.context.User;
 
 /**
  * @author Javier Gamarra
@@ -41,4 +42,9 @@ public interface UserPortraitInteractorListener extends BaseCacheListener {
 	 * Called when an user portrait was chosen and it's ready for upload.
 	 */
 	void onPictureUriReceived(Uri pictureUri);
+
+	/**
+	 * Called when the user doesn't have a portrait
+	 */
+	void onUserWithoutPortrait(User user);
 }
