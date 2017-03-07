@@ -145,6 +145,16 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 				value: resultData as NSData,
 				attributes: mode.cacheAttributes)
 		}
+		else if let user = resultUser,
+			(c as? ServerConnectorChain)?.currentConnector is GetUserBaseLiferayConnector {
+
+			let userAttributesToSave = selectUserAttrsToSave(attrs: user.attributes)
+			cacheManager.setClean(
+				collection: ScreenletName(UserPortraitScreenlet.self),
+				key: "\(mode.cacheKey)",
+				value: user.attributes as NSCoding,
+				attributes: mode.cacheAttributes)
+		}
 	}
 
 	override func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> ()) {
@@ -182,7 +192,16 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 					result(nil)
 				}
 				else {
-					// cached. Skip!
+
+					// if the key registry is a dictionary (user attrs) 
+					// skip this step too
+					if let userAttrs = $0 as? [String: AnyObject] {
+						self.resultUser = User(attributes: userAttrs)
+						result($0)
+						return
+					}
+
+					// image cached. Skip!
 
 					// create a dummy HttpConnector to store the result
 					let dummyConnector = HttpConnector(url: URL(string: "http://dummy")!)
@@ -275,6 +294,11 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		}
 
 		return nil
+	}
+
+
+	open func selectUserAttrsToSave(attrs: [String : AnyObject]) -> [String : AnyObject] {
+		return attrs
 	}
 
 	fileprivate func URLForAttributes(portraitId: Int64, uuid: String, male: Bool) -> URL? {
