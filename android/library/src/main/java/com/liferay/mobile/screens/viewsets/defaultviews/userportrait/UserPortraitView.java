@@ -35,6 +35,7 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.MediaStoreSelectorDialog;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
+import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.userportrait.view.UserPortraitViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -79,6 +80,11 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 		LiferayLogger.i("portrait loaded");
 		portraitProgress.setVisibility(INVISIBLE);
 		portraitImage.setImageBitmap(transformBitmap(bitmap));
+	}
+
+	@Override
+	public void showPlaceholder(User user) {
+		setDefaultImagePlaceholder();
 	}
 
 	@Override

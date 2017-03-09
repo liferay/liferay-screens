@@ -37,6 +37,11 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 			editableScreenlet.presentingViewController = self
 		}
 	}
+	@IBOutlet weak var initialsScreenlet: UserPortraitScreenlet! {
+		didSet {
+			initialsScreenlet.themeName = "initials"
+		}
+	}
 	@IBOutlet weak var loadButton: UIButton! {
 		didSet {
 			loadButton.replaceAttributedTitle(NSLocalizedString("load-button", comment: "LOAD"), forState: .normal)
@@ -50,6 +55,7 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 			screenlet.load(userId: userId)
 			screenletWithDelegate.load(userId: userId)
 			editableScreenlet.load(userId: userId)
+			initialsScreenlet.load(userId: userId)
 		}
 		else if let text = userIdField.text, text != "" {
 			let company = LiferayServerContext.companyId

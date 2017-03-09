@@ -31,6 +31,7 @@ import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadInteractor;
 import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadEvent;
@@ -124,6 +125,12 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 	@Override
 	public void onPictureUriReceived(Uri pictureUri) {
 		performUserAction(UPLOAD_PORTRAIT, pictureUri);
+	}
+
+	@Override
+	public void onUserWithoutPortrait(User user) {
+		getViewModel().showPlaceholder(user);
+		getViewModel().showFinishOperation(LOAD_PORTRAIT);
 	}
 
 	@Override

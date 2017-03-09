@@ -35,6 +35,8 @@
 		0B54FBCA1DAD14C500E0EE0C /* DDLListScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FBC91DAD14C500E0EE0C /* DDLListScreenletViewController.swift */; };
 		0B54FBCD1DAD1A8200E0EE0C /* DDLFormScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FBCF1DAD1A8200E0EE0C /* DDLFormScreenlet.storyboard */; };
 		0B54FBD11DAD1A9B00E0EE0C /* DDLFormScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FBD01DAD1A9B00E0EE0C /* DDLFormScreenletViewController.swift */; };
+		0B575EE21E6F10F400A8B021 /* UserPortraitView_initials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B575EE11E6F10F400A8B021 /* UserPortraitView_initials.swift */; };
+		0B575EE41E6F12AA00A8B021 /* UserPortraitView_initials.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B575EE31E6F12AA00A8B021 /* UserPortraitView_initials.xib */; };
 		0B6147F81DABC853004FAC7C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6147F71DABC853004FAC7C /* UIImageExtension.swift */; };
 		0B6147FA1DABC86E004FAC7C /* LiferayLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6147F91DABC86E004FAC7C /* LiferayLogger.swift */; };
 		0B6147FD1DABD741004FAC7C /* SignUpScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B6147FB1DABD741004FAC7C /* SignUpScreenlet.storyboard */; };
@@ -101,6 +103,8 @@
 		0B54FBC91DAD14C500E0EE0C /* DDLListScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLListScreenletViewController.swift; sourceTree = "<group>"; };
 		0B54FBCE1DAD1A8200E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/DDLFormScreenlet.storyboard; sourceTree = "<group>"; };
 		0B54FBD01DAD1A9B00E0EE0C /* DDLFormScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLFormScreenletViewController.swift; sourceTree = "<group>"; };
+		0B575EE11E6F10F400A8B021 /* UserPortraitView_initials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitView_initials.swift; sourceTree = "<group>"; };
+		0B575EE31E6F12AA00A8B021 /* UserPortraitView_initials.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserPortraitView_initials.xib; sourceTree = "<group>"; };
 		0B6147F71DABC853004FAC7C /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		0B6147F91DABC86E004FAC7C /* LiferayLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayLogger.swift; sourceTree = "<group>"; };
 		0B6147FC1DABD741004FAC7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/SignUpScreenlet.storyboard; sourceTree = "<group>"; };
@@ -185,6 +189,8 @@
 			children = (
 				0B54FB761DACC95500E0EE0C /* UserView.swift */,
 				0B54FB781DACC97000E0EE0C /* UserView.xib */,
+				0B575EE31E6F12AA00A8B021 /* UserPortraitView_initials.xib */,
+				0B575EE11E6F10F400A8B021 /* UserPortraitView_initials.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -502,6 +508,7 @@
 				0B54FB931DACE97600E0EE0C /* CommentListScreenlet.storyboard in Resources */,
 				88CC3AFD1CC153D900E0AEB7 /* WebContentDisplayView_book.xib in Resources */,
 				88DE2A991AD3DF7600714701 /* Localizable.strings in Resources */,
+				0B575EE41E6F12AA00A8B021 /* UserPortraitView_initials.xib in Resources */,
 				0B2439A21DAD318A009DA1E4 /* ImageDisplayScreenlet.storyboard in Resources */,
 				88DE2A771AD3DDE600714701 /* Main.storyboard in Resources */,
 				0B54FB791DACC97000E0EE0C /* UserView.xib in Resources */,
@@ -625,6 +632,7 @@
 				0BCAD3CA1DD5F51B00BB89EA /* AudioDisplayViewController.swift in Sources */,
 				0B6147F81DABC853004FAC7C /* UIImageExtension.swift in Sources */,
 				88DE2A721AD3DDE600714701 /* AppDelegate.swift in Sources */,
+				0B575EE21E6F10F400A8B021 /* UserPortraitView_initials.swift in Sources */,
 				0B54FB891DACE91000E0EE0C /* CommentDisplayScreenletViewController.swift in Sources */,
 				0B54FB771DACC95500E0EE0C /* UserView.swift in Sources */,
 			);

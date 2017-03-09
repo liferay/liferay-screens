@@ -82,8 +82,12 @@ All notable changes to this project will be documented in this file.
 
 ### Refactor
 * Rename BookmarkListScreenlet comparator to obcClassName
+* Allow developers to customize placeholder with user information in UserPortraitScreenlet 
 
 ## iOS
+
+### Refactor
+* Allow developers to customize placeholder with user information in UserPortraitScreenlet
 
 ### Bugs
 * Allow developers override supported mime types in AssetDisplayScreenlet

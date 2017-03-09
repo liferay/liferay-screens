@@ -19,6 +19,7 @@
 		liferay:autoLoad="false"
 		liferay:cachePolicy="REMOTE_FIRST"
 		liferay:editable="true"
+		liferay:layoutId="@layout/userportrait_initials"
 		/>
 
 </LinearLayout>
