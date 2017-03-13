@@ -82,7 +82,10 @@ All notable changes to this project will be documented in this file.
 
 ### Refactor
 * Rename BookmarkListScreenlet comparator to obcClassName
-* Allow developers to customize placeholder with user information in UserPortraitScreenlet 
+* Allow developers to customize placeholder with user information in UserPortraitScreenlet
+
+### Bugs
+* Fix wrong UserPortraitScreenlet avatar in long lists
 
 ## iOS
 
