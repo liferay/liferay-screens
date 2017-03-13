@@ -87,6 +87,7 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 			enableEditionButtons(editable);
 			showEditionButtons();
 			userPortraitScreenlet.setUserId(commentEntry.getUserId());
+			userPortraitScreenlet.load();
 			userNameTextView.setText(commentEntry.getUserName());
 			createDateTextView.setText(commentEntry.getCreateDateAsTimeSpan());
 			editedTextView.setVisibility(
