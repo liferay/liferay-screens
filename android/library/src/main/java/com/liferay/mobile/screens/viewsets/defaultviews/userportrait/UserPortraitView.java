@@ -67,6 +67,7 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 
 	@Override
 	public void showStartOperation(String actionName) {
+		setDefaultImagePlaceholder();
 		portraitProgress.setVisibility(VISIBLE);
 	}
 
