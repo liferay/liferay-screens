@@ -16,8 +16,8 @@ ext {
 	targetSdkVersion = compileSdkVersion
 	buildToolsVersion = '25.0.1'
 
-	versionCode = 21
-	versionName = '2.1.0'
+	versionCode = 211
+	versionName = '2.1.1'
 
 	publishedGroupId = 'com.liferay.mobile'
 	libraryName = 'Liferay Screens for Android'
@@ -25,7 +25,7 @@ ext {
 
 	bintrayRepo = 'liferay-mobile'
 	bintrayOrg = ''
-	//    bintrayOrg = 'liferay'
+//	    bintrayOrg = 'liferay'
 
 	siteUrl = 'https://github.com/liferay/liferay-screens'
 	gitUrl = 'https://github.com/liferay/liferay-screens.git'
