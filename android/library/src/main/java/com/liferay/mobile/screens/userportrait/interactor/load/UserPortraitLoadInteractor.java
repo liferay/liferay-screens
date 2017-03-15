@@ -24,6 +24,7 @@ import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
+import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitInteractorListener;
 import com.liferay.mobile.screens.userportrait.interactor.UserPortraitUriBuilder;
@@ -92,21 +93,27 @@ public class UserPortraitLoadInteractor
 
 			validate(uuid);
 
-			UserPortraitUriBuilder userPortraitUriBuilder = new UserPortraitUriBuilder();
-			Uri uri =
-				userPortraitUriBuilder.getUserPortraitUri(LiferayServerContext.getServer(), true, portraitId, uuid);
-
-			Context context = LiferayScreensContext.getContext();
-			Downloader downloader = new OkHttpDownloader(userPortraitUriBuilder.getUserPortraitClient(context));
-			Picasso picasso = new Picasso.Builder(context).downloader(downloader).build();
-			RequestCreator requestCreator = picasso.load(uri);
-
-			if (CachePolicy.REMOTE_ONLY.equals(getCachePolicy())) {
-				requestCreator =
-					requestCreator.memoryPolicy(MemoryPolicy.NO_CACHE).networkPolicy(NetworkPolicy.NO_CACHE);
+			if (portraitId == 0) {
+				// User doesn't have portrait
+				getListener().onUserWithoutPortrait(new User(userAttributes));
 			}
+			else {
+				UserPortraitUriBuilder userPortraitUriBuilder = new UserPortraitUriBuilder();
+				Uri uri =
+					userPortraitUriBuilder.getUserPortraitUri(LiferayServerContext.getServer(), true, portraitId, uuid);
 
-			requestCreator.into(this);
+				Context context = LiferayScreensContext.getContext();
+				Downloader downloader = new OkHttpDownloader(userPortraitUriBuilder.getUserPortraitClient(context));
+				Picasso picasso = new Picasso.Builder(context).downloader(downloader).build();
+				RequestCreator requestCreator = picasso.load(uri);
+
+				if (CachePolicy.REMOTE_ONLY.equals(getCachePolicy())) {
+					requestCreator =
+						requestCreator.memoryPolicy(MemoryPolicy.NO_CACHE).networkPolicy(NetworkPolicy.NO_CACHE);
+				}
+
+				requestCreator.into(this);
+			}
 		} catch (JSONException ex) {
 			event.setException(ex);
 			onFailure(event);

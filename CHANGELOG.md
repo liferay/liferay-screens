@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# 2.1.0
+
 <!-- Possible categories for the changes: Bugs, New features, Refactor, Documentation, Samples, Deprecated, Contributions -->
 ## Android
 
@@ -72,3 +74,23 @@ All notable changes to this project will be documented in this file.
 ### Samples
 * Created Showcase-ObjectiveC
 * Added file examples into Showcase-Swift: AudioDisplayScreenlet, VideoDisplayScreenlet and PdfDisplayScreenlet
+
+
+# Develop
+
+## Android
+
+### Refactor
+* Rename BookmarkListScreenlet comparator to obcClassName
+* Allow developers to customize placeholder with user information in UserPortraitScreenlet
+
+### Bugs
+* Fix wrong UserPortraitScreenlet avatar in long lists
+
+## iOS
+
+### Refactor
+* Allow developers to customize placeholder with user information in UserPortraitScreenlet
+
+### Bugs
+* Allow developers override supported mime types in AssetDisplayScreenlet

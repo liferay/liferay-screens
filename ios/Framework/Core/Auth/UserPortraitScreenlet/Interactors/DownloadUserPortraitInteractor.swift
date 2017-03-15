@@ -43,16 +43,16 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		var cacheAttributes: [String:AnyObject] {
 			switch self {
 			case .attributes(let portraitId, _, _):
-				return ["portraitId": NSNumber(value: portraitId as Int64)]
+				return ["portraitId": NSNumber(value: portraitId)]
 			case .userId(let userId):
-				return ["userId": NSNumber(value: userId as Int64)]
+				return ["userId": NSNumber(value: userId)]
 			case .emailAddress(let companyId, let emailAddress):
 				return [
-					"companyId": NSNumber(value: companyId as Int64),
+					"companyId": NSNumber(value: companyId),
 					"emailAddress": emailAddress as AnyObject]
 			case .screenName(let companyId, let screenName):
 				return [
-					"companyId": NSNumber(value: companyId as Int64),
+					"companyId": NSNumber(value: companyId),
 					"screenName": screenName as AnyObject]
 			}
 		}
@@ -60,7 +60,9 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 	var resultImage: UIImage?
 
-	var resultUserId: Int64?
+	var resultUser: User?
+
+	var userHasDefaultPortrait = false
 
 	fileprivate let mode: DownloadMode
 
@@ -125,6 +127,16 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		if let httpOp = toHttpConnector(c),
 				let resultData = httpOp.resultData {
 			resultImage = UIImage(data: resultData)
+			userHasDefaultPortrait = false
+		}
+		else if c.lastError == nil,
+			let getUserConnector =
+				(c as? ServerConnectorChain)?.currentConnector as? GetUserBaseLiferayConnector {
+
+			// If the current connector is not a HttpConnector and its not errored
+			// we are in the case that the user doesn't have a custom portrait
+			userHasDefaultPortrait = true
+			resultImage = nil
 		}
 	}
 
@@ -143,6 +155,16 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 				collection: ScreenletName(UserPortraitScreenlet.self),
 				key: mode.cacheKey,
 				value: resultData as NSData,
+				attributes: mode.cacheAttributes)
+		}
+		else if let user = resultUser,
+			(c as? ServerConnectorChain)?.currentConnector is GetUserBaseLiferayConnector {
+
+			let userAttributesToSave = selectUserAttrsToSave(attrs: user.attributes)
+			cacheManager.setClean(
+				collection: ScreenletName(UserPortraitScreenlet.self),
+				key: "\(mode.cacheKey)",
+				value: user.attributes as NSCoding,
 				attributes: mode.cacheAttributes)
 		}
 	}
@@ -182,7 +204,16 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 					result(nil)
 				}
 				else {
-					// cached. Skip!
+
+					// if the key registry is a dictionary (user attrs) 
+					// skip this step too
+					if let userAttrs = $0 as? [String: AnyObject] {
+						self.resultUser = User(attributes: userAttrs)
+						result($0)
+						return
+					}
+
+					// image cached. Skip!
 
 					// create a dummy HttpConnector to store the result
 					let dummyConnector = HttpConnector(url: URL(string: "http://dummy")!)
@@ -237,11 +268,20 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		let chain = ServerConnectorChain(head: loadUserCon)
 
 		chain.onNextStep = { (c, seq) -> ServerConnector? in
-			guard let loadUserCon = c as? GetUserBaseLiferayConnector else {
+			guard let loadUserCon = c as? GetUserBaseLiferayConnector,
+				let userAttrs = loadUserCon.resultUserAttributes else {
 				return nil
 			}
 
-			return self.createConnectorFor(attributes: loadUserCon.resultUserAttributes)
+			self.resultUser = User(attributes: userAttrs)
+
+			// If the user has portrait image (portraitId != 0) continue the chain, 
+			// otherwise stop the chain
+			if self.userHasPortrait(userAttrs) {
+				return self.createConnectorFor(attributes: userAttrs)
+			}
+
+			return nil
 		}
 
 		return chain
@@ -254,8 +294,6 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 				let portraitId = portraitEntry?.int64Value,
 				let uuid = attributes["uuid"] as? String,
 				let userId = userEntry?.int64Value {
-
-			resultUserId = userId
 
 			return createConnectorFor(
 				portraitId: portraitId,
@@ -275,6 +313,18 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		}
 
 		return nil
+	}
+
+	open func userHasPortrait(_ userAttrs: [String : AnyObject]?) -> Bool {
+		if let portraitId = userAttrs?["portraitId"]?.int64Value, portraitId == 0 {
+			return false
+		}
+
+		return true
+	}
+
+	open func selectUserAttrsToSave(attrs: [String : AnyObject]) -> [String : AnyObject] {
+		return attrs
 	}
 
 	fileprivate func URLForAttributes(portraitId: Int64, uuid: String, male: Bool) -> URL? {

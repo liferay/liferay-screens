@@ -25,4 +25,5 @@ import UIKit
 	/// Custom border color for the user portrait.
 	var borderColor: UIColor? { get set }
 
+	func loadPlaceholder(for user: User)
 }

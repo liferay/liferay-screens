@@ -85,7 +85,7 @@ open class UserPortraitView_default: BaseScreenletView,
 				portraitImage?.image = image
 			}
 			else {
-				loadPlaceholder()
+				loadDefaultPlaceholder()
 			}
 		}
 	}
@@ -148,7 +148,7 @@ open class UserPortraitView_default: BaseScreenletView,
 
 	//MARK: Public methods
 
-	open func loadPlaceholder() {
+	open func loadDefaultPlaceholder() {
 		dispatch_main() {
 			if let placeholder = UserPortraitView_default.defaultPlaceholder {
 				self.portraitImage?.image = placeholder
@@ -161,4 +161,10 @@ open class UserPortraitView_default: BaseScreenletView,
 		}
 	}
 
+
+	/// Load the placeholder with the user information
+	///
+	open func loadPlaceholder(for user: User) {
+		loadDefaultPlaceholder()
+	}
 }

@@ -16,8 +16,16 @@ import Foundation
 
 open class AudioDisplayScreenlet: FileDisplayScreenlet {
 
-	override open class var supportedMimeTypes: [String] {
-		return ["audio/mpeg", "audio/mpeg3", "audio/wav"]
+	@IBInspectable open var mimeTypes: String = ""
+
+	let DefaultMimeTypes = ["audio/mpeg", "audio/mpeg3", "audio/wav"]
+
+	//MARK: FileDisplayScreenlet
+
+	override open var supportedMimeTypes: [String] {
+
+		return (mimeTypes.isEmpty) ? DefaultMimeTypes : mimeTypes.characters.split(separator: ",")
+			.map(String.init)
 	}
 
 }

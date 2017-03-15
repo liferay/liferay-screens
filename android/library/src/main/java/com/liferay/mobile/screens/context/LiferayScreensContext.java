@@ -54,8 +54,10 @@ public class LiferayScreensContext {
 	public static Activity getActivityFromContext(Context context) {
 		if (context instanceof Activity) {
 			return (Activity) context;
+		} else if (context instanceof ContextWrapper) {
+			return getActivityFromContext(((ContextWrapper) context).getBaseContext());
 		} else {
-			return (Activity) ((ContextWrapper) context).getBaseContext();
+			return null;
 		}
 	}
 }

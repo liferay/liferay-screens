@@ -51,7 +51,7 @@ open class FileDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-	open class var supportedMimeTypes: [String] {
+	open var supportedMimeTypes: [String] {
 		return []
 	}
 
@@ -122,6 +122,16 @@ open class FileDisplayScreenlet: BaseScreenlet {
 
 		interactor.onSuccess = {
 			if let resultAsset = interactor.asset {
+
+				guard let assetMimeType = resultAsset.mimeType,
+						self.supportedMimeTypes.contains(assetMimeType) else {
+
+						self.fileDisplayDelegate?.screenlet?(self,
+						        onFileAssetError: NSError.errorWithCause(.invalidServerResponse,
+						                message: "Asset mimeType is not supported."))
+						return
+				}
+
 				self.fileEntry = FileEntry(attributes: resultAsset.attributes)
 				self.load()
 			}

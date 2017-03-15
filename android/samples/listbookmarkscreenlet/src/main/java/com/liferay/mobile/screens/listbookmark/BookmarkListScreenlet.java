@@ -27,7 +27,6 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 public class BookmarkListScreenlet extends BaseListScreenlet<Bookmark, BookmarkListInteractor> {
 
 	private long folderId;
-	private String comparator;
 
 	public BookmarkListScreenlet(Context context) {
 		super(context);
@@ -58,7 +57,6 @@ public class BookmarkListScreenlet extends BaseListScreenlet<Bookmark, BookmarkL
 			context.getTheme().obtainStyledAttributes(attributes, R.styleable.BookmarkListScreenlet, 0, 0);
 		groupId = typedArray.getInt(R.styleable.BookmarkListScreenlet_groupId, (int) LiferayServerContext.getGroupId());
 		folderId = typedArray.getInt(R.styleable.BookmarkListScreenlet_folderId, 0);
-		comparator = typedArray.getString(R.styleable.BookmarkListScreenlet_comparator);
 		typedArray.recycle();
 
 		return super.createScreenletView(context, attributes);
@@ -69,7 +67,7 @@ public class BookmarkListScreenlet extends BaseListScreenlet<Bookmark, BookmarkL
 
 		((BookmarkListListener) getListener()).interactorCalled();
 
-		interactor.start(folderId, comparator);
+		interactor.start(folderId, obcClassName);
 	}
 
 	@Override
