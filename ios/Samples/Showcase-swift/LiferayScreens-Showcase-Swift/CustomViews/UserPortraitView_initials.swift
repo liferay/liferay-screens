@@ -22,9 +22,9 @@ class UserPortraitView_initials: UserPortraitView_default {
 		portraitImage?.image = nil
 
 		let nameInitial = String(user.firstName.characters.first!).uppercased()
-		let surnameInitial = String(user.lastName.characters.first!).uppercased()
+		let surnameInitial = user.lastName.isEmpty ? "" : String(user.lastName.characters.first!)
 
-		initalsLabel.text = "\(nameInitial)\(surnameInitial)"
+		initalsLabel.text = "\(nameInitial)\(surnameInitial.uppercased())"
 		initalsLabel.isHidden = false
 	}
 }
