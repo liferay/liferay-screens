@@ -20,7 +20,7 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 
 	//MARK: Outlets
 
-	@IBOutlet open var webView: WKWebView?
+	open var webView: WKWebView?
 
 	override open var progressMessages: [String:ProgressMessages] {
 		return [
