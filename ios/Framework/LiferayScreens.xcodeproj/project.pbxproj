@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0B1063161D49E7C9001D8DE3 /* WebContentListView_default-collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1063151D49E7C9001D8DE3 /* WebContentListView_default-collection.swift */; };
 		0B1063181D49E7DE001D8DE3 /* WebContentListView_default-collection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B1063171D49E7DE001D8DE3 /* WebContentListView_default-collection.xib */; };
+		0B147A191E78047C00EDE7B7 /* FileDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B147A181E78047C00EDE7B7 /* FileDisplayView_default.swift */; };
+		0B147A1B1E78049F00EDE7B7 /* FileDisplayView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B147A1A1E78049F00EDE7B7 /* FileDisplayView_default.xib */; };
 		0B1F30E61DA240460053424E /* UserPortrait_connector_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F30E41DA23FB40053424E /* UserPortrait_connector_Test.swift */; };
 		0B1F30E81DA240F20053424E /* tinyImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1F30E71DA240F20053424E /* tinyImage.png */; };
 		0B217FB51D6C4E6F00A23690 /* AssetDisplayBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FA61D6C4E6F00A23690 /* AssetDisplayBuilder.swift */; };
@@ -80,7 +82,7 @@
 		0B2180341D6C508200A23690 /* DDMFieldString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180031D6C4F6F00A23690 /* DDMFieldString.swift */; };
 		0B2180351D6C508200A23690 /* DDMFieldStringWithOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180041D6C4F6F00A23690 /* DDMFieldStringWithOptions.swift */; };
 		0B2180361D6C508200A23690 /* DDMFieldUntyped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180051D6C4F6F00A23690 /* DDMFieldUntyped.swift */; };
-		0B2677DE1D3D1E5700FDFC5B /* BuildFile in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
+		0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		0B2BBE731DC3670800010F30 /* default-preview-imagegallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2BBE721DC3670800010F30 /* default-preview-imagegallery@2x.png */; };
 		0B2BBE761DC3699C00010F30 /* default-list-preview-imagegallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2BBE741DC3699C00010F30 /* default-list-preview-imagegallery@2x.png */; };
 		0B2BBE771DC3699C00010F30 /* default-slideshow-preview-imagegallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2BBE751DC3699C00010F30 /* default-slideshow-preview-imagegallery@2x.png */; };
@@ -571,6 +573,8 @@
 		039C3B21F16B559B9C196029 /* Pods_Screens_LiferayScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Screens_LiferayScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B1063151D49E7C9001D8DE3 /* WebContentListView_default-collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebContentListView_default-collection.swift"; sourceTree = "<group>"; };
 		0B1063171D49E7DE001D8DE3 /* WebContentListView_default-collection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WebContentListView_default-collection.xib"; sourceTree = "<group>"; };
+		0B147A181E78047C00EDE7B7 /* FileDisplayView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDisplayView_default.swift; sourceTree = "<group>"; };
+		0B147A1A1E78049F00EDE7B7 /* FileDisplayView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileDisplayView_default.xib; sourceTree = "<group>"; };
 		0B1F30E41DA23FB40053424E /* UserPortrait_connector_Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortrait_connector_Test.swift; sourceTree = "<group>"; };
 		0B1F30E71DA240F20053424E /* tinyImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tinyImage.png; sourceTree = "<group>"; };
 		0B217FA61D6C4E6F00A23690 /* AssetDisplayBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayBuilder.swift; sourceTree = "<group>"; };
@@ -1145,6 +1149,8 @@
 				0B217FDC1D6C4E9500A23690 /* PdfDisplayView_default.xib */,
 				0B217FDD1D6C4E9500A23690 /* VideoDisplayView_default.swift */,
 				0B217FDE1D6C4E9500A23690 /* VideoDisplayView_default.xib */,
+				0B147A181E78047C00EDE7B7 /* FileDisplayView_default.swift */,
+				0B147A1A1E78049F00EDE7B7 /* FileDisplayView_default.xib */,
 			);
 			path = FileDisplay;
 			sourceTree = "<group>";
@@ -2403,7 +2409,7 @@
 				887E069B1C6A4DF800CA3807 /* LRScreensjournalarticleService_v70.h in Headers */,
 				887E06971C6A4DF800CA3807 /* LRScreensassetentryService_v70.h in Headers */,
 				88DE2AA21AD3ED6800714701 /* LiferayScreensFrameworkConfig.h in Headers */,
-				0B2677DE1D3D1E5700FDFC5B /* BuildFile in Headers */,
+				0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */,
 				887E05511C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h in Headers */,
 				0BFE283A1D87E13300261A66 /* LRScreenscommentService_v70.h in Headers */,
 			);
@@ -2561,6 +2567,7 @@
 				881E62671ACBFC3400862B9E /* default-preview-webcontentdisplay@2x.png in Resources */,
 				88019FA21B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */,
 				0BF917CD1D76BEA000C86C85 /* CommentTableViewCell_default.xib in Resources */,
+				0B147A1B1E78049F00EDE7B7 /* FileDisplayView_default.xib in Resources */,
 				880ACA8B1B0224A0007AD007 /* liferay-server-context-sample.plist in Resources */,
 				0BF917C91D76BEA000C86C85 /* CommentEditViewController_default.xib in Resources */,
 				881E625A1ACBFC3400862B9E /* default-form-gradient-top@2x.png in Resources */,
@@ -2805,6 +2812,7 @@
 				889125AA1D5479E6006AFA08 /* LoadRatingsInteractor.swift in Sources */,
 				0B5B5E861D5869DB0007D4B1 /* ImageEntryUpload.swift in Sources */,
 				0B21801F1D6C500C00A23690 /* BlogsDisplayViewModel.swift in Sources */,
+				0B147A191E78047C00EDE7B7 /* FileDisplayView_default.swift in Sources */,
 				0B2180131D6C4F6F00A23690 /* DDMFieldStringWithOptions.swift in Sources */,
 				0BF917A21D76BE6900C86C85 /* CommentAddLiferayConnector.swift in Sources */,
 				0BF917A91D76BE6900C86C85 /* CommentDeleteInteractor.swift in Sources */,
