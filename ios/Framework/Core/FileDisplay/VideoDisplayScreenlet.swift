@@ -16,15 +16,13 @@ import Foundation
 
 open class VideoDisplayScreenlet: FileDisplayScreenlet {
 
-	@IBInspectable open var mimeTypes: String = ""
-
-	let DefaultMimeTypes = ["video/mp4", "video/3gp", "video/quicktime"]
+	let DefaultVideoMimeTypes = ["video/mp4", "video/3gp", "video/quicktime"]
 
 	//MARK: FileDisplayScreenlet
 
 	override open var supportedMimeTypes: [String] {
 
-		return (mimeTypes.isEmpty) ? DefaultMimeTypes : mimeTypes.characters.split(separator: ",")
+		return (mimeTypes.isEmpty) ? DefaultVideoMimeTypes : mimeTypes.characters.split(separator: ",")
 			.map(String.init)
 	}
 

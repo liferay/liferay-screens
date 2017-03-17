@@ -40,6 +40,8 @@
 	<real>72049</real>
 	<key>pdfDisplayClassPK</key>
 	<real>42656</real>
+	<key>fileDisplayClassPK</key>
+	<real>34286</real>
 	<key>imageGalleryFolderId</key>
 	<integer>42257</integer>
 	<key>imageGalleryMimeType</key>

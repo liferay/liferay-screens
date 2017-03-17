@@ -25,8 +25,6 @@ open class ImageDisplayScreenlet: FileDisplayScreenlet {
 		}
 	}
 
-	@IBInspectable open var mimeTypes: String = ""
-
 	open var imageDisplayViewModel: ImageDisplayViewModel? {
 		return screenletView as? ImageDisplayViewModel
 	}
@@ -43,14 +41,14 @@ open class ImageDisplayScreenlet: FileDisplayScreenlet {
 		}
 	}
 
-	let DefaultMimeTypes = ["image/png", "image/jpeg", "image/gif"]
+	let DefaultImageMimeTypes = ["image/png", "image/jpeg", "image/gif"]
 
 
 	//MARK: FileDisplayScreenlet
 
 	override open var supportedMimeTypes: [String] {
 
-		return (mimeTypes.isEmpty) ? DefaultMimeTypes :
+		return (mimeTypes.isEmpty) ? DefaultImageMimeTypes :
 				mimeTypes.characters.split(separator: ",").map(String.init)
 	}
 

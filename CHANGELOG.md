@@ -15,6 +15,9 @@ All notable changes to this project will be documented in this file.
 ### Bugs
 * Fix error in UserPortrait initials view: user lastname is required in Liferay 7.0 but is not in Liferay 6.2
 
+### New Features
+* AssetDisplayScreenlet uses FileDisplayScreenlet for ppt, xls and doc files
+
 # 2.1.1
 
 ## Android

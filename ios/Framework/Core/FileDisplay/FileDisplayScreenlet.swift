@@ -51,8 +51,17 @@ open class FileDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
+	@IBInspectable open var mimeTypes: String = ""
+
+	let DefaultMimeTypes = [
+		"application/msword",
+	    "application/vnd.ms-powerpoint",
+	    "application/vnd.ms-excel"
+	]
+
 	open var supportedMimeTypes: [String] {
-		return []
+		return (mimeTypes.isEmpty) ? DefaultMimeTypes :
+			mimeTypes.characters.split(separator: ",").map(String.init)
 	}
 
 	open var fileEntry: FileEntry?
