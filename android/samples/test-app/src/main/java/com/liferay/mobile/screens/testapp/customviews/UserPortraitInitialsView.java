@@ -38,6 +38,8 @@ public class UserPortraitInitialsView extends UserPortraitView {
 	public void showPlaceholder(User user) {
 		portraitImage.setImageBitmap(null);
 
+		textView.setBackground(getResources().getDrawable(R.drawable.rounded_corner, null));
+
 		String nameInitial = user.getFirstName().substring(0, 1);
 		String surnameInitial = user.getLastName().isEmpty() ? "" : user.getLastName().substring(0, 1);
 		String fullNameUppercase = (nameInitial + surnameInitial).toUpperCase();
