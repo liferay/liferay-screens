@@ -6,12 +6,12 @@
 	android:layout_height="match_parent"
 	>
 
-	<com.liferay.mobile.screens.ddl.list.DDLListScreenlet
+	<com.liferay.mobile.screens.ddl.form.DDLFormScreenlet
+		android:id="@+id/ddl_form_screenlet"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		app:recordSetId="34106"
-		app:labelFields="Textcxeb"
-		app:obcClassName="com.liferay.dynamic.data.lists.util.comparator.DDLRecordIdComparator"
+		app:recordSetId="66223"
+		app:structureId="66219"
 		/>
 
 </RelativeLayout>
