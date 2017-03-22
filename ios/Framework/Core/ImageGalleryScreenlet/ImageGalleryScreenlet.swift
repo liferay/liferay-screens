@@ -15,14 +15,16 @@ import Foundation
 import Kingfisher
 
 
+/// The ImageGalleryScreenletDelegate protocol defines some methods that you use to manage the
+/// ImageGalleryScreenlet events. All of them are optional.
 @objc public protocol ImageGalleryScreenletDelegate : BaseScreenletDelegate {
 
 	/// Called when a page of contents is received.
 	/// Note that this method may be called more than once: one call for each page received.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - imageEntries: image gallery entries.
+	///   - screenlet: Image gallery screenlet instance.
+	///   - imageEntries: Image gallery entries.
 	@objc optional func screenlet(_ screenlet: ImageGalleryScreenlet,
 			onImageEntriesResponse imageEntries: [ImageEntry])
 
@@ -30,24 +32,24 @@ import Kingfisher
 	/// The NSError object describes the error.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - error: error while retrieving image gallery entries.
+	///   - screenlet: Image gallery screenlet instance.
+	///   - error: Error while retrieving image gallery entries.
 	@objc optional func screenlet(_ screenlet: ImageGalleryScreenlet,
 			onImageEntriesError error: NSError)
 
 	/// Called when an item in the list is selected.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - imageEntry: selected image entry.
+	///   - screenlet: Image gallery screenlet instance.
+	///   - imageEntry: Selected image entry.
 	@objc optional func screenlet(_ screenlet: ImageGalleryScreenlet,
 			onImageEntrySelected imageEntry: ImageEntry)
 
 	/// Called when an image in the list is deleted.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - imageEntry: deleted image entry.
+	///   - screenlet: Image gallery screenlet instance.
+	///   - imageEntry: Deleted image entry.
 	@objc optional func screenlet(_ screenlet: ImageGalleryScreenlet,
 			onImageEntryDeleted imageEntry: ImageEntry)
 
@@ -55,26 +57,26 @@ import Kingfisher
 	/// The NSError object describes the error.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - error: error while deleting image entry.
+	///   - screenlet: Image gallery screenlet instance.
+	///   - error: Error while deleting image entry.
 	@objc optional func screenlet(_ screenlet: ImageGalleryScreenlet,
 			onImageEntryDeleteError error: NSError)
 
 	/// Called when an image is prepared for upload.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - imageEntryUpload: image entry to be uploaded.
+	///   - screenlet: Image gallery screenlet instance.
+	///   - imageEntryUpload: Image entry to be uploaded.
 	@objc optional func screenlet(_ screenlet: ImageGalleryScreenlet,
 			onImageUploadStart imageEntryUpload: ImageEntryUpload)
 							
 	/// Called when the image upload progress changes.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - imageEntryUpload: the image entry being uploaded.
-	///   - totalBytesSent: image entry bytes sent.
-	///   - totalBytesToSend: image entry bytes to send.
+	///   - screenlet: Image gallery screenlet instance.
+	///   - imageEntryUpload: The image entry being uploaded.
+	///   - totalBytesSent: Image entry bytes sent.
+	///   - totalBytesToSend: Image entry bytes to send.
 	@objc optional func screenlet(_ screenlet: ImageGalleryScreenlet,
 			onImageUploadProgress imageEntryUpload: ImageEntryUpload,
 			totalBytesSent: UInt64,
@@ -84,16 +86,16 @@ import Kingfisher
 	/// The NSError object describes the error.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - error: error while uploading the image entry.
+	///   - screenlet: Image gallery screenlet instance.
+	///   - error: Error while uploading the image entry.
 	@objc optional func screenlet(_ screenlet: ImageGalleryScreenlet,
 			onImageUploadError error: NSError)
 
 	/// Called when the image upload finishes.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - image: uploaded image entry.
+	///   - screenlet: Image gallery screenlet instance.
+	///   - image: Uploaded image entry.
 	@objc optional func screenlet(_ screenlet: ImageGalleryScreenlet,
 			onImageUploaded image: ImageEntry)
 
@@ -103,15 +105,21 @@ import Kingfisher
 	/// This method should present the View, passed as parameter, and then return true.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - view: custom detail view to upload an image entry.
+	///   - screenlet: Image gallery screenlet instance.
+	///   - view: Custom detail view to upload an image entry.
 	/// - Returns: true
 	@objc optional func screenlet(_ screenlet: ImageGalleryScreenlet,
 			onImageUploadDetailViewCreated view: ImageUploadDetailViewBase) -> Bool
 }
 
 
+/// Image Gallery Screenlet shows a list of images from a Documents and Media folder in a Liferay 
+/// instance. You can also use Image Gallery Screenlet to upload images to and delete images from 
+/// the same folder. The Screenlet implements [fluent pagination](http://www.iosnomad.com/blog/2014/4/21/fluent-pagination) with configurable page size, and supports i18n in asset values.
 open class ImageGalleryScreenlet : BaseListScreenlet {
+
+
+	//MARK: Static properties
 
 	open static let DeleteImageAction = "delete-image-action"
 	open static let UploadImageAction = "upload-image-action"
@@ -120,14 +128,20 @@ open class ImageGalleryScreenlet : BaseListScreenlet {
 
 	//MARK: Inspectables
 
+	/// The ID of the Liferay instance’s Documents and Media repository that contains the image 
+	/// gallery.
     @IBInspectable open var repositoryId: Int64 = -1
 
+	/// The ID of the Documents and Media repository folder that contains the image gallery.
     @IBInspectable open var folderId: Int64 = -1
 
+	/// The comma-separated list of MIME types for the Screenlet to support.
 	@IBInspectable open var mimeTypes: String = ""
 
+	/// The prefix to use on uploaded image file names.
 	@IBInspectable open var filePrefix: String = "gallery-"
 
+	/// The offline mode setting. The default value is remote-first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue {
 		didSet {
 			ImageCache.screensOfflinePolicy =
@@ -135,13 +149,8 @@ open class ImageGalleryScreenlet : BaseListScreenlet {
 		}
 	}
 
-	open var uploadDetailViewName = "ImageUploadDetailView"
 
-	open let DefaultMimeTypes = ["image/png", "image/jpeg", "image/gif"]
-
-	internal var uploadsQueue = [ImageEntryUpload]()
-
-	internal var loadedOnce = false
+	//MARK: Public properties
 
 	open var imageGalleryDelegate: ImageGalleryScreenletDelegate? {
 		return delegate as? ImageGalleryScreenletDelegate
@@ -150,6 +159,17 @@ open class ImageGalleryScreenlet : BaseListScreenlet {
 	open var viewModel: ImageGalleryViewModel {
 		return screenletView as! ImageGalleryViewModel
 	}
+
+	open var uploadDetailViewName = "ImageUploadDetailView"
+
+	open let DefaultMimeTypes = ["image/png", "image/jpeg", "image/gif"]
+
+
+	//MARK: Internal properties
+
+	internal var uploadsQueue = [ImageEntryUpload]()
+
+	internal var loadedOnce = false
 
 
 	//MARK: Public methods
@@ -203,7 +223,7 @@ open class ImageGalleryScreenlet : BaseListScreenlet {
 
 	/// Shows the detail upload view to fill the image entry information.
 	///
-	/// - Parameter imageUpload: image entry to upload.
+	/// - Parameter imageUpload: Image entry to upload.
 	open func showDetailUploadView(_ imageUpload: ImageEntryUpload) {
 		let detailUploadView = createImageUploadDetailViewFromNib()
 
@@ -226,7 +246,7 @@ open class ImageGalleryScreenlet : BaseListScreenlet {
 
 	/// Call this method to delete an image entry.
 	///
-	/// - Parameter imageEntry: image entry to be deleted.
+	/// - Parameter imageEntry: Image entry to be deleted.
 	open func deleteImageEntry(_ imageEntry: ImageEntry) {
 		if offlinePolicy == CacheStrategyType.remoteOnly.rawValue ||
 				offlinePolicy == CacheStrategyType.remoteFirst.rawValue {
