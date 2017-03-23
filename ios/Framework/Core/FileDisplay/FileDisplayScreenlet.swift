@@ -21,7 +21,7 @@ import Foundation
 	/// Called when the screenlet receives the file.
 	///
 	/// - Parameters:
-	///   - screenlet: Pdf display screenlet instance.
+	///   - screenlet: File display screenlet instance.
 	///   - url: File URL.
 	@objc optional func screenlet(_ screenlet: FileDisplayScreenlet, onFileAssetResponse url: URL)
 
@@ -29,7 +29,7 @@ import Foundation
 	/// The NSError object describes the error.
 	///
 	/// - Parameters:
-	///   - screenlet: Pdf display screenlet instance.
+	///   - screenlet: File display screenlet instance.
 	///   - error: Error while retrieving the file.
 	@objc optional func screenlet(_ screenlet: FileDisplayScreenlet, onFileAssetError error: NSError)
 }
