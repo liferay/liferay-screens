@@ -14,9 +14,16 @@
 import UIKit
 import LiferayScreens
 
+
 class UserPortraitView_initials: UserPortraitView_default {
 
+
+	//MARK: Outlets
+
 	@IBOutlet weak var initalsLabel: UILabel!
+
+
+	//MARK: UserPortraitViewModel
 
 	override func loadPlaceholder(for user: User) {
 		portraitImage?.image = nil
