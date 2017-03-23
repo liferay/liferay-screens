@@ -59,6 +59,12 @@ import UIKit
 open class UserPortraitScreenlet: BaseScreenlet {
 
 
+	//MARK: Class properties
+
+	open class var LoadPortrait: String { return "load-portrait" }
+	open class var UploadPortrait: String { return "upload-portrait" }
+
+
 	//MARK: Inspectables
 
 	@IBInspectable open var borderWidth: CGFloat = 1.0 {
@@ -115,7 +121,7 @@ open class UserPortraitScreenlet: BaseScreenlet {
 		}
 
 		switch name {
-		case "load-portrait":
+		case UserPortraitScreenlet.LoadPortrait:
 			let loadInteractor = sender as! DownloadUserPortraitInteractor
 			interactor = loadInteractor
 
@@ -148,7 +154,7 @@ open class UserPortraitScreenlet: BaseScreenlet {
 				self.setPortraitImage(nil)
 			}
 
-		case "upload-portrait":
+		case UserPortraitScreenlet.UploadPortrait:
 			let image = sender as! UIImage
 			let userId: Int64
 
