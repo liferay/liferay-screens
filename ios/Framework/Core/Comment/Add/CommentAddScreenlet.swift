@@ -14,13 +14,15 @@
 import UIKit
 
 
+/// The CommentAddScreenletDelegate protocol defines some methods that you use to manage the
+/// CommentAddScreenlet events. All of them are optional.
 @objc public protocol CommentAddScreenletDelegate : BaseScreenletDelegate {
 
 	/// Called when the screenlet adds a comment.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - comment: asset's comment.
+	///   - screenlet: Comment add screenlet instance.
+	///   - comment: Asset's comment.
 	@objc optional func screenlet(_ screenlet: CommentAddScreenlet,
 			onCommentAdded comment: Comment)
 
@@ -28,16 +30,16 @@ import UIKit
 	/// The NSError object describes the error.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - error: error while adding comment.
+	///   - screenlet: Comment add screenlet instance.
+	///   - error: Error while adding comment.
 	@objc optional func screenlet(_ screenlet: CommentAddScreenlet,
 			onAddCommentError error: NSError)
 
 	/// Called when the screenlet prepares a comment for update.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - comment: asset's comment.
+	///   - screenlet: Comment add screenlet instance.
+	///   - comment: Asset's comment.
 	@objc optional func screenlet(_ screenlet: CommentAddScreenlet,
 			onCommentUpdated comment: Comment)
 
@@ -45,24 +47,34 @@ import UIKit
 	/// The NSError object describes the error.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - error: error while updating comment.
+	///   - screenlet: Comment add screenlet instance.
+	///   - error: Error while updating comment.
 	@objc optional func screenlet(_ screenlet: CommentAddScreenlet,
 			onUpdateCommentError error: NSError)
 
 }
 
 
+/// Comment Add Screenlet can add a comment to an asset in a Liferay instance.
 open class CommentAddScreenlet: BaseScreenlet {
 
 
 	//MARK: Inspectables
 
+	/// The asset’s fully qualified class name. For example, a blog entry’s className is 
+	/// com.liferay.blogs.kernel.model.BlogsEntry. The className and classPK attributes are 
+	/// required to instantiate the Screenlet.
 	@IBInspectable open var className: String = ""
 
+	/// The asset’s unique identifier. The className and classPK attributes are required to 
+	/// instantiate the Screenlet.
 	@IBInspectable open var classPK: Int64 = 0
 
+	/// The offline mode setting. The default value is remote-first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
+
+
+	//MARK: Public properties
 
 	open var commentAddDelegate: CommentAddScreenletDelegate? {
 		return delegate as? CommentAddScreenletDelegate

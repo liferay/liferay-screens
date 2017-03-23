@@ -14,18 +14,26 @@
 import Foundation
 
 
+/// Image Display Screenlet displays an image file from a Liferay instance’s Documents and Media 
+/// Library.
 open class ImageDisplayScreenlet: FileDisplayScreenlet {
 
 
 	//MARK: Inspectables
 
+	/// Image placeholder if the requested image cannot be loaded.
 	@IBInspectable open var placeholder: UIImage?  {
 		didSet {
 			imageDisplayViewModel?.placeholder = placeholder
 		}
 	}
 
+	/// Supported screenlet mime types. If the mime type not matches with the requested image mime 
+	/// type, the image doesn't show in the screenlet.
 	@IBInspectable open var mimeTypes: String = ""
+
+
+	//MARK: Public properties
 
 	open var imageDisplayViewModel: ImageDisplayViewModel? {
 		return screenletView as? ImageDisplayViewModel

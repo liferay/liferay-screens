@@ -14,6 +14,8 @@
 import UIKit
 
 
+/// The LoginScreenletDelegate protocol defines some methods that you use to manage the
+/// LoginScreenlet events. All of them are optional.
 @objc public protocol LoginScreenletDelegate : BaseScreenletDelegate {
 
 	/// Called when login successfully completes.
@@ -21,32 +23,34 @@ import UIKit
 	/// and values (AnyObject or NSObject).
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - attributes: user attributes.
+	///   - screenlet: Login screenlet instance.
+	///   - attributes: User attributes.
 	@objc optional func screenlet(_ screenlet: BaseScreenlet,
 			onLoginResponseUserAttributes attributes: [String:AnyObject])
 
-	///  Called when an error occurs during login. The NSError object describes the error.
+	///  Called when an error occurs during login.
+	/// The NSError object describes the error.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - error: error in login.
+	///   - screenlet: Login screenlet instance.
+	///   - error: Error in login.
 	@objc optional func screenlet(_ screenlet: BaseScreenlet,
 			onLoginError error: NSError)
 
 	/// Called when the user credentials are stored after a successful login.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - attributes: user attributes.
+	///   - screenlet: Login screenlet instance.
+	///   - attributes: User attributes.
 	@objc optional func screenlet(_ screenlet: BaseScreenlet,
 		onCredentialsSavedUserAttributes attributes: [String:AnyObject])
 
-	/// Called when the user credentials are retrieved. Note that this only occurs when the Screenlet is used and stored credentials are available.
+	/// Called when the user credentials are retrieved. Note that this only occurs when the 
+	/// Screenlet is used and stored credentials are available.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - attributes: user attributes.
+	///   - screenlet: Login screenlet instance.
+	///   - attributes: User attributes.
 	@objc optional func screenlet(_ screenlet: LoginScreenlet,
 		onCredentialsLoadedUserAttributes attributes: [String:AnyObject])
 
@@ -58,20 +62,33 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 	//MARK: Inspectables
 
+	/// Specifies the basic authentication option to use. You can set this attribute to email,
+	/// screenName or userId. This must match the server’s authentication option. If you don’t set 
+	/// this attribute, and don’t set the loginMode attribute to oauth or cookie, the Screenlet 
+	/// defaults to basic authentication with the email option.
 	@IBInspectable open var basicAuthMethod: String? = BasicAuthMethod.email.rawValue {
 		didSet {
 			(screenletView as? BasicAuthBasedType)?.basicAuthMethod = basicAuthMethod
 		}
 	}
 
+	/// When set, the user credentials and attributes are stored securely in the keychain. This 
+	/// information can then be loaded in subsequent sessions by calling the 
+	/// `SessionContext.loadStoredCredentials()` method.
 	@IBInspectable open var saveCredentials: Bool = false
 
+	/// The ID of the portal instance to authenticate to. If you don’t set this attribute or set it 
+	/// to 0, the Screenlet uses the companyId setting in LiferayServerContext.
 	@IBInspectable open var companyId: Int64 = 0
 
+	/// Specifies the Consumer Key to use in OAuth authentication.
 	@IBInspectable open var OAuthConsumerKey: String = ""
-	
+
+	/// Specifies the Consumer Secret to use in OAuth authentication.
 	@IBInspectable open var OAuthConsumerSecret: String = ""
-	
+
+	/// The Screenlet’s authentication type. You can set this attribute to basic, oauth, or cookie. 
+	/// If you don’t set this attribute, the Screenlet defaults to basic authentication.
 	@IBInspectable open var loginMode: String = "login" {
 		didSet {
 			authType = AuthTypeFromString(loginMode) ?? .basic
@@ -79,7 +96,8 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 		}
 	}
 
-	open var authType: AuthType = .basic
+
+	//MARK: Public properties
 
 	open var loginDelegate: LoginScreenletDelegate? {
 		return self.delegate as? LoginScreenletDelegate
@@ -88,6 +106,8 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 	open var viewModel: LoginViewModel {
 		return screenletView as! LoginViewModel
 	}
+
+	open var authType: AuthType = .basic
 
 
 	//MARK: BaseScreenlet
@@ -118,7 +138,7 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 	/// loadStoredCredentials loads credentials if exist in the current context.
 	///
-	/// - Returns: true if succeed, false if not.
+	/// - Returns: True if succeed, false otherwise.
 	open func loadStoredCredentials() -> Bool {
 		if SessionContext.loadStoredCredentials() {
 			viewModel.userName = SessionContext.currentContext?.basicAuthUsername

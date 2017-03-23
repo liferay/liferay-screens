@@ -14,33 +14,54 @@
 import UIKit
 
 
+/// BaseListScreenlet is the base class from which all list Screenlet classes must inherit.
+/// A screenlet is the container for a screenlet view.
 open class BaseListScreenlet: BaseScreenlet {
-	
+
+
+	//MARK: Class properties
+
 	open class var LoadInitialPageAction: String { return "load-initial-page" }
 	open class var LoadPageAction: String { return "load-page" }
 
 
 	//MARK: Inspectables
-	
+
+	/// Whether the asset automatically loads when the Screenlet appears in the app’s UI.
+	/// The default value is true.
 	@IBInspectable open var autoLoad: Bool = true
-	
+
+	/// Whether a standard iOS UIRefreshControl appears when the user performs the pull to refresh 
+	/// gesture. The default value is true.
 	@IBInspectable open var refreshControl: Bool = true {
 		didSet {
 			updateRefreshClosure()
 		}
 	}
-	
+
+	/// Number of elements that should charge in the first page.
 	@IBInspectable open var firstPageSize: Int = 50
 
+	/// Number of elements of the page.
 	@IBInspectable open var pageSize: Int = 25
 
+	/// Comparator to sort the page results.
 	@IBInspectable open var obcClassName: String = ""
-	
+
+
+	//MARK: Public properties
+
 	open var baseListView: BaseListView {
 		return screenletView as! BaseListView
 	}
+
+
+	//MARK: Internal properties
 	
 	internal var streamMode = false
+
+
+	//MARK: Private properties
 	
 	fileprivate var paginationInteractors: [Int:BaseListPageLoadInteractor] = [:]
 	
@@ -112,7 +133,7 @@ open class BaseListScreenlet: BaseScreenlet {
 	/// Starts the request to load the list of records.
 	/// The list is shown when the response is received.
 	///
-	/// - Returns: true if the request is sent.
+	/// - Returns: True if the request is sent.
 	@discardableResult
 	open func loadList() -> Bool {
 		//by default we start in fluent mode
@@ -122,7 +143,7 @@ open class BaseListScreenlet: BaseScreenlet {
 	
 	/// Start the request to load the proper page for the given row.
 	///
-	/// - Parameter row: item row.
+	/// - Parameter row: Item row.
 	open func loadPageForRow(_ row: Int) {
 		let page = pageFromRow(row)
 		
@@ -137,8 +158,8 @@ open class BaseListScreenlet: BaseScreenlet {
 	
 	/// Gets the page from the given row.
 	///
-	/// - Parameter row: item row.
-	/// - Returns: item page.
+	/// - Parameter row: Item row.
+	/// - Returns: Item page.
 	open func pageFromRow(_ row: Int) -> Int {
 		if row < firstPageSize {
 			return 0
@@ -149,8 +170,8 @@ open class BaseListScreenlet: BaseScreenlet {
 	
 	/// Gets the first row for the given page.
 	///
-	/// - Parameter page: page number.
-	/// - Returns: item row.
+	/// - Parameter page: Page number.
+	/// - Returns: Item row.
 	open func firstRowForPage(_ page: Int) -> Int {
 		if page == 0 {
 			return 0
@@ -164,9 +185,9 @@ open class BaseListScreenlet: BaseScreenlet {
 	/// This method is intended to be overridden by children classes.
 	///
 	/// - Parameters:
-	///   - page: page number.
-	///   - computeRowCount: true if we want to compute row count.
-	/// - Returns: proper interactor.
+	///   - page: Page number.
+	///   - computeRowCount: True if we want to compute row count.
+	/// - Returns: Proper interactor.
 	open func createPageLoadInteractor(
 			page: Int,
 			computeRowCount: Bool) -> BaseListPageLoadInteractor {
@@ -178,8 +199,8 @@ open class BaseListScreenlet: BaseScreenlet {
 	/// This method is intended to be overridden by children classes.
 	///
 	/// - Parameters:
-	///   - page: page number.
-	///   - error: error on loading.
+	///   - page: Page number.
+	///   - error: Error on loading.
 	open func onLoadPageError(page: Int, error: NSError) {
 		print("ERROR: Load page error \(page) -> \(error)\n")
 	}
@@ -188,16 +209,16 @@ open class BaseListScreenlet: BaseScreenlet {
 	/// Call this method if you want to render the results.
 	///
 	/// - Parameters:
-	///   - page: page number.
-	///   - rows: page items.
-	///   - rowCount: row count.
+	///   - page: Page number.
+	///   - rows: Page items.
+	///   - rowCount: Row count.
 	open func onLoadPageResult(page: Int, rows: [AnyObject], rowCount: Int) {
 	}
 	
 	/// Gets the information about one row.
 	/// Call this method if you want to know what item list was selected.
 	///
-	/// - Parameter row: selected row.
+	/// - Parameter row: Selected row.
 	open func onSelectedRow(_ row:AnyObject) {
 	}
 
