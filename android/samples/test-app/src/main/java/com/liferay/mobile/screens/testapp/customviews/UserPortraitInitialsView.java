@@ -1,6 +1,7 @@
 package com.liferay.mobile.screens.testapp.customviews;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.widget.TextView;
 import com.liferay.mobile.screens.context.User;
@@ -37,6 +38,8 @@ public class UserPortraitInitialsView extends UserPortraitView {
 	@Override
 	public void showPlaceholder(User user) {
 		portraitImage.setImageBitmap(null);
+
+		textView.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.rounded_corner));
 
 		String nameInitial = user.getFirstName().substring(0, 1);
 		String surnameInitial = user.getLastName().isEmpty() ? "" : user.getLastName().substring(0, 1);

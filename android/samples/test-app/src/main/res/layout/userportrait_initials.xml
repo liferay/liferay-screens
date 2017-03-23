@@ -28,7 +28,6 @@
 		android:id="@+id/user_portrait_initials_text_view"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:background="@drawable/rounded_corner"
 		android:gravity="center"
 		tools:text="TT"
 		android:textAlignment="center"
