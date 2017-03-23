@@ -119,14 +119,14 @@ open class UserPortraitScreenlet: BaseScreenlet {
 		}
 
 		switch name {
-		case UserPortraitScreenlet.LoadPortrait:
-			let downloadInteractor = sender as! DownloadUserPortraitInteractor
-			return createLoadPortraitInteractor(downloadInteractor)
-		case UserPortraitScreenlet.UploadPortrait:
-			let image = sender as! UIImage
-			return createUploadPortraitInteractor(image)
-		default:
-			return nil
+			case UserPortraitScreenlet.LoadPortrait:
+				let downloadInteractor = sender as! DownloadUserPortraitInteractor
+				return createLoadPortraitInteractor(downloadInteractor)
+			case UserPortraitScreenlet.UploadPortrait:
+				let image = sender as! UIImage
+				return createUploadPortraitInteractor(image)
+			default:
+				return nil
 		}
 	}
 
@@ -294,10 +294,12 @@ open class UserPortraitScreenlet: BaseScreenlet {
 			userId: userId,
 			image: image)
 
-		uploadInteractor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .remoteFirst
+		uploadInteractor.cacheStrategy = CacheStrategyType(
+			rawValue: self.offlinePolicy ?? "") ?? .remoteFirst
 
 		uploadInteractor.onSuccess = {
-			self.userPortraitDelegate?.screenlet?(self, onUserPortraitUploaded: uploadInteractor.uploadResult!)
+			self.userPortraitDelegate?.screenlet?(
+				self, onUserPortraitUploaded: uploadInteractor.uploadResult!)
 
 			self.loadedUserId = uploadInteractor.userId
 			self.setPortraitImage(uploadInteractor.image)
