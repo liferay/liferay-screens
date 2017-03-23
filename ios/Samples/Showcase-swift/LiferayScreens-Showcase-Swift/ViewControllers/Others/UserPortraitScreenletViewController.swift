@@ -17,70 +17,80 @@ import LiferayScreens
 
 class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenletDelegate {
 
-	//MARK: IBOutlet
+
+	//MARK: Outlets
 	
-	@IBOutlet weak var userIdField: UITextField! {
+	@IBOutlet weak var userIdField: UITextField? {
 		didSet {
 			if let userId = SessionContext.currentContext?.user.userId.description {
-				userIdField.text = userId
+				userIdField?.text = userId
 			}
 		}
 	}
-	@IBOutlet weak var screenlet: UserPortraitScreenlet!
-	@IBOutlet weak var screenletWithDelegate: UserPortraitScreenlet! {
+
+	@IBOutlet weak var screenlet: UserPortraitScreenlet?
+
+	@IBOutlet weak var screenletWithDelegate: UserPortraitScreenlet? {
 		didSet {
-			screenletWithDelegate.delegate = self
-		}
-	}
-	@IBOutlet weak var editableScreenlet: UserPortraitScreenlet! {
-		didSet {
-			editableScreenlet.presentingViewController = self
-		}
-	}
-	@IBOutlet weak var initialsScreenlet: UserPortraitScreenlet! {
-		didSet {
-			initialsScreenlet.themeName = "initials"
-		}
-	}
-	@IBOutlet weak var loadButton: UIButton! {
-		didSet {
-			loadButton.replaceAttributedTitle(NSLocalizedString("load-button", comment: "LOAD"), forState: .normal)
+			screenletWithDelegate?.delegate = self
 		}
 	}
 
-	//MARK: IBAction
+	@IBOutlet weak var editableScreenlet: UserPortraitScreenlet? {
+		didSet {
+			editableScreenlet?.presentingViewController = self
+		}
+	}
+
+	@IBOutlet weak var initialsScreenlet: UserPortraitScreenlet? {
+		didSet {
+			initialsScreenlet?.themeName = "initials"
+		}
+	}
+
+	@IBOutlet weak var loadButton: UIButton? {
+		didSet {
+			loadButton?.replaceAttributedTitle(NSLocalizedString("load-button", comment: "LOAD"),
+			                                   forState: .normal)
+		}
+	}
+
+
+	//MARK: Actions
 
 	@IBAction func loadPortrait(_ sender: AnyObject) {
-		if let id = userIdField.text, let userId = Int64(id) {
-			screenlet.load(userId: userId)
-			screenletWithDelegate.load(userId: userId)
-			editableScreenlet.load(userId: userId)
-			initialsScreenlet.load(userId: userId)
+		if let id = userIdField?.text, let userId = Int64(id) {
+			screenlet?.load(userId: userId)
+			screenletWithDelegate?.load(userId: userId)
+			editableScreenlet?.load(userId: userId)
+			initialsScreenlet?.load(userId: userId)
 		}
-		else if let text = userIdField.text, text != "" {
+		else if let text = userIdField?.text, text != "" {
 			let company = LiferayServerContext.companyId
 
 			if text.characters.index(of: "@") != nil {
-				screenlet.load(companyId: company, emailAddress: text)
-				screenletWithDelegate.load(companyId: company, emailAddress: text)
-				editableScreenlet.load(companyId: company, emailAddress: text)
+				screenlet?.load(companyId: company, emailAddress: text)
+				screenletWithDelegate?.load(companyId: company, emailAddress: text)
+				editableScreenlet?.load(companyId: company, emailAddress: text)
 			}
 			else  {
-				screenlet.load(companyId: company, screenName: text)
-				screenletWithDelegate.load(companyId: company, screenName: text)
-				editableScreenlet.load(companyId: company, screenName: text)
+				screenlet?.load(companyId: company, screenName: text)
+				screenletWithDelegate?.load(companyId: company, screenName: text)
+				editableScreenlet?.load(companyId: company, screenName: text)
 			}
 		}
 		else {
-			screenlet.loadLoggedUserPortrait()
-			screenletWithDelegate.loadLoggedUserPortrait()
-			editableScreenlet.loadLoggedUserPortrait()
+			screenlet?.loadLoggedUserPortrait()
+			screenletWithDelegate?.loadLoggedUserPortrait()
+			editableScreenlet?.loadLoggedUserPortrait()
 		}
 	}
 
 	//MARK: UserPortraitScreenletDelegate
 
-	func screenlet(_ screenlet: UserPortraitScreenlet, onUserPortraitResponseImage image: UIImage) -> UIImage {
+	func screenlet(_ screenlet: UserPortraitScreenlet,
+	               onUserPortraitResponseImage image: UIImage) -> UIImage {
+
 		LiferayLogger.logDelegateMessage(args: image)
 		
 		return image.grayScaleImage()
@@ -94,7 +104,9 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 	
-	func screenlet(_ screenlet: UserPortraitScreenlet, onUserPortraitUploaded attributes: [String : AnyObject]) {
+	func screenlet(_ screenlet: UserPortraitScreenlet,
+	               onUserPortraitUploaded attributes: [String : AnyObject]) {
+
 		LiferayLogger.logDelegateMessage(args: attributes as AnyObject?)
 	}
 
