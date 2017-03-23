@@ -36,10 +36,8 @@ private func loadPlaceholderCache(_ done: ((UIImage?) -> ())? = nil) {
 }
 
 
-open class UserPortraitView_default: BaseScreenletView,
-	UserPortraitViewModel,
-	UIActionSheetDelegate,
-	UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+open class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel,
+	UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
 	open static var defaultPlaceholder: UIImage?
 
@@ -69,7 +67,8 @@ open class UserPortraitView_default: BaseScreenletView,
 			"upload-portrait" : [
 				.working : "",
 				.failure : LocalizedString("default", key: "userportrait-uploading-error", obj: self)
-			]]
+			]
+		]
 	}
 
 	fileprivate let imagePicker = UIImagePickerController()
@@ -125,8 +124,11 @@ open class UserPortraitView_default: BaseScreenletView,
 
 	override open func onPreAction(name: String, sender: AnyObject?) -> Bool {
 		if name == "edit-portrait" {
-			let takeNewPicture = LocalizedString("default", key: "userportrait-take-new-picture", obj: self)
-			let chooseExisting = LocalizedString("default", key: "userportrait-choose-existing-picture", obj: self)
+			let takeNewPicture = LocalizedString(
+				"default", key: "userportrait-take-new-picture", obj: self)
+
+			let chooseExisting = LocalizedString(
+				"default", key: "userportrait-choose-existing-picture", obj: self)
 
 			let alert = MediaSelector(
 					viewController: self.presentingViewController!,
@@ -148,6 +150,11 @@ open class UserPortraitView_default: BaseScreenletView,
 
 	//MARK: Public methods
 
+	/// Loads the placeholder with user information
+	open func loadPlaceholder(for user: User) {
+		loadDefaultPlaceholder()
+	}
+
 	open func loadDefaultPlaceholder() {
 		dispatch_main() {
 			if let placeholder = UserPortraitView_default.defaultPlaceholder {
@@ -159,12 +166,5 @@ open class UserPortraitView_default: BaseScreenletView,
 				}
 			}
 		}
-	}
-
-
-	/// Load the placeholder with the user information
-	///
-	open func loadPlaceholder(for user: User) {
-		loadDefaultPlaceholder()
 	}
 }
