@@ -13,13 +13,14 @@ All notable changes to this project will be documented in this file.
 
 ## iOS
 
-## Refactor
-* Migrate from UIWebView to WKWebView
-
 ### Bugs
 * Fix error in UserPortrait initials view: user lastname is required in Liferay 7.0 but is not in Liferay 6.2
 
+### New Features
+* AssetDisplayScreenlet uses FileDisplayScreenlet for ppt, xls and doc files
+
 ### Refactor
+* Migrate from UIWebView to WKWebView
 * UserPortraitScreenlet: extract methods, add comments and SF
 
 ### Documentation

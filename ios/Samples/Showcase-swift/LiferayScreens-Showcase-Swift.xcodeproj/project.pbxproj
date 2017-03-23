@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B147A141E7802B100EDE7B7 /* FileDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B147A131E7802B100EDE7B7 /* FileDisplayViewController.swift */; };
+		0B147A171E78030800EDE7B7 /* FileDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B147A151E78030800EDE7B7 /* FileDisplayScreenlet.storyboard */; };
 		0B24399B1DAD3120009DA1E4 /* ImageDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B24399A1DAD3120009DA1E4 /* ImageDisplayViewController.swift */; };
 		0B24399C1DAD314D009DA1E4 /* BlogDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B24399E1DAD314D009DA1E4 /* BlogDisplayScreenlet.storyboard */; };
 		0B2439A21DAD318A009DA1E4 /* ImageDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B2439A41DAD318A009DA1E4 /* ImageDisplayScreenlet.storyboard */; };
@@ -75,6 +77,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B147A131E7802B100EDE7B7 /* FileDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDisplayViewController.swift; sourceTree = "<group>"; };
+		0B147A161E78030800EDE7B7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/FileDisplayScreenlet.storyboard; sourceTree = "<group>"; };
 		0B24399A1DAD3120009DA1E4 /* ImageDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDisplayViewController.swift; sourceTree = "<group>"; };
 		0B24399D1DAD314D009DA1E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/BlogDisplayScreenlet.storyboard; sourceTree = "<group>"; };
 		0B2439A31DAD318A009DA1E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/ImageDisplayScreenlet.storyboard; sourceTree = "<group>"; };
@@ -169,6 +173,7 @@
 				0B24399A1DAD3120009DA1E4 /* ImageDisplayViewController.swift */,
 				0BCAD3CD1DD5F59D00BB89EA /* PdfDisplayViewController.swift */,
 				0BCAD3CB1DD5F57A00BB89EA /* VideoDisplayViewController.swift */,
+				0B147A131E7802B100EDE7B7 /* FileDisplayViewController.swift */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 				0B2439A41DAD318A009DA1E4 /* ImageDisplayScreenlet.storyboard */,
 				0BCAD3C61DD5F43B00BB89EA /* PdfDisplayScreenlet.storyboard */,
 				0BCAD3C01DD5F42200BB89EA /* VideoDisplayScreenlet.storyboard */,
+				0B147A151E78030800EDE7B7 /* FileDisplayScreenlet.storyboard */,
 			);
 			name = Files;
 			sourceTree = "<group>";
@@ -515,6 +521,7 @@
 				88CC3B071CC158E300E0AEB7 /* BookTableViewCell.xib in Resources */,
 				0B6148141DABF0AF004FAC7C /* WebContentListScreenlet.storyboard in Resources */,
 				0B54FB981DACE9BF00E0EE0C /* AssetListScreenlet.storyboard in Resources */,
+				0B147A171E78030800EDE7B7 /* FileDisplayScreenlet.storyboard in Resources */,
 				0BCAD3C81DD5F43B00BB89EA /* PdfDisplayScreenlet.storyboard in Resources */,
 				0BCAD3C51DD5F42D00BB89EA /* AudioDisplayScreenlet.storyboard in Resources */,
 				88DE2A7C1AD3DDE600714701 /* LaunchScreen.xib in Resources */,
@@ -633,6 +640,7 @@
 				0B6147F81DABC853004FAC7C /* UIImageExtension.swift in Sources */,
 				88DE2A721AD3DDE600714701 /* AppDelegate.swift in Sources */,
 				0B575EE21E6F10F400A8B021 /* UserPortraitView_initials.swift in Sources */,
+				0B147A141E7802B100EDE7B7 /* FileDisplayViewController.swift in Sources */,
 				0B54FB891DACE91000E0EE0C /* CommentDisplayScreenletViewController.swift in Sources */,
 				0B54FB771DACC95500E0EE0C /* UserView.swift in Sources */,
 			);
@@ -641,6 +649,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		0B147A151E78030800EDE7B7 /* FileDisplayScreenlet.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B147A161E78030800EDE7B7 /* en */,
+			);
+			name = FileDisplayScreenlet.storyboard;
+			sourceTree = "<group>";
+		};
 		0B24399E1DAD314D009DA1E4 /* BlogDisplayScreenlet.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -24,13 +24,14 @@ open class PdfDisplayScreenlet: FileDisplayScreenlet {
 	/// type, the pdf doesn't show in the screenlet.
 	@IBInspectable open var mimeTypes: String = ""
 
-	let DefaultMimeTypes = ["application/pdf"]
+	let DefaultPdfMimeTypes = ["application/pdf"]
+
 
 	//MARK: FileDisplayScreenlet
 
 	override open var supportedMimeTypes: [String] {
 
-		return (mimeTypes.isEmpty) ? DefaultMimeTypes :
+		return (mimeTypes.isEmpty) ? DefaultPdfMimeTypes :
 				mimeTypes.characters.split(separator: ",").map(String.init)
 	}
 
