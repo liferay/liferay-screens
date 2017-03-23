@@ -14,57 +14,77 @@
 import Foundation
 
 
+/// The FileDisplayScreenletDelegate protocol defines some methods that you use to manage the
+/// FileDisplayScreenlet events. All of them are optional.
 @objc public protocol FileDisplayScreenletDelegate : BaseScreenletDelegate {
 
 	/// Called when the screenlet receives the file.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - url: file URL.
+	///   - screenlet: Pdf display screenlet instance.
+	///   - url: File URL.
 	@objc optional func screenlet(_ screenlet: FileDisplayScreenlet, onFileAssetResponse url: URL)
 
 	/// Called when an error occurs in the process.
 	/// The NSError object describes the error.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - error: error while retrieving the file.
+	///   - screenlet: Pdf display screenlet instance.
+	///   - error: Error while retrieving the file.
 	@objc optional func screenlet(_ screenlet: FileDisplayScreenlet, onFileAssetError error: NSError)
 }
 
 
+/// File Display Screenlet shows a single file from a Liferay Portal instance’s Documents and Media
+/// Library. Use this Screenlet to display file types not covered by the other display Screenlets 
+/// (e.g., DOC, PPT, XLS).
 open class FileDisplayScreenlet: BaseScreenlet {
+
+
+	//MARK: Static properties
 
 	open static let LoadFileAction = "LoadFileAction"
 
 
 	//MARK: Inspectables
 
+	/// The primary key of the file.
 	@IBInspectable open var assetEntryId: Int64 = 0
 
+	/// The file’s fully qualified class name. Since files in a Documents and Media Library are 
+	/// DLFileEntry objects, their className is com.liferay.document.library.kernel.model.DLFileEntry. 
+	/// The className and classPK attributes are required to instantiate the Screenlet.
 	@IBInspectable open var className: String =
 		AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
-	
+
+	/// The file’s unique identifier. The className and classPK attributes are required to 
+	/// instantiate the Screenlet.
 	@IBInspectable open var classPK: Int64 = 0
 
+	/// Whether the file automatically loads when the Screenlet appears in the app’s UI. 
+	/// The default value is true.
 	@IBInspectable open var autoLoad: Bool = true
 
+	/// The offline mode setting. The default value is remote-first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
+
+
+	//MARK: Public properties
+
+	open var fileDisplayDelegate: FileDisplayScreenletDelegate? {
+		return delegate as? FileDisplayScreenletDelegate
+	}
+
+	open var fileDisplayViewModel: FileDisplayViewModel? {
+		return screenletView as? FileDisplayViewModel
+	}
 
 	open var supportedMimeTypes: [String] {
 		return []
 	}
 
 	open var fileEntry: FileEntry?
-
-	open var fileDisplayViewModel: FileDisplayViewModel? {
-		return screenletView as? FileDisplayViewModel
-	}
-
-	open var fileDisplayDelegate: FileDisplayScreenletDelegate? {
-		return delegate as? FileDisplayScreenletDelegate
-	}
-
+	
 
 	//MARK: BaseScreenlet
 
@@ -93,7 +113,7 @@ open class FileDisplayScreenlet: BaseScreenlet {
 
 	/// Call this method to load the file.
 	///
-	/// - Returns: true if default use case has been perform, false otherwise.
+	/// - Returns: True if the interactor was able to start, false otherwise.
 	@discardableResult
 	open func load() -> Bool {
 		if fileEntry == nil {

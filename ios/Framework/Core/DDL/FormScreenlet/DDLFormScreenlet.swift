@@ -14,14 +14,16 @@
 import UIKit
 
 
+/// The DDLFormScreenletDelegate protocol defines some methods that you use to manage the
+/// DDLFormScreenlet events. All of them are optional.
 @objc public protocol DDLFormScreenletDelegate : BaseScreenletDelegate {
 
 	/// Called when the form is loaded. The second parameter (record) 
 	/// contains only field definitions.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - record: record definitions.
+	///   - screenlet: DDL Form screenlet instance.
+	///   - record: Record definitions.
 	@objc optional func screenlet(_ screenlet: DDLFormScreenlet,
 			onFormLoaded record: DDLRecord)
 
@@ -29,8 +31,8 @@ import UIKit
 	/// The NSError object describes the error.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - error: error when loading the form.
+	///   - screenlet: DDL Form screenlet instance.
+	///   - error: Error when loading the form.
 	@objc optional func screenlet(_ screenlet: DDLFormScreenlet,
 			onFormLoadError error: NSError)
 
@@ -39,8 +41,8 @@ import UIKit
 	/// is called before onRecordLoaded.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - record: record definitions.
+	///   - screenlet: DDL Form screenlet instance.
+	///   - record: Record definitions.
 	@objc optional func screenlet(_ screenlet: DDLFormScreenlet,
 			onRecordLoaded record: DDLRecord)
 
@@ -48,16 +50,16 @@ import UIKit
 	/// The NSError object describes the error.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - error: error when loading the record.
+	///   - screenlet: DDL Form screenlet instance.
+	///   - error: Error when loading the record.
 	@objc optional func screenlet(_ screenlet: DDLFormScreenlet,
 			onRecordLoadError error: NSError)
 
 	/// Called when the form values are successfully submitted to the server.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - record: record definitions.
+	///   - screenlet: DDL Form screenlet instance.
+	///   - record: Record definitions.
 	@objc optional func screenlet(_ screenlet: DDLFormScreenlet,
 			onFormSubmitted record: DDLRecord)
 
@@ -65,16 +67,16 @@ import UIKit
 	/// The NSError object describes the error.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - error: error when submitting the form.
+	///   - screenlet: DDL Form screenlet instance.
+	///   - error: Error when submitting the form.
 	@objc optional func screenlet(_ screenlet: DDLFormScreenlet,
 			onFormSubmitError error: NSError)
 
 	/// Called when the upload of a Documents and Media field begins.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - field: document field of the form.
+	///   - screenlet: DDL Form screenlet instance.
+	///   - field: Document field of the form.
 	@objc optional func screenlet(_ screenlet: DDLFormScreenlet,
 			onDocumentFieldUploadStarted field: DDMFieldDocument)
 
@@ -82,10 +84,10 @@ import UIKit
 	/// This method is intended to track progress of the uploads.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - field: document field of the form.
-	///   - bytes: uploaded bytes.
-	///   - total: total bytes.
+	///   - screenlet: DDL Form screenlet instance.
+	///   - field: Document field of the form.
+	///   - bytes: Uploaded bytes.
+	///   - total: Total bytes.
 	@objc optional func screenlet(_ screenlet: DDLFormScreenlet,
 			onDocumentField field: DDMFieldDocument,
 			uploadedBytes bytes: UInt64,
@@ -94,9 +96,9 @@ import UIKit
 	/// Called when a Documents and Media field upload is completed.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - field: document field of the form.
-	///   - result: document data attributes.
+	///   - screenlet: DDL Form screenlet instance.
+	///   - field: Document field of the form.
+	///   - result: Document data attributes.
 	@objc optional func screenlet(_ screenlet: DDLFormScreenlet,
 			onDocumentField field: DDMFieldDocument,
 			uploadResult result: [String:AnyObject])
@@ -105,9 +107,9 @@ import UIKit
 	/// The NSError object describes the error.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - field: document field of the form.
-	///   - error: error when uploading the document.
+	///   - screenlet: DDL Form screenlet instance.
+	///   - field: Document field of the form.
+	///   - error: Error when uploading the document.
 	@objc optional func screenlet(_ screenlet: DDLFormScreenlet,
 			onDocumentField field: DDMFieldDocument,
 			uploadError error: NSError)
@@ -115,6 +117,14 @@ import UIKit
 }
 
 
+/// DDLFormScreenlet can be used to show a collection of fields so that a user can fill in their
+/// values. Initial or existing values may be shown in the fields.
+/// DDLFormScreenlet also supports the following features:
+/// * Stored records can support a specific workflow.
+/// * A Submit button can be shown at the end of the form.
+/// * Required values and validation for fields can be used.
+/// * Users can traverse the form fields from the keyboard.
+/// * Supports i18n in record values and labels.
 open class DDLFormScreenlet: BaseScreenlet {
 
 	fileprivate enum UploadStatus {
@@ -122,6 +132,9 @@ open class DDLFormScreenlet: BaseScreenlet {
 		case uploading(Int, Bool)
 		case failed(NSError)
 	}
+
+
+	//MARK: Class properties
 
 	open class var LoadFormAction: String { return "load-form" }
 	open class var LoadRecordAction: String { return "load-record" }
@@ -131,40 +144,59 @@ open class DDLFormScreenlet: BaseScreenlet {
 
 	//MARK: Inspectables
 
+	/// Specifies the identifier of a data definition for your site in Liferay.
 	@IBInspectable open var structureId: Int64 = 0
 
+	/// The groupId of the Liferay instance.
 	@IBInspectable open var groupId: Int64 = 0
 
+	/// The identifier of a dynamic data list.
 	@IBInspectable open var recordSetId: Int64 = 0
 
+	/// The identifier of the record you want to show.
 	@IBInspectable open var recordId: Int64 = 0
 
+	/// The user identifier of the form or the record.
 	@IBInspectable open var userId: Int64 = 0
 
+	/// The identifier of the Documents and Media repository to upload to
 	@IBInspectable open var repositoryId: Int64 = 0
 
+	/// The identifier of the folder where Documents and Media files are uploaded.
+	/// If this value is 0, the root folder is used.
 	@IBInspectable open var folderId: Int64 = 0
 
+	/// The prefix to attach to the names of files uploaded to a Documents and Media repository.
+	/// A random GUID string is appended following the prefix.
 	@IBInspectable open var filePrefix: String = "form-file-"
 
+	/// Sets whether or not the form is loaded when the Screenlet is shown.
 	@IBInspectable open var autoLoad: Bool = true
 
+	/// Sets whether or not the form automatically scrolls to the first failed field when validation 
+	/// is used.
 	@IBInspectable open var autoscrollOnValidation: Bool = true
 
+	/// Sets whether or not the form shows a submit button at the bottom. If this is set to false, 
+	/// you should call the `submitForm()` method.
 	@IBInspectable open var showSubmitButton: Bool = true {
 		didSet {
 			(screenletView as? DDLFormView)?.showSubmitButton = showSubmitButton
 		}
 	}
 
+	/// Sets whether the values can be changed by the user. The default is true.
 	@IBInspectable open var editable: Bool = true {
 		didSet {
 			screenletView?.editable = editable
 		}
 	}
 
+	/// Specifies the ddl form offline policy. The default is remote first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
+
+	//MARK: Public properties
 
 	open var ddlFormDelegate: DDLFormScreenletDelegate? {
 		return delegate as? DDLFormScreenletDelegate
@@ -178,9 +210,15 @@ open class DDLFormScreenlet: BaseScreenlet {
 		return !((screenletView as? DDLFormView)?.isRecordEmpty ?? true)
 	}
 
+
+	//MARK: Internal properties
+
 	internal var formView: DDLFormView {
 		return screenletView as! DDLFormView
 	}
+
+
+	//MARK: Private properties
 
 	fileprivate var uploadStatus = UploadStatus.idle
 
@@ -414,7 +452,7 @@ open class DDLFormScreenlet: BaseScreenlet {
 
 	//MARK: Public methods
 
-	/// Performs LoadFormAction
+	/// Performs LoadFormAction.
 	@discardableResult
 	open func loadForm() -> Bool {
 		return performAction(name: DDLFormScreenlet.LoadFormAction)

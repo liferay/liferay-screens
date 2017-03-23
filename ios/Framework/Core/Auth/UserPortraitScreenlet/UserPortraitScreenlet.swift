@@ -14,6 +14,8 @@
 import UIKit
 
 
+/// The UserPortraitScreenletDelegate protocol defines some methods that you use to manage the 
+/// UserPortraitScreenlet events. All of them are optional.
 @objc public protocol UserPortraitScreenletDelegate : BaseScreenletDelegate {
 
 	/// Called when an image is received from the server. You can then apply image filters 
@@ -21,9 +23,9 @@ import UIKit
 	/// supplied as the argument if you don’t want to modify it.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - image: user portrait image.
-	/// - Returns: original or modify image.
+	///   - screenlet: User portrait screenlet instance.
+	///   - image: User portrait image.
+	/// - Returns: Original or modify image.
 	@objc optional func screenlet(_ screenlet: UserPortraitScreenlet,
 			onUserPortraitResponseImage image: UIImage) -> UIImage
 
@@ -31,8 +33,8 @@ import UIKit
 	/// The NSError object describes the error.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - error: error while retrieving user portrait image.
+	///   - screenlet: User portrait screenlet instance.
+	///   - error: Error while retrieving user portrait image.
 	@objc optional func screenlet(_ screenlet: UserPortraitScreenlet,
 			onUserPortraitError error: NSError)
 
@@ -40,8 +42,8 @@ import UIKit
 	/// attributes as a parameter.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - attributes: user portrait attributes.
+	///   - screenlet: User portrait screenlet istance.
+	///   - attributes: User portrait attributes.
 	@objc optional func screenlet(_ screenlet: UserPortraitScreenlet,
 			onUserPortraitUploaded attributes: [String:AnyObject])
 
@@ -49,38 +51,50 @@ import UIKit
 	/// The NSError object describes the error.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - error: error while uploading the user portrait image.
+	///   - screenlet: User portrair screenlet instance.
+	///   - error: Error while uploading the user portrait image.
 	@objc optional func screenlet(_ screenlet: UserPortraitScreenlet,
 			onUserPortraitUploadError error: NSError)
 }
 
 
+/// The UserPortraitScreenlet shows the user’s portrait from Liferay instance.
+/// If the user doesn’t have a portrait configured, a default placeholder image is shown.
 open class UserPortraitScreenlet: BaseScreenlet {
 
 
 	//MARK: Inspectables
 
+	/// The size in pixels for the portrait’s border. The default value is 1.
+	/// Set this to 0 if you want to hide the border.
 	@IBInspectable open var borderWidth: CGFloat = 1.0 {
 		didSet {
 			(screenletView as? UserPortraitViewModel)?.borderWidth = self.borderWidth
 		}
 	}
 
+	/// The border’s color. Use the system’s transparent color to hide the border.
 	@IBInspectable open var borderColor: UIColor? {
 		didSet {
 			(screenletView as? UserPortraitViewModel)?.borderColor = self.borderColor
 		}
 	}
 
+	/// Lets the user change the portrait image by taking a photo or selecting a gallery picture. 
+	/// The default value is false. Portraits loaded with the load(portraitId, uuid, male) method 
+	/// aren’t editable.
 	@IBInspectable open var editable: Bool = false {
 		didSet {
 			screenletView?.editable = self.editable
 		}
 	}
 
+	/// Configure the loading and saving behavior in case of connectivity issues. The default value 
+	/// is remote first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
+
+	//MARK: Public properties
 
 	open var userPortraitDelegate: UserPortraitScreenletDelegate? {
 		return self.delegate as? UserPortraitScreenletDelegate
@@ -93,6 +107,9 @@ open class UserPortraitScreenlet: BaseScreenlet {
 	open var userId: Int64? {
 		return loadedUserId
 	}
+
+
+	//MARK: Private properties
 
 	fileprivate var loadedUserId: Int64?
 
@@ -192,7 +209,7 @@ open class UserPortraitScreenlet: BaseScreenlet {
 
 	/// Loads the user portrait that correspond to the user logged.
 	///
-	/// - Returns: true if suceed, false otherwise.
+	/// - Returns: True if the interactor was able to start, false otherwise.
 	open func loadLoggedUserPortrait() -> Bool {
 		guard let userId = SessionContext.currentContext?.user.userId else {
 			return false
@@ -207,13 +224,13 @@ open class UserPortraitScreenlet: BaseScreenlet {
 		return performAction(name: "load-portrait", sender: interactor)
 	}
 
-	/// Loads the user portrait image.
+	/// Loads the user portrait image throught user portraitId and uuid.
 	///
 	/// - Parameters:
-	///   - portraitId: portrait identifier.
-	///   - uuid: user portrait unique identifier.
-	///   - male: true if the user is male, false otherwise.
-	/// - Returns: true if succeed, false otherwise.
+	///   - portraitId: Portrait identifier.
+	///   - uuid: User portrait unique identifier.
+	///   - male: True if the user is male, false otherwise.
+	/// - Returns: True if the interactor was able to start, false otherwise.
 	@discardableResult
 	open func load(portraitId: Int64, uuid: String, male: Bool = true) -> Bool {
 		let interactor = DownloadUserPortraitInteractor(
@@ -229,8 +246,8 @@ open class UserPortraitScreenlet: BaseScreenlet {
 
 	/// Loads the user portrait image throught user identifier.
 	///
-	/// - Parameter userId: user identifier.
-	/// - Returns: true if succeed, false otherwise.
+	/// - Parameter userId: User identifier.
+	/// - Returns: True if the interactor was able to start, false otherwise.
 	@discardableResult
 	open func load(userId: Int64) -> Bool {
 		let interactor = DownloadUserPortraitInteractor(
@@ -245,9 +262,9 @@ open class UserPortraitScreenlet: BaseScreenlet {
 	/// Loads the user portrait throught company identifier and email address.
 	///
 	/// - Parameters:
-	///   - companyId: company identifier.
-	///   - emailAddress: user email.
-	/// - Returns: true if succeed, false otherwise.
+	///   - companyId: Company identifier.
+	///   - emailAddress: User email.
+	/// - Returns: True if the interactor was able to start, false otherwise.
 	@discardableResult
 	open func load(companyId: Int64, emailAddress: String) -> Bool {
 		let interactor = DownloadUserPortraitInteractor(
@@ -263,9 +280,9 @@ open class UserPortraitScreenlet: BaseScreenlet {
 	/// Loads the user portrait throught company identifier and user screen name.
 	///
 	/// - Parameters:
-	///   - companyId: company identifier.
-	///   - screenName: user screen name.
-	/// - Returns: <#return value description#>
+	///   - companyId: Company identifier.
+	///   - screenName: User screen name.
+	/// - Returns: True if the interactor was able to start, false otherwise.
 	@discardableResult
 	open func load(companyId: Int64, screenName: String) -> Bool {
 		let interactor = DownloadUserPortraitInteractor(
