@@ -25,6 +25,9 @@ open class AudioDisplayScreenlet: FileDisplayScreenlet {
 	/// type, the audio doesn't show in the screenlet.
 	@IBInspectable open var mimeTypes: String = ""
 
+	let DefaultAudioMimeTypes = ["audio/mpeg", "audio/mpeg3", "audio/wav"]
+
+
 	//MARK: FileDisplayScreenlet
 
 	override open var supportedMimeTypes: [String] {

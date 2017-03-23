@@ -25,6 +25,9 @@ open class VideoDisplayScreenlet: FileDisplayScreenlet {
 	/// type, the video doesn't show in the screenlet.
 	@IBInspectable open var mimeTypes: String = ""
 
+	let DefaultVideoMimeTypes = ["video/mp4", "video/3gp", "video/quicktime"]
+
+
 	//MARK: FileDisplayScreenlet
 
 	override open var supportedMimeTypes: [String] {
