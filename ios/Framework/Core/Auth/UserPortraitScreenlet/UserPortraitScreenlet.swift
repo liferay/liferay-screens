@@ -114,8 +114,6 @@ open class UserPortraitScreenlet: BaseScreenlet {
 	}
 
 	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
-		let interactor: Interactor?
-
 		if isActionRunning(name) {
 			cancelInteractorsForAction(name)
 		}
@@ -123,7 +121,6 @@ open class UserPortraitScreenlet: BaseScreenlet {
 		switch name {
 		case UserPortraitScreenlet.LoadPortrait:
 			let loadInteractor = sender as! DownloadUserPortraitInteractor
-			interactor = loadInteractor
 
 			loadInteractor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .remoteFirst
 
@@ -154,43 +151,14 @@ open class UserPortraitScreenlet: BaseScreenlet {
 				self.setPortraitImage(nil)
 			}
 
+			return loadInteractor
+
 		case UserPortraitScreenlet.UploadPortrait:
 			let image = sender as! UIImage
-			let userId: Int64
-
-			if let loadedUserIdValue = loadedUserId {
-				userId = loadedUserIdValue
-			}
-			else {
-				print("ERROR: Can't change the portrait without an userId\n")
-
-				return nil
-			}
-
-			let uploadInteractor = UploadUserPortraitInteractor(
-				screenlet: self,
-				userId: userId,
-				image: image)
-			interactor = uploadInteractor
-
-			uploadInteractor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .remoteFirst
-
-			uploadInteractor.onSuccess = {
-				self.userPortraitDelegate?.screenlet?(self, onUserPortraitUploaded: uploadInteractor.uploadResult!)
-
-				self.loadedUserId = uploadInteractor.userId
-				self.setPortraitImage(uploadInteractor.image)
-			}
-
-			uploadInteractor.onFailure = {
-				self.userPortraitDelegate?.screenlet?(self, onUserPortraitUploadError: $0)
-			}
-			
+			return createUploadPortraitInteractor(image)
 		default:
-			interactor = nil
+			return nil
 		}
-		
-		return interactor
 	}
 
 
@@ -300,6 +268,39 @@ open class UserPortraitScreenlet: BaseScreenlet {
 					message: "Could not set user portrait image.")
 			userPortraitDelegate?.screenlet?(self, onUserPortraitError: error)
 		}
+	}
+
+	fileprivate func createUploadPortraitInteractor(_ image: UIImage) -> UploadUserPortraitInteractor? {
+		let userId: Int64
+
+		if let loadedUserIdValue = loadedUserId {
+			userId = loadedUserIdValue
+		}
+		else {
+			print("ERROR: Can't change the portrait without an userId\n")
+
+			return nil
+		}
+
+		let uploadInteractor = UploadUserPortraitInteractor(
+			screenlet: self,
+			userId: userId,
+			image: image)
+
+		uploadInteractor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .remoteFirst
+
+		uploadInteractor.onSuccess = {
+			self.userPortraitDelegate?.screenlet?(self, onUserPortraitUploaded: uploadInteractor.uploadResult!)
+
+			self.loadedUserId = uploadInteractor.userId
+			self.setPortraitImage(uploadInteractor.image)
+		}
+
+		uploadInteractor.onFailure = {
+			self.userPortraitDelegate?.screenlet?(self, onUserPortraitUploadError: $0)
+		}
+
+		return uploadInteractor
 	}
 
 }
