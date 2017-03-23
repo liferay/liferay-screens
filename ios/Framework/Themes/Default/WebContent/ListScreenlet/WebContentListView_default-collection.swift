@@ -12,7 +12,7 @@
  * details.
  */
 import UIKit
-
+import WebKit
 
 open class WebContentListView_default_collection: BaseListCollectionView {
 
@@ -75,7 +75,7 @@ open class WebContentListView_default_collection: BaseListCollectionView {
 
 open class WebViewCell : UICollectionViewCell {
 
-	fileprivate var webView: UIWebView
+	fileprivate var webView: WKWebView?
 
 	fileprivate let styles =
 		".MobileCSS {padding: 4%; width: 92%;} " +
@@ -91,23 +91,30 @@ open class WebViewCell : UICollectionViewCell {
 		set {
 			let styledHtml = "<style>\(styles)</style><div class=\"MobileCSS\">\(newValue)</div>"
 
-			webView.loadHTMLString(styledHtml, baseURL: URL(string:LiferayServerContext.server))
+			webView?.loadHTMLString(styledHtml, baseURL: URL(string:LiferayServerContext.server))
 		}
 	}
 
 	override init(frame: CGRect) {
-		webView = UIWebView()
+
 		super.init(frame: frame)
 
-		webView.frame = bounds
-		addSubview(webView)
+		initialize()
 	}
 
 	required public init?(coder aDecoder: NSCoder) {
-		webView = UIWebView()
 		super.init(coder: aDecoder)
 
-		webView.frame = bounds
-		addSubview(webView)
+		initialize()
+	}
+
+	func initialize() {
+		let config = WKWebViewConfiguration.noCacheConfiguration
+		webView = WKWebView(frame: CGRect.zero, configuration: config)
+		webView?.frame = bounds
+		webView?.injectCookies()
+		webView?.injectViewportMetaTag()
+
+		addSubview(webView!)
 	}
 }

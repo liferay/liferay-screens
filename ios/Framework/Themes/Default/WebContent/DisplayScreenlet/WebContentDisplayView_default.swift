@@ -12,6 +12,7 @@
  * details.
  */
 import UIKit
+import WebKit
 
 
 open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayViewModel {
@@ -19,7 +20,7 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 
 	//MARK: Outlets
 
-	@IBOutlet open var webView: UIWebView?
+	open var webView: WKWebView?
 
 	override open var progressMessages: [String:ProgressMessages] {
 		return [
@@ -35,6 +36,35 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 		".MobileCSS img { width: 100% !important; } " +
 		".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }"
 
+	open override func onCreated() {
+		super.onCreated()
+
+		let config = WKWebViewConfiguration.noCacheConfiguration
+		
+		webView = WKWebView(frame: self.frame, configuration: config)
+
+		webView?.injectCookies()
+		webView?.injectViewportMetaTag()
+
+		addWebView()
+	}
+
+	open func addWebView() {
+		webView?.translatesAutoresizingMaskIntoConstraints = false
+
+		addSubview(webView!)
+
+		let top = NSLayoutConstraint(item: webView!, attribute: .top, relatedBy: .equal,
+		                             toItem: self, attribute: .top, multiplier: 1, constant: 0)
+		let bottom = NSLayoutConstraint(item: webView!, attribute: .bottom, relatedBy: .equal,
+		                                toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
+		let leading = NSLayoutConstraint(item: webView!, attribute: .leading, relatedBy: .equal,
+		                                 toItem: self, attribute: .leading, multiplier: 1, constant: 0)
+		let trailing = NSLayoutConstraint(item: webView!, attribute: .trailing, relatedBy: .equal,
+		                                  toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
+
+		NSLayoutConstraint.activate([top, bottom, leading, trailing])
+	}
 
 	override open func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
@@ -48,7 +78,6 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 		}
 		set {
 			let styledHtml = "<style>\(styles)</style><div class=\"MobileCSS\">\(newValue ?? "")</div>"
-
 			webView!.loadHTMLString(styledHtml, baseURL: URL(string:LiferayServerContext.server))
 		}
 	}
