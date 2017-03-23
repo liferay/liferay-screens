@@ -210,7 +210,7 @@ open class UserPortraitScreenlet: BaseScreenlet {
 
 		loadedUserId = userId
 
-		return performAction(name: "load-portrait", sender: interactor)
+		return performAction(name: UserPortraitScreenlet.LoadPortrait, sender: interactor)
 	}
 
 	/// Loads the user portrait image.
@@ -230,7 +230,7 @@ open class UserPortraitScreenlet: BaseScreenlet {
 
 		loadedUserId = nil
 
-		return performAction(name: "load-portrait", sender: interactor)
+		return performAction(name: UserPortraitScreenlet.LoadPortrait, sender: interactor)
 	}
 
 	/// Loads the user portrait image throught user identifier.
@@ -245,7 +245,7 @@ open class UserPortraitScreenlet: BaseScreenlet {
 
 		loadedUserId = userId
 
-		return performAction(name: "load-portrait", sender: interactor)
+		return performAction(name: UserPortraitScreenlet.LoadPortrait, sender: interactor)
 	}
 
 	/// Loads the user portrait throught company identifier and email address.
@@ -263,7 +263,7 @@ open class UserPortraitScreenlet: BaseScreenlet {
 
 		loadedUserId = nil
 
-		return performAction(name: "load-portrait", sender: interactor)
+		return performAction(name: UserPortraitScreenlet.LoadPortrait, sender: interactor)
 	}
 
 	/// Loads the user portrait throught company identifier and user screen name.
@@ -281,7 +281,7 @@ open class UserPortraitScreenlet: BaseScreenlet {
 
 		loadedUserId = nil
 
-		return performAction(name: "load-portrait", sender: interactor)
+		return performAction(name: UserPortraitScreenlet.LoadPortrait, sender: interactor)
 	}
 
 	/// Loads the user portrait placeholder when the user portrait is empty.
