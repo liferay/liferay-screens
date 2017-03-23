@@ -120,39 +120,8 @@ open class UserPortraitScreenlet: BaseScreenlet {
 
 		switch name {
 		case UserPortraitScreenlet.LoadPortrait:
-			let loadInteractor = sender as! DownloadUserPortraitInteractor
-
-			loadInteractor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .remoteFirst
-
-			loadInteractor.onSuccess = {
-				if loadInteractor.userHasDefaultPortrait, let user = loadInteractor.resultUser {
-					self.viewModel.loadPlaceholder(for: user)
-				}
-				else if let imageValue = loadInteractor.resultImage {
-					let finalImage = self.userPortraitDelegate?.screenlet?(self, onUserPortraitResponseImage: imageValue)
-
-					self.loadedUserId = loadInteractor.resultUser?.userId ?? self.loadedUserId
-					self.setPortraitImage(finalImage ?? imageValue)
-				}
-				else {
-					self.userPortraitDelegate?.screenlet?(self,
-					                                      onUserPortraitError: NSError.errorWithCause(.invalidServerResponse,
-															message: "Could not load user portrait image."))
-
-					self.loadedUserId = nil
-					self.setPortraitImage(nil)
-				}
-			}
-
-			loadInteractor.onFailure = {
-				self.userPortraitDelegate?.screenlet?(self, onUserPortraitError: $0)
-
-				self.loadedUserId = nil
-				self.setPortraitImage(nil)
-			}
-
-			return loadInteractor
-
+			let downloadInteractor = sender as! DownloadUserPortraitInteractor
+			return createLoadPortraitInteractor(downloadInteractor)
 		case UserPortraitScreenlet.UploadPortrait:
 			let image = sender as! UIImage
 			return createUploadPortraitInteractor(image)
@@ -270,7 +239,45 @@ open class UserPortraitScreenlet: BaseScreenlet {
 		}
 	}
 
+	fileprivate func createLoadPortraitInteractor(
+		_ downloadInteractor: DownloadUserPortraitInteractor) -> DownloadUserPortraitInteractor? {
+
+		downloadInteractor.cacheStrategy = CacheStrategyType(
+			rawValue: self.offlinePolicy ?? "") ?? .remoteFirst
+
+		downloadInteractor.onSuccess = {
+			if downloadInteractor.userHasDefaultPortrait, let user = downloadInteractor.resultUser {
+				self.viewModel.loadPlaceholder(for: user)
+			}
+			else if let imageValue = downloadInteractor.resultImage {
+				let finalImage = self.userPortraitDelegate?.screenlet?(
+					self, onUserPortraitResponseImage: imageValue)
+
+				self.loadedUserId = downloadInteractor.resultUser?.userId ?? self.loadedUserId
+				self.setPortraitImage(finalImage ?? imageValue)
+			}
+			else {
+				self.userPortraitDelegate?.screenlet?(
+					self, onUserPortraitError: NSError.errorWithCause(
+						.invalidServerResponse, message: "Could not load user portrait image."))
+
+				self.loadedUserId = nil
+				self.setPortraitImage(nil)
+			}
+		}
+
+		downloadInteractor.onFailure = {
+			self.userPortraitDelegate?.screenlet?(self, onUserPortraitError: $0)
+
+			self.loadedUserId = nil
+			self.setPortraitImage(nil)
+		}
+		
+		return downloadInteractor
+	}
+
 	fileprivate func createUploadPortraitInteractor(_ image: UIImage) -> UploadUserPortraitInteractor? {
+
 		let userId: Int64
 
 		if let loadedUserIdValue = loadedUserId {
