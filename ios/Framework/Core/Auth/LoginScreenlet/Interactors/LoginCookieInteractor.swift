@@ -15,11 +15,15 @@ import UIKit
 import LRMobileSDK
 
 
+public typealias ChallengeResolver = (URLAuthenticationChallenge,
+		(URLSession.AuthChallengeDisposition, URLCredential) -> Void) -> Void
+
 open class LoginCookieInteractor: Interactor, LRCallback {
 
 	open let emailAddress: String
 	open let password: String
 	open let companyId: Int64
+	open let challengeResolver: ChallengeResolver?
 
 	open var cookieSession: LRSession?
 
@@ -27,10 +31,13 @@ open class LoginCookieInteractor: Interactor, LRCallback {
 
 	//MARK: Initializers
 
-	public init(screenlet: BaseScreenlet?, companyId: Int64 = LiferayServerContext.companyId, emailAddress: String, password: String) {
+	public init(screenlet: BaseScreenlet?, companyId: Int64 = LiferayServerContext.companyId,
+			emailAddress: String, password: String, challengeResolver: ChallengeResolver? = nil) {
+
 		self.companyId = companyId
 		self.emailAddress = emailAddress
 		self.password = password
+		self.challengeResolver = challengeResolver
 
 		super.init(screenlet: screenlet)
 	}
@@ -48,7 +55,17 @@ open class LoginCookieInteractor: Interactor, LRCallback {
 			}
 		}
 
-		LRCookieSignIn.signIn(with: session, callback: callback)
+		var challenge: ((URLAuthenticationChallenge?,
+				((URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void)?) -> Swift.Void)? = nil
+
+		// FIXME: Objc nullability annotations in Mobile SDK
+		if let challengeResolver = challengeResolver {
+			challenge = { challenge, completion in
+				challengeResolver(challenge!, completion!)
+			}
+		}
+
+		LRCookieSignIn.signIn(with: session, callback: callback, challenge: challenge)
 		return true
 	}
 
