@@ -39,6 +39,7 @@ public class DDLFormLoadInteractor extends BaseCacheReadInteractor<DDLFormListen
 		DDMStructureConnector ddmStructureConnector =
 			ServiceProvider.getInstance().getDDMStructureConnector(getSession());
 		JSONObject jsonObject = ddmStructureConnector.getStructure(record.getStructureId());
+
 		return new DDLFormEvent(record, jsonObject);
 	}
 
@@ -47,10 +48,15 @@ public class DDLFormLoadInteractor extends BaseCacheReadInteractor<DDLFormListen
 		Record formRecord = event.getRecord();
 
 		try {
-			formRecord.parseDDMStructure(event.getJSONObject());
+			JSONObject jsonObject = event.getJSONObject();
+			JSONObject ddmStructure = jsonObject.getJSONObject("ddmStructure");
+			formRecord.parseDDMStructure(ddmStructure);
+			if (jsonObject.has("ddmFormLayout")) {
+				formRecord.parsePages(jsonObject.getJSONObject("ddmFormLayout"));
+			}
 
 			if (formRecord.getCreatorUserId() == 0) {
-				long userId = event.getJSONObject().getLong("userId");
+				long userId = ddmStructure.getLong("userId");
 				formRecord.setCreatorUserId(userId);
 			}
 		} catch (JSONException e) {

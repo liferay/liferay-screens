@@ -60,7 +60,8 @@ public class JsonParser implements DDMStructureParser {
 
 	protected Field createFormField(JSONObject field, Locale formLocale, Locale locale) throws JSONException {
 
-		Field.DataType dataType = Field.DataType.valueOfString(field.getString("dataType"));
+		String textDataType = field.has("dataType") ? field.getString("dataType") : null;
+		Field.DataType dataType = Field.DataType.assignDataTypeFromString(textDataType);
 
 		Map<String, Object> attributes = getAttributes(field);
 
@@ -76,7 +77,10 @@ public class JsonParser implements DDMStructureParser {
 		if (attributes.containsKey("nestedFields")) {
 			JSONArray jsonArray = (JSONArray) attributes.get("nestedFields");
 			for (int i = 0; i < jsonArray.length(); i++) {
-				newField.getFields().add(createFormField(jsonArray.getJSONObject(i), formLocale, locale));
+				Field formField = createFormField(jsonArray.getJSONObject(i), formLocale, locale);
+				if (formField != null) {
+					newField.getFields().add(formField);
+				}
 			}
 		}
 
