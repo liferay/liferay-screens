@@ -17,6 +17,8 @@ public class DDMStructureConnector62 implements DDMStructureConnector {
 
 	@Override
 	public JSONObject getStructure(long structureId) throws Exception {
-		return ddmStructureService.getStructure(structureId);
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("ddmStructure", ddmStructureService.getStructure(structureId));
+		return jsonObject;
 	}
 }
