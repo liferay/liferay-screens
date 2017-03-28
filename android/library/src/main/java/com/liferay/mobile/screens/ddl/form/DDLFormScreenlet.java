@@ -38,6 +38,7 @@ import com.liferay.mobile.screens.ddl.model.Record;
 import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONObject;
+import rx.Observable;
 
 /**
  * @author Silvio Santos
@@ -576,5 +577,9 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 		} else {
 			viewModel.setFieldLayoutId(editorType, resourceId);
 		}
+	}
+
+	public Observable getEventsObservable() {
+		return getViewModel().getEventsObservable();
 	}
 }
