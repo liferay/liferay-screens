@@ -253,22 +253,29 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 
 	@Override
 	protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
-		if (UPLOAD_PORTRAIT.equals(userActionName)) {
-			UserPortraitUploadInteractor userPortraitInteractor =
-				(UserPortraitUploadInteractor) getInteractor(userActionName);
-			Uri path = (Uri) args[0];
-			if (userId != 0) {
-				userPortraitInteractor.start(new UserPortraitUploadEvent(path));
-			}
-		} else {
-			UserPortraitLoadInteractor userPortraitLoadInteractor =
-				(UserPortraitLoadInteractor) getInteractor(userActionName);
-			if (portraitId != 0 && uuid != null) {
-				userPortraitLoadInteractor.start(male, portraitId, uuid);
-			} else {
-				userPortraitLoadInteractor.start(
-					SessionContext.hasUserInfo() && userId == 0 ? SessionContext.getCurrentUser().getId() : userId);
-			}
+		switch (userActionName) {
+			case UPLOAD_PORTRAIT:
+				UserPortraitUploadInteractor userPortraitInteractor =
+					(UserPortraitUploadInteractor) getInteractor(userActionName);
+				Uri path = (Uri) args[0];
+				if (userId != 0) {
+					userPortraitInteractor.start(new UserPortraitUploadEvent(path));
+				}
+				break;
+			case LOAD_CURRENT_USER:
+				UserPortraitLoadInteractor userPortraitLoadInteractorCurrentUser =
+					(UserPortraitLoadInteractor) getInteractor(userActionName);
+				long currentUserId = SessionContext.isLoggedIn() ? SessionContext.getCurrentUser().getId() : 0;
+				userPortraitLoadInteractorCurrentUser.start(currentUserId);
+				break;
+			default:
+				UserPortraitLoadInteractor userPortraitLoadInteractor =
+					(UserPortraitLoadInteractor) getInteractor(userActionName);
+				if (portraitId != 0 && uuid != null) {
+					userPortraitLoadInteractor.start(male, portraitId, uuid);
+				}
+				userPortraitLoadInteractor.start(userId);
+				break;
 		}
 	}
 
