@@ -45,7 +45,7 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 	protected void onResume() {
 		super.onResume();
 
-		screenlet.load();
+		screenlet.loadLoggedUserPortrait();
 	}
 
 	@Override
