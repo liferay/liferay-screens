@@ -88,11 +88,6 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 	}
 
 	@Override
-	public void setPositionInParent(int position) {
-		positionInForm = position;
-	}
-
-	@Override
 	protected void onDetachedFromWindow() {
 		super.onDetachedFromWindow();
 

@@ -23,6 +23,10 @@ import android.widget.LinearLayout;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.BooleanField;
+import com.liferay.mobile.screens.ddl.model.Field;
+import java.util.concurrent.TimeUnit;
+import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * @author Jose Manuel Navarro
@@ -33,6 +37,8 @@ public class DDLFieldCheckboxView extends LinearLayout
 	protected BooleanField field;
 	protected SwitchCompat switchCompat;
 	protected View parentView;
+	private boolean shown;
+	private long timer = System.currentTimeMillis();
 
 	public DDLFieldCheckboxView(Context context) {
 		super(context);
@@ -87,13 +93,29 @@ public class DDLFieldCheckboxView extends LinearLayout
 	}
 
 	@Override
-	public void setPositionInParent(int position) {
-
+	public Observable getObservable() {
+		return Observable.interval(100, TimeUnit.MILLISECONDS).filter(new Func1<Long, Boolean>() {
+			@Override
+			public Boolean call(Long aLong) {
+				return System.currentTimeMillis() - timer > Field.RATE_FIELD;
+			}
+		}).filter(new Func1<Long, Boolean>() {
+			@Override
+			public Boolean call(Long aLong) {
+				return shown;
+			}
+		}).map(new Func1() {
+			@Override
+			public Object call(Object o) {
+				return field;
+			}
+		}).distinctUntilChanged();
 	}
 
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		field.setCurrentValue(isChecked);
+		shown = true;
 	}
 
 	@Override

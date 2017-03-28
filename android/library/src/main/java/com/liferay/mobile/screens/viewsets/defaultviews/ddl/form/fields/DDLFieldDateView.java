@@ -23,9 +23,13 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.model.DateField;
+import com.liferay.mobile.screens.ddl.model.Field;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * @author Silvio Santos
@@ -34,6 +38,7 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 	implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
 
 	protected DatePickerDialog pickerDialog;
+	private boolean shown;
 
 	public DDLFieldDateView(Context context) {
 		super(context);
@@ -66,6 +71,8 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 
 		pickerDialog = new DatePickerDialog(getContext(), getDatePickerStyle(), this, year, month, day);
 
+		timer = System.currentTimeMillis();
+		shown = true;
 		pickerDialog.show();
 	}
 
@@ -79,10 +86,7 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 		getField().setCurrentValue(calendar.getTime());
 
 		refresh();
-	}
-
-	@Override
-	public void setPositionInParent(int position) {
+		shown = false;
 	}
 
 	protected int getDatePickerStyle() {
@@ -115,5 +119,30 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 	protected void onTextChanged(String text) {
 		//not doing anything at the moment, because field is being set
 		//using the DatePickerDialog
+	}
+
+	@Override
+	public Observable getObservable() {
+		return Observable.interval(100, TimeUnit.MILLISECONDS).filter(new Func1<Long, Boolean>() {
+			@Override
+			public Boolean call(Long aLong) {
+				return System.currentTimeMillis() - timer > Field.RATE_FIELD;
+			}
+		}).filter(new Func1<Long, Boolean>() {
+			@Override
+			public Boolean call(Long aLong) {
+				return shown;
+			}
+		}).map(new Func1() {
+			@Override
+			public Object call(Object o) {
+				return getField();
+			}
+		}).distinctUntilChanged().map(new Func1() {
+			@Override
+			public Object[] call(Object o) {
+				return new Object[] { getField(), System.currentTimeMillis() - timer };
+			}
+		});
 	}
 }

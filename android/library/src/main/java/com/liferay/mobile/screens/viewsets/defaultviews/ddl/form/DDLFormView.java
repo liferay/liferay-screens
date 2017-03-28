@@ -34,6 +34,7 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 import java.util.HashMap;
 import java.util.Map;
+import rx.Observable;
 
 /**
  * @author Silvio Santos
@@ -209,6 +210,11 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 	}
 
 	@Override
+	public Observable getEventsObservable() {
+		return null;
+	}
+
+	@Override
 	public void showFormFields(Record record) {
 		fieldsContainerView.removeAllViews();
 		fieldsContainerView.setVisibility(INVISIBLE);
@@ -217,11 +223,8 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 			addFieldView(record.getField(i), i);
 		}
 
-		if (getDDLFormScreenlet().isShowSubmitButton()) {
-			submitButton.setVisibility(VISIBLE);
-		} else {
-			submitButton.setVisibility(INVISIBLE);
-		}
+		int visibility = getDDLFormScreenlet().isShowSubmitButton() ? VISIBLE : INVISIBLE;
+		submitButton.setVisibility(visibility);
 
 		DefaultAnimation.showViewWithReveal(fieldsContainerView);
 	}
@@ -262,20 +265,16 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 	}
 
 	protected void addFieldView(Field field, int position) {
-		int layoutId;
 
-		if (customLayoutIds.containsKey(field.getName())) {
-			layoutId = getCustomFieldLayoutId(field.getName());
-		} else {
-			layoutId = getFieldLayoutId(field.getEditorType());
-		}
+		boolean isACustomLayout = customLayoutIds.containsKey(field.getName());
+		int layoutId =
+			isACustomLayout ? getCustomFieldLayoutId(field.getName()) : getFieldLayoutId(field.getEditorType());
 
 		View view = LayoutInflater.from(getContext()).inflate(layoutId, this, false);
 		DDLFieldViewModel viewModel = (DDLFieldViewModel) view;
 
 		viewModel.setField(field);
 		viewModel.setParentView(this);
-		viewModel.setPositionInParent(position);
 
 		fieldsContainerView.addView(view);
 	}

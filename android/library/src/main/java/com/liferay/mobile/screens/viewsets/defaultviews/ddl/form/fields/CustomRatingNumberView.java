@@ -24,6 +24,7 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.NumberField;
+import rx.Observable;
 
 /**
  * @author Jose Manuel Navarro
@@ -97,7 +98,8 @@ public class CustomRatingNumberView extends LinearLayout
 	}
 
 	@Override
-	public void setPositionInParent(int position) {
+	public Observable getObservable() {
+		return Observable.just("Hi!");
 	}
 
 	@Override

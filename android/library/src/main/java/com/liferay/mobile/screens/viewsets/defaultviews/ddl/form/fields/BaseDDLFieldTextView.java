@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 
 import android.content.Context;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.View;
@@ -25,17 +26,25 @@ import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
+import java.util.concurrent.TimeUnit;
+import rx.Observable;
+import rx.functions.Func1;
+import rx.subjects.PublishSubject;
 
 /**
  * @author Silvio Santos
  */
 public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
-	implements DDLFieldViewModel<T>, TextWatcher {
+	implements DDLFieldViewModel<T>, TextWatcher, View.OnFocusChangeListener {
 
 	protected TextView labelTextView;
 	protected EditText textEditText;
 	protected View parentView;
 	private T field;
+
+	protected long timer;
+	private boolean focused;
+	private PublishSubject observableFocusChange = PublishSubject.create();
 
 	public BaseDDLFieldTextView(Context context) {
 		super(context);
@@ -109,11 +118,17 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 
 	@Override
 	public void onTextChanged(CharSequence text, int start, int before, int count) {
+		timer = System.currentTimeMillis();
 	}
 
 	@Override
 	public void refresh() {
-		textEditText.setText(field.toFormattedString());
+		if (this.field.isReadOnly()) {
+			textEditText.setEnabled(false);
+			textEditText.setText(Html.fromHtml(String.valueOf(field.toFormattedString())));
+		} else {
+			textEditText.setText(field.toFormattedString());
+		}
 	}
 
 	@Override
@@ -140,7 +155,56 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 		//the ids of other DDLFields are conflicting.
 		//It is not a problem because all state is stored in Field objects.
 		textEditText.setSaveEnabled(false);
+
+		textEditText.setOnFocusChangeListener(this);
 	}
 
 	protected abstract void onTextChanged(String text);
+
+	@Override
+	public void onFocusChange(View v, boolean hasFocus) {
+		focused = hasFocus;
+		if (hasFocus) {
+			timer = System.currentTimeMillis();
+		} else {
+			observableFocusChange.onNext("Hi!");
+		}
+	}
+
+	@Override
+	public Observable getObservable() {
+
+		return Observable
+			.interval(100, TimeUnit.MILLISECONDS)
+			.filter(new Func1<Long, Boolean>() {
+				@Override
+				public Boolean call(Long aLong) {
+					return getTimeSpent() > Field.RATE_FIELD;
+				}
+			})
+			.filter(new Func1<Long, Boolean>() {
+			@Override
+			public Boolean call(Long aLong) {
+				return focused;
+			}
+		})
+			.map(new Func1() {
+			@Override
+			public Object call(Object o) {
+				return field;
+			}
+		})
+			.distinctUntilChanged()
+			.mergeWith(observableFocusChange)
+			.map(new Func1() {
+			@Override
+			public Object[] call(Object o) {
+				return new Object[] { field, getTimeSpent() };
+			}
+		});
+	}
+
+	private long getTimeSpent() {
+		return System.currentTimeMillis() - timer;
+	}
 }
