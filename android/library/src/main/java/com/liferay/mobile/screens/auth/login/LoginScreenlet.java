@@ -36,6 +36,7 @@ import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
+import com.squareup.okhttp.Authenticator;
 
 import static com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder.StorageType;
 
@@ -54,6 +55,7 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 	private StorageType credentialsStorage;
 	private String oauthConsumerKey;
 	private String oauthConsumerSecret;
+	private Authenticator authenticator;
 
 	public LoginScreenlet(Context context) {
 		super(context);
@@ -182,6 +184,14 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 		this.authenticationType = authenticationType;
 	}
 
+	public Authenticator getAuthenticator() {
+		return authenticator;
+	}
+
+	public void setAuthenticator(Authenticator authenticator) {
+		this.authenticator = authenticator;
+	}
+
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(attributes, R.styleable.LoginScreenlet, 0, 0);
@@ -240,7 +250,7 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 	protected void onUserAction(String userActionName, BaseLoginInteractor interactor, Object... args) {
 		if (AuthenticationType.COOKIE.equals(authenticationType)) {
 			LoginViewModel viewModel = getViewModel();
-			interactor.start(viewModel.getLogin(), viewModel.getPassword());
+			interactor.start(viewModel.getLogin(), viewModel.getPassword(), authenticator);
 		} else if (AuthenticationType.BASIC.equals(authenticationType)) {
 			LoginViewModel viewModel = getViewModel();
 			interactor.start(viewModel.getLogin(), viewModel.getPassword(), viewModel.getBasicAuthMethod());
