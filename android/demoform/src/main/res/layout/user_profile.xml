@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/main_view"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/background_gray_westeros"
+	>
+
+	<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
+		android:id="@+id/user_portrait_screenlet"
+		android:layout_width="90dp"
+		android:layout_height="90dp"
+		android:layout_alignParentTop="true"
+		android:layout_centerHorizontal="true"
+		android:layout_margin="5dp"
+		/>
+
+	<TextView
+		android:id="@+id/user_name_text"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/user_portrait_screenlet"
+		android:layout_centerHorizontal="true"
+		android:textColor="@android:color/black"
+		android:textSize="19sp"
+		android:textStyle="bold"
+		/>
+
+	<TextView
+		android:id="@+id/user_job_title_text"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/user_name_text"
+		android:layout_centerHorizontal="true"
+		android:layout_marginBottom="5dp"
+		android:textColor="@android:color/black"
+		/>
+
+	<TextView
+		android:id="@+id/email_title"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true"
+		android:layout_below="@id/user_job_title_text"
+		android:layout_margin="5dp"
+		android:text="@string/email"
+		android:textColor="@color/colorPrimary_westeros"
+		/>
+
+	<TextView
+		android:id="@+id/user_email_text"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentStart="true"
+		android:layout_below="@id/email_title"
+		android:layout_margin="5dp"
+		android:textColor="@android:color/black"
+		/>
+
+	<TextView
+		android:id="@+id/screen_name_title"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentStart="true"
+		android:layout_below="@id/user_email_text"
+		android:layout_margin="5dp"
+		android:text="@string/screenname"
+		android:textColor="@color/colorPrimary_westeros"
+		/>
+
+	<TextView
+		android:id="@+id/user_screen_name_text"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentStart="true"
+		android:layout_below="@id/screen_name_title"
+		android:layout_margin="5dp"
+		android:textColor="@android:color/black"
+		/>
+
+	<Button
+		android:id="@+id/sign_out_button"
+		android:layout_alignParentBottom="true"
+		android:layout_centerHorizontal="true"
+		android:text="@string/sign_out"
+		style="@style/westeros_button"
+		/>
+
+
+</RelativeLayout>

@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="liferay_company_id">20116</string>
-	<string name="liferay_group_id">65559</string>
-	<string name="liferay_server">https://forms.liferay.com</string>
 
-	<integer name="liferay_portal_version">70</integer>
+	<string name="liferay_server">https://demo.liferay.com/screens</string>
+	<string name="liferay_company_id">20155</string>
+	<string name="liferay_group_id">20525</string>
+
+	<!-- SignupScreenlet values -->
+	<string name="liferay_anonymousApiUserName">anonymous1@liferay.com</string>
+	<string name="liferay_anonymousApiPassword">anonymous1</string>
+
+	<!-- DDLFormScreenlet values -->
+	<string name="liferay_recordset_id">20593</string>
+	<string name="liferay_structure_id">20589</string>
+	<string name="liferay_recordset_fields">Title</string>
+
+	<!-- SigninScreenlet values -->
+	<string name="liferay_login">test@liferay.com</string>
+	<string name="liferay_password">test</string>
+
+	<!-- WebContentDisplayScreenlet values -->
+	<string name="liferay_article_id">44489</string>
+
+	<!-- GalleryScreenlet values -->
+	<string name="folderId">44059</string>
+
 </resources>

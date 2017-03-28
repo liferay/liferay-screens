@@ -1,3 +1,20 @@
 <resources>
-	<string name="app_name">DemoForm</string>
+	<string name="app_name">App Name</string>
+	<string name="title">Westeros Employees</string>
+	<string name="account_settings">Account Settings</string>
+	<string name="severity">Severity</string>
+	<string name="reset_password_text">We will send you a link to reset your password.\r\n\r\nThe link will be valid 24 hours</string>
+	<string name="send_password">Send Password</string>
+	<string name="send_a_message">Send a message</string>
+	<string name="sign_out">Sign Out</string>
+	<string name="sign_in">Sign In</string>
+	<string name="next">Next</string>
+	<string name="start">Start</string>
+	<string name="arrow_back_tag">arrow_back</string>
+	<string name="arrow_tag">arrow</string>
+	<string name="email">EMAIL</string>
+	<string name="screenname">SCREEN NAME</string>
+	<string name="description">Description</string>
+	<string name="upload_title">Title</string>
+	<string name="main_logo">Main Logo</string>
 </resources>

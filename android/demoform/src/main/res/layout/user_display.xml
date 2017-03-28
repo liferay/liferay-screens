@@ -6,15 +6,13 @@
 	android:layout_height="match_parent"
 	>
 
-	<com.liferay.mobile.screens.ddl.form.DDLFormScreenlet
-		android:id="@+id/ddl_form_screenlet"
+	<com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet
+		android:id="@+id/asset_display_screenlet"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		android:layout_centerInParent="true"
 		app:autoLoad="false"
-		app:groupId="20140"
-		app:layoutId="@layout/ddl_form_view_pager"
-		app:recordSetId="34506"
-		app:structureId="34502"
+		app:layoutId="@layout/asset_display_default"
 		/>
 
 </RelativeLayout>
