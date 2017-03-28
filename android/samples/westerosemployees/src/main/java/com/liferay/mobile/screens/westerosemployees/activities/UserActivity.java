@@ -8,6 +8,7 @@ import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.asset.list.AssetListScreenlet;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.westerosemployees.R;
 import java.util.List;
 
@@ -30,7 +31,9 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 		TextView userNameTextView = (TextView) findViewById(R.id.liferay_username);
 		userNameTextView.setOnClickListener(this);
 
-		findViewById(R.id.userscreenlet_home).setOnClickListener(this);
+		UserPortraitScreenlet userPortraitScreenlet = (UserPortraitScreenlet) findViewById(R.id.userscreenlet_home);
+		userPortraitScreenlet.setOnClickListener(this);
+		userPortraitScreenlet.loadLoggedUserPortrait();
 
 		((AssetListScreenlet) findViewById(R.id.news_display_screenlet)).setListener(this);
 
