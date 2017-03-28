@@ -4,7 +4,7 @@ buildscript {
 	}
 
 	dependencies {
-		classpath 'com.android.tools.build:gradle:2.3.0'
+		classpath 'com.android.tools.build:gradle:2.4.0-alpha3'
 		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
 		classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
 	}
@@ -25,7 +25,7 @@ ext {
 
 	bintrayRepo = 'liferay-mobile'
 	bintrayOrg = ''
-//	    bintrayOrg = 'liferay'
+	//	    bintrayOrg = 'liferay'
 
 	siteUrl = 'https://github.com/liferay/liferay-screens'
 	gitUrl = 'https://github.com/liferay/liferay-screens.git'
@@ -36,10 +36,10 @@ ext {
 
 	licenseName = 'GNU Lesser General Public License, version 2.1'
 	licenseUrl = 'http://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html'
-	allLicenses = ["LGPL-2.1"]
+	allLicenses = ['LGPL-2.1']
 }
 
-def supportLibsVersion = '25.1.0'
+def supportLibsVersion = '25.3.0'
 
 ext.libraries = [appCompat    : 'com.android.support:appcompat-v7:' + supportLibsVersion,
                  recyclerView : 'com.android.support:recyclerview-v7:' + supportLibsVersion,
