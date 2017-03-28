@@ -19,6 +19,7 @@ import android.os.Parcelable;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -29,6 +30,8 @@ import org.w3c.dom.Element;
  */
 public abstract class Field<T extends Serializable> implements Parcelable {
 
+	private String text;
+	private Map<String, Object> attributes = new HashMap<>();
 	private DataType dataType;
 	private EditorType editorType;
 	private String name;
@@ -52,6 +55,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	public Field(Map<String, Object> attributes, Locale currentLocale, Locale defaultLocale) {
 		this.currentLocale = currentLocale;
 		this.defaultLocale = defaultLocale;
+		this.attributes = attributes;
 
 		dataType = DataType.valueOf(attributes);
 		editorType = EditorType.valueOf(attributes);
@@ -65,15 +69,22 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		required = Boolean.valueOf(getAttributeStringValue(attributes, "required"));
 		showLabel = Boolean.valueOf(getAttributeStringValue(attributes, "showLabel"));
 
-		predefinedValue = convertFromString(getAttributeStringValue(attributes, "predefinedValue"));
-		currentValue = predefinedValue;
+		String predefinedValue = getAttributeStringValue(attributes, "predefinedValue");
+		this.predefinedValue = convertFromString(predefinedValue);
+		currentValue = this.predefinedValue;
+
+		String text = getAttributeStringValue(attributes, "text");
+		if (!text.isEmpty()) {
+			this.text = text;
+			currentValue = convertFromString(text);
+		}
 	}
 
 	protected Field(Parcel in, ClassLoader loader) {
 		Parcelable[] array = in.readParcelableArray(getClass().getClassLoader());
 		fields = new ArrayList(Arrays.asList(array));
 
-		dataType = DataType.valueOfString(in.readString());
+		dataType = DataType.assignDataTypeFromString(in.readString());
 		editorType = EditorType.valueOfString(in.readString());
 
 		name = in.readString();
@@ -127,8 +138,16 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		return editorType;
 	}
 
+	public String getText() {
+		return text;
+	}
+
 	public boolean isReadOnly() {
 		return readOnly;
+	}
+
+	public void setReadOnly(boolean readOnly) {
+		this.readOnly = readOnly;
 	}
 
 	public boolean isRepeatable() {
@@ -262,12 +281,32 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 	public enum DataType {
 		BOOLEAN("boolean"), STRING("string"), HTML("html"), DATE("date"), NUMBER("number"), IMAGE("image"), DOCUMENT(
-			"document-library"), UNSUPPORTED("");
+			"document-library"), UNSUPPORTED(null);
 
 		private final String value;
 
 		DataType(String value) {
 			this.value = value;
+		}
+
+		public static DataType assignDataTypeFromString(String stringDataType) {
+			if (stringDataType != null) {
+				for (DataType dataType : values()) {
+					if (stringDataType.equals(dataType.value)) {
+						return dataType;
+					}
+				}
+
+				if ("".equals(stringDataType)) {
+					return STRING;
+				}
+
+				if ("integer".equals(stringDataType) || "double".equals(stringDataType)) {
+					return NUMBER;
+				}
+			}
+
+			return UNSUPPORTED;
 		}
 
 		public static DataType valueOf(Map<String, Object> attributes) {
@@ -277,7 +316,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 				return UNSUPPORTED;
 			}
 
-			return valueOfString(mapValue.toString());
+			return assignDataTypeFromString(mapValue.toString());
 		}
 
 		public static DataType valueOf(Element element) {
@@ -287,23 +326,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 				return UNSUPPORTED;
 			}
 
-			return valueOfString(attributeValue);
-		}
-
-		public static DataType valueOfString(String name) {
-			if (name != null) {
-				for (DataType dataType : values()) {
-					if (name.equals(dataType.value)) {
-						return dataType;
-					}
-				}
-
-				if ("integer".equals(name) || "double".equals(name)) {
-					return NUMBER;
-				}
-			}
-
-			return UNSUPPORTED;
+			return assignDataTypeFromString(attributeValue);
 		}
 
 		public Field createField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
@@ -341,9 +364,9 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 	public enum EditorType {
 		CHECKBOX("checkbox"), TEXT("text"), TEXT_AREA("textarea", "paragraph", "ddm-text-html"), DATE("ddm-date",
-			"date"), NUMBER("ddm-number", "number"), INTEGER("ddm-integer", "integer"), DECIMAL("ddm-decimal",
-			"decimal"), SELECT("select"), RADIO("radio"), DOCUMENT("ddm-documentlibrary", "documentlibrary",
-			"wcm-image"), UNSUPPORTED("");
+			"date"), NUMBER("ddm-number", "number", "numeric"), INTEGER("ddm-integer", "integer"), DECIMAL(
+			"ddm-decimal", "decimal"), SELECT("select", "checkbox_multiple"), RADIO("radio"), DOCUMENT(
+			"ddm-documentlibrary", "documentlibrary", "wcm-image"), UNSUPPORTED("");
 
 		private final String[] values;
 
