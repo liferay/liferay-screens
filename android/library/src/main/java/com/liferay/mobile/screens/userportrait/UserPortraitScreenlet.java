@@ -53,6 +53,7 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 	private boolean autoLoad;
 	private boolean male;
 	private long portraitId;
+	private long userId;
 	private String uuid;
 	private boolean editable;
 	private UserPortraitListener listener;
@@ -198,6 +199,16 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 		this.editable = editable;
 	}
 
+	@Override
+	public long getUserId() {
+		return userId;
+	}
+
+	@Override
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
 	/**
 	 * Checks if exists {@link #portraitId} and {@link #uuid} or {@link #userId} attributes
 	 * and then calls {@link #load()} method. It's not necessary to be logged in.
@@ -222,6 +233,7 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 		portraitId = typedArray.getInt(R.styleable.UserPortraitScreenlet_portraitId, 0);
 		uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
 		editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
+		userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, 0);
 
 		int layoutId = typedArray.getResourceId(R.styleable.UserPortraitScreenlet_layoutId, getDefaultLayoutId());
 
