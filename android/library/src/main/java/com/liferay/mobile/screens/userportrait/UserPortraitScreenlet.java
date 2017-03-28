@@ -48,6 +48,7 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 
 	public static final String UPLOAD_PORTRAIT = "UPLOAD_PORTRAIT";
 	public static final String LOAD_PORTRAIT = "LOAD_PORTRAIT";
+	public static final String LOAD_CURRENT_USER = "LOAD_CURRENT_USER";
 	private static final String STATE_SUPER = "userportrait-super";
 	private boolean autoLoad;
 	private boolean male;
@@ -78,6 +79,13 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 	 */
 	public void load() {
 		performUserAction(LOAD_PORTRAIT);
+	}
+
+	/**
+	 * Loads the user portrait that correspond to the user logged.
+	 */
+	public void loadLoggedUserPortrait() {
+		performUserAction(LOAD_CURRENT_USER);
 	}
 
 	/**
