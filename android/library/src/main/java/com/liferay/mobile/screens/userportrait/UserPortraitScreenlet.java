@@ -273,8 +273,9 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 					(UserPortraitLoadInteractor) getInteractor(userActionName);
 				if (portraitId != 0 && uuid != null) {
 					userPortraitLoadInteractor.start(male, portraitId, uuid);
+				} else {
+					userPortraitLoadInteractor.start(userId);
 				}
-				userPortraitLoadInteractor.start(userId);
 				break;
 		}
 	}
