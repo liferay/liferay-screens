@@ -11,6 +11,9 @@ All notable changes to this project will be documented in this file.
 * Fix error in UserPortrait initials view: user lastname is required in Liferay 7.0 but is not in Liferay 6.2
 * Fix error in UserPortrait initials view: image doesn't show correctly because background was always on top
 
+### New Features
+* Create loadLoggedUserPortrait method in UserPortraitScreenlet
+
 ## iOS
 
 ### Bugs
