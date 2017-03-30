@@ -23,7 +23,7 @@ All notable changes to this project will be documented in this file.
 * Migrate from UIWebView to WKWebView
 * UserPortraitScreenlet: extract methods, add comments and SF
 
-### Documentation
+### Documentation
 * Screenlets documentation improvements
 
 # 2.1.2
