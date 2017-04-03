@@ -33,6 +33,7 @@
 			android:paddingEnd="37dp"
 			android:paddingRight="37dp"
 			android:paddingTop="12dp"
+			android:tint="@color/colorPrimary"
 			android:src="@drawable/westeros_circle_see_on"
 			/>
 	</FrameLayout>
