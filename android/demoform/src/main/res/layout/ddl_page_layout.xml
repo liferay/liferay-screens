@@ -1,69 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:orientation="vertical"
-	android:padding="10dp"
+	android:fillViewport="true"
 	>
-
-	<TextView
-		android:id="@+id/page_title"
+	<RelativeLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:textSize="20sp"
-		/>
-
-	<TextView
-		android:id="@+id/page_number"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_alignParentRight="true"
-		android:textSize="20sp"
-		/>
-
-	<LinearLayout
-		android:id="@+id/ddlfields_container"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_below="@+id/page_title"
 		android:orientation="vertical"
-		/>
+		android:padding="10dp"
+		>
 
-	<Button
-		android:id="@+id/liferay_form_submit"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_alignParentBottom="true"
-		android:text="@string/submit"
-		android:visibility="gone"
-		/>
+		<TextView
+			android:id="@+id/page_title"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textSize="20sp"
+			/>
 
-	<Button
-		android:id="@+id/next_page_button"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_alignParentBottom="true"
-		android:text="@string/next_page"
-		android:visibility="gone"
-		/>
-</RelativeLayout>
+		<TextView
+			android:id="@+id/page_number"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:textSize="20sp"
+			/>
 
-	<!--<ProgressBar-->
-	<!--android:id="@+id/ddlform_loading_screen_progress_bar"-->
-	<!--android:layout_width="wrap_content"-->
-	<!--android:layout_height="match_parent"-->
-	<!--android:layout_gravity="center"-->
-	<!--android:visibility="invisible"-->
-	<!--/>-->
+		<LinearLayout
+			android:id="@+id/ddlfields_container"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_below="@+id/page_title"
+			android:layout_marginBottom="50dp"
+			android:orientation="vertical"
+			/>
 
+		<Button
+			android:id="@+id/liferay_form_submit"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true"
+			android:text="@string/submit"
+			android:visibility="gone"
+			/>
 
-	<!--<ProgressBar-->
-	<!--android:id="@+id/ddlform_progress_bar"-->
-	<!--android:layout_width="wrap_content"-->
-	<!--android:layout_height="match_parent"-->
-	<!--android:layout_gravity="center_vertical|start"-->
-	<!--android:layout_margin="10dp"-->
-	<!--android:elevation="10dp"-->
-	<!--android:theme="@style/white_theme"-->
-	<!--android:visibility="invisible"-->
-	<!--/>-->
+		<Button
+			android:id="@+id/next_page_button"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true"
+			android:text="@string/next_page"
+			android:visibility="gone"
+			/>
+	</RelativeLayout>
+</ScrollView>

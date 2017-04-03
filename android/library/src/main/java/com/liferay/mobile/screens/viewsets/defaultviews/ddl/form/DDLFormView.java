@@ -21,7 +21,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
@@ -32,7 +31,7 @@ import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
-import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldSelectView;
+import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 import java.util.HashMap;
 import java.util.Map;
 import rx.Observable;
@@ -40,7 +39,7 @@ import rx.Observable;
 /**
  * @author Silvio Santos
  */
-public class DDLFormView extends ScrollView implements DDLFormViewModel, View.OnClickListener {
+public class DDLFormView extends RecyclerViewPager implements DDLFormViewModel, View.OnClickListener {
 
 	private static final Map<Field.EditorType, Integer> DEFAULT_LAYOUT_IDS = new HashMap<>(16);
 
@@ -122,7 +121,7 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 
 			if (!isFieldValid && autoscroll && !scrolled) {
 				fieldView.requestFocus();
-				smoothScrollTo(0, fieldView.getTop());
+				//smoothScrollTo(0, fieldView.getTop());
 				scrolled = true;
 			}
 		}

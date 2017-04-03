@@ -23,11 +23,9 @@ import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 import java.util.Map;
 import rx.subjects.PublishSubject;
 
-import static android.support.v7.widget.LinearLayoutManager.HORIZONTAL;
-
 public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager.OnPageChangedListener {
 
-	private RecyclerViewPager recyclerViewPager;
+	//private RecyclerViewPager recyclerViewPager;
 	private PublishSubject publishSubject = PublishSubject.create();
 	private Map<Field, Boolean> fieldResults = null;
 
@@ -46,18 +44,22 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 	@Override
 	@SuppressLint("MissingSuperCall")
 	protected void onFinishInflate() {
-		recyclerViewPager = (RecyclerViewPager) findViewById(R.id.recycler_view_pager);
-		recyclerViewPager.setLayoutManager(new LinearLayoutManager(getContext(), HORIZONTAL, false));
-		recyclerViewPager.addOnPageChangedListener(this);
+		//recyclerViewPager = (RecyclerViewPager) findViewById(R.id.recycler_view_pager);
+		//recyclerViewPager.setLayoutManager(new LinearLayoutManager(getContext(), HORIZONTAL, false));
+		//recyclerViewPager.addOnPageChangedListener(this);
+
+		setLayoutManager(new LinearLayoutManager(getContext(), HORIZONTAL, false));
+		addOnPageChangedListener(this);
 	}
 
-	public RecyclerViewPager getRecyclerViewPager() {
-		return recyclerViewPager;
-	}
+	//public RecyclerViewPager getRecyclerViewPager() {
+	//	return recyclerViewPager;
+	//}
 
 	@Override
 	public void showFormFields(Record record) {
-		recyclerViewPager.setAdapter(new HorizontalViewPagerAdapter(record));
+		//recyclerViewPager.setAdapter(new HorizontalViewPagerAdapter(record)
+		setAdapter(new HorizontalViewPagerAdapter(record));
 	}
 
 	@Override
@@ -95,7 +97,8 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 				getDDLFormScreenlet().submitForm();
 			}
 		} else if (view.getId() == R.id.next_page_button) {
-			recyclerViewPager.smoothScrollToPosition(recyclerViewPager.getCurrentPosition() + 1);
+			//recyclerViewPager.smoothScrollToPosition(recyclerViewPager.getCurrentPosition() + 1);
+			smoothScrollToPosition(getCurrentPosition() + 1);
 		} else {
 			getDDLFormScreenlet().startUpload((DocumentField) view.getTag());
 		}
@@ -111,7 +114,8 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 			for (Field field : record.getFields()) {
 				boolean isFieldValid = fieldResults.get(field);
 				if (!isFieldValid) {
-					recyclerViewPager.smoothScrollToPosition(record.getPage(field));
+					//recyclerViewPager.smoothScrollToPosition(record.getPage(field));
+					smoothScrollToPosition(record.getPage(field));
 					this.fieldResults = fieldResults;
 					return;
 				}
@@ -133,6 +137,7 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 
 			if (!isFieldValid) {
 				fieldView.requestFocus();
+				scrollTo(0, fieldView.getTop());
 				//smoothScrollTo(0, fieldView.getTop());
 				return true;
 			}

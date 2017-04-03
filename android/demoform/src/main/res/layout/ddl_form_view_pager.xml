@@ -2,17 +2,9 @@
 <com.liferay.mobile.screens.demoform.views.TrackedDDLFormView
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:fillViewport="true"
+	android:layout_height="400dp"
 	android:padding="0dp"
 	style="@style/default_screenlet"
 	>
-
-	<com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager
-		android:id="@+id/recycler_view_pager"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:visibility="visible"
-		/>
 
 </com.liferay.mobile.screens.demoform.views.TrackedDDLFormView>
