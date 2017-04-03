@@ -1,0 +1,61 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/main_view"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	>
+
+	<LinearLayout
+		android:id="@+id/user_info"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="10dp"
+		android:orientation="horizontal"
+		>
+
+		<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
+			android:id="@+id/userscreenlet_home"
+			android:layout_width="70dp"
+			android:layout_height="70dp"
+			app:layoutId="@layout/userportrait_westeros"
+			/>
+
+		<TextView
+			android:id="@+id/liferay_username"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:layout_marginLeft="15dp"
+			android:textColor="@android:color/black"
+			android:textSize="20sp"
+			android:textStyle="bold"
+			/>
+
+	</LinearLayout>
+
+	<com.liferay.mobile.screens.ddl.list.DDLListScreenlet
+		android:id="@+id/ddl_form_screenlet"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_below="@+id/user_info"
+		app:autoLoad="true"
+		app:labelFields="Name,Updated,Balance"
+		app:layoutId="@layout/account_list"
+		app:recordSetId="35606"
+		/>
+
+	<com.liferay.mobile.screens.demoform.views.UserDeck
+		android:id="@+id/deck"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		>
+
+		<include layout="@layout/card_new_account"/>
+
+		<!--<include layout="@layout/card_blogs"/>-->
+
+		<!--<include layout="@layout/card_gallery"/>-->
+
+	</com.liferay.mobile.screens.demoform.views.UserDeck>
+
+</RelativeLayout>

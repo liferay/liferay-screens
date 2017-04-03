@@ -1,6 +1,8 @@
 <resources>
 
 	<color name="colorPrimary">#FF7820</color>
+	<color name="colorPrimaryDark">#C04700</color>
+	<color name="colorAccent">#666</color>
 
 	<style name="westeros_card_title_black">
 		<item name="android:layout_centerHorizontal">true</item>

@@ -15,7 +15,7 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.user);
+		setContentView(R.layout.activity_user);
 
 		bindViews();
 	}

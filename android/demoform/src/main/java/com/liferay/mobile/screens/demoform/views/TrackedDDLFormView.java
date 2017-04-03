@@ -215,4 +215,12 @@ public class TrackedDDLFormView extends DDLFormView {
 			}
 		}
 	}
+
+	public void clearFocusOfFields(DDLFieldViewModel ddlFieldViewModel) {
+		LinearLayout container = (LinearLayout) findViewById(R.id.ddlfields_container);
+		for (int i = 0; i < container.getChildCount(); i++) {
+			DDLFieldViewModel viewModel = (DDLFieldViewModel) container.getChildAt(i);
+			viewModel.clearFocus(ddlFieldViewModel);
+		}
+	}
 }

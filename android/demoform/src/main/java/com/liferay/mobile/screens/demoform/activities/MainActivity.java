@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.demoform.activities;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import com.liferay.mobile.screens.auth.login.LoginListener;
@@ -25,6 +26,8 @@ import com.liferay.mobile.screens.demoform.R;
 import com.liferay.mobile.screens.demoform.utils.CardState;
 import com.liferay.mobile.screens.demoform.views.Deck;
 import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
+import com.tbruyelle.rxpermissions.RxPermissions;
+import rx.functions.Action1;
 
 public class MainActivity extends WesterosActivity implements LoginListener {
 
@@ -33,7 +36,7 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		setContentView(R.layout.activity_main);
 
 		findViews();
 
@@ -45,6 +48,13 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 			Cache.resync();
 			toNextActivity();
 		}
+
+		new RxPermissions(this).request(Manifest.permission.ACCESS_FINE_LOCATION).subscribe(new Action1<Boolean>() {
+			@Override
+			public void call(Boolean conceded) {
+
+			}
+		});
 	}
 
 	private void findViews() {

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.demoform.views.NewAccountCard
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@drawable/westeros_white_shape_ripple"
+	android:elevation="8dp"
+	app:normalMarginTop="100dp"
+	>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		>
+
+		<TextView
+			android:id="@+id/signin_title"
+			android:text="Apply for new account"
+			style="@style/westeros_card_title_black"
+			/>
+
+		<ImageView
+			android:layout_alignParentEnd="true"
+			android:layout_alignParentRight="true"
+			android:src="@drawable/icon_down"
+			android:tag="@string/arrow_tag"
+			android:tint="@color/colorPrimary"
+			android:visibility="invisible"
+			style="@style/westeros_arrow"
+			/>
+
+		<com.liferay.mobile.screens.ddl.list.DDLListScreenlet
+			android:id="@+id/type_of_account"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_below="@+id/signin_title"
+			app:autoLoad="true"
+			app:labelFields="Name,Description"
+			app:layoutId="@layout/ddl_list_material"
+			app:recordSetId="35624"
+			/>
+
+	</RelativeLayout>
+
+
+</com.liferay.mobile.screens.demoform.views.NewAccountCard>
