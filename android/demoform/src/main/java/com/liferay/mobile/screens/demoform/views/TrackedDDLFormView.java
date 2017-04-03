@@ -132,13 +132,7 @@ public class TrackedDDLFormView extends DDLFormView {
 				}
 			}
 		}
-		//FIXME !
-		System.out.println("Hi!");
 	}
-
-	//protected void showRecordValues() {
-	//FIXME !
-	//}
 
 	@Override
 	public PublishSubject getEventsObservable() {

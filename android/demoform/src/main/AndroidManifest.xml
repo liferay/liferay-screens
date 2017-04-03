@@ -6,7 +6,6 @@
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
 	<application
 		android:name=".AccountsApp"
@@ -31,17 +30,8 @@
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
 		</activity>
-		<activity
-			android:name=".activities.UserProfileActivity"
-			android:screenOrientation="portrait">
-		</activity>
-		<activity
-			android:name=".activities.AccountsActivity"
-			android:label="@string/title_activity_accounts"
-			android:theme="@style/material_theme">
-		</activity>
-		<activity android:name=".activities.FormActivity">
-		</activity>
+		<activity android:name=".activities.UserProfileActivity"/>
+		<activity android:name=".activities.FormActivity"/>
 	</application>
 
 </manifest>
