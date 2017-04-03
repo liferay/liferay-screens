@@ -58,7 +58,7 @@
 					android:layout_below="@id/signin_title"
 					app:basicAuthMethod="email"
 					app:credentialsStorage="auto"
-					app:layoutId="@layout/login_westeros"
+					app:layoutId="@layout/login_account"
 					/>
 
 			</RelativeLayout>

@@ -3,7 +3,6 @@
 	android:id="@+id/main_view"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/background_gray_westeros"
 	>
 
 	<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
@@ -40,9 +39,11 @@
 		android:id="@+id/email_title"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_alignParentLeft="true"
 		android:layout_below="@id/user_job_title_text"
-		android:layout_margin="5dp"
+		android:layout_marginBottom="5dp"
+		android:layout_marginLeft="20dp"
+		android:layout_marginRight="20dp"
+		android:layout_marginTop="5dp"
 		android:text="@string/email"
 		android:textColor="@color/colorPrimary_westeros"
 		/>
@@ -51,9 +52,11 @@
 		android:id="@+id/user_email_text"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_alignParentStart="true"
 		android:layout_below="@id/email_title"
-		android:layout_margin="5dp"
+		android:layout_marginBottom="5dp"
+		android:layout_marginLeft="20dp"
+		android:layout_marginRight="20dp"
+		android:layout_marginTop="5dp"
 		android:textColor="@android:color/black"
 		/>
 
@@ -61,9 +64,11 @@
 		android:id="@+id/screen_name_title"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_alignParentStart="true"
 		android:layout_below="@id/user_email_text"
-		android:layout_margin="5dp"
+		android:layout_marginBottom="5dp"
+		android:layout_marginLeft="20dp"
+		android:layout_marginRight="20dp"
+		android:layout_marginTop="5dp"
 		android:text="@string/screenname"
 		android:textColor="@color/colorPrimary_westeros"
 		/>
@@ -72,9 +77,11 @@
 		android:id="@+id/user_screen_name_text"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_alignParentStart="true"
 		android:layout_below="@id/screen_name_title"
-		android:layout_margin="5dp"
+		android:layout_marginBottom="5dp"
+		android:layout_marginLeft="20dp"
+		android:layout_marginRight="20dp"
+		android:layout_marginTop="5dp"
 		android:textColor="@android:color/black"
 		/>
 

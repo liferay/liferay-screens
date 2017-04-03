@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.viewsets.westeros.auth.login.LoginView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:liferay="http://schemas.android.com/apk/res-auto"
+	android:theme="@style/westeros_theme"
+	style="@style/westeros_screenlet"
+	>
+
+	<EditText
+		android:id="@+id/liferay_login"
+		android:hint="@string/email_address"
+		style="@style/westeros_edit_text"
+		/>
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		>
+
+		<EditText
+			android:id="@+id/liferay_password"
+			android:inputType="textPassword"
+			android:labelFor="@+id/liferay_password"
+			style="@style/westeros_edit_text"
+			/>
+
+		<ImageView
+			android:id="@+id/liferay_see_password"
+			android:layout_width="wrap_content"
+			android:layout_height="60dp"
+			android:layout_gravity="end"
+			android:layout_marginTop="5dp"
+			android:contentDescription="@string/see_password"
+			android:paddingEnd="37dp"
+			android:paddingRight="37dp"
+			android:paddingTop="12dp"
+			android:src="@drawable/ic_visibility_black_24dp"
+			android:tint="@color/colorPrimary"
+			/>
+	</FrameLayout>
+
+	<TextView
+		android:id="@+id/liferay_forgot_link"
+		android:layout_width="wrap_content"
+		android:layout_gravity="center"
+		android:gravity="center"
+		android:text="@string/forgot_password"
+		android:textColor="@color/colorPrimary_westeros"
+		android:textStyle="bold"
+		style="@style/westeros_text_view"
+		/>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="25dp"
+		>
+
+		<Button
+			android:id="@+id/liferay_login_button"
+			android:text="@string/sign_in"
+			style="@style/westeros_button"
+			/>
+
+		<com.liferay.mobile.screens.base.ModalProgressBar
+			android:id="@+id/liferay_progress"
+			android:layout_alignLeft="@id/liferay_login_button"
+			android:layout_alignStart="@id/liferay_login_button"
+			android:layout_alignTop="@id/liferay_login_button"
+			android:theme="@style/white_theme"
+			liferay:actionViewId="@id/liferay_login_button"
+			style="@style/westeros_progress_bar"
+			/>
+	</RelativeLayout>
+
+
+</com.liferay.mobile.screens.viewsets.westeros.auth.login.LoginView>
