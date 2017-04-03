@@ -579,7 +579,7 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 		}
 	}
 
-	public Observable getEventsObservable() {
+	public Observable<EventProperty> getEventsObservable() {
 		return getViewModel().getEventsObservable();
 	}
 }

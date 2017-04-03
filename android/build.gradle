@@ -39,7 +39,7 @@ ext {
 	allLicenses = ['LGPL-2.1']
 }
 
-def supportLibsVersion = '25.3.0'
+def supportLibsVersion = '25.3.1'
 
 ext.libraries = [appCompat    : 'com.android.support:appcompat-v7:' + supportLibsVersion,
                  recyclerView : 'com.android.support:recyclerview-v7:' + supportLibsVersion,

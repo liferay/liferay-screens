@@ -39,4 +39,11 @@ public class DDLFieldTextView extends BaseDDLFieldTextView<StringField> {
 	protected void onTextChanged(String text) {
 		getField().setCurrentValue(text);
 	}
+
+	@Override
+	protected void onFinishInflate() {
+		super.onFinishInflate();
+
+		textEditText.setOnFocusChangeListener(this);
+	}
 }

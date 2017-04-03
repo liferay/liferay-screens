@@ -22,6 +22,9 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.ddl.form.EventProperty;
+import com.liferay.mobile.screens.ddl.form.EventType;
+import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.DateField;
 import com.liferay.mobile.screens.ddl.model.Field;
 import java.util.Calendar;
@@ -30,6 +33,7 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import rx.Observable;
 import rx.functions.Func1;
+import rx.subjects.PublishSubject;
 
 /**
  * @author Silvio Santos
@@ -38,7 +42,6 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 	implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
 
 	protected DatePickerDialog pickerDialog;
-	private boolean shown;
 
 	public DDLFieldDateView(Context context) {
 		super(context);
@@ -71,8 +74,7 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 
 		pickerDialog = new DatePickerDialog(getContext(), getDatePickerStyle(), this, year, month, day);
 
-		timer = System.currentTimeMillis();
-		shown = true;
+		focusable.focusField();
 		pickerDialog.show();
 	}
 
@@ -86,7 +88,7 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 		getField().setCurrentValue(calendar.getTime());
 
 		refresh();
-		shown = false;
+		focusable.clearFocus();
 	}
 
 	protected int getDatePickerStyle() {
@@ -100,6 +102,7 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 		// Avoid WindowLeak error on orientation changes
 		if (pickerDialog != null) {
 			pickerDialog.dismiss();
+			focusable.clearFocus();
 			pickerDialog = null;
 		}
 	}
@@ -122,27 +125,13 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 	}
 
 	@Override
-	public Observable getObservable() {
-		return Observable.interval(100, TimeUnit.MILLISECONDS).filter(new Func1<Long, Boolean>() {
-			@Override
-			public Boolean call(Long aLong) {
-				return System.currentTimeMillis() - timer > Field.RATE_FIELD;
-			}
-		}).filter(new Func1<Long, Boolean>() {
-			@Override
-			public Boolean call(Long aLong) {
-				return shown;
-			}
-		}).map(new Func1() {
-			@Override
-			public Object call(Object o) {
-				return getField();
-			}
-		}).distinctUntilChanged().map(new Func1() {
-			@Override
-			public Object[] call(Object o) {
-				return new Object[] { getField(), System.currentTimeMillis() - timer };
-			}
-		});
+	public Observable<EventProperty> getObservable() {
+		return focusable.getObservable();
 	}
+
+	@Override
+	public void clearFocus(DDLFieldViewModel ddlFieldSelectView) {
+		focusable.clearFocus(ddlFieldSelectView);
+	}
+
 }

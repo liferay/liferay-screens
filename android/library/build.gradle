@@ -55,6 +55,8 @@ dependencies {
 		exclude group: 'com.esotericsoftware.kryo', module: 'kryo'
 	}
 	compile libraries.kryo
+
+	compile 'com.google.code.gson:gson:2.8.0'
 }
 
 apply from: '../bintray.gradle'

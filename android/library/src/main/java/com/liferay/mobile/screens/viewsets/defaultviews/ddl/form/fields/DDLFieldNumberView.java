@@ -59,4 +59,11 @@ public class DDLFieldNumberView extends BaseDDLFieldTextView<NumberField> {
 	protected void onTextChanged(String text) {
 		getField().setCurrentStringValue(text);
 	}
+
+	@Override
+	protected void onFinishInflate() {
+		super.onFinishInflate();
+
+		textEditText.setOnFocusChangeListener(this);
+	}
 }

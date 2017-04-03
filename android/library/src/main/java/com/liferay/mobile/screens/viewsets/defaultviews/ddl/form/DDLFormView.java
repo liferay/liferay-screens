@@ -32,6 +32,7 @@ import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
+import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldSelectView;
 import java.util.HashMap;
 import java.util.Map;
 import rx.Observable;
@@ -300,5 +301,9 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 			}
 		}
 		return null;
+	}
+
+	public void clearFocusOfFields(DDLFieldViewModel ddlFieldViewModel) {
+
 	}
 }

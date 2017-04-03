@@ -88,6 +88,11 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 	}
 
 	@Override
+	public void clearFocus(DDLFieldViewModel ddlFieldSelectView) {
+
+	}
+
+	@Override
 	protected void onDetachedFromWindow() {
 		super.onDetachedFromWindow();
 

@@ -24,12 +24,10 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.ddl.form.EventProperty;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
-import java.util.concurrent.TimeUnit;
 import rx.Observable;
-import rx.functions.Func1;
-import rx.subjects.PublishSubject;
 
 /**
  * @author Silvio Santos
@@ -42,9 +40,7 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 	protected View parentView;
 	private T field;
 
-	protected long timer;
-	private boolean focused;
-	private PublishSubject observableFocusChange = PublishSubject.create();
+	protected Focusable focusable = new Focusable(this);
 
 	public BaseDDLFieldTextView(Context context) {
 		super(context);
@@ -118,7 +114,9 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 
 	@Override
 	public void onTextChanged(CharSequence text, int start, int before, int count) {
-		timer = System.currentTimeMillis();
+		if (parentView != null) {
+			focusable.focusField();
+		}
 	}
 
 	@Override
@@ -155,56 +153,26 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 		//the ids of other DDLFields are conflicting.
 		//It is not a problem because all state is stored in Field objects.
 		textEditText.setSaveEnabled(false);
-
-		textEditText.setOnFocusChangeListener(this);
 	}
 
 	protected abstract void onTextChanged(String text);
 
 	@Override
 	public void onFocusChange(View v, boolean hasFocus) {
-		focused = hasFocus;
 		if (hasFocus) {
-			timer = System.currentTimeMillis();
+			focusable.focusField();
 		} else {
-			observableFocusChange.onNext("Hi!");
+			focusable.clearFocus();
 		}
 	}
 
 	@Override
-	public Observable getObservable() {
-
-		return Observable
-			.interval(100, TimeUnit.MILLISECONDS)
-			.filter(new Func1<Long, Boolean>() {
-				@Override
-				public Boolean call(Long aLong) {
-					return getTimeSpent() > Field.RATE_FIELD;
-				}
-			})
-			.filter(new Func1<Long, Boolean>() {
-			@Override
-			public Boolean call(Long aLong) {
-				return focused;
-			}
-		})
-			.map(new Func1() {
-			@Override
-			public Object call(Object o) {
-				return field;
-			}
-		})
-			.distinctUntilChanged()
-			.mergeWith(observableFocusChange)
-			.map(new Func1() {
-			@Override
-			public Object[] call(Object o) {
-				return new Object[] { field, getTimeSpent() };
-			}
-		});
+	public Observable<EventProperty> getObservable() {
+		return focusable.getObservable();
 	}
 
-	private long getTimeSpent() {
-		return System.currentTimeMillis() - timer;
+	@Override
+	public void clearFocus(DDLFieldViewModel ddlFieldSelectView) {
+		focusable.clearFocus(ddlFieldSelectView);
 	}
 }

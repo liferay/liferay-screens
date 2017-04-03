@@ -25,13 +25,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.ddl.form.EventProperty;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
-import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import rx.Observable;
-import rx.functions.Func1;
 
 /**
  * @author Jose Manuel Navarro
@@ -41,8 +39,7 @@ public class DDLFieldRadioView extends RadioGroup
 
 	protected View parentView;
 	private StringWithOptionsField field;
-	private long timer;
-	private boolean shown;
+	private Focusable focusable = new Focusable(this);
 
 	public DDLFieldRadioView(Context context) {
 		super(context);
@@ -132,28 +129,13 @@ public class DDLFieldRadioView extends RadioGroup
 	}
 
 	@Override
-	public Observable getObservable() {
-		return Observable.interval(100, TimeUnit.MILLISECONDS).filter(new Func1<Long, Boolean>() {
-			@Override
-			public Boolean call(Long aLong) {
-				return System.currentTimeMillis() - timer > Field.RATE_FIELD;
-			}
-		}).filter(new Func1<Long, Boolean>() {
-			@Override
-			public Boolean call(Long aLong) {
-				return shown;
-			}
-		}).map(new Func1() {
-			@Override
-			public Object call(Object o) {
-				return getField();
-			}
-		}).distinctUntilChanged().map(new Func1() {
-			@Override
-			public Object[] call(Object o) {
-				return new Object[] { getField(), System.currentTimeMillis() - timer };
-			}
-		});
+	public Observable<EventProperty> getObservable() {
+		return focusable.getObservable();
+	}
+
+	@Override
+	public void clearFocus(DDLFieldViewModel ddlFieldSelectView) {
+		focusable.clearFocus(ddlFieldSelectView);
 	}
 
 	@Override
@@ -167,8 +149,7 @@ public class DDLFieldRadioView extends RadioGroup
 			field.clearOption(opt);
 		}
 
-		shown = true;
-		timer = System.currentTimeMillis();
+		focusable.focusField();
 	}
 
 	@Override

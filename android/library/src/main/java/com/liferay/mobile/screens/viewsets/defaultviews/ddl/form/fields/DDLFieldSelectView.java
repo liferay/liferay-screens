@@ -24,13 +24,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.ddl.model.Field;
+import com.liferay.mobile.screens.ddl.form.EventProperty;
+import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import rx.Observable;
-import rx.functions.Func1;
 
 /**
  * @author Jose Manuel Navarro
@@ -38,7 +37,6 @@ import rx.functions.Func1;
 public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsField> implements View.OnClickListener {
 
 	protected AlertDialog alertDialog;
-	private Boolean shown = false;
 
 	public DDLFieldSelectView(Context context) {
 		super(context);
@@ -56,9 +54,13 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 	public void onClick(View view) {
 		createAlertDialog();
 
-		shown = true;
-		timer = System.currentTimeMillis();
+		focusable.focusField();
 		alertDialog.show();
+	}
+
+	@Override
+	public void clearFocus(DDLFieldViewModel ddlFieldSelectView) {
+		focusable.clearFocus(ddlFieldSelectView);
 	}
 
 	@Override
@@ -67,7 +69,7 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 
 		// Avoid WindowLeak error on orientation changes
 		if (alertDialog != null) {
-			shown = false;
+			focusable.clearFocus();
 			alertDialog.dismiss();
 			alertDialog = null;
 		}
@@ -109,13 +111,13 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 			builder.setMultiChoiceItems(labels, checked, new DialogInterface.OnMultiChoiceClickListener() {
 				public void onClick(DialogInterface dialog, int whichButton, boolean isChecked) {
 					checked[whichButton] = isChecked;
-					shown = false;
+					focusable.clearFocus();
 				}
 			});
 			builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					shown = false;
+					focusable.clearFocus();
 					checkField(checked, availableOptions);
 					refresh();
 					alertDialog.dismiss();
@@ -126,7 +128,7 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					alertDialog.dismiss();
-					shown = false;
+					focusable.clearFocus();
 				}
 			});
 		} else {
@@ -136,35 +138,14 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 	}
 
 	@Override
-	public Observable getObservable() {
-		return Observable.interval(100, TimeUnit.MILLISECONDS).filter(new Func1<Long, Boolean>() {
-			@Override
-			public Boolean call(Long aLong) {
-				return System.currentTimeMillis() - timer > Field.RATE_FIELD;
-			}
-		}).filter(new Func1<Long, Boolean>() {
-			@Override
-			public Boolean call(Long aLong) {
-				return shown;
-			}
-		}).
-			map(new Func1() {
-				@Override
-				public Object call(Object o) {
-					return getField();
-				}
-			}).distinctUntilChanged().map(new Func1() {
-			@Override
-			public Object[] call(Object o) {
-				return new Object[] { getField(), System.currentTimeMillis() - timer };
-			}
-		});
+	public Observable<EventProperty> getObservable() {
+		return focusable.getObservable();
 	}
 
 	protected DialogInterface.OnClickListener getAlertDialogListener() {
 		return new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
-				shown = false;
+				focusable.clearFocus();
 				getField().selectOption(getField().getAvailableOptions().get(which));
 				refresh();
 			}

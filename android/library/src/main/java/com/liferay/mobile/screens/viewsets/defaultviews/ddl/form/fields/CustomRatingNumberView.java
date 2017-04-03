@@ -103,6 +103,11 @@ public class CustomRatingNumberView extends LinearLayout
 	}
 
 	@Override
+	public void clearFocus(DDLFieldViewModel ddlFieldSelectView) {
+
+	}
+
+	@Override
 	public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
 		if (!fromUser) {
 			return;
