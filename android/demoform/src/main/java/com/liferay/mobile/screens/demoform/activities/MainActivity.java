@@ -45,8 +45,8 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 
 		//Move to next activity if user is logged in
 		if (SessionContext.isLoggedIn()) {
-			Cache.resync();
-			toNextActivity();
+			//Cache.resync();
+			//toNextActivity();
 		}
 
 		new RxPermissions(this).request(Manifest.permission.ACCESS_FINE_LOCATION).subscribe(new Action1<Boolean>() {
