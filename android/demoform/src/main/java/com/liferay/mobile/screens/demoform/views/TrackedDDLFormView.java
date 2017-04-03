@@ -25,10 +25,11 @@ import rx.subjects.PublishSubject;
 
 import static android.support.v7.widget.LinearLayoutManager.HORIZONTAL;
 
-public class TrackedDDLFormView extends DDLFormView {
+public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager.OnPageChangedListener {
 
 	private RecyclerViewPager recyclerViewPager;
 	private PublishSubject publishSubject = PublishSubject.create();
+	private Map<Field, Boolean> fieldResults = null;
 
 	public TrackedDDLFormView(Context context) {
 		super(context);
@@ -47,6 +48,11 @@ public class TrackedDDLFormView extends DDLFormView {
 	protected void onFinishInflate() {
 		recyclerViewPager = (RecyclerViewPager) findViewById(R.id.recycler_view_pager);
 		recyclerViewPager.setLayoutManager(new LinearLayoutManager(getContext(), HORIZONTAL, false));
+		recyclerViewPager.addOnPageChangedListener(this);
+	}
+
+	public RecyclerViewPager getRecyclerViewPager() {
+		return recyclerViewPager;
 	}
 
 	@Override
@@ -98,8 +104,22 @@ public class TrackedDDLFormView extends DDLFormView {
 	@Override
 	public void showValidationResults(final Map<Field, Boolean> fieldResults, final boolean autoscroll) {
 
-		boolean scrolled = false;
+		boolean scrolled = checkPage(fieldResults);
 
+		if (!scrolled) {
+			Record record = getDDLFormScreenlet().getRecord();
+			for (Field field : record.getFields()) {
+				boolean isFieldValid = fieldResults.get(field);
+				if (!isFieldValid) {
+					recyclerViewPager.smoothScrollToPosition(record.getPage(field));
+					this.fieldResults = fieldResults;
+					return;
+				}
+			}
+		}
+	}
+
+	private boolean checkPage(Map<Field, Boolean> fieldResults) {
 		LinearLayout container = (LinearLayout) findViewById(R.id.ddlfields_container);
 
 		for (int i = 0; i < container.getChildCount(); i++) {
@@ -111,32 +131,28 @@ public class TrackedDDLFormView extends DDLFormView {
 
 			fieldViewModel.onPostValidation(isFieldValid);
 
-			if (!isFieldValid && autoscroll && !scrolled) {
+			if (!isFieldValid) {
 				fieldView.requestFocus();
-				smoothScrollTo(0, fieldView.getTop());
-				scrolled = true;
+				//smoothScrollTo(0, fieldView.getTop());
+				return true;
 			}
 		}
-
-		if (!scrolled) {
-			Record record = getDDLFormScreenlet().getRecord();
-
-			for (Field field : record.getFields()) {
-				boolean isFieldValid = fieldResults.get(field);
-
-				if (!isFieldValid && autoscroll && !scrolled) {
-
-					recyclerViewPager.smoothScrollToPosition(record.getPage(field));
-
-					scrolled = true;
-				}
-			}
-		}
+		return false;
 	}
 
 	@Override
 	public PublishSubject getEventsObservable() {
 		return publishSubject;
+	}
+
+	@Override
+	public void OnPageChanged(int oldPosition, int newPosition) {
+		if (fieldResults != null) {
+			boolean scroll = checkPage(fieldResults);
+			if (scroll) {
+				fieldResults = null;
+			}
+		}
 	}
 
 	private class HorizontalViewPagerAdapter

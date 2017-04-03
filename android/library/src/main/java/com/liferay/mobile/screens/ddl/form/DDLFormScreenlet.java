@@ -35,6 +35,7 @@ import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
+import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormView;
 import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONObject;
@@ -577,6 +578,10 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 		} else {
 			viewModel.setFieldLayoutId(editorType, resourceId);
 		}
+	}
+
+	public DDLFormView getView() {
+		return (DDLFormView) getViewModel();
 	}
 
 	public Observable<EventProperty> getEventsObservable() {

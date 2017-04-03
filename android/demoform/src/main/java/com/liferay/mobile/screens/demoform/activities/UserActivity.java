@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.demoform.R;
 
 /**
@@ -26,7 +27,8 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 
 		findViewById(R.id.userscreenlet_home).setOnClickListener(this);
 
-		userNameTextView.setText(SessionContext.getCurrentUser().getFullName());
+		User currentUser = SessionContext.getCurrentUser();
+		userNameTextView.setText(currentUser == null ? "" : currentUser.getFullName());
 	}
 
 	@Override

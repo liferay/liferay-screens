@@ -15,7 +15,9 @@ import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.demoform.AccountsApp;
 import com.liferay.mobile.screens.demoform.R;
 import com.liferay.mobile.screens.demoform.analytics.TrackingAction;
+import com.liferay.mobile.screens.demoform.views.TrackedDDLFormView;
 import com.liferay.mobile.screens.util.LiferayLogger;
+import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 import java.util.Map;
 import org.json.JSONObject;
 import rx.Subscription;
@@ -130,8 +132,13 @@ public class FormActivity extends AppCompatActivity implements DDLFormListener {
 
 	@Override
 	public void onBackPressed() {
-
-		super.onBackPressed();
+		RecyclerViewPager recyclerViewPager = ((TrackedDDLFormView) ddlFormScreenlet.getView()).getRecyclerViewPager();
+		int currentPosition = recyclerViewPager.getCurrentPosition();
+		if (currentPosition == 0) {
+			super.onBackPressed();
+		} else {
+			recyclerViewPager.smoothScrollToPosition(currentPosition-1);
+		}
 	}
 
 	@Override

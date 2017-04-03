@@ -54,7 +54,6 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 	private Long structureId;
 	private Long recordSetId;
 	private Long recordId;
-	private Long layoutId;
 
 	public Record() {
 		super();
@@ -249,10 +248,6 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		}
 	}
 
-	public long getLayoutId() {
-		return layoutId;
-	}
-
 	public void parsePages(JSONObject pagesObject) throws JSONException {
 
 		JSONArray pagesArray = pagesObject.getJSONArray("DDMFormLayoutPages");
@@ -311,7 +306,7 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		return 0;
 	}
 
-	public class Page {
+	public static class Page {
 
 		private final String title;
 		private final String description;
