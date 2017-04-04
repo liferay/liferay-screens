@@ -33,6 +33,10 @@ android {
 			minSdkVersion 21
 		}
 	}
+	compileOptions {
+		targetCompatibility 1.8
+		sourceCompatibility 1.8
+	}
 }
 
 dependencies {

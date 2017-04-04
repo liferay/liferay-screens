@@ -16,7 +16,7 @@
 
 		<TextView
 			android:id="@+id/signin_title"
-			android:text="Apply for a new account"
+			android:text="Apply for new account"
 			style="@style/westeros_card_title_black"
 			/>
 
@@ -38,7 +38,7 @@
 			app:autoLoad="true"
 			app:labelFields="Name,Description"
 			app:layoutId="@layout/ddl_list_material"
-			app:recordSetId="35624"
+			app:recordSetId="@string/types_of_accounts"
 			/>
 
 	</RelativeLayout>

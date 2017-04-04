@@ -50,7 +50,7 @@
 		app:autoLoad="true"
 		app:labelFields="Name,Updated,Balance"
 		app:layoutId="@layout/account_list"
-		app:recordSetId="35606"
+		app:recordSetId="@string/account_id"
 		/>
 
 	<com.liferay.mobile.screens.demoform.views.UserDeck

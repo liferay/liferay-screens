@@ -18,4 +18,9 @@
 	<string name="upload_title">Title</string>
 	<string name="main_logo">Main Logo</string>
 	<string name="next_page">Next Page</string>
+
+	<!--<string name="account_id">35606</string>-->
+	<!--<string name="types_of_accounts">35624</string>-->
+	<string name="account_id">34021</string>
+	<string name="types_of_accounts">34026</string>
 </resources>

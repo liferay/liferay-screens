@@ -33,7 +33,7 @@ import static android.content.Context.WIFI_SERVICE;
 
 public class TrackingAction {
 
-	public static final String SERVLET = "/";
+	public static final String SERVLET = "/o/analytics";
 	public static final String PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
 
 	public static void post(Context context, EventProperty eventProperty, Location location) {
@@ -53,19 +53,16 @@ public class TrackingAction {
 
 		final String url = LiferayServerContext.getServer() + SERVLET;
 
-		Executor.execute(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					Response response = sendContent(url, trackingMessage);
+		Executor.execute(() -> {
+			try {
+				Response response = sendContent(url, trackingMessage);
 
-					LiferayLogger.e(response.message());
-					if (response.code() == 200) {
-
-					}
-				} catch (Exception e) {
-					LiferayLogger.e("Error sending tracking action", e);
+				LiferayLogger.e(response.message());
+				if (response.code() == 200) {
+					LiferayLogger.e("Analytics submitted!");
 				}
+			} catch (Exception e) {
+				LiferayLogger.e("Error sending tracking action", e);
 			}
 		});
 	}

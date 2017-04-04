@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.demoform.activities;
 
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -21,6 +22,7 @@ import java.util.Map;
 import org.json.JSONObject;
 import rx.Subscription;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static com.liferay.mobile.screens.ddl.form.EventType.FORM_CANCEL;
 import static com.liferay.mobile.screens.ddl.form.EventType.FORM_LEAVE;
 
@@ -41,8 +43,14 @@ public class FormActivity extends AppCompatActivity implements DDLFormListener {
 		ddlFormScreenlet.setListener(this);
 		Long recordSetId = Long.valueOf((String) record.getServerValue("recordSetId"));
 		ddlFormScreenlet.setRecordSetId(recordSetId);
+
+		//ddlFormScreenlet.setRecordSetId(35866L);
+
 		Long structureId = Long.valueOf((String) record.getServerValue("structureId"));
 		ddlFormScreenlet.setStructureId(structureId);
+
+		//ddlFormScreenlet.setStructureId(35863L);
+
 		ddlFormScreenlet.load();
 
 		AccountsApp accountsApp = (AccountsApp) getApplicationContext();
@@ -107,6 +115,10 @@ public class FormActivity extends AppCompatActivity implements DDLFormListener {
 		trackForm(EventType.FORM_SUBMIT, timer);
 
 		Snackbar.make(ddlFormScreenlet, "Form added!", Snackbar.LENGTH_LONG).show();
+
+		Intent intent = new Intent(this, UserActivity.class);
+		intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
+		startActivity(intent);
 	}
 
 	@Override

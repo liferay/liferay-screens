@@ -10,14 +10,14 @@ public class EventProperty {
 	private String elementId;
 	private String entityType;
 	private Long entityId;
-	private String name;
+	private String elementName;
 	private List<String> referrers = new ArrayList<>();
 
 	public EventProperty(EventType eventType, String name, String elementId) {
 		this.eventType = eventType;
 
 		this.elementId = elementId;
-		this.name = name;
+		this.elementName = name;
 	}
 
 	public EventProperty(EventType eventType, String name, Long time) {
@@ -28,7 +28,7 @@ public class EventProperty {
 		this.eventType = eventType;
 		this.entityType = entityType;
 		this.entityId = entityId;
-		this.name = name;
+		this.elementName = name;
 		this.time = time;
 	}
 
@@ -41,11 +41,11 @@ public class EventProperty {
 	}
 
 	public String getName() {
-		return name;
+		return elementName;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.elementName = name;
 	}
 
 	public EventType getEventType() {

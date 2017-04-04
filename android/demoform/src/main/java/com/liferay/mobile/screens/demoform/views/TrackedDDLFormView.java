@@ -27,7 +27,7 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 
 	//private RecyclerViewPager recyclerViewPager;
 	private PublishSubject publishSubject = PublishSubject.create();
-	private Map<Field, Boolean> fieldResults = null;
+	private Map<Field, Boolean> pendingErrors = null;
 
 	public TrackedDDLFormView(Context context) {
 		super(context);
@@ -116,7 +116,7 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 				if (!isFieldValid) {
 					//recyclerViewPager.smoothScrollToPosition(record.getPage(field));
 					smoothScrollToPosition(record.getPage(field));
-					this.fieldResults = fieldResults;
+					this.pendingErrors = fieldResults;
 					return;
 				}
 			}
@@ -152,10 +152,10 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 
 	@Override
 	public void OnPageChanged(int oldPosition, int newPosition) {
-		if (fieldResults != null) {
-			boolean scroll = checkPage(fieldResults);
+		if (pendingErrors != null) {
+			boolean scroll = checkPage(pendingErrors);
 			if (scroll) {
-				fieldResults = null;
+				pendingErrors = null;
 			}
 		}
 	}

@@ -5,7 +5,7 @@ import java.util.UUID;
 public class MessageContext {
 
 	private Long companyId;
-	private String locale;
+	private String languageId;
 	private Long userId;
 	private String userName;
 	private boolean signedIn;
@@ -15,10 +15,10 @@ public class MessageContext {
 	private String ipAddress;
 	private String sessionId;
 
-	public MessageContext(Long companyId, String locale, Long userId, String userName, boolean signedIn,
+	public MessageContext(Long companyId, String languageId, Long userId, String userName, boolean signedIn,
 		String deviceId, String deviceType, MessageLocation location, String ipAddress, UUID sessionId) {
 		this.companyId = companyId;
-		this.locale = locale;
+		this.languageId = languageId;
 		this.userId = userId;
 		this.userName = userName;
 		this.signedIn = signedIn;
@@ -54,11 +54,11 @@ public class MessageContext {
 	}
 
 	public String getLocale() {
-		return locale;
+		return languageId;
 	}
 
 	public void setLocale(String locale) {
-		this.locale = locale;
+		this.languageId = locale;
 	}
 
 	public Long getUserId() {
