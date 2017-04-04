@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.westeros.auth.login.LoginView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.liferay.mobile.screens.demoform.views.LoginView xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:liferay="http://schemas.android.com/apk/res-auto"
 	android:theme="@style/westeros_theme"
 	style="@style/westeros_screenlet"
@@ -73,4 +73,4 @@
 	</RelativeLayout>
 
 
-</com.liferay.mobile.screens.viewsets.westeros.auth.login.LoginView>
+</com.liferay.mobile.screens.demoform.views.LoginView>
