@@ -131,23 +131,20 @@ public class Deck extends FrameLayout implements CardListener {
 		List<View> backArrows = ViewUtil.getViewsByTagPrefix(this, getContext().getString(R.string.arrow_back_tag));
 
 		for (View backArrow : backArrows) {
-			backArrow.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					Card card = (Card) v.getParent().getParent();
-					card.goLeft();
+			backArrow.setOnClickListener(v -> {
+				Card card = (Card) v.getParent().getParent();
+				card.goLeft();
 
-					if (card.getCardSubviewCurrentIndex() == 0) {
-						int selectedCard = cards.indexOf(card);
+				if (card.getCardSubviewCurrentIndex() == 0) {
+					int selectedCard = cards.indexOf(card);
 
-						for (int i = 0; i < cards.size(); i++) {
-							Card c = cards.get(i);
+					for (int i = 0; i < cards.size(); i++) {
+						Card c = cards.get(i);
 
-							if (i == selectedCard) {
-								c.setState(CardState.NORMAL);
-							} else if (i > selectedCard) {
-								c.setState(CardState.MINIMIZED);
-							}
+						if (i == selectedCard) {
+							c.setState(CardState.NORMAL);
+						} else if (i > selectedCard) {
+							c.setState(CardState.MINIMIZED);
 						}
 					}
 				}

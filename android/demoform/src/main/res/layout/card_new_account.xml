@@ -16,7 +16,7 @@
 
 		<TextView
 			android:id="@+id/signin_title"
-			android:text="Apply for new account"
+			android:text="Apply for a new account"
 			style="@style/westeros_card_title_black"
 			/>
 

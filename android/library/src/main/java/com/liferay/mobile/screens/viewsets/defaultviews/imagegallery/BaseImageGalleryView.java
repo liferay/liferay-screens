@@ -134,26 +134,20 @@ public abstract class BaseImageGalleryView<H extends BaseListAdapter.ViewHolder,
 	}
 
 	private Action1<Boolean> openCamera() {
-		return new Action1<Boolean>() {
-			@Override
-			public void call(Boolean result) {
-				if (result) {
-					((ImageGalleryScreenlet) getScreenlet()).openCamera();
-				}
-				choseOriginDialog.dismiss();
+		return result -> {
+			if (result) {
+				((ImageGalleryScreenlet) getScreenlet()).openCamera();
 			}
+			choseOriginDialog.dismiss();
 		};
 	}
 
 	private Action1<Boolean> openGallery() {
-		return new Action1<Boolean>() {
-			@Override
-			public void call(Boolean result) {
-				if (result) {
-					((ImageGalleryScreenlet) getScreenlet()).openGallery();
-				}
-				choseOriginDialog.dismiss();
+		return result -> {
+			if (result) {
+				((ImageGalleryScreenlet) getScreenlet()).openGallery();
 			}
+			choseOriginDialog.dismiss();
 		};
 	}
 }

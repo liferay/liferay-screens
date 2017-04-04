@@ -17,19 +17,20 @@ package com.liferay.mobile.screens.demoform.activities;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
+import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
+import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
-import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.demoform.R;
 import com.liferay.mobile.screens.demoform.utils.CardState;
 import com.liferay.mobile.screens.demoform.views.Deck;
-import com.liferay.mobile.screens.viewsets.westeros.WesterosSnackbar;
 import com.tbruyelle.rxpermissions.RxPermissions;
-import rx.functions.Action1;
 
-public class MainActivity extends WesterosActivity implements LoginListener {
+public class MainActivity extends WesterosActivity implements LoginListener, ForgotPasswordListener {
 
 	private Deck deck;
 
@@ -49,19 +50,20 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 			//toNextActivity();
 		}
 
-		new RxPermissions(this).request(Manifest.permission.ACCESS_FINE_LOCATION).subscribe(new Action1<Boolean>() {
-			@Override
-			public void call(Boolean conceded) {
+		new RxPermissions(this).request(Manifest.permission.ACCESS_FINE_LOCATION).subscribe(conceded -> {
 
-			}
 		});
 	}
 
 	private void findViews() {
 		LoginScreenlet loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
-		deck = (Deck) findViewById(R.id.deck);
-
 		loginScreenlet.setListener(this);
+
+		ForgotPasswordScreenlet forgotPasswordScreenlet =
+			(ForgotPasswordScreenlet) findViewById(R.id.forgot_password_screenlet);
+		forgotPasswordScreenlet.setListener(this);
+
+		deck = (Deck) findViewById(R.id.deck);
 	}
 
 	@Override
@@ -82,6 +84,22 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 
 	@Override
 	public void onLoginFailure(Exception e) {
-		WesterosSnackbar.showSnackbar(this, "Login failed!", R.color.colorAccent_westeros);
+		showSnackBar("Login failed!");
+	}
+
+	@Override
+	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
+		showSnackBar("Email sent to change the password");
+	}
+
+	@Override
+	public void onForgotPasswordRequestFailure(Exception e) {
+		showSnackBar("Error sending the password");
+	}
+
+	private void showSnackBar(String message) {
+		Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT);
+		snackbar.getView().setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
+		snackbar.show();
 	}
 }

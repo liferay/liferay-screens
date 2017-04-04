@@ -155,55 +155,45 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 
 	@NonNull
 	private Action1<Boolean> chooseFile(final View view) {
-		return new Action1<Boolean>() {
-			@Override
-			public void call(Boolean result) {
-				if (result) {
-					fileDialog = new SelectFileDialog().createDialog(getContext(),
-						new SelectFileDialog.SimpleFileDialogListener() {
+		return result -> {
+			if (result) {
+				fileDialog = new SelectFileDialog().createDialog(getContext(), path -> {
+					progressBar.setVisibility(VISIBLE);
+					getTextEditText().setText(path);
 
-							@Override
-							public void onFileChosen(String path) {
-								progressBar.setVisibility(VISIBLE);
-								getTextEditText().setText(path);
-
-								DocumentField field = getField();
-								field.createLocalFile(path);
-								field.moveToUploadInProgressState();
-								view.setTag(field);
-								((DDLFormView) getParentView()).onClick(view);
-								choseOriginDialog.dismiss();
-							}
-						});
-					fileDialog.show();
-				}
-				choseOriginDialog.dismiss();
+					DocumentField field = getField();
+					field.createLocalFile(path);
+					field.moveToUploadInProgressState();
+					view.setTag(field);
+					((DDLFormView) getParentView()).onClick(view);
+					choseOriginDialog.dismiss();
+				});
+				fileDialog.show();
 			}
+			choseOriginDialog.dismiss();
 		};
 	}
 
 	@NonNull
 	private Action1<Boolean> launchCamera(final String intent) {
-		return new Action1<Boolean>() {
-			@Override
-			public void call(Boolean result) {
-				if (result) {
-					Intent cameraIntent = new Intent(intent);
-					File file = MediaStore.ACTION_VIDEO_CAPTURE.equals(intent) ? FileUtil.createVideoFile()
-						: FileUtil.createImageFile();
+		return result -> {
+			if (result) {
+				Intent cameraIntent = new Intent(intent);
+				File file = MediaStore.ACTION_VIDEO_CAPTURE.equals(intent) ? FileUtil.createVideoFile()
+					: FileUtil.createImageFile();
 
-					if (file != null) {
-						getField().createLocalFile(file.getAbsolutePath());
-						Uri photoURI = FileProvider.getUriForFile(getContext(),
-							getContext().getPackageName() + ".screensfileprovider", file);
-						cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+				if (file != null) {
+					getField().createLocalFile(file.getAbsolutePath());
+					Uri photoURI =
+						FileProvider.getUriForFile(getContext(), getContext().getPackageName() + ".screensfileprovider",
+							file);
+					cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 
-						Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
-						activity.startActivityForResult(cameraIntent, positionInForm);
-					}
+					Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
+					activity.startActivityForResult(cameraIntent, positionInForm);
 				}
-				choseOriginDialog.dismiss();
 			}
+			choseOriginDialog.dismiss();
 		};
 	}
 }

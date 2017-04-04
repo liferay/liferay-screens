@@ -34,7 +34,6 @@ import java.text.DateFormat;
 import java.util.List;
 import java.util.Map;
 import org.json.JSONObject;
-import rx.functions.Action1;
 
 /**
  * @author Javier Gamarra
@@ -316,17 +315,13 @@ public class IssuesActivity extends CardActivity
 	private void tryToCall(final View button) {
 		RxView.clicks(button)
 			.compose(new RxPermissions(this).ensure(Manifest.permission.CALL_PHONE))
-			.subscribe(new Action1<Boolean>() {
-				@Override
-				public void call(Boolean result) {
-					button.setBackgroundColor(
-						ResourcesCompat.getColor(getResources(), R.color.light_gray_westeros, getTheme()));
-					if (result
-						&& ActivityCompat.checkSelfPermission(IssuesActivity.this, Manifest.permission.CALL_PHONE)
-						== PackageManager.PERMISSION_GRANTED) {
-						startActivity(
-							new Intent(Intent.ACTION_CALL, Uri.parse(getString(R.string.default_telephone_uri))));
-					}
+			.subscribe(result -> {
+				button.setBackgroundColor(
+					ResourcesCompat.getColor(getResources(), R.color.light_gray_westeros, getTheme()));
+				if (result
+					&& ActivityCompat.checkSelfPermission(IssuesActivity.this, Manifest.permission.CALL_PHONE)
+					== PackageManager.PERMISSION_GRANTED) {
+					startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(getString(R.string.default_telephone_uri))));
 				}
 			});
 	}

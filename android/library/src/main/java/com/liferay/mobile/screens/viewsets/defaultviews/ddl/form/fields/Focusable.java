@@ -1,6 +1,5 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 
-import android.view.View;
 import com.liferay.mobile.screens.ddl.form.EventProperty;
 import com.liferay.mobile.screens.ddl.form.EventType;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
@@ -46,22 +45,12 @@ public class Focusable {
 	}
 
 	public Observable<EventProperty> getObservable() {
-		return Observable.interval(100, TimeUnit.MILLISECONDS).filter(new Func1<Long, Boolean>() {
-			@Override
-			public Boolean call(Long aLong) {
-				return focused && getTime() > Field.RATE_FIELD;
-			}
-		}).map(new Func1() {
-			@Override
-			public Object call(Object o) {
-				return EventType.FIELD_EXHAUSTED;
-			}
-		}).mergeWith(focusChange).distinctUntilChanged().map(new Func1() {
-			@Override
-			public EventProperty call(Object o) {
-				return new EventProperty((EventType) o, ddlFieldViewModel.getField().getName(), getTime());
-			}
-		});
+		return Observable.interval(100, TimeUnit.MILLISECONDS)
+			.filter(x -> focused && getTime() > Field.RATE_FIELD)
+			.map((Func1) o -> EventType.FIELD_EXHAUSTED)
+			.mergeWith(focusChange)
+			.distinctUntilChanged()
+			.map(o -> new EventProperty((EventType) o, ddlFieldViewModel.getField().getName(), getTime()));
 	}
 
 	public long getTime() {

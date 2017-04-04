@@ -20,7 +20,6 @@ import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 import java.util.Map;
 import org.json.JSONObject;
 import rx.Subscription;
-import rx.functions.Action1;
 
 import static com.liferay.mobile.screens.ddl.form.EventType.FORM_CANCEL;
 import static com.liferay.mobile.screens.ddl.form.EventType.FORM_LEAVE;
@@ -54,19 +53,10 @@ public class FormActivity extends AppCompatActivity implements DDLFormListener {
 	protected void onResume() {
 		super.onResume();
 
-		subscribe = ddlFormScreenlet.getEventsObservable().subscribe(new Action1<EventProperty>() {
-			@Override
-			public void call(EventProperty eventProperty) {
-				trackForm(eventProperty);
-				System.out.println(
-					"Field: " + eventProperty.getName() + ", time (in millis): " + eventProperty.getTime());
-			}
-		}, new Action1<Throwable>() {
-			@Override
-			public void call(Throwable throwable) {
-				Log.e("ERROR! :(", throwable.getMessage(), throwable);
-			}
-		});
+		subscribe = ddlFormScreenlet.getEventsObservable().subscribe(eventProperty -> {
+			trackForm(eventProperty);
+			System.out.println("Field: " + eventProperty.getName() + ", time (in millis): " + eventProperty.getTime());
+		}, t -> Log.e("ERROR! :(", t.getMessage(), t));
 	}
 
 	@Override
