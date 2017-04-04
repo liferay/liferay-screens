@@ -10,13 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
+import com.liferay.mobile.screens.ddl.form.EventProperty;
+import com.liferay.mobile.screens.ddl.form.EventType;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.demoform.R;
+import com.liferay.mobile.screens.demoform.analytics.TrackingAction;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.material.ddl.form.DDLFormView;
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
@@ -27,6 +31,7 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 
 	private PublishSubject publishSubject = PublishSubject.create();
 	private Map<Field, Boolean> pendingErrors = null;
+	private long timer;
 
 	public TrackedDDLFormView(Context context) {
 		super(context);
@@ -97,9 +102,9 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 	public void OnPageChanged(int oldPosition, int newPosition) {
 		if (pendingErrors != null) {
 			boolean scroll = checkPage(pendingErrors);
-			if (scroll) {
-				pendingErrors = null;
-			}
+			//if (scroll) {
+			pendingErrors = null;
+			//}
 		}
 	}
 
@@ -130,16 +135,16 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 			DDLFieldViewModel fieldViewModel = (DDLFieldViewModel) fieldView;
 			boolean isFieldValid = fieldResults.get(fieldViewModel.getField());
 
-			fieldView.clearFocus();
+			//fieldView.clearFocus();
+			//
+			//fieldViewModel.onPostValidation(isFieldValid);
 
-			fieldViewModel.onPostValidation(isFieldValid);
-
-			if (!isFieldValid) {
-				fieldView.requestFocus();
-				scrollTo(0, fieldView.getTop());
-				//smoothScrollTo(0, fieldView.getTop());
-				return true;
-			}
+			//if (!isFieldValid) {
+			//	fieldView.requestFocus();
+			//	scrollTo(0, fieldView.getTop());
+			//smoothScrollTo(0, fieldView.getTop());
+			//return true;
+			//}
 		}
 		return false;
 	}
@@ -180,6 +185,7 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 			private final TextView pageTitleTextView;
 			private final TextView pageNumberTextView;
 			private final Button nextPageButton;
+			private final ScrollView scrollView;
 
 			HorizontalViewHolder(View itemView) {
 				super(itemView);
@@ -191,6 +197,7 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 				nextPageButton.setOnClickListener(TrackedDDLFormView.this);
 				pageTitleTextView = (TextView) itemView.findViewById(R.id.page_title);
 				pageNumberTextView = (TextView) itemView.findViewById(R.id.page_number);
+				scrollView = (ScrollView) itemView.findViewById(R.id.scroll_view);
 			}
 
 			void paint(final Record.Page page) {
@@ -216,6 +223,18 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 				boolean isLastPage = page.getNumber() == record.getPages().size() - 1;
 				submitButton.setVisibility(isLastPage ? VISIBLE : INVISIBLE);
 				nextPageButton.setVisibility(!isLastPage ? VISIBLE : INVISIBLE);
+
+				timer = System.currentTimeMillis();
+
+				scrollView.getViewTreeObserver().addOnScrollChangedListener(() -> {
+					if (System.currentTimeMillis() - timer >= 1000) {
+						timer = System.currentTimeMillis();
+						EventProperty eventProperty = new EventProperty(EventType.FORM_SCROLL,
+							"Scrolling form to position " + scrollView.getScrollY(), "scroll");
+						eventProperty.setTime(0L);
+						TrackingAction.post(getContext(), eventProperty);
+					}
+				});
 			}
 		}
 	}

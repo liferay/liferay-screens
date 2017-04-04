@@ -1,7 +1,6 @@
 package com.liferay.mobile.screens.demoform.activities;
 
 import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +12,6 @@ import com.liferay.mobile.screens.ddl.form.EventType;
 import com.liferay.mobile.screens.ddl.model.DDMStructure;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.demoform.AccountsApp;
 import com.liferay.mobile.screens.demoform.R;
 import com.liferay.mobile.screens.demoform.analytics.TrackingAction;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -43,18 +41,7 @@ public class FormActivity extends AppCompatActivity implements DDLFormListener {
 		ddlFormScreenlet.setListener(this);
 		Long recordSetId = Long.valueOf((String) record.getServerValue("recordSetId"));
 		ddlFormScreenlet.setRecordSetId(recordSetId);
-
-		//ddlFormScreenlet.setRecordSetId(35866L);
-
-		Long structureId = Long.valueOf((String) record.getServerValue("structureId"));
-		ddlFormScreenlet.setStructureId(structureId);
-
-		//ddlFormScreenlet.setStructureId(35863L);
-
 		ddlFormScreenlet.load();
-
-		AccountsApp accountsApp = (AccountsApp) getApplicationContext();
-		accountsApp.setCurrentRecord(ddlFormScreenlet.getRecord());
 	}
 
 	@Override
@@ -94,12 +81,12 @@ public class FormActivity extends AppCompatActivity implements DDLFormListener {
 
 	private void trackForm(EventProperty eventProperty) {
 
-		Location location = ((AccountsApp) getApplicationContext()).getLocation();
-		DDMStructure ddmStructure = ddlFormScreenlet.getRecord().getDDMStructure();
-		eventProperty.setEntityId(ddmStructure.getClassNameId());
-		eventProperty.setEntityType(ddmStructure.getClassPK());
+		Record record = ddlFormScreenlet.getRecord();
+		eventProperty.setEntityId(record.getRecordSetId());
+		eventProperty.setEntityType(record.getRecordSetClassPK());
+		eventProperty.setEntityName(record.getRecordSetName());
 
-		TrackingAction.post(getApplicationContext(), eventProperty, location);
+		TrackingAction.post(getApplicationContext(), eventProperty);
 	}
 
 	@Override

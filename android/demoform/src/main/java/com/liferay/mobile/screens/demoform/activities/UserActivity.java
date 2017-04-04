@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.demoform.R;
 
 /**
@@ -35,6 +36,8 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 
 		User currentUser = SessionContext.getCurrentUser();
 		userNameTextView.setText(currentUser == null ? "" : currentUser.getFullName());
+
+		DDLListScreenlet ddlListScreenlet = (DDLListScreenlet) findViewById(R.id.ddl_form_screenlet);
 	}
 
 	@Override

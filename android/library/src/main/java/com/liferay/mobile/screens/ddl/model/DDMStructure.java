@@ -183,4 +183,5 @@ public class DDMStructure implements Parcelable {
 			fields = new ArrayList<>();
 		}
 	}
+
 }

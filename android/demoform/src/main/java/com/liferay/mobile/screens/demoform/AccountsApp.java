@@ -12,7 +12,6 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.liferay.mobile.screens.ddl.form.EventProperty;
 import com.liferay.mobile.screens.ddl.form.EventType;
-import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.demoform.analytics.TrackingAction;
 import java.util.UUID;
 
@@ -25,7 +24,6 @@ public class AccountsApp extends Application
 	private long timer;
 	private GoogleApiClient googleApiClient;
 	private Location location;
-	private Record currentRecord;
 	private UUID uuid;
 
 	@Override
@@ -64,7 +62,7 @@ public class AccountsApp extends Application
 			location = lastLocation;
 			EventProperty eventProperty = new EventProperty(EventType.APP_START, "Opening app", "app");
 			eventProperty.setTime(0L);
-			TrackingAction.post(this, eventProperty, lastLocation);
+			TrackingAction.post(this, eventProperty);
 		}
 	}
 
@@ -92,15 +90,11 @@ public class AccountsApp extends Application
 
 		EventProperty eventProperty = new EventProperty(EventType.APP_END, "Closing app", "app");
 		eventProperty.setTime(timer);
-		TrackingAction.post(this, eventProperty, location);
+		TrackingAction.post(this, eventProperty);
 	}
 
 	public Location getLocation() {
 		return location;
-	}
-
-	public void setCurrentRecord(Record currentRecord) {
-		this.currentRecord = currentRecord;
 	}
 
 	public long getTimer() {

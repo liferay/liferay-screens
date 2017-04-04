@@ -12,6 +12,7 @@ public class EventProperty {
 	private Long entityId;
 	private String elementName;
 	private List<String> referrers = new ArrayList<>();
+	private String entityName;
 
 	public EventProperty(EventType eventType, String name, String elementId) {
 		this.eventType = eventType;
@@ -86,5 +87,9 @@ public class EventProperty {
 
 	public void setReferrers(List<String> referrers) {
 		this.referrers = referrers;
+	}
+
+	public void setEntityName(String entityName) {
+		this.entityName = entityName;
 	}
 }

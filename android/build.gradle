@@ -63,5 +63,6 @@ ext.libraries = [appCompat    : 'com.android.support:appcompat-v7:' + supportLib
 subprojects {
 	repositories {
 		jcenter()
+		maven { url "https://jitpack.io" }
 	}
 }

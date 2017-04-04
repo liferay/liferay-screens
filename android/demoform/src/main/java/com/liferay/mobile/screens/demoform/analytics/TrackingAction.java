@@ -36,7 +36,9 @@ public class TrackingAction {
 	public static final String SERVLET = "/o/analytics";
 	public static final String PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
 
-	public static void post(Context context, EventProperty eventProperty, Location location) {
+	public static void post(Context tmpContext, EventProperty eventProperty) {
+
+		Context context = tmpContext.getApplicationContext();
 
 		final long groupId = LiferayServerContext.getGroupId();
 
@@ -47,6 +49,8 @@ public class TrackingAction {
 
 		TrackingEvent trackingEvent =
 			new TrackingEvent(eventProperty.getEventType(), groupId, date, additionalInfo, eventProperty);
+
+		Location location = ((AccountsApp) context).getLocation();
 
 		MessageContext messageContext = createMessageContext(context, location);
 		final TrackingMessage trackingMessage = new TrackingMessage(messageContext, trackingEvent);

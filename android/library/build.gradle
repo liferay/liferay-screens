@@ -49,8 +49,6 @@ dependencies {
 	compile libraries.rxpermissions
 	compile libraries.rxbinding
 
-	compile 'com.lsjwzh:recyclerviewpager:1.0.8'
-
 	testCompile libraries.junit
 	testCompile libraries.robolectric
 	testCompile libraries.mockito
@@ -61,6 +59,8 @@ dependencies {
 	compile libraries.kryo
 
 	compile 'com.google.code.gson:gson:2.8.0'
+
+	compile 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.2'
 }
 
 apply from: '../bintray.gradle'

@@ -36,6 +36,7 @@
 			android:layout_height="match_parent"
 			android:layout_below="@+id/signin_title"
 			app:autoLoad="true"
+			app:cachePolicy="REMOTE_ONLY"
 			app:labelFields="Name,Description"
 			app:layoutId="@layout/ddl_list_material"
 			app:recordSetId="@string/types_of_accounts"
