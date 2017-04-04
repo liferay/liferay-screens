@@ -2,6 +2,7 @@ package com.liferay.mobile.screens.demoform.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.TextView;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -19,6 +20,11 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 		setContentView(R.layout.activity_user);
 
 		bindViews();
+
+		boolean added = getIntent().getBooleanExtra("added", false);
+		if (added) {
+			Snackbar.make(findViewById(android.R.id.content), "Form added!", Snackbar.LENGTH_LONG).show();
+		}
 	}
 
 	private void bindViews() {

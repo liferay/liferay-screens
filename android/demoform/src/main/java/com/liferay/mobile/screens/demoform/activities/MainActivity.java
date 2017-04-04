@@ -14,7 +14,6 @@
 
 package com.liferay.mobile.screens.demoform.activities;
 
-import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -23,12 +22,13 @@ import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
-import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.demoform.R;
 import com.liferay.mobile.screens.demoform.utils.CardState;
 import com.liferay.mobile.screens.demoform.views.Deck;
 import com.tbruyelle.rxpermissions.RxPermissions;
+
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 public class MainActivity extends WesterosActivity implements LoginListener, ForgotPasswordListener {
 
@@ -45,12 +45,12 @@ public class MainActivity extends WesterosActivity implements LoginListener, For
 		//SessionContext.loadStoredCredentials(CredentialsStorageBuilder.StorageType.AUTO);
 
 		//Move to next activity if user is logged in
-		if (SessionContext.isLoggedIn()) {
-			//Cache.resync();
-			//toNextActivity();
-		}
+		//if (SessionContext.isLoggedIn()) {
+		//Cache.resync();
+		//toNextActivity();
+		//}
 
-		new RxPermissions(this).request(Manifest.permission.ACCESS_FINE_LOCATION).subscribe(conceded -> {
+		new RxPermissions(this).request(ACCESS_FINE_LOCATION).subscribe(conceded -> {
 
 		});
 	}

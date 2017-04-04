@@ -1,7 +1,5 @@
 <resources>
-	<string name="app_name">App Name</string>
-	<string name="title">Westeros Employees</string>
-	<string name="account_settings">Account Settings</string>
+	<string name="app_name">Banking forms</string>
 	<string name="severity">Severity</string>
 	<string name="reset_password_text">We will send you a link to reset your password.\r\n\r\nThe link will be valid 24 hours</string>
 	<string name="send_password">Send Password</string>

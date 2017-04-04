@@ -111,13 +111,11 @@ public class FormActivity extends AppCompatActivity implements DDLFormListener {
 	public void onDDLFormRecordAdded(Record record) {
 		LiferayLogger.d(":)");
 
-		long timer = this.timer - System.currentTimeMillis();
-		trackForm(EventType.FORM_SUBMIT, timer);
-
-		Snackbar.make(ddlFormScreenlet, "Form added!", Snackbar.LENGTH_LONG).show();
+		trackForm(EventType.FORM_SUBMIT, getTimer());
 
 		Intent intent = new Intent(this, UserActivity.class);
 		intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
+		intent.putExtra("added", true);
 		startActivity(intent);
 	}
 
@@ -151,11 +149,14 @@ public class FormActivity extends AppCompatActivity implements DDLFormListener {
 			subscribe.unsubscribe();
 		}
 
-		long timer = this.timer - System.currentTimeMillis();
 		boolean notSubmitted = ddlFormScreenlet.getRecord().getRecordId() == 0;
 		if (notSubmitted) {
-			trackForm(FORM_CANCEL, timer);
+			trackForm(FORM_CANCEL, getTimer());
 		}
 		trackForm(FORM_LEAVE, timer);
+	}
+
+	private long getTimer() {
+		return System.currentTimeMillis() - this.timer;
 	}
 }

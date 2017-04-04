@@ -156,6 +156,9 @@ public class DDLFormView extends RecyclerViewPager implements DDLFormViewModel, 
 
 	@Override
 	public void showFinishOperation(String actionName, Object argument) {
+
+		setSinglePageFling(true);
+
 		hideProgressBar(actionName);
 		switch (actionName) {
 			case DDLFormScreenlet.LOAD_RECORD_ACTION:

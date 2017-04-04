@@ -10,7 +10,7 @@
 	<application
 		android:name=".AccountsApp"
 		android:allowBackup="true"
-		android:icon="@mipmap/ic_launcher"
+		android:icon="@drawable/ic_account_balance_black_48dp"
 		android:label="@string/app_name"
 		android:roundIcon="@mipmap/ic_launcher_round"
 		android:supportsRtl="false"
