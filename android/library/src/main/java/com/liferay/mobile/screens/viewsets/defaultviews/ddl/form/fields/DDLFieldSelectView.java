@@ -108,28 +108,20 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 
 		if (getField().isMultiple()) {
 			final boolean[] checked = getCheckedOptions();
-			builder.setMultiChoiceItems(labels, checked, new DialogInterface.OnMultiChoiceClickListener() {
-				public void onClick(DialogInterface dialog, int whichButton, boolean isChecked) {
-					checked[whichButton] = isChecked;
-					focusable.clearFocus();
-				}
+			builder.setMultiChoiceItems(labels, checked, (dialog, whichButton, isChecked) -> {
+				checked[whichButton] = isChecked;
+				focusable.clearFocus();
 			});
-			builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					focusable.clearFocus();
-					checkField(checked, availableOptions);
-					refresh();
-					alertDialog.dismiss();
-				}
+			builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
+				focusable.clearFocus();
+				checkField(checked, availableOptions);
+				refresh();
+				alertDialog.dismiss();
 			});
 
-			builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					alertDialog.dismiss();
-					focusable.clearFocus();
-				}
+			builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> {
+				alertDialog.dismiss();
+				focusable.clearFocus();
 			});
 		} else {
 			builder.setItems(labels, selectOptionHandler);
@@ -143,12 +135,10 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 	}
 
 	protected DialogInterface.OnClickListener getAlertDialogListener() {
-		return new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				focusable.clearFocus();
-				getField().selectOption(getField().getAvailableOptions().get(which));
-				refresh();
-			}
+		return (dialog, which) -> {
+			focusable.clearFocus();
+			getField().selectOption(getField().getAvailableOptions().get(which));
+			refresh();
 		};
 	}
 
