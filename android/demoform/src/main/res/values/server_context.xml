@@ -7,7 +7,7 @@
 
 	<integer name="liferay_portal_version">70</integer>
 
-	<string name="liferay_server">http://192.168.40.146:8080</string>
+	<string name="liferay_server">http://192.168.40.252:8080</string>
 	<string name="liferay_company_id">20113</string>
 	<string name="liferay_group_id">20140</string>
 
