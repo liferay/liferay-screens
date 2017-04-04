@@ -24,4 +24,11 @@
 		android:padding="5dp"
 		/>
 
+	<ImageView
+		android:id="@+id/field_today"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:visibility="gone"
+		/>
+
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldSelectView>

@@ -79,6 +79,8 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
+		findViewById(R.id.field_today).setOnClickListener(this);
+
 		EditText editText = getTextEditText();
 		editText.setCursorVisible(false);
 		editText.setFocusableInTouchMode(false);
