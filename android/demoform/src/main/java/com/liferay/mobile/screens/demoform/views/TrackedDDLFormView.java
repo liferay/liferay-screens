@@ -94,6 +94,16 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 	}
 
 	@Override
+	public void OnPageChanged(int oldPosition, int newPosition) {
+		if (pendingErrors != null) {
+			boolean scroll = checkPage(pendingErrors);
+			if (scroll) {
+				pendingErrors = null;
+			}
+		}
+	}
+
+	@Override
 	public void showValidationResults(final Map<Field, Boolean> fieldResults, final boolean autoscroll) {
 
 		boolean scrolled = checkPage(fieldResults);
@@ -137,16 +147,6 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 	@Override
 	public PublishSubject getEventsObservable() {
 		return publishSubject;
-	}
-
-	@Override
-	public void OnPageChanged(int oldPosition, int newPosition) {
-		if (pendingErrors != null) {
-			boolean scroll = checkPage(pendingErrors);
-			if (scroll) {
-				pendingErrors = null;
-			}
-		}
 	}
 
 	private class HorizontalViewPagerAdapter
