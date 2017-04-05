@@ -5,6 +5,8 @@
 	android:background="#ccc"
 	>
 
+	
+
 	<ListView
 		android:id="@+id/drawer_list_view"
 		android:layout_width="match_parent"
