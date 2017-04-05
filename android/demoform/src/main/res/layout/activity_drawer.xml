@@ -4,7 +4,7 @@
 	android:id="@+id/drawer_layout"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context="com.liferay.mobile.screens.demoform.DrawerActivity"
+	tools:context="com.liferay.mobile.screens.demoform.activities.MainActivity"
 	>
 
 	<LinearLayout
@@ -16,6 +16,7 @@
 			android:id="@+id/toolbar"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:titleTextColor="@color/colorPrimary"
 			/>
 
 		<FrameLayout
@@ -28,7 +29,7 @@
 
 	<fragment
 		android:id="@+id/navigation_drawer"
-		android:name="com.liferay.mobile.screens.demoform.NavigationDrawerFragment"
+		android:name="com.liferay.mobile.screens.demoform.fragments.MenuFragment"
 		android:layout_width="@dimen/navigation_drawer_width"
 		android:layout_height="match_parent"
 		android:layout_gravity="start"

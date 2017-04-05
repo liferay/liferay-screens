@@ -61,7 +61,7 @@ public class AccountsView
 
 			String titleField = (String) entry.getServerValue(getLabelFields().get(0));
 			holder.textView.setText(titleField);
-			String updated = "Last transaction on " + (String) entry.getServerValue("Updated");
+			String updated = "Last transaction on " + entry.getServerValue("Updated");
 			holder.subtitleTextView.setText(updated);
 			String type = (String) entry.getServerValue("type");
 			holder.accountsIcon.setImageResource(getIcon(type));

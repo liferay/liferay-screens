@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.demoform;
+package com.liferay.mobile.screens.demoform.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,23 +8,24 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import com.liferay.mobile.screens.demoform.R;
 
-public class NavigationDrawerFragment extends Fragment {
+public class MenuFragment extends Fragment {
 
 	private ListView drawerListView;
 	private AdapterView.OnItemClickListener onItemClickListener;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		drawerListView = (ListView) inflater.inflate(R.layout.drawer, container, false);
+		View view = inflater.inflate(R.layout.drawer, container, false);
+		drawerListView = (ListView) view.findViewById(R.id.drawer_list_view);
 		drawerListView.setOnItemClickListener(this::selectItem);
 		drawerListView.setAdapter(
 			new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_activated_1, android.R.id.text1,
 				new String[] {
-					getString(R.string.title_section1), getString(R.string.title_section2),
-					getString(R.string.title_section3),
+					getString(R.string.accounts), getString(R.string.user_profile), getString(R.string.new_account),
 				}));
-		return drawerListView;
+		return view;
 	}
 
 	private void selectItem(AdapterView<?> adapterView, View view, int position, long id) {

@@ -1,103 +1,100 @@
-/*
- * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
- */
-
 package com.liferay.mobile.screens.demoform.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
-import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
-import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
-import com.liferay.mobile.screens.auth.login.LoginListener;
-import com.liferay.mobile.screens.auth.login.LoginScreenlet;
-import com.liferay.mobile.screens.context.User;
-import com.liferay.mobile.screens.demoform.DrawerActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
+import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.demoform.R;
-import com.liferay.mobile.screens.demoform.utils.CardState;
-import com.liferay.mobile.screens.demoform.views.Deck;
-import com.tbruyelle.rxpermissions.RxPermissions;
+import com.liferay.mobile.screens.demoform.fragments.AccountFormFragment;
+import com.liferay.mobile.screens.demoform.fragments.AccountsFragment;
+import com.liferay.mobile.screens.demoform.fragments.ListAccountsFragment;
+import com.liferay.mobile.screens.demoform.fragments.MenuFragment;
+import com.liferay.mobile.screens.demoform.fragments.NewAccountFragment;
+import com.liferay.mobile.screens.demoform.fragments.UserProfileFragment;
 
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
-public class MainActivity extends WesterosActivity implements LoginListener, ForgotPasswordListener {
-
-	private Deck deck;
+	private DrawerLayout drawerLayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_drawer);
 
-		findViews();
+		boolean added = getIntent().getBooleanExtra("added", false);
+		if (added) {
+			Snackbar.make(findViewById(android.R.id.content), "Form added!", Snackbar.LENGTH_LONG).show();
+		}
 
-		//Load stored credentials
-		//SessionContext.loadStoredCredentials(CredentialsStorageBuilder.StorageType.AUTO);
+		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-		//Move to next activity if user is logged in
-		//if (SessionContext.isLoggedIn()) {
-		//Cache.resync();
-		//toNextActivity();
-		//}
+		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
 
-		new RxPermissions(this).request(ACCESS_FINE_LOCATION).subscribe(conceded -> {
+		ActionBar supportActionBar = getSupportActionBar();
+		supportActionBar.setDisplayHomeAsUpEnabled(true);
+		supportActionBar.setHomeButtonEnabled(true);
 
-		});
+		ActionBarDrawerToggle drawerToggle =
+			new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open,
+				R.string.navigation_drawer_close);
+		drawerLayout.addDrawerListener(drawerToggle);
+		drawerLayout.post(drawerToggle::syncState);
+
+		MenuFragment menuFragment = (MenuFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
+		menuFragment.setOnItemClickListener(this);
+
+		AccountsFragment fragment = getFragment(0);
+		loadFragment(fragment);
 	}
 
-	private void findViews() {
-		LoginScreenlet loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
-		loginScreenlet.setListener(this);
+	//@Override
+	//public void onBackPressed() {
+		//Intent intent = new Intent(this, LoginActivity.class);
+		//intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		//startActivity(intent);
+		//finish();
+	//}
 
-		ForgotPasswordScreenlet forgotPasswordScreenlet =
-			(ForgotPasswordScreenlet) findViewById(R.id.forgot_password_screenlet);
-		forgotPasswordScreenlet.setListener(this);
-
-		deck = (Deck) findViewById(R.id.deck);
+	@Override
+	public void onClick(View v) {
+		//startActivity(new Intent(this, UserProfileActivity.class));
 	}
 
 	@Override
-	public void onLoginSuccess(User user) {
-		toNextActivity();
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		drawerLayout.closeDrawers();
+
+		AccountsFragment fragment = getFragment(position);
+		loadFragment(fragment);
 	}
 
-	private void toNextActivity() {
-		findViewById(R.id.background).animate()
-			.alpha(0f)
-			.withEndAction(() -> startActivity(new Intent(MainActivity.this, DrawerActivity.class)));
-
-		deck.setCardsState(CardState.HIDDEN);
+	private void loadFragment(AccountsFragment fragment) {
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		fragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack("TAG").commit();
 	}
 
-	@Override
-	public void onLoginFailure(Exception e) {
-		showSnackBar("Login failed!");
+	@NonNull
+	private AccountsFragment getFragment(int position) {
+		if (position == 0) {
+			return new ListAccountsFragment();
+		} else if (position == 1) {
+			return new UserProfileFragment();
+		}
+		return new NewAccountFragment();
 	}
 
-	@Override
-	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
-		showSnackBar("Email sent to change the password");
-	}
+	public void recordClicked(Record record) {
 
-	@Override
-	public void onForgotPasswordRequestFailure(Exception e) {
-		showSnackBar("Error sending the password");
-	}
-
-	private void showSnackBar(String message) {
-		Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT);
-		snackbar.getView().setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
-		snackbar.show();
+		AccountFormFragment accountFormFragment = AccountFormFragment.newInstance(record);
+		loadFragment(accountFormFragment);
 	}
 }

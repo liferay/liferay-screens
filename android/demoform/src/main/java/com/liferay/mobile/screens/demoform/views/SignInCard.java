@@ -10,6 +10,7 @@ import com.liferay.mobile.screens.demoform.R;
  * @author Víctor Galán Grande
  */
 public class SignInCard extends Card implements View.OnClickListener {
+
 	public SignInCard(Context context) {
 		super(context);
 	}
@@ -20,10 +21,6 @@ public class SignInCard extends Card implements View.OnClickListener {
 
 	public SignInCard(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-	}
-
-	public SignInCard(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override

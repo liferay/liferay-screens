@@ -115,12 +115,8 @@ public class Deck extends FrameLayout implements CardListener {
 			int minimizedPosition = maxHeight - (size - i) * cardSize;
 
 			card.initPosition(minimizedPosition, maxHeight, maxWidth);
-			card.setOnTouchListener(new FlingTouchListener(getContext().getApplicationContext(), new FlingListener() {
-				@Override
-				public void onFling(FlingListener.Movement movement) {
-					Deck.this.onFling(movement, card);
-				}
-			}));
+			card.setOnTouchListener(new FlingTouchListener(getContext().getApplicationContext(),
+				movement -> Deck.this.onFling(movement, card)));
 
 			card.setState(CardState.MINIMIZED).setStartDelay(200 * cards.size() - i - 1).setDuration(300);
 			card.setCardListener(this);

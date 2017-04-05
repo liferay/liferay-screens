@@ -51,7 +51,12 @@ public class Focusable {
 			.map((Func1) o -> EventType.FIELD_EXHAUSTED)
 			.mergeWith(focusChange)
 			.distinctUntilChanged()
-			.map(o -> new EventProperty((EventType) o, ddlFieldViewModel.getField().getName(), getTime()));
+			.map(o -> {
+				EventProperty eventProperty =
+					new EventProperty((EventType) o, ddlFieldViewModel.getField().getName(), getTime());
+				eventProperty.setElementLabel(ddlFieldViewModel.getField().getLabel());
+				return eventProperty;
+			});
 	}
 
 	public long getTime() {

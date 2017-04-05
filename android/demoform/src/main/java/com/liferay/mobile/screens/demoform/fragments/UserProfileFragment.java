@@ -1,8 +1,10 @@
-package com.liferay.mobile.screens.demoform.activities;
+package com.liferay.mobile.screens.demoform.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.asset.display.AssetDisplayInnerScreenletListener;
@@ -12,10 +14,11 @@ import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder;
 import com.liferay.mobile.screens.demoform.R;
+import com.liferay.mobile.screens.demoform.activities.LoginActivity;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 
-public class UserProfileActivity extends WesterosActivity
-	implements View.OnClickListener, AssetDisplayInnerScreenletListener {
+public class UserProfileFragment extends AccountsFragment
+	implements AssetDisplayInnerScreenletListener, View.OnClickListener {
 
 	private TextView userNameText;
 	private TextView jobTitleText;
@@ -23,17 +26,21 @@ public class UserProfileActivity extends WesterosActivity
 	private TextView screenNameText;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.user_display);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
 
-		bindViews();
+		userNameText = (TextView) view.findViewById(R.id.user_name_text);
+		jobTitleText = (TextView) view.findViewById(R.id.user_job_title_text);
+		emailText = (TextView) view.findViewById(R.id.user_email_text);
+		screenNameText = (TextView) view.findViewById(R.id.user_screen_name_text);
 
-		AssetDisplayScreenlet screenlet = ((AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet));
+		AssetDisplayScreenlet screenlet = ((AssetDisplayScreenlet) view.findViewById(R.id.asset_display_screenlet));
 		screenlet.setClassName("com.liferay.portal.kernel.model.User");
 		screenlet.setClassPK(SessionContext.getCurrentUser().getId());
 		screenlet.setInnerListener(this);
 		screenlet.loadAsset();
+
+		return view;
 	}
 
 	@Override
@@ -44,7 +51,7 @@ public class UserProfileActivity extends WesterosActivity
 	@Override
 	public View onRenderCustomAsset(AssetEntry assetEntry) {
 		if (assetEntry instanceof User) {
-			View view = getLayoutInflater().inflate(R.layout.user_profile, null);
+			View view = getActivity().getLayoutInflater().inflate(R.layout.asset_user_profile, null);
 			User user = new User(assetEntry.getValues());
 
 			view.findViewById(R.id.sign_out_button).setOnClickListener(this);
@@ -59,7 +66,7 @@ public class UserProfileActivity extends WesterosActivity
 			userPortraitScreenlet.setUserId(user.getId());
 			userPortraitScreenlet.load();
 
-			userNameText.setText(user.getFirstName() + " " + user.getLastName());
+			userNameText.setText(user.getFullName());
 			jobTitleText.setText(user.getJobTitle());
 			emailText.setText(user.getEmail());
 			screenNameText.setText(user.getScreenName());
@@ -74,16 +81,14 @@ public class UserProfileActivity extends WesterosActivity
 		SessionContext.logout();
 		SessionContext.removeStoredCredentials(CredentialsStorageBuilder.StorageType.AUTO);
 
-		Intent intent = new Intent(this, MainActivity.class);
+		Intent intent = new Intent(getActivity(), LoginActivity.class);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(intent);
-		finish();
+		getActivity().finish();
 	}
 
-	private void bindViews() {
-		userNameText = (TextView) findViewById(R.id.user_name_text);
-		jobTitleText = (TextView) findViewById(R.id.user_job_title_text);
-		emailText = (TextView) findViewById(R.id.user_email_text);
-		screenNameText = (TextView) findViewById(R.id.user_screen_name_text);
+	@Override
+	public String getName() {
+		return "Profile";
 	}
 }

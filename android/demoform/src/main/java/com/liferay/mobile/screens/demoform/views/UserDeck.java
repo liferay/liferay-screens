@@ -27,19 +27,16 @@ public class UserDeck extends Deck {
 
 	@Override
 	public void moveCardRight(final Card card) {
-		card.goRight(new Runnable() {
-			@Override
-			public void run() {
-				int selectedCard = cards.indexOf(card);
+		card.goRight(() -> {
+			int selectedCard = cards.indexOf(card);
 
-				for (int i = 0; i < cards.size(); i++) {
-					Card c = cards.get(i);
+			for (int i = 0; i < cards.size(); i++) {
+				Card c = cards.get(i);
 
-					if (i == selectedCard) {
-						c.setState(CardState.MAXIMIZED);
-					} else if (i > selectedCard) {
-						c.setState(CardState.HIDDEN);
-					}
+				if (i == selectedCard) {
+					c.setState(CardState.MAXIMIZED);
+				} else if (i > selectedCard) {
+					c.setState(CardState.HIDDEN);
 				}
 			}
 		});

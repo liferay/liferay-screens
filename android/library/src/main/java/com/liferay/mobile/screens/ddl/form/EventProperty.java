@@ -16,6 +16,8 @@ public class EventProperty {
 	private String lastElementName;
 
 	private List<String> referrers = new ArrayList<>();
+	private String lastElementId;
+	private String elementLabel;
 
 	public EventProperty(EventType eventType, String elementName, String elementId) {
 		this.eventType = eventType;
@@ -101,5 +103,17 @@ public class EventProperty {
 
 	public String getLastElementName() {
 		return lastElementName;
+	}
+
+	public void setLastElementId(String lastElementId) {
+		this.lastElementId = lastElementId;
+	}
+
+	public String getElementLabel() {
+		return elementLabel;
+	}
+
+	public void setElementLabel(String elementLabel) {
+		this.elementLabel = elementLabel;
 	}
 }
