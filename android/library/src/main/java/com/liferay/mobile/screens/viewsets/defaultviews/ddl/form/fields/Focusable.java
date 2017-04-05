@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 
+import android.view.View;
 import com.liferay.mobile.screens.ddl.form.EventProperty;
 import com.liferay.mobile.screens.ddl.form.EventType;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
@@ -27,7 +28,7 @@ public class Focusable {
 			focused = true;
 
 			DDLFormView ddlFormView = (DDLFormView) ddlFieldViewModel.getParentView();
-			//ddlFormView.clearFocusOfFields(ddlFieldViewModel);
+			ddlFormView.clearFocusOfFields(ddlFieldViewModel);
 			focusChange.onNext(EventType.FIELD_ENTER);
 		}
 	}
@@ -36,7 +37,7 @@ public class Focusable {
 		if (this.ddlFieldViewModel != ddlFieldViewModelSelected && focused) {
 			focused = false;
 			focusChange.onNext(EventType.FIELD_LEAVE);
-			//((View) ddlFieldViewModel).clearFocus();
+			((View) ddlFieldViewModel).clearFocus();
 		}
 	}
 

@@ -42,7 +42,7 @@ public class DDMStructure implements Parcelable {
 	private String structureKey;
 	private String structureId;
 	private Long classNameId;
-	private String classPK;
+	private String className;
 
 	public DDMStructure() {
 		super();
@@ -152,12 +152,12 @@ public class DDMStructure implements Parcelable {
 		this.classNameId = classNameId;
 	}
 
-	public String getClassPK() {
-		return classPK;
+	public String getClassName() {
+		return className;
 	}
 
-	public void setClassPK(String classPK) {
-		this.classPK = classPK;
+	public void setClassName(String className) {
+		this.className = className;
 	}
 
 	public void parse(JSONObject jsonObject) throws JSONException {
@@ -166,7 +166,7 @@ public class DDMStructure implements Parcelable {
 		this.structureKey = jsonObject.getString("structureKey");
 		this.structureId = jsonObject.getString("structureId");
 		this.classNameId = jsonObject.getLong("classNameId");
-		this.classPK = "com.liferay.dynamic.data.mapping.model.DDMStructure";
+		this.className = "com.liferay.dynamic.data.mapping.model.DDMStructure";
 		if (jsonObject.has("xsd")) {
 			parse(jsonObject.getString("xsd"), new XSDParser());
 		} else {
@@ -183,5 +183,4 @@ public class DDMStructure implements Parcelable {
 			fields = new ArrayList<>();
 		}
 	}
-
 }

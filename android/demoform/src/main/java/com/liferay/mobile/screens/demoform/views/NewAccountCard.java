@@ -33,6 +33,7 @@ public class NewAccountCard extends Card implements BaseListListener<Record> {
 		super.onFinishInflate();
 
 		DDLListScreenlet ddlListScreenlet = (DDLListScreenlet) findViewById(R.id.type_of_account);
+		ddlListScreenlet.setUserId(0);
 		ddlListScreenlet.setListener(this);
 	}
 

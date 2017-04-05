@@ -8,28 +8,26 @@ public class EventProperty {
 	private transient EventType eventType;
 	private transient Long time;
 	private String elementId;
-	private String entityType;
-	private Long entityId;
 	private String elementName;
-	private List<String> referrers = new ArrayList<>();
-	private String entityName;
 
-	public EventProperty(EventType eventType, String name, String elementId) {
+	private Long entityId;
+	private String entityName;
+	private String entityType;
+	private String lastElementName;
+
+	private List<String> referrers = new ArrayList<>();
+
+	public EventProperty(EventType eventType, String elementName, String elementId) {
 		this.eventType = eventType;
+		this.elementName = elementName;
 
 		this.elementId = elementId;
-		this.elementName = name;
 	}
 
-	public EventProperty(EventType eventType, String name, Long time) {
-		this(name, eventType, null, null, time);
-	}
-
-	public EventProperty(String name, EventType eventType, String entityType, Long entityId, Long time) {
+	public EventProperty(EventType eventType, String elementName, Long time) {
 		this.eventType = eventType;
-		this.entityType = entityType;
-		this.entityId = entityId;
-		this.elementName = name;
+		this.elementName = elementName;
+
 		this.time = time;
 	}
 
@@ -39,14 +37,6 @@ public class EventProperty {
 
 	public void setTime(Long time) {
 		this.time = time;
-	}
-
-	public String getName() {
-		return elementName;
-	}
-
-	public void setName(String name) {
-		this.elementName = name;
 	}
 
 	public EventType getEventType() {
@@ -63,14 +53,6 @@ public class EventProperty {
 
 	public void setElementId(String elementId) {
 		this.elementId = elementId;
-	}
-
-	public String getEntityType() {
-		return entityType;
-	}
-
-	public void setEntityType(String entityType) {
-		this.entityType = entityType;
 	}
 
 	public Long getEntityId() {
@@ -91,5 +73,33 @@ public class EventProperty {
 
 	public void setEntityName(String entityName) {
 		this.entityName = entityName;
+	}
+
+	public String getElementName() {
+		return elementName;
+	}
+
+	public void setElementName(String elementName) {
+		this.elementName = elementName;
+	}
+
+	public String getEntityName() {
+		return entityName;
+	}
+
+	public void setLastElementName(String lastElementName) {
+		this.lastElementName = lastElementName;
+	}
+
+	public String getEntityType() {
+		return entityType;
+	}
+
+	public void setEntityType(String entityType) {
+		this.entityType = entityType;
+	}
+
+	public String getLastElementName() {
+		return lastElementName;
 	}
 }

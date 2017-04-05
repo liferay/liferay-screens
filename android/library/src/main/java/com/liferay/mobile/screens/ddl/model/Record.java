@@ -55,10 +55,9 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 	private Long recordSetId;
 	private Long recordId;
 	private String recordSetName;
-	private String recordSetClassPK = "com.liferay.dynamic.data.lists.model.DDLRecordSet";
 
 	public String getRecordSetClassPK() {
-		return recordSetClassPK;
+		return "com.liferay.dynamic.data.lists.model.DDLRecordSet";
 	}
 
 	public Record() {

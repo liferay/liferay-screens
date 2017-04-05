@@ -9,7 +9,6 @@ import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.form.EventProperty;
 import com.liferay.mobile.screens.ddl.form.EventType;
-import com.liferay.mobile.screens.ddl.model.DDMStructure;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.demoform.R;
@@ -29,6 +28,7 @@ public class FormActivity extends AppCompatActivity implements DDLFormListener {
 	private Long timer = System.currentTimeMillis();
 	private DDLFormScreenlet ddlFormScreenlet;
 	private Subscription subscribe;
+	private EventProperty lastField;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +49,10 @@ public class FormActivity extends AppCompatActivity implements DDLFormListener {
 		super.onResume();
 
 		subscribe = ddlFormScreenlet.getEventsObservable().subscribe(eventProperty -> {
-			trackForm(eventProperty);
-			System.out.println("Field: " + eventProperty.getName() + ", time (in millis): " + eventProperty.getTime());
+			lastField = eventProperty;
+			decorateEventAndSend(eventProperty);
+			System.out.println(
+				"Field: " + eventProperty.getElementName() + ", time (in millis): " + eventProperty.getTime());
 		}, t -> Log.e("ERROR! :(", t.getMessage(), t));
 	}
 
@@ -70,20 +72,28 @@ public class FormActivity extends AppCompatActivity implements DDLFormListener {
 	public void onDDLFormLoaded(Record record) {
 		LiferayLogger.d(":)");
 
-		trackForm(EventType.FORM_ENTER, 0L);
+		trackFormActions(EventType.FORM_ENTER, 0L);
 	}
 
-	private void trackForm(EventType eventType, Long timer) {
-		DDMStructure ddmStructure = ddlFormScreenlet.getRecord().getDDMStructure();
-		EventProperty newEventProperty = new EventProperty(eventType, ddmStructure.getName(), timer);
-		trackForm(newEventProperty);
+	private void trackFormActions(EventType eventType, Long timer) {
+		trackFormActions(eventType, timer, null);
 	}
 
-	private void trackForm(EventProperty eventProperty) {
+	private void trackFormActions(EventType eventType, Long timer, String lastElementName) {
+		Record record = ddlFormScreenlet.getRecord();
+		EventProperty eventProperty =
+			new EventProperty(eventType, record.getRecordSetName(), record.getRecordSetName());
+		eventProperty.setTime(timer);
+		eventProperty.setLastElementName(lastElementName);
+		decorateEventAndSend(eventProperty);
+	}
+
+	private void decorateEventAndSend(EventProperty eventProperty) {
 
 		Record record = ddlFormScreenlet.getRecord();
-		eventProperty.setEntityId(record.getRecordSetId());
-		eventProperty.setEntityType(record.getRecordSetClassPK());
+
+		eventProperty.setEntityId(record.getDDMStructure().getClassNameId());
+		eventProperty.setEntityType(record.getDDMStructure().getClassName());
 		eventProperty.setEntityName(record.getRecordSetName());
 
 		TrackingAction.post(getApplicationContext(), eventProperty);
@@ -98,7 +108,7 @@ public class FormActivity extends AppCompatActivity implements DDLFormListener {
 	public void onDDLFormRecordAdded(Record record) {
 		LiferayLogger.d(":)");
 
-		trackForm(EventType.FORM_SUBMIT, getTimer());
+		trackFormActions(EventType.FORM_SUBMIT, getTimer());
 
 		Intent intent = new Intent(this, UserActivity.class);
 		intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
@@ -138,9 +148,9 @@ public class FormActivity extends AppCompatActivity implements DDLFormListener {
 
 		boolean notSubmitted = ddlFormScreenlet.getRecord().getRecordId() == 0;
 		if (notSubmitted) {
-			trackForm(FORM_CANCEL, getTimer());
+			trackFormActions(FORM_CANCEL, getTimer(), lastField == null ? null : lastField.getElementName());
 		}
-		trackForm(FORM_LEAVE, timer);
+		trackFormActions(FORM_LEAVE, timer);
 	}
 
 	private long getTimer() {

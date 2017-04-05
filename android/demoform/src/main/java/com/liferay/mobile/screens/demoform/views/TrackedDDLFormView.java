@@ -32,6 +32,7 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 	private PublishSubject publishSubject = PublishSubject.create();
 	private Map<Field, Boolean> pendingErrors = null;
 	private long timer;
+	private long pageTimer = System.currentTimeMillis();
 
 	public TrackedDDLFormView(Context context) {
 		super(context);
@@ -100,12 +101,26 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 
 	@Override
 	public void OnPageChanged(int oldPosition, int newPosition) {
+
+		sendPageTransition(newPosition);
+
 		if (pendingErrors != null) {
 			boolean scroll = checkPage(pendingErrors);
-			//if (scroll) {
-			pendingErrors = null;
-			//}
+			if (scroll) {
+				pendingErrors = null;
+			}
 		}
+	}
+
+	private void sendPageTransition(int newPosition) {
+
+		Record record = getDDLFormScreenlet().getRecord();
+		Record.Page page = record.getPages().get(newPosition);
+		EventProperty eventProperty =
+			new EventProperty(EventType.PAGE_TRANSITION, page.getTitle(), String.valueOf(newPosition));
+		eventProperty.setTime(System.currentTimeMillis() - pageTimer);
+		TrackingAction.post(getContext(), eventProperty);
+		pageTimer = System.currentTimeMillis();
 	}
 
 	@Override
@@ -135,16 +150,16 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 			DDLFieldViewModel fieldViewModel = (DDLFieldViewModel) fieldView;
 			boolean isFieldValid = fieldResults.get(fieldViewModel.getField());
 
-			//fieldView.clearFocus();
-			//
-			//fieldViewModel.onPostValidation(isFieldValid);
+			fieldView.clearFocus();
 
-			//if (!isFieldValid) {
-			//	fieldView.requestFocus();
-			//	scrollTo(0, fieldView.getTop());
-			//smoothScrollTo(0, fieldView.getTop());
-			//return true;
-			//}
+			fieldViewModel.onPostValidation(isFieldValid);
+
+			if (!isFieldValid) {
+				fieldView.requestFocus();
+				scrollTo(0, fieldView.getTop());
+				//smoothScrollTo(0, fieldView.getTop());
+				return true;
+			}
 		}
 		return false;
 	}
