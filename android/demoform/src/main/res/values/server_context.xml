@@ -16,7 +16,7 @@
 
 	<!-- SignupScreenlet values -->
 	<string name="liferay_anonymousApiUserName">test</string>
-	<string name="liferay_anonymousApiPassword">portal4All</string>
+	<string name="liferay_anonymousApiPassword">test</string>
 
 	<!-- DDLFormScreenlet values -->
 	<!--<strnamename="liferay_recordset_id">20593</string>-->
