@@ -20,7 +20,7 @@ import com.liferay.mobile.screens.demoform.fragments.MenuFragment;
 import com.liferay.mobile.screens.demoform.fragments.NewAccountFragment;
 import com.liferay.mobile.screens.demoform.fragments.UserProfileFragment;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
 	private DrawerLayout drawerLayout;
 
@@ -51,22 +51,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 		MenuFragment menuFragment = (MenuFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
 		menuFragment.setOnItemClickListener(this);
-
-		AccountsFragment fragment = getFragment(0);
-		loadFragment(fragment);
 	}
 
-	//@Override
-	//public void onBackPressed() {
-		//Intent intent = new Intent(this, LoginActivity.class);
-		//intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		//startActivity(intent);
-		//finish();
-	//}
+	@Override
+	public void onBackPressed() {
+		AccountsFragment accountsFragment =
+			(AccountsFragment) getSupportFragmentManager().findFragmentById(R.id.container);
+		if (accountsFragment instanceof AccountFormFragment) {
+			boolean back = ((AccountFormFragment) accountsFragment).onBackPressed();
+			if (!back) {
+				return;
+			}
+		}
+
+		if (accountsFragment instanceof ListAccountsFragment) {
+			super.onBackPressed();
+		} else {
+			loadFragment(getFragment(0));
+		}
+	}
 
 	@Override
-	public void onClick(View v) {
-		//startActivity(new Intent(this, UserProfileActivity.class));
+	protected void onResume() {
+		super.onResume();
+		AccountsFragment fragment = getFragment(0);
+		loadFragment(fragment);
 	}
 
 	@Override
@@ -79,7 +88,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 	private void loadFragment(AccountsFragment fragment) {
 		FragmentManager fragmentManager = getSupportFragmentManager();
-		fragmentManager.beginTransaction().replace(R.id.container, fragment).addToBackStack("TAG").commit();
+		fragmentManager.beginTransaction().replace(R.id.container, fragment)
+			//.addToBackStack("TAG")
+			.commit();
 	}
 
 	@NonNull
@@ -93,7 +104,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	}
 
 	public void recordClicked(Record record) {
-
 		AccountFormFragment accountFormFragment = AccountFormFragment.newInstance(record);
 		loadFragment(accountFormFragment);
 	}

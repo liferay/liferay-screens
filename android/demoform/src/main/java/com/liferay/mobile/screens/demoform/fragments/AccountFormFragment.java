@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.demoform.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -14,12 +15,15 @@ import com.liferay.mobile.screens.ddl.form.EventType;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.demoform.R;
+import com.liferay.mobile.screens.demoform.activities.MainActivity;
 import com.liferay.mobile.screens.demoform.analytics.TrackingAction;
 import com.liferay.mobile.screens.util.LiferayLogger;
+import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 import java.util.Map;
 import org.json.JSONObject;
 import rx.Subscription;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static com.liferay.mobile.screens.ddl.form.EventType.FORM_CANCEL;
 import static com.liferay.mobile.screens.ddl.form.EventType.FORM_LEAVE;
 
@@ -53,7 +57,8 @@ public class AccountFormFragment extends AccountsFragment implements DDLFormList
 
 	@Override
 	public String getName() {
-		return "New " + ddlFormScreenlet.getRecord().getRecordSetName();
+		String recordSetName = ddlFormScreenlet.getRecord().getRecordSetName();
+		return "New " + (recordSetName == null ? "Account" : recordSetName);
 	}
 
 	public static AccountFormFragment newInstance(Record record) {
@@ -94,6 +99,8 @@ public class AccountFormFragment extends AccountsFragment implements DDLFormList
 		LiferayLogger.d(":)");
 
 		trackFormActions(EventType.FORM_ENTER, 0L);
+
+		getActivity().setTitle(getName());
 	}
 
 	private void trackFormActions(EventType eventType, Long timer) {
@@ -134,10 +141,10 @@ public class AccountFormFragment extends AccountsFragment implements DDLFormList
 
 		trackFormActions(EventType.FORM_SUBMIT, getTimer());
 
-		//Intent intent = new Intent(this, aUserActivity.class);
-		//intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
-		//intent.putExtra("added", true);
-		//startActivity(intent);
+		Intent intent = new Intent(getActivity(), MainActivity.class);
+		intent.setFlags(FLAG_ACTIVITY_NEW_TASK);
+		intent.putExtra("added", true);
+		startActivity(intent);
 	}
 
 	@Override
@@ -150,17 +157,16 @@ public class AccountFormFragment extends AccountsFragment implements DDLFormList
 		LiferayLogger.d(":)");
 	}
 
-	//@Override
-	//public void onBackPressed() {
-	//	//RecyclerViewPager recyclerViewPager = ((TrackedDDLFormView) ddlFormScreenlet.getView()).getRecyclerViewPager();
-	//	RecyclerViewPager recyclerViewPager = ddlFormScreenlet.getView();
-	//	int currentPosition = recyclerViewPager.getCurrentPosition();
-	//	if (currentPosition == 0) {
-	//		super.onBackPressed();
-	//	} else {
-	//		recyclerViewPager.smoothScrollToPosition(currentPosition - 1);
-	//	}
-	//}
+	public boolean onBackPressed() {
+		RecyclerViewPager recyclerViewPager = ddlFormScreenlet.getView();
+		int currentPosition = recyclerViewPager.getCurrentPosition();
+		if (currentPosition == 0) {
+			return true;
+		} else {
+			recyclerViewPager.smoothScrollToPosition(currentPosition - 1);
+			return false;
+		}
+	}
 
 	@Override
 	public void onStop() {

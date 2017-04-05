@@ -18,6 +18,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.view.View;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
 import com.liferay.mobile.screens.auth.login.LoginListener;
@@ -33,6 +34,7 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 public class LoginActivity extends WesterosActivity implements LoginListener, ForgotPasswordListener {
 
 	private Deck deck;
+	private View background;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,14 @@ public class LoginActivity extends WesterosActivity implements LoginListener, Fo
 		});
 	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		background.setAlpha(1f);
+		deck.setCardsState(CardState.MINIMIZED);
+	}
+
 	private void findViews() {
 		LoginScreenlet loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
 		loginScreenlet.setListener(this);
@@ -64,6 +74,7 @@ public class LoginActivity extends WesterosActivity implements LoginListener, Fo
 		forgotPasswordScreenlet.setListener(this);
 
 		deck = (Deck) findViewById(R.id.deck);
+		background = findViewById(R.id.background);
 	}
 
 	@Override
@@ -72,7 +83,7 @@ public class LoginActivity extends WesterosActivity implements LoginListener, Fo
 	}
 
 	private void toNextActivity() {
-		findViewById(R.id.background).animate()
+		background.animate()
 			.alpha(0f)
 			.withEndAction(() -> startActivity(new Intent(LoginActivity.this, MainActivity.class)));
 

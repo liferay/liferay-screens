@@ -17,7 +17,7 @@ public class MenuFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.drawer, container, false);
+		View view = inflater.inflate(R.layout.menu_drawer, container, false);
 		drawerListView = (ListView) view.findViewById(R.id.drawer_list_view);
 		drawerListView.setOnItemClickListener(this::selectItem);
 		drawerListView.setAdapter(
