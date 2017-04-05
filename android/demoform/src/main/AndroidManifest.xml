@@ -19,6 +19,7 @@
 			android:name=".activities.MainActivity"
 			android:screenOrientation="portrait"
 			android:windowSoftInputMode="stateHidden"/>
+		<activity android:name=".DrawerActivity"/>
 		<activity android:name=".activities.UserActivity"/>
 		<activity
 			android:name=".activities.SplashActivity"

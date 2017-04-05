@@ -72,7 +72,7 @@ public class SignUpCard extends Card implements View.OnClickListener, WebContent
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		//findViewById(R.id.terms).setOnClickListener(this);
+		//findViewById(R.id.terms).setOnItemClickListener(this);
 		//webContentDisplayScreenlet = (WebContentDisplayScreenlet) findViewById(R.id.web_content_display_screenlet);
 	}
 }

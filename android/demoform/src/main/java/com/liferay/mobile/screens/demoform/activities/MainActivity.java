@@ -23,6 +23,7 @@ import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.context.User;
+import com.liferay.mobile.screens.demoform.DrawerActivity;
 import com.liferay.mobile.screens.demoform.R;
 import com.liferay.mobile.screens.demoform.utils.CardState;
 import com.liferay.mobile.screens.demoform.views.Deck;
@@ -72,12 +73,9 @@ public class MainActivity extends WesterosActivity implements LoginListener, For
 	}
 
 	private void toNextActivity() {
-		findViewById(R.id.background).animate().alpha(0f).withEndAction(new Runnable() {
-			@Override
-			public void run() {
-				startActivity(new Intent(MainActivity.this, UserActivity.class));
-			}
-		});
+		findViewById(R.id.background).animate()
+			.alpha(0f)
+			.withEndAction(() -> startActivity(new Intent(MainActivity.this, DrawerActivity.class)));
 
 		deck.setCardsState(CardState.HIDDEN);
 	}
