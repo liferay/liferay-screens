@@ -16,4 +16,5 @@
 	<string name="error_when">Ha ocurrido un error en</string>
 	<string name="custom_interactor_login_error">Ha ocurrido un error iniciando sesión, prueba con test/test</string>
 	<string name="failed"> ha fallado</string>
+	<string name="portlet_display_error">Ha ocurrido un error al cargar el contenido del portlet</string>
 </resources>

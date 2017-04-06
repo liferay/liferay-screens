@@ -16,4 +16,5 @@
 	<string name="error_when">Error when</string>
 	<string name="custom_interactor_login_error">Error logging in, try with test/test</string>
 	<string name="failed">failed</string>
+	<string name="portlet_display_error">Error displaying portlet content</string>
 </resources>

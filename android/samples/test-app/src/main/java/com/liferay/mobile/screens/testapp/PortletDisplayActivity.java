@@ -29,11 +29,11 @@ public class PortletDisplayActivity extends ThemeActivity implements PortletDisp
 
 	@Override
 	public void error(Exception e, String userAction) {
-
+		error(getString(R.string.portlet_display_error), e);
 	}
 
 	@Override
 	public void onRetrievePortletSuccess(String url) {
-		
+		info(getString(R.string.portlet_display_success));
 	}
 }
