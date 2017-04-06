@@ -49,6 +49,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.user_display).setOnClickListener(this);
 		findViewById(R.id.image_display).setOnClickListener(this);
 		findViewById(R.id.gallery).setOnClickListener(this);
+		findViewById(R.id.portlet_display).setOnClickListener(this);
 	}
 
 	@Override
@@ -157,6 +158,8 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				break;
 			case R.id.image_display:
 				start(ImageDisplayActivity.class);
+				break;
+			case R.id.portlet_display:
 				break;
 			default:
 				start(LoginActivity.class);
