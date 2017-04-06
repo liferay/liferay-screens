@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -24,13 +25,13 @@ import com.liferay.mobile.screens.demoform.analytics.TrackingAction;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.material.ddl.form.DDLFormView;
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
+import java.util.HashMap;
 import java.util.Map;
 import rx.subjects.PublishSubject;
 
 public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager.OnPageChangedListener {
 
 	private PublishSubject publishSubject = PublishSubject.create();
-	private Map<Field, Boolean> pendingErrors = null;
 	private long timer;
 	private long pageTimer = System.currentTimeMillis();
 
@@ -51,6 +52,17 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 	protected void onFinishInflate() {
 		setLayoutManager(new LinearLayoutManager(getContext(), HORIZONTAL, false));
 		addOnPageChangedListener(this);
+		setSinglePageFling(true);
+	}
+
+	@Override
+	public boolean onTouchEvent(MotionEvent e) {
+		if (e.getAction() == 2) {
+			boolean pageValid = checkPage(getCurrentPosition());
+			return pageValid && super.onTouchEvent(e);
+		}
+
+		return super.onTouchEvent(e);
 	}
 
 	@Override
@@ -93,23 +105,43 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 				getDDLFormScreenlet().submitForm();
 			}
 		} else if (view.getId() == R.id.next_page_button) {
-			smoothScrollToPosition(getCurrentPosition() + 1);
+
+			boolean validPage = checkPage(getCurrentPosition());
+
+			if (validPage) {
+				smoothScrollToPosition(getCurrentPosition() + 1);
+			}
 		} else {
 			getDDLFormScreenlet().startUpload((DocumentField) view.getTag());
 		}
+	}
+
+	private boolean checkPage(int currentPosition) {
+
+		Record record = getDDLFormScreenlet().getRecord();
+
+		Map<Field, Boolean> fieldResults = new HashMap<>(record.getFieldCount());
+		boolean result = true;
+
+		for (int i = 0; i < record.getFieldCount(); i++) {
+			Field field = record.getField(i);
+
+			if (record.getPages().get(currentPosition).getFields().contains(field)) {
+				boolean isFieldValid = field.isValid();
+				fieldResults.put(field, isFieldValid);
+				result &= isFieldValid;
+			}
+		}
+
+		showValidationResults(fieldResults, true);
+
+		return result;
 	}
 
 	@Override
 	public void OnPageChanged(int oldPosition, int newPosition) {
 
 		sendPageTransition(newPosition);
-
-		if (pendingErrors != null) {
-			boolean scroll = checkPage(pendingErrors);
-			if (scroll) {
-				pendingErrors = null;
-			}
-		}
 	}
 
 	private void sendPageTransition(int newPosition) {
@@ -126,42 +158,37 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 	@Override
 	public void showValidationResults(final Map<Field, Boolean> fieldResults, final boolean autoscroll) {
 
-		boolean scrolled = checkPage(fieldResults);
-
-		if (!scrolled) {
-			Record record = getDDLFormScreenlet().getRecord();
-			for (Field field : record.getFields()) {
-				boolean isFieldValid = fieldResults.get(field);
-				if (!isFieldValid) {
-					smoothScrollToPosition(record.getPage(field));
-					this.pendingErrors = fieldResults;
-					return;
-				}
-			}
-		}
+		boolean pageInvalid = checkPage(fieldResults);
+		System.out.println(pageInvalid);
 	}
 
 	private boolean checkPage(Map<Field, Boolean> fieldResults) {
 
 		LinearLayout container = (LinearLayout) findViewById(R.id.ddlfields_container);
 
+		boolean pageInvalid = false;
+
 		for (int i = 0; i < container.getChildCount(); i++) {
 			View fieldView = container.getChildAt(i);
 			DDLFieldViewModel fieldViewModel = (DDLFieldViewModel) fieldView;
-			boolean isFieldValid = fieldResults.get(fieldViewModel.getField());
 
-			fieldView.clearFocus();
+			if (fieldViewModel != null && fieldViewModel.getField() != null && fieldResults.containsKey(
+				fieldViewModel.getField())) {
+				boolean isFieldValid = fieldResults.get(fieldViewModel.getField());
 
-			fieldViewModel.onPostValidation(isFieldValid);
+				fieldView.clearFocus();
 
-			if (!isFieldValid) {
-				fieldView.requestFocus();
-				scrollTo(0, fieldView.getTop());
-				//smoothScrollTo(0, fieldView.getTop());
-				return true;
+				fieldViewModel.onPostValidation(isFieldValid);
+
+				if (!isFieldValid) {
+					fieldView.requestFocus();
+					scrollTo(0, fieldView.getTop());
+					//smoothScrollTo(0, fieldView.getTop());
+					pageInvalid = true;
+				}
 			}
 		}
-		return false;
+		return pageInvalid;
 	}
 
 	@Override

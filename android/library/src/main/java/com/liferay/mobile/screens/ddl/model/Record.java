@@ -319,10 +319,14 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 
 	public static class Page {
 
-		private final String title;
-		private final String description;
-		private final List<Field> fields;
-		private final int number;
+		private String title;
+		private String description;
+		private List<Field> fields;
+		private int number;
+
+		public Page() {
+			super();
+		}
 
 		public Page(int number, String title, String description, List<Field> fields) {
 			this.number = number;

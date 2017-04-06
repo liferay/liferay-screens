@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 	private AccountsFragment getFragment(int position) {
 		if (position == 0) {
 			return new ListAccountsFragment();
-		} else if (position == 1) {
+		} else if (position == 10) {
 			return new UserProfileFragment();
 		}
 		return new NewAccountFragment();
