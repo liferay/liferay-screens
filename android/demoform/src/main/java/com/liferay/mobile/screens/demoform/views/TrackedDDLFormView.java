@@ -6,7 +6,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -34,6 +33,7 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 	private PublishSubject publishSubject = PublishSubject.create();
 	private long timer;
 	private long pageTimer = System.currentTimeMillis();
+	private int position = 0;
 
 	public TrackedDDLFormView(Context context) {
 		super(context);
@@ -53,16 +53,6 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 		setLayoutManager(new LinearLayoutManager(getContext(), HORIZONTAL, false));
 		addOnPageChangedListener(this);
 		setSinglePageFling(true);
-	}
-
-	@Override
-	public boolean onTouchEvent(MotionEvent e) {
-		if (e.getAction() == 2) {
-			boolean pageValid = checkPage(getCurrentPosition());
-			return pageValid && super.onTouchEvent(e);
-		}
-
-		return super.onTouchEvent(e);
 	}
 
 	@Override
@@ -95,6 +85,18 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 		if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
 			LiferayLogger.e("error loading DDLForm", e);
 			clearFormFields();
+		}
+	}
+
+	@Override
+	protected void adjustPositionX(int velocityX) {
+
+		boolean validPage = checkPage(position);
+
+		if (validPage || getCurrentPosition() < position) {
+			super.adjustPositionX(velocityX);
+		} else {
+			this.smoothScrollToPosition(position);
 		}
 	}
 
@@ -138,10 +140,24 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 		return result;
 	}
 
+	public boolean quickCheck() {
+		Record record = getDDLFormScreenlet().getRecord();
+		for (Field field : record.getFields()) {
+			if (record.getPages().get(getCurrentPosition()).getFields().contains(field)) {
+				boolean isFieldValid = field.isValid();
+				if (!isFieldValid) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
 	@Override
 	public void OnPageChanged(int oldPosition, int newPosition) {
 
 		sendPageTransition(newPosition);
+		position = newPosition;
 	}
 
 	private void sendPageTransition(int newPosition) {
@@ -182,7 +198,9 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 
 				if (!isFieldValid) {
 					fieldView.requestFocus();
-					scrollTo(0, fieldView.getTop());
+
+					((ScrollView) findViewById(R.id.scroll_view)).smoothScrollTo(0, fieldView.getTop() - 50);
+					//scrollBy(0, fieldView.getTop() - getScrollY());
 					//smoothScrollTo(0, fieldView.getTop());
 					pageInvalid = true;
 				}

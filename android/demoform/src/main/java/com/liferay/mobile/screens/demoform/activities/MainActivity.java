@@ -64,7 +64,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 			}
 		}
 
-		if (accountsFragment instanceof ListAccountsFragment) {
+		if (accountsFragment instanceof AccountFormFragment) {
+			loadFragment(getFragment(1));
+		} else if (accountsFragment instanceof ListAccountsFragment) {
 			super.onBackPressed();
 		} else {
 			loadFragment(getFragment(0));
@@ -88,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 	private void loadFragment(AccountsFragment fragment) {
 		FragmentManager fragmentManager = getSupportFragmentManager();
+
 		fragmentManager.beginTransaction().replace(R.id.container, fragment)
 			//.addToBackStack("TAG")
 			.commit();

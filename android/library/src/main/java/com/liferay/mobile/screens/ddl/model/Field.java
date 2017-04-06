@@ -48,7 +48,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	private Locale defaultLocale;
 	private List<Field> fields = new ArrayList<>();
 
-	public static final int RATE_FIELD = 5000;
+	public static final int RATE_FIELD = 10000;
 
 	public Field() {
 		super();

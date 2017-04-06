@@ -77,7 +77,12 @@ public class AccountFormFragment extends AccountsFragment implements DDLFormList
 		subscribe = ddlFormScreenlet.getEventsObservable().subscribe(eventProperty -> {
 			lastField = eventProperty;
 			decorateEventAndSend(eventProperty);
-			System.out.println(
+
+			if (eventProperty.getEventType().equals(EventType.FIELD_EXHAUSTED)) {
+				Snackbar.make(getActivity().findViewById(android.R.id.content),
+					"Do you need help filling " + eventProperty.getElementLabel() + " ?", Snackbar.LENGTH_SHORT).show();
+			}
+			LiferayLogger.e(
 				"Field: " + eventProperty.getElementName() + ", time (in millis): " + eventProperty.getTime());
 		}, t -> Log.e("ERROR! :(", t.getMessage(), t));
 	}
