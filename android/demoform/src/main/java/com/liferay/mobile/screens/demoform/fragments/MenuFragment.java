@@ -29,11 +29,12 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
 		drawerListView = (ListView) view.findViewById(R.id.drawer_list_view);
 		drawerListView.setOnItemClickListener(this::selectItem);
 		Object[] values = new Object[] {
-			new Object[] { getString(R.string.accounts), R.drawable.ic_account_balance_black_24dp },
+			new Object[] { getString(R.string.accounts), R.drawable.ic_account_balance_wallet_black_24dp },
 			new Object[] { getString(R.string.new_account), R.drawable.ic_account_balance_black_24dp },
-			new Object[] { "Transfers", R.drawable.ic_account_balance_black_24dp },
-			new Object[] { "Bill payments", R.drawable.ic_account_balance_black_24dp },
-			new Object[] { "Contact customer service", R.drawable.ic_account_balance_black_24dp }
+			new Object[] { "Transfers", R.drawable.ic_attach_money_black_24dp },
+			new Object[] { "Bill payments", R.drawable.ic_autorenew_black_24dp },
+			new Object[] { "Stocks", R.drawable.ic_trending_up_black_24dp },
+			new Object[] { "Customer service", R.drawable.ic_people_black_24dp }
 		};
 		drawerListView.setAdapter(new MenuAccountsAdapter(getContext(), R.layout.menu_row, values));
 

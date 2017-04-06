@@ -25,7 +25,7 @@
 
 	<!-- SigninScreenlet values -->
 	<string name="liferay_login">test</string>
-	<string name="liferay_password">test</string>
+	<string name="liferay_password">portal4All</string>
 
 	<!-- WebContentDisplayScreenlet values -->
 	<!--<strnamename="liferay_article_id">44489</string>-->

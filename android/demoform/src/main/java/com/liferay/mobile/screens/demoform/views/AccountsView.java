@@ -65,7 +65,7 @@ public class AccountsView
 			holder.subtitleTextView.setText(updated);
 			String type = (String) entry.getServerValue("type");
 			holder.accountsIcon.setImageResource(getIcon(type));
-			String balance = entry.getServerValue("Balance") + "$";
+			String balance = entry.getServerValue("Balance") + " $";
 			holder.balanceText.setText(balance);
 		}
 

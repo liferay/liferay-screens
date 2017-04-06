@@ -12,6 +12,7 @@
 		android:layout_centerVertical="true"
 		android:background="?android:attr/activatedBackgroundIndicator"
 		android:padding="10dp"
+		android:tint="@color/colorPrimary"
 		/>
 
 	<TextView xmlns:android="http://schemas.android.com/apk/res/android"

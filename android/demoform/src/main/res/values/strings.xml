@@ -25,7 +25,7 @@
 
 	<string name="accounts">Accounts</string>
 	<string name="user_profile">User Profile</string>
-	<string name="new_account">New Account</string>
+	<string name="new_account">New account</string>
 
 	<string name="navigation_drawer_open">Open navigation drawer</string>
 	<string name="navigation_drawer_close">Close navigation drawer</string>
