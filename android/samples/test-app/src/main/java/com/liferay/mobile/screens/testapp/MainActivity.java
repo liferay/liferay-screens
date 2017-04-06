@@ -160,6 +160,9 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				start(ImageDisplayActivity.class);
 				break;
 			case R.id.portlet_display:
+				Intent intentPortlet = getIntentWithTheme(PortletDisplayActivity.class);
+				intentPortlet.putExtra("url", getResources().getString(R.string.liferay_portlet_url));
+				DefaultAnimation.startActivityWithAnimation(this, intentPortlet);
 				break;
 			default:
 				start(LoginActivity.class);
