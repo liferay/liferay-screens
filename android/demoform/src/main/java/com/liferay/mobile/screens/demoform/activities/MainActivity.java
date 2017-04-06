@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 		boolean added = getIntent().getBooleanExtra("added", false);
 		if (added) {
-			Snackbar.make(findViewById(android.R.id.content), "Form added!", Snackbar.LENGTH_LONG).show();
+			Snackbar.make(findViewById(android.R.id.content), R.string.request_sent, Snackbar.LENGTH_LONG)
+				.show();
 		}
 
 		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

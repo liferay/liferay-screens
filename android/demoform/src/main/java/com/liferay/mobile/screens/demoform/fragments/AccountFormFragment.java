@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,8 +80,15 @@ public class AccountFormFragment extends AccountsFragment implements DDLFormList
 			decorateEventAndSend(eventProperty);
 
 			if (eventProperty.getEventType().equals(EventType.FIELD_EXHAUSTED)) {
-				Snackbar.make(getActivity().findViewById(android.R.id.content),
-					"Do you need help filling " + eventProperty.getElementLabel() + " ?", Snackbar.LENGTH_SHORT).show();
+				Snackbar make = Snackbar.make(getActivity().findViewById(android.R.id.content),
+					"Do you need help filling " + eventProperty.getElementLabel() + " ?", Snackbar.LENGTH_SHORT);
+
+				make.setActionTextColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+				make.setAction("Open a chat", v -> {
+
+				});
+
+				make.show();
 			}
 			LiferayLogger.e(
 				"Field: " + eventProperty.getElementName() + ", time (in millis): " + eventProperty.getTime());

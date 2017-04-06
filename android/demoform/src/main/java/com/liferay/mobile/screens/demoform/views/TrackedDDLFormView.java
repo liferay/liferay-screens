@@ -199,7 +199,7 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 				if (!isFieldValid) {
 					fieldView.requestFocus();
 
-					((ScrollView) findViewById(R.id.scroll_view)).smoothScrollTo(0, fieldView.getTop() - 50);
+					((ScrollView) findViewById(R.id.scroll_view)).smoothScrollTo(0, fieldView.getTop() - 100);
 					//scrollBy(0, fieldView.getTop() - getScrollY());
 					//smoothScrollTo(0, fieldView.getTop());
 					pageInvalid = true;

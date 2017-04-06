@@ -1,22 +1,17 @@
 package com.liferay.mobile.screens.demoform.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.demoform.R;
+import com.liferay.mobile.screens.demoform.views.MenuAccountsAdapter;
 
 public class MenuFragment extends Fragment implements View.OnClickListener {
 
@@ -36,7 +31,7 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
 			new Object[] { "Stocks", R.drawable.ic_trending_up_black_24dp },
 			new Object[] { "Customer service", R.drawable.ic_people_black_24dp }
 		};
-		drawerListView.setAdapter(new MenuAccountsAdapter(getContext(), R.layout.menu_row, values));
+		drawerListView.setAdapter(new MenuAccountsAdapter(getActivity(), R.layout.menu_row, values));
 
 		User user = SessionContext.getCurrentUser();
 		TextView userNameText = (TextView) view.findViewById(R.id.liferay_username);
@@ -65,30 +60,6 @@ public class MenuFragment extends Fragment implements View.OnClickListener {
 	public void onClick(View v) {
 		if (onItemClickListener != null) {
 			onItemClickListener.onItemClick(null, v, 10, 0);
-		}
-	}
-
-	private class MenuAccountsAdapter extends ArrayAdapter<Object> {
-		public MenuAccountsAdapter(Context context, int menu_row, Object[] values) {
-			super(context, menu_row, values);
-		}
-
-		@NonNull
-		@Override
-		public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-			if (convertView == null) {
-				convertView = getActivity().getLayoutInflater().inflate(R.layout.menu_row, parent, false);
-			}
-
-			Object[] item = (Object[]) getItem(position);
-
-			TextView textView = ((TextView) convertView.findViewById(R.id.text_menu));
-			textView.setText((String) item[0]);
-
-			ImageView imageView = ((ImageView) convertView.findViewById(R.id.icon_menu));
-			imageView.setImageDrawable(ContextCompat.getDrawable(getContext(), (int) item[1]));
-
-			return convertView;
 		}
 	}
 }
