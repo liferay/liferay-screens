@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.ddl.list.DDLListScreenlet
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/ddl_form_screenlet"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	app:autoLoad="true"
+	app:cachePolicy="REMOTE_ONLY"
+	app:firstPageSize="100"
+	app:labelFields="Name,Updated,Balance"
+	app:layoutId="@layout/movements_list_layout"
+	app:recordSetId="@string/movements_id"
+	/>

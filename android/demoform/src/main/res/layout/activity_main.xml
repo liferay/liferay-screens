@@ -98,7 +98,8 @@
 					android:layout_height="match_parent"
 					android:layout_below="@id/forgotpassword_title"
 					app:anonymousApiPassword="@string/liferay_anonymousApiPassword"
-					app:anonymousApiUserName="@string/liferay_anonymousApiUserName"
+					app:anonymousApiUserName="@string/liferay_password"
+					app:basicAuthMethod="screen_name"
 					app:layoutId="@layout/forgotpassword_westeros"
 					/>
 

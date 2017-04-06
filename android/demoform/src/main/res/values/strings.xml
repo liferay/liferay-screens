@@ -19,6 +19,7 @@
 
 	<!--<string name="account_id">35606</string>-->
 	<!--<string name="types_of_accounts">35624</string>-->
+	<string name="movements_id">34255</string>
 	<string name="account_id">34021</string>
 	<string name="types_of_accounts">34026</string>
 	<string name="title_activity_drawer">DrawerActivity</string>
@@ -30,5 +31,6 @@
 	<string name="navigation_drawer_open">Open navigation drawer</string>
 	<string name="navigation_drawer_close">Close navigation drawer</string>
 	<string name="request_sent">Request for a new account sent!</string>
+
 
 </resources>

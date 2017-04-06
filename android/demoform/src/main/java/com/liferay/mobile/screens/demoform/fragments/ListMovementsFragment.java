@@ -5,27 +5,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.liferay.mobile.screens.base.list.BaseListListener;
-import com.liferay.mobile.screens.ddl.list.DDLListScreenlet;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.demoform.R;
 import com.liferay.mobile.screens.demoform.activities.MainActivity;
 import java.util.List;
 
-public class ListAccountsFragment extends AccountsFragment implements BaseListListener<Record> {
+public class ListMovementsFragment extends AccountsFragment implements BaseListListener<Record> {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.fragment_list_accounts, container, false);
-
-		DDLListScreenlet ddlListScreenlet = (DDLListScreenlet) view.findViewById(R.id.ddl_form_screenlet);
-		ddlListScreenlet.setListener(this);
+		View view = inflater.inflate(R.layout.list_movements, container, false);
 
 		return view;
 	}
 
 	@Override
 	public String getName() {
-		return "Accounts";
+		return "Movements";
 	}
 
 	@Override
@@ -46,5 +42,9 @@ public class ListAccountsFragment extends AccountsFragment implements BaseListLi
 	@Override
 	public void onListItemSelected(Record record, View view) {
 		((MainActivity) getActivity()).accountClicked(record);
+	}
+
+	public static ListMovementsFragment newInstance(Record record) {
+		return new ListMovementsFragment();
 	}
 }

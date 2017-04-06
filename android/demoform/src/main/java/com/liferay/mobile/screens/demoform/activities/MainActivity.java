@@ -16,6 +16,7 @@ import com.liferay.mobile.screens.demoform.R;
 import com.liferay.mobile.screens.demoform.fragments.AccountFormFragment;
 import com.liferay.mobile.screens.demoform.fragments.AccountsFragment;
 import com.liferay.mobile.screens.demoform.fragments.ListAccountsFragment;
+import com.liferay.mobile.screens.demoform.fragments.ListMovementsFragment;
 import com.liferay.mobile.screens.demoform.fragments.MenuFragment;
 import com.liferay.mobile.screens.demoform.fragments.NewAccountFragment;
 import com.liferay.mobile.screens.demoform.fragments.UserProfileFragment;
@@ -109,6 +110,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 	public void recordClicked(Record record) {
 		AccountFormFragment accountFormFragment = AccountFormFragment.newInstance(record);
+		loadFragment(accountFormFragment);
+	}
+
+	public void accountClicked(Record record) {
+		ListMovementsFragment accountFormFragment = ListMovementsFragment.newInstance(record);
 		loadFragment(accountFormFragment);
 	}
 }
