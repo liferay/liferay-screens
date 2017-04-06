@@ -62,19 +62,27 @@ import Foundation
 	}
 
 	open var basicAuthUsername: String? {
-		guard let auth = session.authentication as? LRBasicAuthentication else {
-			return nil
+		if let auth = session.authentication as? LRBasicAuthentication {
+			return auth.username
 		}
 
-		return auth.username
+		if let auth = session.authentication as? LRCookieAuthentication {
+			return auth.username
+		}
+
+		return nil
 	}
 
 	open var basicAuthPassword: String? {
-		guard let auth = session.authentication as? LRBasicAuthentication else {
-			return nil
+		if let auth = session.authentication as? LRBasicAuthentication {
+			return auth.password
 		}
 
-		return auth.password
+		if let auth = session.authentication as? LRCookieAuthentication {
+			return auth.password
+		}
+
+		return nil
 	}
 
 
