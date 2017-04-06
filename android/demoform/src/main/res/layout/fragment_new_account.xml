@@ -28,7 +28,7 @@
 		app:autoLoad="true"
 		app:cachePolicy="REMOTE_ONLY"
 		app:labelFields="Name,Description"
-		app:layoutId="@layout/ddl_list_material"
+		app:layoutId="@layout/new_account_list"
 		app:recordSetId="@string/types_of_accounts"
 		/>
 
