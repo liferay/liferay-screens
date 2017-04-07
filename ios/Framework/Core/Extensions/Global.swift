@@ -38,9 +38,7 @@ public func dispatch_delayed(_ delay: TimeInterval, block: @escaping ()->()) {
 
 public func dispatch_async(_ block: @escaping ()->()) {
 	let queue = DispatchQueue.global(qos: .background)
-	queue.async {
-		block()
-	}
+	queue.async(execute: block)
 }
 
 
@@ -49,9 +47,7 @@ public func dispatch_async(_ block: @escaping ()->(), thenMain mainBlock: @escap
 	queue.async {
 		block()
 
-		DispatchQueue.main.async {
-			mainBlock()
-		}
+		DispatchQueue.main.async(execute: mainBlock)
 	}
 }
 
@@ -61,9 +57,7 @@ public typealias Signal = (() -> ())
 public func dispatch_sync(_ block: (@escaping Signal) -> ()) {
 	let waitGroup = DispatchGroup()
 	waitGroup.enter()
-	block {
-		waitGroup.leave()
-	}
+	block(waitGroup.leave)
 	_ = waitGroup.wait(timeout: DispatchTime.distantFuture)
 }
 
@@ -74,14 +68,7 @@ public func to_sync(_ function: @escaping (@escaping Signal) -> ()) -> () -> () 
 }
 
 public func dispatch_main(_ block: @escaping ()->()) {
-	if Thread.isMainThread {
-		block()
-	}
-	else {
-		DispatchQueue.main.async {
-			block()
-		}
-	}
+	dispatch_main(false, block: block)
 }
 
 public func dispatch_main(_ forceDispatch: Bool, block: @escaping ()->()) {
@@ -89,9 +76,7 @@ public func dispatch_main(_ forceDispatch: Bool, block: @escaping ()->()) {
 		block()
 	}
 	else {
-		DispatchQueue.main.async {
-			block()
-		}
+		DispatchQueue.main.async(execute: block)
 	}
 }
 
