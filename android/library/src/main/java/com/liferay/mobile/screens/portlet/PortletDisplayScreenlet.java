@@ -21,15 +21,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.portlet.interactor.PortletDisplayInteractor;
 import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
+import com.squareup.okhttp.HttpUrl;
+import java.net.MalformedURLException;
 
 /**
  * @author Sarai Díaz García
  */
 
-public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewModel, PortletDisplayInteractor>
+public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewModel, Interactor>
 	implements PortletDisplayListener {
 
 	private boolean autoLoad;
@@ -53,10 +55,18 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	}
 
 	/**
-	 * Searches the Portlet with the given URL and loads it.
+	 * Starts the operation and check if the Portlet URL it's correct and then loads it.
+	 * If the URL is not correct, the operation fails.
 	 */
 	public void load() {
-		performUserAction();
+		getViewModel().showStartOperation(DEFAULT_ACTION);
+
+		HttpUrl portletUrl = HttpUrl.parse(url);
+		if (portletUrl != null) {
+			getViewModel().showFinishOperation(portletUrl.toString());
+		} else {
+			getViewModel().showFailedOperation(DEFAULT_ACTION, new MalformedURLException());
+		}
 	}
 
 	/**
