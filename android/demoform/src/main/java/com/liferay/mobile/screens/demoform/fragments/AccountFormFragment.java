@@ -81,7 +81,7 @@ public class AccountFormFragment extends AccountsFragment implements DDLFormList
 
 			if (eventProperty.getEventType().equals(EventType.FIELD_EXHAUSTED)) {
 				Snackbar make = Snackbar.make(getActivity().findViewById(android.R.id.content),
-					"Do you need help filling " + eventProperty.getElementLabel() + " ?", Snackbar.LENGTH_SHORT);
+					"Do you need help filling " + eventProperty.getElementLabel() + " ?", Snackbar.LENGTH_LONG);
 
 				make.setActionTextColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
 				make.setAction("Open a chat", v -> {

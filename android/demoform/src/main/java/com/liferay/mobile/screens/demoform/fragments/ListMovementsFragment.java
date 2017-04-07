@@ -21,7 +21,7 @@ public class ListMovementsFragment extends AccountsFragment implements BaseListL
 
 	@Override
 	public String getName() {
-		return "Movements";
+		return "Transactions";
 	}
 
 	@Override
