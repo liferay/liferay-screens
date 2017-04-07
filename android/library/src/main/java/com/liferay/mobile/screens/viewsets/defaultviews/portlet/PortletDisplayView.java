@@ -1,20 +1,13 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.portlet;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.util.AttributeSet;
-import android.util.Xml;
-import android.view.View;
-import android.webkit.WebChromeClient;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
@@ -45,7 +38,6 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 		super.onFinishInflate();
 
 		webView = (WebView) findViewById(R.id.liferay_portlet_webview);
-
 		progressBar = (ProgressBar) findViewById(R.id.liferay_portlet_progress);
 	}
 
