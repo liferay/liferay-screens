@@ -48,10 +48,12 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 
 	public static final String UPLOAD_PORTRAIT = "UPLOAD_PORTRAIT";
 	public static final String LOAD_PORTRAIT = "LOAD_PORTRAIT";
+	public static final String LOAD_CURRENT_USER = "LOAD_CURRENT_USER";
 	private static final String STATE_SUPER = "userportrait-super";
 	private boolean autoLoad;
 	private boolean male;
 	private long portraitId;
+	private long userId;
 	private String uuid;
 	private boolean editable;
 	private UserPortraitListener listener;
@@ -78,6 +80,13 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 	 */
 	public void load() {
 		performUserAction(LOAD_PORTRAIT);
+	}
+
+	/**
+	 * Loads the user portrait that correspond to the user logged.
+	 */
+	public void loadLoggedUserPortrait() {
+		performUserAction(LOAD_CURRENT_USER);
 	}
 
 	/**
@@ -190,6 +199,16 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 		this.editable = editable;
 	}
 
+	@Override
+	public long getUserId() {
+		return userId;
+	}
+
+	@Override
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
 	/**
 	 * Checks if exists {@link #portraitId} and {@link #uuid} or {@link #userId} attributes
 	 * and then calls {@link #load()} method. It's not necessary to be logged in.
@@ -214,6 +233,7 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 		portraitId = typedArray.getInt(R.styleable.UserPortraitScreenlet_portraitId, 0);
 		uuid = typedArray.getString(R.styleable.UserPortraitScreenlet_uuid);
 		editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
+		userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, 0);
 
 		int layoutId = typedArray.getResourceId(R.styleable.UserPortraitScreenlet_layoutId, getDefaultLayoutId());
 
@@ -233,22 +253,30 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 
 	@Override
 	protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
-		if (UPLOAD_PORTRAIT.equals(userActionName)) {
-			UserPortraitUploadInteractor userPortraitInteractor =
-				(UserPortraitUploadInteractor) getInteractor(userActionName);
-			Uri path = (Uri) args[0];
-			if (userId != 0) {
-				userPortraitInteractor.start(new UserPortraitUploadEvent(path));
-			}
-		} else {
-			UserPortraitLoadInteractor userPortraitLoadInteractor =
-				(UserPortraitLoadInteractor) getInteractor(userActionName);
-			if (portraitId != 0 && uuid != null) {
-				userPortraitLoadInteractor.start(male, portraitId, uuid);
-			} else {
-				userPortraitLoadInteractor.start(
-					SessionContext.hasUserInfo() && userId == 0 ? SessionContext.getCurrentUser().getId() : userId);
-			}
+		switch (userActionName) {
+			case UPLOAD_PORTRAIT:
+				UserPortraitUploadInteractor userPortraitInteractor =
+					(UserPortraitUploadInteractor) getInteractor(userActionName);
+				Uri path = (Uri) args[0];
+				if (userId != 0) {
+					userPortraitInteractor.start(new UserPortraitUploadEvent(path));
+				}
+				break;
+			case LOAD_CURRENT_USER:
+				UserPortraitLoadInteractor userPortraitLoadInteractorCurrentUser =
+					(UserPortraitLoadInteractor) getInteractor(userActionName);
+				long currentUserId = SessionContext.isLoggedIn() ? SessionContext.getCurrentUser().getId() : 0;
+				userPortraitLoadInteractorCurrentUser.start(currentUserId);
+				break;
+			default:
+				UserPortraitLoadInteractor userPortraitLoadInteractor =
+					(UserPortraitLoadInteractor) getInteractor(userActionName);
+				if (portraitId != 0 && uuid != null) {
+					userPortraitLoadInteractor.start(male, portraitId, uuid);
+				} else {
+					userPortraitLoadInteractor.start(userId);
+				}
+				break;
 		}
 	}
 

@@ -16,4 +16,5 @@
 	<string name="error_when">Error when</string>
 	<string name="custom_interactor_login_error">Error logging in, try with test/test</string>
 	<string name="failed">failed</string>
+	<string name="user_portrait_error">Error loading user portrait</string>
 </resources>
