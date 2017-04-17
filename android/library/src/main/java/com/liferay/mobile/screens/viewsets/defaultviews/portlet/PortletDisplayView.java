@@ -58,9 +58,12 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 			webView.loadUrl(url);
 
 			webView.setWebViewClient(new WebViewClient() {
+
+				@Override
 				public void onPageFinished(WebView view, String url) {
 					view.setVisibility(VISIBLE);
 					progressBar.setVisibility(GONE);
+					webView.loadUrl("javascript:" + injectGalleryJS());
 				}
 			});
 		}
@@ -76,6 +79,18 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 		}
 
 		LiferayLogger.e("Error with portlet", e);
+	}
+
+	private String injectGalleryJS() {
+		//This script is for Media Gallery Portlet
+		return "var cards = document.getElementsByClassName('card');"
+			+ "for (let i = 0; i < cards.length; i++) {"
+			+ "cards[i].addEventListener('click', function(event) {"
+			+ "let card = cards[i];"
+			+ "let imgSrc = card.querySelector('img').src;"
+			+ "event.stopPropagation();"
+			+ "card.querySelector('img').addEventListener('click', android.showItem(imgSrc))"
+			+ "})}";
 	}
 
 	@Override
