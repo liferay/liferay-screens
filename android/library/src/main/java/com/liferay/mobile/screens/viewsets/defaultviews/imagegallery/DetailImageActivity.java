@@ -16,6 +16,7 @@ import com.squareup.picasso.Picasso;
 public class DetailImageActivity extends AppCompatActivity {
 
 	public static final String GALLERY_SCREENLET_IMAGE_DETAILED = "GALLERY_SCREENLET_IMAGE_DETAILED";
+	public static final String GALLERY_SCREENLET_IMAGE_DETAILED_URL = "GALLERY_SCREENLET_IMAGE_DETAILED_URL";
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,12 +24,19 @@ public class DetailImageActivity extends AppCompatActivity {
 		setContentView(R.layout.gallery_detailed_default);
 
 		Intent intent = getIntent();
+		ImageView detailedImageView = (ImageView) findViewById(R.id.detailed_image);
 
-		if (intent != null && intent.hasExtra(GALLERY_SCREENLET_IMAGE_DETAILED)) {
-			ImageEntry imageEntry = (ImageEntry) intent.getExtras().get(GALLERY_SCREENLET_IMAGE_DETAILED);
+		if (intent != null) {
+			if (intent.hasExtra(GALLERY_SCREENLET_IMAGE_DETAILED)) {
 
-			ImageView detailedImageView = (ImageView) findViewById(R.id.detailed_image);
-			PicassoScreens.load(imageEntry.getImageUrl()).into(detailedImageView);
+				ImageEntry imageEntry = (ImageEntry) intent.getExtras().get(GALLERY_SCREENLET_IMAGE_DETAILED);
+				PicassoScreens.load(imageEntry.getImageUrl()).into(detailedImageView);
+
+			} else if (intent.hasExtra(GALLERY_SCREENLET_IMAGE_DETAILED_URL)) {
+
+				String url = intent.getStringExtra(GALLERY_SCREENLET_IMAGE_DETAILED_URL);
+				Picasso.with(getApplicationContext()).load(url).into(detailedImageView);
+			}
 		}
 	}
 }
