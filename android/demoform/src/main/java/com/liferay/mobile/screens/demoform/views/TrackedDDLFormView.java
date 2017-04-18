@@ -161,14 +161,15 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 	}
 
 	private void sendPageTransition(int newPosition) {
-
 		Record record = getDDLFormScreenlet().getRecord();
-		Record.Page page = record.getPages().get(newPosition);
-		EventProperty eventProperty =
-			new EventProperty(EventType.PAGE_TRANSITION, page.getTitle(), String.valueOf(newPosition));
-		eventProperty.setTime(System.currentTimeMillis() - pageTimer);
-		TrackingAction.post(getContext(), eventProperty);
-		pageTimer = System.currentTimeMillis();
+		if (newPosition >= 0 || newPosition < record.getPages().size()) {
+			Record.Page page = record.getPages().get(newPosition);
+			EventProperty eventProperty =
+				new EventProperty(EventType.PAGE_TRANSITION, page.getTitle(), String.valueOf(newPosition));
+			eventProperty.setTime(System.currentTimeMillis() - pageTimer);
+			TrackingAction.post(getContext(), eventProperty);
+			pageTimer = System.currentTimeMillis();
+		}
 	}
 
 	@Override
