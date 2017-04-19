@@ -278,8 +278,10 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 				}
 
 				pageTitleTextView.setText(page.getTitle());
-				String text = page.getNumber() + 1 + "/" + getItemCount();
-				pageNumberTextView.setText(text);
+				if (getItemCount() > 1) {
+					String text = page.getNumber() + 1 + "/" + getItemCount();
+					pageNumberTextView.setText(text);
+				}
 
 				boolean isLastPage = page.getNumber() == record.getPages().size() - 1;
 				submitButton.setVisibility(isLastPage ? VISIBLE : INVISIBLE);
