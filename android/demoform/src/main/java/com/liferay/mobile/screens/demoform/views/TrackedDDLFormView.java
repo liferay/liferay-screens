@@ -53,6 +53,9 @@ public class TrackedDDLFormView extends DDLFormView implements RecyclerViewPager
 		setLayoutManager(new LinearLayoutManager(getContext(), HORIZONTAL, false));
 		addOnPageChangedListener(this);
 		setSinglePageFling(true);
+		setFocusable(true);
+		setFocusableInTouchMode(true);
+		setDescendantFocusability(FOCUS_BEFORE_DESCENDANTS);
 	}
 
 	@Override

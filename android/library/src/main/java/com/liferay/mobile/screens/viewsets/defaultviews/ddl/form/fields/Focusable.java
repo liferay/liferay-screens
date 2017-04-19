@@ -37,7 +37,13 @@ public class Focusable {
 		if (this.ddlFieldViewModel != ddlFieldViewModelSelected && focused) {
 			focused = false;
 			focusChange.onNext(EventType.FIELD_LEAVE);
-			((View) ddlFieldViewModel).clearFocus();
+			View view = (View) this.ddlFieldViewModel;
+
+			view.setFocusableInTouchMode(false);
+			view.setFocusable(false);
+			view.clearFocus();
+			view.setFocusableInTouchMode(true);
+			view.setFocusable(true);
 		}
 	}
 
