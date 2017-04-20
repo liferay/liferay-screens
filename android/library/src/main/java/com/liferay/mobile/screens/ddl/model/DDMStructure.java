@@ -37,6 +37,11 @@ public class DDMStructure implements Parcelable {
 	protected List<Field> fields = new ArrayList<>();
 	protected Locale locale = Locale.US;
 	protected boolean parsed;
+	private String description;
+	private String name;
+	private String structureKey;
+	private String structureId;
+	private Long classNameId;
 
 	public DDMStructure() {
 		super();
@@ -107,12 +112,27 @@ public class DDMStructure implements Parcelable {
 	}
 
 	public void parse(JSONObject jsonObject) throws JSONException {
+
+		this.description = getSafeString(jsonObject, "descriptionCurrentValue");
+		this.name = getSafeString(jsonObject, "nameCurrentValue");
+		this.structureKey = getSafeString(jsonObject, "structureKey");
+		this.structureId = getSafeString(jsonObject, "structureId");
+		this.classNameId = getSafeLong(jsonObject, "classNameId");
+
 		if (jsonObject.has("xsd")) {
 			parse(jsonObject.getString("xsd"), new XSDParser());
 		} else {
 			parse(jsonObject.getString("definition"), new JsonParser());
 		}
 		parsed = true;
+	}
+
+	public String getSafeString(JSONObject jsonObject, String field) throws JSONException {
+		return jsonObject.has(field) ? jsonObject.getString(field) : "";
+	}
+
+	public Long getSafeLong(JSONObject jsonObject, String fieldName) throws JSONException {
+		return jsonObject.has(fieldName) ? jsonObject.getLong(fieldName) : null;
 	}
 
 	protected void parse(String content, DDMStructureParser parser) {
