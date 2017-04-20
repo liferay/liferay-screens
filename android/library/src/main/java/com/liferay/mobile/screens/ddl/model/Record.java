@@ -296,43 +296,12 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		return pages;
 	}
 
-	public int getPage(Field field) {
+	public int getPageForField(Field field) {
 		for (int i = 0; i < pages.size(); i++) {
 			if (pages.get(i).getFields().contains(field)) {
 				return i;
 			}
 		}
 		return 0;
-	}
-
-	public static class Page {
-
-		private String title;
-		private String description;
-		private List<Field> fields;
-		private int number;
-
-		public Page() {
-			super();
-		}
-
-		public Page(int number, String title, String description, List<Field> fields) {
-			this.number = number;
-			this.title = title;
-			this.description = description;
-			this.fields = fields;
-		}
-
-		public List<Field> getFields() {
-			return fields;
-		}
-
-		public int getNumber() {
-			return number;
-		}
-
-		public String getTitle() {
-			return title;
-		}
 	}
 }
