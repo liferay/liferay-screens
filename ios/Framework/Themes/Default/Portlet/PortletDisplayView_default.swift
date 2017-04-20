@@ -15,7 +15,7 @@ import UIKit
 import WebKit
 
 
-open class PortletDisplayView_default: BaseScreenletView {
+open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewModel {
 
 
 	//MARK: Outlets
@@ -34,7 +34,16 @@ open class PortletDisplayView_default: BaseScreenletView {
 		]
 	}
 
-	open override func onCreated() {
+	open var portletUrl: URL? {
+		get {
+			return self.portletUrl
+		}
+		set {
+			webView?.load(URLRequest(url: newValue!))
+		}
+	}
+
+	override open func onCreated() {
 		super.onCreated()
 
 		let config = WKWebViewConfiguration.noCacheConfiguration
