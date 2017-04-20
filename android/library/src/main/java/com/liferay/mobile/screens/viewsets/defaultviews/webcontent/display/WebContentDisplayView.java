@@ -40,8 +40,7 @@ import com.squareup.okhttp.Request;
 /**
  * @author Silvio Santos
  */
-public class WebContentDisplayView extends FrameLayout
-	implements WebContentDisplayViewModel, View.OnTouchListener {
+public class WebContentDisplayView extends FrameLayout implements WebContentDisplayViewModel, View.OnTouchListener {
 
 	private static final String STYLES = "<style>"
 		+ ".MobileCSS {padding: 4%; width: 92%;} "
@@ -93,12 +92,10 @@ public class WebContentDisplayView extends FrameLayout
 
 			LiferayLogger.i("article loaded: " + webContent);
 
-			String styledHtml =
-				STYLES + "<div class=\"MobileCSS\">" + webContent.getHtml() + "</div>";
+			String styledHtml = STYLES + "<div class=\"MobileCSS\">" + webContent.getHtml() + "</div>";
 
 			//TODO check encoding
-			webView.loadDataWithBaseURL(LiferayServerContext.getServer(), styledHtml, "text/html",
-				"utf-8", null);
+			webView.loadDataWithBaseURL(LiferayServerContext.getServer(), styledHtml, "text/html", "utf-8", null);
 		}
 	}
 
@@ -168,8 +165,7 @@ public class WebContentDisplayView extends FrameLayout
 
 			@Override
 			@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-			public WebResourceResponse shouldInterceptRequest(WebView view,
-				WebResourceRequest request) {
+			public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
 
 				return getResource(request.getUrl().toString());
 			}
@@ -177,8 +173,7 @@ public class WebContentDisplayView extends FrameLayout
 			private WebResourceResponse getResource(String url) {
 				try {
 					OkHttpClient httpClient = LiferayServerContext.getOkHttpClientNoCache();
-					com.squareup.okhttp.Request.Builder builder =
-						new com.squareup.okhttp.Request.Builder().url(url);
+					com.squareup.okhttp.Request.Builder builder = new com.squareup.okhttp.Request.Builder().url(url);
 
 					Request request = builder.build();
 					com.squareup.okhttp.Response response = httpClient.newCall(request).execute();

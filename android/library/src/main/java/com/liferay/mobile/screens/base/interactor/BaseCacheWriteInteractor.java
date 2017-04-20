@@ -51,19 +51,17 @@ public abstract class BaseCacheWriteInteractor<L extends BaseCacheListener, E ex
 				online(event);
 			}
 		} catch (Exception e) {
-			if(!retried && isCookieSessionAndAuthenticationError(e)) {
+			if (!retried && isCookieSessionAndAuthenticationError(e)) {
 				retried = true;
 				try {
 					Session session = CookieSignIn.signIn(getSession());
 					SessionContext.createCookieSession(session);
-				}
-				catch (Exception ex) {
+				} catch (Exception ex) {
 					createErrorEvent(ex);
 					return;
 				}
 				doInBackground(event);
-			}
-			else {
+			} else {
 				createErrorEvent(e);
 			}
 		}

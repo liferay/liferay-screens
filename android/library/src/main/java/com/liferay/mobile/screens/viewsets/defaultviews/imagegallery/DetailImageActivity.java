@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.context.PicassoScreens;
 import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
-import com.squareup.picasso.Picasso;
 
 /**
  * @author Víctor Galán Grande

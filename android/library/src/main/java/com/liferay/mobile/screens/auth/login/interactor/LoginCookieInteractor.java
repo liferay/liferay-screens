@@ -1,16 +1,11 @@
 package com.liferay.mobile.screens.auth.login.interactor;
 
-import android.text.TextUtils;
 import com.liferay.mobile.android.auth.CookieSignIn;
-import com.liferay.mobile.android.auth.basic.CookieAuthentication;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
-import com.liferay.mobile.screens.cache.executor.Executor;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import org.json.JSONObject;
 
@@ -40,8 +35,7 @@ public class LoginCookieInteractor extends BaseLoginInteractor {
 		return new BasicEvent(jsonObject);
 	}
 
-	protected JSONObject getUser(String login, UserConnector userConnector)
-		throws Exception {
+	protected JSONObject getUser(String login, UserConnector userConnector) throws Exception {
 
 		return userConnector.getUserByEmailAddress(LiferayServerContext.getCompanyId(), login);
 	}
@@ -57,5 +51,4 @@ public class LoginCookieInteractor extends BaseLoginInteractor {
 	public UserConnector getUserConnector(Session session) {
 		return ServiceProvider.getInstance().getUserConnector(session);
 	}
-
 }

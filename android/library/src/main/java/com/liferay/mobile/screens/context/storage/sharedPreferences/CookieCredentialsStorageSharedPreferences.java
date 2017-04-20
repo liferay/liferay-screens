@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.context.storage.sharedPreferences;
 
 import com.liferay.mobile.android.auth.Authentication;
-import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.auth.basic.CookieAuthentication;
 import com.liferay.mobile.screens.context.AuthenticationType;
 

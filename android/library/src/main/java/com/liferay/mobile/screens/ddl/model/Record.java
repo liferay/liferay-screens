@@ -54,6 +54,7 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 	private Long structureId;
 	private Long recordSetId;
 	private Long recordId;
+	private List<Page> pages = new ArrayList<>();
 
 	public Record() {
 		super();
@@ -290,8 +291,6 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		JSONObject values = jsonObject.getJSONObject("values");
 		return values.getString(values.keys().next());
 	}
-
-	private List<Page> pages = new ArrayList<>();
 
 	public List<Page> getPages() {
 		return pages;
