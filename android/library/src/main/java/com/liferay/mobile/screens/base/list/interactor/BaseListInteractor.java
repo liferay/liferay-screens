@@ -97,11 +97,7 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 	protected boolean retrying(Object... args) {
 		Object last = args[args.length - 1];
 
-		if (last instanceof Boolean) {
-			return (boolean) last;
-		}
-
-		return false;
+		return last instanceof Boolean && (boolean) last;
 	}
 
 	protected void validate(int startRow, int endRow, Locale locale) {

@@ -54,7 +54,7 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 	private Long structureId;
 	private Long recordSetId;
 	private Long recordId;
-	private List<Page> pages = new ArrayList<>();
+	private final List<Page> pages = new ArrayList<>();
 
 	public Record() {
 		super();

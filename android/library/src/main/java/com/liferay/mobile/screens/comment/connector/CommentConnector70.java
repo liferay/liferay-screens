@@ -6,7 +6,7 @@ import com.liferay.mobile.screens.comment.display.interactor.delete.CommentConne
 
 public class CommentConnector70 implements CommentConnector {
 
-	private CommentmanagerjsonwsService commentmanagerjsonwsService;
+	private final CommentmanagerjsonwsService commentmanagerjsonwsService;
 
 	public CommentConnector70(Session session) {
 		commentmanagerjsonwsService = new CommentmanagerjsonwsService(session);

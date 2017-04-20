@@ -104,7 +104,7 @@ public abstract class BaseInteractor<L, E extends BasicEvent> implements Interac
 
 	protected Class getEventClass() {
 
-		Class aClass = (Class) getClass();
+		Class aClass = getClass();
 		while (!(aClass.getGenericSuperclass() instanceof ParameterizedType)) {
 			aClass = aClass.getSuperclass();
 		}

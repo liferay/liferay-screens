@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 public class ScreensCommentConnector70 implements ScreensCommentConnector {
 
-	private ScreenscommentService screenscommentService;
+	private final ScreenscommentService screenscommentService;
 
 	public ScreensCommentConnector70(Session session) {
 		screenscommentService = new ScreenscommentService(session);

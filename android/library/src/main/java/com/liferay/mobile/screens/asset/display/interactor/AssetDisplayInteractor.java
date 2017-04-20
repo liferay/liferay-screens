@@ -57,7 +57,7 @@ public class AssetDisplayInteractor extends BaseCacheReadInteractor<AssetDisplay
 
 	@Override
 	public void onSuccess(AssetEvent event) {
-		AssetEntry assetEntry = null;
+		AssetEntry assetEntry;
 		try {
 			Map<String, Object> map = JSONUtil.toMap(event.getJSONObject());
 			assetEntry = AssetFactory.createInstance(map);
