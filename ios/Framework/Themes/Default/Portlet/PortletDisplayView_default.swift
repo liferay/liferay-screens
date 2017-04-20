@@ -22,7 +22,10 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	open var webView: WKWebView?
 
-	override open var progressMessages: [String:ProgressMessages] {
+
+	//MARK: BaseScreenletView
+
+	override open var progressMessages: [String: ProgressMessages] {
 		return [
 			BaseScreenlet.DefaultAction :
 				[
@@ -32,15 +35,6 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 						"default", key: "portletdisplay-loading-error", obj: self)
 			]
 		]
-	}
-
-	open var portletUrl: URL? {
-		get {
-			return self.portletUrl
-		}
-		set {
-			webView?.load(URLRequest(url: newValue!))
-		}
 	}
 
 	override open func onCreated() {
@@ -55,6 +49,25 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 		addWebView()
 	}
+
+	override open func createProgressPresenter() -> ProgressPresenter {
+		return DefaultProgressPresenter()
+	}
+
+
+	//MARK: PortletDisplayViewModel
+
+	open var portletUrl: URL? {
+		get {
+			return self.portletUrl
+		}
+		set {
+			webView?.load(URLRequest(url: newValue!))
+		}
+	}
+
+
+	//MARK: Public methods
 
 	open func addWebView() {
 		webView?.translatesAutoresizingMaskIntoConstraints = false
@@ -71,9 +84,5 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		                                  toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
 
 		NSLayoutConstraint.activate([top, bottom, leading, trailing])
-	}
-
-	override open func createProgressPresenter() -> ProgressPresenter {
-		return DefaultProgressPresenter()
 	}
 }
