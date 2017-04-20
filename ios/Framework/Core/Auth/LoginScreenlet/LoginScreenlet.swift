@@ -213,7 +213,7 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 	}
 
 	fileprivate func createLoginCookieInteractor() -> LoginCookieInteractor {
-		let interactor = LoginCookieInteractor(screenlet: self, emailAddress: viewModel.userName!, password: viewModel.password!, challengeResolver: challengeResolver)
+		let interactor = LoginCookieInteractor(screenlet: self, emailAddress: viewModel.userName ?? "", password: viewModel.password ?? "", challengeResolver: challengeResolver)
 
 		interactor.onSuccess = {
 			self.loginDelegate?.screenlet?(self,
